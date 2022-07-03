@@ -1,0 +1,12 @@
+{
+  	"name" : "Eclipse",
+	"description" : "A challenging custom difficulty with overhauled AI, enemies, tactics and more! Includes playerside balance overhaul.",
+	"author" : "mrcreepy, Hoppip (SHAI & MB) and many others..."
+	"contact" : "creepysos#4414",
+	"blt_version" : 2,
+	"version" : "1.0",
+	"updates" : [{
+		"identifier" : "eclipse_difficulty",
+		"host" : {"meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/main/meta.json"}
+	}]
+}

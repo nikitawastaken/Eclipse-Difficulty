@@ -1,0 +1,9 @@
+<table>
+	<AddFiles directory="assets">
+		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"/>
+		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"/>
+	</AddFiles>
+
+	<Localization directory="loc" default="en.txt">
+    </Localization>
+</table>

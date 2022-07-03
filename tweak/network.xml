@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<tweak version="2" name="settings/network" extension="network_settings">
+	<search>
+		<network/>
+		<rpc/>
+		<message/>
+		<param type="int" min="0" max="512"/>
+	</search>
+	<target mode="attributes" multiple="true">
+		<attr name="max" value="8192"/>
+	</target>
+</tweak>

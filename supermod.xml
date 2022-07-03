@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<mod name="Eclipse">
+
+	<tweak definition="tweak/animation.xml"/>
+	<tweak definition="tweak/network.xml"/>
+
+	<hooks script_path="mod.lua">
+	
+		<group hook_id="core/lib/">
+			<post :hook_id="managers/coreenvironmentcontrollermanager"/>
+			<post :hook_id="units/coreunitdamage"/>
+		</group>
+
+		<group hook_id="lib/">
+			<group :hook_id="managers/">
+				<group :hook_id="group_ai_states/">
+					<post :hook_id="groupaistatebase"/>
+					<post :hook_id="groupaistatebesiege"/>
+				</group>
+
+				<group :hook_id="mission/">
+					<post :hook_id="elementareatrigger"/>
+					<post :hook_id="elementspawnenemygroup"/>
+					<post :hook_id="elementspecialobjective"/>
+				</group>
+
+				<post :hook_id="enemymanager"/>
+				<post :hook_id="hudmanager"/>
+				<post :hook_id="menumanager"/>
+				<post :hook_id="savefilemanager"/>
+				<post :hook_id="achievmentmanager"/>
+				<post :hook_id="player/snipergrazedamage"/>
+			</group>
+
+			<group :hook_id="network/">
+				<post :hook_id="handlers/unitnetworkhandler"/>
+				<post :hook_id="matchmaking/networkmatchmakingsteam"/>
+			</group>
+			
+			<group :hook_id="tweak_data/">
+				<post :hook_id="blackmarket/projectilestweakdata"/>
+				<post :hook_id="charactertweakdata"/>
+				<post :hook_id="groupaitweakdata"/>
+				<post :hook_id="playertweakdata"/>
+				<post :hook_id="skirmishtweakdata"/>
+				<post :hook_id="weapontweakdata"/>
+				<post :hook_id="playertweakdata"/>
+				<post :hook_id="upgradestweakdata"/>
+				<post :hook_id="skilltreetweakdata"/>
+				<post :hook_id="weaponfactorytweakdata"/>
+				<post :hook_id="dramatweakdata"/>
+				<post :hook_id="tweakdata"/>
+			</group>
+
+			<group :hook_id="units/">
+				<post :hook_id="beings/player/playerdamage"/>
+				<post :hook_id="civilians/logics/civilianlogicflee"/>
+
+				<group :hook_id="enemies/">
+					<post :hook_id="boss/logics/bosslogicattack"/>
+
+					<group :hook_id="cop/">
+						<group :hook_id="actions/full_body/">
+							<post :hook_id="copactionact"/>
+							<post :hook_id="copactiondodge"/>
+							<post :hook_id="copactionhurt"/>
+						</group>
+
+						<group :hook_id="actions/lower_body/">
+							<post :hook_id="copactionidle"/>
+							<post :hook_id="copactionwalk"/>
+						</group>
+
+						<group :hook_id="actions/upper_body/">
+							<post :hook_id="copactionreload"/>
+							<post :hook_id="copactionshoot"/>
+							<post :hook_id="copactiontase"/>
+						</group>
+
+						<group :hook_id="logics/">
+							<post :hook_id="coplogicarrest"/>
+							<post :hook_id="coplogicattack"/>
+							<post :hook_id="coplogicbase"/>
+							<post :hook_id="coplogicidle"/>
+							<post :hook_id="coplogicinactive"/>
+							<post :hook_id="coplogicintimidated"/>
+							<post :hook_id="coplogicphalanxminion"/>
+							<post :hook_id="coplogicsniper"/>
+							<post :hook_id="coplogictravel"/>
+						</group>
+
+						<post :hook_id="copbase"/>
+						<post :hook_id="huskcopbase"/>
+						<post :hook_id="copbrain"/>
+						<post :hook_id="copdamage"/>
+						<post :hook_id="copinventory"/>
+						<post :hook_id="copmovement"/>
+					</group>
+
+					<group :hook_id="spooc/">
+						<post :hook_id="actions/lower_body/actionspooc"/>
+						<post :hook_id="logics/spooclogicattack"/>
+					</group>
+
+					<group :hook_id="tank/">
+						<post :hook_id="logics/tankcoplogicattack"/>
+					</group>
+
+					<post :hook_id="taser/logics/taserlogicattack"/>
+					<post :hook_id="medic/medicdamage"/>
+				</group>
+
+				<group :hook_id="equipment/">
+					<post :hook_id="sentry_gun/sentrygunbase"/>
+					<post :hook_id="ammo_bag/ammobagbase"/>
+				</group>
+
+				<post :hook_id="civilians/civilianbase"/>
+				<post :hook_id="vehicles/animatedvehiclebase"/>
+				<post :hook_id="player_team/teamaimovement"/>
+				<post :hook_id="cameras/fpcameraplayerbase"/>
+
+				<group :hook_id="weapons/">
+					<group :hook_id="grenades/">
+						<post :hook_id="quickflashgrenade"/>
+					</group>
+					<post :hook_id="shotgun/shotgunbase"/>
+					<post :hook_id="akimboweaponbase"/>
+					<post :hook_id="raycastweaponbase"/>
+					<post :hook_id="newraycastweaponbase"/>
+				</group>
+			</group>
+		</group>
+	</hooks>
+</mod>

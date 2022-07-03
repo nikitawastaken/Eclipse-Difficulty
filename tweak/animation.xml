@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<tweaks>
+	<!-- Animation weight fixes for dozers -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/stand_reload"/>
+			<anim weight="is_npc * ( 1 - tank ) * ( is_rifle + is_lmg + (is_smg * (1 - uzi)) + is_shotgun_mag )"/>
+		</search>
+		<target mode="attributes">
+			<attr name="weight" value="is_npc * (is_rifle + ((is_lmg + mini) * (1 - tank)) + (is_smg * (1 - uzi)) + is_shotgun_mag)"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/stand_reload"/>
+			<anim weight="is_npc * ( 1 - tank ) * ( is_bullpup )"/>
+		</search>
+		<target mode="attributes">
+			<attr name="weight" value="is_npc * is_bullpup"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/stand_reload"/>
+			<anim weight="is_npc * ( 1 - tank ) * ( is_smg ) * uzi"/>
+		</search>
+		<target mode="attributes">
+			<attr name="weight" value="is_npc * is_smg * uzi"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/stand_reload"/>
+			<anim weight="is_npc * tank * is_smg"/>
+		</search>
+		<target mode="replace"/>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/stand_reload"/>
+			<anim weight="is_npc * tank * is_shotgun_mag"/>
+		</search>
+		<target mode="replace"/>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/stand_reload"/>
+			<anim name="tank_reload_lmg"/>
+		</search>
+		<target mode="attributes">
+			<attr name="weight" value="is_npc * tank * is_lmg"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/stand_reload"/>
+			<anim name="tank_reload_lmg"/>
+		</search>
+		<target mode="append">
+			<anim name="tank_reload_saiga" weight="is_npc * tank * mini"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/std/recoil/single"/>
+			<anim name="tank_recoil_saiga"/>
+		</search>
+		<target mode="attributes">
+			<attr name="weight" value="tank * (1 - is_shotgun_pump)"/>
+		</target>
+	</tweak>
+
+	<!-- Fix for dodge animations ending too soon (thanks to RedFlame) -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+				<xml/>
+				<state name="std/crouch/still/idle"/>
+				<from name="std/dodge"/>
+		</search>
+		<target mode="attributes">
+				<attr name="blend" value="1"/>
+		</target>
+	</tweak>
+</tweaks>
