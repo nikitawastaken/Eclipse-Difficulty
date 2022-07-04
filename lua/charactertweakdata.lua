@@ -32,6 +32,88 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
 	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
 	self.sniper.suppression = nil -- hopefully this fixes some instances of snipers hiding their lasers
+
+	self.biker_boss.HEALTH_INIT = 400
+	self.biker_boss.player_health_scaling_mul = 1.5
+	self.biker_boss.headshot_dmg_mul = 0.5
+	self.biker_boss.no_headshot_add_mul = true
+	self.biker_boss.DAMAGE_CLAMP_BULLET = 100
+	self.biker_boss.DAMAGE_CLAMP_EXPLOSION = 200
+	self.biker_boss.damage.explosion_damage_mul = 0.5
+	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.biker_boss.move_speed = self.presets.move_speed.slow
+	self.biker_boss.no_run_start = true
+	self.biker_boss.no_run_stop = true
+	self.biker_boss.throwable = "concussion"
+	self.biker_boss.throwable_cooldown = 10
+	
+	self.chavez_boss.HEALTH_INIT = 400
+	self.chavez_boss.player_health_scaling_mul = 1.5
+	self.chavez_boss.headshot_dmg_mul = 0.75
+	self.chavez_boss.no_headshot_add_mul = true
+	self.chavez_boss.DAMAGE_CLAMP_BULLET = 100
+	self.chavez_boss.DAMAGE_CLAMP_EXPLOSION = 200
+	self.chavez_boss.damage.explosion_damage_mul = 0.5
+	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.chavez_boss.move_speed = self.presets.move_speed.very_fast
+	self.chavez_boss.no_run_start = true
+	self.chavez_boss.no_run_stop = true
+
+	self.drug_lord_boss.HEALTH_INIT = 400
+	self.drug_lord_boss.player_health_scaling_mul = 1.5
+	self.drug_lord_boss.headshot_dmg_mul = 0.75
+	self.drug_lord_boss.no_headshot_add_mul = true
+	self.drug_lord_boss.DAMAGE_CLAMP_BULLET = 100
+	self.drug_lord_boss.DAMAGE_CLAMP_EXPLOSION = 200
+	self.drug_lord_boss.damage.explosion_damage_mul = 0.5
+	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.drug_lord_boss.move_speed = self.presets.move_speed.normal
+	self.drug_lord_boss.no_run_start = true
+	self.drug_lord_boss.no_run_stop = true
+	self.drug_lord_boss.throwable = "launcher_m203"
+	self.drug_lord_boss.throwable_target_verified = true
+	self.drug_lord_boss.throwable_cooldown = 10
+	
+	self.hector_boss.HEALTH_INIT = 400
+	self.hector_boss.player_health_scaling_mul = 1.5
+	self.hector_boss.headshot_dmg_mul = 0.5
+	self.hector_boss.no_headshot_add_mul = true
+	self.hector_boss.DAMAGE_CLAMP_BULLET = 100
+	self.hector_boss.DAMAGE_CLAMP_EXPLOSION = 200
+	self.hector_boss.damage.explosion_damage_mul = 0.5
+	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.hector_boss.move_speed = self.presets.move_speed.slow
+	self.hector_boss.no_run_start = true
+	self.hector_boss.no_run_stop = true
+	self.hector_boss.throwable = "frag"
+	self.hector_boss.throwable_cooldown = 15
+	
+	self.mobster_boss.HEALTH_INIT = 400
+	self.mobster_boss.player_health_scaling_mul = 1.5
+	self.mobster_boss.headshot_dmg_mul = 0.75
+	self.mobster_boss.no_headshot_add_mul = true
+	self.mobster_boss.DAMAGE_CLAMP_BULLET = 100
+	self.mobster_boss.DAMAGE_CLAMP_EXPLOSION = 200
+	self.mobster_boss.damage.explosion_damage_mul = 0.5
+	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.mobster_boss.move_speed = self.presets.move_speed.fast
+	self.mobster_boss.no_run_start = true
+	self.mobster_boss.no_run_stop = true
+	
+	self.triad_boss.HEALTH_INIT = 400
+	self.triad_boss.player_health_scaling_mul = 1.5
+	self.triad_boss.headshot_dmg_mul = 0.5
+	self.triad_boss.no_headshot_add_mul = true
+	self.triad_boss.DAMAGE_CLAMP_BULLET = 100
+	self.triad_boss.DAMAGE_CLAMP_EXPLOSION = 200
+	self.triad_boss.damage.explosion_damage_mul = 0.5
+	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.triad_boss.move_speed = self.presets.move_speed.slow
+	self.triad_boss.no_run_start = true
+	self.triad_boss.no_run_stop = true
+	self.triad_boss.bullet_damage_only_from_front = nil
+	self.triad_boss.throwable_target_verified = false
+	self.triad_boss.throwable_cooldown = 20
 end)
 
 -- Thanks RedFlame for helping with this
@@ -1949,7 +2031,7 @@ function CharacterTweakData:_set_sm_wish()
 			r = 700,
 			acc = {1, 1},
 			dmg_mul = 6,
-			recoil = {0.5, 0.5},
+			recoil = {0.6, 0.6},
 			mode = {
 				1,
 				0,
@@ -1961,7 +2043,7 @@ function CharacterTweakData:_set_sm_wish()
 			r = 4000,
 			acc = {0.95, 0.95},
 			dmg_mul = 6,
-			recoil = {0.5, 0.5},
+			recoil = {0.75, 0.75},
 			mode = {
 				1,
 				0,
@@ -1973,7 +2055,7 @@ function CharacterTweakData:_set_sm_wish()
 			r = 10000,
 			acc = {0.8, 0.8},
 			dmg_mul = 6,
-			recoil = {0.5, 0.5},
+			recoil = {0.825, 0.825},
 			mode = {
 				1,
 				0,

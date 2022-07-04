@@ -17,7 +17,7 @@
 	"menu_cable_guy_beta_desc": "BASIC: ##$basic##\nThe power and range of your intimidation is increased by ##$multibasic2##.\n\nACE: ##$pro##\nYou and your crew gain ##$multipro## damage absorption for each hostage you have. This effect stacks with up to a maximum of ##$multipro2## hostages.",
 	"menu_triathlete_beta_desc": "BASIC: ##$basic##\nYou can cable tie hostages ##$multibasic## faster.\n\nACE: ##$pro##\nIncrease your supply of cable ties by ##$multipro##.",
 	"menu_sniper_graze_damage": "Mind Blown",
-	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nScoring a headshot with a Sniper Rifle deals ##$multibasic## of the damage to the closest enemy in a ##$multibasic2## radius.\n\nACE: ##$pro##\nAny killing headshot with a Sniper Rifle now deals ##$multipro%## of the damage to the chained enemy.\n\nNote: Does not affect Semi-Auto Sniper Rifles.",
+	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nScoring a headshot with a Sniper Rifle deals ##$multibasic## of the damage to the closest enemy in a ##$multibasic2## radius.\n\nACE: ##$pro##\nAny killing headshot with a Sniper Rifle now deals ##$multipro## of the damage to the chained enemy.\n\nNote: Does not affect Semi-Auto Sniper Rifles.",
 	"menu_deck21_9_desc": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
 	"menu_deck12_3_desc": "Increases weapon swapping speed by ##$multiperk##.",
 	"menu_deck12_9_desc": "The lower your health, the more damage you do. When your health is below ##$multiperk##, you will do up to ##$multiperk2## more damage with ranged weapons as well.\n\nAll berserker state effects in this perk deck will start at ##$multiperk3## health instead of ##$multiperk4##.",

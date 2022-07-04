@@ -1123,7 +1123,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.flash_grenade.light_range = 0
 		self.flash_grenade.timer = 1.5
 		-- smoke
-		self.smoke_grenade_timeout = {25, 35}
+		self.smoke_grenade_timeout = {30, 40}
 		self.smoke_grenade_lifetime = 15
 		-- gas
 		self.cs_grenade_timeout = {60, 90}
