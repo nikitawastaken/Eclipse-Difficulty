@@ -44,7 +44,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.medic_2x.multibasic = "1"
 
 	-- 60s inspire cooldown
+	self.morale_boost_speed_bonus = 1.3
+	self.morale_boost_reload_speed_bonus = 1.3
+	self.morale_boost_time = 6
 	self.values.cooldown.long_dis_revive[1][2] = 120
+	self.skill_descs.inspire.multibasic2 = "30%"
+	self.skill_descs.inspire.multibasic3 = "6"
 	self.skill_descs.inspire.multipro2 = "120"
 
 	-- FFriendship description stuff
@@ -333,16 +338,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.level_4_armor_multiplier[3] = 1.7
 	self.specialization_descs[6][7].multiperk2 = "30%"
 
-	-- Infiltrator melee healing buff
-	self.values.temporary.melee_life_leech = {
-		{
-			0.05,
-			1
-		}
-	}
-	self.specialization_descs[8][9].multiperk = "5%"
-	self.specialization_descs[8][9].multiperk2 = "1"
-
 	-- Gambler cooldowns decrease
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do
 		v[2] = 2
@@ -376,16 +371,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[14][1].multiperk6 = "75"
 	self.specialization_descs[14][7].multiperk2 = "60"
 	self.specialization_descs[14][9].multiperk = "50%"
-
-	-- Giver biker higher kill cap and higher regen values
-	self.wild_trigger_time = 6
-	self.wild_max_triggers_per_time = 6
-	self.values.player.wild_health_amount[1] = 0.8
-	self.values.player.wild_armor_amount[1] = 0.8
-	self.specialization_descs[16][1].multiperk = "8"
-	self.specialization_descs[16][1].multiperk2 = "8"
-	self.specialization_descs[16][1].multiperk3 = "6"
-	self.specialization_descs[16][1].multiperk4 = "6"
 
 	-- KP 45s inj description
 	self.specialization_descs[17][1].multiperk3 = "45"

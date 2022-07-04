@@ -5,7 +5,7 @@ PlayerDamage._UPPERS_COOLDOWN = 60
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse__replenish", function(self)
     if Global.game_settings.one_down then
         self._lives_init = 3
-        tweak_data.player.damage.DOWNED_TIME = 15
+        tweak_data.player.damage.DOWNED_TIME = 20
     end
 end)
 

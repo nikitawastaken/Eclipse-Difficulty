@@ -53,16 +53,22 @@ self.sbl.AMMO_PICKUP = {0.9, 1.8}
 self.sbl.stats.reload = 13
 
 -- Repeater
+self.winchester1874.stats.damage = 147
+self.winchester1874.stats_modifiers = {damage = 2}
 self.winchester1874.fire_mode_data.fire_rate = 60 / 85
 self.winchester1874.AMMO_PICKUP = {1, 1.5}
 self.winchester1874.AMMO_MAX = 30
 
 -- Rattlesnake
+self.msr.stats.damage = 147
+self.msr.stats_modifiers = {damage = 2}
 self.msr.fire_mode_data.fire_rate = 60 / 70
 self.msr.AMMO_PICKUP = {1, 1.5}
 self.msr.AMMO_MAX = 30
 
 -- R700
+self.r700.stats.damage = 147
+self.r700.stats_modifiers = {damage = 2}
 self.r700.AMMO_PICKUP = {0.9, 1.8}
 self.r700.fire_mode_data.fire_rate = 60 / 70
 self.r700.AMMO_MAX = 30
@@ -475,7 +481,7 @@ self.groza.kick.steelsight = self.groza.kick.standing
 self.akm.fire_mode_data = {fire_rate = 0.1}
 self.akm.auto = {fire_rate = 0.1}
 self.akm.stats.concealment = 10
-self.akm.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.akm.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.akm.kick.crouching = self.akm.kick.standing
 self.akm.kick.steelsight = self.akm.kick.standing
 
@@ -483,43 +489,43 @@ self.akm.kick.steelsight = self.akm.kick.standing
 self.akm_gold.fire_mode_data = {fire_rate = 0.1}
 self.akm_gold.auto = {fire_rate = 0.1}
 self.akm_gold.stats.concealment = 10
-self.akm_gold.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.akm_gold.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.akm_gold.kick.crouching = self.akm_gold.kick.standing
 self.akm_gold.kick.steelsight = self.akm_gold.kick.standing
 
 -- AK17
 self.flint.stats.concealment = 8
-self.flint.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.flint.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.flint.kick.crouching = self.flint.kick.standing
 self.flint.kick.steelsight = self.flint.kick.standing
 
 -- AMR
 self.m16.stats.concealment = 8
-self.m16.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.m16.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.m16.kick.crouching = self.m16.kick.standing
 self.m16.kick.steelsight = self.m16.kick.standing
 
 -- Eagle Heavy
 self.scar.stats.concealment = 10
 self.scar.stats.reload = 13
-self.scar.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.scar.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.scar.kick.crouching = self.scar.kick.standing
 self.scar.kick.steelsight = self.scar.kick.standing
 
 -- Falcon
-self.fal.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.fal.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.fal.kick.crouching = self.fal.kick.standing
 self.fal.kick.steelsight = self.fal.kick.standing
 
 -- Gewehr
 self.g3.stats.concealment = 9
-self.g3.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.g3.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.g3.kick.crouching = self.g3.kick.standing
 self.g3.kick.steelsight = self.g3.kick.standing
 
 -- KS12
 self.shak12.stats.concealment = 10
-self.shak12.kick.standing = {1.5, 1.65, -0.6, 0.6}
+self.shak12.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.shak12.kick.crouching = self.shak12.kick.standing
 self.shak12.kick.steelsight = self.shak12.kick.standing
 
@@ -799,7 +805,7 @@ Hooks:PostHook(WeaponTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function
 	self.m4_npc.DAMAGE = 1
 	self.m4_npc.auto.fire_rate = 0.225
 	self.m4_yellow_npc.DAMAGE = 1
-	self.m4_yellow_npc.auto.fire_rate = 0.225
+	self.m4_yellow_npc.auto.fire_rate = 0.3
 	self.m249_npc.auto.fire_rate = 0.2
 	self.ump_npc.auto.fire_rate = 0.25
 	self.g36_npc.DAMAGE = 1
