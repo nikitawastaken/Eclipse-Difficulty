@@ -386,15 +386,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.specialization_descs[18][3].multiperk2 = "3"
 
-	-- Stoic dot decrease (6s), resist decrease (60%), cd increase (16s)
-	self.values.player.damage_control_passive = {
-		{
-			60,
-			16
-		}
-	}
-	self.specialization_descs[19][1].multiperk = "60%"
-	self.specialization_descs[19][1].multiperk2 = "6"
+	-- Stoic flask cooldown increase
 	self.specialization_descs[19][1].multiperk3 = "16"
 
 	-- Tag Team max 8 absorption

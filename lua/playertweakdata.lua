@@ -2,6 +2,7 @@ Hooks:PostHook(PlayerTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function
 	self.damage.MIN_DAMAGE_INTERVAL = 0.05
 	self.damage.BLEED_OUT_HEALTH_INIT = 23
 	self.damage.REVIVE_HEALTH_STEPS = {0.6, 0.2}
+	self.damage.respawn_time_penalty = 7
 end)
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function (self)
