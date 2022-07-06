@@ -99,46 +99,56 @@ self.m95.kick.crouching = self.m95.kick.standing
 self.m95.kick.steelsight = self.m95.kick.standing
 
 
--- Light Machine Guns
+-- LMGs
 
 
 -- KSP
-self.m249.kick.standing = {0.65, 1.05, -0.65, 0.65}
+self.m249.kick.standing = {0.65, 1.05, -0.8, 0.8}
 self.m249.kick.crouching = self.m249.kick.standing
-self.m249.kick.steelsight = {0.5, 0.9, -0.5, 0.5}
+self.m249.kick.steelsight = {0.5, 0.9, -0.6, 0.6}
 
 -- Buzzsaw
-self.mg42.kick.standing = {0.65, 1.05, -0.65, 0.65}
+self.mg42.kick.standing = {0.65, 1.05, -0.8, 0.8}
 self.mg42.kick.crouching = self.mg42.kick.standing
-self.mg42.kick.steelsight = {0.5, 0.9, -0.5, 0.5}
+self.mg42.kick.steelsight = {0.5, 0.9, -0.6, 0.6}
 self.mg42.stats.reload = 13
 
 -- KSP 58
-self.par.kick.standing = {0.65, 1.05, -0.65, 0.65}
+self.par.kick.standing = {0.65, 1.05, -0.8, 0.8}
 self.par.kick.crouching = self.par.kick.standing
-self.par.kick.steelsight = {0.5, 0.9, -0.5, 0.5}
+self.par.kick.steelsight = {0.5, 0.9, -0.6, 0.6}
 
 -- Brenner 
 self.hk21.stats.spread = 12
+self.hk21.stats.damage = 110
 self.hk21.AMMO_PICKUP = {8, 10}
-self.hk21.kick.standing = {0.55, 0.95, -0.5, 0.5}
+self.hk21.kick.standing = {0.55, 0.95, -0.8, 0.8}
 self.hk21.kick.crouching = self.hk21.kick.standing
-self.hk21.kick.steelsight = {0.4, 0.7, -0.4, 0.4}
+self.hk21.kick.steelsight = {0.4, 0.7, -0.6, 0.6}
 self.hk21.stats.reload = 12
 
 -- RPK
 self.rpk.stats.spread = 10
+self.rpk.stats.damage = 110
 self.rpk.stats.concealment = 1
 self.rpk.AMMO_PICKUP = {8, 10}
-self.rpk.kick.standing = {0.55, 0.95, -0.5, 0.5}
+self.rpk.kick.standing = {0.55, 0.95, -0.8, 0.8}
 self.rpk.kick.crouching = self.rpk.kick.standing
-self.rpk.kick.steelsight = {0.4, 0.7, -0.4, 0.4}
+self.rpk.kick.steelsight = {0.4, 0.7, -0.6, 0.6}
 
 -- M60
-self.rpk.AMMO_PICKUP = {8, 10}
-self.rpk.kick.standing = {0.55, 0.95, -0.5, 0.5}
-self.rpk.kick.crouching = self.rpk.kick.standing
-self.rpk.kick.steelsight = {0.4, 0.7, -0.4, 0.4}
+self.m60.stats.damage = 110
+self.m60.AMMO_PICKUP = {8, 10}
+self.m60.kick.standing = {0.55, 0.95, -0.8, 0.8}
+self.m60.kick.crouching = self.rpk.kick.standing
+self.m60.kick.steelsight = {0.4, 0.7, -0.6, 0.6}
+
+-- new hk51b lmg idr the in-game name lol
+self.hk51b.stats.damage = 100
+self.hk51b.AMMO_PICKUP = {7, 8}
+self.hk51b.kick.standing = {0.7, 0.95, -0.8, 0.8}
+self.hk51b.kick.crouching = self.rpk.kick.standing
+self.hk51b.kick.steelsight = {0.6, 0.75, -0.7, 0.7}
 
 -- Shotguns
 
@@ -146,7 +156,7 @@ self.rpk.kick.steelsight = {0.4, 0.7, -0.4, 0.4}
 self.saiga.rays = 12
 self.saiga.stats.spread = 12
 self.saiga.AMMO_PICKUP = {3, 4}
-self.saiga.kick.standing = {2.5, 3.2, -0.2, 0.2}
+self.saiga.kick.standing = {2.5, 3.2, -0.5, 0.5}
 self.saiga.kick.crouching = self.saiga.kick.standing
 self.saiga.kick.steelsight = self.saiga.kick.standing
 self.saiga.spread = {
@@ -162,7 +172,7 @@ self.saiga.spread = {
 self.aa12.rays = 12
 self.aa12.stats.spread = 12
 self.aa12.AMMO_PICKUP = {3, 4}
-self.aa12.kick.standing = {2.5, 3.2, -0.2, 0.2}
+self.aa12.kick.standing = {2.5, 3.2, -0.5, 0.5}
 self.aa12.kick.crouching = self.aa12.kick.standing
 self.aa12.kick.steelsight = self.aa12.kick.standing
 self.aa12.spread = {
@@ -177,8 +187,8 @@ self.aa12.spread = {
 -- M1014
 self.benelli.rays = 12
 self.benelli.stats.spread = 12
-self.benelli.AMMO_PICKUP = {2.5, 3.5}
-self.benelli.kick.standing = {1.8, 2, -0.2, 0.2}
+self.benelli.AMMO_PICKUP = {2, 3}
+self.benelli.kick.standing = {2.4, 3, -0.8, 0.8}
 self.benelli.kick.crouching = self.benelli.kick.standing
 self.benelli.kick.steelsight = self.benelli.kick.standing
 self.benelli.spread = {
@@ -193,8 +203,9 @@ self.benelli.spread = {
 -- Predator
 self.spas12.rays = 12
 self.spas12.stats.spread = 12
-self.spas12.AMMO_PICKUP = {2.6, 3.6}
-self.spas12.kick.standing = {1.3, 1.5, -0.2, 0.2}
+self.spas12.AMMO_PICKUP = {2, 3}
+self.spas12.fire_mode_data.fire_rate = 60 / 429
+self.spas12.kick.standing = {2.4, 3, -0.8, 0.8}
 self.spas12.kick.crouching = self.spas12.kick.standing
 self.spas12.kick.steelsight = self.spas12.kick.standing
 self.spas12.spread = {
@@ -745,7 +756,9 @@ self.chinchilla.stats.reload = 13
 
 -- Frenchman
 self.model3.stats.damage = 175
+self.model3.AMMO_PICKUP = self.new_raging_bull.AMMO_PICKUP
 self.x_model3.stats.damage = 175
+self.x_model3.AMMO_PICKUP = self.x_rage.AMMO_PICKUP
 
 -- Baby Deagle
 self.sparrow.stats.damage = 140

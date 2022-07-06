@@ -4,7 +4,7 @@ tweak_data.medic.disabled_units = {"spooc", "medic"}
 
 tweak_data.projectiles.rocket_ray_frag.damage = 60
 tweak_data.projectiles.rocket_ray_frag.player_damage = 8
-tweak_data.projectiles.launcher_rocket.damage = 150
+tweak_data.projectiles.launcher_rocket.damage = 600
 tweak_data.projectiles.launcher_rocket.player_damage = 16
 tweak_data.projectiles.launcher_frag.damage = 48
 tweak_data.projectiles.launcher_frag_m32.damage = 48

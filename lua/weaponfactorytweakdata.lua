@@ -27,14 +27,19 @@ Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- ak family
     self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {ammo_pickup_max_mul = 0.7, ammo_pickup_min_mul = 0.7}
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -6
+    self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 110
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -7
+    self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 110
     -- car family
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -7
+    self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 110
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -6
+    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 110
     -- m308 b-stock
     self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
     -- gewehr
     self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
+    self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 110
     -- broomstick 
     self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.9, ammo_pickup_min_mul = 0.8}
 
@@ -52,7 +57,7 @@ Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_ass_fal_g_01.stats = {recoil = 1, spread = -2, concealment = 2}
 
     -- Speedpull nerfs
-    self.parts.wpn_fps_m4_upg_m_quick.stats = {concealment = -2, reload = 4}
+    self.parts.wpn_fps_m4_upg_m_quick.stats = {recoil = -2, reload = 4}
     self.parts.wpn_fps_upg_ak_m_quick.stats = {recoil = -2, reload = 4}
     self.parts.wpn_fps_ass_g36_m_quick.stats = {recoil = -2, reload = 4}
     self.parts.wpn_fps_ass_aug_m_quick.stats = {recoil = -2, reload = 4}

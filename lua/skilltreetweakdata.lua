@@ -274,6 +274,24 @@ function SkillTreeTweakData:init(tweak_data)
 		}
 	}
 
+	-- Inspire (istg i will get to cleaning this to not look awful later)
+	self.skills.inspire = {
+		{
+			upgrades = {"player_morale_boost"},
+			cost = self.costs.hightier
+		},
+		{
+			upgrades = {"player_revive_interaction_speed_multiplier"},
+			cost = self.costs.hightierpro
+		},
+		name_id = "menu_inspire_beta",
+		desc_id = "menu_inspire_beta_desc",
+		icon_xy = {
+			4,
+			9
+		}
+	}
+
 	-- Old Swan Song
 	table.delete(self.skills.perseverance[2].upgrades, "player_berserker_no_ammo_cost")
 

@@ -47,10 +47,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.morale_boost_speed_bonus = 1.3
 	self.morale_boost_reload_speed_bonus = 1.3
 	self.morale_boost_time = 6
-	self.values.cooldown.long_dis_revive[1][2] = 120
-	self.skill_descs.inspire.multibasic2 = "30%"
-	self.skill_descs.inspire.multibasic3 = "6"
-	self.skill_descs.inspire.multipro2 = "120"
+	self.values.player.revive_interaction_speed_multiplier = {1 / 3}
+	self.skill_descs.inspire.multibasic = "30%"
+	self.skill_descs.inspire.multibasic2 = "6"
+	self.skill_descs.inspire.multipro = "200%"
 
 	-- FFriendship description stuff
 	self.skill_descs.triathlete.multibasic = "75%"
@@ -139,14 +139,14 @@ function UpgradesTweakData:init(tweak_data)
 		},
 		{
 			1.45,
-			10
+			12
 		}
 	}
 	
 	self.skill_descs.overkill.multibasic = "30%"
 	self.skill_descs.overkill.multibasic2 = "5"
 	self.skill_descs.overkill.multipro = "45%"
-	self.skill_descs.overkill.multipro2 = "10"
+	self.skill_descs.overkill.multipro2 = "12"
 	self.skill_descs.overkill.multipro3 = "80%"
 
 	-- Close By aced nerf (15 shells down to 5 shells)
@@ -200,7 +200,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fast_fire.multipro = "10"
 
 	-- Body Expertise basic gives armor piercing and aced applies 65% of the headshot damage to the body
-	self.values.weapon.automatic_head_shot_add = { 0.65, 0.9 } -- can't be fucked to make the upgrade have only 1 value
+	self.values.weapon.automatic_head_shot_add = { 0.45, 0.9 } -- can't be fucked to make the upgrade have only 1 value
 	self.skill_descs.body_expertise.multipro = "45%"
 	
 	-- Ghost --

@@ -1119,15 +1119,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		-- GRENADES --
 		
 		-- flash
-		self.flash_grenade_timeout = {10, 15}
-		self.flash_grenade.light_range = 0
-		self.flash_grenade.timer = 1.5
+		self.flash_grenade_timeout = {12, 18}
+		self.flash_grenade.light_color = Vector3(255, 255, 255)
+		self.flash_grenade.light_range = 500
+		self.flash_grenade.timer = 0.75
 		-- smoke
 		self.smoke_grenade_timeout = {30, 40}
 		self.smoke_grenade_lifetime = 15
 		-- gas
 		self.cs_grenade_timeout = {60, 90}
-		self.cs_grenade_lifetime = 40
+		self.cs_grenade_lifetime = 45
 	end
 
 	-- Reenforce spawnpool

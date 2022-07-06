@@ -20,6 +20,7 @@
 
 				<group :hook_id="mission/">
 					<post :hook_id="elementareatrigger"/>
+					<post :hook_id="elementspawnenemydummy"/>
 					<post :hook_id="elementspawnenemygroup"/>
 					<post :hook_id="elementspecialobjective"/>
 				</group>
@@ -47,6 +48,7 @@
 				<post :hook_id="playertweakdata"/>
 				<post :hook_id="upgradestweakdata"/>
 				<post :hook_id="skilltreetweakdata"/>
+				<post :hook_id="interactiontweakdata"/>
 				<post :hook_id="weaponfactorytweakdata"/>
 				<post :hook_id="dramatweakdata"/>
 				<post :hook_id="tweakdata"/>

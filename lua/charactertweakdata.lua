@@ -16,7 +16,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	-- Misc
 	self.sniper.misses_first_player_shot = true -- make them miss the first shot
-	self.spooc.spooc_sound_events = {detect_stop = nil, detect = nil} -- remove cloaker charge noise
+	self.spooc.spooc_sound_events = {detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop"} -- remove cloaker charge noise
 	self.spooc.use_animation_on_fire_damage = true -- also make them non immune to fire
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0 -- double smoke is never fun
@@ -780,7 +780,7 @@ function CharacterTweakData:_set_sm_wish()
 	}
 	
 	-- FBI / Medic Shotgun preset
-	-- 175 damage point blank, falls off down to 70 at max range
+	-- 175 damage point blank, falls off down to 42 at max range
 	self.fbi_swat.weapon.is_shotgun_pump = {
 		aim_delay = {
 			0.2,
@@ -855,7 +855,7 @@ function CharacterTweakData:_set_sm_wish()
 				}
 			},
 			{
-				dmg_mul = 1.4,
+				dmg_mul = 1.2,
 				r = 2000,
 				acc = {
 					0.3,
@@ -873,7 +873,7 @@ function CharacterTweakData:_set_sm_wish()
 				}
 			},
 			{
-				dmg_mul = 1,
+				dmg_mul = 0.6,
 				r = 3000,
 				acc = {
 					0.2,
@@ -2193,8 +2193,8 @@ function CharacterTweakData:_set_sm_wish()
 				0.95
 			},
 			recoil = {
-				0.9,
-				0.9
+				1,
+				1
 			},
 			mode = {
 				1,
@@ -2211,8 +2211,8 @@ function CharacterTweakData:_set_sm_wish()
 				0.95
 			},
 			recoil = {
-				0.9,
-				0.9
+				1,
+				1
 			},
 			mode = {
 				1,
@@ -2229,8 +2229,8 @@ function CharacterTweakData:_set_sm_wish()
 				0.8
 			},
 			recoil = {
-				0.9,
-				0.9
+				1.1,
+				1.1
 			},
 			mode = {
 				1,
@@ -2247,7 +2247,7 @@ function CharacterTweakData:_set_sm_wish()
 				0.65
 			},
 			recoil = {
-				1.1,
+				1.25,
 				1.25
 			},
 			mode = {
@@ -2265,7 +2265,7 @@ function CharacterTweakData:_set_sm_wish()
 				0.5
 			},
 			recoil = {
-				1.5,
+				1.75,
 				1.75
 			},
 			mode = {
@@ -2663,6 +2663,6 @@ function CharacterTweakData:_set_sm_wish()
 				}
 			},
 		}
-	self.flashbang_multiplier = 1.1
+	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 1
 end
