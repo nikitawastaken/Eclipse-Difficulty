@@ -136,10 +136,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		end
 	end
 
-	-- Enemy chatter
-	presets.enemy_chatter.swat.push = true
-	presets.enemy_chatter.swat.flash_grenade = true
-
 	presets.hurt_severities.dozer = {
 		tase = false,
 		bullet = {

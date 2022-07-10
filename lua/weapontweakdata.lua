@@ -755,6 +755,7 @@ self.peacemaker.armor_piercing_chance = 1
 self.rsh12.stats.damage = 210
 self.rsh12.stats.reload = 13
 self.rsh12.AMMO_PICKUP = {0.26, 0.67}
+self.rsh12.stats_modifiers = {damage = 1}
 self.rsh12.kick.standing = {2.9, 3, -0.5, 0.5}
 self.rsh12.kick.crouching = self.rsh12.kick.standing
 self.rsh12.kick.steelsight = self.rsh12.kick.standing
