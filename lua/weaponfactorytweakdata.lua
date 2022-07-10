@@ -16,11 +16,15 @@ Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- Gadgets
     -- Military Laser module
-    self.parts.wpn_fps_upg_fl_ass_peq15.stats.concealment = -1
+    self.parts.wpn_fps_upg_fl_ass_peq15.stats.recoil = 0
+    self.parts.wpn_fps_upg_fl_ass_peq15.stats.spread = 2
     -- Tactical Laser module
     self.parts.wpn_fps_upg_fl_ass_smg_sho_peqbox.stats.concealment = 0
     -- Assault Light
     self.parts.wpn_fps_upg_fl_ass_smg_sho_surefire.stats.concealment = 0
+
+    -- bipod nerf
+    self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.recoil = -1
     
 
     -- DMR Kit fixes and concealment nerfs
