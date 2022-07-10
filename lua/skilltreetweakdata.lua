@@ -325,6 +325,10 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Lower the kingpin health
 	table.delete(self.specializations[17][9].upgrades, "player_passive_health_multiplier_4")
 
+	-- Crew Chief nerfs
+	table.delete(self.specializations[1][3].upgrades, "player_damage_dampener_close_contact_1")
+	table.delete(self.specializations[1][9].upgrades, "team_hostage_damage_dampener_multiplier")
+
 	-- Remove the ability to use primary in bleedout by default
 	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")
 end

@@ -3,6 +3,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_swat.move_speed = self.presets.move_speed.fast -- nerf movespeed on fbi lights
 	self.fbi_swat.suppression = {panic_chance_mul = 0.3, duration = {3, 4}, react_point = {0, 2}, brown_point = {5, 6}}
 	self.fbi_heavy_swat.suppression = {panic_chance_mul = 0.3, duration = {3, 4}, react_point = {0, 2}, brown_point = {5, 6}}
+	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.city_swat.suppression = {panic_chance_mul = 0.15, duration = {1.5, 2}, react_point = {2, 5},brown_point = {5, 6}}
 	self.city_swat.weapon = self.presets.weapon.expert
 	self.city_swat.dodge = self.presets.dodge.ninja
@@ -14,7 +15,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		factors = {isolated = 0.1, flanked = 0.08, unaware_of_aggressor = 0.2, enemy_weap_cold = 0.05, aggressor_dis = {[1000] = 0, [300] = 0.15}}
 	}
 
-	-- Misc
+	-- Specials
 	self.sniper.misses_first_player_shot = true -- make them miss the first shot
 	self.spooc.spooc_sound_events = {detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop"} -- remove cloaker charge noise
 	self.spooc.use_animation_on_fire_damage = true -- also make them non immune to fire
@@ -22,7 +23,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.spooc_attack_use_smoke_chance = 0 -- double smoke is never fun
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
-	self.tank.throwable = "frag"
 	self.tank.damage.explosion_damage_mul = 0.5
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
@@ -33,6 +33,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
 	self.sniper.suppression = nil -- hopefully this fixes some instances of snipers hiding their lasers
 
+	-- Bosses
 	self.biker_boss.HEALTH_INIT = 400
 	self.biker_boss.player_health_scaling_mul = 1.5
 	self.biker_boss.headshot_dmg_mul = 0.5
@@ -122,8 +123,25 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
 
 	presets.weapon.sniper.is_rifle.use_laser = false
+	
+	-- Tweak dodge presets
+	presets.dodge.heavy.occasions.preemptive.chance = 0.25
+	presets.dodge.athletic.occasions.preemptive.chance = 0.5
+
+	presets.dodge.ninja.speed = 2
+	for _, occasion in pairs(presets.dodge.ninja.occasions) do
+		occasion.chance = 1
+		if occasion.variations.side_step then
+			occasion.variations.side_step.chance = 1
+		end
+	end
+
+	-- Enemy chatter
+	presets.enemy_chatter.swat.push = true
+	presets.enemy_chatter.swat.flash_grenade = true
 
 	presets.hurt_severities.dozer = {
+		tase = false,
 		bullet = {
 			health_reference = 1,
 			zones = {{light = 1}}
@@ -146,6 +164,47 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			zones = {{none = 1}}
 		}
 	}
+
+	presets.hurt_severities.no_heavy_hurt = {
+		tase = true,
+		bullet = {
+			health_reference = "current",
+			zones = {
+				{
+					health_limit = 0.4,
+					none = 0.5,
+					light = 0.5
+				},
+				{
+					health_limit = 0.7,
+					light = 0.7,
+					moderate = 0.3
+				},
+				{
+					light = 0.5,
+					moderate = 0.5
+				}
+			}
+		},
+		fire = {
+			health_reference = "current",
+			zones = {
+				{
+					fire = 1
+				}
+			}
+		},
+		poison = {
+			health_reference = "current",
+			zones = {
+				{
+					poison = 1
+				}
+			}
+		}
+	}
+	presets.hurt_severities.no_heavy_hurt.melee = deep_clone(presets.hurt_severities.no_heavy_hurt.bullet)
+	presets.hurt_severities.no_heavy_hurt.explosion = deep_clone(presets.hurt_severities.no_heavy_hurt.bullet)
 
 	-- beat cop / hrt shotgun preset
 	presets.weapon.deathwish.is_shotgun_pump = {
@@ -598,7 +657,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			}
 		}
+
 	return presets
+	
 end
 
 function CharacterTweakData:_set_sm_wish()

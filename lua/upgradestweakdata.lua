@@ -73,12 +73,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.control_freak.multipro4 = "53%"
 
 	-- Hostage taker basic buff and aced nerf
-	self.values.player.hostage_health_regen_addend = {
-		0.015,
-		0.03
-	}
-	self.skill_descs.black_marketeer.multibasic = "1.5%"
-	self.skill_descs.black_marketeer.multipro = "3%"
+	self.values.player.hostage_health_regen_addend = {0.4, 1}
+	self.skill_descs.black_marketeer.multibasic = "4"
+	self.skill_descs.black_marketeer.multipro = "10"
 
 	-- Rifleman description stuff
 	self.skill_descs.rifleman.multibasic = "25%"
@@ -289,13 +286,21 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.wolverine.multipro = "50%"
 	self.skill_descs.wolverine.multipro2 = "25%"
 
+	-- Frenzy
+	self.values.player.health_damage_reduction = {0.85, 0.7}
+	self.skill_descs.frenzy.multibasic2 = "15%"
+	self.skill_descs.frenzy.multipro = "30%"
 
 	-- Perk Decks
 	-------------
 
+	-- Crew Chief health / hostage nerf
+	self.values.team.health.hostage_multiplier = {1.04}
+	self.specialization_descs[1][9].multiperk = "4%"
+
 	-- Muscle lower health regen
-	self.values.player.passive_health_regen = {0.02}
-	self.specialization_descs[2][9].multiperk2 = "2%"
+	self.values.player.passive_health_regen = {1}
+	self.specialization_descs[2][9].multiperk2 = "10"
 
 	-- Hitman faster armor recovery rate
 	self.values.player.perk_armor_regen_timer_multiplier[5] = 0.4

@@ -6,4 +6,17 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
     self.projectiles.chico_injector.base_cooldown = 45
     -- 16s flask cooldown
     self.projectiles.damage_control.base_cooldown = 16
+
+    -- fix retarded "anticheat" on 101
+    self.projectiles.rocket_ray_frag.time_cheat = nil
+    
+    -- grenade amounts
+	self.projectiles.frag.max_amount = 4
+    self.projectiles.frag_com.max_amount = 4
+    self.projectiles.dada_com.max_amount = 4
+    self.projectiles.dynamite.max_amount = 4
+    self.projectiles.concussion.max_amount = 4
+    self.projectiles.fir_com.max_amount = 4
+    self.projectiles.molotov.max_amount = 4
+    self.projectiles.poison_gas_grenade.max_amount = 4
 end

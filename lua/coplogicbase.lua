@@ -10,6 +10,7 @@ local mvec3_set_z = mvector3.set_z
 local mvec3_sub = mvector3.subtract
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
+local tmp_vec3 = Vector3()
 
 
 -- Instant detection outside of stealth
@@ -66,80 +67,104 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 		return
 	end
 
-	if data.dodge_timeout_t and data.t < data.dodge_timeout_t or data.dodge_chk_timeout_t and data.t < data.dodge_chk_timeout_t or data.unit:movement():chk_action_forbidden("walk") then
+	if data.dodge_timeout_t and data.t < data.dodge_timeout_t or data.unit:movement():chk_action_forbidden("walk") then
 		return
 	end
 
+	if data.dodge_chk_timeout_t and data.t < data.dodge_chk_timeout_t and reason ~= "hit" then
+		return
+	end
+
+	-- Consistent dodge check cooldown
+	data.dodge_chk_timeout_t = TimerManager:game():time() + 0.5
+
 	local dodge_tweak = data.char_tweak.dodge.occasions[reason]
-	data.dodge_chk_timeout_t = TimerManager:game():time() + math.lerp(dodge_tweak.check_timeout[1], dodge_tweak.check_timeout[2], math_random())
 	if dodge_tweak.chance == 0 or dodge_tweak.chance < math_random() then
 		return
 	end
 
-	local dodge_dir = Vector3()
+	local enemy_dir = tmp_vec3
 	if data.attention_obj and data.attention_obj.reaction >= AIAttentionObject.REACT_COMBAT then
-		mvec3_set(dodge_dir, data.attention_obj.m_pos)
-		mvec3_sub(dodge_dir, data.m_pos)
-		mvec3_set_z(dodge_dir, 0)
-		mvector3.normalize(dodge_dir)
-
-		-- Don't preemptively dodge if the enemy is behind us
-		if reason == "preemptive" and mvec3_dot(data.unit:movement():m_fwd(), dodge_dir) < 0 then
-			return
-		end
-
-		mvector3.cross(dodge_dir, dodge_dir, math.UP)
-		if math_random() < 0.5 then
-			mvec3_neg(dodge_dir)
-		end
+		mvec3_set(enemy_dir, data.attention_obj.m_pos)
+		mvec3_sub(enemy_dir, data.m_pos)
+		mvec3_set_z(enemy_dir, 0)
+		mvector3.normalize(enemy_dir)
 	else
-		mvector3.set(dodge_dir, math.UP)
-		mvector3.random_orthogonal(dodge_dir)
+		mvector3.set(enemy_dir, math.UP)
+		mvector3.random_orthogonal(enemy_dir)
 	end
 
-	local dis
-	local min_space, prefered_space = 90, 130
+	local dodge_dir = mvector3.copy(enemy_dir)
+	mvector3.cross(dodge_dir, enemy_dir, math.UP)
+	if math_random() < 0.5 then
+		mvec3_neg(dodge_dir)
+	end
 
-	mvec3_set(tmp_vec1, dodge_dir)
-	mvec3_mul(tmp_vec1, prefered_space)
-	mvec3_add(tmp_vec1, data.m_pos)
-
+	local test_space, available_space, min_space, prefered_space = 0, 0, 90, 130
 	local ray_params = {
 		trace = true,
 		tracker_from = data.unit:movement():nav_tracker(),
 		pos_to = tmp_vec1
 	}
+
+	mvec3_set(ray_params.pos_to, dodge_dir)
+	mvec3_mul(ray_params.pos_to, prefered_space)
+	mvec3_add(ray_params.pos_to, data.m_pos)
 	local ray_hit1 = managers.navigation:raycast(ray_params)
 	if ray_hit1 then
 		mvec3_set(tmp_vec2, ray_params.trace[1])
 		mvec3_sub(tmp_vec2, data.m_pos)
 		mvec3_set_z(tmp_vec2, 0)
+		test_space = mvector3.length(tmp_vec2)
+	else
+		test_space = prefered_space
+	end
 
-		dis = mvector3.length(tmp_vec2)
+	if test_space >= min_space then
+		available_space = test_space
+	end
 
-		mvec3_set(ray_params.pos_to, dodge_dir)
+	mvec3_set(ray_params.pos_to, dodge_dir)
+	mvec3_mul(ray_params.pos_to, -prefered_space)
+	mvec3_add(ray_params.pos_to, data.m_pos)
+	local ray_hit2 = managers.navigation:raycast(ray_params)
+	if ray_hit2 then
+		mvec3_set(tmp_vec2, ray_params.trace[1])
+		mvec3_sub(tmp_vec2, data.m_pos)
+		mvec3_set_z(tmp_vec2, 0)
+		test_space = mvector3.length(tmp_vec2)
+	elseif available_space < prefered_space then
+		test_space = prefered_space
+	end
+
+	if test_space >= min_space and test_space > available_space then
+		available_space = test_space
+		mvec3_neg(dodge_dir)
+	end
+
+	-- Give enemies a chance to dodge backwards if dodging to the side is not possible or if dodging backwards has more space
+	if available_space < min_space or data.attention_obj and math_random() < math.max(0, 1 - data.attention_obj.dis / 500) then
+		mvec3_set(ray_params.pos_to, enemy_dir)
 		mvec3_mul(ray_params.pos_to, -prefered_space)
 		mvec3_add(ray_params.pos_to, data.m_pos)
-
-		local ray_hit2 = managers.navigation:raycast(ray_params)
-		if ray_hit2 then
+		local ray_hit3 = managers.navigation:raycast(ray_params)
+		if ray_hit3 then
 			mvec3_set(tmp_vec2, ray_params.trace[1])
 			mvec3_sub(tmp_vec2, data.m_pos)
 			mvec3_set_z(tmp_vec2, 0)
-
-			local prev_dis = dis
-			dis = mvector3.length(tmp_vec2)
-
-			if prev_dis < dis and min_space < dis then
-				mvec3_neg(dodge_dir)
-			end
+			test_space = mvector3.length(tmp_vec2)
 		else
+			test_space = prefered_space
+		end
+
+		if test_space >= min_space and test_space >= available_space then
+			available_space = test_space
+			mvec3_set(dodge_dir, enemy_dir)
 			mvec3_neg(dodge_dir)
-			dis = nil
 		end
 	end
 
-	if dis and dis < min_space then
+	if available_space < min_space then
 		return
 	end
 
@@ -236,7 +261,7 @@ function CopLogicBase.chk_am_i_aimed_at(data, attention_obj, max_dot)
 	end
 
 	if attention_obj.dis < 1000 then
-		max_dot = math.lerp(0.5, max_dot, attention_obj.dis / 1000)
+		max_dot = math.lerp(max_dot * 0.75, max_dot, attention_obj.dis / 1000)
 	end
 
 	if attention_obj.is_local_player then

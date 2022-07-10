@@ -31,7 +31,7 @@ if not StreamHeist then
 		log("[StreamlinedHeistingAI][Warning] " .. table.concat({...}, " "))
 	end
 
-	function StreamHeis:error(...)
+	function StreamHeist:error(...)
 		log("[StreamlinedHeistingAI][Error] " .. table.concat({...}, " "))
 	end
 

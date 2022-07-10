@@ -30,6 +30,8 @@
 				<post :hook_id="menumanager"/>
 				<post :hook_id="savefilemanager"/>
 				<post :hook_id="achievmentmanager"/>
+				<post :hook_id="tangomanager"/>
+				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="player/snipergrazedamage"/>
 			</group>
 
@@ -47,6 +49,7 @@
 				<post :hook_id="weapontweakdata"/>
 				<post :hook_id="playertweakdata"/>
 				<post :hook_id="upgradestweakdata"/>
+				<post :hook_id="enveffecttweakdata"/>
 				<post :hook_id="skilltreetweakdata"/>
 				<post :hook_id="interactiontweakdata"/>
 				<post :hook_id="weaponfactorytweakdata"/>
@@ -57,6 +60,7 @@
 			<group :hook_id="units/">
 				<post :hook_id="beings/player/playerdamage"/>
 				<post :hook_id="civilians/logics/civilianlogicflee"/>
+				<post :hook_id="environment/environmentfire"/>
 
 				<group :hook_id="enemies/">
 					<post :hook_id="boss/logics/bosslogicattack"/>

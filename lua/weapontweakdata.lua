@@ -451,7 +451,7 @@ self.komodo.kick.steelsight = self.komodo.kick.standing
 self.ak74.stats.damage = 77
 self.ak74.stats.concealment = 15
 self.ak74.AMMO_PICKUP = {4.5, 6}
-self.ak74.kick.standing = {1.3, 1.5, -0.75, 0.75}
+self.ak74.kick.standing = {1.3, 1.5, -0.65, 0.65}
 self.ak74.kick.crouching = self.ak74.kick.standing
 self.ak74.kick.steelsight = self.ak74.kick.standing
 
@@ -460,7 +460,7 @@ self.vhs.stats.damage = 72
 self.vhs.stats.concealment = 12
 self.vhs.AMMO_PICKUP = {4.5, 6}
 self.vhs.AMMO_MAX = 150
-self.vhs.kick.standing = {1.4, 1.6, -0.75, 0.75}
+self.vhs.kick.standing = {1.3, 1.5, -0.65, 0.65}
 self.vhs.kick.crouching = self.vhs.kick.standing
 self.vhs.kick.steelsight = self.vhs.kick.standing
 
@@ -469,7 +469,7 @@ self.galil.stats.damage = 72
 self.galil.stats.concealment = 12
 self.galil.AMMO_PICKUP = {4.5, 6}
 self.galil.AMMO_MAX = 140
-self.galil.kick.standing = {1.4, 1.6, -0.75, 0.75}
+self.galil.kick.standing = {1.3, 1.5, -0.65, 0.65}
 self.galil.kick.crouching = self.galil.kick.standing
 self.galil.kick.steelsight = self.galil.kick.standing
 
@@ -479,12 +479,12 @@ self.tecci.stats.reload = 11
 self.tecci.stats.damage = 60
 self.tecci.stats.concealment = 5
 self.tecci.AMMO_PICKUP = {5, 7}
-self.tecci.kick.standing = {1.3, 1.5, -0.75, 0.75}
+self.tecci.kick.standing = {1.3, 1.5, -0.65, 0.65}
 self.tecci.kick.crouching = self.tecci.kick.standing
 self.tecci.kick.steelsight = self.tecci.kick.standing
 
 -- Groza
-self.groza.kick.standing = {1.3, 1.5, -0.75, 0.75}
+self.groza.kick.standing = {1.3, 1.5, -0.65, 0.65}
 self.groza.kick.crouching = self.groza.kick.standing
 self.groza.kick.steelsight = self.groza.kick.standing
 
@@ -492,6 +492,7 @@ self.groza.kick.steelsight = self.groza.kick.standing
 self.akm.fire_mode_data = {fire_rate = 0.1}
 self.akm.auto = {fire_rate = 0.1}
 self.akm.stats.concealment = 10
+self.akm.AMMO_PICKUP = {2.2, 3.5}
 self.akm.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.akm.kick.crouching = self.akm.kick.standing
 self.akm.kick.steelsight = self.akm.kick.standing
@@ -500,18 +501,21 @@ self.akm.kick.steelsight = self.akm.kick.standing
 self.akm_gold.fire_mode_data = {fire_rate = 0.1}
 self.akm_gold.auto = {fire_rate = 0.1}
 self.akm_gold.stats.concealment = 10
+self.akm_gold.AMMO_PICKUP = {2.2, 3.5}
 self.akm_gold.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.akm_gold.kick.crouching = self.akm_gold.kick.standing
 self.akm_gold.kick.steelsight = self.akm_gold.kick.standing
 
 -- AK17
 self.flint.stats.concealment = 8
+self.flint.AMMO_PICKUP = {2.2, 3.5}
 self.flint.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.flint.kick.crouching = self.flint.kick.standing
 self.flint.kick.steelsight = self.flint.kick.standing
 
 -- AMR
 self.m16.stats.concealment = 8
+self.m16.AMMO_PICKUP = {2.2, 3.5}
 self.m16.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.m16.kick.crouching = self.m16.kick.standing
 self.m16.kick.steelsight = self.m16.kick.standing
@@ -519,23 +523,27 @@ self.m16.kick.steelsight = self.m16.kick.standing
 -- Eagle Heavy
 self.scar.stats.concealment = 10
 self.scar.stats.reload = 13
+self.scar.AMMO_PICKUP = {2.2, 3.5}
 self.scar.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.scar.kick.crouching = self.scar.kick.standing
 self.scar.kick.steelsight = self.scar.kick.standing
 
 -- Falcon
+self.fal.AMMO_PICKUP = {2.2, 3.5}
 self.fal.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.fal.kick.crouching = self.fal.kick.standing
 self.fal.kick.steelsight = self.fal.kick.standing
 
 -- Gewehr
 self.g3.stats.concealment = 9
+self.g3.AMMO_PICKUP = {2.2, 3.5}
 self.g3.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.g3.kick.crouching = self.g3.kick.standing
 self.g3.kick.steelsight = self.g3.kick.standing
 
 -- KS12
 self.shak12.stats.concealment = 10
+self.shak12.AMMO_PICKUP = {2.2, 3.5}
 self.shak12.kick.standing = {1.3, 1.5, -0.8, 0.8}
 self.shak12.kick.crouching = self.shak12.kick.standing
 self.shak12.kick.steelsight = self.shak12.kick.standing
@@ -706,18 +714,21 @@ self.fmg9.timers.unequip = 1.2
 -- DMRs
 
 -- Cavity
+self.sub2000.AMMO_PICKUP = {1.5, 2.5}
 self.sub2000.stats.damage = 180
 self.sub2000.stats.concealment = 18
 self.sub2000.kick.standing = {2, 3, -0.3, 0.3}
 self.sub2000.kick.crouching = self.sub2000.kick.standing
 self.sub2000.kick.steelsight = self.sub2000.kick.standing
 -- M308
+self.new_m14.AMMO_PICKUP = {1.5, 2.5}
 self.new_m14.stats.damage = 180
 self.new_m14.stats.concealment = 5
 self.new_m14.kick.standing = {3, 3.8, -0.6, 0.6}
 self.new_m14.kick.crouching = self.new_m14.kick.standing
 self.new_m14.kick.steelsight = self.new_m14.kick.standing
 -- Galant
+self.ching.AMMO_PICKUP = {1.5, 2.5}
 self.ching.stats.damage = 180
 self.ching.stats.concealment = 10
 self.ching.kick.standing = {2.6, 3.4, -0.45, 0.45}
@@ -791,6 +802,7 @@ self.m32.stats.reload = 12
 
 -- Commando 101
 self.ray.stats.damage = 6
+self.ray.stats.reload = 8
 self.ray.AMMO_PICKUP = {0.05, 0.4}
 
 -- RPG
