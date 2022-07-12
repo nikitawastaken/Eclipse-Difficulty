@@ -8,7 +8,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		self.special_unit_spawn_limits = {
 			tank = 2,
 			taser = 3,
-			spooc = 3,
+			spooc = 2,
 			shield = 5,
 			medic = 4
 		}
@@ -874,7 +874,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			spawn = {
 				{
-					amount_min = 1,
+					amount_min = 3,
 					freq = 1,
 					amount_max = 3,
 					rank = 3,
@@ -885,14 +885,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		}
 		self.enemy_spawn_groups.cloaker_group = {
 			amount = {
-				3,
-				3
+				2,
+				2
 			},
 			spawn = {
 				{
 					freq = 3,
-					amount_min = 3,
-					amount_max = 3,
+					amount_min = 2,
+					amount_max = 2,
 					rank = 1,
 					unit = "cloaker",
 					tactics = self._tactics.spooc
@@ -1122,7 +1122,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.flash_grenade_timeout = {15, 20}
 		self.flash_grenade.light_color = Vector3(255, 255, 255)
 		self.flash_grenade.light_range = 500
-		self.flash_grenade.timer = 0.75
+		self.flash_grenade.timer = 1.2
 		-- smoke
 		self.smoke_grenade_timeout = {30, 40}
 		self.smoke_grenade_lifetime = 15

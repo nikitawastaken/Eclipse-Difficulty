@@ -129,6 +129,10 @@
 				<group :hook_id="weapons/">
 					<group :hook_id="grenades/">
 						<post :hook_id="quickflashgrenade"/>
+						<post :hook_id="fraggrenade"/>
+						<post :hook_id="molotovgrenade"/>
+						<post :hook_id="incendiarygrenade"/>
+						<post :hook_id="grenadebase"/>
 					</group>
 					<post :hook_id="shotgun/shotgunbase"/>
 					<post :hook_id="akimboweaponbase"/>

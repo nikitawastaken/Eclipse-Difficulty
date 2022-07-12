@@ -251,14 +251,19 @@ self.m590.kick.steelsight = self.m590.kick.standing
 
 -- Mosconi
 self.huntsman.rays = 12
+self.huntsman.stats.damage = 120
+self.huntsman.stats_modifiers = {damage = 2}
 self.huntsman.AMMO_PICKUP = {0.42, 1.47}
 
 -- Joceline
 self.b682.rays = 12
+self.b682.stats.damage = 120
+self.b682.stats_modifiers = {damage = 2}
 self.b682.AMMO_PICKUP = {0.42, 1.47}
 
 -- Breaker
 self.boot.rays = 12
+self.boot.stats.damage = 180
 self.boot.AMMO_PICKUP = {0.42, 1.2}
 
 -- Grimm (&akimbo)

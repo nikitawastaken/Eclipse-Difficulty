@@ -61,3 +61,6 @@ tweak_data.projectiles.launcher_poison_slap = deep_clone(tweak_data.projectiles.
 tweak_data.projectiles.launcher_poison_slap.damage = 9
 tweak_data.projectiles.launcher_poison_contraband = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_contraband.damage = 9
+
+-- cop tear gas
+tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 1.5
