@@ -476,10 +476,10 @@ function GroupAIStateBesiege:_chk_group_use_grenade(group, detonate_pos)
 		return
 	end
 
-	local grenade_types = {
-		smoke_grenade = not task_data.smoke_grenade_next_t or task_data.smoke_grenade_next_t < self._t,
-		flash_grenade = not task_data.flash_grenade_next_t or task_data.flash_grenade_next_t < self._t
-	}
+    local grenade_types = {
+        smoke_grenade = (not task_data.smoke_grenade_next_t or task_data.smoke_grenade_next_t < self._t) or nil,
+        flash_grenade = (not task_data.flash_grenade_next_t or task_data.flash_grenade_next_t < self._t) or nil
+    }
 	local grenade_candidates = {}
 	for grenade_type, _ in pairs(grenade_types) do
 		for _, u_data in pairs(group.units) do

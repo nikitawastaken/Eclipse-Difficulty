@@ -1122,7 +1122,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.flash_grenade_timeout = {15, 20}
 		self.flash_grenade.light_color = Vector3(255, 255, 255)
 		self.flash_grenade.light_range = 500
-		self.flash_grenade.timer = 1.2
+		self.flash_grenade.timer = 1
 		-- smoke
 		self.smoke_grenade_timeout = {30, 40}
 		self.smoke_grenade_lifetime = 15
