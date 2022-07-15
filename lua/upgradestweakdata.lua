@@ -86,23 +86,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.weapon.swap_speed_multiplier = {1.25, 1.8} -- make overkill use second value
 	self.skill_descs.rifleman.multibasic2 = "25%"
 
-	-- Ammo Efficiency
-	self.skill_descs.spotter_teamwork.multibasic = "2"
-	self.skill_descs.spotter_teamwork.multibasic2 = "3"
-	self.skill_descs.spotter_teamwork.multipro = "1"
-	self.values.player.head_shot_ammo_return = {
-		{
-			headshots = 2,
-			ammo = 1,
-			time = 3
-		},
-		{
-			headshots = 0,
-			ammo = 1,
-			time = 6
-		}
-	}
-
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = {1.25}
 	self.values.assault_rifle.reload_speed_multiplier = {1.25}
@@ -234,7 +217,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.sprinter.multipro = "25%"
 
 	-- Duck and Cover
-	self.values.player.crouch_speed_multiplier[1] = 0.15
+	self.values.player.crouch_speed_multiplier[1] = 1.15
 	self.values.player.crouch_dodge_chance[1] = 0.1
 	self.skill_descs.awareness.multibasic = "15%"
 	self.skill_descs.awareness.multipro = "10%"
