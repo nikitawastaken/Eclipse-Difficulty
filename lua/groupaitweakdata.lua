@@ -419,7 +419,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"smoke_grenade",
 			"rescue_hostages",
 			"shield_cover",
-			"deathguard"
+			"deathguard",
+			"murder"
 		},
 		elite_flank = {
 			"flank",
@@ -439,7 +440,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"shield_cover",
 			"flash_grenade",
 			"rescue_hostages",
-			"deathguard"
+			"deathguard",
+			"murder"
 		},
 		elite_special_flank = {
 			"flank",
@@ -1119,12 +1121,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		-- GRENADES --
 		
 		-- flash
-		self.flash_grenade_timeout = {15, 20}
+		self.flash_grenade_timeout = {10, 15}
 		self.flash_grenade.light_color = Vector3(255, 255, 255)
 		self.flash_grenade.light_range = 500
 		self.flash_grenade.timer = 1
 		-- smoke
-		self.smoke_grenade_timeout = {30, 40}
+		self.smoke_grenade_timeout = {15, 25}
 		self.smoke_grenade_lifetime = 15
 		-- gas
 		self.cs_grenade_timeout = {60, 90}

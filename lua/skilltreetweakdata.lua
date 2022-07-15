@@ -2,26 +2,6 @@ local data = SkillTreeTweakData.init
 function SkillTreeTweakData:init(tweak_data)
     data(self, tweak_data)
 
-	-- It would've been so much fucking easier if you actually created a new skill for graze instead of just replacing upgrades, jules
-
-	-- Duck and Cover
-	self.skills.sprinter = {
-		{
-			upgrades = {"player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier", "player_run_speed_multiplier"},
-			cost = self.costs.default
-		},
-		{
-			upgrades = {"player_crouch_dodge_chance"},
-			cost = self.costs.pro
-		},
-		name_id = "menu_sprinter_beta",
-		desc_id = "menu_sprinter_beta_desc",
-		icon_xy = {
-			10,
-			5
-		}
-	}
-
 	-- Overkill
 	self.skills.overkill = {
 		{
@@ -29,7 +9,7 @@ function SkillTreeTweakData:init(tweak_data)
 			cost = self.costs.hightier
 		},
 		{
-			upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons","weapon_swap_speed_multiplier"},
+			upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons","weapon_swap_speed_multiplier_2"},
 			cost = self.costs.hightierpro
 		},
 		name_id = "menu_overkill_beta",
@@ -53,8 +33,8 @@ function SkillTreeTweakData:init(tweak_data)
 		name_id = "menu_fast_fire_beta",
 		desc_id = "menu_fast_fire_beta_desc",
 		icon_xy = {
-			10,
-			2
+			2,
+			0
 		}
 	}
 
@@ -127,24 +107,6 @@ function SkillTreeTweakData:init(tweak_data)
 		icon_xy = {
 			0,
 			2
-		}
-	}
-
-	-- Rifleman
-	self.skills.rifleman = {
-		{
-			upgrades = {"snp_zoom_increase", "smg_zoom_increase", "lmg_zoom_increase", "pistol_zoom_increase", "player_steelsight_normal_movement_speed"},
-			cost = self.costs.default
-		},
-		{
-			upgrades = {"assault_rifle_zoom_increase", "assault_rifle_move_spread_index_addend", "snp_move_spread_index_addend", "smg_move_spread_index_addend"},
-			cost = self.costs.pro
-		},
-		name_id = "menu_rifleman_beta",
-		desc_id = "menu_rifleman_beta_desc",
-		icon_xy = {
-			6,
-			5
 		}
 	}
 
@@ -292,6 +254,71 @@ function SkillTreeTweakData:init(tweak_data)
 		}
 	}
 
+	-- Lock N' Load
+	self.skills.rifleman[1].upgrades = {"weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier"}
+	self.skills.rifleman[1].upgrades = {"player_run_and_shoot_1"}
+	self.skills.rifleman.icon_xy = {7, 10}
+	self.skills.rifleman.name_id = "menu_rifleman"
+	self.skills.rifleman.desc_id = "menu_rifleman_desc"
+
+	-- Kilmer
+	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")
+	self.skills.speedy_reload.icon_xy = {1, 9}
+	self.skills.speedy_reload.name_id = "menu_kilmer"
+
+	-- Resilience
+	self.skills.oppressor.icon_xy = {6, 1}
+
+	-- Die Hard
+	self.skills.show_of_force[1].upgrades = {"player_damage_shake_addend"}
+	self.skills.show_of_force.icon_xy = {2, 12}
+	
+	-- Fast Hands
+	self.skills.shock_and_awe[1].upgrades = {"player_run_and_reload", "smg_reload_speed_multiplier", "lmg_reload_speed_multiplier"}
+	self.skills.shock_and_awe.icon_xy = {10, 6}
+	self.skills.shock_and_awe.name_id = "menu_fast_hands"
+	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
+
+	-- Athlete
+	self.skills.sprinter[1].upgrades = {"player_walk_speed_multiplier", "player_movement_speed_multiplier"}
+	self.skills.sprinter[2].upgrades = {"player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier"}
+	self.skills.sprinter.icon_xy = {1, 8}
+	self.skills.sprinter.name_id = "menu_sprinter"
+	self.skills.sprinter.desc_id = "menu_sprinter_desc"
+
+	-- Duck and Cover
+	self.skills.awareness[1].upgrades = {"player_crouch_speed_multiplier"}
+	self.skills.awareness[2].upgrades = {"player_crouch_dodge_chance_1"}
+	self.skills.awareness.icon_xy = {0, 11}
+	self.skills.awareness.name_id = "menu_awareness"
+	self.skills.awareness.desc_id = "menu_awareness_desc"
+
+	-- Sprinter
+	self.skills.optic_illusions[1].upgrades = {"player_can_strafe_run", "player_run_speed_multiplier"}
+	self.skills.optic_illusions[2].upgrades = {"player_run_dodge_chance", "player_on_zipline_dodge_chance"}
+	self.skills.optic_illusions.icon_xy = {7, 3}
+
+	-- Low Blow
+	self.skills.unseen_strike[1].upgrades = {"player_detection_risk_add_crit_chance_1"}
+	self.skills.unseen_strike[2].upgrades = {"player_detection_risk_add_crit_chance_2"}
+	self.skills.unseen_strike.icon_xy = {0, 12}
+	self.skills.unseen_strike.name_id = "menu_backstab_beta"
+	self.skills.unseen_strike.desc_id = "menu_backstab_beta_desc"
+
+	-- Silencer Expert
+	self.skills.backstab[1].upgrades = {"player_silencer_concealment_penalty_decrease_1", "player_silencer_concealment_increase_1"}
+	self.skills.backstab[2].upgrades = {"weapon_silencer_damage_multiplier", "weapon_armor_piercing_chance_silencer"}
+	self.skills.backstab.icon_xy = {5, 9}
+	self.skills.backstab.name_id = "menu_silenced_damage"
+	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
+
+	-- Swap Silencer Expert and HVT
+	self.trees[12].tiers[3][2] = "backstab"
+	self.trees[12].tiers[3][1] = "hitman"
+	-- Swap Inner Pockets and Deft Hands
+	self.trees[11].tiers[2][2] = "optic_illusions"
+	self.trees[12].tiers[2][1] = "thick_skin"
+
 	-- Old Swan Song
 	table.delete(self.skills.perseverance[2].upgrades, "player_berserker_no_ammo_cost")
 
@@ -329,6 +356,11 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[1][3].upgrades, "player_damage_dampener_close_contact_1")
 	table.delete(self.specializations[1][9].upgrades, "team_hostage_damage_dampener_multiplier")
 
-	-- Remove the ability to use primary in bleedout by default
+	-- Get rid of burglars crouch move speed boost to avoid bugging upgrades out (no one plays the deck anyway so who cares)
+	table.delete(self.specializations[7][9].upgrades, "player_crouch_speed_multiplier_2")
+
+	-- Remove some default upgrades
 	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")
+	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
+	table.delete(self.default_upgrades, "player_crouch_speed_multiplier")
 end

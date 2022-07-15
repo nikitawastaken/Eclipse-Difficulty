@@ -136,6 +136,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 	local far_range = my_data.weapon_range.far
 	local optimal_range = my_data.weapon_range.optimal
 	local close_range = my_data.weapon_range.close
+	local murder = data.tactics and data.tactics.murder
 
 	for u_key, attention_data in pairs(attention_objects) do
 		local att_unit = attention_data.unit
@@ -166,6 +167,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 			if reaction and reaction > AIAttentionObject.REACT_IDLE and (not best_target_reaction or reaction >= best_target_reaction) then
 				attention_data.aimed_at = CopLogicIdle.chk_am_i_aimed_at(data, attention_data, attention_data.aimed_at and 0.95 or 0.985)
 
+				local status = crim_record and crim_record.status
 				local weight_mul = CopLogicIdle._get_attention_weight(attention_data, att_unit, distance)
 				local alert_dt = attention_data.alert_t and (data.t - attention_data.alert_t) * weight_mul or 10000
 				local dmg_dt = attention_data.dmg_t and (data.t - attention_data.dmg_t) * weight_mul or 10000
@@ -174,6 +176,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 				local target_priority_slot
 				if attention_data.verified then
 					target_priority_slot = distance < close_range and 2 or distance < optimal_range and 4 or distance < far_range and 6 or 8
+
 					if dmg_dt < 4 then
 						target_priority_slot = target_priority_slot - 2
 					elseif alert_dt < 3 then
@@ -184,7 +187,12 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 					if data.attention_obj and data.attention_obj.u_key == u_key and data.t - attention_data.acquire_t < 4 then
 						target_priority_slot = target_priority_slot - 1
 					end
-				elseif (crim_record and crim_record.status) == nil then
+
+					-- If we have murder tactic and criminal is downed or tased, focus on them
+					if murder and reaction ~= AIAttentionObject.REACT_SPECIAL_ATTACK and (status == "electrified" or status == "disabled") then
+						target_priority_slot = target_priority_slot - 1
+					end
+				elseif not status then
 					target_priority_slot = 9
 				end
 

@@ -57,7 +57,7 @@ function MenuCallbackHandler:max_progress()
 	
 	for name, item in pairs(tweak_data.blackmarket.weapon_mods) do
 		if not item.dlc or managers.dlc:is_dlc_unlocked(item.dlc) then
-			for i = 1, 10 do
+			for i = 1, 100 do
 				managers.blackmarket:add_to_inventory(item.dlc or "normal", "weapon_mods", name)
 			end
 		end
@@ -65,10 +65,14 @@ function MenuCallbackHandler:max_progress()
 	for name, item in pairs(tweak_data.blackmarket.masks) do
 		if name ~= "character_locked" then
 			if item.dlc and managers.dlc:is_dlc_unlocked(item.dlc) then
+				for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(item.dlc, "masks", name)
+				end 
 			else
 				local global_value = item.infamous and "infamous" or item.global_value or "normal"
+				for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(global_value, "masks", name)
+				end
 			end
 		end
 	end
@@ -76,10 +80,14 @@ function MenuCallbackHandler:max_progress()
 		if name ~= "plastic" then
 			if item.dlc and managers.dlc:is_dlc_unlocked(item.dlc) then
 				local global_value = item.infamous and "infamous" or item.global_value or item.dlc
+				for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(global_value, "materials", name)
+				end
 			else
 				local global_value = item.infamous and "infamous" or item.global_value or "normal"
+				for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(global_value, "materials", name)
+				end
 			end
 		end
 	end
@@ -87,20 +95,28 @@ function MenuCallbackHandler:max_progress()
 		if name ~= "no_color_no_material" and name ~= "no_color_full_material" then
 			if item.dlc and managers.dlc:is_dlc_unlocked(item.dlc) then
 				local global_value = item.infamous and "infamous" or item.global_value or item.dlc
+				for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(global_value, "textures", name)
+				end
 			else
 				local global_value = item.infamous and "infamous" or item.global_value or "normal"
+				for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(global_value, "textures", name)
+				end
 			end
 		end
 	end
 	for name, item in pairs(tweak_data.blackmarket.colors) do
 		if item.dlc and managers.dlc:is_dlc_unlocked(item.dlc) then
 			local global_value = item.infamous and "infamous" or item.global_value or item.dlc
+			for i = 1, 10 do
 			managers.blackmarket:add_to_inventory(global_value, "colors", name)
+			end
 		else
 			local global_value = item.infamous and "infamous" or item.global_value or "normal"
+			for i = 1, 10 do
 			managers.blackmarket:add_to_inventory(global_value, "colors", name)
+			end
 		end
 	end
 end

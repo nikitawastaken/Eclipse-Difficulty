@@ -32,3 +32,8 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 
 	return flash
 end)
+
+-- Tone down the red screen on health hits
+function CoreEnvironmentControllerManager:set_health_effect_value(health_effect_value)
+	self._health_effect_value = health_effect_value * 2
+end

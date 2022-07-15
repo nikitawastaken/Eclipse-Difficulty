@@ -39,10 +39,6 @@ function UpgradesTweakData:init(tweak_data)
 	-- Uppers 60s description
 	self.skill_descs.tea_cookies.multipro4 = "60"
 
-	-- Combat Doctor now only grants 1 additional medic bag charge
-	self.values.doctor_bag.amount_increase = {1}
-	self.skill_descs.medic_2x.multibasic = "1"
-
 	-- 60s inspire cooldown
 	self.morale_boost_speed_bonus = 1.3
 	self.morale_boost_reload_speed_bonus = 1.3
@@ -72,23 +68,49 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.control_freak.multipro3 = "10%"
 	self.skill_descs.control_freak.multipro4 = "53%"
 
-	-- Hostage taker basic buff and aced nerf
+	-- Hostage taker
 	self.values.player.hostage_health_regen_addend = {0.4, 1}
 	self.skill_descs.black_marketeer.multibasic = "4"
 	self.skill_descs.black_marketeer.multipro = "10"
 
-	-- Rifleman description stuff
-	self.skill_descs.rifleman.multibasic = "25%"
-	
-	-- Marksman description stuff
-	self.skill_descs.sharpshooter.multibasic = "100%"
-	self.skill_descs.sharpshooter.multibasic2 = "8"
-	self.skill_descs.sharpshooter.multipro = "20%"
+	-- Lock N' Load
+	self.definitions.weapon_swap_speed_multiplier = {
+		name_id = "menu_weapon_swap_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "swap_speed_multiplier",
+			category = "weapon"
+		}
+	}
+	self.values.weapon.swap_speed_multiplier = {1.25, 1.8} -- make overkill use second value
+	self.skill_descs.rifleman.multibasic2 = "25%"
 
-	-- Aggressive Reload ace 65% boost and 3s duration
-	self.values.temporary.single_shot_fast_reload[1][1] = 1.65
+	-- Ammo Efficiency
+	self.skill_descs.spotter_teamwork.multibasic = "2"
+	self.skill_descs.spotter_teamwork.multibasic2 = "3"
+	self.skill_descs.spotter_teamwork.multipro = "1"
+	self.values.player.head_shot_ammo_return = {
+		{
+			headshots = 2,
+			ammo = 1,
+			time = 3
+		},
+		{
+			headshots = 0,
+			ammo = 1,
+			time = 6
+		}
+	}
+
+	-- Kilmer
+	self.values.snp.reload_speed_multiplier = {1.25}
+	self.values.assault_rifle.reload_speed_multiplier = {1.25}
+	self.values.smg.reload_speed_multiplier = {1.25}
+	self.values.temporary.single_shot_fast_reload[1][1] = 1.6
 	self.values.temporary.single_shot_fast_reload[1][2] = 3
-	self.skill_descs.speedy_reload.multipro = "65%"
+	self.skill_descs.speedy_reload.multibasic = "25%"
+	self.skill_descs.speedy_reload.multipro = "60%"
 	self.skill_descs.speedy_reload.multipro2 = "3"
 
 	-- Mind Blown
@@ -118,7 +140,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.underdog.multibasic2 = "10%"
 	self.skill_descs.underdog.multibasic3 = "3"
 
-	-- huge ovk nerf
+	-- Overkill nerf
 	self.definitions.player_overkill_damage_multiplier_2 = {
 		name_id = "menu_player_overkill_damage_multiplier",
 		category = "temporary",
@@ -154,9 +176,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.flashbang_multiplier = {0.75, 0.75}
 	self.skill_descs.oppressor.multipro2 = "25%"
 
-	-- Die Hard nerf as enemies do far lower damage now
-	self.values.player.interacting_damage_multiplier = {0.75}
-	self.skill_descs.show_of_force.multibasic = "25%"
+	-- Die Hard gives steadiness instead
+	self.values.player.damage_shake_addend = {0.6}
+	self.skill_descs.show_of_force.multibasic = "6"
 
 	-- Correct Bulletstorm Description
 	self.skill_descs.bandoliers.multibasic = "5"
@@ -168,18 +190,23 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.ammo_reservoir.multipro3 = "10"
 
 	-- Slight Fully Loaded nerf as it's a T3 skill instead
-	self.values.player.regain_throwable_from_ammo[1].chance = 0.015
-	self.values.player.regain_throwable_from_ammo[1].chance_inc = 1.05
+	self.values.player.regain_throwable_from_ammo[1].chance = 0
+	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.003
 	self.values.player.extra_ammo_multiplier[1] = 1.25
 	self.values.player.pick_up_ammo_multiplier = {1.35, 1.45}
-	self.skill_descs.carbon_blade.multibasic = "1.5%"
-	self.skill_descs.carbon_blade.multibasic2 = "5%"
+	self.skill_descs.carbon_blade.multibasic = "0%"
+	self.skill_descs.carbon_blade.multibasic2 = "0.3%"
 	self.skill_descs.carbon_blade.multipro2 = "25%"
 	self.skill_descs.carbon_blade.multipro3 = "45%"
 
 	-- Technician --
 
-	-- Surefire is divided into 5 bullets for basic and 15 bullets for aced 
+	-- Fast Hands
+	self.values.lmg.reload_speed_multiplier = {1.2}
+	self.values.smg.reload_speed_multiplier = {1.2}
+	self.skill_descs.shock_and_awe.multibasic = "20%"
+
+	-- Mag plus is divided into +5 bullets for basic and +10 bullets for aced 
 	self.definitions.player_automatic_mag_increase_2 = {
 		name_id = "menu_automatic_mag_increase",
 		category = "feature",
@@ -196,25 +223,84 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fast_fire.multibasic = "5"
 	self.skill_descs.fast_fire.multipro = "10"
 
-	-- Body Expertise basic gives armor piercing and aced applies 65% of the headshot damage to the body
-	self.values.weapon.automatic_head_shot_add = { 0.45, 0.9 } -- can't be fucked to make the upgrade have only 1 value
-	self.skill_descs.body_expertise.multipro = "45%"
+	-- Body Expertise basic gives armor piercing and aced applies 60% of the headshot damage to the body
+	self.values.weapon.automatic_head_shot_add = {0.6, 0.9}
+	self.skill_descs.body_expertise.multipro = "60%"
 	
 	-- Ghost --
 
-	-- DnC gives boost on crouch instead of running
-	self.values.player.run_speed_multiplier[1] = 1.15
+	-- Athlete
+	self.skill_descs.sprinter.multibasic2 = "10%"
+	self.skill_descs.sprinter.multipro = "25%"
+
+	-- Duck and Cover
+	self.values.player.crouch_speed_multiplier[1] = 0.15
 	self.values.player.crouch_dodge_chance[1] = 0.1
-	self.definitions.player_crouch_dodge_chance = {
-		name_id = "menu_player_crouch_dodge_chance",
-		category = "feature",
+	self.skill_descs.awareness.multibasic = "15%"
+	self.skill_descs.awareness.multipro = "10%"
+
+	-- Sprinter
+	self.values.player.run_speed_multiplier[1] = 1.2
+	self.values.player.on_zipline_dodge_chance[1] = 0.1
+	self.skill_descs.optic_illusions.multibasic = "20%"
+	self.skill_descs.optic_illusions.multipro = "10%"
+
+	-- The Professional nerf
+	self.values.weapon.silencer_spread_index_addend[1] = 2 -- 8 accuracy
+	self.values.weapon.silencer_recoil_index_addend[1] = 2 -- 8 stability
+	self.skill_descs.silence_expert.multibasic = "8"
+	self.skill_descs.silence_expert.multipro3 = "8"
+
+	-- Silencer Expert
+	self.definitions.weapon_silencer_damage_multiplier = {
+	    category = "feature",
+		name_id = "silencer_damage_multiplier",
 		upgrade = {
-			value = 1,
-			upgrade = "crouch_dodge_chance",
-			category = "player"
+		    category = "weapon",
+			upgrade = "silencer_damage_multiplier",
+			value = 1
+		}	
+	}
+	self.definitions.weapon_armor_piercing_chance_silencer = {
+	    category = "feature",
+		name_id = "armor_piercing_chance_silencer",
+		upgrade = {
+		    category = "weapon",
+			upgrade = "armor_piercing_chance_silencer",
+			value = 1
+		}	
+	}
+	self.values.weapon.armor_piercing_chance_silencer[1] = 0.5
+	self.skill_descs.backstab.multibasic = "1"
+	self.skill_descs.backstab.multibasic2 = "2"
+	self.skill_descs.backstab.multipro = "15%"
+	self.skill_descs.backstab.multipro2 = "50%"
+
+	-- Low Blow
+	self.values.player.detection_risk_add_crit_chance = {
+		{
+			0.04,
+			2,
+			"below",
+			35,
+			0.4
+		},
+		{
+			0.06,
+			1,
+			"below",
+			35,
+			0.6
 		}
 	}
-	self.skill_descs.sprinter.multibasic3 = "15%"
+	self.skill_descs.unseen_strike.multibasic = "4%"
+	self.skill_descs.unseen_strike.multibasic2 = "2"
+	self.skill_descs.unseen_strike.multibasic3 = "35"
+	self.skill_descs.unseen_strike.multibasic4 = "40%"
+	self.skill_descs.unseen_strike.multipro = "6%"
+	self.skill_descs.unseen_strike.multipro2 = "1"
+	self.skill_descs.unseen_strike.multipro3 = "35"
+	self.skill_descs.unseen_strike.multipro4 = "60%"
 
 	-- HVT basic buff and aced nerf
 	self.values.player.marked_enemy_damage_mul = 1.25
@@ -224,29 +310,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.hitman.multipro2 = "10"
 	self.skill_descs.hitman.multipro3 = "100%"
 
-	-- The Professional nerf
-	self.values.weapon.silencer_spread_index_addend[1] = 2 -- 8 accuracy
-	self.values.weapon.silencer_recoil_index_addend[1] = 2 -- 8 stability
-	self.skill_descs.silence_expert.multibasic = "8"
-	self.skill_descs.silence_expert.multipro3 = "8"
-
-	-- Unseen Strike nerf
-	self.values.temporary.unseen_strike = {
-		{
-			1.2,
-			4
-		},
-		{
-			1.25,
-			12
-		}
-	}
-	self.skill_descs.unseen_strike.multibasic2 = "20%"
-	self.skill_descs.unseen_strike.multibasic3 = "4"
-	self.skill_descs.unseen_strike.multipro = "25%"
-	self.skill_descs.unseen_strike.multipro2 = "12"
-
 	-- Fugitive --
+
+	-- Equilbrium nerf
+	self.values.pistol.swap_speed_multiplier = {1.25} -- funny how this is actually 50% in vanilla and not 30%
+	self.skill_descs.equilibrium.multibasic3 = "25%"
 
 	-- Trigger Happy rework
 	self.values.pistol.stacking_hit_damage_multiplier = {
@@ -288,6 +356,8 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Frenzy
 	self.values.player.health_damage_reduction = {0.85, 0.7}
+	self.values.player.max_health_reduction = {0.1}
+	self.skill_descs.frenzy.multibasic = "10%"
 	self.skill_descs.frenzy.multibasic2 = "15%"
 	self.skill_descs.frenzy.multipro = "30%"
 
@@ -313,6 +383,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[3][3].multiperk = "5%"
 	self.specialization_descs[3][5].multiperk = "5%"
 
+	-- Subtle card gives lower dodge
+	self.values.player.passive_dodge_chance = {0.05, 0.2, 0.3}
+	self.specialization_descs[4][1].multiperk = "5%"
+	self.specialization_descs[4][7].multiperk = "10%"
+	self.specialization_descs[6][1].multiperk = "5%"
+	self.specialization_descs[13][5].multiperk3 = "5%"
+	self.specialization_descs[18][5].multiperk = "5%"
+	self.specialization_descs[21][5].multiperk2 = "5%"
+
 	-- Anarchist additional armor on conversion decrease
 	self.values.player.armor_grinding = {{
 			{1, 1.5},
@@ -337,11 +416,14 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[15][5].multiperk2 = "90%"
 	self.specialization_descs[15][7].multiperk2 = "100%"
 
-	-- Give Crook higher armor bonus
-	self.values.player.level_2_armor_multiplier[3] = 1.7
+	-- Crook dodge nerf and make lower armor get higher armor boost
+	self.values.player.level_2_armor_multiplier[3] = 1.8
 	self.values.player.level_3_armor_multiplier[3] = 1.7
-	self.values.player.level_4_armor_multiplier[3] = 1.7
-	self.specialization_descs[6][7].multiperk2 = "30%"
+	self.values.player.level_4_armor_multiplier[3] = 1.65
+	self.values.player.level_2_dodge_addend[3] = 0.2
+	self.values.player.level_3_dodge_addend[3] = 0.2
+	self.values.player.level_4_dodge_addend[3] = 0.2
+	self.specialization_descs[6][5].multiperk = "5%"
 
 	-- Gambler cooldowns decrease
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do
@@ -397,6 +479,14 @@ function UpgradesTweakData:init(tweak_data)
 	-- Tag Team max 8 absorption
 	self.values.player.tag_team_damage_absorption.max = 0.8
 	self.specialization_descs[20][5].multiperk2 = "8"
+
+	-- Hacker nerf
+	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.15, 25, 4}
+	self.values.player.pocket_ecm_heal_on_kill = {1}
+	self.specialization_descs[21][5].multiperk = "10"
+	self.specialization_descs[21][7].multiperk = "4%"
+	self.specialization_descs[21][7].multiperk2 = "15%"
+	self.specialization_descs[21][7].multiperk3 = "25"
 
 	-- Leech nerf all around, without much thought cause idc about the deck and honestly just fuck it
 	self.copr_ability_cooldown = 60
