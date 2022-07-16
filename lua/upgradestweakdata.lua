@@ -83,13 +83,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon"
 		}
 	}
-	self.values.weapon.swap_speed_multiplier = {1.25, 1.8} -- make overkill use second value
-	self.skill_descs.rifleman.multibasic2 = "25%"
+	self.values.weapon.swap_speed_multiplier = {1.15, 1.8} -- make overkill use second value
+	self.skill_descs.rifleman.multibasic2 = "15%"
 
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = {1.25}
 	self.values.assault_rifle.reload_speed_multiplier = {1.25}
-	self.values.smg.reload_speed_multiplier = {1.25}
 	self.values.temporary.single_shot_fast_reload[1][1] = 1.6
 	self.values.temporary.single_shot_fast_reload[1][2] = 3
 	self.skill_descs.speedy_reload.multibasic = "25%"

@@ -969,9 +969,9 @@ function CharacterTweakData:_set_sm_wish()
 			2
 		},
 		range = {
-			optimal = 1250,
-			far = 2500,
-			close = 750
+			optimal = 2250,
+			far = 3000,
+			close = 1500
 		},
 		autofire_rounds = {
 			3,

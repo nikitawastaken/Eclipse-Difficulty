@@ -7,7 +7,6 @@
 	"menu_overkill_beta_desc": "BASIC: ##$basic##\nWhen you kill an enemy with a shotgun or the OVE9000 portable saw, you receive a ##$multibasic## damage increase for ##$multibasic2## seconds.\n\nACE: ##$pro##\nThe damage bonus is increased to ##$multipro##, applies to all weapons and lasts ##$multipro2## seconds. Skill must still be activated using a Shotgun or the OVE9000 portable saw. Your weapon swap speed is increased by ##$multipro3##.\n\nNote: Does not apply to melee damage, throwables, grenade launchers, or rocket launchers.",
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nUnlocks the ability to wear the Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total armor value is increased by ##$multibasic##.",
 	"menu_fast_fire_beta": "Mag Plus",
-	"menu_r_desc": "BASIC: ##$basic##\nYour speed while crouching is increased by ##$multibasic##\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while crouching.",
 	"menu_sprinter": "Athlete",
 	"menu_sprinter_desc": "BASIC: ##$basic##\nYour speed while walking is increased by ##$multibasic##. Your total movement speed is increased by ##$multibasic2##.\n\nACE: ##$pro##\nThe time before stamina regeneration starts is reduced by ##$multipro## and the regeneration rate of stamina is increased by ##$multipro##.",
 	"menu_awareness": "Duck and Cover",

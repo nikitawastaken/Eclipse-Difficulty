@@ -65,13 +65,13 @@ Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_ass_fal_g_01.stats = {recoil = 1, spread = -2, concealment = 2}
 
     -- Speedpull nerfs
-    self.parts.wpn_fps_m4_upg_m_quick.stats = {recoil = -2, reload = 4}
-    self.parts.wpn_fps_upg_ak_m_quick.stats = {recoil = -2, reload = 4}
-    self.parts.wpn_fps_ass_g36_m_quick.stats = {recoil = -2, reload = 4}
-    self.parts.wpn_fps_ass_aug_m_quick.stats = {recoil = -2, reload = 4}
-    self.parts.wpn_fps_smg_sr2_m_quick.stats = {recoil = -2, reload = 4}
-    self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 4}
-    self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 4}
+    self.parts.wpn_fps_m4_upg_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_upg_ak_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_ass_g36_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_ass_aug_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_sr2_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 3}
 
     -- Barrel Extentions
 
