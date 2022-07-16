@@ -171,12 +171,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.ammo_reservoir.multipro = "50%"
 	self.skill_descs.ammo_reservoir.multipro3 = "10"
 
-	-- Slight Fully Loaded nerf as it's a T3 skill instead
-	self.values.player.regain_throwable_from_ammo[1].chance = 0
+	-- Fully Loaded
+	self.values.player.regain_throwable_from_ammo[1].chance = -5
 	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.003
 	self.values.player.extra_ammo_multiplier[1] = 1.25
 	self.values.player.pick_up_ammo_multiplier = {1.35, 1.45}
-	self.skill_descs.carbon_blade.multibasic = "0%"
+	self.skill_descs.carbon_blade.multibasic = "-5%"
 	self.skill_descs.carbon_blade.multibasic2 = "0.3%"
 	self.skill_descs.carbon_blade.multipro2 = "25%"
 	self.skill_descs.carbon_blade.multipro3 = "45%"
@@ -381,8 +381,8 @@ function UpgradesTweakData:init(tweak_data)
 			{2, 3},
 			{2.5, 3.75},
 			{3.5, 4.5},
-			{5, 5.25},
-			{8, 6}
+			{5, 6},
+			{7, 9}
 		}}
 	self.values.player.damage_to_armor = {{
 			{1, 1.5},
@@ -424,7 +424,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][9].multiperk2 = "0.5"
 
 	-- Ex-president max health store amount nerf
-	self.values.player.body_armor.skill_max_health_store = {8, 7, 5, 5, 4.5, 4, 3.5}
+	self.values.player.body_armor.skill_max_health_store = {4, 3.5, 3, 2.5, 2, 1.5, 1}
 	
 	-- Give yakuza damage zerker and swap speed
 	self.values.player.damage_health_ratio_multiplier = {0.35}

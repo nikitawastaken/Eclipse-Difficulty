@@ -4,6 +4,7 @@ if not tweak_data then return end
 tweak_data.medic.disabled_units = {"spooc", "medic"}
 
 -- grenade launchers and rocket launchers
+tweak_data.projectiles.rocket_ray_frag.curve_pow = 0.5
 tweak_data.projectiles.rocket_ray_frag.damage = 60
 tweak_data.projectiles.rocket_ray_frag.player_damage = 8
 tweak_data.projectiles.launcher_rocket.damage = 600
@@ -26,7 +27,6 @@ tweak_data.projectiles.underbarrel_electric.damage = 14
 -- incendiary buff
 tweak_data.projectiles.fir_com.damage = 10
 tweak_data.projectiles.fir_com.fire_dot_data.dot_damage = 30
-tweak_data.projectiles.fir_com.range = 750
 -- concussion range nerf
 tweak_data.projectiles.concussion.range = 1000
 -- frags buff
@@ -47,20 +47,27 @@ tweak_data.projectiles.launcher_poison.poison_gas_dot_data = {hurt_animation_cha
 
 tweak_data.projectiles.launcher_poison_ms3gl_conversion = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.damage = 7
+tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_duration = 3
 tweak_data.projectiles.launcher_poison_gre_m79 = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_gre_m79.damage = 9
 tweak_data.projectiles.launcher_poison_m32 = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_m32.damage = 9
+tweak_data.projectiles.launcher_poison_m32.poison_gas_duration = 6
 tweak_data.projectiles.launcher_poison_groza = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_groza.damage = 9
+tweak_data.projectiles.launcher_poison_groza.poison_gas_duration = 3
 tweak_data.projectiles.launcher_poison_china = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_china.damage = 8
+tweak_data.projectiles.launcher_poison_china.poison_gas_duration = 4
 tweak_data.projectiles.launcher_poison_arbiter = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_arbiter.damage = 7
+tweak_data.projectiles.launcher_poison_arbiter.poison_gas_duration = 3
 tweak_data.projectiles.launcher_poison_slap = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_slap.damage = 9
+tweak_data.projectiles.launcher_poison_slap.poison_gas_duration = 6
 tweak_data.projectiles.launcher_poison_contraband = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_contraband.damage = 9
+tweak_data.projectiles.launcher_poison_contraband.poison_gas_duration = 3
 
 -- cop tear gas
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 1.5

@@ -155,15 +155,16 @@ self.par.kick.steelsight = {0.5, 0.9, -0.6, 0.6}
 -- Brenner 
 self.hk21.stats.spread = 12
 self.hk21.stats.damage = 110
+self.hk21.stats.reload = 12
 self.hk21.AMMO_PICKUP = {8, 10}
 self.hk21.kick.standing = {0.55, 0.95, -0.8, 0.8}
 self.hk21.kick.crouching = self.hk21.kick.standing
 self.hk21.kick.steelsight = {0.4, 0.7, -0.6, 0.6}
-self.hk21.stats.reload = 12
 
 -- RPK
 self.rpk.stats.spread = 10
 self.rpk.stats.damage = 110
+self.rpk.stats.reload = 9
 self.rpk.stats.concealment = 1
 self.rpk.AMMO_PICKUP = {8, 10}
 self.rpk.kick.standing = {0.55, 0.95, -0.8, 0.8}
@@ -762,7 +763,7 @@ self.m32.stats.reload = 12
 -- Commando 101
 self.ray.stats.damage = 6
 self.ray.stats.reload = 8
-self.ray.AMMO_PICKUP = {0.05, 0.4}
+self.ray.AMMO_PICKUP = {0.05, 0.38}
 
 -- RPG
 self.rpg7.stats.damage = 60
@@ -873,11 +874,14 @@ Hooks:PostHook(WeaponTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function
 	self.g36_npc.auto.fire_rate = 0.25
 	self.mp9_npc.auto.fire_rate = 0.275
 	self.mp5_npc.auto.fire_rate = 0.25
-	self.saiga_npc.auto.fire_rate = 0.2
+	self.mac11_npc.auto.fire_rate = 0.2
 	self.raging_bull_npc.DAMAGE = 1
 	self.ak47_ass_npc.DAMAGE = 1
+	self.ak47_ass_npc.auto.fire_rate = 0.2
 	self.ak47_npc.DAMAGE = 1
+	self.ak47_npc.auto.fire_rate = 0.2
 	self.scar_npc.DAMAGE = 1
+	self.scar_npc.auto.fire_rate = 0.2
 	-- Misc
 	self.m249_npc.usage = "is_lmg"
 	self.r870_npc.CLIP_AMMO_MAX = 8
