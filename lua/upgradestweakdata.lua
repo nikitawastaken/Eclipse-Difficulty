@@ -74,7 +74,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.black_marketeer.multipro = "10"
 
 	-- Lock N' Load
-	self.definitions.weapon_swap_speed_multiplier = {
+	self.definitions.weapon_swap_speed_multiplier_2 = {
 		name_id = "menu_weapon_swap_speed_multiplier",
 		category = "feature",
 		upgrade = {
@@ -83,8 +83,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon"
 		}
 	}
-	self.values.weapon.swap_speed_multiplier = {1.15, 1.8} -- make overkill use second value
-	self.skill_descs.rifleman.multibasic2 = "15%"
+	self.values.weapon.swap_speed_multiplier = {1.8, 1.25}
+	self.skill_descs.rifleman.multibasic2 = "25%"
 
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = {1.25}
@@ -164,7 +164,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Correct Bulletstorm Description
 	self.skill_descs.bandoliers.multibasic = "5"
-	self.skill_descs.bandoliers.multipro = "20"
+	self.skill_descs.bandoliers.multipro2 = "20"
 
 	-- Saw Massacre desc
 	self.skill_descs.ammo_reservoir.multibasic2 = "50%"

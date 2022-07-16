@@ -9,7 +9,7 @@ function SkillTreeTweakData:init(tweak_data)
 			cost = self.costs.hightier
 		},
 		{
-			upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons","weapon_swap_speed_multiplier_2"},
+			upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons", "weapon_swap_speed_multiplier"},
 			cost = self.costs.hightierpro
 		},
 		name_id = "menu_overkill_beta",
@@ -255,7 +255,7 @@ function SkillTreeTweakData:init(tweak_data)
 	}
 
 	-- Lock N' Load
-	self.skills.rifleman[1].upgrades = {"weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier"}
+	self.skills.rifleman[1].upgrades = {"weapon_swap_speed_multiplier_2", "weapon_enter_steelsight_speed_multiplier"}
 	self.skills.rifleman[2].upgrades = {"player_run_and_shoot_1"}
 	self.skills.rifleman.icon_xy = {7, 10}
 	self.skills.rifleman.name_id = "menu_rifleman"
