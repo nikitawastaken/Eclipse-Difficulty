@@ -122,6 +122,32 @@ local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
 
+	-- pre-henchmen team ai hurt severity & no gp
+	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0
+	presets.gang_member_damage.hurt_severity.bullet = {
+		health_reference = "current",
+		zones = {
+			{
+				health_limit = 0.4,
+				none = 0.3,
+				light = 0.6,
+				moderate = 0.1
+			},
+			{
+				health_limit = 0.7,
+				none = 0.1,
+				light = 0.7,
+				moderate = 0.2
+			},
+			{
+				none = 0.1,
+				light = 0.5,
+				moderate = 0.3,
+				heavy = 0.1
+			}
+		}
+	}
+
 	presets.weapon.sniper.is_rifle.use_laser = false
 	
 	-- Tweak dodge presets
@@ -136,6 +162,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		end
 	end
 
+	-- dozer damage reaction
 	presets.hurt_severities.dozer = {
 		tase = false,
 		bullet = {
@@ -161,6 +188,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		}
 	}
 
+	-- heavies don't stumble as much
 	presets.hurt_severities.no_heavy_hurt = {
 		tase = true,
 		bullet = {
@@ -681,12 +709,17 @@ function CharacterTweakData:_set_sm_wish()
 	self.tank.HEALTH_INIT = 2160
 	self.tank.headshot_dmg_mul = 35
 
+	-- Team AI nerf
+	self.presets.gang_member_damage.HEALTH_INIT = 240
+	self.presets.gang_member_damage.REGENERATE_TIME = 1.8
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.6
+
 	-- FBI Rifle preset
 	-- 45 damage M4
 	self.fbi_swat.weapon.is_rifle = {
 		aim_delay = {
-			0.2,
-			0.2
+			0.25,
+			0.25
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -840,8 +873,8 @@ function CharacterTweakData:_set_sm_wish()
 	-- 175 damage point blank, falls off down to 42 at max range
 	self.fbi_swat.weapon.is_shotgun_pump = {
 		aim_delay = {
-			0.2,
-			0.2
+			0.25,
+			0.25
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -954,8 +987,8 @@ function CharacterTweakData:_set_sm_wish()
 	-- Elite Rifle preset
 	self.city_swat.weapon.is_rifle = {
 		aim_delay = {
-			0.2,
-			0.2
+			0.15,
+			0.15
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -1105,8 +1138,8 @@ function CharacterTweakData:_set_sm_wish()
 	-- 55 damage
 	self.city_swat.weapon.is_smg = {
 		aim_delay = {
-			0.2,
-			0.2
+			0.15,
+			0.15
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -1257,11 +1290,11 @@ function CharacterTweakData:_set_sm_wish()
 	}
 
 	-- Elite Shotgunner preset
-	-- 150 damage point blank, falls off down to 50 at max range
+	-- 175 damage point blank, falls off down to 50 at max range
 	self.city_swat.weapon.is_shotgun_pump = {
 		aim_delay = {
-			0.2,
-			0.2
+			0.15,
+			0.15
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -1278,7 +1311,7 @@ function CharacterTweakData:_set_sm_wish()
 		},
 		FALLOFF = {
 			{
-				dmg_mul = 3,
+				dmg_mul = 3.5,
 				r = 100,
 				acc = {
 					0.95,
@@ -1296,7 +1329,7 @@ function CharacterTweakData:_set_sm_wish()
 				}
 			},
 			{
-				dmg_mul = 3,
+				dmg_mul = 3.5,
 				r = 500,
 				acc = {
 					0.7,
@@ -1527,7 +1560,9 @@ function CharacterTweakData:_set_sm_wish()
 		}
 	}
 
+	-- Cloaker
 	self.spooc.weapon.is_pistol = self.presets.weapon.deathwish.is_pistol
+	self.spooc.weapon.is_pistol.aim_delay = {0.1, 0.1}
 	
 
 	--bosses
@@ -1623,22 +1658,8 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		}
 	}
-	self.hector_boss.HEALTH_INIT = 900
-	self.mobster_boss.HEALTH_INIT = 900
-	self.biker_boss.HEALTH_INIT = 3000
-	self.chavez_boss.HEALTH_INIT = 900
-
-	self:_multiply_all_speeds(4.05, 4.1)
-	self:_multiply_weapon_delay(self.presets.weapon.normal, 0)
-	self:_multiply_weapon_delay(self.presets.weapon.good, 0)
-	self:_multiply_weapon_delay(self.presets.weapon.expert, 0)
-	self:_multiply_weapon_delay(self.presets.weapon.sniper, 3)
-	self:_multiply_weapon_delay(self.presets.weapon.gang_member, 0)
 
 	--team ai
-	self.presets.gang_member_damage.REGENERATE_TIME = 1.8
-	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.6
-	self.presets.gang_member_damage.HEALTH_INIT = 800
 	self.presets.weapon.gang_member.is_pistol.FALLOFF = {
 		{
 			dmg_mul = 10,
@@ -2339,8 +2360,8 @@ function CharacterTweakData:_set_sm_wish()
 	-- 30 damage
 	self.tank.weapon.is_rifle.spread = 15
 	self.tank.weapon.is_rifle.aim_delay = {
-		0.2,
-		0.2
+		0.1,
+		0.1
 	}
 	self.tank.weapon.is_rifle.autofire_rounds = {
 		40,

@@ -676,7 +676,7 @@ self.fmg9.timers.unequip = 1.2
 self.sub2000.AMMO_PICKUP = {1.5, 2.5}
 self.sub2000.stats.damage = 180
 self.sub2000.stats.concealment = 18
-self.sub2000.kick.standing = {2, 3, -0.3, 0.3}
+self.sub2000.kick.standing = {1.4, 1.6, -0.3, 0.3}
 self.sub2000.kick.crouching = self.sub2000.kick.standing
 self.sub2000.kick.steelsight = self.sub2000.kick.standing
 -- M308
@@ -690,7 +690,7 @@ self.new_m14.kick.steelsight = self.new_m14.kick.standing
 self.ching.AMMO_PICKUP = {1.5, 2.5}
 self.ching.stats.damage = 180
 self.ching.stats.concealment = 10
-self.ching.kick.standing = {2.6, 3.4, -0.45, 0.45}
+self.ching.kick.standing = {1.6, 2, -0.45, 0.45}
 self.ching.kick.crouching = self.ching.kick.standing
 self.ching.kick.steelsight = self.ching.kick.standing
 

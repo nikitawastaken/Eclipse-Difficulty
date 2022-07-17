@@ -83,7 +83,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon"
 		}
 	}
-	self.values.weapon.swap_speed_multiplier = {1.8, 1.25}
+	self.values.weapon.swap_speed_multiplier = {1.25, 1.8}
 	self.skill_descs.rifleman.multibasic2 = "25%"
 
 	-- Kilmer
