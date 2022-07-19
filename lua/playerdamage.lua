@@ -1,15 +1,39 @@
 -- uppers cooldown
 PlayerDamage._UPPERS_COOLDOWN = 60
 
--- Reduce the bleedout timer on od and increase down counter to 2
+-- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse__replenish", function(self)
     if Global.game_settings.one_down then
         self._lives_init = 4
         tweak_data.player.damage.DOWNED_TIME = 25
 		tweak_data.player.damage.DOWNED_TIME_DEC = 10
 		tweak_data.player.damage.DOWNED_TIME_MIN = 1
+		tweak_data.player.damage.REVIVE_HEALTH_STEPS = {0.6, 0.35, 0.1}
     end
 end)
+
+-- Friendly Fire
+function PlayerDamage:is_friendly_fire(unit)
+	local attacker_mov_ext = alive(unit) and unit:movement()
+
+	if not attacker_mov_ext or not attacker_mov_ext.team or not attacker_mov_ext.friendly_fire then
+		return false
+	end
+
+	local my_team = self._unit:movement():team()
+	local attacker_team = attacker_mov_ext:team()
+
+	if attacker_team ~= my_team and attacker_mov_ext:friendly_fire() then
+		return false
+	end
+
+	local friendly_fire = attacker_team and not attacker_team.foes[my_team.id]
+	friendly_fire = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire)
+
+	if Global.game_settings and Global.game_settings.one_down then friendly_fire = false end
+
+	return friendly_fire
+end
 
 -- The entirety of the code here is done by Hoppip, thanks again if you're reading this
 -- Grace period protects no matter the new potential damage but is shorter in general

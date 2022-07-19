@@ -40,6 +40,7 @@
 	"menu_deck17_9_desc": "For every ##5 points## of health gained during the injector effect while at maximum health, the recharge time of the injector is reduced by ##1 second##.",
 	"menu_deck15_1_desc": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals.\n\nNote: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
 	"menu_deck9_7_desc": "Killing an enemy at medium range recovers ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.",
+	"menu_risk_sm_wish": "Eclipse. Maximum Force Responders inbound.",
 	"menu_difficulty_sm_wish": "Eclipse",
 	"menu_toggle_one_down": "Pro Job",
 	"menu_one_down": "Pro Job",
