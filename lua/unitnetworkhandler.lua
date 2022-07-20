@@ -13,6 +13,7 @@ function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, var
 				range = 1000,
 				attacker_unit = unit,
 				damage = damage,
+				armor_piercing = true,
 				variant = variant,
 				col_ray = {
 					position = unit:position()
@@ -30,11 +31,10 @@ function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, var
 		end
 	end
 
-	if not Global.game_settings and Global.game_settings.one_down then
+	if  not Global.game_settings and Global.game_settings.one_down then
 		managers.job:set_memory("trophy_flawless", true, false)
 	end
 end
-
 -- Force Cloakers to stand up before starting an attack on clients
 Hooks:PreHook(UnitNetworkHandler, "action_spooc_start", "sh_action_spooc_start", function (self, unit)
 	if not self._verify_character(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then

@@ -7,6 +7,5 @@ function PlayerStandard:init(unit)
         self._slotmask_bullet_impact_targets = self._slotmask_bullet_impact_targets + 3
     else
         self._slotmask_bullet_impact_targets = managers.mutators:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
-        self._slotmask_bullet_impact_targets = managers.modifiers:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
     end
 end
