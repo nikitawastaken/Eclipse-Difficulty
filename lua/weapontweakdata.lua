@@ -13,11 +13,11 @@ local SELECTION = {
 -- Contractor
 self.tti.AMMO_MAX = 30
 self.tti.CLIP_AMMO_MAX = 15
-self.tti.stats.concealment = 8
+self.tti.stats.concealment = 13
 self.tti.stats.damage = 120
 self.tti.stats_modifiers = {damage = 2}
 self.tti.AMMO_PICKUP = {0.9, 1.5}
-self.tti.kick.standing = {2, 3, -0.3, 0.3}
+self.tti.kick.standing = {2.5, 3.5, -0.3, 0.3}
 self.tti.kick.crouching = self.tti.kick.standing
 self.tti.kick.steelsight = self.tti.kick.standing
 self.tti.categories = {"snp", "ng"}
@@ -28,19 +28,18 @@ self.siltstone.stats.damage = 120
 self.siltstone.stats_modifiers = {damage = 2}
 self.siltstone.stats.concealment = 20
 self.siltstone.AMMO_PICKUP = {0.8, 1.5}
-self.siltstone.kick.standing = {2, 3, -0.3, 0.3}
+self.siltstone.kick.standing = {2.5, 3.5, -0.3, 0.3}
 self.siltstone.kick.crouching = self.siltstone.kick.standing
 self.siltstone.kick.steelsight = self.siltstone.kick.standing
 self.siltstone.categories = {"snp", "ng"}
 
 -- Kang Arms
 self.qbu88.AMMO_MAX = 30
-self.qbu88.CLIP_AMMO_MAX = 15
 self.qbu88.stats.recoil = 7
 self.qbu88.stats.damage = 120
 self.qbu88.stats_modifiers = {damage = 2}
 self.qbu88.AMMO_PICKUP = {0.9 , 1.5}
-self.qbu88.kick.standing = {2, 3, -0.3, 0.3}
+self.qbu88.kick.standing = {3, 4, -0.3, 0.3}
 self.qbu88.kick.crouching = self.qbu88.kick.standing
 self.qbu88.kick.steelsight = self.qbu88.kick.standing
 self.qbu88.categories = {"snp", "ng"}
@@ -52,7 +51,7 @@ self.wa2000.stats.reload = 13
 self.wa2000.stats.damage = 120
 self.wa2000.stats_modifiers = {damage = 2}
 self.wa2000.AMMO_PICKUP = {0.9, 1.5}
-self.wa2000.kick.standing = {2, 3, -0.3, 0.3}
+self.wa2000.kick.standing = {2.5, 3.5, -0.3, 0.3}
 self.wa2000.kick.crouching = self.wa2000.kick.standing
 self.wa2000.kick.steelsight = self.wa2000.kick.standing
 self.wa2000.categories = {"snp", "ng"}
@@ -64,9 +63,9 @@ self.sbl.stats.damage = 120
 self.sbl.stats.reload = 13
 self.sbl.AMMO_PICKUP = {0.9, 1.5}
 self.sbl.fire_mode_data.fire_rate = 60 / 150
-self.sbl.kick.standing = {2, 3, -0.3, 0.3}
-self.sbl.kick.crouching = self.wa2000.kick.standing
-self.sbl.kick.steelsight = self.wa2000.kick.standing
+self.sbl.kick.standing = {2.5, 3.5, -0.3, 0.3}
+self.sbl.kick.crouching = self.sbl.kick.standing
+self.sbl.kick.steelsight = self.sbl.kick.standing
 self.sbl.categories = {"snp", "ng"}
 
 -- Repeater
@@ -212,14 +211,14 @@ self.aa12.spread.moving_standing = self.new_m4.spread.crouching
 -- M1014
 self.benelli.rays = 12
 self.benelli.stats.spread = 12
-self.benelli.AMMO_PICKUP = {2, 3}
+self.benelli.AMMO_PICKUP = {3, 4}
 self.benelli.spread.standing = self.new_m4.spread.crouching
 self.benelli.spread.moving_standing = self.new_m4.spread.crouching
 
 -- Predator
 self.spas12.rays = 12
 self.spas12.stats.spread = 12
-self.spas12.AMMO_PICKUP = {2, 3}
+self.spas12.AMMO_PICKUP = {3, 4}
 self.spas12.fire_mode_data.fire_rate = 60 / 429
 self.spas12.spread.standing = self.new_m4.spread.crouching
 self.spas12.spread.moving_standing = self.new_m4.spread.crouching
@@ -300,7 +299,7 @@ self.coach.kick.steelsight = self.coach.kick.standing
 -- GSPS 
 self.m37.rays = 12
 self.m37.AMMO_PICKUP = {0.42, 1.2}
-self.m37.kick.standing = {2.5, 3, -0.2, 0.2}
+self.m37.kick.standing = {3.5, 4.5, -0.2, 0.2}
 self.m37.kick.crouching = self.m37.kick.standing
 self.m37.kick.steelsight = self.m37.kick.standing 
 
@@ -683,7 +682,7 @@ self.sub2000.kick.steelsight = self.sub2000.kick.standing
 self.new_m14.AMMO_PICKUP = {1.5, 2.5}
 self.new_m14.stats.damage = 180
 self.new_m14.stats.concealment = 5
-self.new_m14.kick.standing = {3, 3.8, -0.6, 0.6}
+self.new_m14.kick.standing = {3.5, 4.5, -0.6, 0.6}
 self.new_m14.kick.crouching = self.new_m14.kick.standing
 self.new_m14.kick.steelsight = self.new_m14.kick.standing
 -- Galant

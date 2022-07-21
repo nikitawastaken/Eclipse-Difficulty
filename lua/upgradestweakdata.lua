@@ -54,9 +54,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Confident ace now has buffed damage absorption from FF
 	self.values.team.damage = {
-		hostage_absorption = {
-			0.25
-		},
+		hostage_absorption = {0.25},
 		hostage_absorption_limit = 3
 	}
 	self.skill_descs.cable_guy.multipro = "2.5"
@@ -346,6 +344,12 @@ function UpgradesTweakData:init(tweak_data)
 	-- Perk Decks
 	-------------
 
+	-- Infiltrator / Socio healing
+	self.values.player.melee_kill_life_leech = {1}
+	self.specialization_descs[9][5].multiperk = "10"
+	self.values.temporary.melee_life_leech[1][1] = {3}
+	self.specialization_descs[8][9].multiperk = "30"
+
 	-- Crew Chief health / hostage nerf
 	self.values.team.health.hostage_multiplier = {1.04}
 	self.specialization_descs[1][9].multiperk = "4%"
@@ -458,9 +462,10 @@ function UpgradesTweakData:init(tweak_data)
 	-- Stoic flask cooldown increase
 	self.specialization_descs[19][1].multiperk3 = "16"
 
-	-- Tag Team max 8 absorption
-	self.values.player.tag_team_damage_absorption.max = 0.8
-	self.specialization_descs[20][5].multiperk2 = "8"
+	-- Tag Team max 5 absorption
+	self.values.player.tag_team_damage_absorption = {{kill_gain = 0.15, max = 0.6}}
+	self.specialization_descs[20][5].multiperk = "1.5"
+	self.specialization_descs[20][5].multiperk2 = "6"
 
 	-- Hacker nerf
 	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.15, 25, 4}

@@ -31,22 +31,27 @@ Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- ak family
     self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.9}
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -6
+    self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -8
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 75
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats.ammo_pickup_max_mul = 0.45
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -7
+    self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -11
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 95
     -- car family
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats.ammo_pickup_min_mul = 0.4
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -7
+    self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -11
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 110
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.9}
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -6
+    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -8
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 75
     -- m308 b-stock
     self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
     -- gewehr
     self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {ammo_pickup_max_mul = 1.1, ammo_pickup_min_mul = 1.1}
     self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
+    self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
     self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 73
     -- broomstick 
     self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
