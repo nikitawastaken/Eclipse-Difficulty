@@ -144,6 +144,8 @@
 					<post :hook_id="akimboweaponbase"/>
 					<post :hook_id="raycastweaponbase"/>
 					<post :hook_id="newraycastweaponbase"/>
+					<post :hook_id="newflamethrowerbase"/>
+					<post :hook_id="npcraycastweaponbase"/>
 				</group>
 			</group>
 		</group>
