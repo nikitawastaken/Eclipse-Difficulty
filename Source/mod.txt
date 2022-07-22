@@ -1,7 +1,7 @@
 {
   	"name" : "Eclipse",
 	"description" : "A challenging custom difficulty with overhauled AI, enemies, tactics and more! Includes playerside balance overhaul.",
-	"author" : "mrcreepy, Hoppip (SHAI & MB) and many others..."
+	"author" : "mrcreepy, Hoppip (SHAI & MB) and many others...",
 	"contact" : "creepysos#4414",
 	"image" : "mod.png",
 	"blt_version" : 2,
