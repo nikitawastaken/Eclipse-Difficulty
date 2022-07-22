@@ -5,7 +5,7 @@
 	"contact" : "creepysos#4414",
 	"image" : "mod.png",
 	"blt_version" : 2,
-	"version" : "2.4",
+	"version" : "2.41",
 	"updates" : [{
 		"identifier" : "eclipse_difficulty",
 		"host" : {"meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/main/meta.json"}
