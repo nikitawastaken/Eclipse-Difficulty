@@ -28,7 +28,5 @@
 <!---------------------------------[ Badges ]---------------------------------->
 
 [Badge License]: https://img.shields.io/badge/License-GPL3-015d93.svg?style=for-the-badge&labelColor=blue
-[Badge Version]: https://img.shields.io/badge/dynamic/json?query=version&style=for-the-badge&labelColor=428813&color=2e5e0e&label=Version&url=https%3A%2F%2Fraw.githubusercontent.com%2FElectronicsArchiver%2FEclipse-Difficulty%2Fmain%2FSource%2Fmod.txt
+[Badge Version]: https://img.shields.io/badge/dynamic/json?query=version&style=for-the-badge&labelColor=428813&color=2e5e0e&label=Version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrcreepysos%2FEclipse-Difficulty%2Fmain%2Fmod.txt
 
-
-<!-- &url=https%3A%2F%2Fraw.githubusercontent.com%2Fmrcreepysos%2FEclipse-Difficulty%2Fmain%2Fmod.txt -->
