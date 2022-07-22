@@ -85,15 +85,193 @@
 		</target>
 	</tweak>
 
-	<!-- Fix for dodge animations ending too soon (thanks to RedFlame) -->
+	<!-- Various animation fixes by RedFlame -->
+	<!-- Fix for dodge animations ending too soon -->
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
 		<search>
-				<xml/>
-				<state name="std/crouch/still/idle"/>
-				<from name="std/dodge"/>
+			<xml/>
+			<state name="std/crouch/still/idle"/>
+			<from name="std/dodge"/>
 		</search>
 		<target mode="attributes">
-				<attr name="blend" value="1"/>
+			<attr name="blend" value="3"/>
+		</target>
+	</tweak>
+
+	<!-- Fix transition from crouched to navlink animations -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/stand/nav_link"/>
+		</search>
+		<target mode="attach">
+			<from_group name="std/crouch/still" blend="3"/>
+		</target>
+	</tweak>
+
+	<!-- Fix suppressed state not updating base -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/crouch/still/suppressed_reaction"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
+		</target>
+	</tweak>
+
+	<!-- Fix panic state not updating base -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/crouch/still/fumble"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/crouch/move/run/fumble"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
+		</target>
+	</tweak>
+
+	<!-- Fix concussion state not setting animation flags -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/stun/concussion"/>
+		</search>
+		<target mode="attach">
+			<keys timebase="relative">
+				<key at="enter" set_extension="anim_data" extension_key="hurt" extension_value="true"/>
+				<key at="exit" set_extension="anim_data" extension_key="hurt" extension_value="false"/>
+				<key at="0.7" set_extension="anim_data" extension_key="hurt_exit" extension_value="true"/>
+				<key at="exit" set_extension="anim_data" extension_key="hurt_exit" extension_value="false"/>
+				<key at="trigger" trigger="enable_ragdoll" set_extension="anim_data" extension_key="ragdoll" extension_value="true"/>
+				<key at="exit" set_extension="anim_data" extension_key="ragdoll" extension_value="false"/>
+			</keys>
+		</target>
+	</tweak>
+
+	<!-- Fix ECM feedback state -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/sick/exit"/>
+			<to name="idle"/>
+		</search>
+		<target mode="replace"/>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/sick/exit"/>
+			<keys/>
+			<key extension_key="hurt"/>
+		</search>
+		<target mode="attributes">
+			<attr name="at" value="exit"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/sick/exit"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="to_idle" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="to_idle" extension_value="false"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/sick/exit"/>
+			<exit/>
+		</search>
+		<target mode="attributes">
+			<attr name="name" value="std/stand/still/idle/look"/>
+		</target>
+	</tweak>
+
+	<!-- Fix poison state issues -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/poison/enter"/>
+		</search>
+		<target mode="attributes">
+			<attr name="type" value="once"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/poison/exit"/>
+		</search>
+		<target mode="attributes">
+			<attr name="type" value="once"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/poison/exit"/>
+			<to name="idle"/>
+		</search>
+		<target mode="replace"/>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/poison/exit"/>
+			<keys/>
+			<key extension_key="hurt"/>
+		</search>
+		<target mode="attributes">
+			<attr name="at" value="exit"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/poison/exit"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="to_idle" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="to_idle" extension_value="false"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/hurt/poison/exit"/>
+			<exit/>
+		</search>
+		<target mode="attributes">
+			<attr name="name" value="std/stand/still/idle/look"/>
 		</target>
 	</tweak>
 </tweaks>

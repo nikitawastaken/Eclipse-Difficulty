@@ -72,7 +72,6 @@
 
 					<group :hook_id="cop/">
 						<group :hook_id="actions/full_body/">
-							<post :hook_id="copactionact"/>
 							<post :hook_id="copactiondodge"/>
 							<post :hook_id="copactionhurt"/>
 						</group>

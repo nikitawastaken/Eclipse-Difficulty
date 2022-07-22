@@ -364,7 +364,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 				-- Check which grenade to use to push, grenade use is required for the push to be initiated
 				-- If grenade isn't available, push regardless anyway after a short delay
-				used_grenade = self:_chk_group_use_grenade(group, detonate_pos) or group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t
+				used_grenade = self:_chk_group_use_grenade(assault_area, group, detonate_pos) or group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t
 
 				if used_grenade then
 					self:_voice_move_in_start(group)
@@ -470,16 +470,16 @@ end
 
 
 -- Add custom grenade usage function
-function GroupAIStateBesiege:_chk_group_use_grenade(group, detonate_pos)
+function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonate_pos)
 	local task_data = self._task_data.assault
 	if not task_data.use_smoke then
 		return
 	end
 
-    local grenade_types = {
-        smoke_grenade = (not task_data.smoke_grenade_next_t or task_data.smoke_grenade_next_t < self._t) or nil,
-        flash_grenade = (not task_data.flash_grenade_next_t or task_data.flash_grenade_next_t < self._t) or nil
-    }
+	local grenade_types = {
+		smoke_grenade = (not task_data.smoke_grenade_next_t or task_data.smoke_grenade_next_t < self._t) or nil,
+		flash_grenade = (not task_data.flash_grenade_next_t or task_data.flash_grenade_next_t < self._t) or nil
+	}
 	local grenade_candidates = {}
 	for grenade_type, _ in pairs(grenade_types) do
 		for _, u_data in pairs(group.units) do
@@ -500,23 +500,8 @@ function GroupAIStateBesiege:_chk_group_use_grenade(group, detonate_pos)
 	local area
 	local detonate_offset, detonate_offset_pos = tmp_vec1, tmp_vec2
 	if detonate_pos then
-		-- Offset grenade a bit to avoid spawning exactly on the player
 		mvec_set(detonate_offset, grenade_user.m_pos)
 		mvec_sub(detonate_offset, detonate_pos)
-		mvec_set_z(detonate_offset, 0)
-		mvec_set_l(detonate_offset, math.random(100, 300))
-		mvec_set(detonate_offset_pos, detonate_pos)
-		mvec_add(detonate_offset_pos, detonate_offset)
-
-		local ray = World:raycast("ray", detonate_pos, detonate_offset_pos, "slot_mask", managers.slot:get_mask("world_geometry"))
-		if ray then
-			mvec_set_l(detonate_offset, math.max(0, ray.distance - 50))
-			mvec_set(detonate_offset_pos, detonate_pos)
-			mvec_add(detonate_offset_pos, detonate_offset)
-		end
-
-		detonate_pos = detonate_offset_pos
-		area = self:get_area_from_nav_seg_id(managers.navigation:get_nav_seg_from_pos(detonate_pos, true))
 	else
 		local nav_seg = managers.navigation._nav_segments[grenade_user.tracker:nav_segment()]
 		for neighbour_nav_seg_id, door_list in pairs(nav_seg.neighbours) do
@@ -531,11 +516,29 @@ function GroupAIStateBesiege:_chk_group_use_grenade(group, detonate_pos)
 				break
 			end
 		end
+
+		if not detonate_pos then
+			return
+		end
+
+		mvec_set(detonate_offset, assault_area.pos)
+		mvec_sub(detonate_offset, detonate_pos)
 	end
 
-	if not detonate_pos then
-		return
+	-- Offset grenade a bit to avoid spawning exactly on the player/door
+	mvec_set_l(detonate_offset, math.random(100, 300))
+	mvec_set(detonate_offset_pos, detonate_pos)
+	mvec_add(detonate_offset_pos, detonate_offset)
+
+	local ray = World:raycast("ray", detonate_pos, detonate_offset_pos, "slot_mask", managers.slot:get_mask("world_geometry"))
+	if ray then
+		mvec_set_l(detonate_offset, math.max(0, ray.distance - 50))
+		mvec_set(detonate_offset_pos, detonate_pos)
+		mvec_add(detonate_offset_pos, detonate_offset)
 	end
+
+	detonate_pos = detonate_offset_pos
+	area = self:get_area_from_nav_seg_id(managers.navigation:get_nav_seg_from_pos(detonate_pos, true))
 
 	-- If players camp a specific area for too long, turn a smoke grenade into a teargas grenade instead
 	local use_teargas
