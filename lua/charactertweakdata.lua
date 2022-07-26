@@ -23,6 +23,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.spooc_attack_use_smoke_chance = 0 -- double smoke is never fun
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
+	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
+	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.5
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
@@ -572,10 +574,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					0.25
 				},
 				mode = {
-					1,
 					0,
 					0,
-					0
+					0,
+					1
 				},
 				autofire_rounds = {
 					4,
@@ -594,10 +596,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					0.3
 				},
 				mode = {
-					1,
 					0,
 					0,
-					0
+					0,
+					1
 				},
 				autofire_rounds = {
 					3,
@@ -616,10 +618,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					0.5
 				},
 				mode = {
-					1,
 					0,
 					0,
-					0
+					0,
+					1
 				},
 				autofire_rounds = {
 					2,
@@ -690,6 +692,8 @@ function CharacterTweakData:_set_sm_wish()
 	self:_multiply_all_hp(3, 1.25)
 
 	-- honestly it's easier to just do this than account for all the difficulty health and hs damage muls
+	self.swat.HEALTH_INIT = 30
+	self.swat.headshot_dmg_mul = 1.8
 	self.fbi_swat.HEALTH_INIT = 34
 	self.fbi_swat.headshot_dmg_mul = 2
 	self.city_swat.HEALTH_INIT = 40
@@ -1289,7 +1293,7 @@ function CharacterTweakData:_set_sm_wish()
 		}
 	}
 
-	-- Elite Shotgunner preset
+	-- Elite Shotgun preset
 	-- 175 damage point blank, falls off down to 50 at max range
 	self.city_swat.weapon.is_shotgun_pump = {
 		aim_delay = {
@@ -1403,8 +1407,6 @@ function CharacterTweakData:_set_sm_wish()
 		}
 	}
 
-	
-	
 	-- Medic preset
 	-- 45 damage
 	self.medic.weapon.is_rifle = {
@@ -2144,7 +2146,7 @@ function CharacterTweakData:_set_sm_wish()
 	}
 
 	-- Saigadozer preset
-	-- 75 damage
+	-- 75 damage at point blank, drops to 30 at max range
 	self.tank.weapon.is_shotgun_mag.aim_delay = {
 		0.2,
 		0.2
@@ -2250,7 +2252,7 @@ function CharacterTweakData:_set_sm_wish()
 	}
 
 	-- Greendozer preset
-	-- Damage unchanged, higher rof and not shit falloff
+	-- halved damage, higher rof
 	self.tank.weapon.is_shotgun_pump.aim_delay = {
 		0.2,
 		0.2
@@ -2264,15 +2266,15 @@ function CharacterTweakData:_set_sm_wish()
 	self.tank.weapon.is_shotgun_pump.focus_dis = 200
 	self.tank.weapon.is_shotgun_pump.FALLOFF = {
 		{
-			dmg_mul = 9,
+			dmg_mul = 4.5,
 			r = 100,
 			acc = {
 				0.95,
 				0.95
 			},
 			recoil = {
-				1,
-				1
+				0.8,
+				0.8
 			},
 			mode = {
 				1,
@@ -2282,13 +2284,31 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		},
 		{
-			dmg_mul = 8,
+			dmg_mul = 4.5,
 			r = 500,
 			acc = {
 				0.9,
 				0.95
 			},
 			recoil = {
+				0.9,
+				0.9
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 4.5,
+			r = 1000,
+			acc = {
+				0.6,
+				0.8
+			},
+			recoil = {
 				1,
 				1
 			},
@@ -2300,25 +2320,7 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		},
 		{
-			dmg_mul = 7,
-			r = 1000,
-			acc = {
-				0.6,
-				0.8
-			},
-			recoil = {
-				1.1,
-				1.1
-			},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			dmg_mul = 4,
+			dmg_mul = 3,
 			r = 2000,
 			acc = {
 				0.45,
@@ -2336,7 +2338,7 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		},
 		{
-			dmg_mul = 2,
+			dmg_mul = 1.5,
 			r = 3000,
 			acc = {
 				0.3,
@@ -2357,29 +2359,29 @@ function CharacterTweakData:_set_sm_wish()
 
 
 	-- Skulldozer preset
-	-- 30 damage
-	self.tank.weapon.is_rifle.spread = 15
-	self.tank.weapon.is_rifle.aim_delay = {
+	-- 40 damage
+	self.tank.weapon.is_lmg.spread = 15
+	self.tank.weapon.is_lmg.aim_delay = {
 		0.1,
 		0.1
 	}
-	self.tank.weapon.is_rifle.autofire_rounds = {
+	self.tank.weapon.is_lmg.autofire_rounds = {
 		40,
 		80
 	}
-	self.tank.weapon.is_rifle.range = {
-		optimal = 1250,
+	self.tank.weapon.is_lmg.range = {
+		optimal = 1500,
 		far = 2500,
-		close = 750
+		close = 1000
 	}
-	self.tank.weapon.is_rifle.focus_delay = 0.2
-	self.tank.weapon.is_rifle.FALLOFF = {
+	self.tank.weapon.is_lmg.focus_delay = 0.2
+	self.tank.weapon.is_lmg.FALLOFF = {
 		{
-			dmg_mul = 1.5,
+			dmg_mul = 2,
 			r = 100,
 			acc = {
-				0.7,
-				0.9
+				0.9,
+				1
 			},
 			recoil = {
 				0.4,
@@ -2393,11 +2395,11 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		},
 		{
-			dmg_mul = 1.5,
+			dmg_mul = 2,
 			r = 500,
 			acc = {
-				0.5,
-				0.75
+				0.8,
+				0.95
 			},
 			recoil = {
 				0.65,
@@ -2411,10 +2413,28 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		},
 		{
-			dmg_mul = 1.5,
+			dmg_mul = 2,
 			r = 1000,
 			acc = {
-				0.5,
+				0.7,
+				0.85
+			},
+			recoil = {
+				1,
+				1
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 2,
+			r = 2000,
+			acc = {
+				0.45,
 				0.6
 			},
 			recoil = {
@@ -2429,28 +2449,10 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		},
 		{
-			dmg_mul = 1.5,
-			r = 2000,
-			acc = {
-				0.3,
-				0.55
-			},
-			recoil = {
-				1,
-				1
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 1.5,
+			dmg_mul = 2,
 			r = 3000,
 			acc = {
-				0.15,
+				0.2,
 				0.3
 			},
 			recoil = {
@@ -2460,8 +2462,8 @@ function CharacterTweakData:_set_sm_wish()
 			mode = {
 				0,
 				0,
-				2,
-				6
+				0,
+				1
 			}
 		}
 	}
