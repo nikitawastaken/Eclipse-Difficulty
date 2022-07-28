@@ -9,7 +9,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.dodge = self.presets.dodge.ninja
 
 	-- Specials
-	self.sniper.suppression = nil -- hopefully this fixes some instances of snipers hiding their lasers
+	self.sniper.suppression = nil
 	self.sniper.misses_first_player_shot = true -- make them miss the first shot
 
 	self.spooc.spooc_sound_events = {detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop"} -- remove cloaker charge noise

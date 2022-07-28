@@ -37,7 +37,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ammo_reservoir.icon_xy = {0, 2}
 
 	-- Marksman
-	self.skills.sharpshooter[1].upgrades = {"weapon_enter_steelsight_speed_multiplier", "weapon_single_spread_index_addend"}
+	self.skills.sharpshooter[1].upgrades = {"weapon_single_spread_index_addend"}
 	self.skills.sharpshooter[2].upgrades = {"single_shot_accuracy_inc_1"}
 
 	-- Confident
