@@ -449,7 +449,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		fbi_tank = {
 			"charge",
-			"deathguard"
+			"flash_grenade"
 		},
 		elite_long_range = {
 			"ranged_fire",
@@ -495,17 +495,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"deathguard",
 			"murder"
 		},
-		elite_tank_rush = {
-			"charge",
+		elite_tank_ranged = {
+			"ranged_fire",
 			"flash_grenade",
 			"smoke_grenade",
 			"deathguard",
-			"murder"
-		},
-		elite_tank_ranged = {
-			"ranged_fire",
-			"shield_cover",
-			"flash_grenade",
+			"shield",
 			"murder"
 		},
 		spooc = {
@@ -652,22 +647,22 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			spawn = {
 				{
-					amount_min = 2,
+					amount_min = 1,
 					freq = 2,
-					amount_max = 2,
+					amount_max = 1,
 					rank = 3,
 					unit = "tank_fbi",
 					tactics = self._tactics.fbi_tank
 				},
 				{
 					amount_min = 1,
-					freq = 0.75,
+					freq = 1,
 					amount_max = 1,
 					rank = 2,
 					unit = "shield_fbi",
 					tactics = self._tactics.fbi_rifle
 				},
-				{ 
+				{
 					amount_min = 0,
 					freq = 0.5,
 					amount_max = 1,
@@ -678,9 +673,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				{
 					amount_min = 0,
 					freq = 0.75,
-					amount_max = 1,
+					amount_max = 2,
 					rank = 1,
-					unit = "shotgunner_fbi",
+					unit = "heavy_shotgunner_fbi",
 					tactics = self._tactics.fbi_shotgun
 				}
 			}
@@ -869,26 +864,18 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				},
 				{
 					amount_min = 1,
-					freq = 1,
-					amount_max = 1,
+					freq = 0.66,
+					amount_max = 2,
 					rank = 2,
-					unit = "tank_fbi",
-					tactics = self._tactics.elite_tank_rush
-				},
-				{ 
-					amount_min = 0,
-					freq = 0.75,
-					amount_max = 1,
-					rank = 1,
-					unit = "shield_fbi",
-					tactics = self._tactics.fbi_special
+					unit = "taser_unit",
+					tactics = self._tactics.elite_special
 				},
 				{
 					amount_min = 0,
-					freq = 0.65,
+					freq = 0.5,
 					amount_max = 1,
-					rank = 2,
-					unit = "taser_unit",
+					rank = 1,
+					unit = "medic_unit",
 					tactics = self._tactics.elite_special
 				}
 			}
@@ -1163,13 +1150,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			common_charge = {1, 1, 1},
 			common_shield = {0.66, 0.66, 0.66},
-			common_tank = {0, 0.06, 0.12},
+			common_tank = {0, 0.08, 0.16},
 			uncommon_charge = {0.75, 0.75, 0.75},
 			elite_flankg = {0.45, 0.45, 0.45},
 			elite_shieldg = {0.45, 0.45, 0.45},
 			elite_long_range = {0.4, 0.4, 0.4},
 			elite_heavy_charge = {0.35, 0.35, 0.35},
-			elite_tank = {0, 0.05, 0.1},
+			elite_tank = {0, 0.06, 0.12},
 			medic_group = {0.3, 0.3, 0.3},
 			cloaker_group = {0, 0.08, 0.12},
 			recon_hrt = {0.1, 0.1, 0.1},

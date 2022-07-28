@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<tweak version="2" name="effects/payday2/particles/explosions/molotov_grenade" extension="effect">
+	<search>
+		<effect/>
+		<atom lifetime="30"/>
+	</search>
+	<target mode="attributes" multiple="true">
+		<attr name="lifetime" value="60"/>
+	</target>
+</tweak>

@@ -125,3 +125,17 @@ function GroupAIStateBase:_count_police_force(task_name)
 	end
 	return amount
 end
+
+
+-- Set accurate criminal position
+Hooks:PostHook(GroupAIStateBase, "criminal_spotted", "sh_criminal_spotted", function (self, unit)
+	local u_sighting = self._criminals[unit:key()]
+	mvector3.set(u_sighting.pos, u_sighting.m_det_pos)
+end)
+
+Hooks:PostHook(GroupAIStateBase, "on_criminal_nav_seg_change", "sh_on_criminal_nav_seg_change", function (self, unit)
+	local u_sighting = self._criminals[unit:key()]
+	if u_sighting then
+		mvector3.set(u_sighting.pos, u_sighting.m_det_pos)
+	end
+end)

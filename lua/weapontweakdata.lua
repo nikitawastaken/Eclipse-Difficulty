@@ -123,7 +123,7 @@ self.model70.kick.steelsight = self.r93.kick.steelsight
 
 -- Thanatos
 self.m95.stats.damage = 200
-self.m95.stats_modifiers = {damage = 40}
+self.m95.stats_modifiers = {damage = 25}
 self.m95.kick.standing = {5, 6, -1, 1}
 self.m95.kick.crouching = self.m95.kick.standing
 self.m95.kick.steelsight = self.m95.kick.standing
@@ -299,7 +299,7 @@ self.coach.kick.steelsight = self.coach.kick.standing
 -- GSPS 
 self.m37.rays = 12
 self.m37.AMMO_PICKUP = {0.42, 1.2}
-self.m37.kick.standing = {3.5, 4.5, -0.2, 0.2}
+self.m37.kick.standing = {4, 5, -0.2, 0.2}
 self.m37.kick.crouching = self.m37.kick.standing
 self.m37.kick.steelsight = self.m37.kick.standing 
 

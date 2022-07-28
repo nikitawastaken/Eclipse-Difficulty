@@ -3,256 +3,66 @@ function SkillTreeTweakData:init(tweak_data)
     data(self, tweak_data)
 
 	-- Overkill
-	self.skills.overkill = {
-		{
-			upgrades = {"player_overkill_damage_multiplier"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons", "weapon_swap_speed_multiplier", "weapon_swap_speed_multiplier_2"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_overkill_beta",
-		desc_id = "menu_overkill_beta_desc",
-		icon_xy = {
-			3,
-			2
-		}
-	}
+	self.skills.overkill[1].upgrades = {"player_overkill_damage_multiplier"}
+	self.skills.overkill[2].upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons", "weapon_swap_speed_multiplier", "weapon_swap_speed_multiplier_2"}
 
 	-- Mag Plus
-	self.skills.fast_fire = {
-		{
-			upgrades = {"player_automatic_mag_increase_1"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"player_automatic_mag_increase_2"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_fast_fire_beta",
-		desc_id = "menu_fast_fire_beta_desc",
-		icon_xy = {
-			2,
-			0
-		}
-	}
+	self.skills.fast_fire[1].upgrades = {"player_automatic_mag_increase_1"}
+	self.skills.fast_fire[2].upgrades = {"player_automatic_mag_increase_2"}
+	self.skills.fast_fire.icon_xy = {2, 0}
 
 	-- Body Expertise
-	self.skills.body_expertise = {
-		{
-			upgrades = {"player_ap_bullets_1"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"weapon_automatic_head_shot_add_1"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_body_expertise_beta",
-		desc_id = "menu_body_expertise_beta_desc",
-		icon_xy = {
-			10,
-			3
-		}
-	}
+	self.skills.body_expertise[1].upgrades = {"player_ap_bullets_1"}
+	self.skills.body_expertise[2].upgrades = {"weapon_automatic_head_shot_add_1"}
 
 	-- Bulletstorm
-	self.skills.bandoliers = {
-		{
-			upgrades = {"temporary_no_ammo_cost_1"},
-			cost = self.costs.default
-		},
-		{
-			upgrades = {"temporary_no_ammo_cost_2"},
-			cost = self.costs.pro
-		},
-		name_id = "menu_ammo_reservoir_beta",
-		desc_id = "menu_ammo_reservoir_beta_desc",
-		icon_xy = {
-			4,
-			5
-		}
-	}
+	self.skills.bandoliers[1].upgrades = {"temporary_no_ammo_cost_1"}
+	self.skills.bandoliers[2].upgrades = {"temporary_no_ammo_cost_2"}
+	self.skills.bandoliers.name_id = "menu_ammo_reservoir_beta"
+	self.skills.bandoliers.desc_id = "menu_ammo_reservoir_beta_desc"
+	self.skills.bandoliers.icon_xy = {4, 5}
 
 	-- Fully Loaded
-	self.skills.carbon_blade = {
-		{
-			upgrades = {"player_regain_throwable_from_ammo_1"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"extra_ammo_multiplier1", "player_pick_up_ammo_multiplier", "player_pick_up_ammo_multiplier_2"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_bandoliers_beta",
-		desc_id = "menu_bandoliers_beta_desc",
-		icon_xy = {
-			3,
-			0
-		}
-	}
+	self.skills.carbon_blade[1].upgrades = {"player_regain_throwable_from_ammo_1"}
+	self.skills.carbon_blade[2].upgrades = {"extra_ammo_multiplier1", "player_pick_up_ammo_multiplier", "player_pick_up_ammo_multiplier_2"}
+	self.skills.carbon_blade.name_id = "menu_bandoliers_beta"
+	self.skills.carbon_blade.desc_id = "menu_bandoliers_beta_desc"
+	self.skills.carbon_blade.icon_xy = {3, 0}
 
 	-- Saw Massacre
-	self.skills.ammo_reservoir = {
-		{
-			upgrades = {"saw_enemy_slicer"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"saw_ignore_shields_1", "saw_panic_when_kill_1"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_carbon_blade_beta",
-		desc_id = "menu_carbon_blade_beta_desc",
-		icon_xy = {
-			0,
-			2
-		}
-	}
+	self.skills.ammo_reservoir[1].upgrades = {"saw_enemy_slicer"}
+	self.skills.ammo_reservoir[2].upgrades = {"saw_ignore_shields_1", "saw_panic_when_kill_1"}
+	self.skills.ammo_reservoir.name_id = "menu_carbon_blade_beta"
+	self.skills.ammo_reservoir.desc_id = "menu_carbon_blade_beta_desc"
+	self.skills.ammo_reservoir.icon_xy = {0, 2}
 
 	-- Marksman
-	self.skills.sharpshooter = {
-		{
-			upgrades = {"weapon_enter_steelsight_speed_multiplier", "weapon_single_spread_index_addend"},
-			cost = self.costs.default
-		},
-		{
-			upgrades = {"single_shot_accuracy_inc_1"},
-			cost = self.costs.pro
-		},
-		name_id = "menu_sharpshooter_beta",
-		desc_id = "menu_sharpshooter_beta_desc",
-		icon_xy = {
-			8,
-			1
-		}
-	}
+	self.skills.sharpshooter[1].upgrades = {"weapon_enter_steelsight_speed_multiplier", "weapon_single_spread_index_addend"}
+	self.skills.sharpshooter[2].upgrades = {"single_shot_accuracy_inc_1"}
 
 	-- Confident
-	self.skills.cable_guy = {
-		{
-			upgrades = {"player_intimidate_range_mul", "player_intimidate_aura", "player_civ_intimidation_mul"},
-			cost = self.costs.default
-		},
-		{
-			upgrades = {"team_damage_hostage_absorption"},
-			cost = self.costs.pro
-		},
-		name_id = "menu_cable_guy_beta",
-		desc_id = "menu_cable_guy_beta_desc",
-		icon_xy = {
-			2,
-			8
-		}
-	}
+	self.skills.cable_guy[1].upgrades = {"player_intimidate_range_mul", "player_intimidate_aura", "player_civ_intimidation_mul"}
+	self.skills.cable_guy[2].upgrades = {"team_damage_hostage_absorption"}
 
 	-- Forced Friendship
-	self.skills.triathlete = {
-		{
-			upgrades = {"cable_tie_interact_speed_multiplier"},
-			cost = self.costs.default
-		},
-		{
-			upgrades = {"cable_tie_quantity"},
-			cost = self.costs.pro
-		},
-		name_id = "menu_triathlete_beta",
-		desc_id = "menu_triathlete_beta_desc",
-		icon_xy = {
-			4,
-			7
-		}
-	}
+	self.skills.triathlete[1].upgrades = {"cable_tie_interact_speed_multiplier"}
+	self.skills.triathlete[2].upgrades = {"cable_tie_quantity"}
 
 	-- Berserker
-	self.skills.wolverine = {
-		{
-			upgrades = {"player_melee_damage_health_ratio_multiplier"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_wolverine_beta",
-		desc_id = "menu_wolverine_beta_desc",
-		icon_xy = {
-			2,
-			2
-		}
-	}
+	self.skills.wolverine[1].upgrades = {"player_melee_damage_health_ratio_multiplier"}
+	self.skills.wolverine[2].upgrades = {"player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier"}
 
 	-- Nine Lives (Tough Guy)
-	self.skills.nine_lives = {
-		{
-			upgrades = {"player_bleed_out_health_multiplier"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"player_primary_weapon_when_downed"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_nine_lives_beta",
-		desc_id = "menu_nine_lives_beta_desc",
-		icon_xy = {
-			1,
-			2
-		}
-	}
-
-	-- Combat Doctor
-	self.skills.medic_2x = {
-		{
-			upgrades = {"doctor_bag_amount_increase1"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"doctor_bag_quantity"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_medic_2x_beta",
-		desc_id = "menu_medic_2x_beta_desc",
-		icon_xy = {
-			5,
-			8
-		}
-	}
+	self.skills.nine_lives[1].upgrades = {"player_bleed_out_health_multiplier"}
+	self.skills.nine_lives[2].upgrades = {"player_primary_weapon_when_downed"}
 
 	-- Iron Man
-	self.skills.juggernaut = {
-		{
-			upgrades = {"body_armor6"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"player_armor_multiplier"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_juggernaut_beta",
-		desc_id = "menu_juggernaut_beta_desc",
-		icon_xy = {
-			3,
-			1
-		}
-	}
+	self.skills.juggernaut[1].upgrades = {"body_armor6"}
+	self.skills.juggernaut[2].upgrades = {"player_armor_multiplier"}
 
-	-- Inspire (istg i will get to cleaning this to not look awful later)
-	self.skills.inspire = {
-		{
-			upgrades = {"player_morale_boost"},
-			cost = self.costs.hightier
-		},
-		{
-			upgrades = {"player_revive_interaction_speed_multiplier"},
-			cost = self.costs.hightierpro
-		},
-		name_id = "menu_inspire_beta",
-		desc_id = "menu_inspire_beta_desc",
-		icon_xy = {
-			4,
-			9
-		}
-	}
+	-- Inspire
+	self.skills.inspire[1].upgrades = {"player_morale_boost"}
+	self.skills.inspire[2].upgrades = {"player_revive_interaction_speed_multiplier"}
 
 	-- Lock N' Load
 	self.skills.rifleman[1].upgrades = {"weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier"}
@@ -358,6 +168,10 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Get rid of burglars crouch move speed boost to avoid bugging upgrades out (no one plays the deck anyway so who cares)
 	table.delete(self.specializations[7][9].upgrades, "player_crouch_speed_multiplier_2")
+
+	-- Gambler 9th card gives extended pickup range
+	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
+	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
 
 	-- Remove some default upgrades
 	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")

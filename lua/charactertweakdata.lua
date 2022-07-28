@@ -7,33 +7,32 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.suppression = {panic_chance_mul = 0.15, duration = {1.5, 2}, react_point = {2, 5},brown_point = {5, 6}}
 	self.city_swat.weapon = self.presets.weapon.expert
 	self.city_swat.dodge = self.presets.dodge.ninja
-	self.city_swat.surrender = {
-		base_chance = 0.35,
-		significant_chance = 0.25,
-		violence_timeout = 2,
-		reasons = {health = {[1] = 0, [0.4] = 0.4}, weapon_down = 0.4, pants_down = 0.8},
-		factors = {isolated = 0.1, flanked = 0.08, unaware_of_aggressor = 0.2, enemy_weap_cold = 0.05, aggressor_dis = {[1000] = 0, [300] = 0.15}}
-	}
 
 	-- Specials
+	self.sniper.suppression = nil -- hopefully this fixes some instances of snipers hiding their lasers
 	self.sniper.misses_first_player_shot = true -- make them miss the first shot
+
 	self.spooc.spooc_sound_events = {detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop"} -- remove cloaker charge noise
 	self.spooc.use_animation_on_fire_damage = true -- also make them non immune to fire
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0 -- double smoke is never fun
-	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
+
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
 	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
 	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.5
+	self.tank.move_speed.stand.walk.cbt = {strafe = 186, fwd = 208, bwd = 164}
+	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
+	
+	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.suppression = nil
 	self.medic.move_speed = self.presets.move_speed.fast
+
 	self.shield.damage.explosion_damage_mul = 0.9
 	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
 	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
-	self.sniper.suppression = nil -- hopefully this fixes some instances of snipers hiding their lasers
 
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 400
@@ -244,7 +243,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		miss_dis = 20,
 		RELOAD_SPEED = 1.4,
 		melee_speed = 1,
-		melee_dmg = 20,
+		melee_dmg = 10,
 		melee_retry_delay = {1, 2},
 		range = {
 			optimal = 3000,
@@ -349,6 +348,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	-- 140 dmg
 	presets.weapon.deathwish.is_revolver.aim_delay = {0.2, 0.2}
 	presets.weapon.deathwish.is_revolver.focus_delay = 1
+	presets.weapon.deathwish.is_revolver.melee_dmg = 10
 	presets.weapon.deathwish.is_revolver.FALLOFF = {
 		{
 			dmg_mul = 16,
@@ -446,6 +446,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	-- 35 damage
 	presets.weapon.deathwish.is_pistol.aim_delay = {0.2, 0.2}
 	presets.weapon.deathwish.is_pistol.focus_delay = 1
+	presets.weapon.deathwish.is_pistol.melee_dmg = 10
 	presets.weapon.deathwish.is_pistol.FALLOFF = {
 			{
 				dmg_mul = 3.5,
@@ -561,6 +562,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	-- 40 damage
 	presets.weapon.deathwish.is_smg.aim_delay = {0.2, 0.2}
 	presets.weapon.deathwish.is_smg.focus_delay = 1
+	presets.weapon.deathwish.is_smg.melee_dmg = 10
 	presets.weapon.deathwish.is_smg.FALLOFF = {
 			{
 				dmg_mul = 4,
@@ -731,7 +733,7 @@ function CharacterTweakData:_set_sm_wish()
 		miss_dis = 40,
 		RELOAD_SPEED = 1.4,
 		melee_speed = 1,
-		melee_dmg = 20,
+		melee_dmg = 10,
 		melee_retry_delay = {
 			1,
 			2
@@ -886,7 +888,7 @@ function CharacterTweakData:_set_sm_wish()
 		miss_dis = 20,
 		RELOAD_SPEED = 1.4,
 		melee_speed = 1,
-		melee_dmg = 20,
+		melee_dmg = 10,
 		melee_retry_delay = {1, 2},
 		range = {
 			optimal = 500,
@@ -1000,7 +1002,7 @@ function CharacterTweakData:_set_sm_wish()
 		miss_dis = 40,
 		RELOAD_SPEED = 1.4,
 		melee_speed = 1,
-		melee_dmg = 20,
+		melee_dmg = 10,
 		melee_retry_delay = {
 			1,
 			2
@@ -1151,7 +1153,7 @@ function CharacterTweakData:_set_sm_wish()
 		miss_dis = 40,
 		RELOAD_SPEED = 1.4,
 		melee_speed = 1,
-		melee_dmg = 20,
+		melee_dmg = 10,
 		melee_retry_delay = {
 			1,
 			2
@@ -1306,7 +1308,7 @@ function CharacterTweakData:_set_sm_wish()
 		miss_dis = 20,
 		RELOAD_SPEED = 1.4,
 		melee_speed = 1,
-		melee_dmg = 20,
+		melee_dmg = 10,
 		melee_retry_delay = {1, 2},
 		range = {
 			optimal = 500,
@@ -1408,159 +1410,7 @@ function CharacterTweakData:_set_sm_wish()
 	}
 
 	-- Medic preset
-	-- 45 damage
-	self.medic.weapon.is_rifle = {
-		aim_delay = {
-			0.2,
-			0.2
-		},
-		focus_delay = 0.2,
-		focus_dis = 200,
-		spread = 15,
-		miss_dis = 10,
-		RELOAD_SPEED = 1.4,
-		melee_speed = 1,
-		melee_dmg = 20,
-		melee_retry_delay = {
-			1,
-			2
-		},
-		range = {
-			optimal = 1250,
-			far = 2500,
-			close = 750
-		},
-		autofire_rounds = {
-			8,
-			16
-		},
-		FALLOFF = {
-			{
-				dmg_mul = 4.5,
-				r = 100,
-				acc = {
-					0.95,
-					0.95
-				},
-				recoil = {
-					0.1,
-					0.25
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				},
-				autofire_rounds = {
-					6,
-					12
-				}
-			},
-			{
-				dmg_mul = 4.5,
-				r = 500,
-				acc = {
-					0.9,
-					0.9
-				},
-				recoil = {
-					0.1,
-					0.3
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				},
-				autofire_rounds = {
-					5,
-					10
-				}
-			},
-			{
-				dmg_mul = 4.5,
-				r = 1000,
-				acc = {
-					0.85,
-					0.85
-				},
-				recoil = {
-					0.35,
-					0.5
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				},
-				autofire_rounds = {
-					4,
-					8
-				}
-			},
-			{
-				dmg_mul = 4.5,
-				r = 1500,
-				acc = {
-					0.65,
-					0.7
-				},
-				recoil = {
-					0.4,
-					0.6
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				},
-				autofire_rounds = {
-					3,
-					6
-				}
-			},
-			{
-				dmg_mul = 4.5,
-				r = 2000,
-				acc = {
-					0.6,
-					0.7
-				},
-				recoil = {
-					0.2,
-					0.3
-				},
-				mode = {
-					0,
-					3,
-					3,
-					1
-				}
-			},
-			{
-				dmg_mul = 4.5,
-				r = 3000,
-				acc = {
-					0.55,
-					0.6
-				},
-				recoil = {
-					0.5,
-					1.5
-				},
-				mode = {
-					1,
-					6,
-					2,
-					0
-				}
-			}
-		}
-	}
+	self.medic.weapon.is_rifle = self.fbi_swat.weapon.is_rifle
 
 	-- Cloaker
 	self.spooc.weapon.is_pistol = self.presets.weapon.deathwish.is_pistol
@@ -2616,6 +2466,7 @@ function CharacterTweakData:_set_sm_wish()
 		-- 75 Damage
 		self.taser.weapon.is_rifle.aim_delay = {0.2, 0.2}
 		self.taser.weapon.is_rifle.focus_delay = 0.2
+		self.taser.weapon.is_rifle.melee_dmg = 10
 		self.taser.weapon.is_rifle.range = {
 			optimal = 1250,
 			far = 2500,

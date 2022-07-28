@@ -3,7 +3,7 @@ if Network:is_server() then
 	Hooks:PreHook(CopActionWalk, "init", "sh_init", function (self, action_desc, common_data)
 		local pos =  common_data.pos
 		local from_pos = action_desc.nav_path[1]
-		if pos.x ~= from_pos.x or pos.y ~= from_pos.y or pos.z ~= from_pos.z then
+		if pos.x ~= from_pos.x or pos.y ~= from_pos.y then
 			table.insert(action_desc.nav_path, 1, mvector3.copy(common_data.pos))
 		end
 	end)

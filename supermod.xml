@@ -3,6 +3,7 @@
 
 	<tweak definition="tweak/animation.xml"/>
 	<tweak definition="tweak/network.xml"/>
+	<tweak definition="tweak/effect.xml"/>
 
 	<hooks script_path="mod.lua">
 	

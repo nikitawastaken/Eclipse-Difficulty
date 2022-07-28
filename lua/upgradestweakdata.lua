@@ -16,6 +16,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		0.525
 	}
 	
+	-- ictv nerf
 	self.values.player.body_armor.armor[7] = 13
 end
 
@@ -36,10 +37,10 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Mastermind --
 
-	-- Uppers 60s description
+	-- Uppers
 	self.skill_descs.tea_cookies.multipro4 = "60"
 
-	-- 60s inspire cooldown
+	-- Inspire
 	self.morale_boost_speed_bonus = 1.3
 	self.morale_boost_reload_speed_bonus = 1.3
 	self.morale_boost_time = 6
@@ -48,11 +49,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.inspire.multibasic2 = "6"
 	self.skill_descs.inspire.multipro = "200%"
 
-	-- FFriendship description stuff
+	-- FFriendship
 	self.skill_descs.triathlete.multibasic = "75%"
 	self.skill_descs.triathlete.multipro = "4"
 
-	-- Confident ace now has buffed damage absorption from FF
+	-- Confident
 	self.values.team.damage = {
 		hostage_absorption = {0.25},
 		hostage_absorption_limit = 3
@@ -60,7 +61,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.cable_guy.multipro = "2.5"
 	self.skill_descs.cable_guy.multipro2 = "3"
 
-	-- PiC nerf
+	-- PiC
 	self.values.player.passive_convert_enemies_health_multiplier = {0.54, 0.02}
 	self.values.player.minion_master_health_multiplier = {1.1}
 	self.skill_descs.control_freak.multipro3 = "10%"
@@ -114,13 +115,12 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Enforcer --
 
-	-- Underdog nerf as it actually hits a lot of breakpoints
-	-- with new health and hs dmg mul values
+	-- Underdog
 	self.values.temporary.dmg_multiplier_outnumbered = {{1.1, 3}}
 	self.skill_descs.underdog.multibasic2 = "10%"
 	self.skill_descs.underdog.multibasic3 = "3"
 
-	-- Overkill nerf
+	-- Overkill
 	self.definitions.player_overkill_damage_multiplier_2 = {
 		name_id = "menu_player_overkill_damage_multiplier",
 		category = "temporary",
@@ -132,14 +132,8 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	
 	self.values.temporary.overkill_damage_multiplier = {
-		{
-			1.3,
-			5
-		},
-		{
-			1.45,
-			12
-		}
+		{1.3, 5},
+		{1.45, 12}
 	}
 	
 	self.skill_descs.overkill.multibasic = "30%"
@@ -148,45 +142,59 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.overkill.multipro2 = "12"
 	self.skill_descs.overkill.multipro3 = "80%"
 
-	-- Close By aced nerf (15 shells down to 5 shells)
+	-- Close By
 	self.values.shotgun.magazine_capacity_inc[1] = 5
 	self.skill_descs.close_by.multipro2 = "5"
 
-	-- Resilience aced nerf
+	-- Resilience 
 	self.values.player.flashbang_multiplier = {0.75, 0.75}
 	self.skill_descs.oppressor.multipro2 = "25%"
 
-	-- Die Hard gives steadiness instead
+	-- Thick Skin
 	self.values.player.damage_shake_addend = {0.6}
 	self.skill_descs.show_of_force.multibasic = "6"
 
-	-- Correct Bulletstorm Description
+	-- Bulletstorm
 	self.skill_descs.bandoliers.multibasic = "5"
 	self.skill_descs.bandoliers.multipro2 = "20"
 
-	-- Saw Massacre desc
+	-- Saw Massacre 
 	self.skill_descs.ammo_reservoir.multibasic2 = "50%"
 	self.skill_descs.ammo_reservoir.multipro = "50%"
 	self.skill_descs.ammo_reservoir.multipro3 = "10"
 
 	-- Fully Loaded
-	self.values.player.regain_throwable_from_ammo[1].chance = -5
+	self.values.player.regain_throwable_from_ammo[1].chance = -0.03
 	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.003
 	self.values.player.extra_ammo_multiplier[1] = 1.25
 	self.values.player.pick_up_ammo_multiplier = {1.35, 1.45}
-	self.skill_descs.carbon_blade.multibasic = "-5%"
+	self.skill_descs.carbon_blade.multibasic = "-3%"
 	self.skill_descs.carbon_blade.multibasic2 = "0.3%"
 	self.skill_descs.carbon_blade.multipro2 = "25%"
 	self.skill_descs.carbon_blade.multipro3 = "45%"
 
 	-- Technician --
 
+	-- More Firepower
+	self.values.shape_charge.quantity = {2, 5}
+	self.values.trip_mine.quantity = {5, 15}
+	self.skill_descs.more_fire_power.multibasic = "2"
+	self.skill_descs.more_fire_power.multibasic2 = "5"
+	self.skill_descs.more_fire_power.multipro = "3"
+	self.skill_descs.more_fire_power.multipro2 = "10"
+
+	-- Fire Trap
+	self.values.trip_mine.fire_trap[1][1] = 10
+	self.values.trip_mine.fire_trap[2][1] = 30
+	self.skill_descs.fire_trap.multibasic = "20"
+	self.skill_descs.fire_trap.multipro = "20"
+
 	-- Fast Hands
 	self.values.lmg.reload_speed_multiplier = {1.2}
 	self.values.smg.reload_speed_multiplier = {1.2}
 	self.skill_descs.shock_and_awe.multibasic = "20%"
 
-	-- Mag plus is divided into +5 bullets for basic and +10 bullets for aced 
+	-- Mag Plus
 	self.definitions.player_automatic_mag_increase_2 = {
 		name_id = "menu_automatic_mag_increase",
 		category = "feature",
@@ -196,14 +204,11 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
-	self.values.player.automatic_mag_increase = {
-		5,
-		15
-	}
+	self.values.player.automatic_mag_increase = {5, 15}
 	self.skill_descs.fast_fire.multibasic = "5"
 	self.skill_descs.fast_fire.multipro = "10"
 
-	-- Body Expertise basic gives armor piercing and aced applies 60% of the headshot damage to the body
+	-- Body Expertise
 	self.values.weapon.automatic_head_shot_add = {0.6, 0.9}
 	self.skill_descs.body_expertise.multipro = "60%"
 	
@@ -225,7 +230,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.optic_illusions.multibasic = "20%"
 	self.skill_descs.optic_illusions.multipro = "10%"
 
-	-- The Professional nerf
+	-- The Professional
 	self.values.weapon.silencer_spread_index_addend[1] = 2 -- 8 accuracy
 	self.values.weapon.silencer_recoil_index_addend[1] = 2 -- 8 stability
 	self.skill_descs.silence_expert.multibasic = "8"
@@ -258,20 +263,8 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Low Blow
 	self.values.player.detection_risk_add_crit_chance = {
-		{
-			0.04,
-			2,
-			"below",
-			35,
-			0.4
-		},
-		{
-			0.06,
-			1,
-			"below",
-			35,
-			0.6
-		}
+		{0.04, 2, "below", 35, 0.4},
+		{0.06, 1, "below", 35, 0.6}
 	}
 	self.skill_descs.unseen_strike.multibasic = "4%"
 	self.skill_descs.unseen_strike.multibasic2 = "2"
@@ -298,18 +291,9 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Trigger Happy rework
 	self.values.pistol.stacking_hit_damage_multiplier = {
-		{
-			max_stacks = 5,
-			max_time = 3,
-			damage_bonus = 1.15
-		},
-		{
-			max_stacks = 5,
-			max_time = 6,
-			damage_bonus = 1.15
-		}
+		{max_stacks = 5, max_time = 3, damage_bonus = 1.15},
+		{max_stacks = 5, max_time = 6, damage_bonus = 1.15}
 	}
-	-- what the fuck are these description values
 	self.skill_descs.trigger_happy.multibasic4 = "15%"
 	self.skill_descs.trigger_happy.multibasic2 = "3"
 	self.skill_descs.trigger_happy.multibasic3 = "5"
@@ -318,11 +302,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.temporary.berserker_damage_multiplier[2] = {1, 9}
 	self.skill_descs.perseverance.multipro = "6"
 
-	-- Pumping Iron buff
+	-- Pumping Iron
 	self.values.player.non_special_melee_multiplier[1] = 3
 	self.skill_descs.steroids.multibasic = "200%"
 
-	-- Bloodthirst nerf
+	-- Bloodthirst
 	self.values.player.melee_damage_stacking.max_multiplier = 6
 	self.skill_descs.bloodthirst.multibasic2 = "600%"
 
@@ -350,19 +334,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.temporary.melee_life_leech[1][1] = {3}
 	self.specialization_descs[8][9].multiperk = "30"
 
-	-- Crew Chief health / hostage nerf
+	-- Crew Chief 
 	self.values.team.health.hostage_multiplier = {1.04}
 	self.specialization_descs[1][9].multiperk = "4%"
 
-	-- Muscle lower health regen
+	-- Muscle
 	self.values.player.passive_health_regen = {1}
 	self.specialization_descs[2][9].multiperk2 = "10"
 
-	-- Hitman faster armor recovery rate
+	-- Hitman
 	self.values.player.perk_armor_regen_timer_multiplier[5] = 0.4
 	self.specialization_descs[5][9].multiperk = "25%"
 
-	-- Armorer godmode nerf
+	-- Armorer
 	self.values.temporary.armor_break_invulnerable = {{2, 24}}
 	self.specialization_descs[3][7].multiperk3 = "24"
 	self.specialization_descs[3][1].multiperk = "5%"
@@ -378,7 +362,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[18][5].multiperk = "5%"
 	self.specialization_descs[21][5].multiperk2 = "5%"
 
-	-- Anarchist additional armor on conversion decrease
+	-- Anarchist
 	self.values.player.armor_grinding = {{
 			{1, 1.5},
 			{1.5, 2.25},
@@ -402,7 +386,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[15][5].multiperk2 = "90%"
 	self.specialization_descs[15][7].multiperk2 = "100%"
 
-	-- Crook dodge nerf and make lower armor get higher armor boost
+	-- Crook
 	self.values.player.level_2_armor_multiplier[3] = 1.8
 	self.values.player.level_3_armor_multiplier[3] = 1.7
 	self.values.player.level_4_armor_multiplier[3] = 1.65
@@ -411,15 +395,24 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.level_4_dodge_addend[3] = 0.2
 	self.specialization_descs[6][5].multiperk = "5%"
 
-	-- Gambler cooldowns decrease
-	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do
-		v[2] = 2
-	end
-	self.specialization_descs[10][1].multiperk3 = "2"
+	-- Gambler
+	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 2 end
 	self.values.temporary.loose_ammo_give_team[1][2] = 3
+	self.values.player.increased_pickup_area = {1.5, 2.25}
+	self.definitions.player_increased_pickup_area_2 = {
+		name_id = "menu_player_increased_pickup_area",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "increased_pickup_area",
+			category = "player"
+		}
+	}
+	self.specialization_descs[10][1].multiperk3 = "2"
 	self.specialization_descs[10][3].multiperk2 = "3"
+	self.specialization_descs[10][9].multiperk4 = "125%"
 
-	-- Nerf grinders healing intensity
+	-- Grinder
 	self.damage_to_hot_data.tick_time = 0.5
 	self.specialization_descs[11][1].multiperk2 = "0.5"
 	self.specialization_descs[11][3].multiperk2 = "0.5"
@@ -427,10 +420,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][7].multiperk2 = "0.5"
 	self.specialization_descs[11][9].multiperk2 = "0.5"
 
-	-- Ex-president max health store amount nerf
+	-- Ex-President
 	self.values.player.body_armor.skill_max_health_store = {4, 3.5, 3, 2.5, 2, 1.5, 1}
 	
-	-- Give yakuza damage zerker and swap speed
+	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = {0.35}
 	self.specialization_descs[12][3].multiperk = "80%"
 	self.specialization_descs[12][9].multiperk = "25%"
@@ -438,19 +431,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[12][9].multiperk3 = "50%"
 	self.specialization_descs[12][9].multiperk4 = "25%"
 
-	-- Maniac absorption nerf
+	-- Maniac
 	self.cocaine_stacks_convert_levels = {600 / 8, 60}
 	self.values.player.cocaine_stack_absorption_multiplier = {1.5}
 	self.specialization_descs[14][1].multiperk6 = "75"
 	self.specialization_descs[14][7].multiperk2 = "60"
 	self.specialization_descs[14][9].multiperk = "50%"
 
-	-- KP 45s inj description
+	-- KP
 	self.specialization_descs[17][1].multiperk3 = "45"
 	self.specialization_descs[17][9].multiperk3 = "5 points"
 	self.specialization_descs[17][9].multiperk3 = "1"
 
-	-- Sicario twitch 3s cooldown
+	-- Sicario
 	self.values.player.dodge_shot_gain = {
 		{
 			0.2,
@@ -459,15 +452,15 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.specialization_descs[18][3].multiperk2 = "3"
 
-	-- Stoic flask cooldown increase
+	-- Stoic
 	self.specialization_descs[19][1].multiperk3 = "16"
 
-	-- Tag Team max 5 absorption
+	-- Tag Team
 	self.values.player.tag_team_damage_absorption = {{kill_gain = 0.15, max = 0.6}}
 	self.specialization_descs[20][5].multiperk = "1.5"
 	self.specialization_descs[20][5].multiperk2 = "6"
 
-	-- Hacker nerf
+	-- Hacker
 	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.15, 25, 4}
 	self.values.player.pocket_ecm_heal_on_kill = {1}
 	self.specialization_descs[21][5].multiperk = "10"
@@ -475,7 +468,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[21][7].multiperk2 = "15%"
 	self.specialization_descs[21][7].multiperk3 = "25"
 
-	-- Leech nerf all around, without much thought cause idc about the deck and honestly just fuck it
+	-- Leech
+	-- todo: maybe actually make smth out of it one day
 	self.copr_ability_cooldown = 60
 	self.values.temporary.copr_ability[1][2] = 4
 	self.values.temporary.copr_ability[2][2] = 8
