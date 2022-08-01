@@ -13,7 +13,7 @@ function EnvEffectTweakData:molotov_fire()
 		player_damage = 2.5,
 		sound_event_impact_duration = 4,
 		burn_tick_period = 0.2,
-		burn_duration = 20,
+		burn_duration = 15,
 		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
 		fire_dot_data = {
 			dot_trigger_chance = 70,

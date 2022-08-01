@@ -9,7 +9,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			tank = 2,
 			taser = 3,
 			spooc = 2,
-			shield = 5,
+			shield = 4,
 			medic = 4
 		}
 	end
@@ -629,14 +629,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					rank = 1,
 					unit = "heavy_shotgunner_fbi",
 					tactics = self._tactics.fbi_shotgun
-				},
-				{
-					amount_min = 0,
-					freq = 0.5,
-					amount_max = 1,
-					rank = 3,
-					unit = "taser_unit",
-					tactics = self._tactics.fbi_special
 				}
 			}
 		}
@@ -757,14 +749,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					rank = 2,
 					unit = "shotgunner_elite",
 					tactics = self._tactics.elite_short_range
-				},
-				{
-					amount_min = 0,
-					freq = 0.5,
-					amount_max = 2,
-					rank = 2,
-					unit = "taser_unit",
-					tactics = self._tactics.elite_special
 				}
 			}
 		}
@@ -1132,8 +1116,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.smoke_grenade_timeout = {15, 25}
 		self.smoke_grenade_lifetime = 15
 		-- gas
-		self.cs_grenade_timeout = {60, 90}
-		self.cs_grenade_lifetime = 45
+		self.cs_grenade_timeout = {55, 75}
+		self.cs_grenade_lifetime = 20
 	end
 
 	-- Reenforce spawnpool

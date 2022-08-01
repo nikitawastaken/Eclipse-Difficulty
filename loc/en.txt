@@ -1,4 +1,5 @@
 {
+	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact. One shell only contains 8 pellets. This ammo type is harder to find.",
 	"menu_nine_lives_beta": "Tough Guy",
 	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your teammates will increase their movement and reload speed by ##$multibasic## for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou revive crew members ##$multipro## faster."
 	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic2## increase to your bleedout health.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
@@ -44,9 +45,9 @@
 	"menu_deck9_7_desc": "Killing an enemy at medium range recovers ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.",
 	"menu_risk_sm_wish": "Eclipse. Maximum Force Responders inbound.",
 	"menu_difficulty_sm_wish": "Eclipse",
-	"menu_toggle_one_down": "Pro Job",
-	"menu_one_down": "Pro Job",
-	"menu_toggle_one_down_lobbies": "Allow Pro Job Lobbies"
+	"menu_toggle_one_down": "Pro-Job",
+	"menu_one_down": "Pro-Job",
+	"menu_toggle_one_down_lobbies": "Allow Pro-Job Lobbies"
 	"menu_max_progress": "Max account progression",
 	"menu_max_progress_help": "Max out your account progression and skip grind.",
 	"menu_progress_msg": "Are you sure you want to max out your progress? This will max out your level, infamy, cash, and unlock all available items."

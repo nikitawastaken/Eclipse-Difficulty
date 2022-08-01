@@ -164,16 +164,20 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.ammo_reservoir.multipro3 = "10"
 
 	-- Fully Loaded
-	self.values.player.regain_throwable_from_ammo[1].chance = -0.03
+	self.values.player.regain_throwable_from_ammo[1].chance = -0.06
 	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.003
 	self.values.player.extra_ammo_multiplier[1] = 1.25
 	self.values.player.pick_up_ammo_multiplier = {1.35, 1.45}
-	self.skill_descs.carbon_blade.multibasic = "-3%"
+	self.skill_descs.carbon_blade.multibasic = "-6%"
 	self.skill_descs.carbon_blade.multibasic2 = "0.3%"
 	self.skill_descs.carbon_blade.multipro2 = "25%"
 	self.skill_descs.carbon_blade.multipro3 = "45%"
 
 	-- Technician --
+
+	-- Combat Engineering
+	self.values.trip_mine.explosion_size_multiplier_1 = {1.5}
+	self.skill_descs.combat_engineering.multibasic = "50%"
 
 	-- More Firepower
 	self.values.shape_charge.quantity = {2, 5}
@@ -188,6 +192,21 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.trip_mine.fire_trap[2][1] = 30
 	self.skill_descs.fire_trap.multibasic = "20"
 	self.skill_descs.fire_trap.multipro = "20"
+
+	-- Oppressor
+	
+	self.definitions.player_suppression_bonus_2 = {
+		name_id = "menu_player_suppression_bonus",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "suppression_multiplier",
+			category = "player"
+		}
+	}
+	self.values.player.suppression_multiplier = {1.25, 1.75}
+	self.skill_descs.heavy_impact.multibasic = "25%"
+	self.skill_descs.heavy_impact.multipro = "50%"
 
 	-- Fast Hands
 	self.values.lmg.reload_speed_multiplier = {1.2}
@@ -229,6 +248,13 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.on_zipline_dodge_chance[1] = 0.1
 	self.skill_descs.optic_illusions.multibasic = "20%"
 	self.skill_descs.optic_illusions.multipro = "10%"
+
+	-- Sneaky Bastard
+	self.values.player.detection_risk_add_dodge_chance = {
+		{0.01, 2, "below", 35, 0.1},
+		{0.01, 1, "below", 35, 0.1}
+	}
+	self.skill_descs.jail_diet.multibasic2 = "2"
 
 	-- The Professional
 	self.values.weapon.silencer_spread_index_addend[1] = 2 -- 8 accuracy
@@ -396,8 +422,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[6][5].multiperk = "5%"
 
 	-- Gambler
-	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 2 end
-	self.values.temporary.loose_ammo_give_team[1][2] = 3
+	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 10 end
+	self.values.temporary.loose_ammo_give_team[1][2] = 5
 	self.values.player.increased_pickup_area = {1.5, 2.25}
 	self.definitions.player_increased_pickup_area_2 = {
 		name_id = "menu_player_increased_pickup_area",
@@ -408,8 +434,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
-	self.specialization_descs[10][1].multiperk3 = "2"
-	self.specialization_descs[10][3].multiperk2 = "3"
+	self.specialization_descs[10][1].multiperk3 = "10"
+	self.specialization_descs[10][3].multiperk2 = "5"
 	self.specialization_descs[10][9].multiperk4 = "125%"
 
 	-- Grinder
@@ -461,10 +487,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[20][5].multiperk2 = "6"
 
 	-- Hacker
-	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.15, 25, 4}
+	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.15, 25, 3}
 	self.values.player.pocket_ecm_heal_on_kill = {1}
 	self.specialization_descs[21][5].multiperk = "10"
-	self.specialization_descs[21][7].multiperk = "4%"
+	self.specialization_descs[21][7].multiperk = "3"
 	self.specialization_descs[21][7].multiperk2 = "15%"
 	self.specialization_descs[21][7].multiperk3 = "25"
 

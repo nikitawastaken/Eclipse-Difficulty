@@ -6,8 +6,8 @@ if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spaw
 end
 
 local enemy_mapping = {
-	[Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"):key()] = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
-	[Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"):key()] = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
+	[Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"):key()] = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+	[Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"):key()] = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
 	[Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"):key()] = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
 	[Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer_2/ene_zeal_bulldozer_2"):key()] = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
 	[Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer_3/ene_zeal_bulldozer_3"):key()] = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",

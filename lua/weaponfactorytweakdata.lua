@@ -1,18 +1,33 @@
-Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
+Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- Union Short Barrel buff
     self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
 
-    -- Dragon's Breath nerf
-    self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {
-        dot_trigger_chance = "100",
-        dot_damage = "20",
-        dot_length = "1.5",
-        dot_trigger_max_distance = "1500",
-        dot_tick_period = "0.5"
-    }
+    -- Shotgun Ammo Rework
+    -- DB
+    self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {dot_trigger_chance = "100", dot_damage = "20", dot_length = "1.5", dot_trigger_max_distance = "1500", dot_tick_period = "0.5"}
+    -- HE
+    self.parts.wpn_fps_upg_a_explosive.stats = {total_ammo_mod = -10, damage = -15, spread = 1}
+    self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.9, ammo_pickup_min_mul = 0.9, bullet_class = "InstantExplosiveBulletBase", rays = 1}
+	-- 000
+    self.parts.wpn_fps_upg_a_custom.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1} -- overwrites walk in closet so technically you still lose pickup
+    self.parts.wpn_fps_upg_a_custom_free.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
+    -- Flechette
+    self.parts.wpn_fps_upg_a_piercing.stats.damage = 0
+    -- bitchass
+    self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_shot_b682.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
 
+    -- Shell Rack for loco and r880
+    self.parts.wpn_fps_shot_r870_body_rack.stats = {reload = 2, total_ammo_mod = 0, recoil = -2}
+    -- Extended Mag for loco and r880
+    self.parts.wpn_fps_shot_shorty_m_extended_short.stats = {concealment = -2, recoil = -2}
+    self.parts.wpn_fps_shot_r870_m_extended_short.stats = {concealment = -2, recoil = -2}
     -- Minigun half that kit thing
     self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {movement_speed = 1.15}
+    
 
     -- Gadgets
     -- Military Laser module
@@ -82,34 +97,27 @@ Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- Suppressors
 
-    -- The Bigger the Better
-    self.parts.wpn_fps_upg_ns_ass_smg_large.stats.damage = -6
-    -- Medium
-    self.parts.wpn_fps_upg_ns_ass_smg_medium.stats.damage = -4
-    -- Low Profile
-    self.parts.wpn_fps_upg_ns_ass_smg_small.stats.damage = -4
     -- PBS
-    self.parts.wpn_fps_upg_ns_ass_pbs1.stats.damage = -6
     self.parts.wpn_fps_upg_ns_ass_pbs1.stats.spread = 2
     self.parts.wpn_fps_upg_ns_ass_pbs1.stats.concealment = -3
     -- Tooth Fairy (cavity)
     self.parts.wpn_fps_ass_sub2000_fg_suppressed.stats.damage = -5
     -- KS12-S Long Silencer
-    self.parts.wpn_fps_ass_shak12_ns_suppressor.stats.damage = -6 
+    self.parts.wpn_fps_ass_shak12_ns_suppressor.stats.damage = -3
     -- K-B100 Suppressor (ketchnov)
-    self.parts.wpn_fps_ass_groza_b_supressor.stats.damage = -3
+    self.parts.wpn_fps_ass_groza_b_supressor.stats.damage = -1
     -- Silent Killer
-    self.parts.wpn_fps_upg_ns_shot_thick.stats.damage = -6
+    self.parts.wpn_fps_upg_ns_shot_thick.stats.damage = -2
     -- Shh
-    self.parts.wpn_fps_upg_ns_sho_salvo_large.stats.damage = -4
+    self.parts.wpn_fps_upg_ns_sho_salvo_large.stats.damage = -2
     -- Silenced Barrel (lion's roar)
-    self.parts.wpn_fps_ass_vhs_b_silenced.stats.damage = -5
+    self.parts.wpn_fps_ass_vhs_b_silenced.stats.damage = -2
     -- Stealth Barrel (car-4)
     self.parts.wpn_fps_m4_uupg_b_sd.stats.damage = -3
     -- Suppressed Barrel (steakout)
-    self.parts.wpn_fps_sho_aa12_barrel_silenced.stats.damage = -4
+    self.parts.wpn_fps_sho_aa12_barrel_silenced.stats.damage = -2
     -- CE Muffler (mosconi12g)
-    self.parts.wpn_fps_sho_m590_b_suppressor.stats.damage = -6
+    self.parts.wpn_fps_sho_m590_b_suppressor.stats.damage = -3
     -- Sniper Suppressor (rattlesnake)
     self.parts.wpn_fps_snp_msr_ns_suppressor.stats.damage = -5
     -- Medium Barrel (r700 supp)
@@ -135,31 +143,31 @@ Hooks:PostHook( WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- Suppressed Barrel (thanatos)
     self.parts.wpn_fps_snp_m95_barrel_suppressed.stats.damage = -20
     -- Roctec
-    self.parts.wpn_fps_upg_ns_pis_medium_gem.stats.damage = -4
+    self.parts.wpn_fps_upg_ns_pis_medium_gem.stats.damage = -2
     -- Champion's
-    self.parts.wpn_fps_upg_ns_pis_large_kac.stats.damage = -4
+    self.parts.wpn_fps_upg_ns_pis_large_kac.stats.damage = -2
     -- Standard issue
-    self.parts.wpn_fps_upg_ns_pis_medium.stats.damage = -3
+    self.parts.wpn_fps_upg_ns_pis_medium.stats.damage = -2
     -- Size doesn't matter
-    self.parts.wpn_fps_upg_ns_pis_small.stats.damage = -5
+    self.parts.wpn_fps_upg_ns_pis_small.stats.damage = -3
     -- Monolith
-    self.parts.wpn_fps_upg_ns_pis_large.stats.damage = -4
+    self.parts.wpn_fps_upg_ns_pis_large.stats.damage = -2
     -- Asepsis
-    self.parts.wpn_fps_upg_ns_pis_medium_slim.stats.damage = -4
+    self.parts.wpn_fps_upg_ns_pis_medium_slim.stats.damage = -2
     -- Budget
-    self.parts.wpn_fps_upg_ns_ass_filter.stats.damage = -4
+    self.parts.wpn_fps_upg_ns_ass_filter.stats.damage = -2
     -- Jungle Ninja
-    self.parts.wpn_fps_upg_ns_pis_jungle.stats.damage = -5
+    self.parts.wpn_fps_upg_ns_pis_jungle.stats.damage = -3
     -- Ninja Barrel (mp5)
-    self.parts.wpn_fps_smg_mp5_fg_mp5sd.stats.damage = -3
+    self.parts.wpn_fps_smg_mp5_fg_mp5sd.stats.damage = -2
     -- Silentgear (jackal)
-    self.parts.wpn_fps_smg_schakal_ns_silencer.stats.damage = -4
+    self.parts.wpn_fps_smg_schakal_ns_silencer.stats.damage = -2
     -- BY90 Wide (akgen)
-    self.parts.wpn_fps_smg_vityaz_b_supressed.stats.damage = -4
+    self.parts.wpn_fps_smg_vityaz_b_supressed.stats.damage = -2
     -- Silenced Barrel (streetsweeper)
-    self.parts.wpn_fps_sho_striker_b_suppressed.stats.damage = -4
+    self.parts.wpn_fps_sho_striker_b_suppressed.stats.damage = -2
     -- Silenced Barrel (goliath)
-    self.parts.wpn_fps_sho_rota_b_silencer.stats.damage = -10
+    self.parts.wpn_fps_sho_rota_b_silencer.stats.damage = -3
 
     -- Compensators / Nozzles / Muzzles
 

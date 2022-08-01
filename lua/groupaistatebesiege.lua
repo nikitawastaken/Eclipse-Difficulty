@@ -1,11 +1,16 @@
+local math_max = math.max
 local math_min = math.min
 local math_lerp = math.lerp
 local math_random = math.random
 local table_insert = table.insert
 local table_remove = table.remove
 local mvec_add = mvector3.add
+local mvec_cpy = mvector3.copy
 local mvec_dis = mvector3.distance
 local mvec_dis_sq = mvector3.distance_sq
+local mvec_div = mvector3.divide
+local mvec_lerp = mvector3.lerp
+local mvec_mul = mvector3.multiply
 local mvec_set = mvector3.set
 local mvec_set_l = mvector3.set_length
 local mvec_set_z = mvector3.set_z
@@ -369,7 +374,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				if used_grenade then
 					self:_voice_move_in_start(group)
 				elseif not group.ignore_grenade_check_t then
-					group.ignore_grenade_check_t = self._t + 4 / math.max(1, table.size(assault_area.criminal.units))
+					group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, 8, 1)
 				end
 			else
 				-- If we aren't pushing, we go to one area before the criminal area
@@ -526,18 +531,24 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	end
 
 	-- Offset grenade a bit to avoid spawning exactly on the player/door
-	mvec_set_l(detonate_offset, math.random(100, 300))
+	mvec_set_z(detonate_offset, math_max(detonate_offset.z, 0))
+	mvec_set_l(detonate_offset, math_random(150, 300))
 	mvec_set(detonate_offset_pos, detonate_pos)
 	mvec_add(detonate_offset_pos, detonate_offset)
 
-	local ray = World:raycast("ray", detonate_pos, detonate_offset_pos, "slot_mask", managers.slot:get_mask("world_geometry"))
+	local ray_mask = managers.slot:get_mask("world_geometry")
+	local ray = World:raycast("ray", detonate_pos, detonate_offset_pos, "slot_mask", ray_mask)
 	if ray then
-		mvec_set_l(detonate_offset, math.max(0, ray.distance - 50))
+		mvec_set_l(detonate_offset, math_max(0, ray.distance - 50))
 		mvec_set(detonate_offset_pos, detonate_pos)
 		mvec_add(detonate_offset_pos, detonate_offset)
 	end
 
-	detonate_pos = detonate_offset_pos
+	mvec_set(detonate_offset, math.DOWN)
+	mvec_mul(detonate_offset, 1000)
+	mvec_add(detonate_offset, detonate_offset_pos)
+	local ground_ray = World:raycast("ray", detonate_offset_pos, detonate_offset, "slot_mask", ray_mask)
+	detonate_pos = ground_ray and ground_ray.hit_position or detonate_offset_pos
 	area = self:get_area_from_nav_seg_id(managers.navigation:get_nav_seg_from_pos(detonate_pos, true))
 
 	-- If players camp a specific area for too long, turn a smoke grenade into a teargas grenade instead
@@ -550,15 +561,15 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 		for _, c_data in pairs(area.criminal.units) do
 			if not c_data.ai then
 				num_player_criminals = num_player_criminals + 1
-				mvector3.add(detonate_pos, c_data.m_pos)
+				mvec_add(detonate_pos, c_data.m_pos)
 			end
 		end
 		if num_player_criminals > 0 then
-			mvector3.divide(detonate_pos, num_player_criminals)
-			mvector3.lerp(detonate_pos, detonate_pos, area.pos, 0.5)
-			mvector3.set_z(detonate_pos, area.pos.z)
+			mvec_div(detonate_pos, num_player_criminals)
+			mvec_lerp(detonate_pos, detonate_pos, area.pos, 0.5)
+			mvec_set_z(detonate_pos, area.pos.z)
 			-- If detonate pos is a roofed area, use teargas
-			use_teargas = World:raycast("ray", detonate_pos, detonate_pos + math.UP * 1000, "slot_mask", managers.slot:get_mask("world_geometry"), "report")
+			use_teargas = World:raycast("ray", detonate_pos, detonate_pos + math.UP * 1000, "slot_mask", ray_mask, "report")
 		end
 	end
 
@@ -566,7 +577,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	if use_teargas then
 		area.criminal_entered_t = nil
 
-		self:detonate_cs_grenade(detonate_pos, mvector3.copy(grenade_user.m_pos), tweak_data.group_ai.cs_grenade_lifetime or 10)
+		self:detonate_cs_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai.cs_grenade_lifetime or 10)
 
 		timeout = tweak_data.group_ai.cs_grenade_timeout or tweak_data.group_ai.smoke_and_flash_grenade_timeout
 	else
@@ -576,7 +587,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 			self:chk_say_enemy_chatter(grenade_user.unit, grenade_user.m_pos, "smoke")
 		end
 
-		self:detonate_smoke_grenade(detonate_pos, mvector3.copy(grenade_user.m_pos), tweak_data.group_ai[grenade_type .. "_lifetime"] or 10, grenade_type == "flash_grenade")
+		self:detonate_smoke_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai[grenade_type .. "_lifetime"] or 10, grenade_type == "flash_grenade")
 
 		timeout = tweak_data.group_ai[grenade_type .. "_timeout"] or tweak_data.group_ai.smoke_and_flash_grenade_timeout
 	end

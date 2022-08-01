@@ -11,6 +11,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.fast_fire[2].upgrades = {"player_automatic_mag_increase_2"}
 	self.skills.fast_fire.icon_xy = {2, 0}
 
+	-- Oppressor 
+	self.skills.heavy_impact[1].upgrades = {"player_suppression_bonus"}
+	self.skills.heavy_impact[2].upgrades = {"player_suppression_bonus_2"}
+	self.skills.heavy_impact.name_id = "menu_oppressor"
+	self.skills.heavy_impact.desc_id = "menu_oppressor_desc"
+	self.skills.heavy_impact.icon_xy = {7, 0}
+
 	-- Body Expertise
 	self.skills.body_expertise[1].upgrades = {"player_ap_bullets_1"}
 	self.skills.body_expertise[2].upgrades = {"weapon_automatic_head_shot_add_1"}
@@ -41,8 +48,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.sharpshooter[2].upgrades = {"single_shot_accuracy_inc_1"}
 
 	-- Confident
-	self.skills.cable_guy[1].upgrades = {"player_intimidate_range_mul", "player_intimidate_aura", "player_civ_intimidation_mul"}
+	self.skills.cable_guy[1].upgrades = {"player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier"}
 	self.skills.cable_guy[2].upgrades = {"team_damage_hostage_absorption"}
+
+	-- Stockholm Syndrome
+	table.insert(self.skills.stockholm_syndrome[1].upgrades, "player_civ_intimidation_mul")
 
 	-- Forced Friendship
 	self.skills.triathlete[1].upgrades = {"cable_tie_interact_speed_multiplier"}

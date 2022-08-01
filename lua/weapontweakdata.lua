@@ -7,6 +7,15 @@ local SELECTION = {
 	UNDERBARREL_PRIMARY = 4
 }
 
+-- trip mine buff
+self.trip_mines = {
+	delay = 0.1,
+	damage = 200,
+	player_damage = 6,
+	damage_size = 300,
+	alert_radius = 5000
+}
+
 -- Sniper Rifles
 
 
@@ -93,16 +102,14 @@ self.r700.kick.crouching = self.msr.kick.crouching
 self.r700.kick.steelsight = self.msr.kick.steelsight
 
 -- Desert Fox
-self.desertfox.AMMO_MAX = 6
-self.desertfox.fire_mode_data.fire_rate = 60 / 70
 self.desertfox.AMMO_PICKUP = {0.9, 1.2}
 self.desertfox.kick.standing = self.r93.kick.standing
 self.desertfox.kick.crouching = self.r93.kick.crouching
 self.desertfox.kick.steelsight = self.r93.kick.steelsight
 
 -- Nagant
-self.mosin.AMMO_MAX = 6
-self.mosin.CLIP_AMMO_MAX = 30
+self.mosin.AMMO_MAX = 30
+self.mosin.CLIP_AMMO_MAX = 6
 self.mosin.fire_mode_data.fire_rate = 60 / 70
 self.mosin.AMMO_PICKUP = {0.9, 1.2}
 self.mosin.kick.standing = self.r93.kick.standing
@@ -114,7 +121,7 @@ self.r93.fire_mode_data.fire_rate = 60 / 70
 self.r93.AMMO_PICKUP = {0.9, 1.2}
 
 -- Platypus
-self.model70.AMMO_MAX = 6
+self.model70.CLIP_AMMO_MAX = 6
 self.model70.fire_mode_data.fire_rate = 60 / 70
 self.model70.AMMO_PICKUP = {0.9, 1.2}
 self.model70.kick.standing = self.r93.kick.standing
@@ -134,31 +141,21 @@ self.m95.kick.steelsight = self.m95.kick.standing
 
 -- KSP
 self.m249.AMMO_PICKUP = {8, 10}
-self.m249.kick.standing = {0.65, 1.05, -0.8, 0.8}
+self.m249.kick.standing = {0.8, 1.2, -1, 1}
 self.m249.kick.crouching = self.m249.kick.standing
-self.m249.kick.steelsight = {0.5, 0.9, -0.6, 0.6}
-
--- Buzzsaw
-self.mg42.AMMO_PICKUP = {8, 10}
-self.mg42.kick.standing = {0.65, 1.05, -0.8, 0.8}
-self.mg42.kick.crouching = self.mg42.kick.standing
-self.mg42.kick.steelsight = {0.5, 0.9, -0.6, 0.6}
-self.mg42.stats.reload = 13
+self.m249.kick.steelsight = {0.7, 1.1, -0.6, 0.6}
 
 -- KSP 58
 self.par.AMMO_PICKUP = {8, 10}
-self.par.kick.standing = {0.65, 1.05, -0.8, 0.8}
-self.par.kick.crouching = self.par.kick.standing
-self.par.kick.steelsight = {0.5, 0.9, -0.6, 0.6}
+self.par.kick.standing = self.m249.kick.standing
+self.par.kick.crouching = self.m249.kick.standing
+self.par.kick.steelsight = self.m249.kick.steelsight
 
--- Brenner 
-self.hk21.stats.spread = 12
-self.hk21.stats.damage = 110
-self.hk21.stats.reload = 12
-self.hk21.AMMO_PICKUP = {8, 10}
-self.hk21.kick.standing = {0.55, 0.95, -0.8, 0.8}
-self.hk21.kick.crouching = self.hk21.kick.standing
-self.hk21.kick.steelsight = {0.4, 0.7, -0.6, 0.6}
+-- Buzzsaw
+self.mg42.AMMO_PICKUP = {8, 10}
+self.mg42.kick.standing = {0.9, 1.3, -1, 1}
+self.mg42.kick.crouching = self.mg42.kick.standing
+self.mg42.kick.steelsight = {0.8, 1.2, -0.8, 0.8}
 
 -- RPK
 self.rpk.stats.spread = 10
@@ -166,23 +163,32 @@ self.rpk.stats.damage = 110
 self.rpk.stats.reload = 9
 self.rpk.stats.concealment = 1
 self.rpk.AMMO_PICKUP = {8, 10}
-self.rpk.kick.standing = {0.55, 0.95, -0.8, 0.8}
+self.rpk.kick.standing = {0.9, 1.2, -0.9, 0.9}
 self.rpk.kick.crouching = self.rpk.kick.standing
-self.rpk.kick.steelsight = {0.4, 0.7, -0.6, 0.6}
+self.rpk.kick.steelsight = {0.7, 1, -0.75, 0.75}
+
+-- Brenner 
+self.hk21.stats.spread = 12
+self.hk21.stats.damage = 110
+self.hk21.stats.reload = 12
+self.hk21.AMMO_PICKUP = {8, 10}
+self.hk21.kick.standing = self.rpk.kick.standing
+self.hk21.kick.crouching = self.rpk.kick.standing
+self.hk21.kick.steelsight = self.rpk.kick.steelsight
 
 -- M60
 self.m60.stats.damage = 110
 self.m60.AMMO_PICKUP = {8, 10}
-self.m60.kick.standing = {0.55, 0.95, -0.8, 0.8}
+self.m60.kick.standing = self.rpk.kick.standing
 self.m60.kick.crouching = self.rpk.kick.standing
-self.m60.kick.steelsight = {0.4, 0.7, -0.6, 0.6}
+self.m60.kick.steelsight = self.rpk.kick.steelsight
 
 -- new hk51b lmg idr the in-game name lol
 self.hk51b.stats.damage = 100
 self.hk51b.AMMO_PICKUP = {7, 8}
-self.hk51b.kick.standing = {0.7, 0.95, -0.8, 0.8}
+self.hk51b.kick.standing = self.rpk.kick.standing
 self.hk51b.kick.crouching = self.rpk.kick.standing
-self.hk51b.kick.steelsight = {0.6, 0.75, -0.7, 0.7}
+self.hk51b.kick.steelsight = self.rpk.kick.steelsight
 
 -- Shotguns
 
@@ -207,7 +213,6 @@ self.aa12.kick.steelsight = self.aa12.kick.standing
 self.aa12.spread.standing = self.new_m4.spread.crouching
 self.aa12.spread.moving_standing = self.new_m4.spread.crouching
 
-
 -- M1014
 self.benelli.rays = 12
 self.benelli.stats.spread = 12
@@ -224,14 +229,17 @@ self.spas12.spread.standing = self.new_m4.spread.crouching
 self.spas12.spread.moving_standing = self.new_m4.spread.crouching
 
 -- Raven
+self.ksg.CLIP_AMMO_MAX = 10
 self.ksg.rays = 12
 self.ksg.stats.damage = 85
+self.ksg.stats.concealment = 20
 self.ksg.fire_mode_data.fire_rate = 0.5
 self.ksg.kick.standing = {3, 4, -0.2, 0.2}
 self.ksg.kick.crouching = self.ksg.kick.standing
 self.ksg.kick.steelsight = self.ksg.kick.standing
 
 -- Reinfeld 880
+self.r870.CLIP_AMMO_MAX = 8
 self.r870.rays = 12
 self.r870.stats.damage = 85
 self.r870.fire_mode_data.fire_rate = 0.5
@@ -241,15 +249,18 @@ self.r870.kick.steelsight = self.r870.kick.standing
 
 -- Reinfeld 88 (Trench Gun)
 self.m1897.rays = 12
-self.m1897.stats.damage = 85
+self.m1897.stats.damage = 125
 self.m1897.AMMO_PICKUP = {0.42, 1.47}
+self.m1897.fire_mode_data.fire_rate = 0.6
 self.m1897.kick.standing = {3, 4, -0.2, 0.2}
 self.m1897.kick.crouching = self.m1897.kick.standing
 self.m1897.kick.steelsight = self.m1897.kick.standing
 
 -- Mosconi Tactical
 self.m590.rays = 12
+self.m590.stats.reload = 10
 self.m590.stats.damage = 85
+self.m590.stats.concealment = 8
 self.m590.fire_mode_data.fire_rate = 0.5
 self.m590.kick.standing = {3, 4, -0.2, 0.2}
 self.m590.kick.crouching = self.m590.kick.standing
@@ -276,7 +287,7 @@ self.b682.kick.steelsight = self.huntsman.kick.standing
 -- Breaker
 self.boot.rays = 12
 self.boot.stats.damage = 180
-self.boot.AMMO_PICKUP = {0.42, 1.2}
+self.boot.AMMO_PICKUP = {0.42, 1.15}
 self.boot.kick.standing = {2.5, 3, -0.2, 0.2}
 self.boot.kick.crouching = self.boot.kick.standing
 self.boot.kick.steelsight = self.boot.kick.standing 
@@ -298,17 +309,25 @@ self.coach.kick.steelsight = self.coach.kick.standing
 
 -- GSPS 
 self.m37.rays = 12
-self.m37.AMMO_PICKUP = {0.42, 1.2}
+self.m37.AMMO_PICKUP = {0.42, 1.15}
 self.m37.kick.standing = {4, 5, -0.2, 0.2}
 self.m37.kick.crouching = self.m37.kick.standing
 self.m37.kick.steelsight = self.m37.kick.standing 
 
 -- Loco
+self.serbu.AMMO_MAX = 24
+self.serbu.CLIP_AMMO_MAX = 4
 self.serbu.rays = 12
 self.serbu.fire_mode_data.fire_rate = 0.6
 self.serbu.kick.standing = {3, 4, -0.2, 0.2}
 self.serbu.kick.crouching = self.serbu.kick.standing
 self.serbu.kick.steelsight = self.serbu.kick.standing
+
+-- Goliath
+self.rota.rays = 12
+self.rota.AMMO_PICKUP = {1.75, 2.65}
+self.rota.spread.standing = self.new_m4.spread.crouching
+self.rota.spread.moving_standing = self.new_m4.spread.crouching
 
 -- Sweeper
 self.striker.rays = 12
@@ -849,7 +868,8 @@ self.x_mp5.kick.crouching = self.x_mp5.kick.standing
 self.x_mp5.kick.steelsight = self.x_mp5.kick.standing
 
 -- Heathers
-self.x_mp5.AMMO_MAX = 180
+self.x_sr2.AMMO_MAX = 180
+self.x_sr2.stats.reload = 8
 self.x_sr2.kick.standing = {1.5, 1.7, -1.1, 1.1}
 self.x_sr2.kick.crouching = self.x_sr2.kick.standing
 self.x_sr2.kick.steelsight = self.x_sr2.kick.standing
@@ -873,6 +893,7 @@ Hooks:PostHook(WeaponTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function
 	self.g36_npc.auto.fire_rate = 0.25
 	self.mp9_npc.auto.fire_rate = 0.275
 	self.mp5_npc.auto.fire_rate = 0.25
+	self.saiga_npc.auto.fire_rate = 0.25
 	self.mac11_npc.auto.fire_rate = 0.2
 	self.raging_bull_npc.DAMAGE = 1
 	self.ak47_ass_npc.DAMAGE = 1
@@ -889,5 +910,5 @@ Hooks:PostHook(WeaponTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function
 	self.flamethrower_npc.flame_max_range = 800 -- wow 15m is retarded lmao
 	self.benelli_npc.sounds.prefix = "benelli_m4_npc" -- Give it a proper sound
 	self.beretta92_npc.has_suppressor = "suppressed_b" -- suppressed
-	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail_marshal"
 end)

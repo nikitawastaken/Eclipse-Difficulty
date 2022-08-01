@@ -167,24 +167,24 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.dozer = {
 		tase = false,
 		bullet = {
-			health_reference = 1,
+			health_reference = "current",
 			zones = {{light = 1}}
 		},
 		explosion = {
-			health_reference = 1,
-			zones = {{light = 1}}
+			health_reference = "current",
+			zones = {{moderate = 1}}
 		},
 		melee = {
-			health_reference = 1,
-			zones = {{none = 1}}
+			health_reference = "current",
+			zones = {{light = 1}}
 		},
 		fire = {
-			health_reference = 1,
+			health_reference = "current",
 			zones = {{none = 1}
 			}
 		},
 		poison = {
-			health_reference = 1,
+			health_reference = "current",
 			zones = {{none = 1}}
 		}
 	}
@@ -252,7 +252,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 		FALLOFF = {
 			{
-				dmg_mul = 4,
+				dmg_mul = 3,
 				r = 100,
 				acc = {
 					0.95,
@@ -270,7 +270,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			},
 			{
-				dmg_mul = 4,
+				dmg_mul = 3,
 				r = 500,
 				acc = {
 					0.7,
@@ -306,7 +306,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			},
 			{
-				dmg_mul = 1.5,
+				dmg_mul = 1,
 				r = 2000,
 				acc = {
 					0.45,
@@ -324,7 +324,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			},
 			{
-				dmg_mul = 1,
+				dmg_mul = 0.5,
 				r = 3000,
 				acc = {
 					0.3,
@@ -933,7 +933,7 @@ function CharacterTweakData:_set_sm_wish()
 				}
 			},
 			{
-				dmg_mul = 1.8,
+				dmg_mul = 1.5,
 				r = 1000,
 				acc = {
 					0.5,
@@ -951,7 +951,7 @@ function CharacterTweakData:_set_sm_wish()
 				}
 			},
 			{
-				dmg_mul = 1.2,
+				dmg_mul = 0.8,
 				r = 2000,
 				acc = {
 					0.3,
@@ -969,7 +969,7 @@ function CharacterTweakData:_set_sm_wish()
 				}
 			},
 			{
-				dmg_mul = 0.6,
+				dmg_mul = 0.4,
 				r = 3000,
 				acc = {
 					0.2,

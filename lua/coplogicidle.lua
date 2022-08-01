@@ -17,7 +17,7 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	local record = attention_data.criminal_record
 	if not record or not attention_data.is_person then
-		return attention_data.verified and REACT_COMBAT or attention_reaction
+		return attention_reaction
 	end
 
 	if record.status == "dead" or record.being_arrested then

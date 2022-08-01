@@ -28,8 +28,6 @@ tweak_data.projectiles.underbarrel_electric.damage = 14
 tweak_data.projectiles.fir_com.damage = 10
 tweak_data.projectiles.fir_com.fire_dot_data.dot_damage = 30
 tweak_data.projectiles.fir_com.range = 600
--- concussion range nerf
-tweak_data.projectiles.concussion.range = 1000
 -- frags buff
 tweak_data.projectiles.frag.damage = 200
 tweak_data.projectiles.frag_com.damage = 200
