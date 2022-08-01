@@ -24,7 +24,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_shot_r870_body_rack.stats = {reload = 2, total_ammo_mod = 0, recoil = -2}
     -- Extended Mag for loco and r880
     self.parts.wpn_fps_shot_shorty_m_extended_short.stats = {concealment = -2, recoil = -2}
-    self.parts.wpn_fps_shot_r870_m_extended_short.stats = {concealment = -2, recoil = -2}
+    self.parts.wpn_fps_shot_r870_m_extended.stats = {concealment = -2, recoil = -2}
     -- Minigun half that kit thing
     self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {movement_speed = 1.15}
     
