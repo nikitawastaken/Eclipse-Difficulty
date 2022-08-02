@@ -661,6 +661,11 @@ self.erma.kick.standing = {1.4, 1.6, -0.6, 0.6}
 self.erma.kick.crouching = self.erma.kick.standing
 self.erma.kick.steelsight = self.erma.kick.standing
 
+-- Tatonka
+self.coal.kick.standing = {1.4, 1.6, -0.6, 0.6}
+self.coal.kick.crouching = self.coal.kick.standing
+self.coal.kick.steelsight = self.coal.kick.standing
+
 -- Pattchet
 self.sterling.AMMO_PICKUP = {0.9, 3.15}
 self.sterling.kick.standing = {1.4, 1.6, -0.6, 0.6}
@@ -856,6 +861,7 @@ self.x_pm9.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_shepheard.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 
 -- Krinkovs
+self.x_akmsu.stats.damage = 80
 self.x_akmsu.AMMO_MAX = 120
 self.x_akmsu.kick.standing = {1.7, 1.9, -1.4, 1.2}
 self.x_akmsu.kick.crouching = self.x_akmsu.kick.standing

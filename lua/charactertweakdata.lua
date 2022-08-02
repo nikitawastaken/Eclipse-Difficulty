@@ -37,9 +37,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 400
 	self.biker_boss.player_health_scaling_mul = 1.5
-	self.biker_boss.headshot_dmg_mul = 0.5
-	self.biker_boss.no_headshot_add_mul = true
-	self.biker_boss.DAMAGE_CLAMP_BULLET = 100
+	self.biker_boss.headshot_dmg_mul = 1.65
+	self.biker_boss.no_headshot_add_mul = false
+	self.biker_boss.DAMAGE_CLAMP_BULLET = 200
 	self.biker_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.biker_boss.damage.explosion_damage_mul = 0.5
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
@@ -51,9 +51,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	
 	self.chavez_boss.HEALTH_INIT = 400
 	self.chavez_boss.player_health_scaling_mul = 1.5
-	self.chavez_boss.headshot_dmg_mul = 0.75
-	self.chavez_boss.no_headshot_add_mul = true
-	self.chavez_boss.DAMAGE_CLAMP_BULLET = 100
+	self.chavez_boss.headshot_dmg_mul = 1.65
+	self.chavez_boss.no_headshot_add_mul = false
+	self.chavez_boss.DAMAGE_CLAMP_BULLET = 200
 	self.chavez_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.chavez_boss.damage.explosion_damage_mul = 0.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
@@ -63,12 +63,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.drug_lord_boss.HEALTH_INIT = 400
 	self.drug_lord_boss.player_health_scaling_mul = 1.5
-	self.drug_lord_boss.headshot_dmg_mul = 0.75
-	self.drug_lord_boss.no_headshot_add_mul = true
-	self.drug_lord_boss.DAMAGE_CLAMP_BULLET = 100
+	self.drug_lord_boss.headshot_dmg_mul = 1.65
+	self.drug_lord_boss.no_headshot_add_mul = false
+	self.drug_lord_boss.DAMAGE_CLAMP_BULLET = 200
 	self.drug_lord_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.drug_lord_boss.damage.explosion_damage_mul = 0.5
-	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.drug_lord_boss.move_speed = self.presets.move_speed.normal
 	self.drug_lord_boss.no_run_start = true
 	self.drug_lord_boss.no_run_stop = true
@@ -78,12 +78,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	
 	self.hector_boss.HEALTH_INIT = 400
 	self.hector_boss.player_health_scaling_mul = 1.5
-	self.hector_boss.headshot_dmg_mul = 0.5
-	self.hector_boss.no_headshot_add_mul = true
-	self.hector_boss.DAMAGE_CLAMP_BULLET = 100
+	self.hector_boss.headshot_dmg_mul = 1.65
+	self.hector_boss.no_headshot_add_mul = false
+	self.hector_boss.DAMAGE_CLAMP_BULLET = 200
 	self.hector_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.hector_boss.damage.explosion_damage_mul = 0.5
-	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.hector_boss.move_speed = self.presets.move_speed.slow
 	self.hector_boss.no_run_start = true
 	self.hector_boss.no_run_stop = true
@@ -92,9 +92,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	
 	self.mobster_boss.HEALTH_INIT = 400
 	self.mobster_boss.player_health_scaling_mul = 1.5
-	self.mobster_boss.headshot_dmg_mul = 0.75
-	self.mobster_boss.no_headshot_add_mul = true
-	self.mobster_boss.DAMAGE_CLAMP_BULLET = 100
+	self.mobster_boss.headshot_dmg_mul = 1.65
+	self.mobster_boss.no_headshot_add_mul = false
+	self.mobster_boss.DAMAGE_CLAMP_BULLET = 200
 	self.mobster_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.mobster_boss.damage.explosion_damage_mul = 0.5
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
@@ -104,9 +104,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	
 	self.triad_boss.HEALTH_INIT = 400
 	self.triad_boss.player_health_scaling_mul = 1.5
-	self.triad_boss.headshot_dmg_mul = 0.5
-	self.triad_boss.no_headshot_add_mul = true
-	self.triad_boss.DAMAGE_CLAMP_BULLET = 100
+	self.triad_boss.headshot_dmg_mul = 1.65
+	self.triad_boss.no_headshot_add_mul = false
+	self.triad_boss.DAMAGE_CLAMP_BULLET = 200
 	self.triad_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.triad_boss.damage.explosion_damage_mul = 0.5
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
@@ -461,8 +461,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				},
 				mode = {
 					0,
-					3,
-					3,
+					0,
+					0,
 					1
 				}
 			},
@@ -480,8 +480,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				mode = {
 					0,
 					0,
-					1,
-					0
+					0,
+					1
 				}
 			},
 			{
@@ -496,10 +496,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					0.4
 				},
 				mode = {
-					1,
 					0,
-					1,
-					0
+					0,
+					2,
+					1
 				}
 			},
 			{
@@ -514,8 +514,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					0.5
 				},
 				mode = {
+					3,
 					1,
-					0,
 					0,
 					0
 				}
@@ -1415,16 +1415,69 @@ function CharacterTweakData:_set_sm_wish()
 	-- Cloaker
 	self.spooc.weapon.is_pistol = self.presets.weapon.deathwish.is_pistol
 	self.spooc.weapon.is_pistol.aim_delay = {0.1, 0.1}
-	
 
-	--bosses
-	self.hector_boss.weapon.is_shotgun_mag.FALLOFF = {
+	-- Sniper preset
+	-- Fast rate of fire but low damage, always missing first shot but pin-point accuracy after that
+	self.sniper.weapon.is_rifle.aim_delay = {0.3, 0.5}
+	self.sniper.weapon.is_rifle.FALLOFF = {
 		{
-			dmg_mul = 3.14,
-			r = 200,
+			r = 700,
+			acc = {1, 1},
+			dmg_mul = 6,
+			recoil = {0.6, 0.6},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			r = 4000,
+			acc = {0.95, 0.95},
+			dmg_mul = 6,
+			recoil = {0.75, 0.75},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			r = 10000,
+			acc = {0.8, 0.8},
+			dmg_mul = 6,
+			recoil = {0.825, 0.825},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		}
+	}
+
+	-- Saigadozer preset
+	-- 75 damage at point blank, drops to 30 at max range
+	self.tank.weapon.is_shotgun_mag.aim_delay = {
+		0.2,
+		0.2
+	}
+	self.tank.weapon.is_shotgun_mag.range = {
+		optimal = 650,
+		far = 1300,
+		close = 250
+	}
+	self.tank.weapon.is_shotgun_mag.focus_delay = 0.2
+	self.tank.weapon.is_shotgun_mag.focus_dis = 200
+	self.tank.weapon.is_shotgun_mag.FALLOFF = {
+		{
+			dmg_mul = 2.5,
+			r = 100,
 			acc = {
-				0.6,
-				0.9
+				0.9,
+				0.975
 			},
 			recoil = {
 				0.4,
@@ -1432,8 +1485,8 @@ function CharacterTweakData:_set_sm_wish()
 			},
 			mode = {
 				0,
-				1,
-				2,
+				0,
+				0,
 				1
 			}
 		},
@@ -1441,12 +1494,48 @@ function CharacterTweakData:_set_sm_wish()
 			dmg_mul = 2.5,
 			r = 500,
 			acc = {
-				0.6,
-				0.9
+				0.85,
+				0.95
 			},
 			recoil = {
 				0.4,
 				0.7
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 2,
+			r = 1000,
+			acc = {
+				0.75,
+				0.85
+			},
+			recoil = {
+				0.45,
+				0.8
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 1.5,
+			r = 2000,
+			acc = {
+				0.65,
+				0.7
+			},
+			recoil = {
+				0.45,
+				0.8
 			},
 			mode = {
 				0,
@@ -1456,47 +1545,11 @@ function CharacterTweakData:_set_sm_wish()
 			}
 		},
 		{
-			dmg_mul = 2.1,
-			r = 1000,
-			acc = {
-				0.4,
-				0.8
-			},
-			recoil = {
-				0.45,
-				0.8
-			},
-			mode = {
-				1,
-				2,
-				2,
-				0
-			}
-		},
-		{
-			dmg_mul = 1.8,
-			r = 2000,
-			acc = {
-				0.4,
-				0.55
-			},
-			recoil = {
-				0.45,
-				0.8
-			},
-			mode = {
-				3,
-				2,
-				2,
-				0
-			}
-		},
-		{
-			dmg_mul = 1.4,
+			dmg_mul = 1,
 			r = 3000,
 			acc = {
-				0.1,
-				0.35
+				0.3,
+				0.5
 			},
 			recoil = {
 				1,
@@ -1504,12 +1557,621 @@ function CharacterTweakData:_set_sm_wish()
 			},
 			mode = {
 				3,
-				1,
-				1,
+				2,
+				2,
 				0
 			}
 		}
 	}
+
+	-- Greendozer preset
+	-- halved damage, higher rof
+	self.tank.weapon.is_shotgun_pump.aim_delay = {
+		0.2,
+		0.2
+	}
+	self.tank.weapon.is_shotgun_pump.range = {
+		optimal = 500,
+		far = 1000,
+		close = 100
+	}
+	self.tank.weapon.is_shotgun_pump.focus_delay = 0.2
+	self.tank.weapon.is_shotgun_pump.focus_dis = 200
+	self.tank.weapon.is_shotgun_pump.FALLOFF = {
+		{
+			dmg_mul = 4.5,
+			r = 100,
+			acc = {
+				0.95,
+				0.95
+			},
+			recoil = {
+				0.8,
+				0.8
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 4.5,
+			r = 500,
+			acc = {
+				0.9,
+				0.95
+			},
+			recoil = {
+				0.9,
+				0.9
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 4.5,
+			r = 1000,
+			acc = {
+				0.6,
+				0.8
+			},
+			recoil = {
+				1,
+				1
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 3,
+			r = 2000,
+			acc = {
+				0.45,
+				0.65
+			},
+			recoil = {
+				1.25,
+				1.25
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 1.5,
+			r = 3000,
+			acc = {
+				0.3,
+				0.5
+			},
+			recoil = {
+				1.75,
+				1.75
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		}
+	}
+
+
+	-- Skulldozer preset
+	-- 40 damage
+	self.tank.weapon.is_lmg.spread = 15
+	self.tank.weapon.is_lmg.aim_delay = {
+		0.1,
+		0.1
+	}
+	self.tank.weapon.is_lmg.autofire_rounds = {
+		40,
+		80
+	}
+	self.tank.weapon.is_lmg.range = {
+		optimal = 1500,
+		far = 2500,
+		close = 1000
+	}
+	self.tank.weapon.is_lmg.focus_delay = 0.2
+	self.tank.weapon.is_lmg.FALLOFF = {
+		{
+			dmg_mul = 2,
+			r = 100,
+			acc = {
+				0.9,
+				1
+			},
+			recoil = {
+				0.4,
+				0.7
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 2,
+			r = 500,
+			acc = {
+				0.8,
+				0.95
+			},
+			recoil = {
+				0.65,
+				0.8
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 2,
+			r = 1000,
+			acc = {
+				0.7,
+				0.85
+			},
+			recoil = {
+				1,
+				1
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 2,
+			r = 2000,
+			acc = {
+				0.45,
+				0.6
+			},
+			recoil = {
+				1,
+				1
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 2,
+			r = 3000,
+			acc = {
+				0.2,
+				0.3
+			},
+			recoil = {
+				1,
+				2
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		}
+	}
+
+	-- Shield preset
+	-- 30 damage
+	self.shield.weapon.is_smg.aim_delay = {0.2, 0.2}
+	self.shield.weapon.is_smg.focus_delay = 0.2
+	self.shield.weapon.is_smg.focus_dis = 200
+	self.shield.weapon.is_smg.range = {
+		optimal = 900,
+		far = 1750,
+		close = 500
+	}
+	self.shield.weapon.is_smg.FALLOFF = {
+		{
+			r = 100,
+			acc = {0.9, 0.95},
+			dmg_mul = 3,
+			recoil = {0.35, 0.35},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			r = 700,
+			acc = {0.8, 0.8},
+			dmg_mul = 3,
+			recoil = {0.35, 0.55},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			r = 1000,
+			acc = {0.6, 0.65},
+			dmg_mul = 3,
+			recoil = {0.35, 0.55},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			r = 2000,
+			acc = {0.5, 0.7},
+			dmg_mul = 3,
+			recoil = {0.35, 1},
+			mode = {
+				0,
+				3,
+				3,
+				1
+			}
+		},
+		{
+			r = 3000,
+			acc = {0.5, 0.5},
+			dmg_mul = 3,
+			recoil = {0.5, 1.2},
+			mode = {
+				0,
+				3,
+				3,
+				1
+			}
+		}
+	}
+
+	-- Pistol Shield preset
+	self.shield.weapon.is_pistol.aim_delay = {0.2, 0.2}
+	self.shield.weapon.is_pistol.focus_delay = 0.2
+	self.shield.weapon.is_pistol.range = {
+		optimal = 900,
+		far = 1750,
+		close = 500
+	}
+	self.shield.weapon.is_pistol.FALLOFF = {
+		{
+			r = 100,
+			acc = {0.9, 0.95},
+			dmg_mul = 6.75,
+			recoil = {0.35, 0.35},
+			mode = {
+				0,
+				3,
+				3,
+				1
+			}
+		},
+		{
+			r = 700,
+			acc = {0.8, 0.8},
+			dmg_mul = 6.75,
+			recoil = {0.35, 0.55},
+			mode = {
+				0,
+				0,
+				1,
+				0
+			}
+		},
+		{
+			r = 1000,
+			acc = {0.6, 0.65},
+			dmg_mul = 5,
+			recoil = {0.35, 0.55},
+			mode = {
+				0,
+				1,
+				0,
+				1
+			}
+		},
+		{
+			r = 2000,
+			acc = {0.5, 0.7},
+			dmg_mul = 3.5,
+			recoil = {0.35, 1},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			r = 3000,
+			acc = {0.5, 0.5},
+			dmg_mul = 1.5,
+			recoil = {0.5, 1.2},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		}
+	}
+
+	-- Taser
+	-- 75 Damage
+	self.taser.weapon.is_rifle.aim_delay = {0.2, 0.2}
+	self.taser.weapon.is_rifle.focus_delay = 0.2
+	self.taser.weapon.is_rifle.melee_dmg = 10
+	self.taser.weapon.is_rifle.range = {
+		optimal = 1250,
+		far = 2500,
+		close = 750
+	}
+	self.taser.weapon.is_rifle.FALLOFF = {
+		{
+			dmg_mul = 7.5,
+			r = 100,
+			acc = {
+				0.9,
+				0.975
+			},
+			recoil = {
+				0.25,
+				0.3
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			},
+			autofire_rounds = {
+				6,
+				10
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 500,
+			acc = {
+				0.875,
+				0.95
+			},
+			recoil = {
+				0.25,
+				0.3
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			},
+			autofire_rounds = {
+				4,
+				6
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 1000,
+			acc = {
+				0.8,
+				0.9
+			},
+			recoil = {
+				0.35,
+				0.55
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			},
+			autofire_rounds = {
+				3,
+				4
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 1500,
+			acc = {
+				0.75,
+				0.85
+			},
+			recoil = {
+				0.4,
+				0.6
+			},
+			mode = {
+				0,
+				3,
+				3,
+				1
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 2000,
+			acc = {
+				0.65,
+				0.75
+			},
+			recoil = {
+				0.2,
+				0.3
+			},
+			mode = {
+				0,
+				3,
+				3,
+				1
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 3000,
+			acc = {
+				0.4,
+				0.6
+			},
+			recoil = {
+				0.7,
+				1.1
+			},
+			mode = {
+				3,
+				2,
+				1,
+				0.5
+			}
+		},
+	}	
+	
+	-- Bosses
+	self.chavez_boss.weapon.akimbo_pistol.FALLOFF = {
+		{
+			dmg_mul = 4,
+			r = 100,
+			acc = {
+				0.9,
+				0.95
+			},
+			recoil = {
+				0.1,
+				0.15
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 4,
+			r = 500,
+			acc = {
+				0.7,
+				0.85
+			},
+			recoil = {
+				0.1,
+				0.15
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 4,
+			r = 1000,
+			acc = {
+				0.6,
+				0.75
+			},
+			recoil = {
+				0.15,
+				0.2
+			},
+			mode = {
+				0,
+				0,
+				2,
+				1
+			}
+		},
+		{
+			dmg_mul = 4,
+			r = 2000,
+			acc = {
+				0.3,
+				0.5
+			},
+			recoil = {
+				0.175,
+				0.25
+			},
+			mode = {
+				3,
+				1,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 4,
+			r = 3000,
+			acc = {
+				0.1,
+				0.3
+			},
+			recoil = {
+				0.35,
+				0.45
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 4,
+			r = 4000,
+			acc = {
+				0.0,
+				0.2
+			},
+			recoil = {
+				0.5,
+				0.75
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		}
+	}
+	self.hector_boss.weapon.is_shotgun_mag = self.tank.weapon.is_shotgun_mag
+	self.biker_boss.weapon.is_lmg = self.tank.weapon.is_lmg
+	self.mobster_boss.weapon.is_lmg = self.tank.weapon.is_lmg
 
 	--team ai
 	self.presets.weapon.gang_member.is_pistol.FALLOFF = {
@@ -1952,648 +2614,6 @@ function CharacterTweakData:_set_sm_wish()
 	self:_set_characters_weapon_preset("deathwish")
 
 	self.spooc.spooc_attack_timeout = {2, 3}
-
-	-- Sniper preset
-	-- Fast rate of fire but low damage, always missing first shot but pin-point accuracy after that
-	self.sniper.weapon.is_rifle.aim_delay = {0.3, 0.5}
-	self.sniper.weapon.is_rifle.FALLOFF = {
-		{
-			r = 700,
-			acc = {1, 1},
-			dmg_mul = 6,
-			recoil = {0.6, 0.6},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			r = 4000,
-			acc = {0.95, 0.95},
-			dmg_mul = 6,
-			recoil = {0.75, 0.75},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			r = 10000,
-			acc = {0.8, 0.8},
-			dmg_mul = 6,
-			recoil = {0.825, 0.825},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		}
-	}
-
-	-- Saigadozer preset
-	-- 75 damage at point blank, drops to 30 at max range
-	self.tank.weapon.is_shotgun_mag.aim_delay = {
-		0.2,
-		0.2
-	}
-	self.tank.weapon.is_shotgun_mag.range = {
-		optimal = 650,
-		far = 1300,
-		close = 250
-	}
-	self.tank.weapon.is_shotgun_mag.focus_delay = 0.2
-	self.tank.weapon.is_shotgun_mag.focus_dis = 200
-	self.tank.weapon.is_shotgun_mag.FALLOFF = {
-		{
-			dmg_mul = 2.5,
-			r = 100,
-			acc = {
-				0.9,
-				0.975
-			},
-			recoil = {
-				0.4,
-				0.7
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 2.5,
-			r = 500,
-			acc = {
-				0.85,
-				0.95
-			},
-			recoil = {
-				0.4,
-				0.7
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 2,
-			r = 1000,
-			acc = {
-				0.75,
-				0.85
-			},
-			recoil = {
-				0.45,
-				0.8
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 1.5,
-			r = 2000,
-			acc = {
-				0.65,
-				0.7
-			},
-			recoil = {
-				0.45,
-				0.8
-			},
-			mode = {
-				0,
-				3,
-				3,
-				1
-			}
-		},
-		{
-			dmg_mul = 1,
-			r = 3000,
-			acc = {
-				0.3,
-				0.5
-			},
-			recoil = {
-				1,
-				1.2
-			},
-			mode = {
-				3,
-				2,
-				2,
-				0
-			}
-		}
-	}
-
-	-- Greendozer preset
-	-- halved damage, higher rof
-	self.tank.weapon.is_shotgun_pump.aim_delay = {
-		0.2,
-		0.2
-	}
-	self.tank.weapon.is_shotgun_pump.range = {
-		optimal = 500,
-		far = 1000,
-		close = 100
-	}
-	self.tank.weapon.is_shotgun_pump.focus_delay = 0.2
-	self.tank.weapon.is_shotgun_pump.focus_dis = 200
-	self.tank.weapon.is_shotgun_pump.FALLOFF = {
-		{
-			dmg_mul = 4.5,
-			r = 100,
-			acc = {
-				0.95,
-				0.95
-			},
-			recoil = {
-				0.8,
-				0.8
-			},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			dmg_mul = 4.5,
-			r = 500,
-			acc = {
-				0.9,
-				0.95
-			},
-			recoil = {
-				0.9,
-				0.9
-			},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			dmg_mul = 4.5,
-			r = 1000,
-			acc = {
-				0.6,
-				0.8
-			},
-			recoil = {
-				1,
-				1
-			},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			dmg_mul = 3,
-			r = 2000,
-			acc = {
-				0.45,
-				0.65
-			},
-			recoil = {
-				1.25,
-				1.25
-			},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			dmg_mul = 1.5,
-			r = 3000,
-			acc = {
-				0.3,
-				0.5
-			},
-			recoil = {
-				1.75,
-				1.75
-			},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		}
-	}
-
-
-	-- Skulldozer preset
-	-- 40 damage
-	self.tank.weapon.is_lmg.spread = 15
-	self.tank.weapon.is_lmg.aim_delay = {
-		0.1,
-		0.1
-	}
-	self.tank.weapon.is_lmg.autofire_rounds = {
-		40,
-		80
-	}
-	self.tank.weapon.is_lmg.range = {
-		optimal = 1500,
-		far = 2500,
-		close = 1000
-	}
-	self.tank.weapon.is_lmg.focus_delay = 0.2
-	self.tank.weapon.is_lmg.FALLOFF = {
-		{
-			dmg_mul = 2,
-			r = 100,
-			acc = {
-				0.9,
-				1
-			},
-			recoil = {
-				0.4,
-				0.7
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 2,
-			r = 500,
-			acc = {
-				0.8,
-				0.95
-			},
-			recoil = {
-				0.65,
-				0.8
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 2,
-			r = 1000,
-			acc = {
-				0.7,
-				0.85
-			},
-			recoil = {
-				1,
-				1
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 2,
-			r = 2000,
-			acc = {
-				0.45,
-				0.6
-			},
-			recoil = {
-				1,
-				1
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			dmg_mul = 2,
-			r = 3000,
-			acc = {
-				0.2,
-				0.3
-			},
-			recoil = {
-				1,
-				2
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		}
-	}
-
-	-- Shield preset
-	-- 30 damage
-	self.shield.weapon.is_smg.aim_delay = {0.2, 0.2}
-	self.shield.weapon.is_smg.focus_delay = 0.2
-	self.shield.weapon.is_smg.focus_dis = 200
-	self.shield.weapon.is_smg.range = {
-		optimal = 900,
-		far = 1750,
-		close = 500
-	}
-	self.shield.weapon.is_smg.FALLOFF = {
-		{
-			r = 100,
-			acc = {0.9, 0.95},
-			dmg_mul = 3,
-			recoil = {0.35, 0.35},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			r = 700,
-			acc = {0.8, 0.8},
-			dmg_mul = 3,
-			recoil = {0.35, 0.55},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			r = 1000,
-			acc = {0.6, 0.65},
-			dmg_mul = 3,
-			recoil = {0.35, 0.55},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			}
-		},
-		{
-			r = 2000,
-			acc = {0.5, 0.7},
-			dmg_mul = 3,
-			recoil = {0.35, 1},
-			mode = {
-				0,
-				3,
-				3,
-				1
-			}
-		},
-		{
-			r = 3000,
-			acc = {0.5, 0.5},
-			dmg_mul = 3,
-			recoil = {0.5, 1.2},
-			mode = {
-				0,
-				3,
-				3,
-				1
-			}
-		}
-	}
-
-	--Shield with glock
-	self.shield.weapon.is_pistol.aim_delay = {0.2, 0.2}
-	self.shield.weapon.is_pistol.focus_delay = 0.2
-	self.shield.weapon.is_pistol.range = {
-		optimal = 900,
-		far = 1750,
-		close = 500
-	}
-	self.shield.weapon.is_pistol.FALLOFF = {
-		{
-			r = 100,
-			acc = {0.9, 0.95},
-			dmg_mul = 6.75,
-			recoil = {0.35, 0.35},
-			mode = {
-				0,
-				3,
-				3,
-				1
-			}
-		},
-		{
-			r = 700,
-			acc = {0.8, 0.8},
-			dmg_mul = 6.75,
-			recoil = {0.35, 0.55},
-			mode = {
-				0,
-				0,
-				1,
-				0
-			}
-		},
-		{
-			r = 1000,
-			acc = {0.6, 0.65},
-			dmg_mul = 5,
-			recoil = {0.35, 0.55},
-			mode = {
-				0,
-				1,
-				0,
-				1
-			}
-		},
-		{
-			r = 2000,
-			acc = {0.5, 0.7},
-			dmg_mul = 3.5,
-			recoil = {0.35, 1},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		},
-		{
-			r = 3000,
-			acc = {0.5, 0.5},
-			dmg_mul = 1.5,
-			recoil = {0.5, 1.2},
-			mode = {
-				1,
-				0,
-				0,
-				0
-			}
-		}
-	}
-
-		-- Taser
-		-- 75 Damage
-		self.taser.weapon.is_rifle.aim_delay = {0.2, 0.2}
-		self.taser.weapon.is_rifle.focus_delay = 0.2
-		self.taser.weapon.is_rifle.melee_dmg = 10
-		self.taser.weapon.is_rifle.range = {
-			optimal = 1250,
-			far = 2500,
-			close = 750
-		}
-		self.taser.weapon.is_rifle.FALLOFF = {
-			{
-				dmg_mul = 7.5,
-				r = 100,
-				acc = {
-					0.9,
-					0.975
-				},
-				recoil = {
-					0.25,
-					0.3
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				},
-				autofire_rounds = {
-					6,
-					10
-				}
-			},
-			{
-				dmg_mul = 7.5,
-				r = 500,
-				acc = {
-					0.875,
-					0.95
-				},
-				recoil = {
-					0.25,
-					0.3
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				},
-				autofire_rounds = {
-					4,
-					6
-				}
-			},
-			{
-				dmg_mul = 7.5,
-				r = 1000,
-				acc = {
-					0.8,
-					0.9
-				},
-				recoil = {
-					0.35,
-					0.55
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				},
-				autofire_rounds = {
-					3,
-					4
-				}
-			},
-			{
-				dmg_mul = 7.5,
-				r = 1500,
-				acc = {
-					0.75,
-					0.85
-				},
-				recoil = {
-					0.4,
-					0.6
-				},
-				mode = {
-					0,
-					3,
-					3,
-					1
-				}
-			},
-			{
-				dmg_mul = 7.5,
-				r = 2000,
-				acc = {
-					0.65,
-					0.75
-				},
-				recoil = {
-					0.2,
-					0.3
-				},
-				mode = {
-					0,
-					3,
-					3,
-					1
-				}
-			},
-			{
-				dmg_mul = 7.5,
-				r = 3000,
-				acc = {
-					0.4,
-					0.6
-				},
-				recoil = {
-					0.7,
-					1.1
-				},
-				mode = {
-					3,
-					2,
-					1,
-					0.5
-				}
-			},
-		}
 	self.flashbang_multiplier = 2
 	self.concussion_multiplier = 1
 end

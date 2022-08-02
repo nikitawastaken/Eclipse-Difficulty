@@ -1,7 +1,4 @@
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
-    -- Union Short Barrel buff
-    self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
-
     -- Shotgun Ammo Rework
     -- DB
     self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {dot_trigger_chance = "100", dot_damage = "20", dot_length = "1.5", dot_trigger_max_distance = "1500", dot_tick_period = "0.5"}
@@ -21,13 +18,21 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
 
     -- Shell Rack for loco and r880
-    self.parts.wpn_fps_shot_r870_body_rack.stats = {reload = 2, total_ammo_mod = 0, recoil = -2}
+    self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2
+    self.parts.wpn_fps_shot_r870_body_rack.stats.total_ammo_mod = 0
+    self.parts.wpn_fps_shot_r870_body_rack.stats.recoil = -2
+    self.parts.wpn_fps_shot_r870_body_rack.stats.concealment = -1
     -- Extended Mag for loco and r880
-    self.parts.wpn_fps_shot_shorty_m_extended_short.stats = {concealment = -2, recoil = -2}
-    self.parts.wpn_fps_shot_r870_m_extended.stats = {concealment = -2, recoil = -2}
+    self.parts.wpn_fps_shot_shorty_m_extended_short.stats.concealment = -2
+    self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
+    self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
+    self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
+
+
     -- Minigun half that kit thing
     self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {movement_speed = 1.15}
-    
+    -- Union Short Barrel buff
+    self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
 
     -- Gadgets
     -- Military Laser module
