@@ -716,7 +716,7 @@ function CharacterTweakData:_set_sm_wish()
 	self.tank.headshot_dmg_mul = 35
 
 	-- Team AI nerf
-	self.presets.gang_member_damage.HEALTH_INIT = 240
+	self.presets.gang_member_damage.HEALTH_INIT = 480
 	self.presets.gang_member_damage.REGENERATE_TIME = 1.8
 	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.6
 

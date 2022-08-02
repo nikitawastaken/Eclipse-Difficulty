@@ -1113,7 +1113,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.flash_grenade.light_range = 500
 		self.flash_grenade.timer = 1
 		-- smoke
-		self.smoke_grenade_timeout = {15, 25}
+		self.smoke_grenade_timeout = {20, 30}
 		self.smoke_grenade_lifetime = 15
 		-- gas
 		self.cs_grenade_timeout = {55, 75}
@@ -1134,14 +1134,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			common_charge = {1, 1, 1},
 			common_shield = {0.66, 0.66, 0.66},
-			common_tank = {0, 0.08, 0.16},
+			common_tank = {0, 0.02, 0.16},
 			uncommon_charge = {0.75, 0.75, 0.75},
 			elite_flankg = {0.45, 0.45, 0.45},
 			elite_shieldg = {0.45, 0.45, 0.45},
 			elite_long_range = {0.4, 0.4, 0.4},
 			elite_heavy_charge = {0.35, 0.35, 0.35},
-			elite_tank = {0, 0.06, 0.12},
-			medic_group = {0.3, 0.3, 0.3},
+			elite_tank = {0, 0, 0.1},
+			-- medic_group = {0.3, 0.3, 0.3},
 			cloaker_group = {0, 0.08, 0.12},
 			recon_hrt = {0.1, 0.1, 0.1},
 			single_spooc = {0, 0, 0},
