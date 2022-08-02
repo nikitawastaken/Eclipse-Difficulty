@@ -21,7 +21,7 @@
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nYou gain a chance to pick up a throwable from an ammo box, starting at ##$multibasic##. This chance is increased by ##$multibasic2## for each ammo box you pick up that does not contain a throwable. When a throwable has been found, the chance is reset to its base value.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro2##. The amount of ammo you gain from ammo boxes is increased by ##$multipro3##.\n\nNote: Does not stack with the \"Walk-in Closet\" perk.",
 	"menu_show_of_force_beta": "Thick Skin",
 	"menu_show_of_force_beta_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\n\nACE: ##$pro##\nIncreases the armor of all ballistic vests by ##$multipro2##.",
-	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##$multiproth## enemy you kill will drop an extra ammo box.",
+	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
 	"menu_rifleman": "Lock N' Load",
 	"menu_rifleman_desc": "BASIC: ##$basic##\nYour snap to zoom ##$multibasic## faster and you swap your weapons ##$multibasic2## faster.\n\nNote: Swap speed doesn't stack with Overkill Aced.\n\nACE: ##$pro##\nYou can how hip-fire with your weapons while sprinting.",
 	"menu_fast_hands": "Fast Hands",
