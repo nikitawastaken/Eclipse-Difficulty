@@ -109,7 +109,7 @@ self.desertfox.kick.steelsight = self.r93.kick.steelsight
 
 -- Nagant
 self.mosin.AMMO_MAX = 30
-self.mosin.CLIP_AMMO_MAX = 6
+self.mosin.stats.reload = 13
 self.mosin.fire_mode_data.fire_rate = 60 / 70
 self.mosin.AMMO_PICKUP = {0.9, 1.2}
 self.mosin.kick.standing = self.r93.kick.standing
@@ -143,19 +143,19 @@ self.m95.kick.steelsight = self.m95.kick.standing
 self.m249.AMMO_PICKUP = {8, 10}
 self.m249.kick.standing = {0.8, 1.2, -1, 1}
 self.m249.kick.crouching = self.m249.kick.standing
-self.m249.kick.steelsight = {0.7, 1.1, -0.6, 0.6}
+self.m249.kick.steelsight = self.m249.kick.standing
 
 -- KSP 58
 self.par.AMMO_PICKUP = {8, 10}
 self.par.kick.standing = self.m249.kick.standing
 self.par.kick.crouching = self.m249.kick.standing
-self.par.kick.steelsight = self.m249.kick.steelsight
+self.par.kick.steelsight = self.m249.kick.standing
 
 -- Buzzsaw
 self.mg42.AMMO_PICKUP = {8, 10}
 self.mg42.kick.standing = {0.9, 1.3, -1, 1}
 self.mg42.kick.crouching = self.mg42.kick.standing
-self.mg42.kick.steelsight = {0.8, 1.2, -0.8, 0.8}
+self.mg42.kick.steelsight = self.m249.kick.standing
 
 -- RPK
 self.rpk.stats.spread = 10
@@ -165,7 +165,7 @@ self.rpk.stats.concealment = 1
 self.rpk.AMMO_PICKUP = {8, 10}
 self.rpk.kick.standing = {0.9, 1.2, -0.9, 0.9}
 self.rpk.kick.crouching = self.rpk.kick.standing
-self.rpk.kick.steelsight = {0.7, 1, -0.75, 0.75}
+self.rpk.kick.steelsight = self.rpk.kick.standing
 
 -- Brenner 
 self.hk21.stats.spread = 12
@@ -174,21 +174,21 @@ self.hk21.stats.reload = 12
 self.hk21.AMMO_PICKUP = {8, 10}
 self.hk21.kick.standing = self.rpk.kick.standing
 self.hk21.kick.crouching = self.rpk.kick.standing
-self.hk21.kick.steelsight = self.rpk.kick.steelsight
+self.hk21.kick.steelsight = self.rpk.kick.standing
 
 -- M60
 self.m60.stats.damage = 110
 self.m60.AMMO_PICKUP = {8, 10}
 self.m60.kick.standing = self.rpk.kick.standing
 self.m60.kick.crouching = self.rpk.kick.standing
-self.m60.kick.steelsight = self.rpk.kick.steelsight
+self.m60.kick.steelsight = self.rpk.kick.standing
 
 -- new hk51b lmg idr the in-game name lol
 self.hk51b.stats.damage = 100
 self.hk51b.AMMO_PICKUP = {7, 8}
 self.hk51b.kick.standing = self.rpk.kick.standing
 self.hk51b.kick.crouching = self.rpk.kick.standing
-self.hk51b.kick.steelsight = self.rpk.kick.steelsight
+self.hk51b.kick.steelsight = self.rpk.kick.standing
 
 -- Shotguns
 
@@ -201,6 +201,7 @@ self.saiga.kick.crouching = self.saiga.kick.standing
 self.saiga.kick.steelsight = self.saiga.kick.standing
 self.saiga.spread.standing = self.new_m4.spread.crouching
 self.saiga.spread.moving_standing = self.new_m4.spread.crouching
+self.saiga.spread.moving_crouching = self.new_m4.spread.crouching
 
 -- Steakout
 self.aa12.rays = 12
@@ -212,6 +213,7 @@ self.aa12.kick.crouching = self.aa12.kick.standing
 self.aa12.kick.steelsight = self.aa12.kick.standing
 self.aa12.spread.standing = self.new_m4.spread.crouching
 self.aa12.spread.moving_standing = self.new_m4.spread.crouching
+self.aa12.spread.moving_crouching = self.new_m4.spread.crouching
 
 -- M1014
 self.benelli.rays = 12
@@ -219,6 +221,7 @@ self.benelli.stats.spread = 12
 self.benelli.AMMO_PICKUP = {3, 4}
 self.benelli.spread.standing = self.new_m4.spread.crouching
 self.benelli.spread.moving_standing = self.new_m4.spread.crouching
+self.benelli.spread.moving_crouching = self.new_m4.spread.crouching
 
 -- Predator
 self.spas12.rays = 12
@@ -227,11 +230,12 @@ self.spas12.AMMO_PICKUP = {3, 4}
 self.spas12.fire_mode_data.fire_rate = 60 / 429
 self.spas12.spread.standing = self.new_m4.spread.crouching
 self.spas12.spread.moving_standing = self.new_m4.spread.crouching
+self.spas12.spread.moving_crouching = self.new_m4.spread.crouching
 
 -- Raven
 self.ksg.CLIP_AMMO_MAX = 10
 self.ksg.rays = 12
-self.ksg.stats.damage = 85
+self.ksg.stats.damage = 90
 self.ksg.stats.concealment = 20
 self.ksg.fire_mode_data.fire_rate = 0.5
 self.ksg.kick.standing = {3, 4, -0.2, 0.2}
@@ -241,7 +245,7 @@ self.ksg.kick.steelsight = self.ksg.kick.standing
 -- Reinfeld 880
 self.r870.CLIP_AMMO_MAX = 8
 self.r870.rays = 12
-self.r870.stats.damage = 85
+self.r870.stats.damage = 90
 self.r870.fire_mode_data.fire_rate = 0.5
 self.r870.kick.standing = {3, 4, -0.2, 0.2}
 self.r870.kick.crouching = self.r870.kick.standing
@@ -259,7 +263,7 @@ self.m1897.kick.steelsight = self.m1897.kick.standing
 -- Mosconi Tactical
 self.m590.rays = 12
 self.m590.stats.reload = 10
-self.m590.stats.damage = 85
+self.m590.stats.damage = 90
 self.m590.stats.concealment = 8
 self.m590.fire_mode_data.fire_rate = 0.5
 self.m590.kick.standing = {3, 4, -0.2, 0.2}
@@ -328,12 +332,14 @@ self.rota.rays = 12
 self.rota.AMMO_PICKUP = {1.75, 2.65}
 self.rota.spread.standing = self.new_m4.spread.crouching
 self.rota.spread.moving_standing = self.new_m4.spread.crouching
+self.rota.spread.moving_crouching = self.new_m4.spread.crouching
 
 -- Sweeper
 self.striker.rays = 12
 self.striker.AMMO_PICKUP = {1.75, 2.65}
 self.striker.spread.standing = self.new_m4.spread.crouching
 self.striker.spread.moving_standing = self.new_m4.spread.crouching
+self.striker.spread.moving_crouching = self.new_m4.spread.crouching
 
 -- Ultima
 self.ultima.rays = 12
@@ -341,6 +347,7 @@ self.ultima.stats.damage = 70
 self.ultima.kick.standing = {3, 3.5, -0.2, 0.2}
 self.ultima.spread.standing = self.new_m4.spread.crouching
 self.ultima.spread.moving_standing = self.new_m4.spread.crouching
+self.ultima.spread.moving_crouching = self.new_m4.spread.crouching
 
 -- ARs
 
@@ -734,7 +741,8 @@ self.peacemaker.can_shoot_through_wall = true
 self.peacemaker.armor_piercing_chance = 1
 
 -- Angry Tiger
-self.rsh12.stats.damage = 210
+self.rsh12.stats.damage = 105
+self.rsh12.stats_modifiers = {damage = 2}
 self.rsh12.stats.reload = 13
 self.rsh12.AMMO_PICKUP = {0.26, 0.67}
 self.rsh12.stats_modifiers = {damage = 1}

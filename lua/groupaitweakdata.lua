@@ -261,7 +261,7 @@ if difficulty_index == 8 then
 					Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2")
 				},
 				federales = {
-					Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_2")
+					Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2")
 				}
 			},
 			access = access_type_all
