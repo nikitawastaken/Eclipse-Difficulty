@@ -20,16 +20,3 @@ Hooks:PostHook(CopBase, "init", "sh_init", function (self)
 		managers.dyn_resource:load(unit_ids, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 end)
-
-local weapons_map = {
-    -- Give r870 to balaclavas
-    [tostring(Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3"):key())] = Idstring("units/payday2/weapons/wpn_npc_r870/wpn_npc_r870"),
-    -- Give silenced bernetti to spoocs
-    [tostring(Idstring("units/payday2/characters/ene_spook_1/ene_spook_1"):key())] = Idstring("units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92")
-}
-
--- This is so much cleaner, thank you RedFlame
-local default_weapon_name_orig = CopBase.default_weapon_name
-function CopBase:default_weapon_name(...)
-    return weapons_map[tostring(self._unit:name():key())] or default_weapon_name_orig(self, ...)
-end

@@ -702,6 +702,13 @@ self.fmg9.timers.unequip = 1.2
 
 -- DMRs
 
+-- Little Friend
+self.contraband.AMMO_PICKUP = {1.5, 2.5}
+self.contraband.stats.damage = 180
+self.contraband.kick.standing = {3.5, 4.5, -0.6, 0.6}
+self.contraband.kick.crouching = self.contraband.kick.standing
+self.contraband.kick.steelsight = self.contraband.kick.standing
+
 -- Cavity
 self.sub2000.AMMO_PICKUP = {1.5, 2.5}
 self.sub2000.stats.damage = 180
@@ -709,6 +716,7 @@ self.sub2000.stats.concealment = 18
 self.sub2000.kick.standing = {1.4, 1.6, -0.3, 0.3}
 self.sub2000.kick.crouching = self.sub2000.kick.standing
 self.sub2000.kick.steelsight = self.sub2000.kick.standing
+
 -- M308
 self.new_m14.AMMO_PICKUP = {1.5, 2.5}
 self.new_m14.stats.damage = 180
@@ -716,6 +724,7 @@ self.new_m14.stats.concealment = 5
 self.new_m14.kick.standing = {3.5, 4.5, -0.6, 0.6}
 self.new_m14.kick.crouching = self.new_m14.kick.standing
 self.new_m14.kick.steelsight = self.new_m14.kick.standing
+
 -- Galant
 self.ching.AMMO_PICKUP = {1.5, 2.5}
 self.ching.stats.damage = 180
@@ -803,20 +812,20 @@ self.rpg7.stats.reload = 15
 
 -- China Puff
 self.china.stats.damage = 36
-self.china.AMMO_PICKUP = {0.05, 0.5}
+self.china.AMMO_PICKUP = {0.05, 0.48}
 
 -- Arbiter
-self.arbiter.stats.damage = 28
-self.arbiter.AMMO_PICKUP = {0.05, 0.55}
+self.arbiter.stats.damage = 23
+self.arbiter.AMMO_PICKUP = {0.05, 0.52}
 
 -- Compact 40
 self.slap.stats.damage = 48
 self.slap.AMMO_MAX = 3
-self.slap.AMMO_PICKUP = {0.05, 0.5}
+self.slap.AMMO_PICKUP = {0.05, 0.48}
 
 -- Viper GL
-self.ms3gl.stats.damage = 26
-self.ms3gl.AMMO_PICKUP = {0.05, 0.55}
+self.ms3gl.stats.damage = 22
+self.ms3gl.AMMO_PICKUP = {0.05, 0.53}
 
 
 -- Akimbos
@@ -893,6 +902,23 @@ self.x_judge.rays = 12
 self.x_judge.kick.standing = {2.5, 3, -0.2, 0.2}
 self.x_judge.kick.crouching = self.x_judge.kick.standing
 self.x_judge.kick.steelsight = self.x_judge.kick.standing
+
+
+-- Flamethrowers
+
+-- mk2
+self.flamethrower_mk2.stats.damage = 40
+self.flamethrower_mk2.fire_dot_data = {
+	dot_trigger_chance = 50,
+	dot_damage = 7.5,
+	dot_length = 1.1,
+	dot_trigger_max_distance = 3000,
+	dot_tick_period = 0.5
+}
+self.flamethrower_mk2.AMMO_PICKUP = {5, 7.5}
+
+-- ma-17 shouldn't exist and just makes the primary one useless, i'm sorry
+self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 end)
 
 Hooks:PostHook(WeaponTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function(self)

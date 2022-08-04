@@ -13,9 +13,9 @@ tweak_data.projectiles.launcher_frag.damage = 48
 tweak_data.projectiles.launcher_frag_m32.damage = 48
 tweak_data.projectiles.launcher_m203.damage = 48
 tweak_data.projectiles.launcher_frag_slap.damage = 48
-tweak_data.projectiles.launcher_frag_arbiter.damage = 28
+tweak_data.projectiles.launcher_frag_arbiter.damage = 23
 tweak_data.projectiles.launcher_frag_china.damage = 36
-tweak_data.projectiles.launcher_frag_ms3gl.damage = 26
+tweak_data.projectiles.launcher_frag_ms3gl.damage = 22
 tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = {explosion = false, fire = false} -- why is china puff allowed to crit lmao
 tweak_data.projectiles.launcher_electric.damage = 14
 tweak_data.projectiles.launcher_electric_m32.damage = 14

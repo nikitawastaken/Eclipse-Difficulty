@@ -176,6 +176,14 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[1][3].upgrades, "player_damage_dampener_close_contact_1")
 	table.delete(self.specializations[1][9].upgrades, "team_hostage_damage_dampener_multiplier")
 
+	-- Remove Grinder and Ex-President extra health
+	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_1")
+	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_2")
+	table.delete(self.specializations[11][7].upgrades, "player_passive_health_multiplier_3")
+	table.delete(self.specializations[13][3].upgrades, "player_passive_health_multiplier_1")
+	table.delete(self.specializations[13][5].upgrades, "player_passive_health_multiplier_2")
+	table.delete(self.specializations[13][7].upgrades, "player_passive_health_multiplier_3")
+
 	-- Get rid of burglars crouch move speed boost to avoid bugging upgrades out (no one plays the deck anyway so who cares)
 	table.delete(self.specializations[7][9].upgrades, "player_crouch_speed_multiplier_2")
 

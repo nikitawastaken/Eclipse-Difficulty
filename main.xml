@@ -5,6 +5,12 @@
 		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"/>
 		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick"/>
 		
+		<!-- characters -->
+		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3"/>
+		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk"/>
+		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1"/>
+		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1_husk"/>
+		
 		<!-- old cook off bain lines -->
 		<bnk path="soundbanks/job_h_rat_stage1"/>
 		

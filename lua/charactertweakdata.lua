@@ -231,120 +231,235 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.no_heavy_hurt.melee = deep_clone(presets.hurt_severities.no_heavy_hurt.bullet)
 	presets.hurt_severities.no_heavy_hurt.explosion = deep_clone(presets.hurt_severities.no_heavy_hurt.bullet)
 
-	-- beat cop / hrt shotgun preset
-	presets.weapon.deathwish.is_shotgun_pump = {
-		aim_delay = {
-			0.2,
-			0.2
+
+	-- rifle preset
+	presets.weapon.deathwish.is_rifle.aim_delay = {0.2, 0.2}
+	presets.weapon.deathwish.is_rifle.focus_delay = 1
+	presets.weapon.deathwish.is_rifle.melee_dmg = 10
+	presets.weapon.deathwish.is_rifle.FALLOFF = {
+		{
+			dmg_mul = 7.5,
+			r = 100,
+			acc = {
+				0.9,
+				0.9
+			},
+			recoil = {
+				0.25,
+				0.3
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			},
+			autofire_rounds = {
+				8,
+				16
+			}
 		},
-		focus_delay = 1,
-		focus_dis = 200,
-		spread = 15,
-		miss_dis = 20,
-		RELOAD_SPEED = 1.4,
-		melee_speed = 1,
-		melee_dmg = 10,
-		melee_retry_delay = {1, 2},
-		range = {
-			optimal = 3000,
-			far = 5000,
-			close = 2000
+		{
+			dmg_mul = 7.5,
+			r = 500,
+			acc = {
+				0.8,
+				0.9
+			},
+			recoil = {
+				0.25,
+				0.3
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			},
+			autofire_rounds = {
+				6,
+				12
+			}
 		},
-		FALLOFF = {
-			{
-				dmg_mul = 3,
-				r = 100,
-				acc = {
-					0.95,
-					0.95
-				},
-				recoil = {
-					0.75,
-					0.75
-				},
-				mode = {
-					1,
-					0,
-					0,
-					0
-				}
+		{
+			dmg_mul = 7.5,
+			r = 1000,
+			acc = {
+				0.65,
+				0.8
 			},
-			{
-				dmg_mul = 3,
-				r = 500,
-				acc = {
-					0.7,
-					0.95
-				},
-				recoil = {
-					0.75,
-					0.75
-				},
-				mode = {
-					1,
-					0,
-					0,
-					0
-				}
+			recoil = {
+				0.35,
+				0.55
 			},
-			{
-				dmg_mul = 2,
-				r = 1000,
-				acc = {
-					0.5,
-					0.8
-				},
-				recoil = {
-					0.75,
-					0.75
-				},
-				mode = {
-					0,
-					0,
-					0,
-					1
-				}
+			mode = {
+				0,
+				0,
+				0,
+				1
 			},
-			{
-				dmg_mul = 1,
-				r = 2000,
-				acc = {
-					0.45,
-					0.65
-				},
-				recoil = {
-					1.25,
-					1.5
-				},
-				mode = {
-					1,
-					0,
-					0,
-					0
-				}
+			autofire_rounds = {
+				4,
+				8
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 1500,
+			acc = {
+				0.65,
+				0.75
 			},
-			{
-				dmg_mul = 0.5,
-				r = 3000,
-				acc = {
-					0.3,
-					0.5
-				},
-				recoil = {
-					1.5,
-					1.75
-				},
-				mode = {
-					1,
-					0,
-					0,
-					0
-				}
+			recoil = {
+				0.4,
+				0.6
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			},
+			autofire_rounds = {
+				3,
+				6
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 2000,
+			acc = {
+				0.6,
+				0.7
+			},
+			recoil = {
+				0.6,
+				0.8
+			},
+			mode = {
+				0,
+				3,
+				3,
+				1
+			}
+		},
+		{
+			dmg_mul = 7.5,
+			r = 3000,
+			acc = {
+				0.5,
+				0.6
+			},
+			recoil = {
+				0.7,
+				1.1
+			},
+			mode = {
+				3,
+				2,
+				1,
+				0.5
+			}
+		},
+	}
+	-- shotgun preset
+	presets.weapon.deathwish.is_shotgun_pump.aim_delay = {0.2, 0.2}
+	presets.weapon.deathwish.is_shotgun_pump.focus_delay = 1
+	presets.weapon.deathwish.is_shotgun_pump.melee_dmg = 10
+	presets.weapon.deathwish.is_shotgun_pump.FALLOFF = {
+		{
+			dmg_mul = 3,
+			r = 100,
+			acc = {
+				0.95,
+				0.95
+			},
+			recoil = {
+				0.75,
+				0.75
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 3,
+			r = 500,
+			acc = {
+				0.7,
+				0.95
+			},
+			recoil = {
+				0.75,
+				0.75
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 2,
+			r = 1000,
+			acc = {
+				0.5,
+				0.8
+			},
+			recoil = {
+				0.75,
+				0.75
+			},
+			mode = {
+				0,
+				0,
+				0,
+				1
+			}
+		},
+		{
+			dmg_mul = 1,
+			r = 2000,
+			acc = {
+				0.45,
+				0.65
+			},
+			recoil = {
+				1.25,
+				1.5
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 0.5,
+			r = 3000,
+			acc = {
+				0.3,
+				0.5
+			},
+			recoil = {
+				1.5,
+				1.75
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
 			}
 		}
 	}
 	
-	-- cop revolver preset
+	-- revolver preset
 	-- 140 dmg
 	presets.weapon.deathwish.is_revolver.aim_delay = {0.2, 0.2}
 	presets.weapon.deathwish.is_revolver.focus_delay = 1
@@ -442,7 +557,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		}
 	}
 	
-	-- cop pistol preset
+	-- pistol preset
 	-- 35 damage
 	presets.weapon.deathwish.is_pistol.aim_delay = {0.2, 0.2}
 	presets.weapon.deathwish.is_pistol.focus_delay = 1
@@ -558,7 +673,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		}
 
-	-- cop smg preset
+	-- smg preset
 	-- 40 damage
 	presets.weapon.deathwish.is_smg.aim_delay = {0.2, 0.2}
 	presets.weapon.deathwish.is_smg.focus_delay = 1

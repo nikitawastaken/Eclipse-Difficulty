@@ -24,7 +24,11 @@ Hooks:PreHook(GroupAIStateBase, "on_criminal_nav_seg_change", "sh_on_criminal_na
 			prev_area.criminal_entered_t = nil
 		end
 		if not area.criminal_entered_t then
-			area.criminal_entered_t = area.criminal_left_t and area.criminal_left_t + 10 > self._t and area.old_criminal_entered_t or self._t
+			if area.criminal_left_t and area.old_criminal_entered_t then
+				area.criminal_entered_t = math.lerp(area.old_criminal_entered_t, self._t, math.min((self._t - area.criminal_left_t) / 20, 1))
+			else
+				area.criminal_entered_t = self._t
+			end
 		end
 	end
 end)

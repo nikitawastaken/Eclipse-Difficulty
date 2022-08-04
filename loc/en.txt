@@ -1,5 +1,7 @@
 {
 	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact. One shell only contains 8 pellets. This ammo type is harder to find.",
+	"bm_wp_upg_mk2_rare_desc": "This fuel is easier to find.",
+	"bm_wp_upg_mk2_welldone_desc": "This fuel is harder to find.",
 	"menu_nine_lives_beta": "Tough Guy",
 	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your teammates will increase their movement and reload speed by ##$multibasic## for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou revive crew members ##$multipro## faster."
 	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic2## increase to your bleedout health.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
@@ -35,6 +37,11 @@
 	"menu_deck21_9_desc": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
 	"menu_deck21_7_desc": "Killing ##$multiperk## enemies while the jamming effect is active will grant you ##$multiperk2## dodge chance for ##$multiperk3## seconds.",
 	"menu_deck10_9_desc": "Increase health gained from ammo packs by additional ##$multiperk##.\n\nYour ammo pick up range is increased by ##$multiperk4##.",
+	"menu_deck11_3_desc": "Damaging an enemy now heals ##$multiperk## life points every ##$multiperk2## seconds for ##$multiperk3## seconds.",
+	"menu_deck11_7_desc": "Damaging an enemy now heals ##$multiperk## life points every ##$multiperk2## seconds for ##$multiperk3## seconds.",
+	"menu_deck13_3_desc": "Increases the amount of health stored from kills by ##$multiperk##.",
+	"menu_deck13_5_desc": "Increases the maximum health that can be stored by ##$multiperk##.\n\nYour chance to dodge is increased by ##$multiperk3##.",
+	"menu_deck13_7_desc": "Increases the amount of health stored from kills by ##$multiperk##.",
 	"menu_deck12_3_desc": "Increases weapon swapping speed by ##$multiperk##.",
 	"menu_deck12_9_desc": "The lower your health, the more damage you do. When your health is below ##$multiperk##, you will do up to ##$multiperk2## more damage with ranged weapons as well.\n\nAll berserker state effects in this perk deck will start at ##$multiperk3## health instead of ##$multiperk4##.",
 	"menu_deck22_9_desc": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##.\n\nYour maximum health is increased by ##$multiperk2##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",

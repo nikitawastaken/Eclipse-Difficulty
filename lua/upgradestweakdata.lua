@@ -439,12 +439,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk4 = "125%"
 
 	-- Grinder
-	self.damage_to_hot_data.tick_time = 0.5
-	self.specialization_descs[11][1].multiperk2 = "0.5"
-	self.specialization_descs[11][3].multiperk2 = "0.5"
-	self.specialization_descs[11][5].multiperk2 = "0.5"
-	self.specialization_descs[11][7].multiperk2 = "0.5"
-	self.specialization_descs[11][9].multiperk2 = "0.5"
+	self.damage_to_hot_data.tick_time = 0.6
+	self.specialization_descs[11][1].multiperk2 = "0.6"
+	self.specialization_descs[11][3].multiperk2 = "0.6"
+	self.specialization_descs[11][5].multiperk2 = "0.6"
+	self.specialization_descs[11][7].multiperk2 = "0.6"
+	self.specialization_descs[11][9].multiperk2 = "0.6"
 
 	-- Ex-President
 	self.values.player.body_armor.skill_max_health_store = {4, 3.5, 3, 2.5, 2, 1.5, 1}

@@ -28,6 +28,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
 
+    -- Flamethrower Tanks
+    -- Rare
+    self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -25
+    self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.65}
+    self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_upg_mk2_rare_desc"
+    self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
+    -- Well Done
+    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 25
+    self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1.1, ammo_pickup_min_mul = 1.1}
+    self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
+    self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
 
     -- Minigun half that kit thing
     self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {movement_speed = 1.15}
