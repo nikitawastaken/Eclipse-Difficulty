@@ -407,11 +407,13 @@ function UpgradesTweakData:init(tweak_data)
 			{1, 1.5},
 			{1, 1.5}
 		}}
-	self.values.player.armor_increase = {0.8, 0.9, 1}
-	self.specialization_descs[15][3].multiperk2 = "80%"
-	self.specialization_descs[15][5].multiperk2 = "90%"
+	self.values.player.armor_increase = {0.5, 0.75, 1}
+	self.values.player.tier_dodge_chance[1] = 0.15
+	self.specialization_descs[15][3].multiperk2 = "50%"
+	self.specialization_descs[15][5].multiperk2 = "75%"
 	self.specialization_descs[15][7].multiperk2 = "100%"
-
+	self.specialization_descs[15][7].multiperk3 = "15%"
+	
 	-- Crook
 	self.values.player.level_2_armor_multiplier[3] = 1.8
 	self.values.player.level_3_armor_multiplier[3] = 1.7

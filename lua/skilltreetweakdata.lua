@@ -142,41 +142,39 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Old Swan Song
 	table.delete(self.skills.perseverance[2].upgrades, "player_berserker_no_ammo_cost")
 
-	-- Remove 15% dodge boost from Hackers botnet card
+	-- hacker
 	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
 	
-	-- Remove 20% armor from Armorer
+	-- armorer
 	table.delete(self.specializations[3][1].upgrades, "player_tier_armor_multiplier_2")
-	table.delete(self.specializations[3][3].upgrades, "player_tier_armor_multiplier_3")
 	table.delete(self.specializations[3][9].upgrades, "player_tier_armor_multiplier_6")
-	table.insert(self.specializations[3][3].upgrades, "player_tier_armor_multiplier_2")
-	table.insert(self.specializations[3][5].upgrades, "player_tier_armor_multiplier_3")
-	table.insert(self.specializations[3][5].upgrades, "player_tier_armor_multiplier_5")
+	self.specializations[3][3].upgrades ={"player_tier_armor_multiplier_2"}
+	self.specializations[3][5].upgrades ={"player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5"}
 
-	-- Remove armor boost from overdose card on socio
+	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
 	
-	-- Give faster swap speed and zerker to Yakuza and get rid of speed boost
-	table.delete(self.specializations[12][3].upgrades, "player_movement_speed_damage_health_ratio_multiplier")
-	table.insert(self.specializations[12][3].upgrades, "weapon_passive_swap_speed_multiplier_1")
+	-- yakuza
+	self.specializations[12][3].upgrades ={"weapon_passive_swap_speed_multiplier_1"}
 	table.insert(self.specializations[12][9].upgrades, "player_damage_health_ratio_multiplier")
 	table.delete(self.specializations[12][9].upgrades, "player_movement_speed_damage_health_ratio_threshold_multiplier")
 	
-	-- Remove self revive and self-healing on leech
+	-- leech
 	table.delete(self.specializations[22][1].upgrades, "player_copr_kill_life_leech_1")
 	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
 
-	-- No 2s godmode for anar
+	-- anarchist
+	self.specializations[15][7].upgrades = {"player_tier_dodge_chance_1", "player_armor_increase_3"}
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
 
-	-- Lower the kingpin health
+	-- kingpin
 	table.delete(self.specializations[17][9].upgrades, "player_passive_health_multiplier_4")
 
-	-- Crew Chief nerfs
+	-- Crew Chief
 	table.delete(self.specializations[1][3].upgrades, "player_damage_dampener_close_contact_1")
 	table.delete(self.specializations[1][9].upgrades, "team_hostage_damage_dampener_multiplier")
 
-	-- Remove Grinder and Ex-President extra health
+	-- Grinder and Ex-President
 	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_1")
 	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_2")
 	table.delete(self.specializations[11][7].upgrades, "player_passive_health_multiplier_3")
@@ -187,7 +185,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Get rid of burglars crouch move speed boost to avoid bugging upgrades out (no one plays the deck anyway so who cares)
 	table.delete(self.specializations[7][9].upgrades, "player_crouch_speed_multiplier_2")
 
-	-- Gambler 9th card gives extended pickup range
+	-- Gambler
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
 

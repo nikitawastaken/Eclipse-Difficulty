@@ -31,11 +31,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- Flamethrower Tanks
     -- Rare
     self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -25
+    self.parts.wpn_fps_fla_mk2_mag_rare.stats.concealment = 3
     self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.65}
     self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_upg_mk2_rare_desc"
     self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
     -- Well Done
     self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 25
+    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.concealment = -3
     self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1.1, ammo_pickup_min_mul = 1.1}
     self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
     self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true

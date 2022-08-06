@@ -1,18 +1,18 @@
 return {
-	-- Reduce amount of ambush bulldozers
-	[101557] = {
-		values = {
-			enabled = false
-		}
-	},
-	[100567] = {
-		values = {
-			enabled = false
-		}
-	},
+	-- Replace dozer spam with less stupid enemies
 	[101575] = {
 		values = {
-			enabled = false
+            enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"
+		}
+	},
+	[101182] = {
+		values = {
+            enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
+		}
+	},
+	[101210] = {
+		values = {
+            enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 		}
 	}
 }
