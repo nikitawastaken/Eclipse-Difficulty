@@ -16,6 +16,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.wpn_fps_shot_b682.override.wpn_fps_upg_a_explosive = nil
     self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
     self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom = nil
+    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom_free = nil
 
     -- Shell Rack for loco and r880
     self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2

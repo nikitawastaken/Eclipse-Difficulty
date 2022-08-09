@@ -123,8 +123,8 @@ local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
 
-	-- pre-henchmen team ai hurt severity & no gp
-	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0
+	-- pre-henchmen team ai hurt severity & low gp
+	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.1
 	presets.gang_member_damage.hurt_severity.bullet = {
 		health_reference = "current",
 		zones = {
@@ -831,9 +831,9 @@ function CharacterTweakData:_set_sm_wish()
 	self.tank.headshot_dmg_mul = 35
 
 	-- Team AI nerf
-	self.presets.gang_member_damage.HEALTH_INIT = 480
-	self.presets.gang_member_damage.REGENERATE_TIME = 1.8
-	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 0.6
+	self.presets.gang_member_damage.HEALTH_INIT = 400
+	self.presets.gang_member_damage.REGENERATE_TIME = 3
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 4
 
 	-- FBI Rifle preset
 	-- 45 damage M4

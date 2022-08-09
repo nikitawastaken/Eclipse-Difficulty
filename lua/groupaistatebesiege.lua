@@ -546,7 +546,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	if not use_teargas then
 		-- Offset grenade a bit to avoid spawning exactly on the player/door
 		mvec_set_z(detonate_offset, math_max(detonate_offset.z, 0))
-		mvec_set_l(detonate_offset, math_random(100, 300))
+		mvec_set_l(detonate_offset, math_random(250, 400))
 		mvec_set(detonate_offset_pos, detonate_pos)
 		mvec_add(detonate_offset_pos, detonate_offset)
 

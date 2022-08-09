@@ -151,8 +151,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.oppressor.multipro2 = "25%"
 
 	-- Thick Skin
-	self.values.player.damage_shake_addend = {0.6}
-	self.skill_descs.show_of_force.multibasic = "6"
+	self.values.player.damage_shake_addend[1] = 1
+	self.skill_descs.show_of_force.multibasic = "10"
 
 	-- Bulletstorm
 	self.skill_descs.bandoliers.multibasic = "5"

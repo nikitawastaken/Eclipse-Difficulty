@@ -24,8 +24,17 @@ function ProjectileBase:update(unit, t, dt)
         local col_ray = nil
         local __ignore_units = {}
         
+        -- Cannot shoot yourself
         if alive(self._thrower_unit) then
             table.insert(__ignore_units, self._thrower_unit)
+        end
+
+        -- Cannot shoot peers
+        local _peers = _peers or managers.network:session():peers()
+        for _, _peer in pairs(_peers) do
+            if alive(_peer:unit()) then
+                table.insert(__ignore_units, _peer:unit())
+            end
         end
 
         if #__ignore_units > 0 then
