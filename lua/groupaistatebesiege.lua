@@ -1,6 +1,6 @@
-local math_max = math.max
 local math_min = math.min
 local math_lerp = math.lerp
+local math_map_range = math.map_range
 local math_random = math.random
 local table_insert = table.insert
 local table_remove = table.remove
@@ -545,14 +545,14 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 	if not use_teargas then
 		-- Offset grenade a bit to avoid spawning exactly on the player/door
-		mvec_set_z(detonate_offset, math_max(detonate_offset.z, 0))
+		mvec_set_z(detonate_offset, math.max(detonate_offset.z, 0))
 		mvec_set_l(detonate_offset, math_random(250, 400))
 		mvec_set(detonate_offset_pos, detonate_pos)
 		mvec_add(detonate_offset_pos, detonate_offset)
 
 		local ray = World:raycast("ray", detonate_pos, detonate_offset_pos, "slot_mask", ray_mask)
 		if ray then
-			mvec_set_l(detonate_offset, math_max(0, ray.distance - 50))
+			mvec_set_l(detonate_offset, math.max(0, ray.distance - 50))
 			mvec_set(detonate_offset_pos, detonate_pos)
 			mvec_add(detonate_offset_pos, detonate_offset)
 		end
@@ -606,15 +606,17 @@ function GroupAIStateBesiege:_assign_recon_groups_to_retire(...)
 end
 
 
--- Reduce the importance of spawn group distance in spawn group weight to encourage enemies spawning from more directions
+-- Tweak importance of spawn group distance in spawn group weight based on the groups to spawn
 -- Also slightly optimized this function to properly check all areas
 function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_groups, target_pos, max_dis, verify_clbk)
 	target_pos = target_pos or target_area.pos
-	max_dis = max_dis and max_dis * max_dis
+	max_dis = max_dis or math.huge
 
 	local t = self._t
 	local valid_spawn_groups = {}
 	local valid_spawn_group_distances = {}
+	local shortest_dis = math.huge
+	local longest_dis = -math.huge
 
 	for _, area in pairs(self._area_data) do
 		local spawn_groups = area.spawn_groups
@@ -647,10 +649,16 @@ function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_gr
 
 					if self._graph_distance_cache[dis_id] then
 						local my_dis = self._graph_distance_cache[dis_id]
-						if not max_dis or my_dis < max_dis then
+						if my_dis < max_dis then
 							local spawn_group_id = spawn_group.mission_element:id()
 							valid_spawn_groups[spawn_group_id] = spawn_group
 							valid_spawn_group_distances[spawn_group_id] = my_dis
+							if my_dis < shortest_dis then
+								shortest_dis = my_dis
+							end
+							if my_dis > longest_dis then
+								longest_dis = my_dis
+							end
 						end
 					end
 				end
@@ -664,8 +672,9 @@ function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_gr
 
 	local total_weight = 0
 	local candidate_groups = {}
+	local low_weight = allowed_groups == self._tweak_data.reenforce.groups and 0.25 or allowed_groups == self._tweak_data.recon.groups and 0.5 or 0.75
 	for i, dis in pairs(valid_spawn_group_distances) do
-		local my_wgt = math_lerp(1, 0.75, math_min(1, dis / 5000))
+		local my_wgt = math_map_range(dis, shortest_dis, longest_dis, 1, low_weight)
 		local my_spawn_group = valid_spawn_groups[i]
 		local my_group_types = my_spawn_group.mission_element:spawn_groups()
 		my_spawn_group.distance = dis
@@ -861,8 +870,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function 
 		self._groups[spawn_task.group.id] = nil
 	end
 
-	-- Set a cooldown before new units can be spawned via regular spawn tasks
-	self._next_group_spawn_t = self._t + spawn_task.group.size * 0.75
+	-- Set a dynamic enemy spawnrate that depends on player count and enemy group size
+	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul)
+	self._next_group_spawn_t = self._t + spawn_task.group.size * spawn_rate_player_mul
 end)
 
 

@@ -132,10 +132,10 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 
 	reaction_func = reaction_func or CopLogicIdle._chk_reaction_to_attention_object
 
-	local my_data = data.internal_data
-	local far_range = my_data.weapon_range.far
-	local optimal_range = my_data.weapon_range.optimal
-	local close_range = my_data.weapon_range.close
+	local weapon_range = data.internal_data.weapon_range or { optimal = 1500, far = 3000, close = 750 }
+	local far_range = weapon_range.far
+	local optimal_range = weapon_range.optimal
+	local close_range = weapon_range.close
 	local murder = data.tactics and data.tactics.murder
 
 	for u_key, attention_data in pairs(attention_objects) do

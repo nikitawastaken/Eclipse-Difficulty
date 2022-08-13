@@ -1095,6 +1095,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.force = {10, 14, 18}
 		self.besiege.assault.force_balance_mul = {1.2, 1.4, 1.6, 1.8}
 
+		-- Spawnrate
+		self.besiege.assault.spawnrate_balance_mul = {1.2, 0.9, 0.7, 0.5}
+
 		-- RECON / REENFORCE --
 
 		-- Make reenforce spawngroups spawn faster

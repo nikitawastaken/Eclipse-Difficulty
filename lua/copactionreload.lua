@@ -11,7 +11,13 @@ end
 function CopActionReload:_play_reload()
 	local redir_res = self._ext_movement:play_redirect("reload")
 	if redir_res then
-		self._reload_speed = self._reload_speed or self._common_data.char_tweak.weapon[self._ext_inventory:equipped_unit():base():weapon_tweak_data().usage].RELOAD_SPEED
+		if not self._reload_speed then
+			local weapon = self._ext_inventory:equipped_unit()
+			local usage = weapon and weapon:base():weapon_tweak_data().usage
+			local usage_tweak = self._common_data.char_tweak.weapon[usage]
+			self._reload_speed = usage_tweak and usage_tweak.RELOAD_SPEED or 1
+		end
+		
 		self._machine:set_speed(redir_res, self._reload_speed)
 
 		if Network:is_server() then

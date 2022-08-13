@@ -1,6 +1,6 @@
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- SWAT units
-	self.fbi_swat.move_speed = self.presets.move_speed.fast -- nerf movespeed on fbi lights
+	self.fbi_swat.move_speed = self.presets.move_speed.fast
 	self.fbi_swat.suppression = {panic_chance_mul = 0.3, duration = {3, 4}, react_point = {0, 2}, brown_point = {5, 6}}
 	self.fbi_heavy_swat.suppression = {panic_chance_mul = 0.3, duration = {3, 4}, react_point = {0, 2}, brown_point = {5, 6}}
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
@@ -10,12 +10,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	-- Specials
 	self.sniper.suppression = nil
-	self.sniper.misses_first_player_shot = true -- make them miss the first shot
+	self.sniper.misses_first_player_shot = true
 
 	self.spooc.spooc_sound_events = {detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop"} -- remove cloaker charge noise
-	self.spooc.use_animation_on_fire_damage = true -- also make them non immune to fire
+	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
-	self.spooc.spooc_attack_use_smoke_chance = 0 -- double smoke is never fun
+	self.spooc.spooc_attack_use_smoke_chance = 0
 
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
 	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
@@ -317,8 +317,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			mode = {
 				0,
 				0,
-				0,
-				1
+				2,
+				3
 			},
 			autofire_rounds = {
 				3,
@@ -329,8 +329,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			dmg_mul = 7.5,
 			r = 2000,
 			acc = {
-				0.6,
-				0.7
+				0.45,
+				0.6
 			},
 			recoil = {
 				0.6,
@@ -338,27 +338,27 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			},
 			mode = {
 				0,
-				3,
-				3,
-				1
+				0,
+				1,
+				0
 			}
 		},
 		{
 			dmg_mul = 7.5,
 			r = 3000,
 			acc = {
-				0.5,
-				0.6
+				0.25,
+				0.4
 			},
 			recoil = {
 				0.7,
 				1.1
 			},
 			mode = {
+				1,
 				3,
 				2,
-				1,
-				0.5
+				0
 			}
 		},
 	}
@@ -719,7 +719,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					1
 				},
 				autofire_rounds = {
-					3,
+					4,
 					6
 				}
 			},
@@ -741,7 +741,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					1
 				},
 				autofire_rounds = {
-					2,
+					3,
 					4
 				}
 			},
@@ -758,9 +758,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				},
 				mode = {
 					0,
-					3,
-					3,
-					1
+					0,
+					1,
+					0
 				}
 			},
 			{
@@ -776,7 +776,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					},
 				mode = {
 					1,
-					6,
+					3,
 					2,
 					0
 				}
@@ -794,8 +794,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				},
 				mode = {
 					1,
-					3,
 					2,
+					0,
 					0
 				}
 			}
@@ -943,8 +943,8 @@ function CharacterTweakData:_set_sm_wish()
 				mode = {
 					0,
 					0,
-					0,
-					1
+					2,
+					3
 				},
 				autofire_rounds = {
 					3,
@@ -955,8 +955,8 @@ function CharacterTweakData:_set_sm_wish()
 				dmg_mul = 4.5,
 				r = 2000,
 				acc = {
-					0.6,
-					0.7
+					0.4,
+					0.5
 				},
 				recoil = {
 					0.6,
@@ -964,27 +964,27 @@ function CharacterTweakData:_set_sm_wish()
 				},
 				mode = {
 					0,
-					3,
-					3,
-					1
+					0,
+					1,
+					0
 				}
 			},
 			{
 				dmg_mul = 4.5,
 				r = 3000,
 				acc = {
-					0.5,
-					0.6
+					0.2,
+					0.35
 				},
 				recoil = {
 					0.7,
 					1.1
 				},
 				mode = {
+					1,
 					3,
 					2,
-					1,
-					0.5
+					0
 				}
 			},
 		}
@@ -1070,7 +1070,7 @@ function CharacterTweakData:_set_sm_wish()
 				r = 2000,
 				acc = {
 					0.3,
-					0.5
+					0.4
 				},
 				recoil = {
 					1.2,
@@ -1087,8 +1087,8 @@ function CharacterTweakData:_set_sm_wish()
 				dmg_mul = 0.4,
 				r = 3000,
 				acc = {
-					0.2,
-					0.3
+					0.1,
+					0.1
 				},
 				recoil = {
 					1.4,
@@ -1211,17 +1211,21 @@ function CharacterTweakData:_set_sm_wish()
 				},
 				mode = {
 					0,
+					0,
 					3,
+					2
+				},
+				autofire_rounds = {
 					3,
-					1
+					4
 				}
 			},
 			{
 				dmg_mul = 6.75,
 				r = 2000,
 				acc = {
-					0.6,
-					0.7
+					0.5,
+					0.65
 				},
 				recoil = {
 					0.6,
@@ -1229,27 +1233,27 @@ function CharacterTweakData:_set_sm_wish()
 				},
 				mode = {
 					0,
-					3,
-					3,
-					1
+					0,
+					1,
+					0
 				}
 			},
 			{
 				dmg_mul = 6.75,
 				r = 3000,
 				acc = {
-					0.6,
-					0.7
+					0.3,
+					0.45
 				},
 				recoil = {
 					0.7,
 					1.1
 				},
 				mode = {
+					1,
 					3,
 					2,
-					1,
-					0.5
+					0
 				}
 			},
 		}
@@ -1363,8 +1367,8 @@ function CharacterTweakData:_set_sm_wish()
 				mode = {
 					0,
 					0,
-					0,
-					1
+					1,
+					3
 				},
 				autofire_rounds = {
 					3,
@@ -1375,8 +1379,8 @@ function CharacterTweakData:_set_sm_wish()
 				dmg_mul = 5.5,
 				r = 2000,
 				acc = {
-					0.55,
-					0.7
+					0.4,
+					0.55
 				},
 				recoil = {
 					0.2,
@@ -1384,27 +1388,27 @@ function CharacterTweakData:_set_sm_wish()
 				},
 				mode = {
 					0,
-					3,
-					3,
-					1
+					0,
+					1,
+					0
 				}
 			},
 			{
 				dmg_mul = 5.5,
 				r = 3000,
 				acc = {
-					0.45,
-					0.6
+					0.25,
+					0.4
 				},
 				recoil = {
 					0.7,
 					1.1
 				},
 				mode = {
+					1,
 					3,
 					2,
-					1,
-					0.5
+					0
 				}
 			}
 		}
@@ -1489,8 +1493,8 @@ function CharacterTweakData:_set_sm_wish()
 				dmg_mul = 1.6,
 				r = 2000,
 				acc = {
-					0.45,
-					0.65
+					0.4,
+					0.45
 				},
 				recoil = {
 					0.7,
@@ -1507,8 +1511,8 @@ function CharacterTweakData:_set_sm_wish()
 				dmg_mul = 1,
 				r = 3000,
 				acc = {
-					0.3,
-					0.5
+					0.15,
+					0.15
 				},
 				recoil = {
 					1,
@@ -1603,6 +1607,10 @@ function CharacterTweakData:_set_sm_wish()
 				0,
 				0,
 				1
+			},
+			autofire_rounds = {
+				10,
+				15
 			}
 		},
 		{
@@ -1621,6 +1629,10 @@ function CharacterTweakData:_set_sm_wish()
 				0,
 				0,
 				1
+			},
+			autofire_rounds = {
+				8,
+				12
 			}
 		},
 		{
@@ -1639,6 +1651,10 @@ function CharacterTweakData:_set_sm_wish()
 				0,
 				0,
 				1
+			},
+			autofire_rounds = {
+				6,
+				9
 			}
 		},
 		{
@@ -1654,9 +1670,13 @@ function CharacterTweakData:_set_sm_wish()
 			},
 			mode = {
 				0,
+				0,
+				2,
+				3
+			},
+			autofire_rounds = {
 				3,
-				3,
-				1
+				5
 			}
 		},
 		{
@@ -1671,9 +1691,9 @@ function CharacterTweakData:_set_sm_wish()
 				1.2
 			},
 			mode = {
+				2,
 				3,
-				2,
-				2,
+				1,
 				0
 			}
 		}
@@ -1917,6 +1937,10 @@ function CharacterTweakData:_set_sm_wish()
 				0,
 				0,
 				1
+			},
+			autofire_rounds = {
+				10,
+				15
 			}
 		},
 		{
@@ -1929,6 +1953,10 @@ function CharacterTweakData:_set_sm_wish()
 				0,
 				0,
 				1
+			},
+			autofire_rounds = {
+				8,
+				12
 			}
 		},
 		{
@@ -1941,6 +1969,10 @@ function CharacterTweakData:_set_sm_wish()
 				0,
 				0,
 				1
+			},
+			autofire_rounds = {
+				4,
+				7
 			}
 		},
 		{
@@ -1950,9 +1982,13 @@ function CharacterTweakData:_set_sm_wish()
 			recoil = {0.35, 1},
 			mode = {
 				0,
+				0,
+				2,
+				3
+			},
+			autofire_rounds = {
 				3,
-				3,
-				1
+				5
 			}
 		},
 		{
@@ -1961,10 +1997,10 @@ function CharacterTweakData:_set_sm_wish()
 			dmg_mul = 3,
 			recoil = {0.5, 1.2},
 			mode = {
+				3,
+				2,
 				0,
-				3,
-				3,
-				1
+				0
 			}
 		}
 	}
@@ -1985,8 +2021,8 @@ function CharacterTweakData:_set_sm_wish()
 			recoil = {0.35, 0.35},
 			mode = {
 				0,
-				3,
-				3,
+				0,
+				0,
 				1
 			}
 		},
@@ -1998,8 +2034,8 @@ function CharacterTweakData:_set_sm_wish()
 			mode = {
 				0,
 				0,
-				1,
-				0
+				0,
+				1
 			}
 		},
 		{
@@ -2009,8 +2045,8 @@ function CharacterTweakData:_set_sm_wish()
 			recoil = {0.35, 0.55},
 			mode = {
 				0,
-				1,
 				0,
+				2,
 				1
 			}
 		},
@@ -2021,7 +2057,7 @@ function CharacterTweakData:_set_sm_wish()
 			recoil = {0.35, 1},
 			mode = {
 				1,
-				0,
+				2,
 				0,
 				0
 			}
@@ -2040,138 +2076,11 @@ function CharacterTweakData:_set_sm_wish()
 		}
 	}
 
-	-- Taser
-	-- 75 Damage
-	self.taser.weapon.is_rifle.aim_delay = {0.2, 0.2}
-	self.taser.weapon.is_rifle.focus_delay = 0.2
-	self.taser.weapon.is_rifle.melee_dmg = 10
-	self.taser.weapon.is_rifle.range = {
-		optimal = 1250,
-		far = 2500,
-		close = 750
-	}
-	self.taser.weapon.is_rifle.FALLOFF = {
-		{
-			dmg_mul = 7.5,
-			r = 100,
-			acc = {
-				0.9,
-				0.975
-			},
-			recoil = {
-				0.25,
-				0.3
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			},
-			autofire_rounds = {
-				6,
-				10
-			}
-		},
-		{
-			dmg_mul = 7.5,
-			r = 500,
-			acc = {
-				0.875,
-				0.95
-			},
-			recoil = {
-				0.25,
-				0.3
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			},
-			autofire_rounds = {
-				4,
-				6
-			}
-		},
-		{
-			dmg_mul = 7.5,
-			r = 1000,
-			acc = {
-				0.8,
-				0.9
-			},
-			recoil = {
-				0.35,
-				0.55
-			},
-			mode = {
-				0,
-				0,
-				0,
-				1
-			},
-			autofire_rounds = {
-				3,
-				4
-			}
-		},
-		{
-			dmg_mul = 7.5,
-			r = 1500,
-			acc = {
-				0.75,
-				0.85
-			},
-			recoil = {
-				0.4,
-				0.6
-			},
-			mode = {
-				0,
-				3,
-				3,
-				1
-			}
-		},
-		{
-			dmg_mul = 7.5,
-			r = 2000,
-			acc = {
-				0.65,
-				0.75
-			},
-			recoil = {
-				0.2,
-				0.3
-			},
-			mode = {
-				0,
-				3,
-				3,
-				1
-			}
-		},
-		{
-			dmg_mul = 7.5,
-			r = 3000,
-			acc = {
-				0.4,
-				0.6
-			},
-			recoil = {
-				0.7,
-				1.1
-			},
-			mode = {
-				3,
-				2,
-				1,
-				0.5
-			}
-		},
-	}	
+	-- Taser preset
+	self.taser.weapon.is_rifle = deep_clone(self.presets.weapon.deathwish.is_rifle)
+	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 30
+	self.taser.weapon.is_rifle.tase_distance = 1500
+	self.taser.weapon.is_rifle.aim_delay_tase = {0.2, 0.2}
 	
 	-- Bosses
 	self.chavez_boss.weapon.akimbo_pistol.FALLOFF = {

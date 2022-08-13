@@ -1,3 +1,20 @@
+-- Scale gained drama with player count
+function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
+	self._drama_data.drama_bal_mul = tweak_data.drama.drama_balance_mul
+	local drama_data = self._drama_data
+	local drama_player_mul = self:_get_balancing_multiplier(self._drama_data.drama_bal_mul)
+	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
+
+	if alive(attacker) then
+		local max_dis = drama_data.max_dis
+		local dis_lerp = math.min(1, mvector3.distance(attacker:movement():m_pos(), unit:movement():m_pos()) / drama_data.max_dis)
+		dis_lerp = math.lerp(1, drama_data.dis_mul, dis_lerp)
+		drama_amount = drama_amount * dis_lerp
+	end
+
+	self:_add_drama(drama_amount)
+end
+
 -- Restore scripted cloaker spawn noise
 local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
 function GroupAIStateBase:_process_recurring_grp_SO(...)
