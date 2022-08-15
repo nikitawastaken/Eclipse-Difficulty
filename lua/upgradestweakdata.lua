@@ -357,7 +357,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Infiltrator / Socio healing
 	self.values.player.melee_kill_life_leech = {1}
 	self.specialization_descs[9][5].multiperk = "10"
-	self.values.temporary.melee_life_leech[1][1] = {3}
+	self.values.temporary.melee_life_leech[1][1] = 3
 	self.specialization_descs[8][9].multiperk = "30"
 
 	-- Crew Chief 
