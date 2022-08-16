@@ -5,14 +5,14 @@ tweak_data.medic.disabled_units = {"spooc", "medic"}
 
 -- grenade launchers and rocket launchers
 tweak_data.projectiles.rocket_ray_frag.curve_pow = 0.5
-tweak_data.projectiles.rocket_ray_frag.damage = 60
+tweak_data.projectiles.rocket_ray_frag.damage = 64
 tweak_data.projectiles.rocket_ray_frag.player_damage = 8
 tweak_data.projectiles.launcher_rocket.damage = 600
 tweak_data.projectiles.launcher_rocket.player_damage = 16
-tweak_data.projectiles.launcher_frag.damage = 48
-tweak_data.projectiles.launcher_frag_m32.damage = 48
+tweak_data.projectiles.launcher_frag.damage = 64
+tweak_data.projectiles.launcher_frag_m32.damage = 42
 tweak_data.projectiles.launcher_m203.damage = 48
-tweak_data.projectiles.launcher_frag_slap.damage = 48
+tweak_data.projectiles.launcher_frag_slap.damage = 64
 tweak_data.projectiles.launcher_frag_arbiter.damage = 23
 tweak_data.projectiles.launcher_frag_china.damage = 36
 tweak_data.projectiles.launcher_frag_ms3gl.damage = 22

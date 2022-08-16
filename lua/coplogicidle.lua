@@ -100,22 +100,6 @@ function CopLogicIdle._chk_relocate(data, ...)
 		data.logic._exit(data.unit, "travel")
 
 		return true
-	elseif objective_type == "defend_area" then
-		-- Move back to objective area if reenforce group member left it
-		if not objective.grp_objective or objective.grp_objective.type ~= "reenforce_area" then
-			return
-		end
-
-		if not objective.in_place or not objective.area or objective.area.nav_segs[data.unit:movement():nav_tracker():nav_segment()] then
-			return
-		end
-
-		objective.in_place = nil
-		objective.path_data = nil
-
-		data.logic._exit(data.unit, "travel")
-
-		return true
 	end
 end
 

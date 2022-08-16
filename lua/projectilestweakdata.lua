@@ -7,8 +7,9 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
     -- 16s flask cooldown
     self.projectiles.damage_control.base_cooldown = 16
 
-    -- fix retarded "anticheat" on 101
+    -- remove retarded anticheat
     self.projectiles.rocket_ray_frag.time_cheat = nil
+    self.projectiles.launcher_frag_m32.time_cheat = nil
     
     -- grenade amounts
 	self.projectiles.frag.max_amount = 5

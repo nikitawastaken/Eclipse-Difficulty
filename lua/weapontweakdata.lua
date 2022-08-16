@@ -795,17 +795,19 @@ self.x_pl14.stats.damage = 140
 -- Grenade / Rocket launchers
 
 -- GL40
-self.gre_m79.stats.damage = 48
+self.gre_m79.stats.damage = 64
 self.gre_m79.AMMO_MAX = 3
 self.gre_m79.AMMO_PICKUP = {0.05, 0.575}
 
 -- Piglet
-self.m32.stats.damage = 48
+self.m32.stats.damage = 42
 self.m32.AMMO_PICKUP = {0.05, 0.575}
-self.m32.stats.reload = 12
+self.m32.stats.reload = 15
+self.m32.fire_mode_data.fire_rate = 60 / 120
 
 -- Commando 101
-self.ray.stats.damage = 6
+self.ray.stats.damage = 64
+self.ray.stats_modifiers = {damage = 10}
 self.ray.stats.reload = 8
 self.ray.AMMO_PICKUP = {0.05, 0.38}
 
@@ -823,7 +825,7 @@ self.arbiter.stats.damage = 23
 self.arbiter.AMMO_PICKUP = {0.05, 0.52}
 
 -- Compact 40
-self.slap.stats.damage = 48
+self.slap.stats.damage = 64
 self.slap.AMMO_MAX = 3
 self.slap.AMMO_PICKUP = {0.05, 0.48}
 
