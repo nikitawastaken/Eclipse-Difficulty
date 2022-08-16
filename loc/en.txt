@@ -3,7 +3,7 @@
 	"bm_wp_upg_mk2_rare_desc": "This fuel is easier to find.",
 	"bm_wp_upg_mk2_welldone_desc": "This fuel is harder to find.",
 	"menu_nine_lives_beta": "Tough Guy",
-	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your teammates will increase their movement and reload speed by ##$multibasic## for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou revive crew members ##$multipro## faster."
+	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your teammates will increase their movement and reload speed by ##$multibasic## for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou revive crew members ##$multipro## faster.",
 	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic2## increase to your bleedout health.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
 	"menu_wolverine_beta_desc": "BASIC: ##$basic##\nThe lower your health, the more damage you do. When your health is below ##$multibasic##, you will do up to ##$multibasic2## more melee and saw damage.\n\nACE: ##$pro##\nThe lower your health, the more movement speed you gain. When your health is below ##$multipro##, you will gain up to ##$multipro2## movement speed.",
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
@@ -35,6 +35,8 @@
 	"menu_sniper_graze_damage": "Mind Blown",
 	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nScoring a headshot with a Sniper Rifle deals ##$multibasic## of the damage to the closest enemy in a ##$multibasic2## radius.\n\nACE: ##$pro##\nAny killing headshot with a Sniper Rifle now deals ##$multipro## of the damage to the chained enemy.\n\nNote: Does not affect Semi-Auto Sniper Rifles.",
 	"menu_deck21_9_desc": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
+	"menu_deck1_3_desc": "You and your crew's stamina is increased by ##$multiperk##.\n\nIncreases your shout distance by ##$multiperk2##.",
+	"menu_deck1_9_desc": "You and your crew will gain ##$multiperk## max health and ##$multiperk2## stamina for each hostage up to ##$multiperk3## times.\n\nNote: Crew perks do not stack.",
 	"menu_deck21_7_desc": "Killing ##$multiperk## enemies while the jamming effect is active will grant you ##$multiperk2## dodge chance for ##$multiperk3## seconds.",
 	"menu_deck10_3_desc": "Your ammo pickup is increased by ##$multiperk##.\n\nYou gain ##$multiperk3## more health.",
 	"menu_deck10_9_desc": "Increase health gained from ammo packs by additional ##$multiperk##.\n\nYour ammo pick up range is increased by ##$multiperk4##.",
