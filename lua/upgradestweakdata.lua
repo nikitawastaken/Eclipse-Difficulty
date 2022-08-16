@@ -156,8 +156,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.show_of_force.multibasic = "10"
 
 	-- Bulletstorm
-	self.skill_descs.bandoliers.multibasic = "5"
-	self.skill_descs.bandoliers.multipro2 = "20"
+	self.skill_descs.bandoliers.multibasic = "12"
+	self.skill_descs.bandoliers.multipro2 = "30"
 
 	-- Saw Massacre 
 	self.skill_descs.ammo_reservoir.multibasic2 = "50%"
