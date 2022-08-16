@@ -440,6 +440,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][3].multiperk2 = "5"
 	self.specialization_descs[10][9].multiperk4 = "125%"
 
+	-- New ammo multiplier upgrade
+	self.values.player.addition_ammo_eclipse = {0.5}
+	self.definitions.player_addition_ammo_eclipse = {
+		name_id = "menu_player_addition_ammo_eclipse",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "addition_ammo_eclipse",
+			category = "player"
+		}
+	}
+
 	-- Grinder
 	self.damage_to_hot_data.tick_time = 0.6
 	self.specialization_descs[11][1].multiperk2 = "0.6"
