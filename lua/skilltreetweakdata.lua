@@ -188,7 +188,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Gambler
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
+	-- Give the 50% ammo boost to self instead of team
 	table.insert(self.specializations[10][3].upgrades, "player_addition_ammo_eclipse")
+	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
 	-- Remove some default upgrades
 	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")
