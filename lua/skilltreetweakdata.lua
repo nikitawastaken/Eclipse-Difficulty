@@ -11,6 +11,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.fast_fire[2].upgrades = {"player_automatic_mag_increase_2"}
 	self.skills.fast_fire.icon_xy = {2, 0}
 
+	-- Fire Control
+	self.skills.fire_control[2].upgrades = {"player_ap_bullets_1"}
+
 	-- Oppressor 
 	self.skills.heavy_impact[1].upgrades = {"player_suppression_bonus"}
 	self.skills.heavy_impact[2].upgrades = {"player_suppression_bonus_2"}
@@ -19,7 +22,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.heavy_impact.icon_xy = {7, 0}
 
 	-- Body Expertise
-	self.skills.body_expertise[1].upgrades = {"player_ap_bullets_1"}
+	self.skills.body_expertise[1].upgrades = {"player_no_movement_penalty"}
 	self.skills.body_expertise[2].upgrades = {"weapon_automatic_head_shot_add_1"}
 
 	-- Bulletstorm

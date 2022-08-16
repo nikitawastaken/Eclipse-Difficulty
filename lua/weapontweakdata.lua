@@ -806,12 +806,14 @@ self.m32.stats.reload = 15
 self.m32.fire_mode_data.fire_rate = 60 / 120
 
 -- Commando 101
+self.ray.categories = {"grenade_launcher", "heavy"}
 self.ray.stats.damage = 64
 self.ray.stats_modifiers = {damage = 10}
 self.ray.stats.reload = 8
 self.ray.AMMO_PICKUP = {0.05, 0.38}
 
 -- RPG
+self.rpg7.categories = {"grenade_launcher", "heavy"}
 self.rpg7.stats.damage = 60
 self.rpg7.AMMO_PICKUP = {0.05, 0.38}
 self.rpg7.stats.reload = 15

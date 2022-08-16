@@ -29,7 +29,8 @@ function UpgradesTweakData:init(tweak_data)
 	
 	-- LMG / Minigun movement penalties revert
 	self.weapon_movement_penalty.lmg = 0.8
-	self.weapon_movement_penalty.minigun = 0.8
+	self.weapon_movement_penalty.minigun = 0.75
+	self.weapon_movement_penalty.heavy = 0.75
 
 
 	-- Skills
@@ -227,8 +228,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fast_fire.multibasic = "5"
 	self.skill_descs.fast_fire.multipro = "10"
 
-	-- Body Expertise
-	self.values.weapon.automatic_head_shot_add = {0.6, 0.9}
+	-- LMG Specialist
+	self.values.player.no_movement_penalty = {true}
+	self.definitions.player_no_movement_penalty = {
+		name_id = "menu_player_no_movement_penalty",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "no_movement_penalty",
+			category = "player"
+		}
+	}
+	self.values.weapon.automatic_head_shot_add[1] = 0.6
 	self.skill_descs.body_expertise.multipro = "60%"
 	
 	-- Ghost --
