@@ -204,9 +204,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
-	self.values.player.suppression_multiplier = {1.25, 1.75}
-	self.skill_descs.heavy_impact.multibasic = "25%"
-	self.skill_descs.heavy_impact.multipro = "50%"
+	self.values.player.suppression_multiplier = {1.15, 1.45}
+	self.skill_descs.heavy_impact.multibasic = "15%"
+	self.skill_descs.heavy_impact.multipro = "30%"
 
 	-- Fast Hands
 	self.values.lmg.reload_speed_multiplier = {1.2}
