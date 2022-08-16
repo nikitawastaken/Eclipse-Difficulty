@@ -436,12 +436,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
-	self.specialization_descs[10][1].multiperk3 = "10"
-	self.specialization_descs[10][3].multiperk2 = "5"
-	self.specialization_descs[10][9].multiperk4 = "125%"
-
-	-- New ammo multiplier upgrade
-	self.values.player.addition_ammo_eclipse = {0.5}
+	self.values.player.addition_ammo_eclipse = {0.2}
 	self.definitions.player_addition_ammo_eclipse = {
 		name_id = "menu_player_addition_ammo_eclipse",
 		category = "feature",
@@ -451,6 +446,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
+	self.specialization_descs[10][1].multiperk3 = "10"
+	self.specialization_descs[10][3].multiperk = "20%"
+	self.specialization_descs[10][9].multiperk4 = "125%"
 
 	-- Grinder
 	self.damage_to_hot_data.tick_time = 0.6

@@ -36,6 +36,7 @@
 	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nScoring a headshot with a Sniper Rifle deals ##$multibasic## of the damage to the closest enemy in a ##$multibasic2## radius.\n\nACE: ##$pro##\nAny killing headshot with a Sniper Rifle now deals ##$multipro## of the damage to the chained enemy.\n\nNote: Does not affect Semi-Auto Sniper Rifles.",
 	"menu_deck21_9_desc": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
 	"menu_deck21_7_desc": "Killing ##$multiperk## enemies while the jamming effect is active will grant you ##$multiperk2## dodge chance for ##$multiperk3## seconds.",
+	"menu_deck10_3_desc": "Your ammo pickup is increased by ##$multiperk##.\n\nYou gain ##$multiperk3## more health.",
 	"menu_deck10_9_desc": "Increase health gained from ammo packs by additional ##$multiperk##.\n\nYour ammo pick up range is increased by ##$multiperk4##.",
 	"menu_deck11_3_desc": "Damaging an enemy now heals ##$multiperk## life points every ##$multiperk2## seconds for ##$multiperk3## seconds.",
 	"menu_deck11_7_desc": "Damaging an enemy now heals ##$multiperk## life points every ##$multiperk2## seconds for ##$multiperk3## seconds.",
