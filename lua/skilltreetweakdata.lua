@@ -188,6 +188,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Gambler
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
+	table.insert(self.specializations[10][3].upgrades, "player_addition_ammo_eclipse")
 
 	-- Remove some default upgrades
 	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")
