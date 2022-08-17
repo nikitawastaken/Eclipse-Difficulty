@@ -154,6 +154,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[3][3].upgrades ={"player_tier_armor_multiplier_2"}
 	self.specializations[3][5].upgrades ={"player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5"}
 
+	-- muscle
+	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
+
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
 	

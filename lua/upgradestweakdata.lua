@@ -378,6 +378,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Muscle
 	self.values.player.passive_health_regen = {1}
 	self.specialization_descs[2][9].multiperk2 = "10"
+	self.specialization_descs[2][9].multiperk = "40%"
 
 	-- Hitman
 	self.values.player.perk_armor_regen_timer_multiplier[5] = 0.4
