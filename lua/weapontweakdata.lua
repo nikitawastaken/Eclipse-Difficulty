@@ -136,7 +136,7 @@ self.m95.kick.crouching = self.m95.kick.standing
 self.m95.kick.steelsight = self.m95.kick.standing
 
 
--- LMGs
+-- LMGs and Miniguns
 
 
 -- KSP
@@ -189,6 +189,20 @@ self.hk51b.AMMO_PICKUP = {7, 8}
 self.hk51b.kick.standing = self.rpk.kick.standing
 self.hk51b.kick.crouching = self.rpk.kick.standing
 self.hk51b.kick.steelsight = self.rpk.kick.standing
+
+-- Minigun
+self.m134.stats.damage = 45
+self.m134.AMMO_PICKUP = {5, 7}
+self.m134.kick.standing = {0.5, 0.75, -0.3, 0.55}
+self.m134.kick.crouching = self.m134.kick.standing
+self.m134.kick.steelsight = self.m134.kick.standing
+
+-- Microgun
+self.shuno.stats.damage = 65
+self.shuno.AMMO_PICKUP = {5, 7}
+self.shuno.kick.standing = {0.65, 0.8, -0.85, 0.3}
+self.shuno.kick.crouching = self.shuno.kick.standing
+self.shuno.kick.steelsight = self.shuno.kick.standing
 
 -- Shotguns
 

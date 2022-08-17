@@ -44,8 +44,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
     self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
 
-    -- Minigun half that kit thing
-    self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {movement_speed = 1.15}
     -- Union Short Barrel buff
     self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
 
