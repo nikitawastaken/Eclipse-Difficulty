@@ -191,16 +191,16 @@ self.hk51b.kick.crouching = self.rpk.kick.standing
 self.hk51b.kick.steelsight = self.rpk.kick.standing
 
 -- Minigun
-self.m134.stats.damage = 45
-self.m134.AMMO_PICKUP = {5, 7}
-self.m134.kick.standing = {0.5, 0.75, -0.3, 0.55}
+self.m134.stats.damage = 40
+self.m134.AMMO_PICKUP = {4.5, 6}
+self.m134.kick.standing = {0.3, 0.4, -0.2, 0.5}
 self.m134.kick.crouching = self.m134.kick.standing
 self.m134.kick.steelsight = self.m134.kick.standing
 
 -- Microgun
-self.shuno.stats.damage = 65
-self.shuno.AMMO_PICKUP = {5, 7}
-self.shuno.kick.standing = {0.65, 0.8, -0.85, 0.3}
+self.shuno.stats.damage = 60
+self.shuno.AMMO_PICKUP = {4.5, 6}
+self.shuno.kick.standing = {0.5, 0.7, -0.6, 0.2}
 self.shuno.kick.crouching = self.shuno.kick.standing
 self.shuno.kick.steelsight = self.shuno.kick.standing
 
@@ -929,7 +929,7 @@ self.x_judge.kick.steelsight = self.x_judge.kick.standing
 -- Flamethrowers
 
 -- mk2
-self.flamethrower_mk2.stats.damage = 40
+self.flamethrower_mk2.stats.damage = 25
 self.flamethrower_mk2.fire_dot_data = {
 	dot_trigger_chance = 50,
 	dot_damage = 7.5,
@@ -937,7 +937,7 @@ self.flamethrower_mk2.fire_dot_data = {
 	dot_trigger_max_distance = 3000,
 	dot_tick_period = 0.5
 }
-self.flamethrower_mk2.AMMO_PICKUP = {5, 7.5}
+self.flamethrower_mk2.AMMO_PICKUP = {4.5, 6.75}
 
 -- ma-17 shouldn't exist and just makes the primary one useless, i'm sorry
 self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
