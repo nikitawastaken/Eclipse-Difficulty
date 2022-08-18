@@ -102,7 +102,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shock_and_awe.name_id = "menu_fast_hands"
 	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
 
-	-- Smash and Grab
+	-- Quick Grab
 	self.skills.second_chances[1].upgrades = {"carry_interact_speed_multiplier_2"}
 
 	-- ECM feedback

@@ -244,7 +244,7 @@ function UpgradesTweakData:init(tweak_data)
 	
 	-- Ghost --
 
-	-- Smash and Grab
+	-- Quick Grab
 	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
 	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.75
 	self.skill_descs.second_chances.multibasic = "50%"
