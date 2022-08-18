@@ -34,3 +34,11 @@ function CopDamage:roll_critical_hit(attack_data)
 
     return true, attack_data.damage * 2
 end
+
+-- Give flamethrowers a damage multiplier against dozers
+Hooks:PreHook(CopDamage, "damage_fire", "eclipse_damage_fire",
+function(self, attack_data)
+    if self._unit:base()._tweak_table == "tank" then
+	attack_data.damage = attack_data.damage * 15
+    end
+end)
