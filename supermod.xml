@@ -36,6 +36,7 @@
 				<post :hook_id="tangomanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="player/snipergrazedamage"/>
+				<post :hook_id="playermanager"/>
 			</group>
 
 			<group :hook_id="network/">

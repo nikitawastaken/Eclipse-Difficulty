@@ -864,22 +864,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				}
 			}
 		}
-		self.enemy_spawn_groups.medic_group = {
-			amount = {
-				3,
-				3
-			},
-			spawn = {
-				{
-					amount_min = 3,
-					freq = 1,
-					amount_max = 3,
-					rank = 3,
-					unit = "medic_unit",
-					tactics = self._tactics.fbi_special
-				},
-			}
-		}
 		self.enemy_spawn_groups.cloaker_group = {
 			amount = {
 				2,
@@ -1144,7 +1128,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			elite_long_range = {0.4, 0.4, 0.4},
 			elite_heavy_charge = {0.35, 0.35, 0.35},
 			elite_tank = {0, 0, 0.1},
-			-- medic_group = {0.3, 0.3, 0.3},
 			cloaker_group = {0, 0.08, 0.12},
 			single_spooc = {0, 0, 0},
 			Phalanx = {0, 0, 0},

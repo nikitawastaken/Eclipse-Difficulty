@@ -11,6 +11,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.fast_fire[2].upgrades = {"player_automatic_mag_increase_2"}
 	self.skills.fast_fire.icon_xy = {2, 0}
 
+	-- Fire Control
+	self.skills.fire_control[2].upgrades = {"player_ap_bullets_1"}
+
 	-- Oppressor 
 	self.skills.heavy_impact[1].upgrades = {"player_suppression_bonus"}
 	self.skills.heavy_impact[2].upgrades = {"player_suppression_bonus_2"}
@@ -19,7 +22,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.heavy_impact.icon_xy = {7, 0}
 
 	-- Body Expertise
-	self.skills.body_expertise[1].upgrades = {"player_ap_bullets_1"}
+	self.skills.body_expertise[1].upgrades = {"player_no_movement_penalty"}
 	self.skills.body_expertise[2].upgrades = {"weapon_automatic_head_shot_add_1"}
 
 	-- Bulletstorm
@@ -99,6 +102,21 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shock_and_awe.name_id = "menu_fast_hands"
 	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
 
+	-- Quick Grab
+	self.skills.second_chances[1].upgrades = {"carry_interact_speed_multiplier_2"}
+
+	-- ECM feedback
+	self.skills.ecm_booster[1].upgrades = {"ecm_jammer_can_activate_feedback"}
+	self.skills.ecm_booster[2].upgrades = {"ecm_jammer_can_retrigger"}
+	self.skills.ecm_booster.icon_xy = {6, 2}
+
+	-- ECM Specialist
+	self.skills.ecm_2x[2].upgrades = {"ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2"}
+
+	-- wip (cleaner, ecm overdrive)
+	self.skills.cleaner.icon_xy = {0, 0}
+	self.skills.chameleon.icon_xy = {0, 0}
+
 	-- Athlete
 	self.skills.sprinter[1].upgrades = {"player_walk_speed_multiplier", "player_movement_speed_multiplier"}
 	self.skills.sprinter[2].upgrades = {"player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier"}
@@ -132,6 +150,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.backstab.name_id = "menu_silenced_damage"
 	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
 
+	-- Swap Quick Grab and Cleaner
+	self.trees[10].tiers[2][1] = "second_chances"
+	self.trees[10].tiers[3][1] = "cleaner"
+	-- Swap ECM Overdrive and Sixth Sense
+	self.trees[10].tiers[2][2] = "ecm_booster"
+	self.trees[10].tiers[3][2] = "ecm_2x"
+	self.trees[10].tiers[4][1] = "chameleon"
 	-- Swap Silencer Expert and HVT
 	self.trees[12].tiers[3][2] = "backstab"
 	self.trees[12].tiers[3][1] = "hitman"
@@ -150,6 +175,9 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[3][9].upgrades, "player_tier_armor_multiplier_6")
 	self.specializations[3][3].upgrades ={"player_tier_armor_multiplier_2"}
 	self.specializations[3][5].upgrades ={"player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5"}
+
+	-- muscle
+	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
@@ -188,8 +216,14 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Gambler
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
+	-- Give the 50% ammo boost to self instead of team
+	table.insert(self.specializations[10][3].upgrades, "player_addition_ammo_eclipse")
+	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
 	-- Remove some default upgrades
+	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
+	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
+	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
 	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "player_crouch_speed_multiplier")

@@ -29,7 +29,8 @@ function UpgradesTweakData:init(tweak_data)
 	
 	-- LMG / Minigun movement penalties revert
 	self.weapon_movement_penalty.lmg = 0.8
-	self.weapon_movement_penalty.minigun = 0.8
+	self.weapon_movement_penalty.minigun = 0.75
+	self.weapon_movement_penalty.heavy = 0.75
 
 
 	-- Skills
@@ -155,8 +156,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.show_of_force.multibasic = "10"
 
 	-- Bulletstorm
-	self.skill_descs.bandoliers.multibasic = "5"
-	self.skill_descs.bandoliers.multipro2 = "20"
+	self.skill_descs.bandoliers.multibasic = "12"
+	self.skill_descs.bandoliers.multipro2 = "30"
 
 	-- Saw Massacre 
 	self.skill_descs.ammo_reservoir.multibasic2 = "50%"
@@ -204,9 +205,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
-	self.values.player.suppression_multiplier = {1.25, 1.75}
-	self.skill_descs.heavy_impact.multibasic = "25%"
-	self.skill_descs.heavy_impact.multipro = "50%"
+	self.values.player.suppression_multiplier = {1.15, 1.45}
+	self.skill_descs.heavy_impact.multibasic = "15%"
+	self.skill_descs.heavy_impact.multipro = "30%"
 
 	-- Fast Hands
 	self.values.lmg.reload_speed_multiplier = {1.2}
@@ -227,11 +228,35 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fast_fire.multibasic = "5"
 	self.skill_descs.fast_fire.multipro = "10"
 
-	-- Body Expertise
-	self.values.weapon.automatic_head_shot_add = {0.6, 0.9}
+	-- LMG Specialist
+	self.values.player.no_movement_penalty = {true}
+	self.definitions.player_no_movement_penalty = {
+		name_id = "menu_player_no_movement_penalty",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "no_movement_penalty",
+			category = "player"
+		}
+	}
+	self.values.weapon.automatic_head_shot_add[1] = 0.6
 	self.skill_descs.body_expertise.multipro = "60%"
 	
 	-- Ghost --
+
+	-- Quick Grab
+	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
+	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.75
+	self.skill_descs.second_chances.multibasic = "50%"
+	self.skill_descs.second_chances.multipro = "50%"
+
+	-- ECM Feedback
+	self.ecm_feedback_retrigger_interval = 120
+	self.skill_descs.ecm_booster.multibasic = "25m"
+	self.skill_descs.ecm_booster.multipro = "2"
+	
+	-- ECM Specialist
+	self.skill_descs.ecm_2x.multipro = "30"
 
 	-- Athlete
 	self.skill_descs.sprinter.multibasic2 = "10%"
@@ -367,6 +392,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Muscle
 	self.values.player.passive_health_regen = {1}
 	self.specialization_descs[2][9].multiperk2 = "10"
+	self.specialization_descs[2][9].multiperk = "40%"
 
 	-- Hitman
 	self.values.player.perk_armor_regen_timer_multiplier[5] = 0.4
@@ -436,8 +462,18 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
+	self.values.player.addition_ammo_eclipse = {0.15}
+	self.definitions.player_addition_ammo_eclipse = {
+		name_id = "menu_player_addition_ammo_eclipse",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "addition_ammo_eclipse",
+			category = "player"
+		}
+	}
 	self.specialization_descs[10][1].multiperk3 = "10"
-	self.specialization_descs[10][3].multiperk2 = "5"
+	self.specialization_descs[10][3].multiperk = "15%"
 	self.specialization_descs[10][9].multiperk4 = "125%"
 
 	-- Grinder
