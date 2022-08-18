@@ -39,6 +39,6 @@ end
 Hooks:PreHook(CopDamage, "damage_fire", "eclipse_damage_fire",
 function(self, attack_data)
     if self._unit:base()._tweak_table == "tank" then
-	attack_data.damage = attack_data.damage * 10
+	attack_data.damage = attack_data.damage * 15
     end
 end)
