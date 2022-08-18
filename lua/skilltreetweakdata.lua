@@ -102,6 +102,21 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shock_and_awe.name_id = "menu_fast_hands"
 	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
 
+	-- Smash and Grab
+	self.skills.second_chances[1].upgrades = {"carry_interact_speed_multiplier_2"}
+
+	-- ECM feedback
+	self.skills.ecm_booster[1].upgrades = {"ecm_jammer_can_activate_feedback"}
+	self.skills.ecm_booster[2].upgrades = {"ecm_jammer_can_retrigger"}
+	self.skills.ecm_booster.icon_xy = {6, 2}
+
+	-- ECM Specialist
+	self.skills.ecm_2x[2].upgrades = {"ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2"}
+
+	-- wip (cleaner, ecm overdrive)
+	self.skills.cleaner.icon_xy = {0, 0}
+	self.skills.chameleon.icon_xy = {0, 0}
+
 	-- Athlete
 	self.skills.sprinter[1].upgrades = {"player_walk_speed_multiplier", "player_movement_speed_multiplier"}
 	self.skills.sprinter[2].upgrades = {"player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier"}
@@ -135,6 +150,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.backstab.name_id = "menu_silenced_damage"
 	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
 
+	-- Swap Quick Grab and Cleaner
+	self.trees[10].tiers[2][1] = "second_chances"
+	self.trees[10].tiers[3][1] = "cleaner"
+	-- Swap ECM Overdrive and Sixth Sense
+	self.trees[10].tiers[2][2] = "ecm_booster"
+	self.trees[10].tiers[3][2] = "ecm_2x"
+	self.trees[10].tiers[4][1] = "chameleon"
 	-- Swap Silencer Expert and HVT
 	self.trees[12].tiers[3][2] = "backstab"
 	self.trees[12].tiers[3][1] = "hitman"
@@ -199,6 +221,9 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
 	-- Remove some default upgrades
+	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
+	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
+	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
 	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "player_crouch_speed_multiplier")

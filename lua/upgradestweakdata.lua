@@ -244,6 +244,20 @@ function UpgradesTweakData:init(tweak_data)
 	
 	-- Ghost --
 
+	-- Smash and Grab
+	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
+	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.75
+	self.skill_descs.second_chances.multibasic = "50%"
+	self.skill_descs.second_chances.multipro = "50%"
+
+	-- ECM Feedback
+	self.ecm_feedback_retrigger_interval = 120
+	self.skill_descs.ecm_booster.multibasic = "25m"
+	self.skill_descs.ecm_booster.multipro = "2"
+	
+	-- ECM Specialist
+	self.skill_descs.ecm_2x.multipro = "30"
+
 	-- Athlete
 	self.skill_descs.sprinter.multibasic2 = "10%"
 	self.skill_descs.sprinter.multipro = "25%"
