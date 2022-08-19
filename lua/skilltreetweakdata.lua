@@ -123,7 +123,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ecm_2x[2].upgrades = {"ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2"}
 
 	-- Sixth Sense
-	self.skills.chameleon.icon_xy = {8, 0}
+	self.skills.chameleon[1].upgrades = {"player_tape_loop_duration_1", "player_tape_loop_duration_2"}
+	self.skills.chameleon[2].upgrades = {"ecm_jammer_affects_pagers", "ecm_jammer_can_open_sec_doors"}
+	self.skills.chameleon.icon_xy = {6, 3}
 
 	-- Athlete
 	self.skills.sprinter[1].upgrades = {"player_walk_speed_multiplier", "player_movement_speed_multiplier"}
