@@ -7,11 +7,6 @@ function(self, unit)
     self._state_data = self._state_data or {}
 end)
 
-Hooks:PostHook(SentryGunBase, "update", "eclipse_update",
-function(self, unit, t, dt)
-    self:_update_omniscience(t, dt)
-end)
-
 function SentryGunBase:_update_omniscience(t, dt)
 	if not tweak_data.player.omniscience then
 		if self._state_data.omniscience_t then
@@ -27,14 +22,19 @@ function SentryGunBase:_update_omniscience(t, dt)
 
 		for _, unit in ipairs(sensed_targets) do
 			if alive(unit) and not unit:base():char_tweak().is_escort then
-				self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
+                for _, tag in pairs(unit:base():char_tweak()) do
+                    if tag == "special" then
+			        	self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
 
-				if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
-					self._state_data.omniscience_units_detected[unit:key()] = t + tweak_data.player.omniscience.target_resense_t
+			        	if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
+			        		self._state_data.omniscience_units_detected[unit:key()] = t + tweak_data.player.omniscience.target_resense_t
 
-					managers.game_play_central:auto_highlight_enemy(unit, true)
+				        	managers.game_play_central:auto_highlight_enemy(unit, true)
 
-					break
+				        	break
+                            break
+                        end
+                    end
 				end
 			end
 		end
