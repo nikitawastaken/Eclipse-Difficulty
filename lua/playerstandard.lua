@@ -11,13 +11,13 @@ function PlayerStandard:init(unit)
 end
 
 -- No more sixth sense
-Hooks:OverrideFunction(PlayerStandard, "_update_omniscience", "_eclipse_update_omniscience",
+Hooks:OverrideFunction(PlayerStandard, "_update_omniscience",
 function(self, ...)
     return
 end)
 
 -- Don't update sixth sense anymore
-Hooks:OverrideFunction(PlayerStandard, "update", "eclipse_update",
+Hooks:OverrideFunction(PlayerStandard, "update",
 function(self, t, dt)
     PlayerMovementState.update(self, t, dt)
     self:_calculate_standard_variables(t, dt)
