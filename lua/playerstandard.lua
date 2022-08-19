@@ -10,37 +10,27 @@ function PlayerStandard:init(unit)
     end
 end
 
--- yk it would be cool if i didn't need to overwrite the entire function
-function PlayerStandard:_update_omniscience(t, dt)
-	local action_forbidden = not managers.player:has_category_upgrade("player", "standstill_omniscience") or managers.player:current_state() == "civilian" or self:_interacting() or self._ext_movement:has_carry_restriction() or self:is_deploying() or self:_is_throwing_projectile() or self:_is_meleeing() or self:_on_zipline() or self._moving or self:running() or self:_is_reloading() or self:in_air() or self:shooting() or not tweak_data.player.omniscience
+-- No more sixth sense
+Hooks:OverrideFunction(PlayerStandard, "_update_omniscience",
+function(self, ...)
+    return
+end)
 
-	if action_forbidden then
-		if self._state_data.omniscience_t then
-			self._state_data.omniscience_t = nil
-		end
+-- Don't update sixth sense anymore
+Hooks:OverrideFunction(PlayerStandard, "update",
+function(self, t, dt)
+    PlayerMovementState.update(self, t, dt)
+    self:_calculate_standard_variables(t, dt)
+    self:_update_ground_ray()
+    self:_update_fwd_ray()
+    self:_update_check_actions(t, dt)
 
-		return
-	end
+    if self._menu_closed_fire_cooldown > 0 then
+        self._menu_closed_fire_cooldown = self._menu_closed_fire_cooldown - dt
+    end
 
-	self._state_data.omniscience_t = self._state_data.omniscience_t or t + tweak_data.player.omniscience.start_t
-
-	if self._state_data.omniscience_t <= t then
-		local sensed_targets = World:find_units_quick("sphere", self._unit:movement():m_pos(), tweak_data.player.omniscience.sense_radius, managers.slot:get_mask("trip_mine_targets"))
-
-		for _, unit in ipairs(sensed_targets) do
-			if alive(unit) and not unit:base():char_tweak().is_escort then
-				self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
-
-				if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
-					self._state_data.omniscience_units_detected[unit:key()] = t + tweak_data.player.omniscience.target_resense_t
-
-					managers.game_play_central:auto_highlight_enemy(unit, true)
-
-					break
-				end
-			end
-		end
-
-		self._state_data.omniscience_t = t + tweak_data.player.omniscience.interval_t
-	end
-end
+    self:_update_movement(t, dt)
+    self:_upd_nav_data()
+    managers.hud:_update_crosshair_offset(t, dt)
+    self:_upd_stance_switch_delay(t, dt)
+end)
