@@ -27,20 +27,12 @@ function SentryGunBase:_update_omniscience(t, dt)
 
 		for _, unit in ipairs(sensed_targets) do
 			if alive(unit) and not unit:base():char_tweak().is_escort then
-                for _, tag in pairs(unit:base():char_tweak()) do
-                    if tag == "special" then
-			        	self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
-
-			        	if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
-			        		self._state_data.omniscience_units_detected[unit:key()] = t + tweak_data.player.omniscience.target_resense_t
-
-				        	managers.game_play_central:auto_highlight_enemy(unit, true)
-
-				        	break
-                            break
-                        end
-                    end
-				end
+			    self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
+			    if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
+			        self._state_data.omniscience_units_detected[unit:key()] = t + tweak_data.player.omniscience.target_resense_t
+				managers.game_play_central:auto_highlight_enemy(unit, true)
+				    break
+                end
 			end
 		end
 
