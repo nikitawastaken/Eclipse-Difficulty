@@ -7,6 +7,11 @@ function(self, unit)
     self._state_data = self._state_data or {}
 end)
 
+Hooks:PostHook(SentryGunBase, "update", "eclipse_update",
+function(self, unit, t, dt)
+    self:_update_omniscience(t, dt)
+end)
+
 function SentryGunBase:_update_omniscience(t, dt)
 	if not tweak_data.player.omniscience then
 		if self._state_data.omniscience_t then
