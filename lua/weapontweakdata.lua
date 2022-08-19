@@ -191,16 +191,16 @@ self.hk51b.kick.crouching = self.rpk.kick.standing
 self.hk51b.kick.steelsight = self.rpk.kick.standing
 
 -- Minigun
-self.m134.stats.damage = 45
-self.m134.AMMO_PICKUP = {5, 7}
-self.m134.kick.standing = {0.5, 0.75, -0.3, 0.55}
+self.m134.stats.damage = 40
+self.m134.AMMO_PICKUP = {4.5, 6}
+self.m134.kick.standing = {0.3, 0.4, -0.2, 0.5}
 self.m134.kick.crouching = self.m134.kick.standing
 self.m134.kick.steelsight = self.m134.kick.standing
 
 -- Microgun
-self.shuno.stats.damage = 65
-self.shuno.AMMO_PICKUP = {5, 7}
-self.shuno.kick.standing = {0.65, 0.8, -0.85, 0.3}
+self.shuno.stats.damage = 60
+self.shuno.AMMO_PICKUP = {4.5, 6}
+self.shuno.kick.standing = {0.5, 0.7, -0.6, 0.2}
 self.shuno.kick.crouching = self.shuno.kick.standing
 self.shuno.kick.steelsight = self.shuno.kick.standing
 
@@ -495,7 +495,7 @@ self.akm.fire_mode_data = {fire_rate = 0.1}
 self.akm.auto = {fire_rate = 0.1}
 self.akm.stats.concealment = 10
 self.akm.AMMO_PICKUP = {2.2, 3.5}
-self.akm.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.akm.kick.standing = {1.3, 1.5, -1, 1}
 self.akm.kick.crouching = self.akm.kick.standing
 self.akm.kick.steelsight = self.akm.kick.standing
 
@@ -504,21 +504,21 @@ self.akm_gold.fire_mode_data = {fire_rate = 0.1}
 self.akm_gold.auto = {fire_rate = 0.1}
 self.akm_gold.stats.concealment = 10
 self.akm_gold.AMMO_PICKUP = {2.2, 3.5}
-self.akm_gold.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.akm_gold.kick.standing = {1.3, 1.5, -1, 1}
 self.akm_gold.kick.crouching = self.akm_gold.kick.standing
 self.akm_gold.kick.steelsight = self.akm_gold.kick.standing
 
 -- AK17
 self.flint.stats.concealment = 8
 self.flint.AMMO_PICKUP = {2.2, 3.5}
-self.flint.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.flint.kick.standing = {1.45, 1.55, -1.1, 1.1}
 self.flint.kick.crouching = self.flint.kick.standing
 self.flint.kick.steelsight = self.flint.kick.standing
 
 -- AMR
 self.m16.stats.concealment = 8
 self.m16.AMMO_PICKUP = {2.2, 3.5}
-self.m16.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.m16.kick.standing = {1.3, 1.5, -1.05, 1.05}
 self.m16.kick.crouching = self.m16.kick.standing
 self.m16.kick.steelsight = self.m16.kick.standing
 
@@ -526,27 +526,27 @@ self.m16.kick.steelsight = self.m16.kick.standing
 self.scar.stats.concealment = 10
 self.scar.stats.reload = 13
 self.scar.AMMO_PICKUP = {2.2, 3.5}
-self.scar.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.scar.kick.standing = {1.35, 1.5, -1, 1}
 self.scar.kick.crouching = self.scar.kick.standing
 self.scar.kick.steelsight = self.scar.kick.standing
 
 -- Falcon
 self.fal.AMMO_PICKUP = {2.2, 3.5}
-self.fal.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.fal.kick.standing = {1.45, 1.55, -1.1, 1.1}
 self.fal.kick.crouching = self.fal.kick.standing
 self.fal.kick.steelsight = self.fal.kick.standing
 
 -- Gewehr
 self.g3.stats.concealment = 9
 self.g3.AMMO_PICKUP = {2.2, 3.5}
-self.g3.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.g3.kick.standing = {1.45, 1.55, -1.1, 1.1}
 self.g3.kick.crouching = self.g3.kick.standing
 self.g3.kick.steelsight = self.g3.kick.standing
 
 -- KS12
 self.shak12.stats.concealment = 10
 self.shak12.AMMO_PICKUP = {2.2, 3.5}
-self.shak12.kick.standing = {1.3, 1.5, -0.9, 0.9}
+self.shak12.kick.standing = {1.3, 1.5, -1, 1}
 self.shak12.kick.crouching = self.shak12.kick.standing
 self.shak12.kick.steelsight = self.shak12.kick.standing
 
@@ -656,7 +656,7 @@ self.pm9.kick.steelsight = self.pm9.kick.standing
 self.olympic.AMMO_MAX = 90
 self.olympic.AMMO_PICKUP = {0.9, 3.15}
 self.olympic.stats.damage = 80
-self.olympic.kick.standing = {1.2, 1.4, -0.75, 0.75}
+self.olympic.kick.standing = {1.2, 1.4, -0.9, 0.9}
 self.olympic.kick.crouching = self.olympic.kick.standing
 self.olympic.kick.steelsight = self.olympic.kick.standing
 
@@ -664,46 +664,47 @@ self.olympic.kick.steelsight = self.olympic.kick.standing
 self.vityaz.AMMO_MAX = 90
 self.vityaz.AMMO_PICKUP = {0.9, 3.15}
 self.vityaz.stats.damage = 100
-self.vityaz.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.vityaz.kick.standing = {1.4, 1.6, -1, 1}
 self.vityaz.kick.crouching = self.vityaz.kick.standing
 self.vityaz.kick.steelsight = self.vityaz.kick.standing
 
 -- CR805
 self.hajk.stats.damage = 80
-self.hajk.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.hajk.kick.standing = {1.4, 1.6, -1, 1}
 self.hajk.kick.crouching = self.hajk.kick.standing
 self.hajk.kick.steelsight = self.hajk.kick.standing
 
 -- Krinkov
 self.akmsu.stats.damage = 80
-self.akmsu.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.akmsu.kick.standing = {1.4, 1.6, -1, 1}
 self.akmsu.kick.crouching = self.akmsu.kick.standing
 self.akmsu.kick.steelsight = self.akmsu.kick.standing
 
 -- MP40
 self.erma.stats.reload = 13
-self.erma.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.erma.kick.standing = {1.4, 1.6, -1, 1}
 self.erma.kick.crouching = self.erma.kick.standing
 self.erma.kick.steelsight = self.erma.kick.standing
 
 -- Tatonka
-self.coal.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.coal.AMMO_PICKUP = {0.9, 3.15}
+self.coal.kick.standing = {1.4, 1.6, -1, 1}
 self.coal.kick.crouching = self.coal.kick.standing
 self.coal.kick.steelsight = self.coal.kick.standing
 
 -- Pattchet
 self.sterling.AMMO_PICKUP = {0.9, 3.15}
-self.sterling.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.sterling.kick.standing = {1.4, 1.6, -1, 1}
 self.sterling.kick.crouching = self.sterling.kick.standing
 self.sterling.kick.steelsight = self.sterling.kick.standing
 
 -- Swedish K
-self.m45.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.m45.kick.standing = {1.4, 1.6, -1, 1}
 self.m45.kick.crouching = self.m45.kick.standing
 self.m45.kick.steelsight = self.m45.kick.standing
 
 -- Jackal
-self.schakal.kick.standing = {1.4, 1.6, -0.85, 0.85}
+self.schakal.kick.standing = {1.4, 1.6, -1, 1}
 self.schakal.kick.crouching = self.schakal.kick.standing
 self.schakal.kick.steelsight = self.schakal.kick.standing
 
@@ -929,7 +930,7 @@ self.x_judge.kick.steelsight = self.x_judge.kick.standing
 -- Flamethrowers
 
 -- mk2
-self.flamethrower_mk2.stats.damage = 40
+self.flamethrower_mk2.stats.damage = 25
 self.flamethrower_mk2.fire_dot_data = {
 	dot_trigger_chance = 50,
 	dot_damage = 7.5,
@@ -937,7 +938,7 @@ self.flamethrower_mk2.fire_dot_data = {
 	dot_trigger_max_distance = 3000,
 	dot_tick_period = 0.5
 }
-self.flamethrower_mk2.AMMO_PICKUP = {5, 7.5}
+self.flamethrower_mk2.AMMO_PICKUP = {4.5, 6.75}
 
 -- ma-17 shouldn't exist and just makes the primary one useless, i'm sorry
 self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY

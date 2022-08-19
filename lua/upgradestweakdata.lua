@@ -244,19 +244,34 @@ function UpgradesTweakData:init(tweak_data)
 	
 	-- Ghost --
 
+	-- Eagle Eye
+	self.values.player.marked_distance_mul[1] = 4
+	self.skill_descs.cleaner.multibasic = "5%"
+	self.skill_descs.cleaner.multipro = "4"
+	self.skill_descs.cleaner.multipro2 = "100%"
+
 	-- Quick Grab
 	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
 	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.75
 	self.skill_descs.second_chances.multibasic = "50%"
-	self.skill_descs.second_chances.multipro = "50%"
+	self.skill_descs.second_chances.multipro = "25%"
 
 	-- ECM Feedback
 	self.ecm_feedback_retrigger_interval = 120
 	self.skill_descs.ecm_booster.multibasic = "25m"
 	self.skill_descs.ecm_booster.multipro = "2"
+
+	-- Chameleon
+	self.values.player.suspicion_multiplier[1] = 0.65
+	self.skill_descs.jail_workout.multibasic = "35%"
+	self.skill_descs.jail_workout.multipro = "5"
 	
 	-- ECM Specialist
 	self.skill_descs.ecm_2x.multipro = "30"
+
+	-- Sixth Sense
+	self.skill_descs.chameleon.multibasic = "10"
+	self.skill_descs.chameleon.multibasic2 = "3"
 
 	-- Athlete
 	self.skill_descs.sprinter.multibasic2 = "10%"
@@ -277,9 +292,11 @@ function UpgradesTweakData:init(tweak_data)
 	-- Sneaky Bastard
 	self.values.player.detection_risk_add_dodge_chance = {
 		{0.01, 2, "below", 35, 0.1},
-		{0.01, 1, "below", 35, 0.1}
+		{0.015, 1, "below", 35, 0.15}
 	}
 	self.skill_descs.jail_diet.multibasic2 = "2"
+	self.skill_descs.jail_diet.multipro = "1.5%"
+	self.skill_descs.jail_diet.multipro4 = "15%"
 
 	-- The Professional
 	self.values.weapon.silencer_spread_index_addend[1] = 2 -- 8 accuracy
@@ -328,9 +345,9 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- HVT basic buff and aced nerf
 	self.values.player.marked_enemy_damage_mul = 1.25
-	self.values.player.marked_inc_dmg_distance[1][2] = 1.25
+	self.values.player.marked_inc_dmg_distance[1][2] = 1.3
 	self.skill_descs.hitman.multibasic = "25%"
-	self.skill_descs.hitman.multipro = "25%"
+	self.skill_descs.hitman.multipro = "30%"
 	self.skill_descs.hitman.multipro2 = "10"
 	self.skill_descs.hitman.multipro3 = "100%"
 

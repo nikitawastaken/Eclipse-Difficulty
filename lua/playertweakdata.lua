@@ -9,8 +9,9 @@ Hooks:PostHook(PlayerTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function
 end)
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function (self)
--- Fuck armor suppression, all my homies hate armor suppression
 	self.suppression.decay_start_delay = 0.35
+	self.omniscience.start_t = 3
+	self.omniscience.interval_t = 0.5
 end)
 
 -- Game too hard for single player appparently????
