@@ -11,7 +11,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		0.9,
 		0.85,
 		0.8,
-		0.775,
+		0.725,
 		0.625,
 		0.525
 	}
@@ -175,6 +175,34 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.carbon_blade.multipro3 = "45%"
 
 	-- Technician --
+
+	-- Rifleman
+	self.skill_descs.defense_up.multipro = "16"
+	
+	-- Die Hard
+	self.values.player.interacting_damage_multiplier[1] = 0.25
+	self.skill_descs.sentry_targeting_package.multibasic = "25%"
+
+	-- Defense Package
+	self.skill_descs.engineering.multibasic = "150%"
+
+	-- Sentry Nest
+	self.skill_descs.tower_defense.multipro = "25%"
+	self.skill_descs.tower_defense.multipro2 = "50%"
+
+	-- PhD in Engineering
+	self.definitions.sentry_gun_standstill_omniscience = {
+		name_id = "menu_sentry_gun_standstill_omniscience",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "standstill_omniscience",
+			category = "player"
+		}
+	}
+	self.skill_descs.eco_sentry.multibasic = "100%"
+	self.skill_descs.eco_sentry.multipro = "75%"
+	self.skill_descs.eco_sentry.multipro2 = "250%"
 
 	-- Combat Engineering
 	self.values.trip_mine.explosion_size_multiplier_1 = {1.5}

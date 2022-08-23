@@ -92,13 +92,37 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Resilience
 	self.skills.oppressor.icon_xy = {6, 1}
 
-	-- Die Hard
+	-- Tough Guy
 	self.skills.show_of_force[1].upgrades = {"player_damage_shake_addend"}
 	self.skills.show_of_force.icon_xy = {2, 12}
+
+	-- Rifleman
+	self.skills.defense_up[1].upgrades = {"player_steelsight_when_downed"}
+	self.skills.defense_up[2].upgrades = {"player_steelsight_normal_movement_speed", "assault_rifle_move_spread_index_addend", "snp_move_spread_index_addend", "smg_move_spread_index_addend"}
+	self.skills.defense_up.icon_xy = {6, 5}
+
+	-- Daredevil
+	self.skills.sentry_targeting_package[1].upgrades = {"player_interacting_damage_multiplier"}
+	self.skills.sentry_targeting_package[2].upgrades = {"player_run_and_reload"}
+	self.skills.sentry_targeting_package.icon_xy = {10, 6}
+
+	-- Defense Package
+	self.skills.engineering[1].upgrades = {"sentry_gun_armor_multiplier"}
+	self.skills.engineering[2].upgrades = {"sentry_gun_shield"}
+	self.skills.engineering.icon_xy = {7, 5}
+
+	-- Sentry Nest
+	self.skills.tower_defense[2].upgrades = {"sentry_gun_cost_reduction_1", "sentry_gun_cost_reduction_2", "sentry_gun_extra_ammo_multiplier_1"}
+	self.skills.tower_defense.icon_xy = {7, 6}
+
+	-- PhD in Engineering
+	self.skills.eco_sentry[1].upgrades = {"sentry_gun_standstill_omniscience", "sentry_gun_spread_multiplier"}
+	self.skills.eco_sentry[2].upgrades = {"sentry_gun_ap_bullets", "sentry_gun_fire_rate_reduction_1"}
+	self.skills.eco_sentry.icon_xy = {7, 8}
 	
 	-- Fast Hands
 	self.skills.shock_and_awe[1].upgrades = {"smg_reload_speed_multiplier", "lmg_reload_speed_multiplier"}
-	self.skills.shock_and_awe.icon_xy = {10, 6}
+	self.skills.shock_and_awe.icon_xy = {3, 3}
 	self.skills.shock_and_awe.name_id = "menu_fast_hands"
 	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
 
@@ -120,7 +144,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ecm_booster.icon_xy = {6, 2}
 
 	-- ECM Specialist
-	self.skills.ecm_2x[2].upgrades = {"ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2"}
+	self.skills.ecm_2x[2].upgrades = {"ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset"}
 
 	-- Sixth Sense
 	self.skills.chameleon[1].upgrades = {"player_tape_loop_duration_1", "player_tape_loop_duration_2"}
@@ -163,7 +187,12 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.backstab.name_id = "menu_silenced_damage"
 	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
 
-	-- ECM Tree
+	-- Sentry tree
+	self.trees[7].tiers[2][2] = "engineering"
+	self.trees[7].tiers[3][2] = "tower_defense"
+	self.trees[7].tiers[3][1] = "jack_of_all_trades"
+	self.trees[7].tiers[4][1] = "eco_sentry"
+	-- ECM tree
 	self.trees[10].tiers[1][1] = "cleaner"
 	self.trees[10].tiers[2][1] = "second_chances"
 	self.trees[10].tiers[2][2] = "ecm_booster"
@@ -171,8 +200,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.trees[10].tiers[3][2] = "ecm_2x"
 	self.trees[10].tiers[4][1] = "chameleon"
 	-- Swap Silencer Expert and HVT
-	self.trees[12].tiers[3][2] = "backstab"
 	self.trees[12].tiers[3][1] = "hitman"
+	self.trees[12].tiers[3][2] = "backstab"
 	-- Swap Inner Pockets and Deft Hands
 	self.trees[11].tiers[2][2] = "optic_illusions"
 	self.trees[12].tiers[2][1] = "thick_skin"
@@ -229,11 +258,12 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Gambler
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
-	-- Give the 50% ammo boost to self instead of team
 	table.insert(self.specializations[10][3].upgrades, "player_addition_ammo_eclipse")
 	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
-	-- Remove some default upgrades
+	-- Remove some default upgrades 
+	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
+	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")

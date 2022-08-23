@@ -1,3 +1,6 @@
+SentryGunBase.DEPLOYEMENT_COST = {0.5, 0.75, 0.75}
+SentryGunBase.AMMO_MUL = {2, 3}
+
 -- Unregister sentry guns to prevent enemies from getting stuck/cheesed
 -- Enemies will still shoot sentries but they won't actively path towards them
 Hooks:PostHook(SentryGunBase, "setup", "sh_setup", SentryGunBase.unregister)

@@ -57,6 +57,7 @@
 				<post :hook_id="skilltreetweakdata"/>
 				<post :hook_id="interactiontweakdata"/>
 				<post :hook_id="weaponfactorytweakdata"/>
+				<post :hook_id="blackmarkettweakdata"/>
 				<post :hook_id="dramatweakdata"/>
 				<post :hook_id="tweakdata"/>
 			</group>
