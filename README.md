@@ -20,7 +20,7 @@ In order to max progression, go into:
 - An entirely revamped skillset
 - Entirely reworked perkdecks
 - New stats for weapons
-- Buffs to load barrel extensions
+- Buffs to loud barrel extensions
 - Only 100 skillpoints
 - LOTS of removed akimbos
 - Removed secondary flamethrower
