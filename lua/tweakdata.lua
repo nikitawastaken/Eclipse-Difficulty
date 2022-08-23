@@ -4,11 +4,8 @@ if not tweak_data then return end
 tweak_data.medic.disabled_units = {"spooc", "medic"}
 
 -- grenade launchers and rocket launchers
-tweak_data.projectiles.rocket_ray_frag.curve_pow = 0.5
-tweak_data.projectiles.rocket_ray_frag.damage = 64
+tweak_data.projectiles.rocket_ray_frag.damage = 128
 tweak_data.projectiles.rocket_ray_frag.player_damage = 8
-tweak_data.projectiles.launcher_rocket.damage = 600
-tweak_data.projectiles.launcher_rocket.player_damage = 16
 tweak_data.projectiles.launcher_frag.damage = 64
 tweak_data.projectiles.launcher_frag_m32.damage = 42
 tweak_data.projectiles.launcher_m203.damage = 48
