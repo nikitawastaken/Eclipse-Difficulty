@@ -251,6 +251,7 @@ self.ksg.CLIP_AMMO_MAX = 10
 self.ksg.rays = 12
 self.ksg.stats.damage = 90
 self.ksg.stats.concealment = 20
+self.ksg.stats.reload = 12
 self.ksg.AMMO_PICKUP = {1, 1.8}
 self.ksg.fire_mode_data.fire_rate = 0.5
 self.ksg.kick.standing = {3, 4, -0.2, 0.2}
@@ -261,6 +262,7 @@ self.ksg.kick.steelsight = self.ksg.kick.standing
 self.r870.CLIP_AMMO_MAX = 8
 self.r870.rays = 12
 self.r870.stats.damage = 90
+self.r870.stats.reload = 12
 self.r870.AMMO_PICKUP = {1, 1.8}
 self.r870.fire_mode_data.fire_rate = 0.5
 self.r870.kick.standing = {3, 4, -0.2, 0.2}
@@ -270,6 +272,7 @@ self.r870.kick.steelsight = self.r870.kick.standing
 -- Reinfeld 88 (Trench Gun)
 self.m1897.rays = 12
 self.m1897.stats.damage = 125
+self.m1897.stats.reload = 12
 self.m1897.AMMO_PICKUP = {0.6, 1.6}
 self.m1897.fire_mode_data.fire_rate = 0.6
 self.m1897.kick.standing = {3, 4, -0.2, 0.2}
@@ -278,7 +281,7 @@ self.m1897.kick.steelsight = self.m1897.kick.standing
 
 -- Mosconi Tactical
 self.m590.rays = 12
-self.m590.stats.reload = 10
+self.m590.stats.reload = 11
 self.m590.stats.damage = 90
 self.m590.stats.concealment = 8
 self.m590.AMMO_PICKUP = {1, 1.8}
