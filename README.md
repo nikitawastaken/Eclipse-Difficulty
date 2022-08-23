@@ -35,9 +35,10 @@ In order to max progression, go into:
 ------------
 
 #### Special thanks to
+- MrCreepy for leading the project
 - Hoppip for creating the Streamlined Heisting framework
 - Rockymoto517 for contributing
 - RuggedlyHandsomeBunBun for testing
 - Carrot for testing
 - DarkWubi for testing
-- Bloodsheet for testing
+- bloodsheet for testing
