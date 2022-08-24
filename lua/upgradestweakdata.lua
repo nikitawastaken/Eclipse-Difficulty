@@ -327,10 +327,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.jail_diet.multipro4 = "15%"
 
 	-- The Professional
-	self.values.weapon.silencer_spread_index_addend[1] = 2 -- 8 accuracy
-	self.values.weapon.silencer_recoil_index_addend[1] = 2 -- 8 stability
 	self.skill_descs.silence_expert.multibasic = "8"
-	self.skill_descs.silence_expert.multipro3 = "8"
+	self.skill_descs.silence_expert.multipro = "12"
+	self.skill_descs.silence_expert.multipro2 = "100%"
 
 	-- Silencer Expert
 	self.definitions.weapon_silencer_damage_multiplier = {

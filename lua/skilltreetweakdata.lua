@@ -170,6 +170,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.optic_illusions[2].upgrades = {"player_run_dodge_chance", "player_on_zipline_dodge_chance"}
 	self.skills.optic_illusions.icon_xy = {7, 3}
 
+	-- The Professional
+	self.skills.silence_expert[1].upgrades = {"weapon_silencer_recoil_index_addend",}
+	self.skills.silence_expert[2].upgrades = {"weapon_silencer_enter_steelsight_speed_multiplier", "weapon_silencer_spread_index_addend"}
+
 	-- Low Blow
 	self.skills.unseen_strike[1].upgrades = {"player_detection_risk_add_crit_chance_1"}
 	self.skills.unseen_strike[2].upgrades = {"player_detection_risk_add_crit_chance_2"}
