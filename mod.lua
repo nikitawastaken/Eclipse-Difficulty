@@ -35,8 +35,55 @@ if not StreamHeist then
 		log("[StreamlinedHeistingAI][Error] " .. table.concat({...}, " "))
 	end
 
+	-- Check for common mod conflicts
+	Hooks:Add("MenuManagerOnOpenMenu", "MenuManagerOnOpenMenuStreamlinedHeisting", function()
+		if Global.sh_mod_conflicts then
+			return
+		end
+
+		Global.sh_mod_conflicts = {}
+		local conflicting_mods = StreamHeist:require("mod_conflicts.lua") or {}
+		for _, mod in pairs(BLT.Mods:Mods()) do
+			if mod:IsEnabled() and conflicting_mods[mod:GetName()] then
+				table.insert(Global.sh_mod_conflicts, mod:GetName())
+			end
+		end
+
+		if #Global.sh_mod_conflicts > 0 then
+			local message = "The following mod(s) are likely to cause unintended behavior or crashes in combination with Eclipse:\n\n"
+			local buttons = {
+				{
+					text = "Disable conflicting mods",
+					callback = function ()
+						for _, mod_name in pairs(Global.sh_mod_conflicts) do
+							local mod = BLT.Mods:GetModByName(mod_name)
+							if mod then
+								mod:SetEnabled(false, true)
+							end
+						end
+						BLT.Mods:Save()
+					end
+				},
+				{
+					text = "Keep enabled (not recommended)"
+				},
+			}
+			QuickMenu:new("Warning", message .. table.concat(Global.sh_mod_conflicts, "\n"), buttons, true)
+		end
+	end)
+
+	-- Notify about required game restart
+	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeStreamlinedHeisting", function ()
+		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function (self)
+			if self._mod:GetName() == "Streamlined Heisting" then
+				QuickMenu:new("Information", "A game restart is required to fully " .. (self._mod:IsEnabled() and "enable" or "disable") .. " all parts of Eclipse!", {}, true)
+			end
+		end)
+	end)
+
 	-- Disable some of "The Fixes"
 	TheFixesPreventer = TheFixesPreventer or {}
+	TheFixesPreventer.shotgun_dozer_face = true
 	TheFixesPreventer.crash_upd_aim_coplogicattack = true
 	TheFixesPreventer.fix_copmovement_aim_state_discarded = true
 	TheFixesPreventer.tank_remove_recoil_anim = true
