@@ -240,19 +240,22 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		if phase_is_anticipation then
 			-- If we run into enemies during anticipation, pull back
 			pull_back = true
-		elseif current_objective.moving_out and tactics_map.ranged_fire then
-			-- If we run into enemies while moving out, open fire (if we aren't already doing that)
-			open_fire = not current_objective.open_fire
+		elseif current_objective.moving_out then
+			-- If we run into enemies while moving out, open fire
+			if not current_objective.open_fire then
+				open_fire = true
+				objective_area = obstructed_area
+			end
 		elseif not current_objective.pushed or charge and not current_objective.charge then
-			-- If we run into enemies and haven't pushed yet, approach
-			approach = true
+			-- If we've been in position for a while or haven't seen enemies, approach
+			approach = not self:_can_group_see_target(group)
 		end
 	elseif not current_objective.moving_out then
-		-- If we aren't moving out to an objective, approach or open fire if we have ranged_fire tactics and see an enemy
-		approach = charge or not tactics_map.ranged_fire or in_place_duration > 10 or group.is_chasing or not self:_can_group_see_target(group)
+		-- If we aren't moving out to an objective, open fire if we have ranged_fire tactics and see an enemy, otherwise approach
+		approach = charge or group.is_chasing or not tactics_map.ranged_fire or not self:_can_group_see_target(group)
 		open_fire = not approach and not current_objective.open_fire
 	elseif tactics_map.ranged_fire and not current_objective.open_fire and self:_can_group_see_target(group, true) then
-		-- If we see an enemy while moving out and have the ranged_fire tactics, open fire and stay in position for a bit
+		-- If we see an enemy while moving out and have the ranged_fire tactics, open fire
 		local forwardmost_i_nav_point = self:_get_group_forwardmost_coarse_path_index(group)
 		if forwardmost_i_nav_point then
 			open_fire = true
@@ -261,7 +264,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	end
 
 	if open_fire then
-		objective_area = obstructed_area or objective_area
 		local grp_objective = {
 			attitude = "engage",
 			pose = "stand",
@@ -400,7 +402,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 				self:_set_objective_to_enemy_group(group, grp_objective)
 			end
-		elseif in_place_duration > 10 and not self:_can_group_see_target(group) then
+		elseif in_place_duration > 15 and not self:_can_group_see_target(group) then
 			-- Log and remove groups that get stuck
 			local element_id = group.spawn_group_element and group.spawn_group_element._id or 0
 			local element_name = group.spawn_group_element and group.spawn_group_element._editor_name or ""
@@ -413,15 +415,8 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	elseif pull_back then
 		local retreat_area
-
 		for _, u_data in pairs(group.units) do
 			local nav_seg_id = u_data.tracker:nav_segment()
-
-			if current_objective.area.nav_segs[nav_seg_id] then
-				retreat_area = current_objective.area
-				break
-			end
-
 			if self:is_nav_seg_safe(nav_seg_id) then
 				retreat_area = self:get_area_from_nav_seg_id(nav_seg_id)
 				break
@@ -431,7 +426,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		if not retreat_area and current_objective.coarse_path then
 			local forwardmost_i_nav_point = self:_get_group_forwardmost_coarse_path_index(group)
 			if forwardmost_i_nav_point then
-				retreat_area = self:get_area_from_nav_seg_id(current_objective.coarse_path[forwardmost_i_nav_point][1])
+				-- Try retreating to the previous coarse path nav point
+				local nav_point = current_objective.coarse_path[forwardmost_i_nav_point - 1] or current_objective.coarse_path[forwardmost_i_nav_point]
+				retreat_area = self:get_area_from_nav_seg_id(nav_point[1])
 			end
 		end
 
