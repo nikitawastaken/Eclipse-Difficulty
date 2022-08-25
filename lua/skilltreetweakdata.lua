@@ -191,6 +191,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.backstab.name_id = "menu_silenced_damage"
 	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
 
+	-- Counter Strike
+	self.skills.drop_soap[1].upgrades = {"player_run_and_melee_eclipse"}
+	self.skills.drop_soap[2].upgrades = {"cooldown_counter_strike_eclipse"}
+
 	-- Sentry tree
 	self.trees[7].tiers[2][2] = "engineering"
 	self.trees[7].tiers[3][2] = "tower_defense"

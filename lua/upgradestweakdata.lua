@@ -413,6 +413,38 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.wolverine.multipro = "50%"
 	self.skill_descs.wolverine.multipro2 = "25%"
 
+	-- Counterstrike
+    self.values.player.run_and_melee_eclipse = {true}
+    self.values.cooldown.counter_strike_eclipse = {{1, 10}}
+	self.definitions.player_run_and_melee_eclipse = {
+        name_id = "menu_player_run_and_melee_eclipse",
+        category = "feature",
+        upgrade = {
+            value = 1,
+            upgrade = "run_and_melee_eclipse",
+            category = "player"
+        }
+    }
+    self.definitions.player_counter_strike_eclipse_2 = {
+        name_id = "menu_player_counter_strike_eclipse",
+        category = "feature",
+        upgrade = {
+            value = 2,
+            upgrade = "counter_strike_eclipse",
+            category = "player"
+        }
+    }
+    self.definitions.cooldown_counter_strike_eclipse = {
+        name_id = "menu_cooldown_counter_strike_eclipse",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "counter_strike_eclipse",
+			category = "cooldown"
+		}
+    }
+	self.skill_descs.drop_soap.multipro = "10"
+
 	-- Frenzy
 	self.values.player.health_damage_reduction = {0.85, 0.7}
 	self.values.player.max_health_reduction = {0.1}

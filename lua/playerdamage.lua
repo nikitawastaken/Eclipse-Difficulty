@@ -83,4 +83,4 @@ Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
 	if not self:arrested() then
 	  self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, self._down_time - tweak_data.player.damage.DOWNED_TIME_DEC)
 	end
-  end)
+end)
