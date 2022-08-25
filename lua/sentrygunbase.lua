@@ -17,13 +17,6 @@ function(self, unit, t, dt)
     self:_update_omniscience(t, dt)
 end)
 
--- Helper function to check if the unit is a cloaker
-local function __is_spook(unit)
-    for _, tag in pairs(unit:base():char_tweak().tags) do
-        if tag == "spooc" then return true end
-    end
-end
-
 -- Create new sixth sense function
 function SentryGunBase:_update_omniscience(t, dt)
 	if not tweak_data.player.omniscience then
@@ -40,7 +33,7 @@ function SentryGunBase:_update_omniscience(t, dt)
 		local sensed_targets = World:find_units_quick("sphere", self._unit:movement():m_pos(), tweak_data.player.omniscience.sense_radius, managers.slot:get_mask("trip_mine_targets"))
 
 		for _, unit in ipairs(sensed_targets) do
-			if alive(unit) and not unit:base():char_tweak().is_escort and not __is_spook(unit) then
+			if alive(unit) and not unit:base():char_tweak().is_escort and not unit:base():has_tag("spooc") then
 			    self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
 
 			    if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
