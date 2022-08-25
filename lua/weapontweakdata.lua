@@ -25,7 +25,7 @@ self.tti.CLIP_AMMO_MAX = 15
 self.tti.stats.concealment = 13
 self.tti.stats.damage = 120
 self.tti.stats_modifiers = {damage = 2}
-self.tti.AMMO_PICKUP = {1.1, 1.5}
+self.tti.AMMO_PICKUP = {1.5, 2}
 self.tti.kick.standing = {1.5, 2.25, -0.3, 0.3}
 self.tti.kick.crouching = self.tti.kick.standing
 self.tti.kick.steelsight = self.tti.kick.standing
@@ -36,7 +36,7 @@ self.siltstone.AMMO_MAX = 30
 self.siltstone.stats.damage = 120
 self.siltstone.stats_modifiers = {damage = 2}
 self.siltstone.stats.concealment = 20
-self.siltstone.AMMO_PICKUP = {1.1, 1.5}
+self.siltstone.AMMO_PICKUP = {1.5, 2}
 self.siltstone.kick.standing = {1.5, 2.25, -0.3, 0.3}
 self.siltstone.kick.crouching = self.siltstone.kick.standing
 self.siltstone.kick.steelsight = self.siltstone.kick.standing
@@ -47,7 +47,7 @@ self.qbu88.AMMO_MAX = 30
 self.qbu88.stats.recoil = 7
 self.qbu88.stats.damage = 120
 self.qbu88.stats_modifiers = {damage = 2}
-self.qbu88.AMMO_PICKUP = {1.1, 1.5}
+self.qbu88.AMMO_PICKUP = {1.5, 2}
 self.qbu88.kick.standing = {2, 3, -0.3, 0.3}
 self.qbu88.kick.crouching = self.qbu88.kick.standing
 self.qbu88.kick.steelsight = self.qbu88.kick.standing
@@ -59,7 +59,7 @@ self.wa2000.CLIP_AMMO_MAX = 10
 self.wa2000.stats.reload = 13
 self.wa2000.stats.damage = 120
 self.wa2000.stats_modifiers = {damage = 2}
-self.wa2000.AMMO_PICKUP = {1.1, 1.5}
+self.wa2000.AMMO_PICKUP = {1.5, 2}
 self.wa2000.kick.standing = {1.5, 2.25, -0.3, 0.3}
 self.wa2000.kick.crouching = self.wa2000.kick.standing
 self.wa2000.kick.steelsight = self.wa2000.kick.standing
@@ -70,7 +70,7 @@ self.sbl.AMMO_MAX = 30
 self.sbl.CLIP_AMMO_MAX = 15
 self.sbl.stats.damage = 120
 self.sbl.stats.reload = 13
-self.sbl.AMMO_PICKUP = {1.1, 1.5}
+self.sbl.AMMO_PICKUP = {1.5, 2}
 self.sbl.fire_mode_data.fire_rate = 60 / 150
 self.sbl.kick.standing = {1.5, 2.25, -0.3, 0.3}
 self.sbl.kick.crouching = self.sbl.kick.standing
@@ -81,13 +81,12 @@ self.sbl.categories = {"snp", "ng"}
 self.winchester1874.stats.damage = 147
 self.winchester1874.stats_modifiers = {damage = 2}
 self.winchester1874.fire_mode_data.fire_rate = 60 / 85
-self.winchester1874.AMMO_PICKUP = {1.1, 1.5}
+self.winchester1874.AMMO_PICKUP = {1.5, 2}
 self.winchester1874.AMMO_MAX = 30
 
 -- Rattlesnake
 self.msr.stats.damage = 147
 self.msr.stats_modifiers = {damage = 2}
-self.msr.fire_mode_data.fire_rate = 60 / 70
 self.msr.AMMO_PICKUP = {1.1, 1.5}
 self.msr.AMMO_MAX = 30
 
@@ -95,7 +94,7 @@ self.msr.AMMO_MAX = 30
 self.r700.stats.damage = 147
 self.r700.stats_modifiers = {damage = 2}
 self.r700.AMMO_PICKUP = {1.1, 1.5}
-self.r700.fire_mode_data.fire_rate = 60 / 70
+self.r700.fire_mode_data.fire_rate = 60 / 60
 self.r700.AMMO_MAX = 30
 self.r700.kick.standing = self.msr.kick.standing
 self.r700.kick.crouching = self.msr.kick.crouching
@@ -103,13 +102,13 @@ self.r700.kick.steelsight = self.msr.kick.steelsight
 
 -- Desert Fox
 self.desertfox.AMMO_PICKUP = {0.9, 1.2}
+self.desertfox.fire_mode_data.fire_rate = 60 / 50
 self.desertfox.kick.standing = self.r93.kick.standing
 self.desertfox.kick.crouching = self.r93.kick.crouching
 self.desertfox.kick.steelsight = self.r93.kick.steelsight
 
 -- Nagant
 self.mosin.AMMO_MAX = 30
-self.mosin.stats.reload = 13
 self.mosin.fire_mode_data.fire_rate = 60 / 70
 self.mosin.AMMO_PICKUP = {0.9, 1.2}
 self.mosin.kick.standing = self.r93.kick.standing
@@ -117,12 +116,11 @@ self.mosin.kick.crouching = self.r93.kick.crouching
 self.mosin.kick.steelsight = self.r93.kick.steelsight
 
 -- R93
-self.r93.fire_mode_data.fire_rate = 60 / 70
+self.r93.fire_mode_data.fire_rate = 60 / 55
 self.r93.AMMO_PICKUP = {0.9, 1.2}
 
 -- Platypus
 self.model70.CLIP_AMMO_MAX = 6
-self.model70.fire_mode_data.fire_rate = 60 / 70
 self.model70.AMMO_PICKUP = {0.9, 1.2}
 self.model70.kick.standing = self.r93.kick.standing
 self.model70.kick.crouching = self.r93.kick.crouching

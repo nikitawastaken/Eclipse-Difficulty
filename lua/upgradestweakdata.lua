@@ -402,8 +402,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steroids.multibasic = "200%"
 
 	-- Bloodthirst
-	self.values.player.melee_damage_stacking.max_multiplier = 6
-	self.skill_descs.bloodthirst.multibasic2 = "600%"
+	self.values.player.melee_damage_stacking = {{max_multiplier = 3.5, melee_multiplier = 0.5}}
+	self.skill_descs.bloodthirst.multibasic2 = "350%"
 
 	-- Zerker
 	self.values.player.melee_damage_health_ratio_multiplier = {1.5}
