@@ -3,8 +3,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- DB
     self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {dot_trigger_chance = "100", dot_damage = "20", dot_length = "1.5", dot_trigger_max_distance = "1500", dot_tick_period = "0.5"}
     -- HE
-    self.parts.wpn_fps_upg_a_explosive.stats = {total_ammo_mod = -10, damage = -15, spread = 1}
-    self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.9, ammo_pickup_min_mul = 0.9, bullet_class = "InstantExplosiveBulletBase", rays = 1}
+    self.parts.wpn_fps_upg_a_explosive.stats = {total_ammo_mod = -10, damage = -15, spread = 2}
+    self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75, bullet_class = "InstantExplosiveBulletBase", rays = 1}
 	-- 000
     self.parts.wpn_fps_upg_a_custom.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1} -- overwrites walk in closet so technically you still lose pickup
     self.parts.wpn_fps_upg_a_custom_free.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
