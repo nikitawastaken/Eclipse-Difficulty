@@ -110,6 +110,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_smg_sr2_m_quick.stats = {recoil = -2, reload = 3}
     self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 3}
     self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_fmg9_m_speed.stats = {spread = 1, reload = 3, recoil = -1, concealment = -2}
 
     -- Barrel Extentions
 
