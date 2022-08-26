@@ -61,6 +61,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.triathlete[1].upgrades = {"cable_tie_interact_speed_multiplier"}
 	self.skills.triathlete[2].upgrades = {"cable_tie_quantity"}
 
+	-- Hostage Taker
+	self.skills.black_marketeer[1].upgrades = {"player_hostage_health_regen_addend_1", "player_hostage_min_sum_taker_1"}
+	self.skills.black_marketeer[2].upgrades = {"player_hostage_health_regen_addend_2", "player_hostage_min_sum_taker_2", "player_joker_counts_for_hostage_boost"}
+
 	-- Berserker
 	self.skills.wolverine[1].upgrades = {"player_melee_damage_health_ratio_multiplier"}
 	self.skills.wolverine[2].upgrades = {"player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier"}
