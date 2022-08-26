@@ -591,6 +591,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][7].multiperk2 = "0.6"
 	self.specialization_descs[11][9].multiperk2 = "0.6"
 
+	-- Biker
+	self.values.player.wild_health_amount = {0.25}
+	self.specialization_descs[16][1].multiperk = "2.5"
+
 	-- Ex-President
 	self.values.player.body_armor.skill_max_health_store = {4, 3.5, 3, 2.5, 2, 1.5, 1}
 	
