@@ -23,7 +23,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.damage.explosion_damage_mul = 0.5
 	self.tank.move_speed.stand.walk.cbt = {strafe = 186, fwd = 208, bwd = 164}
 	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
-	
+
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
@@ -48,7 +48,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.no_run_stop = true
 	self.biker_boss.throwable = "concussion"
 	self.biker_boss.throwable_cooldown = 10
-	
+
 	self.chavez_boss.HEALTH_INIT = 400
 	self.chavez_boss.player_health_scaling_mul = 1.5
 	self.chavez_boss.headshot_dmg_mul = 1.65
@@ -75,7 +75,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable_cooldown = 10
-	
+
 	self.hector_boss.HEALTH_INIT = 400
 	self.hector_boss.player_health_scaling_mul = 1.5
 	self.hector_boss.headshot_dmg_mul = 1.65
@@ -89,7 +89,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.no_run_stop = true
 	self.hector_boss.throwable = "frag"
 	self.hector_boss.throwable_cooldown = 15
-	
+
 	self.mobster_boss.HEALTH_INIT = 400
 	self.mobster_boss.player_health_scaling_mul = 1.5
 	self.mobster_boss.headshot_dmg_mul = 1.65
@@ -101,7 +101,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.move_speed = self.presets.move_speed.fast
 	self.mobster_boss.no_run_start = true
 	self.mobster_boss.no_run_stop = true
-	
+
 	self.triad_boss.HEALTH_INIT = 400
 	self.triad_boss.player_health_scaling_mul = 1.5
 	self.triad_boss.headshot_dmg_mul = 1.65
@@ -150,7 +150,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.sniper.is_rifle.use_laser = false
-	
+
 	-- Tweak dodge presets
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
@@ -458,7 +458,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		}
 	}
-	
+
 	-- revolver preset
 	-- 140 dmg
 	presets.weapon.deathwish.is_revolver.aim_delay = {0.2, 0.2}
@@ -556,7 +556,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		}
 	}
-	
+
 	-- pistol preset
 	-- 35 damage
 	presets.weapon.deathwish.is_pistol.aim_delay = {0.2, 0.2}
@@ -802,7 +802,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		}
 
 	return presets
-	
+
 end
 
 function CharacterTweakData:_set_sm_wish()
@@ -989,7 +989,7 @@ function CharacterTweakData:_set_sm_wish()
 			},
 		}
 	}
-	
+
 	-- FBI / Medic Shotgun preset
 	-- 175 damage point blank, falls off down to 42 at max range
 	self.fbi_swat.weapon.is_shotgun_pump = {
@@ -2081,7 +2081,7 @@ function CharacterTweakData:_set_sm_wish()
 	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 30
 	self.taser.weapon.is_rifle.tase_distance = 1500
 	self.taser.weapon.is_rifle.aim_delay_tase = {0.2, 0.2}
-	
+
 	-- Bosses
 	self.chavez_boss.weapon.akimbo_pistol.FALLOFF = {
 		{

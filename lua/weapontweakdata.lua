@@ -65,7 +65,7 @@ self.wa2000.kick.crouching = self.wa2000.kick.standing
 self.wa2000.kick.steelsight = self.wa2000.kick.standing
 self.wa2000.categories = {"snp", "ng"}
 
--- Rangehitter 
+-- Rangehitter
 self.sbl.AMMO_MAX = 30
 self.sbl.CLIP_AMMO_MAX = 15
 self.sbl.stats.damage = 120
@@ -165,7 +165,7 @@ self.rpk.kick.standing = {0.9, 1.2, -0.9, 0.9}
 self.rpk.kick.crouching = self.rpk.kick.standing
 self.rpk.kick.steelsight = self.rpk.kick.standing
 
--- Brenner 
+-- Brenner
 self.hk21.stats.spread = 12
 self.hk21.stats.damage = 110
 self.hk21.stats.reload = 12
@@ -286,7 +286,7 @@ self.m590.AMMO_PICKUP = {1, 1.8}
 self.m590.fire_mode_data.fire_rate = 0.5
 self.m590.kick.standing = {3, 4, -0.2, 0.2}
 self.m590.kick.crouching = self.m590.kick.standing
-self.m590.kick.steelsight = self.m590.kick.standing 
+self.m590.kick.steelsight = self.m590.kick.standing
 
 -- Mosconi
 self.huntsman.rays = 12
@@ -295,7 +295,7 @@ self.huntsman.stats_modifiers = {damage = 2}
 self.huntsman.AMMO_PICKUP = {0.42, 1.47}
 self.huntsman.kick.standing = {4, 5, -0.2, 0.2}
 self.huntsman.kick.crouching = self.huntsman.kick.standing
-self.huntsman.kick.steelsight = self.huntsman.kick.standing 
+self.huntsman.kick.steelsight = self.huntsman.kick.standing
 
 -- Joceline
 self.b682.rays = 12
@@ -304,7 +304,7 @@ self.b682.stats_modifiers = {damage = 2}
 self.b682.AMMO_PICKUP = {0.42, 1.47}
 self.b682.kick.standing = {4, 5, -0.2, 0.2}
 self.b682.kick.crouching = self.huntsman.kick.standing
-self.b682.kick.steelsight = self.huntsman.kick.standing 
+self.b682.kick.steelsight = self.huntsman.kick.standing
 
 -- Breaker
 self.boot.rays = 12
@@ -312,7 +312,7 @@ self.boot.stats.damage = 180
 self.boot.AMMO_PICKUP = {0.42, 1.15}
 self.boot.kick.standing = {2.5, 3, -0.2, 0.2}
 self.boot.kick.crouching = self.boot.kick.standing
-self.boot.kick.steelsight = self.boot.kick.standing 
+self.boot.kick.steelsight = self.boot.kick.standing
 
 -- Judge
 self.judge.rays = 12
@@ -320,21 +320,21 @@ self.judge.AMMO_PICKUP = {0.275, 0.65}
 self.judge.AMMO_MAX = 25
 self.judge.kick.standing = {2.5, 3, -0.2, 0.2}
 self.judge.kick.crouching = self.judge.kick.standing
-self.judge.kick.steelsight = self.judge.kick.standing 
+self.judge.kick.steelsight = self.judge.kick.standing
 
 -- Claire
 self.coach.rays = 12
 self.coach.AMMO_PICKUP = {0.25, 0.65}
 self.coach.kick.standing = {4, 5, -0.2, 0.2}
 self.coach.kick.crouching = self.coach.kick.standing
-self.coach.kick.steelsight = self.coach.kick.standing 
+self.coach.kick.steelsight = self.coach.kick.standing
 
--- GSPS 
+-- GSPS
 self.m37.rays = 12
 self.m37.AMMO_PICKUP = {0.42, 1.15}
 self.m37.kick.standing = {4, 5, -0.2, 0.2}
 self.m37.kick.crouching = self.m37.kick.standing
-self.m37.kick.steelsight = self.m37.kick.standing 
+self.m37.kick.steelsight = self.m37.kick.standing
 
 -- Loco
 self.serbu.AMMO_MAX = 24
@@ -419,7 +419,7 @@ self.new_m4.kick.standing = {1.3, 1.5, -0.75, 0.75}
 self.new_m4.kick.crouching = self.new_m4.kick.standing
 self.new_m4.kick.steelsight = self.new_m4.kick.standing
 
--- AK5 
+-- AK5
 self.ak5.AMMO_PICKUP = {5, 7}
 self.ak5.kick.standing = {1.3, 1.5, -0.75, 0.75}
 self.ak5.kick.crouching = self.ak5.kick.standing

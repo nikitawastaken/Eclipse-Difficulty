@@ -54,7 +54,7 @@ function MenuCallbackHandler:max_progress()
 	managers.money:_set_total(99999999999999^20)
     managers.custom_safehouse:add_coins(99999999999999^20)
 	managers.skilltree:give_specialization_points(99999999999999^20)
-	
+
 	for name, item in pairs(tweak_data.blackmarket.weapon_mods) do
 		if not item.dlc or managers.dlc:is_dlc_unlocked(item.dlc) then
 			for i = 1, 100 do
@@ -67,7 +67,7 @@ function MenuCallbackHandler:max_progress()
 			if item.dlc and managers.dlc:is_dlc_unlocked(item.dlc) then
 				for i = 1, 10 do
 				managers.blackmarket:add_to_inventory(item.dlc, "masks", name)
-				end 
+				end
 			else
 				local global_value = item.infamous and "infamous" or item.global_value or "normal"
 				for i = 1, 10 do

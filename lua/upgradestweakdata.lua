@@ -1,7 +1,7 @@
 local old_pd2_values_init = UpgradesTweakData._init_pd2_values
 function UpgradesTweakData:_init_pd2_values(tweak_data)
 	old_pd2_values_init(self, tweak_data)
-	
+
 	-- 100 skill points
 	self.values.rep_upgrades.values = {0}
 
@@ -15,7 +15,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		0.625,
 		0.525
 	}
-	
+
 	-- ictv nerf
 	self.values.player.body_armor.armor[7] = 13
 end
@@ -26,7 +26,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Weapons
 	-------------
-	
+
 	-- LMG / Minigun movement penalties revert
 	self.weapon_movement_penalty.lmg = 0.8
 	self.weapon_movement_penalty.minigun = 0.75
@@ -79,7 +79,7 @@ function UpgradesTweakData:init(tweak_data)
 		    category = "player",
 			upgrade = "hostage_min_sum_taker",
 			value = 1
-		}	
+		}
 	}
 	self.definitions.player_hostage_min_sum_taker_2 = {
 	    category = "feature",
@@ -88,7 +88,7 @@ function UpgradesTweakData:init(tweak_data)
 		    category = "player",
 			upgrade = "hostage_min_sum_taker",
 			value = 2
-		}	
+		}
 	}
 	self.definitions.player_joker_counts_for_hostage_boost = {
 	    category = "feature",
@@ -97,7 +97,7 @@ function UpgradesTweakData:init(tweak_data)
 		    category = "player",
 			upgrade = "joker_counts_for_hostage_boost",
 			value = 1
-		}	
+		}
 	}
 	self.skill_descs.black_marketeer.multibasic = "3"
 	self.skill_descs.black_marketeer.multibasic2 = "10"
@@ -162,12 +162,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "temporary"
 		}
 	}
-	
+
 	self.values.temporary.overkill_damage_multiplier = {
 		{1.3, 5},
 		{1.45, 12}
 	}
-	
+
 	self.skill_descs.overkill.multibasic = "30%"
 	self.skill_descs.overkill.multibasic2 = "5"
 	self.skill_descs.overkill.multipro = "45%"
@@ -178,7 +178,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.shotgun.magazine_capacity_inc[1] = 5
 	self.skill_descs.close_by.multipro2 = "5"
 
-	-- Resilience 
+	-- Resilience
 	self.values.player.flashbang_multiplier = {0.75, 0.75}
 	self.skill_descs.oppressor.multipro2 = "25%"
 
@@ -190,7 +190,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.bandoliers.multibasic = "12"
 	self.skill_descs.bandoliers.multipro2 = "30"
 
-	-- Saw Massacre 
+	-- Saw Massacre
 	self.skill_descs.ammo_reservoir.multibasic2 = "50%"
 	self.skill_descs.ammo_reservoir.multipro = "50%"
 	self.skill_descs.ammo_reservoir.multipro3 = "10"
@@ -209,7 +209,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Rifleman
 	self.skill_descs.defense_up.multipro = "16"
-	
+
 	-- Die Hard
 	self.values.player.interacting_damage_multiplier[1] = 0.25
 	self.skill_descs.sentry_targeting_package.multibasic = "25%"
@@ -254,7 +254,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fire_trap.multipro = "20"
 
 	-- Oppressor
-	
+
 	self.definitions.player_suppression_bonus_2 = {
 		name_id = "menu_player_suppression_bonus",
 		category = "feature",
@@ -300,7 +300,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.weapon.automatic_head_shot_add[1] = 0.6
 	self.skill_descs.body_expertise.multipro = "60%"
-	
+
 	-- Ghost --
 
 	-- Eagle Eye
@@ -324,7 +324,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.suspicion_multiplier[1] = 0.65
 	self.skill_descs.jail_workout.multibasic = "35%"
 	self.skill_descs.jail_workout.multipro = "5"
-	
+
 	-- ECM Specialist
 	self.skill_descs.ecm_2x.multipro = "30"
 
@@ -370,7 +370,7 @@ function UpgradesTweakData:init(tweak_data)
 		    category = "weapon",
 			upgrade = "silencer_damage_multiplier",
 			value = 1
-		}	
+		}
 	}
 	self.definitions.weapon_armor_piercing_chance_silencer = {
 	    category = "feature",
@@ -379,7 +379,7 @@ function UpgradesTweakData:init(tweak_data)
 		    category = "weapon",
 			upgrade = "armor_piercing_chance_silencer",
 			value = 1
-		}	
+		}
 	}
 	self.values.weapon.armor_piercing_chance_silencer[1] = 0.5
 	self.skill_descs.backstab.multibasic = "1"
@@ -492,7 +492,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.temporary.melee_life_leech[1][1] = 3
 	self.specialization_descs[8][9].multiperk = "30"
 
-	-- Crew Chief 
+	-- Crew Chief
 	self.values.team.health.hostage_multiplier = {1.04}
 	self.specialization_descs[1][9].multiperk = "4%"
 
@@ -546,7 +546,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[15][5].multiperk2 = "75%"
 	self.specialization_descs[15][7].multiperk2 = "100%"
 	self.specialization_descs[15][7].multiperk3 = "15%"
-	
+
 	-- Crook
 	self.values.player.level_2_armor_multiplier[3] = 1.8
 	self.values.player.level_3_armor_multiplier[3] = 1.7
@@ -597,7 +597,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Ex-President
 	self.values.player.body_armor.skill_max_health_store = {4, 3.5, 3, 2.5, 2, 1.5, 1}
-	
+
 	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = {0.35}
 	self.specialization_descs[12][3].multiperk = "80%"

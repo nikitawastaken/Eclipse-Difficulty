@@ -33,7 +33,7 @@ Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self,
 	end
 
 	hostage_min_sum = hostage_min_sum + self:upgrade_value("player", "hostage_min_sum_taker", 0)
-	if hostages >= hostage_min_sum then 
+	if hostages >= hostage_min_sum then
 		addend = addend + self:upgrade_value("player", "hostage_" .. category .. "_addend", 0)
 	end
 

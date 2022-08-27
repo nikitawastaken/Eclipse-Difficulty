@@ -14,7 +14,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Fire Control
 	self.skills.fire_control[2].upgrades = {"player_ap_bullets_1"}
 
-	-- Oppressor 
+	-- Oppressor
 	self.skills.heavy_impact[1].upgrades = {"player_suppression_bonus"}
 	self.skills.heavy_impact[2].upgrades = {"player_suppression_bonus_2"}
 	self.skills.heavy_impact.name_id = "menu_oppressor"
@@ -123,7 +123,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.eco_sentry[1].upgrades = {"sentry_gun_standstill_omniscience", "sentry_gun_spread_multiplier"}
 	self.skills.eco_sentry[2].upgrades = {"sentry_gun_ap_bullets", "sentry_gun_fire_rate_reduction_1"}
 	self.skills.eco_sentry.icon_xy = {7, 8}
-	
+
 	-- Fast Hands
 	self.skills.shock_and_awe[1].upgrades = {"smg_reload_speed_multiplier", "lmg_reload_speed_multiplier"}
 	self.skills.shock_and_awe.icon_xy = {3, 3}
@@ -223,7 +223,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- hacker
 	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
-	
+
 	-- armorer
 	table.delete(self.specializations[3][1].upgrades, "player_tier_armor_multiplier_2")
 	table.delete(self.specializations[3][9].upgrades, "player_tier_armor_multiplier_6")
@@ -235,12 +235,12 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
-	
+
 	-- yakuza
 	self.specializations[12][3].upgrades ={"weapon_passive_swap_speed_multiplier_1"}
 	table.insert(self.specializations[12][9].upgrades, "player_damage_health_ratio_multiplier")
 	table.delete(self.specializations[12][9].upgrades, "player_movement_speed_damage_health_ratio_threshold_multiplier")
-	
+
 	-- leech
 	table.delete(self.specializations[22][1].upgrades, "player_copr_kill_life_leech_1")
 	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
@@ -273,7 +273,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.specializations[10][3].upgrades, "player_addition_ammo_eclipse")
 	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
-	-- Remove some default upgrades 
+	-- Remove some default upgrades
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")

@@ -17,7 +17,7 @@ function CopActionReload:_play_reload()
 			local usage_tweak = self._common_data.char_tweak.weapon[usage]
 			self._reload_speed = usage_tweak and usage_tweak.RELOAD_SPEED or 1
 		end
-		
+
 		self._machine:set_speed(redir_res, self._reload_speed)
 
 		if Network:is_server() then

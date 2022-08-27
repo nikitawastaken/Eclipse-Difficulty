@@ -28,7 +28,7 @@ function HuskPlayerDamage:_send_damage_to_owner(attack_data)
     if attack_data.attacker_unit == managers.player:player_unit() then
         managers.hud:on_hit_confirmed()
     end
-    
+
     if managers.mutators:is_mutator_active(MutatorFriendlyFire) then
         managers.job:set_memory("trophy_flawless", true, false)
     end

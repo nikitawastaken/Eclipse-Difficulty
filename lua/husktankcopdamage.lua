@@ -2,7 +2,7 @@
 local origfunc = HuskTankCopDamage and HuskTankCopDamage.is_head or nil
 function HuskTankCopDamage:is_head(body, ...)
 	local head = origfunc and origfunc(self, body, ...) or HuskTankCopDamage.super.is_head(self, body, ...)
-	
+
 	if not head and body
 		and (not TheFixes or TheFixes.shotgun_dozer_face)
 	then
@@ -13,6 +13,6 @@ function HuskTankCopDamage:is_head(body, ...)
 			head = true
 		end
 	end
-	
+
 	return head
 end

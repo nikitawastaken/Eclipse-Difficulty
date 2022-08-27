@@ -58,7 +58,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- bipod nerf
     self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.recoil = -1
-    
+
 
     -- DMR Kit fixes and concealment nerfs
     -- ak family
@@ -86,7 +86,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
     self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
     self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 73
-    -- broomstick 
+    -- broomstick
     self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
 
 

@@ -69,7 +69,7 @@ if difficulty_index == 8 then
 			},
 			access = access_type_all
 		}
-	
+
 	-- FBI Heavy Riflemen
 		self.unit_categories.heavy_rifleman_fbi = {
 			unit_types = {
@@ -156,7 +156,7 @@ if difficulty_index == 8 then
 			},
 			access = access_type_all
 		}
-	
+
 	-- GenSec Short Range Riflemen
 		self.unit_categories.rifleman_sr_elite = {
 			unit_types = {
@@ -222,7 +222,7 @@ if difficulty_index == 8 then
 			},
 			access = access_type_all
 		}
-		
+
 	-- Balaclava HRU
 		self.unit_categories.balaclava = {
 			unit_types = {
@@ -313,7 +313,7 @@ if difficulty_index == 8 then
 			access = access_type_all
 		}
 
-	-- Medic	
+	-- Medic
 		self.unit_categories.medic_unit = {
 			special_type = "medic",
 			unit_types = {
@@ -391,9 +391,9 @@ if difficulty_index == 8 then
 			},
 			access = access_type_all
 		}
-		
+
 	-- Cloakers
-		self.unit_categories.cloaker = { 
+		self.unit_categories.cloaker = {
 			unit_types = {
 				america = {
 					Idstring( "units/payday2/characters/ene_spook_1/ene_spook_1" )
@@ -530,7 +530,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"rescue_hostages"
 		}
 	}
-	
+
 	-- соси хуй кк?
 	self.enemy_spawn_groups = {}
 
@@ -1045,7 +1045,7 @@ end)
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index, difficulty)
 	local is_console = SystemInfo:platform() ~= Idstring("WIN32")
-	if difficulty_index == 8 then 
+	if difficulty_index == 8 then
 		self.besiege.recurring_group_SO = {
 			recurring_cloaker_spawn = {
 				retire_delay = 30,
@@ -1064,15 +1064,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Assault Data
 	if difficulty_index == 8 then
 		-- PHASES --
-		
+
 		-- Sustain
 		self.besiege.assault.sustain_duration_min = {70, 140, 210}
 		self.besiege.assault.sustain_duration_max = {70, 140, 210}
 		self.besiege.assault.sustain_duration_balance_mul = {1, 1, 1, 1}
 
-		-- Control 
+		-- Control
 		self.besiege.assault.delay = {30, 25, 15}
-		
+
 		-- SPAWNS --
 
 		-- Spawncap
@@ -1088,12 +1088,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.reenforce.interval = {45, 35, 25}
 
     	-- Make recon spawngroups spawn faster and increase their spawncap
-    	self.besiege.recon.interval_variation = 0 
+    	self.besiege.recon.interval_variation = 0
     	self.besiege.recon.interval = {10, 8, 5}
     	self.besiege.recon.force = {2, 6, 10}
 
 		-- GRENADES --
-		
+
 		-- flash
 		self.flash_grenade_timeout = {10, 15}
 		self.flash_grenade.light_color = Vector3(255, 255, 255)
@@ -1115,7 +1115,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			reenforce_tank = {0.15, 0.15, 0.15}
 		}
 	end
-	
+
 	-- Main assault spawnpool
 	if difficulty_index == 8 then
 		self.besiege.assault.groups = {

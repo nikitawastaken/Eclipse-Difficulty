@@ -26,7 +26,7 @@ function PlayerDamage:is_friendly_fire(unit)
 	if attacker_team ~= my_team and attacker_mov_ext:friendly_fire() then
 		return false
 	end
-	
+
 	if Global.game_settings and Global.game_settings.one_down and unit:base() and unit:base().is_husk_player then
 		friendly_fire = false
 	else

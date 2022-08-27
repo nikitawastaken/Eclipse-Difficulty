@@ -27,7 +27,7 @@ function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_m
 	if col_ray then
 		damage_range = math.min(damage_range, col_ray.distance)
 	end
-	
+
 	self:_spawn_flame_effect(mvec_to, direction, true)
 
 	local cone_spread = math.rad(spread_x) * damage_range
