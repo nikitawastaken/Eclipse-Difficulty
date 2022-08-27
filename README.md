@@ -14,23 +14,7 @@ In order to max progression, go into:
 **RESTART THE GAME IF YOU WANT TO REMOVE IT**<br/>
 **NOT RESTARTING THE GAME WILL CAUSE YOUR SAVEFILE TO CORRUPT**<br/>
 
-## Changes
-(wip)
-- [Streamlined Hesting Changes](https://github.com/segabl/pd2-streamlined-heisting "Streamlined Hesting Changes")
-- An entirely revamped skillset
-- Entirely reworked perkdecks
-- New stats for weapons
-- Buffs to loud barrel extensions
-- Only 100 skillpoints
-- LOTS of removed akimbos
-- Removed secondary flamethrower
-- Flamethrower buffs
-- Longer fade timers
-- Removed civilian trade penalties
-- Removed sniper lasers
-- Silent cloakers
-- Cops can dodge
-- Instant drill upgrades
+Check out the [wiki](https://github.com/mrcreepysos/Eclipse-Difficulty/wiki) for an extensive list of changes.
 
 ------------
 
