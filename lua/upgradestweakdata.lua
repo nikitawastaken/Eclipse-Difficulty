@@ -477,11 +477,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.drop_soap.multipro = "10"
 
 	-- Frenzy
-	self.values.player.health_damage_reduction = {0.85, 0.7}
+	self.values.player.health_damage_reduction = {0.85, 0.65}
 	self.values.player.max_health_reduction = {0.1}
 	self.skill_descs.frenzy.multibasic = "10%"
 	self.skill_descs.frenzy.multibasic2 = "15%"
-	self.skill_descs.frenzy.multipro = "30%"
+	self.skill_descs.frenzy.multipro = "35%"
 
 	-- Perk Decks
 	-------------
