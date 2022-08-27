@@ -368,8 +368,15 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				end
 
 				-- Check which grenade to use to push, grenade use is required for the push to be initiated
+				-- If a criminal is downed in the area, the grenade isn't available
 				-- If grenade isn't available, push regardless anyway after a short delay
-				used_grenade = self:_chk_group_use_grenade(assault_area, group, detonate_pos) or group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t
+				for k, v in pairs(assault_area.criminal.units) do
+					if v.record and v.record.status then
+					  used_grenade = true
+					  break
+					end
+				end
+				used_grenade = used_grenade or self:_chk_group_use_grenade(assault_area, group, detonate_pos) or group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t
 
 				if used_grenade then
 					self:_voice_move_in_start(group)
