@@ -451,6 +451,7 @@ function UpgradesTweakData:init(tweak_data)
 		}
 	}
 	self.skill_descs.messiah.multibasic = "1"
+	self.skill_descs.messiah.multibasic2 = "10"
 	self.skill_descs.messiah.multipro = "2"
 
 	-- Pumping Iron
