@@ -68,7 +68,21 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.control_freak.multipro3 = "10%"
 	self.skill_descs.control_freak.multipro4 = "53%"
 
-	-- Hostage taker
+	-- Hostage Situation
+	self.values.team.hostage_situation = {10}
+	self.definitions.team_hostage_situation = {
+	    category = "feature",
+		name_id = "hostage_situation",
+		upgrade = {
+		    category = "team",
+			upgrade = "hostage_situation",
+			value = 1
+		}
+	}
+	self.skill_descs.stockholm_syndrome.multipro = "10"
+	self.skill_descs.stockholm_syndrome.multipro2 = "20"
+
+	-- Hostage Taker
 	self.values.player.hostage_min_sum_taker = {2, 1}
 	self.values.player.joker_counts_for_hostage_boost = {true}
 	self.values.player.hostage_health_regen_addend = {1, 1.2}

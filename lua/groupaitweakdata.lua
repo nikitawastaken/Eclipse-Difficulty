@@ -1071,7 +1071,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.sustain_duration_balance_mul = {1, 1, 1, 1}
 
 		-- Control
-		self.besiege.assault.delay = {30, 25, 15}
+		self.besiege.assault.delay = {20, 15, 7.5}
 
 		-- SPAWNS --
 

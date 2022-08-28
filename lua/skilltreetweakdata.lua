@@ -54,8 +54,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.cable_guy[1].upgrades = {"player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier"}
 	self.skills.cable_guy[2].upgrades = {"team_damage_hostage_absorption"}
 
-	-- Stockholm Syndrome
+	-- Hostage Situation
 	table.insert(self.skills.stockholm_syndrome[1].upgrades, "player_civ_intimidation_mul")
+	self.skills.stockholm_syndrome[2].upgrades = {"team_hostage_situation"}
+	self.skills.stockholm_syndrome.icon_xy = {6, 7}
 
 	-- Forced Friendship
 	self.skills.triathlete[1].upgrades = {"cable_tie_interact_speed_multiplier"}
@@ -198,9 +200,6 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Messiah
 	self.skills.messiah[1].upgrades = {"player_messiah_revive_from_bleed_out_1", "player_increased_bleedout_timer"}
 	self.skills.messiah[2].upgrades = {"player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1"}
-
-	-- Stockholm Syndrome
-	self.skills.stockholm_syndrome.icon_xy = {0, 0}
 
 	-- Counter Strike
 	self.skills.drop_soap[1].upgrades = {"player_run_and_melee_eclipse"}
