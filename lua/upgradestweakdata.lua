@@ -69,9 +69,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.control_freak.multipro4 = "53%"
 
 	-- Hostage taker
-	self.values.player.hostage_min_sum_taker = {3, 1}
+	self.values.player.hostage_min_sum_taker = {2, 1}
 	self.values.player.joker_counts_for_hostage_boost = {true}
-	self.values.player.hostage_health_regen_addend = {1, 1}
+	self.values.player.hostage_health_regen_addend = {1, 1.2}
 	self.definitions.player_hostage_min_sum_taker_1 = {
 	    category = "feature",
 		name_id = "hostage_min_sum_taker",
@@ -99,10 +99,11 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1
 		}
 	}
-	self.skill_descs.black_marketeer.multibasic = "3"
+	self.skill_descs.black_marketeer.multibasic = "2"
 	self.skill_descs.black_marketeer.multibasic2 = "10"
 	self.skill_descs.black_marketeer.multibasic3 = "5"
 	self.skill_descs.black_marketeer.multipro = "1"
+	self.skill_descs.black_marketeer.multipro2 = "12"
 
 	-- Lock N' Load
 	self.definitions.weapon_swap_speed_multiplier_2 = {
