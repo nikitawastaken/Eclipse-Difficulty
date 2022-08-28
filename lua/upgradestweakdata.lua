@@ -425,8 +425,33 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.trigger_happy.multibasic3 = "5"
 	self.skill_descs.trigger_happy.multipro2 = "6"
 
+	-- Swan Song
 	self.values.temporary.berserker_damage_multiplier[2] = {1, 9}
 	self.skill_descs.perseverance.multipro = "6"
+
+	-- Messiah
+	self.values.player.messiah_revive_from_bleed_out = {1, 3}
+	self.values.player.increased_bleedout_timer = {10}
+	self.definitions.player_messiah_revive_from_bleed_out_2 = {
+		name_id = "menu_player_pistol_revive_from_bleed_out",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "messiah_revive_from_bleed_out",
+			category = "player"
+		}
+	}
+	self.definitions.player_increased_bleedout_timer = {
+		name_id = "menu_player_increased_bleedout_timer",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "increased_bleedout_timer",
+			category = "player"
+		}
+	}
+	self.skill_descs.messiah.multibasic = "1"
+	self.skill_descs.messiah.multipro = "2"
 
 	-- Pumping Iron
 	self.values.player.non_special_melee_multiplier[1] = 3

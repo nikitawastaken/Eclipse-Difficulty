@@ -195,9 +195,17 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.backstab.name_id = "menu_silenced_damage"
 	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
 
+	-- Messiah
+	self.skills.messiah[1].upgrades = {"player_messiah_revive_from_bleed_out_1", "player_increased_bleedout_timer"}
+	self.skills.messiah[2].upgrades = {"player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1"}
+
+	-- Stockholm Syndrome
+	self.skills.stockholm_syndrome.icon_xy = {0, 0}
+
 	-- Counter Strike
 	self.skills.drop_soap[1].upgrades = {"player_run_and_melee_eclipse"}
 	self.skills.drop_soap[2].upgrades = {"cooldown_counter_strike_eclipse"}
+
 
 	-- Sentry tree
 	self.trees[7].tiers[2][2] = "engineering"

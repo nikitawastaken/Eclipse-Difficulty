@@ -2,7 +2,7 @@
 PlayerDamage._UPPERS_COOLDOWN = 60
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
-Hooks:PreHook(PlayerDamage, "replenish", "eclipse__replenish", function(self)
+Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
     if Global.game_settings.one_down then
         self._lives_init = 4
         tweak_data.player.damage.DOWNED_TIME = 25
@@ -77,6 +77,11 @@ function PlayerDamage:restore_health(health_restored, is_static, chk_health_rati
 		return self:change_health(health_restored * self._healing_reduction)
 	end
 end
+
+-- add an upgrade that gives increased bleedout timer
+Hooks:PostHook(PlayerDamage, "_regenerated", "eclipse__regenerated", function(self)
+	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
+end)
 
 -- bring back decreasing bleedout timer based on the amount of downs
 Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
