@@ -4,7 +4,7 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_init", function (self)
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)
-	if difficulty_index == 7 or 8 then
+	if difficulty_index >= 7 then
 		self.special_unit_spawn_limits = {
 			tank = 2,
 			taser = 3,
@@ -532,7 +532,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self.enemy_spawn_groups = {}
 
 	-- Custom spawngroups
-	if difficulty_index == 7 or 8 then
+	if difficulty_index >= 7 then
 		self.enemy_spawn_groups.common_charge = {
 			amount = {
 				4,
@@ -1112,7 +1112,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			self.cs_grenade_lifetime = 20
 	end
 
-	if difficulty_index == 7 or 8 then
+	if difficulty_index >= 7 then
 		self.besiege.assault.groups = {
 			common_charge = {1, 1, 1},
 			common_shield = {0.66, 0.66, 0.66},
