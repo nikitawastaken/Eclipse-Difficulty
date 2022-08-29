@@ -4,13 +4,13 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_init", function (self)
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)
-	if difficulty_index == 8 then
+	if difficulty_index == 7 or 8 then
 		self.special_unit_spawn_limits = {
 			tank = 2,
 			taser = 3,
 			spooc = 2,
 			shield = 4,
-			medic = 4
+			medic = 1
 		}
 	end
 
@@ -25,7 +25,6 @@ local access_type_all = {
 -- UNIT CATEGORIES
 -- Honestly if only i could be arsed to actually support all factions
 
-if difficulty_index == 8 then
 	-- FBI Riflemen
 		self.unit_categories.rifleman_fbi = {
 			unit_types = {
@@ -48,7 +47,6 @@ if difficulty_index == 8 then
 			access = access_type_all
 		}
 
-	-- FBI Shotgunners
 		self.unit_categories.shotgunner_fbi = {
 			unit_types = {
 				america = {
@@ -413,7 +411,6 @@ if difficulty_index == 8 then
 			},
 			access = access_type_all
 		}
-end
 
 end)
 
@@ -535,7 +532,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self.enemy_spawn_groups = {}
 
 	-- Custom spawngroups
-	if difficulty_index == 8 then
+	if difficulty_index == 7 or 8 then
 		self.enemy_spawn_groups.common_charge = {
 			amount = {
 				4,
@@ -855,8 +852,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					tactics = self._tactics.elite_special
 				},
 				{
-					amount_min = 0,
-					freq = 0.5,
+					amount_min = 1,
+					freq = 1,
 					amount_max = 1,
 					rank = 1,
 					unit = "medic_unit",
@@ -1045,7 +1042,7 @@ end)
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index, difficulty)
 	local is_console = SystemInfo:platform() ~= Idstring("WIN32")
-	if difficulty_index == 8 then
+	if difficulty_index == 7 or 8 then
 		self.besiege.recurring_group_SO = {
 			recurring_cloaker_spawn = {
 				retire_delay = 30,
@@ -1062,7 +1059,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	-- Assault Data
-	if difficulty_index == 8 then
 		-- PHASES --
 
 		-- Sustain
@@ -1080,7 +1076,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.force_balance_mul = {1.2, 1.4, 1.6, 1.8}
 
 		-- Spawnrate
-		self.besiege.assault.spawnrate_balance_mul = {1.2, 0.9, 0.7, 0.5}
+		if difficulty_index == 7 then
+			self.besiege.assault.spawnrate_balance_mul = {1.3, 1, 0.85, 0.7}
+		elseif difficulty_index == 8 then
+			self.besiege.assault.spawnrate_balance_mul = {1.2, 0.9, 0.7, 0.5}
+		end
 
 		-- RECON / REENFORCE --
 
@@ -1093,31 +1093,26 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
     	self.besiege.recon.force = {2, 6, 10}
 
 		-- GRENADES --
-
-		-- flash
-		self.flash_grenade_timeout = {10, 15}
+		--shared
 		self.flash_grenade.light_color = Vector3(255, 255, 255)
 		self.flash_grenade.light_range = 500
-		self.flash_grenade.timer = 1
-		-- smoke
 		self.smoke_grenade_timeout = {20, 30}
-		self.smoke_grenade_lifetime = 15
-		-- gas
 		self.cs_grenade_timeout = {55, 75}
-		self.cs_grenade_lifetime = 20
+
+		if difficulty_index == 7 then
+			self.flash_grenade_timeout = {12, 18}
+			self.flash_grenade.timer = 1.35
+			self.smoke_grenade_lifetime = 12
+			self.cs_grenade_lifetime = 15
+
+		elseif difficulty_index == 8 then
+			self.flash_grenade_timeout = {10, 15}
+			self.flash_grenade.timer = 1
+			self.smoke_grenade_lifetime = 15
+			self.cs_grenade_lifetime = 20
 	end
 
-	-- Reenforce spawnpool
-	if difficulty_index == 8 then
-		self.besiege.reenforce.groups = {
-			reenforce_common = {0.3, 0.3, 0.3},
-			reenforce_sneaky = {0.2, 0.2, 0.2},
-			reenforce_tank = {0.15, 0.15, 0.15}
-		}
-	end
-
-	-- Main assault spawnpool
-	if difficulty_index == 8 then
+	if difficulty_index == 7 or 8 then
 		self.besiege.assault.groups = {
 			common_charge = {1, 1, 1},
 			common_shield = {0.66, 0.66, 0.66},
@@ -1134,10 +1129,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			marshal_squad = {0, 0, 0},
 			custom_assault = {0, 0, 0}
 		}
-	end
-
-	-- Recon spawnpool
-	if difficulty_index == 8 then
 		self.besiege.recon.groups = {
 			recon_hrt = {1, 1, 1},
 			recon_aggressive = {0.66, 0.66, 0.66},
@@ -1146,17 +1137,21 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			marshal_squad = {0, 0, 0},
 			custom_recon = {0, 0, 0}
 		}
-	end
-
-	if difficulty_index == 8 then
-		self.phalanx.spawn_chance = {
-			decrease = 0,
-			start = 0,
-			respawn_delay = 300000,
-			increase = 0,
-			max = 1
+		self.besiege.reenforce.groups = {
+			reenforce_common = {0.3, 0.3, 0.3},
+			reenforce_sneaky = {0.2, 0.2, 0.2},
+			reenforce_tank = {0.15, 0.15, 0.15}
 		}
 	end
+
+	-- nuke captain
+	self.phalanx.spawn_chance = {
+		decrease = 0,
+		start = 0,
+		respawn_delay = 300000,
+		increase = 0,
+		max = 1
+	}
 	self.street = deep_clone(self.besiege)
 	self.safehouse = deep_clone(self.besiege)
 end)

@@ -87,11 +87,13 @@
 	"menu_deck15_1_desc": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals.\n\nNote: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
 	"menu_deck9_7_desc": "Killing an enemy at medium range recovers ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT TO UPGRADE THE DRILL",
-	"menu_risk_sm_wish": "Eclipse. Maximum Force Responders inbound.",
 	"menu_difficulty_sm_wish": "Eclipse",
+	"menu_risk_sm_wish": "Eclipse. You only celebrate in the light... because I allow it.",
+	"menu_risk_elite": "Death Wish.\nFor hardcore players. ",
 	"menu_toggle_one_down": "Pro-Job",
 	"menu_one_down": "Pro-Job",
 	"menu_toggle_one_down_lobbies": "Allow Pro-Job Lobbies"
+	"menu_stat_job_completed": "",
 	"menu_max_progress": "Max account progression",
 	"menu_max_progress_help": "Max out your account progression and skip grind.",
 	"menu_progress_msg": "Are you sure you want to max out your progress? This will max out your level, infamy, cash, and unlock all available items."

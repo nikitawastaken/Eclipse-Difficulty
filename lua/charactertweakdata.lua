@@ -6,7 +6,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.city_swat.suppression = {panic_chance_mul = 0.15, duration = {1.5, 2}, react_point = {2, 5},brown_point = {5, 6}}
 	self.city_swat.weapon = self.presets.weapon.expert
-	self.city_swat.dodge = self.presets.dodge.ninja
 
 	-- Specials
 	self.sniper.suppression = nil
@@ -21,8 +20,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
 	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.5
-	self.tank.move_speed.stand.walk.cbt = {strafe = 186, fwd = 208, bwd = 164}
-	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
 
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
@@ -31,8 +28,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.medic.move_speed = self.presets.move_speed.fast
 
 	self.shield.damage.explosion_damage_mul = 0.9
-	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
-	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
+
+	-- Set custom objective interrupt distance
+	self.taser.min_obj_interrupt_dis = 1000
+	self.spooc.min_obj_interrupt_dis = 800
+	self.shadow_spooc.min_obj_interrupt_dis = 800
+	self.tank.min_obj_interrupt_dis = 600
+	self.tank_hw.min_obj_interrupt_dis = 600
+	self.shield.min_obj_interrupt_dis = 300
 
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 400
@@ -116,6 +119,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.bullet_damage_only_from_front = nil
 	self.triad_boss.throwable_target_verified = false
 	self.triad_boss.throwable_cooldown = 20
+
+	-- escort bs
+	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
+	self.escort_chinese_prisoner.move_speed = self.presets.move_speed.escort_slow
+	self.escort_sand.move_speed = self.presets.move_speed.escort_slow
+	self.spa_vip.move_speed = self.presets.move_speed.escort_normal
+	self.escort_undercover.move_speed = self.presets.move_speed.escort_slow
 end)
 
 -- Thanks RedFlame for helping with this
@@ -150,6 +160,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.sniper.is_rifle.use_laser = false
+
+	-- escort bs
+	presets.move_speed.escort_normal = deep_clone(presets.move_speed.normal)
+	presets.move_speed.escort_slow = deep_clone(presets.move_speed.slow)
 
 	-- Tweak dodge presets
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
@@ -805,7 +819,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 end
 
-function CharacterTweakData:_set_sm_wish()
+function CharacterTweakData:_set_overkill_290()
 	self:_multiply_all_hp(3, 1.25)
 
 	-- honestly it's easier to just do this than account for all the difficulty health and hs damage muls
@@ -2638,6 +2652,41 @@ function CharacterTweakData:_set_sm_wish()
 	self:_set_characters_weapon_preset("deathwish")
 
 	self.spooc.spooc_attack_timeout = {2, 3}
-	self.flashbang_multiplier = 2
+	self.flashbang_multiplier = 1.75
 	self.concussion_multiplier = 1
+end
+
+local _set_overkill_290_orig = CharacterTweakData._set_overkill_290
+function CharacterTweakData:_set_sm_wish()
+	_set_overkill_290_orig(self)
+
+	-- Eclipse exclusive buffs
+	self.flashbang_multiplier = 2
+	self.city_swat.dodge = self.presets.dodge.ninja
+	self:_multiply_all_speeds(1.15, 1.075)
+	-- set specific speeds for tanks and shields
+	self.tank.move_speed.stand.walk.cbt = {strafe = 186, fwd = 208, bwd = 164}
+	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
+	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
+	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
+end
+
+-- fixed movement speed difficulty scaling
+-- thanks redflame for this code from like 6 months ago
+function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
+    for preset_name, preset in pairs(self.presets.move_speed) do
+        if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then
+            for _, pose in pairs(preset) do
+                for haste_name, haste in pairs(pose) do
+                    for stance_name, stance in pairs(haste) do
+                        if stance_name ~= "ntl" then
+                            for move_dir in pairs(stance) do
+                                stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
 end

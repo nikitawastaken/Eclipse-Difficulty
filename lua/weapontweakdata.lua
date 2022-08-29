@@ -943,7 +943,7 @@ self.flamethrower_mk2.AMMO_PICKUP = {4.5, 6.75}
 self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 end)
 
-Hooks:PostHook(WeaponTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function(self)
+Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290", function(self)
 	-- NPC weapon edits
 	self.m4_npc.DAMAGE = 1
 	self.m4_npc.auto.fire_rate = 0.225
@@ -974,3 +974,9 @@ Hooks:PostHook(WeaponTweakData, "_set_sm_wish", "eclipse__set_sm_wish", function
 	self.beretta92_npc.has_suppressor = "suppressed_b" -- suppressed
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail_marshal"
 end)
+
+local _set_overkill_290_orig = WeaponTweakData._set_overkill_290
+function WeaponTweakData:_set_sm_wish()
+	_set_overkill_290_orig(self)
+end
+
