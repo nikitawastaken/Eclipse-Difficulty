@@ -36,6 +36,7 @@ function(self, t, dt)
 end)
 
 -- Melee while running
+-- Code from melee overhaul
 Hooks:PostHook(PlayerStandard, "_start_action_running", "eclipse_start_action_running", function(self, t)
 	if managers.player and managers.player:has_category_upgrade("player", "run_and_melee_eclipse") then
 		if not self._move_dir then
@@ -162,3 +163,4 @@ Hooks:PostHook(PlayerStandard, "_interupt_action_melee", "eclipse_interupt_actio
 		end
 	end
 end)
+-- End melee overhaul code
