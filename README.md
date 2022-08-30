@@ -25,4 +25,5 @@ Check out the [wiki](https://github.com/mrcreepysos/Eclipse-Difficulty/wiki) for
 - RuggedlyHandsomeBunBun for testing
 - Carrot for testing
 - DarkWubi for testing
+- NotYourAverageStalin for testing
 - bloodsheet for testing

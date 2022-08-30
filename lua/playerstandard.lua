@@ -99,7 +99,7 @@ function PlayerStandard:_end_action_running(t)
 	if not self._end_running_expire_t then
 		local speed_multiplier = self._equipped_unit:base():exit_run_speed_multiplier()
 		self._end_running_expire_t = t + 0.4 / speed_multiplier
-		local stop_running = not self._equipped_unit:base():run_and_shoot_allowed() and (not self.RUN_AND_RELOAD or not self:_is_reloading()) or self:_can_run_directional()
+		local stop_running = not self._equipped_unit:base():run_and_shoot_allowed() and (not self.RUN_AND_RELOAD or not self:_is_reloading())
 
 		if not self:_is_meleeing() and stop_running then
 			self._ext_camera:play_redirect(self:get_animation("stop_running"), speed_multiplier)
@@ -126,7 +126,7 @@ Hooks:PreHook(PlayerStandard, "_update_melee_timers", "eclipse_update_melee_time
 	if not instant and not self._state_data.melee_repeat_expire_t and self._state_data.melee_expire_t and t >= self._state_data.melee_expire_t then
 		if self._running and not self._end_running_expire_t then
 			if not self:_is_reloading() or not self.RUN_AND_RELOAD then
-				if not managers.player.RUN_AND_SHOOT and not self._state_data.meleeing then
+				if not self._equipped_unit:base():run_and_shoot_allowed() and not self._state_data.meleeing then
 					self._ext_camera:play_redirect(self:get_animation("start_running"))
 				else
 					if not self._state_data.meleeing then
@@ -140,7 +140,7 @@ Hooks:PreHook(PlayerStandard, "_update_melee_timers", "eclipse_update_melee_time
 	if instant and self._state_data.melee_expire_t and t >= self._state_data.melee_expire_t then
 		if self._running and not self._end_running_expire_t then
 			if not self:_is_reloading() or not self.RUN_AND_RELOAD then
-				if not managers.player.RUN_AND_SHOOT and not self._state_data.meleeing then
+				if not self._equipped_unit:base():run_and_shoot_allowed() and not self._state_data.meleeing then
 					self._ext_camera:play_redirect(self:get_animation("start_running"))
 				else
 					if not self._state_data.meleeing then
