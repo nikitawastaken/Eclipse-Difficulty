@@ -16,5 +16,8 @@ return table.list_to_set({
     "Hinaomi's Rebalance - Weapons",
     "Hinaomi's Rebalance - Skills & Perk Decks",
     "Hinaomi's Rebalance - Weapon Conversion Kits",
-    "Better Bots"
+    "Better Bots",
+	"Melee Overhaul ME: Melee Sprinting",
+	"Melee Overhaul ME: Sprint Hold",
+	"Melee Overhaul ME: Melee Decapitations"
 })
