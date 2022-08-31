@@ -1152,6 +1152,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		increase = 0,
 		max = 1
 	}
+
+    -- remove marshals
+    self.enemy_spawn_groups.marshal_squad.max_nr_simultaneous_groups = 0
+
 	self.street = deep_clone(self.besiege)
 	self.safehouse = deep_clone(self.besiege)
 end)
