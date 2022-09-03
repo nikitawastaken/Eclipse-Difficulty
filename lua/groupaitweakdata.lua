@@ -1038,6 +1038,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		}
 	}
 	self.enemy_spawn_groups.FBI_spoocs = self.enemy_spawn_groups.single_spooc
+
+    -- remove marshals
+    self.enemy_spawn_groups.marshal_squad.max_nr_simultaneous_groups = 0
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index, difficulty)
@@ -1152,9 +1155,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		increase = 0,
 		max = 1
 	}
-
-    -- remove marshals
-    self.enemy_spawn_groups.marshal_squad.max_nr_simultaneous_groups = 0
 
 	self.street = deep_clone(self.besiege)
 	self.safehouse = deep_clone(self.besiege)
