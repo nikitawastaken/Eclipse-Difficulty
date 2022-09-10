@@ -142,7 +142,7 @@ function CopActionShoot:update(t)
 						self._shoot_t = t + (self._common_data.is_suppressed and 1.5 or 1) * math_lerp(falloff.recoil[1], falloff.recoil[2], self:_pseudorandom())
 					end
 
-					if vis_state == 1 and not ext_anim.base_no_recoil and not ext_anim.move then
+					if vis_state == 1 and not ext_anim.base_no_recoil then
 						self._ext_movement:play_redirect("recoil_single")
 					end
 
@@ -158,27 +158,23 @@ function CopActionShoot:update(t)
 				self._shoot_t = math_max(self._shoot_t, t + (self._common_data.char_tweak.move_and_shoot_cooldown or 1))
 			end
 
-			if shoot then
-				self._waiting_for_aim_delay = false
-
-				if not self:_chk_start_melee(t, target_dis) then
-					local number_of_rounds = 1
-					local falloff = self:_get_shoot_falloff(target_dis, self._falloff)
-					local autofire_rounds = falloff.autofire_rounds or self._w_usage_tweak.autofire_rounds
-					if self._automatic_weap then
-						if falloff.autofire_rounds then
-							number_of_rounds = self:_pseudorandom(autofire_rounds[1], autofire_rounds[2])
-						elseif self._w_usage_tweak.autofire_rounds then
-							local f = math_clamp((target_dis - self._falloff[1].r) / (self._falloff[#self._falloff].r - self._falloff[1].r) - 0.15 + self:_pseudorandom() * 0.3, 0, 1)
-							number_of_rounds = math.ceil(math_lerp(autofire_rounds[2], autofire_rounds[1], f))
-						end
+			if shoot and not self:_chk_start_melee(t, target_dis) then
+				local number_of_rounds = 1
+				local falloff = self:_get_shoot_falloff(target_dis, self._falloff)
+				local autofire_rounds = falloff.autofire_rounds or self._w_usage_tweak.autofire_rounds
+				if self._automatic_weap then
+					if falloff.autofire_rounds then
+						number_of_rounds = self:_pseudorandom(autofire_rounds[1], autofire_rounds[2])
+					elseif self._w_usage_tweak.autofire_rounds then
+						local f = math_clamp((target_dis - self._falloff[1].r) / (self._falloff[#self._falloff].r - self._falloff[1].r) - 0.15 + self:_pseudorandom() * 0.3, 0, 1)
+						number_of_rounds = math.ceil(math_lerp(autofire_rounds[2], autofire_rounds[1], f))
 					end
+				end
 
-					self._is_single_shot = number_of_rounds == 1
-					self._autofiring = number_of_rounds
-					if number_of_rounds > 1 then
-						self._weapon_base:start_autofire(number_of_rounds < 4 and number_of_rounds)
-					end
+				self._is_single_shot = number_of_rounds == 1
+				self._autofiring = number_of_rounds
+				if number_of_rounds > 1 then
+					self._weapon_base:start_autofire(number_of_rounds < 4 and number_of_rounds)
 				end
 			end
 		end
@@ -242,7 +238,7 @@ end
 
 -- Do all the melee related checks inside this function
 function CopActionShoot:_chk_start_melee(t, target_dis)
-	if target_dis > 100 or not self._w_usage_tweak.melee_speed then
+	if target_dis > 130 or not self._w_usage_tweak.melee_speed then
 		return
 	end
 
@@ -334,7 +330,7 @@ function CopActionShoot:anim_clbk_melee_strike()
 				body = self._unit:body(0),
 				position = self._common_data.pos + math.UP * 100
 			},
-			attack_dir = -1 * target_vec:normalized(),
+			attack_dir = -target_vec:normalized(),
 			name_id = managers.blackmarket:equipped_melee_weapon()
 		})
 	end
