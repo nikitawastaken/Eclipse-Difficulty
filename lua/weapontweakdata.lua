@@ -947,6 +947,7 @@ Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290"
 	-- NPC weapon edits
 	self.m4_npc.DAMAGE = 1
 	self.m4_npc.auto.fire_rate = 0.225
+	self.r870_npc.DAMAGE = 7
 	self.m4_yellow_npc.DAMAGE = 1
 	self.m4_yellow_npc.auto.fire_rate = 0.3
 	self.m249_npc.auto.fire_rate = 0.175
