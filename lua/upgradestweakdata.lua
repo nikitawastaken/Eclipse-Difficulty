@@ -51,8 +51,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.inspire.multipro = "200%"
 
 	-- FFriendship
-	self.skill_descs.triathlete.multibasic = "75%"
-	self.skill_descs.triathlete.multipro = "4"
+	self.skill_descs.triathlete.multibasic = "4"
+	self.skill_descs.triathlete.multipro = "75%"
 
 	-- Confident
 	self.values.team.damage = {
@@ -69,7 +69,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.control_freak.multipro4 = "53%"
 
 	-- Hostage Situation
-	self.values.team.hostage_situation = {10}
+	self.values.team.hostage_situation = {15}
 	self.definitions.team_hostage_situation = {
 	    category = "feature",
 		name_id = "hostage_situation",
@@ -79,8 +79,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1
 		}
 	}
-	self.skill_descs.stockholm_syndrome.multipro = "10"
-	self.skill_descs.stockholm_syndrome.multipro2 = "20"
+	self.skill_descs.stockholm_syndrome.multipro = "15"
+	self.skill_descs.stockholm_syndrome.multipro2 = "25"
 
 	-- Hostage Taker
 	self.values.player.hostage_min_sum_taker = {2, 1}

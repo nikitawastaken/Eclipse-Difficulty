@@ -12,12 +12,12 @@ return {
     },
     [100341] = {
         values = {
-            enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+            enemy = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"
         }
     },
     [100351] = {
         values = {
-            enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+            enemy = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"
         }
     },
     [101202] = {

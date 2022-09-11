@@ -60,8 +60,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stockholm_syndrome.icon_xy = {6, 7}
 
 	-- Forced Friendship
-	self.skills.triathlete[1].upgrades = {"cable_tie_interact_speed_multiplier"}
-	self.skills.triathlete[2].upgrades = {"cable_tie_quantity"}
+	self.skills.triathlete[1].upgrades = {"cable_tie_quantity"}
+	self.skills.triathlete[2].upgrades = {"cable_tie_interact_speed_multiplier"}
 
 	-- Hostage Taker
 	self.skills.black_marketeer[1].upgrades = {"player_hostage_health_regen_addend_1", "player_hostage_min_sum_taker_1"}
