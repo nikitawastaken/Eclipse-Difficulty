@@ -250,6 +250,14 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.eco_sentry.multipro = "75%"
 	self.skill_descs.eco_sentry.multipro2 = "250%"
 
+	-- Hardware Expert
+	self.values.player.drill_autorepair_1[1] = 0.2
+	self.skill_descs.hardware_expert.multipro3 = "20%"
+
+	-- Kickstarter
+	self.values.player.drill_autorepair_2[1] = 0.3
+	self.skill_descs.kick_starter.multibasic = "30%"
+
 	-- Combat Engineering
 	self.values.trip_mine.explosion_size_multiplier_1 = {1.5}
 	self.skill_descs.combat_engineering.multibasic = "50%"

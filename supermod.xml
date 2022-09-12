@@ -145,6 +145,7 @@
 						<post :hook_id="incendiarygrenade"/>
 						<post :hook_id="grenadebase"/>
 					</group>
+					<post :hook_id="props/drill"/>
 					<post :hook_id="projectiles/projectilebase"/>
 					<post :hook_id="shotgun/shotgunbase"/>
 					<post :hook_id="akimboweaponbase"/>
