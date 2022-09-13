@@ -15,6 +15,60 @@ function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	self:_add_drama(drama_amount)
 end
 
+function isPlaying()
+    if not BaseNetworkHandler then return false end
+    return BaseNetworkHandler._gamestate_filter.any_ingame_playing[ game_state_machine:last_queued_state_name() ]
+end
+
+function inGame()
+    if not game_state_machine then return false end
+    return string.find(game_state_machine:current_state_name(), "game")
+end
+
+local _f_GroupAIStateBase__update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
+
+local _update_whitelist = {
+	"hox_1"
+}
+
+local function check_whitelist(id)
+    print("level_id = "..tostring(id))
+    for _, level in pairs(_update_whitelist) do
+        if level == id then
+            return true
+        end
+    end
+
+    return false
+end
+
+function GroupAIStateBase:_update_point_of_no_return(t, dt)
+    local get_mission_script_element = function(id)
+        for name, script in pairs(managers.mission:scripts()) do
+            if script:element(id) then
+                return script:element(id)
+            end
+        end
+    end
+
+    local level_id = managers.job:has_active_job() and managers.job:current_level_id() or ""
+
+    if check_whitelist(level_id) then
+        self._point_of_no_return_timer = self._point_of_no_return_timer - dt
+    end
+
+    if not self._point_of_no_return_id or not get_mission_script_element(self._point_of_no_return_id) then
+        if self._point_of_no_return_timer <= 0 then
+            managers.network:session():send_to_peers("mission_ended", false, 0)
+            game_state_machine:change_state_by_name("gameoverscreen")
+        else
+            managers.hud:feed_point_of_no_return_timer(self._point_of_no_return_timer)
+        end
+    else
+        _f_GroupAIStateBase__update_point_of_no_return(self, t, dt)
+    end
+end
+
 -- Restore scripted cloaker spawn noise
 local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
 function GroupAIStateBase:_process_recurring_grp_SO(...)
