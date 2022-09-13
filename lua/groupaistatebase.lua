@@ -15,24 +15,13 @@ function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	self:_add_drama(drama_amount)
 end
 
-function isPlaying()
-    if not BaseNetworkHandler then return false end
-    return BaseNetworkHandler._gamestate_filter.any_ingame_playing[ game_state_machine:last_queued_state_name() ]
-end
-
-function inGame()
-    if not game_state_machine then return false end
-    return string.find(game_state_machine:current_state_name(), "game")
-end
-
-local _f_GroupAIStateBase__update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
+local _old_update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
 
 local _update_whitelist = {
 	"hox_1"
 }
 
 local function check_whitelist(id)
-    print("level_id = "..tostring(id))
     for _, level in pairs(_update_whitelist) do
         if level == id then
             return true
@@ -65,7 +54,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
             managers.hud:feed_point_of_no_return_timer(self._point_of_no_return_timer)
         end
     else
-        _f_GroupAIStateBase__update_point_of_no_return(self, t, dt)
+        _old_update_point_of_no_return(self, t, dt)
     end
 end
 
