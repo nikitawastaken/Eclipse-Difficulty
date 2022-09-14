@@ -15,8 +15,6 @@ function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	self:_add_drama(drama_amount)
 end
 
-local _old_update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
-
 local _update_whitelist = {
 	"hox_1"
 }
@@ -30,6 +28,9 @@ local function check_whitelist(id)
 
     return false
 end
+
+-- Code from Dr. Newbie
+local _old_update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
 
 function GroupAIStateBase:_update_point_of_no_return(t, dt)
     local get_mission_script_element = function(id)
@@ -57,6 +58,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
         _old_update_point_of_no_return(self, t, dt)
     end
 end
+-- End code from Dr. Newbie
 
 -- Restore scripted cloaker spawn noise
 local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
