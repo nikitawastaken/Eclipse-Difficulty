@@ -30,5 +30,12 @@ return {
                 {delay = 15, id = 101648},
             }
         }
+    },
+    -- add missing sniper
+    [103582] = {
+        values = {
+            difficulty_overkill_290 = true,
+            difficulty_sm_wish = true
+        }
     }
 }
