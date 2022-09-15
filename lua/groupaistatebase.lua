@@ -60,6 +60,12 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 end
 -- End code from Dr. Newbie
 
+-- Set up needed variables
+Hooks:PostHook(GroupAIStateBase, "init", "sh_init", function (self)
+	self._next_police_upd_task = 0
+end)
+
+
 -- Restore scripted cloaker spawn noise
 local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
 function GroupAIStateBase:_process_recurring_grp_SO(...)

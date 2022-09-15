@@ -305,9 +305,11 @@ function CopActionShoot:anim_clbk_melee_strike()
 		return
 	end
 
+	local damage = (self._w_usage_tweak.melee_dmg or 10) * (1 + self._unit:base():get_total_buff("base_damage"))
 	local defense_data = self._melee_unit:character_damage():damage_melee({
 		variant = "melee",
-		damage = (self._w_usage_tweak.melee_dmg or 10) * (1 + self._unit:base():get_total_buff("base_damage")),
+		damage = damage,
+		damage_effect = damage,
 		weapon_unit = self._weapon_unit,
 		attacker_unit = self._common_data.unit,
 		melee_weapon = self._unit:base():melee_weapon(),
