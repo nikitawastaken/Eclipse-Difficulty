@@ -16,7 +16,11 @@ function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 end
 
 local _update_whitelist = {
-	"hox_1"
+	"hox_1",
+	"red2",
+	"spa",
+	"pal",
+	"flat"
 }
 
 local function check_whitelist(id)
