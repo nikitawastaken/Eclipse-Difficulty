@@ -202,6 +202,21 @@ self.shuno.kick.standing = {0.5, 0.7, -0.6, 0.2}
 self.shuno.kick.crouching = self.shuno.kick.standing
 self.shuno.kick.steelsight = self.shuno.kick.standing
 
+-- Hailstorm
+self.hailstorm.stats.concealment = 2
+self.hailstorm.AMMO_PICKUP = {4.5, 6}
+self.hailstorm.kick.standing = {0.75, 0.9, -0.75, 0.75}
+self.hailstorm.kick.crouching = self.hailstorm.kick.standing
+self.hailstorm.kick.steelsight = self.hailstorm.kick.standing
+self.hailstorm.kick.volley.standing = {5, 6, -0.16, 0.16}
+self.hailstorm.kick.volley.crouching = self.hailstorm.kick.volley.standing
+self.hailstorm.kick.volley.steelsight = self.hailstorm.kick.standing
+self.hailstorm.fire_mode_data.volley.can_shoot_through_wall = true
+self.hailstorm.fire_mode_data.volley.spread_mul = 1
+self.hailstorm.fire_mode_data.volley.damage_mul = 15
+self.hailstorm.fire_mode_data.volley.rays = 10
+self.hailstorm.fire_mode_data.volley.ammo_usage = 120
+
 -- Shotguns
 
 -- Izhma
