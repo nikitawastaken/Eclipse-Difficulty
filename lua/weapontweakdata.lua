@@ -854,6 +854,8 @@ self.ms3gl.AMMO_PICKUP = {0.05, 0.53}
 
 
 -- so like, get rid of all post u178 akimbos (except judge, also fuck akimbo grimms)
+self.x_sko12.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
+self.x_korth.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_basset.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_rota.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_coal.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
