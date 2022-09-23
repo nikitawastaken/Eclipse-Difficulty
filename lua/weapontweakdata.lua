@@ -876,17 +876,6 @@ self.pl14.stats.damage = 140
 
 -- Grenade / Rocket launchers
 
--- GL40
-self.gre_m79.stats.damage = 64
-self.gre_m79.AMMO_MAX = 3
-self.gre_m79.AMMO_PICKUP = {0.05, 0.575}
-
--- Piglet
-self.m32.stats.damage = 42
-self.m32.AMMO_PICKUP = {0.05, 0.575}
-self.m32.stats.reload = 15
-self.m32.fire_mode_data.fire_rate = 60 / 120
-
 -- Commando 101
 self.ray.use_data.selection_index = SELECTION.PRIMARY
 self.ray.categories = {"grenade_launcher", "heavy"}
@@ -894,30 +883,44 @@ self.ray.stats.damage = 128
 self.ray.stats_modifiers = {damage = 10}
 self.ray.stats.reload = 8
 self.ray.AMMO_PICKUP = {0.05, 0.38}
-
 -- get rid of RPG
 self.rpg7.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 
+-- Piglet
+self.m32.stats.damage = 42
+self.m32.AMMO_PICKUP = {0.05, 0.575}
+self.m32.stats.reload = 15
+self.m32.fire_mode_data.fire_rate = 60 / 120
+
 -- China Puff
-self.china.stats.damage = 36
-self.china.AMMO_PICKUP = {0.05, 0.48}
+self.china.use_data.selection_index = SELECTION.PRIMARY
+self.china.stats.damage = 40
+self.china.stats.concealment = 16
+self.china.AMMO_PICKUP = {0.05, 0.51}
 
 -- Arbiter
-self.arbiter.stats.damage = 23
+self.arbiter.use_data.selection_index = SELECTION.PRIMARY
+self.arbiter.stats.damage = 30
 self.arbiter.AMMO_PICKUP = {0.05, 0.52}
+
+-- Viper
+self.ms3gl.use_data.selection_index = SELECTION.PRIMARY
+self.ms3gl.stats.damage = 26
+self.ms3gl.AMMO_PICKUP = {0.05, 0.53}
+
+-- GL40
+self.gre_m79.use_data.selection_index = SELECTION.SECONDARY
+self.gre_m79.stats.damage = 64
+self.gre_m79.AMMO_MAX = 3
+self.gre_m79.AMMO_PICKUP = {0.05, 0.5}
 
 -- Compact 40
 self.slap.stats.damage = 64
 self.slap.AMMO_MAX = 3
-self.slap.AMMO_PICKUP = {0.05, 0.48}
-
--- Viper GL
-self.ms3gl.stats.damage = 22
-self.ms3gl.AMMO_PICKUP = {0.05, 0.53}
+self.slap.AMMO_PICKUP = {0.05, 0.5}
 
 
 -- Akimbos
-
 
 -- so like, get rid of all post u178 akimbos (except judge, also fuck akimbo grimms)
 self.x_sko12.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY

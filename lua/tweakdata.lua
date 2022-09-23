@@ -4,16 +4,34 @@ if not tweak_data then return end
 tweak_data.medic.disabled_units = {"spooc", "medic"}
 
 -- grenade launchers and rocket launchers
+
+-- 101
 tweak_data.projectiles.rocket_ray_frag.damage = 128
-tweak_data.projectiles.rocket_ray_frag.player_damage = 8
-tweak_data.projectiles.launcher_frag.damage = 64
+tweak_data.projectiles.rocket_ray_frag.player_damage = 16
+-- piglet
 tweak_data.projectiles.launcher_frag_m32.damage = 42
-tweak_data.projectiles.launcher_m203.damage = 48
-tweak_data.projectiles.launcher_frag_slap.damage = 64
-tweak_data.projectiles.launcher_frag_arbiter.damage = 23
-tweak_data.projectiles.launcher_frag_china.damage = 36
-tweak_data.projectiles.launcher_frag_ms3gl.damage = 22
+tweak_data.projectiles.launcher_frag_m32.player_damage = 16
+-- china
 tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = {explosion = false, fire = false} -- why is china puff allowed to crit lmao
+tweak_data.projectiles.launcher_frag_china.damage = 40
+tweak_data.projectiles.launcher_frag_china.player_damage = 16
+-- arbiter
+tweak_data.projectiles.launcher_frag_arbiter.damage = 30
+tweak_data.projectiles.launcher_frag_china.player_damage = 16
+-- viper
+tweak_data.projectiles.launcher_frag_ms3gl.damage = 26
+tweak_data.projectiles.launcher_frag_ms3gl.player_damage = 16
+-- gl40
+tweak_data.projectiles.launcher_frag.damage = 64
+tweak_data.projectiles.launcher_frag.player_damage = 16
+-- compact 40
+tweak_data.projectiles.launcher_frag_slap.damage = 64
+tweak_data.projectiles.launcher_frag_slap.player_damage = 16
+-- underbarrel lf
+tweak_data.projectiles.launcher_m203.damage = 48
+tweak_data.projectiles.launcher_m203.player_damage = 16
+
+-- electric
 tweak_data.projectiles.launcher_electric.damage = 14
 tweak_data.projectiles.launcher_electric_m32.damage = 14
 tweak_data.projectiles.launcher_electric_china.damage = 12
