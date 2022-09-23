@@ -3,6 +3,16 @@ if not tweak_data then return end
 -- medics don't heal cloakers and other medics
 tweak_data.medic.disabled_units = {"spooc", "medic"}
 
+-- Arrows
+tweak_data.projectiles.frankish_arrow.damage = 50
+tweak_data.projectiles.frankish_arrow_exp.damage = 50
+tweak_data.projectiles.crossbow_arrow_exp.damage = 35
+tweak_data.projectiles.ecp_arrow.damage = 25
+tweak_data.projectiles.ecp_arrow_exp.damage = 25
+tweak_data.projectiles.west_arrow.damage = 65
+tweak_data.projectiles.west_arrow_exp.damage = 65
+tweak_data.projectiles.bow_poison_arrow.damage = 10
+
 -- grenade launchers and rocket launchers
 
 -- 101

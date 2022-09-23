@@ -920,9 +920,34 @@ self.slap.AMMO_MAX = 3
 self.slap.AMMO_PICKUP = {0.05, 0.5}
 
 
--- Akimbos
+-- Specials
 
--- so like, get rid of all post u178 akimbos (except judge, also fuck akimbo grimms)
+-- Light Crossbow
+self.frankish.AMMO_MAX = 30
+self.frankish.stats.damage = 50
+self.frankish.stats.concealment = 25
+self.frankish.use_data.selection_index = SELECTION.SECONDARY
+
+-- Pistol Crossbow
+self.hunter.AMMO_MAX = 30
+self.hunter.stats.concealment = 30
+
+-- Airbow
+self.ecp.stats.damage = 25
+self.ecp.use_data.selection_index = SELECTION.SECONDARY
+
+-- Plainsrider
+self.plainsrider.AMMO_MAX = 30
+self.plainsrider.stats.damage = 65
+self.plainsrider.stats.concealment = 23
+self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
+
+
+
+-- removed shit
+self.elastic.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
+self.long.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
+self.arblast.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_sko12.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_korth.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_basset.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY

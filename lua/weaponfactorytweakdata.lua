@@ -48,6 +48,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
     self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
 
+    -- Arrows
+    self.parts.wpn_fps_bow_frankish_m_explosive.stats.damage = 0
+    self.parts.wpn_fps_bow_frankish_m_poison.stats = {damage = -40}
+    self.parts.wpn_fps_upg_a_crossbow_explosion.stats.damage = 0
+    self.parts.wpn_fps_upg_a_crossbow_poison.stats = {damage = -25}
+    self.parts.wpn_fps_bow_ecp_m_arrows_explosive.stats.damage = 0
+    self.parts.wpn_fps_bow_ecp_m_arrows_poison.stats = {damage = -15}
+    self.parts.wpn_fps_upg_a_bow_explosion.stats.damage = 0
+    self.parts.wpn_fps_upg_a_bow_poison.stats = {damage = -55}
+
     -- Union Short Barrel buff
     self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
 
