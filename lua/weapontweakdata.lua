@@ -242,6 +242,25 @@ self.aa12.spread.standing = self.new_m4.spread.crouching
 self.aa12.spread.moving_standing = self.new_m4.spread.crouching
 self.aa12.spread.moving_crouching = self.new_m4.spread.crouching
 
+-- VD-12
+self.sko12.CLIP_AMMO_MAX = 20
+self.sko12.rays = 12
+self.sko12.stats.damage = 55
+self.sko12.stats.spread = 12
+self.sko12.stats.recoil = 8
+self.sko12.stats.reload = 9
+self.sko12.stats.concealment = 2
+self.sko12.AMMO_PICKUP = {3, 4}
+self.sko12.FIRE_MODE = "single"
+self.sko12.CAN_TOGGLE_FIREMODE = false
+self.sko12.fire_mode_data.fire_rate = 60 / 333
+self.sko12.kick.standing = {3, 4, -0.5, 0.5}
+self.sko12.kick.crouching = self.sko12.kick.standing
+self.sko12.kick.steelsight = self.sko12.kick.standing
+self.sko12.spread.standing = self.new_m4.spread.crouching
+self.sko12.spread.moving_standing = self.new_m4.spread.crouching
+self.sko12.spread.moving_crouching = self.new_m4.spread.crouching
+
 -- M1014
 self.benelli.rays = 12
 self.benelli.stats.spread = 12
@@ -768,15 +787,11 @@ self.ching.kick.standing = {1.6, 2, -0.45, 0.45}
 self.ching.kick.crouching = self.ching.kick.standing
 self.ching.kick.steelsight = self.ching.kick.standing
 
-
--- Pistols
-
--- 5/7
-self.lemming.stats.damage = 70
+-- Revolvers
 
 --Peacemaker
 self.peacemaker.AMMO_MAX = 24
-self.peacemaker.stats.damage = 105
+self.peacemaker.stats.damage = 120
 self.peacemaker.stats.reload = 17
 self.peacemaker.AMMO_PICKUP = {0.26, 0.67}
 self.peacemaker.can_shoot_through_enemy = true
@@ -785,7 +800,7 @@ self.peacemaker.can_shoot_through_wall = true
 self.peacemaker.armor_piercing_chance = 1
 
 -- Angry Tiger
-self.rsh12.stats.damage = 105
+self.rsh12.stats.damage = 120
 self.rsh12.stats_modifiers = {damage = 2}
 self.rsh12.stats.reload = 13
 self.rsh12.AMMO_PICKUP = {0.26, 0.67}
@@ -795,20 +810,58 @@ self.rsh12.kick.crouching = self.peacemaker.kick.standing
 self.rsh12.kick.steelsight = self.peacemaker.kick.standing
 
 -- Bronco
-self.new_raging_bull.stats.reload = 13
+self.new_raging_bull.AMMO_MAX = 36
+self.new_raging_bull.stats.damage = 120
+self.new_raging_bull.stats_modifiers = {damage = 2}
+self.new_raging_bull.AMMO_PICKUP = {1.3, 1.8}
+self.new_raging_bull.stats.reload = 10
+self.new_raging_bull.kick.standing = {1.6, 2, -0.45, 0.45}
+self.new_raging_bull.kick.crouching = self.new_raging_bull.kick.standing
+self.new_raging_bull.kick.steelsight = self.new_raging_bull.kick.standing
+
+-- Matever
+self.mateba.AMMO_MAX = 36
+self.mateba.stats.damage = 120
+self.mateba.stats_modifiers = {damage = 2}
+self.mateba.AMMO_PICKUP = {1.3, 1.8}
+self.mateba.stats.reload = 15
+self.mateba.kick.standing = {1.3, 1.6, -0.45, 0.45}
+self.mateba.kick.crouching = self.mateba.kick.standing
+self.mateba.kick.steelsight = self.mateba.kick.standing
 
 -- Castigo
+self.chinchilla.AMMO_MAX = 36
+self.chinchilla.stats.damage = 120
+self.chinchilla.stats.spread = 21
+self.chinchilla.stats_modifiers = {damage = 2}
+self.chinchilla.AMMO_PICKUP = {1.3, 1.8}
 self.chinchilla.stats.reload = 13
+self.chinchilla.kick.standing = {1.3, 1.6, -0.45, 0.45}
+self.chinchilla.kick.crouching = self.chinchilla.kick.standing
+self.chinchilla.kick.steelsight = self.chinchilla.kick.standing
+
+-- Kahn
+self.korth.AMMO_MAX = 36
+self.korth.stats.damage = 70
+self.korth.stats.spread = 21
+self.korth.stats_modifiers = {damage = 2}
+self.korth.AMMO_PICKUP = {1.5, 2}
+self.korth.kick.standing = {1.8, 2.2, -0.45, 0.45}
+self.korth.kick.crouching = self.korth.kick.standing
+self.korth.kick.steelsight = self.korth.kick.standing
 
 -- Frenchman
 self.model3.stats.damage = 175
-self.model3.AMMO_PICKUP = self.new_raging_bull.AMMO_PICKUP
-self.x_model3.stats.damage = 175
-self.x_model3.AMMO_PICKUP = self.x_rage.AMMO_PICKUP
+self.model3.stats.reload = 14
+self.model3.AMMO_PICKUP = {1.5, 2}
+
+-- Pistols
+
+-- 5/7
+self.lemming.stats.damage = 70
 
 -- Baby Deagle
 self.sparrow.stats.damage = 140
-self.x_sparrow.stats.damage = 140
 
 -- Deagle
 self.deagle.stats.damage = 140
@@ -816,11 +869,9 @@ self.x_deagle.stats.damage = 140
 
 -- Chunky Crosskil
 self.m1911.stats.damage = 135
-self.x_m1911.stats.damage = 135
 
 -- White Streak
 self.pl14.stats.damage = 140
-self.x_pl14.stats.damage = 140
 
 
 -- Grenade / Rocket launchers

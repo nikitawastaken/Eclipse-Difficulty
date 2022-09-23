@@ -253,7 +253,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
 
 	-- anarchist
-	self.specializations[15][7].upgrades = {"player_tier_dodge_chance_1", "player_armor_increase_3"}
+	self.specializations[15][7].upgrades = {"player_passive_dodge_chance_1", "player_armor_increase_3"}
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
 
 	-- kingpin

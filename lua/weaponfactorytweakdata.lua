@@ -19,6 +19,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom = nil
     self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom_free = nil
 
+    -- remove auto/single fire mods from vd-12
+    table.delete(self.wpn_fps_sho_sko12.uses_parts, "wpn_fps_upg_i_singlefire")
+    table.delete(self.wpn_fps_sho_sko12.uses_parts, "wpn_fps_upg_i_autofire")
+
     -- Shell Rack for loco and r880
     self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2
     self.parts.wpn_fps_shot_r870_body_rack.stats.total_ammo_mod = 0
