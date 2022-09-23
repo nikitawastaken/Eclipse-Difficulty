@@ -19,5 +19,9 @@ return table.list_to_set({
     "Better Bots",
 	"Melee Overhaul ME: Melee Sprinting",
 	"Melee Overhaul ME: Sprint Hold",
-	"Melee Overhaul ME: Melee Decapitations"
+	"Melee Overhaul ME: Melee Decapitations",
+	"Graceful Graze",
+	"Better Graze",
+	"Graze doesn't kill civis",
+	"Graze Plus - Make graze effect apply of opposite side"
 })
