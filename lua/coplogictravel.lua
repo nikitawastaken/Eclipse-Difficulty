@@ -57,7 +57,7 @@ function CopLogicTravel.chk_group_ready_to_move(data, my_data)
 
 	my_dis = my_dis * (1.15 ^ 2)
 	for u_key, u_data in pairs(data.group.units) do
-		if u_key ~= data.key then
+		if u_key ~= data.key and alive(u_data.unit) then
 			local his_objective = u_data.unit:brain():objective()
 			if his_objective and his_objective.grp_objective == my_objective.grp_objective and not his_objective.in_place then
 				if my_dis < mvec3_dis_sq(his_objective.area.pos, u_data.m_pos) then
