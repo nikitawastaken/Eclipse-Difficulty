@@ -842,7 +842,7 @@ self.chinchilla.kick.steelsight = self.chinchilla.kick.standing
 
 -- Kahn
 self.korth.AMMO_MAX = 36
-self.korth.stats.damage = 70
+self.korth.stats.damage = 72
 self.korth.stats.spread = 21
 self.korth.stats_modifiers = {damage = 2}
 self.korth.AMMO_PICKUP = {1.5, 2}
@@ -912,12 +912,12 @@ self.ms3gl.AMMO_PICKUP = {0.05, 0.53}
 self.gre_m79.use_data.selection_index = SELECTION.SECONDARY
 self.gre_m79.stats.damage = 64
 self.gre_m79.AMMO_MAX = 3
-self.gre_m79.AMMO_PICKUP = {0.05, 0.5}
+self.gre_m79.AMMO_PICKUP = {0.05, 0.48}
 
 -- Compact 40
 self.slap.stats.damage = 64
 self.slap.AMMO_MAX = 3
-self.slap.AMMO_PICKUP = {0.05, 0.5}
+self.slap.AMMO_PICKUP = {0.05, 0.48}
 
 
 -- Specials

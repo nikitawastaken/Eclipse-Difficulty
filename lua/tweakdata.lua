@@ -65,33 +65,41 @@ tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_damage = 8
 tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_tick_period = 2
 tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_length = 10
 tweak_data.projectiles.launcher_poison.damage = 9
-tweak_data.projectiles.launcher_poison.poison_gas_range = 400
+tweak_data.projectiles.launcher_poison.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison.poison_gas_duration = 10
 tweak_data.projectiles.launcher_poison.poison_gas_dot_data = {hurt_animation_chance = 0.3, dot_damage = 4, dot_length = 10, dot_tick_period = 2}
 
 tweak_data.projectiles.launcher_poison_ms3gl_conversion = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.damage = 7
 tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_duration = 3
+tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_range = 250
 tweak_data.projectiles.launcher_poison_gre_m79 = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_gre_m79.damage = 9
+tweak_data.projectiles.launcher_poison_gre_m79.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison_m32 = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_m32.damage = 9
 tweak_data.projectiles.launcher_poison_m32.poison_gas_duration = 6
+tweak_data.projectiles.launcher_poison_m32.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison_groza = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_groza.damage = 9
 tweak_data.projectiles.launcher_poison_groza.poison_gas_duration = 3
+tweak_data.projectiles.launcher_poison_groza.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison_china = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_china.damage = 8
 tweak_data.projectiles.launcher_poison_china.poison_gas_duration = 4
+tweak_data.projectiles.launcher_poison_china.poison_gas_range = 250
 tweak_data.projectiles.launcher_poison_arbiter = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_arbiter.damage = 7
 tweak_data.projectiles.launcher_poison_arbiter.poison_gas_duration = 3
+tweak_data.projectiles.launcher_poison_arbiter.poison_gas_range = 250
 tweak_data.projectiles.launcher_poison_slap = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_slap.damage = 9
 tweak_data.projectiles.launcher_poison_slap.poison_gas_duration = 6
+tweak_data.projectiles.launcher_poison_slap.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison_contraband = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_contraband.damage = 9
 tweak_data.projectiles.launcher_poison_contraband.poison_gas_duration = 3
+tweak_data.projectiles.launcher_poison_contraband.poison_gas_range = 300
 
 -- cop tear gas
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 1.5

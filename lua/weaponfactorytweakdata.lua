@@ -243,4 +243,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_ns_duck.stats.recoil = -3
     self.parts.wpn_fps_upg_ns_duck.stats.suppression = -5
     self.parts.wpn_fps_upg_ns_duck.stats.concealment = -4
+
+    -- hailstorm
+    self.parts.wpn_fps_hailstorm_b_extended.stats = {value = 1, concealment = -2, damage = 1, spread = 3, recoil = 2}
 end)
