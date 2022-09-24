@@ -64,6 +64,7 @@ tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.hurt_animation_cha
 tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_damage = 8
 tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_tick_period = 2
 tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_length = 10
+tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
 tweak_data.projectiles.launcher_poison.damage = 9
 tweak_data.projectiles.launcher_poison.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison.poison_gas_duration = 10
