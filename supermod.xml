@@ -10,7 +10,6 @@
 		<group hook_id="core/lib/">
 			<post :hook_id="managers/coreenvironmentcontrollermanager"/>
 			<post :hook_id="units/coreunitdamage"/>
-			<post :hook_id="managers/mission/coremissionmanager"/>
 		</group>
 
 		<group hook_id="lib/">
