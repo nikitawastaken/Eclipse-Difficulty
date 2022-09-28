@@ -8,10 +8,7 @@ function PlayerManager:upgrade_value(category, upgrade, ...)
 	return _upgrade_value
 end
 
--- hostage taker basic now requires 3 hostages to work
--- hostage taker aced requires 1 hostage to work
--- converted enemies don't count towards any hostage boosts (crew chief / hostage taker)*
--- * - hostage taker aced also allows jokers to count for all hostage boosts
+-- hostage taker min hostages count
 Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self, category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
 	local minions = self:num_local_minions() or 0

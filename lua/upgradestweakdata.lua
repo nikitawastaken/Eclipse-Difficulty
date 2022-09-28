@@ -120,16 +120,16 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.black_marketeer.multipro2 = "12"
 
 	-- Lock N' Load
-	self.definitions.weapon_swap_speed_multiplier_2 = {
+	self.definitions.weapon_generic_swap_speed_multiplier = {
 		name_id = "menu_weapon_swap_speed_multiplier",
 		category = "feature",
 		upgrade = {
-			value = 2,
+			value = 1,
 			upgrade = "swap_speed_multiplier",
 			category = "weapon"
 		}
 	}
-	self.values.weapon.swap_speed_multiplier = {1.25, 1.8}
+	self.values.weapon.generic_swap_speed_multiplier = {1.25}
 	self.skill_descs.rifleman.multibasic2 = "25%"
 
 	-- Kilmer

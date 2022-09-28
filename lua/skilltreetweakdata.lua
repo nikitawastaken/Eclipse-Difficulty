@@ -4,7 +4,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Overkill
 	self.skills.overkill[1].upgrades = {"player_overkill_damage_multiplier"}
-	self.skills.overkill[2].upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons", "weapon_swap_speed_multiplier", "weapon_swap_speed_multiplier_2"}
+	self.skills.overkill[2].upgrades = {"player_overkill_damage_multiplier_2", "player_overkill_all_weapons", "weapon_swap_speed_multiplier"}
 
 	-- Mag Plus
 	self.skills.fast_fire[1].upgrades = {"player_automatic_mag_increase_1"}
@@ -84,7 +84,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.inspire[2].upgrades = {"player_revive_interaction_speed_multiplier"}
 
 	-- Lock N' Load
-	self.skills.rifleman[1].upgrades = {"weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier"}
+	self.skills.rifleman[1].upgrades = {"weapon_generic_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier"}
 	self.skills.rifleman[2].upgrades = {"player_run_and_shoot_1"}
 	self.skills.rifleman.icon_xy = {7, 10}
 	self.skills.rifleman.name_id = "menu_rifleman"
