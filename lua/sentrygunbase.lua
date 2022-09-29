@@ -19,7 +19,7 @@ end)
 
 -- Create new sixth sense function
 function SentryGunBase:_update_omniscience(t, dt)
-	if not managers.player:has_category_upgrade("player", "standstill_omniscience") then
+	if not managers.player:has_category_upgrade("player", "standstill_omniscience") or not tweak_data.player.omniscience then
 		if self._state_data.omniscience_t then
 			self._state_data.omniscience_t = nil
 		end
