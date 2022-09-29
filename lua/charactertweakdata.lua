@@ -389,8 +389,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.95
 			},
 			recoil = {
-				0.75,
-				0.75
+				1.15,
+				1.15
 			},
 			mode = {
 				1,
@@ -407,8 +407,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.95
 			},
 			recoil = {
-				0.75,
-				0.75
+				1.15,
+				1.15
 			},
 			mode = {
 				1,
@@ -425,8 +425,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.8
 			},
 			recoil = {
-				0.75,
-				0.75
+				1.35,
+				1.35
 			},
 			mode = {
 				0,
@@ -443,7 +443,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.65
 			},
 			recoil = {
-				1.25,
+				1.5,
 				1.5
 			},
 			mode = {
@@ -461,8 +461,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.5
 			},
 			recoil = {
-				1.5,
-				1.75
+				2,
+				2
 			},
 			mode = {
 				1,
@@ -1033,8 +1033,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.95
 				},
 				recoil = {
-					0.7,
-					0.7
+					1.15,
+					1.15
 				},
 				mode = {
 					1,
@@ -1051,8 +1051,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.9
 				},
 				recoil = {
-					0.7,
-					0.7
+					1.15,
+					1.15
 				},
 				mode = {
 					1,
@@ -1069,8 +1069,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.6
 				},
 				recoil = {
-					0.9,
-					0.9
+					1.3,
+					1.3
 				},
 				mode = {
 					1,
@@ -1087,8 +1087,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.4
 				},
 				recoil = {
-					1.2,
-					1.2
+					1.5,
+					1.5
 				},
 				mode = {
 					1,
@@ -1105,8 +1105,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.1
 				},
 				recoil = {
-					1.4,
-					1.4
+					2,
+					2
 				},
 				mode = {
 					1,
@@ -1457,8 +1457,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.95
 				},
 				recoil = {
-					0.4,
-					0.4
+					0.75,
+					0.75
 				},
 				mode = {
 					1,
@@ -1475,8 +1475,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.95
 				},
 				recoil = {
-					0.4,
-					0.4
+					0.75,
+					0.75
 				},
 				mode = {
 					1,
@@ -1493,8 +1493,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.8
 				},
 				recoil = {
-					0.5,
-					0.5
+					0.9,
+					0.9
 				},
 				mode = {
 					1,
@@ -1511,8 +1511,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.45
 				},
 				recoil = {
-					0.7,
-					0.7
+					1.1,
+					1.1
 				},
 				mode = {
 					1,
@@ -1529,8 +1529,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.15
 				},
 				recoil = {
-					1,
-					1
+					1.5,
+					1.5
 				},
 				mode = {
 					1,
