@@ -426,7 +426,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire"
 		},
 		fbi_rifle = {
-			"ranged_fire",
 			"shield_cover",
 			"flash_grenade"
 		},
@@ -440,7 +439,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"shield"
 		},
 		fbi_special = {
-			"charge",
 			"shield_cover",
 			"flash_grenade"
 		},
@@ -454,10 +452,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"rescue_hostages",
 			"shield_cover"
 		},
-		elite_short_range = {
-			"charge",
+		elite_assault = {
 			"flash_grenade",
 			"smoke_grenade",
+			"rescue_hostages",
+			"shield_cover",
+			"deathguard",
+			"murder"
+		},
+		elite_shotgun = {
+			"charge",
+			"flash_grenade",
 			"rescue_hostages",
 			"shield_cover",
 			"deathguard",
@@ -501,7 +506,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"murder"
 		},
 		spooc = {
-			"charge",
 			"flank",
 			"flash_grenade",
 			"smoke_grenade",
@@ -697,7 +701,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					amount_max = 1,
 					rank = 2,
 					unit = "rifleman_sr_elite",
-					tactics = self._tactics.elite_short_range
+					tactics = self._tactics.elite_assault
 				},
 				{
 					amount_min = 0,
@@ -705,7 +709,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					amount_max = 1,
 					rank = 2,
 					unit = "shotgunner_elite",
-					tactics = self._tactics.elite_short_range
+					tactics = self._tactics.elite_shotgun
 				},
 				{
 					amount_min = 0,
@@ -737,7 +741,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					amount_max = 2,
 					rank = 2,
 					unit = "rifleman_sr_elite",
-					tactics = self._tactics.elite_short_range
+					tactics = self._tactics.elite_assault
 				},
 				{
 					amount_min = 0,
@@ -745,11 +749,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					amount_max = 2,
 					rank = 2,
 					unit = "shotgunner_elite",
-					tactics = self._tactics.elite_short_range
+					tactics = self._tactics.elite_shotgun
 				}
 			}
 		}
-		self.enemy_spawn_groups.elite_flankg = {
+		self.enemy_spawn_groups.elite_flanklight = {
 			amount = {
 				3,
 				4
@@ -765,15 +769,15 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				},
 				{
 					amount_min = 1,
-					freq = 1,
-					amount_max = 1,
+					freq = 0.66,
+					amount_max = 2,
 					rank = 2,
 					unit = "rifleman_sr_elite",
 					tactics = self._tactics.elite_flank
 				},
 				{
-					amount_min = 2,
-					freq = 1,
+					amount_min = 1,
+					freq = 0.66,
 					amount_max = 2,
 					rank = 2,
 					unit = "shotgunner_elite",
@@ -809,7 +813,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					amount_max = 2,
 					rank = 2,
 					unit = "heavy_shotgunner_fbi",
-					tactics = self._tactics.elite_short_range
+					tactics = self._tactics.elite_assault
 				},
 				{
 					amount_min = 0,
@@ -817,7 +821,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					amount_max = 2,
 					rank = 2,
 					unit = "heavy_rifleman_fbi",
-					tactics = self._tactics.elite_short_range
+					tactics = self._tactics.elite_shotgun
 				},
 				{
 					amount_min = 2,
@@ -1123,7 +1127,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			common_shield = {0.66, 0.66, 0.66},
 			common_tank = {0, 0.02, 0.16},
 			uncommon_charge = {0.75, 0.75, 0.75},
-			elite_flankg = {0.45, 0.45, 0.45},
+			elite_flanklight = {0.45, 0.45, 0.45},
 			elite_shieldg = {0.45, 0.45, 0.45},
 			elite_long_range = {0.4, 0.4, 0.4},
 			elite_heavy_charge = {0.35, 0.35, 0.35},

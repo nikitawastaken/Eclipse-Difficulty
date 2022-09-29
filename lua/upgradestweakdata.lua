@@ -121,11 +121,11 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Lock N' Load
 	self.definitions.weapon_generic_swap_speed_multiplier = {
-		name_id = "menu_weapon_swap_speed_multiplier",
+		name_id = "menu_generic_swap_speed_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "swap_speed_multiplier",
+			upgrade = "generic_swap_speed_multiplier",
 			category = "weapon"
 		}
 	}
