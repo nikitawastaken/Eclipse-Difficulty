@@ -382,7 +382,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				if move_out then
 					self:_voice_move_in_start(group)
 				elseif not group.ignore_grenade_check_t then
-					group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, 6, 2)
+					group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, 8, 1)
 				end
 			else
 				-- If we aren't pushing, we go to one area before the criminal area
