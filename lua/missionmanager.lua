@@ -12,7 +12,7 @@ if not mission_script_elements then
 	return
 end
 
-Hooks:PostHook(MissionManager, "_activate_mission", "sh__activate_mission", function (self)
+Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function (self)
 	for element_id, data in pairs(mission_script_elements) do
 		local element = self:get_element_by_id(element_id)
 		if not element then
