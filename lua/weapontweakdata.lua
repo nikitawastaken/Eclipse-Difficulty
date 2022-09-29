@@ -896,28 +896,28 @@ self.m32.fire_mode_data.fire_rate = 60 / 120
 self.china.use_data.selection_index = SELECTION.PRIMARY
 self.china.stats.damage = 40
 self.china.stats.concealment = 16
-self.china.AMMO_PICKUP = {0.05, 0.51}
+self.china.AMMO_PICKUP = {0.05, 0.50}
 
 -- Arbiter
 self.arbiter.use_data.selection_index = SELECTION.PRIMARY
 self.arbiter.stats.damage = 30
-self.arbiter.AMMO_PICKUP = {0.05, 0.52}
+self.arbiter.AMMO_PICKUP = {0.05, 0.51}
 
 -- Viper
 self.ms3gl.use_data.selection_index = SELECTION.PRIMARY
 self.ms3gl.stats.damage = 26
-self.ms3gl.AMMO_PICKUP = {0.05, 0.53}
+self.ms3gl.AMMO_PICKUP = {0.05, 0.52}
 
 -- GL40
 self.gre_m79.use_data.selection_index = SELECTION.SECONDARY
 self.gre_m79.stats.damage = 64
 self.gre_m79.AMMO_MAX = 3
-self.gre_m79.AMMO_PICKUP = {0.05, 0.48}
+self.gre_m79.AMMO_PICKUP = {0.05, 0.45}
 
 -- Compact 40
 self.slap.stats.damage = 64
 self.slap.AMMO_MAX = 3
-self.slap.AMMO_PICKUP = {0.05, 0.48}
+self.slap.AMMO_PICKUP = {0.05, 0.45}
 
 
 -- Specials
