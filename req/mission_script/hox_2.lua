@@ -1,10 +1,10 @@
 return {
     -- add point of no return
-    [100580] = {
-        ponr = 900,
-        ponr_player_mul = {1.5, 1, 0.85, 0.75}
+    [101374] = {
+        ponr = 50,
+        ponr_player_mul = {1.5, 1.25, 1, 1}
     },
-    [100247] = {
+    [103487] = {
         values = {instigator = "criminals_not_downed"}
     }
 }

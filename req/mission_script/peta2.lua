@@ -15,10 +15,14 @@ return {
 			}
 		}
 	},
-	-- Disable endless assault
+	-- add point of no return
+	[101723] = {
+        ponr = 150,
+        ponr_player_mul = {2, 1.3, 1, 1}
+	},
 	[101707] = {
 		values = {
-			enabled = false
+			delay = 1
 		}
 	}
 }

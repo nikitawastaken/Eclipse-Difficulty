@@ -17,10 +17,12 @@ end
 
 local _update_whitelist = {
 	"hox_1",
+	"hox_2",
 	"red2",
 	"spa",
 	"pal",
-	"flat"
+	"flat",
+	"rvd2"
 }
 
 local function check_whitelist(id)

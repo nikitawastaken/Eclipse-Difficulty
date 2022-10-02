@@ -34,5 +34,8 @@ return {
     -- add point of no return
     [100301] = {
     ponr = 60
+    },
+    [100245] = {
+        values = {instigator = "criminals_not_downed"}
     }
 }

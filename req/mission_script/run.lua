@@ -37,5 +37,15 @@ return {
             difficulty_overkill_290 = true,
             difficulty_sm_wish = true
         }
-    }
+    },
+    [102866] = {
+		values = {
+			enabled = false
+		}
+	},
+    [102880] = {
+		values = {
+			enabled = false
+		}
+	}
 }

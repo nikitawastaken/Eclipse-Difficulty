@@ -190,6 +190,7 @@ end)
 
 -- no interaction cooldown, credit goes to chibibowa
 local old_check_use = PlayerStandard._check_use_item
+
 function PlayerStandard:_check_use_item(t, input)
 	if input.btn_use_item_release and self._throw_time and t and t < self._throw_time then
 		managers.player:drop_carry()
