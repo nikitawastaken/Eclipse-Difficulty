@@ -1,5 +1,24 @@
 return {
-	 -- Disable most reinforce points on No Mercy
+	[103469] = {
+		flashlight = true
+	},
+	[103470] = {
+		flashlight = false
+	},
+	-- Alert all civs on mask up and delay panic button SO
+	[102518] = {
+		values = {
+			on_executed = {
+				{ id = 102540, delay = 10 }
+			}
+		},
+		func = function()
+			for _, u_data in pairs(managers.enemy:all_civilians()) do
+				u_data.unit:movement():set_cool(false)
+			end
+		end
+	},
+	-- Disable most reinforce points
 	[103706] = {
 		values = {
 			enabled = false
@@ -14,16 +33,5 @@ return {
 		values = {
 			enabled = false
 		}
-	},
-	-- enable fire elevator spawn
-	[104124] = {
-		values = {
-			chance = 50
-		}
-	},
-	[104113] = {
-        values = {
-            enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
-        }
-    }
+	}
 }

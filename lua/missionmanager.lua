@@ -55,6 +55,19 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 					StreamHeist:log(string.format("%s value \"%s\" has been set to \"%s\"", element:editor_name(), k, tostring(v)))
 				end
 			end
+
+			if data.flashlight ~= nil then
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element_id, function ()
+					StreamHeist:log(string.format("%s executed, changing flashlight state to %s", element:editor_name(), data.flashlight and "true" or "false"))
+					managers.game_play_central:set_flashlights_on(data.flashlight)
+				end)
+				StreamHeist:log(string.format("%s hooked as flashlight state trigger", element:editor_name()))
+			end
+
+			if data.func then
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element_id, data.func)
+				StreamHeist:log(string.format("%s hooked as function call trigger", element:editor_name()))
+			end
 		end
 	end
 end)
