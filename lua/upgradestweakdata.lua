@@ -696,7 +696,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- todo: maybe actually make smth out of it one day
 	self.copr_ability_cooldown = 60
 	self.values.temporary.copr_ability[1][2] = 4
-	self.values.temporary.copr_ability[2][2] = 10
+	self.values.temporary.copr_ability[2][2] = 8
 	self.values.player.copr_static_damage_ratio[2] = 0.0625
 	self.values.player.copr_teammate_heal = {0.15, 0.3}
 	self.values.player.copr_activate_bonus_health_ratio[1] = 50
