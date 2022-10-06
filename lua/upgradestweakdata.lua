@@ -701,11 +701,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.copr_teammate_heal = {0.15, 0.3}
 	self.values.player.copr_activate_bonus_health_ratio[1] = 50
 	self.specialization_descs[22][1].multiperk3 = "0.45"
-	self.specialization_descs[22][1].multiperk4 = "1.5%"
+	self.specialization_descs[22][1].multiperk4 = "1.5"
 	self.specialization_descs[22][1].multiperk5 = "4"
 	self.specialization_descs[22][1].multiperk6 = "60"
 	self.specialization_descs[22][5].multiperk = "8"
-	self.specialization_descs[22][5].multiperk3 = "3%"
+	self.specialization_descs[22][5].multiperk3 = "3"
 	self.specialization_descs[22][9].multiperk = "6.25%"
 	self.specialization_descs[22][9].multiperk2 = "40%"
 end
