@@ -249,8 +249,8 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[12][9].upgrades, "player_movement_speed_damage_health_ratio_threshold_multiplier")
 
 	-- leech
-	table.delete(self.specializations[22][1].upgrades, "player_copr_kill_life_leech_1")
 	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
+	table.delete(self.specializations[22][9].upgrades, "player_passive_health_multiplier_4")
 
 	-- anarchist
 	self.specializations[15][7].upgrades = {"player_passive_dodge_chance_1", "player_armor_increase_3"}

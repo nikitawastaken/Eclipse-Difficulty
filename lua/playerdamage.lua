@@ -83,9 +83,16 @@ Hooks:PostHook(PlayerDamage, "_regenerated", "eclipse__regenerated", function(se
 	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
 end)
 
+-- lower the on-kill godmode length for leech
+function PlayerDamage:on_copr_killshot()
+	self._next_allowed_dmg_t = Application:digest_value(managers.player:player_timer():time() + 0.45, true)
+	self._last_received_dmg = self:_max_health()
+end
+
 -- bring back decreasing bleedout timer based on the amount of downs
 Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
 	if not self:arrested() then
 	  self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, self._down_time - tweak_data.player.damage.DOWNED_TIME_DEC)
 	end
 end)
+
