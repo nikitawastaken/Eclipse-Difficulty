@@ -5,9 +5,9 @@
 	"contact" : "creepysos#4414",
 	"image" : "mod.png",
 	"blt_version" : 2,
-	"version" : "4.0dev32",
+	"version" : "4.0",
 	"updates" : [{
-		"identifier" : "eclipse_difficulty_dev",
-		"host" : {"meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/dev/meta.json"}
+		"identifier" : "eclipse_difficulty",
+		"host" : {"meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/main/meta.json"}
 	}]
 }
