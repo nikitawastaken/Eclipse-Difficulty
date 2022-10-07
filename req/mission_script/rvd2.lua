@@ -14,5 +14,12 @@ return {
 		values = {
             enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 		}
+	},
+	-- add point of no return
+    [101500] = {
+		ponr = 60
+	},
+	[100246] = {
+		values = {instigator = "criminals_not_downed"}
 	}
 }

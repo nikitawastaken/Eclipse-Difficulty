@@ -12,12 +12,12 @@ return {
     },
     [100341] = {
         values = {
-            enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+            enemy = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"
         }
     },
     [100351] = {
         values = {
-            enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+            enemy = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"
         }
     },
     [101202] = {
@@ -30,5 +30,22 @@ return {
                 {delay = 15, id = 101648},
             }
         }
-    }
+    },
+    -- add missing sniper
+    [103582] = {
+        values = {
+            difficulty_overkill_290 = true,
+            difficulty_sm_wish = true
+        }
+    },
+    [102866] = {
+		values = {
+			enabled = false
+		}
+	},
+    [102880] = {
+		values = {
+			enabled = false
+		}
+	}
 }

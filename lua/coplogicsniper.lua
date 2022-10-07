@@ -2,7 +2,7 @@
 function CopLogicSniper._upd_aim(data, my_data)
 	local focus_enemy = data.attention_obj
 	local expected_pos = focus_enemy and (focus_enemy.last_verified_pos or focus_enemy.verified_pos)
-	local aim = expected_pos and true
+	local aim = expected_pos and focus_enemy.reaction >= AIAttentionObject.REACT_AIM
 	local shoot = focus_enemy and focus_enemy.verified and focus_enemy.reaction >= AIAttentionObject.REACT_SHOOT
 	local anim_data = data.unit:anim_data()
 

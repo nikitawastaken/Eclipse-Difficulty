@@ -6,7 +6,7 @@
 	<tweak definition="tweak/effect.xml"/>
 
 	<hooks script_path="mod.lua">
-	
+
 		<group hook_id="core/lib/">
 			<post :hook_id="managers/coreenvironmentcontrollermanager"/>
 			<post :hook_id="units/coreunitdamage"/>
@@ -36,13 +36,14 @@
 				<post :hook_id="tangomanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="player/snipergrazedamage"/>
+				<post :hook_id="playermanager"/>
 			</group>
 
 			<group :hook_id="network/">
 				<post :hook_id="handlers/unitnetworkhandler"/>
 				<post :hook_id="matchmaking/networkmatchmakingsteam"/>
 			</group>
-			
+
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="charactertweakdata"/>
@@ -56,6 +57,7 @@
 				<post :hook_id="skilltreetweakdata"/>
 				<post :hook_id="interactiontweakdata"/>
 				<post :hook_id="weaponfactorytweakdata"/>
+				<post :hook_id="blackmarkettweakdata"/>
 				<post :hook_id="dramatweakdata"/>
 				<post :hook_id="tweakdata"/>
 			</group>
@@ -116,6 +118,7 @@
 
 					<group :hook_id="tank/">
 						<post :hook_id="logics/tankcoplogicattack"/>
+						<post :hook_id="husktankcopdamage"/>
 					</group>
 
 					<post :hook_id="taser/logics/taserlogicattack"/>
@@ -142,9 +145,11 @@
 						<post :hook_id="incendiarygrenade"/>
 						<post :hook_id="grenadebase"/>
 					</group>
+					<post :hook_id="props/drill"/>
 					<post :hook_id="projectiles/projectilebase"/>
 					<post :hook_id="shotgun/shotgunbase"/>
 					<post :hook_id="akimboweaponbase"/>
+					<post :hook_id="sentrygunweapon"/>
 					<post :hook_id="raycastweaponbase"/>
 					<post :hook_id="newraycastweaponbase"/>
 					<post :hook_id="newflamethrowerbase"/>

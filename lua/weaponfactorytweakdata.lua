@@ -3,7 +3,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- DB
     self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {dot_trigger_chance = "100", dot_damage = "20", dot_length = "1.5", dot_trigger_max_distance = "1500", dot_tick_period = "0.5"}
     -- HE
-    self.parts.wpn_fps_upg_a_explosive.stats = {total_ammo_mod = -10, damage = -15, spread = 1}
+    self.parts.wpn_fps_upg_a_explosive.stats = {total_ammo_mod = -10, damage = -15, spread = 2}
     self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.9, ammo_pickup_min_mul = 0.9, bullet_class = "InstantExplosiveBulletBase", rays = 1}
 	-- 000
     self.parts.wpn_fps_upg_a_custom.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1} -- overwrites walk in closet so technically you still lose pickup
@@ -32,20 +32,28 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- Flamethrower Tanks
     -- Rare
-    self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -25
+    self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -10
     self.parts.wpn_fps_fla_mk2_mag_rare.stats.concealment = 3
     self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.65}
     self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_upg_mk2_rare_desc"
     self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
     -- Well Done
-    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 25
+    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 10
     self.parts.wpn_fps_fla_mk2_mag_welldone.stats.concealment = -3
-    self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1.1, ammo_pickup_min_mul = 1.1}
+    self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
     self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
     self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
 
-    -- Minigun half that kit thing
-    self.parts.wpn_fps_lmg_m134_body_upper_light.custom_stats = {movement_speed = 1.15}
+    -- Arrows
+    self.parts.wpn_fps_bow_frankish_m_explosive.stats.damage = 0
+    self.parts.wpn_fps_bow_frankish_m_poison.stats = {damage = -40}
+    self.parts.wpn_fps_upg_a_crossbow_explosion.stats.damage = 0
+    self.parts.wpn_fps_upg_a_crossbow_poison.stats = {damage = -25}
+    self.parts.wpn_fps_bow_ecp_m_arrows_explosive.stats.damage = 0
+    self.parts.wpn_fps_bow_ecp_m_arrows_poison.stats = {damage = -15}
+    self.parts.wpn_fps_upg_a_bow_explosion.stats.damage = 0
+    self.parts.wpn_fps_upg_a_bow_poison.stats = {damage = -55}
+
     -- Union Short Barrel buff
     self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
 
@@ -60,7 +68,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- bipod nerf
     self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.recoil = -1
-    
+
 
     -- DMR Kit fixes and concealment nerfs
     -- ak family
@@ -88,7 +96,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
     self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
     self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 73
-    -- broomstick 
+    -- broomstick
     self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
 
 
@@ -112,6 +120,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_smg_sr2_m_quick.stats = {recoil = -2, reload = 3}
     self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 3}
     self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_fmg9_m_speed.stats = {spread = 1, reload = 3, recoil = -1, concealment = -2}
 
     -- Barrel Extentions
 
@@ -230,4 +239,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_ns_duck.stats.recoil = -3
     self.parts.wpn_fps_upg_ns_duck.stats.suppression = -5
     self.parts.wpn_fps_upg_ns_duck.stats.concealment = -4
+    -- hailstorm loud ext
+    self.parts.wpn_fps_hailstorm_b_extended.stats = {value = 1, concealment = -2, damage = 1, spread = 3, recoil = 2}
+
+
+    -- remove unneeded stuff
+    table.delete(self.wpn_fps_sho_sko12.uses_parts, "wpn_fps_upg_i_singlefire")
+    table.delete(self.wpn_fps_sho_sko12.uses_parts, "wpn_fps_upg_i_autofire")
+    table.delete(self.wpn_fps_gre_ms3gl.uses_parts, "wpn_fps_gre_ms3gl_conversion")
 end)

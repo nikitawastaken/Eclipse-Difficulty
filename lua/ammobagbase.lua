@@ -1,5 +1,10 @@
--- Bulletstorm 60s duration fix
+-- bulletstorm overall lasts longer
+AmmoBagBase._BULLET_STORM = {
+	6,
+	15
+}
 
+-- Bulletstorm 60s duration fix
 function AmmoBagBase:_take_ammo(unit)
     local taken = 0
     local inventory = unit:inventory()

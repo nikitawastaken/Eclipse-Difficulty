@@ -7,11 +7,11 @@
 	local civ_dmg_class = Network:is_server() and CivilianDamage or HuskCivilianDamage
 
 	-- honestly mind blown is so much better as a skill design than graze, thank you Hoppip
-	function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)	
+	function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 		-- disable mind blown with contractor, grom, kang arms, lebensauger and non-sniper weapons
 		if not alive(weapon_unit) or not weapon_unit:base():is_category("snp") or weapon_unit:base():is_category("ng") or weapon_unit  ~= managers.player:equipped_weapon_unit() or not result.hit_enemy then
 			return
-		end 
+		end
 
 		local player_unit = managers.player:player_unit()
 		if not player_unit then

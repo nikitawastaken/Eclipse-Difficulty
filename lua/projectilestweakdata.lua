@@ -1,7 +1,7 @@
 local initproj_orig = BlackMarketTweakData._init_projectiles
 function BlackMarketTweakData:_init_projectiles(tweak_data)
     initproj_orig(self, tweak_data)
-    
+
     -- 45s injector cooldown
     self.projectiles.chico_injector.base_cooldown = 45
     -- 16s flask cooldown
@@ -10,7 +10,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
     -- remove retarded anticheat
     self.projectiles.rocket_ray_frag.time_cheat = nil
     self.projectiles.launcher_frag_m32.time_cheat = nil
-    
+
     -- grenade amounts
 	self.projectiles.frag.max_amount = 5
     self.projectiles.frag_com.max_amount = 5

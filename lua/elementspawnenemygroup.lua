@@ -43,7 +43,7 @@ local twat_captain = {
 	single_spooc = true
 }
 
-Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse__finalize_values", function(self)	
+Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse__finalize_values", function(self)
 	if self._values.preferred_spawn_groups and #self._values.preferred_spawn_groups == #groupsOLD and table.contains_all(self._values.preferred_spawn_groups, groupsOLD) then
 		self._values.preferred_spawn_groups = {}
 		for name,_ in pairs(tweak_data.group_ai.enemy_spawn_groups) do

@@ -16,6 +16,36 @@ local mvec_sub = mvector3.subtract
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
+-- Move the hostage hesitation delay to control instead of anticipation
+local _begin_assault_task_original = GroupAIStateBesiege._begin_assault_task
+function GroupAIStateBesiege:_begin_assault_task(...)
+	self._task_data.assault.was_first = self._task_data.assault.is_first
+
+	_begin_assault_task_original(self, ...)
+
+	if self._hostage_headcount > 0 then
+		local assault_task = self._task_data.assault
+		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, assault_task.was_first)
+		assault_task.phase_end_t = self._t + anticipation_duration
+		assault_task.is_hesitating = true
+	end
+end
+
+Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
+	local assault_task = self._task_data.assault
+    if self._hostage_headcount > 0 then
+    	local assault_task = self._task_data.assault
+		local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
+		local hostage_situation_skill = managers.player:upgrade_value("team", "hostage_situation", 0)
+        assault_task.is_hesitating = true
+        if assault_task.next_dispatch_t then
+            assault_task.voice_delay = assault_task.next_dispatch_t - self._t
+            assault_task.next_dispatch_t = assault_task.next_dispatch_t + hesitation_delay + hostage_situation_skill
+        end
+	end
+end)
+
+
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
 function GroupAIStateBesiege:_begin_reenforce_task(...)
@@ -240,19 +270,22 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		if phase_is_anticipation then
 			-- If we run into enemies during anticipation, pull back
 			pull_back = true
-		elseif current_objective.moving_out and tactics_map.ranged_fire then
-			-- If we run into enemies while moving out, open fire (if we aren't already doing that)
-			open_fire = not current_objective.open_fire
+		elseif current_objective.moving_out then
+			-- If we run into enemies while moving out, open fire
+			if not current_objective.open_fire then
+				open_fire = true
+				objective_area = obstructed_area
+			end
 		elseif not current_objective.pushed or charge and not current_objective.charge then
-			-- If we run into enemies and haven't pushed yet, approach
-			approach = true
+			-- If we've been in position for a while or haven't seen enemies, approach
+			approach = not self:_can_group_see_target(group)
 		end
 	elseif not current_objective.moving_out then
-		-- If we aren't moving out to an objective, approach or open fire if we have ranged_fire tactics and see an enemy
-		approach = charge or not tactics_map.ranged_fire or in_place_duration > 10 or group.is_chasing or not self:_can_group_see_target(group)
+		-- If we aren't moving out to an objective, open fire if we have ranged_fire tactics and see an enemy, otherwise approach
+		approach = charge or group.is_chasing or not tactics_map.ranged_fire or not self:_can_group_see_target(group)
 		open_fire = not approach and not current_objective.open_fire
 	elseif tactics_map.ranged_fire and not current_objective.open_fire and self:_can_group_see_target(group, true) then
-		-- If we see an enemy while moving out and have the ranged_fire tactics, open fire and stay in position for a bit
+		-- If we see an enemy while moving out and have the ranged_fire tactics, open fire
 		local forwardmost_i_nav_point = self:_get_group_forwardmost_coarse_path_index(group)
 		if forwardmost_i_nav_point then
 			open_fire = true
@@ -261,7 +294,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	end
 
 	if open_fire then
-		objective_area = obstructed_area or objective_area
 		local grp_objective = {
 			attitude = "engage",
 			pose = "stand",
@@ -281,7 +313,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		self:_set_objective_to_enemy_group(group, grp_objective)
 		self:_voice_open_fire_start(group)
 	elseif approach then
-		local assault_area, alternate_assault_area, alternate_assault_area_from, assault_path, alternate_assault_path
+		local assault_area, assault_path, assault_from
 		local to_search_areas = {
 			objective_area
 		}
@@ -289,53 +321,33 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			[objective_area] = objective_area
 		}
 		local group_access_mask = self._get_group_acces_mask(group)
+		local flank_chance = 2 -- First is shortest path to criminal, second is first actual flank path
 
 		repeat
 			local search_area = table_remove(to_search_areas, 1)
-
 			if next(search_area.criminal.units) then
-				local assault_from_here = true
-
-				if tactics_map.flank then
-					local assault_from_area = found_areas[search_area]
-
-					if assault_from_area ~= objective_area then
-						assault_from_here = false
-
-						if not alternate_assault_area or math_random() < 0.5 then
-							local new_alternate_assault_path = managers.navigation:search_coarse({
-								id = "GroupAI_assault",
-								from_seg = current_objective.area.pos_nav_seg,
-								to_seg = search_area.pos_nav_seg,
-								access_pos = group_access_mask,
-								verify_clbk = callback(self, self, "is_nav_seg_safe")
-							})
-
-							if new_alternate_assault_path then
-								self:_merge_coarse_path_by_area(new_alternate_assault_path)
-								alternate_assault_path = new_alternate_assault_path
-								alternate_assault_area = search_area
-								alternate_assault_area_from = assault_from_area
-							end
-						end
-
-						found_areas[search_area] = nil
-					end
-				end
-
-				if assault_from_here then
-					assault_path = managers.navigation:search_coarse({
+				local flank = tactics_map.flank and found_areas[search_area] ~= objective_area
+				if not flank or math_random() < flank_chance then
+					local new_assault_path = managers.navigation:search_coarse({
 						id = "GroupAI_assault",
-						from_seg = current_objective.area.pos_nav_seg,
+						from_seg = objective_area.pos_nav_seg,
 						to_seg = search_area.pos_nav_seg,
 						access_pos = group_access_mask,
 						verify_clbk = callback(self, self, "is_nav_seg_safe")
 					})
 
-					if assault_path then
-						self:_merge_coarse_path_by_area(assault_path)
+					if new_assault_path then
+						self:_merge_coarse_path_by_area(new_assault_path)
+						assault_path = new_assault_path
 						assault_area = search_area
-						break
+						assault_from = found_areas[search_area]
+
+						if flank then
+							found_areas[search_area] = nil
+							flank_chance = flank_chance * 0.5
+						else
+							break
+						end
 					end
 				end
 			else
@@ -348,15 +360,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			end
 		until #to_search_areas == 0
 
-		if alternate_assault_area then
-			assault_area = alternate_assault_area
-			found_areas[assault_area] = alternate_assault_area_from
-			assault_path = alternate_assault_path
-		end
-
 		if assault_area and assault_path then
-			local push = found_areas[assault_area] == objective_area
-			local used_grenade
+			local push = assault_from == objective_area
+			local move_out = not push
 
 			if push then
 				local detonate_pos
@@ -367,22 +373,39 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 				-- Check which grenade to use to push, grenade use is required for the push to be initiated
 				-- If grenade isn't available, push regardless anyway after a short delay
-				used_grenade = self:_chk_group_use_grenade(assault_area, group, detonate_pos) or group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t
+				if self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
+					move_out = true
+				elseif charge or group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t then
+					move_out = true
+				end
 
-				if used_grenade then
+				if move_out then
 					self:_voice_move_in_start(group)
 				elseif not group.ignore_grenade_check_t then
 					group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, 8, 1)
 				end
 			else
 				-- If we aren't pushing, we go to one area before the criminal area
-				assault_area = found_areas[assault_area]
-				if #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path - 1][1]] then
+				-- If we are supposed to flank, calculate the path to the area we want to flank from
+				local new_assault_path = tactics_map.flank and managers.navigation:search_coarse({
+					id = "GroupAI_assault",
+					from_seg = objective_area.pos_nav_seg,
+					to_seg = assault_from.pos_nav_seg,
+					access_pos = group_access_mask,
+					verify_clbk = callback(self, self, "is_nav_seg_safe")
+				})
+				if new_assault_path then
+					self:_merge_coarse_path_by_area(new_assault_path)
+					assault_path = new_assault_path
+				elseif tactics_map.flank then
+					StreamHeist:warn(group.id, "failed to find flank path to assault area!")
+				elseif #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
 					table_remove(assault_path)
 				end
+				assault_area = assault_from
 			end
 
-			if not push or used_grenade then
+			if move_out then
 				local grp_objective = {
 					type = "assault_area",
 					stance = "hos",
@@ -400,11 +423,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 				self:_set_objective_to_enemy_group(group, grp_objective)
 			end
-		elseif in_place_duration > 10 and not self:_can_group_see_target(group) then
+		elseif in_place_duration > 15 and not self:_can_group_see_target(group) then
 			-- Log and remove groups that get stuck
 			local element_id = group.spawn_group_element and group.spawn_group_element._id or 0
 			local element_name = group.spawn_group_element and group.spawn_group_element._editor_name or ""
-			StreamHeist:log(string.format("[Warning] Group %s spawned from element %u (%s) is stuck, removing it!", group.id, element_id, element_name))
+			StreamHeist:warn(string.format("Group %s spawned from element %u (%s) is stuck, removing it!", group.id, element_id, element_name))
 
 			for _, u_data in pairs(group.units) do
 				u_data.unit:brain():set_active(false)
@@ -413,15 +436,8 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	elseif pull_back then
 		local retreat_area
-
 		for _, u_data in pairs(group.units) do
 			local nav_seg_id = u_data.tracker:nav_segment()
-
-			if current_objective.area.nav_segs[nav_seg_id] then
-				retreat_area = current_objective.area
-				break
-			end
-
 			if self:is_nav_seg_safe(nav_seg_id) then
 				retreat_area = self:get_area_from_nav_seg_id(nav_seg_id)
 				break
@@ -431,7 +447,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		if not retreat_area and current_objective.coarse_path then
 			local forwardmost_i_nav_point = self:_get_group_forwardmost_coarse_path_index(group)
 			if forwardmost_i_nav_point then
-				retreat_area = self:get_area_from_nav_seg_id(current_objective.coarse_path[forwardmost_i_nav_point][1])
+				-- Try retreating to the previous coarse path nav point
+				local nav_point = current_objective.coarse_path[forwardmost_i_nav_point - 1] or current_objective.coarse_path[forwardmost_i_nav_point]
+				retreat_area = self:get_area_from_nav_seg_id(nav_point[1])
 			end
 		end
 
@@ -455,7 +473,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	end
 end)
-
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
@@ -672,9 +689,10 @@ function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_gr
 
 	local total_weight = 0
 	local candidate_groups = {}
-	local low_weight = allowed_groups == self._tweak_data.reenforce.groups and 0.25 or allowed_groups == self._tweak_data.recon.groups and 0.5 or 0.75
+	local low_weight = allowed_groups == self._tweak_data.reenforce.groups and 0.1 or allowed_groups == self._tweak_data.recon.groups and 0.4 or 0.7
+	local single_choice = longest_dis == shortest_dis
 	for i, dis in pairs(valid_spawn_group_distances) do
-		local my_wgt = math_map_range(dis, shortest_dis, longest_dis, 1, low_weight)
+		local my_wgt = single_choice and 1 or math_map_range(dis, shortest_dis, longest_dis, 1, low_weight)
 		local my_spawn_group = valid_spawn_groups[i]
 		local my_group_types = my_spawn_group.mission_element:spawn_groups()
 		my_spawn_group.distance = dis
@@ -691,41 +709,36 @@ end
 
 -- Reorder task updates so groups that have finished spawning immediately get their objectives instead of waiting for the next update
 function GroupAIStateBesiege:_upd_police_activity()
-	self._police_upd_task_queued = false
-
-	if self._police_activity_blocked then
+	if self._police_activity_blocked or not self._ai_enabled then
 		return
 	end
 
-	if self._ai_enabled then
-		self:_upd_SO()
-		self:_upd_grp_SO()
-		self:_check_spawn_phalanx()
-		self:_check_phalanx_group_has_spawned()
-		self:_check_phalanx_damage_reduction_increase()
+	self:_upd_SO()
+	self:_upd_grp_SO()
+	self:_check_spawn_phalanx()
+	self:_check_phalanx_group_has_spawned()
+	self:_check_phalanx_damage_reduction_increase()
 
-		-- Do _upd_group_spawning and _begin_new_tasks before the various task updates
-		if self._enemy_weapons_hot then
-			self:_claculate_drama_value()
-			self:_upd_group_spawning()
-			self:_begin_new_tasks()
-			self:_upd_regroup_task()
-			self:_upd_reenforce_tasks()
-			self:_upd_recon_tasks()
-			self:_upd_assault_task()
-			self:_upd_groups()
-		end
+	-- Do _upd_group_spawning and _begin_new_tasks before the various task updates
+	if self._enemy_weapons_hot then
+		self:_claculate_drama_value()
+		self:_upd_group_spawning()
+		self:_begin_new_tasks()
+		self:_upd_regroup_task()
+		self:_upd_reenforce_tasks()
+		self:_upd_recon_tasks()
+		self:_upd_assault_task()
+		self:_upd_groups()
 	end
-
-	self:_queue_police_upd_task()
 end
 
 
 -- Update police activity in consistent intervals
+-- Don't use the task queue for it since this function is called in GroupAIStateBesiege:update anyways
 function GroupAIStateBesiege:_queue_police_upd_task()
-	if not self._police_upd_task_queued then
-		self._police_upd_task_queued = true
-		managers.enemy:queue_task("GroupAIStateBesiege._upd_police_activity", self._upd_police_activity, self, self._t + 1)
+	if self._t >= self._next_police_upd_task then
+		self._next_police_upd_task = self._t + 1
+		self:_upd_police_activity()
 	end
 end
 
@@ -911,9 +924,10 @@ end)
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type
 -- This ensures they are not retired immediatley cause they are not part of assault/recon group types
 Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function (self, unit, team_id)
+	local assault_active = self._task_data.assault.active
 	local area = self:get_area_from_nav_seg_id(unit:movement():nav_tracker():nav_segment())
 	local grp_objective = {
-		type = self._task_data.assault.active and "assault_area" or "recon_area",
+		type = assault_active and "assault_area" or "recon_area",
 		area = area,
 		moving_out = false
 	}
@@ -926,7 +940,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function
 
 	local group = self:_create_group({
 		size = 1,
-		type = self._task_data.assault.active and "custom_assault" or "custom_recon"
+		type = assault_active and "custom_assault" or "custom_recon"
 	})
 	group.team = self._teams[team_id]
 	group.objective = grp_objective

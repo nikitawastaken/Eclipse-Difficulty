@@ -12,7 +12,7 @@ if not mission_script_elements then
 	return
 end
 
-Hooks:PostHook(MissionManager, "_activate_mission", "sh__activate_mission", function (self)
+Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function (self)
 	for element_id, data in pairs(mission_script_elements) do
 		local element = self:get_element_by_id(element_id)
 		if not element then
@@ -27,6 +27,19 @@ Hooks:PostHook(MissionManager, "_activate_mission", "sh__activate_mission", func
 					end
 				end)
 				StreamHeist:log(string.format("%s hooked as reinforce trigger for %u area(s)", element:editor_name(), #data.reinforce))
+			end
+
+			-- Check if this element is supposed to trigger a point of no return
+			-- make point of no return scale with player count
+			if data.ponr then
+				local ponr_timer_balance_mul = managers.groupai:state():_get_balancing_multiplier(data.ponr_player_mul)
+				local ponr_timer = data.ponr * ponr_timer_balance_mul
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_ponr_" .. element_id, function ()
+					managers.groupai:state():set_point_of_no_return_timer(ponr_timer, 0)
+				end)
+				Hooks:PostHook(element, "client_on_executed", "sh_client_on_executed_ponr_" .. element_id, function ()
+					managers.groupai:state():set_point_of_no_return_timer(ponr_timer, 0)
+				end)
 			end
 
 			-- Check if this element is supposed to trigger a difficulty change
@@ -44,6 +57,19 @@ Hooks:PostHook(MissionManager, "_activate_mission", "sh__activate_mission", func
 					element._values[k] = v
 					StreamHeist:log(string.format("%s value \"%s\" has been set to \"%s\"", element:editor_name(), k, tostring(v)))
 				end
+			end
+
+			if data.flashlight ~= nil then
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element_id, function ()
+					StreamHeist:log(string.format("%s executed, changing flashlight state to %s", element:editor_name(), data.flashlight and "true" or "false"))
+					managers.game_play_central:set_flashlights_on(data.flashlight)
+				end)
+				StreamHeist:log(string.format("%s hooked as flashlight state trigger", element:editor_name()))
+			end
+
+			if data.func then
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element_id, data.func)
+				StreamHeist:log(string.format("%s hooked as function call trigger", element:editor_name()))
 			end
 		end
 	end

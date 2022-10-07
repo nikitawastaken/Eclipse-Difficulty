@@ -23,7 +23,7 @@ function ProjectileBase:update(unit, t, dt)
 
         local col_ray = nil
         local __ignore_units = {}
-        
+
         -- Cannot shoot yourself
         if alive(self._thrower_unit) then
             table.insert(__ignore_units, self._thrower_unit)
@@ -42,7 +42,7 @@ function ProjectileBase:update(unit, t, dt)
         else
             col_ray = World:raycast("ray", self._sweep_data.last_pos, self._sweep_data.current_pos, "slot_mask", self._sweep_data.slot_mask)
         end
-        
+
         if self._draw_debug_trail then
             Draw:brush(Color(1, 0, 0, 1), nil, 3):line(self._sweep_data.last_pos, self._sweep_data.current_pos)
         end

@@ -6,7 +6,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.city_swat.suppression = {panic_chance_mul = 0.15, duration = {1.5, 2}, react_point = {2, 5},brown_point = {5, 6}}
 	self.city_swat.weapon = self.presets.weapon.expert
-	self.city_swat.dodge = self.presets.dodge.ninja
 
 	-- Specials
 	self.sniper.suppression = nil
@@ -20,10 +19,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
 	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
 	self.tank.ecm_vulnerability = 0
-	self.tank.damage.explosion_damage_mul = 0.5
-	self.tank.move_speed.stand.walk.cbt = {strafe = 186, fwd = 208, bwd = 164}
-	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
-	
+	self.tank.damage.explosion_damage_mul = 0.1
+
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
@@ -31,8 +28,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.medic.move_speed = self.presets.move_speed.fast
 
 	self.shield.damage.explosion_damage_mul = 0.9
-	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
-	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
+
+	-- Set custom objective interrupt distance
+	self.taser.min_obj_interrupt_dis = 1000
+	self.spooc.min_obj_interrupt_dis = 800
+	self.shadow_spooc.min_obj_interrupt_dis = 800
+	self.tank.min_obj_interrupt_dis = 600
+	self.tank_hw.min_obj_interrupt_dis = 600
+	self.shield.min_obj_interrupt_dis = 300
 
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 400
@@ -48,7 +51,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.no_run_stop = true
 	self.biker_boss.throwable = "concussion"
 	self.biker_boss.throwable_cooldown = 10
-	
+
 	self.chavez_boss.HEALTH_INIT = 400
 	self.chavez_boss.player_health_scaling_mul = 1.5
 	self.chavez_boss.headshot_dmg_mul = 1.65
@@ -75,7 +78,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable_cooldown = 10
-	
+
 	self.hector_boss.HEALTH_INIT = 400
 	self.hector_boss.player_health_scaling_mul = 1.5
 	self.hector_boss.headshot_dmg_mul = 1.65
@@ -89,7 +92,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.no_run_stop = true
 	self.hector_boss.throwable = "frag"
 	self.hector_boss.throwable_cooldown = 15
-	
+
 	self.mobster_boss.HEALTH_INIT = 400
 	self.mobster_boss.player_health_scaling_mul = 1.5
 	self.mobster_boss.headshot_dmg_mul = 1.65
@@ -101,7 +104,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.move_speed = self.presets.move_speed.fast
 	self.mobster_boss.no_run_start = true
 	self.mobster_boss.no_run_stop = true
-	
+
 	self.triad_boss.HEALTH_INIT = 400
 	self.triad_boss.player_health_scaling_mul = 1.5
 	self.triad_boss.headshot_dmg_mul = 1.65
@@ -116,6 +119,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.bullet_damage_only_from_front = nil
 	self.triad_boss.throwable_target_verified = false
 	self.triad_boss.throwable_cooldown = 20
+
+	-- escort bs
+	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
+	self.escort_chinese_prisoner.move_speed = self.presets.move_speed.escort_slow
+	self.escort_sand.move_speed = self.presets.move_speed.escort_slow
+	self.spa_vip.move_speed = self.presets.move_speed.escort_normal
+	self.escort_undercover.move_speed = self.presets.move_speed.escort_slow
 end)
 
 -- Thanks RedFlame for helping with this
@@ -150,7 +160,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.sniper.is_rifle.use_laser = false
-	
+
+	-- escort bs
+	presets.move_speed.escort_normal = deep_clone(presets.move_speed.normal)
+	presets.move_speed.escort_slow = deep_clone(presets.move_speed.slow)
+
 	-- Tweak dodge presets
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
@@ -172,7 +186,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 		explosion = {
 			health_reference = "current",
-			zones = {{moderate = 1}}
+			zones = {{light = 1}}
 		},
 		melee = {
 			health_reference = "current",
@@ -375,8 +389,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.95
 			},
 			recoil = {
-				0.75,
-				0.75
+				1.15,
+				1.15
 			},
 			mode = {
 				1,
@@ -393,8 +407,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.95
 			},
 			recoil = {
-				0.75,
-				0.75
+				1.15,
+				1.15
 			},
 			mode = {
 				1,
@@ -411,8 +425,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.8
 			},
 			recoil = {
-				0.75,
-				0.75
+				1.35,
+				1.35
 			},
 			mode = {
 				0,
@@ -429,7 +443,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.65
 			},
 			recoil = {
-				1.25,
+				1.5,
 				1.5
 			},
 			mode = {
@@ -447,8 +461,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				0.5
 			},
 			recoil = {
-				1.5,
-				1.75
+				2,
+				2
 			},
 			mode = {
 				1,
@@ -458,7 +472,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		}
 	}
-	
+
 	-- revolver preset
 	-- 140 dmg
 	presets.weapon.deathwish.is_revolver.aim_delay = {0.2, 0.2}
@@ -556,7 +570,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		}
 	}
-	
+
 	-- pistol preset
 	-- 35 damage
 	presets.weapon.deathwish.is_pistol.aim_delay = {0.2, 0.2}
@@ -802,10 +816,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		}
 
 	return presets
-	
+
 end
 
-function CharacterTweakData:_set_sm_wish()
+function CharacterTweakData:_set_overkill_290()
 	self:_multiply_all_hp(3, 1.25)
 
 	-- honestly it's easier to just do this than account for all the difficulty health and hs damage muls
@@ -989,7 +1003,7 @@ function CharacterTweakData:_set_sm_wish()
 			},
 		}
 	}
-	
+
 	-- FBI / Medic Shotgun preset
 	-- 175 damage point blank, falls off down to 42 at max range
 	self.fbi_swat.weapon.is_shotgun_pump = {
@@ -1019,8 +1033,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.95
 				},
 				recoil = {
-					0.7,
-					0.7
+					1.15,
+					1.15
 				},
 				mode = {
 					1,
@@ -1037,8 +1051,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.9
 				},
 				recoil = {
-					0.7,
-					0.7
+					1.15,
+					1.15
 				},
 				mode = {
 					1,
@@ -1055,8 +1069,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.6
 				},
 				recoil = {
-					0.9,
-					0.9
+					1.3,
+					1.3
 				},
 				mode = {
 					1,
@@ -1073,8 +1087,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.4
 				},
 				recoil = {
-					1.2,
-					1.2
+					1.5,
+					1.5
 				},
 				mode = {
 					1,
@@ -1091,8 +1105,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.1
 				},
 				recoil = {
-					1.4,
-					1.4
+					2,
+					2
 				},
 				mode = {
 					1,
@@ -1443,8 +1457,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.95
 				},
 				recoil = {
-					0.4,
-					0.4
+					0.75,
+					0.75
 				},
 				mode = {
 					1,
@@ -1461,8 +1475,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.95
 				},
 				recoil = {
-					0.4,
-					0.4
+					0.75,
+					0.75
 				},
 				mode = {
 					1,
@@ -1479,8 +1493,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.8
 				},
 				recoil = {
-					0.5,
-					0.5
+					0.9,
+					0.9
 				},
 				mode = {
 					1,
@@ -1497,8 +1511,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.45
 				},
 				recoil = {
-					0.7,
-					0.7
+					1.1,
+					1.1
 				},
 				mode = {
 					1,
@@ -1515,8 +1529,8 @@ function CharacterTweakData:_set_sm_wish()
 					0.15
 				},
 				recoil = {
-					1,
-					1
+					1.5,
+					1.5
 				},
 				mode = {
 					1,
@@ -2081,7 +2095,7 @@ function CharacterTweakData:_set_sm_wish()
 	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 30
 	self.taser.weapon.is_rifle.tase_distance = 1500
 	self.taser.weapon.is_rifle.aim_delay_tase = {0.2, 0.2}
-	
+
 	-- Bosses
 	self.chavez_boss.weapon.akimbo_pistol.FALLOFF = {
 		{
@@ -2638,6 +2652,41 @@ function CharacterTweakData:_set_sm_wish()
 	self:_set_characters_weapon_preset("deathwish")
 
 	self.spooc.spooc_attack_timeout = {2, 3}
-	self.flashbang_multiplier = 2
+	self.flashbang_multiplier = 1.75
 	self.concussion_multiplier = 1
+end
+
+local _set_overkill_290_orig = CharacterTweakData._set_overkill_290
+function CharacterTweakData:_set_sm_wish()
+	_set_overkill_290_orig(self)
+
+	-- Eclipse exclusive buffs
+	self.flashbang_multiplier = 2
+	self.city_swat.dodge = self.presets.dodge.ninja
+	self:_multiply_all_speeds(1.15, 1.075)
+	-- set specific speeds for tanks and shields
+	self.tank.move_speed.stand.walk.cbt = {strafe = 186, fwd = 208, bwd = 164}
+	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
+	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
+	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
+end
+
+-- fixed movement speed difficulty scaling
+-- thanks redflame for this code from like 6 months ago
+function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
+    for preset_name, preset in pairs(self.presets.move_speed) do
+        if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then
+            for _, pose in pairs(preset) do
+                for haste_name, haste in pairs(pose) do
+                    for stance_name, stance in pairs(haste) do
+                        if stance_name ~= "ntl" then
+                            for move_dir in pairs(stance) do
+                                stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
 end

@@ -18,13 +18,14 @@ function CopActionTase:on_attention(attention)
 				end
 			end
 
-			self._expired = self._expired or Network:is_server()
 			self._attention = nil
 			self._tasing_local_unit = nil
 			self._tasing_player = nil
 			self._discharging = nil
-			self.update = self._upd_empty
 		end
+
+		self._expired = self._expired or Network:is_server()
+		self.update = self._upd_empty
 		return
 	elseif self._attention then
 		return

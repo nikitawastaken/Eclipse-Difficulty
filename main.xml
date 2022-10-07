@@ -1,19 +1,19 @@
 <table>
 	<AddFiles directory="assets">
 		<!-- sniper glares -->
-		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"/>
-		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"/>
-		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick"/>
-		
+		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper" force="true"/>
+		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd" force="true"/>
+		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick" force="true"/>
+
 		<!-- characters -->
-		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3" force="true" load="true"/>
-		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" force="true" load="true"/>
-		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1" force="true" load="true"/>
-		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1_husk" force="true" load="true"/>
-		
+		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3" force="true"/>
+		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" force="true"/>
+		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1" force="true"/>
+		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1_husk" force="true"/>
+
 		<!-- old cook off bain lines -->
 		<bnk path="soundbanks/job_h_rat_stage1"/>
-		
+
 		<!-- mute turret announcement -->
 		<stream path="soundbanks/streamed/npc_cpa/5329107" />
 		<stream path="soundbanks/streamed/npc_cpa/51493853" />

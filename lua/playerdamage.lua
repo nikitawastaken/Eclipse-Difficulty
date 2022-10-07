@@ -2,7 +2,7 @@
 PlayerDamage._UPPERS_COOLDOWN = 60
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
-Hooks:PreHook(PlayerDamage, "replenish", "eclipse__replenish", function(self)
+Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
     if Global.game_settings.one_down then
         self._lives_init = 4
         tweak_data.player.damage.DOWNED_TIME = 25
@@ -26,7 +26,7 @@ function PlayerDamage:is_friendly_fire(unit)
 	if attacker_team ~= my_team and attacker_mov_ext:friendly_fire() then
 		return false
 	end
-	
+
 	if Global.game_settings and Global.game_settings.one_down and unit:base() and unit:base().is_husk_player then
 		friendly_fire = false
 	else
@@ -78,9 +78,21 @@ function PlayerDamage:restore_health(health_restored, is_static, chk_health_rati
 	end
 end
 
+-- add an upgrade that gives increased bleedout timer
+Hooks:PostHook(PlayerDamage, "_regenerated", "eclipse__regenerated", function(self)
+	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
+end)
+
+-- lower the on-kill godmode length for leech
+function PlayerDamage:on_copr_killshot()
+	self._next_allowed_dmg_t = Application:digest_value(managers.player:player_timer():time() + 0.45, true)
+	self._last_received_dmg = self:_max_health()
+end
+
 -- bring back decreasing bleedout timer based on the amount of downs
 Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
 	if not self:arrested() then
 	  self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, self._down_time - tweak_data.player.damage.DOWNED_TIME_DEC)
 	end
-  end)
+end)
+
