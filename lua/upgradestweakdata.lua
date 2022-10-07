@@ -326,11 +326,11 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Ghost --
 
-	-- Eagle Eye
-	self.values.player.marked_distance_mul[1] = 4
-	self.skill_descs.cleaner.multibasic = "5%"
-	self.skill_descs.cleaner.multipro = "4"
-	self.skill_descs.cleaner.multipro2 = "100%"
+	-- Inner Pockets
+	self.values.player.melee_concealment_modifier[1] = 1
+	self.values.player.ballistic_vest_concealment[1] = 3
+	self.skill_descs.cleaner.multibasic2 = "1"
+	self.skill_descs.cleaner.multipro = "2"
 
 	-- Quick Grab
 	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
@@ -379,6 +379,13 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.jail_diet.multibasic2 = "2"
 	self.skill_descs.jail_diet.multipro = "1.5%"
 	self.skill_descs.jail_diet.multipro4 = "15%"
+
+	-- Eagle Eye
+	self.values.weapon.special_damage_taken_multiplier[1] = 1.1
+	self.values.player.marked_distance_mul[1] = 4
+	self.skill_descs.thick_skin.multibasic = "10%"
+	self.skill_descs.thick_skin.multipro = "4"
+	self.skill_descs.thick_skin.multipro2 = "100%"
 
 	-- The Professional
 	self.skill_descs.silence_expert.multibasic = "8"
