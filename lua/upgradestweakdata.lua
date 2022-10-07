@@ -668,13 +668,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[17][9].multiperk3 = "1"
 
 	-- Sicario
-	self.values.player.dodge_shot_gain = {
-		{
-			0.2,
-			3
-		}
-	}
-	self.specialization_descs[18][3].multiperk2 = "3"
+	self.values.player.dodge_shot_gain = {{0.05, 1}}
+	self.specialization_descs[18][3].multiperk = "5%"
+	self.specialization_descs[18][3].multiperk2 = "1"
 
 	-- Stoic
 	self.specialization_descs[19][1].multiperk3 = "16"
@@ -693,7 +689,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[21][7].multiperk3 = "25"
 
 	-- Leech
-	-- todo: maybe actually make smth out of it one day
 	self.copr_ability_cooldown = 60
 	self.values.temporary.copr_ability[1][2] = 4
 	self.values.temporary.copr_ability[2][2] = 8
