@@ -30,10 +30,12 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 			end
 
 			-- Check if this element is supposed to trigger a point of no return
-			-- make point of no return scale with player count
 			if data.ponr then
-				local ponr_timer_balance_mul = managers.groupai:state():_get_balancing_multiplier(data.ponr_player_mul)
-				local ponr_timer = data.ponr * ponr_timer_balance_mul
+				-- make point of no return scale with player count
+				if data.ponr_player_mul then
+					local ponr_timer_balance_mul = managers.groupai:state():_get_balancing_multiplier(data.ponr_player_mul)
+				end
+				local ponr_timer = data.ponr * (ponr_timer_balance_mul or 1)
 				Hooks:PostHook(element, "on_executed", "sh_on_executed_ponr_" .. element_id, function ()
 					managers.groupai:state():set_point_of_no_return_timer(ponr_timer, 0)
 				end)
