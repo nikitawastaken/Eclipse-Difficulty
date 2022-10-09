@@ -31,13 +31,15 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 
 			-- Check if this element is supposed to trigger a point of no return
 			-- thanks redflame
-			local function set_ponr()
-				local ponr_timer_balance_mul = data.ponr_player_mul and managers.groupai:state():_get_balancing_multiplier(data.ponr_player_mul) or 1
-				managers.groupai:state():set_point_of_no_return_timer(data.ponr * ponr_timer_balance_mul, 0)
-			end
+			if data.ponr then
+				local function set_ponr()
+					local ponr_timer_balance_mul = data.ponr_player_mul and managers.groupai:state():_get_balancing_multiplier(data.ponr_player_mul) or 1
+					managers.groupai:state():set_point_of_no_return_timer(data.ponr * ponr_timer_balance_mul, 0)
+				end
 
-			Hooks:PostHook(element, "on_executed", "sh_on_executed_ponr_" .. element_id, set_ponr)
-			Hooks:PostHook(element, "client_on_executed", "sh_client_on_executed_ponr_" .. element_id, set_ponr)
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_ponr_" .. element_id, set_ponr)
+				Hooks:PostHook(element, "client_on_executed", "sh_client_on_executed_ponr_" .. element_id, set_ponr)
+			end
 
 			-- Check if this element is supposed to trigger a difficulty change
 			if data.difficulty then
