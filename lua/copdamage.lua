@@ -19,11 +19,10 @@ function CopDamage:_sync_dismember(attacker_unit, ...)
 	end
 end
 
-local build_suppression_orig = CopDamage.build_suppression
+-- Don't set suppression to maximum on hit, increase by a static value instead
+local build_suppression_original = CopDamage.build_suppression
 function CopDamage:build_suppression(amount, ...)
-    if amount ~= "max" then
-        return build_suppression_orig(self, amount, ...)
-    end
+	return build_suppression_original(self, amount == "max" and 2 or amount, ...)
 end
 
 -- Consistent crit damage (2x) (SHC)
