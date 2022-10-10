@@ -4,8 +4,8 @@ end
 
 -- static recoil that actually feels good
 function FPCameraPlayerBase:stop_shooting(wait)
-	self._recoil_kick.to_reduce = self._recoil_kick.ret and self._recoil_kick.ret * 0.5 or 0
-	self._recoil_kick.h.to_reduce = self._recoil_kick.h.ret and self._recoil_kick.h.ret * 0.5 or 0
+	self._recoil_kick.to_reduce = self._recoil_kick.ret or 0
+	self._recoil_kick.h.to_reduce = self._recoil_kick.h.ret or 0
 	self._recoil_wait = wait or 0
 end
 

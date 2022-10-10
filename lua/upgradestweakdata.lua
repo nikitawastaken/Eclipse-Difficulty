@@ -330,7 +330,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.melee_concealment_modifier[1] = 1
 	self.values.player.ballistic_vest_concealment[1] = 3
 	self.skill_descs.cleaner.multibasic2 = "1"
-	self.skill_descs.cleaner.multipro = "2"
+	self.skill_descs.cleaner.multipro = "3"
 
 	-- Quick Grab
 	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
@@ -640,12 +640,13 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk4 = "125%"
 
 	-- Grinder
-	self.damage_to_hot_data.tick_time = 0.6
-	self.specialization_descs[11][1].multiperk2 = "0.6"
-	self.specialization_descs[11][3].multiperk2 = "0.6"
-	self.specialization_descs[11][5].multiperk2 = "0.6"
-	self.specialization_descs[11][7].multiperk2 = "0.6"
-	self.specialization_descs[11][9].multiperk2 = "0.6"
+	self.damage_to_hot_data.tick_time = 0.8
+	self.damage_to_hot_data.armors_allowed = {"level_1"}
+	self.specialization_descs[11][1].multiperk2 = "0.8"
+	self.specialization_descs[11][3].multiperk2 = "0.8"
+	self.specialization_descs[11][5].multiperk2 = "0.8"
+	self.specialization_descs[11][7].multiperk2 = "0.8"
+	self.specialization_descs[11][9].multiperk2 = "0.8"
 
 	-- Biker
 	self.values.player.wild_health_amount = {0.25}

@@ -1121,6 +1121,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			self.cs_grenade_lifetime = 20
 	end
 
+	-- Spawngroups
 	if difficulty_index >= 7 then
 		self.besiege.assault.groups = {
 			common_charge = {1, 1, 1},
@@ -1151,6 +1152,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			reenforce_sneaky = {0.2, 0.2, 0.2},
 			reenforce_tank = {0.15, 0.15, 0.15}
 		}
+	end
+
+	-- Hoxd1 is a shit heist
+	if Global.level_data and Global.level_data.level_id == "hox_1" then
+		self.besiege.assault.spawnrate_balance_mul = {2.5, 1.75, 1.33, 1}
 	end
 
 	-- nuke captain

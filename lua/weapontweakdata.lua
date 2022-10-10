@@ -26,7 +26,7 @@ self.tti.stats.concealment = 13
 self.tti.stats.damage = 120
 self.tti.stats_modifiers = {damage = 2}
 self.tti.AMMO_PICKUP = {1.5, 2}
-self.tti.kick.standing = {1.5, 2.25, -0.3, 0.3}
+self.tti.kick.standing = {3, 3.8, -0.3, 0.3}
 self.tti.kick.crouching = self.tti.kick.standing
 self.tti.kick.steelsight = self.tti.kick.standing
 self.tti.categories = {"snp", "ng"}
@@ -37,7 +37,7 @@ self.siltstone.stats.damage = 120
 self.siltstone.stats_modifiers = {damage = 2}
 self.siltstone.stats.concealment = 20
 self.siltstone.AMMO_PICKUP = {1.5, 2}
-self.siltstone.kick.standing = {1.5, 2.25, -0.3, 0.3}
+self.siltstone.kick.standing = {3, 3.8, -0.3, 0.3}
 self.siltstone.kick.crouching = self.siltstone.kick.standing
 self.siltstone.kick.steelsight = self.siltstone.kick.standing
 self.siltstone.categories = {"snp", "ng"}
@@ -48,7 +48,7 @@ self.qbu88.stats.recoil = 7
 self.qbu88.stats.damage = 120
 self.qbu88.stats_modifiers = {damage = 2}
 self.qbu88.AMMO_PICKUP = {1.5, 2}
-self.qbu88.kick.standing = {2, 3, -0.3, 0.3}
+self.qbu88.kick.standing = {3.8, 4.5, -0.3, 0.3}
 self.qbu88.kick.crouching = self.qbu88.kick.standing
 self.qbu88.kick.steelsight = self.qbu88.kick.standing
 self.qbu88.categories = {"snp", "ng"}
@@ -60,7 +60,7 @@ self.wa2000.stats.reload = 13
 self.wa2000.stats.damage = 120
 self.wa2000.stats_modifiers = {damage = 2}
 self.wa2000.AMMO_PICKUP = {1.5, 2}
-self.wa2000.kick.standing = {1.5, 2.25, -0.3, 0.3}
+self.wa2000.kick.standing = {3, 3.8, -0.3, 0.3}
 self.wa2000.kick.crouching = self.wa2000.kick.standing
 self.wa2000.kick.steelsight = self.wa2000.kick.standing
 self.wa2000.categories = {"snp", "ng"}
@@ -72,7 +72,7 @@ self.sbl.stats.damage = 120
 self.sbl.stats.reload = 13
 self.sbl.AMMO_PICKUP = {1.5, 2}
 self.sbl.fire_mode_data.fire_rate = 60 / 150
-self.sbl.kick.standing = {1.5, 2.25, -0.3, 0.3}
+self.sbl.kick.standing = {3, 3.8, -0.3, 0.3}
 self.sbl.kick.crouching = self.sbl.kick.standing
 self.sbl.kick.steelsight = self.sbl.kick.standing
 self.sbl.categories = {"snp", "ng"}
@@ -397,6 +397,7 @@ self.striker.spread.moving_crouching = self.new_m4.spread.crouching
 -- Ultima
 self.ultima.rays = 12
 self.ultima.stats.damage = 70
+self.ultima.AMMO_PICKUP = {1.15, 1.8}
 self.ultima.kick.standing = {3, 3.5, -0.2, 0.2}
 self.ultima.spread.standing = self.new_m4.spread.crouching
 self.ultima.spread.moving_standing = self.new_m4.spread.crouching
@@ -883,12 +884,10 @@ self.ray.stats.damage = 128
 self.ray.stats_modifiers = {damage = 10}
 self.ray.stats.reload = 8
 self.ray.AMMO_PICKUP = {0.05, 0.38}
--- get rid of RPG
-self.rpg7.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 
 -- Piglet
 self.m32.stats.damage = 42
-self.m32.AMMO_PICKUP = {0.05, 0.575}
+self.m32.AMMO_PICKUP = {0.05, 0.45}
 self.m32.stats.reload = 15
 self.m32.fire_mode_data.fire_rate = 60 / 120
 
@@ -896,28 +895,29 @@ self.m32.fire_mode_data.fire_rate = 60 / 120
 self.china.use_data.selection_index = SELECTION.PRIMARY
 self.china.stats.damage = 40
 self.china.stats.concealment = 16
-self.china.AMMO_PICKUP = {0.05, 0.50}
+self.china.AMMO_MAX = 9
+self.china.AMMO_PICKUP = {0.05, 0.425}
 
 -- Arbiter
 self.arbiter.use_data.selection_index = SELECTION.PRIMARY
 self.arbiter.stats.damage = 30
-self.arbiter.AMMO_PICKUP = {0.05, 0.51}
+self.arbiter.AMMO_PICKUP = {0.05, 0.44}
 
 -- Viper
 self.ms3gl.use_data.selection_index = SELECTION.PRIMARY
 self.ms3gl.stats.damage = 26
-self.ms3gl.AMMO_PICKUP = {0.05, 0.52}
+self.ms3gl.AMMO_PICKUP = {0.05, 0.45}
 
 -- GL40
 self.gre_m79.use_data.selection_index = SELECTION.SECONDARY
 self.gre_m79.stats.damage = 64
-self.gre_m79.AMMO_MAX = 3
-self.gre_m79.AMMO_PICKUP = {0.05, 0.45}
+self.gre_m79.AMMO_MAX = 7
+self.gre_m79.AMMO_PICKUP = {0.05, 0.41}
 
 -- Compact 40
 self.slap.stats.damage = 64
-self.slap.AMMO_MAX = 3
-self.slap.AMMO_PICKUP = {0.05, 0.45}
+self.slap.AMMO_MAX = 7
+self.slap.AMMO_PICKUP = {0.05, 0.41}
 
 
 -- Specials
@@ -941,6 +941,49 @@ self.plainsrider.AMMO_MAX = 30
 self.plainsrider.stats.damage = 65
 self.plainsrider.stats.concealment = 23
 self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
+
+
+-- Akimbos
+
+-- Krinkovs
+self.x_akmsu.stats.damage = 80
+self.x_akmsu.AMMO_MAX = 120
+self.x_akmsu.kick.standing = {1.7, 1.9, -1.4, 1.2}
+self.x_akmsu.kick.crouching = self.x_akmsu.kick.standing
+self.x_akmsu.kick.steelsight = self.x_akmsu.kick.standing
+
+-- Compacts
+self.x_mp5.AMMO_MAX = 240
+self.x_mp5.kick.standing = {1.4, 1.6, -0.9, 1.2}
+self.x_mp5.kick.crouching = self.x_mp5.kick.standing
+self.x_mp5.kick.steelsight = self.x_mp5.kick.standing
+
+-- Heathers
+self.x_sr2.AMMO_MAX = 180
+self.x_sr2.stats.reload = 8
+self.x_sr2.kick.standing = {1.5, 1.7, -1.1, 1.1}
+self.x_sr2.kick.crouching = self.x_sr2.kick.standing
+self.x_sr2.kick.steelsight = self.x_sr2.kick.standing
+
+-- Judges
+self.x_judge.rays = 12
+self.x_judge.kick.standing = {2.5, 3, -0.2, 0.2}
+self.x_judge.kick.crouching = self.x_judge.kick.standing
+self.x_judge.kick.steelsight = self.x_judge.kick.standing
+
+
+-- Flamethrowers
+
+-- mk2
+self.flamethrower_mk2.stats.damage = 25
+self.flamethrower_mk2.fire_dot_data = {
+	dot_trigger_chance = 50,
+	dot_damage = 7.5,
+	dot_length = 1.1,
+	dot_trigger_max_distance = 3000,
+	dot_tick_period = 0.5
+}
+self.flamethrower_mk2.AMMO_PICKUP = {4.5, 6.75}
 
 
 
@@ -994,49 +1037,8 @@ self.x_vityaz.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_type54.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_pm9.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_shepheard.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
-
--- Krinkovs
-self.x_akmsu.stats.damage = 80
-self.x_akmsu.AMMO_MAX = 120
-self.x_akmsu.kick.standing = {1.7, 1.9, -1.4, 1.2}
-self.x_akmsu.kick.crouching = self.x_akmsu.kick.standing
-self.x_akmsu.kick.steelsight = self.x_akmsu.kick.standing
-
--- Compacts
-self.x_mp5.AMMO_MAX = 240
-self.x_mp5.kick.standing = {1.4, 1.6, -0.9, 1.2}
-self.x_mp5.kick.crouching = self.x_mp5.kick.standing
-self.x_mp5.kick.steelsight = self.x_mp5.kick.standing
-
--- Heathers
-self.x_sr2.AMMO_MAX = 180
-self.x_sr2.stats.reload = 8
-self.x_sr2.kick.standing = {1.5, 1.7, -1.1, 1.1}
-self.x_sr2.kick.crouching = self.x_sr2.kick.standing
-self.x_sr2.kick.steelsight = self.x_sr2.kick.standing
-
--- Judges
-self.x_judge.rays = 12
-self.x_judge.kick.standing = {2.5, 3, -0.2, 0.2}
-self.x_judge.kick.crouching = self.x_judge.kick.standing
-self.x_judge.kick.steelsight = self.x_judge.kick.standing
-
-
--- Flamethrowers
-
--- mk2
-self.flamethrower_mk2.stats.damage = 25
-self.flamethrower_mk2.fire_dot_data = {
-	dot_trigger_chance = 50,
-	dot_damage = 7.5,
-	dot_length = 1.1,
-	dot_trigger_max_distance = 3000,
-	dot_tick_period = 0.5
-}
-self.flamethrower_mk2.AMMO_PICKUP = {4.5, 6.75}
-
--- ma-17 shouldn't exist and just makes the primary one useless, i'm sorry
 self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
+self.rpg7.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 end)
 
 Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290", function(self)
