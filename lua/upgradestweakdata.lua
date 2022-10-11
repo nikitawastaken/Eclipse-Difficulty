@@ -653,7 +653,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[16][1].multiperk = "2.5"
 
 	-- Ex-President
-	self.values.player.body_armor.skill_max_health_store = {4, 3.5, 3, 2.5, 2, 1.5, 1}
+	self.values.player.body_armor.skill_max_health_store = {6, 5, 4, 3, 2.5, 2, 1}
+	self.values.player.armor_health_store_amount = {0.1, 0.3, 0.5}
+	self.specialization_descs[13][1].multiperk = "1"
+	self.specialization_descs[13][3].multiperk = "2"
+	self.specialization_descs[13][7].multiperk = "2"
 
 	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = {0.35}
