@@ -81,7 +81,7 @@ self.sbl.categories = {"snp", "ng"}
 self.winchester1874.stats.damage = 147
 self.winchester1874.stats_modifiers = {damage = 2}
 self.winchester1874.fire_mode_data.fire_rate = 60 / 85
-self.winchester1874.AMMO_PICKUP = {1.5, 2}
+self.winchester1874.AMMO_PICKUP = {1.1, 1.5}
 self.winchester1874.AMMO_MAX = 30
 
 -- Rattlesnake
