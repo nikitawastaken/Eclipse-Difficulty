@@ -120,6 +120,10 @@
 						<post :hook_id="logics/tankcoplogicattack"/>
 						<post :hook_id="husktankcopdamage"/>
 					</group>
+					
+					<group :hook_id="shield/">
+						<post :hook_id="logics/shieldlogicattack"/>
+					</group>
 
 					<post :hook_id="taser/logics/taserlogicattack"/>
 					<post :hook_id="medic/medicdamage"/>

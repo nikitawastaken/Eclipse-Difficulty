@@ -1125,11 +1125,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	if difficulty_index >= 7 then
 		self.besiege.assault.groups = {
 			common_charge = {1, 1, 1},
-			common_shield = {0.66, 0.66, 0.66},
+			common_shield = {0.55, 0.55, 0.55},
 			common_tank = {0, 0.02, 0.16},
 			uncommon_charge = {0.75, 0.75, 0.75},
 			elite_flanklight = {0.45, 0.45, 0.45},
-			elite_shieldg = {0.45, 0.45, 0.45},
+			elite_shieldg = {0.4, 0.4, 0.4},
 			elite_long_range = {0.4, 0.4, 0.4},
 			elite_heavy_charge = {0.35, 0.35, 0.35},
 			elite_tank = {0, 0, 0.1},
