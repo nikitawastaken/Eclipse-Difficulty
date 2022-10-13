@@ -27,7 +27,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.medic.suppression = nil
 	self.medic.move_speed = self.presets.move_speed.fast
 
-	self.shield.damage.explosion_damage_mul = 0.65
+	self.shield.damage.explosion_damage_mul = 0.7
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 
 	-- Set custom objective interrupt distance
