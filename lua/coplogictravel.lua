@@ -97,25 +97,17 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 		my_data.moving_to_cover = nil
 	end
 
-	-- Find cover (or fallback) point close to nav segment door when the coarse path isn't finished yet
-	local all_nav_segs = managers.navigation._nav_segments
 	local nav_seg_id = coarse_path[nav_index][1]
 	local next_nav_seg_id = coarse_path[nav_index + 1][1]
-	local next_area = managers.groupai:state():get_area_from_nav_seg_id(next_nav_seg_id)
-	local nav_seg_pos = all_nav_segs[nav_seg_id].pos
-	local to_pos = nav_seg_pos
+	local to_pos = coarse_path[nav_index][2]
 
-	for neighbour_nav_seg_id, door_list in pairs(all_nav_segs[nav_seg_id].neighbours) do
-		if next_area.nav_segs[neighbour_nav_seg_id] and not all_nav_segs[neighbour_nav_seg_id].disabled then
-			local random_door_id = door_list[math_random(#door_list)]
-			if type(random_door_id) == "number" then
-				to_pos = managers.navigation._room_doors[random_door_id].center
-			else
-				to_pos = random_door_id:script_data().element:nav_link_end_pos()
-			end
-			break
-		end
+	-- Pick cover positions that are close to nav segment doors
+	local doors = managers.navigation:find_segment_doors(nav_seg_id, function (seg_id) return seg_id == next_nav_seg_id end)
+	local door = table.random(doors)
+	if door then
+		to_pos = to_pos * 0.25 + door.center * 0.75
 	end
+
 
 	local cover = managers.navigation:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
 	if cover then
@@ -125,7 +117,7 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 		}
 		to_pos = cover[1]
 	else
-		to_pos = CopLogicTravel._get_pos_on_wall(to_pos == nav_seg_pos and to_pos or (nav_seg_pos + to_pos) * 0.5, 500)
+		to_pos = CopLogicTravel._get_pos_on_wall(to_pos, 500)
 	end
 
 	return to_pos

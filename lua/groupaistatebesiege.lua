@@ -604,7 +604,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 	task_data.use_smoke = false
 	-- Minimum grenade cooldown
-	task_data.use_smoke_timer = self._t + 10
+	task_data.use_smoke_timer = self._t + 15
 	-- Individual grenade cooldowns
 	task_data[grenade_type .. "_next_t"] = self._t + math_lerp(timeout[1], timeout[2], math_random())
 

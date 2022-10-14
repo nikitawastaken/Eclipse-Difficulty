@@ -123,6 +123,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 			hit_count = hit_count + 1
 		end
 
+		-- penetrating a surface reduces the damage you deal to an enemy
 		if hit.unit:in_slot(managers.slot:get_mask("world_geometry")) then
 			hit_through_wall = true
 			damage = damage * 0.5

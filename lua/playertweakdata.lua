@@ -16,12 +16,10 @@ end
 
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function (self)
-	self.suppression.decay_start_delay = 0.35
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
 end)
 
 -- Game too hard for single player appparently????
 function PlayerTweakData:_set_singleplayer()
-	self.damage.REGENERATE_TIME = 3
 end

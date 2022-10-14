@@ -37,21 +37,20 @@ function PlayerDamage:is_friendly_fire(unit)
 	return friendly_fire
 end
 
--- The entirety of the code here is done by Hoppip, thanks again if you're reading this
--- Grace period protects no matter the new potential damage but is shorter in general
+-- Grace period protects no matter the new potential damage but is shorter in general (sh)
 function PlayerDamage:_chk_dmg_too_soon()
 	local next_allowed_dmg_t = type(self._next_allowed_dmg_t) == "number" and self._next_allowed_dmg_t or Application:digest_value(self._next_allowed_dmg_t, false)
 	return managers.player:player_timer():time() < next_allowed_dmg_t
 end
 
--- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
+-- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer) (sh)
 Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function (self, attack_data, health_subtracted)
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
 		self._can_take_dmg_timer = self._dmg_interval + 0.2
 	end
 end)
 
--- Add significantly longer grace period on armor break (repurposing Anarchist/Armorer damage timer)
+-- Add significantly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) (sh)
 local _calc_armor_damage_original = PlayerDamage._calc_armor_damage
 function PlayerDamage:_calc_armor_damage(...)
 	local had_armor = self:get_real_armor() > 0
@@ -64,6 +63,7 @@ function PlayerDamage:_calc_armor_damage(...)
 
 	return health_subtracted
 end
+
 
 -- make healing fixed instead of % of max health
 function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
@@ -78,16 +78,16 @@ function PlayerDamage:restore_health(health_restored, is_static, chk_health_rati
 	end
 end
 
--- add an upgrade that gives increased bleedout timer
-Hooks:PostHook(PlayerDamage, "_regenerated", "eclipse__regenerated", function(self)
-	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
-end)
-
 -- lower the on-kill godmode length for leech
 function PlayerDamage:on_copr_killshot()
 	self._next_allowed_dmg_t = Application:digest_value(managers.player:player_timer():time() + 0.45, true)
 	self._last_received_dmg = self:_max_health()
 end
+
+-- add an upgrade that gives increased bleedout timer
+Hooks:PostHook(PlayerDamage, "_regenerated", "eclipse__regenerated", function(self)
+	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
+end)
 
 -- bring back decreasing bleedout timer based on the amount of downs
 Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)

@@ -71,7 +71,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.wolverine[1].upgrades = {"player_melee_damage_health_ratio_multiplier"}
 	self.skills.wolverine[2].upgrades = {"player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier"}
 
-	-- Nine Lives (Tough Guy)
+	-- Tough Guy
 	self.skills.nine_lives[1].upgrades = {"player_bleed_out_health_multiplier"}
 	self.skills.nine_lives[2].upgrades = {"player_primary_weapon_when_downed"}
 
@@ -92,13 +92,13 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Kilmer
 	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")
-	self.skills.speedy_reload.icon_xy = {1, 9}
 	self.skills.speedy_reload.name_id = "menu_kilmer"
+	self.skills.speedy_reload.icon_xy = {1, 9}
 
 	-- Resilience
 	self.skills.oppressor.icon_xy = {6, 1}
 
-	-- Tough Guy
+	-- Thick skin
 	self.skills.show_of_force[1].upgrades = {"player_damage_shake_addend"}
 	self.skills.show_of_force.icon_xy = {2, 12}
 
