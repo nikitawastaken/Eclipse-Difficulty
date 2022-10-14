@@ -840,15 +840,10 @@ function CharacterTweakData:_set_overkill_290()
 	self.taser.headshot_dmg_mul = 1.4
 	self.spooc.HEALTH_INIT = 102
 	self.spooc.headshot_dmg_mul = 3.75
-	self.medic.HEALTH_INIT = 60
-	self.medic.headshot_dmg_mul = 2.2
+	self.medic.HEALTH_INIT = 72
+	self.medic.headshot_dmg_mul = 1.6
 	self.tank.HEALTH_INIT = 2160
 	self.tank.headshot_dmg_mul = 35
-
-	-- Team AI nerf
-	self.presets.gang_member_damage.HEALTH_INIT = 400
-	self.presets.gang_member_damage.REGENERATE_TIME = 3
-	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 4
 
 	-- FBI Rifle preset
 	-- 45 damage M4
@@ -2655,6 +2650,11 @@ function CharacterTweakData:_set_overkill_290()
 	self.spooc.spooc_attack_timeout = {2, 3}
 	self.flashbang_multiplier = 1.75
 	self.concussion_multiplier = 1
+
+	-- Team AI nerf
+	self.presets.gang_member_damage.HEALTH_INIT = 400
+	self.presets.gang_member_damage.REGENERATE_TIME = 3
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 4
 end
 
 local _set_overkill_290_orig = CharacterTweakData._set_overkill_290
