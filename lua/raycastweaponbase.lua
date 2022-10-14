@@ -25,6 +25,16 @@ function RaycastWeaponBase:check_autoaim(...)
 	return closest_ray, suppression_enemies
 end
 
+-- No aim assist (shc)
+Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function (self)
+	if self._autohit_data then
+		self._autohit_current = 0
+		self._autohit_data.INIT_RATIO = 0
+		self._autohit_data.MIN_RATIO = 0
+		self._autohit_data.MAX_RATIO = 0
+	end
+end)
+
 local mvec_to = Vector3()
 local mvec_spread_direction = Vector3()
 local mvec1 = Vector3()
