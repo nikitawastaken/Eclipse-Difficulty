@@ -431,11 +431,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.unseen_strike.multipro3 = "35"
 	self.skill_descs.unseen_strike.multipro4 = "60%"
 
-	-- HVT basic buff and aced nerf
-	self.values.player.marked_enemy_damage_mul = 1.25
-	self.values.player.marked_inc_dmg_distance[1][2] = 1.3
-	self.skill_descs.hitman.multibasic = "25%"
-	self.skill_descs.hitman.multipro = "30%"
+	-- HVT
+	self.values.player.marked_enemy_damage_mul = 1.2
+	self.values.player.marked_inc_dmg_distance[1][2] = 1.25
+	self.skill_descs.hitman.multibasic = "20%"
+	self.skill_descs.hitman.multipro = "25%"
 	self.skill_descs.hitman.multipro2 = "10"
 	self.skill_descs.hitman.multipro3 = "100%"
 
