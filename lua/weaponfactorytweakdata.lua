@@ -21,7 +21,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
-
     -- bitchass
     self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
     self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = nil
@@ -30,6 +29,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
     self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom = nil
     self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom_free = nil
+
+
 
     -- Weapon-Specific Stuff
     -- mp5 straight mag
@@ -102,6 +103,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 2
     -- broomstick
     self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
+    -- ks12
+    self.parts.wpn_fps_ass_shak12_body_vks.stats.damage = 50
+    self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -6
+    self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
+    self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = -10
+    self.parts.wpn_fps_ass_shak12_body_vks.stats.fire_rate = -3
+    self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {ammo_pickup_max_mul = 0.5, ammo_pickup_min_mul = 0.6}
+    self.parts.wpn_fps_ass_shak12_body_vks.custom_stats.fire_rate_multiplier = 0.7
 
 
 

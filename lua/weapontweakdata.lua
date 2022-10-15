@@ -595,9 +595,11 @@ self.g3.kick.crouching = self.g3.kick.standing
 self.g3.kick.steelsight = self.g3.kick.standing
 
 -- KS12
+self.shak12.stats.damage = 60
+self.shak12.stats_modifiers = {damage = 2}
 self.shak12.stats.concealment = 10
 self.shak12.AMMO_PICKUP = {2.2, 3.5}
-self.shak12.kick.standing = {1.3, 1.5, -1, 1}
+self.shak12.kick.standing = {1.5, 1.8, -1, 1}
 self.shak12.kick.crouching = self.shak12.kick.standing
 self.shak12.kick.steelsight = self.shak12.kick.standing
 
