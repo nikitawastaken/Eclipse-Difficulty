@@ -8,6 +8,6 @@
 	"version" : "5.0dev6",
 	"updates" : [{
 		"identifier" : "eclipse_difficulty_dev",
-		"host" : {"meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/dev/meta.json"}
+		"host" : { "meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/dev/meta.json" }
 	}]
 }
