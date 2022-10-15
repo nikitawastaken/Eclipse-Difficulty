@@ -94,7 +94,7 @@ function ElementAreaTrigger:project_amount_inside()
     elseif self._values.instigator == "criminals_not_downed" then
         counter = 0
 
-        for _, criminal in pairs(managers.groupai:state():all_char_criminals()) do
+        for _, criminal in pairs(managers.groupai:state():all_player_criminals()) do
             for _, instigator in pairs(self._inside) do
                 if criminal.unit == instigator and not criminal.unit:movement():downed() then
                     counter = counter + 1
@@ -126,7 +126,7 @@ function ElementAreaTrigger:project_amount_all()
     elseif self._values.instigator == "criminals_not_downed" then
         local i = 0
 
-        for _, data in pairs(managers.groupai:state():all_char_criminals()) do
+        for _, data in pairs(managers.groupai:state():all_player_criminals()) do
             if not data.unit:movement():downed() then
                 i = i + 1
             end
