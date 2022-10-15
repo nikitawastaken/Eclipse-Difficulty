@@ -1170,7 +1170,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Hoxd1 is a shit heist
 	if Global.level_data and Global.level_data.level_id == "hox_1" then
-		self.besiege.assault.spawnrate_balance_mul = {2.75, 2, 1.66, 1.33}
+		self.besiege.assault.spawnrate_balance_mul = {2.5, 1.75, 1.3, 1}
 	end
 
 	-- nuke captain
