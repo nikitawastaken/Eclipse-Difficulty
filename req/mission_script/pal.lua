@@ -5,5 +5,8 @@ return {
     },
     [101987] = {
         values = {instigator = "criminals_not_downed"}
+    },
+    [102551] = {
+        ponr_end = true
     }
 }

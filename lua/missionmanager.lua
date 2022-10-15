@@ -37,9 +37,19 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 					managers.groupai:state():set_point_of_no_return_timer(data.ponr * ponr_timer_balance_mul, 0)
 				end
 
-				Hooks:PostHook(element, "on_executed", "sh_on_executed_ponr_" .. element_id, set_ponr)
-				Hooks:PostHook(element, "client_on_executed", "sh_client_on_executed_ponr_" .. element_id, set_ponr)
+				Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_" .. element_id, set_ponr)
+				Hooks:PostHook(element, "client_on_executed", "eclipse_client_on_executed_ponr_" .. element_id, set_ponr)
 			end
+
+			if data.ponr_end then
+				Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_end_" .. element_id, function ()
+					managers.groupai:state():remove_point_of_no_return_timer(0)
+				end)
+				Hooks:PostHook(element, "client_on_executed", "eclipse_client_on_executed_ponr_end_" .. element_id, function ()
+					managers.groupai:state():remove_point_of_no_return_timer(0)
+				end)
+			end
+
 
 			-- Check if this element is supposed to trigger a difficulty change
 			if data.difficulty then
