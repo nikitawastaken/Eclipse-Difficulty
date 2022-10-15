@@ -25,7 +25,7 @@ self.tti.CLIP_AMMO_MAX = 15
 self.tti.stats.concealment = 13
 self.tti.stats.damage = 120
 self.tti.stats_modifiers = {damage = 2}
-self.tti.AMMO_PICKUP = {1.5, 2}
+self.tti.AMMO_PICKUP = {1.5, 1.75}
 self.tti.kick.standing = {3, 3.8, -0.3, 0.3}
 self.tti.kick.crouching = self.tti.kick.standing
 self.tti.kick.steelsight = self.tti.kick.standing
@@ -36,7 +36,7 @@ self.siltstone.AMMO_MAX = 30
 self.siltstone.stats.damage = 120
 self.siltstone.stats_modifiers = {damage = 2}
 self.siltstone.stats.concealment = 20
-self.siltstone.AMMO_PICKUP = {1.5, 2}
+self.siltstone.AMMO_PICKUP = {1.5, 1.75}
 self.siltstone.kick.standing = {3, 3.8, -0.3, 0.3}
 self.siltstone.kick.crouching = self.siltstone.kick.standing
 self.siltstone.kick.steelsight = self.siltstone.kick.standing
@@ -47,7 +47,7 @@ self.qbu88.AMMO_MAX = 30
 self.qbu88.stats.recoil = 7
 self.qbu88.stats.damage = 120
 self.qbu88.stats_modifiers = {damage = 2}
-self.qbu88.AMMO_PICKUP = {1.5, 2}
+self.qbu88.AMMO_PICKUP = {1.5, 1.75}
 self.qbu88.kick.standing = {3.8, 4.5, -0.3, 0.3}
 self.qbu88.kick.crouching = self.qbu88.kick.standing
 self.qbu88.kick.steelsight = self.qbu88.kick.standing
@@ -59,7 +59,7 @@ self.wa2000.CLIP_AMMO_MAX = 10
 self.wa2000.stats.reload = 13
 self.wa2000.stats.damage = 120
 self.wa2000.stats_modifiers = {damage = 2}
-self.wa2000.AMMO_PICKUP = {1.5, 2}
+self.wa2000.AMMO_PICKUP = {1.5, 1.75}
 self.wa2000.kick.standing = {3, 3.8, -0.3, 0.3}
 self.wa2000.kick.crouching = self.wa2000.kick.standing
 self.wa2000.kick.steelsight = self.wa2000.kick.standing
@@ -70,7 +70,7 @@ self.sbl.AMMO_MAX = 30
 self.sbl.CLIP_AMMO_MAX = 15
 self.sbl.stats.damage = 120
 self.sbl.stats.reload = 13
-self.sbl.AMMO_PICKUP = {1.5, 2}
+self.sbl.AMMO_PICKUP = {1.5, 1.75}
 self.sbl.fire_mode_data.fire_rate = 60 / 150
 self.sbl.kick.standing = {3, 3.8, -0.3, 0.3}
 self.sbl.kick.crouching = self.sbl.kick.standing
@@ -629,7 +629,7 @@ self.scorpion.kick.crouching = self.scorpion.kick.standing
 self.scorpion.kick.steelsight = self.scorpion.kick.standing
 
 -- Compact-5
-self.new_mp5.AMMO_MAX = 100
+self.new_mp5.AMMO_MAX = 120
 self.new_mp5.AMMO_PICKUP = {5, 9}
 self.new_mp5.kick.standing = {0.9, 1.2, -0.75, 0.75}
 self.new_mp5.kick.crouching = self.new_mp5.kick.standing

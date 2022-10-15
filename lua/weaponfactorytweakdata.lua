@@ -1,5 +1,6 @@
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
-    -- Shotgun Ammo Rework
+
+    -- Shotguns
     -- DB
     self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {dot_trigger_chance = "100", dot_damage = "20", dot_length = "1.5", dot_trigger_max_distance = "1500", dot_tick_period = "0.5"}
     -- HE
@@ -10,15 +11,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_a_custom_free.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
     -- Flechette
     self.parts.wpn_fps_upg_a_piercing.stats.damage = 0
-    -- bitchass
-    self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
-    self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = nil
-    self.wpn_fps_shot_b682.override.wpn_fps_upg_a_explosive = nil
-    self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
-    self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
-    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom = nil
-    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom_free = nil
-
     -- Shell Rack for loco and r880
     self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2
     self.parts.wpn_fps_shot_r870_body_rack.stats.total_ammo_mod = 0
@@ -30,33 +22,41 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
 
-    -- Flamethrower Tanks
-    -- Rare
-    self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -10
-    self.parts.wpn_fps_fla_mk2_mag_rare.stats.concealment = 3
-    self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.65}
-    self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_upg_mk2_rare_desc"
-    self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
-    -- Well Done
-    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 10
-    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.concealment = -3
-    self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
-    self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
-    self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
+    -- bitchass
+    self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_shot_b682.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom = nil
+    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom_free = nil
 
-    -- Arrows
-    self.parts.wpn_fps_bow_frankish_m_explosive.stats.damage = 0
-    self.parts.wpn_fps_bow_frankish_m_poison.stats = {damage = -40}
-    self.parts.wpn_fps_upg_a_crossbow_explosion.stats.damage = 0
-    self.parts.wpn_fps_upg_a_crossbow_poison.stats = {damage = -25}
-    self.parts.wpn_fps_bow_ecp_m_arrows_explosive.stats.damage = 0
-    self.parts.wpn_fps_bow_ecp_m_arrows_poison.stats = {damage = -15}
-    self.parts.wpn_fps_upg_a_bow_explosion.stats.damage = 0
-    self.parts.wpn_fps_upg_a_bow_poison.stats = {damage = -55}
-
-    -- Union Short Barrel buff
+    -- Weapon-Specific Stuff
+    -- mp5 straight mag
+    self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
+    -- union short barrel
     self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
-
+    -- bipod nerf
+    self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.recoil = -1
+    -- Commando 553 modifications
+    self.parts.wpn_fps_ass_s552_body_standard_black.stats = {spread = 0, recoil = -2, concealment = 2}
+    self.parts.wpn_fps_ass_s552_b_long.stats = {spread = 2, concealment = -2}
+    self.parts.wpn_fps_ass_s552_fg_standard_green.stats = {concealment = 2, spread = -1, recoil = -1}
+    self.parts.wpn_fps_ass_s552_fg_railed.stats = {concealment = -3, recoil = 2, spread = 2}
+    self.parts.wpn_fps_ass_s552_g_standard_green.stats = {spread = 1, recoil = 1}
+    -- Falcon modifications
+    self.parts.wpn_fps_ass_fal_s_01.stats = {recoil = -2, concealment = 2}
+    self.parts.wpn_fps_ass_fal_s_wood.stats = {recoil = 3, concealment = -2}
+    self.parts.wpn_fps_ass_fal_g_01.stats = {recoil = 1, spread = -2, concealment = 2}
+    -- Speedpull nerfs
+    self.parts.wpn_fps_m4_upg_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_upg_ak_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_ass_g36_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_ass_aug_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_sr2_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 3}
+    self.parts.wpn_fps_smg_fmg9_m_speed.stats = {spread = 1, reload = 3, recoil = -1, concealment = -2}
     -- Gadgets
     -- Military Laser module
     self.parts.wpn_fps_upg_fl_ass_peq15.stats.recoil = 0
@@ -66,8 +66,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- Assault Light
     self.parts.wpn_fps_upg_fl_ass_smg_sho_surefire.stats.concealment = 0
 
-    -- bipod nerf
-    self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.recoil = -1
 
 
     -- Conversion kits
@@ -106,32 +104,38 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
 
 
-    -- Commando 553 modifications
-    self.parts.wpn_fps_ass_s552_body_standard_black.stats = {spread = 0, recoil = -2, concealment = 2}
-    self.parts.wpn_fps_ass_s552_b_long.stats = {spread = 2, concealment = -2}
-    self.parts.wpn_fps_ass_s552_fg_standard_green.stats = {concealment = 2, spread = -1, recoil = -1}
-    self.parts.wpn_fps_ass_s552_fg_railed.stats = {concealment = -3, recoil = 2, spread = 2}
-    self.parts.wpn_fps_ass_s552_g_standard_green.stats = {spread = 1, recoil = 1}
 
-    -- Falcon modifications
-    self.parts.wpn_fps_ass_fal_s_01.stats = {recoil = -2, concealment = 2}
-    self.parts.wpn_fps_ass_fal_s_wood.stats = {recoil = 3, concealment = -2}
-    self.parts.wpn_fps_ass_fal_g_01.stats = {recoil = 1, spread = -2, concealment = 2}
+    -- Specials
 
-    -- Speedpull nerfs
-    self.parts.wpn_fps_m4_upg_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_upg_ak_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_ass_g36_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_ass_aug_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_sr2_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_fmg9_m_speed.stats = {spread = 1, reload = 3, recoil = -1, concealment = -2}
+    -- Flamethrower Tanks
+    -- Rare
+    self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -10
+    self.parts.wpn_fps_fla_mk2_mag_rare.stats.concealment = 3
+    self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.65}
+    self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_upg_mk2_rare_desc"
+    self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
+    -- Well Done
+    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 10
+    self.parts.wpn_fps_fla_mk2_mag_welldone.stats.concealment = -3
+    self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
+    self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
+    self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
+
+    -- Arrows
+    self.parts.wpn_fps_bow_frankish_m_explosive.stats.damage = 0
+    self.parts.wpn_fps_bow_frankish_m_poison.stats = {damage = -40}
+    self.parts.wpn_fps_upg_a_crossbow_explosion.stats.damage = 0
+    self.parts.wpn_fps_upg_a_crossbow_poison.stats = {damage = -25}
+    self.parts.wpn_fps_bow_ecp_m_arrows_explosive.stats.damage = 0
+    self.parts.wpn_fps_bow_ecp_m_arrows_poison.stats = {damage = -15}
+    self.parts.wpn_fps_upg_a_bow_explosion.stats.damage = 0
+    self.parts.wpn_fps_upg_a_bow_poison.stats = {damage = -55}
+
+
 
     -- Barrel Extentions
 
     -- Suppressors
-
     -- PBS
     self.parts.wpn_fps_upg_ns_ass_pbs1.stats.spread = 2
     self.parts.wpn_fps_upg_ns_ass_pbs1.stats.concealment = -3
@@ -205,7 +209,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_sho_rota_b_silencer.stats.damage = -3
 
     -- Compensators / Nozzles / Muzzles
-
     -- Stubby
     self.parts.wpn_fps_upg_ns_ass_smg_stubby.stats.damage = 3
     self.parts.wpn_fps_upg_ns_ass_smg_stubby.stats.spread = 3
@@ -247,6 +250,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_ns_duck.stats.concealment = -4
     -- hailstorm loud ext
     self.parts.wpn_fps_hailstorm_b_extended.stats = {value = 1, concealment = -2, damage = 1, spread = 3, recoil = 2}
+
 
 
     -- misc
