@@ -574,7 +574,6 @@ self.m16.kick.crouching = self.m16.kick.standing
 self.m16.kick.steelsight = self.m16.kick.standing
 
 -- Eagle Heavy
-self.scar.AMMO_MAX = 90
 self.scar.stats.concealment = 10
 self.scar.stats.reload = 13
 self.scar.AMMO_PICKUP = {2.2, 3.5}
@@ -583,14 +582,12 @@ self.scar.kick.crouching = self.scar.kick.standing
 self.scar.kick.steelsight = self.scar.kick.standing
 
 -- Falcon
-self.fal.AMMO_MAX = 80
 self.fal.AMMO_PICKUP = {2.2, 3.5}
 self.fal.kick.standing = {1.45, 1.55, -1.1, 1.1}
 self.fal.kick.crouching = self.fal.kick.standing
 self.fal.kick.steelsight = self.fal.kick.standing
 
 -- Gewehr
-self.g3.AMMO_MAX = 90
 self.g3.stats.concealment = 9
 self.g3.AMMO_PICKUP = {2.2, 3.5}
 self.g3.kick.standing = {1.45, 1.55, -1.1, 1.1}
@@ -598,7 +595,6 @@ self.g3.kick.crouching = self.g3.kick.standing
 self.g3.kick.steelsight = self.g3.kick.standing
 
 -- KS12
-self.shak12.AMMO_MAX = 90
 self.shak12.stats.concealment = 10
 self.shak12.AMMO_PICKUP = {2.2, 3.5}
 self.shak12.kick.standing = {1.3, 1.5, -1, 1}
@@ -816,7 +812,7 @@ self.sub2000.kick.crouching = self.sub2000.kick.standing
 self.sub2000.kick.steelsight = self.sub2000.kick.standing
 
 -- M308
-self.new_m14.AMMO_MAX = 30
+self.new_m14.AMMO_MAX = 40
 self.new_m14.AMMO_PICKUP = {1.5, 2.5}
 self.new_m14.stats.damage = 170
 self.new_m14.stats.concealment = 5
@@ -825,7 +821,7 @@ self.new_m14.kick.crouching = self.new_m14.kick.standing
 self.new_m14.kick.steelsight = self.new_m14.kick.standing
 
 -- Galant
-self.ching.AMMO_MAX = 32
+self.ching.AMMO_MAX = 40
 self.ching.AMMO_PICKUP = {1.5, 2.5}
 self.ching.stats.damage = 170
 self.ching.stats.concealment = 10
