@@ -840,6 +840,9 @@ self.peacemaker.can_shoot_through_enemy = true
 self.peacemaker.can_shoot_through_shield = true
 self.peacemaker.can_shoot_through_wall = true
 self.peacemaker.armor_piercing_chance = 1
+self.peacemaker.has_description = true
+self.peacemaker.desc_id = "bm_w_lemming_desc"
+
 
 -- Angry Tiger
 self.rsh12.stats.damage = 120
