@@ -1139,11 +1139,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			fbi_lights = {1.75, 1.75, 0},
 			fbi_heavies = {0.5, 0.5, 1.25},
-			fbi_shields = {0.45, 0.45, 0.3},
+			fbi_shields = {0.4, 0.4, 0.25},
 			fbi_tanks = {0, 0.02, 0.16},
 			gensec_cqc_lights = {0.3, 0.3, 0.5},
 			gensec_ranged_lights = {0.3, 0.3, 0.5},
-			gensec_shields = {0.2, 0.2, 0.35},
+			gensec_shields = {0.15, 0.15, 0.3},
 			gensec_flankers = {0.25, 0.25, 0.45},
 			gensec_tasers = {0.15, 0.15, 0.3},
 			gensec_tanks = {0, 0, 0.1},
