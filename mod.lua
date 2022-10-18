@@ -1,3 +1,19 @@
+if not EclipseDebug then
+    EclipseDebug = {}
+    local log_levels = {
+        "Debug",
+        "Warning",
+        "Error"
+    }
+
+    function EclipseDebug:log(level, message)
+        assert(0 < level and level < 4, "Eclipse log level must be between 1-3.")
+        assert(message ~= nil, "Eclipse empty log message.")
+
+        log(string.format("Eclipse %s: %s", log_levels[level], message))
+    end
+end
+
 if not StreamHeist then
 
 	StreamHeist = {
