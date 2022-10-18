@@ -756,12 +756,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[20][5].multiperk2 = "6"
 
 	-- Hacker
-	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.15, 25, 3}
+	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.10, 20, 3}
 	self.values.player.pocket_ecm_heal_on_kill = {1}
 	self.specialization_descs[21][5].multiperk = "10"
 	self.specialization_descs[21][7].multiperk = "3"
-	self.specialization_descs[21][7].multiperk2 = "15%"
-	self.specialization_descs[21][7].multiperk3 = "25"
+	self.specialization_descs[21][7].multiperk2 = "10%"
+	self.specialization_descs[21][7].multiperk3 = "20"
 
 	-- Leech
 	self.copr_ability_cooldown = 60
