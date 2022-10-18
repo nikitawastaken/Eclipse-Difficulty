@@ -53,24 +53,6 @@ Hooks:PreHook(UnitNetworkHandler, "action_spooc_start", "sh_action_spooc_start",
 end)
 
 
--- Fix function ignoring the actual aim state parameter and always starting a shoot action (thanks to RedFlame)
-function UnitNetworkHandler:action_aim_state(cop, start)
-	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_character(cop) then
-		return
-	end
-
-	if start then
-		cop:movement():action_request({
-			block_type = "action",
-			body_part = 3,
-			type = "shoot"
-		})
-	else
-		cop:movement():sync_action_aim_end()
-	end
-end
-
-
 -- Properly sync reload
 function UnitNetworkHandler:reload_weapon_cop(cop, sender)
 	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_character_and_sender(cop, sender) then

@@ -10,36 +10,13 @@ function PlayerStandard:init(unit)
     end
 end
 
--- separate lock n' load from ovka
-function PlayerStandard:_get_swap_speed_multiplier()
-	local multiplier = 1
-	local weapon_tweak_data = self._equipped_unit:base():weapon_tweak_data()
-	multiplier = multiplier * managers.player:upgrade_value("weapon", "swap_speed_multiplier", 1)
-	multiplier = multiplier * managers.player:upgrade_value("weapon", "passive_swap_speed_multiplier", 1)
-	multiplier = multiplier * managers.player:upgrade_value("weapon", "generic_swap_speed_multiplier", 1)
-
-	for _, category in ipairs(weapon_tweak_data.categories) do
-		multiplier = multiplier * managers.player:upgrade_value(category, "swap_speed_multiplier", 1)
-	end
-
-	multiplier = multiplier * managers.player:upgrade_value("team", "crew_faster_swap", 1)
-
-	if managers.player:has_activate_temporary_upgrade("temporary", "swap_weapon_faster") then
-		multiplier = multiplier * managers.player:temporary_upgrade_value("temporary", "swap_weapon_faster", 1)
-	end
-
-	multiplier = managers.modifiers:modify_value("PlayerStandard:GetSwapSpeedMultiplier", multiplier)
-
-	return multiplier
-end
-
 -- No more sixth sense
 Hooks:OverrideFunction(PlayerStandard, "_update_omniscience",
 function(self, ...)
     return
 end)
 
--- Don't update sixth sense anymore
+-- Don't update sixth sense anymore and add sprint reload upgrade to shotguns
 Hooks:OverrideFunction(PlayerStandard, "update",
 function(self, t, dt)
     PlayerMovementState.update(self, t, dt)
@@ -56,6 +33,7 @@ function(self, t, dt)
     self:_upd_nav_data()
     managers.hud:_update_crosshair_offset(t, dt)
     self:_upd_stance_switch_delay(t, dt)
+	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload") or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
 end)
 
 -- Melee while running

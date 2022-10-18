@@ -1,16 +1,31 @@
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- Shotguns
-    -- DB
-    self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {dot_trigger_chance = "100", dot_damage = "20", dot_length = "1.5", dot_trigger_max_distance = "1500", dot_tick_period = "0.5"}
-    -- HE
-    self.parts.wpn_fps_upg_a_explosive.stats = {total_ammo_mod = -10, damage = -15, spread = 2}
-    self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.9, ammo_pickup_min_mul = 0.9, bullet_class = "InstantExplosiveBulletBase", rays = 1}
 	-- 000
-    self.parts.wpn_fps_upg_a_custom.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1} -- overwrites walk in closet so technically you still lose pickup
-    self.parts.wpn_fps_upg_a_custom_free.custom_stats = {rays = 8, ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
+    self.parts.wpn_fps_upg_a_custom.custom_stats = {rays = 6, optimal_distance_addend = 310, near_falloff_addend = 110, damage_near_mul = 0.5, damage_far_mul = 0.85}
+    self.parts.wpn_fps_upg_a_custom_free.custom_stats = self.parts.wpn_fps_upg_a_custom.custom_stats
+    self.parts.wpn_fps_upg_a_custom.stats.damage = 5
+    self.parts.wpn_fps_upg_a_custom.stats.total_ammo_mod = -6
+    self.parts.wpn_fps_upg_a_custom.stats.recoil = -2
+    self.parts.wpn_fps_upg_a_custom_free.stats = self.parts.wpn_fps_upg_a_custom.stats
     -- Flechette
-    self.parts.wpn_fps_upg_a_piercing.stats.damage = 0
+    self.parts.wpn_fps_upg_a_piercing.stats.damage = -8
+    self.parts.wpn_fps_upg_a_piercing.stats.suppression = 11
+    self.parts.wpn_fps_upg_a_piercing.custom_stats = {rays = 12, armor_piercing_add = 1, damage_near_mul = 1.5, damage_far_mul = 1.5}
+    -- AP Slug
+    self.parts.wpn_fps_upg_a_slug.stats.total_ammo_mod = -4
+    self.parts.wpn_fps_upg_a_slug.stats.spread = 6
+    self.parts.wpn_fps_upg_a_slug.stats.recoil = -2
+    -- HE Slug
+    self.parts.wpn_fps_upg_a_explosive.stats.total_ammo_mod = -8
+    self.parts.wpn_fps_upg_a_explosive.stats.damage = 30
+    self.parts.wpn_fps_upg_a_explosive.stats.spread = 4
+    self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.9, ammo_pickup_min_mul = 0.9, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10}
+    -- DB
+    self.parts.wpn_fps_upg_a_dragons_breath.stats.total_ammo_mod = -8
+    self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_max_mul = 0.85
+    self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_min_mul = 0.85
+    self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = {dot_trigger_chance = "100", dot_damage = "3", dot_length = "4", dot_trigger_max_distance = "1500", dot_tick_period = "0.25"}
     -- Shell Rack for loco and r880
     self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2
     self.parts.wpn_fps_shot_r870_body_rack.stats.total_ammo_mod = 0
@@ -21,18 +36,32 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
+
     -- bitchass
     self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
-    self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_slug = nil
     self.wpn_fps_shot_b682.override.wpn_fps_upg_a_explosive = nil
-    self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
     self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_pis_judge.override.wpn_fps_upg_a_piercing = nil
+    self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
+    self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_piercing = nil
     self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom = nil
     self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom_free = nil
+    self.wpn_fps_sho_striker.override.wpn_fps_upg_a_slug = nil
+    self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom = nil
+    self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom_free = nil
 
 
 
     -- Weapon-Specific Stuff
+    -- Saiga stuff
+    self.parts.wpn_fps_sho_basset_m_extended.stats.recoil = -1
+    self.parts.wpn_fps_sho_basset_m_extended.stats.reload = -2
+    self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = -2
+    self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
+    self.parts.wpn_fps_sho_saiga_fg_holy.stats.recoil = -2
+    self.parts.wpn_fps_sho_saiga_fg_holy.stats.concealment = 2
     -- mp5 straight mag
     self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
     -- union short barrel

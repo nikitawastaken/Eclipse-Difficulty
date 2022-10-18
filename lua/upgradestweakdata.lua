@@ -120,16 +120,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.black_marketeer.multipro2 = "12"
 
 	-- Lock N' Load
-	self.definitions.weapon_generic_swap_speed_multiplier = {
-		name_id = "menu_generic_swap_speed_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "generic_swap_speed_multiplier",
-			category = "weapon"
-		}
-	}
-	self.values.weapon.generic_swap_speed_multiplier = {1.25}
+	self.values.weapon.swap_speed_multiplier = {1.25}
 	self.skill_descs.rifleman.multibasic2 = "25%"
 
 	-- Kilmer
@@ -162,36 +153,108 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Enforcer --
 
+	-- Hard Boiled
+	self.values.shotgun.swap_speed_multiplier = {1.25}
+	self.definitions.shotgun_swap_speed_multiplier = {
+		name_id = "menu_shotgun_swap_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "swap_speed_multiplier",
+			category = "shotgun"
+		}
+	}
+	self.skill_descs.underdog.multibasic = "5%"
+	self.skill_descs.underdog.multipro = "25%"
+
+	-- Fast Hands
+	self.values.shotgun.pump_reload_speed = {1.25, 1.5}
+	self.definitions.shotgun_pump_reload_speed_1 = {
+		name_id = "menu_shotgun_pump_reload_speed",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pump_reload_speed",
+			category = "shotgun"
+		}
+	}
+	self.definitions.shotgun_pump_reload_speed_2 = {
+		name_id = "menu_shotgun_pump_reload_speed",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "pump_reload_speed",
+			category = "shotgun"
+		}
+	}
+	self.skill_descs.shotgun_cqb.multibasic = "25%"
+	self.skill_descs.shotgun_cqb.multipro = "25%"
+
+	-- Point Blank
+	self.values.shotgun.extra_pellets = {4}
+	self.values.shotgun.hip_fire_spread_multiplier[1] = 1.25
+	self.definitions.shotgun_extra_pellets = {
+		name_id = "menu_shotgun_extra_pellets",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "extra_pellets",
+			category = "shotgun"
+		}
+	}
+	self.skill_descs.shotgun_impact.multibasic = "4"
+	self.skill_descs.shotgun_impact.multipro = "25%"
+
+	-- Shotgun CQB
+	self.values.shotgun.hip_rate_of_fire[1] = 1.15
+	self.values.shotgun.run_and_reload = {true}
+	self.definitions.shotgun_run_and_reload = {
+		name_id = "menu_shotgun_run_and_reload",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "run_and_reload",
+			category = "shotgun"
+		}
+	}
+	self.skill_descs.far_away.multibasic = "15%"
+
+	-- Mag-fed Specialist
+	self.values.shotgun.mag_reload_speed = {1.5}
+	self.values.shotgun.magazine_capacity_inc[1] = 5
+	self.definitions.shotgun_mag_reload_speed = {
+		name_id = "menu_shotgun_mag_reload_speed",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "mag_reload_speed",
+			category = "shotgun"
+		}
+	}
+	self.skill_descs.close_by.multibasic = "25%"
+	self.skill_descs.close_by.multipro = "5"
+
+	-- Shotgun Hell
+    self.definitions.cooldown_shotgun_panic_on_kill = {
+        name_id = "menu_cooldown_shotgun_panic_on_kill",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "shotgun_panic_on_kill",
+			category = "cooldown"
+		}
+    }
+	self.values.shotgun.consume_no_ammo_chance[1] = 0.125
+    self.values.cooldown.shotgun_panic_on_kill = {{1, 5}}
+	self.values.shotgun.panic = {{chance = 0.75, area = 10, amount = "panic"}}
+	self.skill_descs.overkill.multibasic = "12.5%"
+	self.skill_descs.overkill.multipro = "75%"
+	self.skill_descs.overkill.multipro2 = "5"
+
 	-- Underdog
 	self.values.temporary.dmg_multiplier_outnumbered = {{1.1, 3}}
 	self.skill_descs.underdog.multibasic2 = "10%"
 	self.skill_descs.underdog.multibasic3 = "3"
-
-	-- Overkill
-	self.definitions.player_overkill_damage_multiplier_2 = {
-		name_id = "menu_player_overkill_damage_multiplier",
-		category = "temporary",
-		upgrade = {
-			value = 2,
-			upgrade = "overkill_damage_multiplier",
-			category = "temporary"
-		}
-	}
-
-	self.values.temporary.overkill_damage_multiplier = {
-		{1.3, 5},
-		{1.45, 12}
-	}
-
-	self.skill_descs.overkill.multibasic = "30%"
-	self.skill_descs.overkill.multibasic2 = "5"
-	self.skill_descs.overkill.multipro = "45%"
-	self.skill_descs.overkill.multipro2 = "12"
-	self.skill_descs.overkill.multipro3 = "80%"
-
-	-- Close By
-	self.values.shotgun.magazine_capacity_inc[1] = 5
-	self.skill_descs.close_by.multipro2 = "5"
 
 	-- Resilience
 	self.values.player.flashbang_multiplier = {0.75, 0.75}
@@ -291,7 +354,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.heavy_impact.multibasic = "15%"
 	self.skill_descs.heavy_impact.multipro = "30%"
 
-	-- Fast Hands
+	-- Sleight of Hand
 	self.values.lmg.reload_speed_multiplier = {1.2}
 	self.values.smg.reload_speed_multiplier = {1.2}
 	self.skill_descs.shock_and_awe.multibasic = "20%"
@@ -442,8 +505,8 @@ function UpgradesTweakData:init(tweak_data)
 	-- Fugitive --
 
 	-- Equilbrium nerf
-	self.values.pistol.swap_speed_multiplier = {1.25} -- funny how this is actually 50% in vanilla and not 30%
-	self.skill_descs.equilibrium.multibasic3 = "25%"
+	self.values.pistol.swap_speed_multiplier = {1.10} -- funny how this is actually 50% in vanilla and not 30%
+	self.skill_descs.equilibrium.multibasic3 = "10%"
 
 	-- Trigger Happy rework
 	self.values.pistol.stacking_hit_damage_multiplier = {

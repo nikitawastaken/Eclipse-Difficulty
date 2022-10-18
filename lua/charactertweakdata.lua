@@ -825,23 +825,23 @@ function CharacterTweakData:_set_overkill_290()
 
 	-- honestly it's easier to just do this than account for all the difficulty health and hs damage muls
 	self.swat.HEALTH_INIT = 30
-	self.swat.headshot_dmg_mul = 1.8
+	self.swat.headshot_dmg_mul = 1.8 -- 134 head health
 	self.fbi_swat.HEALTH_INIT = 34
-	self.fbi_swat.headshot_dmg_mul = 2
+	self.fbi_swat.headshot_dmg_mul = 1.8 -- 152 head health
 	self.city_swat.HEALTH_INIT = 40
-	self.city_swat.headshot_dmg_mul = 1.8
+	self.city_swat.headshot_dmg_mul = 1.8 -- 178 head health
 	self.fbi_heavy_swat.HEALTH_INIT = 56
-	self.fbi_heavy_swat.headshot_dmg_mul = 1.8
+	self.fbi_heavy_swat.headshot_dmg_mul = 1.8 -- 249 head health
 
 	self.shield.HEALTH_INIT = 42
-	self.shield.headshot_dmg_mul = 1.8
+	self.shield.headshot_dmg_mul = 1.8 -- 187 head health
 	self.sniper.HEALTH_INIT = 16
 	self.taser.HEALTH_INIT = 84
-	self.taser.headshot_dmg_mul = 1.4
+	self.taser.headshot_dmg_mul = 1.4 -- 480 head health
 	self.spooc.HEALTH_INIT = 102
-	self.spooc.headshot_dmg_mul = 3.75
+	self.spooc.headshot_dmg_mul = 3.75 -- 218 head health
 	self.medic.HEALTH_INIT = 72
-	self.medic.headshot_dmg_mul = 1.6
+	self.medic.headshot_dmg_mul = 1.6 -- 360 head health
 	self.tank.HEALTH_INIT = 2160
 	self.tank.headshot_dmg_mul = 35
 

@@ -15,6 +15,7 @@ self.trip_mines = {
 	damage_size = 300,
 	alert_radius = 5000
 }
+local FALLOFF_TEMPLATE = WeaponFalloffTemplate.setup_weapon_falloff_templates()
 
 -- Sniper Rifles
 
@@ -220,188 +221,209 @@ self.hailstorm.fire_mode_data.volley.ammo_usage = 120
 -- Shotguns
 
 -- Izhma
-self.saiga.rays = 12
+self.saiga.rays = 8
+self.saiga.stats.damage = 80
 self.saiga.stats.spread = 12
-self.saiga.AMMO_PICKUP = {3, 4}
-self.saiga.kick.standing = {2.5, 3.2, -0.5, 0.5}
+self.saiga.AMMO_PICKUP = {2, 3}
+self.saiga.kick.standing = {2, 2.5, -0.5, 0.5}
 self.saiga.kick.crouching = self.saiga.kick.standing
 self.saiga.kick.steelsight = self.saiga.kick.standing
-self.saiga.spread.standing = self.new_m4.spread.crouching
-self.saiga.spread.moving_standing = self.new_m4.spread.crouching
-self.saiga.spread.moving_crouching = self.new_m4.spread.crouching
+self.saiga.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Steakout
-self.aa12.rays = 12
+self.aa12.rays = 8
+self.aa12.stats.damage = 80
 self.aa12.stats.spread = 12
-self.aa12.AMMO_PICKUP = {3, 4}
+self.aa12.AMMO_PICKUP = {2.25, 3}
 self.aa12.fire_mode_data.fire_rate = 60 / 333
-self.aa12.kick.standing = {2.5, 3.2, -0.5, 0.5}
+self.aa12.kick.standing = {2, 2.5, -0.5, 0.5}
 self.aa12.kick.crouching = self.aa12.kick.standing
 self.aa12.kick.steelsight = self.aa12.kick.standing
-self.aa12.spread.standing = self.new_m4.spread.crouching
-self.aa12.spread.moving_standing = self.new_m4.spread.crouching
-self.aa12.spread.moving_crouching = self.new_m4.spread.crouching
+self.aa12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- VD-12
-self.sko12.CLIP_AMMO_MAX = 20
-self.sko12.rays = 12
-self.sko12.stats.damage = 55
+self.sko12.rays = 8
+self.sko12.stats.damage = 110
 self.sko12.stats.spread = 12
 self.sko12.stats.recoil = 8
 self.sko12.stats.reload = 9
 self.sko12.stats.concealment = 2
-self.sko12.AMMO_PICKUP = {3, 4}
+self.sko12.CLIP_AMMO_MAX = 20
+self.sko12.AMMO_PICKUP = {2, 2.5}
 self.sko12.FIRE_MODE = "single"
 self.sko12.CAN_TOGGLE_FIREMODE = false
 self.sko12.fire_mode_data.fire_rate = 60 / 333
 self.sko12.kick.standing = {3, 4, -0.5, 0.5}
 self.sko12.kick.crouching = self.sko12.kick.standing
 self.sko12.kick.steelsight = self.sko12.kick.standing
-self.sko12.spread.standing = self.new_m4.spread.crouching
-self.sko12.spread.moving_standing = self.new_m4.spread.crouching
-self.sko12.spread.moving_crouching = self.new_m4.spread.crouching
+self.sko12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- M1014
-self.benelli.rays = 12
+self.benelli.rays = 8
+self.benelli.stats.damage = 110
 self.benelli.stats.spread = 12
-self.benelli.AMMO_PICKUP = {3, 4}
-self.benelli.spread.standing = self.new_m4.spread.crouching
-self.benelli.spread.moving_standing = self.new_m4.spread.crouching
-self.benelli.spread.moving_crouching = self.new_m4.spread.crouching
+self.benelli.AMMO_PICKUP = {2, 2.5}
+self.benelli.fire_mode_data.fire_rate = 60 / 383
+self.benelli.kick.standing = {3, 4, -0.5, 0.5}
+self.benelli.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Predator
-self.spas12.rays = 12
+self.spas12.rays = 8
+self.spas12.stats.damage = 110
 self.spas12.stats.spread = 12
-self.spas12.AMMO_PICKUP = {3, 4}
-self.spas12.fire_mode_data.fire_rate = 60 / 429
-self.spas12.spread.standing = self.new_m4.spread.crouching
-self.spas12.spread.moving_standing = self.new_m4.spread.crouching
-self.spas12.spread.moving_crouching = self.new_m4.spread.crouching
+self.spas12.AMMO_PICKUP = {2, 2.5}
+self.spas12.fire_mode_data.fire_rate = 60 / 383
+self.spas12.kick.standing = {3, 4, -0.5, 0.5}
+self.spas12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Raven
-self.ksg.CLIP_AMMO_MAX = 10
-self.ksg.rays = 12
-self.ksg.stats.damage = 90
+self.ksg.rays = 8
+self.ksg.stats.damage = 155
 self.ksg.stats.concealment = 20
 self.ksg.stats.reload = 12
+self.ksg.CLIP_AMMO_MAX = 10
 self.ksg.AMMO_PICKUP = {1, 1.8}
-self.ksg.fire_mode_data.fire_rate = 0.5
-self.ksg.kick.standing = {3, 4, -0.2, 0.2}
+self.ksg.fire_mode_data.fire_rate = 0.6
+self.ksg.kick.standing = {3, 4, -0.5, 0.5}
 self.ksg.kick.crouching = self.ksg.kick.standing
 self.ksg.kick.steelsight = self.ksg.kick.standing
+self.ksg.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Reinfeld 880
+self.r870.rays = 8
+self.r870.stats.damage = 155
 self.r870.CLIP_AMMO_MAX = 8
-self.r870.rays = 12
-self.r870.stats.damage = 90
-self.r870.stats.reload = 12
 self.r870.AMMO_PICKUP = {1, 1.8}
-self.r870.fire_mode_data.fire_rate = 0.5
-self.r870.kick.standing = {3, 4, -0.2, 0.2}
+self.r870.fire_mode_data.fire_rate = 0.6
+self.r870.kick.standing = {3, 4, -0.5, 0.5}
 self.r870.kick.crouching = self.r870.kick.standing
 self.r870.kick.steelsight = self.r870.kick.standing
-
--- Reinfeld 88 (Trench Gun)
-self.m1897.rays = 12
-self.m1897.stats.damage = 125
-self.m1897.stats.reload = 12
-self.m1897.AMMO_PICKUP = {0.6, 1.6}
-self.m1897.fire_mode_data.fire_rate = 0.6
-self.m1897.kick.standing = {3, 4, -0.2, 0.2}
-self.m1897.kick.crouching = self.m1897.kick.standing
-self.m1897.kick.steelsight = self.m1897.kick.standing
+self.r870.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Mosconi Tactical
-self.m590.rays = 12
+self.m590.rays = 8
 self.m590.stats.reload = 11
-self.m590.stats.damage = 90
+self.m590.stats.damage = 155
 self.m590.stats.concealment = 8
 self.m590.AMMO_PICKUP = {1, 1.8}
-self.m590.fire_mode_data.fire_rate = 0.5
-self.m590.kick.standing = {3, 4, -0.2, 0.2}
+self.m590.fire_mode_data.fire_rate = 0.6
+self.m590.kick.standing = {3, 4, -0.5, 0.5}
 self.m590.kick.crouching = self.m590.kick.standing
 self.m590.kick.steelsight = self.m590.kick.standing
+self.m590.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+
+-- Breaker
+self.boot.rays = 8
+self.boot.stats.damage = 115
+self.boot.stats_modifiers = {damage = 2}
+self.boot.AMMO_PICKUP = {0.42, 1.15}
+self.boot.fire_mode_data.fire_rate = 0.8
+self.boot.kick.standing = {4, 5, -0.5, 0.5}
+self.boot.kick.crouching = self.boot.kick.standing
+self.boot.kick.steelsight = self.boot.kick.standing
+self.boot.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
+
+-- Reinfeld 88 (Trench Gun)
+self.m1897.rays = 8
+self.m1897.stats.damage = 115
+self.m1897.stats_modifiers = {damage = 2}
+self.m1897.AMMO_PICKUP = {0.6, 1.6}
+self.m1897.fire_mode_data.fire_rate = 0.8
+self.m1897.kick.standing = {4, 5, -0.5, 0.5}
+self.m1897.kick.crouching = self.m1897.kick.standing
+self.m1897.kick.steelsight = self.m1897.kick.standing
+self.m1897.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Mosconi
-self.huntsman.rays = 12
-self.huntsman.stats.damage = 130
+self.huntsman.rays = 8
+self.huntsman.stats.damage = 180
 self.huntsman.stats_modifiers = {damage = 2}
 self.huntsman.AMMO_PICKUP = {0.42, 1.47}
 self.huntsman.kick.standing = {4, 5, -0.2, 0.2}
 self.huntsman.kick.crouching = self.huntsman.kick.standing
 self.huntsman.kick.steelsight = self.huntsman.kick.standing
+self.huntsman.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 
 -- Joceline
-self.b682.rays = 12
-self.b682.stats.damage = 130
+self.b682.rays = 8
+self.b682.stats.damage = 180
 self.b682.stats_modifiers = {damage = 2}
 self.b682.AMMO_PICKUP = {0.42, 1.47}
 self.b682.kick.standing = {4, 5, -0.2, 0.2}
 self.b682.kick.crouching = self.huntsman.kick.standing
 self.b682.kick.steelsight = self.huntsman.kick.standing
+self.b682.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 
--- Breaker
-self.boot.rays = 12
-self.boot.stats.damage = 180
-self.boot.AMMO_PICKUP = {0.42, 1.15}
-self.boot.kick.standing = {2.5, 3, -0.2, 0.2}
-self.boot.kick.crouching = self.boot.kick.standing
-self.boot.kick.steelsight = self.boot.kick.standing
+-- Claire
+self.coach.rays = 8
+self.coach.stats.damage = 180
+self.coach.stats_modifiers = {damage = 2}
+self.coach.AMMO_PICKUP = {0.25, 0.65}
+self.coach.kick.standing = {4, 5, -0.2, 0.2}
+self.coach.kick.crouching = self.coach.kick.standing
+self.coach.kick.steelsight = self.coach.kick.standing
+self.coach.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 
 -- Judge
-self.judge.rays = 12
+self.judge.rays = 8
+self.judge.stats.damage = 115
+self.judge.stats_modifiers = {damage = 2}
 self.judge.AMMO_PICKUP = {0.275, 0.65}
 self.judge.AMMO_MAX = 25
 self.judge.kick.standing = {2.5, 3, -0.2, 0.2}
 self.judge.kick.crouching = self.judge.kick.standing
 self.judge.kick.steelsight = self.judge.kick.standing
-
--- Claire
-self.coach.rays = 12
-self.coach.AMMO_PICKUP = {0.25, 0.65}
-self.coach.kick.standing = {4, 5, -0.2, 0.2}
-self.coach.kick.crouching = self.coach.kick.standing
-self.coach.kick.steelsight = self.coach.kick.standing
+self.judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- GSPS
-self.m37.rays = 12
+self.m37.rays = 8
+self.m37.stats.damage = 115
+self.m37.stats_modifiers = {damage = 2}
 self.m37.AMMO_PICKUP = {0.42, 1.15}
 self.m37.kick.standing = {4, 5, -0.2, 0.2}
 self.m37.kick.crouching = self.m37.kick.standing
 self.m37.kick.steelsight = self.m37.kick.standing
+self.m37.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Loco
 self.serbu.AMMO_MAX = 24
 self.serbu.CLIP_AMMO_MAX = 4
-self.serbu.rays = 12
+self.serbu.rays = 8
+self.serbu.stats.damage = 155
 self.serbu.AMMO_PICKUP = {0.6, 1.6}
 self.serbu.fire_mode_data.fire_rate = 0.5
 self.serbu.kick.standing = {3, 4, -0.2, 0.2}
 self.serbu.kick.crouching = self.serbu.kick.standing
 self.serbu.kick.steelsight = self.serbu.kick.standing
+self.serbu.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Goliath
-self.rota.rays = 12
+self.rota.rays = 8
+self.rota.stats.damage = 110
 self.rota.AMMO_PICKUP = {1.75, 2.65}
-self.rota.spread.standing = self.new_m4.spread.crouching
-self.rota.spread.moving_standing = self.new_m4.spread.crouching
-self.rota.spread.moving_crouching = self.new_m4.spread.crouching
+self.rota.kick.standing = {2.5, 3.2, -0.5, 0.5}
+self.rota.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Sweeper
-self.striker.rays = 12
+self.striker.rays = 8
+self.striker.stats.damage = 110
 self.striker.AMMO_PICKUP = {1.75, 2.65}
-self.striker.spread.standing = self.new_m4.spread.crouching
-self.striker.spread.moving_standing = self.new_m4.spread.crouching
-self.striker.spread.moving_crouching = self.new_m4.spread.crouching
+self.striker.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
--- Ultima
-self.ultima.rays = 12
-self.ultima.stats.damage = 70
+-- Grimm
+self.basset.rays = 8
+self.basset.stats.damage = 75
+self.basset.AMMO_PICKUP = {2.25, 3.75}
+self.basset.kick.crouching = self.saiga.kick.standing
+self.basset.kick.steelsight = self.saiga.kick.standing
+self.basset.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+
+-- Argos
+self.ultima.rays = 8
+self.ultima.stats.damage = 155
 self.ultima.AMMO_PICKUP = {1.15, 1.8}
 self.ultima.kick.standing = {3, 3.5, -0.2, 0.2}
-self.ultima.spread.standing = self.new_m4.spread.crouching
-self.ultima.spread.moving_standing = self.new_m4.spread.crouching
-self.ultima.spread.moving_crouching = self.new_m4.spread.crouching
+self.ultima.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- ARs
 

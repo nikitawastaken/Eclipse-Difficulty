@@ -1140,13 +1140,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_lights = {1.75, 1.75, 0},
 			fbi_heavies = {0.5, 0.5, 1.25},
 			fbi_shields = {0.4, 0.4, 0.25},
-			fbi_tanks = {0, 0.02, 0.16},
+			fbi_tanks = {0, 0.02, 0.13},
 			gensec_cqc_lights = {0.3, 0.3, 0.5},
 			gensec_ranged_lights = {0.3, 0.3, 0.5},
 			gensec_shields = {0.15, 0.15, 0.3},
 			gensec_flankers = {0.25, 0.25, 0.45},
 			gensec_tasers = {0.15, 0.15, 0.3},
-			gensec_tanks = {0, 0, 0.1},
+			gensec_tanks = {0, 0, 0.09},
 			spoocs = {0, 0.06, 0.12},
 			single_spooc = {0, 0, 0},
 			Phalanx = {0, 0, 0},
@@ -1170,7 +1170,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Hoxd1 is a shit heist
 	if Global.level_data and Global.level_data.level_id == "hox_1" then
-		self.besiege.assault.spawnrate_balance_mul = {2.5, 1.75, 1.3, 1}
+		self.besiege.assault.spawnrate_balance_mul = {2.75, 2, 1.66, 1.33}
 	end
 
 	-- nuke captain

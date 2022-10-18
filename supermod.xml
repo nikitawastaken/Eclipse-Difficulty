@@ -34,6 +34,7 @@
 				<post :hook_id="savefilemanager"/>
 				<post :hook_id="achievmentmanager"/>
 				<post :hook_id="tangomanager"/>
+				<post :hook_id="blackmarketmanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="player/snipergrazedamage"/>
 				<post :hook_id="playermanager"/>
@@ -56,6 +57,7 @@
 				<post :hook_id="enveffecttweakdata"/>
 				<post :hook_id="skilltreetweakdata"/>
 				<post :hook_id="interactiontweakdata"/>
+				<post :hook_id="weaponfallofftweakdata"/>
 				<post :hook_id="weaponfactorytweakdata"/>
 				<post :hook_id="blackmarkettweakdata"/>
 				<post :hook_id="dramatweakdata"/>
