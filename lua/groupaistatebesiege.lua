@@ -331,7 +331,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					local new_assault_path = managers.navigation:search_coarse({
 						id = "GroupAI_assault",
 						from_seg = objective_area.pos_nav_seg,
-						to_seg = search_area.pos_nav_seg,
+						to_seg = flank and found_areas[search_area].pos_nav_seg or search_area.pos_nav_seg,
 						access_pos = group_access_mask,
 						verify_clbk = callback(self, self, "is_nav_seg_safe")
 					})
@@ -386,20 +386,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				end
 			else
 				-- If we aren't pushing, we go to one area before the criminal area
-				-- If we are supposed to flank, calculate the path to the area we want to flank from
-				local new_assault_path = tactics_map.flank and managers.navigation:search_coarse({
-					id = "GroupAI_assault",
-					from_seg = objective_area.pos_nav_seg,
-					to_seg = assault_from.pos_nav_seg,
-					access_pos = group_access_mask,
-					verify_clbk = callback(self, self, "is_nav_seg_safe")
-				})
-				if new_assault_path then
-					self:_merge_coarse_path_by_area(new_assault_path)
-					assault_path = new_assault_path
-				elseif tactics_map.flank then
-					StreamHeist:warn(group.id, "failed to find flank path to assault area!")
-				elseif #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
+				if #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
 					table_remove(assault_path)
 				end
 				assault_area = assault_from

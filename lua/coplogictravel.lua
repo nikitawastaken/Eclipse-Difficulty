@@ -27,6 +27,7 @@ function CopLogicTravel.on_pathing_results(data)
 	CopLogicTravel.upd_advance(data)
 end
 
+
 -- Fix need for another queued task to update pathing or leaving cover on expired cover time
 -- Basically just does the needed checks before calling the original function to save on a queued update
 Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function (data)
@@ -77,10 +78,11 @@ end
 local _get_exact_move_pos_original = CopLogicTravel._get_exact_move_pos
 function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 	local my_data = data.internal_data
+	local nav_manager = managers.navigation
 
 	if alive(data.objective.shield_cover_unit) then
 		if my_data.moving_to_cover then
-			managers.navigation:release_cover(my_data.moving_to_cover[1])
+			nav_manager:release_cover(my_data.moving_to_cover[1])
 			my_data.moving_to_cover = nil
 		end
 
@@ -93,25 +95,31 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 	end
 
 	if my_data.moving_to_cover then
-		managers.navigation:release_cover(my_data.moving_to_cover[1])
+		nav_manager:release_cover(my_data.moving_to_cover[1])
 		my_data.moving_to_cover = nil
 	end
 
 	local nav_seg_id = coarse_path[nav_index][1]
 	local next_nav_seg_id = coarse_path[nav_index + 1][1]
-	local to_pos = coarse_path[nav_index][2]
+	local to_pos = nav_manager._nav_segments[nav_seg_id].pos
 
 	-- Pick cover positions that are close to nav segment doors
-	local doors = managers.navigation:find_segment_doors(nav_seg_id, function (seg_id) return seg_id == next_nav_seg_id end)
+	local doors = nav_manager:find_segment_doors(nav_seg_id, function (seg_id) return seg_id == next_nav_seg_id end)
 	local door = table.random(doors)
 	if door then
-		to_pos = to_pos * 0.25 + door.center * 0.75
+		-- First step from the door we want to go to to the nav segment center
+		-- Then from there step towards the door we entered from
+		-- The resulting position is the desired cover position before entering through the next door
+		mvector3.step(tmp_vec1, door.center, to_pos, 150)
+		if coarse_path[nav_index][2] then -- Iter sometimes makes coarse paths without positions for some reason
+			mvector3.step(tmp_vec1, tmp_vec1, coarse_path[nav_index][2], 150)
+		end
+		to_pos = tmp_vec1
 	end
 
-
-	local cover = managers.navigation:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
+	local cover = nav_manager:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
 	if cover then
-		managers.navigation:reserve_cover(cover, data.pos_rsrv_id)
+		nav_manager:reserve_cover(cover, data.pos_rsrv_id)
 		my_data.moving_to_cover = {
 			cover
 		}

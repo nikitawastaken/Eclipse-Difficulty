@@ -274,4 +274,42 @@
 			<attr name="name" value="std/stand/still/idle/look"/>
 		</target>
 	</tweak>
+
+	<!-- Fix stand/crouch actions expiring immediately -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/stand/still/std_from_crh"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
+		</target>
+	</tweak>
+	
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/crouch/still/crh_from_std"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
+		</target>
+	</tweak>
+	
+	<!-- Disable recoil animations during dodge -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/dodge"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_no_recoil" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_no_recoil" extension_value="false"/>
+		</target>
+	</tweak>
 </tweaks>

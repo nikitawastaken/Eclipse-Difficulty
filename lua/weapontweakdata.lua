@@ -927,7 +927,7 @@ self.model3.AMMO_PICKUP = {1.5, 2}
 -- Pistols
 
 -- 5/7
-self.lemming.stats.damage = 70
+self.lemming.AMMO_PICKUP = {0.4, 0.75}
 
 -- Baby Deagle
 self.sparrow.stats.damage = 140

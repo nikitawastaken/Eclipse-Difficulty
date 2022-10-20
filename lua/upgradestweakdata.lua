@@ -246,7 +246,7 @@ function UpgradesTweakData:init(tweak_data)
     }
 	self.values.shotgun.consume_no_ammo_chance[1] = 0.125
     self.values.cooldown.shotgun_panic_on_kill = {{1, 5}}
-	self.values.shotgun.panic = {{chance = 0.75, area = 10, amount = "panic"}}
+	self.values.shotgun.panic = {{chance = 1, area = 1000, amount = "panic"}}
 	self.skill_descs.overkill.multibasic = "12.5%"
 	self.skill_descs.overkill.multipro = "75%"
 	self.skill_descs.overkill.multipro2 = "5"
@@ -758,10 +758,9 @@ function UpgradesTweakData:init(tweak_data)
 	-- Hacker
 	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.10, 20, 3}
 	self.values.player.pocket_ecm_heal_on_kill = {1}
+	self.specialization_descs[21][3].multiperk = "10%"
 	self.specialization_descs[21][5].multiperk = "10"
-	self.specialization_descs[21][7].multiperk = "3"
-	self.specialization_descs[21][7].multiperk2 = "10%"
-	self.specialization_descs[21][7].multiperk3 = "20"
+	self.specialization_descs[21][7].multiperk = "10%"
 
 	-- Leech
 	self.copr_ability_cooldown = 60

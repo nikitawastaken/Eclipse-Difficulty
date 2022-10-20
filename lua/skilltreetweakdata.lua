@@ -75,7 +75,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Shotgun Hell
 	self.skills.overkill[1].upgrades = {"shotgun_consume_no_ammo_chance_1"}
-	self.skills.overkill[2].upgrades = {--[["shotgun_panic_on_kill"]]}
+	self.skills.overkill[2].upgrades = {--[["cooldown_shotgun_panic_on_kill"]]}
 
 	-- Resilience
 	self.skills.oppressor.icon_xy = {6, 1}
@@ -285,6 +285,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.trees[12].tiers[2][1] = "thick_skin"
 
 	-- hacker
+	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
+	table.insert(self.specializations[21][7].upgrades, "player_passive_health_multiplier_2")
+	table.delete(self.specializations[21][5].upgrades, "player_passive_dodge_chance_1")
+	table.delete(self.specializations[21][7].upgrades, "player_pocket_ecm_kill_dodge_1")
 	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
 
 	-- armorer
