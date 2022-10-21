@@ -246,7 +246,7 @@ function UpgradesTweakData:init(tweak_data)
     }
 	self.values.shotgun.consume_no_ammo_chance[1] = 0.125
     self.values.cooldown.shotgun_panic_on_kill = {{1, 5}}
-	self.values.shotgun.panic = {{chance = 1, area = 1000, amount = "panic"}}
+	self.values.shotgun.panic = {{chance = 0.75, area = 800, amount = "panic"}}
 	self.skill_descs.overkill.multibasic = "12.5%"
 	self.skill_descs.overkill.multipro = "75%"
 	self.skill_descs.overkill.multipro2 = "5"

@@ -56,7 +56,7 @@
 	"menu_close_by_beta": "Mag-fed Specialist",
 	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Mag-fed## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Mag-fed## Shotguns have their magazine size increased by ##$multipro## shells.",
 	"menu_overkill_beta": "Shotgun Hell",
-	"menu_overkill_beta_desc": "BASIC: ##$basic##\nFiring a Shotgun has a ##$multibasic## chance to not consume any ammo.\n\nACE: ##$pro##\nNot done yet.",
+    "menu_overkill_beta_desc": "BASIC: ##$basic##\nFiring a Shotgun has a ##$multibasic## chance to not consume any ammo.\n\nACE: ##$pro##\nWhen killing an enemy with a Shotgun, you have a ##$multipro## chance to cause nearby enemies to panic.\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_fast_hands": "Sleight of Hand",
 	"menu_fast_hands_desc": "BASIC: ##$basic##\nYou reload your SMGs and LMGs ##$multibasic## faster.\n\nACE: ##$pro##\nKilling ##$multipro## enemies with SMGs, LMGs, Assault Rifles or Special Weapons set on automatic fire mode will increase your next reload speed by up to ##$multipro2##. This bonus is reduced by ##$multipro3## for each bullet above ##$multipro4## in the total magazine size, down to a maximum of ##$multipro5## reload speed increase.",
 	"menu_oppressor_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more effective at threatening enemies.\n\nACE: ##$pro##\nYour weapons are additionally ##$multipro## more effective at threatening enemies.",

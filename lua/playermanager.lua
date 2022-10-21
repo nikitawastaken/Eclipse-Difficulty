@@ -8,6 +8,7 @@ function PlayerManager:upgrade_value(category, upgrade, ...)
 	return _upgrade_value
 end
 
+
 -- hostage taker min hostages count
 Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self, category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
@@ -40,3 +41,35 @@ Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self,
 
 	return addend * hostages
 end)
+
+
+-- shotgun panic stuff
+local on_killshot_old = PlayerManager.on_killshot
+function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
+    on_killshot_old(self, killed_unit, variant, headshot, weapon_id)
+
+    local has_shotgun_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+    if has_shotgun_panic and variant ~= "melee" then
+        local equipped_unit = self:get_current_state()._equipped_unit:base()
+
+        if equipped_unit:is_category("shotgun") then
+            local pos = managers.player:player_unit():position()
+            local skill = tweak_data.upgrades.values.shotgun.panic[1]
+
+            if skill then
+                local area = skill.area
+                local chance = skill.chance
+                local amount = skill.amount
+                local enemies = World:find_units_quick("sphere", pos, area, managers.slot:get_mask("enemies"))
+
+                for i, unit in ipairs(enemies) do
+                    if unit:character_damage() then
+                        unit:character_damage():build_suppression(amount, chance)
+                    end
+                end
+            end
+
+        managers.player:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+        end
+    end
+end

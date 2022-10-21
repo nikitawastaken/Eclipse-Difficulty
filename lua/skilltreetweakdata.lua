@@ -75,7 +75,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Shotgun Hell
 	self.skills.overkill[1].upgrades = {"shotgun_consume_no_ammo_chance_1"}
-	self.skills.overkill[2].upgrades = {--[["cooldown_shotgun_panic_on_kill"]]}
+	self.skills.overkill[2].upgrades = {"cooldown_shotgun_panic_on_kill"}
 
 	-- Resilience
 	self.skills.oppressor.icon_xy = {6, 1}
