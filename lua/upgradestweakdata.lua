@@ -220,7 +220,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.far_away.multibasic = "15%"
 
 	-- Mag-fed Specialist
-	self.values.shotgun.mag_reload_speed = {1.5}
+	self.values.shotgun.mag_reload_speed = {1.25}
 	self.values.shotgun.magazine_capacity_inc[1] = 5
 	self.definitions.shotgun_mag_reload_speed = {
 		name_id = "menu_shotgun_mag_reload_speed",
