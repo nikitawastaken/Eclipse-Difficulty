@@ -264,6 +264,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.damage_shake_addend[1] = 1
 	self.skill_descs.show_of_force.multibasic = "10"
 
+	-- Scavenger
+	self.values.player.increased_pickup_area[1] = 1.3
+	self.skill_descs.scavenging.multibasic = "30%"
+
 	-- Bulletstorm
 	self.skill_descs.bandoliers.multibasic = "12"
 	self.skill_descs.bandoliers.multipro2 = "30"
@@ -678,7 +682,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Gambler
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 10 end
 	self.values.temporary.loose_ammo_give_team[1][2] = 5
-	self.values.player.increased_pickup_area = {1.5, 2.25}
+	self.values.player.increased_pickup_area[2] = 2.25
 	self.definitions.player_increased_pickup_area_2 = {
 		name_id = "menu_player_increased_pickup_area",
 		category = "feature",
