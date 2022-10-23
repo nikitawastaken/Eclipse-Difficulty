@@ -84,6 +84,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.show_of_force[1].upgrades = {"player_damage_shake_addend"}
 	self.skills.show_of_force.icon_xy = {2, 12}
 
+	-- Underdog
+	self.skills.pack_mule[1].upgrades = {"player_damage_multiplier_outnumbered"}
+	self.skills.pack_mule[2].upgrades = {"player_damage_dampener_outnumbered"}
+	self.skills.pack_mule.icon_xy = {2, 1}
+	self.skills.pack_mule.name_id = "menu_underdog_beta"
+	self.skills.pack_mule.desc_id = "menu_underdog_beta_desc"
+
 	-- Iron Man
 	self.skills.juggernaut[1].upgrades = {"body_armor6"}
 	self.skills.juggernaut[2].upgrades = {"player_armor_multiplier"}
@@ -173,8 +180,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.cleaner.name_id = "menu_thick_skin_beta"
 	self.skills.cleaner.desc_id = "menu_thick_skin_beta_desc"
 
-	-- Quick Grab
+	-- Logistician
 	self.skills.second_chances[1].upgrades = {"carry_interact_speed_multiplier_2"}
+	self.skills.second_chances[2].upgrades = {"carry_throw_distance_multiplier", "player_pick_lock_easy_speed_multiplier"}
+	self.skills.second_chances.icon_xy = {6, 0}
 
 	-- ECM feedback
 	self.skills.ecm_booster[1].upgrades = {"ecm_jammer_can_activate_feedback"}

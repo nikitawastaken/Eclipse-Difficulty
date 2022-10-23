@@ -251,14 +251,17 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.overkill.multipro = "75%"
 	self.skill_descs.overkill.multipro2 = "5"
 
-	-- Underdog
-	self.values.temporary.dmg_multiplier_outnumbered = {{1.1, 3}}
-	self.skill_descs.underdog.multibasic2 = "10%"
-	self.skill_descs.underdog.multibasic3 = "3"
-
 	-- Resilience
 	self.values.player.flashbang_multiplier = {0.75, 0.75}
 	self.skill_descs.oppressor.multipro2 = "25%"
+
+	-- Underdog
+	self.skill_descs.pack_mule.multibasic = "10"
+	self.skill_descs.pack_mule.multibasic2 = "15%"
+	self.skill_descs.pack_mule.multibasic3 = "7"
+	self.skill_descs.pack_mule.multipro = "18"
+	self.skill_descs.pack_mule.multipro2 = "10%"
+	self.skill_descs.pack_mule.multipro3 = "7"
 
 	-- Thick Skin
 	self.values.player.damage_shake_addend[1] = 1
@@ -399,11 +402,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.cleaner.multibasic2 = "1"
 	self.skill_descs.cleaner.multipro = "3"
 
-	-- Quick Grab
+	-- Logistician
 	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
-	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.75
+	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.7
 	self.skill_descs.second_chances.multibasic = "50%"
-	self.skill_descs.second_chances.multipro = "25%"
+	self.skill_descs.second_chances.multipro = "50%"
+	self.skill_descs.second_chances.multipro2 = "30%"
 
 	-- ECM Feedback
 	self.ecm_feedback_retrigger_interval = 120
