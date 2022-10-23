@@ -178,18 +178,21 @@ self.m95.kick.steelsight = self.m95.kick.standing
 
 
 -- KSP
+self.m249.stats.concealment = 0
 self.m249.AMMO_PICKUP = pickup_tables.lmg
 self.m249.kick.standing = {0.8, 1.2, -1, 1}
 self.m249.kick.crouching = self.m249.kick.standing
 self.m249.kick.steelsight = self.m249.kick.standing
 
 -- KSP 58
+self.par.stats.concealment = 0
 self.par.AMMO_PICKUP = pickup_tables.lmg
 self.par.kick.standing = self.m249.kick.standing
 self.par.kick.crouching = self.m249.kick.standing
 self.par.kick.steelsight = self.m249.kick.standing
 
 -- Buzzsaw
+self.mg42.stats.concealment = 0
 self.mg42.AMMO_PICKUP = pickup_tables.lmg
 self.mg42.kick.standing = {0.9, 1.3, -1, 1}
 self.mg42.kick.crouching = self.mg42.kick.standing
@@ -209,6 +212,7 @@ self.rpk.kick.steelsight = self.rpk.kick.standing
 self.hk21.stats.spread = 12
 self.hk21.stats.damage = 110
 self.hk21.stats.reload = 12
+self.hk21.stats.concealment = 0
 self.hk21.AMMO_PICKUP = pickup_tables.lmg
 self.hk21.kick.standing = self.rpk.kick.standing
 self.hk21.kick.crouching = self.rpk.kick.standing
@@ -216,6 +220,7 @@ self.hk21.kick.steelsight = self.rpk.kick.standing
 
 -- M60
 self.m60.stats.damage = 110
+self.m60.stats.concealment = 0
 self.m60.AMMO_PICKUP = pickup_tables.lmg
 self.m60.kick.standing = self.rpk.kick.standing
 self.m60.kick.crouching = self.rpk.kick.standing
@@ -223,6 +228,7 @@ self.m60.kick.steelsight = self.rpk.kick.standing
 
 -- new hk51b lmg idr the in-game name lol
 self.hk51b.stats.damage = 100
+self.hk51b.stats.concealment = 10
 self.hk51b.AMMO_PICKUP = {7, 8}
 self.hk51b.kick.standing = self.rpk.kick.standing
 self.hk51b.kick.crouching = self.rpk.kick.standing
@@ -230,6 +236,7 @@ self.hk51b.kick.steelsight = self.rpk.kick.standing
 
 -- Minigun
 self.m134.stats.damage = 40
+self.m134.stats.concealment = 0
 self.m134.AMMO_PICKUP = pickup_tables.minigun
 self.m134.kick.standing = {0.3, 0.4, -0.2, 0.5}
 self.m134.kick.crouching = self.m134.kick.standing
@@ -237,13 +244,14 @@ self.m134.kick.steelsight = self.m134.kick.standing
 
 -- Microgun
 self.shuno.stats.damage = 60
+self.shuno.stats.concealment = 0
 self.shuno.AMMO_PICKUP = pickup_tables.minigun
 self.shuno.kick.standing = {0.5, 0.7, -0.6, 0.2}
 self.shuno.kick.crouching = self.shuno.kick.standing
 self.shuno.kick.steelsight = self.shuno.kick.standing
 
 -- Hailstorm
-self.hailstorm.stats.concealment = 2
+self.hailstorm.stats.concealment = 3
 self.hailstorm.AMMO_PICKUP = pickup_tables.minigun
 self.hailstorm.kick.standing = {0.75, 0.9, -0.75, 0.75}
 self.hailstorm.kick.crouching = self.hailstorm.kick.standing
