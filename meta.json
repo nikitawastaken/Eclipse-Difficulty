@@ -1,7 +1,7 @@
 [
     {
         "ident": "eclipse_difficulty_dev",
-        "version": "5.0dev11",
+        "version": "5.0dev12",
         "patchnotes_url": "https://github.com/mrcreepysos/Eclipse-Difficulty/commits/dev",
         "download_url": "https://github.com/mrcreepysos/Eclipse-Difficulty/archive/refs/heads/dev.zip"
     }
