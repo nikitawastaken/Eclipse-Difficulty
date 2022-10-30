@@ -718,7 +718,7 @@ self.baka.kick.steelsight = self.baka.kick.standing
 
 -- Signature
 self.shepheard.AMMO_MAX = 100
-self.shepheard.AMMO_PICKUP = pickup_tables.smg_high
+self.shepheard.AMMO_PICKUP = pickup_tables.smg_mid
 self.shepheard.stats.spread = 14
 self.shepheard.fire_mode_data.fire_rate = 60 / 850
 self.shepheard.kick.standing = {0.9, 1.2, -0.75, 0.75}
