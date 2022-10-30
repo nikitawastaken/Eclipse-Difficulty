@@ -1132,7 +1132,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			self.flash_grenade.timer = 1
 			self.smoke_grenade_lifetime = 20
 			self.cs_grenade_lifetime = 20
-	end
+		end
 
 	-- Spawngroups
 	if difficulty_index >= 7 then

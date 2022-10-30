@@ -158,6 +158,10 @@ function CopActionShoot:update(t)
 				self._shoot_t = math_max(self._shoot_t, t + (self._common_data.char_tweak.move_and_shoot_cooldown or 1))
 			end
 
+			if shoot and Network:is_server() and alive(self._ext_inventory._shield_unit) and target_dis < 1100 and self._ext_inventory._shield_unit:base() and self._ext_inventory._shield_unit:base().request_start_flash and self._ext_inventory._shield_unit:base():can_request_flash(t) then
+				self._ext_inventory._shield_unit:base():request_start_flash()
+			end
+
 			if shoot and not self:_chk_start_melee(t, target_dis) then
 				local number_of_rounds = 1
 				local falloff = self:_get_shoot_falloff(target_dis, self._falloff)

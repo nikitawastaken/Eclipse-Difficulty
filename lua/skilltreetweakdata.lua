@@ -303,8 +303,8 @@ function SkillTreeTweakData:init(tweak_data)
 	-- armorer
 	table.delete(self.specializations[3][1].upgrades, "player_tier_armor_multiplier_2")
 	table.delete(self.specializations[3][9].upgrades, "player_tier_armor_multiplier_6")
-	self.specializations[3][3].upgrades ={"player_tier_armor_multiplier_2"}
-	self.specializations[3][5].upgrades ={"player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5"}
+	self.specializations[3][3].upgrades = {"player_tier_armor_multiplier_2"}
+	self.specializations[3][5].upgrades = {"player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5"}
 
 	-- muscle
 	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
@@ -313,7 +313,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
 
 	-- yakuza
-	self.specializations[12][3].upgrades ={"weapon_passive_swap_speed_multiplier_1"}
+	self.specializations[12][3].upgrades = {"weapon_passive_swap_speed_multiplier_1"}
 	table.insert(self.specializations[12][9].upgrades, "player_damage_health_ratio_multiplier")
 	table.delete(self.specializations[12][9].upgrades, "player_movement_speed_damage_health_ratio_threshold_multiplier")
 
