@@ -48,6 +48,7 @@
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="charactertweakdata"/>
+				<post :hook_id="guitweakdata"/>
 				<post :hook_id="groupaitweakdata"/>
 				<post :hook_id="playertweakdata"/>
 				<post :hook_id="skirmishtweakdata"/>
