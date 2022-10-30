@@ -32,10 +32,10 @@ tweak_data.projectiles.launcher_frag_china.player_damage = 16
 tweak_data.projectiles.launcher_frag_ms3gl.damage = 26
 tweak_data.projectiles.launcher_frag_ms3gl.player_damage = 16
 -- gl40
-tweak_data.projectiles.launcher_frag.damage = 64
+tweak_data.projectiles.launcher_frag.damage = 66
 tweak_data.projectiles.launcher_frag.player_damage = 16
 -- compact 40
-tweak_data.projectiles.launcher_frag_slap.damage = 64
+tweak_data.projectiles.launcher_frag_slap.damage = 66
 tweak_data.projectiles.launcher_frag_slap.player_damage = 16
 -- underbarrel lf
 tweak_data.projectiles.launcher_m203.damage = 48
