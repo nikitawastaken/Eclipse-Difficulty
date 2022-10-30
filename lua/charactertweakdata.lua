@@ -39,12 +39,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.min_obj_interrupt_dis = 300
 
 	-- Bosses
-	self.biker_boss.HEALTH_INIT = 400
-	self.biker_boss.player_health_scaling_mul = 1.5
-	self.biker_boss.headshot_dmg_mul = 1.65
+	self.biker_boss.HEALTH_INIT = 600
+	self.biker_boss.player_health_scaling_mul = 2
+	self.biker_boss.headshot_dmg_mul = 1.3
 	self.biker_boss.no_headshot_add_mul = false
-	self.biker_boss.DAMAGE_CLAMP_BULLET = 200
-	self.biker_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.biker_boss.damage.explosion_damage_mul = 0.5
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
 	self.biker_boss.move_speed = self.presets.move_speed.slow
@@ -53,24 +51,20 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.throwable = "concussion"
 	self.biker_boss.throwable_cooldown = 10
 
-	self.chavez_boss.HEALTH_INIT = 400
+	self.chavez_boss.HEALTH_INIT = 600
 	self.chavez_boss.player_health_scaling_mul = 1.5
-	self.chavez_boss.headshot_dmg_mul = 1.65
+	self.chavez_boss.headshot_dmg_mul = 1.3
 	self.chavez_boss.no_headshot_add_mul = false
-	self.chavez_boss.DAMAGE_CLAMP_BULLET = 200
-	self.chavez_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.chavez_boss.damage.explosion_damage_mul = 0.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
 	self.chavez_boss.move_speed = self.presets.move_speed.very_fast
 	self.chavez_boss.no_run_start = true
 	self.chavez_boss.no_run_stop = true
 
-	self.drug_lord_boss.HEALTH_INIT = 400
-	self.drug_lord_boss.player_health_scaling_mul = 1.5
-	self.drug_lord_boss.headshot_dmg_mul = 1.65
+	self.drug_lord_boss.HEALTH_INIT = 600
+	self.drug_lord_boss.player_health_scaling_mul = 2
+	self.drug_lord_boss.headshot_dmg_mul = 1.3
 	self.drug_lord_boss.no_headshot_add_mul = false
-	self.drug_lord_boss.DAMAGE_CLAMP_BULLET = 200
-	self.drug_lord_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.drug_lord_boss.damage.explosion_damage_mul = 0.5
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.drug_lord_boss.move_speed = self.presets.move_speed.normal
@@ -80,12 +74,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable_cooldown = 10
 
-	self.hector_boss.HEALTH_INIT = 400
-	self.hector_boss.player_health_scaling_mul = 1.5
-	self.hector_boss.headshot_dmg_mul = 1.65
+	self.hector_boss.HEALTH_INIT = 600
+	self.hector_boss.player_health_scaling_mul = 2
+	self.hector_boss.headshot_dmg_mul = 1.3
 	self.hector_boss.no_headshot_add_mul = false
-	self.hector_boss.DAMAGE_CLAMP_BULLET = 200
-	self.hector_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.hector_boss.damage.explosion_damage_mul = 0.5
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.hector_boss.move_speed = self.presets.move_speed.slow
@@ -94,24 +86,20 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.throwable = "frag"
 	self.hector_boss.throwable_cooldown = 15
 
-	self.mobster_boss.HEALTH_INIT = 400
-	self.mobster_boss.player_health_scaling_mul = 1.5
-	self.mobster_boss.headshot_dmg_mul = 1.65
+	self.mobster_boss.HEALTH_INIT = 600
+	self.mobster_boss.player_health_scaling_mul = 2
+	self.mobster_boss.headshot_dmg_mul = 1.3
 	self.mobster_boss.no_headshot_add_mul = false
-	self.mobster_boss.DAMAGE_CLAMP_BULLET = 200
-	self.mobster_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.mobster_boss.damage.explosion_damage_mul = 0.5
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
 	self.mobster_boss.move_speed = self.presets.move_speed.fast
 	self.mobster_boss.no_run_start = true
 	self.mobster_boss.no_run_stop = true
 
-	self.triad_boss.HEALTH_INIT = 400
-	self.triad_boss.player_health_scaling_mul = 1.5
-	self.triad_boss.headshot_dmg_mul = 1.65
+	self.triad_boss.HEALTH_INIT = 600
+	self.triad_boss.player_health_scaling_mul = 2
+	self.triad_boss.headshot_dmg_mul = 1.3
 	self.triad_boss.no_headshot_add_mul = false
-	self.triad_boss.DAMAGE_CLAMP_BULLET = 200
-	self.triad_boss.DAMAGE_CLAMP_EXPLOSION = 200
 	self.triad_boss.damage.explosion_damage_mul = 0.5
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
 	self.triad_boss.move_speed = self.presets.move_speed.slow
