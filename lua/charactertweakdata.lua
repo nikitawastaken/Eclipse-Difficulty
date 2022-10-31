@@ -241,7 +241,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.deathwish.is_rifle.melee_dmg = 10
 	presets.weapon.deathwish.is_rifle.FALLOFF = {
 		{
-			dmg_mul = 7.5,
+			dmg_mul = 9,
 			r = 100,
 			acc = {
 				0.9,
@@ -263,7 +263,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 7.5,
+			dmg_mul = 9,
 			r = 500,
 			acc = {
 				0.8,
@@ -285,7 +285,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 7.5,
+			dmg_mul = 9,
 			r = 1000,
 			acc = {
 				0.65,
@@ -307,7 +307,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 7.5,
+			dmg_mul = 9,
 			r = 1500,
 			acc = {
 				0.65,
@@ -329,7 +329,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 7.5,
+			dmg_mul = 9,
 			r = 2000,
 			acc = {
 				0.45,
@@ -347,7 +347,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 7.5,
+			dmg_mul = 9,
 			r = 3000,
 			acc = {
 				0.25,
@@ -358,9 +358,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				1.1
 			},
 			mode = {
-				1,
-				3,
 				2,
+				1,
+				0,
 				0
 			}
 		},
@@ -677,13 +677,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		}
 
 	-- smg preset
-	-- 40 damage
+	-- 50 damage
 	presets.weapon.deathwish.is_smg.aim_delay = {0.2, 0.2}
 	presets.weapon.deathwish.is_smg.focus_delay = 1
 	presets.weapon.deathwish.is_smg.melee_dmg = 10
 	presets.weapon.deathwish.is_smg.FALLOFF = {
 			{
-				dmg_mul = 4,
+				dmg_mul = 5,
 				r = 100,
 				acc = {
 					0.8,
@@ -705,7 +705,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			},
 			{
-				dmg_mul = 4,
+				dmg_mul = 5,
 				r = 500,
 				acc = {
 					0.6,
@@ -727,7 +727,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			},
 			{
-				dmg_mul = 4,
+				dmg_mul = 5,
 				r = 1000,
 				acc = {
 					0.5,
@@ -749,7 +749,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			},
 			{
-				dmg_mul = 4,
+				dmg_mul = 5,
 				r = 2000,
 				acc = {
 					0.4,
@@ -767,7 +767,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 				}
 			},
 			{
-				dmg_mul = 4,
+				dmg_mul = 5,
 				r = 3000,
 				acc = {
 					0.25,
@@ -778,14 +778,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					1.5
 					},
 				mode = {
-					1,
-					3,
 					2,
+					3,
+					0,
 					0
 				}
 			},
 			{
-				dmg_mul = 4,
+				dmg_mul = 5,
 				r = 4500,
 				acc = {
 					0.15,
@@ -796,8 +796,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					1.5
 				},
 				mode = {
-					1,
 					2,
+					1,
 					0,
 					0
 				}
@@ -833,8 +833,8 @@ function CharacterTweakData:_set_overkill_290()
 	self.tank.HEALTH_INIT = 2160
 	self.tank.headshot_dmg_mul = 35
 
-	-- FBI Rifle preset
-	-- 45 damage M4
+	-- FBI / Medic Rifle preset
+	-- 55 damage M4
 	self.fbi_swat.weapon.is_rifle = {
 		aim_delay = {
 			0.25,
@@ -862,7 +862,7 @@ function CharacterTweakData:_set_overkill_290()
 		},
 		FALLOFF = {
 			{
-				dmg_mul = 4.5,
+				dmg_mul = 5.5,
 				r = 100,
 				acc = {
 					0.9,
@@ -884,7 +884,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 4.5,
+				dmg_mul = 5.5,
 				r = 500,
 				acc = {
 					0.8,
@@ -906,7 +906,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 4.5,
+				dmg_mul = 5.5,
 				r = 1000,
 				acc = {
 					0.65,
@@ -928,7 +928,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 4.5,
+				dmg_mul = 5.5,
 				r = 1500,
 				acc = {
 					0.65,
@@ -950,7 +950,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 4.5,
+				dmg_mul = 5.5,
 				r = 2000,
 				acc = {
 					0.4,
@@ -968,7 +968,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 4.5,
+				dmg_mul = 5.5,
 				r = 3000,
 				acc = {
 					0.2,
@@ -980,13 +980,14 @@ function CharacterTweakData:_set_overkill_290()
 				},
 				mode = {
 					1,
-					3,
-					2,
+					0,
+					0,
 					0
 				}
 			},
 		}
 	}
+	self.medic.weapon.is_rifle = self.fbi_swat.weapon.is_rifle
 
 	-- FBI / Medic Shotgun preset
 	-- 175 damage point blank, falls off down to 42 at max range
@@ -1104,6 +1105,7 @@ function CharacterTweakData:_set_overkill_290()
 	self.medic.weapon.is_shotgun_pump = self.fbi_swat.weapon.is_shotgun_pump
 
 	-- Elite Rifle preset
+	-- 85 Damage
 	self.city_swat.weapon.is_rifle = {
 		aim_delay = {
 			0.15,
@@ -1131,7 +1133,7 @@ function CharacterTweakData:_set_overkill_290()
 		},
 		FALLOFF = {
 			{
-				dmg_mul = 6.75,
+				dmg_mul = 8.5,
 				r = 100,
 				acc = {
 					0.9,
@@ -1153,7 +1155,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 6.75,
+				dmg_mul = 8.5,
 				r = 500,
 				acc = {
 					0.8,
@@ -1175,7 +1177,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 6.75,
+				dmg_mul = 8.5,
 				r = 1000,
 				acc = {
 					0.7,
@@ -1197,7 +1199,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 6.75,
+				dmg_mul = 8.5,
 				r = 1500,
 				acc = {
 					0.65,
@@ -1219,7 +1221,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 6.75,
+				dmg_mul = 8.5,
 				r = 2000,
 				acc = {
 					0.5,
@@ -1237,7 +1239,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 6.75,
+				dmg_mul = 8.5,
 				r = 3000,
 				acc = {
 					0.3,
@@ -1248,9 +1250,9 @@ function CharacterTweakData:_set_overkill_290()
 					1.1
 				},
 				mode = {
-					1,
-					3,
 					2,
+					1,
+					0,
 					0
 				}
 			},
@@ -1258,7 +1260,7 @@ function CharacterTweakData:_set_overkill_290()
 	}
 
 	-- Elite SMG preset
-	-- 55 damage
+	-- 70 damage
 	self.city_swat.weapon.is_smg = {
 		aim_delay = {
 			0.15,
@@ -1286,7 +1288,7 @@ function CharacterTweakData:_set_overkill_290()
 		},
 		FALLOFF = {
 			{
-				dmg_mul = 5.5,
+				dmg_mul = 7,
 				r = 100,
 				acc = {
 					0.95,
@@ -1308,7 +1310,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 5.5,
+				dmg_mul = 7,
 				r = 500,
 				acc = {
 					0.8,
@@ -1330,7 +1332,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 5.5,
+				dmg_mul = 7,
 				r = 1000,
 				acc = {
 					0.7,
@@ -1352,7 +1354,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 5.5,
+				dmg_mul = 7,
 				r = 1500,
 				acc = {
 					0.6,
@@ -1374,7 +1376,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 5.5,
+				dmg_mul = 7,
 				r = 2000,
 				acc = {
 					0.4,
@@ -1392,7 +1394,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 5.5,
+				dmg_mul = 7,
 				r = 3000,
 				acc = {
 					0.25,
@@ -1404,8 +1406,8 @@ function CharacterTweakData:_set_overkill_290()
 				},
 				mode = {
 					1,
-					3,
-					2,
+					0,
+					0,
 					0
 				}
 			}
@@ -1526,9 +1528,6 @@ function CharacterTweakData:_set_overkill_290()
 		}
 	}
 
-	-- Medic preset
-	self.medic.weapon.is_rifle = self.fbi_swat.weapon.is_rifle
-
 	-- Cloaker
 	self.spooc.weapon.is_pistol = self.presets.weapon.deathwish.is_pistol
 	self.spooc.weapon.is_pistol.aim_delay = {0.1, 0.1}
@@ -1590,7 +1589,7 @@ function CharacterTweakData:_set_overkill_290()
 	self.tank.weapon.is_shotgun_mag.focus_dis = 200
 	self.tank.weapon.is_shotgun_mag.FALLOFF = {
 		{
-			dmg_mul = 2.5,
+			dmg_mul = 3,
 			r = 100,
 			acc = {
 				0.9,
@@ -1612,7 +1611,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2.5,
+			dmg_mul = 3,
 			r = 500,
 			acc = {
 				0.85,
@@ -1634,7 +1633,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2,
+			dmg_mul = 2.25,
 			r = 1000,
 			acc = {
 				0.75,
@@ -1690,8 +1689,8 @@ function CharacterTweakData:_set_overkill_290()
 			},
 			mode = {
 				2,
-				3,
 				1,
+				0,
 				0
 			}
 		}
@@ -1805,7 +1804,7 @@ function CharacterTweakData:_set_overkill_290()
 
 
 	-- Skulldozer preset
-	-- 40 damage
+	-- 45 damage
 	self.tank.weapon.is_lmg.spread = 15
 	self.tank.weapon.is_lmg.aim_delay = {
 		0.1,
@@ -1823,7 +1822,7 @@ function CharacterTweakData:_set_overkill_290()
 	self.tank.weapon.is_lmg.focus_delay = 0.2
 	self.tank.weapon.is_lmg.FALLOFF = {
 		{
-			dmg_mul = 2,
+			dmg_mul = 2.25,
 			r = 100,
 			acc = {
 				0.9,
@@ -1841,7 +1840,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2,
+			dmg_mul = 2.25,
 			r = 500,
 			acc = {
 				0.8,
@@ -1859,7 +1858,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2,
+			dmg_mul = 2.25,
 			r = 1000,
 			acc = {
 				0.7,
@@ -1877,7 +1876,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2,
+			dmg_mul = 2.25,
 			r = 2000,
 			acc = {
 				0.45,
@@ -1895,7 +1894,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2,
+			dmg_mul = 2.25,
 			r = 3000,
 			acc = {
 				0.2,
@@ -1915,7 +1914,7 @@ function CharacterTweakData:_set_overkill_290()
 	}
 
 	-- Shield preset
-	-- 30 damage
+	-- 45 damage
 	self.shield.weapon.is_smg.aim_delay = {0.2, 0.2}
 	self.shield.weapon.is_smg.focus_delay = 0.2
 	self.shield.weapon.is_smg.focus_dis = 200
@@ -1928,7 +1927,7 @@ function CharacterTweakData:_set_overkill_290()
 		{
 			r = 100,
 			acc = {0.9, 0.95},
-			dmg_mul = 3,
+			dmg_mul = 4.5,
 			recoil = {0.35, 0.35},
 			mode = {
 				0,
@@ -1942,9 +1941,9 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			r = 700,
+			r = 500,
 			acc = {0.8, 0.8},
-			dmg_mul = 3,
+			dmg_mul = 4.5,
 			recoil = {0.35, 0.55},
 			mode = {
 				0,
@@ -1960,7 +1959,7 @@ function CharacterTweakData:_set_overkill_290()
 		{
 			r = 1000,
 			acc = {0.6, 0.65},
-			dmg_mul = 3,
+			dmg_mul = 4.5,
 			recoil = {0.35, 0.55},
 			mode = {
 				0,
@@ -1976,7 +1975,7 @@ function CharacterTweakData:_set_overkill_290()
 		{
 			r = 2000,
 			acc = {0.5, 0.7},
-			dmg_mul = 3,
+			dmg_mul = 4.5,
 			recoil = {0.35, 1},
 			mode = {
 				0,
@@ -1992,11 +1991,11 @@ function CharacterTweakData:_set_overkill_290()
 		{
 			r = 3000,
 			acc = {0.5, 0.5},
-			dmg_mul = 3,
+			dmg_mul = 4.5,
 			recoil = {0.5, 1.2},
 			mode = {
 				3,
-				2,
+				1,
 				0,
 				0
 			}
