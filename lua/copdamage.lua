@@ -25,15 +25,6 @@ function CopDamage:build_suppression(amount, ...)
 	return build_suppression_original(self, amount == "max" and 2 or amount, ...)
 end
 
--- Consistent crit damage (2x) (SHC)
-function CopDamage:roll_critical_hit(attack_data)
-    if not self:can_be_critical(attack_data) or math.random() >= managers.player:critical_hit_chance() then
-        return false, attack_data.damage
-    end
-
-    return true, attack_data.damage * 2
-end
-
 -- Give flamethrowers a damage multiplier against dozers
 Hooks:PreHook(CopDamage, "damage_fire", "eclipse_damage_fire", function(self, attack_data)
     if self._unit:base()._tweak_table == "tank" then

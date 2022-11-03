@@ -46,7 +46,7 @@ end
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer) (sh)
 Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function (self, attack_data, health_subtracted)
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
-		self._can_take_dmg_timer = self._dmg_interval + 0.2
+		self._can_take_dmg_timer = self._dmg_interval + 0.05
 	end
 end)
 
