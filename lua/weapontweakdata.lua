@@ -1067,28 +1067,21 @@ self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
 
 -- Akimbos
 
--- Krinkovs
-self.x_akmsu.stats.damage = 80
-self.x_akmsu.AMMO_MAX = 120
-self.x_akmsu.AMMO_PICKUP = {1.20, 4.20}
-self.x_akmsu.kick.standing = {1.7, 1.9, -1.4, 1.2}
-self.x_akmsu.kick.crouching = self.x_akmsu.kick.standing
-self.x_akmsu.kick.steelsight = self.x_akmsu.kick.standing
+-- Stryks
+self.x_g18c.AMMO_PICKUP = pickup_tables.smg_low
+self.x_g18c.stats.concealment = 17
+self.x_g18c.kick.standing = {1.2, 1.6, -1, 1}
+self.x_g18c.kick.crouching = self.x_g18c.kick.standing
+self.x_g18c.kick.steelsight = self.x_g18c.kick.standing
 
--- Heathers
-self.x_sr2.AMMO_MAX = 192
-self.x_sr2.AMMO_PICKUP = {1.92, 6.72}
-self.x_sr2.stats.reload = 8
-self.x_sr2.kick.standing = {1.5, 1.7, -1.1, 1.1}
-self.x_sr2.kick.crouching = self.x_sr2.kick.standing
-self.x_sr2.kick.steelsight = self.x_sr2.kick.standing
-
--- Compacts
-self.x_mp5.AMMO_MAX = 240
-self.x_mp5.AMMO_PICKUP = {2.40, 8.40}
-self.x_mp5.kick.standing = {1.4, 1.6, -0.9, 1.2}
-self.x_mp5.kick.crouching = self.x_mp5.kick.standing
-self.x_mp5.kick.steelsight = self.x_mp5.kick.standing
+-- Czechs
+self.x_czech.AMMO_PICKUP = pickup_tables.smg_low
+self.x_czech.stats.concealment = 17
+self.x_czech.stats.recoil = 13
+self.x_czech.stats.spread = 15
+self.x_czech.kick.standing = {1.2, 1.6, -1.1, 1.1}
+self.x_czech.kick.crouching = self.x_czech.kick.standing
+self.x_czech.kick.steelsight = self.x_czech.kick.standing
 
 -- Judges
 self.x_judge.rays = 12
@@ -1113,6 +1106,9 @@ self.flamethrower_mk2.AMMO_PICKUP = {4.5, 6.75}
 
 
 -- removed shit
+self.x_akmsu.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
+self.x_sr2.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
+self.x_mp5.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.elastic.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.long.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.arblast.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
@@ -1140,7 +1136,6 @@ self.x_uzi.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_2006m.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_breech.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_c96.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
-self.x_g18c.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_hs2000.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_p226.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_pl14.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
@@ -1151,7 +1146,6 @@ self.x_maxim9.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_shrew.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_model3.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_beer.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
-self.x_czech.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_stech.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_holt.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_m1911.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
