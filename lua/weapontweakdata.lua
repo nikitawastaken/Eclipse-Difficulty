@@ -1069,14 +1069,14 @@ self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
 
 -- Stryks
 self.x_g18c.AMMO_PICKUP = pickup_tables.smg_low
-self.x_g18c.stats.concealment = 17
+self.x_g18c.stats.concealment = 14
 self.x_g18c.kick.standing = {1.2, 1.6, -1, 1}
 self.x_g18c.kick.crouching = self.x_g18c.kick.standing
 self.x_g18c.kick.steelsight = self.x_g18c.kick.standing
 
 -- Czechs
 self.x_czech.AMMO_PICKUP = pickup_tables.smg_low
-self.x_czech.stats.concealment = 17
+self.x_czech.stats.concealment = 14
 self.x_czech.stats.recoil = 13
 self.x_czech.stats.spread = 15
 self.x_czech.kick.standing = {1.2, 1.6, -1.1, 1.1}

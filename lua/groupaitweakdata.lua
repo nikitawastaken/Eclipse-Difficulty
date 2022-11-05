@@ -903,38 +903,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				}
 			}
 		}
-		self.enemy_spawn_groups.reenforce_tank = {
-			amount = {
-				4,
-				4
-			},
-			spawn = {
-				{
-					amount_min = 1,
-					freq = 1,
-					amount_max = 1,
-					rank = 3,
-					unit = "tank_fbi",
-					tactics = self._tactics.reenforce_aggressive
-				},
-				{
-					amount_min = 1,
-					freq = 1,
-					amount_max = 1,
-					rank = 2,
-					unit = "taser_unit",
-					tactics = self._tactics.reenforce_aggressive
-				},
-				{
-					amount_min = 2,
-					freq = 2,
-					amount_max = 2,
-					rank = 1,
-					unit = "balaclava",
-					tactics = self._tactics.reenforce_aggressive
-				}
-			}
-		}
 		self.enemy_spawn_groups.reenforce_sneaky = {
 			amount = {
 				4,
@@ -1108,7 +1076,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		-- RECON / REENFORCE --
 
 		-- Make reenforce spawngroups spawn faster
-		self.besiege.reenforce.interval = {45, 35, 25}
+		self.besiege.reenforce.interval = {30, 25, 20}
 
     	-- Make recon spawngroups spawn faster and increase their spawncap
     	self.besiege.recon.interval_variation = 0
@@ -1163,8 +1131,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 		self.besiege.reenforce.groups = {
 			reenforce_common = {0.3, 0.3, 0.3},
-			reenforce_sneaky = {0.2, 0.2, 0.2},
-			reenforce_tank = {0.15, 0.15, 0.15}
+			reenforce_sneaky = {0.2, 0.2, 0.2}
 		}
 	end
 
