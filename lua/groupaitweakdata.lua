@@ -497,7 +497,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"smoke_grenade",
 			"flash_grenade",
 			"rescue_hostages",
-			"deathguard",
 			"murder"
 		},
 		elite_shield = {
@@ -510,14 +509,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"shield_cover",
 			"smoke_grenade",
 			"flash_grenade",
-			"deathguard",
 			"murder"
 		},
 		elite_special_flank = {
 			"flank",
 			"smoke_grenade",
 			"flash_grenade",
-			"deathguard",
 			"murder"
 		},
 		elite_tank_ranged = {
@@ -536,18 +533,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spooc_flank = {
 			"flank",
 			"flash_grenade",
-			"smoke_grenade",
-			"deathguard"
+			"smoke_grenade"
 		},
 		reenforce_aggressive = {
 			"charge",
 			"flash_grenade",
-			"smoke_grenade",
+			"smoke_grenade"
 		},
 		reenforce_passive = {
 			"ranged_fire",
 			"flash_grenade",
-			"smoke_grenade",
+			"smoke_grenade"
 		},
 		recon_attack = {
 			"ranged_fire",
