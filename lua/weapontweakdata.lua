@@ -1007,6 +1007,14 @@ self.ray.stats_modifiers = {damage = 10}
 self.ray.stats.reload = 8
 self.ray.AMMO_PICKUP = {0.05, 0.38}
 
+-- RPG
+self.rpg7.use_data.selection_index = SELECTION.PRIMARY
+self.rpg7.categories = {"grenade_launcher", "heavy"}
+self.rpg7.stats.damage = 128
+self.rpg7.stats_modifiers = {damage = 20}
+self.rpg7.stats.reload = 13
+self.rpg7.AMMO_PICKUP = {0.05, 0.38}
+
 -- Piglet
 self.m32.stats.damage = 42
 self.m32.AMMO_PICKUP = {0.05, 0.45}
@@ -1067,9 +1075,17 @@ self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
 
 -- Akimbos
 
+-- castigos
+
+self.x_chinchilla.stats.damage = 120
+self.x_chinchilla.stats.spread = 21
+self.x_chinchilla.stats_modifiers = {damage = 2}
+
 -- Stryks
 self.x_g18c.AMMO_PICKUP = pickup_tables.smg_low
 self.x_g18c.stats.concealment = 14
+self.x_g18c.stats.recoil = 12
+self.x_g18c.stats.reload = 8
 self.x_g18c.kick.standing = {1.2, 1.6, -1, 1}
 self.x_g18c.kick.crouching = self.x_g18c.kick.standing
 self.x_g18c.kick.steelsight = self.x_g18c.kick.standing
@@ -1077,17 +1093,21 @@ self.x_g18c.kick.steelsight = self.x_g18c.kick.standing
 -- Czechs
 self.x_czech.AMMO_PICKUP = pickup_tables.smg_low
 self.x_czech.stats.concealment = 14
-self.x_czech.stats.recoil = 13
+self.x_czech.stats.recoil = 11
 self.x_czech.stats.spread = 15
-self.x_czech.kick.standing = {1.2, 1.6, -1.1, 1.1}
+self.x_czech.stats.reload = 8
+self.x_czech.kick.standing = {1.3, 1.65, -1.1, 1.1}
 self.x_czech.kick.crouching = self.x_czech.kick.standing
 self.x_czech.kick.steelsight = self.x_czech.kick.standing
 
 -- Judges
-self.x_judge.rays = 12
+self.x_judge.rays = 8
+self.x_judge.stats.damage = 115
+self.x_judge.stats_modifiers = {damage = 2}
 self.x_judge.kick.standing = {2.5, 3, -0.2, 0.2}
 self.x_judge.kick.crouching = self.x_judge.kick.standing
 self.x_judge.kick.steelsight = self.x_judge.kick.standing
+self.x_judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 
 -- Flamethrowers
@@ -1157,7 +1177,6 @@ self.x_type54.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_pm9.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_shepheard.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
-self.rpg7.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 end)
 
 Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290", function(self)

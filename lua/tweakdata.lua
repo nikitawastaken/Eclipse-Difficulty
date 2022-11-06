@@ -18,6 +18,9 @@ tweak_data.projectiles.bow_poison_arrow.damage = 10
 -- 101
 tweak_data.projectiles.rocket_ray_frag.damage = 128
 tweak_data.projectiles.rocket_ray_frag.player_damage = 16
+-- rpg
+tweak_data.projectiles.launcher_rocket.damage = 256
+tweak_data.projectiles.launcher_rocket.player_damage = 24
 -- piglet
 tweak_data.projectiles.launcher_frag_m32.damage = 42
 tweak_data.projectiles.launcher_frag_m32.player_damage = 16

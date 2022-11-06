@@ -8,6 +8,20 @@ function PlayerManager:upgrade_value(category, upgrade, ...)
 	return _upgrade_value
 end
 
+-- trigger happy doesn't work with akimbo autopistols
+function PlayerManager:_on_enter_trigger_happy_event(unit, attack_data)
+	local attacker_unit = attack_data.attacker_unit
+	local variant = attack_data.variant
+	local weapon_unit = self:equipped_weapon_unit()
+
+	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("trigger_happy") and self:is_current_weapon_of_category("pistol") and weapon_unit and weapon_unit:base():fire_mode() == "single" then
+		local data = self:upgrade_value("pistol", "stacking_hit_damage_multiplier", 0)
+
+		if data ~= 0 then
+			self._coroutine_mgr:add_coroutine("trigger_happy", PlayerAction.TriggerHappy, self, data.damage_bonus, data.max_stacks, Application:time() + data.max_time)
+		end
+	end
+end
 
 -- hostage taker min hostages count
 Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self, category)

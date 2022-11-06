@@ -56,7 +56,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- Weapon-Specific Stuff
     -- Saiga stuff
-    self.parts.wpn_fps_sho_basset_m_extended.stats.recoil = -1
     self.parts.wpn_fps_sho_basset_m_extended.stats.reload = -2
     self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = -2
     self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
@@ -95,6 +94,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_fl_ass_smg_sho_peqbox.stats.concealment = 0
     -- Assault Light
     self.parts.wpn_fps_upg_fl_ass_smg_sho_surefire.stats.concealment = 0
+    -- extra mag for stryk
+    self.parts.wpn_fps_pis_g18c_m_mag_33rnd.stats.reload = -1
+    self.wpn_fps_pis_x_g18c.override.wpn_fps_pis_g18c_m_mag_33rnd.stats.reload = -1
+    self.parts.wpn_fps_pis_czech_m_extended.stats.reload = -1
+    self.wpn_fps_pis_x_czech.override.wpn_fps_pis_czech_m_extended.stats.reload = -1
 
 
 

@@ -516,15 +516,17 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.pistol.swap_speed_multiplier = {1.10} -- funny how this is actually 50% in vanilla and not 30%
 	self.skill_descs.equilibrium.multibasic3 = "10%"
 
-	-- Trigger Happy rework
+	-- Trigger Happy
 	self.values.pistol.stacking_hit_damage_multiplier = {
 		{max_stacks = 5, max_time = 3, damage_bonus = 1.15},
-		{max_stacks = 5, max_time = 6, damage_bonus = 1.15}
+		{max_stacks = 2, max_time = 6, damage_bonus = 1.375}
 	}
-	self.skill_descs.trigger_happy.multibasic4 = "15%"
+	self.skill_descs.trigger_happy.multibasic = "15%"
 	self.skill_descs.trigger_happy.multibasic2 = "3"
 	self.skill_descs.trigger_happy.multibasic3 = "5"
+	self.skill_descs.trigger_happy.multipro = "37.5%"
 	self.skill_descs.trigger_happy.multipro2 = "6"
+	self.skill_descs.trigger_happy.multipro3 = "2"
 
 	-- Swan Song
 	self.values.temporary.berserker_damage_multiplier[2] = {1, 9}
