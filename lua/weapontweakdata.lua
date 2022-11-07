@@ -1087,7 +1087,7 @@ self.x_g18c.AMMO_PICKUP = pickup_tables.smg_low
 self.x_g18c.stats.concealment = 14
 self.x_g18c.stats.recoil = 12
 self.x_g18c.stats.reload = 8
-self.x_g18c.kick.standing = {1.2, 1.6, -1, 1}
+self.x_g18c.kick.standing = {0.9, 1, -1, 1}
 self.x_g18c.kick.crouching = self.x_g18c.kick.standing
 self.x_g18c.kick.steelsight = self.x_g18c.kick.standing
 
@@ -1097,7 +1097,7 @@ self.x_czech.stats.concealment = 14
 self.x_czech.stats.recoil = 11
 self.x_czech.stats.spread = 15
 self.x_czech.stats.reload = 8
-self.x_czech.kick.standing = {1.3, 1.65, -1.1, 1.1}
+self.x_czech.kick.standing = {0.95, 1.05, -1, 1}
 self.x_czech.kick.crouching = self.x_czech.kick.standing
 self.x_czech.kick.steelsight = self.x_czech.kick.standing
 
