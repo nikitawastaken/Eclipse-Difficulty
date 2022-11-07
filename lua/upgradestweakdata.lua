@@ -275,20 +275,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.bandoliers.multibasic = "12"
 	self.skill_descs.bandoliers.multipro2 = "30"
 
-	-- Saw Massacre
-	self.skill_descs.ammo_reservoir.multibasic2 = "50%"
-	self.skill_descs.ammo_reservoir.multipro = "50%"
-	self.skill_descs.ammo_reservoir.multipro3 = "10"
-
 	-- Fully Loaded
-	self.values.player.regain_throwable_from_ammo[1].chance = -0.06
-	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.003
-	self.values.player.extra_ammo_multiplier[1] = 1.25
-	self.values.player.pick_up_ammo_multiplier = {1.35, 1.45}
-	self.skill_descs.carbon_blade.multibasic = "-6%"
-	self.skill_descs.carbon_blade.multibasic2 = "0.3%"
-	self.skill_descs.carbon_blade.multipro2 = "25%"
-	self.skill_descs.carbon_blade.multipro3 = "45%"
+	self.values.player.body_armor.skill_ammo_mul = {
+		1.04,
+		1.075,
+		1.11,
+		1.145,
+		1.18,
+		1.215,
+		1.24
+	}
+	self.skill_descs.ammo_reservoir.multibasic = "24%"
+	self.skill_descs.ammo_reservoir.multipro = "25%"
 
 	-- Technician --
 
@@ -785,4 +783,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[22][5].multiperk3 = "3"
 	self.specialization_descs[22][9].multiperk = "6.25%"
 	self.specialization_descs[22][9].multiperk2 = "40%"
+
+
+
+	-- thowable pickups
+	self.values.player.regain_throwable_from_ammo[1].chance = -47
+	self.values.player.regain_throwable_from_ammo[1].chance_inc = 1
 end

@@ -12,13 +12,13 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
     self.projectiles.launcher_frag_m32.time_cheat = nil
 
     -- grenade amounts
-	self.projectiles.frag.max_amount = 5
-    self.projectiles.frag_com.max_amount = 5
-    self.projectiles.dada_com.max_amount = 5
-    self.projectiles.dynamite.max_amount = 5
-    self.projectiles.concussion.max_amount = 5
-    self.projectiles.fir_com.max_amount = 5
-    self.projectiles.molotov.max_amount = 5
-    self.projectiles.poison_gas_grenade.max_amount = 5
-    self.projectiles.wpn_gre_electric.max_amount = 5
+	self.projectiles.frag.max_amount = 3
+    self.projectiles.frag_com.max_amount = 3
+    self.projectiles.dada_com.max_amount = 3
+    self.projectiles.dynamite.max_amount = 3
+    self.projectiles.concussion.max_amount = 3
+    self.projectiles.fir_com.max_amount = 3
+    self.projectiles.molotov.max_amount = 3
+    self.projectiles.poison_gas_grenade.max_amount = 3
+    self.projectiles.wpn_gre_electric.max_amount = 3
 end

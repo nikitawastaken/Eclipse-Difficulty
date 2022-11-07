@@ -95,19 +95,12 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.juggernaut[1].upgrades = {"body_armor6"}
 	self.skills.juggernaut[2].upgrades = {"player_armor_multiplier"}
 
-	-- Saw Massacre
-	self.skills.ammo_reservoir[1].upgrades = {"saw_enemy_slicer"}
-	self.skills.ammo_reservoir[2].upgrades = {"saw_ignore_shields_1", "saw_panic_when_kill_1"}
-	self.skills.ammo_reservoir.name_id = "menu_carbon_blade_beta"
-	self.skills.ammo_reservoir.desc_id = "menu_carbon_blade_beta_desc"
-	self.skills.ammo_reservoir.icon_xy = {0, 2}
-
 	-- Fully Loaded
-	self.skills.carbon_blade[1].upgrades = {"player_regain_throwable_from_ammo_1"}
-	self.skills.carbon_blade[2].upgrades = {"extra_ammo_multiplier1", "player_pick_up_ammo_multiplier", "player_pick_up_ammo_multiplier_2"}
-	self.skills.carbon_blade.name_id = "menu_bandoliers_beta"
-	self.skills.carbon_blade.desc_id = "menu_bandoliers_beta_desc"
-	self.skills.carbon_blade.icon_xy = {3, 0}
+	self.skills.ammo_reservoir[1].upgrades = {"player_add_armor_stat_skill_ammo_mul"}
+	self.skills.ammo_reservoir[2].upgrades = {"extra_ammo_multiplier1"}
+	self.skills.ammo_reservoir.name_id = "menu_bandoliers_beta"
+	self.skills.ammo_reservoir.desc_id = "menu_bandoliers_beta_desc"
+	self.skills.ammo_reservoir.icon_xy = {3, 0}
 
 	-- Bulletstorm
 	self.skills.bandoliers[1].upgrades = {"temporary_no_ammo_cost_1"}
@@ -349,8 +342,9 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.specializations[10][3].upgrades, "player_addition_ammo_eclipse")
 	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
-	-- Remove some default upgrades
+	-- Buncha default upgrade fuckery
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
+	table.insert(self.default_upgrades, "player_regain_throwable_from_ammo_1")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
