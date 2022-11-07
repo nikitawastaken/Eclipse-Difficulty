@@ -10,7 +10,7 @@ function FPCameraPlayerBase:stop_shooting(wait)
 end
 
 function FPCameraPlayerBase:recoil_kick(up, down, left, right)
-	if math.abs(self._recoil_kick.accumulated) < 200 then
+	if math.abs(self._recoil_kick.accumulated) < 2000 then
 		local v = math.lerp(up, down, math.random())
 		self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v
 		self._recoil_kick.ret = v

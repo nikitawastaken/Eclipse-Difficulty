@@ -48,9 +48,9 @@ local pickup_tables = {
 	dmr = {1.5, 2.5},
 	dmr_low = {1.2, 1.75},
 
+	revolver_ap = {0.26, 0.67},
 	revolver_high = {1.5, 2},
 	revolver = {1.3, 1.8},
-	revolver_ap = {0.26, 0.67},
 
 	pistol_ap = {0.4, 0.75}
 }
@@ -106,11 +106,11 @@ self.wa2000.kick.steelsight = self.wa2000.kick.standing
 self.wa2000.categories = {"snp", "ng"}
 
 -- Rangehitter
-self.sbl.AMMO_MAX = 30
-self.sbl.CLIP_AMMO_MAX = 15
+self.sbl.use_data.selection_index = SELECTION.SECONDARY
+self.sbl.AMMO_MAX = 20
+self.sbl.CLIP_AMMO_MAX = 10
 self.sbl.stats.damage = 120
-self.sbl.stats.reload = 13
-self.sbl.AMMO_PICKUP = pickup_tables.sniper_high
+self.sbl.AMMO_PICKUP = self.scout.AMMO_PICKUP
 self.sbl.fire_mode_data.fire_rate = 60 / 150
 self.sbl.kick.standing = {3, 3.8, -0.3, 0.3}
 self.sbl.kick.crouching = self.sbl.kick.standing
@@ -169,6 +169,7 @@ self.model70.kick.steelsight = self.r93.kick.steelsight
 -- Thanatos
 self.m95.stats.damage = 200
 self.m95.stats_modifiers = {damage = 25}
+self.m95.AMMO_PICKUP = {0.10, 0.65}
 self.m95.kick.standing = {5, 6, -1, 1}
 self.m95.kick.crouching = self.m95.kick.standing
 self.m95.kick.steelsight = self.m95.kick.standing
