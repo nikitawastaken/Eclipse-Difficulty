@@ -684,6 +684,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[6][5].multiperk = "5%"
 
 	-- Gambler
+	self.values.player.pick_up_ammo_multiplier = {1, 1.15} -- players have no pickup boost by default
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 10 end
 	self.values.temporary.loose_ammo_give_team[1][2] = 5
 	self.values.player.increased_pickup_area[2] = 2.25
@@ -693,16 +694,6 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "increased_pickup_area",
-			category = "player"
-		}
-	}
-	self.values.player.addition_ammo_eclipse = {0.15}
-	self.definitions.player_addition_ammo_eclipse = {
-		name_id = "menu_player_addition_ammo_eclipse",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "addition_ammo_eclipse",
 			category = "player"
 		}
 	}

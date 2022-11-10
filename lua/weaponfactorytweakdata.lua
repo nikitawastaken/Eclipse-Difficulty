@@ -20,7 +20,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_a_explosive.stats.total_ammo_mod = -8
     self.parts.wpn_fps_upg_a_explosive.stats.damage = 30
     self.parts.wpn_fps_upg_a_explosive.stats.spread = 4
-    self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.9, ammo_pickup_min_mul = 0.9, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10}
+    self.parts.wpn_fps_upg_a_explosive.custom_stats = {ignore_statistic = true, ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10}
     -- DB
     self.parts.wpn_fps_upg_a_dragons_breath.stats.total_ammo_mod = -8
     self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_max_mul = 0.85
@@ -104,45 +104,46 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
     -- Conversion kits
     -- ak family
-    self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.9}
+    self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {ammo_pickup_max_mul = 0.65, ammo_pickup_min_mul = 0.7}
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -7
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -6
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -8
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 75
-    self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats.ammo_pickup_max_mul = 0.45
+    self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {ammo_pickup_max_mul = 0.55, ammo_pickup_min_mul = 0.6}
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -10
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -7
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -11
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 95
     -- car family
-    self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats.ammo_pickup_min_mul = 0.4
-    self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -10
+    self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {ammo_pickup_max_mul = 0.45, ammo_pickup_min_mul = 0.45}
+    self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -13
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -7
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -11
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 110
-    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.9}
-    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -7
+    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {ammo_pickup_max_mul = 0.65, ammo_pickup_min_mul = 0.7}
+    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -8
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -6
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -8
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 75
     -- m308 b-stock
     self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
     -- gewehr
-    self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {ammo_pickup_max_mul = 1.1, ammo_pickup_min_mul = 1.1}
-    self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = -7
+    self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {ammo_pickup_max_mul = 0.94, ammo_pickup_min_mul = 0.85}
+    self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = -8
     self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
     self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
     self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 73
     self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 2
+    self.parts.wpn_fps_ass_g3_b_short.custom_stats = {ammo_pickup_max_mul = 1.44, ammo_pickup_min_mul = 1.5}
     -- broomstick
-    self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
+    self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.47, ammo_pickup_min_mul = 0.47}
     -- ks12
     self.parts.wpn_fps_ass_shak12_body_vks.stats.damage = 50
     self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -6
     self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
     self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = -10
     self.parts.wpn_fps_ass_shak12_body_vks.stats.fire_rate = -3
-    self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {ammo_pickup_max_mul = 0.5, ammo_pickup_min_mul = 0.6}
+    self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {ammo_pickup_max_mul = 0.65, ammo_pickup_min_mul = 0.7}
     self.parts.wpn_fps_ass_shak12_body_vks.custom_stats.fire_rate_multiplier = 0.7
     -- wasp exclusive kit
     self.parts.wpn_fps_smg_fmg9_conversion.stats.recoil = 1
@@ -156,13 +157,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- Rare
     self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -10
     self.parts.wpn_fps_fla_mk2_mag_rare.stats.concealment = 3
-    self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.65}
+    self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.25}
     self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_upg_mk2_rare_desc"
     self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
     -- Well Done
     self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 10
     self.parts.wpn_fps_fla_mk2_mag_welldone.stats.concealment = -3
-    self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 1}
+    self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 0.75}
     self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
     self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
 
