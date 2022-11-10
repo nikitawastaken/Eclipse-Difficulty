@@ -674,15 +674,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[15][7].multiperk2 = "100%"
 	self.specialization_descs[15][7].multiperk3 = "5%"
 
-	-- Crook
-	self.values.player.level_2_armor_multiplier[3] = 1.8
-	self.values.player.level_3_armor_multiplier[3] = 1.7
-	self.values.player.level_4_armor_multiplier[3] = 1.65
-	self.values.player.level_2_dodge_addend[3] = 0.2
-	self.values.player.level_3_dodge_addend[3] = 0.2
-	self.values.player.level_4_dodge_addend[3] = 0.2
-	self.specialization_descs[6][5].multiperk = "5%"
-
 	-- Gambler
 	self.values.player.pick_up_ammo_multiplier = {1, 1.15} -- players have no pickup boost by default
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 10 end
