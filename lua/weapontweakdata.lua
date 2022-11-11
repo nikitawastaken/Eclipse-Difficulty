@@ -207,7 +207,7 @@ self.model70.kick.steelsight = self.r93.kick.steelsight
 self.m95.stats.damage = 200
 self.m95.stats_modifiers = {damage = 25}
 self.m95.AMMO_PICKUP = {0.10, 0.65}
-self.m95.AMMO_MAX = total_ammo_tables.sniper_low
+self.m95.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.m95.kick.standing = {5, 6, -1, 1}
 self.m95.kick.crouching = self.m95.kick.standing
 self.m95.kick.steelsight = self.m95.kick.standing
