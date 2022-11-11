@@ -1184,8 +1184,8 @@ self.beer.AMMO_MAX = total_ammo_tables.pistol_high
 self.beer.AMMO_PICKUP = pickup_tables.pistol_high
 
 -- Stryk
-self.maxim9.AMMO_MAX = total_ammo_tables.pistol_mid
-self.maxim9.AMMO_PICKUP = pickup_tables.pistol_mid
+self.glock_18c.AMMO_MAX = total_ammo_tables.pistol_mid
+self.glock_18c.AMMO_PICKUP = pickup_tables.pistol_mid
 
 -- Czech
 self.czech.AMMO_MAX = total_ammo_tables.pistol_mid
@@ -1281,7 +1281,7 @@ self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
 -- Akimbos
 
 -- Stryks
-self.x_g18c.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_high
+self.x_g18c.AMMO_MAX = total_ammo_tables.akimbo_pis_high
 self.x_g18c.AMMO_PICKUP = pickup_tables.pistol_high
 self.x_g18c.stats.concealment = 14
 self.x_g18c.stats.recoil = 12
@@ -1291,7 +1291,7 @@ self.x_g18c.kick.crouching = self.x_g18c.kick.standing
 self.x_g18c.kick.steelsight = self.x_g18c.kick.standing
 
 -- Czechs
-self.x_czech.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_high
+self.x_czech.AMMO_MAX = total_ammo_tables.akimbo_pis_high
 self.x_czech.AMMO_PICKUP = pickup_tables.pistol_high
 self.x_czech.stats.concealment = 14
 self.x_czech.stats.recoil = 11
@@ -1302,44 +1302,44 @@ self.x_czech.kick.crouching = self.x_czech.kick.standing
 self.x_czech.kick.steelsight = self.x_czech.kick.standing
 
 -- Chimano Compacts
-self.jowi.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_mid
-self.jowi.stats.AMMO_PICKUP = pickup_tables.pistol_mid
+self.jowi.AMMO_MAX = total_ammo_tables.akimbo_pis_mid
+self.jowi.AMMO_PICKUP = pickup_tables.pistol_mid
 
 -- Bernetti 9s
-self.x_b92fs.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_mid
-self.x_b92fs.stats.AMMO_PICKUP = pickup_tables.pistol_mid
+self.x_b92fs.AMMO_MAX = total_ammo_tables.akimbo_pis_mid
+self.x_b92fs.AMMO_PICKUP = pickup_tables.pistol_mid
 
 -- Chimano 88s
-self.x_g17.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_mid
-self.x_g17.stats.AMMO_PICKUP = pickup_tables.pistol_mid
+self.x_g17.AMMO_MAX = total_ammo_tables.akimbo_pis_mid
+self.x_g17.AMMO_PICKUP = pickup_tables.pistol_mid
 
 -- Crosskills
-self.x_1911.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_low
-self.x_1911.stats.AMMO_PICKUP = pickup_tables.pistol_low
+self.x_1911.AMMO_MAX = total_ammo_tables.akimbo_pis_low
+self.x_1911.AMMO_PICKUP = pickup_tables.pistol_low
 
 -- Chimano Customs
-self.x_g22c.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_low
-self.x_g22c.stats.AMMO_PICKUP = pickup_tables.pistol_low
+self.x_g22c.AMMO_MAX = total_ammo_tables.akimbo_pis_low
+self.x_g22c.AMMO_PICKUP = pickup_tables.pistol_low
 
--- Interceptor
-self.x_usp.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_low
-self.x_usp.stats.AMMO_PICKUP = pickup_tables.pistol_low
+-- Interceptors
+self.x_usp.AMMO_MAX = total_ammo_tables.akimbo_pis_low
+self.x_usp.AMMO_PICKUP = pickup_tables.pistol_low
 
--- Contractor
-self.x_packrat.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_low
-self.x_packrat.stats.AMMO_PICKUP = pickup_tables.pistol_low
+-- Contractors
+self.x_packrat.AMMO_MAX = total_ammo_tables.akimbo_pis_low
+self.x_packrat.AMMO_PICKUP = pickup_tables.pistol_low
 
 -- Deagles
 self.x_deagle.stats.damage = 140
-self.x_deagle.stats.AMMO_MAX = total_ammo_tables.akimbo_pis_low
-self.x_deagle.stats.AMMO_PICKUP = pickup_tables.pistol_low
+self.x_deagle.AMMO_MAX = total_ammo_tables.akimbo_pis_low
+self.x_deagle.AMMO_PICKUP = pickup_tables.pistol_low
 
 -- Castigos
 self.x_chinchilla.stats.damage = 120
 self.x_chinchilla.stats.spread = 21
 self.x_chinchilla.stats_modifiers = {damage = 2}
-self.x_chinchilla.stats.AMMO_MAX = total_ammo_tables.akimbo_special
-self.x_chinchilla.stats.AMMO_PICKUP = pickup_tables.revolver
+self.x_chinchilla.AMMO_MAX = total_ammo_tables.akimbo_special
+self.x_chinchilla.AMMO_PICKUP = pickup_tables.revolver
 
 -- Judges
 self.x_judge.rays = 8
@@ -1348,8 +1348,8 @@ self.x_judge.stats_modifiers = {damage = 2}
 self.x_judge.kick.standing = {2.5, 3, -0.2, 0.2}
 self.x_judge.kick.crouching = self.x_judge.kick.standing
 self.x_judge.kick.steelsight = self.x_judge.kick.standing
-self.x_judge.stats.AMMO_MAX = total_ammo_tables.akimbo_special
-self.x_judge.stats.AMMO_PICKUP = pickup_tables.shot_special
+self.x_judge.AMMO_MAX = total_ammo_tables.akimbo_special
+self.x_judge.AMMO_PICKUP = pickup_tables.shot_special
 self.x_judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 
