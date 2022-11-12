@@ -741,7 +741,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[19][1].multiperk3 = "16"
 
 	-- Tag Team
+	self.values.player.tag_team_base.kill_health_gain = 0.5
+	self.values.player.tag_team_base.tagged_health_gain_ratio = 1
 	self.values.player.tag_team_damage_absorption = {{kill_gain = 0.15, max = 0.6}}
+	self.specialization_descs[20][1].multiperk2 = "5"
+	self.specialization_descs[20][1].multiperk3 = "5"
 	self.specialization_descs[20][5].multiperk = "1.5"
 	self.specialization_descs[20][5].multiperk2 = "6"
 

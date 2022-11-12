@@ -86,7 +86,8 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 			my_data.moving_to_cover = nil
 		end
 
-		return CopLogicTravel._get_pos_behind_unit(data, data.objective.shield_cover_unit, 50, 300)
+		local pos = CopLogicTravel._get_pos_behind_unit(data, data.objective.shield_cover_unit, 50, 300)
+		return pos or _get_exact_move_pos_original(data, nav_index, ...)
 	end
 
 	local coarse_path = my_data.coarse_path
@@ -215,7 +216,7 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 		rays = rays - 1
 	until rays <= 0
 
-	return fallback_pos or unit_pos
+	return fallback_pos
 end
 
 

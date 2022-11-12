@@ -1,4 +1,4 @@
-SentryGunBase.DEPLOYEMENT_COST = {0.5, 0.75, 0.75}
+SentryGunBase.DEPLOYEMENT_COST = {0.65, 0.9, 0.9}
 SentryGunBase.AMMO_MUL = {2, 3}
 
 -- Unregister sentry guns to prevent enemies from getting stuck/cheesed
