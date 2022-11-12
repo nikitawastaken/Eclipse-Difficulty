@@ -6,5 +6,35 @@ return {
     },
     [101727] = {
         values = {instigator = "criminals_not_downed"}
-    }
+    },
+    [104132] = {
+        values = {
+            enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"
+        }
+    },
+    [104710] = {
+        values = {
+            enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"
+        }
+    },
+    [104131] = {
+        values = {
+            enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
+        }
+    },
+    [104169] = {
+        values = {
+            enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
+        }
+    },
+    [104000] = {
+        values = {
+            chance = 1
+        }
+    },
+    [100225] = {
+        values = {
+            amount = 5
+        }
+    },
 }
