@@ -468,7 +468,7 @@ self.b682.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 self.coach.rays = 8
 self.coach.stats.damage = 180
 self.coach.stats_modifiers = {damage = 2}
-self.coach.AMMO_MAX = total_ammo_tables.shot_special
+self.coach.AMMO_MAX = total_ammo_tables.shot_very_low
 self.coach.AMMO_PICKUP = pickup_tables.shot_special
 self.coach.kick = kick_tables.shot_high
 self.coach.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
@@ -477,7 +477,7 @@ self.coach.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 self.judge.rays = 8
 self.judge.stats.damage = 115
 self.judge.stats_modifiers = {damage = 2}
-self.judge.AMMO_MAX = total_ammo_tables.shot_special
+self.judge.AMMO_MAX = total_ammo_tables.shot_very_low
 self.judge.AMMO_PICKUP = pickup_tables.shot_special
 self.judge.AMMO_MAX = 25
 self.judge.kick = kick_tables.shot_low
