@@ -70,32 +70,32 @@ local pickup_tables = {
 	lmg = {3.5, 5.25},
 	minigun = {3.25, 4.25},
 
-	shot_very_high = {1.25, 2.25},
-	shot_high = {1.25, 2},
-	shot_mid = {1, 1.65},
-	shot_low = {1, 1.35},
-	shot_very_low = {1, 1.15},
+	shot_very_high = {1.75, 2.75},
+	shot_high = {1.75, 2.5},
+	shot_mid = {1, 2},
+	shot_low = {1, 1.65},
+	shot_very_low = {1, 1.25},
 	shot_special = {0.25, 0.45},
 
-	ar_high = {3, 4},
-	ar_mid = {2.25, 3.25},
-	ar_low = {1.75, 2.75},
+	ar_high = {4, 5},
+	ar_mid = {3, 4},
+	ar_low = {2, 3},
 	ar_very_low = {1.5, 2.25},
 
 	dmr = {1, 1.5},
 	dmr_low = {0.75, 1.1},
 
-	smg_high = {2.5, 3.5},
-	smg_mid = {2, 2.85},
-	smg_low = {1.35, 2.25},
+	smg_high = {3.5, 4.5},
+	smg_mid = {2.5, 3.5},
+	smg_low = {1.5, 2.5},
 	smg_very_low = {1, 2},
 
 	pistol_high = {2.5, 3.5},
 	pistol_mid = {2.2, 3},
 	pistol_low = {1.5, 2.25},
 	pistol_very_low = {1.25, 2},
-	revolver = {1, 1.75},
 	revolver_high = {1.25, 2},
+	revolver = {1, 1.75},
 
 	revolver_ap = {0.25, 0.5},
 	pistol_ap = {0.4, 0.5}
@@ -258,18 +258,24 @@ self.scout.kick = kick_tables.sniper_low
 -- LMGs and Miniguns
 
 -- KSP
+self.m249.stats.damage = 60
+self.m249.stats.reload = 9
 self.m249.stats.concealment = 0
 self.m249.AMMO_MAX = total_ammo_tables.lmg_high
 self.m249.AMMO_PICKUP = pickup_tables.lmg
 self.m249.kick = kick_tables.lmg
 
 -- KSP 58
+self.par.stats.damage = 60
+self.par.stats.reload = 9
 self.par.stats.concealment = 0
 self.par.AMMO_MAX = total_ammo_tables.lmg_high
 self.par.AMMO_PICKUP = pickup_tables.lmg
 self.par.kick = kick_tables.lmg
 
 -- Buzzsaw
+self.mg42.stats.damage = 60
+self.m249.stats.reload = 9
 self.mg42.stats.concealment = 0
 self.mg42.AMMO_MAX = total_ammo_tables.lmg_low
 self.mg42.AMMO_PICKUP = pickup_tables.lmg
@@ -277,7 +283,7 @@ self.mg42.kick = kick_tables.lmg
 
 -- RPK
 self.rpk.stats.spread = 10
-self.rpk.stats.damage = 110
+self.rpk.stats.damage = 80
 self.rpk.stats.reload = 9
 self.rpk.stats.concealment = 1
 self.rpk.AMMO_MAX = total_ammo_tables.lmg_low
@@ -286,22 +292,24 @@ self.rpk.kick = kick_tables.lmg_high
 
 -- Brenner
 self.hk21.stats.spread = 12
-self.hk21.stats.damage = 110
-self.hk21.stats.reload = 12
+self.hk21.stats.damage = 80
+self.hk21.stats.reload = 9
 self.hk21.stats.concealment = 0
 self.hk21.AMMO_MAX = total_ammo_tables.lmg_low
 self.hk21.AMMO_PICKUP = pickup_tables.lmg
 self.hk21.kick = kick_tables.lmg_high
 
 -- M60
-self.m60.stats.damage = 110
+self.m60.stats.damage = 80
+self.m60.stats.reload = 9
 self.m60.stats.concealment = 0
 self.m60.AMMO_MAX = total_ammo_tables.lmg_low
 self.m60.AMMO_PICKUP = pickup_tables.lmg
 self.m60.kick = kick_tables.lmg_high
 
 -- verstchektshscxd
-self.hk51b.stats.damage = 100
+self.hk51b.stats.damage = 75
+self.hk51b.stats.reload = 9
 self.hk51b.stats.concealment = 10
 self.hk51b.AMMO_PICKUP = pickup_tables.ar_mid
 self.hk51b.AMMO_MAX = total_ammo_tables.ar_low
