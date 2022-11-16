@@ -310,14 +310,12 @@ self.hk51b.kick = kick_tables.lmg_high
 -- Minigun
 self.m134.stats.damage = 40
 self.m134.stats.concealment = 0
-self.m134.AMMO_MAX = total_ammo_tables.minigun
 self.m134.AMMO_PICKUP = pickup_tables.minigun
 self.m134.kick = kick_tables.mini
 
 -- Microgun
 self.shuno.stats.damage = 60
 self.shuno.stats.concealment = 0
-self.shuno.AMMO_MAX = total_ammo_tables.minigun
 self.shuno.AMMO_PICKUP = pickup_tables.minigun
 self.shuno.kick = kick_tables.micro
 
