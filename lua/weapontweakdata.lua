@@ -260,6 +260,7 @@ self.scout.kick = kick_tables.sniper_low
 -- KSP
 self.m249.stats.damage = 60
 self.m249.stats.reload = 9
+self.m249.stats.recoil = 6
 self.m249.stats.concealment = 0
 self.m249.AMMO_MAX = total_ammo_tables.lmg_high
 self.m249.AMMO_PICKUP = pickup_tables.lmg
@@ -268,6 +269,7 @@ self.m249.kick = kick_tables.lmg
 -- KSP 58
 self.par.stats.damage = 60
 self.par.stats.reload = 9
+self.par.stats.recoil = 6
 self.par.stats.concealment = 0
 self.par.AMMO_MAX = total_ammo_tables.lmg_high
 self.par.AMMO_PICKUP = pickup_tables.lmg
@@ -275,7 +277,8 @@ self.par.kick = kick_tables.lmg
 
 -- Buzzsaw
 self.mg42.stats.damage = 60
-self.m249.stats.reload = 9
+self.mg42.stats.reload = 9
+self.mg42.stats.recoil = 6
 self.mg42.stats.concealment = 0
 self.mg42.AMMO_MAX = total_ammo_tables.lmg_low
 self.mg42.AMMO_PICKUP = pickup_tables.lmg
@@ -285,6 +288,7 @@ self.mg42.kick = kick_tables.lmg
 self.rpk.stats.spread = 10
 self.rpk.stats.damage = 80
 self.rpk.stats.reload = 9
+self.rpk.stats.recoil = 8
 self.rpk.stats.concealment = 1
 self.rpk.AMMO_MAX = total_ammo_tables.lmg_low
 self.rpk.AMMO_PICKUP = pickup_tables.lmg
@@ -294,6 +298,7 @@ self.rpk.kick = kick_tables.lmg_high
 self.hk21.stats.spread = 12
 self.hk21.stats.damage = 80
 self.hk21.stats.reload = 9
+self.hk21.stats.recoil = 10
 self.hk21.stats.concealment = 0
 self.hk21.AMMO_MAX = total_ammo_tables.lmg_low
 self.hk21.AMMO_PICKUP = pickup_tables.lmg

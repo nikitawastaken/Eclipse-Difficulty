@@ -38,17 +38,50 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Mastermind --
 
-	-- Uppers
-	self.skill_descs.tea_cookies.multipro4 = "60"
+	-- Bandage
+	self.values.temporary.passive_revive_damage_reduction[1] = {0.9, 5}
+	self.skill_descs.combat_medic.multibasic = "10%"
+	self.skill_descs.combat_medic.multibasic2 = "5"
+
+	-- Painkillers
+	self.values.temporary.revived_damage_resist[1] = {0.6, 5}
+	self.skill_descs.tea_time.multibasic = "40%"
+	self.skill_descs.tea_time.multibasic2 = "5"
+
+	-- Company Soul
+	self.skill_descs.fast_learner.multibasic = "8"
+	self.skill_descs.fast_learner.multipro = "50%"
+
+	-- Combat Medic
+	self.values.temporary.passive_revive_damage_reduction[2] = {0.5, 5}
+	self.values.player.revive_interaction_speed_multiplier = {2 / 3}
+	self.skill_descs.tea_cookies.multibasic = "40%"
+	self.skill_descs.tea_cookies.multibasic2 = "5"
+	self.skill_descs.tea_cookies.multipro = "33%"
+	self.skill_descs.tea_cookies.multipro2 = "25%"
+	self.skill_descs.tea_cookies.multipro3 = "10"
 
 	-- Inspire
 	self.morale_boost_speed_bonus = 1.3
 	self.morale_boost_reload_speed_bonus = 1.3
 	self.morale_boost_time = 6
-	self.values.player.revive_interaction_speed_multiplier = {1 / 3}
+	self.values.cooldown.long_dis_revive[1][2] = 1
+	self.values.player.ranged_revive = {
+		true
+	}
+	self.definitions.player_ranged_revive = {
+		name_id = "menu_player_ranged_revive",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "ranged_revive",
+			category = "player"
+		}
+	}
 	self.skill_descs.inspire.multibasic = "30%"
 	self.skill_descs.inspire.multibasic2 = "6"
-	self.skill_descs.inspire.multipro = "200%"
+	self.skill_descs.inspire.multipro = "9"
+	self.skill_descs.inspire.multipro2 = "5"
 
 	-- FFriendship
 	self.skill_descs.triathlete.multibasic = "4"
@@ -525,6 +558,22 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.trigger_happy.multipro = "37.5%"
 	self.skill_descs.trigger_happy.multipro2 = "6"
 	self.skill_descs.trigger_happy.multipro3 = "2"
+
+	-- Quick Fix
+	self.skill_descs.running_from_death.multipro = "10%"
+	self.skill_descs.running_from_death.multipro2 = "120"
+
+	-- Running from Death
+	self.skill_descs.up_you_go.multibasic = "100%"
+	self.skill_descs.up_you_go.multipro = "30%"
+	self.skill_descs.up_you_go.multipro2 = "10"
+
+	-- Uppers
+	self.values.first_aid_kit.quantity = {3, 6}
+	self.values.first_aid_kit.downs_restore_chance[1] = 1
+	self.skill_descs.feign_death.multibasic = "3"
+	self.skill_descs.feign_death.multipro = "3"
+	self.skill_descs.feign_death.multipro2 = "one"
 
 	-- Swan Song
 	self.values.temporary.berserker_damage_multiplier[2] = {1, 9}

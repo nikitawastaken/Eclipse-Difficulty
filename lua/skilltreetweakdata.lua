@@ -6,9 +6,39 @@ function SkillTreeTweakData:init(tweak_data)
 	-- MASTERMIND --
 
 
+	-- Bandage
+	self.skills.combat_medic[1].upgrades = {"player_revive_damage_reduction_level_1"}
+	self.skills.combat_medic.name_id = "menu_bandage"
+	self.skills.combat_medic.desc_id = "menu_bandage_desc"
+
+	-- Painkillers
+	self.skills.tea_time[1].upgrades = {"player_revive_damage_reduction_level_2"}
+	self.skills.tea_time[2].upgrades = {"player_revived_damage_resist_1"}
+	self.skills.tea_time.name_id = "menu_fast_learner_beta"
+	self.skills.tea_time.desc_id = "menu_field_surgery_desc"
+	self.skills.tea_time.icon_xy = {0, 10}
+
+	-- Company Soul
+	self.skills.fast_learner[1].upgrades = {"team_weapon_recoil_index_addend", "team_weapon_suppression_recoil_index_addend"}
+	self.skills.fast_learner[2].upgrades = {"team_stamina_multiplier"}
+	self.skills.fast_learner.name_id = "menu_company_soul"
+	self.skills.fast_learner.desc_id = "menu_company_soul_desc"
+	self.skills.fast_learner.icon_xy = {5, 2}
+
+	-- Combat Doctor
+	self.skills.tea_cookies[1].upgrades = {"temporary_revive_damage_reduction_1", "player_revive_damage_reduction_1"}
+	self.skills.tea_cookies[2].upgrades = {"player_revive_interaction_speed_multiplier", "temporary_combat_medic_damage_multiplier1"}
+	self.skills.tea_cookies.name_id = "menu_medic_2x_beta"
+	self.skills.tea_cookies.desc_id = "menu_combat_doctor_desc"
+	self.skills.tea_cookies.icon_xy = {4, 9}
+
+	-- Keepers
+	self.skills.medic_2x.name_id = "menu_keepers"
+
 	-- Inspire
 	self.skills.inspire[1].upgrades = {"player_morale_boost"}
-	self.skills.inspire[2].upgrades = {"player_revive_interaction_speed_multiplier"}
+	self.skills.inspire[2].upgrades = {}
+	self.skills.inspire.icon_xy = {11, 5}
 
 	-- Forced Friendship
 	self.skills.triathlete[1].upgrades = {"cable_tie_quantity"}
@@ -249,6 +279,28 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Tough Guy
 	self.skills.nine_lives[1].upgrades = {"player_bleed_out_health_multiplier"}
 	self.skills.nine_lives[2].upgrades = {"player_primary_weapon_when_downed"}
+	self.skills.nine_lives.icon_xy = {1, 2}
+
+	-- Quick Fix
+	self.skills.running_from_death[1].upgrades = {"first_aid_kit_deploy_time_multiplier"}
+	self.skills.running_from_death[2].upgrades = {"first_aid_kit_damage_reduction_upgrade"}
+	self.skills.running_from_death.icon_xy = {1, 11}
+	self.skills.running_from_death.name_id = "menu_tea_time_beta"
+	self.skills.running_from_death.desc_id = "menu_tea_time_beta_desc"
+
+	-- Running from Death
+	self.skills.up_you_go[1].upgrades = {"player_temp_swap_weapon_faster_1", "player_temp_reload_weapon_faster_1"}
+	self.skills.up_you_go[2].upgrades = {"player_temp_increased_movement_speed_1"}
+	self.skills.up_you_go.name_id = "menu_running_from_death_beta"
+	self.skills.up_you_go.desc_id = "menu_running_from_death_beta_desc"
+	self.skills.up_you_go.icon_xy = {11, 3}
+
+	-- Uppers
+	self.skills.feign_death[1].upgrades = {"first_aid_kit_quantity_increase_1"}
+	self.skills.feign_death[2].upgrades = {"first_aid_kit_quantity_increase_2", "first_aid_kit_downs_restore_chance"}
+	self.skills.feign_death.icon_xy = {2, 11}
+	self.skills.feign_death.name_id = "menu_tea_cookies_beta"
+	self.skills.feign_death.desc_id = "menu_tea_cookies_beta_desc"
 
 	-- Swan Song
 	table.delete(self.skills.perseverance[2].upgrades, "player_berserker_no_ammo_cost")
@@ -285,7 +337,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Swap Inner Pockets and Deft Hands
 	self.trees[11].tiers[2][2] = "optic_illusions"
 	self.trees[12].tiers[2][1] = "thick_skin"
-
+	-- Swap Uppers and Swan Song
+	self.trees[14].tiers[3][1] = "feign_death"
+	self.trees[14].tiers[3][2] = "perseverance"
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
 	table.insert(self.specializations[21][7].upgrades, "player_passive_health_multiplier_2")

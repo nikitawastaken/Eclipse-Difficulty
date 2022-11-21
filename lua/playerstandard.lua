@@ -10,6 +10,7 @@ function PlayerStandard:init(unit)
     end
 end
 
+
 -- No more sixth sense
 Hooks:OverrideFunction(PlayerStandard, "_update_omniscience",
 function(self, ...)
@@ -35,6 +36,7 @@ function(self, t, dt)
     self:_upd_stance_switch_delay(t, dt)
 	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload") or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
 end)
+
 
 -- Melee while running
 -- Code from melee overhaul
