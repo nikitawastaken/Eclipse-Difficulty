@@ -96,10 +96,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.cable_guy.multipro2 = "3"
 
 	-- PiC
-	self.values.player.passive_convert_enemies_health_multiplier = {0.54, 0.02}
 	self.values.player.minion_master_health_multiplier = {1.1}
 	self.skill_descs.control_freak.multipro3 = "10%"
-	self.skill_descs.control_freak.multipro4 = "53%"
 
 	-- Hostage Situation
 	self.values.team.hostage_situation = {15}

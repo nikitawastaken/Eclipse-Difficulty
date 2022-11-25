@@ -7,6 +7,38 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.suppression = {panic_chance_mul = 0.15, duration = {1.5, 2}, react_point = {2, 5},brown_point = {5, 6}}
 	self.city_swat.weapon = self.presets.weapon.expert
 
+	-- surrender presets
+	local surr = {}
+	surr.weak = {
+		base_chance = 0.4,
+		significant_chance = 0.2,
+		violence_timeout = 2,
+		reasons = {health = {[1] = 0, [0.35] = 0.85}, weapon_down = 0.3, pants_down = 0.8},
+		factors = {isolated = 0.3, flanked = 0.15, unaware_of_aggressor = 0.2, aggressor_dis = {[1000] = 0, [300] = 0.3}}
+	}
+	surr.average = {
+		base_chance = 0.2,
+		significant_chance = 0.1,
+		violence_timeout = 2,
+		reasons = {health = {[1] = 0, [0.15] = 0.8}, weapon_down = 0.3, pants_down = 0.8},
+		factors = {isolated = 0.3, flanked = 0.15, unaware_of_aggressor = 0.2, aggressor_dis = {[1000] = 0, [300] = 0.1}}
+	}
+	surr.hard = {
+		base_chance = 0.1,
+		significant_chance = 0.1,
+		violence_timeout = 2,
+		reasons = {health = {[1] = 0, [0.05] = 0.75}, weapon_down = 0.2, pants_down = 0.6},
+		factors = {isolated = 0.3, flanked = 0.05, unaware_of_aggressor = 0.1}
+	}
+	self.security.surrender = surr.weak
+	self.cop_scared.surrender = surr.weak
+	self.cop.surrender = surr.weak
+	self.fbi.surrender = surr.weak
+	self.swat.surrender = surr.weak
+	self.fbi_swat.surrender = surr.average
+	self.fbi_heavy_swat.surrender = surr.average
+	self.city_swat.surrender = surr.hard
+
 	-- Specials
 	self.sniper.suppression = nil
 	self.sniper.misses_first_player_shot = true
@@ -838,8 +870,8 @@ function CharacterTweakData:_set_overkill_290()
 	-- 55 damage M4
 	self.fbi_swat.weapon.is_rifle = {
 		aim_delay = {
-			0.25,
-			0.25
+			0.2,
+			0.2
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -994,8 +1026,8 @@ function CharacterTweakData:_set_overkill_290()
 	-- 175 damage point blank, falls off down to 42 at max range
 	self.fbi_swat.weapon.is_shotgun_pump = {
 		aim_delay = {
-			0.25,
-			0.25
+			0.2,
+			0.2
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -1109,8 +1141,8 @@ function CharacterTweakData:_set_overkill_290()
 	-- 85 Damage
 	self.city_swat.weapon.is_rifle = {
 		aim_delay = {
-			0.15,
-			0.15
+			0.1,
+			0.1
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -1264,8 +1296,8 @@ function CharacterTweakData:_set_overkill_290()
 	-- 70 damage
 	self.city_swat.weapon.is_smg = {
 		aim_delay = {
-			0.15,
-			0.15
+			0.1,
+			0.1
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -1419,8 +1451,8 @@ function CharacterTweakData:_set_overkill_290()
 	-- 175 damage point blank, falls off down to 50 at max range
 	self.city_swat.weapon.is_shotgun_pump = {
 		aim_delay = {
-			0.15,
-			0.15
+			0.1,
+			0.1
 		},
 		focus_delay = 0.2,
 		focus_dis = 200,
@@ -1531,11 +1563,11 @@ function CharacterTweakData:_set_overkill_290()
 
 	-- Cloaker
 	self.spooc.weapon.is_pistol = self.presets.weapon.deathwish.is_pistol
-	self.spooc.weapon.is_pistol.aim_delay = {0.1, 0.1}
+	self.spooc.weapon.is_pistol.aim_delay = {0.075, 0.075}
 
 	-- Sniper preset
 	-- Fast rate of fire but low damage, always missing first shot but pin-point accuracy after that
-	self.sniper.weapon.is_rifle.aim_delay = {0.3, 0.5}
+	self.sniper.weapon.is_rifle.aim_delay = {0.15, 0.225}
 	self.sniper.weapon.is_rifle.FALLOFF = {
 		{
 			r = 700,
@@ -1578,8 +1610,8 @@ function CharacterTweakData:_set_overkill_290()
 	-- Saigadozer preset
 	-- 75 damage at point blank, drops to 30 at max range
 	self.tank.weapon.is_shotgun_mag.aim_delay = {
-		0.2,
-		0.2
+		0.15,
+		0.15
 	}
 	self.tank.weapon.is_shotgun_mag.range = {
 		optimal = 650,
@@ -1700,8 +1732,8 @@ function CharacterTweakData:_set_overkill_290()
 	-- Greendozer preset
 	-- halved damage, higher rof
 	self.tank.weapon.is_shotgun_pump.aim_delay = {
-		0.2,
-		0.2
+		0.15,
+		0.15
 	}
 	self.tank.weapon.is_shotgun_pump.range = {
 		optimal = 500,
@@ -1916,7 +1948,7 @@ function CharacterTweakData:_set_overkill_290()
 
 	-- Shield preset
 	-- 45 damage
-	self.shield.weapon.is_smg.aim_delay = {0.2, 0.2}
+	self.shield.weapon.is_smg.aim_delay = {0.15, 0.15}
 	self.shield.weapon.is_smg.focus_delay = 0.2
 	self.shield.weapon.is_smg.focus_dis = 200
 	self.shield.weapon.is_smg.range = {
@@ -2004,7 +2036,7 @@ function CharacterTweakData:_set_overkill_290()
 	}
 
 	-- Pistol Shield preset
-	self.shield.weapon.is_pistol.aim_delay = {0.2, 0.2}
+	self.shield.weapon.is_pistol.aim_delay = {0.15, 0.15}
 	self.shield.weapon.is_pistol.focus_delay = 0.2
 	self.shield.weapon.is_pistol.range = {
 		optimal = 900,
@@ -2078,7 +2110,7 @@ function CharacterTweakData:_set_overkill_290()
 	self.taser.weapon.is_rifle = deep_clone(self.presets.weapon.deathwish.is_rifle)
 	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 30
 	self.taser.weapon.is_rifle.tase_distance = 1500
-	self.taser.weapon.is_rifle.aim_delay_tase = {0.2, 0.2}
+	self.taser.weapon.is_rifle.aim_delay_tase = {0.15, 0.15}
 
 	-- Bosses
 	self.chavez_boss.weapon.akimbo_pistol.FALLOFF = {
