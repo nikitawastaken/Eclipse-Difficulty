@@ -1152,6 +1152,10 @@ self.slap.stats.damage = 66
 self.slap.AMMO_MAX = 7
 self.slap.AMMO_PICKUP = {0.05, 0.05}
 
+-- Underbarrel Grenade Launchers
+self.contraband_m203.AMMO_PICKUP = {0.05, 0.05}
+self.groza_underbarrel.AMMO_PICKUP = {0.05, 0.05}
+
 
 -- Specials
 
