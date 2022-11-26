@@ -680,8 +680,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[5][9].multiperk = "25%"
 
 	-- Armorer
-	self.values.temporary.armor_break_invulnerable = {{2, 24}}
-	self.specialization_descs[3][7].multiperk3 = "24"
+	self.values.temporary.armor_break_invulnerable = {{2, 30}}
+	self.specialization_descs[3][7].multiperk3 = "30"
 	self.specialization_descs[3][1].multiperk = "5%"
 	self.specialization_descs[3][3].multiperk = "5%"
 	self.specialization_descs[3][5].multiperk = "5%"
