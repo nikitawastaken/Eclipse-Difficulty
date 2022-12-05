@@ -51,9 +51,7 @@
 				<post :hook_id="guitweakdata"/>
 				<post :hook_id="groupaitweakdata"/>
 				<post :hook_id="playertweakdata"/>
-				<post :hook_id="skirmishtweakdata"/>
 				<post :hook_id="weapontweakdata"/>
-				<post :hook_id="playertweakdata"/>
 				<post :hook_id="upgradestweakdata"/>
 				<post :hook_id="enveffecttweakdata"/>
 				<post :hook_id="skilltreetweakdata"/>

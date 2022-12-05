@@ -226,7 +226,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- Silenced Barrel (nagant)
     self.parts.wpn_fps_snp_mosin_b_sniper.stats.damage = -3
     -- Suppressed Barrel (thanatos)
-    self.parts.wpn_fps_snp_m95_barrel_suppressed.stats.damage = -20
+    self.parts.wpn_fps_snp_m95_barrel_suppressed.stats.damage = -10
     -- Roctec
     self.parts.wpn_fps_upg_ns_pis_medium_gem.stats.damage = -2
     -- Champion's

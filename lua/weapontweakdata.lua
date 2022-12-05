@@ -229,11 +229,11 @@ self.model70.AMMO_PICKUP = pickup_tables.sniper_low
 self.model70.kick = kick_tables.sniper_mid
 
 -- Thanatos
-self.m95.stats.damage = 200
-self.m95.stats_modifiers = {damage = 25}
-self.m95.AMMO_PICKUP = {0.10, 0.65}
+self.m95.stats.damage = 125
+self.m95.stats_modifiers = {damage = 8}
+self.m95.AMMO_PICKUP = {0.55, 0.65}
 self.m95.AMMO_MAX = total_ammo_tables.secondary_sniper
-self.m95.kick.standing = {5, 6, -1, 1}
+self.m95.kick.standing = {4, 5, -1, 1}
 self.m95.kick.crouching = self.m95.kick.standing
 self.m95.kick.steelsight = self.m95.kick.standing
 
