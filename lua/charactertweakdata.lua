@@ -13,21 +13,21 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		base_chance = 0.4,
 		significant_chance = 0.2,
 		violence_timeout = 2,
-		reasons = {health = {[1] = 0, [0.35] = 0.85}, weapon_down = 0.3, pants_down = 0.8},
+		reasons = {health = {[1] = 0, [0.4] = 1}, weapon_down = 0.3, pants_down = 0.8},
 		factors = {isolated = 0.3, flanked = 0.15, unaware_of_aggressor = 0.2, aggressor_dis = {[1000] = 0, [300] = 0.3}}
 	}
 	surr.average = {
 		base_chance = 0.2,
 		significant_chance = 0.1,
 		violence_timeout = 2,
-		reasons = {health = {[1] = 0, [0.15] = 0.8}, weapon_down = 0.3, pants_down = 0.8},
+		reasons = {health = {[1] = 0, [0.2] = 1}, weapon_down = 0.3, pants_down = 0.8},
 		factors = {isolated = 0.3, flanked = 0.15, unaware_of_aggressor = 0.2, aggressor_dis = {[1000] = 0, [300] = 0.1}}
 	}
 	surr.hard = {
 		base_chance = 0.1,
 		significant_chance = 0.1,
 		violence_timeout = 2,
-		reasons = {health = {[1] = 0, [0.05] = 0.75}, weapon_down = 0.2, pants_down = 0.6},
+		reasons = {health = {[1] = 0, [0.1] = 1}, weapon_down = 0.2, pants_down = 0.6},
 		factors = {isolated = 0.3, flanked = 0.05, unaware_of_aggressor = 0.1}
 	}
 	self.security.surrender = surr.weak

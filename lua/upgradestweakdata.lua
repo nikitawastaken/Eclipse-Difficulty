@@ -309,14 +309,14 @@ function UpgradesTweakData:init(tweak_data)
 	-- Fully Loaded
 	self.values.player.body_armor.skill_ammo_mul = {
 		1.04,
-		1.075,
-		1.11,
-		1.145,
-		1.18,
-		1.215,
-		1.24
+		1.05,
+		1.06,
+		1.07,
+		1.08,
+		1.1,
+		1.12
 	}
-	self.skill_descs.ammo_reservoir.multibasic = "24%"
+	self.skill_descs.ammo_reservoir.multibasic = "12%"
 	self.skill_descs.ammo_reservoir.multipro = "25%"
 
 	-- Technician --
