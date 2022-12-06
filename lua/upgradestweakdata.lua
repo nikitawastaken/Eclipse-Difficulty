@@ -567,11 +567,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.up_you_go.multipro2 = "10"
 
 	-- Uppers
-	self.values.first_aid_kit.quantity = {3, 6}
-	self.values.first_aid_kit.downs_restore_chance[1] = 1
+	self.values.first_aid_kit.quantity = {3, 7}
+	self.values.first_aid_kit.first_aid_kit_auto_recovery[1] = 300
 	self.skill_descs.feign_death.multibasic = "3"
-	self.skill_descs.feign_death.multipro = "3"
-	self.skill_descs.feign_death.multipro2 = "one"
+	self.skill_descs.feign_death.multipro = "4"
+	self.skill_descs.feign_death.multipro2 = "3"
+	self.skill_descs.feign_death.multipro3 = "90"
 
 	-- Swan Song
 	self.values.temporary.berserker_damage_multiplier[2] = {1, 9}

@@ -1,5 +1,5 @@
 -- uppers cooldown
-PlayerDamage._UPPERS_COOLDOWN = 60
+PlayerDamage._UPPERS_COOLDOWN = 90
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)

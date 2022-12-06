@@ -99,7 +99,7 @@
 	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor every hit with a pistol you gain a ##$multibasic## damage boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYou now gain ##$multipro## damage boost for every hit and the damage boost lasts ##$multipro2## seconds.\nStacks up to ##$multipro3## times.\n\nNote: Does not affect full auto Pistols.",
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
 	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic2## increase to your bleedout health.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
-	"menu_tea_cookies_beta_desc": "BASIC ##$basic##\nYou can now carry ##$multibasic## more First Aid Kits.\n\nACE: ##$pro##\nYou can now additionaly carry ##$multipro## more First Aid Kits.\n\nUsing a First Aid Kit now restores ##$multipro2## down.",
+	"menu_tea_cookies_beta_desc": "BASIC ##$basic##\nYou can now carry ##$multibasic## more First Aid Kits.\n\nACE: ##$pro##\nYou can now additionaly carry ##$multipro## more First Aid Kits.\n\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro2## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro3## seconds.",
 	
 	
 	

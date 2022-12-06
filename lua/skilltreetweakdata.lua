@@ -297,7 +297,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Uppers
 	self.skills.feign_death[1].upgrades = {"first_aid_kit_quantity_increase_1"}
-	self.skills.feign_death[2].upgrades = {"first_aid_kit_quantity_increase_2", "first_aid_kit_downs_restore_chance"}
+	self.skills.feign_death[2].upgrades = {"first_aid_kit_quantity_increase_2", "first_aid_kit_auto_recovery_1"}
 	self.skills.feign_death.icon_xy = {2, 11}
 	self.skills.feign_death.name_id = "menu_tea_cookies_beta"
 	self.skills.feign_death.desc_id = "menu_tea_cookies_beta_desc"
