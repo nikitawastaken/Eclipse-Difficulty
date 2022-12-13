@@ -433,9 +433,7 @@ self.m590.stats.concealment = 8
 self.m590.AMMO_MAX = total_ammo_tables.shot_mid
 self.m590.AMMO_PICKUP = pickup_tables.shot_mid
 self.m590.fire_mode_data.fire_rate = 0.6
-self.m590.kick.standing = {3, 4, -0.5, 0.5}
-self.m590.kick.crouching = self.m590.kick.standing
-self.m590.kick.steelsight = self.m590.kick.standing
+self.r870.kick = kick_tables.shot_low
 self.m590.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Breaker
@@ -596,9 +594,7 @@ self.new_m4.kick = kick_tables.ar_mid
 -- AK5
 self.ak5.AMMO_MAX = total_ammo_tables.ar_mid
 self.ak5.AMMO_PICKUP = pickup_tables.ar_mid
-self.ak5.kick.standing = {1.3, 1.5, -0.75, 0.75}
-self.ak5.kick.crouching = self.ak5.kick.standing
-self.ak5.kick.steelsight = self.ak5.kick.standing
+self.ak5.kick = kick_tables.ar_mid
 
 -- Union
 self.corgi.stats.damage = 62
@@ -671,7 +667,7 @@ self.akm_gold.auto = {fire_rate = 0.1}
 self.akm_gold.stats.concealment = 10
 self.akm_gold.AMMO_MAX = total_ammo_tables.ar_very_low
 self.akm_gold.AMMO_PICKUP = pickup_tables.ar_very_low
-self.akm_gold = kick_tables.ar_very_high
+self.akm_gold.kick = kick_tables.ar_very_high
 
 -- AK17
 self.flint.CLIP_AMMO_MAX = 30
