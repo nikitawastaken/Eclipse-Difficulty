@@ -52,7 +52,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
 	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.1
-	self.tank.critical_hits.damage_mul = 2 -- keep old crit behavior for crit on dozer
 
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
@@ -844,27 +843,26 @@ end
 function CharacterTweakData:_set_overkill_290()
 	self:_multiply_all_hp(3, 1.25)
 
-	-- honestly it's easier to just do this than account for all the difficulty health and hs damage muls
 	self.swat.HEALTH_INIT = 30
-	self.swat.headshot_dmg_mul = 1.8 -- 134 head health
-	self.fbi_swat.HEALTH_INIT = 34
-	self.fbi_swat.headshot_dmg_mul = 1.8 -- 152 head health
-	self.city_swat.HEALTH_INIT = 40
-	self.city_swat.headshot_dmg_mul = 1.8 -- 178 head health
-	self.fbi_heavy_swat.HEALTH_INIT = 56
-	self.fbi_heavy_swat.headshot_dmg_mul = 1.8 -- 249 head health
+	self.swat.headshot_dmg_mul = 2.4 -- 125 head health
+	self.fbi_swat.HEALTH_INIT = 36
+	self.fbi_swat.headshot_dmg_mul = 2.25 -- 160 head health
+	self.fbi_heavy_swat.HEALTH_INIT = 72
+	self.fbi_heavy_swat.headshot_dmg_mul = 2.4 -- 300 head health
+	self.city_swat.HEALTH_INIT = 48
+	self.city_swat.headshot_dmg_mul = 2.5 -- 192 head health
 
-	self.shield.HEALTH_INIT = 42
-	self.shield.headshot_dmg_mul = 1.8 -- 187 head health
 	self.sniper.HEALTH_INIT = 16
-	self.taser.HEALTH_INIT = 84
-	self.taser.headshot_dmg_mul = 1.4 -- 480 head health
+	self.shield.HEALTH_INIT = 45
+	self.shield.headshot_dmg_mul = 2.25 -- 200 head health
+	self.taser.HEALTH_INIT = 96
+	self.taser.headshot_dmg_mul = 1.875 -- 512 head health
 	self.spooc.HEALTH_INIT = 102
-	self.spooc.headshot_dmg_mul = 3.75 -- 218 head health
+	self.spooc.headshot_dmg_mul = 4 -- 255 head health
 	self.medic.HEALTH_INIT = 72
-	self.medic.headshot_dmg_mul = 1.6 -- 360 head health
+	self.medic.headshot_dmg_mul = 2 -- 360 head health
 	self.tank.HEALTH_INIT = 2160
-	self.tank.headshot_dmg_mul = 35
+	self.tank.headshot_dmg_mul = 45 -- 480 head health
 
 	-- FBI / Medic Rifle preset
 	-- 55 damage M4

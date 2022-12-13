@@ -22,35 +22,41 @@ tweak_data.projectiles.rocket_ray_frag.player_damage = 16
 tweak_data.projectiles.launcher_rocket.damage = 256
 tweak_data.projectiles.launcher_rocket.player_damage = 24
 -- piglet
-tweak_data.projectiles.launcher_frag_m32.damage = 42
+tweak_data.projectiles.launcher_frag_m32.damage = 50
 tweak_data.projectiles.launcher_frag_m32.player_damage = 16
 -- china
 tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = {explosion = false, fire = false} -- why is china puff allowed to crit lmao
-tweak_data.projectiles.launcher_frag_china.damage = 40
+tweak_data.projectiles.launcher_frag_china.damage = 50
 tweak_data.projectiles.launcher_frag_china.player_damage = 16
 -- arbiter
-tweak_data.projectiles.launcher_frag_arbiter.damage = 30
+tweak_data.projectiles.launcher_frag_arbiter.damage = 40
 tweak_data.projectiles.launcher_frag_china.player_damage = 16
--- viper
-tweak_data.projectiles.launcher_frag_ms3gl.damage = 26
+-- basilisk
+tweak_data.projectiles.launcher_frag_ms3gl.damage = 36
 tweak_data.projectiles.launcher_frag_ms3gl.player_damage = 16
 -- gl40
-tweak_data.projectiles.launcher_frag.damage = 66
+tweak_data.projectiles.launcher_frag.damage = 80
 tweak_data.projectiles.launcher_frag.player_damage = 16
 -- compact 40
-tweak_data.projectiles.launcher_frag_slap.damage = 66
+tweak_data.projectiles.launcher_frag_slap.damage = 80
 tweak_data.projectiles.launcher_frag_slap.player_damage = 16
 -- underbarrel lf
-tweak_data.projectiles.launcher_m203.damage = 48
+tweak_data.projectiles.launcher_m203.damage = 60
 tweak_data.projectiles.launcher_m203.player_damage = 16
+-- underbarrel groza
+tweak_data.projectiles.underbarrel_m203_groza.damage = 60
+tweak_data.projectiles.underbarrel_m203_groza.player_damage = 16
 
 -- electric
-tweak_data.projectiles.launcher_electric.damage = 14
-tweak_data.projectiles.launcher_electric_m32.damage = 14
-tweak_data.projectiles.launcher_electric_china.damage = 12
-tweak_data.projectiles.launcher_electric_slap.damage = 14
+tweak_data.projectiles.launcher_electric.damage = 10
+tweak_data.projectiles.launcher_electric_m32.damage = 10
+tweak_data.projectiles.launcher_electric_china.damage = 10
+tweak_data.projectiles.launcher_electric_slap.damage = 10
 tweak_data.projectiles.launcher_electric_arbiter.damage = 10
-tweak_data.projectiles.underbarrel_electric.damage = 14
+tweak_data.projectiles.underbarrel_electric.damage = 10
+tweak_data.projectiles.underbarrel_electric_groza.damage = 10
+tweak_data.projectiles.launcher_electric_ms3gl.damage = 10
+
 
 -- incendiary buff
 tweak_data.projectiles.fir_com.damage = 10
@@ -69,15 +75,11 @@ tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_tick_period = 
 tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_length = 10
 tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
 tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 10
+
 tweak_data.projectiles.launcher_poison.damage = 9
 tweak_data.projectiles.launcher_poison.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison.poison_gas_duration = 10
 tweak_data.projectiles.launcher_poison.poison_gas_dot_data = {hurt_animation_chance = 0.3, dot_damage = 4, dot_length = 10, dot_tick_period = 2}
-
-tweak_data.projectiles.launcher_poison_ms3gl_conversion = deep_clone(tweak_data.projectiles.launcher_poison)
-tweak_data.projectiles.launcher_poison_ms3gl_conversion.damage = 7
-tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_duration = 3
-tweak_data.projectiles.launcher_poison_ms3gl_conversion.poison_gas_range = 250
 tweak_data.projectiles.launcher_poison_gre_m79 = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_gre_m79.damage = 9
 tweak_data.projectiles.launcher_poison_gre_m79.poison_gas_range = 300

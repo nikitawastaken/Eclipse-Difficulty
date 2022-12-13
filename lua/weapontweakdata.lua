@@ -146,7 +146,7 @@ local kick_tables = {
 self.tti.AMMO_MAX = total_ammo_tables.sniper
 self.tti.CLIP_AMMO_MAX = 15
 self.tti.stats.concealment = 13
-self.tti.stats.damage = 120
+self.tti.stats.damage = 145
 self.tti.stats_modifiers = {damage = 2}
 self.tti.AMMO_PICKUP = pickup_tables.sniper_high
 self.tti.kick = kick_tables.sniper_auto
@@ -154,7 +154,7 @@ self.tti.categories = {"snp", "ng"}
 
 -- Grom
 self.siltstone.AMMO_MAX = total_ammo_tables.sniper
-self.siltstone.stats.damage = 120
+self.siltstone.stats.damage = 145
 self.siltstone.stats_modifiers = {damage = 2}
 self.siltstone.stats.concealment = 20
 self.siltstone.AMMO_PICKUP = pickup_tables.sniper_high
@@ -164,7 +164,7 @@ self.siltstone.categories = {"snp", "ng"}
 -- Kang Arms
 self.qbu88.AMMO_MAX = total_ammo_tables.sniper
 self.qbu88.stats.recoil = 7
-self.qbu88.stats.damage = 120
+self.qbu88.stats.damage = 145
 self.qbu88.stats_modifiers = {damage = 2}
 self.qbu88.AMMO_PICKUP = pickup_tables.sniper_high
 self.qbu88.kick = kick_tables.sniper_auto
@@ -174,29 +174,29 @@ self.qbu88.categories = {"snp", "ng"}
 self.wa2000.AMMO_MAX = total_ammo_tables.sniper
 self.wa2000.CLIP_AMMO_MAX = 10
 self.wa2000.stats.reload = 13
-self.wa2000.stats.damage = 120
+self.wa2000.stats.damage = 145
 self.wa2000.stats_modifiers = {damage = 2}
 self.wa2000.AMMO_PICKUP = pickup_tables.sniper_high
 self.wa2000.kick = kick_tables.sniper_auto
 self.wa2000.categories = {"snp", "ng"}
 
 -- Repeater
-self.winchester1874.stats.damage = 147
+self.winchester1874.stats.damage = 155
 self.winchester1874.stats_modifiers = {damage = 2}
-self.winchester1874.fire_mode_data.fire_rate = 60 / 85
+self.winchester1874.fire_mode_data.fire_rate = 60 / 75
 self.winchester1874.AMMO_PICKUP = pickup_tables.sniper_mid
 self.winchester1874.AMMO_MAX = total_ammo_tables.sniper
 self.winchester1874.kick = kick_tables.sniper_low
 
 -- Rattlesnake
-self.msr.stats.damage = 147
+self.msr.stats.damage = 155
 self.msr.stats_modifiers = {damage = 2}
 self.msr.AMMO_PICKUP = pickup_tables.sniper_mid
 self.msr.AMMO_MAX = total_ammo_tables.sniper
 self.msr.kick = kick_tables.sniper_low
 
 -- R700
-self.r700.stats.damage = 147
+self.r700.stats.damage = 155
 self.r700.stats_modifiers = {damage = 2}
 self.r700.AMMO_PICKUP = pickup_tables.sniper_mid
 self.r700.fire_mode_data.fire_rate = 60 / 60
@@ -241,14 +241,14 @@ self.m95.kick.steelsight = self.m95.kick.standing
 self.sbl.use_data.selection_index = SELECTION.SECONDARY
 self.sbl.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.sbl.CLIP_AMMO_MAX = 10
-self.sbl.stats.damage = 120
+self.sbl.stats.damage = 145
 self.sbl.AMMO_PICKUP = pickup_tables.secondary_sniper
 self.sbl.fire_mode_data.fire_rate = 60 / 150
 self.sbl.kick = kick_tables.sniper_auto
 self.sbl.categories = {"snp", "ng"}
 
 -- Scout
-self.scout.stats.damage = 147
+self.scout.stats.damage = 155
 self.scout.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.scout.AMMO_PICKUP = pickup_tables.secondary_sniper
 self.scout.kick = kick_tables.sniper_low
@@ -714,13 +714,13 @@ self.shak12.kick = kick_tables.ks12
 -- Little Friend
 self.contraband.AMMO_MAX = total_ammo_tables.dmr_low
 self.contraband.AMMO_PICKUP = pickup_tables.dmr_low
-self.contraband.stats.damage = 170
+self.contraband.stats.damage = 182
 self.contraband.kick = kick_tables.dmr_high
 
 -- M308
 self.new_m14.AMMO_MAX = total_ammo_tables.dmr
 self.new_m14.AMMO_PICKUP = pickup_tables.dmr
-self.new_m14.stats.damage = 170
+self.new_m14.stats.damage = 182
 self.new_m14.stats.concealment = 5
 self.new_m14.kick = kick_tables.dmr_high
 
@@ -728,14 +728,14 @@ self.new_m14.kick = kick_tables.dmr_high
 self.sub2000.CLIP_AMMO_MAX = 20
 self.sub2000.AMMO_MAX = total_ammo_tables.dmr
 self.sub2000.AMMO_PICKUP = pickup_tables.dmr
-self.sub2000.stats.damage = 170
+self.sub2000.stats.damage = 182
 self.sub2000.stats.concealment = 18
 self.sub2000.kick = kick_tables.dmr_low
 
 -- Galant
 self.ching.AMMO_MAX = total_ammo_tables.dmr
 self.ching.AMMO_PICKUP = pickup_tables.dmr
-self.ching.stats.damage = 170
+self.ching.stats.damage = 182
 self.ching.stats.concealment = 10
 self.ching.kick = kick_tables.dmr_low
 
@@ -1115,7 +1115,7 @@ self.rpg7.stats.reload = 13
 self.rpg7.AMMO_PICKUP = {0.033, 0.033}
 
 -- Piglet
-self.m32.stats.damage = 42
+self.m32.stats.damage = 50
 self.m32.AMMO_PICKUP = {0.056, 0.056}
 self.m32.AMMO_MAX = 18
 self.m32.stats.reload = 15
@@ -1123,29 +1123,29 @@ self.m32.fire_mode_data.fire_rate = 60 / 120
 
 -- China Puff
 self.china.use_data.selection_index = SELECTION.PRIMARY
-self.china.stats.damage = 40
+self.china.stats.damage = 50
 self.china.stats.concealment = 16
 self.china.AMMO_MAX = 9
 self.china.AMMO_PICKUP = {0.05, 0.05}
 
 -- Arbiter
 self.arbiter.use_data.selection_index = SELECTION.PRIMARY
-self.arbiter.stats.damage = 30
+self.arbiter.stats.damage = 40
 self.arbiter.AMMO_PICKUP = {0.056, 0.056}
 
 -- Basilisk
 self.ms3gl.use_data.selection_index = SELECTION.PRIMARY
-self.ms3gl.stats.damage = 26
+self.ms3gl.stats.damage = 36
 self.ms3gl.AMMO_PICKUP = {0.067, 0.067}
 
 -- GL40
 self.gre_m79.use_data.selection_index = SELECTION.SECONDARY
-self.gre_m79.stats.damage = 66
+self.gre_m79.stats.damage = 80
 self.gre_m79.AMMO_MAX = 7
 self.gre_m79.AMMO_PICKUP = {0.05, 0.05}
 
 -- Compact 40
-self.slap.stats.damage = 66
+self.slap.stats.damage = 80
 self.slap.AMMO_MAX = 7
 self.slap.AMMO_PICKUP = {0.05, 0.05}
 

@@ -108,23 +108,23 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -7
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -6
     self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -8
-    self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 75
+    self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 87
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {ammo_pickup_max_mul = 0.55, ammo_pickup_min_mul = 0.6}
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -10
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -7
     self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -11
-    self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 95
+    self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 105
     -- car family
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {ammo_pickup_max_mul = 0.45, ammo_pickup_min_mul = 0.45}
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -13
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -7
     self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -11
-    self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 110
+    self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 117
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {ammo_pickup_max_mul = 0.65, ammo_pickup_min_mul = 0.7}
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -8
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -6
     self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -8
-    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 75
+    self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 87
     -- m308 b-stock
     self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
     -- gewehr
@@ -132,13 +132,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = -8
     self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
     self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
-    self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 73
+    self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 85
     self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 2
     self.parts.wpn_fps_ass_g3_b_short.custom_stats = {ammo_pickup_max_mul = 1.44, ammo_pickup_min_mul = 1.5}
     -- broomstick
     self.parts.wpn_fps_pis_c96_b_long.custom_stats = {ammo_pickup_max_mul = 0.47, ammo_pickup_min_mul = 0.47}
     -- ks12
-    self.parts.wpn_fps_ass_shak12_body_vks.stats.damage = 50
+    self.parts.wpn_fps_ass_shak12_body_vks.stats.damage = 64
     self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -6
     self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
     self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = -10

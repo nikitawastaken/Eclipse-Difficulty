@@ -1064,9 +1064,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 		-- Spawnrate
 		if difficulty_index == 7 then
-			self.besiege.assault.spawnrate_balance_mul = {2.35, 1.7, 1.5, 1.4}
+			self.besiege.assault.spawnrate_balance_mul = {2.4, 1.8, 1.6, 1.5}
 		elseif difficulty_index == 8 then
-			self.besiege.assault.spawnrate_balance_mul = {2.1, 1.5, 1.35, 1.25}
+			self.besiege.assault.spawnrate_balance_mul = {2.2, 1.6, 1.45, 1.35}
 		end
 
 		-- RECON / REENFORCE --

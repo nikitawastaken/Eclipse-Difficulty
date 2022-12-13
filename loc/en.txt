@@ -56,6 +56,7 @@
 	"menu_eco_sentry_beta": "PhD in Engineering",
 	"menu_eco_sentry_beta_desc": "BASIC: ##$basic##\nYour sentry guns now have an upgraded motion sensor, allowing them to mark all enemies in a ##10m## radius and giving them a ##$multibasic## increase in accuracy.\n\nACE: ##$pro##\nYou can now toggle AP rounds on your sentry guns, lowering the rate of fire by ##$multipro##, but increasing damage by ##$multipro2## and allowing it to pierce through enemies and shields.",
 	"menu_combat_engineering_beta": "Combat Engineer",
+	"st_menu_technician_auto": "Heavy Weapons Guy",
 	"menu_fast_fire_beta": "Mag Plus",
 	"menu_fast_fire_beta_desc": "BASIC: ##$basic##\nYour SMGs, LMGs and Assault Rifles gain ##$multibasic## more bullets in their magazine.\n\nACE: ##$pro##\nYour SMGs, LMGs and Assault Rifles gain ##$multipro## additional bullets in their magazine.\n\nNote: Does not affect the Aced \"Sleight of Hand\" skill.",
 	"menu_body_expertise_beta": "Heavy Gun Expert",
@@ -125,6 +126,7 @@
 	"menu_deck21_9_desc": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
 	"menu_deck22_1_desc": "Unlocks and equips the Leech Ampule.\n\nChanging to another perk deck will make the Leech Ampule unavailable again. The Leech Ampule replaces your current throwable, is equipped in your throwable slot and can be switched out if desired. While in game you can use throwable key to activate the Leech Ampule.\n\nActivating the Leech Ampule will ##fully## restore your health and disable your armor for the duration of the Leech Ampule.\n\nWhile the Leech Ampule is active your health is divided into segments of ##$multiperk2## and damage taken from enemies removes one segment.\n\nKilling ##2## enemies will block damage for ##$multiperk3## seconds.\nAnytime you take damage your teammates are healed for ##$multiperk4## health.\n\nThe Leech Ampule lasts ##$multiperk5## seconds with a ##$multiperk6## seconds cooldown.",
 	"menu_deck22_9_desc": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##.\n\nYour maximum health is increased by ##$multiperk2##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
+	"menu_deckall_2_desc": "Increases your headshot damage by ##25%##.\n\ncreepy's note: removed due to complicating headshot health calculations for ##literally no reason##.",
 	"menu_deckall_6_desc": "Unlocks an armor bag equipment for you to use. The armor bag can be used to change your armor during a heist.",
 	
 	

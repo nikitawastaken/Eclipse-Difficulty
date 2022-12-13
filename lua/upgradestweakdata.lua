@@ -409,7 +409,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fast_fire.multibasic = "5"
 	self.skill_descs.fast_fire.multipro = "10"
 
-	-- LMG Specialist
+	-- Heavy Gun Expert
 	self.values.player.no_movement_penalty = {true}
 	self.definitions.player_no_movement_penalty = {
 		name_id = "menu_player_no_movement_penalty",
@@ -420,8 +420,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player"
 		}
 	}
-	self.values.weapon.automatic_head_shot_add[1] = 0.6
-	self.skill_descs.body_expertise.multipro = "60%"
+	self.values.weapon.automatic_head_shot_add[1] = 0.5
+	self.skill_descs.body_expertise.multipro = "50%"
 
 	-- Ghost --
 
@@ -661,6 +661,10 @@ function UpgradesTweakData:init(tweak_data)
 	-- Perk Decks
 	-------------
 
+	-- fuck helmet popping and walk in closet
+	self.values.weapon.passive_headshot_damage_multiplier[1] = 1
+	self.values.player.pick_up_ammo_multiplier[1] = 1
+
 	-- Infiltrator / Socio healing
 	self.values.player.melee_kill_life_leech = {1}
 	self.specialization_descs[9][5].multiperk = "10"
@@ -723,7 +727,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[15][7].multiperk3 = "5%"
 
 	-- Gambler
-	self.values.player.pick_up_ammo_multiplier = {1, 1.15} -- players have no pickup boost by default
+	self.values.player.pick_up_ammo_multiplier[2] = 1.15
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 10 end
 	self.values.temporary.loose_ammo_give_team[1][2] = 5
 	self.values.player.increased_pickup_area[2] = 2.25
