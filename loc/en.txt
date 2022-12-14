@@ -76,7 +76,6 @@
 	"menu_silenced_damage": "Silencer Expert",
 	"menu_silenced_damage_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## concealment for each silenced weapon equipped. Reduce the concealment penalty of silencers by ##$multibasic2##.\n\nACE: ##$pro##\nYou deal ##$multipro## more damage and have a ##$multipro2## chance to pierce enemy armor with all silenced weapons.",
 	"menu_silence_expert_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## weapon stability with silenced weapons.\n\nACE: ##$pro##\nYou gain ##$multipro## weapon accuracy with silenced weapons and ##$multipro2## snap to zoom speed increase with silenced weapons.",
-	"menu_unseen_strike_beta_desc": "BASIC: ##$basic##\nIf you do not lose any armor or health for ##$multibasic## seconds, you gain a ##$multibasic2## critical hit chance for ##$multibasic3## seconds.\n\nACE: ##$pro##\nThe critical hit chance is increased to ##$multipro## and the duration is increased to ##$multipro2## seconds.",
 	"menu_cable_guy_beta_desc": "BASIC: ##$basic##\nThe power and range of your intimidation is increased by ##$multibasic2##.\n\nACE: ##$pro##\nYou and your crew gain ##$multipro## damage absorption for each hostage you have. This effect stacks with up to a maximum of ##$multipro2## hostages.",
 	"menu_triathlete_beta_desc": "BASIC: ##$basic##\nIncrease your supply of cable ties by ##$multibasic##.\n\nACE: ##$pro##\nYou can cable tie hostages ##$multipro## faster.",
 	"menu_spotter_teamwork_beta_desc": "BASIC: ##$basic##\nEnemies you mark take ##$multibasic## more damage.\n\nACE: ##$pro##\nEnemies you mark take an additional ##$multipro## damage when further away than ##$multipro2## meters.\n\nYou can now mark specials by aiming down at them with any weapon.",
@@ -90,7 +89,7 @@
 	"menu_ecm_booster_beta": "ECM Feedback",
 	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\nYou can now interact with ECM jammers to cause a feedback loop that stuns enemies.\n\nFeedback loop has a ##$multibasic## radius.\nObstructed line of sight ##halves## the radius.\n\nACE: ##$pro##\nECM feedback now recharges every ##$multipro## minutes.",
 	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last ##$multipro## seconds.\n\nYou gain access to all insider assets.",
-	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate under ##$multipro3## up to ##$multipro4##.\n\nNote: Critical hits deal ##base headshot## damage and don't apply to grenade / rocket launchers.",
+	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate under ##$multipro3## up to ##$multipro4##.\n\nNote: Critical hits deal ##double## damage and don't apply to grenade / rocket launchers.",
 	
 	
 	"menu_nine_lives_beta": "Tough Guy",
