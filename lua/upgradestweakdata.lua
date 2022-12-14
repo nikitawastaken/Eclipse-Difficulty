@@ -64,24 +64,12 @@ function UpgradesTweakData:init(tweak_data)
 	-- Inspire
 	self.morale_boost_speed_bonus = 1.3
 	self.morale_boost_reload_speed_bonus = 1.3
-	self.morale_boost_time = 6
-	self.values.cooldown.long_dis_revive[1][2] = 1
-	self.values.player.ranged_revive = {
-		true
-	}
-	self.definitions.player_ranged_revive = {
-		name_id = "menu_player_ranged_revive",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "ranged_revive",
-			category = "player"
-		}
-	}
-	self.skill_descs.inspire.multibasic = "30%"
-	self.skill_descs.inspire.multibasic2 = "6"
-	self.skill_descs.inspire.multipro = "9"
-	self.skill_descs.inspire.multipro2 = "5"
+	self.morale_boost_time = 7
+	self.values.cooldown.long_dis_revive[1][2] = 120
+	self.skill_descs.inspire.multibasic = "7m"
+	self.skill_descs.inspire.multibasic2 = "30%"
+	self.skill_descs.inspire.multibasic3 = "7"
+	self.skill_descs.inspire.multipro = "120"
 
 	-- FFriendship
 	self.skill_descs.triathlete.multibasic = "4"

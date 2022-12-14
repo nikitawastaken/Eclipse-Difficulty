@@ -68,6 +68,7 @@
 				<group :hook_id="beings/player/">
 					<post :hook_id="playerdamage"/>
 					<post :hook_id="huskplayerdamage"/>
+					<post :hook_id="playermovement"/>
 					<post :hook_id="states/playerstandard"/>
 					<post :hook_id="states/playertased"/>
 				</group>

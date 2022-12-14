@@ -37,7 +37,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Inspire
 	self.skills.inspire[1].upgrades = {"player_morale_boost"}
-	self.skills.inspire[2].upgrades = {}
+	self.skills.inspire[2].upgrades = {"cooldown_long_dis_revive"}
 	self.skills.inspire.icon_xy = {11, 5}
 
 	-- Forced Friendship
