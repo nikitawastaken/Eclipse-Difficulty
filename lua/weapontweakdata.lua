@@ -636,7 +636,6 @@ self.galil.stats.damage = 72
 self.galil.stats.concealment = 12
 self.galil.AMMO_MAX = total_ammo_tables.ar_low
 self.galil.AMMO_PICKUP = pickup_tables.ar_low
-self.galil.AMMO_MAX = 140
 self.galil.kick = kick_tables.ar_high
 
 -- Bootleg
