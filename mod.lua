@@ -91,7 +91,7 @@ if not StreamHeist then
 	-- Notify about required game restart
 	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeStreamlinedHeisting", function ()
 		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function (self)
-			if self._mod:GetName() == "Streamlined Heisting" then
+			if self._mod:GetName() == "Eclipse" then
 				QuickMenu:new("Information", "A game restart is required to fully " .. (self._mod:IsEnabled() and "enable" or "disable") .. " all parts of Eclipse!", {}, true)
 			end
 		end)

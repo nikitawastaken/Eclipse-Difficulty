@@ -204,8 +204,10 @@
 			<xml/>
 			<state name="std/hurt/sick/exit"/>
 			<to name="idle"/>
-		</search>
-		<target mode="replace"/>
+		</search>		
+		<target mode="attributes">
+			<attr name="redirect" value="std/stand/still/idle/look"/>
+		</target>
 	</tweak>
 
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
@@ -270,7 +272,9 @@
 			<state name="std/hurt/poison/exit"/>
 			<to name="idle"/>
 		</search>
-		<target mode="replace"/>
+		<target mode="attributes">
+			<attr name="redirect" value="std/stand/still/idle/look"/>
+		</target>
 	</tweak>
 
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
