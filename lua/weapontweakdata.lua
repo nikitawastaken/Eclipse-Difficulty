@@ -438,7 +438,7 @@ self.m590.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Breaker
 self.boot.rays = 8
-self.boot.stats.damage = 115
+self.boot.stats.damage = 135
 self.boot.stats_modifiers = {damage = 2}
 self.boot.AMMO_MAX = total_ammo_tables.shot_low
 self.boot.AMMO_PICKUP = pickup_tables.shot_low
@@ -448,7 +448,7 @@ self.boot.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Reinfeld 88 (Trench Gun)
 self.m1897.rays = 8
-self.m1897.stats.damage = 115
+self.m1897.stats.damage = 135
 self.m1897.stats_modifiers = {damage = 2}
 self.m1897.AMMO_MAX = total_ammo_tables.shot_low
 self.m1897.AMMO_PICKUP = pickup_tables.shot_low
@@ -485,7 +485,7 @@ self.coach.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 
 -- Judge
 self.judge.rays = 8
-self.judge.stats.damage = 115
+self.judge.stats.damage = 100
 self.judge.stats_modifiers = {damage = 2}
 self.judge.AMMO_MAX = total_ammo_tables.shot_very_low
 self.judge.AMMO_PICKUP = pickup_tables.shot_special
@@ -495,7 +495,7 @@ self.judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- GSPS
 self.m37.rays = 8
-self.m37.stats.damage = 115
+self.m37.stats.damage = 135
 self.m37.stats_modifiers = {damage = 2}
 self.m37.AMMO_MAX = total_ammo_tables.shot_low
 self.m37.AMMO_PICKUP = pickup_tables.shot_low
