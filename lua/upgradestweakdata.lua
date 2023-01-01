@@ -44,8 +44,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.combat_medic.multibasic2 = "5"
 
 	-- Painkillers
-	self.values.temporary.revived_damage_resist[1] = {0.6, 5}
+	self.values.temporary.passive_revive_damage_reduction[2] = {0.5, 5}
+	self.values.temporary.revived_damage_resist[1] = {0.5, 5}
 	self.skill_descs.tea_time.multibasic = "40%"
+	self.skill_descs.tea_time.multipro = "50%"
 	self.skill_descs.tea_time.multibasic2 = "5"
 
 	-- Company Soul
@@ -53,7 +55,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fast_learner.multipro = "50%"
 
 	-- Combat Medic
-	self.values.temporary.passive_revive_damage_reduction[2] = {0.5, 5}
+	self.values.player.revive_damage_reduction[1] = 0.6
+	self.values.temporary.revive_damage_reduction[1][1] = 0.6
 	self.values.player.revive_interaction_speed_multiplier = {2 / 3}
 	self.skill_descs.tea_cookies.multibasic = "40%"
 	self.skill_descs.tea_cookies.multibasic2 = "5"

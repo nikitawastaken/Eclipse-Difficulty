@@ -11,7 +11,7 @@
 	"menu_bandage": "Bandages",
 	"menu_bandage_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nReviving a crew member gives them ##$multipro## more health.",
 	"menu_field_surgery": "Field Surgery",
-	"menu_field_surgery_desc": "BASIC: ##$basic##\nCrew members you revive take additional ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou take ##$multibasic## less damage for ##$multibasic2## seconds after being revived.",
+	"menu_field_surgery_desc": "BASIC: ##$basic##\nCrew members you revive take additional ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou take ##$multipro## less damage for ##$multibasic2## seconds after being revived.",
 	"menu_company_soul": "Company Soul",
 	"menu_company_soul_desc": "BASIC: ##$basic##\nYou and your crew's weapon stability with all weapons is increased by ##$multibasic##.\n\nACE: ##$pro##\nYou and your crew's stamina is increased by ##$multipro##.",
 	"menu_combat_doctor_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## damage reduction for ##$multibasic2## seconds both after and during reviving a teammate.\n\nACE: ##$pro##\nUpon reviving a crew member you also gain a ##$multipro2## damage bonus for ##$multipro3## seconds.\n\nYou revive crew members ##$multipro## faster.",
