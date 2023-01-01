@@ -433,7 +433,7 @@ self.m590.stats.concealment = 8
 self.m590.AMMO_MAX = total_ammo_tables.shot_mid
 self.m590.AMMO_PICKUP = pickup_tables.shot_mid
 self.m590.fire_mode_data.fire_rate = 0.6
-self.r870.kick = kick_tables.shot_low
+self.m590.kick = kick_tables.shot_low
 self.m590.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Breaker
