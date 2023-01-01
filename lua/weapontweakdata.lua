@@ -1155,6 +1155,11 @@ self.groza_underbarrel.AMMO_PICKUP = {0.05, 0.05}
 
 -- Specials
 
+-- Heavy Crossbow
+self.arblast.AMMO_MAX = 45
+self.arblast.stats.damage = 10
+self.arblast.stats.concealment = 24
+
 -- Light Crossbow
 self.frankish.AMMO_MAX = 45
 self.frankish.stats.damage = 50
@@ -1278,7 +1283,6 @@ self.x_sr2.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_mp5.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.elastic.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.long.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
-self.arblast.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_sko12.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_korth.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_basset.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY

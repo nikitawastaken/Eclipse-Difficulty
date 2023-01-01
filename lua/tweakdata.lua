@@ -12,6 +12,9 @@ tweak_data.projectiles.ecp_arrow_exp.damage = 25
 tweak_data.projectiles.west_arrow.damage = 65
 tweak_data.projectiles.west_arrow_exp.damage = 65
 tweak_data.projectiles.bow_poison_arrow.damage = 10
+tweak_data.projectiles.arblast_arrow.damage = 100
+tweak_data.projectiles.arblast_arrow_exp.damage = 100
+tweak_data.projectiles.arblast_poison_arrow.damage = 25
 
 -- grenade launchers and rocket launchers
 
