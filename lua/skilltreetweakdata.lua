@@ -319,6 +319,9 @@ function SkillTreeTweakData:init(tweak_data)
 
 
 	-- MISC STUFF --
+	-- Medic Tree
+	self.trees[1].tiers[2][1] = "fast_learner"
+	self.trees[1].tiers[2][2] = "tea_time"
 	-- Sentry tree
 	self.trees[7].tiers[2][2] = "engineering"
 	self.trees[7].tiers[3][2] = "tower_defense"
