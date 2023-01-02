@@ -176,11 +176,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_bow_ecp_m_arrows_poison.stats = {damage = -15}
     self.parts.wpn_fps_upg_a_bow_explosion.stats.damage = 0
     self.parts.wpn_fps_upg_a_bow_poison.stats = {damage = -55}
-    --[[
-    self.parts.wpn_fps_bow_arblast_m_explosive.stats.damage = 0
-    self.parts.wpn_fps_bow_arblast_m_poison.stats = {damage = -20}
-        apparently none of this matters cause of some vanilla bs
-    ]]
+    self.parts.wpn_fps_bow_arblast_m_explosive.stats.damage = 0 -- apparently none of this matters cause of some vanilla bs
+    self.parts.wpn_fps_bow_arblast_m_poison.stats = {damage = -20} -- same thing
 
 
 
