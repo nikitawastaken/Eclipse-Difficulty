@@ -657,10 +657,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.pick_up_ammo_multiplier[1] = 1
 
 	-- Infiltrator / Socio healing
-	self.values.player.melee_kill_life_leech = {1}
-	self.specialization_descs[9][5].multiperk = "10"
-	self.values.temporary.melee_life_leech[1][1] = 3
-	self.specialization_descs[8][9].multiperk = "30"
+	self.values.player.melee_kill_life_leech = {1.5}
+	self.specialization_descs[9][5].multiperk = "15"
+	self.values.temporary.melee_life_leech[1][1] = 4
+	self.specialization_descs[8][9].multiperk = "40"
 
 	-- Crew Chief
 	self.values.team.health.hostage_multiplier = {1.04}
