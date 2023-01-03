@@ -265,3 +265,22 @@ function CopLogicIdle._get_attention_weight(attention_data, att_unit, distance)
 	end
 	return 1 / weight_mul
 end
+
+
+-- Fix follow objectives for mission scripted NPCs not triggering in idle logic
+local queued_update_original = CopLogicIdle.queued_update
+function CopLogicIdle.queued_update(data, ...)
+	local my_data = data.internal_data
+	queued_update_original(data, ...)
+	if data.internal_data ~= my_data then
+		return
+	end
+
+	if data.cool or data.team.id ~= "criminal1" or data.objective and data.objective.type ~= "free" then
+		return
+	end
+
+	if not data.path_fail_t or data.t - data.path_fail_t > 6 then
+		managers.groupai:state():on_criminal_jobless(data.unit)
+	end
+end
