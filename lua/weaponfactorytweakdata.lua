@@ -54,6 +54,15 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
 
 
+    -- Secondary Sights
+    self.parts.wpn_fps_upg_o_sig.stats.recoil = 0
+    self.parts.wpn_fps_upg_o_45rds.stats.recoil = 0
+    self.parts.wpn_fps_upg_o_45rds_v2.stats.recoil = 0
+    self.parts.wpn_fps_upg_o_45steel.stats.concealment = 0
+    self.parts.wpn_fps_upg_o_xpsg33_magnifier.stats.recoil = 0
+
+
+
     -- Weapon-Specific Stuff
     -- Saiga stuff
     self.parts.wpn_fps_sho_basset_m_extended.stats.reload = -2
