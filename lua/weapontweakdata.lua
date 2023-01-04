@@ -1179,7 +1179,7 @@ self.ecp.use_data.selection_index = SELECTION.SECONDARY
 
 -- Plainsrider
 self.plainsrider.AMMO_MAX = 45
-self.plainsrider.stats.damage = 65
+self.plainsrider.stats.damage = 80
 self.plainsrider.stats.concealment = 23
 self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
 
