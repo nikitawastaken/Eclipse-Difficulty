@@ -656,24 +656,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.weapon.passive_headshot_damage_multiplier[1] = 1
 	self.values.player.pick_up_ammo_multiplier[1] = 1
 
-	-- Infiltrator / Socio healing
-	self.values.player.melee_kill_life_leech = {1.5}
-	self.specialization_descs[9][5].multiperk = "15"
-	self.values.temporary.melee_life_leech[1][1] = 4
-	self.specialization_descs[8][9].multiperk = "40"
-
 	-- Crew Chief
 	self.values.team.health.hostage_multiplier = {1.04}
 	self.specialization_descs[1][9].multiperk = "4%"
 
 	-- Muscle
 	self.values.player.passive_health_regen = {0.8}
+	self.values.temporary.mrwi_health_invulnerable[1][3] = 30
 	self.specialization_descs[2][9].multiperk = "40%"
 	self.specialization_descs[2][9].multiperk2 = "8"
-
-	-- Hitman
-	self.values.player.perk_armor_regen_timer_multiplier[5] = 0.4
-	self.specialization_descs[5][9].multiperk = "25%"
+	self.specialization_descs[2][7].multiperk = "50%"
+	self.specialization_descs[2][7].multiperk2 = "2"
+	self.specialization_descs[2][7].multiperk3 = "30"
 
 	-- Armorer
 	self.values.temporary.armor_break_invulnerable = {{2, 30}}
@@ -682,7 +676,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[3][3].multiperk = "5%"
 	self.specialization_descs[3][5].multiperk = "5%"
 
-	-- Subtle card gives lower dodge
+	-- Rogue (and other dodge decks)
 	self.values.player.passive_dodge_chance = {0.05, 0.2, 0.3}
 	self.specialization_descs[4][1].multiperk = "5%"
 	self.specialization_descs[4][7].multiperk = "10%"
@@ -691,31 +685,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[18][5].multiperk = "5%"
 	self.specialization_descs[21][5].multiperk2 = "5%"
 
-	-- Anarchist
-	self.values.player.armor_grinding = {{
-			{1, 1.5},
-			{1.5, 2.25},
-			{2, 3},
-			{2.5, 3.75},
-			{3.5, 4.5},
-			{5, 6},
-			{7, 9}
-		}}
-	self.values.player.damage_to_armor = {{
-			{1, 1.5},
-			{1, 1.5},
-			{1, 1.5},
-			{1, 1.5},
-			{1, 1.5},
-			{1, 1.5},
-			{1, 1.5}
-		}}
-	self.values.player.armor_increase = {0.5, 0.75, 1}
-	self.values.player.tier_dodge_chance[1] = 0.15
-	self.specialization_descs[15][3].multiperk2 = "50%"
-	self.specialization_descs[15][5].multiperk2 = "75%"
-	self.specialization_descs[15][7].multiperk2 = "100%"
-	self.specialization_descs[15][7].multiperk3 = "5%"
+	-- Hitman
+	self.values.player.perk_armor_regen_timer_multiplier[5] = 0.4
+	self.specialization_descs[5][9].multiperk = "25%"
+
+	-- Infiltrator / Socio healing
+	self.values.player.melee_kill_life_leech = {1.5}
+	self.specialization_descs[9][5].multiperk = "15"
+	self.values.temporary.melee_life_leech[1][1] = 4
+	self.specialization_descs[8][9].multiperk = "40"
 
 	-- Gambler
 	self.values.player.pick_up_ammo_multiplier[2] = 1.15
@@ -744,17 +722,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][7].multiperk2 = "0.8"
 	self.specialization_descs[11][9].multiperk2 = "0.8"
 
-	-- Biker
-	self.values.player.wild_health_amount = {0.25}
-	self.specialization_descs[16][1].multiperk = "2.5"
-
-	-- Ex-President
-	self.values.player.body_armor.skill_max_health_store = {6, 5, 4, 3, 2.5, 2, 1}
-	self.values.player.armor_health_store_amount = {0.1, 0.3, 0.5}
-	self.specialization_descs[13][1].multiperk = "1"
-	self.specialization_descs[13][3].multiperk = "2"
-	self.specialization_descs[13][7].multiperk = "2"
-
 	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = {0.35}
 	self.specialization_descs[12][3].multiperk = "80%"
@@ -763,12 +730,49 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[12][9].multiperk3 = "50%"
 	self.specialization_descs[12][9].multiperk4 = "25%"
 
+	-- Ex-President
+	self.values.player.body_armor.skill_max_health_store = {6, 5, 4, 3, 2.5, 2, 1}
+	self.values.player.armor_health_store_amount = {0.1, 0.3, 0.5}
+	self.specialization_descs[13][1].multiperk = "1"
+	self.specialization_descs[13][3].multiperk = "2"
+	self.specialization_descs[13][7].multiperk = "2"
+
 	-- Maniac
 	self.cocaine_stacks_convert_levels = {600 / 8, 60}
 	self.values.player.cocaine_stack_absorption_multiplier = {1.5}
 	self.specialization_descs[14][1].multiperk6 = "75"
 	self.specialization_descs[14][7].multiperk2 = "60"
 	self.specialization_descs[14][9].multiperk = "50%"
+
+	-- Anarchist
+	self.values.player.armor_grinding = {{
+			{1, 1.5},
+			{1.5, 2.25},
+			{2, 3},
+			{2.5, 3.75},
+			{3.5, 4.5},
+			{5, 6},
+			{7, 9}
+		}}
+	self.values.player.damage_to_armor = {{
+			{1, 1.5},
+			{1, 1.5},
+			{1, 1.5},
+			{1, 1.5},
+			{1, 1.5},
+			{1, 1.5},
+			{1, 1.5}
+		}}
+	self.values.player.armor_increase = {0.5, 0.75, 1}
+	self.values.player.tier_dodge_chance[1] = 0.15
+	self.specialization_descs[15][3].multiperk2 = "50%"
+	self.specialization_descs[15][5].multiperk2 = "75%"
+	self.specialization_descs[15][7].multiperk2 = "100%"
+	self.specialization_descs[15][7].multiperk3 = "5%"
+
+	-- Biker
+	self.values.player.wild_health_amount = {0.25}
+	self.specialization_descs[16][1].multiperk = "2.5"
 
 	-- KP
 	self.specialization_descs[17][1].multiperk3 = "45"

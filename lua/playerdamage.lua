@@ -65,6 +65,73 @@ function PlayerDamage:_calc_armor_damage(...)
 end
 
 
+-- Make <50%hp invuln upgrade not proc on armor hits
+function PlayerDamage:_calc_health_damage(attack_data)
+	if attack_data.weapon_unit then
+		local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
+		local weap_tweak_data = weap_base and weap_base.weapon_tweak_data and weap_base:weapon_tweak_data()
+
+		if weap_tweak_data and weap_tweak_data.slowdown_data then
+			self:apply_slowdown(weap_tweak_data.slowdown_data)
+		end
+	end
+
+	if managers.player:has_activate_temporary_upgrade("temporary", "mrwi_health_invulnerable") then
+		return 0
+	end
+
+	local health_subtracted = 0
+	health_subtracted = self:get_real_health()
+
+	self:change_health(-attack_data.damage)
+
+	health_subtracted = health_subtracted - self:get_real_health()
+
+	if managers.player:has_activate_temporary_upgrade("temporary", "copr_ability") and health_subtracted > 0 then
+		local teammate_heal_level = managers.player:upgrade_level_nil("player", "copr_teammate_heal")
+
+		if teammate_heal_level and self:get_real_health() > 0 then
+			self._unit:network():send("copr_teammate_heal", teammate_heal_level)
+		end
+	end
+
+	if self._has_mrwi_health_invulnerable then
+		local health_threshold = self._mrwi_health_invulnerable_threshold or 0.5
+		local is_cooling_down = managers.player:get_temporary_property("mrwi_health_invulnerable", false)
+
+		if self:health_ratio() <= health_threshold and health_subtracted > 0 and not is_cooling_down then -- was it so hard to just add one more check, overkill?
+			local cooldown_time = self._mrwi_health_invulnerable_cooldown or 10
+
+			managers.player:activate_temporary_upgrade("temporary", "mrwi_health_invulnerable")
+			managers.player:activate_temporary_property("mrwi_health_invulnerable", cooldown_time, true)
+		end
+	end
+
+	local trigger_skills = table.contains({
+		"bullet",
+		"explosion",
+		"melee",
+		"delayed_tick"
+	}, attack_data.variant)
+
+	if self:get_real_health() == 0 and trigger_skills then
+		self:_chk_cheat_death()
+	end
+
+	self:_damage_screen()
+	self:_check_bleed_out(trigger_skills)
+	managers.hud:set_player_health({
+		current = self:get_real_health(),
+		total = self:_max_health(),
+		revives = Application:digest_value(self._revives, false)
+	})
+	self:_send_set_health()
+	self:_set_health_effect()
+	managers.statistics:health_subtracted(health_subtracted)
+
+	return health_subtracted
+end
+
 -- make healing fixed instead of % of max health
 function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then

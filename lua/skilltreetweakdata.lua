@@ -343,12 +343,109 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Swap Uppers and Swan Song
 	self.trees[14].tiers[3][1] = "feign_death"
 	self.trees[14].tiers[3][2] = "perseverance"
-	-- hacker
-	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
-	table.insert(self.specializations[21][7].upgrades, "player_passive_health_multiplier_2")
-	table.delete(self.specializations[21][5].upgrades, "player_passive_dodge_chance_1")
-	table.delete(self.specializations[21][7].upgrades, "player_pocket_ecm_kill_dodge_1")
-	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
+
+
+
+	-- PERK DECKS --
+
+
+	-- categories
+	self.specialization_category = {
+		{
+			name_id = "menu_st_category_all",
+			category = "all"
+		},
+		{
+			name_id = "menu_st_category_health",
+			category = "health"
+		},
+		{
+			name_id = "menu_st_category_healing",
+			category = "healing"
+		},
+		{
+			name_id = "menu_st_category_armor",
+			category = "armor"
+		},
+		{
+			name_id = "menu_st_category_armor_gating",
+			category = "armor_gating"
+		},
+		{
+			name_id = "menu_st_category_resistance",
+			category = "resistance"
+		},
+		{
+			name_id = "menu_st_category_support",
+			category = "support"
+		},
+		{
+			name_id = "menu_st_category_dodge",
+			category = "dodge"
+		},
+		{
+			name_id = "menu_st_category_favorites",
+			category = "favorites"
+		}
+	}
+
+	-- ccf
+	self.specializations[1].category = {"health", "support"}
+	-- mus
+	self.specializations[2].category = {"health", "healing"}
+	-- arm
+	self.specializations[3].category = "armor"
+	-- rog
+	self.specializations[4].category = "dodge"
+	-- hit
+	self.specializations[5].category = {"armor", "armor_gating"}
+	-- crk
+	self.specializations[6].category = {"armor", "dodge"}
+	-- brg
+	self.specializations[7].category = "dodge"
+	-- inf
+	self.specializations[8].category = "resistance"
+	-- soc
+	self.specializations[9].category = {"healing", "armor_gating"}
+	-- gmb
+	self.specializations[10].category = {"healing", "support"}
+	-- grd
+	self.specializations[11].category = "healing"
+	-- yak
+	self.specializations[12].category = "armor"
+	-- exp
+	self.specializations[13].category = "healing"
+	-- man
+	self.specializations[14].category = {"support", "resistance"}
+	-- anr
+	self.specializations[15].category = {"armor", "armor_gating"}
+	-- bik
+	self.specializations[16].category = {"healing", "armor_gating"}
+	-- kpn
+	self.specializations[17].category = {"health", "resistance"}
+	-- sic
+	self.specializations[18].category = {"dodge", "armor_gating"}
+	-- stc
+	self.specializations[19].category = {"health", "resistance"}
+	-- tgt
+	self.specializations[20].category = {"healing", "support"}
+	-- hck
+	self.specializations[21].category = {"support", "healing"}
+	-- lch
+	self.specializations[22].category = {"health", "resistance"}
+
+
+
+
+	-- crew chief
+	table.delete(self.specializations[1][3].upgrades, "player_damage_dampener_close_contact_1")
+	table.delete(self.specializations[1][9].upgrades, "team_hostage_damage_dampener_multiplier")
+
+	-- muscle
+	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
+	self.specializations[2][7].upgrades = {"temporary_mrwi_health_invulnerable_1"}
+	self.specializations[2][7].texture_bundle_folder = "mrwi"
+	self.specializations[2][7].icon_xy = {3, 0}
 
 	-- armorer
 	table.delete(self.specializations[3][1].upgrades, "player_tier_armor_multiplier_2")
@@ -356,31 +453,24 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[3][3].upgrades = {"player_tier_armor_multiplier_2"}
 	self.specializations[3][5].upgrades = {"player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5"}
 
-	-- muscle
-	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
+	-- burglar
+	table.delete(self.specializations[7][7].upgrades, "player_tier_dodge_chance_3")
+	self.specializations[7][9].upgrades = {"player_dodge_ricochet_bullets", "player_passive_loot_drop_multiplier"}
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
+
+	-- Gambler
+	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
+	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
+	table.insert(self.specializations[10][3].upgrades, "player_pick_up_ammo_multiplier")
+	table.insert(self.specializations[10][3].upgrades, "player_pick_up_ammo_multiplier_2")
+	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
 	-- yakuza
 	self.specializations[12][3].upgrades = {"weapon_passive_swap_speed_multiplier_1"}
 	table.insert(self.specializations[12][9].upgrades, "player_damage_health_ratio_multiplier")
 	table.delete(self.specializations[12][9].upgrades, "player_movement_speed_damage_health_ratio_threshold_multiplier")
-
-	-- leech
-	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
-	table.delete(self.specializations[22][9].upgrades, "player_passive_health_multiplier_4")
-
-	-- anarchist
-	self.specializations[15][7].upgrades = {"player_passive_dodge_chance_1", "player_armor_increase_3"}
-	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
-
-	-- kingpin
-	table.delete(self.specializations[17][9].upgrades, "player_passive_health_multiplier_4")
-
-	-- Crew Chief
-	table.delete(self.specializations[1][3].upgrades, "player_damage_dampener_close_contact_1")
-	table.delete(self.specializations[1][9].upgrades, "team_hostage_damage_dampener_multiplier")
 
 	-- Grinder and Ex-President
 	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_1")
@@ -390,15 +480,33 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[13][5].upgrades, "player_passive_health_multiplier_2")
 	table.delete(self.specializations[13][7].upgrades, "player_passive_health_multiplier_3")
 
-	-- Get rid of burglars crouch move speed boost to avoid bugging upgrades out (no one plays the deck anyway so who cares)
-	table.delete(self.specializations[7][9].upgrades, "player_crouch_speed_multiplier_2")
+	-- Maniac
+	table.insert(self.specializations[14][3].upgrades, "player_panic_suppression")
 
-	-- Gambler
-	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
-	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
-	table.insert(self.specializations[10][3].upgrades, "player_pick_up_ammo_multiplier")
-	table.insert(self.specializations[10][3].upgrades, "player_pick_up_ammo_multiplier_2")
-	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
+	-- anarchist
+	self.specializations[15][7].upgrades = {"player_passive_dodge_chance_1", "player_armor_increase_3"}
+	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
+
+	-- kingpin
+	table.delete(self.specializations[17][9].upgrades, "player_passive_health_multiplier_4")
+
+	-- hacker
+	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
+	table.insert(self.specializations[21][7].upgrades, "player_passive_health_multiplier_2")
+	table.delete(self.specializations[21][5].upgrades, "player_passive_dodge_chance_1")
+	table.delete(self.specializations[21][7].upgrades, "player_pocket_ecm_kill_dodge_1")
+	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
+
+	-- leech
+	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
+	table.delete(self.specializations[22][9].upgrades, "player_passive_health_multiplier_4")
+
+	-- lol bye copycat
+	table.delete(self.specializations, self.specializations[23])
+
+
+
+
 
 	-- Buncha default upgrade fuckery
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")

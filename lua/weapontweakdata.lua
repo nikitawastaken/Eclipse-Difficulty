@@ -461,9 +461,9 @@ self.m37.use_data.selection_index = SELECTION.PRIMARY
 self.m37.rays = 8
 self.m37.stats.damage = 135
 self.m37.stats_modifiers = {damage = 2}
-self.m37.fire_mode_data.fire_rate = 0.8
 self.m37.AMMO_MAX = total_ammo_tables.shot_low
 self.m37.AMMO_PICKUP = pickup_tables.shot_low
+self.m37.fire_mode_data.fire_rate = 0.8
 self.m37.kick = kick_tables.shot_high
 self.m37.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
