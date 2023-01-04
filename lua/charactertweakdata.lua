@@ -61,6 +61,37 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.shield.damage.explosion_damage_mul = 0.7
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.no_hurts
+	self.phalanx_minion.DAMAGE_CLAMP_BULLET = nil
+	self.phalanx_minion.DAMAGE_CLAMP_EXPLOSION = nil
+	self.phalanx_minion.damage.explosion_damage_mul = 0.2
+	self.phalanx_minion.access = "shield"
+	self.marshal_shield_break = deep_clone(self.phalanx_minion)
+	self.marshal_shield_break.tags = {"law"}
+	self.marshal_shield_break.move_speed = self.presets.move_speed.very_fast
+	self.marshal_shield_break.allowed_stances = nil
+	self.marshal_shield_break.allowed_poses = nil
+	self.marshal_shield_break.no_equip_anim = nil
+	self.marshal_shield_break.no_run_start = nil
+	self.marshal_shield_break.no_run_stop = nil
+	self.marshal_shield_break.always_face_enemy = nil
+	self.marshal_shield_break.wall_fwd_offset = nil
+	self.marshal_shield_break.priority_shout = nil
+	self.marshal_shield_break.dodge = self.presets.dodge.ninja
+	self.marshal_shield_break.access = "swat"
+	self.marshal_shield_break.chatter = self.presets.enemy_chatter.swat
+	self.marshal_shield_break.announce_incomming = nil
+	self.marshal_shield_break.damage.hurt_severity = self.presets.hurt_severities.light_hurt_fire_poison
+	self.marshal_shield_break.damage.explosion_damage_mul = 1
+	self.marshal_shield_break.use_animation_on_fire_damage = nil
+	self.marshal_shield_break.damage.shield_knocked = nil
+	self.marshal_shield_break.weapon.is_pistol = self.phalanx_minion.weapon.is_pistol
+
+	-- prevent phalanx from meleeing, since it's just buggy (redflame)
+	for _, weapon in pairs(self.phalanx_minion.weapon) do
+		weapon.melee_speed = nil
+		weapon.melee_dmg = nil
+		weapon.melee_retry_delay = nil
+	end
 
 	-- Set custom objective interrupt distance
 	self.taser.min_obj_interrupt_dis = 1000
@@ -69,6 +100,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.min_obj_interrupt_dis = 600
 	self.tank_hw.min_obj_interrupt_dis = 600
 	self.shield.min_obj_interrupt_dis = 300
+	self.phalanx_minion.min_obj_interrupt_dis = 300
 
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 600
@@ -863,6 +895,8 @@ function CharacterTweakData:_set_overkill_290()
 	self.medic.headshot_dmg_mul = 2 -- 360 head health
 	self.tank.HEALTH_INIT = 2160
 	self.tank.headshot_dmg_mul = 45 -- 480 head health
+	self.phalanx_minion.HEALTH_INIT = 72
+	self.phalanx_minion.headshot_dmg_mul = 3 -- 240 head health
 
 	-- FBI / Medic Rifle preset
 	-- 55 damage M4
@@ -1559,8 +1593,144 @@ function CharacterTweakData:_set_overkill_290()
 		}
 	}
 
+	-- Elite Shield Preset
+	-- 70 damage
+	self.phalanx_minion.weapon.is_pistol = {
+		aim_delay = {
+			0.1,
+			0.1
+		},
+		focus_delay = 0.2,
+		focus_dis = 200,
+		spread = 15,
+		miss_dis = 20,
+		RELOAD_SPEED = 1.4,
+		melee_speed = nil,
+		melee_dmg = nil,
+		melee_retry_delay = nil,
+		range = {
+			optimal = 500,
+			far = 1000,
+			close = 100
+		},
+		FALLOFF = {
+			{
+				dmg_mul = 7,
+				r = 100,
+				acc = {
+					0.9,
+					0.95
+				},
+				recoil = {
+					0.3,
+					0.35
+				},
+				mode = {
+					0,
+					0,
+					0,
+					1
+				}
+			},
+			{
+				dmg_mul = 7,
+				r = 500,
+				acc = {
+					0.7,
+					0.85
+				},
+				recoil = {
+					0.35,
+					0.4
+				},
+				mode = {
+					0,
+					0,
+					0,
+					1
+				}
+			},
+			{
+				dmg_mul = 7,
+				r = 1000,
+				acc = {
+					0.6,
+					0.75
+				},
+				recoil = {
+					0.4,
+					0.5
+				},
+				mode = {
+					0,
+					0,
+					2,
+					1
+				}
+			},
+			{
+				dmg_mul = 7,
+				r = 2000,
+				acc = {
+					0.3,
+					0.5
+				},
+				recoil = {
+					0.45,
+					0.6
+				},
+				mode = {
+					3,
+					1,
+					0,
+					0
+				}
+			},
+			{
+				dmg_mul = 7,
+				r = 3000,
+				acc = {
+					0.1,
+					0.3
+				},
+				recoil = {
+					0.7,
+					0.9
+				},
+				mode = {
+					1,
+					0,
+					0,
+					0
+				}
+			},
+			{
+				dmg_mul = 7,
+				r = 4000,
+				acc = {
+					0.0,
+					0.2
+				},
+				recoil = {
+					1,
+					1.5
+				},
+				mode = {
+					1,
+					0,
+					0,
+					0
+				}
+			}
+		}
+	}
+	self.marshal_shield_break.weapon.is_pistol = deep_clone(self.phalanx_minion.weapon.is_pistol)
+	self.marshal_shield_break.weapon.is_pistol.melee_speed = 1
+	self.marshal_shield_break.weapon.is_pistol.melee_dmg = 10
+	self.marshal_shield_break.weapon.is_pistol.melee_retry_delay = {1, 2}
+
 	-- Cloaker
-	self.spooc.weapon.is_pistol = self.presets.weapon.deathwish.is_pistol
+	self.spooc.weapon.is_pistol = deep_clone(self.presets.weapon.deathwish.is_pistol)
 	self.spooc.weapon.is_pistol.aim_delay = {0.075, 0.075}
 
 	-- Sniper preset
@@ -1593,7 +1763,7 @@ function CharacterTweakData:_set_overkill_290()
 		},
 		{
 			r = 10000,
-			acc = {0.8, 0.8},
+			acc = {0.9, 0.9},
 			dmg_mul = 6,
 			recoil = {0.825, 0.825},
 			mode = {
@@ -2688,6 +2858,8 @@ function CharacterTweakData:_set_sm_wish()
 	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
 	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
 	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
+	self.phalanx_minion.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
+	self.phalanx_minion.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
 end
 
 -- fixed movement speed difficulty scaling

@@ -288,24 +288,24 @@ local access_type_all = {
 			access = access_type_walk_only
 		}
 
-		-- Elite Shield
+	-- Elite Shield
 		self.unit_categories.shield_elite = {
 			special_type = "shield",
 			unit_types = {
 				america = {
-					Idstring("units/payday2/characters/ene_city_shield/ene_city_shield")
+					Idstring("units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1")
 				},
 				russia = {
-					Idstring("units/payday2/characters/ene_city_shield/ene_city_shield")
+					Idstring("units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1")
 				},
 				zombie = {
-					Idstring("units/payday2/characters/ene_city_shield/ene_city_shield")
+					Idstring("units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1")
 				},
 				murkywater = {
-					Idstring("units/payday2/characters/ene_city_shield/ene_city_shield")
+					Idstring("units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1")
 				},
 				federales = {
-					Idstring("units/payday2/characters/ene_city_shield/ene_city_shield")
+					Idstring("units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1")
 				}
 			},
 			access = access_type_walk_only
@@ -878,7 +878,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					freq = 0.33,
 					amount_max = 2,
 					rank = 1,
-					unit = "shield_elite",
+					unit = "shield_fbi",
 					tactics = self._tactics.elite_shield
 				}
 			}
@@ -1103,11 +1103,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			fbi_lights = {1.75, 1.75, 0},
 			fbi_heavies = {0.5, 0.5, 1.25},
-			fbi_shields = {0.4, 0.4, 0.25},
+			fbi_shields = {0.4, 0.4, 0.3},
 			fbi_tanks = {0, 0.02, 0.13},
 			gensec_cqc_lights = {0.3, 0.3, 0.5},
 			gensec_ranged_lights = {0.3, 0.3, 0.5},
-			gensec_shields = {0.15, 0.15, 0.3},
+			gensec_shields = {0.15, 0.15, 0.2},
 			gensec_flankers = {0.25, 0.25, 0.45},
 			gensec_tasers = {0.15, 0.15, 0.3},
 			gensec_tanks = {0, 0, 0.09},

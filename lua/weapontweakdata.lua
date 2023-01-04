@@ -1105,7 +1105,7 @@ self.ray.categories = {"grenade_launcher", "heavy"}
 self.ray.stats.damage = 128
 self.ray.stats_modifiers = {damage = 10}
 self.ray.stats.reload = 8
-self.ray.AMMO_PICKUP = {0.033, 0.033}
+self.ray.AMMO_PICKUP = {0.04, 0.04}
 
 -- RPG
 self.rpg7.use_data.selection_index = SELECTION.PRIMARY
@@ -1113,11 +1113,11 @@ self.rpg7.categories = {"grenade_launcher", "heavy"}
 self.rpg7.stats.damage = 128
 self.rpg7.stats_modifiers = {damage = 20}
 self.rpg7.stats.reload = 13
-self.rpg7.AMMO_PICKUP = {0.033, 0.033}
+self.rpg7.AMMO_PICKUP = {0.04, 0.04}
 
 -- Piglet
 self.m32.stats.damage = 50
-self.m32.AMMO_PICKUP = {0.056, 0.056}
+self.m32.AMMO_PICKUP = {0.084, 0.084}
 self.m32.AMMO_MAX = 18
 self.m32.stats.reload = 15
 self.m32.fire_mode_data.fire_rate = 60 / 120
@@ -1127,32 +1127,32 @@ self.china.use_data.selection_index = SELECTION.PRIMARY
 self.china.stats.damage = 50
 self.china.stats.concealment = 16
 self.china.AMMO_MAX = 9
-self.china.AMMO_PICKUP = {0.05, 0.05}
+self.china.AMMO_PICKUP = {0.067, 0.067}
 
 -- Arbiter
 self.arbiter.use_data.selection_index = SELECTION.PRIMARY
 self.arbiter.stats.damage = 40
-self.arbiter.AMMO_PICKUP = {0.056, 0.056}
+self.arbiter.AMMO_PICKUP = {0.084, 0.084}
 
 -- Basilisk
 self.ms3gl.use_data.selection_index = SELECTION.PRIMARY
 self.ms3gl.stats.damage = 36
-self.ms3gl.AMMO_PICKUP = {0.067, 0.067}
+self.ms3gl.AMMO_PICKUP = {0.1, 0.1}
 
 -- GL40
 self.gre_m79.use_data.selection_index = SELECTION.SECONDARY
 self.gre_m79.stats.damage = 80
 self.gre_m79.AMMO_MAX = 7
-self.gre_m79.AMMO_PICKUP = {0.05, 0.05}
+self.gre_m79.AMMO_PICKUP = {0.067, 0.067}
 
 -- Compact 40
 self.slap.stats.damage = 80
 self.slap.AMMO_MAX = 7
-self.slap.AMMO_PICKUP = {0.05, 0.05}
+self.slap.AMMO_PICKUP = {0.067, 0.067}
 
 -- Underbarrel Grenade Launchers
-self.contraband_m203.AMMO_PICKUP = {0.05, 0.05}
-self.groza_underbarrel.AMMO_PICKUP = {0.05, 0.05}
+self.contraband_m203.AMMO_PICKUP = {0.067, 0.067}
+self.groza_underbarrel.AMMO_PICKUP = {0.067, 0.067}
 
 
 -- Specials

@@ -1,6 +1,6 @@
 <table>
 	<AddFiles directory="assets">
-		<!-- sniper glares -->
+		<!-- weapons -->
 		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper" force="true"/>
 		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd" force="true"/>
 		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick" force="true"/>
@@ -10,6 +10,9 @@
 		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" force="true"/>
 		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1" force="true"/>
 		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1_husk" force="true"/>
+		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1" force="true"/>
+		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1_husk" force="true"/>
+	    <sequence_manager path="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx"/>
 
 		<!-- old cook off bain lines -->
 		<bnk path="soundbanks/job_h_rat_stage1"/>
