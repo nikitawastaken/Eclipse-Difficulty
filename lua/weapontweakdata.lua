@@ -456,6 +456,17 @@ self.m1897.fire_mode_data.fire_rate = 0.8
 self.m1897.kick = kick_tables.shot_high
 self.m1897.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
+-- GSPS
+self.m37.use_data.selection_index = SELECTION.PRIMARY
+self.m37.rays = 8
+self.m37.stats.damage = 135
+self.m37.stats_modifiers = {damage = 2}
+self.m37.fire_mode_data.fire_rate = 0.8
+self.m37.AMMO_MAX = total_ammo_tables.shot_low
+self.m37.AMMO_PICKUP = pickup_tables.shot_low
+self.m37.kick = kick_tables.shot_high
+self.m37.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
+
 -- Mosconi
 self.huntsman.rays = 8
 self.huntsman.stats.damage = 180
@@ -492,15 +503,6 @@ self.judge.AMMO_PICKUP = pickup_tables.shot_special
 self.judge.AMMO_MAX = 25
 self.judge.kick = kick_tables.shot_low
 self.judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
-
--- GSPS
-self.m37.rays = 8
-self.m37.stats.damage = 135
-self.m37.stats_modifiers = {damage = 2}
-self.m37.AMMO_MAX = total_ammo_tables.shot_low
-self.m37.AMMO_PICKUP = pickup_tables.shot_low
-self.m37.kick = kick_tables.shot_high
-self.m37.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Loco
 self.serbu.AMMO_MAX = 24
