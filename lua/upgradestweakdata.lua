@@ -148,11 +148,11 @@ function UpgradesTweakData:init(tweak_data)
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = {1.25}
 	self.values.assault_rifle.reload_speed_multiplier = {1.25}
-	self.values.temporary.single_shot_fast_reload[1][1] = 1.6
-	self.values.temporary.single_shot_fast_reload[1][2] = 3
+	self.values.temporary.single_shot_fast_reload[1][1] = 1.4
+	self.values.temporary.single_shot_fast_reload[1][2] = 6
 	self.skill_descs.speedy_reload.multibasic = "25%"
-	self.skill_descs.speedy_reload.multipro = "60%"
-	self.skill_descs.speedy_reload.multipro2 = "3"
+	self.skill_descs.speedy_reload.multipro = "40%"
+	self.skill_descs.speedy_reload.multipro2 = "6"
 
 	-- Mind Blown
 	self.values.snp.graze_damage = {
