@@ -7,7 +7,6 @@
 		<depends_on bnk="soundbanks/regular_vox" />
 		<depends_on unit="units/pd2_dlc_vip/characters/ene_acc_phalanx_helmet/ene_acc_phalanx_helmet" />
 		<depends_on unit="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx" />
-		<depends_on unit="units/payday2/weapons/wpn_npc_smg_mp9/wpn_npc_smg_mp9" />
 	</dependencies>
 
 	<extensions>
@@ -15,7 +14,7 @@
 		<extension name="base" class="HuskCopBase" >
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="phalanx_minion" />
-			<var name="_default_weapon_id" value="deagle" />
+			<var name="_default_weapon_id" value="c45" />
             <var name="_stats_name" value="phalanx_minion"/>
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" >
