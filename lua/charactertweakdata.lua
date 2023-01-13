@@ -102,6 +102,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.min_obj_interrupt_dis = 300
 	self.phalanx_minion.min_obj_interrupt_dis = 300
 
+	-- Set melee weapons
+	self.biker.melee_weapon = "knife_1"
+	self.spooc.melee_weapon = "baton"
+	self.tank.melee_weapon = "weapon"
+	self.tank_hw.melee_weapon = "weapon"
+	self.tank_medic.melee_weapon = "weapon"
+	self.tank_mini.melee_weapon = "weapon"
+
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 600
 	self.biker_boss.player_health_scaling_mul = 2

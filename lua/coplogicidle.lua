@@ -52,6 +52,7 @@ end
 
 
 -- Fix defend_area objectives being force relocated to areas with players in them
+-- Use the old defend_area behavior for the hunt objective for which it makes much more sense
 local _chk_relocate_original = CopLogicIdle._chk_relocate
 function CopLogicIdle._chk_relocate(data, ...)
 	local objective = data.objective
@@ -59,7 +60,7 @@ function CopLogicIdle._chk_relocate(data, ...)
 	if objective_type == "follow" then
 		return _chk_relocate_original(data, ...)
 	elseif objective_type == "hunt" then
-		local objective_area = objective.area
+		local objective_area = objective.area or managers.groupai:state():get_area_from_nav_seg_id(objective.nav_seg or data.unit:movement():nav_tracker():nav_segment())
 		if not objective_area or next(objective_area.criminal.units) then
 			return
 		end
