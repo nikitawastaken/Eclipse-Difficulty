@@ -284,3 +284,24 @@ function CopLogicIdle.queued_update(data, ...)
 		managers.groupai:state():on_criminal_jobless(data.unit)
 	end
 end
+
+
+-- Show hint to player when surrender is impossible
+local on_intimidated_original = CopLogicIdle.on_intimidated
+function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
+	local surrender = on_intimidated_original(data, amount, aggressor_unit, ...)
+	if surrender then
+		return surrender
+	end
+
+	if not data.char_tweak.surrender and not data.char_tweak.priority_shout or data.surrender_window and data.surrender_window.window_expire_t < data.t then
+		local peer = managers.network:session():peer_by_unit(aggressor_unit)
+		if peer then
+			if peer:id() == managers.network:session():local_peer():id() then
+				managers.hint:show_hint("convert_enemy_failed")
+			else
+				managers.network:session():send_to_peer(peer, "sync_show_hint", "convert_enemy_failed")
+			end
+		end
+	end
+end
