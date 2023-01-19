@@ -1069,6 +1069,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			self.besiege.assault.spawnrate_balance_mul = {2.2, 1.6, 1.45, 1.35}
 		end
 
+		-- Hoxd1 is a shit heist
+		if Global.level_data and Global.level_data.level_id == "hox_1" then
+			self.besiege.assault.spawnrate_balance_mul = {2.75, 2.1, 1.7, 1.45}
+		end
+
 		-- RECON / REENFORCE --
 
 		-- Make reenforce spawngroups spawn faster
@@ -1129,11 +1134,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			reenforce_common = {0.3, 0.3, 0.3},
 			reenforce_sneaky = {0.2, 0.2, 0.2}
 		}
-	end
-
-	-- Hoxd1 is a shit heist
-	if Global.level_data and Global.level_data.level_id == "hox_1" then
-		self.besiege.assault.spawnrate_balance_mul = {2.75, 1.85, 1.45, 1.2}
 	end
 
 	-- nuke captain
