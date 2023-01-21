@@ -76,7 +76,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_shield_break.always_face_enemy = nil
 	self.marshal_shield_break.wall_fwd_offset = nil
 	self.marshal_shield_break.priority_shout = nil
-	self.marshal_shield_break.dodge = self.presets.dodge.ninja
+	self.marshal_shield_break.dodge = self.presets.dodge.athletic
 	self.marshal_shield_break.access = "swat"
 	self.marshal_shield_break.chatter = self.presets.enemy_chatter.swat
 	self.marshal_shield_break.announce_incomming = nil
@@ -84,6 +84,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_shield_break.damage.explosion_damage_mul = 1
 	self.marshal_shield_break.use_animation_on_fire_damage = nil
 	self.marshal_shield_break.damage.shield_knocked = nil
+	self.marshal_shield_break.tmp_invulnerable_on_tweak_change = 0.1
 	self.marshal_shield_break.weapon.is_pistol = self.phalanx_minion.weapon.is_pistol
 
 	-- prevent phalanx from meleeing, since it's just buggy (redflame)
