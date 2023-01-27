@@ -274,8 +274,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.overkill.multipro2 = "5"
 
 	-- Resilience
-	self.values.player.flashbang_multiplier = {0.75, 0.75}
-	self.skill_descs.oppressor.multipro2 = "25%"
+	self.values.player.flashbang_multiplier = {0.65, 0.65}
+	self.skill_descs.oppressor.multipro2 = "35%"
 
 	-- Underdog
 	self.skill_descs.pack_mule.multibasic = "10"
