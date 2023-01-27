@@ -4,6 +4,7 @@ CopBrain._logic_variants.chavez_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.hector_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.drug_lord_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.biker_boss = CopBrain._logic_variants.triad_boss
+CopBrain._logic_variants.tank_elite = CopBrain._logic_variants.tank
 
 
 -- Fix spamming of grenades by units that dodge with grenades (Cloaker)

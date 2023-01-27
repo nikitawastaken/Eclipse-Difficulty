@@ -47,11 +47,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0
+	self.spooc.melee_weapon = "baton"
 
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
 	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
 	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.1
+	self.tank.melee_weapon = "weapon"
+
+	self.tank_elite = deep_clone(self.tank) -- elite dozer
+	table.insert(self._enemy_list, "tank_elite")
 
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
@@ -103,13 +108,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.min_obj_interrupt_dis = 300
 	self.phalanx_minion.min_obj_interrupt_dis = 300
 
-	-- Set melee weapons
 	self.biker.melee_weapon = "knife_1"
-	self.spooc.melee_weapon = "baton"
-	self.tank.melee_weapon = "weapon"
-	self.tank_hw.melee_weapon = "weapon"
-	self.tank_medic.melee_weapon = "weapon"
-	self.tank_mini.melee_weapon = "weapon"
 
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 600
@@ -189,6 +188,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spa_vip.move_speed = self.presets.move_speed.escort_normal
 	self.escort_undercover.move_speed = self.presets.move_speed.escort_slow
 end)
+
 
 -- Thanks RedFlame for helping with this
 local _presets_orig = CharacterTweakData._presets
@@ -904,6 +904,8 @@ function CharacterTweakData:_set_overkill_290()
 	self.medic.headshot_dmg_mul = 2 -- 360 head health
 	self.tank.HEALTH_INIT = 2160
 	self.tank.headshot_dmg_mul = 45 -- 480 head health
+	self.tank_elite.HEALTH_INIT = 2160
+	self.tank_elite.headshot_dmg_mul = 45 -- 480 head health
 	self.phalanx_minion.HEALTH_INIT = 72
 	self.phalanx_minion.headshot_dmg_mul = 3 -- 240 head health
 
@@ -1085,7 +1087,7 @@ function CharacterTweakData:_set_overkill_290()
 		},
 		FALLOFF = {
 			{
-				dmg_mul = 2.5,
+				dmg_mul = 17.5,
 				r = 100,
 				acc = {
 					0.95,
@@ -1103,7 +1105,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 2.5,
+				dmg_mul = 17.5,
 				r = 500,
 				acc = {
 					0.7,
@@ -1121,7 +1123,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 1.5,
+				dmg_mul = 10.5,
 				r = 1000,
 				acc = {
 					0.5,
@@ -1139,7 +1141,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 0.8,
+				dmg_mul = 5.5,
 				r = 2000,
 				acc = {
 					0.3,
@@ -1157,7 +1159,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 0.4,
+				dmg_mul = 2.5,
 				r = 3000,
 				acc = {
 					0.1,
@@ -1510,7 +1512,7 @@ function CharacterTweakData:_set_overkill_290()
 		},
 		FALLOFF = {
 			{
-				dmg_mul = 3.5,
+				dmg_mul = 17.5,
 				r = 100,
 				acc = {
 					0.95,
@@ -1528,7 +1530,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 3.5,
+				dmg_mul = 17.5,
 				r = 500,
 				acc = {
 					0.7,
@@ -1546,7 +1548,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 2.2,
+				dmg_mul = 10.5,
 				r = 1000,
 				acc = {
 					0.5,
@@ -1564,7 +1566,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 1.6,
+				dmg_mul = 5.5,
 				r = 2000,
 				acc = {
 					0.4,
@@ -1582,7 +1584,7 @@ function CharacterTweakData:_set_overkill_290()
 				}
 			},
 			{
-				dmg_mul = 1,
+				dmg_mul = 2.5,
 				r = 3000,
 				acc = {
 					0.15,
@@ -1618,9 +1620,9 @@ function CharacterTweakData:_set_overkill_290()
 		melee_dmg = nil,
 		melee_retry_delay = nil,
 		range = {
-			optimal = 500,
-			far = 1000,
-			close = 100
+			optimal = 800,
+			far = 1500,
+			close = 500
 		},
 		FALLOFF = {
 			{
@@ -1799,7 +1801,7 @@ function CharacterTweakData:_set_overkill_290()
 	self.tank.weapon.is_shotgun_mag.focus_dis = 200
 	self.tank.weapon.is_shotgun_mag.FALLOFF = {
 		{
-			dmg_mul = 3,
+			dmg_mul = 7.5,
 			r = 100,
 			acc = {
 				0.9,
@@ -1821,7 +1823,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 3,
+			dmg_mul = 7.5,
 			r = 500,
 			acc = {
 				0.85,
@@ -1843,7 +1845,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2.25,
+			dmg_mul = 5,
 			r = 1000,
 			acc = {
 				0.75,
@@ -1865,7 +1867,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 1.5,
+			dmg_mul = 3,
 			r = 2000,
 			acc = {
 				0.65,
@@ -1887,7 +1889,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 1,
+			dmg_mul = 1.5,
 			r = 3000,
 			acc = {
 				0.3,
@@ -1921,7 +1923,7 @@ function CharacterTweakData:_set_overkill_290()
 	self.tank.weapon.is_shotgun_pump.focus_dis = 200
 	self.tank.weapon.is_shotgun_pump.FALLOFF = {
 		{
-			dmg_mul = 4.5,
+			dmg_mul = 31.5,
 			r = 100,
 			acc = {
 				0.95,
@@ -1939,7 +1941,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 4.5,
+			dmg_mul = 31.5,
 			r = 500,
 			acc = {
 				0.9,
@@ -1957,7 +1959,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 4.5,
+			dmg_mul = 31.5,
 			r = 1000,
 			acc = {
 				0.6,
@@ -1975,7 +1977,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 3,
+			dmg_mul = 18,
 			r = 2000,
 			acc = {
 				0.45,
@@ -1993,7 +1995,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 1.5,
+			dmg_mul = 7,
 			r = 3000,
 			acc = {
 				0.3,
@@ -2013,26 +2015,26 @@ function CharacterTweakData:_set_overkill_290()
 	}
 
 
-	-- Skulldozer preset
+	-- Elite LMG dozer preset
 	-- 45 damage
-	self.tank.weapon.is_lmg.spread = 15
-	self.tank.weapon.is_lmg.aim_delay = {
+	self.tank_elite.weapon.is_lmg.spread = 15
+	self.tank_elite.weapon.is_lmg.aim_delay = {
 		0.1,
 		0.1
 	}
-	self.tank.weapon.is_lmg.autofire_rounds = {
+	self.tank_elite.weapon.is_lmg.autofire_rounds = {
 		40,
 		80
 	}
-	self.tank.weapon.is_lmg.range = {
+	self.tank_elite.weapon.is_lmg.range = {
 		optimal = 1500,
 		far = 2500,
 		close = 1000
 	}
-	self.tank.weapon.is_lmg.focus_delay = 0.2
-	self.tank.weapon.is_lmg.FALLOFF = {
+	self.tank_elite.weapon.is_lmg.focus_delay = 0.2
+	self.tank_elite.weapon.is_lmg.FALLOFF = {
 		{
-			dmg_mul = 2.25,
+			dmg_mul = 4.5,
 			r = 100,
 			acc = {
 				0.9,
@@ -2050,7 +2052,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2.25,
+			dmg_mul = 4.5,
 			r = 500,
 			acc = {
 				0.8,
@@ -2068,7 +2070,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2.25,
+			dmg_mul = 4.5,
 			r = 1000,
 			acc = {
 				0.7,
@@ -2086,7 +2088,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2.25,
+			dmg_mul = 4.5,
 			r = 2000,
 			acc = {
 				0.45,
@@ -2104,7 +2106,7 @@ function CharacterTweakData:_set_overkill_290()
 			}
 		},
 		{
-			dmg_mul = 2.25,
+			dmg_mul = 4.5,
 			r = 3000,
 			acc = {
 				0.2,
@@ -2119,6 +2121,111 @@ function CharacterTweakData:_set_overkill_290()
 				0,
 				0,
 				1
+			}
+		}
+	}
+
+	-- Elite Benelli Dozer preset
+	self.tank_elite.weapon.is_shotgun_pump.aim_delay = {
+		0.1,
+		0.1
+	}
+	self.tank_elite.weapon.is_shotgun_pump.range = {
+		optimal = 500,
+		far = 1000,
+		close = 100
+	}
+	self.tank_elite.weapon.is_shotgun_pump.focus_delay = 0.2
+	self.tank_elite.weapon.is_shotgun_pump.focus_dis = 200
+	self.tank_elite.weapon.is_shotgun_pump.FALLOFF = {
+		{
+			dmg_mul = 31.5,
+			r = 100,
+			acc = {
+				0.95,
+				0.95
+			},
+			recoil = {
+				0.65,
+				0.65
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 31.5,
+			r = 500,
+			acc = {
+				0.9,
+				0.95
+			},
+			recoil = {
+				0.65,
+				0.65
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 31.5,
+			r = 1000,
+			acc = {
+				0.6,
+				0.8
+			},
+			recoil = {
+				0.8,
+				0.8
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 18,
+			r = 2000,
+			acc = {
+				0.45,
+				0.65
+			},
+			recoil = {
+				1,
+				1
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
+			}
+		},
+		{
+			dmg_mul = 7,
+			r = 3000,
+			acc = {
+				0.3,
+				0.5
+			},
+			recoil = {
+				1.45,
+				1.45
+			},
+			mode = {
+				1,
+				0,
+				0,
+				0
 			}
 		}
 	}
@@ -2863,8 +2970,10 @@ function CharacterTweakData:_set_sm_wish()
 	self.city_swat.dodge = self.presets.dodge.ninja
 	self:_multiply_all_speeds(1.15, 1.075)
 	-- set specific speeds for tanks and shields
-	self.tank.move_speed.stand.walk.cbt = {strafe = 186, fwd = 208, bwd = 164}
-	self.tank.move_speed.stand.run.cbt = {strafe = 355, fwd = 410, bwd = 225}
+	self.tank.move_speed.stand.walk.cbt = {strafe = 176, fwd = 198, bwd = 154}
+	self.tank.move_speed.stand.run.cbt = {strafe = 345, fwd = 400, bwd = 215}
+	self.tank_elite.move_speed.stand.walk.cbt = {strafe = 196, fwd = 218, bwd = 174}
+	self.tank_elite.move_speed.stand.run.cbt = {strafe = 365, fwd = 420, bwd = 235}
 	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
 	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
 	self.phalanx_minion.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
@@ -2890,3 +2999,4 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
         end
     end
 end
+

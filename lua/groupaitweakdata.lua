@@ -362,7 +362,7 @@ local access_type_all = {
 			access = access_type_all
 		}
 
-	-- Green / Saiga Dozers
+	-- FBI Dozers
 		self.unit_categories.tank_fbi = {
 			special_type = "tank",
 			unit_types = {
@@ -390,24 +390,29 @@ local access_type_all = {
 			access = access_type_all
 		}
 
-	-- Lmg Dozers
+	-- Elite Dozers
 		self.unit_categories.tank_elite = {
 			special_type = "tank",
 			unit_types = {
 				america = {
-					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
+					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"),
+					Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
 				},
 				russia = {
-					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
+					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"),
+					Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
 				},
 				zombie = {
-					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
+					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"),
+					Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
 				},
 				murkywater = {
-					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
+					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"),
+					Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
 				},
 				federales = {
-					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
+					Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"),
+					Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
 				}
 			},
 			access = access_type_all
@@ -441,7 +446,7 @@ end)
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
 	-- Tactic Presets
 	-- GenSec presets are more advanced than FBI ones
-	-- Only GenSec enemies can flank as well, this should make flanking less predictable and far scarier
+	-- Only GenSec enemies can flank as well, this makes flanking less predictable and defines them as the superior faction
 	self._tactics = {
 		Phalanx_minion = {
 			"ranged_fire"
@@ -517,8 +522,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"flash_grenade",
 			"murder"
 		},
-		elite_tank_ranged = {
-			"ranged_fire",
+		elite_tank = {
 			"flash_grenade",
 			"smoke_grenade",
 			"deathguard",
@@ -1115,7 +1119,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			gensec_flankers = {0.25, 0.25, 0.45},
 			gensec_tasers = {0.15, 0.15, 0.3},
 			gensec_shields = {0.00, 0.00, 0.15},
-			gensec_tanks = {0, 0, 0.09},
+			gensec_tanks = {0, 0, 0.1},
 			spoocs = {0, 0.06, 0.12},
 			single_spooc = {0, 0, 0},
 			Phalanx = {0, 0, 0},

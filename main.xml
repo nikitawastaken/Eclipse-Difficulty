@@ -8,6 +8,10 @@
 		<!-- characters -->
 		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3" force="true"/>
 		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" force="true"/>
+		<unit path="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3" force="true"/>
+		<unit path="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk" force="true"/>
+		<unit path="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic" force="true"/>
+		<unit path="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_husk" force="true"/>
 		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1" force="true"/>
 		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1_husk" force="true"/>
 		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1" force="true"/>

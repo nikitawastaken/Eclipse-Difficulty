@@ -66,10 +66,47 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 end
 -- End code from Dr. Newbie
 
+
 -- Set up needed variables
 Hooks:PostHook(GroupAIStateBase, "init", "sh_init", function (self)
 	self._next_police_upd_task = 0
 end)
+
+
+-- Make elite dozers register as specials
+local function register_special_types(gstate)
+	gstate._special_unit_types.tank_elite = true
+	gstate._special_unit_mappings = {
+		tank_elite = { "tank" }
+	}
+end
+
+Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "sh__init_misc_data", register_special_types)
+Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "sh_on_simulation_started", register_special_types)
+
+local register_special_unit_original = GroupAIStateBase.register_special_unit
+function GroupAIStateBase:register_special_unit(u_key, category_name, ...)
+	local mapping = self._special_unit_mappings[category_name]
+	if mapping then
+		for _, v in pairs(mapping) do
+			register_special_unit_original(self, u_key, v, ...)
+		end
+	else
+		register_special_unit_original(self, u_key, category_name, ...)
+	end
+end
+
+local unregister_special_unit_original = GroupAIStateBase.unregister_special_unit
+function GroupAIStateBase:unregister_special_unit(u_key, category_name, ...)
+	local mapping = self._special_unit_mappings[category_name]
+	if mapping then
+		for _, v in pairs(mapping) do
+			unregister_special_unit_original(self, u_key, v, ...)
+		end
+	else
+		unregister_special_unit_original(self, u_key, category_name, ...)
+	end
+end
 
 
 -- Restore scripted cloaker spawn noise

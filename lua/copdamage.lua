@@ -61,7 +61,7 @@ function(self, attack_data)
 	local is_civlian = CopDamage.is_civilian(self._unit:base()._tweak_table)
 	local is_gangster = CopDamage.is_gangster(self._unit:base()._tweak_table)
 	local is_cop = not is_civlian and not is_gangster
-    local is_tank = is_cop and self._unit:base()._tweak_table == "tank"
+    local is_tank = is_cop and (self._unit:base()._tweak_table == "tank" or self._unit:base()._tweak_table == "tank_elite")
     local has_tank_knockdown = managers.player:has_enabled_cooldown_upgrade("cooldown", "counter_strike_eclipse")
 	local head = self._head_body_name and attack_data.col_ray.body and attack_data.col_ray.body:name() == self._ids_head_body_name
 	local damage = attack_data.damage

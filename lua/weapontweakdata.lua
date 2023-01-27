@@ -1338,16 +1338,26 @@ Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290"
 	-- NPC weapon edits
 	self.m4_npc.DAMAGE = 1
 	self.m4_npc.auto.fire_rate = 0.225
-	self.r870_npc.DAMAGE = 7
 	self.m4_yellow_npc.DAMAGE = 1
 	self.m4_yellow_npc.auto.fire_rate = 0.3
-	self.m249_npc.auto.fire_rate = 0.175
-	self.ump_npc.auto.fire_rate = 0.25
 	self.g36_npc.DAMAGE = 1
 	self.g36_npc.auto.fire_rate = 0.25
+
+	self.r870_npc.DAMAGE = 1
+	self.r870_npc.CLIP_AMMO_MAX = 8
+	self.benelli_npc.DAMAGE = 1
+	self.benelli_npc.CLIP_AMMO_MAX = 8
+
+	self.m249_npc.DAMAGE = 1
+	self.m249_npc.auto.fire_rate = 0.15
+	self.saiga_npc.DAMAGE = 1
+	self.saiga_npc.auto.fire_rate = 0.33
+	self.saiga_npc.CLIP_AMMO_MAX = 20
+
+	self.ump_npc.auto.fire_rate = 0.25
 	self.mp9_npc.auto.fire_rate = 0.275
 	self.mp5_npc.auto.fire_rate = 0.25
-	self.saiga_npc.auto.fire_rate = 0.25
+
 	self.mac11_npc.auto.fire_rate = 0.2
 	self.raging_bull_npc.DAMAGE = 1
 	self.ak47_ass_npc.DAMAGE = 1
@@ -1356,11 +1366,10 @@ Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290"
 	self.ak47_npc.auto.fire_rate = 0.2
 	self.scar_npc.DAMAGE = 1
 	self.scar_npc.auto.fire_rate = 0.2
+
+
 	-- Misc
 	self.m249_npc.usage = "is_lmg"
-	self.r870_npc.CLIP_AMMO_MAX = 8
-	self.saiga_npc.CLIP_AMMO_MAX = 20
-	self.benelli_npc.CLIP_AMMO_MAX = 8
 	self.flamethrower_npc.flame_max_range = 800 -- wow 15m is retarded lmao
 	self.benelli_npc.sounds.prefix = "benelli_m4_npc" -- Give it a proper sound
 	self.beretta92_npc.has_suppressor = "suppressed_b" -- suppressed

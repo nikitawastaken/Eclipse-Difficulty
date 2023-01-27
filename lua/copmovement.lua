@@ -1,3 +1,5 @@
+CopMovement._action_variants.tank_elite = CopMovement._action_variants.tank
+
 -- Fix enemies playing the suppressed stand-to-crouch animation when shot even if they are already crouching
 local play_redirect_original = CopMovement.play_redirect
 function CopMovement:play_redirect(redirect_name, ...)
@@ -38,7 +40,8 @@ end
 Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damage_info)
 	local hurt_type = damage_info.result.type
     -- If it's a dozer and the hurt type is expl_hurt, use the medium hurt preset instead
-    if self._unit:base()._tweak_table == "tank" and hurt_type == "expl_hurt" then hurt_type = "hurt" end
+	local is_tank = self._unit:base()._tweak_table == "tank" or self._unit:base()._tweak_table == "tank_elite"
+    if is_tank and hurt_type == "expl_hurt" then hurt_type = "hurt" end
 
 	-- Original code
 	if hurt_type == "stagger" then
