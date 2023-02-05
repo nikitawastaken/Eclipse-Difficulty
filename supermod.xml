@@ -138,6 +138,7 @@
 				<post :hook_id="vehicles/animatedvehiclebase"/>
 				<post :hook_id="player_team/teamaimovement"/>
 				<post :hook_id="cameras/fpcameraplayerbase"/>
+				<post :hook_id="props/carrydata"/>
 
 				<group :hook_id="weapons/">
 					<group :hook_id="grenades/">

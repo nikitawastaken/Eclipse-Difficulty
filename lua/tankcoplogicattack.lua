@@ -1,7 +1,9 @@
 -- Don't exit attack logic while chasing
 function TankCopLogicAttack._chk_exit_attack_logic(data, ...)
-	if not data.attention_obj or data.attention_obj.dis > 2000 or data.attention_obj.reaction < AIAttentionObject.REACT_COMBAT then
-		CopLogicAttack._chk_exit_attack_logic(data, ...)
+	if not data.internal_data.walking_to_chase_pos then
+		if not data.attention_obj or data.attention_obj.dis > 2000 or data.attention_obj.reaction < AIAttentionObject.REACT_COMBAT then
+			CopLogicAttack._chk_exit_attack_logic(data, ...)
+		end
 	end
 end
 
@@ -39,7 +41,7 @@ function TankCopLogicAttack.update(data)
 	local enemy_visible = focus_enemy.verified
 	if focus_enemy.reaction >= AIAttentionObject.REACT_COMBAT then
 		-- Stop running if we're close enough
-		if enemy_visible and focus_enemy.verified_dis < 600 and unit:anim_data().run then
+		if enemy_visible and focus_enemy.dis < 600 and unit:anim_data().run then
 			unit:brain():action_request({
 				body_part = 2,
 				type = "idle"
@@ -53,7 +55,7 @@ function TankCopLogicAttack.update(data)
 			end
 		elseif my_data.pathing_to_chase_pos then
 		elseif my_data.chase_path then
-			local walk = enemy_visible and focus_enemy.verified_dis < 800
+			local walk = enemy_visible and focus_enemy.dis < 800
 			TankCopLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, walk and "walk" or "run")
 		elseif my_data.chase_pos then
 			local from_pos = unit:movement():nav_tracker():field_position()

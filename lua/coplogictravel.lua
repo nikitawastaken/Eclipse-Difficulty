@@ -1,7 +1,5 @@
-local math_abs = math.abs
 local math_random = math.random
 local mvec3_add = mvector3.add
-local mvec3_copy = mvector3.copy
 local mvec3_cross = mvector3.cross
 local mvec3_dir = mvector3.direction
 local mvec3_dis = mvector3.distance

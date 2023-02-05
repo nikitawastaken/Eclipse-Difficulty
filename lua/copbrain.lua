@@ -16,12 +16,20 @@ function CopBrain:_chk_use_cover_grenade(...)
 end
 
 
--- Don't trigger damage callback from poison damage as it would make enemies go into shoot action
--- when they stand inside a poison cloud, regardless of any targets being visible or not
+-- Don't trigger damage callback from dot damage as it would make enemies go into shoot action
+-- when they stand inside a poison cloud or molotov, regardless of any targets being visible or not
 local clbk_damage_original = CopBrain.clbk_damage
 function CopBrain:clbk_damage(my_unit, damage_info, ...)
-	return damage_info.variant ~= "poison" and clbk_damage_original(self, my_unit, damage_info, ...)
+	if damage_info.variant ~= "poison" and not damage_info.is_fire_dot_damage and not damage_info.is_molotov then
+		return clbk_damage_original(self, my_unit, damage_info, ...)
+	end
 end
+
+
+-- Set Joker owner to keep follow objective correct
+Hooks:PreHook(CopBrain, "convert_to_criminal", "sh_convert_to_criminal", function (self, mastermind_criminal)
+	self._logic_data.minion_owner = mastermind_criminal or managers.player:local_player()
+end)
 
 
 -- If Iter is installed and streamlined path option is used, don't make any further changes

@@ -254,3 +254,19 @@ Hooks:PostHook(GroupAIStateBase, "on_criminal_nav_seg_change", "sh_on_criminal_n
 		mvector3.set(u_sighting.pos, u_sighting.m_det_pos)
 	end
 end)
+
+
+-- Make jokers follow their actual owner instead of the closest player
+local _determine_objective_for_criminal_AI_original = GroupAIStateBase._determine_objective_for_criminal_AI
+function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
+	local logic_data = unit:brain()._logic_data
+	if logic_data.is_converted and alive(logic_data.minion_owner) then
+		return {
+			type = "follow",
+			scan = true,
+			follow_unit = logic_data.minion_owner
+		}
+	end
+
+	return _determine_objective_for_criminal_AI_original(self, unit, ...)
+end

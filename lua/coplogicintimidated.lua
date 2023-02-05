@@ -2,7 +2,7 @@
 local rescue_SO_verification_original = CopLogicIntimidated.rescue_SO_verification
 function CopLogicIntimidated.rescue_SO_verification(ignore_this, data, unit, ...)
 	local logic_data = unit:brain()._logic_data
-	if not logic_data or not logic_data.tactics or logic_data.tactics.rescue_hostages or logic_data.objective and logic_data.objective.grp_objective == "recon_area" then
+	if not logic_data or not logic_data.tactics or logic_data.tactics.rescue_hostages or logic_data.objective and logic_data.objective.grp_objective and logic_data.objective.grp_objective.type == "recon_area" then
 		return rescue_SO_verification_original(ignore_this, data, unit, ...)
 	end
 end

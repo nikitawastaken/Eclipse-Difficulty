@@ -178,6 +178,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.no_run_start = true
 	self.triad_boss.no_run_stop = true
 	self.triad_boss.bullet_damage_only_from_front = nil
+	self.triad_boss.invulnerable_to_slotmask = nil
 	self.triad_boss.throwable_target_verified = false
 	self.triad_boss.throwable_cooldown = 20
 

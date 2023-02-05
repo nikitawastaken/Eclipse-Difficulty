@@ -80,7 +80,7 @@ function BossLogicAttack._chk_use_throwable(data, my_data, focus)
 		return
 	end
 
-	if not focus.criminal_record or focus.is_deployable or (not focus.verified) == data.char_tweak.throwable_target_verified then
+	if (not focus.verified) == data.char_tweak.throwable_target_verified then
 		return
 	end
 
@@ -158,7 +158,6 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 	local enemy_visible = focus_enemy.verified
 	local action_taken = data.logic.action_taken(data, my_data)
 	local weapon_range = my_data.weapon_range
-	local chase
 
 	if not action_taken then
 		if my_data.chase_path_failed_t and t - my_data.chase_path_failed_t <= 1 then
@@ -166,22 +165,12 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 		end
 
 		if my_data.chase_path then
-			local enemy_dis = enemy_visible and focus_enemy.dis or focus_enemy.verified_dis
-			local run_dist = enemy_visible and weapon_range.optimal or weapon_range.close
-			local speed = enemy_dis < run_dist and "walk" or "run"
-
-			BossLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, speed)
+			BossLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, enemy_visible and focus_enemy.dis < weapon_range.optimal and "walk" or "run")
 		elseif not my_data.chase_path_search_id and focus_enemy.nav_tracker then
 			local height_diff = math_abs(data.m_pos.z - focus_enemy.m_pos.z)
-			if height_diff < 300 then
-				chase = true
-			else
-				local engage = my_data.attitude == "engage"
-				if enemy_visible then
-					chase = focus_enemy.dis > weapon_range.optimal or engage and focus_enemy.dis > weapon_range.close
-				else
-					chase = focus_enemy.verified_dis > weapon_range.optimal or engage and focus_enemy.verified_dis > weapon_range.close or not focus_enemy.verified_t or t - focus_enemy.verified_t > 2
-				end
+			local chase = height_diff < 300 or focus_enemy.dis > weapon_range.optimal or my_data.attitude == "engage" and focus_enemy.dis > weapon_range.close
+			if not chase and not enemy_visible then
+				chase = not focus_enemy.verified_t or t - focus_enemy.verified_t > 2
 			end
 
 			if not chase then
@@ -214,11 +203,6 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 						mvec3_cpy(my_pos),
 						my_data.chase_pos
 					}
-					local enemy_dis = enemy_visible and focus_enemy.dis or focus_enemy.verified_dis
-					local run_dist = enemy_visible and weapon_range.optimal or weapon_range.close
-					local speed = enemy_dis < run_dist and "walk" or "run"
-
-					BossLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, speed)
 				else
 					my_data.chase_path_search_id = tostring(data.unit:key()) .. "chase"
 					my_data.pathing_to_chase_pos = true
@@ -240,45 +224,14 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 		end
 
 		local change_speed
-		local enemy_dis = enemy_visible and focus_enemy.dis or focus_enemy.verified_dis
-		local run_dist = enemy_visible and weapon_range.optimal or weapon_range.close
 		if current_haste == "run" then
-			change_speed = enemy_dis < run_dist * 0.5 and "walk"
+			change_speed = enemy_visible and focus_enemy.dis < weapon_range.close
 		else
-			change_speed = enemy_dis > run_dist and "run"
+			change_speed = not enemy_visible or focus_enemy.dis > weapon_range.optimal
 		end
 
-		if not change_speed then
-			return
-		end
-
-		local my_pos = data.unit:movement():nav_tracker():field_position()
-		local moving_to_pos = my_data.walking_to_chase_pos:get_walk_to_pos()
-		local unobstructed_line = nil
-
-		if math_abs(my_pos.z - moving_to_pos.z) < 40 then
-			local ray_params = {
-				allow_entry = false,
-				pos_from = my_pos,
-				pos_to = moving_to_pos
-			}
-
-			if not managers.navigation:raycast(ray_params) then
-				unobstructed_line = true
-			end
-		end
-
-		if unobstructed_line then
-			moving_to_pos = mvec3_cpy(moving_to_pos)
-
+		if change_speed then
 			BossLogicAttack._cancel_chase_attempt(data, my_data)
-
-			my_data.chase_path = {
-				mvec3_cpy(my_pos),
-				moving_to_pos
-			}
-
-			BossLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, change_speed)
 		end
 	end
 end
