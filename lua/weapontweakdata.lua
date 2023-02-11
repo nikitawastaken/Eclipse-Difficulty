@@ -1141,12 +1141,12 @@ self.ms3gl.AMMO_PICKUP = {0.1, 0.1}
 
 -- GL40
 self.gre_m79.use_data.selection_index = SELECTION.SECONDARY
-self.gre_m79.stats.damage = 80
+self.gre_m79.stats.damage = 82
 self.gre_m79.AMMO_MAX = 7
 self.gre_m79.AMMO_PICKUP = {0.067, 0.067}
 
 -- Compact 40
-self.slap.stats.damage = 80
+self.slap.stats.damage = 82
 self.slap.AMMO_MAX = 7
 self.slap.AMMO_PICKUP = {0.067, 0.067}
 
