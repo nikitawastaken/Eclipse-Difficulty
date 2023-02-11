@@ -1118,7 +1118,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			gensec_ranged_lights = {0.3, 0.3, 0.5},
 			gensec_flankers = {0.25, 0.25, 0.45},
 			gensec_tasers = {0.15, 0.15, 0.3},
-			gensec_shields = {0.00, 0.00, 0.15},
+			-- gensec_shields = {0.00, 0.00, 0.15},
 			gensec_tanks = {0, 0, 0.1},
 			spoocs = {0, 0.06, 0.12},
 			single_spooc = {0, 0, 0},
