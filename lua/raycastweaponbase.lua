@@ -44,12 +44,16 @@ Hooks:OverrideFunction(RaycastWeaponBase, "add_ammo", function (self, ratio, add
 
 		local multiplier_min = 1
 		local multiplier_max = 1
+		self.solo_player_pickup_buff = {0.2, 0, 0, 0}
 		if ammo_base._ammo_data and ammo_base._ammo_data.ammo_pickup_min_mul then
 			multiplier_min = ammo_base._ammo_data.ammo_pickup_min_mul
 		else
 			multiplier_min = managers.player:upgrade_value("player", "pick_up_ammo_multiplier", 1)
 			multiplier_min = multiplier_min + managers.player:upgrade_value("player", "pick_up_ammo_multiplier_2", 1) - 1
 			multiplier_min = multiplier_min + managers.player:crew_ability_upgrade_value("crew_scavenge", 0)
+			if Utils:IsInHeist() then -- without this check it breaks more weapon stats
+				multiplier_min = multiplier_min + (managers.groupai:state():_get_balancing_multiplier(self.solo_player_pickup_buff) or 0)
+			end
 		end
 
 		if ammo_base._ammo_data and ammo_base._ammo_data.ammo_pickup_max_mul then
@@ -58,6 +62,9 @@ Hooks:OverrideFunction(RaycastWeaponBase, "add_ammo", function (self, ratio, add
 			multiplier_max = managers.player:upgrade_value("player", "pick_up_ammo_multiplier", 1)
 			multiplier_max = multiplier_max + managers.player:upgrade_value("player", "pick_up_ammo_multiplier_2", 1) - 1
 			multiplier_max = multiplier_max + managers.player:crew_ability_upgrade_value("crew_scavenge", 0)
+			if Utils:IsInHeist() then -- same story
+				multiplier_max = multiplier_max + (managers.groupai:state():_get_balancing_multiplier(self.solo_player_pickup_buff) or 0)
+			end
 		end
 
 		local pickup, picked_up
