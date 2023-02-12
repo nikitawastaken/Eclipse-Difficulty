@@ -1068,13 +1068,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 		-- Spawnrate
 		if difficulty_index == 7 then
-			self.besiege.assault.spawnrate_balance_mul = {2.4, 1.8, 1.6, 1.5}
+			self.besiege.assault.spawnrate_balance_mul = {2.5, 2, 1.8, 1.65}
 		elseif difficulty_index == 8 then
 			self.besiege.assault.spawnrate_balance_mul = {2.2, 1.6, 1.45, 1.35}
 		end
 
 		-- Hoxd1 is a shit heist
-		if Global.level_data and Global.level_data.level_id == "hox_1" then
+		if Global.level_data and Global.level_data.level_id == "hox_1" and difficulty_index == 8 then
 			self.besiege.assault.spawnrate_balance_mul = {2.75, 2.1, 1.7, 1.45}
 		end
 
