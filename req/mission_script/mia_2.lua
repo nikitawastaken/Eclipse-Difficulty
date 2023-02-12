@@ -1,10 +1,10 @@
 return {
 	-- Boss spawn
-	[100521] = {
+	[100154] = {
 		difficulty = 0.1
 	},
 	-- Boss dead
-	[100533] = {
+	[100153] = {
 		difficulty = 1
 	},
     [101133] = {

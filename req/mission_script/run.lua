@@ -47,5 +47,20 @@ return {
 		values = {
 			enabled = false
 		}
+	},
+    [100029] = {
+		values = {
+			interval = 20
+		}
+	},
+	[100441] = {
+		values = {
+			interval = 20
+		}
+	},
+	[103333] = {
+		values = {
+			interval = 20
+		}
 	}
 }
