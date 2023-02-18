@@ -199,7 +199,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	-- pre-henchmen team ai hurt severity & low gp
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.1
 	presets.gang_member_damage.hurt_severity.bullet = {
-		health_reference = "current",
+		health_reference = "full",
 		zones = {
 			{
 				health_limit = 0.4,
@@ -270,7 +270,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.no_heavy_hurt = {
 		tase = true,
 		bullet = {
-			health_reference = "current",
+			health_reference = "full",
 			zones = {
 				{
 					health_limit = 0.4,
@@ -289,7 +289,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		fire = {
-			health_reference = "current",
+			health_reference = "full",
 			zones = {
 				{
 					fire = 1
@@ -297,7 +297,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		poison = {
-			health_reference = "current",
+			health_reference = "full",
 			zones = {
 				{
 					poison = 1

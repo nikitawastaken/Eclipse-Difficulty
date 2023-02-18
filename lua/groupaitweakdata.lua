@@ -1,4 +1,4 @@
--- Increase tickrate to 90
+	-- Increase tickrate to 90
 Hooks:PostHook(GroupAITweakData, "init", "eclipse_init", function (self)
 	self.ai_tick_rate = 1 / 90
 end)
@@ -986,7 +986,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					freq = 1,
 					amount_max = 1,
 					rank = 1,
-					unit = "swat_shotgun",
+					unit = "swat_r870",
 					tactics = self._tactics.recon_attack
 				},
 				{
@@ -994,7 +994,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					freq = 1,
 					amount_max = 1,
 					rank = 1,
-					unit = "swat_rifle",
+					unit = "swat_m4",
 					tactics = self._tactics.recon_attack
 				},
 				{
@@ -1110,6 +1110,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index >= 7 then
 		self.besiege.assault.groups = {
+			recon_aggressive = {1, 0.4, 0},
 			fbi_lights = {1.75, 1.75, 0},
 			fbi_heavies = {0.5, 0.5, 1.25},
 			fbi_shields = {0.4, 0.4, 0.3},
