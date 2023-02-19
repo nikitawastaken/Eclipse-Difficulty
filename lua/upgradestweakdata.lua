@@ -424,10 +424,10 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Logistician
 	self.values.carry.interact_speed_multiplier = {0.5, 0.25}
-	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.7
+	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.5
 	self.skill_descs.second_chances.multibasic = "50%"
 	self.skill_descs.second_chances.multipro = "50%"
-	self.skill_descs.second_chances.multipro2 = "30%"
+	self.skill_descs.second_chances.multipro2 = "50%"
 
 	-- ECM Feedback
 	self.ecm_feedback_retrigger_interval = 120
