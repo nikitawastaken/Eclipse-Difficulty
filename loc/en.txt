@@ -6,6 +6,7 @@
 	"bm_wp_upg_a_dragons_breath_desc": "Special type of Incendiary-effect rounds.\nOne shell contains 12 magnesium pellets.\nIgnites all enemies within 15m range.\nThis ammo type is harder to find.",
 	"bm_wp_upg_mk2_rare_desc": "This fuel is easier to find.",
 	"bm_wp_upg_mk2_welldone_desc": "This fuel is harder to find.",
+	"bm_w_hajk": "CR 805B Rifle",
 	
 	"st_menu_mastermind_inspire": "Support",
 	"menu_bandage": "Bandages",

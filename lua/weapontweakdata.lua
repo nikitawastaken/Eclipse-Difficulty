@@ -953,6 +953,18 @@ self.galil.kick = kick_tables.ar_high
 self.komodo.spray = spray_tables.ar_left_mid
 self.komodo.recoil_recovery_timer = recovery_tables.high
 
+-- CR805
+self.hajk.categories = {
+	"assault_rifle"
+}
+self.hajk.stats.damage = 80
+self.hajk.AMMO_MAX = total_ammo_tables.ar_low
+self.hajk.AMMO_PICKUP = pickup_tables.ar_low
+self.hajk.kick = kick_tables.ar_high
+self.hajk.spray = spray_tables.ar_left_mid
+self.hajk.recoil_recovery_timer = recovery_tables.high
+self.hajk.use_data.selection_index = SELECTION.PRIMARY
+
 -- Bootleg
 self.tecci.stats.spread = 11
 self.tecci.stats.reload = 11
@@ -1199,14 +1211,6 @@ self.olympic.stats.damage = 80
 self.olympic.kick = kick_tables.ar_very_high
 self.olympic.spray = spray_tables.ar_right_mid
 self.olympic.recoil_recovery_timer = recovery_tables.high
-
--- CR805
-self.hajk.stats.damage = 80
-self.hajk.AMMO_MAX = total_ammo_tables.smg_low
-self.hajk.AMMO_PICKUP = pickup_tables.smg_low
-self.hajk.kick = kick_tables.ar_very_high
-self.hajk.spray = spray_tables.ar_left_mid
-self.hajk.recoil_recovery_timer = recovery_tables.high
 
 -- Uzi
 self.uzi.stats.damage = 80
