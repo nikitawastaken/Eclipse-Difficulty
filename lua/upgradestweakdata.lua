@@ -686,8 +686,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[21][5].multiperk2 = "5%"
 
 	-- Hitman
-	self.values.player.perk_armor_regen_timer_multiplier[5] = 0.4
-	self.specialization_descs[5][9].multiperk = "25%"
+	self.values.player.primary_reload_secondary[1] = 5
+	self.values.player.secondary_reload_primary[1] = 5
+	self.values.temporary.unseen_strike[1] = {1.2, 5}
+	self.specialization_descs[5][1].multiperk = "5"
+	self.specialization_descs[5][3].multiperk = "80%"
+	self.specialization_descs[5][5].multiperk = "20%"
+	self.specialization_descs[5][5].multiperk2 = "5"
+	self.specialization_descs[5][5].multiperk3 = "4"
+	self.specialization_descs[5][7].multiperk = "10"
+	self.specialization_descs[5][7].multiperk2 = "3"
+	self.specialization_descs[5][9].multiperk = "30"
+	self.specialization_descs[5][9].multiperk2 = "1"
 
 	-- Infiltrator / Socio healing
 	self.values.player.melee_kill_life_leech = {1.5}
