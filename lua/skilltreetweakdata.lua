@@ -455,14 +455,22 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- hitman
 	self.specializations[5][1].upgrades = {"player_primary_reload_secondary_1", "player_secondary_reload_primary_1"}
+	self.specializations[5][1].texture_bundle_folder = "mrwi"
+	self.specializations[5][1].icon_xy = {0, 0}
 	self.specializations[5][3].upgrades = {"weapon_passive_swap_speed_multiplier_1"}
 	self.specializations[5][5].upgrades = {"player_unseen_temp_increased_crit_chance_1", "player_unseen_increased_crit_chance_1"}
+	self.specializations[5][5].icon_xy = {3, 3}
 	self.specializations[5][7].upgrades = {"player_headshot_regen_health_bonus_1"}
+	self.specializations[5][7].texture_bundle_folder = "mrwi"
+	self.specializations[5][7].icon_xy = {1, 0}
 	self.specializations[5][9].upgrades = {"player_killshot_regen_armor_bonus", "player_passive_loot_drop_multiplier"}
+	self.specializations[5][9].icon_xy = {0, 5}
 
 	-- burglar
 	table.delete(self.specializations[7][7].upgrades, "player_tier_dodge_chance_3")
 	self.specializations[7][9].upgrades = {"player_dodge_ricochet_bullets", "player_passive_loot_drop_multiplier"}
+	self.specializations[7][9].texture_bundle_folder = "mrwi"
+	self.specializations[7][9].icon_xy = {2, 0}
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
