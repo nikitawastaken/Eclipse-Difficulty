@@ -274,12 +274,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				objective_area = obstructed_area
 			end
 		elseif not current_objective.pushed or charge and not current_objective.charge then
-			-- If we've been in position for a while or haven't seen enemies, approach
+			-- If we can't see enemies, approach
 			approach = not self:_can_group_see_target(group)
 		end
 	elseif not current_objective.moving_out then
 		-- If we aren't moving out to an objective, open fire if we have ranged_fire tactics and see an enemy, otherwise approach
-		approach = charge or group.is_chasing or not tactics_map.ranged_fire or not self:_can_group_see_target(group)
+		approach = charge or group.is_chasing or not tactics_map.ranged_fire or not current_objective.open_fire or not self:_can_group_see_target(group)
 		open_fire = not approach and not current_objective.open_fire
 	elseif tactics_map.ranged_fire and not current_objective.open_fire and self:_can_group_see_target(group, true) then
 		-- If we see an enemy while moving out and have the ranged_fire tactics, open fire

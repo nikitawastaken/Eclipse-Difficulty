@@ -159,6 +159,7 @@ function CopLogicTravel._determine_destination_occupation(data, objective, ...)
 end
 
 function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
+	local threat_dir, threat_side, pos = tmp_vec1, tmp_vec2, tmp_vec3
 	local advancing = unit:brain() and unit:brain():is_advancing()
 	local unit_movement = unit:movement()
 	local unit_pos = advancing or unit_movement:m_pos()
@@ -167,14 +168,14 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 
 	-- Get the threat direction
 	if data.attention_obj and data.attention_obj.reaction >= AIAttentionObject.REACT_AIM then
-		mvec3_dir(tmp_vec1, data.attention_obj.m_pos, unit_pos)
+		mvec3_dir(threat_dir, data.attention_obj.m_pos, unit_pos)
 	else
-		mvec3_set(tmp_vec1, unit_movement.m_fwd and unit_movement:m_fwd() or unit_movement:m_head_rot():y())
-		mvec3_neg(tmp_vec1)
+		mvec3_set(threat_dir, unit_movement.m_fwd and unit_movement:m_fwd() or unit_movement:m_head_rot():y())
+		mvec3_neg(threat_dir)
 	end
 
 	-- Threat direction side
-	mvec3_cross(tmp_vec2, tmp_vec1, math.UP)
+	mvec3_cross(threat_side, threat_dir, math.UP)
 
 	local fallback_pos
 	local rays = 7
@@ -183,25 +184,24 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 	local ray_params = {
 		allow_entry = false,
 		trace = true,
-		pos_from = unit_pos
+		pos_from = unit_pos,
+		pos_to = pos
 	}
 	local rsrv_desc = {
-		false,
-		40
+		radius = 40
 	}
 
 	repeat
 		if math_random() < 0.5 then
-			mvec3_neg(tmp_vec2)
+			mvec3_neg(threat_side)
 		end
 
 		-- Get a random vector between main threat direction and side threat direction
-		mvec3_lerp(tmp_vec3, tmp_vec1, tmp_vec2, math_random() * 0.5)
-		mvec3_normalize(tmp_vec3)
-		mvec3_mul(tmp_vec3, offset + math_random(min_dis, max_dis))
-		mvec3_add(tmp_vec3, unit_pos)
+		mvec3_lerp(pos, threat_dir, threat_side, math_random() * 0.5)
+		mvec3_normalize(pos)
+		mvec3_mul(pos, offset + math_random(min_dis, max_dis))
+		mvec3_add(pos, unit_pos)
 
-		ray_params.pos_to = tmp_vec3
 		if not nav_manager:raycast(ray_params) or mvec3_dis_sq(ray_params.trace[1], unit_pos) > min_dis_sq then
 			rsrv_desc.position = ray_params.trace[1]
 			if nav_manager:is_pos_free(rsrv_desc) then

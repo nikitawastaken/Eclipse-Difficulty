@@ -74,14 +74,14 @@ function CopLogicSniper._upd_aim(data, my_data)
 		end
 
 		if not my_data.shooting and not data.unit:movement():chk_action_forbidden("action") then
-			my_data.shooting = data.unit:brain():action_request({
+			my_data.shooting = data.brain:action_request({
 				body_part = 3,
 				type = "shoot"
 			})
 		end
 	else
 		if my_data.shooting then
-			data.unit:brain():action_request({
+			data.brain:action_request({
 				body_part = 3,
 				type = "idle"
 			})

@@ -7,12 +7,13 @@ end
 -- Add custom mission script changes and triggers for specific levels
 -- Execution of mission scripts can trigger reinforce locations (trigger that has just a name disables previously enabled reinforcement with that id)
 -- Mission script elements can be disabled or enabled
-local mission_script_elements = StreamHeist:mission_script_patches()
-if not mission_script_elements then
-	return
-end
 
 Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function (self)
+	local mission_script_elements = StreamHeist:mission_script_patches()
+	if not mission_script_elements then
+		return
+	end
+
 	for element_id, data in pairs(mission_script_elements) do
 		local element = self:get_element_by_id(element_id)
 		if not element then

@@ -2393,7 +2393,7 @@ function CharacterTweakData:_set_overkill_290()
 
 	-- Taser preset
 	self.taser.weapon.is_rifle = deep_clone(self.presets.weapon.deathwish.is_rifle)
-	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 30
+	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 15
 	self.taser.weapon.is_rifle.tase_distance = 1500
 	self.taser.weapon.is_rifle.aim_delay_tase = {0.15, 0.15}
 

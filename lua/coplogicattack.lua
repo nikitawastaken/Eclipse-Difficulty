@@ -26,14 +26,14 @@ function CopLogicAttack._upd_aim(data, my_data)
 		end
 
 		if not my_data.shooting and not my_data.spooc_attack and not data.unit:anim_data().reload and not data.unit:movement():chk_action_forbidden("action") then
-			my_data.shooting = data.unit:brain():action_request({
+			my_data.shooting = data.brain:action_request({
 				body_part = 3,
 				type = "shoot"
 			})
 		end
 	else
 		if my_data.shooting then
-			data.unit:brain():action_request({
+			data.brain:action_request({
 				body_part = 3,
 				type = "idle"
 			})
@@ -135,7 +135,7 @@ function CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, 
 		if retreat_to then
 			CopLogicAttack._cancel_cover_pathing(data, my_data)
 
-			my_data.advancing = data.unit:brain():action_request({
+			my_data.advancing = data.brain:action_request({
 				type = "walk",
 				variant = "walk",
 				body_part = 2,

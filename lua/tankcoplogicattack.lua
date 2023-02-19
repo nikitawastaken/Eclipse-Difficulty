@@ -50,13 +50,12 @@ function TankCopLogicAttack.update(data)
 
 		if my_data.walking_to_chase_pos then
 			-- Check if the current chase pos is too far from our focus enemy and if so, cancel chase to get a better pos
-			if mvector3.distance_sq(my_data.walking_to_chase_pos:get_destination_pos(), focus_enemy.m_pos) > 1440000 then
+			if my_data.chase_enemy and mvector3.distance_sq(my_data.walking_to_chase_pos:get_destination_pos(), my_data.chase_enemy.m_pos) > 1440000 then
 				TankCopLogicAttack._cancel_chase_attempt(data, my_data)
 			end
 		elseif my_data.pathing_to_chase_pos then
 		elseif my_data.chase_path then
-			local walk = enemy_visible and focus_enemy.dis < 800
-			TankCopLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, walk and "walk" or "run")
+			TankCopLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, enemy_visible and focus_enemy.dis < 800 and "walk" or "run")
 		elseif my_data.chase_pos then
 			local from_pos = unit:movement():nav_tracker():field_position()
 			local to_pos = my_data.chase_pos
@@ -80,6 +79,7 @@ function TankCopLogicAttack.update(data)
 			end
 		elseif focus_enemy.nav_tracker then
 			my_data.chase_pos = CopLogicAttack._find_flank_pos(data, my_data, focus_enemy.nav_tracker, 1000)
+			my_data.chase_enemy = focus_enemy
 		end
 	else
 		TankCopLogicAttack._cancel_chase_attempt(data, my_data)
