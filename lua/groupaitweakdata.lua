@@ -565,6 +565,30 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	-- Custom spawngroups
 	if difficulty_index >= 7 then
+		self.enemy_spawn_groups.blue_swats = {
+			amount = {
+				3,
+				3
+			},
+			spawn = {
+				{
+					amount_min = 1,
+					freq = 0.75,
+					amount_max = 2,
+					rank = 1,
+					unit = "swat_m4",
+					tactics = self._tactics.fbi_rifle
+				},
+				{
+					amount_min = 1,
+					freq = 0.5,
+					amount_max = 2,
+					rank = 1,
+					unit = "swat_r870",
+					tactics = self._tactics.fbi_shotgun
+				}
+			}
+		}
 		self.enemy_spawn_groups.fbi_lights = {
 			amount = {
 				3,
@@ -1110,7 +1134,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index >= 7 then
 		self.besiege.assault.groups = {
-			recon_aggressive = {1, 0.7, 0},
+			blue_swats = {1, 0.7, 0},
 			fbi_lights = {1.75, 1.75, 0},
 			fbi_heavies = {0.5, 0.5, 1.25},
 			fbi_shields = {0.4, 0.4, 0.3},
