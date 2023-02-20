@@ -853,9 +853,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function 
 		self._groups[spawn_task.group.id] = nil
 	end
 
-	-- Set a dynamic enemy spawnrate that depends on player count and enemy group size
+	-- Set a dynamic enemy spawnrate that scales with player count and difficulty value
 	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul)
-	self._next_group_spawn_t = self._t + spawn_task.group.size * spawn_rate_player_mul
+	local spawn_rate_diff_mul = self:_get_difficulty_dependent_value(self._tweak_data.assault.spawnrate_diff_mul)
+	self._next_group_spawn_t = self._t + spawn_task.group.size * spawn_rate_player_mul * spawn_rate_diff_mul
 end)
 
 
