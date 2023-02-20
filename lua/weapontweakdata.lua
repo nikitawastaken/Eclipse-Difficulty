@@ -1279,7 +1279,7 @@ self.schakal.recoil_recovery_timer = recovery_tables.high
 
 --Peacemaker
 self.peacemaker.AMMO_MAX = 24
-self.peacemaker.stats.damage = 120
+self.peacemaker.stats.damage = 145
 self.peacemaker.stats.reload = 17
 self.peacemaker.AMMO_MAX = total_ammo_tables.revolver_ap
 self.peacemaker.AMMO_PICKUP = pickup_tables.revolver_ap
@@ -1293,7 +1293,7 @@ self.peacemaker.desc_id = "bm_w_lemming_desc"
 
 
 -- Angry Tiger
-self.rsh12.stats.damage = 120
+self.rsh12.stats.damage = 145
 self.rsh12.stats_modifiers = {damage = 2}
 self.rsh12.stats.reload = 13
 self.rsh12.AMMO_MAX = total_ammo_tables.revolver_ap
@@ -1302,7 +1302,7 @@ self.rsh12.stats_modifiers = {damage = 1}
 self.rsh12.kick = kick_tables.revolver_ap
 
 -- Bronco
-self.new_raging_bull.stats.damage = 120
+self.new_raging_bull.stats.damage = 145
 self.new_raging_bull.stats_modifiers = {damage = 2}
 self.new_raging_bull.AMMO_MAX = total_ammo_tables.revolver
 self.new_raging_bull.AMMO_PICKUP = pickup_tables.revolver
@@ -1310,7 +1310,7 @@ self.new_raging_bull.kick = kick_tables.revolver
 self.new_raging_bull.stats.reload = 10
 
 -- Matever
-self.mateba.stats.damage = 120
+self.mateba.stats.damage = 145
 self.mateba.stats_modifiers = {damage = 2}
 self.mateba.AMMO_MAX = total_ammo_tables.revolver
 self.mateba.AMMO_PICKUP = pickup_tables.revolver
@@ -1318,7 +1318,7 @@ self.mateba.kick = kick_tables.revolver_low
 self.mateba.stats.reload = 15
 
 -- Castigo
-self.chinchilla.stats.damage = 120
+self.chinchilla.stats.damage = 145
 self.chinchilla.stats.spread = 21
 self.chinchilla.stats_modifiers = {damage = 2}
 self.chinchilla.AMMO_MAX = total_ammo_tables.revolver
