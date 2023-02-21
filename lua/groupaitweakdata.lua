@@ -1112,7 +1112,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
     	-- Make recon spawngroups spawn faster and increase their spawncap
     	self.besiege.recon.interval_variation = 0
     	self.besiege.recon.interval = {10, 8, 5}
-    	self.besiege.recon.force = {2, 6, 10}
+    	self.besiege.recon.force = {2, 4, 6}
 
 		-- GRENADES --
 		--shared
