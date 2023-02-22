@@ -13,7 +13,6 @@
 		</group>
 
 		<group hook_id="lib/">
-			<post :hook_id="player_actions/skills/playeractionfullyloaded"/>
 			<group :hook_id="managers/">
 				<group :hook_id="group_ai_states/">
 					<post :hook_id="groupaistatebase"/>
