@@ -8,6 +8,21 @@
 	"bm_wp_upg_mk2_welldone_desc": "This fuel is harder to find.",
 	"bm_w_hajk": "CR 805B Rifle",
 	
+	"bm_menu_bonus": "Gun Perk",
+	"bm_menu_perk_speedloader": "Speedloader",
+	"bm_menu_perk_speedloader_desc": "Increases reload speed at the cost magazine size.\n",
+	"bm_menu_perk_haste": "Haste",
+	"bm_menu_perk_haste_desc": "Increases movement speed by 10% at the cost of total ammo.\n",
+	"bm_menu_perk_deadsilence": "Dead Silence",
+	"bm_menu_perk_deadsilence_desc": "Increases concealment at the cost of total ammo and weapon handling.\n",
+	"bm_menu_perk_jawbreaker": "Jawbreaker",
+	"bm_menu_perk_jawbreaker_desc": "Increases damage at the cost of reload speed and rate of fire.\n",
+	"bm_menu_perk_whirlwind": "Whirlwind",
+	"bm_menu_perk_whirlwind_desc": "Increases rate of fire at the cost of reload speed and weapon handling.\n",
+	"bm_menu_perk_stockpile": "Stockpile",
+	"bm_menu_perk_stockpile_desc": "Increases total ammo at the cost of 15% pickup rate and 15% movement speed.\n",
+	
+	
 	"st_menu_mastermind_inspire": "Support",
 	"menu_bandage": "Bandages",
 	"menu_bandage_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nReviving a crew member gives them ##$multipro## more health.",

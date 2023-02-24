@@ -70,6 +70,7 @@ end
 -- Set up needed variables
 Hooks:PostHook(GroupAIStateBase, "init", "sh_init", function (self)
 	self._next_police_upd_task = 0
+	self._next_group_spawn_t = {}
 end)
 
 

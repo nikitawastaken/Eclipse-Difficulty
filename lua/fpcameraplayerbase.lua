@@ -77,4 +77,7 @@ function FPCameraPlayerBase:pattern_recoil_kick(pattern, persist_pattern, recoil
             self._h_recoil_cushion = self._h_recoil_cushion - 1
         end
     end
+
+	self._recoil_kick.ret = 0
+	self._recoil_kick.h.ret = 0
 end

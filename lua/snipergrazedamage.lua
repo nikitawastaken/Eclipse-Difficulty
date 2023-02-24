@@ -44,12 +44,12 @@
 		end
 
 		for _, hit in pairs(hit_enemies) do
-			self:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, upgrade_value.times)
+			self:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit, upgrade_value.times)
 		end
 
 	end
 
-	function SniperGrazeDamage:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, times)
+	function SniperGrazeDamage:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit,	 times)
 		if times <= 0 then
 			return
 		end
@@ -95,6 +95,7 @@
 				variant = "graze",
 				damage = hit.damage,
 				attacker_unit = player_unit,
+				weapon_unit = weapon_unit,
 				pos = hit_pos,
 				attack_dir = hit_pos - hit.position
 			})
@@ -104,6 +105,6 @@
 				damage = hit.damage
 			}
 
-			self:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, times - 1)
+			self:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit, times - 1)
 		end)
 	end

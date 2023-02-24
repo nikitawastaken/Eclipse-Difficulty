@@ -147,7 +147,7 @@ local kick_tables = {
 local spray_tables = {
 	ar_left_low = {
 		pattern = {
-			{ up = 0.4, down = 0.4, left = -0.04, right = 0.05 },
+			{ up = 0.7, down = 0.7, left = -0.04, right = 0.05 },
 			{ up = 1.3, down = 1.3, left = -0.15, right = 0.14 },
 			{ up = 1.8, down = 1.8, left = 0.15, right = 0.3 },
 			{ up = 1.5, down = 1.5, left = -0.3, right = -0.15 },
@@ -167,7 +167,7 @@ local spray_tables = {
 	},
 	ar_right_low = {
 		pattern = {
-			{ up = 0.4, down = 0.4, left = -0.05, right = 0.04 },
+			{ up = 0.7, down = 0.7, left = -0.05, right = 0.04 },
 			{ up = 1.3, down = 1.3, left = -0.15, right = -0.14 },
 			{ up = 1.8, down = 1.8, left = -0.15, right = -0.3 },
 			{ up = 1.5, down = 1.5, left = 0.3, right = 0.15 },
@@ -187,7 +187,7 @@ local spray_tables = {
 	},
 	ar_left_mid = {
 		pattern = {
-			{ up = 0.5, down = 0.5, left = -0.04, right = 0.05 },
+			{ up = 0.8, down = 0.8, left = -0.04, right = 0.05 },
 			{ up = 1.5, down = 1.5, left = -0.2, right = 0.19 },
 			{ up = 2, down = 2, left = 0.25, right = 0.4 },
 			{ up = 1.6, down = 1.6, left = -0.4, right = -0.25 },
@@ -207,7 +207,7 @@ local spray_tables = {
 	},
 	ar_right_mid = {
 		pattern = {
-			{ up = 0.5, down = 0.5, left = 0.04, right = -0.05 },
+			{ up = 0.8, down = 0.8, left = 0.04, right = -0.05 },
 			{ up = 1.5, down = 1.5, left = 0.2, right = -0.19 },
 			{ up = 2, down = 2, left = -0.25, right = -0.4 },
 			{ up = 1.6, down = 1.6, left = 0.4, right = 0.25 },
@@ -227,7 +227,7 @@ local spray_tables = {
 	},
 	ar_left_high = {
 		pattern = {
-			{ up = 0.6, down = 0.6, left = -0.04, right = 0.05 },
+			{ up = 0.8, down = 0.9, left = -0.04, right = 0.05 },
 			{ up = 1.6, down = 1.65, left = -0.2, right = 0.19 },
 			{ up = 2.1, down = 2.1, left = 0.25, right = 0.4 },
 			{ up = 1.75, down = 1.75, left = -0.4, right = -0.25 },
@@ -247,7 +247,7 @@ local spray_tables = {
 	},
 	ar_right_high = {
 		pattern = {
-			{ up = 0.6, down = 0.6, left = 0.04, right = -0.05 },
+			{ up = 0.8, down = 0.9, left = 0.04, right = -0.05 },
 			{ up = 1.6, down = 1.65, left = 0.2, right = -0.19 },
 			{ up = 2.1, down = 2.1, left = -0.25, right = -0.4 },
 			{ up = 1.75, down = 1.75, left = 0.4, right = 0.25 },
@@ -1582,6 +1582,8 @@ self.x_g18c.stats.recoil = 12
 self.x_g18c.stats.reload = 8
 self.x_g18c.stats.damage = 45
 self.x_g18c.kick = kick_tables.akimbo_pistol_auto
+self.x_g18c.spray = spray_tables.ar_left_low
+self.x_g18c.recoil_recovery_timer = recovery_tables.high
 
 -- Czechs
 self.x_czech.AMMO_MAX = total_ammo_tables.akimbo_pis_high
@@ -1592,6 +1594,8 @@ self.x_czech.stats.spread = 15
 self.x_czech.stats.reload = 8
 self.x_czech.stats.damage = 45
 self.x_czech.kick = kick_tables.akimbo_pistol_auto
+self.x_g18c.spray = spray_tables.ar_right_low
+self.x_g18c.recoil_recovery_timer = recovery_tables.high
 
 -- Chimano Compacts
 self.jowi.AMMO_MAX = total_ammo_tables.akimbo_pis_mid

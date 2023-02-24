@@ -372,3 +372,63 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 
 	return unique_hits, hit_enemy
 end
+
+
+-- Auto Fire Sound Fix
+-- Thanks offyerrocker
+
+_G.AutoFireSoundFixBlacklist = {
+	["saw"] = true,
+	["saw_secondary"] = true,
+	["flamethrower_mk2"] = true,
+	["m134"] = true,
+	["mg42"] = true,
+	["shuno"] = true,
+	["system"] = true,
+	["par"] = true
+}
+
+Hooks:Register("AFSF2_OnWriteBlacklist")
+Hooks:Add("BaseNetworkSessionOnLoadComplete","AFSF2_OnLoadComplete",function()
+	Hooks:Call("AFSF2_OnWriteBlacklist",AutoFireSoundFixBlacklist)
+end)
+
+--Check for if AFSF's fix code should apply to this particular weapon
+function RaycastWeaponBase:_soundfix_should_play_normal()
+	local name_id = self:get_name_id() or "xX69dank420blazermachineXx"
+	if not self._setup.user_unit == managers.player:player_unit() then
+		return true
+	elseif tweak_data.weapon[name_id].use_fix ~= nil then
+		return tweak_data.weapon[name_id].use_fix
+	elseif AutoFireSoundFixBlacklist[name_id] then
+		return true
+	elseif not self:weapon_tweak_data().sounds.fire_single then
+		return true
+	end
+	return false
+end
+
+--Prevent playing sounds except for blacklisted weapons
+local orig_fire_sound = RaycastWeaponBase._fire_sound
+function RaycastWeaponBase:_fire_sound(...)
+	if self:_soundfix_should_play_normal() then
+		return orig_fire_sound(self,...)
+	end
+end
+
+--Play sounds here instead for fix-applicable weapons; or else if blacklisted, use original function and don't play the fixed single-fire sound
+--U200: there goes AFSF2's compatibility with other mods
+Hooks:PreHook(RaycastWeaponBase,"fire","autofiresoundfix2_raycastweaponbase_fire",function(self,...)
+	if not self:_soundfix_should_play_normal() then
+		self._bullets_fired = 0
+		self:play_tweak_data_sound(self:weapon_tweak_data().sounds.fire_single,"fire_single")
+	end
+end)
+
+--stop_shooting is only used for fire sound loops, so playing individual single-fire sounds means it doesn't need to be called
+local orig_stop_shooting = RaycastWeaponBase.stop_shooting
+function RaycastWeaponBase:stop_shooting(...)
+	if self:_soundfix_should_play_normal() then
+		return orig_stop_shooting(self,...)
+	end
+end

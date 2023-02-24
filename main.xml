@@ -4,6 +4,14 @@
 		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper" force="true"/>
 		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd" force="true"/>
 		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick" force="true"/>
+		
+		<!-- gun perk icons -->
+		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_speedloader"/>
+		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_haste"/>
+		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_deadsilence"/>
+		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_jawbreaker"/>
+		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_whirlwind"/>
+		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_stockpile"/>
 
 		<!-- characters -->
 		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3" force="true"/>

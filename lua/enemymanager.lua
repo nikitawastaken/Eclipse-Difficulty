@@ -4,8 +4,7 @@ Hooks:OverrideFunction(EnemyManager, "get_nearby_medic", function (self, unit)
 		return
 	end
 
-	local gstate = managers.groupai:state()
-	local medics = gstate._special_units.medic
+	local medics = managers.groupai:state()._special_units.medic
 	if not medics then
 		return
 	end
@@ -13,9 +12,29 @@ Hooks:OverrideFunction(EnemyManager, "get_nearby_medic", function (self, unit)
 	local radius_sq = tweak_data.medic.radius ^ 2
 	local unit_pos = unit:movement():m_head_pos()
 	local unit_data = self._enemy_data.unit_data
+	local vision_slot_mask = managers.slot:get_mask("AI_visibility")
+
+	local function is_valid(medic)
+		if not medic or medic.unit == unit then
+			return false
+		end
+
+		local anim_data = medic.unit:anim_data()
+		if anim_data.hurt or anim_data.act then
+			return false
+		end
+
+		local medic_pos = medic.unit:movement():m_head_pos()
+		if mvector3.distance_sq(medic_pos, unit_pos) > radius_sq then
+			return false
+		end
+
+		return not World:raycast("ray", unit_pos, medic_pos, "slot_mask", vision_slot_mask, "report")
+	end
+
 	for u_key, _ in pairs(medics) do
 		local medic = unit_data[u_key]
-		if medic and unit ~= medic.unit and mvector3.distance_sq(medic.m_pos, unit_pos) <= radius_sq and not World:raycast("ray", unit_pos, medic.unit:movement():m_head_pos(), "slot_mask", managers.slot:get_mask("AI_visibility"), "report") then
+		if is_valid(medic) then
 			return medic.unit
 		end
 	end

@@ -316,3 +316,113 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     table.delete(self.wpn_fps_gre_ms3gl.uses_parts, "wpn_fps_gre_ms3gl_conversion")
     table.insert(self.parts.wpn_fps_smg_fmg9_conversion.forbids, "wpn_fps_lmg_hk51b_ns_jcomp")
 end)
+
+
+-- Gun Perks replace stat boosts
+function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
+	self.parts.wpn_fps_upg_perk_template = {
+        custom = true,
+        exclude_from_challenge = true,
+        texture_bundle_folder = "gunperk",
+        third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+        has_description = true,
+        a_obj = "a_body",
+        type = "bonus",
+        name_id = nil,
+        desc_id = nil,
+        sub_type = "bonus_stats",
+        internal_part = true,
+        unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+        pcs = {
+            10,
+            20,
+            30,
+            40
+        },
+        stats = {},
+        custom_stats = {},
+        perks = {
+            "bonus"
+        },
+    }
+
+    -- speedloader
+    self.parts.wpn_fps_upg_perk_speedloader = deep_clone(self.parts.wpn_fps_upg_perk_template)
+    self.parts.wpn_fps_upg_perk_speedloader.name_id = "bm_menu_perk_speedloader"
+    self.parts.wpn_fps_upg_perk_speedloader.desc_id = "bm_menu_perk_speedloader_desc"
+    self.parts.wpn_fps_upg_perk_speedloader.stats = {reload = 2}
+    self.parts.wpn_fps_upg_perk_speedloader.custom_stats = {clip_multiplier = 0.8}
+    self.parts.wpn_fps_upg_perk_speedloader_lmg = deep_clone(self.parts.wpn_fps_upg_perk_speedloader)
+    self.parts.wpn_fps_upg_perk_speedloader_lmg.stats = {reload = 3} -- make it more impactful on lmgs
+
+    -- haste
+    self.parts.wpn_fps_upg_perk_haste = deep_clone(self.parts.wpn_fps_upg_perk_template)
+    self.parts.wpn_fps_upg_perk_haste.name_id = "bm_menu_perk_haste"
+    self.parts.wpn_fps_upg_perk_haste.desc_id = "bm_menu_perk_haste_desc"
+    self.parts.wpn_fps_upg_perk_haste.stats = {total_ammo_mod = -3}
+    self.parts.wpn_fps_upg_perk_haste.custom_stats = {movement_speed = 1.1}
+
+    -- dead silence
+    self.parts.wpn_fps_upg_perk_deadsilence = deep_clone(self.parts.wpn_fps_upg_perk_template)
+    self.parts.wpn_fps_upg_perk_deadsilence.name_id = "bm_menu_perk_deadsilence"
+    self.parts.wpn_fps_upg_perk_deadsilence.desc_id = "bm_menu_perk_deadsilence_desc"
+    self.parts.wpn_fps_upg_perk_deadsilence.stats = {concealment = 3, total_ammo_mod = -5, recoil = -1, spread = -1}
+
+    -- jawbreaker
+    self.parts.wpn_fps_upg_perk_jawbreaker = deep_clone(self.parts.wpn_fps_upg_perk_template)
+    self.parts.wpn_fps_upg_perk_jawbreaker.name_id = "bm_menu_perk_jawbreaker"
+    self.parts.wpn_fps_upg_perk_jawbreaker.desc_id = "bm_menu_perk_jawbreaker_desc"
+    self.parts.wpn_fps_upg_perk_jawbreaker.stats = {damage = 15, reload = -5}
+    self.parts.wpn_fps_upg_perk_jawbreaker.custom_stats = {fire_rate_multiplier = 0.85}
+    self.parts.wpn_fps_upg_perk_jawbreaker_lmg = deep_clone(self.parts.wpn_fps_upg_perk_jawbreaker)
+    self.parts.wpn_fps_upg_perk_jawbreaker_lmg.stats = {damage = 15, reload = -4} -- make it less impactful on lmgs
+
+    -- whirlwind
+    self.parts.wpn_fps_upg_perk_whirlwind = deep_clone(self.parts.wpn_fps_upg_perk_template)
+    self.parts.wpn_fps_upg_perk_whirlwind.name_id = "bm_menu_perk_whirlwind"
+    self.parts.wpn_fps_upg_perk_whirlwind.desc_id = "bm_menu_perk_whirlwind_desc"
+    self.parts.wpn_fps_upg_perk_whirlwind.stats = {recoil = -2, spread = -1, reload = -5}
+    self.parts.wpn_fps_upg_perk_whirlwind.custom_stats = {fire_rate_multiplier = 1.15}
+    self.parts.wpn_fps_upg_perk_whirlwind_lmg = deep_clone(self.parts.wpn_fps_upg_perk_whirlwind)
+    self.parts.wpn_fps_upg_perk_whirlwind_lmg.stats = {recoil = -2, spread = -1, reload = -4} -- make it less impactful on lmgs
+
+    -- stockpile
+    self.parts.wpn_fps_upg_perk_stockpile = deep_clone(self.parts.wpn_fps_upg_perk_template)
+    self.parts.wpn_fps_upg_perk_stockpile.name_id = "bm_menu_perk_stockpile"
+    self.parts.wpn_fps_upg_perk_stockpile.desc_id = "bm_menu_perk_stockpile_desc"
+    self.parts.wpn_fps_upg_perk_stockpile.stats = {total_ammo_mod = 5}
+    self.parts.wpn_fps_upg_perk_stockpile.custom_stats = {ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, movement_speed = 0.85}
+
+	local uses_parts = {
+        wpn_fps_upg_perk_speedloader = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "bow", "flamethrower", "pistol", "minigun", "akimbo"}},
+        wpn_fps_upg_perk_speedloader_lmg = {category = {"lmg"}},
+        wpn_fps_upg_perk_haste = {category = {"assault_rifle", "smg", "snp", "shotgun", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}},
+        wpn_fps_upg_perk_deadsilence = {},
+        wpn_fps_upg_perk_jawbreaker = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo"}},
+        wpn_fps_upg_perk_jawbreaker_lmg = {category = {"lmg"}},
+        wpn_fps_upg_perk_whirlwind = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo"}},
+        wpn_fps_upg_perk_whirlwind_lmg = {category = {"lmg"}},
+        wpn_fps_upg_perk_stockpile = {}
+	}
+	local all_pass, weapon_pass, exclude_weapon_pass, category_pass, exclude_category_pass = nil
+
+	for id, data in pairs(tweak_data.upgrades.definitions) do
+		local weapon_tweak = tweak_data.weapon[data.weapon_id]
+		local primary_category = weapon_tweak and weapon_tweak.categories and weapon_tweak.categories[1]
+
+		if data.weapon_id and weapon_tweak and data.factory_id and self[data.factory_id] then
+			for part_id, params in pairs(uses_parts) do
+				weapon_pass = not params.weapon or table.contains(params.weapon, data.weapon_id)
+				exclude_weapon_pass = not params.exclude_weapon or not table.contains(params.exclude_weapon, data.weapon_id)
+				category_pass = not params.category or table.contains(params.category, primary_category)
+				exclude_category_pass = not params.exclude_category or not table.contains(params.exclude_category, primary_category)
+				all_pass = weapon_pass and exclude_weapon_pass and category_pass and exclude_category_pass
+
+				if all_pass then
+					table.insert(self[data.factory_id].uses_parts, part_id)
+					table.insert(self[data.factory_id .. "_npc"].uses_parts, part_id)
+				end
+			end
+		end
+	end
+end

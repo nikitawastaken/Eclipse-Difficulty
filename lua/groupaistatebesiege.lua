@@ -723,9 +723,19 @@ function GroupAIStateBesiege:force_spawn_group(...)
 	self._force_next_group_spawn = nil
 end
 
+function GroupAIStateBesiege:_is_spawn_task_type_on_cooldown(spawn_task)
+	local group_objective_type = spawn_task.group.objective.type
+	return self._next_group_spawn_t[group_objective_type] and self._next_group_spawn_t[group_objective_type] > self._t
+end
+
+function GroupAIStateBesiege:_set_spawn_task_type_cooldown(spawn_task, cooldown)
+	local group_objective_type = spawn_task.group.objective.type
+	self._next_group_spawn_t[group_objective_type] = self._t + cooldown
+end
+
 Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function (self, spawn_task, force, use_last)
 	-- Prevent regular group spawning if cooldown is active unless it's a forced spawn
-	if self._next_group_spawn_t and self._next_group_spawn_t > self._t and not force and not self._force_next_group_spawn then
+	if self:_is_spawn_task_type_on_cooldown(spawn_task) and not force and not self._force_next_group_spawn then
 		return
 	end
 
@@ -856,7 +866,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function 
 	-- Set a dynamic enemy spawnrate that scales with player count and difficulty value
 	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul)
 	local spawn_rate_diff_mul = self:_get_difficulty_dependent_value(self._tweak_data.assault.spawnrate_diff_mul)
-	self._next_group_spawn_t = self._t + spawn_task.group.size * spawn_rate_player_mul * spawn_rate_diff_mul
+	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate_player_mul * spawn_rate_diff_mul)
 end)
 
 
