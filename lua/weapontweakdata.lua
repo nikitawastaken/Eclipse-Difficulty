@@ -507,6 +507,22 @@ self.scout.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.scout.AMMO_PICKUP = pickup_tables.secondary_sniper
 self.scout.kick = kick_tables.sniper_low
 
+-- North Star
+self.victor.AMMO_MAX = total_ammo_tables.secondary_sniper
+self.victor.stats.damage = 145
+self.victor.stats_modifiers = {damage = 2}
+self.victor.AMMO_PICKUP = pickup_tables.secondary_sniper
+self.victor.kick = kick_tables.sniper_auto
+self.victor.categories = {"snp", "ng"}
+
+-- Aran
+self.contender.AMMO_MAX = total_ammo_tables.secondary_sniper
+self.contender.stats.damage = 120
+self.contender.stats_modifiers = {damage = 4}
+self.contender.fire_mode_data.fire_rate = 60 / 70
+self.contender.AMMO_PICKUP = pickup_tables.secondary_sniper
+self.contender.kick = kick_tables.sniper_mid
+
 
 
 -- LMGs and Miniguns
@@ -580,6 +596,15 @@ self.m60.AMMO_PICKUP = pickup_tables.lmg
 self.m60.kick = kick_tables.lmg_high
 self.m60.spray = spray_tables.lmg_right
 self.m60.recoil_recovery_timer = recovery_tables.high
+
+-- Akron
+self.hcar.stats.damage = 80
+self.hcar.stats.concealment = 0
+self.hcar.AMMO_MAX = total_ammo_tables.ar_low
+self.hcar.AMMO_PICKUP = pickup_tables.ar_low
+self.hcar.kick = kick_tables.lmg_high
+self.hcar.spray = spray_tables.lmg_left
+self.hcar.recoil_recovery_timer = recovery_tables.high
 
 -- verstchektshscxd
 self.hk51b.stats.damage = 75
@@ -918,6 +943,24 @@ self.l85a2.AMMO_PICKUP = pickup_tables.ar_mid
 self.l85a2.kick = kick_tables.ar_mid
 self.l85a2.spray = spray_tables.ar_right_mid
 self.l85a2.recoil_recovery_timer = recovery_tables.mid
+
+-- Rodion
+self.tkb.AMMO_MAX = total_ammo_tables.ar_mid
+self.tkb.AMMO_PICKUP = pickup_tables.ar_mid
+self.tkb.kick = kick_tables.ar_mid
+self.tkb.spray = spray_tables.ar_right_mid
+self.tkb.recoil_recovery_timer = recovery_tables.mid
+self.tkb.fire_mode_data.volley = {
+	spread_mul = 1,
+	damage_mul = 1,
+	ammo_usage = 3,
+	rays = 3,
+	can_shoot_through_wall = false,
+	can_shoot_through_shield = true,
+	can_shoot_through_enemy = true,
+	muzzleflash = "effects/payday2/particles/weapons/tkb_muzzle",
+	muzzleflash_silenced = "effects/payday2/particles/weapons/tkb_suppressed"
+}
 
 -- Tempest
 self.komodo.AMMO_MAX = total_ammo_tables.ar_mid

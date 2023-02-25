@@ -86,6 +86,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_ass_fal_s_01.stats = {recoil = -2, concealment = 2}
     self.parts.wpn_fps_ass_fal_s_wood.stats = {recoil = 3, concealment = -2}
     self.parts.wpn_fps_ass_fal_g_01.stats = {recoil = 1, spread = -2, concealment = 2}
+    -- Akron stuff
+    self.parts.wpn_fps_lmg_hcar_barrel_dmr.stats = {extra_ammo = -5, total_ammo_mod = -10, damage = 20, value = 3}
+    self.parts.wpn_fps_lmg_hcar_barrel_dmr.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
+    self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats = {extra_ammo = 40,  total_ammo_mod = 20, damage = -40, value = 1, spread = 1, recoil = 1, fire_rate = 1.667}
+    self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = {ammo_pickup_max_mul = 2.25, ammo_pickup_min_mul = 2.25, fire_rate_multiplier = 1.667}
+
     -- Speedpull nerfs
     self.parts.wpn_fps_m4_upg_m_quick.stats = {recoil = -2, reload = 3}
     self.parts.wpn_fps_upg_ak_m_quick.stats = {recoil = -2, reload = 3}
@@ -95,6 +101,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 3}
     self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 3}
     self.parts.wpn_fps_smg_fmg9_m_speed.stats = {spread = 1, reload = 3, recoil = -1, concealment = -2}
+
+
     -- Gadgets
     -- Military Laser module
     self.parts.wpn_fps_upg_fl_ass_peq15.stats.recoil = 0
@@ -372,7 +380,7 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
     self.parts.wpn_fps_upg_perk_jawbreaker = deep_clone(self.parts.wpn_fps_upg_perk_template)
     self.parts.wpn_fps_upg_perk_jawbreaker.name_id = "bm_menu_perk_jawbreaker"
     self.parts.wpn_fps_upg_perk_jawbreaker.desc_id = "bm_menu_perk_jawbreaker_desc"
-    self.parts.wpn_fps_upg_perk_jawbreaker.stats = {damage = 15, reload = -5}
+    self.parts.wpn_fps_upg_perk_jawbreaker.stats = {damage = 15, reload = -5, fire_rate = 0.85}
     self.parts.wpn_fps_upg_perk_jawbreaker.custom_stats = {fire_rate_multiplier = 0.85}
     self.parts.wpn_fps_upg_perk_jawbreaker_lmg = deep_clone(self.parts.wpn_fps_upg_perk_jawbreaker)
     self.parts.wpn_fps_upg_perk_jawbreaker_lmg.stats = {damage = 15, reload = -4} -- make it less impactful on lmgs
@@ -381,7 +389,7 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
     self.parts.wpn_fps_upg_perk_whirlwind = deep_clone(self.parts.wpn_fps_upg_perk_template)
     self.parts.wpn_fps_upg_perk_whirlwind.name_id = "bm_menu_perk_whirlwind"
     self.parts.wpn_fps_upg_perk_whirlwind.desc_id = "bm_menu_perk_whirlwind_desc"
-    self.parts.wpn_fps_upg_perk_whirlwind.stats = {recoil = -2, spread = -1, reload = -5}
+    self.parts.wpn_fps_upg_perk_whirlwind.stats = {recoil = -2, spread = -1, reload = -5, fire_rate = 1.15}
     self.parts.wpn_fps_upg_perk_whirlwind.custom_stats = {fire_rate_multiplier = 1.15}
     self.parts.wpn_fps_upg_perk_whirlwind_lmg = deep_clone(self.parts.wpn_fps_upg_perk_whirlwind)
     self.parts.wpn_fps_upg_perk_whirlwind_lmg.stats = {recoil = -2, spread = -1, reload = -4} -- make it less impactful on lmgs
