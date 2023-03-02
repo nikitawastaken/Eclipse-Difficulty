@@ -1087,8 +1087,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		-- SPAWNS --
 
 		-- Spawncap
-		self.besiege.assault.force = {8, 12, 16}
-		self.besiege.assault.force_balance_mul = {1, 1.5, 1.75, 2}
+		self.besiege.assault.force = {4, 7, 13}
+		self.besiege.assault.force_balance_mul = {1, 1.33, 1.75, 2}
 
 		-- Spawnrate
 		if difficulty_index == 7 then
