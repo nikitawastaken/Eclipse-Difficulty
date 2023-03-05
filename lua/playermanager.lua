@@ -31,7 +31,7 @@ Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self,
 	end
 
 	if self:has_category_upgrade("player", "joker_counts_for_hostage_boost") then
-	hostages = hostages + minions
+		hostages = hostages + minions
 	end
 
 	hostage_min_sum = hostage_min_sum + self:upgrade_value("player", "hostage_min_sum_taker", 0)
@@ -45,6 +45,42 @@ Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self,
 
 	return addend * hostages
 end)
+
+
+function PlayerManager:on_headshot_dealt()
+	local t = Application:time()
+	local player_unit = self:player_unit()
+	local damage_ext = player_unit:character_damage()
+    local has_hitman_ammo_refund = managers.player:has_enabled_cooldown_upgrade("cooldown", "hitman_ammo_refund")
+
+	if not player_unit then
+		return
+	end
+
+	-- hitman refunds ammo on headshots
+	if has_hitman_ammo_refund and variant ~= "melee" then
+		managers.player:on_ammo_increase(1)
+        managers.player:disable_cooldown_upgrade("cooldown", "hitman_ammo_refund")
+	end
+
+	-- make headshot regen check for maxed out armor
+	if damage_ext and damage_ext:armor_ratio() == 1 then
+		self._on_headshot_dealt_t = 0
+	else
+		if self._on_headshot_dealt_t and t < self._on_headshot_dealt_t then
+			return
+		end
+		self._on_headshot_dealt_t = t + (tweak_data.upgrades.on_headshot_dealt_cooldown or 0)
+	end
+
+	self._message_system:notify(Message.OnHeadShot, nil, nil)
+
+	local regen_armor_bonus = managers.player:upgrade_value("player", "headshot_regen_armor_bonus", 0)
+
+	if damage_ext and regen_armor_bonus > 0 then
+		damage_ext:restore_armor(regen_armor_bonus)
+	end
+end
 
 
 -- shotgun panic stuff

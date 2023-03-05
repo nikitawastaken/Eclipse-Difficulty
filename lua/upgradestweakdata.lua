@@ -18,6 +18,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- ictv nerf
 	self.values.player.body_armor.armor[7] = 13
+
+	-- bullseye nerf
+	self.on_headshot_dealt_cooldown = 5
 end
 
 local old_init = UpgradesTweakData.init
@@ -105,7 +108,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.stockholm_syndrome.multipro2 = "25"
 
 	-- Hostage Taker
-	self.values.player.hostage_min_sum_taker = {2, 1}
+	self.values.player.hostage_min_sum_taker = {1, 1}
 	self.values.player.joker_counts_for_hostage_boost = {true}
 	self.values.player.hostage_health_regen_addend = {1, 1.2}
 	self.definitions.player_hostage_min_sum_taker_1 = {
@@ -135,11 +138,10 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1
 		}
 	}
-	self.skill_descs.black_marketeer.multibasic = "2"
+	self.skill_descs.black_marketeer.multibasic = "one"
 	self.skill_descs.black_marketeer.multibasic2 = "10"
 	self.skill_descs.black_marketeer.multibasic3 = "5"
-	self.skill_descs.black_marketeer.multipro = "1"
-	self.skill_descs.black_marketeer.multipro2 = "12"
+	self.skill_descs.black_marketeer.multipro = "12"
 
 	-- Lock N' Load
 	self.values.weapon.swap_speed_multiplier = {1.25}
@@ -288,6 +290,11 @@ function UpgradesTweakData:init(tweak_data)
 	-- Thick Skin
 	self.values.player.damage_shake_addend[1] = 1
 	self.skill_descs.show_of_force.multibasic = "10"
+
+	-- Bullseye
+	self.values.player.headshot_regen_armor_bonus[2] = 4.5
+	self.skill_descs.prison_wife.multibasic2 = "5"
+	self.skill_descs.prison_wife.multipro3 = "40"
 
 	-- Scavenger
 	self.values.player.increased_pickup_area[1] = 1.3
@@ -689,15 +696,25 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.primary_reload_secondary[1] = 5
 	self.values.player.secondary_reload_primary[1] = 5
 	self.values.temporary.unseen_strike[1] = {1.2, 5}
+	self.values.cooldown.hitman_ammo_refund = {{1, 2}}
 	self.specialization_descs[5][1].multiperk = "5"
 	self.specialization_descs[5][3].multiperk = "80%"
 	self.specialization_descs[5][5].multiperk = "20%"
 	self.specialization_descs[5][5].multiperk2 = "5"
 	self.specialization_descs[5][5].multiperk3 = "4"
-	self.specialization_descs[5][7].multiperk = "10"
+	self.specialization_descs[5][7].multiperk = "1"
 	self.specialization_descs[5][7].multiperk2 = "3"
 	self.specialization_descs[5][9].multiperk = "30"
 	self.specialization_descs[5][9].multiperk2 = "1"
+    self.definitions.cooldown_hitman_ammo_refund = {
+        name_id = "menu_cooldown_hitman_ammo_refund",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "hitman_ammo_refund",
+			category = "cooldown"
+		}
+    }
 
 	-- Infiltrator / Socio healing
 	self.values.player.melee_kill_life_leech = {1.5}

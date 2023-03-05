@@ -12,6 +12,12 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
     end
 end)
 
+
+-- remove suppression
+function PlayerDamage:_upd_suppression(t, dt)
+end
+
+
 -- Friendly Fire
 function PlayerDamage:is_friendly_fire(unit)
 	local attacker_mov_ext = alive(unit) and unit:movement()

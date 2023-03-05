@@ -33,7 +33,7 @@
 	"menu_combat_doctor_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## damage reduction for ##$multibasic2## seconds both after and during reviving a teammate.\n\nACE: ##$pro##\nUpon reviving a crew member you also gain a ##$multipro2## damage bonus for ##$multipro3## seconds.\n\nYou revive crew members ##$multipro## faster.",
 	"menu_keepers": "Keepers",
 	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your teammates within a ##$multibasic## range will increase their movement and reload speed by ##$multibasic2## for ##$multibasic3## seconds.\n\nACE: ##$pro##\nYou can now revive your teammates within a ##$multibasic## range by shouting at them.\n\nCrew members must be in a line of sight.\nThis can not occur more once every ##$multipro## seconds.",
-	"menu_black_marketeer_beta_desc": "BASIC: ##$basic##\nHaving at least ##$multibasic## hostages or dominated enemies makes you regenerate ##$multibasic2## health every ##$multibasic3## seconds.\n\nACE: ##$pro##\nThe amount of hostages required is decreased to ##$multipro##.\nThe amount of healing you receive is increased to ##$multipro2##.\n\nYour converted enemies will now count towards hostage related boosts.\n\nNote: Doesn't apply to Confident and Hostage Situation skills.",
+	"menu_black_marketeer_beta_desc": "BASIC: ##$basic##\nHaving at least ##$multibasic## hostage or dominated enemy makes you regenerate ##$multibasic2## health every ##$multibasic3## seconds.\n\nACE: ##$pro##\nThe amount of healing you receive is increased to ##$multipro##.\nYour converted enemies will now count towards hostage related boosts.\n\nNote: Doesn't apply to Confident and Hostage Situation skills.",
 	"menu_stockholm_syndrome_beta": "Hostage Situation",
 	"menu_stockholm_syndrome_beta_desc": "BASIC: ##$basic##\nCivilians are intimidated by the noise you make and remain intimidated ##50%## longer.\n\nACE: ##$pro##\nThe hostage hesitation delay between assaults is now extended by ##$multipro## seconds, for a total of ##$multipro2## seconds.",
 	"menu_rifleman": "Lock N' Load",
@@ -57,7 +57,7 @@
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nUnlocks the Improved Combined Tactical Vest for you to wear.\n\nACE: ##$pro##\nYour total armor value is increased by ##$multibasic##.",
 	"menu_show_of_force_beta": "Thick Skin",
 	"menu_show_of_force_beta_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nIncreases the armor of all ballistic vests by ##$multipro2##.",
-	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
+	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote: Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nThe heavier your armor, the more total ammo you get.\n\nThe total capacity increase scales up to ##$multibasic## with Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
 	
 	
@@ -141,7 +141,7 @@
 	"menu_deck5_5": "Unseen Strike",
 	"menu_deck5_5_desc": "You gain ##$multiperk## critical hit chance for ##$multiperk2## seconds after not getting hit for ##$multiperk3## seconds.\n\nCritical hits deal ##double## damage and don't apply to grenade / rocket launchers. Taking any damage cancels the no-hit timer.",
 	"menu_deck5_7": "Sharpshooter",
-	"menu_deck5_7_desc": "Scoring a headshot regenerates ##$multiperk## health.\n\nThis cannot occur more than once every ##$multiperk2## seconds.",
+	"menu_deck5_7_desc": "Scoring a headshot will refund ##$multiperk## bullet to your used weapon.\n\nThis cannot occur more than once every ##$multiperk2## seconds.",
 	"menu_deck5_9_desc": "Killing an enemy regenerates ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck7_9": "Ricochet",
 	"menu_deck7_9_desc": "Dodged bullets will now ##ricochet## back to the enemy that fired them.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",

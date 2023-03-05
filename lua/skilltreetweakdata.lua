@@ -459,10 +459,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[5][1].icon_xy = {0, 0}
 	self.specializations[5][3].upgrades = {"weapon_passive_swap_speed_multiplier_1"}
 	self.specializations[5][5].upgrades = {"player_unseen_temp_increased_crit_chance_1", "player_unseen_increased_crit_chance_1"}
-	self.specializations[5][5].icon_xy = {3, 3}
-	self.specializations[5][7].upgrades = {"player_headshot_regen_health_bonus_1"}
-	self.specializations[5][7].texture_bundle_folder = "mrwi"
-	self.specializations[5][7].icon_xy = {1, 0}
+	self.specializations[5][5].icon_xy = {2, 5}
+	self.specializations[5][7].upgrades = {"cooldown_hitman_ammo_refund"}
+	self.specializations[5][7].icon_xy = {3, 3}
 	self.specializations[5][9].upgrades = {"player_killshot_regen_armor_bonus", "player_passive_loot_drop_multiplier"}
 	self.specializations[5][9].icon_xy = {0, 5}
 
