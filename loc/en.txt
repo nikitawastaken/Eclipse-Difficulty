@@ -174,7 +174,7 @@
 	"menu_deck5_1_short": "You now automatically reload your secondary after scoring ##$multiperk## kills with your primary, and ##vice versa##.",
 	"menu_deck5_3_short": "You now swap your weapons ##$multiperk## faster.",
 	"menu_deck5_5_short": "You gain ##$multiperk## critical hit chance for ##$multiperk2## seconds after not getting hit for ##$multiperk3## seconds.\n\nCritical hits deal ##double## damage and don't apply to grenade / rocket launchers. Taking any damage cancels the no-hit timer.",
-	"menu_deck5_7_short": "Scoring a headshot regenerates ##$multiperk## health.\n\nThis cannot occur more than once every ##$multiperk2## seconds.",
+	"menu_deck5_7_short": "Scoring a headshot will refund ##$multiperk## bullet to your used weapon.\n\nThis cannot occur more than once every ##$multiperk2## seconds.",
 	"menu_deck5_9_short": "Killing an enemy regenerates ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck7_9_short": "Dodged bullets will now ##ricochet## back to the enemy that fired them.",
 	"menu_deck9_7_short": "Killing an enemy at medium range recovers ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## second.",
