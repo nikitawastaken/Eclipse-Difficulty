@@ -49,13 +49,6 @@ function PlayerDamage:_chk_dmg_too_soon()
 	return managers.player:player_timer():time() < next_allowed_dmg_t
 end
 
--- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer) (sh)
-Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function (self, attack_data, health_subtracted)
-	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
-		self._can_take_dmg_timer = self._dmg_interval + 0.05
-	end
-end)
-
 -- Add significantly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) (sh)
 local _calc_armor_damage_original = PlayerDamage._calc_armor_damage
 function PlayerDamage:_calc_armor_damage(...)
