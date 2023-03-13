@@ -1088,7 +1088,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 		-- Spawncap
 		self.besiege.assault.force = {4, 7, 13}
-		self.besiege.assault.force_balance_mul = {1, 1.33, 1.75, 2}
+		self.besiege.assault.force_balance_mul = {1.5, 1.5, 1.75, 2}
 
 		-- Spawnrate
 		if difficulty_index == 7 then
@@ -1097,11 +1097,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		elseif difficulty_index == 8 then
 			self.besiege.assault.spawnrate_balance_mul = {2.2, 1.6, 1.45, 1.35}
 			self.besiege.assault.spawnrate_diff_mul = {2, 1.6, 1.15}
-		end
-
-		-- Hoxd1 is a shit heist
-		if Global.level_data and Global.level_data.level_id == "hox_1" and difficulty_index == 8 then
-			self.besiege.assault.spawnrate_balance_mul = {2.75, 2.1, 1.7, 1.45}
 		end
 
 		-- RECON / REENFORCE --
