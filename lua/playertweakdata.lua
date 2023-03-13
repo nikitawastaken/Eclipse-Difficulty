@@ -18,6 +18,7 @@ end
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function (self)
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
+	self.damage.REGENERATE_TIME = 4.5
 end)
 
 -- Game too hard for single player appparently????

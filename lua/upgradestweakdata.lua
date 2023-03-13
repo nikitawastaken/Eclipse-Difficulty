@@ -276,8 +276,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.overkill.multipro2 = "5"
 
 	-- Resilience
-	self.values.player.flashbang_multiplier = {0.65, 0.65}
-	self.skill_descs.oppressor.multipro2 = "35%"
+	self.values.player.armor_regen_timer_multiplier[1] = 0.95
+	self.values.player.flashbang_multiplier = {0.5, 0.5}
+	self.skill_descs.oppressor.multibasic2 = "5%"
+	self.skill_descs.oppressor.multipro2 = "50%"
 
 	-- Underdog
 	self.skill_descs.pack_mule.multibasic = "10"
@@ -290,6 +292,10 @@ function UpgradesTweakData:init(tweak_data)
 	-- Thick Skin
 	self.values.player.damage_shake_addend[1] = 1
 	self.skill_descs.show_of_force.multibasic = "10"
+
+	-- Shock and Awe
+	self.values.team.armor.regen_time_multiplier[1] = 0.9
+	self.skill_descs.iron_man.multibasic2 = "10%"
 
 	-- Bullseye
 	self.values.player.headshot_regen_armor_bonus[2] = 4.5
