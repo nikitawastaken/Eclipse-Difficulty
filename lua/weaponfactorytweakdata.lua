@@ -72,7 +72,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_sho_saiga_fg_holy.stats.concealment = 2
     -- mp5 straight mag
     self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
-    self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
+    self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = {ammo_pickup_max_mul = 0.56}
     -- union short barrel
     self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
     -- bipod nerf
@@ -434,15 +434,15 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
     self.parts.wpn_fps_upg_perk_stockpile.custom_stats = {ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, movement_speed = 0.85}
 
 	local uses_parts = {
-        wpn_fps_upg_perk_speedloader = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "bow", "flamethrower", "pistol", "minigun", "akimbo"}},
+        wpn_fps_upg_perk_speedloader = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo"}},
         wpn_fps_upg_perk_speedloader_lmg = {category = {"lmg"}},
         wpn_fps_upg_perk_haste = {category = {"assault_rifle", "smg", "snp", "shotgun", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}},
-        wpn_fps_upg_perk_deadsilence = {},
+        wpn_fps_upg_perk_deadsilence = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}},
         wpn_fps_upg_perk_jawbreaker = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo"}},
         wpn_fps_upg_perk_jawbreaker_lmg = {category = {"lmg"}},
         wpn_fps_upg_perk_whirlwind = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo"}},
         wpn_fps_upg_perk_whirlwind_lmg = {category = {"lmg"}},
-        wpn_fps_upg_perk_stockpile = {}
+        wpn_fps_upg_perk_stockpile = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}}
 	}
 	local all_pass, weapon_pass, exclude_weapon_pass, category_pass, exclude_category_pass = nil
 

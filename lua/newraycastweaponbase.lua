@@ -95,9 +95,7 @@ function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
 	end
 
 	local ammo = tweak_data.weapon[self._name_id].CLIP_AMMO_MAX
-	if not self:upgrade_blocked("weapon", "clip_ammo_increase") then
-		ammo = ammo * (self.clip_multiplier or 1)
-	end
+	ammo = ammo * (self.clip_multiplier or 1) -- speedloader
 	ammo = ammo + added
 	ammo = ammo + managers.player:upgrade_value(self._name_id, "clip_ammo_increase")
 
