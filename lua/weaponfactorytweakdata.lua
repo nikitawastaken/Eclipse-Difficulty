@@ -324,6 +324,37 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     table.delete(self.wpn_fps_sho_sko12.uses_parts, "wpn_fps_upg_i_autofire")
     table.delete(self.wpn_fps_gre_ms3gl.uses_parts, "wpn_fps_gre_ms3gl_conversion")
     table.insert(self.parts.wpn_fps_smg_fmg9_conversion.forbids, "wpn_fps_lmg_hk51b_ns_jcomp")
+	local weapons = {
+		"wpn_fps_shot_saiga",
+		"wpn_fps_shot_r870",
+		"wpn_fps_shot_huntsman",
+		"wpn_fps_shot_serbu",
+		"wpn_fps_sho_ben",
+		"wpn_fps_sho_striker",
+		"wpn_fps_sho_ksg",
+		"wpn_fps_pis_judge",
+		"wpn_fps_sho_spas12",
+		"wpn_fps_shot_b682",
+		"wpn_fps_sho_aa12",
+		"wpn_fps_sho_boot",
+		"wpn_fps_shot_m37",
+		"wpn_fps_shot_m1897",
+		"wpn_fps_sho_m590",
+		"wpn_fps_sho_rota",
+		"wpn_fps_sho_basset",
+		"wpn_fps_sho_x_basset",
+		"wpn_fps_pis_x_judge",
+		"wpn_fps_sho_x_rota",
+		"wpn_fps_sho_coach",
+		"wpn_fps_sho_ultima",
+		"wpn_fps_sho_sko12",
+		"wpn_fps_sho_x_sko12"
+	}
+	for _, factory_id in ipairs(weapons) do
+		if self[factory_id] and self[factory_id].uses_parts then
+			table.delete(self[factory_id].uses_parts, "wpn_fps_upg_a_rip") -- fuck tombstone
+        end
+    end
 end)
 
 
