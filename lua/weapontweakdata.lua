@@ -74,11 +74,11 @@ local pickup_tables = {
 	lmg = {2, 12},
 	minigun = {2, 8},
 
-	shot_very_high = {1, 5},
-	shot_high = {1, 4},
-	shot_mid = {1, 3},
-	shot_low = {1, 2},
-	shot_very_low = {1, 1.5},
+	shot_very_high = {2, 3},
+	shot_high = {2, 2},
+	shot_mid = {1, 2},
+	shot_low = {1, 1.5},
+	shot_very_low = {1, 1.25},
 	shot_special = {0.25, 0.45},
 
 	ar_high = {2, 10},
