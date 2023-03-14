@@ -71,38 +71,38 @@ local pickup_tables = {
 	sniper_low = {1, 1.2},
 	secondary_sniper = {0.5, 1},
 
-	lmg = {3.5, 5.25},
-	minigun = {3.25, 4.25},
+	lmg = {2, 12},
+	minigun = {2, 8},
 
-	shot_very_high = {1.75, 2.75},
-	shot_high = {1.75, 2.5},
-	shot_mid = {1, 2},
-	shot_low = {1, 1.65},
-	shot_very_low = {1, 1.25},
+	shot_very_high = {1, 5},
+	shot_high = {1, 4},
+	shot_mid = {1, 3},
+	shot_low = {1, 2},
+	shot_very_low = {1, 1.5},
 	shot_special = {0.25, 0.45},
 
-	ar_high = {4, 5},
-	ar_mid = {3, 4},
-	ar_low = {2, 3},
-	ar_very_low = {1.5, 2.25},
+	ar_high = {2, 10},
+	ar_mid = {2, 8},
+	ar_low = {2, 6},
+	ar_very_low = {2, 4},
 
 	dmr = {1, 1.5},
 	dmr_low = {0.75, 1.1},
 
-	smg_high = {3.5, 4.5},
-	smg_mid = {2.5, 3.5},
-	smg_low = {1.5, 2.5},
-	smg_very_low = {1, 2},
+	smg_high = {2, 9},
+	smg_mid = {2, 7},
+	smg_low = {2, 5},
+	smg_very_low = {2, 2},
 
-	pistol_high = {2.5, 3.5},
-	pistol_mid = {2.2, 3},
-	pistol_low = {1.5, 2.25},
-	pistol_very_low = {1.25, 2},
+	pistol_high = {3, 4},
+	pistol_mid = {3, 3},
+	pistol_low = {2, 2.5},
+	pistol_very_low = {1.5, 2},
 	revolver_high = {1.25, 2},
 	revolver = {1, 1.75},
 
-	revolver_ap = {0.25, 0.5},
-	pistol_ap = {0.4, 0.5}
+	revolver_ap = {0.35, 0.5},
+	pistol_ap = {0.4, 0.6}
 }
 
 -- normal kick tables
