@@ -1273,8 +1273,8 @@ self.akmsu.spray = spray_tables.ar_left_mid
 self.akmsu.recoil_recovery_timer = recovery_tables.high
 
 -- AKGEN
-self.vityaz.AMMO_MAX = total_ammo_tables.smg_low
-self.vityaz.AMMO_PICKUP = pickup_tables.smg_low
+self.vityaz.AMMO_MAX = total_ammo_tables.smg_very_low
+self.vityaz.AMMO_PICKUP = pickup_tables.smg_very_low
 self.vityaz.stats.damage = 100
 self.vityaz.kick = kick_tables.ar_very_high
 self.vityaz.spray = spray_tables.ar_left_high
