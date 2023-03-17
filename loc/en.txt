@@ -201,6 +201,7 @@
 	
 	
 	
+	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT TO UPGRADE THE DRILL",
 	"menu_difficulty_sm_wish": "Eclipse",
 	"menu_risk_sm_wish": "Eclipse. You only celebrate in the light... because I allow it.",
