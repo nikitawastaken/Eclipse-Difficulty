@@ -586,10 +586,9 @@ end
 -- Making them retreat only afterwards gives them more time to complete their objectives
 local _assign_recon_groups_to_retire_original = GroupAIStateBesiege._assign_recon_groups_to_retire
 function GroupAIStateBesiege:_assign_recon_groups_to_retire(...)
-	if self._task_data.assault.phase == "anticipation" then
-		return
+	if not self._rescue_allowed then
+		return _assign_recon_groups_to_retire_original(self, ...)
 	end
-	return _assign_recon_groups_to_retire_original(self, ...)
 end
 
 

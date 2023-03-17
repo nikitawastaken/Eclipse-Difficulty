@@ -271,3 +271,17 @@ function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
 
 	return _determine_objective_for_criminal_AI_original(self, unit, ...)
 end
+
+
+-- Adjust objective data for rescue and steal SOs
+Hooks:PreHook(GroupAIStateBase, "add_special_objective", "sh_add_special_objective", function (self, id, objective_data)
+	if type(id) ~= "string" or not id:match("^carrysteal") and not id:match("^rescue") then
+		return
+	end
+
+	objective_data.interval = 5
+	objective_data.search_dis_sq = 4000000
+	objective_data.objective.interrupt_dis = 500
+	objective_data.objective.interrupt_health = 0.8
+	objective_data.objective.pose = nil
+end)

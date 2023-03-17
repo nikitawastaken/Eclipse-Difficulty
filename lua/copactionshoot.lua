@@ -128,7 +128,7 @@ function CopActionShoot:update(t)
 				local dmg_buff = self._unit:base():get_total_buff("base_damage")
 				local dmg_mul = (1 + dmg_buff) * falloff.dmg_mul
 
-				target_pos = self:_get_unit_shoot_pos(t, target_pos, target_dis, self._w_usage_tweak, falloff, i_range, self._shooting_player)
+				target_pos = self:_get_unit_shoot_pos(t, target_pos, target_dis, self._w_usage_tweak, falloff, i_range, self._shooting_player) or target_pos
 				mvec3_dir(target_vec, shoot_from_pos, target_pos)
 
 				-- Pick and run the right shooting function

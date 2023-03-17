@@ -1,8 +1,30 @@
--- Only allow hostage rescue if it's part of our tactics (or if we don't have any tactics to allow scripted cop/security spawns to rescue hostages)
-local rescue_SO_verification_original = CivilianLogicFlee.rescue_SO_verification
+-- Tweak hostage rescue conditions
 function CivilianLogicFlee.rescue_SO_verification(ignore_this, params, unit, ...)
-	local logic_data = unit:brain()._logic_data
-	if not logic_data or not logic_data.tactics or logic_data.tactics.rescue_hostages or logic_data.objective and logic_data.objective.grp_objective and logic_data.objective.grp_objective.type == "recon_area" then
-		return rescue_SO_verification_original(ignore_this, params, unit, ...)
+	-- Less likely to free hostages during assault
+	if not managers.groupai:state()._rescue_allowed and math.random() < 0.3 then
+		return
+	end
+
+	if unit:movement():cool() then
+		return
+	end
+
+	if not unit:base():char_tweak().rescue_hostages then
+		return
+	end
+
+	local data = params.logic_data
+	if data.team.foes[unit:movement():team().id] then
+		return
+	end
+
+	local objective = unit:brain():objective()
+	if not objective or objective.type == "free" or not objective.area then
+		return true
+	end
+
+	local nav_seg = data.unit:movement():nav_tracker():nav_segment()
+	if objective.area.nav_segs[nav_seg] or unit:movement():nav_tracker():nav_segment() == nav_seg then
+		return true
 	end
 end

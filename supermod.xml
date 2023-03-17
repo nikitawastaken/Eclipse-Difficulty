@@ -72,8 +72,14 @@
 					<post :hook_id="playermovement"/>
 					<post :hook_id="states/playerstandard"/>
 					<post :hook_id="states/playertased"/>
+					<post :hook_id="states/playerdriving"/>
 				</group>
-				<post :hook_id="civilians/logics/civilianlogicflee"/>
+
+				<group :hook_id="civilians/logics/">
+					<post :hook_id="civilianlogicflee"/>
+					<post :hook_id="civilianlogicsurrender"/>
+				</group>
+				
 				<post :hook_id="environment/environmentfire"/>
 
 				<group :hook_id="enemies/">
@@ -139,7 +145,11 @@
 				<post :hook_id="vehicles/animatedvehiclebase"/>
 				<post :hook_id="player_team/teamaimovement"/>
 				<post :hook_id="cameras/fpcameraplayerbase"/>
-				<post :hook_id="props/carrydata"/>
+
+				<group :hook_id="props/">
+					<post :hook_id="aiattentionobject"/>
+					<post :hook_id="carrydata"/>
+				</group>
 
 				<group :hook_id="weapons/">
 					<group :hook_id="grenades/">

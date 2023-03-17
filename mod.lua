@@ -19,7 +19,8 @@ if not StreamHeist then
 	StreamHeist = {
 		mod_path = ModPath,
 		mod_instance = ModInstance,
-		logging = io.file_is_readable("mods/developer.txt")
+		logging = io.file_is_readable("mods/developer.txt"),
+		required = {}
 	}
 
 	function StreamHeist:require(file)
@@ -106,14 +107,13 @@ if not StreamHeist then
 	TheFixesPreventer.tank_walk_near_players  = true
 end
 
-local required = {}
-if RequiredScript and not required[RequiredScript] then
+if RequiredScript and not StreamHeist.required[RequiredScript] then
 
 	local fname = StreamHeist.mod_path .. RequiredScript:gsub(".+/(.+)", "lua/%1.lua")
 	if io.file_is_readable(fname) then
 		dofile(fname)
 	end
 
-	required[RequiredScript] = true
+	StreamHeist.required[RequiredScript] = true
 
 end

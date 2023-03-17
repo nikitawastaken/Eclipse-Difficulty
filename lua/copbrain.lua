@@ -32,6 +32,33 @@ Hooks:PreHook(CopBrain, "convert_to_criminal", "sh_convert_to_criminal", functio
 end)
 
 
+-- Make surrender window slightly shorter and less random
+Hooks:OverrideFunction(CopBrain, "on_surrender_chance", function (self)
+	local t = TimerManager:game():time()
+
+	if self._logic_data.surrender_window then
+		self._logic_data.surrender_window.expire_t = t + self._logic_data.surrender_window.timeout_duration
+		self._logic_data.surrender_window.chance_mul = self._logic_data.surrender_window.chance_mul ^ 0.8
+		managers.enemy:reschedule_delayed_clbk(self._logic_data.surrender_window.expire_clbk_id, self._logic_data.surrender_window.expire_t)
+		return
+	end
+
+	local window_duration = 4 + 2 * math.random()
+	local timeout_duration = 4 + 2 * math.random()
+	local expire_clbk_id = "CopBrain_sur_op" .. tostring(self._unit:key())
+	self._logic_data.surrender_window = {
+		chance_mul = 0.01,
+		expire_clbk_id = expire_clbk_id,
+		window_expire_t = t + window_duration,
+		expire_t = t + window_duration + timeout_duration,
+		window_duration = window_duration,
+		timeout_duration = timeout_duration
+	}
+
+	managers.enemy:add_delayed_clbk(expire_clbk_id, callback(self, self, "clbk_surrender_chance_expired"), self._logic_data.surrender_window.expire_t)
+end)
+
+
 -- If Iter is installed and streamlined path option is used, don't make any further changes
 if Iter and Iter.settings and Iter.settings.streamline_path then
 	return
