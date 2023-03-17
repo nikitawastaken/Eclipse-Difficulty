@@ -519,12 +519,6 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
 	table.delete(self.specializations[22][9].upgrades, "player_passive_health_multiplier_4")
 
-	-- lol bye copycat
-	table.delete(self.specializations, self.specializations[23])
-
-
-
-
 
 	-- Buncha default upgrade fuckery
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")

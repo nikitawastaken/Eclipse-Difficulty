@@ -38,6 +38,7 @@
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="player/snipergrazedamage"/>
 				<post :hook_id="playermanager"/>
+				<post :hook_id="dlcmanager"/>
 			</group>
 
 			<group :hook_id="network/">
