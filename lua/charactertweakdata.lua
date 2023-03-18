@@ -92,12 +92,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.melee_weapon = "baton"
 
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
-	self.tank.no_run_start = false -- honestly idk why they got rid of this since it looks much cooler with it
 	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.1
 	self.tank.melee_weapon = "weapon"
+	self.tank.move_speed.stand.walk.cbt = {strafe = 176, fwd = 198, bwd = 154}
+	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
+
 
 	self.tank_elite = deep_clone(self.tank) -- elite dozer
+	self.tank_elite.move_speed.stand.walk.cbt = {strafe = 196, fwd = 218, bwd = 174}
+	self.tank_elite.move_speed.stand.run.cbt = self.tank_elite.move_speed.stand.walk.cbt
 	table.insert(self._enemy_list, "tank_elite")
 
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
@@ -1038,7 +1042,7 @@ function CharacterTweakData:_set_overkill_290()
 				mode = {
 					0,
 					0,
-					0,
+					3,
 					1
 				},
 				autofire_rounds = {
@@ -1060,8 +1064,8 @@ function CharacterTweakData:_set_overkill_290()
 				mode = {
 					0,
 					0,
-					2,
-					3
+					3,
+					2
 				},
 				autofire_rounds = {
 					3,
@@ -1081,7 +1085,7 @@ function CharacterTweakData:_set_overkill_290()
 				},
 				mode = {
 					0,
-					0,
+					2,
 					1,
 					0
 				}
@@ -1309,7 +1313,7 @@ function CharacterTweakData:_set_overkill_290()
 				mode = {
 					0,
 					0,
-					0,
+					3,
 					1
 				},
 				autofire_rounds = {
@@ -1330,13 +1334,9 @@ function CharacterTweakData:_set_overkill_290()
 				},
 				mode = {
 					0,
-					0,
 					3,
-					2
-				},
-				autofire_rounds = {
-					3,
-					4
+					2,
+					0
 				}
 			},
 			{
@@ -1351,8 +1351,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.8
 				},
 				mode = {
-					0,
-					0,
+					3,
+					2,
 					1,
 					0
 				}
@@ -1486,8 +1486,8 @@ function CharacterTweakData:_set_overkill_290()
 				mode = {
 					0,
 					0,
-					1,
-					3
+					3,
+					2
 				},
 				autofire_rounds = {
 					3,
@@ -1506,8 +1506,8 @@ function CharacterTweakData:_set_overkill_290()
 					0.3
 				},
 				mode = {
-					0,
-					0,
+					3,
+					2,
 					1,
 					0
 				}
@@ -3012,11 +3012,11 @@ function CharacterTweakData:_set_sm_wish()
 	self.flashbang_multiplier = 2
 	self.city_swat.dodge = self.presets.dodge.ninja
 	self:_multiply_all_speeds(1.15, 1.075)
-	-- set specific speeds for tanks and shields
-	self.tank.move_speed.stand.walk.cbt = {strafe = 176, fwd = 198, bwd = 154}
-	self.tank.move_speed.stand.run.cbt = {strafe = 345, fwd = 400, bwd = 215}
-	self.tank_elite.move_speed.stand.walk.cbt = {strafe = 196, fwd = 218, bwd = 174}
-	self.tank_elite.move_speed.stand.run.cbt = {strafe = 365, fwd = 420, bwd = 235}
+	-- set specific speeds for shields
+	self.tank.move_speed.stand.walk.cbt = {strafe = 196, fwd = 218, bwd = 174}
+	self.tank.move_speed.stand.run.cbt = self.tank_elite.move_speed.stand.walk.cbt
+	self.tank_elite.move_speed.stand.walk.cbt = {strafe = 216, fwd = 238, bwd = 194}
+	self.tank_elite.move_speed.stand.run.cbt = self.tank_elite.move_speed.stand.walk.cbt
 	self.shield.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
 	self.shield.move_speed.crouch.run.cbt = {strafe = 300, fwd = 340, bwd = 270}
 	self.phalanx_minion.move_speed.crouch.walk.cbt = {strafe = 270, fwd = 300, bwd = 250}
@@ -3024,7 +3024,7 @@ function CharacterTweakData:_set_sm_wish()
 end
 
 -- fixed movement speed difficulty scaling
--- thanks redflame for this code from like 6 months ago
+-- thanks redflame
 function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
     for preset_name, preset in pairs(self.presets.move_speed) do
         if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then

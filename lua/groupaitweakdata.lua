@@ -681,7 +681,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		self.enemy_spawn_groups.fbi_tanks = {
 			amount = {
 				3,
-				4
+				3
 			},
 			spawn = {
 				{
@@ -694,17 +694,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				},
 				{
 					amount_min = 1,
-					freq = 0.5,
+					freq = 1,
 					amount_max = 1,
 					rank = 2,
 					unit = "taser_unit",
-					tactics = self._tactics.fbi_special
-				},
-				{
-					freq = 0.75,
-					amount_max = 1,
-					rank = 2,
-					unit = "medic_unit",
 					tactics = self._tactics.fbi_special
 				},
 				{
@@ -881,7 +874,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		}
 		self.enemy_spawn_groups.gensec_tanks = {
 			amount = {
-				3,
+				4,
 				4
 			},
 			spawn = {
@@ -891,23 +884,31 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					amount_max = 1,
 					rank = 3,
 					unit = "tank_elite",
-					tactics = self._tactics.elite_tank_ranged
+					tactics = self._tactics.elite_tank
 				},
 				{
 					amount_min = 1,
 					freq = 1,
 					amount_max = 1,
 					rank = 2,
+					unit = "taser_unit",
+					tactics = self._tactics.elite_special
+				},
+				{
+					amount_min = 1,
+					freq = 1,
+					amount_max = 1,
+					rank = 1,
 					unit = "medic_unit",
 					tactics = self._tactics.elite_special
 				},
 				{
 					amount_min = 1,
-					freq = 0.33,
-					amount_max = 2,
+					freq = 1,
+					amount_max = 1,
 					rank = 1,
-					unit = "shield_fbi",
-					tactics = self._tactics.elite_shield
+					unit = "heavy_fbi_m4",
+					tactics = self._tactics.fbi_rifle
 				}
 			}
 		}
@@ -1141,7 +1142,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			gensec_flankers = {0.25, 0.25, 0.45},
 			gensec_tasers = {0.15, 0.15, 0.3},
 			-- gensec_shields = {0.00, 0.00, 0.15},
-			gensec_tanks = {0, 0, 0.1},
+			gensec_tanks = {0, 0, 0.01},
 			spoocs = {0, 0.045, 0.09},
 			single_spooc = {0, 0, 0},
 			Phalanx = {0, 0, 0},
