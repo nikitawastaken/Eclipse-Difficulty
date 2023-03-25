@@ -1765,12 +1765,9 @@ self.x_type54.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_pm9.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_shepheard.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
-end)
 
-
-
-Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290", function(self)
-	-- NPC weapon edits
+-- NPC weapons
+	-- rifles
 	self.m4_npc.DAMAGE = 1
 	self.m4_npc.auto.fire_rate = 0.225
 	self.m4_yellow_npc.DAMAGE = 1
@@ -1778,21 +1775,30 @@ Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290"
 	self.g36_npc.DAMAGE = 1
 	self.g36_npc.auto.fire_rate = 0.25
 
+	-- shotguns
 	self.r870_npc.DAMAGE = 1
 	self.r870_npc.CLIP_AMMO_MAX = 8
 	self.benelli_npc.DAMAGE = 1
 	self.benelli_npc.CLIP_AMMO_MAX = 8
 
+	-- dozer guns
 	self.m249_npc.DAMAGE = 1
 	self.m249_npc.auto.fire_rate = 0.15
 	self.saiga_npc.DAMAGE = 1
 	self.saiga_npc.auto.fire_rate = 0.33
 	self.saiga_npc.CLIP_AMMO_MAX = 20
 
-	self.ump_npc.auto.fire_rate = 0.25
-	self.mp9_npc.auto.fire_rate = 0.275
+	-- smgs
+	self.mp5_npc.DAMAGE = 1
 	self.mp5_npc.auto.fire_rate = 0.25
+	self.ump_npc.DAMAGE = 1
+	self.ump_npc.auto.fire_rate = 0.25
+	self.mp9_npc.DAMAGE = 1
+	self.mp9_npc.auto.fire_rate = 0.275
+	self.mac11_npc.DAMAGE = 1
+	self.mac11_npc.auto.fire_rate = 0.25
 
+	-- misc guns
 	self.mac11_npc.auto.fire_rate = 0.2
 	self.raging_bull_npc.DAMAGE = 1
 	self.ak47_ass_npc.DAMAGE = 1
@@ -1801,18 +1807,93 @@ Hooks:PostHook(WeaponTweakData, "_set_overkill_290", "eclipse__set_overkill_290"
 	self.ak47_npc.auto.fire_rate = 0.2
 	self.scar_npc.DAMAGE = 1
 	self.scar_npc.auto.fire_rate = 0.2
+	self.c45_npc.DAMAGE = 1
+	self.x_c45_npc.DAMAGE = 1
+	self.flamethrower_npc.DAMAGE = 1
 
 
-	-- Misc
+-- Misc
 	self.m249_npc.usage = "is_lmg"
 	self.flamethrower_npc.flame_max_range = 800 -- wow 15m is retarded lmao
 	self.benelli_npc.sounds.prefix = "benelli_m4_npc" -- Give it a proper sound
 	self.beretta92_npc.has_suppressor = "suppressed_b" -- suppressed
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail_marshal"
+	-- just copy pasted turret stuff from vanilla ovk145 tweak
+	self.ceiling_turret_module.HEALTH_INIT = 12500
+	self.ceiling_turret_module.SHIELD_HEALTH_INIT = 250
+	self.ceiling_turret_module.DAMAGE = 2
+	self.aa_turret_module.HEALTH_INIT = 26000
+	self.aa_turret_module.SHIELD_HEALTH_INIT = 500
+	self.aa_turret_module.DAMAGE = 2
+	self.crate_turret_module.HEALTH_INIT = 12500
+	self.crate_turret_module.SHIELD_HEALTH_INIT = 500
+	self.crate_turret_module.DAMAGE = 2
+
+
+	-- if bot weapons and equipment is installed and fixed weapon balance is on don't make any further changes
+	if BotWeapons and BotWeapons.settings and BotWeapons.settings.weapon_balance then
+		return
+	end
+
+	self.flint_crew.DAMAGE = 1.5
+	self.hcar_crew.DAMAGE = 1
+	self.tkb_crew.DAMAGE = 1.5
+	self.l85a2_crew.DAMAGE = 1.5
 end)
 
-local _set_overkill_290_orig = WeaponTweakData._set_overkill_290
-function WeaponTweakData:_set_sm_wish()
-	_set_overkill_290_orig(self)
+
+-- easy dmg scaling
+function WeaponTweakData:_set_normal()
+	self.m4_npc.DAMAGE = 0.35
+	self.m4_yellow_npc.DAMAGE = 0.35
+	self.g36_npc.DAMAGE = 0.35
+	self.r870_npc.DAMAGE = 0.25
+	self.benelli_npc.DAMAGE = 0.25
+	self.m249_npc.DAMAGE = 0.35
+	self.saiga_npc.DAMAGE = 0.35
+	self.mp5_npc.DAMAGE = 0.35
+	self.ump_npc.DAMAGE = 0.35
+	self.mp9_npc.DAMAGE = 0.35
+	self.raging_bull_npc.DAMAGE = 0.2
+	self.ak47_ass_npc.DAMAGE = 0.35
+	self.ak47_npc.DAMAGE = 0.35
+	self.scar_npc.DAMAGE = 0.35
+	self.c45_npc.DAMAGE = 0.35
+	self.x_c45_npc.DAMAGE = 0.35
+	self.m14_sniper_npc.DAMAGE = 0.35
+	self.mac11_npc.DAMAGE = 0.35
+	self.flamethrower_npc.DAMAGE = 0.35
 end
 
+-- normal dmg scaling
+function WeaponTweakData:_set_hard()
+	self.m4_npc.DAMAGE = 0.8
+	self.m4_yellow_npc.DAMAGE = 0.8
+	self.g36_npc.DAMAGE = 0.8
+	self.r870_npc.DAMAGE = 0.5
+	self.benelli_npc.DAMAGE = 0.5
+	self.m249_npc.DAMAGE = 0.8
+	self.saiga_npc.DAMAGE = 0.8
+	self.mp5_npc.DAMAGE = 0.8
+	self.ump_npc.DAMAGE = 0.8
+	self.mp9_npc.DAMAGE = 0.8
+	self.raging_bull_npc.DAMAGE = 0.5
+	self.ak47_ass_npc.DAMAGE = 0.8
+	self.ak47_npc.DAMAGE = 0.8
+	self.scar_npc.DAMAGE = 0.8
+	self.c45_npc.DAMAGE = 0.8
+	self.x_c45_npc.DAMAGE = 0.8
+	self.m14_sniper_npc.DAMAGE = 0.8
+	self.mac11_npc.DAMAGE = 0.8
+	self.flamethrower_npc.DAMAGE = 0.5
+end
+
+-- damage reaches intended values after normal and stops scaling
+function WeaponTweakData:_set_overkill()
+end
+
+function WeaponTweakData:_set_overkill_145()
+end
+
+function WeaponTweakData:_set_easy_wish()
+end

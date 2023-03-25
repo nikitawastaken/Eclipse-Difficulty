@@ -78,7 +78,7 @@ if not StreamHeist then
 								mod:SetEnabled(false, true)
 							end
 						end
-						BLT.Mods:Save()
+						MenuCallbackHandler:perform_blt_save()
 					end
 				},
 				{

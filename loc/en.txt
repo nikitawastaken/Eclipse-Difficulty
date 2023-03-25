@@ -203,14 +203,26 @@
 	
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT TO UPGRADE THE DRILL",
-	"menu_difficulty_sm_wish": "Eclipse",
-	"menu_risk_sm_wish": "Eclipse. You only celebrate in the light... because I allow it.",
-	"menu_risk_elite": "Death Wish.\nFor hardcore players. ",
+	
+	"menu_difficulty_easy_wish": "Eclipse",
+	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",
+	"menu_risk_special": "Overkill.\nMaximum Force Responders inbound.",
+	"menu_difficulty_very_hard": "Hard",
+	"menu_risk_fbi": "Hard.\nFBI on high alert.",
+	"menu_difficulty_hard": "Normal",
+	"menu_risk_swat": "Normal.\nAverage risk.",
+	"menu_difficulty_normal": "Easy",
+	"menu_risk_pd": "Easy.\nHang on! I forgot my donuts!",
+	
 	"menu_toggle_one_down": "Pro-Job",
 	"menu_one_down": "Pro-Job",
 	"menu_toggle_one_down_lobbies": "Allow Pro-Job Lobbies"
+	
 	"menu_stat_job_completed": "",
 	"menu_max_progress": "Max account progression",
 	"menu_max_progress_help": "Max out your account progression and skip grind.",
-	"menu_progress_msg": "Are you sure you want to max out your progress? This will max out your level, infamy, cash, and unlock all available items."
+	"menu_progress_msg": "Are you sure you want to max out your progress?\nThis will max out your character and unlock all available items.",
+	"menu_max_masks": "Max mask customization",
+	"menu_max_masks_help": "Max out your masks and customization for them to skip grind.",
+	"menu_masks_msg": "Are you sure you want to max out your masks?\nThis will give you 10 of each mask, material, pattern and color."
 }

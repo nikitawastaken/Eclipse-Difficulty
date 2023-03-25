@@ -85,7 +85,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.sniper.suppression = nil
 	self.sniper.misses_first_player_shot = true
 
-	self.spooc.spooc_sound_events = {detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop"} -- remove cloaker charge noise
 	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0
@@ -138,7 +137,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_shield_break.tmp_invulnerable_on_tweak_change = 0.1
 	self.marshal_shield_break.weapon.is_pistol = self.phalanx_minion.weapon.is_pistol
 
-	-- prevent phalanx from meleeing, since it's just buggy (redflame)
+	-- prevent phalanx from meleeing, since it's just buggy (ty redflame)
 	for _, weapon in pairs(self.phalanx_minion.weapon) do
 		weapon.melee_speed = nil
 		weapon.melee_dmg = nil
@@ -491,7 +490,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.deathwish.is_shotgun_pump.melee_dmg = 10
 	presets.weapon.deathwish.is_shotgun_pump.FALLOFF = {
 		{
-			dmg_mul = 3,
+			dmg_mul = 17.5,
 			r = 100,
 			acc = {
 				0.95,
@@ -509,11 +508,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 3,
+			dmg_mul = 17.5,
 			r = 500,
 			acc = {
 				0.7,
-				0.95
+				0.9
 			},
 			recoil = {
 				1.15,
@@ -527,29 +526,29 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 2,
+			dmg_mul = 10.5,
 			r = 1000,
 			acc = {
 				0.5,
-				0.8
+				0.6
 			},
 			recoil = {
-				1.35,
-				1.35
+				1.3,
+				1.3
 			},
 			mode = {
+				1,
 				0,
 				0,
-				0,
-				1
+				0
 			}
 		},
 		{
-			dmg_mul = 1,
+			dmg_mul = 5.5,
 			r = 2000,
 			acc = {
-				0.45,
-				0.65
+				0.3,
+				0.4
 			},
 			recoil = {
 				1.5,
@@ -563,11 +562,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		},
 		{
-			dmg_mul = 0.5,
+			dmg_mul = 2.5,
 			r = 3000,
 			acc = {
-				0.3,
-				0.5
+				0.1,
+				0.1
 			},
 			recoil = {
 				2,
@@ -581,6 +580,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			}
 		}
 	}
+
 
 	-- revolver preset
 	-- 140 dmg
@@ -928,8 +928,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 end
 
-function CharacterTweakData:_set_overkill_290()
-	self:_multiply_all_hp(3, 1.25)
+function CharacterTweakData:_set_normal()
+	self:_multiply_all_hp(3, 1.75)
 
 	self.swat.HEALTH_INIT = 30
 	self.swat.headshot_dmg_mul = 2.4 -- 125 head health
@@ -2436,7 +2436,7 @@ function CharacterTweakData:_set_overkill_290()
 	-- Taser preset
 	self.taser.weapon.is_rifle = deep_clone(self.presets.weapon.deathwish.is_rifle)
 	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 15
-	self.taser.weapon.is_rifle.tase_distance = 1500
+	self.taser.weapon.is_rifle.tase_distance = 1000
 	self.taser.weapon.is_rifle.aim_delay_tase = {0.15, 0.15}
 
 	-- Bosses
@@ -2554,7 +2554,23 @@ function CharacterTweakData:_set_overkill_290()
 	self.biker_boss.weapon.is_lmg = self.tank.weapon.is_lmg
 	self.mobster_boss.weapon.is_lmg = self.tank.weapon.is_lmg
 
-	--team ai
+
+	self:_set_characters_weapon_preset("deathwish")
+
+	self.spooc.spooc_attack_timeout = {6, 8}
+	self.flashbang_multiplier = 1.25
+	self.concussion_multiplier = 1
+
+	self.presets.gang_member_damage.HEALTH_INIT = 125
+	self.presets.gang_member_damage.REGENERATE_TIME = 5
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 6
+
+
+	-- if bot weapons and equipment is installed and fixed weapon balance is on don't make any further changes
+	if BotWeapons and BotWeapons.settings and BotWeapons.settings.weapon_balance then
+		return
+	end
+
 	self.presets.weapon.gang_member.is_pistol.FALLOFF = {
 		{
 			dmg_mul = 10,
@@ -2991,28 +3007,64 @@ function CharacterTweakData:_set_overkill_290()
 	self.presets.weapon.gang_member.rifle.autofire_rounds = nil
 	self.presets.weapon.gang_member.akimbo_pistol = self.presets.weapon.gang_member.is_pistol
 	self.presets.weapon.gang_member.is_shotgun_mag = deep_clone(self.presets.weapon.gang_member.is_shotgun_pump)
+end
 
-	self:_set_characters_weapon_preset("deathwish")
+local _set_normal_orig = CharacterTweakData._set_normal
+function CharacterTweakData:_set_hard()
+	_set_normal_orig(self)
 
+
+	self.flashbang_multiplier = 1.25
+	self.spooc.spooc_attack_timeout = {5, 7}
+	self.presets.gang_member_damage.HEALTH_INIT = 250
+	self.presets.gang_member_damage.REGENERATE_TIME = 4.5
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 5.5
+end
+
+local _set_hard_orig = CharacterTweakData._set_hard
+function CharacterTweakData:_set_overkill()
+	_set_hard_orig(self)
+
+
+	self.flashbang_multiplier = 1.375
+	self.taser.weapon.is_rifle.tase_distance = 1250
+	self.spooc.spooc_attack_timeout = {4, 6}
+	self.presets.gang_member_damage.HEALTH_INIT = 300
+	self.presets.gang_member_damage.REGENERATE_TIME = 4
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 5
+end
+
+local _set_overkill_orig = CharacterTweakData._set_overkill
+function CharacterTweakData:_set_overkill_145()
+	_set_overkill_orig(self)
+
+
+	self.flashbang_multiplier = 1.5
+	self.taser.weapon.is_rifle.tase_distance = 1500
+	self.spooc.spooc_attack_timeout = {3, 5}
+	self.presets.gang_member_damage.HEALTH_INIT = 350
+	self.presets.gang_member_damage.REGENERATE_TIME = 3.5
+	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 4.5
+end
+
+local _set_overkill_145_orig = CharacterTweakData._set_overkill_145
+function CharacterTweakData:_set_easy_wish()
+	_set_overkill_145_orig(self)
+
+
+	self.taser.weapon.is_rifle.tase_distance = 2000
 	self.spooc.spooc_attack_timeout = {2, 3}
-	self.flashbang_multiplier = 1.75
-	self.concussion_multiplier = 1
+	self.flashbang_multiplier = 2
 
-	-- Team AI nerf
 	self.presets.gang_member_damage.HEALTH_INIT = 400
 	self.presets.gang_member_damage.REGENERATE_TIME = 3
 	self.presets.gang_member_damage.REGENERATE_TIME_AWAY = 4
-end
 
-local _set_overkill_290_orig = CharacterTweakData._set_overkill_290
-function CharacterTweakData:_set_sm_wish()
-	_set_overkill_290_orig(self)
-
-	-- Eclipse exclusive buffs
-	self.flashbang_multiplier = 2
+	-- eclipse exclusive spicy stuff
 	self.city_swat.dodge = self.presets.dodge.ninja
+	self.spooc.spooc_sound_events = {detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop"} -- cloakers are silent on eclipse
+
 	self:_multiply_all_speeds(1.15, 1.075)
-	-- set specific speeds for shields
 	self.tank.move_speed.stand.walk.cbt = {strafe = 196, fwd = 218, bwd = 174}
 	self.tank.move_speed.stand.run.cbt = self.tank_elite.move_speed.stand.walk.cbt
 	self.tank_elite.move_speed.stand.walk.cbt = {strafe = 216, fwd = 238, bwd = 194}

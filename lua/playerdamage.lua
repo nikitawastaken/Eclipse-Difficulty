@@ -8,7 +8,8 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
         tweak_data.player.damage.DOWNED_TIME = 25
 		tweak_data.player.damage.DOWNED_TIME_DEC = 10
 		tweak_data.player.damage.DOWNED_TIME_MIN = 1
-		tweak_data.player.damage.REVIVE_HEALTH_STEPS = {0.6, 0.35, 0.1}
+		tweak_data.player.damage.REVIVE_HEALTH_STEPS = {0.4, 0.2, 0.1}
+		tweak_data.player.damage.MIN_DAMAGE_INTERVAL = tweak_data.player.damage.MIN_DAMAGE_INTERVAL - 0.05
     end
 end)
 

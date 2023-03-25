@@ -1,0 +1,1 @@
+CriminalsManager.MAX_NR_TEAM_AI = 1

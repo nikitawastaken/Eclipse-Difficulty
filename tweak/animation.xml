@@ -1,5 +1,16 @@
 <?xml version="1.0"?>
 <tweaks>
+    <tweak version="2" name="anims/units/enemies/cop/combat_shield" extension="animation_subset">
+        <search>
+            <xml/>
+            <anim name="cbt_shield_crh_idle"/>
+        </search>
+        <target mode="attributes">
+            <attr name="file" value="anims/shared/rifle/combat/cbt_crh_idle"/>
+            <attr name="blend_set" value="legs_and_root"/>
+        </target>
+    </tweak>
+	
 	<!-- Animation weight fixes for dozers -->
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
 		<search>

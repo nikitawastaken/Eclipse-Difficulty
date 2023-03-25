@@ -26,6 +26,16 @@
 					<post :hook_id="elementspawnenemygroup"/>
 					<post :hook_id="elementspecialobjective"/>
 				</group>
+				
+				<group :hook_id="hud/">
+					<post :hook_id="hudmissionbriefing"/>
+					<post :hook_id="hudstageendscreen"/>
+				</group>
+				
+				<group :hook_id="menu/">
+					<post :hook_id="crimenetcontractgui"/>
+					<post :hook_id="ingamecontractgui"/>
+				</group>
 
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="enemymanager"/>
@@ -37,6 +47,8 @@
 				<post :hook_id="blackmarketmanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="player/snipergrazedamage"/>
+				<post :hook_id="criminalsmanager"/>
+				<post :hook_id="crimenetmanager"/>
 				<post :hook_id="playermanager"/>
 				<post :hook_id="dlcmanager"/>
 			</group>
@@ -110,7 +122,6 @@
 							<post :hook_id="coplogicidle"/>
 							<post :hook_id="coplogicinactive"/>
 							<post :hook_id="coplogicintimidated"/>
-							<post :hook_id="coplogicphalanxminion"/>
 							<post :hook_id="coplogicsniper"/>
 							<post :hook_id="coplogictravel"/>
 						</group>
