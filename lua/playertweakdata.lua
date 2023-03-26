@@ -5,7 +5,7 @@ end
 
 function PlayerTweakData:_set_hard()
 	self.damage.REVIVE_HEALTH_STEPS = {0.6}
-	self.damage.MIN_DAMAGE_INTERVAL = 0.45
+	self.damage.MIN_DAMAGE_INTERVAL = 0.4
 end
 
 function PlayerTweakData:_set_overkill()

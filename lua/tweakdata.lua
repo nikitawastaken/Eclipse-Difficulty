@@ -1,14 +1,4 @@
-tweak_data.difficulties = {
-		"easy",
-		"normal",
-		"hard",
-		"overkill",
-		"overkill_145",
-		"easy_wish",
-		"overkill_290",
-		"sm_wish"
-	}
-
+-- lock dw / ds
 tweak_data.difficulty_level_locks = {
 	0,
 	0,
@@ -18,6 +8,25 @@ tweak_data.difficulty_level_locks = {
 	80,
 	69420,
 	69420
+}
+
+-- lower difficulty xp muls
+tweak_data.experience_manager.difficulty_multiplier = {
+	1.5,
+	3,
+	6,
+	12,
+	12,
+	12
+}
+
+-- remove alive player multipliers
+tweak_data.experience_manager.alive_humans_multiplier = {
+	[0] = 1,
+	1,
+	1,
+	1,
+	1
 }
 
 

@@ -1860,32 +1860,32 @@ function WeaponTweakData:_set_normal()
 	self.scar_npc.DAMAGE = 0.35
 	self.c45_npc.DAMAGE = 0.35
 	self.x_c45_npc.DAMAGE = 0.35
-	self.m14_sniper_npc.DAMAGE = 0.35
+	self.m14_sniper_npc.DAMAGE = 0.25
 	self.mac11_npc.DAMAGE = 0.35
 	self.flamethrower_npc.DAMAGE = 0.35
 end
 
 -- normal dmg scaling
 function WeaponTweakData:_set_hard()
-	self.m4_npc.DAMAGE = 0.8
-	self.m4_yellow_npc.DAMAGE = 0.8
-	self.g36_npc.DAMAGE = 0.8
-	self.r870_npc.DAMAGE = 0.5
-	self.benelli_npc.DAMAGE = 0.5
-	self.m249_npc.DAMAGE = 0.8
-	self.saiga_npc.DAMAGE = 0.8
-	self.mp5_npc.DAMAGE = 0.8
-	self.ump_npc.DAMAGE = 0.8
-	self.mp9_npc.DAMAGE = 0.8
-	self.raging_bull_npc.DAMAGE = 0.5
-	self.ak47_ass_npc.DAMAGE = 0.8
-	self.ak47_npc.DAMAGE = 0.8
-	self.scar_npc.DAMAGE = 0.8
-	self.c45_npc.DAMAGE = 0.8
-	self.x_c45_npc.DAMAGE = 0.8
-	self.m14_sniper_npc.DAMAGE = 0.8
-	self.mac11_npc.DAMAGE = 0.8
-	self.flamethrower_npc.DAMAGE = 0.5
+	self.m4_npc.DAMAGE = 0.7
+	self.m4_yellow_npc.DAMAGE = 0.7
+	self.g36_npc.DAMAGE = 0.7
+	self.r870_npc.DAMAGE = 0.4
+	self.benelli_npc.DAMAGE = 0.4
+	self.m249_npc.DAMAGE = 0.7
+	self.saiga_npc.DAMAGE = 0.7
+	self.mp5_npc.DAMAGE = 0.7
+	self.ump_npc.DAMAGE = 0.7
+	self.mp9_npc.DAMAGE = 0.7
+	self.raging_bull_npc.DAMAGE = 0.4
+	self.ak47_ass_npc.DAMAGE = 0.7
+	self.ak47_npc.DAMAGE = 0.7
+	self.scar_npc.DAMAGE = 0.7
+	self.c45_npc.DAMAGE = 0.7
+	self.x_c45_npc.DAMAGE = 0.7
+	self.m14_sniper_npc.DAMAGE = 0.5
+	self.mac11_npc.DAMAGE = 0.7
+	self.flamethrower_npc.DAMAGE = 0.7
 end
 
 -- damage reaches intended values after normal and stops scaling
