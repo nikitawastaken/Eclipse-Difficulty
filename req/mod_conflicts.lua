@@ -23,5 +23,10 @@ return table.list_to_set({
 	"Graceful Graze",
 	"Better Graze",
 	"Graze doesn't kill civis",
-	"Graze Plus - Make graze effect apply of opposite side"
+	"Graze Plus - Make graze effect apply of opposite side",
+	"Enemy Accuracy Fix",
+	"Better Cops weapon usage and some tweaks",
+	"Better Cops weapon usage",
+	"Better Cops weapon usage and some tweaks for online",
+	"Better Cops weapon usage for online"
 })
