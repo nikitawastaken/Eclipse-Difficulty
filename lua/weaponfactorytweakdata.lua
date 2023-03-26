@@ -36,8 +36,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
     self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
-
-    -- bitchass
+    -- remove stat overrides
     self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
     self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_slug = nil
     self.wpn_fps_shot_b682.override.wpn_fps_upg_a_explosive = nil
@@ -53,14 +52,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom_free = nil
 
 
-
     -- Secondary Sights
     self.parts.wpn_fps_upg_o_sig.stats.recoil = 0
     self.parts.wpn_fps_upg_o_45rds.stats.recoil = 0
     self.parts.wpn_fps_upg_o_45rds_v2.stats.recoil = 0
     self.parts.wpn_fps_upg_o_45steel.stats.concealment = 0
     self.parts.wpn_fps_upg_o_xpsg33_magnifier.stats.recoil = 0
-
 
 
     -- Weapon-Specific Stuff
@@ -93,15 +90,39 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats = {extra_ammo = 40,  total_ammo_mod = 20, damage = -40, value = 1, spread = 1, recoil = 1, fire_rate = 1.667}
     self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = {ammo_pickup_max_mul = 2.25, ammo_pickup_min_mul = 2.25, fire_rate_multiplier = 1.667}
 
-    -- Speedpull nerfs
-    self.parts.wpn_fps_m4_upg_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_upg_ak_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_ass_g36_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_ass_aug_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_sr2_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_mac10_m_quick.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_p90_m_strap.stats = {recoil = -2, reload = 3}
-    self.parts.wpn_fps_smg_fmg9_m_speed.stats = {spread = 1, reload = 3, recoil = -1, concealment = -2}
+
+    -- Weapon Magazines
+
+    -- Speedpull
+    self.parts.wpn_fps_m4_upg_m_quick.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_upg_ak_m_quick.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_ass_g36_m_quick.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_ass_aug_m_quick.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_smg_sr2_m_quick.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_smg_mac10_m_quick.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_smg_p90_m_strap.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_smg_fmg9_m_speed.stats = {concealment = -1, reload = 1}
+    -- L5
+    self.parts.wpn_fps_upg_m4_m_l5.stats = {concealment = -1, recoil = 1}
+    -- Expert
+    self.parts.wpn_fps_ass_l85a2_m_emag.stats = {concealment = -1, spread = 1}
+    -- Quad
+    self.parts.wpn_fps_upg_m4_m_quad.stats = {extra_ammo = 15, reload = -2, concealment = -3}
+    self.parts.wpn_fps_upg_ak_m_quad.stats = {extra_ammo = 15, reload = -2, concealment = -3}
+    -- Tactical
+    self.parts.wpn_fps_upg_m4_m_pmag.stats = {value = 2, concealment = -2, recoil = 1, spread = 1}
+    -- Vintage
+    self.parts.wpn_fps_upg_m4_m_straight.stats = {concealment = 1, extra_ammo = -3}
+    -- Milspec
+    self.parts.wpn_fps_m4_uupg_m_std.stats = {concealment = -1, extra_ammo = 3}
+    -- Low Drag
+    self.parts.wpn_fps_upg_ak_m_uspalm.stats = {concealment = -2, recoil = 1, spread = 1}
+    -- Extended Falcon
+    self.parts.wpn_fps_ass_fal_m_01.stats = {extra_ammo = 10, concealment = -2}
+    -- Extended Kang Arms
+    self.parts.wpn_fps_snp_qbu88_m_extended.stats = {concealment = -2, extra_ammo = 5}
+    -- CE Extender
+    self.parts.wpn_fps_sho_m590_b_long.stats = {extra_ammo = 1, concealment = -2}
 
 
     -- Gadgets
@@ -117,7 +138,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.wpn_fps_pis_x_g18c.override.wpn_fps_pis_g18c_m_mag_33rnd.stats.reload = -1
     self.parts.wpn_fps_pis_czech_m_extended.stats.reload = -1
     self.wpn_fps_pis_x_czech.override.wpn_fps_pis_czech_m_extended.stats.reload = -1
-
 
 
     -- Conversion kits
@@ -168,7 +188,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_smg_fmg9_conversion.stats.spread = 1
 
 
-
     -- Specials
 
     -- Flamethrower Tanks
@@ -196,7 +215,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_upg_a_bow_poison.stats = {damage = -55}
     self.parts.wpn_fps_bow_arblast_m_explosive.stats.damage = 0 -- apparently none of this matters cause of some vanilla bs
     self.parts.wpn_fps_bow_arblast_m_poison.stats = {damage = -20} -- same thing
-
 
 
     -- Barrel Extentions
