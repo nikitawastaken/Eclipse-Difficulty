@@ -10,17 +10,17 @@
 	
 	"bm_menu_bonus": "Gun Perk",
 	"bm_menu_perk_speedloader": "Speedloader",
-	"bm_menu_perk_speedloader_desc": "Increases reload speed at the cost magazine size.\n",
+	"bm_menu_perk_speedloader_desc": "Increases reload speed at the cost of total ammo.\n",
 	"bm_menu_perk_haste": "Haste",
 	"bm_menu_perk_haste_desc": "Increases movement speed by 10% at the cost of total ammo.\n",
 	"bm_menu_perk_deadsilence": "Dead Silence",
 	"bm_menu_perk_deadsilence_desc": "Increases concealment at the cost of total ammo and weapon handling.\n",
 	"bm_menu_perk_jawbreaker": "Jawbreaker",
-	"bm_menu_perk_jawbreaker_desc": "Increases damage at the cost of reload speed and rate of fire.\n",
+	"bm_menu_perk_jawbreaker_desc": "Increases damage at the cost of rate of fire and 25% pickup rate.\n",
 	"bm_menu_perk_whirlwind": "Whirlwind",
-	"bm_menu_perk_whirlwind_desc": "Increases rate of fire at the cost of reload speed and weapon handling.\n",
+	"bm_menu_perk_whirlwind_desc": "Increases rate of fire at the cost of weapon handling.\n",
 	"bm_menu_perk_stockpile": "Stockpile",
-	"bm_menu_perk_stockpile_desc": "Increases total ammo at the cost of 15% pickup rate and 15% movement speed.\n",
+	"bm_menu_perk_stockpile_desc": "Increases total ammo at the cost of reload speed.\n",
 	
 	
 	"st_menu_mastermind_inspire": "Support",

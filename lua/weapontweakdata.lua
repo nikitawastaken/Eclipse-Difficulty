@@ -25,39 +25,38 @@ local FALLOFF_TEMPLATE = WeaponFalloffTemplate.setup_weapon_falloff_templates()
 
 -- total ammo tables
 local total_ammo_tables = {
-	sniper = 60,
-	secondary_sniper = 25,
+	sniper = 30,
+	secondary_sniper = 20,
 
 	lmg_low = 300,
 	lmg_high = 400,
 
-	shot_very_high = 110,
-	shot_high = 90,
-	shot_mid = 75,
-	shot_low = 56,
-	shot_very_low = 40,
+	shot_very_high = 70,
+	shot_high = 60,
+	shot_mid = 50,
+	shot_low = 40,
+	shot_very_low = 30,
 
-	ar_high = 270,
-	ar_mid = 240,
-	ar_low = 180,
-	ar_very_low = 150,
+	ar_high = 180,
+	ar_mid = 150,
+	ar_low = 120,
+	ar_very_low = 90,
 
-	dmr = 90,
-	dmr_low = 60,
+	dmr = 70,
+	dmr_low = 50,
 
-	smg_high = 180,
-	smg_mid = 150,
-	smg_low = 120,
+	smg_high = 150,
+	smg_mid = 120,
+	smg_low = 90,
 	smg_very_low = 90,
 
-	pistol_high = 120,
-	pistol_mid = 90,
+	pistol_high = 90,
+	pistol_mid = 75,
 	pistol_low = 60,
 	pistol_very_low = 45,
 	revolver = 36,
 	revolver_ap = 30,
 
-	akimbo_pis_very_high = 240,
 	akimbo_pis_high = 180,
 	akimbo_pis_mid = 120,
 	akimbo_pis_low = 90,

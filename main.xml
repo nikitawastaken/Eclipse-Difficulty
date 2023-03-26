@@ -7,13 +7,10 @@
 		
 		<!-- gun perk icons -->
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_speedloader"/>
-		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_speedloader_lmg"/>
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_haste"/>
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_deadsilence"/>
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_jawbreaker"/>
-		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_jawbreaker_lmg"/>
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_whirlwind"/>
-		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_whirlwind_lmg"/>
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_stockpile"/>
 		
 		<!-- eclipse difficulty icon -->

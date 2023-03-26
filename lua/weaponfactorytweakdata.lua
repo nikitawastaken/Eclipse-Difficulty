@@ -72,7 +72,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_sho_saiga_fg_holy.stats.concealment = 2
     -- mp5 straight mag
     self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
-    self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = {ammo_pickup_max_mul = 0.56}
+    self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = {ammo_pickup_max_mul = 0.8}
     -- union short barrel
     self.parts.wpn_fps_ass_corgi_b_short.stats.spread = -1
     -- bipod nerf
@@ -390,8 +390,7 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
     self.parts.wpn_fps_upg_perk_speedloader = deep_clone(self.parts.wpn_fps_upg_perk_template)
     self.parts.wpn_fps_upg_perk_speedloader.name_id = "bm_menu_perk_speedloader"
     self.parts.wpn_fps_upg_perk_speedloader.desc_id = "bm_menu_perk_speedloader_desc"
-    self.parts.wpn_fps_upg_perk_speedloader.stats = {reload = 2}
-    self.parts.wpn_fps_upg_perk_speedloader.custom_stats = {clip_multiplier = 0.8}
+    self.parts.wpn_fps_upg_perk_speedloader.stats = {reload = 2, total_ammo_mod = -5}
     self.parts.wpn_fps_upg_perk_speedloader_lmg = deep_clone(self.parts.wpn_fps_upg_perk_speedloader)
     self.parts.wpn_fps_upg_perk_speedloader_lmg.stats = {reload = 3} -- make it more impactful on lmgs
 
@@ -406,42 +405,34 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
     self.parts.wpn_fps_upg_perk_deadsilence = deep_clone(self.parts.wpn_fps_upg_perk_template)
     self.parts.wpn_fps_upg_perk_deadsilence.name_id = "bm_menu_perk_deadsilence"
     self.parts.wpn_fps_upg_perk_deadsilence.desc_id = "bm_menu_perk_deadsilence_desc"
-    self.parts.wpn_fps_upg_perk_deadsilence.stats = {concealment = 3, total_ammo_mod = -5, recoil = -1, spread = -1}
+    self.parts.wpn_fps_upg_perk_deadsilence.stats = {concealment = 3, total_ammo_mod = -3, recoil = -1, spread = -1}
 
     -- jawbreaker
     self.parts.wpn_fps_upg_perk_jawbreaker = deep_clone(self.parts.wpn_fps_upg_perk_template)
     self.parts.wpn_fps_upg_perk_jawbreaker.name_id = "bm_menu_perk_jawbreaker"
     self.parts.wpn_fps_upg_perk_jawbreaker.desc_id = "bm_menu_perk_jawbreaker_desc"
-    self.parts.wpn_fps_upg_perk_jawbreaker.stats = {damage = 15, reload = -5, fire_rate = 0.85}
-    self.parts.wpn_fps_upg_perk_jawbreaker.custom_stats = {fire_rate_multiplier = 0.85}
-    self.parts.wpn_fps_upg_perk_jawbreaker_lmg = deep_clone(self.parts.wpn_fps_upg_perk_jawbreaker)
-    self.parts.wpn_fps_upg_perk_jawbreaker_lmg.stats = {damage = 15, reload = -4} -- make it less impactful on lmgs
+    self.parts.wpn_fps_upg_perk_jawbreaker.stats = {damage = 15, fire_rate = 0.85}
+    self.parts.wpn_fps_upg_perk_jawbreaker.custom_stats = {ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75, fire_rate_multiplier = 0.85}
 
     -- whirlwind
     self.parts.wpn_fps_upg_perk_whirlwind = deep_clone(self.parts.wpn_fps_upg_perk_template)
     self.parts.wpn_fps_upg_perk_whirlwind.name_id = "bm_menu_perk_whirlwind"
     self.parts.wpn_fps_upg_perk_whirlwind.desc_id = "bm_menu_perk_whirlwind_desc"
-    self.parts.wpn_fps_upg_perk_whirlwind.stats = {recoil = -2, spread = -1, reload = -5, fire_rate = 1.15}
+    self.parts.wpn_fps_upg_perk_whirlwind.stats = {recoil = -3, spread = -1, fire_rate = 1.15}
     self.parts.wpn_fps_upg_perk_whirlwind.custom_stats = {fire_rate_multiplier = 1.15}
-    self.parts.wpn_fps_upg_perk_whirlwind_lmg = deep_clone(self.parts.wpn_fps_upg_perk_whirlwind)
-    self.parts.wpn_fps_upg_perk_whirlwind_lmg.stats = {recoil = -2, spread = -1, reload = -4} -- make it less impactful on lmgs
 
     -- stockpile
     self.parts.wpn_fps_upg_perk_stockpile = deep_clone(self.parts.wpn_fps_upg_perk_template)
     self.parts.wpn_fps_upg_perk_stockpile.name_id = "bm_menu_perk_stockpile"
     self.parts.wpn_fps_upg_perk_stockpile.desc_id = "bm_menu_perk_stockpile_desc"
-    self.parts.wpn_fps_upg_perk_stockpile.stats = {total_ammo_mod = 5}
-    self.parts.wpn_fps_upg_perk_stockpile.custom_stats = {ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, movement_speed = 0.85}
+    self.parts.wpn_fps_upg_perk_stockpile.stats = {total_ammo_mod = 5, reload = -3}
 
 	local uses_parts = {
-        wpn_fps_upg_perk_speedloader = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo"}},
-        wpn_fps_upg_perk_speedloader_lmg = {category = {"lmg"}},
+        wpn_fps_upg_perk_speedloader = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}},
         wpn_fps_upg_perk_haste = {category = {"assault_rifle", "smg", "snp", "shotgun", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}},
         wpn_fps_upg_perk_deadsilence = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}},
-        wpn_fps_upg_perk_jawbreaker = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo"}},
-        wpn_fps_upg_perk_jawbreaker_lmg = {category = {"lmg"}},
-        wpn_fps_upg_perk_whirlwind = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo"}},
-        wpn_fps_upg_perk_whirlwind_lmg = {category = {"lmg"}},
+        wpn_fps_upg_perk_jawbreaker = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo", "lmg"}},
+        wpn_fps_upg_perk_whirlwind = {category = {"assault_rifle", "smg", "snp", "shotgun","pistol", "minigun", "akimbo", "lmg"}},
         wpn_fps_upg_perk_stockpile = {category = {"assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg"}}
 	}
 	local all_pass, weapon_pass, exclude_weapon_pass, category_pass, exclude_category_pass = nil
