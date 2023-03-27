@@ -937,6 +937,7 @@ self.aug.spray = spray_tables.ar_left_mid
 self.aug.recoil_recovery_timer = recovery_tables.mid
 
 -- Queen's Wrath
+self.corgi.stats.reload = 12
 self.l85a2.AMMO_MAX = total_ammo_tables.ar_mid
 self.l85a2.AMMO_PICKUP = pickup_tables.ar_mid
 self.l85a2.kick = kick_tables.ar_mid
@@ -1288,7 +1289,7 @@ self.erma.spray = spray_tables.ar_right_high
 self.erma.recoil_recovery_timer = recovery_tables.high
 
 -- Tatonka
-self.coal.stats.concealment = 5
+self.coal.stats.reload = 9
 self.coal.AMMO_MAX = total_ammo_tables.smg_very_low
 self.coal.AMMO_PICKUP = pickup_tables.smg_very_low
 self.coal.kick = kick_tables.ar_very_high
