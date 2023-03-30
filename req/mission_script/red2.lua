@@ -1,9 +1,15 @@
 return {
     -- add point of no return
-    [103334] = {
-        ponr = 240,
+    [103804] = {
+        ponr = 120,
         ponr_player_mul = {1.25, 1, 0.85, 0.75}
     },
+    -- remove a few cancer dozers
+    [103603] = {
+		values = {
+			enabled = false
+		}
+	},
     [101727] = {
         values = {instigator = "criminals_not_downed"}
     },
