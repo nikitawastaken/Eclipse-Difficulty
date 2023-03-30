@@ -1341,7 +1341,6 @@ self.rsh12.stats_modifiers = {damage = 2}
 self.rsh12.stats.reload = 13
 self.rsh12.AMMO_MAX = total_ammo_tables.revolver_ap
 self.rsh12.AMMO_PICKUP = pickup_tables.revolver_ap
-self.rsh12.stats_modifiers = {damage = 1}
 self.rsh12.kick = kick_tables.revolver_ap
 
 -- Bronco

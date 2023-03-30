@@ -263,7 +263,7 @@ function HUDMissionBriefing:init(hud, workspace)
 		"risk_swat",
 		"risk_fbi",
 		"risk_death_squad",
-		"risk_murder_squad"
+		"risk_sm_wish"
 	}
 
 	for i, name in ipairs(risks) do
