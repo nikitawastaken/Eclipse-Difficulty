@@ -960,9 +960,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		spawn = {
 			{
-				amount_min = 2,
+				amount_min = 1,
 				freq = 2,
-				amount_max = 2,
+				amount_max = 1,
 				rank = 3,
 				unit = "shield_elite",
 				tactics = self._tactics.elite_shield
@@ -1363,7 +1363,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 				gensec_ranged_lights = {0.3, 0.3, 0.5},
 				gensec_flankers = {0.25, 0.25, 0.45},
 				gensec_tasers = {0.15, 0.15, 0.3},
-				-- gensec_shields = {0.00, 0.00, 0.15},
+				gensec_shields = {0.00, 0.00, 0.15},
 				gensec_tanks = {0, 0, 0.1},
 				spoocs = {0, 0.045, 0.09},
 			}

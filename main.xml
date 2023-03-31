@@ -28,6 +28,8 @@
 		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1" force="true"/>
 		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1_husk" force="true"/>
 	    <sequence_manager path="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx"/>
+	    <unit path="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx"/>
+	    <unit path="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx_dummy"/>
 
 		<!-- old cook off bain lines -->
 		<bnk path="soundbanks/job_h_rat_stage1"/>

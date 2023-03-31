@@ -7,6 +7,7 @@
 		<depends_on bnk="soundbanks/regular_vox" />
 		<depends_on unit="units/pd2_dlc_vip/characters/ene_acc_phalanx_helmet/ene_acc_phalanx_helmet" />
 		<depends_on unit="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx" />
+		<depends_on unit="units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle" />
 	</dependencies>
 
 	<extensions>
@@ -14,19 +15,10 @@
 		<extension name="base" class="CopBase" >
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="phalanx_minion" />
-			<var name="_default_weapon_id" value="c45" />
-            <var name="_stats_name" value="phalanx_minion"/>
+			<var name="_default_weapon_id" value="deagle" />
 		</extension>
 		<extension name="inventory" class="CopInventory" >
-			<var name="_shield_unit_name" value="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx" />
-			<var name="_shield_break_data" type="table">
-				<var name="anim_global_switch" value="cop"/>
-				<var name="stats_name_switch" value="marshal_shield_break"/>
-				<var name="tweak_table_name_switch" value="marshal_shield_break"/>
-				<var name="hurt_data" value="table">
-					<var name="hurt_type" value="hurt"/>
-				</var>
-			</var>			
+			<var name="_shield_unit_name" value="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx" />		
 		</extension>
 		<extension name="brain" class="CopBrain" />
 		<extension name="anim_data" class="PlayerAnimationData" />

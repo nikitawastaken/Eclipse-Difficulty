@@ -82,14 +82,17 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.surrender = surr.hard
 
 	-- Specials
+	-- sniper
 	self.sniper.suppression = nil
 	self.sniper.misses_first_player_shot = true
 
+	-- cloaker
 	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0
 	self.spooc.melee_weapon = "baton"
 
+	-- tank
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
 	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.1
@@ -97,52 +100,51 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.move_speed.stand.walk.cbt = {strafe = 176, fwd = 198, bwd = 154}
 	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
 
-
-	self.tank_elite = deep_clone(self.tank) -- elite dozer
+	-- elite tank
+	self.tank_elite = deep_clone(self.tank)
 	self.tank_elite.move_speed.stand.walk.cbt = {strafe = 196, fwd = 218, bwd = 174}
 	self.tank_elite.move_speed.stand.run.cbt = self.tank_elite.move_speed.stand.walk.cbt
 	table.insert(self._enemy_list, "tank_elite")
 
+	-- taser & medic
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.suppression = nil
 	self.medic.move_speed = self.presets.move_speed.fast
 
+	-- shield
 	self.shield.damage.explosion_damage_mul = 0.7
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.no_hurts
+
+	-- elite shield
 	self.phalanx_minion.DAMAGE_CLAMP_BULLET = nil
 	self.phalanx_minion.DAMAGE_CLAMP_EXPLOSION = nil
 	self.phalanx_minion.damage.explosion_damage_mul = 0.2
 	self.phalanx_minion.access = "shield"
-	self.marshal_shield_break = deep_clone(self.phalanx_minion)
-	self.marshal_shield_break.tags = {"law"}
-	self.marshal_shield_break.move_speed = self.presets.move_speed.very_fast
-	self.marshal_shield_break.allowed_stances = nil
-	self.marshal_shield_break.allowed_poses = nil
-	self.marshal_shield_break.no_equip_anim = nil
-	self.marshal_shield_break.no_run_start = nil
-	self.marshal_shield_break.no_run_stop = nil
-	self.marshal_shield_break.always_face_enemy = nil
-	self.marshal_shield_break.wall_fwd_offset = nil
-	self.marshal_shield_break.priority_shout = nil
-	self.marshal_shield_break.dodge = self.presets.dodge.athletic
-	self.marshal_shield_break.access = "swat"
-	self.marshal_shield_break.chatter = self.presets.enemy_chatter.swat
-	self.marshal_shield_break.announce_incomming = nil
-	self.marshal_shield_break.damage.hurt_severity = self.presets.hurt_severities.light_hurt_fire_poison
-	self.marshal_shield_break.damage.explosion_damage_mul = 1
-	self.marshal_shield_break.use_animation_on_fire_damage = nil
-	self.marshal_shield_break.damage.shield_knocked = nil
-	self.marshal_shield_break.tmp_invulnerable_on_tweak_change = 0.1
-	self.marshal_shield_break.weapon.is_pistol = self.phalanx_minion.weapon.is_pistol
 
-	-- prevent phalanx from meleeing, since it's just buggy (ty redflame)
-	for _, weapon in pairs(self.phalanx_minion.weapon) do
-		weapon.melee_speed = nil
-		weapon.melee_dmg = nil
-		weapon.melee_retry_delay = nil
-	end
+	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
+	self.phalanx_minion_break.tags = {"law"}
+	self.phalanx_minion_break.move_speed = self.presets.move_speed.very_fast
+	self.phalanx_minion_break.allowed_stances = nil
+	self.phalanx_minion_break.allowed_poses = nil
+	self.phalanx_minion_break.no_equip_anim = nil
+	self.phalanx_minion_break.no_run_start = nil
+	self.phalanx_minion_break.no_run_stop = nil
+	self.phalanx_minion_break.always_face_enemy = nil
+	self.phalanx_minion_break.wall_fwd_offset = nil
+	self.phalanx_minion_break.priority_shout = nil
+	self.phalanx_minion_break.dodge = self.presets.dodge.athletic
+	self.phalanx_minion_break.access = "swat"
+	self.phalanx_minion_break.chatter = self.presets.enemy_chatter.swat
+	self.phalanx_minion_break.announce_incomming = nil
+	self.phalanx_minion_break.damage.hurt_severity = self.presets.hurt_severities.light_hurt_fire_poison
+	self.phalanx_minion_break.damage.explosion_damage_mul = 1
+	self.phalanx_minion_break.use_animation_on_fire_damage = nil
+	self.phalanx_minion_break.damage.shield_knocked = nil
+	self.phalanx_minion_break.tmp_invulnerable_on_tweak_change = 0.1
+	self.phalanx_minion_break.weapon.is_pistol = self.phalanx_minion.weapon.is_pistol
+	table.insert(self._enemy_list, "phalanx_minion_break")
 
 	-- Set custom objective interrupt distance
 	self.taser.min_obj_interrupt_dis = 1000
@@ -150,8 +152,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shadow_spooc.min_obj_interrupt_dis = 800
 	self.tank.min_obj_interrupt_dis = 600
 	self.tank_hw.min_obj_interrupt_dis = 600
-	self.shield.min_obj_interrupt_dis = 300
-	self.phalanx_minion.min_obj_interrupt_dis = 300
+	self.shield.min_obj_interrupt_dis = 500
+	self.phalanx_minion.min_obj_interrupt_dis = 500
 
 	self.biker.melee_weapon = "knife_1"
 
@@ -1778,10 +1780,10 @@ function CharacterTweakData:_set_normal()
 			}
 		}
 	}
-	self.marshal_shield_break.weapon.is_pistol = deep_clone(self.phalanx_minion.weapon.is_pistol)
-	self.marshal_shield_break.weapon.is_pistol.melee_speed = 1
-	self.marshal_shield_break.weapon.is_pistol.melee_dmg = 10
-	self.marshal_shield_break.weapon.is_pistol.melee_retry_delay = {1, 2}
+	self.phalanx_minion_break.weapon.is_pistol = deep_clone(self.phalanx_minion.weapon.is_pistol)
+	self.phalanx_minion_break.weapon.is_pistol.melee_speed = 1
+	self.phalanx_minion_break.weapon.is_pistol.melee_dmg = 10
+	self.phalanx_minion_break.weapon.is_pistol.melee_retry_delay = {1, 2}
 
 	-- Cloaker
 	self.spooc.weapon.is_pistol = deep_clone(self.presets.weapon.deathwish.is_pistol)
@@ -2287,7 +2289,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 100,
 			acc = {0.9, 0.95},
-			dmg_mul = 4.5,
+			dmg_mul = 3,
 			recoil = {0.35, 0.35},
 			mode = {
 				0,
@@ -2303,7 +2305,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 500,
 			acc = {0.8, 0.8},
-			dmg_mul = 4.5,
+			dmg_mul = 3,
 			recoil = {0.35, 0.55},
 			mode = {
 				0,
@@ -2319,7 +2321,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 1000,
 			acc = {0.6, 0.65},
-			dmg_mul = 4.5,
+			dmg_mul = 3,
 			recoil = {0.35, 0.55},
 			mode = {
 				0,
@@ -2335,7 +2337,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 2000,
 			acc = {0.5, 0.7},
-			dmg_mul = 4.5,
+			dmg_mul = 3,
 			recoil = {0.35, 1},
 			mode = {
 				0,
@@ -2351,7 +2353,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 3000,
 			acc = {0.5, 0.5},
-			dmg_mul = 4.5,
+			dmg_mul = 3,
 			recoil = {0.5, 1.2},
 			mode = {
 				3,
@@ -2362,7 +2364,8 @@ function CharacterTweakData:_set_normal()
 		}
 	}
 
-	-- Pistol Shield preset
+	-- SWAT Shield preset
+	-- 30 damage
 	self.shield.weapon.is_pistol.aim_delay = {0.15, 0.15}
 	self.shield.weapon.is_pistol.focus_delay = 0.2
 	self.shield.weapon.is_pistol.range = {
@@ -2374,7 +2377,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 100,
 			acc = {0.9, 0.95},
-			dmg_mul = 6.75,
+			dmg_mul = 3,
 			recoil = {0.35, 0.35},
 			mode = {
 				0,
@@ -2386,7 +2389,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 700,
 			acc = {0.8, 0.8},
-			dmg_mul = 6.75,
+			dmg_mul = 3,
 			recoil = {0.35, 0.55},
 			mode = {
 				0,
@@ -2398,7 +2401,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 1000,
 			acc = {0.6, 0.65},
-			dmg_mul = 5,
+			dmg_mul = 3,
 			recoil = {0.35, 0.55},
 			mode = {
 				0,
@@ -2410,7 +2413,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 2000,
 			acc = {0.5, 0.7},
-			dmg_mul = 3.5,
+			dmg_mul = 3,
 			recoil = {0.35, 1},
 			mode = {
 				1,
@@ -2422,7 +2425,7 @@ function CharacterTweakData:_set_normal()
 		{
 			r = 3000,
 			acc = {0.5, 0.5},
-			dmg_mul = 1.5,
+			dmg_mul = 3,
 			recoil = {0.5, 1.2},
 			mode = {
 				1,
@@ -2437,7 +2440,7 @@ function CharacterTweakData:_set_normal()
 	self.taser.weapon.is_rifle = deep_clone(self.presets.weapon.deathwish.is_rifle)
 	self.taser.weapon.is_rifle.tase_sphere_cast_radius = 15
 	self.taser.weapon.is_rifle.tase_distance = 1000
-	self.taser.weapon.is_rifle.aim_delay_tase = {0.15, 0.15}
+	self.taser.weapon.is_rifle.aim_delay_tase = {0.45, 0.45}
 
 	-- Bosses
 	self.chavez_boss.weapon.akimbo_pistol.FALLOFF = {
@@ -3028,6 +3031,7 @@ function CharacterTweakData:_set_overkill()
 
 	self.flashbang_multiplier = 1.375
 	self.taser.weapon.is_rifle.tase_distance = 1250
+	self.taser.weapon.is_rifle.aim_delay_tase = {0.35, 0.35}
 	self.spooc.spooc_attack_timeout = {4, 6}
 	self.presets.gang_member_damage.HEALTH_INIT = 300
 	self.presets.gang_member_damage.REGENERATE_TIME = 4
@@ -3041,6 +3045,7 @@ function CharacterTweakData:_set_overkill_145()
 
 	self.flashbang_multiplier = 1.5
 	self.taser.weapon.is_rifle.tase_distance = 1500
+	self.taser.weapon.is_rifle.aim_delay_tase = {0.25, 0.25}
 	self.spooc.spooc_attack_timeout = {3, 5}
 	self.presets.gang_member_damage.HEALTH_INIT = 350
 	self.presets.gang_member_damage.REGENERATE_TIME = 3.5
@@ -3052,7 +3057,7 @@ function CharacterTweakData:_set_easy_wish()
 	_set_overkill_145_orig(self)
 
 
-	self.taser.weapon.is_rifle.tase_distance = 2000
+	self.taser.weapon.is_rifle.aim_delay_tase = {0.15, 0.15}
 	self.spooc.spooc_attack_timeout = {2, 3}
 	self.flashbang_multiplier = 2
 
