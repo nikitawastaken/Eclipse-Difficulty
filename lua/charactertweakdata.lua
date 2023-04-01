@@ -124,7 +124,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.phalanx_minion.access = "shield"
 
 	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
-	self.phalanx_minion_break.tags = {"law"}
+	self.phalanx_minion_break.tags = {"law", "shield"}
 	self.phalanx_minion_break.move_speed = self.presets.move_speed.very_fast
 	self.phalanx_minion_break.allowed_stances = nil
 	self.phalanx_minion_break.allowed_poses = nil
