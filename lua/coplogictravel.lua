@@ -22,19 +22,24 @@ CopLogicTravel.on_area_safety = CopLogicIdle.on_area_safety
 Hooks:PostHook(CopLogicTravel, "enter", "sh_enter", CopLogicTravel.upd_advance)
 
 function CopLogicTravel.on_pathing_results(data)
+	local my_data = data.internal_data
+
+	CopLogicTravel._upd_pathing(data, my_data)
+
+	if data.internal_data ~= my_data then
+		return
+	end
+
 	CopLogicTravel.upd_advance(data)
 end
 
 
--- Fix need for another queued task to update pathing or leaving cover on expired cover time
--- Basically just does the needed checks before calling the original function to save on a queued update
+-- Fix need for another queued task to update pathing after expired cover leave time
 Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function (data)
 	local unit = data.unit
 	local my_data = data.internal_data
 	local t = TimerManager:game():time()
-	if my_data.processing_advance_path or my_data.processing_coarse_path then
-		CopLogicTravel._upd_pathing(data, my_data)
-	elseif my_data.cover_leave_t then
+	if my_data.cover_leave_t then
 		if my_data.coarse_path and my_data.coarse_path_index == #my_data.coarse_path or my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
 			my_data.cover_leave_t = nil
 		end
@@ -89,7 +94,7 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 	end
 
 	local coarse_path = my_data.coarse_path
-	if nav_index >= #coarse_path or data.objective.follow_unit then
+	if nav_index >= #coarse_path or data.objective.follow_unit or data.objective.path_style == "destination" then
 		return _get_exact_move_pos_original(data, nav_index, ...)
 	end
 
@@ -100,31 +105,33 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 
 	local nav_seg_id = coarse_path[nav_index][1]
 	local next_nav_seg_id = coarse_path[nav_index + 1][1]
-	local to_pos = nav_manager._nav_segments[nav_seg_id].pos
+	local nav_seg_pos = nav_manager._nav_segments[nav_seg_id].pos
 
 	-- Pick cover positions that are close to nav segment doors
 	local doors = nav_manager:find_segment_doors(nav_seg_id, function (seg_id) return seg_id == next_nav_seg_id end)
 	local door = table.random(doors)
-	if door then
-		-- First step from the door we want to go to to the nav segment center
-		-- Then from there step towards the door we entered from
-		-- The resulting position is the desired cover position before entering through the next door
-		mvector3.step(tmp_vec1, door.center, to_pos, 150)
-		if coarse_path[nav_index][2] then -- Iter sometimes makes coarse paths without positions for some reason
-			mvector3.step(tmp_vec1, tmp_vec1, coarse_path[nav_index][2], 150)
-		end
-		to_pos = tmp_vec1
-	end
+	local to_pos = door and door.center or coarse_path[nav_index][2] or nav_seg_pos
 
 	local cover = nav_manager:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
 	if cover then
 		nav_manager:reserve_cover(cover, data.pos_rsrv_id)
-		my_data.moving_to_cover = {
-			cover
-		}
+		my_data.moving_to_cover = {	cover }
 		to_pos = cover[1]
 	else
-		to_pos = CopLogicTravel._get_pos_on_wall(to_pos, 500)
+		mvector3.step(tmp_vec1, to_pos, nav_seg_pos, 200)
+		mvector3.set(tmp_vec2, math.UP)
+		mvector3.random_orthogonal(tmp_vec2)
+		mvector3.multiply(tmp_vec2, 100)
+		mvector3.add(tmp_vec1, tmp_vec2)
+
+		local ray_params = {
+			pos_from = nav_seg_pos,
+			pos_to = tmp_vec1,
+			allow_entry = true,
+			trace = true
+		}
+		nav_manager:raycast(ray_params)
+		to_pos = ray_params.trace[1]
 	end
 
 	return to_pos
@@ -166,7 +173,6 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 	-- If target unit is advancing, add an offset so we don't run in front of it during advance
 	local offset = advancing and mvec3_dis(advancing, unit_movement:m_pos()) * 0.5 or 0
 
-	-- Get the threat direction
 	if data.attention_obj and data.attention_obj.reaction >= AIAttentionObject.REACT_AIM then
 		mvec3_dir(threat_dir, data.attention_obj.m_pos, unit_pos)
 	else
@@ -174,7 +180,6 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 		mvec3_neg(threat_dir)
 	end
 
-	-- Threat direction side
 	mvec3_cross(threat_side, threat_dir, math.UP)
 
 	local fallback_pos

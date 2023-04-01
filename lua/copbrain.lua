@@ -44,8 +44,9 @@ Hooks:OverrideFunction(CopBrain, "on_surrender_chance", function (self)
 		return
 	end
 
-	local window_duration = 4 + 2 * math.random()
-	local timeout_duration = 4 + 2 * math.random()
+	-- Give between 2 and 3 extra shout interactions after the first
+	local window_duration = tweak_data.player.movement_state.interaction_delay * math.rand(2.5, 3.5)
+	local timeout_duration = math.rand(4, 8)
 	local expire_clbk_id = "CopBrain_sur_op" .. tostring(self._unit:key())
 	self._logic_data.surrender_window = {
 		chance_mul = 0.01,

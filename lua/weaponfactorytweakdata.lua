@@ -123,6 +123,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_snp_qbu88_m_extended.stats = {concealment = -2, extra_ammo = 5}
     -- CE Extender
     self.parts.wpn_fps_sho_m590_b_long.stats = {extra_ammo = 1, concealment = -2}
+    -- Signature SMG extended
+    self.parts.wpn_fps_smg_shepheard_mag_extended.stats = {extra_ammo = 5, concealment = -1}
 
 
     -- Gadgets

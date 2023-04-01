@@ -279,7 +279,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	elseif not current_objective.moving_out then
 		-- If we aren't moving out to an objective, open fire if we have ranged_fire tactics and see an enemy, otherwise approach
-		approach = charge or group.is_chasing or not tactics_map.ranged_fire or not current_objective.open_fire or not self:_can_group_see_target(group)
+		approach = charge or group.is_chasing or not tactics_map.ranged_fire or not current_objective.open_fire or in_place_duration > 10 and not self:_can_group_see_target(group)
 		open_fire = not approach and not current_objective.open_fire
 	elseif tactics_map.ranged_fire and not current_objective.open_fire and self:_can_group_see_target(group, true) then
 		-- If we see an enemy while moving out and have the ranged_fire tactics, open fire
@@ -365,7 +365,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				local detonate_pos
 				local c_key = charge and table.random_key(assault_area.criminal.units)
 				if c_key then
-					detonate_pos = assault_area.criminal.units[c_key].unit:movement():m_pos()
+					detonate_pos = mvec_cpy(assault_area.criminal.units[c_key].m_pos)
 				end
 
 				-- Check which grenade to use to push, grenade use is required for the push to be initiated
@@ -465,7 +465,7 @@ function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
 		logic_data = u_data.unit:brain()._logic_data
 		focus_enemy = logic_data and logic_data.attention_obj
 		if focus_enemy and focus_enemy.reaction >= AIAttentionObject.REACT_AIM and focus_enemy.verified then
-			if not limit_range or focus_enemy.verified_dis < (logic_data.internal_data.weapon_range and logic_data.internal_data.weapon_range.far or 3000) then
+			if not limit_range or focus_enemy.dis < (logic_data.internal_data.weapon_range and logic_data.internal_data.weapon_range.far or 3000) then
 				return true
 			end
 		end
