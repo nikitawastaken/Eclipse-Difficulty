@@ -70,8 +70,8 @@ local pickup_tables = {
 	sniper_low = {1, 1.2},
 	secondary_sniper = {0.5, 1},
 
-	lmg = {2, 12},
-	minigun = {2, 8},
+	lmg = {4, 12},
+	minigun = {4, 8},
 
 	shot_very_high = {2, 3},
 	shot_high = {2, 2},
@@ -93,12 +93,12 @@ local pickup_tables = {
 	smg_low = {2, 5},
 	smg_very_low = {2, 2},
 
-	pistol_high = {3, 4},
-	pistol_mid = {3, 3},
-	pistol_low = {2, 2.5},
-	pistol_very_low = {1.5, 2},
+	pistol_high = {2.25, 3},
+	pistol_mid = {2, 2.5},
+	pistol_low = {1.25, 2},
+	pistol_very_low = {1, 1.5},
 	revolver_high = {1.25, 2},
-	revolver = {1, 1.75},
+	revolver = {1, 1.5},
 
 	revolver_ap = {0.35, 0.5},
 	pistol_ap = {0.4, 0.6}
@@ -642,8 +642,8 @@ self.hailstorm.spray = spray_tables.ar_left_mid
 self.hailstorm.recoil_recovery_timer = recovery_tables.high
 self.hailstorm.fire_mode_data.volley.can_shoot_through_wall = true
 self.hailstorm.fire_mode_data.volley.spread_mul = 1
-self.hailstorm.fire_mode_data.volley.damage_mul = 15
-self.hailstorm.fire_mode_data.volley.rays = 10
+self.hailstorm.fire_mode_data.volley.damage_mul = 20
+self.hailstorm.fire_mode_data.volley.rays = 6
 self.hailstorm.fire_mode_data.volley.ammo_usage = 120
 
 
