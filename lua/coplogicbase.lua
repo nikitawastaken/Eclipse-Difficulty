@@ -356,17 +356,20 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 				hold_chance = hold_chance * (1 - weap_down_surrender)
 			elseif anim_data.hurt then
 				hold_chance = hold_chance * (1 - weap_down_surrender)
-			elseif data.unit:movement():stance_name() == "ntl" then
-				hold_chance = hold_chance * (1 - weap_down_surrender)
+			else
+				local stance_name = data.unit:movement():stance_name()
+				if stance_name == "ntl" then
+					hold_chance = hold_chance * (1 - weap_down_surrender)
+				elseif stance_name == "hos" then
+					hold_chance = hold_chance * (1 - weap_down_surrender * 0.25)
+				end
 			end
 		end,
 
 		flanked = function (flanked_surrender)
-			if mvec3_dir(tmp_vec1, data.m_pos, aggressor_unit:movement():m_pos()) > 100 then
-				local fwd_dot = mvec3_dot(data.unit:movement():m_rot():y(), tmp_vec1)
-				if fwd_dot < 0 then
-					hold_chance = hold_chance * (1 - flanked_surrender * math.abs(fwd_dot))
-				end
+			local fwd_dot = mvec3_dot(data.unit:movement():m_rot():y(), tmp_vec1)
+			if fwd_dot < 0 then
+				hold_chance = hold_chance * (1 - flanked_surrender * math.abs(fwd_dot))
 			end
 		end,
 
