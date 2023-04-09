@@ -13,6 +13,9 @@
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_whirlwind"/>
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_stockpile"/>
 
+		<!-- eclipse difficulty icon -->
+		<texture path="guis/textures/pd2/risklevel_deathwish_easywish_blackscreen"/>
+
 		<!-- characters -->
 		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3" force="true"/>
 		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" force="true"/>
