@@ -1241,7 +1241,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
+	-- difficulty scaling
 	local f = ((difficulty_index ^ 2) / (difficulty_index * 3))
+	local is_pro_job = Global.game_settings and Global.game_settings.one_down
 
 	-- Assault Data
 		-- AI Tickrate
@@ -1278,12 +1280,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
     	self.besiege.recon.force = {2, 4, 6}
 
 		-- GRENADES --
-		--flash
+		-- flash
 		self.flash_grenade.light_color = Vector3(255, 255, 255)
 		self.flash_grenade.light_range = 500
 		self.flash_grenade_timeout = {30 / f, 40 / f}
 		self.flash_grenade.timer = 2 / f
-		--smoke & gas
+		-- smoke & gas
 		self.smoke_grenade_timeout = {50 / f, 70 / f}
 		self.smoke_grenade_lifetime = 10 * f
 		self.cs_grenade_timeout = {110 / f, 150 / f}

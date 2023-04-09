@@ -9,7 +9,6 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 		tweak_data.player.damage.DOWNED_TIME_DEC = 10
 		tweak_data.player.damage.DOWNED_TIME_MIN = 1
 		tweak_data.player.damage.REVIVE_HEALTH_STEPS = {0.4, 0.2, 0.1}
-		tweak_data.player.damage.MIN_DAMAGE_INTERVAL = tweak_data.player.damage.MIN_DAMAGE_INTERVAL - 0.05
     end
 end)
 
@@ -58,7 +57,7 @@ function PlayerDamage:_calc_armor_damage(...)
 	local health_subtracted = _calc_armor_damage_original(self, ...)
 
 	if health_subtracted > 0 and had_armor and self:get_real_armor() <= 0 and self._can_take_dmg_timer <= 0 then
-		self._can_take_dmg_timer = self._dmg_interval + 0.3
+		self._can_take_dmg_timer = self._dmg_interval + 0.2
 	end
 
 	return health_subtracted

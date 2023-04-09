@@ -5,6 +5,23 @@ local mvec3_dir = mvector3.direction
 local mvec3_dot = mvector3.dot
 local tmp_rot = Rotation()
 
+
+-- Helper function to check if turning is allowed
+function CopActionIdle:_can_turn()
+	if self._ext_movement:chk_action_forbidden("turn") then
+		return
+	end
+
+	local active_actions = self._common_data.active_actions
+	if active_actions[1] or active_actions[2] and active_actions[2]:type() ~= "idle" then
+		return
+	end
+
+	local queued_actions = self._common_data.queued_actions
+	return not queued_actions or not queued_actions[1] or not queued_actions[2]
+end
+
+
 -- Enable client turn behavior on host
 Hooks:PostHook(CopActionIdle, "init", "sh_init", function (self, action_desc, common_data)
 	self._start_fwd = common_data.rot:y()
@@ -56,7 +73,7 @@ function CopActionIdle:update(t)
 			local active_actions = self._common_data.active_actions
 			local queued_actions = self._common_data.queued_actions
 			-- Use the same conditions as in CopActionShoot and reduce the required angle difference
-			if not active_actions[1] and not active_actions[2] and (not queued_actions or not queued_actions[1] and not queued_actions[2]) then
+			if self:_can_turn() then
 				local spin = target_vec:to_polar_with_reference(self._common_data.fwd, math.UP).spin
 				if math.abs(spin) > 50 then
 					self._rot_offset = spin

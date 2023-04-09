@@ -99,11 +99,9 @@ function CopActionShoot:update(t)
 		mvec3_norm(tar_vec_flat)
 		local fwd = self._common_data.fwd
 		local fwd_dot = mvec3_dot(fwd, tar_vec_flat)
-		local active_actions = self._common_data.active_actions
-		local queued_actions = self._common_data.queued_actions
 		-- This originally only executed on client side which causes great inconsistencies in enemy turning behaviour
 		-- between host and client. Reworking the turning condition and enabling it for the host too should fix that.
-		if (not active_actions[2] or active_actions[2]:type() == "idle") and (not queued_actions or not queued_actions[1] and not queued_actions[2]) then
+		if CopActionIdle._can_turn(self) then
 			local spin = tar_vec_flat:to_polar_with_reference(fwd, math.UP).spin
 			if math.abs(spin) > 25 then
 				self._ext_movement:action_request({
@@ -114,6 +112,13 @@ function CopActionShoot:update(t)
 			end
 		end
 		target_vec = self:_upd_ik(target_vec, fwd_dot, t)
+	end
+
+	if self._shield_use_cooldown and target_vec and self._common_data.allow_fire and self._shield_use_cooldown < t and target_dis < self._shield_use_range then
+		local new_cooldown = self._shield_base:request_use(t)
+		if new_cooldown then
+			self._shield_use_cooldown = new_cooldown
+		end
 	end
 
 	if not ext_anim.reload and not ext_anim.equip and not ext_anim.melee then
@@ -239,6 +244,45 @@ function CopActionShoot:_get_unit_shoot_pos(t, pos, dis, w_tweak, falloff, i_ran
 
 	return temp_vec2
 end
+
+
+-- Interpolate between entries in the FALLOFF table to prevent sudden changes in damage etc
+function CopActionShoot:_get_shoot_falloff(target_dis, falloff)
+	local i = #falloff
+	local data = falloff[i]
+	for i_range, range_data in ipairs(falloff) do
+		if target_dis < range_data.r then
+			i = i_range
+			data = range_data
+			break
+		end
+	end
+	if i == 1 or target_dis > data.r then
+		return data, i
+	else
+		local prev_data = falloff[i - 1]
+		local t = (target_dis - prev_data.r) / (data.r - prev_data.r)
+		local n_data = {
+			r = target_dis,
+			dmg_mul = math_lerp(prev_data.dmg_mul, data.dmg_mul, t),
+			acc = {
+				math_lerp(prev_data.acc[1], data.acc[1], t),
+				math_lerp(prev_data.acc[2], data.acc[2], t)
+			},
+			recoil = {
+				math_lerp(prev_data.recoil[1], data.recoil[1], t),
+				math_lerp(prev_data.recoil[2], data.recoil[2], t)
+			},
+			autofire_rounds = prev_data.autofire_rounds and data.autofire_rounds and {
+				math_lerp(prev_data.autofire_rounds[1], data.autofire_rounds[1], t),
+				math_lerp(prev_data.autofire_rounds[2], data.autofire_rounds[2], t)
+			},
+			mode = data.mode
+		}
+		return n_data, i
+	end
+end
+
 
 -- Do all the melee related checks inside this function
 function CopActionShoot:_chk_start_melee(t, target_dis)

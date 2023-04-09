@@ -123,22 +123,6 @@ function IngameContractGui:init(ws, node)
 	local next_top = modifiers_text:bottom()
 	local one_down_warning_text = nil
 
-	if Global.game_settings.one_down then
-		one_down_warning_text = text_panel:text({
-			name = "one_down_warning_text",
-			text = managers.localization:to_upper_text("menu_one_down"),
-			font = tweak_data.menu.pd2_small_font,
-			font_size = tweak_data.menu.pd2_small_font_size,
-			color = tweak_data.screen_colors.one_down
-		})
-
-		managers.hud:make_fine_text(one_down_warning_text)
-		one_down_warning_text:set_top(next_top)
-		one_down_warning_text:set_left(10)
-
-		next_top = one_down_warning_text:bottom()
-	end
-
 	local job_heat_mul = managers.job:get_job_heat_multipliers(managers.job:current_job_id()) - 1
 	local job_heat = math.round(job_heat_mul * 100)
 	local job_heat_string = tostring(math.abs(job_heat))
@@ -211,7 +195,7 @@ function IngameContractGui:init(ws, node)
 
 	local pro_warning_text = nil
 
-	if managers.job:is_current_job_professional() then
+	if Global.game_settings.one_down then
 		pro_warning_text = text_panel:text({
 			name = "pro_warning_text",
 			vertical = "top",

@@ -204,6 +204,7 @@
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT TO UPGRADE THE DRILL",
 	
+	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled.\nVarious heists have points of no return enabled.\nEach consecutive down decreases bleedout timer and revive health.",
 	"menu_difficulty_easy_wish": "Eclipse",
 	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",
 	"menu_risk_special": "Overkill.\nMaximum Force Responders inbound.",
@@ -214,9 +215,9 @@
 	"menu_difficulty_normal": "Easy",
 	"menu_risk_pd": "Easy.\nHang on! I forgot my donuts!",
 	
-	"menu_toggle_one_down": "Pro-Job",
-	"menu_one_down": "Pro-Job",
-	"menu_toggle_one_down_lobbies": "Allow Pro-Job Lobbies"
+	"menu_toggle_one_down": "Pro Job",
+	"menu_one_down": "Pro Job",
+	"menu_toggle_one_down_lobbies": "Allow Pro Job Lobbies"
 	
 	"menu_stat_job_completed": "",
 	"menu_max_progress": "Max account progression",

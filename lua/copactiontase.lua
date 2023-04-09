@@ -109,9 +109,7 @@ function CopActionTase:update(t)
 		end
 
 		-- Similar to CopActionShoot, this originally only executed client side, with the addition of not checking for existing turn actions
-		local active_actions = self._common_data.active_actions
-		local queued_actions = self._common_data.queued_actions
-		if (not active_actions[2] or active_actions[2]:type() == "idle") and (not queued_actions or not queued_actions[1] and not queued_actions[2]) then
+		if CopActionIdle._can_turn(self) then
 			local spin = target_vec_flat:to_polar_with_reference(fwd, math.UP).spin
 			if math.abs(spin) > 25 then
 				self._ext_movement:action_request({

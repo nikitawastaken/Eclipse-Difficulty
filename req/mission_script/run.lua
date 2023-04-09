@@ -34,8 +34,8 @@ return {
     -- add missing sniper
     [103582] = {
         values = {
-            difficulty_overkill_290 = true,
-            difficulty_sm_wish = true
+            difficulty_overkill_145 = true,
+            difficulty_easy_wish = true
         }
     },
     [102866] = {

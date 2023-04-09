@@ -1,16 +1,16 @@
 function PlayerTweakData:_set_normal()
 	self.damage.REVIVE_HEALTH_STEPS = {0.7}
-	self.damage.MIN_DAMAGE_INTERVAL = 0.45
+	self.damage.MIN_DAMAGE_INTERVAL = 0.4
 end
 
 function PlayerTweakData:_set_hard()
 	self.damage.REVIVE_HEALTH_STEPS = {0.6}
-	self.damage.MIN_DAMAGE_INTERVAL = 0.4
+	self.damage.MIN_DAMAGE_INTERVAL = 0.3
 end
 
 function PlayerTweakData:_set_overkill()
 	self.damage.REVIVE_HEALTH_STEPS = {0.5}
-	self.damage.MIN_DAMAGE_INTERVAL = 0.3
+	self.damage.MIN_DAMAGE_INTERVAL = 0.25
 end
 
 function PlayerTweakData:_set_overkill_145()
@@ -20,7 +20,7 @@ end
 
 function PlayerTweakData:_set_easy_wish()
 	self.damage.REVIVE_HEALTH_STEPS = {0.4}
-	self.damage.MIN_DAMAGE_INTERVAL = 0.1
+	self.damage.MIN_DAMAGE_INTERVAL = 0.15
 end
 
 

@@ -22,7 +22,11 @@ local _update_whitelist = {
 	"spa",
 	"pal",
 	"flat",
-	"rvd2"
+	"rvd2",
+	"dinner",
+	"man",
+	"pbr2",
+	"born"
 }
 
 local function check_whitelist(id)
