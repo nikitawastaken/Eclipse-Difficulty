@@ -1243,7 +1243,6 @@ end)
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	-- difficulty scaling
 	local f = ((difficulty_index ^ 2) / (difficulty_index * 3))
-	local is_pro_job = Global.game_settings and Global.game_settings.one_down
 
 	-- Assault Data
 		-- AI Tickrate
