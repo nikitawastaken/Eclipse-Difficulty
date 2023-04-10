@@ -313,21 +313,19 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.no_heavy_hurt = {
 		tase = true,
 		bullet = {
-			health_reference = "full",
+			health_reference = "current",
 			zones = {
 				{
 					health_limit = 0.4,
-					none = 0.5,
-					light = 0.5
+					light = 1
 				},
 				{
 					health_limit = 0.7,
-					light = 0.7,
-					moderate = 0.3
+					moderate = 1
 				},
 				{
-					light = 0.5,
-					moderate = 0.5
+					light = 1,
+					moderate = 1
 				}
 			}
 		},
@@ -346,10 +344,30 @@ function CharacterTweakData:_presets(tweak_data, ...)
 					poison = 1
 				}
 			}
+		},
+		explosion = {
+			health_reference = "full",
+			zones = {
+				{
+					health_limit = 0.2,
+					moderate = 1,
+				},
+				{
+					health_limit = 0.5,
+					heavy = 1
+				},
+				{
+					health_limit = 0.8,
+					explode = 1
+				},
+				{
+					heavy = 0.5,
+					explode = 0.5
+				}
+			}
 		}
 	}
 	presets.hurt_severities.no_heavy_hurt.melee = deep_clone(presets.hurt_severities.no_heavy_hurt.bullet)
-	presets.hurt_severities.no_heavy_hurt.explosion = deep_clone(presets.hurt_severities.no_heavy_hurt.bullet)
 
 	-- Setup surrender presets
 	presets.surrender.weal = {
