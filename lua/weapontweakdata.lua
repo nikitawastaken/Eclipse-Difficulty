@@ -892,6 +892,7 @@ self.famas.recoil_recovery_timer = recovery_tables.low
 
 -- JP36
 self.g36.stats.spread = 14
+self.g36.stats.reload = 12
 self.g36.AMMO_MAX = total_ammo_tables.ar_high
 self.g36.AMMO_PICKUP = pickup_tables.ar_high
 self.g36.kick = kick_tables.ar_low
