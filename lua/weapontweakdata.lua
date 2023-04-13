@@ -121,10 +121,10 @@ local kick_tables = {
 	shot_low = {standing = {3, 4, -0.5, 0.5}, crouching = {3, 4, -0.5, 0.5}, steelsight = {3, 4, -0.5, 0.5}},
 	shot_high = {standing = {4, 5, -0.5, 0.5}, crouching = {4, 5, -0.5, 0.5}, steelsight = {4, 5, -0.5, 0.5}},
 
-	ar_low = {standing = {1.1, 1.3, -0.95, 0.95}, crouching = {1.1, 1.3, -0.95, 0.95}, steelsight = {1.1, 1.3, -0.95, 0.95}},
-	ar_mid = {standing = {1.2, 1.4, -1.15, 1.15}, crouching = {1.3, 1.5, -1.15, 1.15}, steelsight = {1.3, 1.5, -1.15, 1.15}},
-	ar_high = {standing = {1.3, 1.5, -1.2, 1.2}, crouching = {1.4, 1.6, -1.2, 1.2}, steelsight = {1.4, 1.6, -1.2, 1.2}},
-	ar_very_high = {standing = {1.4, 1.6, -1.25, 1.25}, crouching = {1.4, 1.6, -1.25, 1.25}, steelsight = {1.4, 1.6, -1.25, 1.25}},
+	ar_low = {standing = {1.3, 1.4, -0.95, 0.95}, crouching = {1.3, 1.4, -0.95, 0.95}, steelsight = {1.3, 1.4, -0.95, 0.95}},
+	ar_mid = {standing = {1.4, 1.6, -1.15, 1.15}, crouching = {1.4, 1.6, -1.15, 1.15}, steelsight = {1.4, 1.6, -1.15, 1.15}},
+	ar_high = {standing = {1.5, 1.75, -1.2, 1.2}, crouching = {1.5, 1.75, -1.2, 1.2}, steelsight = {1.5, 1.75, -1.2, 1.2}},
+	ar_very_high = {standing = {1.6, 1.9, -1.25, 1.25}, crouching = {1.6, 1.9, -1.25, 1.25}, steelsight = {1.6, 1.9, -1.25, 1.25}},
 	ks12 = {standing = {1.5, 1.8, -1.25, 1.25}, crouching = {1.5, 1.8, -1.25, 1.25}, steelsight = {1.5, 1.8, -1.25, 1.25}},
 
 	dmr_low = {standing = {1.6, 2, -0.45, 0.45}, crouching = {1.6, 2, -0.45, 0.45}, steelsight = {1.6, 2, -0.45, 0.45}},
@@ -869,8 +869,6 @@ self.amcar.stats.recoil = 16
 self.amcar.AMMO_MAX = total_ammo_tables.ar_high
 self.amcar.AMMO_PICKUP = pickup_tables.ar_high
 self.amcar.kick = kick_tables.ar_low
-self.amcar.spray = spray_tables.ar_right_low
-self.amcar.recoil_recovery_timer = recovery_tables.low
 
 -- Commando 553
 self.s552.stats.spread = 14
@@ -878,8 +876,6 @@ self.s552.stats.concealment = 18
 self.s552.AMMO_MAX = total_ammo_tables.ar_high
 self.s552.AMMO_PICKUP = pickup_tables.ar_high
 self.s552.kick = kick_tables.ar_low
-self.s552.spray = spray_tables.ar_left_low
-self.s552.recoil_recovery_timer = recovery_tables.low
 
 -- Clarion
 self.famas.stats.damage = 43
@@ -887,8 +883,6 @@ self.famas.stats.recoil = 13
 self.famas.AMMO_MAX = total_ammo_tables.ar_high
 self.famas.AMMO_PICKUP = pickup_tables.ar_high
 self.famas.kick = kick_tables.ar_low
-self.famas.spray = spray_tables.ar_left_low
-self.famas.recoil_recovery_timer = recovery_tables.low
 
 -- JP36
 self.g36.stats.spread = 14
@@ -896,61 +890,45 @@ self.g36.stats.reload = 12
 self.g36.AMMO_MAX = total_ammo_tables.ar_high
 self.g36.AMMO_PICKUP = pickup_tables.ar_high
 self.g36.kick = kick_tables.ar_low
-self.g36.spray = spray_tables.ar_right_low
-self.g36.recoil_recovery_timer = recovery_tables.low
 
 -- AS Val
 self.asval.stats.damage = 46
 self.asval.AMMO_MAX = total_ammo_tables.ar_high
 self.asval.AMMO_PICKUP = pickup_tables.ar_high
 self.asval.kick = kick_tables.ar_low
-self.asval.spray = spray_tables.ar_right_low
-self.asval.recoil_recovery_timer = recovery_tables.low
 
 -- CAR-4
 self.new_m4.fire_mode_data.fire_rate = 60 / 780
 self.new_m4.AMMO_MAX = total_ammo_tables.ar_mid
 self.new_m4.AMMO_PICKUP = pickup_tables.ar_mid
 self.new_m4.kick = kick_tables.ar_mid
-self.new_m4.spray = spray_tables.ar_left_mid
-self.new_m4.recoil_recovery_timer = recovery_tables.mid
 
 -- AK5
 self.ak5.AMMO_MAX = total_ammo_tables.ar_mid
 self.ak5.AMMO_PICKUP = pickup_tables.ar_mid
 self.ak5.kick = kick_tables.ar_mid
-self.ak5.spray = spray_tables.ar_right_mid
-self.ak5.recoil_recovery_timer = recovery_tables.mid
 
 -- Union
 self.corgi.stats.damage = 62
 self.corgi.AMMO_MAX = total_ammo_tables.ar_mid
 self.corgi.AMMO_PICKUP = pickup_tables.ar_mid
 self.corgi.kick = kick_tables.ar_mid
-self.corgi.spray = spray_tables.ar_left_mid
-self.corgi.recoil_recovery_timer = recovery_tables.mid
 
 -- UAR
 self.aug.AMMO_MAX = total_ammo_tables.ar_mid
 self.aug.AMMO_PICKUP = pickup_tables.ar_mid
 self.aug.kick = kick_tables.ar_mid
-self.aug.spray = spray_tables.ar_left_mid
-self.aug.recoil_recovery_timer = recovery_tables.mid
 
 -- Queen's Wrath
 self.corgi.stats.reload = 12
 self.l85a2.AMMO_MAX = total_ammo_tables.ar_mid
 self.l85a2.AMMO_PICKUP = pickup_tables.ar_mid
 self.l85a2.kick = kick_tables.ar_mid
-self.l85a2.spray = spray_tables.ar_right_mid
-self.l85a2.recoil_recovery_timer = recovery_tables.mid
 
 -- Rodion
 self.tkb.AMMO_MAX = total_ammo_tables.ar_mid
 self.tkb.AMMO_PICKUP = pickup_tables.ar_mid
 self.tkb.kick = kick_tables.ar_mid
-self.tkb.spray = spray_tables.ar_right_mid
-self.tkb.recoil_recovery_timer = recovery_tables.mid
 self.tkb.fire_mode_data.volley = {
 	spread_mul = 1,
 	damage_mul = 1,
@@ -967,8 +945,6 @@ self.tkb.fire_mode_data.volley = {
 self.komodo.AMMO_MAX = total_ammo_tables.ar_mid
 self.komodo.AMMO_PICKUP = pickup_tables.ar_mid
 self.komodo.kick = kick_tables.ar_mid
-self.komodo.spray = spray_tables.ar_right_mid
-self.komodo.recoil_recovery_timer = recovery_tables.mid
 
 -- AK Rifle
 self.ak74.stats.damage = 77
@@ -976,8 +952,6 @@ self.ak74.stats.concealment = 15
 self.ak74.AMMO_MAX = total_ammo_tables.ar_low
 self.ak74.AMMO_PICKUP = pickup_tables.ar_low
 self.ak74.kick = kick_tables.ar_high
-self.komodo.spray = spray_tables.ar_left_mid
-self.komodo.recoil_recovery_timer = recovery_tables.high
 
 -- Lion's Roar
 self.vhs.stats.damage = 72
@@ -985,8 +959,6 @@ self.vhs.stats.concealment = 12
 self.vhs.AMMO_MAX = total_ammo_tables.ar_low
 self.vhs.AMMO_PICKUP = pickup_tables.ar_low
 self.vhs.kick = kick_tables.ar_high
-self.komodo.spray = spray_tables.ar_right_mid
-self.komodo.recoil_recovery_timer = recovery_tables.high
 
 -- Gecko
 self.galil.stats.damage = 72
@@ -994,8 +966,6 @@ self.galil.stats.concealment = 12
 self.galil.AMMO_MAX = total_ammo_tables.ar_low
 self.galil.AMMO_PICKUP = pickup_tables.ar_low
 self.galil.kick = kick_tables.ar_high
-self.komodo.spray = spray_tables.ar_left_mid
-self.komodo.recoil_recovery_timer = recovery_tables.high
 
 -- CR805
 self.hajk.categories = {
@@ -1005,8 +975,6 @@ self.hajk.stats.damage = 80
 self.hajk.AMMO_MAX = total_ammo_tables.ar_low
 self.hajk.AMMO_PICKUP = pickup_tables.ar_low
 self.hajk.kick = kick_tables.ar_high
-self.hajk.spray = spray_tables.ar_left_mid
-self.hajk.recoil_recovery_timer = recovery_tables.high
 self.hajk.use_data.selection_index = SELECTION.PRIMARY
 
 -- Bootleg
@@ -1017,15 +985,11 @@ self.tecci.stats.concealment = 5
 self.tecci.AMMO_MAX = total_ammo_tables.ar_high
 self.tecci.AMMO_PICKUP = pickup_tables.ar_high
 self.tecci.kick = kick_tables.ar_mid
-self.tecci.spray = spray_tables.ar_right_mid
-self.tecci.recoil_recovery_timer = recovery_tables.mid
 
 -- Groza
 self.groza.AMMO_MAX = total_ammo_tables.ar_very_low
 self.groza.AMMO_PICKUP = pickup_tables.ar_very_low
 self.groza.kick = kick_tables.ar_very_high
-self.groza.spray = spray_tables.ar_right_high
-self.groza.recoil_recovery_timer = recovery_tables.high
 
 -- AK 7.62
 self.akm.fire_mode_data = {fire_rate = 0.1}
@@ -1034,8 +998,6 @@ self.akm.stats.concealment = 10
 self.akm.AMMO_MAX = total_ammo_tables.ar_very_low
 self.akm.AMMO_PICKUP = pickup_tables.ar_very_low
 self.akm.kick = kick_tables.ar_very_high
-self.akm.spray = spray_tables.ar_right_high
-self.akm.recoil_recovery_timer = recovery_tables.high
 
 -- Gold AK 7.62
 self.akm_gold.fire_mode_data = {fire_rate = 0.1}
@@ -1044,8 +1006,6 @@ self.akm_gold.stats.concealment = 10
 self.akm_gold.AMMO_MAX = total_ammo_tables.ar_very_low
 self.akm_gold.AMMO_PICKUP = pickup_tables.ar_very_low
 self.akm_gold.kick = kick_tables.ar_very_high
-self.groza.spray = spray_tables.ar_right_high
-self.groza.recoil_recovery_timer = recovery_tables.high
 
 -- AK17
 self.flint.CLIP_AMMO_MAX = 30
@@ -1053,16 +1013,12 @@ self.flint.stats.concealment = 8
 self.flint.AMMO_MAX = total_ammo_tables.ar_very_low
 self.flint.AMMO_PICKUP = pickup_tables.ar_very_low
 self.flint.kick = kick_tables.ar_very_high
-self.flint.spray = spray_tables.ar_left_high
-self.flint.recoil_recovery_timer = recovery_tables.high
 
 -- AMR
 self.m16.stats.concealment = 8
 self.m16.AMMO_MAX = total_ammo_tables.ar_very_low
 self.m16.AMMO_PICKUP = pickup_tables.ar_very_low
 self.m16.kick = kick_tables.ar_very_high
-self.m16.spray = spray_tables.ar_left_high
-self.m16.recoil_recovery_timer = recovery_tables.high
 
 -- Eagle Heavy
 self.scar.stats.concealment = 10
@@ -1070,23 +1026,17 @@ self.scar.stats.reload = 13
 self.scar.AMMO_MAX = total_ammo_tables.ar_very_low
 self.scar.AMMO_PICKUP = pickup_tables.ar_very_low
 self.scar.kick = kick_tables.ar_very_high
-self.scar.spray = spray_tables.ar_right_high
-self.scar.recoil_recovery_timer = recovery_tables.high
 
 -- Falcon
 self.fal.AMMO_MAX = total_ammo_tables.ar_very_low
 self.fal.AMMO_PICKUP = pickup_tables.ar_very_low
 self.fal.kick = kick_tables.ar_very_high
-self.fal.spray = spray_tables.ar_left_high
-self.fal.recoil_recovery_timer = recovery_tables.high
 
 -- Gewehr
 self.g3.stats.concealment = 9
 self.g3.AMMO_MAX = total_ammo_tables.ar_very_low
 self.g3.AMMO_PICKUP = pickup_tables.ar_very_low
 self.g3.kick = kick_tables.ar_very_high
-self.g3.spray = spray_tables.ar_left_high
-self.g3.recoil_recovery_timer = recovery_tables.high
 
 -- KS12
 self.shak12.stats.damage = 60
@@ -1095,8 +1045,6 @@ self.shak12.stats.concealment = 10
 self.shak12.AMMO_MAX = total_ammo_tables.ar_very_low
 self.shak12.AMMO_PICKUP = pickup_tables.ar_very_low
 self.shak12.kick = kick_tables.ks12
-self.shak12.spray = spray_tables.ar_right_high
-self.shak12.recoil_recovery_timer = recovery_tables.high
 
 
 -- DMRs
@@ -1137,39 +1085,29 @@ self.tec9.AMMO_MAX = total_ammo_tables.smg_high
 self.tec9.AMMO_PICKUP = pickup_tables.smg_high
 self.tec9.stats.spread = 11
 self.tec9.kick = kick_tables.ar_mid
-self.tec9.spray = spray_tables.ar_left_low
-self.tec9.recoil_recovery_timer = recovery_tables.low
 
 -- CMP
 self.mp9.AMMO_MAX = total_ammo_tables.smg_high
 self.mp9.AMMO_PICKUP = pickup_tables.smg_high
 self.mp9.stats.spread = 11
 self.mp9.kick = kick_tables.ar_mid
-self.mp9.spray = spray_tables.ar_right_low
-self.mp9.recoil_recovery_timer = recovery_tables.low
 
 -- Cobra
 self.scorpion.AMMO_MAX = total_ammo_tables.smg_high
 self.scorpion.AMMO_PICKUP = pickup_tables.smg_high
 self.scorpion.stats.spread = 11
 self.scorpion.kick = kick_tables.ar_mid
-self.scorpion.spray = spray_tables.ar_left_low
-self.scorpion.recoil_recovery_timer = recovery_tables.low
 
 -- Compact-5
 self.new_mp5.AMMO_MAX = total_ammo_tables.smg_high
 self.new_mp5.AMMO_PICKUP = pickup_tables.smg_high
 self.new_mp5.kick = kick_tables.ar_mid
-self.new_mp5.spray = spray_tables.ar_right_mid
-self.new_mp5.recoil_recovery_timer = recovery_tables.high
 
 -- Micro Uzi
 self.baka.AMMO_MAX = total_ammo_tables.smg_high
 self.baka.AMMO_PICKUP = pickup_tables.smg_high
 self.baka.stats.spread = 11
 self.baka.kick = kick_tables.ar_mid
-self.baka.spray = spray_tables.ar_left_low
-self.baka.recoil_recovery_timer = recovery_tables.low
 
 -- Signature
 self.shepheard.AMMO_MAX = total_ammo_tables.smg_mid
@@ -1177,8 +1115,6 @@ self.shepheard.AMMO_PICKUP = pickup_tables.smg_mid
 self.shepheard.stats.spread = 14
 self.shepheard.fire_mode_data.fire_rate = 60 / 850
 self.shepheard.kick = kick_tables.ar_high
-self.shepheard.spray = spray_tables.ar_left_mid
-self.shepheard.recoil_recovery_timer = recovery_tables.low
 
 -- Thompson
 self.m1928.AMMO_MAX = total_ammo_tables.smg_mid
@@ -1186,43 +1122,31 @@ self.m1928.AMMO_PICKUP = pickup_tables.smg_mid
 self.m1928.stats.spread = 15
 self.m1928.stats.reload = 13
 self.m1928.kick = kick_tables.ar_high
-self.m1928.spray = spray_tables.ar_right_mid
-self.m1928.recoil_recovery_timer = recovery_tables.mid
 
 -- Heather
 self.sr2.AMMO_MAX = total_ammo_tables.smg_mid
 self.sr2.AMMO_PICKUP = pickup_tables.smg_mid
 self.sr2.kick = kick_tables.ar_high
-self.sr2.spray = spray_tables.ar_left_mid
-self.sr2.recoil_recovery_timer = recovery_tables.mid
 
 -- Jacket's Piece
 self.cobray.AMMO_MAX = total_ammo_tables.smg_mid
 self.cobray.AMMO_PICKUP = pickup_tables.smg_mid
 self.cobray.kick = kick_tables.ar_high
-self.cobray.spray = spray_tables.ar_right_mid
-self.cobray.recoil_recovery_timer = recovery_tables.mid
 
 -- Kobus
 self.p90.AMMO_MAX = total_ammo_tables.smg_mid
 self.p90.AMMO_PICKUP = pickup_tables.smg_mid
 self.p90.kick = kick_tables.ar_high
-self.p90.spray = spray_tables.ar_left_mid
-self.p90.recoil_recovery_timer = recovery_tables.mid
 
 -- Vertex
 self.polymer.AMMO_MAX = total_ammo_tables.smg_mid
 self.polymer.AMMO_PICKUP = pickup_tables.smg_mid
 self.polymer.kick = kick_tables.ar_high
-self.polymer.spray = spray_tables.ar_left_mid
-self.polymer.recoil_recovery_timer = recovery_tables.mid
 
 -- Mark 10
 self.mac10.AMMO_MAX = total_ammo_tables.smg_mid
 self.mac10.AMMO_PICKUP = pickup_tables.smg_mid
 self.mac10.kick = kick_tables.ar_high
-self.mac10.spray = spray_tables.ar_right_mid
-self.mac10.recoil_recovery_timer = recovery_tables.mid
 
 -- Wasp
 self.fmg9.stats.damage = 58
@@ -1230,31 +1154,23 @@ self.fmg9.stats.spread = 14
 self.fmg9.AMMO_MAX = total_ammo_tables.smg_mid
 self.fmg9.AMMO_PICKUP = pickup_tables.smg_mid
 self.fmg9.kick = kick_tables.ar_mid
-self.fmg9.spray = spray_tables.ar_left_mid
-self.fmg9.recoil_recovery_timer = recovery_tables.mid
 self.fmg9.timers.unequip = 1.2
 
 -- Spec Ops
 self.mp7.AMMO_MAX = total_ammo_tables.smg_mid
 self.mp7.AMMO_PICKUP = pickup_tables.smg_mid
 self.mp7.kick = kick_tables.ar_high
-self.mp7.spray = spray_tables.ar_left_mid
-self.mp7.recoil_recovery_timer = recovery_tables.mid
 
 -- Miyaka
 self.pm9.AMMO_MAX = total_ammo_tables.smg_mid
 self.pm9.AMMO_PICKUP = pickup_tables.smg_mid
 self.pm9.kick = kick_tables.ar_high
-self.pm9.spray = spray_tables.ar_right_mid
-self.pm9.recoil_recovery_timer = recovery_tables.mid
 
 -- Para
 self.olympic.AMMO_MAX = total_ammo_tables.smg_low
 self.olympic.AMMO_PICKUP = pickup_tables.smg_low
 self.olympic.stats.damage = 80
 self.olympic.kick = kick_tables.ar_very_high
-self.olympic.spray = spray_tables.ar_right_mid
-self.olympic.recoil_recovery_timer = recovery_tables.high
 
 -- Uzi
 self.uzi.stats.damage = 80
@@ -1262,61 +1178,45 @@ self.uzi.AMMO_MAX = total_ammo_tables.smg_low
 self.uzi.AMMO_PICKUP = pickup_tables.smg_low
 self.uzi.fire_mode_data.fire_rate = 60 / 850
 self.uzi.kick = kick_tables.ar_very_high
-self.uzi.spray = spray_tables.ar_right_mid
-self.uzi.recoil_recovery_timer = recovery_tables.high
 
 -- Krinkov
 self.akmsu.stats.damage = 80
 self.akmsu.AMMO_MAX = total_ammo_tables.smg_low
 self.akmsu.AMMO_PICKUP = pickup_tables.smg_low
 self.akmsu.kick = kick_tables.ar_very_high
-self.akmsu.spray = spray_tables.ar_left_mid
-self.akmsu.recoil_recovery_timer = recovery_tables.high
 
 -- AKGEN
 self.vityaz.AMMO_MAX = total_ammo_tables.smg_very_low
 self.vityaz.AMMO_PICKUP = pickup_tables.smg_very_low
 self.vityaz.stats.damage = 100
 self.vityaz.kick = kick_tables.ar_very_high
-self.vityaz.spray = spray_tables.ar_left_high
-self.vityaz.recoil_recovery_timer = recovery_tables.high
 
 -- MP40
 self.erma.stats.reload = 13
 self.erma.AMMO_MAX = total_ammo_tables.smg_very_low
 self.erma.AMMO_PICKUP = pickup_tables.smg_very_low
 self.erma.kick = kick_tables.ar_very_high
-self.erma.spray = spray_tables.ar_right_high
-self.erma.recoil_recovery_timer = recovery_tables.high
 
 -- Tatonka
 self.coal.stats.reload = 9
 self.coal.AMMO_MAX = total_ammo_tables.smg_very_low
 self.coal.AMMO_PICKUP = pickup_tables.smg_very_low
 self.coal.kick = kick_tables.ar_very_high
-self.coal.spray = spray_tables.ar_left_high
-self.coal.recoil_recovery_timer = recovery_tables.high
 
 -- Pattchet
 self.sterling.AMMO_MAX = total_ammo_tables.smg_very_low
 self.sterling.AMMO_PICKUP = pickup_tables.smg_very_low
 self.sterling.kick = kick_tables.ar_very_high
-self.sterling.spray = spray_tables.ar_right_high
-self.sterling.recoil_recovery_timer = recovery_tables.high
 
 -- Swedish K
 self.m45.AMMO_MAX = total_ammo_tables.smg_very_low
 self.m45.AMMO_PICKUP = pickup_tables.smg_very_low
 self.m45.kick = kick_tables.ar_very_high
-self.m45.spray = spray_tables.ar_right_high
-self.m45.recoil_recovery_timer = recovery_tables.high
 
 -- Jackal
 self.schakal.AMMO_MAX = total_ammo_tables.smg_very_low
 self.schakal.AMMO_PICKUP = pickup_tables.smg_very_low
 self.schakal.kick = kick_tables.ar_very_high
-self.schakal.spray = spray_tables.ar_left_high
-self.schakal.recoil_recovery_timer = recovery_tables.high
 
 
 -- Revolvers
