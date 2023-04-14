@@ -1246,7 +1246,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Assault Data
 		-- AI Tickrate
-		self.ai_tickrate = 1 / (math.max(30, 30 * f))
+		self.ai_tickrate = 1 / (30 * f)
 
 		-- PHASES --
 
@@ -1265,7 +1265,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.force_balance_mul = {1.5, 1.5, 1.75, 2}
 
 		-- Spawnrate
-		self.besiege.assault.spawnrate = {2, 1.6, 1.2}
+		self.besiege.assault.spawnrate = {1.6, 1.4, 1.2}
 		self.besiege.assault.spawnrate_balance_mul = {2.2, 1.6, 1.45, 1.35}
 
 		-- RECON / REENFORCE --
@@ -1310,7 +1310,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 				blue_swats = {0.8, 0.8, 1},
 				swat_shields = {0, 0.125, 0.2},
 				swat_tasers = {0, 0.1, 0.15},
-				fbi_lights = {0, 0.1, 0.4}
+				fbi_lights = {0, 0.1, 0.3}
 			}
 			self.besiege.recon.groups = {
 				beat_cops = {1, 1, 1}
