@@ -39,10 +39,8 @@ Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function (data)
 	local unit = data.unit
 	local my_data = data.internal_data
 	local t = TimerManager:game():time()
-	if my_data.cover_leave_t then
-		if my_data.coarse_path and my_data.coarse_path_index == #my_data.coarse_path or my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
-			my_data.cover_leave_t = nil
-		end
+	if my_data.cover_leave_t and my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
+		my_data.cover_leave_t = nil
 	end
 end)
 
@@ -221,3 +219,22 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 
 	return fallback_pos
 end
+
+
+-- Fix cover wait time being set to 0 if players aren't literally next to enemy
+Hooks:PostHook(CopLogicTravel, "action_complete_clbk", "sh_action_complete_clbk", function (data, action)
+	if action:type() ~= "walk" then
+		return
+	end
+
+	local my_data = data.internal_data
+	if not my_data.cover_leave_t then
+		return
+	end
+
+	if not my_data.coarse_path or my_data.coarse_path_index == #my_data.coarse_path or data.objective and data.objective.follow_unit then
+		my_data.cover_leave_t = nil
+	elseif my_data.cover_leave_t == data.t then
+		my_data.cover_leave_t = data.t + (my_data.coarse_path_index == #my_data.coarse_path - 1 and 0.3 or math.rand(0.6, 1))
+	end
+end)

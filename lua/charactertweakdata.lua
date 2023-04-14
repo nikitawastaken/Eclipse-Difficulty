@@ -687,6 +687,7 @@ local function setup_presets(self)
 	self.spooc.spooc_attack_timeout = {4 / f, 5 / f}
 	self.taser.weapon.is_rifle.tase_distance = 750 * f
 	self.taser.weapon.is_rifle.aim_delay_tase = {0, 0.5 / f}
+	self.tank_armor_balance_mul = {2.5 * f, 3.25 * f, 4.25 * f, 5 * f}
 	self.flashbang_multiplier = 1 * f
 	self.concussion_multiplier = 1
 

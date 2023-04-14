@@ -1342,7 +1342,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 				fbi_lights = {1.5, 1.5, 1.5},
 				fbi_heavies = {0.3, 0.5, 1},
 				fbi_shields = {0.2, 0.2, 0.3},
-				fbi_tanks = {0, 0.02, 0.09},
+				fbi_tanks = {0, 0.02, 0.1},
 				spoocs = {0, 0.03, 0.06}
 			}
 			self.besiege.recon.groups = {

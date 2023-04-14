@@ -93,6 +93,8 @@ Hooks:PostHook(TaserLogicAttack, "enter", "sh_enter", function (data)
 	data.brain:set_update_enabled_state(true)
 
 	local my_data = data.internal_data
+	my_data.tase_sphere_cast_radius = data.char_tweak.weapon[data.unit:inventory():equipped_unit():base():weapon_tweak_data().usage].tase_sphere_cast_radius
+	my_data.tase_slot_mask = managers.slot:get_mask("bullet_blank_impact_targets")
 	my_data.detection_task_key = "TaserLogicAttack._upd_enemy_detection" .. tostring(data.key)
 	CopLogicBase.queue_task(my_data, my_data.detection_task_key, TaserLogicAttack._upd_enemy_detection, data, data.t + 0.2)
 end)
@@ -174,4 +176,22 @@ function TaserLogicAttack.action_complete_clbk(data, action, ...)
 	else
 		return action_complete_clbk_original(data, action, ...)
 	end
+end
+
+
+-- Check line of sight for tase reaction
+local to_vec = Vector3()
+local _chk_reaction_to_attention_object_original = TaserLogicAttack._chk_reaction_to_attention_object
+function TaserLogicAttack._chk_reaction_to_attention_object(data, attention_data, ...)
+	local reaction = _chk_reaction_to_attention_object_original(data, attention_data, ...)
+
+	if reaction == AIAttentionObject.REACT_SPECIAL_ATTACK then
+		local my_data = data.internal_data
+		attention_data.unit:character_damage():shoot_pos_mid(to_vec)
+		if CopActionTase.is_obstructed(data.unit:movement():m_head_pos(), to_vec, my_data.tase_slot_mask, my_data.tase_sphere_cast_radius) then
+			return AIAttentionObject.REACT_COMBAT
+		end
+	end
+
+	return reaction
 end
