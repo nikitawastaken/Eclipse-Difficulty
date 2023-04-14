@@ -198,9 +198,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 
 	presets.weapon.sniper.is_rifle.FALLOFF = {
-		{ dmg_mul = 6, r = 0, acc = { 0, 0.5 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6, r = 1000, acc = { 0.5, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6, r = 4000, acc = { 0.5, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } }
+		{ dmg_mul = 12, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } }
 	}
 
 
