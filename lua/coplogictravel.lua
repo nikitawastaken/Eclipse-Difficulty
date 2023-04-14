@@ -235,6 +235,6 @@ Hooks:PostHook(CopLogicTravel, "action_complete_clbk", "sh_action_complete_clbk"
 	if not my_data.coarse_path or my_data.coarse_path_index == #my_data.coarse_path or data.objective and data.objective.follow_unit then
 		my_data.cover_leave_t = nil
 	elseif my_data.cover_leave_t == data.t then
-		my_data.cover_leave_t = data.t + (my_data.coarse_path_index == #my_data.coarse_path - 1 and 0.3 or math.rand(0.6, 1))
+		my_data.cover_leave_t = data.t + (my_data.coarse_path_index == #my_data.coarse_path - 1 and 0.3 or math.rand(0.4, 0.6))
 	end
 end)
