@@ -538,8 +538,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	-- Only GenSec enemies can flank as well, this makes flanking less predictable and defines them as the superior faction
 	self._tactics = {
 		beat_cop = {
-			"ranged_fire",
-			"rescue_hostages"
+			"ranged_fire"
 		},
 		swat_assault = {
 			"shield_cover"
@@ -571,13 +570,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire",
 			"smoke_grenade",
 			"flash_grenade",
-			"rescue_hostages",
 			"shield_cover"
 		},
 		elite_assault = {
 			"smoke_grenade",
 			"flash_grenade",
-			"rescue_hostages",
 			"shield_cover",
 			"deathguard",
 			"murder"
@@ -585,7 +582,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		elite_shotgun = {
 			"charge",
 			"flash_grenade",
-			"rescue_hostages",
 			"shield_cover",
 			"deathguard",
 			"murder"
@@ -594,7 +590,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"flank",
 			"smoke_grenade",
 			"flash_grenade",
-			"rescue_hostages",
 			"murder"
 		},
 		elite_shield = {
@@ -648,8 +643,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		recon_rescue = {
 			"flank",
-			"flash_grenade",
-			"rescue_hostages"
+			"flash_grenade"
 		}
 	}
 
