@@ -1,9 +1,9 @@
 <table>
 	<AddFiles directory="assets">
 		<!-- weapons -->
-		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper" force="true"/>
-		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd" force="true"/>
-		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick" force="true"/>
+		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"/>
+		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"/>
+		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick"/>
 		
 		<!-- gun perk icons -->
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_speedloader"/>
@@ -17,18 +17,8 @@
 		<texture path="guis/textures/pd2/risklevel_deathwish_easywish_blackscreen"/>
 
 		<!-- characters -->
-		<unit path="units/payday2/characters/ene_cop_3/ene_cop_3" force="true"/>
-		<unit path="units/payday2/characters/ene_cop_4/ene_cop_4" force="true"/>
-		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3" force="true"/>
-		<unit path="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" force="true"/>
-		<unit path="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3" force="true"/>
-		<unit path="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk" force="true"/>
-		<unit path="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic" force="true"/>
-		<unit path="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_husk" force="true"/>
-		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1" force="true"/>
-		<unit path="units/payday2/characters/ene_spook_1/ene_spook_1_husk" force="true"/>
-		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1" force="true"/>
-		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1_husk" force="true"/>
+		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1"/>
+		<unit path="units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1_husk"/>
 	    <sequence_manager path="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx"/>
 	    <unit path="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx"/>
 	    <unit path="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx_dummy"/>

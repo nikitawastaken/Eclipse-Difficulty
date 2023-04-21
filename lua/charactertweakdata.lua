@@ -123,11 +123,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 0, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } }
 	}
 
-	presets.weapon.ws = based_on(presets.weapon.base)
-	presets.weapon.ws.is_rifle.autofire_rounds = { 1, 3 }
-	presets.weapon.ws.is_rifle.FALLOFF = {
+	presets.weapon.gc = based_on(presets.weapon.base)
+	presets.weapon.gc.is_rifle.autofire_rounds = { 1, 3 }
+	presets.weapon.gc.is_rifle.FALLOFF = {
 		{ dmg_mul = 9, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 9, r = 3000, acc = { 0.2, 0.45 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } }
+	}
+	presets.weapon.gc.is_smg.FALLOFF = {
+		{ dmg_mul = 7.5, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5, r = 3000, acc = { 0.2, 0.45 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } }
 	}
 
 
@@ -622,14 +626,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad.weapon = self.presets.weapon.base
 	self.mobster.weapon = self.presets.weapon.base
 
-	self.fbi.weapon = self.presets.weapon.ws
+	self.fbi.weapon = self.presets.weapon.gc
 	self.fbi_swat.weapon = self.presets.weapon.base
 	self.fbi_heavy_swat.weapon = self.presets.weapon.base
 	self.city_swat.weapon = self.presets.weapon.elite
 
 	self.shield.weapon = self.presets.weapon.shield
 	self.taser.weapon = self.presets.weapon.taser
-	self.medic.weapon = self.presets.weapon.ws
+	self.medic.weapon = self.presets.weapon.gc
 	self.spooc.weapon = self.presets.weapon.elite
 	self.sniper.weapon = self.presets.weapon.sniper
 	self.tank.weapon = self.presets.weapon.tank
