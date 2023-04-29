@@ -143,7 +143,6 @@
 
 					<group :hook_id="tank/">
 						<post :hook_id="logics/tankcoplogicattack"/>
-						<post :hook_id="husktankcopdamage"/>
 					</group>
 
 					<post :hook_id="taser/logics/taserlogicattack"/>

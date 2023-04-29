@@ -100,7 +100,6 @@ if not StreamHeist then
 
 	-- Disable some of "The Fixes"
 	TheFixesPreventer = TheFixesPreventer or {}
-	TheFixesPreventer.shotgun_dozer_face = true
 	TheFixesPreventer.crash_upd_aim_coplogicattack = true
 	TheFixesPreventer.fix_copmovement_aim_state_discarded = true
 	TheFixesPreventer.tank_remove_recoil_anim = true

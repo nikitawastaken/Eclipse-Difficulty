@@ -45,8 +45,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.wpn_fps_pis_judge.override.wpn_fps_upg_a_piercing = nil
     self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
     self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_piercing = nil
-    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom = nil
-    self.wpn_fps_shot_serbu.override.wpn_fps_upg_a_custom_free = nil
     self.wpn_fps_sho_striker.override.wpn_fps_upg_a_slug = nil
     self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom = nil
     self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom_free = nil
@@ -89,6 +87,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_lmg_hcar_barrel_dmr.custom_stats = {ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8}
     self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats = {extra_ammo = 40,  total_ammo_mod = 20, damage = -40, value = 1, spread = 1, recoil = 1, fire_rate = 1.667}
     self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = {ammo_pickup_max_mul = 2.25, ammo_pickup_min_mul = 2.25, fire_rate_multiplier = 1.667}
+    -- campbell stuff
+    self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats = {spread = 1, recoil = -1}
+    self.parts.wpn_fps_lmg_kacchainsaw_b_short.stats = {spread = -1, recoil = 1}
+    self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats = {damage = 40, recoil = -2, spread = 2}
+    self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = {fire_rate_multiplier = 0.6, ammo_pickup_max_mul = 0.83}
 
 
     -- Weapon Magazines
@@ -102,6 +105,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_smg_mac10_m_quick.stats = {concealment = -1, reload = 1}
     self.parts.wpn_fps_smg_p90_m_strap.stats = {concealment = -1, reload = 1}
     self.parts.wpn_fps_smg_fmg9_m_speed.stats = {concealment = -1, reload = 1}
+    self.parts.wpn_fps_snp_awp_m_speed.stats = {concealment = -1, reload = 1}
     -- L5
     self.parts.wpn_fps_upg_m4_m_l5.stats = {concealment = -1, recoil = 1}
     -- Expert
@@ -188,6 +192,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     -- wasp exclusive kit
     self.parts.wpn_fps_smg_fmg9_conversion.stats.recoil = 1
     self.parts.wpn_fps_smg_fmg9_conversion.stats.spread = 1
+    -- awp exclusive kits
+    self.parts.wpn_fps_snp_awp_conversion_dragonlore.stats = {}
+    self.parts.wpn_fps_snp_awp_conversion_dragonlore.custom_stats = {}
+    self.parts.wpn_fps_snp_awp_conversion_wildlands.stats = {}
 
 
     -- Specials

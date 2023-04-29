@@ -23,7 +23,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.on_headshot_dealt_cooldown = 5
 
 	-- make sna less cancer without shotguns
-	self.values.player.shield_knock_bullet.chance = 0.6
+	self.values.player.shield_knock_bullet.chance = 0.7
 end
 
 local old_init = UpgradesTweakData.init

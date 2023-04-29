@@ -71,6 +71,7 @@ local pickup_tables = {
 	secondary_sniper = {0.5, 1},
 
 	lmg = {4, 12},
+	lmg_low = {4, 10},
 	minigun = {4, 8},
 
 	shot_very_high = {2, 3},
@@ -486,9 +487,27 @@ self.m95.stats.damage = 125
 self.m95.stats_modifiers = {damage = 8}
 self.m95.AMMO_PICKUP = {0.55, 0.65}
 self.m95.AMMO_MAX = total_ammo_tables.secondary_sniper
+self.m95.fire_mode_data.fire_rate = 1.5
 self.m95.kick.standing = {4, 5, -1, 1}
 self.m95.kick.crouching = self.m95.kick.standing
 self.m95.kick.steelsight = self.m95.kick.standing
+self.m95.timers = {
+	reload_not_empty = 3.8,
+	reload_empty = 5.1,
+	unequip = 0.9,
+	equip = 0.9
+}
+
+-- AWP
+self.awp.CLIP_AMMO_MAX = 5
+self.awp.stats.damage = 125
+self.awp.stats_modifiers = {damage = 8}
+self.awp.AMMO_PICKUP = {0.55, 0.65}
+self.awp.AMMO_MAX = total_ammo_tables.secondary_sniper
+self.awp.kick.standing = {4, 5, -1, 1}
+self.awp.kick.crouching = self.m95.kick.standing
+self.awp.kick.steelsight = self.m95.kick.standing
+
 
 -- Rangehitter
 self.sbl.use_data.selection_index = SELECTION.SECONDARY
@@ -548,7 +567,6 @@ self.par.kick = kick_tables.lmg
 self.par.spray = spray_tables.lmg_left
 self.par.recoil_recovery_timer = recovery_tables.high
 
-
 -- Buzzsaw
 self.mg42.stats.damage = 60
 self.mg42.stats.reload = 9
@@ -560,7 +578,6 @@ self.mg42.kick = kick_tables.lmg
 self.mg42.spray = spray_tables.lmg_left
 self.mg42.recoil_recovery_timer = recovery_tables.high
 
-
 -- RPK
 self.rpk.stats.spread = 10
 self.rpk.stats.damage = 80
@@ -568,7 +585,7 @@ self.rpk.stats.reload = 9
 self.rpk.stats.recoil = 2
 self.rpk.stats.concealment = 1
 self.rpk.AMMO_MAX = total_ammo_tables.lmg_low
-self.rpk.AMMO_PICKUP = pickup_tables.lmg
+self.rpk.AMMO_PICKUP = pickup_tables.lmg_low
 self.rpk.kick = kick_tables.lmg_high
 self.rpk.spray = spray_tables.lmg_right
 self.rpk.recoil_recovery_timer = recovery_tables.high
@@ -580,7 +597,7 @@ self.hk21.stats.reload = 9
 self.hk21.stats.recoil = 2
 self.hk21.stats.concealment = 0
 self.hk21.AMMO_MAX = total_ammo_tables.lmg_low
-self.hk21.AMMO_PICKUP = pickup_tables.lmg
+self.hk21.AMMO_PICKUP = pickup_tables.lmg_low
 self.hk21.kick = kick_tables.lmg_high
 self.hk21.spray = spray_tables.lmg_left
 self.hk21.recoil_recovery_timer = recovery_tables.high
@@ -591,7 +608,7 @@ self.m60.stats.reload = 9
 self.m60.stats.recoil = 3
 self.m60.stats.concealment = 0
 self.m60.AMMO_MAX = total_ammo_tables.lmg_low
-self.m60.AMMO_PICKUP = pickup_tables.lmg
+self.m60.AMMO_PICKUP = pickup_tables.lmg_low
 self.m60.kick = kick_tables.lmg_high
 self.m60.spray = spray_tables.lmg_right
 self.m60.recoil_recovery_timer = recovery_tables.high
@@ -614,6 +631,17 @@ self.hk51b.AMMO_MAX = total_ammo_tables.ar_low
 self.hk51b.kick = kick_tables.lmg_high
 self.hk51b.spray = spray_tables.lmg_left
 self.hk51b.recoil_recovery_timer = recovery_tables.high
+
+-- campbell
+self.kacchainsaw.stats.damage = 60
+self.kacchainsaw.stats.reload = 9
+self.kacchainsaw.stats.recoil = 6
+self.kacchainsaw.stats.concealment = 0
+self.kacchainsaw.AMMO_MAX = total_ammo_tables.lmg_low
+self.kacchainsaw.AMMO_PICKUP = pickup_tables.lmg
+self.kacchainsaw.kick = kick_tables.lmg
+self.kacchainsaw.spray = spray_tables.lmg_left
+self.kacchainsaw.recoil_recovery_timer = recovery_tables.high
 
 -- Minigun
 self.m134.stats.damage = 40
@@ -719,6 +747,16 @@ self.ksg.AMMO_PICKUP = pickup_tables.shot_mid
 self.ksg.fire_mode_data.fire_rate = 0.6
 self.ksg.kick = kick_tables.shot_low
 self.ksg.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+
+-- Nova
+self.supernova.rays = 8
+self.supernova.stats.damage = 155
+self.supernova.AMMO_MAX = total_ammo_tables.shot_mid
+self.supernova.AMMO_PICKUP = pickup_tables.shot_mid
+self.supernova.fire_mode_data.fire_rate = 0.6
+self.supernova.kick = kick_tables.shot_low
+self.supernova.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+
 
 -- Reinfeld 880
 self.r870.rays = 8
