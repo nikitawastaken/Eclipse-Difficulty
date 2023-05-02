@@ -48,5 +48,7 @@
 	</AddFiles>
 
 	<Localization directory="loc" default="en.txt">
+	   <loc file="en.txt" language="english"/>
+	   <loc file="schinese.json" language="schinese"/>
     </Localization>
 </table>
