@@ -94,6 +94,8 @@ local pickup_tables = {
 	smg_low = {2, 5},
 	smg_very_low = {2, 2},
 
+	autopistol_high = {3, 5},
+	autopistol_mid = {2, 4},
 	pistol_high = {2.25, 3},
 	pistol_mid = {2, 2.5},
 	pistol_low = {1.25, 2},
@@ -1439,25 +1441,25 @@ self.breech.kick = kick_tables.pistol_high
 -- Bernetti Auto
 self.beer.stats.damage = 38
 self.beer.AMMO_MAX = total_ammo_tables.pistol_high
-self.beer.AMMO_PICKUP = pickup_tables.pistol_high
+self.beer.AMMO_PICKUP = pickup_tables.autopistol_high
 self.beer.kick = kick_tables.pistol_auto
 
 -- Stryk
 self.glock_18c.stats.damage = 45
 self.glock_18c.AMMO_MAX = total_ammo_tables.pistol_mid
-self.glock_18c.AMMO_PICKUP = pickup_tables.pistol_mid
+self.glock_18c.AMMO_PICKUP = pickup_tables.autopistol_mid
 self.glock_18c.kick = kick_tables.pistol_auto
 
 -- Czech
 self.czech.stats.damage = 45
 self.czech.AMMO_MAX = total_ammo_tables.pistol_mid
-self.czech.AMMO_PICKUP = pickup_tables.pistol_mid
+self.czech.AMMO_PICKUP = pickup_tables.autopistol_mid
 self.czech.kick = kick_tables.pistol_auto
 
 -- Igor
 self.stech.stats.damage = 70
 self.stech.AMMO_MAX = total_ammo_tables.pistol_low
-self.stech.AMMO_PICKUP = pickup_tables.pistol_low
+self.stech.AMMO_PICKUP = pickup_tables.pistol_mid
 self.stech.kick = kick_tables.pistol_auto
 
 -- 5/7
@@ -1557,7 +1559,7 @@ self.plainsrider.use_data.selection_index = SELECTION.SECONDARY
 
 -- Stryks
 self.x_g18c.AMMO_MAX = total_ammo_tables.akimbo_pis_high
-self.x_g18c.AMMO_PICKUP = pickup_tables.pistol_high
+self.x_g18c.AMMO_PICKUP = pickup_tables.autopistol_mid
 self.x_g18c.stats.concealment = 14
 self.x_g18c.stats.recoil = 12
 self.x_g18c.stats.reload = 8
@@ -1568,7 +1570,7 @@ self.x_g18c.recoil_recovery_timer = recovery_tables.high
 
 -- Czechs
 self.x_czech.AMMO_MAX = total_ammo_tables.akimbo_pis_high
-self.x_czech.AMMO_PICKUP = pickup_tables.pistol_high
+self.x_czech.AMMO_PICKUP = pickup_tables.autopistol_mid
 self.x_czech.stats.concealment = 14
 self.x_czech.stats.recoil = 11
 self.x_czech.stats.spread = 15
