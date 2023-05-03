@@ -141,7 +141,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1
 		}
 	}
-	self.skill_descs.black_marketeer.multibasic = "one"
+	self.skill_descs.black_marketeer.multibasic = "1"
 	self.skill_descs.black_marketeer.multibasic2 = "10"
 	self.skill_descs.black_marketeer.multibasic3 = "5"
 	self.skill_descs.black_marketeer.multipro = "12"
