@@ -156,8 +156,12 @@
 
 				<post :hook_id="civilians/civilianbase"/>
 				<post :hook_id="vehicles/animatedvehiclebase"/>
-				<post :hook_id="player_team/teamaimovement"/>
 				<post :hook_id="cameras/fpcameraplayerbase"/>
+				
+				<group :hook_id="player_team/">
+					<post :hook_id="teamaidamage"/>
+					<post :hook_id="teamaimovement"/>
+				</group>
 
 				<group :hook_id="props/">
 					<post :hook_id="aiattentionobject"/>
@@ -188,4 +192,17 @@
 			</group>
 		</group>
 	</hooks>
+	
+	<assets base_path="assets/">
+
+		<!-- Improve navigation data -->
+		<group name="levels/narratives/">
+			<file :name="classics/flat/nav_manager_data.nav_data"/>
+			<file :name="dentist/hox/stage_2/nav_manager_data.nav_data"/>
+			<file :name="e_framing_frame/stage_1/nav_manager_data.nav_data"/>
+			<file :name="e_framing_frame/stage_3/nav_manager_data.nav_data"/>
+			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
+		</group>
+
+	</assets>
 </mod>

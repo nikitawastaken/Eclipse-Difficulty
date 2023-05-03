@@ -1,6 +1,8 @@
 <table>
 	<AddFiles directory="assets">
 		<!-- weapons -->
+		<unit path="units/payday2/weapons/wpn_npc_ump/wpn_npc_ump"/>
+		<unit path="units/payday2/weapons/wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun"/>
 		<object path="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"/>
 		<object path="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"/>
 		<object path="units/weapons/smoke_grenade_quick/smoke_grenade_quick"/>

@@ -17,7 +17,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 	for element_id, data in pairs(mission_script_elements) do
 		local element = self:get_element_by_id(element_id)
 		if not element then
-			StreamHeist:error("Mission script element", element_id, "could not be found")
+			StreamHeist:error(string.format("Mission script element %u could not be found", element_id))
 		else
 			-- Check if this element is supposed to trigger reinforce points
 			if data.reinforce then
@@ -57,7 +57,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 			-- Check if this element is supposed to trigger a difficulty change
 			if data.difficulty then
 				Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_" .. element_id, function ()
-					StreamHeist:log(string.format("%s executed, set difficulty to %.2f", element:editor_name(), data.difficulty))
+					StreamHeist:log(string.format("%s executed, set difficulty to %.2g", element:editor_name(), data.difficulty))
 					managers.groupai:state():set_difficulty(data.difficulty)
 				end)
 				StreamHeist:log(string.format("%s hooked as difficulty change trigger", element:editor_name()))
@@ -77,6 +77,30 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 					managers.game_play_central:set_flashlights_on(data.flashlight)
 				end)
 				StreamHeist:log(string.format("%s hooked as flashlight state trigger", element:editor_name()))
+			end
+
+			if data.on_executed then
+				for _, v in pairs(data.on_executed) do
+					local new_element = self:get_element_by_id(v.id)
+					if new_element then
+						local val, i = table.find_value(element._values.on_executed, function (val) return val.id == v.id end)
+						if v.remove then
+							if val then
+								table.remove(element._values.on_executed, i)
+								StreamHeist:log(string.format("Removed element %s from on_executed of %s", new_element:editor_name(), element:editor_name()))
+							end
+						elseif val then
+							val.delay = v.delay or 0
+							val.delay_rand = v.delay_rand or 0
+							StreamHeist:log(string.format("Modified element %s in on_executed of %s", new_element:editor_name(), element:editor_name()))
+						else
+							table.insert(element._values.on_executed, v)
+							StreamHeist:log(string.format("Added element %s to on_executed of %s", new_element:editor_name(), element:editor_name()))
+						end
+					else
+						StreamHeist:error(string.format("Mission script element %u could not be found", v.id))
+					end
+				end
 			end
 
 			if data.func then

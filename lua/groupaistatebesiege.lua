@@ -31,7 +31,6 @@ end
 Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
 	local assault_task = self._task_data.assault
     if self._hostage_headcount > 0 then
-    	local assault_task = self._task_data.assault
 		local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
 		local hostage_situation_skill = managers.player:upgrade_value("team", "hostage_situation", 0)
         assault_task.is_hesitating = true
@@ -192,77 +191,74 @@ end
 Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", function (self, group, phase)
 	local phase_is_anticipation = phase == "anticipation"
 	local current_objective = group.objective
-	local approach, open_fire, pull_back, charge
+	local approach, open_fire, pull_back
 	local obstructed_area = self:_chk_group_areas_tresspassed(group)
 	local group_leader_u_key, group_leader_u_data = self._determine_group_leader(group.units)
 	local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
+	local objective_area = current_objective.area
 	local tactics_map = {}
 
+	-- Set tactics map
 	if group_leader_u_data and group_leader_u_data.tactics then
 		for _, tactic_name in ipairs(group_leader_u_data.tactics) do
 			tactics_map[tactic_name] = true
 		end
+	end
 
-		if current_objective.tactic and not tactics_map[current_objective.tactic] then
-			current_objective.tactic = nil
+	-- Clear objective tactic if it no longer fits
+	if current_objective.tactic and not tactics_map[current_objective.tactic] then
+		current_objective.tactic = nil
+	end
+
+	-- Check deathguard
+	if tactics_map.deathguard and not phase_is_anticipation then
+		if current_objective.tactic == "deathguard" then
+			local u_data = alive(current_objective.follow_unit) and self._char_criminals[current_objective.follow_unit:key()]
+			if u_data and u_data.status and current_objective.area.nav_segs[u_data.seg] then
+				return
+			end
 		end
 
-		for i_tactic, tactic_name in ipairs(group_leader_u_data.tactics) do
-			if tactic_name == "deathguard" and not phase_is_anticipation then
-				if current_objective.tactic == tactic_name then
-					for u_key, u_data in pairs(self._char_criminals) do
-						if u_data.status and current_objective.follow_unit == u_data.unit then
-							if current_objective.area.nav_segs[u_data.tracker:nav_segment()] then
-								return
-							end
-						end
-					end
+		local closest_crim_u_data
+		local closest_crim_dis_sq = math.huge
+		for _, u_data in pairs(self._char_criminals) do
+			if u_data.status then
+				local _, _, closest_u_dis_sq = self._get_closest_group_unit_to_pos(u_data.m_pos, group.units)
+				if closest_u_dis_sq and closest_u_dis_sq < closest_crim_dis_sq then
+					closest_crim_u_data = u_data
+					closest_crim_dis_sq = closest_u_dis_sq
 				end
+			end
+		end
 
-				local closest_crim_u_data, closest_crim_dis_sq
-				for u_key, u_data in pairs(self._char_criminals) do
-					if u_data.status then
-						local closest_u_id, closest_u_data, closest_u_dis_sq = self._get_closest_group_unit_to_pos(u_data.m_pos, group.units)
-						if closest_u_dis_sq and (not closest_crim_dis_sq or closest_u_dis_sq < closest_crim_dis_sq) then
-							closest_crim_u_data = u_data
-							closest_crim_dis_sq = closest_u_dis_sq
-						end
-					end
-				end
+		if closest_crim_u_data then
+			local coarse_path = managers.navigation:search_coarse({
+				id = "GroupAI_deathguard",
+				from_tracker = group_leader_u_data.tracker,
+				to_tracker = closest_crim_u_data.tracker,
+				access_pos = self._get_group_acces_mask(group)
+			})
 
-				if closest_crim_u_data then
-					local coarse_path = managers.navigation:search_coarse({
-						id = "GroupAI_deathguard",
-						from_tracker = group_leader_u_data.unit:movement():nav_tracker(),
-						to_tracker = closest_crim_u_data.tracker,
-						access_pos = self._get_group_acces_mask(group)
-					})
+			if coarse_path then
+				local grp_objective = {
+					distance = 800,
+					type = "assault_area",
+					attitude = "engage",
+					pose = "stand",
+					tactic = "deathguard",
+					moving_in = true,
+					follow_unit = closest_crim_u_data.unit,
+					area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
+					coarse_path = coarse_path
+				}
 
-					if coarse_path then
-						local grp_objective = {
-							distance = 800,
-							type = "assault_area",
-							attitude = "engage",
-							tactic = "deathguard",
-							moving_in = true,
-							follow_unit = closest_crim_u_data.unit,
-							area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
-							coarse_path = coarse_path
-						}
-						group.is_chasing = true
-
-						self:_set_objective_to_enemy_group(group, grp_objective)
-						self:_voice_deathguard_start(group)
-						return
-					end
-				end
-			elseif tactic_name == "charge" and not current_objective.moving_out then
-				charge = true
+				self:_set_objective_to_enemy_group(group, grp_objective)
+				self:_voice_deathguard_start(group)
+				return
 			end
 		end
 	end
 
-	local objective_area = current_objective.area
 	if obstructed_area then
 		if phase_is_anticipation then
 			-- If we run into enemies during anticipation, pull back
@@ -273,15 +269,15 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				open_fire = true
 				objective_area = obstructed_area
 			end
-		elseif not current_objective.pushed or charge and not current_objective.charge then
+		elseif not current_objective.pushed or tactics_map.charge and not current_objective.charge then
 			-- If we can't see enemies, approach
 			approach = not self:_can_group_see_target(group)
 		end
 	elseif not current_objective.moving_out then
 		-- If we aren't moving out to an objective, open fire if we have ranged_fire tactics and see an enemy, otherwise approach
-		approach = charge or group.is_chasing or not tactics_map.ranged_fire or not current_objective.open_fire or in_place_duration > 10 and not self:_can_group_see_target(group)
+		approach = tactics_map.charge or not tactics_map.ranged_fire or not current_objective.open_fire or in_place_duration > 10 and not self:_can_group_see_target(group)
 		open_fire = not approach and not current_objective.open_fire
-	elseif tactics_map.ranged_fire and not current_objective.open_fire and self:_can_group_see_target(group, true) then
+	elseif tactics_map.ranged_fire and not current_objective.open_fire and self:_can_group_see_target(group, tactics_map.flank and "optimal" or "far") then
 		-- If we see an enemy while moving out and have the ranged_fire tactics, open fire
 		local forwardmost_i_nav_point = self:_get_group_forwardmost_coarse_path_index(group)
 		if forwardmost_i_nav_point then
@@ -322,7 +318,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 		repeat
 			local search_area = table_remove(to_search_areas, 1)
-			if next(search_area.criminal.units) then
+			if next(search_area.criminal.units) and not self:is_area_safe_assault(search_area) then
 				local flank = tactics_map.flank and found_areas[search_area] ~= objective_area
 				if not flank or math_random() < flank_chance then
 					local new_assault_path = managers.navigation:search_coarse({
@@ -361,9 +357,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			local push = assault_from == objective_area
 			local move_out = not push
 
-			if push then
+			if push and not phase_is_anticipation then
 				local detonate_pos
-				local c_key = charge and table.random_key(assault_area.criminal.units)
+				local c_key = tactics_map.charge and table.random_key(assault_area.criminal.units)
 				if c_key then
 					detonate_pos = mvec_cpy(assault_area.criminal.units[c_key].m_pos)
 				end
@@ -372,16 +368,17 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				-- If grenade isn't available, push regardless anyway after a short delay
 				if self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
 					move_out = true
-				elseif charge or group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t then
+				elseif group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t then
 					move_out = true
 				end
 
 				if move_out then
 					self:_voice_move_in_start(group)
 				elseif not group.ignore_grenade_check_t then
-					group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, 8, 2)
+					local wait_time = math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, 8, 2)
+					group.ignore_grenade_check_t = self._t + wait_time * (tactics_map.charge and 0.25 or 1)
 				end
-			else
+			elseif not push then
 				-- If we aren't pushing, we go to one area before the criminal area
 				if #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
 					table_remove(assault_path)
@@ -400,14 +397,13 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					moving_in = push,
 					open_fire = push,
 					pushed = push,
-					charge = charge,
-					interrupt_dis = charge and 0
+					charge = tactics_map.charge,
+					interrupt_dis = tactics_map.charge and 0
 				}
-				group.is_chasing = group.is_chasing or push
 
 				self:_set_objective_to_enemy_group(group, grp_objective)
 			end
-		elseif in_place_duration > 15 and not self:_can_group_see_target(group) then
+		elseif not current_objective.assigned_t and in_place_duration > 15 and not self:_can_group_see_target(group) then
 			-- Log and remove groups that get stuck
 			local element_id = group.spawn_group_element and group.spawn_group_element._id or 0
 			local element_name = group.spawn_group_element and group.spawn_group_element._editor_name or ""
@@ -451,12 +447,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					}
 				}
 			}
-			group.is_chasing = nil
 
 			self:_set_objective_to_enemy_group(group, new_grp_objective)
 		end
 	end
 end)
+
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range)

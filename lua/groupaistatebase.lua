@@ -206,30 +206,31 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 end)
 
 
--- Fix this function doing nothing
-function GroupAIStateBase:_merge_coarse_path_by_area(coarse_path)
-	local i_nav_seg = #coarse_path
-	local area, last_area
-	while i_nav_seg > 0 and #coarse_path > 2 do
-		area = self:get_area_from_nav_seg_id(coarse_path[i_nav_seg][1])
-		if last_area and last_area == area then
-			table.remove(coarse_path, i_nav_seg)
-		else
-			last_area = area
-		end
-		i_nav_seg = i_nav_seg - 1
-	end
-end
-
-
--- Check nav segment safety directly instead of area safety
-function GroupAIStateBase:is_nav_seg_safe(nav_seg)
+-- Ignore disabled criminals for area safety checks
+function GroupAIStateBase:is_area_safe(area)
 	for _, u_data in pairs(self._criminals) do
-		if u_data.tracker:nav_segment() == nav_seg then
+		if u_data.status ~= "disabled" and u_data.status ~= "dead" and area.nav_segs[u_data.tracker:nav_segment()] then
 			return
 		end
 	end
+	return true
+end
 
+function GroupAIStateBase:is_area_safe_assault(area)
+	for _, u_data in pairs(self._char_criminals) do
+		if u_data.status ~= "disabled" and u_data.status ~= "dead" and area.nav_segs[u_data.tracker:nav_segment()] then
+			return
+		end
+	end
+	return true
+end
+
+function GroupAIStateBase:is_nav_seg_safe(nav_seg)
+	for _, u_data in pairs(self._criminals) do
+		if u_data.status ~= "disabled" and u_data.status ~= "dead" and u_data.tracker:nav_segment() == nav_seg then
+			return
+		end
+	end
 	return true
 end
 
@@ -289,3 +290,9 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "sh_add_special_objecti
 	objective_data.objective.interrupt_health = 0.8
 	objective_data.objective.pose = nil
 end)
+
+
+-- Fully count all criminals for the balancing multiplier
+function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
+	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
+end
