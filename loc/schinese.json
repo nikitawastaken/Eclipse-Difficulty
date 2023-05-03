@@ -27,7 +27,7 @@
 	"menu_bandage": "急救绷带",
 	"menu_bandage_desc": "基础: ##$basic##\n你救起的队友在##$multibasic2##秒内少受到##$multibasic##伤害。\n\n精通: ##$pro##\n救起一个队友还会额外给他##$multipro##的生命值。",
 	"menu_field_surgery": "战地医生",
-	"menu_field_surgery_desc": "基础: ##$basic##\n你救起的队友在##$multibasic2##秒内少受到##$multibasic##伤害。\n\n精通: ##$pro##\n你在救起一个队友后##$multibasic2##秒之内还会少受到##$multipro##的伤害。",
+	"menu_field_surgery_desc": "基础: ##$basic##\n你救起的队友在##$multibasic2##秒内少受到##$multibasic##伤害。\n\n精通: ##$pro##\n你在救起一个队友后##$multibasic2##秒之内会额外少受到##$multipro##的伤害。",
 	"menu_company_soul": "团队之魂",
 	"menu_company_soul_desc": "基础: ##$basic##\n你和你队友的所有武器的武器稳定性提高##$multibasic##点。\n\n精通: ##$pro##\n你和你的队友的耐力提高##$multipro##。",
 	"menu_combat_doctor_desc": "基础: ##$basic##\n你在救起队友的途中和救起队友之后的##$multibasic2##秒内获得##$multibasic##的伤害减免。\n\n精通: ##$pro##\n在救起一名队友后你还会在##$multipro3##秒内造成额外的##$multipro2##伤害。\n\n你救起队友的速度加快##$multipro##。",
@@ -61,7 +61,7 @@
 	"menu_show_of_force_beta": "皮糙肉厚",
 	"menu_show_of_force_beta_desc": "基础: ##$basic##\n你的坚韧值增加##$multibasic##。\n高坚韧值减少受击抖动。\n\n精通: ##$pro##\n所有的防弹背心护甲值增加##$multipro2##。",
 	"menu_scavenging_beta_desc": "基础: ##$basic##\n你拾取子弹盒的距离增加##$multibasic##。\n\n注意：不与赌徒天赋叠加。\n\n精通: ##$pro##\n你每击杀##6##个敌人额外掉落一个弹药盒。",
-	"menu_bandoliers_beta_desc": "基础: ##$basic##\n你的护甲越重，你的总弹量增加的越多。\n\n这个数值逐步增加到##$multibasic##，在穿着改良型复合战术背心的情况下最高。\n\n精通: ##$pro##\n你的总弹量额外增加##$multipro##。",
+	"menu_bandoliers_beta_desc": "基础: ##$basic##\n你的护甲越重，总弹量越多。\n最多在穿着改良型复合战术背心时增加##$multibasic##。\n\n精通: ##$pro##\n你的总弹量额外增加##$multipro##。",
 	
 	
 	"menu_defense_up_beta": "步枪专家",
@@ -73,17 +73,17 @@
 	"menu_tower_defense_beta": "步哨群落",
 	"menu_tower_defense_beta_desc": "基础: ##$basic##\n你可以额外带##1##个更多的哨戒机枪。\n\n精通: ##$pro##\n你部署哨戒机枪的消耗降低##$multipro##。\n你的哨戒机枪额外获得##$multipro2##的弹药。",
 	"menu_eco_sentry_beta": "工程博士",
-	"menu_eco_sentry_beta_desc": "基础: ##$basic##\n你的哨戒机枪获得了一个升级过的运动传感器，可以标记##10m##内的所有敌人并对他们提高##$multibasic##的精准性。\n\nACE: ##$pro##\n你的哨戒机枪获得了穿甲弹, 降低##$multipro##的开火速度, 但是增加了##$multipro2##的伤害并且可以穿敌人和盾。",
+	"menu_eco_sentry_beta_desc": "基础: ##$basic##\n你的哨戒机枪获得了一个升级过的运动传感器，可以标记##10m##内的所有敌人并对他们提高##$multibasic##的精准性。\n\nACE: ##$pro##\n你的哨戒机枪获得了穿甲弹, 降低##$multipro##的开火速度, 但是增加了##$multipro2##的伤害并且可以穿透敌人和盾牌。",
 	"menu_combat_engineering_beta": "战斗技师",
 	"st_menu_technician_auto": "重武使者",
 	"menu_fast_fire_beta": "魔法弹匣",
-	"menu_fast_fire_beta_desc": "基础: ##$basic##\n你的冲锋枪，突击步枪和轻机枪弹夹增加##$multibasic##发子弹。\n\n精通: ##$pro##\n你的冲锋枪，突击步枪和轻机枪弹夹额外增加##$multipro##发子弹。\n\n注意：不影响技能敏接手法。",
+	"menu_fast_fire_beta_desc": "基础: ##$basic##\n你的冲锋枪，突击步枪和轻机枪弹夹增加##$multibasic##发子弹。\n\n精通: ##$pro##\n你的冲锋枪，突击步枪和轻机枪弹夹额外增加##$multipro##发子弹。\n\n注意：不影响技能敏捷手法。",
 	"menu_body_expertise_beta": "重武专家",
 	"menu_body_expertise_beta_desc": "基础: ##$basic##\n你在手持重武器时不再受到移速惩罚。\n\n精通: ##$pro##\n你对敌人身体造成的伤害永久额外获得敌人爆头伤害的##$multipro##。该技能只能被全自动模式的冲锋枪，轻机枪，突击步枪和特殊武器触发。",
 	"menu_fast_hands": "敏捷手法",
-	"menu_fast_hands_desc": "基础: ##$basic##\n你装填你的冲锋枪和轻机枪加快##$multibasic##。\n\n精通: ##$pro##\n使用全自动模式的冲锋枪，轻机枪，突击步枪和特殊武器击杀##$multipro##名敌人最多会加快你下次换弹##$multipro2##。你的弹夹超过##$multipro4##发子弹，每发多的子弹会减少##$multipro3##的奖励速度，最多降低至增加##$multipro5##的换弹速度。",
+	"menu_fast_hands_desc": "基础: ##$basic##\n你装填你的冲锋枪和轻机枪加快##$multibasic##。\n\n精通: ##$pro##\n使用全自动模式的冲锋枪，轻机枪，突击步枪和特殊武器击杀##$multipro##名敌人最多会使你下次换弹的速度加快##$multipro2##。你的武器弹夹若超过##$multipro4##发子弹，每发多的子弹均会减少##$multipro3##的加成，最多降低至增加##$multipro5##的换弹速度。",
 	"menu_oppressor_desc": "基础: ##$basic##\n你的武器压制敌人的效率增加##$multibasic##。\n\n精通: ##$pro##\n你的武器压制敌人的效率额外增加##$multipro##。",
-	"menu_fire_control_beta_desc": "基础: ##$basic##\n你腰射的时候武器精准性增加##$multibasic##点。\n\n精通: ##$pro##\n你所有远程武器可以穿甲。不影响投掷物。",
+	"menu_fire_control_beta_desc": "基础: ##$basic##\n你腰射的时候武器精准性增加##$multibasic##点。\n\n精通: ##$pro##\n你的所有远程武器均可以穿透敌人护甲。不影响投掷物。",
 	
 	
 	"menu_sprinter": "运动健儿",
@@ -94,10 +94,10 @@
 	"menu_optic_illusions_desc": "BASIC: ##$basic##\n你可以向所有的方向冲刺。你跑步快##$multibasic##。\n\n精通: ##$pro##\n你在跑步或者在滑索上获得额外的##$multipro##闪避概率。",
 	"menu_silenced_damage": "消音专家",
 	"menu_silenced_damage_desc": "BASIC: ##$basic##\n你的消音武器获得##$multibasic##点隐秘度。降低##$multibasic2##点消音器的隐蔽度惩罚。\n\n精通: ##$pro##\n你的消音武器对敌人造成额外的##$multipro##伤害并且有##$multipro2##的概率穿甲。",
-	"menu_silence_expert_beta_desc": "BASIC: ##$basic##\n你的消音武器获得##$multibasic##点稳定度。\n\n精通: ##$pro##\n你的消音武器获得##$multipro##点精准速度并且开镜速度增加##$multipro2##。",
+	"menu_silence_expert_beta_desc": "BASIC: ##$basic##\n你的消音武器获得##$multibasic##点稳定度。\n\n精通: ##$pro##\n你的消音武器获得##$multipro##点精准性并且开镜速度增加##$multipro2##。",
 	
 	"menu_spotter_teamwork_beta_desc": "BASIC: ##$basic##\n你标记的敌人额外受到##$multibasic##的伤害。\n\n精通: ##$pro##\n你标记的敌人在##$multipro2##m远的时候额外受到##$multipro##的伤害。\n\n你可以用任何武器瞄准以标记敌人。",
-	"menu_jail_workout_beta_desc": "BASIC: ##$basic##\n你踩点模式被保安发现的时间增加##$multibasic##。\n\n你在强袭时在队友的身边降低##$multibasic##被敌人选中为目标的概率。\n\n精通: ##$pro##\n你的隐秘度增加##$multipro##点。",
+	"menu_jail_workout_beta_desc": "BASIC: ##$basic##\n你在踩点模式被保安发现所需的时间增加##$multibasic##。\n\n强袭时在队友的身边会降低##$multibasic##被敌人选中为目标的概率。\n\n精通: ##$pro##\n你的隐秘度增加##$multipro##点。",
 	"menu_cleaner_beta": "鹰之视野",
 	"menu_cleaner_beta_desc": "BASIC: ##$basic##\n你对特殊敌人造成额外##$multibasic##的伤害。\n\n精通: ##$pro##\n你可以主动标记敌人的距离增加##$multipro##倍。标记状态延长##$multipro2##。",
 	"menu_second_chances_beta": "后勤苦力",
@@ -105,8 +105,8 @@
 	"menu_chameleon_beta": "黑灯瞎火",
 	"menu_chameleon_beta_desc": "BASIC: ##$basic##\n你现在可以使##1##个摄像头失效，无法探测到你和你的队友。持续##25##秒。\n\n精通: ##$pro##\n你的电子干扰器可以被用来开启一部分电子门。你的电子干扰器还可以延迟对讲机响起。",
 	"menu_ecm_booster_beta": "干扰器反馈",
-	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\n你现在可以和电子干扰器互动使其反馈并眩晕周围的敌人。\n\n反馈的距离是##$multibasic##。\n半径减半如果##视野受阻##。\n\n精通: ##$pro##\n现在电子干扰器在使用之后的##$multipro##分钟会完成重新充能。",
-	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\n你可以带##2##个电子干扰器而不是一个。\n\n精通: ##$pro##\n你的电子干扰器和反馈现在持续##$multipro##秒。\n\n你现在可以购买全部有利。",
+	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\n你现在可以和电子干扰器互动使其反馈并眩晕周围的敌人。\n\n反馈的距离是##$multibasic##。\n若电子干扰器的##视野受阻##，则效果生效范围的半径减半。\n\n精通: ##$pro##\n现在电子干扰器在使用之后的##$multipro##分钟会完成重新充能。",
+	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\n你可以带##2##个电子干扰器而不是一个。\n\n精通: ##$pro##\n你的电子干扰器和反馈现在持续##$multipro##秒。\n\n你现在可以购买全部有利条件。",
 	"menu_backstab_beta_desc": "BASIC: ##$basic##\n如果你的暴露风险低于##$multibasic3##，每低##$multibasic2##点会使你你获得##$multibasic##的暴击概率，最高获得##$multibasic4##。\n\n精通: ##$pro##\n如果你的暴露风险低于##$multipro3##，每低##$multipro2##点会使你你获得##$multipro##的暴击概率，最高获得##$multipro4##。\n\n注意：暴击造成##双倍##伤害并且不影响手雷和投掷物",
 	
 	
@@ -118,7 +118,7 @@
 	"menu_trigger_happy_beta_desc": "基础: ##$basic##\n你的手枪每次命中会获得##$multibasic##的持续##$multibasic2##秒的伤害加成\n最多叠加##$multibasic3##次。\n\n精通: ##$pro##\n你的手枪每次命中会获得##$multipro##的持续##$multipro2##秒的伤害加成\n最多叠加##$multipro3##次。",
 	"menu_perseverance_beta_desc": "基础: ##$basic##\n你濒死时不会立刻倒地，而是有##$multibasic2##秒额外战斗时间，并受到##$multibasic3##的移速惩罚。\n\n注意：坠落和火焰伤害不触发该技能。 \n\n精通: ##$pro##\n天鹅绝唱的持续时间增加##$multipro##秒。",
 	"menu_nine_lives_beta_desc": "基础: ##$basic##\n你获得额外的##$multibasic2##倒地生命值。\n\n精通: ##$pro##\n你可以在倒地时使用主武器。",
-	"menu_tea_cookies_beta_desc": "基础 ##$basic##\n你可以带##$multibasic##个更多的急救包。\n\n精通: ##$pro##\n你可以带额外的##$multipro##个急救包。\n\n你部署的急救包会自动救援##$multipro2##米内倒地的队友。每##$multipro3##秒最多触发一次。",
+	"menu_tea_cookies_beta_desc": "基础 ##$basic##\n你可以带##$multibasic##个更多的急救包。\n\n精通: ##$pro##\n你可以带额外的##$multipro##个急救包。\n\n你部署的急救包会自动救援##$multipro2##米内倒地的玩家。每##$multipro3##秒最多触发一次。",
 	
 	
 	
@@ -135,7 +135,7 @@
 	"menu_deck1_3_desc": "你和你的队友的耐力增加##$multiperk##。\n\n你的呼喊距离增加##$multiperk2##。",
 	"menu_deck1_9_desc": "每有一名人质，你和你的队友增加##$multiperk##的最大生命值和##$multiperk2##耐力，最多叠加##$multiperk3##次。\n\n注意：多个天赋效果不叠加。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
 	"menu_deck2_7": "陷入狂乱",
-	"menu_deck2_7_desc": "当你的生命值低于##$multiperk##时你在##$multiperk2##秒内会免疫生命值伤害伤害。\n\n每##$multiperk3##秒最多触发一次。",
+	"menu_deck2_7_desc": "当你的生命值低于##$multiperk##时你在##$multiperk2##秒内会免疫生命值伤害。\n\n每##$multiperk3##秒最多触发一次。",
 	"menu_deck3_9_desc": "提高##$multiperk2##你和你队友的护甲恢复速度。\n\n注意：多个天赋效果不叠加。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
 	"menu_deck5_1": "职业枪手",
 	"menu_deck5_1_desc": "在你用主武器击杀##$multiperk##个敌人后自动装填你的副武器，##反之亦然##。",
@@ -166,14 +166,14 @@
 	"menu_deck21_5_desc": "你在反馈期间击杀敌人会恢复##$multiperk##点生命值。",
 	"menu_deck21_7_desc": "你额外获得##$multiperk##的最大生命值。",
 	"menu_deck21_9_desc": "你的队友击杀敌人会恢复##$multiperk##点生命值。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
-	"menu_deck22_1_desc": "解锁水蛭安瓿瓶。\n\n切换到其他天赋会导致其不可用。水蛭安瓿瓶会替代你的投掷物，装备在投掷物栏里，并在需要的时候可以被切换。在游戏中你可以按投掷物键激活安瓿瓶。\n\n激活安瓿瓶会##完全##恢复你的血量并使你的护甲不可用。\n\n当安瓿瓶被激活时，你的生命值以被划分为总生命值的##$multiperk2##格子，敌人的任何伤害会移除一格\n\nKilling ##2## enemies will block damage for ##$multiperk3## seconds。\nAnytime you take damage your teammates are healed for ##$multiperk4## health。\n\nThe Leech Ampule lasts ##$multiperk5## seconds with a ##$multiperk6## seconds cooldown。",
+	"menu_deck22_1_desc": "解锁水蛭安瓿瓶。\n\n切换到其他天赋会导致其不可用。水蛭安瓿瓶会替代你的投掷物，装备在投掷物栏里，并在需要的时候可以被切换。在游戏中你可以按投掷物键激活安瓿瓶。\n\n激活安瓿瓶会##完全##恢复你的血量并使你的护甲不可用。\n\n当安瓿瓶被激活时，你的生命值以被划分为总生命值的##$multiperk2##多个格子，敌人的任何伤害会移除一格。\n\n击杀##2##名敌人将会得到##$multiperk3##秒的无敌。\n你受伤时，队友将会恢复##$multiperk4##血量。\n\n水蛭安瓿瓶持续##$multiperk5##秒，冷却##$multiperk6##秒。",
 	"menu_deck22_9_desc": "当你激活安瓿瓶时，你的生命值以被划分为总生命值的##$multiperk##的多个格子。\n\n你的最大生命值提高##$multiperk2##。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
 	"menu_deckall_2_desc": "无效果，避免复杂的计算",
 	"menu_deckall_6_desc": "解锁护甲箱。可以在结案中改变你的护甲。",
 	
 	"menu_deck1_3_short": "你和你的队友的耐力增加##$multiperk##。你的呼喊距离增加##$multiperk2##。",
 	"menu_deck1_9_short": "每有一名人质，你和你的队友增加##$multiperk##的最大生命值和##$multiperk2##耐力，最多叠加##$multiperk3##次。 注意：多个天赋效果不叠加。",
-	"menu_deck2_7_short": "当你的生命值低于##$multiperk##时你在##$multiperk2##秒内会免疫生命值伤害伤害。每##$multiperk3##秒最多触发一次。",
+	"menu_deck2_7_short": "当你的生命值低于##$multiperk##时你在##$multiperk2##秒内会免疫生命值伤害。每##$multiperk3##秒最多触发一次。",
 	"menu_deck3_9_short": "提高##$multiperk2##你和你队友的护甲恢复速度。注意：多个天赋效果不叠加。",
 	"menu_deck5_1_short": "在你用主武器击杀##$multiperk##个敌人后自动装填你的副武器，##反之亦然##。",
 	"menu_deck5_3_short": "你切枪的速度加快##$multiperk##。",
@@ -207,7 +207,7 @@
 	"bm_global_value_mrwi_unlock": "锁定，其效果被其他天赋所复用！",
 	"hud_int_equipment_drill_upgrade": "按$BTN_INTERACT以升级钻机",
 	
-	"menu_pro_warning": "这是一个专家任务!\n\n友伤被启用。\n多个结案启用了有去无回。\n连续倒地会减少倒计时和被救起之后的生命值。",
+	"menu_pro_warning": "这是一个专家任务!\n\n友伤被启用。\n多个劫案启用了有去无回倒计时。\n连续倒地会减少倒计时和被救起之后的生命值。",
 	"menu_difficulty_easy_wish": "日蚀",
 	"menu_risk_easy_wish": "'日蚀'行动。\n对你来说, 行动才是关键。",
 	"menu_risk_special": "枪林弹雨。\n所有警力正在进场。",
