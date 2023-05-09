@@ -52,20 +52,20 @@ tweak_data.projectiles.arblast_poison_arrow.damage = 25
 tweak_data.projectiles.rocket_ray_frag.damage = 128
 tweak_data.projectiles.rocket_ray_frag.player_damage = 16
 -- rpg
-tweak_data.projectiles.launcher_rocket.damage = 256
+tweak_data.projectiles.launcher_rocket.damage = 24000 -- the extra 0 isn't a typo :trolline:
 tweak_data.projectiles.launcher_rocket.player_damage = 24
 -- piglet
-tweak_data.projectiles.launcher_frag_m32.damage = 50
+tweak_data.projectiles.launcher_frag_m32.damage = 82
 tweak_data.projectiles.launcher_frag_m32.player_damage = 16
 -- china
 tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = {explosion = false, fire = false} -- why is china puff allowed to crit lmao
-tweak_data.projectiles.launcher_frag_china.damage = 50
+tweak_data.projectiles.launcher_frag_china.damage = 82
 tweak_data.projectiles.launcher_frag_china.player_damage = 16
 -- arbiter
-tweak_data.projectiles.launcher_frag_arbiter.damage = 40
-tweak_data.projectiles.launcher_frag_china.player_damage = 16
+tweak_data.projectiles.launcher_frag_arbiter.damage = 70
+tweak_data.projectiles.launcher_frag_arbiter.player_damage = 16
 -- basilisk
-tweak_data.projectiles.launcher_frag_ms3gl.damage = 36
+tweak_data.projectiles.launcher_frag_ms3gl.damage = 56
 tweak_data.projectiles.launcher_frag_ms3gl.player_damage = 16
 -- gl40
 tweak_data.projectiles.launcher_frag.damage = 82

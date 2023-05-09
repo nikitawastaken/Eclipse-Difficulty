@@ -1480,13 +1480,14 @@ self.ray.AMMO_PICKUP = {0.05, 0.05}
 -- RPG
 self.rpg7.use_data.selection_index = SELECTION.PRIMARY
 self.rpg7.categories = {"grenade_launcher", "heavy"}
-self.rpg7.stats.damage = 128
-self.rpg7.stats_modifiers = {damage = 20}
-self.rpg7.stats.reload = 13
-self.rpg7.AMMO_PICKUP = {0.05, 0.05}
+self.rpg7.AMMO_MAX = 3
+self.rpg7.stats.damage = 120
+self.rpg7.stats_modifiers = {damage = 200}
+self.rpg7.fire_mode_data.fire_rate = 5
+self.rpg7.stats.reload = 7
 
 -- Piglet
-self.m32.stats.damage = 50
+self.m32.stats.damage = 82
 self.m32.AMMO_PICKUP = {0.1, 0.1}
 self.m32.AMMO_MAX = 18
 self.m32.stats.reload = 15
@@ -1494,19 +1495,20 @@ self.m32.fire_mode_data.fire_rate = 60 / 120
 
 -- China Puff
 self.china.use_data.selection_index = SELECTION.PRIMARY
-self.china.stats.damage = 50
+self.china.stats.damage = 82
 self.china.stats.concealment = 16
 self.china.AMMO_MAX = 9
 self.china.AMMO_PICKUP = {0.1, 0.1}
 
 -- Arbiter
 self.arbiter.use_data.selection_index = SELECTION.PRIMARY
-self.arbiter.stats.damage = 40
+self.arbiter.stats.damage = 70
 self.arbiter.AMMO_PICKUP = {0.1, 0.1}
 
 -- Basilisk
-self.ms3gl.use_data.selection_index = SELECTION.PRIMARY
-self.ms3gl.stats.damage = 36
+self.ms3gl.fire_mode_data = {fire_rate = 0.33, single = {}, burst_cooldown = 1}
+self.ms3gl.fire_mode_data.toggable = {"burst", "single"}
+self.ms3gl.stats.damage = 56
 self.ms3gl.AMMO_PICKUP = {0.1, 0.1}
 
 -- GL40
