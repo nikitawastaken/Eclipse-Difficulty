@@ -374,7 +374,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.no_heavy_hurt.melee = deep_clone(presets.hurt_severities.no_heavy_hurt.bullet)
 
 	-- Setup surrender presets
-	presets.surrender.weal = {
+	presets.surrender.weak = {
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
@@ -387,7 +387,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		factors = {
 			health = {
 				[1.0] = 0,
-				[0.0] = 1
+				[0.2] = 1
 			},
 			aggressor_dis = {
 				[100] = 0.3,
