@@ -2,7 +2,7 @@
   	"name" : "Eclipse",
 	"description" : "A total PAYDAY overhaul that aims to make the game experience way more challenging and engaging!",
 	"author" : "mrcreepy, Hoppip, Rockymoto, RedFlame and many others...",
-	"contact" : "creepysos#4414",
+	"contact" : "smfr#4414",
 	"image" : "mod.png",
 	"blt_version" : 2,
 	"version" : "5.0dev70",
