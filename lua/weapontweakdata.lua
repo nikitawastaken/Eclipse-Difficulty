@@ -537,7 +537,7 @@ self.victor.categories = {"snp", "ng"}
 
 -- Aran
 self.contender.AMMO_MAX = total_ammo_tables.secondary_sniper
-self.contender.stats.ignore_damage_upgrades = false
+self.contender.ignore_damage_upgrades = false
 self.contender.fire_mode_data.fire_rate = 60 / 70
 self.contender.AMMO_PICKUP = pickup_tables.secondary_sniper
 self.contender.kick = kick_tables.sniper_mid

@@ -51,9 +51,12 @@ tweak_data.projectiles.arblast_poison_arrow.damage = 25
 -- 101
 tweak_data.projectiles.rocket_ray_frag.damage = 128
 tweak_data.projectiles.rocket_ray_frag.player_damage = 16
+tweak_data.projectiles.rocket_ray_frag.range = 700
+
 -- rpg
 tweak_data.projectiles.launcher_rocket.damage = 24000 -- the extra 0 isn't a typo :trolline:
 tweak_data.projectiles.launcher_rocket.player_damage = 24
+tweak_data.projectiles.launcher_rocket.range = 700
 -- piglet
 tweak_data.projectiles.launcher_frag_m32.damage = 82
 tweak_data.projectiles.launcher_frag_m32.player_damage = 16
