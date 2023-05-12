@@ -52,6 +52,7 @@ end
 
 
 -- Fix defend_area objectives being force relocated to areas with players in them
+-- Fix lost follow objectives not refreshing for criminals in idle logic and Jokers in attack logic
 -- Use the old defend_area behavior for the hunt objective for which it makes much more sense
 local _chk_relocate_original = CopLogicIdle._chk_relocate
 function CopLogicIdle._chk_relocate(data, ...)
@@ -101,6 +102,16 @@ function CopLogicIdle._chk_relocate(data, ...)
 		data.logic._exit(data.unit, "travel")
 
 		return true
+	elseif objective_type == "free" or not objective then
+		if data.cool or not data.is_converted and data.team.id ~= "criminal1" or data.path_fail_t and data.t - data.path_fail_t < 5 then
+			return
+		end
+
+		local my_data = data.internal_data
+
+		managers.groupai:state():on_criminal_jobless(data.unit)
+
+		return my_data ~= data.internal_data
 	end
 end
 
@@ -265,25 +276,6 @@ function CopLogicIdle._get_attention_weight(attention_data, att_unit, distance)
 		end
 	end
 	return 1 / weight_mul
-end
-
-
--- Fix follow objectives for mission scripted NPCs not triggering in idle logic
-local queued_update_original = CopLogicIdle.queued_update
-function CopLogicIdle.queued_update(data, ...)
-	local my_data = data.internal_data
-	queued_update_original(data, ...)
-	if data.internal_data ~= my_data then
-		return
-	end
-
-	if data.cool or data.team.id ~= "criminal1" or data.objective and data.objective.type ~= "free" then
-		return
-	end
-
-	if not data.path_fail_t or data.t - data.path_fail_t > 6 then
-		managers.groupai:state():on_criminal_jobless(data.unit)
-	end
 end
 
 
