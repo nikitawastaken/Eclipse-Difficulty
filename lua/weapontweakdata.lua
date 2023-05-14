@@ -1740,7 +1740,6 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.mac11_npc.auto.fire_rate = 0.25
 
 	-- misc guns
-	self.mac11_npc.auto.fire_rate = 0.2
 	self.raging_bull_npc.DAMAGE = 1
 	self.ak47_ass_npc.DAMAGE = 1
 	self.ak47_ass_npc.auto.fire_rate = 0.2
@@ -1755,9 +1754,9 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 
 -- Misc
 	self.m249_npc.usage = "is_lmg"
-	self.flamethrower_npc.flame_max_range = 800 -- wow 15m is retarded lmao
-	self.benelli_npc.sounds.prefix = "benelli_m4_npc" -- Give it a proper sound
-	self.beretta92_npc.has_suppressor = "suppressed_b" -- suppressed
+	self.flamethrower_npc.flame_max_range = 800
+	self.benelli_npc.sounds.prefix = "benelli_m4_npc"
+	self.beretta92_npc.has_suppressor = "suppressed_b"
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail_marshal"
 	-- just copy pasted turret stuff from vanilla ovk145 tweak
 	self.ceiling_turret_module.HEALTH_INIT = 12500
