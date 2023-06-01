@@ -16,19 +16,19 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		0.525
 	}
 
-	-- ictv nerf
-	self.values.player.body_armor.armor[7] = 13
-
 	-- steadiness
 	self.values.player.body_armor.damage_shake = {
-		3,
-		2.5,
-		2.25,
-		2,
-		1.5,
-		1.25,
-		1
+		0.5,
+		0.48,
+		0.46,
+		0.44,
+		0.4,
+		0.4,
+		0.4
 	}
+
+	-- ictv nerf
+	self.values.player.body_armor.armor[7] = 13
 
 	-- bullseye nerf
 	self.on_headshot_dealt_cooldown = 5
@@ -304,8 +304,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.pack_mule.multipro3 = "7"
 
 	-- Thick Skin
-	self.values.player.damage_shake_addend[1] = 0.5
-	self.skill_descs.show_of_force.multibasic = "5"
+	self.values.player.damage_shake_addend[1] = 1
+	self.skill_descs.show_of_force.multibasic = "10"
 
 	-- Shock and Awe
 	self.values.team.armor.regen_time_multiplier[1] = 0.9

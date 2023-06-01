@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<tweaks>
+	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
+		<search>
+			<camera_shakes/>
+			<shake name="player_bullet_damage"/>
+		</search>
+		<target mode="replace">
+			<shake name="player_bullet_damage" spin="sin(t)/70" roll="-sin(t)/50" tilt="cos(t)/70" frequency="10" amplitude="1.0" attack="0" sustain="0" decay="0.3"/>
+		</target>
+	</tweak>
+</tweaks>q

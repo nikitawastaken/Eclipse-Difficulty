@@ -5,6 +5,7 @@
 	<tweak definition="tweak/network.xml"/>
 	<tweak definition="tweak/effect.xml"/>
 	<tweak definition="tweak/units.xml"/>
+	<tweak definition="tweak/tweak.xml"/>
 
 	<hooks script_path="mod.lua">
 
@@ -84,6 +85,7 @@
 				<group :hook_id="beings/player/">
 					<post :hook_id="playerdamage"/>
 					<post :hook_id="huskplayerdamage"/>
+					<post :hook_id="playercamera"/>
 					<post :hook_id="playermovement"/>
 					<post :hook_id="states/playerstandard"/>
 					<post :hook_id="states/playertased"/>
