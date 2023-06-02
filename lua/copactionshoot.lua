@@ -1,7 +1,4 @@
-local math_clamp = math.clamp
 local math_lerp = math.lerp
-local math_max = math.max
-local math_min = math.min
 local math_random = math.random
 local mrot_axis_angle = mrotation.set_axis_angle
 local mvec3_add = mvector3.add
@@ -60,8 +57,7 @@ function CopActionShoot:allow_fire_clbk(state)
 		-- Apply aim delay if we haven't shot for more than 2 seconds
 		if no_fire_duration > 2 then
 			local aim_delay_minmax = self._w_usage_tweak.aim_delay
-			local lerp_dis = math_min(1, target_dis / self._falloff[#self._falloff].r)
-			local aim_delay = math_lerp(aim_delay_minmax[1], aim_delay_minmax[2], lerp_dis)
+			local aim_delay = math.map_range_clamped(target_dis, 0, self._falloff[#self._falloff].r, aim_delay_minmax[1], aim_delay_minmax[2])
 			if self._common_data.is_suppressed then
 				aim_delay = aim_delay * 1.5
 			end
@@ -114,83 +110,84 @@ function CopActionShoot:update(t)
 		target_vec = self:_upd_ik(target_vec, fwd_dot, t)
 	end
 
-	if self._shield_use_cooldown and target_vec and self._common_data.allow_fire and self._shield_use_cooldown < t and target_dis < self._shield_use_range then
-		local new_cooldown = self._shield_base:request_use(t)
-		if new_cooldown then
-			self._shield_use_cooldown = new_cooldown
-		end
-	end
-
-	if not ext_anim.reload and not ext_anim.equip and not ext_anim.melee then
-		if self._weapon_base:clip_empty() then
-			self:_stop_firing()
-			CopActionReload._play_reload(self)
-		elseif self._autofiring then
-			if not target_vec or not self._common_data.allow_fire then
-				self:_stop_firing()
-			else
-				local falloff, i_range = self:_get_shoot_falloff(target_dis, self._falloff)
-				local dmg_buff = self._unit:base():get_total_buff("base_damage")
-				local dmg_mul = (1 + dmg_buff) * falloff.dmg_mul
-
-				target_pos = self:_get_unit_shoot_pos(t, target_pos, target_dis, self._w_usage_tweak, falloff, i_range, self._shooting_player) or target_pos
-				mvec3_dir(target_vec, shoot_from_pos, target_pos)
-
-				-- Pick and run the right shooting function
-				local fire_func = self._is_single_shot and self._weapon_base.singleshot or self._weapon_base.trigger_held
-				local fired = fire_func(self._weapon_base, shoot_from_pos, target_vec, dmg_mul, self._shooting_player, nil, nil, nil, self._attention.unit)
-
-				if fired then
-					self._autofiring = self._autofiring and self._autofiring - 1 or 0
-					if self._autofiring <= 0 then
-						self:_stop_firing()
-						self._shoot_t = t + (self._common_data.is_suppressed and 1.5 or 1) * math_lerp(falloff.recoil[1], falloff.recoil[2], self:_pseudorandom())
-					end
-
-					if vis_state == 1 and not ext_anim.base_no_recoil then
-						self._ext_movement:play_redirect("recoil_single")
-					end
-
-					if fired.hit_enemy and fired.hit_enemy.type == "death" and self._unit:unit_data().mission_element then
-						self._unit:unit_data().mission_element:event("killshot", self._unit)
-					end
-				end
-			end
-		elseif target_vec and self._common_data.allow_fire and self._shoot_t < t and self._mod_enable_t < t then
-			local shoot = true
-			if self._common_data.char_tweak.no_move_and_shoot and ext_anim.move then
-				shoot = false
-				self._shoot_t = math_max(self._shoot_t, t + (self._common_data.char_tweak.move_and_shoot_cooldown or 1))
-			end
-
-			if shoot and Network:is_server() and alive(self._ext_inventory._shield_unit) and target_dis < 1100 and self._ext_inventory._shield_unit:base() and self._ext_inventory._shield_unit:base().request_start_flash and self._ext_inventory._shield_unit:base():can_request_flash(t) then
-				self._ext_inventory._shield_unit:base():request_start_flash()
-			end
-
-			if shoot and not self:_chk_start_melee(t, target_dis) then
-				local number_of_rounds = 1
-				local falloff = self:_get_shoot_falloff(target_dis, self._falloff)
-				local autofire_rounds = falloff.autofire_rounds or self._w_usage_tweak.autofire_rounds
-				if self._automatic_weap then
-					if falloff.autofire_rounds then
-						number_of_rounds = self:_pseudorandom(autofire_rounds[1], autofire_rounds[2])
-					elseif self._w_usage_tweak.autofire_rounds then
-						local f = math_clamp((target_dis - self._falloff[1].r) / (self._falloff[#self._falloff].r - self._falloff[1].r) - 0.15 + self:_pseudorandom() * 0.3, 0, 1)
-						number_of_rounds = math.ceil(math_lerp(autofire_rounds[2], autofire_rounds[1], f))
-					end
-				end
-
-				self._is_single_shot = number_of_rounds == 1
-				self._autofiring = number_of_rounds
-				if number_of_rounds > 1 then
-					self._weapon_base:start_autofire(number_of_rounds < 4 and number_of_rounds)
-				end
-			end
-		end
-	end
-
 	if self._ext_anim.base_need_upd then
 		self._ext_movement:upd_m_head_pos()
+	end
+
+	if ext_anim.reload or ext_anim.equip or ext_anim.melee then
+		return
+	end
+
+	if target_vec and self._common_data.allow_fire and self._shield_use_cooldown and self._shield_use_cooldown < t and target_dis < self._shield_use_range then
+		self._shield_use_cooldown = self._shield_base:request_use(t) or self._shield_use_cooldown
+	end
+
+	if self._weapon_base:clip_empty() then
+		-- Reload
+		self:_stop_firing()
+		CopActionReload._play_reload(self)
+	elseif not target_vec or not self._common_data.allow_fire then
+		-- Stop shooting
+		if self._autofiring then
+			self:_stop_firing()
+		end
+	elseif self._autofiring then
+		-- Update shooting
+		local falloff, i_range = self:_get_shoot_falloff(target_dis, self._falloff)
+		local dmg_buff = self._unit:base():get_total_buff("base_damage")
+		local dmg_mul = (1 + dmg_buff) * falloff.dmg_mul
+
+		target_pos = self:_get_unit_shoot_pos(t, target_pos, target_dis, self._w_usage_tweak, falloff, i_range, self._shooting_player) or target_pos
+		mvec3_dir(target_vec, shoot_from_pos, target_pos)
+
+		-- Pick and run the right shooting function
+		local fire_func = self._is_single_shot and self._weapon_base.singleshot or self._weapon_base.trigger_held
+		local fired = fire_func(self._weapon_base, shoot_from_pos, target_vec, dmg_mul, self._shooting_player, nil, nil, nil, self._attention.unit)
+		if not fired then
+			return
+		end
+
+		self._autofiring = self._autofiring and self._autofiring - 1 or 0
+		if self._autofiring <= 0 then
+			self:_stop_firing()
+			self._shoot_t = t + (self._common_data.is_suppressed and 1.5 or 1) * math_lerp(falloff.recoil[1], falloff.recoil[2], self:_pseudorandom())
+		end
+
+		if vis_state == 1 and not ext_anim.base_no_recoil then
+			self._ext_movement:play_redirect("recoil_single")
+		end
+
+		if fired.hit_enemy and fired.hit_enemy.type == "death" and self._unit:unit_data().mission_element then
+			self._unit:unit_data().mission_element:event("killshot", self._unit)
+		end
+	elseif self._shoot_t < t and self._mod_enable_t < t then
+		-- Start shooting
+		if self._common_data.char_tweak.no_move_and_shoot and ext_anim.move then
+			self._shoot_t = math.max(self._shoot_t, t + (self._common_data.char_tweak.move_and_shoot_cooldown or 1))
+			return
+		end
+
+		if self:_chk_start_melee(t, target_dis) then
+			return
+		end
+
+		local num_rounds = 1
+		if self._automatic_weap then
+			local falloff = self:_get_shoot_falloff(target_dis, self._falloff)
+			if falloff.autofire_rounds then
+				num_rounds = self:_pseudorandom(falloff.autofire_rounds[1], falloff.autofire_rounds[2])
+			elseif self._w_usage_tweak.autofire_rounds then
+				local f = math.map_range(target_dis, self._falloff[1].r, self._falloff[#self._falloff].r, 0, 1)
+				local autofire_rounds = self._w_usage_tweak.autofire_rounds
+				num_rounds = math.ceil(math.map_range_clamped(f - 0.15 + self:_pseudorandom() * 0.3, 0, 1, autofire_rounds[2], autofire_rounds[1]))
+			end
+		end
+
+		self._is_single_shot = num_rounds == 1
+		self._autofiring = num_rounds
+		if num_rounds > 1 then
+			self._weapon_base:start_autofire(num_rounds < 4 and num_rounds)
+		end
 	end
 end
 
@@ -300,13 +297,12 @@ function CopActionShoot:_chk_start_melee(t, target_dis)
 	end
 
 	local melee_weapon = self._unit:base():melee_weapon()
-	local is_weapon = melee_weapon == "weapon"
-	local state = self._ext_movement:play_redirect(is_weapon and "melee" or "melee_item")
+	local state = self._ext_movement:play_redirect(melee_weapon == "weapon" and "melee" or melee_weapon == "bash" and "melee_bayonet" or "melee_item")
 	if not state then
 		return
 	end
 
-	if not is_weapon then
+	if melee_weapon ~= "weapon" and melee_weapon ~= "bash" then
 		local anim_attack_vars = self._common_data.char_tweak.melee_anims or { "var1", "var2" }
 		local melee_var = self:_pseudorandom(#anim_attack_vars)
 		self._common_data.machine:set_parameter(state, anim_attack_vars[melee_var], 1)

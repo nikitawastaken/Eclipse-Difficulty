@@ -150,23 +150,9 @@ Hooks:PreHook(GroupAIStateBase, "on_criminal_nav_seg_change", "sh_on_criminal_na
 end)
 
 
--- Register Winters and minions as soon as they spawn, not just after they reach their objective or take damage
--- This fixes instances of Winters not leaving the map because the phalanx is broken up before he is registered
-Hooks:PostHook(GroupAIStateBase, "on_enemy_registered", "sh_on_enemy_registered", function (self, unit)
-	if self._phalanx_spawn_group and not self._phalanx_spawn_group.has_spawned then
-		local logics = unit:brain()._logics
-		if logics == CopBrain._logic_variants.phalanx_minion then
-			self:register_phalanx_minion(unit)
-		elseif logics == CopBrain._logic_variants.phalanx_vip then
-			self:register_phalanx_vip(unit)
-		end
-	end
-end)
-
-
 -- Delay spawn points when enemies die close to them
 Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregistered", function (self, unit)
-	if not Network:is_server() or not unit:character_damage():dead() then
+	if Network:is_client() or not unit:character_damage():dead() then
 		return
 	end
 
@@ -180,11 +166,9 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 		return
 	end
 
-	local u_pos = e_data.m_pos
-	local spawn_pos = spawn_point:value("position")
-	local dist_sq = mvector3.distance_sq(spawn_pos, u_pos)
-	local max_dist_sq = 1000000
-	if dist_sq > max_dist_sq then
+	local max_dis = 1000
+	local dis = mvector3.distance(spawn_point:value("position"), e_data.m_pos)
+	if dis > max_dis then
 		return
 	end
 
@@ -194,7 +178,7 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 				if group.spawn_pts then
 					for _, point in pairs(group.spawn_pts) do
 						if point.mission_element == spawn_point then
-							local delay_t = self._t + math.lerp(8, 0, dist_sq / max_dist_sq)
+							local delay_t = self._t + math.lerp(tweak_data.group_ai.spawn_kill_cooldown, 0, dis / max_dis)
 							group.delay_t = math.max(group.delay_t, delay_t)
 							return
 						end

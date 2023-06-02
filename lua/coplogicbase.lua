@@ -1,4 +1,3 @@
-local math_random = math.random
 local mrot_y = mrotation.y
 local mvec3_add = mvector3.add
 local mvec3_dir = mvector3.direction
@@ -80,7 +79,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	data.dodge_chk_timeout_t = TimerManager:game():time() + 0.5
 
 	local dodge_tweak = data.char_tweak.dodge.occasions[reason]
-	if dodge_tweak.chance == 0 or dodge_tweak.chance < math_random() then
+	if dodge_tweak.chance == 0 or dodge_tweak.chance < math.random() then
 		return
 	end
 
@@ -97,7 +96,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 
 	local dodge_dir = mvector3.copy(enemy_dir)
 	mvector3.cross(dodge_dir, enemy_dir, math.UP)
-	if math_random() < 0.5 then
+	if math.random() < 0.5 then
 		mvec3_neg(dodge_dir)
 	end
 
@@ -144,7 +143,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	end
 
 	-- Give enemies a chance to dodge backwards if dodging to the side is not possible or if dodging backwards has more space
-	if available_space < min_space or data.attention_obj and math_random() < math.max(0, 1 - data.attention_obj.dis / 500) then
+	if available_space < min_space or data.attention_obj and math.random() < math.max(0, 1 - data.attention_obj.dis / 500) then
 		mvec3_set(ray_params.pos_to, enemy_dir)
 		mvec3_mul(ray_params.pos_to, -prefered_space)
 		mvec3_add(ray_params.pos_to, data.m_pos)
@@ -174,7 +173,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	local fwd_dot = mvec3_dot(dodge_dir, data.unit:movement():m_fwd())
 	local dodge_side =  math.abs(fwd_dot) > 0.6 and (fwd_dot > 0 and "fwd" or "bwd") or right_dot > 0 and "r" or "l"
 
-	local rand_nr = math_random()
+	local rand_nr = math.random()
 	local total_chance = 0
 	local variation, variation_data
 	for test_variation, test_variation_data in pairs(dodge_tweak.variations) do
@@ -189,7 +188,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 
 	local body_part = 1
 	local shoot_chance = variation_data.shoot_chance
-	if shoot_chance and shoot_chance > 0 and math_random() < shoot_chance then
+	if shoot_chance and shoot_chance > 0 and math.random() < shoot_chance then
 		body_part = 2
 	end
 
@@ -276,6 +275,14 @@ function CopLogicBase.chk_am_i_aimed_at(data, attention_obj, max_dot)
 	mvec3_dir(tmp_vec2, attention_obj.m_head_pos, data.unit:movement():m_com())
 
 	return max_dot < mvec3_dot(tmp_vec2, tmp_vec1)
+end
+
+
+-- Reduce maximum update delay
+local _upd_attention_obj_detection_original = CopLogicBase._upd_attention_obj_detection
+function CopLogicBase._upd_attention_obj_detection(...)
+	local delay = _upd_attention_obj_detection_original(...)
+	return math.min(1, delay)
 end
 
 

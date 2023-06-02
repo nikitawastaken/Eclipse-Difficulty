@@ -3,6 +3,7 @@ local REACT_AIM = AIAttentionObject.REACT_AIM
 local REACT_ARREST = AIAttentionObject.REACT_ARREST
 local REACT_COMBAT = AIAttentionObject.REACT_COMBAT
 
+
 -- Make cops react more aggressively when appropriate (less stare, more shoot)
 local _chk_reaction_to_attention_object_original = CopLogicIdle._chk_reaction_to_attention_object
 function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ...)
@@ -184,6 +185,11 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 						target_priority_slot = target_priority_slot - 1
 					end
 
+					-- Focus on kingpin injector user
+					if weight_mul < 0.01 then
+						target_priority_slot = target_priority_slot - 1
+					end
+
 					-- If we have murder tactic and criminal is downed or tased, focus on them
 					if murder and reaction ~= AIAttentionObject.REACT_SPECIAL_ATTACK and (status == "electrified" or status == "disabled") then
 						target_priority_slot = target_priority_slot - 1
@@ -292,21 +298,23 @@ function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
 	local too_many_hostages = not managers.groupai:state():has_room_for_police_hostage()
 	if not data.char_tweak.surrender or surrender_window_expired or too_many_hostages then
 		local peer = managers.network:session():peer_by_unit(aggressor_unit)
-		if peer then
-			if not data._skip_surrender_hints then
-				data._skip_surrender_hints = surrender_window_expired and 0 or 1
-			end
+		if not peer then
+			return
+		end
 
-			if data._skip_surrender_hints <= 0 then
-				if peer:id() == managers.network:session():local_peer():id() then
-					managers.hint:show_hint("convert_enemy_failed")
-				else
-					managers.network:session():send_to_peer(peer, "sync_show_hint", "convert_enemy_failed")
-				end
-				data._skip_surrender_hints = 3
+		if not data._skip_surrender_hints then
+			data._skip_surrender_hints = surrender_window_expired and 0 or 1
+		end
+
+		if data._skip_surrender_hints <= 0 then
+			if peer:id() == managers.network:session():local_peer():id() then
+				managers.hint:show_hint("convert_enemy_failed")
 			else
-				data._skip_surrender_hints = data._skip_surrender_hints - 1
+				managers.network:session():send_to_peer(peer, "sync_show_hint", "convert_enemy_failed")
 			end
+			data._skip_surrender_hints = 3
+		else
+			data._skip_surrender_hints = data._skip_surrender_hints - 1
 		end
 	end
 end

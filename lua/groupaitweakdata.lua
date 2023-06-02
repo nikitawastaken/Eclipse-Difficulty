@@ -1259,6 +1259,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.force_balance_mul = {1.5, 1.5, 1.75, 2}
 
 		-- Spawnrate
+		self.spawn_kill_cooldown = 8
 		self.besiege.assault.spawnrate = {1.6, 1.4, 1.2}
 		self.besiege.assault.spawnrate_balance_mul = {2.2, 1.6, 1.45, 1.35}
 
@@ -1273,11 +1274,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
     	self.besiege.recon.force = {2, 4, 6}
 
 		-- GRENADES --
+		-- global
+		self.min_grenade_timeout = 20 / f
+		self.no_grenade_push_delay = 8
+
 		-- flash
 		self.flash_grenade.light_color = Vector3(255, 255, 255)
 		self.flash_grenade.light_range = 500
 		self.flash_grenade_timeout = {30 / f, 40 / f}
 		self.flash_grenade.timer = 2 / f
+
 		-- smoke & gas
 		self.smoke_grenade_timeout = {40 / f, 50 / f}
 		self.smoke_grenade_lifetime = 10 * f

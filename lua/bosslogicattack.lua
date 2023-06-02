@@ -1,4 +1,3 @@
-local math_abs = math.abs
 local mrot_set_axis_angle = mrotation.set_axis_angle
 local mvec_add = mvector3.add
 local mvec_copy = mvector3.copy
@@ -232,7 +231,7 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 		if my_data.chase_path then
 			BossLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, enemy_visible and focus_enemy.dis < weapon_range.optimal and "walk" or "run")
 		elseif not my_data.chase_path_search_id and focus_enemy.nav_tracker then
-			local height_diff = math_abs(data.m_pos.z - focus_enemy.m_pos.z)
+			local height_diff = math.abs(data.m_pos.z - focus_enemy.m_pos.z)
 			local chase = height_diff < 300 or focus_enemy.dis > weapon_range.optimal or my_data.attitude == "engage" and focus_enemy.dis > weapon_range.close
 			if not chase and not enemy_visible then
 				chase = not focus_enemy.verified_t or t - focus_enemy.verified_t > 2
@@ -252,7 +251,7 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 				my_data.chase_pos = chase_pos
 
 				local my_pos = data.unit:movement():nav_tracker():field_position()
-				if math_abs(my_pos.z - my_data.chase_pos.z) < 50 then
+				if math.abs(my_pos.z - my_data.chase_pos.z) < 50 then
 					local ray_params = {
 						allow_entry = false,
 						pos_from = my_pos,

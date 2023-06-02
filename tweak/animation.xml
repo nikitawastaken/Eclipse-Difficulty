@@ -126,7 +126,7 @@
 			<state name="upper_body/empty"/>
 		</search>
 		<target mode="attach">
-			<from name="upper_body/equip" blend="30"/>
+			<from name="upper_body/equip" blend="10"/>
 		</target>
 	</tweak>
 

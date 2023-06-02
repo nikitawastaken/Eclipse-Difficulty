@@ -32,3 +32,11 @@ function NewNPCRaycastWeaponBase:_update_stats_values(...)
 	self._bullet_slotmask = bullet_slotmask
 	self._blank_slotmask = blank_slotmask
 end
+
+
+-- Disable player skills affecting NPC weapons
+function NewNPCRaycastWeaponBase:get_add_head_shot_mul()
+end
+
+function NewNPCRaycastWeaponBase:is_stagger()
+end

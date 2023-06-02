@@ -1,6 +1,7 @@
-if not Network:is_server() then
+if Network:is_client() then
 	return
 end
+
 
 -- Tweak bag stealing conditions
 function CarryData:clbk_pickup_SO_verification(unit)

@@ -204,6 +204,7 @@
 			<file :name="e_framing_frame/stage_1/nav_manager_data.nav_data"/>
 			<file :name="e_framing_frame/stage_3/nav_manager_data.nav_data"/>
 			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
+			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
 
 	</assets>

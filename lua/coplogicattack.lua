@@ -1,3 +1,6 @@
+local tmp_vec = Vector3()
+
+
 -- Reuse function of idle logic to make enemies in an area aware of a player entering the area
 CopLogicAttack.on_area_safety = CopLogicIdle.on_area_safety
 
@@ -56,33 +59,35 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 
 	local advancing = my_data.advancing and not my_data.advancing:stopping()
 	local running = data.unit:anim_data().run or advancing and my_data.advancing._cur_vel and my_data.advancing._cur_vel > 300
-	local time_since_verification = focus_enemy.verified_t and data.t - focus_enemy.verified_t or math.huge
-	local weapon_range = data.internal_data.weapon_range or { close = 1000, far = 4000 }
+	local verified_dt = focus_enemy.verified_t and data.t - focus_enemy.verified_t or math.huge
+	local weapon_range = data.internal_data.weapon_range or { close = 750, optimal = 1500, far = 3000 }
 	local firing_range = running and weapon_range.close or weapon_range.far
+	local enemy_dis = focus_enemy.verified_dis
 
-	local aim = not advancing or time_since_verification < math.lerp(4, 1, focus_enemy.verified_dis / firing_range) or focus_enemy.verified_dis < 800 or data.char_tweak.always_face_enemy
-	local shoot = aim and my_data.shooting and AIAttentionObject.REACT_SHOOT <= focus_enemy.reaction and time_since_verification < (running and 2 or 4)
-	local expected_pos = not shoot and focus_enemy.verified_dis < weapon_range.close and focus_enemy.m_head_pos or focus_enemy.last_verified_pos or focus_enemy.verified_pos
+	local aim = not advancing or verified_dt < math.lerp(6, 3, enemy_dis / firing_range) or enemy_dis < 800 or data.char_tweak.always_face_enemy
+	local shoot = aim and my_data.shooting and AIAttentionObject.REACT_SHOOT <= focus_enemy.reaction and verified_dt < (running and 2 or 4)
 
 	if verified or nearly_visible then
 		if not shoot and AIAttentionObject.REACT_SHOOT <= focus_enemy.reaction then
-			local last_sup_t = data.unit:character_damage():last_suppression_t()
+			local suppression_t = data.unit:character_damage():last_suppression_t()
+			local suppression_dt = suppression_t and data.t - suppression_t
+			local assault_dt = focus_enemy.criminal_record and focus_enemy.criminal_record.assault_t and data.t - focus_enemy.criminal_record.assault_t
 
-			if last_sup_t and data.t - last_sup_t < 7 * (running and 0.5 or 1) * (verified and 1 or 0.5) then
+			if suppression_dt and suppression_dt < 7 * (running and 0.5 or 1) * (verified and 1 or 0.5) then
 				shoot = true
-			elseif verified and focus_enemy.verified_dis < firing_range then
+			elseif verified and enemy_dis < firing_range then
 				shoot = true
-			elseif verified and focus_enemy.criminal_record and focus_enemy.criminal_record.assault_t and data.t - focus_enemy.criminal_record.assault_t < (running and 2 or 4) then
+			elseif verified and assault_dt and assault_dt < (running and 2 or 4) then
 				shoot = true
-			elseif my_data.attitude == "engage" and my_data.firing and time_since_verification < 4 then
+			elseif my_data.attitude == "engage" and my_data.firing and verified_dt < 4 then
 				shoot = true
 			end
 		end
 
-		aim = aim or shoot or focus_enemy.verified_dis < firing_range
+		aim = aim or shoot or enemy_dis < firing_range
 	end
 
-	return aim, shoot, expected_pos
+	return aim, shoot, not shoot and enemy_dis < 800 and focus_enemy.m_head_pos or focus_enemy.last_verified_pos or focus_enemy.verified_pos
 end
 
 
