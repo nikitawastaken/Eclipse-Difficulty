@@ -37,8 +37,10 @@
 				<group :hook_id="menu/">
 					<post :hook_id="crimenetcontractgui"/>
 					<post :hook_id="ingamecontractgui"/>
+					<post :hook_id="blackmarketgui"/>
+					<post :hook_id="playerinventorygui"/>
 				</group>
-
+				
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="enemymanager"/>
 				<post :hook_id="hudmanager"/>
@@ -62,6 +64,7 @@
 
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
+				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
 				<post :hook_id="guitweakdata"/>
 				<post :hook_id="groupaitweakdata"/>
