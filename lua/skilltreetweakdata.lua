@@ -511,7 +511,6 @@ function SkillTreeTweakData:init(tweak_data)
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
 	table.insert(self.specializations[21][7].upgrades, "player_passive_health_multiplier_2")
-	table.delete(self.specializations[21][5].upgrades, "player_passive_dodge_chance_1")
 	table.delete(self.specializations[21][7].upgrades, "player_pocket_ecm_kill_dodge_1")
 	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
 

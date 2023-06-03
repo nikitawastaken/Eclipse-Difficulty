@@ -142,6 +142,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	return health_subtracted
 end
 
+
 -- make healing fixed instead of % of max health
 function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
@@ -154,6 +155,7 @@ function PlayerDamage:restore_health(health_restored, is_static, chk_health_rati
 		return self:change_health(health_restored * self._healing_reduction)
 	end
 end
+
 
 -- lower the on-kill godmode length for leech
 function PlayerDamage:on_copr_killshot()

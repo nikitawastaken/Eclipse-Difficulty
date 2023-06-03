@@ -27,13 +27,24 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		0.4
 	}
 
+	-- dodge
+	self.values.player.body_armor.dodge = {
+		0.1,
+		0.05,
+		0,
+		-0.05,
+		-0.2,
+		-0.25,
+		-0.55
+	}
+
 	-- ictv nerf
 	self.values.player.body_armor.armor[7] = 13
 
 	-- bullseye nerf
 	self.on_headshot_dealt_cooldown = 5
 
-	-- make sna less cancer without shotguns
+	-- make sna less cancer
 	self.values.player.shield_knock_bullet.chance = 0.7
 end
 
@@ -704,8 +715,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[3][5].multiperk = "5%"
 
 	-- Rogue (and other dodge decks)
-	self.values.player.passive_dodge_chance = {0.05, 0.2, 0.3}
+	self.values.player.passive_dodge_chance = {0.05, 0.15, 0.25}
 	self.specialization_descs[4][1].multiperk = "5%"
+	self.specialization_descs[4][5].multiperk = "10%"
 	self.specialization_descs[4][7].multiperk = "10%"
 	self.specialization_descs[6][1].multiperk = "5%"
 	self.specialization_descs[13][5].multiperk3 = "5%"
@@ -831,8 +843,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[17][9].multiperk3 = "1"
 
 	-- Sicario
-	self.values.player.dodge_shot_gain = {{0.05, 1}}
-	self.specialization_descs[18][3].multiperk = "5%"
+	self.values.player.dodge_shot_gain = {{0.1, 1}}
+	self.specialization_descs[18][3].multiperk = "10%"
 	self.specialization_descs[18][3].multiperk2 = "1"
 
 	-- Stoic
@@ -848,11 +860,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[20][5].multiperk2 = "6"
 
 	-- Hacker
-	self.values.temporary.pocket_ecm_kill_dodge[1] = {0.10, 20, 3}
 	self.specialization_descs[21][3].multiperk = "10%"
+	self.specialization_descs[21][5].multiperk = "5%"
 	self.specialization_descs[21][7].multiperk = "10%"
 
 	-- Leech
+	self.values.player.copr_kill_life_leech[2] = 1
 	self.copr_ability_cooldown = 60
 	self.values.temporary.copr_ability[1][2] = 4
 	self.values.temporary.copr_ability[2][2] = 8
