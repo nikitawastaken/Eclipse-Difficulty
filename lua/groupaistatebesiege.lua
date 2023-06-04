@@ -3,6 +3,7 @@ local mvec_cpy = mvector3.copy
 local mvec_dir = mvector3.direction
 local mvec_dis = mvector3.distance
 local mvec_dis_sq = mvector3.distance_sq
+local mvec_lerp = mvector3.lerp
 local mvec_mul = mvector3.multiply
 local mvec_set = mvector3.set
 local tmp_vec1 = Vector3()
