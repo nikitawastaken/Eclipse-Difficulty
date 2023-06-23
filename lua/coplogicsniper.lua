@@ -6,46 +6,35 @@ function CopLogicSniper._upd_aim(data, my_data)
 	local shoot = focus_enemy and focus_enemy.verified and focus_enemy.reaction >= AIAttentionObject.REACT_SHOOT
 	local anim_data = data.unit:anim_data()
 
-	local action_taken = my_data.advancing or my_data.turning or data.unit:movement():chk_action_forbidden("walk")
-	if not action_taken then
+	if not my_data.advancing and not my_data.turning and not data.unit:movement():chk_action_forbidden("walk") then
+		local can_crouch = anim_data.stand and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.crouch)
+		local can_stand = anim_data.crouch and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.stand)
 
-		if anim_data.reload and not anim_data.crouch and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.crouch) then
-			action_taken = CopLogicAttack._chk_request_action_crouch(data)
-		end
-
-		if not action_taken then
-			if my_data.attitude == "engage" and not data.is_suppressed then
-				if focus_enemy then
-					if not focus_enemy.verified and not anim_data.reload then
-						if anim_data.crouch then
-							if (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.stand) and not CopLogicSniper._chk_stand_visibility(data.m_pos, focus_enemy.m_head_pos, data.visibility_slotmask) then
-								CopLogicAttack._chk_request_action_stand(data)
-							end
-						elseif (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.crouch) and not CopLogicSniper._chk_crouch_visibility(data.m_pos, focus_enemy.m_head_pos, data.visibility_slotmask) then
-							CopLogicAttack._chk_request_action_crouch(data)
-						end
+		if anim_data.reload or data.is_suppressed then
+			if can_crouch then
+				CopLogicAttack._chk_request_action_crouch(data)
+			end
+		elseif focus_enemy then
+			if focus_enemy.verified then
+				if my_data.attitude == "engage" or my_data.wanted_pose == "stand" then
+					if can_stand and not CopLogicSniper._chk_stand_visibility(data.m_pos, focus_enemy.m_head_pos, data.visibility_slotmask) then
+						CopLogicAttack._chk_request_action_stand(data)
 					end
-				elseif my_data.wanted_pose and not anim_data.reload then
-					if my_data.wanted_pose == "crouch" then
-						if not anim_data.crouch and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.crouch) then
-							action_taken = CopLogicAttack._chk_request_action_crouch(data)
-						end
-					elseif not anim_data.stand and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.stand) then
-						action_taken = CopLogicAttack._chk_request_action_stand(data)
-					end
-				end
-			elseif focus_enemy then
-				if focus_enemy.verified and anim_data.stand and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.crouch) and CopLogicSniper._chk_crouch_visibility(data.m_pos, focus_enemy.m_head_pos, data.visibility_slotmask) then
+				elseif can_crouch and not CopLogicSniper._chk_crouch_visibility(data.m_pos, focus_enemy.m_head_pos, data.visibility_slotmask) then
 					CopLogicAttack._chk_request_action_crouch(data)
 				end
-			elseif my_data.wanted_pose and not anim_data.reload then
-				if my_data.wanted_pose == "crouch" then
-					if not anim_data.crouch and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.crouch) then
-						action_taken = CopLogicAttack._chk_request_action_crouch(data)
-					end
-				elseif not anim_data.stand and (not data.char_tweak.allowed_poses or data.char_tweak.allowed_poses.stand) then
-					action_taken = CopLogicAttack._chk_request_action_stand(data)
-				end
+			elseif can_stand and not CopLogicSniper._chk_stand_visibility(data.m_pos, focus_enemy.m_head_pos, data.visibility_slotmask) then
+				CopLogicAttack._chk_request_action_stand(data)
+			elseif can_crouch and not CopLogicSniper._chk_crouch_visibility(data.m_pos, focus_enemy.m_head_pos, data.visibility_slotmask) then
+				CopLogicAttack._chk_request_action_crouch(data)
+			end
+		elseif my_data.wanted_pose == "stand" then
+			if can_stand then
+				CopLogicAttack._chk_request_action_stand(data)
+			end
+		elseif my_data.wanted_pose == "crouch" then
+			if can_crouch then
+				CopLogicAttack._chk_request_action_crouch(data)
 			end
 		end
 	end

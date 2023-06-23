@@ -58,8 +58,8 @@
 			</group>
 
 			<group :hook_id="network/">
+				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
-				<post :hook_id="matchmaking/networkmatchmakingsteam"/>
 			</group>
 
 			<group :hook_id="tweak_data/">
