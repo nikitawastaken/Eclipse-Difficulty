@@ -222,7 +222,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.jail_workout[2].upgrades = {"player_concealment_bonus_1"}
 
 	-- ECM Specialist
-	self.skills.ecm_2x[2].upgrades = {"ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset"}
+	self.skills.ecm_2x[2].upgrades = {"ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2"}
 
 	-- Blackout
 	self.skills.chameleon[1].upgrades = {"player_tape_loop_duration_1", "player_tape_loop_duration_2"}
@@ -482,7 +482,6 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
 	table.insert(self.specializations[10][3].upgrades, "player_pick_up_ammo_multiplier")
-	table.insert(self.specializations[10][3].upgrades, "player_pick_up_ammo_multiplier_2")
 	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
 	-- yakuza
@@ -519,9 +518,18 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[22][9].upgrades, "player_passive_health_multiplier_4")
 
 
+	-- wild cards
+	for _, perkdeck in pairs(self.specializations) do
+		perkdeck[2].upgrades = {"player_regain_throwable_from_ammo_1"}
+		perkdeck[2].icon_xy = {0, 8}
+		perkdeck[4].upgrades = {"player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset"}
+		perkdeck[6].upgrades = {"armor_kit", "player_passive_armor_movement_penalty_multiplier"}
+    end
+
+
 	-- Buncha default upgrade fuckery
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
-	table.insert(self.default_upgrades, "player_regain_throwable_from_ammo_1")
+	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")

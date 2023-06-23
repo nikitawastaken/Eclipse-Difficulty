@@ -691,10 +691,6 @@ function UpgradesTweakData:init(tweak_data)
 	-- Perk Decks
 	-------------
 
-	-- fuck helmet popping and walk in closet
-	self.values.weapon.passive_headshot_damage_multiplier[1] = 1
-	self.values.player.pick_up_ammo_multiplier[1] = 1
-
 	-- Crew Chief
 	self.values.team.health.hostage_multiplier = {1.04}
 	self.specialization_descs[1][9].multiperk = "4%"
@@ -756,7 +752,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[8][9].multiperk = "40"
 
 	-- Gambler
-	self.values.player.pick_up_ammo_multiplier[2] = 1.15
+	self.values.player.pick_up_ammo_multiplier[1] = 1.15
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do v[2] = 10 end
 	self.values.temporary.loose_ammo_give_team[1][2] = 5
 	self.values.player.increased_pickup_area[2] = 2.25
@@ -884,7 +880,8 @@ function UpgradesTweakData:init(tweak_data)
 
 
 
-	-- thowable pickups
-	self.values.player.regain_throwable_from_ammo[1].chance = -47
-	self.values.player.regain_throwable_from_ammo[1].chance_inc = 1
+	-- misc
+	self.values.player.passive_xp_multiplier[1] = 1.2
+	self.values.player.regain_throwable_from_ammo[1].chance = 0.02
+	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.001
 end
