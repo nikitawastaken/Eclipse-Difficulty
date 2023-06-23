@@ -97,7 +97,7 @@ tweak_data.projectiles.launcher_electric_ms3gl.damage = 10
 -- incendiary buff
 tweak_data.projectiles.fir_com.damage = 10
 tweak_data.projectiles.fir_com.fire_dot_data.dot_damage = 30
-tweak_data.projectiles.fir_com.range = 600
+tweak_data.projectiles.fir_com.range = 800
 -- frags buff
 tweak_data.projectiles.frag.damage = 200
 tweak_data.projectiles.frag_com.damage = 200
