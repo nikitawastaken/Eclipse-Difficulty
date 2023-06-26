@@ -198,6 +198,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
     self.parts.wpn_fps_snp_awp_conversion_wildlands.stats = {}
 
 
+
+    -- mcshay pack
+    self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.stats = {value = 3, concealment = -1, damage = 3, spread = -2}
+    self.parts.wpn_fps_m4_uupg_m_strike.stats = {value = 1, extra_ammo = 4, concealment = -2}
+    self.parts.wpn_fps_m4_uupg_upper_radian.stats = {value = 3, spread = 1, recoil = 2}
+    self.parts.wpn_fps_m4_uupg_lower_radian.stats = {value = 1, recoil = 1}
+    self.parts.wpn_fps_uupg_fg_radian.stats = {value = 1, recoil = 2, spread = 1, damage = 2, concealment = -1}
+    self.parts.wpn_fps_m4_uupg_g_billet.stats = {value = 6, spread = 1, recoil = 1}
+    self.parts.wpn_fps_upg_ak_ns_zenitco.stats = {value = 1, concealment = -1, damage = 3, spread = 2, recoil = 1}
+
     -- Specials
 
     -- Flamethrower Tanks

@@ -116,8 +116,8 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- PiC
 	self.values.player.passive_convert_enemies_health_multiplier = {0.10, 0.01}
-	self.skill_descs.control_freak.multibasic = "90%"
-	self.skill_descs.control_freak.multipro = "9%"
+	self.skill_descs.control_freak.multibasic3 = "90%"
+	self.skill_descs.control_freak.multipro4 = "9%"
 
 	-- Hostage Situation
 	self.values.team.hostage_situation = {15}
