@@ -98,3 +98,65 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
         end
     end
 end
+
+-- Shotgun CQB
+PlayerAction.ShotgunCQB = {
+	Priority = 1,
+	Function = function (player_manager, speed_bonus, max_stacks, max_time)
+		local co = coroutine.running()
+		local current_time = Application:time()
+		local current_stacks = 1
+
+		local function on_hit(unit, attack_data)
+			local attacker_unit = attack_data.attacker_unit
+			local variant = attack_data.variant
+
+			if attacker_unit == player_manager:player_unit() and variant == "bullet" then
+				current_stacks = current_stacks + 1
+
+				if current_stacks <= max_stacks then
+					player_manager:mul_to_property("shotguncqb", speed_bonus)
+				end
+			end
+		end
+
+		player_manager:mul_to_property("shotguncqb", speed_bonus)
+		player_manager:register_message(Message.OnEnemyShot, co, on_hit)
+
+		while current_time < max_time do
+			current_time = Application:time()
+			coroutine.yield(co)
+		end
+
+		player_manager:remove_property("shotguncqb")
+		player_manager:unregister_message(Message.OnEnemyShot, co)
+	end
+}
+
+Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
+    if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
+        self._message_system:register(Message.OnEnemyShot, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
+    else
+        self._message_system:unregister(Message.OnEnemyShot, "shotguncqb")
+    end
+end)
+
+function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
+	local attacker_unit = attack_data.attacker_unit
+	local variant = attack_data.variant
+
+	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("shotguncqb") and self:is_current_weapon_of_category("shotgun") then
+		local data = self:upgrade_value("shotgun", "speed_stack_on_kill", 0)
+
+		if data ~= 0 then
+			self._coroutine_mgr:add_coroutine("shotguncqb", PlayerAction.ShotgunCQB, self, data.speed_bonus, data.max_stacks, Application:time() + data.max_time)
+		end
+	end
+end
+
+local old_speed_multiplier = PlayerManager.movement_speed_multiplier
+function PlayerManager:movement_speed_multiplier(...)
+    local multi = old_speed_multiplier(self, ...)
+    multi = multi * managers.player:get_property("shotguncqb", 1)
+    return multi
+end

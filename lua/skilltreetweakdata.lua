@@ -99,7 +99,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Shotgun CQB
 	self.skills.far_away[1].upgrades = {"shotgun_hip_rate_of_fire_1"}
-	self.skills.far_away[2].upgrades = {"shotgun_run_and_reload"}
+	self.skills.far_away[2].upgrades = {"shotgun_speed_stack_on_kill"}
 	self.skills.far_away.icon_xy = {8, 6}
 
 	-- Mag-Fed Specialist

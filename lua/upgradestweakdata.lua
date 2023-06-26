@@ -257,17 +257,24 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Shotgun CQB
 	self.values.shotgun.hip_rate_of_fire[1] = 1.15
-	self.values.shotgun.run_and_reload = {true}
-	self.definitions.shotgun_run_and_reload = {
-		name_id = "menu_shotgun_run_and_reload",
+	self.values.shotgun.speed_stack_on_kill = {{
+        max_stacks = 8,
+        max_time = 12,
+        speed_bonus = 1.05
+    }}
+	self.definitions.shotgun_speed_stack_on_kill = {
+		name_id = "menu_shotgun_speed_stack_on_kill",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "run_and_reload",
+			upgrade = "speed_stack_on_kill",
 			category = "shotgun"
 		}
 	}
 	self.skill_descs.far_away.multibasic = "15%"
+	self.skill_descs.far_away.multipro = "5%"
+	self.skill_descs.far_away.multipro2 = "12"
+	self.skill_descs.far_away.multipro3 = "8"
 
 	-- Mag-fed Specialist
 	self.values.shotgun.mag_reload_speed = {1.25}
