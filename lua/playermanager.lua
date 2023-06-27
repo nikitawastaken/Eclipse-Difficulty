@@ -121,7 +121,7 @@ PlayerAction.ShotgunCQB = {
 		end
 
 		player_manager:mul_to_property("shotguncqb", speed_bonus)
-		player_manager:register_message(Message.OnEnemyShot, co, on_hit)
+		player_manager:register_message(Message.OnEnemyKilled, co, on_hit)
 
 		while current_time < max_time do
 			current_time = Application:time()
@@ -129,7 +129,7 @@ PlayerAction.ShotgunCQB = {
 		end
 
 		player_manager:remove_property("shotguncqb")
-		player_manager:unregister_message(Message.OnEnemyShot, co)
+		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end
 }
 
