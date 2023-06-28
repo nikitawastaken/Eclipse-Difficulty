@@ -657,6 +657,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.weapon = self.presets.weapon.tank
 	self.mobster_boss.weapon = self.presets.weapon.elite_tank
 	self.triad_boss.weapon = self.presets.weapon.base
+	self.deep_boss.weapon = self.presets.weapon.elite_tank
 
 	-- if bot weapons and equipment is installed and fixed weapon balance is on don't make any further changes
 	if BotWeapons and BotWeapons.settings and BotWeapons.settings.weapon_balance then
