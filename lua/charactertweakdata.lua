@@ -609,6 +609,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.throwable_target_verified = false
 	self.triad_boss.throwable_cooldown = 20
 
+	self.deep_boss.HEALTH_INIT = 500
+	self.deep_boss.player_health_scaling_mul = 1.5
+	self.deep_boss.headshot_dmg_mul = 2
+	self.deep_boss.no_headshot_add_mul = false
+	self.deep_boss.damage.explosion_damage_mul = 0.5
+	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
+	self.deep_boss.move_speed = self.presets.move_speed.slow
+	self.deep_boss.no_run_start = true
+	self.deep_boss.no_run_stop = true
+
 	-- escort speed stuff
 	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
 	self.escort_chinese_prisoner.move_speed = self.presets.move_speed.escort_slow

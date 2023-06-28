@@ -282,7 +282,13 @@ end
 
 
 -- Do all the melee related checks inside this function
+-- Adjust melee code to work against npcs
 function CopActionShoot:_chk_start_melee(t, target_dis)
+	-- Only start melee if target is the local player (or an NPC on the server)
+	if Network:is_client() and not self._shooting_player or Network:is_server() and self._shooting_husk_player then
+		return
+	end
+
 	if target_dis > 130 or not self._w_usage_tweak.melee_speed then
 		return
 	end
@@ -296,6 +302,18 @@ function CopActionShoot:_chk_start_melee(t, target_dis)
 		return
 	end
 
+	if not self:_play_melee_anim(t) then
+		return
+	end
+
+	self._melee_unit = attention_unit
+
+	self._common_data.ext_network:send("action_melee_attack", self._body_part)
+
+	return true
+end
+
+function CopActionShoot:_play_melee_anim(t)
 	local melee_weapon = self._unit:base():melee_weapon()
 	local state = self._ext_movement:play_redirect(melee_weapon == "weapon" and "melee" or melee_weapon == "bash" and "melee_bayonet" or "melee_item")
 	if not state then
@@ -316,15 +334,15 @@ function CopActionShoot:_chk_start_melee(t, target_dis)
 	local retry_delay = self._w_usage_tweak.melee_retry_delay
 	self._melee_timeout_t = t + (retry_delay and math.lerp(retry_delay[1], retry_delay[2], self:_pseudorandom()) or 1)
 
-	-- Set melee unit if we should process damage for it (server and not shooting a client, or client and shooting the local player)
-	local is_server = Network:is_server()
-	self._melee_unit = (is_server and not self._shooting_husk_player or not is_server and self._shooting_player) and attention_unit
-
 	return true
 end
 
+function CopActionShoot:sync_start_melee()
+	if not self._ext_anim.melee then
+		self:_play_melee_anim(TimerManager:game():time())
+	end
+end
 
--- Adjust this function to make NPC melee work against other NPCs
 function CopActionShoot:anim_clbk_melee_strike()
 	if not alive(self._melee_unit) then
 		return
@@ -365,7 +383,30 @@ function CopActionShoot:anim_clbk_melee_strike()
 		}
 	})
 
-	if defense_data == "countered" then
+	local melee_tweak = tweak_data.weapon.npc_melee[self._unit:base():melee_weapon()]
+	if melee_tweak and melee_tweak.tase_data then
+		if self._attention.unit:character_damage().on_non_lethal_electrocution then
+			if not self._attention.unit:character_damage().can_be_tased or self._attention.unit:character_damage():can_be_tased() then
+				self._attention.unit:character_damage():on_non_lethal_electrocution(melee_tweak.tase_data.electrocution_time_mul)
+			end
+		elseif self._attention.unit:character_damage().damage_tase then
+			self._attention.unit:character_damage():damage_tase({
+				variant = melee_tweak.tase_data.tase_strength or "light",
+				damage = 0,
+				attacker_unit = self._unit,
+				col_ray = {
+					position = shoot_from_pos + fwd * 50,
+					ray = mvector3.copy(target_vec)
+				}
+			})
+		end
+	end
+
+	if defense_data ~= "countered" then
+		if melee_tweak and melee_tweak.additional_impact_sound then
+			self._unit:sound():play(melee_tweak.additional_impact_sound)
+		end
+	else
 		self._common_data.melee_countered_t = TimerManager:game():time()
 		self._unit:character_damage():damage_melee({
 			damage_effect = 1,
