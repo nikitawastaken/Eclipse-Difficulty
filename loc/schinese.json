@@ -94,7 +94,7 @@
 	"menu_awareness_desc": "基础: ##$basic##\n你蹲下行走的速度增加##$multibasic##。\n\n精通: ##$pro##\n你蹲下的时候增加##$multipro##的闪避概率。",
 	"menu_optic_illusions": "极限跑者",
 	"menu_optic_illusions_desc": "基础: ##$basic##\n你可以向所有的方向冲刺。你跑步快##$multibasic##。\n\n精通: ##$pro##\n你在跑步或者在滑索上获得额外的##$multipro##闪避概率。",
-	"menu_silenced_damage": "消音专家",
+	"menu_silenced_damage": "沉默杀手",
 	"menu_silenced_damage_desc": "基础: ##$basic##\n你的消音武器获得##$multibasic##点隐秘度。降低##$multibasic2##点消音器的隐蔽度惩罚。\n\n精通: ##$pro##\n你的消音武器对敌人造成额外的##$multipro##伤害并且有##$multipro2##的概率穿甲。",
 	"menu_silence_expert_beta_desc": "基础: ##$basic##\n你的消音武器获得##$multibasic##点稳定度。\n\n精通: ##$pro##\n你的消音武器获得##$multipro##点精准性并且开镜速度增加##$multipro2##。",
 	
