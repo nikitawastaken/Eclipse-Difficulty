@@ -1228,11 +1228,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 	self.enemy_spawn_groups.FBI_spoocs = self.enemy_spawn_groups.single_spooc
 
-    -- remove marshals
-    if self.enemy_spawn_groups.marshal_squad then
-        self.enemy_spawn_groups.marshal_squad.max_nr_simultaneous_groups = 0
-    end
 end)
+
+-- get rid of marshals
+function GroupAITweakData:_init_enemy_spawn_groups_level()
+end
+
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	-- difficulty scaling
