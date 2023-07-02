@@ -613,6 +613,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.player_health_scaling_mul = 1.5
 	self.deep_boss.headshot_dmg_mul = 2
 	self.deep_boss.no_headshot_add_mul = false
+	self.deep_boss.ignore_headshot = false
 	self.deep_boss.damage.explosion_damage_mul = 0.5
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
 	self.deep_boss.move_speed = self.presets.move_speed.slow
