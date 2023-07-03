@@ -503,9 +503,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.awareness.multipro = "10%"
 
 	-- Sprinter
-	self.values.player.run_speed_multiplier[1] = 1.2
+	self.values.player.run_speed_multiplier[1] = 1.15
 	self.values.player.on_zipline_dodge_chance[1] = 0.1
-	self.skill_descs.optic_illusions.multibasic = "20%"
+	self.skill_descs.optic_illusions.multibasic = "15%"
 	self.skill_descs.optic_illusions.multipro = "10%"
 
 	-- Sneaky Bastard
@@ -649,12 +649,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.bloodthirst.multibasic2 = "500%"
 
 	-- Zerker
-	self.values.player.melee_damage_health_ratio_multiplier = {1.5}
-	self.values.player.movement_speed_damage_health_ratio_multiplier = {0.25}
+	self.values.player.movement_speed_damage_health_ratio_multiplier = {0.2}
 	self.skill_descs.wolverine.multibasic = "50%"
-	self.skill_descs.wolverine.multibasic2 = "150%"
+	self.skill_descs.wolverine.multibasic2 = "20%"
 	self.skill_descs.wolverine.multipro = "50%"
-	self.skill_descs.wolverine.multipro2 = "25%"
+	self.skill_descs.wolverine.multipro2 = "250%"
 
 	-- Counterstrike
     self.values.player.run_and_melee_eclipse = {true}
@@ -786,12 +785,34 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][9].multiperk2 = "0.8"
 
 	-- Yakuza
-	self.values.player.damage_health_ratio_multiplier = {0.35}
+	self.values.player.damage_health_ratio_multiplier = {0.30}
+	self.values.player.armor_regen_damage_health_ratio_multiplier[1] = 0.3
+	self.values.player.armor_regen_damage_health_ratio_threshold_multiplier[1] = 4
+	self.values.player.damage_damage_health_ratio_threshold_multiplier = {2}
+	self.values.player.dodge_health_ratio_multiplier = {0.4}
+	self.definitions.player_dodge_health_ratio_multiplier = {
+		name_id = "menu_player_dodge_health_ratio_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "dodge_health_ratio_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_damage_damage_health_ratio_threshold_multiplier = {
+		name_id = "menu_player_damage_damage_health_ratio_threshold_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "damage_damage_health_ratio_threshold_multiplier",
+			category = "player"
+		}
+	}
+	self.specialization_descs[12][1].multiperk = "30%"
 	self.specialization_descs[12][3].multiperk = "80%"
-	self.specialization_descs[12][9].multiperk = "25%"
-	self.specialization_descs[12][9].multiperk2 = "35%"
-	self.specialization_descs[12][9].multiperk3 = "50%"
-	self.specialization_descs[12][9].multiperk4 = "25%"
+	self.specialization_descs[12][5].multiperk = "15%"
+	self.specialization_descs[12][7].multiperk = "40%"
+	self.specialization_descs[12][9].multiperk = "30%"
 
 	-- Ex-President
 	self.values.player.body_armor.skill_max_health_store = {6, 5, 4, 3, 2.5, 2, 1}

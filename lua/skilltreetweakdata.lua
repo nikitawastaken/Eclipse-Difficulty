@@ -314,8 +314,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.messiah[2].upgrades = {"player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1"}
 
 	-- Berserker
-	self.skills.wolverine[1].upgrades = {"player_melee_damage_health_ratio_multiplier"}
-	self.skills.wolverine[2].upgrades = {"player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier"}
+	self.skills.wolverine[1].upgrades = {"player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier"}
+	self.skills.wolverine[2].upgrades = {"player_melee_damage_health_ratio_multiplier"}
 
 	-- Counter Strike
 	self.skills.drop_soap[1].upgrades = {"player_run_and_melee_eclipse"}
@@ -463,7 +463,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[5][1].icon_xy = {0, 0}
 	self.specializations[5][3].upgrades = {"weapon_passive_swap_speed_multiplier_1"}
 	self.specializations[5][5].upgrades = {"player_unseen_temp_increased_crit_chance_1", "player_unseen_increased_crit_chance_1"}
-	self.specializations[5][5].icon_xy = {2, 5}
+	self.specializations[5][5].icon_xy = {2, 8}
 	self.specializations[5][7].upgrades = {"cooldown_hitman_ammo_refund"}
 	self.specializations[5][7].icon_xy = {3, 3}
 	self.specializations[5][9].upgrades = {"player_killshot_regen_armor_bonus", "player_passive_loot_drop_multiplier"}
@@ -485,9 +485,15 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
 	-- yakuza
+	self.specializations[12][1].upgrades = {"player_armor_regen_damage_health_ratio_multiplier_1", "player_armor_regen_damage_health_ratio_threshold_multiplier"}
 	self.specializations[12][3].upgrades = {"weapon_passive_swap_speed_multiplier_1"}
-	table.insert(self.specializations[12][9].upgrades, "player_damage_health_ratio_multiplier")
-	table.delete(self.specializations[12][9].upgrades, "player_movement_speed_damage_health_ratio_threshold_multiplier")
+	self.specializations[12][3].icon_xy = {7, 2}
+	self.specializations[12][5].upgrades = {"player_camouflage_multiplier"}
+	self.specializations[12][5].name_id = "menu_deck4_3"
+	self.specializations[12][5].icon_xy = {4, 2}
+	self.specializations[12][7].upgrades = {"player_dodge_health_ratio_multiplier"}
+	self.specializations[12][7].icon_xy = {1, 8}
+	self.specializations[12][9].upgrades = {"player_damage_health_ratio_multiplier", "player_damage_damage_health_ratio_threshold_multiplier"}
 
 	-- Grinder and Ex-President
 	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_1")

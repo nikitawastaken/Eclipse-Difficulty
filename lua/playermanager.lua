@@ -160,3 +160,18 @@ function PlayerManager:movement_speed_multiplier(...)
     multi = multi * managers.player:get_property("shotguncqb", 1)
     return multi
 end
+
+local old_skill_dodge = PlayerManager.skill_dodge_chance
+
+function PlayerManager:skill_dodge_chance(...)
+	local dodge = old_skill_dodge(self, ...)
+
+	if self:player_unit() and self:has_category_upgrade("player", "dodge_health_ratio_multiplier") then
+		local health_ratio = self:player_unit():character_damage():health_ratio() / 2
+		local damage_health_ratio = self:get_damage_health_ratio(health_ratio, "dodge")
+
+		dodge = dodge + self:upgrade_value("player", "dodge_health_ratio_multiplier", 0) * damage_health_ratio
+	end
+
+	return dodge
+end
