@@ -373,13 +373,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.tower_defense.multipro2 = "50%"
 
 	-- PhD in Engineering
+    self.values.sentry_gun.standstill_omniscience = {true}
 	self.definitions.sentry_gun_standstill_omniscience = {
 		name_id = "menu_sentry_gun_standstill_omniscience",
 		category = "feature",
 		upgrade = {
 			value = 1,
 			upgrade = "standstill_omniscience",
-			category = "player"
+            synced = true,
+			category = "sentry_gun"
 		}
 	}
 	self.skill_descs.eco_sentry.multibasic = "100%"

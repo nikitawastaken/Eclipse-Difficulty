@@ -11,15 +11,33 @@ function(self, unit)
     self._state_data = self._state_data or {}
 end)
 
--- Check for sixth sense every tick
-Hooks:PostHook(SentryGunBase, "update", "eclipse_update",
-function(self, unit, t, dt)
-    self:_update_omniscience(t, dt)
+-- Check if sentries can mark
+function SentryGunBase:has_marking()
+    return self._sentry_marking or false
+end
+
+-- Workaround to the normal sentry unregistration
+Hooks:PostHook(SentryGunBase, "on_death", "eclipse_sentry_on_death", function(self)
+    managers.groupai:state():unregister_marking_sentry(self._unit)
+end)
+
+Hooks:PostHook(SentryGunBase, "pre_destroy", "eclipse_sentry_pre_destroy", function(self)
+    managers.groupai:state():unregister_marking_sentry(self._unit)
+end)
+
+-- Register the sentry as marking to the group ai state
+Hooks:PostHook(SentryGunBase, "setup", "eclipse_sentry_setup", function(self, owner)
+    local sentry_owner = nil
+    if owner and owner:base().upgrade_value then
+        sentry_owner = owner
+    end
+    self._sentry_marking = PlayerSkill.has_skill("sentry_gun", "standstill_omniscience", sentry_owner)
+    managers.groupai:state():register_marking_sentry(self._unit)
 end)
 
 -- Create new sixth sense function
 function SentryGunBase:_update_omniscience(t, dt)
-	if not managers.player:has_category_upgrade("player", "standstill_omniscience") or not tweak_data.player.omniscience then
+	if not self:has_marking() then
 		if self._state_data.omniscience_t then
 			self._state_data.omniscience_t = nil
 		end

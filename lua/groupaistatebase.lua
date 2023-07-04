@@ -75,6 +75,7 @@ end
 Hooks:PostHook(GroupAIStateBase, "init", "sh_init", function (self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
+    self._marking_sentries = {}
 end)
 
 
@@ -280,3 +281,28 @@ end)
 function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
 	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
 end
+
+-- Setup sentry marking via host
+function GroupAIStateBase:register_marking_sentry(unit)
+    if unit:base().sentry_gun and unit:base():has_marking() then
+        self._marking_sentries[unit:key()] = unit
+        EclipseDebug:log(1, "Marking sentry set!")
+    end
+end
+
+-- Remove sentries from marking table on destruction
+-- Have to work around this bc sh framework :weirdge:
+function GroupAIStateBase:unregister_marking_sentry(unit)
+    if unit:base().sentry_gun and unit:base():has_marking() then
+        self._marking_sentries[unit:key()] = nil
+    end
+end
+
+-- Do sentry marking if you are the host
+Hooks:PostHook(GroupAIStateBase, "update", "eclipse_sentry_update", function(self, t, dt)
+    if Network:is_server() then
+        for _,sentry in pairs(self._marking_sentries) do
+            sentry:base():_update_omniscience(t, dt)
+        end
+    end
+end)
