@@ -117,7 +117,7 @@
 	"menu_nine_lives_beta": "永垂不朽",
 	"menu_pistol_beta_messiah_desc": "基础: ##$basic##\n当你倒地的时候，击杀一名敌人可以自起。 你只有##$multibasic##次充能。\n\n你的倒地计时器增加##$multibasic2##秒。\n\n注意：从监狱释放不会补充充能。\n\n精通: ##$pro##\n你额外获得##$multipro##次充能。\n\n当你进监狱的时候，人质会自己交换让你安全回归。可以在突击中触发，但是一场劫案只能触发##1##次。",
 	"menu_drop_soap_beta_desc": "基础: ##$basic##\n你跑步的时候可以挥舞和蓄力近战武器。\n\n精通: ##$pro##\n你可以近战击退熊。\n\n每##$multipro##秒最多触发一次。",
-	"menu_wolverine_beta_desc": "基础: ##$basic##\n你的生命值越低，你的移速越高。你的生命值低于##$multibasic##时, 你最多获得##$multibasic2##的额外移速。\n\n精通: ##$pro##\n你的生命值越低，你造成的的伤害越高，当你的生命值低于##$multipro##时, 你最多额外造成##$multipro##近战和电锯伤害。",
+	"menu_wolverine_beta_desc": "基础: ##$basic##\n你的生命值越低，你的移速越高。你的生命值低于##$multibasic##时, 你最多获得##$multibasic2##的额外移速。\n\n精通: ##$pro##\n你的生命值越低，你造成的的伤害越高，当你的生命值低于##$multipro##时, 你最多额外造成##$multipro2##的近战和电锯伤害。",
 	"menu_trigger_happy_beta_desc": "基础: ##$basic##\n你的手枪每次命中会获得##$multibasic##的持续##$multibasic2##秒的伤害加成\n最多叠加##$multibasic3##次。\n\n精通: ##$pro##\n你的手枪每次命中会获得##$multipro##的持续##$multipro2##秒的伤害加成\n最多叠加##$multipro3##次。",
 	"menu_perseverance_beta_desc": "基础: ##$basic##\n你濒死时不会立刻倒地，而是有##$multibasic2##秒额外战斗时间，并受到##$multibasic3##的移速惩罚。\n\n注意：坠落和火焰伤害不触发该技能。 \n\n精通: ##$pro##\n天鹅绝唱的持续时间增加##$multipro##秒。",
 	"menu_nine_lives_beta_desc": "基础: ##$basic##\n你获得额外的##$multibasic2##倒地生命值。\n\n精通: ##$pro##\n你可以在倒地时使用主武器。",
