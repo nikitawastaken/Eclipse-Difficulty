@@ -246,3 +246,15 @@ Hooks:PostHook(CopLogicTravel, "action_complete_clbk", "sh_action_complete_clbk"
 		my_data.cover_leave_t = data.t + (my_data.coarse_path_index == #my_data.coarse_path - 1 and 0.3 or math.rand(0.6, 1))
 	end
 end)
+
+
+-- Stop existing advancing action on exit to a new travel logic
+-- This allows enemies to start their new path immediately instead of having to finish the old one
+Hooks:PreHook(CopLogicTravel, "exit", "sh_exit", function (data, new_logic_name)
+	if new_logic_name == "travel" and data.internal_data.advancing and not data.unit:movement():chk_action_forbidden("idle") then
+		data.brain:action_request({
+			body_part = 2,
+			type = "idle"
+		})
+	end
+end)

@@ -1,4 +1,10 @@
 return {
+	-- Make cloaker spawn participate to group AI
+	[101320] = {
+		values = {
+			participate_to_group_ai = true
+		}
+	},
 	-- Remove spawn groups closest to broken bridge part
 	[101176] = {
 		values = {
