@@ -94,6 +94,7 @@
 	"menu_awareness_desc": "BASIC: ##$basic##\nYour speed while crouching is increased by ##$multibasic##.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while crouching.",
 	"menu_optic_illusions": "Sprinter",
 	"menu_optic_illusions_desc": "BASIC: ##$basic##\nYou can now sprint while strafing. You also sprint ##$multibasic## faster.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while sprinting and zip-lining.",
+	"menu_insulation_beta_desc": "BASIC: ##$basic##\nWhen tased, the shock effect will be ##$multibasic## weaker.\n\nYou no longer randomly pull the trigger while being tased.\n\nACED: ##$pro##\nWhen tased, you are able to free yourself from the taser by interacting with it within ##$multipro2## seconds of getting tased.",
 	"st_menu_ghost_silencer": "Specialized Killing",
 	"menu_silenced_damage": "Silent Killer",
 	"menu_silenced_damage_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## concealment for each silenced weapon equipped. Reduce the concealment penalty of silencers by ##$multibasic2##.\n\nACE: ##$pro##\nYou deal ##$multipro## more damage and have a ##$multipro2## chance to pierce enemy armor with all silenced weapons.",

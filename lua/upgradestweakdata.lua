@@ -507,6 +507,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.optic_illusions.multibasic = "15%"
 	self.skill_descs.optic_illusions.multipro = "10%"
 
+	-- Shockproof
+	self.values.player.weaker_tase_effect = {0.33}
+	self.definitions.player_weaker_tase_effect = {
+		name_id = "menu_weaker_tase_effect",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "weaker_tase_effect",
+			category = "player"
+		}
+	}
+	self.skill_descs.insulation.multibasic = "33%"
+
 	-- Sneaky Bastard
 	self.values.player.detection_risk_add_dodge_chance = {
 		{0.01, 2, "below", 35, 0.1},

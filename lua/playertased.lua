@@ -50,3 +50,51 @@ function PlayerTased:enter(state_data, enter_data)
 		"on_criminal_tased"
 	}, callback(self, self, "_on_tased_event"))
 end
+
+function PlayerTased:_check_action_shock(t, input)
+	self._next_shock = self._next_shock or 0.5
+	local difficulty_index = tweak_data:difficulty_to_index(Global.game_settings.difficulty)
+	local weaker_tase = managers.player:upgrade_value("player", "weaker_tase_effect", 0)
+
+	if self._next_shock < t then
+		self._num_shocks = self._num_shocks or 0
+		self._num_shocks = self._num_shocks + 1
+		if difficulty_index == 6 then
+			self._next_shock = t + (0.15 + math.rand(0.375)) * (1 + weaker_tase)
+		else
+			self._next_shock = t + (0.25 + math.rand(0.75)) * (1 + weaker_tase)
+		end
+		self._unit:camera():play_shaker("player_taser_shock", 1, 10)
+		self._unit:camera():camera_unit():base():set_target_tilt((math.random(2) == 1 and -1 or 1) * math.random(15) * (1 - weaker_tase))
+
+		self._taser_value = self._taser_value or 1
+		self._taser_value = math.max(self._taser_value - 0.25, 0)
+
+		self._unit:sound():play("tasered_shock")
+		managers.rumble:play("electric_shock")
+
+		if not alive(self._counter_taser_unit) then
+			self._camera_unit:base():start_shooting()
+
+			self._recoil_t = t + 0.5
+
+			if not managers.player:has_category_upgrade("player", "resist_firing_tased") then
+				input.btn_primary_attack_state = true
+				input.btn_primary_attack_press = true
+			end
+
+			self._camera_unit:base():recoil_kick(-5, 5, -5, 5)
+			self._unit:camera():play_redirect(self:get_animation("tased_boost"))
+		end
+	elseif self._recoil_t then
+		if not managers.player:has_category_upgrade("player", "resist_firing_tased") then
+			input.btn_primary_attack_state = true
+		end
+
+		if self._recoil_t < t then
+			self._recoil_t = nil
+
+			self._camera_unit:base():stop_shooting()
+		end
+	end
+end

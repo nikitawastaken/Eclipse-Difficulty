@@ -248,6 +248,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.optic_illusions[2].upgrades = {"player_run_dodge_chance", "player_on_zipline_dodge_chance"}
 	self.skills.optic_illusions.icon_xy = {7, 3}
 
+	-- Shockproof
+	self.skills.insulation[1].upgrades = {"player_resist_firing_tased", "player_weaker_tase_effect"}
+
 	-- Eagle Eye
 	self.skills.thick_skin[1].upgrades = {"weapon_special_damage_taken_multiplier"}
 	self.skills.thick_skin[2].upgrades = {"player_mark_enemy_time_multiplier", "player_marked_distance_mul"}
