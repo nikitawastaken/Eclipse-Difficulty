@@ -46,10 +46,10 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Confident
 	self.skills.cable_guy[1].upgrades = {"player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier"}
-	self.skills.cable_guy[2].upgrades = {"team_damage_hostage_absorption"}
+	self.skills.cable_guy[2].upgrades = {"player_civ_intimidation_mul", "player_civ_calming_alerts"}
 
 	-- Hostage Situation
-	table.insert(self.skills.stockholm_syndrome[1].upgrades, "player_civ_intimidation_mul")
+	self.skills.stockholm_syndrome[1].upgrades = {"team_hostage_damage_dampener_multiplier"}
 	self.skills.stockholm_syndrome[2].upgrades = {"team_hostage_situation"}
 	self.skills.stockholm_syndrome.icon_xy = {6, 7}
 
@@ -402,7 +402,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- rog
 	self.specializations[4].category = "dodge"
 	-- hit
-	self.specializations[5].category = {"armor", "armor_gating"}
+	self.specializations[5].category = "armor_gating"
 	-- crk
 	self.specializations[6].category = {"armor", "dodge"}
 	-- brg
@@ -416,7 +416,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- grd
 	self.specializations[11].category = "healing"
 	-- yak
-	self.specializations[12].category = "armor"
+	self.specializations[12].category = "dodge"
 	-- exp
 	self.specializations[13].category = "healing"
 	-- man
@@ -507,6 +507,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.specializations[14][3].upgrades, "player_panic_suppression")
 
 	-- anarchist
+	self.specializations[15][5].upgrades = {"player_chico_armor_multiplier_1", "player_armor_increase_2"}
 	self.specializations[15][7].upgrades = {"player_passive_dodge_chance_1", "player_armor_increase_3"}
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
 

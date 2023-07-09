@@ -107,12 +107,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.triathlete.multipro = "75%"
 
 	-- Confident
-	self.values.team.damage = {
-		hostage_absorption = {0.25},
-		hostage_absorption_limit = 3
-	}
-	self.skill_descs.cable_guy.multipro = "2.5"
-	self.skill_descs.cable_guy.multipro2 = "3"
+	self.skill_descs.cable_guy.multipro = "50%"
 
 	-- PiC
 	self.values.player.passive_convert_enemies_health_multiplier = {0.10, 0.01}
@@ -120,6 +115,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.control_freak.multipro4 = "9%"
 
 	-- Hostage Situation
+	self.values.team.damage_dampener.hostage_multiplier[1] = 0.9
 	self.values.team.hostage_situation = {15}
 	self.definitions.team_hostage_situation = {
 	    category = "feature",
@@ -130,6 +126,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1
 		}
 	}
+	self.skill_descs.stockholm_syndrome.multibasic = "10%"
 	self.skill_descs.stockholm_syndrome.multipro = "15"
 	self.skill_descs.stockholm_syndrome.multipro2 = "25"
 
@@ -721,10 +718,12 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Rogue (and other dodge decks)
 	self.values.player.passive_dodge_chance = {0.05, 0.15, 0.25}
+	self.values.player.tier_dodge_chance = {0.1, 0.15, 0.2}
 	self.specialization_descs[4][1].multiperk = "5%"
 	self.specialization_descs[4][5].multiperk = "10%"
 	self.specialization_descs[4][7].multiperk = "10%"
 	self.specialization_descs[6][1].multiperk = "5%"
+	self.specialization_descs[7][1].multiperk = "10%"
 	self.specialization_descs[13][5].multiperk3 = "5%"
 	self.specialization_descs[18][5].multiperk = "5%"
 	self.specialization_descs[21][5].multiperk2 = "5%"
@@ -778,13 +777,22 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk4 = "125%"
 
 	-- Grinder
-	self.damage_to_hot_data.tick_time = 0.8
+	self.damage_to_hot_data.tick_time = 0.5
+	self.damage_to_hot_data.total_ticks = 3
+	self.damage_to_hot_data.stacking_cooldown = 1.25
+	self.values.player.damage_to_hot_extra_ticks[1] = 2
 	self.damage_to_hot_data.armors_allowed = {"level_1"}
-	self.specialization_descs[11][1].multiperk2 = "0.8"
-	self.specialization_descs[11][3].multiperk2 = "0.8"
-	self.specialization_descs[11][5].multiperk2 = "0.8"
-	self.specialization_descs[11][7].multiperk2 = "0.8"
-	self.specialization_descs[11][9].multiperk2 = "0.8"
+	self.specialization_descs[11][1].multiperk2 = "0.5"
+	self.specialization_descs[11][3].multiperk2 = "0.5"
+	self.specialization_descs[11][5].multiperk2 = "0.5"
+	self.specialization_descs[11][7].multiperk2 = "0.5"
+	self.specialization_descs[11][9].multiperk2 = "0.5"
+	self.specialization_descs[11][1].multiperk3 = "1.5"
+	self.specialization_descs[11][3].multiperk3 = "1.5"
+	self.specialization_descs[11][5].multiperk3 = "1.5"
+	self.specialization_descs[11][7].multiperk3 = "1.5"
+	self.specialization_descs[11][9].multiperk3 = "2.5"
+	self.specialization_descs[11][1].multiperk4 = "1.25"
 
 	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = {0.30}
@@ -831,6 +839,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[14][9].multiperk = "50%"
 
 	-- Anarchist
+	self.values.player.chico_armor_multiplier[1] = 1.3
 	self.values.player.armor_grinding = {{
 			{1, 1.5},
 			{1.5, 2.25},
@@ -849,12 +858,12 @@ function UpgradesTweakData:init(tweak_data)
 			{1, 1.5},
 			{1, 1.5}
 		}}
-	self.values.player.armor_increase = {0.5, 0.75, 1}
-	self.values.player.tier_dodge_chance[1] = 0.15
-	self.specialization_descs[15][3].multiperk2 = "50%"
-	self.specialization_descs[15][5].multiperk2 = "75%"
-	self.specialization_descs[15][7].multiperk2 = "100%"
+	self.values.player.armor_increase = {0.1, 0.15, 0.2}
+	self.specialization_descs[15][3].multiperk2 = "10%"
+	self.specialization_descs[15][5].multiperk2 = "15%"
+	self.specialization_descs[15][7].multiperk2 = "20%"
 	self.specialization_descs[15][7].multiperk3 = "5%"
+	self.specialization_descs[15][9].multiperk3 = "30%"
 
 	-- Biker
 	self.wild_trigger_time = 8
@@ -887,9 +896,16 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[20][5].multiperk2 = "6"
 
 	-- Hacker
+	self.values.player.pocket_ecm_heal_on_kill = {
+		1.5
+	}
+	self.values.team.pocket_ecm_heal_on_kill = {
+		0.5
+	}
 	self.specialization_descs[21][3].multiperk = "10%"
-	self.specialization_descs[21][5].multiperk = "5%"
+	self.specialization_descs[21][5].multiperk = "15"
 	self.specialization_descs[21][7].multiperk = "10%"
+	self.specialization_descs[21][9].multiperk = "5"
 
 	-- Leech
 	self.values.player.copr_kill_life_leech[2] = 1
