@@ -89,7 +89,7 @@
 	
 	
 	"menu_sprinter": "Athlete",
-	"menu_sprinter_desc": "BASIC: ##$basic##\nYour speed while walking is increased by ##$multibasic##. Your total movement speed is increased by ##$multibasic2##.\n\nACE: ##$pro##\nThe time before stamina regeneration starts is reduced by ##$multipro## and the regeneration rate of stamina is increased by ##$multipro##.",
+	"menu_sprinter_desc": "BASIC: ##$basic##\nThe time before stamina regeneration starts is reduced by ##$multibasic## and the regeneration rate of stamina is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour speed while walking is increased by ##$multipro##. Your total movement speed is increased by ##$multipro2##.",
 	"menu_awareness": "Duck and Cover",
 	"menu_awareness_desc": "BASIC: ##$basic##\nYour speed while crouching is increased by ##$multibasic##.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while crouching.",
 	"menu_optic_illusions": "Sprinter",
