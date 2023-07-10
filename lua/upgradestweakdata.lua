@@ -7,13 +7,22 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- Movement speed nerfs
 	self.values.player.body_armor.movement = {
-		0.925,
-		0.9,
 		0.85,
+		0.825,
 		0.8,
-		0.725,
-		0.625,
-		0.525
+		0.75,
+		0.7,
+		0.6,
+		0.5
+	}
+	self.values.player.body_armor.stamina = {
+		0.85,
+		0.825,
+		0.8,
+		0.75,
+		0.7,
+		0.6,
+		0.5
 	}
 
 	-- steadiness
@@ -492,8 +501,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.chameleon.multibasic2 = "3"
 
 	-- Athlete
-	self.skill_descs.sprinter.multibasic2 = "10%"
+	self.skill_descs.sprinter.multibasic = "25%"
 	self.skill_descs.sprinter.multipro = "25%"
+	self.skill_descs.sprinter.multipro2 = "10%"
 
 	-- Duck and Cover
 	self.values.player.crouch_speed_multiplier[1] = 1.15
