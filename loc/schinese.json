@@ -57,7 +57,7 @@
 	"menu_close_by_beta": "弹匣专家",
 	"menu_close_by_beta_desc": "基础: ##$basic##\n你装填##弹夹式##散弹枪加快##$multibasic##。\n\n精通: ##$pro##\n你的##弹夹式##散弹枪的弹匣增加##$multipro##颗子弹。",
 	"menu_overkill_beta": "霰弹炼狱",
-    "menu_overkill_beta_desc": "基础: ##$basic##\n你的散弹枪有##$multibasic##的概率开火不消耗子弹。\n\n精通: ##$pro##\n当你使用散弹枪击杀一名敌人时，你有##$multipro##的概率恐惧周围的敌人。\n这会让敌人进入不可控的恐惧状态。\n\n该技能每##$multipro2##秒最多触发一次。",
+        "menu_overkill_beta_desc": "基础: ##$basic##\n你的散弹枪有##$multibasic##的概率开火不消耗子弹。\n\n精通: ##$pro##\n当你使用散弹枪击杀一名敌人时，你有##$multipro##的概率恐惧周围的敌人。\n这会让敌人进入不可控的恐惧状态。\n\n该技能每##$multipro2##秒最多触发一次。",
 	"menu_juggernaut_beta_desc": "基础: ##$basic##\n解锁改良型复合战术背心。\n\n精通: ##$pro##\n你的总护甲值增加##$multibasic##。",
 	"menu_show_of_force_beta": "皮糙肉厚",
 	"menu_show_of_force_beta_desc": "基础: ##$basic##\n你的坚韧值增加##$multibasic##。\n高坚韧值减少受击抖动。\n\n精通: ##$pro##\n所有的防弹背心护甲值增加##$multipro2##。",
@@ -89,7 +89,7 @@
 	
 	
 	"menu_sprinter": "运动健儿",
-	"menu_sprinter_desc": "基础:你的耐力提前##$multibasic##恢复并且恢复速率增加##$multibasic##。\n\n精通: ##$pro##\n你走路的速度增加##$multipro1##。你总体的速度增加##$multipro2##。",
+	"menu_sprinter_desc": "基础: 你的耐力提前##$multibasic##恢复并且恢复速率增加##$multibasic##。\n\n精通: ##$pro##\n你走路的速度增加##$multipro1##。你总体的速度增加##$multipro2##。",
 	"menu_awareness": "蹲伏行动",
 	"menu_awareness_desc": "基础: ##$basic##\n你蹲下行走的速度增加##$multibasic##。\n\n精通: ##$pro##\n你蹲下的时候增加##$multipro##的闪避概率。", 
 	"menu_optic_illusions": "极限跑者",
