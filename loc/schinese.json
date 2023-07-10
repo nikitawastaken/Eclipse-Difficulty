@@ -89,7 +89,7 @@
 	
 	
 	"menu_sprinter": "运动健儿",
-	"menu_sprinter_desc": "基础: ##$basic##\n你走路的速度增加##$multibasic##。你总体的速度增加##$multibasic2##。\n\n精通: ##$pro##\n你的耐力提前##$multipro##恢复并且恢复速率增加##$multipro##。",
+	"menu_sprinter_desc": "基础:你的耐力提前##$multibasic##恢复并且恢复速率增加##$multibasic##。\n\n精通: ##$pro##\n你走路的速度增加##$multipro1##。你总体的速度增加##$multipro2##。",
 	"menu_awareness": "蹲伏行动",
 	"menu_awareness_desc": "基础: ##$basic##\n你蹲下行走的速度增加##$multibasic##。\n\n精通: ##$pro##\n你蹲下的时候增加##$multipro##的闪避概率。", 
 	"menu_optic_illusions": "极限跑者",
