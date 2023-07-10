@@ -313,6 +313,74 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		}
 	}
 
+	-- taser / medic preset
+	presets.hurt_severities.base.bullet.zones = {
+		{
+			health_limit = 0.2,
+			none = 0.2,
+			light = 0.6,
+			moderate = 0.2
+		},
+		{
+			health_limit = 0.4,
+			light = 0.5,
+			moderate = 0.3,
+			heavy = 0.2
+		},
+		{
+			health_limit = 0.6,
+			light = 0.2,
+			moderate = 0.3,
+			heavy = 0.5
+		},
+		{
+			health_limit = 0.8,
+			moderate = 0.3,
+			heavy = 0.7
+		}
+	}
+	presets.hurt_severities.base.melee.zones = {
+		{
+			health_limit = 0.2,
+			light = 1
+		},
+		{
+			health_limit = 0.4,
+			light = 0.5,
+			moderate = 0.5
+		},
+		{
+			health_limit = 0.6,
+			moderate = 0.5,
+			heavy = 0.5
+		},
+		{
+			health_limit = 0.8,
+			heavy = 1
+		}
+	}
+	presets.hurt_severities.base.explosion.zones = {
+		{
+			health_limit = 0.2,
+			light = 0.5,
+			moderate = 0.5
+		},
+		{
+			health_limit = 0.4,
+			moderate = 0.5,
+			heavy = 0.5
+		},
+		{
+			health_limit = 0.6,
+			heavy = 0.5,
+			explode = 0.5
+		},
+		{
+			health_limit = 0.8,
+			explode = 1
+		}
+	}
+
 	-- heavies don't stumble as much
 	presets.hurt_severities.no_heavy_hurt = {
 		tase = true,
