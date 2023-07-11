@@ -65,8 +65,8 @@
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nThe heavier your armor, the more total ammo you get.\n\nThe total capacity increase scales up to ##$multibasic## with Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
 	
 	
-	"menu_defense_up_beta": "Rifleman",
-	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou can now use steelsight while in bleedout.\n\nACE: ##$pro##\nYour movement speed is unhindered while using steelsight.\n\nYour weapon accuracy while moving with SMGs, Assault Rifles and Sniper Rifles is increased by ##$multipro##.",
+	"menu_defense_up_beta": "Transporter",
+	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou move ##$multibasic## faster when carrying bags.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",
 	"menu_sentry_targeting_package_beta": "Daredevil",
 	"menu_sentry_targeting_package_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou can now reload your weapons while sprinting.",
 	"menu_engineering_beta": "Defense Package",
@@ -104,7 +104,7 @@
 	"menu_cleaner_beta": "Eagle Eye",
 	"menu_cleaner_beta_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage against special enemies.\n\nACE: ##$pro##\nThe range at which you can manually mark enemies is increased by ##$multipro## times. The marked state duration is increased by ##$multipro2##.",
 	"menu_second_chances_beta": "Logistician",
-	"menu_second_chances_beta_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## farther.\n\nYou lockpick ##$multipro2## faster.",
+	"menu_second_chances_beta_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou lockpick ##$multipro## faster.\n\nYou can now silently crack safes by hand.",
 	"menu_chameleon_beta": "Blackout",
 	"menu_chameleon_beta_desc": "BASIC: ##$basic##\nYou gain the ability to disable ##1## camera from detecting you and your crew. Effect lasts for ##25## seconds.\n\nACE: ##$pro##\nYour ECM jammer can now also be used to open certain electronic doors. Pagers are delayed by the ECM jammers.",
 	"menu_ecm_booster_beta": "ECM Feedback",
@@ -119,7 +119,7 @@
 	"menu_wolverine_beta_desc": "BASIC: ##$basic##\nThe lower your health, the more movement speed you gain. When your health is below ##$multibasic##, you will gain up to ##$multibasic2## movement speed.\n\nACE: ##$pro##\nThe lower your health, the more damage you do. When your health is below ##$multipro##, you will do up to ##$multipro2## more melee and saw damage.",
 	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor every hit with a pistol you gain a ##$multibasic## damage boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYou now gain ##$multipro## damage boost for every hit and the damage boost lasts ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
-	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic2## increase to your bleedout health.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
+	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou can now use your steelsight while in bleedout.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
 	"menu_tea_cookies_beta_desc": "BASIC ##$basic##\nYou can now carry ##$multibasic## more First Aid Kits.\n\nACE: ##$pro##\nYou can now additionaly carry ##$multipro## more First Aid Kits.\n\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro2## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro3## seconds.",
 	
 	

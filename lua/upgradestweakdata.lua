@@ -365,7 +365,8 @@ function UpgradesTweakData:init(tweak_data)
 	-- Technician --
 
 	-- Rifleman
-	self.skill_descs.defense_up.multipro = "16"
+	self.skill_descs.defense_up.multibasic = "50%"
+	self.skill_descs.defense_up.multipro = "50%"
 
 	-- Die Hard
 	self.values.player.interacting_damage_multiplier[1] = 0.25

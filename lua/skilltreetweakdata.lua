@@ -147,10 +147,10 @@ function SkillTreeTweakData:init(tweak_data)
 	-- TECHNICIAN --
 
 
-	-- Rifleman
-	self.skills.defense_up[1].upgrades = {"player_steelsight_when_downed"}
-	self.skills.defense_up[2].upgrades = {"player_steelsight_normal_movement_speed", "assault_rifle_move_spread_index_addend", "snp_move_spread_index_addend", "smg_move_spread_index_addend"}
-	self.skills.defense_up.icon_xy = {6, 5}
+	-- Transporter
+	self.skills.defense_up[1].upgrades = {"carry_movement_speed_multiplier"}
+	self.skills.defense_up[2].upgrades = {"carry_throw_distance_multiplier"}
+	self.skills.defense_up.icon_xy = {6, 0}
 
 	-- Daredevil
 	self.skills.sentry_targeting_package[1].upgrades = {"player_interacting_damage_multiplier"}
@@ -209,8 +209,8 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Logistician
 	self.skills.second_chances[1].upgrades = {"carry_interact_speed_multiplier_2"}
-	self.skills.second_chances[2].upgrades = {"carry_throw_distance_multiplier", "player_pick_lock_easy_speed_multiplier"}
-	self.skills.second_chances.icon_xy = {6, 0}
+	self.skills.second_chances[2].upgrades = {"player_pick_lock_easy_speed_multiplier", "player_pick_lock_hard"}
+	self.skills.second_chances.icon_xy = {5, 4}
 
 	-- ECM feedback
 	self.skills.ecm_booster[1].upgrades = {"ecm_jammer_can_activate_feedback"}
@@ -230,8 +230,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.chameleon.icon_xy = {6, 3}
 
 	-- Athlete
-	self.skills.sprinter[1].upgrades = {"player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier"}
-	self.skills.sprinter[2].upgrades = {"player_walk_speed_multiplier", "player_movement_speed_multiplier"}
+	self.skills.sprinter[1].upgrades = {"player_walk_speed_multiplier", "player_movement_speed_multiplier"}
+	self.skills.sprinter[2].upgrades = {"player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier"}
 	self.skills.sprinter.icon_xy = {1, 8}
 	self.skills.sprinter.name_id = "menu_sprinter"
 	self.skills.sprinter.desc_id = "menu_sprinter_desc"
@@ -284,7 +284,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 
 	-- Tough Guy
-	self.skills.nine_lives[1].upgrades = {"player_bleed_out_health_multiplier"}
+	self.skills.nine_lives[1].upgrades = {"player_steelsight_when_downed"}
 	self.skills.nine_lives[2].upgrades = {"player_primary_weapon_when_downed"}
 	self.skills.nine_lives.icon_xy = {1, 2}
 
@@ -538,9 +538,11 @@ function SkillTreeTweakData:init(tweak_data)
 
 
 	-- Buncha default upgrade fuckery
+	table.insert(self.default_upgrades, "player_bleed_out_health_multiplier")
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
+	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
