@@ -94,8 +94,12 @@
 	"menu_awareness_desc": "BASIC: ##$basic##\nYour speed while crouching is increased by ##$multibasic##.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while crouching.",
 	"menu_optic_illusions": "Sprinter",
 	"menu_optic_illusions_desc": "BASIC: ##$basic##\nYou can now sprint while strafing. You also sprint ##$multibasic## faster.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while sprinting and zip-lining.",
+	"menu_dire_need_beta": "Second Wind",
+	"menu_dire_need_beta_desc": "BASIC: ##$basic##\nWhen your armor breaks your movement speed is increased by ##$multibasic## for ##$multibasic2## seconds.\n\nACED: ##$pro##\nWhen your armor breaks you have a ##$multipro## chance to cause nearby enemies to panic. Panic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_insulation_beta_desc": "BASIC: ##$basic##\nWhen tased, the shock effect will be ##$multibasic## weaker.\n\nYou no longer randomly pull the trigger while being tased.\n\nACED: ##$pro##\nWhen tased, you are able to free yourself from the taser by interacting with it within ##$multipro2## seconds of getting tased.",
 	"st_menu_ghost_silencer": "Specialized Killing",
+	"menu_scavenger_beta": "Resilient Assault",
+	"menu_scavenger_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## critical hit chance.\n\nACE: ##$pro##\nWhen your armor breaks, the first shot on every enemy will cause that enemy to stagger.\n\nThe effect persists for ##$multipro## seconds after your armor has recovered.",
 	"menu_silenced_damage": "Silent Killer",
 	"menu_silenced_damage_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## concealment for each silenced weapon equipped. Reduce the concealment penalty of silencers by ##$multibasic2##.\n\nACE: ##$pro##\nYou deal ##$multipro## more damage and have a ##$multipro2## chance to pierce enemy armor with all silenced weapons.",
 	"menu_silence_expert_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## weapon stability with silenced weapons.\n\nACE: ##$pro##\nYou gain ##$multipro## weapon accuracy and ##$multipro2## snap to zoom speed increase with silenced weapons.",
@@ -110,7 +114,7 @@
 	"menu_ecm_booster_beta": "ECM Feedback",
 	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\nYou can now interact with ECM jammers to cause a feedback loop that stuns enemies.\n\nFeedback loop has a ##$multibasic## radius.\nObstructed line of sight ##halves## the radius.\n\nACE: ##$pro##\nECM feedback now recharges every ##$multipro## minutes.",
 	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last ##$multipro## seconds.",
-	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate under ##$multipro3## up to ##$multipro4##.\n\nNote: Critical hits deal ##double## damage and don't apply to grenade / rocket launchers.",
+	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nCritical hits deal ##$multibasic5## damage.\n\nACE: ##$pro##\nYou now gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate instead.\n\nCritical hits now deal an additional ##$multipro3## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
 	
 	
 	"menu_nine_lives_beta": "Tough Guy",

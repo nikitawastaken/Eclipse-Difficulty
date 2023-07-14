@@ -518,6 +518,24 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.optic_illusions.multibasic = "15%"
 	self.skill_descs.optic_illusions.multipro = "10%"
 
+	-- Second Wind
+    self.definitions.cooldown_panic_on_armor_break = {
+        name_id = "menu_cooldown_panic_on_armor_break",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "panic_on_armor_break",
+			category = "cooldown"
+		}
+    }
+    self.values.cooldown.panic_on_armor_break = {{1, 12}}
+	self.values.player.armor_panic = {{chance = 0.75, area = 500, amount = "panic"}}
+	self.values.temporary.damage_speed_multiplier = {{1.25, 5}}
+	self.skill_descs.dire_need.multibasic = "25%"
+	self.skill_descs.dire_need.multibasic2 = "5"
+	self.skill_descs.dire_need.multipro = "75%"
+	self.skill_descs.dire_need.multipro2 = "12"
+
 	-- Shockproof
 	self.values.player.weaker_tase_effect = {0.33}
 	self.definitions.player_weaker_tase_effect = {
@@ -539,6 +557,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.jail_diet.multibasic2 = "2"
 	self.skill_descs.jail_diet.multipro = "1.5%"
 	self.skill_descs.jail_diet.multipro4 = "15%"
+
+	-- Resilient Assault
+	self.values.player.critical_hit_chance[1] = 0.05
+	self.values.player.armor_depleted_stagger_shot = {
+		0,
+		3
+	}
+	self.skill_descs.scavenger.multibasic = "5%"
+	self.skill_descs.scavenger.multipro = "3"
 
 	-- Eagle Eye
 	self.values.weapon.special_damage_taken_multiplier[1] = 1.1
@@ -578,18 +605,28 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.backstab.multipro2 = "50%"
 
 	-- Low Blow
-	self.values.player.detection_risk_add_crit_chance = {
-		{0.04, 2, "below", 35, 0.4},
-		{0.06, 1, "below", 35, 0.6}
+	self.definitions.weapon_extra_crit_damage_mul = {
+	    category = "feature",
+		name_id = "extra_crit_damage_mul",
+		upgrade = {
+		    category = "weapon",
+			upgrade = "extra_crit_damage_mul",
+			value = 1
+		}
 	}
-	self.skill_descs.unseen_strike.multibasic = "4%"
+	self.values.player.detection_risk_add_crit_chance = {
+		{0.03, 2, "below", 35, 0.3},
+		{0.03, 1, "below", 35, 0.3}
+	}
+	self.values.weapon.extra_crit_damage_mul = {1}
+	self.skill_descs.unseen_strike.multibasic = "3%"
 	self.skill_descs.unseen_strike.multibasic2 = "2"
 	self.skill_descs.unseen_strike.multibasic3 = "35"
-	self.skill_descs.unseen_strike.multibasic4 = "40%"
-	self.skill_descs.unseen_strike.multipro = "6%"
+	self.skill_descs.unseen_strike.multibasic4 = "30%"
+	self.skill_descs.unseen_strike.multibasic5 = "200%"
+	self.skill_descs.unseen_strike.multipro = "3%"
 	self.skill_descs.unseen_strike.multipro2 = "1"
-	self.skill_descs.unseen_strike.multipro3 = "35"
-	self.skill_descs.unseen_strike.multipro4 = "60%"
+	self.skill_descs.unseen_strike.multipro3 = "100%"
 
 	-- HVT
 	self.values.player.marked_enemy_damage_mul = 1.2

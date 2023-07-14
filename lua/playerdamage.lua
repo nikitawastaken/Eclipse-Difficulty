@@ -175,3 +175,65 @@ Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
 	end
 end)
 
+
+-- Armor Break Panic
+function PlayerDamage:_calc_armor_damage(attack_data)
+	local health_subtracted = 0
+
+	if self:get_real_armor() > 0 then
+		health_subtracted = self:get_real_armor()
+
+		self:change_armor(-attack_data.damage)
+
+		health_subtracted = health_subtracted - self:get_real_armor()
+
+		self:_damage_screen()
+		SoundDevice:set_rtpc("shield_status", self:armor_ratio() * 100)
+		self:_send_set_armor()
+
+		local has_armor_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "panic_on_armor_break")
+
+		if self:get_real_armor() <= 0 then
+
+			if has_armor_panic then
+				local pos = managers.player:player_unit():position()
+				local skill = tweak_data.upgrades.values.player.armor_panic[1]
+
+				if skill then
+					local area = skill.area
+					local chance = skill.chance
+					local amount = skill.amount
+					local enemies = World:find_units_quick("sphere", pos, area, managers.slot:get_mask("enemies"))
+
+					for i, unit in ipairs(enemies) do
+						if unit:character_damage() then
+							unit:character_damage():build_suppression(amount, chance)
+						end
+					end
+				end
+
+				managers.player:disable_cooldown_upgrade("cooldown", "panic_on_armor_break")
+			end
+
+			self._unit:sound():play("player_armor_gone_stinger")
+
+			if attack_data.armor_piercing then
+				self._unit:sound():play("player_sniper_hit_armor_gone")
+			end
+
+			local pm = managers.player
+
+			self:_start_regen_on_the_side(pm:upgrade_value("player", "passive_always_regen_armor", 0))
+
+			if pm:has_inactivate_temporary_upgrade("temporary", "armor_break_invulnerable") then
+				pm:activate_temporary_upgrade("temporary", "armor_break_invulnerable")
+
+				self._can_take_dmg_timer = pm:temporary_upgrade_value("temporary", "armor_break_invulnerable", 0)
+			end
+		end
+	end
+
+	managers.hud:damage_taken()
+
+	return health_subtracted
+end

@@ -248,8 +248,18 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.optic_illusions[2].upgrades = {"player_run_dodge_chance", "player_on_zipline_dodge_chance"}
 	self.skills.optic_illusions.icon_xy = {7, 3}
 
+	-- Second Wind
+	self.skills.dire_need[1].upgrades = {"temporary_damage_speed_multiplier"}
+	self.skills.dire_need[2].upgrades = {"cooldown_panic_on_armor_break"}
+	self.skills.dire_need.icon_xy = {10, 9}
+
 	-- Shockproof
 	self.skills.insulation[1].upgrades = {"player_resist_firing_tased", "player_weaker_tase_effect"}
+
+	-- Resilient Assault
+	self.skills.scavenger[1].upgrades = {"player_critical_hit_chance_1"}
+	self.skills.scavenger[2].upgrades = {"player_armor_depleted_stagger_shot_1", "player_armor_depleted_stagger_shot_2"}
+	self.skills.scavenger.icon_xy = {10, 8}
 
 	-- Eagle Eye
 	self.skills.thick_skin[1].upgrades = {"weapon_special_damage_taken_multiplier"}
@@ -274,7 +284,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Low Blow
 	self.skills.unseen_strike[1].upgrades = {"player_detection_risk_add_crit_chance_1"}
-	self.skills.unseen_strike[2].upgrades = {"player_detection_risk_add_crit_chance_2"}
+	self.skills.unseen_strike[2].upgrades = {"player_detection_risk_add_crit_chance_2", "weapon_extra_crit_damage_mul"}
 	self.skills.unseen_strike.icon_xy = {0, 12}
 	self.skills.unseen_strike.name_id = "menu_backstab_beta"
 	self.skills.unseen_strike.desc_id = "menu_backstab_beta_desc"
