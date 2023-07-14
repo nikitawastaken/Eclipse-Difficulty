@@ -1,0 +1,22 @@
+name: Format Eclipse Code
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+jobs:
+  format_lua:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: JohnnyMorganz/stylua-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --config-path ./.github/stylua.toml --glob "*.lua" -- lua
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: "lua/*"
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
+          message: Code formatting
