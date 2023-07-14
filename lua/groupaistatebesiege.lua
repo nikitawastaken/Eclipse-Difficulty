@@ -26,17 +26,16 @@ end
 
 Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
 	local assault_task = self._task_data.assault
-    if self._hostage_headcount > 0 then
+	if self._hostage_headcount > 0 then
 		local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
 		local hostage_situation_skill = managers.player:upgrade_value("team", "hostage_situation", 0)
-        assault_task.is_hesitating = true
-        if assault_task.next_dispatch_t then
-            assault_task.voice_delay = assault_task.next_dispatch_t - self._t
-            assault_task.next_dispatch_t = assault_task.next_dispatch_t + hesitation_delay + hostage_situation_skill
-        end
+		assault_task.is_hesitating = true
+		if assault_task.next_dispatch_t then
+			assault_task.voice_delay = assault_task.next_dispatch_t - self._t
+			assault_task.next_dispatch_t = assault_task.next_dispatch_t + hesitation_delay + hostage_situation_skill
+		end
 	end
 end)
-
 
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
@@ -47,7 +46,6 @@ function GroupAIStateBesiege:_begin_reenforce_task(...)
 
 	self._task_data.reenforce.next_dispatch_t = next_dispatch_t
 end
-
 
 -- Old fade behavior but less abusable
 local _upd_assault_task_original = GroupAIStateBesiege._upd_assault_task
@@ -146,7 +144,6 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 	self:_assign_enemy_groups_to_assault(task_data.phase)
 end
 
-
 -- Improve reenforce task handling to allow dynamic scaling of dispatch times
 function GroupAIStateBesiege:_upd_reenforce_tasks()
 	local reenforce_tasks = self._task_data.reenforce.tasks
@@ -167,13 +164,15 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 				force_occupied = force_occupied + size
 				table.insert(occupied_groups, {
 					group = group,
-					size = size
+					size = size,
 				})
 			end
 		end
 
 		if force_occupied > force_required then
-			table.sort(occupied_groups, function (a, b) return a.size < b.size end)
+			table.sort(occupied_groups, function(a, b)
+				return a.size < b.size
+			end)
 			for _, group_data in pairs(occupied_groups) do
 				force_occupied = force_occupied - group_data.size
 				if force_occupied < force_required then
@@ -216,7 +215,7 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 						type = "reenforce_area",
 						stance = "hos",
 						area = spawn_group.area,
-						target_area = task_data.target_area
+						target_area = task_data.target_area,
 					})
 					spawned = true
 				end
@@ -241,7 +240,6 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 
 	self:_assign_enemy_groups_to_reenforce()
 end
-
 
 -- Improve in_place check to prevent enemy groups from getting stuck
 -- Moved these functions that were all pretty much identical to a helper function
@@ -290,10 +288,9 @@ function GroupAIStateBesiege:_assign_enemy_groups_to_task(phase, objective_type,
 	end
 end
 
-
 -- Improve and heavily simplify objective assignment code, fix pull back and open fire objectives
 -- Basically, a lot of this function was needlessly complex and had oversights or incorrect conditions
-Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", function (self, group, phase)
+Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", function(self, group, phase)
 	local phase_is_anticipation = phase == "anticipation"
 	local current_objective = group.objective
 	local approach, open_fire, pull_back
@@ -341,7 +338,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				id = "GroupAI_deathguard",
 				from_tracker = group_leader_u_data.tracker,
 				to_tracker = closest_crim_u_data.tracker,
-				access_pos = self._get_group_acces_mask(group)
+				access_pos = self._get_group_acces_mask(group),
 			})
 
 			if coarse_path then
@@ -355,7 +352,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					moving_in = true,
 					follow_unit = closest_crim_u_data.unit,
 					area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
-					coarse_path = coarse_path
+					coarse_path = coarse_path,
 				})
 				return
 			end
@@ -395,17 +392,17 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			coarse_path = {
 				{
 					objective_area.pos_nav_seg,
-					mvector3.copy(objective_area.pos)
-				}
-			}
+					mvector3.copy(objective_area.pos),
+				},
+			},
 		})
 	elseif approach then
 		local assault_area, assault_path, assault_from
 		local to_search_areas = {
-			objective_area
+			objective_area,
 		}
 		local found_areas = {
-			[objective_area] = objective_area
+			[objective_area] = objective_area,
 		}
 		local group_access_mask = self._get_group_acces_mask(group)
 		local flank_chance = 2 -- First is shortest path to criminal, second is first actual flank path
@@ -420,7 +417,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 						from_seg = objective_area.pos_nav_seg,
 						to_seg = flank and found_areas[search_area].pos_nav_seg or search_area.pos_nav_seg,
 						access_pos = group_access_mask,
-						verify_clbk = callback(self, self, "is_nav_seg_safe")
+						verify_clbk = callback(self, self, "is_nav_seg_safe"),
 					})
 
 					if new_assault_path then
@@ -492,7 +489,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					open_fire = push,
 					pushed = push,
 					charge = tactics_map.charge,
-					interrupt_dis = tactics_map.charge and 0
+					interrupt_dis = tactics_map.charge and 0,
 				})
 			end
 		elseif not current_objective.assigned_t and in_place_duration > 15 and not self:_can_group_see_target(group) then
@@ -536,14 +533,13 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				coarse_path = {
 					{
 						retreat_area.pos_nav_seg,
-						mvector3.copy(retreat_area.pos)
-					}
-				}
+						mvector3.copy(retreat_area.pos),
+					},
+				},
 			})
 		end
 	end
 end)
-
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
@@ -561,7 +557,6 @@ function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
 	end
 end
 
-
 -- Add custom grenade usage function
 function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonate_pos)
 	local task_data = self._task_data.assault
@@ -571,7 +566,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 	local grenade_types = {
 		smoke_grenade = (not task_data.smoke_grenade_next_t or task_data.smoke_grenade_next_t < self._t) or nil,
-		flash_grenade = (not task_data.flash_grenade_next_t or task_data.flash_grenade_next_t < self._t) or nil
+		flash_grenade = (not task_data.flash_grenade_next_t or task_data.flash_grenade_next_t < self._t) or nil,
 	}
 	local grenade_candidates = {}
 	for grenade_type, _ in pairs(grenade_types) do
@@ -673,12 +668,10 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	return true
 end
 
-
 -- Fix grenades being synced twice (sync is already done in GroupAIStateBase:detonate_world_smoke_grenade)
 function GroupAIStateBesiege:detonate_smoke_grenade(detonate_pos, shooter_pos, duration, flashbang)
 	self:sync_smoke_grenade(detonate_pos, shooter_pos, duration, flashbang)
 end
-
 
 -- Keep recon groups around during anticipation
 -- Making them retreat only afterwards gives them more time to complete their objectives
@@ -688,7 +681,6 @@ function GroupAIStateBesiege:_assign_recon_groups_to_retire(...)
 		return _assign_recon_groups_to_retire_original(self, ...)
 	end
 end
-
 
 -- Tweak importance of spawn group distance in spawn group weight based on the groups to spawn
 -- Also slightly optimized this function to properly check all areas
@@ -714,7 +706,7 @@ function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_gr
 							access_pos = "swat",
 							from_seg = spawn_group.nav_seg,
 							to_seg = target_area.pos_nav_seg,
-							id = dis_id
+							id = dis_id,
 						})
 
 						if path and #path >= 2 then
@@ -767,7 +759,6 @@ function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_gr
 	return self:_choose_best_group(candidate_groups, total_weight)
 end
 
-
 -- Reorder task updates so groups that have finished spawning immediately get their objectives instead of waiting for the next update
 function GroupAIStateBesiege:_upd_police_activity()
 	if self._police_activity_blocked or not self._ai_enabled then
@@ -797,7 +788,6 @@ function GroupAIStateBesiege:_upd_police_activity()
 	self:_upd_groups()
 end
 
-
 -- Update police activity in consistent intervals
 -- Don't use the task queue for it since this function is called in GroupAIStateBesiege:update anyways
 function GroupAIStateBesiege:_queue_police_upd_task()
@@ -806,7 +796,6 @@ function GroupAIStateBesiege:_queue_police_upd_task()
 		self:_upd_police_activity()
 	end
 end
-
 
 -- Overhaul group spawning and fix forced group spawns not actually forcing the entire group to spawn
 -- Group spawning now always spawns the entire group at once but uses a cooldown that prevents any regular group spawns
@@ -828,7 +817,7 @@ function GroupAIStateBesiege:_set_spawn_task_type_cooldown(spawn_task, cooldown)
 	self._next_group_spawn_t[group_objective_type] = self._t + cooldown
 end
 
-Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function (self, spawn_task, force, use_last)
+Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(self, spawn_task, force, use_last)
 	-- Prevent regular group spawning if cooldown is active unless it's a forced spawn
 	if self:_is_spawn_task_type_on_cooldown(spawn_task) and not force and not self._force_next_group_spawn then
 		return
@@ -836,7 +825,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function 
 
 	local produce_data = {
 		name = true,
-		spawn_ai = {}
+		spawn_ai = {},
 	}
 	local unit_categories = tweak_data.group_ai.unit_categories
 	local current_unit_type = tweak_data.levels:get_ai_group_type()
@@ -964,7 +953,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function 
 	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)
 end)
 
-
 -- Save spawn group element in group description for debugging stuck groups
 local _spawn_in_group_original = GroupAIStateBesiege._spawn_in_group
 function GroupAIStateBesiege:_spawn_in_group(spawn_group, ...)
@@ -974,7 +962,6 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, ...)
 		return group
 	end
 end
-
 
 -- Make push use a unique voiceline, add retreat lines
 function GroupAIStateBesiege:_voice_move_in_start(group)
@@ -993,18 +980,18 @@ function GroupAIStateBesiege:_voice_retreat(group)
 	end
 end
 
-Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function (self, group)
+Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
 	self:_voice_retreat(group)
 end)
 
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type
 -- This ensures they are not retired immediatley cause they are not part of assault/recon group types
-Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function (self, unit, team_id)
+Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function(self, unit, team_id)
 	local area = self:get_area_from_nav_seg_id(unit:movement():nav_tracker():nav_segment())
 	local grp_objective = {
 		type = self._task_data.assault.active and "assault_area" or "recon_area",
 		area = area,
-		moving_out = false
+		moving_out = false,
 	}
 
 	local objective = unit:brain():objective()
@@ -1015,7 +1002,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function
 
 	local group = self:_create_group({
 		size = 1,
-		type = self._task_data.assault.active and "custom_assault" or "custom_recon"
+		type = self._task_data.assault.active and "custom_assault" or "custom_recon",
 	})
 	group.team = self._teams[team_id]
 	group.objective = grp_objective
@@ -1025,7 +1012,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function
 	self:set_enemy_assigned(area, unit:key())
 end)
 
-
 -- Fix for potential crash when a group objective does not have a coarse path
 local _get_group_forwardmost_coarse_path_index_original = GroupAIStateBesiege._get_group_forwardmost_coarse_path_index
 function GroupAIStateBesiege:_get_group_forwardmost_coarse_path_index(group, ...)
@@ -1034,9 +1020,8 @@ function GroupAIStateBesiege:_get_group_forwardmost_coarse_path_index(group, ...
 	end
 end
 
-
 -- Simplify reenforce objective assignment and prevent them from being stuck at spawn
-Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group", function (self, group)
+Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group", function(self, group)
 	if not group.has_spawned then
 		return
 	end
@@ -1062,7 +1047,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		from_seg = current_objective.area.pos_nav_seg,
 		to_seg = target_area.pos_nav_seg,
 		access_pos = self._get_group_acces_mask(group),
-		verify_clbk = callback(self, self, "is_nav_seg_safe")
+		verify_clbk = callback(self, self, "is_nav_seg_safe"),
 	}
 
 	local coarse_path = managers.navigation:search_coarse(search_params)
@@ -1111,13 +1096,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		obstructed = obstructed,
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
-		coarse_path = coarse_path
+		coarse_path = coarse_path,
 	})
 end)
 
-
 -- Simplify and improve recon objective assignment
-Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", function (self, group)
+Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", function(self, group)
 	if not group.has_spawned then
 		return
 	end
@@ -1151,10 +1135,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 
 	local coarse_path
 	local to_search_areas = {
-		objective_area
+		objective_area,
 	}
 	local found_areas = {
-		[objective_area] = objective_area
+		[objective_area] = objective_area,
 	}
 	local group_access_mask = self._get_group_acces_mask(group)
 
@@ -1185,7 +1169,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 				from_seg = objective_area.pos_nav_seg,
 				to_seg = search_area.pos_nav_seg,
 				access_pos = group_access_mask,
-				verify_clbk = callback(self, self, "is_nav_seg_safe")
+				verify_clbk = callback(self, self, "is_nav_seg_safe"),
 			})
 
 			if new_recon_path then
@@ -1234,10 +1218,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		moving_in = move_in,
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
-		coarse_path = coarse_path
+		coarse_path = coarse_path,
 	})
 end)
-
 
 -- Spawn events are probably not used anywhere, but for the sake of correctness, fix this function
 -- All the functions that call this expect it to return true when it's used

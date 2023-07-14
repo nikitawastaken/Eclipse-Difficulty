@@ -48,15 +48,14 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		my_data.spooc_attack = {
 			start_t = data.t,
 			target_u_data = focus_enemy,
-			action = action
+			action = action,
 		}
 		return true
 	end
 end
 
-
 -- Update logic every frame
-Hooks:PostHook(SpoocLogicAttack, "enter", "sh_enter", function (data)
+Hooks:PostHook(SpoocLogicAttack, "enter", "sh_enter", function(data)
 	data.brain:set_update_enabled_state(true)
 end)
 
@@ -70,7 +69,13 @@ function SpoocLogicAttack.update(data)
 
 	local focus_enemy = data.attention_obj
 	if my_data.spooc_attack then
-		if my_data.spooc_attack.action:complete() and focus_enemy and focus_enemy.verified and (not focus_enemy.criminal_record or not focus_enemy.criminal_record.status) and focus_enemy.dis < my_data.weapon_range.close then
+		if
+			my_data.spooc_attack.action:complete()
+			and focus_enemy
+			and focus_enemy.verified
+			and (not focus_enemy.criminal_record or not focus_enemy.criminal_record.status)
+			and focus_enemy.dis < my_data.weapon_range.close
+		then
 			SpoocLogicAttack._cancel_spooc_attempt(data, my_data)
 		end
 
@@ -86,7 +91,7 @@ function SpoocLogicAttack.update(data)
 		if not data.unit:anim_data().to_idle and not data.unit:movement():chk_action_forbidden("walk") then
 			data.unit:movement():action_request({
 				body_part = 2,
-				type = "idle"
+				type = "idle",
 			})
 
 			my_data.wants_stop_old_walk_action = nil

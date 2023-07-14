@@ -42,7 +42,7 @@ function HUDStageEndScreen:init(hud, workspace)
 	if managers.job:has_active_job() then
 		local current_contact_data = managers.job:current_contact_data()
 		local contact_gui = current_contact_data and self._background_layer_full:gui(current_contact_data.assets_gui, {
-			empty = true
+			empty = true,
 		})
 		local contact_pattern = contact_gui and contact_gui:has_script() and contact_gui:script().pattern
 
@@ -55,7 +55,7 @@ function HUDStageEndScreen:init(hud, workspace)
 	self._paygrade_panel = self._background_layer_safe:panel({
 		w = 210,
 		h = 70,
-		y = padding_y
+		y = padding_y,
 	})
 	local pg_text = self._foreground_layer_safe:text({
 		name = "pg_text",
@@ -66,7 +66,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		y = padding_y,
 		font_size = content_font_size,
 		font = content_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, w, h = pg_text:text_rect()
 
@@ -80,7 +80,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		"risk_swat",
 		"risk_fbi",
 		"risk_death_squad",
-		"risk_sm_wish"
+		"risk_sm_wish",
 	}
 
 	local panel_w = 0
@@ -100,7 +100,7 @@ function HUDStageEndScreen:init(hud, workspace)
 			texture = texture,
 			texture_rect = rect,
 			alpha = alpha,
-			color = color
+			color = color,
 		})
 
 		risk:set_position(x, y)
@@ -130,12 +130,12 @@ function HUDStageEndScreen:init(hud, workspace)
 			align = "right",
 			text = managers.localization:to_upper_text("menu_skirmish_wave_range", {
 				min = min,
-				max = max
+				max = max,
 			}),
 			y = padding_y,
 			font_size = content_font_size,
 			font = content_font,
-			color = tweak_data.screen_colors.skirmish_color
+			color = tweak_data.screen_colors.skirmish_color,
 		})
 
 		managers.hud:make_fine_text(wave_range_text)
@@ -160,7 +160,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = title_font_size,
 		font_size = title_font_size,
 		font = title_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	local bg_text = self._background_layer_full:text({
@@ -172,7 +172,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = bg_font_size,
 		font_size = bg_font_size,
 		font = bg_font,
-		color = tweak_data.screen_colors.button_stage_3
+		color = tweak_data.screen_colors.button_stage_3,
 	})
 
 	bg_text:set_world_center_y(self._foreground_layer_safe:child("stage_text"):world_center_y())
@@ -184,13 +184,13 @@ function HUDStageEndScreen:init(hud, workspace)
 		name = "coins_backpanel",
 		y = 70,
 		w = self._background_layer_safe:w() / 2 - 10,
-		h = self._background_layer_safe:h() / 2
+		h = self._background_layer_safe:h() / 2,
 	})
 	self._coins_forepanel = self._foreground_layer_safe:panel({
 		name = "coins_forepanel",
 		y = 70,
 		w = self._foreground_layer_safe:w() / 2 - 10,
-		h = self._foreground_layer_safe:h() / 2
+		h = self._foreground_layer_safe:h() / 2,
 	})
 	local level_progress_text = self._coins_forepanel:text({
 		vertical = "top",
@@ -202,7 +202,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = content_font_size + 2,
 		font_size = content_font_size,
 		font = content_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, lw, lh = level_progress_text:text_rect()
 
@@ -216,7 +216,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = self._coins_backpanel:h() - content_font_size,
 		w = self._coins_backpanel:h() - content_font_size,
 		y = content_font_size,
-		color = Color.black
+		color = Color.black,
 	})
 	self._coins_circle = self._coins_backpanel:bitmap({
 		texture = "guis/textures/pd2/endscreen/exp_ring",
@@ -227,7 +227,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = self._coins_backpanel:h() - content_font_size,
 		w = self._coins_backpanel:h() - content_font_size,
 		y = content_font_size,
-		color = Color(0, 1, 1)
+		color = Color(0, 1, 1),
 	})
 	self._coins_text = self._coins_forepanel:text({
 		name = "coins_text",
@@ -239,27 +239,27 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = self._coins_backpanel:h() - content_font_size,
 		w = self._coins_backpanel:h() - content_font_size,
 		y = content_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._coins_box = BoxGuiObject:new(self._coins_backpanel, {
 		sides = {
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 	self._lp_backpanel = self._background_layer_safe:panel({
 		name = "lp_backpanel",
 		y = 70,
 		w = self._background_layer_safe:w() / 2 - 10,
-		h = self._background_layer_safe:h() / 2
+		h = self._background_layer_safe:h() / 2,
 	})
 	self._lp_forepanel = self._foreground_layer_safe:panel({
 		name = "lp_forepanel",
 		y = 70,
 		w = self._foreground_layer_safe:w() / 2 - 10,
-		h = self._foreground_layer_safe:h() / 2
+		h = self._foreground_layer_safe:h() / 2,
 	})
 	local level_progress_text = self._lp_forepanel:text({
 		vertical = "top",
@@ -271,7 +271,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = content_font_size + 2,
 		font_size = content_font_size,
 		font = content_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, lw, lh = level_progress_text:text_rect()
 
@@ -285,7 +285,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = self._lp_backpanel:h() - content_font_size,
 		w = self._lp_backpanel:h() - content_font_size,
 		y = content_font_size,
-		color = Color.black
+		color = Color.black,
 	})
 	self._prestige_lp_circle = self._lp_backpanel:bitmap({
 		texture = "guis/textures/pd2/exp_ring_purple",
@@ -297,7 +297,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		y = lp_bg_circle:y(),
 		h = lp_bg_circle:h(),
 		w = lp_bg_circle:w(),
-		color = Color(0, 1, 1)
+		color = Color(0, 1, 1),
 	})
 	self._lp_circle = self._lp_backpanel:bitmap({
 		texture = "guis/textures/pd2/endscreen/exp_ring",
@@ -308,7 +308,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = self._lp_backpanel:h() - content_font_size,
 		w = self._lp_backpanel:h() - content_font_size,
 		y = content_font_size,
-		color = Color(0, 1, 1)
+		color = Color(0, 1, 1),
 	})
 	self._lp_text = self._lp_forepanel:text({
 		name = "level_text",
@@ -320,7 +320,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = self._lp_backpanel:h() - content_font_size,
 		w = self._lp_backpanel:h() - content_font_size,
 		y = content_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_curr_xp = self._lp_forepanel:text({
 		vertical = "top",
@@ -330,7 +330,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = small_font_size,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_xp_gained = self._lp_forepanel:text({
 		vertical = "top",
@@ -340,7 +340,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = content_font_size,
 		font_size = content_font_size,
 		font = content_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_next_level = self._lp_forepanel:text({
 		vertical = "top",
@@ -350,7 +350,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = small_font_size,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_skill_points = self._lp_forepanel:text({
 		vertical = "top",
@@ -360,7 +360,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = small_font_size,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_xp_curr = self._lp_forepanel:text({
 		text = "",
@@ -370,7 +370,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = small_font_size,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_xp_gain = self._lp_forepanel:text({
 		text = "",
@@ -380,7 +380,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = content_font_size,
 		font_size = content_font_size,
 		font = content_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_xp_nl = self._lp_forepanel:text({
 		text = "",
@@ -390,7 +390,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = small_font_size,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	self._lp_sp_gain = self._lp_forepanel:text({
 		text = "0",
@@ -400,7 +400,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		h = small_font_size,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, cw, ch = self._lp_curr_xp:text_rect()
 	local _, _, gw, gh = self._lp_xp_gained:text_rect()
@@ -424,12 +424,12 @@ function HUDStageEndScreen:init(hud, workspace)
 		align = "left",
 		word_wrap = true,
 		text = managers.localization:text("menu_es_skill_points_info", {
-			SKILL_MENU = managers.localization:to_upper_text("menu_skilltree")
+			SKILL_MENU = managers.localization:to_upper_text("menu_skilltree"),
 		}),
 		h = small_font_size,
 		font_size = small_font_size,
 		font = small_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	self._lp_sp_info:grow(-self._lp_circle:right() - 10, 0)
@@ -493,8 +493,8 @@ function HUDStageEndScreen:init(hud, workspace)
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 
 	WalletGuiObject.set_wallet(self._foreground_layer_safe)
@@ -505,7 +505,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		name = "package_forepanel",
 		y = 70,
 		w = self._foreground_layer_safe:w() / 2 - 10,
-		h = self._foreground_layer_safe:h() / 2 - 70 - 10
+		h = self._foreground_layer_safe:h() / 2 - 70 - 10,
 	})
 
 	self._package_forepanel:set_right(self._foreground_layer_safe:w())
@@ -515,7 +515,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		y = 10,
 		x = 10,
 		font = content_font,
-		font_size = content_font_size
+		font_size = content_font_size,
 	})
 
 	local package_box_panel = self._foreground_layer_safe:panel()
@@ -528,8 +528,8 @@ function HUDStageEndScreen:init(hud, workspace)
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 	self._package_items = {}
 
@@ -551,10 +551,10 @@ function HUDStageEndScreen:init(hud, workspace)
 		name = "skip_forepanel",
 		y = 70,
 		w = self._foreground_layer_safe:w() / 2 - 10,
-		h = self._foreground_layer_safe:h() / 2
+		h = self._foreground_layer_safe:h() / 2,
 	})
 	local macros = {
-		BTN_SPEED = managers.localization:btn_macro("menu_challenge_claim", true)
+		BTN_SPEED = managers.localization:btn_macro("menu_challenge_claim", true),
 	}
 
 	if not managers.menu:is_pc_controller() then
@@ -567,7 +567,7 @@ function HUDStageEndScreen:init(hud, workspace)
 		alpha = 0.5,
 		font = small_font,
 		font_size = small_font_size,
-		text = managers.localization:to_upper_text("menu_stageendscreen_speed_up", macros)
+		text = managers.localization:to_upper_text("menu_stageendscreen_speed_up", macros),
 	})
 
 	make_fine_text(self._skip_text)

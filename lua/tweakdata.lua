@@ -7,7 +7,7 @@ tweak_data.difficulty_level_locks = {
 	0,
 	80,
 	69420,
-	69420
+	69420,
 }
 
 -- lower difficulty xp muls
@@ -17,7 +17,7 @@ tweak_data.experience_manager.difficulty_multiplier = {
 	6,
 	12,
 	12,
-	12
+	12,
 }
 
 -- remove alive player multipliers
@@ -26,12 +26,11 @@ tweak_data.experience_manager.alive_humans_multiplier = {
 	1,
 	1,
 	1,
-	1
+	1,
 }
 
-
 -- medics don't heal cloakers and other medics
-tweak_data.medic.disabled_units = {"spooc", "medic"}
+tweak_data.medic.disabled_units = { "spooc", "medic" }
 
 -- Arrows
 tweak_data.projectiles.frankish_arrow.damage = 50
@@ -61,7 +60,7 @@ tweak_data.projectiles.launcher_rocket.range = 700
 tweak_data.projectiles.launcher_frag_m32.damage = 82
 tweak_data.projectiles.launcher_frag_m32.player_damage = 16
 -- china
-tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = {explosion = false, fire = false} -- why is china puff allowed to crit lmao
+tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = { explosion = false, fire = false } -- why is china puff allowed to crit lmao
 tweak_data.projectiles.launcher_frag_china.damage = 82
 tweak_data.projectiles.launcher_frag_china.player_damage = 16
 -- arbiter
@@ -93,7 +92,6 @@ tweak_data.projectiles.underbarrel_electric.damage = 10
 tweak_data.projectiles.underbarrel_electric_groza.damage = 10
 tweak_data.projectiles.launcher_electric_ms3gl.damage = 10
 
-
 -- incendiary buff
 tweak_data.projectiles.fir_com.damage = 10
 tweak_data.projectiles.fir_com.fire_dot_data.dot_damage = 30
@@ -115,7 +113,7 @@ tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 10
 tweak_data.projectiles.launcher_poison.damage = 9
 tweak_data.projectiles.launcher_poison.poison_gas_range = 300
 tweak_data.projectiles.launcher_poison.poison_gas_duration = 10
-tweak_data.projectiles.launcher_poison.poison_gas_dot_data = {hurt_animation_chance = 0.3, dot_damage = 4, dot_length = 10, dot_tick_period = 2}
+tweak_data.projectiles.launcher_poison.poison_gas_dot_data = { hurt_animation_chance = 0.3, dot_damage = 4, dot_length = 10, dot_tick_period = 2 }
 tweak_data.projectiles.launcher_poison_gre_m79 = deep_clone(tweak_data.projectiles.launcher_poison)
 tweak_data.projectiles.launcher_poison_gre_m79.damage = 9
 tweak_data.projectiles.launcher_poison_gre_m79.poison_gas_range = 300

@@ -15,4 +15,3 @@ function CrimeNetGui:_create_job_gui(data, type, fixed_x, fixed_y, fixed_locatio
 
 	return gui_data
 end
-

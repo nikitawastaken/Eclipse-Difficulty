@@ -49,20 +49,20 @@ Hooks:PostHook(ElementAreaTrigger, "on_set_enabled", "sh_on_set_enabled", check_
 -- Point of no return escape zones only need the players who aren't downed to trigger the escape
 local old_project_instigators = ElementAreaTrigger.project_instigators
 function ElementAreaTrigger:project_instigators()
-    local instigators = old_project_instigators(self)
+	local instigators = old_project_instigators(self)
 
-    if Network:is_client() then
-        if self._values.instigator == "criminals_not_downed" then
-            table.insert(instigators, managers.player:player_unit())
-            return instigators
-        end
-    end
+	if Network:is_client() then
+		if self._values.instigator == "criminals_not_downed" then
+			table.insert(instigators, managers.player:player_unit())
+			return instigators
+		end
+	end
 
-    if self._values.instigator == "criminals_not_downed" then
-        table.insert(instigators, managers.player:player_unit())
-    end
+	if self._values.instigator == "criminals_not_downed" then
+		table.insert(instigators, managers.player:player_unit())
+	end
 
-    return instigators
+	return instigators
 end
 
 function ElementAreaTrigger:project_amount_inside()
@@ -91,16 +91,16 @@ function ElementAreaTrigger:project_amount_inside()
 				counter = counter + 1
 			end
 		end
-    elseif self._values.instigator == "criminals_not_downed" then
-        counter = 0
+	elseif self._values.instigator == "criminals_not_downed" then
+		counter = 0
 
-        for _, criminal in pairs(managers.groupai:state():all_player_criminals()) do
-            for _, instigator in pairs(self._inside) do
-                if criminal.unit == instigator and not criminal.unit:movement():downed() then
-                    counter = counter + 1
-                end
-            end
-        end
+		for _, criminal in pairs(managers.groupai:state():all_player_criminals()) do
+			for _, instigator in pairs(self._inside) do
+				if criminal.unit == instigator and not criminal.unit:movement():downed() then
+					counter = counter + 1
+				end
+			end
+		end
 	end
 
 	return counter
@@ -123,16 +123,16 @@ function ElementAreaTrigger:project_amount_all()
 		end
 
 		return i
-    elseif self._values.instigator == "criminals_not_downed" then
-        local i = 0
+	elseif self._values.instigator == "criminals_not_downed" then
+		local i = 0
 
-        for _, data in pairs(managers.groupai:state():all_player_criminals()) do
-            if not data.unit:movement():downed() then
-                i = i + 1
-            end
-        end
+		for _, data in pairs(managers.groupai:state():all_player_criminals()) do
+			if not data.unit:movement():downed() then
+				i = i + 1
+			end
+		end
 
-        return i
+		return i
 	end
 
 	return managers.network:session() and managers.network:session():amount_of_alive_players() or 0

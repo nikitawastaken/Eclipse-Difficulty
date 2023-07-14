@@ -3,23 +3,20 @@ PlayerDamage._UPPERS_COOLDOWN = 90
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
-    if Global.game_settings.one_down then
-        self._lives_init = 4
-        tweak_data.player.damage.DOWNED_TIME = 25
+	if Global.game_settings.one_down then
+		self._lives_init = 4
+		tweak_data.player.damage.DOWNED_TIME = 25
 		tweak_data.player.damage.DOWNED_TIME_DEC = 10
 		tweak_data.player.damage.DOWNED_TIME_MIN = 1
-		tweak_data.player.damage.REVIVE_HEALTH_STEPS = {0.4, 0.2, 0.1}
-    end
+		tweak_data.player.damage.REVIVE_HEALTH_STEPS = { 0.4, 0.2, 0.1 }
+	end
 end)
 
-
 -- remove suppression
-function PlayerDamage:_upd_suppression(t, dt)
-end
-
+function PlayerDamage:_upd_suppression(t, dt) end
 
 -- aimpunch
-Hooks:PreHook(PlayerDamage, "damage_bullet", "damage_bullet_sss", function (self, attack_data)
+Hooks:PreHook(PlayerDamage, "damage_bullet", "damage_bullet_sss", function(self, attack_data)
 	if not attack_data or not attack_data.damage then
 		return
 	end
@@ -27,7 +24,6 @@ Hooks:PreHook(PlayerDamage, "damage_bullet", "damage_bullet_sss", function (self
 	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 2)
 	self._unit:camera()._damage_bullet_shake_multiplier = math.clamp(attack_data.damage, 0, 20) * shake_armor_multiplier
 end)
-
 
 -- Friendly Fire
 function PlayerDamage:is_friendly_fire(unit)
@@ -73,7 +69,6 @@ function PlayerDamage:_calc_armor_damage(...)
 
 	return health_subtracted
 end
-
 
 -- Make <50%hp invuln upgrade not proc on armor hits
 function PlayerDamage:_calc_health_damage(attack_data)
@@ -121,7 +116,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		"bullet",
 		"explosion",
 		"melee",
-		"delayed_tick"
+		"delayed_tick",
 	}, attack_data.variant)
 
 	if self:get_real_health() == 0 and trigger_skills then
@@ -133,7 +128,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	managers.hud:set_player_health({
 		current = self:get_real_health(),
 		total = self:_max_health(),
-		revives = Application:digest_value(self._revives, false)
+		revives = Application:digest_value(self._revives, false),
 	})
 	self:_send_set_health()
 	self:_set_health_effect()
@@ -141,7 +136,6 @@ function PlayerDamage:_calc_health_damage(attack_data)
 
 	return health_subtracted
 end
-
 
 -- make healing fixed instead of % of max health
 function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
@@ -155,7 +149,6 @@ function PlayerDamage:restore_health(health_restored, is_static, chk_health_rati
 		return self:change_health(health_restored * self._healing_reduction)
 	end
 end
-
 
 -- lower the on-kill godmode length for leech
 function PlayerDamage:on_copr_killshot()
@@ -171,10 +164,9 @@ end)
 -- bring back decreasing bleedout timer based on the amount of downs
 Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
 	if not self:arrested() then
-	  self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, self._down_time - tweak_data.player.damage.DOWNED_TIME_DEC)
+		self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, self._down_time - tweak_data.player.damage.DOWNED_TIME_DEC)
 	end
 end)
-
 
 -- Armor Break Panic
 function PlayerDamage:_calc_armor_damage(attack_data)
@@ -194,7 +186,6 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 		local has_armor_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "panic_on_armor_break")
 
 		if self:get_real_armor() <= 0 then
-
 			if has_armor_panic then
 				local pos = managers.player:player_unit():position()
 				local skill = tweak_data.upgrades.values.player.armor_panic[1]

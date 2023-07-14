@@ -1,9 +1,7 @@
 local tmp_vec = Vector3()
 
-
 -- Reuse function of idle logic to make enemies in an area aware of a player entering the area
 CopLogicAttack.on_area_safety = CopLogicIdle.on_area_safety
-
 
 -- Remove some of the strict conditions for enemies shooting while on the move
 -- This will result in enemies opening fire more likely while moving
@@ -31,14 +29,14 @@ function CopLogicAttack._upd_aim(data, my_data)
 		if not my_data.shooting and not my_data.spooc_attack and not data.unit:anim_data().reload and not data.unit:movement():chk_action_forbidden("action") then
 			my_data.shooting = data.brain:action_request({
 				body_part = 3,
-				type = "shoot"
+				type = "shoot",
 			})
 		end
 	else
 		if my_data.shooting then
 			data.brain:action_request({
 				body_part = 3,
-				type = "idle"
+				type = "idle",
 			})
 		end
 
@@ -90,7 +88,6 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 	return aim, shoot, not shoot and enemy_dis < 800 and focus_enemy.m_head_pos or focus_enemy.last_verified_pos or focus_enemy.verified_pos
 end
 
-
 -- Pathing related fixes to stop spamming walk actions when the new position is the same as the current position
 local _find_retreat_position_original = CopLogicAttack._find_retreat_position
 function CopLogicAttack._find_retreat_position(from_pos, ...)
@@ -104,8 +101,8 @@ function CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 	local from_pos = data.m_pos
 	local reservation = {
 		radius = 30,
-		position =  from_pos,
-		filter = data.pos_rsrv_id
+		position = from_pos,
+		filter = data.pos_rsrv_id,
 	}
 	if managers.navigation:is_pos_free(reservation) then
 		return
@@ -118,14 +115,13 @@ function CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 
 	local path = {
 		mvector3.copy(from_pos),
-		to_pos
+		to_pos,
 	}
 	CopLogicAttack._chk_request_action_walk_to_cover_shoot_pos(data, my_data, path, "run")
 end
 
 -- Empty this function (path starting position is corrected in CopActionWalk as it covers all cases)
 function CopLogicAttack._correct_path_start_pos() end
-
 
 -- Make moving back during combat depend on weapon range
 function CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, engage)
@@ -146,8 +142,8 @@ function CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, 
 				body_part = 2,
 				nav_path = {
 					from_pos,
-					retreat_to
-				}
+					retreat_to,
+				},
 			})
 
 			if my_data.advancing then
@@ -157,7 +153,6 @@ function CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, 
 		end
 	end
 end
-
 
 -- Fix reinforce groups relocating due to using covers outside of their nav segments
 local _update_cover_original = CopLogicAttack._update_cover
@@ -188,7 +183,7 @@ function CopLogicAttack._update_cover(data, ...)
 			local found_cover = managers.navigation:find_cover_in_nav_seg_2(data.objective.area.nav_segs, data.m_pos, dir)
 			if found_cover and (not best_cover or CopLogicAttack._verify_cover(found_cover, threat_pos, nil, nil)) then
 				local better_cover = {
-					found_cover
+					found_cover,
 				}
 
 				CopLogicAttack._set_best_cover(data, my_data, better_cover)

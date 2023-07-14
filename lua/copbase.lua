@@ -1,6 +1,6 @@
 -- Dynamically load throwable if we have one
 local unit_ids = Idstring("unit")
-Hooks:PostHook(CopBase, "init", "sh_init", function (self)
+Hooks:PostHook(CopBase, "init", "sh_init", function(self)
 	local throwable = self._char_tweak.throwable
 	if not throwable then
 		return
@@ -45,14 +45,13 @@ Hooks:PostHook(CopBase, "post_init", "hitbox_fix_post_init", function(self)
 	end
 end)
 
-
 -- Check for weapon changes
 if Network:is_client() then
 	return
 end
 
 local weapon_mapping = StreamHeist:require("unit_weapons")
-Hooks:PreHook(CopBase, "post_init", "sh_post_init", function (self)
+Hooks:PreHook(CopBase, "post_init", "sh_post_init", function(self)
 	self._default_weapon_id = weapon_mapping[self._unit:name():key()] or self._default_weapon_id
 	if type(self._default_weapon_id) == "table" then
 		self._default_weapon_id = table.random(self._default_weapon_id)

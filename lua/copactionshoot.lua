@@ -15,7 +15,6 @@ local temp_rot1 = Rotation()
 local temp_vec1 = Vector3()
 local temp_vec2 = Vector3()
 
-
 -- Helper function to reset variables when shooting is stopped
 function CopActionShoot:_stop_firing()
 	self._is_single_shot = nil
@@ -23,9 +22,8 @@ function CopActionShoot:_stop_firing()
 	self._weapon_base:stop_autofire()
 end
 
-
 -- Set some values needed for fixed focus and aim delay
-Hooks:PostHook(CopActionShoot, "on_attention", "sh_on_attention", function (self)
+Hooks:PostHook(CopActionShoot, "on_attention", "sh_on_attention", function(self)
 	-- Stop autofiring on target change
 	if not self._w_usage_tweak.no_autofire_stop then
 		self:_stop_firing()
@@ -35,10 +33,9 @@ Hooks:PostHook(CopActionShoot, "on_attention", "sh_on_attention", function (self
 	if self._attention and self._attention.unit then
 		self._shoot_history.focus_start_t = math.max(TimerManager:game():time(), self._shoot_t)
 		self._shoot_history.focus_delay = self._w_usage_tweak.focus_delay
-		self._shooting_husk_player =  self._attention.unit:base() and  self._attention.unit:base().is_husk_player
+		self._shooting_husk_player = self._attention.unit:base() and self._attention.unit:base().is_husk_player
 	end
 end)
-
 
 -- Add a custom callback for the allow fire change, whenever we're allowed to shoot again,
 -- apply aim and focus delay if sufficient time has passed since we last shot
@@ -69,7 +66,6 @@ function CopActionShoot:allow_fire_clbk(state)
 		self._shoot_history.focus_delay = self._w_usage_tweak.focus_delay
 	end
 end
-
 
 -- Thanks to the messy implementation of this function, we have to replace it completely, no hook can save us here
 function CopActionShoot:update(t)
@@ -103,7 +99,7 @@ function CopActionShoot:update(t)
 				self._ext_movement:action_request({
 					body_part = 2,
 					type = "turn",
-					angle = spin
+					angle = spin,
 				})
 			end
 		end
@@ -191,7 +187,6 @@ function CopActionShoot:update(t)
 	end
 end
 
-
 -- Remove pseudrandom hitchance and hit chance interpolation (interpolation is already done in _get_shoot_falloff)
 function CopActionShoot:_get_unit_shoot_pos(t, pos, dis, w_tweak, falloff, i_range, shooting_player)
 	local shoot_hist = self._shoot_history
@@ -242,7 +237,6 @@ function CopActionShoot:_get_unit_shoot_pos(t, pos, dis, w_tweak, falloff, i_ran
 	return temp_vec2
 end
 
-
 -- Interpolate between entries in the FALLOFF table to prevent sudden changes in damage etc
 function CopActionShoot:_get_shoot_falloff(target_dis, falloff)
 	local i = #falloff
@@ -264,22 +258,21 @@ function CopActionShoot:_get_shoot_falloff(target_dis, falloff)
 			dmg_mul = math_lerp(prev_data.dmg_mul, data.dmg_mul, t),
 			acc = {
 				math_lerp(prev_data.acc[1], data.acc[1], t),
-				math_lerp(prev_data.acc[2], data.acc[2], t)
+				math_lerp(prev_data.acc[2], data.acc[2], t),
 			},
 			recoil = {
 				math_lerp(prev_data.recoil[1], data.recoil[1], t),
-				math_lerp(prev_data.recoil[2], data.recoil[2], t)
+				math_lerp(prev_data.recoil[2], data.recoil[2], t),
 			},
 			autofire_rounds = prev_data.autofire_rounds and data.autofire_rounds and {
 				math_lerp(prev_data.autofire_rounds[1], data.autofire_rounds[1], t),
-				math_lerp(prev_data.autofire_rounds[2], data.autofire_rounds[2], t)
+				math_lerp(prev_data.autofire_rounds[2], data.autofire_rounds[2], t),
 			},
-			mode = data.mode
+			mode = data.mode,
 		}
 		return n_data, i
 	end
 end
-
 
 -- Do all the melee related checks inside this function
 -- Adjust melee code to work against npcs
@@ -379,8 +372,8 @@ function CopActionShoot:anim_clbk_melee_strike()
 		col_ray = {
 			position = self._shoot_from_pos + fwd * 50,
 			ray = mvector3.copy(target_vec),
-			body = self._melee_unit:body(0)
-		}
+			body = self._melee_unit:body(0),
+		},
 	})
 
 	local melee_tweak = tweak_data.weapon.npc_melee[self._unit:base():melee_weapon()]
@@ -396,8 +389,8 @@ function CopActionShoot:anim_clbk_melee_strike()
 				attacker_unit = self._unit,
 				col_ray = {
 					position = shoot_from_pos + fwd * 50,
-					ray = mvector3.copy(target_vec)
-				}
+					ray = mvector3.copy(target_vec),
+				},
 			})
 		end
 	end
@@ -415,10 +408,10 @@ function CopActionShoot:anim_clbk_melee_strike()
 			attacker_unit = self._melee_unit,
 			col_ray = {
 				body = self._unit:body(0),
-				position = self._common_data.pos + math.UP * 100
+				position = self._common_data.pos + math.UP * 100,
 			},
 			attack_dir = -target_vec:normalized(),
-			name_id = managers.blackmarket:equipped_melee_weapon()
+			name_id = managers.blackmarket:equipped_melee_weapon(),
 		})
 	end
 end

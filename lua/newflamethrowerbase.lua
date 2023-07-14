@@ -1,5 +1,7 @@
 Hooks:PostHook(NewFlamethrowerBase, "setup_default", "eclipse_setup_default", function(self)
-    if Global.game_settings and Global.game_settings.one_down then self._bullet_slotmask = self._bullet_slotmask + 3 end
+	if Global.game_settings and Global.game_settings.one_down then
+		self._bullet_slotmask = self._bullet_slotmask + 3
+	end
 end)
 
 local mvec_to = Vector3()
@@ -45,7 +47,7 @@ function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_m
 			unit = body:unit(),
 			ray = direction,
 			normal = direction,
-			position = from_pos
+			position = from_pos,
 		}
 
 		self._bullet_class:on_collision(fake_ray, self._unit, user_unit, damage)
@@ -66,21 +68,21 @@ function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_m
 	if self._alert_events then
 		result.rays = {
 			{
-				position = from_pos
-			}
+				position = from_pos,
+			},
 		}
 	end
 
 	managers.statistics:shot_fired({
 		hit = false,
-		weapon_unit = self._unit
+		weapon_unit = self._unit,
 	})
 
 	for i = 1, hit_enemies, 1 do
 		managers.statistics:shot_fired({
 			skip_bullet_count = true,
 			hit = true,
-			weapon_unit = self._unit
+			weapon_unit = self._unit,
 		})
 	end
 

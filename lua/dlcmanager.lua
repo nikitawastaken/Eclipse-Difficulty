@@ -1,5 +1,5 @@
 function GenericDLCManager:has_mrwi_deck()
-    return false
+	return false
 end
 
 function GenericDLCManager:has_mrwi_deck_equipped_mimicing(choice)

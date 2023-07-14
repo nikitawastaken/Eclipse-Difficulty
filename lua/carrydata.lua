@@ -2,7 +2,6 @@ if Network:is_client() then
 	return
 end
 
-
 -- Tweak bag stealing conditions
 function CarryData:clbk_pickup_SO_verification(unit)
 	if not self._steal_SO_data or not self._steal_SO_data.SO_id then
@@ -37,9 +36,8 @@ function CarryData:clbk_pickup_SO_verification(unit)
 	end
 end
 
-
 -- Fix zipline trying to copy non existing bag attention data
-Hooks:OverrideFunction(CarryData, "set_zipline_unit", function (self, zipline_unit)
+Hooks:OverrideFunction(CarryData, "set_zipline_unit", function(self, zipline_unit)
 	self._zipline_unit = zipline_unit
 	self:_set_expire_enabled(not self._zipline_unit)
 

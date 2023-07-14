@@ -39,7 +39,7 @@ function AIAttentionObject:clbk_enemy_weapons_hot()
 	self:_call_listeners()
 end
 
-Hooks:PreHook(AIAttentionObject, "destroy", "sh_destroy", function (self)
+Hooks:PreHook(AIAttentionObject, "destroy", "sh_destroy", function(self)
 	if self._enemy_weapons_hot_listen_id then
 		managers.groupai:state():remove_listener(self._enemy_weapons_hot_listen_id)
 		self._enemy_weapons_hot_listen_id = nil

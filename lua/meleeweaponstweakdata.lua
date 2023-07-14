@@ -1,5 +1,5 @@
 -- Rebalance melee weapons based on their range, concealment and speed
-Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_weapons", function (self)
+Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_weapons", function(self)
 	local min_conceal, max_conceal = 30, 0
 	local min_range, max_range = 300, 0
 	local min_expire, max_expire = 10, 0

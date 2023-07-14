@@ -16,9 +16,9 @@ function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, var
 				armor_piercing = true,
 				variant = variant,
 				col_ray = {
-					position = unit:position()
+					position = unit:position(),
 				},
-				push_vel = Vector3()
+				push_vel = Vector3(),
 			}
 
 			if variant == "bullet" or variant == "projectile" then
@@ -31,11 +31,10 @@ function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, var
 		end
 	end
 
-	if  not Global.game_settings and Global.game_settings.one_down then
+	if not Global.game_settings and Global.game_settings.one_down then
 		managers.job:set_memory("trophy_flawless", true, false)
 	end
 end
-
 
 -- Properly sync reload
 function UnitNetworkHandler:reload_weapon_cop(cop, sender)
@@ -55,11 +54,10 @@ function UnitNetworkHandler:reload_weapon_cop(cop, sender)
 		-- Otherwise request an actual reload action
 		cop:movement():action_request({
 			body_part = 3,
-			type = "reload"
+			type = "reload",
 		})
 	end
 end
-
 
 -- Ignore duplicate grenade sync
 function UnitNetworkHandler:sync_smoke_grenade(detonate_pos, shooter_pos, duration, flashbang)

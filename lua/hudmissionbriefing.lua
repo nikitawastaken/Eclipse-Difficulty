@@ -28,7 +28,7 @@ function HUDMissionBriefing:init(hud, workspace)
 	self._ready_slot_panel = self._foreground_layer_one:panel({
 		name = "player_slot_panel",
 		w = self._foreground_layer_one:w() / 2,
-		h = text_font_size * 4 + 20
+		h = text_font_size * 4 + 20,
 	})
 
 	self._ready_slot_panel:set_bottom(self._foreground_layer_one:h() - 70)
@@ -45,7 +45,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				name = "slot_" .. tostring(i),
 				h = text_font_size,
 				y = (i - 1) * text_font_size + 10,
-				w = self._ready_slot_panel:w() - 20
+				w = self._ready_slot_panel:w() - 20,
 			})
 			local criminal = slot_panel:text({
 				name = "criminal",
@@ -55,7 +55,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				font_size = text_font_size,
 				font = text_font,
 				color = color,
-				text = tweak_data.gui.LONGEST_CHAR_NAME
+				text = tweak_data.gui.LONGEST_CHAR_NAME,
 			})
 			local voice = slot_panel:bitmap({
 				name = "voice",
@@ -66,7 +66,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				texture_rect = voice_texture_rect,
 				w = voice_texture_rect[3],
 				h = voice_texture_rect[4],
-				color = color
+				color = color,
 			})
 			local name = slot_panel:text({
 				vertical = "center",
@@ -80,7 +80,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				font = text_font,
 				font_size = text_font_size,
 				color = color:with_alpha(0.5),
-				h = text_font_size
+				h = text_font_size,
 			})
 			local status = slot_panel:text({
 				vertical = "center",
@@ -94,7 +94,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				font = text_font,
 				font_size = text_font_size,
 				h = text_font_size,
-				color = tweak_data.screen_colors.text:with_alpha(0.5)
+				color = tweak_data.screen_colors.text:with_alpha(0.5),
 			})
 			local infamy = slot_panel:bitmap({
 				w = 16,
@@ -103,14 +103,14 @@ function HUDMissionBriefing:init(hud, workspace)
 				visible = false,
 				y = 1,
 				layer = 2,
-				color = color
+				color = color,
 			})
 			local detection = slot_panel:panel({
 				name = "detection",
 				visible = false,
 				layer = 2,
 				w = slot_panel:h(),
-				h = slot_panel:h()
+				h = slot_panel:h(),
 			})
 			local detection_ring_left_bg = detection:bitmap({
 				blend_mode = "add",
@@ -118,7 +118,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				alpha = 0.2,
 				texture = "guis/textures/pd2/mission_briefing/inv_detection_meter",
 				w = detection:w(),
-				h = detection:h()
+				h = detection:h(),
 			})
 			local detection_ring_right_bg = detection:bitmap({
 				blend_mode = "add",
@@ -126,7 +126,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				alpha = 0.2,
 				texture = "guis/textures/pd2/mission_briefing/inv_detection_meter",
 				w = detection:w(),
-				h = detection:h()
+				h = detection:h(),
 			})
 
 			detection_ring_right_bg:set_texture_rect(detection_ring_right_bg:texture_width(), 0, -detection_ring_right_bg:texture_width(), detection_ring_right_bg:texture_height())
@@ -138,7 +138,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				render_template = "VertexColorTexturedRadial",
 				layer = 1,
 				w = detection:w(),
-				h = detection:h()
+				h = detection:h(),
 			})
 			local detection_ring_right = detection:bitmap({
 				blend_mode = "add",
@@ -147,7 +147,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				render_template = "VertexColorTexturedRadial",
 				layer = 1,
 				w = detection:w(),
-				h = detection:h()
+				h = detection:h(),
 			})
 
 			detection_ring_right:set_texture_rect(detection_ring_right:texture_width(), 0, -detection_ring_right:texture_width(), detection_ring_right:texture_height())
@@ -160,7 +160,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				vertical = "center",
 				font_size = text_font_size,
 				font = text_font,
-				color = color
+				color = color,
 			})
 
 			detection:set_left(slot_panel:w() * 0.65)
@@ -183,8 +183,8 @@ function HUDMissionBriefing:init(hud, workspace)
 				1,
 				1,
 				1,
-				1
-			}
+				1,
+			},
 		})
 	end
 
@@ -219,7 +219,7 @@ function HUDMissionBriefing:init(hud, workspace)
 	self._paygrade_panel = self._background_layer_one:panel({
 		w = 210,
 		h = 70,
-		y = padding_y
+		y = padding_y,
 	})
 	local pg_text = self._foreground_layer_one:text({
 		name = "pg_text",
@@ -230,7 +230,7 @@ function HUDMissionBriefing:init(hud, workspace)
 		y = padding_y,
 		font_size = content_font_size,
 		font = content_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, w, h = pg_text:text_rect()
 
@@ -244,13 +244,13 @@ function HUDMissionBriefing:init(hud, workspace)
 		0,
 		32,
 		32,
-		32
+		32,
 	}
 	local empty_star_rect = {
 		32,
 		32,
 		32,
-		32
+		32,
 	}
 	local num_stars = 0
 	local x = 0
@@ -263,7 +263,7 @@ function HUDMissionBriefing:init(hud, workspace)
 		"risk_swat",
 		"risk_fbi",
 		"risk_death_squad",
-		"risk_sm_wish"
+		"risk_sm_wish",
 	}
 
 	for i, name in ipairs(risks) do
@@ -278,7 +278,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			texture = texture,
 			texture_rect = rect,
 			alpha = alpha,
-			color = color
+			color = color,
 		})
 
 		risk:set_position(x, y)
@@ -300,7 +300,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			text = managers.localization:to_upper_text("menu_one_down"),
 			font = content_font,
 			font_size = content_font_size,
-			color = tweak_data.screen_colors.one_down
+			color = tweak_data.screen_colors.one_down,
 		})
 		local _, _, w, h = one_down_text:text_rect()
 
@@ -320,12 +320,12 @@ function HUDMissionBriefing:init(hud, workspace)
 			align = "right",
 			text = managers.localization:to_upper_text("menu_skirmish_wave_range", {
 				min = min,
-				max = max
+				max = max,
 			}),
 			y = padding_y,
 			font_size = content_font_size,
 			font = content_font,
-			color = tweak_data.screen_colors.skirmish_color
+			color = tweak_data.screen_colors.skirmish_color,
 		})
 
 		managers.hud:make_fine_text(wave_range_text)
@@ -334,7 +334,7 @@ function HUDMissionBriefing:init(hud, workspace)
 
 	self._job_schedule_panel = self._background_layer_one:panel({
 		h = 70,
-		w = self._background_layer_one:w() / 2
+		w = self._background_layer_one:w() / 2,
 	})
 
 	self._job_schedule_panel:set_right(self._foreground_layer_one:w())
@@ -346,7 +346,7 @@ function HUDMissionBriefing:init(hud, workspace)
 		if not tweak_data.levels[interupt_stage].bonus_escape then
 			self._interupt_panel = self._background_layer_one:panel({
 				h = 125,
-				w = self._background_layer_one:w() / 2
+				w = self._background_layer_one:w() / 2,
 			})
 			local interupt_text = self._interupt_panel:text({
 				name = "job_text",
@@ -357,7 +357,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				layer = 5,
 				text = utf8.to_upper(managers.localization:text("menu_escape")),
 				font = bg_font,
-				color = tweak_data.screen_colors.important_1
+				color = tweak_data.screen_colors.important_1,
 			})
 			local _, _, w, h = interupt_text:text_rect()
 
@@ -392,13 +392,13 @@ function HUDMissionBriefing:init(hud, workspace)
 			blend_mode = "add",
 			name = "day_" .. tostring(i),
 			text = utf8.to_upper(managers.localization:text("menu_day_short", {
-				day = tostring(i)
+				day = tostring(i),
 			})),
 			font_size = day_font_size,
 			font = day_font,
 			w = js_w,
 			h = js_h,
-			color = day_color
+			color = day_color,
 		})
 
 		day_text:set_left(i == 1 and 0 or self._job_schedule_panel:child("day_" .. tostring(i - 1)):right())
@@ -409,7 +409,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			blend_mode = "add",
 			w = 16,
 			name = "ghost_" .. tostring(i),
-			color = tweak_data.screen_colors.ghost_color
+			color = tweak_data.screen_colors.ghost_color,
 		})
 
 		ghost:set_center(day_text:center_x(), day_text:center_y() + day_text:h() * 0.25)
@@ -429,8 +429,8 @@ function HUDMissionBriefing:init(hud, workspace)
 			0,
 			0,
 			80,
-			64
-		}
+			64,
+		},
 	}
 	local stage_circled_icon = {
 		texture = "guis/textures/pd2/mission_briefing/calendar_xo",
@@ -438,8 +438,8 @@ function HUDMissionBriefing:init(hud, workspace)
 			80,
 			0,
 			80,
-			64
-		}
+			64,
+		},
 	}
 
 	for i = 1, managers.job:current_stage() or 0 do
@@ -451,7 +451,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			name = "stage_done_" .. tostring(i),
 			texture = icon.texture,
 			texture_rect = icon.texture_rect,
-			rotation = math.rand(-10, 10)
+			rotation = math.rand(-10, 10),
 		})
 
 		stage_marker:set_center(self._job_schedule_panel:child("day_" .. tostring(i)):center())
@@ -469,9 +469,9 @@ function HUDMissionBriefing:init(hud, workspace)
 				160,
 				0,
 				96,
-				64
+				64,
 			},
-			rotation = math.rand(-5, 5)
+			rotation = math.rand(-5, 5),
 		})
 
 		payday_stamp:set_center(self._job_schedule_panel:child("day_" .. tostring(num_stages)):center())
@@ -490,7 +490,7 @@ function HUDMissionBriefing:init(hud, workspace)
 		h = content_font_size,
 		font_size = content_font_size,
 		font = content_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, w, h = job_overview_text:text_rect()
 
@@ -519,7 +519,7 @@ function HUDMissionBriefing:init(hud, workspace)
 		text = managers.localization:to_upper_text(name_id) .. ": "
 		text_len = utf8.len(text)
 		text = text .. "+" .. managers.localization:text("menu_cs_level", {
-			level = mission and mission.add or 0
+			level = mission and mission.add or 0,
 		})
 		text_align = "right"
 	end
@@ -539,7 +539,7 @@ function HUDMissionBriefing:init(hud, workspace)
 		align = text_align or "left",
 		font_size = title_font_size,
 		font = title_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	if managers.crime_spree:is_active() then
@@ -555,7 +555,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			align = text_align or "left",
 			font_size = bg_font_size,
 			font = bg_font,
-			color = tweak_data.screen_colors.button_stage_1
+			color = tweak_data.screen_colors.button_stage_1,
 		})
 
 		big_text:set_world_center_y(self._foreground_layer_one:child("job_text"):world_center_y())
@@ -571,7 +571,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			h = 48,
 			w = 96,
 			rotation = 360,
-			layer = 2
+			layer = 2,
 		})
 
 		day_1_sticker:set_center(day_1_text:center())
@@ -583,7 +583,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			h = 48,
 			w = 96,
 			rotation = 360,
-			layer = 2
+			layer = 2,
 		})
 
 		day_2_sticker:set_center(day_2_text:center())
@@ -604,7 +604,7 @@ function HUDMissionBriefing:init(hud, workspace)
 			x = self._job_schedule_panel:x(),
 			y = self._job_schedule_panel:y(),
 			w = self._job_schedule_panel:width(),
-			h = self._job_schedule_panel:height()
+			h = self._job_schedule_panel:height(),
 		})
 	end
 end

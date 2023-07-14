@@ -1,5 +1,5 @@
 -- Make medics require line of sight to heal and optimize function
-Hooks:OverrideFunction(EnemyManager, "get_nearby_medic", function (self, unit)
+Hooks:OverrideFunction(EnemyManager, "get_nearby_medic", function(self, unit)
 	if self:is_civilian(unit) then
 		return
 	end

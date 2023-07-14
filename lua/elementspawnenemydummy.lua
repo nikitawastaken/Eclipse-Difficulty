@@ -1,5 +1,5 @@
 -- Don't replace spawns on custom enemy spawner map
-local level_id =  Global.game_settings and Global.game_settings.level_id
+local level_id = Global.game_settings and Global.game_settings.level_id
 if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spawner" then
 	StreamHeist:log("Editor/Spawner mode is active, spawn group fixes disabled")
 	return
@@ -15,7 +15,7 @@ local enemy_replacements = {
 		heavy_2 = "units/payday2/characters/ene_swat_2/ene_swat_2",
 		shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
 		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
-		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
 	},
 	overkill = {
 		swat_1 = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
@@ -25,7 +25,7 @@ local enemy_replacements = {
 		heavy_2 = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
 		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
-		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
 	},
 	overkill_145 = {
 		swat_1 = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
@@ -35,7 +35,7 @@ local enemy_replacements = {
 		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
-		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
 	},
 	easy_wish = {
 		swat_1 = "units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
@@ -45,8 +45,8 @@ local enemy_replacements = {
 		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
-		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
-	}
+		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+	},
 }
 enemy_replacements.hard = enemy_replacements.normal
 local enemy_mapping = {
@@ -78,7 +78,7 @@ local enemy_mapping = {
 	[Idstring("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = "cloaker",
 	[Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"):key()] = "heavy_1",
 	[Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield"):key()] = "shield",
-	[Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"):key()] = "swat_1"
+	[Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"):key()] = "swat_1",
 }
 
 local difficulty

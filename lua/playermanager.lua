@@ -31,12 +31,11 @@ Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self,
 	return addend * hostages
 end)
 
-
 function PlayerManager:on_headshot_dealt()
 	local t = Application:time()
 	local player_unit = self:player_unit()
 	local damage_ext = player_unit:character_damage()
-    local has_hitman_ammo_refund = managers.player:has_enabled_cooldown_upgrade("cooldown", "hitman_ammo_refund")
+	local has_hitman_ammo_refund = managers.player:has_enabled_cooldown_upgrade("cooldown", "hitman_ammo_refund")
 
 	if not player_unit then
 		return
@@ -45,7 +44,7 @@ function PlayerManager:on_headshot_dealt()
 	-- hitman refunds ammo on headshots
 	if has_hitman_ammo_refund and variant ~= "melee" then
 		managers.player:on_ammo_increase(1)
-        managers.player:disable_cooldown_upgrade("cooldown", "hitman_ammo_refund")
+		managers.player:disable_cooldown_upgrade("cooldown", "hitman_ammo_refund")
 	end
 
 	-- make headshot regen check for maxed out armor
@@ -67,42 +66,41 @@ function PlayerManager:on_headshot_dealt()
 	end
 end
 
-
 -- shotgun panic stuff
 local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
-    on_killshot_old(self, killed_unit, variant, headshot, weapon_id)
+	on_killshot_old(self, killed_unit, variant, headshot, weapon_id)
 
-    local has_shotgun_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
-    if has_shotgun_panic and variant ~= "melee" then
-        local equipped_unit = self:get_current_state()._equipped_unit:base()
+	local has_shotgun_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+	if has_shotgun_panic and variant ~= "melee" then
+		local equipped_unit = self:get_current_state()._equipped_unit:base()
 
-        if equipped_unit:is_category("shotgun") then
-            local pos = managers.player:player_unit():position()
-            local skill = tweak_data.upgrades.values.shotgun.panic[1]
+		if equipped_unit:is_category("shotgun") then
+			local pos = managers.player:player_unit():position()
+			local skill = tweak_data.upgrades.values.shotgun.panic[1]
 
-            if skill then
-                local area = skill.area
-                local chance = skill.chance
-                local amount = skill.amount
-                local enemies = World:find_units_quick("sphere", pos, area, managers.slot:get_mask("enemies"))
+			if skill then
+				local area = skill.area
+				local chance = skill.chance
+				local amount = skill.amount
+				local enemies = World:find_units_quick("sphere", pos, area, managers.slot:get_mask("enemies"))
 
-                for i, unit in ipairs(enemies) do
-                    if unit:character_damage() then
-                        unit:character_damage():build_suppression(amount, chance)
-                    end
-                end
-            end
+				for i, unit in ipairs(enemies) do
+					if unit:character_damage() then
+						unit:character_damage():build_suppression(amount, chance)
+					end
+				end
+			end
 
-        managers.player:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
-        end
-    end
+			managers.player:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+		end
+	end
 end
 
 -- Shotgun CQB
 PlayerAction.ShotgunCQB = {
 	Priority = 1,
-	Function = function (player_manager, speed_bonus, max_stacks, max_time)
+	Function = function(player_manager, speed_bonus, max_stacks, max_time)
 		local co = coroutine.running()
 		local current_time = Application:time()
 		local current_stacks = 1
@@ -130,15 +128,15 @@ PlayerAction.ShotgunCQB = {
 
 		player_manager:remove_property("shotguncqb")
 		player_manager:unregister_message(Message.OnEnemyKilled, co)
-	end
+	end,
 }
 
 Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
-    if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
-        self._message_system:register(Message.OnEnemyShot, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
-    else
-        self._message_system:unregister(Message.OnEnemyShot, "shotguncqb")
-    end
+	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
+		self._message_system:register(Message.OnEnemyShot, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
+	else
+		self._message_system:unregister(Message.OnEnemyShot, "shotguncqb")
+	end
 end)
 
 function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
@@ -156,9 +154,9 @@ end
 
 local old_speed_multiplier = PlayerManager.movement_speed_multiplier
 function PlayerManager:movement_speed_multiplier(...)
-    local multi = old_speed_multiplier(self, ...)
-    multi = multi * managers.player:get_property("shotguncqb", 1)
-    return multi
+	local multi = old_speed_multiplier(self, ...)
+	multi = multi * managers.player:get_property("shotguncqb", 1)
+	return multi
 end
 
 local old_skill_dodge = PlayerManager.skill_dodge_chance

@@ -53,14 +53,14 @@ function CopLogicSniper._upd_aim(data, my_data)
 		if not my_data.shooting and not data.unit:movement():chk_action_forbidden("action") then
 			my_data.shooting = data.brain:action_request({
 				body_part = 3,
-				type = "shoot"
+				type = "shoot",
 			})
 		end
 	else
 		if my_data.shooting then
 			data.brain:action_request({
 				body_part = 3,
-				type = "idle"
+				type = "idle",
 			})
 		end
 
@@ -73,9 +73,8 @@ function CopLogicSniper._upd_aim(data, my_data)
 	CopLogicAttack.aim_allow_fire(shoot, aim, data, my_data)
 end
 
-
 -- Return to objective position
-Hooks:PostHook(CopLogicSniper, "action_complete_clbk", "sh_action_complete_clbk", function (data, action)
+Hooks:PostHook(CopLogicSniper, "action_complete_clbk", "sh_action_complete_clbk", function(data, action)
 	local action_type = action:type()
 	local my_data = data.internal_data
 
@@ -94,7 +93,7 @@ Hooks:PostHook(CopLogicSniper, "action_complete_clbk", "sh_action_complete_clbk"
 
 	my_data.advance_path = {
 		mvector3.copy(data.m_pos),
-		mvector3.copy(objective.pos)
+		mvector3.copy(objective.pos),
 	}
 
 	CopLogicTravel._chk_request_action_walk_to_advance_pos(data, my_data, objective.haste or "walk", objective.rot)

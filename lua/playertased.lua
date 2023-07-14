@@ -4,7 +4,8 @@ function PlayerTased:enter(state_data, enter_data)
 
 	if state_data.non_lethal_electrocution then
 		state_data.non_lethal_electrocution = nil
-		local recover_time = Application:time() + tweak_data.player.damage.TASED_TIME * managers.player:upgrade_value("player", "electrocution_resistance_multiplier", 1) * (state_data.electrocution_duration_multiplier or 1)
+		local recover_time = Application:time()
+			+ tweak_data.player.damage.TASED_TIME * managers.player:upgrade_value("player", "electrocution_resistance_multiplier", 1) * (state_data.electrocution_duration_multiplier or 1)
 		state_data.electrocution_duration_multiplier = nil
 		self._recover_delayed_clbk = "PlayerTased_recover_delayed_clbk"
 
@@ -47,7 +48,7 @@ function PlayerTased:enter(state_data, enter_data)
 	self._state_data = state_data
 
 	CopDamage.register_listener("on_criminal_tased", {
-		"on_criminal_tased"
+		"on_criminal_tased",
 	}, callback(self, self, "_on_tased_event"))
 end
 

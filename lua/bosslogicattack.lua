@@ -15,7 +15,6 @@ local tmp_rot = Rotation()
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
-
 -- Boss should basically always be in shooting action
 function BossLogicAttack._upd_aim(data, my_data, ...)
 	local focus_enemy = data.attention_obj
@@ -49,14 +48,14 @@ function BossLogicAttack._upd_aim(data, my_data, ...)
 		if not my_data.shooting and not my_data.spooc_attack and not data.unit:anim_data().reload and not data.unit:movement():chk_action_forbidden("action") then
 			my_data.shooting = data.brain:action_request({
 				body_part = 3,
-				type = "shoot"
+				type = "shoot",
 			})
 		end
 	else
 		if my_data.shooting then
 			local success = data.brain:action_request({
 				body_part = 3,
-				type = "idle"
+				type = "idle",
 			})
 			if success then
 				my_data.shooting = nil
@@ -71,7 +70,6 @@ function BossLogicAttack._upd_aim(data, my_data, ...)
 
 	CopLogicAttack.aim_allow_fire(shoot, aim, data, my_data)
 end
-
 
 -- Adjust throwable code to allow for non throwable projectiles
 -- Also make the throwing use an actual action so it properly interrupts shooting
@@ -144,7 +142,7 @@ function BossLogicAttack._chk_use_throwable(data, my_data, focus)
 	local action_data = {
 		body_part = 3,
 		type = "act",
-		variant = is_throwable and "throw_grenade" or "recoil_single"
+		variant = is_throwable and "throw_grenade" or "recoil_single",
 	}
 	if not data.brain:action_request(action_data) then
 		return
@@ -156,7 +154,6 @@ function BossLogicAttack._chk_use_throwable(data, my_data, focus)
 
 	return true
 end
-
 
 -- New chase position function, try to walk around the target instead of random positions
 function BossLogicAttack._find_chase_position(data, pos, min_dis, max_dis)
@@ -176,7 +173,7 @@ function BossLogicAttack._find_chase_position(data, pos, min_dis, max_dis)
 		allow_entry = true,
 		trace = true,
 		pos_from = pos,
-		pos_to = test_pos
+		pos_to = test_pos,
 	}
 
 	repeat
@@ -213,7 +210,6 @@ function BossLogicAttack._find_chase_position(data, pos, min_dis, max_dis)
 
 	return fallback_pos
 end
-
 
 -- Check for weapon range to determine wether to move closer
 function BossLogicAttack._upd_combat_movement(data, my_data)
@@ -255,13 +251,13 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 					local ray_params = {
 						allow_entry = false,
 						pos_from = my_pos,
-						pos_to = my_data.chase_pos
+						pos_to = my_data.chase_pos,
 					}
 
 					if not managers.navigation:raycast(ray_params) then
 						my_data.chase_path = {
 							my_pos,
-							my_data.chase_pos
+							my_data.chase_pos,
 						}
 						return
 					end
@@ -272,7 +268,7 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 
 				data.brain:add_pos_rsrv("path", {
 					radius = 50,
-					position = my_data.chase_pos
+					position = my_data.chase_pos,
 				})
 				data.brain:search_for_path(my_data.chase_path_search_id, my_data.chase_pos)
 			else
@@ -299,14 +295,13 @@ function BossLogicAttack._upd_combat_movement(data, my_data)
 	end
 end
 
-
 -- Check new position for being different than the current one
 function BossLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 	local from_pos = data.m_pos
 	local reservation = {
 		radius = 30,
 		position = from_pos,
-		filter = data.pos_rsrv_id
+		filter = data.pos_rsrv_id,
 	}
 	if managers.navigation:is_pos_free(reservation) then
 		return
@@ -323,8 +318,8 @@ function BossLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 		type = "walk",
 		nav_path = {
 			mvec_copy(from_pos),
-			to_pos
-		}
+			to_pos,
+		},
 	})
 
 	if my_data.advancing then
@@ -333,7 +328,6 @@ function BossLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 		return true
 	end
 end
-
 
 -- Update logic every frame
 function BossLogicAttack.update(data)
