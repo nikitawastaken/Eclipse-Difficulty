@@ -1196,6 +1196,7 @@ self.fmg9.kick = kick_tables.ar_mid
 self.fmg9.timers.unequip = 1.2
 
 -- Spec Ops
+self.mp7.stats.damage = 58
 self.mp7.AMMO_MAX = total_ammo_tables.smg_mid
 self.mp7.AMMO_PICKUP = pickup_tables.smg_mid
 self.mp7.kick = kick_tables.ar_high
