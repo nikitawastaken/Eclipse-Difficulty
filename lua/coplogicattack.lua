@@ -31,14 +31,14 @@ function CopLogicAttack._upd_aim(data, my_data)
 		if not my_data.shooting and not my_data.spooc_attack and not data.unit:anim_data().reload and not data.unit:movement():chk_action_forbidden("action") then
 			my_data.shooting = data.brain:action_request({
 				body_part = 3,
-				type = "shoot"
+				type = "shoot",
 			})
 		end
 	else
 		if my_data.shooting then
 			data.brain:action_request({
 				body_part = 3,
-				type = "idle"
+				type = "idle",
 			})
 		end
 
@@ -111,8 +111,8 @@ function CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 	local from_pos = data.m_pos
 	local reservation = {
 		radius = 30,
-		position =  from_pos,
-		filter = data.pos_rsrv_id
+		position = from_pos,
+		filter = data.pos_rsrv_id,
 	}
 	if managers.navigation:is_pos_free(reservation) then
 		return
@@ -125,7 +125,7 @@ function CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 
 	local path = {
 		mvector3.copy(from_pos),
-		to_pos
+		to_pos,
 	}
 	CopLogicAttack._chk_request_action_walk_to_cover_shoot_pos(data, my_data, path, "run")
 end
@@ -152,8 +152,8 @@ function CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, 
 				body_part = 2,
 				nav_path = {
 					from_pos,
-					retreat_to
-				}
+					retreat_to,
+				},
 			})
 
 			if my_data.advancing then
@@ -195,7 +195,7 @@ function CopLogicAttack._update_cover(data)
 
 				if found_cover then
 					better_cover = {
-						found_cover
+						found_cover,
 					}
 				end
 			end
@@ -233,7 +233,7 @@ function CopLogicAttack._update_cover(data)
 
 				if found_cover and CopLogicAttack._verify_cover(found_cover, threat_pos, min_dis, max_dis) then
 					better_cover = {
-						found_cover
+						found_cover,
 					}
 				elseif flank_cover then
 					if math.sign(flank_cover.angle) == flank_cover.sign then

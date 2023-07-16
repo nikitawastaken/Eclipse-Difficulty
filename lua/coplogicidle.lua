@@ -38,7 +38,13 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
 		local other_crim_attention_info = data.detected_attention_objects[u_key]
-		if other_crim_attention_info and (other_crim_attention_info.is_deployable or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout) then
+		if
+			other_crim_attention_info
+			and (
+				other_crim_attention_info.is_deployable
+				or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout
+			)
+		then
 			return attention_data.verified and REACT_COMBAT or attention_reaction
 		end
 	end
@@ -98,10 +104,10 @@ function CopLogicIdle._chk_relocate(data)
 		end
 
 		local found_areas = {
-			[objective_area] = true
+			[objective_area] = true,
 		}
 		local areas_to_search = {
-			objective_area
+			objective_area,
 		}
 		local target_area
 

@@ -27,12 +27,12 @@ function CopBrain:clbk_damage(my_unit, damage_info, ...)
 end
 
 -- Set Joker owner to keep follow objective correct
-Hooks:PreHook(CopBrain, "convert_to_criminal", "sh_convert_to_criminal", function (self, mastermind_criminal)
+Hooks:PreHook(CopBrain, "convert_to_criminal", "sh_convert_to_criminal", function(self, mastermind_criminal)
 	self._logic_data.minion_owner = mastermind_criminal or managers.player:local_player()
 end)
 
 -- Make surrender window slightly shorter and less random
-Hooks:OverrideFunction(CopBrain, "on_surrender_chance", function (self)
+Hooks:OverrideFunction(CopBrain, "on_surrender_chance", function(self)
 	local t = TimerManager:game():time()
 
 	if self._logic_data.surrender_window then
@@ -52,7 +52,7 @@ Hooks:OverrideFunction(CopBrain, "on_surrender_chance", function (self)
 		window_expire_t = t + window_duration,
 		expire_t = t + window_duration + timeout_duration,
 		window_duration = window_duration,
-		timeout_duration = timeout_duration
+		timeout_duration = timeout_duration,
 	}
 
 	managers.enemy:add_delayed_clbk(expire_clbk_id, callback(self, self, "clbk_surrender_chance_expired"), self._logic_data.surrender_window.expire_t)
@@ -73,7 +73,7 @@ if Iter and Iter.settings and Iter.settings.streamline_path then
 end
 
 -- Call pathing results callback in logic if it exists
-Hooks:PostHook(CopBrain, "clbk_pathing_results", "sh_clbk_pathing_results", function (self)
+Hooks:PostHook(CopBrain, "clbk_pathing_results", "sh_clbk_pathing_results", function(self)
 	local current_logic = self._current_logic
 	if current_logic.on_pathing_results then
 		current_logic.on_pathing_results(self._logic_data)
