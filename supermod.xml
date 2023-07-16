@@ -28,19 +28,19 @@
 					<post :hook_id="elementspawnenemygroup"/>
 					<post :hook_id="elementspecialobjective"/>
 				</group>
-				
+
 				<group :hook_id="hud/">
 					<post :hook_id="hudmissionbriefing"/>
 					<post :hook_id="hudstageendscreen"/>
 				</group>
-				
+
 				<group :hook_id="menu/">
 					<post :hook_id="crimenetcontractgui"/>
 					<post :hook_id="ingamecontractgui"/>
 					<post :hook_id="blackmarketgui"/>
 					<post :hook_id="playerinventorygui"/>
 				</group>
-				
+
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="enemymanager"/>
 				<post :hook_id="hudmanager"/>
@@ -95,11 +95,15 @@
 					<post :hook_id="states/playerdriving"/>
 				</group>
 
-				<group :hook_id="civilians/logics/">
-					<post :hook_id="civilianlogicflee"/>
-					<post :hook_id="civilianlogicsurrender"/>
+				<group :hook_id="civilians/">
+					<group :hook_id="logics/">
+						<post :hook_id="civilianlogicflee"/>
+						<post :hook_id="civilianlogicsurrender"/>
+					</group>
+
+					<post :hook_id="civilianbrain"/>
 				</group>
-				
+
 				<post :hook_id="environment/environmentfire"/>
 
 				<group :hook_id="enemies/">
@@ -162,8 +166,9 @@
 				<post :hook_id="civilians/civilianbase"/>
 				<post :hook_id="vehicles/animatedvehiclebase"/>
 				<post :hook_id="cameras/fpcameraplayerbase"/>
-				
+
 				<group :hook_id="player_team/">
+					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>
 				</group>
@@ -197,7 +202,7 @@
 			</group>
 		</group>
 	</hooks>
-	
+
 	<assets base_path="assets/">
 
 		<!-- Improve navigation data -->

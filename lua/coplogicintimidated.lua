@@ -1,20 +1,15 @@
 -- Tweak hostage rescue conditions
 function CopLogicIntimidated.rescue_SO_verification(ignore_this, data, unit, ...)
-	-- Less likely to free hostages during assault
-	if not managers.groupai:state()._rescue_allowed and math.random() < 0.3 then
-		return
-	end
-
 	if unit:movement():cool() then
-		return
+		return false
 	end
 
 	if not unit:base():char_tweak().rescue_hostages then
-		return
+		return false
 	end
 
 	if data.team.foes[unit:movement():team().id] then
-		return
+		return false
 	end
 
 	local objective = unit:brain():objective()
@@ -25,5 +20,9 @@ function CopLogicIntimidated.rescue_SO_verification(ignore_this, data, unit, ...
 	local nav_seg = data.unit:movement():nav_tracker():nav_segment()
 	if objective.area.nav_segs[nav_seg] or unit:movement():nav_tracker():nav_segment() == nav_seg then
 		return true
+	end
+
+	if unit:movement():nav_tracker():nav_segment() == nav_seg then
+		return managers.groupai:state()._rescue_allowed
 	end
 end

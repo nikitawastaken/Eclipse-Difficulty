@@ -261,12 +261,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.shotgun_impact.multipro = "25%"
 
 	-- Shotgun CQB
-	self.values.shotgun.hip_rate_of_fire[1] = 1.15
-	self.values.shotgun.speed_stack_on_kill = { {
-		max_stacks = 8,
-		max_time = 12,
-		speed_bonus = 1.05,
-	} }
 	self.definitions.shotgun_speed_stack_on_kill = {
 		name_id = "menu_shotgun_speed_stack_on_kill",
 		category = "feature",
@@ -276,10 +270,16 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
+	self.values.shotgun.hip_rate_of_fire[1] = 1.15
+	self.values.shotgun.speed_stack_on_kill = { {
+		max_stacks = 5,
+		max_time = 12,
+		speed_bonus = 2,
+	} }
 	self.skill_descs.far_away.multibasic = "15%"
-	self.skill_descs.far_away.multipro = "5%"
+	self.skill_descs.far_away.multipro = "8%"
 	self.skill_descs.far_away.multipro2 = "12"
-	self.skill_descs.far_away.multipro3 = "8"
+	self.skill_descs.far_away.multipro3 = "5"
 
 	-- Mag-fed Specialist
 	self.values.shotgun.mag_reload_speed = { 1.25 }
