@@ -274,7 +274,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.shotgun.speed_stack_on_kill = { {
 		max_stacks = 5,
 		max_time = 12,
-		speed_bonus = 2,
+		speed_bonus = 1.08,
 	} }
 	self.skill_descs.far_away.multibasic = "15%"
 	self.skill_descs.far_away.multipro = "8%"
