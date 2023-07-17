@@ -232,6 +232,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	-- Barrel Extentions
 
 	-- Suppressors
+	-- Medium & Rami
+	self.parts.wpn_fps_upg_ns_ass_smg_medium.stats = {damage = -3, recoil = 1, spread = 1, concealment = -1}
+	self.parts.wpn_fps_lmg_kacchainsaw_ns_suppressor.stats = {damage = -3, recoil = 1, spread = 1, concealment = -1}
 	-- PBS
 	self.parts.wpn_fps_upg_ns_ass_pbs1.stats.spread = 2
 	self.parts.wpn_fps_upg_ns_ass_pbs1.stats.concealment = -3
