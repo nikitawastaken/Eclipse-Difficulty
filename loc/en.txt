@@ -53,7 +53,7 @@
 	"menu_shotgun_impact_beta": "Point Blank",
 	"menu_shotgun_impact_beta_desc": "BASIC: ##$basic##\nShells for your Shotguns contain ##$multibasic## extra pellets.\n\nNote: Does not apply to AP or HE Slugs.\n\nACE: ##$pro##\nYour spread with Shotguns is increased by ##$multipro## when firing from the hip.",
 	"menu_far_away_beta": "Shotgun CQB",
-	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single shot Shotguns.\n\nACE: ##$pro##\nFor every kill with a Shotgun you gain a ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
+	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single shot Shotguns.\n\nACE: ##$pro##\nFor every hit with a Shotgun you gain a ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_close_by_beta": "Mag-fed Specialist",
 	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Mag-fed## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Mag-fed## Shotguns have their magazine size increased by ##$multipro## shells.",
 	"menu_overkill_beta": "Shotgun Hell",
