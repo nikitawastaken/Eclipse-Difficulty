@@ -41,7 +41,7 @@ Hooks:PostHook(CopActionShoot, "on_attention", "sh_on_attention", function(self)
 	local aim_delay_minmax = self._w_usage_tweak.aim_delay
 	local aim_delay = math.map_range_clamped(target_dis, 0, self._falloff[#self._falloff].r, aim_delay_minmax[1], aim_delay_minmax[2])
 
-	self._shoot_t = t + aim_delay * (self._common_data.is_suppressed and 1.5 or 1)
+	self._shoot_t = math.max(t + aim_delay * (self._common_data.is_suppressed and 1.5 or 1), self._shoot_t)
 
 	self._shoot_history.focus_start_t = self._shoot_t
 	self._shoot_history.focus_delay = self._w_usage_tweak.focus_delay

@@ -296,16 +296,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	local approach, open_fire, pull_back
 	local obstructed_area = self:_chk_group_areas_tresspassed(group)
 	local group_leader_u_key, group_leader_u_data = self._determine_group_leader(group.units)
+	local tactics_map = group_leader_u_data and group_leader_u_data.tactics_map or {}
 	local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
 	local objective_area = current_objective.area
-	local tactics_map = {}
-
-	-- Set tactics map
-	if group_leader_u_data and group_leader_u_data.tactics then
-		for _, tactic_name in ipairs(group_leader_u_data.tactics) do
-			tactics_map[tactic_name] = true
-		end
-	end
 
 	-- Clear objective tactic if it no longer fits
 	if current_objective.tactic and not tactics_map[current_objective.tactic] then
@@ -446,9 +439,12 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 		if assault_area and assault_path then
 			local push = assault_from == objective_area
-			local move_out = not push
 
-			if push and not phase_is_anticipation then
+			if push then
+				if phase_is_anticipation or tactics_map.no_push then
+					return
+				end
+
 				local detonate_pos
 				local c_key = tactics_map.charge and table.random_key(assault_area.criminal.units)
 				if c_key then
@@ -457,19 +453,18 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 				-- Check which grenade to use to push, grenade use is required for the push to be initiated
 				-- If grenade isn't available, push regardless anyway after a short delay
-				if self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
-					move_out = true
-				elseif group.ignore_grenade_check_t and group.ignore_grenade_check_t <= self._t then
-					move_out = true
+				if not self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
+					if not group.ignore_grenade_check_t then
+						local delay = tweak_data.group_ai.no_grenade_push_delay * (tactics_map.charge and 0.25 or 1)
+						group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, delay, delay * 0.5)
+						return
+					elseif group.ignore_grenade_check_t > self._t then
+						return
+					end
 				end
 
-				if move_out then
-					self:_voice_move_in_start(group)
-				elseif not group.ignore_grenade_check_t then
-					local delay = tweak_data.group_ai.no_grenade_push_delay * (tactics_map.charge and 0.25 or 1)
-					group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, delay, delay * 0.25)
-				end
-			elseif not push then
+				self:_voice_move_in_start(group)
+			else
 				-- If we aren't pushing, we go to one area before the criminal area
 				if #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
 					table.remove(assault_path)
@@ -477,21 +472,19 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				assault_area = assault_from
 			end
 
-			if move_out then
-				self:_set_objective_to_enemy_group(group, {
-					type = "assault_area",
-					stance = "hos",
-					area = assault_area,
-					coarse_path = assault_path,
-					pose = push and "crouch" or "stand",
-					attitude = push and "engage" or "avoid",
-					moving_in = push,
-					open_fire = push,
-					pushed = push,
-					charge = tactics_map.charge,
-					interrupt_dis = tactics_map.charge and 0,
-				})
-			end
+			self:_set_objective_to_enemy_group(group, {
+				type = "assault_area",
+				stance = "hos",
+				area = assault_area,
+				coarse_path = assault_path,
+				pose = push and "crouch" or "stand",
+				attitude = push and "engage" or "avoid",
+				moving_in = push,
+				open_fire = push,
+				pushed = push,
+				charge = tactics_map.charge,
+				interrupt_dis = tactics_map.charge and 0
+			})
 		elseif not current_objective.assigned_t and in_place_duration > 15 and not self:_can_group_see_target(group) then
 			-- Log and remove groups that get stuck
 			local element_id = group.spawn_group_element and group.spawn_group_element._id or 0
@@ -546,8 +539,8 @@ function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
 	for _, u_data in pairs(group.units) do
 		local logic_data = u_data.unit:brain()._logic_data
 		if logic_data.objective and logic_data.objective.grp_objective == group.objective then
-			local focus_enemy = logic_data and logic_data.attention_obj
-			if focus_enemy and focus_enemy.reaction > AIAttentionObject.REACT_AIM and focus_enemy.verified then
+			local focus_enemy = logic_data.attention_obj
+			if focus_enemy and focus_enemy.verified and focus_enemy.reaction > AIAttentionObject.REACT_AIM then
 				local weapon_range = logic_data.internal_data.weapon_range
 				if not limit_range or focus_enemy.dis < (weapon_range and weapon_range[limit_range] or 3000) then
 					return u_data
@@ -835,17 +828,17 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 		local hopeless = true
 		for _, sp_data in ipairs(spawn_points) do
 			local category = unit_categories[u_type_name]
-			if (sp_data.accessibility == "any" or category.access[sp_data.accessibility]) and (not sp_data.amount or sp_data.amount > 0) and sp_data.mission_element:enabled() then
+			local has_access = sp_data.accessibility == "any" or category.access[sp_data.accessibility]
+			if has_access and (not sp_data.amount or sp_data.amount > 0) and sp_data.mission_element:enabled() then
 				hopeless = false
 
 				if sp_data.delay_t < self._t then
-					local units = category.unit_types[current_unit_type]
-					produce_data.name = units[math.random(#units)]
+					produce_data.name = table.random(category.unit_types[current_unit_type])
 					produce_data.name = managers.modifiers:modify_value("GroupAIStateBesiege:SpawningUnit", produce_data.name)
-					local spawned_unit = sp_data.mission_element:produce(produce_data)
-					local u_key = spawned_unit:key()
-					local objective = nil
 
+					local spawned_unit = sp_data.mission_element:produce(produce_data)
+
+					local objective
 					if spawn_task.objective then
 						objective = self.clone_objective(spawn_task.objective)
 					else
@@ -859,17 +852,14 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 						objective.grp_objective = spawn_task.group.objective
 					end
 
+					local u_key = spawned_unit:key()
 					local u_data = self._police[u_key]
 
 					self:set_enemy_assigned(objective.area, u_key)
 
 					if spawn_entry.tactics then
 						u_data.tactics = spawn_entry.tactics
-						u_data.tactics_map = {}
-
-						for _, tactic_name in ipairs(u_data.tactics) do
-							u_data.tactics_map[tactic_name] = true
-						end
+						u_data.tactics_map = table.list_to_set(spawn_entry.tactics)
 					end
 
 					spawned_unit:brain():set_spawn_entry(spawn_entry, u_data.tactics_map)
@@ -882,7 +872,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 						if objective.element then
 							objective.element:clbk_objective_administered(spawned_unit)
 						end
-
 						spawned_unit:brain():set_objective(objective)
 					else
 						spawned_unit:brain():set_followup_objective(objective)
@@ -980,9 +969,7 @@ function GroupAIStateBesiege:_voice_retreat(group)
 	end
 end
 
-Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
-	self:_voice_retreat(group)
-end)
+Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", GroupAIStateBesiege._voice_retreat)
 
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type
 -- This ensures they are not retired immediatley cause they are not part of assault/recon group types
