@@ -483,7 +483,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				open_fire = push,
 				pushed = push,
 				charge = tactics_map.charge,
-				interrupt_dis = tactics_map.charge and 0
+				interrupt_dis = tactics_map.charge and 0,
 			})
 		elseif not current_objective.assigned_t and in_place_duration > 15 and not self:_can_group_see_target(group) then
 			-- Log and remove groups that get stuck

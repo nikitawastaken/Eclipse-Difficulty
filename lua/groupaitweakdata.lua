@@ -1,5 +1,5 @@
 -- Fix retreat chatter using the wrong voiceline and make voiclines used for pushing unique
-Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", function (self)
+Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", function(self)
 	self.enemy_chatter.retreat.queue = "m01"
 	self.enemy_chatter.retreat.duration = { 4, 8 }
 	self.enemy_chatter.push = {
@@ -8,7 +8,7 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 		queue = "pus",
 		group_min = 0,
 		duration = { 5, 10 },
-		interval = { 0.75, 1.2 }
+		interval = { 0.75, 1.2 },
 	}
 end)
 
