@@ -20,7 +20,6 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 		local assault_task = self._task_data.assault
 		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, assault_task.was_first)
 		assault_task.phase_end_t = self._t + anticipation_duration
-		assault_task.is_hesitating = true
 	end
 end
 
@@ -28,11 +27,12 @@ Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_ta
 	local assault_task = self._task_data.assault
 	if self._hostage_headcount > 0 then
 		local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
-		local hostage_situation_skill = managers.player:upgrade_value("team", "hostage_situation", 0)
+		local hostage_situation = managers.player:upgrade_value("team", "hostage_situation", 0)
+		local hostage_multiplier = math.clamp(self._hostage_headcount, 1, 4)
 		assault_task.is_hesitating = true
 		if assault_task.next_dispatch_t then
 			assault_task.voice_delay = assault_task.next_dispatch_t - self._t
-			assault_task.next_dispatch_t = assault_task.next_dispatch_t + hesitation_delay + hostage_situation_skill
+			assault_task.next_dispatch_t = assault_task.next_dispatch_t + (hesitation_delay + hostage_situation) * hostage_multiplier
 		end
 	end
 end)

@@ -1265,6 +1265,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Control
 	self.besiege.assault.delay = { 40 / f, 30 / f, 15 / f }
+	self.besiege.assault.hostage_hesitation_delay = { 10, 5, 2.5 }
 
 	-- SPAWNS --
 

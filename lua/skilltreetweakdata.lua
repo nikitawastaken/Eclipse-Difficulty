@@ -42,12 +42,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.triathlete[1].upgrades = { "cable_tie_quantity" }
 	self.skills.triathlete[2].upgrades = { "cable_tie_interact_speed_multiplier" }
 
-	-- Confident
+	-- Stockholm Syndrome
 	self.skills.cable_guy[1].upgrades = { "player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier" }
-	self.skills.cable_guy[2].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts" }
+	self.skills.cable_guy[2].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts", "player_civilian_reviver" }
+	self.skills.cable_guy.icon_xy = { 3, 8 }
 
 	-- Hostage Situation
-	self.skills.stockholm_syndrome[1].upgrades = { "team_hostage_damage_dampener_multiplier" }
+	self.skills.stockholm_syndrome[1].upgrades = { "team_damage_hostage_absorption" }
 	self.skills.stockholm_syndrome[2].upgrades = { "team_hostage_situation" }
 	self.skills.stockholm_syndrome.icon_xy = { 6, 7 }
 

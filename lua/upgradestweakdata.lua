@@ -123,8 +123,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.control_freak.multipro4 = "9%"
 
 	-- Hostage Situation
-	self.values.team.damage_dampener.hostage_multiplier[1] = 0.9
-	self.values.team.hostage_situation = { 15 }
 	self.definitions.team_hostage_situation = {
 		category = "feature",
 		name_id = "hostage_situation",
@@ -134,9 +132,13 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.skill_descs.stockholm_syndrome.multibasic = "10%"
-	self.skill_descs.stockholm_syndrome.multipro = "15"
-	self.skill_descs.stockholm_syndrome.multipro2 = "25"
+	self.values.team.hostage_situation = { 4 }
+	self.values.team.damage = {
+		hostage_absorption = {0.2},
+		hostage_absorption_limit = 4
+	}
+	self.skill_descs.stockholm_syndrome.multibasic = "2"
+	self.skill_descs.stockholm_syndrome.multipro = "4"
 
 	-- Hostage Taker
 	self.values.player.hostage_min_sum_taker = { 1, 1 }
