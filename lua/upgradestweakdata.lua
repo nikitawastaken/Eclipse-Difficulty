@@ -474,7 +474,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.melee_concealment_modifier[1] = 1
 	self.values.player.ballistic_vest_concealment[1] = 3
 	self.skill_descs.cleaner.multibasic2 = "1"
-	self.skill_descs.cleaner.multipro = "3"
+	self.skill_descs.cleaner.multipro2 = "3"
 
 	-- Logistician
 	self.values.carry.interact_speed_multiplier = { 0.5, 0.25 }
