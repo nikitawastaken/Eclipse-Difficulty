@@ -552,6 +552,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self._tactics = {
 		beat_cop = {
 			"ranged_fire",
+			"no_push",
 		},
 		swat_assault = {
 			"shield_cover",
@@ -649,6 +650,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire",
 			"flash_grenade",
 			"smoke_grenade",
+			"no_push",
 		},
 		recon_attack = {
 			"ranged_fire",
@@ -657,6 +659,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		recon_rescue = {
 			"flank",
 			"flash_grenade",
+			"no_push",
 		},
 	}
 
@@ -1270,7 +1273,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.force_balance_mul = { 1.5, 1.5, 1.75, 2 }
 
 	-- Spawnrate
-	self.spawn_kill_cooldown = 8
+	self.spawn_kill_cooldown = 8 / (math.sqrt(f))
 	self.besiege.assault.spawnrate = { 1.6, 1.4, 1.2 }
 	self.besiege.assault.spawnrate_balance_mul = { 2.2, 1.6, 1.45, 1.35 }
 
@@ -1287,7 +1290,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- GRENADES --
 	-- global
 	self.min_grenade_timeout = 20 / f
-	self.no_grenade_push_delay = 8
+	self.no_grenade_push_delay = 8 / (math.sqrt(f))
 
 	-- flash
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
