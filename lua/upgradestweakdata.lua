@@ -134,8 +134,8 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.team.hostage_situation = { 4 }
 	self.values.team.damage = {
-		hostage_absorption = {0.2},
-		hostage_absorption_limit = 4
+		hostage_absorption = { 0.2 },
+		hostage_absorption_limit = 4,
 	}
 	self.skill_descs.stockholm_syndrome.multibasic = "2"
 	self.skill_descs.stockholm_syndrome.multipro = "4"
