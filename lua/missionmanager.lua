@@ -3,12 +3,11 @@ if Global.editor_mode then
 	return
 end
 
-
 -- Add custom mission script changes and triggers for specific levels
 -- Execution of mission scripts can trigger reinforce locations (trigger that has just a name disables previously enabled reinforcement with that id)
 -- Mission script elements can be disabled or enabled
 
-Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function (self)
+Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function(self)
 	local mission_script_elements = StreamHeist:mission_script_patches()
 	if not mission_script_elements then
 		return
@@ -21,7 +20,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 		else
 			-- Check if this element is supposed to trigger reinforce points
 			if data.reinforce then
-				Hooks:PostHook(element, "on_executed", "sh_on_executed_reinforce_" .. element_id, function ()
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_reinforce_" .. element_id, function()
 					StreamHeist:log(string.format("%s executed, toggled %u reinforce point(s)", element:editor_name(), #data.reinforce))
 					for _, v in pairs(data.reinforce) do
 						managers.groupai:state():set_area_min_police_force(v.name, v.force, v.position)
@@ -45,10 +44,10 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 				end
 
 				if data.ponr_end then
-					Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_end_" .. element_id, function ()
+					Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_end_" .. element_id, function()
 						managers.groupai:state():remove_point_of_no_return_timer(0)
 					end)
-					Hooks:PostHook(element, "client_on_executed", "eclipse_client_on_executed_ponr_end_" .. element_id, function ()
+					Hooks:PostHook(element, "client_on_executed", "eclipse_client_on_executed_ponr_end_" .. element_id, function()
 						managers.groupai:state():remove_point_of_no_return_timer(0)
 					end)
 				end
@@ -56,7 +55,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 
 			-- Check if this element is supposed to trigger a difficulty change
 			if data.difficulty then
-				Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_" .. element_id, function ()
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_" .. element_id, function()
 					StreamHeist:log(string.format("%s executed, set difficulty to %.2g", element:editor_name(), data.difficulty))
 					managers.groupai:state():set_difficulty(data.difficulty)
 				end)
@@ -67,12 +66,12 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 			if data.values then
 				for k, v in pairs(data.values) do
 					element._values[k] = v
-					StreamHeist:log(string.format("%s value \"%s\" has been set to \"%s\"", element:editor_name(), k, tostring(v)))
+					StreamHeist:log(string.format('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v)))
 				end
 			end
 
 			if data.flashlight ~= nil then
-				Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element_id, function ()
+				Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element_id, function()
 					StreamHeist:log(string.format("%s executed, changing flashlight state to %s", element:editor_name(), data.flashlight and "true" or "false"))
 					managers.game_play_central:set_flashlights_on(data.flashlight)
 				end)
@@ -83,7 +82,9 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 				for _, v in pairs(data.on_executed) do
 					local new_element = self:get_element_by_id(v.id)
 					if new_element then
-						local val, i = table.find_value(element._values.on_executed, function (val) return val.id == v.id end)
+						local val, i = table.find_value(element._values.on_executed, function(val)
+							return val.id == v.id
+						end)
 						if v.remove then
 							if val then
 								table.remove(element._values.on_executed, i)

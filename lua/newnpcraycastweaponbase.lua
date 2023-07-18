@@ -3,7 +3,7 @@ if not Network:is_server() then
 end
 
 -- Make team AI weapons alert enemies (oversight from when bots got the ability to use player weapons)
-Hooks:PostHook(NewNPCRaycastWeaponBase, "set_user_is_team_ai", "sh_set_user_is_team_ai", function (self)
+Hooks:PostHook(NewNPCRaycastWeaponBase, "set_user_is_team_ai", "sh_set_user_is_team_ai", function(self)
 	if not self._setup or not alive(self._setup.user_unit) then
 		return
 	end
@@ -12,7 +12,6 @@ Hooks:PostHook(NewNPCRaycastWeaponBase, "set_user_is_team_ai", "sh_set_user_is_t
 	self._setup.alert_filter = self._setup.user_unit:brain():SO_access()
 	self._alert_events = {}
 end)
-
 
 -- This should not set ammo data for NPCs
 function NewNPCRaycastWeaponBase:_update_stats_values(...)
@@ -33,10 +32,7 @@ function NewNPCRaycastWeaponBase:_update_stats_values(...)
 	self._blank_slotmask = blank_slotmask
 end
 
-
 -- Disable player skills affecting NPC weapons
-function NewNPCRaycastWeaponBase:get_add_head_shot_mul()
-end
+function NewNPCRaycastWeaponBase:get_add_head_shot_mul() end
 
-function NewNPCRaycastWeaponBase:is_stagger()
-end
+function NewNPCRaycastWeaponBase:is_stagger() end

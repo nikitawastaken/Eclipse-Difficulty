@@ -1,4 +1,3 @@
-
 local init_original = RaycastWeaponBase.init
 function RaycastWeaponBase:init(...)
 	init_original(self, ...)
@@ -14,7 +13,6 @@ function RaycastWeaponBase:init(...)
 	else
 		self._bullet_slotmask = managers.mutators:modify_value("RaycastWeaponBase:setup:weapon_slot_mask", self._bullet_slotmask)
 	end
-
 end
 
 -- Fix inverted suppression - in vanilla, the closer your shots are to an enemy, the less they suppress them
@@ -32,7 +30,7 @@ function RaycastWeaponBase:check_autoaim(...)
 end
 
 -- No aim assist (shc)
-Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function (self)
+Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
 	if self._autohit_data then
 		self._autohit_current = 0
 		self._autohit_data.INIT_RATIO = 0
@@ -40,7 +38,6 @@ Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function (self)
 		self._autohit_data.MAX_RATIO = 0
 	end
 end)
-
 
 local mvec_to = Vector3()
 local mvec_right_ax = Vector3()
@@ -189,7 +186,6 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	return result
 end
 
-
 -- no elite shield pen
 function RaycastWeaponBase.collect_hits(from, to, setup_data)
 	setup_data = setup_data or {}
@@ -244,7 +240,7 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 				break
 			elseif not can_shoot_through_shield and hit.unit:in_slot(shield_mask) then
 				break
-			elseif hit.unit:in_slot(shield_mask) and (hit.unit:name():key() == 'af254947f0288a6c' or hit.unit:name():key() == '15cbabccf0841ff8') and not can_shoot_through_titan_shield then -- hi thanks resmod if you're reading this :)
+			elseif hit.unit:in_slot(shield_mask) and (hit.unit:name():key() == "af254947f0288a6c" or hit.unit:name():key() == "15cbabccf0841ff8") and not can_shoot_through_titan_shield then -- hi thanks resmod if you're reading this :)
 				break
 			end
 		end
@@ -252,7 +248,6 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 
 	return unique_hits, hit_enemy
 end
-
 
 -- Auto Fire Sound Fix
 -- Thanks offyerrocker
@@ -265,12 +260,12 @@ _G.AutoFireSoundFixBlacklist = {
 	["mg42"] = true,
 	["shuno"] = true,
 	["system"] = true,
-	["par"] = true
+	["par"] = true,
 }
 
 Hooks:Register("AFSF2_OnWriteBlacklist")
-Hooks:Add("BaseNetworkSessionOnLoadComplete","AFSF2_OnLoadComplete",function()
-	Hooks:Call("AFSF2_OnWriteBlacklist",AutoFireSoundFixBlacklist)
+Hooks:Add("BaseNetworkSessionOnLoadComplete", "AFSF2_OnLoadComplete", function()
+	Hooks:Call("AFSF2_OnWriteBlacklist", AutoFireSoundFixBlacklist)
 end)
 
 --Check for if AFSF's fix code should apply to this particular weapon
@@ -292,16 +287,16 @@ end
 local orig_fire_sound = RaycastWeaponBase._fire_sound
 function RaycastWeaponBase:_fire_sound(...)
 	if self:_soundfix_should_play_normal() then
-		return orig_fire_sound(self,...)
+		return orig_fire_sound(self, ...)
 	end
 end
 
 --Play sounds here instead for fix-applicable weapons; or else if blacklisted, use original function and don't play the fixed single-fire sound
 --U200: there goes AFSF2's compatibility with other mods
-Hooks:PreHook(RaycastWeaponBase,"fire","autofiresoundfix2_raycastweaponbase_fire",function(self,...)
+Hooks:PreHook(RaycastWeaponBase, "fire", "autofiresoundfix2_raycastweaponbase_fire", function(self, ...)
 	if not self:_soundfix_should_play_normal() then
 		self._bullets_fired = 0
-		self:play_tweak_data_sound(self:weapon_tweak_data().sounds.fire_single,"fire_single")
+		self:play_tweak_data_sound(self:weapon_tweak_data().sounds.fire_single, "fire_single")
 	end
 end)
 
@@ -309,6 +304,6 @@ end)
 local orig_stop_shooting = RaycastWeaponBase.stop_shooting
 function RaycastWeaponBase:stop_shooting(...)
 	if self:_soundfix_should_play_normal() then
-		return orig_stop_shooting(self,...)
+		return orig_stop_shooting(self, ...)
 	end
 end

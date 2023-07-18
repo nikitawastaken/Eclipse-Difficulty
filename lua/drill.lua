@@ -1,6 +1,5 @@
 -- Make autorepair reroll everytime the drill is jammed and fix swapped values
-Hooks:PreHook(Drill, "set_jammed", "shc_set_jammed", function (self, jammed)
-
+Hooks:PreHook(Drill, "set_jammed", "shc_set_jammed", function(self, jammed)
 	if Network:is_server() and jammed and not self._jammed then
 		local current_auto_repair_level_1 = self._skill_upgrades.auto_repair_level_1 or 0
 		local current_auto_repair_level_2 = self._skill_upgrades.auto_repair_level_2 or 0

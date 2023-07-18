@@ -1,2 +1,1 @@
-function IncendiaryGrenade:bullet_hit()
-end
+function IncendiaryGrenade:bullet_hit() end

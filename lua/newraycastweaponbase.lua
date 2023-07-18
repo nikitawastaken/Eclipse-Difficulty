@@ -1,6 +1,8 @@
 function NewRaycastWeaponBase:movement_penalty()
-	if managers.player:has_category_upgrade("player", "no_movement_penalty") then return 1
-	else return self._movement_penalty or 1
+	if managers.player:has_category_upgrade("player", "no_movement_penalty") then
+		return 1
+	else
+		return self._movement_penalty or 1
 	end
 end
 

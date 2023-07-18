@@ -20,8 +20,8 @@ function EnvEffectTweakData:molotov_fire()
 			dot_damage = 7.5,
 			dot_length = 6,
 			dot_trigger_max_distance = 3000,
-			dot_tick_period = 0.25
-		}
+			dot_tick_period = 0.25,
+		},
 	}
 
 	return params
@@ -46,8 +46,8 @@ function EnvEffectTweakData:incendiary_fire()
 			dot_damage = 7.5,
 			dot_length = 6,
 			dot_trigger_max_distance = 3000,
-			dot_tick_period = 0.25
-		}
+			dot_tick_period = 0.25,
+		},
 	}
 
 	return params
@@ -72,8 +72,8 @@ function EnvEffectTweakData:incendiary_fire_arbiter()
 			dot_damage = 7.5,
 			dot_length = 6,
 			dot_trigger_max_distance = 3000,
-			dot_tick_period = 0.25
-		}
+			dot_tick_period = 0.25,
+		},
 	}
 
 	return params

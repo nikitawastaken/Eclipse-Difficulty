@@ -1,5 +1,5 @@
 -- Make reload action use proper reload speed and sync it to clients
-Hooks:PostHook(CopActionReload, "init", "sh_init", function (self)
+Hooks:PostHook(CopActionReload, "init", "sh_init", function(self)
 	-- Don't expire the action based on some arbitrary number, we'll expire based on the actual reload animation
 	self._reload_t = math.huge
 end)

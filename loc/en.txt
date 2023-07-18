@@ -53,7 +53,7 @@
 	"menu_shotgun_impact_beta": "Point Blank",
 	"menu_shotgun_impact_beta_desc": "BASIC: ##$basic##\nShells for your Shotguns contain ##$multibasic## extra pellets.\n\nNote: Does not apply to AP or HE Slugs.\n\nACE: ##$pro##\nYour spread with Shotguns is increased by ##$multipro## when firing from the hip.",
 	"menu_far_away_beta": "Shotgun CQB",
-	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single shot Shotguns.\n\nACE: ##$pro##\nFor every kill with a Shotgun you gain a ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
+	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single shot Shotguns.\n\nACE: ##$pro##\nFor every hit with a Shotgun you gain a ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_close_by_beta": "Mag-fed Specialist",
 	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Mag-fed## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Mag-fed## Shotguns have their magazine size increased by ##$multipro## shells.",
 	"menu_overkill_beta": "Shotgun Hell",
@@ -65,8 +65,8 @@
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nThe heavier your armor, the more total ammo you get.\n\nThe total capacity increase scales up to ##$multibasic## with Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
 	
 	
-	"menu_defense_up_beta": "Rifleman",
-	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou can now use steelsight while in bleedout.\n\nACE: ##$pro##\nYour movement speed is unhindered while using steelsight.\n\nYour weapon accuracy while moving with SMGs, Assault Rifles and Sniper Rifles is increased by ##$multipro##.",
+	"menu_defense_up_beta": "Transporter",
+	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou move ##$multibasic## faster when carrying bags.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",
 	"menu_sentry_targeting_package_beta": "Daredevil",
 	"menu_sentry_targeting_package_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou can now reload your weapons while sprinting.",
 	"menu_engineering_beta": "Defense Package",
@@ -94,8 +94,12 @@
 	"menu_awareness_desc": "BASIC: ##$basic##\nYour speed while crouching is increased by ##$multibasic##.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while crouching.",
 	"menu_optic_illusions": "Sprinter",
 	"menu_optic_illusions_desc": "BASIC: ##$basic##\nYou can now sprint while strafing. You also sprint ##$multibasic## faster.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while sprinting and zip-lining.",
+	"menu_dire_need_beta": "Second Wind",
+	"menu_dire_need_beta_desc": "BASIC: ##$basic##\nWhen your armor breaks your movement speed is increased by ##$multibasic## for ##$multibasic2## seconds.\n\nACED: ##$pro##\nWhen your armor breaks you have a ##$multipro## chance to cause nearby enemies to panic. Panic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_insulation_beta_desc": "BASIC: ##$basic##\nWhen tased, the shock effect will be ##$multibasic## weaker.\n\nYou no longer randomly pull the trigger while being tased.\n\nACED: ##$pro##\nWhen tased, you are able to free yourself from the taser by interacting with it within ##$multipro2## seconds of getting tased.",
 	"st_menu_ghost_silencer": "Specialized Killing",
+	"menu_scavenger_beta": "Resilient Assault",
+	"menu_scavenger_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## critical hit chance.\n\nACE: ##$pro##\nWhen your armor breaks, the first shot on every enemy will cause that enemy to stagger.\n\nThe effect persists for ##$multipro## seconds after your armor has recovered.",
 	"menu_silenced_damage": "Silent Killer",
 	"menu_silenced_damage_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## concealment for each silenced weapon equipped. Reduce the concealment penalty of silencers by ##$multibasic2##.\n\nACE: ##$pro##\nYou deal ##$multipro## more damage and have a ##$multipro2## chance to pierce enemy armor with all silenced weapons.",
 	"menu_silence_expert_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## weapon stability with silenced weapons.\n\nACE: ##$pro##\nYou gain ##$multipro## weapon accuracy and ##$multipro2## snap to zoom speed increase with silenced weapons.",
@@ -104,13 +108,13 @@
 	"menu_cleaner_beta": "Eagle Eye",
 	"menu_cleaner_beta_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage against special enemies.\n\nACE: ##$pro##\nThe range at which you can manually mark enemies is increased by ##$multipro## times. The marked state duration is increased by ##$multipro2##.",
 	"menu_second_chances_beta": "Logistician",
-	"menu_second_chances_beta_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## farther.\n\nYou lockpick ##$multipro2## faster.",
+	"menu_second_chances_beta_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou lockpick ##$multipro## faster.\n\nYou can now silently crack safes by hand.",
 	"menu_chameleon_beta": "Blackout",
 	"menu_chameleon_beta_desc": "BASIC: ##$basic##\nYou gain the ability to disable ##1## camera from detecting you and your crew. Effect lasts for ##25## seconds.\n\nACE: ##$pro##\nYour ECM jammer can now also be used to open certain electronic doors. Pagers are delayed by the ECM jammers.",
 	"menu_ecm_booster_beta": "ECM Feedback",
 	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\nYou can now interact with ECM jammers to cause a feedback loop that stuns enemies.\n\nFeedback loop has a ##$multibasic## radius.\nObstructed line of sight ##halves## the radius.\n\nACE: ##$pro##\nECM feedback now recharges every ##$multipro## minutes.",
 	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last ##$multipro## seconds.",
-	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate under ##$multipro3## up to ##$multipro4##.\n\nNote: Critical hits deal ##double## damage and don't apply to grenade / rocket launchers.",
+	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nCritical hits deal ##$multibasic5## damage.\n\nACE: ##$pro##\nYou now gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate instead.\n\nCritical hits now deal an additional ##$multipro3## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
 	
 	
 	"menu_nine_lives_beta": "Tough Guy",
@@ -119,7 +123,7 @@
 	"menu_wolverine_beta_desc": "BASIC: ##$basic##\nThe lower your health, the more movement speed you gain. When your health is below ##$multibasic##, you will gain up to ##$multibasic2## movement speed.\n\nACE: ##$pro##\nThe lower your health, the more damage you do. When your health is below ##$multipro##, you will do up to ##$multipro2## more melee and saw damage.",
 	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor every hit with a pistol you gain a ##$multibasic## damage boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYou now gain ##$multipro## damage boost for every hit and the damage boost lasts ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
-	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic2## increase to your bleedout health.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
+	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou can now use your steelsight while in bleedout.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
 	"menu_tea_cookies_beta_desc": "BASIC ##$basic##\nYou can now carry ##$multibasic## more First Aid Kits.\n\nACE: ##$pro##\nYou can now additionaly carry ##$multipro## more First Aid Kits.\n\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro2## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro3## seconds.",
 	
 	

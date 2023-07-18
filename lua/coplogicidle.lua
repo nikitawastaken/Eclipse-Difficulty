@@ -3,7 +3,6 @@ local REACT_AIM = AIAttentionObject.REACT_AIM
 local REACT_ARREST = AIAttentionObject.REACT_ARREST
 local REACT_COMBAT = AIAttentionObject.REACT_COMBAT
 
-
 -- Make cops react more aggressively when appropriate (less stare, more shoot)
 local _chk_reaction_to_attention_object_original = CopLogicIdle._chk_reaction_to_attention_object
 function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ...)
@@ -39,7 +38,13 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
 		local other_crim_attention_info = data.detected_attention_objects[u_key]
-		if other_crim_attention_info and (other_crim_attention_info.is_deployable or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout) then
+		if
+			other_crim_attention_info
+			and (
+				other_crim_attention_info.is_deployable
+				or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout
+			)
+		then
 			return attention_data.verified and REACT_COMBAT or attention_reaction
 		end
 	end
@@ -51,16 +56,47 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 	return math.min(attention_reaction, REACT_ARREST)
 end
 
-
 -- Fix defend_area objectives being force relocated to areas with players in them
 -- Fix lost follow objectives not refreshing for criminals in idle logic and Jokers in attack logic
 -- Use the old defend_area behavior for the hunt objective for which it makes much more sense
-local _chk_relocate_original = CopLogicIdle._chk_relocate
-function CopLogicIdle._chk_relocate(data, ...)
+function CopLogicIdle._chk_relocate(data)
 	local objective = data.objective
 	local objective_type = objective and objective.type
+
 	if objective_type == "follow" then
-		return _chk_relocate_original(data, ...)
+		local follow_unit = objective.follow_unit
+		local unit_pos = follow_unit:movement().get_walk_to_pos and follow_unit:movement():get_walk_to_pos() or follow_unit:movement():m_pos()
+		local dis_sq = mvector3.distance_sq(data.m_pos, unit_pos)
+
+		if data.is_tied and objective.lose_track_dis and dis_sq > objective.lose_track_dis ^ 2 then
+			data.brain:set_objective(nil)
+			return true
+		end
+
+		if objective.relocated_to and mvector3.equal(objective.relocated_to, unit_pos) then
+			return
+		elseif data.is_converted then
+			if not TeamAILogicIdle._check_should_relocate(data, data.internal_data, objective) then
+				return
+			end
+		elseif math.abs(unit_pos.z - data.m_pos.z) > 200 or objective.distance and dis_sq > objective.distance ^ 2 then
+		elseif managers.navigation:raycast({ pos_from = data.m_pos, pos_to = unit_pos }) then
+		elseif objective.shield_cover_unit and data.attention_obj and data.attention_obj.verified and data.attention_obj.reaction >= AIAttentionObject.REACT_AIM then
+			if mvector3.distance_sq(objective.relocated_to or data.m_pos, data.attention_obj.m_pos) > mvector3.distance_sq(unit_pos, data.attention_obj.m_pos) then
+				return
+			end
+		else
+			return
+		end
+
+		objective.in_place = nil
+		objective.path_data = nil
+		objective.nav_seg = follow_unit:movement():nav_tracker():nav_segment()
+		objective.relocated_to = mvector3.copy(unit_pos)
+
+		data.logic._exit(data.unit, "travel")
+
+		return true
 	elseif objective_type == "hunt" then
 		local objective_area = objective.area or managers.groupai:state():get_area_from_nav_seg_id(objective.nav_seg or data.unit:movement():nav_tracker():nav_segment())
 		if not objective_area or next(objective_area.criminal.units) then
@@ -68,10 +104,10 @@ function CopLogicIdle._chk_relocate(data, ...)
 		end
 
 		local found_areas = {
-			[objective_area] = true
+			[objective_area] = true,
 		}
 		local areas_to_search = {
-			objective_area
+			objective_area,
 		}
 		local target_area
 
@@ -115,7 +151,6 @@ function CopLogicIdle._chk_relocate(data, ...)
 		return my_data ~= data.internal_data
 	end
 end
-
 
 -- Improve and simplify attention handling
 -- Moved certain checks into their own functions for easier adjustments and improved target priority calculation
@@ -283,7 +318,6 @@ function CopLogicIdle._get_attention_weight(attention_data, att_unit, distance)
 	end
 	return 1 / weight_mul
 end
-
 
 -- Show hint to player when surrender is impossible
 local on_intimidated_original = CopLogicIdle.on_intimidated

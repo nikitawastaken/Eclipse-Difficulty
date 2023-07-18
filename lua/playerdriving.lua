@@ -1,5 +1,5 @@
 -- Update nav tracker if the player is driving a vehicle
-Hooks:OverrideFunction(PlayerDriving, "update", function (self, t, dt)
+Hooks:OverrideFunction(PlayerDriving, "update", function(self, t, dt)
 	if self._vehicle == nil or not self._vehicle:is_active() or self._controller == nil then
 		return
 	end

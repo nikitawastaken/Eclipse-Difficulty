@@ -25,12 +25,12 @@ function QuickCsGrenade:_play_sound_and_effects(...)
 		World:effect_manager():spawn({
 			effect = Idstring("effects/particles/explosions/explosion_smoke_grenade"),
 			position = self._unit:position(),
-			normal = self._unit:rotation():y()
+			normal = self._unit:rotation():y(),
 		})
 
 		self._smoke_effect = World:effect_manager():spawn({
 			effect = Idstring("effects/particles/explosions/cs_grenade_smoke"),
-			parent = self._unit:orientation_object()
+			parent = self._unit:orientation_object(),
 		})
 
 		managers.environment_controller:set_blurzone(self._unit:key(), 1, self._unit:position(), self._radius * self._radius_blurzone_multiplier, 0, true)

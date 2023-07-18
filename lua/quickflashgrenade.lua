@@ -1,6 +1,6 @@
 -- Allow flashes through corpses and debris to make them more consistent
 -- Also removes inconsistent flashes through random light bounces
-Hooks:PostHook(QuickFlashGrenade, "init", "sh_init", function (self)
+Hooks:PostHook(QuickFlashGrenade, "init", "sh_init", function(self)
 	self._slotmask = managers.slot:get_mask("bullet_impact_targets") - World:make_slot_mask(17)
 end)
 

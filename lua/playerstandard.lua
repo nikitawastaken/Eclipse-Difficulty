@@ -1,15 +1,14 @@
 -- Friendly Fire
 local original_init = PlayerStandard.init
 function PlayerStandard:init(unit)
-    original_init(self, unit)
+	original_init(self, unit)
 
-    if Global.game_settings and Global.game_settings.one_down then
-        self._slotmask_bullet_impact_targets = self._slotmask_bullet_impact_targets + 3
-    else
-        self._slotmask_bullet_impact_targets = managers.mutators:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
-    end
+	if Global.game_settings and Global.game_settings.one_down then
+		self._slotmask_bullet_impact_targets = self._slotmask_bullet_impact_targets + 3
+	else
+		self._slotmask_bullet_impact_targets = managers.mutators:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
+	end
 end
-
 
 -- Spray pattern implementation
 -- Oh man! This is just like Counter-Strike!
@@ -20,7 +19,15 @@ function PlayerStandard:_check_action_primary_attack(t, input)
 	action_wanted = action_wanted or self:_is_charging_weapon()
 
 	if action_wanted then
-		local action_forbidden = self:_is_reloading() or self:_changing_weapon() or self:_is_meleeing() or self._use_item_expire_t or self:_interacting() or self:_is_throwing_projectile() or self:_is_deploying_bipod() or self._menu_closed_fire_cooldown > 0 or self:is_switching_stances()
+		local action_forbidden = self:_is_reloading()
+			or self:_changing_weapon()
+			or self:_is_meleeing()
+			or self._use_item_expire_t
+			or self:_interacting()
+			or self:_is_throwing_projectile()
+			or self:_is_deploying_bipod()
+			or self._menu_closed_fire_cooldown > 0
+			or self:is_switching_stances()
 
 		if not action_forbidden then
 			self._queue_reload_interupt = nil
@@ -76,7 +83,10 @@ function PlayerStandard:_check_action_primary_attack(t, input)
 								if fire_mode == "auto" then
 									self._unit:camera():play_redirect(self:get_animation("recoil_enter"))
 
-									if (not weap_base.akimbo or weap_base:weapon_tweak_data().allow_akimbo_autofire) and (not weap_base.third_person_important or weap_base.third_person_important and not weap_base:third_person_important()) then
+									if
+										(not weap_base.akimbo or weap_base:weapon_tweak_data().allow_akimbo_autofire)
+										and (not weap_base.third_person_important or weap_base.third_person_important and not weap_base:third_person_important())
+									then
 										self._ext_network:send("sync_start_auto_fire_sound", 0)
 									end
 								end
@@ -186,7 +196,7 @@ function PlayerStandard:_check_action_primary_attack(t, input)
 
 						cat_print("jansve", "[PlayerStandard] Weapon Recoil Multiplier: " .. tostring(recoil_multiplier))
 
-                        -- Modify starting here
+						-- Modify starting here
 						local kick_tweak_data = weap_tweak_data.kick[fire_mode] or weap_tweak_data.kick
 						local up, down, left, right = unpack(kick_tweak_data[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
 
@@ -220,7 +230,7 @@ function PlayerStandard:_check_action_primary_attack(t, input)
 							self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
 							self._state_data.stacking_dmg_mul[primary_category] = self._state_data.stacking_dmg_mul[primary_category] or {
 								nil,
-								0
+								0,
 							}
 							local stack = self._state_data.stacking_dmg_mul[primary_category]
 
@@ -273,33 +283,30 @@ function PlayerStandard:_check_action_primary_attack(t, input)
 	return new_action
 end
 
-
 -- No more sixth sense
-Hooks:OverrideFunction(PlayerStandard, "_update_omniscience",
-function(self, ...)
-    return
+Hooks:OverrideFunction(PlayerStandard, "_update_omniscience", function(self, ...)
+	return
 end)
 
 -- Don't update sixth sense anymore and add sprint reload upgrade to shotguns
-Hooks:OverrideFunction(PlayerStandard, "update",
-function(self, t, dt)
-    PlayerMovementState.update(self, t, dt)
-    self:_calculate_standard_variables(t, dt)
-    self:_update_ground_ray()
-    self:_update_fwd_ray()
-    self:_update_check_actions(t, dt)
+Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
+	PlayerMovementState.update(self, t, dt)
+	self:_calculate_standard_variables(t, dt)
+	self:_update_ground_ray()
+	self:_update_fwd_ray()
+	self:_update_check_actions(t, dt)
 
-    if self._menu_closed_fire_cooldown > 0 then
-        self._menu_closed_fire_cooldown = self._menu_closed_fire_cooldown - dt
-    end
+	if self._menu_closed_fire_cooldown > 0 then
+		self._menu_closed_fire_cooldown = self._menu_closed_fire_cooldown - dt
+	end
 
-    self:_update_movement(t, dt)
-    self:_upd_nav_data()
-    managers.hud:_update_crosshair_offset(t, dt)
-    self:_upd_stance_switch_delay(t, dt)
-	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload") or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
+	self:_update_movement(t, dt)
+	self:_upd_nav_data()
+	managers.hud:_update_crosshair_offset(t, dt)
+	self:_upd_stance_switch_delay(t, dt)
+	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload")
+		or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
 end)
-
 
 -- Melee while running
 -- Code from melee overhaul
@@ -314,7 +321,14 @@ Hooks:PostHook(PlayerStandard, "_start_action_running", "eclipse_start_action_ru
 			return
 		end
 
-		if self._shooting and not managers.player.RUN_AND_SHOOT or self:_changing_weapon() or self._use_item_expire_t or self._state_data.in_air or self:_is_throwing_projectile() or self:_is_charging_weapon() then
+		if
+			self._shooting and not managers.player.RUN_AND_SHOOT
+			or self:_changing_weapon()
+			or self._use_item_expire_t
+			or self._state_data.in_air
+			or self:_is_throwing_projectile()
+			or self:_is_charging_weapon()
+		then
 			self._running_wanted = true
 			return
 		end
@@ -439,7 +453,8 @@ function PlayerStandard:_check_use_item(t, input)
 		managers.player:drop_carry()
 		self._throw_time = nil
 		return true
-	else return old_check_use(self, t, input)
+	else
+		return old_check_use(self, t, input)
 	end
 end
 

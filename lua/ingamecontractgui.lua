@@ -2,7 +2,7 @@ function IngameContractGui:init(ws, node)
 	local padding = SystemInfo:platform() == Idstring("WIN32") and 10 or 5
 	self._panel = ws:panel():panel({
 		w = math.round(ws:panel():w() * 0.6),
-		h = math.round(ws:panel():h() * 1)
+		h = math.round(ws:panel():h() * 1),
 	})
 
 	self._panel:set_y(math.max(tweak_data.menu.pd2_medium_font_size, CoreMenuRenderer.Renderer.border_height))
@@ -23,7 +23,7 @@ function IngameContractGui:init(ws, node)
 		layer = 1,
 		font = tweak_data.menu.pd2_large_font,
 		font_size = tweak_data.menu.pd2_large_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	contract_text:set_text(self:get_text("cn_menu_contract_header") .. " " .. (job_data and self:get_text(job_data.name_id) or ""))
@@ -32,7 +32,7 @@ function IngameContractGui:init(ws, node)
 	local text_panel = self._panel:panel({
 		layer = 1,
 		w = self._panel:w() - padding * 2,
-		h = self._panel:h() - padding * 2
+		h = self._panel:h() - padding * 2,
 	})
 
 	text_panel:set_left(padding)
@@ -42,7 +42,7 @@ function IngameContractGui:init(ws, node)
 		text = "",
 		font = tweak_data.menu.pd2_medium_font,
 		font_size = tweak_data.menu.pd2_medium_font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	briefing_title:set_text(self:get_text("menu_briefing"))
@@ -60,7 +60,7 @@ function IngameContractGui:init(ws, node)
 		text = text,
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 	local _, _, _, h = briefing_description:text_rect()
 
@@ -96,11 +96,11 @@ function IngameContractGui:init(ws, node)
 			align = "left",
 			wrap_word = true,
 			text = managers.localization:to_upper_text("menu_ghostable_job", {
-				bonus = ghost_bonus_string
+				bonus = ghost_bonus_string,
 			}),
 			font_size = tweak_data.menu.pd2_small_font_size,
 			font = tweak_data.menu.pd2_small_font,
-			color = tweak_data.screen_colors.ghost_color
+			color = tweak_data.screen_colors.ghost_color,
 		})
 
 		ghostable_text:set_position(briefing_description:x(), briefing_description:bottom() + padding)
@@ -114,7 +114,7 @@ function IngameContractGui:init(ws, node)
 		text = managers.localization:to_upper_text("menu_cn_modifiers"),
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	managers.hud:make_fine_text(modifiers_text)
@@ -153,11 +153,11 @@ function IngameContractGui:init(ws, node)
 			align = "left",
 			blend_mode = "normal",
 			text = managers.localization:to_upper_text("menu_ghost_bonus", {
-				exp_bonus = job_ghost_string
+				exp_bonus = job_ghost_string,
 			}),
 			font = tweak_data.menu.pd2_small_font,
 			font_size = tweak_data.menu.pd2_small_font_size,
-			color = ghost_color
+			color = ghost_color,
 		})
 
 		managers.hud:make_fine_text(ghost_warning_text)
@@ -179,11 +179,11 @@ function IngameContractGui:init(ws, node)
 			wrap = true,
 			align = "left",
 			text = managers.localization:to_upper_text(job_heat_text_id, {
-				job_heat = job_heat_string
+				job_heat = job_heat_string,
 			}),
 			font = tweak_data.menu.pd2_small_font,
 			font_size = font_size,
-			color = heat_color
+			color = heat_color,
 		})
 
 		managers.hud:make_fine_text(heat_warning_text)
@@ -206,7 +206,7 @@ function IngameContractGui:init(ws, node)
 			text = self:get_text("menu_pro_warning"),
 			font = tweak_data.menu.pd2_small_font,
 			font_size = font_size,
-			color = tweak_data.screen_colors.pro_color
+			color = tweak_data.screen_colors.pro_color,
 		})
 
 		managers.hud:make_fine_text(pro_warning_text)
@@ -234,11 +234,11 @@ function IngameContractGui:init(ws, node)
 				wrap_word = true,
 				text = managers.localization:to_upper_text("holiday_warning_text", {
 					event_icon = managers.localization:get_default_macro("BTN_XMAS"),
-					bonus = holiday_string
+					bonus = holiday_string,
 				}),
 				font_size = tweak_data.menu.pd2_small_font_size,
 				font = tweak_data.menu.pd2_small_font,
-				color = tweak_data.screen_colors.event_color
+				color = tweak_data.screen_colors.event_color,
 			})
 
 			holiday_text:set_position(10, next_top)
@@ -259,7 +259,7 @@ function IngameContractGui:init(ws, node)
 		font = tweak_data.menu.pd2_small_font,
 		font_size = font_size,
 		text = self:get_text("menu_risk"),
-		color = risk_color
+		color = risk_color,
 	})
 
 	managers.hud:make_fine_text(risk_title)
@@ -283,7 +283,7 @@ function IngameContractGui:init(ws, node)
 	end
 
 	local risk_stats_panel = text_panel:panel({
-		name = "risk_stats_panel"
+		name = "risk_stats_panel",
 	})
 
 	risk_stats_panel:set_h(risk_title:h() + 5)
@@ -299,7 +299,7 @@ function IngameContractGui:init(ws, node)
 			"risk_swat",
 			"risk_fbi",
 			"risk_death_squad",
-			"risk_sm_wish"
+			"risk_sm_wish",
 		}
 
 		local max_y = 0
@@ -317,7 +317,7 @@ function IngameContractGui:init(ws, node)
 					texture = texture,
 					texture_rect = rect,
 					alpha = alpha,
-					color = color
+					color = color,
 				})
 
 				risk:set_x(rsx)
@@ -330,7 +330,7 @@ function IngameContractGui:init(ws, node)
 					name = name,
 					font = tweak_data.menu.pd2_small_font,
 					font_size = font_size,
-					text = tostring(stat)
+					text = tostring(stat),
 				})
 
 				managers.hud:make_fine_text(risk_stat)
@@ -370,11 +370,11 @@ function IngameContractGui:init(ws, node)
 			w = text_panel:w() - max_x,
 			h = text_panel:h(),
 			text = self:get_text(menu_risk_id) .. " " .. managers.localization:to_upper_text("menu_stat_job_completed", {
-				stat = tostring(stat)
+				stat = tostring(stat),
 			}) .. " ",
 			font = tweak_data.hud_stats.objective_desc_font,
 			font_size = font_size,
-			color = risk_color
+			color = risk_color,
 		})
 
 		risk_text:set_top(math.round(risk_title:bottom() + 4))
@@ -386,9 +386,9 @@ function IngameContractGui:init(ws, node)
 			font = tweak_data.menu.pd2_small_font,
 			font_size = font_size,
 			text = self:get_text(show_max and "menu_potential_rewards_max" or "menu_potential_rewards_min", {
-				BTN_Y = managers.localization:btn_macro("menu_modify_item")
+				BTN_Y = managers.localization:btn_macro("menu_modify_item"),
 			}),
-			color = managers.menu:is_pc_controller() and tweak_data.screen_colors.button_stage_3 or tweak_data.screen_colors.text
+			color = managers.menu:is_pc_controller() and tweak_data.screen_colors.button_stage_3 or tweak_data.screen_colors.text,
 		})
 
 		managers.hud:make_fine_text(potential_rewards_title)
@@ -399,7 +399,7 @@ function IngameContractGui:init(ws, node)
 			font = tweak_data.menu.pd2_small_font,
 			font_size = font_size,
 			text = managers.localization:to_upper_text("cn_menu_contract_jobpay_header"),
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		})
 
 		managers.hud:make_fine_text(jobpay_title)
@@ -410,7 +410,7 @@ function IngameContractGui:init(ws, node)
 			font = tweak_data.menu.pd2_small_font,
 			font_size = font_size,
 			text = self:get_text("menu_experience"),
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		})
 
 		managers.hud:make_fine_text(experience_title)
@@ -421,7 +421,7 @@ function IngameContractGui:init(ws, node)
 		self._experience_title = experience_title
 		self._text_panel = text_panel
 		self._rewards_panel = text_panel:panel({
-			name = "rewards_panel"
+			name = "rewards_panel",
 		})
 		self._potential_show_max = show_max
 
@@ -435,7 +435,7 @@ function IngameContractGui:init(ws, node)
 			1,
 			1,
 			1,
-			1
-		}
+			1,
+		},
 	})
 end

@@ -1,2 +1,1 @@
-function MolotovGrenade:bullet_hit()
-end
+function MolotovGrenade:bullet_hit() end

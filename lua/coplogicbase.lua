@@ -12,7 +12,6 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
 
-
 -- Instant detection outside of stealth
 local _create_detected_attention_object_data_original = CopLogicBase._create_detected_attention_object_data
 function CopLogicBase._create_detected_attention_object_data(...)
@@ -23,9 +22,8 @@ function CopLogicBase._create_detected_attention_object_data(...)
 	return data
 end
 
-
 -- Make shield_cover tactics stick closer to their shield tactics providers
-Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function (data, old_objective)
+Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(data, old_objective)
 	if not data.objective or data.objective.type ~= "defend_area" or not data.group or not data.tactics or not data.tactics.shield_cover then
 		return
 	end
@@ -52,14 +50,12 @@ Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function 
 	end
 end)
 
-
 -- Remove follow unit as soon as it dies, not just after the body despawned
 function CopLogicBase.on_objective_unit_damaged(data, unit, attacker_unit)
 	if unit:character_damage()._dead then
 		data.objective_failed_clbk(data.unit, data.objective)
 	end
 end
-
 
 -- Allow more dodge directions
 function CopLogicBase.chk_start_action_dodge(data, reason)
@@ -104,7 +100,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	local ray_params = {
 		trace = true,
 		tracker_from = data.unit:movement():nav_tracker(),
-		pos_to = tmp_vec1
+		pos_to = tmp_vec1,
 	}
 
 	mvec3_set(ray_params.pos_to, dodge_dir)
@@ -171,7 +167,7 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	mrotation.x(data.unit:movement():m_rot(), tmp_vec1)
 	local right_dot = mvec3_dot(dodge_dir, tmp_vec1)
 	local fwd_dot = mvec3_dot(dodge_dir, data.unit:movement():m_fwd())
-	local dodge_side =  math.abs(fwd_dot) > 0.6 and (fwd_dot > 0 and "fwd" or "bwd") or right_dot > 0 and "r" or "l"
+	local dodge_side = math.abs(fwd_dot) > 0.6 and (fwd_dot > 0 and "fwd" or "bwd") or right_dot > 0 and "r" or "l"
 
 	local rand_nr = math.random()
 	local total_chance = 0
@@ -208,8 +204,8 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 			dodge = -1,
 			walk = -1,
 			action = body_part == 1 and -1 or nil,
-			aim = body_part == 1 and -1 or nil
-		}
+			aim = body_part == 1 and -1 or nil,
+		},
 	}
 
 	if variation ~= "side_step" then
@@ -230,29 +226,56 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 	return action
 end
 
-
--- Check for minimum objective interruption distance
-local is_obstructed_original = CopLogicBase.is_obstructed
-function CopLogicBase.is_obstructed(data, objective, strictness, attention, ...)
-	local min_obj_interrupt_dis = data.char_tweak.min_obj_interrupt_dis
-	if not min_obj_interrupt_dis or not objective or not objective.interrupt_dis or objective.interrupt_dis < 0 then
-		return is_obstructed_original(data, objective, strictness, attention, ...)
-	end
-
+-- Check for verified interrupt distance and remove bad marshal interrupt distance
+function CopLogicBase.is_obstructed(data, objective, strictness, attention)
 	attention = attention or data.attention_obj
-	if not attention or not attention.verified then
-		-- This is an additional multiplier, is_obstructed already halves when not visible, but for larger ranges thats not enough
-		min_obj_interrupt_dis = min_obj_interrupt_dis * 0.25
+	strictness = 1 - (strictness or 0)
+
+	if not objective or objective.is_default or (objective.in_place or not objective.nav_seg) and not objective.action then
+		return true, false
 	end
 
-	local interrupt_dis = objective.interrupt_dis
-	objective.interrupt_dis = math.max(interrupt_dis, min_obj_interrupt_dis)
-	local allow_trans, obj_failed = is_obstructed_original(data, objective, strictness, attention, ...)
-	objective.interrupt_dis = interrupt_dis
+	if objective.interrupt_suppression and data.is_suppressed then
+		return true, true
+	end
 
-	return allow_trans, obj_failed
+	if objective.interrupt_health then
+		local health_ratio = data.unit:character_damage():health_ratio()
+		if health_ratio < 1 and health_ratio * strictness < objective.interrupt_health or data.unit:character_damage():dead() then
+			return true, true
+		end
+	end
+
+	if objective.interrupt_dis then
+		if attention and (AIAttentionObject.REACT_COMBAT <= attention.reaction or data.cool and AIAttentionObject.REACT_SURPRISED <= attention.reaction) then
+			if objective.interrupt_dis == -1 then
+				return true, true
+			end
+
+			if attention.verified and data.char_tweak.min_obj_interrupt_dis then
+				if attention.dis * strictness < data.char_tweak.min_obj_interrupt_dis then
+					return true, true
+				end
+			end
+
+			if math.abs(attention.m_pos.z - data.m_pos.z) < 250 then
+				if attention.dis * strictness * (attention.verified and 1 or 2) < objective.interrupt_dis then
+					return true, true
+				end
+			end
+
+			if objective.pos and math.abs(attention.m_pos.z - objective.pos.z) < 250 then
+				if mvector3.distance(objective.pos, attention.m_pos) * strictness < objective.interrupt_dis then
+					return true, true
+				end
+			end
+		elseif objective.interrupt_dis == -1 and not data.cool then
+			return true, true
+		end
+	end
+
+	return false, false
 end
-
 
 -- Fix function not working accurately for clients/NPCs
 function CopLogicBase.chk_am_i_aimed_at(data, attention_obj, max_dot)
@@ -277,14 +300,12 @@ function CopLogicBase.chk_am_i_aimed_at(data, attention_obj, max_dot)
 	return max_dot < mvec3_dot(tmp_vec2, tmp_vec1)
 end
 
-
 -- Reduce maximum update delay
 local _upd_attention_obj_detection_original = CopLogicBase._upd_attention_obj_detection
 function CopLogicBase._upd_attention_obj_detection(...)
 	local delay = _upd_attention_obj_detection_original(...)
-	return math.min(1, delay)
+	return math.min(0.5, delay)
 end
-
 
 -- Fix incorrect checks and improve surrender conditions
 function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_unit)
@@ -305,7 +326,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 
 	local hold_chance = 1
 	local surrender_chk = {
-		health = function (health_surrender)
+		health = function(health_surrender)
 			local health_ratio = data.unit:character_damage():health_ratio()
 			if health_ratio < 1 then
 				local min_setting, max_setting
@@ -314,14 +335,14 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 					if not min_setting or k < min_setting.k then
 						min_setting = {
 							k = k,
-							v = v
+							v = v,
 						}
 					end
 
 					if not max_setting or max_setting.k < k then
 						max_setting = {
 							k = k,
-							v = v
+							v = v,
 						}
 					end
 				end
@@ -332,7 +353,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			end
 		end,
 
-		aggressor_dis = function (agg_dis_surrender)
+		aggressor_dis = function(agg_dis_surrender)
 			local agg_dis = mvec3_dis_sq(data.m_pos, aggressor_unit:movement():m_pos())
 			local min_setting, max_setting
 
@@ -340,14 +361,14 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 				if not min_setting or k < min_setting.k then
 					min_setting = {
 						k = k,
-						v = v
+						v = v,
 					}
 				end
 
 				if not max_setting or max_setting.k < k then
 					max_setting = {
 						k = k,
-						v = v
+						v = v,
 					}
 				end
 			end
@@ -357,7 +378,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			end
 		end,
 
-		weapon_down = function (weap_down_surrender)
+		weapon_down = function(weap_down_surrender)
 			local anim_data = data.unit:anim_data()
 			if anim_data.reload or data.unit:inventory():equipped_unit():base():get_ammo_remaining_in_clip() == 0 then
 				hold_chance = hold_chance * (1 - weap_down_surrender)
@@ -373,27 +394,27 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			end
 		end,
 
-		flanked = function (flanked_surrender)
+		flanked = function(flanked_surrender)
 			local fwd_dot = mvec3_dot(data.unit:movement():m_rot():y(), tmp_vec1)
 			if fwd_dot < 0 then
 				hold_chance = hold_chance * (1 - flanked_surrender * math.abs(fwd_dot))
 			end
 		end,
 
-		unaware_of_aggressor = function (unaware_of_aggressor_surrender)
+		unaware_of_aggressor = function(unaware_of_aggressor_surrender)
 			local att_info = data.detected_attention_objects[aggressor_unit:key()]
 			if not att_info or not att_info.identified or t - att_info.identified_t < 1 then
 				hold_chance = hold_chance * (1 - unaware_of_aggressor_surrender)
 			end
 		end,
 
-		enemy_weap_cold = function (enemy_weap_cold_surrender)
+		enemy_weap_cold = function(enemy_weap_cold_surrender)
 			if not managers.groupai:state():enemy_weapons_hot() then
 				hold_chance = hold_chance * (1 - enemy_weap_cold_surrender)
 			end
 		end,
 
-		isolated = function (isolated_surrender)
+		isolated = function(isolated_surrender)
 			if data.group and data.group.has_spawned and data.group.initial_size > 1 then
 				local has_support
 				for u_key, u_data in pairs(data.group.units) do
@@ -409,12 +430,12 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			end
 		end,
 
-		pants_down = function (pants_down_surrender)
+		pants_down = function(pants_down_surrender)
 			local not_cool_t = data.unit:movement():not_cool_t()
 			if (not not_cool_t or t - not_cool_t < 1.5) and not managers.groupai:state():enemy_weapons_hot() then
 				hold_chance = hold_chance * (1 - pants_down_surrender)
 			end
-		end
+		end,
 	}
 
 	for reason, reason_data in pairs(surrender_tweak.reasons) do

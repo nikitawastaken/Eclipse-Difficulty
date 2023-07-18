@@ -91,8 +91,8 @@ local pickup_tables = {
 
 	smg_high = {2, 9},
 	smg_mid = {2, 7},
-	smg_low = {2, 5},
-	smg_very_low = {2, 2},
+	smg_low = {2, 4.5},
+	smg_very_low = {2, 3},
 
 	autopistol_high = {3, 5},
 	autopistol_mid = {2, 4},
@@ -1196,6 +1196,7 @@ self.fmg9.kick = kick_tables.ar_mid
 self.fmg9.timers.unequip = 1.2
 
 -- Spec Ops
+self.mp7.stats.damage = 58
 self.mp7.AMMO_MAX = total_ammo_tables.smg_mid
 self.mp7.AMMO_PICKUP = pickup_tables.smg_mid
 self.mp7.kick = kick_tables.ar_high

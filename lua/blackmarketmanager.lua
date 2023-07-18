@@ -1,6 +1,5 @@
 function BlackMarketManager:modify_damage_falloff(damage_falloff, custom_stats)
-
-    if damage_falloff and custom_stats then
+	if damage_falloff and custom_stats then
 		for part_id, stats in pairs(custom_stats) do
 			if stats.falloff_override then
 				damage_falloff.optimal_distance = stats.falloff_override.optimal_distance or damage_falloff.optimal_distance
@@ -47,7 +46,7 @@ function BlackMarketManager:modify_damage_falloff(damage_falloff, custom_stats)
 				damage_falloff.optimal_range = damage_falloff.optimal_range * stats.optimal_range_mul
 			end
 
-            -- Optimal Distance stuff
+			-- Optimal Distance stuff
 			if stats.optimal_distance_addend ~= nil then
 				damage_falloff.optimal_distance = damage_falloff.optimal_distance + stats.optimal_distance_addend
 			end
@@ -58,9 +57,8 @@ function BlackMarketManager:modify_damage_falloff(damage_falloff, custom_stats)
 	end
 end
 
-
 -- Uncouple melee knockdown from damage
-Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", function (self, lerp_value)
+Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", function(self, lerp_value)
 	lerp_value = lerp_value or 0
 	local melee_entry = self:equipped_melee_weapon()
 	local stats = tweak_data.blackmarket.melee_weapons[melee_entry].stats

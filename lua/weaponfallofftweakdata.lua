@@ -6,7 +6,7 @@ function WeaponFalloffTemplate.setup_weapon_falloff_templates()
 		near_falloff = 0,
 		far_falloff = 1500,
 		near_multiplier = 1.4,
-		far_multiplier = 0.3
+		far_multiplier = 0.3,
 	}
 	weapon_falloff_templates.SHOTGUN_FALL_MODERATE = {
 		optimal_distance = 000,
@@ -14,7 +14,7 @@ function WeaponFalloffTemplate.setup_weapon_falloff_templates()
 		near_falloff = 0,
 		far_falloff = 2000,
 		near_multiplier = 1.4,
-		far_multiplier = 0.3
+		far_multiplier = 0.3,
 	}
 	weapon_falloff_templates.SHOTGUN_FALL_HIGH = {
 		optimal_distance = 000,
@@ -22,7 +22,7 @@ function WeaponFalloffTemplate.setup_weapon_falloff_templates()
 		near_falloff = 0,
 		far_falloff = 2500,
 		near_multiplier = 1.4,
-		far_multiplier = 0.4
+		far_multiplier = 0.4,
 	}
 	weapon_falloff_templates.SHOTGUN_FALL_VHIGH = {
 		optimal_distance = 000,
@@ -30,7 +30,7 @@ function WeaponFalloffTemplate.setup_weapon_falloff_templates()
 		near_falloff = 0,
 		far_falloff = 3000,
 		near_multiplier = 1.4,
-		far_multiplier = 0.5
+		far_multiplier = 0.5,
 	}
 
 	return weapon_falloff_templates
