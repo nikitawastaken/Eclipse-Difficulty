@@ -1275,8 +1275,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawnrate
 	self.spawn_kill_cooldown = 8 / (math.sqrt(f))
-	self.besiege.assault.spawnrate = { 1.6, 1.4, 1.2 }
-	self.besiege.assault.spawnrate_balance_mul = { 2.2, 1.6, 1.45, 1.35 }
+	self.besiege.assault.spawnrate = { 1.6 / (math.sqrt(f)), 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)) }
+	self.besiege.assault.spawnrate_balance_mul = { 2, 1.6, 1.4, 1.2 }
 
 	-- RECON / REENFORCE --
 
