@@ -1534,6 +1534,9 @@ self.groza_underbarrel.AMMO_PICKUP = {0.084, 0.084}
 self.arblast.AMMO_MAX = 45
 self.arblast.stats.damage = 10
 self.arblast.stats.concealment = 24
+self.arblast.single = {
+	fire_rate = 0.025
+}
 
 -- Light Crossbow
 self.frankish.AMMO_MAX = 45

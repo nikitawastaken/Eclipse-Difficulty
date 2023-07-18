@@ -172,7 +172,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 85
-	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 8
+	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 11
 	self.parts.wpn_fps_ass_g3_b_short.custom_stats = { ammo_pickup_max_mul = 2 }
 	-- broomstick
 	self.parts.wpn_fps_pis_c96_b_long.custom_stats = { ammo_pickup_min_mul = 0.33, ammo_pickup_max_mul = 0.5 }
