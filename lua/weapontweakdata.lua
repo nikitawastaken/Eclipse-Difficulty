@@ -503,8 +503,9 @@ self.m95.timers = {
 -- AWP
 self.awp.CLIP_AMMO_MAX = 5
 self.awp.stats.damage = 125
+self.awp.stats.reload = 9
 self.awp.stats_modifiers = {damage = 8}
-self.awp.AMMO_PICKUP = {0.55, 0.65}
+self.awp.AMMO_PICKUP = {0.4, 0.5}
 self.awp.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.awp.kick.standing = {4, 5, -1, 1}
 self.awp.kick.crouching = self.m95.kick.standing
