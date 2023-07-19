@@ -35,10 +35,10 @@
 	"menu_inspire_beta_desc": "基础: ##$basic##\n向一个距离你##$multibasic##内的队友呼喊会提高他们##$multibasic2##的移动速度和换弹速度##$multibasic3##秒。\n\n精通: ##$pro##\n你还可以通过呼喊的方式救起在##$multibasic##距离内的倒地的队友。\n\n该技能每##$multipro##秒最多触发一次。",
 	"menu_black_marketeer_beta_desc": "基础: ##$basic##\n拥有至少##$multibasic##名人质或者投降的敌人会让你每##$multibasic3##秒恢复##$multibasic2##点生命值。\n\n精通: ##$pro##\n你回复的生命值提高到##$multipro##点。\n你的被转化的敌人现在也被算作人质。\n\n注意：不影响人质情节和人质事件。",
 	"menu_cable_guy_beta": "人质情节",
-	"menu_cable_guy_beta_desc": "基础: ##$basic##\n你吼人的距离增加##$multibasic2##。\n\n精通: ##$pro##\n平民现在会被你发出的声音所压制。压制时间提高##$multipro##。",
+	"menu_cable_guy_beta_desc": "基础: ##$basic##\n你吼人的距离增加##$multibasic2##。\n\n精通: ##$pro##\n平民现在会被你发出的声音所压制。压制时间提高##$multipro##。\n\n你有概率会被周围没有被捆绑的平民通过互动救起。",
 	"menu_triathlete_beta_desc": "基础: ##$basic##\n你的绑带增加##$multibasic##个。\n\n精通: ##$pro##\n你绑平民为人质的速度增加##$multipro##。",
 	"menu_stockholm_syndrome_beta": "人质事件",
-	"menu_stockholm_syndrome_beta_desc": "基础: ##$basic##\n拥有至少一名人质时，你和你的队友获得##$multibasic##点伤害吸收。\n\n精通: ##$pro##\n拥有一名人质会延长控制阶段##$multipro##秒。",
+	"menu_stockholm_syndrome_beta_desc": "基础: ##$basic##\n每拥有一名人质会为你和你的队友提供##$multibasic##点伤害吸收。\n\n精通: ##$pro##\n每拥有一名人质会延长控制阶段##$multipro##秒。\n\n注意：技能效果最多可以叠加##4##次",
 	"menu_control_freak_beta_desc": "基础: ##$basic##\n你的被转化的敌人获得##$multibasic3##的伤害减免。\n\n精通: ##$pro##\n你的被转化的敌人额外获得##$multipro4##伤害减免。",
 	"menu_rifleman": "灵活行动",
 	"menu_rifleman_desc": "基础: ##$basic##\n你开镜的速度增加##$multibasic##并且你切换武器的速度增加##$multibasic2##。\n\n精通: ##$pro##\n你现在可以在跑步的时候开火。",
@@ -115,7 +115,7 @@
 	"menu_ecm_booster_beta": "干扰器反馈",
 	"menu_ecm_booster_beta_desc": "基础: ##$basic##\n你现在可以和电子干扰器互动使其反馈并眩晕周围的敌人。\n\n反馈的距离是##$multibasic##。\n若电子干扰器的##视野受阻##，则效果生效范围的半径减半。\n\n精通: ##$pro##\n现在电子干扰器在使用之后的##$multipro##分钟会完成重新充能。",
 	"menu_ecm_2x_beta_desc": "基础: ##$basic##\n你可以带##2##个电子干扰器而不是一个。\n\n精通: ##$pro##\n你的电子干扰器和反馈现在持续##$multipro##秒。",
-	"menu_backstab_beta_desc": "基础: ##$basic##\n如果你的暴露风险低于##$multibasic3##，每低##$multibasic2##点会使你你获得##$multibasic##的暴击概率，最高获得##$multibasic4##。\n\n暴击造成##$multibasic5##伤害。\n\n精通: ##$pro##\n如果你的暴露风险低于##$multipro3##，每低##$multipro2##点会使你你获得##$multipro##的暴击概率，最高获得##$multipro4##。该描述覆盖基础版本。\n\n暴击额外多造成##$multipro3##伤害。\n\n注意：暴击不影响手雷和投掷物",
+	"menu_backstab_beta_desc": "基础: ##$basic##\n如果你的暴露风险低于##$multibasic3##，每低##$multibasic2##点会使你你获得##$multibasic##的暴击概率，最高获得##$multibasic4##。\n\n暴击造成##$multibasic5##伤害。\n\n精通: ##$pro##\n如果你的暴露风险低于##$multipro3##，每低##$multipro2##点会使你你获得##$multipro##的暴击概率，最高获得##$multipro4##。该效果覆盖基础版本。\n\n暴击额外多造成##$multipro3##伤害。\n\n注意：暴击不影响手雷和投掷物",
 	
 	
 	
@@ -140,7 +140,6 @@
 	
 	"menu_deckall_2": "战场拾荒",
 	"menu_deckall_2_desc": "你有##2%##的基础概率从子弹盒里获得一个投掷物。\n\n每当你没捡到一个投掷物，该概率增加##0.1%##。\n\n当你捡到一个投掷物时，概率被重置回基础概率。",
-
 	"menu_deckall_4_desc": "你现在可以购买全部有利条件。\n\n你获得##+1##隐秘度。",
 	"menu_deckall_6_desc": "解锁护甲箱。可以在结案中改变你的护甲。\n\n当你穿着护甲时，移动惩罚减少##15%##。",
 
