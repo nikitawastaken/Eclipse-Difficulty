@@ -36,6 +36,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
 	self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
 	self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
+	-- extended barrel for raven
+	self.parts.wpn_fps_sho_ksg_b_long.stats.extra_ammo = 1
 	-- remove stat overrides
 	self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
 	self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_slug = nil
