@@ -552,6 +552,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self._tactics = {
 		beat_cop = {
 			"ranged_fire",
+			"no_push",
 		},
 		swat_assault = {
 			"shield_cover",
@@ -649,6 +650,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire",
 			"flash_grenade",
 			"smoke_grenade",
+			"no_push",
 		},
 		recon_attack = {
 			"ranged_fire",
@@ -657,6 +659,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		recon_rescue = {
 			"flank",
 			"flash_grenade",
+			"no_push",
 		},
 	}
 
@@ -1262,6 +1265,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Control
 	self.besiege.assault.delay = { 40 / f, 30 / f, 15 / f }
+	self.besiege.assault.hostage_hesitation_delay = { 10, 5, 2.5 }
 
 	-- SPAWNS --
 
@@ -1270,9 +1274,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.force_balance_mul = { 1.5, 1.5, 1.75, 2 }
 
 	-- Spawnrate
-	self.spawn_kill_cooldown = 8
-	self.besiege.assault.spawnrate = { 1.6, 1.4, 1.2 }
-	self.besiege.assault.spawnrate_balance_mul = { 2.2, 1.6, 1.45, 1.35 }
+	self.spawn_kill_cooldown = 8 / (math.sqrt(f))
+	self.besiege.assault.spawnrate = { 1.6 / (math.sqrt(f)), 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)) }
+	self.besiege.assault.spawnrate_balance_mul = { 2, 1.6, 1.4, 1.2 }
 
 	-- RECON / REENFORCE --
 
@@ -1287,7 +1291,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- GRENADES --
 	-- global
 	self.min_grenade_timeout = 20 / f
-	self.no_grenade_push_delay = 8
+	self.no_grenade_push_delay = 8 / (math.sqrt(f))
 
 	-- flash
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
@@ -1365,9 +1369,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 6 then
 		self.besiege.assault.groups = {
-			blue_swats = { 1, 0.45, 0 },
-			fbi_lights = { 1.75, 1.75, 0 },
-			fbi_heavies = { 0.5, 0.5, 1.25 },
+			blue_swats = { 1, 0.3, 0 },
+			fbi_lights = { 1.75, 1.5, 0 },
+			fbi_heavies = { 0.5, 0.75, 1.25 },
 			fbi_shields = { 0.3, 0.3, 0.3 },
 			fbi_tanks = { 0, 0.02, 0.13 },
 			gensec_cqc_lights = { 0.3, 0.3, 0.5 },

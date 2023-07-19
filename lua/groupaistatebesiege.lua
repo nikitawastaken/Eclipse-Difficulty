@@ -20,7 +20,6 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 		local assault_task = self._task_data.assault
 		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, assault_task.was_first)
 		assault_task.phase_end_t = self._t + anticipation_duration
-		assault_task.is_hesitating = true
 	end
 end
 
@@ -28,11 +27,12 @@ Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_ta
 	local assault_task = self._task_data.assault
 	if self._hostage_headcount > 0 then
 		local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
-		local hostage_situation_skill = managers.player:upgrade_value("team", "hostage_situation", 0)
+		local hostage_situation = managers.player:upgrade_value("team", "hostage_situation", 0)
+		local hostage_multiplier = math.clamp(self._hostage_headcount, 1, 4)
 		assault_task.is_hesitating = true
 		if assault_task.next_dispatch_t then
 			assault_task.voice_delay = assault_task.next_dispatch_t - self._t
-			assault_task.next_dispatch_t = assault_task.next_dispatch_t + hesitation_delay + hostage_situation_skill
+			assault_task.next_dispatch_t = assault_task.next_dispatch_t + (hesitation_delay + hostage_situation) * hostage_multiplier
 		end
 	end
 end)
@@ -616,7 +616,12 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 		local teargas_chance = math.map_range(self._t - assault_area.criminal_entered_t, teargas_chance_times[1], teargas_chance_times[2], 0, 1)
 		if math.random() < teargas_chance then
 			local teargas_pos = managers.navigation:find_random_position_in_segment(assault_area.pos_nav_seg)
-			mvec_lerp(teargas_pos, teargas_pos, assault_area.pos, 0.5)
+			mvec_lerp(teargas_pos, teargas_pos, assault_area.pos, 0.75)
+
+			local c_key = table.random_key(assault_area.criminal.units)
+			if c_key then
+				mvec_lerp(teargas_pos, teargas_pos, assault_area.criminal.units[c_key].m_pos, 0.5)
+			end
 
 			mvec_set(detonate_offset, math.UP)
 			mvec_mul(detonate_offset, 1000)
@@ -1018,20 +1023,16 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 	end
 
 	local current_objective = group.objective
+	local objective_area = current_objective.area
 	local target_area = current_objective.target_area
-	if not target_area or current_objective.moving_out or current_objective.area == target_area then
-		return
-	end
-
-	local move_in = current_objective.area.neighbours[target_area.id]
-	if move_in and next(target_area.criminal.units) then
+	if not target_area or current_objective.moving_out or objective_area == target_area then
 		return
 	end
 
 	local obstructed
 	local search_params = {
 		id = "GroupAI_reenforce",
-		from_seg = current_objective.area.pos_nav_seg,
+		from_seg = objective_area.pos_nav_seg,
 		to_seg = target_area.pos_nav_seg,
 		access_pos = self._get_group_acces_mask(group),
 		verify_clbk = callback(self, self, "is_nav_seg_safe"),
@@ -1069,8 +1070,21 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		obstructed = true
 	end
 
+	local move_in = objective_area.neighbours[target_area.id]
 	if not move_in then
 		table.remove(coarse_path)
+	elseif next(target_area.criminal.units) then
+		local u_key, u_data = self._determine_group_leader(group.units)
+		local tactics_map = u_data and u_data.tactics_map or {}
+		if tactics_map.no_push then
+			return
+		elseif self:_can_group_see_target(group, "close") then
+			return
+		elseif not self:_chk_group_use_grenade(target_area, group) then
+			if not group.in_place_t or self._t - group.in_place_t < tweak_data.group_ai.no_grenade_push_delay * 0.5 then
+				return
+			end
+		end
 	end
 
 	self:_set_objective_to_enemy_group(group, {
@@ -1187,7 +1201,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 	if not move_in then
 		table.remove(coarse_path)
 	elseif next(target_area.criminal.units) then
-		if self:_can_group_see_target(group, "close") then
+		local u_key, u_data = self._determine_group_leader(group.units)
+		local tactics_map = u_data and u_data.tactics_map or {}
+		if tactics_map.no_push then
+			return
+		elseif self:_can_group_see_target(group, "close") then
 			return
 		elseif not self:_chk_group_use_grenade(target_area, group) then
 			if not group.in_place_t or self._t - group.in_place_t < tweak_data.group_ai.no_grenade_push_delay * 0.5 then

@@ -503,8 +503,9 @@ self.m95.timers = {
 -- AWP
 self.awp.CLIP_AMMO_MAX = 5
 self.awp.stats.damage = 125
+self.awp.stats.reload = 9
 self.awp.stats_modifiers = {damage = 8}
-self.awp.AMMO_PICKUP = {0.55, 0.65}
+self.awp.AMMO_PICKUP = {0.4, 0.5}
 self.awp.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.awp.kick.standing = {4, 5, -1, 1}
 self.awp.kick.crouching = self.m95.kick.standing
@@ -742,7 +743,7 @@ self.ksg.rays = 8
 self.ksg.stats.damage = 155
 self.ksg.stats.concealment = 20
 self.ksg.stats.reload = 12
-self.ksg.CLIP_AMMO_MAX = 10
+self.ksg.CLIP_AMMO_MAX = 8
 self.ksg.AMMO_MAX = total_ammo_tables.shot_mid
 self.ksg.AMMO_PICKUP = pickup_tables.shot_mid
 self.ksg.fire_mode_data.fire_rate = 0.6
@@ -1534,16 +1535,25 @@ self.groza_underbarrel.AMMO_PICKUP = {0.084, 0.084}
 self.arblast.AMMO_MAX = 45
 self.arblast.stats.damage = 10
 self.arblast.stats.concealment = 24
+self.arblast.single = {
+	fire_rate = 0.025
+}
 
 -- Light Crossbow
 self.frankish.AMMO_MAX = 45
 self.frankish.stats.damage = 50
 self.frankish.stats.concealment = 25
 self.frankish.use_data.selection_index = SELECTION.SECONDARY
+self.frankish.single = {
+	fire_rate = 0.125
+}
 
 -- Pistol Crossbow
 self.hunter.AMMO_MAX = 45
 self.hunter.stats.concealment = 30
+self.hunter.single = {
+	fire_rate = 0.125
+}
 
 -- Airbow
 self.ecp.AMMO_MAX = 45

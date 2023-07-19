@@ -36,6 +36,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
 	self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
 	self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
+	-- extended barrel for raven
+	self.parts.wpn_fps_sho_ksg_b_long.stats.extra_ammo = 1
 	-- remove stat overrides
 	self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
 	self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_slug = nil
@@ -172,7 +174,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 85
-	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 8
+	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 11
 	self.parts.wpn_fps_ass_g3_b_short.custom_stats = { ammo_pickup_max_mul = 2 }
 	-- broomstick
 	self.parts.wpn_fps_pis_c96_b_long.custom_stats = { ammo_pickup_min_mul = 0.33, ammo_pickup_max_mul = 0.5 }
