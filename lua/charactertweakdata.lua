@@ -694,6 +694,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad.weapon = self.presets.weapon.base
 	self.mobster.weapon = self.presets.weapon.base
 
+	self.swat.weapon = self.presets.weapon.base
 	self.fbi.weapon = self.presets.weapon.gc
 	self.fbi_swat.weapon = self.presets.weapon.base
 	self.fbi_heavy_swat.weapon = self.presets.weapon.base
