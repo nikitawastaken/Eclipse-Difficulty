@@ -104,10 +104,10 @@
 	"menu_silenced_damage_desc": "基础: ##$basic##\n你的消音武器获得##$multibasic##点隐秘度。降低##$multibasic2##点消音器的隐蔽度惩罚。\n\n精通: ##$pro##\n你的消音武器对敌人造成额外的##$multipro##伤害并且有##$multipro2##的概率穿甲。",
 	"menu_silence_expert_beta_desc": "基础: ##$basic##\n你的消音武器获得##$multibasic##点稳定度。\n\n精通: ##$pro##\n你的消音武器获得##$multipro##点精准性并且开镜速度增加##$multipro2##。",
 	
-	"menu_spotter_teamwork_beta_desc": "基础: ##$basic##\n你标记的敌人额外受到##$multibasic##的伤害。\n\n精通: ##$pro##\n你标记的敌人在##$multipro2##m远的时候额外受到##$multipro##的伤害。\n\n你可以用任何武器瞄准以标记敌人。",
+	"menu_spotter_teamwork_beta_desc": "基础: ##$basic##\n你标记的在##$multibasic2##米外的敌人额外受到##$multibasic##的伤害。\n\n精通: ##$pro##\n你标记的敌人会从任意距离的任何伤害来源再额外受到##$multipro##的伤害。\n\n标记的时间增加##$multipro2##。",
 	"menu_jail_workout_beta_desc": "基础: ##$basic##\n你在踩点模式被保安发现所需的时间增加##$multibasic##。\n\n强袭时在队友的身边会降低##$multibasic##被敌人选中为目标的概率。\n\n精通: ##$pro##\n你的隐秘度增加##$multipro##点。",
 	"menu_cleaner_beta": "鹰之视野",
-	"menu_cleaner_beta_desc": "基础: ##$basic##\n你对特殊敌人造成额外##$multibasic##的伤害。\n\n精通: ##$pro##\n你可以主动标记敌人的距离增加##$multipro##倍。标记状态延长##$multipro2##。",
+	"menu_cleaner_beta_desc": "基础: ##$basic##\n你对特殊敌人造成额外##$multibasic##的伤害。\n\n精通: ##$pro##\n你可以在开镜瞄准时自动标记特殊敌人。\n\n你可以主动标记敌人的距离增加##$multipro##倍。",
 	"menu_second_chances_beta": "后勤苦力",
 	"menu_second_chances_beta_desc": "基础: ##$basic##\n你与战利品互动和打包加快##$multibasic##。\n\n精通: ##$pro##\n你的开锁速度加快##$multipro##。\n\n你可以徒手安静的打开保险箱。",
 	"menu_chameleon_beta": "黑灯瞎火",
