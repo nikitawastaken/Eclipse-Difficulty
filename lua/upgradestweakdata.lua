@@ -573,12 +573,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.marked_distance_mul[1] = 4
 	self.skill_descs.thick_skin.multibasic = "10%"
 	self.skill_descs.thick_skin.multipro = "4"
-	self.skill_descs.thick_skin.multipro2 = "100%"
 
 	-- The Professional
 	self.skill_descs.silence_expert.multibasic = "8"
 	self.skill_descs.silence_expert.multipro = "12"
 	self.skill_descs.silence_expert.multipro2 = "100%"
+
+	-- HVT
+	self.values.player.marked_inc_dmg_distance[1][2] = 1.2
+	self.values.player.marked_enemy_damage_mul = 1.3
+	self.skill_descs.hitman.multibasic = "20%"
+	self.skill_descs.hitman.multibasic2 = "10"
+	self.skill_descs.hitman.multipro = "30%"
+	self.skill_descs.hitman.multipro2 = "100%"
 
 	-- Silencer Expert
 	self.definitions.weapon_silencer_damage_multiplier = {
@@ -628,14 +635,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.unseen_strike.multipro = "3%"
 	self.skill_descs.unseen_strike.multipro2 = "1"
 	self.skill_descs.unseen_strike.multipro3 = "100%"
-
-	-- HVT
-	self.values.player.marked_enemy_damage_mul = 1.2
-	self.values.player.marked_inc_dmg_distance[1][2] = 1.25
-	self.skill_descs.hitman.multibasic = "20%"
-	self.skill_descs.hitman.multipro = "25%"
-	self.skill_descs.hitman.multipro2 = "10"
-	self.skill_descs.hitman.multipro3 = "100%"
 
 	-- Fugitive --
 

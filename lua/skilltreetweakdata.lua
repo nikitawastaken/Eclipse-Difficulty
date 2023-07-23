@@ -256,7 +256,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Eagle Eye
 	self.skills.thick_skin[1].upgrades = { "weapon_special_damage_taken_multiplier" }
-	self.skills.thick_skin[2].upgrades = { "player_mark_enemy_time_multiplier", "player_marked_distance_mul" }
+	self.skills.thick_skin[2].upgrades = { "weapon_steelsight_highlight_specials", "player_marked_distance_mul" }
 	self.skills.thick_skin.icon_xy = { 3, 7 }
 	self.skills.thick_skin.name_id = "menu_cleaner_beta"
 	self.skills.thick_skin.desc_id = "menu_cleaner_beta_desc"
@@ -266,7 +266,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.silence_expert[2].upgrades = { "weapon_silencer_enter_steelsight_speed_multiplier", "weapon_silencer_spread_index_addend" }
 
 	-- HVT
-	self.skills.hitman[2].upgrades = { "player_marked_inc_dmg_distance_1", "weapon_steelsight_highlight_specials" }
+	self.skills.hitman[1].upgrades = { "player_marked_inc_dmg_distance_1" }
+	self.skills.hitman[2].upgrades = { "player_marked_enemy_extra_damage", "player_mark_enemy_time_multiplier" }
 
 	-- Silencer Expert
 	self.skills.backstab[1].upgrades = { "player_silencer_concealment_penalty_decrease_1", "player_silencer_concealment_increase_1" }
