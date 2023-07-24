@@ -16,7 +16,7 @@
 			<shake name="player_bullet_damage"/>
 		</search>
 		<target mode="append">
-			<shake name="player_bullet_damage_strong" spin="0" roll="-sin(t)/50" tilt="cos(t)/70" frequency="3" amplitude="1.125" attack="0" sustain="0" decay="1.5"/>
+			<shake name="player_bullet_damage_strong" spin="0" roll="-sin(t)/50" tilt="cos(t)/70" frequency="3" amplitude="1.2" attack="0" sustain="0" decay="1.5"/>
 		</target>
 	</tweak>
 	
@@ -26,7 +26,7 @@
 			<shake name="player_bullet_damage"/>
 		</search>
 		<target mode="append">
-			<shake name="player_bullet_damage_knock_out" spin="0" roll="-sin(t)/50" tilt="cos(t)/70" frequency="3" amplitude="1.25" attack="0" sustain="0" decay="2.5"/>
+			<shake name="player_bullet_damage_knock_out" spin="0" roll="-sin(t)/50" tilt="cos(t)/70" frequency="3" amplitude="1" attack="0" sustain="0" decay="2.5"/>
 		</target>
 	</tweak>
 </tweaks>
