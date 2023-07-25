@@ -115,7 +115,7 @@
 	"menu_ecm_booster_beta": "干扰器反馈",
 	"menu_ecm_booster_beta_desc": "基础: ##$basic##\n你现在可以和电子干扰器互动使其反馈并震晕周围的敌人。\n\n反馈的生效距离为##$multibasic##。\n若电子干扰器的##视野受阻##，则效果生效范围的半径减半。\n\n精通: ##$pro##\n现在电子干扰器在完成反馈后经过##$multipro##分钟便可再次使用反馈。",
 	"menu_ecm_2x_beta_desc": "基础: ##$basic##\n你可以带##2##个电子干扰器而不是1个。\n\n精通: ##$pro##\n你的电子干扰器的干扰和反馈现在持续##$multipro##秒。",
-	"menu_backstab_beta_desc": "基础: ##$basic##\n当你的暴露风险低于##$multibasic3##时，每降低##$multibasic2##点会提高##$multibasic##的暴击概率，最高为##$multibasic4##。\n\n暴击造成##$multibasic5##伤害。\n\n精通: ##$pro##\n当你的暴露风险低于##$multibasic3##时，每降低##$multipro2##点会提高##$multipro##的暴击概率，最高为##$multibasic4##。该效果将覆盖基础版本，不可叠加。\n\n暴击额外多造成##$multipro3##伤害。\n\n注意：暴击不影响手雷和投掷物。",
+	"menu_backstab_beta_desc": "基础: ##$basic##\n当你的暴露风险低于##$multibasic3##时，每降低##$multibasic2##点会提高##$multibasic##的暴击概率，最高为##$multibasic4##。\n\n暴击造成##$multibasic5##伤害。\n\n精通: ##$pro##\n效果增强为每降低##$multipro2##点会提高##$multipro##的暴击概率。原暴露风险需求是一致的。\n\n暴击额外多造成##$multipro3##伤害。\n\n注意：暴击不影响手雷和投掷物。",
 	
 	
 	
