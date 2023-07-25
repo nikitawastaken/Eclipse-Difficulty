@@ -15,8 +15,11 @@
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_whirlwind"/>
 		<texture path="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/wpn_fps_upg_perk_stockpile"/>
 
-		<!-- eclipse difficulty icon -->
+		<!-- eclipse difficulty icon & risk level -->
 		<texture path="guis/textures/pd2/risklevel_deathwish_easywish_blackscreen"/>
+		<texture path="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4"/>
+		
+		<!-- perk decks -->
 		<texture path="guis/textures/pd2/specialization/icons_atlas"/>
 
 		<!-- characters -->
