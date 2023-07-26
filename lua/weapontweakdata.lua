@@ -1281,6 +1281,7 @@ self.peacemaker.desc_id = "bm_w_lemming_desc"
 self.rsh12.stats.damage = 145
 self.rsh12.stats_modifiers = {damage = 2}
 self.rsh12.stats.reload = 13
+self.rsh12.stats.spread = 21
 self.rsh12.AMMO_MAX = total_ammo_tables.revolver_ap
 self.rsh12.AMMO_PICKUP = pickup_tables.revolver_ap
 self.rsh12.kick = kick_tables.revolver_ap
