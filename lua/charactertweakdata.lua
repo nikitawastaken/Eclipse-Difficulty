@@ -63,7 +63,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.base.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.base.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 17.5, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -72,14 +72,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_shotgun_mag.RELOAD_SPEED = 1
 	presets.weapon.base.is_shotgun_mag.autofire_rounds = { 1, 3 }
 	presets.weapon.base.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 7.5, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5, r = 300, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.45, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1.5, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_double_barrel = deep_clone(presets.weapon.base.is_shotgun_pump)
 	presets.weapon.base.is_double_barrel.FALLOFF = {
-		{ dmg_mul = 17.5, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -153,7 +153,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.elite.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.elite.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 17.5, r = 0, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -213,22 +213,22 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 
 	presets.weapon.tank.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 31.5, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 31.5, r = 300, acc = { 0.8, 1 }, recoil = { 1.25, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 1.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.75, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.tank.is_shotgun_mag.autofire_rounds = { 1, 6 }
 	presets.weapon.tank.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 7.5, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5, r = 300, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.45, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1.5, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_tank.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 31.5, r = 0, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 31.5, r = 300, acc = { 0.8, 1 }, recoil = { 1, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.25, 1.25 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_tank.is_lmg.autofire_rounds = { 25, 50 }
