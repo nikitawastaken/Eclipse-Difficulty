@@ -1884,8 +1884,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	local job = Global.level_data and Global.level_data.level_id
 	local short_ponr_heists = {
-		rvd2,
-		born,
+		bph,
+		red2
 	}
 
 	-- Sustain
@@ -1893,7 +1893,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.sustain_duration_max = { 900, 900, 900 }
 
 	-- Control
-	self.ponr.assault.delay = { 30, 30, 30 }
+	self.ponr.assault.delay = { 20, 20, 20 }
 	self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
 	if job and short_ponr_heists[job] then

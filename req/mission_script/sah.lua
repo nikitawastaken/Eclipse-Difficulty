@@ -112,5 +112,13 @@ return {
 			gensec_shields = false,
 			gensec_tanks = false
 		}
+	},
+	[101175] = {
+		values = {
+			enabled = false
+		}
+	},
+	[101177] = {
+		set_ponr_state = true
 	}
 }

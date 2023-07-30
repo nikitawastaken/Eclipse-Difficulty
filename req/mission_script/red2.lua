@@ -8,7 +8,7 @@ return {
     -- add point of no return
     [103334] = {
         ponr = 150,
-        ponr_player_mul = {1.25, 1, 0.85, 0.75}
+        ponr_player_mul = {1.1, 0.9, 0.7, 0.5}
     },
     -- remove a few cancer dozers
     [103603] = {

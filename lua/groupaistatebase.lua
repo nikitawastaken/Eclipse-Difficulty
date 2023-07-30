@@ -18,14 +18,22 @@ end
 local _update_whitelist = {
 	hox_1 = true,
 	hox_2 = true,
-	red2 = true,
-	spa = true,
-	flat = true,
-	rvd2 = true,
-	dinner = true,
-	pbr2 = true,
-	born = true,
-	peta2 = true,
+	red2 = true, -- fwb
+	spa = true, -- 10-10
+	flat = true, -- proom
+	dinner = true, -- slouse
+	pbr2 = true, -- bos
+	peta2 = true, -- goat2
+	vit = true, -- whouse
+	des = true, -- hrock
+	election_day_3 = true,
+	election_day_3_skip1 = true,
+	election_day_3_skip2 = true,
+	run = true, -- hstreet
+	bph = true, -- hisland
+	big = true, -- bigbank
+	wwf = true, -- kolyaskindeal
+
 }
 
 -- Code from Dr. Newbie

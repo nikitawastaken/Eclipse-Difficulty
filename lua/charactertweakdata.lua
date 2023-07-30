@@ -621,7 +621,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.zeal_shield = deep_clone(self.shield)
 	self.zeal_shield.speech_prefix_p2 = "d"
-	self.zeal_shield.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_shield")
 
 	self.zeal_medic = deep_clone(self.medic)
@@ -845,8 +844,8 @@ local function setup_presets(self)
 	self.zeal_swat.headshot_dmg_mul = 2.5 -- 256 head health
 	self.zeal_heavy_swat.HEALTH_INIT = 84
 	self.zeal_heavy_swat.headshot_dmg_mul = 1.75 -- 480 head health
-	self.zeal_shield.HEALTH_INIT = 60
-	self.zeal_shield.headshot_dmg_mul = 2 -- 300 head health
+	self.zeal_shield.HEALTH_INIT = 54
+	self.zeal_shield.headshot_dmg_mul = 1.8 -- 300 head health
 	self.zeal_medic.HEALTH_INIT = 84
 	self.zeal_medic.headshot_dmg_mul = 2 -- 420 head health
 	self.zeal_taser.HEALTH_INIT = 120
