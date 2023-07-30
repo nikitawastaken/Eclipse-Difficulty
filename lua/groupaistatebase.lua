@@ -33,7 +33,6 @@ local _update_whitelist = {
 	bph = true, -- hisland
 	big = true, -- bigbank
 	wwf = true, -- kolyaskindeal
-
 }
 
 -- Code from Dr. Newbie

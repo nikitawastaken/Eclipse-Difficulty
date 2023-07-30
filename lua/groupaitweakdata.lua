@@ -1885,7 +1885,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local job = Global.level_data and Global.level_data.level_id
 	local short_ponr_heists = {
 		bph,
-		red2
+		red2,
 	}
 
 	-- Sustain
