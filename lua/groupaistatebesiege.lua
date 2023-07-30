@@ -1251,14 +1251,14 @@ end
 GroupAIStatePonr = GroupAIStatePonr or class(GroupAIStateBesiege)
 
 function GroupAIStatePonr:init(state, data)
-    -- Grab all information from the previous ai state
-    for k,v in pairs(data) do
-        if type(v) ~= "function" then
-            self[k] = v
-        end
-    end
-    -- Set the group ai tweak table
-    self._tweak_data = tweak_data.group_ai["ponr"]
+	-- Grab all information from the previous ai state
+	for k, v in pairs(data) do
+		if type(v) ~= "function" then
+			self[k] = v
+		end
+	end
+	-- Set the group ai tweak table
+	self._tweak_data = tweak_data.group_ai["ponr"]
 	self:_parse_teammate_comments()
 	self:sync_assault_mode(false)
 	self:set_bain_state(true)
@@ -1266,7 +1266,7 @@ function GroupAIStatePonr:init(state, data)
 	self:_set_rescue_state(true)
 	self:_init_unit_type_filters()
 	self:_init_team_tables()
-    if Network:is_server() and managers.navigation:is_data_ready() then
+	if Network:is_server() and managers.navigation:is_data_ready() then
 		self:_queue_police_upd_task()
 	end
 	self:force_end_assault_phase(true)

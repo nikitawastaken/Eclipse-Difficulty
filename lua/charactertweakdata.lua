@@ -635,7 +635,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_taser.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_taser")
 
-
 	-- surrender presets
 	self.security.surrender = self.presets.surrender.weak
 	self.cop_scared.surrender = self.presets.surrender.weak
@@ -801,7 +800,7 @@ function CharacterTweakData:character_map(...)
 end
 
 -- Add new weapons
-Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function (self)
+Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function(self)
 	table.insert(self.weap_ids, "shepheard")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_shepheard/wpn_npc_shepheard"))
 

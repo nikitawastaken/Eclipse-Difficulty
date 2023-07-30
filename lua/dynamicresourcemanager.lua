@@ -1,5 +1,5 @@
 local ids_unit = Idstring("unit")
-Hooks:PostHook(DynamicResourceManager, "preload_units", "sh_preload_units", function (self)
+Hooks:PostHook(DynamicResourceManager, "preload_units", "sh_preload_units", function(self)
 	local function load_unit(path)
 		self:load(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
 		self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)

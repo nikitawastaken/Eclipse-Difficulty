@@ -1,5 +1,4 @@
 if StreamHeist.settings.ponr_assault_text then
-
 	function HUDAssaultCorner:sync_start_assault(assault_number)
 		if self._point_of_no_return or self._casing then
 			return
@@ -45,7 +44,7 @@ if StreamHeist.settings.ponr_assault_text then
 							"hud_assault_zeal_ponr",
 							"hud_assault_end_line",
 							ids_risk,
-							"hud_assault_end_line"
+							"hud_assault_end_line",
 						}
 					else
 						return {
@@ -56,7 +55,7 @@ if StreamHeist.settings.ponr_assault_text then
 							"hud_assault_normal_ponr",
 							"hud_assault_end_line",
 							ids_risk,
-							"hud_assault_end_line"
+							"hud_assault_end_line",
 						}
 					end
 				else
@@ -68,7 +67,7 @@ if StreamHeist.settings.ponr_assault_text then
 						"hud_assault_assault",
 						"hud_assault_end_line",
 						ids_risk,
-						"hud_assault_end_line"
+						"hud_assault_end_line",
 					}
 				end
 			else
@@ -86,11 +85,10 @@ if StreamHeist.settings.ponr_assault_text then
 						"hud_assault_assault",
 						"hud_assault_end_line",
 						"hud_assault_assault",
-						"hud_assault_end_line"
+						"hud_assault_end_line",
 					}
 				end
 			end
 		end
 	end
-
 end

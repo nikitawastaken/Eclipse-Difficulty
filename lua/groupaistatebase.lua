@@ -48,7 +48,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 
 	if self._point_of_no_return_id == -1 or not get_mission_script_element(self._point_of_no_return_id) then
 		if self._point_of_no_return_timer <= 0 then
-            managers.groupai:set_state("ponr")
+			managers.groupai:set_state("ponr")
 			self:remove_point_of_no_return_timer(-1)
 			self:set_difficulty(1)
 		else
