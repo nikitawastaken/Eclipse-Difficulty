@@ -231,6 +231,10 @@
 			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.model"/>
 			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.object"/>
 			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.unit"/>
+
+			<!-- ump & huntsman sound -->
+			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
+			<file :name="wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun.unit" dyn_package="false"/>
 		</group>
 
 		<!-- zeals -->
