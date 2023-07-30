@@ -32,6 +32,7 @@
 				<group :hook_id="hud/">
 					<post :hook_id="hudmissionbriefing"/>
 					<post :hook_id="hudstageendscreen"/>
+					<post :hook_id="hudassaultcorner"/>
 				</group>
 
 				<group :hook_id="menu/">
@@ -49,18 +50,22 @@
 				<post :hook_id="achievmentmanager"/>
 				<post :hook_id="tangomanager"/>
 				<post :hook_id="blackmarketmanager"/>
+				<post :hook_id="dynamicresourcemanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="player/snipergrazedamage"/>
 				<post :hook_id="criminalsmanager"/>
 				<post :hook_id="crimenetmanager"/>
 				<post :hook_id="playermanager"/>
 				<post :hook_id="dlcmanager"/>
+                <post :hook_id="groupaimanager"/>
 			</group>
 
 			<group :hook_id="network/">
 				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
 			</group>
+
+			<post :hook_id="setups/gamesetup"/>
 
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
@@ -204,6 +209,112 @@
 	</hooks>
 
 	<assets base_path="assets/">
+
+		<!-- new weapons -->
+		<group name="units/payday2/weapons/">
+
+			<!-- ksg -->
+			<file :name="wpn_npc_ksg/ksg_df.texture"/>
+			<file :name="wpn_npc_ksg/ksg_nm.texture"/>
+			<file :name="wpn_npc_ksg/wpn_npc_ksg.cooked_physics"/>
+			<file :name="wpn_npc_ksg/wpn_npc_ksg.material_config"/>
+			<file :name="wpn_npc_ksg/wpn_npc_ksg.model"/>
+			<file :name="wpn_npc_ksg/wpn_npc_ksg.object"/>
+			<file :name="wpn_npc_ksg/wpn_npc_ksg.unit"/>
+
+			<!-- mpx -->
+			<file :name="wpn_npc_shepheard/shepheard_df.texture"/>
+			<file :name="wpn_npc_shepheard/shepheard_nm.texture"/>
+			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.cooked_physics"/>
+			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.material_config"/>
+			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.model"/>
+			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.object"/>
+			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.unit"/>
+		</group>
+
+		<!-- zeals -->
+		<group name="units/pd2_dlc_gitgud/characters/" dyn_package="false">
+			<file :name="shared_textures/swat_df.texture"/>
+			<file :name="shared_textures/swat_nm.texture"/>
+			<file :name="shared_textures/swat_head_df.texture"/>
+			<file :name="shared_textures/swat_head_nm.texture"/>
+			<file :name="shared_textures/swat_heavy_df.texture"/>
+			<file :name="shared_textures/swat_heavy_nm.texture"/>
+			<file :name="shared_textures/swat_heavy_head_df.texture"/>
+			<file :name="shared_textures/swat_heavy_head_nm.texture"/>
+			<file :name="shared_textures/zeal_medic_df.texture"/>
+			<file :name="shared_textures/zeal_medic_head_df.texture"/>
+
+			<file :name="ene_acc_zeal_swat_helmet/ene_acc_zeal_swat_helmet.material_config"/>
+			<file :name="ene_acc_zeal_swat_helmet/ene_acc_zeal_swat_helmet.model"/>
+			<file :name="ene_acc_zeal_swat_heavy_helmet/ene_acc_zeal_swat_heavy_helmet.material_config"/>
+			<file :name="ene_acc_zeal_swat_heavy_helmet/ene_acc_zeal_swat_heavy_helmet.model"/>
+
+			<!-- fix shield illumination -->
+			<file :name="ene_acc_shield_new_swat/ene_acc_shield_new_swat.model"/>
+			<file :name="ene_acc_shield_new_swat/ene_acc_shield_new_swat.object"/>
+
+			<!-- make original zeal swat distinct -->
+			<file :name="ene_zeal_swat/ene_zeal_swat.material_config"/>
+			<file :name="ene_zeal_swat/ene_zeal_swat_contour.material_config"/>
+			<file :name="ene_zeal_swat/ene_zeal_swat.model"/>
+			<file :name="ene_zeal_swat/ene_zeal_swat.unit"/>
+			<file :name="ene_zeal_swat/ene_zeal_swat_husk.unit"/>
+
+			<!-- make shield use unique model -->
+			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield.material_config"/>
+			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield_contour.material_config"/>
+			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield.model"/>
+			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield.unit"/>
+			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield_husk.unit"/>
+
+			<!-- make heavy zeal distinct -->
+			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy.material_config"/>
+			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy_contour.material_config"/>
+			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy.model"/>
+			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy.unit"/>
+			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy_husk.unit"/>
+
+			<!-- add zeal shotgunner -->
+			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.cooked_physics"/>
+			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.material_config"/>
+			<file :name="ene_zeal_swat_2/ene_zeal_swat_2_contour.material_config"/>
+			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.model"/>
+			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.object"/>
+			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.unit"/>
+			<file :name="ene_zeal_swat_2/ene_zeal_swat_2_husk.unit"/>
+
+			<!-- add heavy zeal shotgunner -->
+			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.cooked_physics"/>
+			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.material_config"/>
+			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2_contour.material_config"/>
+			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.model"/>
+			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.object"/>
+			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.unit"/>
+			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2_husk.unit"/>
+
+			<!-- add zeal m4 medic -->
+			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.cooked_physics"/>
+			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.material_config"/>
+			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4_contour.material_config"/>
+			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.model"/>
+			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.object"/>
+			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.unit"/>
+			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4_husk.unit"/>
+
+			<!-- add zeal r870 medic -->
+			<file :name="ene_zeal_medic_r870/ene_zeal_medic_r870.unit"/>
+			<file :name="ene_zeal_medic_r870/ene_zeal_medic_r870_husk.unit"/>
+
+			<!-- add zeal sniper -->
+			<file :name="ene_zeal_sniper/ene_zeal_sniper.cooked_physics"/>
+			<file :name="ene_zeal_sniper/ene_zeal_sniper.material_config"/>
+			<file :name="ene_zeal_sniper/ene_zeal_sniper_contour.material_config"/>
+			<file :name="ene_zeal_sniper/ene_zeal_sniper.model"/>
+			<file :name="ene_zeal_sniper/ene_zeal_sniper.object"/>
+			<file :name="ene_zeal_sniper/ene_zeal_sniper.unit"/>
+			<file :name="ene_zeal_sniper/ene_zeal_sniper_husk.unit"/>
+		</group>
 
 		<!-- Improve navigation data -->
 		<group name="levels/narratives/">

@@ -543,6 +543,219 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
+
+	-- ZEAL Rifleman
+	self.unit_categories.shepheard_zeal = {
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	-- ZEAL Shotgunner
+	self.unit_categories.ksg_zeal = {
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	-- ZEAL Heavy Rifleman
+	self.unit_categories.rifle_heavy_zeal = {
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	-- ZEAL Heavy Shotgunner
+	self.unit_categories.ksg_heavy_zeal = {
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	-- ZEAL Medic
+	self.unit_categories.zeal_medic = {
+		special_type = "medic",
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	-- ZEAL Taser
+	self.unit_categories.zeal_taser = {
+		special_type = "taser",
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	-- ZEAL Cloaker
+	self.unit_categories.zeal_spooc = {
+		special_type = "spooc",
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	-- ZEAL Shield
+	self.unit_categories.zeal_shield = {
+		special_type = "shield",
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield"),
+			},
+		},
+		access = access_type_walk_only,
+	}
+
+	-- ZEAL Dozers
+	self.unit_categories.zeal_tank = {
+		special_type = "tank",
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
+				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
+				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
+				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
+				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
+				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
+			},
+		},
+		access = access_type_all,
+	}
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
@@ -608,7 +821,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		elite_shield = {
 			"shield",
+			"no_push",
 			"ranged_fire",
+			"smoke_grenade",
+		},
+		elite_shield_charge = {
+			"shield",
+			"charge",
 			"smoke_grenade",
 		},
 		elite_special = {
@@ -1123,6 +1342,265 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
+	self.enemy_spawn_groups.zeal_lights_charge = {
+		amount = {
+			3,
+			4,
+		},
+		spawn = {
+			{
+				freq = 0.66,
+				amount_max = 3,
+				rank = 1,
+				unit = "ksg_zeal",
+				tactics = self._tactics.elite_shotgun,
+			},
+			{
+				freq = 0.66,
+				amount_max = 3,
+				rank = 1,
+				unit = "shepheard_zeal",
+				tactics = self._tactics.elite_assault,
+			},
+			{
+				freq = 0.5,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_shield",
+				tactics = self._tactics.elite_shield_charge,
+			},
+		},
+	}
+	self.enemy_spawn_groups.zeal_lights_flank = {
+		amount = {
+			3,
+			4,
+		},
+		spawn = {
+			{
+				freq = 0.66,
+				amount_max = 3,
+				rank = 1,
+				unit = "ksg_zeal",
+				tactics = self._tactics.elite_flank,
+			},
+			{
+				freq = 0.66,
+				amount_max = 3,
+				rank = 1,
+				unit = "shepheard_zeal",
+				tactics = self._tactics.elite_flank,
+			},
+			{
+				freq = 0.33,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_spooc",
+				tactics = self._tactics.spooc_flank,
+			},
+			{
+				freq = 0.33,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_taser",
+				tactics = self._tactics.elite_special_flank,
+			},
+		},
+	}
+	self.enemy_spawn_groups.zeal_heavies_ranged = {
+		amount = {
+			3,
+			4,
+		},
+		spawn = {
+			{
+				freq = 0.66,
+				amount_max = 2,
+				rank = 1,
+				unit = "rifle_heavy_zeal",
+				tactics = self._tactics.elite_ranged,
+			},
+			{
+				freq = 0.6,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_shield",
+				tactics = self._tactics.elite_shield,
+			},
+			{
+				freq = 0.4,
+				amount_max = 1,
+				rank = 3,
+				unit = "zeal_taser",
+				tactics = self._tactics.elite_special,
+			},
+		},
+	}
+	self.enemy_spawn_groups.zeal_heavies_charge = {
+		amount = {
+			3,
+			4,
+		},
+		spawn = {
+			{
+				freq = 0.66,
+				amount_max = 2,
+				rank = 1,
+				unit = "ksg_heavy_zeal",
+				tactics = self._tactics.elite_shotgun,
+			},
+			{
+				freq = 0.66,
+				amount_max = 2,
+				rank = 1,
+				unit = "rifle_heavy_zeal",
+				tactics = self._tactics.elite_assault,
+			},
+			{
+				freq = 0.6,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_shield",
+				tactics = self._tactics.elite_shield_charge,
+			},
+			{
+				freq = 0.2,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_medic",
+				tactics = self._tactics.elite_special,
+			},
+		},
+	}
+	self.enemy_spawn_groups.zeal_tasers = {
+		amount = {
+			3,
+			4,
+		},
+		spawn = {
+			{
+				amount_min = 2,
+				freq = 1,
+				amount_max = 2,
+				rank = 3,
+				unit = "zeal_taser",
+				tactics = self._tactics.elite_special,
+			},
+			{
+				freq = 0.66,
+				amount_max = 1,
+				rank = 1,
+				unit = "rifle_heavy_zeal",
+				tactics = self._tactics.elite_assault,
+			},
+			{
+				freq = 0.66,
+				amount_max = 1,
+				rank = 2,
+				unit = "ksg_heavy_zeal",
+				tactics = self._tactics.elite_shotgun,
+			},
+			{
+				freq = 0.2,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_medic",
+				tactics = self._tactics.elite_special,
+			},
+		},
+	}
+	self.enemy_spawn_groups.zeal_shields = {
+		amount = {
+			3,
+			4,
+		},
+		spawn = {
+			{
+				amount_min = 1,
+				freq = 1,
+				amount_max = 1,
+				rank = 1,
+				unit = "zeal_shield",
+				tactics = self._tactics.elite_shield,
+			},
+			{
+				amount_min = 1,
+				freq = 1,
+				amount_max = 1,
+				rank = 1,
+				unit = "shield_elite",
+				tactics = self._tactics.elite_shield,
+			},
+			{
+				freq = 0.66,
+				amount_max = 1,
+				rank = 1,
+				unit = "ksg_zeal",
+				tactics = self._tactics.elite_special,
+			},
+			{
+				freq = 0.66,
+				amount_max = 1,
+				rank = 1,
+				unit = "shepheard_zeal",
+				tactics = self._tactics.elite_special,
+			},
+		},
+	}
+	self.enemy_spawn_groups.zeal_tanks = {
+		amount = {
+			3,
+			4,
+		},
+		spawn = {
+			{
+				amount_min = 1,
+				freq = 1,
+				amount_max = 1,
+				rank = 3,
+				unit = "zeal_tank",
+				tactics = self._tactics.elite_tank,
+			},
+			{
+				amount_min = 1,
+				freq = 1,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_medic",
+				tactics = self._tactics.elite_special,
+			},
+			{
+				freq = 0.66,
+				amount_max = 1,
+				rank = 2,
+				unit = "zeal_shield",
+				tactics = self._tactics.elite_shield_charge,
+			},
+			{
+				freq = 0.66,
+				amount_max = 1,
+				rank = 1,
+				unit = "ksg_heavy_zeal",
+				tactics = self._tactics.elite_shotgun,
+			},
+		},
+	}
+	self.enemy_spawn_groups.zeal_spoocs = {
+		amount = {
+			3,
+			3,
+		},
+		spawn = {
+			{
+				freq = 3,
+				amount_min = 3,
+				amount_max = 3,
+				rank = 1,
+				unit = "zeal_spooc",
+				tactics = self._tactics.spooc_flank,
+			},
+		},
+	}
 	self.enemy_spawn_groups.reenforce_sneaky = {
 		amount = {
 			4,
@@ -1256,141 +1734,255 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- AI Tickrate
 	self.ai_tickrate = 1 / (30 * f)
 
-	-- PHASES --
+	-- BESIEGE --
 
-	-- Sustain
-	self.besiege.assault.sustain_duration_min = { 40 * f, 75 * f, 105 * f }
-	self.besiege.assault.sustain_duration_max = { 40 * f, 75 * f, 105 * f }
-	self.besiege.assault.sustain_duration_balance_mul = { 1, 1, 1, 1 }
+		-- PHASES --
 
-	-- Control
-	self.besiege.assault.delay = { 40 / f, 30 / f, 15 / f }
-	self.besiege.assault.hostage_hesitation_delay = { 10, 5, 2.5 }
+		-- Sustain
+		self.besiege.assault.sustain_duration_min = { 40 * f, 75 * f, 105 * f }
+		self.besiege.assault.sustain_duration_max = { 40 * f, 75 * f, 105 * f }
+		self.besiege.assault.sustain_duration_balance_mul = { 1, 1, 1, 1 }
 
-	-- SPAWNS --
+		-- Control
+		self.besiege.assault.delay = { 40 / f, 30 / f, 15 / f }
+		self.besiege.assault.hostage_hesitation_delay = { 10, 5, 2.5 }
 
-	-- Spawncap
-	self.besiege.assault.force = { 4, 9, math.min(10, 7.5 * f) }
-	self.besiege.assault.force_balance_mul = { 1.5, 1.5, 1.75, 2 }
+		-- SPAWNS --
 
-	-- Spawnrate
-	self.spawn_kill_cooldown = 8 / (math.sqrt(f))
-	self.besiege.assault.spawnrate = { 1.6 / (math.sqrt(f)), 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)) }
-	self.besiege.assault.spawnrate_balance_mul = { 2, 1.6, 1.4, 1.2 }
+		-- Spawncap
+		self.besiege.assault.force = { 4, 9, math.min(10, 7.5 * f) }
+		self.besiege.assault.force_balance_mul = { 1.5, 1.5, 1.75, 2 }
 
-	-- RECON / REENFORCE --
+		-- Spawnrate
+		self.spawn_kill_cooldown = 8 / (math.sqrt(f))
+		self.besiege.assault.spawnrate = { 1.6 / (math.sqrt(f)), 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)) }
+		self.besiege.assault.spawnrate_balance_mul = { 2, 1.6, 1.4, 1.2 }
 
-	-- Reenforce spawn interval
-	self.besiege.reenforce.interval = { 60 / f, 40 / f, 20 / f }
+		-- RECON / REENFORCE --
 
-	-- Recon spawn interval and spawncap
-	self.besiege.recon.interval_variation = 0
-	self.besiege.recon.interval = { 20 / f, 16 / f, 10 / f }
-	self.besiege.recon.force = { 2, 4, 6 }
+		-- Reenforce spawn interval
+		self.besiege.reenforce.interval = { 60 / f, 40 / f, 20 / f }
 
-	-- GRENADES --
-	-- global
-	self.min_grenade_timeout = 20 / f
-	self.no_grenade_push_delay = 8 / (math.sqrt(f))
+		-- Recon spawn interval and spawncap
+		self.besiege.recon.interval_variation = 0
+		self.besiege.recon.interval = { 20 / f, 16 / f, 10 / f }
+		self.besiege.recon.force = { 2, 4, 6 }
 
-	-- flash
-	self.flash_grenade.light_color = Vector3(255, 255, 255)
-	self.flash_grenade.light_range = 500
-	self.flash_grenade_timeout = { 30 / f, 40 / f }
-	self.flash_grenade.timer = 2 / f
+		-- GRENADES --
+		-- global
+		self.min_grenade_timeout = 20 / f
+		self.no_grenade_push_delay = 8 / (math.sqrt(f))
 
-	-- smoke & gas
-	self.smoke_grenade_timeout = { 40 / f, 50 / f }
-	self.smoke_grenade_lifetime = 10 * f
-	self.cs_grenade_timeout = { 110 / f, 150 / f }
-	self.cs_grenade_lifetime = 10 * f
+		-- flash
+		self.flash_grenade.light_color = Vector3(255, 255, 255)
+		self.flash_grenade.light_range = 500
+		self.flash_grenade_timeout = { 30 / f, 40 / f }
+		self.flash_grenade.timer = 2 / f
 
-	-- Spawngroups
-	if difficulty_index == 2 then
-		self.besiege.assault.groups = {
-			beat_cops = { 0.5, 0.4, 0.25 },
-			blue_swats = { 1, 1, 1 },
-			swat_shields = { 0, 0, 0.25 },
+		-- smoke & gas
+		self.smoke_grenade_timeout = { 40 / f, 50 / f }
+		self.smoke_grenade_lifetime = 10 * f
+		self.cs_grenade_timeout = { 110 / f, 150 / f }
+		self.cs_grenade_lifetime = 10 * f
+
+		-- Spawngroups
+		if difficulty_index == 2 then
+			self.besiege.assault.groups = {
+				beat_cops = { 0.5, 0.4, 0.25 },
+				blue_swats = { 1, 1, 1 },
+				swat_shields = { 0, 0, 0.25 },
+			}
+			self.besiege.recon.groups = {
+				blue_swats = { 0, 0, 0 },
+			}
+			self.besiege.reenforce.groups = {
+				blue_swats = { 1, 1, 1 },
+			}
+		elseif difficulty_index == 3 then
+			self.besiege.assault.groups = {
+				beat_cops = { 0.5, 0.25, 0 },
+				blue_swats = { 0.8, 0.8, 1 },
+				swat_shields = { 0, 0.125, 0.2 },
+				swat_tasers = { 0, 0.1, 0.15 },
+				fbi_lights = { 0, 0.1, 0.3 },
+			}
+			self.besiege.recon.groups = {
+				beat_cops = { 1, 1, 1 },
+			}
+			self.besiege.reenforce.groups = {
+				blue_swats = { 1, 1, 1 },
+			}
+		elseif difficulty_index == 4 then
+			self.besiege.assault.groups = {
+				blue_swats = { 0, 0.8, 0.75 },
+				swat_shields = { 0, 0.125, 0.2 },
+				swat_tasers = { 0, 0.1, 0.2 },
+				swat_tanks = { 0, 0.01, 0.06 },
+				fbi_lights = { 0, 1, 1.5 },
+				fbi_heavies = { 0, 0.25, 0.75 },
+			}
+			self.besiege.recon.groups = {
+				recon_hrt = { 1, 1, 1 },
+				recon_aggressive = { 0.66, 0.66, 0.66 },
+			}
+			self.besiege.reenforce.groups = {
+				reenforce_common = { 0.3, 0.3, 0.3 },
+			}
+		elseif difficulty_index == 5 then
+			self.besiege.assault.groups = {
+				blue_swats = { 1, 0.45, 0.25 },
+				swat_shields = { 0.3, 0.3, 0.2 },
+				swat_tasers = { 0.25, 0.25, 0.25 },
+				fbi_lights = { 1.5, 1.5, 1.5 },
+				fbi_heavies = { 0.3, 0.5, 1 },
+				fbi_shields = { 0.2, 0.2, 0.3 },
+				fbi_tanks = { 0, 0.02, 0.1 },
+				spoocs = { 0, 0.03, 0.06 },
+			}
+			self.besiege.recon.groups = {
+				recon_hrt = { 1, 1, 1 },
+				recon_aggressive = { 0.66, 0.66, 0.66 },
+			}
+			self.besiege.reenforce.groups = {
+				reenforce_common = { 0.3, 0.3, 0.3 },
+				reenforce_sneaky = { 0, 0.05, 0.1 },
+			}
+		elseif difficulty_index == 6 then
+			self.besiege.assault.groups = {
+				blue_swats = { 1, 0.3, 0 },
+				fbi_lights = { 1.75, 1.5, 0 },
+				fbi_heavies = { 0.5, 0.75, 1.25 },
+				fbi_shields = { 0.3, 0.3, 0.3 },
+				fbi_tanks = { 0, 0.02, 0.13 },
+				gensec_cqc_lights = { 0.3, 0.3, 0.5 },
+				gensec_ranged_lights = { 0.3, 0.3, 0.5 },
+				gensec_flankers = { 0.25, 0.25, 0.45 },
+				gensec_tasers = { 0.15, 0.15, 0.3 },
+				gensec_shields = { 0.00, 0.00, 0.15 },
+				gensec_tanks = { 0, 0, 0.1 },
+				spoocs = { 0, 0.045, 0.09 },
+			}
+			self.besiege.recon.groups = {
+				recon_hrt = { 1, 1, 1 },
+				recon_aggressive = { 0.66, 0.66, 0.66 },
+			}
+			self.besiege.reenforce.groups = {
+				reenforce_common = { 0.3, 0.3, 0.3 },
+				reenforce_sneaky = { 0.2, 0.2, 0.2 },
+			}
+		end
+
+	-- PONR --
+	self.ponr = deep_clone(self.besiege)
+
+	local job = Global.level_data and Global.level_data.level_id
+	local short_ponr_heists = {
+		rvd2,
+		born
+	}
+
+		-- Sustain
+		self.ponr.assault.sustain_duration_min = { 900, 900, 900}
+		self.ponr.assault.sustain_duration_max = { 900, 900, 900 }
+
+		-- Control
+		self.ponr.assault.delay = { 30, 30, 30 }
+		self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
+
+		if job and short_ponr_heists[job] then
+			self.ponr.assault.delay = { 5, 5, 5 }
+			self.ponr.assault.hostage_hesitation_delay = { 0, 0, 0 }
+		end
+
+		-- Spawncap & Spawnrate
+		self.ponr.assault.force = { 4, 9, math.min(12, 8 * f) }
+		self.ponr.assault.spawnrate = { 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)), 1 / (math.sqrt(f)) }
+
+		-- Spawnpool
+		self.ponr.assault.force_pool = {
+			1000,
+			1000,
+			1000 -- increase to make it impossible to exhaust considering increased length
 		}
-		self.besiege.recon.groups = {
-			blue_swats = { 0, 0, 0 },
-		}
-		self.besiege.reenforce.groups = {
-			blue_swats = { 1, 1, 1 },
-		}
-	elseif difficulty_index == 3 then
-		self.besiege.assault.groups = {
-			beat_cops = { 0.5, 0.25, 0 },
-			blue_swats = { 0.8, 0.8, 1 },
-			swat_shields = { 0, 0.125, 0.2 },
-			swat_tasers = { 0, 0.1, 0.15 },
-			fbi_lights = { 0, 0.1, 0.3 },
-		}
-		self.besiege.recon.groups = {
-			beat_cops = { 1, 1, 1 },
-		}
-		self.besiege.reenforce.groups = {
-			blue_swats = { 1, 1, 1 },
-		}
-	elseif difficulty_index == 4 then
-		self.besiege.assault.groups = {
-			blue_swats = { 0, 0.8, 0.75 },
-			swat_shields = { 0, 0.125, 0.2 },
-			swat_tasers = { 0, 0.1, 0.2 },
-			swat_tanks = { 0, 0.01, 0.06 },
-			fbi_lights = { 0, 1, 1.5 },
-			fbi_heavies = { 0, 0.25, 0.75 },
-		}
-		self.besiege.recon.groups = {
-			recon_hrt = { 1, 1, 1 },
-			recon_aggressive = { 0.66, 0.66, 0.66 },
-		}
-		self.besiege.reenforce.groups = {
-			reenforce_common = { 0.3, 0.3, 0.3 },
-		}
-	elseif difficulty_index == 5 then
-		self.besiege.assault.groups = {
-			blue_swats = { 1, 0.45, 0.25 },
-			swat_shields = { 0.3, 0.3, 0.2 },
-			swat_tasers = { 0.25, 0.25, 0.25 },
-			fbi_lights = { 1.5, 1.5, 1.5 },
-			fbi_heavies = { 0.3, 0.5, 1 },
-			fbi_shields = { 0.2, 0.2, 0.3 },
-			fbi_tanks = { 0, 0.02, 0.1 },
-			spoocs = { 0, 0.03, 0.06 },
-		}
-		self.besiege.recon.groups = {
-			recon_hrt = { 1, 1, 1 },
-			recon_aggressive = { 0.66, 0.66, 0.66 },
-		}
-		self.besiege.reenforce.groups = {
-			reenforce_common = { 0.3, 0.3, 0.3 },
-			reenforce_sneaky = { 0, 0.05, 0.1 },
-		}
-	elseif difficulty_index == 6 then
-		self.besiege.assault.groups = {
-			blue_swats = { 1, 0.3, 0 },
-			fbi_lights = { 1.75, 1.5, 0 },
-			fbi_heavies = { 0.5, 0.75, 1.25 },
-			fbi_shields = { 0.3, 0.3, 0.3 },
-			fbi_tanks = { 0, 0.02, 0.13 },
-			gensec_cqc_lights = { 0.3, 0.3, 0.5 },
-			gensec_ranged_lights = { 0.3, 0.3, 0.5 },
-			gensec_flankers = { 0.25, 0.25, 0.45 },
-			gensec_tasers = { 0.15, 0.15, 0.3 },
-			gensec_shields = { 0.00, 0.00, 0.15 },
-			gensec_tanks = { 0, 0, 0.1 },
-			spoocs = { 0, 0.045, 0.09 },
-		}
-		self.besiege.recon.groups = {
-			recon_hrt = { 1, 1, 1 },
-			recon_aggressive = { 0.66, 0.66, 0.66 },
-		}
-		self.besiege.reenforce.groups = {
-			reenforce_common = { 0.3, 0.3, 0.3 },
-			reenforce_sneaky = { 0.2, 0.2, 0.2 },
-		}
-	end
+
+		-- Recon
+		self.ponr.recon.groups = {}
+		self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
+
+		-- Spawngroups
+		if difficulty_index == 2 then
+			self.ponr.assault.groups = {
+				beat_cops = { 0.5, 0.25, 0 },
+				blue_swats = { 0.8, 0.8, 1 },
+				swat_shields = { 0, 0.125, 0.2 },
+				swat_tasers = { 0, 0.1, 0.15 },
+				fbi_lights = { 0, 0.1, 0.3 },
+			}
+		elseif difficulty_index == 3 then
+			self.ponr.assault.groups = {
+				blue_swats = { 0, 0.8, 0.75 },
+				swat_shields = { 0, 0.125, 0.2 },
+				swat_tasers = { 0, 0.1, 0.2 },
+				swat_tanks = { 0, 0.01, 0.06 },
+				fbi_lights = { 0, 1, 1.5 },
+				fbi_heavies = { 0, 0.25, 0.75 },
+			}
+			self.ponr.reenforce.groups = {
+				reenforce_common = { 0.3, 0.3, 0.3 },
+			}
+		elseif difficulty_index == 4 then
+			self.besiege.assault.groups = {
+				blue_swats = { 1, 0.45, 0.25 },
+				swat_shields = { 0.3, 0.3, 0.2 },
+				swat_tasers = { 0.25, 0.25, 0.25 },
+				fbi_lights = { 1.5, 1.5, 1.5 },
+				fbi_heavies = { 0.3, 0.5, 1 },
+				fbi_shields = { 0.2, 0.2, 0.3 },
+				fbi_tanks = { 0, 0.02, 0.1 },
+				spoocs = { 0, 0.03, 0.06 },
+			}
+			self.besiege.reenforce.groups = {
+				reenforce_common = { 0.3, 0.3, 0.3 },
+				reenforce_sneaky = { 0, 0.05, 0.1 },
+			}
+		elseif difficulty_index == 5 then
+			self.besiege.assault.groups = {
+				blue_swats = { 1, 0.3, 0 },
+				fbi_lights = { 1.75, 1.5, 0 },
+				fbi_heavies = { 0.5, 0.75, 1.25 },
+				fbi_shields = { 0.3, 0.3, 0.3 },
+				fbi_tanks = { 0, 0.02, 0.13 },
+				gensec_cqc_lights = { 0.3, 0.3, 0.5 },
+				gensec_ranged_lights = { 0.3, 0.3, 0.5 },
+				gensec_flankers = { 0.25, 0.25, 0.45 },
+				gensec_tasers = { 0.15, 0.15, 0.3 },
+				gensec_shields = { 0.00, 0.00, 0.15 },
+				gensec_tanks = { 0, 0, 0.1 },
+				spoocs = { 0, 0.045, 0.09 },
+			}
+			self.besiege.reenforce.groups = {
+				reenforce_common = { 0.3, 0.3, 0.3 },
+				reenforce_sneaky = { 0.2, 0.2, 0.2 },
+			}
+		elseif difficulty_index == 6 then
+			self.ponr.assault.groups = {
+				zeal_lights_charge = {1, 1, 1},
+				zeal_lights_flank = {0.75, 0.75, 0.75},
+				zeal_heavies_ranged = {0.55, 0.55, 0.55},
+				zeal_heavies_charge = {0.55, 0.55, 0.55},
+				zeal_shields = {0.4, 0.4, 0.4},
+				zeal_tasers = {0.2, 0.2, 0.2},
+				zeal_tanks = {0.1, 0.1, 0.1},
+				zeal_spoocs = {0.1, 0.1, 0.1},
+			}
+			self.ponr.reenforce.groups = {
+				zeal_lights_charge = {1, 1, 1},
+				zeal_heavies_ranged = {0.6, 0.6, 0.6},
+				zeal_heavies_charge = {0.6, 0.6, 0.6},
+				zeal_tasers = {0.3, 0.3, 0.3},
+				zeal_spoocs = {0.2, 0.2, 0.2},
+			}
+		end
 
 	-- misc
 	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
@@ -1401,6 +1993,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
 	self.besiege.recon.groups.marshal_squad = { 0, 0, 0 }
 	self.besiege.recon.groups.custom_assault = { 0, 0, 0 }
+	self.ponr.assault.groups.single_spooc = { 0, 0, 0 }
+	self.ponr.assault.groups.Phalanx = { 0, 0, 0 }
+	self.ponr.assault.groups.marshal_squad = { 0, 0, 0 }
+	self.ponr.assault.groups.custom_assault = { 0, 0, 0 }
+	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
+	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
+	self.ponr.recon.groups.marshal_squad = { 0, 0, 0 }
+	self.ponr.recon.groups.custom_assault = { 0, 0, 0 }
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {

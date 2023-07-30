@@ -1246,3 +1246,51 @@ function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, t
 		end
 	end
 end
+
+-- New designated ponr ai state
+GroupAIStatePonr = GroupAIStatePonr or class(GroupAIStateBesiege)
+
+function GroupAIStatePonr:init(state, data)
+    -- Grab all information from the previous ai state
+    for k,v in pairs(data) do
+        if type(v) ~= "function" then
+            self[k] = v
+        end
+    end
+    -- Set the group ai tweak table
+    self._tweak_data = tweak_data.group_ai["ponr"]
+	self:_parse_teammate_comments()
+	self:sync_assault_mode(false)
+	self:set_bain_state(true)
+	self:set_difficulty(1)
+	self:_set_rescue_state(true)
+	self:_init_unit_type_filters()
+	self:_init_team_tables()
+    if Network:is_server() and managers.navigation:is_data_ready() then
+		self:_queue_police_upd_task()
+	end
+	self:force_end_assault_phase(true)
+end
+
+function GroupAIStatePonr._extract_group_desc_structure(spawn_entry_outer, valid_unit_entries)
+	for spawn_entry_key, spawn_entry in ipairs(spawn_entry_outer) do
+		if spawn_entry.unit then
+			table.insert(valid_unit_entries, clone(spawn_entry))
+		else
+			GroupAIStatePonr._extract_group_desc_structure(spawn_entry, valid_unit_entries)
+		end
+	end
+
+	for spawn_entry_key, spawn_entry in pairs(spawn_entry_outer) do
+		if (type(spawn_entry_key) ~= "number" or spawn_entry_key > #spawn_entry_outer) and #spawn_entry ~= 0 then
+			local i_rand = math.random(#spawn_entry)
+			local rand_branch = spawn_entry[i_rand]
+
+			if rand_branch.unit then
+				table.insert(valid_unit_entries, clone(rand_branch))
+			else
+				GroupAIStatePonr._extract_group_desc_structure(rand_branch, valid_unit_entries)
+			end
+		end
+	end
+end

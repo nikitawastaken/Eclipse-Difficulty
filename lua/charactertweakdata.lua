@@ -498,27 +498,38 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			},
 		},
 	}
+	presets.surrender.veteran = {
+		base_chance = 0,
+		significant_chance = 0,
+		reasons = {
+			pants_down = 0.2,
+			weapon_down = 0.1,
+			flanked = 0.1,
+			unaware_of_aggressor = 0.1,
+			isolated = 0.1,
+		},
+		factors = {
+			health = {
+				[0.5] = 0,
+				[0.0] = 0.2,
+			},
+			aggressor_dis = {
+				[100] = 0,
+				[1000] = 0,
+			},
+		},
+	}
 
 	return presets
 end
 
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
-	-- SWAT units
+	-- Common SWAT
 	self.fbi_swat.move_speed = self.presets.move_speed.fast
 	self.fbi_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 	self.fbi_heavy_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.city_swat.suppression = { panic_chance_mul = 0.15, duration = { 1.5, 2 }, react_point = { 2, 5 }, brown_point = { 5, 6 } }
-
-	-- surrender presets
-	self.security.surrender = self.presets.surrender.weak
-	self.cop_scared.surrender = self.presets.surrender.weak
-	self.cop.surrender = self.presets.surrender.weak
-	self.fbi.surrender = self.presets.surrender.weak
-	self.swat.surrender = self.presets.surrender.weak
-	self.fbi_swat.surrender = self.presets.surrender.average
-	self.fbi_heavy_swat.surrender = self.presets.surrender.average
-	self.city_swat.surrender = self.presets.surrender.hard
 
 	-- Specials
 	-- sniper
@@ -593,7 +604,49 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.min_obj_interrupt_dis = 500
 	self.phalanx_minion.min_obj_interrupt_dis = 500
 
-	self.biker.melee_weapon = "knife_1"
+	-- ZEAL Team
+	self.zeal_swat = deep_clone(self.city_swat)
+	self.zeal_swat.dodge = self.presets.dodge.ninja
+	self.zeal_swat.suppression = nil
+	self.zeal_swat.speech_prefix_p2 = "d"
+	self.zeal_swat.damage.explosion_damage_mul = 0.8
+	table.insert(self._enemy_list, "zeal_swat")
+
+	self.zeal_heavy_swat = deep_clone(self.city_swat)
+	self.zeal_heavy_swat.suppression = nil
+	self.zeal_heavy_swat.speech_prefix_p2 = "d"
+	self.zeal_heavy_swat.move_speed = self.presets.move_speed.fast
+	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
+	table.insert(self._enemy_list, "zeal_heavy_swat")
+
+	self.zeal_shield = deep_clone(self.shield)
+	self.zeal_shield.speech_prefix_p2 = "d"
+	self.zeal_shield.damage.explosion_damage_mul = 0.6
+	table.insert(self._enemy_list, "zeal_shield")
+
+	self.zeal_medic = deep_clone(self.medic)
+	self.zeal_medic.move_speed = self.presets.move_speed.very_fast
+	self.zeal_medic.speech_prefix_p2 = "d"
+	self.zeal_medic.damage.explosion_damage_mul = 0.6
+	table.insert(self._enemy_list, "zeal_medic")
+
+	self.zeal_taser = deep_clone(self.taser)
+	self.zeal_taser.speech_prefix_p2 = "d"
+	self.zeal_taser.damage.explosion_damage_mul = 0.6
+	table.insert(self._enemy_list, "zeal_taser")
+
+
+	-- surrender presets
+	self.security.surrender = self.presets.surrender.weak
+	self.cop_scared.surrender = self.presets.surrender.weak
+	self.cop.surrender = self.presets.surrender.weak
+	self.fbi.surrender = self.presets.surrender.weak
+	self.swat.surrender = self.presets.surrender.weak
+	self.fbi_swat.surrender = self.presets.surrender.average
+	self.fbi_heavy_swat.surrender = self.presets.surrender.average
+	self.city_swat.surrender = self.presets.surrender.hard
+	self.zeal_swat.surrender = self.presets.surrender.veteran
+	self.zeal_heavy_swat.surrender = self.presets.surrender.veteran
 
 	-- Bosses
 	self.biker_boss.HEALTH_INIT = 500
@@ -718,6 +771,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.weapon = self.presets.weapon.base
 	self.deep_boss.weapon = self.presets.weapon.elite_tank
 
+	self.zeal_swat.weapon = self.presets.weapon.elite
+	self.zeal_heavy_swat.weapon = self.presets.weapon.gc
+	self.zeal_shield.weapon = self.presets.weapon.elite_shield
+	self.zeal_medic.weapon = self.presets.weapon.gc
+	self.zeal_taser.weapon = self.presets.weapon.taser
+
+	self.biker.melee_weapon = "knife_1"
+
 	-- if bot weapons and equipment is installed and fixed weapon balance is on don't make any further changes
 	if BotWeapons and BotWeapons.settings and BotWeapons.settings.weapon_balance then
 		return
@@ -726,11 +787,34 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.presets.weapon.gang_member = self.presets.weapon.base
 end)
 
+-- Add new enemies to the character map
+local character_map_original = CharacterTweakData.character_map
+function CharacterTweakData:character_map(...)
+	local char_map = character_map_original(self, ...)
+
+	table.insert(char_map.gitgud.list, "ene_zeal_swat_2")
+	table.insert(char_map.gitgud.list, "ene_zeal_swat_heavy_2")
+	table.insert(char_map.gitgud.list, "ene_zeal_medic_m4")
+	table.insert(char_map.gitgud.list, "ene_zeal_medic_r870")
+
+	return char_map
+end
+
+-- Add new weapons
+Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function (self)
+	table.insert(self.weap_ids, "shepheard")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_shepheard/wpn_npc_shepheard"))
+
+	table.insert(self.weap_ids, "ksg")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_ksg/wpn_npc_ksg"))
+end)
+
 local function setup_presets(self)
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 	local f = ((diff_i ^ 2) / (diff_i * 3))
 	self:_multiply_all_hp(3, 1.75)
 
+	-- common swat
 	self.swat.HEALTH_INIT = 30
 	self.swat.headshot_dmg_mul = 2.4 -- 125 head health
 	self.fbi_swat.HEALTH_INIT = 36
@@ -740,6 +824,7 @@ local function setup_presets(self)
 	self.city_swat.HEALTH_INIT = 48
 	self.city_swat.headshot_dmg_mul = 2.5 -- 192 head health
 
+	-- specials
 	self.sniper.HEALTH_INIT = 16
 	self.shield.HEALTH_INIT = 45
 	self.shield.headshot_dmg_mul = 2.25 -- 200 head health
@@ -756,18 +841,33 @@ local function setup_presets(self)
 	self.phalanx_minion.HEALTH_INIT = 72
 	self.phalanx_minion.headshot_dmg_mul = 3 -- 240 head health
 
+	-- zeal team
+	self.zeal_swat.HEALTH_INIT = 64
+	self.zeal_swat.headshot_dmg_mul = 2.5 -- 256 head health
+	self.zeal_heavy_swat.HEALTH_INIT = 84
+	self.zeal_heavy_swat.headshot_dmg_mul = 1.75 -- 480 head health
+	self.zeal_shield.HEALTH_INIT = 60
+	self.zeal_shield.headshot_dmg_mul = 2 -- 300 head health
+	self.zeal_medic.HEALTH_INIT = 84
+	self.zeal_medic.headshot_dmg_mul = 2 -- 420 head health
+	self.zeal_taser.HEALTH_INIT = 120
+	self.zeal_taser.headshot_dmg_mul = 1.6 -- 750 head health
+
+	-- misc
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }
 	self.taser.weapon.is_rifle.tase_distance = 750 * f
 	self.taser.weapon.is_rifle.aim_delay_tase = { 0, 0.5 / f }
+	self.zeal_taser.weapon.is_rifle.tase_distance = 750 * f
+	self.zeal_taser.weapon.is_rifle.aim_delay_tase = { 0, 0.5 / f }
 	self.tank_armor_balance_mul = { 2.5 * f, 3.25 * f, 4.25 * f, 5 * f }
 	self.flashbang_multiplier = 1 * f
 	self.concussion_multiplier = 1
 
+	-- team ai health scaling
 	self.presets.gang_member_damage.HEALTH_INIT = 100 * (f ^ 2)
 
 	-- eclipse exclusive edits
 	if diff_i == 6 then
-		self.city_swat.dodge = self.presets.dodge.ninja
 		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent on eclipse
 
 		self:_multiply_all_speeds(1.15, 1.075)
@@ -779,6 +879,8 @@ local function setup_presets(self)
 		self.shield.move_speed.crouch.run.cbt = { strafe = 300, fwd = 340, bwd = 270 }
 		self.phalanx_minion.move_speed.crouch.walk.cbt = { strafe = 270, fwd = 300, bwd = 250 }
 		self.phalanx_minion.move_speed.crouch.run.cbt = { strafe = 300, fwd = 340, bwd = 270 }
+		self.zeal_shield.move_speed.crouch.walk.cbt = { strafe = 290, fwd = 320, bwd = 270 }
+		self.zeal_shield.move_speed.crouch.run.cbt = { strafe = 320, fwd = 360, bwd = 290 }
 	end
 end
 

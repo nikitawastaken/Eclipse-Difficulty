@@ -1,5 +1,10 @@
 CopMovement._action_variants.tank_elite = CopMovement._action_variants.tank
 CopMovement._action_variants.phalanx_minion_break = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_swat = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_heavy_swat = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_medic = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_shield = CopMovement._action_variants.shield
+CopMovement._action_variants.zeal_taser = CopMovement._action_variants.taser
 
 -- Fix enemies playing the suppressed stand-to-crouch animation when shot even if they are already crouching
 local play_redirect_original = CopMovement.play_redirect

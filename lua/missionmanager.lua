@@ -36,7 +36,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 				if data.ponr then
 					local function set_ponr()
 						local ponr_timer_balance_mul = data.ponr_player_mul and managers.groupai:state():_get_balancing_multiplier(data.ponr_player_mul) or 1
-						managers.groupai:state():set_point_of_no_return_timer(data.ponr * ponr_timer_balance_mul, 0)
+						managers.groupai:state():set_point_of_no_return_timer(data.ponr * ponr_timer_balance_mul, -1)
 					end
 
 					Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_" .. element_id, set_ponr)
@@ -50,6 +50,11 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 					Hooks:PostHook(element, "client_on_executed", "eclipse_client_on_executed_ponr_end_" .. element_id, function()
 						managers.groupai:state():remove_point_of_no_return_timer(0)
 					end)
+				end
+
+				-- instantly force into ponr state
+				if data.set_ponr_state then
+					managers.groupai:set_state("ponr")
 				end
 			end
 

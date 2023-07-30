@@ -77,8 +77,8 @@ local pickup_tables = {
 	shot_very_high = {2, 3},
 	shot_high = {2, 2},
 	shot_mid = {1, 2},
-	shot_low = {1, 1.5},
-	shot_very_low = {1, 1.25},
+	shot_low = {0.8, 1.4},
+	shot_very_low = {0.8, 1.25},
 	shot_special = {0.25, 0.45},
 
 	ar_high = {2, 10},
@@ -1733,6 +1733,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.r870_npc.CLIP_AMMO_MAX = 8
 	self.benelli_npc.DAMAGE = 1
 	self.benelli_npc.CLIP_AMMO_MAX = 8
+	self.ksg_npc = deep_clone(self.r870_npc)
 
 	-- dozer guns
 	self.m249_npc.DAMAGE = 1
@@ -1750,6 +1751,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.mp9_npc.auto.fire_rate = 0.275
 	self.mac11_npc.DAMAGE = 1
 	self.mac11_npc.auto.fire_rate = 0.25
+	self.shepheard_npc = deep_clone(self.mp5_npc)
 
 	-- misc guns
 	self.raging_bull_npc.DAMAGE = 1
@@ -1757,19 +1759,26 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.ak47_ass_npc.auto.fire_rate = 0.2
 	self.ak47_npc.DAMAGE = 1
 	self.ak47_npc.auto.fire_rate = 0.2
-	self.scar_npc.DAMAGE = 1
-	self.scar_npc.auto.fire_rate = 0.2
 	self.c45_npc.DAMAGE = 1
 	self.x_c45_npc.DAMAGE = 1
 	self.flamethrower_npc.DAMAGE = 1
+	self.scar_npc.DAMAGE = 1
+	self.scar_npc.auto.fire_rate = 0.2
 
 
 -- Misc
 	self.m249_npc.usage = "is_lmg"
 	self.flamethrower_npc.flame_max_range = 800
 	self.benelli_npc.sounds.prefix = "benelli_m4_npc"
+	self.shepheard_npc.sounds.prefix = "shepheard_npc"
+	self.ksg_npc.sounds.prefix = "keltec_npc"
 	self.beretta92_npc.has_suppressor = "suppressed_b"
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail_marshal"
+	self.mossberg_npc.anim_usage = "is_shotgun_pump"
+	self.mossberg_npc.CLIP_AMMO_MAX = 2
+	self.mossberg_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_empty"
+	self.mossberg_npc.sounds.prefix = self.huntsman_crew.sounds.prefix
+	self.mossberg_npc.usage = "is_double_barrel"
 	-- just copy pasted turret stuff from vanilla ovk145 tweak
 	self.ceiling_turret_module.HEALTH_INIT = 12500
 	self.ceiling_turret_module.SHIELD_HEALTH_INIT = 250

@@ -209,8 +209,8 @@
 	"menu_deck13_3_short": "Increases the amount of health stored from kills by ##$multiperk##.",
 	"menu_deck13_5_short": "Increases the maximum health that can be stored by ##$multiperk##. Your chance to dodge is increased by ##$multiperk3##.",
 	"menu_deck13_7_short": "Increases the amount of health stored from kills by ##$multiperk##.",	
+	"menu_deck14_3_short": "Members of your crew also gains the effect of your Hysteria Stacks. All firearms have a chance to spread panic among your enemies.",
     "menu_deck15_1_short": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals. Note: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
-	"menu_deck14_3_short": "Members of your crew also gains the effect of your Hysteria Stacks. Hysteria Stacks from multiple crew members do not stack and only the stacks that gives the highest damage absorption will have an effect.All firearms have a chance to spread panic among your enemies.\nPanic will make enemies go into short bursts of uncontrollable fear.",
 	"menu_deck15_7_short": "##$multiperk## of your health is converted into ##$multiperk2## armor. Your chance to dodge is increased by ##$multiperk3##.",
 	"menu_deck15_9_short": "Dealing damage will grant you ##$multiperk## armor - this can only occur once every ##$multiperk2## seconds. Your armor is increased by ##$multiperk3##.",
 	"menu_deck17_9_short": "For every ##5 points## of health gained during the injector effect while at maximum health, the recharge time of the injector is reduced by ##1 second##.",
@@ -224,6 +224,13 @@
 	
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT TO UPGRADE THE DRILL",
+	"hud_assault_ponr": "Full Force Onslaught",
+	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
+	"hud_assault_zeal_ponr": "Zeal Legion Inbound",
+	"eclipse_menu_main": "Eclipse",
+	"eclipse_menu_ponr_assault_text": "Assault banner edits",
+	"eclipse_menu_ponr_assault_text_desc": "Assault banner flavor edits. Incompatible with mods that edit assault banner.",
+	
 	
 	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled.\nVarious heists have points of no return enabled.\nEach consecutive down decreases bleedout timer and revive health.",
 	"menu_difficulty_easy_wish": "Eclipse",

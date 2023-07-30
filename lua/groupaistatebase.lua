@@ -16,28 +16,17 @@ function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 end
 
 local _update_whitelist = {
-	"hox_1",
-	"hox_2",
-	"red2",
-	"spa",
-	"pal",
-	"flat",
-	"rvd2",
-	"dinner",
-	"man",
-	"pbr2",
-	"born",
+	hox_1 = true,
+	hox_2 = true,
+	red2 = true,
+	spa = true,
+	flat = true,
+	rvd2 = true,
+	dinner = true,
+	pbr2 = true,
+	born = true,
+	peta2 = true,
 }
-
-local function check_whitelist(id)
-	for _, level in pairs(_update_whitelist) do
-		if level == id then
-			return true
-		end
-	end
-
-	return false
-end
 
 -- Code from Dr. Newbie
 local _old_update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
@@ -53,14 +42,15 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 
 	local level_id = managers.job:has_active_job() and managers.job:current_level_id() or ""
 
-	if check_whitelist(level_id) then
+	if _update_whitelist[level_id] then
 		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
 	end
 
-	if not self._point_of_no_return_id or not get_mission_script_element(self._point_of_no_return_id) then
+	if self._point_of_no_return_id == -1 or not get_mission_script_element(self._point_of_no_return_id) then
 		if self._point_of_no_return_timer <= 0 then
-			managers.network:session():send_to_peers("mission_ended", false, 0)
-			game_state_machine:change_state_by_name("gameoverscreen")
+            managers.groupai:set_state("ponr")
+			self:remove_point_of_no_return_timer(-1)
+			self:set_difficulty(1)
 		else
 			managers.hud:feed_point_of_no_return_timer(self._point_of_no_return_timer)
 		end

@@ -6,8 +6,8 @@ return {
 		}
 	},
     -- add point of no return
-    [103804] = {
-        ponr = 120,
+    [103334] = {
+        ponr = 150,
         ponr_player_mul = {1.25, 1, 0.85, 0.75}
     },
     -- remove a few cancer dozers
@@ -16,9 +16,6 @@ return {
 			enabled = false
 		}
 	},
-    [101727] = {
-        values = {instigator = "criminals_not_downed"}
-    },
     [104132] = {
         values = {
             enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"

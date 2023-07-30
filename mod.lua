@@ -12,6 +12,10 @@ if not EclipseDebug then
 
         log(string.format("Eclipse %s: %s", log_levels[level], message))
     end
+
+    function EclipseDebug:log_chat(message)
+        managers.chat:_receive_message(managers.chat.GAME, "Eclipse", message, Color.green)
+    end
 end
 
 if not StreamHeist then
@@ -19,8 +23,12 @@ if not StreamHeist then
 	StreamHeist = {
 		mod_path = ModPath,
 		mod_instance = ModInstance,
+		save_path = SavePath .. "eclipse.json",
 		logging = io.file_is_readable("mods/developer.txt"),
-		required = {}
+		required = {},
+		settings = {
+			ponr_assault_text = false,
+		},
 	}
 
 	function StreamHeist:require(file)
@@ -88,6 +96,58 @@ if not StreamHeist then
 			QuickMenu:new("Warning", message .. table.concat(Global.sh_mod_conflicts, "\n"), buttons, true)
 		end
 	end)
+
+	-- Create settings menu
+	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusStreamlinedHeisting", function(_, nodes)
+
+		local menu_id = "eclipse_menu"
+		MenuHelper:NewMenu(menu_id)
+
+		local faction_menu_elements = {}
+		function MenuCallbackHandler:sh_ponr_assault_text_toggle(item)
+			local enabled = (item:value() == "on")
+			StreamHeist.settings.ponr_assault_text = enabled
+			for _, element in pairs(faction_menu_elements) do
+				element:set_enabled(not enabled)
+			end
+		end
+
+		function MenuCallbackHandler:sh_save()
+			io.save_as_json(StreamHeist.settings, StreamHeist.save_path)
+		end
+
+		MenuHelper:AddToggle({
+			id = "ponr_assault_text",
+			title = "eclipse_menu_ponr_assault_text",
+			desc = "eclipse_menu_ponr_assault_text_desc",
+			callback = "sh_ponr_assault_text_toggle",
+			value = StreamHeist.settings.ponr_assault_text,
+			menu_id = menu_id,
+			priority = 100
+		})
+
+		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "sh_save" })
+		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
+	end)
+
+	-- Load settings
+	if io.file_is_readable(StreamHeist.save_path) then
+		local data = io.load_as_json(StreamHeist.save_path)
+		if data then
+			local function merge(tbl1, tbl2)
+				for k, v in pairs(tbl2) do
+					if type(tbl1[k]) == type(v) then
+						if type(v) == "table" then
+							merge(tbl1[k], v)
+						else
+							tbl1[k] = v
+						end
+					end
+				end
+			end
+			merge(StreamHeist.settings, data)
+		end
+	end
 
 	-- Notify about required game restart
 	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeStreamlinedHeisting", function ()

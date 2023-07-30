@@ -15,11 +15,13 @@ return {
             enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 		}
 	},
-	-- add point of no return
-    [101500] = {
-		ponr = 70
+	[102176] = {
+		values = {
+            enabled = false
+		}
 	},
-	[100246] = {
-		values = {instigator = "criminals_not_downed"}
+	-- instantly enter point of no return upon securing all bags
+    [100884] = {
+		set_ponr_state = true
 	}
 }

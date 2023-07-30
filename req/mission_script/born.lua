@@ -5,6 +5,6 @@ return {
 		}
     },
     [100720] = {
-        ponr = 90
+      set_ponr_state = true
     }
 }
