@@ -11,7 +11,7 @@ function SkillTreeTweakData:init(tweak_data)
 		digest(0),
 		digest(1),
 		digest(3),
-		digest(16)
+		digest(16),
 	}
 
 	-- MASTERMIND --
