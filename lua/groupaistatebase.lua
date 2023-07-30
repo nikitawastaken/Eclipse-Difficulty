@@ -32,7 +32,7 @@ local _update_whitelist = {
 	run = true, -- hstreet
 	bph = true, -- hisland
 	big = true, -- bigbank
-	wwf = true, -- kolyaskindeal
+	wwh = true, -- kolyaskindeal
 }
 
 -- Code from Dr. Newbie
