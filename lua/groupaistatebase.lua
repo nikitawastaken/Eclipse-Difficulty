@@ -69,6 +69,14 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 end
 -- End code from Dr. Newbie
 
+function GroupAIStateBase:chk_allow_drop_in()
+	if not self._allow_dropin then
+		return false
+	end
+
+	return true
+end
+
 -- Set up needed variables
 Hooks:PostHook(GroupAIStateBase, "init", "sh_init", function(self)
 	self._next_police_upd_task = 0
