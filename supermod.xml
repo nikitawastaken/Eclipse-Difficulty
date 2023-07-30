@@ -306,15 +306,6 @@
 			<!-- add zeal r870 medic -->
 			<file :name="ene_zeal_medic_r870/ene_zeal_medic_r870.unit"/>
 			<file :name="ene_zeal_medic_r870/ene_zeal_medic_r870_husk.unit"/>
-
-			<!-- add zeal sniper -->
-			<file :name="ene_zeal_sniper/ene_zeal_sniper.cooked_physics"/>
-			<file :name="ene_zeal_sniper/ene_zeal_sniper.material_config"/>
-			<file :name="ene_zeal_sniper/ene_zeal_sniper_contour.material_config"/>
-			<file :name="ene_zeal_sniper/ene_zeal_sniper.model"/>
-			<file :name="ene_zeal_sniper/ene_zeal_sniper.object"/>
-			<file :name="ene_zeal_sniper/ene_zeal_sniper.unit"/>
-			<file :name="ene_zeal_sniper/ene_zeal_sniper_husk.unit"/>
 		</group>
 
 		<!-- Improve navigation data -->
