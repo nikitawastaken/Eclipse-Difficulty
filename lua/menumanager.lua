@@ -326,7 +326,7 @@ function MenuCallbackHandler:max_progress()
 	for i = managers.experience:current_level(), 99 do
 		managers.experience:_level_up()
 	end
-	managers.experience:set_current_rank(25) -- change this value if you want a different infamy
+	-- managers.experience:set_current_rank(25) -- change this value if you want a different infamy
 	managers.infamy:_set_points(managers.experience:current_rank())
 	managers.money:_set_offshore(99999999999999 ^ 20)
 	managers.money:_set_total(99999999999999 ^ 20)

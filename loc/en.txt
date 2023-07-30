@@ -23,6 +23,9 @@
 	"bm_menu_perk_stockpile_desc": "Increases total ammo at the cost of reload speed.\n",
 	
 	
+	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
+	
+	
 	"st_menu_mastermind_inspire": "Support",
 	"menu_bandage": "Bandages",
 	"menu_bandage_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nReviving a crew member gives them ##$multipro## more health.",
@@ -219,7 +222,6 @@
 	"menu_deck21_9_short": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
 	"menu_deck22_1_short": "Unlocks and equips the Leech Ampule.",
 	"menu_deck22_9_short": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##. Your maximum health is increased by ##$multiperk2##.",
-	
 	
 	
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",

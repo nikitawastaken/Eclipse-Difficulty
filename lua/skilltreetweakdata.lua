@@ -2,6 +2,18 @@ local data = SkillTreeTweakData.init
 function SkillTreeTweakData:init(tweak_data)
 	data(self, tweak_data)
 
+	local function digest(value)
+		return Application:digest_value(value, true)
+	end
+
+	-- reduce t4 cost
+	self.tier_unlocks = {
+		digest(0),
+		digest(1),
+		digest(3),
+		digest(16)
+	}
+
 	-- MASTERMIND --
 
 	-- Bandage

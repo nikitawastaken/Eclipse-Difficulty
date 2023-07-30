@@ -84,6 +84,7 @@
 				<post :hook_id="blackmarkettweakdata"/>
 				<post :hook_id="preplanningtweakdata"/>
 				<post :hook_id="dramatweakdata"/>
+				<post :hook_id="infamynewtweakdata"/>
 				<post :hook_id="tweakdata"/>
 				<post :hook_id="eventjobstweakdata"/>
 				<post :hook_id="tweakdatavr"/>
