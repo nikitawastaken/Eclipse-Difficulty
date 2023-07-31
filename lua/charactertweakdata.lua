@@ -674,7 +674,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.headshot_dmg_mul = 2
 	self.drug_lord_boss.no_headshot_add_mul = false
 	self.drug_lord_boss.damage.explosion_damage_mul = 0.5
-	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
 	self.drug_lord_boss.move_speed = self.presets.move_speed.normal
 	self.drug_lord_boss.no_run_start = true
 	self.drug_lord_boss.no_run_stop = true
@@ -687,7 +687,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.headshot_dmg_mul = 2
 	self.hector_boss.no_headshot_add_mul = false
 	self.hector_boss.damage.explosion_damage_mul = 0.5
-	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.dozer
 	self.hector_boss.move_speed = self.presets.move_speed.slow
 	self.hector_boss.no_run_start = true
 	self.hector_boss.no_run_stop = true
