@@ -813,6 +813,28 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
+	-- Crook
+	self.values.player.level_2_dodge_addend = {
+		0.05,
+		0.15,
+		0.20
+	}
+	self.values.player.level_3_dodge_addend = {
+		0.05,
+		0.15,
+		0.175
+	}
+	self.values.player.level_2_armor_multiplier = {
+		1.1,
+		1.2,
+		1.35
+	}
+	self.values.player.level_3_armor_multiplier = {
+		1.2,
+		1.3,
+		1.5
+	}
+
 	-- Infiltrator / Socio healing
 	self.values.player.melee_kill_life_leech = { 1.5 }
 	self.specialization_descs[9][5].multiperk = "15"
