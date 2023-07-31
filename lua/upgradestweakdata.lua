@@ -817,22 +817,22 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.level_2_dodge_addend = {
 		0.05,
 		0.15,
-		0.20
+		0.20,
 	}
 	self.values.player.level_3_dodge_addend = {
 		0.05,
 		0.15,
-		0.175
+		0.175,
 	}
 	self.values.player.level_2_armor_multiplier = {
 		1.1,
 		1.2,
-		1.35
+		1.35,
 	}
 	self.values.player.level_3_armor_multiplier = {
 		1.2,
 		1.3,
-		1.5
+		1.5,
 	}
 
 	-- Infiltrator / Socio healing
