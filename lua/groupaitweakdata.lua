@@ -1886,6 +1886,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local short_ponr_heists = {
 		bph,
 		red2,
+		bex,
+		pex,
+		glace
 	}
 
 	-- Sustain

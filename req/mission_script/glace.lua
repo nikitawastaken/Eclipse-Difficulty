@@ -46,5 +46,13 @@ return {
 		values = {
 			interval = 45
 		}
+	},
+	[100521] = {
+		values = {
+			enabled = false
+		}
+	},
+	[100533] = {
+		set_ponr_state = true
 	}
 }
