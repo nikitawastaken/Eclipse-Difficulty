@@ -69,7 +69,15 @@ end
 -- sleight of hand check for weapon category
 function PlayerManager:_on_enter_shock_and_awe_event()
 	local equipped_unit = self:get_current_state()._equipped_unit
-	if not (equipped_unit:base():is_category("smg") or equipped_unit:base():is_category("lmg") or equipped_unit:base():is_category("minigun") or equipped_unit:base():is_category("flamethrower") or equipped_unit:base():is_category("bow")) then
+	if
+		not (
+			equipped_unit:base():is_category("smg")
+			or equipped_unit:base():is_category("lmg")
+			or equipped_unit:base():is_category("minigun")
+			or equipped_unit:base():is_category("flamethrower")
+			or equipped_unit:base():is_category("bow")
+		)
+	then
 		return
 	end
 
@@ -78,7 +86,17 @@ function PlayerManager:_on_enter_shock_and_awe_event()
 		local is_grenade_launcher = equipped_unit:base():is_category("grenade_launcher")
 
 		if data and equipped_unit and not is_grenade_launcher and (equipped_unit:base():fire_mode() == "auto" or equipped_unit:base():is_category("bow", "flamethrower")) then
-			self._coroutine_mgr:add_and_run_coroutine("automatic_faster_reload", PlayerAction.ShockAndAwe, self, data.target_enemies, data.max_reload_increase, data.min_reload_increase, data.penalty, data.min_bullets, equipped_unit)
+			self._coroutine_mgr:add_and_run_coroutine(
+				"automatic_faster_reload",
+				PlayerAction.ShockAndAwe,
+				self,
+				data.target_enemies,
+				data.max_reload_increase,
+				data.min_reload_increase,
+				data.penalty,
+				data.min_bullets,
+				equipped_unit
+			)
 		end
 	end
 end
