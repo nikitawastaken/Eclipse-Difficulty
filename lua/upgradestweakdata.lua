@@ -467,8 +467,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.weapon.automatic_head_shot_add[1] = 0.5
-	self.skill_descs.body_expertise.multipro = "50%"
+	self.values.weapon.automatic_head_shot_add[1] = 0.8
+	self.skill_descs.body_expertise.multipro = "80%"
 
 	-- Ghost --
 

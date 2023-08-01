@@ -920,6 +920,7 @@ self.s552.kick = kick_tables.ar_low
 -- Clarion
 self.famas.stats.damage = 43
 self.famas.stats.recoil = 13
+self.famas.stats.spread = 11
 self.famas.AMMO_MAX = total_ammo_tables.ar_high
 self.famas.AMMO_PICKUP = pickup_tables.ar_high
 self.famas.kick = kick_tables.ar_low

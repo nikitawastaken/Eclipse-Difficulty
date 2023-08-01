@@ -66,6 +66,24 @@ function PlayerManager:on_headshot_dealt()
 	end
 end
 
+-- sleight of hand check for weapon category
+function PlayerManager:_on_enter_shock_and_awe_event()
+	local wunit = weapon_unit:base()
+	if not (wunit:is_category("smg") or wunit:is_category("lmg") or wunit:is_category("minigun") or wunit:is_category("flamethrower") or wunit:is_category("bow")) then
+		return
+	end
+
+	if not self._coroutine_mgr:is_running("automatic_faster_reload") then
+		local equipped_unit = self:get_current_state()._equipped_unit
+		local data = self:upgrade_value("player", "automatic_faster_reload", nil)
+		local is_grenade_launcher = equipped_unit:base():is_category("grenade_launcher")
+
+		if data and equipped_unit and not is_grenade_launcher and (equipped_unit:base():fire_mode() == "auto" or equipped_unit:base():is_category("bow", "flamethrower")) then
+			self._coroutine_mgr:add_and_run_coroutine("automatic_faster_reload", PlayerAction.ShockAndAwe, self, data.target_enemies, data.max_reload_increase, data.min_reload_increase, data.penalty, data.min_bullets, equipped_unit)
+		end
+	end
+end
+
 -- shotgun panic stuff
 local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)

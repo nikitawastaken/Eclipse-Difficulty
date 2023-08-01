@@ -6,6 +6,15 @@ function NewRaycastWeaponBase:movement_penalty()
 	end
 end
 
+-- remove ARs from BE
+function NewRaycastWeaponBase:get_add_head_shot_mul()
+	if self:is_category("smg", "lmg", "minigun") and self._fire_mode == ids_auto or self:is_category("bow", "saw") then
+		return managers.player:upgrade_value("weapon", "automatic_head_shot_add", nil)
+	end
+
+	return nil
+end
+
 function NewRaycastWeaponBase:reload_speed_multiplier()
 	if self._current_reload_speed_multiplier then
 		return self._current_reload_speed_multiplier

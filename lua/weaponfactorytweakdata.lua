@@ -169,7 +169,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	-- m308 b-stock
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
 	-- gewehr
-	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.25 }
+	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = { ammo_pickup_min_mul = 1.25, ammo_pickup_max_mul = 0.5 }
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = -8
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
@@ -460,12 +460,12 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 	self.parts.wpn_fps_upg_perk_stockpile.stats = { total_ammo_mod = 5, reload = -3 }
 
 	local uses_parts = {
-		wpn_fps_upg_perk_speedloader = { category = { "assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg" } },
-		wpn_fps_upg_perk_haste = { category = { "assault_rifle", "smg", "snp", "shotgun", "flamethrower", "pistol", "minigun", "akimbo", "lmg" } },
+		wpn_fps_upg_perk_speedloader = { category = { "assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg", "bow" } },
+		wpn_fps_upg_perk_haste = { category = { "assault_rifle", "smg", "snp", "shotgun", "flamethrower", "pistol", "minigun", "akimbo", "lmg", "bow" } },
 		wpn_fps_upg_perk_deadsilence = { category = { "assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg" } },
 		wpn_fps_upg_perk_jawbreaker = { category = { "assault_rifle", "smg", "snp", "shotgun", "pistol", "minigun", "akimbo", "lmg" } },
 		wpn_fps_upg_perk_whirlwind = { category = { "assault_rifle", "smg", "snp", "shotgun", "pistol", "minigun", "akimbo", "lmg" } },
-		wpn_fps_upg_perk_stockpile = { category = { "assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg" } },
+		wpn_fps_upg_perk_stockpile = { category = { "assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg", "bow" } },
 	}
 	local all_pass, weapon_pass, exclude_weapon_pass, category_pass, exclude_category_pass = nil
 
