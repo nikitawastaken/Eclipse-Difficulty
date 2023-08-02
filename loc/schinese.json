@@ -21,7 +21,8 @@
 	"bm_menu_perk_whirlwind_desc": "以武器稳定性作为代价获得额外的射速。\n",
 	"bm_menu_perk_stockpile": "过度储备",
 	"bm_menu_perk_stockpile_desc": "以装弹速度作为代价获得额外的总弹量。\n",
-	
+
+	"menu_infamy_desc_root_new": "作为初来乍到的犯罪精英，你要做的第一件事就是拿上装备，搞清楚现在你适合做些什么。\n\n加成：\n你的恶名物品基础掉落率从##0.2%##增加至##0.4%##。获得的经验值增加##5%##。",
 	
 	"st_menu_mastermind_inspire": "支援系",
 	"menu_bandage": "急救绷带",
