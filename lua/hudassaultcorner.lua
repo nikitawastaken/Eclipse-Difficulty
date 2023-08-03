@@ -1,4 +1,12 @@
 if StreamHeist.settings.ponr_assault_text then
+	Hooks:PostHook(HUDAssaultCorner, "init", "eclipse_assault_corner_init", function(self)
+		self._ponr_state = false
+	end)
+
+	function HUDAssaultCorner:set_ponr_state()
+		self._ponr_state = true
+	end
+
 	function HUDAssaultCorner:sync_start_assault(assault_number)
 		if self._point_of_no_return or self._casing then
 			return
@@ -34,7 +42,7 @@ if StreamHeist.settings.ponr_assault_text then
 			if managers.job:current_difficulty_stars() > 0 then
 				local ids_risk = Idstring("risk")
 
-				if managers.groupai:state_name() == "ponr" then
+				if managers.groupai:state_name() == "ponr" or self._ponr_state then
 					if diff_i == 6 then
 						return {
 							"hud_assault_ponr",

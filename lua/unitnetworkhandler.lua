@@ -97,3 +97,11 @@ function UnitNetworkHandler:sync_cs_grenade(detonate_pos, shooter_pos, duration)
 
 	managers.groupai:state():sync_cs_grenade(detonate_pos, shooter_pos, duration)
 end
+
+function UnitNetworkHandler:sync_assault_ponr(sender)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
+		return
+	end
+
+	managers.hud._hud_assault_corner:set_ponr_state()
+end

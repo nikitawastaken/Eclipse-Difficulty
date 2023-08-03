@@ -55,8 +55,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 				-- instantly force into post ponr state
 				if data.set_ponr_state then
 					if Network:is_server() then
-						managers.groupai:set_state("ponr")
-						managers.groupai:state():set_difficulty(1)
+						self._instant_start_ponr = true
 					end
 				end
 			end

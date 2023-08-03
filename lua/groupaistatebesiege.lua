@@ -1269,6 +1269,7 @@ function GroupAIStatePonr:init(state, data)
 	if Network:is_server() and managers.navigation:is_data_ready() then
 		self:_queue_police_upd_task()
 	end
+	self._delayed_hud_banner_update = false
 	self:force_end_assault_phase(true)
 end
 
@@ -1292,5 +1293,23 @@ function GroupAIStatePonr._extract_group_desc_structure(spawn_entry_outer, valid
 				GroupAIStatePonr._extract_group_desc_structure(rand_branch, valid_unit_entries)
 			end
 		end
+	end
+end
+
+function GroupAIStatePonr:set_assault_endless(enabled)
+	if not managers.hud._hud_assault_corner then
+		self._delayed_hud_banner_update = true
+		self._delayed_hud_banner_update_arg = enabled
+	else
+		GroupAIStatePonr.super.set_assault_endless(self, enabled)
+	end
+end
+
+function GroupAIStatePonr:update(t, dt)
+	GroupAIStatePonr.super.update(self, t, dt)
+
+	if self._delayed_hud_banner_update and managers.hud._hud_assault_corner then
+		GroupAIStatePonr.super.set_assault_endless(self, self._delayed_hud_banner_update_arg)
+		self._delayed_hud_banner_update = false
 	end
 end

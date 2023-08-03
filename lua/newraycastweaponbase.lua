@@ -7,6 +7,7 @@ function NewRaycastWeaponBase:movement_penalty()
 end
 
 -- remove ARs from BE
+local ids_auto = Idstring("auto")
 function NewRaycastWeaponBase:get_add_head_shot_mul()
 	if self:is_category("smg", "lmg", "minigun") and self._fire_mode == ids_auto or self:is_category("bow", "saw") then
 		return managers.player:upgrade_value("weapon", "automatic_head_shot_add", nil)
