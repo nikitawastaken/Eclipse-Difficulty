@@ -15,7 +15,7 @@ if StreamHeist.settings.ponr_assault_text then
 		local color = self._assault_color
 		local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 
-		if managers.groupai:state_name() == "ponr" then
+		if managers.groupai:state_name() == "ponr" or self._ponr_state then
 			if diff_i == 6 then
 				color = Color.red
 			else
@@ -79,7 +79,7 @@ if StreamHeist.settings.ponr_assault_text then
 					}
 				end
 			else
-				if managers.groupai:state_name() == "ponr" then
+				if managers.groupai:state_name() == "ponr" or self._ponr_state then
 					return {
 						"hud_assault_ponr",
 						"hud_assault_end_line",
