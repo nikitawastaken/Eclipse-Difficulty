@@ -1,13 +1,13 @@
 {
   	"name" : "Eclipse",
-	"description" : "A challenging custom difficulty with overhauled AI, enemies, tactics and more! Includes playerside balance overhaul.",
-	"author" : "mrcreepy, Hoppip, Rockymoto, RedFlame and many others...",
-	"contact" : "creepysos#4414",
+	"description" : "A total PAYDAY overhaul that aims to make the game experience way more challenging and engaging!",
+	"author" : "nikita, Hoppip, Rockymoto, RedFlame and many others...",
+	"contact" : "nikita_was_taken on Discord",
 	"image" : "mod.png",
 	"blt_version" : 2,
-	"version" : "4.11",
+	"version" : "5.0",
 	"updates" : [{
 		"identifier" : "eclipse_difficulty",
-		"host" : {"meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/main/meta.json"}
+		"host" : { "meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/main/meta.json" }
 	}]
 }

@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <tweaks>
+	<!-- Make shields crouch while idling -->
+    <tweak version="2" name="anims/units/enemies/cop/combat_shield" extension="animation_subset">
+        <search>
+            <xml/>
+            <anim name="cbt_shield_crh_idle"/>
+        </search>
+        <target mode="attributes">
+            <attr name="file" value="anims/shared/rifle/combat/cbt_crh_idle"/>
+            <attr name="blend_set" value="legs_and_root"/>
+        </target>
+    </tweak>
+	
 	<!-- Animation weight fixes for dozers -->
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
 		<search>
@@ -82,6 +94,61 @@
 		</search>
 		<target mode="attributes">
 			<attr name="weight" value="tank * (1 - is_shotgun_pump)"/>
+		</target>
+	</tweak>
+
+	<!-- Restore old dozer punch animation -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/melee"/>
+			<anim name="cbt_rifle_melee"/>
+		</search>
+		<target mode="attributes">
+			<attr name="weight" value="rifle * (1 - tank)"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/melee"/>
+		</search>
+		<target mode="attach">
+			<anim name="tank_melee" weight="tank"/>
+		</target>
+	</tweak>
+
+	<!-- Improve blending on some animations -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/empty"/>
+		</search>
+		<target mode="attach">
+			<from name="upper_body/equip" blend="10"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="upper_body/empty"/>
+			<keys/>
+			<key at="6"/>
+		</search>
+		<target mode="attributes">
+			<attr name="at" value="30"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/stand/still/idle/look"/>
+		</search>
+		<target mode="attach">
+			<from name="std/stand/still/attached_collar/enter" blend="30"/>
 		</target>
 	</tweak>
 
@@ -171,8 +238,10 @@
 			<xml/>
 			<state name="std/hurt/sick/exit"/>
 			<to name="idle"/>
-		</search>
-		<target mode="replace"/>
+		</search>		
+		<target mode="attributes">
+			<attr name="redirect" value="std/stand/still/idle/look"/>
+		</target>
 	</tweak>
 
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
@@ -237,7 +306,9 @@
 			<state name="std/hurt/poison/exit"/>
 			<to name="idle"/>
 		</search>
-		<target mode="replace"/>
+		<target mode="attributes">
+			<attr name="redirect" value="std/stand/still/idle/look"/>
+		</target>
 	</tweak>
 
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
@@ -268,6 +339,68 @@
 		<search>
 			<xml/>
 			<state name="std/hurt/poison/exit"/>
+			<exit/>
+		</search>
+		<target mode="attributes">
+			<attr name="name" value="std/stand/still/idle/look"/>
+		</target>
+	</tweak>
+
+	<!-- Fix stand/crouch actions expiring immediately -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/stand/still/std_from_crh"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
+		</target>
+	</tweak>
+	
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/crouch/still/crh_from_std"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_need_upd" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_need_upd" extension_value="false"/>
+		</target>
+	</tweak>
+	
+	<!-- Disable recoil animations during dodge -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/dodge"/>
+			<keys/>
+		</search>
+		<target mode="attach">
+			<key at="enter" set_extension="anim_data" extension_key="base_no_recoil" extension_value="true"/>
+			<key at="exit" set_extension="anim_data" extension_key="base_no_recoil" extension_value="false"/>
+		</target>
+	</tweak>
+
+	<!-- Fix bleedout to fatal transition -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state/>
+			<to name="fatal"/>
+		</search>
+		<target mode="attributes" multiple="true">
+			<attr name="redirect" value="std/fatal/enter"/>
+		</target>
+	</tweak>
+
+	<!-- Fix bleedout exit transition -->
+	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
+		<search>
+			<xml/>
+			<state name="std/bleedout/look/exit_to_crh"/>
 			<exit/>
 		</search>
 		<target mode="attributes">

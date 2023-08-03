@@ -1,9 +1,7 @@
-local tmp_vec1 = Vector3()
-local tmp_vec2 = Vector3()
-
+local tmp_vec = Vector3()
 
 -- Make flashbangs scale with look direction instead of a flat reduction at some certain angle
-Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", function (self, test_pos, min_distance, dot_distance, max_distance)
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", function(self, test_pos, min_distance, dot_distance, max_distance)
 	local vp = managers.viewport:first_active_viewport()
 
 	if not vp then
@@ -12,9 +10,9 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 
 	local camera = vp:camera()
 
-	camera:m_position(tmp_vec1)
+	camera:m_position(tmp_vec)
 
-	local dis = mvector3.direction(tmp_vec2, tmp_vec1, test_pos)
+	local dis = mvector3.direction(tmp_vec, tmp_vec, test_pos)
 
 	if dis > max_distance then
 		return 0
@@ -25,12 +23,10 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", f
 	end
 
 	local cam_fwd = camera:rotation():y()
-	local dot_mul = (mvector3.dot(cam_fwd, tmp_vec2) + 1) / 2
+	local dot_mul = (mvector3.dot(cam_fwd, tmp_vec) + 1) / 2
 	local dot_effect = dis > dot_distance and 1 or dis / dot_distance
 
-	local flash = (1 - math.max(dis - min_distance, 0) / (max_distance - min_distance)) * (dot_mul ^ dot_effect)
-
-	return flash
+	return math.map_range_clamped(dis, min_distance, max_distance, 1, 0) * (dot_mul ^ dot_effect)
 end)
 
 -- Tone down the red screen on health hits

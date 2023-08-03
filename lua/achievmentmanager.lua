@@ -1,6 +1,6 @@
 function AchievmentManager:award(id, ...)
-    return
+	return
 end
 function AchievmentManager:award_progress(stat, value, ...)
-    return
+	return
 end

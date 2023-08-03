@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<tweaks>
+
+	<!-- Fix fbi_3 _tweak_table -->
+	<tweak version="2" name="units/payday2/characters/ene_fbi_3/ene_fbi_3" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="fbi"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="fbi"/>
+		</target>
+	</tweak>
+
+	<!-- Elite Dozer _tweak_table -->
+	<tweak version="2" name="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+	
+	<!-- zeal taser table -->
+	<tweak version="2" name="units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="zeal_taser"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="zeal_taser"/>
+		</target>
+	</tweak>
+	
+	<!-- zeal dozer tables -->
+	<tweak version="2" name="units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="tank_elite"/>
+		</target>
+	</tweak>
+</tweaks>

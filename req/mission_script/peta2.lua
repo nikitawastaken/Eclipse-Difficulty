@@ -16,13 +16,13 @@ return {
 		}
 	},
 	-- add point of no return
-	[101723] = {
-        ponr = 150,
-        ponr_player_mul = {2, 1.3, 1, 1}
+	[100038] = {
+        ponr = 120,
+        ponr_player_mul = {2, 1.25, 1, 1}
 	},
 	[101707] = {
 		values = {
-			delay = 1
+			enabled = false
 		}
 	}
 }

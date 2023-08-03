@@ -19,5 +19,9 @@ return {
 				position = Vector3(1600, -1600, 13100)
 			}
 		}
+	},
+	[101607] = {
+		ponr = 180,
+		ponr_player_mul = {1.33, 1.15, 1, 0.85}
 	}
 }

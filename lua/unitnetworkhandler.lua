@@ -16,9 +16,9 @@ function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, var
 				armor_piercing = true,
 				variant = variant,
 				col_ray = {
-					position = unit:position()
+					position = unit:position(),
 				},
-				push_vel = Vector3()
+				push_vel = Vector3(),
 			}
 
 			if variant == "bullet" or variant == "projectile" then
@@ -31,45 +31,10 @@ function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, var
 		end
 	end
 
-	if  not Global.game_settings and Global.game_settings.one_down then
+	if not Global.game_settings and Global.game_settings.one_down then
 		managers.job:set_memory("trophy_flawless", true, false)
 	end
 end
--- Force Cloakers to stand up before starting an attack on clients
-Hooks:PreHook(UnitNetworkHandler, "action_spooc_start", "sh_action_spooc_start", function (self, unit)
-	if not self._verify_character(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
-		return
-	end
-
-	unit:movement():action_request({
-		body_part = 4,
-		type = "stand"
-	})
-
-	unit:movement():action_request({
-		body_part = 3,
-		type = "idle"
-	})
-end)
-
-
--- Fix function ignoring the actual aim state parameter and always starting a shoot action (thanks to RedFlame)
-function UnitNetworkHandler:action_aim_state(cop, start)
-	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_character(cop) then
-		return
-	end
-
-	if start then
-		cop:movement():action_request({
-			block_type = "action",
-			body_part = 3,
-			type = "shoot"
-		})
-	else
-		cop:movement():sync_action_aim_end()
-	end
-end
-
 
 -- Properly sync reload
 function UnitNetworkHandler:reload_weapon_cop(cop, sender)
@@ -89,11 +54,10 @@ function UnitNetworkHandler:reload_weapon_cop(cop, sender)
 		-- Otherwise request an actual reload action
 		cop:movement():action_request({
 			body_part = 3,
-			type = "reload"
+			type = "reload",
 		})
 	end
 end
-
 
 -- Ignore duplicate grenade sync
 function UnitNetworkHandler:sync_smoke_grenade(detonate_pos, shooter_pos, duration, flashbang)

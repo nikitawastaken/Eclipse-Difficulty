@@ -1,4 +1,8 @@
 return {
+	[100140] = {
+		ponr = 480,
+        ponr_player_mul = {2, 1.5, 1.25, 1}
+	},
     -- ovk145-alike dozer spawn on armitage avenue
 	[103593] = {
 		values = {
@@ -34,8 +38,8 @@ return {
     -- add missing sniper
     [103582] = {
         values = {
-            difficulty_overkill_290 = true,
-            difficulty_sm_wish = true
+            difficulty_overkill_145 = true,
+            difficulty_easy_wish = true
         }
     },
     [102866] = {
@@ -46,6 +50,21 @@ return {
     [102880] = {
 		values = {
 			enabled = false
+		}
+	},
+    [100029] = {
+		values = {
+			interval = 20
+		}
+	},
+	[100441] = {
+		values = {
+			interval = 20
+		}
+	},
+	[103333] = {
+		values = {
+			interval = 20
 		}
 	}
 }

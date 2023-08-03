@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<tweaks>
+	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
+		<search>
+			<camera_shakes/>
+			<shake name="player_bullet_damage"/>
+		</search>
+		<target mode="replace">
+			<shake name="player_bullet_damage" spin="0" roll="-sin(t)/50" tilt="cos(t)/70" frequency="3" amplitude="1.0" attack="0" sustain="0" decay="0.75"/>
+		</target>
+	</tweak>
+	
+	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
+		<search>
+			<camera_shakes/>
+			<shake name="player_bullet_damage"/>
+		</search>
+		<target mode="append">
+			<shake name="player_bullet_damage_strong" spin="0" roll="-sin(t)/50" tilt="cos(t)/70" frequency="3" amplitude="1.2" attack="0" sustain="0" decay="1.5"/>
+		</target>
+	</tweak>
+	
+	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
+		<search>
+			<camera_shakes/>
+			<shake name="player_bullet_damage"/>
+		</search>
+		<target mode="append">
+			<shake name="player_bullet_damage_knock_out" spin="0" roll="-sin(t)/50" tilt="cos(t)/70" frequency="3" amplitude="1" attack="0" sustain="0" decay="2.5"/>
+		</target>
+	</tweak>
+	
+	<tweak version="2" name="units/payday2/weapons/wpn_npc_s552/wpn_npc_s552" extension="unit">
+	<search>
+		<?xml version="1.0"?>
+		<unit/>
+		<dependencies/>
+		<depends_on bnk="soundbanks/weapon_sig553"/>
+	</search>
+	<target mode="attributes">
+		<attr name="bnk" value="soundbanks/weapon_sig552"/> <!-- Fix incorrect soundbank -->
+	</target>
+</tweak>
+</tweaks>

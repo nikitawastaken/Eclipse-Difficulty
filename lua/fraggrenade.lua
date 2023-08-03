@@ -1,2 +1,1 @@
-function FragGrenade:bullet_hit()
-end
+function FragGrenade:bullet_hit() end

@@ -3,6 +3,14 @@
 -- Increasing the health granularity makes damage dealt more accurate to the actual weapon damage stats
 CopDamage._HEALTH_GRANULARITY = 8192
 
+-- Fixed critical hit mul and additional crit damage upgrade
+function CopDamage:roll_critical_hit(attack_data)
+	if not self:can_be_critical(attack_data) or math.random() >= managers.player:critical_hit_chance() then
+		return false, attack_data.damage
+	end
+
+	return true, attack_data.damage * (2 + managers.player:upgrade_value("weapon", "extra_crit_damage_mul", 0))
+end
 
 -- Make these functions check that the attacker unit is a player (to make sure NPC vs NPC melee doesn't crash)
 local _dismember_condition_original = CopDamage._dismember_condition
@@ -25,27 +33,17 @@ function CopDamage:build_suppression(amount, ...)
 	return build_suppression_original(self, amount == "max" and 2 or amount, ...)
 end
 
--- Consistent crit damage (2x) (SHC)
-function CopDamage:roll_critical_hit(attack_data)
-    if not self:can_be_critical(attack_data) or math.random() >= managers.player:critical_hit_chance() then
-        return false, attack_data.damage
-    end
-
-    return true, attack_data.damage * 2
-end
-
 -- Give flamethrowers a damage multiplier against dozers
 Hooks:PreHook(CopDamage, "damage_fire", "eclipse_damage_fire", function(self, attack_data)
-    if self._unit:base()._tweak_table == "tank" then
-	attack_data.damage = attack_data.damage * 2.5
-    end
+	if self._unit:base()._tweak_table == "tank" then
+		attack_data.damage = attack_data.damage * 2.5
+	end
 end)
 
 -- Counter strike aced stuns dozers
 local mvec_1 = Vector3()
 local mvec_2 = Vector3()
-Hooks:OverrideFunction(CopDamage, "damage_melee",
-function(self, attack_data)
+Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	if self._dead or self._invulnerable then
 		return
 	end
@@ -62,8 +60,8 @@ function(self, attack_data)
 	local is_civlian = CopDamage.is_civilian(self._unit:base()._tweak_table)
 	local is_gangster = CopDamage.is_gangster(self._unit:base()._tweak_table)
 	local is_cop = not is_civlian and not is_gangster
-    local is_tank = is_cop and self._unit:base()._tweak_table == "tank"
-    local has_tank_knockdown = managers.player:has_enabled_cooldown_upgrade("cooldown", "counter_strike_eclipse")
+	local is_tank = is_cop and (self._unit:base()._tweak_table == "tank" or self._unit:base()._tweak_table == "tank_elite")
+	local has_tank_knockdown = managers.player:has_enabled_cooldown_upgrade("cooldown", "counter_strike_eclipse")
 	local head = self._head_body_name and attack_data.col_ray.body and attack_data.col_ray.body:name() == self._ids_head_body_name
 	local damage = attack_data.damage
 
@@ -106,14 +104,14 @@ function(self, attack_data)
 		if self:check_medic_heal() then
 			result = {
 				type = "healed",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 		else
 			damage_effect_percent = 1
 			attack_data.damage = self._health
 			result = {
 				type = "death",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 
 			self:die(attack_data)
@@ -124,15 +122,20 @@ function(self, attack_data)
 		damage_effect = math.clamp(damage_effect, self._HEALTH_INIT_PRECENT, self._HEALTH_INIT)
 		damage_effect_percent = math.ceil(damage_effect / self._HEALTH_INIT_PRECENT)
 		damage_effect_percent = math.clamp(damage_effect_percent, 1, self._HEALTH_GRANULARITY)
-		local result_type = attack_data.shield_knock and self._char_tweak.damage.shield_knocked and "shield_knock" or attack_data.variant == "counter_tased" and "counter_tased" or attack_data.variant == "taser_tased" and "taser_tased" or attack_data.variant == "counter_spooc" and "expl_hurt" or self:get_damage_type(damage_effect_percent, "melee") or "fire_hurt"
+		local result_type = attack_data.shield_knock and self._char_tweak.damage.shield_knocked and "shield_knock"
+			or attack_data.variant == "counter_tased" and "counter_tased"
+			or attack_data.variant == "taser_tased" and "taser_tased"
+			or attack_data.variant == "counter_spooc" and "expl_hurt"
+			or self:get_damage_type(damage_effect_percent, "melee")
+			or "fire_hurt"
 		-- If the player has counter strike aced and the target is a dozer, stun them
-        if is_tank and has_tank_knockdown then
-            result_type = "expl_hurt"
+		if is_tank and has_tank_knockdown then
+			result_type = "expl_hurt"
 			managers.player:disable_cooldown_upgrade("cooldown", "counter_strike_eclipse")
-        end
-        result = {
+		end
+		result = {
 			type = result_type,
-			variant = attack_data.variant
+			variant = attack_data.variant,
 		}
 
 		self:_apply_damage_to_health(damage)
@@ -156,7 +159,7 @@ function(self, attack_data)
 			head_shot = head,
 			weapon_unit = attack_data.weapon_unit,
 			name_id = attack_data.name_id,
-			variant = attack_data.variant
+			variant = attack_data.variant,
 		}
 
 		managers.statistics:killed_by_anyone(data)

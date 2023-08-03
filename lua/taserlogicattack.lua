@@ -28,37 +28,40 @@ function TaserLogicAttack._upd_aim(data, my_data, reaction)
 			if tase and (not my_data.tasing or my_data.tasing.target_u_key ~= focus_enemy.u_key) and not focus_enemy.unit:movement():zipline_unit() then
 				local tase_action = {
 					body_part = 3,
-					type = "tase"
+					type = "tase",
+					blocks = {
+						walk = -1,
+					},
 				}
 
-				if data.unit:brain():action_request(tase_action) then
+				if data.brain:action_request(tase_action) then
 					my_data.tasing = {
 						target_u_data = focus_enemy,
 						target_u_key = focus_enemy.u_key,
-						start_t = data.t
+						start_t = data.t,
 					}
 
 					-- Stop moving when we tase
 					CopLogicAttack._cancel_charge(data, my_data)
-					data.unit:brain():action_request({
+					data.brain:action_request({
 						body_part = 2,
-						type = "idle"
+						type = "idle",
 					})
 
 					managers.groupai:state():on_tase_start(data.key, focus_enemy.u_key)
 				end
 			elseif not my_data.shooting and not my_data.tasing then
-				my_data.shooting = data.unit:brain():action_request({
+				my_data.shooting = data.brain:action_request({
 					body_part = 3,
-					type = "shoot"
+					type = "shoot",
 				})
 			end
 		end
 	else
 		if my_data.shooting or my_data.tasing then
-			data.unit:brain():action_request({
+			data.brain:action_request({
 				body_part = 3,
-				type = "idle"
+				type = "idle",
 			})
 		end
 
@@ -70,7 +73,6 @@ function TaserLogicAttack._upd_aim(data, my_data, reaction)
 
 	CopLogicAttack.aim_allow_fire(shoot, aim, data, my_data)
 end
-
 
 -- Save taser charge sound cooldown to data to persist over logic changes
 function TaserLogicAttack._chk_play_charge_weapon_sound(data, my_data, focus_enemy)
@@ -84,12 +86,13 @@ function TaserLogicAttack._chk_play_charge_weapon_sound(data, my_data, focus_ene
 	end
 end
 
-
 -- Update logic every frame
-Hooks:PostHook(TaserLogicAttack, "enter", "sh_enter", function (data)
+Hooks:PostHook(TaserLogicAttack, "enter", "sh_enter", function(data)
 	data.brain:set_update_enabled_state(true)
 
 	local my_data = data.internal_data
+	my_data.tase_sphere_cast_radius = data.char_tweak.weapon[data.unit:inventory():equipped_unit():base():weapon_tweak_data().usage].tase_sphere_cast_radius
+	my_data.tase_slot_mask = managers.slot:get_mask("bullet_blank_impact_targets")
 	my_data.detection_task_key = "TaserLogicAttack._upd_enemy_detection" .. tostring(data.key)
 	CopLogicBase.queue_task(my_data, my_data.detection_task_key, TaserLogicAttack._upd_enemy_detection, data, data.t + 0.2)
 end)
@@ -141,7 +144,6 @@ end
 function TaserLogicAttack.queued_update() end
 function TaserLogicAttack.queue_update() end
 
-
 -- Add tase delay whenever tase action ends, not just when the tased person is downed
 local action_complete_clbk_original = TaserLogicAttack.action_complete_clbk
 function TaserLogicAttack.action_complete_clbk(data, action, ...)
@@ -171,4 +173,21 @@ function TaserLogicAttack.action_complete_clbk(data, action, ...)
 	else
 		return action_complete_clbk_original(data, action, ...)
 	end
+end
+
+-- Check line of sight for tase reaction
+local to_vec = Vector3()
+local _chk_reaction_to_attention_object_original = TaserLogicAttack._chk_reaction_to_attention_object
+function TaserLogicAttack._chk_reaction_to_attention_object(data, attention_data, ...)
+	local reaction = _chk_reaction_to_attention_object_original(data, attention_data, ...)
+
+	if reaction == AIAttentionObject.REACT_SPECIAL_ATTACK then
+		local my_data = data.internal_data
+		attention_data.unit:character_damage():shoot_pos_mid(to_vec)
+		if CopActionTase.is_obstructed(data.unit:movement():m_head_pos(), to_vec, my_data.tase_slot_mask, my_data.tase_sphere_cast_radius) then
+			return AIAttentionObject.REACT_COMBAT
+		end
+	end
+
+	return reaction
 end

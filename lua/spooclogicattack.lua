@@ -1,4 +1,5 @@
--- More consistent Cloaker attacks. Why would Cloakers not be allowed to start a sprint attack when another cop is in the way?
+-- More consistent Cloaker attacks, why wouldn't they be allowed to start a sprint attack when another cop is in the way?
+-- Also force Cloakers to stand up before starting a charge
 function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 	if my_data.spooc_attack or data.t <= data.spooc_attack_timeout_t or data.unit:movement():chk_action_forbidden("walk") then
 		return
@@ -21,10 +22,10 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		return
 	end
 
-	if not data.spooc_attack_delay_t then
-		data.spooc_attack_delay_t = focus_enemy.verified_t + 0.35
+	if not my_data.spooc_attack_delay_t then
+		my_data.spooc_attack_delay_t = focus_enemy.verified_t + 0.35
 		return
-	elseif data.spooc_attack_delay_t > data.t then
+	elseif my_data.spooc_attack_delay_t > data.t then
 		return
 	end
 
@@ -42,29 +43,19 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 
 	local action = SpoocLogicAttack._chk_request_action_spooc_attack(data, my_data, flying_strike)
 	if action then
-		data.spooc_attack_delay_t = nil
+		my_data.spooc_attack_delay_t = nil
 
 		my_data.spooc_attack = {
 			start_t = data.t,
 			target_u_data = focus_enemy,
-			action = action
+			action = action,
 		}
 		return true
 	end
 end
 
-
--- Force Cloakers to stand up before starting an attack
-Hooks:PreHook(SpoocLogicAttack, "_chk_request_action_spooc_attack", "sh___chk_request_action_spooc_attack", function (data)
-	data.unit:movement():action_request({
-		body_part = 4,
-		type = "stand"
-	})
-end)
-
-
 -- Update logic every frame
-Hooks:PostHook(SpoocLogicAttack, "enter", "sh_enter", function (data)
+Hooks:PostHook(SpoocLogicAttack, "enter", "sh_enter", function(data)
 	data.brain:set_update_enabled_state(true)
 end)
 
@@ -78,7 +69,13 @@ function SpoocLogicAttack.update(data)
 
 	local focus_enemy = data.attention_obj
 	if my_data.spooc_attack then
-		if my_data.spooc_attack.action:complete() and focus_enemy and focus_enemy.verified and (not focus_enemy.criminal_record or not focus_enemy.criminal_record.status) and focus_enemy.dis < my_data.weapon_range.close then
+		if
+			my_data.spooc_attack.action:complete()
+			and focus_enemy
+			and focus_enemy.verified
+			and (not focus_enemy.criminal_record or not focus_enemy.criminal_record.status)
+			and focus_enemy.dis < my_data.weapon_range.close
+		then
 			SpoocLogicAttack._cancel_spooc_attempt(data, my_data)
 		end
 
@@ -94,7 +91,7 @@ function SpoocLogicAttack.update(data)
 		if not data.unit:anim_data().to_idle and not data.unit:movement():chk_action_forbidden("walk") then
 			data.unit:movement():action_request({
 				body_part = 2,
-				type = "idle"
+				type = "idle",
 			})
 
 			my_data.wants_stop_old_walk_action = nil

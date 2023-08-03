@@ -1,10 +1,6 @@
-local math_abs = math.abs
-local math_random = math.random
 local mvec3_add = mvector3.add
-local mvec3_copy = mvector3.copy
 local mvec3_cross = mvector3.cross
 local mvec3_dir = mvector3.direction
-local mvec3_dis = mvector3.distance
 local mvec3_dis_sq = mvector3.distance_sq
 local mvec3_lerp = mvector3.lerp
 local mvec3_mul = mvector3.multiply
@@ -15,33 +11,40 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
 
-
 -- Reuse function of idle logic to make enemies in an area aware of a player entering the area
 CopLogicTravel.on_area_safety = CopLogicIdle.on_area_safety
-
 
 -- Update pathing immediately when receiving travel logic or pathing results
 Hooks:PostHook(CopLogicTravel, "enter", "sh_enter", CopLogicTravel.upd_advance)
 
 function CopLogicTravel.on_pathing_results(data)
+	local my_data = data.internal_data
+
+	CopLogicTravel._upd_pathing(data, my_data)
+
+	if data.internal_data ~= my_data then
+		return
+	end
+
 	CopLogicTravel.upd_advance(data)
 end
 
--- Fix need for another queued task to update pathing or leaving cover on expired cover time
--- Basically just does the needed checks before calling the original function to save on a queued update
-Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function (data)
-	local unit = data.unit
-	local my_data = data.internal_data
-	local t = TimerManager:game():time()
-	if my_data.processing_advance_path or my_data.processing_coarse_path then
-		CopLogicTravel._upd_pathing(data, my_data)
-	elseif my_data.cover_leave_t then
-		if my_data.coarse_path and my_data.coarse_path_index == #my_data.coarse_path or my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
-			my_data.cover_leave_t = nil
-		end
+-- Sanity check for rare follow_unit crash
+Hooks:PreHook(CopLogicTravel, "_begin_coarse_pathing", "sh__begin_coarse_pathing", function(data)
+	if data.objective.follow_unit and not alive(data.objective.follow_unit) then
+		data.objective.follow_unit = nil
 	end
 end)
 
+-- Fix need for another queued task to update pathing after expired cover leave time
+Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
+	local unit = data.unit
+	local my_data = data.internal_data
+	local t = TimerManager:game():time()
+	if my_data.cover_leave_t and my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
+		my_data.cover_leave_t = nil
+	end
+end)
 
 -- Make groups move together (remove close to criminal check to avoid splitting groups)
 function CopLogicTravel.chk_group_ready_to_move(data, my_data)
@@ -70,62 +73,65 @@ function CopLogicTravel.chk_group_ready_to_move(data, my_data)
 	return true
 end
 
-
 -- Find a random fallback position in the nav segment if no covers are available
 -- This is done to prevent enemies stacking in one spot if no positions next to walls are available
 -- Also add different positioning for shield_cover groups, sticking close to and behind their follow units
 local _get_exact_move_pos_original = CopLogicTravel._get_exact_move_pos
 function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 	local my_data = data.internal_data
+	local nav_manager = managers.navigation
 
 	if alive(data.objective.shield_cover_unit) then
 		if my_data.moving_to_cover then
-			managers.navigation:release_cover(my_data.moving_to_cover[1])
+			nav_manager:release_cover(my_data.moving_to_cover[1])
 			my_data.moving_to_cover = nil
 		end
 
-		return CopLogicTravel._get_pos_behind_unit(data, data.objective.shield_cover_unit, 50, 300)
+		local pos = CopLogicTravel._get_pos_behind_unit(data, data.objective.shield_cover_unit, 75, 300)
+		return pos or _get_exact_move_pos_original(data, nav_index, ...)
 	end
 
 	local coarse_path = my_data.coarse_path
-	if nav_index >= #coarse_path or data.objective.follow_unit then
+	if nav_index >= #coarse_path or data.objective.follow_unit or data.objective.path_style == "destination" then
 		return _get_exact_move_pos_original(data, nav_index, ...)
 	end
 
 	if my_data.moving_to_cover then
-		managers.navigation:release_cover(my_data.moving_to_cover[1])
+		nav_manager:release_cover(my_data.moving_to_cover[1])
 		my_data.moving_to_cover = nil
 	end
 
-	-- Find cover (or fallback) point close to nav segment door when the coarse path isn't finished yet
-	local all_nav_segs = managers.navigation._nav_segments
 	local nav_seg_id = coarse_path[nav_index][1]
 	local next_nav_seg_id = coarse_path[nav_index + 1][1]
-	local next_area = managers.groupai:state():get_area_from_nav_seg_id(next_nav_seg_id)
-	local nav_seg_pos = all_nav_segs[nav_seg_id].pos
-	local to_pos = nav_seg_pos
+	local nav_seg_pos = nav_manager._nav_segments[nav_seg_id].pos
 
-	for neighbour_nav_seg_id, door_list in pairs(all_nav_segs[nav_seg_id].neighbours) do
-		if next_area.nav_segs[neighbour_nav_seg_id] and not all_nav_segs[neighbour_nav_seg_id].disabled then
-			local random_door_id = door_list[math_random(#door_list)]
-			if type(random_door_id) == "number" then
-				to_pos = managers.navigation._room_doors[random_door_id].center
-			else
-				to_pos = random_door_id:script_data().element:nav_link_end_pos()
-			end
-			break
-		end
-	end
+	-- Pick cover positions that are close to nav segment doors
+	local doors = nav_manager:find_segment_doors(nav_seg_id, function(seg_id)
+		return seg_id == next_nav_seg_id
+	end)
+	local door = table.random(doors)
+	local to_pos = door and door.center or coarse_path[nav_index][2] or nav_seg_pos
 
-	local cover = managers.navigation:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
+	local cover = nav_manager:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
 	if cover then
-		managers.navigation:reserve_cover(cover, data.pos_rsrv_id)
-		my_data.moving_to_cover = {
-			cover
-		}
+		nav_manager:reserve_cover(cover, data.pos_rsrv_id)
+		my_data.moving_to_cover = { cover }
 		to_pos = cover[1]
 	else
-		to_pos = CopLogicTravel._get_pos_on_wall(to_pos == nav_seg_pos and to_pos or (nav_seg_pos + to_pos) * 0.5, 500)
+		mvector3.step(tmp_vec1, to_pos, nav_seg_pos, 200)
+		mvector3.set(tmp_vec2, math.UP)
+		mvector3.random_orthogonal(tmp_vec2)
+		mvector3.multiply(tmp_vec2, 100)
+		mvector3.add(tmp_vec1, tmp_vec2)
+
+		local ray_params = {
+			pos_from = nav_seg_pos,
+			pos_to = tmp_vec1,
+			allow_entry = true,
+			trace = true,
+		}
+		nav_manager:raycast(ray_params)
+		to_pos = ray_params.trace[1]
 	end
 
 	return to_pos
@@ -144,9 +150,9 @@ function CopLogicTravel._determine_destination_occupation(data, objective, ...)
 			type = "defend",
 			seg = objective.nav_seg,
 			cover = {
-				cover
+				cover,
 			},
-			radius = objective.radius
+			radius = objective.radius,
 		}
 	else
 		near_pos = CopLogicTravel._get_pos_on_wall(managers.navigation:find_random_position_in_segment(objective.nav_seg), 500)
@@ -154,55 +160,49 @@ function CopLogicTravel._determine_destination_occupation(data, objective, ...)
 			type = "defend",
 			seg = objective.nav_seg,
 			pos = near_pos,
-			radius = objective.radius
+			radius = objective.radius,
 		}
 	end
 end
 
 function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
-	local advancing = unit:brain() and unit:brain():is_advancing()
+	local threat_dir, threat_side, pos = tmp_vec1, tmp_vec2, tmp_vec3
 	local unit_movement = unit:movement()
-	local unit_pos = advancing or unit_movement:m_pos()
-	-- If target unit is advancing, add an offset so we don't run in front of it during advance
-	local offset = advancing and mvec3_dis(advancing, unit_movement:m_pos()) * 0.5 or 0
+	local unit_pos = unit_movement.get_walk_to_pos and unit_movement:get_walk_to_pos() or unit_movement:m_pos()
 
-	-- Get the threat direction
 	if data.attention_obj and data.attention_obj.reaction >= AIAttentionObject.REACT_AIM then
-		mvec3_dir(tmp_vec1, data.attention_obj.m_pos, unit_pos)
+		mvec3_dir(threat_dir, data.attention_obj.m_pos, unit_pos)
 	else
-		mvec3_set(tmp_vec1, unit_movement.m_fwd and unit_movement:m_fwd() or unit_movement:m_head_rot():y())
-		mvec3_neg(tmp_vec1)
+		mvec3_set(threat_dir, unit_movement.m_fwd and unit_movement:m_fwd() or unit_movement:m_head_rot():y())
+		mvec3_neg(threat_dir)
 	end
 
-	-- Threat direction side
-	mvec3_cross(tmp_vec2, tmp_vec1, math.UP)
+	mvec3_cross(threat_side, threat_dir, math.UP)
 
 	local fallback_pos
 	local rays = 7
 	local min_dis_sq = min_dis ^ 2
 	local nav_manager = managers.navigation
 	local ray_params = {
-		allow_entry = false,
 		trace = true,
-		pos_from = unit_pos
+		pos_from = unit_pos,
+		pos_to = pos,
 	}
 	local rsrv_desc = {
-		false,
-		40
+		radius = 40,
 	}
 
 	repeat
-		if math_random() < 0.5 then
-			mvec3_neg(tmp_vec2)
+		if math.random() < 0.5 then
+			mvec3_neg(threat_side)
 		end
 
 		-- Get a random vector between main threat direction and side threat direction
-		mvec3_lerp(tmp_vec3, tmp_vec1, tmp_vec2, math_random() * 0.5)
-		mvec3_normalize(tmp_vec3)
-		mvec3_mul(tmp_vec3, offset + math_random(min_dis, max_dis))
-		mvec3_add(tmp_vec3, unit_pos)
+		mvec3_lerp(pos, threat_dir, threat_side, math.random() * 0.5)
+		mvec3_normalize(pos)
+		mvec3_mul(pos, math.random(min_dis, max_dis))
+		mvec3_add(pos, unit_pos)
 
-		ray_params.pos_to = tmp_vec3
 		if not nav_manager:raycast(ray_params) or mvec3_dis_sq(ray_params.trace[1], unit_pos) > min_dis_sq then
 			rsrv_desc.position = ray_params.trace[1]
 			if nav_manager:is_pos_free(rsrv_desc) then
@@ -215,77 +215,34 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 		rays = rays - 1
 	until rays <= 0
 
-	return fallback_pos or unit_pos
+	return fallback_pos
 end
 
+-- Fix cover wait time being set to 0 if players aren't literally next to enemy
+Hooks:PostHook(CopLogicTravel, "action_complete_clbk", "sh_action_complete_clbk", function(data, action)
+	if action:type() ~= "walk" then
+		return
+	end
 
--- If Iter is installed and streamlined path option is used, don't make any further changes
-if Iter and Iter.settings and Iter.settings.streamline_path then
-	return
-end
-
-
--- Take the direct path if possible and immediately start pathing instead of waiting for the next update (thanks to RedFlame)
-function CopLogicTravel._check_start_path_ahead(data)
 	local my_data = data.internal_data
-
-	if my_data.processing_advance_path then
+	if not my_data.cover_leave_t then
 		return
 	end
 
-	local coarse_path = my_data.coarse_path
-	local next_index = my_data.coarse_path_index + 2
-	local total_nav_points = #coarse_path
-
-	if next_index > total_nav_points then
-		return
+	if not my_data.coarse_path or my_data.coarse_path_index == #my_data.coarse_path or data.objective and data.objective.follow_unit then
+		my_data.cover_leave_t = nil
+	elseif my_data.cover_leave_t == data.t then
+		my_data.cover_leave_t = data.t + (my_data.coarse_path_index == #my_data.coarse_path - 1 and 0.3 or math.rand(0.6, 1))
 	end
+end)
 
-	local to_pos = data.logic._get_exact_move_pos(data, next_index)
-	local from_pos = data.pos_rsrv.move_dest.position
-
-	if math_abs(from_pos.z - to_pos.z) < 100 and not managers.navigation:raycast({allow_entry = false, pos_from = from_pos, pos_to = to_pos}) then
-		my_data.advance_path = {
-			mvec3_copy(from_pos),
-			to_pos
-		}
-
-		return
+-- Stop existing advancing action on exit to a new travel logic
+-- This allows enemies to start their new path immediately instead of having to finish the old one
+Hooks:PreHook(CopLogicTravel, "exit", "sh_exit", function(data, new_logic_name)
+	if new_logic_name == "travel" and data.internal_data.advancing and not data.unit:movement():chk_action_forbidden("idle") then
+		data.brain:action_request({
+			body_part = 2,
+			type = "idle",
+		})
 	end
-
-	my_data.processing_advance_path = true
-	local prio = data.logic.get_pathing_prio(data)
-	local nav_segs = CopLogicTravel._get_allowed_travel_nav_segs(data, my_data, to_pos)
-
-	data.unit:brain():search_for_path_from_pos(my_data.advance_path_search_id, from_pos, to_pos, prio, nil, nav_segs)
-end
-
-function CopLogicTravel._chk_start_pathing_to_next_nav_point(data, my_data)
-	if not CopLogicTravel.chk_group_ready_to_move(data, my_data) then
-		return
-	end
-
-	local from_pos = data.unit:movement():nav_tracker():field_position()
-	local to_pos = CopLogicTravel._get_exact_move_pos(data, my_data.coarse_path_index + 1)
-
-	if math_abs(from_pos.z - to_pos.z) < 100 and not managers.navigation:raycast({allow_entry = false, pos_from = from_pos, pos_to = to_pos}) then
-		my_data.advance_path = {
-			mvec3_copy(from_pos),
-			to_pos
-		}
-
-		-- If we don't have to wait for the pathing results, immediately start advancing
-		CopLogicTravel._chk_begin_advance(data, my_data)
-		if my_data.advancing and my_data.path_ahead then
-			CopLogicTravel._check_start_path_ahead(data)
-		end
-
-		return
-	end
-
-	my_data.processing_advance_path = true
-	local prio = data.logic.get_pathing_prio(data)
-	local nav_segs = CopLogicTravel._get_allowed_travel_nav_segs(data, my_data, to_pos)
-
-	data.unit:brain():search_for_path(my_data.advance_path_search_id, to_pos, prio, nil, nav_segs)
-end
+end)

@@ -1,20 +1,7 @@
--- Fix pathing start position (should always be our current position)
-if Network:is_server() then
-	Hooks:PreHook(CopActionWalk, "init", "sh_init", function (self, action_desc, common_data)
-		local pos =  common_data.pos
-		local from_pos = action_desc.nav_path[1]
-		if pos.x ~= from_pos.x or pos.y ~= from_pos.y then
-			table.insert(action_desc.nav_path, 1, mvector3.copy(common_data.pos))
-		end
-	end)
-end
-
-
 -- Helper function to get the final path position
 function CopActionWalk:get_destination_pos()
 	return self._nav_point_pos(self._simplified_path and self._simplified_path[#self._simplified_path] or self._nav_path and self._nav_path[#self._nav_path])
 end
-
 
 -- Fix occasional incorrect animation speed
 local idstr_base = Idstring("base")
@@ -31,7 +18,12 @@ function CopActionWalk:_adjust_move_anim(side, speed)
 	if move_side and (side == move_side or self._matching_walk_anims[side][move_side]) then
 		local seg_rel_t = self._machine:segment_relative_time(idstr_base)
 
-		if not self._walk_anim_lengths[anim_data.pose] or not self._walk_anim_lengths[anim_data.pose][self._stance.name] or not self._walk_anim_lengths[anim_data.pose][self._stance.name][speed] or not self._walk_anim_lengths[anim_data.pose][self._stance.name][speed][side] then
+		if
+			not self._walk_anim_lengths[anim_data.pose]
+			or not self._walk_anim_lengths[anim_data.pose][self._stance.name]
+			or not self._walk_anim_lengths[anim_data.pose][self._stance.name][speed]
+			or not self._walk_anim_lengths[anim_data.pose][self._stance.name][speed][side]
+		then
 			return
 		end
 
@@ -47,3 +39,37 @@ function CopActionWalk:_adjust_move_anim(side, speed)
 
 	return redir_res
 end
+
+-- Fix navlink rubberbanding for clients
+-- This function uses CopActionAct._get_act_index to determine the navlink action that is synced to clients
+-- By temporarily replacing it with a function that returns 0, clients will not treat this walk action start as a navlink
+-- The navlink animation is later synced when it actually happens
+local _init_original = CopActionWalk._init
+local _get_act_index_temp = function()
+	return 0
+end
+function CopActionWalk:_init(...)
+	local _get_act_index = CopActionAct._get_act_index
+	CopActionAct._get_act_index = _get_act_index_temp
+
+	local result = _init_original(self, ...)
+
+	CopActionAct._get_act_index = _get_act_index
+
+	self._nav_link_synched_with_start = nil
+
+	return result
+end
+
+if Network:is_client() then
+	return
+end
+
+-- Fix pathing start position (should always be our current position)
+Hooks:PreHook(CopActionWalk, "init", "sh_init", function(self, action_desc, common_data)
+	local pos = common_data.pos
+	local from_pos = action_desc.nav_path[1]
+	if pos.x ~= from_pos.x or pos.y ~= from_pos.y then
+		table.insert(action_desc.nav_path, 1, mvector3.copy(common_data.pos))
+	end
+end)

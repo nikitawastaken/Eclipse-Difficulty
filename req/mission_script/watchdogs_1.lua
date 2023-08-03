@@ -1,16 +1,16 @@
 return {
 	[101687] = {
 		groups = {
-			common_tank = false,
-			elite_tank = false,
-			common_shield = false,
-			elite_shieldg = false
+			fbi_tanks = false,
+			gensec_tanks = false,
+			fbi_shields = false,
+			gensec_shields = false
 		}
 	},
 	[102827] = {
 		groups = {
-			common_tank = false,
-			elite_tank = false
+			fbi_tanks = false,
+			gensec_tanks = false
 		}
 	}
 }

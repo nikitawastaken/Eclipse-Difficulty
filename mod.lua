@@ -1,13 +1,38 @@
+if not EclipseDebug then
+    EclipseDebug = {}
+    local log_levels = {
+        "Debug",
+        "Warning",
+        "Error"
+    }
+
+    function EclipseDebug:log(level, message)
+        assert(0 < level and level < 4, "Eclipse log level must be between 1-3.")
+        assert(message ~= nil, "Eclipse empty log message.")
+
+        log(string.format("Eclipse %s: %s", log_levels[level], message))
+    end
+
+    function EclipseDebug:log_chat(message)
+        managers.chat:_receive_message(managers.chat.GAME, "Eclipse", message, Color.green)
+    end
+end
+
 if not StreamHeist then
 
 	StreamHeist = {
 		mod_path = ModPath,
 		mod_instance = ModInstance,
-		logging = io.file_is_readable("mods/developer.txt")
+		save_path = SavePath .. "eclipse.json",
+		logging = io.file_is_readable("mods/developer.txt"),
+		required = {},
+		settings = {
+			ponr_assault_text = false,
+		},
 	}
 
 	function StreamHeist:require(file)
-		local path = self.mod_path .. "req/" .. file
+		local path = self.mod_path .. "req/" .. file .. ".lua"
 		return io.file_is_readable(path) and blt.vm.dofile(path)
 	end
 
@@ -15,7 +40,7 @@ if not StreamHeist then
 		if self._mission_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
-				self._mission_script_patches = self:require("mission_script/" .. level_id:gsub("_night$", ""):gsub("_day$", "") .. ".lua") or false
+				self._mission_script_patches = self:require("mission_script/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
 			end
 		end
 		return self._mission_script_patches
@@ -42,7 +67,7 @@ if not StreamHeist then
 		end
 
 		Global.sh_mod_conflicts = {}
-		local conflicting_mods = StreamHeist:require("mod_conflicts.lua") or {}
+		local conflicting_mods = StreamHeist:require("mod_conflicts") or {}
 		for _, mod in pairs(BLT.Mods:Mods()) do
 			if mod:IsEnabled() and conflicting_mods[mod:GetName()] then
 				table.insert(Global.sh_mod_conflicts, mod:GetName())
@@ -61,7 +86,7 @@ if not StreamHeist then
 								mod:SetEnabled(false, true)
 							end
 						end
-						BLT.Mods:Save()
+						MenuCallbackHandler:perform_blt_save()
 					end
 				},
 				{
@@ -72,10 +97,62 @@ if not StreamHeist then
 		end
 	end)
 
+	-- Create settings menu
+	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusStreamlinedHeisting", function(_, nodes)
+
+		local menu_id = "eclipse_menu"
+		MenuHelper:NewMenu(menu_id)
+
+		local faction_menu_elements = {}
+		function MenuCallbackHandler:sh_ponr_assault_text_toggle(item)
+			local enabled = (item:value() == "on")
+			StreamHeist.settings.ponr_assault_text = enabled
+			for _, element in pairs(faction_menu_elements) do
+				element:set_enabled(not enabled)
+			end
+		end
+
+		function MenuCallbackHandler:sh_save()
+			io.save_as_json(StreamHeist.settings, StreamHeist.save_path)
+		end
+
+		MenuHelper:AddToggle({
+			id = "ponr_assault_text",
+			title = "eclipse_menu_ponr_assault_text",
+			desc = "eclipse_menu_ponr_assault_text_desc",
+			callback = "sh_ponr_assault_text_toggle",
+			value = StreamHeist.settings.ponr_assault_text,
+			menu_id = menu_id,
+			priority = 100
+		})
+
+		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "sh_save" })
+		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
+	end)
+
+	-- Load settings
+	if io.file_is_readable(StreamHeist.save_path) then
+		local data = io.load_as_json(StreamHeist.save_path)
+		if data then
+			local function merge(tbl1, tbl2)
+				for k, v in pairs(tbl2) do
+					if type(tbl1[k]) == type(v) then
+						if type(v) == "table" then
+							merge(tbl1[k], v)
+						else
+							tbl1[k] = v
+						end
+					end
+				end
+			end
+			merge(StreamHeist.settings, data)
+		end
+	end
+
 	-- Notify about required game restart
 	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeStreamlinedHeisting", function ()
 		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function (self)
-			if self._mod:GetName() == "Streamlined Heisting" then
+			if self._mod:GetName() == "Eclipse" then
 				QuickMenu:new("Information", "A game restart is required to fully " .. (self._mod:IsEnabled() and "enable" or "disable") .. " all parts of Eclipse!", {}, true)
 			end
 		end)
@@ -83,21 +160,19 @@ if not StreamHeist then
 
 	-- Disable some of "The Fixes"
 	TheFixesPreventer = TheFixesPreventer or {}
-	TheFixesPreventer.shotgun_dozer_face = true
 	TheFixesPreventer.crash_upd_aim_coplogicattack = true
 	TheFixesPreventer.fix_copmovement_aim_state_discarded = true
 	TheFixesPreventer.tank_remove_recoil_anim = true
 	TheFixesPreventer.tank_walk_near_players  = true
 end
 
-local required = {}
-if RequiredScript and not required[RequiredScript] then
+if RequiredScript and not StreamHeist.required[RequiredScript] then
 
 	local fname = StreamHeist.mod_path .. RequiredScript:gsub(".+/(.+)", "lua/%1.lua")
 	if io.file_is_readable(fname) then
 		dofile(fname)
 	end
 
-	required[RequiredScript] = true
+	StreamHeist.required[RequiredScript] = true
 
 end

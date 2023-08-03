@@ -1,3 +1,11 @@
+CopMovement._action_variants.tank_elite = CopMovement._action_variants.tank
+CopMovement._action_variants.phalanx_minion_break = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_swat = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_heavy_swat = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_medic = CopMovement._action_variants.city_swat
+CopMovement._action_variants.zeal_shield = CopMovement._action_variants.shield
+CopMovement._action_variants.zeal_taser = CopMovement._action_variants.taser
+
 -- Fix enemies playing the suppressed stand-to-crouch animation when shot even if they are already crouching
 local play_redirect_original = CopMovement.play_redirect
 function CopMovement:play_redirect(redirect_name, ...)
@@ -7,7 +15,6 @@ function CopMovement:play_redirect(redirect_name, ...)
 	end
 	return result
 end
-
 
 -- Fix attention synch not providing the old attention
 function CopMovement:synch_attention(attention)
@@ -37,8 +44,11 @@ end
 -- counterstrike stuff
 Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damage_info)
 	local hurt_type = damage_info.result.type
-    -- If it's a dozer and the hurt type is expl_hurt, use the medium hurt preset instead
-    if self._unit:base()._tweak_table == "tank" and hurt_type == "expl_hurt" then hurt_type = "hurt" end
+	-- If it's a dozer and the hurt type is expl_hurt, use the medium hurt preset instead
+	local is_tank = self._unit:base()._tweak_table == "tank" or self._unit:base()._tweak_table == "tank_elite"
+	if is_tank and hurt_type == "expl_hurt" then
+		hurt_type = "hurt"
+	end
 
 	-- Original code
 	if hurt_type == "stagger" then
@@ -77,7 +87,7 @@ Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damag
 		damage_info.variant = "melee"
 		damage_info.result = {
 			variant = "melee",
-			type = "shield_knock"
+			type = "shield_knock",
 		}
 		damage_info.shield_knock = true
 	end
@@ -113,7 +123,7 @@ Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damag
 			aim = -1,
 			action = -1,
 			tase = -1,
-			walk = -1
+			walk = -1,
 		}
 
 		if hurt_type == "bleedout" then
@@ -135,7 +145,24 @@ Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damag
 
 	local client_interrupt = nil
 
-	if Network:is_client() and (hurt_type == "light_hurt" or hurt_type == "hurt" and damage_info.variant ~= "tase" or hurt_type == "heavy_hurt" or hurt_type == "expl_hurt" or hurt_type == "shield_knock" or hurt_type == "counter_tased" or hurt_type == "taser_tased" or hurt_type == "counter_spooc" or hurt_type == "death" or hurt_type == "hurt_sick" or hurt_type == "fire_hurt" or hurt_type == "poison_hurt" or hurt_type == "concussion") then
+	if
+		Network:is_client()
+		and (
+			hurt_type == "light_hurt"
+			or hurt_type == "hurt" and damage_info.variant ~= "tase"
+			or hurt_type == "heavy_hurt"
+			or hurt_type == "expl_hurt"
+			or hurt_type == "shield_knock"
+			or hurt_type == "counter_tased"
+			or hurt_type == "taser_tased"
+			or hurt_type == "counter_spooc"
+			or hurt_type == "death"
+			or hurt_type == "hurt_sick"
+			or hurt_type == "fire_hurt"
+			or hurt_type == "poison_hurt"
+			or hurt_type == "concussion"
+		)
+	then
 		client_interrupt = true
 	end
 
@@ -150,7 +177,7 @@ Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damag
 		action_data = {
 			body_part = 3,
 			type = "healed",
-			client_interrupt = client_interrupt
+			client_interrupt = client_interrupt,
 		}
 	else
 		action_data = {
@@ -169,7 +196,7 @@ Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damag
 			ignite_character = damage_info.ignite_character,
 			start_dot_damage_roll = damage_info.start_dot_damage_roll,
 			is_fire_dot_damage = damage_info.is_fire_dot_damage,
-			fire_dot_data = damage_info.fire_dot_data
+			fire_dot_data = damage_info.fire_dot_data,
 		}
 	end
 
@@ -186,4 +213,21 @@ Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damag
 			self._queued_actions = {}
 		end
 	end
+end)
+
+-- Fix head position update on suppression
+Hooks:PreHook(CopMovement, "_upd_stance", "sh__upd_stance", function(self, t)
+	if self._stance.transition and self._stance.transition.next_upd_t < t then
+		self._force_head_upd = true
+	elseif self._suppression.transition and self._suppression.transition.next_upd_t < t then
+		self._force_head_upd = true
+	end
+end)
+
+Hooks:PostHook(CopMovement, "_change_stance", "sh__change_stance", function(self)
+	self._force_head_upd = true
+end)
+
+Hooks:PostHook(CopMovement, "on_suppressed", "sh_on_suppressed", function(self)
+	self._force_head_upd = true
 end)

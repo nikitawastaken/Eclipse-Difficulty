@@ -1,14 +1,14 @@
 return {
 	[101469] = {
 		groups = {
-			common_shield = false,
-			elite_shieldg = false
+			fbi_shields = false,
+			gensec_shields = false
 		}
 	},
 	[101470] = {
 		groups = {
-			common_shield = false,
-			elite_shieldg = false
+			fbi_shields = false,
+			gensec_shields = false
 		}
 	}
 }

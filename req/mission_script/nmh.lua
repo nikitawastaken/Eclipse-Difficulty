@@ -7,10 +7,8 @@ return {
 	},
 	-- Alert all civs on mask up and delay panic button SO
 	[102518] = {
-		values = {
-			on_executed = {
-				{ id = 102540, delay = 10 }
-			}
+		on_executed = {
+			{ id = 102540, delay = 10 }
 		},
 		func = function()
 			for _, u_data in pairs(managers.enemy:all_civilians()) do
