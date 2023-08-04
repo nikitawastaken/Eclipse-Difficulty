@@ -55,7 +55,9 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 				-- instantly force into post ponr state
 				if data.set_ponr_state then
 					if Network:is_server() then
-						self._instant_start_ponr = true
+                        Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_state_" .. element_id, function()
+						    managers.mission:set_ponr_state()
+                        end)
 					end
 				end
 			end
@@ -118,3 +120,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 		end
 	end
 end)
+
+function MissionManager:set_ponr_state()
+    self._instant_start_ponr = true
+end
