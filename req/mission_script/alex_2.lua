@@ -1,16 +1,17 @@
 return {
 	[104480] = {
 		groups = {
-			fbi_tanks = false,
-			gensec_tanks = false,
-			fbi_shields = false,
-			gensec_shields = false
+			tac_shield_wall = false,
+			tac_shield_wall_ranged = false,
+			tac_shield_wall_charge = false,
+			tac_bull_rush = false
 		}
 	},
 	[102793] = {
 		groups = {
-			fbi_shields = false,
-			gensec_shields = false
+			tac_shield_wall = false,
+			tac_shield_wall_ranged = false,
+			tac_shield_wall_charge = false
 		}
 	}
 }

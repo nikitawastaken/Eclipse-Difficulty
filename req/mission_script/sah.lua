@@ -107,10 +107,10 @@ return {
 			interval = 60
 		},
 		groups = {
-			fbi_shields = false,
-			fbi_tanks = false,
-			gensec_shields = false,
-			gensec_tanks = false
+			tac_shield_wall = false,
+			tac_shield_wall_ranged = false,
+			tac_shield_wall_charge = false,
+			tac_bull_rush = false
 		}
 	},
 	[101175] = {

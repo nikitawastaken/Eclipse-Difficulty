@@ -26,30 +26,88 @@ Hooks:OverrideFunction(ElementSpawnEnemyGroup, "on_executed", function(self, ins
 	ElementSpawnEnemyGroup.super.on_executed(self, instigator)
 end)
 
--- Necessary for the custom spawngroup implementation
-local groupsOLD = {
-	"tac_shield_wall_charge",
-	"FBI_spoocs",
-	"tac_tazer_charge",
-	"tac_tazer_flanking",
-	"tac_shield_wall",
-	"tac_swat_rifle_flank",
-	"tac_shield_wall_ranged",
-	"tac_bull_rush",
+-- Update preferred spawn groups to contain new groups and add intervals to groups with special spawn actions
+local group_mapping = {
+	tac_swat_rifle = {
+		"beat_cops",
+		"blue_swats",
+		"fbi_lights",
+		"fbi_heavies",
+		"recon_hrt",
+		"recon_aggressive",
+		"reenforce_common",
+		"reenforce_sneaky",
+		"gensec_cqc_lights",
+		"gensec_ranged_lights",
+		"gensec_flankers",
+		"zeal_lights_charge",
+		"zeal_lights_flank",
+		"zeal_heavies_ranged",
+		"zeal_heavies_charge",
+	},
+	tac_shield_wall = {
+		"swat_shields",
+		"fbi_shields",
+		"gensec_shields",
+		"zeal_shields",
+	},
+	tac_tazer_flanking = {
+		"swat_tasers",
+		"gensec_tasers",
+		"zeal_tasers",
+	},
+	FBI_spoocs = {
+		"spoocs",
+		"zeal_spoocs",
+	},
+	tac_bull_rush = {
+		"swat_tanks",
+		"fbi_tanks",
+		"gensec_tanks",
+		"zeal_tanks",
+	},
 }
+group_mapping.tac_swat_rifle_flank = group_mapping.tac_swat_rifle
+group_mapping.tac_shield_wall_ranged = group_mapping.tac_shield_wall
+group_mapping.tac_shield_wall_charge = group_mapping.tac_shield_wall
+group_mapping.tac_tazer_charge = group_mapping.tac_tazer_flanking
 
-local twat_captain = {
-	Phalanx = true,
-	single_spooc = true,
-}
+-- Level specific group mappings to fix issues with nav link access flags
+local mission_script_elements = StreamHeist:mission_script_patches()
 
-Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse__finalize_values", function(self)
-	if self._values.preferred_spawn_groups and #self._values.preferred_spawn_groups == #groupsOLD and table.contains_all(self._values.preferred_spawn_groups, groupsOLD) then
-		self._values.preferred_spawn_groups = {}
-		for name, _ in pairs(tweak_data.group_ai.enemy_spawn_groups) do
-			if not table.contains(self._values.preferred_spawn_groups, name) and not twat_captain[name] then
-				table.insert(self._values.preferred_spawn_groups, name)
+Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "sh__finalize_values", function (self)
+	if not self._values.preferred_spawn_groups then
+		return
+	end
+
+	if self._values.interval == 0 then
+		for _, id in pairs(self._values.elements) do
+			local spawn_point = self:get_mission_element(id)
+			if spawn_point and spawn_point._values.spawn_action then
+				self._values.interval = 5
+				break
 			end
 		end
 	end
+
+	local new_groups = {}
+	for _, initial_group in pairs(self._values.preferred_spawn_groups) do
+		local mapping = group_mapping[initial_group]
+		if mapping then
+			for _, added_group in pairs(mapping) do
+				new_groups[added_group] = true
+			end
+		else
+			new_groups[initial_group] = true
+		end
+	end
+
+	local element_mapping = mission_script_elements and mission_script_elements[self._id]
+	if element_mapping and element_mapping.groups then
+		for group, enabled in pairs(element_mapping.groups) do
+			new_groups[group] = enabled or nil
+		end
+	end
+
+	self._values.preferred_spawn_groups = table.map_keys(new_groups)
 end)
