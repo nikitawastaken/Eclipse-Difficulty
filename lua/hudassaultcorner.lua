@@ -1,12 +1,12 @@
+Hooks:PostHook(HUDAssaultCorner, "init", "eclipse_assault_corner_init", function(self)
+	self._ponr_state = false
+end)
+
 function HUDAssaultCorner:set_ponr_state()
 	self._ponr_state = true
 end
 
 if StreamHeist.settings.ponr_assault_text then
-	Hooks:PostHook(HUDAssaultCorner, "init", "eclipse_assault_corner_init", function(self)
-		self._ponr_state = false
-	end)
-
 	function HUDAssaultCorner:sync_start_assault(assault_number)
 		if self._point_of_no_return or self._casing then
 			return
