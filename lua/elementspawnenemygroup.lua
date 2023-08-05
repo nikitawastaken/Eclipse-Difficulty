@@ -75,7 +75,7 @@ group_mapping.tac_tazer_charge = group_mapping.tac_tazer_flanking
 -- Level specific group mappings to fix issues with nav link access flags
 local mission_script_elements = StreamHeist:mission_script_patches()
 
-Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "sh__finalize_values", function (self)
+Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "sh__finalize_values", function(self)
 	if not self._values.preferred_spawn_groups then
 		return
 	end
