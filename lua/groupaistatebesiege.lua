@@ -957,7 +957,15 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, ...)
 	end
 end
 
--- Make push use a unique voiceline, add retreat lines
+-- Make open fire and push use a unique voiceline, add retreat lines
+function GroupAIStateBesiege:_voice_open_fire_start(group)
+	for u_key, unit_data in pairs(group.units) do
+		if unit_data.char_tweak.chatter.open_fire and self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, "open_fire") then
+			break
+		end
+	end
+end
+
 function GroupAIStateBesiege:_voice_move_in_start(group)
 	for u_key, unit_data in pairs(group.units) do
 		if unit_data.char_tweak.chatter.push and self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, "push") then

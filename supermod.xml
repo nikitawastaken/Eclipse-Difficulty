@@ -150,6 +150,7 @@
 						<post :hook_id="copdamage"/>
 						<post :hook_id="copinventory"/>
 						<post :hook_id="copmovement"/>
+						<post :hook_id="copsound"/>
 					</group>
 
 					<group :hook_id="spooc/">

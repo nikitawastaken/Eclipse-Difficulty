@@ -2,14 +2,12 @@
 Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", function(self)
 	self.enemy_chatter.retreat.queue = "m01"
 	self.enemy_chatter.retreat.duration = { 4, 8 }
-	self.enemy_chatter.push = {
-		radius = 1000,
-		max_nr = 0,
-		queue = "pus",
-		group_min = 0,
-		duration = { 5, 10 },
-		interval = { 0.75, 1.2 },
-	}
+	self.enemy_chatter.push = clone(self.enemy_chatter.go_go)
+	self.enemy_chatter.push.queue = "pus"
+	self.enemy_chatter.push.duration = { 5, 10 }
+	self.enemy_chatter.open_fire = clone(self.enemy_chatter.aggressive)
+	self.enemy_chatter.open_fire.queue = "att"
+	self.enemy_chatter.open_fire.duration = { 4, 8 }
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)

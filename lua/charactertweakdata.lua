@@ -520,6 +520,20 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 	}
 
+	-- Enemy chatter
+	presets.enemy_chatter.cop.retreat = nil
+	presets.enemy_chatter.cop.open_fire = true
+
+	presets.enemy_chatter.swat.push = true
+	presets.enemy_chatter.swat.flash_grenade = true
+	presets.enemy_chatter.swat.open_fire = true
+
+	presets.enemy_chatter.gangster = {
+		aggressive = true,
+		contact = true,
+		go_go = true
+	}
+
 	return presets
 end
 
@@ -776,6 +790,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_taser.weapon = self.presets.weapon.taser
 
 	self.biker.melee_weapon = "knife_1"
+
+	-- Set chatter presets
+	self.mobster.chatter = self.presets.enemy_chatter.gangster
+	self.biker.chatter = self.presets.enemy_chatter.gangster
+	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
+	self.bolivian.chatter = self.presets.enemy_chatter.gangster
+	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
 
 	-- if bot weapons and equipment is installed and fixed weapon balance is on don't make any further changes
 	if BotWeapons and BotWeapons.settings and BotWeapons.settings.weapon_balance then

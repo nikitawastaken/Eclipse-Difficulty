@@ -12,12 +12,13 @@ CopBrain._logic_variants.zeal_medic = CopBrain._logic_variants.city_swat
 CopBrain._logic_variants.zeal_taser = CopBrain._logic_variants.taser
 CopBrain._logic_variants.zeal_shield = clone(CopBrain._logic_variants.shield)
 
-CopBrain._next_upd_t = 0
+CopBrain._next_cover_grenade_chk_t = 0
+CopBrain._next_logic_upd_t = 0
 
 -- Fix spamming of grenades by units that dodge with grenades (Cloaker)
 local _chk_use_cover_grenade_original = CopBrain._chk_use_cover_grenade
 function CopBrain:_chk_use_cover_grenade(...)
-	if not self._next_cover_grenade_chk_t or self._next_cover_grenade_chk_t < TimerManager:game():time() then
+	if self._next_cover_grenade_chk_t < TimerManager:game():time() then
 		return _chk_use_cover_grenade_original(self, ...)
 	end
 end
@@ -66,8 +67,8 @@ end)
 -- Limit logic updates, there's no need to update it every frame
 local update_original = CopBrain.update
 function CopBrain:update(unit, t, ...)
-	if self._next_upd_t <= t then
-		self._next_upd_t = t + 1 / 30
+	if self._next_logic_upd_t <= t then
+		self._next_logic_upd_t = t + 1 / 30
 		return update_original(self, unit, t, ...)
 	end
 end

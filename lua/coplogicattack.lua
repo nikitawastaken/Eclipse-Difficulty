@@ -98,6 +98,24 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 	return aim, shoot, expected_pos
 end
 
+-- Improve aggressive chatter
+Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function (shoot, aim, data, my_data)
+	local chatter = data.char_tweak.chatter
+	local is_off_cooldown = not data.combat_chatter_cooldown_t or data.combat_chatter_cooldown_t < data.t
+	if not chatter then
+		return
+	elseif data.unit:in_slot(16) then
+		if aim and is_off_cooldown and chatter.aggressive and not data.unit:sound():speaking(data.t) then
+			data.unit:sound():say(shoot and "lk3a" or "lk3b", true)
+			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
+		end
+	elseif shoot and not my_data.firing and chatter.open_fire and managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "open_fire") then
+		data.combat_chatter_cooldown_t = data.t + math.rand(5, 10)
+	elseif aim and is_off_cooldown and chatter.aggressive and managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "aggressive") then
+		data.combat_chatter_cooldown_t = data.t + math.rand(10, 15)
+	end
+end)
+
 -- Pathing related fixes to stop spamming walk actions when the new position is the same as the current position
 local _find_retreat_position_original = CopLogicAttack._find_retreat_position
 function CopLogicAttack._find_retreat_position(from_pos, ...)
