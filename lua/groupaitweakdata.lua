@@ -1788,6 +1788,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.smoke_grenade_timeout = { 40 / f, 50 / f }
 	self.smoke_grenade_lifetime = 10 * f
 	self.cs_grenade_timeout = { 110 / f, 150 / f }
+	self.cs_grenade_chance_times = { 60, 240 }
 	self.cs_grenade_lifetime = 10 * f
 
 	-- Spawngroups
