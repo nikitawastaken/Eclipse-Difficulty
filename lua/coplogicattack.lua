@@ -99,7 +99,7 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 end
 
 -- Improve aggressive chatter
-Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function (shoot, aim, data, my_data)
+Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(shoot, aim, data, my_data)
 	local chatter = data.char_tweak.chatter
 	local is_off_cooldown = not data.combat_chatter_cooldown_t or data.combat_chatter_cooldown_t < data.t
 	if not chatter then
