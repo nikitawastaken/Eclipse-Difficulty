@@ -485,8 +485,8 @@ self.model70.AMMO_PICKUP = pickup_tables.sniper_low
 self.model70.kick = kick_tables.sniper_mid
 
 -- Thanatos
-self.m95.stats.damage = 125
-self.m95.stats_modifiers = {damage = 8}
+self.m95.stats.damage = 150
+self.m95.stats_modifiers = {damage = 10}
 self.m95.AMMO_PICKUP = {0.55, 0.65}
 self.m95.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.m95.fire_mode_data.fire_rate = 1.5
@@ -502,9 +502,9 @@ self.m95.timers = {
 
 -- AWP
 self.awp.CLIP_AMMO_MAX = 5
-self.awp.stats.damage = 125
+self.awp.stats.damage = 150
 self.awp.stats.reload = 9
-self.awp.stats_modifiers = {damage = 8}
+self.awp.stats_modifiers = {damage = 10}
 self.awp.AMMO_PICKUP = {0.4, 0.5}
 self.awp.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.awp.kick.standing = {4, 5, -1, 1}
