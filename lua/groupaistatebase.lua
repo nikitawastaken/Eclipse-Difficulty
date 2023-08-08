@@ -220,7 +220,7 @@ end)
 
 -- Do not update detected position and time on nav segment change
 -- Log time when criminals enter an area to use for the teargas check
-Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_nav_seg_change", function (self, unit, nav_seg_id)
+Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_nav_seg_change", function(self, unit, nav_seg_id)
 	local u_key = unit:key()
 	local u_sighting = self._criminals[u_key]
 	if not u_sighting then
@@ -233,7 +233,9 @@ Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_nav_seg_change", function 
 	local area = self:get_area_from_nav_seg_id(nav_seg_id)
 	if prev_area ~= area then
 		if prev_area and not u_sighting.ai then
-			if table.count(prev_area.criminal.units, function (c_data) return not c_data.ai end) <= 1 then
+			if table.count(prev_area.criminal.units, function(c_data)
+				return not c_data.ai
+			end) <= 1 then
 				prev_area.criminal_left_t = self._t
 				prev_area.old_criminal_entered_t = prev_area.criminal_entered_t
 				prev_area.criminal_entered_t = nil
@@ -260,7 +262,7 @@ Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_nav_seg_change", function 
 		area.is_safe = nil
 		self:_on_area_safety_status(area, {
 			reason = "criminal",
-			record = u_sighting
+			record = u_sighting,
 		})
 	end
 end)

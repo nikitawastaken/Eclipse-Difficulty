@@ -1,11 +1,11 @@
 -- Make CopSound return accurate speaking times
-Hooks:PreHook(CopSound, "init", "sh_init", function (self)
-	self._speak_done_callback = function ()
+Hooks:PreHook(CopSound, "init", "sh_init", function(self)
+	self._speak_done_callback = function()
 		self._speak_expire_t = 0
 	end
 end)
 
-Hooks:OverrideFunction(CopSound, "say", function (self, sound_name, sync, skip_prefix)
+Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_prefix)
 	if self._last_speech then
 		self._last_speech:stop()
 	end
