@@ -1,11 +1,11 @@
 -- Make CopSound return accurate speaking times
-function CopSound:speak_done_callback(instance, event_type, unit, sound_source, label, identifier, position)
-	if alive(unit) then
-		unit:sound()._speak_expire_t = 0
+Hooks:PreHook(CopSound, "init", "sh_init", function (self)
+	self._speak_done_callback = function ()
+		self._speak_expire_t = 0
 	end
-end
+end)
 
-function CopSound:say(sound_name, sync, skip_prefix, important, callback)
+Hooks:OverrideFunction(CopSound, "say", function (self, sound_name, sync, skip_prefix)
 	if self._last_speech then
 		self._last_speech:stop()
 	end
@@ -22,8 +22,6 @@ function CopSound:say(sound_name, sync, skip_prefix, important, callback)
 		self._unit:network():send("say", event_id)
 	end
 
-	self._last_speech = self:_play(full_sound or event_id, nil, self.speak_done_callback)
-	if self._last_speech then
-		self._speak_expire_t = TimerManager:game():time() + 8
-	end
-end
+	self._last_speech = self:_play(full_sound or event_id, nil, self._speak_done_callback)
+	self._speak_expire_t = self._last_speech and TimerManager:game():time() + 10 or 0
+end)

@@ -133,33 +133,6 @@ function GroupAIStateBase:_process_recurring_grp_SO(...)
 	end
 end
 
--- Log time when criminals enter an area to use for the teargas check
-Hooks:PreHook(GroupAIStateBase, "on_criminal_nav_seg_change", "sh_on_criminal_nav_seg_change", function(self, unit, nav_seg_id)
-	local u_sighting = self._criminals[unit:key()]
-	if not u_sighting or u_sighting.ai then
-		return
-	end
-
-	local prev_area = u_sighting.area
-	local area = self:get_area_from_nav_seg_id(nav_seg_id)
-	if prev_area and prev_area ~= area then
-		if table.count(prev_area.criminal.units, function(c_data)
-			return not c_data.ai
-		end) <= 1 then
-			prev_area.criminal_left_t = self._t
-			prev_area.old_criminal_entered_t = prev_area.criminal_entered_t
-			prev_area.criminal_entered_t = nil
-		end
-		if not area.criminal_entered_t then
-			if area.criminal_left_t and area.old_criminal_entered_t then
-				area.criminal_entered_t = math.lerp(area.old_criminal_entered_t, self._t, math.min((self._t - area.criminal_left_t) / 20, 1))
-			else
-				area.criminal_entered_t = self._t
-			end
-		end
-	end
-end)
-
 -- Delay spawn points when enemies die close to them
 Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregistered", function(self, unit)
 	if Network:is_client() or not unit:character_damage():dead() then
@@ -245,10 +218,50 @@ Hooks:PostHook(GroupAIStateBase, "criminal_spotted", "sh_criminal_spotted", func
 	mvector3.set(u_sighting.pos, u_sighting.m_det_pos)
 end)
 
-Hooks:PostHook(GroupAIStateBase, "on_criminal_nav_seg_change", "sh_on_criminal_nav_seg_change", function(self, unit)
-	local u_sighting = self._criminals[unit:key()]
-	if u_sighting then
-		mvector3.set(u_sighting.pos, u_sighting.m_det_pos)
+-- Do not update detected position and time on nav segment change
+-- Log time when criminals enter an area to use for the teargas check
+Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_nav_seg_change", function (self, unit, nav_seg_id)
+	local u_key = unit:key()
+	local u_sighting = self._criminals[u_key]
+	if not u_sighting then
+		return
+	end
+
+	u_sighting.seg = nav_seg_id
+
+	local prev_area = u_sighting.area
+	local area = self:get_area_from_nav_seg_id(nav_seg_id)
+	if prev_area ~= area then
+		if prev_area and not u_sighting.ai then
+			if table.count(prev_area.criminal.units, function (c_data) return not c_data.ai end) <= 1 then
+				prev_area.criminal_left_t = self._t
+				prev_area.old_criminal_entered_t = prev_area.criminal_entered_t
+				prev_area.criminal_entered_t = nil
+			end
+
+			if not area.criminal_entered_t then
+				if area.criminal_left_t and area.old_criminal_entered_t then
+					area.criminal_entered_t = math.lerp(area.old_criminal_entered_t, self._t, math.min((self._t - area.criminal_left_t) / 20, 1))
+				else
+					area.criminal_entered_t = self._t
+				end
+			end
+		end
+
+		if prev_area then
+			prev_area.criminal.units[u_key] = nil
+		end
+
+		u_sighting.area = area
+		area.criminal.units[u_key] = u_sighting
+	end
+
+	if area.is_safe then
+		area.is_safe = nil
+		self:_on_area_safety_status(area, {
+			reason = "criminal",
+			record = u_sighting
+		})
 	end
 end)
 
