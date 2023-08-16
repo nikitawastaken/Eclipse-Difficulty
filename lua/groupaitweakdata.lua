@@ -1991,18 +1991,26 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.Phalanx = { 0, 0, 0 }
 	self.besiege.assault.groups.marshal_squad = { 0, 0, 0 }
 	self.besiege.assault.groups.custom_assault = { 0, 0, 0 }
+	self.besiege.assault.groups.snowman_boss = { 0, 0, 0 }
+	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
 	self.besiege.recon.groups.marshal_squad = { 0, 0, 0 }
 	self.besiege.recon.groups.custom_assault = { 0, 0, 0 }
+	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
+	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	self.ponr.assault.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.assault.groups.Phalanx = { 0, 0, 0 }
 	self.ponr.assault.groups.marshal_squad = { 0, 0, 0 }
 	self.ponr.assault.groups.custom_assault = { 0, 0, 0 }
+	self.ponr.assault.groups.snowman_boss = { 0, 0, 0 }
+	self.ponr.assault.groups.piggydozer = { 0, 0, 0 }
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
 	self.ponr.recon.groups.marshal_squad = { 0, 0, 0 }
 	self.ponr.recon.groups.custom_assault = { 0, 0, 0 }
+	self.ponr.recon.groups.snowman_boss = { 0, 0, 0 }
+	self.ponr.recon.groups.piggydozer = { 0, 0, 0 }
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {
