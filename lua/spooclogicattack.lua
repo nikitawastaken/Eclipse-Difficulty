@@ -5,7 +5,7 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 	end
 
 	local focus_enemy = data.attention_obj
-	if not focus_enemy.nav_tracker or not focus_enemy.is_person or not focus_enemy.verified then
+	if not focus_enemy.nav_tracker or not focus_enemy.is_person then
 		return
 	end
 
@@ -13,7 +13,7 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		return
 	end
 
-	if focus_enemy.reaction < AIAttentionObject.REACT_SHOOT or focus_enemy.verified_dis > (my_data.want_to_take_cover and 1500 or 2500) then
+	if focus_enemy.reaction < AIAttentionObject.REACT_SHOOT or focus_enemy.dis > (my_data.want_to_take_cover and 1500 or 2500) then
 		return
 	end
 
