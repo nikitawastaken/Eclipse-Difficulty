@@ -1934,7 +1934,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			reenforce_common = { 0.3, 0.3, 0.3 },
 		}
 	elseif difficulty_index == 4 then
-		self.besiege.assault.groups = {
+		self.ponr.assault.groups = {
 			blue_swats = { 1, 0.45, 0.25 },
 			swat_shields = { 0.3, 0.3, 0.2 },
 			swat_tasers = { 0.25, 0.25, 0.25 },
@@ -1949,7 +1949,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			reenforce_sneaky = { 0, 0.05, 0.1 },
 		}
 	elseif difficulty_index == 5 then
-		self.besiege.assault.groups = {
+		self.ponr.assault.groups = {
 			blue_swats = { 1, 0.3, 0 },
 			fbi_lights = { 1.75, 1.5, 0 },
 			fbi_heavies = { 0.5, 0.75, 1.25 },
