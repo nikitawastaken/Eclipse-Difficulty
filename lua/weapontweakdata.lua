@@ -427,8 +427,8 @@ self.qbu88.kick = kick_tables.sniper_auto
 self.qbu88.categories = {"snp", "ng"}
 
 -- Lebensauger
-self.wa2000.AMMO_MAX = total_ammo_tables.sniper
-self.wa2000.CLIP_AMMO_MAX = 10
+self.wa2000.AMMO_MAX = 40 -- make an exception for you
+self.wa2000.CLIP_AMMO_MAX = 20
 self.wa2000.stats.reload = 13
 self.wa2000.stats.damage = 145
 self.wa2000.stats_modifiers = {damage = 2}
