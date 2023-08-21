@@ -160,4 +160,38 @@
 			<attr name="value" value="tank_elite"/>
 		</target>
 	</tweak>
+
+	<!-- sniper glare -->
+	<tweak version="2" name="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper" extension="object">
+		<search>
+			<?xml version="1.0"?>
+			<dynamic_object/>
+			<effects/>
+		</search>
+		<target mode="attach">
+			<effect_spawner name="glint_scope" object="a_effect_flashlight" effect="effects/particles/weapons/sniper_glint" enabled="false" assign_parent="true"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd" extension="object">
+		<search>
+			<?xml version="1.0"?>
+			<dynamic_object/>
+			<effects/>
+		</search>
+		<target mode="attach">
+			<effect_spawner name="glint_scope" object="a_effect_flashlight" effect="effects/particles/weapons/sniper_glint" enabled="false" assign_parent="true"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_spa/weapons/wpn_npc_svd_silenced/wpn_npc_svd_silenced" extension="object">
+		<search>
+			<?xml version="1.0"?>
+			<dynamic_object/>
+			<effects/>
+		</search>
+		<target mode="attach">
+			<effect_spawner name="glint_scope" object="a_effect_flashlight" effect="effects/particles/weapons/sniper_glint" enabled="false" assign_parent="true"/>
+		</target>
+	</tweak>
 </tweaks>

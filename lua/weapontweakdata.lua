@@ -1774,12 +1774,16 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.shepheard_npc.sounds.prefix = "shepheard_npc"
 	self.ksg_npc.sounds.prefix = "keltec_npc"
 	self.beretta92_npc.has_suppressor = "suppressed_b"
-	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail_marshal"
 	self.mossberg_npc.anim_usage = "is_shotgun_pump"
 	self.mossberg_npc.CLIP_AMMO_MAX = 2
 	self.mossberg_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_empty"
 	self.mossberg_npc.sounds.prefix = self.huntsman_crew.sounds.prefix
 	self.mossberg_npc.usage = "is_double_barrel"
+	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.svd_snp_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.svdsil_snp_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.heavy_snp_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.dmr_npc.trail = "effects/particles/weapons/sniper_trail"
 	-- just copy pasted turret stuff from vanilla ovk145 tweak
 	self.ceiling_turret_module.HEALTH_INIT = 12500
 	self.ceiling_turret_module.SHIELD_HEALTH_INIT = 250
