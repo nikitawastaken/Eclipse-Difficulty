@@ -16,6 +16,7 @@ return table.list_to_set({
 	"Crackdown",
 	"Hyper Heisting",
 	"Skill Overhaul",
+	"No Leech",
     "Hinaomi's Rebalance - Weapons",
     "Hinaomi's Rebalance - Skills & Perk Decks",
     "Hinaomi's Rebalance - Weapon Conversion Kits",
