@@ -246,3 +246,23 @@ Hooks:PreHook(CopLogicTravel, "exit", "sh_exit", function(data, new_logic_name)
 		})
 	end
 end)
+
+-- Fix enemies sometimes disappearing when they are told to retire
+-- Basically this function doesn't check if the retiring unit reached their actual retire spot
+local _on_destination_reached_original = CopLogicTravel._on_destination_reached
+function CopLogicTravel._on_destination_reached(data, ...)
+	local objective = data.objective
+	if objective.type == "flee" or objective.type == "defend_area" and objective.grp_objective and objective.grp_objective.type == "retire" then
+		local nav_seg = data.unit:movement():nav_tracker():nav_segment()
+		if objective.nav_seg == nav_seg or objective.area and objective.area.nav_segs[nav_seg] then
+			data.unit:brain():set_active(false)
+			data.unit:base():set_slot(data.unit, 0)
+		else
+			objective.in_place = true
+			data.logic.on_new_objective(data)
+		end
+		return
+	end
+
+	return _on_destination_reached_original(data, ...)
+end
