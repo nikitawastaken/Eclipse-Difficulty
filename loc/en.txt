@@ -165,6 +165,7 @@
 	"menu_deck7_7_desc": "Your chance to be targeted while standing still and crouching is decreased by an additional ##$multiperk2##.\n\nYou answer pagers ##$multiperk3## faster.",
 	"menu_deck7_9": "Ricochet",
 	"menu_deck7_9_desc": "Dodged bullets will now ##ricochet## back to the enemy that fired them.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
+	"menu_deck8_9_desc": "Striking an enemy with your melee weapon regenerates ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck9_7_desc": "Killing an enemy at medium range recovers ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_3_desc": "Your ammo pickup rate is increased by ##$multiperk##.\n\nYou gain ##$multiperk3## more health.",
 	"menu_deck10_9_desc": "Increase health gained from ammo packs by additional ##$multiperk##.\n\nYour ammo pick up range is increased by ##$multiperk4##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
@@ -188,6 +189,7 @@
 	"menu_deck21_7_desc": "You gain ##$multiperk## additional health.",
 	"menu_deck21_9_desc": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck22_1_desc": "Unlocks and equips the Leech Ampule.\n\nChanging to another perk deck will make the Leech Ampule unavailable again. The Leech Ampule replaces your current throwable, is equipped in your throwable slot and can be switched out if desired. While in game you can use throwable key to activate the Leech Ampule.\n\nActivating the Leech Ampule will ##fully## restore your health and disable your armor for the duration of the Leech Ampule.\n\nWhile the Leech Ampule is active your health is divided into segments of ##$multiperk2## and damage taken from enemies removes one segment.\n\nKilling ##1## enemy will block damage for ##$multiperk3## seconds.\nAnytime you take damage your teammates are healed for ##$multiperk4## health.\n\nThe Leech Ampule lasts ##$multiperk5## seconds with a ##$multiperk6## seconds cooldown.",
+	"menu_deck22_5_desc": "The Leech Ampule duration is increased to ##$multiperk## seconds.\n\nKilling an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s).\n\nTaking damage now heals teammates for ##$multiperk3## health.",
 	"menu_deck22_9_desc": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##.\n\nYour maximum health is increased by ##$multiperk2##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	
 	"menu_deck1_3_short": "You and your crew's stamina is increased by ##$multiperk##. Increases your shout distance by ##$multiperk2##.",
@@ -205,6 +207,7 @@
 	"menu_deck6_7_short": "Your chance to dodge and armor are further increased for ballistic vests. Heavier vests receive more dodge and armor.",
 	"menu_deck7_7_short": "Your chance to be targeted while standing still and crouching is decreased by an additional ##$multiperk2##. You answer pagers ##$multiperk3## faster.",
 	"menu_deck7_9_short": "Dodged bullets will now ##ricochet## back to the enemy that fired them.",
+	"menu_deck8_9_short": "Striking an enemy with your melee weapon regenerates ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds."
 	"menu_deck9_7_short": "Killing an enemy at medium range recovers ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_3_short": "Your ammo pickup rate is increased by ##$multiperk##. You gain ##$multiperk3## more health.",
 	"menu_deck10_9_short": "Increase health gained from ammo packs by additional ##$multiperk##. Your ammo pick up range is increased by ##$multiperk4##.",
@@ -228,6 +231,7 @@
 	"menu_deck21_7_short": "You gain ##$multiperk## additional health.",
 	"menu_deck21_9_short": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
 	"menu_deck22_1_short": "Unlocks and equips the Leech Ampule.",
+	"menu_deck22_5_short": "The Leech Ampule duration is increased to ##$multiperk## seconds. Killing an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s). Taking damage now heals teammates for ##$multiperk3## health.",
 	"menu_deck22_9_short": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##. Your maximum health is increased by ##$multiperk2##.",
 	
 	
