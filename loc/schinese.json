@@ -164,6 +164,7 @@
 	"menu_deck7_7_desc": "你在站立或者蹲下时被敌人选中为目标的概率进一步降低##$multiperk2##。\n\n你回答对讲机加快##$multiperk3##。",
 	"menu_deck7_9": "扔回弹丸",
 	"menu_deck7_9_desc": "你成功闪避的子弹将##反弹##给开火的敌人。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
+	"menu_deck8_9_desc": "使用近战武器攻击敌人会恢复##$multiperk##的血量。每##$multiperk2##秒最多触发一次。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
 	"menu_deck9_7_desc": "在中距离击杀敌人会恢复##$multiperk##点护甲。\n\n每##$multiperk2##秒最多触发一次。",
 	"menu_deck10_3_desc": "你的捡弹率提高##$multiperk##。\n\n你获得##$multiperk3##的血量。",
 	"menu_deck10_9_desc": "你从弹药盒里获得的血量额外提高##$multiperk##点。\n\n你捡弹药盒的距离增加##$multiperk4##。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
@@ -187,6 +188,7 @@
 	"menu_deck21_7_desc": "你额外获得##$multiperk##的血量。",
 	"menu_deck21_9_desc": "你的队友击杀敌人会恢复##$multiperk##点血量。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
 	"menu_deck22_1_desc": "解锁水蛭安瓿瓶。\n\n切换到其他天赋会导致其不可用。水蛭安瓿瓶会替代你的投掷物，装备在投掷物栏里，并在需要的时候可以被切换。在游戏中你可以按投掷物键激活安瓿瓶。\n\n激活安瓿瓶会##完全##恢复你的血量并使你的护甲不可用。\n\n当安瓿瓶被激活时，你的血量以被划分为总血量的##$multiperk2##多个格子，敌人的任何伤害会移除一格。\n\n击杀##1##名敌人将会得到##$multiperk3##秒的无敌。\n你受伤时，队友将会恢复##$multiperk4##血量。\n\n水蛭安瓿瓶持续##$multiperk5##秒，冷却##$multiperk6##秒。",
+	"menu_deck22_5_desc": "水蛭安瓿瓶的持续时间增加到##$multiperk##秒。\n\n击杀一名敌人会减少水蛭安瓿瓶##$multiperk2##秒的冷却时间。\n\n受到伤害会为队友恢复##$multiperk3##的血量。",
 	"menu_deck22_9_desc": "当你激活安瓿瓶时，你的血量以被划分为总血量的##$multiperk##的多个格子。\n\n你的血量提高##$multiperk2##。\n\n牌组完成奖励：收获日阶段抽到稀有物品几率增加##10%##。",
 	
 	"menu_deck1_3_short": "你和你的队友的耐力增加##$multiperk##。你的呼喊距离增加##$multiperk2##。",
@@ -204,6 +206,7 @@
 	"menu_deck6_7_short": "当你穿着防弹背心时，你的闪避概率和护甲量会进一步提高。\n\n越重的背心会获得更多的数值。",
 	"menu_deck7_7_short": "你在站立或者蹲下时被敌人选中为目标的概率进一步降低##$multiperk2##。你回答对讲机加快##$multiperk3##。",
 	"menu_deck7_9_short": "你成功闪避的子弹将##反弹##给开火的敌人。",
+	"menu_deck8_9_short": "使用近战武器攻击敌人会恢复##$multiperk##的血量。每##$multiperk2##秒最多触发一次。"
 	"menu_deck9_7_short": "在中距离击杀敌人会恢复##$multiperk##点护甲。每##$multiperk2##秒最多触发一次。",
 	"menu_deck10_3_short": "你的捡弹率提高##$multiperk##。你获得##$multiperk3##的血量。",
 	"menu_deck10_9_short": "你从弹药盒里获得的血量额外提高##$multiperk##点。你捡弹药盒的距离增加##$multiperk4##。",
@@ -219,7 +222,7 @@
 	"menu_deck13_5_short": "你击杀敌人之后储存的血量增加##$multiperk##点。你的闪避概率增加##$multiperk3##。",
 	"menu_deck13_7_short": "你击杀敌人之后储存的血量增加##$multiperk##。",	
 	"menu_deck14_3_short": "你的队友也享受你的狂乱度的加成。未消音的武器开枪时有一定几率在你的敌人中散播恐慌。",
-        "menu_deck15_1_short": "你不再会在脱离战斗之后恢复所有护甲，而是会以固定间隔持续恢复护甲。重甲每次恢复的护甲更多，但间隔更久。注意：使用该天赋时，来自其他天赋和技能的护甲恢复速度全部无效。",
+	"menu_deck15_1_short": "你不再会在脱离战斗之后恢复所有护甲，而是会以固定间隔持续恢复护甲。重甲每次恢复的护甲更多，但间隔更久。注意：使用该天赋时，来自其他天赋和技能的护甲恢复速度全部无效。",
 	"menu_deck15_7_short": "你##$multiperk##的血量被转换成##$multiperk2##额外护甲。你的闪避概率增加##$multiperk3##。",
 	"menu_deck15_9_short": "造成伤害会恢复##$multiperk##点护甲。每##$multiperk2##秒只能触发一次。你的护甲提高##$multiperk3##。",
 	"menu_deck17_9_short": "从首脑注射器每获得##5点过量治疗##就会减少##1秒##首脑注射器的冷却时间。",
@@ -227,6 +230,7 @@
 	"menu_deck21_7_short": "你额外获得##$multiperk##的血量。",
 	"menu_deck21_9_short": "你的队友击杀敌人会恢复##$multiperk##点血量。",
 	"menu_deck22_1_short": "解锁水蛭安瓿瓶。",
+	"menu_deck22_5_short": "水蛭安瓿瓶的持续时间增加到##$multiperk##秒。击杀一名敌人会减少水蛭安瓿瓶##$multiperk2##秒的冷却时间。受到伤害会为队友恢复##$multiperk3##的血量。",
 	"menu_deck22_9_short": "当你激活安瓿瓶时，你的血量以被划分为总血量的##$multiperk##的多个格子。你的血量提高##$multiperk2##。",
 	
 	
