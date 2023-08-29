@@ -36,6 +36,8 @@ local _update_whitelist = {
 	bex = true, -- sanmartini
 	pex = true, -- bijuana
 	pent = true, -- mmaster
+	firestarter_2 = true,
+	rvd1 = true, -- resdogs1
 }
 
 -- Code from Dr. Newbie

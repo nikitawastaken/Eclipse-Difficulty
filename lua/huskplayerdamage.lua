@@ -26,7 +26,7 @@ function HuskPlayerDamage:_send_damage_to_owner(attack_data)
 	managers.network:session():send_to_peers("sync_friendly_fire_damage", peer_id, attack_data.attacker_unit, damage, attack_data.variant)
 
 	if attack_data.attacker_unit == managers.player:player_unit() then
-		managers.hud:on_hit_confirmed()
+		managers.hud:on_ff_confirmed()
 	end
 
 	if managers.mutators:is_mutator_active(MutatorFriendlyFire) then

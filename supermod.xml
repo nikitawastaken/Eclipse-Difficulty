@@ -33,6 +33,7 @@
 					<post :hook_id="hudmissionbriefing"/>
 					<post :hook_id="hudstageendscreen"/>
 					<post :hook_id="hudassaultcorner"/>
+                    <post :hook_id="hudhitconfirm"/>
 				</group>
 
 				<group :hook_id="menu/">
@@ -180,6 +181,7 @@
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>
+                    <post :hook_id="huskteamaidamage"/>
 				</group>
 
 				<group :hook_id="props/">
