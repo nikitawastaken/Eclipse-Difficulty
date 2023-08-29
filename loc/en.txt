@@ -58,7 +58,7 @@
 	"menu_far_away_beta": "Shotgun CQB",
 	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single shot Shotguns.\n\nACE: ##$pro##\nFor every hit with a Shotgun you gain a ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_close_by_beta": "Mag-fed Specialist",
-	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Mag-fed## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Mag-fed## Shotguns have their magazine size increased by ##$multipro## shells.",
+	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Mag-fed & Double Barrel## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Mag-fed## Shotguns have their magazine size increased by ##$multipro## shells.",
 	"menu_overkill_beta": "Shotgun Hell",
     "menu_overkill_beta_desc": "BASIC: ##$basic##\nFiring a Shotgun has a ##$multibasic## chance to not consume any ammo.\n\nACE: ##$pro##\nWhen killing an enemy with a Shotgun, you have a ##$multipro## chance to cause nearby enemies to panic.\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nUnlocks the Improved Combined Tactical Vest for you to wear.\n\nACE: ##$pro##\nYour total armor value is increased by ##$multibasic##.",
