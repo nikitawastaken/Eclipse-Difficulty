@@ -227,7 +227,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.jail_workout[2].upgrades = { "player_concealment_bonus_1" }
 
 	-- ECM Specialist
-	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_1", "ecm_jammer_feedback_duration_boost_2" }
+	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_2" }
 
 	-- Blackout
 	self.skills.chameleon[1].upgrades = { "player_tape_loop_duration_1", "player_tape_loop_duration_2" }
