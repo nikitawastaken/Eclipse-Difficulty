@@ -423,8 +423,6 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 	self.parts.wpn_fps_upg_perk_speedloader.name_id = "bm_menu_perk_speedloader"
 	self.parts.wpn_fps_upg_perk_speedloader.desc_id = "bm_menu_perk_speedloader_desc"
 	self.parts.wpn_fps_upg_perk_speedloader.stats = { reload = 2, total_ammo_mod = -5 }
-	self.parts.wpn_fps_upg_perk_speedloader_lmg = deep_clone(self.parts.wpn_fps_upg_perk_speedloader)
-	self.parts.wpn_fps_upg_perk_speedloader_lmg.stats = { reload = 3 } -- make it more impactful on lmgs
 
 	-- haste
 	self.parts.wpn_fps_upg_perk_haste = deep_clone(self.parts.wpn_fps_upg_perk_template)
