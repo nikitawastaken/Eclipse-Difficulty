@@ -1889,6 +1889,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		pex,
 		glace,
 		hox_2,
+		firestarter_2,
 	}
 
 	-- Sustain
