@@ -497,10 +497,10 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- ECM Specialist
 	self.values.ecm_jammer.feedback_duration_boost = {
-		1.5
+		1.5,
 	}
 	self.values.ecm_jammer.feedback_duration_boost_2 = {
-		1.5
+		1.5,
 	}
 	self.skill_descs.ecm_2x.multipro = "30"
 
