@@ -171,6 +171,7 @@
 				<group :hook_id="equipment/">
 					<post :hook_id="sentry_gun/sentrygunbase"/>
 					<post :hook_id="ammo_bag/ammobagbase"/>
+					<post :hook_id="ecm_jammer/ecmjammerbase"/>
 				</group>
 
 				<post :hook_id="civilians/civilianbase"/>
@@ -215,7 +216,7 @@
 	</hooks>
 
 	<assets base_path="assets/">
-	
+
 		<!-- sniper glare -->
 		<file name="effects/particles/weapons/sniper_glint.effect"/>
 		<file name="effects/textures/weapons/sniper_glint.dds"/>

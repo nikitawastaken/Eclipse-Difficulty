@@ -56,7 +56,7 @@
 	"menu_far_away_beta": "近战霰弹",
 	"menu_far_away_beta_desc": "基础: ##$basic##\n单发霰弹枪腰射时射速增加##$multibasic##。\n\n精通: ##$pro##\n每当你用霰弹枪获得一个击杀时，你会获得持续##$multipro2##秒的##$multipro##移速加成。\n最多可以同时叠加##$multipro3##次。",
 	"menu_close_by_beta": "弹匣专家",
-	"menu_close_by_beta_desc": "基础: ##$basic##\n你装填##弹夹式##霰弹枪的速度加快##$multibasic##。\n\n精通: ##$pro##\n你的##弹夹式##霰弹枪的弹匣容量增加##$multipro##。",
+	"menu_close_by_beta_desc": "基础: ##$basic##\n你装填##弹夹式和双管##霰弹枪的速度加快##$multibasic##。\n\n精通: ##$pro##\n你的##弹夹式##霰弹枪的弹匣容量增加##$multipro##。\n\n注意：精通效果不影响双管和判官。",
 	"menu_overkill_beta": "霰弹炼狱",
 	"menu_overkill_beta_desc": "基础: ##$basic##\n你的霰弹枪开火时有##$multibasic##的概率不消耗子弹。\n\n精通: ##$pro##\n当你使用霰弹枪击杀一名敌人时，你有##$multipro##的概率散播恐慌。\n恐慌会让敌人进入不可控的恐惧状态。\n\n该技能每##$multipro2##秒最多触发一次。",
 	"menu_juggernaut_beta_desc": "基础: ##$basic##\n解锁改良型复合战术背心。\n\n精通: ##$pro##\n你的总护甲值增加##$multibasic##。",
