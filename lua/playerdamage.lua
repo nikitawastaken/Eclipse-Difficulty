@@ -209,12 +209,12 @@ function PlayerDamage:is_friendly_fire(unit)
 		return false
 	end
 
+    local friendly_fire = attacker_team and not attacker_team.foes[my_team.id] and Global.game_settings and not Global.game_settings.one_down
 	if Global.game_settings and Global.game_settings.one_down and unit:base() and unit:base().is_husk_player then
-		friendly_fire = false
+		return false
 	elseif managers.groupai:state():all_AI_criminals()[self._unit:key()] and Global.game_settings and not Global.game_settings.one_down then
-		friendly_fire = true
+		return true
 	else
-		local friendly_fire = attacker_team and not attacker_team.foes[my_team.id]
 		friendly_fire = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire)
 	end
 
