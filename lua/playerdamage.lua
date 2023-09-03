@@ -210,15 +210,7 @@ function PlayerDamage:is_friendly_fire(unit)
 	end
 	local pro_job_enabled = Global.game_settings and Global.game_settings.one_down
 	local attacked_by_foe = attacker_team and my_team and my_team.foes[attacker_team.id]
-	local friendly_fire_mutator_active = false
-	for k, v in pairs(managers.mutators:active_mutators()) do
-		for k1, v1 in pairs(v) do
-			if v1.name_id == "mutator_friendly_fire" then
-				friendly_fire_mutator_active = true
-				break
-			end
-		end
-	end
+	local friendly_fire_mutator_active = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire_mutator_active) == false
 	if not attacked_by_foe then
 		if pro_job_enabled or friendly_fire_mutator_active then
 			return false
