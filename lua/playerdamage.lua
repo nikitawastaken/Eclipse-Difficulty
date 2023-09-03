@@ -208,17 +208,16 @@ function PlayerDamage:is_friendly_fire(unit)
 	if attacker_team ~= my_team and attacker_mov_ext:friendly_fire() then
 		return false
 	end
-
-	local friendly_fire = attacker_team and not attacker_team.foes[my_team.id] and Global.game_settings and not Global.game_settings.one_down
-	if Global.game_settings and Global.game_settings.one_down and unit:base() and unit:base().is_husk_player then
-		return false
-	elseif managers.groupai:state():all_AI_criminals()[self._unit:key()] and Global.game_settings and not Global.game_settings.one_down then
+	local pro_job_enabled = Global.game_settings and Global.game_settings.one_down
+	local attacked_by_foe = attacker_team and my_team and my_team.foes[attacker_team.id]
+	local friendly_fire_mutator_active = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire_mutator_active) == false
+	if not attacked_by_foe then
+		if pro_job_enabled or friendly_fire_mutator_active then
+			return false
+		end
 		return true
-	else
-		friendly_fire = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire)
 	end
-
-	return friendly_fire
+	return false
 end
 
 -- Armor Breaking GP / Panic
