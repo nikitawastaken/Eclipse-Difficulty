@@ -18,5 +18,10 @@ return {
 		values = {
 			enabled = false
 		}
+	},
+	[101416] = {
+		values = {
+			enabled = false
+		}
 	}
 }
