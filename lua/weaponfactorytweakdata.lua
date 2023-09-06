@@ -202,6 +202,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_uupg_fg_radian.stats = { value = 1, recoil = 2, spread = 1, damage = 2, concealment = -1 }
 	self.parts.wpn_fps_m4_uupg_g_billet.stats = { value = 6, spread = 1, recoil = 1 }
 	self.parts.wpn_fps_upg_ak_ns_zenitco.stats = { value = 1, concealment = -1, damage = 3, spread = 2, recoil = 1 }
+	self.wpn_fps_ass_m16.override.wpn_fps_uupg_fg_radian = { stats = { recoil = 1, concealment = 2 } }
 
 	-- Specials
 
