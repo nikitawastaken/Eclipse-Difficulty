@@ -267,9 +267,8 @@ function CopLogicTravel._on_destination_reached(data, ...)
 	return _on_destination_reached_original(data, ...)
 end
 
-
 -- Play generic radio report chatter during travel while unalerted
-Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function (data)
+Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(data)
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.report then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end

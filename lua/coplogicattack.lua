@@ -98,7 +98,6 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 	return aim, shoot, expected_pos
 end
 
-
 -- Improve aggressive chatter, specials get priority and are not limited by max amount of chatter in an area
 function CopLogicAttack._chk_say_chatter(data, chatter_type)
 	if data.unit:base():has_tag("special") then
@@ -111,7 +110,7 @@ function CopLogicAttack._chk_say_chatter(data, chatter_type)
 	end
 end
 
-Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function (shoot, aim, data, my_data)
+Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(shoot, aim, data, my_data)
 	local chatter = data.char_tweak.chatter
 	local is_off_cooldown = not data.combat_chatter_cooldown_t or data.combat_chatter_cooldown_t < data.t
 	if not chatter then
@@ -134,9 +133,8 @@ Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function (s
 	end
 end)
 
-
 -- Make suppressed chatter less frequent
-Hooks:PostHook(CopLogicAttack, "on_suppressed_state", "sh_on_suppressed_state", function (data)
+Hooks:PostHook(CopLogicAttack, "on_suppressed_state", "sh_on_suppressed_state", function(data)
 	if data.is_suppressed and data.char_tweak.chatter and data.char_tweak.chatter.suppress then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "suppress")
 	end

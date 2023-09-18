@@ -353,9 +353,8 @@ function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
 	end
 end
 
-
 -- Play generic chatter during idle while unalerted
-Hooks:PostHook(CopLogicIdle, "queued_update", "sh_queued_update", function (data)
+Hooks:PostHook(CopLogicIdle, "queued_update", "sh_queued_update", function(data)
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.idle then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "idle")
 	end

@@ -469,7 +469,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 						return
 					end
 				end
-
 			else
 				-- If we aren't pushing, we go to one area before the criminal area
 				if #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
@@ -969,7 +968,6 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, ...)
 	end
 end
 
-
 -- Make a generic group voice function instead of individual ones and make retiring groups play retreat lines
 function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 	for _, unit_data in pairs(group.units) do
@@ -979,8 +977,7 @@ function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 	end
 end
 
-
-Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function (self, group)
+Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
 	self:_chk_say_group(group, "retreat")
 end)
 
@@ -1094,7 +1091,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 			end
 		end
 	end
-
 
 	self:_chk_say_group(group, "go_go")
 	self:_set_objective_to_enemy_group(group, {
@@ -1223,7 +1219,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 			end
 		end
 	end
-
 
 	self:_chk_say_group(group, target_area.hostages and "get_hostages" or "get_loot")
 	self:_set_objective_to_enemy_group(group, {
