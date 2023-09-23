@@ -59,13 +59,13 @@ function CopActionHurt:_pseudorandom(a, b)
 	ht = math.round(ht * 4)
 
 	-- Adapted from https://stackoverflow.com/a/35377265
-	ht = ht * 3266489917 + 374761393;
+	ht = ht * 3266489917 + 374761393
 	ht = bit.bor(bit.lshift(ht, 17), bit.rshift(ht, 15))
-	ht = ht + self._unit:id() * 3266489917;
-	ht = ht * 668265263;
-	ht = bit.bxor(ht, bit.rshift(ht, 15)) * 2246822519;
-	ht = bit.bxor(ht, bit.rshift(ht, 13)) * 3266489917;
-	ht = bit.bxor(ht, bit.rshift(ht, 16));
+	ht = ht + self._unit:id() * 3266489917
+	ht = ht * 668265263
+	ht = bit.bxor(ht, bit.rshift(ht, 15)) * 2246822519
+	ht = bit.bxor(ht, bit.rshift(ht, 13)) * 3266489917
+	ht = bit.bxor(ht, bit.rshift(ht, 16))
 
 	local val = bit.band(ht, 0xffffff) / 0x1000000
 	if a and b then

@@ -300,7 +300,7 @@ Hooks:PostHook(GroupAIStateBase, "_remove_group_member", "sh__remove_group_membe
 end)
 
 -- Set a minimum gunshot and bullet impact alert range in loud
-Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", function (self, alert_data)
+Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", function(self, alert_data)
 	if alert_data[1] == "bullet" and alert_data[3] and self:enemy_weapons_hot() then
 		alert_data[3] = math.max(alert_data[3], 500)
 	end
