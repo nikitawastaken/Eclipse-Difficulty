@@ -223,3 +223,28 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 
 	return result
 end)
+
+-- Disable impact sounds and blood effects for stuns
+local damage_explosion = CopDamage.damage_explosion
+function CopDamage:damage_explosion(attack_data, ...)
+	local no_blood = self._no_blood
+	self._no_blood = attack_data.variant == "stun"
+
+	local result = damage_explosion(self, attack_data, ...)
+
+	self._no_blood = no_blood
+
+	return result
+end
+
+local sync_damage_explosion = CopDamage.sync_damage_explosion
+function CopDamage:sync_damage_explosion(attacker_unit, damage_percent, i_attack_variant, ...)
+	local no_blood = self._no_blood
+	self._no_blood = CopDamage._ATTACK_VARIANTS[i_attack_variant] == "stun"
+
+	local result = sync_damage_explosion(self, attacker_unit, damage_percent, i_attack_variant, ...)
+
+	self._no_blood = no_blood
+
+	return result
+end
