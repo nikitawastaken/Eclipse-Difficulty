@@ -522,11 +522,25 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	-- Enemy chatter
 	presets.enemy_chatter.cop.retreat = nil
+	presets.enemy_chatter.cop.flank = true
 	presets.enemy_chatter.cop.open_fire = true
+	presets.enemy_chatter.cop.watch_background = true
+	presets.enemy_chatter.cop.hostage_delay = true
+	presets.enemy_chatter.cop.get_hostages = true
+	presets.enemy_chatter.cop.get_loot = true
+	presets.enemy_chatter.cop.group_death = true
+	presets.enemy_chatter.cop.idle = true
+	presets.enemy_chatter.cop.report = true
 
 	presets.enemy_chatter.swat.push = true
+	presets.enemy_chatter.swat.flank = true
 	presets.enemy_chatter.swat.flash_grenade = true
 	presets.enemy_chatter.swat.open_fire = true
+	presets.enemy_chatter.swat.watch_background = true
+	presets.enemy_chatter.swat.hostage_delay = true
+	presets.enemy_chatter.swat.get_hostages = true
+	presets.enemy_chatter.swat.get_loot = true
+	presets.enemy_chatter.swat.group_death = true
 
 	presets.enemy_chatter.gangster = {
 		aggressive = true,

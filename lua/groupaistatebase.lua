@@ -90,41 +90,6 @@ Hooks:PostHook(GroupAIStateBase, "init", "sh_init", function(self)
 	self._marking_sentries = {}
 end)
 
--- Make elite dozers register as specials
-local function register_special_types(gstate)
-	gstate._special_unit_types.tank_elite = true
-	gstate._special_unit_mappings = {
-		tank_elite = { "tank" },
-	}
-end
-
-Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "sh__init_misc_data", register_special_types)
-Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "sh_on_simulation_started", register_special_types)
-
-local register_special_unit_original = GroupAIStateBase.register_special_unit
-function GroupAIStateBase:register_special_unit(u_key, category_name, ...)
-	local mapping = self._special_unit_mappings[category_name]
-	if mapping then
-		for _, v in pairs(mapping) do
-			register_special_unit_original(self, u_key, v, ...)
-		end
-	else
-		register_special_unit_original(self, u_key, category_name, ...)
-	end
-end
-
-local unregister_special_unit_original = GroupAIStateBase.unregister_special_unit
-function GroupAIStateBase:unregister_special_unit(u_key, category_name, ...)
-	local mapping = self._special_unit_mappings[category_name]
-	if mapping then
-		for _, v in pairs(mapping) do
-			unregister_special_unit_original(self, u_key, v, ...)
-		end
-	else
-		unregister_special_unit_original(self, u_key, category_name, ...)
-	end
-end
-
 -- Restore scripted cloaker spawn noise
 local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
 function GroupAIStateBase:_process_recurring_grp_SO(...)
@@ -324,5 +289,19 @@ Hooks:PostHook(GroupAIStateBase, "update", "eclipse_sentry_update", function(sel
 		for _, sentry in pairs(self._marking_sentries) do
 			sentry:base():_update_omniscience(t, dt)
 		end
+	end
+end)
+
+-- Add chance for enemies to comment on squad member deaths
+Hooks:PostHook(GroupAIStateBase, "_remove_group_member", "sh__remove_group_member", function(self, group, u_key, is_casualty)
+	if is_casualty and math.random() < 0.2 then
+		self:_chk_say_group(group, "group_death")
+	end
+end)
+
+-- Set a minimum gunshot and bullet impact alert range in loud
+Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", function(self, alert_data)
+	if alert_data[1] == "bullet" and alert_data[3] and self:enemy_weapons_hot() then
+		alert_data[3] = math.max(alert_data[3], 500)
 	end
 end)

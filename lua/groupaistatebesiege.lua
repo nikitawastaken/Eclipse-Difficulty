@@ -373,7 +373,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	end
 
 	if open_fire then
-		self:_voice_open_fire_start(group)
+		self:_chk_say_group(group, "open_fire")
 		self:_set_objective_to_enemy_group(group, {
 			attitude = "engage",
 			pose = "stand",
@@ -441,7 +441,14 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			local push = assault_from == objective_area
 
 			if push then
-				if phase_is_anticipation or tactics_map.no_push then
+				if tactics_map.no_push then
+					return
+				end
+
+				if phase_is_anticipation then
+					if self._hostage_headcount > 0 then
+						self:_chk_say_group(group, "hostage_delay")
+					end
 					return
 				end
 
@@ -462,14 +469,18 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 						return
 					end
 				end
-
-				self:_voice_move_in_start(group)
 			else
 				-- If we aren't pushing, we go to one area before the criminal area
 				if #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
 					table.remove(assault_path)
 				end
 				assault_area = assault_from
+			end
+
+			if not assault_area.hostages or not self:_chk_say_group(group, "watch_background") then
+				if flank_chance >= 1 or not self:_chk_say_group(group, "flank") then
+					self:_chk_say_group(group, push and "push" or "go_go")
+				end
 			end
 
 			self:_set_objective_to_enemy_group(group, {
@@ -957,32 +968,18 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, ...)
 	end
 end
 
--- Make open fire and push use a unique voiceline, add retreat lines
-function GroupAIStateBesiege:_voice_open_fire_start(group)
-	for u_key, unit_data in pairs(group.units) do
-		if unit_data.char_tweak.chatter.open_fire and self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, "open_fire") then
-			break
+-- Make a generic group voice function instead of individual ones and make retiring groups play retreat lines
+function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
+	for _, unit_data in pairs(group.units) do
+		if unit_data.char_tweak.chatter[chatter_type] and self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, chatter_type) then
+			return true
 		end
 	end
 end
 
-function GroupAIStateBesiege:_voice_move_in_start(group)
-	for u_key, unit_data in pairs(group.units) do
-		if unit_data.char_tweak.chatter.push and self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, "push") then
-			break
-		end
-	end
-end
-
-function GroupAIStateBesiege:_voice_retreat(group)
-	for u_key, unit_data in pairs(group.units) do
-		if unit_data.char_tweak.chatter.retreat and self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, "retreat") then
-			break
-		end
-	end
-end
-
-Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", GroupAIStateBesiege._voice_retreat)
+Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
+	self:_chk_say_group(group, "retreat")
+end)
 
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type
 -- This ensures they are not retired immediatley cause they are not part of assault/recon group types
@@ -1095,6 +1092,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		end
 	end
 
+	self:_chk_say_group(group, "go_go")
 	self:_set_objective_to_enemy_group(group, {
 		scan = true,
 		pose = move_in and "crouch" or "stand",
@@ -1222,6 +1220,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		end
 	end
 
+	self:_chk_say_group(group, target_area.hostages and "get_hostages" or "get_loot")
 	self:_set_objective_to_enemy_group(group, {
 		scan = true,
 		type = "recon_area",

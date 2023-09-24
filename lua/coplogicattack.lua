@@ -98,21 +98,45 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 	return aim, shoot, expected_pos
 end
 
--- Improve aggressive chatter
+-- Improve aggressive chatter, specials get priority and are not limited by max amount of chatter in an area
+function CopLogicAttack._chk_say_chatter(data, chatter_type)
+	if data.unit:base():has_tag("special") then
+		if not data.unit:sound():speaking(data.t) then
+			data.unit:sound():say(tweak_data.group_ai.enemy_chatter[chatter_type].queue, true)
+			return true
+		end
+	else
+		return managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, chatter_type)
+	end
+end
+
 Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(shoot, aim, data, my_data)
 	local chatter = data.char_tweak.chatter
 	local is_off_cooldown = not data.combat_chatter_cooldown_t or data.combat_chatter_cooldown_t < data.t
 	if not chatter then
 		return
 	elseif data.unit:in_slot(16) then
-		if aim and is_off_cooldown and chatter.aggressive and not data.unit:sound():speaking(data.t) then
+		if not data.combat_chatter_cooldown_t then
+			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
+		elseif aim and is_off_cooldown and chatter.aggressive and not data.unit:sound():speaking(data.t) then
 			data.unit:sound():say(shoot and "lk3a" or "lk3b", true)
 			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
 		end
-	elseif shoot and not my_data.firing and chatter.open_fire and managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "open_fire") then
-		data.combat_chatter_cooldown_t = data.t + math.rand(5, 10)
-	elseif aim and is_off_cooldown and chatter.aggressive and managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "aggressive") then
-		data.combat_chatter_cooldown_t = data.t + math.rand(10, 15)
+	elseif shoot and not my_data.firing and chatter.contact then
+		if CopLogicAttack._chk_say_chatter(data, "contact") then
+			data.combat_chatter_cooldown_t = data.t + math.rand(5, 10)
+		end
+	elseif aim and is_off_cooldown and chatter.aggressive then
+		if CopLogicAttack._chk_say_chatter(data, "aggressive") then
+			data.combat_chatter_cooldown_t = data.t + math.rand(10, 20)
+		end
+	end
+end)
+
+-- Make suppressed chatter less frequent
+Hooks:PostHook(CopLogicAttack, "on_suppressed_state", "sh_on_suppressed_state", function(data)
+	if data.is_suppressed and data.char_tweak.chatter and data.char_tweak.chatter.suppress then
+		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "suppress")
 	end
 end)
 
