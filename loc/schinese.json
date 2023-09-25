@@ -244,7 +244,7 @@
 	"eclipse_menu_ponr_assault_text": "编辑突击横幅",
 	"eclipse_menu_ponr_assault_text_desc": "编辑突击横幅样式。和其他修改了突击横幅的mod冲突。",
 	
-	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用。\nA你只会有一个AI队友。\n多个劫案启用了有去无回倒计时。\n连续倒地会减少倒计时和被救起之后的血量。",
+	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用。\n你只会有一个AI队友。\n多个劫案启用了有去无回倒计时。\n连续倒地会减少倒计时和被救起之后的血量。",
 	"menu_difficulty_easy_wish": "日蚀",
 	"menu_risk_easy_wish": "'日蚀'行动。\n对你来说, 行动才是关键。",
 	"menu_risk_special": "枪林弹雨。\n所有警力正在进场。",
