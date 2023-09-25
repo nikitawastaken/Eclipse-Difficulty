@@ -245,7 +245,7 @@
 	"eclipse_menu_ponr_assault_text_desc": "Assault banner flavor edits. Incompatible with mods that edit assault banner.",
 	
 	
-	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled.\nVarious heists have points of no return enabled.\nEach consecutive down decreases bleedout timer and revive health.",
+	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled.\nYou're only granted one Team AI.\nVarious heists have points of no return enabled.\nEach consecutive down decreases bleedout timer and revive health.",
 	"menu_difficulty_easy_wish": "Eclipse",
 	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",
 	"menu_risk_special": "Overkill.\nMaximum Force Responders inbound.",
