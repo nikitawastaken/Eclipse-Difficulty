@@ -37,7 +37,7 @@
 	"menu_black_marketeer_beta_desc": "基础: ##$basic##\n拥有至少##$multibasic##名人质或者投降的敌人会让你每##$multibasic3##秒恢复##$multibasic2##点血量。\n\n精通: ##$pro##\n你回复的血量提高到##$multipro##点。\n你的被转化的敌人现在也被算作人质。\n\n注意：不影响人质情结和人质事件。",
 	"menu_cable_guy_beta": "人质情结",
 	"menu_cable_guy_beta_desc": "基础: ##$basic##\n你吼人的距离增加##$multibasic2##。\n\n精通: ##$pro##\n平民现在会被你发出的声音所压制。压制时间提高##$multipro##。\n\n你有概率会被周围没有被捆绑的平民通过互动救起。",
-	"menu_triathlete_beta_desc": "基础: ##$basic##\n你的绑带增加##$multibasic##个。\n\n精通: ##$pro##\n你绑平民为人质的速度增加##$multipro##。",
+	"menu_triathlete_beta_desc": "基础: ##$basic##\n你的绑带增加##$multibasic##个。\n\n精通: ##$pro##\n你可以同时让##$multipro##名人质跟着你。\n\n你绑平民为人质的速度增加##$multipro2##。",
 	"menu_stockholm_syndrome_beta": "人质事件",
 	"menu_stockholm_syndrome_beta_desc": "基础: ##$basic##\n每拥有一名人质会为你和你的队友提供##$multibasic##点伤害吸收。\n\n精通: ##$pro##\n每拥有一名人质会延长控制阶段##$multipro##秒。\n\n注意：技能效果最多叠加##4##次。",
 	"menu_control_freak_beta_desc": "基础: ##$basic##\n你的被转化的敌人获得##$multibasic3##的伤害减免。\n\n精通: ##$pro##\n你的被转化的敌人额外获得##$multipro4##伤害减免。",
@@ -244,7 +244,7 @@
 	"eclipse_menu_ponr_assault_text": "编辑突击横幅",
 	"eclipse_menu_ponr_assault_text_desc": "编辑突击横幅样式。和其他修改了突击横幅的mod冲突。",
 	
-	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用。\n多个劫案启用了有去无回倒计时。\n连续倒地会减少倒计时和被救起之后的血量。",
+	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用。\n你只会有一个AI队友。\n多个劫案启用了有去无回倒计时。\n连续倒地会减少倒计时和被救起之后的血量。",
 	"menu_difficulty_easy_wish": "日蚀",
 	"menu_risk_easy_wish": "'日蚀'行动。\n对你来说, 行动才是关键。",
 	"menu_risk_special": "枪林弹雨。\n所有警力正在进场。",

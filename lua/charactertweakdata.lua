@@ -469,7 +469,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		factors = {
 			health = {
 				[0.75] = 0,
-				[0.0] = 0.75,
+				[0.0] = 0.5,
 			},
 			aggressor_dis = {
 				[100] = 0.2,
@@ -490,7 +490,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		factors = {
 			health = {
 				[0.5] = 0,
-				[0.0] = 0.5,
+				[0.0] = 0.3,
 			},
 			aggressor_dis = {
 				[100] = 0.1,
@@ -511,7 +511,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		factors = {
 			health = {
 				[0.5] = 0,
-				[0.0] = 0.2,
+				[0.0] = 0.15,
 			},
 			aggressor_dis = {
 				[100] = 0,

@@ -52,7 +52,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Forced Friendship
 	self.skills.triathlete[1].upgrades = { "cable_tie_quantity" }
-	self.skills.triathlete[2].upgrades = { "cable_tie_interact_speed_multiplier" }
+	self.skills.triathlete[2].upgrades = { "cable_tie_interact_speed_multiplier", "player_extra_hostages" }
 
 	-- Stockholm Syndrome
 	self.skills.cable_guy[1].upgrades = { "player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier" }

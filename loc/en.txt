@@ -39,7 +39,7 @@
 	"menu_black_marketeer_beta_desc": "BASIC: ##$basic##\nHaving at least ##$multibasic## hostage or dominated enemy makes you regenerate ##$multibasic2## health every ##$multibasic3## seconds.\n\nACE: ##$pro##\nThe amount of healing you receive is increased to ##$multipro##.\nYour converted enemies will now count towards hostage related boosts.\n\nNote: Doesn't apply to Stockholm Syndrome and Hostage Situation skills.",
 	"menu_cable_guy_beta": "Stockholm Syndrome",
 	"menu_cable_guy_beta_desc": "BASIC: ##$basic##\nThe power and range of your intimidation is increased by ##$multibasic2##.\n\nACE: ##$pro##\nCivilians are intimidated by the noise you make and remain intimidated ##$multipro## longer.\n\nNearby untied civilians have a chance of reviving you if you interact with them.",
-	"menu_triathlete_beta_desc": "BASIC: ##$basic##\nIncrease your supply of cable ties by ##$multibasic##.\n\nACE: ##$pro##\nYou can cable tie hostages ##$multipro## faster.",
+	"menu_triathlete_beta_desc": "BASIC: ##$basic##\nIncrease your supply of cable ties by ##$multibasic##.\n\nACE: ##$pro##\nYou can now have ##$multipro## hostages following you at once.\n\nYou can cable tie hostages ##$multipro2## faster.",
 	"menu_stockholm_syndrome_beta": "Hostage Situation",
 	"menu_stockholm_syndrome_beta_desc": "BASIC: ##$basic##\nYou and your crew gain ##$multibasic## damage absorption for each hostage you have.\n\nACE: ##$pro##\nEach hostage you have will extend the downtime between police assaults by ##$multipro additional## seconds.\n\nNote: These effects stack up to a maximum of ##4## hostages.",
 	"menu_control_freak_beta_desc": "BASIC: ##$basic##\nYour converted enemy takes ##$multibasic3## less damage.\n\nACE: ##$pro##\nYour converted enemy takes an additional ##$multipro4## less damage.",
@@ -245,7 +245,7 @@
 	"eclipse_menu_ponr_assault_text_desc": "Assault banner flavor edits. Incompatible with mods that edit assault banner.",
 	
 	
-	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled.\nVarious heists have points of no return enabled.\nEach consecutive down decreases bleedout timer and revive health.",
+	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled.\nYou're only granted one Team AI.\nVarious heists have points of no return enabled.\nEach consecutive down decreases bleedout timer and revive health.",
 	"menu_difficulty_easy_wish": "Eclipse",
 	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",
 	"menu_risk_special": "Overkill.\nMaximum Force Responders inbound.",
