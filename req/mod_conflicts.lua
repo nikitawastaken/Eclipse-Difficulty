@@ -32,5 +32,6 @@ return table.list_to_set({
 	"Better Cops weapon usage and some tweaks",
 	"Better Cops weapon usage",
 	"Better Cops weapon usage and some tweaks for online",
-	"Better Cops weapon usage for online"
+	"Better Cops weapon usage for online",
+	"WeaponLib"
 })
