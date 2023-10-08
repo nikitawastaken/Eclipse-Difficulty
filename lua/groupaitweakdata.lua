@@ -1842,7 +1842,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			beat_cops = { 0.5, 0.4, 0.25 },
 			blue_swats = { 1, 1, 1 },
-			swat_shields = { 0, 0, 0.25 },
+			swat_shields = { 0, 0, 0.167 },
 		}
 		self.besiege.recon.groups = {
 			blue_swats = { 0, 0, 0 },
