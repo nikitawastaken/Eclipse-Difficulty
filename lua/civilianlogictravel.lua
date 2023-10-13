@@ -1,5 +1,5 @@
 -- Improve civilian pathing by reordering checks and using direct paths if possible
-Hooks:OverrideFunction(CivilianLogicTravel, "update", function (data)
+Hooks:OverrideFunction(CivilianLogicTravel, "update", function(data)
 	local my_data = data.internal_data
 	local unit = data.unit
 	local objective = data.objective
@@ -12,7 +12,7 @@ Hooks:OverrideFunction(CivilianLogicTravel, "update", function (data)
 			body_part = 1,
 			type = "warp",
 			position = mvector3.copy(objective.pos),
-			rotation = objective.rot
+			rotation = objective.rot,
 		}
 
 		if unit:movement():action_request(action_desc) then
@@ -46,12 +46,12 @@ Hooks:OverrideFunction(CivilianLogicTravel, "update", function (data)
 			my_data.coarse_path = {
 				{
 					data.unit:movement():nav_tracker():nav_segment(),
-					mvector3.copy(data.m_pos)
+					mvector3.copy(data.m_pos),
 				},
 				{
 					nav_seg,
-					pos
-				}
+					pos,
+				},
 			}
 		end
 
@@ -79,7 +79,7 @@ Hooks:OverrideFunction(CivilianLogicTravel, "update", function (data)
 			if math.abs(data.m_pos.z - to_pos.z) < 100 and not managers.navigation:raycast({ pos_from = data.m_pos, pos_to = to_pos }) then
 				my_data.advance_path = {
 					mvector3.copy(data.m_pos),
-					to_pos
+					to_pos,
 				}
 			else
 				my_data.processing_advance_path = true
@@ -101,7 +101,7 @@ Hooks:OverrideFunction(CivilianLogicTravel, "update", function (data)
 			body_part = 2,
 			nav_path = my_data.advance_path,
 			variant = objective and objective.haste or "walk",
-			end_rot = my_data.coarse_path_index == #my_data.coarse_path - 1 and objective and objective.rot or nil
+			end_rot = my_data.coarse_path_index == #my_data.coarse_path - 1 and objective and objective.rot or nil,
 		})
 		my_data.starting_advance_action = false
 

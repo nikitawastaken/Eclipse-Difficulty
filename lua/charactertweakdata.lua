@@ -554,7 +554,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		contact = true,
 		suppress = true,
 		idle = true,
-		report = true
+		report = true,
 	}
 
 	return presets

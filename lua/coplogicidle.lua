@@ -3,7 +3,6 @@ local REACT_AIM = AIAttentionObject.REACT_AIM
 local REACT_ARREST = AIAttentionObject.REACT_ARREST
 local REACT_COMBAT = AIAttentionObject.REACT_COMBAT
 
-
 -- Make cops react more aggressively when appropriate (less stare, more shoot)
 local _chk_reaction_to_attention_object_original = CopLogicIdle._chk_reaction_to_attention_object
 function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ...)
@@ -39,7 +38,13 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
 		local other_crim_attention_info = data.detected_attention_objects[u_key]
-		if other_crim_attention_info and (other_crim_attention_info.is_deployable or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout) then
+		if
+			other_crim_attention_info
+			and (
+				other_crim_attention_info.is_deployable
+				or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout
+			)
+		then
 			return attention_data.verified and REACT_COMBAT or attention_reaction
 		end
 	end
@@ -50,7 +55,6 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	return math.min(attention_reaction, REACT_ARREST)
 end
-
 
 -- Fix defend_area objectives being force relocated to areas with players in them
 -- Fix lost follow objectives not refreshing for criminals in idle logic and Jokers in attack logic
@@ -102,10 +106,10 @@ function CopLogicIdle._chk_relocate(data)
 		end
 
 		local found_areas = {
-			[objective_area] = true
+			[objective_area] = true,
 		}
 		local areas_to_search = {
-			objective_area
+			objective_area,
 		}
 		local target_area
 
@@ -147,7 +151,6 @@ function CopLogicIdle._chk_relocate(data)
 		return my_data ~= data.internal_data
 	end
 end
-
 
 -- Improve and simplify attention handling
 -- Moved certain checks into their own functions for easier adjustments and improved target priority calculation
@@ -316,7 +319,6 @@ function CopLogicIdle._get_attention_weight(attention_data, att_unit, distance)
 	return 1 / weight_mul
 end
 
-
 -- Show hint to player when surrender is impossible
 local on_intimidated_original = CopLogicIdle.on_intimidated
 function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
@@ -351,9 +353,8 @@ function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
 	end
 end
 
-
 -- Play generic chatter during idle while unalerted
-Hooks:PostHook(CopLogicIdle, "queued_update", "sh_queued_update", function (data)
+Hooks:PostHook(CopLogicIdle, "queued_update", "sh_queued_update", function(data)
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.idle then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "idle")
 	end
