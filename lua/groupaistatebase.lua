@@ -262,11 +262,6 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "sh_add_special_objecti
 	objective_data.objective.pose = nil
 end)
 
--- Fully count all criminals for the balancing multiplier
-function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
-end
-
 -- Setup sentry marking via host
 function GroupAIStateBase:register_marking_sentry(unit)
 	if unit:base().sentry_gun and unit:base():has_marking() then
