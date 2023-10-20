@@ -971,8 +971,10 @@ end
 -- Make a generic group voice function instead of individual ones and make retiring groups play retreat lines
 function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 	for _, unit_data in pairs(group.units) do
-		if unit_data.char_tweak.chatter[chatter_type] and self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, chatter_type) then
-			return true
+		if unit_data.char_tweak.chatter[chatter_type] and not unit_data.unit:brain():is_current_logic("intimidated") then
+			if self:chk_say_enemy_chatter(unit_data.unit, unit_data.m_pos, chatter_type) then
+				return true
+			end
 		end
 	end
 end
@@ -1233,26 +1235,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		coarse_path = coarse_path,
 	})
 end)
-
--- Spawn events are probably not used anywhere, but for the sake of correctness, fix this function
--- All the functions that call this expect it to return true when it's used
-function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, target_pos, force)
-	target_pos = target_pos or target_area.pos
-
-	local max_dis_sq = 3000 ^ 2
-	for _, event_data in pairs(self._spawn_events) do
-		if (event_data.task_type == task_type or event_data.task_type == "any") and mvec_dis_sq(target_pos, event_data.pos) < max_dis_sq then
-			if force or math.random() < event_data.chance then
-				self._anticipated_police_force = self._anticipated_police_force + event_data.amount
-				self._police_force = self._police_force + event_data.amount
-				self:_use_spawn_event(event_data)
-				return true
-			else
-				event_data.chance = math.min(1, event_data.chance + event_data.chance_inc)
-			end
-		end
-	end
-end
 
 -- New designated ponr ai state
 GroupAIStatePonr = GroupAIStatePonr or class(GroupAIStateBesiege)

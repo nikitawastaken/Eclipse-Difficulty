@@ -262,11 +262,6 @@ Hooks:PreHook(GroupAIStateBase, "add_special_objective", "sh_add_special_objecti
 	objective_data.objective.pose = nil
 end)
 
--- Fully count all criminals for the balancing multiplier
-function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
-end
-
 -- Setup sentry marking via host
 function GroupAIStateBase:register_marking_sentry(unit)
 	if unit:base().sentry_gun and unit:base():has_marking() then
@@ -305,3 +300,23 @@ Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", functio
 		alert_data[3] = math.max(alert_data[3], 500)
 	end
 end)
+
+-- Spawn events are probably not used anywhere, but for the sake of correctness, fix this function
+-- All the functions that call this expect it to return true when it's used
+function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, target_pos, force)
+	target_pos = target_pos or target_area.pos
+
+	local max_dis_sq = 3000 ^ 2
+	for _, event_data in pairs(self._spawn_events) do
+		if (event_data.task_type == task_type or event_data.task_type == "any") and mvec_dis_sq(target_pos, event_data.pos) < max_dis_sq then
+			if force or math.random() < event_data.chance then
+				self._anticipated_police_force = self._anticipated_police_force + event_data.amount
+				self._police_force = self._police_force + event_data.amount
+				self:_use_spawn_event(event_data)
+				return true
+			else
+				event_data.chance = math.min(1, event_data.chance + event_data.chance_inc)
+			end
+		end
+	end
+end

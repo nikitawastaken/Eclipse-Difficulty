@@ -548,6 +548,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		go_go = true,
 	}
 
+	presets.enemy_chatter.security = {
+		aggressive = true,
+		go_go = true,
+		contact = true,
+		suppress = true,
+		idle = true,
+		report = true,
+	}
+
 	return presets
 end
 
@@ -811,6 +820,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
+	self.gensec.chatter = self.presets.enemy_chatter.security
+	self.security.chatter = self.presets.enemy_chatter.security
+	self.security_undominatable.chatter = self.presets.enemy_chatter.security
+	self.security_mex.chatter = self.presets.enemy_chatter.security
+	self.security_mex_no_pager.chatter = self.presets.enemy_chatter.security
 
 	-- if bot weapons and equipment is installed and fixed weapon balance is on don't make any further changes
 	if BotWeapons and BotWeapons.settings and BotWeapons.settings.weapon_balance then

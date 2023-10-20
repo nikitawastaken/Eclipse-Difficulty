@@ -106,6 +106,7 @@
 				<group :hook_id="civilians/">
 					<group :hook_id="logics/">
 						<post :hook_id="civilianlogicflee"/>
+						<post :hook_id="civilianlogictravel"/>
 						<post :hook_id="civilianlogicsurrender"/>
 					</group>
 
@@ -188,6 +189,7 @@
 				<group :hook_id="props/">
 					<post :hook_id="aiattentionobject"/>
 					<post :hook_id="carrydata"/>
+					<post :hook_id="timergui"/>
 				</group>
 
 				<group :hook_id="weapons/">

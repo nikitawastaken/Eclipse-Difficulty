@@ -6,8 +6,8 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	local duration_short = { 5, 10 }
 	local duration_medium = { 10, 20 }
 	local duration_long = { 20, 40 }
-	local radius_small = 800
-	local radius_large = 1200
+	local radius_small = 1000
+	local radius_large = 2000
 
 	for _, chatter in pairs(self.enemy_chatter) do
 		chatter.interval = interval_short

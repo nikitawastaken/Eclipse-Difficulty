@@ -60,6 +60,7 @@ end
 -- Fix lost follow objectives not refreshing for criminals in idle logic and Jokers in attack logic
 -- Use the old defend_area behavior for the hunt objective for which it makes much more sense
 function CopLogicIdle._chk_relocate(data)
+	local my_data = data.internal_data
 	local objective = data.objective
 	local objective_type = objective and objective.type
 
@@ -73,7 +74,8 @@ function CopLogicIdle._chk_relocate(data)
 			return true
 		end
 
-		if objective.relocated_to and mvector3.equal(objective.relocated_to, unit_pos) then
+		local relocated_dis_sq = data.is_tied and my_data.advancing and objective.distance and (objective.distance * 0.5) ^ 2 or 100
+		if objective.relocated_to and mvector3.distance_sq(objective.relocated_to, unit_pos) < relocated_dis_sq then
 			return
 		elseif data.is_converted then
 			if not TeamAILogicIdle._check_should_relocate(data, data.internal_data, objective) then
@@ -143,8 +145,6 @@ function CopLogicIdle._chk_relocate(data)
 		if data.cool or not data.is_converted and data.team.id ~= "criminal1" or data.path_fail_t and data.t - data.path_fail_t < 5 then
 			return
 		end
-
-		local my_data = data.internal_data
 
 		managers.groupai:state():on_criminal_jobless(data.unit)
 
