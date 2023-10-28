@@ -141,6 +141,7 @@
 							<post :hook_id="coplogicattack"/>
 							<post :hook_id="coplogicbase"/>
 							<post :hook_id="coplogicidle"/>
+							<post :hook_id="coplogictrade"/>
 							<post :hook_id="coplogicinactive"/>
 							<post :hook_id="coplogicintimidated"/>
 							<post :hook_id="coplogicsniper"/>
