@@ -1,5 +1,5 @@
 -- Remove contour from traded hostages and make them invulnerable
-Hooks:PostHook(CopLogicTrade, "on_trade", "sh_on_trade", function (data)
+Hooks:PostHook(CopLogicTrade, "on_trade", "sh_on_trade", function(data)
 	if not data.internal_data.fleeing then
 		return
 	end
