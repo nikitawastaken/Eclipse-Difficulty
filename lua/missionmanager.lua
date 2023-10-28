@@ -81,7 +81,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 						if element.chance_operation_set_chance then
 							element:chance_operation_set_chance(v)
 						else
-							mission_log("Element %u lacks a \"chance_operation_set_chance\" method!", element_id)
+							mission_log('Element %u lacks a "chance_operation_set_chance" method!', element_id)
 						end
 					end
 				end
