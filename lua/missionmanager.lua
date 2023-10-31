@@ -76,6 +76,12 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 				for k, v in pairs(data.values) do
 					element._values[k] = v
 					StreamHeist:log(string.format('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v)))
+
+					if k == "chance" then
+						if element.chance_operation_set_chance then
+							element:chance_operation_set_chance(v)
+						end
+					end
 				end
 			end
 

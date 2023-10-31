@@ -149,6 +149,7 @@ function UpgradesTweakData:init(tweak_data)
 		hostage_absorption_limit = 4,
 	}
 	self.skill_descs.stockholm_syndrome.multibasic = "2"
+	self.skill_descs.stockholm_syndrome.multipro = "4"
 	self.skill_descs.stockholm_syndrome.multipro2 = "4"
 
 	-- Hostage Taker
