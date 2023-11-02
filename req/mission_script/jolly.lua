@@ -1,7 +1,7 @@
 return {
-    [101598] = {
+	[101598] = {
 		values = {
 			enabled = false
 		}
-    }
+	}
 }

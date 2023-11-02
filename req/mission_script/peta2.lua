@@ -17,8 +17,8 @@ return {
 	},
 	-- add point of no return
 	[100580] = {
-        ponr = 120,
-        ponr_player_mul = {2, 1.25, 1, 1}
+		ponr = 120,
+		ponr_player_mul = {2, 1.25, 1, 1}
 	},
 	[101707] = {
 		values = {
