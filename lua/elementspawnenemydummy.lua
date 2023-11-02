@@ -145,7 +145,12 @@ if tweak_data.levels[level_id] and tweak_data.levels[level_id].group_ai_state ==
 else
 	difficulty = Global.game_settings and Global.game_settings.difficulty or "normal"
 end
+
+local mission_script_elements = StreamHeist:mission_script_patches()
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "sh_init", function(self)
+	local element_mapping = mission_script_elements and mission_script_elements[self._id]
+	self._enemy_mapping = element_mapping and element_mapping.enemy
+
 	local mapped_name = enemy_mapping[self._enemy_name:key()]
 	local mapped_unit = enemy_replacements[difficulty] and enemy_replacements[difficulty][mapped_name]
 	local mapped_unit_ids = mapped_unit and Idstring(mapped_unit)
@@ -153,3 +158,23 @@ Hooks:PostHook(ElementSpawnEnemyDummy, "init", "sh_init", function(self)
 		self._enemy_name = mapped_unit_ids
 	end
 end)
+
+local produce_original = ElementSpawnEnemyDummy.produce
+function ElementSpawnEnemyDummy:produce(params, ...)
+	if params and params.name or not self._enemy_mapping then
+		return produce_original(self, params, ...)
+	end
+
+	local original_enemy_name = self._enemy_name
+	if type(self._enemy_mapping) == "table" then
+		self._enemy_name = table.random(self._enemy_mapping)
+	else
+		self._enemy_name = self._enemy_mapping
+	end
+
+	local result = produce_original(self, params, ...)
+
+	self._enemy_name = original_enemy_name
+
+	return result
+end

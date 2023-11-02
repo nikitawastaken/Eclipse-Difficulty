@@ -8,13 +8,9 @@ return {
 		difficulty = 1
 	},
 	[101133] = {
-		values = {
-			enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"
-		}
+		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
 	},
 	[101141] = {
-		values = {
-			enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"
-		}
+		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
 	}
 }

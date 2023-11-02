@@ -17,24 +17,16 @@ return {
 		}
 	},
 	[104132] = {
-		values = {
-			enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"
-		}
+		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
 	},
 	[104710] = {
-		values = {
-			enemy = "units/payday2/characters/ene_spook_1/ene_spook_1"
-		}
+		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
 	},
 	[104131] = {
-		values = {
-			enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
-		}
+		enemy = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
 	},
 	[104169] = {
-		values = {
-			enemy = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
-		}
+		enemy = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
 	},
 	[104000] = {
 		values = {

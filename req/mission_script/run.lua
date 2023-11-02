@@ -10,19 +10,13 @@ return {
 		}
 	},
 	[100232] = {
-		values = {
-			enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
-		}
+		enemy = Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1")
 	},
 	[100341] = {
-		values = {
-			enemy = "units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"
-		}
+		enemy = Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2")
 	},
 	[100351] = {
-		values = {
-			enemy = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"
-		}
+		enemy = Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
 	},
 	[101202] = {
 		values = {
