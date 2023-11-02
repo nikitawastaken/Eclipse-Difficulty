@@ -1929,13 +1929,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	local job = Global.level_data and Global.level_data.level_id
 	local short_ponr_heists = {
-		bph,
-		red2,
-		bex,
-		pex,
-		glace,
-		hox_2,
-		firestarter_2,
+		bph = true,
+		red2 = true,
+		bex = true,
+		pex = true,
+		glace = true,
+		hox_2 = true,
+		firestarter_2 = true,
 	}
 
 	-- Sustain
@@ -1991,7 +1991,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_tanks = { 0, 0.02, 0.1 },
 			spoocs = { 0, 0.03, 0.06 },
 		}
-		self.besiege.reenforce.groups = {
+		self.ponr.reenforce.groups = {
 			reenforce_common = { 0.3, 0.3, 0.3 },
 			reenforce_sneaky = { 0, 0.05, 0.1 },
 		}
@@ -2010,7 +2010,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			gensec_tanks = { 0, 0, 0.1 },
 			spoocs = { 0, 0.045, 0.09 },
 		}
-		self.besiege.reenforce.groups = {
+		self.ponr.reenforce.groups = {
 			reenforce_common = { 0.3, 0.3, 0.3 },
 			reenforce_sneaky = { 0.2, 0.2, 0.2 },
 		}

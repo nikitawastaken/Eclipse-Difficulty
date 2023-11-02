@@ -37,12 +37,12 @@ return {
 		},
 	},
 	-- reenable far sniper
-    [101521] = {
+	[101521] = {
 		values = {
 			enabled = true
 		}
 	},
-    [101599] = {
+	[101599] = {
 		values = {
 			trigger_times = 0,
 			enabled = true
@@ -168,17 +168,17 @@ return {
 		},
 	},
 	-- reenable alleyway drop
-    [102261] = {
-        values = {
-            on_executed = {
-                {delay = 0, id = 101591},
-                {delay = 0, id = 101573},
-                {delay = 0, id = 100350}
-            }
-        }
-    },
-    -- add point of no return
-    [101016] = {
-    ponr = 180
-    }
+	[102261] = {
+		values = {
+			on_executed = {
+				{delay = 0, id = 101591},
+				{delay = 0, id = 101573},
+				{delay = 0, id = 100350}
+			}
+		}
+	},
+	-- add point of no return
+	[101016] = {
+	ponr = 180
+	}
 }

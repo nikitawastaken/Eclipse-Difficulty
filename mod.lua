@@ -1,21 +1,21 @@
 if not EclipseDebug then
-    EclipseDebug = {}
-    local log_levels = {
-        "Debug",
-        "Warning",
-        "Error"
-    }
+	EclipseDebug = {}
+	local log_levels = {
+		"Debug",
+		"Warning",
+		"Error"
+	}
 
-    function EclipseDebug:log(level, message)
-        assert(0 < level and level < 4, "Eclipse log level must be between 1-3.")
-        assert(message ~= nil, "Eclipse empty log message.")
+	function EclipseDebug:log(level, message)
+		assert(0 < level and level < 4, "Eclipse log level must be between 1-3.")
+		assert(message ~= nil, "Eclipse empty log message.")
 
-        log(string.format("Eclipse %s: %s", log_levels[level], message))
-    end
+		log(string.format("Eclipse %s: %s", log_levels[level], message))
+	end
 
-    function EclipseDebug:log_chat(message)
-        managers.chat:_receive_message(managers.chat.GAME, "Eclipse", message, Color.green)
-    end
+	function EclipseDebug:log_chat(message)
+		managers.chat:_receive_message(managers.chat.GAME, "Eclipse", message, Color.green)
+	end
 end
 
 if not StreamHeist then
