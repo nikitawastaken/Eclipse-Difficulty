@@ -14,7 +14,6 @@ function PlayerBleedOut:_check_action_equip(...)
 	return false
 end
 
-
 local exit_original = PlayerBleedOut.exit
 function PlayerBleedOut:exit(...)
 	local exit_data = exit_original(self, ...)

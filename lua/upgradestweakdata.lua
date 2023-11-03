@@ -679,8 +679,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "swap_weapon_when_downed",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.swap_weapon_when_downed = { true }
 
