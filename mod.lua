@@ -60,6 +60,19 @@ if not StreamHeist then
 		log("[StreamlinedHeistingAI][Error] " .. table.concat({...}, " "))
 	end
 
+	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitStreamlinedHeisting", function(loc)
+		local language_tbl = {
+			[("english"):key()] = "en.txt",
+			[("schinese"):key()] = "schinese.json",
+		}
+
+		local language = language_tbl[SystemInfo:language():key()] or "en.txt"
+		local path = StreamHeist.mod_path .. "loc/" .. language
+		path = io.file_is_readable(path) and path or StreamHeist.mod_path .. "loc/en.txt"
+
+		loc:load_localization_file(path)
+	end)
+
 	-- Check for common mod conflicts
 	Hooks:Add("MenuManagerOnOpenMenu", "MenuManagerOnOpenMenuStreamlinedHeisting", function()
 		if Global.sh_mod_conflicts then

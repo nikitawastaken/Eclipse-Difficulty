@@ -7,7 +7,7 @@
 	"bm_wp_upg_mk2_rare_desc": "This fuel is easier to find.",
 	"bm_wp_upg_mk2_welldone_desc": "This fuel is harder to find.",
 	"bm_w_hajk": "CR 805B Rifle",
-	
+
 	"bm_menu_bonus": "Gun Perk",
 	"bm_menu_perk_speedloader": "Speedloader",
 	"bm_menu_perk_speedloader_desc": "Increases reload speed at the cost of total ammo.\n",
@@ -21,11 +21,11 @@
 	"bm_menu_perk_whirlwind_desc": "Increases rate of fire at the cost of weapon handling.\n",
 	"bm_menu_perk_stockpile": "Stockpile",
 	"bm_menu_perk_stockpile_desc": "Increases total ammo at the cost of reload speed.\n",
-	
-	
+
+
 	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
-	
-	
+
+
 	"st_menu_mastermind_inspire": "Support",
 	"menu_bandage": "Bandages",
 	"menu_bandage_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nReviving a crew member gives them ##$multipro## more health.",
@@ -48,8 +48,8 @@
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Sniper and Assault Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot will increase your reload speed by ##$multipro## for ##$multipro2## seconds. Can only be triggered by SMGs, Assault Rifles and Sniper Rifles fired in single shot fire mode.",
 	"menu_sniper_graze_damage": "Mind Blown",
 	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nScoring a headshot with a Sniper Rifle deals ##$multibasic## of the damage to the closest enemy in a ##$multibasic2## radius.\n\nNote: Does not affect ##300 damage## Sniper Rifles.\n\nACE: ##$pro##\nAny killing headshot with a Sniper Rifle now deals ##$multipro## of the damage to the chained enemy.",
-	
-	
+
+
 	"menu_from_the_hip_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage with Shotguns.\n\nACE: ##$pro##\nThe time it takes to draw and holster Shotguns is decreased by ##$multipro##.",
 	"menu_shotgun_cqb_beta": "Fast Hands",
 	"menu_shotgun_cqb_beta_desc": "BASIC: ##$basic##\nYou reload ##Tube-fed## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYou reload ##Tube-fed## Shotguns an additional ##$multipro## faster.\nYou gain a ##$multipro2## increased steel sight zoom speed when using Shotguns.",
@@ -60,14 +60,14 @@
 	"menu_close_by_beta": "Mag-fed Specialist",
 	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Mag-fed & Double Barrel## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Mag-fed## Shotguns have their magazine size increased by ##$multipro## shells.",
 	"menu_overkill_beta": "Shotgun Hell",
-    "menu_overkill_beta_desc": "BASIC: ##$basic##\nFiring a Shotgun has a ##$multibasic## chance to not consume any ammo.\n\nACE: ##$pro##\nWhen killing an enemy with a Shotgun, you have a ##$multipro## chance to cause nearby enemies to panic.\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
+	"menu_overkill_beta_desc": "BASIC: ##$basic##\nFiring a Shotgun has a ##$multibasic## chance to not consume any ammo.\n\nACE: ##$pro##\nWhen killing an enemy with a Shotgun, you have a ##$multipro## chance to cause nearby enemies to panic.\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nUnlocks the Improved Combined Tactical Vest for you to wear.\n\nACE: ##$pro##\nYour total armor value is increased by ##$multibasic##.",
 	"menu_show_of_force_beta": "Thick Skin",
 	"menu_show_of_force_beta_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nIncreases the armor of all ballistic vests by ##$multipro2##.",
 	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote: Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nThe heavier your armor, the more total ammo you get.\n\nThe total capacity increase scales up to ##$multibasic## with Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
-	
-	
+
+
 	"menu_defense_up_beta": "Transporter",
 	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou move ##$multibasic## faster when carrying bags.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",
 	"menu_sentry_targeting_package_beta": "Daredevil",
@@ -88,8 +88,8 @@
 	"menu_oppressor_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more effective at threatening enemies.\n\nACE: ##$pro##\nYour weapons are additionally ##$multipro## more effective at threatening enemies.",
 	"menu_fire_control_beta": "AP Rounds",
 	"menu_fire_control_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## weapon accuracy while firing from the hip.\n\nACE: ##$pro##\nAll of your ranged weapons can now pierce through enemy body armor. Does not apply to throwable weapons.",
-	
-	
+
+
 	"menu_sprinter": "Athlete",
 	"menu_sprinter_desc": "BASIC: ##$basic##\nThe time before stamina regeneration starts is reduced by ##$multibasic## and the regeneration rate of stamina is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour speed while walking is increased by ##$multipro##. Your total movement speed is increased by ##$multipro2##.",
 	"menu_awareness": "Duck and Cover",
@@ -117,8 +117,8 @@
 	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\nYou can now interact with ECM jammers to cause a feedback loop that stuns enemies.\n\nFeedback loop has a ##$multibasic## radius.\nObstructed line of sight ##halves## the radius.\n\nACE: ##$pro##\nECM feedback now recharges every ##$multipro## minutes.",
 	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last ##$multipro## seconds.",
 	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nCritical hits deal ##$multibasic5## damage.\n\nACE: ##$pro##\nYou now gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate instead.\n\nCritical hits now deal an additional ##$multipro3## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
-	
-	
+
+
 	"menu_nine_lives_beta": "Tough Guy",
 	"menu_pistol_beta_messiah_desc": "BASIC: ##$basic##\nWhile in bleedout, you can revive yourself if you kill an enemy. You only have ##$multibasic## charge.\n\nYour bleedout timer is increased by ##$multibasic2## seconds.\n\nNote: Getting out of custody doesn't replenish the charges.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## charges.\n\nWhenever you get into custody, your hostages will trade themselves for your safe return. This effect can occur during assaults, but only ##1## time during a heist.",
 	"menu_drop_soap_beta_desc": "BASIC: ##$basic##\nYou can now sprint with melee weapons.\n\nACE: ##$pro##\nYou can now knock down bulldozers with melee.\n\nThis cannot occur more than every ##$multipro## seconds.",
@@ -127,9 +127,9 @@
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
 	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou can now use your steelsight while in bleedout.\n\nACE: ##$pro##\nYou can use your primary weapon in bleedout.",
 	"menu_tea_cookies_beta_desc": "BASIC ##$basic##\nYou can now carry ##$multibasic## more First Aid Kits.\n\nACE: ##$pro##\nYou can now additionaly carry ##$multipro## more First Aid Kits.\n\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro2## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro3## seconds.",
-	
-	
-	
+
+
+
 	"menu_st_category_health": "Health",
 	"menu_st_category_healing": "Healing",
 	"menu_st_category_armor": "Armor",
@@ -137,13 +137,13 @@
 	"menu_st_category_resistance": "Resistance",
 	"menu_st_category_support": "Support",
 	"menu_st_category_dodge": "Dodge",
-	
-	
+
+
 	"menu_deckall_2": "Refund",
 	"menu_deckall_2_desc": "You gain a ##2%## base chance to get a throwable from an ammo box.\n\nThe base chance is increased by ##0.1%## for each ammo box you pick up that does not contain a throwable.\n\nWhen a throwable has been found, the chance is reset to its base value.",
 	"menu_deckall_4_desc": "You gain access to all insider assets.\n\nYou gain ##+1## increased concealment.",
 	"menu_deckall_6_desc": "Unlocks an armor bag equipment for you to use. The armor bag can be used to change your armor during a heist.\n\nWhen wearing armor, your movement speed is ##15%## less affected.",
-	
+
 	"menu_deck1_3_desc": "You and your crew's stamina is increased by ##$multiperk##.\n\nIncreases your shout distance by ##$multiperk2##.",
 	"menu_deck1_9_desc": "You and your crew will gain ##$multiperk## max health and ##$multiperk2## stamina for each hostage up to ##$multiperk3## times.\n\nNote: Crew perks do not stack.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck2_7": "Frenzied",
@@ -179,7 +179,7 @@
 	"menu_deck12_9_desc": "The lower your health, the more damage you do.\n\nYou will do up to ##$multiperk## more damage with ranged weapons.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck13_3_desc": "Increases the amount of health stored from kills by ##$multiperk##.",
 	"menu_deck13_5_desc": "Increases the maximum health that can be stored by ##$multiperk##.\n\nYour chance to dodge is increased by ##$multiperk3##.",
-	"menu_deck13_7_desc": "Increases the amount of health stored from kills by ##$multiperk##.",	
+	"menu_deck13_7_desc": "Increases the amount of health stored from kills by ##$multiperk##.",
 	"menu_deck14_3_desc": "Members of your crew also gains the effect of your Hysteria Stacks.\nHysteria Stacks from multiple crew members do not stack and only the stacks that gives the highest damage absorption will have an effect.\n\nAll firearms have a chance to spread panic among your enemies.\nPanic will make enemies go into short bursts of uncontrollable fear.",
 	"menu_deck15_1_desc": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals.\n\nNote: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
 	"menu_deck15_7_desc": "##$multiperk## of your health is converted into ##$multiperk2## armor.\n\nYour chance to dodge is increased by ##$multiperk3##.",
@@ -191,7 +191,7 @@
 	"menu_deck22_1_desc": "Unlocks and equips the Leech Ampule.\n\nChanging to another perk deck will make the Leech Ampule unavailable again. The Leech Ampule replaces your current throwable, is equipped in your throwable slot and can be switched out if desired. While in game you can use throwable key to activate the Leech Ampule.\n\nActivating the Leech Ampule will ##fully## restore your health and disable your armor for the duration of the Leech Ampule.\n\nWhile the Leech Ampule is active your health is divided into segments of ##$multiperk2## and damage taken from enemies removes one segment.\n\nKilling ##1## enemy will block damage for ##$multiperk3## seconds.\nAnytime you take damage your teammates are healed for ##$multiperk4## health.\n\nThe Leech Ampule lasts ##$multiperk5## seconds with a ##$multiperk6## seconds cooldown.",
 	"menu_deck22_5_desc": "The Leech Ampule duration is increased to ##$multiperk## seconds.\n\nKilling an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s).\n\nTaking damage now heals teammates for ##$multiperk3## health.",
 	"menu_deck22_9_desc": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##.\n\nYour maximum health is increased by ##$multiperk2##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
-	
+
 	"menu_deck1_3_short": "You and your crew's stamina is increased by ##$multiperk##. Increases your shout distance by ##$multiperk2##.",
 	"menu_deck1_9_short": "You and your crew will gain ##$multiperk## max health and ##$multiperk2## stamina for each hostage up to ##$multiperk3## times. Note: Crew perks do not stack.",
 	"menu_deck2_7_short": "When your health gets below ##$multiperk## you will be immune to health damage for ##$multiperk2## seconds. This cannot occur more than once every ##$multiperk3## seconds.",
@@ -207,7 +207,7 @@
 	"menu_deck6_7_short": "Your chance to dodge and armor are further increased for ballistic vests. Heavier vests receive more dodge and armor.",
 	"menu_deck7_7_short": "Your chance to be targeted while standing still and crouching is decreased by an additional ##$multiperk2##. You answer pagers ##$multiperk3## faster.",
 	"menu_deck7_9_short": "Dodged bullets will now ##ricochet## back to the enemy that fired them.",
-	"menu_deck8_9_short": "Striking an enemy with your melee weapon regenerates ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds."
+	"menu_deck8_9_short": "Striking an enemy with your melee weapon regenerates ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds.",
 	"menu_deck9_7_short": "Killing an enemy at medium range recovers ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_3_short": "Your ammo pickup rate is increased by ##$multiperk##. You gain ##$multiperk3## more health.",
 	"menu_deck10_9_short": "Increase health gained from ammo packs by additional ##$multiperk##. Your ammo pick up range is increased by ##$multiperk4##.",
@@ -221,9 +221,9 @@
 	"menu_deck12_9_short": "The lower your health, the more damage you do. You will do up to ##$multiperk## more damage with ranged weapons.",
 	"menu_deck13_3_short": "Increases the amount of health stored from kills by ##$multiperk##.",
 	"menu_deck13_5_short": "Increases the maximum health that can be stored by ##$multiperk##. Your chance to dodge is increased by ##$multiperk3##.",
-	"menu_deck13_7_short": "Increases the amount of health stored from kills by ##$multiperk##.",	
+	"menu_deck13_7_short": "Increases the amount of health stored from kills by ##$multiperk##.",
 	"menu_deck14_3_short": "Members of your crew also gains the effect of your Hysteria Stacks. All firearms have a chance to spread panic among your enemies.",
-    "menu_deck15_1_short": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals. Note: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
+	"menu_deck15_1_short": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals. Note: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
 	"menu_deck15_7_short": "##$multiperk## of your health is converted into ##$multiperk2## armor. Your chance to dodge is increased by ##$multiperk3##.",
 	"menu_deck15_9_short": "Dealing damage will grant you ##$multiperk## armor - this can only occur once every ##$multiperk2## seconds. Your armor is increased by ##$multiperk3##.",
 	"menu_deck17_9_short": "For every ##5 points## of health gained during the injector effect while at maximum health, the recharge time of the injector is reduced by ##1 second##.",
@@ -233,8 +233,8 @@
 	"menu_deck22_1_short": "Unlocks and equips the Leech Ampule.",
 	"menu_deck22_5_short": "The Leech Ampule duration is increased to ##$multiperk## seconds. Killing an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s). Taking damage now heals teammates for ##$multiperk3## health.",
 	"menu_deck22_9_short": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##. Your maximum health is increased by ##$multiperk2##.",
-	
-	
+
+
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT TO UPGRADE THE DRILL",
 	"hud_assault_ponr": "Full Force Onslaught",
@@ -243,8 +243,8 @@
 	"eclipse_menu_main": "Eclipse",
 	"eclipse_menu_ponr_assault_text": "Assault banner edits",
 	"eclipse_menu_ponr_assault_text_desc": "Assault banner flavor edits. Incompatible with mods that edit assault banner.",
-	
-	
+
+
 	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled.\nYou're only granted one Team AI.\nVarious heists have points of no return enabled.\nEach consecutive down decreases bleedout timer and revive health.",
 	"menu_difficulty_easy_wish": "Eclipse",
 	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",
@@ -255,11 +255,11 @@
 	"menu_risk_swat": "Normal.\nAverage risk.",
 	"menu_difficulty_normal": "Easy",
 	"menu_risk_pd": "Easy.\nHang on! I forgot my donuts!",
-	
+
 	"menu_toggle_one_down": "Pro Job",
 	"menu_one_down": "Pro Job",
-	"menu_toggle_one_down_lobbies": "Allow Pro Job Lobbies"
-	
+	"menu_toggle_one_down_lobbies": "Allow Pro Job Lobbies",
+
 	"menu_stat_job_completed": "",
 	"menu_max_progress": "Max account progression",
 	"menu_max_progress_help": "Max out your account progression and skip grind.",
