@@ -101,6 +101,7 @@
 					<post :hook_id="states/playerstandard"/>
 					<post :hook_id="states/playertased"/>
 					<post :hook_id="states/playerdriving"/>
+					<post :hook_id="states/playerbleedout"/>
 				</group>
 
 				<group :hook_id="civilians/">
