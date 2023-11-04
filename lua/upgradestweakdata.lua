@@ -672,6 +672,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.trigger_happy.multipro2 = "6"
 	self.skill_descs.trigger_happy.multipro3 = "2"
 
+	-- Tough Guy
+	self.definitions.player_swap_weapon_when_downed = {
+		name_id = "menu_player_swap_weapon_when_downed",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "swap_weapon_when_downed",
+			category = "player",
+		},
+	}
+	self.values.player.swap_weapon_when_downed = { true }
+
 	-- Quick Fix
 	self.skill_descs.running_from_death.multipro = "10%"
 	self.skill_descs.running_from_death.multipro2 = "120"

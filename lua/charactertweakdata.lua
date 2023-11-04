@@ -673,7 +673,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	-- surrender presets
 	self.security.surrender = self.presets.surrender.weak
-	self.cop_scared.surrender = self.presets.surrender.weak
 	self.cop.surrender = self.presets.surrender.weak
 	self.fbi.surrender = self.presets.surrender.weak
 	self.swat.surrender = self.presets.surrender.weak

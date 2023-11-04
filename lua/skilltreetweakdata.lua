@@ -299,7 +299,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Tough Guy
 	self.skills.nine_lives[1].upgrades = { "player_steelsight_when_downed" }
-	self.skills.nine_lives[2].upgrades = { "player_primary_weapon_when_downed" }
+	self.skills.nine_lives[2].upgrades = { "player_swap_weapon_when_downed" }
 	self.skills.nine_lives.icon_xy = { 1, 2 }
 
 	-- Quick Fix
@@ -551,7 +551,6 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
-	table.delete(self.default_upgrades, "player_primary_weapon_when_downed")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "player_crouch_speed_multiplier")
 end

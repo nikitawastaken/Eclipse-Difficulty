@@ -21,7 +21,7 @@ end
 
 function HuskPlayerDamage:_send_damage_to_owner(attack_data)
 	local peer_id = managers.criminals:character_peer_id_by_unit(self._unit)
-	local damage = math.min(10, attack_data.damage * 0.5)
+	local damage = math.min(20, attack_data.damage ^ 0.9)
 
 	managers.network:session():send_to_peers("sync_friendly_fire_damage", peer_id, attack_data.attacker_unit, damage, attack_data.variant)
 
