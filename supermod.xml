@@ -50,6 +50,7 @@
 				<post :hook_id="savefilemanager"/>
 				<post :hook_id="achievmentmanager"/>
 				<post :hook_id="tangomanager"/>
+				<post :hook_id="sidejobeventmanager"/>
 				<post :hook_id="blackmarketmanager"/>
 				<post :hook_id="dynamicresourcemanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
