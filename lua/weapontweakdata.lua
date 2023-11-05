@@ -863,6 +863,7 @@ self.serbu.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 -- Goliath
 self.rota.rays = 8
 self.rota.stats.damage = 110
+self.rota.stats.concealment = 20
 self.rota.AMMO_MAX = total_ammo_tables.shot_high
 self.rota.AMMO_PICKUP = pickup_tables.shot_high
 self.rota.kick = kick_tables.shot_low
