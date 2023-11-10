@@ -243,9 +243,6 @@
 		<file name="guis/textures/pd2/risklevel_deathwish_easywish_blackscreen.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
 
-		<!-- perk decks -->
-		<file name="guis/textures/pd2/specialization/icons_atlas.texture"/>
-
 		<!-- characters -->
 		<group name="units/pd2_dlc_vip/characters/">
 			<file :name="ene_phalanx_1/ene_phalanx_1.unit"/>
