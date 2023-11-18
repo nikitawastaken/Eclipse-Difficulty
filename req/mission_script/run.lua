@@ -1,12 +1,23 @@
+local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
+local DozerChance = 0
+if diff_i == 6 then
+	DozerChance = 100
+end
+
 return {
 	[101356] = {
 		ponr = 480,
 		ponr_player_mul = {2, 1.5, 1.25, 1}
 	},
 	-- ovk145-alike dozer spawn on armitage avenue
+	[103592] = {
+		values = {
+			enabled = false -- this one is used for difficulties below ovk (we don't want the heli there in the first place)
+		}
+	},
 	[103593] = {
 		values = {
-			chance = 100
+			chance = DozerChance -- this is cringe cause it's turned on for normal ovk as well and we only want the armitage dozers to drop on Eclipse
 		}
 	},
 	[100232] = {
@@ -51,14 +62,20 @@ return {
 			interval = 20
 		}
 	},
+	-- slow down inkwell industrial spawnpoints
 	[100441] = {
 		values = {
-			interval = 20
+			interval = 60
 		}
 	},
 	[103333] = {
 		values = {
-			interval = 20
+			interval = 40
+		}
+	},
+	[103719] = {
+		values = {
+			interval = 30
 		}
 	}
 }

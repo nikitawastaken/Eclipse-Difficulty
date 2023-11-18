@@ -29,5 +29,27 @@ return {
 		values = {
 			interval = 20
 		}
-	}
+	},
+	-- slow down repel spawns at the start
+	[107261] = {
+		values = {
+			interval = 20
+		}
+	},
+	[107260] = {
+		values = {
+			interval = 20
+		}
+	},
+	-- slow down repel spawns at the end
+	[104347] = {
+		values = {
+			interval = 20
+		}
+	},
+	[102151] = {
+		values = {
+			interval = 20
+		}
+	},
 }

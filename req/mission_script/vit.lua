@@ -23,5 +23,16 @@ return {
 		values = {
 			enabled = false
 		}
+	},
+	-- slow down the spawnpoints in peoc (ones that are close to the staircase)
+	[100694] = {
+		values = {
+			interval = 30
+		}
+	},
+	[102557] = {
+		values = {
+			interval = 20
+		}
 	}
 }

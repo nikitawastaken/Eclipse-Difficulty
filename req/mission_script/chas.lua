@@ -24,5 +24,21 @@ return {
 				position = Vector3(-1400, 4900, 540)
 			}
 		}
-	}
+	},
+	-- slow down a few spawn points in the back alleyway
+	[100132] = {
+		values = {
+			interval = 20
+		}
+	},
+	[100133] = {
+		values = {
+			interval = 20
+		}
+	},
+	[100692] = {
+		values = {
+			interval = 20
+		}
+	},
 }

@@ -16,5 +16,21 @@ return {
 				position = Vector3(-3000, 500, -1000)
 			}
 		}
+	},
+	-- slow down elevator spawn points
+	[105550] = {
+		values = {
+			interval = 20
+		}
+	},
+	[105434] = {
+		values = {
+			interval = 20
+		}
+	},
+	[105450] = {
+		values = {
+			interval = 20
+		}
 	}
 }
