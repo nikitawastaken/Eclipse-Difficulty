@@ -24,12 +24,12 @@ return {
 	},
 	[101156] = {
 		values = {
-			interval = 40
+			interval = 30
 		}
 	},
 	[101159] = {
 		values = {
-			interval = 40
+			interval = 30
 		}
 	},
 	[100521] = {
