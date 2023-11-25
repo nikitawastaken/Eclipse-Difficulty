@@ -123,8 +123,8 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 				for _, v in pairs(data.spawn_instigator_ids) do
 					local new_element = self:get_element_by_id(v)
 					if new_element then
-							table.insert(element._values.spawn_instigator_ids, v)
-							StreamHeist:log(string.format("Added element %s to spawn_instigator_ids of %s", new_element:editor_name(), element:editor_name()))
+						table.insert(element._values.spawn_instigator_ids, v)
+						StreamHeist:log(string.format("Added element %s to spawn_instigator_ids of %s", new_element:editor_name(), element:editor_name()))
 					else
 						StreamHeist:error(string.format("Mission script element %u could not be found", v))
 					end
