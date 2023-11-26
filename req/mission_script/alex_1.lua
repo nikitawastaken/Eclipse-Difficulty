@@ -1,4 +1,3 @@
-
 -- credit for these changes goes to ASS, thanks miki <3
 local mexicans = {
 	Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),

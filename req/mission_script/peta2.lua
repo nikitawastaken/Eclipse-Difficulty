@@ -1,7 +1,23 @@
 return {
+	-- slow down a few spawnpoints
+	[100130] = {
+		values = {
+			interval = 20
+		}
+	},
+	[100128] = {
+		values = {
+			interval = 20
+		}
+	},
+	[100694] = {
+		values = {
+			interval = 20
+		}
+	},
 	[101217] = {
 		values = {
-			interval = 10
+			interval = 20
 		}
 	},
 	[102374] = {

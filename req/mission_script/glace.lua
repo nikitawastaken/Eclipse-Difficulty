@@ -5,46 +5,31 @@ return {
 			participate_to_group_ai = true
 		}
 	},
-	-- Remove spawn groups closest to broken bridge part
+	-- Remove spawn groups closest to the broken bridge part (and add a few groups from the construction site)
 	[101176] = {
 		values = {
-			spawn_groups = { 100867, 101153, 101157, 101154, 101160, 101156, 101159 }
+			spawn_groups = { 101847, 103886, 101250, 101154, 101160, 101156, 101159 }
 		}
 	},
-	-- Increase spawn group intervals next to prison vans, closest to furthest
-	[100867] = {
-		values = {
-			interval = 90
-		}
-	},
-	[101153] = {
-		values = {
-			interval = 90
-		}
-	},
-	[101157] = {
-		values = {
-			interval = 90
-		}
-	},
+	-- slow down spawnpoints closer to the vans
 	[101154] = {
 		values = {
-			interval = 60
+			interval = 50
 		}
 	},
 	[101160] = {
 		values = {
-			interval = 60
+			interval = 50
 		}
 	},
 	[101156] = {
 		values = {
-			interval = 45
+			interval = 30
 		}
 	},
 	[101159] = {
 		values = {
-			interval = 45
+			interval = 30
 		}
 	},
 	[100521] = {

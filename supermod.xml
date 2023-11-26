@@ -50,6 +50,7 @@
 				<post :hook_id="savefilemanager"/>
 				<post :hook_id="achievmentmanager"/>
 				<post :hook_id="tangomanager"/>
+				<post :hook_id="sidejobeventmanager"/>
 				<post :hook_id="blackmarketmanager"/>
 				<post :hook_id="dynamicresourcemanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
@@ -241,9 +242,6 @@
 		<!-- eclipse difficulty icon & risk level -->
 		<file name="guis/textures/pd2/risklevel_deathwish_easywish_blackscreen.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
-
-		<!-- perk decks -->
-		<file name="guis/textures/pd2/specialization/icons_atlas.texture"/>
 
 		<!-- characters -->
 		<group name="units/pd2_dlc_vip/characters/">

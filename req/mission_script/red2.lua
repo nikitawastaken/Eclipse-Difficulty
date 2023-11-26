@@ -38,4 +38,20 @@ return {
 			amount = 5
 		}
 	},
+	-- slow down a few repel spawnpoints
+	[105112] = {
+		values = {
+			interval = 30
+		}
+	},
+	[106890] = {
+		values = {
+			interval = 30
+		}
+	},
+	[103953] = {
+		values = {
+			interval = 10
+		}
+	},
 }

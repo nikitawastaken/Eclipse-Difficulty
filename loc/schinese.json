@@ -120,12 +120,12 @@
 
 
 	"menu_nine_lives_beta": "永垂不朽",
+	"menu_nine_lives_beta_desc": "基础: ##$basic##\n你倒地的时候可以开镜瞄准了。\n\n精通: ##$pro##\n你倒地的时候可以切换武器了。",
 	"menu_pistol_beta_messiah_desc": "基础: ##$basic##\n当你倒地的时候，击杀一名敌人将可以直接起身。 你只有##$multibasic##次机会。\n\n你倒地后被逮捕的所需时间增加##$multibasic2##秒。\n\n注意：从被拘留的状态被解救时不会重置该技能的机会次数。\n\n精通: ##$pro##\n你额外获得##$multipro##次机会。\n\n当你被拘留的时候，人质会自己进行交易将你赎回。可以在突击中触发，但是一场劫案只能触发##1##次。",
 	"menu_drop_soap_beta_desc": "基础: ##$basic##\n你冲刺的时候可以使用近战武器进行蓄力和攻击。\n\n精通: ##$pro##\n你可以使用近战武器击退防爆特警。\n\n每##$multipro##秒最多触发一次。",
 	"menu_wolverine_beta_desc": "基础: ##$basic##\n你的血量越低，你的移速越高。你的血量低于##$multibasic##时, 你最多获得##$multibasic2##的额外移速。\n\n精通: ##$pro##\n你的血量越低，你造成的近战伤害越高。当你的血量低于##$multipro##时, 你最多额外造成##$multipro2##的近战和电锯伤害。",
 	"menu_trigger_happy_beta_desc": "基础: ##$basic##\n你的手枪每次命中敌人时会获得##$multibasic##的持续##$multibasic2##秒的伤害加成。\n最多叠加##$multibasic3##次。\n\n精通: ##$pro##\n你的手枪每次命中敌人时会获得##$multipro##的持续##$multipro2##秒的伤害加成。\n最多叠加##$multipro3##次。",
 	"menu_perseverance_beta_desc": "基础: ##$basic##\n你血量耗尽时不会立刻倒地，而是有##$multibasic2##秒的额外战斗时间。在此期间，移动速度获得##$multibasic3##的惩罚。\n\n注意：坠落伤害和火焰伤害不会触发该技能。 \n\n精通: ##$pro##\n天鹅绝唱的持续时间额外增加##$multipro##秒。",
-	"menu_nine_lives_beta_desc": "基础: ##$basic##\n你倒地的时候可以开镜瞄准了。\n\n精通: ##$pro##\n你倒地时可以使用主武器了。",
 	"menu_tea_cookies_beta_desc": "基础 ##$basic##\n开局时可额外携带##$multibasic##个急救包。\n\n精通: ##$pro##\n开局时可额外携带##$multipro##个急救包。\n\n你部署的急救包会自动救援##$multipro2##米内倒地的玩家。每##$multipro3##秒最多触发一次。",
 
 

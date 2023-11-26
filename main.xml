@@ -1,0 +1,6 @@
+<table>
+	<AddFiles directory="assets">
+		<!-- perk decks -->
+		<texture path="guis/textures/pd2/specialization/icons_atlas"/>
+	</AddFiles>
+</table>
