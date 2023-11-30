@@ -122,10 +122,7 @@
 					<post :hook_id="boss/logics/bosslogicattack"/>
 
 					<group :hook_id="cop/">
-						<group :hook_id="actions/full_body/">
-							<post :hook_id="copactiondodge"/>
-							<post :hook_id="copactionhurt"/>
-						</group>
+						<post :hook_id="actions/full_body/copactionhurt"/>
 
 						<group :hook_id="actions/lower_body/">
 							<post :hook_id="copactionidle"/>
@@ -133,7 +130,6 @@
 						</group>
 
 						<group :hook_id="actions/upper_body/">
-							<post :hook_id="copactionreload"/>
 							<post :hook_id="copactionshoot"/>
 							<post :hook_id="copactiontase"/>
 						</group>
@@ -185,12 +181,10 @@
 				<group :hook_id="player_team/">
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
-					<post :hook_id="teamaimovement"/>
 					<post :hook_id="huskteamaidamage"/>
 				</group>
 
 				<group :hook_id="props/">
-					<post :hook_id="aiattentionobject"/>
 					<post :hook_id="carrydata"/>
 					<post :hook_id="timergui"/>
 				</group>

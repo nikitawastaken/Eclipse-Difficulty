@@ -597,7 +597,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
-	self.medic.suppression = nil
 	self.medic.move_speed = self.presets.move_speed.fast
 
 	-- shield
