@@ -13,9 +13,8 @@ function CopActionIdle:_can_turn()
 	return not queued_actions or not queued_actions[1] or not queued_actions[2]
 end
 
-
 -- Enable client turn behavior on host
-Hooks:PostHook(CopActionIdle, "on_attention", "sh_on_attention", function (self, attention)
+Hooks:PostHook(CopActionIdle, "on_attention", "sh_on_attention", function(self, attention)
 	if not attention or self._is_cool or self._body_part ~= 3 then
 		return
 	end

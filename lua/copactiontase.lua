@@ -7,7 +7,6 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
 
-
 -- Make tasers more consistent by allowing to tase through enemies and ignoring attention when already discharging
 function CopActionTase:on_attention(attention)
 	if not attention then
@@ -73,12 +72,10 @@ function CopActionTase:on_attention(attention)
 	end
 end
 
-
 -- Helper function
 function CopActionTase.is_obstructed(from, to, slotmask, radius)
 	return World:raycast("ray", from, to, "slot_mask", slotmask, "sphere_cast_radius", radius, "report")
 end
-
 
 -- Fix some general issues with turning
 function CopActionTase:update(t)
@@ -119,7 +116,7 @@ function CopActionTase:update(t)
 				self._ext_movement:action_request({
 					type = "turn",
 					body_part = 2,
-					angle = spin
+					angle = spin,
 				})
 			end
 		end
@@ -153,7 +150,7 @@ function CopActionTase:update(t)
 		self._tase_effect = World:effect_manager():spawn({
 			force_synch = true,
 			effect = Idstring("effects/payday2/particles/character/taser_thread"),
-			parent = self._ext_inventory:equipped_unit():get_object(Idstring("fire"))
+			parent = self._ext_inventory:equipped_unit():get_object(Idstring("fire")),
 		})
 
 		if self._tasing_local_unit then

@@ -31,7 +31,7 @@ function EnvironmentFire:on_spawn(data, normal, user_unit, weapon_unit, added_ti
 		feedback_range = data.range * 2,
 		sound_event_burning = data.sound_event_burning,
 		sound_event_impact_duration = data.sound_event_impact_duration,
-		sound_event_duration = data.burn_duration + added_time
+		sound_event_duration = data.burn_duration + added_time,
 	}
 	self._data = data
 	self._normal = normal
@@ -204,7 +204,7 @@ function EnvironmentFire:_do_damage()
 			owner = alive(self._weapon_unit) and self._weapon_unit or self._unit,
 			alert_radius = self._fire_alert_radius,
 			dot_data = self._dot_data,
-			is_molotov = self._is_molotov
+			is_molotov = self._is_molotov,
 		})
 	end
 

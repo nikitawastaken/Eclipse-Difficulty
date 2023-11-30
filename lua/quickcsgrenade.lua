@@ -1,6 +1,5 @@
 local tmp_vec = Vector3()
 
-
 -- Make teargas grenades bouncy
 local _play_sound_and_effects_original = QuickCsGrenade._play_sound_and_effects
 function QuickCsGrenade:_play_sound_and_effects(...)
@@ -43,12 +42,12 @@ function QuickCsGrenade:_play_sound_and_effects(...)
 		World:effect_manager():spawn({
 			effect = Idstring("effects/particles/explosions/explosion_smoke_grenade"),
 			position = self._unit:position(),
-			normal = self._unit:rotation():y()
+			normal = self._unit:rotation():y(),
 		})
 
 		self._smoke_effect = World:effect_manager():spawn({
 			effect = Idstring("effects/payday2/environment/cs_gas_damage_area"),
-			parent = self._unit:orientation_object()
+			parent = self._unit:orientation_object(),
 		})
 
 		self._set_blurzone = true
