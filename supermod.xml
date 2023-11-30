@@ -44,7 +44,6 @@
 				</group>
 
 				<post :hook_id="missionmanager"/>
-				<post :hook_id="enemymanager"/>
 				<post :hook_id="hudmanager"/>
 				<post :hook_id="menumanager"/>
 				<post :hook_id="savefilemanager"/>
