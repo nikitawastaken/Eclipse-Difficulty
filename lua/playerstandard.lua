@@ -201,7 +201,8 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						weap_base:tweak_data_anim_stop("equip")
 
 						if
-							(not params or not params.no_steelsight) and (not self._state_data.in_steelsight or not weap_base:tweak_data_anim_play("fire_steelsight", weap_base:fire_rate_multiplier()))
+							(not params or not params.no_steelsight)
+							and (not self._state_data.in_steelsight or not weap_base:tweak_data_anim_play("fire_steelsight", weap_base:fire_rate_multiplier()))
 						then
 							weap_base:tweak_data_anim_play("fire", weap_base:fire_rate_multiplier())
 						end
