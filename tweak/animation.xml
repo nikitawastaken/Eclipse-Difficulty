@@ -34,39 +34,6 @@
 		</target>
 	</tweak>
 
-	<!-- Improve blending on some animations -->
-	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
-		<search>
-			<xml/>
-			<state name="upper_body/empty"/>
-		</search>
-		<target mode="attach">
-			<from name="upper_body/equip" blend="10"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
-		<search>
-			<xml/>
-			<state name="upper_body/empty"/>
-			<keys/>
-			<key at="6"/>
-		</search>
-		<target mode="attributes">
-			<attr name="at" value="30"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
-		<search>
-			<xml/>
-			<state name="std/stand/still/idle/look"/>
-		</search>
-		<target mode="attach">
-			<from name="std/stand/still/attached_collar/enter" blend="30"/>
-		</target>
-	</tweak>
-
 	<!-- Disable recoil animations during dodge -->
 	<tweak version="2" name="anims/units/enemies/cop/std" extension="animation_states">
 		<search>
