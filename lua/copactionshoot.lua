@@ -59,6 +59,10 @@ function CopActionShoot:update(t)
 		end
 	end
 
+	if self._ext_anim.base_need_upd then
+		self._ext_movement:upd_m_head_pos()
+	end
+
 	local shoot_from_pos = self._shoot_from_pos
 	local ext_anim = self._ext_anim
 	local target_vec, target_dis, target_pos
@@ -86,11 +90,13 @@ function CopActionShoot:update(t)
 		target_vec = self:_upd_ik(target_vec, fwd_dot, t)
 	end
 
-	if ext_anim.base_need_upd then
-		self._ext_movement:upd_m_head_pos()
-	end
-
-	if ext_anim.reload or ext_anim.equip or ext_anim.melee then
+	if ext_anim.reload then
+		if self._looped_expire_t and self._looped_expire_t < t then
+			self._looped_expire_t = nil
+			self._ext_movement:play_redirect("reload_looped_exit")
+		end
+		return
+	elseif ext_anim.equip or ext_anim.melee then
 		return
 	end
 
@@ -101,7 +107,7 @@ function CopActionShoot:update(t)
 	if self._weapon_base:clip_empty() then
 		-- Reload
 		self:_stop_firing()
-		CopActionReload._play_reload(self)
+		CopActionReload._play_reload(self, t)
 	elseif not target_vec or not self._common_data.allow_fire then
 		-- Stop shooting
 		if self._autofiring then

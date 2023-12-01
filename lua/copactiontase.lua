@@ -173,13 +173,17 @@ function CopActionTase:update(t)
 			self._tasing_local_unit:character_damage():damage_tase({ attacker_unit = self._unit })
 			CopDamage._notify_listeners("on_criminal_tased", self._unit, self._tasing_local_unit)
 
-			self._tasered_sound = not self._tasing_player and self._unit:sound():play("tasered_3rd", nil)
-			self._ext_movement:play_redirect("recoil_auto")
+			self._tasered_sound = self._unit:sound():play("tasered_3rd", nil)
+			if self._unit:base():lod_stage() == 1 then
+				self._ext_movement:play_redirect("recoil_single")
+			end
 			self._shoot_t = nil
 			self._discharging = true
 		else
 			self._tasered_sound = self._unit:sound():play("tasered_3rd", nil)
-			self._ext_movement:play_redirect("recoil_auto")
+			if self._unit:base():lod_stage() == 1 then
+				self._ext_movement:play_redirect("recoil_single")
+			end
 			self._shoot_t = nil
 		end
 	end

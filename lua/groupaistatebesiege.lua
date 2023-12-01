@@ -309,7 +309,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	if tactics_map.deathguard and not phase_is_anticipation then
 		if current_objective.tactic == "deathguard" then
 			local u_data = alive(current_objective.follow_unit) and self._char_criminals[current_objective.follow_unit:key()]
-			if u_data and u_data.status and current_objective.area.nav_segs[u_data.seg] then
+			if u_data and u_data.status and u_data.status ~= "electrified" and current_objective.area.nav_segs[u_data.seg] then
 				return
 			end
 		end
@@ -402,7 +402,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 		repeat
 			local search_area = table.remove(to_search_areas, 1)
-			if next(search_area.criminal.units) and not self:is_area_safe_assault(search_area) then
+			if not self:is_area_safe_assault(search_area) then
 				local flank = tactics_map.flank and found_areas[search_area] ~= objective_area
 				if not flank or math.random() < flank_chance then
 					local new_assault_path = managers.navigation:search_coarse({
@@ -663,7 +663,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 			self:chk_say_enemy_chatter(grenade_user.unit, grenade_user.m_pos, "smoke")
 		end
 
-		self:detonate_smoke_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai[grenade_type .. "_lifetime"] or 10, grenade_type == "flash_grenade")
+		self:detonate_smoke_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai[grenade_type .. "_lifetime"] or 10, grenade_type == "flash_grenade", false)
 
 		timeout = tweak_data.group_ai[grenade_type .. "_timeout"] or tweak_data.group_ai.smoke_and_flash_grenade_timeout
 	end
@@ -675,11 +675,6 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	task_data[grenade_type .. "_next_t"] = self._t + math.lerp(timeout[1], timeout[2], math.random())
 
 	return true
-end
-
--- Fix grenades being synced twice (sync is already done in GroupAIStateBase:detonate_world_smoke_grenade)
-function GroupAIStateBesiege:detonate_smoke_grenade(detonate_pos, shooter_pos, duration, flashbang)
-	self:sync_smoke_grenade(detonate_pos, shooter_pos, duration, flashbang)
 end
 
 -- Keep recon groups around during anticipation

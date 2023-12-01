@@ -217,7 +217,6 @@ function CopLogicBase.chk_start_action_dodge(data, reason)
 		blocks = {
 			act = -1,
 			tase = -1,
-			bleedout = -1,
 			dodge = -1,
 			walk = -1,
 			action = body_part == 1 and -1 or nil,
@@ -304,14 +303,7 @@ function CopLogicBase.chk_am_i_aimed_at(data, attention_obj, max_dot)
 		max_dot = math.lerp(max_dot * 0.75, max_dot, attention_obj.dis / 1000)
 	end
 
-	if attention_obj.is_local_player then
-		mrot_y(attention_obj.unit:movement():m_head_rot(), tmp_vec1)
-	elseif attention_obj.is_husk_player then
-		mvec3_set(tmp_vec1, attention_obj.unit:movement():detect_look_dir())
-	else
-		mvec3_set(tmp_vec1, attention_obj.unit:movement()._action_common_data.look_vec)
-	end
-
+	mvec3_set(tmp_vec1, attention_obj.unit:movement():detect_look_dir())
 	mvec3_dir(tmp_vec2, attention_obj.m_head_pos, data.unit:movement():m_com())
 
 	return max_dot < mvec3_dot(tmp_vec2, tmp_vec1)
@@ -412,7 +404,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 		end,
 
 		flanked = function(flanked_surrender)
-			local fwd_dot = mvec3_dot(data.unit:movement():m_rot():y(), tmp_vec1)
+			local fwd_dot = mvec3_dot(data.unit:movement():m_fwd(), tmp_vec1)
 			if fwd_dot < 0 then
 				hold_chance = hold_chance * (1 - flanked_surrender * math.abs(fwd_dot))
 			end

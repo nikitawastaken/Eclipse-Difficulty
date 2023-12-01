@@ -20,7 +20,7 @@ local floor_vec = Vector3(0, 0, -500)
 -- Improve the fire placement and visuals to match the damage range more accurately
 -- Fire effect placement is now properly based on radius and weird fire generation on walls should be fixed
 -- Added performance optimizations regarding updating effect positions, no need to check effect position every frame
-function EnvironmentFire:on_spawn(data, normal, user_unit, added_time, range_multiplier)
+function EnvironmentFire:on_spawn(data, normal, user_unit, weapon_unit, added_time, range_multiplier)
 	self._unit:set_visible(false)
 
 	local custom_params = {
@@ -37,8 +37,12 @@ function EnvironmentFire:on_spawn(data, normal, user_unit, added_time, range_mul
 	self._normal = normal
 	self._added_time = added_time
 	self._range_multiplier = range_multiplier
+	local dot_data = data.dot_data_name and tweak_data.dot:get_dot_data(data.dot_data_name)
+	self._dot_data = dot_data and deep_clone(dot_data)
 	self._user_unit = user_unit
+	self._weapon_unit = weapon_unit
 	self._burn_duration = data.burn_duration + added_time
+	self._burn_duration_destroy = (self._dot_data and self._dot_data.dot_length or 0) + 1
 	self._burn_tick_counter = 0
 	self._burn_tick_period = data.burn_tick_period
 	-- In vanilla this is set to the total fire size, however, it is used to check damage at every individual fire effect, which makes no sense
@@ -46,7 +50,6 @@ function EnvironmentFire:on_spawn(data, normal, user_unit, added_time, range_mul
 	self._curve_pow = data.curve_pow
 	self._damage = data.damage
 	self._player_damage = data.player_damage
-	self._fire_dot_data = deep_clone(data.fire_dot_data)
 	self._fire_alert_radius = data.fire_alert_radius
 	self._is_molotov = data.is_molotov
 	-- Vanilla code spawns fire effect at 2 times the actual range defined in data, so accommodate for that
@@ -128,7 +131,18 @@ end
 -- Optimize fire updating
 function EnvironmentFire:update(unit, t, dt)
 	if self._burn_duration <= 0 then
-		self._unit:set_slot(0)
+		if self._burn_duration_destroy <= 0 then
+			self._unit:set_slot(0)
+		else
+			self._burn_duration_destroy = self._burn_duration_destroy - dt
+			if not self._hiding then
+				self._hiding = true
+				for _, damage_effect_entry in pairs(self._molotov_damage_effect_table) do
+					World:effect_manager():fade_kill(damage_effect_entry.effect_id)
+				end
+				self._molotov_damage_effect_table = {}
+			end
+		end
 	else
 		self._burn_duration = self._burn_duration - dt
 		self._burn_tick_counter = self._burn_tick_counter + dt
@@ -187,9 +201,9 @@ function EnvironmentFire:_do_damage()
 			collision_slotmask = slot_mask,
 			damage = self._damage,
 			user = self._user_unit,
-			owner = self._unit,
+			owner = alive(self._weapon_unit) and self._weapon_unit or self._unit,
 			alert_radius = self._fire_alert_radius,
-			fire_dot_data = self._fire_dot_data,
+			dot_data = self._dot_data,
 			is_molotov = self._is_molotov,
 		})
 	end
