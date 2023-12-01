@@ -93,7 +93,7 @@ tweak_data.projectiles.underbarrel_electric_groza.damage = 10
 tweak_data.projectiles.launcher_electric_ms3gl.damage = 10
 
 -- incendiary buff
-tweak_data.projectiles.fir_com.damage = 10
+-- tweak_data.projectiles.fir_com.damage = 10
 tweak_data.projectiles.fir_com.fire_dot_data.dot_damage = 30
 tweak_data.projectiles.fir_com.range = 800
 -- frags buff
@@ -103,10 +103,10 @@ tweak_data.projectiles.dada_com.damage = 200
 tweak_data.projectiles.dynamite.damage = 200
 
 -- poison nerf
-tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.hurt_animation_chance = 1
-tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_damage = 8
-tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_tick_period = 2
-tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_length = 10
+-- tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.hurt_animation_chance = 1
+-- tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_damage = 8
+-- tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_tick_period = 2
+-- tweak_data.projectiles.poison_gas_grenade.poison_gas_dot_data.dot_length = 10
 tweak_data.projectiles.poison_gas_grenade.poison_gas_range = 400
 tweak_data.projectiles.poison_gas_grenade.poison_gas_duration = 10
 
