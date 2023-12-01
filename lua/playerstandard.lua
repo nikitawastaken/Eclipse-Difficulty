@@ -14,14 +14,25 @@ end
 -- Oh man! This is just like Counter-Strike!
 function PlayerStandard:_check_action_primary_attack(t, input, params)
 	local new_action, action_wanted = nil
-	action_wanted = (not params or params.action_wanted == nil or params.action_wanted) and (input.btn_primary_attack_state or input.btn_primary_attack_release or self:is_shooting_count() or self:_is_charging_weapon())
+	action_wanted = (not params or params.action_wanted == nil or params.action_wanted)
+		and (input.btn_primary_attack_state or input.btn_primary_attack_release or self:is_shooting_count() or self:_is_charging_weapon())
 
 	if action_wanted then
 		local action_forbidden = nil
 
 		if params and params.action_forbidden ~= nil then
 			action_forbidden = params.action_forbidden
-		elseif self:_is_reloading() or self:_changing_weapon() or self:_is_meleeing() or self._use_item_expire_t or self:_interacting() or self:_is_throwing_projectile() or self:_is_deploying_bipod() or self._menu_closed_fire_cooldown > 0 or self:is_switching_stances() then
+		elseif
+			self:_is_reloading()
+			or self:_changing_weapon()
+			or self:_is_meleeing()
+			or self._use_item_expire_t
+			or self:_interacting()
+			or self:_is_throwing_projectile()
+			or self:_is_deploying_bipod()
+			or self._menu_closed_fire_cooldown > 0
+			or self:is_switching_stances()
+		then
 			action_forbidden = true
 		else
 			action_forbidden = false
@@ -189,7 +200,9 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						weap_base:tweak_data_anim_stop("unequip")
 						weap_base:tweak_data_anim_stop("equip")
 
-						if (not params or not params.no_steelsight) and (not self._state_data.in_steelsight or not weap_base:tweak_data_anim_play("fire_steelsight", weap_base:fire_rate_multiplier())) then
+						if
+							(not params or not params.no_steelsight) and (not self._state_data.in_steelsight or not weap_base:tweak_data_anim_play("fire_steelsight", weap_base:fire_rate_multiplier()))
+						then
 							weap_base:tweak_data_anim_play("fire", weap_base:fire_rate_multiplier())
 						end
 
@@ -205,9 +218,9 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							end
 						end
 
-                        local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
+						local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
 
-                        -- Modify starting here
+						-- Modify starting here
 						local kick_tweak_data = weap_tweak_data.kick[fire_mode] or weap_tweak_data.kick
 						local up, down, left, right = unpack(kick_tweak_data[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
 
@@ -224,7 +237,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						else
 							self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 						end
-                        -- End modification
+						-- End modification
 
 						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 
@@ -243,7 +256,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
 							self._state_data.stacking_dmg_mul[primary_category] = self._state_data.stacking_dmg_mul[primary_category] or {
 								nil,
-								0
+								0,
 							}
 							local stack = self._state_data.stacking_dmg_mul[primary_category]
 
