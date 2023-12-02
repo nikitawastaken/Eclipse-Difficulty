@@ -281,6 +281,51 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		end
 	end
 
+	-- thanks sbz for removing this from vanilla for no reason :)
+	presets.hurt_severities.only_light_hurt_and_fire = {
+		tase = true,
+		bullet = {
+			health_reference = 1,
+			zones = {
+				{
+					light = 1
+				}
+			}
+		},
+		explosion = {
+			health_reference = 1,
+			zones = {
+				{
+					explode = 1
+				}
+			}
+		},
+		melee = {
+			health_reference = 1,
+			zones = {
+				{
+					light = 1
+				}
+			}
+		},
+		fire = {
+			health_reference = 1,
+			zones = {
+				{
+					fire = 1
+				}
+			}
+		},
+		poison = {
+			health_reference = 1,
+			zones = {
+				{
+					none = 1
+				}
+			}
+		}
+	}
+
 	-- dozer damage reaction
 	presets.hurt_severities.dozer = {
 		tase = false,
