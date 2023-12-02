@@ -25,7 +25,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_upg_a_dragons_breath.stats.total_ammo_mod = -8
 	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_max_mul = 0.85
 	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_min_mul = 0.85
-	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.fire_dot_data = { dot_trigger_chance = "100", dot_damage = "3", dot_length = "4", dot_trigger_max_distance = "1500", dot_tick_period = "0.25" }
 	-- Shell Rack for loco and r880
 	self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2
 	self.parts.wpn_fps_shot_r870_body_rack.stats.total_ammo_mod = 0
