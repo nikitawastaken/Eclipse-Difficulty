@@ -182,7 +182,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 			if all_enemies[u_key] then
 				result.enemies_in_cone[u_key] = {
 					error_mul = 1,
-					unit = enemy
+					unit = enemy,
 				}
 			end
 		end
@@ -215,7 +215,7 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 		end
 
 		return ray_hits, hit_enemy, hit_enemy and {
-			[hit.unit:key()] = hit.unit
+			[hit.unit:key()] = hit.unit,
 		} or nil
 	end
 
