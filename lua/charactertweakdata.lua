@@ -288,42 +288,42 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			health_reference = 1,
 			zones = {
 				{
-					light = 1
-				}
-			}
+					light = 1,
+				},
+			},
 		},
 		explosion = {
 			health_reference = 1,
 			zones = {
 				{
-					explode = 1
-				}
-			}
+					explode = 1,
+				},
+			},
 		},
 		melee = {
 			health_reference = 1,
 			zones = {
 				{
-					light = 1
-				}
-			}
+					light = 1,
+				},
+			},
 		},
 		fire = {
 			health_reference = 1,
 			zones = {
 				{
-					fire = 1
-				}
-			}
+					fire = 1,
+				},
+			},
 		},
 		poison = {
 			health_reference = 1,
 			zones = {
 				{
-					none = 1
-				}
-			}
-		}
+					none = 1,
+				},
+			},
+		},
 	}
 
 	-- dozer damage reaction
