@@ -1,5 +1,4 @@
 Hooks:PostHook(FireTweakData, "_init_dot_entries_fire", "eclipse__init_dot_entries_fire", function(self)
-
 	-- incendiary
 	self.dot_entries.fire.proj_fire_com.dot_damage = 30
 	self.dot_entries.fire.proj_fire_com.dot_length = 5
