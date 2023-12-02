@@ -1658,13 +1658,6 @@ self.x_judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- mk2
 self.flamethrower_mk2.stats.damage = 25
-self.flamethrower_mk2.fire_dot_data = {
-	dot_trigger_chance = 50,
-	dot_damage = 7.5,
-	dot_length = 1.1,
-	dot_trigger_max_distance = 3000,
-	dot_tick_period = 0.5
-}
 self.flamethrower_mk2.AMMO_PICKUP = {2.65, 3.5}
 
 

@@ -240,8 +240,6 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						end
 						-- End modification
 
-						self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
-
 						if self._shooting_t then
 							local time_shooting = t - self._shooting_t
 							local achievement_data = tweak_data.achievement.never_let_you_go

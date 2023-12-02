@@ -281,6 +281,51 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		end
 	end
 
+	-- thanks sbz for removing this from vanilla for no reason :)
+	presets.hurt_severities.only_light_hurt_and_fire = {
+		tase = true,
+		bullet = {
+			health_reference = 1,
+			zones = {
+				{
+					light = 1,
+				},
+			},
+		},
+		explosion = {
+			health_reference = 1,
+			zones = {
+				{
+					explode = 1,
+				},
+			},
+		},
+		melee = {
+			health_reference = 1,
+			zones = {
+				{
+					light = 1,
+				},
+			},
+		},
+		fire = {
+			health_reference = 1,
+			zones = {
+				{
+					fire = 1,
+				},
+			},
+		},
+		poison = {
+			health_reference = 1,
+			zones = {
+				{
+					none = 1,
+				},
+			},
+		},
+	}
+
 	-- dozer damage reaction
 	presets.hurt_severities.dozer = {
 		tase = false,
@@ -624,7 +669,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.phalanx_minion_break.access = "swat"
 	self.phalanx_minion_break.chatter = self.presets.enemy_chatter.swat
 	self.phalanx_minion_break.announce_incomming = nil
-	self.phalanx_minion_break.damage.hurt_severity = self.presets.hurt_severities.light_hurt_fire_poison
+	self.phalanx_minion_break.damage.hurt_severity = self.presets.hurt_severities.base
 	self.phalanx_minion_break.damage.explosion_damage_mul = 1
 	self.phalanx_minion_break.use_animation_on_fire_damage = nil
 	self.phalanx_minion_break.damage.shield_knocked = nil

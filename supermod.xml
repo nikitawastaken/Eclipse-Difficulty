@@ -74,6 +74,8 @@
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
 				<post :hook_id="guitweakdata"/>
+				<post :hook_id="dottweakdata"/>
+				<post :hook_id="firetweakdata"/>
 				<post :hook_id="groupaitweakdata"/>
 				<post :hook_id="playertweakdata"/>
 				<post :hook_id="weapontweakdata"/>
@@ -198,7 +200,6 @@
 						<post :hook_id="incendiarygrenade"/>
 						<post :hook_id="grenadebase"/>
 					</group>
-					<post :hook_id="props/drill"/>
 					<post :hook_id="projectiles/projectilebase"/>
 					<post :hook_id="shotgun/shotgunbase"/>
 					<post :hook_id="akimboweaponbase"/>
