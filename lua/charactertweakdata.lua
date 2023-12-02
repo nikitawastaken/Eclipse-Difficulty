@@ -669,7 +669,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.phalanx_minion_break.access = "swat"
 	self.phalanx_minion_break.chatter = self.presets.enemy_chatter.swat
 	self.phalanx_minion_break.announce_incomming = nil
-	self.phalanx_minion_break.damage.hurt_severity = self.presets.hurt_severities.light_hurt_fire_poison
+	self.phalanx_minion_break.damage.hurt_severity = self.presets.hurt_severities.base
 	self.phalanx_minion_break.damage.explosion_damage_mul = 1
 	self.phalanx_minion_break.use_animation_on_fire_damage = nil
 	self.phalanx_minion_break.damage.shield_knocked = nil
