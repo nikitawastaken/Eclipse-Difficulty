@@ -566,7 +566,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	-- Enemy chatter
-	presets.enemy_chatter.cop.retreat = nil
+	presets.enemy_chatter.cop.aggressive = true
+	presets.enemy_chatter.cop.go_go = true
+	presets.enemy_chatter.cop.contact = true
 	presets.enemy_chatter.cop.flank = true
 	presets.enemy_chatter.cop.open_fire = true
 	presets.enemy_chatter.cop.watch_background = true
