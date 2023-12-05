@@ -1,5 +1,5 @@
 -- Improve enemy chatter, make proper use of chatter settings like duration and radius
-Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", function (self)
+Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", function(self)
 	local interval = { 1, 2 }
 	local duration_short = { 5, 10 }
 	local duration_medium = { 10, 20 }
