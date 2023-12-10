@@ -64,6 +64,7 @@ if not StreamHeist then
 		local language_tbl = {
 			[("english"):key()] = "en.txt",
 			[("schinese"):key()] = "schinese.json",
+			[("russian"):key()] = "ru.txt"
 		}
 
 		local language = language_tbl[SystemInfo:language():key()] or "en.txt"
