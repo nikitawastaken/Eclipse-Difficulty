@@ -63,7 +63,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.base.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.base.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -92,7 +92,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_smg = deep_clone(presets.weapon.base.is_rifle)
 	presets.weapon.base.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.base.is_smg.FALLOFF = {
-		{ dmg_mul = 5, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5, r = 0, acc = { 0.35, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -123,10 +123,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.gc = based_on(presets.weapon.base)
-	presets.weapon.gc.is_rifle.autofire_rounds = { 1, 3 }
+	presets.weapon.gc.is_rifle.autofire_rounds = { 1, 1 }
 	presets.weapon.gc.is_rifle.FALLOFF = {
-		{ dmg_mul = 9, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 9, r = 3000, acc = { 0.2, 0.45 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9, r = 0, acc = { 0.45, 0.6 }, recoil = { 0.33, 0.66 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9, r = 3000, acc = { 0.15, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 	presets.weapon.gc.is_smg.FALLOFF = {
 		{ dmg_mul = 7.5, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -138,9 +138,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		aim_delay = { 0, 0.1 },
 	})
 
-	presets.weapon.elite.is_rifle.autofire_rounds = { 1, 3 }
+	presets.weapon.elite.is_rifle.autofire_rounds = { 1, 1 }
 	presets.weapon.elite.is_rifle.FALLOFF = {
-		{ dmg_mul = 8.5, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8.5, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.33, 0.66 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 8.5, r = 3000, acc = { 0.25, 0.6 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -153,7 +153,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.elite.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.elite.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -171,12 +171,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.shield.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.shield.is_smg.FALLOFF = {
-		{ dmg_mul = 3, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3, r = 0, acc = { 0.35, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_shield.is_pistol.FALLOFF = {
-		{ dmg_mul = 7, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.3, 0.45 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7, r = 0, acc = { 0.5, 0.75 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 7, r = 3000, acc = { 0.1, 0.4 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 	}
 
