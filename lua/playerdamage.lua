@@ -266,7 +266,7 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 			end
 
 			-- Add significantly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) (sh)
-			self._can_take_dmg_timer = self._dmg_interval + 0.2
+			self._can_take_dmg_timer = math.max(self._dmg_interval, 0.3)
 
 			local pm = managers.player
 
