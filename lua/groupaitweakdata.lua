@@ -1777,7 +1777,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Assault Data
 	-- AI Tickrate
-	self.ai_tickrate = 1 / (30 * f)
+	self.ai_tickrate = 1 / (50 * math.sqrt(f))
 
 	-- BESIEGE --
 
@@ -1889,7 +1889,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_lights = { 1.5, 1.5, 1.5 },
 			fbi_heavies = { 0.3, 0.5, 1 },
 			fbi_shields = { 0.2, 0.2, 0.3 },
-			fbi_tanks = { 0, 0.02, 0.1 },
+			fbi_tanks = { 0, 0.04, 0.125 },
+			gensec_cqc_lights = { 0, 0.1, 0.25 },
+			gensec_ranged_lights = { 0, 0.1, 0.25 },
+			gensec_flankers = { 0, 0.1, 0.2 },
 			spoocs = { 0, 0.03, 0.06 },
 		}
 		self.besiege.recon.groups = {
@@ -1989,7 +1992,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_lights = { 1.5, 1.5, 1.5 },
 			fbi_heavies = { 0.3, 0.5, 1 },
 			fbi_shields = { 0.2, 0.2, 0.3 },
-			fbi_tanks = { 0, 0.02, 0.1 },
+			fbi_tanks = { 0, 0.04, 0.125 },
+			gensec_cqc_lights = { 0, 0.1, 0.25 },
+			gensec_ranged_lights = { 0, 0.1, 0.25 },
+			gensec_flankers = { 0, 0.1, 0.2 },
 			spoocs = { 0, 0.03, 0.06 },
 		}
 		self.ponr.reenforce.groups = {
