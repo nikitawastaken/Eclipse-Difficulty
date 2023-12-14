@@ -25,7 +25,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
 		focus_delay = (is_pro and 0.25) or 0.35,
-		aim_delay = (is_pro and { 0, 0.1 }) or {0.15, 0.2},
+		aim_delay = (is_pro and { 0, 0.1 }) or { 0.15, 0.2 },
 		melee_dmg = 10,
 		melee_speed = 1,
 		melee_retry_delay = { 1, 2 },
@@ -136,7 +136,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.elite = based_on(presets.weapon.base, {
 		focus_delay = (is_pro and 0.15) or 0.25,
-		aim_delay = (is_pro and { 0, 0.05 }) or {0.1, 0.1},
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
 	})
 
 	presets.weapon.elite.is_rifle.autofire_rounds = { 1, 1 }
@@ -167,7 +167,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 	presets.weapon.elite_shield = based_on(presets.weapon.shield, {
 		focus_delay = (is_pro and 0.15) or 0.25,
-		aim_delay = (is_pro and { 0, 0.05 }) or {0.1, 0.1},
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
 	})
 
 	presets.weapon.shield.is_smg.autofire_rounds = { 3, 8 }
@@ -194,7 +194,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.sniper = based_on(presets.weapon.base, {
 		focus_delay = 0.5,
-		aim_delay = (is_pro and { 0, 0.15 }) or {0.1, 0.25},
+		aim_delay = (is_pro and { 0, 0.15 }) or { 0.1, 0.25 },
 		range = { close = 5000, optimal = 10000, far = 15000 },
 	})
 
@@ -209,7 +209,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_tank = based_on(presets.weapon.tank, {
 		melee_dmg = 20,
 		focus_delay = (is_pro and 0.15) or 0.25,
-		aim_delay = (is_pro and { 0, 0.05 }) or {0.1, 0.1},
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
 	})
 
 	presets.weapon.tank.is_shotgun_pump.FALLOFF = {
