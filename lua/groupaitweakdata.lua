@@ -1774,10 +1774,11 @@ function GroupAITweakData:_init_enemy_spawn_groups_level() end
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	-- difficulty scaling
 	local f = ((difficulty_index ^ 2) / (difficulty_index * 3))
+	local is_pro = Global.game_settings and Global.game_settings.one_down
 
 	-- Assault Data
 	-- AI Tickrate
-	self.ai_tickrate = 1 / (50 * math.sqrt(f))
+	self.ai_tickrate = 1 / (50 * math.sqrt(f) * ((is_pro and 1.15) or 1))
 
 	-- BESIEGE --
 
@@ -1822,19 +1823,19 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- GRENADES --
 	-- global
-	self.min_grenade_timeout = 20 / f
+	self.min_grenade_timeout = 20 / f / ((is_pro and 1.25) or 1)
 	self.no_grenade_push_delay = 8 / (math.sqrt(f))
 
 	-- flash
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
 	self.flash_grenade.light_range = 500
-	self.flash_grenade_timeout = { 30 / f, 40 / f }
+	self.flash_grenade_timeout = { 30 / f / ((is_pro and 1.25) or 1), 40 / f / ((is_pro and 1.25) or 1) }
 	self.flash_grenade.timer = 2 / f
 
 	-- smoke & gas
-	self.smoke_grenade_timeout = { 40 / f, 50 / f }
+	self.smoke_grenade_timeout = { 40 / f / ((is_pro and 1.25) or 1), 50 / f / ((is_pro and 1.25) or 1) }
 	self.smoke_grenade_lifetime = 10 * f
-	self.cs_grenade_timeout = { 110 / f, 150 / f }
+	self.cs_grenade_timeout = { 110 / f / ((is_pro and 1.25) or 1), 150 / f / ((is_pro and 1.25) or 1) }
 	self.cs_grenade_chance_times = { 120, 240 }
 	self.cs_grenade_lifetime = 10 * f
 

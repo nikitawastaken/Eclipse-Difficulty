@@ -3,7 +3,7 @@ PlayerDamage._UPPERS_COOLDOWN = 90
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
-	if Global.game_settings.one_down then
+	if Global.game_settings and Global.game_settings.one_down then
 		self._lives_init = 4
 		tweak_data.player.damage.DOWNED_TIME = 25
 		tweak_data.player.damage.DOWNED_TIME_DEC = 10
