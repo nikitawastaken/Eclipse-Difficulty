@@ -382,7 +382,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.defense_up.multipro = "50%"
 
 	-- Die Hard
-	self.values.player.interacting_damage_multiplier[1] = 0.25
+	self.values.player.interacting_damage_multiplier[1] = 0.75
 	self.skill_descs.sentry_targeting_package.multibasic = "25%"
 
 	-- Defense Package
