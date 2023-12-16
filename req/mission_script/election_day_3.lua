@@ -16,8 +16,10 @@ return {
 		}
 	},
 	[104782] = {
-		ponr = 420,
-		ponr_player_mul = {1.5, 1.25, 1, 1}
+		ponr = {
+			length = 420,
+			player_mul = {1.5, 1.25, 1, 1}
+		}
 	},
 	[103702] = {
 		values = {

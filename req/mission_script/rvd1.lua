@@ -1,7 +1,9 @@
 return {
 	[100115] = {
-		ponr = 900,
-		ponr_player_mul = {2, 1.25, 1, 1}
+		ponr = {
+			length = 900,
+			player_mul = {2, 1.25, 1, 1}
+		}
 	},
 	-- slow down a few spawnpoints that are close to the warehouse
 	[100019] = {

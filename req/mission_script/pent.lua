@@ -21,7 +21,9 @@ return {
 		}
 	},
 	[101607] = {
-		ponr = 180,
-		ponr_player_mul = {1.33, 1.15, 1, 0.85}
+		ponr = {
+			length = 180,
+			player_mul = {1.33, 1.15, 1, 0.85}
+		}
 	}
 }

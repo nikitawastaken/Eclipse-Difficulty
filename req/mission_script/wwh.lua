@@ -6,8 +6,10 @@ return {
 		}
 	},
 	[100945] = {
-		ponr = 900,
-		ponr_player_mul = {2, 1.25, 1, 0.8}
+		ponr = {
+			length = 900,
+			player_mul = {2, 1.25, 1, 0.8}
+		}
 	},
 	-- slow down a few spawnpoints
 	[100605] = {

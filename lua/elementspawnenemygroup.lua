@@ -72,9 +72,6 @@ group_mapping.tac_shield_wall_ranged = group_mapping.tac_shield_wall
 group_mapping.tac_shield_wall_charge = group_mapping.tac_shield_wall
 group_mapping.tac_tazer_charge = group_mapping.tac_tazer_flanking
 
--- Level specific group mappings to fix issues with nav link access flags
-local mission_script_elements = StreamHeist:mission_script_patches()
-
 Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "sh__finalize_values", function(self)
 	if not self._values.preferred_spawn_groups then
 		return
@@ -99,13 +96,6 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "sh__finalize_values"
 			end
 		else
 			new_groups[initial_group] = true
-		end
-	end
-
-	local element_mapping = mission_script_elements and mission_script_elements[self._id]
-	if element_mapping and element_mapping.groups then
-		for group, enabled in pairs(element_mapping.groups) do
-			new_groups[group] = enabled or nil
 		end
 	end
 

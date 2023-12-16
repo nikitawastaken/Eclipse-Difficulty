@@ -7,8 +7,10 @@ return {
 	},
 	-- add point of no return
 	[103334] = {
-		ponr = 150,
-		ponr_player_mul = {1.1, 0.9, 0.7, 0.5}
+		ponr = {
+			length = 150,
+			player_mul = {1.1, 0.9, 0.7, 0.5}
+		}
 	},
 	-- remove a few cancer dozers
 	[103603] = {
