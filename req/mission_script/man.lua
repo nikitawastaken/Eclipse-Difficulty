@@ -11,6 +11,12 @@ return {
 			managers.network:session():send_to_peers_synched("give_equipment", self._values.equipment, self._values.amount)
 		end
 	},
+	--  this disables multiple spawn points when limo lands on the balcony, which is weird, to say the least
+	[101898] = {
+		values = {
+			enabled = false,
+		},
+	},
 	-- No code chance increase on fail or knockout
 	[102865] = {
 		on_executed = {
@@ -35,9 +41,7 @@ return {
 	},
 	-- Code chance increase amount
 	[102887] = {
-		values = {
-			chance = 10
-		}
+		chance = 10
 	},
 	-- Faint duration increase
 	[102860] = {

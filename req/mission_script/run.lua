@@ -18,8 +18,8 @@ return {
 		values = {
 			enabled = true,
 			difficulty_overkill_145 = true, -- ovk and below filter
-			chance = 100
-		}
+		},
+		chance = 100
 	},
 	[103590] = {
 		values = {
@@ -27,9 +27,7 @@ return {
 		}
 	},
 	[103593] = {
-		values = {
-			chance = 100
-		}
+		chance = 100
 	},
 	[100036] = {
 		spawn_instigator_ids = {

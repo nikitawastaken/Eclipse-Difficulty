@@ -7,6 +7,49 @@ return {
 	[100614] = {
 		set_ponr_state = true
 	},
+	[103969] = {
+		reinforce = {
+			{
+				name = "atrium1",
+				force = 2,
+				position = Vector3(-4000, -2200, 750),
+			},
+			{
+				name = "atrium2",
+				force = 2,
+				position = Vector3(-2750, -2200, 750),
+			},
+			{
+				name = "atrium3",
+				force = 2,
+				position = Vector3(-2750, -1000, 750),
+			},
+			{
+				name = "atrium4",
+				force = 2,
+				position = Vector3(-4000, -1000, 750),
+			},
+		},
+	},
+	[101342] = {
+		reinforce = {
+			{
+				name = "vault_entrance",
+				force = 3,
+				position = Vector3(-3250, -2850, 0),
+			},
+			{
+				name = "atrium_lower1",
+				force = 3,
+				position = Vector3(-3800, -800, 400),
+			},
+			{
+				name = "atrium_lower2",
+				force = 3,
+				position = Vector3(-2700, -800, 400),
+			},
+		},
+	},
 	-- slow down vault spawnpoints
 	[104822] = {
 		values = {

@@ -22,9 +22,7 @@ return {
 	},
 	-- added chance to cook each time the evaluation runs and fails, vanilla is 10%
 	[100723] = {
-		values = {
-			chance = 20,
-		},
+		chance = 20
 	},
 	-- waiter !  waiter !  more gangsters please !
 	[101520] = {

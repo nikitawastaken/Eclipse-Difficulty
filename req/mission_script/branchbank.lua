@@ -1,9 +1,7 @@
 return {
 	-- Special ambush chance increase
 	[103072] = {
-		values = {
-			chance = 75
-		}
+		chance = 75
 	},
 	[105563] = {
 		values = {

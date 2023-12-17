@@ -31,9 +31,7 @@ return {
 		enemy = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
 	},
 	[104000] = {
-		values = {
-			chance = 1
-		}
+		chance = 100
 	},
 	[100225] = {
 		values = {
