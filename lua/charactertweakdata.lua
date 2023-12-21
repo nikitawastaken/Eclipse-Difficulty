@@ -21,10 +21,11 @@ end
 local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
+	local is_pro = Global.game_settings and Global.game_settings.one_down
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
-		focus_delay = 0.35,
-		aim_delay = { 0, 0.2 },
+		focus_delay = (is_pro and 0.25) or 0.35,
+		aim_delay = (is_pro and { 0, 0.1 }) or { 0.15, 0.2 },
 		melee_dmg = 10,
 		melee_speed = 1,
 		melee_retry_delay = { 1, 2 },
@@ -63,7 +64,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.base.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.base.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -92,7 +93,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_smg = deep_clone(presets.weapon.base.is_rifle)
 	presets.weapon.base.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.base.is_smg.FALLOFF = {
-		{ dmg_mul = 5, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5, r = 0, acc = { 0.35, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -123,10 +124,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.gc = based_on(presets.weapon.base)
-	presets.weapon.gc.is_rifle.autofire_rounds = { 1, 3 }
+	presets.weapon.gc.is_rifle.autofire_rounds = { 1, 1 }
 	presets.weapon.gc.is_rifle.FALLOFF = {
-		{ dmg_mul = 9, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 9, r = 3000, acc = { 0.2, 0.45 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9, r = 0, acc = { 0.45, 0.6 }, recoil = { 0.33, 0.66 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9, r = 3000, acc = { 0.15, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 	presets.weapon.gc.is_smg.FALLOFF = {
 		{ dmg_mul = 7.5, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -134,13 +135,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.elite = based_on(presets.weapon.base, {
-		focus = 0.15,
-		aim_delay = { 0, 0.1 },
+		focus_delay = (is_pro and 0.15) or 0.25,
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
 	})
 
-	presets.weapon.elite.is_rifle.autofire_rounds = { 1, 3 }
+	presets.weapon.elite.is_rifle.autofire_rounds = { 1, 1 }
 	presets.weapon.elite.is_rifle.FALLOFF = {
-		{ dmg_mul = 8.5, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8.5, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.33, 0.66 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 8.5, r = 3000, acc = { 0.25, 0.6 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -153,7 +154,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.elite.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.elite.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -165,18 +166,18 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		range = { close = 500, optimal = 1000, far = 2000 },
 	})
 	presets.weapon.elite_shield = based_on(presets.weapon.shield, {
-		focus = 0.15,
-		aim_delay = { 0, 0.1 },
+		focus_delay = (is_pro and 0.15) or 0.25,
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
 	})
 
 	presets.weapon.shield.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.shield.is_smg.FALLOFF = {
-		{ dmg_mul = 3, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3, r = 0, acc = { 0.35, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_shield.is_pistol.FALLOFF = {
-		{ dmg_mul = 7, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.3, 0.45 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7, r = 0, acc = { 0.5, 0.75 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 7, r = 3000, acc = { 0.1, 0.4 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -193,7 +194,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.sniper = based_on(presets.weapon.base, {
 		focus_delay = 0.5,
-		aim_delay = { 0, 0.25 },
+		aim_delay = (is_pro and { 0, 0.15 }) or { 0.1, 0.25 },
 		range = { close = 5000, optimal = 10000, far = 15000 },
 	})
 
@@ -208,8 +209,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 	presets.weapon.elite_tank = based_on(presets.weapon.tank, {
 		melee_dmg = 20,
-		aim_delay = { 0, 0.1 },
-		focus_delay = 0.15,
+		focus_delay = (is_pro and 0.15) or 0.25,
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
 	})
 
 	presets.weapon.tank.is_shotgun_pump.FALLOFF = {
@@ -270,8 +271,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.escort_slow = deep_clone(presets.move_speed.slow)
 
 	-- Tweak dodge presets
-	presets.dodge.heavy.occasions.preemptive.chance = 0.25
-	presets.dodge.athletic.occasions.preemptive.chance = 0.5
+	presets.dodge.heavy.occasions.preemptive.chance = 0.25 * ((is_pro and 1.25) or 1)
+	presets.dodge.athletic.occasions.preemptive.chance = 0.5 * ((is_pro and 1.25) or 1)
 
 	presets.dodge.ninja.speed = 2
 	for _, occasion in pairs(presets.dodge.ninja.occasions) do
@@ -903,6 +904,7 @@ end)
 
 local function setup_presets(self)
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
+	local is_pro = Global.game_settings and Global.game_settings.one_down
 	local f = ((diff_i ^ 2) / (diff_i * 3))
 	self:_multiply_all_hp(3, 1.75)
 
@@ -962,7 +964,7 @@ local function setup_presets(self)
 	if diff_i == 6 then
 		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent on eclipse
 
-		self:_multiply_all_speeds(1.15, 1.075)
+		self:_multiply_all_speeds(1.12, 1.06)
 		self.tank.move_speed.stand.walk.cbt = { strafe = 196, fwd = 218, bwd = 174 }
 		self.tank.move_speed.stand.run.cbt = self.tank_elite.move_speed.stand.walk.cbt
 		self.tank_elite.move_speed.stand.walk.cbt = { strafe = 216, fwd = 238, bwd = 194 }
@@ -973,6 +975,11 @@ local function setup_presets(self)
 		self.phalanx_minion.move_speed.crouch.run.cbt = { strafe = 300, fwd = 340, bwd = 270 }
 		self.zeal_shield.move_speed.crouch.walk.cbt = { strafe = 290, fwd = 320, bwd = 270 }
 		self.zeal_shield.move_speed.crouch.run.cbt = { strafe = 320, fwd = 360, bwd = 290 }
+	end
+
+	-- pro job speed increase
+	if is_pro then
+		self:_multiply_all_speeds(1.05, 1.05)
 	end
 end
 

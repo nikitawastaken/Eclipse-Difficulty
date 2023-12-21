@@ -11,8 +11,10 @@ return {
 		},
 	},
 	[100268] = {
-		ponr = 300,
-		ponr_player_mul = {1.25, 1, 1, 1}
+		ponr = {
+			length = 300,
+			player_mul = {1.25, 1, 1, 1}
+		}
 	},
 	-- longer spawnpoint (those on top of the player) delays at the starting sequence
 	[100741] = {

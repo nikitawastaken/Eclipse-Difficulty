@@ -235,8 +235,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.chameleon.icon_xy = { 6, 3 }
 
 	-- Athlete
-	self.skills.sprinter[1].upgrades = { "player_walk_speed_multiplier", "player_movement_speed_multiplier" }
-	self.skills.sprinter[2].upgrades = { "player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier" }
+	self.skills.sprinter[1].upgrades = { "player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier" }
+	self.skills.sprinter[2].upgrades = { "player_walk_speed_multiplier", "player_movement_speed_multiplier" }
 	self.skills.sprinter.icon_xy = { 1, 8 }
 	self.skills.sprinter.name_id = "menu_sprinter"
 	self.skills.sprinter.desc_id = "menu_sprinter_desc"

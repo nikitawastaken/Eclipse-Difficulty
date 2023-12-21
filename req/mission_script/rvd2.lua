@@ -14,7 +14,7 @@ return {
 			enabled = false
 		}
 	},
-	-- instantly enter point of no return upon securing all bags
+	-- instantly enter full force onslaught upon securing all bags
 	[100884] = {
 		set_ponr_state = true
 	}

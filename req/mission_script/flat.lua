@@ -179,6 +179,9 @@ return {
 	},
 	-- add point of no return
 	[101016] = {
-	ponr = 180
+		ponr = {
+			length = 180,
+			player_mul = {1.33, 1.167, 1, 1}
+		}
 	}
 }

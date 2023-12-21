@@ -8,16 +8,18 @@ end
 
 return {
 	[101356] = {
-		ponr = 480,
-		ponr_player_mul = {2, 1.5, 1.25, 1}
+		ponr = {
+			length = 480,
+			player_mul = {2, 1.5, 1.25, 1}
+		}
 	},
 	-- ovk145-alike dozer spawn on armitage avenue
 	[103592] = {
 		values = {
 			enabled = true,
 			difficulty_overkill_145 = true, -- ovk and below filter
-			chance = 100
-		}
+		},
+		chance = 100
 	},
 	[103590] = {
 		values = {
@@ -25,9 +27,7 @@ return {
 		}
 	},
 	[103593] = {
-		values = {
-			chance = 100
-		}
+		chance = 100
 	},
 	[100036] = {
 		spawn_instigator_ids = {

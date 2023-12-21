@@ -1717,7 +1717,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 -- NPC weapons
 	-- rifles
 	self.m4_npc.DAMAGE = 1
-	self.m4_npc.auto.fire_rate = 0.225
+	self.m4_npc.auto.fire_rate = 0.25
 	self.m4_yellow_npc.DAMAGE = 1
 	self.m4_yellow_npc.auto.fire_rate = 0.3
 	self.g36_npc.DAMAGE = 1

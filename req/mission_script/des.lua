@@ -15,8 +15,10 @@ return {
 			}
 		},
 		-- add point of no return
-		ponr = 300,
-		ponr_player_mul = {1.6, 1.2, 1, 0.8}
+		ponr = {
+			length = 300,
+			player_mul = {1.6, 1.2, 1, 0.8}
+		}
 	},
 	-- slow down the spawnpoints in weaponlab
 	[107981] = {

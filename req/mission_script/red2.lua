@@ -7,8 +7,10 @@ return {
 	},
 	-- add point of no return
 	[103334] = {
-		ponr = 150,
-		ponr_player_mul = {1.1, 0.9, 0.7, 0.5}
+		ponr = {
+			length = 150,
+			player_mul = {1.1, 0.9, 0.7, 0.5}
+		}
 	},
 	-- remove a few cancer dozers
 	[103603] = {
@@ -29,9 +31,7 @@ return {
 		enemy = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
 	},
 	[104000] = {
-		values = {
-			chance = 1
-		}
+		chance = 100
 	},
 	[100225] = {
 		values = {

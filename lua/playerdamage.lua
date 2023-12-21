@@ -3,7 +3,7 @@ PlayerDamage._UPPERS_COOLDOWN = 90
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
-	if Global.game_settings.one_down then
+	if Global.game_settings and Global.game_settings.one_down then
 		self._lives_init = 4
 		tweak_data.player.damage.DOWNED_TIME = 25
 		tweak_data.player.damage.DOWNED_TIME_DEC = 10
@@ -266,7 +266,7 @@ function PlayerDamage:_calc_armor_damage(attack_data)
 			end
 
 			-- Add significantly longer grace period on armor break (repurposing Anarchist/Armorer damage timer) (sh)
-			self._can_take_dmg_timer = self._dmg_interval + 0.2
+			self._can_take_dmg_timer = math.max(self._dmg_interval, 0.3)
 
 			local pm = managers.player
 

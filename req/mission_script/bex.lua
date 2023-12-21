@@ -16,8 +16,10 @@ local suits = {
 
 return {
 	[101829] = {
-		ponr = 240,
-		ponr_player_mul = {2, 1.5, 1.25, 1}
+		ponr = {
+			length = 240,
+			player_mul = {2, 1.5, 1.25, 1}
+		}
 	},
 	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?
 	[101835] = {  -- point area min police force 2

@@ -5,7 +5,9 @@ return {
 		}
 	},
 	[101061] = {
-		ponr = 200,
-		ponr_player_mul = {1.5, 1.25, 1, 1}
+		ponr = {
+			length = 200,
+			player_mul = {1.5, 1.25, 1, 1}
+		}
 	}
 }
