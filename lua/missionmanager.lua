@@ -153,5 +153,7 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 end)
 
 function MissionManager:set_ponr_state()
-	self._instant_start_ponr = true
+	managers.groupai:set_state("ponr")
+	managers.groupai:state():on_police_called("default")
+	managers.groupai:state():set_difficulty(1)
 end
