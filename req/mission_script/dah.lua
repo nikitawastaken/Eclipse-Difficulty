@@ -4,7 +4,12 @@ return {
 			enabled = false
 		}
 	},
-	[100614] = {
+	[102061] = {
+		values = {
+			enabled = false
+		}
+	},
+	[104949] = {
 		set_ponr_state = true
 	},
 	[103969] = {
