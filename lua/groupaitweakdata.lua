@@ -1941,6 +1941,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		glace = true,
 		hox_2 = true,
 		firestarter_2 = true,
+		dah = true,
 	}
 
 	-- Sustain
