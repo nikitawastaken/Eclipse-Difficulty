@@ -871,13 +871,22 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
 	self.security_mex.chatter = self.presets.enemy_chatter.security
 	self.security_mex_no_pager.chatter = self.presets.enemy_chatter.security
+end)
 
+Hooks:PostHook(CharacterTweakData, "_init_team_ai", "_init_team_ai_bot_weapons", function(self, presets)
 	-- if bot weapons and equipment is installed and fixed weapon balance is on don't make any further changes
 	if BotWeapons and BotWeapons.settings and BotWeapons.settings.weapon_balance then
 		return
 	end
 
-	self.presets.weapon.gang_member = self.presets.weapon.base
+	for k, v in pairs(self) do
+		if type(v) == "table" and v.access == "teamAI1" then
+			v.weapon = clone(presets.weapon.base)
+			v.weapon.weapons_of_choice = {
+				primary = "wpn_fps_ass_m4_npc",
+			}
+		end
+	end
 end)
 
 -- Add new enemies to the character map
