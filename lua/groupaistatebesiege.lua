@@ -1261,7 +1261,6 @@ function GroupAIStatePonr:_upd_assault_task(...)
 
 	local t = self._t
 
-
 	if task_data.phase ~= "anticipation" then
 		return _upd_assault_task_original_ponr(self, ...)
 	end
@@ -1380,9 +1379,9 @@ function GroupAIStatePonr:_upd_assault_task(...)
 						coarse_path = {
 							{
 								spawn_group.area.pos_nav_seg,
-								spawn_group.area.pos
-							}
-						}
+								spawn_group.area.pos,
+							},
+						},
 					}
 
 					self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, task_data)
