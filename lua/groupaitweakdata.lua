@@ -1944,10 +1944,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		dah = true,
 	}
 
-	-- Sustain
-	self.ponr.assault.sustain_duration_min = { 900, 900, 900 }
-	self.ponr.assault.sustain_duration_max = { 900, 900, 900 }
-
 	-- Control
 	self.ponr.assault.delay = { 20, 20, 20 }
 	self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
