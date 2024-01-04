@@ -274,6 +274,11 @@
 		<!-- new weapons -->
 		<group name="units/payday2/weapons/">
 
+			<!-- huntsman retexture/model -->
+			<file :name="wpn_npc_sawnoff_shotgun/sawnoff_df.texture"/>
+			<file :name="wpn_npc_sawnoff_shotgun/sawnoff_nm.texture"/>
+			<file :name="wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun.model"/>
+
 			<!-- ksg -->
 			<file :name="wpn_npc_ksg/ksg_df.texture"/>
 			<file :name="wpn_npc_ksg/ksg_nm.texture"/>
@@ -294,7 +299,6 @@
 
 			<!-- ump & huntsman sound -->
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
-			<file :name="wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun.unit" dyn_package="false"/>
 		</group>
 
 		<!-- zeals -->

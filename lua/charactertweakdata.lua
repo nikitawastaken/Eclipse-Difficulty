@@ -824,6 +824,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cop.weapon = self.presets.weapon.base
 	self.gangster.weapon = self.presets.weapon.base
 	self.biker.weapon = self.presets.weapon.base
+	self.biker_female.weapon = self.presets.weapon.base
 	self.biker_escape.weapon = self.presets.weapon.base
 	self.triad.weapon = self.presets.weapon.base
 	self.mobster.weapon = self.presets.weapon.base
@@ -863,6 +864,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- Set chatter presets
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 	self.biker.chatter = self.presets.enemy_chatter.gangster
+	self.biker_female.chatter = self.presets.enemy_chatter.gangster
 	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster

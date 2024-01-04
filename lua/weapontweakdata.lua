@@ -1729,6 +1729,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.benelli_npc.DAMAGE = 1
 	self.benelli_npc.CLIP_AMMO_MAX = 8
 	self.ksg_npc = deep_clone(self.r870_npc)
+	self.ksg_npc.DAMAGE = 1.2
 
 	-- dozer guns
 	self.m249_npc.DAMAGE = 1
@@ -1749,6 +1750,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.shepheard_npc = deep_clone(self.mp5_npc)
 
 	-- misc guns
+	self.mossberg_npc.DAMAGE = 1
 	self.raging_bull_npc.DAMAGE = 1
 	self.ak47_ass_npc.DAMAGE = 1
 	self.ak47_ass_npc.auto.fire_rate = 0.2
@@ -1769,9 +1771,6 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.ksg_npc.sounds.prefix = "keltec_npc"
 	self.beretta92_npc.has_suppressor = "suppressed_b"
 	self.mossberg_npc.anim_usage = "is_shotgun_pump"
-	self.mossberg_npc.CLIP_AMMO_MAX = 2
-	self.mossberg_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_empty"
-	self.mossberg_npc.sounds.prefix = self.huntsman_crew.sounds.prefix
 	self.mossberg_npc.usage = "is_double_barrel"
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svd_snp_npc.trail = "effects/particles/weapons/sniper_trail"
