@@ -986,15 +986,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.wild_health_amount = { 0.75 }
 	self.values.player.less_health_wild_cooldown = {
 		{
-			1/6,
-			1
-		}
+			1 / 6,
+			1,
+		},
 	}
 	self.values.player.less_armor_wild_cooldown = {
 		{
-			1/6,
-			1
-		}
+			1 / 6,
+			1,
+		},
 	}
 	self.specialization_descs[16][1].multiperk = "7.5"
 	self.specialization_descs[16][1].multiperk3 = "2"
