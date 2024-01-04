@@ -981,12 +981,30 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[15][9].multiperk3 = "30%"
 
 	-- Biker
-	self.wild_trigger_time = 8
+	self.wild_trigger_time = 16
 	self.wild_max_triggers_per_time = 2
 	self.values.player.wild_health_amount = { 0.75 }
+	self.values.player.less_health_wild_cooldown = {
+		{
+			1/6,
+			1
+		}
+	}
+	self.values.player.less_armor_wild_cooldown = {
+		{
+			1/6,
+			1
+		}
+	}
 	self.specialization_descs[16][1].multiperk = "7.5"
 	self.specialization_descs[16][1].multiperk3 = "2"
-	self.specialization_descs[16][1].multiperk4 = "8"
+	self.specialization_descs[16][1].multiperk4 = "16"
+	self.specialization_descs[16][5].multiperk = "1/6"
+	self.specialization_descs[16][5].multiperk2 = "16"
+	self.specialization_descs[16][5].multiperk3 = "1"
+	self.specialization_descs[16][9].multiperk = "1/6"
+	self.specialization_descs[16][9].multiperk2 = "16"
+	self.specialization_descs[16][9].multiperk3 = "1"
 
 	-- KP
 	self.specialization_descs[17][1].multiperk3 = "45"
