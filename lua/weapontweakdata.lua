@@ -65,10 +65,11 @@ local total_ammo_tables = {
 
 -- ammo pickup tables
 local pickup_tables = {
-	sniper_high = {1, 1.75},
-	sniper_mid = {1, 1.375},
+	sniper_high = {1, 1.5},
+	sniper_mid = {1, 1.325},
 	sniper_low = {1, 1.2},
 	secondary_sniper = {0.5, 1},
+	amr = {0.55, 0.56},
 
 	lmg = {4, 12},
 	lmg_low = {4, 10},
@@ -487,7 +488,7 @@ self.model70.kick = kick_tables.sniper_mid
 -- Thanatos
 self.m95.stats.damage = 150
 self.m95.stats_modifiers = {damage = 10}
-self.m95.AMMO_PICKUP = {0.55, 0.65}
+self.m95.AMMO_PICKUP = pickup_tables.amr
 self.m95.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.m95.fire_mode_data.fire_rate = 1.5
 self.m95.kick.standing = {4, 5, -1, 1}
@@ -505,7 +506,7 @@ self.awp.CLIP_AMMO_MAX = 5
 self.awp.stats.damage = 150
 self.awp.stats.reload = 9
 self.awp.stats_modifiers = {damage = 10}
-self.awp.AMMO_PICKUP = {0.4, 0.5}
+self.awp.AMMO_PICKUP = pickup_tables.amr
 self.awp.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.awp.kick.standing = {4, 5, -1, 1}
 self.awp.kick.crouching = self.m95.kick.standing
