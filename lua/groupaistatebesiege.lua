@@ -1251,7 +1251,7 @@ function GroupAIStatePonr:init(state, data)
 end
 
 -- Put the game into endless assault after anticipation ends if the game state is Full Force Onslaught
-local _upd_assault_task_original_ponr = GroupAIStateBesiege.GroupAIStatePonr
+local _upd_assault_task_original_ponr = GroupAIStatePonr._upd_assault_task
 function GroupAIStatePonr:_upd_assault_task(...)
 	local task_data = self._task_data.assault
 
