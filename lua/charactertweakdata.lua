@@ -266,7 +266,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.zeal_shield.is_pistol.FALLOFF = {
 		{ dmg_mul = 6.5, r = 0, acc = { 0.5, 0.75 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6.5, r = 3000, acc = { 0.1, 0.4 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-
 	}
 	presets.weapon.zeal_tazer = based_on(presets.weapon.elite, {
 		tase_sphere_cast_radius = 15,
