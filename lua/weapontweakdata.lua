@@ -1723,6 +1723,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.m4_yellow_npc.auto.fire_rate = 0.3
 	self.g36_npc.DAMAGE = 1
 	self.g36_npc.auto.fire_rate = 0.25
+	self.g3_npc = deep_clone(self.m4_npc)
 
 	-- shotguns
 	self.r870_npc.DAMAGE = 1
@@ -1730,7 +1731,6 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.benelli_npc.DAMAGE = 1
 	self.benelli_npc.CLIP_AMMO_MAX = 8
 	self.ksg_npc = deep_clone(self.r870_npc)
-	self.ksg_npc.DAMAGE = 1.2
 
 	-- dozer guns
 	self.m249_npc.DAMAGE = 1
@@ -1748,6 +1748,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.mp9_npc.auto.fire_rate = 0.275
 	self.mac11_npc.DAMAGE = 1
 	self.mac11_npc.auto.fire_rate = 0.25
+	self.s552_zeal_npc = deep_clone(self.mp5_npc)
 	self.shepheard_npc = deep_clone(self.mp5_npc)
 
 	-- misc guns
@@ -1770,6 +1771,8 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.benelli_npc.sounds.prefix = "benelli_m4_npc"
 	self.shepheard_npc.sounds.prefix = "shepheard_npc"
 	self.ksg_npc.sounds.prefix = "keltec_npc"
+	self.s552_zeal_npc.sounds.prefix = "sig552_npc"
+	self.g3_npc.sounds.prefix = "g3_npc"
 	self.beretta92_npc.has_suppressor = "suppressed_b"
 	self.mossberg_npc.anim_usage = "is_shotgun_pump"
 	self.mossberg_npc.usage = "is_double_barrel"

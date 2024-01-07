@@ -1,0 +1,6 @@
+<materials version="3" group="wpn_npc_g3">
+    <material name="mtr_g3" version="2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_3RD_WEAPONS">
+        <bump_normal_texture file="units/payday2/weapons/wpn_npc_g3/g3_nm"/>
+        <diffuse_texture file="units/payday2/weapons/wpn_npc_g3/g3_df"/>
+    </material>
+</materials>
