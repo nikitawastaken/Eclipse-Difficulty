@@ -184,6 +184,7 @@
 	"menu_deck15_1_desc": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals.\n\nNote: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
 	"menu_deck15_7_desc": "##$multiperk## of your health is converted into ##$multiperk2## armor.\n\nYour chance to dodge is increased by ##$multiperk3##.",
 	"menu_deck15_9_desc": "Dealing damage will grant you ##$multiperk## armor - this can only occur once every ##$multiperk2## seconds.\n\nYour armor is increased by ##$multiperk3##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
+	"menu_deck17_1_desc": "Unlocks and equips the Kingpin Injector. Changing to another perk deck will make the Injector unavailable again. The Injector replaces your current throwable, is equipped in your throwable slot and can be switched out if desired.\n\nWhile in game you can use the throwable key to activate the injector. Activating the injector will heal you with ##$multiperk## of all damage taken for ##$multiperk2## seconds.\n\nYou can still take damage during the effect. The Injector can only be used once every ##$multiperk3## seconds.",
 	"menu_deck17_9_desc": "For every ##5 points## of health gained during the injector effect while at maximum health, the recharge time of the injector is reduced by ##1 second##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck21_5_desc": "Killing the enemy while the feedback is active will regenerate ##$multiperk## health.\n\nYour chance to dodge is increased by ##$multiperk2##.",
 	"menu_deck21_7_desc": "You gain ##$multiperk## additional health.",
@@ -236,7 +237,7 @@
 
 
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
-	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT TO UPGRADE THE DRILL",
+	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
 	"hud_assault_ponr": "Full Force Onslaught",
 	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
 	"hud_assault_zeal_ponr": "Zeal Legion Inbound",

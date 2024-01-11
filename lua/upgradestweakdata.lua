@@ -1006,7 +1006,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[16][9].multiperk2 = "16"
 	self.specialization_descs[16][9].multiperk3 = "1"
 
-	-- KP
+	-- Kingpin
 	self.specialization_descs[17][1].multiperk3 = "45"
 	self.specialization_descs[17][9].multiperk3 = "5 points"
 	self.specialization_descs[17][9].multiperk3 = "1"
