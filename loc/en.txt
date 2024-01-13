@@ -227,6 +227,7 @@
 	"menu_deck15_1_short": "Instead of fully regenerating armor when out of combat, The Anarchist will continuously regenerate armor throughout the entire combat. Heavier armor regenerates more armor, but during longer intervals. Note: Skills and perks that increases the armor recovery rate are disabled when using this perk deck.",
 	"menu_deck15_7_short": "##$multiperk## of your health is converted into ##$multiperk2## armor. Your chance to dodge is increased by ##$multiperk3##.",
 	"menu_deck15_9_short": "Dealing damage will grant you ##$multiperk## armor - this can only occur once every ##$multiperk2## seconds. Your armor is increased by ##$multiperk3##.",
+	"menu_deck17_1_short": "Unlocks and equips the Kingpin Injector.",
 	"menu_deck17_9_short": "For every ##5 points## of health gained during the injector effect while at maximum health, the recharge time of the injector is reduced by ##1 second##.",
 	"menu_deck21_5_short": "Killing the enemy while the feedback is active will regenerate ##$multiperk## health. Your chance to dodge is increased by ##$multiperk2##.",
 	"menu_deck21_7_short": "You gain ##$multiperk## additional health.",
