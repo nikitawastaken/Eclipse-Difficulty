@@ -65,10 +65,11 @@ local total_ammo_tables = {
 
 -- ammo pickup tables
 local pickup_tables = {
-	sniper_high = {1, 1.75},
-	sniper_mid = {1, 1.375},
+	sniper_high = {1, 1.5},
+	sniper_mid = {1, 1.325},
 	sniper_low = {1, 1.2},
 	secondary_sniper = {0.5, 1},
+	amr = {0.55, 0.56},
 
 	lmg = {4, 12},
 	lmg_low = {4, 10},
@@ -487,7 +488,7 @@ self.model70.kick = kick_tables.sniper_mid
 -- Thanatos
 self.m95.stats.damage = 150
 self.m95.stats_modifiers = {damage = 10}
-self.m95.AMMO_PICKUP = {0.55, 0.65}
+self.m95.AMMO_PICKUP = pickup_tables.amr
 self.m95.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.m95.fire_mode_data.fire_rate = 1.5
 self.m95.kick.standing = {4, 5, -1, 1}
@@ -505,7 +506,7 @@ self.awp.CLIP_AMMO_MAX = 5
 self.awp.stats.damage = 150
 self.awp.stats.reload = 9
 self.awp.stats_modifiers = {damage = 10}
-self.awp.AMMO_PICKUP = {0.4, 0.5}
+self.awp.AMMO_PICKUP = pickup_tables.amr
 self.awp.AMMO_MAX = total_ammo_tables.secondary_sniper
 self.awp.kick.standing = {4, 5, -1, 1}
 self.awp.kick.crouching = self.m95.kick.standing
@@ -1722,6 +1723,7 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.m4_yellow_npc.auto.fire_rate = 0.3
 	self.g36_npc.DAMAGE = 1
 	self.g36_npc.auto.fire_rate = 0.25
+	self.g3_npc = deep_clone(self.m4_npc)
 
 	-- shotguns
 	self.r870_npc.DAMAGE = 1
@@ -1746,9 +1748,11 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.mp9_npc.auto.fire_rate = 0.275
 	self.mac11_npc.DAMAGE = 1
 	self.mac11_npc.auto.fire_rate = 0.25
+	self.s552_zeal_npc = deep_clone(self.mp5_npc)
 	self.shepheard_npc = deep_clone(self.mp5_npc)
 
 	-- misc guns
+	self.mossberg_npc.DAMAGE = 1
 	self.raging_bull_npc.DAMAGE = 1
 	self.ak47_ass_npc.DAMAGE = 1
 	self.ak47_ass_npc.auto.fire_rate = 0.2
@@ -1767,11 +1771,10 @@ self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 	self.benelli_npc.sounds.prefix = "benelli_m4_npc"
 	self.shepheard_npc.sounds.prefix = "shepheard_npc"
 	self.ksg_npc.sounds.prefix = "keltec_npc"
+	self.s552_zeal_npc.sounds.prefix = "sig552_npc"
+	self.g3_npc.sounds.prefix = "g3_npc"
 	self.beretta92_npc.has_suppressor = "suppressed_b"
 	self.mossberg_npc.anim_usage = "is_shotgun_pump"
-	self.mossberg_npc.CLIP_AMMO_MAX = 2
-	self.mossberg_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_empty"
-	self.mossberg_npc.sounds.prefix = self.huntsman_crew.sounds.prefix
 	self.mossberg_npc.usage = "is_double_barrel"
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svd_snp_npc.trail = "effects/particles/weapons/sniper_trail"

@@ -136,7 +136,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.elite = based_on(presets.weapon.base, {
 		focus_delay = (is_pro and 0.15) or 0.25,
-		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.15 },
 	})
 
 	presets.weapon.elite.is_rifle.autofire_rounds = { 1, 1 }
@@ -167,7 +167,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 	presets.weapon.elite_shield = based_on(presets.weapon.shield, {
 		focus_delay = (is_pro and 0.15) or 0.25,
-		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.15 },
 	})
 
 	presets.weapon.shield.is_smg.autofire_rounds = { 3, 8 }
@@ -186,6 +186,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		tase_distance = 1500,
 		aim_delay_tase = { 0, 0.25 },
 	})
+
 	presets.weapon.taser.is_rifle.autofire_rounds = { 1, 1 }
 	presets.weapon.taser.is_rifle.FALLOFF = {
 		{ dmg_mul = 9, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -210,7 +211,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_tank = based_on(presets.weapon.tank, {
 		melee_dmg = 20,
 		focus_delay = (is_pro and 0.15) or 0.25,
-		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.1 },
+		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.15 },
 	})
 
 	presets.weapon.tank.is_shotgun_pump.FALLOFF = {
@@ -238,6 +239,39 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 4.5, r = 1000, acc = { 0.2, 0.6 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4.5, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
+
+	presets.weapon.zeal = based_on(presets.weapon.elite)
+
+	presets.weapon.zeal.is_rifle.autofire_rounds = { 1, 1 }
+	presets.weapon.zeal.is_rifle.FALLOFF = {
+		{ dmg_mul = 9.5, r = 0, acc = { 0.6, 0.95 }, recoil = { 0.33, 0.66 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9.5, r = 3000, acc = { 0.25, 0.6 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.zeal.is_smg.autofire_rounds = { 3, 8 }
+	presets.weapon.zeal.is_smg.FALLOFF = {
+		{ dmg_mul = 7.5, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5, r = 3000, acc = { 0.15, 0.4 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.zeal.is_shotgun_pump.RELOAD_SPEED = 1.5
+	presets.weapon.zeal.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
+	presets.weapon.zeal.is_shotgun_pump.FALLOFF = {
+		{ dmg_mul = 18, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.zeal_shield = based_on(presets.weapon.elite_shield)
+	presets.weapon.zeal_shield.is_pistol.FALLOFF = {
+		{ dmg_mul = 6.5, r = 0, acc = { 0.5, 0.75 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6.5, r = 3000, acc = { 0.1, 0.4 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+	}
+	presets.weapon.zeal_tazer = based_on(presets.weapon.elite, {
+		tase_sphere_cast_radius = 15,
+		tase_distance = 1500,
+		aim_delay_tase = { 0.05, 0.1 },
+	})
 
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.1
 	presets.gang_member_damage.REGENERATE_TIME = 3
@@ -824,6 +858,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cop.weapon = self.presets.weapon.base
 	self.gangster.weapon = self.presets.weapon.base
 	self.biker.weapon = self.presets.weapon.base
+	self.biker_female.weapon = self.presets.weapon.base
 	self.biker_escape.weapon = self.presets.weapon.base
 	self.triad.weapon = self.presets.weapon.base
 	self.mobster.weapon = self.presets.weapon.base
@@ -852,17 +887,18 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.weapon = self.presets.weapon.base
 	self.deep_boss.weapon = self.presets.weapon.elite_tank
 
-	self.zeal_swat.weapon = self.presets.weapon.elite
-	self.zeal_heavy_swat.weapon = self.presets.weapon.gc
-	self.zeal_shield.weapon = self.presets.weapon.elite_shield
-	self.zeal_medic.weapon = self.presets.weapon.gc
-	self.zeal_taser.weapon = self.presets.weapon.taser
+	self.zeal_swat.weapon = self.presets.weapon.zeal
+	self.zeal_heavy_swat.weapon = self.presets.weapon.zeal
+	self.zeal_shield.weapon = self.presets.weapon.zeal_shield
+	self.zeal_medic.weapon = self.presets.weapon.zeal
+	self.zeal_taser.weapon = self.presets.weapon.zeal_tazer
 
 	self.biker.melee_weapon = "knife_1"
 
 	-- Set chatter presets
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 	self.biker.chatter = self.presets.enemy_chatter.gangster
+	self.biker_female.chatter = self.presets.enemy_chatter.gangster
 	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
@@ -909,6 +945,12 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "ksg")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_ksg/wpn_npc_ksg"))
+
+	table.insert(self.weap_ids, "s552_zeal")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_s552/wpn_npc_s552_zeal"))
+
+	table.insert(self.weap_ids, "g3")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_g3/wpn_npc_g3"))
 end)
 
 local function setup_presets(self)
@@ -959,9 +1001,7 @@ local function setup_presets(self)
 	-- misc
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }
 	self.taser.weapon.is_rifle.tase_distance = 750 * f
-	self.taser.weapon.is_rifle.aim_delay_tase = { 0, 0.5 / f }
-	self.zeal_taser.weapon.is_rifle.tase_distance = 750 * f
-	self.zeal_taser.weapon.is_rifle.aim_delay_tase = { 0, 0.5 / f }
+	self.taser.weapon.is_rifle.aim_delay_tase = { 0.2 / f, 0.3 / f }
 	self.tank_armor_balance_mul = { 2.5 * f, 3.25 * f, 4.25 * f, 5 * f }
 	self.flashbang_multiplier = 1 * f
 	self.concussion_multiplier = 1

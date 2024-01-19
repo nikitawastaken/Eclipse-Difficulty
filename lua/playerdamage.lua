@@ -131,8 +131,9 @@ function PlayerDamage:damage_bullet(attack_data)
 		self._unit:sound():play("player_hit_permadamage")
 	end
 
-	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 2)
-	self._unit:camera()._damage_bullet_shake_multiplier = math.clamp(attack_data.damage, 0, 20) * shake_armor_multiplier
+	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 1.33)
+	local shake_injector_multiplier = (managers.player:has_activate_temporary_upgrade("temporary", "chico_injector") and 0.5) or 1
+	self._unit:camera()._damage_bullet_shake_multiplier = math.clamp(attack_data.damage, 0, 20) * shake_armor_multiplier * shake_injector_multiplier
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number

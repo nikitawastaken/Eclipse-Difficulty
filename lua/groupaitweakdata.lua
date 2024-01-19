@@ -1942,11 +1942,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		hox_2 = true,
 		firestarter_2 = true,
 		dah = true,
+		rvd2 = true,
 	}
-
-	-- Sustain
-	self.ponr.assault.sustain_duration_min = { 900, 900, 900 }
-	self.ponr.assault.sustain_duration_max = { 900, 900, 900 }
 
 	-- Control
 	self.ponr.assault.delay = { 20, 20, 20 }

@@ -274,6 +274,11 @@
 		<!-- new weapons -->
 		<group name="units/payday2/weapons/">
 
+			<!-- huntsman retexture/model -->
+			<file :name="wpn_npc_sawnoff_shotgun/sawnoff_df.texture"/>
+			<file :name="wpn_npc_sawnoff_shotgun/sawnoff_nm.texture"/>
+			<file :name="wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun.model"/>
+
 			<!-- ksg -->
 			<file :name="wpn_npc_ksg/ksg_df.texture"/>
 			<file :name="wpn_npc_ksg/ksg_nm.texture"/>
@@ -282,6 +287,26 @@
 			<file :name="wpn_npc_ksg/wpn_npc_ksg.model"/>
 			<file :name="wpn_npc_ksg/wpn_npc_ksg.object"/>
 			<file :name="wpn_npc_ksg/wpn_npc_ksg.unit"/>
+			
+			<!-- s552 -->
+			<file :name="wpn_npc_s552/s552_zeal_df.texture"/>
+			<file :name="wpn_npc_s552/s552_zeal_nm.texture"/>
+			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.cooked_physics"/>
+			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.material_config"/>
+			<file :name="wpn_npc_s552/wpn_npc_s552_zeal_contour.material_config"/>
+			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.model"/>
+			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.object"/>
+			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.unit"/>
+			
+			<!-- gewehr -->
+			<file :name="wpn_npc_g3/g3_df.texture"/>
+			<file :name="wpn_npc_g3/g3_nm.texture"/>
+			<file :name="wpn_npc_g3/wpn_npc_g3.cooked_physics"/>
+			<file :name="wpn_npc_g3/wpn_npc_g3.material_config"/>
+			<file :name="wpn_npc_g3/wpn_npc_g3_contour.material_config"/>
+			<file :name="wpn_npc_g3/wpn_npc_g3.model"/>
+			<file :name="wpn_npc_g3/wpn_npc_g3.object"/>
+			<file :name="wpn_npc_g3/wpn_npc_g3.unit"/>
 
 			<!-- mpx -->
 			<file :name="wpn_npc_shepheard/shepheard_df.texture"/>
@@ -294,7 +319,6 @@
 
 			<!-- ump & huntsman sound -->
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
-			<file :name="wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun.unit" dyn_package="false"/>
 		</group>
 
 		<!-- zeals -->
