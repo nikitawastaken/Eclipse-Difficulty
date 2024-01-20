@@ -2022,14 +2022,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 6 then
 		self.ponr.assault.groups = {
-			zeal_lights_charge = { 1, 1, 1 },
+			zeal_lights_charge = { 0.85, 0.85, 0.85 },
 			zeal_lights_flank = { 0.75, 0.75, 0.75 },
 			zeal_heavies_ranged = { 0.55, 0.55, 0.55 },
 			zeal_heavies_charge = { 0.55, 0.55, 0.55 },
 			zeal_shields = { 0.4, 0.4, 0.4 },
 			zeal_tasers = { 0.2, 0.2, 0.2 },
-			zeal_tanks = { 0.1, 0.1, 0.1 },
-			zeal_spoocs = { 0.1, 0.1, 0.1 },
+			zeal_tanks = { 0.15, 0.15, 0.15 },
+			zeal_spoocs = { 0.15, 0.15, 0.15 },
 		}
 		self.ponr.reenforce.groups = {
 			zeal_lights_charge = { 1, 1, 1 },

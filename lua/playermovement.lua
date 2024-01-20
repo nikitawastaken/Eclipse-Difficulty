@@ -3,3 +3,29 @@ Hooks:PostHook(PlayerMovement, "init", "eclipse_init", function(self)
 		self._rally_skill_data.range_sq = 490000
 	end
 end)
+
+function PlayerMovement:on_SPOOCed(enemy_unit)
+	if self._unit:character_damage()._god_mode or self._unit:character_damage():get_mission_blocker("invulnerable") then
+		return
+	end
+
+	if self._current_state_name == "standard" or self._current_state_name == "carry" or self._current_state_name == "bleed_out" or self._current_state_name == "tased" or self._current_state_name == "bipod" then
+		local state = "incapacitated"
+		state = managers.modifiers:modify_value("PlayerMovement:OnSpooked", state)
+
+		managers.achievment:award(tweak_data.achievement.finally.award)
+		self._unit:sound():play("player_hit")
+
+		if managers.groupai:state():num_alive_criminals() == 1 then -- if you're the last man standing, cloaker kicks deal a half of your max health in damage instead
+			local spooc_kick_damage = self._unit:character_damage():_max_health() / 2
+			self._unit:camera()._damage_bullet_shake_multiplier = 50
+
+			self._unit:character_damage():change_health(-spooc_kick_damage)
+			self._unit:camera():play_shaker("player_bullet_damage_knock_out", 1)
+		else
+			managers.player:set_player_state(state)
+		end
+
+		return true
+	end
+end

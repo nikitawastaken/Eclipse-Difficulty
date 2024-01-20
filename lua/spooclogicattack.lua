@@ -17,7 +17,10 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		return
 	end
 
-	if SpoocLogicAttack._is_last_standing_criminal(focus_enemy) or not focus_enemy.unit:movement():is_SPOOC_attack_allowed() or focus_enemy.unit:movement():zipline_unit() then
+	-- if SpoocLogicAttack._is_last_standing_criminal(focus_enemy) then return end
+	-- cloakers now can kick you in solo, so buckle up
+
+	if not focus_enemy.unit:movement():is_SPOOC_attack_allowed() or focus_enemy.unit:movement():zipline_unit() then
 		return
 	end
 
