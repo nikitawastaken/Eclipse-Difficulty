@@ -9,7 +9,13 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 		return
 	end
 
-	if self._current_state_name == "standard" or self._current_state_name == "carry" or self._current_state_name == "bleed_out" or self._current_state_name == "tased" or self._current_state_name == "bipod" then
+	if
+		self._current_state_name == "standard"
+		or self._current_state_name == "carry"
+		or self._current_state_name == "bleed_out"
+		or self._current_state_name == "tased"
+		or self._current_state_name == "bipod"
+	then
 		local state = "incapacitated"
 		state = managers.modifiers:modify_value("PlayerMovement:OnSpooked", state)
 
