@@ -1,7 +1,8 @@
 local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
+local is_pro = Global.game_settings and Global.game_settings.one_down
 local HeliDrop1 = Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1")
 local HeliDrop2 = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
-if diff_i == 6 then -- you get fucked on eclipse
+if diff_i == 6 and is_pro then -- you get fucked on eclipse pro job
 	HeliDrop1 = Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
 	HeliDrop2 = Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
 end
@@ -17,17 +18,22 @@ return {
 	[103592] = {
 		values = {
 			enabled = true,
-			difficulty_overkill_145 = true, -- ovk and below filter
 		},
-		chance = 100
+		chance = 12.5 * diff_i
+	},
+	[103591] = {
+		values = {
+			difficulty_overkill_145 = true, -- add ovk to low diff filter
+			difficulty_normal = false, -- let's not do easy though
+		},
 	},
 	[103590] = {
 		values = {
-			difficulty_overkill_145 = false -- eclipse only filter
+			difficulty_overkill_145 = false -- exclude ovk from eclipse only filter
 		}
 	},
 	[103593] = {
-		chance = 100
+		chance = 75
 	},
 	[100036] = {
 		spawn_instigator_ids = {
@@ -62,21 +68,52 @@ return {
 	[100271] = {
 		difficulty = 1 -- set difficulty to max after the bossfight
 	},
-	-- add missing sniper
-	[103582] = {
+	[103578] = {
+		chance = 12.5 * diff_i -- roof snipers ovk/eclipse chance
+	},
+	[103579] = {
+		chance = 12.5 * diff_i -- roof snipers normal/hard chance
+	},
+	[101412] = {
+		chance = 10 * diff_i -- alleyway sniper chance
+	},
+	[101010] = {
 		values = {
-			difficulty_overkill_145 = true,
-			difficulty_easy_wish = true
+			enabled = false -- disable far armitage sniper trigger in the first sequence of the heist
+		}
+	},
+	[101262] = {
+		on_executed = {
+			{ id = 100567, delay = 0} -- far armitage sniper
+		}
+	},
+	[100567] = {
+		values = {
+			on_executed = {
+				{ id = 103563, delay = 0 } -- new SO for far armitage sniper
+			}
+		}
+	},
+	[103447] = {
+		values = {
+			enabled = true, -- reenable balcony parking lot sniper
+			participate_to_group_ai = false
+		}
+	},
+	[100959] = {
+		on_executed = { -- roof snipers when you make a left turn to easy street
+			{ id = 103581, delay = 0 }, -- ovk/eclipse filter
+			{ id = 103582, delay = 0 }, -- normal/hard filter
 		}
 	},
 	[102866] = {
 		values = {
-			enabled = false
+			enabled = false -- disable vanilla ponr
 		}
 	},
 	[102880] = {
 		values = {
-			enabled = false
+			enabled = false -- disable vanilla ponr
 		}
 	},
 	[100029] = {
