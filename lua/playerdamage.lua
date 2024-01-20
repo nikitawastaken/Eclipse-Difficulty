@@ -359,6 +359,15 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	return health_subtracted
 end
 
+function PlayerDamage:on_incapacitated()
+	self:on_downed()
+
+	self._revives = Application:digest_value(Application:digest_value(self._revives, false) - 1, true) -- instant incaps (cloakers / tasers) count as downs
+	self:_send_set_revives()
+
+	self._incapacitated = true
+end
+
 -- make healing fixed instead of % of max health
 function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
