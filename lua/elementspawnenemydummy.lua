@@ -6,7 +6,7 @@ if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spaw
 end
 
 -- Map to correct incorrect faction spawns
-local enemy_replacements = {
+ElementSpawnEnemyDummy.faction_mapping = {
 	normal = {
 		swat_1 = "units/payday2/characters/ene_swat_1/ene_swat_1",
 		swat_2 = "units/payday2/characters/ene_swat_2/ene_swat_2",
@@ -45,11 +45,15 @@ local enemy_replacements = {
 		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
-		dozer_1 = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+		dozer_1 = {
+			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
+		},
 	},
 }
-enemy_replacements.hard = enemy_replacements.normal
-local enemy_mapping = {
+ElementSpawnEnemyDummy.faction_mapping.hard = ElementSpawnEnemyDummy.faction_mapping.normal
+
+ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"):key()] = "dozer_1",
 	[("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"):key()] = "dozer_1",
 	[("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"):key()] = "dozer_1",
@@ -151,12 +155,9 @@ Hooks:PostHook(ElementSpawnEnemyDummy, "init", "sh_init", function(self)
 	local element_mapping = mission_script_elements and mission_script_elements[self._id]
 	self._enemy_mapping = element_mapping and element_mapping.enemy
 
-	local mapped_name = enemy_mapping[self._enemy_name:key()]
-	local mapped_unit = enemy_replacements[difficulty] and enemy_replacements[difficulty][mapped_name]
-	local mapped_unit_ids = mapped_unit and Idstring(mapped_unit)
-	if mapped_unit_ids and mapped_unit_ids ~= self._enemy_name then
-		self._enemy_name = mapped_unit_ids
-	end
+	local mapped_name = self.enemy_mapping[self._enemy_name:key()]
+	local mapped_unit = self.faction_mapping[difficulty] and self.faction_mapping[difficulty][mapped_name]
+	self._enemy_name = mapped_unit and Idstring(type(mapped_unit) == "table" and table.random(mapped_unit) or mapped_unit) or self._enemy_name
 end)
 
 local produce_original = ElementSpawnEnemyDummy.produce
