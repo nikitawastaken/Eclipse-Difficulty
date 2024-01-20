@@ -333,7 +333,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 		return
 	end
 
-	local hold_chance = 1
+	local hold_chance = 1 - surrender_tweak.base_chance
 	local surrender_chk = {
 		health = function(health_surrender)
 			local health_ratio = data.unit:character_damage():health_ratio()
