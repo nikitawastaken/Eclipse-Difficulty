@@ -2,7 +2,9 @@ local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.ga
 local is_pro = Global.game_settings and Global.game_settings.one_down
 local HeliDrop1 = Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1")
 local HeliDrop2 = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
+local HeliDropChance = 12.5 * diff_i
 if diff_i == 6 and is_pro then -- you get fucked on eclipse pro job
+	HeliDropChance = 100
 	HeliDrop1 = Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
 	HeliDrop2 = Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
 end
@@ -19,7 +21,7 @@ return {
 		values = {
 			enabled = true,
 		},
-		chance = 12.5 * diff_i
+		chance = HeliDropChance
 	},
 	[103591] = {
 		values = {
@@ -33,7 +35,7 @@ return {
 		}
 	},
 	[103593] = {
-		chance = 75
+		chance = HeliDropChance
 	},
 	[100036] = {
 		spawn_instigator_ids = {
