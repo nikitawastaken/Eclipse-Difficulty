@@ -178,6 +178,7 @@ if not StreamHeist then
 	TheFixesPreventer.fix_copmovement_aim_state_discarded = true
 	TheFixesPreventer.tank_remove_recoil_anim = true
 	TheFixesPreventer.tank_walk_near_players  = true
+	TheFixesPreventer.fix_hostages_not_moving = true
 end
 
 if RequiredScript and not StreamHeist.required[RequiredScript] then
