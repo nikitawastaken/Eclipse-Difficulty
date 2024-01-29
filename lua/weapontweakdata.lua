@@ -1357,11 +1357,6 @@ self.legacy.AMMO_MAX = total_ammo_tables.pistol_high
 self.legacy.AMMO_PICKUP = pickup_tables.pistol_high
 self.legacy.kick = kick_tables.pistol_low
 
--- Crosskill Guard
-self.shrew.AMMO_MAX = total_ammo_tables.pistol_high
-self.shrew.AMMO_PICKUP = pickup_tables.pistol_high
-self.shrew.kick = kick_tables.pistol_low
-
 -- Interceptor
 self.usp.AMMO_MAX = total_ammo_tables.pistol_mid
 self.usp.AMMO_PICKUP = pickup_tables.pistol_mid
@@ -1381,12 +1376,6 @@ self.usp.kick = kick_tables.pistol_mid
 self.g22c.AMMO_MAX = total_ammo_tables.pistol_mid
 self.g22c.AMMO_PICKUP = pickup_tables.pistol_mid
 self.g22c.kick = kick_tables.pistol_mid
-
--- Broomstick
-self.c96.stats.reload = 13
-self.c96.AMMO_MAX = total_ammo_tables.pistol_mid
-self.c96.AMMO_PICKUP = pickup_tables.pistol_mid
-self.c96.kick = kick_tables.pistol_mid
 
 -- Contractor
 self.packrat.AMMO_MAX = total_ammo_tables.pistol_mid
@@ -1414,12 +1403,6 @@ self.sparrow.stats.damage = 140
 self.sparrow.AMMO_MAX = total_ammo_tables.pistol_low
 self.sparrow.AMMO_PICKUP = pickup_tables.pistol_low
 self.sparrow.kick = kick_tables.pistol_high
-
--- White Streak
-self.pl14.stats.damage = 140
-self.pl14.AMMO_MAX = total_ammo_tables.pistol_low
-self.pl14.AMMO_PICKUP = pickup_tables.pistol_low
-self.pl14.kick = kick_tables.pistol_high
 
 -- Chunky Crosskill
 self.m1911.stats.damage = 140
@@ -1471,6 +1454,41 @@ self.stech.kick = kick_tables.pistol_auto
 self.lemming.AMMO_MAX = total_ammo_tables.pistol_low
 self.lemming.AMMO_PICKUP = pickup_tables.pistol_ap
 self.lemming.kick = kick_tables.pistol_mid
+
+-- White Streak
+self.pl14.stats.damage = 140
+self.pl14.AMMO_MAX = total_ammo_tables.pistol_very_low
+self.pl14.AMMO_PICKUP = pickup_tables.pistol_ap
+self.pl14.kick = kick_tables.pistol_high
+self.pl14.can_shoot_through_enemy = true
+self.pl14.can_shoot_through_shield = true
+self.pl14.can_shoot_through_wall = true
+self.pl14.armor_piercing_chance = 1
+self.pl14.has_description = true
+self.pl14.desc_id = "bm_w_lemming_desc"
+
+-- Crosskill Guard
+self.shrew.AMMO_MAX = total_ammo_tables.pistol_mid
+self.shrew.AMMO_PICKUP = pickup_tables.pistol_low
+self.shrew.kick = kick_tables.pistol_low
+self.shrew.can_shoot_through_enemy = true
+self.shrew.can_shoot_through_shield = true
+self.shrew.can_shoot_through_wall = true
+self.shrew.armor_piercing_chance = 1
+self.shrew.has_description = true
+self.shrew.desc_id = "bm_w_lemming_desc"
+
+-- Broomstick
+self.c96.stats.reload = 13
+self.c96.AMMO_MAX = total_ammo_tables.pistol_low
+self.c96.AMMO_PICKUP = pickup_tables.pistol_low
+self.c96.kick = kick_tables.pistol_mid
+self.c96.can_shoot_through_enemy = true
+self.c96.can_shoot_through_shield = true
+self.c96.can_shoot_through_wall = true
+self.c96.armor_piercing_chance = 1
+self.c96.has_description = true
+self.c96.desc_id = "bm_w_lemming_desc"
 
 
 -- Grenade / Rocket launchers
