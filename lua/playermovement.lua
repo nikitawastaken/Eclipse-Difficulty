@@ -22,8 +22,9 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 		managers.achievment:award(tweak_data.achievement.finally.award)
 		self._unit:sound():play("player_hit")
 
-		if managers.groupai:state():num_alive_criminals() == 1 then -- if you're the last man standing, cloaker kicks deal a half of your max health in damage instead
-			local spooc_kick_damage = self._unit:character_damage():_max_health() / 2
+		if managers.groupai:state():num_alive_criminals() == 1 then -- if you're the last man standing, cloaker kicks deal a portion of your max health in damage instead
+			local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
+			local spooc_kick_damage = self._unit:character_damage():_max_health() / ((diff_i == 6 and 2) or 4)
 			self._unit:camera()._damage_bullet_shake_multiplier = 50
 
 			self._unit:character_damage():change_health(-spooc_kick_damage)
