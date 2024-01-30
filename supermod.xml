@@ -173,6 +173,7 @@
 					<post :hook_id="sentry_gun/sentrygunbase"/>
 					<post :hook_id="ammo_bag/ammobagbase"/>
 					<post :hook_id="ecm_jammer/ecmjammerbase"/>
+					<post :hook_id="first_aid_kit/firstaidkitbase"/>
 				</group>
 
 				<post :hook_id="civilians/civilianbase"/>
@@ -287,7 +288,7 @@
 			<file :name="wpn_npc_ksg/wpn_npc_ksg.model"/>
 			<file :name="wpn_npc_ksg/wpn_npc_ksg.object"/>
 			<file :name="wpn_npc_ksg/wpn_npc_ksg.unit"/>
-			
+
 			<!-- s552 -->
 			<file :name="wpn_npc_s552/s552_zeal_df.texture"/>
 			<file :name="wpn_npc_s552/s552_zeal_nm.texture"/>
@@ -297,7 +298,7 @@
 			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.model"/>
 			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.object"/>
 			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.unit"/>
-			
+
 			<!-- gewehr -->
 			<file :name="wpn_npc_g3/g3_df.texture"/>
 			<file :name="wpn_npc_g3/g3_nm.texture"/>

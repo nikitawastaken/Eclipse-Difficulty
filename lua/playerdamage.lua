@@ -390,6 +390,8 @@ end
 -- add an upgrade that gives increased bleedout timer
 Hooks:PostHook(PlayerDamage, "_regenerated", "eclipse__regenerated", function(self)
 	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
+
+	self._down_timer_max = self._down_time -- store the max bleedout timer so that fak down restore can go up to 35
 end)
 
 -- bring back decreasing bleedout timer based on the amount of downs
@@ -398,3 +400,26 @@ Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
 		self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, self._down_time - tweak_data.player.damage.DOWNED_TIME_DEC)
 	end
 end)
+
+-- faks restore downs
+function PlayerDamage:band_aid_health(down_restore)
+	if managers.platform:presence() == "Playing" and (self:arrested() or self:need_revive()) then
+		return
+	end
+
+	self:change_health(self:_max_health() * self._healing_reduction)
+
+	self._said_hurt = false
+
+	if down_restore then -- if a fak is upgraded to do so, restore one down
+		self._revives = Application:digest_value(math.min(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), Application:digest_value(self._revives, false) + 1), true)
+
+		self:_send_set_revives()
+
+		self._revive_health_i = math.max(self._revive_health_i - 1, 1)
+
+		self._down_time = math.min(self._down_timer_max, self._down_time + tweak_data.player.damage.DOWNED_TIME_DEC)
+
+		managers.environment_controller:set_last_life(Application:digest_value(self._revives, false) <= 1)
+	end
+end
