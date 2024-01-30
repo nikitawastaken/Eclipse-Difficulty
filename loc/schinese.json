@@ -126,7 +126,7 @@
 	"menu_wolverine_beta_desc": "基础: ##$basic##\n你的血量越低，你的移速越高。你的血量低于##$multibasic##时, 你最多获得##$multibasic2##的额外移速。\n\n精通: ##$pro##\n你的血量越低，你造成的近战伤害越高。当你的血量低于##$multipro##时, 你最多额外造成##$multipro2##的近战和电锯伤害。",
 	"menu_trigger_happy_beta_desc": "基础: ##$basic##\n你的手枪每次命中敌人时会获得##$multibasic##的持续##$multibasic2##秒的伤害加成。\n最多叠加##$multibasic3##次。\n\n精通: ##$pro##\n你的手枪每次命中敌人时会获得##$multipro##的持续##$multipro2##秒的伤害加成。\n最多叠加##$multipro3##次。",
 	"menu_perseverance_beta_desc": "基础: ##$basic##\n你血量耗尽时不会立刻倒地，而是有##$multibasic2##秒的额外战斗时间。在此期间，移动速度获得##$multibasic3##的惩罚。\n\n注意：坠落伤害和火焰伤害不会触发该技能。 \n\n精通: ##$pro##\n天鹅绝唱的持续时间额外增加##$multipro##秒。",
-	"menu_tea_cookies_beta_desc": "基础 ##$basic##\n开局时可额外携带##$multibasic##个急救包。\n\n精通: ##$pro##\n开局时可额外携带##$multipro##个急救包。\n\n你部署的急救包会自动救援##$multipro2##米内倒地的玩家。每##$multipro3##秒最多触发一次。",
+	"menu_tea_cookies_beta_desc": "基础 ##$basic##\n开局时可额外携带##$multibasic##个急救包。\n\n精通: ##$pro##\n开局时可额外携带##$multipro##个急救包。\n\n使用急救包会恢复##$multipro2##次倒地次数。",
 
 
 
@@ -246,7 +246,7 @@
 	"eclipse_menu_ponr_assault_text": "编辑突击横幅",
 	"eclipse_menu_ponr_assault_text_desc": "编辑突击横幅样式。和其他修改了突击横幅的mod冲突。",
 
-	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用。\n你只会有一个AI队友。\n敌人变得更加敏捷与致命。\n多个劫案启用了有去无回倒计时（会导致敌人全速突击）。\n连续倒地会减少倒计时和被救起之后的血量。",
+	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用\n你只会有一个AI队友\n敌人变得更加敏捷与致命\n连续倒地会减少倒计时和被救起之后的血量\n多个劫案启用了有去无回倒计时（会导致敌人全速突击）。",
 	"menu_difficulty_easy_wish": "日蚀",
 	"menu_risk_easy_wish": "'日蚀'行动。\n对你来说, 行动才是关键。",
 	"menu_risk_special": "枪林弹雨。\n所有警力正在进场。",
