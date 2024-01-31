@@ -1,6 +1,11 @@
 -- No cloaker camera tilt
 function FPCameraPlayerBase:clbk_aim_assist(col_ray) end
 
+-- if the player is in vr, don't do any further changes
+if _G.IS_VR then
+	return
+end
+
 -- static recoil that actually feels good
 function FPCameraPlayerBase:stop_shooting(wait)
 	self._recoil_kick.to_reduce = self._recoil_kick.ret or 0
