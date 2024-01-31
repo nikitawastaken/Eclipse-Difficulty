@@ -686,8 +686,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 
 	-- elite shield
-	self.phalanx_minion.DAMAGE_CLAMP_BULLET = nil
-	self.phalanx_minion.DAMAGE_CLAMP_EXPLOSION = nil
 	self.phalanx_minion.damage.explosion_damage_mul = 0.2
 	self.phalanx_minion.access = "shield"
 
@@ -856,6 +854,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- apply weapon presets
 	self.security.weapon = self.presets.weapon.base
 	self.cop.weapon = self.presets.weapon.base
+	self.cop_female.weapon = self.presets.weapon.base
 	self.gangster.weapon = self.presets.weapon.base
 	self.biker.weapon = self.presets.weapon.base
 	self.biker_female.weapon = self.presets.weapon.base
@@ -893,8 +892,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_medic.weapon = self.presets.weapon.zeal
 	self.zeal_taser.weapon = self.presets.weapon.zeal_tazer
 
-	self.biker.melee_weapon = "knife_1"
-
 	-- Set chatter presets
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 	self.biker.chatter = self.presets.enemy_chatter.gangster
@@ -907,6 +904,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
 	self.security_mex.chatter = self.presets.enemy_chatter.security
 	self.security_mex_no_pager.chatter = self.presets.enemy_chatter.security
+
+	-- Misc
+	self.fbi_female = deep_clone(self.cop_female)
+	self.biker.melee_weapon = "knife_1"
 end)
 
 Hooks:PostHook(CharacterTweakData, "_init_team_ai", "_init_team_ai_bot_weapons", function(self, presets)
@@ -953,11 +954,29 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_g3/wpn_npc_g3"))
 end)
 
+function CharacterTweakData:_multiply_all_hp(hp_mul, hs_mul)
+	for _, name in pairs(self._enemy_list) do
+		local char_preset = self[name]
+
+		char_preset.BASE_HEALTH_INIT = char_preset.BASE_HEALTH_INIT or char_preset.HEALTH_INIT
+		char_preset.HEALTH_INIT = char_preset.BASE_HEALTH_INIT * hp_mul
+
+		if char_preset.headshot_dmg_mul then
+			char_preset.base_headshot_dmg_mul = char_preset.base_headshot_dmg_mul or char_preset.headshot_dmg_mul
+			char_preset.headshot_dmg_mul = char_preset.base_headshot_dmg_mul * hs_mul
+		end
+
+		-- Remove damage clamps, they are not a fun or intuitive mechanic
+		char_preset.DAMAGE_CLAMP_BULLET = nil
+		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
+	end
+end
+
 local function setup_presets(self)
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 	local is_pro = Global.game_settings and Global.game_settings.one_down
 	local f = ((diff_i ^ 2) / (diff_i * 3))
-	self:_multiply_all_hp(3, 1.75)
+	self:_multiply_all_hp(f, 1.75) -- scale all the other enemies
 
 	-- common swat
 	self.swat.HEALTH_INIT = 30
@@ -1000,6 +1019,7 @@ local function setup_presets(self)
 
 	-- misc
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }
+	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 	self.taser.weapon.is_rifle.tase_distance = 750 * f
 	self.taser.weapon.is_rifle.aim_delay_tase = { 0.2 / f, 0.3 / f }
 	self.tank_armor_balance_mul = { 2.5 * f, 3.25 * f, 4.25 * f, 5 * f }
