@@ -57,7 +57,7 @@ function PlayerTased:_check_action_shock(t, input)
 	local difficulty_index = tweak_data:difficulty_to_index(Global.game_settings.difficulty)
 	local weaker_tase = managers.player:upgrade_value("player", "weaker_tase_effect", 0)
 	local cam_base = self._unit:camera():camera_unit():base()
-	local is_last_man_standing = (managers.groupai:state():num_alive_criminals() == 1 and 0.33) -- weaker random pitch when last man standing / true solo
+	local is_last_man_standing = ((managers.groupai:state():num_alive_criminals() == 1 and 0.33) or 1) -- weaker random pitch when last man standing / true solo
 
 	if self._next_shock < t then
 		self._num_shocks = self._num_shocks or 0
