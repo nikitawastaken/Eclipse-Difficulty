@@ -57,6 +57,7 @@ function PlayerTased:_check_action_shock(t, input)
 	local difficulty_index = tweak_data:difficulty_to_index(Global.game_settings.difficulty)
 	local weaker_tase = managers.player:upgrade_value("player", "weaker_tase_effect", 0)
 	local cam_base = self._unit:camera():camera_unit():base()
+	local is_last_man_standing = (managers.groupai:state():num_alive_criminals() == 1 and 0.33) -- weaker random pitch when last man standing / true solo
 
 	if self._next_shock < t then
 		self._num_shocks = self._num_shocks or 0
@@ -69,7 +70,7 @@ function PlayerTased:_check_action_shock(t, input)
 		self._unit:camera():play_shaker("player_taser_shock", 1, 10)
 		self._unit:camera():camera_unit():base():set_target_tilt((math.random(2) == 1 and -1 or 1) * math.random(15) * (1 - weaker_tase))
 		-- make tasers even more EVIL by adding a random pitch (SH)
-		cam_base:animate_pitch(t, nil, cam_base._camera_properties.pitch + math.random(-5 * (1 - weaker_tase), 5 * (1 - weaker_tase)), 0.25)
+		cam_base:animate_pitch(t, nil, cam_base._camera_properties.pitch + math.random(-5 * (1 - weaker_tase) * is_last_man_standing, 5 * (1 - weaker_tase) * is_last_man_standing), 0.25)
 
 		self._taser_value = self._taser_value or 1
 		self._taser_value = math.max(self._taser_value - 0.25, 0)
