@@ -15,13 +15,7 @@ function EnvEffectTweakData:molotov_fire()
 		burn_tick_period = 0.2,
 		burn_duration = 15,
 		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
-		fire_dot_data = {
-			dot_trigger_chance = 70,
-			dot_damage = 7.5,
-			dot_length = 6,
-			dot_trigger_max_distance = 3000,
-			dot_tick_period = 0.25,
-		},
+		dot_data_name = "proj_molotov_groundfire",
 	}
 
 	return params
@@ -41,13 +35,7 @@ function EnvEffectTweakData:incendiary_fire()
 		burn_tick_period = 0.2,
 		burn_duration = 4,
 		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
-		fire_dot_data = {
-			dot_trigger_chance = 70,
-			dot_damage = 7.5,
-			dot_length = 6,
-			dot_trigger_max_distance = 3000,
-			dot_tick_period = 0.25,
-		},
+		dot_data_name = "proj_launcher_incendiary_groundfire",
 	}
 
 	return params
@@ -67,13 +55,7 @@ function EnvEffectTweakData:incendiary_fire_arbiter()
 		burn_tick_period = 0.2,
 		burn_duration = 3,
 		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
-		fire_dot_data = {
-			dot_trigger_chance = 70,
-			dot_damage = 7.5,
-			dot_length = 6,
-			dot_trigger_max_distance = 3000,
-			dot_tick_period = 0.25,
-		},
+		dot_data_name = "proj_launcher_incendiary_arbiter_groundfire",
 	}
 
 	return params
