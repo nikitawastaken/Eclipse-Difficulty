@@ -22,4 +22,25 @@ Hooks:PostHook(FireTweakData, "_init_dot_entries_fire", "eclipse__init_dot_entri
 		dot_trigger_max_distance = 1500,
 		dot_tick_period = 0.25,
 	}
+
+	-- molo dot
+	self.dot_entries.fire.proj_molotov_groundfire = {
+		dot_trigger_chance = 1,
+		dot_damage = 7.5,
+		dot_length = 6,
+		dot_trigger_max_distance = false,
+		dot_tick_period = 0.25,
+		is_molotov = true,
+	}
+
+	self.dot_entries.fire.proj_launcher_incendiary_groundfire = {
+		dot_trigger_chance = 1,
+		dot_damage = 7.5,
+		dot_length = 6,
+		dot_trigger_max_distance = false,
+		dot_tick_period = 0.25,
+		is_molotov = false
+	}
+
+	self.dot_entries.fire.proj_launcher_incendiary_arbiter_groundfire = clone(self.dot_entries.fire.proj_launcher_incendiary_groundfire)
 end)
