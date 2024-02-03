@@ -285,6 +285,9 @@ local spray_tables = {
 	},
 	lmg_right = {
 		pattern = {
+			{ up = 0.8, down = 1.1, left = -1, right = 1 }
+		},
+		persist_pattern = {
 			{ up = 0.2, down = 0.2, left = 0.8, right = 0.8 },
 			{ up = 0.5, down = 0.8, left = 0.8, right = 0.8 },
 			{ up = 0.8, down = 0.8, left = 0.6, right = 0.6 },
@@ -301,13 +304,6 @@ local spray_tables = {
 			{ up = 1.3, down = 1.3, left = -0.7, right = -0.7 },
 			{ up = 1.1, down = 1.1, left = -0.3, right = -0.2 },
 			{ up = 1, down = 1.2, left = 0.3, right = 0.4 },
-		},
-		persist_pattern = {
-			{ up = 0.8, down = 1.1, left = -1, right = 2 }
-		}
-	},
-	lmg_left = {
-		pattern = {
 			{ up = 0.2, down = 0.2, left = -0.8, right = -0.8 },
 			{ up = 0.5, down = 0.8, left = -0.8, right = -0.8 },
 			{ up = 0.8, down = 0.8, left = -0.6, right = -0.6 },
@@ -324,9 +320,45 @@ local spray_tables = {
 			{ up = 1.3, down = 1.3, left = 0.7, right = 0.7 },
 			{ up = 1.1, down = 1.1, left = 0.3, right = 0.2 },
 			{ up = 1, down = 1.2, left = -0.3, right = -0.4 },
+		}
+	},
+	lmg_left = {
+		pattern = {
+			{ up = 0.8, down = 1.1, left = -1, right = 1 }
 		},
 		persist_pattern = {
-			{ up = 0.8, down = 1.1, left = -2, right = 1 }
+			{ up = 0.2, down = 0.2, left = -0.8, right = -0.8 },
+			{ up = 0.5, down = 0.8, left = -0.8, right = -0.8 },
+			{ up = 0.8, down = 0.8, left = -0.6, right = -0.6 },
+			{ up = 0.9, down = 1, left = -0.6, right = -0.6 },
+			{ up = 1, down = 1.1, left = -0.6, right = -0.6 },
+			{ up = 1.1, down = 1.2, left = -0.6, right = -0.6 },
+			{ up = 1.2, down = 1.3, left = -0.4, right = -0.4 },
+			{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
+			{ up = 0.8, down = 0.8, left = 0.2, right = 0.3 },
+			{ up = 0.8, down = 0.8, left = 0.4, right = 0.8 },
+			{ up = 1, down = 1, left = 0.8, right = 1 },
+			{ up = 1, down = 1.1, left = 1, right = 1 },
+			{ up = 1.1, down = 1.3, left = 0.8, right = 1 },
+			{ up = 1.3, down = 1.3, left = 0.7, right = 0.7 },
+			{ up = 1.1, down = 1.1, left = 0.3, right = 0.2 },
+			{ up = 1, down = 1.2, left = -0.3, right = -0.4 },
+			{ up = 0.2, down = 0.2, left = 0.8, right = 0.8 },
+			{ up = 0.5, down = 0.8, left = 0.8, right = 0.8 },
+			{ up = 0.8, down = 0.8, left = 0.6, right = 0.6 },
+			{ up = 0.9, down = 1, left = 0.6, right = 0.6 },
+			{ up = 1, down = 1.1, left = 0.6, right = 0.6 },
+			{ up = 1.1, down = 1.2, left = 0.6, right = 0.6 },
+			{ up = 1.2, down = 1.3, left = 0.4, right = 0.4 },
+			{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
+			{ up = 0.8, down = 0.8, left = -0.2, right = -0.3 },
+			{ up = 0.8, down = 0.8, left = -0.4, right = -0.8 },
+			{ up = 1, down = 1, left = -0.8, right = -1 },
+			{ up = 1, down = 1.1, left = -1, right = -1 },
+			{ up = 1.1, down = 1.3, left = -0.8, right = -1 },
+			{ up = 1.3, down = 1.3, left = -0.7, right = -0.7 },
+			{ up = 1.1, down = 1.1, left = -0.3, right = -0.2 },
+			{ up = 1, down = 1.2, left = 0.3, right = 0.4 },
 		}
 	},
 	mini = {
