@@ -320,3 +320,6 @@ function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, t
 		end
 	end
 end
+
+-- disable ai trades when all players are in custody, if you fucked up - you fucked up
+function GroupAIStateBase:is_ai_trade_possible() return false end

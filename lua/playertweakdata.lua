@@ -53,7 +53,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.damage.DOWNED_TIME = 30
 	self.damage.DOWNED_TIME_DEC = 0
 	self.damage.DOWNED_TIME_MIN = 30
-	self.damage.automatic_respawn_time = nil
 end)
 
 -- Game too hard for single player appparently????
