@@ -233,7 +233,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							apply_spray = true
 						end
 
-						if apply_spray and !(_G.IS_VR) then
+						if apply_spray and not _G.IS_VR then
 							self._camera_unit:base():pattern_recoil_kick(pattern_tweak_data, persist_pattern_tweak_data, recoil_multiplier, recoil_recovery)
 						else
 							self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
