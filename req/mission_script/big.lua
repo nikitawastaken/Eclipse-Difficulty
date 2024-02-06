@@ -19,6 +19,12 @@ return {
 			}
 		}
 	},
+	-- enable roof spawngroups
+	[100006] = {
+		values = {
+			spawn_groups = { 100019, 100007, 100692 }
+		}
+	},
 	-- slow down elevator spawn points
 	[105550] = {
 		values = {
