@@ -21,7 +21,7 @@ return {
 	[104132] = {
 		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
 	},
-	[104710] = {
+	[104170] = {
 		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
 	},
 	[104131] = {
