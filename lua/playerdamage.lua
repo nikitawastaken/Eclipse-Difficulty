@@ -360,10 +360,14 @@ function PlayerDamage:_calc_health_damage(attack_data)
 end
 
 function PlayerDamage:on_incapacitated()
+	local is_pro = Global.game_settings and Global.game_settings.one_down
+
 	self:on_downed()
 
-	self._revives = Application:digest_value(Application:digest_value(self._revives, false) - 1, true) -- instant incaps (cloakers / tasers) count as downs
-	self:_send_set_revives()
+	if is_pro then
+		self._revives = Application:digest_value(Application:digest_value(self._revives, false) - 1, true) -- instant incaps (cloakers / tasers) count as downs
+		self:_send_set_revives()
+	end
 
 	self._incapacitated = true
 end
