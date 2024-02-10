@@ -1,3 +1,15 @@
+-- disable leg hitboxes for shields
+HuskCopBase.shield_tweak_names = {
+    shield = true,
+    phalanx_minion = true
+}
+
+Hooks:PreHook(HuskCopBase, "post_init", "sh_post_init", function(self)
+    if self.shield_tweak_names[self._tweak_table] then
+        self.enable_leg_arm_hitbox = function() end
+    end
+end)
+
 -- "Fuck clients apparently" (c) RedFlame
 -- fixes cops on clients not derendering when they should
 Hooks:PostHook(HuskCopBase, "post_init", "eclipse__post_init", function(self)
