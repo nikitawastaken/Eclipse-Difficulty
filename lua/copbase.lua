@@ -1,15 +1,3 @@
--- disable leg hitboxes for shields
-CopBase.shield_tweak_names = {
-	shield = true,
-	phalanx_minion = true,
-}
-
-Hooks:PreHook(CopBase, "post_init", "sh_post_init", function(self)
-	if self.shield_tweak_names[self._tweak_table] then
-		self.enable_leg_arm_hitbox = function() end
-	end
-end)
-
 -- Dynamically load throwable if we have one
 local unit_ids = Idstring("unit")
 Hooks:PostHook(CopBase, "init", "sh_init", function(self)
@@ -62,10 +50,20 @@ if Network:is_client() then
 	return
 end
 
+-- disable leg hitboxes for shields
+CopBase.shield_tweak_names = {
+	shield = true,
+	phalanx_minion = true,
+}
+
 local weapon_mapping = StreamHeist:require("unit_weapons")
 Hooks:PreHook(CopBase, "post_init", "sh_post_init", function(self)
 	self._default_weapon_id = weapon_mapping[self._unit:name():key()] or self._default_weapon_id
 	if type(self._default_weapon_id) == "table" then
 		self._default_weapon_id = table.random(self._default_weapon_id)
+	end
+
+	if self.shield_tweak_names[self._tweak_table] then
+		self.enable_leg_arm_hitbox = function() end
 	end
 end)
