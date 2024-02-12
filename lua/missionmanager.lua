@@ -8,9 +8,9 @@ if mission_add then
 	-- Load the elements from the file
 	Hooks:PreHook(MissionScript, "init", "eclipse_missionmanager_init", function(self, data)
 		if not StreamHeist.loaded_elements and data.name == "default" then
-			for _,element in ipairs(mission_add.elements) do
-                table.insert(data.elements, element)
-            end
+			for _, element in ipairs(mission_add.elements) do
+				table.insert(data.elements, element)
+			end
 			StreamHeist.loaded_elements = true
 		end
 	end)
