@@ -2,14 +2,14 @@ local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.ga
 local lateShield = (diff_i == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
 local hard_and_above = diff_i >= 4
 local very_hard_and_above = diff_i >= 4
-local diff_scaling = 12.5 * diff_i
-local enabled_chance_corner_wall = math.random(100) <= diff_scaling
-local enabled_chance_alleyway_wall = math.random(100) <= diff_scaling
-local enabled_chance_alleyway_dozer = math.random(100) <= diff_scaling
-local enabled_chance_alleyway_spook1 = math.random(100) <= diff_scaling
-local enabled_chance_alleyway_spook2 = math.random(100) <= diff_scaling
-local enabled_chance_parkinglot_spook1 = math.random(100) <= diff_scaling
-local enabled_chance_parkinglot_spook2 = math.random(100) <= diff_scaling
+local diff_scaling = 0.125 * diff_i
+local enabled_chance_corner_wall = math.random() < diff_scaling
+local enabled_chance_alleyway_wall = math.random() < diff_scaling
+local enabled_chance_alleyway_dozer = math.random() < diff_scaling
+local enabled_chance_alleyway_spook1 = math.random() < diff_scaling
+local enabled_chance_alleyway_spook2 = math.random() < diff_scaling
+local enabled_chance_parkinglot_spook1 = math.random() < diff_scaling
+local enabled_chance_parkinglot_spook2 = math.random() < diff_scaling
 
 local optsShieldWall1 = {
     enemy = "units/payday2/characters/ene_shield_1/ene_shield_1",
