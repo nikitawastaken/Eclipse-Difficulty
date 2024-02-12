@@ -1,6 +1,19 @@
-if Global.editor_mode then
-	StreamHeist:log("Editor mode is active, mission script changes disabled")
-	return
+-- if Global.editor_mode then
+-- 	StreamHeist:log("Editor mode is active, mission script changes disabled")
+-- 	return
+-- end
+
+local mission_add = StreamHeist:mission_script_add()
+if mission_add then
+	-- Load the elements from the file
+	Hooks:PreHook(MissionScript, "init", "eclipse_missionmanager_init", function(self, data)
+		if not StreamHeist.loaded_elements and data.name == "default" then
+			for _,element in ipairs(mission_add.elements) do
+                table.insert(data.elements, element)
+            end
+			StreamHeist.loaded_elements = true
+		end
+	end)
 end
 
 local is_pro_job = Global.game_settings and Global.game_settings.one_down
@@ -127,6 +140,11 @@ MissionManager.mission_script_patch_funcs = {
 		end
 		element._values.preferred_spawn_groups = table.map_keys(new_groups)
 		StreamHeist:log("Changed %u preferred group(s) of %s", table.size(data), element:editor_name())
+	end,
+
+	chance = function(self, element, data)
+		element._values.chance = data
+		element._chance = data
 	end,
 }
 
