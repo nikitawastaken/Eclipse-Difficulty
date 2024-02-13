@@ -6,20 +6,10 @@
 			<shake name="player_bullet_damage"/>
 		</search>
 		<target mode="replace">
-			<shake name="player_bullet_damage" spin="0" roll="-sin(t)/25" tilt="cos(t)/25" frequency="1" amplitude="1" attack="0" sustain="0" decay="0.5"/>
+			<shake name="player_bullet_damage" spin="0" roll="0" tilt="0.05" frequency="1" amplitude="1" attack="0" sustain="0" decay="0.5"/>
 		</target>
 	</tweak>
-	
-	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
-		<search>
-			<camera_shakes/>
-			<shake name="player_bullet_damage"/>
-		</search>
-		<target mode="append">
-			<shake name="player_bullet_damage_strong" spin="0" roll="-sin(t)/25" tilt="cos(t)/25" frequency="1" amplitude="1" attack="0" sustain="0" decay="1.25"/>
-		</target>
-	</tweak>
-	
+
 	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
 		<search>
 			<camera_shakes/>

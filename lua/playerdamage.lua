@@ -139,14 +139,7 @@ function PlayerDamage:damage_bullet(attack_data)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number
 	local shake_multiplier = math.clamp(attack_data.damage, 0.2, 2) * shake_armor_multiplier
 
-	-- The stronger the damage - the more lengthy and powerful the aimpunch
-	if attack_data.damage < 12.5 then
-		self._unit:camera():play_shaker("player_bullet_damage", 1 * shake_multiplier)
-	elseif attack_data.damage < 23 then
-		self._unit:camera():play_shaker("player_bullet_damage_strong", 1 * shake_multiplier)
-	else
-		self._unit:camera():play_shaker("player_bullet_damage_knock_out", 1 * shake_multiplier)
-	end
+	self._unit:camera():play_shaker("player_bullet_damage", 1 * shake_multiplier)
 
 	if not _G.IS_VR then
 		managers.rumble:play("damage_bullet")

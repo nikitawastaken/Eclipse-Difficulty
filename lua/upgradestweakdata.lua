@@ -342,8 +342,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.pack_mule.multipro3 = "7"
 
 	-- Thick Skin
-	self.values.player.damage_shake_addend[1] = 1
-	self.skill_descs.show_of_force.multibasic = "10"
+	self.values.player.damage_shake_addend[1] = 1.5
+	self.skill_descs.show_of_force.multibasic = "15"
 
 	-- Shock and Awe
 	self.values.team.armor.regen_time_multiplier[1] = 0.9

@@ -5,7 +5,6 @@ function PlayerCamera:play_shaker(effect, amplitude, ...)
 		self,
 		effect,
 		effect == "player_bullet_damage" and self._damage_bullet_shake_multiplier
-			or effect == "player_bullet_damage_strong" and self._damage_bullet_shake_multiplier
 			or effect == "player_bullet_damage_knock_out" and self._damage_bullet_shake_multiplier
 			or amplitude,
 		...
