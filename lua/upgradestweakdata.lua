@@ -791,16 +791,16 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Muscle
 	self.values.player.passive_health_regen = { 0.8 }
-	self.values.temporary.mrwi_health_invulnerable[1][3] = 30
+	self.values.temporary.mrwi_health_invulnerable[1][3] = 60
 	self.specialization_descs[2][9].multiperk = "40%"
 	self.specialization_descs[2][9].multiperk2 = "8"
 	self.specialization_descs[2][7].multiperk = "50%"
 	self.specialization_descs[2][7].multiperk2 = "2"
-	self.specialization_descs[2][7].multiperk3 = "30"
+	self.specialization_descs[2][7].multiperk3 = "60"
 
 	-- Armorer
-	self.values.temporary.armor_break_invulnerable = { { 2, 30 } }
-	self.specialization_descs[3][7].multiperk3 = "30"
+	self.values.temporary.armor_break_invulnerable = { { 2, 45 } }
+	self.specialization_descs[3][7].multiperk3 = "45"
 	self.specialization_descs[3][1].multiperk = "5%"
 	self.specialization_descs[3][3].multiperk = "5%"
 	self.specialization_descs[3][5].multiperk = "5%"
