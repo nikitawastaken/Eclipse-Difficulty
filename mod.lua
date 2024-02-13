@@ -28,6 +28,7 @@ if not StreamHeist then
 		required = {},
 		settings = {
 			ponr_assault_text = false,
+			max_progression_infamy = 0
 		},
 		loaded_elements = false
 	}
@@ -266,13 +267,15 @@ if not StreamHeist then
 		local menu_id = "eclipse_menu"
 		MenuHelper:NewMenu(menu_id)
 
-		local faction_menu_elements = {}
-		function MenuCallbackHandler:sh_ponr_assault_text_toggle(item)
+		function MenuCallbackHandler:eclipse_ponr_assault_text_toggle(item)
 			local enabled = (item:value() == "on")
 			StreamHeist.settings.ponr_assault_text = enabled
-			for _, element in pairs(faction_menu_elements) do
-				element:set_enabled(not enabled)
-			end
+		end
+
+		function MenuCallbackHandler:eclipse_max_progression_infamy_edit(item)
+			local value = math.floor(item:value() + 0.5)
+
+			StreamHeist.settings.max_progression_infamy = value
 		end
 
 		function MenuCallbackHandler:sh_save()
@@ -283,9 +286,25 @@ if not StreamHeist then
 			id = "ponr_assault_text",
 			title = "eclipse_menu_ponr_assault_text",
 			desc = "eclipse_menu_ponr_assault_text_desc",
-			callback = "sh_ponr_assault_text_toggle",
+			callback = "eclipse_ponr_assault_text_toggle",
 			value = StreamHeist.settings.ponr_assault_text,
 			menu_id = menu_id,
+			priority = 100
+		})
+
+		MenuHelper:AddSlider({
+			id = "max_progression_infamy",
+			title = "eclipse_menu_max_progression_infamy",
+			desc = "eclipse_menu_max_progression_infamy_desc",
+			callback = "eclipse_max_progression_infamy_edit",
+			value = StreamHeist.settings.max_progression_infamy,
+			menu_id = menu_id,
+			is_percentage = false,
+			show_value = true,
+			min = 0,
+			max = 500,
+			step = 1,
+			display_precision = 0,
 			priority = 100
 		})
 

@@ -242,9 +242,13 @@
 	"hud_assault_ponr": "Full Force Onslaught",
 	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
 	"hud_assault_zeal_ponr": "Zeal Legion Inbound",
+
+
 	"eclipse_menu_main": "Eclipse",
 	"eclipse_menu_ponr_assault_text": "Assault banner edits",
 	"eclipse_menu_ponr_assault_text_desc": "Assault banner flavor edits. Incompatible with mods that edit assault banner.",
+	"eclipse_menu_max_progression_infamy": "Max Progression Infamy",
+	"eclipse_menu_max_progression_infamy_desc": "The level of infamy that you will receive upon hitting max progression button.",
 
 
 	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled\nYou're only granted one Team AI\nEnemies are more agile, snappy and aggressive\nEach consecutive down decreases bleedout timer and revive health\nVarious heists have points of no return (leading into full force onslaught) enabled",
