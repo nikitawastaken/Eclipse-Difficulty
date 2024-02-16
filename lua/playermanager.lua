@@ -59,7 +59,6 @@ function PlayerManager:on_headshot_dealt()
 		self._on_headshot_dealt_t = t + (tweak_data.upgrades.on_headshot_dealt_cooldown or 0)
 	end
 
-
 	local regen_armor_bonus = managers.player:upgrade_value("player", "headshot_regen_armor_bonus", 0)
 
 	if damage_ext and regen_armor_bonus > 0 then
