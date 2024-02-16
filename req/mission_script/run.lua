@@ -104,15 +104,20 @@ return {
 			{ id = 103582, delay = 0 }, -- normal/hard filter
 		}
 	},
-	[103575] = { -- extra scripted sniper spots for ovk/eclipse filter
+	[103575] = {
 		values = {
-			amount = 3 -- reduce total amount of snipers per trigger
+			amount = 3, -- reduce total amount of snipers per trigger
+			on_executed = { -- extra scripted sniper spots for ovk/eclipse filter
+				{ id = 103538, delay = 0 },
+				{ id = 103537, delay = 0 },
+				{ id = 103539, delay = 0 },
+				{ id = 103447, delay = 0 },
+				{ id = 103545, delay = 0 },
+				{ id = 400085, delay = 0 },
+				{ id = 400087, delay = 0 },
+			},
 		},
-		on_executed = {
-			{ id = 400085, delay = 0 },
-			{ id = 400087, delay = 0 }
-		}
-	},
+},
 	-- make some snipers trigger only once
 	[103538] = {
 		values = {
