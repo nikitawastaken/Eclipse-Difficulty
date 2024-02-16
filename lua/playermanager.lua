@@ -41,6 +41,8 @@ function PlayerManager:on_headshot_dealt()
 		return
 	end
 
+	self._message_system:notify(Message.OnHeadShot, nil, nil)
+
 	-- hitman refunds ammo on headshots
 	if has_hitman_ammo_refund and variant ~= "melee" then
 		managers.player:on_ammo_increase(1)
@@ -57,7 +59,6 @@ function PlayerManager:on_headshot_dealt()
 		self._on_headshot_dealt_t = t + (tweak_data.upgrades.on_headshot_dealt_cooldown or 0)
 	end
 
-	self._message_system:notify(Message.OnHeadShot, nil, nil)
 
 	local regen_armor_bonus = managers.player:upgrade_value("player", "headshot_regen_armor_bonus", 0)
 
