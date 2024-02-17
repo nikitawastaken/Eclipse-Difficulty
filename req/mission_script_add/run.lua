@@ -1,7 +1,7 @@
 local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 local lateShield = (diff_i == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
 local hard_and_above = diff_i >= 4
-local very_hard_and_above = diff_i >= 4
+local overkill_and_above = diff_i >= 5
 local diff_scaling = 0.125 * diff_i
 local enabled_chance_corner_wall = math.random() < diff_scaling
 local enabled_chance_alleyway_wall = math.random() < diff_scaling
@@ -10,6 +10,8 @@ local enabled_chance_alleyway_spook1 = math.random() < diff_scaling
 local enabled_chance_alleyway_spook2 = math.random() < diff_scaling
 local enabled_chance_parkinglot_spook1 = math.random() < diff_scaling
 local enabled_chance_parkinglot_spook2 = math.random() < diff_scaling
+local enabled_chance_sniper_armitage_underpass = math.random() < diff_scaling
+local enabled_chance_sniper_armitage_rooftop = math.random() < diff_scaling
 
 local optsShieldWall1 = {
     enemy = "units/payday2/characters/ene_shield_1/ene_shield_1",
@@ -48,22 +50,22 @@ local optsLateDozer = {
 local optsSpoocAmbush1 = {
     enemy = "units/payday2/characters/ene_spook_1/ene_spook_1",
     on_executed = { { id = 400014, delay = 0 } },
-    enabled = (very_hard_and_above and enabled_chance_alleyway_spook1)
+    enabled = (overkill_and_above and enabled_chance_alleyway_spook1)
 }
 local optsSpoocAmbush2 = {
     enemy = "units/payday2/characters/ene_spook_1/ene_spook_1",
     on_executed = { { id = 400017, delay = 0 } },
-    enabled = (very_hard_and_above and enabled_chance_alleyway_spook2)
+    enabled = (overkill_and_above and enabled_chance_alleyway_spook2)
 }
 local optsSpoocAmbush3 = {
     enemy = "units/payday2/characters/ene_spook_1/ene_spook_1",
     on_executed = { { id = 400019, delay = 0 } },
-    enabled = (very_hard_and_above and enabled_chance_parkinglot_spook1)
+    enabled = (overkill_and_above and enabled_chance_parkinglot_spook1)
 }
 local optsSpoocAmbush4 = {
     enemy = "units/payday2/characters/ene_spook_1/ene_spook_1",
     on_executed = { { id = 400021, delay = 0 } },
-    enabled = (very_hard_and_above and enabled_chance_parkinglot_spook2)
+    enabled = (overkill_and_above and enabled_chance_parkinglot_spook2)
 }
 local optsMissingBeatCop = {
     enemy = "units/payday2/characters/ene_cop_4/ene_cop_4",
@@ -74,13 +76,13 @@ local optsArmitageSniper_01 = {
 	enemy = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	on_executed = { { id = 400086, delay = 0 } },
     trigger_times = 1,
-    enabled = true
+    enabled = (overkill_and_above and enabled_chance_sniper_armitage_underpass)
 }
 local optsArmitageSniper_02 = {
 	enemy = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	on_executed = { { id = 400088, delay = 0 } },
     trigger_times = 1,
-    enabled = true
+    enabled = (overkill_and_above and enabled_chance_sniper_armitage_rooftop)
 }
 local optsBesiegeDummy = {
     participate_to_group_ai = true,
