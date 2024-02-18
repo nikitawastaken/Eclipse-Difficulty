@@ -192,7 +192,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = -10
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.fire_rate = -3
-	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.25 }
+	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 1/3 }
 	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats.fire_rate_multiplier = 0.7
 	-- wasp exclusive kit
 	self.parts.wpn_fps_smg_fmg9_conversion.stats.recoil = 1
