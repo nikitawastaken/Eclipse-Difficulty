@@ -164,6 +164,41 @@ if not StreamHeist then
 		}
 	end
 
+	function StreamHeist:gen_aiglobalevent(id, name, opts)
+		opts = opts or {}
+		return {
+			id = id,
+			editor_name = name,
+			class = "ElementAiGlobalEvent",
+			values = {
+				on_executed = opts.on_executed or {},
+				trigger_times = 1,
+				base_delay = 0,
+				execute_on_startup = false,
+				enabled = true,
+				wave_mode = opts.wave_mode or "none",
+				AI_event = opts.AI_event or "none",
+				blame = opts.blame or "empty"
+			},
+		}
+	end
+
+	function StreamHeist:gen_fakeassaultstate(id, name, state)
+		return {
+			id = id,
+			editor_name = name,
+			class = "ElementFakeAssaultState",
+			values = {
+				on_executed = {},
+				trigger_times = 1,
+				base_delay = 0,
+				execute_on_startup = false,
+				enabled = true,
+				state = state or false
+			},
+		}
+	end
+
 	function StreamHeist:gen_areatrigger(id, name, pos, rot, opts)
 		opts = opts or {}
 		return {

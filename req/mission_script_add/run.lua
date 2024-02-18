@@ -1,5 +1,5 @@
 local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-local lateShield = (diff_i == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
+local blockadeShield = (diff_i == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
 local hard_and_above = diff_i >= 4
 local overkill_and_above = diff_i >= 5
 local diff_scaling = 0.125 * diff_i
@@ -14,32 +14,32 @@ local enabled_chance_sniper_armitage_underpass = math.random() < diff_scaling
 local enabled_chance_sniper_armitage_rooftop = math.random() < diff_scaling
 
 local optsShieldWall1 = {
-    enemy = "units/payday2/characters/ene_shield_1/ene_shield_1",
+    enemy = blockadeShield,
     on_executed = { { id = 400004, delay = 0 } },
     enabled = (hard_and_above and enabled_chance_corner_wall)
 }
 local optsShieldWall2 = {
-    enemy = "units/payday2/characters/ene_shield_1/ene_shield_1",
+    enemy = blockadeShield,
     on_executed = { { id = 400005, delay = 0 } },
     enabled = (hard_and_above and enabled_chance_corner_wall)
 }
 local optsShieldWall3 = {
-    enemy = "units/payday2/characters/ene_shield_1/ene_shield_1",
+    enemy = blockadeShield,
     on_executed = { { id = 400006, delay = 0 } },
     enabled = (hard_and_above and enabled_chance_corner_wall)
 }
 local optsShieldWall4 = {
-    enemy = "units/payday2/characters/ene_shield_1/ene_shield_1",
+    enemy = blockadeShield,
     on_executed = { { id = 400007, delay = 0 } },
     enabled = (hard_and_above and enabled_chance_corner_wall)
 }
 local optsLateShield1 = {
-    enemy = lateShield,
+    enemy = blockadeShield,
     on_executed = { { id = 400010, delay = 0 } },
     enabled = (hard_and_above and enabled_chance_alleyway_wall)
 }
 local optsLateShield2 = {
-    enemy = lateShield,
+    enemy = blockadeShield,
     on_executed = { { id = 400011, delay = 0 } },
     enabled = (hard_and_above and enabled_chance_alleyway_wall)
 }
@@ -76,13 +76,13 @@ local optsArmitageSniper_01 = {
 	enemy = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	on_executed = { { id = 400086, delay = 0 } },
     trigger_times = 1,
-    enabled = (overkill_and_above and enabled_chance_sniper_armitage_underpass)
+    enabled = (hard_and_above and enabled_chance_sniper_armitage_underpass)
 }
 local optsArmitageSniper_02 = {
 	enemy = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	on_executed = { { id = 400088, delay = 0 } },
     trigger_times = 1,
-    enabled = (overkill_and_above and enabled_chance_sniper_armitage_rooftop)
+    enabled = (hard_and_above and enabled_chance_sniper_armitage_rooftop)
 }
 local optsBesiegeDummy = {
     participate_to_group_ai = true,
@@ -128,6 +128,13 @@ local optsSniperSO = {
     scan = true,
     so_action = "AI_sniper",
     pose = "stand"
+}
+local optsBesiegeStart = {
+    AI_event = "police_called",
+    on_executed = {
+        { id = 100742, delay = 6.155 },
+        { id = 400090, delay = 4.150 }
+    }
 }
 
 return {
@@ -302,36 +309,6 @@ return {
             Rotation(110, -0, -0),
             optsMissingBeatCop
         ),
-
-        -- more scripted sniper spots
-		StreamHeist:gen_dummy(
-			400085,
-			"eclipse_armitage_ave_sniper_01",
-			Vector3(-8377, -9876, 1569),
-			Rotation(0, 0, 0),
-			optsArmitageSniper_01
-		),
-		StreamHeist:gen_so(
-			400086,
-			"eclipse_armitage_ave_sniper_SO_01",
-			Vector3(-8461, -9021, 1573),
-			Rotation(0, 0, -0),
-            optsSniperSO
-		),
-		StreamHeist:gen_dummy(
-			400087,
-			"eclipse_armitage_ave_sniper_02",
-			Vector3(-15333, -11436, 2760),
-			Rotation(0, 0, 0),
-			optsArmitageSniper_02
-		),
-		StreamHeist:gen_so(
-			400088,
-			"eclipse_armitage_ave_sniper_SO_02",
-			Vector3(-15288, -10977, 2760),
-			Rotation(0, 0, -0),
-            optsSniperSO
-		),
 
         -- besiege cops
         -- major ave. main swat vans
@@ -760,6 +737,48 @@ return {
             Vector3(-8552, -10462, 38),
             Rotation(0, 0, 0),
             optsReachedFarSwatVansTrigger
+        ),
+
+        -- more scripted sniper spots
+		StreamHeist:gen_dummy(
+			400085,
+			"eclipse_armitage_ave_sniper_01",
+			Vector3(-8377, -9876, 1569),
+			Rotation(0, 0, 0),
+			optsArmitageSniper_01
+		),
+		StreamHeist:gen_so(
+			400086,
+			"eclipse_armitage_ave_sniper_SO_01",
+			Vector3(-8461, -9021, 1573),
+			Rotation(0, 0, -0),
+            optsSniperSO
+		),
+		StreamHeist:gen_dummy(
+			400087,
+			"eclipse_armitage_ave_sniper_02",
+			Vector3(-15333, -11436, 2760),
+			Rotation(0, 0, 0),
+			optsArmitageSniper_02
+		),
+		StreamHeist:gen_so(
+			400088,
+			"eclipse_armitage_ave_sniper_SO_02",
+			Vector3(-15288, -10977, 2760),
+			Rotation(0, 0, -0),
+            optsSniperSO
+		),
+
+        -- start assault later
+        StreamHeist:gen_aiglobalevent(
+            400089,
+            "eclipse_start_besiege_event",
+            optsBesiegeStart
+        ),
+        StreamHeist:gen_fakeassaultstate(
+            400090,
+            "eclipse_fakeassaultstate_001",
+            true
         ),
     },
 }

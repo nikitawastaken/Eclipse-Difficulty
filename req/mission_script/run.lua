@@ -178,17 +178,27 @@ return {
 		}
 	},
 	-- delay the beginning of besiege
-	[100641] = {
+	[100631] = {
 		on_executed = {
-			{ id = 101329, remove = true }
+			{ id = 400089, delay = 0 }
 		}
 	},
-	[101270] = {
+	[100641] = {
 		on_executed = {
-			{ id = 101329, delay = 10 }
+			{ id = 101329, remove = true },
+		}
+	},
+	[101049] = {
+		on_executed = {
+			{ id = 101757, remove = true }
 		}
 	},
 	[102435] = { -- disable some scripted spawns that show up in the face cause of the delayed besiege
+		values = {
+			enabled = false
+		}
+	},
+	[100298] = { -- also disable this cop cause i cba to fix him running running away
 		values = {
 			enabled = false
 		}
@@ -216,7 +226,7 @@ return {
 			{ id = 400087, delay = 0 },
 		}
 	},
-	[103214] = {
+	[102087] = {
 		on_executed = {
 			{ id = 400012, delay = 0 },
 		}
@@ -353,7 +363,9 @@ return {
 	-- note: second preferred add is executed on player_spawned
 	[102426] = { -- player_spawned
 		on_executed = {
-			{ id = 101476, remove = true } -- 10th preferred
+			{ id = 101476, remove = true }, -- 10th preferred
+			{ id = 103355, remove = true }, -- 2nd preferred add
+			{ id = 100742, remove = true } -- startup music
 		} --  seriously what the fuck? why would you have enemies spawn all the way at the PARKING LOT - ARMITAGE AVE. ALLEYWAY while the players are only leaving SPAWN
 	},
 	[102098] = { -- reached first crossing trigger
@@ -364,6 +376,9 @@ return {
 	[100830] = { -- area bruce trigger
 		on_executed = {
 			{ id = 103356, remove = true }, -- 2nd preferred remove
+			{ id = 103355, delay = 0 }, -- 2nd preferred add
+			{ id = 101757, delay = 0 }, -- fake assault end
+			{ id = 101329, delay = 1 } -- besiege start
 		}
 	},
 	[103082] = { -- trigger area 33 (useless trigger close to eddie #3)
