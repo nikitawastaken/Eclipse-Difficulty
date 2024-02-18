@@ -741,12 +741,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.zeal_medic = deep_clone(self.medic)
 	self.zeal_medic.move_speed = self.presets.move_speed.very_fast
-	self.zeal_medic.speech_prefix_p2 = "d"
 	self.zeal_medic.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_medic")
 
 	self.zeal_taser = deep_clone(self.taser)
-	self.zeal_taser.speech_prefix_p2 = "d"
 	self.zeal_taser.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_taser")
 
