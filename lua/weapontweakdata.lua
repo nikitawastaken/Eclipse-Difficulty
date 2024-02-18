@@ -1589,25 +1589,17 @@ self.groza_underbarrel.AMMO_PICKUP = {0.084, 0.084}
 self.arblast.AMMO_MAX = 45
 self.arblast.stats.damage = 10
 self.arblast.stats.concealment = 24
-self.arblast.single = {
-	fire_rate = 0.025
-}
+self.arblast.fire_mode_data.fire_rate = 60 / 25
 
 -- Light Crossbow
 self.frankish.AMMO_MAX = 45
 self.frankish.stats.damage = 50
 self.frankish.stats.concealment = 25
 self.frankish.use_data.selection_index = SELECTION.SECONDARY
-self.frankish.single = {
-	fire_rate = 0.125
-}
 
 -- Pistol Crossbow
 self.hunter.AMMO_MAX = 45
 self.hunter.stats.concealment = 30
-self.hunter.single = {
-	fire_rate = 0.125
-}
 
 -- Airbow
 self.ecp.AMMO_MAX = 45
