@@ -91,6 +91,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_lmg_kacchainsaw_b_short.stats = { spread = -1, recoil = 1 }
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats = { damage = 40, recoil = -2, spread = 2 }
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 0.6, ammo_pickup_max_mul = 0.83 }
+	-- mosin nagant bayonet
+	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats = {
+		min_damage = 24,
+		concealment = -2,
+		value = 1,
+		max_damage = 24
+	}
 
 	-- Weapon Magazines
 
