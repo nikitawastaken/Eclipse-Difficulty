@@ -96,7 +96,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		min_damage = 24,
 		concealment = -2,
 		value = 1,
-		max_damage = 24
+		max_damage = 24,
 	}
 
 	-- Weapon Magazines
