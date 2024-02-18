@@ -43,6 +43,11 @@ local optsLateShield2 = {
     on_executed = { { id = 400011, delay = 0 } },
     enabled = (hard_and_above and enabled_chance_alleyway_wall)
 }
+local optsLateShield3 = {
+    enemy = blockadeShield,
+    on_executed = { { id = 400092, delay = 0 } },
+    enabled = (hard_and_above and enabled_chance_alleyway_wall)
+}
 local optsLateDozer = {
     enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
     enabled = (hard_and_above and enabled_chance_alleyway_dozer)
@@ -59,12 +64,14 @@ local optsSpoocAmbush2 = {
 }
 local optsSpoocAmbush3 = {
     enemy = "units/payday2/characters/ene_spook_1/ene_spook_1",
-    on_executed = { { id = 400019, delay = 0 } },
+    on_executed = { { id = 400019, delay = 2 } },
+    spawn_action = "e_sp_armored_truck_1st",
     enabled = (overkill_and_above and enabled_chance_parkinglot_spook1)
 }
 local optsSpoocAmbush4 = {
     enemy = "units/payday2/characters/ene_spook_1/ene_spook_1",
-    on_executed = { { id = 400021, delay = 0 } },
+    on_executed = { { id = 400021, delay = 2 } },
+    spawn_action = "e_sp_armored_truck_1st",
     enabled = (overkill_and_above and enabled_chance_parkinglot_spook2)
 }
 local optsMissingBeatCop = {
@@ -275,8 +282,8 @@ return {
         StreamHeist:gen_dummy(
             400018,
             "eclipse_spooc_lot_ambush_1",
-            Vector3(-14270, -4973, 451),
-            Rotation(0, 0, 0),
+            Vector3(-10058, -3470, 50),
+            Rotation(-118, 0, 0),
             optsSpoocAmbush3
         ),
         StreamHeist:gen_so(
@@ -289,8 +296,8 @@ return {
         StreamHeist:gen_dummy(
             400020,
             "eclipse_spooc_lot_ambush_2",
-            Vector3(-14170, -4973, 451),
-            Rotation(0, 0, 0),
+            Vector3(-10034, -3417, 50),
+            Rotation(-118, 0, 0),
             optsSpoocAmbush4
         ),
         StreamHeist:gen_so(
@@ -779,6 +786,22 @@ return {
             400090,
             "eclipse_fakeassaultstate_001",
             true
+        ),
+
+        -- one more shield for the late blockade
+        StreamHeist:gen_dummy(
+            400091,
+            "eclipse_late_shield_wall_3",
+            Vector3(-15125, -8050, 1050),
+            Rotation(90, -0, -0),
+            optsLateShield3
+        ),
+        StreamHeist:gen_so(
+            400092,
+            "eclipse_late_shield_so_3",
+            Vector3(-15775, -7920, 1050),
+            Rotation(-15, 0, 0),
+            optsShieldSO
         ),
     },
 }
