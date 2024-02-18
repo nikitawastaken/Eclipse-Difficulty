@@ -95,6 +95,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats = {
 		min_damage = 24,
 		concealment = -2,
+		min_damage_effect = 1.75,
+		max_damage_effect = 1.75,
 		value = 1,
 		max_damage = 24,
 	}
@@ -213,18 +215,30 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	-- Specials
 
 	-- Flamethrower Tanks
-	-- Rare
+	-- MK1
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -10
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats.concealment = 3
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = { ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.25 }
 	self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_upg_mk2_rare_desc"
 	self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
-	-- Well Done
+
 	self.parts.wpn_fps_fla_mk2_mag_welldone.stats.damage = 10
 	self.parts.wpn_fps_fla_mk2_mag_welldone.stats.concealment = -3
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = { ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 0.75 }
 	self.parts.wpn_fps_fla_mk2_mag_welldone.desc_id = "bm_wp_upg_mk2_welldone_desc"
 	self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
+	-- MA-17
+	self.parts.wpn_fps_fla_system_m_high.stats.damage = 10
+	self.parts.wpn_fps_fla_system_m_high.stats.concealment = -3
+	self.parts.wpn_fps_fla_system_m_high.custom_stats = { ammo_pickup_max_mul = 1, ammo_pickup_min_mul = 0.75 }
+	self.parts.wpn_fps_fla_system_m_high.desc_id = "bm_wp_upg_mk2_welldone_desc"
+	self.parts.wpn_fps_fla_system_m_high.has_description = true
+
+	self.parts.wpn_fps_fla_system_m_low.stats.damage = -10
+	self.parts.wpn_fps_fla_system_m_low.stats.concealment = 3
+	self.parts.wpn_fps_fla_system_m_low.custom_stats = { ammo_pickup_max_mul = 1.65, ammo_pickup_min_mul = 1.25 }
+	self.parts.wpn_fps_fla_system_m_low.desc_id = "bm_wp_upg_mk2_rare_desc"
+	self.parts.wpn_fps_fla_system_m_low.has_description = true
 
 	-- Arrows
 	self.parts.wpn_fps_bow_frankish_m_explosive.stats.damage = 0

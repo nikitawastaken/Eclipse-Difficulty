@@ -14,6 +14,10 @@ Hooks:PostHook(FireTweakData, "_init_dot_entries_fire", "eclipse__init_dot_entri
 	self.dot_entries.fire.ammo_flamethrower_mk2_rare = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
 	self.dot_entries.fire.ammo_flamethrower_mk2_welldone = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
 
+	self.dot_entries.fire.weapon_system = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
+	self.dot_entries.fire.weapon_system_low = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
+	self.dot_entries.fire.weapon_system_high = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
+
 	-- db dot (might rework too)
 	self.dot_entries.fire.ammo_dragons_breath = {
 		dot_trigger_chance = 1,

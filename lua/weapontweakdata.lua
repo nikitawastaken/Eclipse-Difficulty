@@ -1707,10 +1707,14 @@ self.x_judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Flamethrowers
 
--- mk2
+-- MK2
 self.flamethrower_mk2.stats.damage = 25
 self.flamethrower_mk2.AMMO_PICKUP = {2.65, 3.5}
 
+-- MA-17
+self.system.use_data.selection_index = SELECTION.PRIMARY
+self.system.stats.damage = 25
+self.system.AMMO_PICKUP = {2.65, 3.5}
 
 
 -- removed shit
@@ -1763,7 +1767,6 @@ self.x_vityaz.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_type54.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_pm9.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_shepheard.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
-self.system.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 
 -- NPC weapons
 	-- rifles
