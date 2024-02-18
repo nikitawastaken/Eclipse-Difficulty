@@ -740,34 +740,34 @@ return {
         ),
 
         -- more scripted sniper spots
-		StreamHeist:gen_dummy(
-			400085,
-			"eclipse_armitage_ave_sniper_01",
-			Vector3(-8377, -9876, 1569),
-			Rotation(0, 0, 0),
-			optsArmitageSniper_01
-		),
-		StreamHeist:gen_so(
-			400086,
-			"eclipse_armitage_ave_sniper_SO_01",
-			Vector3(-8461, -9021, 1573),
-			Rotation(0, 0, -0),
+        StreamHeist:gen_dummy(
+            400085,
+            "eclipse_armitage_ave_sniper_01",
+            Vector3(-8377, -9876, 1569),
+            Rotation(0, 0, 0),
+            optsArmitageSniper_01
+        ),
+        StreamHeist:gen_so(
+            400086,
+            "eclipse_armitage_ave_sniper_SO_01",
+            Vector3(-8461, -9021, 1573),
+            Rotation(0, 0, -0),
             optsSniperSO
-		),
-		StreamHeist:gen_dummy(
-			400087,
-			"eclipse_armitage_ave_sniper_02",
-			Vector3(-15333, -11436, 2760),
-			Rotation(0, 0, 0),
-			optsArmitageSniper_02
-		),
-		StreamHeist:gen_so(
-			400088,
-			"eclipse_armitage_ave_sniper_SO_02",
-			Vector3(-15288, -10977, 2760),
-			Rotation(0, 0, -0),
+        ),
+        StreamHeist:gen_dummy(
+            400087,
+            "eclipse_armitage_ave_sniper_02",
+            Vector3(-15333, -11436, 2760),
+            Rotation(0, 0, 0),
+            optsArmitageSniper_02
+        ),
+        StreamHeist:gen_so(
+            400088,
+            "eclipse_armitage_ave_sniper_SO_02",
+            Vector3(-15288, -10977, 2760),
+            Rotation(0, 0, -0),
             optsSniperSO
-		),
+        ),
 
         -- start assault later
         StreamHeist:gen_aiglobalevent(
