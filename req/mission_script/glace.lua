@@ -18,6 +18,11 @@ return {
 			spawn_groups = { 101847, 103886, 101250, 101154, 101160, 101156, 101159 }
 		}
 	},
+	[100657] = { -- disable the entire attack heli
+		values = {
+			enabled = false
+		}
+	},
 	-- slow down spawnpoints closer to the vans
 	[101154] = {
 		values = {
