@@ -2,36 +2,44 @@ local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.ga
 local blockadeShield = (diff_i == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
 local hard_and_above = diff_i >= 4
 local overkill_and_above = diff_i >= 5
+local eclipse = diff_i == 6
 local diff_scaling = 0.125 * diff_i
-local enabled_chance_corner_wall = math.random() < diff_scaling
 local enabled_chance_alleyway_wall = math.random() < diff_scaling
 local enabled_chance_alleyway_dozer = math.random() < diff_scaling
 local enabled_chance_alleyway_spook1 = math.random() < diff_scaling
 local enabled_chance_alleyway_spook2 = math.random() < diff_scaling
+local enabled_chance_inkwell_dozer = math.random() < 0.8
 local enabled_chance_parkinglot_spook1 = math.random() < diff_scaling
 local enabled_chance_parkinglot_spook2 = math.random() < diff_scaling
+local enabled_chance_sniper_major_rooftop = math.random() < diff_scaling
 local enabled_chance_sniper_armitage_underpass = math.random() < diff_scaling
 local enabled_chance_sniper_armitage_rooftop = math.random() < diff_scaling
 
 local optsShieldWall1 = {
     enemy = blockadeShield,
     on_executed = { { id = 400004, delay = 0 } },
-    enabled = (hard_and_above and enabled_chance_corner_wall)
+    enabled = hard_and_above
 }
 local optsShieldWall2 = {
     enemy = blockadeShield,
     on_executed = { { id = 400005, delay = 0 } },
-    enabled = (hard_and_above and enabled_chance_corner_wall)
+    enabled = hard_and_above
 }
 local optsShieldWall3 = {
     enemy = blockadeShield,
     on_executed = { { id = 400006, delay = 0 } },
-    enabled = (hard_and_above and enabled_chance_corner_wall)
+    enabled = hard_and_above
 }
 local optsShieldWall4 = {
     enemy = blockadeShield,
     on_executed = { { id = 400007, delay = 0 } },
-    enabled = (hard_and_above and enabled_chance_corner_wall)
+    enabled = hard_and_above
+}
+local optsInkwellDozer = {
+    enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+    participate_to_group_ai = true,
+    on_executed = { { id = 400095, delay = 0 } },
+    enabled = (eclipse and enabled_chance_inkwell_dozer)
 }
 local optsLateShield1 = {
     enemy = blockadeShield,
@@ -50,6 +58,7 @@ local optsLateShield3 = {
 }
 local optsLateDozer = {
     enemy = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+    participate_to_group_ai = true,
     enabled = (hard_and_above and enabled_chance_alleyway_dozer)
 }
 local optsSpoocAmbush1 = {
@@ -91,6 +100,12 @@ local optsArmitageSniper_02 = {
     trigger_times = 1,
     enabled = (hard_and_above and enabled_chance_sniper_armitage_rooftop)
 }
+local optsMajorSniper_01 = {
+	enemy = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
+	on_executed = { { id = 400097, delay = 0 } },
+    trigger_times = 1,
+    enabled = (overkill_and_above and enabled_chance_sniper_major_rooftop)
+}
 local optsBesiegeDummy = {
     participate_to_group_ai = true,
     enabled = true,
@@ -111,10 +126,18 @@ local optsReachedFarSwatVansTrigger = {
     width = 2000,
     height = 2000
 }
-
+local optsDozerHunt = {
+    SO_access = "4096",
+    path_style = "none",
+    scan = true,
+    so_action = "AI_hunt"
+}
 local optsShieldSO = {
     SO_access = "2048",
     scan = true,
+    needs_pos_rsrv = true,
+    align_position = true,
+    align_rotation = true,
     so_action = "AI_sniper",
     pose = "crouch",
     path_stance = "cbt",
@@ -122,17 +145,26 @@ local optsShieldSO = {
 local optsHideSpoocSO = {
     SO_access = "1024",
     scan = true,
+    needs_pos_rsrv = true,
+    align_position = true,
+    align_rotation = true,
     so_action = "e_so_idle_by_container",
     interrupt_dis = 10
 }
 local optsHideCarSpoocSO = {
     SO_access = "1024",
     scan = true,
+    needs_pos_rsrv = true,
+    align_position = true,
+    align_rotation = true,
     so_action = "e_so_hide_under_car_enter",
     interrupt_dis = 10
 }
 local optsSniperSO = {
     scan = true,
+    needs_pos_rsrv = true,
+    align_position = true,
+    align_rotation = true,
     so_action = "AI_sniper",
     pose = "stand"
 }
@@ -736,7 +768,7 @@ return {
 			400083,
 			"eclipse_inkwell_besiege_01",
 			{ 400079, 400080, 400081, 400082 },
-			15
+			10
 		),
         StreamHeist:gen_areatrigger(
             400084,
@@ -802,6 +834,43 @@ return {
             Vector3(-15775, -7920, 1050),
             Rotation(-15, 0, 0),
             optsShieldSO
+        ),
+
+        -- inkwell dozer ambush
+        StreamHeist:gen_dummy(
+            400093,
+            "eclipse_inkwell_dozer_1",
+            Vector3(-9761, -11060, 50),
+            Rotation(-90, 0, -0),
+            optsInkwellDozer
+        ),
+        StreamHeist:gen_dummy(
+            400094,
+            "eclipse_inkwell_dozer_2",
+            Vector3(-7323, -11120, 50),
+            Rotation(90, 0, -0),
+            optsInkwellDozer
+        ),
+        StreamHeist:gen_so(
+            400095,
+            "eclipse_dozer_hunt",
+            Vector3(-8500, -9507, 50),
+            Rotation(0, 0, 0),
+            optsDozerHunt
+        ),
+        StreamHeist:gen_dummy(
+            400096,
+            "eclipse_major_ave_sniper_01",
+            Vector3(-1765, -3564, 1949),
+            Rotation(0, 0, 0),
+            optsMajorSniper_01
+        ),
+        StreamHeist:gen_so(
+            400097,
+            "eclipse_armitage_ave_sniper_SO_01",
+            Vector3(-1665, -3063, 1949),
+            Rotation(0, 0, -0),
+            optsSniperSO
         ),
     },
 }

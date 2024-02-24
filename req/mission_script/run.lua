@@ -3,10 +3,13 @@ local is_pro = Global.game_settings and Global.game_settings.one_down
 local HeliDrop1 = Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1")
 local HeliDrop2 = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
 local HeliDropChance = 12.5 * diff_i
-if diff_i == 6 and is_pro then -- you get fucked on eclipse pro job
+if diff_i == 6  then -- you get fucked on eclipse
 	HeliDropChance = 85
-	HeliDrop1 = Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
-	HeliDrop2 = Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
+	if is_pro then -- even more so on pro job
+		HeliDropChance = 100
+		HeliDrop1 = Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
+		HeliDrop2 = Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
+	end
 end
 
 return {
@@ -39,7 +42,6 @@ return {
 	},
 	[103586] = {
 		enemy = HeliDrop1,
-		difficulty = 0.2 -- lower assault diff when bossfight begins
 	},
 	[100232] = {
 		enemy = HeliDrop1
@@ -61,9 +63,6 @@ return {
 				{delay = 15, id = 101648},
 			}
 		}
-	},
-	[100271] = {
-		difficulty = 1 -- set difficulty to max after the bossfight
 	},
 	[103578] = {
 		chance = 12.5 * diff_i -- roof snipers ovk/eclipse chance
@@ -394,7 +393,13 @@ return {
 			{ id = 102106, delay = 0 } -- 3rd preferred add
 		}
 	},
-	[102119] = { -- before crane trigger
+	[102786] = { -- trigger area 53 (next to before crane #1 trigger)
+		on_executed = {
+			{ id = 400096, delay = 0 }, -- major ave. sniper
+			{ id = 102735, remove = true}, -- 4th preferred remove
+		}
+	},
+	[102119] = { -- before crane #2 trigger
 		on_executed = {
 			{ id = 102419, delay = 0 }, -- 3rd preferred remove
 			{ id = 102418, delay = 0 }, -- 4th preferred add
@@ -419,6 +424,8 @@ return {
 		on_executed = {
 			{ id = 102445, remove = true }, -- 7th preferred remove
 			{ id = 101477, remove = true }, -- 10th preferred remove
+			{ id = 400093, delay = 0 }, -- dozer ambush
+			{ id = 400094, delay = 0 },
 		}
 	},
 	[400084] = { -- reached easy far st. vans trigger
