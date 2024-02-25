@@ -270,6 +270,11 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 	return unique_hits, hit_enemy, hit_enemy and enemies_hit or nil
 end
 
+-- dragon's breath doesn't own shields anymore
+function FlameBulletBase:bullet_slotmask()
+	return managers.slot:get_mask("bullet_impact_targets")
+end
+
 -- Auto Fire Sound Fix
 -- Thanks offyerrocker
 
