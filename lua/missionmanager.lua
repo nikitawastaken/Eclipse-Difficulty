@@ -66,7 +66,7 @@ MissionManager.mission_script_patch_funcs = {
 		if is_pro_job then
 			local function set_ponr()
 				local ponr_timer_balance_mul = data.player_mul and managers.groupai:state():_get_balancing_multiplier(data.player_mul) or 1
-				managers.groupai:state():set_point_of_no_return_timer(data.length * ponr_timer_balance_mul, -1)
+				managers.groupai:state():set_point_of_no_return_timer(data.length * ponr_timer_balance_mul, -1, "ffo")
 			end
 
 			Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_" .. element:id(), set_ponr)

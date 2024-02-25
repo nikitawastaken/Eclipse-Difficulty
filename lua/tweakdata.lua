@@ -139,3 +139,24 @@ tweak_data.projectiles.launcher_poison_contraband.poison_gas_range = 300
 
 -- cop tear gas
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 1.5
+
+-- FFO ponr
+tweak_data.point_of_no_returns.ffo = {
+    texture = "guis/textures/pd2/hud_icon_noreturnbox",
+    texture_rect = {
+        0,
+        0,
+        32,
+        32
+    },
+    color = Color(1, 1, 0, 0),
+    timer_flash_color = Color(1, 1, 0.8, 0.2),
+    attention_color = Color(1, 1, 1, 1),
+    scale_box = true
+}
+
+if _G.IS_VR then
+    tweak_data.point_of_no_returns.ffo.text_id = "hud_assault_full_force_onslaught"
+else
+    tweak_data.point_of_no_returns.ffo.text_id = "hud_assault_full_force_onslaught_in"
+end
