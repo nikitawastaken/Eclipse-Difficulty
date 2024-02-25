@@ -126,7 +126,7 @@ local optsReachedFarSwatVansTrigger = {
     width = 2000,
     height = 2000
 }
-local optsDozerHunt = {
+local optsDozerHuntSO = {
     SO_access = "4096",
     path_style = "none",
     scan = true,
@@ -320,7 +320,7 @@ return {
         ),
         StreamHeist:gen_so(
             400019,
-            "eclipse_spooc_lot_so_3",
+            "eclipse_spooc_lot_so_1",
             Vector3(-10946, -4296, 50),
             Rotation(-90, 0, 0),
             optsHideCarSpoocSO
@@ -856,7 +856,7 @@ return {
             "eclipse_dozer_hunt",
             Vector3(-8500, -9507, 50),
             Rotation(0, 0, 0),
-            optsDozerHunt
+            optsDozerHuntSO
         ),
         StreamHeist:gen_dummy(
             400096,
