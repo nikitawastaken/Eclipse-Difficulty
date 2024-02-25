@@ -71,7 +71,7 @@ function PlayerTased:_check_action_shock(t, input)
 
 		-- make tasers even more EVIL by adding a random pitch (SH)
 		self._cam_start_pitch = self._unit:camera():camera_unit():base()._camera_properties.pitch
-		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-5 * (1 - weaker_tase) * is_last_man_standing, 5 * (1 - weaker_tase) * is_last_man_standing), 0.25)
+		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-5 * (1 - weaker_tase) * is_last_man_standing, 5 * (1 - weaker_tase) * is_last_man_standing), -90, 90)
 		self._cam_start_pitch_t = t
 		self._cam_target_pitch_t = t + 0.2
 		self._taser_value = self._taser_value or 1
