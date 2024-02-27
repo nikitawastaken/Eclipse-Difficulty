@@ -24,10 +24,10 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 
 		alivePlayers = 0
 		for _, criminal in pairs(managers.groupai:state():all_char_criminals()) do
-            if not criminal.unit:movement():downed() then
-                alivePlayers = alivePlayers + 1
-            end
-        end
+			if not criminal.unit:movement():downed() then
+				alivePlayers = alivePlayers + 1
+			end
+		end
 
 		if alivePlayers == 1 then -- if you're the last man standing, cloaker kicks deal a portion of your max health in damage instead
 			local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
