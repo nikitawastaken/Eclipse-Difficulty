@@ -120,9 +120,9 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.player.extra_hostages = { true }
+	self.values.player.extra_hostages = { 2 }
 	self.skill_descs.triathlete.multibasic = "4"
-	self.skill_descs.triathlete.multipro = "5"
+	self.skill_descs.triathlete.multipro = "2"
 	self.skill_descs.triathlete.multipro2 = "75%"
 
 	-- Confident

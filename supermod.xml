@@ -179,6 +179,7 @@
 				<post :hook_id="civilians/civilianbase"/>
 				<post :hook_id="vehicles/animatedvehiclebase"/>
 				<post :hook_id="cameras/fpcameraplayerbase"/>
+				<post :hook_id="interactions/interactionext"/>
 
 				<group :hook_id="player_team/">
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>

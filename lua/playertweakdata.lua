@@ -53,6 +53,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.damage.DOWNED_TIME = 30
 	self.damage.DOWNED_TIME_DEC = 0
 	self.damage.DOWNED_TIME_MIN = 30
+	self.max_nr_following_hostages = 0
 end)
 
 -- Game too hard for single player appparently????
