@@ -41,9 +41,9 @@ function BaseInteractionExt:can_interact(player)
 		return false
 	end
 
-    if self.tweak_data == "hostage_move" and tweak_data.player.max_nr_following_hostages < 1 then -- can't move hostages if you don't have the skill to do so
-        return false
-    end
+	if self.tweak_data == "hostage_move" and tweak_data.player.max_nr_following_hostages < 1 then -- can't move hostages if you don't have the skill to do so
+		return false
+	end
 
 	if not self:_has_required_upgrade(alive(player) and player:movement() and player:movement().current_state_name and player:movement():current_state_name()) then
 		return false
