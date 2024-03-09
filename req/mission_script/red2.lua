@@ -106,8 +106,11 @@ return {
 		}
 	},
 	-- two dozers spawn on e/pj when leaving vault
+	-- also two hallway escape shields on ovk+ (chance) and guaranteed on e/pj
 	[103705] = {
 		on_executed = {
+			{ id = 400050, delay = 0 },
+			{ id = 400051, delay = 0 },
 			{ id = 400015, delay = 15 },
 			{ id = 400016, delay = 15 }
 		}

@@ -22,6 +22,7 @@ local enabled_chance_escape_shields = math.random() < diff_scaling
 local enabled_chance_vault_dozers = math.random() < diff_scaling
 local enabled_chance_escape_145_group = math.random() < diff_scaling
 local enabled_chance_escape_swats = math.random() < diff_scaling
+local enabled_chance_escape_hallway_wall = math.random() < diff_scaling
 local enabled_chance_escape_dozers = math.random() < 0.5
 local enabled_chance_escape_cloakers = math.random() < 0.5
 local enabled_chance_escape_shield_wall = math.random() < 0.75
@@ -204,6 +205,18 @@ local optsEscapeShield5 = {
     on_executed = { { id = 400041, delay = 0 } },
 	participate_to_group_ai = true,
     enabled = (eclipse and pro_job) or (eclipse and enabled_chance_escape_shield_wall)
+}
+local optsEscapeShield6 = {
+    enemy = escapeshield,
+    on_executed = { { id = 400052, delay = 0 } },
+	participate_to_group_ai = true,
+    enabled = (eclipse and pro_job) or (overkill_and_above and enabled_chance_escape_hallway_wall)
+}
+local optsEscapeShield7 = {
+    enemy = escapeshield,
+    on_executed = { { id = 400053, delay = 0 } },
+	participate_to_group_ai = true,
+    enabled = (eclipse and pro_job) or (overkill_and_above and enabled_chance_escape_hallway_wall)
 }
 
 local optsDozerHunt = {
@@ -615,6 +628,34 @@ return {
             Vector3(3156, -3840, 464),
             Rotation(55, -0, -0),
             optsDefendSO
+        ),
+        StreamHeist:gen_dummy(
+            400050,
+            "shield_escape_hall_wall_1",
+            Vector3(-3225, 3750, -125),
+            Rotation(90, 0, -0),
+            optsEscapeShield6
+        ),
+        StreamHeist:gen_dummy(
+            400051,
+            "shield_escape_hall_wall_2",
+            Vector3(-3225, 3750, -125),
+            Rotation(90, 0, -0),
+            optsEscapeShield7
+        ),
+		StreamHeist:gen_so(
+            400052,
+            "shield_escape_hall_wall_so_1",
+            Vector3(341, 1658, -25),
+            Rotation(180, -0, -0),
+            optsShieldSO
+        ),
+		StreamHeist:gen_so(
+            400053,
+            "shield_escape_hall_wall_so_2",
+            Vector3(475, 1658, -25),
+            Rotation(180, -0, -0),
+            optsShieldSO
         ),
     }
 }
