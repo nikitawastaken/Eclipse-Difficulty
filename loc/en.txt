@@ -240,6 +240,7 @@
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
 	"hud_hint_hostage_follow_limit": "Hostages are not cooperating with you.",
+	"hint_move_hostages": "Move hostages with $BTN_INTERACT;. This ability requires 'Forced Friendship' ACED skill.",
 	"hud_assault_ponr": "Full Force Onslaught",
 	"hud_assault_full_force_onslaught": "Full Force Onslaught",
 	"hud_assault_full_force_onslaught_in": "Full Force Onslaught in",

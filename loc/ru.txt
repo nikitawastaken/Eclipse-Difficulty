@@ -240,6 +240,7 @@
 	"bm_global_value_mrwi_unlock": "ЭТО НАБОР ПЕРКОВ ЗАБЛОКИРОВАН, И ЕГО КАРТЫ ИСПОЛЬЗУЮТСЯ ДЛЯ ДРУГИХ НАБОРОВ ПЕРКОВ.",
 	"hud_int_equipment_drill_upgrade": "НАЖМИТЕ $BTN_INTERACT ЧТОБЫ УЛУЧШИТЬ ДРЕЛЬ",
 	"hud_hint_hostage_follow_limit": "Заложники не слушаются вас.",
+	"hint_move_hostages": "Вы можете двигать заложников с $BTN_INTERACT;. Данная способность требует ПРО навыка 'Навязанная дружба'.",
 	"hud_assault_ponr": "Натиск полной силы.",
 	"hud_assault_full_force_onslaught": "Натиск полной силы",
 	"hud_assault_full_force_onslaught_in": "Натиск полной силы: ",

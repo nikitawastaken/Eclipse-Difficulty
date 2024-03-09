@@ -24,8 +24,13 @@ function CivilianBrain:init(unit)
 		unit:base():add_tweak_data_changed_listener("CivilianBrainTweakDataChange" .. tostring(unit:key()), callback(self, self, "_clbk_tweak_data_changed"))
 	end
 
+	local tutorial = Global.level_data and (Global.level_data.level_id == "short2_stage1" or Global.level_data.level_id == "short2_stage2b")
 	local extra_hostages = managers.player:upgrade_value("player", "extra_hostages", 0)
 	tweak_data.player.max_nr_following_hostages = extra_hostages
+
+	if tutorial then
+		tweak_data.player.max_nr_following_hostages = 1
+	end
 end
 
 function CivilianBrain:on_hostage_move_interaction(interacting_unit, command)
