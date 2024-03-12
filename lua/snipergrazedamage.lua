@@ -25,9 +25,9 @@ function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 		if attack_data and attack_data.headshot and not is_turret and not is_ally then
 			local multiplier = (result.type == "death" or result.type == "healed") and upgrade_value.damage_factor_headshot or upgrade_value.damage_factor
 			hit_enemies[hit.unit:key()] = {
-			unit = hit.unit,
-			position = hit.position,
-			damage = attack_data.damage * multiplier
+				unit = hit.unit,
+				position = hit.position,
+				damage = attack_data.damage * multiplier,
 			}
 		end
 	end
@@ -38,23 +38,22 @@ function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 		local hit_units = World:find_units_quick("sphere", hit.position, radius, enemy_mask)
 		for _, unit in ipairs(hit_units) do
 			if not hit_enemies[unit:key()] then
-			local hit_pos = Vector3()
-			mvector3.set(hit_pos, unit:movement():m_head_pos())
-			local percentage = 1 - math.min(1, math.max(0, (mvector3.distance(hit.position, hit_pos) - 100) / radius))
+				local hit_pos = Vector3()
+				mvector3.set(hit_pos, unit:movement():m_head_pos())
+				local percentage = 1 - math.min(1, math.max(0, (mvector3.distance(hit.position, hit_pos) - 100) / radius))
 				if World:raycast("ray", hit.position, hit_pos, "slot_mask", geometry_mask) then
 					percentage = percentage - 0.5
 				end
 				if percentage > 0 then
 					unit:character_damage():damage_simple({
-					variant = "graze",
-					damage = percentage * hit.damage,
-					attacker_unit = player_unit,
-					pos = hit_pos,
-					attack_dir = hit_pos - hit.position
+						variant = "graze",
+						damage = percentage * hit.damage,
+						attacker_unit = player_unit,
+						pos = hit_pos,
+						attack_dir = hit_pos - hit.position,
 					})
 				end
 			end
 		end
 	end
-
 end

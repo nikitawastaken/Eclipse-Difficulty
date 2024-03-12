@@ -204,16 +204,16 @@ function UpgradesTweakData:init(tweak_data)
 	-- Mind Blown
 	self.values.snp.graze_damage = {
 		{
-		  radius = 200,
-		  damage_factor = 0.5,
-		  damage_factor_headshot = 0.5
+			radius = 200,
+			damage_factor = 0.5,
+			damage_factor_headshot = 0.5,
 		},
 		{
-		  radius = 300,
-		  damage_factor = 0.5,
-		  damage_factor_headshot = 1
-		}
-	  }
+			radius = 300,
+			damage_factor = 0.5,
+			damage_factor_headshot = 1,
+		},
+	}
 	self.skill_descs.single_shot_ammo_return.multibasic = "50%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "2m"
 	self.skill_descs.single_shot_ammo_return.multipro = "3m"
