@@ -38,6 +38,7 @@ local _update_whitelist = {
 	pent = true, -- mmaster
 	firestarter_2 = true,
 	rvd1 = true, -- resdogs1
+	man = true, -- ucovr
 }
 
 -- Code from Dr. Newbie
