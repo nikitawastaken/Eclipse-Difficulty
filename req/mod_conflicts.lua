@@ -34,5 +34,10 @@ return table.list_to_set({
 	"Better Cops weapon usage and some tweaks for online",
 	"Better Cops weapon usage for online",
 	"WeaponLib",
-	"Reload Tweaks"
+	"Reload Tweaks",
+	"Colourblind Flashbang - PURPLE",
+	"Colourblind Flashbang - WHITE",
+	"Colourblind Flashbang - BLUE",
+	"Colourblind Flashbang - GREEN",
+	"Colourblind Flashbang - YELLOW",
 })
