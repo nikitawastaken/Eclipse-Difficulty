@@ -45,7 +45,7 @@
 	"menu_rifleman_desc": "基础: ##$basic##\n你开镜速度增加##$multibasic##。\n武器切换速度增加##$multibasic2##。\n\n精通: ##$pro##\n冲刺时可使用武器腰射。",
 	"menu_speedy_reload_beta_desc": "基础: ##$basic##\n你的狙击步枪和突击步枪获得##$multibasic##的装弹速度加成。\n\n精通: ##$pro##\n爆头击杀会在##$multipro2##秒内增加##$multipro##的换弹速度。只能被单发模式的冲锋枪，突击步枪和狙击枪触发。",
 	"menu_sniper_graze_damage": "脑洞大开",
-	"menu_sniper_graze_damage_desc": "基础: ##$basic##\n使用狙击步枪爆头会对子弹轨迹##$multibasic2##的敌人造成最高##$multibasic##的伤害。\n\n注意：不影响##300档##狙击枪。\n\n精通: ##$pro##\n擦伤距离增加##$multipro##。\n成功爆头击杀会对范围内的敌人造成最高##$multipro2##点伤害。",
+	"menu_sniper_graze_damage_desc": "基础: ##$basic##\n使用狙击步枪爆头会对子弹轨迹##$multibasic2##内的敌人造成最高##$multibasic##的伤害。\n\n注意：不影响##300档##狙击枪。\n\n精通: ##$pro##\n擦伤距离增加##$multipro##。\n成功爆头击杀会对范围内的敌人造成最高##$multipro2##的伤害。",
 
 
 
