@@ -30,14 +30,14 @@
 	"menu_field_surgery": "战地医生",
 	"menu_field_surgery_desc": "基础: ##$basic##\n你救起的队友在##$multibasic2##秒内少受到##$multibasic##的伤害。\n\n精通: ##$pro##\n你在救起一个队友后##$multibasic2##秒之内会额外少受到##$multipro##的伤害。",
 	"menu_company_soul": "团队之魂",
-	"menu_company_soul_desc": "基础: ##$basic##\n你和你队友的所有武器的武器稳定性提高##$multibasic##点。\n\n精通: ##$pro##\n你和你的队友的耐力提高##$multipro##。",
+	"menu_company_soul_desc": "基础: ##$basic##\n你和你队友的所有武器的武器稳定性提高##$multibasic##点。\n\n精通: ##$pro##\n你和你的队友的耐力提高##$multipro##。\n\n注意：团队技能不叠加。",
 	"menu_combat_doctor_desc": "基础: ##$basic##\n你在救起队友时和救起队友之后的##$multibasic2##秒内受到的伤害减少##$multibasic##。\n\n精通: ##$pro##\n在救起一名队友后你还会在##$multipro3##秒内造成额外的##$multipro2##伤害。\n\n你救起队友的速度加快##$multipro##。",
 	"menu_keepers": "多重保险",
 	"menu_inspire_beta_desc": "基础: ##$basic##\n向一个距离你##$multibasic##内的队友呼喊会给予他们##$multibasic3##秒的##$multibasic2##的移动速度和##$multibasic2##的换弹速度加成。\n\n精通: ##$pro##\n你还可以通过呼喊的方式救起在##$multibasic##距离内的倒地的队友。\n\n该技能每##$multipro##秒最多触发一次。",
 	"menu_black_marketeer_beta_desc": "基础: ##$basic##\n拥有至少##$multibasic##名人质或者投降的敌人会让你每##$multibasic3##秒恢复##$multibasic2##点血量。\n\n精通: ##$pro##\n你回复的血量提高到##$multipro##点。\n你的被转化的敌人现在也被算作人质。\n\n注意：不影响人质情结和人质事件。",
 	"menu_cable_guy_beta": "人质情结",
 	"menu_cable_guy_beta_desc": "基础: ##$basic##\n你吼人的距离增加##$multibasic2##。\n\n精通: ##$pro##\n平民现在会被你发出的声音所压制。压制时间提高##$multipro##。\n\n你有概率会被周围没有被捆绑的平民通过互动救起。",
-	"menu_triathlete_beta_desc": "基础: ##$basic##\n你的绑带增加##$multibasic##个。\n\n精通: ##$pro##\n你可以同时让##$multipro##名人质跟着你。\n\n你绑平民为人质的速度增加##$multipro2##。",
+	"menu_triathlete_beta_desc": "基础: ##$basic##\n你的绑带增加##$multibasic##个。\n\n精通: ##$pro##\n你现在可以移动人质了。你最多同时让##$multipro##名人质跟着你。\n\n你绑平民为人质的速度增加##$multipro2##。",
 	"menu_stockholm_syndrome_beta": "人质事件",
 	"menu_stockholm_syndrome_beta_desc": "基础: ##$basic##\n每拥有一名人质会为你和你的队友提供##$multibasic##点伤害吸收。\n\n精通: ##$pro##\n每拥有一名人质会延长控制阶段##$multipro##秒。\n\n注意：技能效果最多叠加##4##次。",
 	"menu_control_freak_beta_desc": "基础: ##$basic##\n你的被转化的敌人获得##$multibasic3##的伤害减免。\n\n精通: ##$pro##\n你的被转化的敌人额外获得##$multipro4##伤害减免。",
@@ -45,7 +45,10 @@
 	"menu_rifleman_desc": "基础: ##$basic##\n你开镜速度增加##$multibasic##。\n武器切换速度增加##$multibasic2##。\n\n精通: ##$pro##\n冲刺时可使用武器腰射。",
 	"menu_speedy_reload_beta_desc": "基础: ##$basic##\n你的狙击步枪和突击步枪获得##$multibasic##的装弹速度加成。\n\n精通: ##$pro##\n爆头击杀会在##$multipro2##秒内增加##$multipro##的换弹速度。只能被单发模式的冲锋枪，突击步枪和狙击枪触发。",
 	"menu_sniper_graze_damage": "脑洞大开",
-	"menu_sniper_graze_damage_desc": "基础: ##$basic##\n爆头会对##$multibasic2##内最近的敌人造成##$multibasic##的伤害。\n\n注意：不影响##300档##狙击枪。\n\n精通: ##$pro##\n爆头击杀会造成##$multipro##的连锁伤害。",
+	"menu_sniper_graze_damage_desc": "基础: ##$basic##\n使用狙击步枪爆头会对子弹轨迹##$multibasic2##的敌人造成最高##$multibasic##的伤害。\n\n注意：不影响##300档##狙击枪。\n\n精通: ##$pro##\n擦伤距离增加##$multipro##。\n成功爆头击杀会对范围内的敌人造成最高##$multipro2##点伤害。",
+
+
+
 
 
 	"menu_from_the_hip_desc": "基础: ##$basic##\n霰弹枪伤害额外增加##$multibasic##。\n\n精通: ##$pro##\n拿出和收起霰弹枪的时间缩短##$multipro##。",
@@ -239,14 +242,18 @@
 
 	"bm_global_value_mrwi_unlock": "锁定，其效果被其他天赋所复用！",
 	"hud_int_equipment_drill_upgrade": "按$BTN_INTERACT;以升级钻机",
-	"hud_assault_ponr": "所有单位出击",
-	"hud_assault_normal_ponr": "所有部队倾巢出击",
+	"hud_hint_hostage_follow_limit": "人质们不会与你合作。",
+	"hint_move_hostages": "长安 $BTN_INTERACT; 移动人质。这需要你精通技能'强制友谊'。",
+	"hud_assault_ponr": "全力突击",
+	"hud_assault_full_force_onslaught": "全力突击",
+	"hud_assault_full_force_onslaught_in": "全力突击",
+	"hud_assault_normal_ponr": "所有部队全力突击",
 	"hud_assault_zeal_ponr": "Zeal单位入场",
 	"eclipse_menu_main": "日蚀",
 	"eclipse_menu_ponr_assault_text": "编辑突击横幅",
 	"eclipse_menu_ponr_assault_text_desc": "编辑突击横幅样式。和其他修改了突击横幅的mod冲突。",
 
-	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用\n你只会有一个AI队友\n敌人变得更加敏捷与致命\n连续倒地会减少倒计时和被救起之后的血量\n多个劫案启用了有去无回倒计时（会导致敌人全速突击）。",
+	"menu_pro_warning": "这是一个专家任务!\n\n友军伤害被启用\n你只会有一个AI队友\n敌人变得更加敏捷与致命\n连续倒地会减少倒计时和被救起之后的血量\n多个劫案启用了全力突击。",
 	"menu_difficulty_easy_wish": "日蚀",
 	"menu_risk_easy_wish": "'日蚀'行动。\n对你来说, 行动才是关键。",
 	"menu_risk_special": "枪林弹雨。\n所有警力正在进场。",
