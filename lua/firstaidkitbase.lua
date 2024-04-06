@@ -16,7 +16,7 @@ function FirstAidKitBase:setup(bits)
 				position = ray.body:position(),
 				rotation = ray.body:rotation(),
 				index = 1,
-				max_index = 3
+				max_index = 3,
 			}
 
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
@@ -38,7 +38,7 @@ end
 function FirstAidKitBase:_get_upgrade_levels(bits)
 	local hot_regen = Bitwise:rshift(bits, FirstAidKitBase.hot_regen_shift)
 	local auto_recovery = Bitwise:rshift(bits, FirstAidKitBase.auto_recovery_shift) % 2
-	local upgrade_lvl = Bitwise:rshift(bits, FirstAidKitBase.upgrade_lvl_shift) % 2^FirstAidKitBase.upgrade_lvl_shift
+	local upgrade_lvl = Bitwise:rshift(bits, FirstAidKitBase.upgrade_lvl_shift) % 2 ^ FirstAidKitBase.upgrade_lvl_shift
 
 	return upgrade_lvl, auto_recovery, hot_regen
 end

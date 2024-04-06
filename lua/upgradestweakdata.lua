@@ -702,8 +702,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "first_aid_kit_hot_regen",
-			category = "first_aid_kit"
-		}
+			category = "first_aid_kit",
+		},
 	}
 	self.definitions.player_first_aid_health_regen = {
 		name_id = "menu_temporary_first_aid_health_regen",
@@ -711,11 +711,11 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "first_aid_health_regen",
-			category = "temporary"
-		}
+			category = "temporary",
+		},
 	}
 	self.values.first_aid_kit.first_aid_kit_hot_regen = { true }
-	self.values.temporary.first_aid_health_regen = {{1, 60.1}}
+	self.values.temporary.first_aid_health_regen = { { 1, 60.1 } }
 	self.skill_descs.feign_death.multibasic = "10"
 	self.skill_descs.feign_death.multibasic2 = "5"
 	self.skill_descs.feign_death.multibasic3 = "60"
