@@ -126,7 +126,7 @@
 	"menu_wolverine_beta_desc": "BASIC: ##$basic##\nThe lower your health, the more movement speed you gain. When your health is below ##$multibasic##, you will gain up to ##$multibasic2## movement speed.\n\nACE: ##$pro##\nThe lower your health, the more damage you do. When your health is below ##$multipro##, you will do up to ##$multipro2## more melee and saw damage.",
 	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor every hit with a pistol you gain a ##$multibasic## damage boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYou now gain ##$multipro## damage boost for every hit and the damage boost lasts ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
-	"menu_tea_cookies_beta_desc": "BASIC ##$basic##\nYou can now carry ##$multibasic## more First Aid Kits.\n\nACE: ##$pro##\nYou can now additionaly carry ##$multipro## more First Aid Kits.\n\nUsing a First Aid Kit will now restore ##$multipro2## down.",
+	"menu_tea_cookies_beta_desc": "BASIC: ##$basic##\nUsing a First Aid Kit makes you regenerate ##$multibasic## health every ##$multibasic2## seconds for ##$multibasic3## seconds.\n\nACE: ##$pro##\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro2## seconds.",
 
 
 

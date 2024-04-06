@@ -72,6 +72,7 @@
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
+				<post :hook_id="equipmentstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
 				<post :hook_id="guitweakdata"/>
 				<post :hook_id="dottweakdata"/>
@@ -97,6 +98,7 @@
 			<group :hook_id="units/">
 				<group :hook_id="beings/player/">
 					<post :hook_id="playerdamage"/>
+					<post :hook_id="playerequipment"/>
 					<post :hook_id="huskplayerdamage"/>
 					<post :hook_id="playercamera"/>
 					<post :hook_id="playermovement"/>

@@ -317,8 +317,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.up_you_go.icon_xy = { 11, 3 }
 
 	-- Uppers
-	self.skills.feign_death[1].upgrades = { "first_aid_kit_quantity_increase_1" }
-	self.skills.feign_death[2].upgrades = { "first_aid_kit_quantity_increase_2", "first_aid_kit_auto_recovery_1" }
+	self.skills.feign_death[1].upgrades = { "first_aid_kit_hot_regen_1" }
+	self.skills.feign_death[2].upgrades = { "first_aid_kit_auto_recovery_1" }
 	self.skills.feign_death.icon_xy = { 2, 11 }
 	self.skills.feign_death.name_id = "menu_tea_cookies_beta"
 	self.skills.feign_death.desc_id = "menu_tea_cookies_beta_desc"
@@ -546,6 +546,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "player_bleed_out_health_multiplier")
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
+	table.insert(self.default_upgrades, "player_first_aid_health_regen")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")

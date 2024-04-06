@@ -55,6 +55,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- make sna less cancer
 	self.values.player.shield_knock_bullet.chance = 0.7
+
+	-- fak heals 90hp on use
+	self.values.first_aid_kit.heal_amount = 9
 end
 
 local old_init = UpgradesTweakData.init
@@ -693,10 +696,31 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.up_you_go.multipro2 = "10"
 
 	-- Uppers
-	self.values.first_aid_kit.quantity = { 3, 7 }
-	self.skill_descs.feign_death.multibasic = "3"
-	self.skill_descs.feign_death.multipro = "4"
-	self.skill_descs.feign_death.multipro2 = "1"
+	self.definitions.first_aid_kit_hot_regen_1 = {
+		name_id = "menu_first_aid_kit_hot_regen_1",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "first_aid_kit_hot_regen",
+			category = "first_aid_kit"
+		}
+	}
+	self.definitions.player_first_aid_health_regen = {
+		name_id = "menu_temporary_first_aid_health_regen",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "first_aid_health_regen",
+			category = "temporary"
+		}
+	}
+	self.values.first_aid_kit.first_aid_kit_hot_regen = { true }
+	self.values.temporary.first_aid_health_regen = {{1, 60.1}}
+	self.skill_descs.feign_death.multibasic = "10"
+	self.skill_descs.feign_death.multibasic2 = "5"
+	self.skill_descs.feign_death.multibasic3 = "60"
+	self.skill_descs.feign_death.multipro = "3"
+	self.skill_descs.feign_death.multipro2 = "120"
 
 	-- Swan Song
 	self.values.temporary.berserker_damage_multiplier[2] = { 1, 9 }

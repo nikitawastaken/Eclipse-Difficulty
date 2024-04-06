@@ -31,6 +31,17 @@ Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self,
 	return addend * hostages
 end)
 
+-- add fak health regen
+function PlayerManager:health_regen()
+	local health_regen = tweak_data.player.damage.HEALTH_REGEN
+	health_regen = health_regen + self:temporary_upgrade_value("temporary", "wolverine_health_regen", 0)
+	health_regen = health_regen + self:get_hostage_bonus_addend("health_regen")
+	health_regen = health_regen + self:upgrade_value("player", "passive_health_regen", 0)
+	health_regen = health_regen + self:temporary_upgrade_value("temporary", "first_aid_health_regen", 0)
+
+	return health_regen
+end
+
 function PlayerManager:on_headshot_dealt()
 	local t = Application:time()
 	local player_unit = self:player_unit()

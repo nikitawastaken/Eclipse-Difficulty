@@ -1,5 +1,5 @@
 -- uppers cooldown
-PlayerDamage._UPPERS_COOLDOWN = 90
+PlayerDamage._UPPERS_COOLDOWN = 120
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
@@ -371,11 +371,7 @@ function PlayerDamage:restore_health(health_restored, is_static, chk_health_rati
 		return false
 	end
 
-	if is_static then
-		return self:change_health(health_restored * self._healing_reduction)
-	else
-		return self:change_health(health_restored * self._healing_reduction)
-	end
+	return self:change_health(health_restored * self._healing_reduction)
 end
 
 -- lower the on-kill godmode length for leech
@@ -398,25 +394,16 @@ Hooks:PreHook(PlayerDamage, "revive", "eclipse_revive", function(self)
 	end
 end)
 
--- faks restore downs
-function PlayerDamage:band_aid_health(down_restore)
+-- faks only heal a small portion but then heal you over time
+function PlayerDamage:band_aid_health(hot_regen)
 	if managers.platform:presence() == "Playing" and (self:arrested() or self:need_revive()) then
 		return
 	end
 
-	self:change_health(self:_max_health() * self._healing_reduction)
+	self:restore_health(tweak_data.upgrades.values.first_aid_kit.heal_amount)
+	if hot_regen then
+		managers.player:activate_temporary_upgrade("temporary", "first_aid_health_regen")
+	end
 
 	self._said_hurt = false
-
-	if down_restore then -- if a fak is upgraded to do so, restore one down
-		self._revives = Application:digest_value(math.min(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), Application:digest_value(self._revives, false) + 1), true)
-
-		self:_send_set_revives()
-
-		self._revive_health_i = math.max(self._revive_health_i - 1, 1)
-
-		self._down_time = math.min(self._down_timer_max, self._down_time + tweak_data.player.damage.DOWNED_TIME_DEC)
-
-		managers.environment_controller:set_last_life(Application:digest_value(self._revives, false) <= 1)
-	end
 end
