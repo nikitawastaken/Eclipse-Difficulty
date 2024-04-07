@@ -1796,12 +1796,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- SPAWNS --
 
 	-- Spawncap
-	self.besiege.assault.force = { 4, 9, math.min(10, 7.5 * f) }
-	self.besiege.assault.force_balance_mul = { 1.5, 1.5, 1.75, 2 }
+	self.besiege.assault.force = { 4, 8, math.max(10, 9 * math.sqrt(f)) }
+	self.besiege.assault.force_balance_mul = { 1, 1.3, 1.5, 1.6 }
 
 	-- Spawnrate
-	self.spawn_kill_cooldown = 8 / (math.sqrt(f))
-	self.besiege.assault.spawnrate = { 1.6 / (math.sqrt(f)), 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)) }
+	self.spawn_kill_cooldown = 24 / (math.sqrt(f))
+	self.besiege.assault.spawnrate = { 1.8 / (math.sqrt(f)), 1.6 / (math.sqrt(f)), 1.4 / (math.sqrt(f)) }
 	self.besiege.assault.spawnrate_balance_mul = { 2, 1.6, 1.4, 1.2 }
 
 	-- Spawnpool
@@ -1814,23 +1814,23 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- RECON / REENFORCE --
 
 	-- Reenforce spawn interval
-	self.besiege.reenforce.interval = { 60 / f, 40 / f, 20 / f }
+	self.besiege.reenforce.interval = { 60 / f, 50 / f, 30 / f }
 
 	-- Recon spawn interval and spawncap
 	self.besiege.recon.interval_variation = 0
-	self.besiege.recon.interval = { 20 / f, 16 / f, 10 / f }
+	self.besiege.recon.interval = { 30 / f, 25 / f, 20 / f }
 	self.besiege.recon.force = { 2, 4, 6 }
 
 	-- GRENADES --
 	-- global
-	self.min_grenade_timeout = 20 / f / ((is_pro and 1.25) or 1)
-	self.no_grenade_push_delay = 8 / (math.sqrt(f))
+	self.min_grenade_timeout = 20 / math.sqrt(f) / ((is_pro and 1.25) or 1)
+	self.no_grenade_push_delay = 20 / (math.sqrt(f))
 
 	-- flash
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
-	self.flash_grenade.light_range = 500
+	self.flash_grenade.light_range = (is_pro and 0) or 500
 	self.flash_grenade_timeout = { 30 / f / ((is_pro and 1.25) or 1), 40 / f / ((is_pro and 1.25) or 1) }
-	self.flash_grenade.timer = 2 / f
+	self.flash_grenade.timer = (difficulty_index <= 5 and 3) or 2
 
 	-- smoke & gas
 	self.smoke_grenade_timeout = { 40 / f / ((is_pro and 1.25) or 1), 50 / f / ((is_pro and 1.25) or 1) }
@@ -1954,9 +1954,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.ponr.assault.hostage_hesitation_delay = { 0, 0, 0 }
 	end
 
-	-- Spawncap & Spawnrate
-	self.ponr.assault.force = { 4, 9, math.min(12, 8 * f) }
-	self.ponr.assault.spawnrate = { 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)), 1 / (math.sqrt(f)) }
+	-- Spawnrate
+	self.ponr.assault.spawnrate = { 1.6 / (math.sqrt(f)), 1.4 / (math.sqrt(f)), 1.2 / (math.sqrt(f)) }
 
 	-- Recon
 	self.ponr.recon.groups = {}
@@ -2022,14 +2021,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 6 then
 		self.ponr.assault.groups = {
-			zeal_lights_charge = { 0.85, 0.85, 0.85 },
-			zeal_lights_flank = { 0.75, 0.75, 0.75 },
-			zeal_heavies_ranged = { 0.55, 0.55, 0.55 },
-			zeal_heavies_charge = { 0.55, 0.55, 0.55 },
+			zeal_lights_charge = { 0.8, 0.8, 0.8 },
+			zeal_lights_flank = { 0.7, 0.7, 0.7 },
+			zeal_heavies_ranged = { 0.5, 0.5, 0.5 },
+			zeal_heavies_charge = { 0.5, 0.5, 0.5 },
 			zeal_shields = { 0.4, 0.4, 0.4 },
-			zeal_tasers = { 0.2, 0.2, 0.2 },
-			zeal_tanks = { 0.15, 0.15, 0.15 },
-			zeal_spoocs = { 0.15, 0.15, 0.15 },
+			zeal_tasers = { 0.3, 0.3, 0.3 },
+			zeal_tanks = { 0.2, 0.2, 0.2 },
+			zeal_spoocs = { 0.2, 0.2, 0.2 },
 		}
 		self.ponr.reenforce.groups = {
 			zeal_lights_charge = { 1, 1, 1 },

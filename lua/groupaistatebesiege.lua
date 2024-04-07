@@ -462,8 +462,8 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				-- If grenade isn't available, push regardless anyway after a short delay
 				if not self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
 					if not group.ignore_grenade_check_t then
-						local delay = tweak_data.group_ai.no_grenade_push_delay * (tactics_map.charge and 0.25 or 1)
-						group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, delay, delay * 0.5)
+						local delay = tweak_data.group_ai.no_grenade_push_delay * (tactics_map.charge and 0.66 or 1)
+						group.ignore_grenade_check_t = self._t + math.map_range_clamped(table.size(assault_area.criminal.units), 1, 4, delay, delay * 0.75)
 						return
 					elseif group.ignore_grenade_check_t > self._t then
 						return
