@@ -10,7 +10,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.tier_unlocks = {
 		digest(0),
 		digest(1),
-		digest(3),
+		digest(4),
 		digest(16),
 	}
 
