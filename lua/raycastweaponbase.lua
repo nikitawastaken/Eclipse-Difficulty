@@ -115,10 +115,10 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 		-- penetrating a surface reduces the damage you deal to an enemy
 		if hit.unit:in_slot(managers.slot:get_mask("world_geometry")) then
 			hit_through_wall = true
-			damage = damage * 0.5
+			damage = damage * (managers.player:has_category_upgrade("snp", "no_pen_damage_penalty") and 1 or 0.5)
 		elseif hit.unit:in_slot(managers.slot:get_mask("enemy_shield_check")) then
 			hit_through_shield = hit_through_shield or alive(hit.unit:parent())
-			damage = damage * 0.4
+			damage = damage * (managers.player:has_category_upgrade("snp", "no_pen_damage_penalty") and 1 or 0.4)
 		end
 
 		if dmg > 0 then

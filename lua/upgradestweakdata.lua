@@ -205,6 +205,17 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.speedy_reload.multipro2 = "6"
 
 	-- Mind Blown
+	self.definitions.no_pen_damage_penalty = {
+		name_id = "menu_snp_no_pen_damage_penalty",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "no_pen_damage_penalty",
+			category = "snp",
+		},
+	}
+	self.values.snp.no_pen_damage_penalty = { true }
+
 	self.values.snp.graze_damage = {
 		{
 			radius = 200,
