@@ -45,10 +45,7 @@
 	"menu_rifleman_desc": "基础: ##$basic##\n你开镜速度增加##$multibasic##。\n武器切换速度增加##$multibasic2##。\n\n精通: ##$pro##\n冲刺时可使用武器腰射。",
 	"menu_speedy_reload_beta_desc": "基础: ##$basic##\n你的狙击步枪和突击步枪获得##$multibasic##的装弹速度加成。\n\n精通: ##$pro##\n爆头击杀会在##$multipro2##秒内增加##$multipro##的换弹速度。只能被单发模式的冲锋枪，突击步枪和狙击枪触发。",
 	"menu_sniper_graze_damage": "脑洞大开",
-	"menu_sniper_graze_damage_desc": "基础: ##$basic##\n使用狙击步枪爆头会对子弹轨迹##$multibasic2##内的敌人造成最高##$multibasic##的伤害。\n\n注意：不影响##300档##狙击枪。\n\n精通: ##$pro##\n擦伤距离增加##$multipro##。\n成功爆头击杀会对范围内的敌人造成最高##$multipro2##的伤害。",
-
-
-
+	"menu_sniper_graze_damage_desc": "基础: ##$basic##\n你的穿透型子弹在穿透墙或者盾牌的时候不再受到##$multibasic##的伤害惩罚。\n\n精通: ##$pro##\n你的魔法子弹在擦过敌人头部时会被吸引至头部。",
 
 
 	"menu_from_the_hip_desc": "基础: ##$basic##\n霰弹枪伤害额外增加##$multibasic##。\n\n精通: ##$pro##\n拿出和收起霰弹枪的时间缩短##$multipro##。",
@@ -129,7 +126,7 @@
 	"menu_wolverine_beta_desc": "基础: ##$basic##\n你的血量越低，你的移速越高。你的血量低于##$multibasic##时, 你最多获得##$multibasic2##的额外移速。\n\n精通: ##$pro##\n你的血量越低，你造成的近战伤害越高。当你的血量低于##$multipro##时, 你最多额外造成##$multipro2##的近战和电锯伤害。",
 	"menu_trigger_happy_beta_desc": "基础: ##$basic##\n你的手枪每次命中敌人时会获得##$multibasic##的持续##$multibasic2##秒的伤害加成。\n最多叠加##$multibasic3##次。\n\n精通: ##$pro##\n你的手枪每次命中敌人时会获得##$multipro##的持续##$multipro2##秒的伤害加成。\n最多叠加##$multipro3##次。",
 	"menu_perseverance_beta_desc": "基础: ##$basic##\n你血量耗尽时不会立刻倒地，而是有##$multibasic2##秒的额外战斗时间。在此期间，移动速度获得##$multibasic3##的惩罚。\n\n注意：坠落伤害和火焰伤害不会触发该技能。 \n\n精通: ##$pro##\n天鹅绝唱的持续时间额外增加##$multipro##秒。",
-	"menu_tea_cookies_beta_desc": "基础 ##$basic##\n开局时可额外携带##$multibasic##个急救包。\n\n精通: ##$pro##\n开局时可额外携带##$multipro##个急救包。\n\n使用急救包会恢复##$multipro2##次倒地次数。",
+	"menu_tea_cookies_beta_desc": "基础 ##$basic##\n使用急救包后的##$multibasic3##秒内每##$multibasic2##秒使你恢复##$multibasic##点生命值。\n\n精通: ##$pro##\n你放置的急救包会自动救起在##$multipro##米内倒地的玩家。该效果每##$multipro2##秒最多触发一次。",
 
 
 
