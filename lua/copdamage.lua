@@ -3,6 +3,14 @@
 -- Increasing the health granularity makes damage dealt more accurate to the actual weapon damage stats
 CopDamage._HEALTH_GRANULARITY = 8192
 
+-- Make enemy head hitbox size not egregiously large
+Hooks:PostHook(CopDamage, "init", "eclipse_init", function (self)
+	local head_body = self._unit:body(self._head_body_name or "head")
+	if head_body then
+		head_body:set_sphere_radius(16)
+	end
+end)
+
 -- Fixed critical hit mul and additional crit damage upgrade
 function CopDamage:roll_critical_hit(attack_data)
 	if not self:can_be_critical(attack_data) or math.random() >= managers.player:critical_hit_chance() then
