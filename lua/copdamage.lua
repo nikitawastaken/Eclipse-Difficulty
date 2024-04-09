@@ -4,7 +4,7 @@
 CopDamage._HEALTH_GRANULARITY = 8192
 
 -- Make enemy head hitbox size not egregiously large
-Hooks:PostHook(CopDamage, "init", "eclipse_init", function (self)
+Hooks:PostHook(CopDamage, "init", "eclipse_init", function(self)
 	local head_body = self._unit:body(self._head_body_name or "head")
 	if head_body then
 		head_body:set_sphere_radius(16)
