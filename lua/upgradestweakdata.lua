@@ -205,16 +205,27 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.speedy_reload.multipro2 = "6"
 
 	-- Mind Blown
-	self.definitions.no_pen_damage_penalty = {
-		name_id = "menu_snp_no_pen_damage_penalty",
+	self.values.weapon.magnetizing_bullets = { true }
+	self.definitions.weapon_magnetizing_bullets = {
+		name_id = "menu_weapon_magnetizing_bullets",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "magnetizing_bullets",
+			category = "weapon",
+		},
+	}
+
+	self.values.weapon.no_pen_damage_penalty = { true }
+	self.definitions.weapon_no_pen_damage_penalty = {
+		name_id = "menu_weapon_no_pen_damage_penalty",
 		category = "feature",
 		upgrade = {
 			value = 1,
 			upgrade = "no_pen_damage_penalty",
-			category = "snp",
+			category = "weapon",
 		},
 	}
-	self.values.snp.no_pen_damage_penalty = { true }
 
 	self.values.snp.graze_damage = {
 		{
@@ -228,7 +239,7 @@ function UpgradesTweakData:init(tweak_data)
 			damage_factor_headshot = 1,
 		},
 	}
-	self.skill_descs.single_shot_ammo_return.multibasic = "50%"
+	self.skill_descs.single_shot_ammo_return.multibasic = "60%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "2m"
 	self.skill_descs.single_shot_ammo_return.multipro = "3m"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"

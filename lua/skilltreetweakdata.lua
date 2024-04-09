@@ -88,6 +88,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.speedy_reload.name_id = "menu_kilmer"
 	self.skills.speedy_reload.icon_xy = { 1, 9 }
 
+	-- New T4 Sharpshooter skill
+	self.skills.single_shot_ammo_return[1].upgrades = { "weapon_no_pen_damage_penalty" }
+	self.skills.single_shot_ammo_return[2].upgrades = { "weapon_magnetizing_bullets" }
+
 	-- ENFORCER --
 
 	-- Hard Boiled
