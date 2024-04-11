@@ -106,8 +106,9 @@
 					<post :hook_id="states/playertased"/>
 					<post :hook_id="states/playerdriving"/>
 					<post :hook_id="states/playerbleedout"/>
+					<post :hook_id="states/playerbipod"/>
 				</group>
-				
+
 				<post :hook_id="characters/characterattentionobject"/>
 
 				<group :hook_id="civilians/">
