@@ -40,6 +40,18 @@ function CopActionWalk:_adjust_move_anim(side, speed)
 	return redir_res
 end
 
+-- Fix potential crash when walk action gets interrupted on client
+local get_husk_interrupt_desc_original = CopActionWalk.get_husk_interrupt_desc
+function CopActionWalk:get_husk_interrupt_desc(...)
+	local old_action_desc = get_husk_interrupt_desc_original(self, ...)
+
+	if not old_action_desc.nav_path then
+		old_action_desc.nav_path = self._nav_path
+	end
+
+	return old_action_desc
+end
+
 if Network:is_client() then
 	return
 end

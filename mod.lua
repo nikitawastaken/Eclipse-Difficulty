@@ -380,6 +380,7 @@ if not StreamHeist then
 	TheFixesPreventer.crash_upd_aim_coplogicattack = true
 	TheFixesPreventer.fix_copmovement_aim_state_discarded = true
 	TheFixesPreventer.tank_remove_recoil_anim = true
+	TheFixesPreventer.fix_ai_set_attention = true
 	TheFixesPreventer.tank_walk_near_players  = true
 	TheFixesPreventer.fix_hostages_not_moving = true
 end

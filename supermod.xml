@@ -107,6 +107,8 @@
 					<post :hook_id="states/playerdriving"/>
 					<post :hook_id="states/playerbleedout"/>
 				</group>
+				
+				<post :hook_id="characters/characterattentionobject"/>
 
 				<group :hook_id="civilians/">
 					<group :hook_id="logics/">
@@ -156,6 +158,7 @@
 						<post :hook_id="copinventory"/>
 						<post :hook_id="copmovement"/>
 						<post :hook_id="copsound"/>
+						<post :hook_id="huskcopbrain"/>
 					</group>
 
 					<group :hook_id="spooc/">

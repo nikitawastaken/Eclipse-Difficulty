@@ -29,22 +29,16 @@ Hooks:PostHook(CopActionShoot, "on_attention", "sh_on_attention", function(self)
 		self:_stop_firing()
 	end
 
-	if not self._attention or not self._attention.unit then
-		return
+	-- This is not needed here, it is already set by the IK functions if needed and just artificially delays enemies shooting
+	self._mod_enable_t = 0
+
+	if self._attention and self._attention.unit then
+		self._next_vis_ray_t = 0
+		self._apply_aim_focus_delay = true
+		self._shooting_husk_player = self._attention.unit:base() and self._attention.unit:base().is_husk_player
+	else
+		self._apply_aim_focus_delay = false
 	end
-
-	self._shooting_husk_player = self._attention.unit:base() and self._attention.unit:base().is_husk_player
-
-	-- Set aim and focus delay on target change
-	local t = TimerManager:game():time()
-	local _, _, target_dis = self:_get_target_pos(self._shoot_from_pos, self._attention, t)
-	local aim_delay_minmax = self._w_usage_tweak.aim_delay
-	local aim_delay = math.map_range_clamped(target_dis, 0, self._falloff[#self._falloff].r, aim_delay_minmax[1], aim_delay_minmax[2])
-
-	self._shoot_t = math.max(t + aim_delay * (self._common_data.is_suppressed and 1.5 or 1), self._shoot_t)
-
-	self._shoot_history.focus_start_t = self._shoot_t
-	self._shoot_history.focus_delay = self._w_usage_tweak.focus_delay
 end)
 
 -- Thanks to the messy implementation of this function, we have to replace it completely, no hook can save us here
@@ -142,10 +136,28 @@ function CopActionShoot:update(t)
 		if fired.hit_enemy and fired.hit_enemy.type == "death" and self._unit:unit_data().mission_element then
 			self._unit:unit_data().mission_element:event("killshot", self._unit)
 		end
+	elseif self._apply_aim_focus_delay then
+		-- Apply aim and focus delay
+		if t < self._next_vis_ray_t then
+			return
+		elseif self._shooting_player and self._unit:raycast("ray", shoot_from_pos, target_pos, "slot_mask", self._verif_slotmask, "ray_type", "ai_vision", "report") then
+			self._next_vis_ray_t = t + 0.05
+			return
+		end
+
+		local aim_delay_minmax = self._w_usage_tweak.aim_delay
+		local aim_delay = math.map_range_clamped(target_dis, 0, self._falloff[#self._falloff].r, aim_delay_minmax[1], aim_delay_minmax[2])
+
+		self._shoot_t = t + aim_delay * (self._common_data.is_suppressed and 1.5 or 1)
+
+		self._shoot_history.focus_start_t = self._shoot_t
+		self._shoot_history.focus_delay = self._w_usage_tweak.focus_delay
+
+		self._apply_aim_focus_delay = false
 	elseif self._shoot_t < t and self._mod_enable_t < t then
 		-- Start shooting
 		if self._common_data.char_tweak.no_move_and_shoot and ext_anim.move then
-			self._shoot_t = math.max(self._shoot_t, t + (self._common_data.char_tweak.move_and_shoot_cooldown or 1))
+			self._shoot_t = t + (self._common_data.char_tweak.move_and_shoot_cooldown or 1)
 			return
 		end
 
