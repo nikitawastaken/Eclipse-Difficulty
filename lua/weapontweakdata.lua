@@ -1717,10 +1717,11 @@ for weap_id, weap_data in pairs(self) do
 		-- Increase moving spread
 		if weap_data.spread then
 			weap_data.spread.standing = 3
-			weap_data.spread.moving_standing = 4
-			weap_data.spread.steelsight = 1.6
-			weap_data.spread.crouching = weap_data.spread.standing * 0.8
-			weap_data.spread.moving_crouching = weap_data.spread.moving_standing * 0.8
+			weap_data.spread.crouching = 2.5
+			weap_data.spread.steelsight = 2
+			weap_data.spread.moving_standing = weap_data.spread.standing * 1.33
+			weap_data.spread.moving_crouching = weap_data.spread.crouching * 1.33
+			weap_data.spread.moving_steelsight = weap_data.spread.steelsight * 1.33
 			weap_data.spread.bipod = weap_data.spread.standing * 0.5
 		end
 	end
