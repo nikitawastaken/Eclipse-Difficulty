@@ -29,7 +29,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.tea_time.icon_xy = { 0, 10 }
 
 	-- Company Soul
-	self.skills.fast_learner[1].upgrades = { "team_weapon_recoil_index_addend", "team_weapon_suppression_recoil_index_addend" }
+	self.skills.fast_learner[1].upgrades = {  }
 	self.skills.fast_learner[2].upgrades = { "team_stamina_multiplier" }
 	self.skills.fast_learner.name_id = "menu_company_soul"
 	self.skills.fast_learner.desc_id = "menu_company_soul_desc"
@@ -78,7 +78,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Lock N' Load
 	self.skills.rifleman[1].upgrades = { "weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier" }
-	self.skills.rifleman[2].upgrades = { "player_run_and_shoot_1" }
+	self.skills.rifleman[2].upgrades = {  }
 	self.skills.rifleman.icon_xy = { 7, 10 }
 	self.skills.rifleman.name_id = "menu_rifleman"
 	self.skills.rifleman.desc_id = "menu_rifleman_desc"
@@ -88,7 +88,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.speedy_reload.name_id = "menu_kilmer"
 	self.skills.speedy_reload.icon_xy = { 1, 9 }
 
-	-- New T4 Sharpshooter skill
+	-- Deadeye
 	self.skills.single_shot_ammo_return[1].upgrades = { "weapon_no_pen_damage_penalty" }
 	self.skills.single_shot_ammo_return[2].upgrades = { "weapon_magnetizing_bullets" }
 
@@ -138,9 +138,12 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.pack_mule.name_id = "menu_underdog_beta"
 	self.skills.pack_mule.desc_id = "menu_underdog_beta_desc"
 
+	-- Shock and Awe
+	self.skills.iron_man[2].upgrades = { }
+
 	-- Iron Man
-	self.skills.juggernaut[1].upgrades = { "body_armor6" }
-	self.skills.juggernaut[2].upgrades = { "player_armor_multiplier" }
+	self.skills.juggernaut[1].upgrades = { "player_shield_knock" }
+	self.skills.juggernaut[2].upgrades = { "body_armor6" }
 
 	-- Fully Loaded
 	self.skills.ammo_reservoir[1].upgrades = { "player_add_armor_stat_skill_ammo_mul" }
@@ -182,6 +185,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.eco_sentry[2].upgrades = { "sentry_gun_ap_bullets", "sentry_gun_fire_rate_reduction_1" }
 	self.skills.eco_sentry.icon_xy = { 7, 8 }
 
+	-- Steady Grip
+	self.skills.steady_grip[1].upgrades = { "lmg_recoil_index_addend", "smg_recoil_index_addend", "minigun_recoil_index_addend" }
+	self.skills.steady_grip[2].upgrades = { "team_weapon_recoil_index_addend", "team_weapon_suppression_recoil_index_addend" }
+	self.skills.steady_grip.icon_xy = { 7, 7 }
+
 	-- Oppressor
 	self.skills.heavy_impact[1].upgrades = { "player_suppression_bonus" }
 	self.skills.heavy_impact[2].upgrades = { "player_suppression_bonus_2" }
@@ -190,7 +198,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.heavy_impact.icon_xy = { 7, 0 }
 
 	-- Fire Control
-	self.skills.fire_control[2].upgrades = { "player_ap_bullets_1" }
+	self.skills.fire_control[1].upgrades = { "player_weapon_movement_stability_1" }
+	self.skills.fire_control[2].upgrades = { "smg_spray_recoil_multiplier", "lmg_spray_recoil_multiplier", "minigun_spray_recoil_multiplier" }
 
 	-- Sleight of Hand
 	self.skills.shock_and_awe[1].upgrades = { "smg_reload_speed_multiplier", "lmg_reload_speed_multiplier" }
@@ -198,13 +207,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shock_and_awe.name_id = "menu_fast_hands"
 	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
 
-	-- Mag Plus
-	self.skills.fast_fire[1].upgrades = { "player_automatic_mag_increase_1" }
-	self.skills.fast_fire[2].upgrades = { "player_automatic_mag_increase_2" }
-	self.skills.fast_fire.icon_xy = { 2, 0 }
+	-- Lock N' Load
+	self.skills.fast_fire[1].upgrades = { "player_run_and_shoot_1" }
+	self.skills.fast_fire[2].upgrades = { "player_no_movement_penalty" }
+	self.skills.fast_fire.icon_xy = { 7, 10 }
 
 	-- Body Expertise
-	self.skills.body_expertise[1].upgrades = { "player_no_movement_penalty" }
+	self.skills.body_expertise[1].upgrades = { "player_ap_bullets_1" }
 	self.skills.body_expertise[2].upgrades = { "weapon_automatic_head_shot_add_1" }
 
 	-- GHOST --

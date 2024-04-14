@@ -48,7 +48,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	}
 
 	-- ictv nerf
-	self.values.player.body_armor.armor[7] = 13
+	self.values.player.body_armor.armor[7] = 18
 
 	-- bullseye nerf
 	self.on_headshot_dealt_cooldown = 5
@@ -247,7 +247,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Enforcer --
 
 	-- Hard Boiled
-	self.values.shotgun.swap_speed_multiplier = { 1.25 }
+	self.values.shotgun.swap_speed_multiplier = { 1.2 }
 	self.definitions.shotgun_swap_speed_multiplier = {
 		name_id = "menu_shotgun_swap_speed_multiplier",
 		category = "feature",
@@ -258,7 +258,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.underdog.multibasic = "5%"
-	self.skill_descs.underdog.multipro = "25%"
+	self.skill_descs.underdog.multipro = "20%"
 
 	-- Fast Hands
 	self.values.shotgun.pump_reload_speed = { 1.25, 1.5 }
@@ -458,8 +458,38 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fire_trap.multibasic = "20"
 	self.skill_descs.fire_trap.multipro = "20"
 
-	-- Oppressor
+	-- Steady Grip
+	self.definitions.smg_recoil_index_addend = {
+		name_id = "menu_smg_recoil_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "recoil_index_addend",
+			category = "smg"
+		}
+	}
+	self.values.smg.recoil_index_addend = {
+		1
+	}
+	self.definitions.minigun_recoil_index_addend = {
+		name_id = "menu_smg_recoil_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "recoil_index_addend",
+			category = "minigun"
+		}
+	}
+	self.values.smg.recoil_index_addend = {
+		1
+	}
+	self.values.minigun.recoil_index_addend = {
+		1
+	}
+	self.skill_descs.steady_grip.multibasic = "4"
+	self.skill_descs.steady_grip.multipro = "8"
 
+	-- Oppressor
 	self.definitions.player_suppression_bonus_2 = {
 		name_id = "menu_player_suppression_bonus",
 		category = "feature",
@@ -472,6 +502,49 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.suppression_multiplier = { 1.15, 1.45 }
 	self.skill_descs.heavy_impact.multibasic = "15%"
 	self.skill_descs.heavy_impact.multipro = "30%"
+
+	-- Fire Control
+	self.definitions.minigun_spray_recoil_multiplier = {
+		name_id = "menu_minigun_spray_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_recoil_multiplier",
+			category = "minigun"
+		}
+	}
+	self.values.minigun.spray_recoil_multiplier = {
+		0.005
+	}
+	self.definitions.lmg_spray_recoil_multiplier = {
+		name_id = "menu_lmg_spray_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_recoil_multiplier",
+			category = "lmg"
+		}
+	}
+	self.values.lmg.spray_recoil_multiplier = {
+		0.01
+	}
+	self.definitions.smg_spray_recoil_multiplier = {
+		name_id = "menu_smg_spray_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_recoil_multiplier",
+			category = "smg"
+		}
+	}
+	self.values.smg.spray_recoil_multiplier = {
+		0.015
+	}
+
+	self.values.player.weapon_movement_stability[1] = 0.9
+	self.max_spray_recoil_reduction = 0.5
+	self.skill_descs.fire_control.multibasic = "10%"
+	self.skill_descs.fire_control.multipro = "50%"
 
 	-- Sleight of Hand
 	self.values.lmg.reload_speed_multiplier = { 1.2 }
