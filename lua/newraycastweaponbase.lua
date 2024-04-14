@@ -116,12 +116,12 @@ function NewRaycastWeaponBase:recoil_multiplier()
 
 	-- spray recoil reduction upgrade
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
-		multiplier = multiplier * math.max(tweak_data.upgrades.max_spray_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
+		multiplier = multiplier
+			* math.max(tweak_data.upgrades.max_spray_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
 	end
 
 	return multiplier
 end
-
 
 function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 	local mul = 1

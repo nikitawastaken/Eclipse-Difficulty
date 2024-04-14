@@ -29,7 +29,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.tea_time.icon_xy = { 0, 10 }
 
 	-- Company Soul
-	self.skills.fast_learner[1].upgrades = {  }
+	self.skills.fast_learner[1].upgrades = {}
 	self.skills.fast_learner[2].upgrades = { "team_stamina_multiplier" }
 	self.skills.fast_learner.name_id = "menu_company_soul"
 	self.skills.fast_learner.desc_id = "menu_company_soul_desc"
@@ -78,7 +78,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Lock N' Load
 	self.skills.rifleman[1].upgrades = { "weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier" }
-	self.skills.rifleman[2].upgrades = {  }
+	self.skills.rifleman[2].upgrades = {}
 	self.skills.rifleman.icon_xy = { 7, 10 }
 	self.skills.rifleman.name_id = "menu_rifleman"
 	self.skills.rifleman.desc_id = "menu_rifleman_desc"
@@ -139,7 +139,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.pack_mule.desc_id = "menu_underdog_beta_desc"
 
 	-- Shock and Awe
-	self.skills.iron_man[2].upgrades = { }
+	self.skills.iron_man[2].upgrades = {}
 
 	-- Iron Man
 	self.skills.juggernaut[1].upgrades = { "player_shield_knock" }

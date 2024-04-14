@@ -465,11 +465,11 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "recoil_index_addend",
-			category = "smg"
-		}
+			category = "smg",
+		},
 	}
 	self.values.smg.recoil_index_addend = {
-		1
+		1,
 	}
 	self.definitions.minigun_recoil_index_addend = {
 		name_id = "menu_smg_recoil_index_addend",
@@ -477,14 +477,14 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "recoil_index_addend",
-			category = "minigun"
-		}
+			category = "minigun",
+		},
 	}
 	self.values.smg.recoil_index_addend = {
-		1
+		1,
 	}
 	self.values.minigun.recoil_index_addend = {
-		1
+		1,
 	}
 	self.skill_descs.steady_grip.multibasic = "4"
 	self.skill_descs.steady_grip.multipro = "8"
@@ -510,11 +510,11 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "spray_recoil_multiplier",
-			category = "minigun"
-		}
+			category = "minigun",
+		},
 	}
 	self.values.minigun.spray_recoil_multiplier = {
-		0.005
+		0.005,
 	}
 	self.definitions.lmg_spray_recoil_multiplier = {
 		name_id = "menu_lmg_spray_recoil_multiplier",
@@ -522,11 +522,11 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "spray_recoil_multiplier",
-			category = "lmg"
-		}
+			category = "lmg",
+		},
 	}
 	self.values.lmg.spray_recoil_multiplier = {
-		0.01
+		0.01,
 	}
 	self.definitions.smg_spray_recoil_multiplier = {
 		name_id = "menu_smg_spray_recoil_multiplier",
@@ -534,11 +534,11 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "spray_recoil_multiplier",
-			category = "smg"
-		}
+			category = "smg",
+		},
 	}
 	self.values.smg.spray_recoil_multiplier = {
-		0.015
+		0.015,
 	}
 
 	self.values.player.weapon_movement_stability[1] = 0.9
