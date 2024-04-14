@@ -89,7 +89,7 @@
 	"menu_fast_hands_desc": "BASIC: ##$basic##\nYou reload your SMGs and LMGs ##$multibasic## faster.\n\nACE: ##$pro##\nKilling ##$multipro## enemies with SMGs, LMGs or Special Weapons set on automatic fire mode will increase your next reload speed by up to ##$multipro2##. This bonus is reduced by ##$multipro3## for each bullet above ##$multipro4## in the total magazine size, down to a maximum of ##$multipro5## reload speed increase.",
 	"menu_oppressor_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more effective at threatening enemies.\n\nACE: ##$pro##\nYour weapons are additionally ##$multipro## more effective at threatening enemies.",
 	"menu_fire_control_beta": "Fire Control",
-	"menu_fire_control_beta_desc": "BASIC: ##$basic##\nYour hipfire accuracy penalty is decreased by ##$multibasic##.\n\nACE: ##$pro##\nThe longer you fire without releasing the trigger, the more stable your LMGs, SMGs and Miniguns become.\n\nStacks up to ##$multipro##.",
+	"menu_fire_control_beta_desc": "BASIC: ##$basic##\nYour hipfire accuracy penalty is decreased by ##$multibasic##.\n\nACE: ##$pro##\nThe longer you fire without releasing the trigger, the more stable your LMGs, SMGs and Miniguns become.\n\nStacks up to a ##$multipro## recoil reduction.",
 
 
 	"menu_sprinter": "Athlete",
