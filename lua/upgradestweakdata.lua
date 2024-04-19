@@ -191,6 +191,42 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.black_marketeer.multibasic3 = "5"
 	self.skill_descs.black_marketeer.multipro = "12"
 
+	-- Stable Shot
+	self.definitions.assault_rifle_spread_index_addend = {
+		name_id = "menu_assault_rifle_spread_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spread_index_addend",
+			category = "assault_rifle",
+		},
+	}
+	self.values.assault_rifle.spread_index_addend = { 1 }
+
+	self.definitions.snp_spread_index_addend = {
+		name_id = "menu_snp_spread_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spread_index_addend",
+			category = "snp",
+		},
+	}
+	self.values.snp.spread_index_addend = { 1 }
+
+	self.definitions.team_weapon_spread_index_addend = {
+		name_id = "menu_team_weapon_spread_index_addend",
+		category = "team",
+		upgrade = {
+			value = 1,
+			upgrade = "spread_index_addend",
+			category = "weapon"
+		}
+	}
+	self.values.team.weapon.spread_index_addend = { 2 }
+	self.skill_descs.stable_shot.multibasic = "4"
+	self.skill_descs.stable_shot.multipro = "8"
+
 	-- Lock N' Load
 	self.values.weapon.swap_speed_multiplier = { 1.25 }
 	self.skill_descs.rifleman.multibasic2 = "25%"
@@ -468,9 +504,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "smg",
 		},
 	}
-	self.values.smg.recoil_index_addend = {
-		1,
-	}
+	self.values.smg.recoil_index_addend = { 1 }
+
 	self.definitions.minigun_recoil_index_addend = {
 		name_id = "menu_smg_recoil_index_addend",
 		category = "feature",
@@ -480,12 +515,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "minigun",
 		},
 	}
-	self.values.smg.recoil_index_addend = {
-		1,
-	}
-	self.values.minigun.recoil_index_addend = {
-		1,
-	}
+	self.values.minigun.recoil_index_addend = { 1 }
 	self.skill_descs.steady_grip.multibasic = "4"
 	self.skill_descs.steady_grip.multipro = "8"
 
