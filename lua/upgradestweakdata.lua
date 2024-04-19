@@ -220,8 +220,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "spread_index_addend",
-			category = "weapon"
-		}
+			category = "weapon",
+		},
 	}
 	self.values.team.weapon.spread_index_addend = { 2 }
 	self.skill_descs.stable_shot.multibasic = "4"
