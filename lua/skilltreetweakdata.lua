@@ -80,12 +80,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.sharpshooter[1].upgrades = { "weapon_single_spread_index_addend" }
 	self.skills.sharpshooter[2].upgrades = { "single_shot_accuracy_inc_1" }
 
-	-- Lock N' Load
-	self.skills.rifleman[1].upgrades = { "weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier" }
-	self.skills.rifleman[2].upgrades = {}
-	self.skills.rifleman.icon_xy = { 7, 10 }
-	self.skills.rifleman.name_id = "menu_rifleman"
-	self.skills.rifleman.desc_id = "menu_rifleman_desc"
+	-- Rifleman
+	self.skills.rifleman[1].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
+	self.skills.rifleman[2].upgrades = { "weapon_swap_speed_multiplier"}
 
 	-- Kilmer
 	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")

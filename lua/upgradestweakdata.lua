@@ -227,9 +227,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.stable_shot.multibasic = "4"
 	self.skill_descs.stable_shot.multipro = "8"
 
-	-- Lock N' Load
-	self.values.weapon.swap_speed_multiplier = { 1.25 }
-	self.skill_descs.rifleman.multibasic2 = "25%"
+	-- Rifleman
+	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.5
+	self.values.weapon.swap_speed_multiplier = { 1.33 }
+	self.skill_descs.rifleman.multibasic = "50%"
+	self.skill_descs.rifleman.multipro = "33%"
 
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = { 1.25 }
@@ -721,9 +723,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.thick_skin.multipro = "4"
 
 	-- The Professional
+	self.values.weapon.silencer_enter_steelsight_speed_multiplier[1] = 1.5
 	self.skill_descs.silence_expert.multibasic = "8"
 	self.skill_descs.silence_expert.multipro = "12"
-	self.skill_descs.silence_expert.multipro2 = "100%"
+	self.skill_descs.silence_expert.multipro2 = "50%"
 
 	-- HVT
 	self.values.player.marked_inc_dmg_distance[1][2] = 1.2
