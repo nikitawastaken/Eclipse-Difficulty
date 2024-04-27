@@ -77,8 +77,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stable_shot[2].upgrades = { "team_weapon_spread_index_addend" }
 
 	-- Marksman
-	self.skills.sharpshooter[1].upgrades = { "weapon_single_spread_index_addend" }
-	self.skills.sharpshooter[2].upgrades = { "single_shot_accuracy_inc_1" }
+	self.skills.sharpshooter[1].upgrades = { "weapon_steelsight_recoil_multiplier" }
+	self.skills.sharpshooter[2].upgrades = { "player_not_moving_accuracy_increase_bonus_1" }
 
 	-- Rifleman
 	self.skills.rifleman[1].upgrades = { "weapon_enter_steelsight_speed_multiplier" }

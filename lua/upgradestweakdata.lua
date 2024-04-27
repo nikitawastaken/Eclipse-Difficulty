@@ -223,15 +223,30 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.values.team.weapon.spread_index_addend = { 2 }
+	self.values.team.weapon.spread_index_addend = { 1 }
 	self.skill_descs.stable_shot.multibasic = "4"
-	self.skill_descs.stable_shot.multipro = "8"
+	self.skill_descs.stable_shot.multipro = "4"
 
 	-- Rifleman
 	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.5
 	self.values.weapon.swap_speed_multiplier = { 1.33 }
 	self.skill_descs.rifleman.multibasic = "50%"
 	self.skill_descs.rifleman.multipro = "33%"
+
+	-- Marksman
+	self.values.player.not_moving_accuracy_increase[1] = 3
+	self.values.weapon.steelsight_recoil_multiplier = { 0.9 }
+	self.definitions.weapon_steelsight_recoil_multiplier = {
+		name_id = "menu_weapon_steelsight_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "steelsight_recoil_multiplier",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.sharpshooter.multibasic = "10%"
+	self.skill_descs.sharpshooter.multipro = "12"
 
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = { 1.25 }
@@ -242,7 +257,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.speedy_reload.multipro = "40%"
 	self.skill_descs.speedy_reload.multipro2 = "6"
 
-	-- Mind Blown
+	-- Deadeye
 	self.values.weapon.magnetizing_bullets = { true }
 	self.definitions.weapon_magnetizing_bullets = {
 		name_id = "menu_weapon_magnetizing_bullets",
@@ -262,19 +277,6 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "no_pen_damage_penalty",
 			category = "weapon",
-		},
-	}
-
-	self.values.snp.graze_damage = {
-		{
-			radius = 200,
-			damage_factor = 0.5,
-			damage_factor_headshot = 0.5,
-		},
-		{
-			radius = 300,
-			damage_factor = 0.5,
-			damage_factor_headshot = 1,
 		},
 	}
 	self.skill_descs.single_shot_ammo_return.multibasic = "60%"
@@ -518,8 +520,10 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.minigun.recoil_index_addend = { 1 }
+	self.values.team.weapon.recoil_index_addend[1] = 1
+	self.values.team.weapon.suppression_recoil_index_addend[1] = 1
 	self.skill_descs.steady_grip.multibasic = "4"
-	self.skill_descs.steady_grip.multipro = "8"
+	self.skill_descs.steady_grip.multipro = "4"
 
 	-- Oppressor
 	self.definitions.player_suppression_bonus_2 = {

@@ -114,11 +114,20 @@ function NewRaycastWeaponBase:recoil_multiplier()
 		multiplier = multiplier * (self._alt_fire_data.recoil_mul or 1)
 	end
 
-	-- spray recoil reduction upgrade
-	for _, category in ipairs(self:weapon_tweak_data().categories) do
-		multiplier = multiplier
-			* math.max(tweak_data.upgrades.max_spray_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
+	local current_state = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state
+	if current_state then
+		if current_state:in_steelsight() then
+			for _, category in ipairs(self:weapon_tweak_data().categories) do
+				multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_recoil_multiplier", 1)
+			end
+		else
+			for _, category in ipairs(self:weapon_tweak_data().categories) do
+				multiplier = multiplier
+					* math.max(tweak_data.upgrades.max_spray_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
+			end
+		end
 	end
+
 
 	return multiplier
 end
