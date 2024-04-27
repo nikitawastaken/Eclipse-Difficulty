@@ -6,7 +6,7 @@ if _G.IS_VR then
 	return
 end
 
-Hooks:PostHook(FPCameraPlayerBase, "stop_shooting", "ssr_stop_shooting", function (self)
+Hooks:PostHook(FPCameraPlayerBase, "stop_shooting", "ssr_stop_shooting", function(self)
 	self._recoil_kick.to_reduce = self._recoil_kick.last
 	self._recoil_kick.h.to_reduce = self._recoil_kick.h.last
 end)
