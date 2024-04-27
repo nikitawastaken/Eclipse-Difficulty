@@ -12,8 +12,8 @@ function CopLogicArrest._call_the_police(data, my_data)
 		blocks = {
 			aim = -1,
 			action = -1,
-			walk = -1
-		}
+			walk = -1,
+		},
 	})
 
 	if my_data.calling_the_police then

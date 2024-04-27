@@ -1,5 +1,5 @@
 -- Fix civilians not following once they stopped
-Hooks:PostHook(CivilianLogicSurrender, "enter", "sh_enter", function (data)
+Hooks:PostHook(CivilianLogicSurrender, "enter", "sh_enter", function(data)
 	if data.name == "surrender" and data.objective and data.objective.type == "follow" and not data.internal_data.surrender_clbk_registered then
 		managers.groupai:state():add_to_surrendered(data.unit, callback(CivilianLogicSurrender, CivilianLogicSurrender, "queued_update", data))
 		data.internal_data.surrender_clbk_registered = true

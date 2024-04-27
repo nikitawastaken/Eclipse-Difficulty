@@ -28,7 +28,7 @@ function CarryData:clbk_pickup_SO_verification(unit)
 end
 
 -- Make enemies run with stolen bags instead of crouchwalking
-Hooks:PostHook(CarryData, "_chk_register_steal_SO", "sh__chk_register_steal_SO", function (self)
+Hooks:PostHook(CarryData, "_chk_register_steal_SO", "sh__chk_register_steal_SO", function(self)
 	if self._steal_SO_data and self._steal_SO_data.pickup_objective and self._steal_SO_data.pickup_objective.followup_objective then
 		self._steal_SO_data.pickup_objective.followup_objective.pose = "stand"
 	end

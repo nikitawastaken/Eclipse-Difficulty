@@ -36,7 +36,10 @@ function CopLogicIntimidated._update_enemy_detection(data, my_data)
 	end
 
 	if not my_data.surrender_break_t or data.t < my_data.surrender_break_t then
-		local max_intimidation_range = tweak_data.player.long_dis_interaction.intimidate_range_enemies * tweak_data.upgrades.values.player.intimidate_range_mul[1] * tweak_data.upgrades.values.player.passive_intimidate_range_mul[1] * 1.05
+		local max_intimidation_range = tweak_data.player.long_dis_interaction.intimidate_range_enemies
+			* tweak_data.upgrades.values.player.intimidate_range_mul[1]
+			* tweak_data.upgrades.values.player.passive_intimidate_range_mul[1]
+			* 1.05
 
 		for u_key, u_data in pairs(managers.groupai:state():all_char_criminals()) do
 			if not u_data.status and mvector3.direction(tmp_vec, data.m_pos, u_data.m_pos) < max_intimidation_range then
