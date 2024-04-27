@@ -648,8 +648,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- Common SWAT
 	self.fbi_swat.move_speed = self.presets.move_speed.fast
 	self.fbi_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
+
 	self.fbi_heavy_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.fbi_heavy_swat.move_speed = self.presets.move_speed.normal
+
+	self.city_swat.move_speed = self.presets.move_speed.fast
 	self.city_swat.suppression = { panic_chance_mul = 0.15, duration = { 1.5, 2 }, react_point = { 2, 5 }, brown_point = { 5, 6 } }
 
 	-- Specials
@@ -678,6 +682,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "tank_elite")
 
 	-- taser & medic
+	self.taser.move_speed = self.presets.move_speed.normal
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
@@ -693,7 +698,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
 	self.phalanx_minion_break.tags = { "law", "shield" }
-	self.phalanx_minion_break.move_speed = self.presets.move_speed.very_fast
+	self.phalanx_minion_break.move_speed = self.presets.move_speed.fast
 	self.phalanx_minion_break.allowed_stances = nil
 	self.phalanx_minion_break.allowed_poses = nil
 	self.phalanx_minion_break.no_equip_anim = nil
@@ -727,13 +732,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_swat.dodge = self.presets.dodge.ninja
 	self.zeal_swat.suppression = nil
 	self.zeal_swat.speech_prefix_p2 = "d"
+	self.zeal_swat.move_speed = self.presets.move_speed.very_fast
 	self.zeal_swat.damage.explosion_damage_mul = 0.8
 	table.insert(self._enemy_list, "zeal_swat")
 
 	self.zeal_heavy_swat = deep_clone(self.city_swat)
 	self.zeal_heavy_swat.suppression = nil
 	self.zeal_heavy_swat.speech_prefix_p2 = "d"
-	self.zeal_heavy_swat.move_speed = self.presets.move_speed.fast
 	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
