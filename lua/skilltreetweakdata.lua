@@ -82,7 +82,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Rifleman
 	self.skills.rifleman[1].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
-	self.skills.rifleman[2].upgrades = { "weapon_swap_speed_multiplier"}
+	self.skills.rifleman[2].upgrades = { "weapon_swap_speed_multiplier" }
 
 	-- Kilmer
 	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")
