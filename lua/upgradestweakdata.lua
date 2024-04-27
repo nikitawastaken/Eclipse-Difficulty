@@ -711,6 +711,7 @@ function UpgradesTweakData:init(tweak_data)
 		3,
 	}
 	self.skill_descs.scavenger.multibasic = "5%"
+	self.skill_descs.scavenger.multibasic2 = "200%"
 	self.skill_descs.scavenger.multipro = "3"
 
 	-- Eagle Eye
@@ -776,7 +777,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.unseen_strike.multibasic2 = "2"
 	self.skill_descs.unseen_strike.multibasic3 = "35"
 	self.skill_descs.unseen_strike.multibasic4 = "30%"
-	self.skill_descs.unseen_strike.multibasic5 = "200%"
 	self.skill_descs.unseen_strike.multipro = "3%"
 	self.skill_descs.unseen_strike.multipro2 = "1"
 	self.skill_descs.unseen_strike.multipro3 = "100%"
