@@ -128,7 +128,6 @@ function NewRaycastWeaponBase:recoil_multiplier()
 		end
 	end
 
-
 	return multiplier
 end
 
