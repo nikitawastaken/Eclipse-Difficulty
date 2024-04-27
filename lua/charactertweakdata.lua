@@ -600,6 +600,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 	}
 
+	presets.base.surrender_break_time = { 10, 15 }
+
 	-- Enemy chatter
 	presets.enemy_chatter.cop.aggressive = true
 	presets.enemy_chatter.cop.go_go = true
@@ -967,6 +969,31 @@ function CharacterTweakData:_multiply_all_hp(hp_mul, hs_mul)
 		-- Remove damage clamps, they are not a fun or intuitive mechanic
 		char_preset.DAMAGE_CLAMP_BULLET = nil
 		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
+
+		-- Set default surrender break time
+		if char_preset.surrender_break_time then
+			char_preset.surrender_break_time = self.presets.base.surrender_break_time
+		end
+	end
+end
+
+-- fixed movement speed difficulty scaling
+-- thanks redflame
+function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
+	for preset_name, preset in pairs(self.presets.move_speed) do
+		if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then
+			for _, pose in pairs(preset) do
+				for haste_name, haste in pairs(pose) do
+					for stance_name, stance in pairs(haste) do
+						if stance_name ~= "ntl" then
+							for move_dir in pairs(stance) do
+								stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
+							end
+						end
+					end
+				end
+			end
+		end
 	end
 end
 
@@ -1055,23 +1082,3 @@ CharacterTweakData._set_hard = setup_presets
 CharacterTweakData._set_overkill = setup_presets
 CharacterTweakData._set_overkill_145 = setup_presets
 CharacterTweakData._set_easy_wish = setup_presets
-
--- fixed movement speed difficulty scaling
--- thanks redflame
-function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
-	for preset_name, preset in pairs(self.presets.move_speed) do
-		if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then
-			for _, pose in pairs(preset) do
-				for haste_name, haste in pairs(pose) do
-					for stance_name, stance in pairs(haste) do
-						if stance_name ~= "ntl" then
-							for move_dir in pairs(stance) do
-								stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-end

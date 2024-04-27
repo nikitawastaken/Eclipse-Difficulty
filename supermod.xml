@@ -119,7 +119,6 @@
 					</group>
 
 					<post :hook_id="civilianbrain"/>
-					<post :hook_id="civiliandamage"/>
 				</group>
 
 				<post :hook_id="environment/environmentfire"/>
@@ -190,6 +189,7 @@
 				<group :hook_id="player_team/">
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
+					<post :hook_id="teamaimovement"/>
 					<post :hook_id="huskteamaidamage"/>
 				</group>
 

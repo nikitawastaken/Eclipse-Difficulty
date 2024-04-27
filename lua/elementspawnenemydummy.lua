@@ -150,7 +150,17 @@ Hooks:PostHook(ElementSpawnEnemyDummy, "init", "sh_init", function(self)
 
 	local mapped_name = self.enemy_mapping[self._enemy_name:key()]
 	local mapped_unit = self.faction_mapping[difficulty] and self.faction_mapping[difficulty][mapped_name]
-	self._enemy_name = mapped_unit and Idstring(type(mapped_unit) == "table" and table.random(mapped_unit) or mapped_unit) or self._enemy_name
+	if type(mapped_unit) == "table" then
+		self._enemy_table = mapped_unit
+	elseif mapped_unit then
+		self._enemy_name = Idstring(mapped_unit)
+	end
+end)
+
+Hooks:PreHook(ElementSpawnEnemyDummy, "produce", "sh_produce", function (self, params)
+	if not params and self._enemy_table then
+		self._enemy_name = Idstring(table.random(self._enemy_table))
+	end
 end)
 
 local produce_original = ElementSpawnEnemyDummy.produce

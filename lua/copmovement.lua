@@ -16,31 +16,6 @@ function CopMovement:play_redirect(redirect_name, ...)
 	return result
 end
 
--- Fix attention synch not providing the old attention
-function CopMovement:synch_attention(attention)
-	if attention and self._unit:character_damage():dead() then
-		StreamHeist:warn("Attention synch to dead unit")
-	end
-
-	self:_remove_attention_destroy_listener(self._attention)
-	self:_add_attention_destroy_listener(attention)
-
-	if attention and attention.unit and not attention.destroy_listener_key then
-		StreamHeist:warn("Attention synch with invalid data")
-		return self:synch_attention(nil)
-	end
-
-	local old_attention = self._attention
-	self._attention = attention
-	self._action_common_data.attention = attention
-
-	for _, action in ipairs(self._active_actions) do
-		if action and action.on_attention then
-			action:on_attention(attention, old_attention)
-		end
-	end
-end
-
 -- counterstrike stuff
 Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damage_info)
 	local hurt_type = damage_info.result.type

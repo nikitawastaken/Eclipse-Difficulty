@@ -14,9 +14,18 @@ function MedicDamage:verify_heal_requesting_unit(requesting_unit, ...)
 		return false
 	end
 
-	local unit_pos = requesting_unit:movement():m_head_pos()
 	local medic_pos = self._unit:movement():m_head_pos()
-	return not World:raycast("ray", unit_pos, medic_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "report")
+	local slot_mask = managers.slot:get_mask("AI_visibility")
+
+	if not World:raycast("ray", medic_pos, requesting_unit:movement():m_head_pos(), "slot_mask", slot_mask, "ray_type", "ai_vision", "report") then
+		return true
+	end
+
+	if not World:raycast("ray", medic_pos, requesting_unit:movement():m_pos(), "slot_mask", slot_mask, "ray_type", "ai_vision", "report") then
+		return true
+	end
+
+	return false
 end
 
 -- Fix medics healing during full body actions

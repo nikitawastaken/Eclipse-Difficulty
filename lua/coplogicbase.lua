@@ -1,4 +1,3 @@
-local mrot_y = mrotation.y
 local mvec3_add = mvector3.add
 local mvec3_dir = mvector3.direction
 local mvec3_dis_sq = mvector3.distance_sq
@@ -474,4 +473,33 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 	end
 
 	return hold_chance < 1 and hold_chance
+end
+
+-- Change how alert ranges get diminished by walls
+-- The bigger an alert range, the less it gets diminished by being blocked by a wall
+function CopLogicBase._chk_alert_obstructed(listen_pos, alert_data)
+	if not alert_data[3] then
+		return false
+	end
+
+	local alert_epicenter
+	if alert_data[1] == "bullet" then
+		alert_epicenter = tmp_vec1
+		mvector3.step(alert_epicenter, alert_data[2], alert_data[6], 20)
+	else
+		alert_epicenter = alert_data[2]
+	end
+
+	if not World:raycast("ray", listen_pos, alert_epicenter, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision", "report") then
+		return false
+	end
+
+	if alert_data[1] == "footstep" then
+		return true
+	end
+
+	local my_dis_sq = mvec3_dis_sq(listen_pos, alert_epicenter)
+	local effective_dis_sq = (alert_data[3] * math.map_range_clamped(alert_data[3], 0, 10000, 0.75, 1)) ^ 2
+
+	return my_dis_sq > effective_dis_sq
 end
