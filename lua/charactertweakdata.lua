@@ -851,47 +851,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spa_vip.move_speed = self.presets.move_speed.escort_normal
 	self.escort_undercover.move_speed = self.presets.move_speed.escort_slow
 
-	-- apply weapon presets
-	self.security.weapon = self.presets.weapon.base
-	self.cop.weapon = self.presets.weapon.base
-	self.cop_female.weapon = self.presets.weapon.base
-	self.gangster.weapon = self.presets.weapon.base
-	self.biker.weapon = self.presets.weapon.base
-	self.biker_female.weapon = self.presets.weapon.base
-	self.biker_escape.weapon = self.presets.weapon.base
-	self.triad.weapon = self.presets.weapon.base
-	self.mobster.weapon = self.presets.weapon.base
-
-	self.swat.weapon = self.presets.weapon.base
-	self.fbi.weapon = self.presets.weapon.gc
-	self.fbi_swat.weapon = self.presets.weapon.base
-	self.fbi_heavy_swat.weapon = self.presets.weapon.base
-	self.city_swat.weapon = self.presets.weapon.elite
-
-	self.shield.weapon = self.presets.weapon.shield
-	self.taser.weapon = self.presets.weapon.taser
-	self.medic.weapon = self.presets.weapon.gc
-	self.spooc.weapon = self.presets.weapon.elite
-	self.sniper.weapon = self.presets.weapon.sniper
-	self.tank.weapon = self.presets.weapon.tank
-	self.tank_elite.weapon = self.presets.weapon.elite_tank
-	self.phalanx_minion.weapon = self.presets.weapon.elite_shield
-	self.phalanx_minion_break.weapon = self.presets.weapon.elite_shield
-
-	self.biker_boss.weapon = self.presets.weapon.elite_tank
-	self.chavez_boss.weapon = self.presets.weapon.base
-	self.drug_lord_boss.weapon = self.presets.weapon.base
-	self.hector_boss.weapon = self.presets.weapon.tank
-	self.mobster_boss.weapon = self.presets.weapon.elite_tank
-	self.triad_boss.weapon = self.presets.weapon.base
-	self.deep_boss.weapon = self.presets.weapon.elite_tank
-
-	self.zeal_swat.weapon = self.presets.weapon.zeal
-	self.zeal_heavy_swat.weapon = self.presets.weapon.zeal
-	self.zeal_shield.weapon = self.presets.weapon.zeal_shield
-	self.zeal_medic.weapon = self.presets.weapon.zeal
-	self.zeal_taser.weapon = self.presets.weapon.zeal_tazer
-
 	-- Set chatter presets
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 	self.biker.chatter = self.presets.enemy_chatter.gangster
@@ -954,29 +913,6 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_g3/wpn_npc_g3"))
 end)
 
-function CharacterTweakData:_multiply_all_hp(hp_mul, hs_mul)
-	for _, name in pairs(self._enemy_list) do
-		local char_preset = self[name]
-
-		char_preset.BASE_HEALTH_INIT = char_preset.BASE_HEALTH_INIT or char_preset.HEALTH_INIT
-		char_preset.HEALTH_INIT = char_preset.BASE_HEALTH_INIT * hp_mul
-
-		if char_preset.headshot_dmg_mul then
-			char_preset.base_headshot_dmg_mul = char_preset.base_headshot_dmg_mul or char_preset.headshot_dmg_mul
-			char_preset.headshot_dmg_mul = char_preset.base_headshot_dmg_mul * hs_mul
-		end
-
-		-- Remove damage clamps, they are not a fun or intuitive mechanic
-		char_preset.DAMAGE_CLAMP_BULLET = nil
-		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
-
-		-- Set default surrender break time
-		if char_preset.surrender_break_time then
-			char_preset.surrender_break_time = self.presets.base.surrender_break_time
-		end
-	end
-end
-
 -- fixed movement speed difficulty scaling
 -- thanks redflame
 function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
@@ -997,12 +933,60 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	end
 end
 
-local function setup_presets(self)
+CharacterTweakData.tweak_table_presets = {
+	fbi = "gc",
+	city_swat = "elite",
+	shield = "shield",
+	taser = "taser",
+	medic = "gc",
+	spooc = "elite",
+	sniper = "sniper",
+	tank = "tank",
+	tank_elite = "elite_tank",
+	phalanx_minion = "elite_shield",
+	phalanx_minion_break = "elite_shield",
+	biker_boss = "elite_tank",
+	hector_boss = "tank",
+	mobster_boss = "elite_tank",
+	deep_boss = "elite_tank",
+
+	zeal_swat = "zeal",
+	zeal_heavy_swat = "zeal",
+	zeal_shield = "zeal_shield",
+	zeal_medic = "zeal",
+	zeal_taser = "zeal_tazer"
+}
+
+function CharacterTweakData:_set_presets()
 	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 	local is_pro = Global.game_settings and Global.game_settings.one_down
 	local f = ((diff_i ^ 2) / (diff_i * 3))
-	self:_multiply_all_hp(f, 1.75) -- scale all the other enemies
 
+	for _, name in pairs(self._enemy_list) do
+		local char_preset = self[name]
+
+		-- Generic enemy health scaling
+		char_preset.BASE_HEALTH_INIT = char_preset.BASE_HEALTH_INIT or char_preset.HEALTH_INIT
+		char_preset.HEALTH_INIT = char_preset.BASE_HEALTH_INIT * f
+
+		if char_preset.headshot_dmg_mul then
+			char_preset.base_headshot_dmg_mul = char_preset.base_headshot_dmg_mul or char_preset.headshot_dmg_mul
+			char_preset.headshot_dmg_mul = char_preset.base_headshot_dmg_mul * 1.75
+		end
+
+		-- Remove damage clamps, they are not a fun or intuitive mechanic
+		char_preset.DAMAGE_CLAMP_BULLET = nil
+		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
+
+		-- Set default surrender break time
+		if char_preset.surrender_break_time then
+			char_preset.surrender_break_time = self.presets.base.surrender_break_time
+		end
+
+		char_preset.weapon = self.presets.weapon[self.tweak_table_presets[name] or "base"]
+	end
+
+	-- Specific enemy health values
 	-- common swat
 	self.swat.HEALTH_INIT = 30
 	self.swat.headshot_dmg_mul = 2.4 -- 125 head health
@@ -1077,8 +1061,8 @@ local function setup_presets(self)
 	end
 end
 
-CharacterTweakData._set_normal = setup_presets
-CharacterTweakData._set_hard = setup_presets
-CharacterTweakData._set_overkill = setup_presets
-CharacterTweakData._set_overkill_145 = setup_presets
-CharacterTweakData._set_easy_wish = setup_presets
+CharacterTweakData._set_normal = CharacterTweakData._set_presets
+CharacterTweakData._set_hard = CharacterTweakData._set_presets
+CharacterTweakData._set_overkill = CharacterTweakData._set_presets
+CharacterTweakData._set_overkill_145 = CharacterTweakData._set_presets
+CharacterTweakData._set_easy_wish = CharacterTweakData._set_presets
