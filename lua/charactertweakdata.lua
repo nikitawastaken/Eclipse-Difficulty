@@ -954,7 +954,7 @@ CharacterTweakData.tweak_table_presets = {
 	zeal_heavy_swat = "zeal",
 	zeal_shield = "zeal_shield",
 	zeal_medic = "zeal",
-	zeal_taser = "zeal_tazer"
+	zeal_taser = "zeal_tazer",
 }
 
 function CharacterTweakData:_set_presets()
