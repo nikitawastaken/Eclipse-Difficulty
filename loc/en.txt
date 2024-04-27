@@ -81,7 +81,7 @@
 	"menu_eco_sentry_beta": "PhD in Engineering",
 	"menu_eco_sentry_beta_desc": "BASIC: ##$basic##\nYour sentry guns now have an upgraded motion sensor, allowing them to mark all enemies in a ##10m## radius and giving them a ##$multibasic## increase in accuracy.\n\nACE: ##$pro##\nYou can now toggle AP rounds on your sentry guns, lowering the rate of fire by ##$multipro##, but increasing damage by ##$multipro2## and allowing it to pierce through enemies and shields.",
 	"menu_combat_engineering_beta": "Combat Engineer",
-	"st_menu_technician_auto": "Heavy Weapons Guy",
+	"st_menu_technician_auto": "Heavy",
 	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour SMGs, LMGs and Miniguns gain ##$multibasic## stability.\n\nACE: ##$pro##\nYou and your crew's weapon stability is increased by ##$multipro## points."
 	"menu_fast_fire_beta": "Lock N' Load",
 	"menu_fast_fire_beta_desc": "BASIC: ##$basic##\nYou can now hip-fire with your weapons while sprinting.\n\nACE: ##$pro##\nYou no longer have movement speed penalty when wielding Heavy Weaponry.",
