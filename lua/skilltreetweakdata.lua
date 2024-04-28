@@ -288,15 +288,15 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.thick_skin.desc_id = "menu_cleaner_beta_desc"
 
 	-- The Professional
-	self.skills.silence_expert[1].upgrades = { "weapon_silencer_recoil_index_addend" }
-	self.skills.silence_expert[2].upgrades = { "weapon_silencer_enter_steelsight_speed_multiplier", "weapon_silencer_spread_index_addend" }
+	self.skills.silence_expert[1].upgrades = { "weapon_silencer_enter_steelsight_speed_multiplier" }
+	self.skills.silence_expert[2].upgrades = { "player_silencer_concealment_penalty_decrease_1", "player_silencer_concealment_increase_1" }
 
 	-- HVT
 	self.skills.hitman[1].upgrades = { "player_marked_inc_dmg_distance_1" }
 	self.skills.hitman[2].upgrades = { "player_marked_enemy_extra_damage", "player_mark_enemy_time_multiplier" }
 
 	-- Silencer Expert
-	self.skills.backstab[1].upgrades = { "player_silencer_concealment_penalty_decrease_1", "player_silencer_concealment_increase_1" }
+	self.skills.backstab[1].upgrades = { "weapon_silencer_fire_rate_multiplier" }
 	self.skills.backstab[2].upgrades = { "weapon_silencer_damage_multiplier", "weapon_armor_piercing_chance_silencer" }
 	self.skills.backstab.icon_xy = { 5, 9 }
 	self.skills.backstab.name_id = "menu_silenced_damage"

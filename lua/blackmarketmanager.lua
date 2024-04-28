@@ -123,3 +123,19 @@ function BlackMarketManager:accuracy_addend(name, categories, spread_index, sile
 
 	return addend
 end
+
+function BlackMarketManager:fire_rate_multiplier(name, categories, silencer, detection_risk, current_state, blueprint)
+	local multiplier = 1
+	multiplier = multiplier + 1 - managers.player:upgrade_value(name, "fire_rate_multiplier", 1)
+	multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "fire_rate_multiplier", 1)
+
+	if silencer then
+		multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "silencer_fire_rate_multiplier", 1)
+	end
+
+	for _, category in ipairs(categories) do
+		multiplier = multiplier + 1 - managers.player:upgrade_value(category, "fire_rate_multiplier", 1)
+	end
+
+	return self:_convert_add_to_mul(multiplier)
+end

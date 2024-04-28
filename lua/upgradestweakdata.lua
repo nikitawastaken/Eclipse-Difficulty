@@ -728,9 +728,9 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- The Professional
 	self.values.weapon.silencer_enter_steelsight_speed_multiplier[1] = 1.5
-	self.skill_descs.silence_expert.multibasic = "8"
-	self.skill_descs.silence_expert.multipro = "12"
-	self.skill_descs.silence_expert.multipro2 = "50%"
+	self.skill_descs.silence_expert.multibasic = "50%"
+	self.skill_descs.silence_expert.multipro = "1"
+	self.skill_descs.silence_expert.multipro2 = "2"
 
 	-- HVT
 	self.values.player.marked_inc_dmg_distance[1][2] = 1.2
@@ -759,9 +759,18 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
+	self.definitions.weapon_silencer_fire_rate_multiplier = {
+		category = "feature",
+		name_id = "silencer_fire_rate_multiplier",
+		upgrade = {
+			category = "weapon",
+			upgrade = "silencer_fire_rate_multiplier",
+			value = 1,
+		},
+	}
+	self.values.weapon.silencer_fire_rate_multiplier = { 1.15 }
 	self.values.weapon.armor_piercing_chance_silencer[1] = 0.5
-	self.skill_descs.backstab.multibasic = "1"
-	self.skill_descs.backstab.multibasic2 = "2"
+	self.skill_descs.backstab.multibasic = "15%"
 	self.skill_descs.backstab.multipro = "15%"
 	self.skill_descs.backstab.multipro2 = "50%"
 
