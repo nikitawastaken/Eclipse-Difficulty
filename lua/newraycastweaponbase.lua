@@ -79,7 +79,10 @@ function NewRaycastWeaponBase:fire(...)
 		self:_fire_sound()
 	end
 
-	self._shots_fired_consecutively = self._shots_fired_consecutively + 1
+	local is_player = self._setup.user_unit == managers.player:player_unit()
+	if is_player then
+		self._shots_fired_consecutively = self._shots_fired_consecutively + 1
+	end
 
 	return ray_res
 end
