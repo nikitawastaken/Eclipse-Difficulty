@@ -322,7 +322,29 @@ function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, t
 	end
 end
 
--- disable ai trades when all players are in custody, if you fucked up - you fucked up
+-- disable ai trades when all players are in custody on pro jobs, if you fucked up - you fucked up
 function GroupAIStateBase:is_ai_trade_possible()
-	return false
+	if managers.groupai:state():whisper_mode() then
+		return false
+	end
+
+	if next(self._player_criminals) then
+		return false
+	end
+
+	local is_pro = Global.game_settings and Global.game_settings.one_down
+	if is_pro then
+		return false
+	end
+
+	local ai_disabled = true
+	for u_key, u_data in pairs(self._ai_criminals) do
+		if u_data.status ~= "dead" and u_data.status ~= "disabled" then
+			ai_disabled = false
+
+			break
+		end
+	end
+
+	return not ai_disabled and (self._hostage_headcount > 0 or next(self._converted_police) or managers.trade:is_trading())
 end
