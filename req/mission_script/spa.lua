@@ -11,47 +11,95 @@ return {
 			enabled = false
 		}
 	},
-	-- Slow down window spawns
-	[100750] = {
-		values = {
-			interval = 20
-		}
-	},
-	[101012] = {
-		values = {
-			interval = 20
-		}
-	},
-	[102138] = {
-		values = {
-			interval = 20
-		}
-	},
-	[104338] = {
-		values = {
-			interval = 20
-		}
-	},
-	-- slow down repel spawns at the start
+	-- Slow down all spawnpoints cause this is a very cramped map
 	[107261] = {
 		values = {
-			interval = 20
+			interval = 30
 		}
 	},
 	[107260] = {
 		values = {
-			interval = 20
+			interval = 30
 		}
 	},
-	-- slow down repel spawns at the end
-	[104347] = {
+	[102664] = {
 		values = {
 			interval = 20
+		},
+	},
+	[102668] = {
+		values = {
+			interval = 20
+		},
+	},
+	[102667] = {
+		values = {
+			interval = 20
+		},
+	},
+	[107262] = {
+		values = {
+			interval = 20
+		},
+	},
+	[107263] = {
+		values = {
+			interval = 20
+		},
+	},
+	[104472] = {
+		values = {
+			interval = 20
+		},
+	},
+	[104347] = {
+		values = {
+			interval = 30
 		}
 	},
 	[102151] = {
 		values = {
+			interval = 30
+		}
+	},
+	[102140] = {
+		values = {
 			interval = 20
+		}
+	},
+	[102139] = {
+		values = {
+			interval = 20
+		}
+	},
+	[104336] = {
+		values = {
+			interval = 20
+		}
+	},
+	[104337] = {
+		values = {
+			interval = 20
+		}
+	},
+	[100750] = {
+		values = {
+			interval = 30
+		}
+	},
+	[101012] = {
+		values = {
+			interval = 30
+		}
+	},
+	[102138] = {
+		values = {
+			interval = 30
+		}
+	},
+	[104338] = {
+		values = {
+			interval = 30
 		}
 	},
 }
