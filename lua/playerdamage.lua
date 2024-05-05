@@ -287,13 +287,19 @@ end
 
 -- Make <50%hp invuln upgrade not proc on armor hits
 function PlayerDamage:_calc_health_damage(attack_data)
+	-- damage tagging, worth the experiment i think
 	if attack_data.weapon_unit then
-		local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
-		local weap_tweak_data = weap_base and weap_base.weapon_tweak_data and weap_base:weapon_tweak_data()
+		local slowdown_data = {
+			max_mul = 0.2 * managers.player:body_armor_value("damage_tagged"),
+			add_mul = math.min(0.07, 0.0015 * attack_data.damage) / managers.player:body_armor_value("damage_tagged"),
+			decay_time = math.min(1.5, 0.01 * attack_data.damage),
+			id = "snowthrower_cold",
+			duration = 2,
+			mul = math.min(0.7, 60 / attack_data.damage) * managers.player:body_armor_value("damage_tagged"),
+			prevents_running = false
+		}
 
-		if weap_tweak_data and weap_tweak_data.slowdown_data then
-			self:apply_slowdown(weap_tweak_data.slowdown_data)
-		end
+		self:apply_slowdown(slowdown_data)
 	end
 
 	if managers.player:has_activate_temporary_upgrade("temporary", "mrwi_health_invulnerable") then
