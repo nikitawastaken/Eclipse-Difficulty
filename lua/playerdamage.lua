@@ -296,7 +296,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 			id = "snowthrower_cold",
 			duration = 2,
 			mul = math.min(0.7, 60 / attack_data.damage) * managers.player:body_armor_value("damage_tagged"),
-			prevents_running = false
+			prevents_running = false,
 		}
 
 		self:apply_slowdown(slowdown_data)
