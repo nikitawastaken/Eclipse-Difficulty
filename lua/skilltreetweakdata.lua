@@ -33,7 +33,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.fast_learner[2].upgrades = { "team_stamina_multiplier" }
 	self.skills.fast_learner.name_id = "menu_company_soul"
 	self.skills.fast_learner.desc_id = "menu_company_soul_desc"
-	self.skills.fast_learner.icon_xy = { 5, 2 }
+	self.skills.fast_learner.icon_xy = { 0, 0 }
 
 	-- Combat Doctor
 	self.skills.tea_cookies[1].upgrades = { "temporary_revive_damage_reduction_1", "player_revive_damage_reduction_1" }
@@ -140,7 +140,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.pack_mule.desc_id = "menu_underdog_beta_desc"
 
 	-- Shock and Awe
-	self.skills.iron_man[2].upgrades = {}
+	self.skills.iron_man[1].upgrades = { "carry_movement_penalty_nullifier", "carry_movement_speed_multiplier" }
+	self.skills.iron_man[2].upgrades = { "player_tagged_speed_mul" }
+	self.skills.iron_man.icon_xy = { 6, 0 }
 
 	-- Iron Man
 	self.skills.juggernaut[1].upgrades = { "player_shield_knock" }
@@ -163,9 +165,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- TECHNICIAN --
 
 	-- Transporter
-	self.skills.defense_up[1].upgrades = { "carry_movement_speed_multiplier" }
+	self.skills.defense_up[1].upgrades = {  }
 	self.skills.defense_up[2].upgrades = { "carry_throw_distance_multiplier" }
-	self.skills.defense_up.icon_xy = { 6, 0 }
+	self.skills.defense_up.icon_xy = { 0, 0 }
 
 	-- Daredevil
 	self.skills.sentry_targeting_package[1].upgrades = { "player_interacting_damage_multiplier" }

@@ -65,13 +65,14 @@
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nWhen you melee shield enemies, they get knocked back by the sheer force.\n\nYour ranged weapons have a chance of knocking down shields as well. Knock back chance scales with the total damage of the used weapon.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
 	"menu_show_of_force_beta": "Thick Skin",
 	"menu_show_of_force_beta_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nIncreases the armor of all ballistic vests by ##$multipro2##.",
-	"menu_iron_man_beta_desc": "BASIC: ##$basic##\nIncreases the armor recovery rate for you and your crew by ##$multibasic2##.\n\nACE: ##$pro##\nW.I.P.",
+	"menu_iron_man_beta": "Combat Courier",
+	"menu_iron_man_beta_desc": "BASIC: ##$basic##\nYou move ##$multibasic## faster when carrying bags.\n\nYou can now sprint with all bags.\n\nACE: ##$pro##\nMovement speed penalty from getting hit is reduced by ##$multipro##.",
 	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote: Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nThe heavier your armor, the more total ammo you get.\n\nThe total capacity increase scales up to ##$multibasic## with Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
 
 
 	"menu_defense_up_beta": "Transporter",
-	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou move ##$multibasic## faster when carrying bags.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",
+	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nW.I.P\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",
 	"menu_sentry_targeting_package_beta": "Daredevil",
 	"menu_sentry_targeting_package_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou can now reload your weapons while sprinting.",
 	"menu_engineering_beta": "Defense Package",

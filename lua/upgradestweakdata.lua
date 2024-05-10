@@ -421,8 +421,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.show_of_force.multibasic = "15"
 
 	-- Shock and Awe
-	self.values.team.armor.regen_time_multiplier[1] = 0.9
-	self.skill_descs.iron_man.multibasic2 = "10%"
+	self.values.player.tagged_speed_mul = { 0.5 }
+	self.definitions.player_tagged_speed_mul = {
+		name_id = "menu_player_tagged_speed_mul",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "tagged_speed_mul",
+			category = "player",
+		},
+	}
+	self.skill_descs.iron_man.multibasic = "50%"
+	self.skill_descs.iron_man.multipro = "50%"
 
 	-- Bullseye
 	self.values.player.headshot_regen_armor_bonus[2] = 4.5
