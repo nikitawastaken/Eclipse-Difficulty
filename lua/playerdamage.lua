@@ -298,7 +298,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 			id = "snowthrower_cold",
 			duration = 2,
 			mul = math.clamp(math.min(0.7, 60 / attack_data.damage) * armor_value_tagged / skill_value_tagged, 0, 1),
-			prevents_running = false
+			prevents_running = false,
 		}
 
 		self:apply_slowdown(slowdown_data)

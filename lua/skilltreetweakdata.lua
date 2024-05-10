@@ -165,7 +165,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- TECHNICIAN --
 
 	-- Transporter
-	self.skills.defense_up[1].upgrades = {  }
+	self.skills.defense_up[1].upgrades = {}
 	self.skills.defense_up[2].upgrades = { "carry_throw_distance_multiplier" }
 	self.skills.defense_up.icon_xy = { 0, 0 }
 

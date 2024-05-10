@@ -10,8 +10,8 @@ function PlayerCarry:_get_max_walk_speed(...)
 	--[[ if managers.player:has_category_upgrade("carry", "movement_penalty_nullifier") then
 		multiplier = 1
 	else ]]
-		multiplier = math.clamp(multiplier * managers.player:upgrade_value("carry", "movement_speed_multiplier", 1), 0, 1)
-		multiplier = math.clamp(multiplier * managers.player:upgrade_value("player", "mrwi_carry_speed_multiplier", 1), 0, 1)
+	multiplier = math.clamp(multiplier * managers.player:upgrade_value("carry", "movement_speed_multiplier", 1), 0, 1)
+	multiplier = math.clamp(multiplier * managers.player:upgrade_value("player", "mrwi_carry_speed_multiplier", 1), 0, 1)
 	-- end
 
 	if managers.player:has_category_upgrade("player", "armor_carry_bonus") then
