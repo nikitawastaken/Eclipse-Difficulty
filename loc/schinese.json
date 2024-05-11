@@ -104,7 +104,7 @@
 	"menu_insulation_beta_desc": "基础: ##$basic##\n你在被电击的时候电击效果减弱##$multibasic##。\n\n你在被电击的时候不再会随机的扣动扳机了。\n\n精通: ##$pro##\n你在被电击的##$multipro2##秒内可以通过互动从电击中解救自己。",
 	"st_menu_ghost_silencer": "暗杀系",
 	"menu_scavenger_beta": "突击适应",
-	"menu_scavenger_beta_desc": "基础: ##$basic##\n你获得##$multibasic##的暴击概率。\n暴击时造成##$multibasic2##的伤害。\n\nACE: ##$pro##\n当你破甲后，你对所有敌人造成的第一击会直接击退敌人。\n\n这个效果持续到你护甲回复后的##$multipro##秒。",
+	"menu_scavenger_beta_desc": "基础: ##$basic##\n你获得##$multibasic##的暴击概率。\n暴击时造成##$multibasic2##的伤害。\n\n精通: ##$pro##\n当你破甲后，你对所有敌人造成的第一击会直接击退敌人。\n\n这个效果持续到你护甲回复后的##$multipro##秒。",
 	"menu_silenced_damage": "沉默杀手",
 	"menu_silenced_damage_desc": "基础: ##$basic##\n你的消音武器增加##$multibasic##的开火速度。\n\n精通: ##$pro##\n你的消音武器对敌人造成额外的##$multipro##伤害并且有##$multipro2##的概率穿甲。",
 	"menu_silence_expert_beta_desc": "基础: ##$basic##\n你的消音武器开镜的速度增加。\n\n精通: ##$pro##\n你每装备一把消音武器就会获得##$multipro##点隐秘度。所有消音器的隐秘度惩罚降低##$multipro2##点。",
