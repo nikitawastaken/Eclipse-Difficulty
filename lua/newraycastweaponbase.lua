@@ -120,9 +120,7 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	local current_state = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state
 	if current_state then
 		if current_state:in_steelsight() then
-			for _, category in ipairs(self:weapon_tweak_data().categories) do
-				multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_recoil_multiplier", 1)
-			end
+			multiplier = multiplier * managers.player:upgrade_value("weapon", "steelsight_recoil_multiplier", 1)
 		else
 			for _, category in ipairs(self:weapon_tweak_data().categories) do
 				multiplier = multiplier
