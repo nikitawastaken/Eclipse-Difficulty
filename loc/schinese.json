@@ -63,6 +63,7 @@
 	"menu_juggernaut_beta_desc": "基础: ##$basic##\n你的近战攻击会击倒盾兵。\n\n你的远程武器也有概率击倒盾兵，概率随着武器造成的伤害成正比。\n\n精通: ##$pro##\n你现在可以穿戴##改良型复合战术背心(ICTV)##。",
 	"menu_show_of_force_beta": "皮糙肉厚",
 	"menu_show_of_force_beta_desc": "基础: ##$basic##\n你的坚韧值增加##$multibasic##。\n坚韧值越高、受击抖动越轻。\n\n精通: ##$pro##\n所有的防弹背心护甲值增加##$multipro2##。",
+	"menu_iron_man_beta": "血腥信使",
 	"menu_iron_man_beta_desc": "基础: ##$basic##\n你背着包的时候的移速加快##$multibasic##。\n\n你现在背所有类型的包的时候都可以跑步了。\n\nACE: ##$pro##\n受击减速的效果降低##$multipro##。",
 	"menu_scavenging_beta_desc": "基础: ##$basic##\n子弹盒拾取范围增加##$multibasic##。\n\n注意：不与赌徒天赋叠加。\n\n精通: ##$pro##\n每击杀##6##个敌人就会额外掉落一个弹药盒。",
 	"menu_bandoliers_beta_desc": "基础: ##$basic##\n你的护甲越重，总弹量越多。\n最多在穿着改良型复合战术背心时增加##$multibasic##。\n\n精通: ##$pro##\n你的总弹量额外增加##$multipro##。",
@@ -81,7 +82,7 @@
 	"menu_combat_engineering_beta": "战斗技师",
 	"st_menu_technician_auto": "重武系",
 
-	"menu_steady_grip_beta_desc": "基础: ##$basic##\n你的冲锋枪，轻机枪和minigun获得##$multibasic##点稳定度。\n\n精通: ##$pro##\n你和你队友的武器稳定度增加##$multipro##点。"
+	"menu_steady_grip_beta_desc": "基础: ##$basic##\n你的冲锋枪，轻机枪和转轮机枪获得##$multibasic##点稳定度。\n\n精通: ##$pro##\n你和你队友的武器稳定度增加##$multipro##点。"
 	"menu_fast_fire_beta": "万全之策",
 	"menu_fast_fire_beta_desc": "基础: ##$basic##\n你跑步的时候可以腰射。\n\n精通: ##$pro##\n你持有重型武器时不再有移动惩罚了。",
 	"menu_body_expertise_beta_desc": "基础: ##$basic##\n你在手持重武器时不再受到移速惩罚。\n\n精通: ##$pro##\n你对敌人身体造成的伤害永久额外获得敌人爆头伤害的##$multipro##。该技能只能被minigun，轻机枪和全自动模式下的冲锋枪触发。",
