@@ -4,16 +4,15 @@ if diff_i == 6 then
 	SniperInterval = 15
 end
 return {
-	-- Increase spawn delays on snipers
-	[100319] = {
-		values = {
-			interval = SniperInterval
-		}
+	[100082] = {  -- prevent sniper respawn delays becoming ridiculously small as more assaults pass
+		on_executed = {
+			{ id = 100321, remove = true, },
+		},
 	},
-	[100320] = {
-		values = {
-			interval = SniperInterval
-		}
+	[100446] = {
+		on_executed = {
+			{ id = 100321, delay = 0, },
+		},
 	},
 	[104782] = {
 		ponr = {

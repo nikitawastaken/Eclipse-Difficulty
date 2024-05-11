@@ -1,3 +1,11 @@
+-- Fix civilians not following once they stopped
+Hooks:PostHook(CivilianLogicSurrender, "enter", "sh_enter", function(data)
+	if data.name == "surrender" and data.objective and data.objective.type == "follow" and not data.internal_data.surrender_clbk_registered then
+		managers.groupai:state():add_to_surrendered(data.unit, callback(CivilianLogicSurrender, CivilianLogicSurrender, "queued_update", data))
+		data.internal_data.surrender_clbk_registered = true
+	end
+end)
+
 -- Make civilians get down more consistently
 -- If we have shouted at them and that shout would intimidate but not make them drop, run the function again after a short delay
 Hooks:PostHook(CivilianLogicSurrender, "_delayed_intimidate_clbk", "sh__delayed_intimidate_clbk", function(ignore_this, params)

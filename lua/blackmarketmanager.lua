@@ -77,3 +77,65 @@ Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", 
 
 	return dmg, dmg_effect
 end)
+
+function BlackMarketManager:accuracy_addend(name, categories, spread_index, silencer, current_state, fire_mode, blueprint, is_moving, is_single_shot)
+	local addend = 0
+
+	if spread_index then
+		local index = spread_index
+		index = index + managers.player:upgrade_value("player", "weapon_accuracy_increase", 0)
+
+		for _, category in ipairs(categories) do
+			index = index + managers.player:upgrade_value(category, "spread_index_addend", 0)
+
+			if current_state and current_state._moving then
+				index = index + managers.player:upgrade_value(category, "move_spread_index_addend", 0)
+			end
+		end
+
+		if managers.player:has_team_category_upgrade("weapon", "spread_index_addend") then
+			index = index + managers.player:team_upgrade_value("weapon", "spread_index_addend", 0)
+		end
+
+		if silencer then
+			index = index + managers.player:upgrade_value("weapon", "silencer_spread_index_addend", 0)
+
+			for _, category in ipairs(categories) do
+				index = index + managers.player:upgrade_value(category, "silencer_spread_index_addend", 0)
+			end
+		end
+
+		if fire_mode == "single" and table.contains_any(tweak_data.upgrades.sharpshooter_categories, categories) then
+			index = index + managers.player:upgrade_value("weapon", "single_spread_index_addend", 0)
+		elseif fire_mode == "auto" then
+			index = index + managers.player:upgrade_value("weapon", "auto_spread_index_addend", 0)
+		end
+
+		local spread_tweak = tweak_data.weapon.stats.spread
+		index = math.clamp(index, 1, #spread_tweak)
+		spread_index = math.clamp(spread_index, 1, #spread_tweak)
+
+		if index ~= spread_index then
+			local diff = spread_tweak[index] - spread_tweak[spread_index]
+			addend = addend + diff
+		end
+	end
+
+	return addend
+end
+
+function BlackMarketManager:fire_rate_multiplier(name, categories, silencer, detection_risk, current_state, blueprint)
+	local multiplier = 1
+	multiplier = multiplier + 1 - managers.player:upgrade_value(name, "fire_rate_multiplier", 1)
+	multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "fire_rate_multiplier", 1)
+
+	if silencer then
+		multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "silencer_fire_rate_multiplier", 1)
+	end
+
+	for _, category in ipairs(categories) do
+		multiplier = multiplier + 1 - managers.player:upgrade_value(category, "fire_rate_multiplier", 1)
+	end
+
+	return self:_convert_add_to_mul(multiplier)
+end

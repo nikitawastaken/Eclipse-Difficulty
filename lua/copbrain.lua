@@ -35,6 +35,7 @@ end
 -- Set Joker owner to keep follow objective correct
 Hooks:PreHook(CopBrain, "convert_to_criminal", "sh_convert_to_criminal", function(self, mastermind_criminal)
 	self._logic_data.minion_owner = mastermind_criminal or managers.player:local_player()
+	self._logic_data.combat_chatter_cooldown_t = self._logic_data.t + math.rand(30, 90)
 end)
 
 -- Make surrender window slightly shorter and less random
@@ -67,6 +68,13 @@ end)
 -- Handle suppressed chatter in logic
 Hooks:OverrideFunction(CopBrain, "on_suppressed", function(self, state)
 	self._logic_data.is_suppressed = state or nil
+
+	if state == "panic" then
+		self._unit:sound():say(math.random() < 0.5 and "lk3a" or "lk3b", true)
+	elseif state and self._logic_data.char_tweak.chatter and self._logic_data.char_tweak.chatter.suppress then
+		managers.groupai:state():chk_say_enemy_chatter(self._unit, self._logic_data.m_pos, "suppress")
+	end
+
 	if self._current_logic.on_suppressed_state then
 		self._current_logic.on_suppressed_state(self._logic_data)
 	end

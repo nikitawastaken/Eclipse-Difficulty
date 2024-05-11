@@ -116,9 +116,7 @@ Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(sh
 	if not chatter then
 		return
 	elseif data.unit:in_slot(16) then
-		if not data.combat_chatter_cooldown_t then
-			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
-		elseif aim and is_off_cooldown and chatter.aggressive and not data.unit:sound():speaking(data.t) then
+		if aim and is_off_cooldown and chatter.aggressive and not data.unit:sound():speaking(data.t) then
 			data.unit:sound():say(shoot and "lk3a" or "lk3b", true)
 			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
 		end
@@ -130,13 +128,6 @@ Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(sh
 		if CopLogicAttack._chk_say_chatter(data, "aggressive") then
 			data.combat_chatter_cooldown_t = data.t + math.rand(10, 20)
 		end
-	end
-end)
-
--- Make suppressed chatter less frequent
-Hooks:PostHook(CopLogicAttack, "on_suppressed_state", "sh_on_suppressed_state", function(data)
-	if data.is_suppressed and data.char_tweak.chatter and data.char_tweak.chatter.suppress then
-		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "suppress")
 	end
 end)
 

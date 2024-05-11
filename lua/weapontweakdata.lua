@@ -1709,6 +1709,24 @@ self.system.stats.damage = 25
 self.system.AMMO_PICKUP = {2.65, 3.5}
 
 
+-- Generic weapon stat changes (SHC)
+for weap_id, weap_data in pairs(self) do
+	if type(weap_data) == "table" and weap_data.stats then
+
+		-- Fix ADS spread values, basically swap around crouching and ADS spread
+		-- Increase moving spread
+		if weap_data.spread then
+			weap_data.spread.standing = 3
+			weap_data.spread.crouching = 2.5
+			weap_data.spread.steelsight = 2
+			weap_data.spread.moving_standing = weap_data.spread.standing * 1.33
+			weap_data.spread.moving_crouching = weap_data.spread.crouching * 1.33
+			weap_data.spread.moving_steelsight = weap_data.spread.steelsight * 1.33
+			weap_data.spread.bipod = weap_data.spread.standing * 0.5
+		end
+	end
+end
+
 -- removed shit
 self.x_akmsu.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY
 self.x_sr2.use_data.selection_index = SELECTION.UNDERBARREL_PRIMARY

@@ -47,8 +47,19 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		-0.55,
 	}
 
+	-- movement tagging
+	self.values.player.body_armor.damage_tagged = {
+		0.75,
+		0.8125,
+		0.875,
+		0.9375,
+		1,
+		1.0625,
+		1.125,
+	}
+
 	-- ictv nerf
-	self.values.player.body_armor.armor[7] = 13
+	self.values.player.body_armor.armor[7] = 18
 
 	-- bullseye nerf
 	self.on_headshot_dealt_cooldown = 5
@@ -191,9 +202,62 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.black_marketeer.multibasic3 = "5"
 	self.skill_descs.black_marketeer.multipro = "12"
 
-	-- Lock N' Load
-	self.values.weapon.swap_speed_multiplier = { 1.25 }
-	self.skill_descs.rifleman.multibasic2 = "25%"
+	-- Stable Shot
+	self.definitions.assault_rifle_spread_index_addend = {
+		name_id = "menu_assault_rifle_spread_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spread_index_addend",
+			category = "assault_rifle",
+		},
+	}
+	self.values.assault_rifle.spread_index_addend = { 1 }
+
+	self.definitions.snp_spread_index_addend = {
+		name_id = "menu_snp_spread_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spread_index_addend",
+			category = "snp",
+		},
+	}
+	self.values.snp.spread_index_addend = { 1 }
+
+	self.definitions.team_weapon_spread_index_addend = {
+		name_id = "menu_team_weapon_spread_index_addend",
+		category = "team",
+		upgrade = {
+			value = 1,
+			upgrade = "spread_index_addend",
+			category = "weapon",
+		},
+	}
+	self.values.team.weapon.spread_index_addend = { 1 }
+	self.skill_descs.stable_shot.multibasic = "4"
+	self.skill_descs.stable_shot.multipro = "4"
+
+	-- Rifleman
+	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.5
+	self.values.weapon.swap_speed_multiplier = { 1.33 }
+	self.skill_descs.rifleman.multibasic = "50%"
+	self.skill_descs.rifleman.multipro = "33%"
+
+	-- Marksman
+	self.values.player.not_moving_accuracy_increase[1] = 3
+	self.values.weapon.steelsight_recoil_multiplier = { 0.9 }
+	self.definitions.weapon_steelsight_recoil_multiplier = {
+		name_id = "menu_weapon_steelsight_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "steelsight_recoil_multiplier",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.sharpshooter.multibasic = "10%"
+	self.skill_descs.sharpshooter.multipro = "12"
 
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = { 1.25 }
@@ -204,7 +268,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.speedy_reload.multipro = "40%"
 	self.skill_descs.speedy_reload.multipro2 = "6"
 
-	-- Mind Blown
+	-- Deadeye
 	self.values.weapon.magnetizing_bullets = { true }
 	self.definitions.weapon_magnetizing_bullets = {
 		name_id = "menu_weapon_magnetizing_bullets",
@@ -226,19 +290,6 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-
-	self.values.snp.graze_damage = {
-		{
-			radius = 200,
-			damage_factor = 0.5,
-			damage_factor_headshot = 0.5,
-		},
-		{
-			radius = 300,
-			damage_factor = 0.5,
-			damage_factor_headshot = 1,
-		},
-	}
 	self.skill_descs.single_shot_ammo_return.multibasic = "60%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "2m"
 	self.skill_descs.single_shot_ammo_return.multipro = "3m"
@@ -247,7 +298,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Enforcer --
 
 	-- Hard Boiled
-	self.values.shotgun.swap_speed_multiplier = { 1.25 }
+	self.values.shotgun.swap_speed_multiplier = { 1.2 }
 	self.definitions.shotgun_swap_speed_multiplier = {
 		name_id = "menu_shotgun_swap_speed_multiplier",
 		category = "feature",
@@ -258,7 +309,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.underdog.multibasic = "5%"
-	self.skill_descs.underdog.multipro = "25%"
+	self.skill_descs.underdog.multipro = "20%"
 
 	-- Fast Hands
 	self.values.shotgun.pump_reload_speed = { 1.25, 1.5 }
@@ -370,8 +421,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.show_of_force.multibasic = "15"
 
 	-- Shock and Awe
-	self.values.team.armor.regen_time_multiplier[1] = 0.9
-	self.skill_descs.iron_man.multibasic2 = "10%"
+	self.values.player.tagged_speed_mul = { 0.5 }
+	self.definitions.player_tagged_speed_mul = {
+		name_id = "menu_player_tagged_speed_mul",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "tagged_speed_mul",
+			category = "player",
+		},
+	}
+	self.skill_descs.iron_man.multibasic = "50%"
+	self.skill_descs.iron_man.multipro = "50%"
 
 	-- Bullseye
 	self.values.player.headshot_regen_armor_bonus[2] = 4.5
@@ -458,8 +519,34 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fire_trap.multibasic = "20"
 	self.skill_descs.fire_trap.multipro = "20"
 
-	-- Oppressor
+	-- Steady Grip
+	self.definitions.smg_recoil_index_addend = {
+		name_id = "menu_smg_recoil_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "recoil_index_addend",
+			category = "smg",
+		},
+	}
+	self.values.smg.recoil_index_addend = { 1 }
 
+	self.definitions.minigun_recoil_index_addend = {
+		name_id = "menu_smg_recoil_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "recoil_index_addend",
+			category = "minigun",
+		},
+	}
+	self.values.minigun.recoil_index_addend = { 1 }
+	self.values.team.weapon.recoil_index_addend[1] = 1
+	self.values.team.weapon.suppression_recoil_index_addend[1] = 1
+	self.skill_descs.steady_grip.multibasic = "4"
+	self.skill_descs.steady_grip.multipro = "4"
+
+	-- Oppressor
 	self.definitions.player_suppression_bonus_2 = {
 		name_id = "menu_player_suppression_bonus",
 		category = "feature",
@@ -472,6 +559,49 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.suppression_multiplier = { 1.15, 1.45 }
 	self.skill_descs.heavy_impact.multibasic = "15%"
 	self.skill_descs.heavy_impact.multipro = "30%"
+
+	-- Fire Control
+	self.definitions.minigun_spray_recoil_multiplier = {
+		name_id = "menu_minigun_spray_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_recoil_multiplier",
+			category = "minigun",
+		},
+	}
+	self.values.minigun.spray_recoil_multiplier = {
+		0.005,
+	}
+	self.definitions.lmg_spray_recoil_multiplier = {
+		name_id = "menu_lmg_spray_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_recoil_multiplier",
+			category = "lmg",
+		},
+	}
+	self.values.lmg.spray_recoil_multiplier = {
+		0.01,
+	}
+	self.definitions.smg_spray_recoil_multiplier = {
+		name_id = "menu_smg_spray_recoil_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spray_recoil_multiplier",
+			category = "smg",
+		},
+	}
+	self.values.smg.spray_recoil_multiplier = {
+		0.015,
+	}
+
+	self.values.player.weapon_movement_stability[1] = 0.9
+	self.max_spray_recoil_reduction = 0.5
+	self.skill_descs.fire_control.multibasic = "10%"
+	self.skill_descs.fire_control.multipro = "50%"
 
 	-- Sleight of Hand
 	self.values.lmg.reload_speed_multiplier = { 1.2 }
@@ -608,6 +738,7 @@ function UpgradesTweakData:init(tweak_data)
 		3,
 	}
 	self.skill_descs.scavenger.multibasic = "5%"
+	self.skill_descs.scavenger.multibasic2 = "200%"
 	self.skill_descs.scavenger.multipro = "3"
 
 	-- Eagle Eye
@@ -617,9 +748,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.thick_skin.multipro = "4"
 
 	-- The Professional
-	self.skill_descs.silence_expert.multibasic = "8"
-	self.skill_descs.silence_expert.multipro = "12"
-	self.skill_descs.silence_expert.multipro2 = "100%"
+	self.values.weapon.silencer_enter_steelsight_speed_multiplier[1] = 1.5
+	self.skill_descs.silence_expert.multibasic = "50%"
+	self.skill_descs.silence_expert.multipro = "1"
+	self.skill_descs.silence_expert.multipro2 = "2"
 
 	-- HVT
 	self.values.player.marked_inc_dmg_distance[1][2] = 1.2
@@ -648,9 +780,18 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
+	self.definitions.weapon_silencer_fire_rate_multiplier = {
+		category = "feature",
+		name_id = "silencer_fire_rate_multiplier",
+		upgrade = {
+			category = "weapon",
+			upgrade = "silencer_fire_rate_multiplier",
+			value = 1,
+		},
+	}
+	self.values.weapon.silencer_fire_rate_multiplier = { 1.15 }
 	self.values.weapon.armor_piercing_chance_silencer[1] = 0.5
-	self.skill_descs.backstab.multibasic = "1"
-	self.skill_descs.backstab.multibasic2 = "2"
+	self.skill_descs.backstab.multibasic = "15%"
 	self.skill_descs.backstab.multipro = "15%"
 	self.skill_descs.backstab.multipro2 = "50%"
 
@@ -673,7 +814,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.unseen_strike.multibasic2 = "2"
 	self.skill_descs.unseen_strike.multibasic3 = "35"
 	self.skill_descs.unseen_strike.multibasic4 = "30%"
-	self.skill_descs.unseen_strike.multibasic5 = "200%"
 	self.skill_descs.unseen_strike.multipro = "3%"
 	self.skill_descs.unseen_strike.multipro2 = "1"
 	self.skill_descs.unseen_strike.multipro3 = "100%"

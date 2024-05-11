@@ -600,6 +600,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 	}
 
+	presets.base.surrender_break_time = { 10, 15 }
+
 	-- Enemy chatter
 	presets.enemy_chatter.cop.aggressive = true
 	presets.enemy_chatter.cop.go_go = true
@@ -646,8 +648,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- Common SWAT
 	self.fbi_swat.move_speed = self.presets.move_speed.fast
 	self.fbi_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
+
 	self.fbi_heavy_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.fbi_heavy_swat.move_speed = self.presets.move_speed.normal
+
+	self.city_swat.move_speed = self.presets.move_speed.fast
 	self.city_swat.suppression = { panic_chance_mul = 0.15, duration = { 1.5, 2 }, react_point = { 2, 5 }, brown_point = { 5, 6 } }
 
 	-- Specials
@@ -676,6 +682,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "tank_elite")
 
 	-- taser & medic
+	self.taser.move_speed = self.presets.move_speed.normal
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
@@ -691,7 +698,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
 	self.phalanx_minion_break.tags = { "law", "shield" }
-	self.phalanx_minion_break.move_speed = self.presets.move_speed.very_fast
+	self.phalanx_minion_break.move_speed = self.presets.move_speed.fast
 	self.phalanx_minion_break.allowed_stances = nil
 	self.phalanx_minion_break.allowed_poses = nil
 	self.phalanx_minion_break.no_equip_anim = nil
@@ -725,13 +732,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_swat.dodge = self.presets.dodge.ninja
 	self.zeal_swat.suppression = nil
 	self.zeal_swat.speech_prefix_p2 = "d"
+	self.zeal_swat.move_speed = self.presets.move_speed.very_fast
 	self.zeal_swat.damage.explosion_damage_mul = 0.8
 	table.insert(self._enemy_list, "zeal_swat")
 
 	self.zeal_heavy_swat = deep_clone(self.city_swat)
 	self.zeal_heavy_swat.suppression = nil
 	self.zeal_heavy_swat.speech_prefix_p2 = "d"
-	self.zeal_heavy_swat.move_speed = self.presets.move_speed.fast
 	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
@@ -849,47 +856,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spa_vip.move_speed = self.presets.move_speed.escort_normal
 	self.escort_undercover.move_speed = self.presets.move_speed.escort_slow
 
-	-- apply weapon presets
-	self.security.weapon = self.presets.weapon.base
-	self.cop.weapon = self.presets.weapon.base
-	self.cop_female.weapon = self.presets.weapon.base
-	self.gangster.weapon = self.presets.weapon.base
-	self.biker.weapon = self.presets.weapon.base
-	self.biker_female.weapon = self.presets.weapon.base
-	self.biker_escape.weapon = self.presets.weapon.base
-	self.triad.weapon = self.presets.weapon.base
-	self.mobster.weapon = self.presets.weapon.base
-
-	self.swat.weapon = self.presets.weapon.base
-	self.fbi.weapon = self.presets.weapon.gc
-	self.fbi_swat.weapon = self.presets.weapon.base
-	self.fbi_heavy_swat.weapon = self.presets.weapon.base
-	self.city_swat.weapon = self.presets.weapon.elite
-
-	self.shield.weapon = self.presets.weapon.shield
-	self.taser.weapon = self.presets.weapon.taser
-	self.medic.weapon = self.presets.weapon.gc
-	self.spooc.weapon = self.presets.weapon.elite
-	self.sniper.weapon = self.presets.weapon.sniper
-	self.tank.weapon = self.presets.weapon.tank
-	self.tank_elite.weapon = self.presets.weapon.elite_tank
-	self.phalanx_minion.weapon = self.presets.weapon.elite_shield
-	self.phalanx_minion_break.weapon = self.presets.weapon.elite_shield
-
-	self.biker_boss.weapon = self.presets.weapon.elite_tank
-	self.chavez_boss.weapon = self.presets.weapon.base
-	self.drug_lord_boss.weapon = self.presets.weapon.base
-	self.hector_boss.weapon = self.presets.weapon.tank
-	self.mobster_boss.weapon = self.presets.weapon.elite_tank
-	self.triad_boss.weapon = self.presets.weapon.base
-	self.deep_boss.weapon = self.presets.weapon.elite_tank
-
-	self.zeal_swat.weapon = self.presets.weapon.zeal
-	self.zeal_heavy_swat.weapon = self.presets.weapon.zeal
-	self.zeal_shield.weapon = self.presets.weapon.zeal_shield
-	self.zeal_medic.weapon = self.presets.weapon.zeal
-	self.zeal_taser.weapon = self.presets.weapon.zeal_tazer
-
 	-- Set chatter presets
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 	self.biker.chatter = self.presets.enemy_chatter.gangster
@@ -952,30 +918,80 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_g3/wpn_npc_g3"))
 end)
 
-function CharacterTweakData:_multiply_all_hp(hp_mul, hs_mul)
+-- fixed movement speed difficulty scaling
+-- thanks redflame
+function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
+	for preset_name, preset in pairs(self.presets.move_speed) do
+		if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then
+			for _, pose in pairs(preset) do
+				for haste_name, haste in pairs(pose) do
+					for stance_name, stance in pairs(haste) do
+						if stance_name ~= "ntl" then
+							for move_dir in pairs(stance) do
+								stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+CharacterTweakData.tweak_table_presets = {
+	fbi = "gc",
+	city_swat = "elite",
+	shield = "shield",
+	taser = "taser",
+	medic = "gc",
+	spooc = "elite",
+	sniper = "sniper",
+	tank = "tank",
+	tank_elite = "elite_tank",
+	phalanx_minion = "elite_shield",
+	phalanx_minion_break = "elite_shield",
+	biker_boss = "elite_tank",
+	hector_boss = "tank",
+	mobster_boss = "elite_tank",
+	deep_boss = "elite_tank",
+
+	zeal_swat = "zeal",
+	zeal_heavy_swat = "zeal",
+	zeal_shield = "zeal_shield",
+	zeal_medic = "zeal",
+	zeal_taser = "zeal_tazer",
+}
+
+function CharacterTweakData:_set_presets()
+	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
+	local is_pro = Global.game_settings and Global.game_settings.one_down
+	local f = ((diff_i ^ 2) / (diff_i * 3))
+
 	for _, name in pairs(self._enemy_list) do
 		local char_preset = self[name]
 
+		-- Generic enemy health scaling
 		char_preset.BASE_HEALTH_INIT = char_preset.BASE_HEALTH_INIT or char_preset.HEALTH_INIT
-		char_preset.HEALTH_INIT = char_preset.BASE_HEALTH_INIT * hp_mul
+		char_preset.HEALTH_INIT = char_preset.BASE_HEALTH_INIT * f
 
 		if char_preset.headshot_dmg_mul then
 			char_preset.base_headshot_dmg_mul = char_preset.base_headshot_dmg_mul or char_preset.headshot_dmg_mul
-			char_preset.headshot_dmg_mul = char_preset.base_headshot_dmg_mul * hs_mul
+			char_preset.headshot_dmg_mul = char_preset.base_headshot_dmg_mul * 1.75
 		end
 
 		-- Remove damage clamps, they are not a fun or intuitive mechanic
 		char_preset.DAMAGE_CLAMP_BULLET = nil
 		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
+
+		-- Set default surrender break time
+		if char_preset.surrender_break_time then
+			char_preset.surrender_break_time = self.presets.base.surrender_break_time
+		end
+
+		char_preset.weapon = self.presets.weapon[self.tweak_table_presets[name] or "base"]
 	end
-end
 
-local function setup_presets(self)
-	local diff_i = self.tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-	local is_pro = Global.game_settings and Global.game_settings.one_down
-	local f = ((diff_i ^ 2) / (diff_i * 3))
-	self:_multiply_all_hp(f, 1.75) -- scale all the other enemies
-
+	-- Specific enemy health values
 	-- common swat
 	self.swat.HEALTH_INIT = 30
 	self.swat.headshot_dmg_mul = 2.4 -- 125 head health
@@ -1050,28 +1066,8 @@ local function setup_presets(self)
 	end
 end
 
-CharacterTweakData._set_normal = setup_presets
-CharacterTweakData._set_hard = setup_presets
-CharacterTweakData._set_overkill = setup_presets
-CharacterTweakData._set_overkill_145 = setup_presets
-CharacterTweakData._set_easy_wish = setup_presets
-
--- fixed movement speed difficulty scaling
--- thanks redflame
-function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
-	for preset_name, preset in pairs(self.presets.move_speed) do
-		if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then
-			for _, pose in pairs(preset) do
-				for haste_name, haste in pairs(pose) do
-					for stance_name, stance in pairs(haste) do
-						if stance_name ~= "ntl" then
-							for move_dir in pairs(stance) do
-								stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-end
+CharacterTweakData._set_normal = CharacterTweakData._set_presets
+CharacterTweakData._set_hard = CharacterTweakData._set_presets
+CharacterTweakData._set_overkill = CharacterTweakData._set_presets
+CharacterTweakData._set_overkill_145 = CharacterTweakData._set_presets
+CharacterTweakData._set_easy_wish = CharacterTweakData._set_presets

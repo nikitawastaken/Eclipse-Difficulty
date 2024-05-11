@@ -29,11 +29,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.tea_time.icon_xy = { 0, 10 }
 
 	-- Company Soul
-	self.skills.fast_learner[1].upgrades = { "team_weapon_recoil_index_addend", "team_weapon_suppression_recoil_index_addend" }
+	self.skills.fast_learner[1].upgrades = {}
 	self.skills.fast_learner[2].upgrades = { "team_stamina_multiplier" }
 	self.skills.fast_learner.name_id = "menu_company_soul"
 	self.skills.fast_learner.desc_id = "menu_company_soul_desc"
-	self.skills.fast_learner.icon_xy = { 5, 2 }
+	self.skills.fast_learner.icon_xy = { 0, 0 }
 
 	-- Combat Doctor
 	self.skills.tea_cookies[1].upgrades = { "temporary_revive_damage_reduction_1", "player_revive_damage_reduction_1" }
@@ -72,23 +72,24 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1", "player_hostage_min_sum_taker_1" }
 	self.skills.black_marketeer[2].upgrades = { "player_hostage_health_regen_addend_2", "player_hostage_min_sum_taker_2", "player_joker_counts_for_hostage_boost" }
 
-	-- Marksman
-	self.skills.sharpshooter[1].upgrades = { "weapon_single_spread_index_addend" }
-	self.skills.sharpshooter[2].upgrades = { "single_shot_accuracy_inc_1" }
+	-- Stable Shot
+	self.skills.stable_shot[1].upgrades = { "assault_rifle_spread_index_addend", "snp_spread_index_addend" }
+	self.skills.stable_shot[2].upgrades = { "team_weapon_spread_index_addend" }
 
-	-- Lock N' Load
-	self.skills.rifleman[1].upgrades = { "weapon_swap_speed_multiplier", "weapon_enter_steelsight_speed_multiplier" }
-	self.skills.rifleman[2].upgrades = { "player_run_and_shoot_1" }
-	self.skills.rifleman.icon_xy = { 7, 10 }
-	self.skills.rifleman.name_id = "menu_rifleman"
-	self.skills.rifleman.desc_id = "menu_rifleman_desc"
+	-- Marksman
+	self.skills.sharpshooter[1].upgrades = { "weapon_steelsight_recoil_multiplier" }
+	self.skills.sharpshooter[2].upgrades = { "player_not_moving_accuracy_increase_bonus_1" }
+
+	-- Rifleman
+	self.skills.rifleman[1].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
+	self.skills.rifleman[2].upgrades = { "weapon_swap_speed_multiplier" }
 
 	-- Kilmer
 	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")
 	self.skills.speedy_reload.name_id = "menu_kilmer"
 	self.skills.speedy_reload.icon_xy = { 1, 9 }
 
-	-- New T4 Sharpshooter skill
+	-- Deadeye
 	self.skills.single_shot_ammo_return[1].upgrades = { "weapon_no_pen_damage_penalty" }
 	self.skills.single_shot_ammo_return[2].upgrades = { "weapon_magnetizing_bullets" }
 
@@ -138,9 +139,14 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.pack_mule.name_id = "menu_underdog_beta"
 	self.skills.pack_mule.desc_id = "menu_underdog_beta_desc"
 
+	-- Shock and Awe
+	self.skills.iron_man[1].upgrades = { "carry_movement_penalty_nullifier", "carry_movement_speed_multiplier" }
+	self.skills.iron_man[2].upgrades = { "player_tagged_speed_mul" }
+	self.skills.iron_man.icon_xy = { 6, 0 }
+
 	-- Iron Man
-	self.skills.juggernaut[1].upgrades = { "body_armor6" }
-	self.skills.juggernaut[2].upgrades = { "player_armor_multiplier" }
+	self.skills.juggernaut[1].upgrades = { "player_shield_knock" }
+	self.skills.juggernaut[2].upgrades = { "body_armor6" }
 
 	-- Fully Loaded
 	self.skills.ammo_reservoir[1].upgrades = { "player_add_armor_stat_skill_ammo_mul" }
@@ -159,9 +165,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- TECHNICIAN --
 
 	-- Transporter
-	self.skills.defense_up[1].upgrades = { "carry_movement_speed_multiplier" }
+	self.skills.defense_up[1].upgrades = {}
 	self.skills.defense_up[2].upgrades = { "carry_throw_distance_multiplier" }
-	self.skills.defense_up.icon_xy = { 6, 0 }
+	self.skills.defense_up.icon_xy = { 0, 0 }
 
 	-- Daredevil
 	self.skills.sentry_targeting_package[1].upgrades = { "player_interacting_damage_multiplier" }
@@ -182,6 +188,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.eco_sentry[2].upgrades = { "sentry_gun_ap_bullets", "sentry_gun_fire_rate_reduction_1" }
 	self.skills.eco_sentry.icon_xy = { 7, 8 }
 
+	-- Steady Grip
+	self.skills.steady_grip[1].upgrades = { "lmg_recoil_index_addend", "smg_recoil_index_addend", "minigun_recoil_index_addend" }
+	self.skills.steady_grip[2].upgrades = { "team_weapon_recoil_index_addend", "team_weapon_suppression_recoil_index_addend" }
+	self.skills.steady_grip.icon_xy = { 7, 7 }
+
 	-- Oppressor
 	self.skills.heavy_impact[1].upgrades = { "player_suppression_bonus" }
 	self.skills.heavy_impact[2].upgrades = { "player_suppression_bonus_2" }
@@ -190,7 +201,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.heavy_impact.icon_xy = { 7, 0 }
 
 	-- Fire Control
-	self.skills.fire_control[2].upgrades = { "player_ap_bullets_1" }
+	self.skills.fire_control[1].upgrades = { "player_weapon_movement_stability_1" }
+	self.skills.fire_control[2].upgrades = { "smg_spray_recoil_multiplier", "lmg_spray_recoil_multiplier", "minigun_spray_recoil_multiplier" }
 
 	-- Sleight of Hand
 	self.skills.shock_and_awe[1].upgrades = { "smg_reload_speed_multiplier", "lmg_reload_speed_multiplier" }
@@ -198,13 +210,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shock_and_awe.name_id = "menu_fast_hands"
 	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
 
-	-- Mag Plus
-	self.skills.fast_fire[1].upgrades = { "player_automatic_mag_increase_1" }
-	self.skills.fast_fire[2].upgrades = { "player_automatic_mag_increase_2" }
-	self.skills.fast_fire.icon_xy = { 2, 0 }
+	-- Lock N' Load
+	self.skills.fast_fire[1].upgrades = { "player_run_and_shoot_1" }
+	self.skills.fast_fire[2].upgrades = { "player_no_movement_penalty" }
+	self.skills.fast_fire.icon_xy = { 7, 10 }
 
 	-- Body Expertise
-	self.skills.body_expertise[1].upgrades = { "player_no_movement_penalty" }
+	self.skills.body_expertise[1].upgrades = { "player_ap_bullets_1" }
 	self.skills.body_expertise[2].upgrades = { "weapon_automatic_head_shot_add_1" }
 
 	-- GHOST --
@@ -278,15 +290,15 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.thick_skin.desc_id = "menu_cleaner_beta_desc"
 
 	-- The Professional
-	self.skills.silence_expert[1].upgrades = { "weapon_silencer_recoil_index_addend" }
-	self.skills.silence_expert[2].upgrades = { "weapon_silencer_enter_steelsight_speed_multiplier", "weapon_silencer_spread_index_addend" }
+	self.skills.silence_expert[1].upgrades = { "weapon_silencer_enter_steelsight_speed_multiplier" }
+	self.skills.silence_expert[2].upgrades = { "player_silencer_concealment_penalty_decrease_1", "player_silencer_concealment_increase_1" }
 
 	-- HVT
 	self.skills.hitman[1].upgrades = { "player_marked_inc_dmg_distance_1" }
 	self.skills.hitman[2].upgrades = { "player_marked_enemy_extra_damage", "player_mark_enemy_time_multiplier" }
 
 	-- Silencer Expert
-	self.skills.backstab[1].upgrades = { "player_silencer_concealment_penalty_decrease_1", "player_silencer_concealment_increase_1" }
+	self.skills.backstab[1].upgrades = { "weapon_silencer_fire_rate_multiplier" }
 	self.skills.backstab[2].upgrades = { "weapon_silencer_damage_multiplier", "weapon_armor_piercing_chance_silencer" }
 	self.skills.backstab.icon_xy = { 5, 9 }
 	self.skills.backstab.name_id = "menu_silenced_damage"

@@ -106,7 +106,11 @@
 					<post :hook_id="states/playertased"/>
 					<post :hook_id="states/playerdriving"/>
 					<post :hook_id="states/playerbleedout"/>
+					<post :hook_id="states/playerbipod"/>
+					<post :hook_id="states/playercarry"/>
 				</group>
+
+				<post :hook_id="characters/characterattentionobject"/>
 
 				<group :hook_id="civilians/">
 					<group :hook_id="logics/">
@@ -116,7 +120,6 @@
 					</group>
 
 					<post :hook_id="civilianbrain"/>
-					<post :hook_id="civiliandamage"/>
 				</group>
 
 				<post :hook_id="environment/environmentfire"/>
@@ -156,6 +159,7 @@
 						<post :hook_id="copinventory"/>
 						<post :hook_id="copmovement"/>
 						<post :hook_id="copsound"/>
+						<post :hook_id="huskcopbrain"/>
 					</group>
 
 					<group :hook_id="spooc/">
@@ -186,6 +190,7 @@
 				<group :hook_id="player_team/">
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
+					<post :hook_id="teamaimovement"/>
 					<post :hook_id="huskteamaidamage"/>
 				</group>
 

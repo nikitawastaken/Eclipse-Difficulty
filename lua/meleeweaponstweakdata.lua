@@ -1,5 +1,5 @@
 -- Rebalance melee weapons based on their range, concealment and speed
-Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_weapons", function(self)
+Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_weapons", function(self, tweak_data)
 	local min_conceal, max_conceal = 30, 0
 	local min_range, max_range = 300, 0
 	local min_expire, max_expire = 10, 0
@@ -41,8 +41,8 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_wea
 		local range = math.map_range(data.stats.range, min_range, max_range, 1, 0)
 		local conceal = math.map_range(data.stats.concealment or 30, min_conceal, max_conceal, 1, 0)
 		local charge_t = data.stats.charge_time or 0
-		local damage_mul = (data.tase_data or data.dot_data) and 0.4 or 1
-		local effect_mul = (data.tase_data or data.dot_data) and 0.2 or 1
+		local damage_mul = (data.tase_data or data.dot_data_name) and 0.4 or 1
+		local effect_mul = (data.tase_data or data.dot_data_name) and 0.1 or 1
 		local min, max = get_damage(expire, range, conceal, charge_t)
 		data.stats.min_damage = math.round(min * damage_mul, 0.5)
 		data.stats.max_damage = math.round(max * damage_mul, 0.5)
