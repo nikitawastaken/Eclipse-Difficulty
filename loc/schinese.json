@@ -70,9 +70,9 @@
 
 
 	"menu_defense_up_beta": "运包专家",
-	"menu_defense_up_beta_desc": "基础: ##$basic##\n你背着包的时候的移速加快##$multibasic##。\n\n精通: ##$pro##\n你丢包的距离增加##$multipro##。",
+	"menu_defense_up_beta_desc": "基础: ##$basic##\n你打包或者与战利品互动的速度加快##$multibasic##。\n\n精通: ##$pro##\n你丢包的距离增加##$multipro##。",
 	"menu_sentry_targeting_package_beta": "冒险行事",
-	"menu_sentry_targeting_package_beta_desc": "基础: ##$basic##\n你在互动的时候获得##$multibasic##伤害减免。\n\n精通: ##$pro##\n你现在可以在跑步的时候给武器换弹。",
+	"menu_sentry_targeting_package_beta_desc": "基础: ##$basic##\n你互动的速度加快##$multibasic##。\n\n精通: ##$pro##\n你在互动的时候获得##$multipro##伤害减免。",
 	"menu_engineering_beta": "防守套件",
 	"menu_engineering_beta_desc": "基础: ##$basic##\n你的哨戒机枪额外获得##$multibasic##的血量。\n\n精通: ##$pro##\n你的哨戒机枪获得一个护盾。",
 	"menu_tower_defense_beta": "步哨群落",
@@ -113,8 +113,8 @@
 	"menu_jail_workout_beta_desc": "基础: ##$basic##\n你在踩点模式被保安发现所需的时间增加##$multibasic##。\n\n强袭时在队友的身边会使被敌人选中为目标的概率降低##$multibasic##。\n\n精通: ##$pro##\n你的隐匿度增加##$multipro##。",
 	"menu_cleaner_beta": "鹰之视野",
 	"menu_cleaner_beta_desc": "基础: ##$basic##\n你对特殊敌人额外造成##$multibasic##的伤害。\n\n精通: ##$pro##\n你可以在开镜瞄准时自动标记特殊敌人。\n\n你手动标记敌人的距离增加##$multipro##倍。",
-	"menu_second_chances_beta": "后勤苦力",
-	"menu_second_chances_beta_desc": "基础: ##$basic##\n你与战利品互动和打包的速度加快##$multibasic##。\n\n精通: ##$pro##\n你的开锁速度加快##$multipro##。\n\n你可以徒手安静地打开保险箱。",
+	"menu_second_chances_beta": "鬼影孤狼",
+	"menu_second_chances_beta_desc": "基础: ##$basic##\n你开始额外携带##$multibasic##个尸体袋。\n你现在同时最多可以携带##$multibasic2##个尸体袋。\n\n精通: ##$pro##\n你的开锁速度加快##$multipro##。\n\n你可以徒手安静地打开保险箱。",
 	"menu_chameleon_beta": "熄灯时刻",
 	"menu_chameleon_beta_desc": "基础: ##$basic##\n你现在可以使##1##个摄像头失效，使其无法探测到你和你的队友，持续##25##秒。\n\n精通: ##$pro##\n你的电子干扰器可以被用来开启一部分电子门。你的电子干扰器可以使对讲机的响起被延迟至电子干扰器效果结束。",
 	"menu_ecm_booster_beta": "干扰器反馈",
