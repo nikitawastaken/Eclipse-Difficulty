@@ -462,13 +462,28 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Technician --
 
+	-- Transporter
+	self.values.carry.interact_speed_multiplier[1] = 0.75
+	self.skill_descs.defense_up.multibasic = "25%"
+
 	-- Rifleman
 	self.skill_descs.defense_up.multibasic = "50%"
 	self.skill_descs.defense_up.multipro = "50%"
 
-	-- Die Hard
-	self.values.player.interacting_damage_multiplier[1] = 0.75
-	self.skill_descs.sentry_targeting_package.multibasic = "25%"
+	-- Daredevil
+	self.values.player.total_interaction_timer_multiplier = { 0.9 }
+	self.definitions.player_total_interaction_timer_multiplier = {
+		name_id = "menu_player_total_interaction_timer_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "total_interaction_timer_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.interacting_damage_multiplier[1] = 0.65
+	self.skill_descs.sentry_targeting_package.multibasic = "10%"
+	self.skill_descs.sentry_targeting_package.multipro = "35%"
 
 	-- Defense Package
 	self.skill_descs.engineering.multibasic = "150%"
@@ -644,10 +659,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.cleaner.multibasic2 = "1"
 	self.skill_descs.cleaner.multipro2 = "3"
 
-	-- Logistician
-	self.values.carry.interact_speed_multiplier = { 0.5, 0.25 }
+	-- Winstone Wolfe
 	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.5
-	self.skill_descs.second_chances.multibasic = "50%"
+	self.skill_descs.second_chances.multibasic = "1"
+	self.skill_descs.second_chances.multibasic2 = "3"
 	self.skill_descs.second_chances.multipro = "50%"
 	self.skill_descs.second_chances.multipro2 = "50%"
 

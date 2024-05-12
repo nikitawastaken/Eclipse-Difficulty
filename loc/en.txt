@@ -72,9 +72,9 @@
 
 
 	"menu_defense_up_beta": "Transporter",
-	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nW.I.P\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",
+	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",
 	"menu_sentry_targeting_package_beta": "Daredevil",
-	"menu_sentry_targeting_package_beta_desc": "BASIC: ##$basic##\nYou take ##$multibasic## less damage while interacting with objects.\n\nACE: ##$pro##\nYou can now reload your weapons while sprinting.",
+	"menu_sentry_targeting_package_beta_desc": "BASIC: ##$basic##\nYou interact with objects ##$multibasic## faster.\n\nACE: ##$pro##\nYou take ##$multipro## less damage while interacting with objects.",
 	"menu_engineering_beta": "Defense Package",
 	"menu_engineering_beta_desc": "BASIC: ##$basic##\nYour sentry guns gain ##$multibasic## increased health.\n\nACE: ##$pro##\nYour sentry guns gain a protective shield.",
 	"menu_tower_defense_beta": "Sentry Nest",
@@ -112,8 +112,8 @@
 	"menu_jail_workout_beta_desc": "BASIC: ##$basic##\nIncreases the time before you start getting detected by ##$multibasic## while in casing mode.\n\nYou are ##$multibasic## less likely to be targeted when you are close to your crew members in loud.\n\nACE: ##$pro##\nYour concealment is increased by ##$multipro##.",
 	"menu_cleaner_beta": "Eagle Eye",
 	"menu_cleaner_beta_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage against special enemies.\n\nACE: ##$pro##\nYou can now mark specials by aiming down at them with any weapon.\n\nThe range at which you can manually mark enemies is ##$multipro## times longer.",
-	"menu_second_chances_beta": "Logistician",
-	"menu_second_chances_beta_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou lockpick ##$multipro## faster.\n\nYou can now silently crack safes by hand.",
+	"menu_second_chances_beta": "Winstone Wolfe",
+	"menu_second_chances_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## additional body bag in your inventory.\nAlso increases the body bag inventory space to ##$multibasic2##.\n\nACE: ##$pro##\nYou lockpick ##$multipro## faster.\n\nYou can now silently crack safes by hand.",
 	"menu_chameleon_beta": "Blackout",
 	"menu_chameleon_beta_desc": "BASIC: ##$basic##\nYou gain the ability to disable ##1## camera from detecting you and your crew. Effect lasts for ##25## seconds.\n\nACE: ##$pro##\nYour ECM jammer can now also be used to open certain electronic doors. Pagers are delayed by the ECM jammers.",
 	"menu_ecm_booster_beta": "ECM Feedback",

@@ -165,14 +165,14 @@ function SkillTreeTweakData:init(tweak_data)
 	-- TECHNICIAN --
 
 	-- Transporter
-	self.skills.defense_up[1].upgrades = {}
+	self.skills.defense_up[1].upgrades = { "carry_interact_speed_multiplier_2" }
 	self.skills.defense_up[2].upgrades = { "carry_throw_distance_multiplier" }
-	self.skills.defense_up.icon_xy = { 0, 0 }
+	self.skills.defense_up.icon_xy = { 8, 8 }
 
 	-- Daredevil
-	self.skills.sentry_targeting_package[1].upgrades = { "player_interacting_damage_multiplier" }
-	self.skills.sentry_targeting_package[2].upgrades = { "player_run_and_reload" }
-	self.skills.sentry_targeting_package.icon_xy = { 10, 6 }
+	self.skills.sentry_targeting_package[1].upgrades = { "player_total_interaction_timer_multiplier" }
+	self.skills.sentry_targeting_package[2].upgrades = { "player_interacting_damage_multiplier" }
+	self.skills.sentry_targeting_package.icon_xy = { 1, 7 }
 
 	-- Defense Package
 	self.skills.engineering[1].upgrades = { "sentry_gun_armor_multiplier" }
@@ -228,8 +228,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.cleaner.name_id = "menu_thick_skin_beta"
 	self.skills.cleaner.desc_id = "menu_thick_skin_beta_desc"
 
-	-- Logistician
-	self.skills.second_chances[1].upgrades = { "carry_interact_speed_multiplier_2" }
+	-- Winstone Wolfe
+	self.skills.second_chances[1].upgrades = { "player_corpse_dispose_amount_2", "player_extra_corpse_dispose_amount" }
 	self.skills.second_chances[2].upgrades = { "player_pick_lock_easy_speed_multiplier", "player_pick_lock_hard" }
 	self.skills.second_chances.icon_xy = { 5, 4 }
 
@@ -563,6 +563,7 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
+	table.insert(self.default_upgrades, "bodybags_bag_quantity")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")

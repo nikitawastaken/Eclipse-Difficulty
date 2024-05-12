@@ -1,3 +1,31 @@
+function BaseInteractionExt:_get_timer()
+	local modified_timer = self:_get_modified_timer()
+
+	if modified_timer then
+		return modified_timer
+	end
+
+	local multiplier = 1
+
+	if self.tweak_data ~= "corpse_alarm_pager" then
+		multiplier = multiplier * managers.player:crew_ability_upgrade_value("crew_interact", 1)
+	end
+
+	if self._tweak_data.upgrade_timer_multiplier then
+		multiplier = multiplier * managers.player:upgrade_value(self._tweak_data.upgrade_timer_multiplier.category, self._tweak_data.upgrade_timer_multiplier.upgrade, 1)
+	end
+
+	if self._tweak_data.upgrade_timer_multipliers then
+		for _, upgrade_timer_multiplier in pairs(self._tweak_data.upgrade_timer_multipliers) do
+			multiplier = multiplier * managers.player:upgrade_value(upgrade_timer_multiplier.category, upgrade_timer_multiplier.upgrade, 1)
+		end
+	end
+
+	multiplier = multiplier * managers.player:upgrade_value("player", "total_interaction_timer_multiplier", 1)
+
+	return self:_timer_value() * multiplier * managers.player:toolset_value()
+end
+
 function IntimitateInteractionExt:_interact_blocked(player)
 	if self.tweak_data == "corpse_dispose" then
 		if managers.player:is_carrying() then
