@@ -7,8 +7,8 @@ if _G.IS_VR then
 end
 
 Hooks:PostHook(FPCameraPlayerBase, "stop_shooting", "ssr_stop_shooting", function(self)
-	self._recoil_kick.to_reduce = self._recoil_kick.last
-	self._recoil_kick.h.to_reduce = self._recoil_kick.h.last
+	self._recoil_kick.to_reduce = self._recoil_kick.last or 0
+	self._recoil_kick.h.to_reduce = self._recoil_kick.h.last or 0
 end)
 
 function FPCameraPlayerBase:recoil_kick(up, down, left, right)
@@ -88,12 +88,14 @@ Hooks:PostHook(FPCameraPlayerBase, "init", "spray_init", function(self)
 	self._persist_pattern_back = 1
 	self._h_recoil_cushion = 0
 end)
+
 Hooks:PostHook(FPCameraPlayerBase, "update", "spray_update", function(self, unit, t, dt)
 	-- Count the time since the player last shot
 	if self._recoil_recovery_t > 0 then
 		self._recoil_recovery_t = self._recoil_recovery_t - dt
 	end
 end)
+
 function FPCameraPlayerBase:pattern_recoil_kick(pattern, persist_pattern, recoil_multiplier, recoil_recovery)
 	-- If the player hasn't shot in 1/3rd of second reset the recoil pattern
 	if self._recoil_recovery_t <= 0 then

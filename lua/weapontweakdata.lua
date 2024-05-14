@@ -714,18 +714,18 @@ self.hailstorm.fire_mode_data.volley.ammo_usage = 120
 
 -- Izhma
 self.saiga.rays = 8
-self.saiga.stats.damage = 80
+self.saiga.stats.damage = 30
 self.saiga.stats.spread = 12
 self.saiga.AMMO_MAX = total_ammo_tables.shot_very_high
 self.saiga.AMMO_PICKUP = pickup_tables.shot_very_high
 self.saiga.kick = kick_tables.shot_auto
 self.saiga.spray = spray_tables.sg_auto
 self.saiga.recoil_recovery_timer = recovery_tables.high
-self.saiga.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.saiga.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Steakout
 self.aa12.rays = 8
-self.aa12.stats.damage = 80
+self.aa12.stats.damage = 30
 self.aa12.stats.spread = 12
 self.aa12.AMMO_MAX = total_ammo_tables.shot_very_high
 self.aa12.AMMO_PICKUP = pickup_tables.shot_very_high
@@ -733,11 +733,11 @@ self.aa12.fire_mode_data.fire_rate = 60 / 333
 self.aa12.kick = kick_tables.shot_auto
 self.aa12.spray = spray_tables.sg_auto
 self.aa12.recoil_recovery_timer = recovery_tables.high
-self.aa12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.aa12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- VD-12
 self.sko12.rays = 8
-self.sko12.stats.damage = 110
+self.sko12.stats.damage = 40
 self.sko12.stats.spread = 12
 self.sko12.stats.recoil = 8
 self.sko12.stats.reload = 9
@@ -749,31 +749,31 @@ self.sko12.FIRE_MODE = "single"
 self.sko12.CAN_TOGGLE_FIREMODE = false
 self.sko12.fire_mode_data.fire_rate = 60 / 333
 self.sko12.kick = kick_tables.shot_low
-self.sko12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.sko12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- M1014
 self.benelli.rays = 8
-self.benelli.stats.damage = 110
+self.benelli.stats.damage = 40
 self.benelli.stats.spread = 12
 self.benelli.AMMO_MAX = total_ammo_tables.shot_high
 self.benelli.AMMO_PICKUP = pickup_tables.shot_high
 self.benelli.fire_mode_data.fire_rate = 60 / 383
 self.benelli.kick = kick_tables.shot_low
-self.benelli.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.benelli.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Predator
 self.spas12.rays = 8
-self.spas12.stats.damage = 110
+self.spas12.stats.damage = 40
 self.spas12.stats.spread = 12
 self.spas12.AMMO_MAX = total_ammo_tables.shot_high
 self.spas12.AMMO_PICKUP = pickup_tables.shot_high
 self.spas12.fire_mode_data.fire_rate = 60 / 383
 self.spas12.kick = kick_tables.shot_low
-self.spas12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.spas12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Raven
 self.ksg.rays = 8
-self.ksg.stats.damage = 155
+self.ksg.stats.damage = 50
 self.ksg.stats.concealment = 20
 self.ksg.stats.reload = 12
 self.ksg.CLIP_AMMO_MAX = 8
@@ -785,39 +785,37 @@ self.ksg.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Nova
 self.supernova.rays = 8
-self.supernova.stats.damage = 155
+self.supernova.stats.damage = 50
 self.supernova.AMMO_MAX = total_ammo_tables.shot_mid
 self.supernova.AMMO_PICKUP = pickup_tables.shot_mid
 self.supernova.fire_mode_data.fire_rate = 0.6
 self.supernova.kick = kick_tables.shot_low
-self.supernova.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
-
+--self.supernova.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Reinfeld 880
 self.r870.rays = 8
-self.r870.stats.damage = 155
+self.r870.stats.damage = 50
 self.r870.CLIP_AMMO_MAX = 8
 self.r870.AMMO_MAX = total_ammo_tables.shot_mid
 self.r870.AMMO_PICKUP = pickup_tables.shot_mid
 self.r870.fire_mode_data.fire_rate = 0.6
 self.r870.kick = kick_tables.shot_low
-self.r870.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+--self.r870.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Mosconi Tactical
 self.m590.rays = 8
 self.m590.stats.reload = 11
-self.m590.stats.damage = 155
+self.m590.stats.damage = 50
 self.m590.stats.concealment = 8
 self.m590.AMMO_MAX = total_ammo_tables.shot_mid
 self.m590.AMMO_PICKUP = pickup_tables.shot_mid
 self.m590.fire_mode_data.fire_rate = 0.6
 self.m590.kick = kick_tables.shot_low
-self.m590.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+--self.m590.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Breaker
 self.boot.rays = 8
-self.boot.stats.damage = 135
-self.boot.stats_modifiers = {damage = 2}
+self.boot.stats.damage = 60
 self.boot.AMMO_MAX = total_ammo_tables.shot_low
 self.boot.AMMO_PICKUP = pickup_tables.shot_low
 self.boot.fire_mode_data.fire_rate = 0.8
@@ -826,19 +824,17 @@ self.boot.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Reinfeld 88 (Trench Gun)
 self.m1897.rays = 8
-self.m1897.stats.damage = 135
-self.m1897.stats_modifiers = {damage = 2}
+self.m1897.stats.damage = 60
 self.m1897.AMMO_MAX = total_ammo_tables.shot_low
 self.m1897.AMMO_PICKUP = pickup_tables.shot_low
 self.m1897.fire_mode_data.fire_rate = 0.8
 self.m1897.kick = kick_tables.shot_high
-self.m1897.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
+--self.m1897.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- GSPS
 self.m37.use_data.selection_index = SELECTION.PRIMARY
 self.m37.rays = 8
-self.m37.stats.damage = 135
-self.m37.stats_modifiers = {damage = 2}
+self.m37.stats.damage = 60
 self.m37.AMMO_MAX = total_ammo_tables.shot_low
 self.m37.AMMO_PICKUP = pickup_tables.shot_low
 self.m37.fire_mode_data.fire_rate = 0.8
@@ -847,89 +843,85 @@ self.m37.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Mosconi
 self.huntsman.rays = 8
-self.huntsman.stats.damage = 180
-self.huntsman.stats_modifiers = {damage = 2}
+self.huntsman.stats.damage = 80
 self.huntsman.AMMO_MAX = total_ammo_tables.shot_very_low
 self.huntsman.AMMO_PICKUP = pickup_tables.shot_very_low
 self.huntsman.kick = kick_tables.shot_high
-self.huntsman.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
+--self.huntsman.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 
 -- Joceline
 self.b682.rays = 8
-self.b682.stats.damage = 180
-self.b682.stats_modifiers = {damage = 2}
+self.b682.stats.damage = 80
 self.b682.AMMO_MAX = total_ammo_tables.shot_very_low
 self.b682.AMMO_PICKUP = pickup_tables.shot_very_low
 self.b682.kick = kick_tables.shot_high
-self.b682.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
+--self.b682.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 
 -- Claire
 self.coach.rays = 8
-self.coach.stats.damage = 180
-self.coach.stats_modifiers = {damage = 2}
+self.coach.stats.damage = 80
 self.coach.AMMO_MAX = total_ammo_tables.shot_very_low
 self.coach.AMMO_PICKUP = pickup_tables.shot_special
 self.coach.kick = kick_tables.shot_high
-self.coach.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
+--self.coach.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_VHIGH
 
 -- Judge
 self.judge.rays = 8
-self.judge.stats.damage = 100
-self.judge.stats_modifiers = {damage = 2}
+self.judge.stats.damage = 50
 self.judge.AMMO_MAX = total_ammo_tables.shot_very_low
 self.judge.AMMO_PICKUP = pickup_tables.shot_special
 self.judge.AMMO_MAX = 25
 self.judge.kick = kick_tables.shot_low
-self.judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
+--self.judge.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Loco
 self.serbu.AMMO_MAX = 24
 self.serbu.CLIP_AMMO_MAX = 4
 self.serbu.rays = 8
-self.serbu.stats.damage = 155
-self.serbu.AMMO_MAX = total_ammo_tables.shot_mid
-self.serbu.AMMO_PICKUP = pickup_tables.shot_mid
+self.serbu.stats.damage = 50
+self.serbu.AMMO_MAX = total_ammo_tables.shot_low
+self.serbu.AMMO_PICKUP = pickup_tables.shot_low
 self.serbu.fire_mode_data.fire_rate = 0.6
 self.serbu.kick = kick_tables.shot_low
-self.serbu.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+--self.serbu.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Goliath
 self.rota.rays = 8
-self.rota.stats.damage = 110
+self.rota.stats.damage = 40
 self.rota.stats.concealment = 20
 self.rota.AMMO_MAX = total_ammo_tables.shot_high
 self.rota.AMMO_PICKUP = pickup_tables.shot_high
 self.rota.kick = kick_tables.shot_low
-self.rota.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.rota.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Sweeper
 self.striker.rays = 8
-self.striker.stats.damage = 110
+self.striker.stats.damage = 40
 self.striker.stats.concealment = 24
 self.striker.AMMO_MAX = total_ammo_tables.shot_high
 self.striker.AMMO_PICKUP = pickup_tables.shot_high
 self.striker.kick = kick_tables.shot_low
-self.striker.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.striker.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Grimm
 self.basset.rays = 8
-self.basset.stats.damage = 75
+self.basset.stats.damage = 30
 self.basset.AMMO_MAX = total_ammo_tables.shot_high
 self.basset.AMMO_PICKUP = pickup_tables.shot_very_high
 self.basset.kick = kick_tables.shot_auto
 self.basset.spray = spray_tables.sg_auto
 self.basset.recoil_recovery_timer = recovery_tables.high
-self.basset.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
+--self.basset.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- Argos
 self.ultima.rays = 8
-self.ultima.stats.damage = 155
+self.ultima.stats.damage = 60
 self.ultima.stats.reload = 10
 self.ultima.stats.concealment = 17
-self.ultima.AMMO_MAX = total_ammo_tables.shot_mid
-self.ultima.AMMO_PICKUP = pickup_tables.shot_mid
+self.ultima.AMMO_MAX = total_ammo_tables.shot_very_low
+self.ultima.AMMO_PICKUP = pickup_tables.shot_very_low
 self.ultima.kick = kick_tables.shot_low
-self.ultima.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+--self.ultima.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 
 -- ARs
@@ -1717,8 +1709,8 @@ for weap_id, weap_data in pairs(self) do
 		-- Increase moving spread
 		if weap_data.spread then
 			weap_data.spread.standing = 3
-			weap_data.spread.crouching = 2.5
-			weap_data.spread.steelsight = 2
+			weap_data.spread.crouching = weap_data.spread.standing * 0.833
+			weap_data.spread.steelsight = weap_data.spread.standing * 0.666
 			weap_data.spread.moving_standing = weap_data.spread.standing * 1.33
 			weap_data.spread.moving_crouching = weap_data.spread.crouching * 1.33
 			weap_data.spread.moving_steelsight = weap_data.spread.steelsight * 1.33

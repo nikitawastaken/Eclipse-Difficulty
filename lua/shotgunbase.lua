@@ -6,3 +6,18 @@ Hooks:PostHook(ShotgunBase, "_update_stats_values", "eclipse__update_stats_value
 		end
 	end
 end)
+
+function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, ...)
+	local result = {
+		hit_enemy = false,
+		rays = {}
+	}
+
+	for _ = 1, self._rays do
+		local res = ShotgunBase.super._fire_raycast(self, user_unit, from_pos, direction, ...)
+		result.hit_enemy = result.hit_enemy or res.hit_enemy
+		table.list_append(result.rays, res.rays)
+	end
+
+	return result
+end
