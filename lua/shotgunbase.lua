@@ -10,7 +10,7 @@ end)
 function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, ...)
 	local result = {
 		hit_enemy = false,
-		rays = {}
+		rays = {},
 	}
 
 	for _ = 1, self._rays do
