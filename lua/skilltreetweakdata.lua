@@ -108,8 +108,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shotgun_cqb.icon_xy = { 5, 1 }
 
 	-- Point Blank
-	self.skills.shotgun_impact[1].upgrades = { "shotgun_extra_pellets" }
-	self.skills.shotgun_impact[2].upgrades = { "shotgun_hip_fire_spread_multiplier" }
+	self.skills.shotgun_impact[1].upgrades = { "shotgun_spread_index_addend", "shotgun_recoil_index_addend" }
+	self.skills.shotgun_impact[2].upgrades = { "shotgun_extra_pellets" }
 
 	-- Shotgun CQB
 	self.skills.far_away[1].upgrades = { "shotgun_hip_rate_of_fire_1" }

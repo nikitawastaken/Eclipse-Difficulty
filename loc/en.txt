@@ -56,7 +56,7 @@
 	"menu_shotgun_cqb_beta": "Fast Hands",
 	"menu_shotgun_cqb_beta_desc": "BASIC: ##$basic##\nYou reload ##Tube-fed## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYou reload ##Tube-fed## Shotguns an additional ##$multipro## faster.\nYou gain a ##$multipro2## increased steel sight zoom speed when using Shotguns.",
 	"menu_shotgun_impact_beta": "Point Blank",
-	"menu_shotgun_impact_beta_desc": "BASIC: ##$basic##\nShells for your Shotguns contain ##$multibasic## extra pellets.\n\nNote: Does not apply to AP or HE Slugs.\n\nACE: ##$pro##\nYour spread with Shotguns is increased by ##$multipro## when firing from the hip.",
+	"menu_shotgun_impact_beta_desc": "BASIC: ##$basic##\nYour Shotguns gain ##$multibasic## accuracy and stability.\n\nACE: ##$pro##\nShells for your Shotguns contain ##$multipro## extra pellets.\n\nNote: Does not apply to AP or HE Slugs.",
 	"menu_far_away_beta": "Shotgun CQB",
 	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single shot Shotguns.\n\nACE: ##$pro##\nFor every hit with a Shotgun you gain a ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_close_by_beta": "Mag-fed Specialist",

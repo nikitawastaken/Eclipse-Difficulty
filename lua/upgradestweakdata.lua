@@ -335,9 +335,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.shotgun_cqb.multipro = "25%"
 
 	-- Point Blank
-	self.values.shotgun.extra_pellets = { 4 }
-	self.values.shotgun.hip_fire_spread_multiplier[1] = 1.25
-	self.definitions.shotgun_extra_pellets = {
+	self.values.shotgun.extra_pellets = { 2 }
+	self.values.shotgun.spread_index_addend = { 1 }
+	self.values.shotgun.recoil_index_addend[1] = 1
+ 	self.definitions.shotgun_extra_pellets = {
 		name_id = "menu_shotgun_extra_pellets",
 		category = "feature",
 		upgrade = {
@@ -346,8 +347,17 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
+	self.definitions.shotgun_spread_index_addend = {
+		name_id = "menu_shotgun_spread_index_addend",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "spread_index_addend",
+			category = "shotgun"
+		}
+	}
 	self.skill_descs.shotgun_impact.multibasic = "4"
-	self.skill_descs.shotgun_impact.multipro = "25%"
+	self.skill_descs.shotgun_impact.multipro = "2"
 
 	-- Shotgun CQB
 	self.definitions.shotgun_speed_stack_on_kill = {
