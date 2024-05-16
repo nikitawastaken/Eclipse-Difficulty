@@ -8,6 +8,7 @@
 	"bm_wp_upg_mk2_welldone_desc": "This fuel is harder to find.",
 	"bm_w_hajk": "CR 805B Rifle",
 
+	"bm_menu_pickup": "Ammo Pickup",
 	"bm_menu_bonus": "Gun Perk",
 	"bm_menu_perk_speedloader": "Speedloader",
 	"bm_menu_perk_speedloader_desc": "Increases reload speed at the cost of total ammo.\n",

@@ -40,4 +40,5 @@ return table.list_to_set({
 	"Colourblind Flashbang - BLUE",
 	"Colourblind Flashbang - GREEN",
 	"Colourblind Flashbang - YELLOW",
+	"More Weapon Stats",
 })
