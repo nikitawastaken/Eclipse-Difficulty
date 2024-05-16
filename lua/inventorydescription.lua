@@ -1,6 +1,6 @@
 -- credit for most of the stuff here goes to resmod
 table.insert(WeaponDescription._stats_shown, {
-	name = "pickup"
+	name = "pickup",
 })
 
 function WeaponDescription._get_base_pickup(weapon, name)
@@ -99,12 +99,12 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 
 	local weapon = {
 		factory_id = factory_id,
-		blueprint = blueprint
+		blueprint = blueprint,
 	}
 
-    base_stats.pickup.value = WeaponDescription._get_base_pickup(weapon, name)
-    mods_stats.pickup.value = WeaponDescription._get_mods_pickup(weapon, name, base_stats)
-    skill_stats.pickup.skill_in_effect, skill_stats.pickup.value = WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stats)
+	base_stats.pickup.value = WeaponDescription._get_base_pickup(weapon, name)
+	mods_stats.pickup.value = WeaponDescription._get_mods_pickup(weapon, name, base_stats)
+	skill_stats.pickup.skill_in_effect, skill_stats.pickup.value = WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stats)
 
 	local my_clip = base_stats.magazine.value + mods_stats.magazine.value + skill_stats.magazine.value
 

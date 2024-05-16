@@ -31,13 +31,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 	self._item_bought = nil
 	self._panel = self._ws:panel():panel({})
 	self._fullscreen_panel = self._fullscreen_ws:panel():panel({
-		layer = 40
+		layer = 40,
 	})
 
 	self:set_layer(45)
 
 	self._disabled_panel = self._fullscreen_panel:panel({
-		layer = 100
+		layer = 100,
 	})
 
 	WalletGuiObject.set_wallet(self._panel)
@@ -66,13 +66,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			render_template = "VertexColorTexturedBlur3D",
 			layer = -1,
 			w = self._fullscreen_ws:panel():w(),
-			h = self._fullscreen_ws:panel():h()
+			h = self._fullscreen_ws:panel():h(),
 		})
 
 		local function func(o, component_data)
 			local start_blur = component_data.blur_fade
 
-			over(0.6 - 0.6 * component_data.blur_fade, function (p)
+			over(0.6 - 0.6 * component_data.blur_fade, function(p)
 				component_data.blur_fade = math.lerp(start_blur, 1, p)
 
 				o:set_alpha(component_data.blur_fade)
@@ -89,7 +89,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		text = utf8.to_upper(managers.localization:text("menu_back")),
 		font_size = large_font_size,
 		font = large_font,
-		color = tweak_data.screen_colors.button_stage_3
+		color = tweak_data.screen_colors.button_stage_3,
 	})
 	self:make_fine_text(self._panel:child("back_button"))
 	self._panel:child("back_button"):set_right(self._panel:w())
@@ -121,14 +121,14 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		padding_w = math.floor(padding_w),
 		padding_h = math.floor(padding_h),
 		left_padding = math.floor(left_padding),
-		top_padding = math.floor(top_padding)
+		top_padding = math.floor(top_padding),
 	}
 
 	if grid_h_mul ~= GRID_H_MUL then
 		self._no_input_panel = self._panel:panel({
 			y = 60,
 			w = grid_panel_w,
-			h = top_padding - 60
+			h = top_padding - 60,
 		})
 	end
 
@@ -138,7 +138,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			x = size_data.left_padding,
 			y = size_data.top_padding + 33,
 			w = size_data.grid_w,
-			h = size_data.grid_h - 1
+			h = size_data.grid_h - 1,
 		})
 
 		BlackMarketGui.blur_panel(blur_panel)
@@ -154,7 +154,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		text = managers.localization:to_upper_text(self._data.topic_id, self._data.topic_params),
 		font_size = large_font_size,
 		font = large_font,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	self:make_fine_text(self._title_text)
@@ -167,14 +167,14 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 
 	self._tab_scroll_panel = self._panel:panel({
 		w = grid_panel_w,
-		y = top_padding + 1
+		y = top_padding + 1,
 	})
 	self._tab_area_panel = self._panel:panel({
 		w = grid_panel_w,
-		y = top_padding + 1
+		y = top_padding + 1,
 	})
 	self._tab_scroll_table = {
-		panel = self._tab_scroll_panel
+		panel = self._tab_scroll_panel,
 	}
 
 	for i, data in ipairs(self._data) do
@@ -212,7 +212,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		name = "select_rect",
 		layer = 8,
 		w = square_w,
-		h = square_h
+		h = square_h,
 	})
 
 	if self._tabs[self._selected] then
@@ -231,8 +231,8 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				2,
 				2,
 				2,
-				2
-			}
+				2,
+			},
 		})
 
 		self._select_rect_box:set_clipping(false)
@@ -246,8 +246,8 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				1,
 				1,
 				1 + (#self._tabs > 1 and 1 or 0),
-				1
-			}
+				1,
+			},
 		})
 		local info_box_top = 88
 		local info_box_size = self._panel:h() - 70
@@ -262,7 +262,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 
 		if self._data.extra_options_panel then
 			self._extra_options_panel = self._panel:panel({
-				name = "extra_options_panel"
+				name = "extra_options_panel",
 			})
 
 			self._extra_options_panel:set_size(info_box_w, self._data.extra_options_panel.height or self._data.extra_options_panel.h or 50)
@@ -276,7 +276,8 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					self._extra_options_data.selected = math.min(self._extra_options_data.selected or 1, managers.blackmarket:num_preferred_characters() + 1, CriminalsManager.get_num_characters())
 				end
 
-				local selected = math.min(self._extra_options_data and self._extra_options_data.selected or 1, managers.blackmarket:num_preferred_characters() + 1, CriminalsManager.get_num_characters())
+				local selected =
+					math.min(self._extra_options_data and self._extra_options_data.selected or 1, managers.blackmarket:num_preferred_characters() + 1, CriminalsManager.get_num_characters())
 				self._extra_options_data = callback(self, self, self._data.extra_options_panel.on_create_func_name)(panel)
 				self._extra_options_data.selected = selected
 				local num_panels = 0
@@ -295,8 +296,8 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					1,
 					1,
 					1,
-					1
-				}
+					1,
+				},
 			})
 			local h = self._extra_options_panel:h() + 5
 			info_box_top = info_box_top + h
@@ -318,14 +319,14 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				h = 140,
 				layer = 1,
 				y = info_box_top,
-				w = info_box_w
+				w = info_box_w,
 			})
 
 			self._market_panel:set_right(self._panel:w())
 			self._market_panel:rect({
 				alpha = 0.25,
 				layer = -1,
-				color = Color.black
+				color = Color.black,
 			})
 
 			self._market_border = BoxGuiObject:new(self._market_panel, {
@@ -333,8 +334,8 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					1,
 					1,
 					1,
-					1
-				}
+					1,
+				},
 			})
 			local h = self._market_panel:h() + 5
 			local market_bundles = {}
@@ -345,14 +346,14 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						content = safe.content or "NONE",
 						safe = entry,
 						drill = safe.drill,
-						prio = safe.prio or 0
+						prio = safe.prio or 0,
 					})
 				end
 			end
 
 			local loc_sort = {}
 
-			table.sort(market_bundles, function (x, y)
+			table.sort(market_bundles, function(x, y)
 				if x.prio ~= y.prio then
 					return (x.prio or 0) < (y.prio or 0)
 				end
@@ -377,7 +378,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					text = managers.localization:to_upper_text("menu_steam_market_inspect_title"),
 					font = small_font,
 					font_size = small_font_size,
-					color = tweak_data.screen_colors.text
+					color = tweak_data.screen_colors.text,
 				})
 
 				self:make_fine_text(title_text)
@@ -395,7 +396,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				local select_bg = self._market_panel:rect({
 					blend_mode = "add",
 					layer = -2,
-					color = tweak_data.screen_colors.button_stage_3:with_alpha(0.2)
+					color = tweak_data.screen_colors.button_stage_3:with_alpha(0.2),
 				})
 				local arrow_left = self._market_panel:bitmap({
 					blend_mode = "add",
@@ -404,10 +405,10 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						24,
 						0,
 						24,
-						24
+						24,
 					},
 					color = tweak_data.screen_colors.button_stage_3,
-					y = padding
+					y = padding,
 				})
 				local arrow_right = self._market_panel:bitmap({
 					texture = "guis/textures/menu_arrows",
@@ -417,10 +418,10 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						24,
 						0,
 						24,
-						24
+						24,
 					},
 					color = tweak_data.screen_colors.button_stage_3,
-					y = padding
+					y = padding,
 				})
 
 				arrow_left:set_world_y(math.round(arrow_left:world_y()))
@@ -441,7 +442,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						y = padding,
 						w = w,
 						h = h,
-						visible = i == self._data.active_market_bundle
+						visible = i == self._data.active_market_bundle,
 					})
 					title_text = panel:text({
 						vertical = "center",
@@ -452,7 +453,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						text = managers.localization:to_upper_text("menu_steam_market_content_" .. bundle.content),
 						font = small_font,
 						font_size = small_font_size,
-						color = tweak_data.screen_colors.button_stage_2
+						color = tweak_data.screen_colors.button_stage_2,
 					})
 
 					self:make_fine_text(title_text)
@@ -472,7 +473,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						name = "safe",
 						y = small_font_size + padding * 0.5,
 						w = size,
-						h = size
+						h = size,
 					})
 
 					safe_panel:set_center_x(w * 0.5)
@@ -485,7 +486,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						font_size = small_font_size,
 						x = safe_panel:x(),
 						y = safe_panel:bottom() + 1,
-						color = tweak_data.screen_colors.button_stage_3
+						color = tweak_data.screen_colors.button_stage_3,
 					})
 
 					self:make_fine_text(safe_text)
@@ -495,7 +496,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						x = safe_panel:x(),
 						y = safe_panel:y(),
 						w = safe_panel:w(),
-						h = safe_panel:h() + small_font_size
+						h = safe_panel:h() + small_font_size,
 					})
 					local guis_catalog = "guis/"
 					local bundle_folder = tweak_data.economy.drills[bundle.drill].texture_bundle_folder
@@ -512,7 +513,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 							name = "drill",
 							y = small_font_size + padding * 0.5,
 							w = size,
-							h = size
+							h = size,
 						})
 
 						drill_panel:set_center_x(w * 0.75)
@@ -524,7 +525,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 							font_size = small_font_size,
 							x = drill_panel:x(),
 							y = drill_panel:bottom() + 1,
-							color = tweak_data.screen_colors.button_stage_3
+							color = tweak_data.screen_colors.button_stage_3,
 						})
 
 						self:make_fine_text(drill_text)
@@ -535,7 +536,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 							x = drill_panel:x(),
 							y = drill_panel:y(),
 							w = drill_panel:w(),
-							h = drill_panel:h() + small_font_size
+							h = drill_panel:h() + small_font_size,
 						})
 					else
 						drill_text = nil
@@ -549,14 +550,14 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 							entry = bundle.safe,
 							image = safe_panel,
 							text = safe_text,
-							select = safe_market_panel
+							select = safe_market_panel,
 						},
 						drill = {
 							entry = bundle.drill,
 							image = drill_panel,
 							text = drill_text,
-							select = drill_market_panel
-						}
+							select = drill_market_panel,
+						},
 					}
 				end
 			else
@@ -566,7 +567,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		end
 
 		local info_box_panel = self._panel:panel({
-			name = "info_box_panel"
+			name = "info_box_panel",
 		})
 
 		info_box_panel:set_size(info_box_w, info_box_h)
@@ -584,675 +585,672 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				btn = "BTN_A",
 				name = "bm_menu_btn_move_weapon",
 				prio = managers.menu:is_pc_controller() and 5 or 1,
-				callback = callback(self, self, "pickup_crafted_item_callback")
+				callback = callback(self, self, "pickup_crafted_item_callback"),
 			},
 			w_place = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_place_weapon",
-				callback = callback(self, self, "place_crafted_item_callback")
+				callback = callback(self, self, "place_crafted_item_callback"),
 			},
 			w_swap = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_swap_weapon",
-				callback = callback(self, self, "place_crafted_item_callback")
+				callback = callback(self, self, "place_crafted_item_callback"),
 			},
 			m_move = {
 				btn = "BTN_A",
 				prio = 5,
 				name = "bm_menu_btn_move_mask",
-				callback = callback(self, self, "pickup_crafted_item_callback")
+				callback = callback(self, self, "pickup_crafted_item_callback"),
 			},
 			m_place = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_place_mask",
-				callback = callback(self, self, "place_crafted_item_callback")
+				callback = callback(self, self, "place_crafted_item_callback"),
 			},
 			m_swap = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_swap_mask",
-				callback = callback(self, self, "place_crafted_item_callback")
+				callback = callback(self, self, "place_crafted_item_callback"),
 			},
 			i_stop_move = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_stop_move",
 				prio = 2,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "drop_hold_crafted_item_callback")
+				callback = callback(self, self, "drop_hold_crafted_item_callback"),
 			},
 			i_rename = {
 				btn = "BTN_BACK",
 				name = "bm_menu_btn_rename_item",
 				prio = 2,
 				pc_btn = "toggle_chat",
-				callback = callback(self, self, "rename_item_with_gamepad_callback")
+				callback = callback(self, self, "rename_item_with_gamepad_callback"),
 			},
 			w_mod = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_mod",
 				prio = 2,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "choose_weapon_mods_callback")
+				callback = callback(self, self, "choose_weapon_mods_callback"),
 			},
 			w_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_weapon",
-				callback = callback(self, self, "equip_weapon_callback")
+				callback = callback(self, self, "equip_weapon_callback"),
 			},
 			w_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_weapon_callback")
+				callback = callback(self, self, "preview_weapon_callback"),
 			},
 			w_sell = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_sell",
 				prio = 4,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "sell_item_callback")
+				callback = callback(self, self, "sell_item_callback"),
 			},
 			w_skin = {
 				btn = "BTN_STICK_L",
 				name = "bm_menu_btn_skin",
 				prio = 5,
 				pc_btn = "menu_edit_skin",
-				callback = callback(self, self, "edit_weapon_skin_callback")
+				callback = callback(self, self, "edit_weapon_skin_callback"),
 			},
 			w_unequip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_unequip_weapon",
-				callback = function ()
-				end
+				callback = function() end,
 			},
 			ew_unlock = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_weapon_slot",
-				callback = callback(self, self, "choose_weapon_slot_unlock_callback")
+				callback = callback(self, self, "choose_weapon_slot_unlock_callback"),
 			},
 			ew_buy = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_new_weapon",
-				callback = callback(self, self, "choose_weapon_buy_callback")
+				callback = callback(self, self, "choose_weapon_buy_callback"),
 			},
 			bw_buy = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_selected_weapon",
-				callback = callback(self, self, "buy_weapon_callback")
+				callback = callback(self, self, "buy_weapon_callback"),
 			},
 			bw_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_buy_weapon_callback")
+				callback = callback(self, self, "preview_buy_weapon_callback"),
 			},
 			bw_available_mods = {
 				btn = "BTN_Y",
 				name = "bm_menu_available_mods",
 				prio = 2,
 				pc_btn = "menu_preview_item_alt",
-				callback = callback(self, self, "show_available_mods_callback")
+				callback = callback(self, self, "show_available_mods_callback"),
 			},
 			bw_buy_dlc = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_buy_dlc",
 				color = tweak_data.screen_colors.dlc_buy_color,
-				callback = callback(self, self, "show_buy_dlc_callback")
+				callback = callback(self, self, "show_buy_dlc_callback"),
 			},
 			bw_preview_mods = {
 				btn = "BTN_Y",
 				name = "bm_menu_preview_mods",
 				prio = 2,
 				pc_btn = "menu_preview_item_alt",
-				callback = callback(self, self, "preview_weapon_mods_callback")
+				callback = callback(self, self, "preview_weapon_mods_callback"),
 			},
 			mt_choose = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_choose",
-				callback = callback(self, self, "choose_mod_callback")
+				callback = callback(self, self, "choose_mod_callback"),
 			},
 			wm_buy = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_craft_mod",
-				callback = callback(self, self, "buy_mod_callback")
+				callback = callback(self, self, "buy_mod_callback"),
 			},
 			wm_preview = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_preview",
 				prio = 3,
 				pc_btn = "menu_preview_item_alt",
-				callback = callback(self, self, "preview_weapon_mod_callback")
+				callback = callback(self, self, "preview_weapon_mod_callback"),
 			},
 			wm_preview_mod = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_with_mod",
 				prio = 4,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_weapon_with_mod_callback")
+				callback = callback(self, self, "preview_weapon_with_mod_callback"),
 			},
 			wm_remove_buy = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_remove_mod",
 				prio = 2,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "remove_mod_callback")
+				callback = callback(self, self, "remove_mod_callback"),
 			},
 			wm_remove_preview_mod = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_with_mod",
 				prio = 4,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_weapon_mod_callback")
+				callback = callback(self, self, "preview_weapon_mod_callback"),
 			},
 			wm_remove_preview = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_preview_no_mod",
 				prio = 3,
 				pc_btn = "menu_preview_item_alt",
-				callback = callback(self, self, "preview_weapon_without_mod_callback")
+				callback = callback(self, self, "preview_weapon_without_mod_callback"),
 			},
 			wm_sell = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_sell",
 				prio = 2,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "sell_weapon_mods_callback")
+				callback = callback(self, self, "sell_weapon_mods_callback"),
 			},
 			wm_reticle_switch_menu = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_switch_reticle",
-				callback = callback(self, self, "open_reticle_switch_menu")
+				callback = callback(self, self, "open_reticle_switch_menu"),
 			},
 			wm_buy_mod = {
 				btn = "BTN_START",
 				name = "bm_menu_btn_buy_mod",
 				prio = 4,
 				pc_btn = "menu_respec_tree_all",
-				callback = callback(self, self, "purchase_weapon_mod_callback")
+				callback = callback(self, self, "purchase_weapon_mod_callback"),
 			},
 			wm_clear_mod_preview = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_clear_mod_preview",
 				prio = 3,
 				pc_btn = "menu_preview_item_alt",
-				callback = callback(self, self, "clear_weapon_mod_preview_callback")
+				callback = callback(self, self, "clear_weapon_mod_preview_callback"),
 			},
 			wm_customize_gadget = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_customize_gadget",
-				callback = callback(self, self, "open_customize_gadget_menu")
+				callback = callback(self, self, "open_customize_gadget_menu"),
 			},
 			wcs_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_weapon_cosmetic",
-				callback = callback(self, self, "equip_weapon_color_callback")
+				callback = callback(self, self, "equip_weapon_color_callback"),
 			},
 			wcs_customize_color = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_customize_weapon_color",
-				callback = callback(self, self, "open_customize_weapon_color_menu")
+				callback = callback(self, self, "open_customize_weapon_color_menu"),
 			},
 			wcc_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_weapon_cosmetic",
-				callback = callback(self, self, "equip_weapon_cosmetics_callback")
+				callback = callback(self, self, "equip_weapon_cosmetics_callback"),
 			},
 			wcc_choose = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_choose_weapon_cosmetic",
-				callback = callback(self, self, "choose_weapon_cosmetics_callback")
+				callback = callback(self, self, "choose_weapon_cosmetics_callback"),
 			},
 			wcc_remove = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_remove_weapon_cosmetic",
 				prio = 1,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "remove_weapon_cosmetics_callback")
+				callback = callback(self, self, "remove_weapon_cosmetics_callback"),
 			},
 			wcc_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_weapon_cosmetic",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_cosmetic_on_weapon_callback")
+				callback = callback(self, self, "preview_cosmetic_on_weapon_callback"),
 			},
 			wcc_buy_equip_weapon = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_new_weapon",
-				callback = callback(self, self, "buy_equip_weapon_cosmetics_callback")
+				callback = callback(self, self, "buy_equip_weapon_cosmetics_callback"),
 			},
 			wcc_cancel_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_stop_preview_weapon_cosmetic",
 				prio = 4,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "cancel_preview_cosmetic_on_weapon_callback")
+				callback = callback(self, self, "cancel_preview_cosmetic_on_weapon_callback"),
 			},
 			wcc_market = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_buy_tradable",
 				prio = 5,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "purchase_market_cosmetic_on_weapon_callback")
+				callback = callback(self, self, "purchase_market_cosmetic_on_weapon_callback"),
 			},
 			it_wcc_choose_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_weapon_cosmetic",
-				callback = callback(self, self, "choose_equip_weapon_cosmetics_callback")
+				callback = callback(self, self, "choose_equip_weapon_cosmetics_callback"),
 			},
 			it_wcc_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_weapon_cosmetic",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_weapon_cosmetics_callback")
+				callback = callback(self, self, "preview_weapon_cosmetics_callback"),
 			},
 			it_copen = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_open_container",
-				callback = callback(self, self, "start_open_tradable_container_callback")
+				callback = callback(self, self, "start_open_tradable_container_callback"),
 			},
 			it_sell = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_sell_tradable",
 				prio = 4,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "sell_tradable_item")
+				callback = callback(self, self, "sell_tradable_item"),
 			},
 			it_wcc_armor_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_armor_skin",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_armor_skin_callback")
+				callback = callback(self, self, "preview_armor_skin_callback"),
 			},
 			a_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_armor",
-				callback = callback(self, self, "equip_armor_callback")
+				callback = callback(self, self, "equip_armor_callback"),
 			},
 			a_mod = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_customize_armor",
 				prio = 2,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "open_armor_skins_menu_callback")
+				callback = callback(self, self, "open_armor_skins_menu_callback"),
 			},
 			as_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_armor_skin",
-				callback = callback(self, self, "equip_armor_skin_callback")
+				callback = callback(self, self, "equip_armor_skin_callback"),
 			},
 			as_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_armor_skin",
 				prio = 1,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_armor_skin_callback")
+				callback = callback(self, self, "preview_armor_skin_callback"),
 			},
 			as_workshop = {
 				btn = "BTN_STICK_L",
 				name = "bm_menu_btn_skin",
 				prio = 5,
 				pc_btn = "menu_edit_skin",
-				callback = callback(self, self, "edit_armor_skin_callback")
+				callback = callback(self, self, "edit_armor_skin_callback"),
 			},
 			trd_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_player_style",
-				callback = callback(self, self, "equip_player_style_callback")
+				callback = callback(self, self, "equip_player_style_callback"),
 			},
 			trd_customize = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_customize_player_style",
 				prio = 2,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "customize_player_style_callback")
+				callback = callback(self, self, "customize_player_style_callback"),
 			},
 			trd_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_player_style",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_player_style_callback")
+				callback = callback(self, self, "preview_player_style_callback"),
 			},
 			trd_mod_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_suit_variation",
-				callback = callback(self, self, "equip_suit_variation_callback")
+				callback = callback(self, self, "equip_suit_variation_callback"),
 			},
 			trd_mod_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_suit_variation",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_suit_variation_callback")
+				callback = callback(self, self, "preview_suit_variation_callback"),
 			},
 			hnd_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_gloves",
-				callback = callback(self, self, "equip_gloves_callback")
+				callback = callback(self, self, "equip_gloves_callback"),
 			},
 			hnd_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_gloves",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_gloves_callback")
+				callback = callback(self, self, "preview_gloves_callback"),
 			},
 			m_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_mask",
-				callback = callback(self, self, "equip_mask_callback")
+				callback = callback(self, self, "equip_mask_callback"),
 			},
 			m_mod = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_mod_mask",
 				prio = 2,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "mask_mods_callback")
+				callback = callback(self, self, "mask_mods_callback"),
 			},
 			m_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_mask",
 				prio = 3,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_mask_callback")
+				callback = callback(self, self, "preview_mask_callback"),
 			},
 			m_sell = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_sell_mask",
 				prio = 4,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "sell_mask_callback")
+				callback = callback(self, self, "sell_mask_callback"),
 			},
 			m_remove = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_remove_mask",
 				prio = 4,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "remove_mask_callback")
+				callback = callback(self, self, "remove_mask_callback"),
 			},
 			em_gv = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_new_mask",
-				callback = callback(self, self, "choose_mask_global_value_callback")
+				callback = callback(self, self, "choose_mask_global_value_callback"),
 			},
 			em_buy = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_new_mask",
-				callback = callback(self, self, "choose_mask_buy_callback")
+				callback = callback(self, self, "choose_mask_buy_callback"),
 			},
 			em_unlock = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_mask_slot",
-				callback = callback(self, self, "choose_mask_slot_unlock_callback")
+				callback = callback(self, self, "choose_mask_slot_unlock_callback"),
 			},
 			em_available_mods = {
 				btn = "BTN_Y",
 				name = "bm_menu_buy_mask_title",
 				prio = 3,
 				pc_btn = "menu_preview_item_alt",
-				callback = callback(self, self, "show_available_mask_mods_callback")
+				callback = callback(self, self, "show_available_mask_mods_callback"),
 			},
 			mm_choose_textures = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_choose_pattern",
-				callback = callback(self, self, "choose_mask_mod_callback", "textures")
+				callback = callback(self, self, "choose_mask_mod_callback", "textures"),
 			},
 			mm_choose_materials = {
 				btn = "BTN_A",
 				prio = 2,
 				name = "bm_menu_choose_material",
-				callback = callback(self, self, "choose_mask_mod_callback", "materials")
+				callback = callback(self, self, "choose_mask_mod_callback", "materials"),
 			},
 			mm_choose_colors = {
 				btn = "BTN_A",
 				prio = 3,
 				name = "bm_menu_choose_color",
-				callback = callback(self, self, "choose_mask_mod_callback", "colors")
+				callback = callback(self, self, "choose_mask_mod_callback", "colors"),
 			},
 			mm_choose = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_choose_mask_mod",
-				callback = callback(self, self, "choose_mask_type_callback")
+				callback = callback(self, self, "choose_mask_type_callback"),
 			},
 			mm_buy = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_customize_mask",
 				prio = 5,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "buy_customized_mask_callback")
+				callback = callback(self, self, "buy_customized_mask_callback"),
 			},
 			mm_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_mask",
 				prio = 4,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_customized_mask_callback")
+				callback = callback(self, self, "preview_customized_mask_callback"),
 			},
 			mp_choose = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_choose_mask_mod",
-				callback = callback(self, self, "choose_mask_part_callback")
+				callback = callback(self, self, "choose_mask_part_callback"),
 			},
 			mp_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_mask",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_customized_mask_callback")
+				callback = callback(self, self, "preview_customized_mask_callback"),
 			},
 			mp_preview_mod = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_mask",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_customized_mask_with_mod_callback")
+				callback = callback(self, self, "preview_customized_mask_with_mod_callback"),
 			},
 			mp_choose_first = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_choose_color_a",
-				callback = callback(self, self, "choose_mask_color_a_callback")
+				callback = callback(self, self, "choose_mask_color_a_callback"),
 			},
 			mp_choose_second = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_choose_color_b",
-				callback = callback(self, self, "choose_mask_color_b_callback")
+				callback = callback(self, self, "choose_mask_color_b_callback"),
 			},
 			bm_buy = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_buy_selected_mask",
-				callback = callback(self, self, "buy_mask_callback")
+				callback = callback(self, self, "buy_mask_callback"),
 			},
 			bm_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_mask",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_buy_mask_callback")
+				callback = callback(self, self, "preview_buy_mask_callback"),
 			},
 			bm_sell = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_sell_mask",
 				prio = 4,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "sell_stashed_mask_callback")
+				callback = callback(self, self, "sell_stashed_mask_callback"),
 			},
 			c_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_set_preferred",
-				callback = callback(self, self, "set_preferred_character_callback")
+				callback = callback(self, self, "set_preferred_character_callback"),
 			},
 			c_swap_slots = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_swap_preferred_slots",
-				callback = callback(self, self, "swap_preferred_character_to_slot_callback")
+				callback = callback(self, self, "swap_preferred_character_to_slot_callback"),
 			},
 			c_equip_to_slot = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_set_preferred_to_slot",
-				callback = callback(self, self, "set_preferred_character_to_slot_callback")
+				callback = callback(self, self, "set_preferred_character_to_slot_callback"),
 			},
 			c_clear_slots = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_clear_preferred",
 				prio = 2,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "clear_preferred_characters_callback")
+				callback = callback(self, self, "clear_preferred_characters_callback"),
 			},
 			lo_w_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_weapon",
-				callback = callback(self, self, "equip_weapon_callback")
+				callback = callback(self, self, "equip_weapon_callback"),
 			},
 			lo_d_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_deployable",
-				callback = callback(self, self, "lo_equip_deployable_callback")
+				callback = callback(self, self, "lo_equip_deployable_callback"),
 			},
 			lo_d_equip_primary = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_primary_deployable",
-				callback = callback(self, self, "lo_equip_deployable_callback")
+				callback = callback(self, self, "lo_equip_deployable_callback"),
 			},
 			lo_d_equip_secondary = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_equip_secondary_deployable",
 				prio = 2,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "lo_equip_deployable_callback_secondary")
+				callback = callback(self, self, "lo_equip_deployable_callback_secondary"),
 			},
 			lo_d_unequip = {
 				btn = "BTN_X",
 				name = "bm_menu_btn_unequip_deployable",
 				prio = 1,
 				pc_btn = "menu_remove_item",
-				callback = callback(self, self, "lo_unequip_deployable_callback")
+				callback = callback(self, self, "lo_unequip_deployable_callback"),
 			},
 			lo_d_sentry_ap_rounds = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_sentry_ap_rounds",
 				prio = 3,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "set_sentry_ap_rounds_callback")
+				callback = callback(self, self, "set_sentry_ap_rounds_callback"),
 			},
 			lo_d_sentry_default_rounds = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_sentry_default_rounds",
 				prio = 3,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "set_sentry_default_rounds_callback")
+				callback = callback(self, self, "set_sentry_default_rounds_callback"),
 			},
 			lo_mw_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_melee_weapon",
-				callback = callback(self, self, "lo_equip_melee_weapon_callback")
+				callback = callback(self, self, "lo_equip_melee_weapon_callback"),
 			},
 			lo_mw_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_melee_weapon",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_melee_weapon_callback")
+				callback = callback(self, self, "preview_melee_weapon_callback"),
 			},
 			lo_mw_add_favorite = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_add_favorite",
 				prio = 3,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "add_melee_weapon_favorite")
+				callback = callback(self, self, "add_melee_weapon_favorite"),
 			},
 			lo_mw_remove_favorite = {
 				btn = "BTN_Y",
 				name = "bm_menu_btn_remove_favorite",
 				prio = 3,
 				pc_btn = "menu_modify_item",
-				callback = callback(self, self, "remove_melee_weapon_favorite")
+				callback = callback(self, self, "remove_melee_weapon_favorite"),
 			},
 			lo_g_equip = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_equip_grenade",
-				callback = callback(self, self, "lo_equip_grenade_callback")
+				callback = callback(self, self, "lo_equip_grenade_callback"),
 			},
 			lo_g_preview = {
 				btn = "BTN_STICK_R",
 				name = "bm_menu_btn_preview_grenade",
 				prio = 2,
 				pc_btn = "menu_preview_item",
-				callback = callback(self, self, "preview_grenade_callback")
+				callback = callback(self, self, "preview_grenade_callback"),
 			},
 			custom_select = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_select",
-				callback = function ()
-				end
+				callback = function() end,
 			},
 			custom_unselect = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_unselect",
-				callback = function ()
-				end
+				callback = function() end,
 			},
 			ci_unlock = {
 				btn = "BTN_A",
 				prio = 1,
 				name = "bm_menu_btn_unlock_crew_item",
-				callback = callback(self, self, "buy_crew_item_callback")
-			}
+				callback = callback(self, self, "buy_crew_item_callback"),
+			},
 		}
 
 		for btn, data in pairs(BTNS) do
 			data.callback = callback(self, self, "overridable_callback", {
 				button = btn,
-				callback = data.callback
+				callback = data.callback,
 			})
 		end
 
@@ -1264,7 +1262,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				visible = false,
 				font = small_font,
 				font_size = small_font_size,
-				text = "TeWqjI-" .. managers.localization:get_default_macro("BTN_BOTTOM_L")
+				text = "TeWqjI-" .. managers.localization:get_default_macro("BTN_BOTTOM_L"),
 			})
 			local x, y, w, h = test_text:text_rect()
 			real_small_font_size = h
@@ -1282,7 +1280,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				visible = false,
 				font = medium_font,
 				font_size = medium_font_size,
-				text = "TeWqjI-" .. managers.localization:get_default_macro("BTN_BOTTOM_L")
+				text = "TeWqjI-" .. managers.localization:get_default_macro("BTN_BOTTOM_L"),
 			})
 			local x, y, w, h = test_text:text_rect()
 			real_medium_font_size = h
@@ -1293,7 +1291,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		self._weapon_info_panel = self._panel:panel({
 			x = info_box_panel:x(),
 			y = info_box_panel:y(),
-			w = info_box_panel:w()
+			w = info_box_panel:w(),
 		})
 		self._detection_panel = self._panel:panel({
 			name = "suspicion_panel",
@@ -1301,13 +1299,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			layer = 1,
 			x = info_box_panel:x(),
 			y = info_box_panel:y() + 250,
-			w = info_box_panel:w()
+			w = info_box_panel:w(),
 		})
 		self._btn_panel = self._panel:panel({
 			name = "btn_panel",
 			h = 136,
 			x = info_box_panel:x(),
-			w = info_box_panel:w()
+			w = info_box_panel:w(),
 		})
 
 		self._weapon_info_panel:set_h(info_box_panel:h() - self._btn_panel:h() - 8 - self._detection_panel:h() - 8)
@@ -1319,24 +1317,24 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				1,
 				1,
 				1,
-				1
-			}
+				1,
+			},
 		})
 		self._detection_border = BoxGuiObject:new(self._detection_panel, {
 			sides = {
 				1,
 				1,
 				1,
-				1
-			}
+				1,
+			},
 		})
 		self._button_border = BoxGuiObject:new(self._btn_panel, {
 			sides = {
 				1,
 				1,
 				1,
-				1
-			}
+				1,
+			},
 		})
 
 		if self._data.use_bgs then
@@ -1374,7 +1372,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			alpha = 0.2,
 			texture = "guis/textures/pd2/blackmarket/inv_detection_meter",
 			x = 8,
-			layer = 1
+			layer = 1,
 		})
 		local detection_ring_right_bg = self._detection_panel:bitmap({
 			blend_mode = "add",
@@ -1384,7 +1382,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			alpha = 0.2,
 			texture = "guis/textures/pd2/blackmarket/inv_detection_meter",
 			x = 8,
-			layer = 1
+			layer = 1,
 		})
 
 		detection_ring_left_bg:set_size(detection_ring_left_bg:w() * scale, detection_ring_left_bg:h() * scale)
@@ -1401,7 +1399,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			w = 64,
 			texture = "guis/textures/pd2/blackmarket/inv_detection_meter",
 			render_template = "VertexColorTexturedRadial",
-			layer = 1
+			layer = 1,
 		})
 		local detection_ring_right = self._detection_panel:bitmap({
 			blend_mode = "add",
@@ -1411,7 +1409,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			w = 64,
 			texture = "guis/textures/pd2/blackmarket/inv_detection_meter",
 			render_template = "VertexColorTexturedRadial",
-			layer = 1
+			layer = 1,
 		})
 
 		detection_ring_left:set_size(detection_ring_left:w() * scale, detection_ring_left:h() * scale)
@@ -1426,7 +1424,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			layer = 1,
 			font_size = medium_font_size,
 			font = medium_font,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		})
 
 		detection_value:set_x(detection_ring_left_bg:x() + detection_ring_left_bg:w() / 2 - medium_font_size / 2 + 2)
@@ -1439,14 +1437,14 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			font_size = small_font_size,
 			font = small_font,
 			color = tweak_data.screen_colors.text,
-			text = utf8.to_upper(managers.localization:text("bm_menu_stats_detection"))
+			text = utf8.to_upper(managers.localization:text("bm_menu_stats_detection")),
 		})
 
 		detection_text:set_left(detection_ring_left:right() + 8)
 		detection_text:set_y(detection_ring_left:y() + detection_ring_left_bg:h() / 2 - medium_font_size / 2 + 2)
 
 		self._buttons = self._btn_panel:panel({
-			y = 8
+			y = 8,
 		})
 		local btn_x = 10
 
@@ -1458,7 +1456,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		self._armor_info_panel = self._weapon_info_panel:panel({
 			layer = 10,
 			w = self._weapon_info_panel:w(),
-			h = self._weapon_info_panel:h()
+			h = self._weapon_info_panel:h(),
 		})
 		local armor_info_panel = self._armor_info_panel
 		local armor_image = armor_info_panel:bitmap({
@@ -1468,7 +1466,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			y = 10,
 			w = 96,
 			blend_mode = "normal",
-			x = 10
+			x = 10,
 		})
 		local armor_name = armor_info_panel:text({
 			name = "armor_name_text",
@@ -1482,7 +1480,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			color = tweak_data.screen_colors.text,
 			x = armor_image:right() + 10,
 			w = armor_info_panel:w() - armor_image:right() - 20,
-			h = medium_font_size * 2
+			h = medium_font_size * 2,
 		})
 		local equip_text = armor_info_panel:text({
 			name = "armor_equipped",
@@ -1494,65 +1492,80 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			x = armor_image:right() + 10,
 			y = armor_name:bottom(),
 			w = armor_info_panel:w() - armor_image:right() - 20,
-			h = small_font_size
+			h = small_font_size,
 		})
 		self._info_texts = {}
 		self._info_texts_panel = self._weapon_info_panel:panel({
 			x = 10,
 			y = 10,
 			w = self._weapon_info_panel:w() - 20,
-			h = self._weapon_info_panel:h() - 20 - real_small_font_size * 3
+			h = self._weapon_info_panel:h() - 20 - real_small_font_size * 3,
 		})
 
-		table.insert(self._info_texts, self._info_texts_panel:text({
-			text = "",
-			name = "info_text_1",
-			layer = 1,
-			font_size = medium_font_size,
-			font = medium_font,
-			color = tweak_data.screen_colors.text
-		}))
-		table.insert(self._info_texts, self._info_texts_panel:text({
-			text = "",
-			wrap = true,
-			name = "info_text_2",
-			word_wrap = true,
-			layer = 1,
-			font_size = small_font_size,
-			font = small_font,
-			color = tweak_data.screen_colors.text
-		}))
-		table.insert(self._info_texts, self._info_texts_panel:text({
-			name = "info_text_3",
-			blend_mode = "add",
-			wrap = true,
-			word_wrap = true,
-			text = "",
-			layer = 1,
-			font_size = small_font_size,
-			font = small_font,
-			color = tweak_data.screen_colors.important_1
-		}))
-		table.insert(self._info_texts, self._info_texts_panel:text({
-			text = "",
-			wrap = true,
-			name = "info_text_4",
-			word_wrap = true,
-			layer = 1,
-			font_size = small_font_size,
-			font = small_font,
-			color = tweak_data.screen_colors.text
-		}))
-		table.insert(self._info_texts, self._info_texts_panel:text({
-			text = "",
-			wrap = true,
-			name = "info_text_5",
-			word_wrap = true,
-			layer = 1,
-			font_size = small_font_size,
-			font = small_font,
-			color = tweak_data.screen_colors.important_1
-		}))
+		table.insert(
+			self._info_texts,
+			self._info_texts_panel:text({
+				text = "",
+				name = "info_text_1",
+				layer = 1,
+				font_size = medium_font_size,
+				font = medium_font,
+				color = tweak_data.screen_colors.text,
+			})
+		)
+		table.insert(
+			self._info_texts,
+			self._info_texts_panel:text({
+				text = "",
+				wrap = true,
+				name = "info_text_2",
+				word_wrap = true,
+				layer = 1,
+				font_size = small_font_size,
+				font = small_font,
+				color = tweak_data.screen_colors.text,
+			})
+		)
+		table.insert(
+			self._info_texts,
+			self._info_texts_panel:text({
+				name = "info_text_3",
+				blend_mode = "add",
+				wrap = true,
+				word_wrap = true,
+				text = "",
+				layer = 1,
+				font_size = small_font_size,
+				font = small_font,
+				color = tweak_data.screen_colors.important_1,
+			})
+		)
+		table.insert(
+			self._info_texts,
+			self._info_texts_panel:text({
+				text = "",
+				wrap = true,
+				name = "info_text_4",
+				word_wrap = true,
+				layer = 1,
+				font_size = small_font_size,
+				font = small_font,
+				color = tweak_data.screen_colors.text,
+			})
+		)
+		table.insert(
+			self._info_texts,
+			self._info_texts_panel:text({
+				text = "",
+				wrap = true,
+				name = "info_text_5",
+				word_wrap = true,
+				layer = 1,
+				font_size = small_font_size,
+				font = small_font,
+				color = tweak_data.screen_colors.important_1,
+			})
+		)
 
 		self._info_texts_color = {}
 		self._info_texts_bg = {}
@@ -1563,7 +1576,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				alpha = 0.2,
 				visible = false,
 				layer = 0,
-				color = Color.black
+				color = Color.black,
 			})
 
 			self._info_texts_bg[i]:set_shape(info_text:shape())
@@ -1576,7 +1589,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			self._info_panel = self._panel:panel({
 				name = "info_panel",
 				layer = 1,
-				w = self._btn_panel:w()
+				w = self._btn_panel:w(),
 			})
 			local info_table = self._data.info_callback()
 
@@ -1593,7 +1606,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					font_size = h,
 					font = small_font,
 					color = tweak_data.screen_colors.text,
-					text = utf8.to_upper(managers.localization:text("bm_menu_" .. tostring(info_name)))
+					text = utf8.to_upper(managers.localization:text("bm_menu_" .. tostring(info_name))),
 				})
 				local status_text = self._info_panel:text({
 					w = 0,
@@ -1604,7 +1617,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					font_size = h,
 					font = small_font,
 					color = info_color,
-					text = utf8.to_upper(managers.localization:text(info_string))
+					text = utf8.to_upper(managers.localization:text(info_string)),
 				})
 
 				if info_string == "" then
@@ -1634,64 +1647,64 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				{
 					round_value = true,
 					name = "magazine",
-					stat_name = "extra_ammo"
+					stat_name = "extra_ammo",
 				},
 				{
 					round_value = true,
 					name = "totalammo",
-					stat_name = "total_ammo_mod"
+					stat_name = "total_ammo_mod",
 				},
 				{
-					name = "pickup"
+					name = "pickup",
 				},
 				{
 					inverted = true,
-					name = "reload"
+					name = "reload",
 				},
 				{
 					round_value = true,
-					name = "fire_rate"
+					name = "fire_rate",
 				},
 				{
-					name = "damage"
+					name = "damage",
 				},
 				{
 					percent = true,
 					name = "spread",
 					offset = true,
-					revert = true
+					revert = true,
 				},
 				{
 					percent = true,
 					name = "recoil",
 					offset = true,
-					revert = true
+					revert = true,
 				},
 				{
 					index = true,
-					name = "concealment"
+					name = "concealment",
 				},
 				{
 					percent = false,
 					name = "suppression",
-					offset = true
-				}
+					offset = true,
+				},
 			}
 			self._stats_panel = self._weapon_info_panel:panel({
 				y = 58,
 				x = 10,
 				layer = 1,
 				w = self._weapon_info_panel:w() - 20,
-				h = self._weapon_info_panel:h() - 30
+				h = self._weapon_info_panel:h() - 30,
 			})
 			local panel = self._stats_panel:panel({
 				h = 20,
 				layer = 1,
-				w = self._stats_panel:w()
+				w = self._stats_panel:w(),
 			})
 
 			panel:rect({
-				color = Color.black:with_alpha(0.5)
+				color = Color.black:with_alpha(0.5),
 			})
 
 			self._stats_titles = {
@@ -1700,7 +1713,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					layer = 2,
 					font_size = small_font_size,
 					font = small_font,
-					color = tweak_data.screen_colors.text
+					color = tweak_data.screen_colors.text,
 				}),
 				base = self._stats_panel:text({
 					alpha = 0.75,
@@ -1709,7 +1722,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					font_size = small_font_size,
 					font = small_font,
 					color = tweak_data.screen_colors.text,
-					text = utf8.to_upper(managers.localization:text("bm_menu_stats_base"))
+					text = utf8.to_upper(managers.localization:text("bm_menu_stats_base")),
 				}),
 				mod = self._stats_panel:text({
 					alpha = 0.75,
@@ -1718,7 +1731,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					font_size = small_font_size,
 					font = small_font,
 					color = tweak_data.screen_colors.stats_mods,
-					text = utf8.to_upper(managers.localization:text("bm_menu_stats_mod"))
+					text = utf8.to_upper(managers.localization:text("bm_menu_stats_mod")),
 				}),
 				skill = self._stats_panel:text({
 					alpha = 0.75,
@@ -1727,7 +1740,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					font_size = small_font_size,
 					font = small_font,
 					color = tweak_data.screen_colors.resource,
-					text = utf8.to_upper(managers.localization:text("bm_menu_stats_skill"))
+					text = utf8.to_upper(managers.localization:text("bm_menu_stats_skill")),
 				}),
 				total = self._stats_panel:text({
 					x = 200,
@@ -1735,8 +1748,8 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					font_size = small_font_size,
 					font = small_font,
 					color = tweak_data.screen_colors.text,
-					text = utf8.to_upper(managers.localization:text("bm_menu_chosen"))
-				})
+					text = utf8.to_upper(managers.localization:text("bm_menu_chosen")),
+				}),
 			}
 			local x = 0
 			local y = 20
@@ -1744,21 +1757,21 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			local text_columns = {
 				{
 					size = 100,
-					name = "name"
+					name = "name",
 				},
 				{
 					align = "right",
 					name = "equip",
 					blend = "add",
 					alpha = 0.75,
-					size = 45
+					size = 45,
 				},
 				{
 					align = "right",
 					name = "base",
 					blend = "add",
 					alpha = 0.75,
-					size = 45
+					size = 45,
 				},
 				{
 					align = "right",
@@ -1766,7 +1779,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					blend = "add",
 					alpha = 0.75,
 					size = 45,
-					color = tweak_data.screen_colors.stats_mods
+					color = tweak_data.screen_colors.stats_mods,
 				},
 				{
 					size = 45,
@@ -1776,7 +1789,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					align = "right",
 					offset = -40,
 					color = tweak_data.screen_colors.important_1,
-					font_size = tiny_font_size
+					font_size = tiny_font_size,
 				},
 				{
 					align = "right",
@@ -1784,13 +1797,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					blend = "add",
 					alpha = 0.75,
 					size = 45,
-					color = tweak_data.screen_colors.resource
+					color = tweak_data.screen_colors.resource,
 				},
 				{
 					size = 45,
 					name = "total",
-					align = "right"
-				}
+					align = "right",
+				},
 			}
 			self._stats_texts = {}
 			self._rweapon_stats_panel = self._stats_panel:panel()
@@ -1803,14 +1816,14 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					x = 0,
 					layer = 1,
 					y = y + 1 * scale_chart,
-					w = self._rweapon_stats_panel:w()
+					w = self._rweapon_stats_panel:w(),
 				})
 
 				if math.mod(i, 2) == 0 and not panel:child(tostring(i)) then
 					panel:rect({
 						name = tostring(i),
 						color = Color.black:with_alpha(0.3),
-						h = h + 2 * scale_chart
+						h = h + 2 * scale_chart,
 					})
 				end
 
@@ -1823,7 +1836,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						layer = 0,
 						x = x + (column.offset or 0),
 						w = column.size,
-						h = panel:h()
+						h = panel:h(),
 					})
 					self._stats_texts[stat.name][column.name] = text_panel:text({
 						layer = 1,
@@ -1833,7 +1846,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						alpha = column.alpha,
 						blend_mode = column.blend,
 						color = column.color or tweak_data.screen_colors.text,
-						y = panel:h() - (column.font_size or small_font_size) * scale_chart
+						y = panel:h() - (column.font_size or small_font_size) * scale_chart,
 					})
 					x = x + column.size + (column.offset or 0)
 
@@ -1845,28 +1858,28 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 
 			self._armor_stats_shown = {
 				{
-					name = "armor"
+					name = "armor",
 				},
 				{
-					name = "health"
+					name = "health",
 				},
 				{
 					index = true,
-					name = "concealment"
+					name = "concealment",
 				},
 				{
-					name = "movement"
+					name = "movement",
 				},
 				{
 					revert = true,
-					name = "dodge"
+					name = "dodge",
 				},
 				{
-					name = "damage_shake"
+					name = "damage_shake",
 				},
 				{
-					name = "stamina"
-				}
+					name = "stamina",
+				},
 			}
 			local x = 0
 			local y = 20
@@ -1875,21 +1888,21 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			local text_columns = {
 				{
 					size = 100,
-					name = "name"
+					name = "name",
 				},
 				{
 					align = "right",
 					name = "equip",
 					blend = "add",
 					alpha = 0.75,
-					size = 45
+					size = 45,
 				},
 				{
 					align = "right",
 					name = "base",
 					blend = "add",
 					alpha = 0.75,
-					size = 60
+					size = 60,
 				},
 				{
 					align = "right",
@@ -1897,13 +1910,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					blend = "add",
 					alpha = 0.75,
 					size = 60,
-					color = tweak_data.screen_colors.resource
+					color = tweak_data.screen_colors.resource,
 				},
 				{
 					size = 45,
 					name = "total",
-					align = "right"
-				}
+					align = "right",
+				},
 			}
 			self._armor_stats_panel = self._stats_panel:panel()
 
@@ -1913,13 +1926,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					x = 0,
 					layer = 1,
 					y = y,
-					w = self._armor_stats_panel:w()
+					w = self._armor_stats_panel:w(),
 				})
 
 				if math.mod(i, 2) == 0 and not panel:child(tostring(i)) then
 					panel:rect({
 						name = tostring(i),
-						color = Color.black:with_alpha(0.3)
+						color = Color.black:with_alpha(0.3),
 					})
 				end
 
@@ -1932,7 +1945,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						layer = 0,
 						x = x,
 						w = column.size,
-						h = panel:h()
+						h = panel:h(),
 					})
 					self._armor_stats_texts[stat.name][column.name] = text_panel:text({
 						layer = 1,
@@ -1941,7 +1954,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						align = column.align,
 						alpha = column.alpha,
 						blend_mode = column.blend,
-						color = column.color or tweak_data.screen_colors.text
+						color = column.color or tweak_data.screen_colors.text,
 					})
 					x = x + column.size
 
@@ -1954,27 +1967,27 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			self._mweapon_stats_shown = {
 				{
 					range = true,
-					name = "damage"
+					name = "damage",
 				},
 				{
 					range = true,
 					name = "damage_effect",
-					multiple_of = "damage"
+					multiple_of = "damage",
 				},
 				{
 					inverse = true,
 					name = "charge_time",
 					num_decimals = 1,
-					suffix = managers.localization:text("menu_seconds_suffix_short")
+					suffix = managers.localization:text("menu_seconds_suffix_short"),
 				},
 				{
 					range = true,
-					name = "range"
+					name = "range",
 				},
 				{
 					index = true,
-					name = "concealment"
-				}
+					name = "concealment",
+				},
 			}
 			local x = 0
 			local y = 20
@@ -1983,21 +1996,21 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			local text_columns = {
 				{
 					size = 100,
-					name = "name"
+					name = "name",
 				},
 				{
 					align = "right",
 					name = "equip",
 					blend = "add",
 					alpha = 0.75,
-					size = 55
+					size = 55,
 				},
 				{
 					align = "right",
 					name = "base",
 					blend = "add",
 					alpha = 0.75,
-					size = 60
+					size = 60,
 				},
 				{
 					align = "right",
@@ -2005,13 +2018,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					blend = "add",
 					alpha = 0.75,
 					size = 65,
-					color = tweak_data.screen_colors.resource
+					color = tweak_data.screen_colors.resource,
 				},
 				{
 					size = 55,
 					name = "total",
-					align = "right"
-				}
+					align = "right",
+				},
 			}
 			self._mweapon_stats_panel = self._stats_panel:panel()
 
@@ -2021,13 +2034,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					x = 0,
 					layer = 1,
 					y = y,
-					w = self._mweapon_stats_panel:w()
+					w = self._mweapon_stats_panel:w(),
 				})
 
 				if math.mod(i, 2) == 0 and not panel:child(tostring(i)) then
 					panel:rect({
 						name = tostring(i),
-						color = Color.black:with_alpha(0.3)
+						color = Color.black:with_alpha(0.3),
 					})
 				end
 
@@ -2040,7 +2053,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						layer = 0,
 						x = x,
 						w = column.size,
-						h = panel:h()
+						h = panel:h(),
 					})
 					self._mweapon_stats_texts[stat.name][column.name] = text_panel:text({
 						layer = 1,
@@ -2049,7 +2062,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 						align = column.align,
 						alpha = column.alpha,
 						blend_mode = column.blend,
-						color = column.color or tweak_data.screen_colors.text
+						color = column.color or tweak_data.screen_colors.text,
 					})
 					x = x + column.size
 
@@ -2064,7 +2077,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				layer = 0,
 				y = y + 20,
 				w = self._stats_panel:w(),
-				h = self._stats_panel:h()
+				h = self._stats_panel:h(),
 			})
 			self._stats_text_modslist = panel:text({
 				word_wrap = true,
@@ -2072,7 +2085,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				layer = 1,
 				font_size = small_font_size,
 				font = small_font,
-				color = tweak_data.screen_colors.text
+				color = tweak_data.screen_colors.text,
 			})
 		end
 
@@ -2092,7 +2105,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				font_size = medium_font_size,
 				font = medium_font,
 				color = tweak_data.screen_colors.text,
-				text = button
+				text = button,
 			})
 			local _, _, w, h = prev_page:text_rect()
 
@@ -2117,7 +2130,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				font_size = medium_font_size,
 				font = medium_font,
 				color = tweak_data.screen_colors.text,
-				text = button
+				text = button,
 			})
 			local _, _, w, h = next_page:text_rect()
 
@@ -2138,7 +2151,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				layer = 2,
 				font_size = medium_font_size,
 				font = medium_font,
-				color = tweak_data.screen_colors.button_stage_3
+				color = tweak_data.screen_colors.button_stage_3,
 			})
 			local _, _, w, h = prev_page:text_rect()
 
@@ -2158,7 +2171,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				layer = 2,
 				font_size = medium_font_size,
 				font = medium_font,
-				color = tweak_data.screen_colors.button_stage_3
+				color = tweak_data.screen_colors.button_stage_3,
 			})
 			local _, _, w, h = next_page:text_rect()
 
@@ -2206,7 +2219,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			text = self._title_text:text(),
 			font_size = massive_font_size,
 			font = massive_font,
-			color = tweak_data.screen_colors.button_stage_3
+			color = tweak_data.screen_colors.button_stage_3,
 		})
 		local x, y = managers.gui_data:safe_to_full_16_9(self._title_text:world_x(), self._title_text:world_center_y())
 
@@ -2226,7 +2239,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				text = utf8.to_upper(managers.localization:text("menu_back")),
 				font_size = massive_font_size,
 				font = massive_font,
-				color = tweak_data.screen_colors.button_stage_3
+				color = tweak_data.screen_colors.button_stage_3,
 			})
 			local x, y = managers.gui_data:safe_to_full_16_9(self._panel:child("back_button"):world_right(), self._panel:child("back_button"):world_center_y())
 
@@ -2243,7 +2256,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 
 	local black_rect = self._data.skip_blur or self._fullscreen_panel:rect({
 		layer = 1,
-		color = Color(0.4, 0, 0, 0)
+		color = Color(0.4, 0, 0, 0),
 	})
 
 	if is_start_page then
@@ -2256,12 +2269,12 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			texture = "guis/textures/icon_loading",
 			name = "indicator",
 			layer = 1,
-			alpha = self._indicator_alpha
+			alpha = self._indicator_alpha,
 		})
 
 		self._indicator:set_left(self._title_text:right() + 10)
 		self._indicator:set_center_y(self._title_text:center_y())
-		self._indicator:animate(function (o)
+		self._indicator:animate(function(o)
 			local dt = nil
 
 			while true do
@@ -2277,7 +2290,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 
 		local info_box_panel = self._panel:child("info_box_panel")
 		self._steam_inventory_extra_panel = self._panel:panel({
-			h = top_padding
+			h = top_padding,
 		})
 
 		self._steam_inventory_extra_panel:set_width(info_box_panel:width())
@@ -2289,17 +2302,20 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		extra_data.choices = {}
 
 		for _, name in ipairs(tweak_data.gui.tradable_inventory_sort_list) do
-			table.insert(extra_data.choices, managers.localization:to_upper_text("bm_menu_ti_sort_option", {
-				sort = managers.localization:text("bm_menu_ti_" .. name)
-			}))
+			table.insert(
+				extra_data.choices,
+				managers.localization:to_upper_text("bm_menu_ti_sort_option", {
+					sort = managers.localization:text("bm_menu_ti_" .. name),
+				})
+			)
 		end
 
 		local gui_panel = self._steam_inventory_extra_panel:panel({
-			h = medium_font_size + 5
+			h = medium_font_size + 5,
 		})
 		extra_data.bg = gui_panel:rect({
 			alpha = 0.5,
-			color = Color.black:with_alpha(0.5)
+			color = Color.black:with_alpha(0.5),
 		})
 
 		BoxGuiObject:new(gui_panel, {
@@ -2307,12 +2323,12 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				1,
 				1,
 				1,
-				1
-			}
+				1,
+			},
 		})
 
 		local choice_panel = gui_panel:panel({
-			layer = 1
+			layer = 1,
 		})
 		local choice_text = choice_panel:text({
 			halign = "center",
@@ -2327,7 +2343,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			font = small_font,
 			color = tweak_data.screen_colors.button_stage_2,
 			text = extra_data.choices[Global.blackmarket_manager.tradable_inventory_sort or 1],
-			render_template = Idstring("VertexColorTextured")
+			render_template = Idstring("VertexColorTextured"),
 		})
 		local arrow_left, arrow_right = nil
 
@@ -2342,9 +2358,9 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					24,
 					0,
 					24,
-					24
+					24,
 				},
-				color = tweak_data.screen_colors.button_stage_3
+				color = tweak_data.screen_colors.button_stage_3,
 			})
 			arrow_right = gui_panel:bitmap({
 				texture = "guis/textures/menu_arrows",
@@ -2356,9 +2372,9 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					24,
 					0,
 					24,
-					24
+					24,
 				},
-				color = tweak_data.screen_colors.button_stage_3
+				color = tweak_data.screen_colors.button_stage_3,
 			})
 		else
 			local BTN_TOP_L = managers.menu:is_steam_controller() and managers.localization:steam_btn("trigger_l") or managers.localization:get_default_macro("BTN_TOP_L")
@@ -2369,7 +2385,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				text = BTN_TOP_L,
 				color = managers.menu:is_steam_controller() and tweak_data.screen_colors.button_stage_3,
 				font = small_font,
-				font_size = small_font_size
+				font_size = small_font_size,
 			})
 			arrow_right = gui_panel:text({
 				blend_mode = "add",
@@ -2377,7 +2393,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				text = BTN_TOP_R,
 				color = managers.menu:is_steam_controller() and tweak_data.screen_colors.button_stage_3,
 				font = small_font,
-				font_size = small_font_size
+				font_size = small_font_size,
 			})
 
 			self:make_fine_text(arrow_left)
@@ -2442,15 +2458,15 @@ function BlackMarketGui:show_stats()
 		self:hide_melee_weapon_stats()
 		self:set_stats_titles({
 			x = 170,
-			name = "base"
+			name = "base",
 		}, {
 			name = "mod",
 			x = 215,
 			text_id = "bm_menu_stats_mod",
-			color = tweak_data.screen_colors.stats_mods
+			color = tweak_data.screen_colors.stats_mods,
 		}, {
 			alpha = 0.75,
-			name = "skill"
+			name = "skill",
 		})
 
 		for _, title in pairs(self._stats_titles) do
@@ -2459,12 +2475,12 @@ function BlackMarketGui:show_stats()
 
 		self:set_stats_titles({
 			hide = true,
-			name = "total"
+			name = "total",
 		}, {
 			alpha = 1,
 			name = "equip",
 			x = 120,
-			text_id = "bm_menu_stats_total"
+			text_id = "bm_menu_stats_total",
 		})
 
 		for _, stat in ipairs(self._stats_shown) do
@@ -2476,8 +2492,12 @@ function BlackMarketGui:show_stats()
 			self._stats_texts[stat.name].equip:set_alpha(1)
 			self._stats_texts[stat.name].equip:set_text(format_round(value, stat.round_value))
 			self._stats_texts[stat.name].base:set_text(format_round(base, stat.round_value))
-			self._stats_texts[stat.name].mods:set_text(mods_stats[stat.name].value == 0 and "" or (mods_stats[stat.name].value > 0 and "+" or "") .. format_round(mods_stats[stat.name].value, stat.round_value))
-			self._stats_texts[stat.name].skill:set_text(skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or "")
+			self._stats_texts[stat.name].mods:set_text(
+				mods_stats[stat.name].value == 0 and "" or (mods_stats[stat.name].value > 0 and "+" or "") .. format_round(mods_stats[stat.name].value, stat.round_value)
+			)
+			self._stats_texts[stat.name].skill:set_text(
+				skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or ""
+			)
 			self._stats_texts[stat.name].total:set_text("")
 			self._stats_texts[stat.name].base:set_alpha(0.75)
 			self._stats_texts[stat.name].mods:set_alpha(0.75)
@@ -2502,10 +2522,14 @@ function BlackMarketGui:show_stats()
 				-- Nothing
 			elseif tweak_stats[stat.name] then
 				local without_skill = math.round(base_stats[stat.name].value + mods_stats[stat.name].value)
-				local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+				local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+					* tweak_data.gui.stats_present_multiplier
+					* (modifier_stats and modifier_stats[stat.name] or 1)
 
 				if stat.offset then
-					local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+					local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+						* tweak_data.gui.stats_present_multiplier
+						* (modifier_stats and modifier_stats[stat.name] or 1)
 					max_stat = max_stat - offset
 				end
 
@@ -2534,16 +2558,16 @@ function BlackMarketGui:show_stats()
 		self:hide_melee_weapon_stats()
 		self:set_stats_titles({
 			x = 170,
-			name = "base"
+			name = "base",
 		}, {
 			alpha = 0.75,
 			name = "mod",
 			text_id = "bm_menu_stats_mod",
 			x = 215,
-			color = tweak_data.screen_colors.stats_mods
+			color = tweak_data.screen_colors.stats_mods,
 		}, {
 			alpha = 0.75,
-			name = "skill"
+			name = "skill",
 		})
 
 		if slot ~= equipped_slot then
@@ -2553,13 +2577,13 @@ function BlackMarketGui:show_stats()
 
 			self:set_stats_titles({
 				show = true,
-				name = "total"
+				name = "total",
 			}, {
 				name = "equip",
 				text_id = "bm_menu_equipped",
 				alpha = 0.75,
 				x = 105,
-				show = true
+				show = true,
 			})
 		else
 			for _, title in pairs(self._stats_titles) do
@@ -2568,12 +2592,12 @@ function BlackMarketGui:show_stats()
 
 			self:set_stats_titles({
 				hide = true,
-				name = "total"
+				name = "total",
 			}, {
 				alpha = 1,
 				name = "equip",
 				x = 120,
-				text_id = "bm_menu_stats_total"
+				text_id = "bm_menu_stats_total",
 			})
 		end
 
@@ -2626,8 +2650,12 @@ function BlackMarketGui:show_stats()
 					self._stats_texts[stat.name].equip:set_alpha(1)
 					self._stats_texts[stat.name].equip:set_text(format_round(value, stat.round_value))
 					self._stats_texts[stat.name].base:set_text(format_round(base, stat.round_value))
-					self._stats_texts[stat.name].mods:set_text(mods_stats[stat.name].value == 0 and "" or (mods_stats[stat.name].value > 0 and "+" or "") .. format_round(mods_stats[stat.name].value, stat.round_value))
-					self._stats_texts[stat.name].skill:set_text(skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or "")
+					self._stats_texts[stat.name].mods:set_text(
+						mods_stats[stat.name].value == 0 and "" or (mods_stats[stat.name].value > 0 and "+" or "") .. format_round(mods_stats[stat.name].value, stat.round_value)
+					)
+					self._stats_texts[stat.name].skill:set_text(
+						skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or ""
+					)
 					self._stats_texts[stat.name].total:set_text("")
 					self._stats_texts[stat.name].removed:set_text("")
 					self._stats_texts[stat.name].base:set_alpha(0.75)
@@ -2653,10 +2681,14 @@ function BlackMarketGui:show_stats()
 						-- Nothing
 					elseif tweak_stats[stat.name] then
 						local without_skill = math.round(base_stats[stat.name].value + mods_stats[stat.name].value)
-						local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+						local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+							* tweak_data.gui.stats_present_multiplier
+							* (modifier_stats and modifier_stats[stat.name] or 1)
 
 						if stat.offset then
-							local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+							local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+								* tweak_data.gui.stats_present_multiplier
+								* (modifier_stats and modifier_stats[stat.name] or 1)
 							max_stat = max_stat - offset
 						end
 
@@ -2694,10 +2726,14 @@ function BlackMarketGui:show_stats()
 						-- Nothing
 					elseif tweak_stats[stat.name] then
 						local without_skill = math.round(base_stats[stat.name].value + mods_stats[stat.name].value)
-						local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+						local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+							* tweak_data.gui.stats_present_multiplier
+							* (modifier_stats and modifier_stats[stat.name] or 1)
 
 						if stat.offset then
-							local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+							local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+								* tweak_data.gui.stats_present_multiplier
+								* (modifier_stats and modifier_stats[stat.name] or 1)
 							max_stat = max_stat - offset
 						end
 
@@ -2719,15 +2755,15 @@ function BlackMarketGui:show_stats()
 		self:hide_melee_weapon_stats()
 		self:set_stats_titles({
 			x = 185,
-			name = "base"
+			name = "base",
 		}, {
 			name = "mod",
 			x = 245,
 			text_id = "bm_menu_stats_skill",
-			color = tweak_data.screen_colors.resource
+			color = tweak_data.screen_colors.resource,
 		}, {
 			alpha = 0,
-			name = "skill"
+			name = "skill",
 		})
 
 		if self._slot_data.name ~= equipped_slot then
@@ -2737,13 +2773,13 @@ function BlackMarketGui:show_stats()
 
 			self:set_stats_titles({
 				show = true,
-				name = "total"
+				name = "total",
 			}, {
 				name = "equip",
 				text_id = "bm_menu_equipped",
 				alpha = 0.75,
 				x = 105,
-				show = true
+				show = true,
 			})
 		else
 			for title_name, title in pairs(self._stats_titles) do
@@ -2752,12 +2788,12 @@ function BlackMarketGui:show_stats()
 
 			self:set_stats_titles({
 				hide = true,
-				name = "total"
+				name = "total",
 			}, {
 				alpha = 1,
 				name = "equip",
 				x = 120,
-				text_id = "bm_menu_stats_total"
+				text_id = "bm_menu_stats_total",
 			})
 		end
 
@@ -2772,7 +2808,9 @@ function BlackMarketGui:show_stats()
 				self._armor_stats_texts[stat.name].equip:set_alpha(1)
 				self._armor_stats_texts[stat.name].equip:set_text(format_round(value, stat.round_value))
 				self._armor_stats_texts[stat.name].base:set_text(format_round(base, stat.round_value))
-				self._armor_stats_texts[stat.name].skill:set_text(skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or "")
+				self._armor_stats_texts[stat.name].skill:set_text(
+					skill_stats[stat.name].skill_in_effect and (skill_stats[stat.name].value > 0 and "+" or "") .. format_round(skill_stats[stat.name].value, stat.round_value) or ""
+				)
 				self._armor_stats_texts[stat.name].total:set_text("")
 				self._armor_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.text)
 
@@ -2821,15 +2859,15 @@ function BlackMarketGui:show_stats()
 		self._mweapon_stats_panel:show()
 		self:set_stats_titles({
 			x = 185,
-			name = "base"
+			name = "base",
 		}, {
 			name = "mod",
 			x = 245,
 			text_id = "bm_menu_stats_skill",
-			color = tweak_data.screen_colors.resource
+			color = tweak_data.screen_colors.resource,
 		}, {
 			alpha = 0,
-			name = "skill"
+			name = "skill",
 		})
 
 		local equipped_item = managers.blackmarket:equipped_item(category)
@@ -2843,13 +2881,13 @@ function BlackMarketGui:show_stats()
 
 			self:set_stats_titles({
 				show = true,
-				name = "total"
+				name = "total",
 			}, {
 				name = "equip",
 				text_id = "bm_menu_equipped",
 				alpha = 0.75,
 				x = 105,
-				show = true
+				show = true,
 			})
 		else
 			for title_name, title in pairs(self._stats_titles) do
@@ -2858,12 +2896,12 @@ function BlackMarketGui:show_stats()
 
 			self:set_stats_titles({
 				hide = true,
-				name = "total"
+				name = "total",
 			}, {
 				alpha = 1,
 				name = "equip",
 				x = 120,
-				text_id = "bm_menu_stats_total"
+				text_id = "bm_menu_stats_total",
 			})
 		end
 
@@ -3015,7 +3053,7 @@ function BlackMarketGui:show_stats()
 
 					local color_range_min = {
 						start = 0,
-						stop = utf8.len(total_min_text)
+						stop = utf8.len(total_min_text),
 					}
 
 					if positive then
@@ -3038,7 +3076,7 @@ function BlackMarketGui:show_stats()
 					end
 
 					local color_range_max = {
-						start = color_range_min.stop + 1
+						start = color_range_min.stop + 1,
 					}
 					color_range_max.stop = color_range_max.start + 3 + utf8.len(total_max_text)
 
@@ -3063,7 +3101,7 @@ function BlackMarketGui:show_stats()
 
 					local color_range = {
 						start = 0,
-						stop = utf8.len(total_text)
+						stop = utf8.len(total_text),
 					}
 
 					if positive then
@@ -3107,12 +3145,11 @@ function BlackMarketGui:show_stats()
 			if name == "damage" or name == "damage_min" then
 				if unaltered_total_mods_stats[name].value ~= total_mods_stats[name].value then
 					mod_stats.chosen[name] = (total_base_stats[name].value + (total_mods_stats[name].value + total_skill_stats[name].value))
-					- (unaltered_total_base_stats[name].value + (unaltered_total_mods_stats[name].value + unaltered_total_skill_stats[name].value))
+						- (unaltered_total_base_stats[name].value + (unaltered_total_mods_stats[name].value + unaltered_total_skill_stats[name].value))
 				end
 			else
 				if unaltered_total_mods_stats[name].value ~= total_mods_stats[name].value then
-					mod_stats.chosen[name] = (total_base_stats[name].value + total_mods_stats[name].value)
-					- (unaltered_total_base_stats[name].value + unaltered_total_mods_stats[name].value)
+					mod_stats.chosen[name] = (total_base_stats[name].value + total_mods_stats[name].value) - (unaltered_total_base_stats[name].value + unaltered_total_mods_stats[name].value)
 				end
 			end
 		end
@@ -3144,27 +3181,27 @@ function BlackMarketGui:show_stats()
 			text_id = "bm_menu_stats_total",
 			x = 120,
 			show = true,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		}, {
 			alpha = 0.75,
 			name = "equip",
 			text_id = "bm_menu_equipped",
 			x = 170,
 			show = not not mod_stats.equip.name,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		}, {
 			name = "removed",
 			alpha = 0.75,
 			x = 200,
 			show = true,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		}, {
 			alpha = 1,
 			name = "mod",
 			text_id = "bm_menu_chosen",
 			x = 245,
 			show = true,
-			color = tweak_data.screen_colors.text
+			color = tweak_data.screen_colors.text,
 		})
 
 		local total_value, total_index, unaltered_total_value = nil
@@ -3257,10 +3294,14 @@ function BlackMarketGui:show_stats()
 					-- Nothing
 				elseif tweak_stats[stat.name] then
 					local without_skill = math.round(total_base_stats[stat.name].value + total_mods_stats[stat.name].value)
-					local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+					local max_stat = math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+						* tweak_data.gui.stats_present_multiplier
+						* (modifier_stats and modifier_stats[stat.name] or 1)
 
 					if stat.offset then
-						local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier * (modifier_stats and modifier_stats[stat.name] or 1)
+						local offset = math.min(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]])
+							* tweak_data.gui.stats_present_multiplier
+							* (modifier_stats and modifier_stats[stat.name] or 1)
 						max_stat = max_stat - offset
 					end
 
