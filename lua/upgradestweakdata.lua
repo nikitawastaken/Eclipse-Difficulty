@@ -338,7 +338,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.shotgun.extra_pellets = { 2 }
 	self.values.shotgun.spread_index_addend = { 1 }
 	self.values.shotgun.recoil_index_addend[1] = 1
- 	self.definitions.shotgun_extra_pellets = {
+	self.definitions.shotgun_extra_pellets = {
 		name_id = "menu_shotgun_extra_pellets",
 		category = "feature",
 		upgrade = {
@@ -353,8 +353,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "spread_index_addend",
-			category = "shotgun"
-		}
+			category = "shotgun",
+		},
 	}
 	self.skill_descs.shotgun_impact.multibasic = "4"
 	self.skill_descs.shotgun_impact.multipro = "2"
