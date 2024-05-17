@@ -119,11 +119,10 @@ local kick_tables = {
 	mini = {standing = {0.3, 0.4, -0.2, 0.5}, crouching = {0.3, 0.4, -0.2, 0.5}, steelsight = {0.3, 0.4, -0.2, 0.5}},
 	micro = {standing = {0.5, 0.7, -0.6, 0.2}, crouching = {0.5, 0.7, -0.6, 0.2}, steelsight = {0.5, 0.7, -0.6, 0.2}},
 	hailstorm = {standing = {0.75, 0.9, -0.8, 0.8}, crouching = {0.75, 0.9, -0.8, 0.8}, steelsight = {0.75, 0.9, -0.8, 0.8}},
-	hailstorm_volley = {standing = {5, 6, -0.16, 0.16}, crouching = {5, 6, -0.16, 0.16}, steelsight ={0.75, 0.9, -0.8, 0.8}},
+	hailstorm_volley = {standing = {5, 6, -0.16, 0.16}, crouching = {5, 6, -0.16, 0.16}, steelsight = {0.75, 0.9, -0.8, 0.8}},
 
-	shot_auto = {standing = {2, 2.5, -0.5, 0.5}, crouching = {2, 2.5, -0.5, 0.5}, steelsight = {2, 2.5, -0.5, 0.5}},
-	shot_low = {standing = {3, 4, -0.5, 0.5}, crouching = {3, 4, -0.5, 0.5}, steelsight = {3, 4, -0.5, 0.5}},
-	shot_high = {standing = {4, 5, -0.5, 0.5}, crouching = {4, 5, -0.5, 0.5}, steelsight = {4, 5, -0.5, 0.5}},
+	shot_low = {standing = {3, 4, -1.5, 1.5}, crouching = {3, 4, -1.5, 1.5}, steelsight = {3, 4, -1.5, 1.5}},
+	shot_high = {standing = {4, 5, -2.5, 2.5}, crouching = {4, 5, -2.5, 2.5}, steelsight = {4, 5, -2.5, 2.5}},
 
 	ar_low = {standing = {1.3, 1.4, -0.95, 0.95}, crouching = {1.3, 1.4, -0.95, 0.95}, steelsight = {1.3, 1.4, -0.95, 0.95}},
 	ar_mid = {standing = {1.4, 1.6, -1.15, 1.15}, crouching = {1.4, 1.6, -1.15, 1.15}, steelsight = {1.4, 1.6, -1.15, 1.15}},
@@ -270,14 +269,14 @@ local spray_tables = {
 	},
 	sg_auto = {
 		pattern = {
-			{ up = 3, down = 3, left = 0.5, right = 1 },
-			{ up = 3, down = 3, left = -1, right = -0.5 },
-			{ up = 2, down = 2.5, left = -1.8, right = -2 },
-			{ up = 2, down = 2, left = -2.3, right = -2.5 },
-			{ up = 1.25, down = 1.5, left = 1, right = 0.8 },
-			{ up = 1.5, down = 1.5, left = 2, right = 2.5 },
-			{ up = 1, down = 1.25, left = 2.5, right = 3 },
-			{ up = 1.5, down = 1.5, left = 3, right = 3 },
+			{ up = 3.5, down = 3.5, left = 0.5, right = 1 },
+			{ up = 3.5, down = 3.5, left = -1, right = -0.5 },
+			{ up = 2.5, down = 3, left = -1.8, right = -2 },
+			{ up = 2.5, down = 2.5, left = -2.3, right = -2.5 },
+			{ up = 1.75, down = 2, left = 1, right = 0.8 },
+			{ up = 2, down = 2, left = 2, right = 2.5 },
+			{ up = 1.5, down = 1.75, left = 2.5, right = 3 },
+			{ up = 2, down = 2, left = 3, right = 3 },
 		},
 		persist_pattern = {
 			{ up = 2, down = 3, left = -3, right = 1 },
@@ -718,7 +717,7 @@ self.saiga.stats.damage = 30
 self.saiga.stats.spread = 12
 self.saiga.AMMO_MAX = total_ammo_tables.shot_very_high
 self.saiga.AMMO_PICKUP = pickup_tables.shot_very_high
-self.saiga.kick = kick_tables.shot_auto
+self.saiga.kick = kick_tables.shot_low
 self.saiga.spray = spray_tables.sg_auto
 self.saiga.recoil_recovery_timer = recovery_tables.high
 --self.saiga.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
@@ -730,7 +729,7 @@ self.aa12.stats.spread = 12
 self.aa12.AMMO_MAX = total_ammo_tables.shot_very_high
 self.aa12.AMMO_PICKUP = pickup_tables.shot_very_high
 self.aa12.fire_mode_data.fire_rate = 60 / 333
-self.aa12.kick = kick_tables.shot_auto
+self.aa12.kick = kick_tables.shot_low
 self.aa12.spray = spray_tables.sg_auto
 self.aa12.recoil_recovery_timer = recovery_tables.high
 --self.aa12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
@@ -748,7 +747,7 @@ self.sko12.AMMO_PICKUP = pickup_tables.shot_high
 self.sko12.FIRE_MODE = "single"
 self.sko12.CAN_TOGGLE_FIREMODE = false
 self.sko12.fire_mode_data.fire_rate = 60 / 333
-self.sko12.kick = kick_tables.shot_low
+self.sko12.kick = kick_tables.shot_high
 --self.sko12.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
 
 -- M1014
@@ -923,7 +922,7 @@ self.basset.stats.damage = 30
 self.basset.stats.spread = 12
 self.basset.AMMO_MAX = total_ammo_tables.shot_high
 self.basset.AMMO_PICKUP = pickup_tables.shot_very_high
-self.basset.kick = kick_tables.shot_auto
+self.basset.kick = kick_tables.shot_low
 self.basset.spray = spray_tables.sg_auto
 self.basset.recoil_recovery_timer = recovery_tables.high
 --self.basset.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_NORMAL
