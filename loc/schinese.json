@@ -54,7 +54,7 @@
 	"menu_shotgun_cqb_beta": "快手换弹",
 	"menu_shotgun_cqb_beta_desc": "基础: ##$basic##\n你装填##单发上弹##的霰弹枪的速度加快##$multibasic##。\n\n精通: ##$pro##\n你装填##单发上弹##的霰弹枪的速度额外加快##$multipro##。\n你的霰弹枪开镜速度加快##$multipro2##。",
 	"menu_shotgun_impact_beta": "广域掌控",
-	"menu_shotgun_impact_beta_desc": "基础: ##$basic##\n你的霰弹枪的子弹增加##$multibasic##颗弹丸。\n\n注意：不影响高爆弹和独头穿甲弹。\n\n精通: ##$pro##\n你的霰弹枪腰射的时候额外增加##$multipro##的扩散。",
+	"menu_shotgun_impact_beta_desc": "基础: ##$basic##\n你的散弹枪获得##$multibasic##点精准度和稳定性。\n\n精通: ##$pro##\n你的霰弹枪的子弹增加##$multipro##颗弹丸。\n\n注意：不影响高爆弹和独头穿甲弹。",
 	"menu_far_away_beta": "近战霰弹",
 	"menu_far_away_beta_desc": "基础: ##$basic##\n单发霰弹枪腰射时射速增加##$multibasic##。\n\n精通: ##$pro##\n每当你用霰弹枪获得一个击杀时，你会获得持续##$multipro2##秒的##$multipro##移速加成。\n最多可以同时叠加##$multipro3##次。",
 	"menu_close_by_beta": "弹匣专家",
