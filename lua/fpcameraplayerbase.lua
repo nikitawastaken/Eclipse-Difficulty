@@ -97,6 +97,10 @@ Hooks:PostHook(FPCameraPlayerBase, "update", "spray_update", function(self, unit
 end)
 
 function FPCameraPlayerBase:pattern_recoil_kick(pattern, persist_pattern, recoil_multiplier, recoil_recovery)
+	-- set this to 0 so that the recoil from normal weapons doesn't bleed into spray patterned ones
+	self._recoil_kick.last = 0
+	self._recoil_kick.h.last = 0
+
 	-- If the player hasn't shot in 1/3rd of second reset the recoil pattern
 	if self._recoil_recovery_t <= 0 then
 		self._pattern_index = 1
