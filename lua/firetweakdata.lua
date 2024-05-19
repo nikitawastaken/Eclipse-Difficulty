@@ -18,12 +18,44 @@ Hooks:PostHook(FireTweakData, "_init_dot_entries_fire", "eclipse__init_dot_entri
 	self.dot_entries.fire.weapon_system_low = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
 	self.dot_entries.fire.weapon_system_high = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
 
-	-- db dot (might rework too)
-	self.dot_entries.fire.ammo_dragons_breath = {
+	-- Dragon's Breath dot
+	self.dot_entries.fire.ammo_dragons_breath_vh = {
 		dot_trigger_chance = 1,
+		dot_damage = 5,
+		dot_length = 3,
+		dot_trigger_max_distance = 3000,
+		dot_tick_period = 0.25,
+	}
+
+	self.dot_entries.fire.ammo_dragons_breath_h = {
+		dot_trigger_chance = 0.85,
+		dot_damage = 4,
+		dot_length = 3,
+		dot_trigger_max_distance = 2000,
+		dot_tick_period = 0.25,
+	}
+
+	self.dot_entries.fire.ammo_dragons_breath = {
+		dot_trigger_chance = 0.85,
 		dot_damage = 3,
-		dot_length = 4,
+		dot_length = 3,
+		dot_trigger_max_distance = 1750,
+		dot_tick_period = 0.25,
+	}
+
+	self.dot_entries.fire.ammo_dragons_breath_l = {
+		dot_trigger_chance = 0.7,
+		dot_damage = 2,
+		dot_length = 3,
 		dot_trigger_max_distance = 1500,
+		dot_tick_period = 0.25,
+	}
+
+	self.dot_entries.fire.ammo_dragons_breath_vl = {
+		dot_trigger_chance = 0.7,
+		dot_damage = 1,
+		dot_length = 3,
+		dot_trigger_max_distance = 1250,
 		dot_tick_period = 0.25,
 	}
 

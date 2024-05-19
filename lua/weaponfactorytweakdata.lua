@@ -1,54 +1,326 @@
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
-	-- Shotguns
-	-- 000
-	self.parts.wpn_fps_upg_a_custom.custom_stats = { rays = 6, optimal_distance_addend = 310, near_falloff_addend = 110, damage_near_mul = 0.5, damage_far_mul = 0.85 }
-	self.parts.wpn_fps_upg_a_custom_free.custom_stats = self.parts.wpn_fps_upg_a_custom.custom_stats
-	self.parts.wpn_fps_upg_a_custom.stats.damage = 5
-	self.parts.wpn_fps_upg_a_custom.stats.total_ammo_mod = -6
-	self.parts.wpn_fps_upg_a_custom.stats.recoil = -2
-	self.parts.wpn_fps_upg_a_custom_free.stats = self.parts.wpn_fps_upg_a_custom.stats
-	-- Flechette
-	self.parts.wpn_fps_upg_a_piercing.stats.damage = -8
-	self.parts.wpn_fps_upg_a_piercing.stats.suppression = 11
-	self.parts.wpn_fps_upg_a_piercing.custom_stats = { rays = 12, armor_piercing_add = 1, damage_near_mul = 1.5, damage_far_mul = 1.5 }
-	-- AP Slug
-	self.parts.wpn_fps_upg_a_slug.stats.total_ammo_mod = -4
-	self.parts.wpn_fps_upg_a_slug.stats.spread = 6
-	self.parts.wpn_fps_upg_a_slug.stats.recoil = -2
-	-- HE Slug
-	self.parts.wpn_fps_upg_a_explosive.stats.total_ammo_mod = -8
-	self.parts.wpn_fps_upg_a_explosive.stats.damage = 30
-	self.parts.wpn_fps_upg_a_explosive.stats.spread = 4
-	self.parts.wpn_fps_upg_a_explosive.custom_stats =
-		{ ignore_statistic = true, ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 }
-	-- DB
-	self.parts.wpn_fps_upg_a_dragons_breath.stats.total_ammo_mod = -8
-	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_max_mul = 0.85
-	self.parts.wpn_fps_upg_a_dragons_breath.custom_stats.ammo_pickup_min_mul = 0.85
-	-- Shell Rack for loco and r880
-	self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2
+	-- SHOTGUNS --
+	local shotgun_ammo_type_overrides = {
+		triple_aught = {
+			very_heavy = { -- double barrels
+				stats = { damage = 22, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 }
+			},
+			heavy = { -- shotguns like gsps and the trench gun
+				stats = { damage = 17, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 }
+			},
+			medium = { -- raven, loco, reinfeld, etc
+				stats = { damage = 13, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 }
+			},
+			light = { -- semi autos
+				stats = { damage = 10, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 }
+			},
+			very_light = { -- full autos
+				stats = { damage = 8, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 }
+			},
+		 },
+		he_slug = {
+			very_heavy = { -- double barrels
+				stats = { damage = 200, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 }
+			},
+			heavy = { -- shotguns like gsps and the trench gun
+				stats = { damage = 150, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 }
+			},
+			medium = { -- raven, loco, reinfeld, etc
+				stats = { damage = 125, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 }
+			},
+			light = { -- semi autos
+				stats = { damage = 100, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 }
+			},
+			very_light = { -- full autos
+				stats = { damage = 75, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 }
+			},
+		 },
+		ap_slug = {
+			very_heavy = { -- double barrels
+				stats = { damage = 200, total_ammo_mod = -4, recoil = -2, spread = 6 },
+			},
+			heavy = { -- shotguns like gsps and the trench gun
+				stats = { damage = 150, total_ammo_mod = -4, recoil = -2, spread = 6 }
+			},
+			medium = { -- raven, loco, reinfeld, etc
+				stats = { damage = 125, total_ammo_mod = -4, recoil = -2, spread = 6 }
+			},
+			light = { -- semi autos
+				stats = { damage = 100, total_ammo_mod = -4, recoil = -2, spread = 6 }
+			},
+			very_light = { -- full autos
+				stats = { damage = 75, total_ammo_mod = -4, recoil = -2, spread = 6 }
+			},
+		 },
+		flechette = {
+			very_heavy = { -- double barrels
+				stats = { damage = -37, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true }
+			},
+			heavy = { -- shotguns like gsps and the trench gun
+				stats = { damage = -27, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true }
+			},
+			medium = { -- raven, loco, reinfeld, etc
+				stats = { damage = -22, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true }
+			},
+			light = { -- semi autos
+				stats = { damage = -18, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true }
+			},
+			very_light = { -- full autos
+				stats = { damage = -15, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true }
+			},
+		},
+		dragons_breath = {
+			very_heavy = { -- double barrels
+				stats = { damage = -60, total_ammo_mod = -8 },
+				custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75, armor_piercing_add = 1, rays = 16, dot_data_name = "ammo_dragons_breath_vh", bullet_class = "FlameBulletBase", muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath" }
+			},
+			heavy = { -- shotguns like gsps and the trench gun
+				stats = { damage = -44, total_ammo_mod = -8 },
+				custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75, armor_piercing_add = 1, rays = 16, dot_data_name = "ammo_dragons_breath_h", bullet_class = "FlameBulletBase", muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath" }
+			},
+			medium = { -- raven, loco, reinfeld, etc
+				stats = { damage = -36, total_ammo_mod = -8 },
+				custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75, armor_piercing_add = 1, rays = 16, dot_data_name = "ammo_dragons_breath", bullet_class = "FlameBulletBase", muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath" }
+			},
+			light = { -- semi autos
+				stats = { damage = -28, total_ammo_mod = -8 },
+				custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75, armor_piercing_add = 1, rays = 16, dot_data_name = "ammo_dragons_breath_l", bullet_class = "FlameBulletBase", muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath" }
+			},
+			very_light = { -- full autos
+				stats = { damage = -20, total_ammo_mod = -8 },
+				custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75, armor_piercing_add = 1, rays = 16, dot_data_name = "ammo_dragons_breath_vl", bullet_class = "FlameBulletBase", muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_dragons_breath" }
+			},
+		},
+	}
+
+	-- Izhma
+	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light
+	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_light
+	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_light
+	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_light
+	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_light
+	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_light
+	self.parts.wpn_fps_sho_basset_m_extended.stats.reload = -2 -- brother mag also used by grimm
+	self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = -2
+	self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
+	self.parts.wpn_fps_sho_saiga_fg_holy.stats.recoil = -2
+	self.parts.wpn_fps_sho_saiga_fg_holy.stats.concealment = 2
+
+	-- Steakout
+	self.wpn_fps_sho_aa12.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_light,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_light,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_light,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_light,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_light
+	}
+	self.parts.wpn_fps_sho_aa12_barrel_silenced.stats.damage = -2
+
+	-- Grimm
+	self.wpn_fps_sho_basset.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_light,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_light,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_light,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_light,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_light
+	}
+
+	-- VD-12
+	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light
+	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light
+	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light
+	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light
+	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light
+	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light
+
+	-- M1014
+	self.wpn_fps_sho_ben.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light
+	}
+
+	-- Predator
+	self.wpn_fps_sho_spas12.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light
+	}
+
+	-- Goliath
+	self.wpn_fps_sho_rota.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light
+	}
+
+	-- Street Sweeper
+	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light
+	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light
+	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light
+	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light
+	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light
+	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light
+
+	-- Raven
+	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium
+	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium
+	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium
+	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium
+	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium
+	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
+	self.parts.wpn_fps_sho_ksg_b_long.stats.extra_ammo = 1
+
+	-- Nova
+	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium
+	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium
+	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium
+	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium
+	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium
+	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
+
+	-- Reinfeld 880
+	self.wpn_fps_shot_r870.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
+	}
+	self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 2 -- shell rack also used by loco
 	self.parts.wpn_fps_shot_r870_body_rack.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_shot_r870_body_rack.stats.recoil = -2
 	self.parts.wpn_fps_shot_r870_body_rack.stats.concealment = -1
-	-- Extended Mag for loco and r880
-	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.concealment = -2
-	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
 	self.parts.wpn_fps_shot_r870_m_extended.stats.concealment = -2
 	self.parts.wpn_fps_shot_r870_m_extended.stats.recoil = -2
-	-- extended barrel for raven
-	self.parts.wpn_fps_sho_ksg_b_long.stats.extra_ammo = 1
-	-- remove stat overrides
-	self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_explosive = nil
-	self.wpn_fps_shot_huntsman.override.wpn_fps_upg_a_slug = nil
-	self.wpn_fps_shot_b682.override.wpn_fps_upg_a_explosive = nil
-	self.wpn_fps_sho_coach.override.wpn_fps_upg_a_explosive = nil
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = nil
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_piercing = nil
-	self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_explosive = nil
-	self.wpn_fps_pis_x_judge.override.wpn_fps_upg_a_piercing = nil
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_slug = nil
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom = nil
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom_free = nil
+
+	-- Mosconi Tactical
+	self.wpn_fps_sho_m590.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
+	}
+	self.parts.wpn_fps_sho_m590_b_long.stats = { extra_ammo = 1, concealment = -2 }
+	self.parts.wpn_fps_sho_m590_b_suppressor.stats.damage = -3
+
+	-- Locomotive
+	self.wpn_fps_shot_serbu.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
+	}
+	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.concealment = -2
+	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.recoil = -2
+
+	-- Judge
+	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium
+	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium
+	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium
+	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium
+	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium
+	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
+
+	-- Breaker
+	self.wpn_fps_sho_boot.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy
+	}
+
+	-- Reinfeld 88 (trench gun)
+	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy
+	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy
+	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy
+	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy
+	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy
+	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy
+
+	-- GSPS
+	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy
+	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy
+	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy
+	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy
+	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy
+	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy
+
+	-- Argos
+	self.wpn_fps_sho_ultima.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy
+	}
+
+	-- Mosconi (double barrel)
+	self.wpn_fps_shot_huntsman.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_heavy,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_heavy,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_heavy,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_heavy,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_heavy,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy
+	}
+
+	-- Joceline
+	self.wpn_fps_shot_b682.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_heavy,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_heavy,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_heavy,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_heavy,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_heavy,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy
+	}
+
+	-- Claire
+	self.wpn_fps_sho_coach.override = {
+		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_heavy,
+		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_heavy,
+		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_heavy,
+		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_heavy,
+		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_heavy,
+		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy
+	}
+
+
+	-- STILL NEED TO ORGANIZE EVERYTHING BELOW CAUSE HOLY IT IS BAD --
 
 	-- Secondary Sights
 	self.parts.wpn_fps_upg_o_sig.stats.recoil = 0
@@ -58,12 +330,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_upg_o_xpsg33_magnifier.stats.recoil = 0
 
 	-- Weapon-Specific Stuff
-	-- Saiga stuff
-	self.parts.wpn_fps_sho_basset_m_extended.stats.reload = -2
-	self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = -2
-	self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
-	self.parts.wpn_fps_sho_saiga_fg_holy.stats.recoil = -2
-	self.parts.wpn_fps_sho_saiga_fg_holy.stats.concealment = 2
 	-- mp5 straight mag
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
 	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 0.8 }
@@ -132,8 +398,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_fal_m_01.stats = { extra_ammo = 10, concealment = -2 }
 	-- Extended Kang Arms
 	self.parts.wpn_fps_snp_qbu88_m_extended.stats = { concealment = -2, extra_ammo = 5 }
-	-- CE Extender
-	self.parts.wpn_fps_sho_m590_b_long.stats = { extra_ammo = 1, concealment = -2 }
 	-- Signature SMG extended
 	self.parts.wpn_fps_smg_shepheard_mag_extended.stats = { extra_ammo = 5, concealment = -1 }
 
@@ -275,10 +539,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_vhs_b_silenced.stats.damage = -2
 	-- Stealth Barrel (car-4)
 	self.parts.wpn_fps_m4_uupg_b_sd.stats.damage = -3
-	-- Suppressed Barrel (steakout)
-	self.parts.wpn_fps_sho_aa12_barrel_silenced.stats.damage = -2
-	-- CE Muffler (mosconi12g)
-	self.parts.wpn_fps_sho_m590_b_suppressor.stats.damage = -3
 	-- Sniper Suppressor (rattlesnake)
 	self.parts.wpn_fps_snp_msr_ns_suppressor.stats.damage = -5
 	-- Medium Barrel (r700 supp)

@@ -1,5 +1,11 @@
 Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self)
 
+-- fuck off with the 210 damage limit
+self.stats.damage = {}
+for i = 1, 100000, 1 do
+	table.insert(self.stats.damage, i / 10)
+end
+
 local SELECTION = {
 	SECONDARY = 1,
 	PRIMARY = 2,
@@ -781,7 +787,7 @@ self.ksg.AMMO_MAX = total_ammo_tables.shot_mid
 self.ksg.AMMO_PICKUP = pickup_tables.shot_mid
 self.ksg.fire_mode_data.fire_rate = 0.6
 self.ksg.kick = kick_tables.shot_low
-self.ksg.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
+-- self.ksg.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_MODERATE
 
 -- Nova
 self.supernova.rays = 8
@@ -824,7 +830,7 @@ self.boot.AMMO_MAX = total_ammo_tables.shot_low
 self.boot.AMMO_PICKUP = pickup_tables.shot_low
 self.boot.fire_mode_data.fire_rate = 0.8
 self.boot.kick = kick_tables.shot_high
-self.boot.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
+-- self.boot.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Reinfeld 88 (Trench Gun)
 self.m1897.rays = 8
@@ -845,7 +851,7 @@ self.m37.AMMO_MAX = total_ammo_tables.shot_low
 self.m37.AMMO_PICKUP = pickup_tables.shot_low
 self.m37.fire_mode_data.fire_rate = 0.8
 self.m37.kick = kick_tables.shot_high
-self.m37.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
+-- self.m37.damage_falloff = FALLOFF_TEMPLATE.SHOTGUN_FALL_HIGH
 
 -- Mosconi
 self.huntsman.rays = 8
