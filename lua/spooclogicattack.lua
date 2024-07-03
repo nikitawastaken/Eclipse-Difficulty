@@ -18,7 +18,9 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 	end
 
 	-- cloakers now can kick you in solo, so buckle up
-	if SpoocLogicAttack._is_last_standing_AI_criminal() then return end
+	if SpoocLogicAttack._is_last_standing_AI_criminal() then
+		return
+	end
 
 	if not focus_enemy.unit:movement():is_SPOOC_attack_allowed() or focus_enemy.unit:movement():zipline_unit() then
 		return
@@ -71,7 +73,7 @@ function SpoocLogicAttack._is_last_standing_AI_criminal()
 		end
 	end
 
-	if (alivePlayers > 0 or aliveBots > 1) then
+	if alivePlayers > 0 or aliveBots > 1 then
 		return
 	end
 
