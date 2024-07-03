@@ -1,19 +1,26 @@
-if not EclipseDebug then
-	EclipseDebug = {}
+if not Eclipse then
+
+	Eclipse = {
+		severely_decreased_scaling_heists = {},
+		decreased_scaling_heists = {},
+		increased_scaling_heists = {},
+		severely_increased_scaling_heists = {},
+	}
+
 	local log_levels = {
 		"Debug",
 		"Warning",
 		"Error"
 	}
 
-	function EclipseDebug:log(level, message)
+	function Eclipse:log(level, message)
 		assert(0 < level and level < 4, "Eclipse log level must be between 1-3.")
 		assert(message ~= nil, "Eclipse empty log message.")
 
 		log(string.format("Eclipse %s: %s", log_levels[level], message))
 	end
 
-	function EclipseDebug:log_chat(message)
+	function Eclipse:log_chat(message)
 		managers.chat:_receive_message(managers.chat.GAME, "Eclipse", message, Color.green)
 	end
 end

@@ -267,7 +267,7 @@ end)
 function GroupAIStateBase:register_marking_sentry(unit)
 	if unit:base().sentry_gun and unit:base():has_marking() then
 		self._marking_sentries[unit:key()] = unit
-		EclipseDebug:log(1, "Marking sentry set!")
+		Eclipse:log(1, "Marking sentry set!")
 	end
 end
 

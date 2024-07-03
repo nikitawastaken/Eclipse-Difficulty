@@ -1775,6 +1775,31 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- difficulty scaling
 	local f = ((difficulty_index ^ 2) / (difficulty_index * 3))
 	local is_pro = Global.game_settings and Global.game_settings.one_down
+	local map_scale_factor = 1
+
+	for _, sd in pairs(Eclipse.severely_decreased_scaling_heists) do
+		if job == vl then
+			map_scale_factor = 0.5
+		end
+	end
+
+	for _, d in pairs(Eclipse.decreased_scaling_heists) do
+		if job == l then
+			map_scale_factor = 0.75
+		end
+	end
+
+	for _, i in pairs(Eclipse.increased_scaling_heists) do
+		if job == t then
+			map_scale_factor = 1.25
+		end
+	end
+
+	for _, si in pairs(Eclipse.severely_increased_scaling_heists) do
+		if job == vt then
+			map_scale_factor = 1.5
+		end
+	end
 
 	-- Assault Data
 	-- AI Tickrate
