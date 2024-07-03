@@ -22,7 +22,7 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 		managers.achievment:award(tweak_data.achievement.finally.award)
 		self._unit:sound():play("player_hit")
 
-		alivePlayers = 0
+		local alivePlayers = 0
 		for _, criminal in pairs(managers.groupai:state():all_char_criminals()) do
 			if not criminal.unit:movement():downed() then
 				alivePlayers = alivePlayers + 1

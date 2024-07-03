@@ -1004,12 +1004,13 @@ function CharacterTweakData:_set_presets()
 
 	-- specials
 	self.sniper.HEALTH_INIT = 16
+	self.sniper.headshot_dmg_mul = 4 -- 40 head health
 	self.shield.HEALTH_INIT = 45
 	self.shield.headshot_dmg_mul = 2.25 -- 200 head health
 	self.taser.HEALTH_INIT = 96
 	self.taser.headshot_dmg_mul = 1.875 -- 512 head health
-	self.spooc.HEALTH_INIT = 102
-	self.spooc.headshot_dmg_mul = 4 -- 255 head health
+	self.spooc.HEALTH_INIT = 48
+	self.spooc.headshot_dmg_mul = 4 -- 120 head health
 	self.medic.HEALTH_INIT = 72
 	self.medic.headshot_dmg_mul = 2 -- 360 head health
 	self.tank.HEALTH_INIT = 2160

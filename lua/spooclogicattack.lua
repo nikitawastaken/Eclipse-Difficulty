@@ -17,8 +17,8 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		return
 	end
 
-	-- if SpoocLogicAttack._is_last_standing_criminal(focus_enemy) then return end
 	-- cloakers now can kick you in solo, so buckle up
+	if SpoocLogicAttack._is_last_standing_AI_criminal() then return end
 
 	if not focus_enemy.unit:movement():is_SPOOC_attack_allowed() or focus_enemy.unit:movement():zipline_unit() then
 		return
@@ -54,6 +54,28 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		}
 		return true
 	end
+end
+
+function SpoocLogicAttack._is_last_standing_AI_criminal()
+	local alivePlayers = 0
+	for _, criminal in pairs(managers.groupai:state():all_player_criminals()) do
+		if not criminal.unit:movement():downed() then
+			alivePlayers = alivePlayers + 1
+		end
+	end
+
+	local aliveBots = 0
+	for _, criminal in pairs(managers.groupai:state():all_AI_criminals()) do
+		if not criminal.unit:movement():downed() then
+			aliveBots = aliveBots + 1
+		end
+	end
+
+	if (alivePlayers > 0 or aliveBots > 1) then
+		return
+	end
+
+	return true
 end
 
 -- Update logic every frame
