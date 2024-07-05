@@ -451,8 +451,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "health_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.player_health_multiplier_2 = {
 		name_id = "menu_player_health_multiplier",
@@ -460,13 +460,12 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "health_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.health_multiplier = { 1.1, 1.3 }
 	self.skill_descs.prison_wife.multibasic = "10%"
 	self.skill_descs.prison_wife.multipro = "20%"
-
 
 	-- Scavenger
 	self.values.player.increased_pickup_area[1] = 1.3
