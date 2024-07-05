@@ -144,6 +144,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.iron_man[2].upgrades = { "player_tagged_speed_mul" }
 	self.skills.iron_man.icon_xy = { 6, 0 }
 
+	-- Bullseye
+	self.skills.prison_wife[1].upgrades = {}
+	self.skills.prison_wife[2].upgrades = {}
+
 	-- Iron Man
 	self.skills.juggernaut[1].upgrades = { "player_shield_knock" }
 	self.skills.juggernaut[2].upgrades = { "body_armor6" }
