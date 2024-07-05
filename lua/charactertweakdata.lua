@@ -64,9 +64,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.base.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.base.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 15, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_shotgun_mag = deep_clone(presets.weapon.base.is_shotgun_pump)
@@ -80,7 +80,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.base.is_double_barrel = deep_clone(presets.weapon.base.is_shotgun_pump)
 	presets.weapon.base.is_double_barrel.FALLOFF = {
-		{ dmg_mul = 17.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15, r = 300, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -154,8 +154,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.elite.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.elite.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 15, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -215,8 +215,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 
 	presets.weapon.tank.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 31.5, r = 300, acc = { 0.8, 1 }, recoil = { 1.25, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 1.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 23, r = 300, acc = { 0.8, 1 }, recoil = { 1.25, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 1.75 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.75, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -228,8 +228,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.elite_tank.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 31.5, r = 300, acc = { 0.8, 1 }, recoil = { 1, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.25, 1.25 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 23, r = 300, acc = { 0.8, 1 }, recoil = { 1, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.25, 1.25 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -257,8 +257,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.zeal.is_shotgun_pump.RELOAD_SPEED = 1.5
 	presets.weapon.zeal.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.zeal.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 18, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 12.5, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 13.5, r = 300, acc = { 0.8, 1 }, recoil = { 0.75, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 0.9 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -654,6 +654,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_heavy_swat.move_speed = self.presets.move_speed.normal
 
 	self.city_swat.move_speed = self.presets.move_speed.fast
+	self.city_swat.no_arrest = true
 	self.city_swat.suppression = { panic_chance_mul = 0.15, duration = { 1.5, 2 }, react_point = { 2, 5 }, brown_point = { 5, 6 } }
 
 	-- Specials
