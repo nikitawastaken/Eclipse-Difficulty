@@ -1,6 +1,7 @@
 return {
 	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = "r870",
 	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = "mp5",
+	[("units/payday2/characters/ene_fbi_1/ene_fbi_1"):key()] = "mp5",
 	[("units/payday2/characters/ene_fbi_3/ene_fbi_3"):key()] = "r870",
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = "beretta92",

@@ -259,6 +259,28 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+	-- Field Agent HRU
+	self.unit_categories.field_agent = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
+			},
+		},
+		access = access_type_all,
+	}
+
 	-- Balaclava HRU
 	self.unit_categories.balaclava = {
 		unit_types = {
@@ -1062,8 +1084,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.fbi_rifle,
 			},
 			{
-				freq = 0.75,
-				amount_max = 3,
+				freq = 0.6,
+				amount_max = 2,
 				rank = 1,
 				unit = "fbi_r870",
 				tactics = self._tactics.fbi_shotgun,
@@ -1091,8 +1113,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.fbi_rifle,
 			},
 			{
-				freq = 0.75,
-				amount_max = 3,
+				freq = 0.6,
+				amount_max = 2,
 				rank = 1,
 				unit = "heavy_fbi_r870",
 				tactics = self._tactics.fbi_shotgun,
@@ -1176,8 +1198,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		spawn = {
 			{
-				freq = 0.66,
-				amount_max = 3,
+				freq = 0.5,
+				amount_max = 2,
 				rank = 2,
 				unit = "benelli_elite",
 				tactics = self._tactics.elite_shotgun,
@@ -1286,8 +1308,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.elite_flank,
 			},
 			{
-				freq = 0.66,
-				amount_max = 3,
+				freq = 0.5,
+				amount_max = 2,
 				rank = 2,
 				unit = "benelli_elite",
 				tactics = self._tactics.elite_flank,
@@ -1394,8 +1416,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		spawn = {
 			{
-				freq = 0.66,
-				amount_max = 3,
+				freq = 0.5,
+				amount_max = 2,
 				rank = 1,
 				unit = "ksg_zeal",
 				tactics = self._tactics.elite_shotgun,
@@ -1423,8 +1445,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		spawn = {
 			{
-				freq = 0.66,
-				amount_max = 3,
+				freq = 0.5,
+				amount_max = 2,
 				rank = 1,
 				unit = "ksg_zeal",
 				tactics = self._tactics.elite_flank,
@@ -1488,8 +1510,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		spawn = {
 			{
-				freq = 0.66,
-				amount_max = 2,
+				freq = 0.5,
+				amount_max = 1,
 				rank = 1,
 				unit = "ksg_heavy_zeal",
 				tactics = self._tactics.elite_shotgun,
@@ -1539,7 +1561,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.elite_assault,
 			},
 			{
-				freq = 0.66,
+				freq = 0.44,
 				amount_max = 1,
 				rank = 2,
 				unit = "ksg_heavy_zeal",
@@ -1577,7 +1599,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.elite_shield,
 			},
 			{
-				freq = 0.66,
+				freq = 0.44,
 				amount_max = 1,
 				rank = 1,
 				unit = "ksg_zeal",
@@ -1622,7 +1644,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.elite_shield_charge,
 			},
 			{
-				freq = 0.66,
+				freq = 0.44,
 				amount_max = 1,
 				rank = 1,
 				unit = "ksg_heavy_zeal",
@@ -1672,48 +1694,56 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 	self.enemy_spawn_groups.reenforce_common = {
 		amount = {
-			4,
+			3,
 			4,
 		},
 		spawn = {
 			{
-				amount_min = 2,
-				freq = 2,
-				amount_max = 2,
-				rank = 1,
-				unit = "balaclava",
-				tactics = self._tactics.reenforce_aggressive,
-			},
-			{
-				amount_min = 2,
-				freq = 2,
-				amount_max = 2,
+				amount_min = 1,
+				freq = 0.55,
+				amount_max = 3,
 				rank = 1,
 				unit = "whiteshirt",
+				tactics = self._tactics.reenforce_passive,
+			},
+			{
+				amount_min = 1,
+				freq = 0.77,
+				amount_max = 3,
+				rank = 1,
+				unit = "field_agent",
 				tactics = self._tactics.reenforce_passive,
 			},
 		},
 	}
 	self.enemy_spawn_groups.recon_hrt = {
 		amount = {
-			4,
+			3,
 			4,
 		},
 		spawn = {
 			{
-				amount_min = 2,
-				freq = 1,
+				amount_min = 0,
+				freq = 0.66,
 				amount_max = 2,
 				rank = 1,
 				unit = "balaclava",
 				tactics = self._tactics.recon_rescue,
 			},
 			{
-				amount_min = 2,
-				freq = 1,
+				amount_min = 0,
+				freq = 0.66,
 				amount_max = 2,
 				rank = 1,
 				unit = "whiteshirt",
+				tactics = self._tactics.recon_rescue,
+			},
+			{
+				amount_min = 0,
+				freq = 0.66,
+				amount_max = 2,
+				rank = 1,
+				unit = "field_agent",
 				tactics = self._tactics.recon_rescue,
 			},
 		},
