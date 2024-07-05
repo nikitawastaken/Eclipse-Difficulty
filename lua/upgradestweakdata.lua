@@ -444,10 +444,29 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.iron_man.multibasic = "50%"
 	self.skill_descs.iron_man.multipro = "50%"
 
-	-- Bullseye
-	self.values.player.headshot_regen_armor_bonus[2] = 4.5
-	self.skill_descs.prison_wife.multibasic2 = "5"
-	self.skill_descs.prison_wife.multipro3 = "40"
+	-- Nerves of Steel
+	self.definitions.player_health_multiplier_1 = {
+		name_id = "menu_player_health_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "health_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_health_multiplier_2 = {
+		name_id = "menu_player_health_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "health_multiplier",
+			category = "player"
+		}
+	}
+	self.values.player.health_multiplier = { 1.1, 1.3 }
+	self.skill_descs.prison_wife.multibasic = "10%"
+	self.skill_descs.prison_wife.multipro = "20%"
+
 
 	-- Scavenger
 	self.values.player.increased_pickup_area[1] = 1.3
