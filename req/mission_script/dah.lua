@@ -1,4 +1,138 @@
 return {
+	-- enable pretty much all of the spawnpoints on the map from the very beginning, except those in the vault
+	-- should be impossible to spawncamp the heist that way
+	[104385] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104386] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104387] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104388] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104389] = {
+		values = {
+			enabled = true
+		}
+	},
+	[103084] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104207] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104210] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104211] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104354] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104355] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104356] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104357] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104358] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104372] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104373] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104374] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104823] = {
+		values = {
+			enabled = true
+		}
+	},
+	[104887] = {
+		values = {
+			enabled = true
+		}
+	},
+	-- disable the enemy_prefered_remove's so that all spawnpoints stay enabled throughout the heist
+	[100875] = {
+		values = {
+			enabled = false
+		}
+	},
+	[102386] = {
+		values = {
+			enabled = false
+		}
+	},
+	[104361] = {
+		values = {
+			enabled = false
+		}
+	},
+	[104375] = {
+		values = {
+			enabled = false
+		}
+	},
+	[102191] = {
+		values = {
+			enabled = false
+		}
+	},
+	[104390] = {
+		values = {
+			enabled = false
+		}
+	},
+	[104886] = {
+		values = {
+			enabled = false
+		}
+	},
+	-- disable endless
 	[101967] = {
 		values = {
 			enabled = false
