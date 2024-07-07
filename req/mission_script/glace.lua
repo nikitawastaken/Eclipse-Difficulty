@@ -50,6 +50,9 @@ return {
 		}
 	},
 	[100533] = {
-		set_ponr_state = true
+		ponr = {
+			length = 20,
+			player_mul = {2, 1.5, 1, 1}
+		}
 	}
 }
