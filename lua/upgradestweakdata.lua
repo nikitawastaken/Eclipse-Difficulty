@@ -924,7 +924,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.feign_death.multibasic = "10"
 	self.skill_descs.feign_death.multibasic2 = "5"
 	self.skill_descs.feign_death.multibasic3 = "60"
-	self.skill_descs.feign_death.multipro = "3"
+	self.skill_descs.feign_death.multipro = "5"
 	self.skill_descs.feign_death.multipro2 = "120"
 
 	-- Swan Song
