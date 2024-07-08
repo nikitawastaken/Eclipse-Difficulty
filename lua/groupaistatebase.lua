@@ -39,6 +39,7 @@ local _update_whitelist = {
 	firestarter_2 = true,
 	rvd1 = true, -- resdogs1
 	man = true, -- ucovr
+	glace = true, -- gridge
 }
 
 -- Code from Dr. Newbie
