@@ -662,8 +662,8 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.automatic_mag_increase = { 5, 15 }
-	self.skill_descs.fast_fire.multibasic = "5"
-	self.skill_descs.fast_fire.multipro = "10"
+	self.skill_descs.carbon_blade.multibasic = "5"
+	self.skill_descs.carbon_blade.multipro = "10"
 
 	-- Heavy Gun Expert
 	self.values.player.no_movement_penalty = { true }

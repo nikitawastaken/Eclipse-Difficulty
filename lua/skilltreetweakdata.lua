@@ -160,6 +160,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ammo_reservoir.desc_id = "menu_bandoliers_beta_desc"
 	self.skills.ammo_reservoir.icon_xy = { 3, 0 }
 
+	-- Mag Plus
+	self.skills.carbon_blade[1].upgrades = { "player_automatic_mag_increase_1" }
+	self.skills.carbon_blade[2].upgrades = { "player_automatic_mag_increase_2" }
+	self.skills.carbon_blade.icon_xy = { 2, 0 }
+
 	-- Bulletstorm
 	self.skills.bandoliers[1].upgrades = { "temporary_no_ammo_cost_1" }
 	self.skills.bandoliers[2].upgrades = { "temporary_no_ammo_cost_2" }
@@ -569,6 +574,8 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
+	table.insert(self.default_upgrades, "saw_enemy_slicer")
+	table.insert(self.default_upgrades, "saw_ignore_shields_1")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")

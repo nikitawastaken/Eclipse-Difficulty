@@ -72,6 +72,8 @@
 	"menu_prison_wife_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## extra health.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## extra health.",
 	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote: Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nThe heavier your armor, the more total ammo you get.\n\nThe total capacity increase scales up to ##$multibasic## with Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
+	"menu_carbon_blade_beta": "Mag Plus",
+	"menu_carbon_blade_beta_desc": "BASIC: ##$basic##\nYour SMGs, LMGs and Assault Rifles gain ##$multibasic## more bullets in their magazine.\n\nACE: ##$pro##\nYour SMGs, LMGs and Assault Rifles gain ##$multipro## more bullets in their magazine.\n\nNote: Does not affect the Aced \"Sleight of Hand\" Skill.",
 
 
 	"menu_defense_up_beta": "Transporter",
