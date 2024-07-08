@@ -5,7 +5,7 @@
 	"contact" : "nikita_was_taken on Discord",
 	"image" : "mod.png",
 	"blt_version" : 2,
-	"version" : "6.0dev7",
+	"version" : "6.0dev8",
 	"updates" : [{
 		"identifier" : "eclipse_difficulty_dev",
 		"host" : { "meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/dev/meta.json" }
