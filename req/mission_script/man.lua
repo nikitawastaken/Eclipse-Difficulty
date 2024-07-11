@@ -1,8 +1,8 @@
 return {
-	[101433] = {
+	[100695] = {
 		ponr = {
 			length = 60,
-			player_mul = {1.25, 1, 1, 0.75}
+			player_mul = {1.25, 1, 0.75, 0.5}
 		}
 	},
 	-- Give saw to all players

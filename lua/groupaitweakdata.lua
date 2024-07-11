@@ -1998,6 +1998,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		firestarter_2 = true,
 		dah = true,
 		rvd2 = true,
+		man = true,
 	}
 
 	-- Control
