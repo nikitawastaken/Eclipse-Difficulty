@@ -415,3 +415,10 @@ function PlayerDamage:band_aid_health(hot_regen)
 
 	self._said_hurt = false
 end
+
+-- Fix Anarchist regen not triggering HUD armor update for clients
+Hooks:PostHook(PlayerDamage, "change_armor", "sh_change_armor", function (self, change)
+	if change > 0 and self:armor_ratio() < 1 then
+		self:_send_set_armor()
+	end
+end)

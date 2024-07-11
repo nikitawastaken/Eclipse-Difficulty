@@ -11,8 +11,10 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
 
+
 -- Reuse function of idle logic to make enemies in an area aware of a player entering the area
 CopLogicTravel.on_area_safety = CopLogicIdle.on_area_safety
+
 
 -- Update pathing immediately when receiving travel logic or pathing results
 Hooks:PostHook(CopLogicTravel, "enter", "sh_enter", CopLogicTravel.upd_advance)
@@ -29,15 +31,48 @@ function CopLogicTravel.on_pathing_results(data)
 	CopLogicTravel.upd_advance(data)
 end
 
--- Sanity check for rare follow_unit crash
-Hooks:PreHook(CopLogicTravel, "_begin_coarse_pathing", "sh__begin_coarse_pathing", function(data)
-	if data.objective.follow_unit and not alive(data.objective.follow_unit) then
-		data.objective.follow_unit = nil
+
+-- Follow pathing improvement, use continuous instead of segmented path
+local _begin_coarse_pathing_original = CopLogicTravel._begin_coarse_pathing
+function CopLogicTravel._begin_coarse_pathing(data, my_data, ...)
+	if not data.objective or data.objective.type ~= "follow" or data.path_fail_t and data.t - data.path_fail_t < 2 then
+		return _begin_coarse_pathing_original(data, my_data, ...)
 	end
-end)
+
+	local nav_seg, pos
+	if alive(data.objective.follow_unit) then
+		local follow_tracker = data.objective.follow_unit:movement():nav_tracker()
+		nav_seg = follow_tracker:nav_segment()
+		pos = follow_tracker:field_position()
+	else
+		nav_seg = data.objective.nav_seg or data.objective.area and data.objective.area.pos_nav_seg
+		pos = managers.navigation._nav_segments[nav_seg].pos
+	end
+
+	my_data.coarse_path_index = 1
+	my_data.coarse_path = {
+		{
+			data.unit:movement():nav_tracker():nav_segment(),
+			mvector3.copy(data.m_pos)
+		},
+		{
+			nav_seg,
+			pos
+		}
+	}
+end
+
+local _get_allowed_travel_nav_segs_original = CopLogicTravel._get_allowed_travel_nav_segs
+function CopLogicTravel._get_allowed_travel_nav_segs(data, ...)
+	-- Returning nothing here allows all nav segments
+	if not data.objective or data.objective.type ~= "follow" then
+		return _get_allowed_travel_nav_segs_original(data, ...)
+	end
+end
+
 
 -- Fix need for another queued task to update pathing after expired cover leave time
-Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
+Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function (data)
 	local unit = data.unit
 	local my_data = data.internal_data
 	local t = TimerManager:game():time()
@@ -46,8 +81,9 @@ Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	end
 end)
 
+
 -- Make groups move together (remove close to criminal check to avoid splitting groups)
-function CopLogicTravel.chk_group_ready_to_move(data, my_data)
+function CopLogicTravel.chk_group_ready_to_move(data)
 	local my_objective = data.objective
 	if not my_objective.grp_objective or my_objective.type == "follow" then
 		return true
@@ -72,6 +108,7 @@ function CopLogicTravel.chk_group_ready_to_move(data, my_data)
 
 	return true
 end
+
 
 -- Find a random fallback position in the nav segment if no covers are available
 -- This is done to prevent enemies stacking in one spot if no positions next to walls are available
@@ -106,16 +143,14 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 	local nav_seg_pos = nav_manager._nav_segments[nav_seg_id].pos
 
 	-- Pick cover positions that are close to nav segment doors
-	local doors = nav_manager:find_segment_doors(nav_seg_id, function(seg_id)
-		return seg_id == next_nav_seg_id
-	end)
+	local doors = nav_manager:find_segment_doors(nav_seg_id, function (seg_id) return seg_id == next_nav_seg_id end)
 	local door = table.random(doors)
 	local to_pos = door and door.center or coarse_path[nav_index][2] or nav_seg_pos
 
 	local cover = nav_manager:find_cover_in_nav_seg_2(nav_seg_id, to_pos)
 	if cover then
 		nav_manager:reserve_cover(cover, data.pos_rsrv_id)
-		my_data.moving_to_cover = { cover }
+		my_data.moving_to_cover = {	cover }
 		to_pos = cover[1]
 	else
 		mvector3.step(tmp_vec1, to_pos, nav_seg_pos, 200)
@@ -128,7 +163,7 @@ function CopLogicTravel._get_exact_move_pos(data, nav_index, ...)
 			pos_from = nav_seg_pos,
 			pos_to = tmp_vec1,
 			allow_entry = true,
-			trace = true,
+			trace = true
 		}
 		nav_manager:raycast(ray_params)
 		to_pos = ray_params.trace[1]
@@ -150,9 +185,9 @@ function CopLogicTravel._determine_destination_occupation(data, objective, ...)
 			type = "defend",
 			seg = objective.nav_seg,
 			cover = {
-				cover,
+				cover
 			},
-			radius = objective.radius,
+			radius = objective.radius
 		}
 	else
 		near_pos = CopLogicTravel._get_pos_on_wall(managers.navigation:find_random_position_in_segment(objective.nav_seg), 500)
@@ -160,7 +195,7 @@ function CopLogicTravel._determine_destination_occupation(data, objective, ...)
 			type = "defend",
 			seg = objective.nav_seg,
 			pos = near_pos,
-			radius = objective.radius,
+			radius = objective.radius
 		}
 	end
 end
@@ -186,10 +221,10 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 	local ray_params = {
 		trace = true,
 		pos_from = unit_pos,
-		pos_to = pos,
+		pos_to = pos
 	}
 	local rsrv_desc = {
-		radius = 40,
+		radius = 40
 	}
 
 	repeat
@@ -218,8 +253,9 @@ function CopLogicTravel._get_pos_behind_unit(data, unit, min_dis, max_dis)
 	return fallback_pos
 end
 
+
 -- Fix cover wait time being set to 0 if players aren't literally next to enemy
-Hooks:PostHook(CopLogicTravel, "action_complete_clbk", "sh_action_complete_clbk", function(data, action)
+Hooks:PostHook(CopLogicTravel, "action_complete_clbk", "sh_action_complete_clbk", function (data, action)
 	if action:type() ~= "walk" then
 		return
 	end
@@ -236,16 +272,18 @@ Hooks:PostHook(CopLogicTravel, "action_complete_clbk", "sh_action_complete_clbk"
 	end
 end)
 
+
 -- Stop existing advancing action on exit to a new travel logic
 -- This allows enemies to start their new path immediately instead of having to finish the old one
-Hooks:PreHook(CopLogicTravel, "exit", "sh_exit", function(data, new_logic_name)
+Hooks:PreHook(CopLogicTravel, "exit", "sh_exit", function (data, new_logic_name)
 	if new_logic_name == "travel" and data.internal_data.advancing and not data.unit:movement():chk_action_forbidden("idle") then
 		data.brain:action_request({
 			body_part = 2,
-			type = "idle",
+			type = "idle"
 		})
 	end
 end)
+
 
 -- Fix enemies sometimes disappearing when they are told to retire
 -- Basically this function doesn't check if the retiring unit reached their actual retire spot
@@ -267,8 +305,9 @@ function CopLogicTravel._on_destination_reached(data, ...)
 	return _on_destination_reached_original(data, ...)
 end
 
+
 -- Play generic radio report chatter during travel while unalerted
-Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(data)
+Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function (data)
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.report then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end
