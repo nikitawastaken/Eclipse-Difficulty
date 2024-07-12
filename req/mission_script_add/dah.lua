@@ -8,7 +8,7 @@ local swat_smg = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"
 local swat_shotgun = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"
 local swat_heavy_rifle = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"
 local swat_heavy_shotgun = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"
-local tank = "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+local tank = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
 local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 local cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1"
 local pro_job = Global.game_settings and Global.game_settings.one_down
