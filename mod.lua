@@ -237,6 +237,107 @@ if not StreamHeist then
 			},
 		}
 	end
+	
+	function StreamHeist:gen_dummytrigger(id, name, pos, rot, opts)
+		opts = opts or {}
+		return {
+			id = id,
+			editor_name = name,
+			class = "ElementEnemyDummyTrigger",
+			values = {
+				execute_on_startup = false,
+				trigger_times = opts.trigger_times or 0,
+				elements = opts.elements or {},
+				on_executed = opts.on_executed or {},
+				base_delay = opts.base_delay or 0,
+				position = pos,
+				rotation = rot,
+				enabled = true,
+				event = opts.event or "spawn"
+			},
+		}
+	end
+	
+	function StreamHeist:gen_missionscript(id, name, opts)
+		opts = opts or {}
+		return {
+			id = id,
+			editor_name = name,
+			class = "MissionScriptElement",
+			module = "CoreMissionScriptElement",
+			values = {
+				execute_on_startup = false,
+				trigger_times = opts.trigger_times or 0,
+				on_executed = opts.on_executed or {},
+				base_delay = opts.base_delay or 0,
+				enabled = opts.enabled or false
+			},
+		}
+	end
+	
+	function StreamHeist:gen_toggleelement(id, name, opts)
+		opts = opts or {}
+		return {
+			id = id,
+			editor_name = name,
+			class = "ElementToggle",
+			module = "CoreElementToggle",
+			values = {
+				execute_on_startup = false,
+				trigger_times = opts.trigger_times or 0,
+				set_trigger_times = opts.set_trigger_times or -1,
+				elements = opts.elements or {},
+				on_executed = opts.on_executed or {},
+				base_delay = opts.base_delay or 0,
+				enabled = opts.enabled or false,
+				toggle = opts.toggle or "on"
+			},
+		}
+	end
+	
+	function StreamHeist:gen_dialogue(id, name, opts)
+		opts = opts or {}
+		return {
+			id = id,
+			editor_name = name,
+			class = "ElementDialogue",
+			values = {
+				execute_on_startup = false,
+				trigger_times = opts.trigger_times or 0,
+				on_executed = opts.on_executed or {},
+				base_delay = opts.base_delay or 0,
+				dialogue = opts.dialogue or "none",
+				enabled = true,
+				can_not_be_muted = opts.can_not_be_muted or false,
+				execute_on_executed_when_done = opts.execute_on_executed_when_done or false,
+				play_on_player_instigator_only = opts.play_on_player_instigator_only or false,
+				use_instigator = opts.use_instigator or false,
+				use_position = opts.use_position or false
+			},
+		}
+	end
+	
+	function StreamHeist:gen_smokeandnades(id, name, pos, rot, opts)
+		opts = opts or {}
+		return {
+			id = id,
+			editor_name = name,
+			class = "ElementSmokeGrenade",
+			values = {
+				execute_on_startup = false,
+				position = pos,
+				rotation = rot,
+				enabled = true,
+				base_delay = opts.base_delay or 0,
+				duration = opts.duration or 0,
+				effect_type = opts.effect_type or "smoke",
+				ignore_control = true,
+				immediate = true,
+				on_executed = opts.on_executed or {},
+				trigger_times = opts.trigger_times or 0
+			},
+		}
+	end
 
 	function StreamHeist:log(...)
 		if self.logging then
