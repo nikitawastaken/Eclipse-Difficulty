@@ -338,6 +338,23 @@ if not StreamHeist then
 			},
 		}
 	end
+	
+	function StreamHeist:gen_preferedadd(id, name, opts)
+		opts = opts or {}
+		return {
+			id = id,
+			editor_name = name,
+			class = "ElementEnemyPreferedAdd",
+			values = {
+				execute_on_startup = false,
+				base_delay = opts.base_delay or 0,
+				trigger_times = opts.trigger_times or 0,
+				spawn_groups = opts.spawn_groups or {},
+				on_executed = opts.on_executed or {},
+				enabled = true
+			},
+		}
+	end
 
 	function StreamHeist:log(...)
 		if self.logging then
