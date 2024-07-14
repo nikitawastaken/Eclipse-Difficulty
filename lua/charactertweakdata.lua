@@ -688,6 +688,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- sniper
 	self.sniper.suppression = nil
 	self.sniper.misses_first_player_shot = true
+	self.sniper.spawn_sound_event = "mga_deploy_snipers" --deploy snipahs!!!
 
 	-- cloaker
 	self.spooc.use_animation_on_fire_damage = true
