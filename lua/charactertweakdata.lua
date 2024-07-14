@@ -642,6 +642,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 end
 
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
+	-- fix beat cops being stuck on some spawn points in newer heists
+	self.cop.access = {
+		"cop",
+		"fbi"
+	}
+	
 	-- Common SWAT
 	self.fbi_swat.move_speed = self.presets.move_speed.fast
 	self.fbi_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
@@ -677,6 +683,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank_elite = deep_clone(self.tank)
 	self.tank_elite.move_speed.stand.walk.cbt = { strafe = 196, fwd = 218, bwd = 174 }
 	self.tank_elite.move_speed.stand.run.cbt = self.tank_elite.move_speed.stand.walk.cbt
+	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" --elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
 
 	-- taser & medic
@@ -751,6 +758,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.zeal_taser = deep_clone(self.taser)
 	self.zeal_taser.damage.explosion_damage_mul = 0.6
+	self.zeal_taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" --elite tazeah coming through!!!
 	table.insert(self._enemy_list, "zeal_taser")
 
 	-- surrender presets
