@@ -643,29 +643,29 @@ end
 
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self._prefix_data_p1 = {
-		cop = function ()
+		cop = function()
 			return self._unit_prefixes.cop
 		end,
-		swat = function ()
+		swat = function()
 			return self._unit_prefixes.swat
 		end,
-		heavy_swat = function ()
+		heavy_swat = function()
 			return self._unit_prefixes.heavy_swat
 		end,
-		taser = function ()
+		taser = function()
 			return self._unit_prefixes.taser
 		end,
-		cloaker = function ()
+		cloaker = function()
 			return self._unit_prefixes.cloaker
 		end,
-		bulldozer = function ()
+		bulldozer = function()
 			return self._unit_prefixes.bulldozer
 		end,
-		medic = function ()
+		medic = function()
 			return self._unit_prefixes.medic
-		end
+		end,
 	}
-	
+
 	-- fix beat cops being stuck on some spawn points in newer heists
 	self.cop.access = {
 		"cop",
