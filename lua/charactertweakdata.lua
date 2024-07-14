@@ -695,6 +695,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0
 	self.spooc.melee_weapon = "baton"
+	self.spooc.spawn_sound_event = "clk_c01x_plu" --*WOOOSH*
 
 	-- tank
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
@@ -703,6 +704,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.melee_weapon = "weapon"
 	self.tank.move_speed.stand.walk.cbt = { strafe = 176, fwd = 198, bwd = 154 }
 	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
+	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" --bulldozah coming through!!!
 
 	-- elite tank
 	self.tank_elite = deep_clone(self.tank)
@@ -714,6 +716,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- taser & medic
 	self.taser.move_speed = self.presets.move_speed.normal
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
+	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.move_speed = self.presets.move_speed.fast
@@ -721,10 +724,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- shield
 	self.shield.damage.explosion_damage_mul = 0.7
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.no_hurts
+	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
+	self.shield.die_sound_event = nil --he already has his death sound
 
 	-- elite shield
 	self.phalanx_minion.damage.explosion_damage_mul = 0.2
 	self.phalanx_minion.access = "shield"
+	self.phalanx_minion.spawn_sound_event = "shield_identification" --BANG BANG BANG!!! (I wanted to use Terminator Bang sound for him but this needs No Mercy's SFX package to be loaded)
 
 	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
 	self.phalanx_minion_break.tags = { "law", "shield" }
@@ -772,6 +778,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
+	--I wanted to use Terminator Bang sound for him but this needs No Mercy's SFX package to be loaded
 	self.zeal_shield = deep_clone(self.shield)
 	self.zeal_shield.speech_prefix_p2 = "d"
 	table.insert(self._enemy_list, "zeal_shield")
