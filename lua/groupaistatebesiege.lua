@@ -946,6 +946,29 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)
 end)
 
+function GroupAIStateBesiege:_choose_best_group(best_groups, total_weight)
+	local rand_wgt = total_weight * math.random()
+	local best_grp, best_grp_type = nil
+
+	for i, candidate in ipairs(best_groups) do
+		rand_wgt = rand_wgt - candidate.wght
+
+		if rand_wgt <= 0 then
+			-- fuck u240.3 (prob not setting it back to 15, 20 though cause i already reduced spawns after the update)
+			-- https://imgur.com/a/v9T4mwq
+			self._spawn_group_timers[spawn_group_id(candidate.group)] = TimerManager:game():time() + math.random(10, 15)
+
+			best_grp = candidate.group
+			best_grp_type = candidate.group_type
+			best_grp.delay_t = self._t + best_grp.interval
+
+			break
+		end
+	end
+
+	return best_grp, best_grp_type
+end
+
 -- Save spawn group element in group description for debugging stuck groups
 local _spawn_in_group_original = GroupAIStateBesiege._spawn_in_group
 function GroupAIStateBesiege:_spawn_in_group(spawn_group, ...)
