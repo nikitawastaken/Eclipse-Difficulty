@@ -1015,7 +1015,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		units_remaining = {},
 		spawn_group = spawn_group,
 		spawn_group_type = spawn_group_type,
-		ai_task = ai_task
+		ai_task = ai_task,
 	}
 
 	table.insert(self._spawning_groups, spawn_task)
@@ -1034,7 +1034,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		spawn_task.units_remaining[spawn_entry.unit] = spawn_task.units_remaining[spawn_entry.unit] or {
 			amount = 0,
-			spawn_entry = spawn_entry
+			spawn_entry = spawn_entry,
 		}
 		spawn_task.units_remaining[spawn_entry.unit].amount = spawn_task.units_remaining[spawn_entry.unit].amount + add_amount
 
@@ -1084,7 +1084,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 	local group = self:_create_group({
 		size = group_size,
-		type = spawn_group_type
+		type = spawn_group_type,
 	})
 
 	group.objective = grp_objective

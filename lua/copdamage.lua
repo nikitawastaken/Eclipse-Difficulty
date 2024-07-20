@@ -43,7 +43,7 @@ function CopDamage:_sync_dismember(attacker_unit, ...)
 end
 
 -- Additional suppression on hit
-Hooks:PreHook(CopDamage, "_on_damage_received", "sh__on_damage_received", function (self, damage_info)
+Hooks:PreHook(CopDamage, "_on_damage_received", "sh__on_damage_received", function(self, damage_info)
 	self:build_suppression(4 * damage_info.damage / self._HEALTH_INIT, nil)
 end)
 
