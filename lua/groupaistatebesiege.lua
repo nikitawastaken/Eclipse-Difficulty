@@ -973,14 +973,128 @@ function GroupAIStateBesiege:_choose_best_group(best_groups, total_weight)
 	return best_grp, best_grp_type
 end
 
--- Save spawn group element in group description for debugging stuck groups
-local _spawn_in_group_original = GroupAIStateBesiege._spawn_in_group
-function GroupAIStateBesiege:_spawn_in_group(spawn_group, ...)
-	local group = _spawn_in_group_original(self, spawn_group, ...)
-	if group then
-		group.spawn_group_element = spawn_group.mission_element
-		return group
+-- Fix amount_min not being enforced when possible and save spawn group element in group description for debugging stuck groups
+function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task)
+	local spawn_group_desc = tweak_data.group_ai.enemy_spawn_groups[spawn_group_type]
+
+	local wanted_nr_units
+	if type(spawn_group_desc.amount) == "number" then
+		wanted_nr_units = spawn_group_desc.amount
+	else
+		wanted_nr_units = math.random(spawn_group_desc.amount[1], spawn_group_desc.amount[2])
 	end
+
+	local valid_unit_types = {}
+	self._extract_group_desc_structure(spawn_group_desc.spawn, valid_unit_types)
+
+	local total_weight = 0
+	local unit_categories = tweak_data.group_ai.unit_categories
+	for _, spawn_entry in ipairs(valid_unit_types) do
+		local cat_data = unit_categories[spawn_entry.unit]
+		if not cat_data then
+			StreamHeist:error("Unit category %s in spawn group type %s doesn't exist", spawn_entry.unit, spawn_group_type)
+			return
+		end
+
+		local special_type = not cat_data.is_captain and cat_data.special_type
+		if special_type and managers.job:current_spawn_limit(special_type) < self:_get_special_unit_type_count(special_type) + (spawn_entry.amount_min or 0) then
+			spawn_group.delay_t = self._t + 10
+			return
+		end
+
+		total_weight = total_weight + spawn_entry.freq
+	end
+
+	for _, sp_data in ipairs(spawn_group.spawn_pts) do
+		sp_data.delay_t = self._t + math.rand(0.5)
+	end
+
+	local group_size = 0
+	local spawn_task = {
+		objective = not grp_objective.element and self._create_objective_from_group_objective(grp_objective),
+		units_remaining = {},
+		spawn_group = spawn_group,
+		spawn_group_type = spawn_group_type,
+		ai_task = ai_task
+	}
+
+	table.insert(self._spawning_groups, spawn_task)
+
+	local function _add_unit_type_to_spawn_task(i, spawn_entry)
+		local add_amount = 1
+		if spawn_entry.amount_min then
+			add_amount = math.max(spawn_entry.amount_min, add_amount)
+			spawn_entry.amount_min = nil
+		end
+
+		if wanted_nr_units < add_amount then
+			add_amount = wanted_nr_units
+			StreamHeist:warn("Can not satisfy amount_min for unit category %s in spawn group type %s", spawn_entry.unit, spawn_group_type)
+		end
+
+		spawn_task.units_remaining[spawn_entry.unit] = spawn_task.units_remaining[spawn_entry.unit] or {
+			amount = 0,
+			spawn_entry = spawn_entry
+		}
+		spawn_task.units_remaining[spawn_entry.unit].amount = spawn_task.units_remaining[spawn_entry.unit].amount + add_amount
+
+		group_size = group_size + add_amount
+		wanted_nr_units = wanted_nr_units - add_amount
+
+		if spawn_entry.amount_max then
+			if add_amount >= spawn_entry.amount_max then
+				table.remove(valid_unit_types, i)
+				total_weight = total_weight - spawn_entry.freq
+				return true
+			else
+				spawn_entry.amount_max = spawn_entry.amount_max - add_amount
+			end
+		end
+	end
+
+	local i = 1
+	while wanted_nr_units > 0 and i <= #valid_unit_types do
+		local spawn_entry = valid_unit_types[i]
+		local entry_removed = spawn_entry.amount_min and _add_unit_type_to_spawn_task(i, spawn_entry)
+		if not entry_removed then
+			i = i + 1
+		end
+	end
+
+	while wanted_nr_units > 0 and #valid_unit_types > 0 do
+		local roll = math.random() * total_weight
+		local rand_entry
+
+		i = 1
+		repeat
+			rand_entry = valid_unit_types[i]
+			roll = roll - rand_entry.freq
+			i = i + 1
+		until roll <= 0
+
+		local cat_data = unit_categories[rand_entry.unit]
+		local special_type = not cat_data.is_captain and cat_data.special_type
+		if special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type) then
+			table.remove(valid_unit_types, i - 1)
+			total_weight = total_weight - rand_entry.freq
+		else
+			_add_unit_type_to_spawn_task(i - 1, rand_entry)
+		end
+	end
+
+	local group = self:_create_group({
+		size = group_size,
+		type = spawn_group_type
+	})
+
+	group.objective = grp_objective
+	group.objective.moving_out = true
+	group.team = self._teams[spawn_group.team_id or tweak_data.levels:get_default_team_ID("combatant")]
+	group.spawn_group_element = spawn_group.mission_element
+
+	spawn_task.group = group
+
+	return group
 end
 
 -- Make a generic group voice function instead of individual ones and make retiring groups play retreat lines

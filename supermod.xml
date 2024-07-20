@@ -188,6 +188,7 @@
 				<post :hook_id="interactions/interactionext"/>
 
 				<group :hook_id="player_team/">
+					<post :hook_id="logics/teamailogicidle"/>
 					<post :hook_id="actions/lower_body/criminalactionwalk"/>
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>

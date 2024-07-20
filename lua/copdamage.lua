@@ -42,11 +42,10 @@ function CopDamage:_sync_dismember(attacker_unit, ...)
 	end
 end
 
--- Don't set suppression to maximum on hit, increase by a static value instead
-local build_suppression_original = CopDamage.build_suppression
-function CopDamage:build_suppression(amount, ...)
-	return build_suppression_original(self, amount == "max" and 2 or amount, ...)
-end
+-- Additional suppression on hit
+Hooks:PreHook(CopDamage, "_on_damage_received", "sh__on_damage_received", function (self, damage_info)
+	self:build_suppression(4 * damage_info.damage / self._HEALTH_INIT, nil)
+end)
 
 -- Give flamethrowers a damage multiplier against dozers
 Hooks:PreHook(CopDamage, "damage_fire", "eclipse_damage_fire", function(self, attack_data)
