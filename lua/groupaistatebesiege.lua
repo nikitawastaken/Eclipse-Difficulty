@@ -946,6 +946,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)
 end)
 
+local function spawn_group_id(spawn_group)
+	return spawn_group.mission_element:id()
+end
+
 function GroupAIStateBesiege:_choose_best_group(best_groups, total_weight)
 	local rand_wgt = total_weight * math.random()
 	local best_grp, best_grp_type = nil
