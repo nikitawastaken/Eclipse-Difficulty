@@ -49,13 +49,13 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- movement tagging
 	self.values.player.body_armor.damage_tagged = {
-		0.75,
-		0.8125,
-		0.875,
-		0.9375,
+		0.8,
+		0.85,
+		0.9,
+		0.95,
 		1,
-		1.0625,
-		1.125,
+		1.05,
+		1.1,
 	}
 
 	-- ictv nerf
