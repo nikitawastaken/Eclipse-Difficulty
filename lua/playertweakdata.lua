@@ -49,7 +49,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
 	self.omniscience.target_resense_t = 0
-	self.damage.REGENERATE_TIME = 4.5
+	-- self.damage.REGENERATE_TIME = 4.5
 	self.damage.DOWNED_TIME = 30
 	self.damage.DOWNED_TIME_DEC = 0
 	self.damage.DOWNED_TIME_MIN = 30

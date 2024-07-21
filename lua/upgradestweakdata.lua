@@ -58,6 +58,17 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		1.1,
 	}
 
+	-- regen timer
+	self.values.player.body_armor.regen_timer = {
+		0.8,
+		0.85,
+		0.9,
+		0.95,
+		1,
+		1.05,
+		1.1,
+	}
+
 	-- ictv nerf
 	self.values.player.body_armor.armor[7] = 18
 

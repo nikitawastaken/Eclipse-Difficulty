@@ -422,3 +422,12 @@ Hooks:PostHook(PlayerDamage, "change_armor", "sh_change_armor", function(self, c
 		self:_send_set_armor()
 	end
 end)
+
+-- armor regen time depends on the armor you're wearing
+function PlayerDamage:set_regenerate_timer_to_max()
+	local mul = managers.player:body_armor_regen_multiplier(alive(self._unit) and self._unit:movement():current_state()._moving, self:health_ratio())
+	self._regenerate_timer = managers.player:body_armor_value("regen_timer") * mul
+	self._regenerate_timer = self._regenerate_timer * managers.player:upgrade_value("player", "armor_regen_time_mul", 1)
+	self._regenerate_speed = self._regenerate_speed or 1
+	self._current_state = self._update_regenerate_timer
+end
