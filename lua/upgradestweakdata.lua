@@ -72,9 +72,6 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	-- ictv nerf
 	self.values.player.body_armor.armor[7] = 18
 
-	-- bullseye nerf
-	self.on_headshot_dealt_cooldown = 5
-
 	-- make sna less cancer
 	self.values.player.shield_knock_bullet.chance = 0.7
 
@@ -301,10 +298,13 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
+
+	self.values.player.headshot_regen_armor_bonus[1] = 5
+	self.on_headshot_dealt_cooldown = 3
 	self.skill_descs.single_shot_ammo_return.multibasic = "60%"
-	self.skill_descs.single_shot_ammo_return.multibasic2 = "2m"
-	self.skill_descs.single_shot_ammo_return.multipro = "3m"
-	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
+	self.skill_descs.single_shot_ammo_return.multibasic2 = "30%"
+	self.skill_descs.single_shot_ammo_return.multipro = "50"
+	self.skill_descs.single_shot_ammo_return.multipro2 = "3"
 
 	-- Enforcer --
 

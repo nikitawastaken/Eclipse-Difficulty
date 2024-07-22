@@ -359,6 +359,155 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy,
 	}
 
+
+	-- SNIPERS --
+	local sniper_silencer_stats_weak = { damage = -4, recoil = 1, spread = 1, concealment = -2, suppression = 12 }
+	local sniper_silencer_stats_mid = { damage = -8, recoil = 1, spread = 1, concealment = -2, suppression = 12 }
+	local sniper_silencer_stats_strong = { damage = -12, recoil = 1, spread = 1, concealment = -2, suppression = 12 }
+
+	-- Contractor
+	self.parts.wpn_fps_snp_tti_ns_hex.stats = sniper_silencer_stats_weak
+
+	-- Grom
+	self.parts.wpn_fps_snp_siltstone_ns_variation_b.stats = { recoil = 1, spread = 1, concealment = -1 }
+	self.parts.wpn_fps_snp_siltstone_b_silenced.stats = sniper_silencer_stats_weak
+
+	-- Lebensauger
+	self.parts.wpn_fps_snp_wa2000_b_long.stats.concealment = -1
+	self.parts.wpn_fps_snp_wa2000_b_suppressed.stats = sniper_silencer_stats_weak
+
+	-- Rattlesnake
+	self.parts.wpn_fps_snp_msr_b_long.stats = { recoil = 2, concealment = -2 }
+	self.parts.wpn_fps_snp_msr_ns_suppressor.stats = sniper_silencer_stats_mid
+
+	-- R700
+	self.parts.wpn_fps_snp_r700_s_military.stats = { total_ammo_mod = 3, concealment = -1 }
+	self.parts.wpn_fps_snp_r700_s_tactical.stats = { recoil = 1, concealment = -1 }
+	self.parts.wpn_fps_snp_r700_b_medium.stats = sniper_silencer_stats_mid
+
+	-- Repeater
+	self.parts.wpn_fps_snp_winchester_b_long.stats.concealment = -1
+	self.parts.wpn_fps_snp_winchester_b_suppressed.stats = sniper_silencer_stats_mid
+
+	-- Desert Fox
+	self.parts.wpn_fps_snp_desertfox_b_long.stats.concealment = -2
+	self.parts.wpn_fps_snp_desertfox_b_silencer.stats = sniper_silencer_stats_strong
+
+	-- Nagant
+	self.parts.wpn_fps_snp_mosin_body_black.stats = {} -- it's just a recolor, why give it stats
+	self.parts.wpn_fps_snp_mosin_b_short.stats = { recoil = -1, spread = -1, concealment = 2 }
+	self.parts.wpn_fps_snp_mosin_b_standard.stats = { recoil = 1, spread = 1, concealment = -2 }
+	self.parts.wpn_fps_snp_mosin_b_sniper.stats = sniper_silencer_stats_strong
+	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats = {
+		min_damage = 24,
+		concealment = -2,
+		min_damage_effect = 1.75,
+		max_damage_effect = 1.75,
+		value = 1,
+		max_damage = 24,
+	}
+
+	-- R93
+	self.parts.wpn_fps_snp_r93_body_wood.stats = {} -- tbh similar deal
+	self.parts.wpn_fps_snp_r93_b_short.stats = { recoil = -1, spread = -1, concealment = 2 }
+	self.parts.wpn_fps_snp_r93_b_suppressed.stats = sniper_silencer_stats_strong
+
+	-- Platypus
+	self.parts.wpn_fps_snp_model70_ns_suppressor.stats = sniper_silencer_stats_strong
+	self.parts.wpn_fps_snp_model70_s_legend.stats = {}
+
+	-- AWP
+	self.parts.wpn_fps_snp_awp_conversion_dragonlore.stats = {}
+	self.parts.wpn_fps_snp_awp_conversion_dragonlore.custom_stats = {}
+	self.parts.wpn_fps_snp_awp_conversion_wildlands.stats = {}
+
+	-- Thanatos
+	self.parts.wpn_fps_snp_m95_barrel_short.stats = { recoil = -4, spread = -1, concealment = 3 }
+	self.parts.wpn_fps_snp_m95_barrel_long.stats = { recoil = 4, spread = 2, concealment = -4 }
+	self.parts.wpn_fps_snp_m95_barrel_suppressed.stats = sniper_silencer_stats_strong
+
+	-- Rangehitter
+	self.parts.wpn_fps_snp_sbl_b_long.stats.recoil = 0
+	self.parts.wpn_fps_snp_sbl_b_short.stats = sniper_silencer_stats_weak
+	self.parts.wpn_fps_snp_sbl_s_saddle.stats.total_ammo_mod = 3
+
+	-- Scout
+	self.parts.wpn_fps_snp_scout_ns_suppressor.stats = sniper_silencer_stats_mid
+	self.parts.wpn_fps_snp_scout_bolt_speed.stats = { fire_rate = 2, spread = -1, concealment = -1 }
+	self.parts.wpn_fps_snp_scout_s_pads_none.stats = { recoil = -2, concealment = 2 }
+	self.parts.wpn_fps_snp_scout_conversion.stats = {}
+
+	-- North Star
+	self.parts.wpn_fps_snp_victor_ns_omega.stats = sniper_silencer_stats_weak
+	self.parts.wpn_fps_snp_victor_g_mod3.stats.concealment = -1
+	self.parts.wpn_fps_m4_uupg_s_zulu.stats = { concealment = 2, recoil = -2 }
+	self.parts.wpn_fps_snp_victor_sbr_kit.stats = { recoil = -1, spread = -2, concealment = 3 }
+
+	-- Aran
+	self.parts.wpn_fps_snp_contender_barrel_long.stats = { recoil = 1, spread = 1, concealment = -1 }
+	self.parts.wpn_fps_snp_contender_barrel_short.stats = { recoil = -2, spread = -1, concealment = 2 }
+	self.parts.wpn_fps_snp_contender_frontgrip_long.stats = { recoil = 2, concealment = -1 }
+	self.parts.wpn_fps_upg_m4_g_contender.stats = { spread = 2, recoil = 1, concealment = -2 }
+	self.parts.wpn_fps_snp_contender_conversion.stats = { recoil = -4, spread = 1, damage = 500, concealment = -8, total_ammo_mod = -10 }
+	self.parts.wpn_fps_snp_contender_conversion.custom_stats = { ammo_pickup_max_mul = 0.65 }
+
+
+	-- DMRs (& Kits) --
+	-- ak family
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -7
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -6
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -8
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 87
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 87
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.has_description = true
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.desc_id = "bm_wp_dmr_kit_penetration_desc"
+	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.25 }
+	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -10
+	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -7
+	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -11
+	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 105
+	-- car family
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.1875 }
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -12
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -7
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -11
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 117
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.has_description = true
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.desc_id = "bm_wp_dmr_kit_penetration_desc"
+	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
+	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -7
+	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -6
+	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -8
+	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 87
+	-- m308 b-stock
+	self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
+	-- gewehr
+	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 1.25, ammo_pickup_max_mul = 0.5 }
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = -8
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 85
+	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 11
+	self.parts.wpn_fps_ass_g3_b_short.custom_stats = { ammo_pickup_max_mul = 2 }
+	self.parts.wpn_fps_ass_g3_b_short.has_description = true
+	self.parts.wpn_fps_ass_g3_b_short.desc_id = "bm_wp_dmr_kit_penetration_desc"
+	-- broomstick
+	self.parts.wpn_fps_pis_c96_b_long.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.33, ammo_pickup_max_mul = 0.5 }
+	self.parts.wpn_fps_pis_c96_b_long.has_description = true
+	self.parts.wpn_fps_pis_c96_b_long.desc_id = "bm_wp_dmr_kit_penetration_desc"
+	-- ks12
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.damage = 64
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -6
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = -10
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.fire_rate = -3
+	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 1 / 3 }
+	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats.fire_rate_multiplier = 0.7
+	self.parts.wpn_fps_ass_shak12_body_vks.has_description = true
+	self.parts.wpn_fps_ass_shak12_body_vks.desc_id = "bm_wp_dmr_kit_penetration_desc"
+
+
 	-- STILL NEED TO ORGANIZE EVERYTHING BELOW CAUSE HOLY IT IS BAD --
 
 	-- Secondary Sights
@@ -396,15 +545,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_lmg_kacchainsaw_b_short.stats = { spread = -1, recoil = 1 }
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats = { damage = 40, recoil = -2, spread = 2 }
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 0.6, ammo_pickup_max_mul = 0.83 }
-	-- mosin nagant bayonet
-	self.parts.wpn_fps_snp_mosin_ns_bayonet.stats = {
-		min_damage = 24,
-		concealment = -2,
-		min_damage_effect = 1.75,
-		max_damage_effect = 1.75,
-		value = 1,
-		max_damage = 24,
-	}
 
 	-- Weapon Magazines
 
@@ -455,55 +595,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.wpn_fps_pis_x_czech.override.wpn_fps_pis_czech_m_extended.stats.reload = -1
 
 	-- Conversion kits
-	-- ak family
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -7
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -6
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -8
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 87
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.25 }
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -10
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -7
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -11
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 105
-	-- car family
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.1875 }
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -12
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -7
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -11
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 117
-	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
-	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = -7
-	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.concealment = -6
-	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -8
-	self.wpn_fps_ass_m16.override.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 87
-	-- m308 b-stock
-	self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
-	-- gewehr
-	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = { ammo_pickup_min_mul = 1.25, ammo_pickup_max_mul = 0.5 }
-	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = -8
-	self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
-	self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
-	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 85
-	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 11
-	self.parts.wpn_fps_ass_g3_b_short.custom_stats = { ammo_pickup_max_mul = 2 }
-	-- broomstick
-	self.parts.wpn_fps_pis_c96_b_long.custom_stats = { ammo_pickup_min_mul = 0.33, ammo_pickup_max_mul = 0.5 }
-	-- ks12
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.damage = 64
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -6
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = -10
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.fire_rate = -3
-	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = { ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 1 / 3 }
-	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats.fire_rate_multiplier = 0.7
 	-- wasp exclusive kit
 	self.parts.wpn_fps_smg_fmg9_conversion.stats.recoil = 1
 	self.parts.wpn_fps_smg_fmg9_conversion.stats.spread = 1
-	-- awp exclusive kits
-	self.parts.wpn_fps_snp_awp_conversion_dragonlore.stats = {}
-	self.parts.wpn_fps_snp_awp_conversion_dragonlore.custom_stats = {}
-	self.parts.wpn_fps_snp_awp_conversion_wildlands.stats = {}
 
 	-- mcshay pack
 	self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.stats = { value = 3, concealment = -1, damage = 3, spread = -2 }
@@ -578,30 +672,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_vhs_b_silenced.stats.damage = -2
 	-- Stealth Barrel (car-4)
 	self.parts.wpn_fps_m4_uupg_b_sd.stats.damage = -3
-	-- Sniper Suppressor (rattlesnake)
-	self.parts.wpn_fps_snp_msr_ns_suppressor.stats.damage = -5
-	-- Medium Barrel (r700 supp)
-	self.parts.wpn_fps_snp_r700_b_medium.stats.damage = -5
-	-- Wind Whistler Barrel (rangehitter)
-	self.parts.wpn_fps_snp_sbl_b_short.stats.damage = -3
-	-- Beak Suppressor (platypus)
-	self.parts.wpn_fps_snp_model70_ns_suppressor.stats.damage = -3
-	-- Gedämpfter Barrel (lebensauger)
-	self.parts.wpn_fps_snp_wa2000_b_suppressed.stats.damage = -3
-	-- Silenced Barrel (desert fox)
-	self.parts.wpn_fps_snp_desertfox_b_silencer.stats.damage = -3
-	-- Contractor Silencer
-	self.parts.wpn_fps_snp_tti_ns_hex.stats.damage = -3
-	-- Compensated Suppressor (r93)
-	self.parts.wpn_fps_snp_r93_b_suppressed.stats.damage = -3
-	-- Outlaw's Silened Barrel (repeater)
-	self.parts.wpn_fps_snp_winchester_b_suppressed.stats.damage = -5
-	-- Tikho Barrel (grom)
-	self.parts.wpn_fps_snp_siltstone_b_silenced.stats.damage = -5
-	-- Silenced Barrel (nagant)
-	self.parts.wpn_fps_snp_mosin_b_sniper.stats.damage = -3
-	-- Suppressed Barrel (thanatos)
-	self.parts.wpn_fps_snp_m95_barrel_suppressed.stats.damage = -10
 	-- Roctec
 	self.parts.wpn_fps_upg_ns_pis_medium_gem.stats.damage = -2
 	-- Champion's

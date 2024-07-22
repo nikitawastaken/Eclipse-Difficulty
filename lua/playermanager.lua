@@ -47,6 +47,10 @@ function PlayerManager:on_headshot_dealt()
 	local player_unit = self:player_unit()
 	local damage_ext = player_unit:character_damage()
 	local has_hitman_ammo_refund = managers.player:has_enabled_cooldown_upgrade("cooldown", "hitman_ammo_refund")
+	local weapon_unit = self:equipped_weapon_unit()
+	local weapon = weapon_unit:base()
+	local regen_armor_bonus = managers.player:upgrade_value("player", "headshot_regen_armor_bonus", 0)
+	local meets_bullseye_conditions = weapon and weapon:is_category("snp") and regen_armor_bonus > 0
 
 	if not player_unit then
 		return
@@ -60,20 +64,20 @@ function PlayerManager:on_headshot_dealt()
 		managers.player:disable_cooldown_upgrade("cooldown", "hitman_ammo_refund")
 	end
 
-	-- make headshot regen check for maxed out armor
-	if damage_ext and damage_ext:armor_ratio() == 1 then
-		self._on_headshot_dealt_t = 0
-	else
-		if self._on_headshot_dealt_t and t < self._on_headshot_dealt_t then
-			return
+	-- make bullseye only work with sniper rifles, also make it work with non max armor
+	if meets_bullseye_conditions then
+		if damage_ext and damage_ext:armor_ratio() == 1 then
+			self._on_headshot_dealt_t = 0
+		else
+			if self._on_headshot_dealt_t and t < self._on_headshot_dealt_t then
+				return
+			end
+			self._on_headshot_dealt_t = t + (tweak_data.upgrades.on_headshot_dealt_cooldown or 0)
 		end
-		self._on_headshot_dealt_t = t + (tweak_data.upgrades.on_headshot_dealt_cooldown or 0)
-	end
 
-	local regen_armor_bonus = managers.player:upgrade_value("player", "headshot_regen_armor_bonus", 0)
-
-	if damage_ext and regen_armor_bonus > 0 then
-		damage_ext:restore_armor(regen_armor_bonus)
+		if damage_ext then
+			damage_ext:restore_armor(regen_armor_bonus)
+		end
 	end
 end
 

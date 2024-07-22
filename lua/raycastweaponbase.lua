@@ -114,6 +114,9 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 		elseif hit.unit:in_slot(managers.slot:get_mask("enemy_shield_check")) then
 			hit_through_shield = hit_through_shield or alive(hit.unit:parent())
 			damage = damage * (managers.player:has_category_upgrade("weapon", "no_pen_damage_penalty") and 1 or 0.4)
+		elseif hit.unit:in_slot(managers.slot:get_mask("enemies")) then
+			hit_through_shield = hit_through_shield or alive(hit.unit:parent())
+			damage = damage * (managers.player:has_category_upgrade("weapon", "no_pen_damage_penalty") and 1 or 0.7)
 		end
 
 		if dmg > 0 then

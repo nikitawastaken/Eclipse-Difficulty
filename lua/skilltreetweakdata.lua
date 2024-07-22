@@ -91,7 +91,8 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Deadeye
 	self.skills.single_shot_ammo_return[1].upgrades = { "weapon_no_pen_damage_penalty" }
-	self.skills.single_shot_ammo_return[2].upgrades = { "weapon_magnetizing_bullets" }
+	self.skills.single_shot_ammo_return[2].upgrades = { "player_headshot_regen_armor_bonus_1" }
+	self.skills.single_shot_ammo_return.icon_xy = { 6, 11 }
 
 	-- ENFORCER --
 
