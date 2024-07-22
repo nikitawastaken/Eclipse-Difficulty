@@ -359,7 +359,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy,
 	}
 
-
 	-- SNIPERS --
 	local sniper_silencer_stats_weak = { damage = -4, recoil = 1, spread = 1, concealment = -2, suppression = 12 }
 	local sniper_silencer_stats_mid = { damage = -8, recoil = 1, spread = 1, concealment = -2, suppression = 12 }
@@ -451,7 +450,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_snp_contender_conversion.stats = { recoil = -4, spread = 1, damage = 500, concealment = -8, total_ammo_mod = -10 }
 	self.parts.wpn_fps_snp_contender_conversion.custom_stats = { ammo_pickup_max_mul = 0.65 }
 
-
 	-- DMRs (& Kits) --
 	-- ak family
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
@@ -506,7 +504,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats.fire_rate_multiplier = 0.7
 	self.parts.wpn_fps_ass_shak12_body_vks.has_description = true
 	self.parts.wpn_fps_ass_shak12_body_vks.desc_id = "bm_wp_dmr_kit_penetration_desc"
-
 
 	-- STILL NEED TO ORGANIZE EVERYTHING BELOW CAUSE HOLY IT IS BAD --
 
