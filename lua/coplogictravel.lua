@@ -174,7 +174,7 @@ function CopLogicTravel._determine_destination_occupation(data, objective, ...)
 		return _determine_destination_occupation_original(data, objective, ...)
 	end
 
-	if alive(objective.follow_unit) then
+	if alive(objective.follow_unit) and objective.type ~= "revive" then
 		local follow_tracker = objective.follow_unit:movement():nav_tracker()
 		local follow_nav_seg = follow_tracker:nav_segment()
 		local follow_pos = follow_tracker:field_position()
