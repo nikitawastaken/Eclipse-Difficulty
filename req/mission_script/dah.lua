@@ -153,9 +153,6 @@ return {
 			enabled = false
 		}
 	},
-	[104949] = {
-		set_ponr_state = true
-	},
 	[103969] = {
 		reinforce = {
 			{
@@ -254,7 +251,7 @@ return {
 			{id = 400063, delay = 40}
 		}
 	},
-	[102167] = { 
+	[102167] = {
 		values = {
 			elements = {
 				102813,
@@ -281,7 +278,7 @@ return {
 		}
 	},
 	-- add cloakers to mission scripts
-	[102199] = { 
+	[102199] = {
 		on_executed = {
 			{id = 102203, remove = true},
 			{id = 102204, remove = true},
@@ -291,7 +288,7 @@ return {
 			{id = 400009, delay = 1.3}
 		}
 	},
-	[102200] = { 
+	[102200] = {
 		on_executed = {
 			{id = 102206, remove = true},
 			{id = 102207, remove = true},
@@ -301,7 +298,7 @@ return {
 			{id = 400006, delay = 1.3}
 		}
 	},
-	[102201] = { 
+	[102201] = {
 		on_executed = {
 			{id = 102211, remove = true},
 			{id = 400001, delay = 0},
@@ -311,7 +308,7 @@ return {
 	},
 	--spawn roof access blockades when CFO has been found (that respawn after 70 seconds of getting killed)
 	--spawn dozer and 2 shields near helipad
-	[100061] = { 
+	[100061] = {
 		on_executed = {
 			{id = 400048, delay = 0},
 			{id = 400049, delay = 1.4},
@@ -324,8 +321,9 @@ return {
 			{id = 400068, delay = 0}
 		}
 	},
-	--Spawn escape sniper when the heli escape gets triggered
+	--Spawn escape sniper when the heli escape gets triggered (also toggle ponr)
 	[104949] = {
+		set_ponr_state = true,
 		on_executed = {
 			{id = 400059, delay = 3}
 		}
@@ -338,7 +336,7 @@ return {
 		}
 	},
 	--Get rid of cringe turret, replace with proper ambush from PDTH
-	[104103] = { 
+	[104103] = {
 		on_executed = {
 		--be gone
 			{id = 102751, remove = true},
@@ -351,7 +349,7 @@ return {
 			{id = 400079, delay = 9},
 			{id = 400080, delay = 9.5},
 			{id = 400081, delay = 10},
-		--spawn SWAT squads with specials	
+		--spawn SWAT squads with specials
 		--1st squad
 			{id = 400023, delay = 11},
 			{id = 400024, delay = 11},
@@ -360,7 +358,7 @@ return {
 			{id = 400027, delay = 11},
 			{id = 400028, delay = 11},
 			{id = 400018, delay = 11},
-		--2nd squad	
+		--2nd squad
 			{id = 400029, delay = 18},
 			{id = 400030, delay = 18},
 			{id = 400031, delay = 18},
