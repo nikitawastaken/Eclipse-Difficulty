@@ -12,6 +12,5 @@ Hooks:PostHook(GameSetup, "load_packages", "sh_load_packages", function(self)
 		PackageManager:load("soundbanks/sfx_hos")
 	elseif difficulty_index ~= 6 and PackageManager:loaded("soundbanks/sfx_hos") then
 		PackageManager:unload("soundbanks/sfx_hos")
-	end	
-
+	end
 end)
