@@ -730,7 +730,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- elite shield
 	self.phalanx_minion.damage.explosion_damage_mul = 0.2
 	self.phalanx_minion.access = "shield"
-	self.phalanx_minion.spawn_sound_event = "shield_identification" --BANG BANG BANG!!! (I wanted to use Terminator Bang sound for him but this needs No Mercy's SFX package to be loaded)
+	self.phalanx_minion.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
 
 	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
 	self.phalanx_minion_break.tags = { "law", "shield" }
@@ -778,9 +778,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
-	--I wanted to use Terminator Bang sound for him but this needs No Mercy's SFX package to be loaded
+
 	self.zeal_shield = deep_clone(self.shield)
 	self.zeal_shield.speech_prefix_p2 = "d"
+	self.zeal_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --Come with me if you wanna live...
 	table.insert(self._enemy_list, "zeal_shield")
 
 	self.zeal_medic = deep_clone(self.medic)
