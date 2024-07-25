@@ -12,6 +12,13 @@ local disabled = {
 	}
 }	
 return {
+--enables/disables NPCs flashlights when the power is off/on like in PDTH
+[100756] = {
+		flashlight = true
+	},
+	[101801] = {
+		flashlight = false
+	},
 	--PONR
 	--Have the gas chopper be a dozer chopper
 	--Trigger the heli spawn during escape instead of during hacking objectives
