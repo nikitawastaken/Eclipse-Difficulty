@@ -7,7 +7,7 @@ Hooks:PreHook(CopSound, "init", "sh_init", function(self)
 	--Mostly just here in the event we have a unit to have both an 'entrance' line *and* a global spawn in noise
 	if self._unit:base():char_tweak().spawn_sound_event_2 then
 		self._unit:sound():play(self._unit:base():char_tweak().spawn_sound_event_2, nil, nil)
-	end	
+	end
 end)
 
 Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_prefix)
