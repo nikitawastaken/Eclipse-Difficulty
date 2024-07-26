@@ -12,6 +12,34 @@ return {
 			participate_to_group_ai = true
 		}
 	},
+	--trigger spawns during escape part
+	[103111] = {
+		on_executed = {
+			{id = 400001, delay = 0},
+			{id = 400002, delay = 0},
+			{id = 400003, delay = 0},
+			{id = 400004, delay = 0}
+		}
+	},
+	--trigger spawns in scaffolding part
+	[103543] = {
+		on_executed = {
+			{id = 400005, delay = 0},
+			{id = 400006, delay = 0},
+			{id = 400007, delay = 0},
+			{id = 400008, delay = 0}
+		}
+	},
+	--Disable dozer spawn once George the pilot gets Kauzo out
+	[100121] = {
+		func = function(self)
+			local turn_this_shit_off = self:get_mission_element(101320)
+
+			if turn_this_shit_off then
+				turn_this_shit_off:set_enabled(false)
+			end
+		end
+	},
 	-- Remove spawn groups closest to the broken bridge part (and add a few groups from the construction site)
 	[101176] = {
 		values = {

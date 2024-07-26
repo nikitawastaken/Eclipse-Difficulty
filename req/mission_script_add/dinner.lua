@@ -7,7 +7,7 @@ local tank = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_mi
 local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 local cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1"
 local hard_above = difficulty >= 3
-local diff_scaling = 0.085 * difficulty
+local diff_scaling = 0.125 * difficulty
 local enabled_chance_cloakers = math.random() < diff_scaling
 local enabled_chance_shields_and_tazer = math.random() < diff_scaling
 local enabled_chance_shields_and_tazer_2 = math.random() < diff_scaling

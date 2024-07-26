@@ -6,7 +6,7 @@ local shield = (difficulty == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/
 local tank = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
 local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 local cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1"
-local diff_scaling = 0.113 * difficulty
+local diff_scaling = 0.125 * difficulty
 local eclipse = difficulty == 6
 local overkill_above = difficulty >= 5
 local hard_above = difficulty >= 3

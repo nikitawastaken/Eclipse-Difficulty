@@ -12,7 +12,7 @@ local tank = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_mi
 local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 local cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1"
 local pro_job = Global.game_settings and Global.game_settings.one_down
-local diff_scaling = 0.065 * difficulty
+local diff_scaling = 0.125 * difficulty
 local hard_above = difficulty >= 3
 local overkill_above = difficulty >= 5
 local eclipse = difficulty == 6

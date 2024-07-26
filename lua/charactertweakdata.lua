@@ -695,7 +695,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0
 	self.spooc.melee_weapon = "baton"
-	-- self.spooc.spawn_sound_event = "clk_c01x_plu" --*WOOOSH*
+	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
 	-- tank
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
@@ -786,6 +786,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_medic = deep_clone(self.medic)
 	self.zeal_medic.move_speed = self.presets.move_speed.very_fast
 	self.zeal_medic.damage.explosion_damage_mul = 0.6
+	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
 	table.insert(self._enemy_list, "zeal_medic")
 
 	self.zeal_taser = deep_clone(self.taser)
