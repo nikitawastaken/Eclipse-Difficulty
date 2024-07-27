@@ -1,4 +1,4 @@
-
+local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 local sniper = (difficulty >= 5 and "units/payday2/characters/ene_sniper_2/ene_sniper_2") or "units/payday2/characters/ene_sniper_1/ene_sniper_1"
 
 local optsSniper_1 = {
