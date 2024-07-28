@@ -1,7 +1,7 @@
 local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 local dozer = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
 local dozer_skull =  "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"
-local shield = (difficulty == 6 and pro_job and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
+local shield = ((difficulty == 6 and pro_job) and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
 local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 local pro_job = Global.game_settings and Global.game_settings.one_down
 local overkill_above = difficulty >= 5

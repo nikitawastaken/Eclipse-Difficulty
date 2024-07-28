@@ -47,6 +47,7 @@
 				<post :hook_id="hudmanager"/>
 				<post :hook_id="menumanager"/>
 				<post :hook_id="savefilemanager"/>
+				<post :hook_id="statisticsmanager"/>
 				<post :hook_id="achievmentmanager"/>
 				<post :hook_id="tangomanager"/>
 				<post :hook_id="sidejobeventmanager"/>

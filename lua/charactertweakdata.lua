@@ -682,6 +682,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.city_swat.move_speed = self.presets.move_speed.fast
 	self.city_swat.no_arrest = true
+	self.city_swat.speech_prefix_p2 = "d" --cool radio filtered voices for GenSec SWATs
 	self.city_swat.suppression = { panic_chance_mul = 0.15, duration = { 1.5, 2 }, react_point = { 2, 5 }, brown_point = { 5, 6 } }
 
 	-- Specials
