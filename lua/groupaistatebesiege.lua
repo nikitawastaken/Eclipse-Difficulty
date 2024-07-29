@@ -795,13 +795,37 @@ function GroupAIStateBesiege:_queue_police_upd_task()
 end
 
 -- Overhaul group spawning and fix forced group spawns not actually forcing the entire group to spawn
--- Group spawning now always spawns the entire group at once but uses a cooldown that prevents any regular group spawns
--- for a number of seconds equal to the amount of spawned units
-local force_spawn_group_original = GroupAIStateBesiege.force_spawn_group
-function GroupAIStateBesiege:force_spawn_group(...)
-	self._force_next_group_spawn = true
-	force_spawn_group_original(self, ...)
-	self._force_next_group_spawn = nil
+-- Group spawning now always spawns the entire group at once but uses a cooldown that prevents any group spawns of the same type for a short duration
+-- The special limit check is now done earlier to prevent groups that can't actually spawn from being picked and wasting a spawn cycle
+function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
+	local best_groups = {}
+	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "recon"].groups, 1)
+	if total_weight <= 0 and not guarantee then
+		return
+	end
+
+	local spawn_group, spawn_group_type = self:_choose_best_group(best_groups, total_weight or 1)
+	if not spawn_group then
+		return
+	end
+
+	local grp_objective = {
+		attitude = "avoid",
+		stance = "hos",
+		pose = "crouch",
+		type = "assault_area",
+		area = spawn_group.area,
+		coarse_path = {
+			{
+				spawn_group.area.pos_nav_seg,
+				spawn_group.area.pos
+			}
+		}
+	}
+
+	if self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective) then
+		self:_perform_group_spawning(self._spawning_groups[#self._spawning_groups], true)
+	end
 end
 
 function GroupAIStateBesiege:_is_spawn_task_type_on_cooldown(spawn_task)
@@ -814,30 +838,39 @@ function GroupAIStateBesiege:_set_spawn_task_type_cooldown(spawn_task, cooldown)
 	self._next_group_spawn_t[group_objective_type] = self._t + cooldown
 end
 
-Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(self, spawn_task, force, use_last)
-	-- Prevent regular group spawning if cooldown is active unless it's a forced spawn
-	if self:_is_spawn_task_type_on_cooldown(spawn_task) and not force and not self._force_next_group_spawn then
-		return
+function GroupAIStateBesiege:_upd_group_spawning()
+	for _, spawn_task in ipairs(self._spawning_groups) do
+		if spawn_task.group.size > 0 or not self:_is_spawn_task_type_on_cooldown(spawn_task) then
+			self:_perform_group_spawning(spawn_task)
+			return
+		end
 	end
+end
 
+function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 	local produce_data = {
 		name = true,
-		spawn_ai = {},
+		spawn_ai = {}
 	}
 	local unit_categories = tweak_data.group_ai.unit_categories
 	local current_unit_type = tweak_data.levels:get_ai_group_type()
-	local spawn_points = spawn_task.spawn_group.spawn_pts
+	local skip_delays = force or spawn_task.group.size > 0
 
 	local function _try_spawn_unit(u_type_name, spawn_entry)
+		local u_category = unit_categories[u_type_name]
+		if not u_category then
+			StreamHeist:error("Unit category %s does not exist", u_type_name)
+			return true
+		end
+
 		local hopeless = true
-		for _, sp_data in ipairs(spawn_points) do
-			local category = unit_categories[u_type_name]
-			local has_access = sp_data.accessibility == "any" or category.access[sp_data.accessibility]
+		for _, sp_data in ipairs(spawn_task.spawn_group.spawn_pts) do
+			local has_access = sp_data.accessibility == "any" or u_category.access[sp_data.accessibility]
 			if has_access and (not sp_data.amount or sp_data.amount > 0) and sp_data.mission_element:enabled() then
 				hopeless = false
 
-				if sp_data.delay_t < self._t then
-					produce_data.name = table.random(category.unit_types[current_unit_type])
+				if (skip_delays and sp_data.delay_t - sp_data.interval or sp_data.delay_t) < self._t then
+					produce_data.name = table.random(u_category.unit_types[current_unit_type])
 					produce_data.name = managers.modifiers:modify_value("GroupAIStateBesiege:SpawningUnit", produce_data.name)
 
 					local spawned_unit = sp_data.mission_element:produce(produce_data)
@@ -898,7 +931,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 		end
 
 		if hopeless then
-			StreamHeist:warn("Spawn group", spawn_task.spawn_group.id, "failed to spawn unit", u_type_name)
+			StreamHeist:warn("Spawn group %s failed to spawn unit %s", spawn_task.spawn_group.id, u_type_name)
 			return true
 		end
 	end
@@ -933,7 +966,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 		return
 	end
 
-	table.remove(self._spawning_groups, use_last and #self._spawning_groups or 1)
+	table.delete(self._spawning_groups, spawn_task)
 
 	spawn_task.group.has_spawned = true
 	if spawn_task.group.size <= 0 then
@@ -944,7 +977,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_perform_group_spawning", function(
 	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul)
 	local spawn_rate = self:_get_difficulty_dependent_value(self._tweak_data.assault.spawnrate)
 	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)
-end)
+end
 
 local function spawn_group_id(spawn_group)
 	return spawn_group.mission_element:id()
@@ -973,7 +1006,6 @@ function GroupAIStateBesiege:_choose_best_group(best_groups, total_weight)
 	return best_grp, best_grp_type
 end
 
--- Fix amount_min not being enforced when possible and save spawn group element in group description for debugging stuck groups
 function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task)
 	local spawn_group_desc = tweak_data.group_ai.enemy_spawn_groups[spawn_group_type]
 
@@ -984,38 +1016,15 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		wanted_nr_units = math.random(spawn_group_desc.amount[1], spawn_group_desc.amount[2])
 	end
 
-	local valid_unit_types = {}
-	self._extract_group_desc_structure(spawn_group_desc.spawn, valid_unit_types)
-
+	local valid_unit_types = deep_clone(spawn_group_desc.spawn)
 	local total_weight = 0
-	local unit_categories = tweak_data.group_ai.unit_categories
-	for _, spawn_entry in ipairs(valid_unit_types) do
-		local cat_data = unit_categories[spawn_entry.unit]
-		if not cat_data then
-			StreamHeist:error("Unit category %s in spawn group type %s doesn't exist", spawn_entry.unit, spawn_group_type)
-			return
-		end
-
-		local special_type = not cat_data.is_captain and cat_data.special_type
-		if special_type and managers.job:current_spawn_limit(special_type) < self:_get_special_unit_type_count(special_type) + (spawn_entry.amount_min or 0) then
-			spawn_group.delay_t = self._t + 10
-			return
-		end
-
-		total_weight = total_weight + spawn_entry.freq
-	end
-
-	for _, sp_data in ipairs(spawn_group.spawn_pts) do
-		sp_data.delay_t = self._t + math.rand(0.5)
-	end
-
 	local group_size = 0
 	local spawn_task = {
 		objective = not grp_objective.element and self._create_objective_from_group_objective(grp_objective),
 		units_remaining = {},
 		spawn_group = spawn_group,
 		spawn_group_type = spawn_group_type,
-		ai_task = ai_task,
+		ai_task = ai_task
 	}
 
 	table.insert(self._spawning_groups, spawn_task)
@@ -1034,7 +1043,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		spawn_task.units_remaining[spawn_entry.unit] = spawn_task.units_remaining[spawn_entry.unit] or {
 			amount = 0,
-			spawn_entry = spawn_entry,
+			spawn_entry = spawn_entry
 		}
 		spawn_task.units_remaining[spawn_entry.unit].amount = spawn_task.units_remaining[spawn_entry.unit].amount + add_amount
 
@@ -1055,12 +1064,16 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	local i = 1
 	while wanted_nr_units > 0 and i <= #valid_unit_types do
 		local spawn_entry = valid_unit_types[i]
+
+		total_weight = total_weight + spawn_entry.freq
+
 		local entry_removed = spawn_entry.amount_min and _add_unit_type_to_spawn_task(i, spawn_entry)
 		if not entry_removed then
 			i = i + 1
 		end
 	end
 
+	local unit_categories = tweak_data.group_ai.unit_categories
 	while wanted_nr_units > 0 and #valid_unit_types > 0 do
 		local roll = math.random() * total_weight
 		local rand_entry
@@ -1073,7 +1086,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		until roll <= 0
 
 		local cat_data = unit_categories[rand_entry.unit]
-		local special_type = not cat_data.is_captain and cat_data.special_type
+		local special_type = cat_data and not cat_data.is_captain and cat_data.special_type
 		if special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type) then
 			table.remove(valid_unit_types, i - 1)
 			total_weight = total_weight - rand_entry.freq
@@ -1084,7 +1097,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 	local group = self:_create_group({
 		size = group_size,
-		type = spawn_group_type,
+		type = spawn_group_type
 	})
 
 	group.objective = grp_objective
@@ -1095,6 +1108,44 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	spawn_task.group = group
 
 	return group
+end
+
+function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight)
+	local total_weight = 0
+	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
+	local unit_categories = tweak_data.group_ai.unit_categories
+
+	for _, group_type in ipairs(group_types) do
+		local spawn_group_desc = spawn_groups[group_type]
+		local cat_weights = allowed_groups[group_type]
+		if spawn_group_desc and cat_weights then
+			for _, spawn_entry in ipairs(spawn_group_desc.spawn) do
+				local cat_data = unit_categories[spawn_entry.unit]
+				local special_type = cat_data and not cat_data.is_captain and cat_data.special_type
+				if special_type and managers.job:current_spawn_limit(special_type) < self:_get_special_unit_type_count(special_type) + (spawn_entry.amount_min or 0) then
+					cat_weights = nil
+					break
+				end
+			end
+
+			if cat_weights then
+				local cat_weight = self:_get_difficulty_dependent_value(cat_weights)
+				local mod_weight = weight * cat_weight
+
+				table.insert(best_groups, {
+					group = group,
+					group_type = group_type,
+					wght = mod_weight,
+					cat_weight = cat_weight,
+					dis_weight = weight
+				})
+
+				total_weight = total_weight + mod_weight
+			end
+		end
+	end
+
+	return total_weight
 end
 
 -- Make a generic group voice function instead of individual ones and make retiring groups play retreat lines
