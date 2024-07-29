@@ -818,9 +818,9 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 		coarse_path = {
 			{
 				spawn_group.area.pos_nav_seg,
-				spawn_group.area.pos
-			}
-		}
+				spawn_group.area.pos,
+			},
+		},
 	}
 
 	if self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective) then
@@ -850,7 +850,7 @@ end
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 	local produce_data = {
 		name = true,
-		spawn_ai = {}
+		spawn_ai = {},
 	}
 	local unit_categories = tweak_data.group_ai.unit_categories
 	local current_unit_type = tweak_data.levels:get_ai_group_type()
@@ -1024,7 +1024,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		units_remaining = {},
 		spawn_group = spawn_group,
 		spawn_group_type = spawn_group_type,
-		ai_task = ai_task
+		ai_task = ai_task,
 	}
 
 	table.insert(self._spawning_groups, spawn_task)
@@ -1043,7 +1043,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		spawn_task.units_remaining[spawn_entry.unit] = spawn_task.units_remaining[spawn_entry.unit] or {
 			amount = 0,
-			spawn_entry = spawn_entry
+			spawn_entry = spawn_entry,
 		}
 		spawn_task.units_remaining[spawn_entry.unit].amount = spawn_task.units_remaining[spawn_entry.unit].amount + add_amount
 
@@ -1097,7 +1097,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 	local group = self:_create_group({
 		size = group_size,
-		type = spawn_group_type
+		type = spawn_group_type,
 	})
 
 	group.objective = grp_objective
@@ -1137,7 +1137,7 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 					group_type = group_type,
 					wght = mod_weight,
 					cat_weight = cat_weight,
-					dis_weight = weight
+					dis_weight = weight,
 				})
 
 				total_weight = total_weight + mod_weight
