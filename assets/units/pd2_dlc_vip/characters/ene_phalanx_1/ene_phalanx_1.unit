@@ -5,6 +5,7 @@
 
 	<dependencies>
 		<depends_on bnk="soundbanks/regular_vox" />
+		<depends_on bnk="soundbanks/sfx_hos" />
 		<depends_on unit="units/pd2_dlc_vip/characters/ene_acc_phalanx_helmet/ene_acc_phalanx_helmet" />
 		<depends_on unit="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx" />
 		<depends_on unit="units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle" />
@@ -18,7 +19,7 @@
 			<var name="_default_weapon_id" value="deagle" />
 		</extension>
 		<extension name="inventory" class="CopInventory" >
-			<var name="_shield_unit_name" value="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx" />		
+			<var name="_shield_unit_name" value="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/ene_acc_shield_phalanx" />
 		</extension>
 		<extension name="brain" class="CopBrain" />
 		<extension name="anim_data" class="PlayerAnimationData" />

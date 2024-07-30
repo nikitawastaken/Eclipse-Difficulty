@@ -8,11 +8,4 @@ Hooks:PostHook(GameSetup, "load_packages", "sh_load_packages", function(self)
 		PackageManager:load("packages/sm_wish")
 	end
 
-	--For Elite/ZEAL shield's Terminator styled BANG BANG BANG spawn sound
-	--[[ seems to crash on load for now
-	if difficulty_index == 6 and not PackageManager:loaded("soundbanks/sfx_hos") then
-		PackageManager:load("soundbanks/sfx_hos")
-	elseif difficulty_index ~= 6 and level ~= "nmh" and PackageManager:loaded("soundbanks/sfx_hos") then
-		PackageManager:unload("soundbanks/sfx_hos")
-	end]]
 end)
