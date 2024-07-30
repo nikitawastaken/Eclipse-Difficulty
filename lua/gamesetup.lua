@@ -7,5 +7,4 @@ Hooks:PostHook(GameSetup, "load_packages", "sh_load_packages", function(self)
 		table.insert(self._loaded_diff_packages, "packages/sm_wish")
 		PackageManager:load("packages/sm_wish")
 	end
-
 end)
