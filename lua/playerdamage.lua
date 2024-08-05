@@ -285,10 +285,9 @@ function PlayerDamage:_chk_dmg_too_soon()
 	return managers.player:player_timer():time() < next_allowed_dmg_t
 end
 
--- Make <50%hp invuln upgrade not proc on armor hits
 function PlayerDamage:_calc_health_damage(attack_data)
 	-- damage tagging, worth the experiment i think
-	if attack_data.weapon_unit then
+	if attack_data.weapon_unit and attack_data.damage > 15 then
 		local armor_value_tagged = managers.player:body_armor_value("damage_tagged")
 		local skill_value_tagged = managers.player:upgrade_value("player", "player_tagged_speed_mul", 1)
 		local slowdown_data = {
@@ -327,6 +326,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 		local health_threshold = self._mrwi_health_invulnerable_threshold or 0.5
 		local is_cooling_down = managers.player:get_temporary_property("mrwi_health_invulnerable", false)
 
+		-- Make <50%hp invuln upgrade not proc on armor hits
 		if self:health_ratio() <= health_threshold and health_subtracted > 0 and not is_cooling_down then -- was it so hard to just add one more check, overkill?
 			local cooldown_time = self._mrwi_health_invulnerable_cooldown or 10
 
