@@ -19,7 +19,12 @@ function CopActionWalk:_adjust_move_anim(side, speed)
 		local seg_rel_t = self._machine:segment_relative_time(idstr_base)
 		local pose = anim_data.pose or self._fallback_pos
 
-		if not self._walk_anim_lengths[pose] or not self._walk_anim_lengths[pose][self._stance.name] or not self._walk_anim_lengths[pose][self._stance.name][speed] or not self._walk_anim_lengths[pose][self._stance.name][speed][side] then
+		if
+			not self._walk_anim_lengths[pose]
+			or not self._walk_anim_lengths[pose][self._stance.name]
+			or not self._walk_anim_lengths[pose][self._stance.name][speed]
+			or not self._walk_anim_lengths[pose][self._stance.name][speed][side]
+		then
 			return
 		end
 
