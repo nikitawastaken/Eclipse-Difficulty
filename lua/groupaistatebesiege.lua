@@ -798,6 +798,10 @@ end
 -- Group spawning now always spawns the entire group at once but uses a cooldown that prevents any group spawns of the same type for a short duration
 -- The special limit check is now done earlier to prevent groups that can't actually spawn from being picked and wasting a spawn cycle
 function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
+	if not self._ai_enabled then
+		return
+	end
+
 	local best_groups = {}
 	local total_weight = self:_choose_best_groups(best_groups, group, group_types, self._tweak_data[self._task_data.assault.active and "assault" or "recon"].groups, 1)
 	if total_weight <= 0 and not guarantee then
