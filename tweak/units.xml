@@ -161,6 +161,59 @@
 		</target>
 	</tweak>
 
+	<!-- fix husk files for SFPD/Texas Cops -->
+	<tweak version="2" name="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
 	<!-- sniper glare -->
 	<tweak version="2" name="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper" extension="object">
 		<search>

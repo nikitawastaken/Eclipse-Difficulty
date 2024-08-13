@@ -3,12 +3,25 @@ local is_pro = Global.game_settings and Global.game_settings.one_down
 local escapeshield = ((diff_i == 6 and is_pro) and "units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") or "units/payday2/characters/ene_shield_1/ene_shield_1"
 local escapedozer = ((diff_i == 6 and is_pro) and "units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
 local vaultAmbush = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
+local cloaker = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
 local vaultCount = 4
 local vaultAmbushChance = 0.5
+local both_window_swats_only = false
+local vent_spawngroup = false
 if math.random() < vaultAmbushChance then
 	vaultAmbush = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"
 	vaultCount = 2
 end
+
+if difficulty == 6 then
+	vent_spawngroup = true
+end	
+
+local windows_swat = {
+	values = {
+		enabled = both_window_swats_only
+	}
+}
 
 return {
 	-- Disable forced manager flee objective
@@ -28,6 +41,60 @@ return {
 		values = {
 			enabled = false
 		}
+	},
+	--Let the cops finish their spawn anim before moving into SO spot
+	[103720] = { 
+		on_executed = {
+			{id = 104029, delay = 2.75}
+		}
+	},
+	[103721] = { 
+		on_executed = {
+			{id = 104071, delay = 2.75}
+		}
+	},
+	[103722] = { 
+		on_executed = {
+			{id = 105734, delay = 2.75}
+		}
+	},
+	[103723] = { 
+		on_executed = {
+			{id = 105736, delay = 2.75}
+		}
+	},
+	[103724] = { 
+		on_executed = {
+			{id = 100226, delay = 2.75}
+		}
+	},
+	[103732] = { 
+		on_executed = {
+			{id = 100077, delay = 2.75}
+		}
+	},
+	[103737] = { 
+		on_executed = {
+			{id = 105732, delay = 2.75}
+		}
+	},
+	--enable vault hallway vent spawns on eclipse instead on all diffs
+	[105200] = {
+		values = {
+			enabled = vent_spawngroup
+		}
+	},
+	--always force cloaker and taser to spawn like in PDTH
+	[100875] = windows_swat,
+	[102245] = windows_swat,
+	[102271] = windows_swat,
+	[102276] = windows_swat,
+	-- replace SWAT with cloakers that spawn with taser to match with PDTH
+	[100617] = {
+		enemy = cloaker
+	},
+	[100618] = {
+		enemy = cloaker
 	},
 	-- vault ambush
 	[104132] = {

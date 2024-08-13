@@ -731,7 +731,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- elite shield
 	self.phalanx_minion.damage.explosion_damage_mul = 0.2
 	self.phalanx_minion.access = "shield"
+	self.phalanx_minion.speech_prefix_p1 = "dont_be_dumb"
+	self.phalanx_minion.speech_prefix_p2 = nil
+	self.phalanx_minion.speech_prefix_count = nil
+	self.phalanx_minion.die_sound_event = "shd_x02a_any_3p_01" --PDTH SWAT SCREEEAM!!!!!!
 	self.phalanx_minion.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
+	self.phalanx_minion.spawn_sound_event_2 = "shd_mov" --Holy shit! PDTH SWAT voice in PD2?!
 
 	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
 	self.phalanx_minion_break.tags = { "law", "shield" }
@@ -780,8 +785,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
 	self.zeal_shield = deep_clone(self.shield)
-	self.zeal_shield.speech_prefix_p2 = "d"
+	self.zeal_shield.speech_prefix_p1 = "l5d" -- that's my homie L5D!
+	self.zeal_shield.speech_prefix_p2 = nil
+	self.zeal_shield.speech_prefix_count = nil
 	self.zeal_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --Come with me if you wanna live...
+	self.zeal_shield.spawn_sound_event_2 = "l5d_mov" --MOOOOVE!!!!!!!!!
 	table.insert(self._enemy_list, "zeal_shield")
 
 	self.zeal_medic = deep_clone(self.medic)

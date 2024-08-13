@@ -5,8 +5,63 @@ local mexicans = {
 	Idstring("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"),
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
+local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
+local cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1"
+local chopper_amount = 1
+
+if difficulty == 6 then
+	chopper_amount = 2
+end	
 
 return {
+	--Replace Heavy SWATs that spawn from the chopper with cloakers
+	[101571] = {
+		values = {
+            enemy = cloaker
+		},
+		on_executed = {
+			{id = 400001, delay = 0}
+		}
+	},
+	[101572] = {
+		values = {
+            enemy = cloaker
+		}
+	},
+	--Loop helis
+	--remove the line+trigger the loop here
+	[100945] = {
+		on_executed = {
+			{id = 100946, remove = true},
+			{id = 100965, delay = 180}
+		}
+	},
+	--loop the choppa+2 chopper spawns on Eclipse
+	[100966] = {
+		values = {
+            amount = chopper_amount
+		},
+		on_executed = {
+			{id = 100965, delay = 300}
+		}
+	},
+	--trigger_times to 0; making the loop possible
+	[100953] = {
+		values = {
+            trigger_times = 0
+		}
+	},
+	[100887] = {
+		values = {
+            trigger_times = 0
+		}
+	},
+	--disable this just in case
+	[101652] = {
+		values = {
+            enabled = false
+		}
+	},
 	-- planks amount, normally always 3, now you can get anywhere from fuck-all to more than you know what to do with
 	[100822] = {
 		values = {
