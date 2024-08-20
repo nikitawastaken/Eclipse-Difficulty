@@ -1,6 +1,8 @@
 return {
 	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = "r870",
 	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = "mp5",
+	[("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"):key()] = "r870",
+	[("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"):key()] = "mp5",
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"):key()] = {"c45", "raging_bull"},
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"):key()] = {"mp5", "r870"},
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"):key()] = {"c45", "raging_bull"},
