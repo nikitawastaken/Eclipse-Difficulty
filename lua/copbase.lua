@@ -46,6 +46,7 @@ Hooks:PostHook(CopBase, "post_init", "hitbox_fix_post_init", function(self)
 end)
 
 -- Check for weapon changes
+CopBase.unit_weapon_mapping = StreamHeist:require("unit_weapons")
 if Network:is_client() then
 	return
 end
@@ -56,14 +57,21 @@ CopBase.shield_tweak_names = {
 	phalanx_minion = true,
 }
 
-local weapon_mapping = StreamHeist:require("unit_weapons")
+-- Check for weapon changes
 Hooks:PreHook(CopBase, "post_init", "sh_post_init", function(self)
-	self._default_weapon_id = weapon_mapping[self._unit:name():key()] or self._default_weapon_id
-	if type(self._default_weapon_id) == "table" then
-		self._default_weapon_id = table.random(self._default_weapon_id)
-	end
-
-	if self.shield_tweak_names[self._tweak_table] then
-		self.enable_leg_arm_hitbox = function() end
+	local mapping = self.unit_weapon_mapping[self._unit:name():key()]
+	local mapping_type = type(mapping)
+	if mapping_type == "table" then
+		local selector = WeightedSelector:new()
+		for k, v in pairs(mapping) do
+			if type(k) == "number" then
+				selector:add(v, 1)
+			else
+				selector:add(k, v)
+			end
+		end
+		self._default_weapon_id = selector:select() or self._default_weapon_id
+	elseif mapping_type == "string" then
+		self._default_weapon_id = mapping
 	end
 end)

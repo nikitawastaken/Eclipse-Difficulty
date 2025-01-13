@@ -349,3 +349,8 @@ function GroupAIStateBase:is_ai_trade_possible()
 
 	return not ai_disabled and (self._hostage_headcount > 0 or next(self._converted_police) or managers.trade:is_trading())
 end
+
+-- Make this function properly set rescue state again for checking if recon tasks are allowed
+Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function (self, state)
+	self._rescue_allowed = state
+end)

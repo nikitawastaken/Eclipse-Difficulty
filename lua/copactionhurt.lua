@@ -1,7 +1,7 @@
 -- Remove position reservations on death
 -- Improve reaction to ECM feedback by playing specific voicelines and pain sounds
 if Network:is_server() then
-	Hooks:PostHook(CopActionHurt, "init", "sh_init", function(self)
+	Hooks:PostHook(CopActionHurt, "init", "sh_init", function (self)
 		if self._hurt_type == "death" then
 			self._unit:brain():rem_all_pos_rsrv()
 		elseif self._hurt_type == "hurt_sick" then
@@ -12,8 +12,9 @@ if Network:is_server() then
 	end)
 end
 
+
 -- Make sick update finish their hurt exit anims before expiring
-Hooks:OverrideFunction(CopActionHurt, "_upd_sick", function(self, t)
+Hooks:OverrideFunction(CopActionHurt, "_upd_sick", function (self, t)
 	if self._sick_time then
 		if self._say_sick_t and t > self._say_sick_t then
 			managers.groupai:state():chk_say_enemy_chatter(self._unit, self._common_data.pos, "jammer")
@@ -32,6 +33,7 @@ Hooks:OverrideFunction(CopActionHurt, "_upd_sick", function(self, t)
 	end
 end)
 
+
 -- Prevent hurt and knockdown animations stacking, once one plays it needs to finish for another one to trigger
 CopActionHurt.hurt_blocks = {
 	heavy_hurt = true,
@@ -40,10 +42,10 @@ CopActionHurt.hurt_blocks = {
 	knock_down = true,
 	poison_hurt = true,
 	shield_knock = true,
-	stagger = true,
+	stagger = true
 }
 
-Hooks:OverrideFunction(CopActionHurt, "chk_block", function(self, action_type, t)
+Hooks:OverrideFunction(CopActionHurt, "chk_block", function (self, action_type, t)
 	if self._hurt_type == "death" then
 		return true
 	elseif self.hurt_blocks[action_type] and not self._ext_anim.hurt_exit then
@@ -56,6 +58,24 @@ Hooks:OverrideFunction(CopActionHurt, "chk_block", function(self, action_type, t
 
 	return CopActionAct.chk_block(self, action_type, t)
 end)
+
+
+-- Allow dodge and surrender actions to interrupt hurt actions
+CopActionHurt.allowed_client_act_variants = {
+	hands_up = true,
+	hands_back = true,
+	tied = true,
+	tied_all_in_one = true
+}
+
+function CopActionHurt:chk_block_client(action_desc, action_type, t)
+	if action_desc.type == "dodge" or action_desc.type == "act" and self.allowed_client_act_variants[action_desc.variant] then
+		return false
+	end
+
+	return self:chk_block(action_type, t)
+end
+
 
 -- Fix pseudo random number generator having very low entropy
 function CopActionHurt:_pseudorandom(a, b)
@@ -72,13 +92,13 @@ function CopActionHurt:_pseudorandom(a, b)
 	ht = math.round(ht * 4)
 
 	-- Adapted from https://stackoverflow.com/a/35377265
-	ht = ht * 3266489917 + 374761393
+	ht = ht * 3266489917 + 374761393;
 	ht = bit.bor(bit.lshift(ht, 17), bit.rshift(ht, 15))
-	ht = ht + self._unit:id() * 3266489917
-	ht = ht * 668265263
-	ht = bit.bxor(ht, bit.rshift(ht, 15)) * 2246822519
-	ht = bit.bxor(ht, bit.rshift(ht, 13)) * 3266489917
-	ht = bit.bxor(ht, bit.rshift(ht, 16))
+	ht = ht + self._unit:id() * 3266489917;
+	ht = ht * 668265263;
+	ht = bit.bxor(ht, bit.rshift(ht, 15)) * 2246822519;
+	ht = bit.bxor(ht, bit.rshift(ht, 13)) * 3266489917;
+	ht = bit.bxor(ht, bit.rshift(ht, 16));
 
 	local val = bit.band(ht, 0xffffff) / 0x1000000
 	if a and b then

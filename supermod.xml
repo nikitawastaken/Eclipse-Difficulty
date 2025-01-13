@@ -169,10 +169,8 @@
 						<post :hook_id="logics/spooclogicattack"/>
 					</group>
 
-					<group :hook_id="tank/">
-						<post :hook_id="logics/tankcoplogicattack"/>
-					</group>
-
+					<post :hook_id="tank/logics/tankcoplogicattack"/>
+					<post :hook_id="shield/logics/shieldlogicattack"/>
 					<post :hook_id="taser/logics/taserlogicattack"/>
 					<post :hook_id="medic/medicdamage"/>
 				</group>
@@ -417,6 +415,9 @@
 			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
+
+		<!-- animations -->
+		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
 
 	</assets>
 </mod>

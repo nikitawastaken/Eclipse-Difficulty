@@ -22,45 +22,52 @@ function CopLogicBase._create_detected_attention_object_data(...)
 end
 
 -- Make shield_cover tactics stick closer to their shield tactics providers
-Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(data, old_objective)
-	if not data.objective or data.objective.type ~= "defend_area" or not data.group or not data.tactics or not data.tactics.shield_cover then
+-- Also handle units with unit_cover to follow a random unit in their group
+Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function (data, old_objective)
+	if not data.objective or data.objective.type ~= "defend_area" or not data.group then
 		return
 	end
 
-	local shield_unit = old_objective and old_objective.shield_cover_unit
-	if not alive(shield_unit) or shield_unit:character_damage():dead() then
-		local shield_followers = {}
+	if not data.tactics or not data.tactics.shield_cover and not data.tactics.unit_cover then
+		return
+	end
+
+	local cover_unit = old_objective and old_objective.cover_unit
+	if not alive(cover_unit) or cover_unit:character_damage():dead() then
+		local followers = {}
 		for u_key, u_data in pairs(data.group.units) do
 			local logic_data = u_data.unit:brain()._logic_data
 			if logic_data.tactics then
-				if logic_data.tactics.shield_cover then
-					local shield_cover_unit = logic_data.objective and logic_data.objective.shield_cover_unit
-					if alive(shield_cover_unit) and not shield_cover_unit:character_damage():dead() then
-						local shield_key = shield_cover_unit:key()
-						shield_followers[shield_key] = (shield_followers[shield_key] or 0) + 1
+				if logic_data.tactics.shield_cover or logic_data.tactics.unit_cover then
+					local unit = logic_data.objective and logic_data.objective.cover_unit
+					if alive(unit) and not unit:character_damage():dead() then
+						local unit_key = unit:key()
+						followers[unit_key] = followers[unit_key] or { amount = 0 }
+						followers[unit_key].amount = followers[unit_key].amount + 1
 					end
-				elseif logic_data.tactics.shield then
-					shield_followers[u_key] = shield_followers[u_key] or 0
+				else
+					followers[u_key] = followers[u_key] or { amount = 0 }
+					followers[u_key].is_shield = logic_data.tactics.shield
 				end
 			end
 		end
 
-		local best_shield_key
+		local best_u_key
 		local least_followers = math.huge
-		for u_key, followers in pairs(shield_followers) do
-			if followers < least_followers then
-				best_shield_key = u_key
-				least_followers = followers
+		for u_key, follower_data in pairs(followers) do
+			if follower_data.amount < least_followers and (not data.tactics.shield_cover or follower_data.is_shield) then
+				best_u_key = u_key
+				least_followers = follower_data.amount
 			end
 		end
 
-		shield_unit = best_shield_key and data.group.units[best_shield_key].unit
+		cover_unit = best_u_key and data.group.units[best_u_key].unit
 	end
 
-	if shield_unit then
+	if cover_unit then
 		data.objective.type = "follow"
-		data.objective.shield_cover_unit = shield_unit
-		data.objective.follow_unit = shield_unit
+		data.objective.cover_unit = cover_unit
+		data.objective.follow_unit = cover_unit
 		data.objective.path_data = nil
 		data.objective.distance = 300
 	end

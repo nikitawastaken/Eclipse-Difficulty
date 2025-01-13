@@ -3,6 +3,13 @@
 -- Increasing the health granularity makes damage dealt more accurate to the actual weapon damage stats
 CopDamage._HEALTH_GRANULARITY = 8192
 
+function CopDamage:_send_melee_attack_result(attack_data, damage_percent, damage_effect_percent, hit_offset_height, variant, body_index)
+	body_index = math.clamp(body_index, 0, 128)
+	damage_percent = math.clamp(damage_percent, 0, self._HEALTH_GRANULARITY)
+	damage_effect_percent = math.clamp(damage_effect_percent, 0, self._HEALTH_GRANULARITY)
+	self._unit:network():send("damage_melee", attack_data.attacker_unit, damage_percent, damage_effect_percent, body_index, hit_offset_height, variant, self._dead and true or false)
+end
+
 -- Make enemy head hitbox size not egregiously large
 Hooks:PostHook(CopDamage, "init", "eclipse_init", function(self)
 	local is_dozer = self._unit:base()._tweak_table == "tank" or self._unit:base()._tweak_table == "tank_elite"

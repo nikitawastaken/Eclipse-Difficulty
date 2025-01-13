@@ -78,7 +78,7 @@ function CopLogicIdle._chk_relocate(data)
 			end
 		elseif math.abs(unit_pos.z - data.m_pos.z) > 200 or objective.distance and dis_sq > objective.distance ^ 2 then
 		elseif managers.navigation:raycast({ pos_from = data.m_pos, pos_to = unit_pos }) then
-		elseif objective.shield_cover_unit and data.attention_obj and data.attention_obj.verified and data.attention_obj.reaction >= AIAttentionObject.REACT_AIM then
+		elseif objective.cover_unit and data.attention_obj and data.attention_obj.verified and data.attention_obj.reaction >= AIAttentionObject.REACT_AIM then
 			if mvector3.distance_sq(objective.relocated_to or data.m_pos, data.attention_obj.m_pos) > mvector3.distance_sq(unit_pos, data.attention_obj.m_pos) then
 				return
 			end

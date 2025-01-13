@@ -6,6 +6,7 @@ Hooks:PostHook(CivilianLogicSurrender, "enter", "sh_enter", function(data)
 	end
 end)
 
+
 -- Make civilians get down more consistently
 -- If we have shouted at them and that shout would intimidate but not make them drop, run the function again after a short delay
 Hooks:PostHook(CivilianLogicSurrender, "_delayed_intimidate_clbk", "sh__delayed_intimidate_clbk", function(ignore_this, params)
@@ -24,13 +25,9 @@ Hooks:PostHook(CivilianLogicSurrender, "_delayed_intimidate_clbk", "sh__delayed_
 
 	local my_data = data.internal_data
 	my_data.delayed_intimidate_id = "intimidate" .. tostring(data.unit:key())
-	CopLogicBase.add_delayed_clbk(
-		my_data,
-		my_data.delayed_intimidate_id,
-		callback(CivilianLogicSurrender, CivilianLogicSurrender, "_delayed_intimidate_clbk", params),
-		TimerManager:game():time() + 0.1 + math.random() * 0.4
-	)
+	CopLogicBase.add_delayed_clbk(my_data, my_data.delayed_intimidate_id, callback(CivilianLogicSurrender, CivilianLogicSurrender, "_delayed_intimidate_clbk", params), TimerManager:game():time() + 0.1 + math.random() * 0.4)
 end)
+
 
 -- Fix civs randomly popping up to standing position and rework scared screams
 function CivilianLogicSurrender.on_alert(data, alert_data)
@@ -60,32 +57,23 @@ function CivilianLogicSurrender.on_alert(data, alert_data)
 		return
 	end
 
+	local alert_dis = mvector3.distance(data.m_pos, alert_data[2])
 	local my_data = data.internal_data
-	local scare_modifier = data.char_tweak.scare_shot
-
-	local anim_data = data.unit:anim_data()
-	if anim_data.halt or anim_data.react or anim_data.stand then
-		scare_modifier = scare_modifier * 4
-	end
+	local scare_modifier = data.char_tweak.scare_shot * math.map_range_clamped(alert_dis, 0, 4000, 5, 0)
 
 	my_data.scare_meter = math.min(my_data.scare_max, my_data.scare_meter + scare_modifier)
 
-	if data.is_tied and anim_data.stand then
+	if my_data.scare_meter >= my_data.scare_max and data.is_tied and data.unit:anim_data().stand then
 		data.unit:sound():say(math.random() < 0.5 and "a01x_any" or "a02x_any", true)
 		data.brain:on_hostage_move_interaction(aggressor, "stay")
-	elseif not my_data.scream_t or data.t < my_data.scream_t and not data.unit:sound():speaking(data.t) then
-		local alert_dis_sq = mvector3.distance_sq(data.m_pos, alert_data[2])
-		local max_scare_dis_sq = 4000000
+	elseif not data.unit:sound():speaking(data.t) then
+		local dis_mul = math.map_range_clamped(alert_dis, 0, 4000, 1, 0)
+		local scare_mul = math.map_range_clamped(my_data.scare_meter, 0, my_data.scare_max, 0, 1)
+		local time_mul = math.map_range_clamped(data.t - (my_data.scream_t or 0), 0, 8, 0, 1)
 
-		if alert_dis_sq < max_scare_dis_sq then
-			local dis_mul = math.map_range(alert_dis_sq, 0, max_scare_dis_sq, 1, 0)
-			local scare_mul = math.map_range(my_data.scare_meter, 0, my_data.scare_max, 0.5, 1)
-			local time_mul = math.map_range_clamped(my_data.scream_t and data.t - my_data.scream_t or 0, 0, 8, 0.5, 1)
-
-			if math.random() < dis_mul * scare_mul * time_mul then
-				data.unit:sound():say(math.random() < 0.5 and "a01x_any" or "a02x_any", true)
-				my_data.scream_t = data.t + 4
-			end
+		if math.random() < dis_mul * scare_mul * time_mul then
+			data.unit:sound():say(math.random() < 0.5 and "a01x_any" or "a02x_any", true)
+			my_data.scream_t = data.t + 4
 		end
 	end
 end

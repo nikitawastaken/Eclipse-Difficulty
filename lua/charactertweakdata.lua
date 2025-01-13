@@ -29,6 +29,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 10,
 		melee_speed = 1,
 		melee_retry_delay = { 1, 2 },
+		melee_range = 125,
+		melee_force = 400,
 		range = { close = 750, optimal = 1500, far = 3000 },
 		RELOAD_SPEED = 1,
 	})
@@ -160,12 +162,17 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.shield = based_on(presets.weapon.base, {
-		melee_speed = nil_value,
-		melee_dmg = nil_value,
-		melee_retry_delay = nil_value,
+		melee_dmg = 15,
+		melee_range = 150,
+		melee_force = 500,
 		range = { close = 500, optimal = 1000, far = 2000 },
 	})
 	presets.weapon.elite_shield = based_on(presets.weapon.shield, {
+		melee_speed = 0.75,
+		melee_dmg = 20,
+		melee_range = 200,
+		melee_force = 600,
+		melee_retry_delay = {0.5, 1},
 		focus_delay = (is_pro and 0.15) or 0.25,
 		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.15 },
 	})
@@ -207,9 +214,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.tank = based_on(presets.weapon.base, {
 		melee_dmg = 20,
+		melee_range = 150,
+		melee_force = 500,
 	})
 	presets.weapon.elite_tank = based_on(presets.weapon.tank, {
 		melee_dmg = 20,
+		melee_range = 200,
+		melee_force = 600,
 		focus_delay = (is_pro and 0.15) or 0.25,
 		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.15 },
 	})

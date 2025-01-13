@@ -206,3 +206,31 @@ end)
 Hooks:PostHook(CopMovement, "on_suppressed", "sh_on_suppressed", function(self)
 	self._force_head_upd = true
 end)
+
+
+-- Skip damage actions on units that are already in a death action
+-- Redirect stun animations for Bulldozers and Shields
+local damage_clbk_original = CopMovement.damage_clbk
+function CopMovement:damage_clbk(my_unit, damage_info)
+	if self._active_actions[1] and self._active_actions[1]._hurt_type == "death" then
+		return
+	end
+
+	if damage_info.variant == "stun" then
+		if self._unit:base():has_tag("tank") then
+			damage_info.variant = "hurt"
+			damage_info.result = {
+				variant = "hurt",
+				type = "expl_hurt"
+			}
+		elseif self._unit:base():has_tag("shield") then
+			damage_info.variant = "hurt"
+			damage_info.result = {
+				variant = "hurt",
+				type = "concussion"
+			}
+		end
+	end
+
+	return damage_clbk_original(self, my_unit, damage_info)
+end

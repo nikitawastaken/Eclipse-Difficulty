@@ -9,7 +9,8 @@ function TeamAILogicIdle._check_should_relocate(data, my_data, objective)
 
 	if follow_movement:nav_tracker():nav_segment() == data.unit:movement():nav_tracker():nav_segment() then
 		max_allowed_dis_xy = max_allowed_dis_xy * 3
-		max_allowed_dis_z = max_allowed_dis_z * 2
+	elseif data.unit:raycast("ray", data.unit:movement():m_head_pos(), follow_movement:m_head_pos(), "slot_mask", data.visibility_slotmask, "report") then
+		max_allowed_dis_xy = max_allowed_dis_xy / 2
 	end
 
 	mvector3.set(tmp_vec, follow_movement:m_newest_pos())

@@ -353,23 +353,29 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	end
 
 	if current_objective.open_fire then
-		approach = not current_objective.moving_out and (tactics_map.charge or not tactics_map.ranged_fire or in_place_duration > 10) and not self:_can_group_see_target(group)
-	elseif (phase_is_anticipation or obstructed_area or tactics_map.ranged_fire) and self:_can_group_see_target(group, tactics_map.flank and "optimal" or "far") then
-		if phase_is_anticipation then
-			pull_back = obstructed_area
-			open_fire = not pull_back
-		elseif obstructed_area then
-			objective_area = obstructed_area
-			open_fire = true
-		else
-			local forwardmost_i_nav_point = self:_get_group_forwardmost_coarse_path_index(group)
-			if forwardmost_i_nav_point then
-				objective_area = self:get_area_from_nav_seg_id(current_objective.coarse_path[forwardmost_i_nav_point][1])
-			end
-			open_fire = true
+		if not current_objective.moving_out and (tactics_map.charge or not tactics_map.ranged_fire or in_place_duration > 10) then
+			approach = not self:_can_group_see_target(group)
 		end
-	elseif not current_objective.moving_out then
-		approach = true
+	else
+		local spotter_u_data
+		if phase_is_anticipation or obstructed_area or tactics_map.ranged_fire then
+			spotter_u_data = self:_can_group_see_target(group, tactics_map.flank and "optimal" or "far")
+		end
+		if spotter_u_data then
+			if obstructed_area then
+				if phase_is_anticipation then
+					pull_back = true
+				else
+					objective_area = obstructed_area
+					open_fire = true
+				end
+			else
+				objective_area = self:get_area_from_nav_seg_id(spotter_u_data.tracker:nav_segment())
+				open_fire = true
+			end
+		elseif not current_objective.moving_out then
+			approach = true
+		end
 	end
 
 	if open_fire then
@@ -547,13 +553,21 @@ end)
 
 -- Helper to check if any group member has visuals on their focus target
 function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
+	local preferred_range = math.huge
+	if limit_range then
+		for _, u_data in pairs(group.units) do
+			local internal_data = u_data.unit:brain()._logic_data.internal_data
+			local weapon_range = internal_data and internal_data.weapon_range
+			preferred_range = math.min(preferred_range, weapon_range and weapon_range[limit_range] or 3000)
+		end
+	end
+
 	for _, u_data in pairs(group.units) do
 		local logic_data = u_data.unit:brain()._logic_data
 		if logic_data.objective and logic_data.objective.grp_objective == group.objective then
 			local focus_enemy = logic_data.attention_obj
 			if focus_enemy and focus_enemy.verified and focus_enemy.reaction > AIAttentionObject.REACT_AIM then
-				local weapon_range = logic_data.internal_data.weapon_range
-				if not limit_range or focus_enemy.dis < (weapon_range and weapon_range[limit_range] or 3000) then
+				if not limit_range or focus_enemy.dis < preferred_range then
 					return u_data
 				end
 			end
@@ -1071,7 +1085,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		total_weight = total_weight + spawn_entry.freq
 
-		local entry_removed = spawn_entry.amount_min and _add_unit_type_to_spawn_task(i, spawn_entry)
+		local entry_removed = spawn_entry.amount_min and spawn_entry.amount_min > 0 and _add_unit_type_to_spawn_task(i, spawn_entry)
 		if not entry_removed then
 			i = i + 1
 		end
@@ -1164,7 +1178,9 @@ function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 end
 
 Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
-	self:_chk_say_group(group, "retreat")
+	if not group.said_retreat then
+		group.said_retreat = self:_chk_say_group(group, "retreat")
+	end
 end)
 
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type

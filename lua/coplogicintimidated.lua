@@ -28,10 +28,22 @@ end
 
 -- Fix and improve enemies breaking out of intimidated state
 -- Don't immediately break out of surrender when the conditions are met
+Hooks:PostHook(CopLogicIntimidated, "enter", "sh_enter", function (data)
+	data.internal_data.surrender_break_delay_t = TimerManager:game():time() + 2
+end)
+
+Hooks:PostHook(CopLogicIntimidated, "on_intimidated", "sh_on_intimidated", function (data)
+	data.internal_data.surrender_break_delay_t = data.t + 2
+end)
+
 function CopLogicIntimidated._update_enemy_detection(data, my_data)
 	data.t = TimerManager:game():time()
 
 	if my_data.tied then
+		return
+	end
+
+	if my_data.surrender_break_delay_t and data.t < my_data.surrender_break_delay_t then
 		return
 	end
 
