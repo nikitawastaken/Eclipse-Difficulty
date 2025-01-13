@@ -172,7 +172,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 20,
 		melee_range = 200,
 		melee_force = 600,
-		melee_retry_delay = {0.5, 1},
+		melee_retry_delay = { 0.5, 1 },
 		focus_delay = (is_pro and 0.15) or 0.25,
 		aim_delay = (is_pro and { 0, 0.05 }) or { 0.1, 0.15 },
 	})

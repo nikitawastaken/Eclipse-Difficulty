@@ -351,6 +351,6 @@ function GroupAIStateBase:is_ai_trade_possible()
 end
 
 -- Make this function properly set rescue state again for checking if recon tasks are allowed
-Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function (self, state)
+Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function(self, state)
 	self._rescue_allowed = state
 end)

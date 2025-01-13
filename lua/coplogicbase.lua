@@ -23,7 +23,7 @@ end
 
 -- Make shield_cover tactics stick closer to their shield tactics providers
 -- Also handle units with unit_cover to follow a random unit in their group
-Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function (data, old_objective)
+Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(data, old_objective)
 	if not data.objective or data.objective.type ~= "defend_area" or not data.group then
 		return
 	end

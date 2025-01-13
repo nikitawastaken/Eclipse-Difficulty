@@ -6,12 +6,11 @@ function ShieldLogicAttack._chk_request_action_walk_to_optimal_pos(data, ...)
 	end
 end
 
-
 -- Stop walking action upon entering or leaving attack logic
-Hooks:PreHook(ShieldLogicAttack, "enter", "sh_enter", function (data)
+Hooks:PreHook(ShieldLogicAttack, "enter", "sh_enter", function(data)
 	CopLogicTravel.cancel_advance(data)
 end)
 
-Hooks:PreHook(ShieldLogicAttack, "exit", "sh_exit", function (data)
+Hooks:PreHook(ShieldLogicAttack, "exit", "sh_exit", function(data)
 	ShieldLogicAttack._cancel_optimal_attempt(data, data.internal_data)
 end)

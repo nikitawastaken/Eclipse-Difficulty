@@ -6,7 +6,6 @@ Hooks:PostHook(CivilianLogicSurrender, "enter", "sh_enter", function(data)
 	end
 end)
 
-
 -- Make civilians get down more consistently
 -- If we have shouted at them and that shout would intimidate but not make them drop, run the function again after a short delay
 Hooks:PostHook(CivilianLogicSurrender, "_delayed_intimidate_clbk", "sh__delayed_intimidate_clbk", function(ignore_this, params)
@@ -25,9 +24,13 @@ Hooks:PostHook(CivilianLogicSurrender, "_delayed_intimidate_clbk", "sh__delayed_
 
 	local my_data = data.internal_data
 	my_data.delayed_intimidate_id = "intimidate" .. tostring(data.unit:key())
-	CopLogicBase.add_delayed_clbk(my_data, my_data.delayed_intimidate_id, callback(CivilianLogicSurrender, CivilianLogicSurrender, "_delayed_intimidate_clbk", params), TimerManager:game():time() + 0.1 + math.random() * 0.4)
+	CopLogicBase.add_delayed_clbk(
+		my_data,
+		my_data.delayed_intimidate_id,
+		callback(CivilianLogicSurrender, CivilianLogicSurrender, "_delayed_intimidate_clbk", params),
+		TimerManager:game():time() + 0.1 + math.random() * 0.4
+	)
 end)
-
 
 -- Fix civs randomly popping up to standing position and rework scared screams
 function CivilianLogicSurrender.on_alert(data, alert_data)
