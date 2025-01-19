@@ -94,7 +94,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_rifle.autofire_rounds = { 1, 5 }
 	presets.weapon.base.is_rifle.FALLOFF = {
 		{ dmg_mul = 5.5 * dmg_mul, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 5.5 * dmg_mul * dmg_mul, r = 3000, acc = { 0.1, 0.25 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5.5 * dmg_mul, r = 3000, acc = { 0.1, 0.25 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_smg = deep_clone(presets.weapon.base.is_rifle)

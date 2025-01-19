@@ -150,7 +150,7 @@ function WeaponTweakData:_init_weapons()
 				}
 				
 				weap_data.fire_mode_mul = base_fire_mode_mul
-				
+			
 				weap_data.damage_falloff = {
 					optimal_distance = 0, 
 					optimal_range = 2500, 
@@ -419,11 +419,6 @@ function WeaponTweakData:_init_weapons()
 						}
 					}
 				end	
-				
-				weap_data.stance_range_mul = {
-					steelsight = weap_data.no_steelsight and 1 or 1.5,
-					bipod = 2
-				}
 				
 				weap_data.fire_mode_mul = nil		
 			
@@ -797,6 +792,7 @@ function WeaponTweakData:_init_weapons()
 			weap_data.panic_suppression_chance = 0.2
 			weap_data.sprint_exit_time = weap_data.sprint_exit_time or 0.4		
 			weap_data.penetration_damage_mul = weap_data.penetration_damage_mul or base_penetration_damage_mul
+			weap_data.damage_falloff = no_falloff
 			
 			if weap_data.damage_melee and weap_data.damage_melee_effect_mul then
 				weap_data.damage_melee = 1
@@ -2720,15 +2716,15 @@ function WeaponTweakData:_set_presets()
 			v.alert_size = (alert_sizes[v.usage] or 4000) * (v.has_suppressor and 0.2 or 1)
 			
 			if v.usage == "is_rifle" or v.usage == "is_bullpup" then
-				v.auto = { fire_rate = 0.2 }
+				v.auto = { fire_rate = 0.25 }
 			elseif v.usage == "is_smg" then
-				v.auto = { fire_rate = 0.15 }
+				v.auto = { fire_rate = 0.2 }
 			elseif v.usage == "is_lmg" or v.reload == "uzi" then
-				v.auto = { fire_rate = 0.1 }
+				v.auto = { fire_rate = 0.15 }
 			elseif v.usage == "mini" or v.usage == "is_flamethrower" then
 				v.auto = { fire_rate = 0.05 }
 			else		
-				v.auto = { fire_rate = 0.25 }
+				v.auto = { fire_rate = 0.35 }
 			end
 		elseif k:match("_crew$") then
 			local player_id = k:gsub("_crew$", ""):gsub("_secondary$", ""):gsub("_primary$", "")
