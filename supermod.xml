@@ -212,6 +212,7 @@
 					</group>
 					<post :hook_id="projectiles/projectilebase"/>
 					<post :hook_id="shotgun/shotgunbase"/>
+					<post :hook_id="sawweaponbase "/>
 					<post :hook_id="akimboweaponbase"/>
 					<post :hook_id="sentrygunweapon"/>
 					<post :hook_id="raycastweaponbase"/>

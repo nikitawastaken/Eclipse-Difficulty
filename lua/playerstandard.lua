@@ -10,6 +10,65 @@ function PlayerStandard:init(unit)
 	end
 end
 
+
+function PlayerStandard:_get_swap_speed_multiplier()
+	local multiplier = 1
+
+    local weap_base = self._equipped_unit:base()	
+	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
+	
+	multiplier = multiplier * (weapon_tweak_data.swap_speed_multiplier or 1)
+	
+	multiplier = multiplier * managers.player:upgrade_value("weapon", "swap_speed_multiplier", 1)
+	multiplier = multiplier * managers.player:upgrade_value("weapon", "passive_swap_speed_multiplier", 1)
+
+	for _, category in ipairs(weapon_tweak_data.categories) do
+		multiplier = multiplier * managers.player:upgrade_value(category, "swap_speed_multiplier", 1)
+	end
+
+	multiplier = multiplier * managers.player:upgrade_value("team", "crew_faster_swap", 1)
+
+	if managers.player:has_activate_temporary_upgrade("temporary", "swap_weapon_faster") then
+		multiplier = multiplier * managers.player:temporary_upgrade_value("temporary", "swap_weapon_faster", 1)
+	end
+
+	if managers.player:has_activate_temporary_upgrade("pistol", "empty_quickdraw") then
+		multiplier = multiplier * managers.player:upgrade_value("pistol", "empty_quickdraw")[1]
+	end
+	
+	multiplier = managers.modifiers:modify_value("PlayerStandard:GetSwapSpeedMultiplier", multiplier)
+	multiplier = multiplier * managers.player:upgrade_value("weapon", "mrwi_swap_speed_multiplier", 1)
+
+	return multiplier
+end
+
+function PlayerStandard:_end_action_running(t)
+	if not self._end_running_expire_t then
+		local weap_base = self._equipped_unit:base()	
+		
+		local speed_multiplier = weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_sprint_exit_speed() or 1)
+		
+		self._end_running_expire_t = t + 0.4 / speed_multiplier
+		
+		local stop_running = not weap_base:run_and_shoot_allowed() and (not self.RUN_AND_RELOAD or not self:_is_reloading())
+
+		if not self:_is_meleeing() and stop_running then
+			self._ext_camera:play_redirect(self:get_animation("stop_running"), speed_multiplier)
+		end
+	end
+end
+
+
+Hooks:PostHook(PlayerStandard, "_get_max_walk_speed", "hits_get_max_walk_speed", function(self, t)
+    local weap_base = self._equipped_unit:base()
+	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
+	
+	if self._state_data.in_steelsight and not managers.player:has_category_upgrade("player", "steelsight_normal_movement_speed") and not _G.IS_VR then
+		self._tweak_data.movement.speed.STEELSIGHT_MAX = self._tweak_data.movement.speed.STANDARD_MAX * (weapon_tweak_data.steelsight_move_speed_mul or 1)
+	end	
+end)
+
+
 -- Spray pattern implementation
 -- Oh man! This is just like Counter-Strike!
 function PlayerStandard:_check_action_primary_attack(t, input, params)

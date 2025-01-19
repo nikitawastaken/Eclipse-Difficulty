@@ -10,6 +10,7 @@ function RaycastWeaponBase:init(...)
 	end
 end
 
+
 -- No aim assist (shc)
 Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
 	if self._autohit_data then
@@ -20,178 +21,22 @@ Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
 	end
 end)
 
-local mvec_to = Vector3()
-local mvec_right_ax = Vector3()
-local mvec_up_ay = Vector3()
-local mvec_spread_direction = Vector3()
-local mvec3_norm = mvector3.normalize
-local mvec3_set = mvector3.set
-local mvec3_mul = mvector3.multiply
-local mvec3_add = mvector3.add
-local math_clamp = math.clamp
 
--- lower damage on shield pen
-function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul)
-	if self:gadget_overrides_weapon_functions() then
-		return self:gadget_function_override("_fire_raycast", self, user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul)
+function RaycastWeaponBase:exit_run_speed_multiplier()
+	local weapon_tweak = tweak_data.weapon[self._name_id]
+	local multiplier = 0.4 / (weapon_tweak.sprint_exit_time or 0.4)
+
+	multiplier = multiplier * (weapon_tweak.exit_run_speed_multiplier or 1)
+		
+	for _, category in ipairs(self:weapon_tweak_data().categories) do
+		multiplier = multiplier * managers.player:upgrade_value(category, "exit_run_speed_multiplier", 1)
 	end
+	
+	multiplier = multiplier * managers.player:upgrade_value(self._name_id, "exit_run_speed_multiplier", 1)
 
-	local result = {}
-	local ray_distance = self:weapon_range()
-	local spread_x, spread_y = self:_get_spread(user_unit)
-	spread_y = spread_y or spread_x
-	spread_mul = spread_mul or 1
-
-	mvector3.cross(mvec_right_ax, direction, math.UP)
-	mvec3_norm(mvec_right_ax)
-	mvector3.cross(mvec_up_ay, direction, mvec_right_ax)
-	mvec3_norm(mvec_up_ay)
-	mvec3_set(mvec_spread_direction, direction)
-
-	local theta = math.random() * 360
-
-	mvec3_mul(mvec_right_ax, math.rad(math.sin(theta) * math.random() * spread_x * spread_mul))
-	mvec3_mul(mvec_up_ay, math.rad(math.cos(theta) * math.random() * spread_y * spread_mul))
-	mvec3_add(mvec_spread_direction, mvec_right_ax)
-	mvec3_add(mvec_spread_direction, mvec_up_ay)
-	mvec3_set(mvec_to, mvec_spread_direction)
-	mvec3_mul(mvec_to, ray_distance)
-	mvec3_add(mvec_to, from_pos)
-
-	local ray_hits, hit_enemy, enemies_hit = self:_collect_hits(from_pos, mvec_to)
-
-	if self._autoaim and self._autohit_data then
-		local weight = 0.1
-
-		if hit_enemy then
-			self._autohit_current = (self._autohit_current + weight) / (1 + weight)
-		else
-			local auto_hit_candidate, enemies_to_suppress = self:check_autoaim(from_pos, direction, nil, nil, nil, true)
-			result.enemies_in_cone = enemies_to_suppress or false
-
-			if auto_hit_candidate then
-				local autohit_chance = self:get_current_autohit_chance_for_roll()
-
-				if autohit_mul then
-					autohit_chance = autohit_chance * autohit_mul
-				end
-
-				if math.random() < autohit_chance then
-					self._autohit_current = (self._autohit_current + weight) / (1 + weight)
-
-					mvec3_set(mvec_spread_direction, auto_hit_candidate.ray)
-					mvec3_set(mvec_to, mvec_spread_direction)
-					mvec3_mul(mvec_to, ray_distance)
-					mvec3_add(mvec_to, from_pos)
-
-					ray_hits, hit_enemy, enemies_hit = self:_collect_hits(from_pos, mvec_to)
-				end
-			end
-
-			if hit_enemy then
-				self._autohit_current = (self._autohit_current + weight) / (1 + weight)
-			elseif auto_hit_candidate then
-				self._autohit_current = self._autohit_current / (1 + weight)
-			end
-		end
-	end
-
-	local hit_count = 0
-	local hit_anyone = false
-	local cop_kill_count = 0
-	local hit_through_wall = false
-	local hit_through_shield = false
-	local is_civ_f = CopDamage.is_civilian
-	local damage = self:_get_current_damage(dmg_mul)
-
-	for _, hit in ipairs(ray_hits) do
-		local dmg = self:get_damage_falloff(damage, hit, user_unit)
-
-		-- penetrating a surface reduces the damage you deal to an enemy
-		if hit.unit:in_slot(managers.slot:get_mask("world_geometry")) then
-			hit_through_wall = true
-			damage = damage * (managers.player:has_category_upgrade("weapon", "no_pen_damage_penalty") and 1 or 0.4)
-		elseif hit.unit:in_slot(managers.slot:get_mask("enemy_shield_check")) then
-			hit_through_shield = hit_through_shield or alive(hit.unit:parent())
-			damage = damage * (managers.player:has_category_upgrade("weapon", "no_pen_damage_penalty") and 1 or 0.4)
-		elseif hit.unit:in_slot(managers.slot:get_mask("enemies")) then
-			hit_through_shield = hit_through_shield or alive(hit.unit:parent())
-			damage = damage * (managers.player:has_category_upgrade("weapon", "no_pen_damage_penalty") and 1 or 0.7)
-		end
-
-		if dmg > 0 then
-			local hit_result = self:bullet_class():on_collision(hit, self._unit, user_unit, dmg)
-			hit_through_wall = hit_through_wall or hit.unit:in_slot(self.wall_mask)
-			hit_through_shield = hit_through_shield or hit.unit:in_slot(self.shield_mask) and alive(hit.unit:parent())
-
-			if hit_result then
-				hit.damage_result = hit_result
-				hit_anyone = true
-				hit_count = hit_count + 1
-
-				if hit_result.type == "death" then
-					local unit_base = hit.unit:base()
-					local unit_type = unit_base and unit_base._tweak_table
-					local is_civilian = unit_type and is_civ_f(unit_type)
-
-					if not is_civilian then
-						cop_kill_count = cop_kill_count + 1
-					end
-
-					self:_check_kill_achievements(cop_kill_count, unit_base, unit_type, is_civilian, hit_through_wall, hit_through_shield)
-				end
-			end
-		end
-	end
-
-	self:_check_tango_achievements(cop_kill_count)
-
-	result.hit_enemy = hit_anyone
-
-	if self._autoaim then
-		self._shot_fired_stats_table.hit = hit_anyone
-		self._shot_fired_stats_table.hit_count = hit_count
-
-		if not self._ammo_data or not self._ammo_data.ignore_statistic then
-			managers.statistics:shot_fired(self._shot_fired_stats_table)
-		end
-	end
-
-	local furthest_hit = ray_hits[#ray_hits]
-
-	if (not furthest_hit or furthest_hit.distance > 600) and alive(self._obj_fire) then
-		self._obj_fire:m_position(self._trail_effect_table.position)
-		mvec3_set(self._trail_effect_table.normal, mvec_spread_direction)
-
-		local trail = World:effect_manager():spawn(self._trail_effect_table)
-
-		if furthest_hit then
-			World:effect_manager():set_remaining_lifetime(trail, math_clamp((furthest_hit.distance - 600) / 10000, 0, furthest_hit.distance))
-		end
-	end
-
-	if result.enemies_in_cone == nil then
-		result.enemies_in_cone = self._suppression and self:check_suppression(from_pos, direction, enemies_hit) or nil
-	elseif enemies_hit and self._suppression then
-		result.enemies_in_cone = result.enemies_in_cone or {}
-		local all_enemies = managers.enemy:all_enemies()
-
-		for u_key, enemy in pairs(enemies_hit) do
-			if all_enemies[u_key] then
-				result.enemies_in_cone[u_key] = {
-					error_mul = 1,
-					unit = enemy,
-				}
-			end
-		end
-	end
-
-	if self._alert_events then
-		result.rays = ray_hits
-	end
-
-	return result
+	return multiplier
 end
+
 
 -- no elite shield pen
 function RaycastWeaponBase.collect_hits(from, to, setup_data)
@@ -268,14 +113,15 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 	return unique_hits, hit_enemy, hit_enemy and enemies_hit or nil
 end
 
+
 -- dragon's breath doesn't own shields anymore
 function FlameBulletBase:bullet_slotmask()
 	return managers.slot:get_mask("bullet_impact_targets")
 end
 
+
 -- Auto Fire Sound Fix
 -- Thanks offyerrocker
-
 _G.AutoFireSoundFixBlacklist = {
 	["saw"] = true,
 	["saw_secondary"] = true,
@@ -307,6 +153,7 @@ function RaycastWeaponBase:_soundfix_should_play_normal()
 	return false
 end
 
+
 --Prevent playing sounds except for blacklisted weapons
 local orig_fire_sound = RaycastWeaponBase._fire_sound
 function RaycastWeaponBase:_fire_sound(...)
@@ -314,6 +161,7 @@ function RaycastWeaponBase:_fire_sound(...)
 		return orig_fire_sound(self, ...)
 	end
 end
+
 
 --Play sounds here instead for fix-applicable weapons; or else if blacklisted, use original function and don't play the fixed single-fire sound
 --U200: there goes AFSF2's compatibility with other mods
@@ -323,6 +171,7 @@ Hooks:PreHook(RaycastWeaponBase, "fire", "autofiresoundfix2_raycastweaponbase_fi
 		self:play_tweak_data_sound(self:weapon_tweak_data().sounds.fire_single, "fire_single")
 	end
 end)
+
 
 --stop_shooting is only used for fire sound loops, so playing individual single-fire sounds means it doesn't need to be called
 local orig_stop_shooting = RaycastWeaponBase.stop_shooting
