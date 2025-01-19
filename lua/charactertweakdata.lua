@@ -27,7 +27,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local is_pro = Global.game_settings and Global.game_settings.one_down
 	local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 	local dmg_mul = dmg_mul_tbl[diff_i]
-	
+
 	presets.weapon.base = based_on(presets.weapon.expert, {
 		focus_delay = (is_pro and 0.25) or 0.35,
 		aim_delay = (is_pro and { 0, 0.1 }) or { 0.15, 0.2 },
@@ -178,7 +178,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.35, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.elite_shield = based_on(presets.weapon.shield, {
 		melee_speed = 0.75,
 		melee_dmg = 20,
@@ -692,7 +692,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- Common SWAT
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.heavy_swat.move_speed = self.presets.move_speed.normal
-	
+
 	self.fbi_swat.move_speed = self.presets.move_speed.fast
 	self.fbi_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 

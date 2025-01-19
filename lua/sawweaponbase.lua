@@ -13,11 +13,10 @@ function SawWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spread_m
 
 		if ray_res.hit_enemy then
 			ammo_usage = ammo_usage * 2
-			
+
 			if managers.player:has_category_upgrade("saw", "enemy_slicer") then
 				ammo_usage = managers.player:upgrade_value("saw", "enemy_slicer", 10)
 			end
-			
 		end
 
 		if managers.player:has_category_upgrade("saw", "consume_no_ammo_chance") then
@@ -61,12 +60,12 @@ function SawHit:on_collision(col_ray, weapon_unit, user_unit, damage)
 	local hit_unit = col_ray.unit
 	local is_enemy = hit_unit:character_damage() ~= nil
 	local base_ext = hit_unit:base()
-	
+
 	local enemy_dmg_mul = self:weapon_tweak_data().enemy_damage_mul or 1
 
 	if base_ext and base_ext.has_tag and base_ext:has_tag("tank") then
 		enemy_dmg_mul = enemy_dmg_mul * 2
-		
+
 		damage = damage * enemy_dmg_mul
 	elseif is_enemy then
 		damage = damage * enemy_dmg_mul

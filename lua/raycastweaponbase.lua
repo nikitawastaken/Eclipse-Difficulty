@@ -10,7 +10,6 @@ function RaycastWeaponBase:init(...)
 	end
 end
 
-
 -- No aim assist (shc)
 Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
 	if self._autohit_data then
@@ -21,22 +20,20 @@ Hooks:PostHook(RaycastWeaponBase, "init", "eclipse_init", function(self)
 	end
 end)
 
-
 function RaycastWeaponBase:exit_run_speed_multiplier()
 	local weapon_tweak = tweak_data.weapon[self._name_id]
 	local multiplier = 0.4 / (weapon_tweak.sprint_exit_time or 0.4)
 
 	multiplier = multiplier * (weapon_tweak.exit_run_speed_multiplier or 1)
-		
+
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
 		multiplier = multiplier * managers.player:upgrade_value(category, "exit_run_speed_multiplier", 1)
 	end
-	
+
 	multiplier = multiplier * managers.player:upgrade_value(self._name_id, "exit_run_speed_multiplier", 1)
 
 	return multiplier
 end
-
 
 -- no elite shield pen
 function RaycastWeaponBase.collect_hits(from, to, setup_data)
@@ -113,12 +110,10 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 	return unique_hits, hit_enemy, hit_enemy and enemies_hit or nil
 end
 
-
 -- dragon's breath doesn't own shields anymore
 function FlameBulletBase:bullet_slotmask()
 	return managers.slot:get_mask("bullet_impact_targets")
 end
-
 
 -- Auto Fire Sound Fix
 -- Thanks offyerrocker
@@ -153,7 +148,6 @@ function RaycastWeaponBase:_soundfix_should_play_normal()
 	return false
 end
 
-
 --Prevent playing sounds except for blacklisted weapons
 local orig_fire_sound = RaycastWeaponBase._fire_sound
 function RaycastWeaponBase:_fire_sound(...)
@@ -161,7 +155,6 @@ function RaycastWeaponBase:_fire_sound(...)
 		return orig_fire_sound(self, ...)
 	end
 end
-
 
 --Play sounds here instead for fix-applicable weapons; or else if blacklisted, use original function and don't play the fixed single-fire sound
 --U200: there goes AFSF2's compatibility with other mods
@@ -171,7 +164,6 @@ Hooks:PreHook(RaycastWeaponBase, "fire", "autofiresoundfix2_raycastweaponbase_fi
 		self:play_tweak_data_sound(self:weapon_tweak_data().sounds.fire_single, "fire_single")
 	end
 end)
-
 
 --stop_shooting is only used for fire sound loops, so playing individual single-fire sounds means it doesn't need to be called
 local orig_stop_shooting = RaycastWeaponBase.stop_shooting
