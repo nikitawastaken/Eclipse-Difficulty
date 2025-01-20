@@ -446,18 +446,18 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.alert_size = 20
 				weap_data.steelsight_time = 0.35
 				weap_data.steelsight_move_speed_mul = 0.5
-				
-				local is_bolt_action = weap_data.is_bolt_action or weap_data.use_data and weap_data.use_data.align_place == "right_hand" or weap_data.use_data and weap_data.use_data.align_place == "left_hand" 
-				
-				local damage_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
-				local true_damage = weap_data.stats.damage * damage_modifier
-				
-				local bolt_action_pickup_mul = 1
-				bolt_action_pickup_mul = (true_damage / 900) * 3
-				bolt_action_pickup_mul = bolt_action_pickup_mul * math.sqrt(480 / true_damage)
-			
-				weap_data.pickup_mul = weap_data.pickup_mul or is_bolt_action and bolt_action_pickup_mul or 1
-				
+
+				if cat_map.single_action then
+                    local damage_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
+                    local true_damage = weap_data.stats.damage * damage_modifier
+
+                    local bolt_action_pickup_mul = 1
+                    bolt_action_pickup_mul = (true_damage / 900) * 3
+                    bolt_action_pickup_mul = bolt_action_pickup_mul * math.sqrt(480 / true_damage)
+
+                    weap_data.pickup_mul = weap_data.pickup_mul or bolt_action_pickup_mul or 1
+                end
+
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 3,
@@ -873,7 +873,7 @@ function WeaponTweakData:_init_weapons()
 				local total_damage_mul = 1 + (burst_count - 1) * 0.25
 				weap_data.pickup_damage = weap_data.pickup_damage * total_damage_mul
 			end
-			
+
 			if weap_data.can_shoot_through_enemy and not (cat_map.snp or cat_map.dmr) then
 				weap_data.pickup_damage = weap_data.pickup_damage / 2
 			end
@@ -1036,7 +1036,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		muzzleflash = "effects/payday2/particles/weapons/tkb_muzzle",
 		muzzleflash_silenced = "effects/payday2/particles/weapons/tkb_suppressed"
 	}
-	
+
 	-- UAR
 	self.aug.CLIP_AMMO_MAX = 30
 	self.aug.stats.damage = 80
@@ -1054,7 +1054,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.galil.stats.reload = 11
 	self.galil.stats.concealment = 15
 	self.galil.fire_mode_data.fire_rate = 60 / 850
-	
+
 	-- CR805
 	self.hajk.use_data.selection_index = 2
 	self.hajk.categories = { "assault_rifle" }
@@ -1111,7 +1111,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scar.stats.reload = 13
 	self.scar.stats.concealment = 10
 	self.scar.fire_mode_data.fire_rate = 60 / 625
-	
+
 	-- Gewehr
 	self.g3.CLIP_AMMO_MAX = 30
 	self.g3.stats.damage = 90
@@ -1948,7 +1948,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tecci.stats.reload = 11
 	self.tecci.stats.concealment = 8
 	self.tecci.fire_mode_data.fire_rate = 60 / 675
-	
+
 	-- KSP
 	self.m249.CLIP_AMMO_MAX = 200
 	self.m249.stats.damage = 60
@@ -2116,6 +2116,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.victor.fire_mode_data.fire_rate = 60 / 200
 
 	-- Rangehitter
+	table.insert(self.sbl.categories, "single_action")
 	table.insert(self.sbl.categories, "ng")
 	self.sbl.use_data.selection_index = 1
 	self.sbl.CLIP_AMMO_MAX = 10
@@ -2128,6 +2129,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sbl.stats_modifiers = nil
 
 	-- Rattlesnake
+	table.insert(self.msr.categories, "single_action")
 	self.msr.CLIP_AMMO_MAX = 10
 	self.msr.stats.damage = 320
 	self.msr.stats.spread = 23
@@ -2138,6 +2140,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.msr.stats_modifiers = nil
 
 	-- Repeater
+	table.insert(self.winchester1874.categories, "single_action")
 	self.winchester1874.CLIP_AMMO_MAX = 15
 	self.winchester1874.stats.damage = 320
 	self.winchester1874.stats.spread = 24
@@ -2148,6 +2151,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.winchester1874.stats_modifiers = nil
 
 	-- R700
+	table.insert(self.r700.categories, "single_action")
 	self.r700.CLIP_AMMO_MAX = 10
 	self.r700.stats.damage = 320
 	self.r700.stats.spread = 24
@@ -2158,6 +2162,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r700.stats_modifiers = nil
 
 	-- Scout
+	table.insert(self.scout.categories, "single_action")
 	self.scout.CLIP_AMMO_MAX = 5
 	self.scout.stats.damage = 320
 	self.scout.stats.spread = 21
@@ -2168,6 +2173,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scout.stats_modifiers = nil
 
 	-- R93
+	table.insert(self.r93.categories, "single_action")
 	self.r93.CLIP_AMMO_MAX = 5
 	self.r93.stats.damage = 480
 	self.r93.stats.spread = 24
@@ -2178,6 +2184,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r93.stats_modifiers = nil
 
 	-- Platypus
+	table.insert(self.model70.categories, "single_action")
 	self.model70.CLIP_AMMO_MAX = 6
 	self.model70.stats.damage = 480
 	self.model70.stats.spread = 24
@@ -2188,6 +2195,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.model70.stats_modifiers = nil
 
 	-- Nagant
+	table.insert(self.mosin.categories, "single_action")
 	self.mosin.CLIP_AMMO_MAX = 5
 	self.mosin.stats.damage = 480
 	self.mosin.stats.spread = 24
@@ -2198,6 +2206,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mosin.stats_modifiers = nil
 
 	-- Desert Fox
+	table.insert(self.desertfox.categories, "single_action")
 	self.desertfox.CLIP_AMMO_MAX = 5
 	self.desertfox.stats.damage = 480
 	self.desertfox.stats.spread = 22
@@ -2224,6 +2233,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contender.rays = nil
 
 	-- Thanatos
+	table.insert(self.m95.categories, "single_action")
 	self.m95.CLIP_AMMO_MAX = 5
 	self.m95.stats.damage = 755
 	self.m95.stats.spread = 24
@@ -2233,9 +2243,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.fire_mode_data.fire_rate = 60 / 40
 	self.m95.stats_modifiers = { damage = 2 }
 	self.m95.swap_speed_multiplier = 0.75
-	self.m95.is_bolt_action = true
 
 	-- AWP
+	table.insert(self.awp.categories, "single_action")
 	self.awp.CLIP_AMMO_MAX = 5
 	self.awp.stats.damage = 755
 	self.awp.stats.spread = 23
