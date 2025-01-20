@@ -5,6 +5,9 @@ Hooks:PostHook(GuiTweakData, "init", "eclipse_init", function(self)
 				"assault_rifle",
 			},
 			{
+				"smg",
+			},
+			{
 				"shotgun",
 			},
 			{
@@ -23,6 +26,9 @@ Hooks:PostHook(GuiTweakData, "init", "eclipse_init", function(self)
 		secondaries = {
 			{
 				"pistol",
+			},
+			{
+				"assault_rifle",
 			},
 			{
 				"smg",
