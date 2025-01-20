@@ -1145,6 +1145,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.groza.stats.reload = 11
 	self.groza.stats.concealment = 8
 	self.groza.fire_mode_data.fire_rate = 60 / 675
+	self.groza.has_underbarrel = true
 	
 	-- AMR
 	self.m16.CLIP_AMMO_MAX = 30
@@ -1247,6 +1248,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contraband.stats.reload = 11
 	self.contraband.stats.concealment = 8
 	self.contraband.fire_mode_data.fire_rate = 60 / 600
+	self.contraband.has_underbarrel = true
 	
 	-- Galant
 	table.insert(self.ching.categories, "dmr")
@@ -2034,6 +2036,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw.stats.reload = 11
 	self.kacchainsaw.stats.concealment = 0
 	self.kacchainsaw.fire_mode_data.fire_rate = 60 / 1000
+	self.kacchainsaw.no_steelsight = true
 	
 	-- RPK
 	self.rpk.CLIP_AMMO_MAX = 100
@@ -2088,6 +2091,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m134.stats.reload = 11
 	self.m134.stats.concealment = 0
 	self.m134.fire_mode_data.fire_rate = 60 / 3000
+	self.m134.no_steelsight = true
 
 	-- Hailstorm
 	self.hailstorm.CLIP_AMMO_MAX = 120
@@ -2111,6 +2115,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shuno.stats.reload = 11
 	self.shuno.stats.concealment = 0
 	self.shuno.fire_mode_data.fire_rate = 60 / 2000
+	self.shuno.no_steelsight = true
 	
 	-- Lebensauger
 	table.insert(self.wa2000.categories, "ng")
