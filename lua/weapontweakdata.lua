@@ -446,7 +446,15 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.alert_size = 20
 				weap_data.steelsight_time = 0.35
 				weap_data.steelsight_move_speed_mul = 0.5
-
+				
+				local is_bolt_action = cat_map.snp and weap_data.use_data and weap_data.use_data.align_place = "right_hand"
+				
+				local bolt_action_pickup_mul = 1
+				bolt_action_pickup_mul = (weap_data.stats.damage / 900) * 3
+				bolt_action_pickup_mul = bolt_action_pickup_mul * math.sqrt(480 / weap_data.stats.damage)
+			
+				weap_data.pickup_mul = weap_data.pickup_mul or is_bolt_action and bolt_action_pickup_mul or 1
+				
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 3,
@@ -471,10 +479,6 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1
 					}
 				}
-
-				if weap_data.fire_mode_data and weap_data.fire_mode_data.fire_rate > 1 then
-					weap_data.fire_rate_multiplier = weap_data.fire_mode_data.fire_rate
-				end
 
 				weap_data.fire_mode_mul = nil
 
@@ -833,9 +837,6 @@ function WeaponTweakData:_init_weapons()
 				weap_data.total_damage = weap_data.total_damage * 1.5
 			end
 
-			--set pickup damage
-			weap_data.pickup_damage = 30 * (weap_data.pickup_mul or 1)
-
 			--modify total damage based on weapon slot
 			if weap_data.use_data and weap_data.use_data.selection_index == 2 then --primaries
 				weap_data.total_damage = weap_data.total_damage
@@ -863,27 +864,16 @@ function WeaponTweakData:_init_weapons()
 				weap_data.total_damage = weap_data.total_damage / 2
 			end
 
-			if weap_data.can_shoot_through_enemy and not (cat_map.snp or cat_map.dmr) then
-				weap_data.pickup_damage = weap_data.pickup_damage / 2
-			end
-
-			if weap_data.has_underbarrel then
-				weap_data.pickup_damage = weap_data.pickup_damage / 2
-			end
-
-            -- hardcode the sniper rifles pickup values
-            if (weap_data.stats.damage == 755) and (cat_map.snp) then
-                weap_data.pickup_damage = weap_data.pickup_damage * 3
-            elseif (weap_data.stats.damage == 480) and (cat_map.snp) then
-                weap_data.pickup_damage = weap_data.pickup_damage * ( 7 / 4 )
-            elseif (weap_data.stats.damage == 320) and (cat_map.snp) then
-                weap_data.pickup_damage = weap_data.pickup_damage * ( 4 / 3 )
-            end
-
+			--set pickup damage
+			weap_data.pickup_damage = 30 * (weap_data.pickup_mul or 1)
 
 			if burst_only then
 				local total_damage_mul = 1 + (burst_count - 1) * 0.25
 				weap_data.pickup_damage = weap_data.pickup_damage * total_damage_mul
+			end
+			
+			if weap_data.can_shoot_through_enemy and not (cat_map.snp or cat_map.dmr) then
+				weap_data.pickup_damage = weap_data.pickup_damage / 2
 			end
 
 			local weap_dmg = self.stats.damage[math.min(weap_data.stats.damage, #self.stats.damage)] * (weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1)
