@@ -113,8 +113,8 @@ function WeaponTweakData:_init_weapons()
 			if cat_map.assault_rifle then
 				weap_data.stats.suppression = cat_map.dmr and 1 or 11
 				weap_data.stats.alert_size = cat_map.dmr and 19 or 15
-				weap_data.steelsight_time = 0.3
-				weap_data.steelsight_move_speed_mul = 0.6
+				weap_data.steelsight_time = cat_map.dmr and 0.35 or 0.3
+				weap_data.steelsight_move_speed_mul = cat_map.dmr and 0.5 or 0.6
 
 				if cat_map.dmr then
 					weap_data.FIRE_MODE = "single"
@@ -263,10 +263,8 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
-				weap_data.steelsight_time = 0.3
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.5
 				weap_data.pickup_mul = weap_data.pickup_mul or 2.5
-				weap_data.steelsight_move_speed_mul = 0.6
 				weap_data.rays = 8
 
 				weap_data.spread_multiplier = {
@@ -490,9 +488,8 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.bow then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 1
-				weap_data.steelsight_time = 0.3
-				weap_data.bow_reload_speed_multiplier = nil
 				weap_data.armor_piercing_chance = 1
+				weap_data.bow_reload_speed_multiplier = nil
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
@@ -508,9 +505,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.crossbow then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 1
-				weap_data.steelsight_time = 0.3
 				weap_data.armor_piercing_chance = 1
-				weap_data.steelsight_move_speed_mul = 0.6
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
@@ -522,9 +517,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.grenade_launcher or cat_map.rocket_launcher then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
-				weap_data.steelsight_time = 0.3
 				weap_data.pickup_mul = weap_data.pickup_mul or cat_map.rocket_launcher and 1 or 0.25
-				weap_data.steelsight_move_speed_mul = 0.6
 				weap_data.rays = 8
 
 				weap_data.spread_multiplier = {
@@ -559,10 +552,9 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.flamethrower then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 11
-				weap_data.steelsight_time = 0.35
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.5
 				weap_data.pickup_mul = weap_data.pickup_mul or 0.25
-				weap_data.steelsight_move_speed_mul = 0.6
+				weap_data.no_steelsight = true
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
@@ -574,12 +566,11 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.saw then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 6
-				weap_data.steelsight_time = 0.3
 				weap_data.armor_piercing_chance = 1
 				weap_data.hit_alert_size_increase = -9
 				weap_data.saw_ammo_usage = 5
-				weap_data.steelsight_move_speed_mul = 1
 				weap_data.enemy_damage_mul = 2
+				weap_data.no_steelsight = true
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
@@ -731,6 +722,8 @@ function WeaponTweakData:_init_weapons()
 			weap_data.stats.zoom = 1
 			weap_data.panic_suppression_chance = 0.2
 			weap_data.sprint_exit_time = weap_data.sprint_exit_time or 0.4
+			weap_data.steelsight_time = weap_data.steelsight_time or 0.3
+			weap_data.steelsight_move_speed_mul = weap_data.no_steelsight and 1 or weap_data.steelsight_move_speed_mul or 0.6
 			weap_data.penetration_damage_mul = weap_data.penetration_damage_mul or base_penetration_damage_mul
 			weap_data.damage_falloff = no_falloff
 
