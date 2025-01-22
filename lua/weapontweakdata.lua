@@ -900,6 +900,165 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		alert_radius = 5000
 	}
 
+	-- spray pattern tables
+	local spray_tables = {
+		sg_auto = {
+			pattern = {
+				{ up = 3.5, down = 3.5, left = 0.5, right = 1 },
+				{ up = 3.5, down = 3.5, left = -1, right = -0.5 },
+				{ up = 2.5, down = 3, left = -1.8, right = -2 },
+				{ up = 2.5, down = 2.5, left = -2.3, right = -2.5 },
+				{ up = 1.75, down = 2, left = 1, right = 0.8 },
+				{ up = 2, down = 2, left = 2, right = 2.5 },
+				{ up = 1.5, down = 1.75, left = 2.5, right = 3 },
+				{ up = 2, down = 2, left = 3, right = 3 },
+			},
+			persist_pattern = {
+				{ up = 2, down = 3, left = -3, right = 1 },
+			}
+		},
+		lmg_right = {
+			pattern = {
+				{ up = 0.8, down = 1.1, left = -1, right = 1 }
+			},
+			persist_pattern = {
+				{ up = 0.2, down = 0.2, left = 0.8, right = 0.8 },
+				{ up = 0.5, down = 0.8, left = 0.8, right = 0.8 },
+				{ up = 0.8, down = 0.8, left = 0.6, right = 0.6 },
+				{ up = 0.9, down = 1, left = 0.6, right = 0.6 },
+				{ up = 1, down = 1.1, left = 0.6, right = 0.6 },
+				{ up = 1.1, down = 1.2, left = 0.6, right = 0.6 },
+				{ up = 1.2, down = 1.3, left = 0.4, right = 0.4 },
+				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
+				{ up = 0.8, down = 0.8, left = -0.2, right = -0.3 },
+				{ up = 0.8, down = 0.8, left = -0.4, right = -0.8 },
+				{ up = 1, down = 1, left = -0.8, right = -1 },
+				{ up = 1, down = 1.1, left = -1, right = -1 },
+				{ up = 1.1, down = 1.3, left = -0.8, right = -1 },
+				{ up = 1.3, down = 1.3, left = -0.7, right = -0.7 },
+				{ up = 1.1, down = 1.1, left = -0.3, right = -0.2 },
+				{ up = 1, down = 1.2, left = 0.3, right = 0.4 },
+				{ up = 0.2, down = 0.2, left = -0.8, right = -0.8 },
+				{ up = 0.5, down = 0.8, left = -0.8, right = -0.8 },
+				{ up = 0.8, down = 0.8, left = -0.6, right = -0.6 },
+				{ up = 0.9, down = 1, left = -0.6, right = -0.6 },
+				{ up = 1, down = 1.1, left = -0.6, right = -0.6 },
+				{ up = 1.1, down = 1.2, left = -0.6, right = -0.6 },
+				{ up = 1.2, down = 1.3, left = -0.4, right = -0.4 },
+				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
+				{ up = 0.8, down = 0.8, left = 0.2, right = 0.3 },
+				{ up = 0.8, down = 0.8, left = 0.4, right = 0.8 },
+				{ up = 1, down = 1, left = 0.8, right = 1 },
+				{ up = 1, down = 1.1, left = 1, right = 1 },
+				{ up = 1.1, down = 1.3, left = 0.8, right = 1 },
+				{ up = 1.3, down = 1.3, left = 0.7, right = 0.7 },
+				{ up = 1.1, down = 1.1, left = 0.3, right = 0.2 },
+				{ up = 1, down = 1.2, left = -0.3, right = -0.4 },
+			}
+		},
+		lmg_left = {
+			pattern = {
+				{ up = 0.8, down = 1.1, left = -1, right = 1 }
+			},
+			persist_pattern = {
+				{ up = 0.2, down = 0.2, left = -0.8, right = -0.8 },
+				{ up = 0.5, down = 0.8, left = -0.8, right = -0.8 },
+				{ up = 0.8, down = 0.8, left = -0.6, right = -0.6 },
+				{ up = 0.9, down = 1, left = -0.6, right = -0.6 },
+				{ up = 1, down = 1.1, left = -0.6, right = -0.6 },
+				{ up = 1.1, down = 1.2, left = -0.6, right = -0.6 },
+				{ up = 1.2, down = 1.3, left = -0.4, right = -0.4 },
+				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
+				{ up = 0.8, down = 0.8, left = 0.2, right = 0.3 },
+				{ up = 0.8, down = 0.8, left = 0.4, right = 0.8 },
+				{ up = 1, down = 1, left = 0.8, right = 1 },
+				{ up = 1, down = 1.1, left = 1, right = 1 },
+				{ up = 1.1, down = 1.3, left = 0.8, right = 1 },
+				{ up = 1.3, down = 1.3, left = 0.7, right = 0.7 },
+				{ up = 1.1, down = 1.1, left = 0.3, right = 0.2 },
+				{ up = 1, down = 1.2, left = -0.3, right = -0.4 },
+				{ up = 0.2, down = 0.2, left = 0.8, right = 0.8 },
+				{ up = 0.5, down = 0.8, left = 0.8, right = 0.8 },
+				{ up = 0.8, down = 0.8, left = 0.6, right = 0.6 },
+				{ up = 0.9, down = 1, left = 0.6, right = 0.6 },
+				{ up = 1, down = 1.1, left = 0.6, right = 0.6 },
+				{ up = 1.1, down = 1.2, left = 0.6, right = 0.6 },
+				{ up = 1.2, down = 1.3, left = 0.4, right = 0.4 },
+				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
+				{ up = 0.8, down = 0.8, left = -0.2, right = -0.3 },
+				{ up = 0.8, down = 0.8, left = -0.4, right = -0.8 },
+				{ up = 1, down = 1, left = -0.8, right = -1 },
+				{ up = 1, down = 1.1, left = -1, right = -1 },
+				{ up = 1.1, down = 1.3, left = -0.8, right = -1 },
+				{ up = 1.3, down = 1.3, left = -0.7, right = -0.7 },
+				{ up = 1.1, down = 1.1, left = -0.3, right = -0.2 },
+				{ up = 1, down = 1.2, left = 0.3, right = 0.4 },
+			}
+		},
+		mini = {
+			pattern = {
+				{ up = 0.4, down = 0.5, left = -0.1, right = -0.3 },
+				{ up = 0.5, down = 0.6, left = -0.1, right = -0.3 },
+				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
+				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
+				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
+				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
+				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
+				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+			},
+			persist_pattern = {
+				{ up = 0.05, down = 0.1, left = -0.3, right = 0.35 }
+			}
+		}
+	}
+
+	-- recoil recovery timer tables
+	local recovery_tables = {
+		low = 0.175,
+		mid = 0.35,
+		high = 0.5
+	}
+
+	-- Assault Rifles
+
 	-- Clarion
 	self.famas.use_data.selection_index = 1
 	self.famas.CLIP_AMMO_MAX = 30
@@ -1140,6 +1299,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shak12.stats.reload = 11
 	self.shak12.stats.concealment = 16
 	self.shak12.fire_mode_data.fire_rate = 60 / 500
+
+	-- DMRs
 
 	-- M308
 	table.insert(self.new_m14.categories, "dmr")
@@ -1507,6 +1668,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rsh12.stats.reload = 10
 	self.rsh12.stats.concealment = 25
 	self.rsh12.fire_mode_data.fire_rate = 60 / 400
+
+	-- SMGs
 
 	-- Wasp
 	self.fmg9.CLIP_AMMO_MAX = 30
@@ -1932,16 +2095,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- LMGs and Miniguns
 
-	-- Bootleg
-	self.tecci.categories = { "lmg" }
-	self.tecci.CLIP_AMMO_MAX = 100
-	self.tecci.stats.damage = 50
-	self.tecci.stats.spread = 11
-	self.tecci.stats.recoil = 14
-	self.tecci.stats.reload = 11
-	self.tecci.stats.concealment = 8
-	self.tecci.fire_mode_data.fire_rate = 60 / 675
-
 	-- KSP
 	self.m249.CLIP_AMMO_MAX = 200
 	self.m249.stats.damage = 60
@@ -1950,6 +2103,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m249.stats.reload = 11
 	self.m249.stats.concealment = 0
 	self.m249.fire_mode_data.fire_rate = 60 / 900
+	self.m249.spray = spray_tables.lmg_right
+	self.m249.recoil_recovery_timer = recovery_tables.high
 
 	-- Buzzsaw
 	self.mg42.CLIP_AMMO_MAX = 150
@@ -1959,6 +2114,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mg42.stats.reload = 11
 	self.mg42.stats.concealment = 0
 	self.mg42.fire_mode_data.fire_rate = 60 / 1200
+	self.mg42.spray = spray_tables.lmg_left
+	self.mg42.recoil_recovery_timer = recovery_tables.high
 
 	-- KSP 58
 	self.par.CLIP_AMMO_MAX = 200
@@ -1968,6 +2125,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.par.stats.reload = 11
 	self.par.stats.concealment = 0
 	self.par.fire_mode_data.fire_rate = 60 / 900
+	self.par.spray = spray_tables.lmg_left
+	self.par.recoil_recovery_timer = recovery_tables.high
 
 	-- Campbell
 	self.kacchainsaw.CLIP_AMMO_MAX = 150
@@ -1978,6 +2137,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw.stats.concealment = 0
 	self.kacchainsaw.fire_mode_data.fire_rate = 60 / 1000
 	self.kacchainsaw.no_steelsight = true
+	self.kacchainsaw.spray = spray_tables.lmg_left
+	self.kacchainsaw.recoil_recovery_timer = recovery_tables.high
 
 	-- RPK
 	self.rpk.CLIP_AMMO_MAX = 100
@@ -1987,6 +2148,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpk.stats.reload = 11
 	self.rpk.stats.concealment = 1
 	self.rpk.fire_mode_data.fire_rate = 60 / 750
+	self.rpk.spray = spray_tables.lmg_right
+	self.rpk.recoil_recovery_timer = recovery_tables.high
 
 	-- Brenner
 	self.hk21.CLIP_AMMO_MAX = 150
@@ -1996,6 +2159,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hk21.stats.reload = 11
 	self.hk21.stats.concealment = 0
 	self.hk21.fire_mode_data.fire_rate = 60 / 700
+	self.hk21.spray = spray_tables.lmg_left
+	self.hk21.recoil_recovery_timer = recovery_tables.high
 
 	-- M60
 	self.m60.CLIP_AMMO_MAX = 150
@@ -2005,6 +2170,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m60.stats.reload = 11
 	self.m60.stats.concealment = 0
 	self.m60.fire_mode_data.fire_rate = 60 / 550
+	self.m60.spray = spray_tables.lmg_right
+	self.m60.recoil_recovery_timer = recovery_tables.high
 
 	-- Akron
 	self.hcar.CLIP_AMMO_MAX = 20
@@ -2014,6 +2181,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hcar.stats.reload = 11
 	self.hcar.stats.concealment = 0
 	self.hcar.fire_mode_data.fire_rate = 60 / 600
+	self.hcar.spray = spray_tables.lmg_left
+	self.hcar.recoil_recovery_timer = recovery_tables.high
 
 	-- Versteckt
 	self.hk51b.CLIP_AMMO_MAX = 60
@@ -2023,6 +2192,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hk51b.stats.reload = 11
 	self.hk51b.stats.concealment = 10
 	self.hk51b.fire_mode_data.fire_rate = 60 / 700
+	self.hk51b.spray = spray_tables.lmg_left
+	self.hk51b.recoil_recovery_timer = recovery_tables.high
 
 	-- Minigun
 	self.m134.CLIP_AMMO_MAX = 750
@@ -2033,6 +2204,20 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m134.stats.concealment = 0
 	self.m134.fire_mode_data.fire_rate = 60 / 3000
 	self.m134.no_steelsight = true
+	self.m134.spray = spray_tables.mini
+	self.m134.recoil_recovery_timer = recovery_tables.high
+
+	-- Microgun
+	self.shuno.CLIP_AMMO_MAX = 750
+	self.shuno.stats.damage = 60
+	self.shuno.stats.spread = 9
+	self.shuno.stats.recoil = 7
+	self.shuno.stats.reload = 11
+	self.shuno.stats.concealment = 0
+	self.shuno.fire_mode_data.fire_rate = 60 / 2000
+	self.shuno.no_steelsight = true
+	self.shuno.spray = spray_tables.mini
+	self.shuno.recoil_recovery_timer = recovery_tables.high
 
 	-- Hailstorm
 	self.hailstorm.CLIP_AMMO_MAX = 120
@@ -2047,16 +2232,22 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hailstorm.fire_mode_data.volley.damage_mul = 20
 	self.hailstorm.fire_mode_data.volley.rays = 6
 	self.hailstorm.fire_mode_data.volley.ammo_usage = 120
+	self.hailstorm.spray = spray_tables.lmg_left
+	self.hailstorm.recoil_recovery_timer = recovery_tables.mid
 
-	-- Microgun
-	self.shuno.CLIP_AMMO_MAX = 750
-	self.shuno.stats.damage = 60
-	self.shuno.stats.spread = 9
-	self.shuno.stats.recoil = 7
-	self.shuno.stats.reload = 11
-	self.shuno.stats.concealment = 0
-	self.shuno.fire_mode_data.fire_rate = 60 / 2000
-	self.shuno.no_steelsight = true
+	-- Bootleg
+	self.tecci.categories = { "lmg" }
+	self.tecci.CLIP_AMMO_MAX = 100
+	self.tecci.stats.damage = 50
+	self.tecci.stats.spread = 11
+	self.tecci.stats.recoil = 14
+	self.tecci.stats.reload = 11
+	self.tecci.stats.concealment = 8
+	self.tecci.fire_mode_data.fire_rate = 60 / 675
+	self.tecci.spray = spray_tables.lmg_right
+	self.tecci.recoil_recovery_timer = recovery_tables.mid
+
+	-- Snipers
 
 	-- Lebensauger
 	table.insert(self.wa2000.categories, "ng")
@@ -2248,34 +2439,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.awp.fire_mode_data.fire_rate = 60 / 40
 	self.awp.stats_modifiers = { damage = 2 }
 
-	-- Akimbos
-
-	-- Stryks
-
-	-- Czechs
-
-
-	-- Chimano 88s
-
-	-- Bernetti 9s
-
-
-	-- Chimano Compacts
-
-	-- Crosskills
-
-	-- Interceptors
-
-	-- Chimano Customs
-
-	-- Contractors
-
-	-- Deagles
-
-	-- Castigos
-
-	-- Judges
-
 	-- Specials
 
 	-- Airbow
@@ -2436,8 +2599,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpg7.fire_mode_data.fire_rate = 60 / 30
 	self.rpg7.stats_modifiers = { damage = 200 }
 	self.rpg7.total_ammo_mul = 4
-
-	-- Underbarrel Grenade Launchers
 
 	-- Flamethrowers
 
