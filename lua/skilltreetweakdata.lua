@@ -567,6 +567,7 @@ function SkillTreeTweakData:init(tweak_data)
 		perkdeck[2].icon_xy = { 0, 8 }
 		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
 		perkdeck[6].upgrades = { "armor_kit", "player_passive_armor_movement_penalty_multiplier" }
+		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
 	end
 
 	-- Buncha default upgrade fuckery
