@@ -875,7 +875,7 @@ function WeaponTweakData:_init_weapons()
 			local clip_dmg = weap_data.CLIP_AMMO_MAX * weap_dmg
 
 			if weap_data.AMMO_MAX then
-				weap_data.NR_CLIPS_MAX = math.max(1, math.round(weap_data.total_damage / clip_dmg))
+				weap_data.NR_CLIPS_MAX = math.max(2, math.round(weap_data.total_damage / clip_dmg))
 				weap_data.AMMO_MAX = weap_data.CLIP_AMMO_MAX * weap_data.NR_CLIPS_MAX
 			end
 
