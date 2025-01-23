@@ -14,36 +14,36 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		"slide",
 		"gadget",
 	}
-	
+
 	for id, part in pairs(self.parts) do
 		if table.contains(stat_blacklist, part.type) then
 			part.stats = {}
 			part.custom_stats = {}
 		end
-		
-		if part.stats then		
+
+		if part.stats then
 			if part.perks and table.contains(part.perks, "silencer") then
 				part.stats.suppression = 10
 				part.stats.alert_size = -12
 			elseif part.stats.suppression then
-				part.stats.suppression = 0		
+				part.stats.suppression = 0
 			end
 
 			if part.perks and table.contains(part.perks, "scope") then
 				part.stats.concealment = -1
 				part.stats.recoil = 1
-			end		
-			
+			end
+
 			if part.stats.spread_moving then
 				part.stats.spread_moving = 0
-			end			
+			end
 
 			if part.type == "magazine" and id:match("_quick") or id:match("_speed") then
 				part.stats = {}
 				part.stats.concealment = -1
 				part.stats.reload = 2
-			end				
-		end			
+			end
+		end
 	end
 
 	-- SHOTGUNS --
