@@ -4,7 +4,7 @@ local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Globa
 local shield = (difficulty == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
 local sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1"
 local swat_rifle = "units/payday2/characters/ene_swat_1/ene_swat_1"
-local swat_smg = "units/payday2/characters/ene_swat_1/ene_swwat_1"
+local swat_smg = "units/payday2/characters/ene_swat_1/ene_swat_1"
 local swat_shotgun = "units/payday2/characters/ene_swat_2/ene_swat_2"
 local swat_heavy_rifle = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"
 local swat_heavy_shotgun = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"
