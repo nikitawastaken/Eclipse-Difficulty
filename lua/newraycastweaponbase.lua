@@ -11,6 +11,8 @@ local FIRE_MODE_IDS = {
 
 Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._shots_fired_consecutively = 0
+	self._recoil_recovery_t = 0
+	self._recoil_position = Vector3(0, 0, 0)
 end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_stats_values", function(self)
@@ -188,6 +190,11 @@ function NewRaycastWeaponBase:stop_shooting()
 		self._shooting_count = 0
 	elseif self._fire_mode == ids_volley then
 		self:stop_volley_charge()
+	end
+
+	-- Reset recoil after we stop shooting, duh
+	if self:weapon_tweak_data().spray then
+		mvector3.set_zero(self._recoil_position)
 	end
 
 	self._shots_fired_consecutively = 0 -- reset the shots counter when you stop spraying
@@ -568,4 +575,44 @@ function NewRaycastWeaponBase:is_weak_hit(distance, user_unit)
 	scale_mul = math.lerp(1, 0.5, f)
 
 	return scale_mul
+end
+
+-- Make recoil stylized as it is in counter-strike 2
+local eclipse_old_trigger_held = NewRaycastWeaponBase.trigger_held
+function NewRaycastWeaponBase:trigger_held(...)
+	local weapon_tweak = self:weapon_tweak_data()
+	-- if not Eclipse.use_cs_recoil or not weapon_tweak then
+	-- 	return eclipse_old_trigger_held(self, ...)
+	-- end
+
+	local fired = nil
+	if self:start_shooting_allowed() then
+		self._recoil_recovery_t = weapon_tweak.recoil_recovery_timer
+		local params = { ... }
+		local spray_data = weapon_tweak.spray
+		local recoil_multiplier = (self:recoil() + self:recoil_addend()) * self:recoil_multiplier()
+
+		-- lua 1-indexing strikes again...
+		local pattern_idx
+		if self._shots_fired_consecutively <= #spray_data.pattern then
+			pattern_idx = spray_data.pattern[math.clamp(self._shots_fired_consecutively + 1, 1, #spray_data.pattern)]
+		else
+			pattern_idx = spray_data.persist_pattern[(self._shots_fired_consecutively % #spray_data.persist_pattern) + 1]
+		end
+
+		local new_y = math.lerp(pattern_idx.left, pattern_idx.right, math.random()) * recoil_multiplier * 0.01
+		local new_z = math.lerp(pattern_idx.up, pattern_idx.down, math.random()) * recoil_multiplier * 0.01
+		local new_vec = Vector3(0, new_y, new_z)
+		mvector3.add(self._recoil_position, new_vec)
+		mvector3.add(params[2], self._recoil_position)
+		params[2] = params[2]:normalized()
+
+		fired = self:fire(unpack(params))
+
+		if fired then
+			self:update_next_shooting_time()
+		end
+	end
+
+	return fired
 end
