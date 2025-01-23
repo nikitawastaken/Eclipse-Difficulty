@@ -683,12 +683,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		end,
 	}
 
-	-- fix beat cops being stuck on some spawn points in newer heists
-	self.cop.access = {
-		"cop",
-		"fbi",
-	}
-
 	-- Common SWAT
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.heavy_swat.move_speed = self.presets.move_speed.normal

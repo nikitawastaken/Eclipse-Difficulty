@@ -1,9 +1,9 @@
 --Same shit as resmod but with few tweaks
 --Should make the heist feel more from PDTH
 local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-local swat_shotgunner = (difficulty >= 5 and "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870") or "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"
+local swat_shotgunner = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"
 local shield = (difficulty == 6 and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
-local tank = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+local tank = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
 local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 local cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1"
 local diff_scaling = 0.125 * difficulty

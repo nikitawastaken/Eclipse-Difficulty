@@ -2,8 +2,8 @@
 local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
 local murkyman_1 = "units/payday2/characters/ene_murkywater_1/ene_murkywater_1"
 local murkyman_2 = "units/payday2/characters/ene_murkywater_2/ene_murkywater_2"
-local shield = (difficulty >= 5 and "units/payday2/characters/ene_shield_1/ene_shield_1") or "units/payday2/characters/ene_shield_2/ene_shield_2"
-local tank = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+local shield = "units/payday2/characters/ene_shield_2/ene_shield_2"
+local tank = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
 local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
 local cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1"
 local hard_above = difficulty >= 3
