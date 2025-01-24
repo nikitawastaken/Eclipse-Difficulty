@@ -737,10 +737,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.medic.move_speed = self.presets.move_speed.fast
 
 	-- shield
-	self.shield.damage.explosion_damage_mul = 0.7
+	self.shield.damage.explosion_damage_mul = 0.9
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
 	self.shield.die_sound_event = nil --he already has his death sound
+
+	-- fbi shield
+	self.fbi_shield = deep_clone(self.shield)
+	self.fbi_shield.damage.explosion_damage_mul = 0.7
 
 	-- elite shield
 	self.phalanx_minion.damage.explosion_damage_mul = 0.2
@@ -1069,47 +1073,80 @@ function CharacterTweakData:_set_presets()
 	end
 
 	-- Specific enemy health values
-	-- common swat
-	self.swat.HEALTH_INIT = 30
-	self.swat.headshot_dmg_mul = 2.4 -- 125 head health
-	self.heavy_swat.HEALTH_INIT = 60
-	self.heavy_swat.headshot_dmg_mul = 2.4 -- 250 head health
-	self.fbi_swat.HEALTH_INIT = 36
-	self.fbi_swat.headshot_dmg_mul = 2.25 -- 160 head health
-	self.fbi_heavy_swat.HEALTH_INIT = 72
-	self.fbi_heavy_swat.headshot_dmg_mul = 2.4 -- 300 head health
-	self.city_swat.HEALTH_INIT = 48
-	self.city_swat.headshot_dmg_mul = 2.5 -- 192 head health
+
+	-- misc enemies
+	self.security.HEALTH_INIT = 8
+	self.security.headshot_dmg_mul = 4 -- 20 head health
+
+	self.cop.HEALTH_INIT = 8
+	self.cop.headshot_dmg_mul = 4 -- 20 head health
+
+	self.fbi.HEALTH_INIT = 16
+	self.fbi.headshot_dmg_mul = 4 -- 40 head health
+
+	self.gangster.HEALTH_INIT = 12
+	self.gangster.headshot_dmg_mul = 4 -- 30 head health
+
+    -- common swat
+    self.swat.HEALTH_INIT = 20
+    self.swat.headshot_dmg_mul = 2 -- 100 head health
+
+    self.heavy_swat.HEALTH_INIT = 30
+    self.heavy_swat.headshot_dmg_mul = 1.875 -- 160 head health
+
+    self.fbi_swat.HEALTH_INIT = 24
+    self.fbi_swat.headshot_dmg_mul = 2 -- 120 head health
+
+    self.fbi_heavy_swat.HEALTH_INIT = 36
+    self.fbi_heavy_swat.headshot_dmg_mul = 1.5 -- 240 head health
+
+    self.city_swat.HEALTH_INIT = 28
+    self.city_swat.headshot_dmg_mul = 1.6 -- 175 head health
 
 	-- specials
-	self.sniper.HEALTH_INIT = 16
-	self.sniper.headshot_dmg_mul = 4 -- 40 head health
-	self.shield.HEALTH_INIT = 45
-	self.shield.headshot_dmg_mul = 2.25 -- 200 head health
-	self.taser.HEALTH_INIT = 96
-	self.taser.headshot_dmg_mul = 1.875 -- 512 head health
+	self.sniper.HEALTH_INIT = 12
+	self.sniper.headshot_dmg_mul = 4 -- 30 head health
+
+	self.shield.HEALTH_INIT = 28
+	self.shield.headshot_dmg_mul = 2 -- 140 head health
+
+	self.fbi_shield.HEALTH_INIT = 32
+	self.fbi_shield.headshot_dmg_mul = 2 -- 160 head health
+
+	self.taser.HEALTH_INIT = 72
+	self.taser.headshot_dmg_mul = 1.8 -- 400 head health
+
 	self.spooc.HEALTH_INIT = 48
 	self.spooc.headshot_dmg_mul = 4 -- 120 head health
-	self.medic.HEALTH_INIT = 72
-	self.medic.headshot_dmg_mul = 2 -- 360 head health
+
+	self.medic.HEALTH_INIT = 48
+	self.medic.headshot_dmg_mul = 1.5 -- 320 head health
+
 	self.tank.HEALTH_INIT = 2160
 	self.tank.headshot_dmg_mul = 45 -- 480 head health
+
 	self.tank_elite.HEALTH_INIT = 2160
 	self.tank_elite.headshot_dmg_mul = 45 -- 480 head health
+
 	self.phalanx_minion.HEALTH_INIT = 72
 	self.phalanx_minion.headshot_dmg_mul = 3 -- 240 head health
 
 	-- zeal team
-	self.zeal_swat.HEALTH_INIT = 64
-	self.zeal_swat.headshot_dmg_mul = 2.5 -- 256 head health
-	self.zeal_heavy_swat.HEALTH_INIT = 84
-	self.zeal_heavy_swat.headshot_dmg_mul = 1.75 -- 480 head health
+	self.zeal_swat.HEALTH_INIT = 42
+	self.zeal_swat.headshot_dmg_mul = 1.75 -- 240 head health
+
+	self.zeal_heavy_swat.HEALTH_INIT = 48
+	self.zeal_heavy_swat.headshot_dmg_mul = 1.5 -- 320 head health
+
 	self.zeal_shield.HEALTH_INIT = 54
 	self.zeal_shield.headshot_dmg_mul = 1.8 -- 300 head health
+
 	self.zeal_medic.HEALTH_INIT = 84
 	self.zeal_medic.headshot_dmg_mul = 2 -- 420 head health
+
 	self.zeal_taser.HEALTH_INIT = 120
 	self.zeal_taser.headshot_dmg_mul = 1.6 -- 750 head health
+
 
 	-- misc
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }

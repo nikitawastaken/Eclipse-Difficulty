@@ -1,6 +1,7 @@
 --add Eclipse's tweak tables to special unit ids
 StatisticsManager.special_unit_ids = {
 	"shield",
+	"fbi_shield",
 	"spooc",
 	"tank",
 	"tank_elite",
