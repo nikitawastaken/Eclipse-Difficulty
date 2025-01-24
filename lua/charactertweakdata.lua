@@ -1087,21 +1087,21 @@ function CharacterTweakData:_set_presets()
 	self.gangster.HEALTH_INIT = 12
 	self.gangster.headshot_dmg_mul = 4 -- 30 head health
 
-    -- common swat
-    self.swat.HEALTH_INIT = 20
-    self.swat.headshot_dmg_mul = 2 -- 100 head health
+	-- common swat
+	self.swat.HEALTH_INIT = 20
+	self.swat.headshot_dmg_mul = 2 -- 100 head health
 
-    self.heavy_swat.HEALTH_INIT = 30
-    self.heavy_swat.headshot_dmg_mul = 1.875 -- 160 head health
+	self.heavy_swat.HEALTH_INIT = 30
+	self.heavy_swat.headshot_dmg_mul = 1.875 -- 160 head health
 
-    self.fbi_swat.HEALTH_INIT = 24
-    self.fbi_swat.headshot_dmg_mul = 2 -- 120 head health
+	self.fbi_swat.HEALTH_INIT = 24
+	self.fbi_swat.headshot_dmg_mul = 2 -- 120 head health
 
-    self.fbi_heavy_swat.HEALTH_INIT = 36
-    self.fbi_heavy_swat.headshot_dmg_mul = 1.5 -- 240 head health
+	self.fbi_heavy_swat.HEALTH_INIT = 36
+	self.fbi_heavy_swat.headshot_dmg_mul = 1.5 -- 240 head health
 
-    self.city_swat.HEALTH_INIT = 28
-    self.city_swat.headshot_dmg_mul = 1.6 -- 175 head health
+	self.city_swat.HEALTH_INIT = 28
+	self.city_swat.headshot_dmg_mul = 1.6 -- 175 head health
 
 	-- specials
 	self.sniper.HEALTH_INIT = 12
@@ -1146,7 +1146,6 @@ function CharacterTweakData:_set_presets()
 
 	self.zeal_taser.HEALTH_INIT = 120
 	self.zeal_taser.headshot_dmg_mul = 1.6 -- 750 head health
-
 
 	-- misc
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }
