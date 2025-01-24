@@ -967,6 +967,21 @@ end
 
 -- Add new weapons
 Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function(self)
+	table.insert(self.weap_ids, "r870_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer"))
+	
+	table.insert(self.weap_ids, "aa12")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_aa12/wpn_npc_aa12"))
+	
+	table.insert(self.weap_ids, "aa12_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer"))
+	
+	table.insert(self.weap_ids, "m249_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer"))
+	
+	table.insert(self.weap_ids, "benelli_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer"))
+	
 	table.insert(self.weap_ids, "shepheard")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_shepheard/wpn_npc_shepheard"))
 

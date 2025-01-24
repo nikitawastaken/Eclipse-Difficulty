@@ -2732,6 +2732,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.saiga_npc.CLIP_AMMO_MAX = 20
 
+	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
+	
 	self.m249_npc.muzzleflash = "effects/payday2/particles/weapons/556_auto"
 
 	self.rpk_lmg_npc = copy_data(self.rpk_lmg_npc, self.m249_npc, self.rpk_crew)
