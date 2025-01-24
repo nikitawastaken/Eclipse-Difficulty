@@ -1078,13 +1078,13 @@ function CharacterTweakData:_set_presets()
 	self.security.HEALTH_INIT = 8
 	self.security.headshot_dmg_mul = 4 -- 20 head health
 
-	self.cop.HEALTH_INIT = 8
-	self.cop.headshot_dmg_mul = 4 -- 20 head health
+	self.cop.HEALTH_INIT = 12
+	self.cop.headshot_dmg_mul = 4 -- 30 head health
 
 	self.fbi.HEALTH_INIT = 16
 	self.fbi.headshot_dmg_mul = 4 -- 40 head health
 
-	self.gangster.HEALTH_INIT = 12
+	self.gangster.HEALTH_INIT = 16
 	self.gangster.headshot_dmg_mul = 4 -- 30 head health
 
 	-- common swat
