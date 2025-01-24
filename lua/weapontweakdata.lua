@@ -131,7 +131,7 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 0.5
 					},
 					moving = {
-						hipfire = 1.5,
+						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 0.8
 					}
@@ -143,7 +143,7 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 0.8
 					},
 					moving = {
-						hipfire = 1.2,
+						hipfire = 1.3,
 						crouching = 1,
 						steelsight = 1
 					}
@@ -162,49 +162,49 @@ function WeaponTweakData:_init_weapons()
 				if cat_map.revolver or cat_map.handcannon then
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 2,
+							hipfire = 1.25,
 							crouching = 0.8,
-							steelsight = 0.5
-						},
-						moving = {
-							hipfire = 4,
-							crouching = 1,
-							steelsight = 2
-						}
-					}
-					weap_data.recoil_multiplier = {
-						standing = {
-							hipfire = 1.3,
-							crouching = 1,
-							steelsight = 1
+							steelsight = 0.75
 						},
 						moving = {
 							hipfire = 1.5,
 							crouching = 1,
 							steelsight = 1
+						}
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1.25,
+							crouching = 1,
+							steelsight = 1.125
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1.25
 						}
 					}
 				else
 					weap_data.spread_multiplier = {
 						standing = {
 							hipfire = 1,
-							crouching = 0.8,
-							steelsight = 0.6
+							crouching = 1,
+							steelsight = 0.7
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.3,
 							crouching = 1,
-							steelsight = 0.8
+							steelsight = 0.9
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1,
+							hipfire = 1.1,
 							crouching = 1,
-							steelsight = 0.8
+							steelsight = 0.9
 						},
 						moving = {
-							hipfire = 1.2,
+							hipfire = 1.25,
 							crouching = 1,
 							steelsight = 1
 						}
@@ -215,12 +215,10 @@ function WeaponTweakData:_init_weapons()
 					single = {},
 					auto = {
 						spread = 1.5,
-						falloff_range = 0.75
 					},
 					burst = {
 						recoil = 0.8,
 						spread = 1,
-						falloff_range = 1
 					},
 					volley = {}
 				}
@@ -233,28 +231,29 @@ function WeaponTweakData:_init_weapons()
 				weap_data.pickup_mul = weap_data.pickup_mul or ( 4 / 3 )
 				weap_data.steelsight_move_speed_mul = 0.8
 
+				-- smgs don't lose handling when hipfiring at the cost of worse handling
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 1,
-						crouching = 1,
-						steelsight = 0.6
+						crouching = 0.8,
+						steelsight = 1
 					},
 					moving = {
 						hipfire = 1.2,
 						crouching = 1,
-						steelsight = 0.8
+						steelsight = 1.2
 					}
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1,
-						crouching = 1,
-						steelsight = 0.8
+						hipfire = 1.2,
+						crouching = 0.8,
+						steelsight = 1.2
 					},
 					moving = {
-						hipfire = 1,
+						hipfire = 1.4,
 						crouching = 1,
-						steelsight = 1
+						steelsight = 1.4
 					}
 				}
 
@@ -267,19 +266,8 @@ function WeaponTweakData:_init_weapons()
 				weap_data.pickup_mul = weap_data.pickup_mul or 2.5
 				weap_data.rays = 8
 
+				-- probably best not to change up the shotgun spread too much
 				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 1,
-						steelsight = 0.6
-					},
-					moving = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 1
-					}
-				}
-				weap_data.recoil_multiplier = {
 					standing = {
 						hipfire = 1,
 						crouching = 1,
@@ -289,6 +277,19 @@ function WeaponTweakData:_init_weapons()
 						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 1
+					}
+				}
+				-- now recoil tho is a different story imho
+				weap_data.recoil_multiplier = {
+					standing = {
+						hipfire = 1.2,
+						crouching = 1,
+						steelsight = 0.8
+					},
+					moving = {
+						hipfire = 1.5,
+						crouching = 1,
+						steelsight = 1.1
 					}
 				}
 
@@ -323,12 +324,12 @@ function WeaponTweakData:_init_weapons()
 					weap_data.spread_multiplier = {
 						standing = {
 							hipfire = 1,
-							crouching = 0.6,
+							crouching = 0.5,
 							steelsight = 1
 						},
 						moving = {
-							hipfire = 2,
-							crouching = 0.6,
+							hipfire = 1.5,
+							crouching = 0.5,
 							steelsight = 1
 						}
 					}
@@ -347,25 +348,25 @@ function WeaponTweakData:_init_weapons()
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 2,
-							crouching = 0.7,
-							steelsight = 0.6
+							hipfire = 1,
+							crouching = 0.5,
+							steelsight = 1
 						},
 						moving = {
-							hipfire = 4,
-							crouching = 0.7,
-							steelsight = 2
+							hipfire = 1.5,
+							crouching = 0.5,
+							steelsight = 1
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.2,
-							crouching = 0.8,
-							steelsight = 0.8
+							hipfire = 1,
+							crouching = 0.7,
+							steelsight = 1
 						},
 						moving = {
-							hipfire = 1.5,
-							crouching = 0.8,
+							hipfire = 1.2,
+							crouching = 0.7,
 							steelsight = 1
 						}
 					}
@@ -380,16 +381,17 @@ function WeaponTweakData:_init_weapons()
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.25
 				weap_data.steelsight_move_speed_mul = 0.4
 
+
 				if weap_data.no_steelsight then
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.6,
+							hipfire = 1.25,
+							crouching = 0.5,
 							steelsight = 1
 						},
 						moving = {
-							hipfire = 2,
-							crouching = 0.6,
+							hipfire = 1.75,
+							crouching = 0.5,
 							steelsight = 1
 						}
 					}
@@ -408,25 +410,25 @@ function WeaponTweakData:_init_weapons()
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 2,
-							crouching = 0.7,
-							steelsight = 0.6
+							hipfire = 1.25,
+							crouching = 0.5,
+							steelsight = 1
 						},
 						moving = {
-							hipfire = 4,
-							crouching = 0.7,
-							steelsight = 2
+							hipfire = 1.75,
+							crouching = 0.5,
+							steelsight = 1
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.2,
-							crouching = 0.8,
-							steelsight = 0.8
+							hipfire = 1,
+							crouching = 0.7,
+							steelsight = 1
 						},
 						moving = {
-							hipfire = 1.5,
-							crouching = 0.8,
+							hipfire = 1.2,
+							crouching = 0.7,
 							steelsight = 1
 						}
 					}
@@ -456,6 +458,9 @@ function WeaponTweakData:_init_weapons()
                     weap_data.pickup_mul = weap_data.pickup_mul or bolt_action_pickup_mul or 1
                 end
 
+				-- i actually like snipers being very innacurate on hipfire, but while moving
+				-- instead increase recoil severly while moving
+				-- kinda experimental, should be playtested
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 3,
@@ -465,19 +470,19 @@ function WeaponTweakData:_init_weapons()
 					moving = {
 						hipfire = 6,
 						crouching = 1,
-						steelsight = 3
+						steelsight = 0.5
 					}
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.4,
-						crouching = 0.8,
-						steelsight = 1
+						hipfire = 2,
+						crouching = 1,
+						steelsight = 1.75
 					},
 					moving = {
-						hipfire = 1.6,
+						hipfire = 3,
 						crouching = 1,
-						steelsight = 1
+						steelsight = 2.5
 					}
 				}
 
@@ -647,31 +652,7 @@ function WeaponTweakData:_init_weapons()
 								steelsight = 1
 							}
 						}
-					elseif cat_map.smg then
-						weap_data.spread_multiplier = {
-							standing = {
-								hipfire = 1,
-								crouching = 1,
-								steelsight = 1
-							},
-							moving = {
-								hipfire = 1.3,
-								crouching = 1,
-								steelsight = 1
-							}
-						}
-						weap_data.recoil_multiplier = {
-							standing = {
-								hipfire = 1,
-								crouching = 1,
-								steelsight = 1
-							},
-							moving = {
-								hipfire = 1.2,
-								crouching = 1,
-								steelsight = 1
-							}
-						}
+					-- since the only akimbo shotguns are judges we can tailor the values specifically for them
 					elseif cat_map.shotgun then
 						weap_data.spread_multiplier = {
 							standing = {
@@ -687,26 +668,16 @@ function WeaponTweakData:_init_weapons()
 						}
 						weap_data.recoil_multiplier = {
 							standing = {
-								hipfire = 1,
+								hipfire = 1.8,
 								crouching = 1,
-								steelsight = 1
+								steelsight = 1.6
 							},
 							moving = {
-								hipfire = 1.4,
+								hipfire = 2,
 								crouching = 1,
-								steelsight = 1
+								steelsight = 1.75
 							}
 						}
-					end
-
-
-					if weap_data.damage_falloff then
-						weap_data.damage_falloff.optimal_range = weap_data.damage_falloff.optimal_range * 0.8
-						weap_data.damage_falloff.far_falloff = weap_data.damage_falloff.far_falloff * 0.8
-					end
-
-					if weap_data.rays then
-						weap_data.rays = weap_data.rays / 2
 					end
 
 				end
@@ -919,130 +890,152 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		},
 		lmg_right = {
 			pattern = {
-				{ up = 0.8, down = 1.1, left = -1, right = 1 }
+				{ up = 0.4, down = 0.5, left = -1, right = 1 }
 			},
 			persist_pattern = {
-				{ up = 0.2, down = 0.2, left = 0.8, right = 0.8 },
-				{ up = 0.5, down = 0.8, left = 0.8, right = 0.8 },
-				{ up = 0.8, down = 0.8, left = 0.6, right = 0.6 },
-				{ up = 0.9, down = 1, left = 0.6, right = 0.6 },
-				{ up = 1, down = 1.1, left = 0.6, right = 0.6 },
-				{ up = 1.1, down = 1.2, left = 0.6, right = 0.6 },
-				{ up = 1.2, down = 1.3, left = 0.4, right = 0.4 },
-				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
-				{ up = 0.8, down = 0.8, left = -0.2, right = -0.3 },
-				{ up = 0.8, down = 0.8, left = -0.4, right = -0.8 },
-				{ up = 1, down = 1, left = -0.8, right = -1 },
-				{ up = 1, down = 1.1, left = -1, right = -1 },
-				{ up = 1.1, down = 1.3, left = -0.8, right = -1 },
-				{ up = 1.3, down = 1.3, left = -0.7, right = -0.7 },
-				{ up = 1.1, down = 1.1, left = -0.3, right = -0.2 },
-				{ up = 1, down = 1.2, left = 0.3, right = 0.4 },
-				{ up = 0.2, down = 0.2, left = -0.8, right = -0.8 },
-				{ up = 0.5, down = 0.8, left = -0.8, right = -0.8 },
-				{ up = 0.8, down = 0.8, left = -0.6, right = -0.6 },
-				{ up = 0.9, down = 1, left = -0.6, right = -0.6 },
-				{ up = 1, down = 1.1, left = -0.6, right = -0.6 },
-				{ up = 1.1, down = 1.2, left = -0.6, right = -0.6 },
-				{ up = 1.2, down = 1.3, left = -0.4, right = -0.4 },
-				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
-				{ up = 0.8, down = 0.8, left = 0.2, right = 0.3 },
-				{ up = 0.8, down = 0.8, left = 0.4, right = 0.8 },
-				{ up = 1, down = 1, left = 0.8, right = 1 },
-				{ up = 1, down = 1.1, left = 1, right = 1 },
-				{ up = 1.1, down = 1.3, left = 0.8, right = 1 },
-				{ up = 1.3, down = 1.3, left = 0.7, right = 0.7 },
-				{ up = 1.1, down = 1.1, left = 0.3, right = 0.2 },
-				{ up = 1, down = 1.2, left = -0.3, right = -0.4 },
+				{ up = 0.1, down = 0.1, left = 0.8, right = 0.8 },
+				{ up = 0.25, down = 0.4, left = 0.8, right = 0.8 },
+				{ up = 0.4, down = 0.4, left = 0.6, right = 0.6 },
+				{ up = 0.45, down = 0.5, left = 0.6, right = 0.6 },
+				{ up = 0.5, down = 0.55, left = 0.6, right = 0.6 },
+				{ up = 0.55, down = 0.6, left = 0.6, right = 0.6 },
+				{ up = 0.6, down = 0.65, left = 0.4, right = 0.4 },
+				{ up = 0.6, down = 0.7, left = 0.2, right = 0.3 },
+				{ up = 0.4, down = 0.4, left = -0.2, right = -0.3 },
+				{ up = 0.4, down = 0.4, left = -0.4, right = -0.8 },
+				{ up = 0.5, down = 0.5, left = -0.8, right = -1 },
+				{ up = 0.5, down = 0.55, left = -1, right = -1 },
+				{ up = 0.55, down = 0.65, left = -0.8, right = -1 },
+				{ up = 0.65, down = 0.65, left = -0.7, right = -0.7 },
+				{ up = 0.55, down = 0.55, left = -0.3, right = -0.2 },
+				{ up = 0.5, down = 0.6, left = 0.3, right = 0.4 },
+				{ up = 0.1, down = 0.1, left = -0.8, right = -0.8 },
+				{ up = 0.25, down = 0.4, left = -0.8, right = -0.8 },
+				{ up = 0.4, down = 0.4, left = -0.6, right = -0.6 },
+				{ up = 0.45, down = 0.5, left = -0.6, right = -0.6 },
+				{ up = 0.5, down = 0.55, left = -0.6, right = -0.6 },
+				{ up = 0.55, down = 0.6, left = -0.6, right = -0.6 },
+				{ up = 0.6, down = 0.65, left = -0.4, right = -0.4 },
+				{ up = 0.6, down = 0.7, left = 0.2, right = 0.3 },
+				{ up = 0.4, down = 0.4, left = 0.2, right = 0.3 },
+				{ up = 0.4, down = 0.4, left = 0.4, right = 0.8 },
+				{ up = 0.5, down = 0.5, left = 0.8, right = 1 },
+				{ up = 0.5, down = 0.55, left = 1, right = 1 },
+				{ up = 0.55, down = 0.65, left = 0.8, right = 1 },
+				{ up = 0.65, down = 0.65, left = 0.7, right = 0.7 },
+				{ up = 0.55, down = 0.55, left = 0.3, right = 0.2 },
+				{ up = 0.5, down = 0.6, left = -0.3, right = -0.4 },
 			}
 		},
 		lmg_left = {
 			pattern = {
-				{ up = 0.8, down = 1.1, left = -1, right = 1 }
+				{ up = 0.4, down = 0.5, left = -1, right = 1 }
 			},
 			persist_pattern = {
-				{ up = 0.2, down = 0.2, left = -0.8, right = -0.8 },
-				{ up = 0.5, down = 0.8, left = -0.8, right = -0.8 },
-				{ up = 0.8, down = 0.8, left = -0.6, right = -0.6 },
-				{ up = 0.9, down = 1, left = -0.6, right = -0.6 },
-				{ up = 1, down = 1.1, left = -0.6, right = -0.6 },
-				{ up = 1.1, down = 1.2, left = -0.6, right = -0.6 },
-				{ up = 1.2, down = 1.3, left = -0.4, right = -0.4 },
-				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
-				{ up = 0.8, down = 0.8, left = 0.2, right = 0.3 },
-				{ up = 0.8, down = 0.8, left = 0.4, right = 0.8 },
-				{ up = 1, down = 1, left = 0.8, right = 1 },
-				{ up = 1, down = 1.1, left = 1, right = 1 },
-				{ up = 1.1, down = 1.3, left = 0.8, right = 1 },
-				{ up = 1.3, down = 1.3, left = 0.7, right = 0.7 },
-				{ up = 1.1, down = 1.1, left = 0.3, right = 0.2 },
-				{ up = 1, down = 1.2, left = -0.3, right = -0.4 },
-				{ up = 0.2, down = 0.2, left = 0.8, right = 0.8 },
-				{ up = 0.5, down = 0.8, left = 0.8, right = 0.8 },
-				{ up = 0.8, down = 0.8, left = 0.6, right = 0.6 },
-				{ up = 0.9, down = 1, left = 0.6, right = 0.6 },
-				{ up = 1, down = 1.1, left = 0.6, right = 0.6 },
-				{ up = 1.1, down = 1.2, left = 0.6, right = 0.6 },
-				{ up = 1.2, down = 1.3, left = 0.4, right = 0.4 },
-				{ up = 1.2, down = 1.4, left = 0.2, right = 0.3 },
-				{ up = 0.8, down = 0.8, left = -0.2, right = -0.3 },
-				{ up = 0.8, down = 0.8, left = -0.4, right = -0.8 },
-				{ up = 1, down = 1, left = -0.8, right = -1 },
-				{ up = 1, down = 1.1, left = -1, right = -1 },
-				{ up = 1.1, down = 1.3, left = -0.8, right = -1 },
-				{ up = 1.3, down = 1.3, left = -0.7, right = -0.7 },
-				{ up = 1.1, down = 1.1, left = -0.3, right = -0.2 },
-				{ up = 1, down = 1.2, left = 0.3, right = 0.4 },
+				{ up = 0.1, down = 0.1, left = -0.8, right = -0.8 },
+				{ up = 0.25, down = 0.4, left = -0.8, right = -0.8 },
+				{ up = 0.4, down = 0.4, left = -0.6, right = -0.6 },
+				{ up = 0.45, down = 0.5, left = -0.6, right = -0.6 },
+				{ up = 0.5, down = 0.55, left = -0.6, right = -0.6 },
+				{ up = 0.55, down = 0.6, left = -0.6, right = -0.6 },
+				{ up = 0.6, down = 0.65, left = -0.4, right = -0.4 },
+				{ up = 0.6, down = 0.7, left = -0.2, right = -0.3 },
+				{ up = 0.4, down = 0.4, left = 0.2, right = 0.3 },
+				{ up = 0.4, down = 0.4, left = 0.4, right = 0.8 },
+				{ up = 0.5, down = 0.5, left = 0.8, right = 1 },
+				{ up = 0.5, down = 0.55, left = 1, right = 1 },
+				{ up = 0.55, down = 0.65, left = 0.8, right = 1 },
+				{ up = 0.65, down = 0.65, left = 0.7, right = 0.7 },
+				{ up = 0.55, down = 0.55, left = 0.3, right = 0.2 },
+				{ up = 0.5, down = 0.6, left = -0.3, right = -0.4 },
+				{ up = 0.1, down = 0.1, left = 0.8, right = 0.8 },
+				{ up = 0.25, down = 0.4, left = 0.8, right = 0.8 },
+				{ up = 0.4, down = 0.4, left = 0.6, right = 0.6 },
+				{ up = 0.45, down = 0.5, left = 0.6, right = 0.6 },
+				{ up = 0.5, down = 0.55, left = 0.6, right = 0.6 },
+				{ up = 0.55, down = 0.6, left = 0.6, right = 0.6 },
+				{ up = 0.6, down = 0.65, left = 0.4, right = 0.4 },
+				{ up = 0.6, down = 0.7, left = -0.2, right = -0.3 },
+				{ up = 0.4, down = 0.4, left = -0.2, right = -0.3 },
+				{ up = 0.4, down = 0.4, left = -0.4, right = -0.8 },
+				{ up = 0.5, down = 0.5, left = -0.8, right = -1 },
+				{ up = 0.5, down = 0.55, left = -1, right = -1 },
+				{ up = 0.55, down = 0.65, left = -0.8, right = -1 },
+				{ up = 0.65, down = 0.65, left = -0.7, right = -0.7 },
+				{ up = 0.55, down = 0.55, left = -0.3, right = -0.2 },
+				{ up = 0.5, down = 0.6, left = 0.3, right = 0.4 },
 			}
 		},
 		mini = {
 			pattern = {
-				{ up = 0.4, down = 0.5, left = -0.1, right = -0.3 },
-				{ up = 0.5, down = 0.6, left = -0.1, right = -0.3 },
-				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
-				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
-				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
-				{ up = 0.6, down = 0.7, left = -0.1, right = -0.3 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.3 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
-				{ up = 0.6, down = 0.7, left = 0.1, right = 0.35 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.6, down = 0.7, left = -0.15, right = 0.12 },
-				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
-				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
-				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
-				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
-				{ up = 0.5, down = 0.5, left = -0.15, right = 0.12 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.35, down = 0.45, left = -0.1, right = -0.3 },
+				{ up = 0.4, down = 0.5, left = 0.1, right = 0.3 },
+				{ up = 0.4, down = 0.5, left = 0.1, right = 0.3 },
+				{ up = 0.4, down = 0.5, left = 0.1, right = 0.3 },
 				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
 				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
 				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
 				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
 				{ up = 0.4, down = 0.5, left = -0.15, right = 0.12 },
-				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
-				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
-				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
-				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
-				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
-				{ up = 0.3, down = 0.4, left = -0.15, right = 0.12 },
-				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
-				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
-				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
-				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
-				{ up = 0.2, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.3, down = 0.35, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.25, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.2, down = 0.25, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
+				{ up = 0.15, down = 0.2, left = -0.15, right = 0.12 },
 				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
 				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
 				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.1, down = 0.1, left = -0.15, right = 0.12 },
+				{ up = 0.05, down = 0.05, left = -0.15, right = 0.12 },
+				{ up = 0.05, down = 0.05, left = -0.15, right = 0.12 },
+				{ up = 0.05, down = 0.05, left = -0.15, right = 0.12 },
 			},
 			persist_pattern = {
 				{ up = 0.05, down = 0.1, left = -0.3, right = 0.35 }
