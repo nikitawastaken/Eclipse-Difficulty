@@ -194,7 +194,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			},
 		},
 	}
-	
+
 	--make all car weapons use the 30 rnd magazine by default
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla = deep_clone(self.parts.wpn_fps_m4_uupg_m_std)
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.stats = nil
@@ -210,21 +210,21 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
 	self.parts.wpn_fps_ass_fal_s_01.stats.recoil = -2
 	self.parts.wpn_fps_ass_fal_s_01.stats.concealment = 2
-		
+
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.spread = -6
-	self.parts.wpn_fps_ass_m14_body_ruger.stats.recoil = -4	
+	self.parts.wpn_fps_ass_m14_body_ruger.stats.recoil = -4
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 10
-	
+
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 10
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
 	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 0.8333333333333333, ammo_pickup_min_mul = 0.8333333333333333 }
-	
+
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.extra_ammo = 0
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.recoil = 1
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.concealment = -2
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.reload = 2
-	
+
 	-- Izhma
 	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light
 	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_light
@@ -242,7 +242,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_light,
 		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_light,
 	}
-	
+
 	-- Grimm
 	self.wpn_fps_sho_basset.override = {
 		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light,
@@ -419,10 +419,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_heavy,
 		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy,
 	}
-	
+
 	self.parts.wpn_fps_sho_saiga_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_sho_saiga_fg_holy.stats.recoil = -2
 	self.parts.wpn_fps_sho_saiga_fg_holy.stats.concealment = 2
 
@@ -434,14 +434,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_sho_aa12_mag_drum.stats.extra_ammo = 6
 	self.parts.wpn_fps_sho_aa12_mag_drum.stats.concealment = -4
 	self.parts.wpn_fps_sho_aa12_mag_drum.stats.reload = -4
-	
+
 	self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 3
 	self.parts.wpn_fps_shot_r870_body_rack.stats.concealment = -2
-	
+
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.extra_ammo = 0
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.concealment = -1
 	self.parts.wpn_fps_shot_shorty_m_extended_short.custom_stats = { ammo_offset = 1 }
-	
+
 	self.parts.wpn_fps_shot_huntsman_b_short.stats.spread = -6
 	self.parts.wpn_fps_shot_huntsman_b_short.stats.recoil = -2
 	self.parts.wpn_fps_shot_huntsman_b_short.stats.concealment = 8
@@ -449,7 +449,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_shot_huntsman_s_short.stats.spread = -2
 	self.parts.wpn_fps_shot_huntsman_s_short.stats.recoil = -6
 	self.parts.wpn_fps_shot_huntsman_s_short.stats.concealment = 8
-	
+
 	self.parts.wpn_fps_shot_b682_b_short.stats.spread = -6
 	self.parts.wpn_fps_shot_b682_b_short.stats.recoil = -2
 	self.parts.wpn_fps_shot_b682_b_short.stats.concealment = 8
@@ -465,7 +465,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_sho_coach_s_short.stats.spread = -2
 	self.parts.wpn_fps_sho_coach_s_short.stats.recoil = -6
 	self.parts.wpn_fps_sho_coach_s_short.stats.concealment = 8
-	
+
 	-- DMRs (& Kits) --
 	-- ak family
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
