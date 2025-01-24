@@ -1796,7 +1796,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	
 	-- Signature
 	self.shepheard.use_data.selection_index = 2
-	self.shepheard.CLIP_AMMO_MAX = 20
+	self.shepheard.CLIP_AMMO_MAX = 30
 	self.shepheard.stats.damage = 50
 	self.shepheard.stats.spread = 13
 	self.shepheard.stats.recoil = 17
@@ -1819,7 +1819,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mp7.stats.spread = 17
 	self.mp7.stats.recoil = 18
 	self.mp7.stats.reload = 11
-	self.mp7.stats.concealment = 23
+	self.mp7.stats.concealment = 27
 	self.mp7.fire_mode_data.fire_rate = 60 / 900
 
 	-- Thompson
