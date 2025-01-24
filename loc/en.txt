@@ -9,6 +9,8 @@
 	"bm_w_dmr_penetration_desc": "PENETRATES BODY ARMOR AND ENEMIES.",
 	"bm_wp_dmr_kit_penetration_desc": "Armor and enemy piercing.",
 	"bm_w_hajk": "CR 805B Rifle",
+	"bm_w_akmsu": "Krinkov Rifle",
+	"bm_w_olympic": "Para Rifle",
 
 	"bm_menu_pickup": "Ammo Pickup",
 	"bm_menu_bonus": "Gun Perk",
