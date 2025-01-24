@@ -122,6 +122,7 @@ function WeaponTweakData:_init_weapons()
 					weap_data.can_shoot_through_enemy = true
 					weap_data.has_description = true
 					weap_data.desc_id = "bm_w_dmr_penetration_desc"
+					weap_data.pickup_mul = 0.8
 				end
 
 				weap_data.spread_multiplier = {
@@ -453,6 +454,8 @@ function WeaponTweakData:_init_weapons()
                     bolt_action_pickup_mul = bolt_action_pickup_mul * math.sqrt(480 / true_damage)
 
                     weap_data.pickup_mul = weap_data.pickup_mul or bolt_action_pickup_mul or 1
+				else
+					weap_data.pickup_mul = 0.8
                 end
 
 				weap_data.spread_multiplier = {
@@ -1072,7 +1075,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.corgi.stats.reload = 11
 	self.corgi.stats.concealment = 19
 	self.corgi.fire_mode_data.fire_rate = 60 / 900
-	
+
 	-- Tempest
 	self.komodo.use_data.selection_index = 1
 	self.komodo.CLIP_AMMO_MAX = 30
@@ -1128,7 +1131,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.olympic.stats.reload = 11
 	self.olympic.stats.concealment = 24
 	self.olympic.fire_mode_data.fire_rate = 60 / 800
-	
+
 	-- AK Rifle
 	self.ak74.CLIP_AMMO_MAX = 30
 	self.ak74.stats.damage = 60
@@ -1156,8 +1159,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.l85a2.stats.concealment = 16
 	self.l85a2.fire_mode_data.fire_rate = 60 / 725
 	self.l85a2.timers.reload_not_empty = 3
-	self.l85a2.timers.reload_empty = 4	
-	
+	self.l85a2.timers.reload_empty = 4
+
 	-- Lion's Roar
 	self.vhs.CLIP_AMMO_MAX = 30
 	self.vhs.stats.damage = 60
@@ -1205,7 +1208,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.akmsu.stats.reload = 11
 	self.akmsu.stats.concealment = 22
 	self.akmsu.fire_mode_data.fire_rate = 60 / 825
-	
+
 	-- Gecko
 	self.galil.CLIP_AMMO_MAX = 35
 	self.galil.stats.damage = 80
@@ -1234,7 +1237,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.flint.stats.reload = 11
 	self.flint.stats.concealment = 17
 	self.flint.fire_mode_data.fire_rate = 60 / 650
-	
+
 	-- Groza
 	self.groza.CLIP_AMMO_MAX = 20
 	self.groza.stats.damage = 80
@@ -1253,7 +1256,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m16.stats.reload = 11
 	self.m16.stats.concealment = 12
 	self.m16.fire_mode_data.fire_rate = 60 / 850
-	
+
 	-- AK 7.62
 	self.akm.CLIP_AMMO_MAX = 30
 	self.akm.stats.damage = 90
@@ -1352,7 +1355,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shak12.stats.reload = 11
 	self.shak12.stats.concealment = 18
 	self.shak12.fire_mode_data.fire_rate = 60 / 500
-	
+
 	-- Pistols
 
 	-- Bernetti Auto
@@ -1579,7 +1582,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.lemming.stats.reload = 11
 	self.lemming.stats.concealment = 29
 	self.lemming.fire_mode_data.fire_rate = 60 / 600
-	
+
 	-- Chunky Crosskill
 	self.m1911.CLIP_AMMO_MAX = 12
 	self.m1911.stats.damage = 120
@@ -1597,7 +1600,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.maxim9.stats.reload = 11
 	self.maxim9.stats.concealment = 28
 	self.maxim9.fire_mode_data.fire_rate = 60 / 400
-	
+
 	-- Frenchman
 	self.model3.CLIP_AMMO_MAX = 6
 	self.model3.stats.damage = 180
@@ -1615,7 +1618,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.korth.stats.reload = 11
 	self.korth.stats.concealment = 27
 	self.korth.fire_mode_data.fire_rate = 60 / 400
-	
+
 	-- Bronco
 	self.new_raging_bull.CLIP_AMMO_MAX = 6
 	self.new_raging_bull.stats.damage = 240
@@ -1624,7 +1627,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_raging_bull.stats.reload = 10
 	self.new_raging_bull.stats.concealment = 26
 	self.new_raging_bull.fire_mode_data.fire_rate = 60 / 400
-	
+
 	-- Deagle
 	table.insert(self.deagle.categories, "handcannon")
 	self.deagle.CLIP_AMMO_MAX = 7
@@ -1634,7 +1637,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.reload = 11
 	self.deagle.stats.concealment = 28
 	self.deagle.fire_mode_data.fire_rate = 60 / 500
-	
+
 	-- Matever
 	self.mateba.CLIP_AMMO_MAX = 6
 	self.mateba.stats.damage = 240
@@ -1643,7 +1646,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mateba.stats.reload = 15
 	self.mateba.stats.concealment = 26
 	self.mateba.fire_mode_data.fire_rate = 60 / 400
-	
+
 	--Peacemaker
 	self.peacemaker.CLIP_AMMO_MAX = 6
 	self.peacemaker.stats.damage = 240
@@ -1667,7 +1670,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.chinchilla.stats.reload = 13
 	self.chinchilla.stats.concealment = 28
 	self.chinchilla.fire_mode_data.fire_rate = 60 / 400
-	
+
 	-- Angry Tiger
 	self.rsh12.CLIP_AMMO_MAX = 5
 	self.rsh12.stats.damage = 300
@@ -1678,7 +1681,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rsh12.fire_mode_data.fire_rate = 60 / 400
 
 	-- SMGs
-	
+
 	-- CMP
 	self.mp9.CLIP_AMMO_MAX = 30
 	self.mp9.stats.damage = 40
@@ -1687,7 +1690,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mp9.stats.reload = 11
 	self.mp9.stats.concealment = 27
 	self.mp9.fire_mode_data.fire_rate = 60 / 950
-	
+
 	-- Blaster
 	self.tec9.CLIP_AMMO_MAX = 20
 	self.tec9.stats.damage = 40
@@ -1724,7 +1727,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pm9.stats.reload = 11
 	self.pm9.stats.concealment = 26
 	self.pm9.fire_mode_data.fire_rate = 60 / 1100
-	
+
 	-- Wasp
 	self.fmg9.CLIP_AMMO_MAX = 30
 	self.fmg9.stats.damage = 40
@@ -1792,7 +1795,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.coal.stats.reload = 11
 	self.coal.stats.concealment = 23
 	self.coal.fire_mode_data.fire_rate = 60 / 750
-	
+
 	-- Signature
 	self.shepheard.use_data.selection_index = 2
 	self.shepheard.CLIP_AMMO_MAX = 30
@@ -1802,7 +1805,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shepheard.stats.reload = 11
 	self.shepheard.stats.concealment = 24
 	self.shepheard.fire_mode_data.fire_rate = 60 / 850
-	
+
 	-- Mark 10
 	self.mac10.CLIP_AMMO_MAX = 20
 	self.mac10.stats.damage = 60
@@ -1811,7 +1814,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mac10.stats.reload = 11
 	self.mac10.stats.concealment = 27
 	self.mac10.fire_mode_data.fire_rate = 60 / 1000
-	
+
 	-- Spec Ops
 	self.mp7.CLIP_AMMO_MAX = 20
 	self.mp7.stats.damage = 60
@@ -1829,7 +1832,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1928.stats.recoil = 18
 	self.m1928.stats.reload = 15
 	self.m1928.stats.concealment = 18
-	self.m1928.fire_mode_data.fire_rate = 60 / 800		
+	self.m1928.fire_mode_data.fire_rate = 60 / 800
 
 	-- AK GEN
 	self.vityaz.use_data.selection_index = 2
@@ -1840,7 +1843,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.vityaz.stats.reload = 11
 	self.vityaz.stats.concealment = 23
 	self.vityaz.fire_mode_data.fire_rate = 60 / 750
-	
+
 	-- Uzi
 	self.uzi.CLIP_AMMO_MAX = 40
 	self.uzi.stats.damage = 80
@@ -2095,7 +2098,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tecci.fire_mode_data.fire_rate = 60 / 750
 	self.tecci.spray = spray_tables.lmg_right
 	self.tecci.recoil_recovery_timer = recovery_tables.mid
-	
+
 	-- Campbell
 	self.kacchainsaw.CLIP_AMMO_MAX = 150
 	self.kacchainsaw.stats.damage = 50
@@ -2107,7 +2110,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw.no_steelsight = true
 	self.kacchainsaw.spray = spray_tables.lmg_left
 	self.kacchainsaw.recoil_recovery_timer = recovery_tables.high
-	
+
 	-- KSP
 	self.m249.CLIP_AMMO_MAX = 200
 	self.m249.stats.damage = 60
@@ -2729,7 +2732,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.saiga_npc.CLIP_AMMO_MAX = 20
 
 	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
-	
+
 	self.m249_npc.muzzleflash = "effects/payday2/particles/weapons/556_auto"
 
 	self.rpk_lmg_npc = copy_data(self.rpk_lmg_npc, self.m249_npc, self.rpk_crew)
