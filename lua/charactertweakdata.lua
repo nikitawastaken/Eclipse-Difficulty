@@ -1101,7 +1101,7 @@ function CharacterTweakData:_set_presets()
 	self.fbi_heavy_swat.headshot_dmg_mul = 1.5 -- 240 head health
 
 	self.city_swat.HEALTH_INIT = 28
-	self.city_swat.headshot_dmg_mul = 1.6 -- 175 head health
+	self.city_swat.headshot_dmg_mul = 1.75 -- 160 head health
 
 	-- specials
 	self.sniper.HEALTH_INIT = 12
