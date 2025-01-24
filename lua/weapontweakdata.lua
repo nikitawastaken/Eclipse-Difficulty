@@ -592,7 +592,6 @@ function WeaponTweakData:_init_weapons()
 					weap_data.reload_speed_multiplier = akimbo_reload_speed
 
 					weap_data.stats = single_weapon_data.stats
-					weap_data.stats.concealment = weap_data.stats.concealment - 4
 
 					weap_data.no_steelsight = true
 
