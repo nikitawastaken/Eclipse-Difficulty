@@ -1122,30 +1122,30 @@ function CharacterTweakData:_set_presets()
 	self.medic.HEALTH_INIT = 48
 	self.medic.headshot_dmg_mul = 1.5 -- 320 head health
 
-	self.tank.HEALTH_INIT = 2160
-	self.tank.headshot_dmg_mul = 45 -- 480 head health
+	self.tank.HEALTH_INIT = 960
+	self.tank.headshot_dmg_mul = 20 -- 480 head health
 
-	self.tank_elite.HEALTH_INIT = 2160
-	self.tank_elite.headshot_dmg_mul = 45 -- 480 head health
+	self.tank_elite.HEALTH_INIT = 1440
+	self.tank_elite.headshot_dmg_mul = 30 -- 480 head health
 
-	self.phalanx_minion.HEALTH_INIT = 72
-	self.phalanx_minion.headshot_dmg_mul = 3 -- 240 head health
+	self.phalanx_minion.HEALTH_INIT = 48
+	self.phalanx_minion.headshot_dmg_mul = 1.5 -- 320 head health
 
 	-- zeal team
-	self.zeal_swat.HEALTH_INIT = 42
-	self.zeal_swat.headshot_dmg_mul = 1.75 -- 240 head health
+	self.zeal_swat.HEALTH_INIT = 36
+	self.zeal_swat.headshot_dmg_mul = 1.6 -- 225 head health
 
 	self.zeal_heavy_swat.HEALTH_INIT = 48
 	self.zeal_heavy_swat.headshot_dmg_mul = 1.5 -- 320 head health
 
-	self.zeal_shield.HEALTH_INIT = 54
-	self.zeal_shield.headshot_dmg_mul = 1.8 -- 300 head health
+	self.zeal_shield.HEALTH_INIT = 42
+	self.zeal_shield.headshot_dmg_mul = 1.5 -- 280 head health
 
-	self.zeal_medic.HEALTH_INIT = 84
-	self.zeal_medic.headshot_dmg_mul = 2 -- 420 head health
+	self.zeal_medic.HEALTH_INIT = 64
+	self.zeal_medic.headshot_dmg_mul = 1.6 -- 400 head health
 
-	self.zeal_taser.HEALTH_INIT = 120
-	self.zeal_taser.headshot_dmg_mul = 1.6 -- 750 head health
+	self.zeal_taser.HEALTH_INIT = 96
+	self.zeal_taser.headshot_dmg_mul = 1.5 -- 640 head health
 
 	-- misc
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }

@@ -1,3 +1,4 @@
+CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.tank_elite = CopMovement._action_variants.tank
 CopMovement._action_variants.phalanx_minion_break = CopMovement._action_variants.city_swat
 CopMovement._action_variants.zeal_swat = CopMovement._action_variants.city_swat
