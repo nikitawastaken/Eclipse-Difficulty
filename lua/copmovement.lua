@@ -7,6 +7,29 @@ CopMovement._action_variants.zeal_medic = CopMovement._action_variants.city_swat
 CopMovement._action_variants.zeal_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.zeal_taser = CopMovement._action_variants.taser
 
+--Make Cloakers move faster while charging
+function CopMovement:speed_modifier()
+	local final_modifier = 1
+	
+	local char_tweak = self._unit:base()._tweak_table
+	
+	local spooc_action = self._active_actions[1]
+	
+	if spooc_action and spooc_action:type() == "spooc" then
+		final_modifier = final_modifier * (char_tweak.spooc_charge_move_speed_mul or 1.5)
+	end
+	
+	if self._carry_speed_modifier then
+		final_modifier = final_modifier * self._carry_speed_modifier
+	end
+
+	if self._hostage_speed_modifier then
+		final_modifier = final_modifier * self._hostage_speed_modifier
+	end
+
+	return final_modifier ~= 1 and final_modifier
+end
+
 -- Fix enemies playing the suppressed stand-to-crouch animation when shot even if they are already crouching
 local play_redirect_original = CopMovement.play_redirect
 function CopMovement:play_redirect(redirect_name, ...)

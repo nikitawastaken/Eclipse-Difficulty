@@ -18,6 +18,18 @@ local function based_on(preset, values)
 	return p
 end
 
+local function speed_multiplier(tbl, multiplier)
+	for _, pose in pairs(tbl) do
+		for _, haste in pairs(pose) do
+			for _, stance in pairs(haste) do
+				for dir, speed in pairs(stance) do
+					stance[dir] = speed * multiplier
+				end
+			end
+		end
+	end
+end
+	
 local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
@@ -287,6 +299,47 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		aim_delay_tase = { 0.05, 0.1 },
 	})
 
+	presets.move_speed.normal = {
+		stand = {
+			walk = {
+				ntl = { fwd = 160, strafe = 120, bwd = 80 }, 
+				cbt = { fwd = 200, strafe = 160, bwd = 120 },
+				hos = { fwd = 240, strafe = 200, bwd = 160 }
+			},
+			run = {
+				ntl = { fwd = 240, strafe = 180, bwd = 120 }, 
+				cbt = { fwd = 300, strafe = 240, bwd = 180 },
+				hos = { fwd = 360, strafe = 300, bwd = 240 }
+			}
+		},
+		crouch = {
+			walk = {
+				ntl = { fwd = 120, strafe = 90, bwd = 60 }, 
+				cbt = { fwd = 160, strafe = 120, bwd = 80 },
+				hos = { fwd = 200, strafe = 160, bwd = 120 }
+			},
+			run = {
+				ntl = { fwd = 160, strafe = 120, bwd = 80 }, 
+				cbt = { fwd = 200, strafe = 160, bwd = 120 },
+				hos = { fwd = 240, strafe = 200, bwd = 160 }
+			}
+		}
+	}
+
+	presets.move_speed.extremely_slow = deep_clone(presets.move_speed.normal)
+	presets.move_speed.very_slow = deep_clone(presets.move_speed.normal)
+	presets.move_speed.slow = deep_clone(presets.move_speed.normal)
+	presets.move_speed.fast = deep_clone(presets.move_speed.normal)
+	presets.move_speed.very_fast = deep_clone(presets.move_speed.normal)
+	presets.move_speed.lightning = deep_clone(presets.move_speed.normal)
+	
+	speed_multiplier(presets.move_speed.extremely_slow, 0.4)
+	speed_multiplier(presets.move_speed.very_slow, 0.6)
+	speed_multiplier(presets.move_speed.slow, 0.8)
+	speed_multiplier(presets.move_speed.fast, 1.1)
+	speed_multiplier(presets.move_speed.very_fast, 1.2)
+	speed_multiplier(presets.move_speed.lightning, 1.4)
+	
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.1
 	presets.gang_member_damage.REGENERATE_TIME = 3
 	presets.gang_member_damage.REGENERATE_TIME_AWAY = 4
@@ -685,16 +738,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	-- Common SWAT
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-	self.heavy_swat.move_speed = self.presets.move_speed.normal
+	self.heavy_swat.move_speed = self.presets.move_speed.fast
 
-	self.fbi_swat.move_speed = self.presets.move_speed.fast
+	self.fbi_swat.move_speed = self.presets.move_speed.very_fast
 	self.fbi_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 
 	self.fbi_heavy_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-	self.fbi_heavy_swat.move_speed = self.presets.move_speed.normal
+	self.fbi_heavy_swat.move_speed = self.presets.move_speed.fast
 
-	self.city_swat.move_speed = self.presets.move_speed.fast
+	self.city_swat.move_speed = self.presets.move_speed.very_fast
 	self.city_swat.no_arrest = true
 	self.city_swat.speech_prefix_p2 = "d" --cool radio filtered voices for GenSec SWATs
 	self.city_swat.suppression = { panic_chance_mul = 0.15, duration = { 1.5, 2 }, react_point = { 2, 5 }, brown_point = { 5, 6 } }
@@ -706,9 +759,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.sniper.spawn_sound_event = "mga_deploy_snipers" --deploy snipahs!!!
 
 	-- cloaker
-	self.spooc.use_animation_on_fire_damage = true
-	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.spooc_attack_use_smoke_chance = 0
+	self.spooc.spooc_charge_move_speed_mul = 1.5
+	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
+	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
@@ -788,19 +842,15 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.phalanx_minion.min_obj_interrupt_dis = 500
 
 	-- ZEAL Team
-	self.zeal_swat = deep_clone(self.city_swat)
 	self.zeal_swat.dodge = self.presets.dodge.ninja
 	self.zeal_swat.suppression = nil
 	self.zeal_swat.speech_prefix_p2 = "d"
 	self.zeal_swat.move_speed = self.presets.move_speed.very_fast
 	self.zeal_swat.damage.explosion_damage_mul = 0.8
-	table.insert(self._enemy_list, "zeal_swat")
 
-	self.zeal_heavy_swat = deep_clone(self.city_swat)
 	self.zeal_heavy_swat.suppression = nil
 	self.zeal_heavy_swat.speech_prefix_p2 = "d"
 	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
-	table.insert(self._enemy_list, "zeal_heavy_swat")
 
 	self.zeal_shield = deep_clone(self.shield)
 	self.zeal_shield.speech_prefix_p1 = "l5d" -- that's my homie L5D!
