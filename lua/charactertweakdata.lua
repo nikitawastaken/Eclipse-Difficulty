@@ -6,7 +6,6 @@ local is_pro_job = StreamHeist:is_pro_job()
 -- if the value is a function, it calls the function with the data of the value name instead
 local nil_value = {}
 
-
 local function based_on(preset, values)
 	local p = deep_clone(preset)
 	if not values then
@@ -24,7 +23,6 @@ local function based_on(preset, values)
 	return p
 end
 
-
 local function speed_multiplier(tbl, multiplier)
 	for _, pose in pairs(tbl) do
 		for _, haste in pairs(pose) do
@@ -36,7 +34,6 @@ local function speed_multiplier(tbl, multiplier)
 		end
 	end
 end
-
 
 local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
@@ -344,7 +341,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.fast, 1.1)
 	speed_multiplier(presets.move_speed.very_fast, 1.2)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
-	
+
 	presets.gang_member_damage.HEALTH_INIT = 100 + (50 * diff_i)
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.1
 	presets.gang_member_damage.REGENERATE_TIME = 3
@@ -741,55 +738,55 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 			return self._unit_prefixes.medic
 		end,
 	}
-	
+
 	-- Security, Cops and Gangsters
 	-- surrender presets
 	self.security.surrender = self.presets.surrender.weak
 	self.security.chatter = self.presets.enemy_chatter.security
-	
+
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
-	
+
 	self.gensec.speech_prefix_p1 = self._unit_prefixes.cop
 	self.gensec.dodge = self.presets.dodge.poor
 	self.gensec.chatter = self.presets.enemy_chatter.security
-	
+
 	self.security_mex.chatter = self.presets.enemy_chatter.security
-	
+
 	self.security_mex_no_pager.chatter = self.presets.enemy_chatter.security
 
 	self.cop.surrender = self.presets.surrender.weak
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
-	
+
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi.surrender = self.presets.surrender.weak
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
 	self.fbi.dodge = self.presets.dodge.average
-	
+
 	-- Misc
 	self.fbi_female = deep_clone(self.cop_female)
 	self.fbi_female.dodge = self.presets.dodge.average
-	
+
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
 	self.gangster.speech_prefix_count = 2
 
 	self.mobster.speech_prefix_p1 = "rt"
 	self.mobster.speech_prefix_p2 = nil
-	self.mobster.speech_prefix_count = 2	
+	self.mobster.speech_prefix_count = 2
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 
 	self.biker.melee_weapon = "knife_1"
 	self.biker.speech_prefix_p1 = "bik"
 	self.biker.speech_prefix_p2 = nil
-	self.biker.speech_prefix_count = 2	
+	self.biker.speech_prefix_count = 2
 	self.biker.chatter = self.presets.enemy_chatter.gangster
-	
+
 	self.biker_female.chatter = self.presets.enemy_chatter.gangster
 	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
-	
+
 	-- SWAT
 	self.swat.surrender = self.presets.surrender.average
 	self.swat.speech_prefix_p2 = "n"
@@ -798,7 +795,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 
 	self.fbi_swat.surrender = self.presets.surrender.average
-	self.fbi_swat.speech_prefix_p2 = "n"	
+	self.fbi_swat.speech_prefix_p2 = "n"
 	self.fbi_swat.suppression = { panic_chance_mul = 0.3, duration = { 3, 4 }, react_point = { 0, 2 }, brown_point = { 5, 6 } }
 
 	self.fbi_heavy_swat.surrender = self.presets.surrender.average
@@ -819,13 +816,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_swat.move_speed_mul = { walk = 1.15, run = 1.1 }
 
 	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
-	self.zeal_heavy_swat.surrender = self.presets.surrender.veteran	
+	self.zeal_heavy_swat.surrender = self.presets.surrender.veteran
 	self.zeal_heavy_swat.suppression = nil
 	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
 	self.zeal_heavy_swat.move_speed_mul = { walk = 1.1, run = 1.05 }
-	
+
 	-- Specials
-	
+
 	self.sniper.HEALTH_INIT = 12
 	self.sniper.headshot_dmg_mul = 4 -- 30 head health
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
@@ -862,7 +859,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.speech_prefix_p1 = self._unit_prefixes.heavy_swat
 	self.shield.damage.explosion_damage_mul = 0.9
 	self.shield.shield_explosion_damage_mul = 0.5 -- % of damage blocked by the Shield opeator's shield
-	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt 
+	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt
 	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
 	self.shield.die_sound_event = nil --he already has his death sound
 
@@ -911,7 +908,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank_hw.min_obj_interrupt_dis = 600
 	self.shield.min_obj_interrupt_dis = 500
 	self.phalanx_minion.min_obj_interrupt_dis = 500
-	
+
 	self.zeal_shield = deep_clone(self.shield)
 	self.zeal_shield.speech_prefix_p1 = "l5d" -- that's my homie L5D!
 	self.zeal_shield.speech_prefix_p2 = nil
@@ -930,7 +927,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_taser.damage.explosion_damage_mul = 0.6
 	self.zeal_taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" --elite tazeah coming through!!!
 	table.insert(self._enemy_list, "zeal_taser")
-	
+
 	-- Bosses
 	self.mobster_boss.HEALTH_INIT = 200
 	self.mobster_boss.headshot_dmg_mul = 2
@@ -956,7 +953,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "concussion"
 	self.biker_boss.throwable_cooldown = 10
-	
+
 	self.drug_lord_boss.HEALTH_INIT = 300
 	self.drug_lord_boss.headshot_dmg_mul = 2
 	self.drug_lord_boss.damage.explosion_damage_mul = 0.5
@@ -964,7 +961,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable_cooldown = 10
-	
+
 	self.triad_boss.HEALTH_INIT = 300
 	self.triad_boss.player_health_scaling_mul = 1.5
 	self.triad_boss.headshot_dmg_mul = 2
@@ -1010,7 +1007,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	end
 end)
 
-
 -- Add new enemies to the character map
 local character_map_original = CharacterTweakData.character_map
 function CharacterTweakData:character_map(...)
@@ -1023,7 +1019,6 @@ function CharacterTweakData:character_map(...)
 
 	return char_map
 end
-
 
 -- Add new weapons
 Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function(self)
@@ -1055,7 +1050,6 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_g3/wpn_npc_g3"))
 end)
 
-
 -- fixed movement speed difficulty scaling
 -- thanks redflame
 function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
@@ -1075,7 +1069,6 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 		end
 	end
 end
-
 
 CharacterTweakData.access_health = {
 	security = 8,
@@ -1143,25 +1136,24 @@ CharacterTweakData.tweak_table_move_speed = {
 	deep_boss = "slow",
 }
 
-
 function CharacterTweakData:_set_presets()
 	local f = ((diff_i ^ 2) / (diff_i * 3))
-	
+
 	local health_mul_tbl = { 1, 1, 1.25, 1.5, 1.75, 2, 2, 2 }
 	local health_mul = health_mul_tbl[diff_i]
-	
+
 	for _, name in pairs(self._enemy_list) do
 		local char_preset = self[name]
-		
+
 		-- Set move speed based on the tweak table or access
 		local move_speed_preset = self.tweak_table_move_speed[name] or self.access_move_speed[char_preset.access]
-		
+
 		if move_speed_preset then
 			char_preset.move_speed = self.presets.move_speed[move_speed_preset]
 		end
-		
+
 		local is_boss = name:match("_boss$")
-		
+
 		-- Set health and HS mul based on access
 		if self.access_health[char_preset.access] and not is_boss then
 			char_preset.HEALTH_INIT = self.access_health[char_preset.access]
@@ -1170,16 +1162,16 @@ function CharacterTweakData:_set_presets()
 		if self.access_hs_mul[char_preset.access] and not is_boss then
 			char_preset.headshot_dmg_mul = self.access_hs_mul[char_preset.access]
 		end
-		
+
 		-- Boss related stuff
-		if is_boss then	
+		if is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
 			char_preset.player_health_scaling_mul = 1.5
 			char_preset.no_headshot_add_mul = true
 			char_preset.no_run_start = true
 			char_preset.no_run_stop = true
 		end
-		
+
 		-- Remove damage clamps, they are not a fun or intuitive mechanic
 		char_preset.DAMAGE_CLAMP_BULLET = nil
 		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
@@ -1187,7 +1179,7 @@ function CharacterTweakData:_set_presets()
 		if char_preset.surrender_break_time then
 			char_preset.surrender_break_time = self.presets.base.surrender_break_time
 		end
-	
+
 		char_preset.weapon = self.presets.weapon[self.tweak_table_presets[name] or "base"]
 	end
 
@@ -1259,18 +1251,18 @@ function CharacterTweakData:_set_presets()
 	self.concussion_multiplier = 1
 
 	self.phalanx_shield_balance_mul = { 0.4, 0.6, 0.8, 1 }
-	
+
 	self.tank.armor_damage_mul = 1 / (2 * f)
 	self.tank_elite.armor_damage_mul = 1 / (3 * f)
-	
+
 	self.tank_armor_balance_mul = { 1, 1.5, 2, 2.5 }
-	
+
 	-- eclipse exclusive edits
 	if is_eclipse then
 		self:_multiply_all_speeds(1.1, 1.05)
-		
+
 		local special_speed_mul = { walk = 1.1, run = 1.1 }
-		
+
 		self.shield.move_speed_mul = special_speed_mul
 		self.phalanx_minion.move_speed_mul = special_speed_mul
 		self.zeal_shield.move_speed_mul = special_speed_mul
