@@ -3,7 +3,7 @@
 local hit_dir = Vector3()
 local shield_slot_mask = World:make_slot_mask(8)
 local criminal_names = table.list_to_set(CriminalsManager.character_names())
-Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function (self, detect_results, params, variant, damage_func_name)
+Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, detect_results, params, variant, damage_func_name)
 	local user_unit = params.user
 	local owner = params.owner
 	local damage = params.damage
@@ -17,20 +17,20 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function (self, d
 	local counts = {
 		cops = {
 			kills = 0,
-			hits = 0
+			hits = 0,
 		},
 		gangsters = {
 			kills = 0,
-			hits = 0
+			hits = 0,
 		},
 		civilians = {
 			kills = 0,
-			hits = 0
+			hits = 0,
 		},
 		criminals = {
 			kills = 0,
-			hits = 0
-		}
+			hits = 0,
+		},
 	}
 
 	local function get_first_body_hit(bodies_hit)
@@ -57,9 +57,9 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function (self, d
 					weapon_unit = owner,
 					col_ray = col_ray or {
 						position = hit_body_pos,
-						ray = hit_dir
+						ray = hit_dir,
 					},
-					ignite_character = ignite_character
+					ignite_character = ignite_character,
 				}
 
 				if damage > 0 then
@@ -108,7 +108,7 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function (self, d
 		count_cop_kills = counts.cops.kills,
 		count_gangster_kills = counts.gangsters.kills,
 		count_civilian_kills = counts.civilians.kills,
-		count_criminal_kills = counts.criminals.kills
+		count_criminal_kills = counts.criminals.kills,
 	}
 
 	return results

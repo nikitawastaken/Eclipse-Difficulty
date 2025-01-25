@@ -10,7 +10,7 @@ TankCopDamage.armor_body_names = {
 	[Idstring("body_helmet_glass"):key()] = true,
 	[Idstring("body_helmet_plate"):key()] = true,
 	[Idstring("body_ammo"):key()] = true,
-	[Idstring("body_vest"):key()] = true
+	[Idstring("body_vest"):key()] = true,
 }
 
 function TankCopDamage:damage_bullet(attack_data, ...)

@@ -11,16 +11,16 @@ function CopMovement:speed_modifier()
 	local final_modifier = 1
 
 	local move_speed_mul = self._tweak_data.move_speed_mul
-	
+
 	-- Enemies can now have additional move speed multipliers independent of their preset
 	if self._ext_anim.run then
 		final_modifier = final_modifier * (move_speed_mul and move_speed_mul.run or 1)
 	else
 		final_modifier = final_modifier * (move_speed_mul and move_speed_mul.walk or 1)
 	end
-	
+
 	local spooc_action = self._active_actions[1]
-	
+
 	-- Cloakers move faster while charging
 	if spooc_action and spooc_action:type() == "spooc" then
 		final_modifier = final_modifier * (self._tweak_data.spooc_charge_move_speed_mul or 1.5)
