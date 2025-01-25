@@ -10,15 +10,15 @@ CopMovement._action_variants.zeal_taser = CopMovement._action_variants.taser
 --Make Cloakers move faster while charging
 function CopMovement:speed_modifier()
 	local final_modifier = 1
-	
+
 	local char_tweak = self._unit:base()._tweak_table
-	
+
 	local spooc_action = self._active_actions[1]
-	
+
 	if spooc_action and spooc_action:type() == "spooc" then
 		final_modifier = final_modifier * (char_tweak.spooc_charge_move_speed_mul or 1.5)
 	end
-	
+
 	if self._carry_speed_modifier then
 		final_modifier = final_modifier * self._carry_speed_modifier
 	end

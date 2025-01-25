@@ -29,7 +29,7 @@ local function speed_multiplier(tbl, multiplier)
 		end
 	end
 end
-	
+
 local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
@@ -302,28 +302,28 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.normal = {
 		stand = {
 			walk = {
-				ntl = { fwd = 160, strafe = 120, bwd = 80 }, 
+				ntl = { fwd = 160, strafe = 120, bwd = 80 },
 				cbt = { fwd = 200, strafe = 160, bwd = 120 },
-				hos = { fwd = 240, strafe = 200, bwd = 160 }
+				hos = { fwd = 240, strafe = 200, bwd = 160 },
 			},
 			run = {
-				ntl = { fwd = 240, strafe = 180, bwd = 120 }, 
+				ntl = { fwd = 240, strafe = 180, bwd = 120 },
 				cbt = { fwd = 300, strafe = 240, bwd = 180 },
-				hos = { fwd = 360, strafe = 300, bwd = 240 }
-			}
+				hos = { fwd = 360, strafe = 300, bwd = 240 },
+			},
 		},
 		crouch = {
 			walk = {
-				ntl = { fwd = 120, strafe = 90, bwd = 60 }, 
+				ntl = { fwd = 120, strafe = 90, bwd = 60 },
 				cbt = { fwd = 160, strafe = 120, bwd = 80 },
-				hos = { fwd = 200, strafe = 160, bwd = 120 }
+				hos = { fwd = 200, strafe = 160, bwd = 120 },
 			},
 			run = {
-				ntl = { fwd = 160, strafe = 120, bwd = 80 }, 
+				ntl = { fwd = 160, strafe = 120, bwd = 80 },
 				cbt = { fwd = 200, strafe = 160, bwd = 120 },
-				hos = { fwd = 240, strafe = 200, bwd = 160 }
-			}
-		}
+				hos = { fwd = 240, strafe = 200, bwd = 160 },
+			},
+		},
 	}
 
 	presets.move_speed.extremely_slow = deep_clone(presets.move_speed.normal)
@@ -332,14 +332,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.fast = deep_clone(presets.move_speed.normal)
 	presets.move_speed.very_fast = deep_clone(presets.move_speed.normal)
 	presets.move_speed.lightning = deep_clone(presets.move_speed.normal)
-	
+
 	speed_multiplier(presets.move_speed.extremely_slow, 0.4)
 	speed_multiplier(presets.move_speed.very_slow, 0.6)
 	speed_multiplier(presets.move_speed.slow, 0.8)
 	speed_multiplier(presets.move_speed.fast, 1.1)
 	speed_multiplier(presets.move_speed.very_fast, 1.2)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
-	
+
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.1
 	presets.gang_member_damage.REGENERATE_TIME = 3
 	presets.gang_member_damage.REGENERATE_TIME_AWAY = 4
