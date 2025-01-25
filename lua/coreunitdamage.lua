@@ -19,7 +19,7 @@ Hooks:PostHook(CoreBodyDamage, "init", "sh_init", function(self)
 	elseif self._body_element._name == "held_body" then
 		local shield_balance_mul = managers.groupai:state():_get_balancing_multiplier(tweak_data.character.phalanx_shield_balance_mul)
 
-		self._body_element._damage_multiplier = (1 / shield_balance_mul) or self._body_element._damage_multiplier
+		self._body_element._damage_multiplier = shield_balance_mul or self._body_element._damage_multiplier
 	elseif self._body_element._name == "planks_body" then
 		self._body_element._damage_multiplier = 0.33
 	end

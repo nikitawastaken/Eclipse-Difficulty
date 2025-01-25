@@ -23,6 +23,7 @@ local function based_on(preset, values)
 	return p
 end
 
+-- Helper scaling functions
 local function speed_multiplier(tbl, multiplier)
 	for _, pose in pairs(tbl) do
 		for _, haste in pairs(pose) do
@@ -30,6 +31,50 @@ local function speed_multiplier(tbl, multiplier)
 				for dir, speed in pairs(stance) do
 					stance[dir] = speed * multiplier
 				end
+			end
+		end
+	end
+end
+
+local function damage_multiplier(tbl, multiplier)
+	for _, weapon in pairs(tbl) do
+		for _, falloff in pairs(weapon.FALLOFF) do
+			falloff.dmg_mul = falloff.dmg_mul * multiplier
+		end
+	end
+end
+
+
+local function accuracy_multiplier(tbl, multiplier)
+	for _, weapon in pairs(tbl) do
+		for _, falloff in pairs(weapon.FALLOFF) do
+			for _, accuracy in pairs(falloff.acc) do
+				accuracy = math.min(1, accuracy * multiplier)
+			end
+		end
+	end
+end
+
+local function recoil_multiplier(tbl, multiplier)
+	for _, weapon in pairs(tbl) do
+		for _, falloff in pairs(weapon.FALLOFF) do
+			for _, recoil in pairs(falloff.recoil) do
+				recoil = recoil * multiplier
+			end
+		end
+	end
+end
+
+
+local function burst_multiplier(tbl, multiplier)
+	for _, weapon in pairs(tbl) do
+		if not weapon.autofire_rounds then
+			return
+		end
+
+		for _, falloff in pairs(weapon.FALLOFF) do
+			for _, autofire_rounds in pairs(falloff.autofire_rounds) do
+				autofire_rounds = math.max(1, math.ceil(autofire_rounds * multiplier))
 			end
 		end
 	end
@@ -144,13 +189,19 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.gc = based_on(presets.weapon.base)
-	presets.weapon.gc.is_rifle.autofire_rounds = { 1, 1 }
-	presets.weapon.gc.is_rifle.FALLOFF = {
+	presets.weapon.gangster = based_on(presets.weapon.base)
+	damage_multiplier(presets.weapon.gangster, 1.33)
+	accuracy_multiplier(presets.weapon.gangster, 0.33)
+	recoil_multiplier(presets.weapon.gangster, 0.75)
+	burst_multiplier(presets.weapon.gangster, 2)
+
+	presets.weapon.glasscannon = based_on(presets.weapon.base)
+	presets.weapon.glasscannon.is_rifle.autofire_rounds = { 1, 1 }
+	presets.weapon.glasscannon.is_rifle.FALLOFF = {
 		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.45, 0.6 }, recoil = { 0.33, 0.66 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 9 * dmg_mul, r = 3000, acc = { 0.1, 0.25 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
-	presets.weapon.gc.is_smg.FALLOFF = {
+	presets.weapon.glasscannon.is_smg.FALLOFF = {
 		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.35, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 7.5 * dmg_mul, r = 3000, acc = { 0.05, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -219,6 +270,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.45, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 9 * dmg_mul, r = 3000, acc = { 0.15, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
+
+	presets.weapon.medic = based_on(presets.weapon.base, {
+		range = { close = 1500, optimal = 2750, far = 4000 },
+	})
 
 	presets.weapon.sniper = based_on(presets.weapon.base, {
 		focus_delay = 0.5,
@@ -304,26 +359,26 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.normal = {
 		stand = {
 			walk = {
-				ntl = { fwd = 160, strafe = 120, bwd = 80 },
-				cbt = { fwd = 200, strafe = 160, bwd = 120 },
-				hos = { fwd = 240, strafe = 200, bwd = 160 },
+				ntl = { fwd = 180, strafe = 130, bwd = 90 },
+				cbt = { fwd = 220, strafe = 170, bwd = 130 },
+				hos = { fwd = 260, strafe = 210, bwd = 170 },
 			},
 			run = {
-				ntl = { fwd = 240, strafe = 180, bwd = 120 },
-				cbt = { fwd = 300, strafe = 240, bwd = 180 },
-				hos = { fwd = 360, strafe = 300, bwd = 240 },
+				ntl = { fwd = 300, strafe = 250, bwd = 200 },
+                cbt = { fwd = 375, strafe = 300, bwd = 225 },
+                hos = { fwd = 450, strafe = 350, bwd = 250 },
 			},
 		},
 		crouch = {
 			walk = {
-				ntl = { fwd = 120, strafe = 90, bwd = 60 },
+				ntl = { fwd = 140, strafe = 90, bwd = 60 },
 				cbt = { fwd = 160, strafe = 120, bwd = 80 },
-				hos = { fwd = 200, strafe = 160, bwd = 120 },
+				hos = { fwd = 200, strafe = 150, bwd = 120 },
 			},
 			run = {
-				ntl = { fwd = 160, strafe = 120, bwd = 80 },
-				cbt = { fwd = 200, strafe = 160, bwd = 120 },
-				hos = { fwd = 240, strafe = 200, bwd = 160 },
+				ntl = { fwd = 180, strafe = 130, bwd = 90 },
+				cbt = { fwd = 220, strafe = 170, bwd = 130 },
+				hos = { fwd = 260, strafe = 210, bwd = 170 },
 			},
 		},
 	}
@@ -338,8 +393,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.extremely_slow, 0.4)
 	speed_multiplier(presets.move_speed.very_slow, 0.6)
 	speed_multiplier(presets.move_speed.slow, 0.8)
-	speed_multiplier(presets.move_speed.fast, 1.1)
-	speed_multiplier(presets.move_speed.very_fast, 1.2)
+	speed_multiplier(presets.move_speed.fast, 1.15)
+	speed_multiplier(presets.move_speed.very_fast, 1.3)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
 
 	presets.gang_member_damage.HEALTH_INIT = 100 + (50 * diff_i)
@@ -806,20 +861,19 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.speech_prefix_p2 = "n"
 	self.city_swat.no_arrest = true
 	self.city_swat.suppression = { panic_chance_mul = 0.15, duration = { 1.5, 2 }, react_point = { 2, 5 }, brown_point = { 5, 6 } }
-	self.city_swat.move_speed_mul = { walk = 1.1, run = 1.05 }
 
 	self.zeal_swat = deep_clone(self.city_swat)
 	self.zeal_swat.surrender = self.presets.surrender.veteran
 	self.zeal_swat.dodge = self.presets.dodge.ninja
 	self.zeal_swat.suppression = nil
 	self.zeal_swat.damage.explosion_damage_mul = 0.8
-	self.zeal_swat.move_speed_mul = { walk = 1.15, run = 1.1 }
+	self.zeal_swat.move_speed_mul = { walk = 1.1, run = 1.1 }
 
 	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	self.zeal_heavy_swat.surrender = self.presets.surrender.veteran
 	self.zeal_heavy_swat.suppression = nil
 	self.zeal_heavy_swat.damage.explosion_damage_mul = 0.6
-	self.zeal_heavy_swat.move_speed_mul = { walk = 1.1, run = 1.05 }
+	self.zeal_heavy_swat.move_speed_mul = { walk = 1.1, run = 1.1 }
 
 	-- Specials
 
@@ -831,7 +885,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spooc_attack_use_smoke_chance = 0
-	self.spooc.spooc_charge_move_speed_mul = 1.5
+	self.spooc.spooc_charge_move_speed_mul = 1.75
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
 	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
@@ -840,31 +894,26 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.dozer -- cool damage react thing
 	self.tank.ecm_vulnerability = 0
 	self.tank.damage.explosion_damage_mul = 0.1
-	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 
 	self.tank_elite = deep_clone(self.tank)
-	self.tank_elite.move_speed_mul = { walk = 1.1, run = 1.1 }
+	self.tank_elite.move_speed_mul = { walk = 0.85, run = 0.85 }
 	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
 
-	self.taser.move_speed = self.presets.move_speed.normal
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
 
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
-	self.medic.move_speed = self.presets.move_speed.fast
 
 	self.shield.speech_prefix_p1 = self._unit_prefixes.heavy_swat
-	self.shield.damage.explosion_damage_mul = 0.9
-	self.shield.shield_explosion_damage_mul = 0.5 -- % of damage blocked by the Shield opeator's shield
+	self.shield.shield_explosion_damage_mul = 0.75 -- % of damage blocked by the Shield opeator's shield
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt
 	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
 	self.shield.die_sound_event = nil --he already has his death sound
 
 	self.fbi_shield = deep_clone(self.shield)
-	self.fbi_shield.damage.explosion_damage_mul = 0.7
 	self.fbi_shield.shield_explosion_damage_mul = 0.5
 
 	self.phalanx_minion.access = "shield"
@@ -900,6 +949,30 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.phalanx_minion_break.tmp_invulnerable_on_tweak_change = 0.1
 	table.insert(self._enemy_list, "phalanx_minion_break")
 
+	-- Zeal Specials
+
+	self.zeal_shield = deep_clone(self.fbi_shield)
+	self.zeal_shield.speech_prefix_p1 = "l5d" -- that's my homie L5D!
+	self.zeal_shield.speech_prefix_p2 = nil
+	self.zeal_shield.speech_prefix_count = nil
+	self.zeal_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --Come with me if you wanna live...
+	self.zeal_shield.spawn_sound_event_2 = "l5d_mov" --MOOOOVE!!!!!!!!!
+	self.zeal_shield.shield_explosion_damage_mul = 0.25
+	self.zeal_shield.move_speed_mul = { walk = 1.1, run = 1.1 }
+	table.insert(self._enemy_list, "zeal_shield")
+
+	self.zeal_medic = deep_clone(self.medic)
+	self.zeal_medic.damage.explosion_damage_mul = 0.6
+	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
+	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
+	table.insert(self._enemy_list, "zeal_medic")
+
+	self.zeal_taser = deep_clone(self.taser)
+	self.zeal_taser.damage.explosion_damage_mul = 0.6
+	self.zeal_taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" --elite tazeah coming through!!!
+	self.zeal_taser.move_speed_mul = { walk = 1.1, run = 1.1 }
+	table.insert(self._enemy_list, "zeal_taser")
+
 	-- Set custom objective interrupt distance
 	self.taser.min_obj_interrupt_dis = 1000
 	self.spooc.min_obj_interrupt_dis = 800
@@ -908,25 +981,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank_hw.min_obj_interrupt_dis = 600
 	self.shield.min_obj_interrupt_dis = 500
 	self.phalanx_minion.min_obj_interrupt_dis = 500
-
-	self.zeal_shield = deep_clone(self.shield)
-	self.zeal_shield.speech_prefix_p1 = "l5d" -- that's my homie L5D!
-	self.zeal_shield.speech_prefix_p2 = nil
-	self.zeal_shield.speech_prefix_count = nil
-	self.zeal_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --Come with me if you wanna live...
-	self.zeal_shield.spawn_sound_event_2 = "l5d_mov" --MOOOOVE!!!!!!!!!
-	table.insert(self._enemy_list, "zeal_shield")
-
-	self.zeal_medic = deep_clone(self.medic)
-	self.zeal_medic.move_speed = self.presets.move_speed.very_fast
-	self.zeal_medic.damage.explosion_damage_mul = 0.6
-	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
-	table.insert(self._enemy_list, "zeal_medic")
-
-	self.zeal_taser = deep_clone(self.taser)
-	self.zeal_taser.damage.explosion_damage_mul = 0.6
-	self.zeal_taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" --elite tazeah coming through!!!
-	table.insert(self._enemy_list, "zeal_taser")
 
 	-- Bosses
 	self.mobster_boss.HEALTH_INIT = 200
@@ -1085,11 +1139,11 @@ CharacterTweakData.access_hs_mul = {
 }
 
 CharacterTweakData.tweak_table_presets = {
-	fbi = "gc",
+	gangster = "gangster",
+	fbi = "glasscannon",
 	city_swat = "elite",
 	shield = "shield",
 	taser = "taser",
-	medic = "gc",
 	spooc = "elite",
 	sniper = "sniper",
 	tank = "tank",
@@ -1110,23 +1164,25 @@ CharacterTweakData.tweak_table_presets = {
 
 CharacterTweakData.access_move_speed = {
 	spooc = "lightning",
-	swat = "very_fast",
-	shield = "very_fast",
+	swat = "fast",
+	shield = "fast",
 	fbi = "fast",
 	gangster = "fast",
-	taser = "fast",
+	taser = "normal",
 	security = "normal",
 	cop = "normal",
 	sniper = "normal",
 }
 
 CharacterTweakData.tweak_table_move_speed = {
-	heavy_swat = "fast",
-	fbi_heavy_swat = "fast",
+	city_swat = "very_fast",
+	zeal_swat = "very_fast",
+	heavy_swat = "normal",
+	fbi_heavy_swat = "normal",
 	zeal_heavy_swat = "fast",
+	medic = "normal",
+	zeal_medic = "normal",
 	heavy_swat_sniper = "fast",
-	marshal_marksman = "fast",
-	marshal_shield_break = "fast",
 	mobster_boss = "fast",
 	chavez_boss = "fast",
 	drug_lord_boss = "normal",
@@ -1134,6 +1190,8 @@ CharacterTweakData.tweak_table_move_speed = {
 	hector_boss = "slow",
 	biker_boss = "slow",
 	deep_boss = "slow",
+	tank = "very_slow",
+	tank_elite = "very_slow",
 }
 
 function CharacterTweakData:_set_presets()
@@ -1149,7 +1207,7 @@ function CharacterTweakData:_set_presets()
 		local move_speed_preset = self.tweak_table_move_speed[name] or self.access_move_speed[char_preset.access]
 
 		if move_speed_preset then
-			char_preset.move_speed = self.presets.move_speed[move_speed_preset]
+			char_preset.move_speed = self.presets.move_speed[move_speed_preset] or self.presets.move_speed.normal
 		end
 
 		local is_boss = name:match("_boss$")
@@ -1217,7 +1275,7 @@ function CharacterTweakData:_set_presets()
 	self.medic.headshot_dmg_mul = 1.5 -- 320 head health
 
 	self.tank.HEALTH_INIT = 960
-	self.tank.headshot_dmg_mul = 20 -- 480 head health
+	self.tank.headshot_dmg_mul = 30 -- 320 head health
 
 	self.tank_elite.HEALTH_INIT = 1440
 	self.tank_elite.headshot_dmg_mul = 30 -- 480 head health
@@ -1242,6 +1300,10 @@ function CharacterTweakData:_set_presets()
 	self.zeal_taser.headshot_dmg_mul = 1.5 -- 640 head health
 
 	-- misc
+	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
+	self.shield.move_speed.crouch = self.shield.move_speed.stand
+	self.phalanx_minion.move_speed.crouch = self.phalanx_minion.move_speed.stand
+
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 	self.taser.weapon.is_rifle.tase_distance = 750 * f
@@ -1250,7 +1312,7 @@ function CharacterTweakData:_set_presets()
 	self.flashbang_multiplier = 1 * f
 	self.concussion_multiplier = 1
 
-	self.phalanx_shield_balance_mul = { 0.4, 0.6, 0.8, 1 }
+	self.phalanx_shield_balance_mul = { 5, 4, 3, 2 }
 
 	self.tank.armor_damage_mul = 1 / (2 * f)
 	self.tank_elite.armor_damage_mul = 1 / (3 * f)
@@ -1261,22 +1323,13 @@ function CharacterTweakData:_set_presets()
 	if is_eclipse then
 		self:_multiply_all_speeds(1.1, 1.05)
 
-		local special_speed_mul = { walk = 1.1, run = 1.1 }
-
-		self.shield.move_speed_mul = special_speed_mul
-		self.phalanx_minion.move_speed_mul = special_speed_mul
-		self.zeal_shield.move_speed_mul = special_speed_mul
-		self.tank.move_speed_mul = special_speed_mul
-		self.tank_elite.move_speed_mul = special_speed_mul
-
-		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent on eclipse
+		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent
 	end
 
-	-- pro job speed increase
-	-- Disabled for the time being
-	if is_pro_job then
-		self:_multiply_all_speeds(1, 1)
-	end
+	-- pro job speed increase (disabled for now, may come back, but prolly unlikely)
+	-- if is_pro_job then
+	-- 	self:_multiply_all_speeds(1.05, 1.05)
+	-- end
 end
 
 CharacterTweakData._set_normal = CharacterTweakData._set_presets

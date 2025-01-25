@@ -386,3 +386,27 @@ function MarshalLogicAttack._upd_combat_movement(data)
 end
 
 function MarshalLogicAttack.update_cover(data) end
+
+--Medic attack logic
+MedicLogicAttack = MedicLogicAttack or class(CopLogicAttack)
+
+function MedicLogicAttack._upd_combat_movement(data)
+	local my_data = data.internal_data
+	local focus_enemy = data.attention_obj
+
+	if data.logic.action_taken(data, my_data) or CopLogicAttack._upd_pose(data, my_data) then
+		return
+	end
+
+	if data.unit:movement():chk_action_forbidden("walk") or not CopLogicAttack._can_move(data) then
+		return
+	end
+
+	if focus_enemy.verified then
+		if CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, true, "optimal") then
+			return
+		end
+	end
+
+	CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
+end

@@ -179,9 +179,9 @@
 					</group>
 
 					<post :hook_id="medic/medicdamage"/>
-					
+
 					<post :hook_id="shield/logics/shieldlogicattack"/>
-					
+
 					<post :hook_id="taser/logics/taserlogicattack"/>
 				</group>
 
@@ -295,8 +295,8 @@
 			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.unit"/>
 			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.model" />
 			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.cooked_physics" />
-			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.object" />	
-			
+			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.object" />
+
 			<!-- aa12 -->
 			<file :name="wpn_npc_aa12/aa12_df.texture" />
 			<file :name="wpn_npc_aa12/aa12_nm.texture" />
@@ -305,27 +305,27 @@
 			<file :name="wpn_npc_aa12/wpn_npc_aa12_contour.material_config" />
 			<file :name="wpn_npc_aa12/wpn_npc_aa12.model" />
 			<file :name="wpn_npc_aa12/wpn_npc_aa12.cooked_physics" />
-			<file :name="wpn_npc_aa12/wpn_npc_aa12.object" />	
+			<file :name="wpn_npc_aa12/wpn_npc_aa12.object" />
 
 			<!-- bulldozer aa12 -->
 			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.unit"/>
 			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.model" />
 			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.cooked_physics" />
-			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.object" />	
-			
+			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.object" />
+
 			<!-- bulldozer m249 -->
 			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.cooked_physics"/>
 			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.model"/>
 			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.object"/>
 			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.unit"/>
-			
+
 			<!-- bulldozer benelli -->
 			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.cooked_physics"/>
 			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.material_config"/>
 			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.model"/>
 			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.object"/>
 			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.unit"/>
-			
+
 			<!-- ksg -->
 			<file :name="wpn_npc_ksg/ksg_df.texture"/>
 			<file :name="wpn_npc_ksg/ksg_nm.texture"/>
@@ -369,56 +369,56 @@
 		</group>
 
 
-		<group name="units/payday2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
+		<group name="units/payday2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<file :name="shared_textures/swat_equipment_df.texture" />
 			<file :name="shared_textures/swat_equipment_nm.texture" />
-			
+
 			<file :name="ene_acc_bulldozer_back/ene_acc_bulldozer_back.model" />
-			
+
 			<file :name="ene_acc_bulldozer_back_2/ene_acc_bulldozer_back_2.model" />
-			
+
 			<file :name="ene_acc_bulldozer_chest/ene_acc_bulldozer_chest.model" />
-			
+
 			<file :name="ene_acc_bulldozer_chest_2/ene_acc_bulldozer_chest_2.model" />
-			
+
 			<file :name="ene_acc_bulldozer_helmet_plate/ene_acc_bulldozer_helmet_plate.model" />
-			
+
 			<file :name="ene_acc_bulldozer_helmet_plate_2/ene_acc_bulldozer_helmet_plate_2.model" />
-			
+
 			<file :name="ene_acc_bulldozer_helmet_plate_3/ene_acc_bulldozer_helmet_plate_3.model" />
-			
+
 			<file :name="ene_acc_bulldozer_neck/ene_acc_bulldozer_neck.model" />
-			
+
 			<file :name="ene_acc_bulldozer_neck_2/ene_acc_bulldozer_neck_2.model" />
-			
+
 			<file :name="ene_acc_bulldozer_neck_3/ene_acc_bulldozer_neck_3.model" />
-			
+
 			<file :name="ene_acc_bulldozer_stomache/ene_acc_bulldozer_stomache.model" />
-			
+
 			<file :name="ene_acc_bulldozer_stomache_2/ene_acc_bulldozer_stomache_2.model" />
-			
+
 			<file :name="ene_acc_bulldozer_throat/ene_acc_bulldozer_throat.model" />
-			
+
 			<file :name="ene_acc_bulldozer_throat_2/ene_acc_bulldozer_throat_2.model" />
-			
+
 			<file :name="ene_acc_bulldozer_throat_3/ene_acc_bulldozer_throat_3.model" />
-			
-			<file :name="ene_bulldozer_1/ene_bulldozer_1.material_config" />	
-			<file :name="ene_bulldozer_1/ene_bulldozer_1_contour.material_config" />		
+
+			<file :name="ene_bulldozer_1/ene_bulldozer_1.material_config" />
+			<file :name="ene_bulldozer_1/ene_bulldozer_1_contour.material_config" />
 			<file :name="ene_bulldozer_1/ene_bulldozer_1.model" />
 			<file :name="ene_bulldozer_1/ene_bulldozer_1.object" />
 			<file :name="ene_bulldozer_1/ene_bulldozer_1.unit" />
 			<file :name="ene_bulldozer_1/ene_bulldozer_1_husk.unit" />
 
-			<file :name="ene_bulldozer_2/ene_bulldozer_2.material_config" />	
-			<file :name="ene_bulldozer_2/ene_bulldozer_2_contour.material_config" />		
+			<file :name="ene_bulldozer_2/ene_bulldozer_2.material_config" />
+			<file :name="ene_bulldozer_2/ene_bulldozer_2_contour.material_config" />
 			<file :name="ene_bulldozer_2/ene_bulldozer_2.model" />
 			<file :name="ene_bulldozer_2/ene_bulldozer_2.object" />
 			<file :name="ene_bulldozer_2/ene_bulldozer_2.unit" />
 			<file :name="ene_bulldozer_2/ene_bulldozer_2_husk.unit" />
-			
-			<file :name="ene_bulldozer_3/ene_bulldozer_3.material_config" />	
-			<file :name="ene_bulldozer_3/ene_bulldozer_3_contour.material_config" />		
+
+			<file :name="ene_bulldozer_3/ene_bulldozer_3.material_config" />
+			<file :name="ene_bulldozer_3/ene_bulldozer_3_contour.material_config" />
 			<file :name="ene_bulldozer_3/ene_bulldozer_3.model" />
 			<file :name="ene_bulldozer_3/ene_bulldozer_3.object" />
 			<file :name="ene_bulldozer_3/ene_bulldozer_3.unit" />
@@ -426,33 +426,33 @@
 		</group>
 
 
-		<group name="units/pd2_dlc_vip/characters/">	
-		
+		<group name="units/pd2_dlc_vip/characters/">
+
 			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.sequence_manager" />
 			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.unit" />
 			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx_dummy.unit" />
-			
+
 			<file 	:name="ene_phalanx_1/ene_phalanx_1.unit" />
 			<file 	:name="ene_phalanx_1/ene_phalanx_1_husk.unit" />
 
 		</group>
 
-		
-		<group name="units/pd2_dlc_drm/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
+
+		<group name="units/pd2_dlc_drm/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<file :name="ene_acc_bulldozer_minigun_classic_back/ene_acc_bulldozer_minigun_classic_back.model" />
-			
+
 			<file :name="ene_acc_bulldozer_minigun_classic_chest/ene_acc_bulldozer_minigun_classic_chest.model" />
-			
+
 			<file :name="ene_acc_bulldozer_minigun_classic_helmet_plate/ene_acc_bulldozer_minigun_classic_helmet_plate.model" />
-			
+
 			<file :name="ene_acc_bulldozer_minigun_classic_neck/ene_acc_bulldozer_minigun_classic_neck.model" />
-			
+
 			<file :name="ene_acc_bulldozer_minigun_classic_stomache/ene_acc_bulldozer_minigun_classic_stomache.model" />
-			
+
 			<file :name="ene_acc_bulldozer_minigun_classic_throat/ene_acc_bulldozer_minigun_classic_throat.model" />
-			
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.material_config" />	
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_contour.material_config" />		
+
+			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.material_config" />
+			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_contour.material_config" />
 			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.model" />
 			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.object" />
 			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.unit" />

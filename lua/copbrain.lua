@@ -12,6 +12,8 @@ CopBrain._logic_variants.zeal_medic = CopBrain._logic_variants.city_swat
 CopBrain._logic_variants.zeal_taser = CopBrain._logic_variants.taser
 CopBrain._logic_variants.zeal_shield = clone(CopBrain._logic_variants.shield)
 CopBrain._logic_variants.fbi_shield = clone(CopBrain._logic_variants.shield)
+CopBrain._logic_variants.medic.attack = MedicLogicAttack
+CopBrain._logic_variants.zeal_medic.attack = MedicLogicAttack
 
 CopBrain._next_cover_grenade_chk_t = 0
 CopBrain._next_logic_upd_t = 0

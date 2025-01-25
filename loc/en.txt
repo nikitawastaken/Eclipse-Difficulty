@@ -268,7 +268,7 @@
 	"eclipse_menu_max_progression_infamy_desc": "The level of infamy that you will receive upon hitting max progression button.",
 
 
-	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled\nYou're only granted one Team AI\nEnemies are more agile, snappy and aggressive\nEach consecutive down decreases bleedout timer and revive health\nVarious heists have full force onslaught enabled",
+	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled\nYou're only granted one Team AI\nEnemies are more snappy and aggressive\nEach consecutive down decreases bleedout timer and revive health\nVarious heists have full force onslaught enabled",
 	"menu_difficulty_easy_wish": "Eclipse",
 	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",
 	"menu_risk_special": "Overkill.\nMaximum Force Responders inbound.",

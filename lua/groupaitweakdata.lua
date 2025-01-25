@@ -961,6 +961,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"shield_cover",
 			"ranged_fire",
 		},
+		fbi_reserved = {
+			"ranged_fire",
+			"unit_cover"
+		},
 		fbi_shotgun = {
 			"charge",
 		},
@@ -1225,23 +1229,23 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.75,
 				amount_max = 3,
-				rank = 1,
+				rank = 2,
 				unit = "heavy_fbi_m4",
 				tactics = self._tactics.fbi_rifle,
 			},
 			{
 				freq = 0.6,
 				amount_max = 2,
-				rank = 1,
+				rank = 2,
 				unit = "heavy_fbi_r870",
 				tactics = self._tactics.fbi_shotgun,
 			},
 			{
 				freq = 0.35,
 				amount_max = 1,
-				rank = 2,
+				rank = 1,
 				unit = "medic_unit",
-				tactics = self._tactics.fbi_special,
+				tactics = self._tactics.fbi_reserved,
 			},
 		},
 	}
@@ -1450,9 +1454,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.33,
 				amount_max = 1,
-				rank = 2,
+				rank = 1,
 				unit = "medic_unit",
-				tactics = self._tactics.elite_special,
+				tactics = self._tactics.fbi_reserved,
 			},
 			{
 				freq = 0.15,
@@ -1498,7 +1502,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "medic_unit",
-				tactics = self._tactics.elite_special,
+				tactics = self._tactics.fbi_reserved,
 			},
 			{
 				amount_min = 1,
