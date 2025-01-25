@@ -35,14 +35,6 @@
 			<object	name="g_body_lod1" 	enabled="true" lod="1" />
 			
 		  </lod_object>
-
-
-		  <lod_object name="lod_rack">
-		  
-			<object name="g_rack" 		enabled="true" max_draw_lod="0" max_distance="1000" />
-			<object	name="g_rack_lod1" 	enabled="true" lod="1" />
-			
-		  </lod_object>
 		  
 		</graphic_group>
 		

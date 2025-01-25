@@ -113,49 +113,49 @@
 
 		<body name="rag_RightUpLeg" enabled="false" template="corpse" friction="0.01" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="0.4" ang_damping="20" collision_group="20" collides_with="30" tag="flesh" restitution="0">
 			<object name="RightUpLeg" />
-			<object collision_type="capsule" mass="22" padding="-5" name="c_capsule_RightUpLeg" />
+			<object collision_type="capsule" mass="22" padding="-5" name="c_capsule_RightUpLeg_new" />
 		</body>
 
 
 		<body name="rag_LeftUpLeg" enabled="false" template="corpse" friction="0.01" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="0.4" ang_damping="20" collision_group="30" collides_with="20" tag="flesh" restitution="0">
 			<object name="LeftUpLeg" />
-			<object collision_type="capsule" mass="22" padding="-5" name="c_capsule_LeftUpLeg" />
+			<object collision_type="capsule" mass="22" padding="-5" name="c_capsule_LeftUpLeg_new" />
 		</body>
 
 
 		<body name="rag_RightArm" enabled="false" template="corpse" friction="0.01" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="0.4" ang_damping="20" collides_with="1" tag="flesh" restitution="0">
 			<object name="RightArm" />
-			<object collision_type="capsule" mass="4" padding="-5" name="c_capsule_RightArm" />
+			<object collision_type="capsule" mass="4" padding="-5" name="c_capsule_RightArm_new" />
 		</body>
 		
 
 		<body name="rag_LeftArm" enabled="false" template="corpse" friction="0.01" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="0.4" ang_damping="20" collides_with="1" tag="flesh" restitution="0">
 			<object name="LeftArm" />
-			<object collision_type="capsule" mass="4" padding="-5" name="c_capsule_LeftArm" />
+			<object collision_type="capsule" mass="4" padding="-5" name="c_capsule_LeftArm_new" />
 		</body>
 
 
 		<body name="rag_RightForeArm" enabled="false" template="corpse" friction="0.02" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="0" ang_damping="20" collision_group="4" collides_with="8" tag="flesh" restitution="0">
 			<object name="RightForeArm" />
-			<object collision_type="capsule" mass="3" padding="-5" name="c_capsule_RightForeArm" />
+			<object collision_type="capsule" mass="3" padding="-5" name="c_capsule_RightForeArm_new" />
 		</body>
 
 
 		<body name="rag_LeftForeArm" enabled="false" template="corpse" friction="0.02" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="0" ang_damping="20" collision_group="6" collides_with="8" tag="flesh" restitution="0">
 			<object name="LeftForeArm" />
-			<object collision_type="capsule" mass="3" padding="-5" name="c_capsule_LeftForeArm" />
+			<object collision_type="capsule" mass="3" padding="-5" name="c_capsule_LeftForeArm_new" />
 		</body>
 
 
 		<body name="rag_RightLeg" enabled="false" template="corpse" friction="0.03" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="1" ang_damping="20" collision_group="21" collides_with="31" tag="flesh" restitution="0">
 			<object name="RightLeg" />
-			<object collision_type="capsule" mass="6" padding="-5" name="c_capsule_RightLeg" />
+			<object collision_type="capsule" mass="6" padding="-5" name="c_capsule_RightLeg_new" />
 		</body>
 
 
 		<body name="rag_LeftLeg" enabled="false" template="corpse" friction="0.03" sweep="true" collision_class="ragdoll" keyframed="false" collision_script_quiet_time="0.5" collision_script_tag="small" ray="block" lin_damping="1" ang_damping="20" collision_group="31" collides_with="21" tag="flesh" restitution="0">
 			<object name="LeftLeg" />
-			<object collision_type="capsule" mass="6" padding="-5" name="c_capsule_LeftLeg" />
+			<object collision_type="capsule" mass="6" padding="-5" name="c_capsule_LeftLeg_new" />
 		</body>
 		
 	</bodies>
@@ -281,11 +281,11 @@
 	</constraints>
 
 
-	<decal_surfaces default_material="flesh" >
+	<decal_surfaces default_material="cloth_no_decal" >
 	
-		<decal_mesh name="dm_helmet_plate" 		enabled="true" 		material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_glass" 		enabled="false" 	material="glass_no_decal" />
-
+		<decal_mesh name="g_head" 				enabled="true" 	material="flesh" />	
+		<decal_mesh name="dm_helmet_plate" 		enabled="true" 	material="steel_no_decal" />
+		<decal_mesh name="dm_helmet_glass" 		enabled="false" material="glass_no_decal" />
 		<decal_mesh name="dm_armor_chest" 		enabled="true" 	material="steel_no_decal" />
 		<decal_mesh name="dm_armor_stomache" 	enabled="true" 	material="steel_no_decal" />
 		<decal_mesh name="dm_armor_back" 		enabled="true" 	material="steel_no_decal" />
