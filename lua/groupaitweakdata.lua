@@ -963,7 +963,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		fbi_reserved = {
 			"ranged_fire",
-			"unit_cover"
+			"unit_cover",
 		},
 		fbi_shotgun = {
 			"charge",

@@ -44,7 +44,6 @@ local function damage_multiplier(tbl, multiplier)
 	end
 end
 
-
 local function accuracy_multiplier(tbl, multiplier)
 	for _, weapon in pairs(tbl) do
 		for _, falloff in pairs(weapon.FALLOFF) do
@@ -64,7 +63,6 @@ local function recoil_multiplier(tbl, multiplier)
 		end
 	end
 end
-
 
 local function burst_multiplier(tbl, multiplier)
 	for _, weapon in pairs(tbl) do
@@ -365,8 +363,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			},
 			run = {
 				ntl = { fwd = 300, strafe = 250, bwd = 200 },
-                cbt = { fwd = 375, strafe = 300, bwd = 225 },
-                hos = { fwd = 450, strafe = 350, bwd = 250 },
+				cbt = { fwd = 375, strafe = 300, bwd = 225 },
+				hos = { fwd = 450, strafe = 350, bwd = 250 },
 			},
 		},
 		crouch = {
