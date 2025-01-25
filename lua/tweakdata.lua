@@ -29,20 +29,20 @@ tweak_data.experience_manager.alive_humans_multiplier = {
 	1,
 }
 
-local function create_explosive_arrow(base_arrow, explosive_arrow)	
+local function create_explosive_arrow(base_arrow, explosive_arrow)
 	explosive_arrow = deep_clone(base_arrow)
 	explosive_arrow.bullet_class = "InstantExplosiveBulletBase"
 	explosive_arrow.damage = base_arrow.damage * 1.5
 	explosive_arrow.remove_on_impact = true
 end
 
-local function create_poison_arrow(base_arrow, poison_arrow)	
+local function create_poison_arrow(base_arrow, poison_arrow)
 	poison_arrow = deep_clone(base_arrow)
 	poison_arrow.bullet_class = "PoisonBulletBase"
 	poison_arrow.damage = base_arrow.damage * 0.5
 end
 
-local function create_incendiary_grenade(base_grenade, incendiary_grenade, id)	
+local function create_incendiary_grenade(base_grenade, incendiary_grenade, id)
 	incendiary_grenade = deep_clone(base_grenade)
 	incendiary_grenade.dot_data_name = "launcher_incendiary_" .. id
 	incendiary_grenade.damage = base_grenade.damage * 0.25
@@ -51,7 +51,7 @@ local function create_incendiary_grenade(base_grenade, incendiary_grenade, id)
 	incendiary_grenade.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
 end
 
-local function create_electric_grenade(base_grenade, electric_grenade)	
+local function create_electric_grenade(base_grenade, electric_grenade)
 	electric_grenade = deep_clone(base_grenade)
 	electric_grenade.damage = base_grenade.damage * 0.5
 	electric_grenade.range = 4 * (base_grenade.range / 3)
@@ -59,7 +59,7 @@ local function create_electric_grenade(base_grenade, electric_grenade)
 	electric_grenade.sound_event = "gl_electric_explode"
 end
 
-local function create_poison_grenade(base_grenade, poison_grenade)	
+local function create_poison_grenade(base_grenade, poison_grenade)
 	poison_grenade = deep_clone(base_grenade)
 	poison_grenade.damage = base_grenade.damage * 0.25
 	poison_grenade.poison_gas_range = (base_grenade.damage / 240) * 150
@@ -75,7 +75,7 @@ tweak_data.projectiles.bow_arrow = {
 	launch_speed = 2500,
 	adjust_z = 0,
 	mass_look_up_modifier = 1,
-	push_at_body_index = 0
+	push_at_body_index = 0,
 }
 
 tweak_data.projectiles.west_arrow = deep_clone(tweak_data.projectiles.bow_arrow)
@@ -107,9 +107,9 @@ tweak_data.projectiles.crossbow_arrow = {
 	launch_speed = 2500,
 	adjust_z = 0,
 	mass_look_up_modifier = 1,
-	push_at_body_index = 0
+	push_at_body_index = 0,
 }
-	
+
 tweak_data.projectiles.hunter_arrow = deep_clone(tweak_data.projectiles.crossbow_arrow)
 tweak_data.projectiles.hunter_arrow.damage = 24
 tweak_data.projectiles.hunter_arrow.launch_speed = 2000
@@ -143,7 +143,7 @@ tweak_data.projectiles.frag = {
 	range = 450,
 	name_id = "bm_grenade_frag",
 }
-	
+
 tweak_data.projectiles.frag_com = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.frag_com.name_id = "bm_grenade_frag_com"
 
@@ -237,7 +237,7 @@ tweak_data.projectiles.launcher_rocket = {
 	sound_event = "rpg_explode",
 	name_id = "bm_launcher_rocket",
 }
-	
+
 -- Commando 101
 tweak_data.projectiles.rocket_ray_frag = deep_clone(tweak_data.projectiles.launcher_rocket)
 tweak_data.projectiles.rocket_ray_frag.damage = 180
@@ -269,11 +269,11 @@ end
 
 for _, projectile in pairs(tweak_data.projectiles) do
 	-- More noticeable explosive damage dropoff to encourage accurate shooting
-	if projectile.curve_pow  then
-		projectile.curve_pow  = 2
+	if projectile.curve_pow then
+		projectile.curve_pow = 2
 	end
-	
+
 	if projectile.player_damage and projectile.damage then
 		projectile.player_damage = projectile.damage * (projectile.player_dmg_mul or 0.25)
-	end	
+	end
 end
