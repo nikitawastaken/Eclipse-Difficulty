@@ -356,6 +356,58 @@ if not StreamHeist then
 		}
 	end
 
+	local difficulty = Global.game_settings and Global.game_settings.difficulty or "normal"
+	local diff_tbl = {
+		normal = 2,
+		hard = 3,
+		overkill = 4,
+		overkill_145 = 5,
+		easy_wish = 6,
+		overkill_290 = 7,
+		sm_wish = 8
+	}
+	local diff_i = diff_tbl[difficulty] or 2
+
+
+	function StreamHeist:difficulty_index()	
+		return diff_i
+	end
+	
+	
+	function StreamHeist:difficulty_groups()	
+		local normal = real_difficulty_index < 4 and "normal" or nil
+		local hard = not normal and real_difficulty_index < 6 and "hard" or nil
+		local eclipse = not normal and not hard and "eclipse" or nil
+
+		return normal, hard, eclipse
+	end
+	
+	
+	function StreamHeist:is_pro_job()
+		local pro_job = Global.game_settings and Global.game_settings.one_down
+
+		return pro_job
+	end
+
+
+	function StreamHeist:is_eclipse()
+		local is_eclipse = diff_i == 6
+		
+		return is_eclipse
+	end
+
+
+	function StreamHeist:diff_lerp(value_1, value_2)
+		local f = math.max(0, diff_i - 2) / 4
+		
+		return math.lerp(value_1, value_2, f)
+	end	
+
+
+	function StreamHeist:level_id()		
+		return Global.level_data and Global.level_data.level_id
+	end	
+	
 	function StreamHeist:log(...)
 		if self.logging then
 			log("[StreamlinedHeistingAI] " .. table.concat({...}, " "))

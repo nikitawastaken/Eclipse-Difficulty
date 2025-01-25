@@ -160,7 +160,7 @@ function CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 		mvector3.copy(from_pos),
 		to_pos,
 	}
-	CopLogicAttack._chk_request_action_walk_to_cover_shoot_pos(data, my_data, path, "run")
+	CopLogicAttack._chk_request_action_walk_to_cover_shoot_pos(data, my_data, path, math.random() < 0.5 and "run" or "walk")
 end
 
 -- Empty this function (path starting position is corrected in CopActionWalk as it covers all cases)

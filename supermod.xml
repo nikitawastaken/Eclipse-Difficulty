@@ -60,6 +60,7 @@
 				<post :hook_id="playermanager"/>
 				<post :hook_id="dlcmanager"/>
 				<post :hook_id="groupaimanager"/>
+				<post :hook_id="explosionmanager"/>
 			</group>
 
 			<group :hook_id="network/">
@@ -169,10 +170,19 @@
 						<post :hook_id="logics/spooclogicattack"/>
 					</group>
 
-					<post :hook_id="tank/logics/tankcoplogicattack"/>
-					<post :hook_id="shield/logics/shieldlogicattack"/>
-					<post :hook_id="taser/logics/taserlogicattack"/>
+					<group :hook_id="tank/">
+						<post :hook_id="logics/tankcoplogicattack"/>
+						<post :hook_id="husktankcopdamage"/>
+						<post :hook_id="husktankmediccopdamage"/>
+						<post :hook_id="tankcopdamage"/>
+						<post :hook_id="tankmediccopdamage"/>
+					</group>
+
 					<post :hook_id="medic/medicdamage"/>
+					
+					<post :hook_id="shield/logics/shieldlogicattack"/>
+					
+					<post :hook_id="taser/logics/taserlogicattack"/>
 				</group>
 
 				<group :hook_id="equipment/">
@@ -247,15 +257,6 @@
 		<!-- eclipse difficulty icon & risk level -->
 		<file name="guis/textures/pd2/risklevel_deathwish_easywish_blackscreen.texture"/>
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
-
-		<!-- characters -->
-		<group name="units/pd2_dlc_vip/characters/">
-			<file :name="ene_phalanx_1/ene_phalanx_1.unit"/>
-			<file :name="ene_phalanx_1/ene_phalanx_1_husk.unit"/>
-			<file :name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.sequence_manager"/>
-			<file :name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.unit"/>
-			<file :name="ene_acc_shield_phalanx/ene_acc_shield_phalanx_dummy.unit"/>
-		</group>
 
 		<!-- old cook off bain lines -->
 		<file name="soundbanks/job_h_rat_stage1.bnk"/>
@@ -422,6 +423,18 @@
 			<file :name="ene_bulldozer_3/ene_bulldozer_3.object" />
 			<file :name="ene_bulldozer_3/ene_bulldozer_3.unit" />
 			<file :name="ene_bulldozer_3/ene_bulldozer_3_husk.unit" />
+		</group>
+
+
+		<group name="units/pd2_dlc_vip/characters/">	
+		
+			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.sequence_manager" />
+			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.unit" />
+			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx_dummy.unit" />
+			
+			<file 	:name="ene_phalanx_1/ene_phalanx_1.unit" />
+			<file 	:name="ene_phalanx_1/ene_phalanx_1_husk.unit" />
+
 		</group>
 
 		
