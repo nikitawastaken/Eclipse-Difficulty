@@ -234,12 +234,12 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.spread_multiplier = {
 					standing = {
-						hipfire = 1,
+						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 1
 					},
 					moving = {
-						hipfire = 1.25,
+						hipfire = 1.4,
 						crouching = 1,
 						steelsight = 1
 					}
@@ -248,7 +248,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.75
+						steelsight = 1
 					},
 					moving = {
 						hipfire = 1,

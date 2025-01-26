@@ -254,6 +254,8 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_recoil_multiplier", 1)
+
+			multiplier = multiplier * managers.player:upgrade_value("weapon", "steelsight_recoil_multiplier", 1)
 		end
 	end
 
@@ -342,6 +344,8 @@ function NewRaycastWeaponBase:spread_multiplier()
 	if not in_steelsight then
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "hipfire_spread_multiplier", 1)
+
+			multiplier = multiplier * managers.player:upgrade_value("weapon", "hipfire_spread_penalty_reduction", 1)
 		end
 	else
 		for _, category in ipairs(categories) do
@@ -457,10 +461,6 @@ function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 		for _, category in ipairs(self:categories()) do
 			mul = mul + 1 - managers.player:upgrade_value(category, "steelsight_accuracy_inc", 1)
 		end
-	end
-
-	if not current_state:in_steelsight() then -- change the upgrade to hipfire instead of movement
-		mul = mul + 1 - pm:upgrade_value("player", "weapon_movement_stability", 1)
 	end
 
 	mul = mul + 1 - pm:get_property("desperado", 1)
