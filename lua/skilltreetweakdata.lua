@@ -212,7 +212,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.heavy_impact.icon_xy = { 7, 0 }
 
 	-- Fire Control
-	self.skills.fire_control[1].upgrades = { "player_weapon_movement_stability_1" }
+	self.skills.fire_control[1].upgrades = { "weapon_hipfire_spread_penalty_reduction" }
 	self.skills.fire_control[2].upgrades = { "smg_spray_recoil_multiplier", "lmg_spray_recoil_multiplier", "minigun_spray_recoil_multiplier" }
 
 	-- Sleight of Hand

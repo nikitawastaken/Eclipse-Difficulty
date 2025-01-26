@@ -132,7 +132,7 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 0.5
 					},
 					moving = {
-						hipfire = 1.25,
+						hipfire = 1.5,
 						crouching = 1,
 						steelsight = 0.75
 					}
@@ -236,7 +236,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 1
+						steelsight = 0.75
 					},
 					moving = {
 						hipfire = 1.25,
@@ -248,7 +248,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.75
+						steelsight = 1
 					},
 					moving = {
 						hipfire = 1,
@@ -262,8 +262,8 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.5
-				weap_data.pickup_mul = weap_data.pickup_mul or 2.5
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / 8.6)
+				weap_data.pickup_mul = weap_data.pickup_mul or 0.1875
 				weap_data.rays = 8
 
 				weap_data.spread_multiplier = {
@@ -1896,7 +1896,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Izhma
 	self.saiga.CLIP_AMMO_MAX = 7
-	self.saiga.stats.damage = 30
+	self.saiga.stats.damage = 20
 	self.saiga.stats.spread = 11
 	self.saiga.stats.recoil = 13
 	self.saiga.stats.reload = 11
@@ -1905,7 +1905,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Steakout
 	self.aa12.CLIP_AMMO_MAX = 8
-	self.aa12.stats.damage = 30
+	self.aa12.stats.damage = 20
 	self.aa12.stats.spread = 12
 	self.aa12.stats.recoil = 12
 	self.aa12.stats.reload = 11
@@ -1914,7 +1914,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Grimm
 	self.basset.CLIP_AMMO_MAX = 7
-	self.basset.stats.damage = 30
+	self.basset.stats.damage = 20
 	self.basset.stats.spread = 11
 	self.basset.stats.recoil = 13
 	self.basset.stats.reload = 11
@@ -1923,7 +1923,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Street Sweeper
 	self.striker.CLIP_AMMO_MAX = 12
-	self.striker.stats.damage = 40
+	self.striker.stats.damage = 25
 	self.striker.stats.spread = 12
 	self.striker.stats.recoil = 11
 	self.striker.stats.reload = 11
@@ -1932,7 +1932,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- M1014
 	self.benelli.CLIP_AMMO_MAX = 6
-	self.benelli.stats.damage = 40
+	self.benelli.stats.damage = 25
 	self.benelli.stats.spread = 15
 	self.benelli.stats.recoil = 10
 	self.benelli.stats.reload = 11
@@ -1941,7 +1941,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Predator
 	self.spas12.CLIP_AMMO_MAX = 8
-	self.spas12.stats.damage = 40
+	self.spas12.stats.damage = 25
 	self.spas12.stats.spread = 13
 	self.spas12.stats.recoil = 11
 	self.spas12.stats.reload = 11
@@ -1950,7 +1950,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Goliath
 	self.rota.CLIP_AMMO_MAX = 6
-	self.rota.stats.damage = 40
+	self.rota.stats.damage = 25
 	self.rota.stats.spread = 12
 	self.rota.stats.recoil = 11
 	self.rota.stats.reload = 11
@@ -1959,7 +1959,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Argos
 	self.ultima.CLIP_AMMO_MAX = 6
-	self.ultima.stats.damage = 40
+	self.ultima.stats.damage = 25
 	self.ultima.stats.spread = 14
 	self.ultima.stats.recoil = 11
 	self.ultima.stats.reload = 9
@@ -1968,7 +1968,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- VD-12
 	self.sko12.CLIP_AMMO_MAX = 28
-	self.sko12.stats.damage = 40
+	self.sko12.stats.damage = 25
 	self.sko12.stats.spread = 14
 	self.sko12.stats.recoil = 12
 	self.sko12.stats.reload = 11
@@ -1979,7 +1979,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Reinfeld 880
 	self.r870.CLIP_AMMO_MAX = 8
-	self.r870.stats.damage = 50
+	self.r870.stats.damage = 30
 	self.r870.stats.spread = 14
 	self.r870.stats.recoil = 9
 	self.r870.stats.reload = 11
@@ -1988,7 +1988,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Loco
 	self.serbu.CLIP_AMMO_MAX = 4
-	self.serbu.stats.damage = 50
+	self.serbu.stats.damage = 30
 	self.serbu.stats.spread = 13
 	self.serbu.stats.recoil = 7
 	self.serbu.stats.reload = 11
@@ -1997,7 +1997,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Raven
 	self.ksg.CLIP_AMMO_MAX = 8
-	self.ksg.stats.damage = 50
+	self.ksg.stats.damage = 30
 	self.ksg.stats.spread = 14
 	self.ksg.stats.recoil = 12
 	self.ksg.stats.reload = 11
@@ -2006,7 +2006,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Judge
 	self.judge.CLIP_AMMO_MAX = 5
-	self.judge.stats.damage = 50
+	self.judge.stats.damage = 30
 	self.judge.stats.spread = 13
 	self.judge.stats.recoil = 6
 	self.judge.stats.reload = 10
@@ -2015,7 +2015,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Mosconi Tactical
 	self.m590.CLIP_AMMO_MAX = 7
-	self.m590.stats.damage = 50
+	self.m590.stats.damage = 30
 	self.m590.stats.spread = 13
 	self.m590.stats.recoil = 9
 	self.m590.stats.reload = 13
@@ -2024,7 +2024,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Nova
 	self.supernova.CLIP_AMMO_MAX = 7
-	self.supernova.stats.damage = 50
+	self.supernova.stats.damage = 30
 	self.supernova.stats.spread = 14
 	self.supernova.stats.recoil = 9
 	self.supernova.stats.reload = 11
@@ -2033,7 +2033,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Breaker
 	self.boot.CLIP_AMMO_MAX = 7
-	self.boot.stats.damage = 60
+	self.boot.stats.damage = 35
 	self.boot.stats.spread = 15
 	self.boot.stats.recoil = 8
 	self.boot.stats.reload = 11
@@ -2043,7 +2043,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- GSPS
 	self.m37.use_data.selection_index = 2
 	self.m37.CLIP_AMMO_MAX = 7
-	self.m37.stats.damage = 60
+	self.m37.stats.damage = 35
 	self.m37.stats.spread = 14
 	self.m37.stats.recoil = 12
 	self.m37.stats.reload = 11
@@ -2052,7 +2052,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Reinfeld 88 (Trench Gun)
 	self.m1897.CLIP_AMMO_MAX = 7
-	self.m1897.stats.damage = 60
+	self.m1897.stats.damage = 35
 	self.m1897.stats.spread = 15
 	self.m1897.stats.recoil = 10
 	self.m1897.stats.reload = 11
@@ -2061,7 +2061,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Mosconi
 	self.huntsman.CLIP_AMMO_MAX = 2
-	self.huntsman.stats.damage = 80
+	self.huntsman.stats.damage = 45
 	self.huntsman.stats.spread = 19
 	self.huntsman.stats.recoil = 10
 	self.huntsman.stats.reload = 11
@@ -2070,7 +2070,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Joceline
 	self.b682.CLIP_AMMO_MAX = 2
-	self.b682.stats.damage = 80
+	self.b682.stats.damage = 45
 	self.b682.stats.spread = 19
 	self.b682.stats.recoil = 10
 	self.b682.stats.reload = 11
@@ -2079,7 +2079,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Claire
 	self.coach.CLIP_AMMO_MAX = 2
-	self.coach.stats.damage = 80
+	self.coach.stats.damage = 45
 	self.coach.stats.spread = 17
 	self.coach.stats.recoil = 10
 	self.coach.stats.reload = 11
@@ -2544,7 +2544,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.china.stats.reload = 16
 	self.china.stats.concealment = 16
 	self.china.fire_mode_data.fire_rate = 60 / 50
-	
+
 	-- GL40
 	self.gre_m79.use_data.selection_index = 1
 	self.gre_m79.CLIP_AMMO_MAX = 1

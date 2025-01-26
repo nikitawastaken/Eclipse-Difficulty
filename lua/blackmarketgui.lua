@@ -16,8 +16,33 @@ local small_font_size = tweak_data.menu.pd2_small_font_size
 local tiny_font_size = tweak_data.menu.pd2_tiny_font_size
 
 local function format_round(num, round_value)
-	return round_value and tostring(math.round(num)) or string.format("%.1f", num):gsub("%.?0+$", "")
+	if round_value == true then
+		return round_value and tostring(math.round(num))
+	elseif round_value == 2 then
+		return string.format("%.2f", num):gsub("%.?0+$", "")
+	else
+		return string.format("%.1f", num):gsub("%.?0+$", "")
+	end
 end
+
+--[[
+--	{
+--		name: string		(required)
+--		stat_name: string
+--		inverted: boolean
+--		offset: boolean
+--		revert: boolean
+--		index: boolean
+--		round_value: <true | 2>
+--	}
+--]]
+BlackMarketGui.eclipse_custom_stats = {
+	{
+		name = "steelsight_time",
+		inverted = true,
+		round_value = 2,
+	},
+}
 
 function BlackMarketGui:_setup(is_start_page, component_data)
 	self._in_setup = true
@@ -1690,6 +1715,9 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					offset = true,
 				},
 			}
+			for _, eclipse_stat in ipairs(self.eclipse_custom_stats) do
+				table.insert(self._stats_shown, eclipse_stat)
+			end
 			self._stats_panel = self._weapon_info_panel:panel({
 				y = 58,
 				x = 10,
@@ -3187,11 +3215,12 @@ function BlackMarketGui:show_stats()
 
 		---Shotgun pellets stat
 		local pellet_string = ""
-		local old_rays
-		local rays
+		local old_rays_fallback, old_rays
+		local new_rays_fallback, new_rays
 		if tweak_data.weapon[name] and table.contains(tweak_data.weapon[name].categories, "shotgun") then
-			old_rays, rays = get_pellets_from_blueprint(name, blueprint, category, slot)
-			pellet_string = "x" .. (rays or old_rays)
+			new_rays_fallback, new_rays = get_pellets_from_blueprint(name, blueprint, category, slot)
+			old_rays_fallback, old_rays = get_pellets_from_blueprint(name, unaltered_blueprint, category, slot)
+			pellet_string = "x" .. (new_rays or new_rays_fallback)
 		end
 
 		--Minimal but hacky way to add custom stats to weapon mod stat changes.
@@ -3339,8 +3368,12 @@ function BlackMarketGui:show_stats()
 				local comp_unaltered_total_value = unaltered_total_value
 				local comp_total_value = total_value
 				if stat.name == "damage" then
-					comp_unaltered_total_value = old_rays and (old_rays * unaltered_total_value) or unaltered_total_value
-					comp_total_value = rays and (rays * total_value) or total_value
+					if old_rays_fallback then
+						comp_unaltered_total_value = old_rays and (old_rays * unaltered_total_value) or (old_rays_fallback * comp_unaltered_total_value)
+					end
+					if new_rays_fallback then
+						comp_total_value = new_rays and (new_rays * total_value) or (new_rays_fallback * total_value)
+					end
 				end
 				if comp_unaltered_total_value < comp_total_value then
 					self._stats_texts[stat.name].skill:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)

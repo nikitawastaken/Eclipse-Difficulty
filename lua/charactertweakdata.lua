@@ -1310,7 +1310,7 @@ function CharacterTweakData:_set_presets()
 	self.flashbang_multiplier = 1 * f
 	self.concussion_multiplier = 1
 
-	self.phalanx_shield_balance_mul = { 5, 4, 3, 2 }
+	self.phalanx_shield_balance_mul = { 1, 1.5, 2, 2.5 }
 
 	self.tank.armor_damage_mul = 1 / (2 * f)
 	self.tank_elite.armor_damage_mul = 1 / (3 * f)

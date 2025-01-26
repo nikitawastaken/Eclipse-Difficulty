@@ -50,23 +50,23 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	local shotgun_ammo_type_overrides = {
 		triple_aught = {
 			very_heavy = { -- double barrels
-				stats = { damage = 22, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 16, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6 },
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 17, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 12, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6 },
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 13, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6 },
 			},
 			light = { -- semi autos
-				stats = { damage = 10, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 9, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6 },
 			},
 			very_light = { -- full autos
-				stats = { damage = 8, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 7, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6 },
 			},
 		},
@@ -111,29 +111,29 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		},
 		flechette = {
 			very_heavy = { -- double barrels
-				stats = { damage = -37, total_ammo_mod = -6, recoil = -3, spread = 2 },
-				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
-			},
-			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = -27, total_ammo_mod = -6, recoil = -3, spread = 2 },
-				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
-			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = -22, total_ammo_mod = -6, recoil = -3, spread = 2 },
-				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
-			},
-			light = { -- semi autos
 				stats = { damage = -18, total_ammo_mod = -6, recoil = -3, spread = 2 },
 				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
 			},
+			heavy = { -- shotguns like gsps and the trench gun
+				stats = { damage = -14, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
+			},
+			medium = { -- raven, loco, reinfeld, etc
+				stats = { damage = -12, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
+			},
+			light = { -- semi autos
+				stats = { damage = -10, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
+			},
 			very_light = { -- full autos
-				stats = { damage = -15, total_ammo_mod = -6, recoil = -3, spread = 2 },
+				stats = { damage = -8, total_ammo_mod = -6, recoil = -3, spread = 2 },
 				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
 			},
 		},
 		dragons_breath = {
 			very_heavy = { -- double barrels
-				stats = { damage = -60, total_ammo_mod = -8 },
+				stats = { damage = -34, total_ammo_mod = -8 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.75,
 					ammo_pickup_max_mul = 0.75,
@@ -145,7 +145,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = -44, total_ammo_mod = -8 },
+				stats = { damage = -26, total_ammo_mod = -8 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.75,
 					ammo_pickup_max_mul = 0.75,
@@ -157,7 +157,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = -36, total_ammo_mod = -8 },
+				stats = { damage = -22, total_ammo_mod = -8 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.75,
 					ammo_pickup_max_mul = 0.75,
@@ -169,7 +169,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				},
 			},
 			light = { -- semi autos
-				stats = { damage = -28, total_ammo_mod = -8 },
+				stats = { damage = -18, total_ammo_mod = -8 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.75,
 					ammo_pickup_max_mul = 0.75,
@@ -181,7 +181,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				},
 			},
 			very_light = { -- full autos
-				stats = { damage = -20, total_ammo_mod = -8 },
+				stats = { damage = -14, total_ammo_mod = -8 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.75,
 					ammo_pickup_max_mul = 0.75,

@@ -1,7 +1,15 @@
 -- credit for most of the stuff here goes to resmod
-table.insert(WeaponDescription._stats_shown, {
-	name = "pickup",
-})
+local eclipse_custom_stats = {
+	{
+		name = "pickup",
+	},
+	{
+		name = "steelsight_time",
+	},
+}
+for _, stat in ipairs(eclipse_custom_stats) do
+	table.insert(WeaponDescription._stats_shown, stat)
+end
 
 function WeaponDescription._get_base_pickup(weapon, name)
 	local weapon_tweak = tweak_data.weapon[name]
@@ -62,6 +70,48 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 	end
 end
 
+function WeaponDescription._get_base_steelsight_time(weapon, name)
+	return tweak_data.weapon[name].steelsight_time
+end
+
+function WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats)
+	-- Currently no mods affect ads time
+	return 0
+end
+
+function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, mods_stats)
+	local weapon_tweak = tweak_data.weapon[name]
+	local categories = weapon_tweak.categories
+
+	local multiplier = (tweak_data.player.TRANSITION_DURATION or 0.35) / weapon_tweak.steelsight_time
+
+	for _, category in ipairs(categories) do
+		multiplier = multiplier * managers.player:upgrade_value(category, "enter_steelsight_speed_multiplier", 1)
+	end
+
+	multiplier = multiplier * managers.player:upgrade_value(name, "enter_steelsight_speed_multiplier", 1)
+	multiplier = multiplier * managers.player:upgrade_value("weapon", "enter_steelsight_speed_multiplier", 1)
+
+	if managers.weapon_factory:has_perk("silencer", weapon.factory_id, weapon.blueprint) then
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "silencer_enter_steelsight_speed_multiplier", 1)
+
+		for _, category in ipairs(categories) do
+			multiplier = multiplier * managers.player:upgrade_value(category, "silencer_enter_steelsight_speed_multiplier", 1)
+		end
+	end
+
+	local result = base_stats.steelsight_time.value - mods_stats.steelsight_time.value - (weapon_tweak.steelsight_time / multiplier)
+	-- Some jank to make sure we don't end up with +0 or -0 on the stats
+	-- that also happens to double as a way to test if there exists a skill multiplier
+	local new = math.round(base_stats.steelsight_time.value - result, 0.01)
+	local cur = math.round(base_stats.steelsight_time.value, 0.01)
+	if new == cur then
+		return false, 0
+	else
+		return true, -result
+	end
+end
+
 function WeaponDescription._get_stats(name, category, slot, blueprint)
 	local equipped_mods = nil
 	local silencer = false
@@ -105,6 +155,10 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	base_stats.pickup.value = WeaponDescription._get_base_pickup(weapon, name)
 	mods_stats.pickup.value = WeaponDescription._get_mods_pickup(weapon, name, base_stats)
 	skill_stats.pickup.skill_in_effect, skill_stats.pickup.value = WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stats)
+
+	base_stats.steelsight_time.value = WeaponDescription._get_base_steelsight_time(weapon, name)
+	mods_stats.steelsight_time.value = WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats)
+	skill_stats.steelsight_time.skill_in_effect, skill_stats.steelsight_time.value = WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, mods_stats)
 
 	local my_clip = base_stats.magazine.value + mods_stats.magazine.value + skill_stats.magazine.value
 

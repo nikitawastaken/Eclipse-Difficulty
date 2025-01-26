@@ -254,7 +254,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Marksman
 	self.values.player.not_moving_accuracy_increase[1] = 3
-	self.values.weapon.steelsight_recoil_multiplier = { 0.9 }
+	self.values.weapon.steelsight_recoil_multiplier = { 0.8 }
 	self.definitions.weapon_steelsight_recoil_multiplier = {
 		name_id = "menu_weapon_steelsight_recoil_multiplier",
 		category = "feature",
@@ -264,7 +264,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.skill_descs.sharpshooter.multibasic = "10%"
+	self.skill_descs.sharpshooter.multibasic = "20%"
 	self.skill_descs.sharpshooter.multipro = "12"
 
 	-- Kilmer
@@ -652,9 +652,20 @@ function UpgradesTweakData:init(tweak_data)
 		0.015,
 	}
 
+	self.values.weapon.hipfire_spread_penalty_reduction = { 0.8 }
+	self.definitions.weapon_hipfire_spread_penalty_reduction = {
+		name_id = "menu_hipfire_spread_penalty_reduction",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hipfire_spread_penalty_reduction",
+			category = "weapon",
+		},
+	}
+
 	self.values.player.weapon_movement_stability[1] = 0.9
 	self.max_spray_recoil_reduction = 0.5
-	self.skill_descs.fire_control.multibasic = "10%"
+	self.skill_descs.fire_control.multibasic = "20%"
 	self.skill_descs.fire_control.multipro = "50%"
 
 	-- Sleight of Hand
