@@ -134,7 +134,7 @@ function WeaponTweakData:_init_weapons()
 					moving = {
 						hipfire = 1.5,
 						crouching = 1,
-						steelsight = 1
+						steelsight = 0.75
 					}
 				}
 				weap_data.recoil_multiplier = {
