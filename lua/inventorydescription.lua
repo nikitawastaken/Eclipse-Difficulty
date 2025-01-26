@@ -28,6 +28,7 @@ function WeaponDescription._get_mods_pickup(weapon, name, base_stats)
 
 	local average_pickup = (min_pickup + max_pickup) * 0.5
 
+	Eclipse:log(1, debug.traceback())
 	return average_pickup - base_stats.pickup.value
 end
 
@@ -113,4 +114,25 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	end
 
 	return base_stats, mods_stats, skill_stats
+end
+
+function WeaponDescription._get_custom_pellet_stats(name, category, slot, blueprint)
+	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
+	local blueprint = blueprint or slot and managers.blackmarket:get_weapon_blueprint(category, slot) or managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
+	if not blueprint then
+		return
+	end
+
+	local equipped_mods = deep_clone(blueprint)
+	local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
+
+	local part_data = nil
+	for _, mod in ipairs(equipped_mods) do
+		part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
+		if part_data then
+			if part_data.custom_stats and part_data.custom_stats.rays then
+				return part_data.custom_stats.rays
+			end
+		end
+	end
 end

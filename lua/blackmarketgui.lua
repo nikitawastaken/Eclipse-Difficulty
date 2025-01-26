@@ -2419,6 +2419,11 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 	self._in_setup = nil
 end
 
+local function get_pellets_from_blueprint(name, blueprint, category, slot)
+	local new_rays = WeaponDescription._get_custom_pellet_stats(name, category, slot, blueprint)
+	return tweak_data.weapon[name].rays, new_rays
+end
+
 function BlackMarketGui:show_stats()
 	if not self._stats_panel or not self._rweapon_stats_panel or not self._armor_stats_panel or not self._mweapon_stats_panel then
 		return
@@ -2553,6 +2558,27 @@ function BlackMarketGui:show_stats()
 		local equip_base_stats, equip_mods_stats, equip_skill_stats = WeaponDescription._get_stats(equipped_name, category, equipped_slot)
 		local base_stats, mods_stats, skill_stats = WeaponDescription._get_stats(name, category, slot, self._slot_data.default_blueprint)
 
+		local equipped_weapon_tweak = tweak_data.weapon[equipped_name]
+		local base_weapon_tweak = tweak_data.weapon[name]
+		-- Calculate shotgun pellets with ammo types
+		local equipped_pellets = ""
+		local unmodded_equipped_rays
+		local equipped_rays
+		if table.contains(equipped_weapon_tweak.categories, "shotgun") then
+			local equipped_blueprint = managers.blackmarket:get_weapon_blueprint(category, equipped_slot)
+			unmodded_equipped_rays, equipped_rays = get_pellets_from_blueprint(equipped_name, equipped_blueprint, category, equipped_slot)
+			equipped_pellets = "x" .. (equipped_rays or unmodded_equipped_rays)
+		end
+
+		local base_pellets = ""
+		local unmodded_base_rays = 0
+		local base_rays = 0
+		if table.contains(base_weapon_tweak.categories, "shotgun") then
+			local base_blueprint = managers.blackmarket:get_weapon_blueprint(category, slot)
+			unmodded_base_rays, base_rays = get_pellets_from_blueprint(name, base_blueprint, category, slot)
+			base_pellets = "x" .. (base_rays or unmodded_base_rays)
+		end
+
 		self._rweapon_stats_panel:show()
 		self:hide_armor_stats()
 		self:hide_melee_weapon_stats()
@@ -2645,11 +2671,24 @@ function BlackMarketGui:show_stats()
 				value = math.max(base_stats[stat.name].value + mods_stats[stat.name].value + skill_stats[stat.name].value, 0)
 
 				if slot == equipped_slot then
+					local base_pellet_string = ""
+					local pellet_string = ""
+					local unmodded_rays
+					local rays
+					if stat.name == "damage" and table.contains(tweak_data.weapon[name].categories, "shotgun") then
+						local p_category = self._slot_data.category
+						local p_slot = self._slot_data.slot
+						local blueprint = managers.blackmarket:get_weapon_blueprint(p_category, p_slot)
+						unmodded_rays, rays = get_pellets_from_blueprint(name, blueprint, p_category, p_slot)
+						pellet_string = "x" .. (rays or unmodded_rays)
+						base_pellet_string = "x" .. tweak_data.weapon[name].rays
+					end
+
 					local base = base_stats[stat.name].value
 
 					self._stats_texts[stat.name].equip:set_alpha(1)
-					self._stats_texts[stat.name].equip:set_text(format_round(value, stat.round_value))
-					self._stats_texts[stat.name].base:set_text(format_round(base, stat.round_value))
+					self._stats_texts[stat.name].equip:set_text(format_round(value, stat.round_value) .. pellet_string)
+					self._stats_texts[stat.name].base:set_text(format_round(base, stat.round_value) .. base_pellet_string)
 					self._stats_texts[stat.name].mods:set_text(
 						mods_stats[stat.name].value == 0 and "" or (mods_stats[stat.name].value > 0 and "+" or "") .. format_round(mods_stats[stat.name].value, stat.round_value)
 					)
@@ -2662,9 +2701,11 @@ function BlackMarketGui:show_stats()
 					self._stats_texts[stat.name].mods:set_alpha(0.75)
 					self._stats_texts[stat.name].skill:set_alpha(0.75)
 
-					if base < value then
+					local comp_base = unmodded_rays and (unmodded_rays * base) or base
+					local comp_value = (rays and (rays * value)) or (unmodded_rays and (unmodded_rays * value)) or value
+					if comp_base < comp_value then
 						self._stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
-					elseif value < base then
+					elseif comp_value < comp_base then
 						self._stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 					else
 						self._stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.text)
@@ -2700,16 +2741,23 @@ function BlackMarketGui:show_stats()
 					local equip = math.max(equip_base_stats[stat.name].value + equip_mods_stats[stat.name].value + equip_skill_stats[stat.name].value, 0)
 
 					self._stats_texts[stat.name].equip:set_alpha(0.75)
-					self._stats_texts[stat.name].equip:set_text(format_round(equip, stat.round_value))
+					if stat.name == "damage" then
+						self._stats_texts[stat.name].equip:set_text(format_round(equip, stat.round_value) .. equipped_pellets)
+						self._stats_texts[stat.name].total:set_text(format_round(value, stat.round_value) .. base_pellets)
+					else
+						self._stats_texts[stat.name].equip:set_text(format_round(equip, stat.round_value))
+						self._stats_texts[stat.name].total:set_text(format_round(value, stat.round_value))
+					end
 					self._stats_texts[stat.name].base:set_text("")
 					self._stats_texts[stat.name].mods:set_text("")
 					self._stats_texts[stat.name].skill:set_text("")
 					self._stats_texts[stat.name].removed:set_text("")
-					self._stats_texts[stat.name].total:set_text(format_round(value, stat.round_value))
 
-					if equip < value then
+					local comp_equip = equipped_rays and (equipped_rays * equip) or equip
+					local comp_value = base_rays and (base_rays * value) or value
+					if comp_equip < comp_value then
 						self._stats_texts[stat.name].total:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
-					elseif value < equip then
+					elseif comp_value < comp_equip then
 						self._stats_texts[stat.name].total:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 					else
 						self._stats_texts[stat.name].total:set_color(tweak_data.screen_colors.text)
@@ -3137,6 +3185,15 @@ function BlackMarketGui:show_stats()
 		local hide_equip = mod_stats.equip.name == mod_stats.chosen.name
 		local remove_stats = {}
 
+		---Shotgun pellets stat
+		local pellet_string = ""
+		local old_rays
+		local rays
+		if tweak_data.weapon[name] and table.contains(tweak_data.weapon[name].categories, "shotgun") then
+			old_rays, rays = get_pellets_from_blueprint(name, blueprint, category, slot)
+			pellet_string = "x" .. (rays or old_rays)
+		end
+
 		--Minimal but hacky way to add custom stats to weapon mod stat changes.
 		--Checks if the weapon stats with the mod (and no skills) change, and if they do, displays the difference.
 		--Would write a better solution, but I hate this file.
@@ -3261,7 +3318,11 @@ function BlackMarketGui:show_stats()
 				self._stats_texts[stat.name].base:set_text(equip_text)
 				self._stats_texts[stat.name].base:set_alpha(0.75)
 				self._stats_texts[stat.name].equip:set_alpha(1)
-				self._stats_texts[stat.name].equip:set_text(format_round(total_value, stat.round_value))
+				if stat.name == "damage" then
+					self._stats_texts[stat.name].equip:set_text(format_round(total_value, stat.round_value) .. pellet_string)
+				else
+					self._stats_texts[stat.name].equip:set_text(format_round(total_value, stat.round_value))
+				end
 				self._stats_texts[stat.name].skill:set_alpha(1)
 				self._stats_texts[stat.name].skill:set_text(value == 0 and "" or (value > 0 and "+" or "") .. format_round(value, stat.round_value))
 
@@ -3275,10 +3336,16 @@ function BlackMarketGui:show_stats()
 
 				equip = equip + math.round(remove_stats[stat.name] or 0)
 
-				if unaltered_total_value < total_value then
+				local comp_unaltered_total_value = unaltered_total_value
+				local comp_total_value = total_value
+				if stat.name == "damage" then
+					comp_unaltered_total_value = old_rays and (old_rays * unaltered_total_value) or unaltered_total_value
+					comp_total_value = rays and (rays * total_value) or total_value
+				end
+				if comp_unaltered_total_value < comp_total_value then
 					self._stats_texts[stat.name].skill:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 					self._stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
-				elseif total_value < unaltered_total_value then
+				elseif comp_total_value < comp_unaltered_total_value then
 					self._stats_texts[stat.name].skill:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 					self._stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_positive or tweak_data.screen_colors.stats_negative)
 				else
