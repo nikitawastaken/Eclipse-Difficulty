@@ -28,7 +28,6 @@ function WeaponDescription._get_mods_pickup(weapon, name, base_stats)
 
 	local average_pickup = (min_pickup + max_pickup) * 0.5
 
-	Eclipse:log(1, debug.traceback())
 	return average_pickup - base_stats.pickup.value
 end
 
