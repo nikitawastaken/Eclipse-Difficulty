@@ -29,7 +29,6 @@
 	"bm_menu_perk_stockpile_desc": "Increases total ammo at the cost of reload speed.\n",
 
 
-	"bm_menu_steelsight_time": "Aim Time",
 	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
 
 
@@ -55,7 +54,7 @@
 	"menu_sharpshooter_beta_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more stable when you are aiming down sights.\n\nACE: ##$pro##\nYou gain ##$multipro## weapon accuracy while standing still.",
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Sniper and Assault Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot will increase your reload speed by ##$multipro## for ##$multipro2## seconds. Can only be triggered by SMGs, Assault Rifles and Sniper Rifles fired in single shot fire mode.",
 	"menu_sniper_graze_damage": "Bullseye",
-	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nYour piercing bullets no longer receive a ##$multibasic## damage penalty when passing through walls and shields or a ##$multibasic2## damage penalty when passing through enemies.\n\nACE: ##$pro##\nYou regenerate ##$multipro## armor for each succesful headshot with a Sniper Rifle. This can not occur more than once every ##$multipro2## seconds.",
+	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nLethal headshots with your Sniper Rifles are now explosive, dealing up to ##$multibasic## of the damage in a ##$multibasic2## radius around the bullet impact.\n\nACE: ##$pro##\nYou regenerate ##$multipro## armor for each succesful headshot with a Sniper Rifle. This can not occur more than once every ##$multipro2## seconds.",
 
 
 	"menu_from_the_hip_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage with Shotguns.\n\nACE: ##$pro##\nThe time it takes to draw and holster Shotguns is decreased by ##$multipro##.",

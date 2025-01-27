@@ -276,8 +276,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.speedy_reload.multipro = "40%"
 	self.skill_descs.speedy_reload.multipro2 = "6"
 
-	-- Deadeye
-	self.values.weapon.magnetizing_bullets = { true }
+	-- Bullseye
+	self.values.weapon.magnetizing_bullets = { true } -- unused
 	self.definitions.weapon_magnetizing_bullets = {
 		name_id = "menu_weapon_magnetizing_bullets",
 		category = "feature",
@@ -288,7 +288,8 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
-	self.values.weapon.no_pen_damage_penalty = { true }
+	-- unused
+	self.values.weapon.no_pen_damage_penalty = { true } -- unused
 	self.definitions.weapon_no_pen_damage_penalty = {
 		name_id = "menu_weapon_no_pen_damage_penalty",
 		category = "feature",
@@ -299,10 +300,20 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
+    self.values.snp.graze_damage = {
+		{
+			radius = 300,
+			damage_factor = 0.5,
+		},
+		{ -- unused
+			radius = 500,
+			damage_factor = 0.5,
+		}
+    }
 	self.values.player.headshot_regen_armor_bonus[1] = 5
 	self.on_headshot_dealt_cooldown = 3
-	self.skill_descs.single_shot_ammo_return.multibasic = "60%"
-	self.skill_descs.single_shot_ammo_return.multibasic2 = "30%"
+	self.skill_descs.single_shot_ammo_return.multibasic = "50%"
+	self.skill_descs.single_shot_ammo_return.multibasic2 = "3m"
 	self.skill_descs.single_shot_ammo_return.multipro = "50"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "3"
 

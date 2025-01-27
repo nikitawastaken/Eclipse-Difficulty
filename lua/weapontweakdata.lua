@@ -2243,7 +2243,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Snipers
 
 	-- Lebensauger
-	table.insert(self.wa2000.categories, "ng")
 	self.wa2000.CLIP_AMMO_MAX = 10
 	self.wa2000.stats.damage = 160
 	self.wa2000.stats.spread = 23
@@ -2253,7 +2252,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.wa2000.fire_mode_data.fire_rate = 60 / 200
 
 	-- Contractor
-	table.insert(self.tti.categories, "ng")
 	self.tti.CLIP_AMMO_MAX = 20
 	self.tti.stats.damage = 160
 	self.tti.stats.spread = 21
@@ -2263,7 +2261,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tti.fire_mode_data.fire_rate = 60 / 200
 
 	-- Grom
-	table.insert(self.siltstone.categories, "ng")
 	self.siltstone.CLIP_AMMO_MAX = 10
 	self.siltstone.stats.damage = 160
 	self.siltstone.stats.spread = 21
@@ -2273,7 +2270,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.siltstone.fire_mode_data.fire_rate = 60 / 200
 
 	-- Kang Arms
-	table.insert(self.qbu88.categories, "ng")
 	self.qbu88.CLIP_AMMO_MAX = 10
 	self.qbu88.stats.damage = 160
 	self.qbu88.stats.spread = 21
@@ -2283,7 +2279,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.qbu88.fire_mode_data.fire_rate = 60 / 200
 
 	-- North Star
-	table.insert(self.victor.categories, "ng")
 	self.victor.CLIP_AMMO_MAX = 10
 	self.victor.stats.damage = 160
 	self.victor.stats.spread = 19
@@ -2294,7 +2289,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Rangehitter
 	table.insert(self.sbl.categories, "single_action")
-	table.insert(self.sbl.categories, "ng")
 	self.sbl.use_data.selection_index = 1
 	self.sbl.CLIP_AMMO_MAX = 6
 	self.sbl.stats.damage = 240
