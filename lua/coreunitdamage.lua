@@ -16,7 +16,12 @@ Hooks:PostHook(CoreBodyDamage, "init", "sh_init", function(self)
 
 			self._body_element._damage_multiplier = math.min(armor_dmg_mul / tank_balance_mul, 1) or self._body_element._damage_multiplier
 		end
-	elseif self._body_element._name == "held_body_middle" or self._body_element._name == "held_body_left" or self._body_element._name == "held_body_right" or self._body_element._name == "held_body_top" then
+	elseif
+		self._body_element._name == "held_body_middle"
+		or self._body_element._name == "held_body_left"
+		or self._body_element._name == "held_body_right"
+		or self._body_element._name == "held_body_top"
+	then
 		local shield_balance_mul = managers.groupai:state():_get_balancing_multiplier(tweak_data.character.phalanx_shield_balance_mul)
 
 		self._body_element._damage_multiplier = math.min(1 / shield_balance_mul, 1) or self._body_element._damage_multiplier
