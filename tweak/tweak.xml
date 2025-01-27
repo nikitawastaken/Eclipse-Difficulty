@@ -13,10 +13,13 @@
 	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
 		<search>
 			<camera_shakes/>
-			<shake name="player_bullet_damage"/>
+			<shake name="melee_hit"/>
 		</search>
 		<target mode="append">
-			<shake name="player_bullet_damage_knock_out" spin="0" roll="-sin(t)/25" tilt="cos(t)/25" frequency="1" amplitude="0.75" attack="0" sustain="0" decay="2"/>
+			<shake name="melee_hit_spooc_var1" spin="sin(t/2)*0.75" roll="sin(t)" tilt="sin(t/2)*0.5" frequency="10" amplitude="1.0" attack="0" sustain="0" decay="1.5"/>
+			<shake name="melee_hit_spooc_var2" spin="-sin(t/2)*0.75" roll="sin(t)" tilt="sin(t/2)*0.5" frequency="10" amplitude="1.0" attack="0" sustain="0" decay="1.5"/>
+			<shake name="melee_hit_spooc_var3" spin="sin(t/2)*0.75" roll="-sin(t)" tilt="sin(t/2)*0.5" frequency="10" amplitude="1.0" attack="0" sustain="0" decay="1.5"/>
+			<shake name="melee_hit_spooc_var4" spin="-sin(t/2)*0.75" roll="-sin(t)" tilt="sin(t/2)*0.5" frequency="10" amplitude="1.0" attack="0" sustain="0" decay="1.5"/>
 		</target>
 	</tweak>
 </tweaks>

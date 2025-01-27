@@ -1302,6 +1302,8 @@ function CharacterTweakData:_set_presets()
 	self.shield.move_speed.crouch = self.shield.move_speed.stand
 	self.phalanx_minion.move_speed.crouch = self.phalanx_minion.move_speed.stand
 
+	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
+	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 	self.spooc.spooc_attack_timeout = { 4 / f, 5 / f }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 	self.taser.weapon.is_rifle.tase_distance = 750 * f
@@ -1323,11 +1325,14 @@ function CharacterTweakData:_set_presets()
 
 		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent
 	end
+	
+--[[
+	pro job speed increase (disabled for now, may come back, but prolly unlikely)
+	if is_pro_job then
+		self:_multiply_all_speeds(1.05, 1.05)
+	end
+]]--
 
-	-- pro job speed increase (disabled for now, may come back, but prolly unlikely)
-	-- if is_pro_job then
-	-- 	self:_multiply_all_speeds(1.05, 1.05)
-	-- end
 end
 
 CharacterTweakData._set_normal = CharacterTweakData._set_presets
