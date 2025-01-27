@@ -300,7 +300,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
-    self.values.snp.graze_damage = {
+	self.values.snp.graze_damage = {
 		{
 			radius = 300,
 			damage_factor = 0.5,
@@ -308,8 +308,8 @@ function UpgradesTweakData:init(tweak_data)
 		{ -- unused
 			radius = 500,
 			damage_factor = 0.5,
-		}
-    }
+		},
+	}
 	self.values.player.headshot_regen_armor_bonus[1] = 5
 	self.on_headshot_dealt_cooldown = 3
 	self.skill_descs.single_shot_ammo_return.multibasic = "50%"
