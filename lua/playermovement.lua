@@ -4,7 +4,6 @@ Hooks:PostHook(PlayerMovement, "init", "eclipse_init", function(self)
 	end
 end)
 
-
 function PlayerMovement:on_SPOOCed(enemy_unit)
 	if self._unit:character_damage()._god_mode or self._unit:character_damage():get_mission_blocker("invulnerable") then
 		return
@@ -34,12 +33,12 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 			local spooc_kick_damage = self._unit:character_damage():_max_health() * (enemy_unit:base():char_tweak().spooc_kick_damage or 0.25)
 
 			self._unit:character_damage():change_health(-spooc_kick_damage)
-			
+
 			local effect = "melee_hit_spooc_var" .. math.random(1, 4)
-			
+
 			self._unit:camera():play_shaker(effect, 1)
 		else
-			managers.player:set_player_state(state)	
+			managers.player:set_player_state(state)
 		end
 
 		return true

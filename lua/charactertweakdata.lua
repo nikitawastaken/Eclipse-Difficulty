@@ -1325,14 +1325,14 @@ function CharacterTweakData:_set_presets()
 
 		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent
 	end
-	
---[[
+
+	--[[
 	pro job speed increase (disabled for now, may come back, but prolly unlikely)
 	if is_pro_job then
 		self:_multiply_all_speeds(1.05, 1.05)
 	end
-]]--
-
+]]
+	--
 end
 
 CharacterTweakData._set_normal = CharacterTweakData._set_presets
