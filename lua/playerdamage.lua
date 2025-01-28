@@ -286,22 +286,22 @@ function PlayerDamage:_chk_dmg_too_soon()
 end
 
 function PlayerDamage:_calc_health_damage(attack_data)
-	-- damage tagging, worth the experiment i think
-	if attack_data.weapon_unit and attack_data.damage > 15 then
-		local armor_value_tagged = managers.player:body_armor_value("damage_tagged")
-		local skill_value_tagged = managers.player:upgrade_value("player", "player_tagged_speed_mul", 1)
-		local slowdown_data = {
-			max_mul = math.clamp(0.2 * armor_value_tagged * skill_value_tagged, 0, 1),
-			add_mul = math.clamp(math.min(0.07, 0.0015 * attack_data.damage) / armor_value_tagged * skill_value_tagged, 0, 1),
-			decay_time = math.min(1.5, 0.01 * attack_data.damage),
-			id = "snowthrower_cold",
-			duration = 2,
-			mul = math.clamp(math.min(0.7, 60 / attack_data.damage) * armor_value_tagged / skill_value_tagged, 0, 1),
-			prevents_running = false,
-		}
+	-- damage tagging, (IT WAS NOT) worth the experiment i think
+	-- if attack_data.weapon_unit and attack_data.damage > 15 then
+	-- 	local armor_value_tagged = managers.player:body_armor_value("damage_tagged")
+	-- 	local skill_value_tagged = managers.player:upgrade_value("player", "player_tagged_speed_mul", 1)
+	-- 	local slowdown_data = {
+	-- 		max_mul = math.clamp(0.2 * armor_value_tagged * skill_value_tagged, 0, 1),
+	-- 		add_mul = math.clamp(math.min(0.07, 0.0015 * attack_data.damage) / armor_value_tagged * skill_value_tagged, 0, 1),
+	-- 		decay_time = math.min(1.5, 0.01 * attack_data.damage),
+	-- 		id = "snowthrower_cold",
+	-- 		duration = 2,
+	-- 		mul = math.clamp(math.min(0.7, 60 / attack_data.damage) * armor_value_tagged / skill_value_tagged, 0, 1),
+	-- 		prevents_running = false,
+	-- 	}
 
-		self:apply_slowdown(slowdown_data)
-	end
+	-- 	self:apply_slowdown(slowdown_data)
+	-- end
 
 	if managers.player:has_activate_temporary_upgrade("temporary", "mrwi_health_invulnerable") then
 		return 0
