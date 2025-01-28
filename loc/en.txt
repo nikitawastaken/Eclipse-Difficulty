@@ -122,7 +122,7 @@
 	"menu_jail_workout_beta_desc": "BASIC: ##$basic##\nIncreases the time before you start getting detected by ##$multibasic## while in casing mode.\n\nYou are ##$multibasic## less likely to be targeted when you are close to your crew members in loud.\n\nACE: ##$pro##\nYour concealment is increased by ##$multipro##.",
 	"menu_cleaner_beta": "Eagle Eye",
 	"menu_cleaner_beta_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage against special enemies.\n\nACE: ##$pro##\nYou can now mark specials by aiming down at them with any weapon.\n\nThe range at which you can manually mark enemies is ##$multipro## times longer.",
-	"menu_second_chances_beta": "Winstone Wolfe",
+	"menu_second_chances_beta": "Winston Wolfe",
 	"menu_second_chances_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## additional body bag in your inventory.\nAlso increases the body bag inventory space to ##$multibasic2##.\n\nACE: ##$pro##\nYou lockpick ##$multipro## faster.\n\nYou can now silently crack safes by hand.",
 	"menu_chameleon_beta": "Blackout",
 	"menu_chameleon_beta_desc": "BASIC: ##$basic##\nYou gain the ability to disable ##1## camera from detecting you and your crew. Effect lasts for ##25## seconds.\n\nACE: ##$pro##\nYour ECM jammer can now also be used to open certain electronic doors. Pagers are delayed by the ECM jammers.",
