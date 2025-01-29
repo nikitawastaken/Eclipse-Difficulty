@@ -36,13 +36,6 @@ end
 --		round_value: <true | 2>
 --	}
 --]]
-BlackMarketGui.eclipse_custom_stats = {
-	{
-		name = "steelsight_time",
-		inverted = true,
-		round_value = 2,
-	},
-}
 
 function BlackMarketGui:_setup(is_start_page, component_data)
 	self._in_setup = true
@@ -1681,17 +1674,23 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				},
 				{
 					name = "pickup",
+					round_value = 2,
 				},
 				{
 					inverted = true,
 					name = "reload",
 				},
 				{
-					round_value = true,
-					name = "fire_rate",
+					name = "steelsight_time",
+					inverted = true,
+					round_value = 2,
 				},
 				{
 					name = "damage",
+				},
+				{
+					round_value = true,
+					name = "fire_rate",
 				},
 				{
 					percent = true,
@@ -1715,9 +1714,6 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					offset = true,
 				},
 			}
-			for _, eclipse_stat in ipairs(self.eclipse_custom_stats) do
-				table.insert(self._stats_shown, eclipse_stat)
-			end
 			self._stats_panel = self._weapon_info_panel:panel({
 				y = 58,
 				x = 10,
