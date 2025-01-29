@@ -14,6 +14,7 @@
 	"bm_w_tecci": "Bootleg Light Machine Gun",
 
 	"bm_menu_pickup": "Ammo Pickup",
+	"bm_menu_steelsight_time": "Aim Time",
 	"bm_menu_bonus": "Gun Perk",
 	"bm_menu_perk_speedloader": "Speedloader",
 	"bm_menu_perk_speedloader_desc": "Increases reload speed at the cost of total ammo.\n",
