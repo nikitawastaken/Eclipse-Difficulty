@@ -2595,8 +2595,8 @@ function BlackMarketGui:show_stats()
 		end
 
 		local base_pellets = ""
-		local unmodded_base_rays = 0
-		local base_rays = 0
+		local unmodded_base_rays
+		local base_rays
 		if table.contains(base_weapon_tweak.categories, "shotgun") then
 			local base_blueprint = managers.blackmarket:get_weapon_blueprint(category, slot)
 			unmodded_base_rays, base_rays = get_pellets_from_blueprint(name, base_blueprint, category, slot)

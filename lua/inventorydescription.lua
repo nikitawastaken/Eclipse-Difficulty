@@ -11,6 +11,16 @@ for _, stat in ipairs(eclipse_custom_stats) do
 	table.insert(WeaponDescription._stats_shown, stat)
 end
 
+local function convert_add_to_mul(value)
+	if value > 1 then
+		return 1 / value
+	elseif value < 1 then
+		return math.abs(value - 1) + 1
+	else
+		return 1
+	end
+end
+
 function WeaponDescription._get_base_pickup(weapon, name)
 	local weapon_tweak = tweak_data.weapon[name]
 	local average_pickup = (weapon_tweak.AMMO_PICKUP[1] + weapon_tweak.AMMO_PICKUP[2]) * 0.5
@@ -80,34 +90,36 @@ function WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats)
 end
 
 function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, mods_stats)
-	local weapon_tweak = tweak_data.weapon[name]
-	local categories = weapon_tweak.categories
-
-	local multiplier = (tweak_data.player.TRANSITION_DURATION or 0.23) / weapon_tweak.steelsight_time
+	local multiplier = 1
+	local categories = tweak_data.weapon[name].categories
 
 	for _, category in ipairs(categories) do
-		multiplier = multiplier * managers.player:upgrade_value(category, "enter_steelsight_speed_multiplier", 1)
+		multiplier = multiplier + 1 - managers.player:upgrade_value(category, "enter_steelsight_speed_multiplier", 1)
 	end
 
-	multiplier = multiplier * managers.player:upgrade_value("weapon", "enter_steelsight_speed_multiplier", 1)
+	multiplier = multiplier + 1 - managers.player:temporary_upgrade_value("temporary", "combat_medic_enter_steelsight_speed_multiplier", 1)
+	multiplier = multiplier + 1 - managers.player:upgrade_value(weapon.factory_id, "enter_steelsight_speed_multiplier", 1)
+	multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "enter_steelsight_speed_multiplier", 1)
 
 	if managers.weapon_factory:has_perk("silencer", weapon.factory_id, weapon.blueprint) then
-		multiplier = multiplier * managers.player:upgrade_value("weapon", "silencer_enter_steelsight_speed_multiplier", 1)
+		multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "silencer_enter_steelsight_speed_multiplier", 1)
 
 		for _, category in ipairs(categories) do
-			multiplier = multiplier * managers.player:upgrade_value(category, "silencer_enter_steelsight_speed_multiplier", 1)
+			multiplier = multiplier + 1 - managers.player:upgrade_value(category, "silencer_enter_steelsight_speed_multiplier", 1)
 		end
 	end
 
-	local result = base_stats.steelsight_time.value - mods_stats.steelsight_time.value - (weapon_tweak.steelsight_time / multiplier)
+	multiplier = convert_add_to_mul(multiplier)
+
+	local result = base_stats.steelsight_time.value / multiplier - mods_stats.steelsight_time.value
 	-- Some jank to make sure we don't end up with +0 or -0 on the stats
 	-- that also happens to double as a way to test if there exists a skill multiplier
-	local new = math.round(base_stats.steelsight_time.value - result, 0.01)
-	local cur = math.round(base_stats.steelsight_time.value, 0.01)
+	local new = math.round(base_stats.steelsight_time.value, 0.01)
+	local cur = math.round(result, 0.01)
 	if new == cur then
 		return false, 0
 	else
-		return true, -result
+		return true, result - base_stats.steelsight_time.value
 	end
 end
 
