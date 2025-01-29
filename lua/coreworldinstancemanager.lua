@@ -8,7 +8,7 @@ if not instance_script_patches then
 	return
 end
 
-Hooks:PostHook(CoreWorldInstanceManager, "_get_instance_mission_data", "eclipse_init", function (self, path)
+Hooks:PostHook(CoreWorldInstanceManager, "_get_instance_mission_data", "eclipse_init", function(self, path)
 	local func = instance_script_patches[path]
 
 	if func then
@@ -17,5 +17,5 @@ Hooks:PostHook(CoreWorldInstanceManager, "_get_instance_mission_data", "eclipse_
 		func(result)
 
 		return result
-	end	
+	end
 end)

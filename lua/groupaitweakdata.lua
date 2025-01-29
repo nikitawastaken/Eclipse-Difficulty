@@ -1800,18 +1800,16 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self.enemy_spawn_groups.FBI_spoocs = self.enemy_spawn_groups.single_spooc
 end)
 
-
 -- get rid of marshals
 function GroupAITweakData:_init_enemy_spawn_groups_level() end
-
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	-- difficulty scaling
 	local f = ((difficulty_index ^ 2) / (difficulty_index * 3))
 	local is_pro = Global.game_settings and Global.game_settings.one_down
 	local map_scale_factor = 1
-	local map_scales = Eclipse.map_sizes 
-	
+	local map_scales = Eclipse.map_sizes
+
 	for _, sd in pairs(map_scales.severely_decreased_scaling_heists) do
 		if job == sd then
 			map_scale_factor = 0.5
@@ -1898,27 +1896,27 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.cs_grenade_timeout = { 110 / f / ((is_pro and 1.25) or 1), 150 / f / ((is_pro and 1.25) or 1) }
 	self.cs_grenade_chance_times = { 120, 240 }
 	self.cs_grenade_lifetime = 10 * f
-	
+
 	if difficulty_index < 4 then
 		self.besiege.faction = {
 			"CS",
 			"CS",
-			"CS",		
+			"CS",
 		}
 	elseif difficulty_index < 6 then
 		self.besiege.faction = {
 			"CS",
 			"FBI",
-			"FBI",		
-		}	
+			"FBI",
+		}
 	else
 		self.besiege.faction = {
 			"CS",
 			"FBI",
-			"Elite",		
+			"Elite",
 		}
 	end
-		
+
 	-- Spawngroups
 	if difficulty_index == 2 then
 		self.besiege.assault.groups = {
@@ -2045,22 +2043,22 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.ponr.faction = {
 			"FBI",
 			"FBI",
-			"FBI",		
+			"FBI",
 		}
 	elseif difficulty_index < 6 then
 		self.ponr.faction = {
 			"Elite",
 			"Elite",
-			"Elite",		
-		}	
+			"Elite",
+		}
 	else
 		self.ponr.faction = {
 			"Zeal",
 			"Zeal",
-			"Zeal",		
+			"Zeal",
 		}
 	end
-	
+
 	-- Spawngroups
 	if difficulty_index == 2 then
 		self.ponr.assault.groups = {

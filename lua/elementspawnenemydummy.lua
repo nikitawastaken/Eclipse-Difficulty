@@ -14,7 +14,7 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		heavy_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
 		heavy_2 = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
-		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1"
+		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	},
 	FBI = {
 		swat_1 = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
@@ -133,7 +133,8 @@ Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 		self._enemy_name = Idstring(mapped_unit)
 	end
 end)
-]]--
+]]
+--
 
 Hooks:PreHook(ElementSpawnEnemyDummy, "produce", "sh_produce", function(self, params)
 	if not params and self._enemy_table then

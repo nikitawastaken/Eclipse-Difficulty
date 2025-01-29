@@ -106,7 +106,6 @@ function CopActionHurt:_pseudorandom(a, b)
 	end
 end
 
-
 -- Fix shooting direction while hurt being specified as rotation instead of a vector
 function CopActionHurt:clbk_shooting_hurt()
 	self._delayed_shooting_hurt_clbk_id = nil

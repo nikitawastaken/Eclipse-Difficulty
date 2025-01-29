@@ -6,7 +6,7 @@ function GroupAIStateBase:_get_scripted_tier()
 	local index = 1 + (diff_rounded / 0.5)
 	local state = managers.groupai:state_name()
 	local tier = tweak_data.group_ai[state] and tweak_data.group_ai[state].faction[index]
-	
+
 	return tier or "CS"
 end
 
@@ -17,7 +17,7 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse_calcula
 			if getmetatable(element) == ElementSpawnEnemyDummy then
 				local tier = self:_get_scripted_tier()
 				local mapped_name = element.enemy_mapping[element._enemy_name:key()]
-				local mapped_unit = element.faction_mapping[tier] and element.faction_mapping[tier][mapped_name] 
+				local mapped_unit = element.faction_mapping[tier] and element.faction_mapping[tier][mapped_name]
 
 				if type(mapped_unit) == "table" then
 					element._enemy_table = mapped_unit
@@ -190,7 +190,6 @@ function GroupAIStateBase:_merge_coarse_path_by_area(coarse_path)
 	end
 end
 
-
 -- Ignore disabled criminals for area safety checks
 function GroupAIStateBase:is_area_safe(area)
 	for _, u_data in pairs(self._criminals) do
@@ -218,7 +217,6 @@ function GroupAIStateBase:is_nav_seg_safe(nav_seg)
 	end
 	return true
 end
-
 
 -- Don't count recon as assault force and vice versa
 function GroupAIStateBase:_count_police_force(task_name)
