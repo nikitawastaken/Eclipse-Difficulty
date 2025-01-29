@@ -1,9 +1,11 @@
-local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-local tank = (difficulty == 6 and "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
+local is_eclipse = Eclipse.utils.is_eclipse()
+
+local bulldozer = scripted_enemy.bulldozer_1
+local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 
 local dozer_heli = {
 	values = {
-        enemy = tank
+        enemy = is_eclipse and elite_bulldozer or bulldozer
 	}
 }
 local disabled = {
@@ -25,7 +27,7 @@ return {
 	[100695] = {
 		ponr = {
 			length = 60,
-			player_mul = {1.25, 1, 0.75, 0.5}
+			player_mul = { 1.25, 1, 0.75, 0.5 }
 		},
 		on_executed = {
 			{id = 101608, delay = 0}

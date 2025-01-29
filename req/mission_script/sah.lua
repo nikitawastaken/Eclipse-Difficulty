@@ -1,10 +1,26 @@
+local disabled = {
+	values = {
+		enabled = false
+	}
+}
+local roof_spawn_1 = {
+	values = {
+		interval = 20
+	}
+}	
+local roof_spawn_2 = {
+	values = {
+		interval = 30
+	}
+}
+local storage_spawn = {
+	values = {
+		interval = 40
+	}
+}
 return {
 	-- Disable instant difficulty increase
-	[100122] = {
-		values = {
-			enabled = false
-		}
-	},
+	[100122] = disabled,
 	-- Loud, slightly delay police response
 	[100109] = {
 		values = {
@@ -34,71 +50,23 @@ return {
 		}
 	},
 	-- Disable area report triggers
-	[100140] = {
-		values = {
-			enabled = false
-		}
-	},
-	[106783] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103926] = {
-		values = {
-			enabled = false
-		}
-	},
-	[106784] = {
-		values = {
-			enabled = false
-		}
-	},
+	[100140] = disabled,
+	[106783] = disabled,
+	[103926] = disabled,
+	[106784] = disabled,
 	-- Slow down roof spawns
-	[102667] = {
-		values = {
-			interval = 20
-		}
-	},
-	[106776] = {
-		values = {
-			interval = 20
-		}
-	},
-	[106767] = {
-		values = {
-			interval = 20
-		}
-	},
-	[106764] = {
-		values = {
-			interval = 20
-		}
-	},
-	[100694] = {
-		values = {
-			interval = 30
-		}
-	},
-	[100154] = {
-		values = {
-			interval = 30
-		}
-	},
+	[102667] = roof_spawn_1,
+	[106776] = roof_spawn_1,
+	[106767] = roof_spawn_1,
+	[106764] = roof_spawn_1,
+	[100694] = roof_spawn_2,
+	[100154] = roof_spawn_2,
 	-- Slow down storage spawns
-	[102303] = {
-		values = {
-			interval = 40
-		}
-	},
+	[102303] = storage_spawn,
+	[104089] = storage_spawn,
 	[103662] = {
 		values = {
 			interval = 20
-		}
-	},
-	[104089] = {
-		values = {
-			interval = 40
 		}
 	},
 	-- Slow down and adjust storage window spawns
@@ -113,11 +81,7 @@ return {
 			tac_bull_rush = false
 		}
 	},
-	[101175] = {
-		values = {
-			enabled = false
-		}
-	},
+	[101175] = disabled,
 	[101177] = {
 		set_ponr_state = true
 	}

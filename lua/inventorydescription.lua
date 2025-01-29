@@ -83,13 +83,12 @@ function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, 
 	local weapon_tweak = tweak_data.weapon[name]
 	local categories = weapon_tweak.categories
 
-	local multiplier = (tweak_data.player.TRANSITION_DURATION or 0.35) / weapon_tweak.steelsight_time
+	local multiplier = (tweak_data.player.TRANSITION_DURATION or 0.23) / weapon_tweak.steelsight_time
 
 	for _, category in ipairs(categories) do
 		multiplier = multiplier * managers.player:upgrade_value(category, "enter_steelsight_speed_multiplier", 1)
 	end
 
-	multiplier = multiplier * managers.player:upgrade_value(name, "enter_steelsight_speed_multiplier", 1)
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "enter_steelsight_speed_multiplier", 1)
 
 	if managers.weapon_factory:has_perk("silencer", weapon.factory_id, weapon.blueprint) then

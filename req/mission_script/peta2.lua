@@ -1,25 +1,22 @@
+local bridge_spawn = {
+	values = {
+		interval = 20
+	}
+}
+
 return {
+	-- add point of no return
+	[100580] = {
+		ponr = {
+			length = 120,
+			player_mul = { 2, 1.25, 1, 1 }
+		}
+	},
 	-- slow down a few spawnpoints
-	[100130] = {
-		values = {
-			interval = 20
-		}
-	},
-	[100128] = {
-		values = {
-			interval = 20
-		}
-	},
-	[100694] = {
-		values = {
-			interval = 20
-		}
-	},
-	[101217] = {
-		values = {
-			interval = 20
-		}
-	},
+	[100130] = bridge_spawn,
+	[100128] = bridge_spawn,
+	[100694] = bridge_spawn,
+	[101217] = bridge_spawn,
 	[102374] = {
 		values = {
 			elements = {
@@ -29,13 +26,6 @@ return {
 				102379,
 				102380
 			}
-		}
-	},
-	-- add point of no return
-	[100580] = {
-		ponr = {
-			length = 120,
-			player_mul = {2, 1.25, 1, 1}
 		}
 	},
 	[101707] = {

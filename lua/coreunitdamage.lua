@@ -1,5 +1,5 @@
 -- Increase bulldozer armor health and increase planks durability (SH)
-Hooks:PostHook(CoreBodyDamage, "init", "sh_init", function(self)
+Hooks:PostHook(CoreBodyDamage, "init", "eclipse_init", function(self)
 	if not self._body_element then
 		return
 	end

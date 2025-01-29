@@ -6,7 +6,7 @@ function HUDAssaultCorner:set_ponr_state()
 	self._ponr_state = true
 end
 
-if StreamHeist.settings.ponr_assault_text then
+if Eclipse.settings.ponr_assault_text then
 	function HUDAssaultCorner:sync_start_assault(assault_number)
 		if self._point_of_no_return or self._casing then
 			return

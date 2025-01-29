@@ -14,59 +14,18 @@ local suits = {
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"),
 }
 
+local disabled = {  
+	values = {
+		enabled = false
+	}
+}
+	
 return {
 	[101829] = {
 		ponr = {
 			length = 240,
-			player_mul = {2, 1.5, 1.25, 1}
+			player_mul = { 2, 1.5, 1.25, 1 }
 		}
-	},
-	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?
-	[101835] = {  -- point area min police force 2
-		values = {
-			enabled = false,
-		},
-	},
-	-- cheat spawns, replaced with reenforce
-	[102369] = {  -- toggle cheat spawns on
-		values = {
-			enabled = false,
-		},
-	},
-	[102355] = {  -- extra preferreds 001
-		values = {
-			enabled = false,
-		},
-	},
-	[102363] = {  -- extra preferreds 002
-		values = {
-			enabled = false,
-		},
-	},
-	[100007] = {  -- extra preferreds 003
-		values = {
-			enabled = false,
-		},
-	},
-	[102388] = {  -- extra preferreds 004
-		values = {
-			enabled = false,
-		},
-	},
-	[102847] = {  -- extra preferreds 005
-		values = {
-			enabled = false,
-		},
-	},
-	[100020] = {  -- extra preferreds 006
-		values = {
-			enabled = false,
-		},
-	},
-	[100198] = {  -- extra preferreds 007
-		values = {
-			enabled = false,
-		},
 	},
 	[100109] = {  -- police, executed on alarm
 		reinforce = {
@@ -193,6 +152,17 @@ return {
 			},
 		},
 	},
+	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?
+	[101835] = disabled,  -- point area min police force 2
+	-- cheat spawns, replaced with reenforce
+	[102369] = disabled,  
+	[102355] = disabled,
+	[102363] = disabled,
+	[100007] = disabled,
+	[102388] = disabled,
+	[102847] = disabled,
+	[100020] = disabled,
+	[100198] = disabled,
 	[104687] = { enemy = securitys },  -- pre-spawned policia
 	[104688] = { enemy = securitys },
 	[100675] = { enemy = securitys },

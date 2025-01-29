@@ -1,7 +1,7 @@
 -- Remove position reservations on death
 -- Improve reaction to ECM feedback by playing specific voicelines and pain sounds
 if Network:is_server() then
-	Hooks:PostHook(CopActionHurt, "init", "sh_init", function(self)
+	Hooks:PostHook(CopActionHurt, "init", "eclipse_init", function(self)
 		if self._hurt_type == "death" then
 			self._unit:brain():rem_all_pos_rsrv()
 		elseif self._hurt_type == "hurt_sick" then
@@ -103,5 +103,18 @@ function CopActionHurt:_pseudorandom(a, b)
 		return math.floor(math.lerp(1, a + 1, val))
 	else
 		return val
+	end
+end
+
+
+-- Fix shooting direction while hurt being specified as rotation instead of a vector
+function CopActionHurt:clbk_shooting_hurt()
+	self._delayed_shooting_hurt_clbk_id = nil
+	if not alive(self._weapon_unit) then
+		return
+	end
+	local fire_obj = self._weapon_unit:base().fire_object and self._weapon_unit:base():fire_object()
+	if fire_obj then
+		self._weapon_unit:base():singleshot(fire_obj:position(), fire_obj:rotation():y())
 	end
 end

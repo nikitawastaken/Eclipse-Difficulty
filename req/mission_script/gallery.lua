@@ -1,1 +1,1 @@
-return StreamHeist:require("mission_script/framing_frame_1")
+return Eclipse:require("mission_script/framing_frame_1")

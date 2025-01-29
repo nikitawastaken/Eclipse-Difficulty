@@ -1,3 +1,9 @@
+local reinforce = {
+	on_executed = {
+		{ id = 100364, delay = 0 }
+	}
+}
+
 return {
 	-- Special ambush chance increase
 	[103072] = {
@@ -21,24 +27,8 @@ return {
 		}
 	},
 	-- Enable all street reinforce spots when first responders arrive
-	[104727] = {
-		on_executed = {
-			{ id = 100364, delay = 0 }
-		}
-	},
-	[104728] = {
-		on_executed = {
-			{ id = 100364, delay = 0 }
-		}
-	},
-	[104729] = {
-		on_executed = {
-			{ id = 100364, delay = 0 }
-		}
-	},
-	[104730] = {
-		on_executed = {
-			{ id = 100364, delay = 0 }
-		}
-	}
+	[104727] = reinforce,
+	[104728] = reinforce,
+	[104729] = reinforce,
+	[104730] = reinforce,
 }

@@ -1,6 +1,6 @@
 -- Dynamically load throwable if we have one
 local unit_ids = Idstring("unit")
-Hooks:PostHook(CopBase, "init", "sh_init", function(self)
+Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	local throwable = self._char_tweak.throwable
 	if not throwable then
 		return
@@ -11,12 +11,12 @@ Hooks:PostHook(CopBase, "init", "sh_init", function(self)
 	local sprint_unit_name = tweak_entry.sprint_unit and Idstring(tweak_entry.sprint_unit)
 
 	if not PackageManager:has(unit_ids, unit_name) then
-		StreamHeist:log("Loading projectile unit", throwable)
+		Eclipse:log("Loading projectile unit", throwable)
 		managers.dyn_resource:load(unit_ids, unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 
 	if sprint_unit_name and not PackageManager:has(unit_ids, sprint_unit_name) then
-		StreamHeist:log("Loading projectile sprint unit", throwable)
+		Eclipse:log("Loading projectile sprint unit", throwable)
 		managers.dyn_resource:load(unit_ids, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 end)
@@ -46,7 +46,7 @@ Hooks:PostHook(CopBase, "post_init", "hitbox_fix_post_init", function(self)
 end)
 
 -- Check for weapon changes
-CopBase.unit_weapon_mapping = StreamHeist:require("unit_weapons")
+CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
 if Network:is_client() then
 	return
 end

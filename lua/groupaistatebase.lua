@@ -1,3 +1,34 @@
+local ffo_heists = Eclipse.ffo_heists
+
+--Peak scripting
+function GroupAIStateBase:_get_scripted_tier()
+	local diff_rounded = self._difficulty_value >= 1 and 1 or self._difficulty_value < 0.5 and 0 or 0.5
+	local index = 1 + (diff_rounded / 0.5)
+	local state = managers.groupai:state_name()
+	local tier = tweak_data.group_ai[state] and tweak_data.group_ai[state].faction[index]
+	
+	return tier or "CS"
+end
+
+-- Set up needed variables
+Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse_calculate_difficulty_ratio", function(self)
+	for name, script in pairs(managers.mission._scripts) do
+		for k, element in pairs(script._elements) do
+			if getmetatable(element) == ElementSpawnEnemyDummy then
+				local tier = self:_get_scripted_tier()
+				local mapped_name = element.enemy_mapping[element._enemy_name:key()]
+				local mapped_unit = element.faction_mapping[tier] and element.faction_mapping[tier][mapped_name] 
+
+				if type(mapped_unit) == "table" then
+					element._enemy_table = mapped_unit
+				elseif mapped_unit then
+					element._enemy_name = Idstring(mapped_unit)
+				end
+			end
+		end
+	end
+end)
+
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	self._drama_data.drama_bal_mul = tweak_data.drama.drama_balance_mul
@@ -15,33 +46,6 @@ function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	self:_add_drama(drama_amount)
 end
 
-local _update_whitelist = {
-	hox_1 = true,
-	hox_2 = true,
-	red2 = true, -- fwb
-	spa = true, -- 10-10
-	flat = true, -- proom
-	dinner = true, -- slouse
-	pbr2 = true, -- bos
-	peta2 = true, -- goat2
-	vit = true, -- whouse
-	des = true, -- hrock
-	election_day_3 = true,
-	election_day_3_skip1 = true,
-	election_day_3_skip2 = true,
-	run = true, -- hstreet
-	bph = true, -- hisland
-	big = true, -- bigbank
-	wwh = true, -- kolyaskindeal
-	bex = true, -- sanmartini
-	pex = true, -- bijuana
-	pent = true, -- mmaster
-	firestarter_2 = true,
-	rvd1 = true, -- resdogs1
-	man = true, -- ucovr
-	glace = true, -- gridge
-}
-
 -- Code from Dr. Newbie
 local _old_update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
 
@@ -56,7 +60,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 
 	local level_id = managers.job:has_active_job() and managers.job:current_level_id() or ""
 
-	if _update_whitelist[level_id] then
+	if ffo_heists[level_id] then
 		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
 	end
 
@@ -86,7 +90,7 @@ function GroupAIStateBase:chk_allow_drop_in()
 end
 
 -- Set up needed variables
-Hooks:PostHook(GroupAIStateBase, "init", "sh_init", function(self)
+Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
@@ -101,6 +105,36 @@ function GroupAIStateBase:_process_recurring_grp_SO(...)
 		return true
 	end
 end
+
+-- Make difficulty progress smoother
+function GroupAIStateBase:_update_difficulty_value()
+	if self._target_difficulty and self._t >= self._next_difficulty_step_t then
+		self._difficulty_value = math.min(self._difficulty_value + self._difficulty_step, self._target_difficulty)
+		if self._difficulty_value >= self._target_difficulty then
+			self._target_difficulty = nil
+		else
+			self._next_difficulty_step_t = self._t + 15
+		end
+		self:_calculate_difficulty_ratio()
+	end
+end
+
+local set_difficulty_original = GroupAIStateBase.set_difficulty
+function GroupAIStateBase:set_difficulty(value, ...)
+	if not managers.game_play_central or managers.game_play_central:get_heist_timer() < 1 or value < self._difficulty_value then
+		self._target_difficulty = nil
+
+		return set_difficulty_original(self, value, ...)
+	end
+
+	self._difficulty_step = 0.05
+	self._target_difficulty = value
+	self._next_difficulty_step_t = self._next_difficulty_step_t or self._t
+
+	self:_update_difficulty_value()
+end
+
+Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update_difficulty_value)
 
 -- Delay spawn points when enemies die close to them
 Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregistered", function(self, unit)
@@ -141,6 +175,22 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 	end
 end)
 
+-- Fix this function doing nothing
+function GroupAIStateBase:_merge_coarse_path_by_area(coarse_path)
+	local i_nav_seg = #coarse_path
+	local area, last_area
+	while i_nav_seg > 0 and #coarse_path > 2 do
+		area = self:get_area_from_nav_seg_id(coarse_path[i_nav_seg][1])
+		if last_area and last_area == area then
+			table.remove(coarse_path, i_nav_seg)
+		else
+			last_area = area
+		end
+		i_nav_seg = i_nav_seg - 1
+	end
+end
+
+
 -- Ignore disabled criminals for area safety checks
 function GroupAIStateBase:is_area_safe(area)
 	for _, u_data in pairs(self._criminals) do
@@ -168,6 +218,7 @@ function GroupAIStateBase:is_nav_seg_safe(nav_seg)
 	end
 	return true
 end
+
 
 -- Don't count recon as assault force and vice versa
 function GroupAIStateBase:_count_police_force(task_name)
@@ -322,6 +373,11 @@ function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, t
 	end
 end
 
+-- Make this function properly set rescue state again for checking if recon tasks are allowed
+Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function(self, state)
+	self._rescue_allowed = state
+end)
+
 -- disable ai trades when all players are in custody on pro jobs, if you fucked up - you fucked up
 function GroupAIStateBase:is_ai_trade_possible()
 	if managers.groupai:state():whisper_mode() then
@@ -348,8 +404,3 @@ function GroupAIStateBase:is_ai_trade_possible()
 
 	return not ai_disabled and (self._hostage_headcount > 0 or next(self._converted_police) or managers.trade:is_trading())
 end
-
--- Make this function properly set rescue state again for checking if recon tasks are allowed
-Hooks:OverrideFunction(GroupAIStateBase, "_set_rescue_state", function(self, state)
-	self._rescue_allowed = state
-end)

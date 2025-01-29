@@ -1,22 +1,35 @@
-local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-local is_pro = Global.game_settings and Global.game_settings.one_down
-local HeliDrop1 = Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1")
-local HeliDrop2 = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
-local HeliDropChance = 12.5 * diff_i
-if diff_i == 6  then -- you get fucked on eclipse
-	HeliDropChance = 85
-	if is_pro then -- even more so on pro job
-		HeliDropChance = 100
-		HeliDrop1 = Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic")
-		HeliDrop2 = Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3")
-	end
-end
+local scripted_enemy = Eclipse.scripted_enemy
+local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = is_eclipse and is_pro_job
+
+local heli_enemy_1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1
+local heli_enemy_2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser
+
+local heli_chance = is_eclipse_pro and 100 or is_eclipse and 85 or 12.5 * diff_i
+
+local disabled = {
+	values = {
+		enabled = false
+	}
+}
+local major_ave_spawn_1 = {
+	values = {
+		interval = 10
+	}
+}
+local major_ave_spawn_2 = {
+	values = {
+		interval = 10
+	}
+}
 
 return {
 	[101356] = {
 		ponr = {
 			length = 480,
-			player_mul = {2.5, 2, 1.5, 1}
+			player_mul = { 2.5, 2, 1.5, 1 }
 		}
 	},
 	-- ovk145-alike dozer spawn on armitage ave.
@@ -24,7 +37,7 @@ return {
 		values = {
 			enabled = true,
 		},
-		chance = HeliDropChance
+		chance = heli_chance
 	},
 	[103591] = {
 		values = {
@@ -38,29 +51,29 @@ return {
 		}
 	},
 	[103593] = {
-		chance = HeliDropChance
+		chance = heli_chance
 	},
 	[103586] = {
-		enemy = HeliDrop1,
+		enemy = heli_enemy_1
 	},
 	[100232] = {
-		enemy = HeliDrop1
+		enemy = heli_enemy_1
 	},
 	[100341] = {
-		enemy = HeliDrop2
+		enemy = heli_enemy_2
 	},
 	[100351] = {
-		enemy = HeliDrop2
+		enemy = heli_enemy_2
 	},
 	[101202] = {
 		values = {
 			on_executed = {
-				{delay = 5, id = 100232},
-				{delay = 5, id = 100341},
-				{delay = 5, id = 100351},
-				{delay = 5, id = 103586},
-				{delay = 0, id = 101669},
-				{delay = 15, id = 101648},
+				{ delay = 5, id = 100232 },
+				{ delay = 5, id = 100341 },
+				{ delay = 5, id = 100351 },
+				{ delay = 5, id = 103586 },
+				{ delay = 0, id = 101669 },
+				{ delay = 15, id = 101648 },
 			}
 		}
 	},
@@ -119,16 +132,8 @@ return {
 			trigger_times = 1
 		}
 	},
-	[102866] = {
-		values = {
-			enabled = false -- disable vanilla ponr
-		}
-	},
-	[102880] = {
-		values = {
-			enabled = false -- disable vanilla ponr
-		}
-	},
+	[102866] = disabled,
+	[102880] = disabled, -- disabled vanilla ponr
 	[100029] = {
 		values = {
 			interval = 20
@@ -151,31 +156,11 @@ return {
 		}
 	},
 	-- slow down major ave. spawnpoints
-	[100265] = {
-		values = {
-			interval = 10
-		}
-	},
-	[103961] = {
-		values = {
-			interval = 10
-		}
-	},
-	[100597] = {
-		values = {
-			interval = 10
-		}
-	},
-	[103702] = {
-		values = {
-			interval = 15
-		}
-	},
-	[103701] = {
-		values = {
-			interval = 15
-		}
-	},
+	[100265] = major_ave_spawn_1,
+	[103961] = major_ave_spawn_1,
+	[100597] = major_ave_spawn_1,
+	[103702] = major_ave_spawn_2,
+	[103701] = major_ave_spawn_2,
 	-- delay the beginning of besiege
 	[100631] = {
 		on_executed = {
@@ -192,16 +177,8 @@ return {
 			{ id = 101757, remove = true }
 		}
 	},
-	[102435] = { -- disable some scripted spawns that show up in the face cause of the delayed besiege
-		values = {
-			enabled = false
-		}
-	},
-	[100298] = { -- also disable this cop cause i cba to fix him running running away
-		values = {
-			enabled = false
-		}
-	},
+	[102435] = disabled,
+	[100298] = disabled,
 	-- add a missing cop to start beat cop sequence var1
 	[101062] = {
 		on_executed = {
@@ -239,11 +216,7 @@ return {
 		}
 	},
 	-- nuke the hunt_so loop, it isn't needed and it bugs out all of the lengthy spawn animations (heli spawns in this case)
-	[100036] = {
-		values = {
-			enabled = false
-		}
-	},
+	[100036] = disabled,
 	-- fix inkwell industrial helicopter deploying smoke but not spawning any enemies
 	[102212] = {
 		values = {
@@ -267,31 +240,11 @@ return {
 	-- lots of comments here so that i don't lose track of anything
 
 	-- first disable all of the trash vanilla spawngroups
-	[101431] = {
-		values = {
-			enabled = false -- this spawngroup is a single first preferred one which i'm too lazy to reuse so we'll just start with second preferred
-		}
-	},
-	[102316] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103957] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103946] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103940] = {
-		values = {
-			enabled = false
-		}
-	},
+	[101431] = disabled,
+	[102316] = disabled,
+	[103957] = disabled,
+	[103946] = disabled,
+	[103940] = disabled,
 	-- reuse the closest major ave. spawngroups + new swat van spawn (2nd preferred)
 	[103355] = {
 		values = {
@@ -335,16 +288,8 @@ return {
 		}
 	},
 	-- just disabled it for now, easier to skip (8th preferred)
-	[100256] = { -- add
-		values = {
-			enabled = false
-		}
-	},
-	[100281] = { -- remove
-		values = {
-			enabled = false
-		}
-	},
+	[100256] = disabled,
+	[100281] = disabled,
 	[101216] = { -- useless trigger close to eddie
 		on_executed = {
 			{ id = 102440, remove = true } -- 5th preferred add

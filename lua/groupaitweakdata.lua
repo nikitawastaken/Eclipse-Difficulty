@@ -1,3 +1,5 @@
+local level_id = Eclipse.utils.level_id()
+
 -- Improve enemy chatter, make proper use of chatter settings like duration and radius
 Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", function(self)
 	local interval = { 1, 2 }
@@ -107,164 +109,43 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		acrobatic = true,
 		walk = true,
 	}
-	local level = Global.level_data and Global.level_data.level_id or ""
-	local la_levels = level == "rvd1" or level == "rvd2" --maybe add Aftershock?
-	local sf_levels = level == "chas" or level == "sand" or level == "chca" or level == "pent"
-	local texas_levels = level == "dinner" or level == "ranc" or level == "trai" or level == "corp" or level == "deep"
-	--Slaughterhouse takes place in Dallas, Texas. Not in Washington DC
 
-	-- UNIT CATEGORIES
-	-- Honestly if only i could be arsed to actually support all factions
+	self.unit_categories.beat_cop = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+		},
+		access = access_type_all,
+	}
 
-	-- Beat Cops
-	--LA cops in LA
-	if la_levels then
-		self.unit_categories.beat_cop = {
-			unit_types = {
-				america = {
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
-				},
-				russia = {
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
-				},
-				zombie = {
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
-				},
-				murkywater = {
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
-				},
-				federales = {
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
-					Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
-				},
-			},
-			access = access_type_all,
-		}
-	--SF Cops in SF
-	elseif sf_levels then
-		self.unit_categories.beat_cop = {
-			unit_types = {
-				america = {
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-				},
-				russia = {
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-				},
-				zombie = {
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-				},
-				murkywater = {
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-				},
-				federales = {
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-					Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
-				},
-			},
-			access = access_type_all,
-		}
-	--Texas Cops in Texas
-	elseif texas_levels then
-		self.unit_categories.beat_cop = {
-			unit_types = {
-				america = {
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-				},
-				russia = {
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-				},
-				zombie = {
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-				},
-				murkywater = {
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-				},
-				federales = {
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-					Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
-				},
-			},
-			access = access_type_all,
-		}
-	else
-		self.unit_categories.beat_cop = {
-			unit_types = {
-				america = {
-					Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
-					Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-					Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
-					Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
-				},
-				russia = {
-					Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
-					Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-					Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
-					Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
-				},
-				zombie = {
-					Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
-					Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-					Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
-					Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
-				},
-				murkywater = {
-					Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
-					Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-					Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
-					Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
-				},
-				federales = {
-					Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
-					Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-					Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
-					Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
-				},
-			},
-			access = access_type_all,
-		}
-	end
 	-- SWAT Rifleman
 	self.unit_categories.swat_m4 = {
 		unit_types = {
@@ -1919,35 +1800,38 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self.enemy_spawn_groups.FBI_spoocs = self.enemy_spawn_groups.single_spooc
 end)
 
+
 -- get rid of marshals
 function GroupAITweakData:_init_enemy_spawn_groups_level() end
+
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	-- difficulty scaling
 	local f = ((difficulty_index ^ 2) / (difficulty_index * 3))
 	local is_pro = Global.game_settings and Global.game_settings.one_down
 	local map_scale_factor = 1
-
-	for _, sd in pairs(Eclipse.severely_decreased_scaling_heists) do
-		if job == vl then
+	local map_scales = Eclipse.map_sizes 
+	
+	for _, sd in pairs(map_scales.severely_decreased_scaling_heists) do
+		if job == sd then
 			map_scale_factor = 0.5
 		end
 	end
 
-	for _, d in pairs(Eclipse.decreased_scaling_heists) do
-		if job == l then
+	for _, d in pairs(map_scales.decreased_scaling_heists) do
+		if job == d then
 			map_scale_factor = 0.75
 		end
 	end
 
-	for _, i in pairs(Eclipse.increased_scaling_heists) do
-		if job == t then
+	for _, i in pairs(map_scales.increased_scaling_heists) do
+		if job == i then
 			map_scale_factor = 1.25
 		end
 	end
 
-	for _, si in pairs(Eclipse.severely_increased_scaling_heists) do
-		if job == vt then
+	for _, si in pairs(map_scales.severely_increased_scaling_heists) do
+		if job == si then
 			map_scale_factor = 1.5
 		end
 	end
@@ -2014,7 +1898,27 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.cs_grenade_timeout = { 110 / f / ((is_pro and 1.25) or 1), 150 / f / ((is_pro and 1.25) or 1) }
 	self.cs_grenade_chance_times = { 120, 240 }
 	self.cs_grenade_lifetime = 10 * f
-
+	
+	if difficulty_index < 4 then
+		self.besiege.faction = {
+			"CS",
+			"CS",
+			"CS",		
+		}
+	elseif difficulty_index < 6 then
+		self.besiege.faction = {
+			"CS",
+			"FBI",
+			"FBI",		
+		}	
+	else
+		self.besiege.faction = {
+			"CS",
+			"FBI",
+			"Elite",		
+		}
+	end
+		
 	-- Spawngroups
 	if difficulty_index == 2 then
 		self.besiege.assault.groups = {
@@ -2108,7 +2012,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
 
-	local job = Global.level_data and Global.level_data.level_id
 	local short_ponr_heists = {
 		bph = true,
 		red2 = true,
@@ -2126,7 +2029,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.delay = { 20, 20, 20 }
 	self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
-	if job and short_ponr_heists[job] then
+	if level_id and short_ponr_heists[level_id] then
 		self.ponr.assault.delay = { 5, 5, 5 }
 		self.ponr.assault.hostage_hesitation_delay = { 0, 0, 0 }
 	end
@@ -2138,6 +2041,26 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups = {}
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
+	if difficulty_index < 4 then
+		self.ponr.faction = {
+			"FBI",
+			"FBI",
+			"FBI",		
+		}
+	elseif difficulty_index < 6 then
+		self.ponr.faction = {
+			"Elite",
+			"Elite",
+			"Elite",		
+		}	
+	else
+		self.ponr.faction = {
+			"Zeal",
+			"Zeal",
+			"Zeal",		
+		}
+	end
+	
 	-- Spawngroups
 	if difficulty_index == 2 then
 		self.ponr.assault.groups = {

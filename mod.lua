@@ -1,33 +1,6 @@
 if not Eclipse then
 
 	Eclipse = {
-		severely_decreased_scaling_heists = {},
-		decreased_scaling_heists = {},
-		increased_scaling_heists = {},
-		severely_increased_scaling_heists = {},
-	}
-
-	local log_levels = {
-		"Debug",
-		"Warning",
-		"Error"
-	}
-
-	function Eclipse:log(level, message)
-		assert(0 < level and level < 4, "Eclipse log level must be between 1-3.")
-		assert(message ~= nil, "Eclipse empty log message.")
-
-		log(string.format("Eclipse %s: %s", log_levels[level], message))
-	end
-
-	function Eclipse:log_chat(message)
-		managers.chat:_receive_message(managers.chat.GAME, "Eclipse", message, Color.green)
-	end
-end
-
-if not StreamHeist then
-
-	StreamHeist = {
 		mod_path = ModPath,
 		mod_instance = ModInstance,
 		save_path = SavePath .. "eclipse.json",
@@ -39,13 +12,27 @@ if not StreamHeist then
 		},
 		loaded_elements = false
 	}
-
-	function StreamHeist:require(file)
+	
+	
+	function Eclipse:require(file)
 		local path = self.mod_path .. "req/" .. file .. ".lua"
 		return io.file_is_readable(path) and blt.vm.dofile(path)
 	end
+	
 
-	function StreamHeist:mission_script_patches()
+	function Eclipse:instance_script_patches()
+		if self._instance_script_patches == nil then
+			local level_id = Global.game_settings and Global.game_settings.level_id
+			if level_id then
+				self._instance_script_patches = self:require("instance_script/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
+			end
+		end
+
+		return self._instance_script_patches
+	end
+	
+	
+	function Eclipse:mission_script_patches()
 		if self._mission_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
@@ -55,8 +42,9 @@ if not StreamHeist then
 		return self._mission_script_patches
 	end
 
-	function StreamHeist:mission_script_add()
-		StreamHeist.loaded_elements = false
+
+	function Eclipse:mission_script_add()
+		Eclipse.loaded_elements = false
 		if self._mission_script_add == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
@@ -66,363 +54,32 @@ if not StreamHeist then
 		return self._mission_script_add
 	end
 
-	function StreamHeist:gen_dummy(id, name, pos, rot, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementSpawnEnemyDummy",
-			values = {
-				execute_on_startup = opts.execute_on_startup or false,
-				participate_to_group_ai = opts.participate_to_group_ai or false,
-				position = pos,
-				force_pickup = opts.force_pickup or "none",
-				voice = opts.voice or 0,
-				enemy = opts.enemy or "units/payday2/characters/ene_swat_1/ene_swat_1",
-				trigger_times = opts.trigger_times or 0,
-				spawn_action = opts.spawn_action or "none",
-				accessibility = opts.accessibility or "any",
-				on_executed = opts.on_executed or {},
-				rotation = rot,
-				team = opts.team or "default",
-				base_delay = opts.base_delay or 0,
-				enabled = opts.enabled or false,
-				amount = opts.amount or 0,
-				interval = opts.interval or 5,
-			},
-		}
-	end
 
-	function StreamHeist:gen_spawngroup(id, name, elements, interval)
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementSpawnEnemyGroup",
-			values = {
-				on_executed = {},
-				trigger_times = 0,
-				base_delay = 0,
-				ignore_disabled = false,
-				amount = 0,
-				spawn_type = "ordered",
-				team = "default",
-				execute_on_startup = false,
-				enabled = true,
-				preferred_spawn_groups = {
-					"tac_shield_wall_charge",
-					"FBI_spoocs",
-					"tac_tazer_charge",
-					"tac_tazer_flanking",
-					"tac_shield_wall",
-					"tac_swat_rifle_flank",
-					"tac_shield_wall_ranged",
-					"tac_bull_rush",
-				},
-				elements = elements,
-				interval = interval or 0,
-			},
-		}
-	end
-
-	function StreamHeist:gen_so(id, name, pos, rot, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementSpecialObjective",
-			values = {
-				path_style = opts.path_style or "destination",
-				align_position = opts.align_position or false,
-				ai_group = "enemies",
-				is_navigation_link = opts.is_navigation_link or false,
-				position = pos,
-				scan = opts.scan or false,
-				needs_pos_rsrv = opts.needs_pos_rsrv or false,
-				enabled = true,
-				execute_on_startup = false,
-				rotation = rot,
-				base_delay = 0,
-				action_duration_min = 0,
-				search_position = pos,
-				use_instigator = true,
-				trigger_times = 0,
-				trigger_on = "none",
-				search_distance = 0,
-				so_action = opts.so_action or "none",
-				path_stance = opts.path_stance or "hos",
-				path_haste = "run",
-				repeatable = false,
-				attitude = "engage",
-				interval = 2,
-				action_duration_max = 0,
-				align_rotation = opts.align_rotation or false,
-				pose = opts.pose or "none",
-				forced = true,
-				base_chance = 1,
-				interaction_voice = "none",
-				SO_access = opts.SO_access or "512", -- default to sniper
-				chance_inc = 0,
-				interrupt_dmg = 1,
-				interrupt_objective = false,
-				on_executed = {},
-				interrupt_dis = opts.interrupt_dis or 1,
-				patrol_path = "none",
-			},
-		}
-	end
-
-	function StreamHeist:gen_aiglobalevent(id, name, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementAiGlobalEvent",
-			values = {
-				on_executed = opts.on_executed or {},
-				trigger_times = 1,
-				base_delay = 0,
-				execute_on_startup = false,
-				enabled = true,
-				wave_mode = opts.wave_mode or "none",
-				AI_event = opts.AI_event or "none",
-				blame = opts.blame or "empty"
-			},
-		}
-	end
-
-	function StreamHeist:gen_fakeassaultstate(id, name, state)
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementFakeAssaultState",
-			values = {
-				on_executed = {},
-				trigger_times = 1,
-				base_delay = 0,
-				execute_on_startup = false,
-				enabled = true,
-				state = state or false
-			},
-		}
-	end
-
-	function StreamHeist:gen_areatrigger(id, name, pos, rot, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementAreaTrigger",
-			module = "CoreElementArea",
-			values = {
-				execute_on_startup = false,
-				trigger_times = opts.trigger_times or 1,
-				on_executed = opts.on_executed or {},
-				base_delay = opts.base_delay or 0,
-				position = pos,
-				rotation = rot,
-				enabled = true,
-				interval = 0.1,
-				trigger_on = "on_enter",
-				instigator = "player",
-				shape_type = opts.shape_type or "box",
-				width = opts.width or 500,
-				depth = opts.depth or 500,
-				height = opts.height or 500,
-				radius = opts.radius or 250,
-				spawn_unit_elements = {},
-				amount = opts.amount or "1",
-				instigator_name = "",
-				use_disabled_shapes = false,
-				substitute_object = "",
-			},
-		}
-	end
-	
-	function StreamHeist:gen_dummytrigger(id, name, pos, rot, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementEnemyDummyTrigger",
-			values = {
-				execute_on_startup = false,
-				trigger_times = opts.trigger_times or 0,
-				elements = opts.elements or {},
-				on_executed = opts.on_executed or {},
-				base_delay = opts.base_delay or 0,
-				position = pos,
-				rotation = rot,
-				enabled = true,
-				event = opts.event or "spawn"
-			},
-		}
-	end
-	
-	function StreamHeist:gen_missionscript(id, name, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "MissionScriptElement",
-			module = "CoreMissionScriptElement",
-			values = {
-				execute_on_startup = false,
-				trigger_times = opts.trigger_times or 0,
-				on_executed = opts.on_executed or {},
-				base_delay = opts.base_delay or 0,
-				enabled = opts.enabled or false
-			},
-		}
-	end
-	
-	function StreamHeist:gen_toggleelement(id, name, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementToggle",
-			module = "CoreElementToggle",
-			values = {
-				execute_on_startup = false,
-				trigger_times = opts.trigger_times or 0,
-				set_trigger_times = opts.set_trigger_times or -1,
-				elements = opts.elements or {},
-				on_executed = opts.on_executed or {},
-				base_delay = opts.base_delay or 0,
-				enabled = opts.enabled or false,
-				toggle = opts.toggle or "on"
-			},
-		}
-	end
-	
-	function StreamHeist:gen_dialogue(id, name, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementDialogue",
-			values = {
-				execute_on_startup = false,
-				trigger_times = opts.trigger_times or 0,
-				on_executed = opts.on_executed or {},
-				base_delay = opts.base_delay or 0,
-				dialogue = opts.dialogue or "none",
-				enabled = true,
-				can_not_be_muted = opts.can_not_be_muted or false,
-				execute_on_executed_when_done = opts.execute_on_executed_when_done or false,
-				play_on_player_instigator_only = opts.play_on_player_instigator_only or false,
-				use_instigator = opts.use_instigator or false,
-				use_position = opts.use_position or false
-			},
-		}
-	end
-	
-	function StreamHeist:gen_smokeandnades(id, name, pos, rot, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementSmokeGrenade",
-			values = {
-				execute_on_startup = false,
-				position = pos,
-				rotation = rot,
-				enabled = true,
-				base_delay = opts.base_delay or 0,
-				duration = opts.duration or 0,
-				effect_type = opts.effect_type or "smoke",
-				ignore_control = true,
-				immediate = true,
-				on_executed = opts.on_executed or {},
-				trigger_times = opts.trigger_times or 0
-			},
-		}
-	end
-	
-	function StreamHeist:gen_preferedadd(id, name, opts)
-		opts = opts or {}
-		return {
-			id = id,
-			editor_name = name,
-			class = "ElementEnemyPreferedAdd",
-			values = {
-				execute_on_startup = false,
-				base_delay = opts.base_delay or 0,
-				trigger_times = opts.trigger_times or 0,
-				spawn_groups = opts.spawn_groups or {},
-				on_executed = opts.on_executed or {},
-				enabled = true
-			},
-		}
-	end
-
-	local difficulty = Global.game_settings and Global.game_settings.difficulty or "normal"
-	local diff_tbl = {
-		normal = 2,
-		hard = 3,
-		overkill = 4,
-		overkill_145 = 5,
-		easy_wish = 6,
-		overkill_290 = 7,
-		sm_wish = 8
-	}
-	local diff_i = diff_tbl[difficulty] or 2
-
-
-	function StreamHeist:difficulty_index()	
-		return diff_i
-	end
-	
-	
-	function StreamHeist:difficulty_groups()	
-		local normal = real_difficulty_index < 4 and "normal" or nil
-		local hard = not normal and real_difficulty_index < 6 and "hard" or nil
-		local eclipse = not normal and not hard and "eclipse" or nil
-
-		return normal, hard, eclipse
-	end
-	
-	
-	function StreamHeist:is_pro_job()
-		local pro_job = Global.game_settings and Global.game_settings.one_down
-
-		return pro_job
-	end
-
-
-	function StreamHeist:is_eclipse()
-		local is_eclipse = diff_i == 6
-		
-		return is_eclipse
-	end
-
-
-	function StreamHeist:diff_lerp(value_1, value_2)
-		local f = math.max(0, diff_i - 2) / 4
-		
-		return math.lerp(value_1, value_2, f)
-	end	
-
-
-	function StreamHeist:level_id()		
-		return Global.level_data and Global.level_data.level_id
-	end	
-	
-	function StreamHeist:log(...)
+	function Eclipse:log(...)
 		if self.logging then
-			log("[StreamlinedHeistingAI] " .. table.concat({...}, " "))
+			log("[EclipseOverhaul] " .. table.concat({...}, " "))
 		end
 	end
 
-	function StreamHeist:warn(...)
-		log("[StreamlinedHeistingAI][Warning] " .. table.concat({...}, " "))
+
+	function Eclipse:warn(...)
+		log("[EclipseOverhaul][Warning] " .. table.concat({...}, " "))
 	end
 
-	function StreamHeist:error(...)
-		log("[StreamlinedHeistingAI][Error] " .. table.concat({...}, " "))
+
+	function Eclipse:error(...)
+		log("[EclipseOverhaul][Error] " .. table.concat({...}, " "))
 	end
 
-	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitStreamlinedHeisting", function(loc)
+
+	Eclipse.utils = Eclipse:require("utils")
+	Eclipse.ffo_heists = Eclipse:require("ffo_heists")
+	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
+	Eclipse.mission_elements = Eclipse:require("mission_elements")
+	Eclipse.map_sizes = Eclipse:require("map_sizes")
+	
+	
+	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
 			[("english"):key()] = "en.txt",
 			[("schinese"):key()] = "schinese.json",
@@ -430,20 +87,21 @@ if not StreamHeist then
 		}
 
 		local language = language_tbl[SystemInfo:language():key()] or "en.txt"
-		local path = StreamHeist.mod_path .. "loc/" .. language
-		path = io.file_is_readable(path) and path or StreamHeist.mod_path .. "loc/en.txt"
+		local path = Eclipse.mod_path .. "loc/" .. language
+		path = io.file_is_readable(path) and path or Eclipse.mod_path .. "loc/en.txt"
 
 		loc:load_localization_file(path)
 	end)
 
+
 	-- Check for common mod conflicts
-	Hooks:Add("MenuManagerOnOpenMenu", "MenuManagerOnOpenMenuStreamlinedHeisting", function()
+	Hooks:Add("MenuManagerOnOpenMenu", "MenuManagerOnOpenMenuEclipse", function()
 		if Global.sh_mod_conflicts then
 			return
 		end
 
 		Global.sh_mod_conflicts = {}
-		local conflicting_mods = StreamHeist:require("mod_conflicts") or {}
+		local conflicting_mods = Eclipse:require("mod_conflicts") or {}
 		for _, mod in pairs(BLT.Mods:Mods()) do
 			if mod:IsEnabled() and conflicting_mods[mod:GetName()] then
 				table.insert(Global.sh_mod_conflicts, mod:GetName())
@@ -473,25 +131,26 @@ if not StreamHeist then
 		end
 	end)
 
+
 	-- Create settings menu
-	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusStreamlinedHeisting", function(_, nodes)
+	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusEclipse", function(_, nodes)
 
 		local menu_id = "eclipse_menu"
 		MenuHelper:NewMenu(menu_id)
 
 		function MenuCallbackHandler:eclipse_ponr_assault_text_toggle(item)
 			local enabled = (item:value() == "on")
-			StreamHeist.settings.ponr_assault_text = enabled
+			Eclipse.settings.ponr_assault_text = enabled
 		end
 
 		function MenuCallbackHandler:eclipse_max_progression_infamy_edit(item)
 			local value = math.floor(item:value() + 0.5)
 
-			StreamHeist.settings.max_progression_infamy = value
+			Eclipse.settings.max_progression_infamy = value
 		end
 
 		function MenuCallbackHandler:sh_save()
-			io.save_as_json(StreamHeist.settings, StreamHeist.save_path)
+			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
 
 		MenuHelper:AddToggle({
@@ -499,7 +158,7 @@ if not StreamHeist then
 			title = "eclipse_menu_ponr_assault_text",
 			desc = "eclipse_menu_ponr_assault_text_desc",
 			callback = "eclipse_ponr_assault_text_toggle",
-			value = StreamHeist.settings.ponr_assault_text,
+			value = Eclipse.settings.ponr_assault_text,
 			menu_id = menu_id,
 			priority = 100
 		})
@@ -509,7 +168,7 @@ if not StreamHeist then
 			title = "eclipse_menu_max_progression_infamy",
 			desc = "eclipse_menu_max_progression_infamy_desc",
 			callback = "eclipse_max_progression_infamy_edit",
-			value = StreamHeist.settings.max_progression_infamy,
+			value = Eclipse.settings.max_progression_infamy,
 			menu_id = menu_id,
 			is_percentage = false,
 			show_value = true,
@@ -524,9 +183,10 @@ if not StreamHeist then
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
 
+
 	-- Load settings
-	if io.file_is_readable(StreamHeist.save_path) then
-		local data = io.load_as_json(StreamHeist.save_path)
+	if io.file_is_readable(Eclipse.save_path) then
+		local data = io.load_as_json(Eclipse.save_path)
 		if data then
 			local function merge(tbl1, tbl2)
 				for k, v in pairs(tbl2) do
@@ -539,18 +199,20 @@ if not StreamHeist then
 					end
 				end
 			end
-			merge(StreamHeist.settings, data)
+			merge(Eclipse.settings, data)
 		end
 	end
 
+
 	-- Notify about required game restart
-	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeStreamlinedHeisting", function ()
+	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeEclipse", function ()
 		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function (self)
 			if self._mod:GetName() == "Eclipse" then
 				QuickMenu:new("Information", "A game restart is required to fully " .. (self._mod:IsEnabled() and "enable" or "disable") .. " all parts of Eclipse!", {}, true)
 			end
 		end)
 	end)
+
 
 	-- Disable some of "The Fixes"
 	TheFixesPreventer = TheFixesPreventer or {}
@@ -560,15 +222,16 @@ if not StreamHeist then
 	TheFixesPreventer.fix_ai_set_attention = true
 	TheFixesPreventer.tank_walk_near_players  = true
 	TheFixesPreventer.fix_hostages_not_moving = true
+	
 end
 
-if RequiredScript and not StreamHeist.required[RequiredScript] then
+if RequiredScript and not Eclipse.required[RequiredScript] then
 
-	local fname = StreamHeist.mod_path .. RequiredScript:gsub(".+/(.+)", "lua/%1.lua")
+	local fname = Eclipse.mod_path .. RequiredScript:gsub(".+/(.+)", "lua/%1.lua")
 	if io.file_is_readable(fname) then
 		dofile(fname)
 	end
 
-	StreamHeist.required[RequiredScript] = true
+	Eclipse.required[RequiredScript] = true
 
 end

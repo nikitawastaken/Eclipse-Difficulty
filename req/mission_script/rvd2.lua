@@ -1,13 +1,15 @@
+local taser = scripted_enemy.taser
+
 return {
 	-- Replace dozer spam with less stupid enemies
 	[101565] = {
-		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
+		enemy = taser
 	},
 	[101176] = {
-		enemy = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
+		enemy = taser
 	},
 	[101207] = {
-		enemy = Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1")
+		enemy = taser
 	},
 	[102176] = {
 		values = {

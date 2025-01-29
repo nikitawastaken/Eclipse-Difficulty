@@ -1,4 +1,10 @@
 return {
+	[100022] = {
+		ponr = {
+			length = 3000,
+			player_mul = { 1.75, 1.25, 1.125, 1 }
+		}
+	},
 	-- Increase delay on side door spawns
 	[103347] = {
 		values = {
@@ -8,12 +14,6 @@ return {
 	[103348] = {
 		values = {
 			interval = 30
-		}
-	},
-	[100022] = {
-		ponr = {
-			length = 3000,
-			player_mul = {1.75, 1.25, 1.125, 1}
 		}
 	},
 	[103360] = {

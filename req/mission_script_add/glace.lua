@@ -1,58 +1,65 @@
-local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-local dozer = "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
-local shield = ((difficulty == 6 and pro_job) and "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1") or "units/payday2/characters/ene_shield_1/ene_shield_1"
-local taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1"
-local pro_job = Global.game_settings and Global.game_settings.one_down
-local overkill_above = difficulty >= 5
-local eclipse = difficulty == 6
-local diff_scaling = 0.125 * difficulty
-local enabled_chance_taser_and_shields = math.random() < diff_scaling
-local enabled_chance_dozer = math.random() < diff_scaling
-local enabled_chance_dozer_scaffold = math.random() < diff_scaling
-local enabled_chance_shield_scaffold = math.random() < diff_scaling
+local scripted_enemy = Eclipse.scripted_enemy
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = is_eclipse and is_pro_job
+
+local shield = scripted_enemy.shield
+local elite_shield = scripted_enemy.elite_shield
+local taser = scripted_enemy.taser
+local bulldozer = scripted_enemy.bulldozer_1
+
+local diff_scaling = diff_i / 8
+
+local rand = math.random()
+local enabled_chance_taser_and_shields = rand < diff_scaling
+local enabled_chance_dozer = rand < diff_scaling
+local enabled_chance_dozer_scaffold = rand < diff_scaling
+local enabled_chance_shield_scaffold = rand < diff_scaling
 
 local optsBulldozer = {
-    enemy = dozer,
-    enabled = (overkill_above and enabled_chance_dozer)
+    enemy = bulldozer,
+    enabled = overkill_and_above and enabled_chance_dozer
 }
 local optsBulldozer_scaffold = {
-    enemy = dozer,
-    enabled = (eclipse and enabled_chance_dozer_scaffold)
+    enemy = bulldozer,
+    enabled = is_eclipse and enabled_chance_dozer_scaffold
 }
 local optsShield_1 = {
-    enemy = shield,
+    enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { 
 		{ id = 400009, delay = 0 } 
 	},
-    enabled = (overkill_above and enabled_chance_taser_and_shields)
+    enabled = overkill_and_above and enabled_chance_taser_and_shields
 }
 local optsShield_2 = {
-    enemy = shield,
+    enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { 
 		{ id = 400010, delay = 0 } 
 	},
-    enabled = (overkill_above and enabled_chance_taser_and_shields)
+    enabled = overkill_and_above and enabled_chance_taser_and_shields
 }
 local optsShield_scaff_1 = {
-    enemy = shield,
+    enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { 
 		{ id = 400012, delay = 0 } 
 	},
-    enabled = (overkill_above and enabled_chance_shield_scaffold)
+    enabled = overkill_and_above and enabled_chance_shield_scaffold
 }
 local optsShield_scaff_2 = {
-    enemy = shield,
+    enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { 
 		{ id = 400013, delay = 0 } 
 	},
-    enabled = (overkill_above and enabled_chance_shield_scaffold)
+    enabled = overkill_and_above and enabled_chance_shield_scaffold
 }
 local optsTaser = {
     enemy = taser,
 	on_executed = { 
 		{ id = 400011, delay = 0 } 
 	},
-    enabled = (overkill_above and enabled_chance_taser_and_shields)
+    enabled = overkill_and_above and enabled_chance_taser_and_shields
 }
 local optsDefend_and_Sniper_SO = {
 	SO_access = tostring(2048+8192),
@@ -65,7 +72,7 @@ local optsDefend_and_Sniper_SO = {
 }
 local optsrespawn_dozer = {
 	on_executed = { 
-		{id = 101320, delay = 30, delay_rand = 10}
+		{ id = 101320, delay = 30, delay_rand = 10 }
 	},
 	elements = { 
 		101320

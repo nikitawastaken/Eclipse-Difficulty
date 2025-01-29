@@ -5,10 +5,10 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "sh_preload_units", func
 		self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
 	end
 
-	StreamHeist:log("Loading custom units...")
+	Eclipse:log("Loading custom units...")
 
 	if PackageManager:loaded("packages/sm_wish") then
-		StreamHeist:log("Zeal package loaded, loading custom Zeal units...")
+		Eclipse:log("Zeal package loaded, loading custom Zeal units...")
 		load_unit("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2")
 		load_unit("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2")
 		load_unit("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4")

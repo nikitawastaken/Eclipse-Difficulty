@@ -1,15 +1,17 @@
+local disabled = {
+	values = {
+        enabled = false
+	}
+}
+
 return {
-	[103218] = {
-		values = {
-			enabled = false
-		}
-	},
 	[101061] = {
 		ponr = {
 			length = 200,
-			player_mul = {1.5, 1.25, 1, 1}
+			player_mul = { 1.5, 1.25, 1, 1 }
 		}
 	},
+	[103218] = disabled,
 	-- Slightly slower difficulty ramp up
 	[101357] = {
 		values = {
@@ -34,12 +36,12 @@ return {
 	[102524] = {
 		on_executed = {
 		--be gone
-			{id = 102442, remove = true},
+			{ id = 102442, remove = true },
 		--trigger ambushes
-			{id = 400052, delay = 0},
-			{id = 400053, delay = 0},
-			{id = 400054, delay = 0},
-			{id = 400055, delay = 0}
+			{ id = 400052, delay = 0 },
+			{ id = 400053, delay = 0 },
+			{ id = 400054, delay = 0 },
+			{ id = 400055, delay = 0 }
 		}
 	},
 	[102505] = {
@@ -92,21 +94,9 @@ return {
 		}
 	},
 	--Force 2 SWAT vans to spawn regardless of difficulty
-	[101808] = {
-		values = {
-            enabled = false
-		}
-	},
-	[101807] = {
-		values = {
-            enabled = false
-		}
-	},
-	[102696] = {
-		values = {
-            enabled = false
-		}
-	},
+	[101808] = disabled,
+	[101807] = disabled,
+	[102696] = disabled,
 	[102697] = {
 		values = {
 			difficulty_normal = "true",

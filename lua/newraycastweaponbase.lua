@@ -472,14 +472,13 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local weapon_tweak = self:weapon_tweak_data()
 	local categories = weapon_tweak.categories
 
-	local multiplier = (tweak_data.player.TRANSITION_DURATION or 0.35) / self._steelsight_time
+	local multiplier = (tweak_data.player.TRANSITION_DURATION or 0.23) / self._steelsight_time
 
 	for _, category in ipairs(categories) do
 		multiplier = multiplier * managers.player:upgrade_value(category, "enter_steelsight_speed_multiplier", 1)
 	end
 
 	multiplier = multiplier * managers.player:temporary_upgrade_value("temporary", "combat_medic_enter_steelsight_speed_multiplier", 1)
-	multiplier = multiplier * managers.player:upgrade_value(self._name_id, "enter_steelsight_speed_multiplier", 1)
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "enter_steelsight_speed_multiplier", 1)
 
 	if self._silencer then

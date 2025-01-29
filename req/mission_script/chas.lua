@@ -8,6 +8,11 @@ local sniper_trigger_times = {
         trigger_times = 0
 	}
 }
+local alleyway_spawn ={
+	values = {
+		interval = 20
+	}
+}
 return {
 	[101190] = {
 		reinforce = {
@@ -55,19 +60,7 @@ return {
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
 	-- slow down a few spawn points in the back alleyway
-	[100132] = {
-		values = {
-			interval = 20
-		}
-	},
-	[100133] = {
-		values = {
-			interval = 20
-		}
-	},
-	[100692] = {
-		values = {
-			interval = 20
-		}
-	},
+	[100132] = alleyway_spawn,
+	[100133] = alleyway_spawn,
+	[100692] = alleyway_spawn,
 }

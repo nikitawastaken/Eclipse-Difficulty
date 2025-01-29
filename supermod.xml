@@ -11,6 +11,7 @@
 
 		<group hook_id="core/lib/">
 			<post :hook_id="managers/coreenvironmentcontrollermanager"/>
+			<post :hook_id="managers/coreworldinstancemanager"/>
 			<post :hook_id="units/coreunitdamage"/>
 		</group>
 

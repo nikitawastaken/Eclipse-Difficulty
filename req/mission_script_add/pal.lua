@@ -1,7 +1,10 @@
-local difficulty = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-local sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1"
-local eclipse = difficulty == 6
-local overkill_above = difficulty >= 5
+local scripted_enemy = Eclipse.scripted_enemy
+local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
+
+local sniper = scripted_enemy.sniper
+
+local overkill_above = diff_i >= 5
 
 local optsSniper_1 = {
 	enemy = sniper,
@@ -38,7 +41,7 @@ local optsSniper_5 = {
 	on_executed = {
         { id = 400009, delay = 3 },
     },
-    enabled = eclipse
+    enabled = is_eclipse
 }
 local optsrespawn_sniper_1 = {
 	on_executed = { 

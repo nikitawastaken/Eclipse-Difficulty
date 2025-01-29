@@ -1,56 +1,54 @@
-local diff_i = tweak_data:difficulty_to_index(Global.game_settings and Global.game_settings.difficulty or "normal")
-local is_pro = Global.game_settings and Global.game_settings.one_down
-local escapeshield = ((diff_i == 6 and is_pro) and "units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") or "units/payday2/characters/ene_shield_1/ene_shield_1"
-local escapedozer = ((diff_i == 6 and is_pro) and "units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer") or "units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"
-local vaultAmbush = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
-local cloaker = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
-local vaultCount = 4
-local vaultAmbushChance = 0.5
-local both_window_swats_only = false
-local vent_spawngroup = false
-if math.random() < vaultAmbushChance then
-	vaultAmbush = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"
-	vaultCount = 2
+local scripted_enemy = Eclipse.scripted_enemy
+local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_eclipse_pro = is_eclipse and is_pro_job
+
+local diff_scaling = diff_i / 8
+local hard_above = diff_i >= 3
+local overkill_above = diff_i >= 5
+
+local shield = scripted_enemy.shield
+local cloaker = scripted_enemy.cloaker
+local bulldozer = scripted_enemy.bulldozer_1
+
+local vault_count = 4
+local vault_ambush_chance = 0.5
+
+local vault_ambush = bulldozer
+
+if math.random() < vault_ambush_chance then
+	vault_ambush = scripted_enemy.elite_bulldozer_2
+	vault_count = 2
 end
 
-if difficulty == 6 then
-	vent_spawngroup = true
-end	
-
-local windows_swat = {
+local rappel_spawn = {
 	values = {
-		enabled = both_window_swats_only
+		interval = 30
+	}
+}
+	
+local disabled = {
+	values = {
+		enabled = false
 	}
 }
 
 return {
 	-- Disable forced manager flee objective
-	[100665] = {
-		values = {
-			enabled = false
-		}
-	},
+	[100665] = disabled,
 	-- Disable the right vault path
-	[105498] = {
-		values = {
-			enabled = false
-		}
-	},
+	[105498] = disabled,
 	-- nuke swat van
-	[105921] = {
-		values = {
-			enabled = false
-		}
-	},
+	[105921] = disabled,
 	--Let the cops finish their spawn anim before moving into SO spot
 	[103720] = { 
 		on_executed = {
-			{id = 104029, delay = 2.75}
+			{ id = 104029, delay = 2.75 }
 		}
 	},
 	[103721] = { 
 		on_executed = {
-			{id = 104071, delay = 2.75}
+			{ id = 104071, delay = 2.75 }
 		}
 	},
 	[103722] = { 
@@ -60,28 +58,28 @@ return {
 	},
 	[103723] = { 
 		on_executed = {
-			{id = 105736, delay = 2.75}
+			{ id = 105736, delay = 2.75 }
 		}
 	},
 	[103724] = { 
 		on_executed = {
-			{id = 100226, delay = 2.75}
+			{ id = 100226, delay = 2.75 }
 		}
 	},
 	[103732] = { 
 		on_executed = {
-			{id = 100077, delay = 2.75}
+			{ id = 100077, delay = 2.75 }
 		}
 	},
 	[103737] = { 
 		on_executed = {
-			{id = 105732, delay = 2.75}
+			{ id = 105732, delay = 2.75 }
 		}
 	},
 	--enable vault hallway vent spawns on eclipse instead on all diffs
 	[105200] = {
 		values = {
-			enabled = vent_spawngroup
+			enabled = is_eclipse and true or false
 		}
 	},
 	--always force cloaker and taser to spawn like in PDTH
@@ -98,59 +96,35 @@ return {
 	},
 	-- vault ambush
 	[104132] = {
-		enemy = vaultAmbush
+		enemy = vault_ambush
 	},
 	[104170] = {
-		enemy = vaultAmbush
+		enemy = vault_ambush
 	},
 	[104131] = {
-		enemy = vaultAmbush
+		enemy = vault_ambush
 	},
 	[104169] = {
-		enemy = vaultAmbush
+		enemy = vault_ambush
 	},
 	[100763] = {
-		enemy = vaultAmbush
+		enemy = vault_ambush
 	},
 	[104000] = {
 		chance = 15 * diff_i
 	},
 	[100225] = {
 		values = {
-			amount = vaultCount
+			amount = vault_count
 		}
 	},
-	[103999] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103985] = {
-		values = {
-			enabled = false
-		}
-	},
-	[104049] = {
-		values = {
-			enabled = false
-		}
-	},
+	[103999] = disabled,
+	[103985] = disabled,
+	[104049] = disabled,
 	-- slow down a few repel spawnpoints
-	[105112] = {
-		values = {
-			interval = 30
-		}
-	},
-	[106890] = {
-		values = {
-			interval = 30
-		}
-	},
-	[103953] = {
-		values = {
-			interval = 10
-		}
-	},
+	[105112] = rappel_spawn,
+	[106890] = rappel_spawn,
+	[103953] = rappel_spawn,
 
 	-- custom spawns
 	-- add point of no return and spawn lobby ambushes
@@ -231,26 +205,10 @@ return {
 		}
 	},
 	-- disable a bunch of vanilla spawns i don't like
-	[103595] = {
-		values = {
-			enabled = false
-		}
-	},
-	[102575] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103578] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103669] = {
-		values = {
-			enabled = false
-		}
-	},
+	[103595] = disabled,
+	[102575] = disabled,
+	[103578] = disabled,
+	[103669] = disabled,
 	-- replace them with cooler ambush
 	[100589] = {
 		on_executed = {
@@ -269,32 +227,32 @@ return {
 	-- make the rest of vanilla spawns turn into zeals on E/PJ
 	-- 2 shields at the bottom of the staircase
 	[103693] = {
-		enemy = escapeshield
+		enemy = shield
 	},
 	[103697] = {
-		enemy = escapeshield
+		enemy = bulldozer
 	},
 	-- door knock dozers
 	[103162] = {
-		enemy = escapedozer
+		enemy = bulldozer
 	},
 	[103163] = {
-		enemy = escapedozer
+		enemy = bulldozer
 	},
 	[103198] = {
-		enemy = escapedozer
+		enemy = bulldozer
 	},
 	[103231] = {
-		enemy = escapedozer
+		enemy = bulldozer
 	},
 	-- ambush cloakers
 	[103136] = {
-		enemy = escapedozer
+		enemy = bulldozer
 	},
 	[103143] = {
-		enemy = escapedozer
+		enemy = bulldozer
 	},
 	[103151] = {
-		enemy = escapedozer
+		enemy = bulldozer
 	},
 }

@@ -1,4 +1,10 @@
 return {
+	[101607] = {
+		ponr = {
+			length = 180,
+			player_mul = {1.33, 1.15, 1, 0.85}
+		}
+	},
 	[103595] = {
 		reinforce = {
 			{
@@ -18,12 +24,6 @@ return {
 				force = 3,
 				position = Vector3(1600, -1600, 13100)
 			}
-		}
-	},
-	[101607] = {
-		ponr = {
-			length = 180,
-			player_mul = {1.33, 1.15, 1, 0.85}
 		}
 	}
 }

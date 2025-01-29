@@ -20,7 +20,7 @@ return {
             enemy = cloaker
 		},
 		on_executed = {
-			{id = 400001, delay = 0}
+			{ id = 400001, delay = 0 }
 		}
 	},
 	[101572] = {
@@ -32,8 +32,8 @@ return {
 	--remove the line+trigger the loop here
 	[100945] = {
 		on_executed = {
-			{id = 100946, remove = true},
-			{id = 100965, delay = 180}
+			{ id = 100946, remove = true },
+			{ id = 100965, delay = 180 }
 		}
 	},
 	--loop the choppa+2 chopper spawns on Eclipse
@@ -42,7 +42,7 @@ return {
             amount = chopper_amount
 		},
 		on_executed = {
-			{id = 100965, delay = 300}
+			{ id = 100965, delay = 300 }
 		}
 	},
 	--trigger_times to 0; making the loop possible

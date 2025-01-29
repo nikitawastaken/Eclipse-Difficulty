@@ -1,6 +1,6 @@
-local diff_i = StreamHeist:difficulty_index()
-local is_eclipse = StreamHeist:is_eclipse()
-local is_pro_job = StreamHeist:is_pro_job()
+local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
 -- if the value is a function, it calls the function with the data of the value name instead

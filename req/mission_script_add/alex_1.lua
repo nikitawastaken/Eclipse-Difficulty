@@ -5,7 +5,7 @@ local Bain_sendcloakers = {
 
 return {
     elements = {
-		StreamHeist:gen_dialogue(
+		Eclipse.mission_elements.gen_dialogue(
             400001,
             "they_sending_cloakers",
             Bain_sendcloakers

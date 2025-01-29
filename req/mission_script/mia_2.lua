@@ -1,3 +1,7 @@
+local scripted_enemy = Eclipse.scripted_enemy
+
+local cloaker = scripted_enemy.cloaker
+
 return {
 	-- Boss spawn
 	[100154] = {
@@ -8,9 +12,9 @@ return {
 		difficulty = 1
 	},
 	[101133] = {
-		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
+		enemy = cloaker
 	},
 	[101141] = {
-		enemy = Idstring("units/payday2/characters/ene_spook_1/ene_spook_1")
+		enemy = cloaker
 	}
 }

@@ -1,12 +1,10 @@
+local alleyway_spawn = {
+	values = {
+		interval = 30
+	}
+}
+
 return {
-	[100089] = {
-		values = {
-			interval = 30
-		}
-	},
-	[100143] = {
-		values = {
-			interval = 30
-		}
-	},
+	[100089] = alleyway_spawn,
+	[100143] = alleyway_spawn
 }

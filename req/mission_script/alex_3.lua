@@ -1,113 +1,30 @@
+local gangster_team = {
+	values = {
+		team = "law1"
+	}
+}
 return {
 	-- Set gangsters to law team (they are not supposed to shoot the cops)
-	[100506] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100507] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100788] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100789] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100790] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100791] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100793] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100794] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100796] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[100797] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101124] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101130] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101132] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101138] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101140] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101178] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101179] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101180] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101181] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101182] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101183] = {
-		values = {
-			team = "law1"
-		}
-	},
-	[101184] = {
-		values = {
-			team = "law1"
-		}
-	}
+	[100506] = gangster_team,
+	[100507] = gangster_team,
+	[100788] = gangster_team,
+	[100789] = gangster_team,
+	[100790] = gangster_team,
+	[100791] = gangster_team,
+	[100793] = gangster_team,
+	[100794] = gangster_team,
+	[100796] = gangster_team,
+	[100797] = gangster_team,
+	[101124] = gangster_team,
+	[101130] = gangster_team,
+	[101132] = gangster_team,
+	[101138] = gangster_team,
+	[101140] = gangster_team,
+	[101178] = gangster_team,
+	[101179] = gangster_team,
+	[101180] = gangster_team,
+	[101181] = gangster_team,
+	[101182] = gangster_team,
+	[101183] = gangster_team,
+	[101184] = gangster_team,
 }

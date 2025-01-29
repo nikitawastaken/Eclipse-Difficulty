@@ -5,7 +5,7 @@ local Bain_senddozers = {
 
 return {
     elements = {
-		StreamHeist:gen_dialogue(
+		Eclipse.mission_elements.gen_dialogue(
             400001,
             "they_sending_dozers",
             Bain_senddozers

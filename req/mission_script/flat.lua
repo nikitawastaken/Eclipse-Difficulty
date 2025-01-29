@@ -11,12 +11,29 @@ local disabled = {
         enabled = false
 	}
 }
+local retrigger = {
+	values = {
+		trigger_times = 0
+	},
+}
+local roof_spawn = {
+	values = {
+		interval = 40
+	}
+}
 return {
+	-- add point of no return
+	[101016] = {
+		ponr = {
+			length = 180,
+			player_mul = { 1.33, 1.167, 1, 1 },
+		}
+	},
 	--Restore roof access blockade
 	[100095] = {
 		on_executed = {
-			{id = 100569, remove = true},
-			{id = 400064, delay = 0}
+			{ id = 100569, remove = true },
+			{ id = 400064, delay = 0 }
 		}
 	},
 	[100297] = {
@@ -33,7 +50,7 @@ return {
 	[103611] = enabled,
 	[103648] = {
 		on_executed = {
-			{id = 103611, remove = true}
+			{ id = 103611, remove = true }
 		}
 	},
 	--stop with the smoke bombs, jeez....
@@ -42,7 +59,7 @@ return {
 	--Disable cloaker spawns on startup
 	[102263] = {
 		on_executed = {
-			{id = 400039, delay = 3}
+			{ id = 400039, delay = 3 }
 		}
 	},
 	--Add missing navlinks
@@ -73,9 +90,9 @@ return {
 	--Trigger event spawns after each start of the assault wave
 	[104656] = {
 		on_executed = {
-			{id = 400015, delay = 30},
-			{id = 400020, delay = 60},
-			{id = 400037, delay = 75}
+			{ id = 400015, delay = 30 },
+			{ id = 400020, delay = 60 },
+			{ id = 400037, delay = 75 }
 		}
 	},
 	--Spawn Shields after placing the last c4
@@ -88,22 +105,22 @@ return {
 	--Enable Cloaker spawns
 	[104573] = {
 		on_executed = {
-			{id = 400025, delay = 15},
-			{id = 400038, delay = 0}
+			{ id = 400025, delay = 15 },
+			{ id = 400038, delay = 0 }
 		}
 	},
 	--Change chopper squad
 	[101658] = {
 		on_executed = {
-			{id = 104561, remove = true},
-			{id = 400032, delay = 17}
+			{ id = 104561, remove = true },
+			{ id = 400032, delay = 17 }
 		}
 	},
 	--Trigger dozer spawn
 	[104706] = {
 		on_executed = {
-			{id = 400040, delay = 0},
-			{id = 400042, delay = 0}
+			{ id = 400040, delay = 0 },
+			{ id = 400042, delay = 0 }
 		}
 	},
 	--Cops now spawn when you open the red door rather than when killing Chavez (like in PDTH)
@@ -138,141 +155,41 @@ return {
 		},
 	},
 	-- Disable roof/stairs reinforcement
-	[102501] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103181] = {
-		values = {
-			enabled = false
-		}
-	},
+	[102501] = disabled,
+	[103181] = disabled,
 	-- re-allow sniper respawns
-	[104556] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[104556] = disabled,
 	-- reenable far sniper
-	[101521] = {
-		values = {
-			enabled = true
-		}
-	},
+	[101521] = enabled,
 	[101599] = {
 		values = {
 			trigger_times = 0,
 			enabled = true
 		}
 	},
-	[103143] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[103134] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[103137] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[103130] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[103126] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[102833] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[101801] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[102614] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[102612] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[103148] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[103168] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[100793] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[100645] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[103111] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
-	[100693] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
+	[103143] = retrigger,
+	[103134] = retrigger,
+	[103137] = retrigger,
+	[103130] = retrigger,
+	[103126] = retrigger,
+	[102833] = retrigger,
+	[101801] = retrigger,
+	[102614] = retrigger,
+	[102612] = retrigger,
+	[103148] = retrigger,
+	[103168] = retrigger,
+	[100793] = retrigger,
+	[100645] = retrigger,
+	[103111] = retrigger,
+	[100693] = retrigger,
 	-- slow down roof spawns, these are really fuckng annoying
-	[104650] = {
-		values = {
-			interval = 40,
-		},
-	},
-	[100504] = {
-		values = {
-			interval = 40,
-		},
-	},
-	[100505] = {
-		values = {
-			interval = 40,
-		},
-	},
-	[100509] = {
-		values = {
-			interval = 40,
-		},
-	},
-	[100396] = {
-		values = {
-			interval = 40,
-		},
-	},
+	[104650] = roof_spawn,
+	[100504] = roof_spawn,
+	[100505] = roof_spawn,
+	[100509] = roof_spawn,
+	[100396] = roof_spawn,
 	-- disable panic room reenforce (sh disables the other two points, and this heist doesnt really need it)
-	[103348] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[103348] = disabled,
 	-- ambush line fix ?  hasnt been working for me since forever
 	[100501] = {
 		values = {
@@ -289,17 +206,10 @@ return {
 	[102261] = {
 		values = {
 			on_executed = {
-				{delay = 0, id = 101591},
-				{delay = 0, id = 101573},
-				{delay = 0, id = 100350}
+				{ delay = 0, id = 101591 },
+				{ delay = 0, id = 101573 },
+				{ delay = 0, id = 100350 }
 			}
 		}
 	},
-	-- add point of no return
-	[101016] = {
-		ponr = {
-			length = 180,
-			player_mul = {1.33, 1.167, 1, 1}
-		}
-	}
 }

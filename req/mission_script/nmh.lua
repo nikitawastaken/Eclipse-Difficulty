@@ -1,3 +1,9 @@
+local disabled = {
+	values = {
+		enabled = false
+	}
+}
+	
 return {
 	[103469] = {
 		flashlight = true
@@ -17,19 +23,7 @@ return {
 		end
 	},
 	-- Disable most reinforce points
-	[103706] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103707] = {
-		values = {
-			enabled = false
-		}
-	},
-	[103847] = {
-		values = {
-			enabled = false
-		}
-	}
+	[103706] = disabled,
+	[103707] = disabled,
+	[103847] = disabled,
 }
