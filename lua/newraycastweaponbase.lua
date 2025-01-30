@@ -82,13 +82,13 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		end
 
 		local stats_stance_mul = stats.stance_mul
-		
+
 		if stats_stance_mul then
 			if stats.stance_mul.recoil then
 				if stats_stance_mul.recoil.standing then
 					self._standing_hipfire_recoil_mul = stats_stance_mul.recoil.standing.hipfire
-					self._standing_crouching_recoil_mul = stats_stance_mul.recoil.standing.crouching 
-					self._standing_steelsight_recoil_mul = stats_stance_mul.recoil.standing.steelsight 
+					self._standing_crouching_recoil_mul = stats_stance_mul.recoil.standing.crouching
+					self._standing_steelsight_recoil_mul = stats_stance_mul.recoil.standing.steelsight
 				elseif stats_stance_mul.recoil.moving then
 					self._moving_hipfire_recoil_mul = stats_stance_mul.recoil.moving.hipfire
 					self._moving_crouching_recoil_mul = stats_stance_mul.recoil.moving.crouching
@@ -97,8 +97,8 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			elseif stats.stance_mul.spread then
 				if stats_stance_mul.spread.standing then
 					self._standing_hipfire_spread_mul = stats_stance_mul.spread.standing.hipfire
-					self._standing_crouching_spread_mul = stats_stance_mul.spread.standing.crouching 
-					self._standing_steelsight_spread_mul = stats_stance_mul.spread.standing.steelsight 
+					self._standing_crouching_spread_mul = stats_stance_mul.spread.standing.crouching
+					self._standing_steelsight_spread_mul = stats_stance_mul.spread.standing.steelsight
 				elseif stats_stance_mul.spread.moving then
 					self._moving_hipfire_spread_mul = stats_stance_mul.spread.moving.hipfire
 					self._moving_crouching_spread_mul = stats_stance_mul.spread.moving.crouching

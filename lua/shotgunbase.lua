@@ -3,7 +3,6 @@ Hooks:PostHook(ShotgunBase, "setup_default", "eclipse_setup_default", function(s
 	self._damage_far = tweak_data.weapon[self._name_id].damage_far
 end)
 
-
 function ShotgunBase:_update_stats_values()
 	ShotgunBase.super._update_stats_values(self)
 	self:setup_default()
@@ -39,7 +38,6 @@ function ShotgunBase:_update_stats_values()
 	end
 end
 
-
 function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, ...)
 	self._enemy_penetrations = nil
 	self._hit_through_enemy = nil
@@ -59,7 +57,6 @@ function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, ...)
 
 	return result
 end
-
 
 function ShotgunBase:get_damage_falloff(damage, col_ray, user_unit)
 	local distance = col_ray.distance or mvector3.distance(col_ray.unit:position(), user_unit:position())
