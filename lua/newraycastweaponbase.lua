@@ -13,7 +13,6 @@ Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._shots_fired_consecutively = 0
 end)
 
-
 Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_stats_values", function(self)
 	local custom_stats = managers.weapon_factory:get_custom_stats_from_weapon(self._factory_id, self._blueprint)
 	local weapon_tweak = self:weapon_tweak_data()
@@ -84,7 +83,6 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	end
 end)
 
-
 function NewRaycastWeaponBase:movement_penalty()
 	if managers.player:has_category_upgrade("player", "no_movement_penalty") then
 		return 1
@@ -92,7 +90,6 @@ function NewRaycastWeaponBase:movement_penalty()
 		return self._movement_penalty or 1
 	end
 end
-
 
 -- remove ARs from BE
 function NewRaycastWeaponBase:get_add_head_shot_mul()
@@ -102,7 +99,6 @@ function NewRaycastWeaponBase:get_add_head_shot_mul()
 
 	return nil
 end
-
 
 function NewRaycastWeaponBase:reload_speed_multiplier()
 	if self._current_reload_speed_multiplier then
@@ -156,7 +152,6 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 	return multiplier
 end
 
-
 function NewRaycastWeaponBase:fire(...)
 	local ray_res = NewRaycastWeaponBase.super.fire(self, ...)
 
@@ -171,7 +166,6 @@ function NewRaycastWeaponBase:fire(...)
 
 	return ray_res
 end
-
 
 function NewRaycastWeaponBase:stop_shooting()
 	NewRaycastWeaponBase.super.stop_shooting(self)
@@ -188,7 +182,6 @@ function NewRaycastWeaponBase:stop_shooting()
 
 	self._shots_fired_consecutively = 0 -- reset the shots counter when you stop spraying
 end
-
 
 function NewRaycastWeaponBase:recoil_multiplier()
 	local is_moving = false
@@ -283,7 +276,6 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	return multiplier
 end
 
-
 function NewRaycastWeaponBase:spread_multiplier()
 	local is_moving = false
 	local is_crouching = false
@@ -377,7 +369,6 @@ function NewRaycastWeaponBase:spread_multiplier()
 	return multiplier
 end
 
-
 function NewRaycastWeaponBase:fire_rate_multiplier()
 	local user_unit = self._setup and self._setup.user_unit
 	local current_state = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state
@@ -403,7 +394,6 @@ function NewRaycastWeaponBase:fire_rate_multiplier()
 
 	return multiplier
 end
-
 
 function NewRaycastWeaponBase:falloff_range_multiplier()
 	local primary_category = self:weapon_tweak_data().categories and self:weapon_tweak_data().categories[1]
@@ -443,7 +433,6 @@ function NewRaycastWeaponBase:falloff_range_multiplier()
 	return multiplier
 end
 
-
 function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 	local mul = 1
 
@@ -467,7 +456,6 @@ function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 
 	return self:_convert_add_to_mul(mul)
 end
-
 
 function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local weapon_tweak = self:weapon_tweak_data()
@@ -493,14 +481,12 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	return multiplier
 end
 
-
 Hooks:PreHook(NewRaycastWeaponBase, "_fire_raycast", "eclipse_fire_raycast", function(self)
 	self._enemy_penetrations = nil
 	self._hit_through_enemy = nil
 	self._hit_through_wall = nil
 	self._hit_through_shield = nil
 end)
-
 
 Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_falloff", function(self, damage, hit)
 	local multiplier = 1
