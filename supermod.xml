@@ -88,7 +88,6 @@
 				<post :hook_id="enveffecttweakdata"/>
 				<post :hook_id="skilltreetweakdata"/>
 				<post :hook_id="interactiontweakdata"/>
-				<post :hook_id="weaponfallofftweakdata"/>
 				<post :hook_id="weaponfactorytweakdata"/>
 				<post :hook_id="blackmarkettweakdata"/>
 				<post :hook_id="preplanningtweakdata"/>
