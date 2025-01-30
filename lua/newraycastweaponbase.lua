@@ -9,9 +9,11 @@ local FIRE_MODE_IDS = {
 	volley = ids_volley,
 }
 
+
 Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._shots_fired_consecutively = 0
 end)
+
 
 Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_stats_values", function(self)
 	local custom_stats = managers.weapon_factory:get_custom_stats_from_weapon(self._factory_id, self._blueprint)
@@ -44,10 +46,6 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	self._exit_run_speed_multiplier = weapon_tweak.exit_run_speed_multiplier or 1
 
-	self._falloff_range_multiplier = weapon_tweak.falloff_range_multiplier or 1
-
-	self._penetration_dmg_mul = weapon_tweak.penetration_damage_mul or {}
-
 	self._standing_hipfire_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.hipfire) or 1
 	self._standing_crouching_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.crouching) or 1
 	self._standing_steelsight_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.steelsight) or 1
@@ -63,8 +61,6 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._moving_hipfire_spread_mul = (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.moving and weapon_tweak.spread_multiplier.moving.hipfire) or 1
 	self._moving_crouching_spread_mul = (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.moving and weapon_tweak.spread_multiplier.moving.crouching) or 1
 	self._moving_steelsight_spread_mul = (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.moving and weapon_tweak.spread_multiplier.moving.steelsight) or 1
-
-	self._in_air_spread_mul = weapon_tweak.in_air_spread_multiplier or 1
 
 	for part_id, stats in pairs(custom_stats) do
 		if stats.swap_speed_multiplier then
@@ -83,15 +79,12 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			self._exit_run_speed_multiplier = self._exit_run_speed_multiplier * stats.exit_run_speed_multiplier
 		end
 
-		if stats.falloff_range_multiplier then
-			self._falloff_range_multiplier = self._falloff_range_multiplier * stats.falloff_range_multiplier
-		end
-
 		if stats.total_ammo_multiplier then
 			self._total_ammo_multiplier = self._total_ammo_multiplier * stats.total_ammo_multiplier
 		end
 	end
 end)
+
 
 function NewRaycastWeaponBase:movement_penalty()
 	if managers.player:has_category_upgrade("player", "no_movement_penalty") then
@@ -101,6 +94,7 @@ function NewRaycastWeaponBase:movement_penalty()
 	end
 end
 
+
 -- remove ARs from BE
 function NewRaycastWeaponBase:get_add_head_shot_mul()
 	if self:is_category("smg", "lmg", "minigun") and self._fire_mode == ids_auto or self:is_category("bow", "saw") then
@@ -109,6 +103,7 @@ function NewRaycastWeaponBase:get_add_head_shot_mul()
 
 	return nil
 end
+
 
 function NewRaycastWeaponBase:reload_speed_multiplier()
 	if self._current_reload_speed_multiplier then
@@ -162,6 +157,7 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 	return multiplier
 end
 
+
 function NewRaycastWeaponBase:fire(...)
 	local ray_res = NewRaycastWeaponBase.super.fire(self, ...)
 
@@ -176,6 +172,7 @@ function NewRaycastWeaponBase:fire(...)
 
 	return ray_res
 end
+
 
 function NewRaycastWeaponBase:stop_shooting()
 	NewRaycastWeaponBase.super.stop_shooting(self)
@@ -192,6 +189,7 @@ function NewRaycastWeaponBase:stop_shooting()
 
 	self._shots_fired_consecutively = 0 -- reset the shots counter when you stop spraying
 end
+
 
 function NewRaycastWeaponBase:recoil_multiplier()
 	local is_moving = false
@@ -286,6 +284,7 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	return multiplier
 end
 
+
 function NewRaycastWeaponBase:spread_multiplier()
 	local is_moving = false
 	local is_crouching = false
@@ -306,7 +305,6 @@ function NewRaycastWeaponBase:spread_multiplier()
 		is_moving = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state._moving
 		is_crouching = alive(user_unit) and user_unit:movement() and user_unit:movement():crouching()
 		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:in_steelsight()
-		in_air = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:in_air()
 	end
 
 	local weapon_tweak = self:weapon_tweak_data()
@@ -380,6 +378,7 @@ function NewRaycastWeaponBase:spread_multiplier()
 	return multiplier
 end
 
+
 function NewRaycastWeaponBase:fire_rate_multiplier()
 	local user_unit = self._setup and self._setup.user_unit
 	local current_state = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state
@@ -405,6 +404,7 @@ function NewRaycastWeaponBase:fire_rate_multiplier()
 
 	return multiplier
 end
+
 
 function NewRaycastWeaponBase:falloff_range_multiplier()
 	local primary_category = self:weapon_tweak_data().categories and self:weapon_tweak_data().categories[1]
@@ -444,6 +444,7 @@ function NewRaycastWeaponBase:falloff_range_multiplier()
 	return multiplier
 end
 
+
 function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 	local mul = 1
 
@@ -467,6 +468,7 @@ function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 
 	return self:_convert_add_to_mul(mul)
 end
+
 
 function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local weapon_tweak = self:weapon_tweak_data()
@@ -492,79 +494,37 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	return multiplier
 end
 
-Hooks:PreHook(NewRaycastWeaponBase, "_fire_raycast", "eclipse_fire_raycast", function(self)
+
+Hooks:PreHook(NewRaycastWeaponBase, "_fire_raycast", "eclipse_fire_raycast", function (self)		
+	self._enemy_penetrations = nil
 	self._hit_through_enemy = nil
+	self._hit_through_wall = nil
+	self._hit_through_shield = nil
 end)
 
-function NewRaycastWeaponBase:get_damage_falloff(damage, col_ray, user_unit)
-	local damage_mul = 1
 
-	local weapon_tweak = self:weapon_tweak_data()
-
-	if col_ray.unit and col_ray.unit:in_slot(self.shield_mask) then
-		damage_mul = damage_mul * (self._penetration_dmg_mul and self._penetration_dmg_mul.shield or 1)
-	elseif col_ray.unit and col_ray.unit:in_slot(self.wall_mask) then
-		damage_mul = damage_mul * (self._penetration_dmg_mul and self._penetration_dmg_mul.wall or 1)
-	end
-
-	if col_ray.unit and col_ray.unit:in_slot(self.enemy_mask) then
-		if self._hit_through_enemy then
-			damage_mul = damage_mul * (self._penetration_dmg_mul and self._penetration_dmg_mul.enemy or 1)
+Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_falloff", function (self, damage, hit)
+	local multiplier = 1
+	
+	local weapon_tweak = self:weapon_tweak_data()		
+	local penetration_dmg_mul = weapon_tweak.penetration_damage_mul
+	
+	self._hit_through_enemy = self._hit_through_enemy or hit.unit:in_slot(self.enemy_mask)
+	self._hit_through_wall = self._hit_through_wall or hit.unit:in_slot(self.wall_mask)
+	self._hit_through_shield = self._hit_through_shield or hit.unit:in_slot(self.shield_mask) 
+	
+	if self._hit_through_enemy then
+		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
+	
+		if self._enemy_penetrations > 1 then	
+			local pen_mult = (penetration_dmg_mul and penetration_dmg_mul.enemy or 1) ^ math.max(1, self._enemy_penetrations - 1)
+			
+			multiplier = multiplier * pen_mult
 		end
-
-		self._hit_through_enemy = true
 	end
-
-	if self._optimal_distance + self._optimal_range == 0 then
-		return damage * damage_mul
-	end
-
-	local distance = col_ray.distance or mvector3.distance(col_ray.unit:position(), user_unit:position())
-	local near_dist = self._optimal_distance - self._near_falloff
-	local optimal_start = self._optimal_distance
-	local optimal_end = self._optimal_distance + self._optimal_range
-	local far_dist = optimal_end + self._far_falloff
-	local near_mul = self._near_multiplier
-	local optimal_mul = 1
-	local far_mul = self._far_multiplier
-	local multiplier = self:falloff_range_multiplier()
-
-	optimal_end = optimal_end * multiplier
-	far_dist = far_dist * multiplier
-
-	if distance < self._optimal_distance then
-		if self._near_falloff > 0 then
-			damage_mul = math.map_range_clamped(distance, near_dist, optimal_start, near_mul, optimal_mul)
-		else
-			damage_mul = near_mul
-		end
-	elseif distance < optimal_end then
-		damage_mul = optimal_mul
-	elseif self._far_falloff > 0 then
-		damage_mul = math.map_range_clamped(distance, optimal_end, far_dist, optimal_mul, far_mul)
-	else
-		damage_mul = far_mul
-	end
-
-	return damage * damage_mul
-end
-
---Hitmarker size now scales linearly based on distance to make falloff more readable
-function NewRaycastWeaponBase:is_weak_hit(distance, user_unit)
-	if not distance or not user_unit or self._optimal_distance + self._optimal_range == 0 then
-		return 1
-	end
-
-	local multiplier = self:falloff_range_multiplier()
-
-	local optimal_end = (self._optimal_distance + self._optimal_range) * multiplier
-	local far_dist = self._far_falloff * multiplier
-
-	local scale_mul = 0
-
-	local f = math.clamp(math.max(0, (distance - optimal_end)) / far_dist, 0, 1)
-
-	scale_mul = math.lerp(1, 0.5, f)
-
-	return scale_mul
-end
+	
+	multiplier = multiplier * (self._hit_through_wall and penetration_dmg_mul and penetration_dmg_mul.wall or 1)
+	multiplier = multiplier * (self._hit_through_shield and penetration_dmg_mul and penetration_dmg_mul.shield or 1)
+	
+	return Hooks:GetReturn() * multiplier
+end)
