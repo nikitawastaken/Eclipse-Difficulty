@@ -139,3 +139,22 @@ function BlackMarketManager:fire_rate_multiplier(name, categories, silencer, det
 
 	return self:_convert_add_to_mul(multiplier)
 end
+
+local old_blackmarket_manager_reload_time = BlackMarketManager.get_reload_time
+function BlackMarketManager:get_reload_time(weapon_id)
+	local result_empty, result_tactical = old_blackmarket_manager_reload_time(self, weapon_id)
+
+	-- primitive error handling
+	if type(result_empty) == "function" then
+		return result_empty
+	end
+
+	-- Add custom reload time multipliers
+	local mult = tweak_data.weapon[weapon_id].reload_speed_multiplier
+	if mult then
+		result_empty = result_empty * mult
+		result_tactical = result_tactical * mult
+	end
+
+	return result_empty, result_tactical
+end

@@ -200,3 +200,15 @@ function WeaponDescription._get_custom_pellet_stats(name, category, slot, bluepr
 		end
 	end
 end
+
+local old_weapon_desc_base_stats = WeaponDescription._get_base_stats
+function WeaponDescription._get_base_stats(name)
+	local result = old_weapon_desc_base_stats(name)
+	local weapon_tweak = tweak_data.weapon[name]
+
+	-- Custom fire rate multiplier
+	if weapon_tweak.fire_rate_multiplier then
+		result.fire_rate.value = result.fire_rate.value * weapon_tweak.fire_rate_multiplier
+	end
+	return result
+end
