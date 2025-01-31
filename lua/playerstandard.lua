@@ -45,7 +45,7 @@ function PlayerStandard:_end_action_running(t)
 	if not self._end_running_expire_t then
 		local weap_base = self._equipped_unit:base()
 
-		local speed_multiplier = weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_sprint_exit_speed() or 1)
+		local speed_multiplier = weap_base:exit_run_speed_multiplier()
 
 		self._end_running_expire_t = t + 0.4 / speed_multiplier
 
@@ -59,10 +59,9 @@ end
 
 Hooks:PostHook(PlayerStandard, "_get_max_walk_speed", "hits_get_max_walk_speed", function(self, t)
 	local weap_base = self._equipped_unit:base()
-	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 
 	if self._state_data.in_steelsight and not managers.player:has_category_upgrade("player", "steelsight_normal_movement_speed") and not _G.IS_VR then
-		self._tweak_data.movement.speed.STEELSIGHT_MAX = self._tweak_data.movement.speed.STANDARD_MAX * (weapon_tweak_data.steelsight_move_speed_mul or 1)
+		self._tweak_data.movement.speed.STEELSIGHT_MAX = self._tweak_data.movement.speed.STANDARD_MAX * (weap_base:steelsight_move_speed_multiplier() or 1)
 	end
 end)
 
