@@ -64,6 +64,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			local is_sight = part.type and part.type == "sight"
 			local is_magazine = part.type and part.type == "magazine"
 			local is_scope = is_sight and part.perks and table.contains(part.perks, "scope")
+			local is_silencer = part.perks and table.contains(part.perks, "silencer")
 
 			if part.stats.suppression then
 				part.stats.suppression = 0
@@ -89,7 +90,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				part.stats.concealment = -1
 			end
 
-			if id:match("_legendary$") and not is_silencer then
+			if id:match("_legend") and not is_silencer then
 				part.stats = {}
 				part.custom_stats = {}
 			end
