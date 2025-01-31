@@ -1,82 +1,63 @@
-Hooks:PostHook(FireTweakData, "_init_dot_entries_fire", "eclipse__init_dot_entries_fire", function(self)
-	-- incendiary
-	self.dot_entries.fire.proj_fire_com.dot_damage = 30
-	self.dot_entries.fire.proj_fire_com.dot_length = 5
+Hooks:PostHook(FireTweakData, "init", "eclipse_init", function (self)
+	for _, fire_type in pairs(self.dot_entries.fire) do
+		fire_type.dot_damage = 3
+		fire_type.dot_length = 4
+		fire_type.dot_tick_period = 0.25
+		fire_type.dot_trigger_max_distance = false
+	end
 
-	-- flamer dot (might just rework later)
-	self.dot_entries.fire.weapon_flamethrower_mk2 = {
-		dot_trigger_chance = 50,
-		dot_damage = 7.5,
-		dot_length = 1.1,
-		dot_tick_period = 0.5,
-		dot_trigger_max_distance = false,
-	}
-	self.dot_entries.fire.ammo_flamethrower_mk2_rare = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
-	self.dot_entries.fire.ammo_flamethrower_mk2_welldone = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
+	local trigger_chance_flamethrower = 0.15
+	local trigger_chance_molotov = 0.25
+	
+	self.dot_entries.fire.default_fire.dot_trigger_chance = 1
 
-	self.dot_entries.fire.weapon_system = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
-	self.dot_entries.fire.weapon_system_low = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
-	self.dot_entries.fire.weapon_system_high = deep_clone(self.dot_entries.fire.weapon_flamethrower_mk2)
+	self.dot_entries.fire.weapon_flamethrower_mk2.dot_trigger_chance = trigger_chance_flamethrower
 
-	-- Dragon's Breath dot
-	self.dot_entries.fire.ammo_dragons_breath_vh = {
-		dot_trigger_chance = 1,
-		dot_damage = 5,
-		dot_length = 3,
-		dot_trigger_max_distance = 3000,
-		dot_tick_period = 0.25,
-	}
+	self.dot_entries.fire.ammo_flamethrower_mk2_rare = clone(self.dot_entries.fire.weapon_flamethrower_mk2)
+	self.dot_entries.fire.ammo_flamethrower_mk2_rare.dot_damage = 2
 
-	self.dot_entries.fire.ammo_dragons_breath_h = {
-		dot_trigger_chance = 0.85,
-		dot_damage = 4,
-		dot_length = 3,
-		dot_trigger_max_distance = 2000,
-		dot_tick_period = 0.25,
-	}
+	self.dot_entries.fire.ammo_flamethrower_mk2_welldone = clone(self.dot_entries.fire.weapon_flamethrower_mk2)
+	self.dot_entries.fire.ammo_flamethrower_mk2_welldone.dot_damage = 4
+ 
+	self.dot_entries.fire.ammo_dragons_breath.dot_trigger_chance = 0.2
+	self.dot_entries.fire.ammo_dragons_breath.dot_trigger_max_distance = 1200
 
-	self.dot_entries.fire.ammo_dragons_breath = {
-		dot_trigger_chance = 0.85,
-		dot_damage = 3,
-		dot_length = 3,
-		dot_trigger_max_distance = 1750,
-		dot_tick_period = 0.25,
-	}
+	self.dot_entries.fire.ammo_dragons_breath_weak = clone(self.dot_entries.fire.ammo_dragons_breath)
+	self.dot_entries.fire.ammo_dragons_breath_weak.dot_trigger_max_distance = 1200
 
-	self.dot_entries.fire.ammo_dragons_breath_l = {
-		dot_trigger_chance = 0.7,
-		dot_damage = 2,
-		dot_length = 3,
-		dot_trigger_max_distance = 1500,
-		dot_tick_period = 0.25,
-	}
+	self.dot_entries.fire.ammo_dragons_breath_strong = clone(self.dot_entries.fire.ammo_dragons_breath)
+	self.dot_entries.fire.ammo_dragons_breath_strong.dot_trigger_max_distance = 1800
+	
+	self.dot_entries.fire.weapon_system.dot_trigger_chance = trigger_chance_flamethrower
 
-	self.dot_entries.fire.ammo_dragons_breath_vl = {
-		dot_trigger_chance = 0.7,
-		dot_damage = 1,
-		dot_length = 3,
-		dot_trigger_max_distance = 1250,
-		dot_tick_period = 0.25,
-	}
+	self.dot_entries.fire.ammo_system_high = clone(self.dot_entries.fire.weapon_system)
+	self.dot_entries.fire.ammo_system_high.dot_damage = 2
+	
+	self.dot_entries.fire.ammo_system_low = clone(self.dot_entries.fire.weapon_system)
+	self.dot_entries.fire.ammo_system_low.dot_damage = 4
+	
+	self.dot_entries.fire.weapon_money.burn_sound_name = "no_sound"
+	self.dot_entries.fire.weapon_money.fire_effect_variant = "endless_money"
+	self.dot_entries.fire.weapon_money.dot_trigger_chance = trigger_chance_flamethrower
+	
+	self.dot_entries.fire.weapon_kacchainsaw_flamethrower.dot_trigger_chance = trigger_chance_flamethrower
+	
+	self.dot_entries.fire.weapon_money.dot_trigger_chance = trigger_chance_flamethrower
+	
+	self.dot_entries.fire.melee_spoon_gold.dot_trigger_chance = 0.4
 
-	-- molo dot
-	self.dot_entries.fire.proj_molotov_groundfire = {
-		dot_trigger_chance = 1,
-		dot_damage = 7.5,
-		dot_length = 6,
-		dot_trigger_max_distance = false,
-		dot_tick_period = 0.25,
-		is_molotov = true,
-	}
+	self.dot_entries.fire.proj_fire_com.dot_trigger_chance = 1
+	
+	self.dot_entries.fire.proj_molotov.dot_length = 8
+	self.dot_entries.fire.proj_molotov.is_molotov = true
+	self.dot_entries.fire.proj_molotov.dot_trigger_chance = trigger_chance_molotov
 
-	self.dot_entries.fire.proj_launcher_incendiary_groundfire = {
-		dot_trigger_chance = 1,
-		dot_damage = 7.5,
-		dot_length = 6,
-		dot_trigger_max_distance = false,
-		dot_tick_period = 0.25,
-		is_molotov = false,
-	}
+	self.dot_entries.fire.proj_molotov_groundfire.is_molotov = true
 
-	self.dot_entries.fire.proj_launcher_incendiary_arbiter_groundfire = clone(self.dot_entries.fire.proj_launcher_incendiary_groundfire)
+	self.dot_entries.fire.proj_launcher_incendiary.dot_length = 4
+	self.dot_entries.fire.proj_launcher_incendiary.dot_trigger_chance = trigger_chance_molotov
+	
+	self.dot_entries.fire.proj_launcher_incendiary_arbiter.dot_length = 4
+	self.dot_entries.fire.proj_launcher_incendiary_arbiter.dot_trigger_chance = trigger_chance_molotov	
 end)
+

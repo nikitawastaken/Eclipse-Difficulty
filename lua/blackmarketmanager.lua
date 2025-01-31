@@ -152,8 +152,8 @@ function BlackMarketManager:get_reload_time(weapon_id)
 	-- Add custom reload time multipliers
 	local mult = tweak_data.weapon[weapon_id].reload_speed_multiplier
 	if mult then
-		result_empty = result_empty * mult
-		result_tactical = result_tactical * mult
+		result_empty = result_empty / mult
+		result_tactical = result_tactical / mult
 	end
 
 	return result_empty, result_tactical

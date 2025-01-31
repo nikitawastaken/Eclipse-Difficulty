@@ -61,8 +61,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		end
 
 		if part.stats then
+			local is_sight = part.type and part.type == "sight"
+			local is_magazine = part.type and part.type == "magazine"
 			local is_silencer = part.perks and table.contains(part.perks, "silencer")
-			local is_scope = part.perks and table.contains(part.perks, "scope")
+			local is_scope = is_sight and part.perks and table.contains(part.perks, "scope")
 
 			if is_silencer then
 				part.stats.suppression = 10
@@ -74,13 +76,18 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			if part.stats.spread_moving then
 				part.stats.spread_moving = 0
 			end
-
+			
 			if is_scope then
 				part.stats.concealment = -1
 				part.stats.recoil = 1
+				part.stats.spread = 0
 			end
 
-			if part.type == "magazine" and id:match("_quick$") or id:match("_speed$") then
+			if is_sight and id:match("_standard$") or id:match("_iron")  then
+				part.stats = {}
+			end
+			
+			if is_magazine and id:match("_quick$") or id:match("_speed$") then
 				part.stats = {}
 				part.stats.reload = 2
 				part.stats.concealment = -1
@@ -181,8 +188,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	end
 
 	-- SHOTGUNS --
-	local shotgun_ammo_type_overrides = {
-		triple_aught = {
+	local ammo_overrides = {
+		wpn_fps_upg_a_custom = {
 			very_heavy = { -- double barrels
 				stats = { damage = 16, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6 },
@@ -204,7 +211,29 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				custom_stats = { rays = 6 },
 			},
 		},
-		he_slug = {
+		wpn_fps_upg_a_custom_free = {
+			very_heavy = { -- double barrels
+				stats = { damage = 16, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 },
+			},
+			heavy = { -- shotguns like gsps and the trench gun
+				stats = { damage = 12, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 },
+			},
+			medium = { -- raven, loco, reinfeld, etc
+				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 },
+			},
+			light = { -- semi autos
+				stats = { damage = 9, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 },
+			},
+			very_light = { -- full autos
+				stats = { damage = 7, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6 },
+			},
+		},
+		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
 				stats = { damage = 200, total_ammo_mod = -8, recoil = -2, spread = 4 },
 				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 },
@@ -226,7 +255,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10 },
 			},
 		},
-		ap_slug = {
+		wpn_fps_upg_a_slug = {
 			very_heavy = { -- double barrels
 				stats = { damage = 200, total_ammo_mod = -4, recoil = -2, spread = 6 },
 			},
@@ -243,7 +272,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				stats = { damage = 75, total_ammo_mod = -4, recoil = -2, spread = 6 },
 			},
 		},
-		flechette = {
+		wpn_fps_upg_a_piercing = {
 			very_heavy = { -- double barrels
 				stats = { damage = -18, total_ammo_mod = -6, recoil = -3, spread = 2 },
 				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
@@ -265,7 +294,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				custom_stats = { rays = 12, armor_piercing_add = 1, can_shoot_through_enemy = true },
 			},
 		},
-		dragons_breath = {
+		wpn_fps_upg_a_dragons_breath = {
 			very_heavy = { -- double barrels
 				stats = { damage = -34, total_ammo_mod = -8 },
 				custom_stats = {
@@ -329,6 +358,82 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		},
 	}
 
+	local shotgun_table = {
+		"wpn_fps_shot_saiga",
+		"wpn_fps_sho_aa12",
+		"wpn_fps_sho_basset",
+		"wpn_fps_sho_sko12",
+		"wpn_fps_sho_ben",
+		"wpn_fps_sho_spas12",
+		"wpn_fps_sho_striker",
+		"wpn_fps_sho_rota",
+		"wpn_fps_sho_ultima",
+		"wpn_fps_shot_r870",
+		"wpn_fps_shot_serbu",
+		"wpn_fps_sho_ksg",
+		"wpn_fps_pis_judge",
+		"wpn_fps_sho_m590",
+		"wpn_fps_sho_supernova",
+		"wpn_fps_sho_boot",
+		"wpn_fps_shot_m37",
+		"wpn_fps_shot_m1897",
+		"wpn_fps_shot_huntsman",
+		"wpn_fps_shot_b682",
+		"wpn_fps_sho_coach",
+	}
+
+	local ammo_table = {
+		"wpn_fps_upg_a_custom",
+		"wpn_fps_upg_a_custom_free",
+		"wpn_fps_upg_a_explosive",
+		"wpn_fps_upg_a_slug",
+		"wpn_fps_upg_a_piercing",
+		"wpn_fps_upg_a_dragons_breath",
+		--"wpn_fps_upg_a_rip",
+	}
+
+	local ammo_override_map = {
+		["wpn_fps_shot_saiga"] = "very_light",
+		["wpn_fps_sho_aa12"] = "very_light",
+		["wpn_fps_sho_basset"] = "very_light",
+		["wpn_fps_sho_sko12"] = "very_light",
+		["wpn_fps_sho_striker"] = "light",
+		["wpn_fps_sho_spas12"] = "light",
+		["wpn_fps_sho_rota"] = "light",
+		["wpn_fps_sho_ultima"] = "light",
+		["wpn_fps_shot_r870"] = "medium",
+		["wpn_fps_shot_serbu"] = "medium",
+		["wpn_fps_sho_ksg"] = "medium",
+		["wpn_fps_pis_judge"] = "medium",
+		["wpn_fps_sho_m590"] = "medium",
+		["wpn_fps_sho_supernova"] = "medium",
+		["wpn_fps_sho_boot"] = "heavy",
+		["wpn_fps_shot_m37"] = "heavy",
+		["wpn_fps_shot_m1897"] = "heavy",
+		["wpn_fps_shot_huntsman"] = "very_heavy",
+		["wpn_fps_shot_b682"] = "very_heavy",
+		["wpn_fps_sho_coach"] = "very_heavy",
+	}
+
+	for index, weapon_id in ipairs(shotgun_table) do
+		if not self[weapon_id].override then
+			self[weapon_id].override = {}
+		end
+	end
+
+	for index, weapon_id in ipairs(shotgun_table) do
+		for index, ammo_id in ipairs(ammo_table) do
+			local ammo_override = ammo_override_map[weapon_id]
+			
+			if ammo_override and ammo_overrides[ammo_id] and ammo_overrides[ammo_id][ammo_override] then
+				self[weapon_id].override[ammo_id] = ammo_overrides[ammo_id][ammo_override]
+			end
+		end
+	end
+	
+	--
+	self.parts.wpn_fps_upg_o_mbus_pro.stats = {}
+	
 	--make all car weapons use the 30 rnd magazine by default
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla = deep_clone(self.parts.wpn_fps_m4_uupg_m_std)
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.stats = nil
@@ -346,8 +451,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_fal_s_01.stats.concealment = 2
 
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.spread = -6
-	self.parts.wpn_fps_ass_m14_body_ruger.stats.recoil = -4
-	self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 10
+	self.parts.wpn_fps_ass_m14_body_ruger.stats.recoil = -2
+	self.parts.wpn_fps_ass_m14_body_ruger.stats.concealment = 8
 
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 10
@@ -366,201 +471,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_smg_shepheard_mag_standard.unit = "units/pd2_dlc_joy/weapons/wpn_fps_smg_shepheard_pts/wpn_fps_smg_shepheard_mag_extended"
 	self.parts.wpn_fps_smg_shepheard_mag_standard.bullet_objects = { amount = 30, prefix = "g_bullet_" }
 
-	-- Izhma
-	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light
-	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_light
-	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_light
-	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_light
-	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_light
-	self.wpn_fps_shot_saiga.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_light
-
-	-- Steakout
-	self.wpn_fps_sho_aa12.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_light,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_light,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_light,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_light,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_light,
-	}
-
-	-- Grimm
-	self.wpn_fps_sho_basset.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_light,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_light,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_light,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_light,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_light,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_light,
-	}
-
-	-- VD-12
-	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light
-	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light
-	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light
-	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light
-	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light
-	self.wpn_fps_sho_sko12.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light
-
-	-- M1014
-	self.wpn_fps_sho_ben.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light,
-	}
-
-	-- Predator
-	self.wpn_fps_sho_spas12.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light,
-	}
-
-	-- Goliath
-	self.wpn_fps_sho_rota.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light,
-	}
-
-	-- Street Sweeper
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.light
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.light
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.light
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.light
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.light
-	self.wpn_fps_sho_striker.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.light
-
-	-- Raven
-	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium
-	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium
-	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium
-	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium
-	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium
-	self.wpn_fps_sho_ksg.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
-	self.parts.wpn_fps_sho_ksg_b_long.stats.extra_ammo = 1
-
-	-- Nova
-	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium
-	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium
-	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium
-	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium
-	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium
-	self.wpn_fps_sho_supernova.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
-
-	-- Reinfeld 880
-	self.wpn_fps_shot_r870.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium,
-	}
-
-	-- Mosconi Tactical
-	self.wpn_fps_sho_m590.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium,
-	}
-
-	-- Locomotive
-	self.wpn_fps_shot_serbu.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium,
-	}
-
-	-- Judge
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.medium
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.medium
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.medium
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.medium
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.medium
-	self.wpn_fps_pis_judge.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.medium
-
-	-- Breaker
-	self.wpn_fps_sho_boot.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy,
-	}
-
-	-- Reinfeld 88 (trench gun)
-	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy
-	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy
-	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy
-	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy
-	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy
-	self.wpn_fps_shot_m1897.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy
-
-	-- GSPS
-	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy
-	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy
-	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy
-	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy
-	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy
-	self.wpn_fps_shot_m37.override.wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy
-
-	-- Argos
-	self.wpn_fps_sho_ultima.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.heavy,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.heavy,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.heavy,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.heavy,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.heavy,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.heavy,
-	}
-
-	-- Mosconi (double barrel)
-	self.wpn_fps_shot_huntsman.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_heavy,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_heavy,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_heavy,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_heavy,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_heavy,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy,
-	}
-
-	-- Joceline
-	self.wpn_fps_shot_b682.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_heavy,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_heavy,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_heavy,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_heavy,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_heavy,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy,
-	}
-
-	-- Claire
-	self.wpn_fps_sho_coach.override = {
-		wpn_fps_upg_a_custom = shotgun_ammo_type_overrides.triple_aught.very_heavy,
-		wpn_fps_upg_a_custom_free = shotgun_ammo_type_overrides.triple_aught.very_heavy,
-		wpn_fps_upg_a_explosive = shotgun_ammo_type_overrides.he_slug.very_heavy,
-		wpn_fps_upg_a_slug = shotgun_ammo_type_overrides.ap_slug.very_heavy,
-		wpn_fps_upg_a_piercing = shotgun_ammo_type_overrides.flechette.very_heavy,
-		wpn_fps_upg_a_dragons_breath = shotgun_ammo_type_overrides.dragons_breath.very_heavy,
-	}
-
 	self.parts.wpn_fps_sho_saiga_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
 
@@ -576,44 +486,67 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_sho_aa12_mag_drum.stats.concealment = -4
 	self.parts.wpn_fps_sho_aa12_mag_drum.stats.reload = -4
 
-	self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 3
+	self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 4
 	self.parts.wpn_fps_shot_r870_body_rack.stats.concealment = -2
 
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.extra_ammo = 0
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.concealment = -1
 	self.parts.wpn_fps_shot_shorty_m_extended_short.custom_stats = { ammo_offset = 1 }
 
-	self.parts.wpn_fps_shot_huntsman_b_short.stats.spread = -6
+	self.parts.wpn_fps_upg_o_dd_rear.stats = {}
+	self.parts.wpn_fps_upg_o_mbus_rear.stats = {}
+
+	self.parts.wpn_fps_sho_ksg_b_long.stats.extra_ammo = 1
+	self.parts.wpn_fps_sho_ksg_b_long.stats.spread = 2
+	self.parts.wpn_fps_sho_ksg_b_long.stats.recoil = 0
+	self.parts.wpn_fps_sho_ksg_b_long.stats.concealment = -2
+
+	self.parts.wpn_fps_sho_ksg_b_short.stats.extra_ammo = -1
+	self.parts.wpn_fps_sho_ksg_b_short.stats.spread = -2
+	self.parts.wpn_fps_sho_ksg_b_short.stats.recoil = 0
+	self.parts.wpn_fps_sho_ksg_b_short.stats.concealment = 2
+	
+	self.parts.wpn_fps_shot_huntsman_b_short.stats.spread = -4
 	self.parts.wpn_fps_shot_huntsman_b_short.stats.recoil = -2
-	self.parts.wpn_fps_shot_huntsman_b_short.stats.concealment = 8
+	self.parts.wpn_fps_shot_huntsman_b_short.stats.concealment = 6
 
 	self.parts.wpn_fps_shot_huntsman_s_short.stats.spread = -2
 	self.parts.wpn_fps_shot_huntsman_s_short.stats.recoil = -6
-	self.parts.wpn_fps_shot_huntsman_s_short.stats.concealment = 8
+	self.parts.wpn_fps_shot_huntsman_s_short.stats.concealment = 6
 
-	self.parts.wpn_fps_shot_b682_b_short.stats.spread = -6
+	self.parts.wpn_fps_shot_b682_b_short.stats.spread = -4
 	self.parts.wpn_fps_shot_b682_b_short.stats.recoil = -2
-	self.parts.wpn_fps_shot_b682_b_short.stats.concealment = 8
+	self.parts.wpn_fps_shot_b682_b_short.stats.concealment = 6
 
 	self.parts.wpn_fps_shot_b682_s_short.stats.spread = -2
-	self.parts.wpn_fps_shot_b682_s_short.stats.recoil = -6
-	self.parts.wpn_fps_shot_b682_s_short.stats.concealment = 8
+	self.parts.wpn_fps_shot_b682_s_short.stats.recoil = -4
+	self.parts.wpn_fps_shot_b682_s_short.stats.concealment = 6
 
-	self.parts.wpn_fps_sho_coach_b_short.stats.spread = -6
+	self.parts.wpn_fps_sho_coach_b_short.stats.spread = -4
 	self.parts.wpn_fps_sho_coach_b_short.stats.recoil = -2
-	self.parts.wpn_fps_sho_coach_b_short.stats.concealment = 8
+	self.parts.wpn_fps_sho_coach_b_short.stats.concealment = 6
 
 	self.parts.wpn_fps_sho_coach_s_short.stats.spread = -2
-	self.parts.wpn_fps_sho_coach_s_short.stats.recoil = -6
-	self.parts.wpn_fps_sho_coach_s_short.stats.concealment = 8
+	self.parts.wpn_fps_sho_coach_s_short.stats.recoil = -4
+	self.parts.wpn_fps_sho_coach_s_short.stats.concealment = 6
 
+	self.parts.wpn_fps_snp_sbl_b_long.stats.extra_ammo = -1
+	self.parts.wpn_fps_snp_sbl_b_long.stats.spread = 2
+	self.parts.wpn_fps_snp_sbl_b_long.stats.recoil = 0
+	self.parts.wpn_fps_snp_sbl_b_long.stats.concealment = -1
+
+	self.parts.wpn_fps_snp_sbl_b_short.stats.extra_ammo = -1
+	self.parts.wpn_fps_snp_sbl_b_short.stats.spread = 0
+	self.parts.wpn_fps_snp_sbl_b_short.stats.recoil = 0
+	self.parts.wpn_fps_snp_sbl_b_short.stats.concealment = -1
+	
 	-- DMRs (& Kits) --
 	-- ak family
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = -7
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.concealment = -6
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -8
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 70
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 80
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.has_description = true
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.desc_id = "bm_wp_dmr_kit_penetration_desc"
 	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.25 }
@@ -640,7 +573,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = -8
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.concealment = -5
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.recoil = -11
-	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 70
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 40
 	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 11
 	self.parts.wpn_fps_ass_g3_b_short.custom_stats = { ammo_pickup_max_mul = 2 }
 	self.parts.wpn_fps_ass_g3_b_short.has_description = true
@@ -654,7 +587,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -6
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = -10
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.fire_rate = -3
 	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 1 / 3 }
 	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats.fire_rate_multiplier = 0.7
 	self.parts.wpn_fps_ass_shak12_body_vks.has_description = true
@@ -705,37 +637,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	table.delete(self.wpn_fps_sho_sko12.uses_parts, "wpn_fps_upg_i_autofire")
 	table.delete(self.wpn_fps_gre_ms3gl.uses_parts, "wpn_fps_gre_ms3gl_conversion")
 	table.insert(self.parts.wpn_fps_smg_fmg9_conversion.forbids, "wpn_fps_lmg_hk51b_ns_jcomp")
-	local weapons = {
-		"wpn_fps_shot_saiga",
-		"wpn_fps_shot_r870",
-		"wpn_fps_shot_huntsman",
-		"wpn_fps_shot_serbu",
-		"wpn_fps_sho_ben",
-		"wpn_fps_sho_striker",
-		"wpn_fps_sho_ksg",
-		"wpn_fps_pis_judge",
-		"wpn_fps_sho_spas12",
-		"wpn_fps_shot_b682",
-		"wpn_fps_sho_aa12",
-		"wpn_fps_sho_boot",
-		"wpn_fps_shot_m37",
-		"wpn_fps_shot_m1897",
-		"wpn_fps_sho_m590",
-		"wpn_fps_sho_rota",
-		"wpn_fps_sho_basset",
-		"wpn_fps_sho_x_basset",
-		"wpn_fps_pis_x_judge",
-		"wpn_fps_sho_x_rota",
-		"wpn_fps_sho_coach",
-		"wpn_fps_sho_ultima",
-		"wpn_fps_sho_sko12",
-		"wpn_fps_sho_x_sko12",
-	}
-	for _, factory_id in ipairs(weapons) do
-		if self[factory_id] and self[factory_id].uses_parts then
-			table.delete(self[factory_id].uses_parts, "wpn_fps_upg_a_rip") -- fuck tombstone
-		end
-	end
 end)
 
 -- Gun Perks replace stat boosts
