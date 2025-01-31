@@ -1276,7 +1276,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- KS12
 	table.insert(self.shak12.categories, "dmr")
 	self.shak12.CLIP_AMMO_MAX = 30
-	self.shak12.stats.damage = 120
+	self.shak12.stats.damage = 160
 	self.shak12.stats.spread = 16
 	self.shak12.stats.recoil = 3
 	self.shak12.stats.concealment = 20
