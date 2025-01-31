@@ -240,27 +240,75 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
 				stats = { damage = 200, total_ammo_mod = -8, recoil = -2, spread = 4 },
-				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10, spread_multi = { 0.5, 0.5 } },
+				custom_stats = {
+					ignore_statistic = true,
+					ammo_pickup_max_mul = 0.85,
+					ammo_pickup_min_mul = 0.85,
+					bullet_class = "InstantExplosiveBulletBase",
+					rays = 1,
+					damage_near_mul = 10,
+					spread_multi = { 0.5, 0.5 },
+				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 150, total_ammo_mod = -8, recoil = -2, spread = 4 },
-				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10, spread_multi = { 0.5, 0.5 } },
+				custom_stats = {
+					ignore_statistic = true,
+					ammo_pickup_max_mul = 0.85,
+					ammo_pickup_min_mul = 0.85,
+					bullet_class = "InstantExplosiveBulletBase",
+					rays = 1,
+					damage_near_mul = 10,
+					spread_multi = { 0.5, 0.5 },
+				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 125, total_ammo_mod = -8, recoil = -2, spread = 4 },
-				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10, spread_multi = { 0.5, 0.5 } },
+				custom_stats = {
+					ignore_statistic = true,
+					ammo_pickup_max_mul = 0.85,
+					ammo_pickup_min_mul = 0.85,
+					bullet_class = "InstantExplosiveBulletBase",
+					rays = 1,
+					damage_near_mul = 10,
+					spread_multi = { 0.5, 0.5 },
+				},
 			},
 			light = { -- semi autos
 				stats = { damage = 100, total_ammo_mod = -8, recoil = -2, spread = 4 },
-				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10, spread_multi = { 0.5, 0.5 } },
+				custom_stats = {
+					ignore_statistic = true,
+					ammo_pickup_max_mul = 0.85,
+					ammo_pickup_min_mul = 0.85,
+					bullet_class = "InstantExplosiveBulletBase",
+					rays = 1,
+					damage_near_mul = 10,
+					spread_multi = { 0.5, 0.5 },
+				},
 			},
 			very_light = { -- full autos
 				stats = { damage = 75, total_ammo_mod = -8, recoil = -2, spread = 4 },
-				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10, spread_multi = { 0.5, 0.5 } },
+				custom_stats = {
+					ignore_statistic = true,
+					ammo_pickup_max_mul = 0.85,
+					ammo_pickup_min_mul = 0.85,
+					bullet_class = "InstantExplosiveBulletBase",
+					rays = 1,
+					damage_near_mul = 10,
+					spread_multi = { 0.5, 0.5 },
+				},
 			},
 			default = { -- for custom shotties
 				stats = { damage = 125, total_ammo_mod = -8, recoil = -2, spread = 4 },
-				custom_stats = { ignore_statistic = true, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85, bullet_class = "InstantExplosiveBulletBase", rays = 1, damage_near_mul = 10, spread_multi = { 0.5, 0.5 } },
+				custom_stats = {
+					ignore_statistic = true,
+					ammo_pickup_max_mul = 0.85,
+					ammo_pickup_min_mul = 0.85,
+					bullet_class = "InstantExplosiveBulletBase",
+					rays = 1,
+					damage_near_mul = 10,
+					spread_multi = { 0.5, 0.5 },
+				},
 			},
 		},
 		wpn_fps_upg_a_slug = {
@@ -568,41 +616,57 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			standing = {
 				hipfire = 1.25,
 				crouching = 0.75,
-				steelsight = 0.5
+				steelsight = 0.5,
 			},
 			moving = {
 				hipfire = 1.5,
 				crouching = 1,
-				steelsight = 0.875
-			}
+				steelsight = 0.875,
+			},
 		},
 		recoil = {
 			standing = {
 				hipfire = 1.25,
 				crouching = 1,
-				steelsight = 0.85
+				steelsight = 0.85,
 			},
 			moving = {
 				hipfire = 1.3,
 				crouching = 1,
-				steelsight = 1
-			}
-		}
+				steelsight = 1,
+			},
+		},
 	}
 
 	local conversion_kit_stats = {
 		low_dmr_to_high_dmr = {
 			custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75 },
-			stats = { value = 1, total_ammo_mod = -5, concealment = -3, spread = 2, recoil = -4, damage = 40 }
+			stats = { value = 1, total_ammo_mod = -5, concealment = -3, spread = 2, recoil = -4, damage = 40 },
 		},
 		high_dmg = {
-			custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, steelsight_time = 0.35, steelsight_move_speed_mul = 0.5, ammo_pickup_min_mul = 0.4, ammo_pickup_max_mul = 0.4, stance_mul = dmr_stance_muls },
-			stats = { value = 1, total_ammo_mod = -10, concealment = -6, spread = 4, recoil = -8, damage = 80, suppression = -10, alert_size = 4 }
+			custom_stats = {
+				can_shoot_through_enemy = true,
+				armor_piercing_add = 1,
+				steelsight_time = 0.35,
+				steelsight_move_speed_mul = 0.5,
+				ammo_pickup_min_mul = 0.4,
+				ammo_pickup_max_mul = 0.4,
+				stance_mul = dmr_stance_muls,
+			},
+			stats = { value = 1, total_ammo_mod = -10, concealment = -6, spread = 4, recoil = -8, damage = 80, suppression = -10, alert_size = 4 },
 		},
 		low_dmg = {
-			custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, steelsight_time = 0.35, steelsight_move_speed_mul = 0.5, ammo_pickup_min_mul = 0.4, ammo_pickup_max_mul = 0.4, stance_mul = dmr_stance_muls },
-			stats = { value = 1, total_ammo_mod = -12, concealment = -6, spread = 4, recoil = -11, damage = 60, suppression = -10, alert_size = 4 }
-		}
+			custom_stats = {
+				can_shoot_through_enemy = true,
+				armor_piercing_add = 1,
+				steelsight_time = 0.35,
+				steelsight_move_speed_mul = 0.5,
+				ammo_pickup_min_mul = 0.4,
+				ammo_pickup_max_mul = 0.4,
+				stance_mul = dmr_stance_muls,
+			},
+			stats = { value = 1, total_ammo_mod = -12, concealment = -6, spread = 4, recoil = -11, damage = 60, suppression = -10, alert_size = 4 },
+		},
 	}
 
 	-- ak family
@@ -631,7 +695,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_ass_g3_b_sniper.adds = {} -- wtf is this, why do you need a separate dummy mod for ammo pickup specifically
 
 	self.parts.wpn_fps_ass_g3_b_short.custom_stats = {}
-	self.parts.wpn_fps_ass_g3_b_short.stats = {  spread = -2, concealment = 2 }
+	self.parts.wpn_fps_ass_g3_b_short.stats = { spread = -2, concealment = 2 }
 
 	-- falcon
 	self.parts.wpn_fps_ass_fal_fg_04.custom_stats = conversion_kit_stats.low_dmr_to_high_dmr.custom_stats
@@ -689,7 +753,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		recoil_favored = { value = 1, recoil = 2, concealment = -2 },
 		spread_heavily_favored = { value = 1, recoil = -1, spread = 3, concealment = -2 },
 		recoil_heavily_favored = { value = 1, recoil = 3, spread = -1, concealment = -2 },
-		small_silencer = { value = 1, damage = -5, concealment = -1},
+		small_silencer = { value = 1, damage = -5, concealment = -1 },
 		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
 		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
 		massive_silencer = { value = 1, recoil = 3, spread = 2, concealment = -5 },
@@ -752,7 +816,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		balanced = { value = 1, recoil = 1, spread = 1, concealment = -2 },
 		spread_favored = { value = 1, spread = 2, concealment = -2 },
 		recoil_favored = { value = 1, recoil = 2, concealment = -2 },
-		small_silencer = { value = 1, damage = -5, concealment = -1},
+		small_silencer = { value = 1, damage = -5, concealment = -1 },
 		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
 		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
 		massive_silencer = { value = 1, recoil = 3, spread = 1, concealment = -4 },
@@ -784,7 +848,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_upg_ns_pis_medium_gem.stats = pistol_barrel_ext_stats.medium_silencer
 	-- Champion's
 	self.parts.wpn_fps_upg_ns_pis_large_kac.stats = pistol_barrel_ext_stats.big_silencer
-
 
 	-- set suppression and alert size for all suppressors
 	for id, part in pairs(self.parts) do
