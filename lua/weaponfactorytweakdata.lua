@@ -677,11 +677,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.desc_id = "bm_wp_dmr_kit_penetration_desc"
 
 	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.custom_stats = conversion_kit_stats.low_dmg.custom_stats
-	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats = conversion_kit_stats.low_dmg.custom_stats
+	self.wpn_fps_ass_74.override.wpn_fps_upg_ass_ak_b_zastava.stats = conversion_kit_stats.low_dmg.stats
 
 	-- car family
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = conversion_kit_stats.low_dmg.custom_stats
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats = conversion_kit_stats.low_dmg.custom_stats
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats = conversion_kit_stats.low_dmg.stats
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.has_description = true
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.desc_id = "bm_wp_dmr_kit_penetration_desc"
 
