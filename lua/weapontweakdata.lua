@@ -123,34 +123,62 @@ function WeaponTweakData:_init_weapons()
 					weap_data.has_description = true
 					weap_data.desc_id = "bm_w_dmr_penetration_desc"
 					weap_data.pickup_mul = 0.8
+
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1.25,
+							crouching = 0.75,
+							steelsight = 0.5
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 0.875
+						}
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1.25,
+							crouching = 1,
+							steelsight = 0.85
+						},
+						moving = {
+							hipfire = 1.3,
+							crouching = 1,
+							steelsight = 1
+						}
+					}
+
+					weap_data.fire_mode_mul = nil
+				else
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 0.75,
+							steelsight = 0.5
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 0.75
+						}
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 1,
+							steelsight = 0.75
+						},
+						moving = {
+							hipfire = 1.25,
+							crouching = 1,
+							steelsight = 1
+						}
+					}
+
+					weap_data.fire_mode_mul = base_fire_mode_mul
 				end
 
-				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 0.75,
-						steelsight = 0.5
-					},
-					moving = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 0.75
-					}
-				}
-				weap_data.recoil_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 1,
-						steelsight = 0.75
-					},
-					moving = {
-						hipfire = 1.25,
-						crouching = 1,
-						steelsight = 1
-					}
-				}
-
-				weap_data.fire_mode_mul = base_fire_mode_mul
 
 			elseif cat_map.pistol then
 				weap_data.stats.suppression = (cat_map.revolver or cat_map.handcannon) and 9 or 16
@@ -230,7 +258,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.steelsight_time = 0.25
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
 				weap_data.pickup_mul = weap_data.pickup_mul or ( 4 / 3 )
-				weap_data.steelsight_move_speed_mul = 0.8
+				weap_data.steelsight_move_speed_mul = 0.7
 
 				weap_data.spread_multiplier = {
 					standing = {
@@ -596,6 +624,41 @@ function WeaponTweakData:_init_weapons()
 
 					weap_data.no_steelsight = true
 				end
+			end
+
+			local vanilla_shotguns = {
+				"saiga",
+				"aa12",
+				"basset",
+				"sko12",
+				"benelli",
+				"striker",
+				"spas12",
+				"rota",
+				"ultima",
+				"r870",
+				"serbu",
+				"ksg",
+				"m590",
+				"supernova",
+				"m37",
+				"boot",
+				"m1897",
+				"huntsman",
+				"b682",
+				"coach",
+			}
+
+			if not table.contains(vanilla_shotguns, weap_id) and cat_map.shotgun then
+				if weap_data.stats_modifiers and weap_data.stats_modifiers.damage then
+					weap_data.stats_modifiers.damage = 1
+				end
+
+				local damage = weap_data.stats.damage
+				damage = math.sqrt(damage) * 3
+				damage = math.floor(damage / 5) * 5
+
+				weap_data.stats.damage = damage
 			end
 
 			--round weapon damage to be divisible by 5
@@ -1210,6 +1273,16 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.fal.stats.concealment = 16
 	self.fal.fire_mode_data.fire_rate = 60 / 700
 
+	-- KS12
+	table.insert(self.shak12.categories, "dmr")
+	self.shak12.CLIP_AMMO_MAX = 30
+	self.shak12.stats.damage = 120
+	self.shak12.stats.spread = 16
+	self.shak12.stats.recoil = 3
+	self.shak12.stats.concealment = 20
+	self.shak12.fire_mode_data.fire_rate = 60 / 500
+	self.shak12.reload_speed_multiplier = 0.8
+
 	-- M308
 	table.insert(self.new_m14.categories, "dmr")
 	self.new_m14.CLIP_AMMO_MAX = 10
@@ -1231,7 +1304,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Little Friend
 	table.insert(self.contraband.categories, "dmr")
 	self.contraband.CLIP_AMMO_MAX = 20
-	self.contraband.stats.damage = 160
+	self.contraband.stats.damage = 120
 	self.contraband.stats.spread = 19
 	self.contraband.stats.recoil = 3
 	self.contraband.stats.concealment = 8
@@ -1246,15 +1319,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ching.stats.recoil = 3
 	self.ching.stats.concealment = 15
 	self.ching.fire_mode_data.fire_rate = 60 / 600
-
-	-- KS12
-	self.shak12.CLIP_AMMO_MAX = 30
-	self.shak12.stats.damage = 160
-	self.shak12.stats.spread = 16
-	self.shak12.stats.recoil = 3
-	self.shak12.stats.concealment = 20
-	self.shak12.fire_mode_data.fire_rate = 60 / 500
-	self.shak12.reload_speed_multiplier = 0.8
 
 	-- Pistols
 
