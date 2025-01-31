@@ -1,6 +1,6 @@
 function PlayerTweakData:_set_normal()
 	self.damage.REVIVE_HEALTH_STEPS = { 0.7 }
-	self.damage.MIN_DAMAGE_INTERVAL = 0.4
+	self.damage.MIN_DAMAGE_INTERVAL = 0.35
 
 	self.suspicion.max_value = 8
 	self.suspicion.range_mul = 0.8
