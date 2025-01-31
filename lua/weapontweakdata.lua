@@ -647,6 +647,7 @@ function WeaponTweakData:_init_weapons()
 				"huntsman",
 				"b682",
 				"coach",
+				"judge"
 			}
 
 			if not table.contains(vanilla_shotguns, weap_id) and cat_map.shotgun then
