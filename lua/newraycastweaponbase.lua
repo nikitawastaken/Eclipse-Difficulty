@@ -64,7 +64,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if stats.steelsight_time then
 			self._steelsight_time = stats.steelsight_time
 		end
-		
+
 		if stats.swap_speed_multiplier then
 			self._swap_speed_multiplier = self._swap_speed_multiplier * stats.swap_speed_multiplier
 		end
