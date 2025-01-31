@@ -207,11 +207,11 @@ end
 local _calc_armor_damage_original = PlayerDamage._calc_armor_damage
 function PlayerDamage:_calc_armor_damage(...)
 	local had_armor = self:get_real_armor() > 0
-	
+
 	local health_subtracted = _calc_armor_damage_original(self, ...)
-	
-	local has_armor_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "panic_on_armor_break")	
-	
+
+	local has_armor_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "panic_on_armor_break")
+
 	if had_armor and self:get_real_armor() <= 0 then
 		if has_armor_panic then
 			local pos = managers.player:player_unit():position()
@@ -231,13 +231,13 @@ function PlayerDamage:_calc_armor_damage(...)
 			end
 
 			managers.player:disable_cooldown_upgrade("cooldown", "panic_on_armor_break")
-		end		
-		
+		end
+
 		if health_subtracted > 0 and self._can_take_dmg_timer <= 0 then
 			self._can_take_dmg_timer = self._dmg_interval + (tweak_data.player.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL or 0.15)
 		end
 	end
-	
+
 	return health_subtracted
 end
 
@@ -300,26 +300,26 @@ function PlayerDamage:_calc_health_damage(attack_data)
 end
 
 -- add an upgrade that gives increased bleedout timer
-Hooks:PostHook(PlayerDamage, "_regenerated", "sh__regenerated", function (self)
-    self._down_time_i = 0
+Hooks:PostHook(PlayerDamage, "_regenerated", "sh__regenerated", function(self)
+	self._down_time_i = 0
 	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
 end)
 
 --Fix fake downs progressing revive health and down timer steps
 local revive_original = PlayerDamage.revive
 function PlayerDamage:revive(...)
-    local was_bleedout = self._bleed_out
+	local was_bleedout = self._bleed_out
 
-    revive_original(self, ...)
+	revive_original(self, ...)
 
-    if was_bleedout then
-        self._down_time_i = self._down_time_i + 1
-    else
-        self._revive_health_i = math.max(self._revive_health_i - 1, 1)
-    end
+	if was_bleedout then
+		self._down_time_i = self._down_time_i + 1
+	else
+		self._revive_health_i = math.max(self._revive_health_i - 1, 1)
+	end
 
-    local player_damage_tweak = tweak_data.player.damage
-    self._down_time = math.max(player_damage_tweak.DOWNED_TIME_MIN, player_damage_tweak.DOWNED_TIME - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i)
+	local player_damage_tweak = tweak_data.player.damage
+	self._down_time = math.max(player_damage_tweak.DOWNED_TIME_MIN, player_damage_tweak.DOWNED_TIME - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i)
 end
 
 -- make healing fixed instead of % of max health
