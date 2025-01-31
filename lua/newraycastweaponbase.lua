@@ -398,13 +398,7 @@ end
 function NewRaycastWeaponBase:fire_rate_multiplier()
 	local user_unit = self._setup and self._setup.user_unit
 	local current_state = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state
-	local multiplier = managers.blackmarket:fire_rate_multiplier(
-		self._name_id, 
-		self:weapon_tweak_data().categories, 
-		self._silencer, nil, 
-		current_state, 
-		self._blueprint
-	)
+	local multiplier = managers.blackmarket:fire_rate_multiplier(self._name_id, self:weapon_tweak_data().categories, self._silencer, nil, current_state, self._blueprint)
 
 	multiplier = multiplier * self._fire_rate_multiplier
 
@@ -433,7 +427,7 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 	end
 
 	local multiplier = 1
-	
+
 	multiplier = multiplier * self._reload_speed_multiplier
 
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
@@ -478,7 +472,7 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local categories = weapon_tweak.categories
 
 	local steelsight_time = (tweak_data.player.TRANSITION_DURATION or 0.23) / self._steelsight_time
-	
+
 	local multiplier = 1
 
 	for _, category in ipairs(categories) do
@@ -496,10 +490,10 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 			multiplier = multiplier + 1 - managers.player:upgrade_value(category, "silencer_enter_steelsight_speed_multiplier", 1)
 		end
 	end
-	
+
 	multiplier = self:_convert_add_to_mul(multiplier)
 	multiplier = multiplier * steelsight_time
-	
+
 	return multiplier
 end
 

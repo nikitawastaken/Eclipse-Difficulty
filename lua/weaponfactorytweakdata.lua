@@ -76,17 +76,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			if part.stats.spread_moving then
 				part.stats.spread_moving = 0
 			end
-			
+
 			if is_scope then
 				part.stats.concealment = -1
 				part.stats.recoil = 1
 				part.stats.spread = 0
 			end
 
-			if is_sight and id:match("_standard$") or id:match("_iron")  then
+			if is_sight and id:match("_standard$") or id:match("_iron") then
 				part.stats = {}
 			end
-			
+
 			if is_magazine and id:match("_quick$") or id:match("_speed$") then
 				part.stats = {}
 				part.stats.reload = 2
@@ -424,16 +424,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	for index, weapon_id in ipairs(shotgun_table) do
 		for index, ammo_id in ipairs(ammo_table) do
 			local ammo_override = ammo_override_map[weapon_id]
-			
+
 			if ammo_override and ammo_overrides[ammo_id] and ammo_overrides[ammo_id][ammo_override] then
 				self[weapon_id].override[ammo_id] = ammo_overrides[ammo_id][ammo_override]
 			end
 		end
 	end
-	
+
 	--
 	self.parts.wpn_fps_upg_o_mbus_pro.stats = {}
-	
+
 	--make all car weapons use the 30 rnd magazine by default
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla = deep_clone(self.parts.wpn_fps_m4_uupg_m_std)
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.stats = nil
@@ -505,7 +505,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_sho_ksg_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_ksg_b_short.stats.recoil = 0
 	self.parts.wpn_fps_sho_ksg_b_short.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_shot_huntsman_b_short.stats.spread = -4
 	self.parts.wpn_fps_shot_huntsman_b_short.stats.recoil = -2
 	self.parts.wpn_fps_shot_huntsman_b_short.stats.concealment = 6
@@ -539,7 +539,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_snp_sbl_b_short.stats.spread = 0
 	self.parts.wpn_fps_snp_sbl_b_short.stats.recoil = 0
 	self.parts.wpn_fps_snp_sbl_b_short.stats.concealment = -1
-	
+
 	-- DMRs (& Kits) --
 	-- ak family
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = { can_shoot_through_enemy = true, armor_piercing_add = 1, ammo_pickup_min_mul = 0.5, ammo_pickup_max_mul = 0.375 }
