@@ -247,9 +247,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.stable_shot.multipro = "4"
 
 	-- Rifleman
-	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.5
+	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.25
 	self.values.weapon.swap_speed_multiplier = { 1.33 }
-	self.skill_descs.rifleman.multibasic = "50%"
+	self.skill_descs.rifleman.multibasic = "25%"
 	self.skill_descs.rifleman.multipro = "33%"
 
 	-- Marksman
@@ -824,8 +824,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.thick_skin.multipro = "4"
 
 	-- The Professional
-	self.values.weapon.silencer_enter_steelsight_speed_multiplier[1] = 1.5
-	self.skill_descs.silence_expert.multibasic = "50%"
+	self.values.weapon.silencer_enter_steelsight_speed_multiplier[1] = 1.25
+	self.skill_descs.silence_expert.multibasic = "25%"
 	self.skill_descs.silence_expert.multipro = "1"
 	self.skill_descs.silence_expert.multipro2 = "2"
 

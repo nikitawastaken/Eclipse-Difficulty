@@ -1,6 +1,6 @@
 function PlayerTweakData:_set_normal()
 	self.damage.REVIVE_HEALTH_STEPS = { 0.7 }
-	self.damage.MIN_DAMAGE_INTERVAL = 0.4
+	self.damage.MIN_DAMAGE_INTERVAL = 0.35
 
 	self.suspicion.max_value = 8
 	self.suspicion.range_mul = 0.8
@@ -44,6 +44,7 @@ function PlayerTweakData:_set_easy_wish()
 end
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
+	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
 	self.damage.respawn_time_penalty = 0
 	self.damage.BLEED_OUT_HEALTH_INIT = 23
 	self.omniscience.start_t = 3

@@ -1270,7 +1270,7 @@ function CharacterTweakData:_set_presets()
 	self.spooc.headshot_dmg_mul = 4 -- 120 head health
 
 	self.medic.HEALTH_INIT = 48
-	self.medic.headshot_dmg_mul = 1.5 -- 320 head health
+	self.medic.headshot_dmg_mul = 2 -- 320 head health
 
 	self.tank.HEALTH_INIT = 960
 	self.tank.headshot_dmg_mul = 30 -- 320 head health
@@ -1292,7 +1292,7 @@ function CharacterTweakData:_set_presets()
 	self.zeal_shield.headshot_dmg_mul = 1.5 -- 280 head health
 
 	self.zeal_medic.HEALTH_INIT = 64
-	self.zeal_medic.headshot_dmg_mul = 1.6 -- 400 head health
+	self.zeal_medic.headshot_dmg_mul = 2 -- 400 head health
 
 	self.zeal_taser.HEALTH_INIT = 96
 	self.zeal_taser.headshot_dmg_mul = 1.5 -- 640 head health
