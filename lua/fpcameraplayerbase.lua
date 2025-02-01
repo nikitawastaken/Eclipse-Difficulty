@@ -79,6 +79,78 @@ function FPCameraPlayerBase:_horizonatal_recoil_kick(t, dt)
 	return r_value
 end
 
+local bezier_values = {
+	0,
+	0.4,
+	1,
+	1
+}
+--Improved ADS animations from Restoration Mod
+Hooks:PostHook(FPCameraPlayerBase, "_update_stance", "eclipse_update_stance", function(self, t, dt)
+	if self._shoulder_stance.transition then
+		local trans_data = self._shoulder_stance.transition
+		local elapsed_t = t - trans_data.start_t
+		local player_state = managers.player:current_state()
+		local equipped_weapon = self._parent_unit:inventory():equipped_unit()
+		local is_akimbo = equipped_weapon and equipped_weapon:base() and equipped_weapon:base().AKIMBO
+		local ignore_transition_styles = equipped_weapon and equipped_weapon:base() and equipped_weapon:base():weapon_tweak_data().ign_ts
+		local in_full_steelsight = self._parent_movement_ext._current_state._state_data.in_full_steelsight
+
+		if trans_data.duration < elapsed_t then
+			mvector3.set(self._shoulder_stance.translation, trans_data.end_translation)
+
+			self._shoulder_stance.rotation = trans_data.end_rotation
+			self._shoulder_stance.transition = nil
+			local in_steelsight = self._parent_movement_ext._current_state:in_steelsight()
+
+			if in_steelsight and not self._steelsight_swap_state then
+				self:_set_steelsight_swap_state(true)
+			elseif not in_steelsight and self._steelsight_swap_state then
+				self:_set_steelsight_swap_state(false)
+			end
+		else
+			local progress = elapsed_t / trans_data.duration
+			local progress_smooth = math.bezier(bezier_values, progress)
+			local in_steelsight = self._parent_movement_ext._current_state:in_steelsight()
+			if equipped_weapon and equipped_weapon:base() then
+				local in_second_sight = equipped_weapon:base():is_second_sight_on()
+				if in_second_sight and in_second_sight == true then
+					self._shoulder_stance.was_in_second_sight = true
+				end
+			end
+			local absolute_progress = nil
+
+			if in_steelsight or self._shoulder_stance.was_in_steelsight then
+				self._shoulder_stance.was_in_steelsight = true
+				absolute_progress = (1 - trans_data.absolute_progress) * progress_smooth + trans_data.absolute_progress
+			else
+				absolute_progress = trans_data.absolute_progress * (1 - progress_smooth)
+			end
+
+			mvector3.lerp(self._shoulder_stance.translation, trans_data.start_translation, trans_data.end_translation, progress_smooth)
+
+			self._shoulder_stance.rotation = trans_data.start_rotation:slerp(trans_data.end_rotation, progress_smooth)
+
+			if not is_akimbo and not ignore_transition_styles then
+				if player_state and player_state ~= "bipod" and trans_data.absolute_progress and not self._steelsight_swap_state then
+					local prog = (1 - absolute_progress) * (dt * 100)
+					if self._shoulder_stance.was_in_steelsight and not in_steelsight then
+						self._shoulder_stance.was_in_steelsight = nil
+						self._shoulder_stance.was_in_second_sight = nil
+						prog = absolute_progress * (dt * 100)
+						trans_data.start_translation = trans_data.start_translation + Vector3(1 * prog, 0.5 * prog, 1 * prog)
+						trans_data.start_rotation = trans_data.start_rotation * Rotation(0 * prog, 0 * prog, 2.5 * prog)
+					elseif in_steelsight and in_full_steelsight ~= true then
+							trans_data.start_translation = trans_data.start_translation + Vector3(0.5 * prog, 0.5 * prog, -0.2 * prog)
+							trans_data.start_rotation = trans_data.start_rotation * Rotation(0 * prog, 0 * prog, 1.25 * prog)
+					end
+				end
+			end
+
+		end
+	end
+end)
+
 -- Spray pattern implementation
 Hooks:PostHook(FPCameraPlayerBase, "init", "spray_init", function(self)
 	-- Some fields to initialize
