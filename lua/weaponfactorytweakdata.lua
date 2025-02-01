@@ -648,7 +648,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			custom_stats = {
 				can_shoot_through_enemy = true,
 				armor_piercing_add = 1,
-				steelsight_time = 0.35,
+				steelsight_speed_mul = 0.75,
 				steelsight_move_speed_mul = 0.5,
 				ammo_pickup_min_mul = 0.4,
 				ammo_pickup_max_mul = 0.4,
@@ -660,7 +660,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			custom_stats = {
 				can_shoot_through_enemy = true,
 				armor_piercing_add = 1,
-				steelsight_time = 0.35,
+				steelsight_speed_mul = 0.75,
 				steelsight_move_speed_mul = 0.5,
 				ammo_pickup_min_mul = 0.4,
 				ammo_pickup_max_mul = 0.4,
