@@ -510,6 +510,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	--
 	self.parts.wpn_fps_upg_o_mbus_pro.stats = {}
 
+	self.parts.wpn_fps_upg_o_shortdot.stats = {} -- specifically wipe the stats of the default sight
+
 	--make all car weapons use the 30 rnd magazine by default
 
 	-- Assault Rifle Mods
