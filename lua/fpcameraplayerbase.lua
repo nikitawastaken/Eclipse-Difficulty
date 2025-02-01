@@ -83,7 +83,7 @@ local bezier_values = {
 	0,
 	0.4,
 	1,
-	1
+	1,
 }
 --Improved ADS animations from Restoration Mod
 Hooks:PostHook(FPCameraPlayerBase, "_update_stance", "eclipse_update_stance", function(self, t, dt)
@@ -141,12 +141,11 @@ Hooks:PostHook(FPCameraPlayerBase, "_update_stance", "eclipse_update_stance", fu
 						trans_data.start_translation = trans_data.start_translation + Vector3(1 * prog, 0.5 * prog, 1 * prog)
 						trans_data.start_rotation = trans_data.start_rotation * Rotation(0 * prog, 0 * prog, 2.5 * prog)
 					elseif in_steelsight and in_full_steelsight ~= true then
-							trans_data.start_translation = trans_data.start_translation + Vector3(0.5 * prog, 0.5 * prog, -0.2 * prog)
-							trans_data.start_rotation = trans_data.start_rotation * Rotation(0 * prog, 0 * prog, 1.25 * prog)
+						trans_data.start_translation = trans_data.start_translation + Vector3(0.5 * prog, 0.5 * prog, -0.2 * prog)
+						trans_data.start_rotation = trans_data.start_rotation * Rotation(0 * prog, 0 * prog, 1.25 * prog)
 					end
 				end
 			end
-
 		end
 	end
 end)
