@@ -630,15 +630,20 @@ function WeaponTweakData:_init_weapons()
 				"saiga",
 				"aa12",
 				"basset",
+				"x_basset",
 				"sko12",
+				"x_sko12",
 				"benelli",
 				"striker",
 				"spas12",
 				"rota",
+				"x_rota",
 				"ultima",
 				"r870",
 				"serbu",
 				"ksg",
+				"judge",
+				"x_judge",
 				"m590",
 				"supernova",
 				"m37",
@@ -647,7 +652,6 @@ function WeaponTweakData:_init_weapons()
 				"huntsman",
 				"b682",
 				"coach",
-				"judge"
 			}
 
 			if not table.contains(vanilla_shotguns, weap_id) and cat_map.shotgun then
@@ -1938,6 +1942,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.judge.fire_mode_data.fire_rate = 60 / 300
 	self.judge.reload_speed_multiplier = 0.8
 
+    self.x_judge.weapon_hold = "x_chinchilla"
+    self.x_judge.animations.reload_name_id = "x_chinchilla"
+	self.x_judge.animations.second_gun_versions = self.x_judge.animations.second_gun_versions or {}
+    self.x_judge.animations.second_gun_versions.reload = "reload"
+	self.x_judge.sounds.reload = {
+		wp_chinchilla_cylinder_out = "wp_rbull_drum_open",
+		wp_chinchilla_eject_shells = "wp_rbull_shells_out",
+		wp_chinchilla_insert = "wp_rbull_shells_in",
+		wp_chinchilla_cylinder_in = "wp_rbull_drum_close"
+	}
+	
 	-- Mosconi Tactical
 	self.m590.CLIP_AMMO_MAX = 7
 	self.m590.stats.damage = 30
