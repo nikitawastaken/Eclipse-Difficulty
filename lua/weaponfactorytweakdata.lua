@@ -188,58 +188,70 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	local ammo_overrides = {
 		wpn_fps_upg_a_custom = {
 			very_heavy = { -- double barrels
-				stats = { damage = 16, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				stats = { damage = 26, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 12, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				stats = { damage = 20, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				stats = { damage = 17, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			light = { -- semi autos
-				stats = { damage = 9, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				stats = { damage = 13, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			very_light = { -- full autos
-				stats = { damage = 7, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				stats = { damage = 10, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			default = { -- for custom shotties
-				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				stats = { damage = 17, total_ammo_mod = -6, recoil = -2 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 		},
 		wpn_fps_upg_a_custom_free = {
 			very_heavy = { -- double barrels
 				stats = { damage = 16, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 12, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			light = { -- semi autos
 				stats = { damage = 9, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			very_light = { -- full autos
 				stats = { damage = 7, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			default = { -- for custom shotties
 				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
-				custom_stats = { rays = 6 },
+				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 		},
 		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
+				stats = { damage = 250, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				custom_stats = {
+					ignore_statistic = true,
+					ammo_pickup_max_mul = 0.85,
+					ammo_pickup_min_mul = 0.85,
+					bullet_class = "InstantExplosiveBulletBase",
+					rays = 1,
+					damage_near_mul = 10,
+					spread_multi = { 0.5, 0.5 },
+				},
+			},
+			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 200, total_ammo_mod = -8, recoil = -2, spread = 4 },
 				custom_stats = {
 					ignore_statistic = true,
@@ -251,7 +263,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 					spread_multi = { 0.5, 0.5 },
 				},
 			},
-			heavy = { -- shotguns like gsps and the trench gun
+			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 150, total_ammo_mod = -8, recoil = -2, spread = 4 },
 				custom_stats = {
 					ignore_statistic = true,
@@ -263,20 +275,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 					spread_multi = { 0.5, 0.5 },
 				},
 			},
-			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 125, total_ammo_mod = -8, recoil = -2, spread = 4 },
-				custom_stats = {
-					ignore_statistic = true,
-					ammo_pickup_max_mul = 0.85,
-					ammo_pickup_min_mul = 0.85,
-					bullet_class = "InstantExplosiveBulletBase",
-					rays = 1,
-					damage_near_mul = 10,
-					spread_multi = { 0.5, 0.5 },
-				},
-			},
 			light = { -- semi autos
-				stats = { damage = 100, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				stats = { damage = 125, total_ammo_mod = -8, recoil = -2, spread = 4 },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.85,
@@ -288,7 +288,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				},
 			},
 			very_light = { -- full autos
-				stats = { damage = 75, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				stats = { damage = 100, total_ammo_mod = -8, recoil = -2, spread = 4 },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.85,
@@ -300,7 +300,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				},
 			},
 			default = { -- for custom shotties
-				stats = { damage = 125, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				stats = { damage = 150, total_ammo_mod = -8, recoil = -2, spread = 4 },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.85,
