@@ -68,7 +68,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if stats.steelsight_move_speed_mul then
 			self._steelsight_move_speed_mul = stats.steelsight_move_speed_mul
 		end
-		
+
 		if stats.swap_speed_multiplier then
 			self._swap_speed_multiplier = self._swap_speed_multiplier * stats.swap_speed_multiplier
 		end
@@ -76,7 +76,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if stats.steelsight_speed_multiplier then
 			self._steelsight_speed_multiplier = self._steelsight_speed_multiplier * stats.steelsight_speed_multiplier
 		end
-		
+
 		if stats.fire_rate_multiplier then
 			self._fire_rate_multiplier = self._fire_rate_multiplier * stats.fire_rate_multiplier
 		end
@@ -490,7 +490,7 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local steelsight_time = (tweak_data.player.TRANSITION_DURATION or 0.23) / self._steelsight_time
 
 	local multiplier = 1
-	
+
 	multiplier = multiplier + 1 - self._steelsight_speed_multiplier
 
 	for _, category in ipairs(categories) do
@@ -510,7 +510,7 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	end
 
 	multiplier = self:_convert_add_to_mul(multiplier)
-	multiplier = multiplier * steelsight_time 
+	multiplier = multiplier * steelsight_time
 
 	return multiplier
 end
