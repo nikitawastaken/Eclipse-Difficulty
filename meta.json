@@ -1,7 +1,7 @@
 [
 	{
 		"ident": "eclipse_difficulty_dev",
-		"version": "6.0dev26",
+		"version": "6.0dev27",
 		"patchnotes_url": "https://github.com/nikitawastaken/Eclipse-Difficulty/commits/dev",
 		"download_url": "https://github.com/nikitawastaken/Eclipse-Difficulty/archive/refs/heads/dev.zip"
 	}
