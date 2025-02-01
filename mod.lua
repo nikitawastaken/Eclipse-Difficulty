@@ -1,5 +1,4 @@
 if not Eclipse then
-
 	Eclipse = {
 		mod_path = ModPath,
 		mod_instance = ModInstance,
@@ -8,17 +7,15 @@ if not Eclipse then
 		required = {},
 		settings = {
 			ponr_assault_text = false,
-			max_progression_infamy = 0
+			max_progression_infamy = 0,
 		},
-		loaded_elements = false
+		loaded_elements = false,
 	}
-	
-	
+
 	function Eclipse:require(file)
 		local path = self.mod_path .. "req/" .. file .. ".lua"
 		return io.file_is_readable(path) and blt.vm.dofile(path)
 	end
-	
 
 	function Eclipse:instance_script_patches()
 		if self._instance_script_patches == nil then
@@ -30,8 +27,7 @@ if not Eclipse then
 
 		return self._instance_script_patches
 	end
-	
-	
+
 	function Eclipse:mission_script_patches()
 		if self._mission_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
@@ -41,7 +37,6 @@ if not Eclipse then
 		end
 		return self._mission_script_patches
 	end
-
 
 	function Eclipse:mission_script_add()
 		Eclipse.loaded_elements = false
@@ -54,36 +49,35 @@ if not Eclipse then
 		return self._mission_script_add
 	end
 
-
 	function Eclipse:log(...)
 		if self.logging then
-			log("[EclipseOverhaul] " .. table.concat({...}, " "))
+			log("[EclipseOverhaul] " .. table.concat({ ... }, " "))
 		end
 	end
 
-
 	function Eclipse:warn(...)
-		log("[EclipseOverhaul][Warning] " .. table.concat({...}, " "))
+		log("[EclipseOverhaul][Warning] " .. table.concat({ ... }, " "))
 	end
-
 
 	function Eclipse:error(...)
-		log("[EclipseOverhaul][Error] " .. table.concat({...}, " "))
+		log("[EclipseOverhaul][Error] " .. table.concat({ ... }, " "))
 	end
 
+	function Eclipse:log_chat(...)
+		managers.chat:_receive_message(managers.chat.GAME, "Eclipse Debug", table.concat({ ... }, " "), Color.green)
+	end
 
 	Eclipse.utils = Eclipse:require("utils")
 	Eclipse.ffo_heists = Eclipse:require("ffo_heists")
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.map_sizes = Eclipse:require("map_sizes")
-	
-	
+
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
 			[("english"):key()] = "en.txt",
 			[("schinese"):key()] = "schinese.json",
-			[("russian"):key()] = "ru.txt"
+			[("russian"):key()] = "ru.txt",
 		}
 
 		local language = language_tbl[SystemInfo:language():key()] or "en.txt"
@@ -92,7 +86,6 @@ if not Eclipse then
 
 		loc:load_localization_file(path)
 	end)
-
 
 	-- Check for common mod conflicts
 	Hooks:Add("MenuManagerOnOpenMenu", "MenuManagerOnOpenMenuEclipse", function()
@@ -113,7 +106,7 @@ if not Eclipse then
 			local buttons = {
 				{
 					text = "Disable conflicting mods",
-					callback = function ()
+					callback = function()
 						for _, mod_name in pairs(Global.sh_mod_conflicts) do
 							local mod = BLT.Mods:GetModByName(mod_name)
 							if mod then
@@ -121,20 +114,18 @@ if not Eclipse then
 							end
 						end
 						MenuCallbackHandler:perform_blt_save()
-					end
+					end,
 				},
 				{
-					text = "Keep enabled (not recommended)"
+					text = "Keep enabled (not recommended)",
 				},
 			}
 			QuickMenu:new("Warning", message .. table.concat(Global.sh_mod_conflicts, "\n"), buttons, true)
 		end
 	end)
 
-
 	-- Create settings menu
 	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusEclipse", function(_, nodes)
-
 		local menu_id = "eclipse_menu"
 		MenuHelper:NewMenu(menu_id)
 
@@ -160,7 +151,7 @@ if not Eclipse then
 			callback = "eclipse_ponr_assault_text_toggle",
 			value = Eclipse.settings.ponr_assault_text,
 			menu_id = menu_id,
-			priority = 100
+			priority = 100,
 		})
 
 		MenuHelper:AddSlider({
@@ -176,13 +167,12 @@ if not Eclipse then
 			max = 500,
 			step = 1,
 			display_precision = 0,
-			priority = 100
+			priority = 100,
 		})
 
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "sh_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
-
 
 	-- Load settings
 	if io.file_is_readable(Eclipse.save_path) then
@@ -203,16 +193,14 @@ if not Eclipse then
 		end
 	end
 
-
 	-- Notify about required game restart
-	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeEclipse", function ()
-		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function (self)
+	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeEclipse", function()
+		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function(self)
 			if self._mod:GetName() == "Eclipse" then
 				QuickMenu:new("Information", "A game restart is required to fully " .. (self._mod:IsEnabled() and "enable" or "disable") .. " all parts of Eclipse!", {}, true)
 			end
 		end)
 	end)
-
 
 	-- Disable some of "The Fixes"
 	TheFixesPreventer = TheFixesPreventer or {}
@@ -220,18 +208,15 @@ if not Eclipse then
 	TheFixesPreventer.fix_copmovement_aim_state_discarded = true
 	TheFixesPreventer.tank_remove_recoil_anim = true
 	TheFixesPreventer.fix_ai_set_attention = true
-	TheFixesPreventer.tank_walk_near_players  = true
+	TheFixesPreventer.tank_walk_near_players = true
 	TheFixesPreventer.fix_hostages_not_moving = true
-	
 end
 
 if RequiredScript and not Eclipse.required[RequiredScript] then
-
 	local fname = Eclipse.mod_path .. RequiredScript:gsub(".+/(.+)", "lua/%1.lua")
 	if io.file_is_readable(fname) then
 		dofile(fname)
 	end
 
 	Eclipse.required[RequiredScript] = true
-
 end
