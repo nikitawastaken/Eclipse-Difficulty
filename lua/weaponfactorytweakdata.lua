@@ -138,15 +138,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		["wpn_fps_lmg_mg42"] = { translation = Vector3(0, 8, -2.4) },
 		["wpn_fps_lmg_m60"] = { translation = Vector3(0.1, 8, 0) },
 	}
-
-	local parent_upper = {
-		"wpn_fps_lmg_rpk",
-		"wpn_fps_lmg_m249",
-		"wpn_fps_lmg_par",
-		"wpn_fps_lmg_mg42",
-		"wpn_fps_lmg_m60",
-	}
-
+				
 	for index, weapon_id in ipairs(lmg_table) do
 		if not self[weapon_id].adds then
 			self[weapon_id].adds = {}
@@ -167,23 +159,31 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 			--Add a default part that forbids sights
 			table.insert(self[weapon_id].uses_parts, "wpn_fps_lmg_o_empty")
 			table.insert(self[weapon_id].default_blueprint, "wpn_fps_lmg_o_empty")
-			table.insert(self.parts.wpn_fps_lmg_o_empty.forbids, sight_id)
-
-			--Add sight mounts and rails
-			self.wpn_fps_lmg_rpk.adds[sight_id] = { "wpn_fps_ak_extra_ris" }
-			self.wpn_fps_lmg_hk21.adds[sight_id] = { "wpn_fps_ass_g3_body_rail" }
-			self.wpn_fps_lmg_mg42.adds[sight_id] = { "wpn_fps_rpg7_sight_adapter" }
-			self.wpn_fps_lmg_m60.adds[sight_id] = { "wpn_fps_ass_groza_o_adapter" }
-			self.wpn_fps_lmg_m60.override[sight_id] = { forbids = { "wpn_fps_lmg_m60_sight_standard" } }
 		end
 	end
-
-	for index, weapon_id in ipairs(parent_upper) do
-		for index, sight_id in ipairs(sight_table) do
-			self[weapon_id].override[sight_id] = { parent = "upper_reciever" }
-		end
+	
+	for index, sight_id in ipairs(sight_table) do
+		table.insert(self.parts.wpn_fps_lmg_o_empty.forbids, sight_id)
+		
+		--Add sight mounts and rails
+		self.wpn_fps_lmg_rpk.adds[sight_id] = { "wpn_fps_ak_extra_ris" }
+		--self.wpn_fps_lmg_m249.override[sight_id] = { parent = "upper_reciever" }
+		self.wpn_fps_lmg_hk21.adds[sight_id] = { "wpn_fps_ass_g3_body_rail" }
+		self.wpn_fps_lmg_mg42.adds[sight_id] = { "wpn_fps_rpg7_sight_adapter" }
+		--self.wpn_fps_lmg_mg42.override[sight_id] = { parent = "upper_reciever" }
+		--self.wpn_fps_lmg_par.override[sight_id] = { parent = "upper_reciever" }
+		self.wpn_fps_lmg_m60.adds[sight_id] = { "wpn_fps_ass_groza_o_adapter" }
+		self.wpn_fps_lmg_m60.override[sight_id] = { forbids = { "wpn_fps_lmg_m60_sight_standard" } }
+		--self.wpn_fps_lmg_m60.override[sight_id] = { forbids = { "wpn_fps_lmg_m60_sight_standard" }, parent = "upper_reciever" }
+			
+		--Add suport for the AK scope mount
+		table.insert(self.parts.wpn_fps_lmg_o_empty.forbids, "wpn_fps_upg_o_ak_scopemount")
+		table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")
+		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount = {}
+		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override = {}
+		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override[sight_id] = { a_obj = "a_o_sm", stance_mod = { wpn_fps_lmg_rpk = { translation = Vector3(0, 0, -4.6) } } }
 	end
-
+		
 	-- SHOTGUNS --
 	local ammo_overrides = {
 		wpn_fps_upg_a_custom = {
