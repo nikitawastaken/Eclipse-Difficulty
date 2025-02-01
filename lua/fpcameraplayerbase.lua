@@ -175,6 +175,7 @@ function FPCameraPlayerBase:pattern_recoil_kick(pattern, persist_pattern, recoil
 	-- If the player hasn't shot in 1/3rd of second reset the recoil pattern
 	if self._recoil_recovery_t <= 0 then
 		self._pattern_index = 1
+		self._persist_pattern_index = 1
 	end
 	self._recoil_recovery_t = recoil_recovery
 	-- Stability affects spray patterns
@@ -194,10 +195,11 @@ function FPCameraPlayerBase:pattern_recoil_kick(pattern, persist_pattern, recoil
 		end
 		-- Reverse horizontal spray after a threshold
 		-- Add a cushion in case the recoil gets stuck too far in one direction
-		if math.abs(self._recoil_kick.h.accumulated) >= 7 and self._h_recoil_cushion == 0 then
+		---Does not work well with current spray patterns, deprecated for now
+		--[[ if math.abs(self._recoil_kick.h.accumulated) >= 7 and self._h_recoil_cushion == 0 then
 			self._h_recoil_cushion = 3
 			self._persist_pattern_back = -self._persist_pattern_back
-		end
+		end ]]
 		local v = math.lerp(persist_pattern[self._persist_pattern_index].up * recoil_multiplier, persist_pattern[self._persist_pattern_index].down * recoil_multiplier, math.random())
 		self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v
 
