@@ -47,6 +47,6 @@ Hooks:PostHook(GuiTweakData, "init", "eclipse_init", function(self)
 	self.blackscreen_risk_textures = {
 		easy_wish = "guis/textures/pd2/risklevel_deathwish_sm_blackscreen",
 		overkill_145 = "guis/textures/pd2/risklevel_deathwish_blackscreen",
-		overkill = "guis/textures/pd2/risklevel_deathwish_easywish_blackscreen"
+		overkill = "guis/textures/pd2/risklevel_deathwish_easywish_blackscreen",
 	}
 end)

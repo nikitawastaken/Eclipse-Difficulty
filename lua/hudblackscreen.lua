@@ -9,7 +9,7 @@ function HUDBlackScreen:_set_job_data()
 		halign = "grow",
 		visible = true,
 		layer = 1,
-		valign = "grow"
+		valign = "grow",
 	})
 	local risk_panel = job_panel:panel({})
 	local last_risk_level = nil
@@ -20,7 +20,7 @@ function HUDBlackScreen:_set_job_data()
 		local texture = blackscreen_risk_textures[difficulty_name] or "guis/textures/pd2/risklevel_blackscreen"
 		last_risk_level = risk_panel:bitmap({
 			texture = texture,
-			color = (Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk
+			color = (Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk,
 		})
 
 		last_risk_level:move((i - 1) * last_risk_level:w(), 0)
@@ -43,7 +43,7 @@ function HUDBlackScreen:_set_job_data()
 		text = managers.localization:to_upper_text(tweak_data.difficulty_name_id),
 		font = tweak_data.menu.pd2_large_font,
 		font_size = tweak_data.menu.pd2_small_large_size,
-		color = (Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk
+		color = (Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk,
 	})
 
 	risk_text:set_bottom(risk_panel:top())
