@@ -319,7 +319,7 @@ end
 local _upd_attention_obj_detection_original = CopLogicBase._upd_attention_obj_detection
 function CopLogicBase._upd_attention_obj_detection(...)
 	local delay = _upd_attention_obj_detection_original(...)
-	return math.min(0.5, delay)
+	return math.min(0.25, delay)
 end
 
 -- Fix incorrect checks and improve surrender conditions
@@ -449,6 +449,12 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			local not_cool_t = data.unit:movement():not_cool_t()
 			if (not not_cool_t or t - not_cool_t < 1.5) and not managers.groupai:state():enemy_weapons_hot() then
 				hold_chance = hold_chance * (1 - pants_down_surrender)
+			end
+		end,
+
+		not_assault = function (not_assault_surrender)
+			if not managers.groupai:state():get_assault_mode() then
+				hold_chance = hold_chance * (1 - not_assault_surrender)
 			end
 		end,
 	}

@@ -7,32 +7,32 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- Movement speed nerfs
 	self.values.player.body_armor.movement = {
+		1,
+		0.925,
 		0.85,
-		0.825,
-		0.8,
-		0.75,
+		0.775,
 		0.7,
-		0.6,
-		0.5,
+		0.625,
+		0.55,
 	}
 	self.values.player.body_armor.stamina = {
+		1,
+		0.925,
 		0.85,
-		0.825,
-		0.8,
-		0.75,
+		0.775,
 		0.7,
-		0.6,
-		0.5,
+		0.625,
+		0.55,
 	}
 
 	-- steadiness
 	self.values.player.body_armor.damage_shake = {
+		1,
+		0.9,
+		0.8,
+		0.7,
+		0.6,
 		0.5,
-		0.48,
-		0.46,
-		0.44,
-		0.4,
-		0.4,
 		0.4,
 	}
 
@@ -47,26 +47,15 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		-0.55,
 	}
 
-	-- movement tagging
-	self.values.player.body_armor.damage_tagged = {
-		0.8,
-		0.85,
-		0.9,
-		0.95,
-		1,
-		1.05,
-		1.1,
-	}
-
 	-- regen timer
 	self.values.player.body_armor.regen_timer = {
 		3,
-		3.33,
-		3.66,
+		3.25,
+		3.5,
+		3.75,
 		4,
+		4.25,
 		4.5,
-		5,
-		5.5,
 	}
 
 	-- ictv nerf

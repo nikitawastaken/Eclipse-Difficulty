@@ -2705,19 +2705,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.m14_sniper_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.m14_sniper_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
-	self.m14_sniper_npc.CLIP_AMMO_MAX = 10
+	self.m14_sniper_npc.CLIP_AMMO_MAX = 5
 	self.m14_sniper_npc.usage = "is_sniper"
 
 	self.svd_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svd_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svd_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
-	self.svd_snp_npc.CLIP_AMMO_MAX = 10
+	self.svd_snp_npc.CLIP_AMMO_MAX = 5
 	self.svd_snp_npc.usage = "is_sniper"
 
 	self.svdsil_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svdsil_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svdsil_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
-	self.svdsil_snp_npc.CLIP_AMMO_MAX = 10
+	self.svdsil_snp_npc.CLIP_AMMO_MAX = 5
 	self.svdsil_snp_npc.usage = "is_sniper"
 
 	self.flamethrower_npc.flame_max_range = 600
@@ -2782,15 +2782,15 @@ function WeaponTweakData:_set_presets()
 			v.alert_size = (alert_sizes[v.usage] or 4000) * (v.has_suppressor and 0.2 or 1)
 
 			if v.usage == "is_rifle" or v.usage == "is_bullpup" then
-				v.auto = { fire_rate = 0.25 }
-			elseif v.usage == "is_smg" then
 				v.auto = { fire_rate = 0.2 }
-			elseif v.usage == "is_lmg" or v.reload == "uzi" then
+			elseif v.usage == "is_smg" then
 				v.auto = { fire_rate = 0.15 }
+			elseif v.usage == "is_lmg" or v.reload == "uzi" then
+				v.auto = { fire_rate = 0.1 }
 			elseif v.usage == "mini" or v.usage == "is_flamethrower" then
 				v.auto = { fire_rate = 0.05 }
 			else
-				v.auto = { fire_rate = 0.35 }
+				v.auto = { fire_rate = 0.25 }
 			end
 		elseif k:match("_crew$") then
 			local player_id = k:gsub("_crew$", ""):gsub("_secondary$", ""):gsub("_primary$", "")

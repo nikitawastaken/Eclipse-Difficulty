@@ -3,6 +3,16 @@
 -- Increasing the health granularity makes damage dealt more accurate to the actual weapon damage stats
 CopDamage._HEALTH_GRANULARITY = 8192
 
+Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", function (self)
+	local is_moving = self._unit:anim_data().move
+	local is_running = is_moving and self._unit:anim_data().run
+	local is_walking = is_moving and not is_running
+
+	local accuracy_mul = is_running and 0.75 or is_walking and 1 or 1.25
+	
+	return Hooks:GetReturn() * accuracy_mul
+end)
+
 function CopDamage:_send_melee_attack_result(attack_data, damage_percent, damage_effect_percent, hit_offset_height, variant, body_index)
 	body_index = math.clamp(body_index, 0, 128)
 	damage_percent = math.clamp(damage_percent, 0, self._HEALTH_GRANULARITY)
