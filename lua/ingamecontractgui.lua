@@ -297,8 +297,8 @@ function IngameContractGui:init(ws, node)
 		local risks = {
 			"risk_pd",
 			"risk_swat",
-			"risk_fbi",
-			"risk_death_squad",
+			"risk_easy_wish",
+			"risk_murder_squad",
 			"risk_sm_wish",
 		}
 

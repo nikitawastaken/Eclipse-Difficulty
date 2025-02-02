@@ -75,11 +75,11 @@ function HUDStageEndScreen:init(hud, workspace)
 	local job_stars = managers.job:has_active_job() and managers.job:current_job_stars() or 1
 	local job_and_difficulty_stars = managers.job:has_active_job() and managers.job:current_job_and_difficulty_stars() or 1
 	local difficulty_stars = managers.job:has_active_job() and managers.job:current_difficulty_stars() or 0
-	local risk_color = tweak_data.screen_colors.risk
+	local risk_color = ((Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk)
 	local risks = {
 		"risk_swat",
-		"risk_fbi",
-		"risk_death_squad",
+		"risk_easy_wish",
+		"risk_murder_squad",
 		"risk_sm_wish",
 	}
 

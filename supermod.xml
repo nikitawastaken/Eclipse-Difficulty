@@ -35,6 +35,7 @@
 					<post :hook_id="hudstageendscreen"/>
 					<post :hook_id="hudassaultcorner"/>
 					<post :hook_id="hudhitconfirm"/>
+					<post :hook_id="hudblackscreen"/>
 				</group>
 
 				<group :hook_id="menu/">
@@ -254,8 +255,7 @@
 			<file :name="wpn_fps_upg_perk_stockpile.texture"/>
 		</group>
 
-		<!-- eclipse difficulty icon & risk level -->
-		<file name="guis/textures/pd2/risklevel_deathwish_easywish_blackscreen.texture"/>
+		<!-- eclipse risk level asset -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
 
 		<!-- old cook off bain lines -->
@@ -442,7 +442,7 @@
 			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_left.model" />
 			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_left.object" />
 			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_left.unit" />
-					
+
 			<xml 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.sequence_manager" />
 			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.material_config" />
 			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.model" />
@@ -451,14 +451,14 @@
 			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx_dummy.unit" />
 
 			<file 	:name="ene_acc_phalanx_helmet/ene_acc_phalanx_helmet.model" />
-			
+
 			<file 	:name="ene_phalanx_1/ene_phalanx_1.material_config" />
 			<file 	:name="ene_phalanx_1/ene_phalanx_1_contour.material_config" />
 			<file 	:name="ene_phalanx_1/ene_phalanx_1.model" />
 			<file 	:name="ene_phalanx_1/ene_phalanx_1.object" />
 			<file 	:name="ene_phalanx_1/ene_phalanx_1.unit" />
 			<file 	:name="ene_phalanx_1/ene_phalanx_1_husk.unit" />
-			
+
 		</group>
 
 

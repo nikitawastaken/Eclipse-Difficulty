@@ -258,11 +258,11 @@ function HUDMissionBriefing:init(hud, workspace)
 	local star_size = 18
 	local panel_w = 0
 	local panel_h = 0
-	local risk_color = tweak_data.screen_colors.risk
+	local risk_color = ((Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk)
 	local risks = {
 		"risk_swat",
-		"risk_fbi",
-		"risk_death_squad",
+		"risk_easy_wish",
+		"risk_murder_squad",
 		"risk_sm_wish",
 	}
 
