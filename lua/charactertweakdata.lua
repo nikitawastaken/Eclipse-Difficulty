@@ -136,7 +136,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.base.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -283,7 +283,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 		range = { close = 5000, optimal = 10000, far = 15000 },
 	})
-	
+	presets.weapon.sniper.is_sniper.FALLOFF = {
+		{ dmg_mul = 18 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 18 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 18 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+	}
 	
 	presets.weapon.taser = based_on(presets.weapon.swat, {
 		aim_delay_tase = { 
@@ -301,17 +305,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 5 * dmg_mul,
 		range = { close = 1500, optimal = 2750, far = 4000 },
 	})
-
-
+	damage_multiplier(presets.weapon.medic, 3 / 4)
+	
 	presets.weapon.cloaker = based_on(presets.weapon.swat)
 	burst_multiplier(presets.weapon.cloaker, 1.5)
-
-
-	presets.weapon.sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 20 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-	}
 
 	presets.weapon.tank = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1.5 },
@@ -363,8 +360,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 6, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 3, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } }
+			{ dmg_mul = 4, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 2, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } }
 		}
 	end	
 	
