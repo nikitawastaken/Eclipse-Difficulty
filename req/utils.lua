@@ -45,4 +45,12 @@ return {
 
 		return hard_and_above, overkill_and_above
 	end,
+
+	diff_groups = function()
+		local normal = diff_i < 4 
+		local hard = not normal and diff_i < 6
+		local eclipse = not normal and not hard
+
+		return normal, hard, eclipse
+	end,
 }

@@ -20,17 +20,54 @@ if math.random() < vault_ambush_chance then
 	vault_ambush = scripted_enemy.elite_bulldozer_2
 	vault_count = 2
 end
-
-local rappel_spawn = {
-	values = {
-		interval = 30
-	}
-}
 	
 local disabled = {
 	values = {
 		enabled = false
 	}
+}
+
+local elevator_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = {
+		tac_shield_wall = false,
+		tac_shield_wall_ranged = false,
+		tac_shield_wall_charge = false,
+		tac_bull_rush = false,
+	},
+}
+
+local skylight_spawn = {
+	values = {
+		interval = 20,
+	},
+}
+
+local office_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = {
+		tac_shield_wall = false,
+		tac_shield_wall_ranged = false,
+		tac_shield_wall_charge = false,
+		tac_bull_rush = false,
+	},
+}
+
+local vent_spawn = {
+	values = {
+		enabled = is_eclipse and true or false,
+		interval = 45,
+	},
+	groups = {
+		tac_shield_wall = false,
+		tac_shield_wall_ranged = false,
+		tac_shield_wall_charge = false,
+		tac_bull_rush = false,
+	},
 }
 
 return {
@@ -53,7 +90,7 @@ return {
 	},
 	[103722] = { 
 		on_executed = {
-			{id = 105734, delay = 2.75}
+			{ id = 105734, delay = 2.75 }
 		}
 	},
 	[103723] = { 
@@ -74,12 +111,6 @@ return {
 	[103737] = { 
 		on_executed = {
 			{ id = 105732, delay = 2.75 }
-		}
-	},
-	--enable vault hallway vent spawns on eclipse instead on all diffs
-	[105200] = {
-		values = {
-			enabled = is_eclipse and true or false
 		}
 	},
 	--always force cloaker and taser to spawn like in PDTH
@@ -121,11 +152,6 @@ return {
 	[103999] = disabled,
 	[103985] = disabled,
 	[104049] = disabled,
-	-- slow down a few repel spawnpoints
-	[105112] = rappel_spawn,
-	[106890] = rappel_spawn,
-	[103953] = rappel_spawn,
-
 	-- custom spawns
 	-- add point of no return and spawn lobby ambushes
 	[101660] = {
@@ -247,12 +273,25 @@ return {
 	},
 	-- ambush cloakers
 	[103136] = {
-		enemy = bulldozer
+		enemy = cloaker
 	},
 	[103143] = {
-		enemy = bulldozer
+		enemy = cloaker
 	},
 	[103151] = {
-		enemy = bulldozer
+		enemy = cloaker
 	},
+	-- spawnpoint delays
+	[102154] = elevator_spawn,
+	[103109] = elevator_spawn,
+	[103135] = elevator_spawn,
+	[103129] = elevator_spawn,
+	[103121] = elevator_spawn,
+	[105112] = skylight_spawn,
+	[106890] = skylight_spawn,
+	[103953] = office_spawn,
+	[103081] = office_spawn,
+	[103011] = office_spawn,
+	[103689] = office_spawn,
+	[105200] = vent_spawn,
 }

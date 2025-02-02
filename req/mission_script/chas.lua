@@ -10,8 +10,35 @@ local sniper_trigger_times = {
 }
 local alleyway_spawn ={
 	values = {
-		interval = 20
+		interval = 15
 	}
+}
+local roof_spawn = {
+	values = {
+		interval = 20
+	},
+	groups = {
+		tac_shield_wall = false,
+		tac_shield_wall_ranged = false,
+		tac_shield_wall_charge = false,
+		tac_bull_rush = false,
+	},
+}
+local building_spawn = {
+	values = {
+		interval = 25,
+	},
+}
+local breach_spawn = {
+	values = {
+		interval = 45
+	},
+	groups = {
+		tac_shield_wall = false,
+		tac_shield_wall_ranged = false,
+		tac_shield_wall_charge = false,
+		tac_bull_rush = false,
+	},
 }
 return {
 	[101190] = {
@@ -48,7 +75,7 @@ return {
 	[101265] = enabled,
 	[101262] = enabled,
 	[101264] = enabled,
-	--Fixed snipers being able to spawn only once
+	--fixed snipers being able to spawn only once
 	[100368] = sniper_trigger_times,
 	[100369] = sniper_trigger_times,
 	[100370] = sniper_trigger_times,
@@ -59,8 +86,17 @@ return {
 	[100375] = sniper_trigger_times,
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
-	-- slow down a few spawn points in the back alleyway
+	-- spawn point delays
 	[100132] = alleyway_spawn,
-	[100133] = alleyway_spawn,
 	[100692] = alleyway_spawn,
+	[102713] = roof_spawn,
+	[101006] = roof_spawn,
+	[100133] = roof_spawn,
+	[100693] = roof_spawn,
+	[101047] = building_spawn,
+	[101053] = building_spawn,
+	[100694] = building_spawn,
+	[100033] = building_spawn,
+	[100019] = breach_spawn,
+	[101133] = breach_spawn
 }
