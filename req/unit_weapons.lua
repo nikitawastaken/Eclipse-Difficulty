@@ -4,6 +4,7 @@ return {
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"):key()] = { "c45", "raging_bull" },
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"):key()] = { "mp5", "r870" },
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
+	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "beretta92", "mp5_tactical" },
 	[("units/payday2/characters/ene_biker_3/ene_biker_3"):key()] = "mossberg",
 	[("units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"):key()] = "mossberg",
 	[("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"):key()] = "r870_tank",

@@ -290,6 +290,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1 * aim_delay_mul, 
 		2 * aim_delay_mul,
 	}
+	
 	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 18 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
@@ -329,8 +330,21 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.medic, 3 / 4)
 	
 	presets.weapon.cloaker = based_on(presets.weapon.swat)
-	burst_multiplier(presets.weapon.cloaker, 1.5)
 
+	presets.weapon.cloaker.is_pistol.RELOAD_SPEED = 1.1
+	presets.weapon.cloaker.is_pistol.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.15, 0.25 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.25, 0.5 }, mode = { 1, 0, 0, 0 } },
+	}
+	
+	presets.weapon.cloaker.is_smg.autofire_rounds = { 3, 10 }
+	presets.weapon.cloaker.is_smg.range = { close = 750, optimal = 1250, far = 2500 }
+	presets.weapon.cloaker.is_smg.FALLOFF = {
+		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 8, 10 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 1500, acc = { 0.3, 0.4 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 5, 7 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } }, autofire_rounds = { 3, 4 } },
+	}
+	
 	presets.weapon.tank = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1.5 },
 		melee_dmg = 30 * dmg_mul,
