@@ -6,7 +6,7 @@
 			<shake name="player_bullet_damage"/>
 		</search>
 		<target mode="replace">
-			<shake name="player_bullet_damage" spin="(rnd()-0.5) * 0.01" roll="0" tilt="1/75" frequency="1" amplitude="1" attack="0.1" sustain="0" decay="0.4"/>
+			<shake name="player_bullet_damage" spin="(rnd()-0.5) * 0.01" roll="0" tilt="1/80" frequency="1" amplitude="1" attack="0.1" sustain="0" decay="0.4"/>
 		</target>
 	</tweak>
 

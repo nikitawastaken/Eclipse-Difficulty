@@ -22,12 +22,12 @@ function PlayerDamage:set_regenerate_timer_to_max()
 end
 
 -- Aimpunch
-Hooks:PreHook(PlayerDamage, "damage_bullet", "hits_damage_bullet", function (self, attack_data)
+Hooks:PreHook(PlayerDamage, "damage_bullet", "eclipse_damage_bullet", function (self, attack_data)
 	if not attack_data or not attack_data.damage then
 		return
 	end
 
-	local shake_armor_multiplier = 1
+	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 1.25)
 	
 	if alive(self._unit) and self._unit:movement() and self._unit:movement()._current_state and self._unit:movement()._current_state:in_steelsight() then
 		shake_armor_multiplier = shake_armor_multiplier * managers.player:upgrade_value("player", "steelsight_shake_multiplier", 1)
