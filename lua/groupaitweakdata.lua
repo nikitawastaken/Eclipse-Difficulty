@@ -773,6 +773,33 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+	self.unit_categories.medic = {
+		special_type = "medic",
+		unit_types = {
+			america = { 
+				Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4"),
+				Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870"),
+			},
+			russia = { 
+				Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4"),
+				Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870"),
+			},
+			zombie = { 
+				Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4"),
+				Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870"),
+			},
+			murkywater = { 
+				Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4"),
+				Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870"),
+			},
+			federales = { 
+				Idstring("units/payday2/characters/ene_medic_m4/ene_medic_m4"),
+				Idstring("units/payday2/characters/ene_medic_r870/ene_medic_r870"),
+			},
+		},
+		access = access_type_all,
+	}
+	
 	self.unit_categories.bulldozer_1 = {
 		special_type = "tank",
 		unit_types = {

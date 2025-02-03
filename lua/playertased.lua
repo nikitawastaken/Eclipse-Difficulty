@@ -52,57 +52,21 @@ function PlayerTased:enter(state_data, enter_data)
 	}, callback(self, self, "_on_tased_event"))
 end
 
-function PlayerTased:_check_action_shock(t, input)
-	self._next_shock = self._next_shock or 0.5
-	local difficulty_index = tweak_data:difficulty_to_index(Global.game_settings.difficulty)
+local _check_action_shock_original = PlayerTased._check_action_shock
+function PlayerTased:_check_action_shock(t, input, ...)
+	local do_shock = self._next_shock and self._next_shock < t
+
+	_check_action_shock_original(self, t, input, ...)
+
 	local weaker_tase = managers.player:upgrade_value("player", "weaker_tase_effect", 0)
-	local is_last_man_standing = ((managers.groupai:state():num_alive_criminals() == 1 and 0.33) or 1) -- weaker random pitch when last man standing / true solo
-
-	if self._next_shock < t then
-		self._num_shocks = self._num_shocks or 0
-		self._num_shocks = self._num_shocks + 1
-		if difficulty_index == 6 then
-			self._next_shock = t + (0.15 + math.rand(0.375)) * (1 + weaker_tase)
-		else
-			self._next_shock = t + (0.25 + math.rand(0.75)) * (1 + weaker_tase)
-		end
-		self._unit:camera():play_shaker("player_taser_shock", 1, 10)
-		self._unit:camera():camera_unit():base():set_target_tilt((math.random(2) == 1 and -1 or 1) * math.random(15) * (1 - weaker_tase))
-
-		-- make tasers even more EVIL by adding a random pitch (SH)
+	local is_last_man_standing = ((managers.groupai:state():num_alive_criminals() == 1 and 0.5) or 1) -- weaker random pitch when last man standing / true solo
+	local shock_strength = (tweak_data.character.tase_shock_strength or 4) * (1 - weaker_tase) * is_last_man_standing
+	
+	if do_shock then
 		self._cam_start_pitch = self._unit:camera():camera_unit():base()._camera_properties.pitch
-		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-5 * (1 - weaker_tase) * is_last_man_standing, 5 * (1 - weaker_tase) * is_last_man_standing), -90, 90)
+		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-shock_strength, shock_strength), -90, 90)
 		self._cam_start_pitch_t = t
 		self._cam_target_pitch_t = t + 0.2
-		self._taser_value = self._taser_value or 1
-		self._taser_value = math.max(self._taser_value - 0.25, 0)
-
-		self._unit:sound():play("tasered_shock")
-		managers.rumble:play("electric_shock")
-
-		if not alive(self._counter_taser_unit) then
-			self._camera_unit:base():start_shooting()
-
-			self._recoil_t = t + 0.5
-
-			if not managers.player:has_category_upgrade("player", "resist_firing_tased") then
-				input.btn_primary_attack_state = true
-				input.btn_primary_attack_press = true
-			end
-
-			self._camera_unit:base():recoil_kick(-5, 5, -5, 5)
-			self._unit:camera():play_redirect(self:get_animation("tased_boost"))
-		end
-	elseif self._recoil_t then
-		if not managers.player:has_category_upgrade("player", "resist_firing_tased") then
-			input.btn_primary_attack_state = true
-		end
-
-		if self._recoil_t < t then
-			self._recoil_t = nil
-
-			self._camera_unit:base():stop_shooting()
-		end
 	end
 
 	if self._cam_start_pitch then

@@ -1,3 +1,7 @@
+local function diff_lerp(value_1, value_2)
+	return Eclipse.utils.diff_lerp(value_1, value_2)
+end
+
 -- lock dw / ds
 tweak_data.difficulty_level_locks = {
 	0,
@@ -29,6 +33,12 @@ tweak_data.experience_manager.alive_humans_multiplier = {
 	1,
 }
 
+-- the Medic's heal cooldown scales
+tweak_data.medic = {
+	radius = 500,
+	cooldown = diff_lerp(5, 3),
+}
+	
 local function create_explosive_arrow(base_arrow, explosive_arrow)
 	explosive_arrow = deep_clone(base_arrow)
 	explosive_arrow.bullet_class = "InstantExplosiveBulletBase"

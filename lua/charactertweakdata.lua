@@ -86,7 +86,7 @@ local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
 
-	local dmg_mul_tbl = { 0.25, 0.5, 0.75, 1, 1, 1, 1, 1 }
+	local dmg_mul_tbl = { 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1 }
 	local dmg_mul = dmg_mul_tbl[diff_i]
 
 	local aim_delay_tbl = { 1.25, 1, 0.875, 0.75, 0.625, 0.5, 0.5, 0.5 }
@@ -269,11 +269,20 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 
 	presets.weapon.elite_shield = based_on(presets.weapon.shield)
-	damage_multiplier(presets.weapon.elite_shield, 4 / 3)
+
+	presets.weapon.elite_shield.is_revolver.FALLOFF = {
+		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 4000, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	}
 	
+	presets.weapon.elite_shield.is_shotgun_mag.autofire_rounds = { 1, 4 }
+	presets.weapon.elite_shield.is_shotgun_mag.FALLOFF = {
+		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
+		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.45, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 3 } },
+		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
+	}
 	
-	presets.weapon.zeal_shield = based_on(presets.weapon.shield)
-	
+	presets.weapon.zeal_shield = based_on(presets.weapon.shield)	
 
 	presets.weapon.sniper = based_on(presets.weapon.swat)
 	
@@ -283,9 +292,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 18 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 18 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 18 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
@@ -296,9 +305,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 	presets.weapon.elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 9 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 9 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 10 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 10 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 10 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 	
 	presets.weapon.taser = based_on(presets.weapon.swat, {
@@ -989,6 +998,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.medic.headshot_dmg_mul = 2 -- 320 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
+	self.medic.can_be_healed = false
 	self.medic.melee_weapon = "weapon"
 
 	self.zeal_medic = deep_clone(self.medic)
@@ -1316,6 +1326,8 @@ function CharacterTweakData:_set_presets()
 		char_preset.weapon = self.presets.weapon[self.tweak_table_preset[name] or self.access_preset[char_preset.access] or "base"]
 	end
 
+	self.tase_shock_strength = diff_lerp(4, 6)
+	
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 	
