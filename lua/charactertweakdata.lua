@@ -105,7 +105,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 
 	presets.weapon.base.is_pistol.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.15, 0.3 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.2, 0.3 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.3 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -120,16 +120,16 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_revolver.RELOAD_SPEED = 0.9
 	presets.weapon.base.is_revolver.range = { close = 1000, optimal = 2000, far = 4000 }
 	presets.weapon.base.is_revolver.FALLOFF = {
-		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 7.5 * dmg_mul, r = 4000, acc = { 0.3, 0.5 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_sniper = deep_clone(presets.weapon.base.is_revolver)
-	presets.weapon.base.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
+	presets.weapon.base.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.base.is_sniper.FALLOFF = {
-		{ dmg_mul = 12 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 12 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 12 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_shotgun_pump.RELOAD_SPEED = 1.5
@@ -156,6 +156,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.base.is_rifle.autofire_rounds = { 1, 5 }
+	presets.weapon.base.is_rifle.range = { close = 1000, optimal = 2000, far = 4000 }
 	presets.weapon.base.is_rifle.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.5, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
@@ -171,8 +172,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_lmg = deep_clone(presets.weapon.base.is_smg)
 	presets.weapon.base.is_lmg.autofire_rounds = { 10, 30 }
 	presets.weapon.base.is_lmg.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.2, 0.6 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.15, 0.4 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.2, 0.4 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -187,11 +188,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_flamethrower.melee_dmg = nil
 	presets.weapon.base.is_flamethrower.melee_speed = nil
 	presets.weapon.base.is_flamethrower.melee_retry_delay = nil
-	presets.weapon.base.is_flamethrower.range = { close = 450, optimal = 900, far = 1800 }
+	presets.weapon.base.is_flamethrower.range = { close = 500, optimal = 1000, far = 1750 }
 	presets.weapon.base.is_flamethrower.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.15, 0.35 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.2, 0.4 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 	
 	
@@ -263,30 +264,41 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.shield, 3 / 4)
 	accuracy_multiplier(presets.weapon.shield, 0.9)
 		
+		
 	presets.weapon.fbi_shield = based_on(presets.weapon.shield)
-	damage_multiplier(presets.weapon.fbi_shield, 4 / 3)
-	accuracy_multiplier(presets.weapon.fbi_shield, 1.05)
+
 
 	presets.weapon.elite_shield = based_on(presets.weapon.shield)
-	damage_multiplier(presets.weapon.elite_shield, 5 / 3)
-	accuracy_multiplier(presets.weapon.elite_shield, 1.1)
+	damage_multiplier(presets.weapon.elite_shield, 4 / 3)
+	
 	
 	presets.weapon.zeal_shield = based_on(presets.weapon.shield)
-	damage_multiplier(presets.weapon.zeal_shield, 6 / 3)
-	accuracy_multiplier(presets.weapon.zeal_shield, 1.15)
+	
 
-
-	presets.weapon.sniper = based_on(presets.weapon.swat, {
-		aim_delay = { 
-			1 * aim_delay_mul, 
-			2 * aim_delay_mul,
-		},
-		range = { close = 5000, optimal = 10000, far = 15000 },
-	})
+	presets.weapon.sniper = based_on(presets.weapon.swat)
+	
+	presets.weapon.sniper.is_sniper.aim_delay = { 
+		1 * aim_delay_mul, 
+		2 * aim_delay_mul,
+	}
+	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 18 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 18 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 18 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
+	
+	presets.weapon.elite_sniper.is_sniper.aim_delay = { 
+		1 * aim_delay_mul, 
+		2 * aim_delay_mul,
+	}
+	presets.weapon.elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
+	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
+		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 	
 	presets.weapon.taser = based_on(presets.weapon.swat, {
@@ -317,12 +329,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 600,
 	})
 	
+	presets.weapon.tank.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.tank.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 24 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 16 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	presets.weapon.tank.is_shotgun_mag.RELOAD_SPEED = 0.9
 	presets.weapon.tank.is_shotgun_mag.autofire_rounds = { 1, 6 }
 	presets.weapon.tank.is_shotgun_mag.FALLOFF = {
 		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 5, 6 } },
@@ -338,6 +352,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	presets.weapon.elite_tank.is_lmg.RELOAD_SPEED = 0.7
 	presets.weapon.elite_tank.is_lmg.autofire_rounds = { 20, 50 }
 	presets.weapon.elite_tank.is_lmg.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.3, 0.7 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
@@ -434,8 +449,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.escort_slow = deep_clone(presets.move_speed.slow)
 
 	-- Tweak dodge presets
-	presets.dodge.heavy.occasions.preemptive.chance = 0.25 * ((is_pro_job and 1.25) or 1)
-	presets.dodge.athletic.occasions.preemptive.chance = 0.5 * ((is_pro_job and 1.25) or 1)
+	presets.dodge.heavy.occasions.preemptive.chance = 0.25
+	presets.dodge.athletic.occasions.preemptive.chance = 0.5 
 
 	presets.dodge.ninja.speed = 2
 	for _, occasion in pairs(presets.dodge.ninja.occasions) do
