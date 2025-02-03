@@ -340,9 +340,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.cloaker.is_smg.autofire_rounds = { 3, 10 }
 	presets.weapon.cloaker.is_smg.range = { close = 750, optimal = 1250, far = 2500 }
 	presets.weapon.cloaker.is_smg.FALLOFF = {
-		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 8, 10 } },
-		{ dmg_mul = 2.5 * dmg_mul, r = 1500, acc = { 0.3, 0.4 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 5, 7 } },
-		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } }, autofire_rounds = { 3, 4 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 7, 8 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 1500, acc = { 0.3, 0.4 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 5, 6 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
 	}
 	
 	presets.weapon.tank = based_on(presets.weapon.base, {
