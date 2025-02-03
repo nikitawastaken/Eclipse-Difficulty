@@ -26,7 +26,7 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 		return math.min(attention_reaction, AIAttentionObject.REACT_AIM)
 	end
 
-	--Add a new tactic that causes enemies to focus-fire players who are reload, interacting or switching weapons
+	--[[Add a new tactic that causes enemies to focus-fire players who are reload, interacting or switching weapons
 	if data.tactics and data.tactics.target_vulnerable then
 		local att_unit = attention_data.unit
 		local current_state = att_unit and att_unit:movement() and att_unit:movement().current_state and att_unit:movement():current_state()
@@ -35,7 +35,7 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 			return AIAttentionObject.REACT_COMBAT
 		end
 	end
-	
+	]]
 	local can_arrest = not record.status and record.arrest_timeout < data.t and CopLogicBase._can_arrest(data)
 	if not can_arrest or record.assault_t and attention_data.unit:base():arrest_settings().aggression_timeout > data.t - record.assault_t then
 		return attention_data.verified and AIAttentionObject.REACT_COMBAT or attention_reaction
