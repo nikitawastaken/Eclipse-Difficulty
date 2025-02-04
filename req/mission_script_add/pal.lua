@@ -104,8 +104,7 @@ local disable_2nd_police_cruiser = {
 	}
 }
 local Bain_sendsnipers = {
-	dialogue = "play_pln_gen_snip_01",
-	can_not_be_muted = true
+	dialogue = "play_pln_gen_snip_01"
 }
 
 return {

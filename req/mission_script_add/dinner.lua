@@ -22,8 +22,7 @@ local spawn_cloakers = {
 	on_executed = { 
 		{ id = 400001, delay = 0 },
 		{ id = 400002, delay = 0 },
-		{ id = 400003, delay = 0 },
-		{ id = 400047, delay = 0 }
+		{ id = 400003, delay = 0 }
 	}
 }
 local spawn_shields_and_taser_1 = {
@@ -31,8 +30,7 @@ local spawn_shields_and_taser_1 = {
 	on_executed = { 
 		{ id = 400004, delay = 0 },
 		{ id = 400005, delay = 0 },
-		{ id = 400006, delay = 0 },
-		{ id = 400049, delay = 0 }
+		{ id = 400006, delay = 0 }
 	}
 }
 local spawn_shields_and_taser_2 = {
@@ -40,8 +38,7 @@ local spawn_shields_and_taser_2 = {
 	on_executed = { 
 		{ id = 400007, delay = 0 },
 		{ id = 400008, delay = 0 },
-		{ id = 400009, delay = 0 },
-		{ id = 400049, delay = 0 }
+		{ id = 400009, delay = 0 }
 	}
 }
 local spawn_shields_and_dozer = {
@@ -49,8 +46,7 @@ local spawn_shields_and_dozer = {
 	on_executed = { 
 		{ id = 400010, delay = 0 },
 		{ id = 400011, delay = 0 },
-		{ id = 400012, delay = 0 },
-		{ id = 400048, delay = 0 }
+		{ id = 400012, delay = 0 }
 	}
 }
 local spawn_murkies = {
@@ -125,8 +121,7 @@ local spawn_dozer_2 = {
 local optsBulldozer = {
     enemy = bulldozer,
 	on_executed = {
-        { id = 400021, delay = 0.5 },
-		{ id = 400048, delay = 0 }
+        { id = 400021, delay = 0 }
     },
     enabled = true
 }
@@ -219,18 +214,6 @@ local optsrespawn_dozer_2 = {
 		400020
 	},
     event = "death"
-}
-local Bain_senddozers = {
-	dialogue = "Play_ban_s02_a",
-	can_not_be_muted = true
-}
-local Bain_sendcloakers = {
-	dialogue = "Play_ban_s04",
-	can_not_be_muted = true
-}
-local Bain_sendtasers = {
-	dialogue = "Play_ban_s01_a",
-	can_not_be_muted = true
 }
 local van_spawngroup  = {
 	spawn_groups = {
@@ -533,21 +516,6 @@ return {
             400046,
             "spawn_murkies",
             spawn_murkies
-        ),
-		Eclipse.mission_elements.gen_dialogue(
-            400047,
-            "they_sending_cloakers",
-            Bain_sendcloakers
-        ),
-		Eclipse.mission_elements.gen_dialogue(
-            400048,
-            "they_sending_dozers",
-            Bain_senddozers
-        ),
-		Eclipse.mission_elements.gen_dialogue(
-            400049,
-            "they_sending_tasers",
-            Bain_sendtasers
         ),
 		Eclipse.mission_elements.gen_missionscript(
             400050,

@@ -116,11 +116,10 @@ return {
 			{ id = 400032, delay = 17 }
 		}
 	},
-	--Trigger dozer spawn
+	--Trigger dozer spawn during the escape
 	[104706] = {
 		on_executed = {
-			{ id = 400040, delay = 0 },
-			{ id = 400042, delay = 0 }
+			{ id = 400040, delay = 0 }
 		}
 	},
 	--Cops now spawn when you open the red door rather than when killing Chavez (like in PDTH)

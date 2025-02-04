@@ -1,1 +1,1 @@
-return Eclipse:require("mission_script_add/alex_1")
+--keeping this if we're gonna add custom stuff

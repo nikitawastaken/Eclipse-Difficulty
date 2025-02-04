@@ -15,9 +15,6 @@ return {
 	[101571] = {
 		values = {
             enemy = cloaker
-		},
-		on_executed = {
-			{ id = 400001, delay = 0 }
 		}
 	},
 	[101572] = {
