@@ -90,7 +90,7 @@ return {
 				action_duration_max = 0,
 				align_rotation = opts.align_rotation or false,
 				pose = opts.pose or "none",
-				forced = true,
+				forced = opts.forced or false, --setting this to true skips the spawn anim
 				base_chance = 1,
 				interaction_voice = "none",
 				SO_access = opts.SO_access or "512", -- default to sniper

@@ -42,6 +42,19 @@
 		</target>
 	</tweak>
 
+    <tweak version="2" name="units/payday2/characters/ene_shield_1/ene_shield_1_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="fbi_shield"/>
+		</target>
+	</tweak>
+
 	<!-- Elite Dozer _tweak_table -->
 	<tweak version="2" name="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3" extension="unit">
 		<search>

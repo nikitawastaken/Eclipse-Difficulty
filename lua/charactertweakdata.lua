@@ -962,11 +962,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_shield.shield_explosion_damage_mul = 0.6
 
 	self.zeal_shield = deep_clone(self.fbi_shield)
-	self.zeal_shield.speech_prefix_p1 = "l5d" -- that's my homie L5D!
-	self.zeal_shield.speech_prefix_p2 = nil
-	self.zeal_shield.speech_prefix_count = nil
 	self.zeal_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --Come with me if you wanna live...
-	self.zeal_shield.spawn_sound_event_2 = "l5d_mov" --MOOOOVE!!!!!!!!!
 	self.zeal_shield.shield_explosion_damage_mul = 0.4
 	self.zeal_shield.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_shield")
