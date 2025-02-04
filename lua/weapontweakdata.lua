@@ -152,12 +152,12 @@ function WeaponTweakData:_init_weapons()
 						standing = {
 							hipfire = 1.25,
 							crouching = 1,
-							steelsight = 0.85
+							steelsight = 1
 						},
 						moving = {
-							hipfire = 1.3,
+							hipfire = 1.35,
 							crouching = 1,
-							steelsight = 1
+							steelsight = 1.1
 						}
 					}
 
@@ -1260,7 +1260,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scar.CLIP_AMMO_MAX = 20
 	self.scar.stats.damage = 120
 	self.scar.stats.spread = 19
-	self.scar.stats.recoil = 12
+	self.scar.stats.recoil = 7
 	self.scar.stats.concealment = 15
 	self.scar.fire_mode_data.fire_rate = 60 / 600
 
@@ -1269,7 +1269,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g3.CLIP_AMMO_MAX = 20
 	self.g3.stats.damage = 120
 	self.g3.stats.spread = 18
-	self.g3.stats.recoil = 13
+	self.g3.stats.recoil = 7
 	self.g3.stats.concealment = 14
 	self.g3.fire_mode_data.fire_rate = 60 / 550
 
@@ -1278,7 +1278,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.galil.CLIP_AMMO_MAX = 25
 	self.galil.stats.damage = 120
 	self.galil.stats.spread = 13
-	self.galil.stats.recoil = 18
+	self.galil.stats.recoil = 8
 	self.galil.stats.concealment = 14
 	self.galil.fire_mode_data.fire_rate = 60 / 750
 
@@ -1287,7 +1287,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.fal.CLIP_AMMO_MAX = 20
 	self.fal.stats.damage = 120
 	self.fal.stats.spread = 18
-	self.fal.stats.recoil = 12
+	self.fal.stats.recoil = 6
 	self.fal.stats.concealment = 16
 	self.fal.fire_mode_data.fire_rate = 60 / 700
 
@@ -1325,7 +1325,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contraband.CLIP_AMMO_MAX = 20
 	self.contraband.stats.damage = 120
 	self.contraband.stats.spread = 19
-	self.contraband.stats.recoil = 3
+	self.contraband.stats.recoil = 6
 	self.contraband.stats.concealment = 8
 	self.contraband.fire_mode_data.fire_rate = 60 / 600
 	self.contraband.has_underbarrel = true
@@ -1654,7 +1654,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mp9.stats.concealment = 26
 	self.mp9.fire_mode_data.fire_rate = 60 / 950
 	self.mp9.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
-	
+
 	-- Blaster
 	self.tec9.CLIP_AMMO_MAX = 20
 	self.tec9.stats.damage = 40
@@ -1664,7 +1664,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tec9.fire_mode_data.fire_rate = 60 / 1000
 	self.tec9.reload_speed_multiplier = 1.2
 	self.tec9.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
-	
+
 	-- Cobra
 	self.scorpion.CLIP_AMMO_MAX = 20
 	self.scorpion.stats.damage = 40
@@ -1692,7 +1692,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pm9.stats.concealment = 25
 	self.pm9.fire_mode_data.fire_rate = 60 / 1100
 	self.pm9.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
-	
+
 	-- Wasp
 	self.fmg9.CLIP_AMMO_MAX = 30
 	self.fmg9.stats.damage = 40
@@ -1702,7 +1702,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.fmg9.fire_mode_data.fire_rate = 60 / 1300
 	self.fmg9.timers.unequip = 1.2
 	self.fmg9.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
-	
+
 	-- Compact-5
 	self.new_mp5.CLIP_AMMO_MAX = 30
 	self.new_mp5.stats.damage = 50
@@ -1738,7 +1738,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sr2.stats.concealment = 27
 	self.sr2.fire_mode_data.fire_rate = 60 / 750
 	self.sr2.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
-	
+
 	-- Tatonka
 	self.coal.use_data.selection_index = 2
 	self.coal.CLIP_AMMO_MAX = 64
@@ -1981,7 +1981,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		wp_chinchilla_insert = "wp_rbull_shells_in",
 		wp_chinchilla_cylinder_in = "wp_rbull_drum_close"
 	}
-	
+
 	-- Mosconi Tactical
 	self.m590.CLIP_AMMO_MAX = 7
 	self.m590.stats.damage = 30
