@@ -13,23 +13,23 @@ local diff_i = real_difficulty_index
 return {
 	diff_lerp = function(value_1, value_2)
 		local f = math.max(0, diff_i - 2) / 4
-		
-		return math.lerp(value_1, value_2, f)
+
+		return math.lerp(value_1, value_2, math.min(f, 1))
 	end,
 
-	difficulty_index = function()	
+	difficulty_index = function()
 		return diff_i
 	end,
 
 	level_id = function()
-		local level_id = Global.level_data and Global.level_data.level_id
-		
+		local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
+
 		return level_id
 	end,
 
 	is_eclipse = function()
 		local is_eclipse = diff_i == 6
-		
+
 		return is_eclipse
 	end,
 
