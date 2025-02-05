@@ -53,7 +53,7 @@ local steelsight_times = {
 	pistol = 0.2,
 	pistol_heavy = 0.25,
 	smg = 0.25,
-	lmg_light = 0.35,
+	lmg_light = 0.4,
 	dmr = 0.4,
 	snp = 0.4,
 	snp_heavy = 0.5,
@@ -125,8 +125,8 @@ function WeaponTweakData:_init_weapons()
 			if cat_map.assault_rifle then
 				weap_data.stats.suppression = cat_map.dmr and 1 or 11
 				weap_data.stats.alert_size = cat_map.dmr and 19 or 15
-				weap_data.steelsight_time = cat_map.dmr and 0.45 or 0.35
-				weap_data.steelsight_move_speed_mul = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
+				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default 
+				weap_data.steelsight_move_speed_mul = cat_map.dmr and 0.5 or 0.6
 
 				if cat_map.dmr then
 					weap_data.FIRE_MODE = "single"
@@ -324,7 +324,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.25,
 						crouching = 1,
-						steelsight = 0.75
+						steelsight = 1
 					},
 					moving = {
 						hipfire = 1.5,
