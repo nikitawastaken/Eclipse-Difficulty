@@ -1782,7 +1782,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = 1,
-				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
 				random_tactics = cloaker_random_tactics,
@@ -1796,7 +1795,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = 1,
-				amount_min = 1,
 				rank = 1,
 				unit = "cloaker",
 				random_tactics = cloaker_random_tactics,
@@ -2123,7 +2121,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = 1,
-				amount_max = 1,
 				rank = 1,
 				unit = "Zeal_cloaker",
 				random_tactics = cloaker_random_tactics,
@@ -2184,6 +2181,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}	
 	self.besiege.assault.sustain_duration_max = self.besiege.assault.sustain_duration_min
 	self.besiege.assault.sustain_duration_balance_mul = { 1, 1, 1, 1 }
+
+	self.besiege.regroup.duration = { 30, 25, 20 }
 
 	-- Control
 	self.besiege.assault.delay = {
@@ -2272,14 +2271,20 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 	self.cs_grenade_lifetime = 25
 	self.cs_grenade_chance_times = { 60, diff_lerp(180, 120) }
-	
-	if difficulty_index < 4 then
+
+	if difficulty_index <= 3 then
 		self.besiege.faction = {
 			"CS",
 			"CS",
 			"CS",
+		}	
+	elseif difficulty_index == 4 then
+		self.besiege.faction = {
+			"CS",
+			"CS",
+			"FBI",
 		}
-	elseif difficulty_index < 6 then
+	elseif difficulty_index == 5 then
 		self.besiege.faction = {
 			"CS",
 			"FBI",
@@ -2294,7 +2299,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	-- Spawngroups
-	if difficulty_index == 2 then
+	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
 			CS_assault_cops = { 0.5, 0.25, 0 },
 			CS_assault_swats = { 1, 1, 0.75 },
@@ -2302,7 +2307,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			CS_assault_shield = { 0, 0.15, 0.2 },
 		}
 		self.besiege.recon.groups = {
-			CS_recon_cops = { 1, 0.5, 0 },
+			CS_recon_cops = { 1, 1, 0 },
 			CS_recon_swat = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
@@ -2319,7 +2324,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			CS_assault_bulldozer = { 0, 0, 0.1 },
 		}
 		self.besiege.recon.groups = {
-			CS_recon_cops = { 1, 0.5, 0 },
+			CS_recon_cops = { 1, 1, 0 },
 			CS_recon_swat = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
@@ -2329,26 +2334,24 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
 			CS_assault_cops = { 0.25, 0, 0 },
-			CS_assault_swats = { 1, 0.75, 0 },
+			CS_assault_swats = { 1, 1, 0 },
 			
-			FBI_assault_swats = { 0, 0.75, 0.75 },
+			FBI_assault_swats = { 0, 0.5, 0.75 },
 			FBI_assault_heavies = { 0, 0, 0.75 },
 			FBI_assault_shield = { 0, 0.15, 0.2 },
 			FBI_assault_taser = { 0, 0.1, 0.15 },
 			FBI_assault_cloaker = { 0, 0.1, 0.15 },
 			FBI_assault_bulldozer = { 0, 0, 0.1 },
 		}
-		self.besiege.recon.groups = {
-			CS_recon_swats = { 0, 0.5, 0 },
-			
-			FBI_recon_agents = { 1, 0.5, 0 },
+		self.besiege.recon.groups = {	
+			FBI_recon_agents = { 1, 1, 0 },
 			FBI_recon_swats = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {			
 			CS_reinforce_cops = { 0.5, 0, 0 },
-			CS_reinforce_swats = { 0.5, 1, 0 },
+			CS_reinforce_swats = { 0, 0.5, 0 },
 			
-			FBI_reinforce_agents = { 0.25, 0.5, 0 },
+			FBI_reinforce_agents = { 0.5, 0.5, 0 },
 			FBI_reinforce_swats = { 0, 0, 1 },
 		}
 	elseif difficulty_index == 5 then
@@ -2362,17 +2365,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			FBI_assault_cloaker = { 0, 0.15, 0.2 },
 			FBI_assault_bulldozer = { 0, 0, 0.15 },
 		}
-		self.besiege.recon.groups = {
-			CS_recon_swats = { 0, 0.5, 0 },
-			
-			FBI_recon_agents = { 1, 0.5, 0 },
+		self.besiege.recon.groups = {		
+			FBI_recon_agents = { 1, 1, 0 },
 			FBI_recon_swats = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
 			CS_reinforce_cops = { 0.5, 0, 0 },
-			CS_reinforce_swats = { 0.5, 1, 0 },
+			CS_reinforce_swats = { 0, 0.5, 0 },
 			
-			FBI_reinforce_agents = { 0.25, 0.5, 0 },
+			FBI_reinforce_agents = { 0.5, 0.5, 0 },
 			FBI_reinforce_swats = { 0, 0, 1 },
 		}
 	elseif difficulty_index == 6 then
@@ -2380,31 +2381,52 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			CS_assault_swats = { 0.5, 0.25, 0 },
 			
 			FBI_assault_swats = { 1, 1, 0 },
-			FBI_assault_heavies = { 0, 0, 1 },
+			FBI_assault_heavies = { 0, 0, 0.75 },
 			FBI_assault_shield = { 0, 0.2, 0 },
 			FBI_assault_taser = { 0, 0.15, 0 },
 			FBI_assault_cloaker = { 0, 0.15, 0.3 },
 			
-			Elite_assault_swats = { 0, 0.25, 0.5 },
+			Elite_assault_swats = { 0, 0.25, 0.75 },
 			Elite_assault_shield = { 0, 0, 0.3 },
 			Elite_assault_taser = { 0, 0, 0.2 },
 			Elite_assault_bulldozer = { 0, 0, 0.15 },
 		}
 		self.besiege.recon.groups = {
-			CS_recon_swats = { 0, 0.5, 0 },
-			
-			FBI_recon_agents = { 1, 0.5, 0 },
+			FBI_recon_agents = { 1, 1, 0 },
 			FBI_recon_swats = { 0, 0, 1 },
 		}
 		self.besiege.reenforce.groups = {
 			CS_reinforce_cops = { 0.5, 0, 0 },
-			CS_reinforce_swats = { 0.5, 1, 0 },
+			CS_reinforce_swats = { 0, 0.5, 0 },
 			
-			FBI_reinforce_agents = { 0.25, 0.5, 0 },
+			FBI_reinforce_agents = { 0.5, 0.5, 0 },
 			FBI_reinforce_swats = { 0, 0, 1 },
 		}
 	end
 
+	self.besiege.cloaker.groups = { 
+		single_spooc = { 1, 1, 1 } 
+	}
+	
+	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = { 
+		diff_lerp(60, 15), 
+		diff_lerp(120, 30)
+	}
+
+	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
+	self.besiege.assault.groups.Phalanx = { 0, 0, 0 }
+	self.besiege.assault.groups.marshal_squad = { 0, 0, 0 }
+	self.besiege.assault.groups.custom_assault = { 0, 0, 0 }
+	self.besiege.assault.groups.snowman_boss = { 0, 0, 0 }
+	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
+	
+	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
+	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
+	self.besiege.recon.groups.marshal_squad = { 0, 0, 0 }
+	self.besiege.recon.groups.custom_assault = { 0, 0, 0 }
+	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
+	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
+	
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
 
@@ -2461,7 +2483,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	-- Spawngroups
-	if difficulty_index == 2 then
+	if difficulty_index <= 2 then
 		self.ponr.assault.groups = {
 			FBI_assault_swats = { 0.5, 0.5, 0.5 },
 			FBI_assault_heavies = { 1, 1, 1 },
@@ -2525,25 +2547,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	end
 
+	self.ponr.cloaker.groups = { 
+		single_spooc = { 1, 1, 1 } 
+	}
+	
 	-- misc
-	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
-	self.besiege.assault.groups.Phalanx = { 0, 0, 0 }
-	self.besiege.assault.groups.marshal_squad = { 0, 0, 0 }
-	self.besiege.assault.groups.custom_assault = { 0, 0, 0 }
-	self.besiege.assault.groups.snowman_boss = { 0, 0, 0 }
-	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
-	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
-	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
-	self.besiege.recon.groups.marshal_squad = { 0, 0, 0 }
-	self.besiege.recon.groups.custom_assault = { 0, 0, 0 }
-	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
-	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	self.ponr.assault.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.assault.groups.Phalanx = { 0, 0, 0 }
 	self.ponr.assault.groups.marshal_squad = { 0, 0, 0 }
 	self.ponr.assault.groups.custom_assault = { 0, 0, 0 }
 	self.ponr.assault.groups.snowman_boss = { 0, 0, 0 }
 	self.ponr.assault.groups.piggydozer = { 0, 0, 0 }
+	
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
 	self.ponr.recon.groups.marshal_squad = { 0, 0, 0 }
