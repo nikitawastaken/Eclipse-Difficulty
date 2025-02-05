@@ -193,9 +193,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.gangster = based_on(presets.weapon.base)
 	damage_multiplier(presets.weapon.gangster, 1.33)
-	accuracy_multiplier(presets.weapon.gangster, 0.33)
-	recoil_multiplier(presets.weapon.gangster, 0.75)
-	burst_multiplier(presets.weapon.gangster, 2)
+	accuracy_multiplier(presets.weapon.gangster, 0.6)
+	recoil_multiplier(presets.weapon.gangster, 0.7)
+	burst_multiplier(presets.weapon.gangster, 1.5)
 
 	presets.weapon.glasscannon = based_on(presets.weapon.base)
 	presets.weapon.glasscannon.is_rifle.autofire_rounds = { 1, 1 }
