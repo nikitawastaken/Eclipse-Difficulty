@@ -63,6 +63,7 @@
 				<post :hook_id="dlcmanager"/>
 				<post :hook_id="groupaimanager"/>
 				<post :hook_id="explosionmanager"/>
+				<post :hook_id="killzonemanager"/>
 			</group>
 
 			<group :hook_id="network/">

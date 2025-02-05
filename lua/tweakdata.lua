@@ -38,7 +38,10 @@ tweak_data.medic = {
 	radius = 500,
 	cooldown = diff_lerp(5, 3),
 }
-	
+
+tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 1
+tweak_data.projectiles.cs_grenade_quick.damage_tick_period = 0.25
+
 local function create_explosive_arrow(base_arrow, explosive_arrow)
 	explosive_arrow = deep_clone(base_arrow)
 	explosive_arrow.bullet_class = "InstantExplosiveBulletBase"

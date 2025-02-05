@@ -12,7 +12,7 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	end
 end)
 
--- armor regen time depends on the armor you're wearing
+-- Armor regen time depends on the armor you're wearing
 function PlayerDamage:set_regenerate_timer_to_max()
 	local mul = managers.player:body_armor_regen_multiplier(alive(self._unit) and self._unit:movement():current_state()._moving, self:health_ratio())
 	self._regenerate_timer = managers.player:body_armor_value("regen_timer") * mul
@@ -138,7 +138,7 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	return health_subtracted
 end
 
--- add an upgrade that gives increased bleedout timer
+-- Add an upgrade that gives increased bleedout timer
 Hooks:PostHook(PlayerDamage, "_regenerated", "sh__regenerated", function(self)
 	self._down_time_i = 0
 	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
@@ -161,7 +161,56 @@ function PlayerDamage:revive(...)
 	self._down_time = math.max(player_damage_tweak.DOWNED_TIME_MIN, player_damage_tweak.DOWNED_TIME - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i)
 end
 
--- make healing fixed instead of % of max health
+--Tear gas damage slowly scales when the player is exposed to it
+local damage_killzone_original = PlayerDamage.damage_killzone
+function PlayerDamage:damage_killzone(attack_data, ...)
+	if attack_data.variant ~= "teargas" then
+		return damage_killzone_original(self, attack_data, ...)
+	end
+
+	local damage_info = {
+		result = {
+			variant = "killzone",
+			type = "hurt"
+		}
+	}
+	
+	if self._god_mode or self._invulnerable or self._mission_damage_blockers.invulnerable then
+		self:_call_listeners(damage_info)
+		return
+	elseif self:incapacitated() or self._unit:movement():current_state().immortal then
+		self._last_teargas_hit_t = nil
+		return
+	end
+
+	local t = managers.player:player_timer():time()
+	if not self._last_teargas_hit_t or self._last_teargas_hit_t + 5 < t then
+		self._teargas_damage_ramp = -0.15
+	else
+		self._teargas_damage_ramp = math.min(self._teargas_damage_ramp + 0.15, 1)
+	end
+
+	self._last_teargas_hit_t = t
+
+	self._unit:sound():play("player_hit")
+
+	self:_hit_direction(attack_data.col_ray.origin, attack_data.col_ray.ray)
+
+	if self._bleed_out then
+		return
+	end
+
+	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data) * self._teargas_damage_ramp
+
+	self:mutator_update_attack_data(attack_data)
+	self:_check_chico_heal(attack_data)
+
+	self:_calc_health_damage(attack_data)
+
+	self:_call_listeners(damage_info)
+end
+
+-- Make healing fixed instead of % of max health
 function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
 		return false
@@ -176,7 +225,7 @@ function PlayerDamage:on_copr_killshot()
 	self._last_received_dmg = self:_max_health()
 end
 
--- faks only heal a small portion but then heal you over time
+-- FAKs only heal a small portion but then heal you over time
 function PlayerDamage:band_aid_health(hot_regen)
 	if managers.platform:presence() == "Playing" and (self:arrested() or self:need_revive()) then
 		return
