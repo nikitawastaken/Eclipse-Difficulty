@@ -51,8 +51,8 @@ end
 local function accuracy_multiplier(tbl, multiplier)
 	for _, weapon in pairs(tbl) do
 		for _, falloff in pairs(weapon.FALLOFF) do
-			for _, accuracy in pairs(falloff.acc) do
-				accuracy = math.min(1, accuracy * multiplier)
+			for i, accuracy in pairs(falloff.acc) do
+				falloff.acc[i] = math.min(1, accuracy * multiplier)
 			end
 		end
 	end
@@ -61,23 +61,27 @@ end
 local function recoil_multiplier(tbl, multiplier)
 	for _, weapon in pairs(tbl) do
 		for _, falloff in pairs(weapon.FALLOFF) do
-			for _, recoil in pairs(falloff.recoil) do
-				recoil = recoil * multiplier
+			for i, recoil in pairs(falloff.recoil) do
+				falloff.recoil[i] = recoil * multiplier
 			end
 		end
 	end
 end
 
 local function burst_multiplier(tbl, multiplier)
-	for _, weapon in pairs(tbl) do
-		if not weapon.autofire_rounds then
-			return
+	local function chk_apply_multiplier(t)
+		if t.autofire_rounds then
+			for i, autofire_rounds in pairs(t.autofire_rounds) do
+				t.autofire_rounds[i] = math.max(1, math.ceil(autofire_rounds * multiplier))
+			end
 		end
+	end
+
+	for _, weapon in pairs(tbl) do
+		chk_apply_multiplier(weapon)
 
 		for _, falloff in pairs(weapon.FALLOFF) do
-			for _, autofire_rounds in pairs(falloff.autofire_rounds) do
-				autofire_rounds = math.max(1, math.ceil(autofire_rounds * multiplier))
-			end
+			chk_apply_multiplier(falloff)
 		end
 	end
 end
