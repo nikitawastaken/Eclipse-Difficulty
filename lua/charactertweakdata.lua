@@ -221,9 +221,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		focus_delay = 1,
 	})	
 	damage_multiplier(presets.weapon.gangster, 5 / 4)
-	accuracy_multiplier(presets.weapon.gangster, 0.5)
-	recoil_multiplier(presets.weapon.gangster, 0.75)
-	burst_multiplier(presets.weapon.gangster, 2)
+	accuracy_multiplier(presets.weapon.gangster, 0.6)
+	recoil_multiplier(presets.weapon.gangster, 0.7)
+	burst_multiplier(presets.weapon.gangster, 1.5)
 	
 	
 	presets.weapon.swat = based_on(presets.weapon.base)
@@ -248,7 +248,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 12.5 * dmg_mul,
 	})	
 	damage_multiplier(presets.weapon.city_swat, 5 / 3)
-	accuracy_multiplier(presets.weapon.city_swat, 1.15)
+	accuracy_multiplier(presets.weapon.city_swat, 1.2)
 	
 	
 	presets.weapon.zeal_swat = based_on(presets.weapon.swat, {
@@ -257,7 +257,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 15 * dmg_mul,
 	})	
 	damage_multiplier(presets.weapon.zeal_swat, 6 / 3)
-	accuracy_multiplier(presets.weapon.zeal_swat, 1.2)
+	accuracy_multiplier(presets.weapon.zeal_swat, 1.3)
 	
 
 	presets.weapon.shield = based_on(presets.weapon.base, {
