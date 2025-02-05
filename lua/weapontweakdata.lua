@@ -324,7 +324,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.25,
 						crouching = 1,
-						steelsight = 0.75
+						steelsight = 1
 					},
 					moving = {
 						hipfire = 1.5,
