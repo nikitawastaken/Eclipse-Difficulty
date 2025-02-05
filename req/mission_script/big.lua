@@ -85,7 +85,7 @@ return {
 	[100007] = roof_spawn,
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,
-	[105434] = elevator_spawn
+	[105434] = elevator_spawn,
 	-- make server hack guranteed when solo
 	[104494] = {
 		pre_func = function (self)
