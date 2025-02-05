@@ -26,16 +26,16 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 		return math.min(attention_reaction, AIAttentionObject.REACT_AIM)
 	end
 
-	--[[Add a new tactic that causes enemies to focus-fire players who are reload, interacting or switching weapons
+	--Add a "target_vulnerable" tactic that causes an enemy to focus-fire players who are reloading/interacting/switching weapons
 	if data.tactics and data.tactics.target_vulnerable then
 		local att_unit = attention_data.unit
-		local current_state = att_unit and att_unit:movement() and att_unit:movement().current_state and att_unit:movement():current_state()
+		local current_state = att_unit and att_unit:movement():current_state()
 
 		if current_state and (current_state:_is_reloading() or current_state:_changing_weapon() or current_state:_interacting()) then 
 			return AIAttentionObject.REACT_COMBAT
 		end
 	end
-	]]
+
 	local can_arrest = not record.status and record.arrest_timeout < data.t and CopLogicBase._can_arrest(data)
 	if not can_arrest or record.assault_t and attention_data.unit:base():arrest_settings().aggression_timeout > data.t - record.assault_t then
 		return attention_data.verified and AIAttentionObject.REACT_COMBAT or attention_reaction
@@ -210,7 +210,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 				local dmg_dt = attention_data.dmg_t and (data.t - attention_data.dmg_t) * weight_mul or 10000
 				distance = distance * weight_mul
 
-				--Add a new tactic that causes an enemy to focus on isolated players
+				--Add a "target_isolated" tactic that makes an enemy go after isolated players
 				if crim_record then
 					if data.tactics and data.tactics.target_isolated then
 						local closest_dis = nil
