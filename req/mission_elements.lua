@@ -272,7 +272,7 @@ return {
 		}
 	end,
 	
-	gen_preferredadd = function(id, name, opts)
+	gen_preferedadd = function(id, name, opts)
 		opts = opts or {}
 		return {
 			id = id,

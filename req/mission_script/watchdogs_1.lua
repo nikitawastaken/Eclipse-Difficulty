@@ -7,10 +7,14 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 
 local van_enemy1 = {
-	enemy = is_eclipse and elite_bulldozer or bulldozer,
+	values = {
+		enemy = is_eclipse and elite_bulldozer or bulldozer,
+	},
 }
 local van_enemy2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	values = {
+		enemy = is_eclipse and elite_shield or shield,
+	},
 }
 
 local flank_spawn = {

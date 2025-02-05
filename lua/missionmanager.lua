@@ -147,6 +147,22 @@ MissionManager.mission_script_patch_funcs = {
 		element._values.chance = data
 		element._chance = data
 	end,
+
+	modify_list_value = function(self, element, data)
+		for k, v in pairs(data) do
+			if type(element._values[k]) ~= "table" then
+				Eclipse:log("warn", "Invalid modify list value name \"%s\" on element \"%s\" (%s)!", k, element:editor_name(), element:id())
+			else
+				for id, enabled in pairs(v) do
+					if enabled then
+						table.insert(element._values[k], id)
+					else
+						table.delete(element._values[k], id)
+					end
+				end
+			end
+		end
+	end,
 }
 
 Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", function(self)

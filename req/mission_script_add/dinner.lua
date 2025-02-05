@@ -11,11 +11,10 @@ local bulldozer = scripted_enemy.bulldozer_1
 
 local diff_scaling = diff_i / 8
 
-local rand = math.random()
-local enabled_chance_cloakers = rand < diff_scaling
-local enabled_chance_shields_and_tazer = rand < diff_scaling
-local enabled_chance_shields_and_tazer_2 = rand < diff_scaling
-local enabled_chance_shields_and_dozer = rand < diff_scaling
+local enabled_chance_cloakers = math.random() < diff_scaling
+local enabled_chance_shields_and_tazer = math.random() < diff_scaling
+local enabled_chance_shields_and_tazer_2 = math.random() < diff_scaling
+local enabled_chance_shields_and_dozer = math.random() < diff_scaling
 
 local spawn_cloakers = {
 	enabled = hard_and_above and enabled_chance_cloakers,

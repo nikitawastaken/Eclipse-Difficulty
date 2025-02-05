@@ -11,7 +11,7 @@ return {
 			{ id = 103242 },
 		},
 	},
-	[101113] = {  -- spawn 2
+	[101113] = {  
 		on_executed = {
 			{ id = 103242 }
 		},
@@ -19,7 +19,7 @@ return {
 			enabled = true,
 		},
 	},
-	[101115] = {  -- spawn 4
+	[101115] = {  
 		on_executed = {
 			{ id = 103242 }
 		},

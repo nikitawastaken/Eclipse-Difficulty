@@ -1,35 +1,59 @@
 -- more ASS edits
 -- also resmod stuff
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local enabled_blocked_roof_access = math.random() < 0.45
 local enabled = {
 	values = {
-        enabled = true
-	}
+        enabled = true,
+	},
 }
 local disabled = {
 	values = {
-        enabled = false
-	}
+        enabled = false,
+	},
+}
+local sniper_kills = {
+	values = {
+		counter_target = normal and 6 or hard and 8 or 10,
+	},
 }
 local retrigger = {
 	values = {
-		trigger_times = 0
+		trigger_times = 0,
 	},
 }
 local roof_spawn = {
 	values = {
-		interval = 40
-	}
+		interval = 40,
+	},
 }
 return {
-	-- add point of no return
+	-- Add point of no return
 	[101016] = {
 		ponr = {
 			length = 180,
 			player_mul = { 1.33, 1.167, 1, 1 },
 		}
 	},
-	--Restore roof access blockade
+	-- Make difficulty scaling smoother
+	[102841] = { 
+		values = {
+			difficulty = 0.5
+		}
+	},
+	[102842] = { 
+		values = {
+			difficulty = 0.75,
+			enabled = true
+		}
+	},
+	[102843] = { 
+		values = {
+			difficulty = 1,
+			enabled = true
+		}
+	},
+	-- Restore roof access blockade
 	[100095] = {
 		on_executed = {
 			{ id = 100569, remove = true },
@@ -41,8 +65,8 @@ return {
 			enabled = enabled_blocked_roof_access
 		},
 		on_executed = {
-			{id = 103611, delay = 0},
-			{id = 400065, delay = 0}
+			{ id = 103611, delay = 0 },
+			{ id = 400065, delay = 0 }
 		}
 	},
 	[100569] = enabled,
@@ -53,10 +77,13 @@ return {
 			{ id = 103611, remove = true }
 		}
 	},
-	--stop with the smoke bombs, jeez....
+	-- Stop with the smoke bombs, jeez....
 	[103034] = disabled,
 	[103106] = disabled,
-	--Disable cloaker spawns on startup
+	-- Don't remove ground level spawns at any point
+	[102092] = disabled, 
+	[102097] = disabled,
+	-- Disable cloaker spawns on startup
 	[102263] = {
 		on_executed = {
 			{ id = 400039, delay = 3 }
@@ -156,6 +183,10 @@ return {
 	-- Disable roof/stairs reinforcement
 	[102501] = disabled,
 	[103181] = disabled,
+	-- Adjust the Sniper kill objective
+	[104516] = sniper_kills,
+	[104692] = sniper_kills,
+	[104693] = sniper_kills,
 	-- re-allow sniper respawns
 	[104556] = disabled,
 	-- reenable far sniper
@@ -181,6 +212,11 @@ return {
 	[100645] = retrigger,
 	[103111] = retrigger,
 	[100693] = retrigger,
+	[100287] = {
+		values = {
+			interval = 20
+		}
+	},
 	-- slow down roof spawns, these are really fuckng annoying
 	[104650] = roof_spawn,
 	[100504] = roof_spawn,

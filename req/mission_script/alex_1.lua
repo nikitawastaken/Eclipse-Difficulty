@@ -6,22 +6,19 @@ local mexicans = {
 	Idstring("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"),
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
-local cloaker = scripted_enemy.cloaker
+
+local cloaker_spawn = {
+	values = {
+		enemy = scripted_enemy.cloaker
+	},
+}
 
 local chopper_amount = is_eclipse and 2 or 1
 
 return {
 	--Replace Heavy SWATs that spawn from the chopper with cloakers
-	[101571] = {
-		values = {
-            enemy = cloaker
-		}
-	},
-	[101572] = {
-		values = {
-            enemy = cloaker
-		}
-	},
+	[101571] = cloaker_spawn,
+	[101572] = cloaker_spawn,
 	--Loop helis
 	--remove the line+trigger the loop here
 	[100945] = {

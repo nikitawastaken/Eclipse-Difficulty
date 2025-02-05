@@ -4,10 +4,22 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
-local heli_enemy_1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1
-local heli_enemy_2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser
-
 local heli_chance = is_eclipse_pro and 100 or is_eclipse and 85 or 12.5 * diff_i
+
+local heli_enemy1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1
+local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser
+
+local heli_spawn1 = {
+	values = {
+		enemy = heli_enemy1,
+	},
+}
+
+local heli_spawn2 = {
+	values = {
+		enemy = heli_enemy2,
+	},
+}
 
 local disabled = {
 	values = {
@@ -53,18 +65,10 @@ return {
 	[103593] = {
 		chance = heli_chance
 	},
-	[103586] = {
-		enemy = heli_enemy_1
-	},
-	[100232] = {
-		enemy = heli_enemy_1
-	},
-	[100341] = {
-		enemy = heli_enemy_2
-	},
-	[100351] = {
-		enemy = heli_enemy_2
-	},
+	[103586] = heli_spawn1,
+	[100232] = heli_spawn1,
+	[100341] = heli_spawn2,
+	[100351] = heli_spawn2,
 	[101202] = {
 		values = {
 			on_executed = {

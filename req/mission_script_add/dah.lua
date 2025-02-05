@@ -18,10 +18,9 @@ local bulldozer = scripted_enemy.bulldozer_1
 
 local diff_scaling = diff_i / 8
 
-local rand = math.random()
-local enabled_chance_extra_elevator_spawns = rand < diff_scaling
-local enabled_chance_helipad_shields = rand < diff_scaling
-local enabled_chance_helipad_dozer = rand < diff_scaling
+local enabled_chance_extra_elevator_spawns = math.random() < diff_scaling
+local enabled_chance_helipad_shields = math.random() < diff_scaling
+local enabled_chance_helipad_dozer = math.random() < diff_scaling
 
 local optsCloaker = {
     enemy = cloaker,

@@ -12,11 +12,10 @@ local bulldozer = scripted_enemy.bulldozer_1
 
 local diff_scaling = diff_i / 8
 
-local rand = math.random()
-local enabled_chance_taser_and_shields = rand < diff_scaling
-local enabled_chance_dozer = rand < diff_scaling
-local enabled_chance_dozer_scaffold = rand < diff_scaling
-local enabled_chance_shield_scaffold = rand < diff_scaling
+local enabled_chance_taser_and_shields = math.random() < diff_scaling
+local enabled_chance_dozer = math.random() < diff_scaling
+local enabled_chance_dozer_scaffold = math.random() < diff_scaling
+local enabled_chance_shield_scaffold = math.random() < diff_scaling
 
 local optsBulldozer = {
     enemy = bulldozer,

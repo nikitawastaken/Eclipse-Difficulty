@@ -1,7 +1,6 @@
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local player_1 = {
 	values = {
 		player_1 = true
@@ -73,7 +72,7 @@ return {
 	-- police car amount
 	[103879] = {
 		values = {
-			amount = hard_and_above and 2 or 1,
+			amount = normal and 1 or 2,
 		}
 	},
 	-- sniper amount

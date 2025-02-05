@@ -19,18 +19,16 @@ local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 
 local diff_scaling = diff_i / 8
 
-local rand = math.random()
-local enabled_chance_escape_snipers = rand < diff_scaling
-local enabled_chance_vault_shields = rand < diff_scaling
-local enabled_chance_escape_shields = rand < diff_scaling
-local enabled_chance_vault_dozers = rand < diff_scaling
-local enabled_chance_escape_145_group = rand < diff_scaling
-local enabled_chance_escape_swats = rand < diff_scaling
-local enabled_chance_escape_hallway_wall = rand < diff_scaling
-local enabled_chance_escape_dozers = rand < 0.5
-local enabled_chance_escape_cloakers = rand < 0.5
-local enabled_chance_escape_shield_wall = rand < 0.75
-
+local enabled_chance_escape_snipers = math.random() < diff_scaling
+local enabled_chance_vault_shields = math.random() < diff_scaling
+local enabled_chance_escape_shields = math.random() < diff_scaling
+local enabled_chance_vault_dozers = math.random() < diff_scaling
+local enabled_chance_escape_145_group = math.random() < diff_scaling
+local enabled_chance_escape_swats = math.random() < diff_scaling
+local enabled_chance_escape_hallway_wall = math.random() < diff_scaling
+local enabled_chance_escape_dozers = math.random() < 0.5
+local enabled_chance_escape_cloakers = math.random() < 0.5
+local enabled_chance_escape_shield_wall = math.random() < 0.75
 
 local optsShield_1 = {
     enemy = escapeshield,
