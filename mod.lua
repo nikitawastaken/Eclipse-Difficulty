@@ -21,7 +21,7 @@ if not Eclipse then
 		if self._instance_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
-				self._instance_script_patches = self:require("instance_script/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
+				self._instance_script_patches = self:require("instance_script/" .. level_id:gsub("_night$", ""):gsub("_day$", ""):gsub("_skip1$", ""):gsub("_skip2$", "")) or false
 			end
 		end
 
@@ -32,7 +32,7 @@ if not Eclipse then
 		if self._mission_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
-				self._mission_script_patches = self:require("mission_script/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
+				self._mission_script_patches = self:require("mission_script/" .. level_id:gsub("_night$", ""):gsub("_day$", ""):gsub("_skip1$", ""):gsub("_skip2$", "")) or false
 			end
 		end
 		return self._mission_script_patches
@@ -43,7 +43,7 @@ if not Eclipse then
 		if self._mission_script_add == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
-				self._mission_script_add = self:require("mission_script_add/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
+				self._mission_script_add = self:require("mission_script_add/" .. level_id:gsub("_night$", ""):gsub("_day$", ""):gsub("_skip1$", ""):gsub("_skip2$", "")) or false
 			end
 		end
 		return self._mission_script_add

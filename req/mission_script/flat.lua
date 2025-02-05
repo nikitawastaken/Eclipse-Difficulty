@@ -163,21 +163,37 @@ return {
 		}
 	},
 	-- more oppressive open door amounts
-	[103455] = {
+	[103616] = {  -- tweak 4th floor front doors
+		on_executed = {
+			{ id = 100517, delay = 2, },  -- normally executed by random elements in 103490, potential softlock if not executed
+		},
+	},
+	[103490] = {
 		values = {
 			amount = 0,
 			amount_random = 2,
 		},
 	},
-	[103490] = {
-		values = {
-			amount_random = 0,
+	[103491] = {
+		on_executed = {
+			{ id = 100517, remove = true, },
 		},
 	},
-	[103618] = {
+	[103492] = {
+		on_executed = {
+			{ id = 100517, remove = true, },
+		},
+	},
+	[103455] = {  -- fewer open doors to the coke lab
 		values = {
 			amount = 0,
-			amount_random = 3,
+			amount_random = 2,
+		},
+	},
+	[103618] = {  -- fewer other open doors
+		values = {
+			amount = 1,  -- potential softlock if none
+			amount_random = 2,
 		},
 	},
 	-- Disable roof/stairs reinforcement
