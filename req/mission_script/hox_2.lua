@@ -75,7 +75,7 @@ return {
 	-- spawnpoint delays
 	[101662] = side_building1,
 	[100140] = side_building1,
-	[101672] = side_building2
+	[101672] = side_building2,
 	[101677] = side_building2,
 	[100139] = side_building2,
 	[100007] = side_building3,
