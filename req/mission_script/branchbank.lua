@@ -33,6 +33,25 @@ local enabled = {
 }
 local ambush_chance = (is_pro_job and 1.25 or 1) * (diff_i - 2) * 15
 return {
+    -- DW Trailer Skulldozer spawn event
+    -- disable the dozer during startup
+    [100004] = {
+		on_executed = {
+			{ id = 400004, delay = 3 }
+		}
+	},
+    -- enable the dozer when things go loud
+    [100568] = {
+		on_executed = {
+			{ id = 400003, delay = 0 }
+		}
+	},
+    -- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
+    [104452] = {
+		on_executed = {
+			{ id = 400001, delay = 0 }
+		}
+	},
 	-- special ambush chance increase
 	[103072] = {
 		chance = ambush_chance,

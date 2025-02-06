@@ -5,6 +5,12 @@ return {
 			player_mul = {1.33, 1.15, 1, 0.85}
 		}
 	},
+    --Fixed snipers being able to spawn only once
+	[100368] = sniper_trigger_times,
+	[100369] = sniper_trigger_times,
+	[100370] = sniper_trigger_times,
+	[100371] = sniper_trigger_times,
+	[100372] = sniper_trigger_times,
 	[103595] = {
 		reinforce = {
 			{

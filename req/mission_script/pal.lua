@@ -45,6 +45,40 @@ return {
             time = 30
 		}
 	},
+    --Reinforce Spots
+	[100031] = {
+		reinforce = {
+			{
+				name = "protect_the_BBQ",
+				force = 3,
+				position = Vector3(-3680, 1926, 26.700)
+			},
+			{
+				name = "Mitchell_house_1",
+				force = 3,
+				position = Vector3(-2286, 2640, 78.789)
+			},
+			{
+				name = "Mitchell_house_2",
+				force = 3,
+				position = Vector3(-2556, 3836, 75.500)
+			},
+			{
+				name = "Wilson_house_1",
+				force = 3,
+				position = Vector3(-2080, 39, 28.970)
+			},
+			{
+				name = "Wilson_house_2",
+				force = 3,
+				position = Vector3(-2980, 1441, -324.500)
+			}
+		}
+	},
+    --Disable vanilla's reinforce points
+	[100218] = disabled,
+	[101635] = disabled,
+	[101636] = disabled,
 	--Replace 2nd bronco cop with shotgun cop to match with PDTH style
 	[100725] = {
 		values = {

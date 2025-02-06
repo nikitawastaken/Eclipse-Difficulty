@@ -25,6 +25,14 @@ local wall_c4_chance = {
 		chance = normal and 25 or hard and 50 or 75
 	}
 }
+local no_shields_and_dozers = {
+	pre_func = function (self)
+			if not self._values.SO_access_original then
+				self._values.SO_access_original = self._values.SO_access
+				self._values.SO_access = managers.navigation:convert_access_filter_to_number({"cop", "swat", "fbi", "taser", "spooc"})
+			end
+		end
+}
 return {
 	[100809] = {
 		ponr = {
@@ -86,6 +94,9 @@ return {
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,
 	[105434] = elevator_spawn,
+    -- prevent shields/dozers from disabling the timelock
+	[101195] = no_shields_and_dozers,
+	[102268] = no_shields_and_dozers,
 	-- make server hack guranteed when solo
 	[104494] = {
 		pre_func = function (self)
