@@ -26,15 +26,18 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 		return math.min(attention_reaction, AIAttentionObject.REACT_AIM)
 	end
 
-	-- Add a "target_vulnerable" tactic that causes an enemy to focus-fire players who are reloading/interacting/switching weapons
-	-- if data.tactics and data.tactics.target_vulnerable then
-	-- 	local att_unit = attention_data.unit
-	-- 	local current_state = att_unit and att_unit:movement():current_state()
+	--Add a "target_vulnerable" tactic that causes an enemy to focus-fire players who are reloading/interacting/switching weapons
+	if data.tactics and data.tactics.target_vulnerable then
+		local att_unit = attention_data.unit
+		local current_state = att_unit and att_unit:movement():current_state()
+		local current_state_reloading = current_state and current_state._is_reloading and current_state:_is_reloading()
+		local current_state_changing_weapon = current_state and current_state._changing_weapon and current_state:_changing_weapon()
+		local current_state_interacting = current_state and current_state._interacting and current_state:_interacting()
 
-	-- 	if current_state and (current_state:_is_reloading() or current_state:_changing_weapon() or current_state:_interacting()) then
-	-- 		return AIAttentionObject.REACT_COMBAT
-	-- 	end
-	-- end
+		if current_state_reloading or current_state_changing_weapon or current_state_interacting then
+			return AIAttentionObject.REACT_COMBAT
+		end
+	end
 
 	local can_arrest = not record.status and record.arrest_timeout < data.t and CopLogicBase._can_arrest(data)
 	if not can_arrest or record.assault_t and attention_data.unit:base():arrest_settings().aggression_timeout > data.t - record.assault_t then
