@@ -2,6 +2,13 @@ local old_pd2_values_init = UpgradesTweakData._init_pd2_values
 function UpgradesTweakData:_init_pd2_values(tweak_data)
 	old_pd2_values_init(self, tweak_data)
 
+	-- why is this here?
+	self.explosive_bullet = {
+		curve_pow = 2,
+		player_dmg_mul = 1 / 4,
+		range = 300
+	}
+	
 	-- 100 skill points
 	self.values.rep_upgrades.values = { 0 }
 
