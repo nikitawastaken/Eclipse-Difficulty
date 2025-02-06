@@ -452,8 +452,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
 
-	presets.gang_member_damage.HEALTH_INIT = 60 + (30 * diff_i)
-	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
+	presets.gang_member_damage.HEALTH_INIT = 80 + (20 * (diff_i - 2))
+	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
 	presets.gang_member_damage.REGENERATE_TIME = 5
 	presets.gang_member_damage.REGENERATE_TIME_AWAY = 5
