@@ -42,11 +42,11 @@ local function create_poison_arrow(base_arrow, poison_arrow)
 	poison_arrow.damage = base_arrow.damage * 0.5
 end
 
-local function create_incendiary_grenade(base_grenade, incendiary_grenade, id)
+local function create_incendiary_grenade(base_grenade, incendiary_grenade, class)
 	incendiary_grenade = deep_clone(base_grenade)
-	incendiary_grenade.dot_data_name = "launcher_incendiary_" .. id
-	incendiary_grenade.damage = base_grenade.damage * 0.25
-	incendiary_grenade.burn_duration = math.max(1, base_grenade.damage / 120)
+	incendiary_grenade.dot_data_name = "proj_launcher_incendiary_" .. class
+	incendiary_grenade.damage = base_grenade.damage * 0.5
+	incendiary_grenade.burn_duration = math.max(1, base_grenade.damage / 120) * 0.75
 	incendiary_grenade.burn_tick_period = 0.25
 	incendiary_grenade.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
 end
@@ -59,11 +59,12 @@ local function create_electric_grenade(base_grenade, electric_grenade)
 	electric_grenade.sound_event = "gl_electric_explode"
 end
 
-local function create_poison_grenade(base_grenade, poison_grenade)
+local function create_poison_grenade(base_grenade, poison_grenade, class)
 	poison_grenade = deep_clone(base_grenade)
+	poison_grenade.poison_gas_dot_data_name = "proj_launcher_poison" .. class
 	poison_grenade.damage = base_grenade.damage * 0.25
 	poison_grenade.poison_gas_range = (base_grenade.damage / 240) * 150
-	poison_grenade.poison_gas_duration = base_grenade.damage / 120
+	poison_grenade.poison_gas_duration = math.max(1, base_grenade.damage / 120)
 	poison_grenade.poison_gas_fade_time = poison_grenade.poison_gas_duration * 0.25
 	poison_grenade.poison_gas_tick_time = 0.5
 	poison_grenade.projectile_trail = true
@@ -140,6 +141,7 @@ tweak_data.projectiles.frag = {
 	damage = 96,
 	curve_pow = 2,
 	player_damage = 1,
+	player_dmg_mul = 1 / 4,
 	range = 450,
 	name_id = "bm_grenade_frag",
 }
@@ -160,7 +162,7 @@ tweak_data.projectiles.launcher_frag = {
 	launch_speed = 1500,
 	curve_pow = 2,
 	player_damage = 1,
-	player_dmg_mul = 1 / 4,
+	player_dmg_mul = 1 / 6,
 	range = 450,
 	init_timer = 2.5,
 	mass_look_up_modifier = 1,
@@ -169,18 +171,16 @@ tweak_data.projectiles.launcher_frag = {
 }
 
 -- GL40
-tweak_data.projectiles.launcher_frag_m79 = deep_clone(tweak_data.projectiles.launcher_frag)
-
-create_incendiary_grenade(tweak_data.projectiles.launcher_frag_m79, tweak_data.projectiles.launcher_incendiary_m79, "m79")
-create_electric_grenade(tweak_data.projectiles.launcher_frag_m79, tweak_data.projectiles.launcher_electric_m79)
-create_poison_grenade(tweak_data.projectiles.launcher_frag_m79, tweak_data.projectiles.launcher_poison_m79)
+create_incendiary_grenade(tweak_data.projectiles.launcher_frag, tweak_data.projectiles.launcher_incendiary, "heavy")
+create_electric_grenade(tweak_data.projectiles.launcher_frag, tweak_data.projectiles.launcher_electric)
+create_poison_grenade(tweak_data.projectiles.launcher_frag, tweak_data.projectiles.launcher_frag_poison, "heavy")
 
 -- Compact-40
 tweak_data.projectiles.launcher_frag_slap = deep_clone(tweak_data.projectiles.launcher_frag)
 
-create_incendiary_grenade(tweak_data.projectiles.launcher_frag_slap, tweak_data.projectiles.launcher_incendiary_slap, "slap")
+create_incendiary_grenade(tweak_data.projectiles.launcher_frag_slap, tweak_data.projectiles.launcher_incendiary_slap, "heavy")
 create_electric_grenade(tweak_data.projectiles.launcher_frag_slap, tweak_data.projectiles.launcher_electric_slap)
-create_poison_grenade(tweak_data.projectiles.launcher_frag_slap, tweak_data.projectiles.launcher_poison_slap)
+create_poison_grenade(tweak_data.projectiles.launcher_frag_slap, tweak_data.projectiles.launcher_poison_slap, "heavy")
 
 -- Little Friend Underbarrel
 tweak_data.projectiles.launcher_m203 = deep_clone(tweak_data.projectiles.launcher_frag)
@@ -194,18 +194,18 @@ tweak_data.projectiles.underbarrel_m203_groza.projectile_trail = true
 tweak_data.projectiles.launcher_frag_m32 = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_m32.damage = 60
 
-create_incendiary_grenade(tweak_data.projectiles.launcher_frag_m32, tweak_data.projectiles.launcher_incendiary_m32, "m32")
+create_incendiary_grenade(tweak_data.projectiles.launcher_frag_m32, tweak_data.projectiles.launcher_incendiary_m32, "medium")
 create_electric_grenade(tweak_data.projectiles.launcher_frag_m32, tweak_data.projectiles.launcher_electric_m32)
-create_poison_grenade(tweak_data.projectiles.launcher_frag_m32, tweak_data.projectiles.launcher_poison_m32)
+create_poison_grenade(tweak_data.projectiles.launcher_frag_m32, tweak_data.projectiles.launcher_poison_m32, "medium")
 
 -- China Puff
 tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_china.damage = 60
 tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = { explosion = false, fire = false } -- why is china puff allowed to crit lmao
 
-create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china, tweak_data.projectiles.launcher_incendiary_china, "china")
+create_incendiary_grenade(tweak_data.projectiles.launcher_frag_china, tweak_data.projectiles.launcher_incendiary_china, "medium")
 create_electric_grenade(tweak_data.projectiles.launcher_frag_china, tweak_data.projectiles.launcher_electric_china)
-create_poison_grenade(tweak_data.projectiles.launcher_frag_china, tweak_data.projectiles.launcher_poison_china)
+create_poison_grenade(tweak_data.projectiles.launcher_frag_china, tweak_data.projectiles.launcher_poison_china, "medium")
 
 -- Arbiter
 tweak_data.projectiles.launcher_frag_arbiter = deep_clone(tweak_data.projectiles.launcher_frag)
@@ -213,17 +213,17 @@ tweak_data.projectiles.launcher_frag_arbiter.damage = 48
 tweak_data.projectiles.launcher_frag_arbiter.range = 300
 tweak_data.projectiles.launcher_frag_arbiter.launch_speed = 6000
 
-create_incendiary_grenade(tweak_data.projectiles.launcher_frag_arbiter, tweak_data.projectiles.launcher_incendiary_arbiter, "arbiter")
+create_incendiary_grenade(tweak_data.projectiles.launcher_frag_arbiter, tweak_data.projectiles.launcher_incendiary_arbiter, "light")
 create_electric_grenade(tweak_data.projectiles.launcher_frag_arbiter, tweak_data.projectiles.launcher_electric_arbiter)
-create_poison_grenade(tweak_data.projectiles.launcher_frag_arbiter, tweak_data.projectiles.launcher_poison_arbiter)
+create_poison_grenade(tweak_data.projectiles.launcher_frag_arbiter, tweak_data.projectiles.launcher_poison_arbiter, "light")
 
 -- Basilisk
 tweak_data.projectiles.launcher_frag_ms3gl = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_ms3gl.damage = 48
 
-create_incendiary_grenade(tweak_data.projectiles.launcher_frag_ms3gl, tweak_data.projectiles.launcher_incendiary_ms3gl, "ms3gl")
+create_incendiary_grenade(tweak_data.projectiles.launcher_frag_ms3gl, tweak_data.projectiles.launcher_incendiary_ms3gl, "light")
 create_electric_grenade(tweak_data.projectiles.launcher_frag_ms3gl, tweak_data.projectiles.launcher_electric_ms3gl)
-create_poison_grenade(tweak_data.projectiles.launcher_frag_ms3gl, tweak_data.projectiles.launcher_poison_ms3gl)
+create_poison_grenade(tweak_data.projectiles.launcher_frag_ms3gl, tweak_data.projectiles.launcher_poison_ms3gl, "light")
 
 tweak_data.projectiles.launcher_rocket = {
 	damage = 1600,
