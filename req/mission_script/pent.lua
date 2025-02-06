@@ -1,3 +1,8 @@
+local sniper_trigger_times = {
+	values = {
+        trigger_times = 0
+	}
+}
 return {
 	[101607] = {
 		ponr = {
