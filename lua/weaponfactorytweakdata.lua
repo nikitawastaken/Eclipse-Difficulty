@@ -214,27 +214,27 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		},
 		wpn_fps_upg_a_custom_free = {
 			very_heavy = { -- double barrels
-				stats = { damage = 16, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 26, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 12, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 20, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 17, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			light = { -- semi autos
-				stats = { damage = 9, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 13, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			very_light = { -- full autos
-				stats = { damage = 7, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 10, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 			default = { -- for custom shotties
-				stats = { damage = 11, total_ammo_mod = -6, recoil = -2 },
+				stats = { damage = 17, total_ammo_mod = -6, recoil = -2 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.85, ammo_pickup_min_mul = 0.85 },
 			},
 		},
@@ -276,7 +276,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				},
 			},
 			light = { -- semi autos
-				stats = { damage = 125, total_ammo_mod = -8, recoil = -2, spread = 4 },
+				stats = { damage = 130, total_ammo_mod = -8, recoil = -2, spread = 4 },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.85,
@@ -320,16 +320,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 				stats = { damage = 150, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 125, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
+				stats = { damage = 130, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
 			},
 			light = { -- semi autos
-				stats = { damage = 100, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
+				stats = { damage = 95, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
 			},
 			very_light = { -- full autos
 				stats = { damage = 75, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
 			},
 			default = { -- for custom shotties
-				stats = { damage = 125, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
+				stats = { damage = 130, total_ammo_mod = -4, recoil = -2, spread = 6, spread_multi = { 0.5, 0.5 } },
 			},
 		},
 		wpn_fps_upg_a_piercing = {
@@ -440,8 +440,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		"wpn_fps_sho_basset",
 		"wpn_fps_sho_sko12",
 		"wpn_fps_sho_ben",
-		"wpn_fps_sho_spas12",
 		"wpn_fps_sho_striker",
+		"wpn_fps_sho_spas12",
 		"wpn_fps_sho_rota",
 		"wpn_fps_sho_ultima",
 		"wpn_fps_shot_r870",
@@ -473,6 +473,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		["wpn_fps_sho_aa12"] = "very_light",
 		["wpn_fps_sho_basset"] = "very_light",
 		["wpn_fps_sho_sko12"] = "very_light",
+		["wpn_fps_sho_ben"] = "light",
 		["wpn_fps_sho_striker"] = "light",
 		["wpn_fps_sho_spas12"] = "light",
 		["wpn_fps_sho_rota"] = "light",
@@ -491,6 +492,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		["wpn_fps_sho_coach"] = "very_heavy",
 	}
 
+	for index, part_id in ipairs(ammo_table) do
+		if self.parts[part_id].stats then
+			self.parts[part_id].stats = ammo_overrides[part_id]["default"].stats
+		end
+
+		if self.parts[part_id].custom_stats then
+			self.parts[part_id].custom_stats = ammo_overrides[part_id]["default"].custom_stats
+		end
+	end
+	
 	for index, weapon_id in ipairs(shotgun_table) do
 		if not self[weapon_id].override then
 			self[weapon_id].override = {}
@@ -917,6 +928,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_upg_ns_ass_smg_firepig.stats = barrel_ext_stats.balanced
 	-- Competitor's
 	self.parts.wpn_fps_upg_ass_ns_jprifles.stats = barrel_ext_stats.recoil_heavily_favored
+	-- Bootleg
+	self.parts.wpn_fps_ass_tecci_ns_special.stats = barrel_ext_stats.recoil_heavily_favored	 
 	-- Tactical
 	self.parts.wpn_fps_upg_ass_ns_surefire.stats = barrel_ext_stats.spread_heavily_favored
 	-- Funnel of Fun
@@ -927,6 +940,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_upg_ns_ass_smg_v6.stats = barrel_ext_stats.balanced
 	-- Verdunkeln
 	self.parts.wpn_fps_lmg_hk51b_ns_jcomp.stats = barrel_ext_stats.balanced
+	--Taktika
+	self.parts.wpn_fps_upg_ak_ns_zenitco.stats = barrel_ext_stats.spread_favored	
+	--Fyodor
+	self.parts.wpn_fps_upg_ak_ns_jmac.stats = barrel_ext_stats.recoil_favored
 	-- KS-12 A-Burst
 	self.parts.wpn_fps_ass_shak12_ns_muzzle.stats = barrel_ext_stats.recoil_heavily_favored
 	-- Dourif
@@ -937,10 +954,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 	self.parts.wpn_fps_upg_ns_ass_smg_medium.stats = barrel_ext_stats.medium_silencer
 	-- The Bigger The Better
 	self.parts.wpn_fps_upg_ns_ass_smg_large.stats = barrel_ext_stats.big_silencer
+	-- PBS
+	self.parts.wpn_fps_upg_ns_ass_pbs1.stats = barrel_ext_stats.big_silencer	
 	-- Rami
 	self.parts.wpn_fps_lmg_kacchainsaw_ns_suppressor.stats = barrel_ext_stats.medium_silencer
 	-- KS-12 Suppressor (to be restricted from all but ks12)
 	self.parts.wpn_fps_ass_shak12_ns_suppressor.stats = barrel_ext_stats.massive_silencer
+	-- Federation
+	self.parts.wpn_fps_upg_ak_ns_tgp.stats = barrel_ext_stats.medium_silencer	
 
 	-- Generic Shotgun Extensions and Silencers
 	local shotgun_barrel_ext_stats = {
@@ -948,6 +969,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		big_loud = { spread = 3, concealment = -3 },
 		horizontal_loud = { spread = -2, recoil = 1, spread_multi = { 2.25, 0.5 }, concealment = -3 },
 		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
+		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
 	}
 
 	-- Shark Teeth
