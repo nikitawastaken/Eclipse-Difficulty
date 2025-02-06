@@ -1,11 +1,11 @@
 local taser = scripted_enemy.taser
 
 local ambush_enemy = {
-		values = {
-			enemy = taser,
-		},
+	values = {
+		enemy = taser,
 	},
-	
+}
+
 return {
 	-- Replace dozer spam with less stupid enemies
 	[101565] = ambush_enemy,
