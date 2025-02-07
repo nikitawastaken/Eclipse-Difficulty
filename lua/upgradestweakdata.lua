@@ -6,9 +6,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.explosive_bullet = {
 		curve_pow = 2,
 		player_dmg_mul = 1 / 4,
-		range = 300
+		range = 300,
 	}
-	
+
 	-- 100 skill points
 	self.values.rep_upgrades.values = { 0 }
 

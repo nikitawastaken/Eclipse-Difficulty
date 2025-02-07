@@ -16,7 +16,7 @@
 	"bm_w_tecci": "Bootleg Light Machine Gun",
 
 	"bm_wp_hcar_barrel_dmr": "Long Barrel",
-	
+
 	"bm_menu_pickup": "Ammo Pickup",
 	"bm_menu_steelsight_time": "Aim Time",
 	"bm_menu_bonus": "Gun Perk",
@@ -47,7 +47,7 @@
 	"menu_company_soul_desc": "BASIC: ##$basic##\nW.I.P.\n\nACE: ##$pro##\nYou and your crew's stamina is increased by ##$multipro##.\n\nNote: Crew perks do not stack.",
 	"menu_combat_doctor_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## damage reduction for ##$multibasic2## seconds both after and during reviving a teammate.\n\nACE: ##$pro##\nUpon reviving a crew member you gain a ##$multipro2## damage bonus for ##$multipro3## seconds.\n\nYou revive crew members ##$multipro## faster.",
 	"menu_keepers": "Keepers",
-	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your teammates within a ##$multibasic## range will increase their movement and reload speed by ##$multibasic2## for ##$multibasic3## seconds.\n\nACE: ##$pro##\nYou can now revive your teammates within a ##$multibasic## range by shouting at them.\n\nThis can not occur more once every ##$multipro## seconds.",
+	"menu_inspire_beta_desc": "BASIC: ##$basic##\nShouting at your teammates within a ##$multibasic## range will increase their movement and reload speed by ##$multibasic2## for ##$multibasic3## seconds.\n\nACE: ##$pro##\nYou can now revive your teammates within a ##$multibasic## range by shouting at them.\n\nThis can not occur more than once every ##$multipro## seconds.",
 	"menu_black_marketeer_beta_desc": "BASIC: ##$basic##\nHaving at least ##$multibasic## hostage or dominated enemy makes you regenerate ##$multibasic2## health every ##$multibasic3## seconds.\n\nACE: ##$pro##\nThe amount of healing you receive is increased to ##$multipro##.\nYour converted enemies will now count towards hostage related boosts.\n\nNote: Doesn't apply to Stockholm Syndrome and Hostage Situation skills.",
 	"menu_cable_guy_beta": "Stockholm Syndrome",
 	"menu_cable_guy_beta_desc": "BASIC: ##$basic##\nThe power and range of your intimidation is increased by ##$multibasic2##.\n\nACE: ##$pro##\nCivilians are intimidated by the noise you make and remain intimidated ##$multipro## longer.\n\nNearby untied civilians have a chance of reviving you if you interact with them.",
@@ -60,7 +60,7 @@
 	"menu_sharpshooter_beta_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more stable when you are aiming down sights.\n\nACE: ##$pro##\nYou gain ##$multipro## weapon accuracy while standing still.",
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Sniper and Assault Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot will increase your reload speed by ##$multipro## for ##$multipro2## seconds. Can only be triggered by SMGs, Assault Rifles and Sniper Rifles fired in single shot fire mode.",
 	"menu_sniper_graze_damage": "Bullseye",
-	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nLethal headshots with your Sniper Rifles are now explosive, dealing up to ##$multibasic## of the damage in a ##$multibasic2## radius around the bullet impact.\n\nACE: ##$pro##\nYou regenerate ##$multipro## armor for each succesful headshot with a Sniper Rifle. This can not occur more than once every ##$multipro2## seconds.",
+	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nLethal headshots with your Sniper Rifles are now explosive, dealing up to ##$multibasic## of the damage in a ##$multibasic2## radius around the bullet impact.\n\nACE: ##$pro##\nYou regenerate ##$multipro## armor for each succesful headshot with a Sniper Rifle. This cannot occur more than once every ##$multipro2## seconds.",
 
 
 	"menu_from_the_hip_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage with Shotguns.\n\nACE: ##$pro##\nThe time it takes to draw and holster Shotguns is decreased by ##$multipro##.",
@@ -69,7 +69,7 @@
 	"menu_shotgun_impact_beta": "Point Blank",
 	"menu_shotgun_impact_beta_desc": "BASIC: ##$basic##\nYour Shotguns gain ##$multibasic## accuracy and stability.\n\nACE: ##$pro##\nShells for your Shotguns contain ##$multipro## extra pellets.\n\nNote: Does not apply to AP or HE Slugs.",
 	"menu_far_away_beta": "Shotgun CQB",
-	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single shot Shotguns.\n\nACE: ##$pro##\nFor every hit with a Shotgun you gain a ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
+	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYour rate of fire is increased by ##$multibasic## while firing from the hip with single-shot Shotguns.\n\nACE: ##$pro##\nFor every hit with a Shotgun you gain an ##$multipro## movement speed boost that lasts for ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_close_by_beta": "Mag-fed Specialist",
 	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Mag-fed & Double Barrel## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Mag-fed## Shotguns have their magazine size increased by ##$multipro## shells.",
 	"menu_overkill_beta": "Shotgun Hell",
@@ -81,7 +81,7 @@
 	"menu_iron_man_beta_desc": "BASIC: ##$basic##\nYou move ##$multibasic## faster when carrying bags.\n\nYou can now sprint with all bags.\n\nACE: ##$pro##\nMovement speed penalty from getting hit is reduced by ##$multipro##.",
 	"menu_prison_wife_beta": "Nerves of Steel",
 	"menu_prison_wife_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## extra health.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## extra health.",
-	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote: Doesn't stack with Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
+	"menu_scavenging_beta_desc": "BASIC: ##$basic##\nYour ammo pick up range is increased by ##$multibasic##.\n\nNote: Doesn't stack with the Gambler perk deck.\n\nACE: ##$pro##\nEvery ##6th## enemy you kill will drop an extra ammo box.",
 	"menu_bandoliers_beta_desc": "BASIC: ##$basic##\nThe heavier your armor, the more total ammo you get.\n\nThe total capacity increase scales up to ##$multibasic## with Improved Combined Tactical Vest.\n\nACE: ##$pro##\nYour total ammo capacity is increased by ##$multipro##.",
 	"menu_carbon_blade_beta": "Mag Plus",
 	"menu_carbon_blade_beta_desc": "BASIC: ##$basic##\nYour SMGs, LMGs and Assault Rifles gain ##$multibasic## more bullets in their magazine.\n\nACE: ##$pro##\nYour SMGs, LMGs and Assault Rifles gain ##$multipro## more bullets in their magazine.\n\nNote: Does not affect the Aced \"Sleight of Hand\" Skill.",
@@ -98,15 +98,16 @@
 	"menu_eco_sentry_beta": "PhD in Engineering",
 	"menu_eco_sentry_beta_desc": "BASIC: ##$basic##\nYour sentry guns now have an upgraded motion sensor, allowing them to mark all enemies in a ##10m## radius and giving them a ##$multibasic## increase in accuracy.\n\nACE: ##$pro##\nYou can now toggle AP rounds on your sentry guns, lowering the rate of fire by ##$multipro##, but increasing damage by ##$multipro2## and allowing it to pierce through enemies and shields.",
 	"menu_combat_engineering_beta": "Combat Engineer",
+	"menu_more_fire_power_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## more shaped charges and ##$multibasic2## more trip mines. ACE: ##$pro##\nYou gain ##$multipro## more shaped charges and ##$multipro2## more trip mines.",
 	"st_menu_technician_auto": "Heavy",
 	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour SMGs, LMGs and Miniguns gain ##$multibasic## stability.\n\nACE: ##$pro##\nYou and your crew's weapon stability is increased by ##$multipro## points."
 	"menu_fast_fire_beta": "Lock N' Load",
-	"menu_fast_fire_beta_desc": "BASIC: ##$basic##\nYou can now hip-fire with your weapons while sprinting.\n\nACE: ##$pro##\nYou no longer have movement speed penalty when wielding Heavy Weaponry.",
+	"menu_fast_fire_beta_desc": "BASIC: ##$basic##\nYou can now hip-fire with your weapons while sprinting.\n\nACE: ##$pro##\nYou no longer have a movement speed penalty when wielding Heavy Weaponry.",
 	"menu_body_expertise_beta_desc": "BASIC: ##$basic##\nAll of your ranged weapons can now pierce through enemy body armor.\n\nDoes not apply to throwable weapons.\n\nACE: ##$pro##\n##$multipro## from the bonus headshot damage is permanently applied to hitting enemies on the body.\n\nThis skill is only activated by SMGs fired in automatic mode, LMGs or Miniguns.",
 	"menu_fast_hands": "Sleight of Hand",
 	"menu_fast_hands_desc": "BASIC: ##$basic##\nYou reload your SMGs and LMGs ##$multibasic## faster.\n\nACE: ##$pro##\nKilling ##$multipro## enemies with SMGs, LMGs or Special Weapons set on automatic fire mode will increase your next reload speed by up to ##$multipro2##. This bonus is reduced by ##$multipro3## for each bullet above ##$multipro4## in the total magazine size, down to a maximum of ##$multipro5## reload speed increase.",
 	"menu_oppressor_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more effective at threatening enemies.\n\nACE: ##$pro##\nYour weapons are additionally ##$multipro## more effective at threatening enemies.",
-	"menu_fire_control_beta_desc": "BASIC: ##$basic##\nYour hipfire spread penalty, is decreased by ##$multibasic##.\n\nACE: ##$pro##\nThe longer you hipfire without releasing the trigger, the more stable your LMGs, SMGs and Miniguns become.\n\nStacks up to a ##$multipro## recoil reduction.",
+	"menu_fire_control_beta_desc": "BASIC: ##$basic##\nYour hipfire spread penalty is decreased by ##$multibasic##.\n\nACE: ##$pro##\nThe longer you hipfire without releasing the trigger, the more stable your LMGs, SMGs and Miniguns become.\n\nStacks up to a ##$multipro## recoil reduction.",
 
 
 	"menu_sprinter": "Athlete",
@@ -116,8 +117,8 @@
 	"menu_optic_illusions": "Sprinter",
 	"menu_optic_illusions_desc": "BASIC: ##$basic##\nYou can now sprint while strafing. You also sprint ##$multibasic## faster.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while sprinting and zip-lining.",
 	"menu_dire_need_beta": "Second Wind",
-	"menu_dire_need_beta_desc": "BASIC: ##$basic##\nWhen your armor breaks your movement speed is increased by ##$multibasic## for ##$multibasic2## seconds.\n\nACED: ##$pro##\nWhen your armor breaks you have a ##$multipro## chance to cause nearby enemies to panic. Panic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
-	"menu_insulation_beta_desc": "BASIC: ##$basic##\nWhen tased, the shock effect will be ##$multibasic## weaker.\n\nYou no longer randomly pull the trigger while being tased.\n\nACED: ##$pro##\nWhen tased, you are able to free yourself from the taser by interacting with it within ##$multipro2## seconds of getting tased.",
+	"menu_dire_need_beta_desc": "BASIC: ##$basic##\nWhen your armor breaks, your movement speed is increased by ##$multibasic## for ##$multibasic2## seconds.\n\nACE: ##$pro##\nWhen your armor is broken, you have a ##$multipro## chance to cause nearby enemies to panic. Panic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
+	"menu_insulation_beta_desc": "BASIC: ##$basic##\nWhen tased, the shock effect will be ##$multibasic## weaker.\n\nYou no longer randomly pull the trigger while being tased.\n\nACE: ##$pro##\nWhen tased, you are able to free yourself from the taser by interacting with it within ##$multipro2## seconds of getting tased.",
 	"st_menu_ghost_silencer": "Specialized Killing",
 	"menu_scavenger_beta": "Resilient Assault",
 	"menu_scavenger_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## critical hit chance.\n\nCritical hits deal ##$multibasic2## damage.\n\nACE: ##$pro##\nWhen your armor breaks, the first shot on every enemy will cause that enemy to stagger.\n\nThe effect persists for ##$multipro## seconds after your armor has recovered.",
@@ -135,15 +136,15 @@
 	"menu_ecm_booster_beta": "ECM Feedback",
 	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\nYou can now interact with ECM jammers to cause a feedback loop that stuns enemies.\n\nFeedback loop has a ##$multibasic## radius.\nObstructed line of sight ##halves## the radius.\n\nACE: ##$pro##\nECM feedback now recharges every ##$multipro## minutes.",
 	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last ##$multipro## seconds.",
-	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou now gain ##$multipro## critical hit chance for every ##$multipro2## point of detection rate instead.\n\nCritical hits now deal an additional ##$multipro3## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
+	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou now gain a ##$multipro## critical hit chance for every ##$multipro2## point of detection rate instead.\n\nCritical hits now deal an additional ##$multipro3## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
 
 
 	"menu_nine_lives_beta": "Tough Guy",
 	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou can now use your steelsight while in bleedout.\n\nACE: ##$pro##\nYou can now swap your weapons while in bleedout.",
 	"menu_pistol_beta_messiah_desc": "BASIC: ##$basic##\nWhile in bleedout, you can revive yourself if you kill an enemy. You only have ##$multibasic## charge.\n\nYour bleedout timer is increased by ##$multibasic2## seconds.\n\nNote: Getting out of custody doesn't replenish the charges.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## charges.\n\nWhenever you get into custody, your hostages will trade themselves for your safe return. This effect can occur during assaults, but only ##1## time during a heist.",
-	"menu_drop_soap_beta_desc": "BASIC: ##$basic##\nYou can now sprint with melee weapons.\n\nACE: ##$pro##\nYou can now knock down bulldozers with melee.\n\nThis cannot occur more than every ##$multipro## seconds.",
+	"menu_drop_soap_beta_desc": "BASIC: ##$basic##\nYou can now sprint with melee weapons.\n\nACE: ##$pro##\nYou can now knock down bulldozers with melee.\n\nThis cannot occur more than once every ##$multipro## seconds.",
 	"menu_wolverine_beta_desc": "BASIC: ##$basic##\nThe lower your health, the more movement speed you gain. When your health is below ##$multibasic##, you will gain up to ##$multibasic2## movement speed.\n\nACE: ##$pro##\nThe lower your health, the more damage you do. When your health is below ##$multipro##, you will do up to ##$multipro2## more melee and saw damage.",
-	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor every hit with a pistol you gain a ##$multibasic## damage boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYou now gain ##$multipro## damage boost for every hit and the damage boost lasts ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
+	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor every hit with a pistol you gain a ##$multibasic## damage boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYou now gain a ##$multipro## damage boost for every hit and the damage boost lasts ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
 	"menu_tea_cookies_beta_desc": "BASIC: ##$basic##\nUsing a First Aid Kit makes you regenerate ##$multibasic## health every ##$multibasic2## seconds for ##$multibasic3## seconds.\n\nACE: ##$pro##\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro2## seconds.",
 
