@@ -260,11 +260,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	accuracy_multiplier(presets.weapon.zeal_swat, 1.3)
 
     presets.weapon.murky = based_on(presets.weapon.swat, {
-		aim_delay = { 0, 0.8 },
-		focus_delay = 0.6,
-		melee_dmg = 12 * dmg_mul,
+		melee_dmg = 10 * dmg_mul,
 	})		
-	damage_multiplier(presets.weapon.murky, 3.75 / 3)
+	damage_multiplier(presets.weapon.murky, 5 / 4)
 	accuracy_multiplier(presets.weapon.murky, 1.1)
     burst_multiplier(presets.weapon.murky, 0.75)
 	
@@ -284,8 +282,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_shield = based_on(presets.weapon.shield)
 
 	presets.weapon.elite_shield.is_revolver.FALLOFF = {
-		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 7.5 * dmg_mul, r = 4000, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 4000, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 	
 	presets.weapon.elite_shield.is_shotgun_mag.autofire_rounds = { 1, 4 }
@@ -971,9 +969,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
     self.murky = deep_clone(self.swat)
     self.murky.HEALTH_INIT = 24
-	self.murky.headshot_dmg_mul = 2.2 -- 120 head health
+	self.murky.headshot_dmg_mul = 2.4 -- 100 head health
     self.murky.chatter = self.presets.enemy_chatter.murkywater
     self.murky.rescue_hostages = false -- mercs don't rescue hostages
+	self.murky.steal_loot = false
     self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
 
 	self.sniper.HEALTH_INIT = 8
@@ -1038,22 +1037,22 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
-	self.medic.HEALTH_INIT = 48
-	self.medic.headshot_dmg_mul = 2 -- 320 head health
+	self.medic.HEALTH_INIT = 60
+	self.medic.headshot_dmg_mul = 2 -- 300 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.can_be_healed = false
 	self.medic.melee_weapon = "weapon"
 
 	self.zeal_medic = deep_clone(self.medic)
-	self.zeal_medic.HEALTH_INIT = 48
-	self.zeal_medic.headshot_dmg_mul = 2 -- 240 head health
+	self.zeal_medic.HEALTH_INIT = 60
+	self.zeal_medic.headshot_dmg_mul = 2 -- 300 head health
 	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
 	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_medic")
 
 	self.phalanx_minion.HEALTH_INIT = 60
-	self.phalanx_minion.headshot_dmg_mul = 1.875 -- 320 head health
+	self.phalanx_minion.headshot_dmg_mul = 2 -- 300 head health
 	self.phalanx_minion.min_obj_interrupt_dis = 500
 	self.phalanx_minion.shield_explosion_damage_mul = 0.2
 	self.phalanx_minion.move_speed.crouch = self.phalanx_minion.move_speed.stand
@@ -1241,7 +1240,7 @@ CharacterTweakData.access_hs_mul = {
 	fbi = 4,
 }
 
-CharacterTweakData.tweak_table_preset = {
+CharacterTweakData.tweak_table_weapon = {
 	swat = "swat",
 	heavy_swat = "swat",
 	fbi_swat = "fbi_swat",
@@ -1267,7 +1266,7 @@ CharacterTweakData.tweak_table_preset = {
 	deep_boss = "boss",
 }
 
-CharacterTweakData.access_preset = {
+CharacterTweakData.access_weapon = {
 	security = "security",
 	cop = "cop",
 	gangster = "gangster",
@@ -1367,7 +1366,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.surrender_break_time = self.presets.base.surrender_break_time
 		end
 
-		char_preset.weapon = self.presets.weapon[self.tweak_table_preset[name] or self.access_preset[char_preset.access] or "base"]
+		char_preset.weapon = self.presets.weapon[self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "base"]
 	end
 
 	self.tase_shock_strength = diff_lerp(4, 6)
