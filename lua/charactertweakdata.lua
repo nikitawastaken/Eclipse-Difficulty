@@ -1037,22 +1037,22 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
-	self.medic.HEALTH_INIT = 60
-	self.medic.headshot_dmg_mul = 2 -- 300 head health
+	self.medic.HEALTH_INIT = 54
+	self.medic.headshot_dmg_mul = 2 -- 270 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.can_be_healed = false
 	self.medic.melee_weapon = "weapon"
 
 	self.zeal_medic = deep_clone(self.medic)
-	self.zeal_medic.HEALTH_INIT = 60
-	self.zeal_medic.headshot_dmg_mul = 2 -- 300 head health
+	self.zeal_medic.HEALTH_INIT = 54
+	self.zeal_medic.headshot_dmg_mul = 2 -- 270 head health
 	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
 	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_medic")
 
 	self.phalanx_minion.HEALTH_INIT = 60
-	self.phalanx_minion.headshot_dmg_mul = 2 -- 300 head health
+	self.phalanx_minion.headshot_dmg_mul = 1.875 -- 320 head health
 	self.phalanx_minion.min_obj_interrupt_dis = 500
 	self.phalanx_minion.shield_explosion_damage_mul = 0.2
 	self.phalanx_minion.move_speed.crouch = self.phalanx_minion.move_speed.stand
