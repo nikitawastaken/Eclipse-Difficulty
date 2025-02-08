@@ -87,6 +87,11 @@ local vent_spawn = {
 		tac_bull_rush = false,
 	},
 }
+local windows_swat = {
+	values = {
+		enabled = false
+	}
+}
 
 return {
 	-- new reinforce

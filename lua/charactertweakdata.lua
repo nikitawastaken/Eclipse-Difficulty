@@ -258,6 +258,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})	
 	damage_multiplier(presets.weapon.zeal_swat, 6 / 3)
 	accuracy_multiplier(presets.weapon.zeal_swat, 1.3)
+
+    presets.weapon.murky = based_on(presets.weapon.swat, {
+		aim_delay = { 0, 0.8 },
+		focus_delay = 0.6,
+		melee_dmg = 12 * dmg_mul,
+	})		
+	damage_multiplier(presets.weapon.murky, 3.75 / 3)
+	accuracy_multiplier(presets.weapon.murky, 1.1)
+    burst_multiplier(presets.weapon.murky, 0.75)
 	
 
 	presets.weapon.shield = based_on(presets.weapon.base, {
@@ -831,6 +840,20 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		report = true,
 	}
 
+    presets.enemy_chatter.murkywater = {
+		aggressive = true,
+        watch_background = true,
+		go_go = true,
+		contact = true,
+		suppress = true,
+        open_fire = true,
+        push = true,
+        flank = true,
+        --for stealth heists
+        idle = true,
+		report = true
+	}
+
 	return presets
 end
 
@@ -945,6 +968,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_heavy_swat.surrender = self.presets.surrender.very_hard
 	self.zeal_heavy_swat.suppression = self.presets.suppression.very_hard
 	self.zeal_heavy_swat.move_speed_mul = { walk = 1.1, run = 1.1 }
+
+    self.murky = deep_clone(self.swat)
+    self.murky.HEALTH_INIT = 24
+	self.murky.headshot_dmg_mul = 2.2 -- 120 head health
+    self.murky.chatter = self.presets.enemy_chatter.murkywater
+    self.murky.rescue_hostages = false -- mercs don't rescue hostages
+    self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
 
 	self.sniper.HEALTH_INIT = 8
 	self.sniper.headshot_dmg_mul = 4 -- 20 head health
@@ -1219,6 +1249,7 @@ CharacterTweakData.tweak_table_preset = {
 	city_swat = "city_swat",	
 	zeal_swat = "zeal_swat",
 	zeal_heavy_swat = "zeal_swat",	
+    murky = "murky",
 	shield = "shield",
 	fbi_shield = "fbi_shield",
 	zeal_shield = "zeal_shield",
@@ -1251,6 +1282,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
 	zeal_heavy_swat = "fast",
+    murky = "fast",
 	medic = "normal",
 	zeal_medic = "normal",
 	heavy_swat_sniper = "fast",

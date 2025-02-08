@@ -150,10 +150,10 @@ local optsMurky_Rifle = {
 }
 local optsrespawn_murkies_1 = {
 	on_executed = { 
-		{ id = 400028, delay = 15 },
-		{ id = 400029, delay = 15 },
-		{ id = 400030, delay = 15 },
-		{ id = 400031, delay = 15 }
+		{ id = 400028, delay = 40, delay_rand = 10 },
+		{ id = 400029, delay = 40, delay_rand = 10 },
+		{ id = 400030, delay = 40, delay_rand = 10 },
+		{ id = 400031, delay = 40, delay_rand = 10 }
 	},
 	elements = { 
 		400028
@@ -162,10 +162,10 @@ local optsrespawn_murkies_1 = {
 }
 local optsrespawn_murkies_2 = {
 	on_executed = { 
-		{ id = 400032, delay = 15 },
-		{ id = 400033, delay = 15 },
-		{ id = 400034, delay = 15 },
-		{ id = 400035, delay = 15 }
+		{ id = 400032, delay = 40, delay_rand = 10 },
+		{ id = 400033, delay = 40, delay_rand = 10 },
+		{ id = 400034, delay = 40, delay_rand = 10 },
+		{ id = 400035, delay = 40, delay_rand = 10 }
 	},
 	elements = { 
 		400032
@@ -174,10 +174,10 @@ local optsrespawn_murkies_2 = {
 }
 local optsrespawn_murkies_3 = {
 	on_executed = { 
-		{ id = 400036, delay = 15 },
-		{ id = 400037, delay = 15 },
-		{ id = 400038, delay = 15 },
-		{ id = 400039, delay = 15 }
+		{ id = 400036, delay = 40, delay_rand = 10 },
+		{ id = 400037, delay = 40, delay_rand = 10 },
+		{ id = 400038, delay = 40, delay_rand = 10 },
+		{ id = 400039, delay = 40, delay_rand = 10 }
 	},
 	elements = { 
 		400036
@@ -186,10 +186,10 @@ local optsrespawn_murkies_3 = {
 }
 local optsrespawn_murkies_4 = {
 	on_executed = { 
-		{ id = 400058, delay = 15 },
-		{ id = 400059, delay = 15 },
-		{ id = 400060, delay = 15 },
-		{ id = 400061, delay = 15 }
+		{ id = 400058, delay = 40, delay_rand = 10 },
+		{ id = 400059, delay = 40, delay_rand = 10 },
+		{ id = 400060, delay = 40, delay_rand = 10 },
+		{ id = 400061, delay = 40, delay_rand = 10 }
 	},
 	elements = { 
 		400058

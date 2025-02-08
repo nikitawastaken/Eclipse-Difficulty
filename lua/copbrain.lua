@@ -6,6 +6,7 @@ CopBrain._logic_variants.drug_lord_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.biker_boss = CopBrain._logic_variants.triad_boss
 CopBrain._logic_variants.tank_elite = CopBrain._logic_variants.tank
 CopBrain._logic_variants.phalanx_minion_break = CopBrain._logic_variants.city_swat
+CopBrain._logic_variants.murky = CopBrain._logic_variants.swat
 CopBrain._logic_variants.zeal_swat = CopBrain._logic_variants.city_swat
 CopBrain._logic_variants.zeal_heavy_swat = CopBrain._logic_variants.city_swat
 CopBrain._logic_variants.zeal_medic = CopBrain._logic_variants.city_swat

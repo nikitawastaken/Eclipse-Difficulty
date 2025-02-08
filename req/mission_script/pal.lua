@@ -120,6 +120,19 @@ return {
 			end
 		end
 	},
+    -- spawn two extra tasers with blockade shields on Eclipse (193+ throwback)
+    [103336] = {
+		on_executed = {
+            {id = 400017, delay = 0},
+			{id = 400018, delay = 0}
+		}
+	},
+	[101803] = {
+		on_executed = {
+            {id = 400019, delay = 0},
+			{id = 400020, delay = 0}
+		}
+	},
 	--Elite Shields replaces FBI ones that cover the manhole on Eclipse (PJ only) 
 	[100036] = shield_spawn,
 	[100039] = shield_spawn,

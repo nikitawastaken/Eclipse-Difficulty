@@ -43,6 +43,34 @@ local optsSniper_5 = {
     },
     enabled = is_eclipse
 }
+local optsTaserDefend_1 = {
+	enemy = taser,
+	on_executed = {
+        { id = 400035, delay = 0 },
+    },
+    enabled = is_eclipse
+}
+local optsTaserDefend_2 = {
+	enemy = taser,
+	on_executed = {
+        { id = 400036, delay = 0 },
+    },
+    enabled = is_eclipse
+}
+local optsTaserDefend_3 = {
+	enemy = taser,
+	on_executed = {
+        { id = 400037, delay = 0 },
+    },
+    enabled = is_eclipse
+}
+local optsTaserDefend_4 = {
+	enemy = taser,
+	on_executed = {
+        { id = 400038, delay = 0 },
+    },
+    enabled = is_eclipse
+}
 local optsrespawn_sniper_1 = {
 	on_executed = { 
 		{ id = 400001, delay = 30 }
@@ -89,6 +117,15 @@ local optsrespawn_sniper_5 = {
     event = "death"
 }
 local optsSniper_SO = {
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	interval = 2,
+    so_action = "AI_sniper"
+}
+local optsTaser_SO = {
+	SO_access = "8192",
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -217,6 +254,62 @@ return {
             400016,
             "they_sending_snipers",
             Bain_sendsnipers
+        ),
+        Eclipse.mission_elements.gen_dummy(
+            400017,
+            "taser_defend_1",
+            Vector3(-5536, -3189, 30.090),
+            Rotation(90, -0, -0),
+            optsTaserDefend_1
+        ),
+		Eclipse.mission_elements.gen_dummy(
+            400018,
+            "taser_defend_2",
+            Vector3(-5536, -3129, 30.090),
+            Rotation(90, -0, -0),
+            optsTaserDefend_2
+        ),
+		Eclipse.mission_elements.gen_dummy(
+            400019,
+            "taser_defend_3",
+            Vector3(3052, -685, 130.921),
+			Rotation(-180, 0, -0),
+            optsTaserDefend_3
+		),
+		Eclipse.mission_elements.gen_dummy(
+            400020,
+            "taser_defend_4",
+            Vector3(3121, -685, 130.921),
+			Rotation(-180, -0, -0),
+            optsTaserDefend_4
+		),
+		Eclipse.mission_elements.gen_so(
+            400021,
+            "taser_spot_so_1",
+            Vector3(-5995, -349, 26.200),
+            Rotation(-90, 0, -0),
+            optsTaser_SO
+        ),
+		Eclipse.mission_elements.gen_so(
+            400022,
+            "taser_spot_so_2",
+            Vector3(-5995, -455, 26.200),
+            Rotation(-90, 0, -0),
+            optsTaser_SO
+        ),
+		Eclipse.mission_elements.gen_so(
+            400023,
+            "taser_spot_so_3",
+            Vector3(-796.150, 12.669, 31.663),
+            Rotation(50, -0, -0),
+            optsTaser_SO
+        ),
+		Eclipse.mission_elements.gen_so(
+            400024,
+            "taser_spot_so_4",
+            Vector3(-863, -67, 31.663),
+            Rotation(50, 0, -0),
+            optsTaser_SO
         )
     }
 }
