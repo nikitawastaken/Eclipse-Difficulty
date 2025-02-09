@@ -163,7 +163,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 
 	if alive(self._obj_fire) then
 		-- charged shot effect
-		if managers.player:has_category_upgrade("snp", "charged_shot") and managers.player:charged_shot_allowed() then
+		if managers.player:has_category_upgrade("snp", "charged_shot") and managers.player:is_charged_shot_allowed() then
 			local sniper_trail_effect = Idstring("effects/particles/weapons/sniper_trail")
 			local idstr_trail = Idstring("trail")
 			local idstr_simulator_length = Idstring("simulator_length")
