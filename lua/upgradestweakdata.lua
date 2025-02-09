@@ -287,8 +287,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.snp.consecutive_headshots = {
 		{
 			damage_mul_addend = 0.25,
-			max_headshots = 4
-		}
+			max_headshots = 4,
+		},
 	}
 	self.definitions.snp_consecutive_headshots = {
 		name_id = "menu_snp_consecutive_headshots",
@@ -305,7 +305,7 @@ function UpgradesTweakData:init(tweak_data)
 			time_to_charge = 5,
 			radius = 500,
 			damage_factor = 1,
-		}
+		},
 	}
 	self.definitions.snp_charged_shot = {
 		name_id = "menu_snp_charged_shot",

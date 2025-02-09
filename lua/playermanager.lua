@@ -48,7 +48,11 @@ function PlayerManager:health_regen()
 end
 
 function PlayerManager:charged_shot_allowed(is_allowed)
-	self._charged_shot_allowed = is_allowed
+	if is_allowed then
+		self._charged_shot_allowed = is_allowed
+	end
+
+	return self._charged_shot_allowed
 end
 
 function PlayerManager:on_headshot_dealt()
@@ -236,15 +240,15 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 		return
 	end
 
-    if not weapon_unit:base():is_category("snp") or not result.hit_enemy then
-        self._consecutive_headshots = 0
-        self:remove_property("snp_consecutive_headshots_mul")
-        return
-    end
+	if not weapon_unit:base():is_category("snp") or not result.hit_enemy then
+		self._consecutive_headshots = 0
+		self:remove_property("snp_consecutive_headshots_mul")
+		return
+	end
 
-    if self._consecutive_headshots < (upgrade_value.max_headshots) then
+	if self._consecutive_headshots < upgrade_value.max_headshots then
 		self:add_to_property("snp_consecutive_headshots_mul", upgrade_value.damage_mul_addend)
-    end
+	end
 
 	--[[
 	Eclipse:log_chat("dmg mul - x" .. (1 + self:get_property("snp_consecutive_headshots_mul", 0)))
@@ -303,7 +307,7 @@ function PlayerManager:on_enter_custody(_player, already_dead)
 
 	self:force_drop_carry()
 	managers.statistics:downed({
-		death = true
+		death = true,
 	})
 
 	if not already_dead then
