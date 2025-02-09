@@ -2445,7 +2445,33 @@ end
 
 local function get_pellets_from_blueprint(name, blueprint, category, slot)
 	local new_rays = WeaponDescription._get_custom_pellet_stats(name, category, slot, blueprint)
-	return tweak_data.weapon[name].rays, new_rays
+	if table.contains(tweak_data.weapon[name].categories, "grenade_launcher") then
+		-- Grenade launchers have a base rays stat of 8 even though
+		-- the stat is only used when sting grenades are equipped...
+		return 1, tweak_data.weapon[name].rays
+	else
+		return tweak_data.weapon[name].rays, new_rays
+	end
+end
+
+local function check_show_pellet_stats(weapon_tweak, weapon_id, blueprint)
+	local shotgun = table.contains(weapon_tweak.categories, "shotgun")
+	if shotgun then
+		return true
+	end
+
+	if blueprint then
+		local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(weapon_id)
+		local ammo_mods = managers.weapon_factory:get_parts_from_weapon_by_type_or_perk("ammo", factory_id, blueprint)
+		for _, id in ipairs(ammo_mods) do
+			local part = managers.weapon_factory:_part_data(id, factory_id)
+			if part.sub_type and part.sub_type == "ammo_hornet" then
+				return true
+			end
+		end
+	else
+		return false
+	end
 end
 
 function BlackMarketGui:show_stats_dont_compare_page()
@@ -2570,8 +2596,8 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 	local equipped_pellets = ""
 	local unmodded_equipped_rays
 	local equipped_rays
-	if table.contains(equipped_weapon_tweak.categories, "shotgun") then
-		local equipped_blueprint = managers.blackmarket:get_weapon_blueprint(category, equipped_slot)
+	local equipped_blueprint = managers.blackmarket:get_weapon_blueprint(category, equipped_slot)
+	if check_show_pellet_stats(equipped_weapon_tweak, equipped_name, equipped_blueprint) then
 		unmodded_equipped_rays, equipped_rays = get_pellets_from_blueprint(equipped_name, equipped_blueprint, category, equipped_slot)
 		equipped_pellets = "x" .. (equipped_rays or unmodded_equipped_rays)
 	end
@@ -2579,8 +2605,8 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 	local base_pellets = ""
 	local unmodded_base_rays
 	local base_rays
-	if table.contains(base_weapon_tweak.categories, "shotgun") then
-		local base_blueprint = managers.blackmarket:get_weapon_blueprint(category, slot)
+	local base_blueprint = managers.blackmarket:get_weapon_blueprint(category, slot)
+	if check_show_pellet_stats(base_weapon_tweak, name, base_blueprint) then
 		unmodded_base_rays, base_rays = get_pellets_from_blueprint(name, base_blueprint, category, slot)
 		base_pellets = "x" .. (base_rays or unmodded_base_rays)
 	end
@@ -2682,13 +2708,18 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 				local pellet_string = ""
 				local unmodded_rays
 				local rays
-				if stat.name == "damage" and table.contains(tweak_data.weapon[name].categories, "shotgun") then
-					local p_category = self._slot_data.category
-					local p_slot = self._slot_data.slot
-					local blueprint = managers.blackmarket:get_weapon_blueprint(p_category, p_slot)
+
+				local p_category = self._slot_data.category
+				local p_slot = self._slot_data.slot
+				local blueprint = managers.blackmarket:get_weapon_blueprint(p_category, p_slot)
+				if stat.name == "damage" and check_show_pellet_stats(tweak_data.weapon[name], name, blueprint) then
 					unmodded_rays, rays = get_pellets_from_blueprint(name, blueprint, p_category, p_slot)
 					pellet_string = "x" .. (rays or unmodded_rays)
-					base_pellet_string = "x" .. tweak_data.weapon[name].rays
+					-- Shotguns are the only base weapon that use a pellet stat
+					-- Hacky way to get around the hacky way sting grenades were implemented
+					if table.contains(tweak_data.weapon[name].categories, "shotgun") then
+						base_pellet_string = "x" .. tweak_data.weapon[name].rays
+					end
 				end
 
 				local base = base_stats[stat.name].value
@@ -2710,6 +2741,7 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 
 				local comp_base = unmodded_rays and (unmodded_rays * base) or base
 				local comp_value = (rays and (rays * value)) or (unmodded_rays and (unmodded_rays * value)) or value
+				log("ECLIPSE DEBUG: ", comp_base, " ", comp_value)
 				if comp_base < comp_value then
 					self._stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 				elseif comp_value < comp_base then
@@ -3205,7 +3237,7 @@ function BlackMarketGui:show_stats_attachments_page()
 	local pellet_string = ""
 	local old_rays_fallback, old_rays
 	local new_rays_fallback, new_rays
-	if tweak_data.weapon[name] and table.contains(tweak_data.weapon[name].categories, "shotgun") then
+	if check_show_pellet_stats(tweak_data.weapon[name], name, blueprint) then
 		new_rays_fallback, new_rays = get_pellets_from_blueprint(name, blueprint, category, slot)
 		old_rays_fallback, old_rays = get_pellets_from_blueprint(name, unaltered_blueprint, category, slot)
 		pellet_string = "x" .. (new_rays or new_rays_fallback)

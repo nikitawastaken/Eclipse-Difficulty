@@ -8,7 +8,7 @@ function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 		return
 	end
 
-	local upgrade_value = managers.player:upgrade_value("snp", "graze_damage")
+	local upgrade_value = managers.player:upgrade_value("snp", "charged_shot")
 	local sentry_mask = managers.slot:get_mask("sentry_gun")
 	local ally_mask = managers.slot:get_mask("all_criminals")
 	local enemy_mask = managers.slot:get_mask("enemies")
@@ -21,7 +21,7 @@ function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 
 		local result = hit.damage_result
 		local attack_data = result and result.attack_data
-		if attack_data and attack_data.headshot and result.type == "death" and not is_turret and not is_ally then
+		if attack_data and attack_data.headshot and not is_turret and not is_ally then
 			local multiplier = upgrade_value.damage_factor
 			hit_enemies[hit.unit:key()] = {
 				unit = hit.unit,

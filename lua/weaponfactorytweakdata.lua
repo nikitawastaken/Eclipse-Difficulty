@@ -956,9 +956,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 
 	self.parts.wpn_fps_lmg_par_m_standard.bullet_objects = {
 		amount = 5,
-		prefix = "g_bullet_"
+		prefix = "g_bullet_",
 	}
-	
+
 	self.parts.wpn_fps_lmg_par_b_short.stats.spread = -2
 	self.parts.wpn_fps_lmg_par_b_short.stats.concealment = 2
 

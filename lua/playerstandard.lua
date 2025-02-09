@@ -8,6 +8,9 @@ function PlayerStandard:init(unit)
 	else
 		self._slotmask_bullet_impact_targets = managers.mutators:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
 	end
+
+	self._sniper_shot_is_charged = false
+	self._sniper_hell_sfx_played = false
 end
 
 function PlayerStandard:_get_swap_speed_multiplier()
@@ -204,6 +207,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "berserker_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:get_property("trigger_happy", 1)
+						dmg_mul = dmg_mul * (1 + managers.player:get_property("snp_consecutive_headshots_mul", 0))
 					end
 
 					local fired = nil
@@ -240,6 +244,12 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 					if fired then
 						if not params or not params.no_rumble then
 							managers.rumble:play("weapon_fire")
+						end
+
+						if self._sniper_shot_is_charged then
+							self._state_data.snp_shot_charge_t = nil
+							self._sniper_shot_is_charged = false
+							managers.player:charged_shot_allowed(self._sniper_shot_is_charged)
 						end
 
 						local weap_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
@@ -399,9 +409,48 @@ Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 	self:_upd_nav_data()
 	managers.hud:_update_crosshair_offset(t, dt)
 	self:_upd_stance_switch_delay(t, dt)
+
+	if managers.player:has_category_upgrade("snp", "charged_shot") then
+		self:_update_sniper_shot_charge(t, dt)
+	end
+
 	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload")
 		or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
 end)
+
+-- Sniper charged shot upgrade
+function PlayerStandard:_update_sniper_shot_charge(t, dt)
+	local pm = managers.player
+	local is_sniper_rifle = self._equipped_unit:base():is_category("snp")
+	local allowed_to_fire = self._sniper_shot_is_charged and self:in_steelsight() and is_sniper_rifle
+	local action_forbidden = not is_sniper_rifle or pm:current_state() == "civilian" or self:is_deploying() or self:_changing_weapon() or self:_is_throwing_projectile() or self:_is_meleeing() or self:_on_zipline() or self:_interacting() or self:running() or not self:in_steelsight() or self:is_equipping() or self:shooting()
+	local upgrade_value = pm:upgrade_value("snp", "charged_shot")
+
+	if action_forbidden and not allowed_to_fire then
+		if self._state_data.snp_shot_charge_t then
+			self._state_data.snp_shot_charge_t = nil
+		end
+
+		self._sniper_shot_is_charged = false
+		self._sniper_hell_sfx_played = false
+		pm:charged_shot_allowed(self._sniper_shot_is_charged)
+		return
+	end
+
+	self._state_data.snp_shot_charge_t = self._state_data.snp_shot_charge_t or t + upgrade_value.time_to_charge
+
+	if self._sniper_shot_is_charged and not self._sniper_hell_sfx_played then
+		local weap_base = self._equipped_unit:base()
+		weap_base:play_sound("trip_mine_beep_armed") -- potentially replace the sound later but i think it's already nice(?)
+		self._sniper_hell_sfx_played = true
+	end
+
+	if self._state_data.snp_shot_charge_t <= t then
+		self._sniper_shot_is_charged = true
+
+		pm:charged_shot_allowed(self._sniper_shot_is_charged)
+	end
+end
 
 -- Melee while running
 -- Code from melee overhaul
@@ -469,18 +518,6 @@ Hooks:PostHook(PlayerStandard, "_start_action_running", "eclipse_start_action_ru
 		self:_interupt_action_ducking(t)
 	end
 end)
-
-function PlayerStandard:_end_action_running(t)
-	if not self._end_running_expire_t then
-		local speed_multiplier = self._equipped_unit:base():exit_run_speed_multiplier()
-		self._end_running_expire_t = t + 0.4 / speed_multiplier
-		local stop_running = not self._equipped_unit:base():run_and_shoot_allowed() and (not self.RUN_AND_RELOAD or not self:_is_reloading())
-
-		if not self:_is_meleeing() and stop_running then
-			self._ext_camera:play_redirect(self:get_animation("stop_running"), speed_multiplier)
-		end
-	end
-end
 
 Hooks:PreHook(PlayerStandard, "_start_action_melee", "eclipse_pre_start_action_melee", function(self, t, input, instant)
 	self._state_data.melee_running_wanted = true and self._running and not self._end_running_expire_t

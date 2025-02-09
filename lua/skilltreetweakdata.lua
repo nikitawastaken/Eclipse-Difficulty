@@ -90,8 +90,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.speedy_reload.icon_xy = { 1, 9 }
 
 	-- Bullseye
-	self.skills.single_shot_ammo_return[1].upgrades = { "snp_graze_damage_1" }
-	self.skills.single_shot_ammo_return[2].upgrades = { "player_headshot_regen_armor_bonus_1" }
+	self.skills.single_shot_ammo_return[1].upgrades = { "snp_consecutive_headshots" }
+	self.skills.single_shot_ammo_return[2].upgrades = { "snp_charged_shot" }
 	self.skills.single_shot_ammo_return.icon_xy = { 6, 11 }
 
 	-- ENFORCER --
