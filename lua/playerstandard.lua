@@ -423,7 +423,18 @@ function PlayerStandard:_update_sniper_shot_charge(t, dt)
 	local pm = managers.player
 	local is_sniper_rifle = self._equipped_unit:base():is_category("snp")
 	local allowed_to_fire = self._sniper_shot_is_charged and self:in_steelsight() and is_sniper_rifle
-	local action_forbidden = not is_sniper_rifle or pm:current_state() == "civilian" or self:is_deploying() or self:_changing_weapon() or self:_is_throwing_projectile() or self:_is_meleeing() or self:_on_zipline() or self:_interacting() or self:running() or not self:in_steelsight() or self:is_equipping() or self:shooting()
+	local action_forbidden = not is_sniper_rifle
+		or pm:current_state() == "civilian"
+		or self:is_deploying()
+		or self:_changing_weapon()
+		or self:_is_throwing_projectile()
+		or self:_is_meleeing()
+		or self:_on_zipline()
+		or self:_interacting()
+		or self:running()
+		or not self:in_steelsight()
+		or self:is_equipping()
+		or self:shooting()
 	local upgrade_value = pm:upgrade_value("snp", "charged_shot")
 
 	if action_forbidden and not allowed_to_fire then
