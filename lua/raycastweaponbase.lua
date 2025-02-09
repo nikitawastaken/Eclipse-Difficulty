@@ -180,8 +180,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 				mvector3.set_y(self._trail_length, furthest_hit.distance)
 				World:effect_manager():set_simulator_var_vector2(trail, idstr_trail, idstr_simulator_length, idstr_size, self._trail_length)
 			end
-
-		elseif (not furthest_hit or furthest_hit.distance > 600) then
+		elseif not furthest_hit or furthest_hit.distance > 600 then
 			self._trail_effect_table.effect = self._trail_effect
 			self._obj_fire:m_position(self._trail_effect_table.position)
 			mvec3_set(self._trail_effect_table.normal, mvec_spread_direction)
@@ -204,7 +203,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 			if all_enemies[u_key] then
 				result.enemies_in_cone[u_key] = {
 					error_mul = 1,
-					unit = enemy
+					unit = enemy,
 				}
 			end
 		end
