@@ -65,6 +65,14 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)
+	local access_type_walk_only = {
+		walk = true,
+	}
+	local access_type_all = {
+		acrobatic = true,
+		walk = true,
+	}
+	
 	if difficulty_index <= 2 then
 		self.special_unit_spawn_limits = {
 			shield = 2,
@@ -106,14 +114,6 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			medic = 4,
 		}
 	end
-
-	local access_type_walk_only = {
-		walk = true,
-	}
-	local access_type_all = {
-		acrobatic = true,
-		walk = true,
-	}
 
 	self.unit_categories.CS_cop_1 = {
 		unit_types = {
@@ -1864,6 +1864,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_max = 1,
 				rank = 3,
+				unit = "FBI_shield",
 				random_unit = Random_shield,
 				random_tactics = shield_random_tactics,
 			},
@@ -1934,6 +1935,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_max = 1,
 				rank = 3,
+				unit = "bulldozer_1_2",
 				random_unit = Random_bulldozer,
 				tactics = self._tactics.bulldozer,
 			},

@@ -29,7 +29,8 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 	--Add a "target_vulnerable" tactic that causes an enemy to focus-fire players who are reloading/interacting/switching weapons
 	if data.tactics and data.tactics.target_vulnerable then
 		local att_unit = attention_data.unit
-		local current_state = att_unit and att_unit:movement():current_state()
+		local movement = alive(att_unit) and att_unit.movement and att_unit:movement()
+		local current_state = movement and movement.current_state and movement:current_state()
 		local current_state_reloading = current_state and current_state._is_reloading and current_state:_is_reloading()
 		local current_state_changing_weapon = current_state and current_state._changing_weapon and current_state:_changing_weapon()
 		local current_state_interacting = current_state and current_state._interacting and current_state:_interacting()
