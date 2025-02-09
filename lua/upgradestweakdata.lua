@@ -295,34 +295,44 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
-	-- unused
-	self.values.weapon.no_pen_damage_penalty = { true } -- unused
-	self.definitions.weapon_no_pen_damage_penalty = {
-		name_id = "menu_weapon_no_pen_damage_penalty",
+	self.values.snp.consecutive_headshots = {
+		{
+			damage_mul_addend = 0.25,
+			max_headshots = 4
+		}
+	}
+	self.definitions.snp_consecutive_headshots = {
+		name_id = "menu_snp_consecutive_headshots",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "no_pen_damage_penalty",
-			category = "weapon",
+			upgrade = "consecutive_headshots",
+			category = "snp",
 		},
 	}
 
-	self.values.snp.graze_damage = {
+	self.values.snp.charged_shot = {
 		{
-			radius = 300,
-			damage_factor = 0.5,
-		},
-		{ -- unused
+			time_to_charge = 5,
 			radius = 500,
-			damage_factor = 0.5,
+			damage_factor = 1,
+		}
+	}
+	self.definitions.snp_charged_shot = {
+		name_id = "menu_snp_charged_shot",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "charged_shot",
+			category = "snp",
 		},
 	}
-	self.values.player.headshot_regen_armor_bonus[1] = 5
-	self.on_headshot_dealt_cooldown = 3
-	self.skill_descs.single_shot_ammo_return.multibasic = "50%"
-	self.skill_descs.single_shot_ammo_return.multibasic2 = "3m"
-	self.skill_descs.single_shot_ammo_return.multipro = "50"
-	self.skill_descs.single_shot_ammo_return.multipro2 = "3"
+
+	self.skill_descs.single_shot_ammo_return.multibasic = "25%"
+	self.skill_descs.single_shot_ammo_return.multibasic2 = "4"
+	self.skill_descs.single_shot_ammo_return.multipro = "5"
+	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
+	self.skill_descs.single_shot_ammo_return.multipro3 = "5m"
 
 	-- Enforcer --
 

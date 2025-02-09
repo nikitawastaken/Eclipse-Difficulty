@@ -1,3 +1,8 @@
+Hooks:PostHook(PlayerManager, "init", "eclipse_init", function(self)
+	self._consecutive_headshots = 0
+	self._charged_shot_allowed = false
+end)
+
 -- hostage taker min hostages count
 Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self, category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
@@ -42,6 +47,10 @@ function PlayerManager:health_regen()
 	return health_regen
 end
 
+function PlayerManager:charged_shot_allowed(is_allowed)
+	self._charged_shot_allowed = is_allowed
+end
+
 function PlayerManager:on_headshot_dealt()
 	local t = Application:time()
 	local player_unit = self:player_unit()
@@ -78,6 +87,13 @@ function PlayerManager:on_headshot_dealt()
 		if damage_ext then
 			damage_ext:restore_armor(regen_armor_bonus)
 		end
+	end
+
+	-- snp_charged_shot has to be put here because check_skills() is only called once at the initialization
+	if self:has_category_upgrade("snp", "charged_shot") and self._charged_shot_allowed then
+		self:register_message(Message.OnWeaponFired, "graze_damage", callback(SniperGrazeDamage, SniperGrazeDamage, "on_weapon_fired"))
+	else
+		self:unregister_message(Message.OnWeaponFired, "graze_damage")
 	end
 end
 
@@ -187,6 +203,12 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	else
 		self._message_system:unregister(Message.OnEnemyShot, "shotguncqb")
 	end
+
+	if self:has_category_upgrade("snp", "consecutive_headshots") then
+		self:register_message(Message.OnWeaponFired, "consecutive_headshots", callback(self, self, "_on_enter_consecutive_headshots_event"))
+	else
+		self:unregister_message(Message.OnWeaponFired, "consecutive_headshots")
+	end
 end)
 
 function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
@@ -200,6 +222,102 @@ function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
 			self._coroutine_mgr:add_coroutine("shotguncqb", PlayerAction.ShotgunCQB, self, data.speed_bonus, data.max_stacks, Application:time() + data.max_time)
 		end
 	end
+end
+
+function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result)
+	local upgrade_value = self:upgrade_value("snp", "consecutive_headshots")
+
+	if not alive(weapon_unit) or weapon_unit ~= self:equipped_weapon_unit() then
+		return
+	end
+
+	local player_unit = self:player_unit()
+	if not player_unit then
+		return
+	end
+
+    if not weapon_unit:base():is_category("snp") or not result.hit_enemy then
+        self._consecutive_headshots = 0
+        self:remove_property("snp_consecutive_headshots_mul")
+        return
+    end
+
+    if self._consecutive_headshots < (upgrade_value.max_headshots) then
+		self:add_to_property("snp_consecutive_headshots_mul", upgrade_value.damage_mul_addend)
+    end
+
+	--[[
+	Eclipse:log_chat("dmg mul - x" .. (1 + self:get_property("snp_consecutive_headshots_mul", 0)))
+	Eclipse:log_chat("headshot #" .. self._consecutive_headshots)
+	]]
+
+	local sentry_mask = managers.slot:get_mask("sentry_gun")
+	local ally_mask = managers.slot:get_mask("all_criminals")
+
+	for _, hit in ipairs(result.rays) do
+		local is_turret = hit.unit:in_slot(sentry_mask)
+		local is_ally = hit.unit:in_slot(ally_mask)
+
+		local result_hit = hit.damage_result
+		local attack_data = result_hit and result_hit.attack_data
+		if attack_data and attack_data.headshot and not is_turret and not is_ally then
+			self._consecutive_headshots = self._consecutive_headshots + 1
+			break
+		else
+			self._consecutive_headshots = 0
+			self:remove_property("snp_consecutive_headshots_mul")
+		end
+	end
+end
+
+function PlayerManager:on_enter_custody(_player, already_dead)
+	local player = _player or self:player_unit()
+
+	if not player then
+		Application:error("[PlayerManager:on_enter_custody] Unable to get player")
+
+		return
+	end
+
+	if player == self:player_unit() then
+		local equipped_grenade = managers.blackmarket:equipped_grenade()
+
+		if equipped_grenade and tweak_data.blackmarket.projectiles[equipped_grenade] and tweak_data.blackmarket.projectiles[equipped_grenade].ability then
+			self:reset_ability_hud()
+		end
+
+		self:set_property("copr_risen_cooldown_added", nil)
+	end
+
+	managers.mission:call_global_event("player_in_custody")
+
+	local peer_id = managers.network:session():local_peer():id()
+
+	if self._super_syndrome_count and self._super_syndrome_count > 0 and not self._action_mgr:is_running("stockholm_syndrome_trade") then
+		self._action_mgr:add_action("stockholm_syndrome_trade", StockholmSyndromeTradeAction:new(player:position(), peer_id))
+	end
+
+	-- For some reason we can't use posthook here just to add these 2 lines, it just doesn't work
+	self._consecutive_headshots = 0
+	self:remove_property("snp_consecutive_headshots_mul")
+
+	self:force_drop_carry()
+	managers.statistics:downed({
+		death = true
+	})
+
+	if not already_dead then
+		player:network():send("sync_player_movement_state", "dead", player:character_damage():down_time(), player:id())
+		managers.groupai:state():on_player_criminal_death(peer_id)
+	end
+
+	self._listener_holder:call(self._custody_state, player)
+	game_state_machine:change_state_by_name("ingame_waiting_for_respawn")
+	player:character_damage():set_invulnerable(true)
+	player:character_damage():set_health(0)
+	player:base():_unregister()
+	World:delete_unit(player)
+	managers.hud:remove_interact()
 end
 
 local old_speed_multiplier = PlayerManager.movement_speed_multiplier
