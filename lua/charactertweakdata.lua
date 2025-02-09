@@ -974,6 +974,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
     self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
     self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
+    self.murky.use_radio = "fri_dispatch_generic_message"
 
 	self.sniper.HEALTH_INIT = 8
 	self.sniper.headshot_dmg_mul = 4 -- 20 head health
