@@ -48,7 +48,11 @@ function PlayerManager:health_regen()
 end
 
 function PlayerManager:charged_shot_allowed(is_allowed)
-	self._charged_shot_allowed = is_allowed
+	if is_allowed then
+		self._charged_shot_allowed = is_allowed
+	end
+
+	return self._charged_shot_allowed
 end
 
 function PlayerManager:on_headshot_dealt()
