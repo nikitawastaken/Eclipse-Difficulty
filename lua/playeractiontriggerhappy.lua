@@ -1,6 +1,6 @@
 PlayerAction.TriggerHappy = {
 	Priority = 1,
-	Function = function (player_manager, damage_bonus, max_stacks, max_time)
+	Function = function(player_manager, damage_bonus, max_stacks, max_time)
 		local co = coroutine.running()
 		local current_time = Application:time()
 		local current_stacks = 1
@@ -33,5 +33,5 @@ PlayerAction.TriggerHappy = {
 
 		player_manager:remove_property("trigger_happy")
 		player_manager:unregister_message(Message.OnEnemyShot, co)
-	end
+	end,
 }
