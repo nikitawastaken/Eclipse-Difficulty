@@ -30,9 +30,12 @@
 
 		<body name="body_helmet" enabled="true" template="character" friction="0.6" collision_class="ragdoll">
 			<object name="Head"/>
-			<object name="c_sphere_helmet" collision_type="sphere" padding="-10" />
+			<object name="c_helmet1" collision_type="convex" padding="-1" />
+			<object name="c_helmet2" collision_type="convex" padding="-1" />
+			<object name="c_helmet3" collision_type="convex" padding="-1" />
+			<object name="c_helmet4" collision_type="convex" padding="-1" />
 		</body>
-		
+
 		
 		<body name="body_helmet_plate" enabled="true" template="character" friction="0.6" collision_class="ragdoll">
 			<object name="Head"/>
@@ -283,7 +286,7 @@
 
 	<decal_surfaces default_material="cloth_no_decal" >
 	
-		<decal_mesh name="g_head" 				enabled="true" 	material="flesh" />	
+		<decal_mesh name="dm_head" 				enabled="true" 	material="flesh" />	
 		<decal_mesh name="dm_helmet_plate" 		enabled="true" 	material="steel_no_decal" />
 		<decal_mesh name="dm_helmet_glass" 		enabled="false" material="glass_no_decal" />
 		<decal_mesh name="dm_armor_chest" 		enabled="true" 	material="steel_no_decal" />
