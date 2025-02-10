@@ -1024,6 +1024,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.melee_weapon = "weapon"
 	
 	self.tank_elite = deep_clone(self.tank)
+	self.tank_elite.HEALTH_INIT = 1200
 	self.tank_elite.move_speed_mul = { walk = 0.85, run = 0.85 }
 	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
