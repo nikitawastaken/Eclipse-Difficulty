@@ -45,6 +45,8 @@
 					<post :hook_id="playerinventorygui"/>
 				</group>
 
+				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
+
 				<post :hook_id="missionmanager"/>
 				<post :hook_id="hudmanager"/>
 				<post :hook_id="menumanager"/>
