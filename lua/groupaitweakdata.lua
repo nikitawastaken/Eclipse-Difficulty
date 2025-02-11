@@ -2169,26 +2169,26 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local map_scale_factor = 1
 	local map_scales = Eclipse.map_sizes
 
-	for _, sd in pairs(map_scales.very_small) do
-		if job == sd then
+	for _, vs in pairs(map_scales.very_small) do
+		if level_id == vs then
 			map_scale_factor = 0.5
 		end
 	end
 
-	for _, d in pairs(map_scales.small) do
-		if job == d then
+	for _, s in pairs(map_scales.small) do
+		if level_id == s then
 			map_scale_factor = 0.75
 		end
 	end
 
-	for _, i in pairs(map_scales.large) do
-		if job == i then
+	for _, l in pairs(map_scales.large) do
+		if level_id == l then
 			map_scale_factor = 1.25
 		end
 	end
 
-	for _, si in pairs(map_scales.very_large) do
-		if job == si then
+	for _, vl in pairs(map_scales.very_large) do
+		if level_id == vl then
 			map_scale_factor = 1.5
 		end
 	end
