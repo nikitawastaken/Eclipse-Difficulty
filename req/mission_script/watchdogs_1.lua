@@ -29,10 +29,10 @@ return {
 			{ id = 100768, delay = 30 }
 		}
 	},
-	[101291] = van_enemy_01,
-	[101298] = van_enemy_01,
-	[101292] = van_enemy_02,
-	[101299] = van_enemy_02,
+	[101291] = van_enemy1,
+	[101298] = van_enemy1,
+	[101292] = van_enemy2,
+	[101299] = van_enemy2,
 	-- spawnpoint delays
 	[100767] = flank_spawn,
 	[100760] = flank_spawn,

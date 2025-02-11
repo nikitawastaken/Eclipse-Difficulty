@@ -142,8 +142,6 @@ return {
 	[100448] = {
 		on_executed = {
 			{ id = 100454, delay = eclipse and 120 or 180, delay_rand = 120, },
-			{ id = 100446, delay = 0, delay_rand = 1, },
-			{ id = 100447, delay = 0, delay_rand = 1, },
 		},
 	},
 	[100454] = {
