@@ -146,10 +146,10 @@ function UpgradesTweakData:init(tweak_data)
 	-- Confident
 	self.skill_descs.cable_guy.multipro = "50%"
 
-	-- PiC
-	self.values.player.passive_convert_enemies_health_multiplier = { 0.10, 0.01 }
-	self.skill_descs.control_freak.multibasic3 = "90%"
-	self.skill_descs.control_freak.multipro4 = "9%"
+	-- Parterns in Crime
+	self.values.player.passive_convert_enemies_health_multiplier = { 0.20, 0.10 }
+	self.skill_descs.control_freak.multibasic3 = "80%"
+	self.skill_descs.control_freak.multipro4 = "10%"
 
 	-- Hostage Situation
 	self.definitions.team_hostage_situation = {

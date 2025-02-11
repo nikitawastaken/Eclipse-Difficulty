@@ -27,12 +27,11 @@ Hooks:PostHook(CopDamage, "init", "eclipse_init", function(self)
 	if head_body then
 		head_body:set_sphere_radius(16)
 	end
+end)
 
-	if not is_dozer and managers.player:has_category_upgrade("weapon", "magnetizing_bullets") then
-		if head_body then
-			head_body:set_sphere_radius(25) -- yes it really is just a bigger head hitbox. such a cool description though, right?
-		end
-	end
+-- Default joker damage reduction
+Hooks:PostHook(CopDamage, "convert_to_criminal", "hits_convert_to_criminal", function(self)
+	self._damage_reduction_multiplier = self._damage_reduction_multiplier * 0.5
 end)
 
 -- Fixed critical hit mul and additional crit damage upgrade
