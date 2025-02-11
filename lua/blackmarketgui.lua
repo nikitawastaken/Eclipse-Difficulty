@@ -2741,7 +2741,6 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 
 				local comp_base = unmodded_rays and (unmodded_rays * base) or base
 				local comp_value = (rays and (rays * value)) or (unmodded_rays and (unmodded_rays * value)) or value
-				log("ECLIPSE DEBUG: ", comp_base, " ", comp_value)
 				if comp_base < comp_value then
 					self._stats_texts[stat.name].equip:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 				elseif comp_value < comp_base then
@@ -2792,8 +2791,12 @@ function BlackMarketGui:show_stats_inventory_guns_page()
 				self._stats_texts[stat.name].skill:set_text("")
 				self._stats_texts[stat.name].removed:set_text("")
 
-				local comp_equip = equipped_rays and (equipped_rays * equip) or equip
-				local comp_value = base_rays and (base_rays * value) or value
+				local comp_equip = equip
+				local comp_value = value
+				if stat.name == "damage" then
+					comp_equip = equipped_rays and (equipped_rays * equip) or equip
+					comp_value = base_rays and (base_rays * value) or value
+				end
 				if comp_equip < comp_value then
 					self._stats_texts[stat.name].total:set_color(stat.inverted and tweak_data.screen_colors.stats_negative or tweak_data.screen_colors.stats_positive)
 				elseif comp_value < comp_equip then

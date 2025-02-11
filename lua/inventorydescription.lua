@@ -81,7 +81,8 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 end
 
 function WeaponDescription._get_base_steelsight_time(weapon, name)
-	return tweak_data.weapon[name].steelsight_time
+	local mul = tweak_data.weapon[name].steelsight_speed_multiplier or 1
+	return tweak_data.weapon[name].steelsight_time * mul
 end
 
 function WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats)
@@ -199,6 +200,7 @@ function WeaponDescription._get_custom_pellet_stats(name, category, slot, bluepr
 			end
 		end
 	end
+	return tweak_data.weapon[name].rays
 end
 
 local old_weapon_desc_base_stats = WeaponDescription._get_base_stats
