@@ -1446,9 +1446,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = { 
-					6 / (difficulty_index ^ 2), 
-					4 / (difficulty_index ^ 2), 
-					2 / (difficulty_index ^ 2), 
+					3 / difficulty_index, 
+					2 / difficulty_index, 
+					1 / difficulty_index, 
 				},
 				rank = 1,
 				unit = "CS_swat",
@@ -1665,9 +1665,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = { 
-					24 / (difficulty_index ^ 2), 
-					16 / (difficulty_index ^ 2), 
-					8 / (difficulty_index ^ 2), 
+					6 / difficulty_index, 
+					4 / difficulty_index, 
+					2 / difficulty_index, 
 				},
 				rank = 2,
 				unit = "FBI_swat",
@@ -2333,8 +2333,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
 			CS_assault_cops = { 0.5, 0.25, 0 },
-			CS_assault_swats = { 1, 1, 0.75 },
-			CS_assault_heavies = { 0, 0, 0.75 },
+			CS_assault_swats = { 1, 1, 0.5 },
+			CS_assault_heavies = { 0, 0, 1 },
 			CS_assault_shield = { 0, 0.15, 0.2 },
 		}
 		self.besiege.recon.groups = {
@@ -2348,8 +2348,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 3 then
 		self.besiege.assault.groups = {
 			CS_assault_cops = { 0.5, 0, 0 },
-			CS_assault_swats = { 1, 1, 0.75 },
-			CS_assault_heavies = { 0, 0, 0.75 },
+			CS_assault_swats = { 1, 1, 0.5 },
+			CS_assault_heavies = { 0, 0, 1 },
 			CS_assault_shield = { 0, 0.15, 0.2 },
 			CS_assault_taser = { 0, 0.1, 0.15 },
 			CS_assault_bulldozer = { 0, 0, 0.1 },
@@ -2389,7 +2389,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			CS_assault_swats = { 1, 0.5, 0 },
 			
-			FBI_assault_swats = { 1, 1, 0.5 },
+			FBI_assault_swats = { 0.5, 1, 0.5 },
 			FBI_assault_heavies = { 0, 0, 1 },
 			FBI_assault_shield = { 0, 0.2, 0.3 },
 			FBI_assault_taser = { 0, 0.15, 0.2 },
