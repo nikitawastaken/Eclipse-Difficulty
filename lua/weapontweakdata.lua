@@ -2894,7 +2894,7 @@ function WeaponTweakData:_set_presets()
 				local rate = is_automatic and v.auto.fire_rate or 0
 				local recoil = (usage.FALLOFF[1].recoil[1] + usage.FALLOFF[1].recoil[2]) * 0.5
 
-				v.DAMAGE = (((mag / burst) * (burst - 1) * rate + (mag / burst - 1) * recoil + 2) / mag)
+				v.DAMAGE = (((mag / burst) * (burst - 1) * rate + (mag / burst - 1) * recoil + 2) / mag) * 2
 				v.FIRE_MODE = is_automatic and "auto" or "single"
 			end
 		end

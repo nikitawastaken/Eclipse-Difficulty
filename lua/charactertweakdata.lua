@@ -409,8 +409,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 4, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 2, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } }
+			{ dmg_mul = 3, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 1, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } }
 		}
 	end	
 	
@@ -675,10 +675,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		reasons = {
 			not_assault = 1,
 			pants_down = 0.8,
-			weapon_down = 0.6,
-			flanked = 0.5,
-			unaware_of_aggressor = 0.4,
-			isolated = 0.3
+			weapon_down = 0.5,
+			flanked = 0.4,
+			unaware_of_aggressor = 0.3,
+			isolated = 0.2,
 		},
 		factors = {
 			health = {
@@ -696,12 +696,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.8,
-			pants_down = 0.6,
-			weapon_down = 0.5,
-			flanked = 0.4,
-			unaware_of_aggressor = 0.3,
-			isolated = 0.2
+			not_assault = 0.9,
+			pants_down = 0.7,
+			weapon_down = 0.4,
+			flanked = 0.3,
+			unaware_of_aggressor = 0.2,
+			isolated = 0.1,
 		},
 		factors = {
 			health = {
@@ -719,12 +719,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.6,
-			pants_down = 0.5,
-			weapon_down = 0.4,
-			flanked = 0.3,
-			unaware_of_aggressor = 0.2,
-			isolated = 0.1
+			not_assault = 0.8,
+			pants_down = 0.6,
+			weapon_down = 0.3,
+			flanked = 0.2,
+			unaware_of_aggressor = 0.1,
+			isolated = 0,
 		},
 		factors = {
 			health = {
@@ -743,12 +743,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.6,
-			pants_down = 0.4,
-			weapon_down = 0.3,
-			flanked = 0.2,
-			unaware_of_aggressor = 0.1,
-			isolated = 0
+			not_assault = 0.7,
+			pants_down = 0.5,
+			weapon_down = 0.2,
+			flanked = 0.1,
+			unaware_of_aggressor = 0,
+			isolated = 0,
 		},
 		factors = {
 			health = {
