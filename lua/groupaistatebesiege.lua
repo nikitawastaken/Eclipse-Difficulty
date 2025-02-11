@@ -739,7 +739,7 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 	local timeout
 	if use_teargas then
-		self:detonate_cs_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai.cs_grenade_lifetime or 15, false)
+		self:detonate_cs_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai.cs_grenade_lifetime or 25)
 
 		timeout = tweak_data.group_ai.cs_grenade_timeout or tweak_data.group_ai.smoke_and_flash_grenade_timeout
 	else
