@@ -47,10 +47,10 @@ return {
     [("units/payday2/characters/ene_gang_black_4/ene_gang_black_4"):key()] = {"c45", "mac11", "mossberg" },
     --Mexicans (the mendoza cartel is threatning us, but this town is ours)
     --broncos instead of c45
-    [("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"):key()] = {"raging_bull", "akmsu_smg", "mossberg", "ak47" },
-    [("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"):key()] = {"raging_bull", "akmsu_smg", "mossberg", "ak47" },
-	[("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"):key()] = {"raging_bull", "akmsu_smg", "mossberg", "ak47" },
-    [("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"):key()] = {"raging_bull", "akmsu_smg", "mossberg", "ak47" },
+    [("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"):key()] = {"raging_bull", "mac11", "mossberg", "ak47" },
+    [("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"):key()] = {"raging_bull", "mac11", "mossberg", "ak47" },
+	[("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"):key()] = {"raging_bull", "mac11", "mossberg", "ak47" },
+    [("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"):key()] = {"raging_bull", "mac11", "mossberg", "ak47" },
     --Sosa's men
     --outdoor guards have weaker weapons while indoor ones get an upgrade
     [("units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_01/ene_bolivian_thug_outdoor_01"):key()] = {"c45", "mac11", "mossberg"},
