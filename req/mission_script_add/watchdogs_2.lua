@@ -179,7 +179,7 @@ local Bain_sendsnipers = {
 }
 local optsrespawn_sniper_1 = {
 	on_executed = { 
-		{ id = 400001, delay = 30 }
+		{ id = 400001, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400001
@@ -188,7 +188,7 @@ local optsrespawn_sniper_1 = {
 }
 local optsrespawn_sniper_2 = {
 	on_executed = { 
-		{ id = 400002, delay = 30 }
+		{ id = 400002, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400002
@@ -197,7 +197,7 @@ local optsrespawn_sniper_2 = {
 }
 local optsrespawn_sniper_3 = {
 	on_executed = { 
-		{ id = 400003, delay = 30 }
+		{ id = 400003, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400003
@@ -206,7 +206,7 @@ local optsrespawn_sniper_3 = {
 }
 local optsrespawn_sniper_4 = {
 	on_executed = { 
-		{ id = 400004, delay = 30 }
+		{ id = 400004, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400004
@@ -215,7 +215,7 @@ local optsrespawn_sniper_4 = {
 }
 local optsrespawn_sniper_5 = {
 	on_executed = { 
-		{ id = 400005, delay = 30 }
+		{ id = 400005, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400005
@@ -224,7 +224,7 @@ local optsrespawn_sniper_5 = {
 }
 local optsrespawn_sniper_6 = {
 	on_executed = { 
-		{ id = 400006, delay = 30 }
+		{ id = 400006, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400006
@@ -233,7 +233,7 @@ local optsrespawn_sniper_6 = {
 }
 local optsrespawn_ground_sniper_1 = {
 	on_executed = { 
-		{ id = 400023, delay = 30 }
+		{ id = 400023, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400023
@@ -242,7 +242,7 @@ local optsrespawn_ground_sniper_1 = {
 }
 local optsrespawn_ground_sniper_2 = {
 	on_executed = { 
-		{ id = 400024, delay = 30 }
+		{ id = 400024, delay = 45, delay_rand = 10 }
 	},
 	elements = { 
 		400024
