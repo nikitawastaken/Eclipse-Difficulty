@@ -70,7 +70,7 @@ local function create_preferred(excluded_types)
 	local new_preferred = clone(default_preferred)
 	for group, group_type in pairs(group_type_mapping) do
 		for _, excluded_type in pairs(excluded_types) do
-			if group_type == excluded_types then
+			if group_type == excluded_type then
 				new_preferred[group] = false
 			end
 		end
