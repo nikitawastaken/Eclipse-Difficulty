@@ -432,10 +432,10 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 	multiplier = multiplier + 1 - managers.player:get_property("shock_and_awe_reload_multiplier", 1)
 	multiplier = multiplier + 1 - managers.player:get_temporary_property("bloodthirst_reload_speed", 1)
 	multiplier = multiplier + 1 - managers.player:upgrade_value("team", "crew_faster_reload", 1)
-	
+
 	multiplier = self:_convert_add_to_mul(multiplier)
 	multiplier = multiplier * self:reload_speed_stat()
-	
+
 	multiplier = managers.modifiers:modify_value("WeaponBase:GetReloadSpeedMultiplier", multiplier)
 
 	return multiplier
@@ -448,7 +448,7 @@ function NewRaycastWeaponBase:enter_steelsight_speed_multiplier()
 	local steelsight_time = (tweak_data.player.TRANSITION_DURATION or 0.23) / self._steelsight_time
 
 	local multiplier = 1
-	
+
 	multiplier = multiplier + 1 - self._steelsight_speed_multiplier
 
 	for _, category in ipairs(categories) do
