@@ -1039,7 +1039,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		burst = {},
 		toggable = { "auto", "burst", "single" }
 	}
-	self.famas.FIRE_MODE = "burst"
 	self.famas.BURST_COUNT = 3
 
 	-- Valkyria
@@ -2275,7 +2274,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Lebensauger
 	self.wa2000.CLIP_AMMO_MAX = 5
-	self.wa2000.stats.damage = 249
+	self.wa2000.stats.damage = 240
 	self.wa2000.stats.spread = 22
 	self.wa2000.stats.recoil = 7
 	self.wa2000.stats.concealment = 17
