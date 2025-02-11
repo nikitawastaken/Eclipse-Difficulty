@@ -56,7 +56,7 @@ return {
 	},
 	-- enable flashlights when power is cut
 	[103469] = {
-		flashlight = true
+		flashlight = true,
 	},
 	[103470] = {
 		flashlight = false

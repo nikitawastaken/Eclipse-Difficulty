@@ -24,7 +24,7 @@ local retrigger = {
 }
 local roof_spawn = {
 	values = {
-		interval = 40,
+		interval = 25,
 	},
 }
 return {
@@ -35,7 +35,7 @@ return {
 			player_mul = { 1.33, 1.167, 1, 1 },
 		}
 	},
-	-- Make difficulty scaling smoother
+	-- make difficulty scaling smoother
 	[102841] = { 
 		values = {
 			difficulty = 0.5
@@ -77,19 +77,21 @@ return {
 			{ id = 103611, remove = true }
 		}
 	},
-	-- Stop with the smoke bombs, jeez....
+	-- top with the smoke bombs, jeez....
 	[103034] = disabled,
 	[103106] = disabled,
-	-- Don't remove ground level spawns at any point
+	-- disable scripted spawn spam
+	[101745] = disabled,
+	-- don't remove ground level spawns at any point
 	[102092] = disabled, 
 	[102097] = disabled,
-	-- Disable cloaker spawns on startup
+	-- disable cloaker spawns on startup
 	[102263] = {
 		on_executed = {
 			{ id = 400039, delay = 3 }
 		}
 	},
-	--Add missing navlinks
+	-- ddd missing navlinks
 	[103247] = {
 		on_executed = {
 			{ id = 102468, delay = 0 },
@@ -114,7 +116,7 @@ return {
 			{ id = 104707, delay = 0 }
 		}
 	},
-	--Trigger event spawns after each start of the assault wave
+	-- trigger event spawns after each start of the assault wave
 	[104656] = {
 		on_executed = {
 			{ id = 400015, delay = 30 },
@@ -122,40 +124,40 @@ return {
 			{ id = 400037, delay = 75 }
 		}
 	},
-	--Spawn Shields after placing the last c4
+	-- spawn Shields after placing the last c4
 	[101787] = {
 		on_executed = {
 			{ id = 400043, delay = 0}
 		}
 	},
-	--Spawn Rooftop Heavy SWATs after killing all of the snipers
-	--Enable Cloaker spawns
+	-- spawn Rooftop Heavy SWATs after killing all of the snipers
+	-- enable Cloaker spawns
 	[104573] = {
 		on_executed = {
 			{ id = 400025, delay = 15 },
 			{ id = 400038, delay = 0 }
 		}
 	},
-	--Change chopper squad
+	--change chopper squad
 	[101658] = {
 		on_executed = {
 			{ id = 104561, remove = true },
 			{ id = 400032, delay = 17 }
 		}
 	},
-	--Trigger dozer spawn during the escape
+	-- trigger dozer spawn during the escape
 	[104706] = {
 		on_executed = {
 			{ id = 400040, delay = 0 }
 		}
 	},
-	--Cops now spawn when you open the red door rather than when killing Chavez (like in PDTH)
+	-- cops now spawn when you open the red door rather than when killing Chavez (like in PDTH)
 	[101853] = {
 		on_executed = {
 			{ id = 104691, remove = true}
 		}
 	},
-	--Spawn Heavy SWAT squad if it's overkill above
+	--spawn Heavy SWAT squad if it's overkill above
 	[102680] = {
 		on_executed = {
 			{ id = 104691, delay = 0},
@@ -196,10 +198,10 @@ return {
 			amount_random = 2,
 		},
 	},
-	-- Disable roof/stairs reinforcement
+	-- disable roof/stairs reinforcement
 	[102501] = disabled,
 	[103181] = disabled,
-	-- Adjust the Sniper kill objective
+	-- adjust the Sniper kill objective
 	[104516] = sniper_kills,
 	[104692] = sniper_kills,
 	[104693] = sniper_kills,
