@@ -20,8 +20,8 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_wea
 	end
 
 	local reference = self.melee_weapons.iceaxe
-	local ref_dmg_min = reference.stats.min_damage
-	local ref_dmg_max = reference.stats.max_damage
+	local ref_dmg_min = reference.stats.min_damage * 1.5
+	local ref_dmg_max = reference.stats.max_damage / 1.5
 	local ref_charge_t = reference.stats.charge_time
 	local ref_conceal = math.map_range(reference.stats.concealment, min_conceal, max_conceal, 1, 0)
 	local ref_range = math.map_range(reference.stats.range, min_range, max_range, 1, 0)
