@@ -854,10 +854,19 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse__init", function(self)
 		end
 	end
 
-	--
+	local piggyback_stats = { value = 1, gadget_zoom = 1 }
+	
+	self.parts.wpn_fps_upg_o_specter_piggyback.stats = piggyback_stats
+	self.parts.wpn_fps_upg_o_cs_piggyback.stats = piggyback_stats
+	self.parts.wpn_fps_upg_o_atibal_reddot.stats = piggyback_stats
+	self.parts.wpn_fps_upg_o_hamr_reddot.stats = piggyback_stats	
+	self.parts.wpn_fps_upg_o_northtac_reddot.stats = piggyback_stats
+	self.parts.wpn_fps_upg_o_schmidt_magnified.stats = piggyback_stats
+	self.parts.wpn_fps_upg_o_schmidt_magnified.stats.gadget_zoom = 7
+	
 	self.parts.wpn_fps_upg_o_mbus_pro.stats.zoom = 0
 	self.parts.wpn_fps_upg_o_mbus_pro.stats.recoil = 0
-	self.parts.wpn_fps_upg_o_mbus_pro.stats.concealment = 9
+	self.parts.wpn_fps_upg_o_mbus_pro.stats.concealment = 0
 
 	--make all car weapons use the 30 rnd magazine by default
 
