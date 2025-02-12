@@ -1007,12 +1007,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.messiah.multipro = "2"
 
 	-- Pumping Iron
-	self.values.player.non_special_melee_multiplier[1] = 3
-	self.skill_descs.steroids.multibasic = "200%"
+	self.values.player.non_special_melee_multiplier[1] = 1.5
+	self.values.player.melee_damage_multiplier[1] = 1.5
+	self.skill_descs.steroids.multibasic = "50%"
+	self.skill_descs.steroids.multipro = "50%"
 
 	-- Bloodthirst
-	self.values.player.melee_damage_stacking = { { max_multiplier = 5, melee_multiplier = 0.5 } }
-	self.skill_descs.bloodthirst.multibasic2 = "500%"
+	self.values.player.melee_damage_stacking = { { max_multiplier = 3, melee_multiplier = 0.25 } }
+	self.skill_descs.bloodthirst.multibasic = "25%"
+	self.skill_descs.bloodthirst.multibasic2 = "300%"
 
 	-- Zerker
 	self.values.player.movement_speed_damage_health_ratio_multiplier = { 0.2 }
