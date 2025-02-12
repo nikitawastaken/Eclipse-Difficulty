@@ -1,5 +1,6 @@
 local is_eclipse = Eclipse.utils.is_eclipse()
 
+local scripted_enemy = Eclipse.scripted_enemy
 local bulldozer = scripted_enemy.bulldozer_1
 local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 
