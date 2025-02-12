@@ -15,12 +15,58 @@ return {
     [("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "beretta92", "mp5_tactical" },
     --Misc (Scripted Murkies, Gangsters etc.)
+    --Security guards
+    --Regular security
+    [("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/payday2/characters/ene_security_2/ene_security_2"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/payday2/characters/ene_security_3/ene_security_3"):key()] = "r870", --stronger camera man
+    --Mission Specific Guards
+    --Big Bank
+    [("units/payday2/characters/ene_security_4/ene_security_4"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/payday2/characters/ene_security_5/ene_security_5"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/payday2/characters/ene_security_6/ene_security_6"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/payday2/characters/ene_security_7/ene_security_7"):key()] = "r870", --stronger camera man
+    --Stealing Xmas
+    --fat man has bronco instead of c45
+    [("units/payday2/characters/ene_security_8/ene_security_8"):key()] = {"raging_bull" = 3, "mp5" = 1},
+    --Secret Service
+    [("units/payday2/characters/ene_secret_service_1/ene_secret_service_1"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/payday2/characters/ene_secret_service_2/ene_secret_service_2"):key()] = {"c45" = 3, "mp5" = 1},
+    --Red GenSec guards
+    [("units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"):key()] = {"c45" = 3, "ump" = 1},
+    [("units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2"):key()] = {"g36" = 2, "ump" = 1},
+    --fucking Alesso
+    [("units/pd2_dlc_arena/characters/ene_guard_security_heavy_1/ene_guard_security_heavy_1"):key()] = {"c45" = 4, "mp5" = 2, "deagle" = 1},
+    [("units/pd2_dlc_arena/characters/ene_guard_security_heavy_2/ene_guard_security_heavy_2"):key()] = {"c45" = 4, "mp5" = 2, "deagle" = 1},
+    --casino guard gets silenced pistol
+    [("units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"):key()] = {"beretta92" = 3, "raging_bull" = 1},
+    --murky sercret service
+    [("units/pd2_dlc_vit/characters/ene_murkywater_secret_service/ene_murkywater_secret_service"):key()] = {"c45" = 3, "ump" = 1},
+    --Black Cat guards
+    [("units/pd2_dlc_chca/characters/ene_security_cruise_1/ene_security_cruise_1"):key()] = {"beretta92" = 3, "raging_bull" = 1},
+    [("units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2"):key()] = {"beretta92" = 3, "raging_bull" = 1},
+    [("units/pd2_dlc_chca/characters/ene_security_cruise_3/ene_security_cruise_3"):key()] = {"beretta92" = 3, "raging_bull" = 1},
+    --Mexican guards
+    [("units/pd2_dlc_bex/characters/ene_bex_security_01/ene_bex_security_01"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/pd2_dlc_bex/characters/ene_bex_security_02/ene_bex_security_02"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/pd2_dlc_bex/characters/ene_bex_security_03/ene_bex_security_03"):key()] = "r870", --stronger guard man
+    [("units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"):key()] = {"c45" = 3, "mp5" = 1},
+    [("units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"):key()] = "r870", --stronger guard man
+    --Bellmead guards
+    [("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"):key()] = {"deagle" = 3, "s552" = 2, "ump" = 1},
+    [("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"):key()] = {"deagle" = 3, "s552" = 2, "ump" = 1},
+    [("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"):key()] = {"deagle" = 3, "s552" = 2, "ump" = 1},
     --FBI ready teams
     [("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"):key()] = {"m4", "mp5"},
     [("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"):key()] = {"m4", "mp5"},
     --Murkywater (scripted)
-    [("units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"):key()] = { "ump", "scar_murky" },
-    [("units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security"):key()] = { "ump", "scar_murky" },
+    [("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"):key()] = { "ump" = 3, "benelli" = 1 }, --funny benelli
+    [("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"):key()] = { "scar_murky" = 3, "benelli" = 1 },
+    [("units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"):key()] = { "ump" = 3, "scar_murky" = 2, "benelli" = 1 },
+    [("units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security"):key()] = { "ump" = 3, "scar_murky" = 2, "benelli" = 1 },
+    [("units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1"):key()] = { "ump" = 3, "scar_murky" = 2, "benelli" = 1 },
+    [("units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2"):key()] = { "ump" = 3, "scar_murky" = 2, "benelli" = 1 },
     --Bosses
     --the Commissar has now rpk instead of m249
     [("units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss"):key()] = "rpk_lmg",
