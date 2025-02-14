@@ -292,7 +292,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / 8.6)
-				weap_data.pickup_mul = weap_data.pickup_mul or 0.1875
+				weap_data.pickup_mul = weap_data.pickup_mul or 0.14
 				weap_data.damage_near = 2000
 				weap_data.damage_far = 3000
 				weap_data.rays = 8
