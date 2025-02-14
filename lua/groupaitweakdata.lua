@@ -655,7 +655,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_swat_3 = {
+	self.unit_categories.Elite_swat = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
@@ -2493,6 +2493,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups = {}
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
+--[[
 	if difficulty_index < 4 then
 		self.ponr.faction = {
 			"FBI",
@@ -2581,7 +2582,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.cloaker.groups = { 
 		single_spooc = { 1, 1, 1 } 
 	}
-	
+]]--	
 	-- misc
 	self.ponr.assault.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.assault.groups.Phalanx = { 0, 0, 0 }

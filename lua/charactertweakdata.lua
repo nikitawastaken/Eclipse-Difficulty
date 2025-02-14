@@ -99,7 +99,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
 		focus_delay = 0.8,
-		melee_dmg = 7.5 * dmg_mul,
+		melee_dmg = 8 * dmg_mul,
 		melee_speed = 1,
 		melee_retry_delay = { 1, 2 },
 		melee_range = 125,
@@ -201,26 +201,26 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 
 	presets.weapon.security = based_on(presets.weapon.base, {
-		aim_delay = { 0, 1.2 },
+		aim_delay = { 0, 1.25 },
 		focus_delay = 1,
-		melee_dmg = 5 * dmg_mul,
+		melee_dmg = 6 * dmg_mul,
 	})
 	accuracy_multiplier(presets.weapon.security, 0.8)
 
 
 	presets.weapon.cop = based_on(presets.weapon.base, {
-		aim_delay = { 0, 1.2 },
+		aim_delay = { 0, 1.25 },
 		focus_delay = 1,
-		melee_dmg = 5 * dmg_mul,
+		melee_dmg = 6 * dmg_mul,
 	})
 	accuracy_multiplier(presets.weapon.cop, 0.9)
 
 
 	presets.weapon.gangster = based_on(presets.weapon.base, {
-		aim_delay = { 0, 1.2 },
+		aim_delay = { 0, 1.25 },
 		focus_delay = 1,
 	})
-	damage_multiplier(presets.weapon.gangster, 5 / 4)
+	damage_multiplier(presets.weapon.gangster, 6 / 5)
 	accuracy_multiplier(presets.weapon.gangster, 0.6)
 	recoil_multiplier(presets.weapon.gangster, 0.7)
 	burst_multiplier(presets.weapon.gangster, 1.5)
@@ -230,40 +230,33 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 
 	presets.weapon.fbi = based_on(presets.weapon.swat)
-	damage_multiplier(presets.weapon.fbi, 3 / 2)
+	damage_multiplier(presets.weapon.fbi, 7 / 5)
 
 
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
-		aim_delay = { 0, 0.8 },
+		aim_delay = { 0, 0.75 },
 		focus_delay = 0.6,
 		melee_dmg = 10 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.fbi_swat, 4 / 3)
+	damage_multiplier(presets.weapon.fbi_swat, 6 / 5)
 	accuracy_multiplier(presets.weapon.fbi_swat, 1.1)
 
 
 	presets.weapon.city_swat = based_on(presets.weapon.swat, {
-		aim_delay = { 0, 0.6 },
+		aim_delay = { 0, 0.5 },
 		focus_delay = 0.4,
-		melee_dmg = 12.5 * dmg_mul,
+		melee_dmg = 12 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.city_swat, 5 / 3)
+	damage_multiplier(presets.weapon.city_swat, 8 / 5)
 	accuracy_multiplier(presets.weapon.city_swat, 1.2)
 
 
-	presets.weapon.zeal_swat = based_on(presets.weapon.swat, {
-		aim_delay = { 0, 0.4 },
-		focus_delay = 0.2,
-		melee_dmg = 15 * dmg_mul,
-	})
-	damage_multiplier(presets.weapon.zeal_swat, 6 / 3)
-	accuracy_multiplier(presets.weapon.zeal_swat, 1.3)
+	presets.weapon.zeal_swat = based_on(presets.weapon.city_swat)
 
     presets.weapon.murky = based_on(presets.weapon.swat, {
 		melee_dmg = 10 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.murky, 5 / 4)
-	accuracy_multiplier(presets.weapon.murky, 1.1)
+	damage_multiplier(presets.weapon.murky, 6 / 5)
     burst_multiplier(presets.weapon.murky, 0.75)
 
 
@@ -272,7 +265,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 500,
 		range = { close = 500, optimal = 1000, far = 2000 },
 	})
-	damage_multiplier(presets.weapon.shield, 3 / 4)
+	damage_multiplier(presets.weapon.shield, 4 / 5)
 	accuracy_multiplier(presets.weapon.shield, 0.9)
 
 
@@ -335,10 +328,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 
 	presets.weapon.medic = based_on(presets.weapon.swat, {
-		melee_dmg = 5 * dmg_mul,
+		melee_dmg = 6 * dmg_mul,
 		range = { close = 1500, optimal = 2750, far = 4000 },
 	})
-	damage_multiplier(presets.weapon.medic, 3 / 4)
+	damage_multiplier(presets.weapon.medic, 4 / 5)
 
 	presets.weapon.cloaker = based_on(presets.weapon.swat)
 
@@ -357,7 +350,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.tank = based_on(presets.weapon.base, {
-		aim_delay = { 0, 1.5 },
+		aim_delay = { 0, 2 },
 		melee_dmg = 30 * dmg_mul,
 		melee_range = 175,
 		melee_force = 600,
@@ -404,13 +397,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_speed = nil_value,
 		melee_dmg = nil_value,
 		melee_retry_delay = nil_value,
-		weapon_switch = nil_value
 	})
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 3, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 1, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } }
+			{ dmg_mul = 6, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 4.5, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 3, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
