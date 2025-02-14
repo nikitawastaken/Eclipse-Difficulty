@@ -270,7 +270,7 @@ end
 for _, projectile in pairs(tweak_data.projectiles) do
 	-- More noticeable explosive damage dropoff to encourage accurate shooting
 	if projectile.curve_pow then
-		projectile.curve_pow = 2
+		projectile.curve_pow = 1
 	end
 
 	if projectile.player_damage and projectile.damage then
