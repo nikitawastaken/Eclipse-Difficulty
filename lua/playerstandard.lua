@@ -542,6 +542,12 @@ Hooks:PostHook(PlayerStandard, "_start_action_melee", "eclipse_post_start_action
 	self._state_data.melee_running_wanted = nil
 end)
 
+Hooks:PostHook(PlayerStandard, "_do_action_melee", "eclipse__do_action_melee", function(self, t, input, instant)
+	-- Faster reswing skill
+	local melee_entry = managers.blackmarket:equipped_melee_weapon()
+	self._state_data.melee_repeat_expire_t = t + (math.min(tweak_data.blackmarket.melee_weapons[melee_entry].repeat_expire_t, tweak_data.blackmarket.melee_weapons[melee_entry].expire_t) * managers.player:upgrade_value("melee", "faster_reswing", 1))
+end)
+
 Hooks:PreHook(PlayerStandard, "_update_melee_timers", "eclipse_update_melee_timers", function(self, t, input)
 	local melee_entry = managers.blackmarket:equipped_melee_weapon()
 	local instant = tweak_data.blackmarket.melee_weapons[melee_entry].instant

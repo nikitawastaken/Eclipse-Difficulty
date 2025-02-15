@@ -20,8 +20,8 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_wea
 	end
 
 	local reference = self.melee_weapons.iceaxe
-	local ref_dmg_min = reference.stats.min_damage * 1.5
-	local ref_dmg_max = reference.stats.max_damage / 1.5
+	local ref_dmg_min = reference.stats.min_damage
+	local ref_dmg_max = reference.stats.max_damage
 	local ref_charge_t = reference.stats.charge_time
 	local ref_conceal = math.map_range(reference.stats.concealment, min_conceal, max_conceal, 1, 0)
 	local ref_range = math.map_range(reference.stats.range, min_range, max_range, 1, 0)
@@ -32,7 +32,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_wea
 
 	local function get_damage(expire, range, conceal, charge_t)
 		local min = (1 + expire * 3 + conceal + range) * x_min
-		local max = min + min * charge_t * x_max
+		local max = math.max(min, (min + min * charge_t * x_max) / 1.5)
 		return min, max
 	end
 
@@ -41,10 +41,11 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_wea
 		local range = math.map_range(data.stats.range, min_range, max_range, 1, 0)
 		local conceal = math.map_range(data.stats.concealment or 30, min_conceal, max_conceal, 1, 0)
 		local charge_t = data.stats.charge_time or 0
-		local damage_mul = (data.tase_data or data.dot_data_name) and 0.4 or 1
+		local is_sharp_mul = (data.stats.weapon_type == "sharp" and 1.5 or 1)
+		local damage_mul = ((data.tase_data or data.dot_data_name) and 0.4 or 1)
 		local effect_mul = (data.tase_data or data.dot_data_name) and 0.1 or 1
 		local min, max = get_damage(expire, range, conceal, charge_t)
-		data.stats.min_damage = math.round(min * damage_mul, 0.5)
+		data.stats.min_damage = math.round(min * damage_mul * is_sharp_mul, 0.5)
 		data.stats.max_damage = math.round(max * damage_mul, 0.5)
 		data.stats.min_damage_effect = math.round((math.map_range(expire, min_expire, max_expire, 30, 350) + (data.melee_damage_delay or 0) * 350) * effect_mul, 10)
 		data.stats.max_damage_effect = data.stats.min_damage_effect

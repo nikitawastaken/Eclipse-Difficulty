@@ -1009,8 +1009,18 @@ function UpgradesTweakData:init(tweak_data)
 	-- Pumping Iron
 	self.values.player.non_special_melee_multiplier[1] = 1.5
 	self.values.player.melee_damage_multiplier[1] = 1.5
+	self.values.melee.faster_reswing = { 0.5 }
+	self.definitions.melee_faster_reswing = {
+		name_id = "menu_melee_faster_reswing",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "faster_reswing",
+			category = "melee",
+		},
+	}
 	self.skill_descs.steroids.multibasic = "50%"
-	self.skill_descs.steroids.multipro = "50%"
+	self.skill_descs.steroids.multipro = "100%"
 
 	-- Bloodthirst
 	self.values.player.melee_damage_stacking = { { max_multiplier = 3, melee_multiplier = 0.25 } }
@@ -1144,11 +1154,23 @@ function UpgradesTweakData:init(tweak_data)
 		1.5,
 	}
 
-	-- Infiltrator / Socio healing
+	-- Infiltrator / Socio
 	self.values.player.melee_kill_life_leech = { 1.5 }
 	self.specialization_descs[9][5].multiperk = "15"
 	self.values.temporary.melee_life_leech[1][1] = 4
 	self.specialization_descs[8][9].multiperk = "40"
+
+	self.max_melee_weapon_dmg_mul_stacks = 4
+	self.values.melee.stacking_hit_damage_multiplier = {
+		1,
+		1
+	}
+	self.specialization_descs[8][1].multiperk2 = "1"
+	self.specialization_descs[8][1].multiperk3 = "100%"
+	self.specialization_descs[8][1].multiperk4 = "4"
+	self.specialization_descs[9][1].multiperk2 = "1"
+	self.specialization_descs[9][1].multiperk3 = "100%"
+	self.specialization_descs[9][1].multiperk4 = "4"
 
 	-- Gambler
 	self.values.player.pick_up_ammo_multiplier[1] = 1.15

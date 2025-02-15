@@ -357,6 +357,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.messiah[1].upgrades = { "player_messiah_revive_from_bleed_out_1", "player_increased_bleedout_timer" }
 	self.skills.messiah[2].upgrades = { "player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1" }
 
+	-- Pumping Iron
+	self.skills.steroids[1].upgrades = { "melee_faster_reswing" }
+	self.skills.steroids[2].upgrades = { "player_non_special_melee_multiplier", "player_melee_damage_multiplier" }
+
 	-- Berserker
 	self.skills.wolverine[1].upgrades = { "player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier" }
 	self.skills.wolverine[2].upgrades = { "player_melee_damage_health_ratio_multiplier" }

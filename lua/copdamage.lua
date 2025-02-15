@@ -98,8 +98,22 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 			managers.hud:on_hit_confirmed()
 		end
 
+		if head then
+			managers.player:on_headshot_dealt()
+		end
+
 		if tweak_data.achievement.cavity.melee_type == attack_data.name_id and not CopDamage.is_civilian(self._unit:base()._tweak_table) then
 			managers.achievment:award(tweak_data.achievement.cavity.award)
+		end
+	end
+
+	local melee_entry = managers.blackmarket:equipped_melee_weapon()
+	local is_blunt_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.weapon_type == "blunt" and 1.5 or 1
+	if not self._char_tweak.ignore_headshot and not self._damage_reduction_multiplier and head then
+		if self._char_tweak.headshot_dmg_mul then
+			damage = damage * self._char_tweak.headshot_dmg_mul * is_blunt_headshot_mul
+		else
+			damage = self._health * 10
 		end
 	end
 
@@ -109,7 +123,9 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 		damage = self._HEALTH_INIT
 	end
 
+	attack_data.headshot = head
 	local damage_effect = attack_data.damage_effect
+
 	local damage_effect_percent = 1
 	damage = self:_apply_damage_reduction(damage)
 	damage = math.clamp(damage, self._HEALTH_INIT_PRECENT, self._HEALTH_INIT)
