@@ -147,6 +147,7 @@
 	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor every hit with a pistol you gain a ##$multibasic## damage boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYou now gain a ##$multipro## damage boost for every hit and the damage boost lasts ##$multipro2## seconds.\nStacks up to ##$multipro3## times.",
 	"menu_perseverance_beta_desc": "BASIC: ##$basic##\nInstead of getting downed instantly, you gain the ability to keep on fighting for ##$multibasic2## seconds with a ##$multibasic3## movement penalty before going down.\n\nNote: Does not trigger on fall or fire damage. \n\nACE: ##$pro##\nIncreases the duration of Swan Song by ##$multipro## seconds.",
 	"menu_tea_cookies_beta_desc": "BASIC: ##$basic##\nUsing a First Aid Kit makes you regenerate ##$multibasic## health every ##$multibasic2## seconds for ##$multibasic3## seconds.\n\nACE: ##$pro##\nYour deployed First Aid Kits will be automatically used if a player is downed within a ##$multipro## meter radius of the First Aid Kit. This cannot occur more than once every ##$multipro2## seconds.",
+	"menu_steroids_beta_desc": "BASIC: ##$basic##\nYour melee reswing speed is ##$multipro## faster.\n\nACE: ##$pro##\nYour melee attacks deal ##$multibasic## more damage.",
 
 
 
@@ -185,7 +186,9 @@
 	"menu_deck7_7_desc": "Your chance to be targeted while standing still and crouching is decreased by an additional ##$multiperk2##.\n\nYou answer pagers ##$multiperk3## faster.",
 	"menu_deck7_9": "Ricochet",
 	"menu_deck7_9_desc": "Dodged bullets will now ##ricochet## back to the enemy that fired them.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
+	"menu_deck8_7_desc": "When you are surrounded by three enemies or more, you receive ##$multiperk## less damage from enemies.\n\nFor every consecutive melee hit within ##$multiperk2## second of the previous one your next melee hit's damage is increased by ##$multiperk3##.\nStacks up to ##$multiperk4## times.",
 	"menu_deck8_9_desc": "Striking an enemy with your melee weapon regenerates ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
+	"menu_deck9_1_desc": "When you are surrounded by three enemies or more, you receive ##$multiperk## less damage from enemies.\n\nFor every consecutive melee hit within ##$multiperk2## second of the previous one your next melee hit's damage is increased by ##$multiperk3##.\nStacks up to ##$multiperk4## times.",
 	"menu_deck9_7_desc": "Killing an enemy at medium range recovers ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_3_desc": "Your ammo pickup rate is increased by ##$multiperk##.\n\nYou gain ##$multiperk3## more health.",
 	"menu_deck10_9_desc": "Increase health gained from ammo packs by additional ##$multiperk##.\n\nYour ammo pick up range is increased by ##$multiperk4##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
@@ -228,7 +231,9 @@
 	"menu_deck6_7_short": "Your chance to dodge and armor are further increased for ballistic vests. Heavier vests receive more dodge and armor.",
 	"menu_deck7_7_short": "Your chance to be targeted while standing still and crouching is decreased by an additional ##$multiperk2##. You answer pagers ##$multiperk3## faster.",
 	"menu_deck7_9_short": "Dodged bullets will now ##ricochet## back to the enemy that fired them.",
+	"menu_deck8_7_short": "When you are surrounded by three enemies or more, you receive ##$multiperk## less damage from enemies. For every consecutive melee hit within ##$multiperk2## second of the previous one your next melee hit's damage is increased by ##$multiperk3##. Stacks up to ##$multiperk4## times.",
 	"menu_deck8_9_short": "Striking an enemy with your melee weapon regenerates ##$multiperk## health. This cannot occur more than once every ##$multiperk2## seconds.",
+	"menu_deck9_1_short": "When you are surrounded by three enemies or more, you receive ##$multiperk## less damage from enemies. For every consecutive melee hit within ##$multiperk2## second of the previous one your next melee hit's damage is increased by ##$multiperk3##. Stacks up to ##$multiperk4## times.",
 	"menu_deck9_7_short": "Killing an enemy at medium range recovers ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_3_short": "Your ammo pickup rate is increased by ##$multiperk##. You gain ##$multiperk3## more health.",
 	"menu_deck10_9_short": "Increase health gained from ammo packs by additional ##$multiperk##. Your ammo pick up range is increased by ##$multiperk4##.",
