@@ -1163,7 +1163,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.max_melee_weapon_dmg_mul_stacks = 4
 	self.values.melee.stacking_hit_damage_multiplier = {
 		1,
-		1
+		1,
 	}
 	self.specialization_descs[8][1].multiperk2 = "1"
 	self.specialization_descs[8][1].multiperk3 = "100%"
