@@ -98,6 +98,8 @@ return {
     [("units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss"):key()] = "rpk_lmg",
     --Biker boss has a saiga shotgun
     [("units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss"):key()] = "saiga",
+    --Hector Moralez has a aa12 shotgun
+    [("units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2"):key()] = "aa12",
     --Garret has bronco
     [("units/pd2_dlc_tag/characters/ene_male_commissioner/ene_male_commissioner"):key()] = "raging_bull",
     --Bikers (the Overkill MC)
