@@ -1,6 +1,33 @@
 <?xml version="1.0"?>
 <tweaks>
 
+    <!-- Fix secret_service_fex _tweak_table -->
+	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="security_mex"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="security_mex"/>
+		</target>
+	</tweak>
+
 	<!-- Fix fbi_3 _tweak_table -->
 	<tweak version="2" name="units/payday2/characters/ene_fbi_3/ene_fbi_3" extension="unit">
 		<search>
