@@ -9,7 +9,7 @@ Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", 
 	local is_walking = is_moving and not is_running
 
 	local accuracy_mul = is_running and 0.75 or is_walking and 1 or 1.25
-	
+
 	return Hooks:GetReturn() * accuracy_mul
 end)
 
@@ -25,7 +25,7 @@ Hooks:PostHook(CopDamage, "init", "eclipse_init", function(self)
 	local is_dozer = self._unit:base()._tweak_table == "tank" or self._unit:base()._tweak_table == "tank_elite"
 	local head_body = self._unit:body(self._head_body_name or "head")
 	if head_body then
-		head_body:set_sphere_radius(16)
+		head_body:set_sphere_radius(18)
 	end
 end)
 
