@@ -49,7 +49,7 @@ return {
     [("units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"):key()] = { c45 = 3, raging_bull = 1 },
     [("units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"):key()] = { c45 = 3, raging_bull = 1 },
     --Riker has bronco only
-    [("units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1"):key()] = { c45 = 3, raging_bull = 1 },
+    [("units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1"):key()] = "raging_bull",
     --fucking Alesso
     [("units/pd2_dlc_arena/characters/ene_guard_security_heavy_1/ene_guard_security_heavy_1"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
     [("units/pd2_dlc_arena/characters/ene_guard_security_heavy_2/ene_guard_security_heavy_2"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
