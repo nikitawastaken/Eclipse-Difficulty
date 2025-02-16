@@ -816,10 +816,10 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		special_type = "tank",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
-			russia =  { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
-			zombie =  { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
-			murkywater =  { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
-			federales =  { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
+			russia =  { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
+			zombie =  { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
+			murkywater =  { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
+			federales =  { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
 		},
 		access = access_type_walk_only,
 	}
