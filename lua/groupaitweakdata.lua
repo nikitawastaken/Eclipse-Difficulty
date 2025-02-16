@@ -824,7 +824,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.bulldozer_1_2 = {
+	self.unit_categories.bulldozer = {
 		special_type = "tank",
 		unit_types = {
 			america = {
@@ -875,7 +875,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.Elite_bulldozer_1_2 = {
+	self.unit_categories.Elite_bulldozer = {
 		special_type = "tank",
 		unit_types = {
 			america = {
@@ -1719,7 +1719,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					difficulty_index / 16, 
 				},
 				rank = 1,
-				unit = "medic",
+				unit = "medic_2",
 				tactics = self._tactics.medic,
 			},
 		},
@@ -1751,7 +1751,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					difficulty_index / 20, 
 				},
 				rank = 1,
-				unit = "medic",
+				unit = "medic_1",
 				tactics = self._tactics.medic,
 			},
 		},
@@ -1766,7 +1766,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_max = 1,
 				rank = 3,
-				unit = "bulldozer_1_2",
+				unit = "bulldozer",
 				tactics = self._tactics.bulldozer,
 			},
 			{
@@ -1783,7 +1783,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					difficulty_index / 24, 
 				},
 				rank = 1,
-				unit = "medic",
+				unit = "medic_2",
 				tactics = self._tactics.medic,
 			},
 		},
@@ -1908,7 +1908,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					difficulty_index / 16, 
 				},
 				rank = 1,
-				unit = "medic",
+				unit = "medic_2",
 				tactics = self._tactics.medic,
 			},
 		},
@@ -1940,13 +1940,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					difficulty_index / 20, 
 				},
 				rank = 1,
-				unit = "medic",
+				unit = "medic_1",
 				tactics = self._tactics.medic,
 			},
 		},
 	}
 
-	local Random_bulldozer = { "bulldozer_1_2", "Elite_bulldozer_1_2" }
+	local Random_bulldozer = { "bulldozer_1", "bulldozer_2", "Elite_bulldozer_1", "Elite_bulldozer_2" }
 	
 	self.enemy_spawn_groups.Elite_assault_bulldozer = {
 		amount = { 3, 4 },
@@ -1956,7 +1956,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_max = 1,
 				rank = 3,
-				unit = "bulldozer_1_2",
+				unit = "bulldozer",
 				random_unit = Random_bulldozer,
 				tactics = self._tactics.bulldozer,
 			},
@@ -1974,7 +1974,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					difficulty_index / 24, 
 				},
 				rank = 1,
-				unit = "medic",
+				unit = "medic_2",
 				tactics = self._tactics.medic,
 			},
 		},
@@ -2332,7 +2332,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
-			CS_assault_cops = { 0.5, 0.25, 0 },
+			CS_assault_cops = { 0.5, 0, 0 },
 			CS_assault_swats = { 1, 1, 0.5 },
 			CS_assault_heavies = { 0, 0, 1 },
 			CS_assault_shield = { 0, 0.15, 0.2 },
@@ -2364,11 +2364,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
-			CS_assault_cops = { 0.25, 0, 0 },
 			CS_assault_swats = { 1, 1, 0 },
 			
-			FBI_assault_swats = { 0, 0.5, 0.75 },
-			FBI_assault_heavies = { 0, 0, 0.75 },
+			FBI_assault_swats = { 0, 0.5, 0.5 },
+			FBI_assault_heavies = { 0, 0, 1 },
 			FBI_assault_shield = { 0, 0.15, 0.2 },
 			FBI_assault_taser = { 0, 0.1, 0.15 },
 			FBI_assault_cloaker = { 0, 0.1, 0.15 },
@@ -2409,7 +2408,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 6 then
 		self.besiege.assault.groups = {
-			CS_assault_swats = { 0.5, 0.25, 0 },
+			CS_assault_swats = { 0.5, 0, 0 },
 			
 			FBI_assault_swats = { 1, 1, 0 },
 			FBI_assault_heavies = { 0, 0, 0.75 },
@@ -2417,7 +2416,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			FBI_assault_taser = { 0, 0.15, 0 },
 			FBI_assault_cloaker = { 0, 0.15, 0.3 },
 			
-			Elite_assault_swats = { 0, 0.25, 0.75 },
+			Elite_assault_swats = { 0, 0.5, 0.75 },
 			Elite_assault_shield = { 0, 0, 0.3 },
 			Elite_assault_taser = { 0, 0, 0.2 },
 			Elite_assault_bulldozer = { 0, 0, 0.15 },
