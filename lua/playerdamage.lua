@@ -1,14 +1,25 @@
 -- uppers cooldown
 PlayerDamage._UPPERS_COOLDOWN = 120
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
+
+local function diff_lerp(value_1, value_2)
+	return Eclipse.utils.diff_lerp(value_1, value_2)
+end
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
-	if Global.game_settings and Global.game_settings.one_down then
+	if is_pro_job then
 		self._lives_init = 4
-		tweak_data.player.damage.DOWNED_TIME = 25
+		tweak_data.player.damage.DOWNED_TIME = is_eclipse and 25 or 30
 		tweak_data.player.damage.DOWNED_TIME_DEC = 10
-		tweak_data.player.damage.DOWNED_TIME_MIN = 1
-		tweak_data.player.damage.REVIVE_HEALTH_STEPS = { 0.4, 0.2, 0.1 }
+		tweak_data.player.damage.DOWNED_TIME_MIN = is_eclipse and 5 or 10
+		tweak_data.player.damage.MIN_DAMAGE_INTERVAL = tweak_data.player.damage.MIN_DAMAGE_INTERVAL - 0.05
+		tweak_data.player.damage.REVIVE_HEALTH_STEPS = {
+			diff_lerp(0.7, 0.4),
+			diff_lerp(0.5, 0.2),
+			diff_lerp(0.3, 0.1)
+		}
 	end
 end)
 
@@ -28,11 +39,11 @@ Hooks:PreHook(PlayerDamage, "damage_bullet", "eclipse_damage_bullet", function (
 	end
 
 	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 1.25)
-	
+
 	if alive(self._unit) and self._unit:movement() and self._unit:movement()._current_state and self._unit:movement()._current_state:in_steelsight() then
 		shake_armor_multiplier = shake_armor_multiplier * managers.player:upgrade_value("player", "steelsight_shake_multiplier", 1)
 	end
-	
+
 	self._unit:camera()._damage_bullet_shake_multiplier = math.clamp(attack_data.damage, 0, 16) * shake_armor_multiplier
 end)
 
@@ -174,7 +185,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 			type = "hurt"
 		}
 	}
-	
+
 	if self._god_mode or self._invulnerable or self._mission_damage_blockers.invulnerable then
 		self:_call_listeners(damage_info)
 		return
@@ -202,8 +213,8 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 
 	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data) * self._teargas_damage_ramp
 
-	self._unit:movement():subtract_stamina(10 * self._teargas_damage_ramp)		
-	
+	self._unit:movement():subtract_stamina(10 * self._teargas_damage_ramp)
+
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)
 
@@ -262,11 +273,10 @@ function PlayerDamage:is_friendly_fire(unit)
 	if attacker_team ~= my_team and attacker_mov_ext:friendly_fire() then
 		return false
 	end
-	local pro_job_enabled = Global.game_settings and Global.game_settings.one_down
 	local attacked_by_foe = attacker_team and my_team and my_team.foes[attacker_team.id]
 	local friendly_fire_mutator_active = managers.mutators:modify_value("PlayerDamage:FriendlyFire", friendly_fire_mutator_active) == false
 	if not attacked_by_foe then
-		if pro_job_enabled or friendly_fire_mutator_active then
+		if is_pro_job or friendly_fire_mutator_active then
 			return false
 		end
 		return true
