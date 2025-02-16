@@ -15,13 +15,15 @@ local medium_font_size = tweak_data.menu.pd2_medium_font_size
 local small_font_size = tweak_data.menu.pd2_small_font_size
 local tiny_font_size = tweak_data.menu.pd2_tiny_font_size
 
-local function format_round(num, round_value)
+local function format_round(val, round_value)
 	if round_value == true then
-		return round_value and tostring(math.round(num))
+		return round_value and tostring(math.round(val))
 	elseif round_value == 2 then
-		return string.format("%.2f", num):gsub("0.00", "0")
+		return string.format("%.2f", val):gsub("0.00", "0")
+	elseif round_value == "string" then
+		return val
 	else
-		return string.format("%.1f", num):gsub("%.?0+$", "")
+		return string.format("%.1f", val):gsub("%.?0+$", "")
 	end
 end
 
@@ -2005,12 +2007,28 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					suffix = managers.localization:text("menu_seconds_suffix_short"),
 				},
 				{
+					inverse = true,
+					name = "swing_time",
+					num_decimals = 1,
+					suffix = managers.localization:text("menu_seconds_suffix_short"),
+				},
+				{
+					inverse = true,
+					name = "reswing_time",
+					num_decimals = 1,
+					suffix = managers.localization:text("menu_seconds_suffix_short"),
+				},
+				{
 					range = true,
 					name = "range",
 				},
 				{
 					index = true,
 					name = "concealment",
+				},
+				{
+					name = "type",
+					round_value = "string",
 				},
 			}
 			local x = 0
@@ -3005,7 +3023,11 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 			value_max = math.max(base_stats[stat.name].max_value + mods_stats[stat.name].max_value + skill_stats[stat.name].max_value, 0)
 		end
 
-		value = math.max(base_stats[stat.name].value + mods_stats[stat.name].value + skill_stats[stat.name].value, 0)
+		if stat.name == "type" then
+			value = base_stats[stat.name].value
+		else
+			value = math.max(base_stats[stat.name].value + mods_stats[stat.name].value + skill_stats[stat.name].value, 0)
+		end
 
 		if self._slot_data.name == equipped_item then
 			local base, base_min, base_max, skill, skill_min, skill_max = nil
@@ -3078,6 +3100,9 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 				elseif negative then
 					self._mweapon_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.stats_negative)
 				end
+			elseif stat.name == "type" then
+				self._mweapon_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.dlc_color)
+				self._mweapon_stats_texts[stat.name].base:set_text("")
 			elseif positive then
 				self._mweapon_stats_texts[stat.name].equip:set_color(tweak_data.screen_colors.stats_positive)
 			elseif negative then
@@ -3095,7 +3120,11 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 				equip_max = math.max(equip_base_stats[stat.name].max_value + equip_mods_stats[stat.name].max_value + equip_skill_stats[stat.name].max_value, 0)
 			end
 
-			equip = math.max(equip_base_stats[stat.name].value + equip_mods_stats[stat.name].value + equip_skill_stats[stat.name].value, 0)
+			if stat.name == "type" then
+				equip = base_stats[stat.name].value
+			else
+				equip = math.max(equip_base_stats[stat.name].value + equip_mods_stats[stat.name].value + equip_skill_stats[stat.name].value, 0)
+			end
 			local format_string = "%0." .. tostring(stat.num_decimals or 0) .. "f"
 			local equip_text = equip and format_round(equip, stat.round_value)
 			local total_text = value and format_round(value, stat.round_value)
@@ -3179,6 +3208,12 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 				end
 
 				table.insert(color_ranges, color_range_max)
+			elseif stat.name == "type" then
+				color_ranges = {
+					start = tweak_data.screen_colors.dlc_color,
+					stop = tweak_data.screen_colors.dlc_color,
+					color = tweak_data.screen_colors.dlc_color,
+				}
 			else
 				local positive = equip < value
 				local negative = value < equip
@@ -3527,3 +3562,59 @@ Hooks:PreHook(BlackMarketGui, "on_slot_selected", "shc_on_slot_selected", functi
 		end
 	end
 end)
+
+local old_mweapon_stats = BlackMarketGui._get_melee_weapon_stats
+function BlackMarketGui:_get_melee_weapon_stats(name)
+	local base, mod, skill = old_mweapon_stats(self, name)
+	if not base or not mod or not skill then
+		return
+	end
+
+	local stats = managers.blackmarket:get_melee_weapon_stats(name)
+	local swing_time = tweak_data.blackmarket.melee_weapons[name].expire_t
+	base.swing_time = {
+		min_value = swing_time,
+		max_value = swing_time,
+		value = swing_time,
+	}
+	skill.swing_time = {
+		min_value = 0,
+		max_value = 0,
+		value = 0,
+	}
+	base.swing_time.real_value = base.swing_time.value
+	skill.swing_time.real_value = skill.swing_time.value
+	local reswing_time = tweak_data.blackmarket.melee_weapons[name].expire_t
+	local skill_mul = managers.player:upgrade_value("melee", "faster_reswing", 1)
+	log("ECLIPSE DEBUG: skill_mul = " .. tostring(skill_mul))
+	local skill_addend = (skill_mul < 1) and (reswing_time * skill_mul - reswing_time) or 0
+	base.reswing_time = {
+		min_value = reswing_time,
+		max_value = reswing_time,
+		value = reswing_time,
+	}
+	skill.reswing_time = {
+		skill_min = skill_addend,
+		skill_max = skill_addend,
+		min_value = skill_addend,
+		max_value = skill_addend,
+		value = skill_addend,
+		skill_in_effect = skill_mul < 1,
+	}
+	base.reswing_time.real_value = base.reswing_time.value
+	skill.reswing_time.real_value = skill.reswing_time.value
+	local weapon_type = stats.weapon_type
+	base.type = {
+		min_value = weapon_type,
+		max_value = weapon_type,
+		value = weapon_type,
+	}
+	skill.type = {
+		min_value = 0,
+		max_value = 0,
+		value = 0,
+	}
+	base.type.real_value = base.swing_time.value
+	skill.type.real_value = skill.swing_time.value
+	return base, mod, skill
+end
