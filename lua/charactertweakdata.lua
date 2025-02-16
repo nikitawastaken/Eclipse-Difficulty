@@ -1081,11 +1081,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.headshot_dmg_mul = 2
 	self.mobster_boss.no_headshot_add_mul = true
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+    self.mobster_boss.die_sound_event = "l2n_burndeath" --more effective death scream
 
 	self.chavez_boss.HEALTH_INIT = 200
 	self.chavez_boss.headshot_dmg_mul = 2
 	self.chavez_boss.no_headshot_add_mul = true
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+    self.chavez_boss.die_sound_event = "l2n_burndeath"
 
 	self.hector_boss.HEALTH_INIT = 300
 	self.hector_boss.headshot_dmg_mul = 2
@@ -1093,6 +1095,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.hector_boss.throwable = "frag"
 	self.hector_boss.throwable_cooldown = 15
+    self.hector_boss.die_sound_event = "l2n_burndeath"
 
 	self.biker_boss.HEALTH_INIT = 300
 	self.biker_boss.headshot_dmg_mul = 2
@@ -1100,6 +1103,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "concussion"
 	self.biker_boss.throwable_cooldown = 10
+    self.biker_boss.die_sound_event = "cf2_burndeath"
 
 	self.drug_lord_boss.HEALTH_INIT = 300
 	self.drug_lord_boss.headshot_dmg_mul = 2
@@ -1108,6 +1112,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable_cooldown = 10
+    self.drug_lord_boss.die_sound_event = "l2n_burndeath"
 
 	self.triad_boss.HEALTH_INIT = 300
 	self.triad_boss.player_health_scaling_mul = 1.5
@@ -1124,6 +1129,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.ignore_headshot = false
 	self.deep_boss.no_headshot_add_mul = true
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+
+    self.fbi_boss = deep_clone(self.chavez_boss)
+    self.fbi_boss.throwable = "concussion"
+	self.fbi_boss.throwable_cooldown = 10
+    self.fbi_boss.HEALTH_INIT = 400
+    self.fbi_boss.access = "fbi"
+    self.fbi_boss.die_sound_event = "l2n_burndeath"
 
 	-- escort speed stuff
 	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
@@ -1255,6 +1267,7 @@ CharacterTweakData.tweak_table_weapon = {
 	drug_lord_boss = "boss",
 	triad_boss = "boss",
 	deep_boss = "boss",
+    fbi_boss = "boss",
 }
 
 CharacterTweakData.access_weapon = {
@@ -1283,6 +1296,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	hector_boss = "slow",
 	biker_boss = "slow",
 	deep_boss = "slow",
+    fbi_boss = "slow",
 	tank = "very_slow",
 	tank_elite = "very_slow",
 }

@@ -44,12 +44,10 @@ return {
     [("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"):key()] = { c45 = 3, raging_bull = 1 },
     [("units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"):key()] = { c45 = 3, raging_bull = 1 },
     [("units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4"):key()] = { c45 = 3, raging_bull = 1 },
-    [("units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"):key()] = { c45 = 3, raging_bull = 1 },
+    [("units/payday2/characters/ene_fbi_female_1/ene_fbi_female_1"):key()] = "raging_bull", --she's Riker's partner so give her bronco
     [("units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2"):key()] = { c45 = 3, raging_bull = 1 },
     [("units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"):key()] = { c45 = 3, raging_bull = 1 },
     [("units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"):key()] = { c45 = 3, raging_bull = 1 },
-    --Riker has bronco only
-    [("units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1"):key()] = "raging_bull",
     --fucking Alesso
     [("units/pd2_dlc_arena/characters/ene_guard_security_heavy_1/ene_guard_security_heavy_1"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
     [("units/pd2_dlc_arena/characters/ene_guard_security_heavy_2/ene_guard_security_heavy_2"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
@@ -100,6 +98,8 @@ return {
     [("units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss"):key()] = "saiga",
     --Hector Moralez has a aa12 shotgun
     [("units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2"):key()] = "aa12",
+    --Riker has aa12 shotgun and is stronger than in vanilla
+    [("units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1"):key()] = "aa12",
     --Garret has bronco
     [("units/pd2_dlc_tag/characters/ene_male_commissioner/ene_male_commissioner"):key()] = "raging_bull",
     --Bikers (the Overkill MC)
