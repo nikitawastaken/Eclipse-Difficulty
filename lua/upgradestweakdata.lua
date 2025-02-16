@@ -272,7 +272,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.speedy_reload.multipro = "40%"
 	self.skill_descs.speedy_reload.multipro2 = "6"
 
-	-- Bullseye
+	-- Headshot Fury
 	self.values.weapon.magnetizing_bullets = { true } -- unused
 	self.definitions.weapon_magnetizing_bullets = {
 		name_id = "menu_weapon_magnetizing_bullets",
@@ -302,7 +302,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.values.snp.charged_shot = {
 		{
-			time_to_charge = 5,
+			time_to_charge = 3,
 			radius = 500,
 			damage_factor = 1,
 		},
@@ -319,7 +319,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.skill_descs.single_shot_ammo_return.multibasic = "25%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "4"
-	self.skill_descs.single_shot_ammo_return.multipro = "5"
+	self.skill_descs.single_shot_ammo_return.multipro = "3"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
 	self.skill_descs.single_shot_ammo_return.multipro3 = "5m"
 
