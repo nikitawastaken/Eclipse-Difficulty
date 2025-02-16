@@ -17,6 +17,9 @@
 
 	"bm_wp_hcar_barrel_dmr": "Long Barrel",
 
+	"bm_menu_swing_time": "Swing Time",
+	"bm_menu_reswing_time": "Reswing Time",
+	"bm_menu_type": "Melee Type",
 	"bm_menu_pickup": "Ammo Pickup",
 	"bm_menu_steelsight_time": "Aim Time",
 	"bm_menu_bonus": "Gun Perk",
