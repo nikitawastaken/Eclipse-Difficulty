@@ -39,7 +39,7 @@ function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 			if not hit_enemies[unit:key()] then
 				local hit_pos = Vector3()
 				mvector3.set(hit_pos, unit:movement():m_head_pos())
-				local percentage = 1 - math.min(1, math.max(0, (mvector3.distance(hit.position, hit_pos) - 100) / radius))
+				local percentage = 1 - math.min(1, math.max(0, (mvector3.distance(hit.position, hit_pos) - 250) / radius))
 				if World:raycast("ray", hit.position, hit_pos, "slot_mask", geometry_mask) then
 					percentage = percentage - 0.5
 				end
