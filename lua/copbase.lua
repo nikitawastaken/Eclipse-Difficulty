@@ -40,21 +40,20 @@ end
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	local name = self._unit:name():key()
 	
-	local unit_sequence = unit_sequence_mapping[name]
 	local light_sequence = "enable_light"
-	
-	local level_tweak = tweak_data.levels[managers.job:current_level_id()]
 
+	if managers.game_play_central and managers.game_play_central:flashlights_on() then
+		if self._unit:damage():has_sequence(light_sequence) then
+			self._unit:damage():run_sequence_simple(light_sequence)
+		end
+	end
+
+	local unit_sequence = unit_sequence_mapping[name]
+	
 	if unit_sequence then
 		if self._unit:damage() then	
 			if self._unit:damage():has_sequence(unit_sequence) then
 				self._unit:damage():run_sequence_simple(unit_sequence)
-			end
-
-			if level_tweak and level_tweak.flashlights_on then
-				if self._unit:damage():has_sequence(light_sequence) then
-					self._unit:damage():run_sequence_simple(light_sequence)
-				end
 			end
 		end
 		

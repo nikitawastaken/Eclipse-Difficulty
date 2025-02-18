@@ -85,7 +85,6 @@
 				<post :hook_id="dottweakdata"/>
 				<post :hook_id="firetweakdata"/>
 				<post :hook_id="groupaitweakdata"/>
-				<post :hook_id="leveltweakdata"/>
 				<post :hook_id="playertweakdata"/>
 				<post :hook_id="weapontweakdata"/>
 				<post :hook_id="upgradestweakdata"/>
@@ -101,6 +100,7 @@
 				<post :hook_id="eventjobstweakdata"/>
 				<post :hook_id="tweakdatavr"/>
 				<post :hook_id="carrytweakdata"/>
+				<post :hook_id="levelstweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
