@@ -1080,18 +1080,24 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.HEALTH_INIT = 200
 	self.mobster_boss.headshot_dmg_mul = 2
 	self.mobster_boss.no_headshot_add_mul = true
+	self.mobster_boss.immune_to_knock_down = true
+	self.mobster_boss.immune_to_concussion = true
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
     self.mobster_boss.die_sound_event = "l2n_burndeath" --more effective death scream
 
 	self.chavez_boss.HEALTH_INIT = 200
 	self.chavez_boss.headshot_dmg_mul = 2
 	self.chavez_boss.no_headshot_add_mul = true
+	self.chavez_boss.no_run_start = true
+	self.chavez_boss.no_run_stop = true
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
     self.chavez_boss.die_sound_event = "l2n_burndeath"
 
 	self.hector_boss.HEALTH_INIT = 300
 	self.hector_boss.headshot_dmg_mul = 2
 	self.hector_boss.no_headshot_add_mul = true
+	self.hector_boss.immune_to_knock_down = true
+	self.hector_boss.immune_to_concussion = true
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
@@ -1100,6 +1106,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.HEALTH_INIT = 300
 	self.biker_boss.headshot_dmg_mul = 2
 	self.biker_boss.no_headshot_add_mul = true
+	self.biker_boss.no_run_start = true
+	self.biker_boss.no_run_stop = true
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
@@ -1117,6 +1125,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.HEALTH_INIT = 300
 	self.triad_boss.headshot_dmg_mul = 2
 	self.triad_boss.no_headshot_add_mul = true
+	self.triad_boss.no_run_start = true
+	self.triad_boss.no_run_stop = true
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.triad_boss.bullet_damage_only_from_front = nil
 	self.triad_boss.invulnerable_to_slotmask = nil
@@ -1127,6 +1137,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.headshot_dmg_mul = 2
 	self.deep_boss.ignore_headshot = false
 	self.deep_boss.no_headshot_add_mul = true
+	self.deep_boss.no_run_start = true
+	self.deep_boss.no_run_stop = true
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 
     self.fbi_boss = deep_clone(self.chavez_boss)
