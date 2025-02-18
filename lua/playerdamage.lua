@@ -1,25 +1,11 @@
 -- uppers cooldown
 PlayerDamage._UPPERS_COOLDOWN = 120
-local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-
-local function diff_lerp(value_1, value_2)
-	return Eclipse.utils.diff_lerp(value_1, value_2)
-end
 
 -- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	if is_pro_job then
 		self._lives_init = 4
-		tweak_data.player.damage.DOWNED_TIME = is_eclipse and 25 or 30
-		tweak_data.player.damage.DOWNED_TIME_DEC = 10
-		tweak_data.player.damage.DOWNED_TIME_MIN = is_eclipse and 5 or 10
-		tweak_data.player.damage.MIN_DAMAGE_INTERVAL = tweak_data.player.damage.MIN_DAMAGE_INTERVAL - 0.05
-		tweak_data.player.damage.REVIVE_HEALTH_STEPS = {
-			diff_lerp(0.7, 0.4),
-			diff_lerp(0.5, 0.2),
-			diff_lerp(0.3, 0.1)
-		}
 	end
 end)
 
