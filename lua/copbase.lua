@@ -21,49 +21,64 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	end
 end)
 
--- fix yufu wang hitbox
-Hooks:PostHook(CopBase, "post_init", "hitbox_fix_post_init", function(self)
-	if self._tweak_table == "triad_boss" then
-		self._unit:body("head"--[[self._unit:character_damage()._head_body_name--]]):set_sphere_radius(16)
-		self._unit:body("body"):set_sphere_radius(22)
-
-		self._unit:body("rag_LeftArm"):set_enabled(true)
-		self._unit:body("rag_LeftForeArm"):set_enabled(true)
-
-		self._unit:body("rag_RightArm"):set_enabled(true)
-		self._unit:body("rag_RightForeArm"):set_enabled(true)
-
-		self._unit:body("rag_LeftArm"):set_sphere_radius(11)
-		self._unit:body("rag_LeftForeArm"):set_sphere_radius(7)
-		self._unit:body("rag_RightArm"):set_sphere_radius(11)
-		self._unit:body("rag_RightForeArm"):set_sphere_radius(7)
-
-		self._unit:body("rag_LeftUpLeg"):set_sphere_radius(10)
-		self._unit:body("rag_LeftLeg"):set_sphere_radius(7)
-		self._unit:body("rag_RightUpLeg"):set_sphere_radius(10)
-		self._unit:body("rag_RightLeg"):set_sphere_radius(7)
-	end
-end)
-
 -- Check for weapon changes
 CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
+
 if Network:is_client() then
 	return
 end
 
--- disable leg hitboxes for shields
-CopBase.shield_tweak_names = {
-	shield = true,
-	phalanx_minion = true,
-}
+local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
+local unit_sequence_mapping = {}
+
+for name, sequence in pairs(unit_sequence_mapping_clean) do
+	unit_sequence_mapping[Idstring(name):key()] = sequence
+	unit_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
+end
 
 -- Check for weapon changes
-Hooks:PreHook(CopBase, "post_init", "sh_post_init", function(self)
-	local mapping = self.unit_weapon_mapping[self._unit:name():key()]
-	local mapping_type = type(mapping)
+Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
+	local name = self._unit:name():key()
+	
+	local unit_sequence = unit_sequence_mapping[name]
+
+	if unit_sequence then
+		if self._unit:damage() then	
+			if self._unit:damage():has_sequence(unit_sequence) then
+				self._unit:damage():run_sequence_simple(unit_sequence)
+			end
+		end
+		
+		local spawn_manager_ext = self._unit:spawn_manager()
+
+		local damage_ext = self._unit:character_damage()
+		local head = damage_ext._head
+		
+		if spawn_manager_ext then	
+			if head then	
+				managers.dyn_resource:load(Idstring("unit"), Idstring(head), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
+				
+				spawn_manager_ext:spawn_and_link_unit("_char_joint_names", "cop_head", head)
+
+				self._head_unit = spawn_manager_ext:get_unit("cop_head")
+			end
+		end
+		
+		if alive(self._head_unit) then		
+			self._head_unit:set_enabled(self._unit:enabled())
+			
+			if self._head_unit:damage() and self._head_unit:damage():has_sequence(unit_sequence) then
+				self._head_unit:damage():run_sequence_simple(unit_sequence)
+			end
+		end
+	end
+	
+	local unit_weapon = self.unit_weapon_mapping[name]
+
+	local mapping_type = type(unit_weapon)
 	if mapping_type == "table" then
 		local selector = WeightedSelector:new()
-		for k, v in pairs(mapping) do
+		for k, v in pairs(unit_weapon) do
 			if type(k) == "number" then
 				selector:add(v, 1)
 			else
@@ -72,6 +87,33 @@ Hooks:PreHook(CopBase, "post_init", "sh_post_init", function(self)
 		end
 		self._default_weapon_id = selector:select() or self._default_weapon_id
 	elseif mapping_type == "string" then
-		self._default_weapon_id = mapping
+		self._default_weapon_id = unit_weapon
 	end
 end)
+
+ContourSwapBase = class()
+
+ContourSwapBase._material_translation_map = {}
+
+local mat_configs = {
+  "units/payday2/characters/ene_acc_head/ene_acc_head",
+  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
+  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
+}
+
+for _, v in pairs(mat_configs) do
+  ContourSwapBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
+  ContourSwapBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
+end
+
+ContourSwapBase.swap_material_config = CopBase.swap_material_config
+ContourSwapBase.on_material_applied = CopBase.on_material_applied
+ContourSwapBase.is_in_original_material = CopBase.is_in_original_material
+ContourSwapBase.set_material_state = CopBase.set_material_state
+
+function ContourSwapBase:init(unit)
+    UnitBase.init(self, unit, false)
+
+    self._unit = unit
+    self._is_in_original_material = true
+end

@@ -239,33 +239,6 @@
 		</target>
 	</tweak>
 
-	<!-- Fix fbi_3 _tweak_table -->
-	<tweak version="2" name="units/payday2/characters/ene_fbi_3/ene_fbi_3" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="fbi"/>
-		</target>
-	</tweak>
-
 	<!-- fbi_shield _tweak_table -->
 	<tweak version="2" name="units/payday2/characters/ene_shield_1/ene_shield_1" extension="unit">
 		<search>

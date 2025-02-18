@@ -374,9 +374,130 @@
 
 
 		<group name="units/payday2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-			<file :name="shared_textures/swat_equipment_df.texture" />
-			<file :name="shared_textures/swat_equipment_nm.texture" />
+			<group :name="shared_textures/">
+				<file :name="swat_equipment_df.texture" />
+				<file :name="swat_equipment_nm.texture" />
 
+				<file :name="ene_acc_head_var1_df.texture" />
+				<file :name="ene_acc_head_var1_nm.texture" />
+
+				<file :name="ene_acc_head_var2_df.texture" />
+				<file :name="ene_acc_head_var2_nm.texture" />
+			</group>
+
+			<group :name="ene_acc_head/">
+				<xml  :name="ene_acc_head.sequence_manager" />
+				<file :name="ene_acc_head.cooked_physics" />
+				<file :name="ene_acc_head.material_config" />
+				<file :name="ene_acc_head_contour.material_config" />
+				<file :name="ene_acc_head.model" />
+				<file :name="ene_acc_head.object" />
+				<file :name="ene_acc_head.unit" />
+				
+				<group :name="vars/">
+					<file :name="ene_acc_head_var1.material_config" />
+					<file :name="ene_acc_head_var1_contour.material_config" />
+
+					<file :name="ene_acc_head_var2.material_config" />
+					<file :name="ene_acc_head_var2_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_security_1/">	
+				<xml  :name="ene_security_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_security_1.material_config" />
+				<file :name="ene_security_1_contour.material_config" />
+				<file :name="ene_security_1.model" />
+				<file :name="ene_security_1.object" />
+				<file :name="ene_security_1.unit" />
+				<file :name="ene_security_1_husk.unit" />
+			</group>
+
+			<group :name="ene_security_2/">	
+				<file :name="ene_security_2.unit" />
+				<file :name="ene_security_2_husk.unit" />
+			</group>
+
+			<group :name="ene_security_3/">	
+				<file :name="ene_security_3.unit" />
+				<file :name="ene_security_3_husk.unit" />
+			</group>
+
+			<group :name="ene_security_4/">	
+				<xml  :name="ene_security_4.sequence_manager" dyn_package="true" />
+				<file :name="ene_security_4.material_config" />
+				<file :name="ene_security_4_contour.material_config" />
+				<file :name="ene_security_4.model" />
+				<file :name="ene_security_4.object" />
+				<file :name="ene_security_4.unit" />
+				<file :name="ene_security_4_husk.unit" />
+			</group>
+
+			<group :name="ene_security_5/">	
+				<file :name="ene_security_5.unit" />
+				<file :name="ene_security_5_husk.unit" />
+			</group>
+
+			<group :name="ene_security_6/">	
+				<file :name="ene_security_6.unit" />
+				<file :name="ene_security_6_husk.unit" />
+			</group>
+
+			<group :name="ene_security_7/">	
+				<file :name="ene_security_7.unit" />
+				<file :name="ene_security_7_husk.unit" />
+			</group>
+
+			<group :name="ene_security_8/">	
+				<file :name="ene_security_8.unit" />
+				<file :name="ene_security_8_husk.unit" />
+			</group>
+			
+			<group :name="ene_cop_1/">	
+				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_cop_1.material_config" />
+				<file :name="ene_cop_1_contour.material_config" />
+				<file :name="ene_cop_1.model" />
+				<file :name="ene_cop_1.object" />
+				<file :name="ene_cop_1.unit" />
+				<file :name="ene_cop_1_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_2/">	
+				<file :name="ene_cop_2.unit" />
+				<file :name="ene_cop_2_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_3/">	
+				<file :name="ene_cop_3.unit" />
+				<file :name="ene_cop_3_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_4/">	
+				<file :name="ene_cop_4.unit" />
+				<file :name="ene_cop_4_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_1/">	
+				<xml  :name="ene_fbi_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_fbi_1.material_config" />
+				<file :name="ene_fbi_1_contour.material_config" />
+				<file :name="ene_fbi_1.model" />
+				<file :name="ene_fbi_1.object" />
+				<file :name="ene_fbi_1.unit" />
+				<file :name="ene_fbi_1_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_2/">	
+				<file :name="ene_fbi_2.unit" />
+				<file :name="ene_fbi_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_3/">	
+				<file :name="ene_fbi_3.unit" />
+				<file :name="ene_fbi_3_husk.unit" />
+			</group>
+			
 			<file :name="ene_acc_bulldozer_back/ene_acc_bulldozer_back.model" />
 
 			<file :name="ene_acc_bulldozer_back_2/ene_acc_bulldozer_back_2.model" />

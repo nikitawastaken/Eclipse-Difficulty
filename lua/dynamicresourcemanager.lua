@@ -6,7 +6,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "sh_preload_units", func
 	end
 
 	Eclipse:log("Loading custom units...")
-
+	
 	if PackageManager:loaded("packages/sm_wish") then
 		Eclipse:log("Zeal package loaded, loading custom Zeal units...")
 		load_unit("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2")

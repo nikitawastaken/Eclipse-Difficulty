@@ -1,0 +1,17 @@
+return {
+	["units/payday2/characters/ene_security_1/ene_security_1"] = "security_1",	
+	["units/payday2/characters/ene_security_2/ene_security_2"] = "security_2",	
+	["units/payday2/characters/ene_security_3/ene_security_3"] = "security_3",	
+	["units/payday2/characters/ene_security_4/ene_security_4"] = "security_4",	
+	["units/payday2/characters/ene_security_5/ene_security_5"] = "security_5",	
+	["units/payday2/characters/ene_security_6/ene_security_6"] = "security_6",	
+	["units/payday2/characters/ene_security_7/ene_security_7"] = "security_7",	
+	["units/payday2/characters/ene_security_8/ene_security_8"] = "security_7",
+	["units/payday2/characters/ene_cop_1/ene_cop_1"] = "cop_1",	
+	["units/payday2/characters/ene_cop_2/ene_cop_2"] = "cop_2",	
+	["units/payday2/characters/ene_cop_3/ene_cop_3"] = "cop_3",	
+	["units/payday2/characters/ene_cop_4/ene_cop_4"] = "cop_4",	
+	["units/payday2/characters/ene_fbi_1/ene_fbi_1"] = "fbi_1",	
+	["units/payday2/characters/ene_fbi_2/ene_fbi_2"] = "fbi_2",	
+	["units/payday2/characters/ene_fbi_3/ene_fbi_3"] = "fbi_3",		
+}
