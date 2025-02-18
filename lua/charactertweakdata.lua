@@ -1093,29 +1093,28 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.headshot_dmg_mul = 2
 	self.hector_boss.no_headshot_add_mul = true
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.hector_boss.throwable = "frag"
-	self.hector_boss.throwable_cooldown = 15
+	self.hector_boss.throwable = "concussion"
+	self.hector_boss.throwable_cooldown = 10
     self.hector_boss.die_sound_event = "l2n_burndeath"
 
 	self.biker_boss.HEALTH_INIT = 300
 	self.biker_boss.headshot_dmg_mul = 2
 	self.biker_boss.no_headshot_add_mul = true
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.biker_boss.throwable = "concussion"
-	self.biker_boss.throwable_cooldown = 10
+	self.biker_boss.throwable = "frag"
+	self.biker_boss.throwable_cooldown = 15
     self.biker_boss.die_sound_event = "cf2_burndeath"
 
 	self.drug_lord_boss.HEALTH_INIT = 300
 	self.drug_lord_boss.headshot_dmg_mul = 2
 	self.drug_lord_boss.no_headshot_add_mul = true
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_target_verified = true
+	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 10
     self.drug_lord_boss.die_sound_event = "l2n_burndeath"
 
 	self.triad_boss.HEALTH_INIT = 300
-	self.triad_boss.player_health_scaling_mul = 1.5
 	self.triad_boss.headshot_dmg_mul = 2
 	self.triad_boss.no_headshot_add_mul = true
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1131,11 +1130,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 
     self.fbi_boss = deep_clone(self.chavez_boss)
+    self.fbi_boss.HEALTH_INIT = 200
     self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.throwable_cooldown = 10
-    self.fbi_boss.HEALTH_INIT = 400
-    self.fbi_boss.access = "fbi"
     self.fbi_boss.die_sound_event = "l2n_burndeath"
+    self.fbi_boss.access = "fbi"
 
 	-- escort speed stuff
 	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
