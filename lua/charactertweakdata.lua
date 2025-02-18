@@ -389,7 +389,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 
 	presets.weapon.boss = based_on(presets.weapon.base)
-	damage_multiplier(presets.weapon.boss, 3 / 2)
+	damage_multiplier(presets.weapon.boss, 7 / 5)
 
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1 },
@@ -1292,10 +1292,10 @@ CharacterTweakData.tweak_table_move_speed = {
 	chavez_boss = "fast",
 	drug_lord_boss = "normal",
 	triad_boss = "normal",
+    fbi_boss = "normal",
 	hector_boss = "slow",
 	biker_boss = "slow",
 	deep_boss = "slow",
-    fbi_boss = "slow",
 	tank = "very_slow",
 	tank_elite = "very_slow",
 }
