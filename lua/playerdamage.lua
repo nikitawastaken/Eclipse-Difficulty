@@ -2,7 +2,7 @@
 PlayerDamage._UPPERS_COOLDOWN = 120
 local is_pro_job = Eclipse.utils.is_pro_job()
 
--- Pro-Job adds bleedout time and revive health scaling (as well as friendly fire)
+-- Pro-Jobs (one down modifier) don't reduce your downs anymore
 Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	if is_pro_job then
 		self._lives_init = 4
