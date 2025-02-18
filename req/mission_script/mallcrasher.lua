@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local jump_SO = {
 	pre_func = function (self)
 		if not self._values.SO_access_original then
@@ -13,14 +14,9 @@ local stairs_spawn = {
 }
 local skylight_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- delay SWAT response

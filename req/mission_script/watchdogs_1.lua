@@ -1,4 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 
 local bulldozer = scripted_enemy.bulldozer_1
@@ -40,19 +41,12 @@ return {
 		values = {
 			interval = 30,
 		},
-		groups = {
-			tac_bull_rush = false,
-		},
+		groups = preferred.no_bulldozers,
 	},
 	[101687] = {
 		values = {
 			interval = 40,
 		},
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-			tac_bull_rush = false,
-		},
+		groups = preferred.no_cops_agents_shields_bulldozers,
 	},
 }

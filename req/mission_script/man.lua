@@ -1,6 +1,6 @@
 local is_eclipse = Eclipse.utils.is_eclipse()
-
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local bulldozer = scripted_enemy.bulldozer_1
 local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 
@@ -18,12 +18,7 @@ local window_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
@@ -47,20 +42,20 @@ return {
 			player_mul = { 1.25, 1, 0.75, 0.5 }
 		},
 		on_executed = {
-			{id = 101608, delay = 0}
+			{ id = 101608, delay = 0 }
 		}
 	},
 	-- remove the line
 	[102010] = {
 		on_executed = {
-			{ id = 101608, remove = true}
+			{ id = 101608, remove = true }
 		}
 	},
 	-- Bain warns about incoming dozers from the chopper
 	[103295] = {
 		on_executed = {
-			{ id = 102950, remove = true},
-			{ id = 400001, delay = 16}
+			{ id = 102950, remove = true },
+			{ id = 400001, delay = 16 }
 		}
 	},
 	-- unused snipers
@@ -135,11 +130,7 @@ return {
 		values = {
 			interval = 10,
 		},
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-		},
+		groups = preferred.no_shields,
 	},
 	[101940] = window_spawn,
 	[101954] = window_spawn,

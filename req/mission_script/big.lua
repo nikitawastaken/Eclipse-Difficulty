@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local flank_spawn = {
 	values = {
@@ -8,12 +9,7 @@ local roof_spawn = {
 	values = {
 		interval = 15
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {

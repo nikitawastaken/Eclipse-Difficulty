@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local disabled = {
 	values = {
 		enabled = false
@@ -12,41 +13,60 @@ local exit_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-	},
 }
 local vent_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	--delay SWAT response
 	[102675] = {
 		on_executed = {
-			{ id = 103225, delay = 20 }
-		}
+			{ id = 103225, delay = 20 },
+		},
+	},
+	[103704] = { -- remove the stair case spawn from initial preferred randomisation
+		pre_func = function(self)
+			local groups = self._group_data.spawn_groups
+			local exclude_element
+			local exclude_ids = {
+				103700,
+			}
+
+			for _, id in pairs(exclude_ids) do
+				exclude_element = self:get_mission_element(id)
+
+				while table.contains(groups, exclude_element) do
+					table.delete(groups, exclude_element)
+				end
+			end
+		end
+	},
+	[103225] = {
+		reinforce = {
+			{
+				name = "reception",
+				force = 3,
+				position = Vector3(700, 675, 0)
+			}
+		},
+		on_executed = {
+			{ id = 103700, delay = 0 } -- activate stair case spawns immediately
+		},
 	},
 	--diff 1, blow wall
 	[104057] = disabled,
 	[103279] = {
 		on_executed = {
-			{ id = 104066, delay = 5 }
-		}
+			{ id = 104066, delay = 5 },
+		},
 	},
 	-- alert all civs on mask up and delay panic button SO
 	[102518] = {
 		on_executed = {
-			{ id = 102540, delay = 10 }
+			{ id = 102540, delay = 10 },
 		},
 		func = function()
 			for _, u_data in pairs(managers.enemy:all_civilians()) do

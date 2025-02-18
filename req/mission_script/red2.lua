@@ -1,4 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = is_eclipse and is_pro_job
@@ -49,44 +50,31 @@ local elevator_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 
 local skylight_spawn = {
 	values = {
 		interval = 20,
 	},
+	groups = preferred.no_cops_agents,
 }
 
 local office_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 
 local vent_spawn = {
 	values = {
 		enabled = is_eclipse and true or false,
-		interval = 45,
+		interval = 60,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+
 local windows_swat = {
 	values = {
 		enabled = false

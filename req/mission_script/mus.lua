@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local disabled = {
 	values = {
 		enabled = false
@@ -9,23 +10,13 @@ local enabled = {
 	},
 }
 local window_spawn1 = {
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local window_spawn2 = {
 	values = {
 		interval = 45,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[100022] = {

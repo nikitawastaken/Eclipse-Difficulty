@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local enabled = {
 	values = {
 		enabled = true
@@ -17,12 +18,7 @@ local roof_spawn = {
 	values = {
 		interval = 20
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local building_spawn = {
 	values = {
@@ -33,12 +29,7 @@ local breach_spawn = {
 	values = {
 		interval = 45
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[101190] = {

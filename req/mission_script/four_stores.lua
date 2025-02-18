@@ -1,3 +1,4 @@
+local scripted_enemy = Eclipse.scripted_enemy
 return {
 	-- disable Titan cams
 	[103683] = {
@@ -41,10 +42,6 @@ return {
 		values = {
 			interval = 30,
 		},
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-		},
+		groups = preferred.no_cops_agents_shields_bulldozers,
 	}
 }

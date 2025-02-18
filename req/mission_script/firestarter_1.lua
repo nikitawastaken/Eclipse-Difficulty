@@ -1,4 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
 
 local heavy = scripted_enemy.heavy_swat_2
@@ -101,21 +102,12 @@ return {
 		values = {
 			interval = 10,
 		},
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-		},
+		groups = preferred.no_cops_agents_shields,
 	},
 	[101374] = {
 		values = {
 			interval = 15,
 		},
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-			tac_bull_rush = false,
-		},
+		groups = preferred.no_cops_agents_shields_bulldozers,
 	},
 }

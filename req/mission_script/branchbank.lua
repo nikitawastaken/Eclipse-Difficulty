@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
@@ -125,5 +126,6 @@ return {
 		values = {
 			interval = 30,
 		},
+		groups = preferred.no_cops_agents_shields,
 	}
 }

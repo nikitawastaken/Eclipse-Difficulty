@@ -70,6 +70,7 @@ if not Eclipse then
 	Eclipse.utils = Eclipse:require("utils")
 	Eclipse.ffo_heists = Eclipse:require("ffo_heists")
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
+	Eclipse.preferred = Eclipse:require("preferred_groups")
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.map_sizes = Eclipse:require("map_sizes")
 

@@ -1,4 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -27,12 +28,7 @@ local flank_spawn = {
 	values = {
 		interval = 20
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 
 local no_participate_to_group_ai = {

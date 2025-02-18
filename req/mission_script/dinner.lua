@@ -1,4 +1,5 @@
 --Awesome layout ranomization from ASS
+local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 
@@ -18,11 +19,7 @@ local garage_door_spawn = {
 	values = {
 		interval = 10,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-	},
+	groups = preferred.no_cops_agents_shields,
 }
 local flank_spawn1 = {
 	values = {
@@ -33,26 +30,17 @@ local flank_spawn2 = {
 	values = {
 		interval = 20,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-	},
+	groups = preferred.no_cops_agents_shields,
 }
 local container_spawn = {
 	values = {
 		interval = 25,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 60,  
+		interval = 90,  
 	},
 }
 

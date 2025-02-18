@@ -1,5 +1,6 @@
 -- more ASS edits
 -- also resmod stuff
+local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local enabled_blocked_roof_access = math.random() < 0.45
 local enabled = {
@@ -22,10 +23,14 @@ local retrigger = {
 		trigger_times = 0,
 	},
 }
+local alley_spawn = {
+	groups = preferred.no_bulldozers,
+}
 local roof_spawn = {
 	values = {
 		interval = 25,
 	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Add point of no return
@@ -160,8 +165,8 @@ return {
 	--spawn Heavy SWAT squad if it's overkill above
 	[102680] = {
 		on_executed = {
-			{ id = 104691, delay = 0},
-			{ id = 400001, delay = 7.5}
+			{ id = 104691, delay = 0 },
+			{ id = 400001, delay = 7.5 }
 		}
 	},
 	-- more oppressive open door amounts
@@ -230,17 +235,15 @@ return {
 	[100645] = retrigger,
 	[103111] = retrigger,
 	[100693] = retrigger,
-	[100287] = {
-		values = {
-			interval = 20
-		}
-	},
 	-- slow down roof spawns, these are really fuckng annoying
 	[104650] = roof_spawn,
 	[100504] = roof_spawn,
 	[100505] = roof_spawn,
 	[100509] = roof_spawn,
 	[100396] = roof_spawn,
+	-- adjust alleyway spawn preferreds
+	[100270] = alley_spawn,
+	[100287] = alley_spawn,
 	-- disable panic room reenforce (sh disables the other two points, and this heist doesnt really need it)
 	[103348] = disabled,
 	-- ambush line fix ?  hasnt been working for me since forever

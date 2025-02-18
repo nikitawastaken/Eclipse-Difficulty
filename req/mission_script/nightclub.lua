@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local flank_spawn = {
 	values = {
 		interval = 15
@@ -7,12 +8,7 @@ local window_spawn = {
 	values = {
 		interval = 45
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[101169] = {

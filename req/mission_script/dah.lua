@@ -1,4 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 
 local cop_1 = scripted_enemy.cop_1
@@ -18,17 +19,21 @@ local disabled = {
 local vault_spawn = {
 	values = {
 		interval = 45
-	}
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn_1 = {
 	values = {
 		interval = 45
-	}
+	},
+	groups = preferred.no_cops_agents,
 }	
 local roof_spawn_2 = {
 	values = {
 		interval = 25
-	}
+	},
+	groups = preferred.no_cops_agents,
+	
 }	
 return {
 	[103969] = {

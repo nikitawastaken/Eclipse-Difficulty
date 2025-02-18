@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local side_building1 = {
 	values = {
 		interval = 15
@@ -7,31 +8,19 @@ local side_building2 = {
 	values = {
 		interval = 15
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-	},
+	groups = preferred.no_cops_agents_shields,
 }
 local side_building3 = {
 	values = {
 		interval = 25
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-	},
+	groups = preferred.no_cops_agents_shields,
 }
 local upper_floor = {
 	values = {
 		interval = 20
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-	},
+	groups = preferred.no_shields,
 }
 local atrium_spawn = {
 	values = {
@@ -42,12 +31,7 @@ local archives_spawn = {
 	values = {
 		interval = 45
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- add ponr state
@@ -91,11 +75,6 @@ return {
 		values = {
 			interval = 25
 		},
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-			tac_bull_rush = false,
-		},
+		groups = preferred.no_cops_agents_shields_bulldozers,
 	}
 }

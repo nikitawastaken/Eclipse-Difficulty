@@ -1313,17 +1313,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "CS_swat",
 				tactics = self._tactics.cop_def,
 			},
-			{
-				amount_max = 1,
-				freq_by_diff = { 
-					1 / math.sqrt(difficulty_index), 
-					0.5 / math.sqrt(difficulty_index), 
-					0
-				},
-				rank = 1,
-				unit = "CS_cop_3",
-				tactics = self._tactics.cop_def,
-			},
 		},
 	}
 
@@ -2332,8 +2321,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
-			CS_assault_cops = { 0.5, 0, 0 },
-			CS_assault_swats = { 1, 1, 0.5 },
+			CS_assault_cops = { 1, 0.5, 0 },
+			CS_assault_swats = { 0.5, 1, 0.5 },
 			CS_assault_heavies = { 0, 0, 1 },
 			CS_assault_shield = { 0, 0.15, 0.2 },
 		}
