@@ -171,7 +171,12 @@
 			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_'..pick('var1','var2')"/>
 			<run_sequence		name="'body_'..pick('b','b','b','b','h','h','h','h','a','a','e','e')" />
 		</sequence>
-	
+
+		<sequence editable_state="true" name="'swat_head'" once="true" triggable="true"> 
+			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_'..pick('var1','var2')"/>
+			<run_sequence		name="'body_'..pick('c','c','d','d','g','g','a','a')" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'security_1'" once="true" triggable="true">
 			<run_sequence	name="'security_head'" />
 			<run_sequence	name="'disable_face'" />
@@ -245,6 +250,32 @@
 		<sequence editable_state="true" name="'fbi_3'" once="true" triggable="true">
 			<run_sequence	name="'security_head'" />
 			<run_sequence	name="'disable_head'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'secret_service_1'" once="true" triggable="true">
+			<run_sequence	name="'security_head'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'secret_service_2'" once="true" triggable="true">
+			<run_sequence	name="'security_head'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'gensec_1'" once="true" triggable="true">
+			<run_sequence	name="'security_head'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'gensec_2'" once="true" triggable="true">
+			<run_sequence	name="'security_head'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'murkywater_1'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_face'" />
 		</sequence>		
 	</unit>
 </table>

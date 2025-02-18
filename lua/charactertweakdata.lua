@@ -962,7 +962,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
     self.murky = deep_clone(self.swat)
     self.murky.HEALTH_INIT = 24
-	self.murky.headshot_dmg_mul = 2.4 -- 100 head health
+	self.murky.headshot_dmg_mul = 3 -- 80 head health
     self.murky.chatter = self.presets.enemy_chatter.murkywater
     self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
@@ -1082,6 +1082,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.no_headshot_add_mul = true
 	self.mobster_boss.immune_to_knock_down = true
 	self.mobster_boss.immune_to_concussion = true
+	self.mobster_boss.no_run_start = true
+	self.mobster_boss.no_run_stop = true
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
     self.mobster_boss.die_sound_event = "l2n_burndeath" --more effective death scream
 
@@ -1098,6 +1100,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.no_headshot_add_mul = true
 	self.hector_boss.immune_to_knock_down = true
 	self.hector_boss.immune_to_concussion = true
+	self.hector_boss.no_run_start = true
+	self.hector_boss.no_run_stop = true
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
@@ -1385,6 +1389,13 @@ function CharacterTweakData:_set_presets()
 		char_preset.weapon = self.presets.weapon[self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "base"]
 	end
 
+	--Some exceptions
+	self.security_undominatable.suppression = nil
+	self.security_undominatable.surrender = nil
+
+	self.cop_scared.surrender = self.presets.surrender.always
+	self.cop_scared.surrender_break_time = nil
+	
 	self.tase_shock_strength = diff_lerp(4, 6)
 
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25

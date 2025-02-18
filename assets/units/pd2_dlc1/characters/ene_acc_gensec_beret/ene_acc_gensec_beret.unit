@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<unit type="debris" slot="18">
+
+	<object file="units/pd2_dlc1/characters/ene_acc_gensec_beret/ene_acc_gensec_beret" />
+	
+	<extensions>
+	
+		<extension name="unit_data" class="ScriptUnitData" />
+		
+	</extensions>
+	
+</unit>

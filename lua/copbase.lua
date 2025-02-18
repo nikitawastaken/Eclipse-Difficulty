@@ -41,11 +41,20 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	local name = self._unit:name():key()
 	
 	local unit_sequence = unit_sequence_mapping[name]
+	local light_sequence = "enable_light"
+	
+	local level_tweak = tweak_data.levels[managers.job:current_level_id()]
 
 	if unit_sequence then
 		if self._unit:damage() then	
 			if self._unit:damage():has_sequence(unit_sequence) then
 				self._unit:damage():run_sequence_simple(unit_sequence)
+			end
+
+			if level_tweak and level_tweak.flashlights_on then
+				if self._unit:damage():has_sequence(light_sequence) then
+					self._unit:damage():run_sequence_simple(light_sequence)
+				end
 			end
 		end
 		
@@ -91,15 +100,20 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	end
 end)
 
+local mat_configs = {
+  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
+  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
+  "units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",	
+}
+
+for _, v in pairs(mat_configs) do
+  CopBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
+  CopBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
+end
+
 ContourSwapBase = class()
 
 ContourSwapBase._material_translation_map = {}
-
-local mat_configs = {
-  "units/payday2/characters/ene_acc_head/ene_acc_head",
-  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
-  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
-}
 
 for _, v in pairs(mat_configs) do
   ContourSwapBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
