@@ -967,7 +967,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
     self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
     self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
-    self.murky.use_radio = "fri_dispatch_generic_message"
+    self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
 
 	self.sniper.HEALTH_INIT = 8
 	self.sniper.headshot_dmg_mul = 4 -- 20 head health
@@ -1149,7 +1149,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
     self.fbi_boss.HEALTH_INIT = 200
     self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.throwable_cooldown = 10
-    self.fbi_boss.die_sound_event = "l2n_burndeath"
     self.fbi_boss.access = "fbi"
 
 	-- escort speed stuff
