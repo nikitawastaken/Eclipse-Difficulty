@@ -1352,7 +1352,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- KS12
 	table.insert(self.shak12.categories, "dmr")
-	self.shak12.CLIP_AMMO_MAX = 30
+	self.shak12.CLIP_AMMO_MAX = 20
 	self.shak12.stats.damage = 160
 	self.shak12.stats.spread = 17
 	self.shak12.stats.recoil = 3
@@ -1935,6 +1935,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.benelli.stats.recoil = 7
 	self.benelli.stats.concealment = 15
 	self.benelli.fire_mode_data.fire_rate = 60 / 240
+	self.benelli.use_shotgun_reload = true
 
 	-- Predator
 	self.spas12.CLIP_AMMO_MAX = 8
@@ -1943,6 +1944,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.spas12.stats.recoil = 8
 	self.spas12.stats.concealment = 16
 	self.spas12.fire_mode_data.fire_rate = 60 / 240
+	self.spas12.use_shotgun_reload = true
 
 	-- Goliath
 	self.rota.CLIP_AMMO_MAX = 6
@@ -1980,6 +1982,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r870.stats.recoil = 6
 	self.r870.stats.concealment = 14
 	self.r870.fire_mode_data.fire_rate = 60 / 120
+	self.r870.use_shotgun_reload = true
 
 	-- Loco
 	self.serbu.CLIP_AMMO_MAX = 4
@@ -1989,6 +1992,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.serbu.stats.concealment = 24
 	self.serbu.fire_mode_data.fire_rate = 60 / 120
 	self.serbu.fire_rate_multiplier = 150 / 120
+	self.serbu.use_shotgun_reload = true
 
 	-- Raven
 	self.ksg.CLIP_AMMO_MAX = 14
@@ -1998,6 +2002,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ksg.stats.concealment = 22
 	self.ksg.fire_mode_data.fire_rate = 60 / 120
 	self.ksg.fire_rate_multiplier = 90 / 120
+	self.ksg.use_shotgun_reload = true
 
 	-- Judge
 	self.judge.CLIP_AMMO_MAX = 5
@@ -2029,6 +2034,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m590.stats.concealment = 16
 	self.m590.fire_mode_data.fire_rate = 60 / 120
 	self.m590.fire_rate_multiplier = 135 / 120
+	self.m590.use_shotgun_reload = true
 
 	-- Nova
 	self.supernova.CLIP_AMMO_MAX = 7
