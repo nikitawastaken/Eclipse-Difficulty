@@ -927,7 +927,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_pis_usp_m_big.stats.recoil = 0
 
 	self.parts.wpn_fps_pis_ppk_b_long.stats.spread = 1
-	self.parts.wpn_fps_pis_ppk_b_long.stats.recoil = -1
+	self.parts.wpn_fps_pis_ppk_b_long.stats.concealment = -1
 
 	self.parts.wpn_fps_pis_p226_b_long.stats.spread = 2
 	self.parts.wpn_fps_pis_p226_b_long.stats.concealment = -2

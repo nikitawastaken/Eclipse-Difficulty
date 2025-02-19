@@ -2473,7 +2473,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arblast.stats_modifiers = { damage = 10 }
 
 	-- Plainsrider
-	self.plainsrider.use_data.selection_index = 1
 	self.plainsrider.CLIP_AMMO_MAX = 1
 	self.plainsrider.stats.damage = 48
 	self.plainsrider.stats.spread = 25
@@ -2650,8 +2649,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.x_akmsu.use_data.selection_index = 4
 	self.x_sr2.use_data.selection_index = 4
 	self.x_mp5.use_data.selection_index = 4
-	self.elastic.use_data.selection_index = 4
-	self.long.use_data.selection_index = 4
 	self.x_sko12.use_data.selection_index = 4
 	self.x_korth.use_data.selection_index = 4
 	self.x_basset.use_data.selection_index = 4

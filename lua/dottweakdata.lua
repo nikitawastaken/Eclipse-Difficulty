@@ -5,6 +5,17 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 		poison_type.dot_tick_period = 0.5
 	end
 
+	self.dot_entries.poison.ammo_proj_bow.dot_damage = 6
+	self.dot_entries.poison.ammo_proj_bow.dot_length = 4
+	self.dot_entries.poison.ammo_proj_bow.damage_class = "ProjectilesPoisonBulletBase"
+	
+	self.dot_entries.poison.ammo_proj_crossbow = clone(self.dot_entries.poison.ammo_proj_bow)
+	self.dot_entries.poison.ammo_proj_arblast = clone(self.dot_entries.poison.ammo_proj_bow)
+	self.dot_entries.poison.ammo_proj_frankish = clone(self.dot_entries.poison.ammo_proj_bow)
+	self.dot_entries.poison.ammo_proj_long = clone(self.dot_entries.poison.ammo_proj_bow)
+	self.dot_entries.poison.ammo_proj_ecp = clone(self.dot_entries.poison.ammo_proj_bow)
+	self.dot_entries.poison.ammo_proj_elastic = clone(self.dot_entries.poison.ammo_proj_bow)
+	
 	self.dot_entries.poison.ammo_rip.dot_damage = 2
 	self.dot_entries.poison.ammo_rip.dot_length = 4
 	self.dot_entries.poison.ammo_rip.hurt_animation_chance = 0.1
@@ -46,7 +57,7 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.poison.proj_launcher_poison_heavy.dot_length = 8
 	self.dot_entries.poison.proj_launcher_poison_heavy.hurt_animation_chance = 0.15
 
-	self.dot_entries.poison.melee_piggy_hammer = deep_clone(self.dot_entries.poison.default_poison)
-	self.dot_entries.poison.melee_cqc = deep_clone(self.dot_entries.poison.default_poison)
+	self.dot_entries.poison.melee_cqc = deep_clone(self.dot_entries.poison.default_poison)	
 	self.dot_entries.poison.melee_fear = deep_clone(self.dot_entries.poison.default_poison)
+	self.dot_entries.poison.melee_piggy_hammer = deep_clone(self.dot_entries.poison.default_poison)
 end)

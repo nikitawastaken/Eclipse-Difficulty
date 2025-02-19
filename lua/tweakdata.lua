@@ -56,7 +56,7 @@ local function create_poison_arrow(base_arrow)
 	local poison_arrow = deep_clone(base_arrow)
 	local damage = poison_arrow.damage
 	poison_arrow.bullet_class = "PoisonBulletBase"
-	poison_arrow.damage = damage * 0.5
+	poison_arrow.damage = damage * 0.25
 	
 	return poison_arrow
 end
@@ -127,21 +127,17 @@ tweak_data.projectiles.long_arrow_exp = create_explosive_arrow(tweak_data.projec
 tweak_data.projectiles.elastic_arrow_exp = create_explosive_arrow(tweak_data.projectiles.elastic_arrow)
 
 tweak_data.projectiles.bow_arrow_poison = create_poison_arrow(tweak_data.projectiles.bow_arrow)
-tweak_data.projectiles.west_arrow_poison = create_poison_arrow(tweak_data.projectiles.west_arrow)
-tweak_data.projectiles.long_arrow_poison = create_poison_arrow(tweak_data.projectiles.long_arrow)
+tweak_data.projectiles.bow_poison_arrow = create_poison_arrow(tweak_data.projectiles.west_arrow)
+tweak_data.projectiles.long_poison_arrow = create_poison_arrow(tweak_data.projectiles.long_arrow)
 tweak_data.projectiles.elastic_arrow_poison = create_poison_arrow(tweak_data.projectiles.elastic_arrow)
 
 tweak_data.projectiles.crossbow_arrow = {
-	damage = 36,
+	damage = 24,
 	launch_speed = 2500,
 	adjust_z = 0,
 	mass_look_up_modifier = 1,
 	push_at_body_index = 0,
 }
-
-tweak_data.projectiles.hunter_arrow = deep_clone(tweak_data.projectiles.crossbow_arrow)
-tweak_data.projectiles.hunter_arrow.damage = 24
-tweak_data.projectiles.hunter_arrow.launch_speed = 2000
 
 tweak_data.projectiles.ecp_arrow = deep_clone(tweak_data.projectiles.crossbow_arrow)
 tweak_data.projectiles.ecp_arrow.damage = 24
@@ -154,16 +150,14 @@ tweak_data.projectiles.arblast_arrow.damage = 72
 tweak_data.projectiles.arblast_arrow.launch_speed = 3500
 
 tweak_data.projectiles.crossbow_arrow_exp = create_explosive_arrow(tweak_data.projectiles.crossbow_arrow)
-tweak_data.projectiles.hunter_arrow_exp = create_explosive_arrow(tweak_data.projectiles.hunter_arrow)
 tweak_data.projectiles.ecp_arrow_exp = create_explosive_arrow(tweak_data.projectiles.ecp_arrow)
 tweak_data.projectiles.frankish_arrow_exp = create_explosive_arrow(tweak_data.projectiles.frankish_arrow)
 tweak_data.projectiles.arblast_arrow_exp = create_explosive_arrow(tweak_data.projectiles.arblast_arrow)
 
-tweak_data.projectiles.crossbow_arrow_poison = create_poison_arrow(tweak_data.projectiles.crossbow_arrow)
-tweak_data.projectiles.hunter_arrow_poison = create_poison_arrow(tweak_data.projectiles.hunter_arrow)
+tweak_data.projectiles.crossbow_poison_arrow = create_poison_arrow(tweak_data.projectiles.crossbow_arrow)
 tweak_data.projectiles.ecp_arrow_poison = create_poison_arrow(tweak_data.projectiles.ecp_arrow)
-tweak_data.projectiles.frankish_arrow_poison = create_poison_arrow(tweak_data.projectiles.frankish_arrow)
-tweak_data.projectiles.arblast_arrow_poison = create_poison_arrow(tweak_data.projectiles.arblast_arrow)
+tweak_data.projectiles.frankish_poison_arrow = create_poison_arrow(tweak_data.projectiles.frankish_arrow)
+tweak_data.projectiles.arblast_poison_arrow = create_poison_arrow(tweak_data.projectiles.arblast_arrow)
 
 tweak_data.projectiles.frag = {
 	damage = 96,
