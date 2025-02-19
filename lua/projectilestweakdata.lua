@@ -21,4 +21,14 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	self.projectiles.molotov.max_amount = 3
 	self.projectiles.poison_gas_grenade.max_amount = 3
 	self.projectiles.wpn_gre_electric.max_amount = 3
+
+	self.projectiles.launcher_incendiary_m79 = deep_clone(self.projectiles.launcher_incendiary)
+	self.projectiles.launcher_incendiary_m79.weapon_id = "gre_m79"
+	
+	self.projectiles.launcher_electric_m79 = deep_clone(self.projectiles.launcher_electric)
+	self.projectiles.launcher_electric_m79.unit = "units/pd2_dlc_sawp/weapons/wpn_launcher_electric/wpn_launcher_electric_m32"
+	self.projectiles.launcher_electric_m79.weapon_id = "gre_m79"
+
+	self.projectiles.launcher_poison_m79 = deep_clone(self.projectiles.launcher_poison)
+	self.projectiles.launcher_poison_m79.weapon_id = "gre_m79"
 end

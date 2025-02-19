@@ -750,55 +750,55 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	local grenade_launcher_ammo_overrides = {
 		wpn_fps_upg_a_grenade_launcher_incendiary = {
 			heavy = {
-				stats = { damage = -36 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 			medium = {
-				stats = { damage = -30 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 			light = {
-				stats = { damage = -24 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 			default = {
-				stats = { damage = -30 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 		},
 		wpn_fps_upg_a_grenade_launcher_electric = {
 			heavy = {
-				stats = { damage = -36 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 			medium = {
-				stats = { damage = -30 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 			light = {
-				stats = { damage = -24 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 			default = {
-				stats = { damage = -30 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 		},
 		wpn_fps_upg_a_grenade_launcher_poison = {
 			heavy = {
-				stats = { damage = -54 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 			medium = {
-				stats = { damage = -45 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 			light = {
-				stats = { damage = -36 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 			default = {
-				stats = { damage = -45 },
+				stats = { damage = 0 },
 				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 		},
@@ -1084,9 +1084,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 0.8333333333333333, ammo_pickup_min_mul = 0.8333333333333333 }
 
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.extra_ammo = 0
-	self.parts.wpn_fps_smg_scorpion_m_extended.stats.recoil = 1
+	self.parts.wpn_fps_smg_scorpion_m_extended.stats.recoil = 0
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.concealment = -2
-	self.parts.wpn_fps_smg_scorpion_m_extended.stats.reload = 2
+	self.parts.wpn_fps_smg_scorpion_m_extended.custom_stats.reload_speed_multiplier = 1.2
 
 	self.parts.wpn_fps_smg_shepheard_mag_extended.unit = "units/pd2_dlc_joy/weapons/wpn_fps_smg_shepheard_pts/wpn_fps_smg_shepheard_mag_standard"
 	self.parts.wpn_fps_smg_shepheard_mag_extended.bullet_objects = { amount = 20, prefix = "g_bullet_" }
@@ -1107,8 +1107,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_sho_aa12_mag_drum.stats.extra_ammo = 6
 
-	self.parts.wpn_fps_shot_r870_body_rack.stats.reload = 3
 	self.parts.wpn_fps_shot_r870_body_rack.stats.concealment = -2
+	self.parts.wpn_fps_shot_r870_body_rack.custom_stats.reload_speed_multiplier = 1.2
+
 
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.extra_ammo = 0
 	self.parts.wpn_fps_shot_shorty_m_extended_short.custom_stats = { ammo_offset = 1 }
@@ -1228,7 +1229,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = -30
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -4
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 2
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.reload = -2
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = { fire_rate_multiplier = 1.5, ammo_pickup_min_mul = 3 / 2, ammo_pickup_max_mul = 3 / 2 }
 
@@ -1561,19 +1561,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		end
 	end
 
-	-- Arrows --
-
-	self.parts.wpn_fps_bow_frankish_m_explosive.stats.damage = 0
-	self.parts.wpn_fps_bow_frankish_m_poison.stats = { damage = -40 }
-	self.parts.wpn_fps_upg_a_crossbow_explosion.stats.damage = 0
-	self.parts.wpn_fps_upg_a_crossbow_poison.stats = { damage = -25 }
-	self.parts.wpn_fps_bow_ecp_m_arrows_explosive.stats.damage = 0
-	self.parts.wpn_fps_bow_ecp_m_arrows_poison.stats = { damage = -15 }
-	self.parts.wpn_fps_upg_a_bow_explosion.stats.damage = 0
-	self.parts.wpn_fps_upg_a_bow_poison.stats = { damage = -55 }
-	self.parts.wpn_fps_bow_arblast_m_explosive.stats.damage = 0 -- apparently none of this matters cause of some vanilla bs
-	self.parts.wpn_fps_bow_arblast_m_poison.stats = { damage = -20 } -- same thing
-
 	-- Flamethrower mods
 
 	self.parts.wpn_fps_fla_mk2_a_rare = {
@@ -1746,7 +1733,7 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 							local concealment_stat
 							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
-							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05), -0.25, 0.25)
+							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.25, 0.25)
 							concealment_stat = -math.clamp(math.round(capacity_increase / 25), -6, 6)
 							
 							part.stats.concealment = concealment_stat

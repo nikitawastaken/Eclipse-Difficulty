@@ -63,13 +63,6 @@ Hooks:PreHook(CopDamage, "_on_damage_received", "sh__on_damage_received", functi
 	self:build_suppression(4 * damage_info.damage / self._HEALTH_INIT, nil)
 end)
 
--- Give flamethrowers a damage multiplier against dozers
-Hooks:PreHook(CopDamage, "damage_fire", "eclipse_damage_fire", function(self, attack_data)
-	if self._unit:base()._tweak_table == "tank" then
-		attack_data.damage = attack_data.damage * 2.5
-	end
-end)
-
 -- Counter strike aced stuns dozers
 local mvec_1 = Vector3()
 local mvec_2 = Vector3()

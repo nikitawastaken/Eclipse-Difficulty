@@ -56,21 +56,26 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 
 	self.dot_entries.fire.proj_fire_com.dot_trigger_chance = 1
 
+	self.dot_entries.fire.proj_molotov.dot_damage = 4
 	self.dot_entries.fire.proj_molotov.dot_length = 6
 	self.dot_entries.fire.proj_molotov.is_molotov = true
 	self.dot_entries.fire.proj_molotov.dot_trigger_chance = trigger_chance_molotov
 
 	self.dot_entries.fire.proj_molotov_groundfire.is_molotov = true
 
-	self.dot_entries.fire.proj_launcher_incendiary.dot_length = 3
+	self.dot_entries.fire.proj_launcher_incendiary.dot_damage = 2
+	self.dot_entries.fire.proj_launcher_incendiary.dot_length = 4
 	self.dot_entries.fire.proj_launcher_incendiary.dot_trigger_chance = trigger_chance_molotov
 
 	self.dot_entries.fire.proj_launcher_incendiary_light = clone(self.dot_entries.fire.proj_launcher_incendiary)
-	self.dot_entries.fire.proj_launcher_incendiary_light.dot_length = 3
+	self.dot_entries.fire.proj_launcher_incendiary_light.dot_damage = 2
+	self.dot_entries.fire.proj_launcher_incendiary_light.dot_length = 4
 
 	self.dot_entries.fire.proj_launcher_incendiary_medium = clone(self.dot_entries.fire.proj_launcher_incendiary)
-	self.dot_entries.fire.proj_launcher_incendiary_medium.dot_length = 4
+	self.dot_entries.fire.proj_launcher_incendiary_medium.dot_damage = 3
+	self.dot_entries.fire.proj_launcher_incendiary_medium.dot_length = 5
 
 	self.dot_entries.fire.proj_launcher_incendiary_heavy = clone(self.dot_entries.fire.proj_launcher_incendiary)
-	self.dot_entries.fire.proj_launcher_incendiary_heavy.dot_length = 5
+	self.dot_entries.fire.proj_launcher_incendiary_heavy.dot_damage = 4
+	self.dot_entries.fire.proj_launcher_incendiary_heavy.dot_length = 6
 end)
