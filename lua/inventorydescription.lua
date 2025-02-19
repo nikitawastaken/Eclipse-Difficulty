@@ -214,3 +214,22 @@ function WeaponDescription._get_base_stats(name)
 	end
 	return result
 end
+
+local old_weapon_desc_mods_stats = WeaponDescription._get_mods_stats
+function WeaponDescription._get_mods_stats(name, base, mods, bonus)
+	local result = old_weapon_desc_mods_stats(name, base, mods, bonus)
+
+	if mods then
+		local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
+		local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
+
+		for _, mod in ipairs(mods) do
+			local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
+			if part_data and part_data.custom_stats and part_data.custom_stats.reload_speed_multiplier then
+				local multiplier_addend = base.reload.value - (base.reload.value * part_data.custom_stats.reload_speed_multiplier)
+				result.reload.value = result.reload.value + multiplier_addend
+			end
+		end
+	end
+	return result
+end
