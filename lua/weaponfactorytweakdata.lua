@@ -124,8 +124,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 			if is_magazine and id:match("_quick$") or id:match("_speed$") then
 				part.stats = {}
-				part.stats.reload = 2
 				part.stats.concealment = -1
+				part.custom_stats = { reload_speed_multiplier = 1.1 }
 			end
 
 			if id:match("_legend") and not is_silencer then
