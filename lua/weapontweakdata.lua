@@ -2446,7 +2446,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Pistol Crossbow
 	self.hunter.projectile_type = "hunter_arrow"
 	self.hunter.CLIP_AMMO_MAX = 1
-	self.hunter.stats.damage = 32
+	self.hunter.stats.damage = 24
 	self.hunter.stats.spread = 25
 	self.hunter.stats.recoil = 25
 	self.hunter.stats.concealment = 28
@@ -2456,7 +2456,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Light Crossbow
 	self.frankish.use_data.selection_index = 1
 	self.frankish.CLIP_AMMO_MAX = 1
-	self.frankish.stats.damage = 48
+	self.frankish.stats.damage = 32
 	self.frankish.stats.spread = 25
 	self.frankish.stats.recoil = 25
 	self.frankish.stats.concealment = 25
@@ -2465,7 +2465,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Heavy Crossbow
 	self.arblast.CLIP_AMMO_MAX = 1
-	self.arblast.stats.damage = 96
+	self.arblast.stats.damage = 48
 	self.arblast.stats.spread = 25
 	self.arblast.stats.recoil = 25
 	self.arblast.stats.concealment = 20
@@ -2474,7 +2474,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Plainsrider
 	self.plainsrider.CLIP_AMMO_MAX = 1
-	self.plainsrider.stats.damage = 48
+	self.plainsrider.stats.damage = 32
 	self.plainsrider.stats.spread = 25
 	self.plainsrider.stats.recoil = 25
 	self.plainsrider.stats.concealment = 24
@@ -2482,7 +2482,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.plainsrider.stats_modifiers = { damage = 10 }
 
 	self.long.CLIP_AMMO_MAX = 1
-	self.long.stats.damage = 96
+	self.long.stats.damage = 48
 	self.long.stats.spread = 25
 	self.long.stats.recoil = 25
 	self.long.stats.concealment = 22
@@ -2490,7 +2490,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.long.stats_modifiers = { damage = 10 }
 
 	self.elastic.CLIP_AMMO_MAX = 1
-	self.elastic.stats.damage = 96
+	self.elastic.stats.damage = 48
 	self.elastic.stats.spread = 25
 	self.elastic.stats.recoil = 25
 	self.elastic.stats.concealment = 22

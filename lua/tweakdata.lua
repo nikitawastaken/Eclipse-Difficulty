@@ -100,7 +100,7 @@ end
 
 -- Arrows
 tweak_data.projectiles.bow_arrow = {
-	damage = 48,
+	damage = 32,
 	launch_speed = 2500,
 	adjust_z = 0,
 	mass_look_up_modifier = 1,
@@ -108,16 +108,16 @@ tweak_data.projectiles.bow_arrow = {
 }
 
 tweak_data.projectiles.west_arrow = deep_clone(tweak_data.projectiles.bow_arrow)
-tweak_data.projectiles.west_arrow.damage = 48
+tweak_data.projectiles.west_arrow.damage = 32
 tweak_data.projectiles.west_arrow.name_id = "bm_west_arrow"
 
 tweak_data.projectiles.long_arrow = deep_clone(tweak_data.projectiles.bow_arrow)
-tweak_data.projectiles.long_arrow.damage = 72
+tweak_data.projectiles.long_arrow.damage = 48
 tweak_data.projectiles.long_arrow.launch_speed = 3500
 tweak_data.projectiles.long_arrow.adjust_z = -30
 
 tweak_data.projectiles.elastic_arrow = deep_clone(tweak_data.projectiles.bow_arrow)
-tweak_data.projectiles.elastic_arrow.damage = 72
+tweak_data.projectiles.elastic_arrow.damage = 48
 tweak_data.projectiles.elastic_arrow.launch_speed = 3500
 tweak_data.projectiles.elastic_arrow.adjust_z = -130
 
@@ -143,10 +143,10 @@ tweak_data.projectiles.ecp_arrow = deep_clone(tweak_data.projectiles.crossbow_ar
 tweak_data.projectiles.ecp_arrow.damage = 24
 
 tweak_data.projectiles.frankish_arrow = deep_clone(tweak_data.projectiles.crossbow_arrow)
-tweak_data.projectiles.frankish_arrow.damage = 36
+tweak_data.projectiles.frankish_arrow.damage = 32
 
 tweak_data.projectiles.arblast_arrow = deep_clone(tweak_data.projectiles.crossbow_arrow)
-tweak_data.projectiles.arblast_arrow.damage = 72
+tweak_data.projectiles.arblast_arrow.damage = 48
 tweak_data.projectiles.arblast_arrow.launch_speed = 3500
 
 tweak_data.projectiles.crossbow_arrow_exp = create_explosive_arrow(tweak_data.projectiles.crossbow_arrow)
