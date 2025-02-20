@@ -1186,14 +1186,18 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self._tactics = {
 		none = {},
 		cop_init = {
+			"rescue",
 			"no_push",
-		},
-		cop_def = {
 			"ranged_fire",
 		},
 		cop_snk = {
+			"flank",
+			"ranged_fire",
+		},
+		hrt = {
 			"rescue",
 			"flank",
+			"deathguard",
 		},
 		swat_init = {
 			"rescue",
@@ -1291,14 +1295,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 2,
 				unit = "CS_cop_1_4",
-				tactics = self._tactics.cop_def,
+				tactics = self._tactics.none,
 			},
 			{
 				amount_max = 1,
 				freq = 0.25,
 				rank = 1,
 				unit = "CS_cop_2",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.none,
 			},
 		},
 	}
@@ -1311,7 +1315,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 2,
 				unit = "CS_swat",
-				tactics = self._tactics.cop_def,
+				tactics = self._tactics.none,
 			},
 		},
 	}
@@ -1323,14 +1327,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq_by_diff = { 1.5, 1, 0.5 },
 				rank = 1,
 				unit = "CS_cop_1",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.hrt,
 			},
 			{
 				amount_max = 2,
 				freq = 1,
 				rank = 2,
 				unit = "CS_cop_3",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}
@@ -1342,7 +1346,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 1,
 				unit = "CS_swat",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}
@@ -1366,8 +1370,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 1,
 				freq_by_diff = { 
-					difficulty_index / 4, 
-					difficulty_index / 2, 
+					difficulty_index / 6, 
+					difficulty_index / 3, 
 					difficulty_index,  
 				},
 				rank = 2,
@@ -1526,7 +1530,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 2,
 				unit = "FBI_agent_1",
-				tactics = self._tactics.cop_def,
+				tactics = self._tactics.none,
 			},
 			{
 				amount_max = 2,
@@ -1537,7 +1541,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				},
 				rank = 1,
 				unit = "FBI_agent_2_3",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.none,
 			},
 		},
 	}
@@ -1549,7 +1553,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 2,
 				unit = "FBI_swat",
-				tactics = self._tactics.cop_def,	
+				tactics = self._tactics.none,	
 			},
 		}
 	}
@@ -1561,14 +1565,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq_by_diff = { 1.5, 1, 0.5 },
 				rank = 1,
 				unit = "FBI_agent_1_2",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.hrt,
 			},
 			{
 				amount_max = 2,
 				freq = 1,
 				rank = 2,
 				unit = "FBI_agent_2_3",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}
@@ -1580,7 +1584,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 1,
 				unit = "FBI_swat",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}
