@@ -508,6 +508,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.armor_piercing_chance = 1
 				weap_data.bow_reload_speed_multiplier = nil
 				weap_data.reload_speed_multiplier = 2
+				weap_data.steelsight_move_speed_mul = 0.5
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
@@ -2437,8 +2438,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ecp.use_data.selection_index = 1
 	self.ecp.CLIP_AMMO_MAX = 6
 	self.ecp.stats.damage = 24
-	self.ecp.stats.spread = 22
-	self.ecp.stats.recoil = 22
+	self.ecp.stats.spread = 21
+	self.ecp.stats.recoil = 25
 	self.ecp.stats.concealment = 20
 	self.ecp.fire_mode_data.fire_rate = 60 / 120
 	self.ecp.stats_modifiers = { damage = 10 }
@@ -2471,14 +2472,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arblast.stats.concealment = 20
 	self.arblast.fire_mode_data.fire_rate = 60 / 30
 	self.arblast.stats_modifiers = { damage = 10 }
-
+	self.arblast.reload_speed_multiplier = 1.3
+	
 	-- Plainsrider
 	self.plainsrider.CLIP_AMMO_MAX = 1
 	self.plainsrider.stats.damage = 32
 	self.plainsrider.stats.spread = 25
 	self.plainsrider.stats.recoil = 25
 	self.plainsrider.stats.concealment = 24
-	self.plainsrider.fire_mode_data.fire_rate = 60 / 60
+	self.plainsrider.fire_mode_data.fire_rate = 60 / 300
 	self.plainsrider.stats_modifiers = { damage = 10 }
 
 	self.long.CLIP_AMMO_MAX = 1
@@ -2486,7 +2488,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.long.stats.spread = 25
 	self.long.stats.recoil = 25
 	self.long.stats.concealment = 22
-	self.long.fire_mode_data.fire_rate = 60 / 30
+	self.long.fire_mode_data.fire_rate = 60 / 300
 	self.long.stats_modifiers = { damage = 10 }
 
 	self.elastic.CLIP_AMMO_MAX = 1
@@ -2494,7 +2496,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.elastic.stats.spread = 25
 	self.elastic.stats.recoil = 25
 	self.elastic.stats.concealment = 22
-	self.elastic.fire_mode_data.fire_rate = 60 / 30
+	self.elastic.fire_mode_data.fire_rate = 60 / 300
 	self.elastic.stats_modifiers = { damage = 10 }
 
 	-- Basilisk
