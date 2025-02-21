@@ -48,7 +48,7 @@ local function create_explosive_arrow(base_arrow)
 	explosive_arrow.bullet_class = "InstantExplosiveBulletBase"
 	explosive_arrow.damage = damage * 1.5
 	explosive_arrow.remove_on_impact = true
-	
+
 	return explosive_arrow
 end
 
@@ -57,7 +57,7 @@ local function create_poison_arrow(base_arrow)
 	local damage = poison_arrow.damage
 	poison_arrow.bullet_class = "PoisonBulletBase"
 	poison_arrow.damage = damage * 0.25
-	
+
 	return poison_arrow
 end
 
@@ -66,10 +66,10 @@ local function create_incendiary_grenade(base_grenade, class)
 	local damage = incendiary_grenade.damage
 	incendiary_grenade.dot_data_name = "proj_launcher_incendiary_" .. class
 	incendiary_grenade.burn_duration = math.max(1, damage / 12)
-	incendiary_grenade.damage = 0
+	incendiary_grenade.damage = base_grenade.damage * 0.5
 	incendiary_grenade.burn_tick_period = 0.25
 	incendiary_grenade.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
-	
+
 	return incendiary_grenade
 end
 
@@ -94,7 +94,7 @@ local function create_poison_grenade(base_grenade, class)
 	poison_grenade.poison_gas_fade_time = poison_grenade.poison_gas_duration * 0.2
 	poison_grenade.poison_gas_tick_time = 0.5
 	poison_grenade.projectile_trail = true
-	
+
 	return poison_grenade
 end
 

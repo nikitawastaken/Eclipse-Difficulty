@@ -219,7 +219,7 @@ local old_weapon_desc_mods_stats = WeaponDescription._get_mods_stats
 function WeaponDescription._get_mods_stats(name, base, mods, bonus)
 	local result = old_weapon_desc_mods_stats(name, base, mods, bonus)
 
-	if mods then
+	if base.reload and mods then
 		local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
 		local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
 
