@@ -1,12 +1,12 @@
 local spawn_1 = {
 	values = {
-		interval = 20
-	}
+		interval = 20,
+	},
 }
 local spawn_2 = {
 	values = {
-		interval = 30
-	}
+		interval = 30,
+	},
 }
 
 return {
@@ -14,13 +14,13 @@ return {
 	[100875] = {
 		ponr = {
 			length = 240,
-			player_mul = { 1.5, 1, 0.85, 0.75 }
+			player_mul = { 1.5, 1, 0.85, 0.75 },
 		},
 	},
 	[100877] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	-- Slow down all spawnpoints cause this is a very cramped map
 	[102664] = spawn_1,

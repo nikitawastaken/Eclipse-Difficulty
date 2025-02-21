@@ -58,12 +58,12 @@ local group_type_mapping = {
 	FBI_assault_taser = "taser_group",
 	Elite_assault_taser = "taser_group",
 	Zeal_assault_taser = "taser_group",
-	FBI_assault_cloaker = "cloaker_group", 
-	Zeal_assault_cloaker = "cloaker_group", 
-	single_spooc = "cloaker_group", 
-	CS_assault_bulldozer = "bulldozer_group", 
-	FBI_assault_bulldozer = "bulldozer_group", 
-	Elite_assault_bulldozer = "bulldozer_group", 
+	FBI_assault_cloaker = "cloaker_group",
+	Zeal_assault_cloaker = "cloaker_group",
+	single_spooc = "cloaker_group",
+	CS_assault_bulldozer = "bulldozer_group",
+	FBI_assault_bulldozer = "bulldozer_group",
+	Elite_assault_bulldozer = "bulldozer_group",
 }
 
 local function create_preferred(excluded_types)
@@ -75,26 +75,26 @@ local function create_preferred(excluded_types)
 			end
 		end
 	end
-	
+
 	return new_preferred
 end
 
 return {
 	all_groups = clone(default_preferred),
-	
-	no_cops = create_preferred( { "cop_group" } ),
-	
-	no_agents = create_preferred( { "agent_group" } ),
 
-	no_cops_agents = create_preferred( { "cop_group", "agent_group" } ),
-	
-	no_shields = create_preferred( { "shield_group" } ),
-	
-	no_bulldozers = create_preferred( { "bulldozer_group" } ),
-	
-	no_shields_bulldozers = create_preferred( { "shield_group", "bulldozer_group" } ),
+	no_cops = create_preferred({ "cop_group" }),
 
-	no_cops_agents_shields = create_preferred( { "cop_group", "agent_group", "shield_group" } ),
-	
-	no_cops_agents_shields_bulldozers = create_preferred( { "cop_group", "agent_group", "shield_group", "bulldozer_group" } ),
+	no_agents = create_preferred({ "agent_group" }),
+
+	no_cops_agents = create_preferred({ "cop_group", "agent_group" }),
+
+	no_shields = create_preferred({ "shield_group" }),
+
+	no_bulldozers = create_preferred({ "bulldozer_group" }),
+
+	no_shields_bulldozers = create_preferred({ "shield_group", "bulldozer_group" }),
+
+	no_cops_agents_shields = create_preferred({ "cop_group", "agent_group", "shield_group" }),
+
+	no_cops_agents_shields_bulldozers = create_preferred({ "cop_group", "agent_group", "shield_group", "bulldozer_group" }),
 }

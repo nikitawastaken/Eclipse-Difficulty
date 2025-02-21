@@ -1,12 +1,12 @@
 local preferred = Eclipse.preferred
 local jump_SO = {
-	pre_func = function (self)
+	pre_func = function(self)
 		if not self._values.SO_access_original then
 			self._values.SO_access_original = self._values.SO_access
 			self._values.SO_access = managers.navigation:convert_access_filter_to_number({ "swat", "taser", "spooc" })
 		end
-	end
-}	
+	end,
+}
 local stairs_spawn = {
 	values = {
 		interval = 10,
@@ -22,8 +22,8 @@ return {
 	-- delay SWAT response
 	[300203] = {
 		on_executed = {
-			{ id = 300164, delay = 45 }
-		}
+			{ id = 300164, delay = 45 },
+		},
 	},
 	-- spawn point delays
 	[300314] = stairs_spawn,
@@ -63,5 +63,5 @@ return {
 	[302070] = jump_SO,
 	[302071] = jump_SO,
 	[302072] = jump_SO,
-	[302073] = jump_SO
+	[302073] = jump_SO,
 }

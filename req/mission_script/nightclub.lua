@@ -1,19 +1,19 @@
 local preferred = Eclipse.preferred
 local flank_spawn = {
 	values = {
-		interval = 15
-	}
+		interval = 15,
+	},
 }
 local window_spawn = {
 	values = {
-		interval = 45
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local law_team = {
 	values = {
-		team = "law1"
-	}
+		team = "law1",
+	},
 }
 return {
 	[101169] = {
@@ -21,14 +21,14 @@ return {
 			{
 				name = "dance_floor",
 				force = 2,
-				position = Vector3(2400, -5600, -50)
+				position = Vector3(2400, -5600, -50),
 			},
 			{
 				name = "street",
 				force = 3,
-				position = Vector3(1400, -2900, 25)
+				position = Vector3(1400, -2900, 25),
 			},
-		}
+		},
 	},
 	-- spawn point delays
 	[101046] = flank_spawn,
@@ -36,7 +36,7 @@ return {
 	[100806] = flank_spawn,
 	[103174] = window_spawn,
 	[104731] = window_spawn,
-    -- Dimitri's men are friendly to cops
+	-- Dimitri's men are friendly to cops
 	[101858] = law_team,
 	[101865] = law_team,
 	[101927] = law_team,

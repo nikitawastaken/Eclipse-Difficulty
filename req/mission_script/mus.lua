@@ -1,12 +1,12 @@
 local preferred = Eclipse.preferred
 local disabled = {
 	values = {
-		enabled = false
+		enabled = false,
 	},
 }
 local enabled = {
 	values = {
-		enabled = true
+		enabled = true,
 	},
 }
 local window_spawn1 = {
@@ -21,8 +21,8 @@ local window_spawn2 = {
 return {
 	[100022] = {
 		on_executed = {
-			{ id = 100109, delay = 30 }
-		}
+			{ id = 100109, delay = 30 },
+		},
 	},
 	--spawn group delays
 	[102317] = disabled,

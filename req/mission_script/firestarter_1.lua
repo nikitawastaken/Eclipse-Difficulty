@@ -6,19 +6,19 @@ local heavy = scripted_enemy.heavy_swat_2
 local bulldozer = scripted_enemy.bulldozer_1
 local shield = scripted_enemy.shield
 
-local gangster_outside_amount = { 
+local gangster_outside_amount = {
 	values = {
 		amount = 3,
 		amount_random = 3,
 	},
 }
-local gangster_inside_amount = { 
+local gangster_inside_amount = {
 	values = {
 		amount = 2,
 		amount_random = 2,
 	},
 }
-local gangster_stationary_amount = { 
+local gangster_stationary_amount = {
 	values = {
 		amount = 3,
 		amount_random = 0,

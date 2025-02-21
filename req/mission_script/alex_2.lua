@@ -5,5 +5,5 @@ return {
 	},
 	[102793] = {
 		groups = preferred.no_cops_agents_shields,
-	}
+	},
 }

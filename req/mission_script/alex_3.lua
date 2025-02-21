@@ -1,7 +1,7 @@
 local gangster_team = {
 	values = {
-		team = "law1"
-	}
+		team = "law1",
+	},
 }
 return {
 	-- Set gangsters to law team (they are not supposed to shoot the cops)

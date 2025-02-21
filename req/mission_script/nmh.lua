@@ -1,8 +1,8 @@
 local preferred = Eclipse.preferred
 local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 local staircase_spawn = {
 	values = {
@@ -51,11 +51,11 @@ return {
 			{
 				name = "reception",
 				force = 3,
-				position = Vector3(700, 675, 0)
-			}
+				position = Vector3(700, 675, 0),
+			},
 		},
 		on_executed = {
-			{ id = 103700, delay = 0 } -- activate stair case spawns immediately
+			{ id = 103700, delay = 0 }, -- activate stair case spawns immediately
 		},
 	},
 	--diff 1, blow wall
@@ -74,14 +74,14 @@ return {
 			for _, u_data in pairs(managers.enemy:all_civilians()) do
 				u_data.unit:movement():set_cool(false)
 			end
-		end
+		end,
 	},
 	-- enable flashlights when power is cut
 	[103469] = {
 		flashlight = true,
 	},
 	[103470] = {
-		flashlight = false
+		flashlight = false,
 	},
 	-- disable most reinforce points
 	[103706] = disabled,

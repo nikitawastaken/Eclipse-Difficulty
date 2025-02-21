@@ -1,7 +1,7 @@
 local spawn_so = {
 	values = {
-		so_action = "e_nl_down_9_3m_rappel"
-	}
+		so_action = "e_nl_down_9_3m_rappel",
+	},
 }
 return {
 	-- Fix Prison Nightmare SO animations

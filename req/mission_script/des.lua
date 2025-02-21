@@ -1,48 +1,48 @@
 local weaponlab_spawn = {
 	values = {
-		interval = 20
-	}
+		interval = 20,
+	},
 }
 local computerlab_spawn_1 = {
 	values = {
-		interval = 20
-	}
+		interval = 20,
+	},
 }
 local intro_spawn = {
 	values = {
-		interval = 15
-	}
+		interval = 15,
+	},
 }
 local computerlab_spawn_2 = {
 	values = {
-		interval = 10
-	}
+		interval = 10,
+	},
 }
 local archeology_spawn = {
 	values = {
-		interval = 10
-	}
+		interval = 10,
+	},
 }
 
 return {
 	[100286] = {
 		reinforce = {
-			{ name = "main_hall" }
+			{ name = "main_hall" },
 		},
 		-- add point of no return
 		ponr = {
 			length = 300,
-			player_mul = { 1.6, 1.2, 1, 0.8 }
-		}
+			player_mul = { 1.6, 1.2, 1, 0.8 },
+		},
 	},
 	[100304] = {
 		reinforce = {
 			{
 				name = "main_hall",
 				force = 5,
-				position = Vector3(-120, -2400, 100)
-			}
-		}
+				position = Vector3(-120, -2400, 100),
+			},
+		},
 	},
 	-- slow down the spawnpoints in weaponlab
 	[107981] = weaponlab_spawn,

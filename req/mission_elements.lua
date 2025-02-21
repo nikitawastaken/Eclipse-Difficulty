@@ -22,7 +22,7 @@ return {
 				enabled = opts.enabled or false,
 				amount = opts.amount or 0,
 				interval = opts.interval or 5,
-			}
+			},
 		}
 	end,
 
@@ -53,7 +53,7 @@ return {
 				},
 				elements = elements,
 				interval = interval or 0,
-			}
+			},
 		}
 	end,
 
@@ -100,7 +100,7 @@ return {
 				on_executed = {},
 				interrupt_dis = opts.interrupt_dis or 1,
 				patrol_path = "none",
-			}
+			},
 		}
 	end,
 
@@ -118,8 +118,8 @@ return {
 				enabled = true,
 				wave_mode = opts.wave_mode or "none",
 				AI_event = opts.AI_event or "none",
-				blame = opts.blame or "empty"
-			}
+				blame = opts.blame or "empty",
+			},
 		}
 	end,
 
@@ -134,8 +134,8 @@ return {
 				base_delay = 0,
 				execute_on_startup = false,
 				enabled = true,
-				state = state or false
-			}
+				state = state or false,
+			},
 		}
 	end,
 
@@ -167,10 +167,10 @@ return {
 				instigator_name = "",
 				use_disabled_shapes = false,
 				substitute_object = "",
-			}
+			},
 		}
 	end,
-	
+
 	gen_dummytrigger = function(id, name, pos, rot, opts)
 		opts = opts or {}
 		return {
@@ -186,11 +186,11 @@ return {
 				position = pos,
 				rotation = rot,
 				enabled = true,
-				event = opts.event or "spawn"
+				event = opts.event or "spawn",
 			},
 		}
 	end,
-	
+
 	gen_missionscript = function(id, name, opts)
 		opts = opts or {}
 		return {
@@ -203,11 +203,11 @@ return {
 				trigger_times = opts.trigger_times or 0,
 				on_executed = opts.on_executed or {},
 				base_delay = opts.base_delay or 0,
-				enabled = opts.enabled or false
-			}
+				enabled = opts.enabled or false,
+			},
 		}
 	end,
-	
+
 	gen_toggleelement = function(id, name, opts)
 		opts = opts or {}
 		return {
@@ -223,11 +223,11 @@ return {
 				on_executed = opts.on_executed or {},
 				base_delay = opts.base_delay or 0,
 				enabled = opts.enabled or false,
-				toggle = opts.toggle or "on"
+				toggle = opts.toggle or "on",
 			},
 		}
 	end,
-	
+
 	gen_dialogue = function(id, name, opts)
 		opts = opts or {}
 		return {
@@ -245,11 +245,11 @@ return {
 				execute_on_executed_when_done = opts.execute_on_executed_when_done or false,
 				play_on_player_instigator_only = opts.play_on_player_instigator_only or false,
 				use_instigator = opts.use_instigator or false,
-				use_position = opts.use_position or false
-			}
+				use_position = opts.use_position or false,
+			},
 		}
 	end,
-	
+
 	gen_smokegrenade = function(id, name, pos, rot, opts)
 		opts = opts or {}
 		return {
@@ -267,11 +267,11 @@ return {
 				ignore_control = true,
 				immediate = true,
 				on_executed = opts.on_executed or {},
-				trigger_times = opts.trigger_times or 0
+				trigger_times = opts.trigger_times or 0,
 			},
 		}
 	end,
-	
+
 	gen_preferedadd = function(id, name, opts)
 		opts = opts or {}
 		return {
@@ -284,8 +284,8 @@ return {
 				trigger_times = opts.trigger_times or 0,
 				spawn_groups = opts.spawn_groups or {},
 				on_executed = opts.on_executed or {},
-				enabled = true
-			}
+				enabled = true,
+			},
 		}
 	end,
 }

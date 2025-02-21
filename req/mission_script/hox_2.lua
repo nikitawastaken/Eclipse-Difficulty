@@ -1,24 +1,24 @@
 local preferred = Eclipse.preferred
 local side_building1 = {
 	values = {
-		interval = 15
-	}
+		interval = 15,
+	},
 }
 local side_building2 = {
 	values = {
-		interval = 15
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields,
 }
 local side_building3 = {
 	values = {
-		interval = 25
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields,
 }
 local upper_floor = {
 	values = {
-		interval = 20
+		interval = 20,
 	},
 	groups = preferred.no_shields,
 }
@@ -29,19 +29,19 @@ local atrium_spawn = {
 }
 local archives_spawn = {
 	values = {
-		interval = 45
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- add ponr state
 	[102221] = {
-		set_ponr_state = true
+		set_ponr_state = true,
 	},
 	[101871] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	[101890] = {
 		values = {
@@ -50,11 +50,11 @@ return {
 				{ delay = 0, id = 102016 },
 				{ delay = 0, id = 102218 },
 				{ delay = 0, id = 101374 },
-				{ delay = 0, id = 102239  },
+				{ delay = 0, id = 102239 },
 				{ delay = 12, id = 102354 },
 				{ delay = 0, id = 100087 },
-			}
-		}
+			},
+		},
 	},
 	-- spawnpoint delays
 	[101662] = side_building1,
@@ -73,8 +73,8 @@ return {
 	[101682] = archives_spawn,
 	[101688] = {
 		values = {
-			interval = 25
+			interval = 25,
 		},
 		groups = preferred.no_cops_agents_shields_bulldozers,
-	}
+	},
 }

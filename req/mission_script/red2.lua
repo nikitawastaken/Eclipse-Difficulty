@@ -17,8 +17,8 @@ local vault_ambush_chance = 0.5
 
 local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 
 local vault_ambush_enemy = bulldozer
@@ -77,8 +77,8 @@ local vent_spawn = {
 
 local windows_swat = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 
 return {
@@ -88,18 +88,18 @@ return {
 			{
 				name = "lobby",
 				force = 3,
-				position = Vector3(-1800, 25, 0)
-			}
-		}
+				position = Vector3(-1800, 25, 0),
+			},
+		},
 	},
 	[101544] = {
 		reinforce = {
 			{
 				name = "matrix",
 				force = 2,
-				position = Vector3(1600, 1250, 0)
-			}
-		}
+				position = Vector3(1600, 1250, 0),
+			},
+		},
 	},
 	-- disable forced manager flee objective
 	[100665] = disabled,
@@ -107,44 +107,44 @@ return {
 	[105498] = disabled,
 	-- nuke swat van
 	[105921] = disabled,
-    -- disable sniper spawns that I don't like
+	-- disable sniper spawns that I don't like
 	[105826] = disabled,
 	[101619] = disabled,
 	--Let the cops finish their spawn anim before moving into SO spot
-	[103720] = { 
+	[103720] = {
 		on_executed = {
-			{ id = 104029, delay = 2.75 }
-		}
+			{ id = 104029, delay = 2.75 },
+		},
 	},
-	[103721] = { 
+	[103721] = {
 		on_executed = {
-			{ id = 104071, delay = 2.75 }
-		}
+			{ id = 104071, delay = 2.75 },
+		},
 	},
-	[103722] = { 
+	[103722] = {
 		on_executed = {
-			{ id = 105734, delay = 2.75 }
-		}
+			{ id = 105734, delay = 2.75 },
+		},
 	},
-	[103723] = { 
+	[103723] = {
 		on_executed = {
-			{ id = 105736, delay = 2.75 }
-		}
+			{ id = 105736, delay = 2.75 },
+		},
 	},
-	[103724] = { 
+	[103724] = {
 		on_executed = {
-			{ id = 100226, delay = 2.75 }
-		}
+			{ id = 100226, delay = 2.75 },
+		},
 	},
-	[103732] = { 
+	[103732] = {
 		on_executed = {
-			{ id = 100077, delay = 2.75 }
-		}
+			{ id = 100077, delay = 2.75 },
+		},
 	},
-	[103737] = { 
+	[103737] = {
 		on_executed = {
-			{ id = 105732, delay = 2.75 }
-		}
+			{ id = 105732, delay = 2.75 },
+		},
 	},
 	-- always force cloaker and taser to spawn like in PDTH
 	[100875] = windows_swat,
@@ -161,12 +161,12 @@ return {
 	[104169] = vault_ambush,
 	[100763] = vault_ambush,
 	[104000] = {
-		chance = 15 * diff_i
+		chance = 15 * diff_i,
 	},
 	[100225] = {
 		values = {
-			amount = vault_count
-		}
+			amount = vault_count,
+		},
 	},
 	[103999] = disabled,
 	[103985] = disabled,
@@ -176,7 +176,7 @@ return {
 	[101660] = {
 		ponr = {
 			length = 150,
-			player_mul = { 1.1, 0.9, 0.7, 0.5 }
+			player_mul = { 1.1, 0.9, 0.7, 0.5 },
 		},
 		on_executed = {
 			{ id = 400000, delay = 0 },
@@ -189,7 +189,7 @@ return {
 			{ id = 400007, delay = 7 },
 			{ id = 400027, delay = 8 },
 			{ id = 400028, delay = 9 },
-		}
+		},
 	},
 	-- two dozers spawn on e/pj when leaving vault
 	-- also two hallway escape shields on ovk+ (chance) and guaranteed on e/pj
@@ -198,41 +198,41 @@ return {
 			{ id = 400050, delay = 15 },
 			{ id = 400051, delay = 15 },
 			{ id = 400015, delay = 15 },
-			{ id = 400016, delay = 15 }
-		}
+			{ id = 400016, delay = 15 },
+		},
 	},
 	-- spawn two extra dozers on eclipse as a 193+ throwback
 	[100850] = {
 		on_executed = {
 			{ id = 400012, delay = 20 },
 			{ id = 400013, delay = 20 },
-			{ id = 101953, delay = 100 }
-		}
+			{ id = 101953, delay = 100 },
+		},
 	},
 	-- make this Bo Dozer use custom set up AI_Hunt
 	[105119] = {
 		on_executed = {
-			{ id = 400014, delay = 0 }
-		}
+			{ id = 400014, delay = 0 },
+		},
 	},
 	-- one extra Bo Dozer
 	[101953] = {
 		on_executed = {
-			{ id = 400011, delay = 1 }
-		}
+			{ id = 400011, delay = 1 },
+		},
 	},
 	-- killing Bo The Manager results of spawning two angry dozers
 	[100689] = {
 		on_executed = {
-			{ id = 100682, delay = 0 }
-		}
+			{ id = 100682, delay = 0 },
+		},
 	},
 	-- 2 blockade shields in vault area
 	[100635] = {
 		on_executed = {
 			{ id = 400023, delay = 0 },
-			{ id = 400024, delay = 0 }
-		}
+			{ id = 400024, delay = 0 },
+		},
 	},
 	-- rework the escape sequence scripted spawns
 	-- remove spawning the standard spawnpoint group and instead spawn 3 tasers+1 heavy swat as a 145+ throwback on hard and above as chance based event (it's guaranteed to spawn on eclipse)
@@ -246,8 +246,8 @@ return {
 			{ id = 400019, delay = 0 },
 			{ id = 400020, delay = 0 },
 			{ id = 400021, delay = 1, delay_rand = 1 },
-			{ id = 400022, delay = 1, delay_rand = 1 }
-		}
+			{ id = 400022, delay = 1, delay_rand = 1 },
+		},
 	},
 	-- disable a bunch of vanilla spawns i don't like
 	[103595] = disabled,
@@ -267,7 +267,7 @@ return {
 			{ id = 400043, delay = 0 },
 			{ id = 400044, delay = 0 },
 			{ id = 400045, delay = 0 },
-		}
+		},
 	},
 	-- make the rest of vanilla spawns turn into zeals on E/PJ
 	-- 2 shields at the bottom of the staircase
