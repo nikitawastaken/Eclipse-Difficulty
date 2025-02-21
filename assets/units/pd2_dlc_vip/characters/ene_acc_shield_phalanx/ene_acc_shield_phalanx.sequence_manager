@@ -183,25 +183,25 @@
 		
 		<!-- mother brains -->
 		<body name="'held_body_middle'">
-			<endurance damage="64" explosion="60">
+			<endurance damage="48" explosion="60">
 				<run_sequence name="'int_seq_shield_break'"/>
 			</endurance>
 		</body>
 		
 		<body name="'held_body_left'">
-			<endurance damage="16" explosion="15">
+			<endurance damage="12" explosion="15">
 				<run_sequence name="'int_seq_shield_break_l'"/>
 			</endurance>
 		</body>
 
 		<body name="'held_body_right'">
-			<endurance damage="16" explosion="15">
+			<endurance damage="12" explosion="15">
 				<run_sequence name="'int_seq_shield_break_r'"/>
 			</endurance>
 		</body>
 
 		<body name="'held_body_top'">
-			<endurance damage="16" explosion="15">
+			<endurance damage="12" explosion="15">
 				<run_sequence name="'int_seq_shield_break_top'"/>
 			</endurance>
 		</body>

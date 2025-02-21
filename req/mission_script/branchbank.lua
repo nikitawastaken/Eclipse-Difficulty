@@ -38,20 +38,20 @@ return {
     -- disable the dozer during startup
     [100004] = {
 		on_executed = {
-			{ id = 400004, delay = 3 }
-		}
+			{ id = 400004, delay = 3 },
+		},
 	},
     -- enable the dozer when things go loud
     [100568] = {
 		on_executed = {
-			{ id = 400003, delay = 0 }
-		}
+			{ id = 400003, delay = 0 },
+		},
 	},
     -- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
     [104452] = {
 		on_executed = {
 			{ id = 400001, delay = 0 }
-		}
+		},
 	},
 	-- special ambush chance increase
 	[103072] = {
@@ -59,6 +59,12 @@ return {
 	},
 	[105563] = player_1,
 	[105574] = player_1,
+	-- enable max diff after 2 instead of 3 assault waves
+	[101307] = {
+		values = {
+			amount = 2
+		}
+	},
 	-- enable spawns sooner
 	[103882] = {
 		on_executed = {
@@ -77,7 +83,7 @@ return {
 	[104324] = {
 		values = {
 			chance = 50,
-		}
+		},
 	},
 	[101930] = {
 		values = {
