@@ -1,4 +1,4 @@
-Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(self)	
+Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(self)
 	self.parts.wpn_fps_lmg_o_empty = {
 		a_obj = "a_body",
 		type = "bonus",
@@ -68,7 +68,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		if not part.custom_stats then
 			part.custom_stats = {}
 		end
-		
+
 		if table.contains(stat_blacklist, part.type) and not is_second_sight then
 			part.stats = {}
 			part.custom_stats = {}
@@ -941,11 +941,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_pis_c96_s_solid.stats.concealment = -3
 
 	self.parts.wpn_fps_pis_c96_m_extended.stats.extra_ammo = 5
-	
+
 	self.parts.wpn_fps_pis_g26_m_mag_33rnd = deep_clone(self.parts.wpn_fps_pis_g18c_m_mag_33rnd)
 	self.parts.wpn_fps_pis_g26_m_mag_33rnd.stats.extra_ammo = 0
 	self.parts.wpn_fps_pis_g26_m_mag_33rnd.custom_stats = { ammo_offset = 23 }
-		
+
 	self.parts.wpn_fps_pis_g26_m_contour.stats.recoil = 0
 
 	self.parts.wpn_fps_pis_hs2000_sl_custom.stats.spread = -1
@@ -1109,7 +1109,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_shot_r870_body_rack.stats.concealment = -2
 	self.parts.wpn_fps_shot_r870_body_rack.custom_stats.reload_speed_multiplier = 1.2
-
 
 	self.parts.wpn_fps_shot_shorty_m_extended_short.stats.extra_ammo = 0
 	self.parts.wpn_fps_shot_shorty_m_extended_short.custom_stats = { ammo_offset = 1 }
@@ -1299,7 +1298,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_hailstorm_conversion.stats.recoil = 2
 	self.parts.wpn_fps_hailstorm_conversion.stats.concealment = 0
 	self.parts.wpn_fps_hailstorm_conversion.custom_stats = { fire_rate_multiplier = 1500 / 2000 }
-	
+
 	-- Conversion kits and various barrels, family based modifications --
 
 	local dmr_stance_muls = {
@@ -1697,8 +1696,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	table.delete(self.wpn_fps_pis_g26.uses_parts, "wpn_fps_pis_g18c_m_mag_33rnd")
 	table.delete(self.wpn_fps_jowi.uses_parts, "wpn_fps_pis_g18c_m_mag_33rnd")
 	table.insert(self.wpn_fps_pis_g26.uses_parts, "wpn_fps_pis_g26_m_mag_33rnd")
-	table.insert(self.wpn_fps_jowi.uses_parts, "wpn_fps_pis_g26_m_mag_33rnd")	
-	
+	table.insert(self.wpn_fps_jowi.uses_parts, "wpn_fps_pis_g26_m_mag_33rnd")
+
 	table.delete(self.wpn_fps_ass_contraband.uses_parts, "wpn_fps_sho_sko12_body_grip")
 	table.delete(self.wpn_fps_ass_m16.uses_parts, "wpn_fps_uupg_fg_radian")
 
@@ -1715,13 +1714,13 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 		local factory_id = data.factory_id
 
 		local akimbo_mappings = tweak_data.weapon:get_akimbo_mappings()
-		
+
 		local weapon_tweak = tweak_data.weapon[weapon_id]
 		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
-		
+
 		local shotgun_reload = weapon_tweak and weapon_tweak.use_shotgun_reload or weapon_tweak and weapon_tweak.timers and weapon_tweak.timers.shotgun_reload_shell or nil
 		local mag_capacity = weapon_tweak and weapon_tweak.CLIP_AMMO_MAX / (is_akimbo and 2 or 1)
-		
+
 		for id, part in pairs(self.parts) do
 			if self[factory_id] and table.contains(self[factory_id].uses_parts, id) then
 				if part.stats then
@@ -1735,7 +1734,7 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
 							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.25, 0.25)
 							concealment_stat = -math.clamp(math.round(capacity_increase / 25), -6, 6)
-							
+
 							part.stats.concealment = concealment_stat
 							part.custom_stats.reload_speed_multiplier = shotgun_reload and 1 or reload_speed_stat
 						end

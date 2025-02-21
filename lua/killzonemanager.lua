@@ -3,7 +3,7 @@ function KillzoneManager:_deal_gas_damage(unit)
 		variant = "teargas",
 		damage = 3,
 		col_ray = {
-			ray = math.UP
-		}
+			ray = math.UP,
+		},
 	})
 end

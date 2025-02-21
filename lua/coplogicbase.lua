@@ -452,7 +452,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			end
 		end,
 
-		not_assault = function (not_assault_surrender)
+		not_assault = function(not_assault_surrender)
 			if not managers.groupai:state():get_assault_mode() then
 				hold_chance = hold_chance * (1 - not_assault_surrender)
 			end

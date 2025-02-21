@@ -3,7 +3,7 @@
 -- Increasing the health granularity makes damage dealt more accurate to the actual weapon damage stats
 CopDamage._HEALTH_GRANULARITY = 8192
 
-Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", function (self)
+Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", function(self)
 	local is_moving = self._unit:anim_data().move
 	local is_running = is_moving and self._unit:anim_data().run
 	local is_walking = is_moving and not is_running

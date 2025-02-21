@@ -69,8 +69,8 @@ function QuickCsGrenade:_do_damage()
 		variant = "teargas",
 		damage = self._damage_per_tick,
 		col_ray = {
-			ray = math.UP
-		}
+			ray = math.UP,
+		},
 	})
 
 	if not self._has_played_VO then
@@ -78,4 +78,3 @@ function QuickCsGrenade:_do_damage()
 		self._has_played_VO = true
 	end
 end
-
