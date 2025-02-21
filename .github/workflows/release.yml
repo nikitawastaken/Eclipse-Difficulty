@@ -13,7 +13,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
-          args: --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- lua
+          args: --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- .
       - uses: EndBug/add-and-commit@v9
         with:
           add: "*.lua"
