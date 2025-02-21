@@ -26,8 +26,8 @@ local roof_spawn = {
 	},
 }
 return {
---enables/disables NPCs flashlights when the power is off/on like in PDTH
-[100756] = {
+    --enables/disables NPCs flashlights when the power is off/on like in PDTH
+    [100756] = {
 		flashlight = true
 	},
 	[101801] = {
@@ -51,11 +51,10 @@ return {
 			{ id = 101608, remove = true }
 		}
 	},
-	-- Bain warns about incoming dozers from the chopper
+	-- remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
 	[103295] = {
 		on_executed = {
-			{ id = 102950, remove = true },
-			{ id = 400001, delay = 16 }
+			{ id = 102950, remove = true }
 		}
 	},
 	-- unused snipers
