@@ -1,3 +1,5 @@
+HuskCopBase._run_unit_sequences = CopBase._run_unit_sequences
+
 -- disable leg hitboxes for shields
 HuskCopBase.shield_tweak_names = {
 	shield = true,
