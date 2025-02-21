@@ -21,13 +21,6 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	end
 end)
 
--- Check for weapon changes
-CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
-
-if Network:is_client() then
-	return
-end
-
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
 local unit_sequence_mapping = {}
 
@@ -35,6 +28,8 @@ for name, sequence in pairs(unit_sequence_mapping_clean) do
 	unit_sequence_mapping[Idstring(name):key()] = sequence
 	unit_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
 end
+
+CopBase.unit_sequence_mapping = clone(unit_sequence_mapping)
 
 function CopBase:_run_unit_sequences()
 	local name = self._unit:name():key()
@@ -48,7 +43,7 @@ function CopBase:_run_unit_sequences()
 		end
 	end
 
-	local unit_sequence = unit_sequence_mapping[name]
+	local unit_sequence = self.unit_sequence_mapping[name]
 	
 	-- Run the initial sequence to enable pouches, helmets etc.
 	if unit_sequence then
@@ -85,13 +80,18 @@ function CopBase:_run_unit_sequences()
 	end
 end
 
+-- Check for weapon changes
+CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
+
+if Network:is_client() then
+	return
+end
+
 -- Check for weapon changes and run unti sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
 	
-	local name = self._unit:name():key()
-
-	local unit_weapon = self.unit_weapon_mapping[name]
+	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
 
 	local mapping_type = type(unit_weapon)
 	if mapping_type == "table" then
