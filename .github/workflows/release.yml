@@ -16,7 +16,7 @@ jobs:
           args: --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- lua
       - uses: EndBug/add-and-commit@v9
         with:
-          add: "lua/*"
+          add: "*.lua"
           committer_name: GitHub Actions
           committer_email: actions@github.com
           message: Code formatting
