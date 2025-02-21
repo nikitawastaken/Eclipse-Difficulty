@@ -36,12 +36,12 @@ for name, sequence in pairs(unit_sequence_mapping_clean) do
 	unit_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
 end
 
--- Check for weapon changes
-Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
+function CopBase:_run_unit_sequences()
 	local name = self._unit:name():key()
-	
+
 	local light_sequence = "enable_light"
 
+	-- Enable a flashlight if the level has flashlights enabled
 	if managers.game_play_central and managers.game_play_central:flashlights_on() then
 		if self._unit:damage():has_sequence(light_sequence) then
 			self._unit:damage():run_sequence_simple(light_sequence)
@@ -50,6 +50,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 
 	local unit_sequence = unit_sequence_mapping[name]
 	
+	-- Run the initial sequence to enable pouches, helmets etc.
 	if unit_sequence then
 		if self._unit:damage() then	
 			if self._unit:damage():has_sequence(unit_sequence) then
@@ -61,7 +62,8 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 
 		local damage_ext = self._unit:character_damage()
 		local head = damage_ext._head
-		
+			
+		-- If the unit had a head defined in its .unit file, spawn and parent it 
 		if spawn_manager_ext then	
 			if head then	
 				managers.dyn_resource:load(Idstring("unit"), Idstring(head), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
@@ -72,6 +74,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 			end
 		end
 		
+		-- If the head's sequence manager supports the parent unit, run its initial sequence
 		if alive(self._head_unit) then		
 			self._head_unit:set_enabled(self._unit:enabled())
 			
@@ -80,7 +83,14 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 			end
 		end
 	end
+end
+
+-- Check for weapon changes and run unti sequences
+Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
+	self:_run_unit_sequences()
 	
+	local name = self._unit:name():key()
+
 	local unit_weapon = self.unit_weapon_mapping[name]
 
 	local mapping_type = type(unit_weapon)

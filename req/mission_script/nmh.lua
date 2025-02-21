@@ -27,6 +27,7 @@ return {
 			{ id = 103225, delay = 20 },
 		},
 	},
+	--[[
 	[103704] = { -- remove the stair case spawn from initial preferred randomisation
 		pre_func = function(self)
 			local groups = self._group_data.spawn_groups
@@ -44,6 +45,7 @@ return {
 			end
 		end
 	},
+	]]
 	[103225] = {
 		reinforce = {
 			{
