@@ -50,8 +50,8 @@ return {
 	},
 	[100521] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	-- delay SWAT response
 	[101591] = {
@@ -66,32 +66,32 @@ return {
 		},
 	},
 	-- new reinforce
-	[100529] = { 
+	[100529] = {
 		reinforce = {
 			{
 				name = "street",
 				force = 5,
-				position = Vector3(-1200, -14500, 5800)
+				position = Vector3(-1200, -14500, 5800),
 			},
 		},
 	},
-	[103543] = { 
+	[103543] = {
 		reinforce = {
 			{ name = "street" },
 			{
 				name = "construct",
 				force = 5,
-				position = Vector3(-1200, -21500, 5800)
+				position = Vector3(-1200, -21500, 5800),
 			},
-		}
+		},
 	},
-	[102323] = { 
+	[102323] = {
 		reinforce = {
-			{ name = "construct" }
+			{ name = "construct" },
 		},
 	},
 	-- disable the entire attack heli
-	[100657] = { 
+	[100657] = {
 		values = {
 			enabled = false,
 		},
@@ -134,7 +134,7 @@ return {
 	-- sawing section preferreds
 	[101176] = {
 		values = {
-			spawn_groups = { 
+			spawn_groups = {
 				101250, -- 5s
 				400015, -- 5s
 				101159, -- 30s
@@ -147,7 +147,7 @@ return {
 	-- scaffolding section preferreds
 	[101238] = {
 		values = {
-			spawn_groups = { 
+			spawn_groups = {
 				101251, -- 5s,
 				101252, -- 5s,
 				101847, -- 15s,
@@ -164,7 +164,7 @@ return {
 	-- escape section preferreds
 	[101239] = {
 		values = {
-			spawn_groups = { 
+			spawn_groups = {
 				400015, -- 15s,
 				101250, -- 15s,
 				101255, -- 15s,
