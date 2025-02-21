@@ -367,4 +367,57 @@ function M.gen_preferedadd(id, name, opts)
 	return preferedadd
 end
 
+---Generate a counter element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param opts? table: extra parameters
+function M.gen_counter(id, name, opts)
+	opts = opts or {}
+	local counter = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementCounter",
+		class = "ElementCounter",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			on_executed = opts.on_executed or {},
+			trigger_times = opts.trigger_times or 0,
+			counter_target = opts.counter_target or 0,
+			enabled = opts.enabled or true,
+			base_delay = opts.base_delay or 0,
+			digital_gui_unit_ids = opts.digital_gui_unit_ids or {},
+		},
+	}
+
+	return counter
+end
+
+---Generate a global event element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_global_event(id, name, pos, rot, opts)
+	opts = opts or {}
+	local global_event = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementGlobalEventTrigger",
+		class = "ElementGlobalEventTrigger",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			global_event = opts.global_event or "",
+			on_executed = opts.on_executed or {},
+			trigger_times = opts.trigger_times or 0,
+			enabled = opts.enabled or true,
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+		},
+	}
+
+	return global_event
+end
+
 return M
