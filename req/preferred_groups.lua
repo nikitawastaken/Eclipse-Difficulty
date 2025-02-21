@@ -92,6 +92,6 @@ M.no_bulldozers = create_preferred({ "bulldozer_group" })
 M.no_shields_bulldozers = create_preferred({ "shield_group", "bulldozer_group" })
 M.no_cops_agents_shields = create_preferred({ "cop_group", "agent_group", "shield_group" })
 M.no_cops_agents_shields_bulldozers = create_preferred({ "cop_group", "agent_group", "shield_group", "bulldozer_group" })
+M.no_cops_agents_bulldozers = create_preferred({ "cop_group", "agent_group", "bulldozer_group" })
 
 return M
-

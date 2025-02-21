@@ -315,6 +315,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400007, "cloaker_7", Vector3(-6531, -291, 1175.010), Rotation(-90, 0, -0), optsCloaker),
 	Eclipse.mission_elements.gen_dummy(400008, "cloaker_8", Vector3(-6531, -196, 1175.010), Rotation(-90, 0, -0), optsCloaker),
 	Eclipse.mission_elements.gen_dummy(400009, "cloaker_9", Vector3(-6531, -116, 1175.010), Rotation(-90, 0, -0), optsCloaker),
+
 	--Ambush Units
 	--Snipers
 	Eclipse.mission_elements.gen_dummy(400010, "sniper_ambush_1", Vector3(-5217, -4047, 50), Rotation(0, 0, -0), optsSniperAmbush_1),
@@ -325,14 +326,18 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400015, "sniper_ambush_so_2", Vector3(-2837, -4052, 50), Rotation(90, -0, -0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400016, "sniper_ambush_so_3", Vector3(-2633.425, -5111.369, 51), Rotation(35, -0, -0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400017, "sniper_ambush_so_4", Vector3(-3976, -5087, 50), Rotation(-25, 0, -0), optsDefend_and_Sniper_SO),
+
 	--Cloakers
 	Eclipse.mission_elements.gen_dummy(400018, "kiryu_kazuma", Vector3(-1424, -4215, 50), Rotation(0, 0, -0), optsCloaker_Ambush),
 	Eclipse.mission_elements.gen_dummy(400019, "majima_goro", Vector3(-1424, -4988, 50), Rotation(-180, 0, -0), optsCloaker_Ambush),
+
 	--Tasers
 	Eclipse.mission_elements.gen_dummy(400020, "taser_ambush_1", Vector3(-5175, -4990, 50), Rotation(180, 0, -0), optsTaser_Ambush),
 	Eclipse.mission_elements.gen_dummy(400021, "taser_ambush_2", Vector3(-5171, -4210, 50), Rotation(0, 0, -0), optsTaser_Ambush),
+
 	--Dozer
 	Eclipse.mission_elements.gen_dummy(400022, "dozer_ambush_1", Vector3(-1425, -5148, 50), Rotation(180, 0, -0), optsBulldozer_Ambush),
+
 	--SWAT
 	Eclipse.mission_elements.gen_dummy(400023, "swat_ambush_1", Vector3(-1368, -4156, 50), Rotation(0, 0, -0), optsSWAT_Rifle),
 	Eclipse.mission_elements.gen_dummy(400024, "swat_ambush_2", Vector3(-1428, -4156, 50), Rotation(0, 0, -0), optsSWAT_Rifle),
@@ -371,13 +376,16 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400056, "taser_blockade_so_2", Vector3(-5886, -4567, 954.429), Rotation(180, 0, -0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400057, "shield_blockade_so_3", Vector3(-5913, -4815, 828.259), Rotation(180, 0, -0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400058, "shield_blockade_so_4", Vector3(-5828, -4812, 829.808), Rotation(180, 0, -0), optsDefend_and_Sniper_SO),
+
 	--Escape Sniper
 	Eclipse.mission_elements.gen_dummy(400059, "sniper_escape", Vector3(-6505, -3991, 1175), Rotation(-90, 0, -0), optsSniper_escape),
 	Eclipse.mission_elements.gen_so(400060, "sniper_escape_so", Vector3(-5656, -2866, 1384.381), Rotation(-90, 0, -0), optsDefend_and_Sniper_SO),
+
 	--Elevator spawns
 	Eclipse.mission_elements.gen_dummy(400061, "dozer_elevator_1", Vector3(-2350, -3627, 375), Rotation(90, -0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_dummy(400062, "taser_elevator_1", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsTaser),
 	Eclipse.mission_elements.gen_dummy(400063, "taser_elevator_2", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsTaser),
+
 	--Respawns
 	Eclipse.mission_elements.gen_dummytrigger(400064, "respawn_taser_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_taser_1),
 	Eclipse.mission_elements.gen_dummytrigger(400065, "respawn_taser_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_taser_2),
@@ -385,6 +393,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400083, "respawn_shield_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_shield_2),
 	Eclipse.mission_elements.gen_dummytrigger(400084, "respawn_shield_3", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_shield_3),
 	Eclipse.mission_elements.gen_dummytrigger(400085, "respawn_shield_4", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_shield_4),
+
 	--Helipad blockade
 	Eclipse.mission_elements.gen_dummy(400066, "dozer_helipad_1", Vector3(-6327, -1493, 1175), Rotation(0, 0, -0), optsBulldozer_helipad),
 	Eclipse.mission_elements.gen_dummy(400067, "shield_helipad_1", Vector3(-6333, -1457, 1175), Rotation(0, 0, -0), optsShield_helipad_1),

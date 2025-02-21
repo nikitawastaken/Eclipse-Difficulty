@@ -299,12 +299,15 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400012, "swat_heavy_11", Vector3(1964, 2734, -24.825), Rotation(-180, 0, -0), optsSWAT_Heavy145),
 	Eclipse.mission_elements.gen_dummy(400013, "swat_heavy_12", Vector3(2017, 2734, -24.825), Rotation(-180, 0, -0), optsSWAT_Heavy145),
 	Eclipse.mission_elements.gen_so(400014, "global_hunt_so", Vector3(3600, 2473, -1200), Rotation(0, 0, 0), optsShare_AIHunt),
+
 	--Scripted Dozer
 	Eclipse.mission_elements.gen_dummy(400015, "bulldozer", Vector3(-2228, -3266, -25), Rotation(90, -0, -0), optsBulldozer),
+
 	--Scripted Tasers
 	Eclipse.mission_elements.gen_dummy(400017, "taser_1", Vector3(372, 1302, 1674.944), Rotation(90, -0, -0), optsTaser),
 	Eclipse.mission_elements.gen_dummy(400018, "taser_2", Vector3(372, 163, 1674.944), Rotation(90, -0, -0), optsTaser),
 	Eclipse.mission_elements.gen_missionscript(400020, "go_hard_with_tasers", spawn_tasers),
+
 	--Annoying little shits that like to stall Alex.....i mean Bile
 	Eclipse.mission_elements.gen_dummy(400021, "swat_rooftop_1", Vector3(-1855, 3449, 1931.656), Rotation(90, -0, -0), optsSWAT_Rooftop_1),
 	Eclipse.mission_elements.gen_dummy(400022, "swat_rooftop_2", Vector3(-4081, 1580, 1937.656), Rotation(180, 0, -0), optsSWAT_Rooftop_2),
@@ -313,12 +316,14 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400025, "annoying_Heavy_SWAT", spawn_rooftopSWAT),
 	Eclipse.mission_elements.gen_dummytrigger(400026, "respawn_swat_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_swat_1),
 	Eclipse.mission_elements.gen_dummytrigger(400027, "respawn_swat_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_swat_2),
+
 	--Heli squad tweak to resemble more from PDTH
 	Eclipse.mission_elements.gen_dummy(400028, "swat_1", Vector3(-1339.660, 875.868, 1675), Rotation(73, -0, -0), optsSWAT_HeavyChopper_2),
 	Eclipse.mission_elements.gen_dummy(400029, "swat_2", Vector3(-920.705, 850.572, 1675), Rotation(-80, -0, -0), optsSWAT_HeavyChopper_1),
 	Eclipse.mission_elements.gen_dummy(400030, "taser", Vector3(-1377.150, 807.061, 1675), Rotation(97, -0, -0), optsTaserChopper),
 	Eclipse.mission_elements.gen_dummy(400031, "bulldozer", Vector3(-936.857, 821.147, 1675), Rotation(-80, 0, -0), optsBulldozerchopper),
 	Eclipse.mission_elements.gen_missionscript(400032, "spawn_the_squad", spawn_SWATsquad),
+
 	--Cloakers that spawn on the ruff
 	Eclipse.mission_elements.gen_dummy(400033, "cloaker_1", Vector3(188.860, 3694.086, 1931.656), Rotation(90, -0, -0), optsCloaker),
 	Eclipse.mission_elements.gen_dummy(400034, "cloaker_2", Vector3(124.860, 3694.086, 1931.656), Rotation(90, -0, -0), optsCloaker),
@@ -326,9 +331,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400037, "spawn_cloakers", spawn_cloakers),
 	Eclipse.mission_elements.gen_toggleelement(400038, "enable_cloakers", enable_cloakers),
 	Eclipse.mission_elements.gen_toggleelement(400039, "disable_cloakers", disable_cloakers),
+
 	--Dozer that spawns at the end of the heist like in PDTH
 	Eclipse.mission_elements.gen_dummy(400040, "bulldozer", Vector3(1916, 2375, -24.825), Rotation(180, 0, -0), optsBulldozerscripted),
 	Eclipse.mission_elements.gen_so(400041, "dozer_defend_so", Vector3(11, 1132, 53.185), Rotation(180, 0, -0), optsAI_Defend),
+
 	--These Shields spawn when you plant the last C4
 	Eclipse.mission_elements.gen_missionscript(400043, "spawn_defend_shields", spawn_Shields),
 	Eclipse.mission_elements.gen_dummy(400044, "shield_1", Vector3(-889.027, 18.536, 700.001), Rotation(-90, 0, -0), optsShield_1),
@@ -343,6 +350,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400053, "shield_defend_so_4", Vector3(-684, 1663, 746.988), Rotation(90, -0, -0), optsShield_Defend_SO),
 	Eclipse.mission_elements.gen_so(400054, "shield_defend_so_5", Vector3(-1470, 1486, 375.600), Rotation(0, 0, -0), optsShield_Defend_SO),
 	Eclipse.mission_elements.gen_so(400055, "shield_defend_so_6", Vector3(-289, 1521, 375.600), Rotation(0, 0, -0), optsShield_Defend_SO),
+
 	--Block the roof access (from PDTH)
 	Eclipse.mission_elements.gen_missionscript(400064, "roof_access_blockade_random", Roof_access_block),
 	Eclipse.mission_elements.gen_toggleelement(400065, "disable_open_roof_access", disable_open_roof_access),

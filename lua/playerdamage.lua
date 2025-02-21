@@ -19,7 +19,7 @@ function PlayerDamage:set_regenerate_timer_to_max()
 end
 
 -- Aimpunch
-Hooks:PreHook(PlayerDamage, "damage_bullet", "eclipse_damage_bullet", function (self, attack_data)
+Hooks:PreHook(PlayerDamage, "damage_bullet", "eclipse_damage_bullet", function(self, attack_data)
 	if not attack_data or not attack_data.damage then
 		return
 	end
@@ -168,8 +168,8 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	local damage_info = {
 		result = {
 			variant = "killzone",
-			type = "hurt"
-		}
+			type = "hurt",
+		},
 	}
 
 	if self._god_mode or self._invulnerable or self._mission_damage_blockers.invulnerable then

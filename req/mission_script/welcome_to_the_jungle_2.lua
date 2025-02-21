@@ -3,7 +3,7 @@ return {
 	[100313] = {
 		values = {
 			base_delay = 30,
-			base_delay_rand = 30
-		}
-	}
+			base_delay_rand = 30,
+		},
+	},
 }

@@ -1,7 +1,7 @@
 local sniper_trigger_times = {
 	values = {
-        trigger_times = 0
-	}
+		trigger_times = 0,
+	},
 }
 return {
 	-- fix snipers being able to spawn only once

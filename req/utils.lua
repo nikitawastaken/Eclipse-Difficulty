@@ -57,4 +57,3 @@ function M.diff_groups()
 end
 
 return M
-

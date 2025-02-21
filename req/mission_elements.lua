@@ -35,7 +35,6 @@ function M.gen_dummy(id, name, pos, rot, opts)
 
 	return dummy
 end
-
 ---Generate a spawngroup element, used to organize dummys
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference

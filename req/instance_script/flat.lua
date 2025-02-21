@@ -23,4 +23,3 @@ M["levels/instances/shared/harasser/world/world"] = function(result)
 end
 
 return M
-

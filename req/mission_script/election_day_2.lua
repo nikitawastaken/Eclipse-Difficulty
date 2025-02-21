@@ -18,10 +18,10 @@ return {
 	-- Fix harasser respawn delay
 	[102807] = {
 		on_executed = {
-			{ id = 102804, delay = 30 }
-		}
+			{ id = 102804, delay = 30 },
+		},
 	},
-    -- slow down some repel spawnpoints
+	-- slow down some repel spawnpoints
 	[100147] = rappel_spawn,
 	[100145] = rappel_spawn,
 	[100132] = rappel_spawn,

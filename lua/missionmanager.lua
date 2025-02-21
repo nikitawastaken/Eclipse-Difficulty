@@ -151,7 +151,7 @@ MissionManager.mission_script_patch_funcs = {
 	modify_list_value = function(self, element, data)
 		for k, v in pairs(data) do
 			if type(element._values[k]) ~= "table" then
-				Eclipse:log("warn", "Invalid modify list value name \"%s\" on element \"%s\" (%s)!", k, element:editor_name(), element:id())
+				Eclipse:log("warn", 'Invalid modify list value name "%s" on element "%s" (%s)!', k, element:editor_name(), element:id())
 			else
 				for id, enabled in pairs(v) do
 					if enabled then

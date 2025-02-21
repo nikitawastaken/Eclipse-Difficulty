@@ -4,53 +4,53 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local player_1 = {
 	values = {
-		player_1 = true
-	}
+		player_1 = true,
+	},
 }
 local tear_gas_amount = {
 	values = {
-		amount = normal and 2 or hard and 3 or 4
-	}
+		amount = normal and 2 or hard and 3 or 4,
+	},
 }
 local gate_chance = {
 	values = {
-		chance = normal and 25 or hard and 50 or 75
-	}
+		chance = normal and 25 or hard and 50 or 75,
+	},
 }
 local reinforce = {
 	on_executed = {
-		{ id = 100364, delay = 0 }
-	}
+		{ id = 100364, delay = 0 },
+	},
 }
-local reinforce_amount = {  
+local reinforce_amount = {
 	values = {
-		amount = 3
-	}
+		amount = 3,
+	},
 }
 local enabled = {
 	values = {
-		enabled = true
-	}
+		enabled = true,
+	},
 }
 local ambush_chance = (is_pro_job and 1.25 or 1) * (diff_i - 2) * 15
 return {
-    -- DW Trailer Skulldozer spawn event
-    -- disable the dozer during startup
-    [100004] = {
+	-- DW Trailer Skulldozer spawn event
+	-- disable the dozer during startup
+	[100004] = {
 		on_executed = {
 			{ id = 400004, delay = 3 },
 		},
 	},
-    -- enable the dozer when things go loud
-    [100568] = {
+	-- enable the dozer when things go loud
+	[100568] = {
 		on_executed = {
 			{ id = 400003, delay = 0 },
 		},
 	},
-    -- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
-    [104452] = {
+	-- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
+	[104452] = {
 		on_executed = {
-			{ id = 400001, delay = 0 }
+			{ id = 400001, delay = 0 },
 		},
 	},
 	-- special ambush chance increase
@@ -62,8 +62,8 @@ return {
 	-- enable max diff after 2 instead of 3 assault waves
 	[101307] = {
 		values = {
-			amount = 2
-		}
+			amount = 2,
+		},
 	},
 	-- enable spawns sooner
 	[103882] = {
@@ -99,10 +99,10 @@ return {
 	[103879] = {
 		values = {
 			amount = normal and 1 or 2,
-		}
+		},
 	},
 	-- sniper amount
-	[101200] = { 
+	[101200] = {
 		values = {
 			amount = normal and 1 or hard and 2 or 3,
 		},
@@ -133,5 +133,5 @@ return {
 			interval = 30,
 		},
 		groups = preferred.no_cops_agents_shields,
-	}
+	},
 }

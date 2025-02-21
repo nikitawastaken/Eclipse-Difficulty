@@ -227,6 +227,9 @@ M.elements = {
 	-- missing beat cop at the start
 	Eclipse.mission_elements.gen_dummy(400022, "eclipse_beat_cop_start", Vector3(14280, 9224, 39), Rotation(110, -0, -0), optsMissingBeatCop),
 
+	-- missing beat cop at the start
+	Eclipse.mission_elements.gen_dummy(400022, "eclipse_beat_cop_start", Vector3(14280, 9224, 39), Rotation(110, -0, -0), optsMissingBeatCop),
+
 	-- besiege cops
 	-- major ave. main swat vans
 	Eclipse.mission_elements.gen_dummy(400023, "eclipse_besiege_swat_01", Vector3(-1797, -354, 50), Rotation(97, -0, -0), optsBesiegeDummy),
@@ -253,6 +256,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400045, "eclipse_besiege_swat_18", Vector3(-8281, -1112, 38), Rotation(115, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400046, "eclipse_besiege_swat_19", Vector3(-8344, -1070, 38), Rotation(115, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400047, "eclipse_besiege_swat_20", Vector3(-8326, -1108, 38), Rotation(115, -0, -0), optsBesiegeDummy),
+
 	-- major ave. crossroad swat vans
 	Eclipse.mission_elements.gen_spawngroup(400048, "eclipse_swat_van_besiege_05", { 400044, 400045, 400046, 400047 }, 20),
 	Eclipse.mission_elements.gen_dummy(400049, "eclipse_besiege_swat_21", Vector3(-7315, -2660, 50), Rotation(-160, -0, -0), optsBesiegeDummy),
@@ -260,6 +264,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400051, "eclipse_besiege_swat_23", Vector3(-7282, -2690, 50), Rotation(-160, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400052, "eclipse_besiege_swat_24", Vector3(-7240, -2673, 50), Rotation(-160, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400053, "eclipse_swat_van_besiege_06", { 400049, 400050, 400051, 400052 }, 20),
+
 	-- easy st. swat vans
 	Eclipse.mission_elements.gen_dummy(400054, "eclipse_besiege_swat_25", Vector3(-8283, -8506, 38), Rotation(135, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400055, "eclipse_besiege_swat_26", Vector3(-8236, -8552, 38), Rotation(135, -0, -0), optsBesiegeDummy),
@@ -277,6 +282,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400067, "eclipse_besiege_swat_36", Vector3(-8279, -11703, 38), Rotation(-163, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400068, "eclipse_swat_van_besiege_09", { 400064, 400065, 400066, 400067 }, 15),
 	Eclipse.mission_elements.gen_areatrigger(400043, "eclipse_reached_easy_st_vans_trigger", Vector3(-9034, -7941, 38), Rotation(0, 0, 0), optsReachedSwatVansTrigger),
+
 	-- inkwell blockade swat van spawns
 	Eclipse.mission_elements.gen_dummy(400069, "eclipse_besiege_swat_37", Vector3(-9310, -15467, 50), Rotation(180, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400070, "eclipse_besiege_swat_38", Vector3(-9286, -15461, 50), Rotation(-173, -0, -0), optsBesiegeDummy),
@@ -288,6 +294,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400076, "eclipse_besiege_swat_43", Vector3(-8431, -15572, 38), Rotation(180, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400077, "eclipse_besiege_swat_44", Vector3(-8400, -15572, 38), Rotation(180, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400078, "eclipse_swat_van_besiege_11", { 400074, 400075, 400076, 400077 }, 10),
+
 	-- one inkwell spawngroup just to diverisify the directions that cops come from
 	Eclipse.mission_elements.gen_dummy(400079, "eclipse_besiege_swat_45", Vector3(-11868, -11613, 49), Rotation(-90, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400080, "eclipse_besiege_swat_46", Vector3(-11852, -11752, 49), Rotation(-90, -0, -0), optsBesiegeDummy),
@@ -319,4 +326,3 @@ M.elements = {
 }
 
 return M
-

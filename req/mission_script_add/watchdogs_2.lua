@@ -266,6 +266,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400010, "sniper_so_4", Vector3(3701, 4051, 540.404), Rotation(-180, 0, -0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400011, "sniper_so_5", Vector3(5643, 1060, 540.404), Rotation(90, -0, -0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400012, "sniper_so_6", Vector3(5643, 929, 540.404), Rotation(90, -0, -0), optsSniper_SO),
+
 	--Mission Scripts
 	Eclipse.mission_elements.gen_missionscript(400013, "spawn_snipers_1", spawnSnipers_1),
 	Eclipse.mission_elements.gen_missionscript(400014, "spawn_snipers_2", spawnSnipers_2),
@@ -277,6 +278,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400020, "respawn_sniper_5", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_sniper_5),
 	Eclipse.mission_elements.gen_dummytrigger(400021, "respawn_sniper_6", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_sniper_6),
 	Eclipse.mission_elements.gen_dialogue(400022, "they_sending_snipers", Bain_sendsnipers),
+
 	--Ground Snipers
 	Eclipse.mission_elements.gen_dummy(400023, "ground_sniper_1", Vector3(-2983, 193, 0), Rotation(0, 0, -0), optsGroundSniper_1),
 	Eclipse.mission_elements.gen_dummy(400024, "ground_sniper_2", Vector3(-2559, -2495, 0), Rotation(-90, 0, -0), optsGroundSniper_2),

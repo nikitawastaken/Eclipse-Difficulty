@@ -1,30 +1,30 @@
 local mobster_team = {
 	values = {
-		team = "mobster1"
-	}
-}	
+		team = "mobster1",
+	},
+}
 return {
 	-- Enter main hall
 	[103594] = {
-		difficulty = 0.1
+		difficulty = 0.1,
 	},
 	-- Boss dead, safe objective
 	[101169] = {
-		difficulty = 1
+		difficulty = 1,
 	},
-	 -- Disable Sosa retreat on low health during boss fight
+	-- Disable Sosa retreat on low health during boss fight
 	[101596] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	-- Fallback to make Sosa retreat when house is accessible
 	[102653] = {
 		on_executed = {
-			{ id = 102692, delay = 0 }
-		}
+			{ id = 102692, delay = 0 },
+		},
 	},
-    --You're Sosa's men, not undercover cops
+	--You're Sosa's men, not undercover cops
 	[100852] = mobster_team,
 	[100854] = mobster_team,
 	[100855] = mobster_team,
@@ -67,5 +67,5 @@ return {
 	[102576] = mobster_team,
 	[102578] = mobster_team,
 	[102581] = mobster_team,
-	[102583] = mobster_team
+	[102583] = mobster_team,
 }

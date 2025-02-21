@@ -44,35 +44,35 @@ function CopBase:_run_unit_sequences()
 	end
 
 	local unit_sequence = self.unit_sequence_mapping[name]
-	
+
 	-- Run the initial sequence to enable pouches, helmets etc.
 	if unit_sequence then
-		if self._unit:damage() then	
+		if self._unit:damage() then
 			if self._unit:damage():has_sequence(unit_sequence) then
 				self._unit:damage():run_sequence_simple(unit_sequence)
 			end
 		end
-		
+
 		local spawn_manager_ext = self._unit:spawn_manager()
 
 		local damage_ext = self._unit:character_damage()
 		local head = damage_ext._head
-			
-		-- If the unit had a head defined in its .unit file, spawn and parent it 
-		if spawn_manager_ext then	
-			if head then	
+
+		-- If the unit had a head defined in its .unit file, spawn and parent it
+		if spawn_manager_ext then
+			if head then
 				managers.dyn_resource:load(Idstring("unit"), Idstring(head), managers.dyn_resource.DYN_RESOURCES_PACKAGE, nil)
-				
+
 				spawn_manager_ext:spawn_and_link_unit("_char_joint_names", "cop_head", head)
 
 				self._head_unit = spawn_manager_ext:get_unit("cop_head")
 			end
 		end
-		
+
 		-- If the head's sequence manager supports the parent unit, run its initial sequence
-		if alive(self._head_unit) then		
+		if alive(self._head_unit) then
 			self._head_unit:set_enabled(self._unit:enabled())
-			
+
 			if self._head_unit:damage() and self._head_unit:damage():has_sequence(unit_sequence) then
 				self._head_unit:damage():run_sequence_simple(unit_sequence)
 			end
@@ -90,7 +90,7 @@ end
 -- Check for weapon changes and run unti sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
-	
+
 	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
 
 	local mapping_type = type(unit_weapon)
@@ -110,14 +110,14 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 end)
 
 local mat_configs = {
-  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
-  "units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
-  "units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",	
+	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
+	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
+	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
 }
 
 for _, v in pairs(mat_configs) do
-  CopBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
-  CopBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
+	CopBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
+	CopBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
 end
 
 ContourSwapBase = class()
@@ -125,8 +125,8 @@ ContourSwapBase = class()
 ContourSwapBase._material_translation_map = {}
 
 for _, v in pairs(mat_configs) do
-  ContourSwapBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
-  ContourSwapBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
+	ContourSwapBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
+	ContourSwapBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
 end
 
 ContourSwapBase.swap_material_config = CopBase.swap_material_config
@@ -135,8 +135,8 @@ ContourSwapBase.is_in_original_material = CopBase.is_in_original_material
 ContourSwapBase.set_material_state = CopBase.set_material_state
 
 function ContourSwapBase:init(unit)
-    UnitBase.init(self, unit, false)
+	UnitBase.init(self, unit, false)
 
-    self._unit = unit
-    self._is_in_original_material = true
+	self._unit = unit
+	self._is_in_original_material = true
 end

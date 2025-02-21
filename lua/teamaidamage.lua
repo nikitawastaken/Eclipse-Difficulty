@@ -19,7 +19,7 @@ Hooks:PostHook(TeamAIDamage, "damage_fire", "eclipse_teamai_damage_fire", functi
 	end
 end)
 
-Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function (self)
+Hooks:OverrideFunction(TeamAIDamage, "_regenerated", function(self)
 	if self._bleed_out or self._fatal then
 		self._health = self._HEALTH_INIT
 		self._health_ratio = 1

@@ -1,13 +1,13 @@
 local sniper_trigger_times = {
 	values = {
-        trigger_times = 0
-	}
+		trigger_times = 0,
+	},
 }
 local spawn_anim_fix = {
 	values = {
-        spawn_action = "e_sp_over_3m"
-	}
-}	
+		spawn_action = "e_sp_over_3m",
+	},
+}
 return {
 	-- fix snipers being able to spawn only once
 	[100368] = sniper_trigger_times,

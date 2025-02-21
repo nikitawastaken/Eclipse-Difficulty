@@ -33,8 +33,8 @@ return {
 	[104782] = {
 		ponr = {
 			length = 420,
-			player_mul = { 1.5, 1.25, 1, 1 }
-		}
+			player_mul = { 1.5, 1.25, 1, 1 },
+		},
 	},
 	-- new reinforce
 	[102758] = {
@@ -42,39 +42,39 @@ return {
 			{
 				name = "atrium_left",
 				force = 2,
-				position = Vector3(-400, 100, 0)
+				position = Vector3(-400, 100, 0),
 			},
 			{
 				name = "atrium_right",
 				force = 2,
-				position = Vector3(-400, -3250, 0)
-			}
-		}
+				position = Vector3(-400, -3250, 0),
+			},
+		},
 	},
 	-- Vault is open, diff 1
 	[104599] = {
-		difficulty = 1
+		difficulty = 1,
 	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
-	[100082] = { 
+	[100082] = {
 		on_executed = {
-			{ id = 100321, remove = true, }
-		}
+			{ id = 100321, remove = true },
+		},
 	},
 	[100446] = {
 		on_executed = {
-			{ id = 100321, delay = 0, }
-		}
+			{ id = 100321, delay = 0 },
+		},
 	},
 	[103702] = {
 		values = {
-			interval = sniper_interval
-		}
+			interval = sniper_interval,
+		},
 	},
 	[100438] = {
 		values = {
-			interval = sniper_interval
-		}
+			interval = sniper_interval,
+		},
 	},
 	-- spawn group delays
 	[100439] = atrium_spawn,

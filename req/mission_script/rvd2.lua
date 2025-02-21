@@ -14,11 +14,11 @@ return {
 	[101207] = ambush_enemy,
 	[102176] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	-- instantly enter full force onslaught upon securing all bags
 	[100884] = {
-		set_ponr_state = true
+		set_ponr_state = true,
 	},
 }

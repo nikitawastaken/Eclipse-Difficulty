@@ -56,4 +56,3 @@ M["levels/instances/unique/dinner/triple_meat/world/world"] = function(result)
 end
 
 return M
-

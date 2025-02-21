@@ -1,5 +1,5 @@
 return {
-	[100109] = { 
+	[100109] = {
 		reinforce = {
 			{
 				name = "north",
@@ -20,7 +20,7 @@ return {
 				name = "east",
 				force = 2,
 				position = Vector3(4500, -150, -150),
-			}
-		}
-	}
+			},
+		},
+	},
 }

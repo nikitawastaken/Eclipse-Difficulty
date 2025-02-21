@@ -254,10 +254,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400010, "shield_3", Vector3(-13666, 6195, 4.995), Rotation(0, 0, -0), optsShield),
 	Eclipse.mission_elements.gen_dummy(400011, "shield_4", Vector3(-13756, 6195, 4.995), Rotation(0, 0, -0), optsShield),
 	Eclipse.mission_elements.gen_dummy(400012, "bulldozer_1", Vector3(-13707, 6078, 4.995), Rotation(0, 0, -0), optsBulldozer_Ambush),
+
 	--Dozers
 	Eclipse.mission_elements.gen_dummy(400019, "bulldozer_2", Vector3(-8785, 3730, -72), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_dummy(400020, "bulldozer_3", Vector3(-13231, 6749, 889.902), Rotation(90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400021, "dozer_hunt_so", Vector3(3600, 2473, -1200), Rotation(0, 0, 0), optsBulldozer_SO),
+
 	--Van Spawngroup
 	Eclipse.mission_elements.gen_dummy(400022, "van_dummy_1", Vector3(-15438.496, 5177.672, -81.025), Rotation(170, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400023, "van_dummy_2", Vector3(-15371.752, 5177.833, -81.025), Rotation(172, 0, -0), optsBesiegeDummy),
@@ -265,6 +267,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400025, "van_dummy_4", Vector3(-15430.557, 4230.596, -81.025), Rotation(-171, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400026, "van_spawngroup", { 400022, 400023, 400024, 400025 }, 5),
 	Eclipse.mission_elements.gen_preferedadd(400027, "spawn_the_van_spawngroup", van_spawngroup),
+
 	--Murkies & Respawns
 	Eclipse.mission_elements.gen_dummy(400028, "murky_1", Vector3(-8611, 3648, -72), Rotation(-90, 0, -0), optsMurky_Rifle),
 	Eclipse.mission_elements.gen_dummy(400029, "murky_2", Vector3(-8611, 3750, -72), Rotation(-90, 0, -0), optsMurky_SMG),
