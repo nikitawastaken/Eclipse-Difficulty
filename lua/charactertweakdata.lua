@@ -1425,6 +1425,7 @@ function CharacterTweakData:_set_presets()
 		self:_multiply_all_speeds(1.1, 1.05)
 
 		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent
+        self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
 	end
 end
 

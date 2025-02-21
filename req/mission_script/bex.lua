@@ -154,6 +154,12 @@ return {
 	},
 	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?
 	[101835] = disabled,  -- point area min police force 2
+    -- fix Locke repeating the same "Play_loc_bex_108" dialogue instead of using the right one
+	[103317] = {
+		values = {
+			dialogue = "Play_loc_bex_109"
+		}
+	},
 	-- cheat spawns, replaced with reenforce
 	[102369] = disabled,  
 	[102355] = disabled,

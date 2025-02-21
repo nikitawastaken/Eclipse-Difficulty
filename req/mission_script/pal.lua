@@ -79,7 +79,7 @@ return {
 	[100218] = disabled,
 	[101635] = disabled,
 	[101636] = disabled,
-	--Replace 2nd bronco cop with shotgun cop to match with PDTH style
+	--Replace 2nd bronco cop with smg cop to match with PDTH style (even if he doesn't carry a shotgun)
 	[100725] = {
 		values = {
             enemy = cop_smg

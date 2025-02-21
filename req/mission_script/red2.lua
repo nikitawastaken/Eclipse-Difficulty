@@ -101,12 +101,15 @@ return {
 			}
 		}
 	},
-	-- Disable forced manager flee objective
+	-- disable forced manager flee objective
 	[100665] = disabled,
-	-- Disable the right vault path
+	-- disable the right vault path
 	[105498] = disabled,
 	-- nuke swat van
 	[105921] = disabled,
+    -- disable sniper spawns that I don't like
+	[105826] = disabled,
+	[101619] = disabled,
 	--Let the cops finish their spawn anim before moving into SO spot
 	[103720] = { 
 		on_executed = {
@@ -143,7 +146,7 @@ return {
 			{ id = 105732, delay = 2.75 }
 		}
 	},
-	--always force cloaker and taser to spawn like in PDTH
+	-- always force cloaker and taser to spawn like in PDTH
 	[100875] = windows_swat,
 	[102245] = windows_swat,
 	[102271] = windows_swat,
@@ -206,7 +209,7 @@ return {
 			{ id = 101953, delay = 100 }
 		}
 	},
-	-- Make this Bo Dozer use custom set up AI_Hunt
+	-- make this Bo Dozer use custom set up AI_Hunt
 	[105119] = {
 		on_executed = {
 			{ id = 400014, delay = 0 }
@@ -218,7 +221,7 @@ return {
 			{ id = 400011, delay = 1 }
 		}
 	},
-	-- Killing Bo The Manager results of spawning two angry dozers
+	-- killing Bo The Manager results of spawning two angry dozers
 	[100689] = {
 		on_executed = {
 			{ id = 100682, delay = 0 }
@@ -232,8 +235,8 @@ return {
 		}
 	},
 	-- rework the escape sequence scripted spawns
-	-- remove spawning the group and spawn 3 tasers+1 heavy swat as a 145+ throwback on hard and above
-	-- spawn 2 Zeal Dozers as a sudden spawn on E/PJ (50% chance)
+	-- remove spawning the standard spawnpoint group and instead spawn 3 tasers+1 heavy swat as a 145+ throwback on hard and above as chance based event (it's guaranteed to spawn on eclipse)
+	-- spawn 2 dozers as a sudden spawn on E/PJ (50% chance)
 	[103710] = {
 		chance = 100,
 		on_executed = {

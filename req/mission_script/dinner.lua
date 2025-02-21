@@ -231,15 +231,15 @@ return {
 			difficulty_hard = "true"
 		}
 	},
-	-- limit scripted van dozers to 2 (just in case if it might spawn like 4 or 5 dozers)
+	-- limit scripted van dozers to 1 (just in case if it might spawn like 3 or 4 dozers due to being strong in Eclipse)
 	[101576] = {
 		values = {
-            trigger_times = 2
+            trigger_times = 1
 		}
 	},
 	[101636] = {
 		values = {
-            trigger_times = 2
+            trigger_times = 1
 		}
 	},
 	[103378] = disabled,
