@@ -9,7 +9,7 @@ local mexicans = {
 
 local cloaker_spawn = {
 	values = {
-		enemy = scripted_enemy.cloaker
+		enemy = scripted_enemy.cloaker,
 	},
 }
 
@@ -24,34 +24,34 @@ return {
 	[100945] = {
 		on_executed = {
 			{ id = 100946, remove = true },
-			{ id = 100965, delay = 180 }
-		}
+			{ id = 100965, delay = 180 },
+		},
 	},
 	--loop the choppa+2 chopper spawns on Eclipse
 	[100966] = {
 		values = {
-            amount = chopper_amount
+			amount = chopper_amount,
 		},
 		on_executed = {
-			{ id = 100965, delay = 300 }
-		}
+			{ id = 100965, delay = 300 },
+		},
 	},
 	--trigger_times to 0; making the loop possible
 	[100953] = {
 		values = {
-            trigger_times = 0
-		}
+			trigger_times = 0,
+		},
 	},
 	[100887] = {
 		values = {
-            trigger_times = 0
-		}
+			trigger_times = 0,
+		},
 	},
 	--disable this just in case
 	[101652] = {
 		values = {
-            enabled = false
-		}
+			enabled = false,
+		},
 	},
 	-- planks amount, normally always 3, now you can get anywhere from fuck-all to more than you know what to do with
 	[100822] = {
@@ -63,12 +63,12 @@ return {
 	-- hurry up bain (cook chance evaluation delay, vanilla is 25s, cheat faster is 1s)
 	[100724] = {
 		on_executed = {
-			{ id = 100494, delay = 15, delay_rand = 10, },
+			{ id = 100494, delay = 15, delay_rand = 10 },
 		},
 	},
 	-- added chance to cook each time the evaluation runs and fails, vanilla is 10%
 	[100723] = {
-		chance = 20
+		chance = 20,
 	},
 	-- waiter !  waiter !  more gangsters please !
 	[101520] = {
@@ -101,16 +101,16 @@ return {
 			{
 				name = "basement",
 				force = 1,
-				position = Vector3(2050, 975, 924.84)  -- point special objective 25
+				position = Vector3(2050, 975, 924.84), -- point special objective 25
 			},
 			{
-				name = "such_a_nice_car",  -- mendoza car to the right of player spawn, near cloaker hiding spot
+				name = "such_a_nice_car", -- mendoza car to the right of player spawn, near cloaker hiding spot
 				force = 1,
-				position = Vector3(675, -1197, 875.243)  -- point special objective 28
+				position = Vector3(675, -1197, 875.243), -- point special objective 28
 			},
 		},
 	},
-	[101525] = { enemy = mexicans },  -- gangsters
+	[101525] = { enemy = mexicans }, -- gangsters
 	[101527] = { enemy = mexicans },
 	[100825] = { enemy = mexicans },
 	[100826] = { enemy = mexicans },
