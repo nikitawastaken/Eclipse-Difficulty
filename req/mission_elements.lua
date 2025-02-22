@@ -436,12 +436,12 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 		values = {
 			execute_on_startup = false,
 			trigger_times = opts.trigger_times or 0,
-		    trigger_list = opts.trigger_list or {},
-		    on_executed = opts.on_executed or {},
+			trigger_list = opts.trigger_list or {},
+			on_executed = opts.on_executed or {},
 			base_delay = opts.base_delay or 0,
 			position = pos,
 			rotation = rot,
-			enabled = true
+			enabled = true,
 		},
 	}
 
