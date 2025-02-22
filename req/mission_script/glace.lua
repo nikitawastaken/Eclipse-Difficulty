@@ -26,7 +26,7 @@ local saw_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_cops_agents_bulldozers,
 }
 local construct_spawn2 = {
 	values = {
@@ -135,8 +135,8 @@ return {
 	[101176] = {
 		values = {
 			spawn_groups = {
-				101250, -- 5s
 				400015, -- 5s
+				101250, -- 5s
 				101159, -- 30s
 				101156, -- 30s
 				101153, -- 60s
@@ -165,8 +165,8 @@ return {
 	[101239] = {
 		values = {
 			spawn_groups = {
-				400015, -- 15s,
-				101250, -- 15s,
+				400015, -- 5s,
+				101250, -- 5s,
 				101255, -- 15s,
 				101258, -- 15s,
 				101587, -- 15s,
