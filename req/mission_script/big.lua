@@ -22,7 +22,7 @@ local wall_c4_chance = {
 	},
 }
 local no_shields_and_dozers = {
-        so_access_filter = {"cop", "swat", "fbi", "taser", "spooc"}
+	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
 return {
 	[100809] = {
