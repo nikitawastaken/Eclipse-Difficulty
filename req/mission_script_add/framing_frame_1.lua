@@ -2,16 +2,16 @@
 local M = {}
 local optsVentBreaker = {
 	trigger_list = {
-        { id = 1, name = "run_sequence", notify_unit_id = 104021, notify_unit_sequence = "release_vent", time = 0 },
-    }
+		{ id = 1, name = "run_sequence", notify_unit_id = 104021, notify_unit_sequence = "release_vent", time = 0 },
+	},
 }
 local optscloakerspawned = {
-	on_executed = { 
-		{ id = 400001, delay = 0 }
+	on_executed = {
+		{ id = 400001, delay = 0 },
 	},
-	elements = { 
-		104056
-	}
+	elements = {
+		104056,
+	},
 }
 
 M.elements = {
