@@ -1,4 +1,5 @@
 local is_eclipse = Eclipse.utils.is_eclipse()
+local scripted_enemy = Eclipse.scripted_enemy
 -- credit for these changes goes to ASS, thanks miki <3
 local mexicans = {
 	Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),

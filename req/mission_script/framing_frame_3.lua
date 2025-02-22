@@ -1,10 +1,5 @@
 local no_shields_and_dozers = {
-	pre_func = function(self)
-		if not self._values.SO_access_original then
-			self._values.SO_access_original = self._values.SO_access
-			self._values.SO_access = managers.navigation:convert_access_filter_to_number({ "cop", "swat", "fbi", "taser", "spooc" })
-		end
-	end,
+	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
 return {
 	-- Fix power cut SO delay and add some random delay
@@ -25,4 +20,26 @@ return {
 	[104706] = no_shields_and_dozers,
 	[104707] = no_shields_and_dozers,
 	[104708] = no_shields_and_dozers,
+	--fix vent covers not dropping when cloaker spawns in
+	[104773] = {
+		values = {
+			elements = {
+				104183,
+			},
+		},
+	},
+	[104623] = {
+		values = {
+			elements = {
+				104173,
+			},
+		},
+	},
+	[104767] = {
+		values = {
+			elements = {
+				104180,
+			},
+		},
+	},
 }

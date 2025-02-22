@@ -22,12 +22,7 @@ local wall_c4_chance = {
 	},
 }
 local no_shields_and_dozers = {
-	pre_func = function(self)
-		if not self._values.SO_access_original then
-			self._values.SO_access_original = self._values.SO_access
-			self._values.SO_access = managers.navigation:convert_access_filter_to_number({ "cop", "swat", "fbi", "taser", "spooc" })
-		end
-	end,
+	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
 return {
 	[100809] = {
