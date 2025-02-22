@@ -316,7 +316,7 @@ function M.gen_dialogue(id, name, opts)
 	return dialogue
 end
 
----Generate a smoke grenade element
+---Generate a smoke grenade or flashbang element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference
 ---@param pos Vector3: position for the element to be in
@@ -418,6 +418,34 @@ function M.gen_global_event(id, name, pos, rot, opts)
 	}
 
 	return global_event
+end
+
+---Generate an object editor that lets edit objects that have unit sequences such as SWAT vans, choppers or vents
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_object_editor(id, name, pos, rot, opts)
+	opts = opts or {}
+	local object_editor = {
+		id = id,
+		editor_name = name,
+		module = "ElementUnitSequence",
+		class = "CoreElementUnitSequence",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 0,
+		    trigger_list = opts.trigger_list or {},
+		    on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = true
+		},
+	}
+
+	return object_editor
 end
 
 return M
