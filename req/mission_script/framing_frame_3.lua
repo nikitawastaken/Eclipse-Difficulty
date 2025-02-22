@@ -25,4 +25,26 @@ return {
 	[104706] = no_shields_and_dozers,
 	[104707] = no_shields_and_dozers,
 	[104708] = no_shields_and_dozers,
+    --fix vent covers not dropping when cloaker spawns in
+	[104773] = {
+		values = {
+			elements = {
+				104183
+			}
+		}
+	},
+	[104623] = {
+		values = {
+			elements = {
+				104173
+			}
+		}
+	},
+	[104767] = {
+		values = {
+			elements = {
+				104180
+			}
+		}
+	},
 }
