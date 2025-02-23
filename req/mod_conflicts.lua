@@ -42,7 +42,7 @@ local M = {
 	"Colourblind Flashbang - GREEN",
 	"Colourblind Flashbang - YELLOW",
 	"More Weapon Stats",
-	"Viewmodel Recoil (No Camera Recoil)"
+	"Viewmodel Recoil (No Camera Recoil)",
 }
 
 return table.list_to_set(M)
