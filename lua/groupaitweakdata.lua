@@ -531,6 +531,58 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+	self.unit_categories.FBI_swat_1_3 = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.FBI_swat_2_3 = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"),
+				Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"),
+			},
+		},
+		access = access_type_all,
+	}
+	
 	self.unit_categories.FBI_swat = {
 		unit_types = {
 			america = {
@@ -655,6 +707,58 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+	self.unit_categories.Elite_swat_1_3 = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+		},
+		access = access_type_all,
+	}
+	
+	self.unit_categories.Elite_swat_2_3 = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"),
+				Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"),
+			},
+		},
+		access = access_type_all,
+	}
+	
 	self.unit_categories.Elite_swat = {
 		unit_types = {
 			america = {
@@ -1313,8 +1417,15 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_min = 1,
 				freq = 1,
+				rank = 1,
+				unit = "CS_swat_1_3",
+				tactics = self._tactics.none,
+			},
+			{
+				amount_max = 2,
+				freq = 0.5,
 				rank = 2,
-				unit = "CS_swat",
+				unit = "CS_swat_2",
 				tactics = self._tactics.none,
 			},
 		},
@@ -1385,7 +1496,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 3, 4 },
 		spawn = {
 			{
-				freq_by_diff = { 1, 0, 0 },
+				freq_by_diff = { 1, 0.5, 0 },
 				rank = 1,
 				unit = "CS_swat",
 				tactics = self._tactics.swat_init,
@@ -1399,7 +1510,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = swat_random_tactics_1,
 			},
 			{
-				amount_min = 1,
+				amount_max = 2,
 				freq_by_diff = { 0, 0.8, 0.8 },
 				rank = 2,
 				unit = "CS_swat_3",
@@ -1444,7 +1555,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					1 / difficulty_index,
 				},
 				rank = 1,
-				unit = "CS_swat",
+				unit = "CS_swat_1_3",
 				tactics = self._tactics.swat_spt,
 			},
 		},
@@ -1473,7 +1584,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq_by_diff = { 1, 1, 0.5 },
 				rank = 1,
-				unit = "CS_swat",
+				unit = "CS_swat_2_3",
 				tactics = self._tactics.shield_spt,
 			},
 		},
@@ -1549,9 +1660,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 3 },
 		spawn = {
 			{
+				amount_min = 1,
 				freq = 1,
+				rank = 1,
+				unit = "FBI_swat_1_3",
+				tactics = self._tactics.none,
+			},
+			{
+				amount_max = 2,
+				freq = 0.5,
 				rank = 2,
-				unit = "FBI_swat",
+				unit = "FBI_swat_2",
 				tactics = self._tactics.none,
 			},
 		},
@@ -1592,7 +1711,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 3, 4 },
 		spawn = {
 			{
-				freq_by_diff = { 1, 0, 0 },
+				freq_by_diff = { 1, 0.5, 0 },
 				rank = 1,
 				unit = "FBI_swat",
 				tactics = self._tactics.swat_init,
@@ -1606,7 +1725,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = swat_random_tactics_1,
 			},
 			{
-				amount_min = 1,
+				amount_max = 2,
 				freq_by_diff = { 0, 0.8, 0.8 },
 				rank = 2,
 				unit = "FBI_swat_3",
@@ -1662,7 +1781,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					2 / difficulty_index,
 				},
 				rank = 2,
-				unit = "FBI_swat",
+				unit = "FBI_swat_1_3",
 				tactics = self._tactics.swat_spt,
 			},
 			{
@@ -1700,7 +1819,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq_by_diff = { 1, 1, 0.5 },
 				rank = 1,
-				unit = "FBI_swat",
+				unit = "FBI_swat_2_3",
 				tactics = self._tactics.shield_spt,
 			},
 			{
@@ -1887,7 +2006,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq_by_diff = { 1, 1, 0.5 },
 				rank = 1,
-				unit = "Elite_swat",
+				unit = "Elite_swat_2_3",
 				tactics = self._tactics.shield_spt,
 			},
 			{
