@@ -1109,7 +1109,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
-	self.drug_lord_boss.throwable_cooldown = 10
+	self.drug_lord_boss.throwable_cooldown = 15
 	self.drug_lord_boss.die_sound_event = "l2n_burndeath"
 
 	self.triad_boss.HEALTH_INIT = 300
@@ -1171,10 +1171,20 @@ local character_map_original = CharacterTweakData.character_map
 function CharacterTweakData:character_map(...)
 	local char_map = character_map_original(self, ...)
 
-	table.insert(char_map.gitgud.list, "ene_zeal_swat_2")
-	table.insert(char_map.gitgud.list, "ene_zeal_swat_heavy_2")
-	table.insert(char_map.gitgud.list, "ene_zeal_medic_m4")
-	table.insert(char_map.gitgud.list, "ene_zeal_medic_r870")
+	local function safe_add(char_map_table, element)
+		if char_map_table and char_map_table.list then
+			table.insert(char_map_table.list, element)
+		end
+	end
+
+	safe_add(char_map.basic, "ene_swat_3")
+	safe_add(char_map.basic, "ene_swat_heavy_r870")
+	safe_add(char_map.basic, "ene_fbi_swat_3")
+	
+	safe_add(char_map.gitgud.list, "ene_zeal_swat_2")
+	safe_add(char_map.gitgud.list, "ene_zeal_swat_heavy_2")
+	safe_add(char_map.gitgud.list, "ene_zeal_medic_m4")
+	safe_add(char_map.gitgud.list, "ene_zeal_medic_r870")
 
 	return char_map
 end

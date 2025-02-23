@@ -277,5 +277,77 @@
 			<run_sequence	name="'disable_arms'" />
 			<run_sequence	name="'disable_face'" />
 		</sequence>		
+
+		<sequence editable_state="true" name="'swat_1'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'swat_2'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'swat_3'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'sniper_1'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'swat_heavy_1'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
+		
+		<sequence editable_state="true" name="'swat_heavy_2'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'shield_2'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
+		
+		<sequence editable_state="true" name="'fbi_swat_1'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'fbi_swat_2'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'fbi_swat_3'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'sniper_2'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_face'" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'shield_1'" once="true" triggable="true">
+			<run_sequence	name="'swat_head'" />
+			<run_sequence	name="'disable_arms'" />
+			<run_sequence	name="'disable_head'" />
+		</sequence>	
 	</unit>
 </table>

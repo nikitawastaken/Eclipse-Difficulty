@@ -400,6 +400,9 @@
 				<file :name="swat_equipment_df.texture" />
 				<file :name="swat_equipment_nm.texture" />
 
+				<file :name="swat_body_df.texture" />
+				<file :name="swat_body_nm.texture" />
+				
 				<file :name="ene_acc_head_var1_df.texture" />
 				<file :name="ene_acc_head_var1_nm.texture" />
 
@@ -407,6 +410,13 @@
 				<file :name="ene_acc_head_var2_nm.texture" />
 			</group>
 
+			<group :name="ene_acc_swat_helmet/">
+				<file :name="ene_acc_swat_helmet.material_config" />
+				<file :name="ene_acc_swat_helmet.model" />
+				<file :name="ene_acc_swat_helmet.object" />
+				<file :name="ene_acc_swat_helmet.unit" />
+			</group>
+			
 			<group :name="ene_acc_swat_cap/">
 				<file :name="ene_acc_swat_cap.cooked_physics" />
 				<file :name="ene_acc_swat_cap.material_config" />
@@ -414,7 +424,19 @@
 				<file :name="ene_acc_swat_cap.object" />
 				<file :name="ene_acc_swat_cap.unit" />
 			</group>
-			
+
+			<group :name="ene_acc_shield_helmet/">
+				<file :name="ene_acc_shield_helmet.model" />
+				<file :name="ene_acc_shield_helmet.object" />
+				<file :name="ene_acc_shield_helmet.unit" />
+			</group>
+						
+			<group :name="ene_acc_fbi_swat_helmet/">
+				<file :name="ene_acc_fbi_swat_helmet.model" />
+				<file :name="ene_acc_fbi_swat_helmet.object" />
+				<file :name="ene_acc_fbi_swat_helmet.unit" />
+			</group>
+						
 			<group :name="ene_acc_head/">
 				<xml  :name="ene_acc_head.sequence_manager" />
 				<file :name="ene_acc_head.cooked_physics" />
@@ -562,7 +584,78 @@
 				<file :name="ene_murkywater_2.unit" />
 				<file :name="ene_murkywater_2_husk.unit" />
 			</group>
-	
+
+			<group :name="ene_swat_1/">	
+				<xml  :name="ene_swat_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_swat_1.material_config" />
+				<file :name="ene_swat_1_contour.material_config" />
+				<file :name="ene_swat_1.model" />
+				<file :name="ene_swat_1.object" />
+				<file :name="ene_swat_1.unit" />
+				<file :name="ene_swat_1_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_2/">	
+				<file :name="ene_swat_2.unit" />
+				<file :name="ene_swat_2_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_3/">	
+				<file :name="ene_swat_3.unit" />
+				<file :name="ene_swat_3_husk.unit" />
+			</group>
+
+			<group :name="ene_sniper_1/">	
+				<file :name="ene_sniper_1.unit" />
+				<file :name="ene_sniper_1_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_1/">	
+				<xml  :name="ene_swat_heavy_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_swat_heavy_1.model" />
+				<file :name="ene_swat_heavy_1.object" />
+				<file :name="ene_swat_heavy_1.unit" />
+				<file :name="ene_swat_heavy_1_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_r870/">	
+				<file :name="ene_swat_heavy_r870.unit" />
+				<file :name="ene_swat_heavy_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_shield_2/">	
+				<file :name="ene_shield_2.unit" />
+				<file :name="ene_shield_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_swat_1/">	
+				<xml  :name="ene_fbi_swat_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_fbi_swat_1.model" />
+				<file :name="ene_fbi_swat_1.object" />
+				<file :name="ene_fbi_swat_1.unit" />
+				<file :name="ene_fbi_swat_1_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_swat_2/">	
+				<file :name="ene_fbi_swat_2.unit" />
+				<file :name="ene_fbi_swat_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_swat_3/">	
+				<file :name="ene_fbi_swat_3.unit" />
+				<file :name="ene_fbi_swat_3_husk.unit" />
+			</group>
+
+			<group :name="ene_sniper_2/">	
+				<file :name="ene_sniper_2.unit" />
+				<file :name="ene_sniper_2_husk.unit" />
+			</group>
+
+			<group :name="ene_shield_1/">	
+				<file :name="ene_shield_1.unit" />
+				<file :name="ene_shield_1_husk.unit" />
+			</group>
+			
 			<file :name="ene_acc_bulldozer_back/ene_acc_bulldozer_back.model" />
 
 			<file :name="ene_acc_bulldozer_back_2/ene_acc_bulldozer_back_2.model" />
