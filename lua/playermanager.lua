@@ -359,7 +359,6 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 	return dmg_reduction
 end
 
-
 -- Make cooldown for picking up bags consistent instead of random
 local drop_carry_original = PlayerManager.drop_carry
 function PlayerManager:drop_carry(...)
