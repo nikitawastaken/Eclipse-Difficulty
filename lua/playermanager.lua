@@ -358,3 +358,16 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 
 	return dmg_reduction
 end
+
+
+-- Make cooldown for picking up bags consistent instead of random
+local drop_carry_original = PlayerManager.drop_carry
+function PlayerManager:drop_carry(...)
+	local carry_data = self:get_my_carry_data()
+
+	drop_carry_original(self, ...)
+
+	if carry_data then
+		self._carry_blocked_cooldown_t = Application:time() + 0.5
+	end
+end
