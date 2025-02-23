@@ -727,11 +727,20 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 	if not grenade_user.unit:movement():chk_action_forbidden("action") then
 		if not grenade_user.char_tweak.no_grenade_anim then
-			local redirect = "throw_grenade"
-
-			if grenade_user.unit:movement():play_redirect(redirect) then
-				managers.network:session():send_to_peers_synched("play_distance_interact_redirect", grenade_user.unit, redirect)
-			end
+			local action = {
+				clamp_to_graph = true,
+				type = "act",
+				body_part = 1,
+				variant = "e_so_throw_grenade",
+				blocks = {
+					light_hurt = -1,
+					hurt = -1,
+					heavy_hurt = -1,
+					walk = -1,
+				}
+			}
+			
+			grenade_user.unit:movement():action_request(action)
 		end
 	end
 
