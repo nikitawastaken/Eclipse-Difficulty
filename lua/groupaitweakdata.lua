@@ -1,5 +1,6 @@
 local level_id = Eclipse.utils.level_id()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse = Eclipse.utils.is_eclipse()
 
 local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
@@ -2272,7 +2273,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local timeout_mult = diff_lerp(1, 0.75)
 
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
-	--self.flash_grenade.light_range = (is_pro_job and 0) or 500
+	self.flash_grenade.light_range = (is_eclipse and 0) or 500
 	self.flash_grenade_timeout = {
 		10 * timeout_mult,
 		15 * timeout_mult,
@@ -2528,7 +2529,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			FBI_assault_heavies = { 1, 1, 1 },
 			FBI_assault_shield = { 0.3, 0.3, 0.3 },
 			FBI_assault_cloaker = { 0.25, 0.25, 0.25 },
-			
+
 			Elite_assault_swats = { 0.5, 0.5, 0.5 },
 			Elite_assault_shield = { 0.4, 0.4, 0.4 },
 			Elite_assault_taser = { 0.25, 0.25, 0.25 },
@@ -2542,7 +2543,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			FBI_assault_heavies = { 1, 1, 1 },
 			FBI_assault_shield = { 0.3, 0.3, 0.3 },
 			FBI_assault_cloaker = { 0.25, 0.25, 0.25 },
-			
+
 			Elite_assault_swats = { 0.5, 0.5, 0.5 },
 			Elite_assault_shield = { 0.4, 0.4, 0.4 },
 			Elite_assault_taser = { 0.25, 0.25, 0.25 },
@@ -2567,8 +2568,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	end
 
-	self.ponr.cloaker.groups = { 
-		single_spooc = { 1, 1, 1 } 
+	self.ponr.cloaker.groups = {
+		single_spooc = { 1, 1, 1 }
 	}
 ]]
 	--
