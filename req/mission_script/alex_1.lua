@@ -41,8 +41,6 @@ return {
 	[101484] = exclude_cop_agents_shields_dozers,
 	[101485] = exclude_cop_agents_shields_dozers,
 	[101486] = exclude_cop_agents_shields_dozers,
-	[102122] = exclude_cop_agents_shields_dozers,
-	[102123] = exclude_cop_agents_shields_dozers,
 	-- e_nl_up_6m_var2
 	[101508] = exclude_cop_agents_shields_dozers,
 	[101770] = exclude_cop_agents_shields_dozers,
@@ -55,15 +53,10 @@ return {
 	-- e_nl_up_7_down_1m_var2
 	[101872] = exclude_cop_agents_shields_dozers,
 	[101873] = exclude_cop_agents_shields_dozers,
-	-- e_nl_up_4_6_down_0_6m
-	[101427] = exclude_cop_agents_shields_dozers,
 	-- e_nl_up_rats_roof (exclusive SO anim)
 	[101435] = exclude_cop_agents_shields_dozers,
 	[101436] = exclude_cop_agents_shields_dozers,
 	[101507] = exclude_cop_agents_shields_dozers,
-	-- e_nl_up_4m
-	[102119] = exclude_cop_agents_shields_dozers,
-	[101733] = exclude_cop_agents_shields_dozers,
 	-- cops now use climbing SOs on first assault (Eclipse exclusive event)
 	-- disable this on Eclipse
 	[101496] = {

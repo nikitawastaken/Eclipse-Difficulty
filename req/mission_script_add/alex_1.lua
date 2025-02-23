@@ -10,8 +10,6 @@ local activate_navlinks = {
 		{ id = 101484, delay = 0 },
 		{ id = 101485, delay = 0 },
 		{ id = 101486, delay = 0 },
-		{ id = 102122, delay = 0 },
-		{ id = 102123, delay = 0 },
 		{ id = 101508, delay = 0 },
 		{ id = 101770, delay = 0 },
 		{ id = 101509, delay = 0 },
@@ -20,9 +18,6 @@ local activate_navlinks = {
 		{ id = 102125, delay = 0 },
 		{ id = 101872, delay = 0 },
 		{ id = 101873, delay = 0 },
-		{ id = 101427, delay = 0 },
-		{ id = 102119, delay = 0 },
-		{ id = 101733, delay = 0 },
 	},
 }
 
