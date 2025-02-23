@@ -52,12 +52,15 @@ Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(
 			end
 		end
 
-		local best_u_key
+		local best_u_key, best_is_shield
 		local least_followers = math.huge
 		for u_key, follower_data in pairs(followers) do
-			if follower_data.amount < least_followers and (not data.tactics.shield_cover or follower_data.is_shield) then
-				best_u_key = u_key
-				least_followers = follower_data.amount
+			if follower_data.is_shield or not data.tactics.shield_cover or data.tactics.unit_cover and not best_is_shield then
+				if follower_data.amount < least_followers or data.tactics.shield_cover and follower_data.is_shield and not best_is_shield then
+					best_u_key = u_key
+					best_is_shield = follower_data.is_shield
+					least_followers = follower_data.amount
+				end
 			end
 		end
 
