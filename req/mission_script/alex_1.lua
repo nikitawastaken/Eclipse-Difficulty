@@ -13,6 +13,11 @@ local sniper_groups = {
 		amount = normal and 1 or hard and 2 or 3,
 	},
 }
+local sniper_amount_counter {
+    values = {
+		amount = normal and 2 or hard and 4 or 6,
+	},
+}
 local cloaker_spawn = {
 	values = {
 		enemy = normal and scripted_enemy.heavy_swat_1 or scripted_enemy.cloaker,
@@ -35,6 +40,9 @@ return {
 	},
 	-- more snipers on higher difficulties
 	[101070] = sniper_groups,
+    -- prevent snipers from stacking up
+    [101135] = sniper_amount_counter,
+    [101142] = sniper_amount_counter,
 	-- only let swats, tasers and cloakers use climbing SOs
 	-- e_nl_up_3_down_1m
 	[101483] = exclude_cop_agents_shields_dozers,
