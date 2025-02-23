@@ -22,7 +22,7 @@ local activate_navlinks = {
 		{ id = 101873, delay = 0 },
 		{ id = 101427, delay = 0 },
 		{ id = 102119, delay = 0 },
-        { id = 101733, delay = 0 },
+		{ id = 101733, delay = 0 },
 	},
 }
 

@@ -27,52 +27,52 @@ return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_spawn,
 	[101572] = cloaker_spawn,
-    -- let bulldozer end his spawn anim before going into hunt mode
+	-- let bulldozer end his spawn anim before going into hunt mode
 	[100952] = {
 		on_executed = {
 			{ id = 100376, delay = 3.25 },
 		},
 	},
-    -- more snipers on higher difficulties
-    [101070] = sniper_groups,
-    -- only let swats, tasers and cloakers use climbing SOs
-    -- e_nl_up_3_down_1m
-    [101483] = exclude_cop_agents_shields_dozers,
+	-- more snipers on higher difficulties
+	[101070] = sniper_groups,
+	-- only let swats, tasers and cloakers use climbing SOs
+	-- e_nl_up_3_down_1m
+	[101483] = exclude_cop_agents_shields_dozers,
 	[101484] = exclude_cop_agents_shields_dozers,
-    [101485] = exclude_cop_agents_shields_dozers,
-    [101486] = exclude_cop_agents_shields_dozers,
-    [102122] = exclude_cop_agents_shields_dozers,
+	[101485] = exclude_cop_agents_shields_dozers,
+	[101486] = exclude_cop_agents_shields_dozers,
+	[102122] = exclude_cop_agents_shields_dozers,
 	[102123] = exclude_cop_agents_shields_dozers,
-    -- e_nl_up_6m_var2
-    [101508] = exclude_cop_agents_shields_dozers,
-    [101770] = exclude_cop_agents_shields_dozers,
-    -- e_nl_up_6m_var3
-    [101509] = exclude_cop_agents_shields_dozers,
-    [101510] = exclude_cop_agents_shields_dozers,
-    -- e_nl_up_1_down_7_1m
-    [102124] = exclude_cop_agents_shields_dozers,
-    [102125] = exclude_cop_agents_shields_dozers,
-    -- e_nl_up_7_down_1m_var2
-    [101872] = exclude_cop_agents_shields_dozers,
-    [101873] = exclude_cop_agents_shields_dozers,
-    -- e_nl_up_4_6_down_0_6m
-    [101427] = exclude_cop_agents_shields_dozers,
-    -- e_nl_up_rats_roof (exclusive SO anim)
-    [101435] = exclude_cop_agents_shields_dozers,
-    [101436] = exclude_cop_agents_shields_dozers,
-    [101507] = exclude_cop_agents_shields_dozers,
-    -- e_nl_up_4m
-    [102119] = exclude_cop_agents_shields_dozers,
-    [101733] = exclude_cop_agents_shields_dozers,
-    -- cops now use climbing SOs on first assault (Eclipse exclusive event)
-    -- disable this on Eclipse
-    [101496] = {
+	-- e_nl_up_6m_var2
+	[101508] = exclude_cop_agents_shields_dozers,
+	[101770] = exclude_cop_agents_shields_dozers,
+	-- e_nl_up_6m_var3
+	[101509] = exclude_cop_agents_shields_dozers,
+	[101510] = exclude_cop_agents_shields_dozers,
+	-- e_nl_up_1_down_7_1m
+	[102124] = exclude_cop_agents_shields_dozers,
+	[102125] = exclude_cop_agents_shields_dozers,
+	-- e_nl_up_7_down_1m_var2
+	[101872] = exclude_cop_agents_shields_dozers,
+	[101873] = exclude_cop_agents_shields_dozers,
+	-- e_nl_up_4_6_down_0_6m
+	[101427] = exclude_cop_agents_shields_dozers,
+	-- e_nl_up_rats_roof (exclusive SO anim)
+	[101435] = exclude_cop_agents_shields_dozers,
+	[101436] = exclude_cop_agents_shields_dozers,
+	[101507] = exclude_cop_agents_shields_dozers,
+	-- e_nl_up_4m
+	[102119] = exclude_cop_agents_shields_dozers,
+	[101733] = exclude_cop_agents_shields_dozers,
+	-- cops now use climbing SOs on first assault (Eclipse exclusive event)
+	-- disable this on Eclipse
+	[101496] = {
 		values = {
 			enabled = is_eclipse and false,
 		},
 	},
-    -- hell
-    [100676] = {
+	-- hell
+	[100676] = {
 		on_executed = {
 			{ id = 400001, delay = 0 },
 		},
@@ -111,8 +111,8 @@ return {
 			enabled = false,
 		},
 	},
-    -- faster chopper
-    [100888] = {
+	-- faster chopper
+	[100888] = {
 		on_executed = {
 			{ id = 100893, remove = true },
 			{ id = 100894, delay = 24 },
