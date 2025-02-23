@@ -87,7 +87,7 @@ function HUDManager:add_teammate_panel(character_name, player_name, ai, peer_id)
 		end
 
 		local peer_carry_list = managers.player:get_synced_carry(peer_id)
-		local peer_carry_data = peer_carry_list[1]
+		local peer_carry_data = peer_carry_list and peer_carry_list[1] or false
 
 		if peer_carry_data then
 			self:set_teammate_carry_info(i, peer_carry_data.carry_id, managers.loot:get_real_value(peer_carry_data.carry_id, peer_carry_data.multiplier))

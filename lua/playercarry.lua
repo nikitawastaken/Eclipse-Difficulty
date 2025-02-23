@@ -79,7 +79,7 @@ end
 function PlayerCarry:_enter(enter_data)
 	local my_carry_data = managers.player:get_my_carry_data()
 
-	if my_carry_data[1] then
+	if my_carry_data and my_carry_data[1] then
 		local carry_data = tweak_data.carry[my_carry_data.carry_id]
 		self._tweak_data_name = carry_data.type
 	else
