@@ -737,9 +737,9 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 					hurt = -1,
 					heavy_hurt = -1,
 					walk = -1,
-				}
+				},
 			}
-			
+
 			grenade_user.unit:movement():action_request(action)
 		end
 	end
