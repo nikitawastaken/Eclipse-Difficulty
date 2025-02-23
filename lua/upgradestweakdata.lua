@@ -333,7 +333,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Saw Massacre
 	self.values.saw.enemy_slicer = {
-		2
+		2,
 	}
 	self.skill_descs.shotgun_impact.multibasic = "90%"
 	self.skill_descs.shotgun_impact.multipro = "50%"

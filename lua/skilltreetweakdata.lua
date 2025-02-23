@@ -98,7 +98,8 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Portable Saw
 	self.skills.shotgun_cqb[1].upgrades = { "saw_secondary" }
-	self.skills.shotgun_cqb[2].upgrades = { "saw_extra_ammo_multiplier", "player_saw_speed_multiplier_1", "player_saw_speed_multiplier_2", "saw_lock_damage_multiplier_1", "saw_lock_damage_multiplier_2" }
+	self.skills.shotgun_cqb[2].upgrades =
+		{ "saw_extra_ammo_multiplier", "player_saw_speed_multiplier_1", "player_saw_speed_multiplier_2", "saw_lock_damage_multiplier_1", "saw_lock_damage_multiplier_2" }
 	self.skills.shotgun_cqb.icon_xy = { 0, 1 }
 	self.skills.shotgun_cqb.name_id = "menu_portable_saw_beta"
 	self.skills.shotgun_cqb.desc_id = "menu_portable_saw_beta_desc"
@@ -134,12 +135,12 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Pack Mule
 	self.skills.pack_mule[1].upgrades = { "carry_movement_penalty_nullifier" }
-	self.skills.pack_mule[2].upgrades = { } -- double bag carry to be added
+	self.skills.pack_mule[2].upgrades = {} -- double bag carry to be added
 	self.skills.pack_mule.icon_xy = { 6, 0 }
 
 	-- empty potential armor bag skill
-	self.skills.iron_man[1].upgrades = { }
-	self.skills.iron_man[2].upgrades = { }
+	self.skills.iron_man[1].upgrades = {}
+	self.skills.iron_man[2].upgrades = {}
 	self.skills.iron_man.icon_xy = { 0, 0 }
 
 	-- Thick Skin
@@ -159,8 +160,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ammo_reservoir.icon_xy = { 3, 0 }
 
 	-- wip ammo skill
-	self.skills.portable_saw[1].upgrades = { }
-	self.skills.portable_saw[2].upgrades = { }
+	self.skills.portable_saw[1].upgrades = {}
+	self.skills.portable_saw[2].upgrades = {}
 	self.skills.portable_saw.name_id = "menu_new_ammo_skill"
 	self.skills.portable_saw.desc_id = "menu_new_ammo_skill_desc"
 	self.skills.portable_saw.icon_xy = { 0, 0 }
