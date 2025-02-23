@@ -96,56 +96,54 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- ENFORCER --
 
-	-- Hard Boiled
-	self.skills.underdog[1].upgrades = { "shotgun_damage_multiplier_1" }
-	self.skills.underdog[2].upgrades = { "shotgun_swap_speed_multiplier" }
-	self.skills.underdog.name_id = "menu_from_the_hip"
-	self.skills.underdog.desc_id = "menu_from_the_hip_desc"
-	self.skills.underdog.icon_xy = { 5, 0 }
+	-- Portable Saw
+	self.skills.shotgun_cqb[1].upgrades = { "saw_secondary" }
+	self.skills.shotgun_cqb[2].upgrades =
+		{ "saw_extra_ammo_multiplier", "player_saw_speed_multiplier_1", "player_saw_speed_multiplier_2", "saw_lock_damage_multiplier_1", "saw_lock_damage_multiplier_2" }
+	self.skills.shotgun_cqb.icon_xy = { 0, 1 }
+	self.skills.shotgun_cqb.name_id = "menu_portable_saw_beta"
+	self.skills.shotgun_cqb.desc_id = "menu_portable_saw_beta_desc"
+
+	-- Saw Massacre
+	self.skills.shotgun_impact[1].upgrades = { "saw_enemy_slicer" }
+	self.skills.shotgun_impact[2].upgrades = { "saw_ignore_shields_1", "saw_panic_when_kill_1" }
+	self.skills.shotgun_impact.icon_xy = { 0, 2 }
+	self.skills.shotgun_impact.name_id = "menu_carbon_blade_beta"
+	self.skills.shotgun_impact.desc_id = "menu_carbon_blade_beta_desc"
 
 	-- Fast Hands
-	self.skills.shotgun_cqb[1].upgrades = { "shotgun_pump_reload_speed_1" }
-	self.skills.shotgun_cqb[2].upgrades = { "shotgun_pump_reload_speed_2", "enter_steelsight_speed_multiplier" }
-	self.skills.shotgun_cqb.icon_xy = { 5, 1 }
-
-	-- Point Blank
-	self.skills.shotgun_impact[1].upgrades = { "shotgun_spread_index_addend", "shotgun_recoil_index_addend" }
-	self.skills.shotgun_impact[2].upgrades = { "shotgun_extra_pellets" }
-
-	-- Shotgun CQB
-	self.skills.far_away[1].upgrades = { "shotgun_hip_rate_of_fire_1" }
-	self.skills.far_away[2].upgrades = { "shotgun_speed_stack_on_kill" }
-	self.skills.far_away.icon_xy = { 8, 6 }
+	self.skills.far_away[1].upgrades = { "shotgun_pump_reload_speed_1", "shotgun_pump_reload_speed_2" }
+	self.skills.far_away[2].upgrades = { "shotgun_hip_rate_of_fire_1" }
+	self.skills.far_away.icon_xy = { 5, 1 }
 
 	-- Mag-Fed Specialist
 	self.skills.close_by[1].upgrades = { "shotgun_mag_reload_speed" }
 	self.skills.close_by[2].upgrades = { "shotgun_magazine_capacity_inc_1" }
 	self.skills.close_by.icon_xy = { 8, 7 }
 
-	-- Shotgun Hell
-	self.skills.overkill[1].upgrades = { "shotgun_consume_no_ammo_chance_1" }
+	-- Shotgun Rampage
+	self.skills.overkill[1].upgrades = { "shotgun_speed_stack_on_kill" }
 	self.skills.overkill[2].upgrades = { "cooldown_shotgun_panic_on_kill" }
+	self.skills.overkill.icon_xy = { 8, 6 }
 
 	-- Resilience
 	self.skills.oppressor.icon_xy = { 6, 1 }
 
-	-- Thick skin
+	-- Plates of Steel
 	self.skills.show_of_force[1].upgrades = { "player_damage_shake_addend" }
 	self.skills.show_of_force.icon_xy = { 2, 12 }
 
-	-- Underdog
-	self.skills.pack_mule[1].upgrades = { "player_damage_multiplier_outnumbered" }
-	self.skills.pack_mule[2].upgrades = { "player_damage_dampener_outnumbered" }
-	self.skills.pack_mule.icon_xy = { 2, 1 }
-	self.skills.pack_mule.name_id = "menu_underdog_beta"
-	self.skills.pack_mule.desc_id = "menu_underdog_beta_desc"
+	-- Pack Mule
+	self.skills.pack_mule[1].upgrades = { "carry_movement_penalty_nullifier" }
+	self.skills.pack_mule[2].upgrades = {} -- double bag carry to be added
+	self.skills.pack_mule.icon_xy = { 6, 0 }
 
-	-- Shock and Awe
-	self.skills.iron_man[1].upgrades = { "carry_movement_penalty_nullifier", "carry_movement_speed_multiplier" }
-	self.skills.iron_man[2].upgrades = { "player_tagged_speed_mul" }
-	self.skills.iron_man.icon_xy = { 6, 0 }
+	-- empty potential armor bag skill
+	self.skills.iron_man[1].upgrades = {}
+	self.skills.iron_man[2].upgrades = {}
+	self.skills.iron_man.icon_xy = { 0, 0 }
 
-	-- Nerves of Steel
+	-- Thick Skin
 	self.skills.prison_wife[1].upgrades = { "player_health_multiplier_1" }
 	self.skills.prison_wife[2].upgrades = { "player_health_multiplier_2" }
 	self.skills.prison_wife.icon_xy = { 1, 1 }
@@ -161,10 +159,19 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.ammo_reservoir.desc_id = "menu_bandoliers_beta_desc"
 	self.skills.ammo_reservoir.icon_xy = { 3, 0 }
 
+	-- wip ammo skill
+	self.skills.portable_saw[1].upgrades = {}
+	self.skills.portable_saw[2].upgrades = {}
+	self.skills.portable_saw.name_id = "menu_new_ammo_skill"
+	self.skills.portable_saw.desc_id = "menu_new_ammo_skill_desc"
+	self.skills.portable_saw.icon_xy = { 0, 0 }
+
 	-- Mag Plus
 	self.skills.carbon_blade[1].upgrades = { "player_automatic_mag_increase_1" }
 	self.skills.carbon_blade[2].upgrades = { "player_automatic_mag_increase_2" }
 	self.skills.carbon_blade.icon_xy = { 2, 0 }
+	self.skills.carbon_blade.name_id = "menu_mag_plus_beta"
+	self.skills.carbon_blade.desc_id = "menu_mag_plus_beta_desc"
 
 	-- Bulletstorm
 	self.skills.bandoliers[1].upgrades = { "temporary_no_ammo_cost_1" }
@@ -183,7 +190,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Daredevil
 	self.skills.sentry_targeting_package[1].upgrades = { "player_total_interaction_timer_multiplier" }
 	self.skills.sentry_targeting_package[2].upgrades = { "player_interacting_damage_multiplier" }
-	self.skills.sentry_targeting_package.icon_xy = { 1, 7 }
+	self.skills.sentry_targeting_package.icon_xy = { 8, 9 }
 
 	-- Defense Package
 	self.skills.engineering[1].upgrades = { "sentry_gun_armor_multiplier" }
@@ -583,7 +590,6 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "saw_enemy_slicer")
 	table.insert(self.default_upgrades, "saw_ignore_shields_1")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
-	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")

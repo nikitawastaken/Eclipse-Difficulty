@@ -154,6 +154,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.base.is_double_barrel = deep_clone(presets.weapon.base.is_shotgun_pump)
+	presets.weapon.base.is_double_barrel.RELOAD_SPEED = 6
 	presets.weapon.base.is_double_barrel.FALLOFF = {
 		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
@@ -439,7 +440,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
 
-	presets.gang_member_damage.HEALTH_INIT = 80 + (20 * (diff_i - 2))
+	presets.gang_member_damage.HEALTH_INIT = 80 + (30 * (diff_i - 2))
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
 	presets.gang_member_damage.REGENERATE_TIME = 5
@@ -1109,7 +1110,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
-	self.drug_lord_boss.throwable_cooldown = 10
+	self.drug_lord_boss.throwable_cooldown = 15
 	self.drug_lord_boss.die_sound_event = "l2n_burndeath"
 
 	self.triad_boss.HEALTH_INIT = 300
@@ -1171,10 +1172,20 @@ local character_map_original = CharacterTweakData.character_map
 function CharacterTweakData:character_map(...)
 	local char_map = character_map_original(self, ...)
 
-	table.insert(char_map.gitgud.list, "ene_zeal_swat_2")
-	table.insert(char_map.gitgud.list, "ene_zeal_swat_heavy_2")
-	table.insert(char_map.gitgud.list, "ene_zeal_medic_m4")
-	table.insert(char_map.gitgud.list, "ene_zeal_medic_r870")
+	local function safe_add(char_map_table, element)
+		if char_map_table and char_map_table.list then
+			table.insert(char_map_table.list, element)
+		end
+	end
+
+	safe_add(char_map.basic, "ene_swat_3")
+	safe_add(char_map.basic, "ene_swat_heavy_r870")
+	safe_add(char_map.basic, "ene_fbi_swat_3")
+
+	safe_add(char_map.gitgud.list, "ene_zeal_swat_2")
+	safe_add(char_map.gitgud.list, "ene_zeal_swat_heavy_2")
+	safe_add(char_map.gitgud.list, "ene_zeal_medic_m4")
+	safe_add(char_map.gitgud.list, "ene_zeal_medic_r870")
 
 	return char_map
 end

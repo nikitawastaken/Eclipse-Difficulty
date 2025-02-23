@@ -325,69 +325,51 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Enforcer --
 
-	-- Hard Boiled
-	self.values.shotgun.swap_speed_multiplier = { 1.2 }
-	self.definitions.shotgun_swap_speed_multiplier = {
-		name_id = "menu_shotgun_swap_speed_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "swap_speed_multiplier",
-			category = "shotgun",
-		},
+	-- Portable Saw
+	self.values.saw.lock_damage_multiplier[2] = 1.6
+	self.values.player.saw_speed_multiplier[2] = 0.4
+	self.skill_descs.shotgun_cqb.multipro = "1"
+	self.skill_descs.shotgun_cqb.multipro2 = "60%"
+
+	-- Saw Massacre
+	self.values.saw.enemy_slicer = {
+		2,
 	}
-	self.skill_descs.underdog.multibasic = "5%"
-	self.skill_descs.underdog.multipro = "20%"
+	self.skill_descs.shotgun_impact.multibasic = "90%"
+	self.skill_descs.shotgun_impact.multipro = "50%"
+	self.skill_descs.shotgun_impact.multipro2 = "10m"
 
 	-- Fast Hands
-	self.values.shotgun.pump_reload_speed = { 1.25, 1.5 }
-	self.definitions.shotgun_pump_reload_speed_1 = {
-		name_id = "menu_shotgun_pump_reload_speed",
+	self.values.shotgun.pump_reload_speed_mul = { 1.4 }
+	self.definitions.shotgun_pump_reload_speed_mul = {
+		name_id = "menu_shotgun_pump_reload_speed_mul",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "pump_reload_speed",
+			upgrade = "pump_reload_speed_mul",
 			category = "shotgun",
 		},
 	}
-	self.definitions.shotgun_pump_reload_speed_2 = {
-		name_id = "menu_shotgun_pump_reload_speed",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "pump_reload_speed",
-			category = "shotgun",
-		},
-	}
-	self.skill_descs.shotgun_cqb.multibasic = "25%"
-	self.skill_descs.shotgun_cqb.multipro = "25%"
+	self.values.shotgun.hip_rate_of_fire[1] = 1.25
+	self.skill_descs.far_away.multibasic = "40%"
+	self.skill_descs.far_away.multipro = "25%"
 
-	-- Point Blank
-	self.values.shotgun.extra_pellets = { 2 }
-	self.values.shotgun.spread_index_addend = { 1 }
-	self.values.shotgun.recoil_index_addend[1] = 1
-	self.definitions.shotgun_extra_pellets = {
-		name_id = "menu_shotgun_extra_pellets",
+	-- Mag-fed Specialist
+	self.values.shotgun.mag_reload_speed_mul = { 1.25 }
+	self.definitions.shotgun_mag_reload_speed_mul = {
+		name_id = "menu_shotgun_mag_reload_speed_mul",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "extra_pellets",
+			upgrade = "mag_reload_speed_mul",
 			category = "shotgun",
 		},
 	}
-	self.definitions.shotgun_spread_index_addend = {
-		name_id = "menu_shotgun_spread_index_addend",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "spread_index_addend",
-			category = "shotgun",
-		},
-	}
-	self.skill_descs.shotgun_impact.multibasic = "4"
-	self.skill_descs.shotgun_impact.multipro = "2"
+	self.values.shotgun.magazine_capacity_inc[1] = 5
+	self.skill_descs.close_by.multibasic = "25%"
+	self.skill_descs.close_by.multipro = "5"
 
-	-- Shotgun CQB
+	-- Shotgun Rampage
 	self.definitions.shotgun_speed_stack_on_kill = {
 		name_id = "menu_shotgun_speed_stack_on_kill",
 		category = "feature",
@@ -397,33 +379,11 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.hip_rate_of_fire[1] = 1.15
 	self.values.shotgun.speed_stack_on_kill = { {
 		max_stacks = 5,
-		max_time = 12,
-		speed_bonus = 1.08,
+		max_time = 5,
+		speed_bonus = 1.06,
 	} }
-	self.skill_descs.far_away.multibasic = "15%"
-	self.skill_descs.far_away.multipro = "8%"
-	self.skill_descs.far_away.multipro2 = "12"
-	self.skill_descs.far_away.multipro3 = "5"
-
-	-- Mag-fed Specialist
-	self.values.shotgun.mag_reload_speed = { 1.25 }
-	self.values.shotgun.magazine_capacity_inc[1] = 5
-	self.definitions.shotgun_mag_reload_speed = {
-		name_id = "menu_shotgun_mag_reload_speed",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "mag_reload_speed",
-			category = "shotgun",
-		},
-	}
-	self.skill_descs.close_by.multibasic = "25%"
-	self.skill_descs.close_by.multipro = "5"
-
-	-- Shotgun Hell
 	self.definitions.cooldown_shotgun_panic_on_kill = {
 		name_id = "menu_cooldown_shotgun_panic_on_kill",
 		category = "cooldown",
@@ -433,46 +393,28 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.values.shotgun.consume_no_ammo_chance[1] = 0.125
 	self.values.cooldown.shotgun_panic_on_kill = { { 1, 5 } }
 	self.values.shotgun.panic = { { chance = 0.75, area = 800, amount = "panic" } }
-	self.skill_descs.overkill.multibasic = "12.5%"
+	self.skill_descs.overkill.multibasic = "6%"
+	self.skill_descs.overkill.multibasic2 = "5"
+	self.skill_descs.overkill.multibasic3 = "5"
 	self.skill_descs.overkill.multipro = "75%"
 	self.skill_descs.overkill.multipro2 = "5"
 
 	-- Resilience
-	self.values.player.armor_regen_timer_multiplier[1] = 0.95
+	self.values.player.armor_regen_timer_multiplier[1] = 0.9
 	self.values.player.flashbang_multiplier = { 0.5, 0.5 }
-	self.skill_descs.oppressor.multibasic2 = "5%"
+	self.skill_descs.oppressor.multibasic2 = "10%"
 	self.skill_descs.oppressor.multipro2 = "50%"
 
-	-- Underdog
-	self.skill_descs.pack_mule.multibasic = "10"
-	self.skill_descs.pack_mule.multibasic2 = "15%"
-	self.skill_descs.pack_mule.multibasic3 = "7"
-	self.skill_descs.pack_mule.multipro = "18"
-	self.skill_descs.pack_mule.multipro2 = "10%"
-	self.skill_descs.pack_mule.multipro3 = "7"
-
-	-- Thick Skin
+	-- Plates of Steel
 	self.values.player.damage_shake_addend[1] = 1.5
 	self.skill_descs.show_of_force.multibasic = "15"
 
-	-- Shock and Awe
-	self.values.player.tagged_speed_mul = { 0.5 }
-	self.definitions.player_tagged_speed_mul = {
-		name_id = "menu_player_tagged_speed_mul",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "tagged_speed_mul",
-			category = "player",
-		},
-	}
-	self.skill_descs.iron_man.multibasic = "50%"
-	self.skill_descs.iron_man.multipro = "50%"
+	-- Pack Mule
+	self.skill_descs.pack_mule.multipro = "2"
 
-	-- Nerves of Steel
+	-- Thick Skin
 	self.definitions.player_health_multiplier_1 = {
 		name_id = "menu_player_health_multiplier",
 		category = "feature",

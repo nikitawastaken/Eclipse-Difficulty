@@ -1,1 +1,4 @@
---keeping this if we're gonna add custom stuff
+---@module Cook Off
+local M = Eclipse:require("mission_script_add/alex_1")
+
+return M
