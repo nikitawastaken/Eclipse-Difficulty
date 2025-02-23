@@ -229,28 +229,28 @@ Hooks:OverrideFunction(CopDamage, "damage_bullet", function(self, attack_data)
 		if self:check_medic_heal() then
 			result = {
 				type = "healed",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 		else
 			if head then
 				local visor_sequence = "break_visor"
-				
+
 				if self._unit:damage() and self._unit:damage():has_sequence(visor_sequence) then
 					self._unit:damage():run_sequence_simple(visor_sequence)
 				end
-				
+
 				managers.player:on_lethal_headshot_dealt(attack_data.attacker_unit, attack_data)
 				self:_spawn_head_gadget({
 					position = attack_data.col_ray.body:position(),
 					rotation = attack_data.col_ray.body:rotation(),
-					dir = attack_data.col_ray.ray
+					dir = attack_data.col_ray.ray,
 				})
 			end
 
 			attack_data.damage = self._health
 			result = {
 				type = "death",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 
 			self:die(attack_data)
@@ -258,10 +258,11 @@ Hooks:OverrideFunction(CopDamage, "damage_bullet", function(self, attack_data)
 		end
 	else
 		attack_data.damage = damage
-		local result_type = not self._char_tweak.immune_to_knock_down and (attack_data.knock_down and "knock_down" or attack_data.stagger and not self._has_been_staggered and "stagger") or self:get_damage_type(damage_percent, "bullet")
+		local result_type = not self._char_tweak.immune_to_knock_down and (attack_data.knock_down and "knock_down" or attack_data.stagger and not self._has_been_staggered and "stagger")
+			or self:get_damage_type(damage_percent, "bullet")
 		result = {
 			type = result_type,
-			variant = attack_data.variant
+			variant = attack_data.variant,
 		}
 
 		self:_apply_damage_to_health(damage)
@@ -276,13 +277,13 @@ Hooks:OverrideFunction(CopDamage, "damage_bullet", function(self, attack_data)
 			stats_name = self._unit:base()._stats_name,
 			head_shot = head,
 			weapon_unit = attack_data.weapon_unit,
-			variant = attack_data.variant
+			variant = attack_data.variant,
 		}
 
 		if managers.groupai:state():all_criminals()[attack_data.attacker_unit:key()] then
 			managers.statistics:killed_by_anyone(data)
 		end
-		
+
 		if attack_data.attacker_unit == managers.player:player_unit() then
 			local special_comment = self:_check_special_death_conditions(attack_data.variant, attack_data.col_ray.body, attack_data.attacker_unit, attack_data.weapon_unit)
 
@@ -295,7 +296,12 @@ Hooks:OverrideFunction(CopDamage, "damage_bullet", function(self, attack_data)
 			managers.statistics:killed(data)
 			self:_check_damage_achievements(attack_data, head)
 
-			if not is_civilian and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier") and not attack_data.weapon_unit:base().thrower_unit and attack_data.weapon_unit:base():is_category("shotgun", "saw") then
+			if
+				not is_civilian
+				and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier")
+				and not attack_data.weapon_unit:base().thrower_unit
+				and attack_data.weapon_unit:base():is_category("shotgun", "saw")
+			then
 				managers.player:activate_temporary_upgrade("temporary", "overkill_damage_multiplier")
 			end
 
@@ -329,7 +335,14 @@ Hooks:OverrideFunction(CopDamage, "damage_bullet", function(self, attack_data)
 			if sentry_attack_data.attacker_unit == managers.player:player_unit() then
 				self:_check_damage_achievements(sentry_attack_data, head)
 			else
-				self._unit:network():send("sync_damage_achievements", sentry_attack_data.weapon_unit, sentry_attack_data.attacker_unit, sentry_attack_data.damage, sentry_attack_data.col_ray and sentry_attack_data.col_ray.distance, head)
+				self._unit:network():send(
+					"sync_damage_achievements",
+					sentry_attack_data.weapon_unit,
+					sentry_attack_data.attacker_unit,
+					sentry_attack_data.damage,
+					sentry_attack_data.col_ray and sentry_attack_data.col_ray.distance,
+					head
+				)
 			end
 		end
 	end
