@@ -9,7 +9,7 @@ function HuskPlayerMovement:check_visual_equipment()
 
 	local carry_data = managers.player:get_synced_carry(peer_id)
 
-	if #carry_data > 0 then
+	if carry_data and #carry_data > 0 then
 		self:set_visual_carry(carry_data[#carry_data].carry_id)
 	end
 end

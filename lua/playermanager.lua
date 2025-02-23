@@ -519,8 +519,8 @@ function PlayerManager:remove_synced_carry(peer)
 	else
 		local local_peer_id = managers.network:session():local_peer():id()
 
-		local next_carry_id = self._global.synced_carry[peer_id][1].carry_id
-		if peer_id ~= local_peer_id then
+		local next_carry_id = self._global.synced_carry[peer_id][1] and self._global.synced_carry[peer_id][1].carry_id
+		if peer_id ~= local_peer_id and next_carry_id then
 			peer:unit():movement():set_visual_carry(next_carry_id)
 		end
 	end
@@ -529,8 +529,8 @@ end
 function PlayerManager:update_carry_to_peer(peer)
 	local peer_id = managers.network:session():local_peer():id()
 
-	local carry_idx = #self._global.synced_carry[peer_id]
-	if self._global.synced_carry[peer_id][carry_idx] then
+	local carry_idx = self._global.synced_carry[peer_id] and #self._global.synced_carry[peer_id]
+	if carry_idx and self._global.synced_carry[peer_id][carry_idx] then
 		local carry_id = self._global.synced_carry[peer_id][carry_idx].carry_id
 		local multiplier = self._global.synced_carry[peer_id][carry_idx].multiplier
 		local dye_initiated = self._global.synced_carry[peer_id][carry_idx].dye_initiated
