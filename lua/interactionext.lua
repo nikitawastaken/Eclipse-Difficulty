@@ -97,7 +97,7 @@ function BaseInteractionExt:can_interact(player)
 end
 
 -- Carry stacker start
--- TODO: implement skill check, decerement bag count when available
+-- TODO: implement skill check
 Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext", function(self, player)
 	local has_carry_stacker = true
 	if self.tweak_data == "corpse_dispose" and has_carry_stacker then
@@ -108,7 +108,7 @@ Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext",
 	end
 end)
 
--- TODO: implement skill check, decerement bag count when available
+-- TODO: implement skill check
 Hooks:PostHook(CarryInteractionExt, "interact", "eclipse_carry_interact", function(self, player)
 	local has_carry_stacker = true
 	if has_carry_stacker then
@@ -153,3 +153,53 @@ function CarryInteractionExt:can_select(player)
 
 	return CarryInteractionExt.super.can_select(self, player)
 end
+
+function DrivingInteractionExt:can_interact(player)
+	local can_interact = DrivingInteractionExt.super.can_interact(self, player)
+	local can_enter_with_carry = false
+
+	if managers.player:is_carrying() then
+		local carry_list = managers.player:get_my_carry_data()
+		local carry_data = carry_list[1]
+
+		if carry_data[1] then
+			local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
+			local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
+			local vehicle_ext = self._unit and self._unit:vehicle_driving()
+			local secure_carry_on_enter = vehicle_ext and vehicle_ext.secure_carry_on_enter
+			can_enter_with_carry = secure_carry_on_enter and not skip_exit_secure
+		end
+
+		carry_data = carry_list[2]
+		if carry_data[2] then
+			local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
+			local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
+			local vehicle_ext = self._unit and self._unit:vehicle_driving()
+			local secure_carry_on_enter = vehicle_ext and vehicle_ext.secure_carry_on_enter
+			can_enter_with_carry = can_enter_with_carry or (secure_carry_on_enter and not skip_exit_secure)
+		end
+	end
+
+	if can_interact and managers.player:is_berserker() and self._action ~= VehicleDrivingExt.INTERACT_LOOT and self._action ~= VehicleDrivingExt.INTERACT_TRUNK then
+		can_interact = false
+
+		managers.hud:show_hint({
+			time = 2,
+			text = managers.localization:text("hud_vehicle_no_enter_berserker"),
+		})
+	elseif can_interact and managers.player:is_carrying() and not can_enter_with_carry then
+		if self._action == VehicleDrivingExt.INTERACT_ENTER or self._action == VehicleDrivingExt.INTERACT_DRIVE then
+			can_interact = false
+
+			managers.hud:show_hint({
+				time = 3,
+				text = managers.localization:text("hud_vehicle_no_enter_carry"),
+			})
+		elseif self._action == VehicleDrivingExt.INTERACT_LOOT then
+			can_interact = false
+		end
+	end
+
+	return can_interact
+end
+-- Cary stacker end

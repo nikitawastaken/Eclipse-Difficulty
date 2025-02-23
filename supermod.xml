@@ -17,6 +17,7 @@
 
 		<group hook_id="lib/">
 			<post :hook_id="utils/inventorydescription"/>
+			<post :hook_id="states/missionendstate"/>
 			<group :hook_id="managers/">
 				<group :hook_id="group_ai_states/">
 					<post :hook_id="groupaistatebase"/>
@@ -28,6 +29,7 @@
 					<post :hook_id="elementspawnenemydummy"/>
 					<post :hook_id="elementspawnenemygroup"/>
 					<post :hook_id="elementspecialobjective"/>
+					<post :hook_id="elementinstigatorrule"/>
 				</group>
 
 				<group :hook_id="hud/">
@@ -68,6 +70,7 @@
 				<post :hook_id="explosionmanager"/>
 				<post :hook_id="killzonemanager"/>
 				<post :hook_id="firemanager"/>
+				<post :hook_id="hudmanagerpd2"/>
 			</group>
 
 			<group :hook_id="network/">

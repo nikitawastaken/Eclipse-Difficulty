@@ -597,16 +597,6 @@ function PlayerManager:server_drop_carry(
 	return unit
 end
 
--- TODO: fix functions trying to access carry data in list:
--- hudmanagerpd2
--- missionendstate
--- mutatorcg22
--- playerhandstatebelt
--- playercarry			(2 instances)
--- playermanager		(10 instances)
--- playerhand
--- interactionext
---
 -- TODO: Add carry stacker interactions for disposing corpses
 
 function PlayerManager:peer_dropped_out(peer)
@@ -661,3 +651,202 @@ function PlayerManager:peer_dropped_out(peer)
 	self:remove_from_player_list(peer_unit)
 	managers.vehicle:remove_player_from_all_vehicles(peer_unit)
 end
+
+function PlayerManager:bank_carry(carry_data)
+	if not carry_data then
+		local carry_list = self:get_my_carry_data()
+		carry_data = carry_list[#carry_list]
+	end
+	local peer_id = managers.network:session() and managers.network:session():local_peer():id()
+
+	managers.loot:secure(carry_data.carry_id, carry_data.multiplier, nil, peer_id)
+	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
+	managers.hud:temp_hide_carry_bag()
+	self:update_removed_synced_carry_to_peers()
+	managers.player:set_player_state("standard")
+end
+
+function PlayerManager:force_drop_carry()
+	local carry_list = self:get_my_carry_data()
+	local carry_data = carry_list[#carry_list]
+
+	if not carry_data then
+		return
+	end
+
+	local player = self:player_unit()
+
+	if not alive(player) then
+		print("COULDN'T FORCE DROP! DIDN'T HAVE A UNIT")
+
+		return
+	end
+
+	local dye_initiated = carry_data.dye_initiated
+	local has_dye_pack = carry_data.has_dye_pack
+	local dye_value_multiplier = carry_data.dye_value_multiplier
+	local camera_ext = player:camera()
+
+	if Network:is_client() then
+		managers.network:session():send_to_host(
+			"server_drop_carry",
+			carry_data.carry_id,
+			carry_data.multiplier,
+			dye_initiated,
+			has_dye_pack,
+			dye_value_multiplier,
+			camera_ext:position(),
+			camera_ext:rotation(),
+			Vector3(0, 0, 0),
+			0,
+			nil
+		)
+	else
+		self:server_drop_carry(
+			carry_data.carry_id,
+			carry_data.multiplier,
+			dye_initiated,
+			has_dye_pack,
+			dye_value_multiplier,
+			camera_ext:position(),
+			camera_ext:rotation(),
+			Vector3(0, 0, 0),
+			0,
+			nil,
+			managers.network:session():local_peer()
+		)
+	end
+
+	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
+	managers.hud:temp_hide_carry_bag()
+	self:update_removed_synced_carry_to_peers()
+end
+
+function PlayerManager:clear_carry(soft_reset)
+	local carry_list = self:get_my_carry_data()
+	local carry_data = carry_list[#carry_list]
+
+	if not carry_data then
+		return
+	end
+
+	local player = self:player_unit()
+
+	if not soft_reset and not alive(player) then
+		print("COULDN'T FORCE DROP! DIDN'T HAVE A UNIT")
+
+		return
+	end
+
+	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
+	managers.hud:temp_hide_carry_bag()
+	self:update_removed_synced_carry_to_peers()
+
+	if self._current_state == "carry" then
+		managers.player:set_player_state("standard")
+	end
+end
+
+function PlayerManager:is_carrying()
+	return #self:get_my_carry_data() > 0
+end
+
+function PlayerManager:current_carry_id()
+	local my_carry_data = self:get_my_carry_data()
+	local id_list = {}
+
+	if my_carry_data[1] then
+		table.insert(id_list, my_carry_data[1].carry_id)
+	end
+	if my_carry_data[2] then
+		table.insert(id_list, my_carry_data[2].carry_id)
+	end
+
+	return id_list
+end
+
+function PlayerManager:check_damage_carry(attack_data)
+	local carry_list = self:get_my_carry_data()
+
+	if not carry_data then
+		return
+	end
+
+	local carry_id = carry_data.carry_id
+	local type = tweak_data.carry[carry_id].type
+
+	if not tweak_data.carry.types[type].looses_value then
+		return
+	end
+
+	local dye_initiated = carry_data.dye_initiated
+	local has_dye_pack = carry_data.has_dye_pack
+	local dye_value_multiplier = carry_data.dye_value_multiplier
+	local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
+
+	self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
+	managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
+end
+
+-- If the dye pack feature gets used, add
+-- PlayerManager:check_damage_carry(...)
+
+function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
+	if not alive(player) or not alive(vehicle) then
+		return
+	end
+
+	self._global.synced_vehicle_data[peer_id] = {
+		vehicle_unit = vehicle,
+		seat = seat_name,
+	}
+	local vehicle_ext = vehicle:vehicle_driving()
+
+	vehicle_ext:place_player_on_seat(player, seat_name)
+	player:kill_mover()
+
+	local seat = vehicle_ext:find_seat_for_player(player)
+	local rot = seat.object:rotation()
+	local pos = seat.object:position()
+
+	player:set_rotation(rot)
+
+	local pos = seat.object:position() + VehicleDrivingExt.PLAYER_CAPSULE_OFFSET
+
+	vehicle:link(Idstring(VehicleDrivingExt.SEAT_PREFIX .. seat_name), player)
+
+	if self:local_player() == player then
+		if self:is_carrying() then
+			local vehicle_ext = vehicle:vehicle_driving()
+			local secure_carry_on_enter = vehicle_ext and vehicle_ext.secure_carry_on_enter
+
+			local carry_list = self:get_my_carry_data()
+			local carry_data = carry_list[1]
+			if carry_data then
+				local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
+				local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
+
+				if secure_carry_on_enter and not skip_exit_secure then
+					self:bank_carry(carry_data)
+				end
+			end
+
+			carry_list = self:get_my_carry_data()
+			carry_data = carry_list[2]
+			if carry_data then
+				local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
+				local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
+
+				if secure_carry_on_enter and not skip_exit_secure then
+					self:bank_carry(carry_data)
+				end
+			end
+		end
+
+		self:set_player_state("driving")
+	end
+
+	managers.hud:update_vehicle_label_by_id(vehicle:unit_data().name_label_id, vehicle_ext:_number_in_the_vehicle())
+	managers.vehicle:on_player_entered_vehicle(vehicle, player)
+end
+-- Carry stacker end
