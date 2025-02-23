@@ -183,13 +183,13 @@ PlayerAction.ShotgunCQB = {
 				current_stacks = current_stacks + 1
 
 				if current_stacks <= max_stacks then
-					player_manager:mul_to_property("shotguncqb", speed_bonus)
+					player_manager:add_to_property("shotguncqb", speed_bonus)
 				end
 			end
 		end
 
-		player_manager:mul_to_property("shotguncqb", speed_bonus)
-		player_manager:register_message(Message.OnEnemyShot, co, on_hit)
+		player_manager:add_to_property("shotguncqb", speed_bonus)
+		player_manager:register_message(Message.OnEnemyKilled, co, on_hit)
 
 		while current_time < max_time do
 			current_time = Application:time()
@@ -197,15 +197,15 @@ PlayerAction.ShotgunCQB = {
 		end
 
 		player_manager:remove_property("shotguncqb")
-		player_manager:unregister_message(Message.OnEnemyShot, co)
+		player_manager:unregister_message(Message.OnEnemyKilled, co)
 	end,
 }
 
 Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
 	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
-		self._message_system:register(Message.OnEnemyShot, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
+		self._message_system:register(Message.OnEnemyKilled, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
 	else
-		self._message_system:unregister(Message.OnEnemyShot, "shotguncqb")
+		self._message_system:unregister(Message.OnEnemyKilled, "shotguncqb")
 	end
 
 	if self:has_category_upgrade("snp", "consecutive_headshots") then
