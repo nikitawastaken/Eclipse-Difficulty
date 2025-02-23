@@ -5,7 +5,7 @@
 	"contact" : "nikita_was_taken on Discord",
 	"image" : "mod.png",
 	"blt_version" : 2,
-	"version" : "6.0enemies06",
+	"version" : "6.0enemies07",
 	"updates" : [{
 		"identifier" : "eclipse_difficulty_enemies",
 		"host" : { "meta" : "https://raw.githubusercontent.com/mrcreepysos/Eclipse-Difficulty/enemies/meta.json" }
