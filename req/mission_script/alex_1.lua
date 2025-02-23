@@ -13,7 +13,7 @@ local sniper_groups = {
 		amount = normal and 1 or hard and 2 or 3,
 	},
 }
-local sniper_amount_counter {
+local sniper_amount_counter = {
     values = {
 		amount = normal and 2 or hard and 4 or 6,
 	},
