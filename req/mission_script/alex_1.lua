@@ -14,7 +14,7 @@ local sniper_groups = {
 	},
 }
 local sniper_amount_counter = {
-    values = {
+	values = {
 		amount = normal and 2 or hard and 4 or 6,
 	},
 }
@@ -40,9 +40,9 @@ return {
 	},
 	-- more snipers on higher difficulties
 	[101070] = sniper_groups,
-    -- prevent snipers from stacking up
-    [101135] = sniper_amount_counter,
-    [101142] = sniper_amount_counter,
+	-- prevent snipers from stacking up
+	[101135] = sniper_amount_counter,
+	[101142] = sniper_amount_counter,
 	-- only let swats, tasers and cloakers use climbing SOs
 	-- e_nl_up_3_down_1m
 	[101483] = exclude_cop_agents_shields_dozers,

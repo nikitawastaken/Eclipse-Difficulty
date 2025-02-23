@@ -150,12 +150,18 @@ function CoreEnvironmentControllerManager:set_post_composite(t, dt)
 	if self._custom_dof_settings then
 		self._material:set_variable(ids_dof_settings, self._custom_dof_settings)
 	elseif flash_1 > 0 then
-		self._material:set_variable(ids_dof_settings, Vector3(math.min(self._hit_some * 10, 1) + blur_zone_flashbang * 0.4, math.min(blur_zone_val + downed_value * 2 + flash_1, 1), 10 + math.abs(math.sin(t * 10) * 40) + downed_value * 3))
+		self._material:set_variable(
+			ids_dof_settings,
+			Vector3(math.min(self._hit_some * 10, 1) + blur_zone_flashbang * 0.4, math.min(blur_zone_val + downed_value * 2 + flash_1, 1), 10 + math.abs(math.sin(t * 10) * 40) + downed_value * 3)
+		)
 	else
 		self._material:set_variable(ids_dof_settings, Vector3(math.min(self._hit_some * 10, 1) + blur_zone_flashbang * 0.4, math.min(blur_zone_val + downed_value * 2, 1), 1 + downed_value * 3))
 	end
 
-	self._material:set_variable(ids_radial_offset, Vector3((self._hit_left - self._hit_right) * 0.2, (self._hit_up - self._hit_down) * 0.2, self._hit_front - self._hit_back + blur_zone_flashbang * 0.1))
+	self._material:set_variable(
+		ids_radial_offset,
+		Vector3((self._hit_left - self._hit_right) * 0.2, (self._hit_up - self._hit_down) * 0.2, self._hit_front - self._hit_back + blur_zone_flashbang * 0.1)
+	)
 	self._material:set_variable(Idstring("contrast"), self._base_contrast + self._hit_some * 0.25)
 
 	if self._chromatic_enabled then
@@ -208,7 +214,7 @@ function CoreEnvironmentControllerManager:set_post_composite(t, dt)
 	end
 
 	self:_handle_screenflash(flash_2, 0, 0)
-    -- this entire overwrite mess just to replace this single line
+	-- this entire overwrite mess just to replace this single line
 	mvector3.set_static(temp_vec_2, last_life, math.max(0, flash_2 + math.clamp(hit_some_mod * 2, 0, 1) * 0.25 + blur_zone_val * 0.15), 0)
 	self._lut_modifier_material:set_variable(ids_LUT_settings_b, temp_vec_2)
 	self._lut_modifier_material:set_variable(ids_LUT_contrast, flashbang * 0.5)

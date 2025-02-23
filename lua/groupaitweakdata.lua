@@ -583,7 +583,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.FBI_swat = {
 		unit_types = {
 			america = {
@@ -733,7 +733,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.Elite_swat_2_3 = {
 		unit_types = {
 			america = {
@@ -759,7 +759,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.Elite_swat = {
 		unit_types = {
 			america = {
