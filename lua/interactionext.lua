@@ -95,3 +95,61 @@ function BaseInteractionExt:can_interact(player)
 
 	return managers.player:has_special_equipment(self._tweak_data.special_equipment)
 end
+
+-- Carry stacker start
+-- TODO: implement skill check, decerement bag count when available
+Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext", function(self, player)
+	local has_carry_stacker = true
+	if self.tweak_data == "corpse_dispose" and has_carry_stacker then
+		if managers.player:get_bags_carried() < 2 then
+			player:movement():set_carry_restriction(false)
+			managers.player:add_bags_carried()
+		end
+	end
+end)
+
+-- TODO: implement skill check, decerement bag count when available
+Hooks:PostHook(CarryInteractionExt, "interact", "eclipse_carry_interact", function(self, player)
+	local has_carry_stacker = true
+	if has_carry_stacker then
+		if managers.player:get_bags_carried() < 2 then
+			managers.player:add_bags_carried()
+			if Network:is_client() then
+				player:movement():set_carry_restriction(false)
+			end
+		end
+	end
+end)
+
+-- TODO: implement skill check
+function CarryInteractionExt:_interact_blocked(player)
+	local silent_block = managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit()
+
+	local has_carry_stacker = true
+	local can_carry_stack = has_carry_stacker and (managers.player:get_bags_carried() < 2)
+	if silent_block then
+		return true, silent_block
+	end
+	if can_carry_stack then
+		return false
+	elseif managers.player:is_carrying() then
+		return true, silent_block
+	end
+
+	return false
+end
+
+-- TODO: implement skill check
+function CarryInteractionExt:can_select(player)
+	if managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit() then
+		return false
+	end
+
+	local has_carry_stacker = true
+	local can_carry_stack = has_carry_stacker and (managers.player:get_bags_carried() < 2)
+	if not can_carry_stack and managers.player:is_carrying() then
+		return false
+	end
+
+	return CarryInteractionExt.super.can_select(self, player)
+end

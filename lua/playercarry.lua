@@ -39,3 +39,37 @@ function PlayerCarry:_get_max_walk_speed(...)
 
 	return PlayerCarry.super._get_max_walk_speed(self, ...) * multiplier
 end
+
+function PlayerCarry:_check_use_item(t, input)
+	local new_action = nil
+	local action_wanted = input.btn_use_item_release and self._throw_time and t and t < self._throw_time
+
+	if input.btn_use_item_press then
+		self._throw_down = true
+		self._second_press = false
+		self._throw_time = t + PlayerCarry.throw_limit_t
+	end
+
+	if action_wanted then
+		managers.player:drop_carry()
+		new_action = true
+	end
+
+	if self._throw_down then
+		if input.btn_use_item_release then
+			self._throw_down = false
+			self._second_press = false
+
+			return PlayerCarry.super._check_use_item(self, t, input)
+		elseif self._throw_time < t then
+			if not self._second_press then
+				input.btn_use_item_press = true
+				self._second_press = true
+			end
+
+			return PlayerCarry.super._check_use_item(self, t, input)
+		end
+	end
+
+	return new_action
+end

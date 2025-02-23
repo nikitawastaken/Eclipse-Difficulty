@@ -73,6 +73,7 @@
 				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
 				<post :hook_id="base/basenetworksession"/>
+				<post :hook_id="base/networkpeer"/>
 			</group>
 
 			<post :hook_id="setups/gamesetup"/>
@@ -117,6 +118,7 @@
 					<post :hook_id="states/playerbleedout"/>
 					<post :hook_id="states/playerbipod"/>
 					<post :hook_id="states/playercarry"/>
+					<post :hook_id="huskplayermovement"/>
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
