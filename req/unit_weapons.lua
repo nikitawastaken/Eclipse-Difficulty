@@ -31,8 +31,8 @@ local M = {
 	--fat man has bronco instead of c45
 	[("units/payday2/characters/ene_security_8/ene_security_8"):key()] = { raging_bull = 3, mp5 = 1 },
 	--Secret Service
-	[("units/payday2/characters/ene_secret_service_1/ene_secret_service_1"):key()] = { c45 = 3, mp5 = 1 },
-	[("units/payday2/characters/ene_secret_service_2/ene_secret_service_2"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_secret_service_1/ene_secret_service_1"):key()] = { c45 = 3, ump = 1 },
+	[("units/payday2/characters/ene_secret_service_2/ene_secret_service_2"):key()] = { c45 = 3, ump = 1 },
 	--Red GenSec guards
 	[("units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"):key()] = { c45 = 3, ump = 1 },
 	[("units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2"):key()] = { g36 = 2, ump = 1 },
