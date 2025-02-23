@@ -1954,7 +1954,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = swat_random_tactics_1,
 			},
 			{
-				amount_min = 1,
+				amount_max = 2,
 				freq_by_diff = { 0, 0.8, 0.8 },
 				rank = 2,
 				unit = "Elite_swat_3",
@@ -2113,7 +2113,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = swat_random_tactics_1,
 			},
 			{
-				amount_min = 1,
+				amount_max = 2,
 				freq_by_diff = { 0, 0.8, 0.8 },
 				rank = 2,
 				unit = "Zeal_swat_3",
