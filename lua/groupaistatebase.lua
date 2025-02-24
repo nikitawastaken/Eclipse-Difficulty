@@ -37,7 +37,6 @@ function GroupAIStateBase:_calculate_difficulty_ratio(...)
 			end
 		end
 	end
-
 end
 
 -- Scale gained drama with player count
@@ -128,7 +127,6 @@ function GroupAIStateBase:_update_difficulty_value()
 		end
 		self:_calculate_difficulty_ratio()
 	end
-
 end
 
 local set_difficulty_original = GroupAIStateBase.set_difficulty
@@ -155,7 +153,7 @@ end
 
 --Killing hostages in Pro Jobs increases diff
 local is_pro_job = Eclipse.utils.is_pro_job()
-Hooks:PostHook(GroupAIStateBase, "hostage_killed", "hits_hostage_killed", function (self)
+Hooks:PostHook(GroupAIStateBase, "hostage_killed", "hits_hostage_killed", function(self)
 	if is_pro_job then
 		self._hostage_killed_diff_add = math.random(75, 100) / 1000
 		self:add_difficulty(self._hostage_killed_diff_add)
