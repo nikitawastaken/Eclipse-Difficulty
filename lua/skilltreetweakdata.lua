@@ -135,7 +135,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Pack Mule
 	self.skills.pack_mule[1].upgrades = { "carry_movement_penalty_nullifier" }
-	self.skills.pack_mule[2].upgrades = { "player_carry_stacker" } -- double bag carry to be added
+	self.skills.pack_mule[2].upgrades = { "player_carry_stacker" }
 	self.skills.pack_mule.icon_xy = { 6, 0 }
 
 	-- empty potential armor bag skill
@@ -594,5 +594,6 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
+	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "player_crouch_speed_multiplier")
 end

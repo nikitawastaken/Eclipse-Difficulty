@@ -80,7 +80,7 @@
 	"menu_show_of_force_beta": "Plates of Steel",
 	"menu_show_of_force_beta_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nIncreases the armor of all ballistic vests by ##$multipro2##.",
 	"menu_pack_mule_beta": "Pack Mule",
-	"menu_pack_mule_beta_desc": "BASIC: ##$basic##\nYou can now sprint with all bags.\n\nACE: ##$pro##\nWork in progress.",
+	"menu_pack_mule_beta_desc": "BASIC: ##$basic##\nYou can now sprint with all bags.\n\nACE: ##$pro##\nYou can now carry ##$multipro## bags at the same time. ",
 	"menu_iron_man_beta": "Work in Progress",
 	"menu_iron_man_beta_desc": "BASIC: ##$basic##\nWork in progress.\n\nACE: ##$pro##\nWork in progress.",
 	"menu_prison_wife_beta": "Thick Skin",
