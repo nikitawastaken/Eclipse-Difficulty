@@ -15,7 +15,7 @@ local sniper_groups = {
 }
 local sniper_amount_counter = {
 	values = {
-		amount = normal and 2 or hard and 4 or 6,
+		counter_target = normal and 2 or hard and 4 or 6,
 	},
 }
 local cloaker_spawn = {
