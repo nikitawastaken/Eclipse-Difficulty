@@ -67,6 +67,27 @@ if not Eclipse then
 		managers.chat:_receive_message(managers.chat.GAME, "Eclipse Debug", table.concat({ ... }, " "), Color.green)
 	end
 
+	function Eclipse:log_chat_unique(...)
+		local vals = { ... }
+		if Eclipse._old_chat_vals then
+			if #Eclipse._old_chat_vals == #vals then
+				for i, msg in ipairs(vals) do
+					if Eclipse._old_chat_vals[i] ~= msg then
+						Eclipse:log_chat(unpack(vals))
+						Eclipse._old_chat_vals = vals
+						break
+					end
+				end
+			else
+				Eclipse:log_chat(unpack(vals))
+				Eclipse._old_chat_vals = vals
+			end
+		else
+			Eclipse:log_chat(unpack(vals))
+			Eclipse._old_chat_vals = vals
+		end
+	end
+
 	Eclipse.utils = Eclipse:require("utils")
 	Eclipse.ffo_heists = Eclipse:require("ffo_heists")
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")

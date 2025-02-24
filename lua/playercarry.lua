@@ -20,7 +20,7 @@ function PlayerCarry:_perform_jump(jump_vec)
 	elseif not max_mul then
 		multiplier = 1
 	else
-		multiplier = max_mul + 0.5 * (1 - max_mul)
+		multiplier = max_mul
 	end
 
 	mvector3.multiply(jump_vec, multiplier)
@@ -50,7 +50,7 @@ function PlayerCarry:_get_max_walk_speed(...)
 	elseif not max_mul then
 		multiplier = 1
 	else
-		multiplier = max_mul + 0.5 * (1 - max_mul)
+		multiplier = max_mul
 	end
 
 	--[[ if managers.player:has_category_upgrade("carry", "movement_penalty_nullifier") then
@@ -215,7 +215,7 @@ function PlayerCarry:_get_walk_headbob(...)
 	elseif not max_mul then
 		multiplier = 1
 	else
-		multiplier = max_mul + 0.5 * (1 - max_mul)
+		multiplier = max_mul
 	end
 
 	multiplier = math.clamp(multiplier * managers.player:upgrade_value("carry", "movement_speed_multiplier", 1), 0, 1)
