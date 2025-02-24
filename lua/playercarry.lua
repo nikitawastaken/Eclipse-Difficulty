@@ -81,7 +81,11 @@ function PlayerCarry:_enter(enter_data)
 
 	if my_carry_data and my_carry_data[1] then
 		local carry_data = tweak_data.carry[my_carry_data.carry_id]
-		self._tweak_data_name = carry_data.type
+		if carry_data then
+			self._tweak_data_name = carry_data.type
+		else
+			self._tweak_data_name = "light"
+		end
 	else
 		self._tweak_data_name = "light"
 	end

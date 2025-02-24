@@ -11,12 +11,10 @@ end
 
 function PlayerManager:subtract_bags_carried()
 	self._eclipse_bags_carried = self._eclipse_bags_carried - 1
-	Eclipse:log_chat("Bags carried: " .. tostring(self._eclipse_bags_carried))
 end
 
 function PlayerManager:add_bags_carried()
 	self._eclipse_bags_carried = self._eclipse_bags_carried + 1
-	Eclipse:log_chat("Bags carried: " .. tostring(self._eclipse_bags_carried))
 end
 -- end
 
@@ -380,7 +378,7 @@ end
 -- TODO: fixup sync functions, add skill check
 function PlayerManager:drop_carry(zipline_unit)
 	local carry_list = self:get_my_carry_data()
-	if #carry_list < 1 then
+	if not carry_list or #carry_list < 1 then
 		return
 	end
 
@@ -444,7 +442,6 @@ function PlayerManager:drop_carry(zipline_unit)
 
 	self:subtract_bags_carried()
 	if self._eclipse_bags_carried < 1 then
-		Eclipse:log_chat("No longer carrying")
 		managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
 		managers.hud:temp_hide_carry_bag()
 
@@ -490,7 +487,6 @@ function PlayerManager:remove_synced_carry(peer)
 	local peer_id = peer:id()
 
 	if not self._global.synced_carry[peer_id] or #self._global.synced_carry[peer_id] < 1 then
-		Eclipse:log_chat("Somehow...")
 		return
 	end
 
@@ -520,7 +516,7 @@ function PlayerManager:remove_synced_carry(peer)
 		local local_peer_id = managers.network:session():local_peer():id()
 
 		local next_carry_id = self._global.synced_carry[peer_id][1] and self._global.synced_carry[peer_id][1].carry_id
-		if peer_id ~= local_peer_id and next_carry_id then
+		if peer_id ~= local_peer_id then
 			peer:unit():movement():set_visual_carry(next_carry_id)
 		end
 	end
@@ -555,7 +551,6 @@ function PlayerManager:server_drop_carry(
 	peer
 )
 	if not self:verify_carry(peer, carry_id) then
-		Eclipse:log_chat("Could not verify carry")
 		return
 	end
 
@@ -668,7 +663,7 @@ end
 
 function PlayerManager:force_drop_carry()
 	local carry_list = self:get_my_carry_data()
-	local carry_data = carry_list[#carry_list]
+	local carry_data = carry_list and carry_list[#carry_list]
 
 	if not carry_data then
 		return
@@ -724,7 +719,7 @@ end
 
 function PlayerManager:clear_carry(soft_reset)
 	local carry_list = self:get_my_carry_data()
-	local carry_data = carry_list[#carry_list]
+	local carry_data = carry_list and carry_list[#carry_list]
 
 	if not carry_data then
 		return
@@ -748,12 +743,16 @@ function PlayerManager:clear_carry(soft_reset)
 end
 
 function PlayerManager:is_carrying()
-	return #self:get_my_carry_data() > 0
+	return self:get_my_carry_data() and (#self:get_my_carry_data() > 0) or false
 end
 
 function PlayerManager:current_carry_id()
 	local my_carry_data = self:get_my_carry_data()
 	local id_list = {}
+
+	if not my_carry_data then
+		return
+	end
 
 	if my_carry_data[1] then
 		table.insert(id_list, my_carry_data[1].carry_id)
@@ -763,29 +762,6 @@ function PlayerManager:current_carry_id()
 	end
 
 	return id_list
-end
-
-function PlayerManager:check_damage_carry(attack_data)
-	local carry_list = self:get_my_carry_data()
-
-	if not carry_data then
-		return
-	end
-
-	local carry_id = carry_data.carry_id
-	local type = tweak_data.carry[carry_id].type
-
-	if not tweak_data.carry.types[type].looses_value then
-		return
-	end
-
-	local dye_initiated = carry_data.dye_initiated
-	local has_dye_pack = carry_data.has_dye_pack
-	local dye_value_multiplier = carry_data.dye_value_multiplier
-	local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
-
-	self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
-	managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
 end
 
 -- If the dye pack feature gets used, add
@@ -821,7 +797,7 @@ function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
 			local secure_carry_on_enter = vehicle_ext and vehicle_ext.secure_carry_on_enter
 
 			local carry_list = self:get_my_carry_data()
-			local carry_data = carry_list[1]
+			local carry_data = carry_list and carry_list[1]
 			if carry_data then
 				local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
 				local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
@@ -832,7 +808,7 @@ function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
 			end
 
 			carry_list = self:get_my_carry_data()
-			carry_data = carry_list[2]
+			carry_data = carry_list and carry_list[2]
 			if carry_data then
 				local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
 				local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
@@ -849,4 +825,20 @@ function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
 	managers.hud:update_vehicle_label_by_id(vehicle:unit_data().name_label_id, vehicle_ext:_number_in_the_vehicle())
 	managers.vehicle:on_player_entered_vehicle(vehicle, player)
 end
+
+Hooks:PostHook(PlayerManager, "set_carry", "eclipse_pm_set_carry", function(self)
+	self:add_bags_carried()
+end)
+
+Hooks:PostHook(PlayerManager, "set_player_state", "eclipse_pm_set_player_state", function(self, state)
+	state = state or self._current_state
+	if state == "standard" and self._eclipse_bags_carried > 0 then
+		state = "carry"
+	end
+
+	if state ~= self._current_state then
+		Eclipse:log_chat(state .. " " .. self._current_state)
+		self:_change_player_state()
+	end
+end)
 -- Carry stacker end

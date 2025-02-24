@@ -103,7 +103,6 @@ Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext",
 	if self.tweak_data == "corpse_dispose" and has_carry_stacker then
 		if managers.player:get_bags_carried() < 2 then
 			player:movement():set_carry_restriction(false)
-			managers.player:add_bags_carried()
 		end
 	end
 end)
@@ -113,7 +112,6 @@ Hooks:PostHook(CarryInteractionExt, "interact", "eclipse_carry_interact", functi
 	local has_carry_stacker = true
 	if has_carry_stacker then
 		if managers.player:get_bags_carried() < 2 then
-			managers.player:add_bags_carried()
 			if Network:is_client() then
 				player:movement():set_carry_restriction(false)
 			end
@@ -160,9 +158,9 @@ function DrivingInteractionExt:can_interact(player)
 
 	if managers.player:is_carrying() then
 		local carry_list = managers.player:get_my_carry_data()
-		local carry_data = carry_list[1]
 
-		if carry_data[1] then
+		if carry_list and carry_list[1] then
+			local carry_data = carry_list[1]
 			local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
 			local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
 			local vehicle_ext = self._unit and self._unit:vehicle_driving()
@@ -170,8 +168,8 @@ function DrivingInteractionExt:can_interact(player)
 			can_enter_with_carry = secure_carry_on_enter and not skip_exit_secure
 		end
 
-		carry_data = carry_list[2]
-		if carry_data[2] then
+		if carry_list and carry_list[2] then
+			local carry_data = carry_list[2]
 			local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
 			local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
 			local vehicle_ext = self._unit and self._unit:vehicle_driving()
@@ -201,5 +199,29 @@ function DrivingInteractionExt:can_interact(player)
 	end
 
 	return can_interact
+end
+
+function DrivingInteractionExt:interact(player, locator)
+	if locator == nil then
+		return false
+	end
+
+	DrivingInteractionExt.super.super.interact(self, player)
+
+	local vehicle_ext = self._unit:vehicle_driving()
+	local success = false
+	local action = vehicle_ext:get_action_for_interaction(player:position(), locator)
+
+	if action == VehicleDrivingExt.INTERACT_ENTER or action == VehicleDrivingExt.INTERACT_DRIVE then
+		success = managers.player:enter_vehicle(self._unit, locator)
+	elseif action == VehicleDrivingExt.INTERACT_LOOT then
+		success = vehicle_ext:give_vehicle_loot_to_player(managers.network:session():local_peer():id())
+	elseif action == VehicleDrivingExt.INTERACT_REPAIR then
+		vehicle_ext:repair_vehicle()
+	elseif action == VehicleDrivingExt.INTERACT_TRUNK then
+		vehicle_ext:interact_trunk()
+	end
+
+	return success
 end
 -- Cary stacker end
