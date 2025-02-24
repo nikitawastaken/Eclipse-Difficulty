@@ -112,12 +112,12 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shotgun_impact.desc_id = "menu_carbon_blade_beta_desc"
 
 	-- Fast Hands
-	self.skills.far_away[1].upgrades = { "shotgun_pump_reload_speed_1", "shotgun_pump_reload_speed_2" }
+	self.skills.far_away[1].upgrades = { "shotgun_pump_reload_speed_mul" }
 	self.skills.far_away[2].upgrades = { "shotgun_hip_rate_of_fire_1" }
 	self.skills.far_away.icon_xy = { 5, 1 }
 
 	-- Mag-Fed Specialist
-	self.skills.close_by[1].upgrades = { "shotgun_mag_reload_speed" }
+	self.skills.close_by[1].upgrades = { "shotgun_mag_reload_speed_mul" }
 	self.skills.close_by[2].upgrades = { "shotgun_magazine_capacity_inc_1" }
 	self.skills.close_by.icon_xy = { 8, 7 }
 
