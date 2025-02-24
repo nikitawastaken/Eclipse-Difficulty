@@ -413,6 +413,16 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Pack Mule
 	self.skill_descs.pack_mule.multipro = "2"
+	self.values.player.carry_stacker = { true }
+	self.definitions.player_carry_stacker = {
+		name_id = "menu_player_carry_stacker",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "carry_stacker",
+			category = "player",
+		},
+	}
 
 	-- Thick Skin
 	self.definitions.player_health_multiplier_1 = {

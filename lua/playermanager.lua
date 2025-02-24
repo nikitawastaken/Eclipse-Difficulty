@@ -1,7 +1,22 @@
 Hooks:PostHook(PlayerManager, "init", "eclipse_init", function(self)
 	self._consecutive_headshots = 0
 	self._charged_shot_allowed = false
+	self._eclipse_bags_carried = 0
 end)
+
+-- Carry stacker helper functions
+function PlayerManager:get_bags_carried()
+	return self._eclipse_bags_carried
+end
+
+function PlayerManager:subtract_bags_carried()
+	self._eclipse_bags_carried = self._eclipse_bags_carried - 1
+end
+
+function PlayerManager:add_bags_carried()
+	self._eclipse_bags_carried = self._eclipse_bags_carried + 1
+end
+-- end
 
 -- hostage taker min hostages count
 Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self, category)
@@ -358,3 +373,513 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 
 	return dmg_reduction
 end
+
+-- Carry stacker start
+function PlayerManager:drop_carry(zipline_unit)
+	local carry_list = self:get_my_carry_data()
+	if not carry_list or #carry_list < 1 then
+		return
+	end
+
+	local carry_data = carry_list[#carry_list]
+
+	self._carry_blocked_cooldown_t = Application:time() + 1.2 + math.rand(0.3)
+	local player = self:player_unit()
+
+	if player then
+		player:sound():play("Play_bag_generic_throw", nil, false)
+		player:movement():current_state():remove_tweak_data(tweak_data.carry[carry_data.carry_id].type)
+	end
+
+	local camera_ext = player:camera()
+	local dye_initiated = carry_data.dye_initiated
+	local has_dye_pack = carry_data.has_dye_pack
+	local dye_value_multiplier = carry_data.dye_value_multiplier
+	local throw_distance_multiplier_upgrade_level = managers.player:upgrade_level("carry", "throw_distance_multiplier", 0)
+	local position = camera_ext:position()
+	local rotation = camera_ext:rotation()
+	local forward = player:camera():forward()
+
+	if _G.IS_VR then
+		local active_hand = player:hand():get_active_hand("bag")
+
+		if active_hand then
+			position = active_hand:position()
+			rotation = active_hand:rotation()
+			forward = rotation:y()
+		end
+	end
+
+	if Network:is_client() then
+		managers.network:session():send_to_host(
+			"server_drop_carry",
+			carry_data.carry_id,
+			carry_data.multiplier,
+			dye_initiated,
+			has_dye_pack,
+			dye_value_multiplier,
+			position,
+			rotation,
+			forward,
+			throw_distance_multiplier_upgrade_level,
+			zipline_unit
+		)
+	else
+		self:server_drop_carry(
+			carry_data.carry_id,
+			carry_data.multiplier,
+			dye_initiated,
+			has_dye_pack,
+			dye_value_multiplier,
+			position,
+			rotation,
+			forward,
+			throw_distance_multiplier_upgrade_level,
+			zipline_unit,
+			managers.network:session():local_peer()
+		)
+	end
+
+	self:subtract_bags_carried()
+	if self._eclipse_bags_carried < 1 then
+		managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
+		managers.hud:temp_hide_carry_bag()
+
+		if self._current_state == "carry" then
+			managers.player:set_player_state("standard")
+		end
+	end
+
+	self:update_removed_synced_carry_to_peers()
+end
+
+function PlayerManager:set_synced_carry(peer, carry_id, multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
+	local peer_id = peer:id()
+	self._global.synced_carry[peer_id] = self._global.synced_carry[peer_id] or {}
+	table.insert(self._global.synced_carry[peer_id], {
+		carry_id = carry_id,
+		multiplier = multiplier,
+		dye_initiated = dye_initiated,
+		has_dye_pack = has_dye_pack,
+		dye_value_multiplier = dye_value_multiplier,
+	})
+
+	local character_data = managers.criminals:character_data_by_peer_id(peer_id)
+
+	if character_data and character_data.panel_id then
+		managers.hud:set_teammate_carry_info(character_data.panel_id, carry_id, managers.loot:get_real_value(carry_id, multiplier))
+	end
+
+	managers.hud:set_name_label_carry_info(peer_id, carry_id, managers.loot:get_real_value(carry_id, multiplier))
+
+	local local_peer_id = managers.network:session():local_peer():id()
+
+	if peer_id ~= local_peer_id then
+		local unit = peer:unit()
+
+		if alive(unit) then
+			unit:movement():set_visual_carry(carry_id)
+		end
+	end
+end
+
+function PlayerManager:remove_synced_carry(peer)
+	local peer_id = peer:id()
+
+	if not self._global.synced_carry[peer_id] or #self._global.synced_carry[peer_id] < 1 then
+		return
+	end
+
+	-- remove most recently added bag
+	table.remove(self._global.synced_carry[peer_id], #self._global.synced_carry[peer_id])
+
+	local no_bags_carried = self:get_bags_carried() < 1
+	local character_data = managers.criminals:character_data_by_peer_id(peer_id)
+
+	if character_data and character_data.panel_id and no_bags_carried then
+		managers.hud:remove_teammate_carry_info(character_data.panel_id)
+	end
+
+	if no_bags_carried then
+		managers.hud:remove_name_label_carry_info(peer_id)
+
+		local local_peer_id = managers.network:session():local_peer():id()
+
+		if peer_id ~= local_peer_id then
+			local unit = peer:unit()
+
+			if alive(unit) then
+				unit:movement():set_visual_carry(nil)
+			end
+		end
+	else
+		local local_peer_id = managers.network:session():local_peer():id()
+
+		local next_carry_id = self._global.synced_carry[peer_id][1] and self._global.synced_carry[peer_id][1].carry_id
+		if peer_id ~= local_peer_id then
+			peer:unit():movement():set_visual_carry(next_carry_id)
+		end
+	end
+end
+
+function PlayerManager:update_carry_to_peer(peer)
+	local peer_id = managers.network:session():local_peer():id()
+
+	local carry_idx = self._global.synced_carry[peer_id] and #self._global.synced_carry[peer_id]
+	if carry_idx and self._global.synced_carry[peer_id][carry_idx] then
+		local carry_id = self._global.synced_carry[peer_id][carry_idx].carry_id
+		local multiplier = self._global.synced_carry[peer_id][carry_idx].multiplier
+		local dye_initiated = self._global.synced_carry[peer_id][carry_idx].dye_initiated
+		local has_dye_pack = self._global.synced_carry[peer_id][carry_idx].has_dye_pack
+		local dye_value_multiplier = self._global.synced_carry[peer_id][carry_idx].dye_value_multiplier
+
+		peer:send_queued_sync("sync_carry", carry_id, multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
+	end
+end
+
+function PlayerManager:server_drop_carry(
+	carry_id,
+	carry_multiplier,
+	dye_initiated,
+	has_dye_pack,
+	dye_value_multiplier,
+	position,
+	rotation,
+	dir,
+	throw_distance_multiplier_upgrade_level,
+	zipline_unit,
+	peer
+)
+	if not self:verify_carry(peer, carry_id) then
+		return
+	end
+
+	local unit_name = tweak_data.carry[carry_id].unit or "units/payday2/pickups/gen_pku_lootbag/gen_pku_lootbag"
+	local unit = World:spawn_unit(Idstring(unit_name), position, rotation)
+
+	managers.network:session():send_to_peers_synched(
+		"sync_carry_data",
+		unit,
+		carry_id,
+		carry_multiplier,
+		dye_initiated,
+		has_dye_pack,
+		dye_value_multiplier,
+		position,
+		dir,
+		throw_distance_multiplier_upgrade_level,
+		zipline_unit,
+		peer and peer:id() or 0
+	)
+	self:sync_carry_data(
+		unit,
+		carry_id,
+		carry_multiplier,
+		dye_initiated,
+		has_dye_pack,
+		dye_value_multiplier,
+		position,
+		dir,
+		throw_distance_multiplier_upgrade_level,
+		zipline_unit,
+		peer and peer:id() or 0
+	)
+
+	if unit:carry_data()._global_event then
+		managers.mission:call_global_event(unit:carry_data()._global_event)
+	end
+
+	return unit
+end
+
+function PlayerManager:peer_dropped_out(peer)
+	local peer_id = peer:id()
+	local peer_unit = peer:unit()
+
+	if Network:is_server() then
+		self:transfer_special_equipment(peer_id, true, true)
+
+		if self._global.synced_carry[peer_id] and self._global.synced_carry[peer_id].approved then
+			for i, data in ipairs(self._global.synced_carry[peer_id]) do
+				local carry_id = data.carry_id
+				local carry_multiplier = data.multiplier
+				local dye_initiated = data.dye_initiated
+				local has_dye_pack = data.has_dye_pack
+				local dye_value_multiplier = data.dye_value_multiplier
+				local position = Vector3()
+
+				if alive(peer_unit) then
+					if peer_unit:movement():zipline_unit() then
+						position = peer_unit:movement():zipline_unit():position()
+					else
+						position = peer_unit:position()
+					end
+				end
+
+				local dir = Vector3(0, 0, 0)
+
+				self:server_drop_carry(carry_id, carry_multiplier, dye_initiated, has_dye_pack, dye_value_multiplier, position, Rotation(), dir, 0, nil, peer)
+			end
+		end
+
+		local turret_unit = self:get_player_turret_for_peer(peer_id)
+
+		if turret_unit then
+			self:server_player_turret_action(PlayerTurretBase.INTERACT_EXIT, turret_unit, peer_id, peer_unit)
+		end
+	end
+
+	self._global.synced_equipment_possession[peer_id] = nil
+	self._global.synced_equipment_possession_waiting[peer_id] = nil
+	self._global.synced_deployables[peer_id] = nil
+	self._global.synced_cable_ties[peer_id] = nil
+	self._global.synced_grenades[peer_id] = nil
+	self._global.synced_ammo_info[peer_id] = nil
+	self._global.synced_carry[peer_id] = {}
+	self._global.synced_team_upgrades[peer_id] = nil
+	self._global.synced_bipod[peer_id] = nil
+	self._global.synced_cocaine_stacks[peer_id] = nil
+
+	self:update_cocaine_hud()
+	self:remove_from_player_list(peer_unit)
+	managers.vehicle:remove_player_from_all_vehicles(peer_unit)
+end
+
+function PlayerManager:bank_carry(carry_data)
+	if not carry_data then
+		local carry_list = self:get_my_carry_data()
+		carry_data = carry_list[#carry_list]
+	end
+	local peer_id = managers.network:session() and managers.network:session():local_peer():id()
+
+	managers.loot:secure(carry_data.carry_id, carry_data.multiplier, nil, peer_id)
+	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
+	managers.hud:temp_hide_carry_bag()
+	self:update_removed_synced_carry_to_peers()
+	managers.player:set_player_state("standard")
+end
+
+function PlayerManager:force_drop_carry()
+	local carry_list = self:get_my_carry_data()
+	local carry_data = carry_list and carry_list[#carry_list]
+
+	if not carry_data then
+		return
+	end
+
+	local player = self:player_unit()
+
+	if not alive(player) then
+		print("COULDN'T FORCE DROP! DIDN'T HAVE A UNIT")
+
+		return
+	end
+
+	local dye_initiated = carry_data.dye_initiated
+	local has_dye_pack = carry_data.has_dye_pack
+	local dye_value_multiplier = carry_data.dye_value_multiplier
+	local camera_ext = player:camera()
+
+	if Network:is_client() then
+		managers.network:session():send_to_host(
+			"server_drop_carry",
+			carry_data.carry_id,
+			carry_data.multiplier,
+			dye_initiated,
+			has_dye_pack,
+			dye_value_multiplier,
+			camera_ext:position(),
+			camera_ext:rotation(),
+			Vector3(0, 0, 0),
+			0,
+			nil
+		)
+	else
+		self:server_drop_carry(
+			carry_data.carry_id,
+			carry_data.multiplier,
+			dye_initiated,
+			has_dye_pack,
+			dye_value_multiplier,
+			camera_ext:position(),
+			camera_ext:rotation(),
+			Vector3(0, 0, 0),
+			0,
+			nil,
+			managers.network:session():local_peer()
+		)
+	end
+
+	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
+	managers.hud:temp_hide_carry_bag()
+	self:update_removed_synced_carry_to_peers()
+end
+
+function PlayerManager:clear_carry(soft_reset)
+	local carry_list = self:get_my_carry_data()
+	local carry_data = carry_list and carry_list[#carry_list]
+
+	if not carry_data then
+		return
+	end
+
+	local player = self:player_unit()
+
+	if not soft_reset and not alive(player) then
+		print("COULDN'T FORCE DROP! DIDN'T HAVE A UNIT")
+
+		return
+	end
+
+	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
+	managers.hud:temp_hide_carry_bag()
+	self:update_removed_synced_carry_to_peers()
+
+	if self._current_state == "carry" then
+		managers.player:set_player_state("standard")
+	end
+end
+
+function PlayerManager:is_carrying()
+	return self:get_my_carry_data() and (#self:get_my_carry_data() > 0) or false
+end
+
+function PlayerManager:current_carry_id()
+	local my_carry_data = self:get_my_carry_data()
+	local id_list = {}
+
+	if not my_carry_data then
+		return
+	end
+
+	if my_carry_data[1] then
+		table.insert(id_list, my_carry_data[1].carry_id)
+	end
+	if my_carry_data[2] then
+		table.insert(id_list, my_carry_data[2].carry_id)
+	end
+
+	return id_list
+end
+
+-- If the dye pack feature gets used, modify this
+function PlayerManager:check_damage_carry(attack_data)
+	local carry_list = self:get_my_carry_data()
+
+	local carry_data = carry_list and carry_list[1]
+	if carry_data then
+		local carry_id = carry_data.carry_id
+		local type = tweak_data.carry[carry_id].type
+
+		if tweak_data.carry.types[type].looses_value then
+			local dye_initiated = carry_data.dye_initiated
+			local has_dye_pack = carry_data.has_dye_pack
+			local dye_value_multiplier = carry_data.dye_value_multiplier
+			local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
+
+			self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
+			managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
+		end
+	end
+
+	carry_data = carry_list and carry_list[2]
+	if carry_data then
+		local carry_id = carry_data.carry_id
+		local type = tweak_data.carry[carry_id].type
+
+		if tweak_data.carry.types[type].looses_value then
+			local dye_initiated = carry_data.dye_initiated
+			local has_dye_pack = carry_data.has_dye_pack
+			local dye_value_multiplier = carry_data.dye_value_multiplier
+			local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
+
+			self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
+			managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
+		end
+	end
+end
+
+function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
+	if not alive(player) or not alive(vehicle) then
+		return
+	end
+
+	self._global.synced_vehicle_data[peer_id] = {
+		vehicle_unit = vehicle,
+		seat = seat_name,
+	}
+	local vehicle_ext = vehicle:vehicle_driving()
+
+	vehicle_ext:place_player_on_seat(player, seat_name)
+	player:kill_mover()
+
+	local seat = vehicle_ext:find_seat_for_player(player)
+	local rot = seat.object:rotation()
+	local pos = seat.object:position()
+
+	player:set_rotation(rot)
+
+	local pos = seat.object:position() + VehicleDrivingExt.PLAYER_CAPSULE_OFFSET
+
+	vehicle:link(Idstring(VehicleDrivingExt.SEAT_PREFIX .. seat_name), player)
+
+	if self:local_player() == player then
+		if self:is_carrying() then
+			local vehicle_ext = vehicle:vehicle_driving()
+			local secure_carry_on_enter = vehicle_ext and vehicle_ext.secure_carry_on_enter
+
+			local carry_list = self:get_my_carry_data()
+			local carry_data = carry_list and carry_list[1]
+			if carry_data then
+				local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
+				local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
+
+				if secure_carry_on_enter and not skip_exit_secure then
+					self:bank_carry(carry_data)
+				end
+			end
+
+			carry_list = self:get_my_carry_data()
+			carry_data = carry_list and carry_list[2]
+			if carry_data then
+				local carry_tweak_data = tweak_data.carry[carry_data.carry_id]
+				local skip_exit_secure = carry_tweak_data and carry_tweak_data.skip_exit_secure
+
+				if secure_carry_on_enter and not skip_exit_secure then
+					self:bank_carry(carry_data)
+				end
+			end
+		end
+
+		self:set_player_state("driving")
+	end
+
+	managers.hud:update_vehicle_label_by_id(vehicle:unit_data().name_label_id, vehicle_ext:_number_in_the_vehicle())
+	managers.vehicle:on_player_entered_vehicle(vehicle, player)
+end
+
+Hooks:PostHook(PlayerManager, "set_carry", "eclipse_pm_set_carry", function(self, carry_id)
+	local player = self:player_unit()
+
+	if not player then
+		return
+	end
+
+	self:add_bags_carried()
+	local carry_data = tweak_data.carry[carry_id]
+	local carry_type = carry_data.type
+	player:movement():current_state():add_tweak_data(carry_type)
+end)
+
+Hooks:PostHook(PlayerManager, "set_player_state", "eclipse_pm_set_player_state", function(self, state)
+	state = state or self._current_state
+	if state == "standard" and self._eclipse_bags_carried > 0 then
+		state = "carry"
+	end
+
+	if state ~= self._current_state then
+		self._current_state = state
+		self:_change_player_state()
+	end
+end)
+-- Carry stacker end

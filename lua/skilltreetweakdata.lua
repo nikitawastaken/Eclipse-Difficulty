@@ -135,7 +135,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Pack Mule
 	self.skills.pack_mule[1].upgrades = { "carry_movement_penalty_nullifier" }
-	self.skills.pack_mule[2].upgrades = {} -- double bag carry to be added
+	self.skills.pack_mule[2].upgrades = { "player_carry_stacker" } -- double bag carry to be added
 	self.skills.pack_mule.icon_xy = { 6, 0 }
 
 	-- empty potential armor bag skill
