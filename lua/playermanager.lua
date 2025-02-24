@@ -375,7 +375,6 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 end
 
 -- Carry stacker start
--- TODO: add skill check
 function PlayerManager:drop_carry(zipline_unit)
 	local carry_list = self:get_my_carry_data()
 	if not carry_list or #carry_list < 1 then

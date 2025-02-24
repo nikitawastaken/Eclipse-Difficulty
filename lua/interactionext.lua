@@ -97,7 +97,6 @@ function BaseInteractionExt:can_interact(player)
 end
 
 -- Carry stacker start
--- TODO: implement skill check
 Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext", function(self, player)
 	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")
 	if self.tweak_data == "corpse_dispose" and has_carry_stacker then
@@ -107,7 +106,6 @@ Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext",
 	end
 end)
 
--- TODO: implement skill check
 Hooks:PostHook(CarryInteractionExt, "interact", "eclipse_carry_interact", function(self, player)
 	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")
 	if has_carry_stacker then
@@ -119,7 +117,6 @@ Hooks:PostHook(CarryInteractionExt, "interact", "eclipse_carry_interact", functi
 	end
 end)
 
--- TODO: implement skill check
 function CarryInteractionExt:_interact_blocked(player)
 	local silent_block = managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit()
 
@@ -137,7 +134,6 @@ function CarryInteractionExt:_interact_blocked(player)
 	return false
 end
 
--- TODO: implement skill check
 function CarryInteractionExt:can_select(player)
 	if managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit() then
 		return false
