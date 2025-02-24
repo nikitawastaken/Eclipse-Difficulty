@@ -28,7 +28,7 @@ end
 
 function IntimitateInteractionExt:_interact_blocked(player)
 	if self.tweak_data == "corpse_dispose" then
-		if managers.player:is_carrying() then
+		if managers.player:get_bags_carried() > 1 then
 			return true
 		end
 
