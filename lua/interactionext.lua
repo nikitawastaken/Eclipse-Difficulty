@@ -99,7 +99,7 @@ end
 -- Carry stacker start
 -- TODO: implement skill check
 Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext", function(self, player)
-	local has_carry_stacker = true
+	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")
 	if self.tweak_data == "corpse_dispose" and has_carry_stacker then
 		if managers.player:get_bags_carried() < 2 then
 			player:movement():set_carry_restriction(false)
@@ -109,7 +109,7 @@ end)
 
 -- TODO: implement skill check
 Hooks:PostHook(CarryInteractionExt, "interact", "eclipse_carry_interact", function(self, player)
-	local has_carry_stacker = true
+	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")
 	if has_carry_stacker then
 		if managers.player:get_bags_carried() < 2 then
 			if Network:is_client() then
@@ -123,7 +123,7 @@ end)
 function CarryInteractionExt:_interact_blocked(player)
 	local silent_block = managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit()
 
-	local has_carry_stacker = true
+	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")
 	local can_carry_stack = has_carry_stacker and (managers.player:get_bags_carried() < 2)
 	if silent_block then
 		return true, silent_block
@@ -143,7 +143,7 @@ function CarryInteractionExt:can_select(player)
 		return false
 	end
 
-	local has_carry_stacker = true
+	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")
 	local can_carry_stack = has_carry_stacker and (managers.player:get_bags_carried() < 2)
 	if not can_carry_stack and managers.player:is_carrying() then
 		return false
