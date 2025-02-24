@@ -389,6 +389,7 @@ function PlayerManager:drop_carry(zipline_unit)
 
 	if player then
 		player:sound():play("Play_bag_generic_throw", nil, false)
+		player:movement():current_state():remove_tweak_data(tweak_data.carry[carry_data.carry_id].type)
 	end
 
 	local camera_ext = player:camera()
@@ -764,8 +765,42 @@ function PlayerManager:current_carry_id()
 	return id_list
 end
 
--- If the dye pack feature gets used, add
--- PlayerManager:check_damage_carry(...)
+-- If the dye pack feature gets used, modify this
+function PlayerManager:check_damage_carry(attack_data)
+	local carry_list = self:get_my_carry_data()
+
+	local carry_data = carry_list and carry_list[1]
+	if carry_data then
+		local carry_id = carry_data.carry_id
+		local type = tweak_data.carry[carry_id].type
+
+		if tweak_data.carry.types[type].looses_value then
+			local dye_initiated = carry_data.dye_initiated
+			local has_dye_pack = carry_data.has_dye_pack
+			local dye_value_multiplier = carry_data.dye_value_multiplier
+			local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
+
+			self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
+			managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
+		end
+	end
+
+	carry_data = carry_list and carry_list[2]
+	if carry_data then
+		local carry_id = carry_data.carry_id
+		local type = tweak_data.carry[carry_id].type
+
+		if tweak_data.carry.types[type].looses_value then
+			local dye_initiated = carry_data.dye_initiated
+			local has_dye_pack = carry_data.has_dye_pack
+			local dye_value_multiplier = carry_data.dye_value_multiplier
+			local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
+
+			self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
+			managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
+		end
+	end
+end
 
 function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
 	if not alive(player) or not alive(vehicle) then
@@ -826,8 +861,17 @@ function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
 	managers.vehicle:on_player_entered_vehicle(vehicle, player)
 end
 
-Hooks:PostHook(PlayerManager, "set_carry", "eclipse_pm_set_carry", function(self)
+Hooks:PostHook(PlayerManager, "set_carry", "eclipse_pm_set_carry", function(self, carry_id)
+	local player = self:player_unit()
+
+	if not player then
+		return
+	end
+
 	self:add_bags_carried()
+	local carry_data = tweak_data.carry[carry_id]
+	local carry_type = carry_data.type
+	player:movement():current_state():add_tweak_data(carry_type)
 end)
 
 Hooks:PostHook(PlayerManager, "set_player_state", "eclipse_pm_set_player_state", function(self, state)
@@ -837,7 +881,7 @@ Hooks:PostHook(PlayerManager, "set_player_state", "eclipse_pm_set_player_state",
 	end
 
 	if state ~= self._current_state then
-		Eclipse:log_chat(state .. " " .. self._current_state)
+		self._current_state = state
 		self:_change_player_state()
 	end
 end)

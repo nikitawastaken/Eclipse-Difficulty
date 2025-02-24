@@ -1,11 +1,57 @@
 function PlayerCarry:_perform_jump(jump_vec)
-	mvector3.multiply(jump_vec, tweak_data.carry.types[self._tweak_data_name].jump_modifier)
+	local max_mul, min_mul
+	for _, name in pairs(self._tweak_data_name) do
+		if not max_mul then
+			max_mul = tweak_data.carry.types[name].jump_modifier
+		else
+			local val = tweak_data.carry.types[name].jump_modifier
+			if val > max_mul then
+				min_mul = max_mul
+				max_mul = val
+			else
+				min_mul = val
+			end
+		end
+	end
+
+	local multiplier
+	if min_mul then
+		multiplier = min_mul * (max_mul + 0.5 * (1 - max_mul))
+	elseif not max_mul then
+		multiplier = 1
+	else
+		multiplier = max_mul + 0.5 * (1 - max_mul)
+	end
+
+	mvector3.multiply(jump_vec, multiplier)
 
 	PlayerCarry.super._perform_jump(self, jump_vec)
 end
 
 function PlayerCarry:_get_max_walk_speed(...)
-	local multiplier = tweak_data.carry.types[self._tweak_data_name].move_speed_modifier
+	local max_mul, min_mul
+	for _, name in pairs(self._tweak_data_name) do
+		if not max_mul then
+			max_mul = tweak_data.carry.types[name].move_speed_modifier
+		else
+			local val = tweak_data.carry.types[name].move_speed_modifier
+			if val > max_mul then
+				min_mul = max_mul
+				max_mul = val
+			else
+				min_mul = val
+			end
+		end
+	end
+
+	local multiplier
+	if min_mul then
+		multiplier = min_mul * (max_mul + 0.5 * (1 - max_mul))
+	elseif not max_mul then
+		multiplier = 1
+	else
+		multiplier = max_mul + 0.5 * (1 - max_mul)
+	end
 
 	--[[ if managers.player:has_category_upgrade("carry", "movement_penalty_nullifier") then
 		multiplier = 1
@@ -75,19 +121,15 @@ function PlayerCarry:_check_use_item(t, input)
 end
 
 -- Modify carrying state
--- TODO: Don't hardcode the state to check the first bag carried
+-- TODO: Don't hardcode the state to check the second bag carried
 function PlayerCarry:_enter(enter_data)
 	local my_carry_data = managers.player:get_my_carry_data()
 
 	if my_carry_data and my_carry_data[1] then
-		local carry_data = tweak_data.carry[my_carry_data.carry_id]
-		if carry_data then
-			self._tweak_data_name = carry_data.type
-		else
-			self._tweak_data_name = "light"
-		end
+		local carry_data = tweak_data.carry[my_carry_data[1].carry_id]
+		self._tweak_data_name = { carry_data.type }
 	else
-		self._tweak_data_name = "light"
+		self._tweak_data_name = {}
 	end
 
 	if self._ext_movement:nav_tracker() then
@@ -114,4 +156,70 @@ function PlayerCarry:_enter(enter_data)
 	managers.job:set_memory("kill_count_carry", nil, true)
 	managers.job:set_memory("kill_count_no_carry", nil, true)
 	self:_upd_attention()
+end
+
+function PlayerCarry:set_tweak_data()
+	--no op
+end
+
+function PlayerCarry:add_tweak_data(name)
+	table.insert(self._tweak_data_name, name)
+
+	self:_check_dye_pack()
+end
+
+function PlayerCarry:remove_tweak_data(name)
+	for i, id in pairs(self._tweak_data_name) do
+		if id == name then
+			self._tweak_data_name[i] = nil
+			break
+		end
+	end
+end
+
+function PlayerCarry:_check_action_run(...)
+	if managers.player:has_category_upgrade("carry", "movement_penalty_nullifier") then
+		PlayerCarry.super._check_action_run(self, ...)
+	else
+		local can_run = true
+		for _, name in pairs(self._tweak_data_name) do
+			if tweak_data.carry.types[name] and not tweak_data.carry.types[name].can_run then
+				can_run = false
+				break
+			end
+		end
+		if can_run then
+			PlayerCarry.super._check_action_run(self, ...)
+		end
+	end
+end
+
+function PlayerCarry:_get_walk_headbob(...)
+	local max_mul, min_mul
+	for _, name in pairs(self._tweak_data_name) do
+		if not max_mul then
+			max_mul = tweak_data.carry.types[name].move_speed_modifier
+		else
+			local val = tweak_data.carry.types[name].move_speed_modifier
+			if val > max_mul then
+				min_mul = max_mul
+				max_mul = val
+			else
+				min_mul = val
+			end
+		end
+	end
+
+	local multiplier
+	if min_mul then
+		multiplier = min_mul * (max_mul + 0.5 * (1 - max_mul))
+	elseif not max_mul then
+		multiplier = 1
+	else
+		multiplier = max_mul + 0.5 * (1 - max_mul)
+	end
+
+	multiplier = math.clamp(multiplier * managers.player:upgrade_value("carry", "movement_speed_multiplier", 1), 0, 1)
+	multiplier = math.clamp(multiplier * managers.player:upgrade_value("player", "mrwi_carry_speed_multiplier", 1), 0, 1)
+	return PlayerCarry.super._get_walk_headbob(self, ...) * multiplier
 end
