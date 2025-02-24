@@ -121,7 +121,6 @@ function PlayerCarry:_check_use_item(t, input)
 end
 
 -- Modify carrying state
--- TODO: Don't hardcode the state to check the second bag carried
 function PlayerCarry:_enter(enter_data)
 	local my_carry_data = managers.player:get_my_carry_data()
 

@@ -375,7 +375,7 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 end
 
 -- Carry stacker start
--- TODO: fixup sync functions, add skill check
+-- TODO: add skill check
 function PlayerManager:drop_carry(zipline_unit)
 	local carry_list = self:get_my_carry_data()
 	if not carry_list or #carry_list < 1 then
@@ -592,8 +592,6 @@ function PlayerManager:server_drop_carry(
 
 	return unit
 end
-
--- TODO: Add carry stacker interactions for disposing corpses
 
 function PlayerManager:peer_dropped_out(peer)
 	local peer_id = peer:id()
