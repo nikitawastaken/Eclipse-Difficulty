@@ -14,20 +14,20 @@ local suits = {
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"),
 }
 
-local disabled = {  
+local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
-	
+
 return {
 	[101829] = {
 		ponr = {
 			length = 240,
-			player_mul = { 2, 1.5, 1.25, 1 }
-		}
+			player_mul = { 2, 1.5, 1.25, 1 },
+		},
 	},
-	[100109] = {  -- police, executed on alarm
+	[100109] = { -- police, executed on alarm
 		reinforce = {
 			{
 				name = "front",
@@ -41,18 +41,18 @@ return {
 			},
 		},
 	},
-	[102311] = {  -- func sequence trigger 003
+	[102311] = { -- func sequence trigger 003
 		reinforce = {
 			{
-				name = "backdoor",  -- lockpick door by the mechanic shop
+				name = "backdoor", -- lockpick door by the mechanic shop
 				force = 2,
 				position = Vector3(1750, -2100, 0),
 			},
 		},
 	},
-	[102541] = {  -- link activate navlinks roof
+	[102541] = { -- link activate navlinks roof
 		on_executed = {
-			{ id = 101618, remove = true, },  -- why does this spawn a guard ?
+			{ id = 101618, remove = true }, -- why does this spawn a guard ?
 		},
 		reinforce = {
 			{
@@ -67,7 +67,7 @@ return {
 			},
 		},
 	},
-	[103692] = {  -- break wall
+	[103692] = { -- break wall
 		reinforce = {
 			{
 				name = "back_turret",
@@ -77,7 +77,7 @@ return {
 		},
 	},
 	-- add reenforce to office rooms at start
-	[101758] = {  -- server room point 1
+	[101758] = { -- server room point 1
 		reinforce = {
 			{
 				name = "office1",
@@ -91,7 +91,7 @@ return {
 			},
 		},
 	},
-	[101013] = {  -- server room point 2
+	[101013] = { -- server room point 2
 		reinforce = {
 			{
 				name = "office2",
@@ -105,7 +105,7 @@ return {
 			},
 		},
 	},
-	[101886] = {  -- server room point 3 (same room as 1)
+	[101886] = { -- server room point 3 (same room as 1)
 		reinforce = {
 			{
 				name = "office1",
@@ -119,7 +119,7 @@ return {
 			},
 		},
 	},
-	[101022] = {  -- server room point 4
+	[101022] = { -- server room point 4
 		reinforce = {
 			{
 				name = "office1",
@@ -133,7 +133,7 @@ return {
 			},
 		},
 	},
-	[101801] = {  -- hacking completed - server room is fair game for reenforce
+	[101801] = { -- hacking completed - server room is fair game for reenforce
 		reinforce = {
 			{
 				name = "office1",
@@ -153,9 +153,15 @@ return {
 		},
 	},
 	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?
-	[101835] = disabled,  -- point area min police force 2
+	[101835] = disabled, -- point area min police force 2
+	-- fix Locke repeating the same "Play_loc_bex_108" dialogue instead of using the right one
+	[103317] = {
+		values = {
+			dialogue = "Play_loc_bex_109",
+		},
+	},
 	-- cheat spawns, replaced with reenforce
-	[102369] = disabled,  
+	[102369] = disabled,
 	[102355] = disabled,
 	[102363] = disabled,
 	[100007] = disabled,
@@ -163,11 +169,11 @@ return {
 	[102847] = disabled,
 	[100020] = disabled,
 	[100198] = disabled,
-	[104687] = { enemy = securitys },  -- pre-spawned policia
+	[104687] = { enemy = securitys }, -- pre-spawned policia
 	[104688] = { enemy = securitys },
 	[100675] = { enemy = securitys },
 	[100676] = { enemy = securitys },
-	[104689] = { enemy = securitys },  -- securitys
+	[104689] = { enemy = securitys }, -- securitys
 	[100670] = { enemy = securitys },
 	[100671] = { enemy = securitys },
 	[100672] = { enemy = securitys },
@@ -184,7 +190,7 @@ return {
 	[101618] = { enemy = suits },
 	[103084] = { enemy = suits },
 	[103087] = { enemy = suits },
-	[101579] = { enemy = suits },  -- suits
+	[101579] = { enemy = suits }, -- suits
 	[101587] = { enemy = suits },
 	[101599] = { enemy = suits },
 	[101625] = { enemy = suits },

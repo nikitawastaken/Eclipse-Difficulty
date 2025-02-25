@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<unit type="being" slot="30">
+
+	<object file="units/payday2/characters/ene_acc_head/ene_acc_head" />
+	
+	
+    <extensions>
+	
+        <extension name="unit_data" class="ScriptUnitData" />
+        <extension name="base" class="ContourSwapBase" />
+		<extension name="damage" class="UnitDamage" />
+		<extension name="contour" class="ContourExt" />
+		
+    </extensions>
+	
+</unit>

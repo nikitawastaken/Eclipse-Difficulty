@@ -1,5 +1,6 @@
---add packages that include missing SF/Texas beat cops
 Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
+	self.kosugi.flashlights_on = true -- for Murkies
+
 	--LAPD
 	self.rvd1.ai_unit_group_overrides = {
 		beat_cop = {
@@ -22,6 +23,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
+	self.sand.ai_unit_group_overrides = self.chas.ai_unit_group_overrides
 	self.pent.ai_unit_group_overrides = self.chas.ai_unit_group_overrides
 
 	--Texas Rangers
@@ -33,4 +35,5 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
+	self.corp.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
 end)

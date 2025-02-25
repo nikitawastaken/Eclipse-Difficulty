@@ -399,9 +399,9 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 
 		if category == "shotgun" then -- shotgun reload speed stuff
 			if self._use_shotgun_reload then
-				multiplier = multiplier + 1 - managers.player:upgrade_value("shotgun", "pump_reload_speed", 1)
+				multiplier = multiplier + 1 - managers.player:upgrade_value("shotgun", "pump_reload_speed_mul", 1)
 			else
-				multiplier = multiplier + 1 - managers.player:upgrade_value("shotgun", "mag_reload_speed", 1)
+				multiplier = multiplier + 1 - managers.player:upgrade_value("shotgun", "mag_reload_speed_mul", 1)
 			end
 		end
 	end

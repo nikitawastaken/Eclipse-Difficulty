@@ -26,6 +26,20 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 		return math.min(attention_reaction, AIAttentionObject.REACT_AIM)
 	end
 
+	--Add a "target_vulnerable" tactic that causes an enemy to focus-fire players who are reloading/interacting/switching weapons
+	if data.tactics and data.tactics.target_vulnerable then
+		local att_unit = attention_data.unit
+		local movement = alive(att_unit) and att_unit.movement and att_unit:movement()
+		local current_state = movement and movement.current_state and movement:current_state()
+		local current_state_reloading = current_state and current_state._is_reloading and current_state:_is_reloading()
+		local current_state_changing_weapon = current_state and current_state._changing_weapon and current_state:_changing_weapon()
+		local current_state_interacting = current_state and current_state._interacting and current_state:_interacting()
+
+		if current_state_reloading or current_state_changing_weapon or current_state_interacting then
+			return AIAttentionObject.REACT_COMBAT
+		end
+	end
+
 	local can_arrest = not record.status and record.arrest_timeout < data.t and CopLogicBase._can_arrest(data)
 	if not can_arrest or record.assault_t and attention_data.unit:base():arrest_settings().aggression_timeout > data.t - record.assault_t then
 		return attention_data.verified and AIAttentionObject.REACT_COMBAT or attention_reaction
@@ -199,6 +213,26 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 				local alert_dt = attention_data.alert_t and (data.t - attention_data.alert_t) * weight_mul or 10000
 				local dmg_dt = attention_data.dmg_t and (data.t - attention_data.dmg_t) * weight_mul or 10000
 				distance = distance * weight_mul
+
+				--Add a "target_isolated" tactic that makes an enemy go after isolated players
+				if crim_record then
+					if data.tactics and data.tactics.target_isolated then
+						local closest_dis = nil
+						for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
+							if not other_crim_rec == crim_record then
+								local my_dis = mvector3.distance(other_crim_rec.pos, crim_record.m_pos)
+
+								if not closest_dis or my_dis < closest_dis then
+									closest_dis = my_dis
+								end
+							end
+						end
+
+						if closest_dis and closest_dis > 1500 then
+							distance = distance * -0.5
+						end
+					end
+				end
 
 				local target_priority_slot
 				if attention_data.verified then

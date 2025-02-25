@@ -1,11 +1,13 @@
 CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.tank_elite = CopMovement._action_variants.tank
 CopMovement._action_variants.phalanx_minion_break = CopMovement._action_variants.city_swat
+CopMovement._action_variants.murky = CopMovement._action_variants.swat
 CopMovement._action_variants.zeal_swat = CopMovement._action_variants.city_swat
 CopMovement._action_variants.zeal_heavy_swat = CopMovement._action_variants.city_swat
 CopMovement._action_variants.zeal_medic = CopMovement._action_variants.city_swat
 CopMovement._action_variants.zeal_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.zeal_taser = CopMovement._action_variants.taser
+CopMovement._action_variants.fbi_boss = CopMovement._action_variants.security
 
 function CopMovement:speed_modifier()
 	local final_modifier = 1

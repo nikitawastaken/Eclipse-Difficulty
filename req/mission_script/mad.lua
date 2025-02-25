@@ -2,10 +2,10 @@ return {
 	-- Disable instant difficulty increase
 	[101980] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	[101596] = {
-		difficulty = 0.5
-	}
-} 
+		difficulty = 0.5,
+	},
+}

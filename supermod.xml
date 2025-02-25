@@ -17,6 +17,7 @@
 
 		<group hook_id="lib/">
 			<post :hook_id="utils/inventorydescription"/>
+			<post :hook_id="states/missionendstate"/>
 			<group :hook_id="managers/">
 				<group :hook_id="group_ai_states/">
 					<post :hook_id="groupaistatebase"/>
@@ -28,6 +29,7 @@
 					<post :hook_id="elementspawnenemydummy"/>
 					<post :hook_id="elementspawnenemygroup"/>
 					<post :hook_id="elementspecialobjective"/>
+					<post :hook_id="elementinstigatorrule"/>
 				</group>
 
 				<group :hook_id="hud/">
@@ -43,6 +45,7 @@
 					<post :hook_id="ingamecontractgui"/>
 					<post :hook_id="blackmarketgui"/>
 					<post :hook_id="playerinventorygui"/>
+					<post :hook_id="skilltreeguinew"/>
 				</group>
 
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
@@ -65,12 +68,16 @@
 				<post :hook_id="dlcmanager"/>
 				<post :hook_id="groupaimanager"/>
 				<post :hook_id="explosionmanager"/>
+				<post :hook_id="killzonemanager"/>
+				<post :hook_id="firemanager"/>
+				<post :hook_id="hudmanagerpd2"/>
 			</group>
 
 			<group :hook_id="network/">
 				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
 				<post :hook_id="base/basenetworksession"/>
+				<post :hook_id="base/networkpeer"/>
 			</group>
 
 			<post :hook_id="setups/gamesetup"/>
@@ -84,7 +91,6 @@
 				<post :hook_id="dottweakdata"/>
 				<post :hook_id="firetweakdata"/>
 				<post :hook_id="groupaitweakdata"/>
-				<post :hook_id="leveltweakdata"/>
 				<post :hook_id="playertweakdata"/>
 				<post :hook_id="weapontweakdata"/>
 				<post :hook_id="upgradestweakdata"/>
@@ -99,6 +105,8 @@
 				<post :hook_id="tweakdata"/>
 				<post :hook_id="eventjobstweakdata"/>
 				<post :hook_id="tweakdatavr"/>
+				<post :hook_id="carrytweakdata"/>
+				<post :hook_id="levelstweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
@@ -114,6 +122,7 @@
 					<post :hook_id="states/playerbleedout"/>
 					<post :hook_id="states/playerbipod"/>
 					<post :hook_id="states/playercarry"/>
+					<post :hook_id="huskplayermovement"/>
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
@@ -225,7 +234,8 @@
 					</group>
 					<post :hook_id="projectiles/projectilebase"/>
 					<post :hook_id="shotgun/shotgunbase"/>
-					<post :hook_id="sawweaponbase "/>
+					<post :hook_id="sawweaponbase"/>
+					<post :hook_id="bowweaponbase"/>
 					<post :hook_id="akimboweaponbase"/>
 					<post :hook_id="sentrygunweapon"/>
 					<post :hook_id="raycastweaponbase"/>
@@ -288,83 +298,103 @@
 		<!-- new weapons -->
 		<group name="units/payday2/weapons/">
 
-			<!-- huntsman retexture/model -->
-			<file :name="wpn_npc_sawnoff_shotgun/sawnoff_df.texture"/>
-			<file :name="wpn_npc_sawnoff_shotgun/sawnoff_nm.texture"/>
-			<file :name="wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun.model"/>
+			<!-- NPC mosconi retexture/model -->
+			<group :name="wpn_npc_sawnoff_shotgun/">
+				<file :name="sawnoff_df.texture"/>
+				<file :name="sawnoff_nm.texture"/>
+				<file :name="wpn_npc_sawnoff_shotgun.model"/>
+			</group>
 
 			<!-- bulldozer reinfeld -->
-			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.unit"/>
-			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.model" />
-			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.cooked_physics" />
-			<file :name="wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer.object" />
+			<group :name="wpn_npc_r870_bulldozer/">
+				<file :name="wpn_npc_r870_bulldozer.cooked_physics" />
+				<file :name="wpn_npc_r870_bulldozer.model" />
+				<file :name="wpn_npc_r870_bulldozer.object" />
+				<file :name="wpn_npc_r870_bulldozer.unit" />
+			</group>
 
 			<!-- aa12 -->
-			<file :name="wpn_npc_aa12/aa12_df.texture" />
-			<file :name="wpn_npc_aa12/aa12_nm.texture" />
-			<file :name="wpn_npc_aa12/wpn_npc_aa12.unit"/>
-			<file :name="wpn_npc_aa12/wpn_npc_aa12.material_config" />
-			<file :name="wpn_npc_aa12/wpn_npc_aa12_contour.material_config" />
-			<file :name="wpn_npc_aa12/wpn_npc_aa12.model" />
-			<file :name="wpn_npc_aa12/wpn_npc_aa12.cooked_physics" />
-			<file :name="wpn_npc_aa12/wpn_npc_aa12.object" />
+			<group :name="wpn_npc_aa12/">
+				<file :name="aa12_df.texture" />
+				<file :name="aa12_nm.texture" />
+				<file :name="wpn_npc_aa12.cooked_physics" />
+				<file :name="wpn_npc_aa12.material_config" />
+				<file :name="wpn_npc_aa12_contour.material_config" />
+				<file :name="wpn_npc_aa12.model" />
+				<file :name="wpn_npc_aa12.object" />
+				<file :name="wpn_npc_aa12.unit"/>
+			</group>
 
 			<!-- bulldozer aa12 -->
-			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.unit"/>
-			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.model" />
-			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.cooked_physics" />
-			<file :name="wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer.object" />
+			<group :name="wpn_npc_aa12_bulldozer/">
+				<file :name="wpn_npc_aa12_bulldozer.cooked_physics" />
+				<file :name="wpn_npc_aa12_bulldozer.model" />
+				<file :name="wpn_npc_aa12_bulldozer.object" />
+				<file :name="wpn_npc_aa12_bulldozer.unit" />
+			</group>
 
 			<!-- bulldozer m249 -->
-			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.cooked_physics"/>
-			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.model"/>
-			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.object"/>
-			<file :name="wpn_npc_m249_bulldozer/wpn_npc_m249_bulldozer.unit"/>
+			<group :name="wpn_npc_m249_bulldozer/">
+				<file :name="wpn_npc_m249_bulldozer.cooked_physics" />
+				<file :name="wpn_npc_m249_bulldozer.model" />
+				<file :name="wpn_npc_m249_bulldozer.object" />
+				<file :name="wpn_npc_m249_bulldozer.unit" />
+			</group>
 
 			<!-- bulldozer benelli -->
-			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.cooked_physics"/>
-			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.material_config"/>
-			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.model"/>
-			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.object"/>
-			<file :name="wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer.unit"/>
+			<group :name="wpn_npc_benelli_bulldozer/">
+				<file :name="wpn_npc_benelli_bulldozer.cooked_physics" />
+				<file :name="wpn_npc_benelli_bulldozer.material_config"/>
+				<file :name="wpn_npc_benelli_bulldozer.model" />
+				<file :name="wpn_npc_benelli_bulldozer.object" />
+				<file :name="wpn_npc_benelli_bulldozer.unit" />
+			</group>
 
 			<!-- ksg -->
-			<file :name="wpn_npc_ksg/ksg_df.texture"/>
-			<file :name="wpn_npc_ksg/ksg_nm.texture"/>
-			<file :name="wpn_npc_ksg/wpn_npc_ksg.cooked_physics"/>
-			<file :name="wpn_npc_ksg/wpn_npc_ksg.material_config"/>
-			<file :name="wpn_npc_ksg/wpn_npc_ksg.model"/>
-			<file :name="wpn_npc_ksg/wpn_npc_ksg.object"/>
-			<file :name="wpn_npc_ksg/wpn_npc_ksg.unit"/>
+			<group :name="wpn_npc_ksg/">
+				<file :name="ksg_df.texture"/>
+				<file :name="ksg_nm.texture"/>
+				<file :name="wpn_npc_ksg.cooked_physics"/>
+				<file :name="wpn_npc_ksg.material_config"/>
+				<file :name="wpn_npc_ksg.model"/>
+				<file :name="wpn_npc_ksg.object"/>
+				<file :name="wpn_npc_ksg.unit"/>
+			</group>
 
-			<!-- s552 -->
-			<file :name="wpn_npc_s552/s552_zeal_df.texture"/>
-			<file :name="wpn_npc_s552/s552_zeal_nm.texture"/>
-			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.cooked_physics"/>
-			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.material_config"/>
-			<file :name="wpn_npc_s552/wpn_npc_s552_zeal_contour.material_config"/>
-			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.model"/>
-			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.object"/>
-			<file :name="wpn_npc_s552/wpn_npc_s552_zeal.unit"/>
+			<!-- zeal s552 -->
+			<group :name="wpn_npc_s552/">
+				<file :name="s552_zeal_df.texture"/>
+				<file :name="s552_zeal_nm.texture"/>
+				<file :name="wpn_npc_s552_zeal.cooked_physics"/>
+				<file :name="wpn_npc_s552_zeal.material_config"/>
+				<file :name="wpn_npc_s552_zeal_contour.material_config"/>
+				<file :name="wpn_npc_s552_zeal.model"/>
+				<file :name="wpn_npc_s552_zeal.object"/>
+				<file :name="wpn_npc_s552_zeal.unit"/>
+			</group>
 
 			<!-- gewehr -->
-			<file :name="wpn_npc_g3/g3_df.texture"/>
-			<file :name="wpn_npc_g3/g3_nm.texture"/>
-			<file :name="wpn_npc_g3/wpn_npc_g3.cooked_physics"/>
-			<file :name="wpn_npc_g3/wpn_npc_g3.material_config"/>
-			<file :name="wpn_npc_g3/wpn_npc_g3_contour.material_config"/>
-			<file :name="wpn_npc_g3/wpn_npc_g3.model"/>
-			<file :name="wpn_npc_g3/wpn_npc_g3.object"/>
-			<file :name="wpn_npc_g3/wpn_npc_g3.unit"/>
+			<group :name="wpn_npc_g3/">
+				<file :name="g3_df.texture"/>
+				<file :name="g3_nm.texture"/>
+				<file :name="wpn_npc_g3.cooked_physics"/>
+				<file :name="wpn_npc_g3.material_config"/>
+				<file :name="wpn_npc_g3_contour.material_config"/>
+				<file :name="wpn_npc_g3.model"/>
+				<file :name="wpn_npc_g3.object"/>
+				<file :name="wpn_npc_g3.unit"/>
+			</group>
 
 			<!-- mpx -->
-			<file :name="wpn_npc_shepheard/shepheard_df.texture"/>
-			<file :name="wpn_npc_shepheard/shepheard_nm.texture"/>
-			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.cooked_physics"/>
-			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.material_config"/>
-			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.model"/>
-			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.object"/>
-			<file :name="wpn_npc_shepheard/wpn_npc_shepheard.unit"/>
+			<group :name="wpn_npc_shepheard/">
+				<file :name="shepheard_df.texture"/>
+				<file :name="shepheard_nm.texture"/>
+				<file :name="wpn_npc_shepheard.cooked_physics"/>
+				<file :name="wpn_npc_shepheard.material_config"/>
+				<file :name="wpn_npc_shepheard.model"/>
+				<file :name="wpn_npc_shepheard.object"/>
+				<file :name="wpn_npc_shepheard.unit"/>
+			</group>
 
 			<!-- ump & huntsman sound -->
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
@@ -372,8 +402,265 @@
 
 
 		<group name="units/payday2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-			<file :name="shared_textures/swat_equipment_df.texture" />
-			<file :name="shared_textures/swat_equipment_nm.texture" />
+			<group :name="shared_textures/">
+				<file :name="swat_equipment_df.texture" />
+				<file :name="swat_equipment_nm.texture" />
+
+				<file :name="swat_body_df.texture" />
+				<file :name="swat_body_nm.texture" />
+
+				<file :name="ene_acc_head_var1_df.texture" />
+				<file :name="ene_acc_head_var1_nm.texture" />
+
+				<file :name="ene_acc_head_var2_df.texture" />
+				<file :name="ene_acc_head_var2_nm.texture" />
+			</group>
+
+			<group :name="ene_acc_swat_helmet/">
+				<file :name="ene_acc_swat_helmet.material_config" />
+				<file :name="ene_acc_swat_helmet.model" />
+				<file :name="ene_acc_swat_helmet.object" />
+				<file :name="ene_acc_swat_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_swat_cap/">
+				<file :name="ene_acc_swat_cap.cooked_physics" />
+				<file :name="ene_acc_swat_cap.material_config" />
+				<file :name="ene_acc_swat_cap.model" />
+				<file :name="ene_acc_swat_cap.object" />
+				<file :name="ene_acc_swat_cap.unit" />
+			</group>
+
+			<group :name="ene_acc_shield_helmet/">
+				<file :name="ene_acc_shield_helmet.model" />
+				<file :name="ene_acc_shield_helmet.object" />
+				<file :name="ene_acc_shield_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_fbi_swat_helmet/">
+				<file :name="ene_acc_fbi_swat_helmet.model" />
+				<file :name="ene_acc_fbi_swat_helmet.object" />
+				<file :name="ene_acc_fbi_swat_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_head/">
+				<xml  :name="ene_acc_head.sequence_manager" />
+				<file :name="ene_acc_head.cooked_physics" />
+				<file :name="ene_acc_head.material_config" />
+				<file :name="ene_acc_head_contour.material_config" />
+				<file :name="ene_acc_head.model" />
+				<file :name="ene_acc_head.object" />
+				<file :name="ene_acc_head.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_acc_head_var1.material_config" />
+					<file :name="ene_acc_head_var1_contour.material_config" />
+
+					<file :name="ene_acc_head_var2.material_config" />
+					<file :name="ene_acc_head_var2_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_security_1/">
+				<xml  :name="ene_security_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_security_1.material_config" />
+				<file :name="ene_security_1_contour.material_config" />
+				<file :name="ene_security_1.model" />
+				<file :name="ene_security_1.object" />
+				<file :name="ene_security_1.unit" />
+				<file :name="ene_security_1_husk.unit" />
+			</group>
+
+			<group :name="ene_security_2/">
+				<file :name="ene_security_2.unit" />
+				<file :name="ene_security_2_husk.unit" />
+			</group>
+
+			<group :name="ene_security_3/">
+				<file :name="ene_security_3.unit" />
+				<file :name="ene_security_3_husk.unit" />
+			</group>
+
+			<group :name="ene_security_4/">
+				<xml  :name="ene_security_4.sequence_manager" dyn_package="true" />
+				<file :name="ene_security_4.material_config" />
+				<file :name="ene_security_4_contour.material_config" />
+				<file :name="ene_security_4.model" />
+				<file :name="ene_security_4.object" />
+				<file :name="ene_security_4.unit" />
+				<file :name="ene_security_4_husk.unit" />
+			</group>
+
+			<group :name="ene_security_5/">
+				<file :name="ene_security_5.unit" />
+				<file :name="ene_security_5_husk.unit" />
+			</group>
+
+			<group :name="ene_security_6/">
+				<file :name="ene_security_6.unit" />
+				<file :name="ene_security_6_husk.unit" />
+			</group>
+
+			<group :name="ene_security_7/">
+				<file :name="ene_security_7.unit" />
+				<file :name="ene_security_7_husk.unit" />
+			</group>
+
+			<group :name="ene_security_8/">
+				<file :name="ene_security_8.unit" />
+				<file :name="ene_security_8_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_1/">
+				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_cop_1.material_config" />
+				<file :name="ene_cop_1_contour.material_config" />
+				<file :name="ene_cop_1.model" />
+				<file :name="ene_cop_1.object" />
+				<file :name="ene_cop_1.unit" />
+				<file :name="ene_cop_1_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_2/">
+				<file :name="ene_cop_2.unit" />
+				<file :name="ene_cop_2_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_3/">
+				<file :name="ene_cop_3.unit" />
+				<file :name="ene_cop_3_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_4/">
+				<file :name="ene_cop_4.unit" />
+				<file :name="ene_cop_4_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_1/">
+				<xml  :name="ene_fbi_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_fbi_1.material_config" />
+				<file :name="ene_fbi_1_contour.material_config" />
+				<file :name="ene_fbi_1.model" />
+				<file :name="ene_fbi_1.object" />
+				<file :name="ene_fbi_1.unit" />
+				<file :name="ene_fbi_1_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_2/">
+				<file :name="ene_fbi_2.unit" />
+				<file :name="ene_fbi_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_3/">
+				<file :name="ene_fbi_3.unit" />
+				<file :name="ene_fbi_3_husk.unit" />
+			</group>
+
+			<group :name="ene_secret_service_1/">
+				<xml  :name="ene_secret_service_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_secret_service_1.material_config" />
+				<file :name="ene_secret_service_1_contour.material_config" />
+				<file :name="ene_secret_service_1.model" />
+				<file :name="ene_secret_service_1.object" />
+				<file :name="ene_secret_service_1.unit" />
+				<file :name="ene_secret_service_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_secret_service_1_casino.material_config" />
+					<file :name="ene_secret_service_1_casino_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_secret_service_2/">
+				<file :name="ene_secret_service_2.unit" />
+				<file :name="ene_secret_service_2_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_1/">
+				<xml  :name="ene_murkywater_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_1.material_config" />
+				<file :name="ene_murkywater_1_contour.material_config" />
+				<file :name="ene_murkywater_1.model" />
+				<file :name="ene_murkywater_1.object" />
+				<file :name="ene_murkywater_1.unit" />
+				<file :name="ene_murkywater_1_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_2/">
+				<file :name="ene_murkywater_2.unit" />
+				<file :name="ene_murkywater_2_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_1/">
+				<xml  :name="ene_swat_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_swat_1.material_config" />
+				<file :name="ene_swat_1_contour.material_config" />
+				<file :name="ene_swat_1.model" />
+				<file :name="ene_swat_1.object" />
+				<file :name="ene_swat_1.unit" />
+				<file :name="ene_swat_1_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_2/">
+				<file :name="ene_swat_2.unit" />
+				<file :name="ene_swat_2_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_3/">
+				<file :name="ene_swat_3.unit" />
+				<file :name="ene_swat_3_husk.unit" />
+			</group>
+
+			<group :name="ene_sniper_1/">
+				<file :name="ene_sniper_1.unit" />
+				<file :name="ene_sniper_1_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_1/">
+				<xml  :name="ene_swat_heavy_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_swat_heavy_1.model" />
+				<file :name="ene_swat_heavy_1.object" />
+				<file :name="ene_swat_heavy_1.unit" />
+				<file :name="ene_swat_heavy_1_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_r870/">
+				<file :name="ene_swat_heavy_r870.unit" />
+				<file :name="ene_swat_heavy_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_shield_2/">
+				<file :name="ene_shield_2.unit" />
+				<file :name="ene_shield_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_swat_1/">
+				<xml  :name="ene_fbi_swat_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_fbi_swat_1.model" />
+				<file :name="ene_fbi_swat_1.object" />
+				<file :name="ene_fbi_swat_1.unit" />
+				<file :name="ene_fbi_swat_1_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_swat_2/">
+				<file :name="ene_fbi_swat_2.unit" />
+				<file :name="ene_fbi_swat_2_husk.unit" />
+			</group>
+
+			<group :name="ene_fbi_swat_3/">
+				<file :name="ene_fbi_swat_3.unit" />
+				<file :name="ene_fbi_swat_3_husk.unit" />
+			</group>
+
+			<group :name="ene_sniper_2/">
+				<file :name="ene_sniper_2.unit" />
+				<file :name="ene_sniper_2_husk.unit" />
+			</group>
+
+			<group :name="ene_shield_1/">
+				<file :name="ene_shield_1.unit" />
+				<file :name="ene_shield_1_husk.unit" />
+			</group>
 
 			<file :name="ene_acc_bulldozer_back/ene_acc_bulldozer_back.model" />
 
@@ -405,62 +692,99 @@
 
 			<file :name="ene_acc_bulldozer_throat_3/ene_acc_bulldozer_throat_3.model" />
 
-			<file :name="ene_bulldozer_1/ene_bulldozer_1.material_config" />
-			<file :name="ene_bulldozer_1/ene_bulldozer_1_contour.material_config" />
-			<file :name="ene_bulldozer_1/ene_bulldozer_1.model" />
-			<file :name="ene_bulldozer_1/ene_bulldozer_1.object" />
-			<file :name="ene_bulldozer_1/ene_bulldozer_1.unit" />
-			<file :name="ene_bulldozer_1/ene_bulldozer_1_husk.unit" />
+			<group :name="ene_bulldozer_1/">
+				<file :name="ene_bulldozer_1.material_config" />
+				<file :name="ene_bulldozer_1_contour.material_config" />
+				<file :name="ene_bulldozer_1.model" />
+				<file :name="ene_bulldozer_1.object" />
+				<file :name="ene_bulldozer_1.unit" />
+				<file :name="ene_bulldozer_1_husk.unit" />
+			</group>
 
-			<file :name="ene_bulldozer_2/ene_bulldozer_2.material_config" />
-			<file :name="ene_bulldozer_2/ene_bulldozer_2_contour.material_config" />
-			<file :name="ene_bulldozer_2/ene_bulldozer_2.model" />
-			<file :name="ene_bulldozer_2/ene_bulldozer_2.object" />
-			<file :name="ene_bulldozer_2/ene_bulldozer_2.unit" />
-			<file :name="ene_bulldozer_2/ene_bulldozer_2_husk.unit" />
+			<group :name="ene_bulldozer_2/">
+				<file :name="ene_bulldozer_2.material_config" />
+				<file :name="ene_bulldozer_2_contour.material_config" />
+				<file :name="ene_bulldozer_2.model" />
+				<file :name="ene_bulldozer_2.object" />
+				<file :name="ene_bulldozer_2.unit" />
+				<file :name="ene_bulldozer_2_husk.unit" />
+			</group>
 
-			<file :name="ene_bulldozer_3/ene_bulldozer_3.material_config" />
-			<file :name="ene_bulldozer_3/ene_bulldozer_3_contour.material_config" />
-			<file :name="ene_bulldozer_3/ene_bulldozer_3.model" />
-			<file :name="ene_bulldozer_3/ene_bulldozer_3.object" />
-			<file :name="ene_bulldozer_3/ene_bulldozer_3.unit" />
-			<file :name="ene_bulldozer_3/ene_bulldozer_3_husk.unit" />
+			<group :name="ene_bulldozer_3/">
+				<file :name="ene_bulldozer_3.material_config" />
+				<file :name="ene_bulldozer_3_contour.material_config" />
+				<file :name="ene_bulldozer_3.model" />
+				<file :name="ene_bulldozer_3.object" />
+				<file :name="ene_bulldozer_3.unit" />
+				<file :name="ene_bulldozer_3_husk.unit" />
+			</group>
+		</group>
+
+
+		<group name="units/pd2_dlc1/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_acc_gensec_beret/">
+				<file :name="ene_acc_gensec_beret.cooked_physics" />
+				<file :name="ene_acc_gensec_beret.material_config" />
+				<file :name="ene_acc_gensec_beret.model" />
+				<file :name="ene_acc_gensec_beret.object" />
+				<file :name="ene_acc_gensec_beret.unit" />
+			</group>
+
+			<group :name="ene_security_gensec_1/">
+				<xml  :name="ene_security_gensec_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_security_gensec_1.material_config" />
+				<file :name="ene_security_gensec_1_contour.material_config" />
+				<file :name="ene_security_gensec_1.model" />
+				<file :name="ene_security_gensec_1.object" />
+				<file :name="ene_security_gensec_1.unit" />
+				<file :name="ene_security_gensec_1_husk.unit" />
+			</group>
+
+			<group :name="ene_security_gensec_2/">
+				<file :name="ene_security_gensec_2.unit" />
+				<file :name="ene_security_gensec_2_husk.unit" />
+			</group>
 		</group>
 
 
 		<group name="units/pd2_dlc_vip/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_top.cooked_physics" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_top.model" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_top.object" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_top.unit" />
+			<group :name="ene_acc_shield_phalanx/">
+				<xml 	:name="ene_acc_shield_phalanx.sequence_manager" />
+				<file 	:name="ene_acc_shield_phalanx.material_config" />
+				<file 	:name="ene_acc_shield_phalanx.model" />
+				<file 	:name="ene_acc_shield_phalanx.object" />
+				<file 	:name="ene_acc_shield_phalanx.unit" />
+				<file 	:name="ene_acc_shield_phalanx_dummy.unit" />
 
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_right.cooked_physics" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_right.model" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_right.object" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_right.unit" />
+				<group :name="debris/">
+					<file 	:name="ene_acc_shield_phalanx_debris_top.cooked_physics" />
+					<file 	:name="ene_acc_shield_phalanx_debris_top.model" />
+					<file 	:name="ene_acc_shield_phalanx_debris_top.object" />
+					<file 	:name="ene_acc_shield_phalanx_debris_top.unit" />
 
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_left.cooked_physics" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_left.model" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_left.object" />
-			<file 	:name="ene_acc_shield_phalanx/debris/ene_acc_shield_phalanx_debris_left.unit" />
+					<file 	:name="ene_acc_shield_phalanx_debris_right.cooked_physics" />
+					<file 	:name="ene_acc_shield_phalanx_debris_right.model" />
+					<file 	:name="ene_acc_shield_phalanx_debris_right.object" />
+					<file 	:name="ene_acc_shield_phalanx_debris_right.unit" />
 
-			<xml 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.sequence_manager" />
-			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.material_config" />
-			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.model" />
-			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.object" />
-			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx.unit" />
-			<file 	:name="ene_acc_shield_phalanx/ene_acc_shield_phalanx_dummy.unit" />
+					<file 	:name="ene_acc_shield_phalanx_debris_left.cooked_physics" />
+					<file 	:name="ene_acc_shield_phalanx_debris_left.model" />
+					<file 	:name="ene_acc_shield_phalanx_debris_left.object" />
+					<file 	:name="ene_acc_shield_phalanx_debris_left.unit" />
+				</group>
+			</group>
 
 			<file 	:name="ene_acc_phalanx_helmet/ene_acc_phalanx_helmet.model" />
 
-			<file 	:name="ene_phalanx_1/ene_phalanx_1.material_config" />
-			<file 	:name="ene_phalanx_1/ene_phalanx_1_contour.material_config" />
-			<file 	:name="ene_phalanx_1/ene_phalanx_1.model" />
-			<file 	:name="ene_phalanx_1/ene_phalanx_1.object" />
-			<file 	:name="ene_phalanx_1/ene_phalanx_1.unit" />
-			<file 	:name="ene_phalanx_1/ene_phalanx_1_husk.unit" />
-
+			<group :name="ene_phalanx_1/">
+				<file 	:name="ene_phalanx_1.material_config" />
+				<file 	:name="ene_phalanx_1_contour.material_config" />
+				<file 	:name="ene_phalanx_1.model" />
+				<file 	:name="ene_phalanx_1.object" />
+				<file 	:name="ene_phalanx_1.unit" />
+				<file 	:name="ene_phalanx_1_husk.unit" />
+			</group>
 		</group>
 
 
@@ -477,14 +801,15 @@
 
 			<file :name="ene_acc_bulldozer_minigun_classic_throat/ene_acc_bulldozer_minigun_classic_throat.model" />
 
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.material_config" />
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_contour.material_config" />
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.model" />
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.object" />
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic.unit" />
-			<file :name="ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_husk.unit" />
+			<group :name="ene_bulldozer_minigun_classic/">
+				<file :name="ene_bulldozer_minigun_classic.material_config" />
+				<file :name="ene_bulldozer_minigun_classic_contour.material_config" />
+				<file :name="ene_bulldozer_minigun_classic.model" />
+				<file :name="ene_bulldozer_minigun_classic.object" />
+				<file :name="ene_bulldozer_minigun_classic.unit" />
+				<file :name="ene_bulldozer_minigun_classic_husk.unit" />
+			</group>
 		</group>
-
 
 		<!-- zeals -->
 		<group name="units/pd2_dlc_gitgud/characters/" dyn_package="false">
@@ -569,6 +894,71 @@
 			<file :name="e_framing_frame/stage_3/nav_manager_data.nav_data"/>
 			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
+		</group>
+
+		<group name="units/pd2_dlc_berry/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+
+			<group :name="ene_murkywater_no_light/">
+				<file :name="ene_murkywater_no_light.unit" />
+				<file :name="ene_murkywater_no_light_husk.unit" />
+			</group>
+
+		</group>
+
+		<group name="units/pd2_dlc_casino/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+
+			<group :name="ene_secret_service_1_casino/">
+				<file :name="ene_secret_service_1_casino.unit" />
+				<file :name="ene_secret_service_1_casino_husk.unit" />
+			</group>
+
+		</group>
+
+		<group name="units/pd2_dlc_short/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+
+			<group :name="ene_cop_2_shr/">
+				<file :name="ene_cop_2_shr.unit" />
+				<file :name="ene_cop_2_shr_husk.unit" />
+			</group>
+
+			<group :name="ene_secret_service_1_undominatable/">
+				<file :name="ene_secret_service_1_undominatable.unit" />
+				<file :name="ene_secret_service_1_undominatable_husk.unit" />
+			</group>
+
+			<group :name="ene_security_1_undominatable/">
+				<file :name="ene_security_1_undominatable.unit" />
+				<file :name="ene_security_1_undominatable_husk.unit" />
+			</group>
+
+			<group :name="ene_security_2_undominatable/">
+				<file :name="ene_security_2_undominatable.unit" />
+				<file :name="ene_security_2_undominatable_husk.unit" />
+			</group>
+
+			<group :name="ene_security_3_undominatable/">
+				<file :name="ene_security_3_undominatable.unit" />
+				<file :name="ene_security_3_undominatable_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_des/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+
+			<group :name="ene_murkywater_no_light_not_security/">
+				<file :name="ene_murkywater_no_light_not_security.unit" />
+				<file :name="ene_murkywater_no_light_not_security_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_not_security_1/">
+				<file :name="ene_murkywater_not_security_1.unit" />
+				<file :name="ene_murkywater_not_security_1_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_not_security_2/">
+				<file :name="ene_murkywater_not_security_2.unit" />
+				<file :name="ene_murkywater_not_security_2_husk.unit" />
+			</group>
+
 		</group>
 
 		<!-- animations -->

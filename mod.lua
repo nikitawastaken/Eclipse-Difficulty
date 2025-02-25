@@ -21,7 +21,7 @@ if not Eclipse then
 		if self._instance_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
-				self._instance_script_patches = self:require("instance_script/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
+				self._instance_script_patches = self:require("instance_script/" .. level_id:gsub("_night$", ""):gsub("_day$", ""):gsub("_skip1$", ""):gsub("_skip2$", "")) or false
 			end
 		end
 
@@ -32,7 +32,7 @@ if not Eclipse then
 		if self._mission_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
-				self._mission_script_patches = self:require("mission_script/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
+				self._mission_script_patches = self:require("mission_script/" .. level_id:gsub("_night$", ""):gsub("_day$", ""):gsub("_skip1$", ""):gsub("_skip2$", "")) or false
 			end
 		end
 		return self._mission_script_patches
@@ -43,7 +43,7 @@ if not Eclipse then
 		if self._mission_script_add == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id
 			if level_id then
-				self._mission_script_add = self:require("mission_script_add/" .. level_id:gsub("_night$", ""):gsub("_day$", "")) or false
+				self._mission_script_add = self:require("mission_script_add/" .. level_id:gsub("_night$", ""):gsub("_day$", ""):gsub("_skip1$", ""):gsub("_skip2$", "")) or false
 			end
 		end
 		return self._mission_script_add
@@ -67,9 +67,31 @@ if not Eclipse then
 		managers.chat:_receive_message(managers.chat.GAME, "Eclipse Debug", table.concat({ ... }, " "), Color.green)
 	end
 
+	function Eclipse:log_chat_unique(...)
+		local vals = { ... }
+		if Eclipse._old_chat_vals then
+			if #Eclipse._old_chat_vals == #vals then
+				for i, msg in ipairs(vals) do
+					if Eclipse._old_chat_vals[i] ~= msg then
+						Eclipse:log_chat(unpack(vals))
+						Eclipse._old_chat_vals = vals
+						break
+					end
+				end
+			else
+				Eclipse:log_chat(unpack(vals))
+				Eclipse._old_chat_vals = vals
+			end
+		else
+			Eclipse:log_chat(unpack(vals))
+			Eclipse._old_chat_vals = vals
+		end
+	end
+
 	Eclipse.utils = Eclipse:require("utils")
 	Eclipse.ffo_heists = Eclipse:require("ffo_heists")
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
+	Eclipse.preferred = Eclipse:require("preferred_groups")
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.map_sizes = Eclipse:require("map_sizes")
 

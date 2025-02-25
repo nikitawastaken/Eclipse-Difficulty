@@ -2,39 +2,39 @@ return {
 	[100022] = {
 		ponr = {
 			length = 3000,
-			player_mul = { 1.75, 1.25, 1.125, 1 }
-		}
+			player_mul = { 1.75, 1.25, 1.125, 1 },
+		},
 	},
 	-- Increase delay on side door spawns
 	[103347] = {
 		values = {
-			interval = 30
-		}
+			interval = 30,
+		},
 	},
 	[103348] = {
 		values = {
-			interval = 30
-		}
+			interval = 30,
+		},
 	},
 	[103360] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	[101416] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	-- slow down the spawnpoints in peoc (ones that are close to the staircase)
 	[100694] = {
 		values = {
-			interval = 30
-		}
+			interval = 30,
+		},
 	},
 	[102557] = {
 		values = {
-			interval = 20
-		}
-	}
+			interval = 20,
+		},
+	},
 }

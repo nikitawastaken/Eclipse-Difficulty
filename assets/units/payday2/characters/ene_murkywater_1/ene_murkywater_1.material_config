@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<materials version="3" group="ene_murkywater_1">
+
+	<material name="mtr_murkywater" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/murkywater_nm"/>
+		<diffuse_texture		file="units/payday2/characters/shared_textures/murkywater_df"/>
+	</material>
+	<material name="mtr_murkywater_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/murkywater_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/murkywater_df" mip="1"/>
+	</material>
+	<material name="mtr_murkywater_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/murkywater_nm" mip="4"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/murkywater_df" mip="4"/>
+	</material>
+	
+
+	<material name="mtr_hat" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/helmets_atlas_nm" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/helmets_atlas_df" />
+	</material>
+	<material name="mtr_hat_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/helmets_atlas_nm" mip="1" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/helmets_atlas_df" mip="1" />
+	</material>
+	<material name="mtr_hat_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/helmets_atlas_nm" mip="4" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/helmets_atlas_df" mip="4" />
+	</material>
+
+
+	<material name="mtr_glasses" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/security_df" />
+	</material>
+	<material name="mtr_glasses_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="1" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/security_df" mip="1" />
+	</material>
+	<material name="mtr_glasses_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="4" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/security_df" mip="4" />
+	</material>
+
+	
+    <material name="shadow_caster" render_template="shadow_caster_only:SKINNED_1WEIGHT" version="2"/>
+	
+</materials>

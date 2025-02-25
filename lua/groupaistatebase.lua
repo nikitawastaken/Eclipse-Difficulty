@@ -11,7 +11,17 @@ function GroupAIStateBase:_get_scripted_tier()
 end
 
 -- Set up needed variables
-Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse_calculate_difficulty_ratio", function(self)
+local _calculate_difficulty_ratio = GroupAIStateBase._calculate_difficulty_ratio
+function GroupAIStateBase:_calculate_difficulty_ratio(...)
+	if self._hostage_killed_diff_add then
+		self._difficulty_value = math.min(self._difficulty_value + (self._hostage_killed_diff_add or 0), 1)
+		self._hostage_killed_diff_add = nil
+	else
+		self._difficulty_value = math.min(self._difficulty_value + (self._added_difficulty_value or 0), 1) -- addend difficulty
+	end
+
+	_calculate_difficulty_ratio(self, ...)
+
 	for name, script in pairs(managers.mission._scripts) do
 		for k, element in pairs(script._elements) do
 			if getmetatable(element) == ElementSpawnEnemyDummy then
@@ -27,7 +37,7 @@ Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse_calcula
 			end
 		end
 	end
-end)
+end
 
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
@@ -135,6 +145,20 @@ function GroupAIStateBase:set_difficulty(value, ...)
 end
 
 Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update_difficulty_value)
+
+function GroupAIStateBase:add_difficulty(value)
+	self._added_difficulty_value = (self._added_difficulty_value or 0) + value
+	self:_calculate_difficulty_ratio()
+end
+
+--Killing hostages in Pro Jobs increases diff
+local is_pro_job = Eclipse.utils.is_pro_job()
+Hooks:PostHook(GroupAIStateBase, "hostage_killed", "hits_hostage_killed", function(self)
+	if is_pro_job then
+		self._hostage_killed_diff_add = math.random(75, 100) / 1000
+		self:add_difficulty(self._hostage_killed_diff_add)
+	end
+end)
 
 -- Delay spawn points when enemies die close to them
 Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregistered", function(self, unit)

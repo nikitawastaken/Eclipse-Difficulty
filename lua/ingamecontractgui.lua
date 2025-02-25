@@ -48,7 +48,7 @@ function IngameContractGui:init(ws, node)
 	briefing_title:set_text(self:get_text("menu_briefing"))
 	managers.hud:make_fine_text(briefing_title)
 
-	local font_size = tweak_data.menu.pd2_small_font_size
+	local font_size = tweak_data.menu.pd2_small_font_size - 3
 	local text = job_data and managers.localization:text(job_data.briefing_id) or ""
 	local briefing_description = text_panel:text({
 		name = "briefing_description",
@@ -98,7 +98,7 @@ function IngameContractGui:init(ws, node)
 			text = managers.localization:to_upper_text("menu_ghostable_job", {
 				bonus = ghost_bonus_string,
 			}),
-			font_size = tweak_data.menu.pd2_small_font_size,
+			font_size = font_size,
 			font = tweak_data.menu.pd2_small_font,
 			color = tweak_data.screen_colors.ghost_color,
 		})
@@ -118,7 +118,7 @@ function IngameContractGui:init(ws, node)
 	})
 
 	managers.hud:make_fine_text(modifiers_text)
-	modifiers_text:set_bottom(text_panel:h() * 0.5 - tweak_data.menu.pd2_small_font_size)
+	modifiers_text:set_bottom(text_panel:h() * 0.4 - font_size)
 
 	local next_top = modifiers_text:bottom()
 	local one_down_warning_text = nil
@@ -156,7 +156,7 @@ function IngameContractGui:init(ws, node)
 				exp_bonus = job_ghost_string,
 			}),
 			font = tweak_data.menu.pd2_small_font,
-			font_size = tweak_data.menu.pd2_small_font_size,
+			font_size = font_size,
 			color = ghost_color,
 		})
 
@@ -236,7 +236,7 @@ function IngameContractGui:init(ws, node)
 					event_icon = managers.localization:get_default_macro("BTN_XMAS"),
 					bonus = holiday_string,
 				}),
-				font_size = tweak_data.menu.pd2_small_font_size,
+				font_size = font_size,
 				font = tweak_data.menu.pd2_small_font,
 				color = tweak_data.screen_colors.event_color,
 			})

@@ -1,9 +1,9 @@
 name: Format Eclipse Code
 on:
   push:
-    branches: [ main, dev ]
+    branches: [ main, dev, enemies ]
   pull_request:
-    branches: [ main, dev ]
+    branches: [ main, dev, enemies ]
 jobs:
   format_lua:
     runs-on: windows-latest
@@ -13,10 +13,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
-          args: --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- lua
+          args: --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- .
       - uses: EndBug/add-and-commit@v9
         with:
-          add: "lua/*"
+          add: "*.lua"
           committer_name: GitHub Actions
           committer_email: actions@github.com
           message: Code formatting

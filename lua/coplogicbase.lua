@@ -52,12 +52,15 @@ Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(
 			end
 		end
 
-		local best_u_key
+		local best_u_key, best_is_shield
 		local least_followers = math.huge
 		for u_key, follower_data in pairs(followers) do
-			if follower_data.amount < least_followers and (not data.tactics.shield_cover or follower_data.is_shield) then
-				best_u_key = u_key
-				least_followers = follower_data.amount
+			if follower_data.is_shield or not data.tactics.shield_cover or data.tactics.unit_cover and not best_is_shield then
+				if follower_data.amount < least_followers or data.tactics.shield_cover and follower_data.is_shield and not best_is_shield then
+					best_u_key = u_key
+					best_is_shield = follower_data.is_shield
+					least_followers = follower_data.amount
+				end
 			end
 		end
 
@@ -449,6 +452,12 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			local not_cool_t = data.unit:movement():not_cool_t()
 			if (not not_cool_t or t - not_cool_t < 1.5) and not managers.groupai:state():enemy_weapons_hot() then
 				hold_chance = hold_chance * (1 - pants_down_surrender)
+			end
+		end,
+
+		not_assault = function(not_assault_surrender)
+			if not managers.groupai:state():get_assault_mode() then
+				hold_chance = hold_chance * (1 - not_assault_surrender)
 			end
 		end,
 	}

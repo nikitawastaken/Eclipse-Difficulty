@@ -1,14 +1,29 @@
-local Bain_sendcloakers = {
-	dialogue = "Play_ban_s04",
-	can_not_be_muted = true
+---@module Rats Day 1
+local M = {}
+local is_eclipse = Eclipse.utils.is_eclipse()
+
+local activate_navlinks = {
+	enabled = is_eclipse,
+	trigger_times = 1,
+	on_executed = {
+		{ id = 101483, delay = 0 },
+		{ id = 101484, delay = 0 },
+		{ id = 101485, delay = 0 },
+		{ id = 101486, delay = 0 },
+		{ id = 101508, delay = 0 },
+		{ id = 101770, delay = 0 },
+		{ id = 101509, delay = 0 },
+		{ id = 101510, delay = 0 },
+		{ id = 102124, delay = 0 },
+		{ id = 102125, delay = 0 },
+		{ id = 101872, delay = 0 },
+		{ id = 101873, delay = 0 },
+	},
 }
 
-return {
-    elements = {
-		Eclipse.mission_elements.gen_dialogue(
-            400001,
-            "they_sending_cloakers",
-            Bain_sendcloakers
-        )
-    }
+M.elements = {
+	-- activate Eclipse exclusive event
+	Eclipse.mission_elements.gen_missionscript(400001, "activate_eclipse_navlinks", activate_navlinks),
 }
+
+return M

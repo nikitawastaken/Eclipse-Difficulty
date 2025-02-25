@@ -1,22 +1,26 @@
+local preferred = Eclipse.preferred
 local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 local roof_spawn_1 = {
 	values = {
-		interval = 20
-	}
-}	
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents,
+}
 local roof_spawn_2 = {
 	values = {
-		interval = 30
-	}
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents,
 }
 local storage_spawn = {
 	values = {
-		interval = 40
-	}
+		interval = 40,
+	},
+	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- Disable instant difficulty increase
@@ -24,8 +28,8 @@ return {
 	-- Loud, slightly delay police response
 	[100109] = {
 		values = {
-			base_delay = 30
-		}
+			base_delay = 30,
+		},
 	},
 	[100129] = {
 		difficulty = 0.4,
@@ -33,21 +37,21 @@ return {
 			{
 				name = "auction_room",
 				force = 2,
-				position = Vector3(0, 2000, -100)
+				position = Vector3(0, 2000, -100),
 			},
 			{
 				name = "outside",
 				force = 2,
-				position = Vector3(0, -3300, -50)
-			}
+				position = Vector3(0, -3300, -50),
+			},
 		},
 		on_executed = {
 			{ id = 100127, delay = 0 },
 			{ id = 103905, delay = 0 },
 			{ id = 103910, delay = 0 },
 			{ id = 103912, delay = 0 },
-			{ id = 103913, delay = 0 }
-		}
+			{ id = 103913, delay = 0 },
+		},
 	},
 	-- Disable area report triggers
 	[100140] = disabled,
@@ -66,23 +70,18 @@ return {
 	[104089] = storage_spawn,
 	[103662] = {
 		values = {
-			interval = 20
-		}
+			interval = 20,
+		},
 	},
 	-- Slow down and adjust storage window spawns
 	[103522] = {
 		values = {
-			interval = 60
+			interval = 60,
 		},
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-			tac_bull_rush = false
-		}
+		groups = preferred.no_shields_bulldozers,
 	},
 	[101175] = disabled,
 	[101177] = {
-		set_ponr_state = true
-	}
+		set_ponr_state = true,
+	},
 }

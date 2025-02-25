@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <tweaks>
 
-	<!-- Fix fbi_3 _tweak_table -->
-	<tweak version="2" name="units/payday2/characters/ene_fbi_3/ene_fbi_3" extension="unit">
+    <!-- Fix secret_service_fex _tweak_table -->
+	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -11,11 +11,11 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="fbi"/>
+			<attr name="value" value="security_mex"/>
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/payday2/characters/ene_fbi_3/ene_fbi_3_husk" extension="unit">
+	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -24,12 +24,13 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="fbi"/>
+			<attr name="value" value="security_mex"/>
 		</target>
 	</tweak>
 
-	<!-- fbi_shield _tweak_table -->
-	<tweak version="2" name="units/payday2/characters/ene_shield_1/ene_shield_1" extension="unit">
+    <!-- change fbi office agents _tweak_table -->
+    <!-- make agent Riker as an actual boss fight -->
+    <tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -38,12 +39,10 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="fbi_shield"/>
+			<attr name="value" value="fbi_boss"/>
 		</target>
 	</tweak>
-
-	<!-- Elite Dozer _tweak_table -->
-	<tweak version="2" name="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3" extension="unit">
+    <tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -52,11 +51,12 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="tank_elite"/>
+			<attr name="value" value="fbi_boss"/>
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3_husk" extension="unit">
+    <!-- male -->
+	<tweak version="2" name="units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -65,11 +65,11 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="tank_elite"/>
+			<attr name="value" value="cop"/>
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic" extension="unit">
+	<tweak version="2" name="units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -78,11 +78,11 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="tank_elite"/>
+			<attr name="value" value="cop"/>
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic_husk" extension="unit">
+    <tweak version="2" name="units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -91,10 +91,154 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="tank_elite"/>
+			<attr name="value" value="cop"/>
 		</target>
 	</tweak>
 
+	<tweak version="2" name="units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/payday2/characters/ene_fbi_office_4/ene_fbi_office_4_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop"/>
+		</target>
+	</tweak>
+
+    <!-- female -->
+    <tweak version="2" name="units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop_female"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop_female"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop_female"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop_female"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop_female"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cop_female"/>
+		</target>
+	</tweak>
+	
 	<!-- zeal taser table -->
 	<tweak version="2" name="units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer" extension="unit">
 		<search>

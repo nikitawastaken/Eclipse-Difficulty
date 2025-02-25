@@ -3586,7 +3586,6 @@ function BlackMarketGui:_get_melee_weapon_stats(name)
 	skill.swing_time.real_value = skill.swing_time.value
 	local reswing_time = tweak_data.blackmarket.melee_weapons[name].expire_t
 	local skill_mul = managers.player:upgrade_value("melee", "faster_reswing", 1)
-	log("ECLIPSE DEBUG: skill_mul = " .. tostring(skill_mul))
 	local skill_addend = (skill_mul < 1) and (reswing_time * skill_mul - reswing_time) or 0
 	base.reswing_time = {
 		min_value = reswing_time,
