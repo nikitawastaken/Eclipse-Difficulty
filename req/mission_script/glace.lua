@@ -54,11 +54,11 @@ return {
 		},
 	},
 	-- delay SWAT response
-	[101591] = {
-		on_executed = {
-			{ id = 101176, delay = 60 },
-		},
-	},
+    [100529] = { -- start besiege
+        on_executed = {
+            { id = 100530, delay = 60 },  -- difficulty 0.5
+        },
+    },
 	-- delay SWAT choppers
 	[100065] = {
 		on_executed = {
