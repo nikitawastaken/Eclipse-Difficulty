@@ -8,27 +8,33 @@ end
 -- Map to correct incorrect faction spawns
 ElementSpawnEnemyDummy.faction_mapping = {
 	CS = {
-		swat_1 = "units/payday2/characters/ene_swat_1/ene_swat_1",
+        swat_1 = {
+				"units/payday2/characters/ene_swat_1/ene_swat_1",
+				"units/payday2/characters/ene_swat_3/ene_swat_3"
+		},
 		swat_2 = "units/payday2/characters/ene_swat_2/ene_swat_2",
-		swat_3 = "units/payday2/characters/ene_swat_1/ene_swat_1",
 		heavy_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
 		heavy_2 = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
 		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	},
 	FBI = {
-		swat_1 = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
+        swat_1 = {
+				"units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
+				"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"
+		},
 		swat_2 = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2",
-		swat_3 = "units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
 		heavy_1 = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
 		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
 	},
 	Elite = {
-		swat_1 = "units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
+        swat_1 = {
+				"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
+				"units/payday2/characters/ene_city_swat_3/ene_city_swat_3"
+		},
 		swat_2 = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
-		swat_3 = "units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
 	},
 	Zeal = {
 		swat_1 = "units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
@@ -52,7 +58,7 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/payday2/characters/ene_city_shield/ene_city_shield"):key()] = "shield",
 	[("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"):key()] = "swat_1",
 	[("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"):key()] = "swat_2",
-	[("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"):key()] = "swat_3",
+	[("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"):key()] = "swat_1",
 	[("units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870"):key()] = "swat_2",
 	[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = "heavy_1",
 	[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = "heavy_2",
