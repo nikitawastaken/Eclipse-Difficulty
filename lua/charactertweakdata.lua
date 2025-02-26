@@ -808,8 +808,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.swat.trip_mine = true
 	presets.enemy_chatter.swat.saw = true
 
-
-
 	presets.enemy_chatter.gangster = {
 		aggressive = true,
 		contact = true,
