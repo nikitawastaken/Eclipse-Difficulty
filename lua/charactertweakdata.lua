@@ -792,8 +792,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cop.group_death = true
 	presets.enemy_chatter.cop.idle = true
 	presets.enemy_chatter.cop.report = true
+	presets.enemy_chatter.cop.trip_mine = true
+	presets.enemy_chatter.cop.saw = true
 
 	presets.enemy_chatter.swat.push = true
+	presets.enemy_chatter.swat.stand_by = true
 	presets.enemy_chatter.swat.flank = true
 	presets.enemy_chatter.swat.flash_grenade = true
 	presets.enemy_chatter.swat.open_fire = true
@@ -802,6 +805,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.swat.get_hostages = true
 	presets.enemy_chatter.swat.get_loot = true
 	presets.enemy_chatter.swat.group_death = true
+	presets.enemy_chatter.swat.trip_mine = true
+	presets.enemy_chatter.swat.saw = true
+
+
 
 	presets.enemy_chatter.gangster = {
 		aggressive = true,
@@ -1072,6 +1079,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.no_run_start = true
 	self.mobster_boss.no_run_stop = true
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.mobster_boss.use_animation_on_fire_damage = false
 	self.mobster_boss.die_sound_event = "l2n_burndeath" --more effective death scream
 
 	self.chavez_boss.HEALTH_INIT = 200
@@ -1080,6 +1088,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.chavez_boss.no_run_start = true
 	self.chavez_boss.no_run_stop = true
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.chavez_boss.use_animation_on_fire_damage = false
 	self.chavez_boss.die_sound_event = "l2n_burndeath"
 
 	self.hector_boss.HEALTH_INIT = 300
@@ -1090,6 +1099,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.no_run_start = true
 	self.hector_boss.no_run_stop = true
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.hector_boss.use_animation_on_fire_damage = false
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
 	self.hector_boss.die_sound_event = "l2n_burndeath"
@@ -1100,6 +1110,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.no_run_start = true
 	self.biker_boss.no_run_stop = true
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.biker_boss.use_animation_on_fire_damage = false
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
 	self.biker_boss.die_sound_event = "cf2_burndeath"
@@ -1108,6 +1119,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.headshot_dmg_mul = 2
 	self.drug_lord_boss.no_headshot_add_mul = true
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.drug_lord_boss.use_animation_on_fire_damage = false
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
@@ -1119,6 +1131,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.no_run_start = true
 	self.triad_boss.no_run_stop = true
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.triad_boss.use_animation_on_fire_damage = false
 	self.triad_boss.bullet_damage_only_from_front = nil
 	self.triad_boss.invulnerable_to_slotmask = nil
 	self.triad_boss.throwable_target_verified = false
@@ -1131,6 +1144,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.no_run_start = true
 	self.deep_boss.no_run_stop = true
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.deep_boss.use_animation_on_fire_damage = false
 
 	self.fbi_boss = deep_clone(self.chavez_boss)
 	self.fbi_boss.HEALTH_INIT = 200

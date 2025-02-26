@@ -519,3 +519,19 @@ function CopLogicBase._chk_alert_obstructed(listen_pos, alert_data)
 
 	return my_dis_sq > effective_dis_sq
 end
+
+-- Add chance for enemies to comment on squad member deaths
+Hooks:PostHook(CopLogicBase, "death_clbk", "sh_death_clbk", function(data, damage_info)
+	if not data.group then
+		return
+	end
+
+	local weapon_base = alive(damage_info.weapon_unit) and damage_info.weapon_unit:base()
+	if weapon_base and weapon_base.is_category and weapon_base:is_category("trip_mine") then
+		managers.groupai:state():_chk_say_group(data.group, "trip_mine")
+	elseif weapon_base and weapon_base.is_category and weapon_base:is_category("saw") and math.random() < 0.75 then
+		managers.groupai:state():_chk_say_group(data.group, "saw")
+	elseif math.random() < 0.25 then
+		managers.groupai:state():_chk_say_group(data.group, "group_death")
+	end
+end)
