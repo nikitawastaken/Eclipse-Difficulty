@@ -3,10 +3,10 @@ function ElementInstigatorRule:_check_player_rules(rules, instigator)
 		if rule == "carry_ids" then
 			local current_carry_ids = managers.player:current_carry_id()
 
-			if current_carry_ids[1] and data[current_carry_ids[1]] then
+			if current_carry_ids and current_carry_ids[1] and data[current_carry_ids[1]] then
 				return true
 			end
-			if current_carry_ids[2] and data[current_carry_ids[2]] then
+			if current_carry_ids and current_carry_ids[2] and data[current_carry_ids[2]] then
 				return true
 			end
 
