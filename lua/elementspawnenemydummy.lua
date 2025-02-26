@@ -8,9 +8,9 @@ end
 -- Map to correct incorrect faction spawns
 ElementSpawnEnemyDummy.faction_mapping = {
 	CS = {
-        swat_1 = {
-				"units/payday2/characters/ene_swat_1/ene_swat_1",
-				"units/payday2/characters/ene_swat_3/ene_swat_3"
+		swat_1 = {
+			"units/payday2/characters/ene_swat_1/ene_swat_1",
+			"units/payday2/characters/ene_swat_3/ene_swat_3",
 		},
 		swat_2 = "units/payday2/characters/ene_swat_2/ene_swat_2",
 		heavy_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
@@ -19,9 +19,9 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	},
 	FBI = {
-        swat_1 = {
-				"units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
-				"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"
+		swat_1 = {
+			"units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
+			"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3",
 		},
 		swat_2 = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2",
 		heavy_1 = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
@@ -30,9 +30,9 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
 	},
 	Elite = {
-        swat_1 = {
-				"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
-				"units/payday2/characters/ene_city_swat_3/ene_city_swat_3"
+		swat_1 = {
+			"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
+			"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
 		},
 		swat_2 = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
 	},
