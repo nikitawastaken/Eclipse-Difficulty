@@ -11,6 +11,8 @@ function PlayerStandard:init(unit)
 
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false
+	local pm = managers.player
+	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1)
 end
 
 function PlayerStandard:_get_swap_speed_multiplier()

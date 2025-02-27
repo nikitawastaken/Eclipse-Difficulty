@@ -374,6 +374,18 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 	return dmg_reduction
 end
 
+-- An upgrade that increases the amount of carried throwables
+function PlayerManager:get_max_grenades(grenade_id)
+	grenade_id = grenade_id or managers.blackmarket:equipped_grenade()
+	local max_amount = tweak_data:get_raw_value("blackmarket", "projectiles", grenade_id, "max_amount") or 0
+
+	max_amount = max_amount * self:upgrade_value("player", "extra_throwables_multiplier", 1)
+
+	max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+
+	return math.ceil(max_amount)
+end
+
 -- Carry stacker start
 function PlayerManager:drop_carry(zipline_unit)
 	local carry_list = self:get_my_carry_data()

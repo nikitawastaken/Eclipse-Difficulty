@@ -152,26 +152,30 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.juggernaut[1].upgrades = { "player_shield_knock" }
 	self.skills.juggernaut[2].upgrades = { "body_armor6" }
 
+	-- Scavenger
+	self.skills.scavenging[1].upgrades = { "player_pick_up_ammo_multiplier" }
+	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1" }
+
 	-- Fully Loaded
-	self.skills.ammo_reservoir[1].upgrades = { "player_add_armor_stat_skill_ammo_mul" }
+	self.skills.ammo_reservoir[1].upgrades = { "player_extra_throwables_multiplier" }
 	self.skills.ammo_reservoir[2].upgrades = { "extra_ammo_multiplier1" }
 	self.skills.ammo_reservoir.name_id = "menu_bandoliers_beta"
 	self.skills.ammo_reservoir.desc_id = "menu_bandoliers_beta_desc"
 	self.skills.ammo_reservoir.icon_xy = { 3, 0 }
 
-	-- wip ammo skill
-	self.skills.portable_saw[1].upgrades = {}
-	self.skills.portable_saw[2].upgrades = {}
-	self.skills.portable_saw.name_id = "menu_new_ammo_skill"
-	self.skills.portable_saw.desc_id = "menu_new_ammo_skill_desc"
-	self.skills.portable_saw.icon_xy = { 0, 0 }
-
 	-- Mag Plus
-	self.skills.carbon_blade[1].upgrades = { "player_automatic_mag_increase_1" }
-	self.skills.carbon_blade[2].upgrades = { "player_automatic_mag_increase_2" }
-	self.skills.carbon_blade.icon_xy = { 2, 0 }
-	self.skills.carbon_blade.name_id = "menu_mag_plus_beta"
-	self.skills.carbon_blade.desc_id = "menu_mag_plus_beta_desc"
+	self.skills.portable_saw[1].upgrades = { "weapon_consume_no_ammo_chance" }
+	self.skills.portable_saw[2].upgrades = { "weapon_clip_ammo_increase_1" }
+	self.skills.portable_saw.name_id = "menu_mag_plus_beta"
+	self.skills.portable_saw.desc_id = "menu_mag_plus_beta_desc"
+	self.skills.portable_saw.icon_xy = { 2, 0 }
+
+	-- Big Game Hunters
+	self.skills.carbon_blade[1].upgrades = { "player_double_drop_1" }
+	self.skills.carbon_blade[2].upgrades = { "player_pick_up_ammo_multiplier_2" }
+	self.skills.carbon_blade.name_id = "menu_big_game_hunters_beta"
+	self.skills.carbon_blade.desc_id = "menu_big_game_hunters_beta_desc"
+	self.skills.carbon_blade.icon_xy = { 10, 2 }
 
 	-- Bulletstorm
 	self.skills.bandoliers[1].upgrades = { "temporary_no_ammo_cost_1" }
@@ -529,7 +533,6 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Gambler
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
-	table.insert(self.specializations[10][3].upgrades, "player_pick_up_ammo_multiplier")
 	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
 
 	-- yakuza

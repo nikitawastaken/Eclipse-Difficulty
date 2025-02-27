@@ -448,25 +448,48 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.prison_wife.multipro = "20%"
 
 	-- Scavenger
-	self.values.player.increased_pickup_area[1] = 1.3
-	self.skill_descs.scavenging.multibasic = "30%"
+	self.values.player.pick_up_ammo_multiplier[1] = 1.05
+	self.values.player.increased_pickup_area[1] = 1.2
+	self.skill_descs.scavenging.multibasic = "5%"
+	self.skill_descs.scavenging.multipro = "20%"
+
+	-- Fully Loaded
+	self.definitions.player_extra_throwables_multiplier = {
+		name_id = "menu_player_extra_throwables_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "extra_throwables_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.extra_throwables_multiplier = { 1.33 }
+	self.skill_descs.ammo_reservoir.multibasic = "33%"
+	self.skill_descs.ammo_reservoir.multipro = "25%"
+
+	-- Mag Plus
+	self.definitions.weapon_consume_no_ammo_chance = {
+		name_id = "menu_weapon_consume_no_ammo_chance",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "consume_no_ammo_chance",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.consume_no_ammo_chance = { 0.05 }
+	self.values.weapon.clip_ammo_increase[1] = 1.2
+	self.skill_descs.portable_saw.multibasic = "5%"
+	self.skill_descs.portable_saw.multipro = "20%"
+
+	-- Big Game Hunters
+	self.values.player.pick_up_ammo_multiplier[2] = 1.3
+	self.skill_descs.carbon_blade.multibasic = "6th"
+	self.skill_descs.carbon_blade.multipro = "25%"
 
 	-- Bulletstorm
 	self.skill_descs.bandoliers.multibasic = "12"
 	self.skill_descs.bandoliers.multipro2 = "30"
-
-	-- Fully Loaded
-	self.values.player.body_armor.skill_ammo_mul = {
-		1.04,
-		1.05,
-		1.06,
-		1.07,
-		1.08,
-		1.1,
-		1.12,
-	}
-	self.skill_descs.ammo_reservoir.multibasic = "12%"
-	self.skill_descs.ammo_reservoir.multipro = "25%"
 
 	-- Technician --
 
@@ -641,20 +664,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.lmg.reload_speed_multiplier = { 1.2 }
 	self.values.smg.reload_speed_multiplier = { 1.2 }
 	self.skill_descs.shock_and_awe.multibasic = "20%"
-
-	-- Mag Plus
-	self.definitions.player_automatic_mag_increase_2 = {
-		name_id = "menu_automatic_mag_increase",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "automatic_mag_increase",
-			category = "player",
-		},
-	}
-	self.values.player.automatic_mag_increase = { 5, 15 }
-	self.skill_descs.carbon_blade.multibasic = "5"
-	self.skill_descs.carbon_blade.multipro = "10"
 
 	-- Heavy Gun Expert
 	self.values.player.no_movement_penalty = { true }
@@ -1114,24 +1123,22 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[9][1].multiperk4 = "4"
 
 	-- Gambler
-	self.values.player.pick_up_ammo_multiplier[1] = 1.15
 	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do
 		v[2] = 10
 	end
 	self.values.temporary.loose_ammo_give_team[1][2] = 5
-	self.values.player.increased_pickup_area[2] = 2.25
-	self.definitions.player_increased_pickup_area_2 = {
-		name_id = "menu_player_increased_pickup_area",
+	self.values.player.increased_pickup_area_gambler = { 2 }
+	self.definitions.player_increased_pickup_area_gambler = {
+		name_id = "menu_player_increased_pickup_area_gambler",
 		category = "feature",
 		upgrade = {
-			value = 2,
-			upgrade = "increased_pickup_area",
+			value = 1,
+			upgrade = "increased_pickup_area_gambler",
 			category = "player",
 		},
 	}
 	self.specialization_descs[10][1].multiperk3 = "10"
-	self.specialization_descs[10][3].multiperk = "15%"
-	self.specialization_descs[10][9].multiperk4 = "125%"
+	self.specialization_descs[10][9].multiperk4 = "100%"
 
 	-- Grinder
 	self.damage_to_hot_data.tick_time = 0.5

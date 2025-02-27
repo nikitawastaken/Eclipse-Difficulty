@@ -243,6 +243,7 @@
 					<post :hook_id="newflamethrowerbase"/>
 					<post :hook_id="newnpcraycastweaponbase"/>
 					<post :hook_id="npcraycastweaponbase"/>
+					<post :hook_id="weaponammo"/>
 				</group>
 			</group>
 		</group>

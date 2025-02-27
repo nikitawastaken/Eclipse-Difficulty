@@ -216,6 +216,115 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	return result
 end
 
+-- no ammo consumption chance
+function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, target_unit)
+	if managers.player:has_activate_temporary_upgrade("temporary", "no_ammo_cost_buff") then
+		managers.player:deactivate_temporary_upgrade("temporary", "no_ammo_cost_buff")
+
+		if managers.player:has_category_upgrade("temporary", "no_ammo_cost") then
+			managers.player:activate_temporary_upgrade("temporary", "no_ammo_cost")
+		end
+	end
+
+	if self._autoaim and self._active_modify_mutator then
+		self._active_modify_mutator:check_modify_weapon(self)
+	end
+
+	if self._bullets_fired then
+		if self._bullets_fired == 1 and self:weapon_tweak_data().sounds.fire_single then
+			self:play_tweak_data_sound("stop_fire")
+			self:play_tweak_data_sound("fire_auto", "fire")
+		end
+
+		self._bullets_fired = self._bullets_fired + 1
+	end
+
+	local is_player = self._setup.user_unit == managers.player:player_unit()
+	local consume_ammo = not managers.player:has_active_temporary_property("bullet_storm") and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost")) or not is_player
+	local ammo_usage = self:ammo_usage()
+
+	if consume_ammo and (is_player or Network:is_server()) then
+		local base = self:ammo_base()
+
+		if base:get_ammo_remaining_in_clip() == 0 then
+			return
+		end
+
+		if is_player then
+			if managers.player:has_category_upgrade("weapon", "consume_no_ammo_chance") then
+				local roll = math.rand(1)
+				local chance = managers.player:upgrade_value("weapon", "consume_no_ammo_chance", 0)
+
+				if roll < chance then
+					ammo_usage = 0
+
+					print("NO AMMO COST")
+				end
+			end
+		end
+
+		local mutator = nil
+
+		if managers.mutators:is_mutator_active(MutatorPiggyRevenge) then
+			mutator = managers.mutators:get_mutator(MutatorPiggyRevenge)
+		end
+
+		if mutator and mutator.get_free_ammo_chance and mutator:get_free_ammo_chance() then
+			ammo_usage = 0
+		end
+
+		local ammo_in_clip = base:get_ammo_remaining_in_clip()
+		local remaining_ammo = ammo_in_clip - ammo_usage
+
+		if remaining_ammo < 0 then
+			ammo_usage = ammo_usage + remaining_ammo
+			remaining_ammo = 0
+		end
+
+		if ammo_in_clip > 0 and remaining_ammo <= (self.AKIMBO and 1 or 0) then
+			local w_td = self:weapon_tweak_data()
+
+			if w_td.animations and w_td.animations.magazine_empty then
+				self:tweak_data_anim_play("magazine_empty")
+			end
+
+			if w_td.sounds and w_td.sounds.magazine_empty then
+				self:play_tweak_data_sound("magazine_empty")
+			end
+
+			if w_td.effects and w_td.effects.magazine_empty then
+				self:_spawn_tweak_data_effect("magazine_empty")
+			end
+
+			self:set_magazine_empty(true)
+		end
+
+		base:set_ammo_remaining_in_clip(ammo_in_clip - ammo_usage)
+		self:use_ammo(base, ammo_usage)
+	end
+
+	local user_unit = self._setup.user_unit
+
+	self:_check_ammo_total(user_unit)
+
+	if alive(self._obj_fire) then
+		self:_spawn_muzzle_effect(from_pos, direction)
+	end
+
+	self:_spawn_shell_eject_effect()
+
+	local ray_res = self:_fire_raycast(user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, target_unit, ammo_usage)
+
+	if self._alert_events and ray_res.rays then
+		self:_check_alert(ray_res.rays, from_pos, direction, user_unit)
+	end
+
+	self:_build_suppression(ray_res.enemies_in_cone, suppr_mul)
+	managers.player:send_message(Message.OnWeaponFired, nil, self._unit, ray_res)
+
+	return ray_res
+end
+
 -- no elite shield pen
 function RaycastWeaponBase.collect_hits(from, to, setup_data)
 	setup_data = setup_data or {}

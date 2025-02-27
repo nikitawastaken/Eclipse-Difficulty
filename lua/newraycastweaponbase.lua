@@ -530,3 +530,46 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 
 	return Hooks:GetReturn() * multiplier
 end)
+
+-- percentage clip ammo increase upgrade
+function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
+	local added = 0
+	local weapon_tweak_data = self:weapon_tweak_data()
+
+	if self:is_category("shotgun") and tweak_data.weapon[self._name_id].has_magazine then
+		added = managers.player:upgrade_value("shotgun", "magazine_capacity_inc", 0)
+
+		if self:is_category("akimbo") then
+			added = added * 2
+		end
+	elseif self:is_category("pistol") and not self:is_category("revolver") and managers.player:has_category_upgrade("pistol", "magazine_capacity_inc") then
+		added = managers.player:upgrade_value("pistol", "magazine_capacity_inc", 0)
+
+		if self:is_category("akimbo") then
+			added = added * 2
+		end
+	elseif self:is_category("smg", "assault_rifle", "lmg") then
+		added = managers.player:upgrade_value("player", "automatic_mag_increase", 0)
+
+		if self:is_category("akimbo") then
+			added = added * 2
+		end
+	end
+
+	local ammo = tweak_data.weapon[self._name_id].CLIP_AMMO_MAX + added
+	ammo = ammo + managers.player:upgrade_value(self._name_id, "clip_ammo_increase")
+
+	if not self:upgrade_blocked("weapon", "clip_ammo_increase") then
+		ammo = math.ceil(ammo * managers.player:upgrade_value("weapon", "clip_ammo_increase", 1))
+	end
+
+	for _, category in ipairs(tweak_data.weapon[self._name_id].categories) do
+		if not self:upgrade_blocked(category, "clip_ammo_increase") then
+			ammo = ammo + managers.player:upgrade_value(category, "clip_ammo_increase", 0)
+		end
+	end
+
+	ammo = ammo + (self._extra_ammo or 0)
+
+	return ammo
+end
