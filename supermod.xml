@@ -305,6 +305,16 @@
 				<file :name="wpn_npc_sawnoff_shotgun.model"/>
 			</group>
 
+            <!-- NPC Beretta 92 flashlight fix -->
+            <group :name="wpn_npc_beretta92/">
+				<file :name="wpn_npc_beretta92.object" />
+			</group>
+
+            <!-- NPC Bronco flashlight fix -->
+            <group :name="wpn_npc_raging_bull/">
+				<file :name="wpn_npc_raging_bull.object" />
+			</group>
+
 			<!-- bulldozer reinfeld -->
 			<group :name="wpn_npc_r870_bulldozer/">
 				<file :name="wpn_npc_r870_bulldozer.cooked_physics" />
