@@ -289,17 +289,19 @@ function WeaponDescription.get_weapon_ammo_info(weapon_id, extra_ammo, total_amm
 	ammo_max_per_clip = math.min(ammo_max_per_clip, ammo_max)
 	local ammo_data = {
 		base = tweak_data.weapon[weapon_id].AMMO_MAX,
-		mod = ammo_from_mods + managers.player:upgrade_value(weapon_id, "clip_amount_increase") * ammo_max_per_clip
+		mod = ammo_from_mods + managers.player:upgrade_value(weapon_id, "clip_amount_increase") * ammo_max_per_clip,
 	}
 	ammo_data.skill = (ammo_data.base + ammo_data.mod) * ammo_max_multiplier - ammo_data.base - ammo_data.mod
-	ammo_data.skill_in_effect = managers.player:has_category_upgrade("player", "extra_ammo_multiplier") or category_skill_in_effect or managers.player:has_category_upgrade("player", "add_armor_stat_skill_ammo_mul")
+	ammo_data.skill_in_effect = managers.player:has_category_upgrade("player", "extra_ammo_multiplier")
+		or category_skill_in_effect
+		or managers.player:has_category_upgrade("player", "add_armor_stat_skill_ammo_mul")
 
 	return ammo_max_per_clip, ammo_max, ammo_data
 end
 
 local function is_weapon_category(weapon_tweak, ...)
 	local arg = {
-		...
+		...,
 	}
 	local categories = weapon_tweak.categories
 
@@ -318,7 +320,7 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 
 	for _, stat in pairs(WeaponDescription._stats_shown) do
 		skill_stats[stat.name] = {
-			value = 0
+			value = 0,
 		}
 	end
 
@@ -326,7 +328,7 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 
 	if category then
 		local custom_data = {
-			[category] = managers.blackmarket:get_crafted_category_slot(category, slot)
+			[category] = managers.blackmarket:get_crafted_category_slot(category, slot),
 		}
 		detection_risk = managers.blackmarket:get_suspicion_offset_from_custom_data(custom_data, tweak_data.player.SUSPICION_OFFSET_LERP or 0.75)
 		detection_risk = detection_risk * 100
@@ -376,7 +378,9 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 					skill_stats[stat.name].value = skill_stats[stat.name].value + managers.player:upgrade_value(primary_category, "clip_ammo_increase", 0)
 				end
 
-				skill_stats[stat.name].skill_in_effect = managers.player:has_category_upgrade(name, "clip_ammo_increase") or managers.player:has_category_upgrade("weapon", "clip_ammo_increase") or add_modifier
+				skill_stats[stat.name].skill_in_effect = managers.player:has_category_upgrade(name, "clip_ammo_increase")
+					or managers.player:has_category_upgrade("weapon", "clip_ammo_increase")
+					or add_modifier
 			elseif stat.name == "totalammo" then
 				-- Nothing
 			elseif stat.name == "reload" then
@@ -407,11 +411,13 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 
 				if stat.name == "damage" then
 					multiplier = managers.blackmarket:damage_multiplier(name, weapon_tweak.categories, silencer, detection_risk, nil, blueprint)
-					modifier = math.floor(managers.blackmarket:damage_addend(name, weapon_tweak.categories, silencer, detection_risk, nil, blueprint) * tweak_data.gui.stats_present_multiplier * multiplier)
+					modifier =
+						math.floor(managers.blackmarket:damage_addend(name, weapon_tweak.categories, silencer, detection_risk, nil, blueprint) * tweak_data.gui.stats_present_multiplier * multiplier)
 				elseif stat.name == "spread" then
 					local fire_mode = single_mod and "single" or auto_mod and "auto" or weapon_tweak.FIRE_MODE or "single"
 					multiplier = managers.blackmarket:accuracy_multiplier(name, weapon_tweak.categories, silencer, nil, nil, fire_mode, blueprint, nil, is_single_shot)
-					modifier = managers.blackmarket:accuracy_addend(name, weapon_tweak.categories, base_index, silencer, nil, fire_mode, blueprint, nil, is_single_shot) * tweak_data.gui.stats_present_multiplier
+					modifier = managers.blackmarket:accuracy_addend(name, weapon_tweak.categories, base_index, silencer, nil, fire_mode, blueprint, nil, is_single_shot)
+						* tweak_data.gui.stats_present_multiplier
 				elseif stat.name == "recoil" then
 					multiplier = managers.blackmarket:recoil_multiplier(name, weapon_tweak.categories, silencer, blueprint)
 					modifier = managers.blackmarket:recoil_addend(name, weapon_tweak.categories, base_index, silencer, blueprint, nil, is_single_shot) * tweak_data.gui.stats_present_multiplier
@@ -447,7 +453,8 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 					end
 
 					if stat.percent then
-						local max_stat = stat.index and #tweak_stats[stat.name] or math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier
+						local max_stat = stat.index and #tweak_stats[stat.name]
+							or math.max(tweak_stats[stat.name][1], tweak_stats[stat.name][#tweak_stats[stat.name]]) * tweak_data.gui.stats_present_multiplier
 
 						if stat.offset then
 							max_stat = max_stat - offset
