@@ -4,7 +4,7 @@ function MedicDamage:heal_unit(...)
 		body_part = 2,
 		type = "idle",
 	})
-	
+
 	if self._unit:movement():chk_action_forbidden("action") then
 		return false
 	end
@@ -45,6 +45,6 @@ function MedicDamage:is_available_for_healing(requesting_unit, ...)
 	if self._unit:movement():chk_action_forbidden("act") then
 		return false
 	end
-	
+
 	return is_available_for_healing_original(self, requesting_unit, ...)
 end
