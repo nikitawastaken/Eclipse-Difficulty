@@ -34,10 +34,7 @@ tweak_data.experience_manager.alive_humans_multiplier = {
 }
 
 -- the Medic's heal cooldown scales
-tweak_data.medic = {
-	radius = 500,
-	cooldown = diff_lerp(5, 3),
-}
+tweak_data.medic.cooldown = diff_lerp(5, 3)
 
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 3
 tweak_data.projectiles.cs_grenade_quick.damage_tick_period = 0.25
