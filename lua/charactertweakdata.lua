@@ -883,7 +883,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
 	self.fbi.dodge = self.presets.dodge.average
-    self.fbi.no_arrest = false
+	self.fbi.no_arrest = false
 
 	self.fbi_female = deep_clone(self.cop_female)
 	self.fbi_female.dodge = self.presets.dodge.average
@@ -911,13 +911,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.swat.HEALTH_INIT = 20
 	self.swat.headshot_dmg_mul = 2 -- 100 head health
 	self.swat.speech_prefix_p2 = "n"
-    self.swat.no_arrest = false
+	self.swat.no_arrest = false
 	self.swat.surrender = self.presets.surrender.average
 	self.swat.suppression = self.presets.suppression.average
 
 	self.heavy_swat.HEALTH_INIT = 30
 	self.heavy_swat.headshot_dmg_mul = 1.875 -- 160 head health
-    self.heavy_swat.no_arrest = false
+	self.heavy_swat.no_arrest = false
 	self.heavy_swat.surrender = self.presets.surrender.average
 	self.heavy_swat.suppression = self.presets.suppression.average
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
@@ -925,13 +925,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_swat.HEALTH_INIT = 24
 	self.fbi_swat.headshot_dmg_mul = 2 -- 120 head health
 	self.fbi_swat.speech_prefix_p2 = "n"
-    self.fbi_swat.no_arrest = false
+	self.fbi_swat.no_arrest = false
 	self.fbi_swat.surrender = self.presets.surrender.average
 	self.fbi_swat.suppression = self.presets.suppression.average
 
 	self.fbi_heavy_swat.HEALTH_INIT = 36
 	self.fbi_heavy_swat.headshot_dmg_mul = 1.5 -- 240 head health
-    self.fbi_heavy_swat.no_arrest = false
+	self.fbi_heavy_swat.no_arrest = false
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
 	self.fbi_heavy_swat.suppression = self.presets.suppression.hard
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
@@ -962,7 +962,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.murky.headshot_dmg_mul = 3 -- 80 head health
 	self.murky.silent_priority_shout = "f37"
 	self.murky.chatter = self.presets.enemy_chatter.murkywater
-    self.murky.no_arrest = true -- harder stealth
+	self.murky.no_arrest = true -- harder stealth
 	self.murky.has_alarm_pager = true
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
