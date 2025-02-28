@@ -1,9 +1,9 @@
 ---@module Unit Sequences
 local sequences = {
-	security_seq_nf = { name = { "security_head_base_var1", "security_head_base_var2" }, disabled = { "face" }, },
-	security_seq_nh = { name = { "security_head_base_var1", "security_head_base_var2" }, disabled = { "head" }, },
-	swat_seq_naf = { name = { "swat_head_base_var1", "swat_head_base_var2" }, disabled = { "arms", "face" }, },
-	swat_seq_nah = { name = { "swat_head_base_var1", "swat_head_base_var2" }, disabled = { "arms", "head" }, },
+	security_seq_nf = { name = { "security_head_base_var1", "security_head_base_var2" }, disabled = { "face" } },
+	security_seq_nh = { name = { "security_head_base_var1", "security_head_base_var2" }, disabled = { "head" } },
+	swat_seq_naf = { name = { "swat_head_base_var1", "swat_head_base_var2" }, disabled = { "arms", "face" } },
+	swat_seq_nah = { name = { "swat_head_base_var1", "swat_head_base_var2" }, disabled = { "arms", "head" } },
 }
 
 local M = {

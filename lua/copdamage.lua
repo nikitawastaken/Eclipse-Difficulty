@@ -76,7 +76,7 @@ Hooks:OverrideFunction(CopDamage, "_spawn_head_gadget", function(self, params)
 			effect = Idstring(self._head_gear_play_effect),
 			position = params.position,
 			normal = params.dir or nil,
-			rotation = not params.dir and params.rotation or nil
+			rotation = not params.dir and params.rotation or nil,
 		}
 
 		World:effect_manager():spawn(effect_table)
@@ -87,7 +87,7 @@ Hooks:OverrideFunction(CopDamage, "_spawn_head_gadget", function(self, params)
 	if self._unit:damage() and self._unit:damage():has_sequence(visor_sequence) then
 		self._unit:damage():run_sequence_simple(visor_sequence)
 	end
-				
+
 	if self._head_gear_play_sound then
 		unit:sound():play(self._head_gear_play_sound)
 	end

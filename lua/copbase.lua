@@ -85,19 +85,19 @@ function CopBase:_run_unit_sequences()
 		-- If the head's sequence manager supports the parent unit, run its initial sequence
 		if alive(self._head_unit) then
 			self._head_unit:set_enabled(self._unit:enabled())
-			
+
 			if head_sequence then
 				if type(head_sequence_name) == "table" then
 					head_sequence_name = table.random(head_sequence_name)
 				end
-				
+
 				if self._head_unit:damage() and self._head_unit:damage():has_sequence(head_sequence_name) then
 					self._head_unit:damage():run_sequence_simple(head_sequence_name)
-					
+
 					local disable_sequence
 					for _, part in pairs(head_sequence_disabled) do
 						disable_sequence = "disable_" .. part
-						
+
 						if self._head_unit:damage() and self._head_unit:damage():has_sequence(disable_sequence) then
 							self._head_unit:damage():run_sequence_simple(disable_sequence)
 						end
