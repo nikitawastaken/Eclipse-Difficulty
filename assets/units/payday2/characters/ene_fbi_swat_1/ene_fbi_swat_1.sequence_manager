@@ -3,17 +3,9 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<var_has_goggles		value="false" />
+			<var_has_goggles	value="false" />
 			<var_has_visor		value="false" />
 		</variables>
-
-		<filter name="'check_no_goggles'">
-			<check value="vars.var_has_goggles == false" />
-		</filter>
-
-		<filter name="'check_goggles'">
-			<check value="vars.var_has_goggles == true" />
-		</filter>
 
 		<filter name="'check_no_visor'">
 			<check value="vars.var_has_visor == false" />
@@ -23,64 +15,8 @@
 			<check value="vars.var_has_visor == true" />
 		</filter>
 		
-		<body name="'glass_goggles'">
-			<endurance bullet="1" explosion="2">
-				<run_sequence name="'crack_goggles'"/>
-			</endurance>
-		</body>
-
-		<body name="'glass_goggles_b'">
-			<endurance bullet="1" explosion="2">
-				<run_sequence name="'crack_goggles_b'"/>
-			</endurance>
-		</body>
-
-		<body name="'glass_goggles_c'">
-			<endurance bullet="1" explosion="2">
-				<run_sequence name="'crack_goggles_c'"/>
-			</endurance>
-		</body>
-
-		<body name="'glass_visor'">
-			<endurance bullet="2" explosion="4">
-				<run_sequence name="'crack_visor'"/>
-			</endurance>
-			<endurance explosion="6">
-				<run_sequence name="'break_visor'"/>
-			</endurance>
-		</body>
-		
-		<sequence editable_state="true" name="'crack_goggles'" once="true" triggable="true">
-			<object 			filter="'check_goggles'" enabled="false" name="'g_glass'" />
-			<object 			filter="'check_goggles'" enabled="true" name="'g_glass_crk'" />
-
-			<body 				filter="'check_goggles'" enabled="false" name="'glass_goggles'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'crack_goggles_b'" once="true" triggable="true">
-			<object 			filter="'check_goggles'" enabled="false" name="'g_helmet_lod5'" />
-			<object 			filter="'check_goggles'" enabled="true" name="'g_helmet_lod6'" />
-
-			<body 				filter="'check_goggles'" enabled="false" name="'glass_goggles_b'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'crack_goggles_c'" once="true" triggable="true">
-			<object 			filter="'check_goggles'" enabled="false" name="'g_helmet_lod11'" />
-			<object 			filter="'check_goggles'" enabled="true" name="'g_helmet_lod12'" />
-
-			<body 				filter="'check_goggles'" enabled="false" name="'glass_goggles_c'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'crack_visor'" once="true" triggable="true">
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod15'" />
-			<object 			filter="'check_visor'" enabled="true" name="'g_helmet_lod16'" />
-
-			<body 				filter="'check_visor'" enabled="false" name="'glass_visor'" />
-		</sequence>
-
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod15'" />
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod16'" />
+			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod13'" />
 
 			<effect 			filter="'check_visor'" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
@@ -102,9 +38,6 @@
 			<object 			enabled="true" name="'g_helmet_lod3'"/>
 			<object 			enabled="true" name="'g_helmet_lod4'"/>
 			<object 			enabled="true" name="'g_helmet_lod5'"/>
-
-			<body 				enabled="true" name="'glass_goggles_b'"/>
-			<decal_mesh 		enabled="true" name="'dm_glass2'"/>
 			
 			<run_sequence 		name="'random_body'"/>
 		</sequence>
@@ -119,17 +52,12 @@
 			<object 			enabled="true" name="'g_goggles_lod1'"/>
 
 			<object 			enabled="true" name="'g_glass'"/>
-			
-			<object 			enabled="true" name="'g_head'" />
-			<object 			enabled="true" name="'g_head_lod1'" />
 
+			<object 			enabled="true" name="'g_helmet_lod6'"/>
 			<object 			enabled="true" name="'g_helmet_lod7'"/>
-			<object 			enabled="true" name="'g_helmet_lod8'"/>
 
-			<body 				enabled="true" name="'glass_goggles'"/>
-			<decal_mesh 		enabled="true" name="'dm_glass'"/>
-
-			<run_sequence 		name="'body_'..pick('a','a','b')"/>
+			<run_sequence 		name="'random_body'"/>
+			<run_sequence 		name="'random_balaclava'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_swat_3'" once="true" triggable="true">
@@ -138,20 +66,12 @@
 			<object 			enabled="true" name="'g_gear_c'" />
 			<object 			enabled="true" name="'g_gear_c_lod1'" />
 
-			<object 			enabled="false" name="'g_head'" />
-			<object 			enabled="false" name="'g_head_lod1'" />
-
-			<object 			enabled="true" name="'g_head_b'" />
-			<object 			enabled="true" name="'g_head_b_lod1'" />
-
+			<object 			enabled="true" name="'g_helmet_lod8'"/>
 			<object 			enabled="true" name="'g_helmet_lod9'"/>
 			<object 			enabled="true" name="'g_helmet_lod10'"/>
-			<object 			enabled="true" name="'g_helmet_lod11'"/>
-			
-			<body 				enabled="true" name="'glass_goggles_c'"/>
-			<decal_mesh 		enabled="true" name="'dm_glass3'"/>	
 
-			<run_sequence 		name="'body_'..pick('a','a','b')"/>
+			<run_sequence 		name="'random_body'"/>
+			<run_sequence 		name="'random_balaclava'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_2'" once="true" triggable="true">
@@ -164,7 +84,7 @@
 			<object 			enabled="true" name="'g_goggles_lod1'"/>
 
 			<object 			enabled="true" name="'g_glass'"/>
-			
+
 			<object 			enabled="false" name="'g_head'" />
 			<object 			enabled="false" name="'g_head_lod1'" />
 
@@ -173,14 +93,13 @@
 
 			<object 			enabled="false" name="'g_helmet_lod1'" />
 			<object 			enabled="false" name="'g_helmet_lod2'" />
+			
 			<object 			enabled="true" name="'g_hat_lod1'" />
 			<object 			enabled="true" name="'g_hat_lod2'" />
+			
 			<decal_mesh 		enabled="false" name="'dm_helmet'"/>
 
-			<body 				enabled="true" name="'glass_goggles'"/>
-			<decal_mesh 		enabled="true" name="'dm_glass'"/>
-
-			<run_sequence 		name="'body_'..pick('a','a','b')"/>
+			<run_sequence 		name="'random_body'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_1'" once="true" triggable="true">
@@ -189,25 +108,20 @@
 			<object 			enabled="true" name="'g_gear_e'" />
 			<object 			enabled="true" name="'g_gear_e_lod1'" />
 
-			<object 			enabled="false" name="'g_head'" />
-			<object 			enabled="false" name="'g_head_lod1'" />
-
-			<object 			enabled="true" name="'g_head_b'" />
-			<object 			enabled="true" name="'g_head_b_lod1'" />
-
 			<object 			enabled="true" name="'g_headset'" />
 			<object 			enabled="true" name="'g_headset_lod1'" />
 
+			<object 			enabled="true" name="'g_helmet_lod11'" />
+			<object 			enabled="true" name="'g_helmet_lod12'" />
 			<object 			enabled="true" name="'g_helmet_lod13'" />
-			<object 			enabled="true" name="'g_helmet_lod14'" />
-			<object 			enabled="true" name="'g_helmet_lod15'" />
 
 			<body 				enabled="true" name="'glass_visor'"/>
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
 
-			<run_sequence 		name="'body_'..pick('a','a','b')"/>
+			<run_sequence 		name="'random_body'"/>
+			<run_sequence 		name="'random_balaclava'"/>
 		</sequence>
-
+	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body'" triggable="true">
 			<run_sequence 		name="'body_'..pick('a','a','b')"/>
 		</sequence>
@@ -220,6 +134,36 @@
 
 			<object 			enabled="true" name="'g_body_b'" />
 			<object 			enabled="true" name="'g_body_b_lod1'" />
+		</sequence>
+	<!--BALACLAVA SEQUENCES-->
+		<sequence editable_state="true" name="'random_balaclava'" triggable="true">
+			<run_sequence 		name="'balaclava_'..pick('a','a','a','a','b','c','d')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'balaclava_a'" once="true" triggable="true"/>
+		
+		<sequence editable_state="true" name="'balaclava_b'" once="true" triggable="true">		
+			<object 			enabled="false" name="'g_head'" />
+			<object 			enabled="false" name="'g_head_lod1'" />
+			
+			<object 			enabled="true" name="'g_head_b'" />
+			<object 			enabled="true" name="'g_head_b_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_c'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_head'" />
+			<object 			enabled="false" name="'g_head_lod1'" />
+			
+			<object 			enabled="true" name="'g_head_c'" />
+			<object 			enabled="true" name="'g_head_c_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_d'" once="true" triggable="true">	
+			<object 			enabled="false" name="'g_head'" />
+			<object 			enabled="false" name="'g_head_lod1'" />
+			
+			<object 			enabled="true" name="'g_head_d'" />
+			<object 			enabled="true" name="'g_head_d_lod1'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

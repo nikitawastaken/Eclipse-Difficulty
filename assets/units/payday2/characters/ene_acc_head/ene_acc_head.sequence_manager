@@ -1,6 +1,26 @@
 <?xml version="1.0"?>
 <table>
 	<unit>	
+		<sequence editable_state="true" name="'security_head_base_var1'" once="true" triggable="true"> 
+			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1'" />
+			<run_sequence		name="'body_'..pick('a','c','d','f','g','h','j','m','n','p')..'_var1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'security_head_base_var2'" once="true" triggable="true"> 
+			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2'" />
+			<run_sequence		name="'body_'..pick('a','c','d','f','g','h','j','m','n','p')..'_var2'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'swat_head_base_var1'" once="true" triggable="true"> 
+			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1'" />
+			<run_sequence		name="'body_'..pick('a','f','g','h','i','j','m','o')..'_var1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'swat_head_base_var2'" once="true" triggable="true"> 
+			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2'" />
+			<run_sequence		name="'body_'..pick('a','f','g','h','i','j','m','o')..'_var2'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'disable_arms'" once="true" triggable="true">	
 			<object 		enabled="false" name="'g_arms_a'"/>
 			<object 		enabled="false" name="'g_arms_a_lod1'"/>
@@ -51,6 +71,30 @@
 			
 			<object 		enabled="false" name="'g_face_h'"/>
 			<object 		enabled="false" name="'g_face_h_lod1'"/>
+
+			<object 		enabled="false" name="'g_face_i'"/>
+			<object 		enabled="false" name="'g_face_i_lod1'"/>
+
+			<object 		enabled="false" name="'g_face_j'"/>
+			<object 		enabled="false" name="'g_face_j_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_k'"/>
+			<object 		enabled="false" name="'g_face_k_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_l'"/>
+			<object 		enabled="false" name="'g_face_l_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_m'"/>
+			<object 		enabled="false" name="'g_face_m_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_n'"/>
+			<object 		enabled="false" name="'g_face_n_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_o'"/>
+			<object 		enabled="false" name="'g_face_o_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_p'"/>
+			<object 		enabled="false" name="'g_face_p_lod1'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'disable_head'" once="true" triggable="true">	
@@ -77,11 +121,35 @@
 			
 			<object 		enabled="false" name="'g_head_h'"/>
 			<object 		enabled="false" name="'g_head_h_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_i'"/>
+			<object 		enabled="false" name="'g_head_i_lod1'"/>
+
+			<object 		enabled="false" name="'g_head_j'"/>
+			<object 		enabled="false" name="'g_head_j_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_k'"/>
+			<object 		enabled="false" name="'g_head_k_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_l'"/>
+			<object 		enabled="false" name="'g_head_l_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_m'"/>
+			<object 		enabled="false" name="'g_head_m_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_n'"/>
+			<object 		enabled="false" name="'g_head_n_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_o'"/>
+			<object 		enabled="false" name="'g_head_o_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_p'"/>
+			<object 		enabled="false" name="'g_head_p_lod1'"/>
 		</sequence>
 		
-		<sequence editable_state="true" name="'body_a'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_a'"/>
-			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+		<sequence editable_state="true" name="'body_a_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_a'"/>
 			<object 		enabled="true" name="'g_face_a_lod1'"/>
@@ -90,9 +158,9 @@
 			<object 		enabled="true" name="'g_head_a_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_b'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_b'"/>
-			<object 		enabled="true" name="'g_arms_b_lod1'"/>
+		<sequence editable_state="true" name="'body_b_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_b'"/>
 			<object 		enabled="true" name="'g_face_b_lod1'"/>
@@ -101,7 +169,7 @@
 			<object 		enabled="true" name="'g_head_b_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_c'" once="true" triggable="true">
+		<sequence editable_state="true" name="'body_c_var1'" once="true" triggable="true">
 			<object 		enabled="true" name="'g_arms_c'"/>
 			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
@@ -112,9 +180,9 @@
 			<object 		enabled="true" name="'g_head_c_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_d'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_d'"/>
-			<object 		enabled="true" name="'g_arms_d_lod1'"/>
+		<sequence editable_state="true" name="'body_d_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_d'"/>
 			<object 		enabled="true" name="'g_face_d_lod1'"/>
@@ -123,9 +191,9 @@
 			<object 		enabled="true" name="'g_head_d_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_e'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_e'"/>
-			<object 		enabled="true" name="'g_arms_e_lod1'"/>
+		<sequence editable_state="true" name="'body_e_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_b'"/>
+			<object 		enabled="true" name="'g_arms_b_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_e'"/>
 			<object 		enabled="true" name="'g_face_e_lod1'"/>
@@ -134,9 +202,9 @@
 			<object 		enabled="true" name="'g_head_e_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_f'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_f'"/>
-			<object 		enabled="true" name="'g_arms_f_lod1'"/>
+		<sequence editable_state="true" name="'body_f_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_f'"/>
 			<object 		enabled="true" name="'g_face_f_lod1'"/>
@@ -145,9 +213,9 @@
 			<object 		enabled="true" name="'g_head_f_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_g'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_g'"/>
-			<object 		enabled="true" name="'g_arms_g_lod1'"/>
+		<sequence editable_state="true" name="'body_g_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_g'"/>
 			<object 		enabled="true" name="'g_face_g_lod1'"/>
@@ -156,9 +224,9 @@
 			<object 		enabled="true" name="'g_head_g_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_h'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_h'"/>
-			<object 		enabled="true" name="'g_arms_h_lod1'"/>
+		<sequence editable_state="true" name="'body_h_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_h'"/>
 			<object 		enabled="true" name="'g_face_h_lod1'"/>
@@ -167,187 +235,268 @@
 			<object 		enabled="true" name="'g_head_h_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'security_head'" once="true" triggable="true"> 
-			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_'..pick('var1','var2')"/>
-			<run_sequence		name="'body_'..pick('b','b','b','b','h','h','h','h','a','a','e','e')" />
+		<sequence editable_state="true" name="'body_i_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_b'"/>
+			<object 		enabled="true" name="'g_arms_b_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_i'"/>
+			<object 		enabled="true" name="'g_face_i_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_i'"/>
+			<object 		enabled="true" name="'g_head_i_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'swat_head'" once="true" triggable="true"> 
-			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_'..pick('var1','var2')"/>
-			<run_sequence		name="'body_'..pick('c','c','d','d','g','g','a','a')" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'security_1'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'security_2'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
+		<sequence editable_state="true" name="'body_j_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_j'"/>
+			<object 		enabled="true" name="'g_face_j_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_j'"/>
+			<object 		enabled="true" name="'g_head_j_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'security_3'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
+		<sequence editable_state="true" name="'body_k_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_d'"/>
+			<object 		enabled="true" name="'g_arms_d_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_k'"/>
+			<object 		enabled="true" name="'g_face_k_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_k'"/>
+			<object 		enabled="true" name="'g_head_k_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'security_4'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
+		<sequence editable_state="true" name="'body_l_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_l'"/>
+			<object 		enabled="true" name="'g_face_l_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_l'"/>
+			<object 		enabled="true" name="'g_head_l_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'security_5'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'security_6'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'security_7'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
+		<sequence editable_state="true" name="'body_m_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_m'"/>
+			<object 		enabled="true" name="'g_face_m_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_m'"/>
+			<object 		enabled="true" name="'g_head_m_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'security_8'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'cop_1'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'cop_2'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
+		<sequence editable_state="true" name="'body_n_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_n'"/>
+			<object 		enabled="true" name="'g_face_n_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_n'"/>
+			<object 		enabled="true" name="'g_head_n_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'cop_3'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
+		<sequence editable_state="true" name="'body_o_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_g'"/>
+			<object 		enabled="true" name="'g_arms_g_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_g'"/>
+			<object 		enabled="true" name="'g_face_g_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_o'"/>
+			<object 		enabled="true" name="'g_head_o_lod1'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'cop_4'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
+		<sequence editable_state="true" name="'body_p_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_h'"/>
+			<object 		enabled="true" name="'g_arms_h_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_h'"/>
+			<object 		enabled="true" name="'g_face_h_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_p'"/>
+			<object 		enabled="true" name="'g_head_p_lod1'"/>
+		</sequence>
+	
+		<sequence editable_state="true" name="'body_a_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_a'"/>
+			<object 		enabled="true" name="'g_face_a_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_a'"/>
+			<object 		enabled="true" name="'g_head_a_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_b_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_b'"/>
+			<object 		enabled="true" name="'g_face_b_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_b'"/>
+			<object 		enabled="true" name="'g_head_b_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_c_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_c'"/>
+			<object 		enabled="true" name="'g_face_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_c'"/>
+			<object 		enabled="true" name="'g_head_c_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_d_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_d'"/>
+			<object 		enabled="true" name="'g_face_d_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_d'"/>
+			<object 		enabled="true" name="'g_head_d_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_e_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_d'"/>
+			<object 		enabled="true" name="'g_arms_d_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_e'"/>
+			<object 		enabled="true" name="'g_face_e_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_e'"/>
+			<object 		enabled="true" name="'g_head_e_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_f_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_f'"/>
+			<object 		enabled="true" name="'g_face_f_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_f'"/>
+			<object 		enabled="true" name="'g_head_f_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_g_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_g'"/>
+			<object 		enabled="true" name="'g_face_g_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_g'"/>
+			<object 		enabled="true" name="'g_head_g_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_h_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_h'"/>
+			<object 		enabled="true" name="'g_face_h_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_h'"/>
+			<object 		enabled="true" name="'g_head_h_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_i_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_b'"/>
+			<object 		enabled="true" name="'g_arms_b_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_i'"/>
+			<object 		enabled="true" name="'g_face_i_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_i'"/>
+			<object 		enabled="true" name="'g_head_i_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_j_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_b'"/>
+			<object 		enabled="true" name="'g_arms_b_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_j'"/>
+			<object 		enabled="true" name="'g_face_j_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_j'"/>
+			<object 		enabled="true" name="'g_head_j_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_k_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_d'"/>
+			<object 		enabled="true" name="'g_arms_d_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_k'"/>
+			<object 		enabled="true" name="'g_face_k_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_k'"/>
+			<object 		enabled="true" name="'g_head_k_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_l_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_l'"/>
+			<object 		enabled="true" name="'g_face_l_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_l'"/>
+			<object 		enabled="true" name="'g_head_l_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_m_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_m'"/>
+			<object 		enabled="true" name="'g_face_m_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_m'"/>
+			<object 		enabled="true" name="'g_head_m_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_n_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_f'"/>
+			<object 		enabled="true" name="'g_arms_f_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_n'"/>
+			<object 		enabled="true" name="'g_face_n_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_n'"/>
+			<object 		enabled="true" name="'g_head_n_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_o_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_g'"/>
+			<object 		enabled="true" name="'g_arms_g_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_g'"/>
+			<object 		enabled="true" name="'g_face_g_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_o'"/>
+			<object 		enabled="true" name="'g_head_o_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_p_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_h'"/>
+			<object 		enabled="true" name="'g_arms_h_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_h'"/>
+			<object 		enabled="true" name="'g_face_h_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_p'"/>
+			<object 		enabled="true" name="'g_head_p_lod1'"/>
 		</sequence>		
-
-		<sequence editable_state="true" name="'fbi_1'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'fbi_2'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'fbi_3'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'secret_service_1'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'secret_service_2'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'gensec_1'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'gensec_2'" once="true" triggable="true">
-			<run_sequence	name="'security_head'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'murkywater_1'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>		
-
-		<sequence editable_state="true" name="'swat_1'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'swat_2'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'swat_3'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'sniper_1'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'swat_heavy_1'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-		
-		<sequence editable_state="true" name="'swat_heavy_2'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'shield_2'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-		
-		<sequence editable_state="true" name="'fbi_swat_1'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'fbi_swat_2'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'fbi_swat_3'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'sniper_2'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_face'" />
-		</sequence>	
-
-		<sequence editable_state="true" name="'shield_1'" once="true" triggable="true">
-			<run_sequence	name="'swat_head'" />
-			<run_sequence	name="'disable_arms'" />
-			<run_sequence	name="'disable_head'" />
-		</sequence>	
 	</unit>
 </table>

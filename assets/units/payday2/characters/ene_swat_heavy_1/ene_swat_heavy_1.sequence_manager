@@ -14,33 +14,13 @@
 			<check value="vars.var_has_visor == true" />
 		</filter>
 		
-		<body name="'glass_visor'">
-			<endurance bullet="2" explosion="4">
-				<run_sequence name="'crack_visor'"/>
-			</endurance>
-			<endurance explosion="6">
-				<run_sequence name="'break_visor'"/>
-			</endurance>
-		</body>
-
-		<sequence editable_state="true" name="'crack_visor'" once="true" triggable="true">
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod5'" />
-			<object 			filter="'check_visor'" enabled="true" name="'g_helmet_lod6'" />
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod7'" />
-			<object 			filter="'check_visor'" enabled="true" name="'g_helmet_lod8'" />
-			
-			<body 				filter="'check_visor'" enabled="false" name="'glass_visor'" />
-		</sequence>
-
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
 			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod5'" />
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod6'" />
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod7'" />
 			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod8'" />
 
 			<effect 			filter="'check_visor'" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
-			<body 				filter="'check_visor'" enabled="false" name="'glass_visor'" />
+			<body 				filter="'check_visor'" enabled="false" name="'glass_visor'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'swat_heavy_1'" once="true" triggable="true">
@@ -53,8 +33,8 @@
 			<object 			enabled="true" name="'g_helmet_lod4'"/>
 			<object 			enabled="true" name="'g_helmet_lod5'"/>
 
-			<body 				enabled="true" name="'glass_visor'"/>
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
+			<body 				enabled="true" name="'glass_visor'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'swat_heavy_2'" once="true" triggable="true">
@@ -63,12 +43,12 @@
 			<object 			enabled="true" name="'g_gear_b'" />
 			<object 			enabled="true" name="'g_gear_b_lod1'" />
 
+			<object 			enabled="true" name="'g_helmet_lod6'"/>
 			<object 			enabled="true" name="'g_helmet_lod7'"/>
-			<object 			enabled="true" name="'g_helmet_lod9'"/>
-			<object 			enabled="true" name="'g_helmet_lod10'"/>
-
-			<body 				enabled="true" name="'glass_visor'"/>
+			<object 			enabled="true" name="'g_helmet_lod8'"/>
+			
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
+			<body 				enabled="true" name="'glass_visor'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_2'" once="true" triggable="true">
@@ -81,8 +61,8 @@
 			<object 			enabled="true" name="'g_helmet_lod4'"/>
 			<object 			enabled="true" name="'g_helmet_lod5'"/>
 			
-			<body 				enabled="true" name="'glass_visor'"/>
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
+			<body 				enabled="true" name="'glass_visor'"/>
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

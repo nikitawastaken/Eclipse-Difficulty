@@ -5,14 +5,6 @@
 	<animation_def name="anims/units/enemies/cop/cop_def" />
 	
 	<bodies>
-		<body collision_class="ragdoll" enabled="false" friction="0.6" name="glass_goggles" template="character">
-			<object name="Head"/>
-			<object name="c_glass" collision_type="convex"/>
-		</body>
-		<body collision_class="ragdoll" enabled="false" friction="0.6" name="glass_goggles_hat" template="character">
-			<object name="Head"/>
-			<object name="c_glass2" collision_type="convex"/>
-		</body>	
 		<body collision_class="ragdoll" enabled="true" friction="0.6" name="body" template="character">
 			<object name="Spine1" />
 			<object collision_type="capsule" name="c_capsule_body" />
@@ -202,8 +194,6 @@
 	
 	<decal_surfaces default_material="flesh" >
 		<decal_mesh name="dm_helmet" 	enabled="true" material="steel_no_decal" />
-		<decal_mesh name="dm_glass" 	enabled="false" material="glass_no_decal" />
-		<decal_mesh name="dm_glass2" 	enabled="false" material="glass_no_decal" />
 	</decal_surfaces>
 
 	<graphics>
@@ -353,9 +343,7 @@
 			</lod_object>
 
 			<object name="g_glass" 		enabled="false" />	
-			<object name="g_glass_crk" 	enabled="false" />	
 			<object name="g_hat_lod5" 	enabled="false" />	
-			<object name="g_hat_lod6" 	enabled="false" />
 			
 			<object name="s_body" 	enabled="true" shadow_caster="true" />			
 		</graphic_group>

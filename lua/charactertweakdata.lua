@@ -955,7 +955,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.murky = deep_clone(self.swat)
 	self.murky.HEALTH_INIT = 24
 	self.murky.headshot_dmg_mul = 3 -- 80 head health
+	self.murky.silent_priority_shout = "f37"
 	self.murky.chatter = self.presets.enemy_chatter.murkywater
+	self.murky.has_alarm_pager = true
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
 	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion

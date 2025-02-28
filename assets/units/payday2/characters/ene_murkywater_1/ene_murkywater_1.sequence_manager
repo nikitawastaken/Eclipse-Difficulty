@@ -4,6 +4,7 @@
 <!--CUSTOM SEQUENCES START-->
 		<variables>
 			<var_has_glasses	value="false" />
+			<var_has_goggles	value="false" />
 		</variables>
 		
 		<filter name="'check_no_glasses'">
@@ -14,6 +15,14 @@
 			<check value="vars.var_has_glasses == true" />
 		</filter>
 
+		<filter name="'check_no_goggles'">
+			<check value="vars.var_has_goggles == false" />
+		</filter>
+
+		<filter name="'check_goggles'">
+			<check value="vars.var_has_goggles == true" />
+		</filter>
+		
 		<sequence editable_state="false" name="'enable_light'" triggable="false">
 			<effect_spawner 	enabled="true" name="'es_light'"/>
 			<light				enabled="true" name="'ls_light'"/>
@@ -23,25 +32,34 @@
 			<object 			enabled="true" name="'g_gear'" />
 			<object 			enabled="true" name="'g_gear_lod1'" />
 			
-			<run_sequence 		name="'random_glasses'" />
+			<run_sequence 		name="'random_glasses_goggles'" />
 			<run_sequence 		name="'random_hat'" />
 		</sequence>
 
 	<!--GLASSES SEQUENCES-->
-		<sequence editable_state="true" name="'random_glasses'" triggable="true">
-			<run_sequence name="'glasses_'..pick('none','none','none','head','head','head')" />
+		<sequence editable_state="true" name="'random_glasses_goggles'" triggable="true">
+			<run_sequence name="'head_'..pick('none','none','none','none','glasses','glasses','goggles','goggles')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'gloves_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'head_none'" once="true" triggable="true" />
 
-		<sequence editable_state="true" name="'glasses_head'" once="true" triggable="true">
+		<sequence editable_state="true" name="'head_glasses'" once="true" triggable="true">
 			<set_variables 		var_has_glasses="true" />
 			
 			<object 			enabled="true" name="'g_glasses'" />
 			<object 			enabled="true" name="'g_glasses_lod1'" />
 		</sequence>
+
+		<sequence editable_state="true" name="'head_goggles'" once="true" triggable="true">
+			<set_variables 		var_has_goggles="true" />
+
+			<object 			enabled="true" name="'g_glass'" />
+
+			<object 			enabled="true" name="'g_goggles'" />
+			<object 			enabled="true" name="'g_goggles_lod1'" />
+		</sequence>
 	<!--HAT SEQUENCES-->
-		<sequence editable_state="true" name="'random_glasses'" triggable="true">
+		<sequence editable_state="true" name="'random_hat'" triggable="true">
 			<run_sequence name="'hat_'..pick('base','base','base','base','backwards','backwards')" />
 		</sequence>
 

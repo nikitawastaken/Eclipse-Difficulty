@@ -420,11 +420,14 @@
 				<file :name="swat_body_df.texture" />
 				<file :name="swat_body_nm.texture" />
 
-				<file :name="ene_acc_head_var1_df.texture" />
-				<file :name="ene_acc_head_var1_nm.texture" />
+				<file :name="arms_atlas_df.texture" />
+				<file :name="arms_atlas_nm.texture" />
+				
+				<file :name="heads_atlas_var1_df.texture" />
+				<file :name="heads_atlas_var1_nm.texture" />
 
-				<file :name="ene_acc_head_var2_df.texture" />
-				<file :name="ene_acc_head_var2_nm.texture" />
+				<file :name="heads_atlas_var2_df.texture" />
+				<file :name="heads_atlas_var2_nm.texture" />
 			</group>
 
 			<group :name="ene_acc_swat_helmet/">

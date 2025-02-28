@@ -2,28 +2,6 @@
 <table>
 	<unit>
 <!--CUSTOM SEQUENCES START-->
-		<body name="'glass_goggles'">
-			<endurance bullet="1" explosion="2">
-				<run_sequence name="'crack_goggles'"/>
-			</endurance>
-		</body>
-
-		<body name="'glass_goggles_hat'">
-			<endurance bullet="1" explosion="2">
-				<run_sequence name="'crack_goggles_hat'"/>
-			</endurance>
-		</body>
-		
-		<sequence editable_state="true" name="'crack_goggles'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_glass'" />
-			<object 			enabled="true" name="'g_glass_crk'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'crack_goggles_hat'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_hat_lod5'" />
-			<object 			enabled="true" name="'g_hat_lod6'" />
-		</sequence>
-		
 		<sequence editable_state="true" name="'swat_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
@@ -51,9 +29,6 @@
 			<object 			enabled="true" name="'g_goggles_lod1'"/>
 
 			<object 			enabled="true" name="'g_glass'"/>
-			
-			<body 				enabled="true" name="'glass_goggles'"/>
-			<decal_mesh 		enabled="true" name="'dm_glass'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_1'" once="true" triggable="true">
@@ -65,9 +40,6 @@
 
 			<object 			enabled="true" name="'g_headset'" />
 			<object 			enabled="true" name="'g_headset_lod1'" />
-			
-			<body 				enabled="true" name="'glass_goggles_hat'"/>
-			<decal_mesh 		enabled="true" name="'dm_glass2'"/>
 
 			<object 			enabled="false" name="'g_helmet_lod1'" />
 			<object 			enabled="false" name="'g_helmet_lod2'" />

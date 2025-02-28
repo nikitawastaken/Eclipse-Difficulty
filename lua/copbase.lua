@@ -22,14 +22,23 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 end)
 
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
+local head_sequence_mapping_clean = Eclipse:require("head_sequences")
+
 local unit_sequence_mapping = {}
+local head_sequence_mapping = {}
 
 for name, sequence in pairs(unit_sequence_mapping_clean) do
 	unit_sequence_mapping[Idstring(name):key()] = sequence
 	unit_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
 end
 
-CopBase.unit_sequence_mapping = clone(unit_sequence_mapping)
+for name, sequence in pairs(head_sequence_mapping_clean) do
+	head_sequence_mapping[Idstring(name):key()] = sequence
+	head_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
+end
+
+CopBase.unit_sequence_mapping = deep_clone(unit_sequence_mapping)
+CopBase.head_sequence_mapping = deep_clone(head_sequence_mapping)
 
 function CopBase:_run_unit_sequences()
 	local name = self._unit:name():key()
@@ -58,6 +67,10 @@ function CopBase:_run_unit_sequences()
 		local damage_ext = self._unit:character_damage()
 		local head = damage_ext._head
 
+		local head_sequence = self.head_sequence_mapping[name]
+		local head_sequence_name = head_sequence and head_sequence.name
+		local head_sequence_disabled = head_sequence and head_sequence.disabled
+
 		-- If the unit had a head defined in its .unit file, spawn and parent it
 		if spawn_manager_ext then
 			if head then
@@ -72,9 +85,24 @@ function CopBase:_run_unit_sequences()
 		-- If the head's sequence manager supports the parent unit, run its initial sequence
 		if alive(self._head_unit) then
 			self._head_unit:set_enabled(self._unit:enabled())
-
-			if self._head_unit:damage() and self._head_unit:damage():has_sequence(unit_sequence) then
-				self._head_unit:damage():run_sequence_simple(unit_sequence)
+			
+			if head_sequence then
+				if type(head_sequence_name) == "table" then
+					head_sequence_name = table.random(head_sequence_name)
+				end
+				
+				if self._head_unit:damage() and self._head_unit:damage():has_sequence(head_sequence_name) then
+					self._head_unit:damage():run_sequence_simple(head_sequence_name)
+					
+					local disable_sequence
+					for _, part in pairs(head_sequence_disabled) do
+						disable_sequence = "disable_" .. part
+						
+						if self._head_unit:damage() and self._head_unit:damage():has_sequence(disable_sequence) then
+							self._head_unit:damage():run_sequence_simple(disable_sequence)
+						end
+					end
+				end
 			end
 		end
 	end
