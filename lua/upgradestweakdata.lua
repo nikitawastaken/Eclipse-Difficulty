@@ -92,10 +92,29 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Mastermind --
 
-	-- Bandage
+	-- Company Soul
+	self.revive_health_multiplier[1] = 0.05
 	self.values.temporary.passive_revive_damage_reduction[1] = { 0.9, 5 }
 	self.skill_descs.combat_medic.multibasic = "10%"
 	self.skill_descs.combat_medic.multibasic2 = "5"
+	self.skill_descs.combat_medic.multibasic3 = "5%"
+	self.skill_descs.combat_medic.multipro = "50%"
+
+	-- Bandages
+	self.definitions.player_revive_health_boost_2 = {
+		name_id = "menu_player_revive_health_boost_2",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "revive_health_boost",
+			category = "player"
+		}
+	}
+	self.revive_health_multiplier[2] = 0.3
+	self.values.player.revive_health_boost[2] = 2
+	self.values.player.revived_health_regain[1] = 0.3
+	self.skill_descs.fast_learner.multibasic = "25%"
+	self.skill_descs.fast_learner.multipro = "30%"
 
 	-- Painkillers
 	self.values.temporary.passive_revive_damage_reduction[2] = { 0.5, 5 }
@@ -103,10 +122,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.tea_time.multibasic = "40%"
 	self.skill_descs.tea_time.multipro = "50%"
 	self.skill_descs.tea_time.multibasic2 = "5"
-
-	-- Company Soul
-	self.skill_descs.fast_learner.multibasic = "8"
-	self.skill_descs.fast_learner.multipro = "50%"
 
 	-- Combat Medic
 	self.values.player.revive_damage_reduction[1] = 0.6

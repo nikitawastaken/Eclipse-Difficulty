@@ -141,13 +141,68 @@ Hooks:PostHook(PlayerDamage, "_regenerated", "sh__regenerated", function(self)
 	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
 end)
 
---Fix fake downs progressing revive health and down timer steps
-local revive_original = PlayerDamage.revive
-function PlayerDamage:revive(...)
+function PlayerDamage:revive(silent)
 	local was_bleedout = self._bleed_out
 
-	revive_original(self, ...)
+	if Application:digest_value(self._revives, false) == 0 then
+		self._revive_health_multiplier = nil
 
+		return
+	end
+
+	local arrested = self:arrested()
+
+	managers.player:set_player_state("standard")
+	managers.player:remove_copr_risen_cooldown()
+
+	if not silent then
+		PlayerStandard.say_line(self, "s05x_sin")
+	end
+
+	self._bleed_out = false
+	self._incapacitated = nil
+	self._downed_timer = nil
+	self._downed_start_time = nil
+
+	if not arrested then -- Change the extra revive health upgrades to be additive instead of multiplicative
+		self:set_health(self:_max_health() * math.min(tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] + (self._revive_health_multiplier or 0) + managers.player:upgrade_value("player", "revived_health_regain", 0), 1))
+		self:set_armor(self:_max_armor())
+
+		self._revive_health_i = math.min(#tweak_data.player.damage.REVIVE_HEALTH_STEPS, self._revive_health_i + 1)
+		self._revive_miss = 2
+	end
+
+	self:_regenerate_armor()
+	managers.hud:set_player_health({
+		current = self:get_real_health(),
+		total = self:_max_health(),
+		revives = Application:digest_value(self._revives, false)
+	})
+	self:_send_set_health()
+	self:_set_health_effect()
+	managers.hud:pd_stop_progress()
+
+	self._revive_health_multiplier = nil
+
+	self._listener_holder:call("on_revive")
+
+	if managers.player:has_inactivate_temporary_upgrade("temporary", "revived_damage_resist") then
+		managers.player:activate_temporary_upgrade("temporary", "revived_damage_resist")
+	end
+
+	if managers.player:has_inactivate_temporary_upgrade("temporary", "increased_movement_speed") then
+		managers.player:activate_temporary_upgrade("temporary", "increased_movement_speed")
+	end
+
+	if managers.player:has_inactivate_temporary_upgrade("temporary", "swap_weapon_faster") then
+		managers.player:activate_temporary_upgrade("temporary", "swap_weapon_faster")
+	end
+
+	if managers.player:has_inactivate_temporary_upgrade("temporary", "reload_weapon_faster") then
+		managers.player:activate_temporary_upgrade("temporary", "reload_weapon_faster")
+	end
+
+	-- Fix fake downs progressing revive health and down timer steps
 	if was_bleedout then
 		self._down_time_i = self._down_time_i + 1
 	else

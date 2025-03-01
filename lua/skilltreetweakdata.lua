@@ -16,24 +16,26 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- MASTERMIND --
 
-	-- Bandage
-	self.skills.combat_medic[1].upgrades = { "player_revive_damage_reduction_level_1" }
-	self.skills.combat_medic.name_id = "menu_bandage"
-	self.skills.combat_medic.desc_id = "menu_bandage_desc"
+	-- Company Soul
+	self.skills.combat_medic[1].upgrades = { "player_revive_damage_reduction_level_1", "player_revive_health_boost" }
+	self.skills.combat_medic[2].upgrades = { "team_stamina_multiplier" }
+	self.skills.combat_medic.name_id = "menu_company_soul"
+	self.skills.combat_medic.desc_id = "menu_company_soul_desc"
+	self.skills.combat_medic.icon_xy = { 5, 2 }
+
+	-- Bandages
+	self.skills.fast_learner[1].upgrades = { "player_revive_health_boost_2" }
+	self.skills.fast_learner[2].upgrades = { "player_revived_health_regain_1" }
+	self.skills.fast_learner.name_id = "menu_bandages"
+	self.skills.fast_learner.desc_id = "menu_bandages_desc"
+	self.skills.fast_learner.icon_xy = { 5, 7 }
 
 	-- Painkillers
 	self.skills.tea_time[1].upgrades = { "player_revive_damage_reduction_level_2" }
 	self.skills.tea_time[2].upgrades = { "player_revived_damage_resist_1" }
 	self.skills.tea_time.name_id = "menu_fast_learner_beta"
-	self.skills.tea_time.desc_id = "menu_field_surgery_desc"
+	self.skills.tea_time.desc_id = "menu_fast_learner_beta_desc"
 	self.skills.tea_time.icon_xy = { 0, 10 }
-
-	-- Company Soul
-	self.skills.fast_learner[1].upgrades = {}
-	self.skills.fast_learner[2].upgrades = { "team_stamina_multiplier" }
-	self.skills.fast_learner.name_id = "menu_company_soul"
-	self.skills.fast_learner.desc_id = "menu_company_soul_desc"
-	self.skills.fast_learner.icon_xy = { 0, 0 }
 
 	-- Combat Doctor
 	self.skills.tea_cookies[1].upgrades = { "temporary_revive_damage_reduction_1", "player_revive_damage_reduction_1" }
