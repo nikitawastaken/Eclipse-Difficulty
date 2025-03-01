@@ -59,9 +59,9 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.damage.DOWNED_TIME_DEC = is_eclipse_pro and 15 or is_pro_job and 10 or 0
 	self.damage.DOWNED_TIME_MIN = is_eclipse_pro and 5 or is_pro_job and 10 or 30
 
-	local revive_health = diff_lerp(0.6, 0.2)
+	local revive_health = diff_lerp(0.6, 0.3)
 
-	self.damage.REVIVE_HEALTH_STEPS = is_pro_job and { revive_health, revive_health * 0.75, revive_health * 0.5 } or { revive_health }
+	self.damage.REVIVE_HEALTH_STEPS = is_pro_job and { revive_health, revive_health * 0.66, revive_health * 0.33 } or { revive_health }
 
 	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1
