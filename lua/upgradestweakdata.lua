@@ -110,11 +110,11 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.revive_health_multiplier[2] = 0.3
+	self.revive_health_multiplier[2] = 0.2
 	self.values.player.revive_health_boost[2] = 2
-	self.values.player.revived_health_regain[1] = 0.3
-	self.skill_descs.fast_learner.multibasic = "25%"
-	self.skill_descs.fast_learner.multipro = "30%"
+	self.values.player.revived_health_regain[1] = 0.2
+	self.skill_descs.fast_learner.multibasic = "15%"
+	self.skill_descs.fast_learner.multipro = "20%"
 
 	-- Painkillers
 	self.values.temporary.passive_revive_damage_reduction[2] = { 0.5, 5 }
