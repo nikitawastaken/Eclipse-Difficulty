@@ -165,7 +165,13 @@ function PlayerDamage:revive(silent)
 	self._downed_start_time = nil
 
 	if not arrested then -- Change the extra revive health upgrades to be additive instead of multiplicative
-		self:set_health(self:_max_health() * math.min(tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] + (self._revive_health_multiplier or 0) + managers.player:upgrade_value("player", "revived_health_regain", 0), 1))
+		self:set_health(
+			self:_max_health()
+				* math.min(
+					tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] + (self._revive_health_multiplier or 0) + managers.player:upgrade_value("player", "revived_health_regain", 0),
+					1
+				)
+		)
 		self:set_armor(self:_max_armor())
 
 		self._revive_health_i = math.min(#tweak_data.player.damage.REVIVE_HEALTH_STEPS, self._revive_health_i + 1)
@@ -176,7 +182,7 @@ function PlayerDamage:revive(silent)
 	managers.hud:set_player_health({
 		current = self:get_real_health(),
 		total = self:_max_health(),
-		revives = Application:digest_value(self._revives, false)
+		revives = Application:digest_value(self._revives, false),
 	})
 	self:_send_set_health()
 	self:_set_health_effect()

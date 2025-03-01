@@ -107,8 +107,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "revive_health_boost",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.revive_health_multiplier[2] = 0.3
 	self.values.player.revive_health_boost[2] = 2
