@@ -1000,7 +1000,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marksman.headshot_dmg_mul = 3 -- 80 head health
 	self.marksman.priority_shout = "f34"
 	self.marksman.chatter = self.presets.enemy_chatter.no_chatter
-	self.marksman.misses_first_player_shot = true
+	--self.marksman.misses_first_player_shot = true
 	self.marksman.shooting_death = false
 	self.marksman.suppression = nil	
 	self.marksman.surrender = nil
