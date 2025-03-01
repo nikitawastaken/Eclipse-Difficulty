@@ -296,8 +296,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
-		1 * aim_delay_mul,
-		2 * aim_delay_mul,
+		0.75 * aim_delay_mul,
+		1.5 * aim_delay_mul,
 	}
 	presets.weapon.elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
