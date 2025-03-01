@@ -26,6 +26,94 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dah.flashlights_on = true -- PDTH vibes
 	self.sah.flashlights_on = true
 
+    -- load required gangster vo to heists where it actually needs
+    -- for reference: Rats day 1 has regular latin vo,
+    -- Rats day 2 has cobra vo, 
+    -- big oil day 1 has biker vo
+    -- and hotline miami day 2 (or 1, doesn't matter) has russian mobster vo
+    self.welcome_to_the_jungle_1.package = {
+         "packages/narr_jungle1", 
+         "levels/narratives/h_alex_must_die/stage_2/world_sounds",
+    }
+    self.welcome_to_the_jungle_1_night.package = {
+         "packages/narr_jungle1_night", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.nightclub.package = {
+         "packages/vlad_nightclub", 
+         "levels/narratives/dentist/mia/stage2/world_sounds",
+    }
+    self.jolly.package = {
+         "packages/jolly", 
+         "levels/narratives/dentist/mia/stage2/world_sounds",
+    }
+    self.cane.package = {
+         "packages/narr_peta",
+         "levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds"
+    }
+    self.peta.package = {
+         "packages/narr_peta2",
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds", 
+    }
+    self.peta2.package = {
+         "packages/cane",
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.born.package = {
+         "packages/narr_born_1",
+         "levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds", 
+    }
+    self.chew.package = {
+         "packages/lvl_chew",
+         "levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds", 
+    }
+    self.short2_stage1.package = {
+         "packages/lvl_chew",
+         "levels/narratives/dentist/mia/stage2/world_sounds", 
+    }
+    self.flat.package = {
+         "packages/narr_flat",
+         "levels/narratives/h_alex_must_die/stage_2/world_sounds",
+         "levels/narratives/dentist/mia/stage2/world_sounds",
+    }
+    self.friend.package = {
+         "packages/lvl_friend",
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.spa.package = {
+         "packages/job_spa", 
+         "levels/narratives/dentist/mia/stage2/world_sounds",
+    }
+    self.mex.package = {
+         "packages/job_mex", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds", 
+         "levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds"
+    }
+    self.mex_cooking.package = {
+         "packages/job_mex2", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.fex.package = {
+         "packages/job_fex", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.chas.package = {
+         "packages/job_chas", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.sand.package = {
+         "packages/job_sand", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.chca.package = {
+         "packages/job_chca", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+    self.pent.package = {
+         "packages/job_pent", 
+         "levels/narratives/h_alex_must_die/stage_1/world_sounds",
+    }
+
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {

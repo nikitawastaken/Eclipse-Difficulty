@@ -28,6 +28,242 @@
 		</target>
 	</tweak>
 
+    <!-- change cobras tweak_table -->
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_1/ene_gang_black_1" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_1/ene_gang_black_1_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_2/ene_gang_black_2" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_2/ene_gang_black_2_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_3/ene_gang_black_3" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_3/ene_gang_black_3_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_4/ene_gang_black_4" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_black_4/ene_gang_black_4_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="cobra"/>
+		</target>
+	</tweak>
+
+    <!-- change russian gangster's tweak_table -->
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
+    <tweak version="2" name="units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5_husk" extension="unit">
+		<search>
+			<?xml version="1.0"?>
+			<unit/>
+			<extensions/>
+			<extension name="base"/>
+			<var name="_tweak_table"/>
+		</search>
+		<target mode="attributes">
+			<attr name="value" value="mobster"/>
+		</target>
+	</tweak>
+
     <!-- change fbi office agents _tweak_table -->
     <!-- make agent Riker as an actual boss fight -->
     <tweak version="2" name="units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1" extension="unit">
