@@ -813,7 +813,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.Elite_shield = {
 		special_type = "shield",
 		unit_types = {
@@ -2047,7 +2047,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	local Random_shield = { "FBI_shield", "Elite_shield" }
 
 	self.enemy_spawn_groups.Elite_assault_shield = {

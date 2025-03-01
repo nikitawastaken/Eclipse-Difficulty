@@ -107,7 +107,7 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 end)
 
 -- Add the marksman enemy to special unit types
-Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "eclipse_init_misc_data", function (self)
+Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "eclipse_init_misc_data", function(self)
 	self._special_unit_types = {
 		shield = true,
 		medic = true,
@@ -118,7 +118,7 @@ Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "eclipse_init_misc_data", fu
 	}
 end)
 
-Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation_started", function (self)
+Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation_started", function(self)
 	self._special_unit_types = {
 		shield = true,
 		medic = true,
