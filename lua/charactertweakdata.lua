@@ -1,4 +1,4 @@
-local level_id =  Global.game_settings and Global.game_settings.level_id
+local level_id = Global.game_settings and Global.game_settings.level_id
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -897,19 +897,19 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster.speech_prefix_p2 = nil
 	self.mobster.speech_prefix_count = 2
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
-    
-    self.cobra = deep_clone(self.gangster)
-    if level_id == "man" then
-        self.cobra.speech_prefix_p1 = self._unit_prefixes.cop
-	    self.cobra.speech_prefix_p2 = "n"
-	    self.cobra.speech_prefix_count = 4
-        self.cobra.access = "fbi"
-    else
-        self.cobra.speech_prefix_p1 = "ict"
-	    self.cobra.speech_prefix_p2 = nil
-	    self.cobra.speech_prefix_count = 2
-        self.cobra.access = "gangster"
-    end
+
+	self.cobra = deep_clone(self.gangster)
+	if level_id == "man" then
+		self.cobra.speech_prefix_p1 = self._unit_prefixes.cop
+		self.cobra.speech_prefix_p2 = "n"
+		self.cobra.speech_prefix_count = 4
+		self.cobra.access = "fbi"
+	else
+		self.cobra.speech_prefix_p1 = "ict"
+		self.cobra.speech_prefix_p2 = nil
+		self.cobra.speech_prefix_count = 2
+		self.cobra.access = "gangster"
+	end
 
 	self.biker.melee_weapon = "knife_1"
 	self.biker.speech_prefix_p1 = "bik"

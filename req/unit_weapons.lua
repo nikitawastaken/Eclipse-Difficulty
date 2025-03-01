@@ -134,8 +134,8 @@ local M = {
 	[("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"):key()] = { "raging_bull", "mac11", "mossberg", "ak47" },
 	[("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"):key()] = { "raging_bull", "mac11", "mossberg", "ak47" },
 	[("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"):key()] = { "raging_bull", "mac11", "mossberg", "ak47" },
-    --Russian mobsters
-    [("units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1"):key()] = { "raging_bull", "akmsu_smg", "r870", "ak47" },
+	--Russian mobsters
+	[("units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1"):key()] = { "raging_bull", "akmsu_smg", "r870", "ak47" },
 	[("units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2"):key()] = { "raging_bull", "akmsu_smg", "r870", "ak47" },
 	[("units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3"):key()] = { "raging_bull", "akmsu_smg", "r870", "ak47" },
 	[("units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4"):key()] = { "raging_bull", "akmsu_smg", "r870", "ak47" },
