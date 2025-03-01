@@ -23,7 +23,7 @@
 			<body 				filter="'check_visor'" enabled="false" name="'glass_visor'"/>
 		</sequence>
 		
-		<sequence editable_state="true" name="'swat_heavy_1'" once="true" triggable="true">
+		<sequence editable_state="true" name="'heavy_1'" once="true" triggable="true">
 			<set_variables 		var_has_visor="true" />
 			
 			<object 			enabled="true" name="'g_gear_a'" />
@@ -37,7 +37,7 @@
 			<body 				enabled="true" name="'glass_visor'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'swat_heavy_2'" once="true" triggable="true">
+		<sequence editable_state="true" name="'heavy_2'" once="true" triggable="true">
 			<set_variables 		var_has_visor="true" />
 			
 			<object 			enabled="true" name="'g_gear_b'" />

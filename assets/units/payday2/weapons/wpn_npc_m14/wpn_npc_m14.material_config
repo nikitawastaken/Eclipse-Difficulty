@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<materials version="3" group="wpn_npc_m14">
+    <material name="mtr_m14" version="2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_3RD_WEAPONS">
+        <bump_normal_texture file="units/payday2/weapons/wpn_npc_m14/m14_nm"/>
+        <diffuse_texture file="units/payday2/weapons/wpn_npc_m14/m14_df"/>		
+    </material>		
+    <material name="weapon_lod1" version="2" render_template="generic:DIFFUSE_TEXTURE:RL_3RD_WEAPONS">	
+        <diffuse_texture file="units/payday2/weapons/wpn_npc_m14/m14_df"/>		
+    </material>	
+</materials>

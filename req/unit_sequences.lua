@@ -33,8 +33,8 @@ local M = {
 	["units/payday2/characters/ene_swat_1/ene_swat_1"] = "swat_1",
 	["units/payday2/characters/ene_swat_2/ene_swat_2"] = "swat_2",
 	["units/payday2/characters/ene_swat_3/ene_swat_3"] = "swat_3",
-	["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = "swat_heavy_1",
-	["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = "swat_heavy_2",
+	["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = "heavy_1",
+	["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = "heavy_2",
 	["units/payday2/characters/ene_shield_2/ene_shield_2"] = "shield_2",
 	["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = "sniper_1",
 	["units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"] = "fbi_swat_1",
@@ -42,6 +42,15 @@ local M = {
 	["units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"] = "fbi_swat_3",
 	["units/payday2/characters/ene_sniper_2/ene_sniper_2"] = "sniper_2",
 	["units/payday2/characters/ene_shield_1/ene_shield_1"] = "shield_1",
+	["units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"] = "fbi_heavy_1",
+	["units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"] = "fbi_heavy_2",
+	["units/payday2/characters/ene_spook_1/ene_spook_1"] = "spook_1",
+	["units/payday2/characters/ene_city_swat_1/ene_city_swat_1"] = "city_swat_1",
+	["units/payday2/characters/ene_city_swat_2/ene_city_swat_2"] = "city_swat_2",
+	["units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870"] = "city_swat_2",
+	["units/payday2/characters/ene_city_swat_3/ene_city_swat_3"] = "city_swat_3",
+	["units/payday2/characters/ene_sniper_3/ene_sniper_3"] = "sniper_3",
+	["units/payday2/characters/ene_city_shield/ene_city_shield"] = "shield_3",
 }
 
 return M

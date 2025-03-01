@@ -15,6 +15,7 @@ local M = {
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "benelli_tank",
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "beretta92", "mp5_tactical" },
+	[("units/payday2/characters/ene_sniper_3/ene_sniper_3"):key()] = "m14",
 	--Misc (Scripted Murkies, Gangsters etc.)
 	--Security guards
 	--Regular security

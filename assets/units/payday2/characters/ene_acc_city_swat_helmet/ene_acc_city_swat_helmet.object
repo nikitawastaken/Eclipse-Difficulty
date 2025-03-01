@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<dynamic_object>
+	<diesel materials="units/payday2/characters/ene_acc_swat_helmet/ene_acc_swat_helmet" orientation_object="rp_ene_acc_city_swat_helmet" />
+	
+	<bodies>
+	 <body name="static_body" enabled="true" template="small_prop" pushed_by_mover="false" ang_damping="0.9">
+			<object name="rp_ene_acc_city_swat_helmet" />
+			<object name="c_convex" collision_type="convex" mass="1.5" />
+		</body>
+	</bodies>
+
+	<decal_surfaces default_material="steel_no_decal"/>
+
+	<graphics>
+			<lod_object name="lod_helmet">
+				<object name="g_helmet" enabled="true" >
+					<material materials="mtr_helmet" max_distance="1000" />
+					<material materials="mtr_helmet_lod_1" max_distance="1500" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+			</lod_object>
+	</graphics>
+	
+</dynamic_object>

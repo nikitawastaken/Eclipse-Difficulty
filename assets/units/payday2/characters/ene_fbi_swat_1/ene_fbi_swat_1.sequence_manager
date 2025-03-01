@@ -137,7 +137,7 @@
 		</sequence>
 	<!--BALACLAVA SEQUENCES-->
 		<sequence editable_state="true" name="'random_balaclava'" triggable="true">
-			<run_sequence 		name="'balaclava_'..pick('a','a','a','a','b','c','d')" />
+			<run_sequence 		name="'balaclava_'..pick('a','a','a','a','a','b','c','d')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'balaclava_a'" once="true" triggable="true"/>

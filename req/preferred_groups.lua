@@ -33,6 +33,7 @@ local default_preferred = {
 	CS_assault_bulldozer = true,
 	FBI_assault_bulldozer = true,
 	Elite_assault_bulldozer = true,
+	Elite_assault_sniper = true,
 }
 
 local group_type_mapping = {
@@ -68,6 +69,7 @@ local group_type_mapping = {
 	CS_assault_bulldozer = "bulldozer_group",
 	FBI_assault_bulldozer = "bulldozer_group",
 	Elite_assault_bulldozer = "bulldozer_group",
+	Elite_assault_sniper = "sniper_group",
 }
 
 local function create_preferred(excluded_types)

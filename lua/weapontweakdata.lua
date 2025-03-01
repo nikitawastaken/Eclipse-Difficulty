@@ -2769,36 +2769,37 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.rpk_lmg_npc = copy_data(self.rpk_lmg_npc, self.m249_npc, self.rpk_crew)
 
-	self.m14_npc.trail = "effects/particles/weapons/sniper_trail"
-	self.m14_npc.CLIP_AMMO_MAX = 10
-	self.m14_npc.usage = "is_sniper"
-
+	self.heavy_snp_npc.usage = "is_sniper"
 	self.heavy_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.heavy_snp_npc.CLIP_AMMO_MAX = 10
-	self.heavy_snp_npc.usage = "is_sniper"
 
+	self.m14_npc.sounds.prefix = self.heavy_snp_npc.sounds.prefix
+	self.m14_npc.usage = "is_sniper"
+	self.m14_npc.trail = "effects/particles/weapons/sniper_trail"
+	self.m14_npc.CLIP_AMMO_MAX = 10
+	
+	self.dmr_npc.usage = "is_sniper"	
 	self.dmr_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.dmr_npc.CLIP_AMMO_MAX = 10
-	self.dmr_npc.usage = "is_sniper"
 
+	self.m14_sniper_npc.usage = "is_sniper"
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.m14_sniper_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.m14_sniper_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
 	self.m14_sniper_npc.CLIP_AMMO_MAX = 5
-	self.m14_sniper_npc.usage = "is_sniper"
 
+	self.svd_snp_npc.usage = "is_sniper"
 	self.svd_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svd_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svd_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
 	self.svd_snp_npc.CLIP_AMMO_MAX = 5
-	self.svd_snp_npc.usage = "is_sniper"
 
+	self.svdsil_snp_npc.usage = "is_sniper"
 	self.svdsil_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svdsil_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svdsil_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
 	self.svdsil_snp_npc.CLIP_AMMO_MAX = 5
-	self.svdsil_snp_npc.usage = "is_sniper"
-
+	
 	self.flamethrower_npc.flame_max_range = 600
 end)
 

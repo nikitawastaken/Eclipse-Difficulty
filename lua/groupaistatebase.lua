@@ -106,6 +106,29 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._marking_sentries = {}
 end)
 
+-- Add the marksman enemy to special unit types
+Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "eclipse_init_misc_data", function (self)
+	self._special_unit_types = {
+		shield = true,
+		medic = true,
+		taser = true,
+		tank = true,
+		spooc = true,
+		marksman = true,
+	}
+end)
+
+Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation_started", function (self)
+	self._special_unit_types = {
+		shield = true,
+		medic = true,
+		taser = true,
+		tank = true,
+		spooc = true,
+		marksman = true,
+	}
+end)
+
 -- Restore scripted cloaker spawn noise
 local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
 function GroupAIStateBase:_process_recurring_grp_SO(...)

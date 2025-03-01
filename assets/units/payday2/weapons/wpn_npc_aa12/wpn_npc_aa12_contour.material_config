@@ -1,20 +1,12 @@
 <?xml version="1.0"?>
 <materials version="3" group="wpn_npc_aa12">
-
-    <material name="mtr_aa12" version="2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:RL_3RD_WEAPONS">
-	
+    <material name="mtr_aa12" version="2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:RL_3RD_WEAPONS">	
         <bump_normal_texture file="units/payday2/weapons/wpn_npc_aa12/aa12_nm"/>
         <diffuse_texture file="units/payday2/weapons/wpn_npc_aa12/aa12_df"/>
         <variable value="1 1 1" type="vector3" name="contour_color"/>
-        <variable value="0.5" type="scalar" name="contour_opacity"/>
-		
-    </material>
-	
-	
-    <material name="weapon_lod1" version="2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:RL_3RD_WEAPONS">
-	
-        <diffuse_texture file="units/payday2/weapons/wpn_npc_aa12/aa12_df"/>
-		
-    </material>
-	
+        <variable value="0.5" type="scalar" name="contour_opacity"/>		
+    </material>	
+    <material name="weapon_lod1" version="2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:RL_3RD_WEAPONS">	
+        <diffuse_texture file="units/payday2/weapons/wpn_npc_aa12/aa12_df"/>		
+    </material>	
 </materials>

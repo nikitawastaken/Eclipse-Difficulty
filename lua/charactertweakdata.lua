@@ -918,38 +918,41 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker.chatter = self.presets.enemy_chatter.gangster
 
 	self.biker_female.chatter = self.presets.enemy_chatter.gangster
+	
 	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
+	
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
+	
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
 
 	self.swat.HEALTH_INIT = 20
 	self.swat.headshot_dmg_mul = 2 -- 100 head health
 	self.swat.speech_prefix_p2 = "n"
-	self.swat.no_arrest = false
 	self.swat.surrender = self.presets.surrender.average
 	self.swat.suppression = self.presets.suppression.average
-
+	self.swat.no_arrest = false
+	
 	self.heavy_swat.HEALTH_INIT = 30
 	self.heavy_swat.headshot_dmg_mul = 1.875 -- 160 head health
-	self.heavy_swat.no_arrest = false
 	self.heavy_swat.surrender = self.presets.surrender.average
 	self.heavy_swat.suppression = self.presets.suppression.average
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-
+	self.heavy_swat.no_arrest = false
+	
 	self.fbi_swat.HEALTH_INIT = 24
 	self.fbi_swat.headshot_dmg_mul = 2 -- 120 head health
 	self.fbi_swat.speech_prefix_p2 = "n"
-	self.fbi_swat.no_arrest = false
 	self.fbi_swat.surrender = self.presets.surrender.average
 	self.fbi_swat.suppression = self.presets.suppression.average
-
+	self.fbi_swat.no_arrest = false
+	
 	self.fbi_heavy_swat.HEALTH_INIT = 36
 	self.fbi_heavy_swat.headshot_dmg_mul = 1.5 -- 240 head health
-	self.fbi_heavy_swat.no_arrest = false
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
 	self.fbi_heavy_swat.suppression = self.presets.suppression.hard
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-
+	self.fbi_heavy_swat.no_arrest = false
+	
 	self.city_swat.HEALTH_INIT = 28
 	self.city_swat.headshot_dmg_mul = 1.75 -- 160 head health
 	self.city_swat.speech_prefix_p2 = "n"
@@ -959,7 +962,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_swat = deep_clone(self.city_swat)
 	self.zeal_swat.HEALTH_INIT = 32
 	self.zeal_swat.headshot_dmg_mul = 1.6 -- 200 head health
-	--self.zeal_swat.dodge = self.presets.dodge.ninja
 	self.zeal_swat.surrender = self.presets.surrender.very_hard
 	self.zeal_swat.suppression = self.presets.suppression.hard
 	self.zeal_swat.move_speed_mul = { walk = 1.1, run = 1.1 }
@@ -975,18 +977,39 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.murky.HEALTH_INIT = 24
 	self.murky.headshot_dmg_mul = 3 -- 80 head health
 	self.murky.silent_priority_shout = "f37"
+	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
+	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
 	self.murky.chatter = self.presets.enemy_chatter.murkywater
 	self.murky.no_arrest = true -- harder stealth
 	self.murky.has_alarm_pager = true
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
-	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
-	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
-
+	table.insert(self._enemy_list, "murky")
+	
 	self.sniper.HEALTH_INIT = 8
 	self.sniper.headshot_dmg_mul = 4 -- 20 head health
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
 
+	self.marksman = deep_clone(self.swat)
+	self.marksman.tags = {
+		"law",
+		"marksman",
+		"special"
+	}
+	self.marksman.HEALTH_INIT = 24
+	self.marksman.headshot_dmg_mul = 3 -- 80 head health
+	self.marksman.priority_shout = "f34"
+	self.marksman.chatter = self.presets.enemy_chatter.no_chatter
+	self.marksman.misses_first_player_shot = true
+	self.marksman.shooting_death = false
+	self.marksman.suppression = nil	
+	self.marksman.surrender = nil
+	self.marksman.no_retreat = true
+	self.marksman.no_arrest = true
+	self.marksman.steal_loot = nil
+	self.marksman.rescue_hostages = false
+	table.insert(self._enemy_list, "marksman")
+		
 	self.shield.HEALTH_INIT = 30
 	self.shield.headshot_dmg_mul = 1.875 -- 160 head health
 	self.shield.move_speed.crouch = self.shield.move_speed.stand
@@ -1001,7 +1024,44 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_shield.HEALTH_INIT = 30
 	self.fbi_shield.headshot_dmg_mul = 1.875 -- 160 head health
 	self.fbi_shield.shield_explosion_damage_mul = 0.6
-
+	table.insert(self._enemy_list, "fbi_shield")
+	
+	self.city_shield = deep_clone(self.shield)
+	self.city_shield.HEALTH_INIT = 60
+	self.city_shield.headshot_dmg_mul = 1.875 -- 320 head health
+	self.city_shield.shield_explosion_damage_mul = 0.2
+	self.city_shield.ecm_vulnerability = 0
+	self.city_shield.move_speed.crouch = self.city_shield.move_speed.stand
+	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.city_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
+	self.city_shield.can_be_tased = false
+	self.city_shield.damage.shield_knocked = false
+	self.city_shield.damage.immune_to_knockback = true
+	self.city_shield.immune_to_knock_down = true
+	self.city_shield.immune_to_concussion = true
+	table.insert(self._enemy_list, "city_shield")
+	
+	self.city_shield_break = deep_clone(self.city_shield)
+	self.city_shield_break.tags = { "law", "shield" }
+	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.25
+	self.city_shield_break.chatter = self.presets.enemy_chatter.swat
+	self.city_shield_break.dodge = self.presets.dodge.athletic
+	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.base
+	self.city_shield_break.move_speed = self.presets.move_speed.fast
+	self.city_shield_break.allowed_stances = nil
+	self.city_shield_break.allowed_poses = nil
+	self.city_shield_break.no_equip_anim = nil
+	self.city_shield_break.no_run_start = nil
+	self.city_shield_break.no_run_stop = nil
+	self.city_shield_break.always_face_enemy = nil
+	self.city_shield_break.wall_fwd_offset = nil
+	self.city_shield_break.priority_shout = nil
+	self.city_shield_break.announce_incomming = nil
+	self.city_shield_break.use_animation_on_fire_damage = nil
+	self.city_shield_break.damage.shield_knocked = nil
+	self.city_shield_break.access = "swat"
+	table.insert(self._enemy_list, "city_shield_break")
+	
 	self.zeal_shield = deep_clone(self.fbi_shield)
 	self.zeal_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --Come with me if you wanna live...
 	self.zeal_shield.shield_explosion_damage_mul = 0.4
@@ -1059,37 +1119,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
 	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_medic")
-
-	self.phalanx_minion.HEALTH_INIT = 60
-	self.phalanx_minion.headshot_dmg_mul = 1.875 -- 320 head health
-	self.phalanx_minion.min_obj_interrupt_dis = 500
-	self.phalanx_minion.shield_explosion_damage_mul = 0.2
-	self.phalanx_minion.move_speed.crouch = self.phalanx_minion.move_speed.stand
-	self.phalanx_minion.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.phalanx_minion.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
-	self.phalanx_minion.priority_shout = "f31"
-	self.phalanx_minion.access = "shield"
-
-	self.phalanx_minion_break = deep_clone(self.phalanx_minion)
-	self.phalanx_minion_break.tags = { "law", "shield" }
-	self.phalanx_minion_break.move_speed = self.presets.move_speed.fast
-	self.phalanx_minion_break.allowed_stances = nil
-	self.phalanx_minion_break.allowed_poses = nil
-	self.phalanx_minion_break.no_equip_anim = nil
-	self.phalanx_minion_break.no_run_start = nil
-	self.phalanx_minion_break.no_run_stop = nil
-	self.phalanx_minion_break.always_face_enemy = nil
-	self.phalanx_minion_break.wall_fwd_offset = nil
-	self.phalanx_minion_break.priority_shout = nil
-	self.phalanx_minion_break.dodge = self.presets.dodge.athletic
-	self.phalanx_minion_break.access = "swat"
-	self.phalanx_minion_break.chatter = self.presets.enemy_chatter.swat
-	self.phalanx_minion_break.announce_incomming = nil
-	self.phalanx_minion_break.damage.hurt_severity = self.presets.hurt_severities.base
-	self.phalanx_minion_break.use_animation_on_fire_damage = nil
-	self.phalanx_minion_break.damage.shield_knocked = nil
-	self.phalanx_minion_break.tmp_invulnerable_on_tweak_change = 0.25
-	table.insert(self._enemy_list, "phalanx_minion_break")
 
 	self.mobster_boss.HEALTH_INIT = 200
 	self.mobster_boss.headshot_dmg_mul = 2
@@ -1171,12 +1200,17 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.throwable_cooldown = 10
 	self.fbi_boss.access = "fbi"
-
+	table.insert(self._enemy_list, "fbi_boss")
+	
 	-- escort speed stuff
 	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
+	
 	self.escort_chinese_prisoner.move_speed = self.presets.move_speed.escort_slow
+	
 	self.escort_sand.move_speed = self.presets.move_speed.escort_slow
+	
 	self.spa_vip.move_speed = self.presets.move_speed.escort_normal
+	
 	self.escort_undercover.move_speed = self.presets.move_speed.escort_slow
 
 	if self._unit_prefixes.heavy_swat == "l" then
@@ -1192,10 +1226,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.shield.speech_prefix_count = 4
 		self.fbi_shield.speech_prefix_p2 = "d"
 		self.fbi_shield.speech_prefix_count = 4
-		self.phalanx_minion.speech_prefix_p2 = "d"
-		self.phalanx_minion.speech_prefix_count = 4
-		self.phalanx_minion_break.speech_prefix_p2 = "d"
-		self.phalanx_minion_break.speech_prefix_count = 4
+		self.city_shield.speech_prefix_p2 = "d"
+		self.city_shield.speech_prefix_count = 4
+		self.city_shield_break.speech_prefix_p2 = "d"
+		self.city_shield_break.speech_prefix_count = 4
 		self.zeal_shield.speech_prefix_p2 = "d"
 		self.zeal_shield.speech_prefix_count = 4
 	end
@@ -1215,6 +1249,8 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_swat_3")
 	safe_add(char_map.basic, "ene_swat_heavy_r870")
 	safe_add(char_map.basic, "ene_fbi_swat_3")
+	safe_add(char_map.basic, "ene_sniper_3")
+	safe_add(char_map.basic, "ene_city_shield")
 
 	safe_add(char_map.gitgud.list, "ene_zeal_swat_2")
 	safe_add(char_map.gitgud.list, "ene_zeal_swat_heavy_2")
@@ -1240,6 +1276,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "benelli_tank")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer"))
+
+	table.insert(self.weap_ids, "m14")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_m14/wpn_npc_m14"))
 
 	table.insert(self.weap_ids, "shepheard")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_shepheard/wpn_npc_shepheard"))
@@ -1299,10 +1338,11 @@ CharacterTweakData.tweak_table_weapon = {
 	murky = "murky",
 	shield = "shield",
 	fbi_shield = "fbi_shield",
+	city_shield = "elite_shield",
+	city_shield_break = "elite_shield",
 	zeal_shield = "zeal_shield",
-	phalanx_minion = "elite_shield",
-	phalanx_minion_break = "elite_shield",
 	sniper = "sniper",
+	marksman = "elite_sniper",
 	tank = "tank",
 	tank_elite = "elite_tank",
 	mobster_boss = "boss",
@@ -1329,6 +1369,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	zeal_swat = "very_fast",
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
+	marksman = "normal",
 	zeal_heavy_swat = "fast",
 	murky = "fast",
 	medic = "normal",
@@ -1440,7 +1481,7 @@ function CharacterTweakData:_set_presets()
 	self.flashbang_multiplier = diff_lerp(1, 1.5)
 	self.concussion_multiplier = 1
 
-	self.phalanx_shield_balance_mul = { 1, 1.5, 2, 2.5 }
+	self.elite_shield_balance_mul = { 1, 1.5, 2, 2.5 }
 
 	local bulldozer_armor = diff_lerp(1, 2)
 	local elite_bulldozer_armor = diff_lerp(2, 3)

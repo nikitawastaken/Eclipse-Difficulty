@@ -2,6 +2,8 @@
 StatisticsManager.special_unit_ids = {
 	"shield",
 	"fbi_shield",
+	"city_shield",
+	"city_shield_break",
 	"spooc",
 	"tank",
 	"tank_elite",
@@ -9,8 +11,7 @@ StatisticsManager.special_unit_ids = {
 	"taser",
 	"medic",
 	"sniper",
-	"phalanx_minion",
-	"phalanx_minion_break",
+	"marksman",
 	"phalanx_vip",
 	"heavy_swat_sniper",
 	"zeal_shield",
@@ -60,6 +61,20 @@ function StatisticsManager:init()
 		tied = 0,
 	}
 	self._defaults.killed.fbi_shield = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
+	self._defaults.killed.marksman = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
+	self._defaults.killed.city_shield = {
 		count = 0,
 		head_shots = 0,
 		melee = 0,
