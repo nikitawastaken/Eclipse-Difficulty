@@ -29,7 +29,7 @@ local M = {
 
 	swat_1 = "units/payday2/characters/ene_swat_1/ene_swat_1",
 	swat_2 = "units/payday2/characters/ene_swat_2/ene_swat_2",
-	swat_3 = "units/payday2/characters/ene_swat_1/ene_swat_1",
+	swat_3 = "units/payday2/characters/ene_swat_3/ene_swat_3",
 
 	heavy_swat_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
 	heavy_swat_2 = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
