@@ -29,6 +29,7 @@
 			<decal_mesh 		filter="'check_visor'" enabled="false" name="'dm_visor'"/>
 			<effect 			filter="'check_visor'" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
+			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'fbi_swat_1'" once="true" triggable="true">

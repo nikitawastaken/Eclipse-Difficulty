@@ -36,6 +36,7 @@
 			<decal_mesh 		enabled="false" name="'dm_visor1'"/>
 			<effect 			damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
+			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'break_visor_b'" once="true" triggable="true">
@@ -49,6 +50,7 @@
 			<decal_mesh 		enabled="false" name="'dm_visor2'"/>
 			<decal_mesh 		enabled="false" name="'dm_visor3'"/>
 			<effect 			damp_time="5" name="'effects/payday2/particles/impacts/metal_impact_pd2'" parent="object( 'e_visor_shatter' )" position="v()"/>
+			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
 			<spawn_unit 		name="'units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor'" position="object_pos('e_visor_shatter')" rotation="object_rot('root_point')" transfer_ang_velocity="v( 50 * rand(), 50 * rand(), 500 * rand() )" transfer_velocity="v( 0, 200 * rand(), 200 * rand() )" />
 		</sequence>
