@@ -181,7 +181,7 @@ Hooks:PostHook(PlayerInventoryGui, "_update_info_weapon", "eclipse_playerinvento
 	end
 
 	local value = math.max(base_stats.damage.value + mods_stats.damage.value + skill_stats.damage.value, 0) * (rays or 1)
-	local base = base_stats.damage.value * (old_rays or 1)
+	local base = base_stats.damage.value * (base_rays or 1)
 	if base < value then
 		self._stats_texts.damage.total:set_color(tweak_data.screen_colors.stats_positive)
 	elseif value < base then
