@@ -3,28 +3,36 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<var_has_goggles	value="false" />
-			<var_has_visor		value="false" />
+			<var_has_goggles	value="0" />
+			<var_has_visor		value="0" />
 		</variables>
 
+		<filter name="'check_no_goggles'">
+			<check value="vars.var_has_goggles == 0" />
+		</filter>
+
+		<filter name="'check_goggles'">
+			<check value="vars.var_has_goggles == 1" />
+		</filter>
+		
 		<filter name="'check_no_visor'">
-			<check value="vars.var_has_visor == false" />
+			<check value="vars.var_has_visor == 0" />
 		</filter>
 
 		<filter name="'check_visor'">
-			<check value="vars.var_has_visor == true" />
+			<check value="vars.var_has_visor == 1" />
 		</filter>
 		
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
 			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod13'" />
 
+			<decal_mesh 		filter="'check_visor'" enabled="false" name="'dm_visor'"/>
 			<effect 			filter="'check_visor'" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
-			<body 				filter="'check_visor'" enabled="false" name="'glass_visor'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'fbi_swat_1'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
@@ -43,7 +51,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_swat_2'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_b'" />
 			<object 			enabled="true" name="'g_gear_b_lod1'" />
@@ -61,7 +69,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_swat_3'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_c'" />
 			<object 			enabled="true" name="'g_gear_c_lod1'" />
@@ -75,7 +83,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_2'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_d'" />
 			<object 			enabled="true" name="'g_gear_d_lod1'" />
@@ -103,7 +111,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_1'" once="true" triggable="true">
-			<set_variables 		var_has_visor="true" />
+			<set_variables 		var_has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_e'" />
 			<object 			enabled="true" name="'g_gear_e_lod1'" />
@@ -115,7 +123,6 @@
 			<object 			enabled="true" name="'g_helmet_lod12'" />
 			<object 			enabled="true" name="'g_helmet_lod13'" />
 
-			<body 				enabled="true" name="'glass_visor'"/>
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
 
 			<run_sequence 		name="'random_body'"/>

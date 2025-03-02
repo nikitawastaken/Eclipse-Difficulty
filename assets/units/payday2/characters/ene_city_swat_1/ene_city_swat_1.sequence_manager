@@ -3,11 +3,11 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<var_has_goggles	value="false" />
+			<var_has_goggles	value="0" />
 		</variables>
 		
 		<sequence editable_state="true" name="'city_swat_1'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
@@ -27,7 +27,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'city_swat_2'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_b'" />
 			<object 			enabled="true" name="'g_gear_b_lod1'" />
@@ -47,7 +47,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'city_swat_3'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_c'" />
 			<object 			enabled="true" name="'g_gear_c_lod1'" />
@@ -65,7 +65,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_3'" once="true" triggable="true">
-			<set_variables 		var_has_goggles="true" />
+			<set_variables 		var_has_goggles="1" />
 			
 			<object 			enabled="true" name="'g_gear_d'" />
 			<object 			enabled="true" name="'g_gear_d_lod1'" />

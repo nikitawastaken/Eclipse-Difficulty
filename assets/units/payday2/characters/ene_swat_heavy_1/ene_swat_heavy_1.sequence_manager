@@ -3,28 +3,28 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<var_has_visor		value="false" />
+			<var_has_visor		value="0" />
 		</variables>
 
 		<filter name="'check_no_visor'">
-			<check value="vars.var_has_visor == false" />
+			<check value="vars.var_has_visor == 0" />
 		</filter>
 
 		<filter name="'check_visor'">
-			<check value="vars.var_has_visor == true" />
+			<check value="vars.var_has_visor == 1" />
 		</filter>
 		
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
 			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod5'" />
 			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_lod8'" />
-
+			
+			<decal_mesh 		filter="'check_visor'" enabled="false" name="'dm_visor'"/>
 			<effect 			filter="'check_visor'" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
-			<body 				filter="'check_visor'" enabled="false" name="'glass_visor'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'heavy_1'" once="true" triggable="true">
-			<set_variables 		var_has_visor="true" />
+			<set_variables 		var_has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
@@ -34,11 +34,10 @@
 			<object 			enabled="true" name="'g_helmet_lod5'"/>
 
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
-			<body 				enabled="true" name="'glass_visor'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'heavy_2'" once="true" triggable="true">
-			<set_variables 		var_has_visor="true" />
+			<set_variables 		var_has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_b'" />
 			<object 			enabled="true" name="'g_gear_b_lod1'" />
@@ -48,11 +47,10 @@
 			<object 			enabled="true" name="'g_helmet_lod8'"/>
 			
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
-			<body 				enabled="true" name="'glass_visor'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_2'" once="true" triggable="true">
-			<set_variables 		var_has_visor="true" />
+			<set_variables 		var_has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_c'" />
 			<object 			enabled="true" name="'g_gear_c_lod1'" />
@@ -62,7 +60,6 @@
 			<object 			enabled="true" name="'g_helmet_lod5'"/>
 			
 			<decal_mesh 		enabled="true" name="'dm_visor'"/>
-			<body 				enabled="true" name="'glass_visor'"/>
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

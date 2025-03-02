@@ -3,51 +3,51 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<var_has_tie		value="false" />
-			<var_has_watch		value="false" />
-			<var_has_sleeves	value="false" />
-			<var_has_gloves		value="false" />
-			<var_has_glasses	value="false" />
+			<var_has_tie		value="0" />
+			<var_has_watch		value="0" />
+			<var_has_sleeves	value="0" />
+			<var_has_gloves		value="0" />
+			<var_has_glasses	value="0" />
 		</variables>
 
 		<filter name="'check_no_tie'">
-			<check value="vars.var_has_tie == false" />
+			<check value="vars.var_has_tie == 0" />
 		</filter>
 
 		<filter name="'check_tie'">
-			<check value="vars.var_has_tie == true" />
+			<check value="vars.var_has_tie == 1" />
 		</filter>
 
 		<filter name="'check_no_watch'">
-			<check value="vars.var_has_watch == false" />
+			<check value="vars.var_has_watch == 0" />
 		</filter>
 
 		<filter name="'check_watch'">
-			<check value="vars.var_has_watch == true" />
+			<check value="vars.var_has_watch == 1" />
 		</filter>
 
 		<filter name="'check_no_sleeves'">
-			<check value="vars.var_has_sleeves == false" />
+			<check value="vars.var_has_sleeves == 0" />
 		</filter>
 
 		<filter name="'check_sleeves'">
-			<check value="vars.var_has_sleeves == true" />
+			<check value="vars.var_has_sleeves == 1" />
 		</filter>
 		
 		<filter name="'check_no_gloves'">
-			<check value="vars.var_has_gloves == false" />
+			<check value="vars.var_has_gloves == 0" />
 		</filter>
 
 		<filter name="'check_gloves'">
-			<check value="vars.var_has_gloves == true" />
+			<check value="vars.var_has_gloves == 1" />
 		</filter>
 
 		<filter name="'check_no_glasses'">
-			<check value="vars.var_has_glasses == false" />
+			<check value="vars.var_has_glasses == 0" />
 		</filter>
 
 		<filter name="'check_glasses'">
-			<check value="vars.var_has_glasses == true" />
+			<check value="vars.var_has_glasses == 1" />
 		</filter>
 		
 		<sequence editable_state="true" name="'cop_1'" once="true" triggable="true">
@@ -116,7 +116,7 @@
 		<sequence editable_state="true" name="'body_short'" once="true" triggable="true"/>
 		
 		<sequence editable_state="true" name="'body_long'" once="true" triggable="true">
-			<set_variables 		var_has_sleeves="true" />
+			<set_variables 		var_has_sleeves="1" />
 			
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
@@ -126,7 +126,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_jacket'" once="true" triggable="true">
-			<set_variables 		var_has_sleeves="true" />
+			<set_variables 		var_has_sleeves="1" />
 			
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
@@ -154,14 +154,14 @@
 		<sequence editable_state="true" name="'gloves_none'" once="true" triggable="true" />
 
 		<sequence editable_state="true" name="'glasses_head'" once="true" triggable="true">
-			<set_variables 		var_has_glasses="true" />
+			<set_variables 		var_has_glasses="1" />
 			
 			<object 			enabled="true" name="'g_glasses'" />
 			<object 			enabled="true" name="'g_glasses_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'glasses_shirt'" once="true" triggable="true">
-			<set_variables 		var_has_glasses="true" />
+			<set_variables 		var_has_glasses="1" />
 			
 			<object 			filter="'check_no_tie'" enabled="true" name="'g_glasses_shirt'" />
 			<object 			filter="'check_no_tie'" enabled="true" name="'g_glasses_shirt_lod1'" />
@@ -178,7 +178,7 @@
 		<sequence editable_state="true" name="'gloves_none'" once="true" triggable="true" />
 
 		<sequence editable_state="true" name="'gloves_base'" once="true" triggable="true">
-			<set_variables 		var_has_gloves="true" />
+			<set_variables 		var_has_gloves="1" />
 			
 			<object 			enabled="true" name="'g_gloves'" />
 			<object 			enabled="true" name="'g_gloves_lod1'" />
@@ -195,14 +195,14 @@
 		<sequence editable_state="true" name="'watch_none'" once="true" triggable="true" />
 
 		<sequence editable_state="true" name="'watch_left'" once="true" triggable="true">
-			<set_variables 		var_has_watch="true" />
+			<set_variables 		var_has_watch="1" />
 			
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left'" />
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'watch_right'" once="true" triggable="true">
-			<set_variables 		var_has_watch="true" />
+			<set_variables 		var_has_watch="1" />
 			
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right'" />
 			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right_lod1'" />
@@ -219,7 +219,7 @@
 		<sequence editable_state="true" name="'tie_none'" once="true" triggable="true" />
 
 		<sequence editable_state="true" name="'tie_base'" once="true" triggable="true">
-			<set_variables 		var_has_tie="true" />
+			<set_variables 		var_has_tie="1" />
 			
 			<object 			enabled="true" name="'g_tie'" />
 			<object 			enabled="true" name="'g_tie_lod1'" />

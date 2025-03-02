@@ -5,11 +5,6 @@
 	<animation_def name="anims/units/enemies/cop/cop_def" />
 	
 	<bodies>
-		<body collision_class="ragdoll" enabled="false" friction="0.6" name="glass_visor" template="character">
-			<object name="Head"/>
-			<object name="c_visor1" collision_type="convex"/>
-			<object name="c_visor2" collision_type="convex"/>
-		</body>	
 		<body collision_class="ragdoll" enabled="true" friction="0.6" name="body" template="character">
 			<object name="Spine1" />
 			<object collision_type="capsule" name="c_capsule_body" />

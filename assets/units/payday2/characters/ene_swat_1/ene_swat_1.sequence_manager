@@ -43,11 +43,13 @@
 
 			<object 			enabled="false" name="'g_helmet_lod1'" />
 			<object 			enabled="false" name="'g_helmet_lod2'" />
+			
 			<object 			enabled="true" name="'g_hat_lod1'" />
 			<object 			enabled="true" name="'g_hat_lod2'" />
 			<object 			enabled="true" name="'g_hat_lod3'" />
 			<object 			enabled="true" name="'g_hat_lod4'" />
 			<object 			enabled="true" name="'g_hat_lod5'" />	
+			
 			<decal_mesh 		enabled="false" name="'dm_helmet'"/>
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
