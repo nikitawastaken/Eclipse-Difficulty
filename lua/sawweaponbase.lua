@@ -61,7 +61,7 @@ function SawHit:on_collision(col_ray, weapon_unit, user_unit, damage)
 	local is_enemy = hit_unit:character_damage() ~= nil
 	local base_ext = hit_unit:base()
 
-	local enemy_dmg_mul = self:weapon_tweak_data().enemy_damage_mul or 1
+	local enemy_dmg_mul = 2
 
 	if base_ext and base_ext.has_tag and base_ext:has_tag("tank") then
 		enemy_dmg_mul = enemy_dmg_mul * 2
