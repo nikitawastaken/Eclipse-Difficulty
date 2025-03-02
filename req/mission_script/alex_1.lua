@@ -78,6 +78,37 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
+    -- fix Bain's sniper warning repeating two times
+    [101071] = {
+		on_executed = {
+			{ id = 101256, remove = true },
+		},
+	},
+    [101073] = {
+		on_executed = {
+			{ id = 101256, remove = true },
+		},
+	},
+    [101126] = {
+		on_executed = {
+			{ id = 101256, remove = true },
+		},
+	},
+    [101137] = {
+		on_executed = {
+			{ id = 101256, delay = 60 },
+		},
+	},
+    [101138] = {
+		on_executed = {
+			{ id = 101256, delay = 90 },
+		},
+	},
+    [101141] = {
+		on_executed = {
+			{ id = 101256, delay = 140 },
+		},
+	},
 	-- loop helis
 	-- remove the line+trigger the loop here
 	[100945] = {
