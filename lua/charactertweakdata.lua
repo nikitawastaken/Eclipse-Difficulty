@@ -1,4 +1,4 @@
-local level_id = Global.game_settings and Global.game_settings.level_id
+local level_id = Eclipse.utils.level_id()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
