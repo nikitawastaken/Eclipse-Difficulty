@@ -48,15 +48,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		"levels/narratives/dentist/mia/stage2/world_sounds",
 	}
 	self.cane.package = {
-		"packages/narr_peta",
+		"packages/cane",
 		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
 	}
 	self.peta.package = {
-		"packages/narr_peta2",
+		"packages/narr_peta",
 		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
 	}
 	self.peta2.package = {
-		"packages/cane",
+		"packages/narr_peta2",
 		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
 	}
 	self.born.package = {
@@ -68,7 +68,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
 	}
 	self.short2_stage1.package = {
-		"packages/lvl_chew",
+		"packages/job_short2_stage1",
 		"levels/narratives/dentist/mia/stage2/world_sounds",
 	}
 	self.flat.package = {
