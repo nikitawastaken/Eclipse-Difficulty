@@ -274,6 +274,9 @@
 		<!-- old cook off bain lines -->
 		<file name="soundbanks/job_h_rat_stage1.bnk"/>
 
+		<!-- increase volume of the Zeal Sniper Rifle sound -->
+		<file name="soundbanks/weapon_zsniper.bnk"/>
+		
 		<!-- mute turret announcement -->
 		<group name="soundbanks/streamed/npc_cpa/">
 			<file :name="5329107.stream"/>
