@@ -31,7 +31,7 @@ Hooks:PostHook(CopDamage, "init", "eclipse_init", function(self)
 	if self._head_gear_decal_mesh then
 		local mesh_name_idstr = Idstring(self._head_gear_decal_mesh)
 		self._unit:decal_surface(mesh_name_idstr):set_mesh_material(mesh_name_idstr, Idstring("helmet"))
-	end	
+	end
 end)
 
 -- Default joker damage reduction
