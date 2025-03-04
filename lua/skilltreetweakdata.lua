@@ -214,7 +214,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Steady Grip
 	self.skills.steady_grip[1].upgrades = { "player_stability_increase_bonus_1" }
-	self.skills.steady_grip[2].upgrades = { "team_weapon_recoil_index_addend", "team_weapon_suppression_recoil_index_addend" }
+	self.skills.steady_grip[2].upgrades = { "weapon_moving_recoil_penalty_reduction" }
 	self.skills.steady_grip.icon_xy = { 7, 7 }
 
 	-- Oppressor

@@ -107,7 +107,7 @@
 	"menu_combat_engineering_beta": "Combat Engineer",
 	"menu_more_fire_power_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## more shaped charges and ##$multibasic2## more trip mines.\n\nACE: ##$pro##\nYou gain ##$multipro## more shaped charges and ##$multipro2## more trip mines.",
 	"st_menu_technician_auto": "Assault",
-	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## stability.\n\nACE: ##$pro##\nYou and your crew's weapon stability is increased by ##$multipro## points."
+	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## stability.\n\nACE: ##$pro##\nYour moving stability penalty is decreased by ##$multipro##."
 	"menu_fast_fire_beta": "Lock N' Load",
 	"menu_fast_fire_beta_desc": "BASIC: ##$basic##\nYou can now hip-fire with your weapons while sprinting.\n\nACE: ##$pro##\nYou no longer have a movement speed penalty when wielding Heavy Weaponry.",
 	"menu_body_expertise_beta_desc": "BASIC: ##$basic##\nAll of your ranged weapons can now pierce through enemy body armor.\n\nDoes not apply to throwable weapons.\n\nACE: ##$pro##\n##$multipro## from the bonus headshot damage is permanently applied to hitting enemies on the body.\n\nThis skill is only activated by SMGs fired in automatic mode, LMGs or Miniguns.",

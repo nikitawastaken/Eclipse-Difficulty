@@ -242,6 +242,8 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	if is_moving then
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "moving_recoil_multiplier", 1)
+
+			multiplier = multiplier * managers.player:upgrade_value("weapon", "moving_recoil_penalty_reduction", 1)
 		end
 	else
 		for _, category in ipairs(categories) do

@@ -560,31 +560,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.fire_trap.multipro = "20"
 
 	-- Steady Grip
-	self.definitions.smg_recoil_index_addend = {
-		name_id = "menu_smg_recoil_index_addend",
+	self.values.weapon.moving_recoil_penalty_reduction = { 0.8 }
+	self.definitions.weapon_moving_recoil_penalty_reduction = {
+		name_id = "menu_weapon_moving_recoil_penalty_reduction",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "recoil_index_addend",
-			category = "smg",
+			upgrade = "moving_recoil_penalty_reduction",
+			category = "weapon",
 		},
 	}
-	self.values.smg.recoil_index_addend = { 1 }
-
-	self.definitions.minigun_recoil_index_addend = {
-		name_id = "menu_smg_recoil_index_addend",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "recoil_index_addend",
-			category = "minigun",
-		},
-	}
-	self.values.minigun.recoil_index_addend = { 1 }
-	self.values.team.weapon.recoil_index_addend[1] = 1
-	self.values.team.weapon.suppression_recoil_index_addend[1] = 1
+	self.values.player.stability_increase_bonus_1[1] = 1
 	self.skill_descs.steady_grip.multibasic = "4"
-	self.skill_descs.steady_grip.multipro = "4"
+	self.skill_descs.steady_grip.multipro = "20%"
 
 	-- Oppressor
 	self.definitions.player_suppression_bonus_2 = {
@@ -640,7 +628,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.values.weapon.hipfire_spread_penalty_reduction = { 0.8 }
 	self.definitions.weapon_hipfire_spread_penalty_reduction = {
-		name_id = "menu_hipfire_spread_penalty_reduction",
+		name_id = "menu_weapon_hipfire_spread_penalty_reduction",
 		category = "feature",
 		upgrade = {
 			value = 1,
