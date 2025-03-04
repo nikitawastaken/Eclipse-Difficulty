@@ -38,7 +38,7 @@ function FPCameraPlayerBase:_vertical_recoil_kick(t, dt)
 		end
 	elseif self._recoil_kick.to_reduce then
 		self._recoil_kick.current = nil
-		local n = math.lerp(self._recoil_kick.to_reduce, 0, math.min(1, 1.5 * managers.player:upgrade_value("weapon", "faster_recoil_recentering", 1) * dt ))
+		local n = math.lerp(self._recoil_kick.to_reduce, 0, math.min(1, 1.5 * managers.player:upgrade_value("weapon", "faster_recoil_recentering", 1) * dt))
 		r_value = -(self._recoil_kick.to_reduce - n)
 		self._recoil_kick.to_reduce = n
 
