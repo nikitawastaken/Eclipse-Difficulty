@@ -75,8 +75,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.black_marketeer[2].upgrades = { "player_hostage_health_regen_addend_2", "player_hostage_min_sum_taker_2", "player_joker_counts_for_hostage_boost" }
 
 	-- Stable Shot
-	self.skills.stable_shot[1].upgrades = { "assault_rifle_spread_index_addend", "snp_spread_index_addend" }
-	self.skills.stable_shot[2].upgrades = { "team_weapon_spread_index_addend" }
+	self.skills.stable_shot[1].upgrades = { "player_weapon_accuracy_increase_1" }
+	self.skills.stable_shot[2].upgrades = { "weapon_faster_recoil_recentering" }
 
 	-- Marksman
 	self.skills.sharpshooter[1].upgrades = { "weapon_steelsight_recoil_multiplier" }
@@ -213,7 +213,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.eco_sentry.icon_xy = { 7, 8 }
 
 	-- Steady Grip
-	self.skills.steady_grip[1].upgrades = { "lmg_recoil_index_addend", "smg_recoil_index_addend", "minigun_recoil_index_addend" }
+	self.skills.steady_grip[1].upgrades = { "player_stability_increase_bonus_1" }
 	self.skills.steady_grip[2].upgrades = { "team_weapon_recoil_index_addend", "team_weapon_suppression_recoil_index_addend" }
 	self.skills.steady_grip.icon_xy = { 7, 7 }
 

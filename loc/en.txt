@@ -57,7 +57,7 @@
 	"menu_stockholm_syndrome_beta": "Hostage Situation",
 	"menu_stockholm_syndrome_beta_desc": "BASIC: ##$basic##\nYou and your crew gain ##$multibasic## damage absorption for each hostage you have.\n\nACE: ##$pro##\nEach hostage you have will extend the downtime between police assaults by ##$multipro additional## seconds.\n\nNote: These effects stack up to a maximum of ##4## hostages.",
 	"menu_control_freak_beta_desc": "BASIC: ##$basic##\nYour converted enemy takes ##$multibasic3## less damage.\n\nACE: ##$pro##\nYour converted enemy takes an additional ##$multipro4## less damage.",
-	"menu_stable_shot_beta_desc": "BASIC: ##$basic##\nYour Sniper and Assault Rifles gain ##$multibasic## accuracy.\n\nACE: ##$pro##\nYou and your crew's weapon accuracy is increased by ##$multipro## points.",
+	"menu_stable_shot_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## accuracy.\n\nACE: ##$pro##\nThe time it takes for your aim to recenter after last shot is reduced by ##$multipro##.",
 	"menu_rifleman_beta_desc": "BASIC: ##$basic##\nYou snap to zoom ##$multibasic## faster.\n\nACE: ##$pro##\nYou swap your weapons ##$multipro## faster.",
 	"menu_sharpshooter_beta_desc": "BASIC: ##$basic##\nYour weapons are ##$multibasic## more stable when you are aiming down sights.\n\nACE: ##$pro##\nYou gain ##$multipro## weapon accuracy while standing still.",
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Sniper and Assault Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot will increase your reload speed by ##$multipro## for ##$multipro2## seconds. Can only be triggered by SMGs, Assault Rifles and Sniper Rifles fired in single shot fire mode.",
@@ -107,7 +107,7 @@
 	"menu_combat_engineering_beta": "Combat Engineer",
 	"menu_more_fire_power_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## more shaped charges and ##$multibasic2## more trip mines.\n\nACE: ##$pro##\nYou gain ##$multipro## more shaped charges and ##$multipro2## more trip mines.",
 	"st_menu_technician_auto": "Assault",
-	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour SMGs, LMGs and Miniguns gain ##$multibasic## stability.\n\nACE: ##$pro##\nYou and your crew's weapon stability is increased by ##$multipro## points."
+	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## stability.\n\nACE: ##$pro##\nYou and your crew's weapon stability is increased by ##$multipro## points."
 	"menu_fast_fire_beta": "Lock N' Load",
 	"menu_fast_fire_beta_desc": "BASIC: ##$basic##\nYou can now hip-fire with your weapons while sprinting.\n\nACE: ##$pro##\nYou no longer have a movement speed penalty when wielding Heavy Weaponry.",
 	"menu_body_expertise_beta_desc": "BASIC: ##$basic##\nAll of your ranged weapons can now pierce through enemy body armor.\n\nDoes not apply to throwable weapons.\n\nACE: ##$pro##\n##$multipro## from the bonus headshot damage is permanently applied to hitting enemies on the body.\n\nThis skill is only activated by SMGs fired in automatic mode, LMGs or Miniguns.",

@@ -222,40 +222,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.black_marketeer.multipro = "12"
 
 	-- Stable Shot
-	self.definitions.assault_rifle_spread_index_addend = {
-		name_id = "menu_assault_rifle_spread_index_addend",
+	self.definitions.weapon_faster_recoil_recentering = {
+		name_id = "menu_weapon_faster_recoil_recentering",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "spread_index_addend",
-			category = "assault_rifle",
-		},
-	}
-	self.values.assault_rifle.spread_index_addend = { 1 }
-
-	self.definitions.snp_spread_index_addend = {
-		name_id = "menu_snp_spread_index_addend",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "spread_index_addend",
-			category = "snp",
-		},
-	}
-	self.values.snp.spread_index_addend = { 1 }
-
-	self.definitions.team_weapon_spread_index_addend = {
-		name_id = "menu_team_weapon_spread_index_addend",
-		category = "team",
-		upgrade = {
-			value = 1,
-			upgrade = "spread_index_addend",
+			upgrade = "faster_recoil_recentering",
 			category = "weapon",
 		},
 	}
-	self.values.team.weapon.spread_index_addend = { 1 }
+	self.values.player.weapon_accuracy_increase[1] = 1
+	self.values.weapon.faster_recoil_recentering = { 2 }
 	self.skill_descs.stable_shot.multibasic = "4"
-	self.skill_descs.stable_shot.multipro = "4"
+	self.skill_descs.stable_shot.multipro = "50%"
 
 	-- Rifleman
 	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.25
