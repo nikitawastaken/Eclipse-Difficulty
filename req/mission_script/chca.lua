@@ -1,16 +1,9 @@
+local preferred = Eclipse.preferred
 return {
 	[101469] = {
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-		},
+		groups = preferred.no_shields,
 	},
 	[101470] = {
-		groups = {
-			tac_shield_wall = false,
-			tac_shield_wall_ranged = false,
-			tac_shield_wall_charge = false,
-		},
+		groups = preferred.no_shields,
 	},
 }
