@@ -620,6 +620,7 @@ function PlayerStandard:_update_network_jump(pos, is_exit)
 
 		self._ext_network:send("action_jump", pos or self._pos, self._send_jump_vec)
 
+		-- Record the jumping last jump velocity used for jumpthrows
 		self._last_sent_jump_vec = self._send_jump_vec
 		self._send_jump_vec = nil
 		self._is_jumping = true

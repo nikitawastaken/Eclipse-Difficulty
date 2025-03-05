@@ -7,8 +7,7 @@ function GrenadeBase:throw(params)
 	self._owner = params.owner
 	local velocity = params.dir
 	local adjust_z = 50
-	-- Base launch_speed is 250
-	local launch_speed = 350
+	local launch_speed = 250
 	local push_at_body_index = nil
 
 	if params.projectile_entry and tweak_data.projectiles[params.projectile_entry] then
@@ -22,11 +21,10 @@ function GrenadeBase:throw(params)
 	local velocity_addend_xy = Vector3(0, 0, 0)
 	local velocity_addend_z = Vector3(0, 0, 0)
 	if alive(self._thrower_unit) then
-		-- Slightly nerf the vertical velocity addend and make sure it doesn't work when you're falling from the jump
-		velocity_addend_z = thrower_state._is_jumping and not thrower_state._is_jump_middle_passed and (thrower_state._last_sent_jump_vec * 0.7) or velocity_addend_z
-		velocity_addend_xy = thrower_state._last_velocity_xy
+		-- Slightly nerf the velocity addends and make sure it doesn't work when you're falling from the jump
+		velocity_addend_z = thrower_state._is_jumping and not thrower_state._is_jump_middle_passed and (thrower_state._last_sent_jump_vec * 0.5) or velocity_addend_z
+		velocity_addend_xy = thrower_state._last_velocity_xy * 0.5
 	end
-	Eclipse:log_chat(tostring(velocity), tostring(velocity_addend))
 
 	velocity = (velocity * launch_speed) + velocity_addend_xy + velocity_addend_z
 	velocity = Vector3(velocity.x, velocity.y, velocity.z + adjust_z)
