@@ -910,6 +910,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.cobra.speech_prefix_count = 2
 		self.cobra.access = "gangster"
 	end
+    table.insert(self._enemy_list, "cobra")
 
 	self.biker.melee_weapon = "knife_1"
 	self.biker.speech_prefix_p1 = "bik"
