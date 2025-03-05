@@ -450,10 +450,10 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 	self.unit_categories.FBI_agent_3 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3") },
-			russia = { Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2") },
-			zombie = { Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2") },
-			murkywater = { Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2") },
-			federales = { Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2") },
+			russia = { Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3") },
+			zombie = { Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3") },
+			murkywater = { Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3") },
+			federales = { Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3") },
 		},
 		access = access_type_walk_only,
 	}
