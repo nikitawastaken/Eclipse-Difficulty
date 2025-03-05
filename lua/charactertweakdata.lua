@@ -1499,7 +1499,7 @@ function CharacterTweakData:_set_presets()
 	if is_eclipse then
 		self:_multiply_all_speeds(1.1, 1.05)
 
-		self.spooc.spooc_sound_events = { detect_stop = "cloaker_presence_stop", detect = "cloaker_presence_loop" } -- cloakers are silent
+		self.spooc.spooc_sound_events = { detect_stop = nil, detect = "clk_c01x_plu" } -- cloakers whistle to announce their charge
 		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line
 	end
 end
