@@ -603,3 +603,30 @@ end)
 function PlayerManager.carry_blocked_by_cooldown()
 	return false
 end
+
+function PlayerStandard:_update_network_jump(pos, is_exit)
+	local mover = self._unit:mover()
+
+	if self._is_jumping and (is_exit or not mover or mover:standing() and mover:velocity().z < 0 or mover:gravity().z == 0) then
+		if not self._is_jump_middle_passed then
+			self._is_jump_middle_passed = true
+		end
+
+		self._is_jumping = nil
+	elseif self._send_jump_vec and not is_exit then
+		if self._is_jumping and type(self._gnd_ray) ~= "boolean" then
+			self._ext_network:send("action_walk_nav_point", self._gnd_ray and self._gnd_ray.position)
+		end
+
+		self._ext_network:send("action_jump", pos or self._pos, self._send_jump_vec)
+
+		self._last_sent_jump_vec = self._send_jump_vec
+		self._send_jump_vec = nil
+		self._is_jumping = true
+		self._is_jump_middle_passed = nil
+
+		mvector3.set(self._last_sent_pos, pos or self._pos)
+	elseif self._is_jumping and not self._is_jump_middle_passed and mover and mover:velocity().z < 0 then
+		self._is_jump_middle_passed = true
+	end
+end
