@@ -30,7 +30,7 @@ local heli_enemy1 = {
 		enemy = heavy,
 	},
 	on_executed = {
-	    { id = 103457, delay = 0 },
+		{ id = 103457, delay = 0 },
 	},
 }
 local heli_enemy2 = {
@@ -51,8 +51,8 @@ local heli_enemy3 = {
 }
 local heli_enemy4 = {
 	values = {
-		participate_to_group_ai = false
-	}
+		participate_to_group_ai = false,
+	},
 }
 
 local pro_chance_mul = is_pro_job and 1.5 or 1
@@ -61,8 +61,8 @@ local swat_shield_dozer_filter = {
 }
 
 return {
-    -- adjust FBI chopper ambush
-    [103432] = {
+	-- adjust FBI chopper ambush
+	[103432] = {
 		on_executed = {
 			{ id = 103437, remove = true },
 		},
@@ -77,21 +77,21 @@ return {
 			{ id = 103437, remove = true },
 		},
 	},
-    [103435] = {
+	[103435] = {
 		on_executed = {
 			{ id = 103437, remove = true },
 		},
 	},
-    [103136] = {
+	[103136] = {
 		on_executed = {
 			{ id = 103437, delay = 0 },
 		},
 	},
 	[103422] = heli_enemy1,
-    [103422] = heli_enemy4,
+	[103422] = heli_enemy4,
 	[103424] = heli_enemy2,
 	[103425] = heli_enemy3,
-    [103455] = swat_shield_dozer_filter,
+	[103455] = swat_shield_dozer_filter,
 	[103456] = swat_shield_dozer_filter,
 	[103457] = swat_shield_dozer_filter,
 	[101298] = gangster_outside_amount,

@@ -43,12 +43,12 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
 		},
 		swat_2 = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
-        shield = {
-            "units/payday2/characters/ene_shield_1/ene_shield_1",
-            "units/payday2/characters/ene_shield_1/ene_shield_1",
-            "units/payday2/characters/ene_shield_1/ene_shield_1",
-            "units/payday2/characters/ene_city_shield/ene_city_shield",
-        },
+		shield = {
+			"units/payday2/characters/ene_shield_1/ene_shield_1",
+			"units/payday2/characters/ene_shield_1/ene_shield_1",
+			"units/payday2/characters/ene_shield_1/ene_shield_1",
+			"units/payday2/characters/ene_city_shield/ene_city_shield",
+		},
 		bulldozer = {
 			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
 			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
@@ -102,8 +102,8 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = "cloaker",
 	[("units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"):key()] = "swat_1",
 	[("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_1/ene_male_marshal_shield_1"):key()] = "shield",
-    [("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "elite_bulldozer",
-    [("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"):key()] = "elite_bulldozer",
+	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "elite_bulldozer",
+	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"):key()] = "elite_bulldozer",
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic"):key()] = "elite_bulldozer",
 	[("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870"):key()] = "bulldozer",
 	[("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_saiga/ene_akan_fbi_tank_saiga"):key()] = "bulldozer",
@@ -112,7 +112,7 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_2/ene_bulldozer_hvh_2"):key()] = "bulldozer",
 	[("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_3/ene_bulldozer_hvh_3"):key()] = "elite_bulldozer",
 	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2"):key()] = "bulldozer", -- that's a green dozer
-	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3"):key()] = "bulldozer", -- that's a blackdozer 
+	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3"):key()] = "bulldozer", -- that's a blackdozer
 	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4"):key()] = "elite_bulldozer", -- that's a skulldozer
 	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1"):key()] = "elite_bulldozer", -- that's a minigundozer
 	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic"):key()] = "elite_bulldozer",
