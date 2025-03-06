@@ -1,7 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local enabled_blocked_roof_access = math.random() < 0.45
+local enabled_blocked_roof_access = math.random() < 0.6
 local enabled = {
 	values = {
 		enabled = true,
@@ -95,7 +95,7 @@ return {
 			{ id = 400039, delay = 3 },
 		},
 	},
-	-- ddd missing navlinks
+	-- add missing navlinks
 	[103247] = {
 		on_executed = {
 			{ id = 102468, delay = 0 },

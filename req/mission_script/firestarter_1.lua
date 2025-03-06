@@ -29,65 +29,71 @@ local heli_enemy1 = {
 	values = {
 		enemy = heavy,
 	},
+	on_executed = {
+	    { id = 103457, delay = 0 },
+	},
 }
 local heli_enemy2 = {
 	values = {
 		enemy = shield,
+	},
+	on_executed = {
+		{ id = 103456, delay = 0 },
 	},
 }
 local heli_enemy3 = {
 	values = {
 		enemy = bulldozer,
 	},
+	on_executed = {
+		{ id = 103455, delay = 0 },
+	},
+}
+local heli_enemy4 = {
+	values = {
+		participate_to_group_ai = false
+	}
 }
 
 local pro_chance_mul = is_pro_job and 1.5 or 1
+local swat_shield_dozer_filter = {
+	so_access_filter = { "swat", "shield", "tank" },
+}
 
 return {
-	-- adjust heli ambush conditions
-	[103422] = {
-		values = {
-			counter_target = 1,
-		},
-	},
-	[103423] = {
-		values = {
-			counter_target = 2,
-		},
-	},
-	[103424] = {
-		values = {
-			counter_target = 3,
-		},
-	},
-	[103425] = {
-		values = {
-			counter_target = 4,
-		},
-	},
-	[103432] = {
-		values = {
-			chance = 15 * pro_chance_mul,
+    -- adjust FBI chopper ambush
+    [103432] = {
+		on_executed = {
+			{ id = 103437, remove = true },
 		},
 	},
 	[103433] = {
-		values = {
-			chance = 30 * pro_chance_mul,
+		on_executed = {
+			{ id = 103437, remove = true },
 		},
 	},
 	[103434] = {
-		values = {
-			chance = 45 * pro_chance_mul,
+		on_executed = {
+			{ id = 103437, remove = true },
 		},
 	},
-	[103435] = {
-		values = {
-			chance = 60 * pro_chance_mul,
+    [103435] = {
+		on_executed = {
+			{ id = 103437, remove = true },
+		},
+	},
+    [103136] = {
+		on_executed = {
+			{ id = 103437, delay = 0 },
 		},
 	},
 	[103422] = heli_enemy1,
+    [103422] = heli_enemy4,
 	[103424] = heli_enemy2,
 	[103425] = heli_enemy3,
+    [103455] = swat_shield_dozer_filter,
+	[103456] = swat_shield_dozer_filter,
+	[103457] = swat_shield_dozer_filter,
 	[101298] = gangster_outside_amount,
 	[101040] = gangster_outside_amount,
 	[100918] = gangster_outside_amount,
