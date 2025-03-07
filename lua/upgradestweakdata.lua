@@ -267,21 +267,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.speedy_reload.multipro2 = "6"
 
 	-- Headshot Fury
-	self.values.weapon.magnetizing_bullets = { true } -- unused
-	self.definitions.weapon_magnetizing_bullets = {
-		name_id = "menu_weapon_magnetizing_bullets",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "magnetizing_bullets",
-			category = "weapon",
-		},
-	}
-
 	self.values.snp.consecutive_headshots = {
 		{
-			damage_mul_addend = 0.25,
-			max_headshots = 4,
+			damage_mul_addend = 0.2,
+			max_headshots = 5,
 		},
 	}
 	self.definitions.snp_consecutive_headshots = {
@@ -311,8 +300,8 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 
-	self.skill_descs.single_shot_ammo_return.multibasic = "25%"
-	self.skill_descs.single_shot_ammo_return.multibasic2 = "4"
+	self.skill_descs.single_shot_ammo_return.multibasic = "20%"
+	self.skill_descs.single_shot_ammo_return.multibasic2 = "5"
 	self.skill_descs.single_shot_ammo_return.multipro = "3"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
 	self.skill_descs.single_shot_ammo_return.multipro3 = "5m"

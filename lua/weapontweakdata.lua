@@ -1325,7 +1325,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- M308
 	table.insert(self.new_m14.categories, "dmr")
-	self.new_m14.CLIP_AMMO_MAX = 10
+	self.new_m14.CLIP_AMMO_MAX = 15
 	self.new_m14.stats.damage = 160
 	self.new_m14.stats.spread = 22
 	self.new_m14.stats.recoil = 3
@@ -2250,7 +2250,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tti.stats.damage = 160
 	self.tti.stats.spread = 21
 	self.tti.stats.recoil = 7
-	self.tti.stats.concealment = 16
+	self.tti.stats.concealment = 14
 	self.tti.fire_mode_data.fire_rate = 60 / 200
 	self.tti.reload_speed_multiplier = 0.8
 
@@ -2259,7 +2259,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.siltstone.stats.damage = 160
 	self.siltstone.stats.spread = 23
 	self.siltstone.stats.recoil = 5
-	self.siltstone.stats.concealment = 16
+	self.siltstone.stats.concealment = 20
 	self.siltstone.fire_mode_data.fire_rate = 60 / 200
 
 	-- Kang Arms
@@ -2267,7 +2267,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.qbu88.stats.damage = 160
 	self.qbu88.stats.spread = 21
 	self.qbu88.stats.recoil = 9
-	self.qbu88.stats.concealment = 18
+	self.qbu88.stats.concealment = 17
 	self.qbu88.fire_mode_data.fire_rate = 60 / 250
 	self.qbu88.fire_rate_multiplier = 200 / 250
 
@@ -2276,12 +2276,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.victor.stats.damage = 160
 	self.victor.stats.spread = 20
 	self.victor.stats.recoil = 8
-	self.victor.stats.concealment = 16
+	self.victor.stats.concealment = 15
 	self.victor.fire_mode_data.fire_rate = 60 / 200
 
 	-- Lebensauger
 	self.wa2000.CLIP_AMMO_MAX = 5
-	self.wa2000.stats.damage = 240
+	self.wa2000.stats.damage = 200
 	self.wa2000.stats.spread = 22
 	self.wa2000.stats.recoil = 7
 	self.wa2000.stats.concealment = 17
@@ -2291,7 +2291,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	table.insert(self.sbl.categories, "single_action")
 	self.sbl.use_data.selection_index = 1
 	self.sbl.CLIP_AMMO_MAX = 6
-	self.sbl.stats.damage = 240
+	self.sbl.stats.damage = 200
 	self.sbl.stats.spread = 20
 	self.sbl.stats.recoil = 6
 	self.sbl.stats.concealment = 19
