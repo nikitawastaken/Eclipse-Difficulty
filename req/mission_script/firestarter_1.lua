@@ -94,20 +94,20 @@ return {
 	[103455] = swat_shield_dozer_filter,
 	[103456] = swat_shield_dozer_filter,
 	[103457] = swat_shield_dozer_filter,
-    -- restore unused snipers
-    [102569] = {
+	-- restore unused snipers
+	[102569] = {
 		on_executed = {
 			{ id = 101907, delay = 120 },
 		},
 	},
-    -- fix tower sniper not using SOs
-    [101905] = {
+	-- fix tower sniper not using SOs
+	[101905] = {
 		on_executed = {
 			{ id = 101906, delay = 0 },
-            { id = 101908, delay = 0 },
+			{ id = 101908, delay = 0 },
 		},
 	},
-    -- tweak gangsters amount
+	-- tweak gangsters amount
 	[101298] = gangster_outside_amount,
 	[101040] = gangster_outside_amount,
 	[100918] = gangster_outside_amount,
@@ -118,7 +118,7 @@ return {
 	[103168] = gangster_inside_amount,
 	[101306] = gangster_stationary_amount,
 	[101046] = gangster_stationary_amount,
-    -- group tweaks
+	-- group tweaks
 	[103553] = {
 		values = {
 			interval = 10,
