@@ -7,7 +7,7 @@ local optsSniper_1 = {
 	enemy = sniper,
 	spawn_action = "e_sp_down_9_6m",
 	on_executed = {
-		{ id = 400006, delay = 0 },
+		{ id = 400005, delay = 0 },
 	},
 	enabled = true,
 }
@@ -15,21 +15,21 @@ local optsSniper_2 = {
 	enemy = sniper,
 	spawn_action = "e_sp_down_9_6m",
 	on_executed = {
-		{ id = 400007, delay = 0 },
+		{ id = 400006, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSniper_3 = {
 	enemy = sniper,
 	on_executed = {
-		{ id = 400009, delay = 0 },
+		{ id = 400007, delay = 0 },
 	},
 	enabled = true,
 }
 local optsSniper_4 = {
 	enemy = sniper,
 	on_executed = {
-		{ id = 400010, delay = 0 },
+		{ id = 400008, delay = 0 },
 	},
 	enabled = true,
 }
