@@ -2267,7 +2267,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.qbu88.stats.damage = 160
 	self.qbu88.stats.spread = 21
 	self.qbu88.stats.recoil = 9
-	self.qbu88.stats.concealment = 17
+	self.qbu88.stats.concealment = 18
 	self.qbu88.fire_mode_data.fire_rate = 60 / 250
 	self.qbu88.fire_rate_multiplier = 200 / 250
 
