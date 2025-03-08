@@ -2053,8 +2053,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-	local Random_shield = { "FBI_shield", "Elite_shield" }
-
 	self.enemy_spawn_groups.Elite_assault_shield = {
 		amount = { 4, 4 },
 		spawn = {
@@ -2063,8 +2061,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_max = 1,
 				rank = 3,
-				unit = "FBI_shield",
-				random_unit = Random_shield,
+				unit = "Elite_shield",
 				tactics = self._tactics.shield_agg,
 				random_tactics = shield_random_tactics,
 			},
@@ -2666,13 +2663,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			FBI_assault_swats = { 1, 0.75, 0 },
 			FBI_assault_heavies = { 0, 0.25, 0.75 },
-			FBI_assault_shield = { 0, 0.2, 0 },
-			FBI_assault_taser = { 0, 0.15, 0 },
+			FBI_assault_shield = { 0.1, 0.2, 0.25 },
+			FBI_assault_taser = { 0.05, 0.15, 0 },
 			FBI_assault_cloaker = { 0, 0.15, 0.25 },
 			FBI_assault_bulldozer = { 0, 0.1, 0.1 },
 
 			Elite_assault_swats = { 0, 0.5, 0.75 },
-			Elite_assault_shield = { 0, 0, 0.3 },
+			Elite_assault_shield = { 0, 0, 0.25 },
 			Elite_assault_sniper = { 0, 0.15, 0.25 },
 			Elite_assault_taser = { 0, 0, 0.25 },
 			Elite_assault_bulldozer = { 0, 0, 0.2 },
