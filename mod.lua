@@ -93,7 +93,7 @@ if not Eclipse then
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
 	Eclipse.preferred = Eclipse:require("preferred_groups")
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
-	Eclipse.map_sizes = Eclipse:require("map_sizes")
+	Eclipse.level_scale = Eclipse:require("level_scale")
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
