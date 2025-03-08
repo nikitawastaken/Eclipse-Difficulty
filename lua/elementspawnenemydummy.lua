@@ -16,6 +16,10 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		heavy_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
 		heavy_2 = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
+        taser = {
+			"units/payday2/characters/ene_taser_1/ene_taser_1",
+			"units/payday2/characters/ene_taser_r870/ene_taser_r870",
+		},
 		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	},
 	FBI = {
@@ -28,6 +32,10 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
+        taser = {
+			"units/payday2/characters/ene_taser_1/ene_taser_1",
+			"units/payday2/characters/ene_taser_r870/ene_taser_r870",
+		},
 		bulldozer = {
 			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
 			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
@@ -43,6 +51,10 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
 		},
 		swat_2 = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
+        taser = {
+			"units/payday2/characters/ene_taser_1/ene_taser_1",
+			"units/payday2/characters/ene_taser_r870/ene_taser_r870",
+		},
 		shield = {
 			"units/payday2/characters/ene_shield_1/ene_shield_1",
 			"units/payday2/characters/ene_shield_1/ene_shield_1",
