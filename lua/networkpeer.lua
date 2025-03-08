@@ -7,9 +7,6 @@ function NetworkPeer:verify_bag(carry_id, pickup)
 		self._carry_id[carry_id] = self._carry_id[carry_id] - 1
 		return true
 	end
-	for k, v in pairs(self._carry_id) do
-		Eclipse:log_chat(tostring(k), tostring(v))
-	end
 
 	if Network:is_client() and not pickup and not self._skipped_first_cheat then
 		self._skipped_first_cheat = true

@@ -789,7 +789,7 @@ end
 
 -- Tweak importance of spawn group distance in spawn group weight based on the groups to spawn
 -- Also slightly optimized this function to properly check all areas
-function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_groups, target_pos, max_dis, verify_clbk)
+function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_groups, target_pos, max_dis, verify_clbk, timed)
 	target_pos = target_pos or target_area.pos
 	max_dis = max_dis or math.huge
 
@@ -854,7 +854,7 @@ function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_gr
 		local my_spawn_group = valid_spawn_groups[i]
 		local my_group_types = my_spawn_group.mission_element:spawn_groups()
 		my_spawn_group.distance = dis
-		total_weight = total_weight + self:_choose_best_groups(candidate_groups, my_spawn_group, my_group_types, allowed_groups, my_wgt)
+		total_weight = total_weight + self:_choose_best_groups(candidate_groups, my_spawn_group, my_group_types, allowed_groups, my_wgt, timed)
 	end
 
 	if total_weight == 0 then
@@ -1118,8 +1118,13 @@ function GroupAIStateBesiege:_choose_best_group(best_groups, total_weight)
 	return best_grp, best_grp_type
 end
 
-function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task)
-	local spawn_group_desc = tweak_data.group_ai.enemy_spawn_groups[spawn_group_type]
+function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task, timed_desc)
+	local spawn_group_desc
+	if timed_desc then
+		spawn_group_desc = timed_desc
+	else
+		spawn_group_desc = tweak_data.group_ai.enemy_spawn_groups[spawn_group_type]
+	end
 
 	local function check_special_limit_reached(unit)
 		local category = tweak_data.group_ai.unit_categories[unit]
@@ -1251,7 +1256,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	return group
 end
 
-function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight)
+function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight, timed)
 	local total_weight = 0
 	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
 	local unit_categories = tweak_data.group_ai.unit_categories
@@ -1283,6 +1288,16 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 
 				total_weight = total_weight + mod_weight
 			end
+		elseif timed then
+			table.insert(best_groups, {
+				group = group,
+				group_type = group_type,
+				wght = weight,
+				cat_weight = 1,
+				dis_weight = weight,
+			})
+
+			total_weight = total_weight + weight
 		end
 	end
 
@@ -1770,5 +1785,95 @@ function GroupAIStatePonr:update(t, dt)
 	if self._delayed_hud_banner_update and managers.hud._hud_assault_corner then
 		GroupAIStatePonr.super.set_assault_endless(self, self._delayed_hud_banner_update_arg)
 		self._delayed_hud_banner_update = false
+	end
+end
+
+-- Custom timed groups
+function GroupAIStateBesiege:create_timed_groups_table()
+	if not tweak_data.group_ai.timed_enemy_spawn_groups or not tweak_data.group_ai.timer_data then
+		return
+	end
+
+	local timed_groups = tweak_data.group_ai.timer_data
+	local groups = {}
+	for group_id, group_tweak_data in pairs(tweak_data.group_ai.timed_enemy_spawn_groups) do
+		table.insert(groups, {
+			group_id = group_id,
+			group_data = group_tweak_data,
+		})
+	end
+	timed_groups.groups = groups
+
+	if next(timed_groups) then
+		self._timed_groups = timed_groups
+	end
+end
+
+---In GroupAITweakData.timer_data:
+---{
+--- initial_delay? = ...,
+--- cooldown? = ...,
+--- max_delay? = ...,
+--- min_delay? = ...,
+---	diff_scale? = function(timer, diff) ... return new_timer end
+---}
+function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
+	if not self._timed_groups then
+		return
+	end
+
+	local t = TimerManager:game():time()
+	local random_delay = math.rand(self._timed_groups.min_delay or 0, self._timed_groups.max_delay or 0)
+	local cooldown = self._timed_groups.cooldown
+	local scale = self._timed_groups.diff_scale or function(_a, _)
+		return _a
+	end
+	if not self._next_timed_group_spawn_t then
+		self._next_timed_group_spawn_t = t + scale(self._timed_groups.initial_delay + random_delay, self._difficulty_value)
+	elseif self._next_timed_group_spawn_t <= t then
+		local random_group = math.random(#self._timed_groups.groups)
+		local group_id = self._timed_groups.groups[random_group].group_id
+		local group_data = self._timed_groups.groups[random_group].group_data
+		if self:_spawn_timed_group(task_data, group_data, target_area, {
+			[group_id] = {
+				1,
+				1,
+				1,
+			},
+		}, group_data) then
+			self._next_timed_group_spawn_t = t + scale(cooldown + random_delay, self._difficulty_value)
+		else
+			self._next_timed_group_spawn_t = t + 0.5 * scale(cooldown + random_delay, self._difficulty_value)
+		end
+	end
+end
+
+function GroupAIStateBesiege:_spawn_timed_group(task_data, group_data_dynamic, target_area, group_to_allow, group_tweak)
+	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(target_area, group_to_allow, nil, nil, nil, true)
+
+	if not spawn_group then
+		return false
+	end
+
+	local grp_objective = {
+		attitude = "avoid",
+		pose = "crouch",
+		type = "assault_area",
+		stance = "hos",
+		area = spawn_group.area,
+		coarse_path = {
+			{
+				spawn_group.area.pos_nav_seg,
+				spawn_group.area.pos,
+			},
+		},
+	}
+
+	spawn_group.team_id = group_tweak.team_id
+	local group = self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, task_data, group_tweak)
+
+	if group then
+		group_data_dynamic.group = group
+		return true
 	end
 end

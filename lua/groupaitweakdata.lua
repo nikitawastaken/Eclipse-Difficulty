@@ -6,6 +6,11 @@ local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
 end
 
+-- Top level init
+Hooks:PostHook(GroupAITweakData, "init", "eclipse_groupaitd_init", function(self)
+	self:_init_timed_spawns_level()
+end)
+
 -- Improve enemy chatter, make proper use of chatter settings like duration and radius
 Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", function(self)
 	local interval = { 1, 2 }
@@ -2335,8 +2340,86 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 end)
 
--- get rid of marshals
-function GroupAITweakData:_init_enemy_spawn_groups_level() end
+-- Timed groups tweak table
+function GroupAITweakData:_init_enemy_spawn_groups_level()
+	local level = Global.game_settings and Global.game_settings.level_id or Global.level_data and Global.level_data.level_id
+	---Example
+	--[[ if level == "wwh" then
+		self.timed_enemy_spawn_groups = {
+			eclipse_marshal_squad = {
+				max_nr_simultaneous_groups = 2,
+				amount = { 4, 4 },
+				spawn = {
+					{
+						amount_min = 2,
+						rank = 2,
+						freq = 1,
+						unit = "marshal_shield",
+						tactics = self._tactics.marshal_shield,
+					},
+					{
+						amount_min = 2,
+						rank = 1,
+						freq = 1,
+						unit = "marshal_marksman",
+						tactics = self._tactics.marshal_marksman,
+					},
+				},
+				spawn_point_chk_ref = table.list_to_set({
+					"tac_shield_wall",
+					"tac_shield_wall_ranged",
+					"tac_shield_wall_charge",
+				}),
+			},
+			eclipse_marshal_squad_2 = {
+				max_nr_simultaneous_groups = 2,
+				team_id = "mobster1",
+				amount = { 2, 2 },
+				spawn = {
+					{
+						amount_min = 1,
+						rank = 2,
+						freq = 1,
+						unit = "marshal_shield",
+						tactics = self._tactics.marshal_shield,
+					},
+					{
+						amount_min = 1,
+						rank = 1,
+						freq = 1,
+						unit = "marshal_marksman",
+						tactics = self._tactics.marshal_marksman,
+					},
+				},
+				spawn_point_chk_ref = table.list_to_set({
+					"tac_shield_wall",
+					"tac_shield_wall_ranged",
+					"tac_shield_wall_charge",
+				}),
+			},
+		}
+	end ]]
+end
+
+-- Timed groups level tweak table
+function GroupAITweakData:_init_timed_spawns_level()
+	local level = Global.game_settings and Global.game_settings.level_id or Global.level_data and Global.level_data.level_id
+	---Example
+	--[[ if level == "wwh" then
+		self.timer_data = {
+			initial_delay = 0,
+			cooldown = 10,
+			min_delay = 1,
+			max_delay = 15,
+			diff_scale = function(timer, diff)
+				if diff > 0.5 then
+					timer = timer * 0.8
+				end
+				return timer
+			end,
+		}
+	end ]]
+end
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	-- difficulty scaling
