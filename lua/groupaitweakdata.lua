@@ -1908,8 +1908,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-    local Random_bulldozer = { "bulldozer_1", "bulldozer_2" }
-
 	self.enemy_spawn_groups.FBI_assault_bulldozer = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2128,7 +2126,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-	local Random_elite_bulldozer = { "Elite_bulldozer_1", "Elite_bulldozer_2" }
 
 	self.enemy_spawn_groups.Elite_assault_bulldozer = {
 		amount = { 3, 4 },
@@ -2138,8 +2135,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_max = 1,
 				rank = 3,
-				unit = "bulldozer",
-				random_unit = Random_elite_bulldozer,
+				unit = "Elite_bulldozer",
 				tactics = self._tactics.bulldozer,
 			},
 			{
@@ -2674,6 +2670,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			FBI_assault_shield = { 0, 0.2, 0 },
 			FBI_assault_taser = { 0, 0.15, 0 },
 			FBI_assault_cloaker = { 0, 0.15, 0.25 },
+			FBI_assault_bulldozer = { 0, 0.1, 0 },
 
 			Elite_assault_swats = { 0, 0.5, 0.75 },
 			Elite_assault_shield = { 0, 0, 0.3 },
@@ -2752,7 +2749,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups = {}
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
-	
+
 	if difficulty_index < 4 then
 		self.ponr.faction = {
 			"FBI",
@@ -2834,7 +2831,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.cloaker.groups = {
 		single_spooc = { 1, 1, 1 }
 	}
-]]
+
 	--
 	-- misc
 	self.ponr.assault.groups.single_spooc = { 0, 0, 0 }
