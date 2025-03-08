@@ -2126,7 +2126,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-
 	self.enemy_spawn_groups.Elite_assault_bulldozer = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2749,7 +2748,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups = {}
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
-
 	if difficulty_index < 4 then
 		self.ponr.faction = {
 			"FBI",
@@ -2815,12 +2813,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 6 then
 		self.ponr.assault.groups = {
-            FBI_assault_cloaker = { 0.3, 0.3, 0.3 },
-            FBI_assault_heavies = { 1, 1, 1 },
+			FBI_assault_cloaker = { 0.3, 0.3, 0.3 },
+			FBI_assault_heavies = { 1, 1, 1 },
 
-            Elite_assault_swats = { 0.5, 0.5, 0.5 },
-            Elite_assault_shield = { 0.4, 0.4, 0.4 },
-            Elite_assault_taser = { 0.3, 0.3, 0.3 },
+			Elite_assault_swats = { 0.5, 0.5, 0.5 },
+			Elite_assault_shield = { 0.4, 0.4, 0.4 },
+			Elite_assault_taser = { 0.3, 0.3, 0.3 },
 			Elite_assault_bulldozer = { 0.25, 0.25, 0.25 },
 		}
 		self.ponr.reenforce.groups = {
@@ -2829,7 +2827,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	self.ponr.cloaker.groups = {
-		single_spooc = { 1, 1, 1 }
+		single_spooc = { 1, 1, 1 },
 	}
 
 	--
