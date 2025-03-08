@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <dynamic_object>
-	<diesel materials="units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap" orientation_object="rp_ene_acc_city_swat_cap" />
+	<diesel materials="units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap" orientation_object="rp_ene_acc_city_swat_cap" />
 	
 	<bodies>
 	 <body name="static_body" enabled="true" template="small_prop" pushed_by_mover="false" ang_damping="0.9">

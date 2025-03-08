@@ -13,7 +13,6 @@
 		</extension>
 		<extension name="damage" class="UnitDamage" />
 	</extensions>
-	
 	<sounds>
 		<soundsource name="root" source="rp_wpn_npc_scar_murkywater" />
 		<default_soundsource source="rp_wpn_npc_scar_murkywater" />

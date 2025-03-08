@@ -26,7 +26,7 @@
 			<object name="root_point"/>
 			<object name="c_capsule_mover_blocker_new" collision_type="capsule"/>
 		</body>
-		
+
 
 		<body name="body_helmet" enabled="true" template="character" friction="0.6" collision_class="ragdoll">
 			<object name="Head"/>
@@ -35,7 +35,7 @@
 			<object name="c_helmet3" collision_type="convex" padding="-1" />
 			<object name="c_helmet4" collision_type="convex" padding="-1" />
 		</body>
-
+		
 		
 		<body name="body_helmet_plate" enabled="true" template="character" friction="0.6" collision_class="ragdoll">
 			<object name="Head"/>
@@ -321,6 +321,17 @@
 				
 			</lod_object>
 
+			<lod_object name="lod_gear">
+				<object name="g_gear" 					enabled="true"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">		
+					<material materials="mtr_swat" max_distance="1000" />
+					<material materials="mtr_swat_lod_1" max_distance="1500" />
+					<material materials="mtr_swat_lod_2" />				
+				</object>			
+				<object name="g_gear_lod1" 				enabled="true" lod="1" >			
+					<material materials="mtr_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_swat_lod_2" />				
+				</object>			
+			</lod_object>
 
 			<lod_object name="lod_head">
 			

@@ -1249,6 +1249,7 @@ function CharacterTweakData:character_map(...)
 
 	safe_add(char_map.basic, "ene_swat_3")
 	safe_add(char_map.basic, "ene_swat_heavy_r870")
+	safe_add(char_map.basic, "ene_tazer_r870")
 	safe_add(char_map.basic, "ene_fbi_swat_3")
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
@@ -1263,6 +1264,9 @@ end
 
 -- Add new weapons
 Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function(self)
+	table.insert(self.weap_ids, "r870_yellow")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_taser/wpn_npc_r870_taser"))
+	
 	table.insert(self.weap_ids, "r870_tank")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer"))
 

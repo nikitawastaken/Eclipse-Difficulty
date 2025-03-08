@@ -22,23 +22,15 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 end)
 
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
-local head_sequence_mapping_clean = Eclipse:require("head_sequences")
 
 local unit_sequence_mapping = {}
-local head_sequence_mapping = {}
 
 for name, sequence in pairs(unit_sequence_mapping_clean) do
 	unit_sequence_mapping[Idstring(name):key()] = sequence
 	unit_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
 end
 
-for name, sequence in pairs(head_sequence_mapping_clean) do
-	head_sequence_mapping[Idstring(name):key()] = sequence
-	head_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
-end
-
 CopBase.unit_sequence_mapping = deep_clone(unit_sequence_mapping)
-CopBase.head_sequence_mapping = deep_clone(head_sequence_mapping)
 
 function CopBase:_run_unit_sequences()
 	local name = self._unit:name():key()
@@ -56,21 +48,23 @@ function CopBase:_run_unit_sequences()
 
 	-- Run the initial sequence to enable pouches, helmets etc.
 	if unit_sequence then
+		local sequence_name = unit_sequence and unit_sequence.name
+		local sequence_head = unit_sequence and unit_sequence.head
+	
 		if self._unit:damage() then
-			if self._unit:damage():has_sequence(unit_sequence) then
-				self._unit:damage():run_sequence_simple(unit_sequence)
+			if self._unit:damage():has_sequence(sequence_name) then
+				self._unit:damage():run_sequence_simple(sequence_name)
 			end
 		end
-
+	
 		local spawn_manager_ext = self._unit:spawn_manager()
 
 		local damage_ext = self._unit:character_damage()
 		local head = damage_ext._head
 
-		local head_sequence = self.head_sequence_mapping[name]
-		local head_sequence_name = head_sequence and head_sequence.name
-		local head_sequence_disabled = head_sequence and head_sequence.disabled
-
+		local head_material = sequence_head and sequence_head.material
+		local head_sequences = sequence_head and sequence_head.run_sequence
+		
 		-- If the unit had a head defined in its .unit file, spawn and parent it
 		if spawn_manager_ext then
 			if head then
@@ -81,26 +75,24 @@ function CopBase:_run_unit_sequences()
 				self._head_unit = spawn_manager_ext:get_unit("cop_head")
 			end
 		end
-
-		-- If the head's sequence manager supports the parent unit, run its initial sequence
+	-- If the head's sequence manager supports the parent unit, run its initial sequence
 		if alive(self._head_unit) then
 			self._head_unit:set_enabled(self._unit:enabled())
 
-			if head_sequence then
-				if type(head_sequence_name) == "table" then
-					head_sequence_name = table.random(head_sequence_name)
+			if self._head_unit:damage() then
+				if type(head_material) == "table" then
+					head_material = table.random(head_material)
 				end
-
-				if self._head_unit:damage() and self._head_unit:damage():has_sequence(head_sequence_name) then
-					self._head_unit:damage():run_sequence_simple(head_sequence_name)
-
-					local disable_sequence
-					for _, part in pairs(head_sequence_disabled) do
-						disable_sequence = "disable_" .. part
-
-						if self._head_unit:damage() and self._head_unit:damage():has_sequence(disable_sequence) then
-							self._head_unit:damage():run_sequence_simple(disable_sequence)
-						end
+				
+				local head_material_name = "head_material_var" .. head_material
+				
+				if self._head_unit:damage():has_sequence(head_material_name) then
+					self._head_unit:damage():run_sequence_simple(head_material_name)
+				end
+				
+				for _, sequence in pairs(head_sequences) do
+					if self._head_unit:damage():has_sequence(sequence) then
+						self._head_unit:damage():run_sequence_simple(sequence)
 					end
 				end
 			end

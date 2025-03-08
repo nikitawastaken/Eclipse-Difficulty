@@ -28,6 +28,6 @@
 	</extensions>
 	
 	<sounds>
-		<default_soundsource source="rp_ene_acc_shield_city"/>
+		<default_soundsource source="rp_ene_acc_shield_phalanx"/>
 	</sounds>	
 </unit>

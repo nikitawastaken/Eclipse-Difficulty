@@ -2751,7 +2751,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix
 
 	self.r870_npc.CLIP_AMMO_MAX = 8
-
+	
+	self.r870_yellow_npc = deep_clone(self.r870_npc)
+	
 	self.benelli_npc = copy_data(self.benelli_npc, self.r870_npc, self.ben_crew)
 
 	self.ksg_npc = copy_data(self.ksg_npc, self.r870_npc, self.ksg_crew)

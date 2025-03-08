@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <materials version="3" group="ene_acc_head">
-
 	<material name="mtr_arms" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/payday2/characters/shared_textures/arms_atlas_nm"/>
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/arms_atlas_df"/>
@@ -27,4 +26,29 @@
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_var2_df" mip="4"/>
 	</material>
 
+	<material name="mtr_head_swat" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" />
+	</material>
+	<material name="mtr_head_swat_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" mip="1" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="1" />
+	</material>
+	<material name="mtr_head_swat_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" mip="4" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="4" />
+	</material>
+
+	<material name="mtr_head_medic" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_medic_head_nm" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/ene_medic_head_df" />
+	</material>
+	<material name="mtr_head_medic_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_medic_head_nm" mip="1" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/ene_medic_head_df" mip="1" />
+	</material>
+	<material name="mtr_head_medic_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_medic_head_nm" mip="4" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/ene_medic_head_df" mip="4" />
+	</material>
 </materials>

@@ -5,17 +5,11 @@
 		<sequence editable_state="true" name="'swat_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
-
-			<object 			enabled="false" name="'g_head'" />
-			<object 			enabled="false" name="'g_head_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'swat_2'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_b'" />
 			<object 			enabled="true" name="'g_gear_b_lod1'" />
-
-			<object 			enabled="true" name="'g_head'" />
-			<object 			enabled="true" name="'g_head_lod1'" />
 
 			<object 			enabled="true" name="'g_helmet_lod3'"/>
 			<object 			enabled="true" name="'g_helmet_lod4'"/>
@@ -34,9 +28,6 @@
 		<sequence editable_state="true" name="'sniper_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_d'" />
 			<object 			enabled="true" name="'g_gear_d_lod1'" />
-
-			<object 			enabled="false" name="'g_head'" />
-			<object 			enabled="false" name="'g_head_lod1'" />
 
 			<object 			enabled="true" name="'g_headset'" />
 			<object 			enabled="true" name="'g_headset_lod1'" />

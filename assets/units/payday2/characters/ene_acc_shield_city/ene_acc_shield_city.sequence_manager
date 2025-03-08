@@ -150,7 +150,7 @@
 			<run_sequence filter="'filter_light_1_enabled'" name="'disable_light_1'"/>
 			<run_sequence filter="'filter_light_2_enabled'" name="'disable_light_2'"/>
 			
-			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_city'"/>
+			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_phalanx'"/>
 			
 			<function extension="'damage'" function="'parent_function'" param1="'inventory'" param2="'on_shield_break'" param3="src_unit_unit()"/>
 		</sequence>
@@ -183,25 +183,25 @@
 		
 		<!-- mother brains -->
 		<body name="'held_body_middle'">
-			<endurance damage="48" explosion="60">
+			<endurance damage="36" explosion="54">
 				<run_sequence name="'int_seq_shield_break'"/>
 			</endurance>
 		</body>
 		
 		<body name="'held_body_left'">
-			<endurance damage="12" explosion="15">
+			<endurance damage="12" explosion="18">
 				<run_sequence name="'int_seq_shield_break_l'"/>
 			</endurance>
 		</body>
 
 		<body name="'held_body_right'">
-			<endurance damage="12" explosion="15">
+			<endurance damage="12" explosion="18">
 				<run_sequence name="'int_seq_shield_break_r'"/>
 			</endurance>
 		</body>
 
 		<body name="'held_body_top'">
-			<endurance damage="12" explosion="15">
+			<endurance damage="12" explosion="18">
 				<run_sequence name="'int_seq_shield_break_top'"/>
 			</endurance>
 		</body>
@@ -214,9 +214,9 @@
 		
 			<set_variables var_debris_l="1"/>			
 			
-			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_left'" position="object_pos('drop_shield_r')" rotation="object_rot('rp_ene_acc_shield_city')"/>						
+			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_left'" position="object_pos('drop_shield_r')" rotation="object_rot('rp_ene_acc_shield_phalanx')"/>						
 			
-			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_city'"/>
+			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_phalanx'"/>
 		</sequence>		
 		
 
@@ -228,8 +228,8 @@
 
 			<set_variables var_debris_r="1"/>			
 
-			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_right'" position="object_pos('drop_shield_l')" rotation="object_rot('rp_ene_acc_shield_city')"/>			
-			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_city'"/>
+			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_right'" position="object_pos('drop_shield_l')" rotation="object_rot('rp_ene_acc_shield_phalanx')"/>			
+			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_phalanx'"/>
 		</sequence>		
 
 		<!-- destroy top -->
@@ -241,12 +241,12 @@
 
 			<set_variables var_debris_top="1"/>			
 
-			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_top'" position="object_pos('drop_shield_top')" rotation="object_rot('rp_ene_acc_shield_city')"/>						
-			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_city'"/>
+			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_top'" position="object_pos('drop_shield_top')" rotation="object_rot('rp_ene_acc_shield_phalanx')"/>						
+			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_phalanx'"/>
 		</sequence>		
 		
 		<body name="'light_01'">
-			<endurance bullet="8" lock="1">
+			<endurance bullet="2" lock="1">
 				<run_sequence filter="'filter_light_1_enabled'" name="'int_seq_light_1_hit'"/>
 				<run_sequence filter="'filter_can_flash_light_1'" name="'int_seq_light_1_break'"/>
 				<run_sequence filter="'filter_light_1_enabled'" name="'reset_body_damage'"/>
@@ -254,7 +254,7 @@
 		</body>
 		
 		<body name="'light_02'">
-			<endurance bullet="8" lock="1">
+			<endurance bullet="2" lock="1">
 				<run_sequence filter="'filter_light_2_enabled'" name="'int_seq_light_2_hit'"/>
 				<run_sequence filter="'filter_can_flash_light_2'" name="'int_seq_light_2_break'"/>
 				<run_sequence filter="'filter_light_2_enabled'" name="'reset_body_damage'"/>

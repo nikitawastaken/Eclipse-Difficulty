@@ -16,6 +16,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass_night.flashlights_on = true
 	self.arm_und.flashlights_on = true
 	self.kosugi.flashlights_on = true
+	self.dark.flashlights_on = true
 	self.gallery.flashlights_on = true
 	self.hox_3.flashlights_on = true
 	self.crojob3_night.flashlights_on = true

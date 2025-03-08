@@ -8,7 +8,7 @@
 		<depends_on bnk="soundbanks/regular_vox" />
 		<depends_on unit="units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap" />
 		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
-		<depends_on unit="units/pd2_dlc_usm1/weapons/wpn_npc_dmr/wpn_npc_dmr" />		
+		<depends_on unit="units/payday2/weapons/wpn_npc_m14/wpn_npc_m14" />		
 	</dependencies>
 
 	<extensions>	
@@ -91,7 +91,7 @@
 		<extension name="base" class="CopBase" >		
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="marksman" />
-			<var name="_default_weapon_id" value="dmr" />
+			<var name="_default_weapon_id" value="m14" />
 		</extension>
 		<extension name="inventory" class="CopInventory" />
 		<extension name="brain" class="CopBrain" />

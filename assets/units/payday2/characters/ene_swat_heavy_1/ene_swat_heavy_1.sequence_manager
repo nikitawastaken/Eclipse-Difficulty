@@ -56,6 +56,9 @@
 			<object 			enabled="true" name="'g_gear_c'" />
 			<object 			enabled="true" name="'g_gear_c_lod1'" />
 
+			<object 			enabled="true" name="'g_head'" />
+			<object 			enabled="true" name="'g_head_lod1'" />
+			
 			<object 			enabled="true" name="'g_helmet_lod3'"/>
 			<object 			enabled="true" name="'g_helmet_lod4'"/>
 			<object 			enabled="true" name="'g_helmet_lod5'"/>

@@ -81,11 +81,6 @@
 			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
 			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
 			<body enabled="true" motion="'dynamic'" name="'rag_Head'"/>
-			<body enabled="false" filter="'hide_body_top'" name="'rag_LeftForeArm'"/>
-			<body enabled="false" filter="'hide_body_top'" name="'rag_RightForeArm'"/>
-			<body enabled="false" filter="'hide_body_top'" name="'rag_LeftArm'"/>
-			<body enabled="false" filter="'hide_body_top'" name="'rag_RightArm'"/>
-			<body enabled="false" filter="'hide_head'" name="'rag_Head'"/>
 			<constraint enabled="true" name="'Spine'"/>
 			<constraint enabled="true" name="'Spine1'"/>
 			<constraint enabled="true" name="'Spine2'"/>
@@ -98,11 +93,6 @@
 			<constraint enabled="true" name="'LeftArm'"/>
 			<constraint enabled="true" name="'RightArm'"/>
 			<constraint enabled="true" name="'Head'"/>
-			<constraint enabled="false" filter="'hide_body_top'" name="'LeftForeArm'"/>
-			<constraint enabled="false" filter="'hide_body_top'" name="'RightForeArm'"/>
-			<constraint enabled="false" filter="'hide_body_top'" name="'LeftArm'"/>
-			<constraint enabled="false" filter="'hide_body_top'" name="'RightArm'"/>
-			<constraint enabled="false" filter="'hide_head'" name="'Head'"/>
 		</sequence>
 		<sequence editable_state="true" name="'freeze_ragdoll'" triggable="true">
 			<body motion="'fixed'" name="'rag_Hips'"/>
