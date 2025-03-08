@@ -1266,7 +1266,7 @@ end
 Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function(self)
 	table.insert(self.weap_ids, "r870_yellow")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_taser/wpn_npc_r870_taser"))
-	
+
 	table.insert(self.weap_ids, "r870_tank")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer"))
 

@@ -1,5 +1,5 @@
 -- Remove some dodgy code for forced group spawns, forcing spawn groups has been fixed in GroupAIStateBesiege:force_spawn_group
-Hooks:OverrideFunction(ElementSpawnEnemyGroup, "on_executed", function (self, instigator)
+Hooks:OverrideFunction(ElementSpawnEnemyGroup, "on_executed", function(self, instigator)
 	if not self._values.enabled then
 		return
 	end
@@ -15,7 +15,7 @@ Hooks:OverrideFunction(ElementSpawnEnemyGroup, "on_executed", function (self, in
 			for i = 1, self:get_random_table_value(self._group_data.amount) do
 				local element = self._spawn_points[self:_get_spawn_point(i)]
 				element:produce({
-					team = self._values.team
+					team = self._values.team,
 				})
 			end
 		end

@@ -26,7 +26,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	local base_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_swat_1/ene_swat_1"))
 	load_unload_unit("units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap", base_needed, true)
 	load_unload_unit("units/payday2/characters/ene_swat_3/ene_swat_3", base_needed, false)
-	load_unload_unit("units/payday2/characters/ene_tazer_r870/ene_tazer_r870", base_needed, false)	
+	load_unload_unit("units/payday2/characters/ene_tazer_r870/ene_tazer_r870", base_needed, false)
 	load_unload_unit("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3", base_needed, false)
 	load_unload_unit("units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor", base_needed, true)
 	load_unload_unit("units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap", base_needed, true)

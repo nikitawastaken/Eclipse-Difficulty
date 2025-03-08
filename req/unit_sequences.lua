@@ -1,21 +1,21 @@
 local head_sequences = {
 	security = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"security_head_init",
 			"disable_face",
 		},
 	},
 	hrt = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"security_head_init",
 			"disable_head",
 		},
 	},
 	blue_swat_a = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"set_blue_swat",
 			"swat_head_init",
 			"random_balaclava_common",
@@ -24,7 +24,7 @@ local head_sequences = {
 	},
 	blue_swat_b = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"set_blue_swat",
 			"swat_head_init",
 			"random_balaclava_rare",
@@ -33,7 +33,7 @@ local head_sequences = {
 	},
 	blue_swat_c = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"set_blue_swat",
 			"swat_head_init",
 			"disable_head",
@@ -42,7 +42,7 @@ local head_sequences = {
 	},
 	fbi_swat_a = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"swat_head_init",
 			"random_balaclava_common",
 			"disable_arms",
@@ -50,7 +50,7 @@ local head_sequences = {
 	},
 	fbi_swat_b = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"swat_head_init",
 			"random_balaclava_rare",
 			"disable_arms",
@@ -58,7 +58,7 @@ local head_sequences = {
 	},
 	fbi_swat_c = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"swat_head_init",
 			"disable_head",
 			"disable_arms",
@@ -66,7 +66,7 @@ local head_sequences = {
 	},
 	city_swat_a = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"elite_swat_head_init",
 			"random_balaclava_common",
 			"disable_arms",
@@ -74,7 +74,7 @@ local head_sequences = {
 	},
 	city_swat_b = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"elite_swat_head_init",
 			"random_balaclava_rare",
 			"disable_arms",
@@ -82,7 +82,7 @@ local head_sequences = {
 	},
 	city_swat_c = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"elite_swat_head_init",
 			"disable_head",
 			"disable_arms",
@@ -90,7 +90,7 @@ local head_sequences = {
 	},
 	bulldozer = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"bulldozer_head_init",
 			"disable_head",
 			"disable_arms",
@@ -98,7 +98,7 @@ local head_sequences = {
 	},
 	medic = {
 		material = { 1, 2 },
-		run_sequence = { 
+		run_sequence = {
 			"set_medic",
 			"swat_head_init",
 			"random_balaclava_common",
@@ -143,11 +143,11 @@ local M = {
 	["units/payday2/characters/ene_swat_2/ene_swat_2"] = { name = "swat_2", head = head_sequences.blue_swat_a },
 	["units/payday2/characters/ene_swat_3/ene_swat_3"] = { name = "swat_3", head = head_sequences.blue_swat_a },
 	["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = { name = "heavy_1", head = head_sequences.blue_swat_a },
-	["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] ={ name = "heavy_2", head = head_sequences.blue_swat_a },
+	["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = { name = "heavy_2", head = head_sequences.blue_swat_a },
 	["units/payday2/characters/ene_shield_2/ene_shield_2"] = { name = "shield_2", head = head_sequences.blue_swat_c },
 	["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = { name = "sniper_1", head = head_sequences.blue_swat_b },
 	["units/payday2/characters/ene_tazer_1/ene_tazer_1"] = { name = "taser_1", head = head_sequences.blue_swat_b },
-	["units/payday2/characters/ene_tazer_r870/ene_tazer_r870"] = { name = "taser_2", head = head_sequences.blue_swat_c },	
+	["units/payday2/characters/ene_tazer_r870/ene_tazer_r870"] = { name = "taser_2", head = head_sequences.blue_swat_c },
 	["units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"] = { name = "fbi_swat_1", head = head_sequences.fbi_swat_b },
 	["units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"] = { name = "fbi_swat_2", head = head_sequences.fbi_swat_a },
 	["units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"] = { name = "fbi_swat_3", head = head_sequences.fbi_swat_a },
