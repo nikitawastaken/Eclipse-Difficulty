@@ -2415,11 +2415,11 @@ end
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	local level_scale_mul = Eclipse.level_scale and Eclipse.level_scale.scale_multiplier(level_id) or 1
-	
+
 	if level_id then
 		Eclipse:log("Map scale multiplier for " .. level_id .. " set to " .. level_scale_mul)
 	end
-	
+
 	local level_scale_force = level_scale_mul
 	local level_scale_spawnrate = math.sqrt(level_scale_mul)
 
