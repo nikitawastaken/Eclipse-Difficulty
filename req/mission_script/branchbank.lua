@@ -59,6 +59,10 @@ return {
 	},
 	[105563] = player_1,
 	[105574] = player_1,
+    -- restore unused cloaker ambush spawns
+	[105571] = enabled,
+	[105584] = enabled,
+	[105607] = enabled,
 	-- enable max diff after 2 instead of 3 assault waves
 	[101307] = {
 		values = {

@@ -1908,6 +1908,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
+    local Random_bulldozer = { "bulldozer_1", "bulldozer_2", "Elite_bulldozer_1", "Elite_bulldozer_2" }
+
 	self.enemy_spawn_groups.FBI_assault_bulldozer = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2126,7 +2128,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-	local Random_bulldozer = { "bulldozer_1", "bulldozer_2", "Elite_bulldozer_1", "Elite_bulldozer_2" }
+	local Random_elite_bulldozer = { "Elite_bulldozer_1", "Elite_bulldozer_2" }
 
 	self.enemy_spawn_groups.Elite_assault_bulldozer = {
 		amount = { 3, 4 },
@@ -2137,7 +2139,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 3,
 				unit = "bulldozer",
-				random_unit = Random_bulldozer,
+				random_unit = Random_elite_bulldozer,
 				tactics = self._tactics.bulldozer,
 			},
 			{
@@ -2403,7 +2405,7 @@ end
 
 -- Timed groups level tweak table
 function GroupAITweakData:_init_timed_spawns_level()
-	local level = Global.game_settings and Global.game_settings.level_id or Global.level_data and Global.level_data.level_id
+	local level = Eclipse.utils.level_id()
 	---Example
 	--[[ if level == "wwh" then
 		self.timer_data = {
@@ -2750,24 +2752,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups = {}
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
-	--[[
+	
 	if difficulty_index < 4 then
 		self.ponr.faction = {
 			"FBI",
 			"FBI",
 			"FBI",
 		}
-	elseif difficulty_index < 6 then
-		self.ponr.faction = {
-			"Elite",
-			"Elite",
-			"Elite",
-		}
 	else
 		self.ponr.faction = {
-			"Zeal",
-			"Zeal",
-			"Zeal",
+			"Elite",
+			"Elite",
+			"Elite",
 		}
 	end
 
@@ -2822,17 +2818,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 6 then
 		self.ponr.assault.groups = {
-			Elite_assault_shield = { 0.4, 0.4, 0.4 },
-			Elite_assault_bulldozer = { 0.25, 0.25, 0.25 },
+            FBI_assault_cloaker = { 0.3, 0.3, 0.3 },
+            FBI_assault_heavies = { 1, 1, 1 },
 
-			Zeal_assault_swats = { 0.5, 0.5, 0.5 },
-			Zeal_assault_heavies = { 1, 1, 1 },
-			Zeal_assault_shield = { 0.5, 0.5, 0.5 },
-			Zeal_assault_taser = { 0.3, 0.3, 0.3 },
-			Zeal_assault_cloaker = { 0.3, 0.3, 0.3 },
+            Elite_assault_swats = { 0.5, 0.5, 0.5 },
+            Elite_assault_shield = { 0.4, 0.4, 0.4 },
+            Elite_assault_taser = { 0.3, 0.3, 0.3 },
+			Elite_assault_bulldozer = { 0.25, 0.25, 0.25 },
 		}
 		self.ponr.reenforce.groups = {
-			Zeal_reinforce_swats = { 1, 1, 1 },
+			Elite_reinforce_swats = { 1, 1, 1 },
 		}
 	end
 

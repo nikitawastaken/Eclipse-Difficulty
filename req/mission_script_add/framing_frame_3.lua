@@ -107,7 +107,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400006, "sniper_so_2", Vector3(-1027, -261, 3450), Rotation(55, -0, -0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400007, "sniper_so_3", Vector3(-5457, 3631, 4175), Rotation(-90, 0, -0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400008, "sniper_so_4", Vector3(-2511, 3341, 4200), Rotation(90, -0, -0), optsSniper_SO),
-	Eclipse.mission_elements.gen_missionscript(400009, "activate_eclipse_navlinks", spawn_snipers),
+	Eclipse.mission_elements.gen_missionscript(400009, "send_snipers", spawn_snipers),
 	Eclipse.mission_elements.gen_dialogue(400010, "they_sending_snipers", Bain_sendsnipers),
 
 	--Respawns
