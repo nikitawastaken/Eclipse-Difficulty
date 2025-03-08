@@ -1908,7 +1908,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-    local Random_bulldozer = { "bulldozer_1", "bulldozer_2", "Elite_bulldozer_1", "Elite_bulldozer_2" }
+    local Random_bulldozer = { "bulldozer_1", "bulldozer_2" }
 
 	self.enemy_spawn_groups.FBI_assault_bulldozer = {
 		amount = { 3, 4 },
