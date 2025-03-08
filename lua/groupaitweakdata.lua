@@ -2339,7 +2339,7 @@ end)
 
 -- Timed groups tweak table
 function GroupAITweakData:_init_enemy_spawn_groups_level()
-	local level = Global.game_settings and Global.game_settings.level_id or Global.level_data and Global.level_data.level_id
+	local level = Eclipse.utils.level_id()
 	---Example
 	--[[ if level == "wwh" then
 		self.timed_enemy_spawn_groups = {
