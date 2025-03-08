@@ -2745,7 +2745,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups = {}
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
-	if difficulty_index < 4 then
+	if difficulty_index < 6 then
 		self.ponr.faction = {
 			"FBI",
 			"FBI",
