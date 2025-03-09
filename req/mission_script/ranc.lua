@@ -26,6 +26,12 @@ local haybale_spawn = {
 	},
 	groups = preferred.no_bulldozers,
 }
+local roof_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local shaft_spawn = {
 	values = {
 		interval = 45,
@@ -134,6 +140,7 @@ return {
 	[100132] = fence_spawn1,
 	[100779] = fence_spawn2,
 	[100131] = haybale_spawn,
+	[100911] = roof_spawn,
 	[100019] = shaft_spawn,
 	[102484] = vent_spawn,
 }
