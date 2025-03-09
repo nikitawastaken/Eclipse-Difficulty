@@ -44,3 +44,7 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 		return true
 	end
 end
+
+function PlayerMovement:add_stamina(value)
+	self:_change_stamina(math.abs(value) * managers.player:upgrade_value("player", "stamina_regen_multiplier", 1) * (self._state_data.ducking and managers.player:upgrade_value("player", "stamina_regen_multiplier_crouched", 1) or 1))
+end

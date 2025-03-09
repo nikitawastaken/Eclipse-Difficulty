@@ -465,73 +465,146 @@ function PlayerStandard:_update_sniper_shot_charge(t, dt)
 	end
 end
 
--- Melee while running
--- Code from melee overhaul
-Hooks:PostHook(PlayerStandard, "_start_action_running", "eclipse_start_action_running", function(self, t)
-	if managers.player and managers.player:has_category_upgrade("player", "run_and_melee_eclipse") then
-		if not self._move_dir then
-			self._running_wanted = true
-			return
-		end
-
-		if self:on_ladder() or self:_on_zipline() then
-			return
-		end
-
-		if
-			self._shooting and not managers.player.RUN_AND_SHOOT
-			or self:_changing_weapon()
-			or self._use_item_expire_t
-			or self._state_data.in_air
-			or self:_is_throwing_projectile()
-			or self:_is_charging_weapon()
-		then
-			self._running_wanted = true
-			return
-		end
-
-		if self._state_data.ducking and not self:_can_stand() then
-			self._running_wanted = true
-			return
-		end
-
-		if not self:_can_run_directional() then
-			return
-		end
-
-		if not self:_is_meleeing() and self._camera_unit:base()._melee_item_units then
-			self._running_wanted = true
-			return
-		end
-
+-- Melee & swap / throw while running
+function PlayerStandard:_start_action_running(t)
+	if self._slowdown_run_prevent then
 		self._running_wanted = false
 
-		if managers.player:get_player_rule("no_run") then
-			return
-		end
-
-		if not self._unit:movement():is_above_stamina_threshold() then
-			return
-		end
-
-		if (not self._state_data.shake_player_start_running or not self._ext_camera:shaker():is_playing(self._state_data.shake_player_start_running)) and managers.user:get_setting("use_headbob") then
-			self._state_data.shake_player_start_running = self._ext_camera:play_shaker("player_start_running", 0.75)
-		end
-
-		self:set_running(true)
-
-		self._end_running_expire_t = nil
-		self._start_running_t = t
-
-		if not self.RUN_AND_RELOAD then
-			self:_interupt_action_reload(t)
-		end
-
-		self:_interupt_action_steelsight(t)
-		self:_interupt_action_ducking(t)
+		return
 	end
-end)
 
+	if not self._move_dir then
+		self._running_wanted = true
+
+		return
+	end
+
+	if self:on_ladder() or self:_on_zipline() then
+		return
+	end
+
+	if self._shooting and not self._equipped_unit:base():run_and_shoot_allowed() or self._use_item_expire_t or self._state_data.in_air or self:_is_charging_weapon() then
+		self._running_wanted = true
+
+		return
+	end
+
+	if self._state_data.ducking and not self:_can_stand() then
+		self._running_wanted = true
+
+		return
+	end
+
+	if self:_is_meleeing() and (managers.player and not managers.player:has_category_upgrade("player", "run_and_melee_eclipse")) then
+		self._running_wanted = true
+		return
+	end
+
+	if
+		(self:_changing_weapon() or self:_is_throwing_projectile())
+		and (managers.player and not managers.player:has_category_upgrade("player", "can_sprint_swap"))
+	then
+		self._running_wanted = true
+		return
+	end
+
+	if not self:_can_run_directional() then
+		return
+	end
+
+	self._running_wanted = false
+
+	if managers.player:get_player_rule("no_run") then
+		return
+	end
+
+	if not self._unit:movement():is_above_stamina_threshold() then
+		return
+	end
+
+	if (not self._state_data.shake_player_start_running or not self._ext_camera:shaker():is_playing(self._state_data.shake_player_start_running)) and self._setting_use_headbob then
+		self._state_data.shake_player_start_running = self._ext_camera:play_shaker("player_start_running", 0.75)
+	end
+
+	self:set_running(true)
+
+	self._end_running_expire_t = nil
+	self._start_running_t = t
+	self._play_stop_running_anim = nil
+
+	if not self:_is_reloading() or not self.RUN_AND_RELOAD then
+		if not self._equipped_unit:base():run_and_shoot_allowed() then
+			self._ext_camera:play_redirect(self:get_animation("start_running"))
+		else
+			self._ext_camera:play_redirect(self:get_animation("idle"))
+		end
+	end
+
+	if not self.RUN_AND_RELOAD then
+		self:_interupt_action_reload(t)
+	end
+
+	self:_interupt_action_steelsight(t)
+	self:_interupt_action_ducking(t)
+end
+
+function PlayerStandard:_start_action_unequip_weapon(t, data)
+	local speed_multiplier = self:_get_swap_speed_multiplier()
+
+	self._equipped_unit:base():tweak_data_anim_stop("equip")
+	self._equipped_unit:base():tweak_data_anim_play("unequip", speed_multiplier)
+
+	local tweak_data = self._equipped_unit:base():weapon_tweak_data()
+	self._change_weapon_data = data
+	self._unequip_weapon_expire_t = t + (tweak_data.timers.unequip or 0.5) / speed_multiplier
+
+	if managers.player and not managers.player:has_category_upgrade("player", "can_sprint_swap") then
+		self:_interupt_action_running(t)
+	end
+	self:_interupt_action_charging_weapon(t)
+
+	local result = self._ext_camera:play_redirect(self:get_animation("unequip"), speed_multiplier)
+
+	self:_interupt_action_reload(t)
+	self:_interupt_action_steelsight(t)
+	self._ext_network:send("switch_weapon", speed_multiplier, 1)
+end
+
+function PlayerStandard:_update_equip_weapon_timers(t, input)
+	if self._unequip_weapon_expire_t and self._unequip_weapon_expire_t <= t then
+		if self._change_weapon_data.unequip_callback and not self._change_weapon_data.unequip_callback() then
+			return
+		end
+
+		self._unequip_weapon_expire_t = nil
+
+		if not self:_interacting() then
+			self:_start_action_equip_weapon(t)
+		end
+	end
+
+	if self._equip_weapon_expire_t and self._equip_weapon_expire_t <= t then
+		self._equipping_mask = nil
+		self._equip_weapon_expire_t = nil
+
+		if input.btn_steelsight_state then
+			self._steelsight_wanted = true
+		end
+
+		if self._running and not self._end_running_expire_t then
+			if not self._equipped_unit:base():run_and_shoot_allowed() then
+				self._ext_camera:play_redirect(self:get_animation("start_running"))
+			else
+				self._ext_camera:play_redirect(self:get_animation("idle"))
+			end
+		end
+
+		TestAPIHelper.on_event("load_weapon")
+		TestAPIHelper.on_event("mask_up")
+	end
+end
+
+-- melee overhaul code
 Hooks:PreHook(PlayerStandard, "_start_action_melee", "eclipse_pre_start_action_melee", function(self, t, input, instant)
 	self._state_data.melee_running_wanted = true and self._running and not self._end_running_expire_t
 end)

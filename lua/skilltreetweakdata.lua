@@ -276,20 +276,20 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Athlete
 	self.skills.sprinter[1].upgrades = { "player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier" }
-	self.skills.sprinter[2].upgrades = { "player_walk_speed_multiplier", "player_movement_speed_multiplier" }
+	self.skills.sprinter[2].upgrades = { "player_movement_speed_multiplier" }
 	self.skills.sprinter.icon_xy = { 1, 8 }
 	self.skills.sprinter.name_id = "menu_sprinter"
 	self.skills.sprinter.desc_id = "menu_sprinter_desc"
 
 	-- Duck and Cover
-	self.skills.awareness[1].upgrades = { "player_crouch_speed_multiplier" }
+	self.skills.awareness[1].upgrades = { "player_stamina_regen_multiplier_crouched" }
 	self.skills.awareness[2].upgrades = { "player_crouch_dodge_chance_1" }
 	self.skills.awareness.icon_xy = { 0, 11 }
 	self.skills.awareness.name_id = "menu_awareness"
 	self.skills.awareness.desc_id = "menu_awareness_desc"
 
 	-- Sprinter
-	self.skills.optic_illusions[1].upgrades = { "player_can_strafe_run", "player_run_speed_multiplier" }
+	self.skills.optic_illusions[1].upgrades = { "player_can_strafe_run", "player_can_sprint_swap" }
 	self.skills.optic_illusions[2].upgrades = { "player_run_dodge_chance", "player_on_zipline_dodge_chance" }
 	self.skills.optic_illusions.icon_xy = { 7, 3 }
 
@@ -592,11 +592,10 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
+	table.insert(self.default_upgrades, "player_run_speed_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
-	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
-	table.delete(self.default_upgrades, "player_crouch_speed_multiplier")
 end
