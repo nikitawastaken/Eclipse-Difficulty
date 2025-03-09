@@ -500,10 +500,7 @@ function PlayerStandard:_start_action_running(t)
 		return
 	end
 
-	if
-		(self:_changing_weapon() or self:_is_throwing_projectile())
-		and (managers.player and not managers.player:has_category_upgrade("player", "can_sprint_swap"))
-	then
+	if (self:_changing_weapon() or self:_is_throwing_projectile()) and (managers.player and not managers.player:has_category_upgrade("player", "can_sprint_swap")) then
 		self._running_wanted = true
 		return
 	end
