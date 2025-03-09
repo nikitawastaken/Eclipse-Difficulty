@@ -1754,6 +1754,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_mp5.BURST_COUNT = 3
 
 	-- Kobus
+	self.p90.use_data.selection_index = 2
 	self.p90.CLIP_AMMO_MAX = 50
 	self.p90.stats.damage = 50
 	self.p90.stats.spread = 16
@@ -1818,7 +1819,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mp7.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
 
 	-- Thompson
-	self.m1928.use_data.selection_index = 2
 	self.m1928.CLIP_AMMO_MAX = 50
 	self.m1928.stats.damage = 60
 	self.m1928.stats.spread = 13
@@ -2751,9 +2751,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix
 
 	self.r870_npc.CLIP_AMMO_MAX = 8
-	
+
 	self.r870_yellow_npc = deep_clone(self.r870_npc)
-	
+
 	self.benelli_npc = copy_data(self.benelli_npc, self.r870_npc, self.ben_crew)
 
 	self.ksg_npc = copy_data(self.ksg_npc, self.r870_npc, self.ksg_crew)
