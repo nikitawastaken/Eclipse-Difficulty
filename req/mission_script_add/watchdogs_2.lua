@@ -1,8 +1,10 @@
 ---@module Watchdogs Day2
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
+local is_eclipse = Eclipse.utils.is_eclipse()
 
 local sniper = scripted_enemy.sniper
+local elite_sniper = scripted_enemy.elite_sniper
 
 local optsSniper_1 = {
 	enemy = sniper,
@@ -35,12 +37,12 @@ local optsSniper_6 = {
 	enabled = true,
 }
 local optsGroundSniper_1 = {
-	enemy = sniper,
+	enemy = is_eclipse and elite_sniper or sniper,
 	on_executed = { { id = 400025, delay = 0 } },
 	enabled = true,
 }
 local optsGroundSniper_2 = {
-	enemy = sniper,
+	enemy = is_eclipse and elite_sniper or sniper,
 	on_executed = { { id = 400029, delay = 0 } },
 	enabled = true,
 }

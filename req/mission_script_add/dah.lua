@@ -15,7 +15,9 @@ local heavy_sg = scripted_enemy.heavy_swat_2
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser
+local elite_sniper = scripted_enemy.elite_sniper
+local taser = scripted_enemy.taser_1
+local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 
@@ -30,7 +32,7 @@ local optsCloaker = {
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_climb_up_3m_down_1m",
 	on_executed = {
-		{ id = 400078, delay = 4.5 },
+		{ id = 400078, delay = 0 },
 	},
 	enabled = true,
 }
@@ -63,9 +65,9 @@ local optsSniperAmbush_4 = {
 	enabled = is_eclipse_pro,
 }
 local optsSniper_escape = {
-	enemy = sniper,
+	enemy = is_eclipse and elite_sniper or sniper,
 	on_executed = {
-		{ id = 400060, delay = 5 },
+		{ id = 400060, delay = 0 },
 	},
 	spawn_action = "e_sp_climb_up_3m_down_1m",
 	enabled = true,
@@ -73,7 +75,7 @@ local optsSniper_escape = {
 local optsSniper_1 = {
 	enemy = sniper,
 	on_executed = {
-		{ id = 400074, delay = 2.5 },
+		{ id = 400074, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_up_manhole", --I like using cloaker specific spawn anims for other units
 	enabled = overkill_and_above,
@@ -81,7 +83,7 @@ local optsSniper_1 = {
 local optsSniper_2 = {
 	enemy = sniper,
 	on_executed = {
-		{ id = 400075, delay = 2.5 },
+		{ id = 400075, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_up_manhole",
 	enabled = overkill_and_above,
@@ -89,7 +91,7 @@ local optsSniper_2 = {
 local optsShield_roofblockade_1 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = {
-		{ id = 400051, delay = 3 },
+		{ id = 400051, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_3_5m_dwn_vent_var2",
 	enabled = overkill_and_above,
@@ -97,7 +99,7 @@ local optsShield_roofblockade_1 = {
 local optsShield_roofblockade_2 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = {
-		{ id = 400052, delay = 3 },
+		{ id = 400052, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_3_5m_dwn_vent_var2",
 	enabled = overkill_and_above,
@@ -105,7 +107,7 @@ local optsShield_roofblockade_2 = {
 local optsShield_roofblockade_3 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = {
-		{ id = 400057, delay = 4.5 },
+		{ id = 400057, delay = 0 },
 	},
 	spawn_action = "e_sp_climb_up_3m_down_1m",
 	enabled = overkill_and_above,
@@ -113,15 +115,15 @@ local optsShield_roofblockade_3 = {
 local optsShield_roofblockade_4 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = {
-		{ id = 400058, delay = 4.5 },
+		{ id = 400058, delay = 0 },
 	},
 	spawn_action = "e_sp_climb_up_3m_down_1m",
 	enabled = overkill_and_above,
 }
 local optsTaser_roofblockade_1 = {
-	enemy = taser,
+	enemy = taser_shotgun,
 	on_executed = {
-		{ id = 400050, delay = 3 },
+		{ id = 400050, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_3_5m_dwn_vent_var2",
 	enabled = overkill_and_above,
@@ -129,7 +131,7 @@ local optsTaser_roofblockade_1 = {
 local optsTaser_roofblockade_2 = {
 	enemy = taser,
 	on_executed = {
-		{ id = 400056, delay = 4.5 },
+		{ id = 400056, delay = 0 },
 	},
 	spawn_action = "e_sp_climb_up_3m_down_1m",
 	enabled = overkill_and_above,
@@ -207,7 +209,7 @@ local optsSWAT_HeavyShotgun = {
 	enabled = true,
 }
 local optsDefend_and_Sniper_SO = {
-	SO_access = tostring(512 + 2048 + 8192),
+	SO_access = tostring(128 + 512 + 2048 + 8192),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,

@@ -6,6 +6,7 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
 local sniper = scripted_enemy.sniper
+local taser = scripted_enemy.taser_1
 
 local overkill_above = diff_i >= 5
 

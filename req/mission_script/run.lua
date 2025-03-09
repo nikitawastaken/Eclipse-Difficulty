@@ -7,7 +7,7 @@ local is_eclipse_pro = is_eclipse and is_pro_job
 local heli_chance = is_eclipse_pro and 100 or is_eclipse and 85 or 12.5 * diff_i
 
 local heli_enemy1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1
-local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser
+local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser_1
 
 local heli_spawn1 = {
 	values = {

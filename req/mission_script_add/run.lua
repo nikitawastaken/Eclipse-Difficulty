@@ -15,7 +15,7 @@ local heavy_sg = scripted_enemy.heavy_swat_2
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser
+local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 

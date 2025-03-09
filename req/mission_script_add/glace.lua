@@ -10,7 +10,7 @@ local is_eclipse_pro = is_eclipse and is_pro_job
 
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
-local taser = scripted_enemy.taser
+local taser = scripted_enemy.taser_1
 local bulldozer = scripted_enemy.bulldozer_1
 
 local diff_scaling = diff_i / 8

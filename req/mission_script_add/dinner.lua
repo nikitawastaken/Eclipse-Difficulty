@@ -8,7 +8,7 @@ local diff_i = Eclipse.utils.difficulty_index()
 local murkywater_1 = scripted_enemy.murkywater_1
 local murkywater_2 = scripted_enemy.murkywater_2
 local shield = scripted_enemy.shield
-local taser = scripted_enemy.taser
+local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 

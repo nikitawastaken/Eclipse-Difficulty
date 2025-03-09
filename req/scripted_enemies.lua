@@ -36,11 +36,15 @@ local M = {
 
 	shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
 
-	elite_shield = "units/pd2_dlc_vip/characters/ene_phalanx_1/ene_phalanx_1",
+	elite_shield = "units/payday2/characters/ene_city_shield/ene_city_shield",
 
 	sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 
-	taser = "units/payday2/characters/ene_tazer_1/ene_tazer_1",
+    elite_sniper = "units/payday2/characters/ene_sniper_3/ene_sniper_3",
+
+	taser_1 = "units/payday2/characters/ene_tazer_1/ene_tazer_1",
+    
+    taser_2 = "units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 
 	cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
 

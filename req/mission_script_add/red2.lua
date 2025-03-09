@@ -15,7 +15,8 @@ local light_sg = scripted_enemy.swat_2
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
-local taser = scripted_enemy.taser
+local taser = scripted_enemy.taser_1
+local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 local elite_bulldozer = scripted_enemy.elite_bulldozer_1
@@ -142,7 +143,7 @@ local optsSpoocAmbush2 = {
 	enabled = is_eclipse_pro and enabled_chance_escape_cloakers,
 }
 local optsTaserEscape = {
-	enemy = taser,
+	enemy = taser_shotgun,
 	participate_to_group_ai = true,
 	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_145_group),
 }
