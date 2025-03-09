@@ -61,15 +61,15 @@ M.level_scales = {
 	["large"] = 1.25,
 	["very_large"] = 1.5,
 }
-	
+
 function M.scale_multiplier(level)
 	local scale_preset = M.level_scale_map[level] or "medium"
 	local scale_mul = 1
-	
+
 	if scale_preset then
 		scale_mul = scale_mul * (M.level_scales[scale_preset] or 1)
 	end
-	
+
 	return scale_mul
 end
 
