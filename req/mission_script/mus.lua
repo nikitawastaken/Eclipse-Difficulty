@@ -19,17 +19,19 @@ local window_spawn2 = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- prevent cops from spawning too soon
 	[100022] = {
 		on_executed = {
 			{ id = 100109, delay = 30 },
 		},
 	},
-	--spawn group delays
+	-- remove sketchy cheat spawns
 	[102317] = disabled,
 	[101258] = disabled,
 	[102225] = disabled,
 	[102224] = disabled,
 	[102226] = disabled,
+	-- spawn group delays
 	[100007] = window_spawn1,
 	[102148] = window_spawn1,
 	[102399] = window_spawn1,
