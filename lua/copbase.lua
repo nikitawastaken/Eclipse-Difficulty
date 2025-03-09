@@ -1,6 +1,6 @@
--- Dynamically load throwable if we have one
 local unit_ids = Idstring("unit")
 Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
+    -- Dynamically load throwable if we have one
 	local throwable = self._char_tweak.throwable
 	if not throwable then
 		return
@@ -19,6 +19,12 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 		Eclipse:log("Loading projectile sprint unit", throwable)
 		managers.dyn_resource:load(unit_ids, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
+
+    -- Always glow cloakers (like in PDTH)
+    if self._tweak_table == "spooc" then
+		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
+	end
+
 end)
 
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
