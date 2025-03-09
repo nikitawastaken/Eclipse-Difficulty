@@ -47,16 +47,6 @@ return {
 				position = Vector3(-2015, -145, 200),
 			},
 			{
-				name = "fork_corner1",
-				force = 3,
-				position = Vector3(-1440, -3970, 200),
-			},
-			{
-				name = "fork_corner2",
-				force = 3,
-				position = Vector3(-315, 4935, 400),
-			},
-			{
 				name = "main_gate1",
 				force = 4,  -- fuck huge navseg
 				position = Vector3(5670, 1125, 400),
@@ -65,16 +55,6 @@ return {
 				name = "main_gate2",
 				force = 4,
 				position = Vector3(5310, -1090, 400),
-			},
-			{
-				name = "living_room1",
-				force = 2,
-				position = Vector3(6150, -8040, 450),
-			},
-			{
-				name = "living_room2",
-				force = 2,
-				position = Vector3(6285, -5265, 450),
 			},
 			{
 				name = "outside_garage",
