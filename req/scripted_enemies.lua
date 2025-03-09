@@ -40,11 +40,11 @@ local M = {
 
 	sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 
-    elite_sniper = "units/payday2/characters/ene_sniper_3/ene_sniper_3",
+	elite_sniper = "units/payday2/characters/ene_sniper_3/ene_sniper_3",
 
 	taser_1 = "units/payday2/characters/ene_tazer_1/ene_tazer_1",
-    
-    taser_2 = "units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
+
+	taser_2 = "units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 
 	cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
 
