@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local disabled = {
 	values = {
 		enabled = false,
@@ -7,6 +8,12 @@ local sniper_trigger_times = {
 	values = {
 		trigger_times = 0,
 	},
+}
+local warehouse_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[103501] = disabled,
@@ -37,4 +44,6 @@ return {
 	[100370] = sniper_trigger_times,
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
+	-- spawn point delays
+	[100133] = warehouse_spawn,	
 }

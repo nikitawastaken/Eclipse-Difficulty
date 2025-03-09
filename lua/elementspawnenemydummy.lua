@@ -186,12 +186,33 @@ Hooks:PreHook(ElementSpawnEnemyDummy, "produce", "sh_produce", function(self, pa
 	end
 end)
 
+local access_replacement = {
+	cop = "swat",
+	fbi = "swat",
+}
+
 local produce_original = ElementSpawnEnemyDummy.produce
 function ElementSpawnEnemyDummy:produce(params, ...)
-	if params and params.name or not self._enemy_mapping then
+	-- give assault beat cops and fbi agents swat access to keep them from getting stuck
+	if params and params.name then
+		local unit = produce_original(self, params, ...)
+		local u_brain = alive(unit) and unit:brain()
+		local logic_data = u_brain and u_brain._logic_data
+		local replace_access = access_replacement[logic_data and logic_data.SO_access_str]
+		local converted_access = replace_access and managers.navigation:convert_access_flag(replace_access)
+		if converted_access then
+			u_brain._SO_access = converted_access
+			logic_data.SO_access = converted_access
+			logic_data.SO_access_str = replace_access
+		end
+		
+		return unit
+	end
+	
+	if not self._enemy_mapping then	
 		return produce_original(self, params, ...)
 	end
-
+	
 	local original_enemy_name = self._enemy_name
 	if type(self._enemy_mapping) == "table" then
 		self._enemy_name = table.random(self._enemy_mapping)

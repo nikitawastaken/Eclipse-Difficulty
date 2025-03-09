@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local enemy_filter_dozers = {
 	values = {
 		rules = {
@@ -9,6 +10,30 @@ local enemy_filter_dozers = {
 			},
 		},
 	},
+}
+local lab_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents_bulldozers,
+}
+local elevator_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents,
+}
+local office_window_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local staircase_spawn = {
+	values = {
+		interval = 40,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[100115] = {
@@ -54,4 +79,11 @@ return {
 	[103642] = enemy_filter_dozers,
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
+	-- spawn point delays
+	[102820] = lab_spawn,
+	[102784] = elevator_spawn,
+	[102828] = elevator_spawn,
+	[102044] = office_window_spawn,
+	[100694] = office_window_spawn,
+	[102044] = office_window_spawn,
 }
