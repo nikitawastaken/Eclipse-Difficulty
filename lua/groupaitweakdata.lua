@@ -2342,6 +2342,22 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			eclipse_marshal_squad = {
 				max_nr_simultaneous_groups = 2,
 				amount = { 4, 4 },
+				team_id = "mobster1",
+				disable_timer = 600,
+				disable_diff = 0.8,
+				objective = {
+					attitude = "avoid",
+					pose = "crouch",
+					type = "assault_area",
+					stance = "hos",
+					area = spawn_group.area,
+					coarse_path = {
+						{
+							spawn_group.area.pos_nav_seg,
+							spawn_group.area.pos,
+						},
+					},
+				},
 				spawn = {
 					{
 						amount_min = 2,
@@ -2366,7 +2382,6 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			},
 			eclipse_marshal_squad_2 = {
 				max_nr_simultaneous_groups = 2,
-				team_id = "mobster1",
 				amount = { 2, 2 },
 				spawn = {
 					{
@@ -2411,6 +2426,8 @@ function GroupAITweakData:_init_timed_spawns_level()
 			end,
 		}
 	end ]]
+	-- Default diff scale
+	self.timer_data.default_diff_scale = { 2, 1, 0.5 }
 end
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)

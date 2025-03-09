@@ -1796,16 +1796,21 @@ function GroupAIStateBesiege:create_timed_groups_table()
 
 	local timed_groups = tweak_data.group_ai.timer_data
 	local groups = {}
+	local group_ids = {}
+	local idx = 1
 	for group_id, group_tweak_data in pairs(tweak_data.group_ai.timed_enemy_spawn_groups) do
 		table.insert(groups, {
 			group_id = group_id,
 			group_data = group_tweak_data,
 		})
+		group_ids[group_id] = idx
+		idx = idx + 1
 	end
 	timed_groups.groups = groups
 
 	if next(timed_groups) then
 		self._timed_groups = timed_groups
+		self._timed_group_ids = group_ids
 	end
 end
 
@@ -1818,15 +1823,16 @@ end
 ---	diff_scale? = function(timer, diff) ... return new_timer end
 ---}
 function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
-	if not self._timed_groups then
+	if not self._timed_groups or not self._timed_groups.groups then
 		return
 	end
 
+	-- Check spawns
 	local t = TimerManager:game():time()
 	local random_delay = math.rand(self._timed_groups.min_delay or 0, self._timed_groups.max_delay or 0)
 	local cooldown = self._timed_groups.cooldown
 	local scale = self._timed_groups.diff_scale or function(_a, _)
-		return _a
+		return _a * self:_get_difficulty_dependent_value(self._tweak_data.timer_data.default_diff_scale)
 	end
 	if not self._next_timed_group_spawn_t then
 		self._next_timed_group_spawn_t = t + scale(self._timed_groups.initial_delay + random_delay, self._difficulty_value)
@@ -1846,6 +1852,19 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 			self._next_timed_group_spawn_t = t + 0.5 * scale(cooldown + random_delay, self._difficulty_value)
 		end
 	end
+
+	-- Check disabling groups
+	for _, group in ipairs(self._timed_groups.groups) do
+		if group.group_data.disable_timer and group.group_data.disable_timer <= t then
+			self:disable_timed_group(group.group_id)
+		end
+		if group.group_data.disable_diff and group.group_data.disable_diff <= self._difficulty_value then
+			self:disable_timed_group(group.group_id)
+		end
+		if group.group_data.disabled then
+			self:disable_timed_group(group.group_id)
+		end
+	end
 end
 
 function GroupAIStateBesiege:_spawn_timed_group(task_data, group_data_dynamic, target_area, group_to_allow, group_tweak)
@@ -1855,19 +1874,20 @@ function GroupAIStateBesiege:_spawn_timed_group(task_data, group_data_dynamic, t
 		return false
 	end
 
-	local grp_objective = {
-		attitude = "avoid",
-		pose = "crouch",
-		type = "assault_area",
-		stance = "hos",
-		area = spawn_group.area,
-		coarse_path = {
-			{
-				spawn_group.area.pos_nav_seg,
-				spawn_group.area.pos,
+	local grp_objective = group_tweak.objective
+		or {
+			attitude = "avoid",
+			pose = "crouch",
+			type = "assault_area",
+			stance = "hos",
+			area = spawn_group.area,
+			coarse_path = {
+				{
+					spawn_group.area.pos_nav_seg,
+					spawn_group.area.pos,
+				},
 			},
-		},
-	}
+		}
 
 	spawn_group.team_id = group_tweak.team_id
 	local group = self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, task_data, group_tweak)
@@ -1877,3 +1897,22 @@ function GroupAIStateBesiege:_spawn_timed_group(task_data, group_data_dynamic, t
 		return true
 	end
 end
+
+function GroupAIStateBesiege:disable_timed_group(group_id)
+	if self._timed_group_ids then
+		local idx = self._timed_group_ids[group_id]
+		table.remove(self._timed_groups.groups, idx)
+
+		-- Recalculate the group_ids map
+		if idx < #self._timed_group_ids then
+			local group_ids = {}
+			local i = 1
+			for k, _ in pairs(self._timed_group_ids) do
+				group_ids[k] = i
+				i = i + 1
+			end
+			self._timed_group_ids = group_ids
+		end
+	end
+end
+-- Timed groups end
