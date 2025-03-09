@@ -45,5 +45,5 @@ return {
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
 	-- spawn point delays
-	[100133] = warehouse_spawn,	
+	[100133] = warehouse_spawn,
 }

@@ -205,14 +205,14 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 			logic_data.SO_access = converted_access
 			logic_data.SO_access_str = replace_access
 		end
-		
+
 		return unit
 	end
-	
-	if not self._enemy_mapping then	
+
+	if not self._enemy_mapping then
 		return produce_original(self, params, ...)
 	end
-	
+
 	local original_enemy_name = self._enemy_name
 	if type(self._enemy_mapping) == "table" then
 		self._enemy_name = table.random(self._enemy_mapping)

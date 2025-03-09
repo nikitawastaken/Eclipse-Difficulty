@@ -1,13 +1,13 @@
 local preferred = Eclipse.preferred
 local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 local enabled = {
 	values = {
-		enabled = true
-	}
+		enabled = true,
+	},
 }
 local bow_spawn = {
 	values = {
@@ -64,8 +64,8 @@ return {
 	-- delay police response
 	[100022] = {
 		on_executed = {
-			{ id = 100109, delay = 30 }
-		}
+			{ id = 100109, delay = 30 },
+		},
 	},
 	-- reenforce points
 	[103167] = disabled,
@@ -78,39 +78,39 @@ return {
 			{
 				name = "elevator",
 				force = 2,
-				position = Vector3(-9300, 9800, 0)
+				position = Vector3(-9300, 9800, 0),
 			},
 			{
 				name = "corridor_right",
 				force = 2,
-				position = Vector3(-7500, 6800, 20)
+				position = Vector3(-7500, 6800, 20),
 			},
 			{
 				name = "corridor_left",
 				force = 2,
-				position = Vector3(-11100, 6800, 20)
+				position = Vector3(-11100, 6800, 20),
 			},
 			{
 				name = "casino",
 				force = 3,
-				position = Vector3(-9300, 2500, 100)
+				position = Vector3(-9300, 2500, 100),
 			},
 			{
 				name = "courtyard",
 				force = 3,
-				position = Vector3(-9300, 8500, 0)
-			}
+				position = Vector3(-9300, 8500, 0),
+			},
 		},
 	},
 	-- escape reenforce/harasser stuff
 	[100918] = {
 		on_executed = {
-			{ id = 100890, remove = true }
+			{ id = 100890, remove = true },
 		},
 	},
-	[101449] = {  --escape signalled
+	[101449] = { --escape signalled
 		on_executed = {
-			{ id = 100890 }
+			{ id = 100890 },
 		},
 		reinforce = {
 			{ name = "elevator" },
@@ -121,17 +121,17 @@ return {
 			{
 				name = "helipad",
 				force = 4,
-				position = Vector3(-9300, 17000, 100)
+				position = Vector3(-9300, 17000, 100),
 			},
 			{
 				name = "spa_outside1",
 				force = 2,
-				position = Vector3(-7500, 15500, 0)
+				position = Vector3(-7500, 15500, 0),
 			},
 			{
 				name = "spa_outside2",
 				force = 2,
-				position = Vector3(-11000, 15500, 0)
+				position = Vector3(-11000, 15500, 0),
 			},
 		},
 	},
