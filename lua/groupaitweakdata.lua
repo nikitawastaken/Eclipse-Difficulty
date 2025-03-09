@@ -2345,19 +2345,21 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 				team_id = "mobster1",
 				disable_timer = 600,
 				disable_diff = 0.8,
-				objective = {
-					attitude = "avoid",
-					pose = "crouch",
-					type = "assault_area",
-					stance = "hos",
-					area = spawn_group.area,
-					coarse_path = {
-						{
-							spawn_group.area.pos_nav_seg,
-							spawn_group.area.pos,
+				objective = function(spawn_group)
+					return {
+						attitude = "avoid",
+						pose = "crouch",
+						type = "assault_area",
+						stance = "hos",
+						area = spawn_group.area,
+						coarse_path = {
+							{
+								spawn_group.area.pos_nav_seg,
+								spawn_group.area.pos,
+							},
 						},
-					},
-				},
+					}
+				end,
 				spawn = {
 					{
 						amount_min = 2,

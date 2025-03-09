@@ -1874,7 +1874,7 @@ function GroupAIStateBesiege:_spawn_timed_group(task_data, group_data_dynamic, t
 		return false
 	end
 
-	local grp_objective = group_tweak.objective
+	local grp_objective = group_tweak.objective and group_tweak.objective(spawn_group)
 		or {
 			attitude = "avoid",
 			pose = "crouch",
