@@ -55,6 +55,7 @@ local optsSniper_SO = {
 	so_action = "AI_sniper",
 }
 local optsgroundSniper_SO_1_1 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -66,6 +67,7 @@ local optsgroundSniper_SO_1_1 = {
 	},
 }
 local optsgroundSniper_SO_1_2 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -77,6 +79,7 @@ local optsgroundSniper_SO_1_2 = {
 	},
 }
 local optsgroundSniper_SO_1_3 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -88,6 +91,7 @@ local optsgroundSniper_SO_1_3 = {
 	},
 }
 local optsgroundSniper_SO_1_4 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -99,6 +103,7 @@ local optsgroundSniper_SO_1_4 = {
 	},
 }
 local optsgroundSniper_SO_2_1 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -110,6 +115,7 @@ local optsgroundSniper_SO_2_1 = {
 	},
 }
 local optsgroundSniper_SO_2_2 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -121,6 +127,7 @@ local optsgroundSniper_SO_2_2 = {
 	},
 }
 local optsgroundSniper_SO_2_3 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -132,6 +139,7 @@ local optsgroundSniper_SO_2_3 = {
 	},
 }
 local optsgroundSniper_SO_2_4 = {
+    SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
