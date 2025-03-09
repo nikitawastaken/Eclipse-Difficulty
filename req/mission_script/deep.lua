@@ -51,40 +51,40 @@ return {
 			{
 				name = "helipad",
 				force = 5,
-				position = Vector3(4400, 150, 4500)
+				position = Vector3(4400, 150, 4500),
 			},
 			{
 				name = "well_room",
 				force = 3,
-				position = Vector3(1250, 50, 4000)
+				position = Vector3(1250, 50, 4000),
 			},
-		}
+		},
 	},
 	[101773] = {
 		reinforce = {
 			{
 				name = "fueling_area1",
 				force = 2,
-				position = Vector3(-3725, -1500, 5300)
+				position = Vector3(-3725, -1500, 5300),
 			},
 			{
 				name = "fueling_area2",
 				force = 2,
-				position = Vector3(-1750, -2450, 5300)
+				position = Vector3(-1750, -2450, 5300),
 			},
 			{
 				name = "fueling_area3",
 				force = 2,
-				position = Vector3(240, -1500, 5300)
+				position = Vector3(240, -1500, 5300),
 			},
-		}
+		},
 	},
 	[101830] = {
 		reinforce = {
 			{ name = "fueling_area1" },
 			{ name = "fueling_area2" },
 			{ name = "fueling_area3" },
-		}
+		},
 	},
 	-- fix snipers being able to spawn only once
 	[100368] = sniper_trigger_times,

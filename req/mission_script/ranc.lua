@@ -39,11 +39,11 @@ local vent_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[100022] = {  -- alarm 
-		reinforce = {  -- add all at once so they get populated quickly
+	[100022] = { -- alarm
+		reinforce = { -- add all at once so they get populated quickly
 			{
 				name = "fork",
-				force = 4,  -- fuck huge navseg
+				force = 4, -- fuck huge navseg
 				position = Vector3(-2015, -145, 200),
 			},
 			{
@@ -58,7 +58,7 @@ return {
 			},
 			{
 				name = "main_gate1",
-				force = 4,  -- fuck huge navseg
+				force = 4, -- fuck huge navseg
 				position = Vector3(5670, 1125, 400),
 			},
 			{
@@ -84,25 +84,25 @@ return {
 			{
 				name = "such_a_nice_car",
 				force = 2,
-				position = Vector3(2985, -7040, 400),  -- go bank car near some un-enterable sheds
+				position = Vector3(2985, -7040, 400), -- go bank car near some un-enterable sheds
 			},
 			{
 				name = "barn1",
 				force = 2,
-				position = Vector3(6755, 5320, 400),  -- exit by shooting range
+				position = Vector3(6755, 5320, 400), -- exit by shooting range
 			},
 			{
 				name = "barn2",
 				force = 2,
-				position = Vector3(4285, 5215, 400),  -- exit by stealth secure point
+				position = Vector3(4285, 5215, 400), -- exit by stealth secure point
 			},
 			{
-				name = "workshop_a",  -- labelled in editor
+				name = "workshop_a", -- labelled in editor
 				force = 3,
 				position = Vector3(3070, 2890, 400),
 			},
 			{
-				name = "workshop_c",  -- labelled in editor
+				name = "workshop_c", -- labelled in editor
 				force = 3,
 				position = Vector3(9215, 1625, 450),
 			},
@@ -120,21 +120,21 @@ return {
 	[100790] = spawn_anim_fix,
 	[100791] = spawn_anim_fix,
 	-- spawn point delays
-	[100128] = fence_spawn1,	
-	[100692] = fence_spawn1,	
-	[100693] = fence_spawn1,	
-	[100908] = fence_spawn1,	
-	[100912] = fence_spawn1,	
-	[100913] = fence_spawn1,	
-	[102443] = fence_spawn1,	
-	[100909] = fence_spawn1,	
-	[100916] = fence_spawn1,	
-	[100007] = fence_spawn1,	
-	[100694] = fence_spawn1,	
-	[100133] = fence_spawn1,	
-	[100132] = fence_spawn1,	
-	[100779] = fence_spawn2,	
+	[100128] = fence_spawn1,
+	[100692] = fence_spawn1,
+	[100693] = fence_spawn1,
+	[100908] = fence_spawn1,
+	[100912] = fence_spawn1,
+	[100913] = fence_spawn1,
+	[102443] = fence_spawn1,
+	[100909] = fence_spawn1,
+	[100916] = fence_spawn1,
+	[100007] = fence_spawn1,
+	[100694] = fence_spawn1,
+	[100133] = fence_spawn1,
+	[100132] = fence_spawn1,
+	[100779] = fence_spawn2,
 	[100131] = haybale_spawn,
-	[100019] = shaft_spawn,	
-	[102484] = vent_spawn,	
+	[100019] = shaft_spawn,
+	[102484] = vent_spawn,
 }
