@@ -283,6 +283,8 @@
 				</object>
 			</lod_object>
 			
+			<object name="g_glass" 	enabled="false" />
+			
 			<object name="g_helmet_lod5" 	enabled="false" />	
 			
 			<object name="g_helmet_lod8" 	enabled="false" />
