@@ -42,18 +42,18 @@ return {
 	-- tweak difficulty scaling
 	[100122] = {
 		values = {
-			difficulty = 0.5
-		}
+			difficulty = 0.5,
+		},
 	},
 	[100124] = {
 		values = {
-			difficulty = 0.75
-		}
+			difficulty = 0.75,
+		},
 	},
 	[101582] = {
 		values = {
-			difficulty = 1
-		}
+			difficulty = 1,
+		},
 	},
 	[100022] = { -- alarm
 		on_executed = { -- delay the initial assault (you are in the middle of nowhere)
