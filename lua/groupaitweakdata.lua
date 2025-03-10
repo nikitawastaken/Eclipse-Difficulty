@@ -9,7 +9,7 @@ end
 -- Top level init
 Hooks:PostHook(GroupAITweakData, "init", "eclipse_groupaitd_init", function(self)
 	self.timer_data = {}
-	
+
 	self:_init_timed_spawns_level()
 end)
 
