@@ -1829,13 +1829,12 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 
 	-- Check spawns
 	local t = TimerManager:game():time()
-	local random_delay = math.rand(self._timed_groups.min_delay or 0, self._timed_groups.max_delay or 0)
-	local cooldown = self._timed_groups.cooldown
+	local cooldown = type(self._timed_groups.cooldown) == "table" and math.rand(self._timed_groups.cooldown[1], self._timed_groups.cooldown[2]) or self._timed_groups.cooldown
 	local scale = self._timed_groups.diff_scale or function(_a, _)
-		return _a * self:_get_difficulty_dependent_value(self._tweak_data.timer_data.default_diff_scale)
+		return _a * self:_get_difficulty_dependent_value(tweak_data.group_ai.timer_data.default_diff_scale)
 	end
 	if not self._next_timed_group_spawn_t then
-		self._next_timed_group_spawn_t = t + scale(self._timed_groups.initial_delay + random_delay, self._difficulty_value)
+		self._next_timed_group_spawn_t = t + scale(self._timed_groups.initial_delay + cooldown, self._difficulty_value)
 	elseif self._next_timed_group_spawn_t <= t then
 		local random_group = math.random(#self._timed_groups.groups)
 		local group_id = self._timed_groups.groups[random_group].group_id
@@ -1847,9 +1846,9 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 				1,
 			},
 		}, group_data) then
-			self._next_timed_group_spawn_t = t + scale(cooldown + random_delay, self._difficulty_value)
+			self._next_timed_group_spawn_t = t + scale(cooldown, self._difficulty_value)
 		else
-			self._next_timed_group_spawn_t = t + 0.5 * scale(cooldown + random_delay, self._difficulty_value)
+			self._next_timed_group_spawn_t = t + 0.5 * scale(cooldown, self._difficulty_value)
 		end
 	end
 

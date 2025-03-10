@@ -253,6 +253,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.murky, 6 / 5)
 	burst_multiplier(presets.weapon.murky, 0.75)
 
+	presets.weapon.security_mcmansion = based_on(presets.weapon.swat)
+	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
+	
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
@@ -947,6 +950,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_swat.suppression = self.presets.suppression.average
 	self.fbi_swat.no_arrest = false
 
+	self.security_mcmansion = deep_clone(self.fbi_swat)
+	self.security_mcmansion.melee_weapon = "weapon"
+	self.security_mcmansion.speech_prefix_p2 = "n"
+	self.security_mcmansion.silent_priority_shout = "f37"
+	self.security_mcmansion.has_alarm_pager = true
+	table.insert(self._enemy_list, "security_mcmansion")
+	
 	self.fbi_heavy_swat.HEALTH_INIT = 36
 	self.fbi_heavy_swat.headshot_dmg_mul = 1.8 -- 200 head health
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
@@ -1341,6 +1351,7 @@ CharacterTweakData.tweak_table_weapon = {
 	zeal_swat = "zeal_swat",
 	zeal_heavy_swat = "zeal_swat",
 	murky = "murky",
+	security_mcmansion = "security_mcmansion",
 	cobra = "gangster",
 	shield = "shield",
 	fbi_shield = "fbi_shield",
@@ -1379,6 +1390,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	zeal_heavy_swat = "fast",
 	cobra = "fast",
 	murky = "fast",
+	security_mcmansion = "fast",
 	medic = "normal",
 	zeal_medic = "normal",
 	heavy_swat_sniper = "fast",

@@ -60,6 +60,13 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
+	self._defaults.killed.security_mcmansion = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}	
 	self._defaults.killed.fbi_shield = {
 		count = 0,
 		head_shots = 0,

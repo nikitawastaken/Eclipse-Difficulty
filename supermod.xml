@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <mod name="Eclipse">
-
+	
 	<tweak definition="tweak/animation.xml"/>
 	<tweak definition="tweak/network.xml"/>
 	<tweak definition="tweak/effect.xml"/>
 	<tweak definition="tweak/units.xml"/>
 	<tweak definition="tweak/tweak.xml"/>
-
+	
 	<hooks script_path="mod.lua">
 
 		<group hook_id="core/lib/">
@@ -978,6 +978,12 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_mcmansion/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_hoxton_breakout_guard_1/">
+				<xml  :name="ene_hoxton_breakout_guard_1.sequence_manager" dyn_package="true" />
+			</group>
+		</group>
+		
 		<!-- zeals -->
 		<group name="units/pd2_dlc_gitgud/characters/" dyn_package="false">
 			<file :name="shared_textures/swat_df.texture"/>
@@ -1064,25 +1070,20 @@
 		</group>
 
 		<group name="units/pd2_dlc_berry/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-
 			<group :name="ene_murkywater_no_light/">
 				<file :name="ene_murkywater_no_light.unit" />
 				<file :name="ene_murkywater_no_light_husk.unit" />
 			</group>
-
 		</group>
 
 		<group name="units/pd2_dlc_casino/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-
 			<group :name="ene_secret_service_1_casino/">
 				<file :name="ene_secret_service_1_casino.unit" />
 				<file :name="ene_secret_service_1_casino_husk.unit" />
 			</group>
-
 		</group>
 
 		<group name="units/pd2_dlc_short/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-
 			<group :name="ene_cop_2_shr/">
 				<file :name="ene_cop_2_shr.unit" />
 				<file :name="ene_cop_2_shr_husk.unit" />
@@ -1110,7 +1111,6 @@
 		</group>
 
 		<group name="units/pd2_dlc_des/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
-
 			<group :name="ene_murkywater_no_light_not_security/">
 				<file :name="ene_murkywater_no_light_not_security.unit" />
 				<file :name="ene_murkywater_no_light_not_security_husk.unit" />
@@ -1125,11 +1125,9 @@
 				<file :name="ene_murkywater_not_security_2.unit" />
 				<file :name="ene_murkywater_not_security_2_husk.unit" />
 			</group>
-
 		</group>
 
 		<!-- animations -->
 		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
-
 	</assets>
 </mod>

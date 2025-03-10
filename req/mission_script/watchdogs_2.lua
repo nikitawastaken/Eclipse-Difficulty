@@ -146,7 +146,7 @@ return {
 		},
 	},
 	[100446] = heli_enemy1,
-	[100447] = heli_enemy2,
+	[100447] = heli_enemy1,
 	-- open warehouse on all difficulties
 	[104004] = disabled,
 	[104002] = disabled,

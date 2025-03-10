@@ -83,8 +83,8 @@ local M = {
 	[("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"):key()] = { deagle = 3, ump = 2, s552 = 1 },
 	[("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"):key()] = { deagle = 3, ump = 2, s552 = 1 },
 	--FBI ready teams
-	[("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"):key()] = { "m4", "mp5" },
-	[("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"):key()] = { "m4", "mp5" },
+	[("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"):key()] = { mp5 = 3, m4 = 2, r870 = 1 },
+	[("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"):key()] = { mp5 = 3, m4 = 2, r870 = 1 },
 	--Murkywater (scripted)
 	[("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"):key()] = { ump = 3, scar_murky = 2, benelli = 1 }, --funny benelli
 	[("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"):key()] = { ump = 3, scar_murky = 2, benelli = 1 },

@@ -3,4 +3,7 @@
 		<!-- perk decks -->
 		<texture path="guis/textures/pd2/specialization/icons_atlas"/>
 	</AddFiles>
+	
+	<!-- Custom packages -->
+	<Package id="packages/security_mcmansion" file="packages/security_mcmansion.xml"/>
 </table>

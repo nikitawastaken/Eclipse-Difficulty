@@ -40,60 +40,74 @@
 			<light				enabled="true" name="'ls_light'"/>
 		</sequence>
 		
-		<sequence editable_state="true" name="'murkywater_1'" once="true" triggable="true" >
+		<sequence editable_state="true" name="'mcmansion_security_1'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_gear'" />
 			<object 			enabled="true" name="'g_gear_lod1'" />
 			
-			<run_sequence 		name="'random_glasses_goggles'" />
-			<run_sequence 		name="'random_hat'" />
+			<run_sequence 		name="'random_body'" />
+			<run_sequence 		name="'random_goggles'" />
 			<run_sequence 		name="'random_headset'" />
 		</sequence>
-
-	<!--GLASSES SEQUENCES-->
-		<sequence editable_state="true" name="'random_glasses_goggles'" triggable="true" >
-			<run_sequence name="'head_'..pick('none','none','glasses','goggles')" />
+	<!--BODY SEQUENCES-->
+		<sequence editable_state="true" name="'random_body'" triggable="true">
+			<run_sequence 		name="'body_'..pick('a','a','b')"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'head_none'" once="true" triggable="true" />
+		<sequence editable_state="true" name="'body_a'" once="true" triggable="true"/>
+		
+		<sequence editable_state="true" name="'body_b'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_body'" />
+			<object 			enabled="false" name="'g_body_lod1'" />
 
-		<sequence editable_state="true" name="'head_glasses'" once="true" triggable="true" >
-			<set_variables 		has_glasses="1" />
-			
-			<object 			enabled="true" name="'g_glasses'" />
-			<object 			enabled="true" name="'g_glasses_lod1'" />
+			<object 			enabled="true" name="'g_body_b'" />
+			<object 			enabled="true" name="'g_body_b_lod1'" />
+		</sequence>
+	<!--GOGGLES SEQUENCES-->
+		<sequence editable_state="true" name="'random_goggles'" triggable="true" >
+			<run_sequence name="'goggles_'..pick('base','base','none')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'head_goggles'" once="true" triggable="true" >
+		<sequence editable_state="true" name="'goggles_none'" once="true" triggable="true"/>
+		
+		<sequence editable_state="true" name="'goggles_base'" once="true" triggable="true" >
 			<set_variables 		has_goggles="1" />			
-			<run_sequence 		name="'goggles'..pick('a','a','b')" />
+			<run_sequence 		name="'goggles_'..pick('b','b','a')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'goggles_a'" once="true" triggable="true" >
+			<run_sequence 		name="'goggles_a_'..pick('head','helmet')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'goggles_b'" once="true" triggable="true" >
+			<run_sequence 		name="'goggles_b_'..pick('head','helmet')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'goggles_a_head'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_glass_a'" />
 
 			<object 			enabled="true" name="'g_goggles_a'" />
 			<object 			enabled="true" name="'g_goggles_a_lod1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'goggles_b'" once="true" triggable="true" >
+		<sequence editable_state="true" name="'goggles_a_helmet'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_helmet_lod5'" />
+
+			<object 			enabled="true" name="'g_helmet_lod3'" />
+			<object 			enabled="true" name="'g_helmet_lod4'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'goggles_b_head'" once="true" triggable="true" >
 			<object 			enabled="true" name="'g_glass_b'" />
 
 			<object 			enabled="true" name="'g_goggles_b'" />
 			<object 			enabled="true" name="'g_goggles_b_lod1'" />
 		</sequence>
-	<!--HAT SEQUENCES-->
-		<sequence editable_state="true" name="'random_hat'" triggable="true">
-			<run_sequence name="'hat_'..pick('base','base','base','base','backwards','backwards')" />
-		</sequence>
 
-		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true" >	
-			<object 			enabled="true" name="'g_hat_lod1'" />
-			<object 			enabled="true" name="'g_hat_lod2'" />
-		</sequence>
+		<sequence editable_state="true" name="'goggles_b_helmet'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_helmet_lod8'" />
 
-		<sequence editable_state="true" name="'hat_backwards'" once="true" triggable="true">	
-			<object 			enabled="true" name="'g_hat_lod3'" />
-			<object 			enabled="true" name="'g_hat_lod4'" />
+			<object 			enabled="true" name="'g_helmet_lod6'" />
+			<object 			enabled="true" name="'g_helmet_lod7'" />
 		</sequence>
 	<!--HEADSET SEQUENCES-->
 		<sequence editable_state="true" name="'random_headset'" triggable="true">
