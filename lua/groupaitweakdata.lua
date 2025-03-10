@@ -78,13 +78,13 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.report.queue = "a05"
 end)
 
-Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)	
+Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)
 	self.difficulty_index = difficulty_index
-	
+
 	if self.difficulty_index then
 		Eclipse:log("Difficulty index is " .. self.difficulty_index)
 	end
-	
+
 	local access_type_walk_only = {
 		walk = true,
 	}
@@ -1322,23 +1322,23 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 
 	self.unit_categories.FBI_security = {
 		unit_types = {
-			america = { 
+			america = {
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"),
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"),
 			},
-			russia = { 
+			russia = {
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"),
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"),
 			},
-			zombie = { 
+			zombie = {
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"),
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"),
 			},
-			murkywater = { 
+			murkywater = {
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"),
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"),
 			},
-			federales = { 
+			federales = {
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"),
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"),
 			},
@@ -2408,9 +2408,9 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			"ranged_fire",
 		},
 	}
-	
+
 	self.timed_enemy_spawn_groups = {}
-	
+
 	if self.fbi_heists[level_id] then
 		self.timed_enemy_spawn_groups = {
 			FBI_timed_recon = {
@@ -2473,7 +2473,7 @@ end
 -- Timed groups level tweak table
 function GroupAITweakData:_init_timed_spawns_level()
 	self.timer_data.default_diff_scale = { 2, 1, 0.5 }
-	
+
 	if self.fbi_heists[level_id] then
 		self.timer_data = {
 			initial_delay = 45,

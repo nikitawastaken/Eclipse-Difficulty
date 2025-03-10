@@ -13,8 +13,8 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["hox_2"] = true,
 		["hox_3"] = true,
 	}
-	
-	if level_id then	
+
+	if level_id then
 		if fbi_heists[level_id] and not PackageManager:loaded("packages/security_mcmansion") then
 			Eclipse:log("Loading FBI security package...")
 			table.insert(self._loaded_diff_packages, "packages/security_mcmansion")

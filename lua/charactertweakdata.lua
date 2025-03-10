@@ -255,7 +255,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.security_mcmansion = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
-	
+
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
@@ -956,7 +956,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_mcmansion.silent_priority_shout = "f37"
 	self.security_mcmansion.has_alarm_pager = true
 	table.insert(self._enemy_list, "security_mcmansion")
-	
+
 	self.fbi_heavy_swat.HEALTH_INIT = 36
 	self.fbi_heavy_swat.headshot_dmg_mul = 1.8 -- 200 head health
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
