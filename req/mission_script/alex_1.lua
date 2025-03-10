@@ -98,23 +98,23 @@ return {
 			{ id = 101256, remove = true },
 		},
 	},
-    -- faster sniper respawns on higher diificulties
+	-- faster sniper respawns on higher diificulties
 	[101137] = {
 		on_executed = {
 			{ id = 101256, delay = sniper_respawn_3 },
-            { id = 101070, delay = sniper_respawn_3 },
+			{ id = 101070, delay = sniper_respawn_3 },
 		},
 	},
 	[101138] = {
 		on_executed = {
 			{ id = 101256, delay = sniper_respawn_2 },
-            { id = 101070, delay = sniper_respawn_2 },
+			{ id = 101070, delay = sniper_respawn_2 },
 		},
 	},
 	[101141] = {
 		on_executed = {
 			{ id = 101256, delay = sniper_respawn_1 },
-            { id = 101070, delay = sniper_respawn_1 },
+			{ id = 101070, delay = sniper_respawn_1 },
 		},
 	},
 	-- loop helis
