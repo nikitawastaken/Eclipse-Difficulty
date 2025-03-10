@@ -187,8 +187,7 @@ Hooks:PreHook(ElementSpawnEnemyDummy, "produce", "sh_produce", function(self, pa
 end)
 
 local access_replacement = {
-	cop = "swat",
-	fbi = "swat",
+	cop = "fbi",
 }
 
 local produce_original = ElementSpawnEnemyDummy.produce
