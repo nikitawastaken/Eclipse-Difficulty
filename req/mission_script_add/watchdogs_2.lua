@@ -186,8 +186,6 @@ local spawnGroundSnipers = {
 }
 local Bain_sendsnipers = {
 	dialogue = "play_pln_gen_snip_01",
-	trigger_times = 1,
-	can_not_be_muted = true,
 }
 local optsrespawn_sniper_1 = {
 	on_executed = {

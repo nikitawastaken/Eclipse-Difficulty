@@ -28,6 +28,10 @@ local exclude_cop_agents_shields_dozers = {
 }
 local chopper_amount = is_eclipse and 2 or 1
 
+local sniper_respawn_1 = is_eclipse and 80 or hard and 100 or 140
+local sniper_respawn_2 = is_eclipse and 60 or hard and 70 or 90
+local sniper_respawn_3 = is_eclipse and 30 or hard and 40 or 60
+
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_spawn,
@@ -94,19 +98,23 @@ return {
 			{ id = 101256, remove = true },
 		},
 	},
+    -- faster sniper respawns on higher diificulties
 	[101137] = {
 		on_executed = {
-			{ id = 101256, delay = 60 },
+			{ id = 101256, delay = sniper_respawn_3 },
+            { id = 101070, delay = sniper_respawn_3 },
 		},
 	},
 	[101138] = {
 		on_executed = {
-			{ id = 101256, delay = 90 },
+			{ id = 101256, delay = sniper_respawn_2 },
+            { id = 101070, delay = sniper_respawn_2 },
 		},
 	},
 	[101141] = {
 		on_executed = {
-			{ id = 101256, delay = 140 },
+			{ id = 101256, delay = sniper_respawn_1 },
+            { id = 101070, delay = sniper_respawn_1 },
 		},
 	},
 	-- loop helis

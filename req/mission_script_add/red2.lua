@@ -144,12 +144,10 @@ local optsSpoocAmbush2 = {
 }
 local optsTaserEscape = {
 	enemy = taser_shotgun,
-	participate_to_group_ai = true,
 	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_145_group),
 }
 local optsSWAT_HeavySG2 = {
 	enemy = heavy_sg,
-	participate_to_group_ai = true,
 	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_145_group),
 }
 local optsTaser = {

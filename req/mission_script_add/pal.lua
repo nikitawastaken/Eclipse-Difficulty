@@ -7,6 +7,7 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 
 local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1
+local taser_shotgun = scripted_enemy.taser_2
 
 local overkill_above = diff_i >= 5
 
@@ -35,7 +36,7 @@ local optsSniper_4 = {
 	enemy = sniper,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = {
-		{ id = 400008, delay = 2.5 },
+		{ id = 400008, delay = 0 },
 	},
 	enabled = overkill_above,
 }
@@ -43,7 +44,7 @@ local optsSniper_5 = {
 	enemy = sniper,
 	spawn_action = "e_sp_up_2_75_down_1_25m",
 	on_executed = {
-		{ id = 400009, delay = 3 },
+		{ id = 400009, delay = 0 },
 	},
 	enabled = is_eclipse,
 }
@@ -62,14 +63,14 @@ local optsTaserDefend_2 = {
 	enabled = is_eclipse,
 }
 local optsTaserDefend_3 = {
-	enemy = taser,
+	enemy = taser_shotgun,
 	on_executed = {
 		{ id = 400037, delay = 0 },
 	},
 	enabled = is_eclipse,
 }
 local optsTaserDefend_4 = {
-	enemy = taser,
+	enemy = taser_shotgun,
 	on_executed = {
 		{ id = 400038, delay = 0 },
 	},
@@ -77,7 +78,7 @@ local optsTaserDefend_4 = {
 }
 local optsrespawn_sniper_1 = {
 	on_executed = {
-		{ id = 400001, delay = 30 },
+		{ id = 400001, delay = 45, delay_rand = 10 },
 	},
 	elements = {
 		400001,
@@ -86,7 +87,7 @@ local optsrespawn_sniper_1 = {
 }
 local optsrespawn_sniper_2 = {
 	on_executed = {
-		{ id = 400002, delay = 30 },
+		{ id = 400002, delay = 45, delay_rand = 10 },
 	},
 	elements = {
 		400002,
@@ -95,7 +96,7 @@ local optsrespawn_sniper_2 = {
 }
 local optsrespawn_sniper_3 = {
 	on_executed = {
-		{ id = 400003, delay = 30 },
+		{ id = 400003, delay = 45, delay_rand = 10 },
 	},
 	elements = {
 		400003,
@@ -104,7 +105,7 @@ local optsrespawn_sniper_3 = {
 }
 local optsrespawn_sniper_4 = {
 	on_executed = {
-		{ id = 400004, delay = 30 },
+		{ id = 400004, delay = 45, delay_rand = 10 },
 	},
 	elements = {
 		400004,
@@ -113,7 +114,7 @@ local optsrespawn_sniper_4 = {
 }
 local optsrespawn_sniper_5 = {
 	on_executed = {
-		{ id = 400005, delay = 30 },
+		{ id = 400005, delay = 45, delay_rand = 10 },
 	},
 	elements = {
 		400005,

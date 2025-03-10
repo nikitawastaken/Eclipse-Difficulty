@@ -17,6 +17,9 @@ local disabled = {
 		enabled = false,
 	},
 }
+local missing_sniper_access_fix = {
+	so_access_filter = { "cop", "swat", "fbi", "taser", "sniper", "spooc" },
+}
 
 return {
 	--Water from the hose fills the safe much slower like in PDTH
@@ -112,14 +115,7 @@ return {
 	--disable vanilla snipers
 	[102941] = disabled,
 	--Add the missing sniper access
-	[102399] = {
-		pre_func = function(self)
-			if not self._values.SO_access_original then
-				self._values.SO_access_original = self._values.SO_access
-				self._values.SO_access = managers.navigation:convert_access_filter_to_number({ "cop", "swat", "fbi", "taser", "sniper", "spooc" })
-			end
-		end,
-	},
+	[102399] = missing_sniper_access_fix,
 	-- spawn two extra tasers with blockade shields on Eclipse (193+ throwback)
 	[103336] = {
 		on_executed = {
