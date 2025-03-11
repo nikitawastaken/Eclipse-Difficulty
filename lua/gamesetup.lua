@@ -3,7 +3,7 @@ local level_id = Eclipse.utils.level_id()
 Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(self)
 	local fbi_heists = {
 		["watchdogs_1"] = true,
-		["watchdogs_1_night "] = true,
+		["watchdogs_1_night"] = true,
 		["watchdogs_2"] = true,
 		["watchdogs_2_day"] = true,
 		["firestarter_1"] = true,

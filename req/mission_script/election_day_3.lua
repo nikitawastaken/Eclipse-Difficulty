@@ -1,5 +1,6 @@
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local preferred = Eclipse.preferred
 
 local sniper_interval = normal and 60 or hard and 40 or 30
 
@@ -17,12 +18,7 @@ local window_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = {
-		tac_shield_wall = false,
-		tac_shield_wall_ranged = false,
-		tac_shield_wall_charge = false,
-		tac_bull_rush = false,
-	},
+	groups = preferred.no_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
