@@ -9,8 +9,6 @@ end
 -- Top level init
 Hooks:PostHook(GroupAITweakData, "init", "eclipse_groupaitd_init", function(self)
 	self.timer_data = {}
-
-	self:_init_timed_spawns_level()
 end)
 
 -- Improve enemy chatter, make proper use of chatter settings like duration and radius
@@ -2413,72 +2411,69 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 
 	if self.fbi_heists[level_id] then
 		self.timed_enemy_spawn_groups = {
-			FBI_timed_recon = {
-				team_id = "law1",
-				max_nr_simultaneous_groups = 2,
-				amount = { 3, 3 },
-				disable_timer = nil,
-				disable_diff = 0.8,
-				objective = function(spawn_group)
-					return {
-						attitude = "engage",
-						pose = "stand",
-						type = "assault_area",
-						stance = "hos",
-						area = spawn_group.area,
-						coarse_path = {
+			{
+				timer_data = {
+					initial_delay = 45,
+					cooldown = { 30, 60 },
+					diff_scale = { 1, 1, 1.5 },
+				},
+				group_data = {
+					fbi_timed_recon = {
+						enabled = true,
+						team_id = "law1",
+						max_nr_simultaneous_groups = 2,
+						amount = { 3, 3 },
+						disable_timer = nil,
+						disable_diff = 0.8,
+						objective = function(spawn_group)
+							return {
+								attitude = "engage",
+								pose = "stand",
+								type = "assault_area",
+								stance = "hos",
+								area = spawn_group.area,
+								coarse_path = {
+									{
+										spawn_group.area.pos_nav_seg,
+										spawn_group.area.pos,
+									},
+								},
+							}
+						end,
+						spawn = {
 							{
-								spawn_group.area.pos_nav_seg,
-								spawn_group.area.pos,
+								amount_min = 1,
+								rank = 2,
+								freq = 1,
+								unit = "FBI_security",
+								tactics = self._timed_tactics.fbi_def,
+							},
+							{
+								amount_max = 2,
+								rank = 2,
+								freq = 0.5,
+								unit = "FBI_security",
+								tactics = self._timed_tactics.fbi_snk,
+							},
+							{
+								amount_max = 1,
+								rank = 1,
+								freq_by_diff = {
+									2 / self.difficulty_index,
+									1 / self.difficulty_index,
+									0,
+								},
+								unit = "FBI_agent_2_3",
+								tactics = self._timed_tactics.fbi_spt,
 							},
 						},
-					}
-				end,
-				spawn = {
-					{
-						amount_min = 1,
-						rank = 2,
-						freq = 1,
-						unit = "FBI_security",
-						tactics = self._timed_tactics.fbi_def,
-					},
-					{
-						amount_max = 2,
-						rank = 2,
-						freq = 0.5,
-						unit = "FBI_security",
-						tactics = self._timed_tactics.fbi_snk,
-					},
-					{
-						amount_max = 1,
-						rank = 1,
-						freq_by_diff = {
-							2 / self.difficulty_index,
-							1 / self.difficulty_index,
-							0,
-						},
-						unit = "FBI_agent_2_3",
-						tactics = self._timed_tactics.fbi_spt,
+						spawn_point_chk_ref = table.list_to_set({
+							"tac_swat_rifle",
+							"tac_swat_rifle_flank",
+						}),
 					},
 				},
-				spawn_point_chk_ref = table.list_to_set({
-					"tac_swat_rifle",
-					"tac_swat_rifle_flank",
-				}),
 			},
-		}
-	end
-end
-
--- Timed groups level tweak table
-function GroupAITweakData:_init_timed_spawns_level()
-	self.timer_data.default_diff_scale = { 2, 1, 0.5 }
-
-	if self.fbi_heists[level_id] then
-		self.timer_data = {
-			initial_delay = 45,
-			cooldown = { 30, 60 },
-			default_diff_scale = { 1, 1, 1.5 },
 		}
 	end
 end
