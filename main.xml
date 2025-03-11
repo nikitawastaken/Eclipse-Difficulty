@@ -5,5 +5,8 @@
 	</AddFiles>
 	
 	<!-- Custom packages -->
+    <!-- FBI ready teams -->
 	<Package id="packages/security_mcmansion" file="packages/security_mcmansion.xml"/>
+    <!-- female bikers -->
+    <Package id="packages/female_bikers" file="packages/female_bikers.xml"/>
 </table>
