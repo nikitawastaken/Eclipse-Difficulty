@@ -844,7 +844,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.fbi_security = deep_clone(presets.enemy_chatter.swat)
 	presets.enemy_chatter.fbi_security.idle = true
 	presets.enemy_chatter.fbi_security.report = true
-	
+
 	return presets
 end
 
