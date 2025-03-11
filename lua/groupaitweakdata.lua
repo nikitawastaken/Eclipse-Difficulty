@@ -2414,8 +2414,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			{
 				timer_data = {
 					initial_delay = 45,
-					cooldown = { 30, 60 },
-					diff_scale = { 1, 1, 1.5 },
+					cooldown = { 15, 30 },
+					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
 					fbi_timed_recon = {
