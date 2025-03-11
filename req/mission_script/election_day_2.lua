@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local rappel_spawn = {
 	values = {
 		interval = 15,
