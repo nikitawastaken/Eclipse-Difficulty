@@ -2413,7 +2413,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
-					initial_delay = 45,
+					initial_delay = 30,
 					cooldown = { 15, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
