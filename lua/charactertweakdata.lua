@@ -841,6 +841,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		report = true,
 	}
 
+	presets.enemy_chatter.fbi_security = deep_clone(presets.enemy_chatter.swat)
+	presets.enemy_chatter.fbi_security.idle = true
+	presets.enemy_chatter.fbi_security.report = true
+	
 	return presets
 end
 
@@ -954,6 +958,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_mcmansion.melee_weapon = "weapon"
 	self.security_mcmansion.speech_prefix_p2 = "n"
 	self.security_mcmansion.silent_priority_shout = "f37"
+	self.security_mcmansion.chatter = self.presets.enemy_chatter.fbi_security
 	self.security_mcmansion.has_alarm_pager = true
 	table.insert(self._enemy_list, "security_mcmansion")
 
