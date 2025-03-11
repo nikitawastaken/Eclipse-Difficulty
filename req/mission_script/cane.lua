@@ -4,13 +4,13 @@ local bikers = {
 	Idstring("units/payday2/characters/ene_biker_2/ene_biker_2"),
 	Idstring("units/payday2/characters/ene_biker_3/ene_biker_3"),
 	Idstring("units/payday2/characters/ene_biker_4/ene_biker_4"),
-    Idstring("units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"),
+	Idstring("units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"),
 	Idstring("units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"),
 	Idstring("units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"),
 }
 return {
-    -- gangsters
-    [101547] = { enemy = bikers },
+	-- gangsters
+	[101547] = { enemy = bikers },
 	[101555] = { enemy = bikers },
 	[101605] = { enemy = bikers },
 	[101609] = { enemy = bikers },

@@ -13,7 +13,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["hox_2"] = true,
 		["hox_3"] = true,
 	}
-    local female_bikers = {
+	local female_bikers = {
 		["welcome_to_the_jungle_1"] = true,
 		["welcome_to_the_jungle_1_night"] = true,
 		["cane"] = true,
@@ -26,7 +26,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			table.insert(self._loaded_diff_packages, "packages/security_mcmansion")
 			PackageManager:load("packages/security_mcmansion")
 		end
-        if female_bikers[level_id] and not PackageManager:loaded("packages/female_bikers") then
+		if female_bikers[level_id] and not PackageManager:loaded("packages/female_bikers") then
 			Eclipse:log("Loading FBI security package...")
 			table.insert(self._loaded_diff_packages, "packages/female_bikers")
 			PackageManager:load("packages/female_bikers")
