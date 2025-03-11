@@ -1797,13 +1797,20 @@ function GroupAIStateBesiege:create_timed_groups_table()
 	local enabled_groups = {}
 	local disabled_groups = {}
 	for idx, group in ipairs(tweak_data.group_ai.timed_enemy_spawn_groups) do
-		for group_id, group_tweak in pairs(group.group_data) do
-			if group_tweak.enabled then
-				enabled_groups[idx] = enabled_groups[idx] or {}
-				table.insert(enabled_groups, group_id)
-			else
+		if group.disabled then
+			for group_id, _ in pairs(group.group_data) do
 				disabled_groups[idx] = disabled_groups[idx] or {}
-				table.insert(disabled_groups, group_id)
+				table.insert(disabled_groups[idx], group_id)
+			end
+		else
+			for group_id, group_tweak in pairs(group.group_data) do
+				if group_tweak.enabled then
+					enabled_groups[idx] = enabled_groups[idx] or {}
+					table.insert(enabled_groups[idx], group_id)
+				else
+					disabled_groups[idx] = disabled_groups[idx] or {}
+					table.insert(disabled_groups[idx], group_id)
+				end
 			end
 		end
 	end
@@ -1814,6 +1821,8 @@ function GroupAIStateBesiege:create_timed_groups_table()
 	self._next_timed_group_spawns_t = {}
 end
 
+---disabled? = bool
+---
 ---In timer_data:
 ---{
 --- initial_delay? = number,
@@ -1823,15 +1832,13 @@ end
 ---
 ---In group_data:
 ---{
----	enabled? = bool,
+---	enabled = bool,
 ---	team_id? = string,
 ---	disable_timer? = number,
 ---	disable_diff? = number,
 ---	objective? = function(spawn_group),
 ---	spawn = table
 ---}
----
----TODO: Make the intial time start counting after the assault starts
 function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 	if not self._timed_groups or #self._timed_groups < 1 then
 		return
@@ -1840,7 +1847,7 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 	-- Check spawns for each "spawn group"
 	local t = TimerManager:game():time()
 	for idx, group in ipairs(self._enabled_timed_groups) do
-		if self._next_timed_group_spawns_t[idx] == false then
+		if self._next_timed_group_spawns_t[idx] == false or group == false then
 			-- Lua has no native continue statement...
 			goto __continue
 		end
@@ -1856,7 +1863,7 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 
 		if self._next_timed_group_spawns_t[idx] == nil then
 			self._next_timed_group_spawns_t[idx] = t + diff_scale * (timer_data.initial_delay + cooldown)
-		elseif self._next_timed_group_spawn_t[idx] <= t then
+		elseif self._next_timed_group_spawns_t[idx] <= t then
 			local random_group = math.random(#group)
 			local group_id = group[random_group]
 			local group_data = self._timed_groups[idx].group_data[group_id]
@@ -1867,9 +1874,9 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 					1,
 				},
 			}, group_data) then
-				self._next_timed_group_spawn_t[idx] = t + diff_scale * cooldown
+				self._next_timed_group_spawns_t[idx] = t + diff_scale * cooldown
 			else
-				self._next_timed_group_spawn_t[idx] = t + 0.5 * diff_scale * cooldown
+				self._next_timed_group_spawns_t[idx] = t + 0.5 * diff_scale * cooldown
 			end
 		end
 
@@ -1881,13 +1888,11 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 		for _, group_id in ipairs(group) do
 			local group_data = self._timed_groups[idx].group_data[group_id]
 			if group_data.disable_timer and group_data.disable_timer <= t then
-				self:disable_timed_group(idx, group_id)
-			end
-			if group_data.disable_diff and group_data.disable_diff <= self._difficulty_value then
-				self:disable_timed_group(idx, group_id)
-			end
-			if group_data.enabled == false then
-				self:disable_timed_group(idx, group_id)
+				self:disable_timed_spawngroup(idx, group_id)
+			elseif group_data.disable_diff and group_data.disable_diff <= self._difficulty_value then
+				self:disable_timed_spawngroup(idx, group_id)
+			elseif not group_data.enabled then
+				self:disable_timed_spawngroup(idx, group_id)
 			end
 		end
 	end
@@ -1924,21 +1929,35 @@ function GroupAIStateBesiege:_spawn_timed_group(task_data, group_data_dynamic, t
 	end
 end
 
--- Manually disable timed groups
-function GroupAIStateBesiege:disable_timed_group(idx, group_id)
+-- Manually disable timed spawn group
+function GroupAIStateBesiege:disable_timed_spawngroup(idx, group_id)
 	local remove_index = table.index_of(self._enabled_timed_groups[idx], group_id)
 	if remove_index == -1 then
 		Eclipse:warn(string.format("Tried to disable timed group [%s] from group [%d], but it doesn't exist!", group_id, idx))
+		return
 	end
 	table.insert(self._disabled_timed_groups[idx], table.remove(self._enabled_timed_groups[idx], remove_index))
 end
 
--- Manually enable timed groups
-function GroupAIStateBesiege:enable_timed_group(idx, group_id)
+-- Manually enable timed spawn group
+function GroupAIStateBesiege:enable_timed_spawngroup(idx, group_id)
 	local remove_index = table.index_of(self._enabled_timed_groups[idx], group_id)
 	if remove_index == -1 then
 		Eclipse:warn(string.format("Tried to enable timed group [%s] from group [%d], but it doesn't exist!", group_id, idx))
+		return
 	end
 	table.insert(self._enabled_timed_groups[idx], table.remove(self._disabled_timed_groups[idx], remove_index))
+end
+
+-- Manually disable timed group
+function GroupAIStateBesiege:disable_timed_group(idx)
+	self._disabled_timed_groups[idx] = self._enabled_timed_groups[idx]
+	self._enabled_timed_groups[idx] = false
+end
+
+-- Manually enable timed group
+function GroupAIStateBesiege:enabled_timed_group(idx)
+	self._enabled_timed_groups[idx] = self._disabled_timed_groups[idx]
+	self._disabled_timed_groups[idx] = false
 end
 -- Timed groups end
