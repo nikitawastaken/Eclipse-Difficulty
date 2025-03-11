@@ -2768,7 +2768,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
-	
+
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
 
@@ -2895,7 +2895,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.ponr.assault.groups.FBI_timed_group = { 0, 0, 0 }
-	
+
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
 	self.ponr.recon.groups.marshal_squad = { 0, 0, 0 }
@@ -2904,7 +2904,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.ponr.recon.groups.FBI_timed_group = { 0, 0, 0 }
-	
+
 	-- nuke captain
 	self.phalanx.spawn_chance = {
 		decrease = 0,
