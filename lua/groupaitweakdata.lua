@@ -2389,6 +2389,20 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			"charge",
 			"murder",
 		},
+		murky_def = {
+			"ranged_fire",
+			"murder",
+		},
+		murky_agg = {
+			"charge",
+			"deathguard",
+			"murder",
+		},
+		murky_snk = {
+			"flank",
+			"deathguard",
+			"murder",
+		},
 		fbi_def = {
 			"rescue",
 			"ranged_fire",
@@ -2418,7 +2432,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
-					fbi_timed_recon = {
+					FBI_timed_group = {
 						enabled = true,
 						team_id = "law1",
 						max_nr_simultaneous_groups = 2,
@@ -2743,6 +2757,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.custom_assault = { 0, 0, 0 }
 	self.besiege.assault.groups.snowman_boss = { 0, 0, 0 }
 	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
+	-- recurring groups
+	self.besiege.assault.groups.FBI_timed_group = { 0, 0, 0 }
 
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
@@ -2750,7 +2766,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.custom_assault = { 0, 0, 0 }
 	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
-
+	-- recurring groups
+	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
+	
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
 
@@ -2868,7 +2886,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		single_spooc = { 1, 1, 1 },
 	}
 
-	--
 	-- misc
 	self.ponr.assault.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.assault.groups.Phalanx = { 0, 0, 0 }
@@ -2876,14 +2893,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.groups.custom_assault = { 0, 0, 0 }
 	self.ponr.assault.groups.snowman_boss = { 0, 0, 0 }
 	self.ponr.assault.groups.piggydozer = { 0, 0, 0 }
-
+	-- recurring groups
+	self.ponr.assault.groups.FBI_timed_group = { 0, 0, 0 }
+	
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
 	self.ponr.recon.groups.marshal_squad = { 0, 0, 0 }
 	self.ponr.recon.groups.custom_assault = { 0, 0, 0 }
 	self.ponr.recon.groups.snowman_boss = { 0, 0, 0 }
 	self.ponr.recon.groups.piggydozer = { 0, 0, 0 }
-
+	-- recurring groups
+	self.ponr.recon.groups.FBI_timed_group = { 0, 0, 0 }
+	
 	-- nuke captain
 	self.phalanx.spawn_chance = {
 		decrease = 0,
