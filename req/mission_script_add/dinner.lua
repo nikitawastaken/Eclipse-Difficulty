@@ -5,8 +5,6 @@ local scripted_enemy = Eclipse.scripted_enemy
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 
-local murkywater_1 = scripted_enemy.murkywater_1
-local murkywater_2 = scripted_enemy.murkywater_2
 local shield = scripted_enemy.shield
 local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
@@ -49,28 +47,6 @@ local spawn_shields_and_dozer = {
 		{ id = 400010, delay = 0 },
 		{ id = 400011, delay = 0 },
 		{ id = 400012, delay = 0 },
-	},
-}
-local spawn_murkies = {
-	enabled = true,
-	trigger_times = 1,
-	on_executed = {
-		{ id = 400028, delay = 0 },
-		{ id = 400029, delay = 0 },
-		{ id = 400030, delay = 0 },
-		{ id = 400031, delay = 0 },
-		{ id = 400032, delay = 8 },
-		{ id = 400033, delay = 8 },
-		{ id = 400034, delay = 8 },
-		{ id = 400035, delay = 8 },
-		{ id = 400036, delay = 16 },
-		{ id = 400037, delay = 16 },
-		{ id = 400038, delay = 16 },
-		{ id = 400039, delay = 16 },
-		{ id = 400058, delay = 24 },
-		{ id = 400059, delay = 24 },
-		{ id = 400060, delay = 24 },
-		{ id = 400061, delay = 24 },
 	},
 }
 local optsBesiegeDummy = {
@@ -141,64 +117,6 @@ local optsHunt_SO = {
 	interval = 2,
 	so_action = "AI_hunt",
 }
-local optsMurky_SMG = {
-	enemy = murkywater_1,
-	participate_to_group_ai = true,
-	enabled = true,
-}
-local optsMurky_Rifle = {
-	enemy = murkywater_2,
-	participate_to_group_ai = true,
-	enabled = true,
-}
-local optsrespawn_murkies_1 = {
-	on_executed = {
-		{ id = 400028, delay = 40, delay_rand = 10 },
-		{ id = 400029, delay = 40, delay_rand = 10 },
-		{ id = 400030, delay = 40, delay_rand = 10 },
-		{ id = 400031, delay = 40, delay_rand = 10 },
-	},
-	elements = {
-		400028,
-	},
-	event = "death",
-}
-local optsrespawn_murkies_2 = {
-	on_executed = {
-		{ id = 400032, delay = 40, delay_rand = 10 },
-		{ id = 400033, delay = 40, delay_rand = 10 },
-		{ id = 400034, delay = 40, delay_rand = 10 },
-		{ id = 400035, delay = 40, delay_rand = 10 },
-	},
-	elements = {
-		400032,
-	},
-	event = "death",
-}
-local optsrespawn_murkies_3 = {
-	on_executed = {
-		{ id = 400036, delay = 40, delay_rand = 10 },
-		{ id = 400037, delay = 40, delay_rand = 10 },
-		{ id = 400038, delay = 40, delay_rand = 10 },
-		{ id = 400039, delay = 40, delay_rand = 10 },
-	},
-	elements = {
-		400036,
-	},
-	event = "death",
-}
-local optsrespawn_murkies_4 = {
-	on_executed = {
-		{ id = 400058, delay = 40, delay_rand = 10 },
-		{ id = 400059, delay = 40, delay_rand = 10 },
-		{ id = 400060, delay = 40, delay_rand = 10 },
-		{ id = 400061, delay = 40, delay_rand = 10 },
-	},
-	elements = {
-		400058,
-	},
-	event = "death",
-}
 local optsrespawn_dozer_1 = {
 	on_executed = {
 		{ id = 400019, delay = 180 },
@@ -227,16 +145,6 @@ local disable_dozer = {
 	toggle = "off",
 	elements = {
 		400019,
-	},
-}
-local disable_murkies = {
-	enabled = true,
-	toggle = "off",
-	elements = {
-		400040,
-		400041,
-		400042,
-		400062,
 	},
 }
 
@@ -268,22 +176,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400026, "van_spawngroup", { 400022, 400023, 400024, 400025 }, 5),
 	Eclipse.mission_elements.gen_preferedadd(400027, "spawn_the_van_spawngroup", van_spawngroup),
 
-	--Murkies & Respawns
-	Eclipse.mission_elements.gen_dummy(400028, "murky_1", Vector3(-8611, 3648, -72), Rotation(-90, 0, -0), optsMurky_Rifle),
-	Eclipse.mission_elements.gen_dummy(400029, "murky_2", Vector3(-8611, 3750, -72), Rotation(-90, 0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400030, "murky_3", Vector3(-8525, 3669, -72), Rotation(-90, 0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400031, "murky_4", Vector3(-8525, 3750, -72), Rotation(-90, 0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400032, "murky_5", Vector3(-7567, 7768, 898.834), Rotation(0, 0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400033, "murky_6", Vector3(-7653, 7768, 898.834), Rotation(0, 0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400034, "murky_7", Vector3(-7653, 7838, 898.834), Rotation(0, 0, -0), optsMurky_Rifle),
-	Eclipse.mission_elements.gen_dummy(400035, "murky_8", Vector3(-7567, 7838, 898.834), Rotation(0, 0, -0), optsMurky_Rifle),
-	Eclipse.mission_elements.gen_dummy(400036, "murky_9", Vector3(-6933, 9746, 9.261), Rotation(90, -0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400037, "murky_10", Vector3(-6933, 9666, 9.261), Rotation(90, -0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400038, "murky_11", Vector3(-7011, 9744, 9.261), Rotation(90, -0, -0), optsMurky_Rifle),
-	Eclipse.mission_elements.gen_dummy(400039, "murky_12", Vector3(-7011, 9668, 9.261), Rotation(90, -0, -0), optsMurky_Rifle),
-	Eclipse.mission_elements.gen_dummytrigger(400040, "respawn_murkies_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_murkies_1),
-	Eclipse.mission_elements.gen_dummytrigger(400041, "respawn_murkies_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_murkies_2),
-	Eclipse.mission_elements.gen_dummytrigger(400042, "respawn_murkies_3", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_murkies_3),
+	--Respawns
 	Eclipse.mission_elements.gen_dummytrigger(400043, "respawn_dozer_1", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_dozer_1),
 	Eclipse.mission_elements.gen_dummytrigger(400044, "respawn_dozer_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_dozer_2),
 	Eclipse.mission_elements.gen_toggleelement(400045, "disable_dozer", disable_dozer),
@@ -294,13 +187,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400053, "spawn_shields_and_dozer", spawn_shields_and_dozer),
 	Eclipse.mission_elements.gen_missionscript(400054, "spawn_dozer_1", spawn_dozer_1),
 	Eclipse.mission_elements.gen_missionscript(400055, "spawn_dozer_2", spawn_dozer_2),
-	Eclipse.mission_elements.gen_toggleelement(400056, "disable_murkies", disable_murkies),
 	Eclipse.mission_elements.gen_so(400057, "hunt_so", Vector3(3600, 2473, -1200), Rotation(0, 0, 0), optsHunt_SO),
-	Eclipse.mission_elements.gen_dummy(400058, "murky_13", Vector3(-11422.900, 5427.540, 282.287), Rotation(-30, 0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400059, "murky_14", Vector3(-11450.400, 5379.910, 282.287), Rotation(-30, 0, -0), optsMurky_Rifle),
-	Eclipse.mission_elements.gen_dummy(400060, "murky_15", Vector3(-11472.900, 5340.940, 282.287), Rotation(-30, 0, -0), optsMurky_SMG),
-	Eclipse.mission_elements.gen_dummy(400061, "murky_16", Vector3(-11496.900, 5299.370, 282.287), Rotation(-30, 0, -0), optsMurky_Rifle),
-	Eclipse.mission_elements.gen_dummytrigger(400062, "respawn_murkies_4", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_murkies_4),
 }
 
 return M

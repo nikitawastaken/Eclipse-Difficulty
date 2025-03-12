@@ -1343,6 +1343,31 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
+    self.unit_categories.Murky_Response = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
+				Idstring("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
+				Idstring("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
+				Idstring("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
+				Idstring("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
+				Idstring("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"),
+			},
+		},
+		access = access_type_all,
+	}
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
@@ -2376,6 +2401,9 @@ GroupAITweakData.fbi_heists = {
 	["hox_2"] = true,
 	["hox_3"] = true,
 }
+GroupAITweakData.murky_response_heists = {
+	["dinner"] = true,
+}
 
 -- Timed groups tweak table
 function GroupAITweakData:_init_enemy_spawn_groups_level()
@@ -2479,6 +2507,73 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 								},
 								unit = "FBI_agent_2_3",
 								tactics = self._timed_tactics.fbi_spt,
+							},
+						},
+						spawn_point_chk_ref = table.list_to_set({
+							"tac_swat_rifle",
+							"tac_swat_rifle_flank",
+						}),
+					},
+				},
+			},
+		}
+	end
+    if self.murky_response_heists[level_id] then
+		self.timed_enemy_spawn_groups = {
+			{
+				timer_data = {
+					initial_delay = 30,
+					cooldown = { 15, 30 },
+					diff_scale = { 1, 1.5, 2 },
+				},
+				group_data = {
+					Murkywater_timed_group = {
+						enabled = true,
+						team_id = "law1",
+						max_nr_simultaneous_groups = 2,
+						amount = { 3, 3 },
+						disable_timer = 600, --10 minutes
+						disable_diff = nil,
+						objective = function(spawn_group)
+							return {
+								attitude = "engage",
+								pose = "stand",
+								type = "assault_area",
+								stance = "hos",
+								area = spawn_group.area,
+								coarse_path = {
+									{
+										spawn_group.area.pos_nav_seg,
+										spawn_group.area.pos,
+									},
+								},
+							}
+						end,
+						spawn = {
+							{
+								amount_min = 1,
+								rank = 2,
+								freq = 1,
+								unit = "Murky_Response",
+								tactics = self._timed_tactics.murky_def,
+							},
+							{
+								amount_max = 2,
+								rank = 2,
+								freq = 0.5,
+								unit = "Murky_Response",
+								tactics = self._timed_tactics.murky_agg,
+							},
+							{
+								amount_max = 1,
+								rank = 1,
+								freq_by_diff = {
+									2 / self.difficulty_index,
+									1 / self.difficulty_index,
+									0,
+								},
+								unit = "Murky_Response",
+								tactics = self._timed_tactics.murky_snk,
 							},
 						},
 						spawn_point_chk_ref = table.list_to_set({
@@ -2759,6 +2854,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.besiege.assault.groups.FBI_timed_group = { 0, 0, 0 }
+    self.besiege.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
@@ -2768,6 +2864,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
+    self.recon.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
@@ -2895,6 +2992,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.ponr.assault.groups.FBI_timed_group = { 0, 0, 0 }
+    self.ponr.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
@@ -2904,6 +3002,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.ponr.recon.groups.FBI_timed_group = { 0, 0, 0 }
+    self.ponr.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {

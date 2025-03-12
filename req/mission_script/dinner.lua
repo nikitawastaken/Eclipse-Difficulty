@@ -146,18 +146,10 @@ return {
 			chance = overkill_and_above and 60 or 20,
 		},
 	},
-	-- Spawn murkies at the start of 1 assault
 	-- Spawn scripted dozer after some time
 	[103477] = {
 		on_executed = {
-			{ id = 400046, delay = 5 },
 			{ id = 400054, delay = 30 },
-		},
-	},
-	-- Stop spawning murkies after the end of 1st assault
-	[102158] = {
-		on_executed = {
-			{ id = 400056, delay = 0 },
 		},
 	},
 	--PDTH styled ambushes
