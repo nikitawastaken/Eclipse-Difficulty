@@ -2400,6 +2400,7 @@ GroupAITweakData.fbi_heists = {
 	["alex_3"] = true,
 	["hox_2"] = true,
 	["hox_3"] = true,
+    ["man"] = true,
 }
 GroupAITweakData.murky_response_heists = {
 	["dinner"] = true,
