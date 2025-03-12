@@ -12,6 +12,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["alex_3"] = true,
 		["hox_2"] = true,
 		["hox_3"] = true,
+        ["man"] = true,
 	}
 	local female_bikers = {
 		["welcome_to_the_jungle_1"] = true,
