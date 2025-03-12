@@ -1343,7 +1343,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-    self.unit_categories.Murky_Response = {
+	self.unit_categories.Murky_Response = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
@@ -2518,7 +2518,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			},
 		}
 	end
-    if self.murky_response_heists[level_id] then
+	if self.murky_response_heists[level_id] then
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
@@ -2854,7 +2854,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.besiege.assault.groups.FBI_timed_group = { 0, 0, 0 }
-    self.besiege.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.besiege.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
@@ -2864,7 +2864,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
-    self.recon.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.recon.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
@@ -2992,7 +2992,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.ponr.assault.groups.FBI_timed_group = { 0, 0, 0 }
-    self.ponr.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.ponr.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
@@ -3002,7 +3002,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.ponr.recon.groups.FBI_timed_group = { 0, 0, 0 }
-    self.ponr.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.ponr.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {
