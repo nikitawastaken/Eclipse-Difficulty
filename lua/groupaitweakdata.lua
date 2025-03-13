@@ -2696,7 +2696,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 									self.difficulty_index / 10,
 								},
 								unit = "Army_soldier_3",
-								tactics = self._timed_tactics.fbi_spt,
+								tactics = self._timed_tactics.army_spt,
 							},
 						},
 						spawn_point_chk_ref = table.list_to_set({
