@@ -257,7 +257,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
 
 	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
-	
+
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
@@ -892,7 +892,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_army.melee_weapon = "weapon"
 	self.security_army.no_arrest = true
 	table.insert(self._enemy_list, "security_army")
-	
+
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
@@ -1015,10 +1015,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.soldier.headshot_dmg_mul = 2 -- 80 head health
 	self.soldier.surrender = self.presets.surrender.hard
 	self.soldier.suppression = self.presets.suppression.hard
-	self.soldier.no_arrest = true 
+	self.soldier.no_arrest = true
 	self.soldier.steal_loot = false
 	table.insert(self._enemy_list, "soldier")
-	
+
 	self.sniper.HEALTH_INIT = 8
 	self.sniper.headshot_dmg_mul = 4 -- 20 head health
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
@@ -1285,14 +1285,14 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_fbi_swat_3")
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
-	
+
 	char_map.army = {
 		path = "units/pd2_dlc_army/characters/",
 		list = {
 			"ene_soldier_1",
 			"ene_soldier_2",
 			"ene_soldier_3",
-		}
+		},
 	}
 
 	safe_add(char_map.gitgud, "ene_zeal_swat_2")
@@ -1484,7 +1484,7 @@ function CharacterTweakData:_set_presets()
 
 		local is_boss = name:match("_boss$")
 
-		-- Set health and HS mul based on access	
+		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
 			if not is_boss then
 				if self.access_health[char_preset.access] then
@@ -1496,7 +1496,7 @@ function CharacterTweakData:_set_presets()
 				end
 			end
 		end
-		
+
 		-- Boss related stuff
 		if is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
