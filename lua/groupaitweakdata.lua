@@ -2865,7 +2865,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
-	self.recon.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.besiege.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
