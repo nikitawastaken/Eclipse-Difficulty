@@ -20,7 +20,7 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
-        bulldozer = {
+		bulldozer = {
 			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
 			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
 		},
