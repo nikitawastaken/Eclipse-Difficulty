@@ -5,6 +5,18 @@ local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
+local cops = {
+	    cop_1,
+	    cop_2,
+	    cop_3,
+	    cop_1,
+}
+local beat_cops = {
+    enemy = cops,
+	values = {
+		participate_to_group_ai = true,
+	},
+}
 
 local enabled = {
 	values = {
@@ -127,36 +139,11 @@ return {
 		},
 	},
 	-- replace guards in elevator with beat cops
-	[100104] = {
-		values = {
-			enemy = cop_1,
-			participate_to_group_ai = true,
-		},
-	},
-	[101787] = {
-		values = {
-			enemy = cop_1,
-			participate_to_group_ai = true,
-		},
-	},
-	[102812] = {
-		values = {
-			enemy = cop_2,
-			participate_to_group_ai = true,
-		},
-	},
-	[102813] = {
-		values = {
-			enemy = cop_2,
-			participate_to_group_ai = true,
-		},
-	},
-	[102814] = {
-		values = {
-			enemy = cop_3,
-			participate_to_group_ai = true,
-		},
-	},
+	[100104] = beat_cops,
+	[101787] = beat_cops,
+	[102812] = beat_cops,
+	[102813] = beat_cops,
+	[102814] = beat_cops,
 	-- spawn dozer and 2 tasers on overkill above (comes a bit later after beat cops)
 	[102128] = {
 		on_executed = {

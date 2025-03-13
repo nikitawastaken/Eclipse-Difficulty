@@ -2,22 +2,16 @@ local scripted_enemy = Eclipse.scripted_enemy
 local taser = scripted_enemy.taser_1
 local taser_shotgun = scripted_enemy.taser_2
 
-local ambush_enemy_1 = {
-	values = {
-		enemy = taser,
-	},
-}
-local ambush_enemy_2 = {
-	values = {
-		enemy = taser_shotgun,
-	},
+local tasers = {
+      taser,
+      taser_shotgun,
 }
 
 return {
 	-- Replace dozer spam with less stupid enemies
-	[101565] = ambush_enemy_1,
-	[101176] = ambush_enemy_2,
-	[101207] = ambush_enemy_1,
+    [101565] = { enemy = tasers },
+	[101176] = { enemy = tasers },
+	[101207] = { enemy = tasers },
 	[102176] = {
 		values = {
 			enabled = false,

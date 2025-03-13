@@ -20,6 +20,7 @@ local taser = scripted_enemy.taser_1
 local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
+local swat_ambush_table = {swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg}
 
 local diff_scaling = diff_i / 8
 
@@ -183,28 +184,8 @@ local optsTaser_Ambush = {
 	participate_to_group_ai = true,
 	enabled = hard_and_above,
 }
-local optsSWAT_Rifle = {
-	enemy = swat_rifle,
-	participate_to_group_ai = true,
-	enabled = true,
-}
-local optsSWAT_Shotgun = {
-	enemy = swat_sg,
-	participate_to_group_ai = true,
-	enabled = true,
-}
-local optsSWAT_SMG = {
-	enemy = swat_smg,
-	participate_to_group_ai = true,
-	enabled = true,
-}
-local optsSWAT_HeavyRifle = {
-	enemy = heavy_rifle,
-	participate_to_group_ai = true,
-	enabled = true,
-}
-local optsSWAT_HeavyShotgun = {
-	enemy = heavy_sg,
+local optsSWAT_Ambush = {
+	enemy_table = swat_ambush_table,
 	participate_to_group_ai = true,
 	enabled = true,
 }
@@ -341,30 +322,30 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400022, "dozer_ambush_1", Vector3(-1425, -5148, 50), Rotation(180, 0, -0), optsBulldozer_Ambush),
 
 	--SWAT
-	Eclipse.mission_elements.gen_dummy(400023, "swat_ambush_1", Vector3(-1368, -4156, 50), Rotation(0, 0, -0), optsSWAT_Rifle),
-	Eclipse.mission_elements.gen_dummy(400024, "swat_ambush_2", Vector3(-1428, -4156, 50), Rotation(0, 0, -0), optsSWAT_Rifle),
-	Eclipse.mission_elements.gen_dummy(400025, "swat_ambush_3", Vector3(-1499, -4156, 50), Rotation(0, 0, -0), optsSWAT_SMG),
-	Eclipse.mission_elements.gen_dummy(400026, "swat_ambush_4", Vector3(-1368, -4082, 50), Rotation(0, 0, -0), optsSWAT_Shotgun),
-	Eclipse.mission_elements.gen_dummy(400027, "swat_ambush_5", Vector3(-1428, -4082, 50), Rotation(0, 0, -0), optsSWAT_Shotgun),
-	Eclipse.mission_elements.gen_dummy(400028, "swat_ambush_6", Vector3(-1499, -4082, 50), Rotation(0, 0, -0), optsSWAT_Rifle),
-	Eclipse.mission_elements.gen_dummy(400029, "swat_ambush_7", Vector3(-1481, -5029, 50), Rotation(-180, 0, -0), optsSWAT_HeavyRifle),
-	Eclipse.mission_elements.gen_dummy(400030, "swat_ambush_8", Vector3(-1428, -5029, 50), Rotation(-180, 0, -0), optsSWAT_HeavyShotgun),
-	Eclipse.mission_elements.gen_dummy(400031, "swat_ambush_9", Vector3(-1369, -5029, 50), Rotation(-180, 0, -0), optsSWAT_SMG),
-	Eclipse.mission_elements.gen_dummy(400032, "swat_ambush_10", Vector3(-1477, -5102, 50), Rotation(-180, 0, -0), optsSWAT_SMG),
-	Eclipse.mission_elements.gen_dummy(400033, "swat_ambush_11", Vector3(-1425, -5102, 50), Rotation(-180, 0, -0), optsSWAT_Shotgun),
-	Eclipse.mission_elements.gen_dummy(400034, "swat_ambush_12", Vector3(-1370, -5102, 50), Rotation(-180, 0, -0), optsSWAT_HeavyShotgun),
-	Eclipse.mission_elements.gen_dummy(400035, "swat_ambush_13", Vector3(-5119, -5102, 50), Rotation(180, 0, -0), optsSWAT_HeavyShotgun),
-	Eclipse.mission_elements.gen_dummy(400036, "swat_ambush_14", Vector3(-5170, -5102, 50), Rotation(180, 0, -0), optsSWAT_SMG),
-	Eclipse.mission_elements.gen_dummy(400037, "swat_ambush_15", Vector3(-5229, -5102, 50), Rotation(180, 0, -0), optsSWAT_SMG),
-	Eclipse.mission_elements.gen_dummy(400038, "swat_ambush_16", Vector3(-5229, -5027, 50), Rotation(180, 0, -0), optsSWAT_Rifle),
-	Eclipse.mission_elements.gen_dummy(400039, "swat_ambush_17", Vector3(-5170, -5027, 50), Rotation(180, 0, -0), optsSWAT_Rifle),
-	Eclipse.mission_elements.gen_dummy(400040, "swat_ambush_18", Vector3(-5117, -5027, 50), Rotation(180, 0, -0), optsSWAT_Shotgun),
-	Eclipse.mission_elements.gen_dummy(400041, "swat_ambush_19", Vector3(-5117, -4157, 50), Rotation(0, 0, -0), optsSWAT_HeavyShotgun),
-	Eclipse.mission_elements.gen_dummy(400042, "swat_ambush_20", Vector3(-5173, -4157, 50), Rotation(0, 0, -0), optsSWAT_HeavyShotgun),
-	Eclipse.mission_elements.gen_dummy(400043, "swat_ambush_21", Vector3(-5230, -4157, 50), Rotation(0, 0, -0), optsSWAT_SMG),
-	Eclipse.mission_elements.gen_dummy(400044, "swat_ambush_22", Vector3(-5230, -4083, 50), Rotation(0, 0, -0), optsSWAT_SMG),
-	Eclipse.mission_elements.gen_dummy(400045, "swat_ambush_23", Vector3(-5175, -4083, 50), Rotation(0, 0, -0), optsSWAT_Rifle),
-	Eclipse.mission_elements.gen_dummy(400046, "swat_ambush_24", Vector3(-5118, -4083, 50), Rotation(0, 0, -0), optsSWAT_Rifle),
+	Eclipse.mission_elements.gen_dummy(400023, "swat_ambush_1", Vector3(-1368, -4156, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400024, "swat_ambush_2", Vector3(-1428, -4156, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400025, "swat_ambush_3", Vector3(-1499, -4156, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400026, "swat_ambush_4", Vector3(-1368, -4082, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400027, "swat_ambush_5", Vector3(-1428, -4082, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400028, "swat_ambush_6", Vector3(-1499, -4082, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400029, "swat_ambush_7", Vector3(-1481, -5029, 50), Rotation(-180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400030, "swat_ambush_8", Vector3(-1428, -5029, 50), Rotation(-180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400031, "swat_ambush_9", Vector3(-1369, -5029, 50), Rotation(-180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400032, "swat_ambush_10", Vector3(-1477, -5102, 50), Rotation(-180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400033, "swat_ambush_11", Vector3(-1425, -5102, 50), Rotation(-180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400034, "swat_ambush_12", Vector3(-1370, -5102, 50), Rotation(-180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400035, "swat_ambush_13", Vector3(-5119, -5102, 50), Rotation(180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400036, "swat_ambush_14", Vector3(-5170, -5102, 50), Rotation(180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400037, "swat_ambush_15", Vector3(-5229, -5102, 50), Rotation(180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400038, "swat_ambush_16", Vector3(-5229, -5027, 50), Rotation(180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400039, "swat_ambush_17", Vector3(-5170, -5027, 50), Rotation(180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400040, "swat_ambush_18", Vector3(-5117, -5027, 50), Rotation(180, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400041, "swat_ambush_19", Vector3(-5117, -4157, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400042, "swat_ambush_20", Vector3(-5173, -4157, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400043, "swat_ambush_21", Vector3(-5230, -4157, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400044, "swat_ambush_22", Vector3(-5230, -4083, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400045, "swat_ambush_23", Vector3(-5175, -4083, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
+	Eclipse.mission_elements.gen_dummy(400046, "swat_ambush_24", Vector3(-5118, -4083, 50), Rotation(0, 0, -0), optsSWAT_Ambush),
 	--Roof Acesss blockades
 	Eclipse.mission_elements.gen_dummy(400047, "taser_roof_access_blockade_1", Vector3(-1205, -3532, 1175), Rotation(87, -0, -0), optsTaser_roofblockade_1),
 	Eclipse.mission_elements.gen_dummy(400048, "shield_roof_access_blockade_1", Vector3(-1205, -3532, 1175), Rotation(87, -0, -0), optsShield_roofblockade_1),

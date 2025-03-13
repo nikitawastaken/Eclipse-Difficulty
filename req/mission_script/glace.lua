@@ -2,8 +2,19 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 
-local bulldozer = scripted_enemy.bulldozer_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_1
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+
+local regular_dozers = {
+      green_bulldozer,
+      black_bulldozer,
+}
+local eclipse_dozers = {
+      elite_ben_bulldozer,
+      elite_skull_bulldozer,
+}
 
 local bridge_spawn1 = {
 	values = {
@@ -98,7 +109,7 @@ return {
 	},
 	-- replace the cloaker spawn with dozer and make him participate to group ai
 	[101320] = {
-		enemy = is_eclipse and elite_bulldozer or bulldozer,
+		enemy = is_eclipse and eclipse_dozers or regular_dozers,
 		values = {
 			participate_to_group_ai = true,
 		},
