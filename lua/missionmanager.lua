@@ -143,6 +143,7 @@ function MissionManager.mission_script_patch_funcs.groups(self, element, data)
 	Eclipse:log("Changed %u preferred group(s) of %s", table.size(data), element:editor_name())
 end
 
+-- TODO: integrate into values patch like modern ASS
 function MissionManager.mission_script_patch_funcs.chance(self, element, data)
 	element._values.chance = data
 	element._chance = data
@@ -162,6 +163,12 @@ function MissionManager.mission_script_patch_funcs.modify_list_value(self, eleme
 			end
 		end
 	end
+end
+
+function MissionManager.mission_script_patch_funcs.enemy(self, element, data)
+	element:replace_enemy_name(data)
+
+	Eclipse:log(string.format("Modified enemy spawn in element %s", element:editor_name()))
 end
 
 -- Thank you ASS :pray:

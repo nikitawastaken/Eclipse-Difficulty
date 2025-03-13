@@ -1,16 +1,22 @@
 local ffo_heists = Eclipse.ffo_heists
 
---Peak scripting
+-- Peak scripting
 function GroupAIStateBase:_get_scripted_tier()
+	local state = managers.groupai and managers.groupai:state_name()
+
+	if not state then
+		return "CS"
+	end
+
 	local diff_rounded = self._difficulty_value >= 1 and 1 or self._difficulty_value < 0.5 and 0 or 0.5
 	local index = 1 + (diff_rounded / 0.5)
-	local state = managers.groupai:state_name()
 	local tier = tweak_data.group_ai[state] and tweak_data.group_ai[state].faction[index]
 
 	return tier or "CS"
 end
 
--- Set up needed variables
+-- add diff when killing civilians, and track accumulated penalty through mission script diff changes
+-- scale scripted spawn tier with current diff value
 local _calculate_difficulty_ratio = GroupAIStateBase._calculate_difficulty_ratio
 function GroupAIStateBase:_calculate_difficulty_ratio(...)
 	if self._hostage_killed_diff_add then
@@ -22,17 +28,19 @@ function GroupAIStateBase:_calculate_difficulty_ratio(...)
 
 	_calculate_difficulty_ratio(self, ...)
 
+	local tier = self:_get_scripted_tier()
+	if not tier or self._last_scripted_tier == tier then
+		return
+	end
+
+	self._last_scripted_tier = tier
 	for name, script in pairs(managers.mission._scripts) do
 		for k, element in pairs(script._elements) do
 			if getmetatable(element) == ElementSpawnEnemyDummy then
-				local tier = self:_get_scripted_tier()
-				local mapped_name = element.enemy_mapping[element._enemy_name:key()]
-				local mapped_unit = element.faction_mapping[tier] and element.faction_mapping[tier][mapped_name]
+				local mapped_unit = element:get_replacement_enemy_name(tier)
 
-				if type(mapped_unit) == "table" then
-					element._enemy_table = mapped_unit
-				elseif mapped_unit then
-					element._enemy_name = Idstring(mapped_unit)
+				if mapped_unit then
+					element:replace_enemy_name(mapped_unit)
 				end
 			end
 		end

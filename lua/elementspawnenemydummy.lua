@@ -165,26 +165,40 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2"):key()] = "shield",
 }
 
-local mission_script_elements = Eclipse:mission_script_patches()
-
---[[
+-- TODO: track mapped unit keys rather than using current enemy name for determining tier swaps
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
-	local mapped_name = self.enemy_mapping[self._enemy_name:key()]
-	local mapped_unit = self.faction_mapping[difficulty] and self.faction_mapping[difficulty][mapped_name]
-	if type(mapped_unit) == "table" then
-		self._enemy_table = mapped_unit
-	elseif mapped_unit then
-		self._enemy_name = Idstring(mapped_unit)
-	end
+	self._enemy_table = self._values.enemy_table
+	self._values.enemy_table = nil
 end)
-]]
---
 
-Hooks:PreHook(ElementSpawnEnemyDummy, "produce", "sh_produce", function(self, params)
-	if not (params and params.name) and self._enemy_table then
-		self._enemy_name = Idstring(table.random(self._enemy_table))
+function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
+	local mapped_name = self.enemy_mapping[self._enemy_name:key()]
+
+	if not mapped_name then
+		return nil
 	end
-end)
+
+	tier = tier or managers.groupai:state():_get_scripted_tier()
+	local mapped_unit = self.faction_mapping[tier] and self.faction_mapping[tier][mapped_name]
+
+	return mapped_unit
+end
+
+function ElementSpawnEnemyDummy:replace_enemy_name(name)
+	name = name or self:get_replacement_enemy_name()
+
+	if not name then
+		return
+	end
+
+	if type(name) == "table" then
+		self._enemy_table = name
+		self._enemy_name = name[1]
+	else
+		self._enemy_table = nil
+		self._enemy_name = name
+	end
+end
 
 local access_replacement = {
 	cop = "fbi",
@@ -192,7 +206,7 @@ local access_replacement = {
 
 local produce_original = ElementSpawnEnemyDummy.produce
 function ElementSpawnEnemyDummy:produce(params, ...)
-	-- give assault beat cops and fbi agents swat access to keep them from getting stuck
+	-- give assault-spawned beat cops fbi access to keep them from getting stuck
 	if params and params.name then
 		local unit = produce_original(self, params, ...)
 		local u_brain = alive(unit) and unit:brain()
@@ -208,20 +222,17 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 		return unit
 	end
 
-	if not self._enemy_mapping then
-		return produce_original(self, params, ...)
+	if self._enemy_table then
+		local new_enemy_name = table.random(self._enemy_table)
+
+		-- Idstring on an Idstring crashes
+		-- TODO: redo mission script patches to use string enemy names rather than Idstrings
+		if type(new_enemy_name) == "userdata" then
+			self._enemy_name = new_enemy_name
+		elseif new_enemy_name then
+			self._enemy_name = Idstring(new_enemy_name)
+		end
 	end
 
-	local original_enemy_name = self._enemy_name
-	if type(self._enemy_mapping) == "table" then
-		self._enemy_name = table.random(self._enemy_mapping)
-	else
-		self._enemy_name = self._enemy_mapping
-	end
-
-	local result = produce_original(self, params, ...)
-
-	self._enemy_name = original_enemy_name
-
-	return result
+	return produce_original(self, params, ...)
 end
