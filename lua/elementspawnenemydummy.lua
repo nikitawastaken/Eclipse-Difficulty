@@ -20,6 +20,14 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
+        bulldozer = {
+			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
+		},
+		elite_bulldozer = {
+			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
+		},
 		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	},
 	FBI = {
@@ -32,18 +40,6 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
-		taser = {
-			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
-		},
-		bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
-		},
-		elite_bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
-		},
 	},
 	Elite = {
 		swat_1 = {
@@ -51,10 +47,6 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
 		},
 		swat_2 = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
-		taser = {
-			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
-		},
 		shield = {
 			"units/payday2/characters/ene_shield_1/ene_shield_1",
 			"units/payday2/characters/ene_shield_1/ene_shield_1",
@@ -62,8 +54,6 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_city_shield/ene_city_shield",
 		},
 		bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
 			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
 			"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 		},
