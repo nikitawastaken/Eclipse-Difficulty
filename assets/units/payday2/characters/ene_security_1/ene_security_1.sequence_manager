@@ -132,7 +132,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'glasses_forehead'" once="true" triggable="true">
-			<set_variables 		has_sleeves="1" />
+			<set_variables 		has_glasses="1" />
 			
 			<object 			enabled="true" name="'g_glasses_forehead'" />
 			<object 			enabled="true" name="'g_glasses_forehead_lod1'" />

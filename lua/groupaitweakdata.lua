@@ -1343,6 +1343,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
+	
 	self.unit_categories.Murky_Response = {
 		unit_types = {
 			america = {
@@ -1365,6 +1366,39 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
 				Idstring("units/payday2/characters/ene_murkywater_2/ene_murkywater_2"),
 			},
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.Army_soldier_1 = {
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
+			russia = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
+			zombie = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
+			murkywater = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
+			federales = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
+		},
+		access = access_type_all,
+	}
+	
+	self.unit_categories.Army_soldier_2 = {
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2") },
+			russia = { Idstring("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2") },
+			zombie = { Idstring("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2") },
+			murkywater = { Idstring("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2") },
+			federales = { Idstring("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2") },
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.Army_soldier_3 = {
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
+			russia = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
+			zombie = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
+			murkywater = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
+			federales = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
 		},
 		access = access_type_all,
 	}
@@ -2405,7 +2439,13 @@ GroupAITweakData.fbi_heists = {
 GroupAITweakData.murky_response_heists = {
 	["dinner"] = true,
 }
-
+GroupAITweakData.us_army_heists = {
+	["arm_for"] = true,
+	--["roberts"] = true,
+	["jolly"] = true,
+	["trai"] = true,
+}
+	
 -- Timed groups tweak table
 function GroupAITweakData:_init_enemy_spawn_groups_level()
 	self._timed_tactics = {
@@ -2445,13 +2485,29 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			"smoke_grenade",
 		},
 		fbi_spt = {
+			"rescue",
+			"unit_cover",
+			"ranged_fire",
+		},
+		army_def = {
+			"ranged_fire",
+			"flash_grenade",
+			"smoke_grenade",
+		},
+		army_agg = {
+			"charge",
+			"flash_grenade",
+			"smoke_grenade",
+			"murder",
+		},
+		army_spt = {
 			"unit_cover",
 			"ranged_fire",
 		},
 	}
 
 	self.timed_enemy_spawn_groups = {}
-
+	
 	if self.fbi_heists[level_id] then
 		self.timed_enemy_spawn_groups = {
 			{
@@ -2566,15 +2622,81 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 								tactics = self._timed_tactics.murky_agg,
 							},
 							{
+								amount_max = 2,
+								rank = 2,
+								freq = 0.4,
+								unit = "Murky_Response",
+								tactics = self._timed_tactics.murky_snk,
+							},
+						},
+						spawn_point_chk_ref = table.list_to_set({
+							"tac_swat_rifle",
+							"tac_swat_rifle_flank",
+						}),
+					},
+				},
+			},
+		}
+	end
+	if self.us_army_heists[level_id] then
+		self.timed_enemy_spawn_groups = {
+			{
+				timer_data = {
+					initial_delay = 180,
+					cooldown = { 30, 45 },
+					diff_scale = { 2, 1.5, 1 },
+				},
+				group_data = {
+					Army_timed_group = {
+						enabled = true,
+						team_id = "law1",
+						max_nr_simultaneous_groups = 2,
+						amount = { 3, 3 },
+						disable_timer = nil,
+						objective = function(spawn_group)
+							return {
+								attitude = "engage",
+								pose = "stand",
+								type = "assault_area",
+								stance = "hos",
+								area = spawn_group.area,
+								coarse_path = {
+									{
+										spawn_group.area.pos_nav_seg,
+										spawn_group.area.pos,
+									},
+								},
+							}
+						end,
+						spawn = {
+							{
+								amount_min = 1,
+								rank = 2,
+								freq = 1,
+								unit = "Army_soldier_2",
+								tactics = self._tactics.army_def,
+							},
+							{
+								amount_max = 2,
+								rank = 2,
+								freq_by_diff = {
+									self.difficulty_index / 16,
+									self.difficulty_index / 12,
+									self.difficulty_index / 8,
+								},
+								unit = "Army_soldier_2",
+								tactics = self._tactics.army_agg,
+							},
+							{
 								amount_max = 1,
 								rank = 1,
 								freq_by_diff = {
-									2 / self.difficulty_index,
-									1 / self.difficulty_index,
 									0,
+									self.difficulty_index / 30,
+									self.difficulty_index / 10,
 								},
-								unit = "Murky_Response",
-								tactics = self._timed_tactics.murky_snk,
+								unit = "Army_soldier_3",
+								tactics = self._timed_tactics.fbi_spt,
 							},
 						},
 						spawn_point_chk_ref = table.list_to_set({
@@ -2855,7 +2977,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
 	self.besiege.assault.groups.FBI_timed_group = { 0, 0, 0 }
-	self.besiege.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.besiege.assault.groups.Murkywater_timed_group = { 0, 0, 0 }	
+	self.besiege.assault.groups.Army_timed_group = { 0, 0, 0 }	
 
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
@@ -2866,6 +2989,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- recurring groups
 	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
 	self.besiege.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.besiege.recon.groups.Army_timed_group = { 0, 0, 0 }	
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
@@ -2994,6 +3118,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- recurring groups
 	self.ponr.assault.groups.FBI_timed_group = { 0, 0, 0 }
 	self.ponr.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.ponr.assault.groups.Army_timed_group = { 0, 0, 0 }	
 
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
@@ -3004,6 +3129,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- recurring groups
 	self.ponr.recon.groups.FBI_timed_group = { 0, 0, 0 }
 	self.ponr.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
+	self.ponr.recon.groups.Army_timed_group = { 0, 0, 0 }	
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {

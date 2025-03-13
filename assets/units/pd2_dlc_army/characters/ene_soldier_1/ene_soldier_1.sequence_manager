@@ -1,242 +1,80 @@
 <?xml version="1.0"?>
 <table>
 	<unit>
-	<!--CUSTOM SEQUENCES START-->
+<!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_tie		value="0" />
-			<has_watch		value="0" />
-			<has_sleeves	value="0" />
-			<has_hat		value="0" />
-			<has_gloves		value="0" />
 			<has_glasses	value="0" />
 		</variables>
 
-		<filter name="'check_no_tie'">
-			<check value="vars.has_tie == 0" />
-		</filter>
-
-		<filter name="'check_tie'">
-			<check value="vars.has_tie == 1" />
-		</filter>
-
-		<filter name="'check_no_watch'">
-			<check value="vars.has_watch == 0" />
-		</filter>
-
-		<filter name="'check_watch'">
-			<check value="vars.has_watch == 1" />
-		</filter>
-
-		<filter name="'check_no_sleeves'">
-			<check value="vars.has_sleeves == 0" />
-		</filter>
-
-		<filter name="'check_sleeves'">
-			<check value="vars.has_sleeves == 1" />
-		</filter>
-
-		<filter name="'check_no_hat'">
-			<check value="vars.has_hat == 0" />
-		</filter>
-
-		<filter name="'check_hat'">
-			<check value="vars.has_hat == 1" />
-		</filter>
-		
-		<filter name="'check_no_gloves'">
-			<check value="vars.has_gloves == 0" />
-		</filter>
-
-		<filter name="'check_gloves'">
-			<check value="vars.has_gloves == 1" />
-		</filter>
-
-		<filter name="'check_no_glasses'">
+		<filter name="'check_no_goggles'">
 			<check value="vars.has_glasses == 0" />
 		</filter>
 
-		<filter name="'check_glasses'">
+		<filter name="'check_goggles'">
 			<check value="vars.has_glasses == 1" />
 		</filter>
-		
-		<sequence editable_state="true" name="'fbi_1'" once="true" triggable="true">
-			<set_variables 		has_hat="1" />
+	
+		<sequence editable_state="true" name="'soldier_1'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_helmet_lod1'" />
+			<object 			enabled="false" name="'g_helmet_lod2'" />
 			
-			<object 			enabled="true" name="'g_gear_a'" />
-			<object 			enabled="true" name="'g_gear_a_lod1'" />
-
 			<object 			enabled="true" name="'g_hat_lod1'" />
 			<object 			enabled="true" name="'g_hat_lod2'" />
 			
-			<run_sequence 		name="'random_body_c'" />
-			<run_sequence 		name="'random_tie_common'" />
-			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'fbi_2'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_b'" />
-			<object 			enabled="true" name="'g_gear_b_lod1'" />
+			<decal_mesh 		enabled="false" name="'dm_helmet'"/>
 			
-			<run_sequence 		name="'random_body_b'" />
-			<run_sequence 		name="'random_tie_rare'" />
-			<run_sequence 		name="'random_watch_rare'" />
-			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'fbi_3'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_c'" />
-			<object 			enabled="true" name="'g_gear_c_lod1'" />
-	
-			<run_sequence 		name="'random_body_a'" />
-			<run_sequence 		name="'random_balaclava'" />
-			<run_sequence 		name="'random_watch_rare'" />		
-			<run_sequence 		name="'random_gloves_common'" />
-		</sequence>
-	<!--BODY SEQUENCES-->
-		<sequence editable_state="true" name="'random_body_a'" triggable="true">
-			<run_sequence 		name="'body_'..pick('short','short','long')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_body_b'" triggable="true">
-			<run_sequence 		name="'body_'..pick('long','long','short')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_body_c'" triggable="true">
-			<run_sequence 		name="'body_'..pick('jacket')" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'body_short'" once="true" triggable="true" />
-		
-		<sequence editable_state="true" name="'body_long'" once="true" triggable="true">
-			<set_variables 		has_sleeves="1" />
+		<sequence editable_state="true" name="'soldier_2'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_backpack'" />
+			<object 			enabled="true" name="'g_backpack_lod1'" />
 			
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
 
 			<object 			enabled="true" name="'g_body_b'" />
 			<object 			enabled="true" name="'g_body_b_lod1'" />
+			
+			<object 			enabled="true" name="'g_gear_a'" />
+			<object 			enabled="true" name="'g_gear_a_lod1'" />
+
+			<object 			enabled="true" name="'g_vest'" />
+			<object 			enabled="true" name="'g_vest_lod1'" />
+			
+			<run_sequence 		name="'random_glasses'"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'body_jacket'" once="true" triggable="true">
-			<set_variables 		has_sleeves="1" />
+		<sequence editable_state="true" name="'soldier_3'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_backpack'" />
+			<object 			enabled="true" name="'g_backpack_lod1'" />
 			
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
 
-			<object 			enabled="true" name="'g_body_c'" />
-			<object 			enabled="true" name="'g_body_c_lod1'" />
-		</sequence>
-	<!--BALACLAVA SEQUENCES-->
-		<sequence editable_state="true" name="'random_balaclava'" triggable="true">
-			<run_sequence 		name="'balaclava_'..pick('a','a','a','a','a','a','b','b','c','c')" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'balaclava_a'" once="true" triggable="true">		
-			<object 			enabled="true" name="'g_balaclava_a'" />
-			<object 			enabled="true" name="'g_balaclava_a_lod1'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'balaclava_b'" once="true" triggable="true">		
-			<object 			enabled="true" name="'g_balaclava_b'" />
-			<object 			enabled="true" name="'g_balaclava_b_lod1'" />
-		</sequence>
+			<object 			enabled="true" name="'g_body_b'" />
+			<object 			enabled="true" name="'g_body_b_lod1'" />
+			
+			<object 			enabled="true" name="'g_gear_b'" />
+			<object 			enabled="true" name="'g_gear_b_lod1'" />
 
-		<sequence editable_state="true" name="'balaclava_c'" once="true" triggable="true">		
-			<object 			enabled="true" name="'g_balaclava_c'" />
-			<object 			enabled="true" name="'g_balaclava_c_lod1'" />
+			<object 			enabled="true" name="'g_vest'" />
+			<object 			enabled="true" name="'g_vest_lod1'" />
+			
+			<run_sequence 		name="'random_glasses'"/>
 		</sequence>
 	<!--GLASSES SEQUENCES-->
-		<sequence editable_state="true" name="'random_glasses_common'" triggable="true">
-			<run_sequence 		name="'glasses_'..pick('base','base','none')" />
+		<sequence editable_state="true" name="'random_glasses'" triggable="true">
+			<run_sequence 		name="'glasses_'..pick('none','base')"/>
 		</sequence>
 
-		<sequence editable_state="true" name="'random_glasses_rare'" triggable="true">
-			<run_sequence 		name="'glasses_'..pick('none','none','base')" />
-		</sequence>
-		
 		<sequence editable_state="true" name="'glasses_none'" once="true" triggable="true" />
-
-		<sequence editable_state="true" name="'glasses_base'" once="true" triggable="true">
-			<run_sequence 		filter="'check_no_hat'" name="'glasses_'..pick('head','head','forehead')" />
-			<run_sequence 		filter="'check_hat'" name="'glasses_head'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'glasses_forehead'" once="true" triggable="true">
-			<set_variables 		has_glasses="1" />
-			
-			<object 			enabled="true" name="'g_glasses_forehead'" />
-			<object 			enabled="true" name="'g_glasses_forehead_lod1'" />
-		</sequence>
 		
-		<sequence editable_state="true" name="'glasses_head'" once="true" triggable="true">
+		<sequence editable_state="true" name="'glasses_base'" once="true" triggable="true">
 			<set_variables 		has_glasses="1" />
 			
 			<object 			enabled="true" name="'g_glasses'" />
 			<object 			enabled="true" name="'g_glasses_lod1'" />
-		</sequence>
-	<!--GLOVES SEQUENCES-->
-		<sequence editable_state="true" name="'random_gloves_common'" triggable="true">
-			<run_sequence 		name="'gloves_'..pick('base','base','none')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_gloves_rare'" triggable="true">
-			<run_sequence 		name="'gloves_'..pick('none','none','base')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'gloves_none'" once="true" triggable="true" />
-
-		<sequence editable_state="true" name="'gloves_base'" once="true" triggable="true">
-			<set_variables 		has_gloves="1" />
-			
-			<object 			enabled="true" name="'g_gloves'" />
-			<object 			enabled="true" name="'g_gloves_lod1'" />
-		</sequence>
-	<!--WATCH SEQUENCES-->
-		<sequence editable_state="true" name="'random_watch_common'" triggable="true">
-			<run_sequence 		name="'watch_'..pick('base','base','none')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_watch_rare'" triggable="true">
-			<run_sequence 		name="'watch_'..pick('none','none','base')" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'watch_none'" once="true" triggable="true" />
-
-		<sequence editable_state="true" name="'watch_base'" once="true" triggable="true">
-			<run_sequence 		name="'watch_'..pick('left','left','right')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'watch_left'" once="true" triggable="true">
-			<set_variables 		has_watch="1" />
-			
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left'" />
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_left_lod1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'watch_right'" once="true" triggable="true">
-			<set_variables 		has_watch="1" />
-			
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right'" />
-			<object 			filter="'check_no_sleeves'" enabled="true" name="'g_watch_right_lod1'" />
-		</sequence>
-	<!--TIE SEQUENCES-->		
-		<sequence editable_state="true" name="'random_tie_common'" triggable="true">
-			<run_sequence 		name="'tie_'..pick('base','base','none')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_tie_rare'" triggable="true">
-			<run_sequence 		name="'tie_'..pick('none','none','base')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'tie_none'" once="true" triggable="true" />
-
-		<sequence editable_state="true" name="'tie_base'" once="true" triggable="true">
-			<set_variables 		has_tie="1" />
-			
-			<object 			enabled="true" name="'g_tie'" />
-			<object 			enabled="true" name="'g_tie_lod1'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

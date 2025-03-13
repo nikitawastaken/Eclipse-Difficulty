@@ -30,9 +30,9 @@ local M = {
 	--fat man has bronco instead of c45
 	[("units/payday2/characters/ene_security_8/ene_security_8"):key()] = { raging_bull = 3, mp5 = 1 },
 	--Secret Service
-	[("units/payday2/characters/ene_secret_service_1/ene_secret_service_1"):key()] = { c45 = 3, ump = 1 },
-	[("units/payday2/characters/ene_secret_service_2/ene_secret_service_2"):key()] = { c45 = 3, ump = 1 },
-	[("units/pd2_dlc_short/characters/ene_secret_service_1_undominatable/ene_secret_service_1_undominatable"):key()] = { c45 = 3, ump = 1 },
+	[("units/payday2/characters/ene_secret_service_1/ene_secret_service_1"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_secret_service_2/ene_secret_service_2"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/pd2_dlc_short/characters/ene_secret_service_1_undominatable/ene_secret_service_1_undominatable"):key()] = { c45 = 3, mp5 = 1 },
 	--Red GenSec guards
 	[("units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"):key()] = { c45 = 3, ump = 1 },
 	[("units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2"):key()] = { g36 = 2, ump = 1 },
@@ -179,6 +179,9 @@ local M = {
 	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2"):key()] = { "c45", "mac11", "r870", "ak47" },
 	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3"):key()] = { "c45", "mac11", "r870", "ak47" },
 	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { " c45", "mac11", "r870", "ak47" },
+	--The Army
+	[("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = { c45 = 3, ump = 1 },
+	[("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"):key()] = { m4 = 3, benelli = 1 },
+	[("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"):key()] = "m249",
 }
-
 return M

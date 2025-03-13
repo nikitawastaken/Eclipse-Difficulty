@@ -20,17 +20,30 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["cane"] = true,
 		["mex"] = true,
 	}
-
+	local us_army = {
+		["arm_for"] = true,
+		["roberts"] = true,
+		["jolly"] = true,
+		["trai"] = true,
+	}
+	
 	if level_id then
 		if fbi_heists[level_id] and not PackageManager:loaded("packages/security_mcmansion") then
 			Eclipse:log("Loading FBI security package...")
 			table.insert(self._loaded_diff_packages, "packages/security_mcmansion")
 			PackageManager:load("packages/security_mcmansion")
 		end
+		
 		if female_bikers[level_id] and not PackageManager:loaded("packages/female_bikers") then
-			Eclipse:log("Loading FBI security package...")
+			Eclipse:log("Loading female biker package...")
 			table.insert(self._loaded_diff_packages, "packages/female_bikers")
 			PackageManager:load("packages/female_bikers")
+		end
+
+		if us_army[level_id] and not PackageManager:loaded("packages/us_army") then
+			Eclipse:log("Loading US army package...")
+			table.insert(self._loaded_diff_packages, "packages/us_army")
+			PackageManager:load("packages/us_army")
 		end
 	end
 end)

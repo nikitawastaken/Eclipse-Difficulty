@@ -13,6 +13,19 @@ local head_sequences = {
 			"disable_head",
 		},
 	},
+	soldier_a = {
+		material = 2,
+		run_sequence = {
+			"soldier_head_init",
+		},
+	},
+	soldier_b = {
+		material = 2,
+		run_sequence = {
+			"soldier_head_init",
+			"disable_arms",
+		},
+	},
 	blue_swat_a = {
 		material = { 1, 2 },
 		run_sequence = {
@@ -170,6 +183,9 @@ local M = {
 	["units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"] = { name = "bulldozer_mini", head = head_sequences.bulldozer },
 	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"] = { name = "mcmansion_security_1", head = head_sequences.blue_swat_b },
 	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"] = { name = "mcmansion_security_1", head = head_sequences.blue_swat_b },
+	["units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"] = { name = "soldier_1", head = head_sequences.soldier_a },
+	["units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"] = { name = "soldier_2", head = head_sequences.soldier_b },
+	["units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"] = { name = "soldier_3", head = head_sequences.soldier_b },
 }
 
 return M

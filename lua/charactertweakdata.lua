@@ -256,6 +256,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.security_mcmansion = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
 
+	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
+	
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
@@ -885,6 +887,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.security_mex_no_pager.chatter = self.presets.enemy_chatter.security
 
+	self.security_army = deep_clone(self.security)
+	self.security_army.HEALTH_INIT = 12
+	self.security_army.melee_weapon = "weapon"
+	self.security_army.no_arrest = true
+	table.insert(self._enemy_list, "security_army")
+	
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
@@ -1002,6 +1010,15 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.murky.steal_loot = false
 	table.insert(self._enemy_list, "murky")
 
+	self.soldier = deep_clone(self.fbi_swat)
+	self.soldier.HEALTH_INIT = 24
+	self.soldier.headshot_dmg_mul = 2 -- 80 head health
+	self.soldier.surrender = self.presets.surrender.hard
+	self.soldier.suppression = self.presets.suppression.hard
+	self.soldier.no_arrest = true 
+	self.soldier.steal_loot = false
+	table.insert(self._enemy_list, "soldier")
+	
 	self.sniper.HEALTH_INIT = 8
 	self.sniper.headshot_dmg_mul = 4 -- 20 head health
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
@@ -1268,11 +1285,20 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_fbi_swat_3")
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
+	
+	char_map.army = {
+		path = "units/pd2_dlc_army/characters/",
+		list = {
+			"ene_soldier_1",
+			"ene_soldier_2",
+			"ene_soldier_3",
+		}
+	}
 
-	safe_add(char_map.gitgud.list, "ene_zeal_swat_2")
-	safe_add(char_map.gitgud.list, "ene_zeal_swat_heavy_2")
-	safe_add(char_map.gitgud.list, "ene_zeal_medic_m4")
-	safe_add(char_map.gitgud.list, "ene_zeal_medic_r870")
+	safe_add(char_map.gitgud, "ene_zeal_swat_2")
+	safe_add(char_map.gitgud, "ene_zeal_swat_heavy_2")
+	safe_add(char_map.gitgud, "ene_zeal_medic_m4")
+	safe_add(char_map.gitgud, "ene_zeal_medic_r870")
 
 	return char_map
 end
@@ -1333,6 +1359,10 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	end
 end
 
+CharacterTweakData.access_health_hs_mul_blacklist = {
+	security_army = true,
+}
+
 CharacterTweakData.access_health = {
 	security = 8,
 	cop = 12,
@@ -1357,6 +1387,8 @@ CharacterTweakData.tweak_table_weapon = {
 	zeal_heavy_swat = "zeal_swat",
 	murky = "murky",
 	security_mcmansion = "security_mcmansion",
+	security_army = "soldier",
+	soldier = "soldier",
 	cobra = "gangster",
 	shield = "shield",
 	fbi_shield = "fbi_shield",
@@ -1396,6 +1428,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	cobra = "fast",
 	murky = "fast",
 	security_mcmansion = "fast",
+	soldier = "fast",
 	medic = "normal",
 	zeal_medic = "normal",
 	heavy_swat_sniper = "fast",
@@ -1451,15 +1484,19 @@ function CharacterTweakData:_set_presets()
 
 		local is_boss = name:match("_boss$")
 
-		-- Set health and HS mul based on access
-		if self.access_health[char_preset.access] and not is_boss then
-			char_preset.HEALTH_INIT = self.access_health[char_preset.access]
-		end
+		-- Set health and HS mul based on access	
+		if not self.access_health_hs_mul_blacklist[name] then
+			if not is_boss then
+				if self.access_health[char_preset.access] then
+					char_preset.HEALTH_INIT = self.access_health[char_preset.access]
+				end
 
-		if self.access_hs_mul[char_preset.access] and not is_boss then
-			char_preset.headshot_dmg_mul = self.access_hs_mul[char_preset.access]
+				if self.access_hs_mul[char_preset.access] then
+					char_preset.headshot_dmg_mul = self.access_hs_mul[char_preset.access]
+				end
+			end
 		end
-
+		
 		-- Boss related stuff
 		if is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul

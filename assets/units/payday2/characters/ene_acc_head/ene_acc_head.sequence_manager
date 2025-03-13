@@ -54,6 +54,11 @@
 			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','c','d','f','g','h','j','m','n','p')..'_var1'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'soldier_head_init'" once="true" triggable="true"> 
+			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','e','f','g','h','i','j','k','m','n')..'_var2'" />
+			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','e','f','g','h','i','j','k','m','n')..'_var1'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'swat_head_init'" once="true" triggable="true"> 
 			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','e','f','g','h','i','j','m')..'_var2'" />
 			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','e','f','g','h','i','j','m')..'_var1'" />
