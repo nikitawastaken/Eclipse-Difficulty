@@ -8,12 +8,12 @@ local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 
 local regular_dozers = {
-      green_bulldozer,
-      black_bulldozer,
+	green_bulldozer,
+	black_bulldozer,
 }
 local eclipse_dozers = {
-      elite_ben_bulldozer,
-      elite_skull_bulldozer,
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
 }
 
 local bridge_spawn1 = {

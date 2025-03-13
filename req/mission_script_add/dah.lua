@@ -20,7 +20,7 @@ local taser = scripted_enemy.taser_1
 local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
-local swat_ambush_table = {swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg}
+local swat_ambush_table = { swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg }
 
 local diff_scaling = diff_i / 8
 

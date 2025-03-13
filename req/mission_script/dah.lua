@@ -6,13 +6,13 @@ local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
 local cops = {
-	    cop_1,
-	    cop_2,
-	    cop_3,
-	    cop_1,
+	cop_1,
+	cop_2,
+	cop_3,
+	cop_1,
 }
 local beat_cops = {
-    enemy = cops,
+	enemy = cops,
 	values = {
 		participate_to_group_ai = true,
 	},
