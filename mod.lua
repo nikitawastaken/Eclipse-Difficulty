@@ -94,6 +94,7 @@ if not Eclipse then
 	Eclipse.preferred = Eclipse:require("preferred_groups")
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.level_scale = Eclipse:require("level_scale")
+	Eclipse.access_filter_presets = Eclipse:require("access_filter_presets")
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
