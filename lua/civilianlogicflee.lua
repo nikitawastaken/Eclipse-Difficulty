@@ -25,7 +25,6 @@ function CivilianLogicFlee.rescue_SO_verification(ignore_this, params, unit, ...
 	end
 end
 
-
 -- Workaround for civilians being unresponsive when intimidated
 function CivilianLogicFlee._delayed_intimidate_clbk(ignore_this, params)
 	local data = params[1]
@@ -52,7 +51,7 @@ function CivilianLogicFlee._delayed_intimidate_clbk(ignore_this, params)
 				clamp_to_graph = true,
 				variant = "panic",
 				body_part = 1,
-				type = "act"
+				type = "act",
 			})
 		end
 		return
@@ -61,6 +60,6 @@ function CivilianLogicFlee._delayed_intimidate_clbk(ignore_this, params)
 	data.unit:brain():set_objective({
 		type = "surrender",
 		amount = amount,
-		aggressor_unit = aggressor_unit
+		aggressor_unit = aggressor_unit,
 	})
 end

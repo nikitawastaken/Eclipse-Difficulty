@@ -1396,7 +1396,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		from_seg = objective_area.pos_nav_seg,
 		to_seg = target_area.pos_nav_seg,
 		access_pos = self._get_group_acces_mask(group),
-		verify_clbk = callback(self, self, "is_nav_seg_safe")
+		verify_clbk = callback(self, self, "is_nav_seg_safe"),
 	}
 
 	local coarse_path = managers.navigation:search_coarse(search_params)
@@ -1466,10 +1466,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		obstructed = obstructed,
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
-		coarse_path = coarse_path
+		coarse_path = coarse_path,
 	})
 end)
-
 
 -- Simplify and improve recon objective assignment
 Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", function(self, group)
@@ -1506,10 +1505,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 
 	local coarse_path
 	local to_search_areas = {
-		objective_area
+		objective_area,
 	}
 	local found_areas = {
-		[objective_area] = objective_area
+		[objective_area] = objective_area,
 	}
 	local group_access_mask = self._get_group_acces_mask(group)
 
@@ -1540,7 +1539,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 				from_seg = objective_area.pos_nav_seg,
 				to_seg = search_area.pos_nav_seg,
 				access_pos = group_access_mask,
-				verify_clbk = callback(self, self, "is_nav_seg_safe")
+				verify_clbk = callback(self, self, "is_nav_seg_safe"),
 			})
 
 			if new_recon_path then
@@ -1605,7 +1604,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		moving_in = move_in,
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
-		coarse_path = coarse_path
+		coarse_path = coarse_path,
 	})
 end)
 
