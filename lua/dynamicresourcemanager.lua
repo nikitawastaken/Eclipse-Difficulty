@@ -33,7 +33,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/payday2/characters/ene_security_1_fat/ene_security_1_fat", security_needed, false)
 	load_unload_unit("units/payday2/characters/ene_security_2_fat/ene_security_2_fat", security_needed, false)
 	load_unload_unit("units/payday2/characters/ene_security_3_fat/ene_security_3_fat", security_needed, false)
-	
+
 	local swat_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_swat_1/ene_swat_1"))
 	load_unload_unit("units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap", swat_needed, true)
 	load_unload_unit("units/payday2/characters/ene_swat_3/ene_swat_3", swat_needed, false)
@@ -42,7 +42,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor", swat_needed, true)
 	load_unload_unit("units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap", swat_needed, true)
 	load_unload_unit("units/payday2/characters/ene_sniper_3/ene_sniper_3", swat_needed, false)
-	
+
 	local dlc1_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"))
 	load_unload_unit("units/pd2_dlc1/characters/ene_acc_gensec_beret/ene_acc_gensec_beret", dlc1_needed, true)
 
