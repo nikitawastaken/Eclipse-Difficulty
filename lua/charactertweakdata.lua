@@ -792,7 +792,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cop.flank = true
 	presets.enemy_chatter.cop.open_fire = true
 	presets.enemy_chatter.cop.watch_background = true
-	presets.enemy_chatter.cop.hostage_delay = true
+	presets.enemy_chatter.cop.hostage_delay_1 = true
+	presets.enemy_chatter.cop.hostage_delay_2 = true
 	presets.enemy_chatter.cop.get_hostages = true
 	presets.enemy_chatter.cop.get_loot = true
 	presets.enemy_chatter.cop.group_death = true
@@ -807,7 +808,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.swat.flash_grenade = true
 	presets.enemy_chatter.swat.open_fire = true
 	presets.enemy_chatter.swat.watch_background = true
-	presets.enemy_chatter.swat.hostage_delay = true
+	presets.enemy_chatter.swat.hostage_delay_1 = true
+	presets.enemy_chatter.swat.hostage_delay_2 = true
 	presets.enemy_chatter.swat.get_hostages = true
 	presets.enemy_chatter.swat.get_loot = true
 	presets.enemy_chatter.swat.group_death = true

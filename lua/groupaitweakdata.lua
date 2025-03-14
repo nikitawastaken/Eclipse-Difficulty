@@ -31,6 +31,7 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	-- Loud chatter
 	self.enemy_chatter.aggressive.duration = duration_medium
 	self.enemy_chatter.contact.duration = duration_medium
+	self.enemy_chatter.contact.radius = radius_medium
 	self.enemy_chatter.retreat.queue = "m01"
 	self.enemy_chatter.push = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.push.queue = "pus"
@@ -49,10 +50,12 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.watch_background = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.watch_background.queue = "bak"
 	self.enemy_chatter.watch_background.duration = duration_medium
-	self.enemy_chatter.hostage_delay = clone(self.enemy_chatter.go_go)
-	self.enemy_chatter.hostage_delay.queue = "p02"
-	self.enemy_chatter.hostage_delay.duration = duration_long
-	self.enemy_chatter.hostage_delay.radius = radius_medium
+	self.enemy_chatter.hostage_delay_1 = clone(self.enemy_chatter.go_go)
+	self.enemy_chatter.hostage_delay_1.queue = "p01"
+	self.enemy_chatter.hostage_delay_1.duration = duration_long
+	self.enemy_chatter.hostage_delay_1.radius = radius_medium
+	self.enemy_chatter.hostage_delay_2 = clone(self.enemy_chatter.hostage_delay_1)
+	self.enemy_chatter.hostage_delay_2.queue = "p02"
 	self.enemy_chatter.group_death = clone(self.enemy_chatter.watch_background)
 	self.enemy_chatter.group_death.queue = "lk3a"
 	self.enemy_chatter.trip_mine = clone(self.enemy_chatter.contact)

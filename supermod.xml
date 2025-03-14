@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <mod name="Eclipse">
-	
+
 	<tweak definition="tweak/animation.xml"/>
 	<tweak definition="tweak/network.xml"/>
 	<tweak definition="tweak/effect.xml"/>
 	<tweak definition="tweak/units.xml"/>
 	<tweak definition="tweak/tweak.xml"/>
-	
+
 	<hooks script_path="mod.lua">
 
 		<group hook_id="core/lib/">
@@ -123,6 +123,7 @@
 					<post :hook_id="states/playerbipod"/>
 					<post :hook_id="states/playercarry"/>
 					<post :hook_id="huskplayermovement"/>
+					<post :hook_id="playerinventory"/>
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
@@ -276,7 +277,7 @@
 
 		<!-- increase volume of the Zeal Sniper Rifle sound -->
 		<file name="soundbanks/weapon_zsniper.bnk"/>
-		
+
 		<!-- mute turret announcement -->
 		<group name="soundbanks/streamed/npc_cpa/">
 			<file :name="5329107.stream"/>
@@ -342,7 +343,7 @@
 				<file :name="wpn_npc_r870_taser.object" />
 				<file :name="wpn_npc_r870_taser.unit" />
 			</group>
-			
+
 			<!-- Bulldozer Reinfeld 88 -->
 			<group :name="wpn_npc_r870_bulldozer/">
 				<file :name="wpn_npc_r870_bulldozer.cooked_physics" />
@@ -451,19 +452,19 @@
 			<group :name="shared_textures/">
 				<file :name="arms_atlas_df.texture" />
 				<file :name="arms_atlas_nm.texture" />
-				
+
 				<file :name="heads_atlas_var1_df.texture" />
 				<file :name="heads_atlas_var1_nm.texture" />
 
 				<file :name="heads_atlas_var2_df.texture" />
 				<file :name="heads_atlas_var2_nm.texture" />
-				
+
 				<file :name="equipment_atlas_df.texture" />
 				<file :name="equipment_atlas_nm.texture" />
 
 				<file :name="city_swat_cap_df.texture" />
 				<file :name="city_swat_cap_nm.texture" />
-				
+
 				<file :name="visor_glass_df.texture" />
 			</group>
 
@@ -491,7 +492,7 @@
 				<file :name="ene_acc_tazer_helmet.model" />
 				<file :name="ene_acc_tazer_helmet.object" />
 			</group>
-			
+
 			<group :name="ene_acc_fbi_swat_helmet/">
 				<file :name="ene_acc_fbi_swat_helmet.model" />
 				<file :name="ene_acc_fbi_swat_helmet.object" />
@@ -510,7 +511,7 @@
 				<file :name="ene_acc_swat_heavy_visor.object" />
 				<file :name="ene_acc_swat_heavy_visor.unit" />
 			</group>
-			
+
 			<group :name="ene_acc_city_swat_cap/">
 				<file :name="ene_acc_city_swat_cap.cooked_physics" />
 				<file :name="ene_acc_city_swat_cap.material_config" />
@@ -518,12 +519,12 @@
 				<file :name="ene_acc_city_swat_cap.object" />
 				<file :name="ene_acc_city_swat_cap.unit" />
 			</group>
-			
+
 			<group :name="ene_acc_city_swat_helmet/">
 				<file :name="ene_acc_city_swat_helmet.model" />
 				<file :name="ene_acc_city_swat_helmet.object" />
 			</group>
-			
+
 			<group :name="ene_acc_shield_city/">
 				<file 	:name="shield_city_df.texture" />
 				<xml 	:name="ene_acc_shield_city.sequence_manager" />
@@ -551,7 +552,7 @@
 					<file 	:name="ene_acc_shield_city_debris_left.unit" />
 				</group>
 			</group>
-			
+
 			<group :name="ene_acc_head/">
 				<xml  :name="ene_acc_head.sequence_manager" />
 				<file :name="ene_acc_head.cooked_physics" />
@@ -584,7 +585,7 @@
 				<file :name="ene_acc_head_bulldozer.object" />
 				<file :name="ene_acc_head_bulldozer.unit" />
 			</group>
-			
+
 			<group :name="ene_security_1/">
 				<xml  :name="ene_security_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_security_1.material_config" />
@@ -619,7 +620,7 @@
 				<file :name="ene_security_3_fat.unit" />
 				<file :name="ene_security_3_fat_husk.unit" />
 			</group>
-		
+
 			<group :name="ene_security_4/">
 				<xml  :name="ene_security_4.sequence_manager" dyn_package="true" />
 				<file :name="ene_security_4.material_config" />
@@ -694,7 +695,7 @@
 				<file :name="ene_cop_4_fat.unit" />
 				<file :name="ene_cop_4_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_fbi_1/">
 				<xml  :name="ene_fbi_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_fbi_1.material_config" />
@@ -749,7 +750,7 @@
 				<file :name="ene_murkywater_2.unit" />
 				<file :name="ene_murkywater_2_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_swat_1/">
 				<xml  :name="ene_swat_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_swat_1.material_config" />
@@ -807,7 +808,7 @@
 				<file :name="ene_tazer_r870.unit" />
 				<file :name="ene_tazer_r870_husk.unit" />
 			</group>
-		
+
 			<group :name="ene_fbi_swat_1/">
 				<xml  :name="ene_fbi_swat_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_fbi_swat_1.material_config" />
@@ -867,7 +868,7 @@
 				<file :name="ene_medic_r870.unit" />
 				<file :name="ene_medic_r870_husk.unit" />
 			</group>
-		
+
 			<group :name="ene_spook_1/">
 				<xml  :name="ene_spook_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_spook_1.material_config" />
@@ -877,7 +878,7 @@
 				<file :name="ene_spook_1.unit" />
 				<file :name="ene_spook_1_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_city_swat_1/">
 				<xml  :name="ene_city_swat_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_city_swat_1.material_config" />
@@ -897,7 +898,7 @@
 				<file :name="ene_city_swat_r870.unit" />
 				<file :name="ene_city_swat_r870_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_city_swat_3/">
 				<file :name="ene_city_swat_3.unit" />
 				<file :name="ene_city_swat_3_husk.unit" />
@@ -912,7 +913,7 @@
 				<file :name="ene_city_shield.unit" />
 				<file :name="ene_city_shield_husk.unit" />
 			</group>
-			
+
 			<file :name="ene_acc_bulldozer_back/ene_acc_bulldozer_back.model" />
 
 			<file :name="ene_acc_bulldozer_back_2/ene_acc_bulldozer_back_2.model" />
@@ -976,7 +977,7 @@
 				<xml  :name="ene_soldier_1.sequence_manager" dyn_package="true" />
 			</group>
 		</group>
-		
+
 		<group name="units/pd2_dlc1/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_acc_gensec_beret/">
 				<file :name="ene_acc_gensec_beret.cooked_physics" />
@@ -1031,7 +1032,7 @@
 				<xml  :name="ene_hoxton_breakout_guard_1.sequence_manager" dyn_package="true" />
 			</group>
 		</group>
-		
+
 		<!-- zeals -->
 		<group name="units/pd2_dlc_gitgud/characters/" dyn_package="false">
 			<file :name="shared_textures/swat_df.texture"/>

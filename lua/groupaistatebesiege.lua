@@ -522,7 +522,11 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				if phase_is_anticipation then
 					local time_until_phase_end = self._task_data.assault.phase_end_t - self._t
 					if not group.said_standby and time_until_phase_end > 3 and in_place_duration > 1 then
-						group.said_standby = self:_chk_say_group(group, self._hostage_headcount > 0 and "hostage_delay" or "stand_by")
+						if self._hostage_headcount > 0 then
+							group.said_standby = self:_chk_say_group(group, self._assault_number == 0 and "hostage_delay_1" or "hostage_delay_2")
+						else
+							group.said_standby = self:_chk_say_group(group, "stand_by")
+						end
 					end
 					return
 				end
@@ -1392,7 +1396,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		from_seg = objective_area.pos_nav_seg,
 		to_seg = target_area.pos_nav_seg,
 		access_pos = self._get_group_acces_mask(group),
-		verify_clbk = callback(self, self, "is_nav_seg_safe"),
+		verify_clbk = callback(self, self, "is_nav_seg_safe")
 	}
 
 	local coarse_path = managers.navigation:search_coarse(search_params)
@@ -1433,16 +1437,21 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 	elseif next(target_area.criminal.units) then
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
+		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
 		if tactics_map.no_push then
-			return
+			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
-			return
+			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
-
-			if not group.in_place_t or self._t - group.in_place_t < push_delay * 0.5 then
-				return
+			if in_place_duration < tweak_data.group_ai.no_grenade_push_delay * 0.5 then
+				move_in = false
 			end
+		end
+		if not move_in then
+			if not group.said_standby then
+				group.said_standby = self:_chk_say_group(group, "stand_by")
+			end
+			return
 		end
 	end
 
@@ -1457,9 +1466,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		obstructed = obstructed,
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
-		coarse_path = coarse_path,
+		coarse_path = coarse_path
 	})
 end)
+
 
 -- Simplify and improve recon objective assignment
 Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", function(self, group)
@@ -1496,10 +1506,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 
 	local coarse_path
 	local to_search_areas = {
-		objective_area,
+		objective_area
 	}
 	local found_areas = {
-		[objective_area] = objective_area,
+		[objective_area] = objective_area
 	}
 	local group_access_mask = self._get_group_acces_mask(group)
 
@@ -1530,7 +1540,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 				from_seg = objective_area.pos_nav_seg,
 				to_seg = search_area.pos_nav_seg,
 				access_pos = group_access_mask,
-				verify_clbk = callback(self, self, "is_nav_seg_safe"),
+				verify_clbk = callback(self, self, "is_nav_seg_safe")
 			})
 
 			if new_recon_path then
@@ -1563,16 +1573,25 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 	elseif next(target_area.criminal.units) then
 		local u_key, u_data = self._determine_group_leader(group.units)
 		local tactics_map = u_data and u_data.tactics_map or {}
+		local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
 		if tactics_map.no_push then
-			return
+			move_in = false
 		elseif self:_can_group_see_target(group, "close") then
-			return
+			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
-
-			if not group.in_place_t or self._t - group.in_place_t < push_delay * 0.5 then
-				return
+			if in_place_duration < tweak_data.group_ai.no_grenade_push_delay * 0.5 then
+				move_in = false
 			end
+		end
+		if not move_in then
+			if not group.said_standby then
+				if target_area.hostages then
+					group.said_standby = self:_chk_say_group(group, self._assault_number == 0 and "hostage_delay_1" or "hostage_delay_2")
+				else
+					group.said_standby = self:_chk_say_group(group, "stand_by")
+				end
+			end
+			return
 		end
 	end
 
@@ -1586,7 +1605,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		moving_in = move_in,
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
-		coarse_path = coarse_path,
+		coarse_path = coarse_path
 	})
 end)
 
