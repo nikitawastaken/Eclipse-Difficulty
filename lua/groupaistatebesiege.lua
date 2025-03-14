@@ -1879,7 +1879,7 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 			local random_group = math.random(#group)
 			local group_id = group[random_group]
 			local group_data = self._timed_groups[idx].group_data[group_id]
-			if self:_spawn_timed_group(task_data, group_data, target_area, {
+			if group_id and self:_spawn_timed_group(task_data, group_data, target_area, {
 				[group_id] = {
 					1,
 					1,
