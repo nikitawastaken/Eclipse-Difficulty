@@ -155,23 +155,65 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2"):key()] = "shield",
 }
 
--- TODO: track mapped unit keys rather than using current enemy name for determining tier swaps
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 	self._enemy_table = self._values.enemy_table
 	self._values.enemy_table = nil
 end)
 
-function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
-	local mapped_name = self.enemy_mapping[self._enemy_name:key()]
+function ElementSpawnEnemyDummy:chk_used_mapped_names(force)
+	if not self._used_mapped_names or force then
+		self._used_mapped_names = {}
 
-	if not mapped_name then
+		local function try_add_mapped_name(name)
+			local mapped_name = self.enemy_mapping[name:key()]
+
+			if mapped_name then
+				self._used_mapped_names[mapped_name] = mapped_name
+			end
+		end
+
+		if not self._enemy_table then
+			try_add_mapped_name(self._enemy_name)
+		else
+			for _, name in pairs(self._enemy_table) do
+				try_add_mapped_name(name)
+			end
+		end
+	end
+
+	return self._used_mapped_names
+end
+
+function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
+	local faction = self.faction_mapping[tier or managers.groupai:state():_get_scripted_tier()]
+
+	if not faction then
 		return nil
 	end
 
-	tier = tier or managers.groupai:state():_get_scripted_tier()
-	local mapped_unit = self.faction_mapping[tier] and self.faction_mapping[tier][mapped_name]
+	local used_mapped_names = self:chk_used_mapped_names()
+	if not used_mapped_names or not next(used_mapped_names) then
+		return nil
+	end
 
-	return mapped_unit
+	local add
+	local enemy_table = {}
+	for mapped in pairs(used_mapped_names) do
+		add = faction[mapped]
+
+		if type(add) == "table" then
+			table.list_append(enemy_table, add)
+		elseif add then
+			table.insert(enemy_table, add)
+		end
+	end
+
+	-- nil if none, non-table name if one
+	if #enemy_table < 2 then
+		return enemy_table[1]
+	end
+
+	return enemy_table
 end
 
 function ElementSpawnEnemyDummy:replace_enemy_name(name)
