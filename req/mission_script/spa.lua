@@ -21,8 +21,8 @@ return {
 			{ 62, 169 },
 			{ 59, 168 },
 			{ 110, 64, 111 },
-			{ 63, 162 }
-		}
+			{ 63, 162 },
+		},
 	},
 	-- add point of no return and disable endless assault
 	[100875] = {

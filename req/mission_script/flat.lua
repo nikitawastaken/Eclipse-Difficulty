@@ -271,7 +271,7 @@ return {
 	[103353] = enabled,
 	[103354] = {
 		values = {
-			SO_access = managers.navigation:convert_access_filter_to_number({ "civ_male" })
-		}
-	}
+			SO_access = managers.navigation:convert_access_filter_to_number({ "civ_male" }),
+		},
+	},
 }
