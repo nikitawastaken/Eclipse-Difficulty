@@ -570,6 +570,14 @@
 				</group>
 			</group>
 
+			<group :name="ene_acc_head_fat/">
+				<file :name="ene_acc_head_fat.cooked_physics" />
+				<file :name="ene_acc_head_fat.model" />
+				<file :name="ene_acc_head_fat.object" />
+				<file :name="ene_acc_head_fat.unit" />
+			</group>
+
+
 			<group :name="ene_acc_head_bulldozer/">
 				<file :name="ene_acc_head_bulldozer.cooked_physics" />
 				<file :name="ene_acc_head_bulldozer.model" />
@@ -597,6 +605,21 @@
 				<file :name="ene_security_3_husk.unit" />
 			</group>
 
+			<group :name="ene_security_1_fat/">
+				<file :name="ene_security_1_fat.unit" />
+				<file :name="ene_security_1_fat_husk.unit" />
+			</group>
+
+			<group :name="ene_security_2_fat/">
+				<file :name="ene_security_2_fat.unit" />
+				<file :name="ene_security_2_fat_husk.unit" />
+			</group>
+
+			<group :name="ene_security_3_fat/">
+				<file :name="ene_security_3_fat.unit" />
+				<file :name="ene_security_3_fat_husk.unit" />
+			</group>
+		
 			<group :name="ene_security_4/">
 				<xml  :name="ene_security_4.sequence_manager" dyn_package="true" />
 				<file :name="ene_security_4.material_config" />
@@ -652,6 +675,26 @@
 				<file :name="ene_cop_4_husk.unit" />
 			</group>
 
+			<group :name="ene_cop_1_fat/">
+				<file :name="ene_cop_1_fat.unit" />
+				<file :name="ene_cop_1_fat_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_2_fat/">
+				<file :name="ene_cop_2_fat.unit" />
+				<file :name="ene_cop_2_fat_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_3_fat/">
+				<file :name="ene_cop_3_fat.unit" />
+				<file :name="ene_cop_3_fat_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_4_fat/">
+				<file :name="ene_cop_4_fat.unit" />
+				<file :name="ene_cop_4_fat_husk.unit" />
+			</group>
+			
 			<group :name="ene_fbi_1/">
 				<xml  :name="ene_fbi_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_fbi_1.material_config" />

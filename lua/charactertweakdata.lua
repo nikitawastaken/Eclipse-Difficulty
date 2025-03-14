@@ -1279,6 +1279,13 @@ function CharacterTweakData:character_map(...)
 		end
 	end
 
+	safe_add(char_map.basic, "ene_security_1_fat")
+	safe_add(char_map.basic, "ene_security_2_fat")
+	safe_add(char_map.basic, "ene_security_3_fat")
+	safe_add(char_map.basic, "ene_cop_1_fat")
+	safe_add(char_map.basic, "ene_cop_2_fat")
+	safe_add(char_map.basic, "ene_cop_3_fat")
+	safe_add(char_map.basic, "ene_cop_4_fat")
 	safe_add(char_map.basic, "ene_swat_3")
 	safe_add(char_map.basic, "ene_swat_heavy_r870")
 	safe_add(char_map.basic, "ene_tazer_r870")

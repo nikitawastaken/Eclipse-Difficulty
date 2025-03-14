@@ -1,23 +1,16 @@
 <?xml version="1.0"?>
 <unit type="being" slot="12">
-
-	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />
-	
+	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />	
 	<object file="units/payday2/characters/ene_security_1/ene_security_1" />
 
-	<dependencies>
-	
+	<dependencies>	
 		<depends_on unit="units/payday2/characters/ene_acc_security_cap/ene_acc_security_cap" />
-		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />
-		
+		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />		
 	</dependencies>
 
-	<extensions>
-	
-		<extension name="spawn_manager" class="ManageSpawnedUnits" >
-		
-			<var name="_char_joint_names" type="table" >
-			
+	<extensions>	
+		<extension name="spawn_manager" class="ManageSpawnedUnits" >		
+			<var name="_char_joint_names" type="table" >			
 				<var value="root_point" />
 				<var value="Hips" />
 				<var value="Spine" />
@@ -86,13 +79,10 @@
 				<var value="RightUpLeg" />
 				<var value="RightLeg" />
 				<var value="RightFoot" />
-				<var value="RightToeBase" />
-				
-			</var>
-			
+				<var value="RightToeBase" />			
+			</var>			
 			<var name="allow_client_spawn" value="true" />
-			<var name="local_only" value="true" />
-			
+			<var name="local_only" value="true" />			
 		</extension>
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="HuskCopBase" >
@@ -121,16 +111,12 @@
 			<var name="_skip_save_anim_state_machine" value="true" />
 		</extension>
 		<extension name="contour" class="ContourExt" />
-		<extension name="sound" class="CopSound" />
-		
+		<extension name="sound" class="CopSound" />		
 	</extensions>
 
-
   <network sync="husk" remote_unit=""/>
-
 
   <sounds>
 		<default_soundsource source="Hips" />
   </sounds>
-  
 </unit>

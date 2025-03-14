@@ -159,7 +159,7 @@
 		<sequence editable_state="true" name="'glasses_none'" once="true" triggable="true" />
 
 		<sequence editable_state="true" name="'glasses_base'" once="true" triggable="true">
-			<run_sequence 		filter="'check_no_hat'" name="'glasses_'..pick('head','head','forehead')" />
+			<run_sequence 		filter="'check_no_hat'" name="'glasses_'..pick('head','head','head')" />
 			<run_sequence 		filter="'check_hat'" name="'glasses_head'" />
 		</sequence>
 
