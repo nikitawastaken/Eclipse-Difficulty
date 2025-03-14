@@ -167,6 +167,7 @@ end
 
 function MissionManager.mission_script_patch_funcs.enemy(self, element, data)
 	element:replace_enemy_name(data)
+	element:chk_used_mapped_names(true)
 
 	Eclipse:log(string.format("Modified enemy spawn in element %s", element:editor_name()))
 end
