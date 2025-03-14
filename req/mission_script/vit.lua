@@ -1,4 +1,13 @@
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 44, 84, 85 },
+			{ 103, 104, 105, 106 },
+			{ 97, 99 },
+			{ 52, 86 }
+		}
+	},
 	[100022] = {
 		ponr = {
 			length = 3000,

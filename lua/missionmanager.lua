@@ -54,7 +54,7 @@ function MissionManager.mission_script_patch_funcs.on_executed(self, element, da
 end
 
 function MissionManager.mission_script_patch_funcs.pre_func(self, element, data)
-	Hooks:PreHook(element, "on_executed", "sh_on_executed_func_" .. element:id(), data)
+	Hooks:PreHook(element, "on_executed", "sh_on_executed_pre_func_" .. element:id(), data)
 	Eclipse:log("%s hooked as pre function call trigger", element:editor_name())
 end
 
@@ -127,7 +127,7 @@ function MissionManager.mission_script_patch_funcs.difficulty(self, element, dat
 end
 
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)
-	Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element:id(), function()
+	Hooks:PostHook(element, "on_executed", "sh_on_executed_flashlight_" .. element:id(), function()
 		Eclipse:log("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
 		managers.game_play_central:set_flashlights_on(data)
 	end)
@@ -141,6 +141,26 @@ function MissionManager.mission_script_patch_funcs.groups(self, element, data)
 	end
 	element._values.preferred_spawn_groups = table.map_keys(new_groups)
 	Eclipse:log("Changed %u preferred group(s) of %s", table.size(data), element:editor_name())
+end
+
+function MissionManager.mission_script_patch_funcs.ai_area(self, element, data)
+	Hooks:PostHook(element, "on_executed", "sh_on_executed_ai_area_" .. element:id(), function()
+		Eclipse:log("%s executed, creating %d AI area(s)", element:editor_name(), #data)
+		for _, nav_segs in ipairs(data) do
+			local area_pos = Vector3()
+			for _, nav_seg_id in ipairs(nav_segs) do
+				local nav_seg = managers.navigation._nav_segments[nav_seg_id]
+				if not nav_seg then
+					Eclipse:error("Nav segment %u could not be found", nav_seg_id)
+					return
+				end
+				mvector3.add_scaled(area_pos, nav_seg.pos, 1 / #nav_segs)
+			end
+			self._ai_area_id = (self._ai_area_id or 10000) + 1
+			managers.groupai:state():add_area(self._ai_area_id, nav_segs, area_pos)
+		end
+	end)
+	Eclipse:log("%s hooked as AI area trigger", element:editor_name())
 end
 
 -- TODO: integrate into values patch like modern ASS
