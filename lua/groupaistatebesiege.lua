@@ -1004,7 +1004,10 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					local u_key = spawned_unit:key()
 					local u_data = self._police[u_key]
 
-					self:set_enemy_assigned(objective.area, u_key)
+					-- Don't double assign for timed groups
+					if not spawn_task.timed then
+						self:set_enemy_assigned(objective.area, u_key)
+					end
 
 					if spawn_entry.tactics then
 						u_data.tactics = spawn_entry.tactics
@@ -1015,7 +1018,10 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 
 					u_data.rank = spawn_entry.rank
 
-					self:_add_group_member(spawn_task.group, u_key)
+					-- Don't double assign for timed groups
+					if not spawn_task.timed then
+						self:_add_group_member(spawn_task.group, u_key)
+					end
 
 					if spawned_unit:brain():is_available_for_assignment(objective) then
 						if objective.element then
@@ -1035,6 +1041,11 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 
 					if sp_data.amount then
 						sp_data.amount = sp_data.amount - 1
+					end
+
+					-- Proper AI assignment for timed groups
+					if spawn_task.timed then
+						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.spawn_group.team_id)
 					end
 
 					return true
@@ -1169,6 +1180,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		spawn_group = spawn_group,
 		spawn_group_type = spawn_group_type,
 		ai_task = ai_task,
+		timed = timed_desc and true,
 	}
 
 	table.insert(self._spawning_groups, spawn_task)
@@ -1797,6 +1809,8 @@ function GroupAIStateBesiege:create_timed_groups_table()
 	local enabled_groups = {}
 	local disabled_groups = {}
 	for idx, group in ipairs(tweak_data.group_ai.timed_enemy_spawn_groups) do
+		enabled_groups[idx] = {}
+		disabled_groups[idx] = {}
 		if group.disabled then
 			for group_id, _ in pairs(group.group_data) do
 				disabled_groups[idx] = disabled_groups[idx] or {}
@@ -1805,10 +1819,8 @@ function GroupAIStateBesiege:create_timed_groups_table()
 		else
 			for group_id, group_tweak in pairs(group.group_data) do
 				if group_tweak.enabled then
-					enabled_groups[idx] = enabled_groups[idx] or {}
 					table.insert(enabled_groups[idx], group_id)
 				else
-					disabled_groups[idx] = disabled_groups[idx] or {}
 					table.insert(disabled_groups[idx], group_id)
 				end
 			end
