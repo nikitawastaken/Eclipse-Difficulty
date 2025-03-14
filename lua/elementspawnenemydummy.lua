@@ -16,8 +16,10 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		heavy_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
 		heavy_2 = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
-		medic_1 = "units/payday2/characters/ene_medic_m4/ene_medic_m4",
-		medic_2 = "units/payday2/characters/ene_medic_r870/ene_medic_r870",
+		medic = {
+			"units/payday2/characters/ene_medic_m4/ene_medic_m4",
+			"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+		},
 		taser = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
@@ -27,8 +29,8 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
 		},
 		elite_bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
+			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
+			"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 		},
 		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
 	},
@@ -41,8 +43,10 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		heavy_1 = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
 		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
-		medic_1 = "units/payday2/characters/ene_medic_m4/ene_medic_m4",
-		medic_2 = "units/payday2/characters/ene_medic_r870/ene_medic_r870",
+		medic = {
+			"units/payday2/characters/ene_medic_m4/ene_medic_m4",
+			"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+		},
 		taser = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
@@ -52,8 +56,8 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
 		},
 		elite_bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
+			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
+			"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 		},
 		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
 	},
@@ -69,15 +73,17 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_shield_1/ene_shield_1",
 			"units/payday2/characters/ene_city_shield/ene_city_shield",
 		},
-		medic_1 = "units/payday2/characters/ene_medic_m4/ene_medic_m4",
-		medic_2 = "units/payday2/characters/ene_medic_r870/ene_medic_r870",
+		medic = {
+			"units/payday2/characters/ene_medic_m4/ene_medic_m4",
+			"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+		},
 		taser = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
 		bulldozer = {
-			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
-			"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
+			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
+			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
 		},
 		elite_bulldozer = {
 			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
@@ -120,8 +126,8 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/payday2/characters/ene_swat_2/ene_swat_2"):key()] = "swat_2",
 	[("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"):key()] = "heavy_1",
 	[("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"):key()] = "heavy_2",
-	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "medic_1",
-	[("units/payday2/characters/ene_medic_r870/ene_medic_r870"):key()] = "medic_2",
+	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "medic",
+	[("units/payday2/characters/ene_medic_r870/ene_medic_r870"):key()] = "medic",
 	[("units/payday2/characters/ene_tazer_1/ene_tazer_1"):key()] = "taser",
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = "cloaker",
 	[("units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"):key()] = "swat_1",
