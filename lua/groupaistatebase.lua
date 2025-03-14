@@ -33,9 +33,10 @@ function GroupAIStateBase:_calculate_difficulty_ratio(...)
 		return
 	end
 
-	self._last_scripted_tier = tier
 	for name, script in pairs(managers.mission._scripts) do
 		for k, element in pairs(script._elements) do
+			self._last_scripted_tier = tier
+
 			if getmetatable(element) == ElementSpawnEnemyDummy then
 				local mapped_unit = element:get_replacement_enemy_name(tier)
 
