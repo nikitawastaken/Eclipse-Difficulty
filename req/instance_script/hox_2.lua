@@ -1,5 +1,5 @@
 local patches = {
-	breach_group = table.set(100012)
+	breach_group = table.set(100012),
 }
 
 return {
