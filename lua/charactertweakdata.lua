@@ -208,12 +208,22 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 	accuracy_multiplier(presets.weapon.security, 0.8)
 
+	presets.weapon.security_fat = based_on(presets.weapon.security, {
+		melee_dmg = 8 * dmg_mul,
+	})
+	damage_multiplier(presets.weapon.security_fat, 6 / 5)
+
 	presets.weapon.cop = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1.25 },
 		focus_delay = 1,
 		melee_dmg = 6 * dmg_mul,
 	})
 	accuracy_multiplier(presets.weapon.cop, 0.9)
+
+	presets.weapon.cop_fat = based_on(presets.weapon.cop, {
+		melee_dmg = 8 * dmg_mul,
+	})
+	damage_multiplier(presets.weapon.cop_fat, 6 / 5)
 
 	presets.weapon.gangster = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1.25 },
@@ -879,6 +889,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.security.chatter = self.presets.enemy_chatter.security
 
+	self.security_fat = deep_clone(self.security)
+	self.security_fat.HEALTH_INIT = 12
+	self.security_fat.dodge = nil
+	self.security_fat.melee_weapon = "fists"
+	table.insert(self._enemy_list, "security_fat")
+
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
 
 	self.gensec.speech_prefix_p1 = self._unit_prefixes.cop
@@ -892,10 +908,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_army = deep_clone(self.security)
 	self.security_army.HEALTH_INIT = 12
 	self.security_army.melee_weapon = "weapon"
-	self.security_army.no_arrest = true
+	--self.security_army.no_arrest = true
 	table.insert(self._enemy_list, "security_army")
 
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
+
+	self.cop_fat = deep_clone(self.cop)
+	self.cop_fat.HEALTH_INIT = 16
+	self.cop_fat.dodge = nil
+	self.cop_fat.melee_weapon = "fists"
+	table.insert(self._enemy_list, "cop_fat")
 
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
@@ -1232,8 +1254,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.fbi_boss = deep_clone(self.chavez_boss)
 	self.fbi_boss.HEALTH_INIT = 200
-	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.throwable_cooldown = 10
+	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.access = "fbi"
 	table.insert(self._enemy_list, "fbi_boss")
 
@@ -1369,7 +1391,9 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 end
 
 CharacterTweakData.access_health_hs_mul_blacklist = {
+	security_fat = true,
 	security_army = true,
+	cop_fat = true,
 }
 
 CharacterTweakData.access_health = {
@@ -1395,8 +1419,10 @@ CharacterTweakData.tweak_table_weapon = {
 	zeal_swat = "zeal_swat",
 	zeal_heavy_swat = "zeal_swat",
 	murky = "murky",
+	security_fat = "security_fat",
 	security_mcmansion = "security_mcmansion",
 	security_army = "soldier",
+	cop_fat = "cop_fat",
 	soldier = "soldier",
 	cobra = "gangster",
 	shield = "shield",
@@ -1436,7 +1462,10 @@ CharacterTweakData.tweak_table_move_speed = {
 	zeal_heavy_swat = "fast",
 	cobra = "fast",
 	murky = "fast",
+	security_fat = "slow",
 	security_mcmansion = "fast",
+	security_army = "fast",
+	cop_fat = "slow",
 	soldier = "fast",
 	medic = "normal",
 	zeal_medic = "normal",
@@ -1485,13 +1514,13 @@ function CharacterTweakData:_set_presets()
 			char_preset.move_speed = self.presets.move_speed[move_speed_preset] or self.presets.move_speed.normal
 		end
 
-		local surrender_preset = self.access_surrender[char_preset.access]
+		local is_boss = name:match("_boss$")
+
+		local surrender_preset = not is_boss and self.access_surrender[char_preset.access] or nil
 
 		if surrender_preset then
 			char_preset.surrender = self.presets.surrender[surrender_preset]
 		end
-
-		local is_boss = name:match("_boss$")
 
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then

@@ -2516,7 +2516,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			{
 				timer_data = {
 					initial_delay = 30,
-					cooldown = { 15, 30 },
+					cooldown = { 20, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -2526,7 +2526,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 						max_nr_simultaneous_groups = 2,
 						amount = { 3, 3 },
 						disable_timer = nil,
-						disable_diff = 0.8,
+						disable_diff = 0.75,
 						objective = function(spawn_group)
 							return {
 								attitude = "engage",
@@ -2583,7 +2583,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			{
 				timer_data = {
 					initial_delay = 30,
-					cooldown = { 15, 30 },
+					cooldown = { 20, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -2592,7 +2592,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 						team_id = "law1",
 						max_nr_simultaneous_groups = 2,
 						amount = { 3, 3 },
-						disable_timer = 600, --10 minutes
+						disable_timer = 360, -- 6 minutes
 						disable_diff = nil,
 						objective = function(spawn_group)
 							return {
@@ -2646,7 +2646,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 			{
 				timer_data = {
 					initial_delay = 180,
-					cooldown = { 30, 45 },
+					cooldown = { 20, 30 },
 					diff_scale = { 2, 1.5, 1 },
 				},
 				group_data = {
@@ -2656,6 +2656,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 						max_nr_simultaneous_groups = 2,
 						amount = { 3, 3 },
 						disable_timer = nil,
+						disable_diff = nil,
 						objective = function(spawn_group)
 							return {
 								attitude = "engage",

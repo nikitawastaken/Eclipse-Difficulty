@@ -2,8 +2,10 @@ CopMovement._action_variants.cobra = CopMovement._action_variants.gangster
 CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.tank_elite = CopMovement._action_variants.tank
 CopMovement._action_variants.murky = CopMovement._action_variants.swat
+CopMovement._action_variants.security_fat = CopMovement._action_variants.swat
 CopMovement._action_variants.security_mcmansion = CopMovement._action_variants.swat
 CopMovement._action_variants.security_army = CopMovement._action_variants.swat
+CopMovement._action_variants.cop_fat = CopMovement._action_variants.swat
 CopMovement._action_variants.soldier = CopMovement._action_variants.swat
 CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.marksman = CopMovement._action_variants.marshal_marksman
@@ -45,6 +47,24 @@ function CopMovement:speed_modifier()
 
 	return final_modifier ~= 1 and final_modifier
 end
+
+-- Toggle flashlights when set to cool or uncool
+
+Hooks:PreHook(CopMovement, "_post_init", "eclipse__post_init", function(self)
+	local equipped_weapon = self._ext_inventory:equipped_unit()
+
+	if equipped_weapon then
+		equipped_weapon:base():set_flashlight_enabled(false)
+	end
+end)
+
+Hooks:PostHook(CopMovement, "set_cool", "eclipse_set_cool", function(self, state)
+	local equipped_weapon = self._ext_inventory:equipped_unit()
+
+	if equipped_weapon then
+		equipped_weapon:base():set_flashlight_enabled(not state)
+	end
+end)
 
 -- Fix enemies playing the suppressed stand-to-crouch animation when shot even if they are already crouching
 local play_redirect_original = CopMovement.play_redirect
