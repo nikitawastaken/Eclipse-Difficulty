@@ -189,31 +189,31 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 
 ElementSpawnEnemyDummy.unit_alternatives = {
 	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {
-		["units/payday2/characters/ene_security_1/ene_security_1"] = 3,
+		["units/payday2/characters/ene_security_1/ene_security_1"] = 4,
 		["units/payday2/characters/ene_security_1_fat/ene_security_1_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = {
-		["units/payday2/characters/ene_security_2/ene_security_2"] = 3,
+		["units/payday2/characters/ene_security_2/ene_security_2"] = 4,
 		["units/payday2/characters/ene_security_2_fat/ene_security_2_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = {
-		["units/payday2/characters/ene_security_3/ene_security_3"] = 2,
+		["units/payday2/characters/ene_security_3/ene_security_3"] = 3,
 		["units/payday2/characters/ene_security_3_fat/ene_security_3_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = {
-		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 3,
+		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 6,
 		["units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_cop_2/ene_cop_2"):key()] = {
-		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 2,
+		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 4,
 		["units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = {
-		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 4,
+		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 8,
 		["units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = {
-		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 3,
+		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 6,
 		["units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"] = 1,
 	},
 }

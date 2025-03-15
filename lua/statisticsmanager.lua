@@ -60,6 +60,13 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
+	self._defaults.killed.security_fat = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
 	self._defaults.killed.security_mcmansion = {
 		count = 0,
 		head_shots = 0,
@@ -68,6 +75,13 @@ function StatisticsManager:init()
 		tied = 0,
 	}
 	self._defaults.killed.security_army = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
+	self._defaults.killed.cop_fat = {
 		count = 0,
 		head_shots = 0,
 		melee = 0,
