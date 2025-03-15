@@ -17,6 +17,9 @@ local M = {
 	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = "r870", --stronger camera man
+    [("units/payday2/characters/ene_security_1_fat/ene_security_1_fat"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_security_2_fat/ene_security_2_fat"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_security_3_fat/ene_security_3_fat"):key()] = "r870", --stronger camera man
 	[("units/pd2_dlc_short/characters/ene_security_1_undominatable/ene_security_1_undominatable"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/pd2_dlc_short/characters/ene_security_2_undominatable/ene_security_2_undominatable"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/pd2_dlc_short/characters/ene_security_3_undominatable/ene_security_3_undominatable"):key()] = "r870", --stronger camera man
