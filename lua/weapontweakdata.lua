@@ -1901,15 +1901,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.saiga.CLIP_AMMO_MAX = 7
 	self.saiga.stats.damage = 20
 	self.saiga.stats.spread = 11
-	self.saiga.stats.recoil = 9
+	self.saiga.stats.recoil = 10
 	self.saiga.stats.concealment = 15
 	self.saiga.fire_mode_data.fire_rate = 60 / 350
 
 	-- Steakout
 	self.aa12.CLIP_AMMO_MAX = 8
 	self.aa12.stats.damage = 20
-	self.aa12.stats.spread = 11
-	self.aa12.stats.recoil = 10
+	self.aa12.stats.spread = 10
+	self.aa12.stats.recoil = 13
 	self.aa12.stats.concealment = 12
 	self.aa12.fire_mode_data.fire_rate = 60 / 300
 
