@@ -21,7 +21,7 @@ function GrenadeBase:throw(params)
 	local thrower_state = is_player and self._thrower_unit:movement():current_state() or false
 	local velocity_addend_xy = Vector3(0, 0, 0)
 	local velocity_addend_z = Vector3(0, 0, 0)
-	if alive(self._thrower_unit) and thrower_state then
+	if alive(self._thrower_unit) and thrower_state and thrower_state._last_velocity_xy then
 		-- Slightly nerf the velocity addends and make sure it doesn't work when you're falling from the jump
 		velocity_addend_z = thrower_state._is_jumping and not thrower_state._is_jump_middle_passed and (thrower_state._last_sent_jump_vec * 0.15) or velocity_addend_z
 		velocity_addend_xy = thrower_state._last_velocity_xy * 0.25
