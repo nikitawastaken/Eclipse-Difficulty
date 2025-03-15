@@ -101,30 +101,30 @@ return {
 		values = {
 			difficulty_hard = true,
 		},
-	},	
+	},
 	[102220] = {
 		values = {
 			difficulty_hard = false,
 		},
-	},	
+	},
 	-- No extra checkpoint keycard on Pro Job
 	[103764] = {
-		on_executed = { 
+		on_executed = {
 			{ id = 101469, remove = is_pro_job and true or nil },
 		},
-	},	
+	},
 	-- Lower upstairs keycard chance, you're getting a good camping spot anyway
 	[101628] = {
 		values = {
 			chance = 30,
 		},
-	},	
+	},
 	-- Worse keycard RNG on Eclipse
 	[101746] = {
 		values = {
 			chance = is_eclipse and 25 or 50,
 		},
-	},	
+	},
 	-- Add new reinforce
 	[100109] = { -- Atrium, always active
 		reinforce = {
@@ -135,7 +135,7 @@ return {
 			},
 		},
 	},
---[[
+	--[[
 	[104460] = { -- Corridors around the operations room
 		reinforce = {
 			{
@@ -162,16 +162,16 @@ return {
 				name = "operations_room",
 				force = 3,
 				position = Vector3(-200, 300, 0),
-			}
+			},
 		},
 	},
-	[100733] = { 
+	[100733] = {
 		reinforce = {
-			{ name = "operations_room" }
-		}
+			{ name = "operations_room" },
+		},
 	},
 	-- Randomise initial FBI agent amounts
-	[101195] = { 
+	[101195] = {
 		values = {
 			amount = normal and 4 or 6,
 			amount_random = 6,
@@ -193,7 +193,7 @@ return {
 		values = {
 			chance = exit_dozer_chance,
 		},
-	},	
+	},
 	[102214] = exit_dozer,
 	-- Spawnpoint delays
 	[101662] = side_building1,
@@ -212,8 +212,8 @@ return {
 	[101682] = archives_spawn,
 	[101688] = atrium_elevator_spawn,
 	-- Holy FBI agents, Batman...
-	[101490] = fbi_agent,  
-	[101492] = fbi_agent,  
+	[101490] = fbi_agent,
+	[101492] = fbi_agent,
 	[101493] = fbi_agent,
 	[101494] = fbi_agent,
 	[101495] = fbi_agent,
@@ -228,7 +228,7 @@ return {
 	[101504] = fbi_agent,
 	[101505] = fbi_agent,
 	[101506] = fbi_agent,
-	[101214] = fbi_agent, 
+	[101214] = fbi_agent,
 	[101215] = fbi_agent,
 	[101199] = fbi_agent,
 	[101200] = fbi_agent,
@@ -239,8 +239,8 @@ return {
 	[101205] = fbi_agent,
 	[101206] = fbi_agent,
 	[101208] = fbi_agent,
-	-- Holy harassers, Batman...	
-	[100803] = harasser,  
+	-- Holy harassers, Batman...
+	[100803] = harasser,
 	[100332] = harasser,
 	[100906] = harasser,
 	[100922] = harasser,
@@ -260,7 +260,7 @@ return {
 	[101145] = harasser,
 	[101161] = harasser,
 	[101177] = harasser,
-	[100884] = harasser, 
+	[100884] = harasser,
 	[100334] = harasser,
 	[100907] = harasser,
 	[100923] = harasser,
@@ -280,7 +280,7 @@ return {
 	[101146] = harasser,
 	[101162] = harasser,
 	[101178] = harasser,
-	[100885] = harasser, 
+	[100885] = harasser,
 	[100336] = harasser,
 	[100908] = harasser,
 	[100924] = harasser,

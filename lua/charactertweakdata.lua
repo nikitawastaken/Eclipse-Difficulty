@@ -1515,7 +1515,7 @@ function CharacterTweakData:_set_presets()
 		end
 
 		local is_boss = name:match("_boss$")
-		
+
 		local surrender_preset = not is_boss and self.access_surrender[char_preset.access] or nil
 
 		if surrender_preset then
