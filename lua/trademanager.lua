@@ -153,6 +153,8 @@ end
 function TradeManager:trade_restore_lives()
     for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
         u_data.unit:character_damage():restore_lives(1)
+        local peer = managers.network:session():peer_by_unit(u_data.unit)
+        peer:send_queued_sync("finish_trade")
         Eclipse:log("Hostage traded, restoring a down")
     end
 end

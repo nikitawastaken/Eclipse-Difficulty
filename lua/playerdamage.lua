@@ -336,6 +336,8 @@ function PlayerDamage:restore_lives(lives_restored)
 	else
 		self:_send_set_revives()
 	end
+
+	Eclipse:log_chat("Revive restored, current revives counter" .. self._revives)
 end
 
 function PlayerDamage:_regenerated(from_medic_bag)
