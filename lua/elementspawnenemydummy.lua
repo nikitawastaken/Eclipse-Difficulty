@@ -218,7 +218,6 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	},
 }
 
-
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 	self._enemy_table = self._values.enemy_table
 	self._values.enemy_table = nil
