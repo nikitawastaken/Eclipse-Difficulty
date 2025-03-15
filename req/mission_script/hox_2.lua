@@ -17,12 +17,23 @@ local fbi_agent = {
 }
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
-local bulldozer_1 = scripted_enemy.bulldozer_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local elite_sniper = scripted_enemy.elite_sniper
 
+local regular_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local eclipse_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
+
 local exit_dozer = {
-	enemy = is_eclipse and elite_bulldozer or bulldozer,
+	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
 local exit_dozer_chance = (is_pro_job and 1.5 or 1) * (diff_i * 10)
 
