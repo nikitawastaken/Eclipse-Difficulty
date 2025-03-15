@@ -1,5 +1,5 @@
 function ConnectionNetworkHandler:finish_trade()
-	if not self._verify_gamestate(self._gamestate_filter.waiting_for_respawn) then
+	if self._verify_gamestate(self._gamestate_filter.waiting_for_respawn) then
 		return
 	end
 
