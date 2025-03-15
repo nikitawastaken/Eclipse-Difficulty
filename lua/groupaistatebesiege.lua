@@ -1443,7 +1443,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			if in_place_duration < tweak_data.group_ai.no_grenade_push_delay * 0.5 then
+			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+
+			if in_place_duration < push_delay * 0.5 then
 				move_in = false
 			end
 		end
@@ -1578,7 +1580,9 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			if in_place_duration < tweak_data.group_ai.no_grenade_push_delay * 0.5 then
+			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+
+			if in_place_duration < push_delay * 0.5 then
 				move_in = false
 			end
 		end
