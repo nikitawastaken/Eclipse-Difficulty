@@ -48,6 +48,25 @@ function CopMovement:speed_modifier()
 	return final_modifier ~= 1 and final_modifier
 end
 
+-- Toggle flashlights when set to cool or uncool
+ 
+
+Hooks:PreHook(CopMovement, "_post_init", "eclipse__post_init", function (self)
+	local equipped_weapon = self._ext_inventory:equipped_unit()
+ 
+	if equipped_weapon then
+		equipped_weapon:base():set_flashlight_enabled(false) 
+	end 
+end)
+
+Hooks:PostHook(CopMovement, "set_cool", "eclipse_set_cool", function (self, state)
+	local equipped_weapon = self._ext_inventory:equipped_unit()
+
+	if equipped_weapon then
+		equipped_weapon:base():set_flashlight_enabled(not state)
+	end
+end)
+
 -- Fix enemies playing the suppressed stand-to-crouch animation when shot even if they are already crouching
 local play_redirect_original = CopMovement.play_redirect
 function CopMovement:play_redirect(redirect_name, ...)
