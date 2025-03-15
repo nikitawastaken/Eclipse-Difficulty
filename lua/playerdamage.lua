@@ -350,7 +350,7 @@ function PlayerDamage:_regenerated(from_medic_bag)
 		self:restore_lives(1)
 	else
 		self._revives = Application:digest_value(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), true)
-		self._revive_health_i = 0
+		self._revive_health_i = 1
 		self._down_time_i = 1
 		self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0) -- an upgrade that increases bleedout timer
 		self:_send_set_revives(true)
