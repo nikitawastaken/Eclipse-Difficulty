@@ -1,0 +1,13 @@
+<table directory="assets">
+	<add from_db="true" 	path="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01" type="unit">
+		<unit load="true"	path="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"/>
+		<object 			path="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"/>
+		<material_config 	path="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"/>
+		<unit load="true" 	path="units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01_husk"/>
+	</add>
+
+	<add from_db="true" 	path="units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02" type="unit">
+		<unit load="true"	path="units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"/>
+		<unit load="true" 	path="units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02_husk"/>
+	</add>
+</table>

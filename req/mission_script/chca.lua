@@ -13,7 +13,6 @@ local bow_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_cops_agents,
 }
 local lifeboat_spawn = {
 	values = {
@@ -21,24 +20,26 @@ local lifeboat_spawn = {
 	},
 	groups = preferred.no_shields,
 }
+local elevator_spawn = {
+	values = {
+		interval = 20,
+	},
+}
 local courtyard_spawn = {
 	values = {
 		interval = 30,
 	},
+	groups = preferred.no_cops_agents,
 }
 local casino_spawn = {
 	values = {
 		interval = 30,
 	},
+	groups = preferred.no_cops_agents,
 }
 local spa_ceiling_spawn = {
 	values = {
 		interval = 30,
-	},
-}
-local elevator_spawn = {
-	values = {
-		interval = 45,
 	},
 	groups = preferred.no_cops_agents,
 }

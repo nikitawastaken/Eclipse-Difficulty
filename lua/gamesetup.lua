@@ -27,6 +27,13 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["trai"] = true,
 	}
 
+	local sfpd = {
+		--["chas"] = true, -- They're already loaded here
+		--["sand"] = true,
+		["chca"] = true,
+		--["pent"] = true,
+	}
+	
 	if level_id then
 		if fbi_heists[level_id] and not PackageManager:loaded("packages/security_mcmansion") then
 			Eclipse:log("Loading FBI security package...")
@@ -44,6 +51,12 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			Eclipse:log("Loading US army package...")
 			table.insert(self._loaded_diff_packages, "packages/us_army")
 			PackageManager:load("packages/us_army")
+		end
+
+		if sfpd[level_id] and not PackageManager:loaded("packages/sfpd") then
+			Eclipse:log("Loading SFPD package...")
+			table.insert(self._loaded_diff_packages, "packages/sfpd")
+			PackageManager:load("packages/sfpd")
 		end
 	end
 end)

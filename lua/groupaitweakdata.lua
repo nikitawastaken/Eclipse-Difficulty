@@ -80,10 +80,8 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)
-	self.difficulty_index = difficulty_index
-
-	if self.difficulty_index then
-		Eclipse:log("Difficulty index is " .. self.difficulty_index)
+	if difficulty_index then
+		Eclipse:log("Difficulty index is " .. difficulty_index)
 	end
 
 	local access_type_walk_only = {
@@ -94,7 +92,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		walk = true,
 	}
 
-	if self.difficulty_index <= 2 then
+	if difficulty_index <= 2 then
 		self.special_unit_spawn_limits = {
 			shield = 2,
 			taser = 0,
@@ -103,7 +101,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			medic = 0,
 			marksman = 0,
 		}
-	elseif self.difficulty_index == 3 then
+	elseif difficulty_index == 3 then
 		self.special_unit_spawn_limits = {
 			shield = 2,
 			taser = 1,
@@ -112,7 +110,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			medic = 0,
 			marksman = 0,
 		}
-	elseif self.difficulty_index == 4 then
+	elseif difficulty_index == 4 then
 		self.special_unit_spawn_limits = {
 			shield = 3,
 			taser = 1,
@@ -121,7 +119,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			medic = 2,
 			marksman = 0,
 		}
-	elseif self.difficulty_index == 5 then
+	elseif difficulty_index == 5 then
 		self.special_unit_spawn_limits = {
 			shield = 4,
 			taser = 2,
@@ -130,7 +128,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			medic = 3,
 			marksman = 0,
 		}
-	elseif self.difficulty_index == 6 then
+	elseif difficulty_index == 6 then
 		self.special_unit_spawn_limits = {
 			shield = 5,
 			taser = 3,
@@ -1602,9 +1600,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 1,
 				freq_by_diff = {
-					self.difficulty_index / 6,
-					self.difficulty_index / 3,
-					self.difficulty_index,
+					difficulty_index / 6,
+					difficulty_index / 3,
+					difficulty_index,
 				},
 				rank = 2,
 				unit = "CS_cop_3",
@@ -1671,9 +1669,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = {
-					3 / self.difficulty_index,
-					2 / self.difficulty_index,
-					1 / self.difficulty_index,
+					3 / difficulty_index,
+					2 / difficulty_index,
+					1 / difficulty_index,
 				},
 				rank = 1,
 				unit = "CS_swat_1_3",
@@ -1766,9 +1764,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = {
-					self.difficulty_index / 12,
-					self.difficulty_index / 4,
-					self.difficulty_index,
+					difficulty_index / 12,
+					difficulty_index / 4,
+					difficulty_index,
 				},
 				rank = 1,
 				unit = "FBI_agent_2_3",
@@ -1798,8 +1796,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 60,
-					self.difficulty_index / 30,
+					difficulty_index / 60,
+					difficulty_index / 30,
 				},
 				rank = 1,
 				unit = "Elite_sniper",
@@ -1876,8 +1874,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 24,
-					self.difficulty_index / 12,
+					difficulty_index / 24,
+					difficulty_index / 12,
 				},
 				rank = 1,
 				unit = "medic",
@@ -1908,9 +1906,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = {
-					6 / self.difficulty_index,
-					4 / self.difficulty_index,
-					2 / self.difficulty_index,
+					6 / difficulty_index,
+					4 / difficulty_index,
+					2 / difficulty_index,
 				},
 				rank = 2,
 				unit = "FBI_swat_1_3",
@@ -1920,8 +1918,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 24,
-					self.difficulty_index / 12,
+					difficulty_index / 24,
+					difficulty_index / 12,
 				},
 				rank = 1,
 				unit = "medic",
@@ -1958,8 +1956,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 32,
-					self.difficulty_index / 16,
+					difficulty_index / 32,
+					difficulty_index / 16,
 				},
 				rank = 1,
 				unit = "medic_2",
@@ -1990,8 +1988,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 40,
-					self.difficulty_index / 20,
+					difficulty_index / 40,
+					difficulty_index / 20,
 				},
 				rank = 1,
 				unit = "medic_1",
@@ -2021,8 +2019,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 48,
-					self.difficulty_index / 24,
+					difficulty_index / 48,
+					difficulty_index / 24,
 				},
 				rank = 1,
 				unit = "medic_2",
@@ -2082,8 +2080,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 48,
-					self.difficulty_index / 24,
+					difficulty_index / 48,
+					difficulty_index / 24,
 				},
 				rank = 1,
 				unit = "Elite_sniper",
@@ -2123,8 +2121,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 24,
-					self.difficulty_index / 12,
+					difficulty_index / 24,
+					difficulty_index / 12,
 				},
 				rank = 1,
 				unit = "medic",
@@ -2173,8 +2171,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 32,
-					self.difficulty_index / 16,
+					difficulty_index / 32,
+					difficulty_index / 16,
 				},
 				rank = 1,
 				unit = "medic_2",
@@ -2205,8 +2203,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 40,
-					self.difficulty_index / 20,
+					difficulty_index / 40,
+					difficulty_index / 20,
 				},
 				rank = 1,
 				unit = "medic_1",
@@ -2236,8 +2234,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 48,
-					self.difficulty_index / 24,
+					difficulty_index / 48,
+					difficulty_index / 24,
 				},
 				rank = 1,
 				unit = "medic_2",
@@ -2288,8 +2286,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 18,
-					self.difficulty_index / 9,
+					difficulty_index / 18,
+					difficulty_index / 9,
 				},
 				rank = 1,
 				unit = "Zeal_medic",
@@ -2320,9 +2318,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = {
-					24 / (self.difficulty_index ^ 2),
-					16 / (self.difficulty_index ^ 2),
-					8 / (self.difficulty_index ^ 2),
+					24 / (difficulty_index ^ 2),
+					16 / (difficulty_index ^ 2),
+					8 / (difficulty_index ^ 2),
 				},
 				rank = 2,
 				unit = "Zeal_swat",
@@ -2332,8 +2330,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 18,
-					self.difficulty_index / 9,
+					difficulty_index / 18,
+					difficulty_index / 9,
 				},
 				rank = 1,
 				unit = "Zeal_medic",
@@ -2370,8 +2368,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 24,
-					self.difficulty_index / 12,
+					difficulty_index / 24,
+					difficulty_index / 12,
 				},
 				rank = 1,
 				unit = "Zeal_medic",
@@ -2402,8 +2400,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					self.difficulty_index / 30,
-					self.difficulty_index / 15,
+					difficulty_index / 30,
+					difficulty_index / 15,
 				},
 				rank = 1,
 				unit = "Zeal_medic",
@@ -2450,7 +2448,26 @@ GroupAITweakData.us_army_heists = {
 }
 
 -- Timed groups tweak table
-function GroupAITweakData:_init_enemy_spawn_groups_level()
+function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_index)
+	local lvl_tweak = tweak_data.levels[level_id]
+
+	-- This is needed for regional Beat Cops and such
+	if lvl_tweak and lvl_tweak.ai_unit_group_overrides then
+		local unit_types = nil
+
+		for unit_type, faction_type_data in pairs(lvl_tweak.ai_unit_group_overrides) do
+			unit_types = self.unit_categories[unit_type] and self.unit_categories[unit_type].unit_types
+
+			if unit_types then
+				for faction_type, override in pairs(faction_type_data) do
+					if unit_types[faction_type] then
+						unit_types[faction_type] = override
+					end
+				end
+			end
+		end
+	end
+	
 	self._timed_tactics = {
 		none = {},
 		gangster_def = {
@@ -2561,8 +2578,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 								amount_max = 1,
 								rank = 1,
 								freq_by_diff = {
-									2 / self.difficulty_index,
-									1 / self.difficulty_index,
+									2 / difficulty_index,
+									1 / difficulty_index,
 									0,
 								},
 								unit = "FBI_agent_2_3",
@@ -2684,9 +2701,9 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 								amount_max = 2,
 								rank = 2,
 								freq_by_diff = {
-									self.difficulty_index / 16,
-									self.difficulty_index / 12,
-									self.difficulty_index / 8,
+									difficulty_index / 16,
+									difficulty_index / 12,
+									difficulty_index / 8,
 								},
 								unit = "Army_soldier_2",
 								tactics = self._tactics.army_agg,
@@ -2696,8 +2713,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level()
 								rank = 1,
 								freq_by_diff = {
 									0,
-									self.difficulty_index / 30,
-									self.difficulty_index / 10,
+									difficulty_index / 30,
+									difficulty_index / 10,
 								},
 								unit = "Army_soldier_3",
 								tactics = self._timed_tactics.army_spt,

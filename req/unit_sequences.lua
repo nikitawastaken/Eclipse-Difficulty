@@ -200,6 +200,14 @@ local M = {
 	["units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"] = { name = "soldier_1", head = head_sequences.soldier_a },
 	["units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"] = { name = "soldier_2", head = head_sequences.soldier_b },
 	["units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"] = { name = "soldier_3", head = head_sequences.soldier_b },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = { name = "chas_cop_1", head = head_sequences.security },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"] = { name = "chas_cop_2", head = head_sequences.security },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"] = { name = "chas_cop_3", head = head_sequences.security },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"] = { name = "chas_cop_4", head = head_sequences.security },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_01_fat/ene_male_chas_police_01_fat"] = { name = "chas_cop_1_fat", head = head_sequences.security_fat },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_02_fat/ene_male_chas_police_02_fat"] = { name = "chas_cop_2_fat", head = head_sequences.security_fat },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_03_fat/ene_male_chas_police_03_fat"] = { name = "chas_cop_3_fat", head = head_sequences.security_fat },
+	["units/pd2_dlc_chas/characters/ene_male_chas_police_04_fat/ene_male_chas_police_04_fat"] = { name = "chas_cop_4_fat", head = head_sequences.security_fat },
 }
 
 return M
