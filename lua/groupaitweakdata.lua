@@ -2467,7 +2467,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			end
 		end
 	end
-	
+
 	self._timed_tactics = {
 		none = {},
 		gangster_def = {

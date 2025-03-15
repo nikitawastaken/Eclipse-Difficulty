@@ -1332,7 +1332,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.chas, "ene_male_chas_police_02_fat")
 	safe_add(char_map.chas, "ene_male_chas_police_03_fat")
 	safe_add(char_map.chas, "ene_male_chas_police_04_fat")
-	
+
 	safe_add(char_map.gitgud, "ene_zeal_swat_2")
 	safe_add(char_map.gitgud, "ene_zeal_swat_heavy_2")
 	safe_add(char_map.gitgud, "ene_zeal_medic_m4")

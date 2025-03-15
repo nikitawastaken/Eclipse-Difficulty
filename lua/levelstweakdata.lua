@@ -125,16 +125,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 		CS_cop_2 = {
 			america = {
-				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"), 
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
 			},
 		},
 		CS_cop_3 = {
-			america = { 
-				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"), 
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
 			},
 		},
 		CS_cop_4 = {
-			america = { 
+			america = {
 				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
 			},
 		},
@@ -162,22 +162,22 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- SFPD
 	self.chas.ai_unit_group_overrides = {
 		CS_cop_1 = {
-			america = { 
-				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"), 
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"),
 			},
 		},
 		CS_cop_2 = {
-			america = { 
+			america = {
 				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
 			},
 		},
 		CS_cop_3 = {
 			america = {
-				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"), 
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"),
 			},
 		},
 		CS_cop_4 = {
-			america = { 
+			america = {
 				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"),
 			},
 		},
@@ -207,17 +207,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- Texas Rangers
 	self.ranc.ai_unit_group_overrides = {
 		CS_cop_1 = {
-			america = { 
+			america = {
 				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
 			},
 		},
 		CS_cop_2 = {
-			america = { 
+			america = {
 				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"),
 			},
 		},
 		CS_cop_3 = {
-			america = { 
+			america = {
 				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
 			},
 		},
