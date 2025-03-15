@@ -1254,8 +1254,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.fbi_boss = deep_clone(self.chavez_boss)
 	self.fbi_boss.HEALTH_INIT = 200
-	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.throwable_cooldown = 10
+	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.access = "fbi"
 	table.insert(self._enemy_list, "fbi_boss")
 
@@ -1514,13 +1514,13 @@ function CharacterTweakData:_set_presets()
 			char_preset.move_speed = self.presets.move_speed[move_speed_preset] or self.presets.move_speed.normal
 		end
 
-		local surrender_preset = self.access_surrender[char_preset.access]
+		local is_boss = name:match("_boss$")
+		
+		local surrender_preset = not is_boss and self.access_surrender[char_preset.access] or nil
 
 		if surrender_preset then
 			char_preset.surrender = self.presets.surrender[surrender_preset]
 		end
-
-		local is_boss = name:match("_boss$")
 
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
