@@ -189,7 +189,7 @@
 		<sequence editable_state="true" name="'glasses_none'" once="true" triggable="true" />
 
 		<sequence editable_state="true" name="'glasses_base'" once="true" triggable="true">
-			<run_sequence 		name="'glasses_'..pick('head','head','forehead')" />
+			<run_sequence 		name="'glasses_'..pick('head','head','head','forehead')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'glasses_forehead'" once="true" triggable="true">
