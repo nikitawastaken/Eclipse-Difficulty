@@ -12,7 +12,7 @@ NPCRaycastWeaponBase.flashlight_blacklist = {
 	[Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle"):key()] = true,
 }
 
-Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function (self)
+Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)
 	if self.flashlight_blacklist[self._unit:name():key()] then
 		if self._flashlight_data and alive(self._flashlight_data.light) then
 			World:delete_light(self._flashlight_data.light)
@@ -39,7 +39,7 @@ Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function (self)
 
 	self._flashlight_data = {
 		light = light,
-		effect = effect
+		effect = effect,
 	}
 
 	light:link(light_object)
