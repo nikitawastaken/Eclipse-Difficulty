@@ -143,44 +143,124 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 
 	self.unit_categories.CS_cop_1 = {
 		unit_types = {
-			america = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
-			russia = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
-			zombie = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
-			murkywater = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
-			federales = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
+			america = { 
+                        Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                        Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                        Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+            },
+			russia = { 
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"), 
+            },
+			zombie = { 
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"), 
+            },
+			murkywater = { 
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"), 
+            },
+			federales = { 
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+                       Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"), 
+            },
 		},
 		access = access_type_walk_only,
 	}
 
 	self.unit_categories.CS_cop_2 = {
 		unit_types = {
-			america = { Idstring("units/payday2/characters/ene_cop_2/ene_cop_2") },
-			russia = { Idstring("units/payday2/characters/ene_cop_2/ene_cop_2") },
-			zombie = { Idstring("units/payday2/characters/ene_cop_2/ene_cop_2") },
-			murkywater = { Idstring("units/payday2/characters/ene_cop_2/ene_cop_2") },
-			federales = { Idstring("units/payday2/characters/ene_cop_2/ene_cop_2") },
+			america = { 
+                        Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                        Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                        Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"),
+            },
+			russia = { 
+                       Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                        Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                        Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"), 
+            },
+			zombie = { 
+                       Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                       Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                       Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"), 
+            },
+			murkywater = { 
+                       Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                       Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                       Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"), 
+            },
+			federales = { 
+                       Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                       Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                       Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"),
+            },
 		},
 		access = access_type_walk_only,
 	}
 
 	self.unit_categories.CS_cop_3 = {
 		unit_types = {
-			america = { Idstring("units/payday2/characters/ene_cop_3/ene_cop_3") },
-			russia = { Idstring("units/payday2/characters/ene_cop_3/ene_cop_3") },
-			zombie = { Idstring("units/payday2/characters/ene_cop_3/ene_cop_3") },
-			murkywater = { Idstring("units/payday2/characters/ene_cop_3/ene_cop_3") },
-			federales = { Idstring("units/payday2/characters/ene_cop_3/ene_cop_3") },
+			america = { 
+                        Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                        Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                        Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+            },
+			russia = { 
+                        Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                        Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                        Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"), 
+            },
+			zombie = { 
+                       Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                       Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                       Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+            },
+			murkywater = { 
+                       Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                       Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                       Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"), 
+            },
+			federales = { 
+                       Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                       Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+                       Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+            },
 		},
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_cop_4 = {
+	self.unit_categories.CS_cop_3 = {
 		unit_types = {
-			america = { Idstring("units/payday2/characters/ene_cop_4/ene_cop_4") },
-			russia = { Idstring("units/payday2/characters/ene_cop_4/ene_cop_4") },
-			zombie = { Idstring("units/payday2/characters/ene_cop_4/ene_cop_4") },
-			murkywater = { Idstring("units/payday2/characters/ene_cop_4/ene_cop_4") },
-			federales = { Idstring("units/payday2/characters/ene_cop_4/ene_cop_4") },
+			america = { 
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
+            },
+			russia = { 
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"), 
+            },
+			zombie = { 
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
+            },
+			murkywater = { 
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"), 
+            },
+			federales = { 
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                       Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
+            },
 		},
 		access = access_type_walk_only,
 	}
@@ -190,22 +270,42 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			america = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"),
 			},
 			russia = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"),
 			},
 			zombie = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"),
 			},
 			murkywater = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"),
 			},
 			federales = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"),
 			},
 		},
 		access = access_type_walk_only,
@@ -216,22 +316,42 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			america = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			russia = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			zombie = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			murkywater = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			federales = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 		},
 		access = access_type_walk_only,
@@ -242,22 +362,42 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			america = {
 				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			russia = {
 				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			zombie = {
 				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			murkywater = {
 				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 			federales = {
 				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+                Idstring("units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"),
+				Idstring("units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"),
 			},
 		},
 		access = access_type_walk_only,
