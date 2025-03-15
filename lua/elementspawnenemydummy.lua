@@ -1,6 +1,10 @@
 -- Don't replace spawns on custom enemy spawner map
 local level_id = Global.game_settings and Global.game_settings.level_id
 if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spawner" then
+	ElementSpawnEnemyDummy.chk_used_mapped_names = function() end
+	ElementSpawnEnemyDummy.get_replacement_enemy_name = function() end
+	ElementSpawnEnemyDummy.replace_enemy_name = function() end
+
 	Eclipse:log("Editor/Spawner mode is active, spawn group fixes disabled")
 	return
 end
@@ -183,6 +187,38 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2"):key()] = "shield",
 }
 
+ElementSpawnEnemyDummy.unit_alternatives = {
+	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {
+		["units/payday2/characters/ene_security_1/ene_security_1"] = 3,
+		["units/payday2/characters/ene_security_1_fat/ene_security_1_fat"] = 1,
+	},
+	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = {
+		["units/payday2/characters/ene_security_2/ene_security_2"] = 3,
+		["units/payday2/characters/ene_security_2_fat/ene_security_2_fat"] = 1,
+	},
+	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = {
+		["units/payday2/characters/ene_security_3/ene_security_3"] = 2,
+		["units/payday2/characters/ene_security_3_fat/ene_security_3_fat"] = 1,
+	},
+	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = {
+		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 3,
+		["units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"] = 1,
+	},
+	[("units/payday2/characters/ene_cop_2/ene_cop_2"):key()] = {
+		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 2,
+		["units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"] = 1,
+	},
+	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = {
+		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 4,
+		["units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"] = 1,
+	},
+	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = {
+		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 3,
+		["units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"] = 1,
+	},
+}
+
+
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 	self._enemy_table = self._values.enemy_table
 	self._values.enemy_table = nil
@@ -260,6 +296,21 @@ function ElementSpawnEnemyDummy:replace_enemy_name(name)
 	end
 end
 
+function ElementSpawnEnemyDummy:get_unit_alternative(name)
+	local alternative_data = self.unit_alternatives[name:key()]
+
+	if not alternative_data or not next(alternative_data) then
+		return nil
+	end
+
+	local alternative_selector = WeightedSelector:new()
+	for alt_name, alt_weight in pairs(alternative_data) do
+		alternative_selector:add(alt_name, alt_weight)
+	end
+
+	return Idstring(alternative_selector:select())
+end
+
 local access_replacement = {
 	cop = "fbi",
 }
@@ -268,6 +319,8 @@ local produce_original = ElementSpawnEnemyDummy.produce
 function ElementSpawnEnemyDummy:produce(params, ...)
 	-- give assault-spawned beat cops fbi access to keep them from getting stuck
 	if params and params.name then
+		params.name = self:get_unit_alternative(params.name) or params.name
+
 		local unit = produce_original(self, params, ...)
 		local u_brain = alive(unit) and unit:brain()
 		local logic_data = u_brain and u_brain._logic_data
@@ -294,5 +347,12 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 		end
 	end
 
-	return produce_original(self, params, ...)
+	local original_enemy_name = self._enemy_name
+	self._enemy_name = self:get_unit_alternative(original_enemy_name) or original_enemy_name
+
+	local unit = produce_original(self, params, ...)
+
+	self._enemy_name = original_enemy_name
+
+	return unit
 end
