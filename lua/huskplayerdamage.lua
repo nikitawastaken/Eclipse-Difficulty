@@ -37,10 +37,4 @@ end
 -- On demand down restore
 function HuskPlayerDamage:restore_lives(lives_restored)
 	self._revives = math.min(self._revives_max, self._revives + lives_restored)
-
-	if self._revives == self._revives_max then
-		self:_send_set_revives(true)
-	else
-		self:_send_set_revives()
-	end
 end
