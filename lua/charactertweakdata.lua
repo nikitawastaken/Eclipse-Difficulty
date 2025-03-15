@@ -212,7 +212,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 8 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.security_fat, 6 / 5)
-	
+
 	presets.weapon.cop = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1.25 },
 		focus_delay = 1,
@@ -893,8 +893,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_fat.HEALTH_INIT = 12
 	self.security_fat.dodge = nil
 	self.security_fat.melee_weapon = "fists"
-	table.insert(self._enemy_list, "security_fat")	
-	
+	table.insert(self._enemy_list, "security_fat")
+
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
 
 	self.gensec.speech_prefix_p1 = self._unit_prefixes.cop
@@ -917,8 +917,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cop_fat.HEALTH_INIT = 16
 	self.cop_fat.dodge = nil
 	self.cop_fat.melee_weapon = "fists"
-	table.insert(self._enemy_list, "cop_fat")	
-	
+	table.insert(self._enemy_list, "cop_fat")
+
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
@@ -1461,7 +1461,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	marksman = "normal",
 	zeal_heavy_swat = "fast",
 	cobra = "fast",
-	murky = "fast",	
+	murky = "fast",
 	security_fat = "slow",
 	security_mcmansion = "fast",
 	security_army = "fast",
