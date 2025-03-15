@@ -330,3 +330,11 @@ function PlayerDamage:is_friendly_fire(unit)
 	end
 	return false
 end
+
+-- On demand down restore
+function PlayerDamage:restore_lives(lives_restored)
+	self._revives = Application:digest_value(math.min(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), Application:digest_value(self._revives, false) + lives_restored), true)
+	self._revive_health_i = math.max(self._revive_health_i - lives_restored, 1)
+	self._down_time_i = math.max(self._revive_health_i - lives_restored, 1)
+	self:_send_set_revives()
+end

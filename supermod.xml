@@ -70,6 +70,7 @@
 				<post :hook_id="explosionmanager"/>
 				<post :hook_id="killzonemanager"/>
 				<post :hook_id="firemanager"/>
+				<post :hook_id="trademanager"/>
 				<post :hook_id="hudmanagerpd2"/>
 			</group>
 
