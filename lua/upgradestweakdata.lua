@@ -133,6 +133,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.tea_cookies.multipro2 = "25%"
 	self.skill_descs.tea_cookies.multipro3 = "10"
 
+	-- Keepers
+	self.values.doctor_bag.amount_increase[1] = 1
+	self.skill_descs.medic_2x.multipro = "1"
+
 	-- Inspire
 	self.morale_boost_speed_bonus = 1.3
 	self.morale_boost_reload_speed_bonus = 1.3

@@ -46,6 +46,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Keepers
 	self.skills.medic_2x.name_id = "menu_keepers"
+	self.skills.medic_2x.desc_id = "menu_keepers_desc"
 
 	-- Inspire
 	self.skills.inspire[1].upgrades = { "player_morale_boost" }
