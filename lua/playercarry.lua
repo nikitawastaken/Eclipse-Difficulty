@@ -167,15 +167,6 @@ function PlayerCarry:add_tweak_data(name)
 	self:_check_dye_pack()
 end
 
-function PlayerCarry:remove_tweak_data(name)
-	for i, id in pairs(self._tweak_data_name) do
-		if id == name then
-			self._tweak_data_name[i] = nil
-			break
-		end
-	end
-end
-
 function PlayerCarry:_check_action_run(...)
 	if managers.player:has_category_upgrade("carry", "movement_penalty_nullifier") then
 		PlayerCarry.super._check_action_run(self, ...)
