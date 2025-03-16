@@ -281,20 +281,24 @@ function TradeManager:on_hostage_traded(pos, rotation)
 			return
 		end
 
+		self._hostage_to_trade = nil
+		self._trade_in_progress = true
 		local respawn_t = self._t + 2
 		local clbk_id = "Respawn_criminal_on_trade"
 		self._criminal_respawn_clbk = clbk_id
 
 		managers.enemy:add_delayed_clbk(clbk_id, callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
 	else
+		self._hostage_to_trade = nil
+		self._trade_in_progress = true
 		self:trade_restore_lives()
 	end
-
-	self._hostage_to_trade = nil
-	self._trade_in_progress = true
 end
 
 function TradeManager:trade_restore_lives()
+	self._trading_hostage = nil
+	self._trade_in_progress = false
+
     for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
         u_data.unit:character_damage():restore_lives(1)
         local peer = managers.network:session():peer_by_unit(u_data.unit)
