@@ -10,15 +10,11 @@ local heli_enemy1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scrip
 local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser_1
 
 local heli_spawn1 = {
-	values = {
-		enemy = heli_enemy1,
-	},
+	enemy = heli_enemy1,
 }
 
 local heli_spawn2 = {
-	values = {
-		enemy = heli_enemy2,
-	},
+	enemy = heli_enemy2,
 }
 
 local disabled = {

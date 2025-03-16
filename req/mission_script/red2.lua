@@ -29,21 +29,15 @@ if math.random() < vault_ambush_chance then
 end
 
 local vault_ambush = {
-	values = {
-		enemy = vault_ambush_enemy,
-	},
+	enemy = vault_ambush_enemy,
 }
 
 local bulldozer_spawn = {
-	values = {
-		enemy = bulldozer,
-	},
+	enemy = bulldozer,
 }
 
 local cloaker_spawn = {
-	values = {
-		enemy = cloaker,
-	},
+	enemy = cloaker,
 }
 
 local elevator_spawn = {
