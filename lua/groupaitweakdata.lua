@@ -2877,8 +2877,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
-			CS_assault_cops = { 1, 0.5, 0 },
-			CS_assault_swats = { 0.5, 1, 0.5 },
+			CS_assault_cops = { 0.5, 0.25, 0 },
+			CS_assault_swats = { 1, 1, 0.5 },
 			CS_assault_heavies = { 0, 0, 1 },
 			CS_assault_shield = { 0, 0.15, 0.2 },
 		}

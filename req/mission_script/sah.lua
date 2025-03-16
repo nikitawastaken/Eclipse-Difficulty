@@ -4,31 +4,59 @@ local disabled = {
 		enabled = false,
 	},
 }
-local roof_spawn_1 = {
+local flank_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local balcony_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_bulldozers,
 }
-local roof_spawn_2 = {
+local roof_spawn1 = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents,
 }
-local storage_spawn = {
+local roof_spawn2 = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_bulldozers,
+}
+local storage_spawn1 = {
 	values = {
 		interval = 40,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local window_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local storage_spawn2 = {
+	values = {
+		interval = 60,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 return {
+	-- PONR state
+	[101175] = disabled,
+	[101177] = {
+		set_ponr_state = true,
+	},
 	-- Disable instant difficulty increase
 	[100122] = disabled,
 	-- Loud, slightly delay police response
 	[100109] = {
 		values = {
-			base_delay = 30,
+			base_delay = 40,
 		},
 	},
 	[100129] = {
@@ -53,35 +81,56 @@ return {
 			{ id = 103913, delay = 0 },
 		},
 	},
+	-- Diff increased, enable additional reinforce
+	[100124] = {
+		reinforce = {
+			{
+				name = "upper1",
+				force = 2,
+				position = Vector3(800, 2000, 500),
+			},
+			{
+				name = "upper2",
+				force = 2,
+				position = Vector3(-800, 2000, 500),
+			},
+		},
+	},
 	-- Disable area report triggers
 	[100140] = disabled,
 	[106783] = disabled,
 	[103926] = disabled,
 	[106784] = disabled,
-	-- Slow down roof spawns
-	[102667] = roof_spawn_1,
-	[106776] = roof_spawn_1,
-	[106767] = roof_spawn_1,
-	[106764] = roof_spawn_1,
-	[100694] = roof_spawn_2,
-	[100154] = roof_spawn_2,
-	-- Slow down storage spawns
-	[102303] = storage_spawn,
-	[104089] = storage_spawn,
-	[103662] = {
-		values = {
-			interval = 20,
+	-- Remove some sketchy hackbox preferreds
+	[106852] = { -- Hackbox 1
+		on_executed = {
+			{ id = 103906, remove = true },
 		},
 	},
-	-- Slow down and adjust storage window spawns
-	[103522] = {
-		values = {
-			interval = 60,
+	[106853] = { -- Hackbox 2
+		on_executed = {
+			{ id = 103907, remove = true },
 		},
-		groups = preferred.no_shields_bulldozers,
 	},
-	[101175] = disabled,
-	[101177] = {
-		set_ponr_state = true,
+	[106854] = { -- Hackbox 3
+		on_executed = {
+			{ id = 103911, remove = true },
+		},
 	},
+	-- Spawn point delays
+	[100128] = flank_spawn,
+	[100130] = flank_spawn,
+	[103662] = flank_spawn,
+	[106779] = balcony_spawn,
+	[102667] = roof_spawn1,
+	[103307] = roof_spawn1,
+	[106776] = roof_spawn1,
+	[106764] = roof_spawn1,
+	[106767] = roof_spawn1,
+	[100133] = roof_spawn2,
+	[100694] = roof_spawn2,
+	[102303] = storage_spawn1,
+	[104089] = storage_spawn1,
+	[106826] = window_spawn,
+	[103522] = storage_spawn2,
 }
