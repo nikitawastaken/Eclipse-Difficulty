@@ -34,7 +34,7 @@ return {
 			enabled = false,
 		},
 	},
-	-- Add early reinforce around the bank 
+	-- Add early reinforce around the bank
 	[100001] = {
 		reinforce = {
 			{
@@ -50,14 +50,14 @@ return {
 		},
 	},
 	-- spawn point delays
-	[100461] = construction_spawn,	
+	[100461] = construction_spawn,
 	[100168] = bridge_spawn,
 	[100369] = bridge_spawn,
 	[100429] = bridge_spawn,
 	[100435] = bridge_spawn,
 	[100441] = bridge_spawn,
 	[100454] = bridge_spawn,
-	[100455] = bridge_spawn,	
+	[100455] = bridge_spawn,
 	[100247] = window_spawn,
 	[100067] = window_spawn,
 	[100068] = window_spawn,
