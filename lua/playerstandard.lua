@@ -701,3 +701,16 @@ function PlayerStandard:_update_network_jump(pos, is_exit)
 		self._is_jump_middle_passed = true
 	end
 end
+
+function PlayerStandard:remove_tweak_data(name)
+	if not self._tweak_data_name then
+		return
+	end
+
+	for i, id in pairs(self._tweak_data_name) do
+		if id == name then
+			self._tweak_data_name[i] = nil
+			break
+		end
+	end
+end
