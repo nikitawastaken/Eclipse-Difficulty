@@ -80,5 +80,5 @@ return {
 	[302071] = jump_SO,
 	[302072] = jump_SO,
 	[302073] = jump_SO,
-    [302074] = jump_SO,
+	[302074] = jump_SO,
 }
