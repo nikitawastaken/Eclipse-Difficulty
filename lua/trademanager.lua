@@ -45,6 +45,7 @@ function TradeManager:update(t, dt)
 	self._is_custody_trade = #self._criminals_to_respawn > 0
     self._downs_to_restore = self:get_downs_to_restore()
 	local is_trade_allowed = self:is_trade_allowed()
+	local is_auto_assault_ai_trade = self:update_auto_assault_ai_trade(dt, is_trade_allowed)
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
 		if not self._trading_hostage and not self._hostage_trade_clbk and (#self._criminals_to_respawn > 0 or self._downs_to_restore > 0) and managers.groupai:state():hostage_count() <= 0 and managers.groupai:state():bain_state() then
