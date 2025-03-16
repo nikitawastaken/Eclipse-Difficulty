@@ -66,8 +66,6 @@ return {
 	[302055] = jump_SO,
 	[302056] = jump_SO,
 	[302057] = jump_SO,
-	[302058] = jump_SO,
-	[302059] = jump_SO,
 	[302060] = jump_SO,
 	[302061] = jump_SO,
 	[302062] = jump_SO,
@@ -82,4 +80,5 @@ return {
 	[302071] = jump_SO,
 	[302072] = jump_SO,
 	[302073] = jump_SO,
+	[302074] = jump_SO,
 }

@@ -227,9 +227,6 @@ M.elements = {
 	-- missing beat cop at the start
 	Eclipse.mission_elements.gen_dummy(400022, "eclipse_beat_cop_start", Vector3(14280, 9224, 39), Rotation(110, -0, -0), optsMissingBeatCop),
 
-	-- missing beat cop at the start
-	Eclipse.mission_elements.gen_dummy(400022, "eclipse_beat_cop_start", Vector3(14280, 9224, 39), Rotation(110, -0, -0), optsMissingBeatCop),
-
 	-- besiege cops
 	-- major ave. main swat vans
 	Eclipse.mission_elements.gen_dummy(400023, "eclipse_besiege_swat_01", Vector3(-1797, -354, 50), Rotation(97, -0, -0), optsBesiegeDummy),

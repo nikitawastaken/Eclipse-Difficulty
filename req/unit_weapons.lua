@@ -3,8 +3,6 @@ local M = {
 	--Beat Cops
 	--They only have 2 types, 1 type is using either c45 or bronco and the 2 type is using either mp5 or r870 to mimic 4 cop types
 	--Will remove it once proper SFPD/Texas coppers will be made
-	[("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"):key()] = { "c45", "raging_bull" },
-	[("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"):key()] = { "mp5", "r870" },
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"):key()] = { "c45", "raging_bull" },
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"):key()] = { "mp5", "r870" },
 	--Specials
@@ -17,6 +15,9 @@ local M = {
 	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = "r870", --stronger camera man
+	[("units/payday2/characters/ene_security_1_fat/ene_security_1_fat"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_security_2_fat/ene_security_2_fat"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/payday2/characters/ene_security_3_fat/ene_security_3_fat"):key()] = "r870", --stronger camera man
 	[("units/pd2_dlc_short/characters/ene_security_1_undominatable/ene_security_1_undominatable"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/pd2_dlc_short/characters/ene_security_2_undominatable/ene_security_2_undominatable"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/pd2_dlc_short/characters/ene_security_3_undominatable/ene_security_3_undominatable"):key()] = "r870", --stronger camera man
