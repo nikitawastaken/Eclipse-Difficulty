@@ -8,3 +8,8 @@ function HuskCopBrain:sync_net_event(event_id, ...)
 		return sync_net_event_original(self, event_id, ...)
 	end
 end
+
+-- Additional is_custody_trade argument
+function HuskCopBrain:on_trade(position, rotation, is_custody_trade)
+	self._unit:network():send_to_host("unit_traded", position, rotation, is_custody_trade)
+end

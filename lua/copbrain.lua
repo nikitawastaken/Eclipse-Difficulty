@@ -116,3 +116,8 @@ Hooks:PostHook(CopBrain, "clbk_pathing_results", "sh_clbk_pathing_results", func
 		current_logic.on_pathing_results(self._logic_data)
 	end
 end)
+
+-- Additional is_custody_trade argument
+function CopBrain:on_trade(pos, rotation, free_criminal, is_custody_trade)
+	return self._current_logic.on_trade(self._logic_data, pos, rotation, free_criminal, is_custody_trade)
+end
