@@ -330,6 +330,7 @@ function PlayerDamage:restore_lives(lives_restored)
 	self._revives = Application:digest_value(math.min(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), Application:digest_value(self._revives, false) + lives_restored), true)
 	self._revive_health_i = math.max(self._revive_health_i - lives_restored, 1)
 	self._down_time_i = math.max(self._down_time_i - lives_restored, 0)
+	self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, (tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i)
 
 	if self._revives == self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0) then
 		self:_send_set_revives(true)
@@ -337,7 +338,12 @@ function PlayerDamage:restore_lives(lives_restored)
 		self:_send_set_revives()
 	end
 
-	Eclipse:log_chat("Revive restored, current revives counter: " .. Application:digest_value(self._revives, false))
+	Eclipse:log_chat("Revive restored, current revives counter: " .. Application:digest_value(self._revives, false) ..
+					"current revive_health counter: " .. self._revive_health_i ..
+					"current down_time counter: " .. self._down_time_i ..
+					"current revive_health: " .. tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] ..
+					"current down_time: " .. self._down_time
+	)
 end
 
 function PlayerDamage:_regenerated(from_medic_bag)
