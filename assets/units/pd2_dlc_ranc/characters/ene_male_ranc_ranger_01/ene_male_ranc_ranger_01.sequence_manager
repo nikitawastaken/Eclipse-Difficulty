@@ -35,6 +35,14 @@
 		<filter name="'check_sleeves'">
 			<check value="vars.has_sleeves == 1" />
 		</filter>
+
+		<filter name="'check_no_hat'">
+			<check value="vars.has_hat == 0" />
+		</filter>
+
+		<filter name="'check_hat'">
+			<check value="vars.has_hat == 1" />
+		</filter>
 		
 		<filter name="'check_no_gloves'">
 			<check value="vars.has_gloves == 0" />
@@ -64,32 +72,37 @@
 			<set_variables 		is_fat="1" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_1_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'ranc_ranger_1_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_1'" />
+			<run_sequence 		name="'ranc_ranger_1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_2_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'ranc_ranger_2_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_2'" />
+			<run_sequence 		name="'ranc_ranger_2'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_3_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'ranc_ranger_3_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_3'" />
+			<run_sequence 		name="'ranc_ranger_3'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_4_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'ranc_ranger_4_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_4'" />
+			<run_sequence 		name="'ranc_ranger_4'" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'chas_police_1'" once="true" triggable="true">
+		<sequence editable_state="true" name="'ranc_ranger_1'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+			
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_a'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_a_lod1'" />
 			
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_a'" />
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_a_lod1'" />
+
+			<object 			enabled="true" name="'g_hat_lod1'" />
+			<object 			enabled="true" name="'g_hat_lod2'" />
 			
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
@@ -98,12 +111,17 @@
 			<run_sequence 		name="'random_glasses_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_2'" once="true" triggable="true">
+		<sequence editable_state="true" name="'ranc_ranger_2'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_b'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_b_lod1'" />
 			
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_b'" />
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_b_lod1'" />
+
+			<object 			enabled="true" name="'g_hat_lod1'" />
+			<object 			enabled="true" name="'g_hat_lod2'" />
 			
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_tie_common'" />
@@ -112,27 +130,37 @@
 			<run_sequence 		name="'random_glasses_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_3'" once="true" triggable="true">
+		<sequence editable_state="true" name="'ranc_ranger_3'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_c'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_c_lod1'" />
 			
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_c'" />
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_c_lod1'" />
 
+			<object 			enabled="true" name="'g_hat_lod1'" />
+			<object 			enabled="true" name="'g_hat_lod2'" />
+			
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_glasses_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_4'" once="true" triggable="true">
+		<sequence editable_state="true" name="'ranc_ranger_4'" once="true" triggable="true">
+			<set_variables 		has_hat="1" />
+
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_d'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_d_lod1'" />
 			
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_d'" />
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_d_lod1'" />
+
+			<object 			enabled="true" name="'g_hat_lod1'" />
+			<object 			enabled="true" name="'g_hat_lod2'" />
 			
-			<run_sequence 		name="'random_body_a'" />		
+			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_glasses_rare'" />
@@ -189,7 +217,8 @@
 		<sequence editable_state="true" name="'glasses_none'" once="true" triggable="true" />
 
 		<sequence editable_state="true" name="'glasses_base'" once="true" triggable="true">
-			<run_sequence 		name="'glasses_'..pick('head','head','head','forehead')" />
+			<run_sequence 		filter="'check_no_hat'" name="'glasses_'..pick('head','head','head')" />
+			<run_sequence 		filter="'check_hat'" name="'glasses_head'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'glasses_forehead'" once="true" triggable="true">

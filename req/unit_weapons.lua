@@ -1,10 +1,5 @@
 ---@module Unit Weapons
 local M = {
-	--Beat Cops
-	--They only have 2 types, 1 type is using either c45 or bronco and the 2 type is using either mp5 or r870 to mimic 4 cop types
-	--Will remove it once proper SFPD/Texas coppers will be made
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"):key()] = { "c45", "raging_bull" },
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"):key()] = { "mp5", "r870" },
 	--Specials
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "benelli_tank",
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
