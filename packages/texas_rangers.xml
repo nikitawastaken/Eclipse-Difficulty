@@ -1,0 +1,13 @@
+<table directory="assets">
+	<add from_db="true" 	path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01" type="unit">
+		<unit load="true"	path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"/>
+		<object 			path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"/>
+		<material_config 	path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"/>
+		<unit load="true" 	path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01_husk"/>
+	</add>
+
+	<add from_db="true" 	path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02" type="unit">
+		<unit load="true"	path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"/>
+		<unit load="true" 	path="units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02_husk"/>
+	</add>
+</table>

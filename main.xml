@@ -11,6 +11,8 @@
     <Package id="packages/female_bikers" file="packages/female_bikers.xml"/>
     <!-- SFPD -->
     <Package id="packages/sfpd" file="packages/sfpd.xml"/>
+    <!-- Texas Rangers -->
+    <Package id="packages/texas_rangers" file="packages/texas_rangers.xml"/>
     <!-- US army -->
     <Package id="packages/us_army" file="packages/us_army.xml"/>
 </table>
