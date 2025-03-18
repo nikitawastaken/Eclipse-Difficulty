@@ -4,4 +4,6 @@ function ConnectionNetworkHandler:finish_trade()
 	end
 
 	managers.player:player_unit():character_damage():restore_lives(1)
+
+	managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_restored") } )
 end

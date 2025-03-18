@@ -306,4 +306,6 @@ function TradeManager:trade_restore_resources()
         peer:send_queued_sync("finish_trade")
         Eclipse:log("Hostage traded, restoring a down")
     end
+
+	managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_restored") } )
 end
