@@ -1,7 +1,12 @@
 Hooks:PostHook(TradeManager, "init", "eclipse_init", function(self)
     self._downs_to_restore = 0
     self._is_custody_trade = false
+    self._resource_trades_done = 0 -- put a cap on resource trades so that players can't cheese the mechanic into >2min long assault breaks with hostage situation aced
 end)
+
+function TradeManager:reset_resource_trades_done()
+	self._resource_trades_done = 0 -- reset the done resource trades every control
+end
 
 function TradeManager:get_downs_to_restore()
     local downs_to_restore = 0
@@ -21,7 +26,7 @@ function TradeManager:is_trading()
 end
 
 function TradeManager:is_trade_allowed()
-	return Network:is_server() and not self._trading_hostage and not self._hostage_trade_clbk and (#self._criminals_to_respawn > 0 or self._downs_to_restore > 0) and not managers.groupai:state():whisper_mode() and not self._speaker_snd_event and managers.groupai:state():hostage_count() > 0
+	return Network:is_server() and not self._trading_hostage and not self._hostage_trade_clbk and (#self._criminals_to_respawn > 0 or (self._downs_to_restore > 0 and self._resource_trades_done < 3)) and not managers.groupai:state():whisper_mode() and not self._speaker_snd_event and managers.groupai:state():hostage_count() > 0
 end
 
 function TradeManager:update(t, dt)
@@ -284,13 +289,14 @@ function TradeManager:on_hostage_traded(pos, rotation)
 
 		managers.enemy:add_delayed_clbk(clbk_id, callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
 	else
+		self._resource_trades_done = self._resource_trades_done + 1
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true
-		self:trade_restore_lives()
+		self:trade_restore_resources()
 	end
 end
 
-function TradeManager:trade_restore_lives()
+function TradeManager:trade_restore_resources()
 	self._trading_hostage = nil
 	self._trade_in_progress = false
 
