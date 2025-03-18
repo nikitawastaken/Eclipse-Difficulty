@@ -23,7 +23,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 	local us_army = {
 		["arm_for"] = true,
 		["roberts"] = true,
-        ["crojob2"] = true,
+		["crojob2"] = true,
 		["crojob3"] = true,
 		["jolly"] = true,
 		["trai"] = true,

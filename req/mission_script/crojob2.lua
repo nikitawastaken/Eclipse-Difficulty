@@ -1,5 +1,5 @@
 local security_army = {
-		enemy = "units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1",
+	enemy = "units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1",
 }
 return {
 	--National Guard instead of regular security
@@ -32,5 +32,5 @@ return {
 	[106019] = security_army,
 	[106020] = security_army,
 	[106138] = security_army,
-	[106141] = security_army
+	[106141] = security_army,
 }

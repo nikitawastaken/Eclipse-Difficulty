@@ -13,7 +13,7 @@ local missing_taser_access_fix = {
 return {
 	-- fix one of the ai_hunt SOs not having taser access
 	[100675] = missing_taser_access_fix,
-    -- replace heavy response near the end with US Soldiers
+	-- replace heavy response near the end with US Soldiers
 	-- 1st Van (left one)
 	--[100776] = { enemy = us_soldier_dozer },
 	[100555] = { enemy = us_soldiers },

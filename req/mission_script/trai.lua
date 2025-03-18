@@ -1,6 +1,6 @@
 local preferred = Eclipse.preferred
 local security_army = {
-		enemy = "units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1",
+	enemy = "units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1",
 }
 local disabled = {
 	values = {
