@@ -451,17 +451,3 @@ function GroupAIStateBase:is_ai_trade_possible()
 
 	return not ai_disabled and (self._hostage_headcount > 0 or next(self._converted_police) or managers.trade:is_trading())
 end
-
--- Reset resource trades done every assault
-Hooks:PreHook(GroupAIStateBase, "set_assault_mode" , "eclipse_set_assault_mode" , function(self, enabled)
-	if self._assault_mode ~= enabled and enabled == false then
-		managers.trade:reset_resource_trades_done()
-	end
-end)
-
--- Reset resource trades done every assault for clients (not sure if it's needed but just to be safe)
-Hooks:PreHook(GroupAIStateBase, "sync_assault_mode" , "eclipse_sync_assault_mode" , function(self, enabled)
-	if self._assault_mode ~= enabled and enabled == false then
-		managers.trade:reset_resource_trades_done()
-	end
-end)

@@ -5,7 +5,9 @@ Hooks:PostHook(TradeManager, "init", "eclipse_init", function(self)
 end)
 
 function TradeManager:reset_resource_trades_done()
-	self._resource_trades_done = 0 -- reset the done resource trades every control
+	if self._resource_trades_done then
+		self._resource_trades_done = 0 -- reset the done resource trades every control
+	end
 end
 
 function TradeManager:get_downs_to_restore()
@@ -19,6 +21,18 @@ function TradeManager:get_downs_to_restore()
     end
 
     return downs_to_restore
+end
+
+function TradeManager:set_trade_countdown(enabled)
+	self._trade_countdown = enabled
+
+	if not enabled then
+		self:reset_resource_trades_done()
+	end
+
+	if Network:is_server() and managers.network then
+		managers.network:session():send_to_peers_synched("set_trade_countdown", enabled)
+	end
 end
 
 function TradeManager:is_trading()
