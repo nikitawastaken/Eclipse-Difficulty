@@ -155,7 +155,7 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 			if is_custody_trade then
 				managers.hint:show_hint("trade_offered")
 			else
-				managers.hint:show_hint("hud_trade_offered_resources")
+				managers.hud:show_hint( { text = managers.localization:text("hint_trade_offered_resources") } )
 			end
 		end
 
