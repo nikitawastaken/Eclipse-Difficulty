@@ -5,8 +5,8 @@ local cloaker = scripted_enemy.cloaker
 
 local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 local sniper_trigger_times = {
 	values = {
@@ -84,12 +84,12 @@ return {
 		},
 	},
 	-- Spawn point delays
-	[101607] = scaffolding_spawn, 
+	[101607] = scaffolding_spawn,
 	[100147] = scaffolding_spawn,
 	[100148] = scaffolding_spawn,
 	[100335] = scaffolding_spawn,
 	[101622] = scaffolding_spawn,
-	[100161] = scaffolding_spawn,	
+	[100161] = scaffolding_spawn,
 	[101633] = scaffolding_spawn,
 	[101636] = scaffolding_spawn,
 	[101642] = scaffolding_spawn,
@@ -98,7 +98,7 @@ return {
 	[101657] = scaffolding_spawn,
 	[101084] = penthouse_spawn,
 	[101085] = penthouse_spawn,
-	[100666] = roof_spawn,	
+	[100666] = roof_spawn,
 	[101034] = roof_spawn,
 	[101530] = roof_spawn,
 	[101534] = roof_spawn,

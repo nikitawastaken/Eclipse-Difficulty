@@ -1,7 +1,7 @@
 local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 local alleyway_spawn = {
 	values = {
@@ -15,9 +15,9 @@ return {
 			{
 				name = "touch_grass",
 				force = 3,
-				position = Vector3(2000, -900, 30)
-			}
-		}
+				position = Vector3(2000, -900, 30),
+			},
+		},
 	},
 	[100589] = disabled,
 	[100590] = disabled,

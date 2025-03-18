@@ -37,7 +37,7 @@ return {
 	-- Disable the turret
 	[101147] = disabled,
 	-- New reinforce spots
-	[100109] = { 
+	[100109] = {
 		reinforce = {
 			{
 				name = "street1",
@@ -51,7 +51,7 @@ return {
 			},
 		},
 	},
-	[100990] = { 
+	[100990] = {
 		reinforce = {
 			{
 				name = "blonde_car1",
@@ -60,7 +60,7 @@ return {
 			},
 		},
 	},
-	[100991] = { 
+	[100991] = {
 		reinforce = {
 			{
 				name = "blonde_car2",
@@ -69,7 +69,7 @@ return {
 			},
 		},
 	},
-	[100953] = { 
+	[100953] = {
 		reinforce = {
 			{ name = "blonde_car1" },
 			{ name = "blonde_car2" },
@@ -85,11 +85,11 @@ return {
 	[101176] = ambush_taser,
 	[101207] = ambush_taser,
 	-- Spawn point delays
-	[100019] = building_spawn, 
-	[100128] = building_spawn, 
+	[100019] = building_spawn,
+	[100128] = building_spawn,
 	[100131] = building_spawn,
-	[100132] = window_spawn, 
-	[100133] = window_spawn, 
-	[101598] = escape_spawn, 
-	[101604] = escape_spawn, 
+	[100132] = window_spawn,
+	[100133] = window_spawn,
+	[101598] = escape_spawn,
+	[101604] = escape_spawn,
 }

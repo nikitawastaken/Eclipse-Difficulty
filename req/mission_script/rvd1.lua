@@ -27,7 +27,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100109] = { 
+	[100109] = {
 		reinforce = {
 			{
 				name = "street",
@@ -39,10 +39,10 @@ return {
 				force = 3,
 				position = Vector3(200, -1150, 0),
 			},
-		}
+		},
 	},
 	-- Place the reinforce point near the car crash site
-	[101096] = { 
+	[101096] = {
 		reinforce = {
 			{
 				name = "pink_car1",
@@ -51,12 +51,12 @@ return {
 			},
 		},
 	},
-	[101130] = { 
+	[101130] = {
 		reinforce = {
 			{ name = "pink_car1" },
 		},
 	},
-	[101095] = { 
+	[101095] = {
 		reinforce = {
 			{
 				name = "pink_car2",
@@ -65,12 +65,12 @@ return {
 			},
 		},
 	},
-	[101200] = { 
+	[101200] = {
 		reinforce = {
 			{ name = "pink_car2" },
 		},
 	},
-	[101101] = { 
+	[101101] = {
 		reinforce = {
 			{
 				name = "pink_car3",
@@ -79,12 +79,12 @@ return {
 			},
 		},
 	},
-	[101195] = { 
+	[101195] = {
 		reinforce = {
 			{ name = "pink_car3" },
 		},
 	},
-	[100545] = { 
+	[100545] = {
 		reinforce = {
 			{
 				name = "pink_car4",
@@ -93,7 +93,7 @@ return {
 			},
 		},
 	},
-	[101543] = { 
+	[101543] = {
 		reinforce = {
 			{ name = "pink_car4" },
 		},
