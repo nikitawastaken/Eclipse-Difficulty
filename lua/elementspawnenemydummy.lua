@@ -188,6 +188,7 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 }
 
 ElementSpawnEnemyDummy.unit_alternatives = {
+    -- Fat variant alternatives
 	-- Security
 	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {
 		["units/payday2/characters/ene_security_1/ene_security_1"] = 4,
@@ -234,6 +235,23 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"):key()] = {
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"] = 6,
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_04_fat/ene_male_chas_police_04_fat"] = 1,
+	},
+    -- Texas Rangers
+	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"):key()] = {
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"] = 6,
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01_fat/ene_male_ranc_ranger_01_fat"] = 1,
+	},
+	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"):key()] = {
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"] = 4,
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02_fat/ene_male_ranc_ranger_02_fat"] = 1,
+	},
+    [("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"):key()] = {
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"] = 4,
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03_fat/ene_male_ranc_ranger_03_fat"] = 1,
+	},
+    [("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"):key()] = {
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"] = 4,
+		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat"] = 1,
 	},
 }
 
