@@ -3,13 +3,6 @@ Hooks:PostHook(TradeManager, "init", "eclipse_init", function(self)
     self._is_custody_trade = false
 end)
 
--- As far as i've checked this is clientside enough so that i can just...
--- ... pull the value with this into coplogictrade's hostage_trade() method...
--- ... in order to have different hint messages depending on the trade type, hopefully i'm right
-function TradeManager:is_custody_trade()
-	return self._is_custody_trade
-end
-
 function TradeManager:get_downs_to_restore()
     local downs_to_restore = 0
 
@@ -243,7 +236,8 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 		self._hostage_to_trade = hostage
 
 		hostage.unit:brain():set_logic("trade", {
-			skip_hint = skip_hint or false
+			skip_hint = skip_hint or false,
+			is_custody_trade = self._is_custody_trade or false
 		})
 
 		if not hostage.initialized then

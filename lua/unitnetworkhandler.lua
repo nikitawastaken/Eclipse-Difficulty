@@ -67,3 +67,11 @@ function UnitNetworkHandler:unit_traded(unit, position, rotation, is_custody_tra
 
 	unit:brain():on_trade(position, rotation, true, is_custody_trade)
 end
+
+function UnitNetworkHandler:hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_character(unit) then
+		return
+	end
+
+	CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
+end

@@ -1,3 +1,28 @@
+function CopLogicTrade.enter(data, new_logic_name, enter_params)
+	CopLogicBase.enter(data, new_logic_name, enter_params)
+	data.unit:brain():cancel_all_pathing_searches()
+
+	local old_internal_data = data.internal_data
+	local my_data = {
+		unit = data.unit
+	}
+	data.internal_data = my_data
+
+	data.unit:movement():set_allow_fire(false)
+	CopLogicBase._reset_attention(data)
+
+	local skip_hint = enter_params and enter_params.skip_hint or false
+	local is_custody_trade = enter_params and enter_params.is_custody_trade or false
+	my_data._trade_enabled = true
+
+	data.unit:network():send("hostage_trade", true, false, skip_hint, is_custody_trade)
+	CopLogicTrade.hostage_trade(data.unit, true, false, skip_hint, is_custody_trade)
+	data.unit:brain():set_update_enabled_state(true)
+	data.unit:brain():set_attention_settings({
+		peaceful = true
+	})
+end
+
 -- Additional is_custody_trade argument and different hostage outlines for different types of trades
 function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_trade)
 	if not data.internal_data._trade_enabled then
@@ -112,7 +137,7 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 	data.unit:contour():remove("medic_heal", true)
 end
 
-function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint)
+function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
 	local wp_id = "wp_hostage_trade" .. tostring(unit:key())
 
 	if enable then
@@ -127,10 +152,10 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint)
 
 		if managers.network:session() and not managers.trade:is_peer_in_custody(managers.network:session():local_peer():id()) and not skip_hint then
 			-- If the trade is for resources then show a different message
-			if managers.trade:is_custody_trade() then
+			if is_custody_trade then
 				managers.hint:show_hint("trade_offered")
 			else
-				managers.hint:show_hint("trade_offered_resources")
+				managers.hint:show_hint("hud_trade_offered_resources")
 			end
 		end
 
