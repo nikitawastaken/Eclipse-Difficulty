@@ -129,6 +129,7 @@
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
+				<post :hook_id="contourext"/>
 
 				<group :hook_id="civilians/">
 					<group :hook_id="logics/">
@@ -1047,7 +1048,7 @@
 			</group>
 		</group>
 
-		<group name="units/pd2_dlc_chas/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
+		<group name="units/pd2_dlc_chas/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_male_chas_police_01/">
 				<xml  :name="ene_male_chas_police_01.sequence_manager" dyn_package="true" />
 				<file :name="ene_male_chas_police_01.material_config" />
@@ -1072,22 +1073,22 @@
 				<file :name="ene_male_chas_police_04.unit" />
 				<file :name="ene_male_chas_police_04_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_male_chas_police_01_fat/">
 				<file :name="ene_male_chas_police_01_fat.unit" />
 				<file :name="ene_male_chas_police_01_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_chas_police_02_fat/">
 				<file :name="ene_male_chas_police_02_fat.unit" />
 				<file :name="ene_male_chas_police_02_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_chas_police_03_fat/">
 				<file :name="ene_male_chas_police_03_fat.unit" />
 				<file :name="ene_male_chas_police_03_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_chas_police_04_fat/">
 				<file :name="ene_male_chas_police_04_fat.unit" />
 				<file :name="ene_male_chas_police_04_fat_husk.unit" />
@@ -1102,7 +1103,7 @@
 				<file :name="ene_acc_ranc_ranger_hat.object" />
 				<file :name="ene_acc_ranc_ranger_hat.unit" />
 			</group>
-		
+
 			<group :name="ene_male_ranc_ranger_01/">
 				<xml  :name="ene_male_ranc_ranger_01.sequence_manager" dyn_package="true" />
 				<file :name="ene_male_ranc_ranger_01.material_config" />
@@ -1127,28 +1128,28 @@
 				<file :name="ene_male_ranc_ranger_04.unit" />
 				<file :name="ene_male_ranc_ranger_04_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_male_ranc_ranger_01_fat/">
 				<file :name="ene_male_ranc_ranger_01_fat.unit" />
 				<file :name="ene_male_ranc_ranger_01_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_ranc_ranger_02_fat/">
 				<file :name="ene_male_ranc_ranger_02_fat.unit" />
 				<file :name="ene_male_ranc_ranger_02_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_ranc_ranger_03_fat/">
 				<file :name="ene_male_ranc_ranger_03_fat.unit" />
 				<file :name="ene_male_ranc_ranger_03_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_ranc_ranger_04_fat/">
 				<file :name="ene_male_ranc_ranger_04_fat.unit" />
 				<file :name="ene_male_ranc_ranger_04_fat_husk.unit" />
 			</group>
 		</group>
-		
+
 		<!-- zeals -->
 		<group name="units/pd2_dlc_gitgud/characters/" dyn_package="false">
 			<file :name="shared_textures/swat_df.texture"/>

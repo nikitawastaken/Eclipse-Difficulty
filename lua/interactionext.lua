@@ -96,6 +96,21 @@ function BaseInteractionExt:can_interact(player)
 	return managers.player:has_special_equipment(self._tweak_data.special_equipment)
 end
 
+-- Hostage resource trade interaction
+Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", function(self, player)
+	if self.tweak_data == "hostage_trade_resources" then
+		self._unit:brain():on_trade(player:position(), player:rotation(), true)
+
+		if managers.blackmarket:equipped_mask().mask_id == tweak_data.achievement.relation_with_bulldozer.mask then
+			managers.achievment:award_progress(tweak_data.achievement.relation_with_bulldozer.stat)
+		end
+
+		managers.statistics:trade({
+			name = self._unit:base()._tweak_table
+		})
+	end
+end)
+
 -- Carry stacker start
 Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext", function(self, player)
 	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")

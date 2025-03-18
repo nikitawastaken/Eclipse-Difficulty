@@ -23,110 +23,8 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 	})
 end
 
--- Additional is_custody_trade argument and different hostage outlines for different types of trades
-function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_trade)
-	if not data.internal_data._trade_enabled then
-		return
-	end
-
-	if free_criminal then
-		managers.trade:on_hostage_traded(pos, rotation)
-	end
-
-	data.internal_data._trade_enabled = false
-
-	data.unit:network():send("hostage_trade", false, true, false)
-	CopLogicTrade.hostage_trade(data.unit, false, true)
-	managers.groupai:state():on_hostage_state(false, data.key, managers.enemy:all_enemies()[data.key] and true or false)
-
-	if data.is_converted then
-		managers.groupai:state():remove_minion(data.key, nil)
-	end
-
-	local ignore_segments = {}
-	local flee_pos = managers.groupai:state():flee_point(data.unit:movement():nav_tracker():nav_segment(), ignore_segments)
-
-	if not flee_pos then
-		data.unit:set_slot(0)
-
-		return
-	end
-
-	local iterations = 1
-	local coarse_path = nil
-	local my_data = data.internal_data
-	local search_params = {
-		from_tracker = data.unit:movement():nav_tracker(),
-		id = "CopLogicTrade._get_coarse_flee_path" .. tostring(data.key),
-		access_pos = data.char_tweak.access
-	}
-	local max_attempts = 8
-
-	while iterations < max_attempts do
-		local nav_seg = managers.navigation:get_nav_seg_from_pos(flee_pos)
-		search_params.to_seg = nav_seg
-		coarse_path = managers.navigation:search_coarse(search_params)
-
-		if not coarse_path then
-			coarse_path = nil
-
-			table.insert(ignore_segments, nav_seg)
-		else
-			break
-		end
-
-		iterations = iterations + 1
-
-		if max_attempts > iterations then
-			flee_pos = managers.groupai:state():flee_point(data.unit:movement():nav_tracker():nav_segment(), ignore_segments)
-
-			if not flee_pos then
-				break
-			end
-		end
-	end
-
-	if flee_pos then
-		data.internal_data.fleeing = true
-		data.internal_data.flee_pos = flee_pos
-
-		if data.unit:anim_data().hands_tied or data.unit:anim_data().tied then
-			local new_action = nil
-
-			if data.unit:anim_data().stand and data.is_tied then
-				new_action = {
-					variant = "panic",
-					body_part = 1,
-					type = "act"
-				}
-				data.is_tied = nil
-
-				data.unit:movement():set_stance("hos")
-			else
-				new_action = {
-					variant = "stand",
-					body_part = 1,
-					type = "act"
-				}
-			end
-
-			data.unit:brain():action_request(new_action)
-		end
-
-		-- Different hostage outlines for different types of trades
-		-- Also add flashing, it looks cool
-		if is_custody_trade then
-			data.unit:contour():add("hostage_trade", true, nil)
-			data.unit:contour():flash("hostage_trade", 0.5)
-		else
-			data.unit:contour():add("medic_heal", true, nil)
-			data.unit:contour():flash("medic_heal", 0.5)
-		end
-	else
-		data.unit:set_slot(0)
-	end
-
-	-- Remove contour from traded hostages and make them invulnerable (sh)
+-- Remove contour from traded hostages and make them invulnerable
+Hooks:PostHook(CopLogicTrade, "on_trade", "sh_on_trade", function(data)
 	if not data.internal_data.fleeing then
 		return
 	end
@@ -134,8 +32,7 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 	data.unit:character_damage():set_invulnerable(true)
 	data.unit:network():send("set_unit_invulnerable", true, data.unit:character_damage()._immortal)
 	data.unit:contour():remove("hostage_trade", true)
-	data.unit:contour():remove("medic_heal", true)
-end
+end)
 
 function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
 	local wp_id = "wp_hostage_trade" .. tostring(unit:key())
@@ -164,7 +61,13 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 		end
 
 		if Network:is_server() then
-			unit:interaction():set_tweak_data("hostage_trade")
+			if is_custody_trade then
+				unit:interaction():set_tweak_data("hostage_trade")
+				unit:contour():flash("hostage_trade_uncustody", 0.5)
+			else
+				unit:interaction():set_tweak_data("hostage_trade_resources")
+				unit:contour():flash("hostage_trade_resources", 0.5)
+			end
 			unit:interaction():set_active(true, true)
 		end
 
