@@ -23,7 +23,7 @@ local building_spawn = {
 	values = {
 		interval = 25,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_bulldozers,
 }
 local teashop_spawn = {
 	values = {
