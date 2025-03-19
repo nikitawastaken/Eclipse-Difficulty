@@ -1039,7 +1039,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.soldier.headshot_dmg_mul = 2 -- 80 head health
 	self.soldier.surrender = self.presets.surrender.hard
 	self.soldier.suppression = self.presets.suppression.hard
-    self.soldier.use_radio = "dsp_radio_russian"
+	self.soldier.use_radio = "dsp_radio_russian"
 	self.soldier.no_arrest = true
 	self.soldier.steal_loot = false
 	table.insert(self._enemy_list, "soldier")
