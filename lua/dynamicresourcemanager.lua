@@ -51,7 +51,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat", rvd_needed, false)
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_3_fat/ene_la_cop_3_fat", rvd_needed, false)
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat", rvd_needed, false)
-	
+
 	local chas_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"))
 	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03", chas_needed, false)
 	load_unload_unit("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04", chas_needed, false)
