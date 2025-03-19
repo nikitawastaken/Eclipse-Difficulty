@@ -2,7 +2,7 @@ local security_army = {
 	enemy = "units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1",
 }
 return {
-    [105046] = {
+	[105046] = {
 		ponr = {
 			length = 300,
 			player_mul = { 1.20, 1.10, 1, 1 },
