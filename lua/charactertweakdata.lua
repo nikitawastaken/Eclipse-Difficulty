@@ -1327,6 +1327,11 @@ function CharacterTweakData:character_map(...)
 		},
 	}
 
+	safe_add(char_map.rvd, "ene_la_cop_1_fat")
+	safe_add(char_map.rvd, "ene_la_cop_2_fat")
+	safe_add(char_map.rvd, "ene_la_cop_3_fat")
+	safe_add(char_map.rvd, "ene_la_cop_4_fat")
+	
 	safe_add(char_map.chas, "ene_male_chas_police_03")
 	safe_add(char_map.chas, "ene_male_chas_police_04")
 	safe_add(char_map.chas, "ene_male_chas_police_01_fat")

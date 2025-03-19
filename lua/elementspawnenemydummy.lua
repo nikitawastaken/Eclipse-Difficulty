@@ -227,6 +227,23 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 6,
 		["units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"] = 1,
 	},
+	-- LAPD Beat Cops
+	[("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"] = 6,
+		["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1_fat"] = 1,
+	},
+	[("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"] = 4,
+		["units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat"] = 1,
+	},
+	[("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"] = 8,
+		["units/pd2_dlc_rvd/characters/ene_la_cop_3_fat/ene_la_cop_3_fat"] = 1,
+	},
+	[("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"):key()] = {
+		["units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"] = 6,
+		["units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat"] = 1,
+	},
 	-- SFPD Beat Cops
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"):key()] = {
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = 6,

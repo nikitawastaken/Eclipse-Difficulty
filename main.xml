@@ -9,6 +9,8 @@
 	<Package id="packages/security_mcmansion" file="packages/security_mcmansion.xml"/>
     <!-- female bikers -->
     <Package id="packages/female_bikers" file="packages/female_bikers.xml"/>
+    <!-- LAPD -->
+    <Package id="packages/lapd" file="packages/lapd.xml"/>
     <!-- SFPD -->
     <Package id="packages/sfpd" file="packages/sfpd.xml"/>
     <!-- Texas Rangers -->

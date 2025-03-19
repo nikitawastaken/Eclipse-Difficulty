@@ -1044,6 +1044,53 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_rvd/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
+			<group :name="ene_la_cop_1/">
+				<xml  :name="ene_la_cop_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_la_cop_1.material_config" />
+				<file :name="ene_la_cop_1_contour.material_config" />
+				<file :name="ene_la_cop_1.model" />
+				<file :name="ene_la_cop_1.object" />
+				<file :name="ene_la_cop_1.unit" />
+				<file :name="ene_la_cop_1_husk.unit" />
+			</group>
+
+			<group :name="ene_la_cop_2/">
+				<file :name="ene_la_cop_2.unit" />
+				<file :name="ene_la_cop_2_husk.unit" />
+			</group>
+
+			<group :name="ene_la_cop_3/">
+				<file :name="ene_la_cop_3.unit" />
+				<file :name="ene_la_cop_3_husk.unit" />
+			</group>
+
+			<group :name="ene_la_cop_4/">
+				<file :name="ene_la_cop_4.unit" />
+				<file :name="ene_la_cop_4_husk.unit" />
+			</group>
+	
+			<group :name="ene_la_cop_1_fat/">
+				<file :name="ene_la_cop_1_fat.unit" />
+				<file :name="ene_la_cop_1_fat_husk.unit" />
+			</group>
+			
+			<group :name="ene_la_cop_2_fat/">
+				<file :name="ene_la_cop_2_fat.unit" />
+				<file :name="ene_la_cop_2_fat_husk.unit" />
+			</group>
+			
+			<group :name="ene_la_cop_3_fat/">
+				<file :name="ene_la_cop_3_fat.unit" />
+				<file :name="ene_la_cop_3_fat_husk.unit" />
+			</group>
+			
+			<group :name="ene_la_cop_4_fat/">
+				<file :name="ene_la_cop_4_fat.unit" />
+				<file :name="ene_la_cop_4_fat_husk.unit" />
+			</group>
+		</group>
+		
 		<group name="units/pd2_dlc_chas/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
 			<group :name="ene_male_chas_police_01/">
 				<xml  :name="ene_male_chas_police_01.sequence_manager" dyn_package="true" />

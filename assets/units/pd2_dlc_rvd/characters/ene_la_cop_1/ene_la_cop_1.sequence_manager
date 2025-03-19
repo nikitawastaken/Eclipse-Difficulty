@@ -63,27 +63,27 @@
 			<set_variables 		is_fat="1" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_1_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'la_cop_1_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_1'" />
+			<run_sequence 		name="'la_cop_1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_2_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'la_cop_2_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_2'" />
+			<run_sequence 		name="'la_cop_2'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_3_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'la_cop_3_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_3'" />
+			<run_sequence 		name="'la_cop_3'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_4_fat'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'la_cop_4_fat'" once="true" triggable="true"> 
 			<run_sequence 		name="'set_fat'" />
-			<run_sequence 		name="'chas_police_4'" />
+			<run_sequence 		name="'la_cop_4'" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'chas_police_1'" once="true" triggable="true">
+		<sequence editable_state="true" name="'la_cop_1'" once="true" triggable="true">
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_a'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_a_lod1'" />
 			
@@ -97,7 +97,7 @@
 			<run_sequence 		name="'random_glasses_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_2'" once="true" triggable="true">
+		<sequence editable_state="true" name="'la_cop_2'" once="true" triggable="true">
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_b'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_b_lod1'" />
 			
@@ -111,7 +111,7 @@
 			<run_sequence 		name="'random_glasses_rare'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_3'" once="true" triggable="true">
+		<sequence editable_state="true" name="'la_cop_3'" once="true" triggable="true">
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_c'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_c_lod1'" />
 			
@@ -124,7 +124,7 @@
 			<run_sequence 		name="'random_glasses_common'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'chas_police_4'" once="true" triggable="true">
+		<sequence editable_state="true" name="'la_cop_4'" once="true" triggable="true">
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_d'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_fat_d_lod1'" />
 			
