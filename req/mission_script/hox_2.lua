@@ -199,7 +199,7 @@ return {
 			{ delay = 0, id = 101198 },
 		},
 	},
-    [101212] = {
+	[101212] = {
 		on_executed = {
 			{ remove = true, id = 101198 },
 		},
