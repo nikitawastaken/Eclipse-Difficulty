@@ -1,8 +1,10 @@
 ---@module Full-Force-Onslaught Heists
 local M = {
-	hox_1 = true,
-	hox_2 = true,
+	hox_1 = true, -- hoxout day 1
+	hox_2 = true, -- hoxout day 2
+    arm_for = true, -- train heist
 	red2 = true, -- fwb
+    framing_frame_2 = true, -- ff day2
 	spa = true, -- 10-10
 	flat = true, -- proom
 	dinner = true, -- slouse
