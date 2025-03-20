@@ -3,9 +3,9 @@ local overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 local army_guard = scripted_enemy.soldier_1
-local army_soldier_1 = scripted_enemy.soldier_2
-local army_soldier_2 = scripted_enemy.soldier_3
---local army_tank = scripted_enemy.soldier_bulldozer
+local us_soldier_1 = scripted_enemy.soldier_2
+local us_soldier_2 = scripted_enemy.soldier_3
+--local us_soldier_tank = scripted_enemy.soldier_bulldozer
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
@@ -15,7 +15,7 @@ local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
 --[[
 local army_dozer_vault = {
-	enemy = overkill_and_above and army_tank,
+	enemy = overkill_and_above and us_soldier_tank,
 	values = {
 		participate_to_group_ai = false,
 	},
