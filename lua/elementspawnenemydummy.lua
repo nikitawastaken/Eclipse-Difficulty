@@ -194,11 +194,11 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"):key()] = "swat_1",
 	[("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2"):key()] = "shield",
 
-    --Eclipse exclusive units
-    [("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = "soldier_1",
-    [("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"):key()] = "soldier_2",
-    [("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"):key()] = "soldier_2",
-    --[("units/pd2_dlc_army/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "soldier_tank",
+	--Eclipse exclusive units
+	[("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = "soldier_1",
+	[("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"):key()] = "soldier_2",
+	[("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"):key()] = "soldier_2",
+	--[("units/pd2_dlc_army/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "soldier_tank",
 }
 
 ElementSpawnEnemyDummy.unit_alternatives = {
