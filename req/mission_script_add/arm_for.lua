@@ -6,16 +6,16 @@ local optsDisable_Vaultdozers = {
 	enabled = true,
 	elements = {
 		103227,
-        103228,
-        103229,
+		103228,
+		103229,
 	},
 }
 local optsEnable_Vaultdozers = {
 	enabled = true,
 	elements = {
 		103227,
-        103228,
-        103229,
+		103228,
+		103229,
 	},
 }
 
