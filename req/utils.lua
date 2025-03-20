@@ -41,6 +41,12 @@ function M.is_pro_job()
 	return pro_job
 end
 
+function M.is_solo()
+	local pro_job = Global.game_settings and Global.game_settings.single_player
+
+	return solo
+end
+
 function M.diff_threshold()
 	local hard_and_above = diff_i >= 3
 	local overkill_and_above = diff_i >= 5
