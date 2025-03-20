@@ -23,12 +23,12 @@ local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "sniper", "spooc" },
 }
 local crowbar_amount = {
-    values = {
+	values = {
 		amount = (normal or hard) and 2 or 1,
 	},
 }
 local crowbar_sewer_amount = {
-    values = {
+	values = {
 		amount = (normal or hard) and 1 or 0,
 	},
 }
@@ -67,12 +67,12 @@ return {
 			time = 30,
 		},
 	},
-    -- change c4's amount event to resemble more from PDTH
-    [101890] = c4_event,
+	-- change c4's amount event to resemble more from PDTH
+	[101890] = c4_event,
 	[102569] = c4_event,
 	[101891] = c4_event,
-    -- change crowbar's amount depeniding on diffculties
-    [100127] = crowbar_amount,
+	-- change crowbar's amount depeniding on diffculties
+	[100127] = crowbar_amount,
 	[100129] = crowbar_sewer_amount,
 	-- reinforce Spots
 	[100031] = {
