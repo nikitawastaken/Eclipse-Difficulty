@@ -10,7 +10,8 @@ local us_soldiers = {
 	us_soldier_1,
 	us_soldier_2,
 }
-]]--
+]]
+--
 --local us_soldier_dozer = overkill_and_above and us_soldier_tank
 
 local missing_taser_access_fix = {
