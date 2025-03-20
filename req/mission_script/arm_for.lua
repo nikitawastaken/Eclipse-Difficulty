@@ -124,7 +124,7 @@ return {
     -- Bile drops only one thermal drill on Eclipse
     [102895] = {
 		values = {
-			amount = Bile_has_budget_costs,
+			amount = bile_has_budget_costs,
 		},
 	},
     -- tweak the amount of required ammo shells
