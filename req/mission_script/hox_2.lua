@@ -6,7 +6,7 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
-local fbi_agent = {
+local fbi_agents = {
 	Idstring("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"),
 	Idstring("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"),
 	Idstring("units/payday2/characters/ene_fbi_office_3/ene_fbi_office_3"),
@@ -15,6 +15,10 @@ local fbi_agent = {
 	Idstring("units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3"),
 	Idstring("units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4"),
 }
+local fbi_agent = {
+	enemy = fbi_agents,
+}
+
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local green_bulldozer = scripted_enemy.bulldozer_1
