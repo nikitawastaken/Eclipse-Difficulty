@@ -1049,7 +1049,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 
 					-- Proper AI assignment for timed groups
 					if spawn_task.timed then
-						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.spawn_group.team_id)
+						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.group.team.id)
 					end
 
 					return true
@@ -1061,6 +1061,13 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 			Eclipse:warn("Spawn group %s failed to spawn unit %s", spawn_task.spawn_group.id, u_type_name)
 			return true
 		end
+	end
+
+	-- How is there no assigned team :sob:
+	if not (spawn_task.group.team and spawn_task.group.team.id) then
+		local team_id = tweak_data.levels:get_default_team_ID("combatant")
+		spawn_task.group.team = tweak_data.levels:get_team_setup()[team_id]
+		spawn_task.group.team.id = team_id
 	end
 
 	-- Try spawning units that are picky about their access first
