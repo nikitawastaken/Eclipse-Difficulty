@@ -1,3 +1,4 @@
+local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local army_guard = scripted_enemy.soldier_1
 local security_army = {
