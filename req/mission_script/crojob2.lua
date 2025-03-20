@@ -1,5 +1,6 @@
+local army_guard = scripted_enemy.soldier_1
 local security_army = {
-	enemy = "units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1",
+	enemy = army_guard,
 }
 return {
 	--National Guard instead of regular security
