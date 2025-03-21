@@ -9,10 +9,8 @@ local cop_smg = scripted_enemy.cop_3
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 
-local shield_spawn = {
-	values = {
-		enemy = is_eclipse_pro and elite_shield or shield,
-	},
+local shield = {
+	enemy = is_eclipse_pro and elite_shield or shield,
 }
 local disabled = {
 	values = {
@@ -184,16 +182,16 @@ return {
 		},
 	},
 	-- elite Shields replaces FBI ones that cover the manhole on Eclipse (PJ only)
-	[100036] = shield_spawn,
-	[100039] = shield_spawn,
-	[100044] = shield_spawn,
-	[101848] = shield_spawn,
-	[101908] = shield_spawn,
-	[101911] = shield_spawn,
-	[100642] = shield_spawn,
-	[100777] = shield_spawn,
-	[100795] = shield_spawn,
-	[101804] = shield_spawn,
-	[101883] = shield_spawn,
-	[102098] = shield_spawn,
+	[100036] = shield,
+	[100039] = shield,
+	[100044] = shield,
+	[101848] = shield,
+	[101908] = shield,
+	[101911] = shield,
+	[100642] = shield,
+	[100777] = shield,
+	[100795] = shield,
+	[101804] = shield,
+	[101883] = shield,
+	[102098] = shield,
 }
