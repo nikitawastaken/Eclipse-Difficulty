@@ -1,6 +1,8 @@
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local scripted_enemy = Eclipse.scripted_enemy
+local is_solo = Eclipse.utils.is_solo()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local is_pro_job = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
 local cop_smg = scripted_enemy.cop_3
@@ -20,9 +22,26 @@ local disabled = {
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "sniper", "spooc" },
 }
+local crowbar_amount = {
+	values = {
+		amount = (normal or hard) and 2 or 1,
+	},
+}
+local crowbar_sewer_amount = {
+	values = {
+		amount = (normal or hard) and 1 or 0,
+	},
+}
+local c4_amount_solo = normal and 2 or 4
+local c4_amount = normal and 4 or 7
+local c4_event = {
+	values = {
+		amount = is_solo and c4_amount_solo or c4_amount,
+	},
+}
 
 return {
-	--Water from the hose fills the safe much slower like in PDTH
+	-- water from the hose fills the safe much slower like in PDTH
 	[101229] = {
 		values = {
 			timer = 240,
@@ -48,6 +67,13 @@ return {
 			time = 30,
 		},
 	},
+	-- change c4's amount event to resemble more from PDTH
+	[101890] = c4_event,
+	[102569] = c4_event,
+	[101891] = c4_event,
+	-- change crowbar's amount depeniding on diffculties
+	[100127] = crowbar_amount,
+	[100129] = crowbar_sewer_amount,
 	-- reinforce Spots
 	[100031] = {
 		reinforce = {
