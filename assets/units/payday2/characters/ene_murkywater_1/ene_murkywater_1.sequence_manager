@@ -3,18 +3,9 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_glasses	value="0" />
 			<has_goggles	value="0" />
 			<has_headset	value="0" />
 		</variables>
-		
-		<filter name="'check_no_glasses'">
-			<check value="vars.has_glasses == 0" />
-		</filter>
-
-		<filter name="'check_glasses'">
-			<check value="vars.has_glasses == 1" />
-		</filter>
 
 		<filter name="'check_no_goggles'">
 			<check value="vars.has_goggles == 0" />
@@ -51,20 +42,14 @@
 
 	<!--GLASSES SEQUENCES-->
 		<sequence editable_state="true" name="'random_glasses_goggles'" triggable="true" >
-			<run_sequence name="'head_'..pick('none','none','glasses','goggles')" />
+			<run_sequence name="'head_'..pick('none','none','goggles')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'head_none'" once="true" triggable="true" />
-
-		<sequence editable_state="true" name="'head_glasses'" once="true" triggable="true" >
-			<set_variables 		has_glasses="1" />
-			
-			<object 			enabled="true" name="'g_glasses'" />
-			<object 			enabled="true" name="'g_glasses_lod1'" />
-		</sequence>
-
+		
 		<sequence editable_state="true" name="'head_goggles'" once="true" triggable="true" >
-			<set_variables 		has_goggles="1" />			
+			<set_variables 		has_goggles="1" />	
+			
 			<run_sequence 		name="'goggles'..pick('a','a','b')" />
 		</sequence>
 
@@ -83,7 +68,7 @@
 		</sequence>
 	<!--HAT SEQUENCES-->
 		<sequence editable_state="true" name="'random_hat'" triggable="true">
-			<run_sequence name="'hat_'..pick('base','base','base','base','backwards','backwards')" />
+			<run_sequence name="'hat_'..pick('base','base','backwards')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true" >	

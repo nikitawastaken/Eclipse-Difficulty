@@ -56,7 +56,7 @@ local head_sequences = {
 		run_sequence = {
 			"set_blue_swat",
 			"swat_head_init",
-			"disable_head",
+			"balaclava_base",
 			"disable_arms",
 		},
 	},
@@ -80,7 +80,7 @@ local head_sequences = {
 		material = { 1, 2 },
 		run_sequence = {
 			"swat_head_init",
-			"disable_head",
+			"balaclava_base",
 			"disable_arms",
 		},
 	},
@@ -122,6 +122,14 @@ local head_sequences = {
 			"set_medic",
 			"swat_head_init",
 			"random_balaclava_common",
+			"disable_arms",
+		},
+	},
+	cloaker = {
+		material = { 1, 2 },
+		run_sequence = {
+			"swat_head_init",
+			"disable_head",
 			"disable_arms",
 		},
 	},
@@ -184,7 +192,7 @@ local M = {
 	["units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"] = { name = "fbi_heavy_2", head = head_sequences.fbi_swat_c },
 	["units/payday2/characters/ene_medic_m4/ene_medic_m4"] = { name = "medic_1", head = head_sequences.medic },
 	["units/payday2/characters/ene_medic_r870/ene_medic_r870"] = { name = "medic_2", head = head_sequences.medic },
-	["units/payday2/characters/ene_spook_1/ene_spook_1"] = { name = "cloaker_1", head = head_sequences.fbi_swat_c },
+	["units/payday2/characters/ene_spook_1/ene_spook_1"] = { name = "cloaker_1", head = head_sequences.cloaker },
 	["units/payday2/characters/ene_city_swat_1/ene_city_swat_1"] = { name = "city_swat_1", head = head_sequences.city_swat_a },
 	["units/payday2/characters/ene_city_swat_2/ene_city_swat_2"] = { name = "city_swat_2", head = head_sequences.city_swat_a },
 	["units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870"] = { name = "city_swat_2", head = head_sequences.city_swat_a },

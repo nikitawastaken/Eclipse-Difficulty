@@ -308,6 +308,18 @@
 					<material materials="mtr_helmet_lod_2" />
 				</object>
 			</lod_object>	
+
+			<lod_object name="lod_goggles_helmet_c">
+				<object name="g_helmet_lod9" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet" max_distance="1000" />
+					<material materials="mtr_helmet_lod_1" max_distance="1500" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+				<object name="g_helmet_lod10" 	enabled="false" lod="1" >
+					<material materials="mtr_helmet" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_helmet_lod_2" />
+				</object>
+			</lod_object>
 			
 			<lod_object name="lod_torch">
 				<object name="g_torch" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
