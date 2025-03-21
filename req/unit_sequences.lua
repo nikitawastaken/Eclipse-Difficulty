@@ -133,6 +133,29 @@ local head_sequences = {
 			"disable_arms",
 		},
 	},
+	marshal_a = {
+		material = { 1, 2 },
+		run_sequence = {
+			"swat_head_init",
+			"disable_face",
+		},
+	},
+	marshal_b = {
+		material = { 1, 2 },
+		run_sequence = {
+			"set_blue_swat",
+			"swat_head_init",
+			"random_balaclava_common",
+		},
+	},
+	marshal_c = {
+		material = { 1, 2 },
+		run_sequence = {
+			"set_blue_swat",
+			"swat_head_init",
+			"random_balaclava_rare",
+		},
+	},
 }
 ---@module Unit Sequences
 local M = {
@@ -232,6 +255,13 @@ local M = {
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02_fat/ene_male_ranc_ranger_02_fat"] = { name = "ranc_ranger_2_fat", head = head_sequences.security_fat },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03_fat/ene_male_ranc_ranger_03_fat"] = { name = "ranc_ranger_3_fat", head = head_sequences.security_fat },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat"] = { name = "ranc_ranger_4_fat", head = head_sequences.security_fat },
+	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = { name = "marshal_marksman_1", head = head_sequences.marshal_a },
+	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = { name = "marshal_marksman_2", head = head_sequences.marshal_a },
+	["units/pd2_dlc_usm2/characters/ene_male_marshal_shield_1/ene_male_marshal_shield_1"] = { name = "marshal_shield_1", head = head_sequences.marshal_b },
+	["units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2"] = { name = "marshal_shield_2", head = head_sequences.marshal_b },
+	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "deep_security_1", head = head_sequences.marshal_c },
+	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "deep_security_2", head = head_sequences.marshal_c },
+	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "deep_security_3", head = head_sequences.marshal_b },
 }
 
 return M
