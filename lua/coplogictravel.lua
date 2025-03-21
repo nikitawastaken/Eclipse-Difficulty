@@ -501,13 +501,15 @@ function CopLogicTravel.enter(data, new_logic_name, enter_params)
 	my_data.weapon_range = data.char_tweak.weapon[data.unit:inventory():equipped_unit():base():weapon_tweak_data().usage].range
 	if data.team then
 		my_data.path_safely = data.team.foes[tweak_data.levels:get_default_team_ID("player")]
+		my_data.path_ahead = data.objective.path_ahead or data.team.id == tweak_data.levels:get_default_team_ID("player")
 	else
 		local team_id = tweak_data.levels:get_default_team_ID("combatant")
 		local foe_id = tweak_data.levels:get_default_team_ID("player")
 		my_data.path_safely = tweak_data.levels:get_team_setup()[team_id].foes[foe_id]
+		my_data.path_ahead = data.objective.path_ahead or team_id == foe_id
+
 		Eclipse:log_chat("Somehow, a spawned unit has tried to set its objective without its team setup. This is a fallback protocol to set its pathing using default settings.")
 	end
-	my_data.path_ahead = data.objective.path_ahead or data.team.id == tweak_data.levels:get_default_team_ID("player")
 
 	data.unit:brain():set_update_enabled_state(false)
 end
