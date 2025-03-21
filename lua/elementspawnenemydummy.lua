@@ -253,7 +253,7 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	-- SFPD Beat Cops
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"):key()] = {
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = 6,
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01_fat"] = 1,
+		["units/pd2_dlc_chas/characters/ene_male_chas_police_01_fat/ene_male_chas_police_01_fat"] = 1,
 	},
 	[("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"):key()] = {
 		["units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"] = 4,
