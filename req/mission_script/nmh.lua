@@ -24,7 +24,7 @@ return {
 	--delay SWAT response
 	[102675] = {
 		on_executed = {
-			{ id = 103225, delay = 20 },
+			{ id = 103225, delay = 25 },
 		},
 	},
 	--[[

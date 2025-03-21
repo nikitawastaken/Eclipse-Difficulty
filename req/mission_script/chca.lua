@@ -65,7 +65,7 @@ return {
 	-- delay police response
 	[100022] = {
 		on_executed = {
-			{ id = 100109, delay = 30 },
+			{ id = 100109, delay = 40 },
 		},
 	},
 	-- reenforce points
