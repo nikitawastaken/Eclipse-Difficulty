@@ -236,7 +236,7 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	-- LAPD Beat Cops
 	[("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"):key()] = {
 		["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"] = 6,
-		["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1_fat"] = 1,
+		["units/pd2_dlc_rvd/characters/ene_la_cop_1_fat/ene_la_cop_1_fat"] = 1,
 	},
 	[("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"):key()] = {
 		["units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"] = 4,
