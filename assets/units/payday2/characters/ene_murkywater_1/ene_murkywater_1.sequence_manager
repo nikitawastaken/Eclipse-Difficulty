@@ -71,12 +71,12 @@
 			<run_sequence name="'hat_'..pick('base','base','backwards')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true" >	
-			<object 			enabled="true" name="'g_hat_lod1'" />
-			<object 			enabled="true" name="'g_hat_lod2'" />
-		</sequence>
-
+		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true" />
+		
 		<sequence editable_state="true" name="'hat_backwards'" once="true" triggable="true">	
+			<object 			enabled="false" name="'g_hat_lod1'" />
+			<object 			enabled="false" name="'g_hat_lod2'" />
+			
 			<object 			enabled="true" name="'g_hat_lod3'" />
 			<object 			enabled="true" name="'g_hat_lod4'" />
 		</sequence>
