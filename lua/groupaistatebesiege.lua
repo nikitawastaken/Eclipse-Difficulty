@@ -1011,6 +1011,9 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					-- Don't double assign for timed groups
 					if not spawn_task.timed then
 						self:set_enemy_assigned(objective.area, u_key)
+					else
+						-- Proper AI assignment for timed groups
+						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.group.team.id)
 					end
 
 					if spawn_entry.tactics then
@@ -1045,11 +1048,6 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 
 					if sp_data.amount then
 						sp_data.amount = sp_data.amount - 1
-					end
-
-					-- Proper AI assignment for timed groups
-					if spawn_task.timed then
-						managers.groupai:state():assign_enemy_to_group_ai(spawned_unit, spawn_task.group.team.id)
 					end
 
 					return true
