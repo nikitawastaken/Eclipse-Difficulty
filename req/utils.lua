@@ -42,7 +42,7 @@ function M.is_pro_job()
 end
 
 function M.is_solo()
-	local pro_job = Global.game_settings and Global.game_settings.single_player
+	local solo = Global.game_settings and Global.game_settings.single_player
 
 	return solo
 end
