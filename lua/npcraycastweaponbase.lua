@@ -1,6 +1,7 @@
 NPCRaycastWeaponBase.flashlight_blacklist = {
 	[Idstring("units/payday2/weapons/wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_mp5_tactical/wpn_npc_mp5_tactical"):key()] = true,
+	[Idstring("units/payday2/weapons/wpn_npc_beretta92/wpn_npc_beretta92"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_m14/wpn_npc_m14"):key()] = true,
 	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"):key()] = true,
@@ -20,7 +21,7 @@ Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)
 		self._flashlight_data = nil
 		return
 	end
-
+	
 	if self._flashlight_data then
 		return
 	end

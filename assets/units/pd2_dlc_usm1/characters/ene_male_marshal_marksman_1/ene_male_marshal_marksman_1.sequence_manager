@@ -159,9 +159,7 @@
 			<object 			enabled="true" name="'g_helmet_lod4'" />
 			
 			<object 			enabled="true" name="'g_gear_security'" />
-			<object 			enabled="true" name="'g_gear_security_lod1'" />
-		
-			<decal_mesh 		enabled="false" name="'dm_helmet'"/>			
+			<object 			enabled="true" name="'g_gear_security_lod1'" />		
 			
 			<run_sequence 		name="'random_body'"/>
 			<run_sequence 		name="'random_headset'"/>

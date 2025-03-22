@@ -2771,6 +2771,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
 
 	self.sko12_conc_npc = copy_data(self.sko12_conc_npc, self.saiga_npc, self.sko12_crew)
+	self.sko12_conc_npc.bullet_class = nil
 	self.sko12_conc_npc.concussion_data = nil
 
 	self.m249_npc.muzzleflash = "effects/payday2/particles/weapons/556_auto"

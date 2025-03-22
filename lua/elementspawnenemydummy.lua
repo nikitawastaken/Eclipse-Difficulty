@@ -384,16 +384,37 @@ function ElementSpawnEnemyDummy:replace_enemy_name(name)
 	end
 end
 
+local unit_alternative_types = {
+	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = "marshal",
+	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = "marshal",
+	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = "marshal",
+	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = "marshal",
+	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = "marshal",
+	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = "marshal",
+}
+
 function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	local alternative_data = self.unit_alternatives[name:key()]
 
 	if not alternative_data or not next(alternative_data) then
 		return nil
 	end
-
+	
+	local alternative_type
+	local type_active
+	local type_limit
+	local type_limit_reached
 	local alternative_selector = WeightedSelector:new()
 	for alt_name, alt_weight in pairs(alternative_data) do
-		alternative_selector:add(alt_name, alt_weight)
+		alternative_type = unit_alternative_types[alt_name] or nil
+		type_active = alternative_type and managers.groupai:state()._special_units[alternative_type] or {} 
+		type_limit = alternative_type and tweak_data.group_ai.special_unit_spawn_limits[alternative_type]
+		
+		type_limit_reached = type_active and type_limit and table.size(type_active) >= type_limit
+		
+		if not type_limit_reached then
+			alternative_selector:add(alt_name, alt_weight)
+		end
 	end
 
 	return Idstring(alternative_selector:select())
