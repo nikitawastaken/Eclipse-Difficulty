@@ -399,7 +399,7 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	if not alternative_data or not next(alternative_data) then
 		return nil
 	end
-	
+
 	local alternative_type
 	local type_active
 	local type_limit
@@ -407,11 +407,11 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	local alternative_selector = WeightedSelector:new()
 	for alt_name, alt_weight in pairs(alternative_data) do
 		alternative_type = unit_alternative_types[alt_name] or nil
-		type_active = alternative_type and managers.groupai:state()._special_units[alternative_type] or {} 
+		type_active = alternative_type and managers.groupai:state()._special_units[alternative_type] or {}
 		type_limit = alternative_type and tweak_data.group_ai.special_unit_spawn_limits[alternative_type]
-		
+
 		type_limit_reached = type_active and type_limit and table.size(type_active) >= type_limit
-		
+
 		if not type_limit_reached then
 			alternative_selector:add(alt_name, alt_weight)
 		end
