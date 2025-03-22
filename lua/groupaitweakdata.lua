@@ -100,7 +100,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 0,
 			medic = 0,
 			marksman = 0,
-			marshal = 1,
+			marshal = 0,
 		}
 	elseif difficulty_index == 3 then
 		self.special_unit_spawn_limits = {
@@ -110,7 +110,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 0,
 			medic = 0,
 			marksman = 0,
-			marshal = 1,
+			marshal = 2,
 		}
 	elseif difficulty_index == 4 then
 		self.special_unit_spawn_limits = {
@@ -120,7 +120,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 2,
 			marksman = 0,
-			marshal = 1,
+			marshal = 2,
 		}
 	elseif difficulty_index == 5 then
 		self.special_unit_spawn_limits = {
@@ -130,7 +130,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 3,
 			marksman = 0,
-			marshal = 2,
+			marshal = 3,
 		}
 	elseif difficulty_index == 6 then
 		self.special_unit_spawn_limits = {
@@ -140,7 +140,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 3,
 			medic = 4,
 			marksman = 3,
-			marshal = 3,
+			marshal = 4,
 		}
 	end
 
@@ -2632,16 +2632,6 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			"deathguard",
 			"smoke_grenade",
 		},
-		bellmead_gunner = {
-			"charge",
-			"murder",
-			"shield",
-		},
-		bellmead_gunner_spt = {
-			"shield_cover",
-			"flash_grenade",
-			"smoke_grenade",
-		},
 	}
 
 	self.timed_enemy_spawn_groups = {}
@@ -2853,7 +2843,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 				timer_data = {
 					initial_delay = 60,
 					cooldown = { 20, 30 },
-					diff_scale = { 1, 1, 1 },
+					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
 					Bellmead_timed_group = {
@@ -2899,58 +2889,6 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								freq = 0.4,
 								unit = "Bellmead_security",
 								tactics = self._timed_tactics.bellmead_snk,
-							},
-						},
-						spawn_point_chk_ref = table.list_to_set({
-							"tac_swat_rifle",
-							"tac_swat_rifle_flank",
-						}),
-					},
-				},
-			},
-			{
-				timer_data = {
-					initial_delay = 300,
-					cooldown = { 60, 90 },
-					diff_scale = { 2, 1.5, 1 },
-				},
-				group_data = {
-					Bellmead_gunner_timed_group = {
-						enabled = true,
-						team_id = "law1",
-						max_nr_simultaneous_groups = 2,
-						amount = { 3, 3 },
-						disable_timer = nil,
-						disable_diff = nil,
-						objective = function(spawn_group)
-							return {
-								attitude = "engage",
-								pose = "stand",
-								type = "assault_area",
-								stance = "hos",
-								area = spawn_group.area,
-								coarse_path = {
-									{
-										spawn_group.area.pos_nav_seg,
-										spawn_group.area.pos,
-									},
-								},
-							}
-						end,
-						spawn = {
-							{
-								amount_min = 1,
-								rank = 2,
-								amount_max = 1,
-								freq = 1,
-								unit = "Marshal_gunner",
-								tactics = self._timed_tactics.bellmead_gunner,
-							},
-							{
-								rank = 1,
-								freq = 1,
-								unit = "Bellmead_security",
-								tactics = self._timed_tactics.bellmead_gunner_spt,
 							},
 						},
 						spawn_point_chk_ref = table.list_to_set({

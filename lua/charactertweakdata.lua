@@ -1225,6 +1225,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "zeal_medic")
 
 	self.marshal_marksman = deep_clone(self.sniper)
+	self.marshal_marksman.tags = {
+		"law",
+		"special",
+		"marshal",
+	}
 
 	self.marshal_gunner = deep_clone(self.fbi_heavy_swat)
 	self.marshal_gunner.tags = {
