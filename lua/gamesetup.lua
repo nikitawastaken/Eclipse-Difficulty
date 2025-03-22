@@ -29,6 +29,12 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["trai"] = true,
 	}
 
+	local lapd = {
+		--["rvd1"] = true, -- They're already loaded here
+		--["rvd2"] = true,
+		["jolly"] = true,
+	}
+
 	local sfpd = {
 		--["chas"] = true, -- They're already loaded here
 		--["sand"] = true,
@@ -65,6 +71,12 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			Eclipse:log("Loading US army package...")
 			table.insert(self._loaded_diff_packages, "packages/us_army")
 			PackageManager:load("packages/us_army")
+		end
+
+		if lapd[level_id] and not PackageManager:loaded("packages/lapd") then
+			Eclipse:log("Loading LAPD package...")
+			table.insert(self._loaded_diff_packages, "packages/lapd")
+			PackageManager:load("packages/lapd")
 		end
 
 		if sfpd[level_id] and not PackageManager:loaded("packages/sfpd") then
