@@ -3327,7 +3327,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
 	self.ponr.recon.groups.Army_timed_group = { 0, 0, 0 }
 	self.ponr.recon.groups.Bellmead_timed_group = { 0, 0, 0 }
-	
+
 	-- nuke captain
 	self.phalanx.spawn_chance = {
 		decrease = 0,
