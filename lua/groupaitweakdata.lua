@@ -2745,14 +2745,14 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 							{
 								amount_max = 2,
 								rank = 2,
-								freq = 0.5,
+								freq = 0.4,
 								unit = "Murky_response",
 								tactics = self._timed_tactics.murky_agg,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
-								freq = 0.4,
+								freq = 0.6,
 								unit = "Murky_response",
 								tactics = self._timed_tactics.murky_snk,
 							},
@@ -2879,14 +2879,14 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 							{
 								amount_max = 2,
 								rank = 2,
-								freq = 0.5,
+								freq = 0.4,
 								unit = "Bellmead_security",
 								tactics = self._timed_tactics.bellmead_agg,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
-								freq = 0.4,
+								freq = 0.6,
 								unit = "Bellmead_security",
 								tactics = self._timed_tactics.bellmead_snk,
 							},
