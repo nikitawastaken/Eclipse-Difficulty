@@ -8,13 +8,21 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 
 local van_enemy1 = {
+    enemy = is_eclipse and elite_bulldozer or bulldozer,
 	values = {
-		enemy = is_eclipse and elite_bulldozer or bulldozer,
+        participate_to_group_ai = false,
+	},
+    on_executed = {
+		{ id = 400001, delay = 0 },
 	},
 }
 local van_enemy2 = {
+    enemy = is_eclipse and elite_shield or shield,
 	values = {
-		enemy = is_eclipse and elite_shield or shield,
+		participate_to_group_ai = false,
+	},
+    on_executed = {
+		{ id = 400001, delay = 0 },
 	},
 }
 
