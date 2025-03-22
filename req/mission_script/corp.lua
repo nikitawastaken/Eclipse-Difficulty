@@ -1,4 +1,74 @@
 local preferred = Eclipse.preferred
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local scripted_enemy = Eclipse.scripted_enemy
+local bellmead_1 = scripted_enemy.bellmead_security_1
+local bellmead_2 = scripted_enemy.bellmead_security_2
+local bellmead_3 = scripted_enemy.bellmead_security_3
+local bellmead_heavy_1 = scripted_enemy.bellmead_gunner_1
+local bellmead_heavy_2 = scripted_enemy.bellmead_gunner_2
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local cloaker = scripted_enemy.cloaker
+local medic = scripted_enemy.medic_1
+local taser = scripted_enemy.taser_1
+
+local bellmead_mercs = {
+	Idstring(bellmead_1),
+	Idstring(bellmead_2),
+	Idstring(bellmead_3),
+    Idstring(bellmead_1),
+	Idstring(bellmead_2),
+	Idstring(bellmead_3),
+    Idstring(bellmead_heavy_1),
+	Idstring(bellmead_heavy_2),
+}
+local bellmead_merc = {
+	enemy = bellmead_mercs,
+}
+local specials_list_eclipse = {
+	Idstring(cloaker),
+	Idstring(cloaker),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(medic),
+	Idstring(medic),
+	Idstring(elite_ben_bulldozer),
+	Idstring(elite_skull_bulldozer),
+}
+local specials_list_hard_ovk = {
+	Idstring(cloaker),
+	Idstring(cloaker),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(medic),
+	Idstring(medic),
+	Idstring(cloaker),
+	Idstring(cloaker),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(medic),
+	Idstring(medic),
+	Idstring(green_bulldozer),
+	Idstring(black_bulldozer),
+}
+local specials_list_easy_normal = {
+	Idstring(cloaker),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(taser),
+	Idstring(taser),
+}
+
+local specials = {
+	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
+}
+
 local enemy_filter_dozers = {
 	values = {
 		rules = {
@@ -70,6 +140,47 @@ return {
 			},
 		},
 	},
+    -- tweak swat vans spawns to have variety
+	-- 2 bellmead mercs with one specials
+	-- 1st van
+    -- easy-normal
+	[103058] = bellmead_merc,
+	[103552] = specials,
+	[103559] = bellmead_merc,
+    -- hard-overkill
+    [103491] = bellmead_merc,
+	[103560] = specials,
+	[103553] = bellmead_merc,
+    -- eclipse
+    [103550] = bellmead_merc,
+	[103561] = specials,
+	[103557] = bellmead_merc,
+    -- 2nd van
+    -- easy-normal
+	[103576] = bellmead_merc,
+	[103572] = specials,
+	[103580] = bellmead_merc,
+    -- hard-overkill
+    [103575] = bellmead_merc,
+	[103571] = specials,
+	[103579] = bellmead_merc,
+    -- eclipse
+    [103574] = bellmead_merc,
+	[103570] = specials,
+	[103578] = bellmead_merc,
+    -- 3rd van
+    -- easy-normal
+	[103589] = bellmead_merc,
+	[103597] = specials,
+	[103593] = bellmead_merc,
+    -- hard-overkill
+    [103590] = bellmead_merc,
+	[103598] = specials,
+	[103594] = bellmead_merc,
+    -- eclipse
+    [103591] = bellmead_merc,
+	[103599] = specials,
+	[103595] = bellmead_merc,
 	--Update turret dozer filters to include benellidozer
 	[102783] = enemy_filter_dozers,
 	--DON'T DESPAWN THOSE UNITS, PLEASEEEEE! THEY ARE IMPORTANT!

@@ -1241,7 +1241,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_gunner.shooting_death = false
 	self.marshal_gunner.surrender = nil
 	self.marshal_gunner.suppression = nil
-	self.marshal_gunner.shooting_death = false
 	self.marshal_gunner.no_retreat = true
 	self.marshal_gunner.no_arrest = true
 	self.marshal_gunner.steal_loot = nil

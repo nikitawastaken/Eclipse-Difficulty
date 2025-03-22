@@ -138,6 +138,7 @@ return {
 	[100448] = {
 		on_executed = {
 			{ id = 100454, delay = eclipse and 120 or 180, delay_rand = 120 },
+            { id = 100446, remove = true }, -- don't make taser spawn twice
 		},
 	},
 	[100454] = {
@@ -146,7 +147,7 @@ return {
 		},
 	},
 	[100446] = heli_enemy1,
-	[100447] = heli_enemy1,
+	[100447] = heli_enemy2,
 	-- open warehouse on all difficulties
 	[104004] = disabled,
 	[104002] = disabled,
