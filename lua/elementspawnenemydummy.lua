@@ -296,33 +296,33 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	},
 	-- Marshal Marksman
 	[("units/payday2/characters/ene_sniper_1/ene_sniper_1"):key()] = {
-		["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = 3,
+		["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = 2,
 		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = marshal_response_heists[level_id] and 1 or 0,
 		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = bellmead_response_heists[level_id] and 1 or 0,
 	},
 	[("units/payday2/characters/ene_sniper_2/ene_sniper_2"):key()] = {
-		["units/payday2/characters/ene_sniper_2/ene_sniper_2"] = 3,
+		["units/payday2/characters/ene_sniper_2/ene_sniper_2"] = 2,
 		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = marshal_response_heists[level_id] and 1 or 0,
 		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = bellmead_response_heists[level_id] and 1 or 0,
 	},
 	-- Marshal Gunner
 	[("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"):key()] = {
-		["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = 8,
+		["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = 6,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = marshal_response_heists[level_id] and 1 or 0,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = bellmead_response_heists[level_id] and 1 or 0,
 	},
 	[("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"):key()] = {
-		["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = 8,
+		["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = 6,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = marshal_response_heists[level_id] and 1 or 0,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = bellmead_response_heists[level_id] and 1 or 0,
 	},
 	[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = {
-		["units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"] = 8,
+		["units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"] = 6,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = marshal_response_heists[level_id] and 1 or 0,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = bellmead_response_heists[level_id] and 1 or 0,
 	},
 	[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = {
-		["units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"] = 8,
+		["units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"] = 6,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = marshal_response_heists[level_id] and 1 or 0,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = bellmead_response_heists[level_id] and 1 or 0,
 	},
