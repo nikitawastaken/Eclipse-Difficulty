@@ -19,10 +19,10 @@ local bellmead_mercs = {
 	Idstring(bellmead_1),
 	Idstring(bellmead_2),
 	Idstring(bellmead_3),
-    Idstring(bellmead_1),
+	Idstring(bellmead_1),
 	Idstring(bellmead_2),
 	Idstring(bellmead_3),
-    Idstring(bellmead_heavy_1),
+	Idstring(bellmead_heavy_1),
 	Idstring(bellmead_heavy_2),
 }
 local bellmead_merc = {
@@ -140,45 +140,45 @@ return {
 			},
 		},
 	},
-    -- tweak swat vans spawns to have variety
+	-- tweak swat vans spawns to have variety
 	-- 2 bellmead mercs with one specials
 	-- 1st van
-    -- easy-normal
+	-- easy-normal
 	[103058] = bellmead_merc,
 	[103552] = specials,
 	[103559] = bellmead_merc,
-    -- hard-overkill
-    [103491] = bellmead_merc,
+	-- hard-overkill
+	[103491] = bellmead_merc,
 	[103560] = specials,
 	[103553] = bellmead_merc,
-    -- eclipse
-    [103550] = bellmead_merc,
+	-- eclipse
+	[103550] = bellmead_merc,
 	[103561] = specials,
 	[103557] = bellmead_merc,
-    -- 2nd van
-    -- easy-normal
+	-- 2nd van
+	-- easy-normal
 	[103576] = bellmead_merc,
 	[103572] = specials,
 	[103580] = bellmead_merc,
-    -- hard-overkill
-    [103575] = bellmead_merc,
+	-- hard-overkill
+	[103575] = bellmead_merc,
 	[103571] = specials,
 	[103579] = bellmead_merc,
-    -- eclipse
-    [103574] = bellmead_merc,
+	-- eclipse
+	[103574] = bellmead_merc,
 	[103570] = specials,
 	[103578] = bellmead_merc,
-    -- 3rd van
-    -- easy-normal
+	-- 3rd van
+	-- easy-normal
 	[103589] = bellmead_merc,
 	[103597] = specials,
 	[103593] = bellmead_merc,
-    -- hard-overkill
-    [103590] = bellmead_merc,
+	-- hard-overkill
+	[103590] = bellmead_merc,
 	[103598] = specials,
 	[103594] = bellmead_merc,
-    -- eclipse
-    [103591] = bellmead_merc,
+	-- eclipse
+	[103591] = bellmead_merc,
 	[103599] = specials,
 	[103595] = bellmead_merc,
 	--Update turret dozer filters to include benellidozer
