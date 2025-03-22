@@ -246,7 +246,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.trai.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
-	
+
 	self.corp.ai_unit_group_overrides = deep_clone(self.ranc.ai_unit_group_overrides)
 	self.corp.ai_unit_group_overrides.Marshal_gunner_1 = {
 		america = {
@@ -264,7 +264,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"),
 		},
 	}
-	
+
 	self.deep.ai_unit_group_overrides = self.corp.ai_unit_group_overrides
 	self.deep.flashlights_on = true
 end)

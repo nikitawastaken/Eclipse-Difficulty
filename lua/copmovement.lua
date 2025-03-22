@@ -40,12 +40,12 @@ function CopMovement:speed_modifier()
 	end
 
 	local equipped_weapon = self:_equipped_weapon_base()
-	
+
 	-- Apply a move speed modifier while the enemy is shooting
 	if equipped_weapon and equipped_weapon._shooting and equipped_weapon:fire_mode() == "auto" then
 		final_modifier = final_modifier * (self._tweak_data.autofire_move_speed_mul or 1)
 	end
-	
+
 	if self._carry_speed_modifier then
 		final_modifier = final_modifier * self._carry_speed_modifier
 	end

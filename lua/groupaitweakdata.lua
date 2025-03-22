@@ -1374,7 +1374,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.FBI_security = {
 		unit_types = {
 			america = {
@@ -1462,27 +1462,27 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 
 	self.unit_categories.Bellmead_security = {
 		unit_types = {
-			america = { 
+			america = {
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
 			},
-			russia = { 
+			russia = {
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
 			},
-			zombie = { 
+			zombie = {
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
 			},
-			murkywater = { 
+			murkywater = {
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
 			},
-			federales = { 
+			federales = {
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),

@@ -270,12 +270,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.security_mcmansion = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
-	
+
 	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
 
 	presets.weapon.marshal_security = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
-	
+
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
@@ -404,7 +404,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.boss, 7 / 5)
 
 	presets.weapon.marshal_marksman = based_on(presets.weapon.sniper)
-	
+
 	presets.weapon.marshal_marksman.is_sniper.FALLOFF = {
 		{ dmg_mul = 10 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
@@ -412,7 +412,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.marshal_gunner = based_on(presets.weapon.base)
-	
+
 	presets.weapon.marshal_gunner.is_lmg.RELOAD_SPEED = 0.6
 	presets.weapon.marshal_gunner.is_lmg.autofire_rounds = { 15, 25 }
 	presets.weapon.marshal_gunner.is_lmg.FALLOFF = {
@@ -428,7 +428,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1 },
 		focus_delay = 0,
@@ -1035,7 +1035,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_security.chatter = self.presets.enemy_chatter.fbi_security
 	self.marshal_security.has_alarm_pager = true
 	table.insert(self._enemy_list, "marshal_security")
-	
+
 	self.fbi_heavy_swat.HEALTH_INIT = 36
 	self.fbi_heavy_swat.headshot_dmg_mul = 1.8 -- 200 head health
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
@@ -1142,9 +1142,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "city_shield")
 
 	self.city_shield_break = deep_clone(self.city_shield)
-	self.city_shield_break.tags = { 
-		"law", 
-		"special", 
+	self.city_shield_break.tags = {
+		"law",
+		"special",
 		"shield",
 	}
 	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.25
@@ -1225,11 +1225,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "zeal_medic")
 
 	self.marshal_marksman = deep_clone(self.sniper)
-	
+
 	self.marshal_gunner = deep_clone(self.fbi_heavy_swat)
-	self.marshal_gunner.tags = { 
-		"law", 
-		"special", 
+	self.marshal_gunner.tags = {
+		"law",
+		"special",
 		"marshal",
 	}
 	self.marshal_gunner.HEALTH_INIT = 72
@@ -1250,12 +1250,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	-- Different radio chatter for Bellmead units
 	if bellmead_response_heists[level_id] then
-		self.marshal_security.radio_prefix = "fri_" 
+		self.marshal_security.radio_prefix = "fri_"
 		self.marshal_security.use_radio = "dsp_radio_russian"
 		self.marshal_marksman.use_radio = "dsp_radio_russian"
 		self.marshal_gunner.use_radio = "dsp_radio_russian"
 	end
-	
+
 	self.mobster_boss.HEALTH_INIT = 200
 	self.mobster_boss.headshot_dmg_mul = 2
 	self.mobster_boss.no_headshot_add_mul = true
@@ -1402,7 +1402,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.usm2, "ene_male_marshal_gunner_hcar_2")
 	safe_add(char_map.usm2, "ene_male_marshal_gunner_sko12_1")
 	safe_add(char_map.usm2, "ene_male_marshal_gunner_sko12_2")
-	
+
 	char_map.army = {
 		path = "units/pd2_dlc_army/characters/",
 		list = {

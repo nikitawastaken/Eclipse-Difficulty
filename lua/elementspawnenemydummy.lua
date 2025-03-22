@@ -13,11 +13,11 @@ end
 local marshal_response_heists = {
 	["ranc"] = true,
 	["trai"] = true,
-} 
+}
 local bellmead_response_heists = {
 	["corp"] = true,
 	["deep"] = true,
-} 
+}
 
 -- Map to correct incorrect faction spawns
 ElementSpawnEnemyDummy.faction_mapping = {
