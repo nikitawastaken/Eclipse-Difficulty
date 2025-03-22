@@ -1239,7 +1239,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	}
 	self.marshal_gunner.HEALTH_INIT = 72
 	self.marshal_gunner.headshot_dmg_mul = 2 -- 360 head health
-	self.marshal_gunner.autofire_move_speed_mul = 0.5
+	self.marshal_gunner.autofire_move_speed_mul = 0.4
 	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.marshal_gunner.chatter = self.presets.enemy_chatter.no_chatter
 	self.marshal_gunner.dodge = self.presets.dodge.heavy
