@@ -21,7 +21,7 @@ Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)
 		self._flashlight_data = nil
 		return
 	end
-	
+
 	if self._flashlight_data then
 		return
 	end
