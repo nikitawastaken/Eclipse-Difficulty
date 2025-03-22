@@ -11,6 +11,8 @@ CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.marksman = CopMovement._action_variants.marshal_marksman
 CopMovement._action_variants.city_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.city_shield_break = CopMovement._action_variants.swat
+CopMovement._action_variants.marshal_gunner = CopMovement._action_variants.swat
+CopMovement._action_variants.marshal_security = CopMovement._action_variants.swat
 CopMovement._action_variants.zeal_swat = CopMovement._action_variants.swat
 CopMovement._action_variants.zeal_heavy_swat = CopMovement._action_variants.swat
 CopMovement._action_variants.zeal_medic = CopMovement._action_variants.swat
@@ -37,6 +39,13 @@ function CopMovement:speed_modifier()
 		final_modifier = final_modifier * (self._tweak_data.spooc_charge_move_speed_mul or 1.5)
 	end
 
+	local equipped_weapon = self:_equipped_weapon_base()
+	
+	-- Apply a move speed modifier while the enemy is shooting
+	if equipped_weapon and equipped_weapon._shooting and equipped_weapon:fire_mode() == "auto" then
+		final_modifier = final_modifier * (self._tweak_data.autofire_move_speed_mul or 1)
+	end
+	
 	if self._carry_speed_modifier then
 		final_modifier = final_modifier * self._carry_speed_modifier
 	end

@@ -15,6 +15,8 @@
     <Package id="packages/sfpd" file="packages/sfpd.xml"/>
     <!-- Texas Rangers -->
     <Package id="packages/texas_rangers" file="packages/texas_rangers.xml"/>
+    <!-- Bellmead Security -->
+    <Package id="packages/security_deep" file="packages/security_deep.xml"/>
     <!-- US army -->
     <Package id="packages/us_army" file="packages/us_army.xml"/>
 </table>

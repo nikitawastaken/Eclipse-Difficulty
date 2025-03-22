@@ -1,5 +1,6 @@
 -- Don't replace spawns on custom enemy spawner map
-local level_id = Global.game_settings and Global.game_settings.level_id
+local level_id = Eclipse.utils.level_id()
+
 if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spawner" then
 	ElementSpawnEnemyDummy.chk_used_mapped_names = function() end
 	ElementSpawnEnemyDummy.get_replacement_enemy_name = function() end
@@ -8,6 +9,15 @@ if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spaw
 	Eclipse:log("Editor/Spawner mode is active, spawn group fixes disabled")
 	return
 end
+
+local marshal_response_heists = {
+	["ranc"] = true,
+	["trai"] = true,
+} 
+local bellmead_response_heists = {
+	["corp"] = true,
+	["deep"] = true,
+} 
 
 -- Map to correct incorrect faction spawns
 ElementSpawnEnemyDummy.faction_mapping = {
@@ -283,6 +293,17 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"):key()] = {
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"] = 4,
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat"] = 1,
+	},
+	-- Marshal Marksman
+	[("units/payday2/characters/ene_sniper_1/ene_sniper_1"):key()] = {
+		["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = 3,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = marshal_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = bellmead_response_heists[level_id] and 1 or 0,
+	},
+	[("units/payday2/characters/ene_sniper_2/ene_sniper_2"):key()] = {
+		["units/payday2/characters/ene_sniper_2/ene_sniper_2"] = 3,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = marshal_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = bellmead_response_heists[level_id] and 1 or 0,
 	},
 }
 

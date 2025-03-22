@@ -100,6 +100,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 0,
 			medic = 0,
 			marksman = 0,
+			marshal = 1,
 		}
 	elseif difficulty_index == 3 then
 		self.special_unit_spawn_limits = {
@@ -109,6 +110,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 0,
 			medic = 0,
 			marksman = 0,
+			marshal = 1,
 		}
 	elseif difficulty_index == 4 then
 		self.special_unit_spawn_limits = {
@@ -118,6 +120,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 2,
 			marksman = 0,
+			marshal = 1,
 		}
 	elseif difficulty_index == 5 then
 		self.special_unit_spawn_limits = {
@@ -127,6 +130,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 3,
 			marksman = 0,
+			marshal = 2,
 		}
 	elseif difficulty_index == 6 then
 		self.special_unit_spawn_limits = {
@@ -136,6 +140,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 3,
 			medic = 4,
 			marksman = 3,
+			marshal = 3,
 		}
 	end
 
@@ -1319,6 +1324,57 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
+	self.unit_categories.Marshal_gunner_1 = {
+		special_type = "marshal",
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
+			russia = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
+			zombie = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
+			murkywater = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
+			federales = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.Marshal_gunner_2 = {
+		special_type = "marshal",
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
+			russia = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
+			zombie = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
+			murkywater = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
+			federales = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.Marshal_gunner = {
+		special_type = "marshal",
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
+				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
+			},
+		},
+		access = access_type_all,
+	}
+	
 	self.unit_categories.FBI_security = {
 		unit_types = {
 			america = {
@@ -1345,7 +1401,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Murky_Response = {
+	self.unit_categories.Murky_response = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
@@ -1400,6 +1456,37 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			zombie = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
 			murkywater = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
 			federales = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.Bellmead_security = {
+		unit_types = {
+			america = { 
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
+			},
+			russia = { 
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
+			},
+			zombie = { 
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
+			},
+			murkywater = { 
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
+			},
+			federales = { 
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"),
+				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"),
+			},
 		},
 		access = access_type_all,
 	}
@@ -2448,6 +2535,10 @@ GroupAITweakData.us_army_heists = {
 	["jolly"] = true,
 	["trai"] = true,
 }
+GroupAITweakData.bellmead_response_heists = {
+	["corp"] = true,
+	["deep"] = true,
+}
 
 -- Timed groups tweak table
 function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_index)
@@ -2525,6 +2616,31 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		army_spt = {
 			"unit_cover",
 			"ranged_fire",
+		},
+		bellmead_def = {
+			"ranged_fire",
+			"flash_grenade",
+			"smoke_grenade",
+		},
+		bellmead_agg = {
+			"charge",
+			"deathguard",
+			"flash_grenade",
+		},
+		bellmead_snk = {
+			"flank",
+			"deathguard",
+			"smoke_grenade",
+		},
+		bellmead_gunner = {
+			"charge",
+			"murder",
+			"shield",
+		},
+		bellmead_gunner_spt = {
+			"shield_cover",
+			"flash_grenade",
+			"smoke_grenade",
 		},
 	}
 
@@ -2633,21 +2749,21 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								amount_min = 1,
 								rank = 2,
 								freq = 1,
-								unit = "Murky_Response",
+								unit = "Murky_response",
 								tactics = self._timed_tactics.murky_def,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.5,
-								unit = "Murky_Response",
+								unit = "Murky_response",
 								tactics = self._timed_tactics.murky_agg,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.4,
-								unit = "Murky_Response",
+								unit = "Murky_response",
 								tactics = self._timed_tactics.murky_snk,
 							},
 						},
@@ -2720,6 +2836,121 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								},
 								unit = "Army_soldier_3",
 								tactics = self._timed_tactics.army_spt,
+							},
+						},
+						spawn_point_chk_ref = table.list_to_set({
+							"tac_swat_rifle",
+							"tac_swat_rifle_flank",
+						}),
+					},
+				},
+			},
+		}
+	end
+	if self.bellmead_response_heists[level_id] then
+		self.timed_enemy_spawn_groups = {
+			{
+				timer_data = {
+					initial_delay = 60,
+					cooldown = { 20, 30 },
+					diff_scale = { 1, 1, 1 },
+				},
+				group_data = {
+					Bellmead_timed_group = {
+						enabled = true,
+						team_id = "law1",
+						max_nr_simultaneous_groups = 2,
+						amount = { 3, 3 },
+						disable_timer = nil,
+						disable_diff = nil,
+						objective = function(spawn_group)
+							return {
+								attitude = "engage",
+								pose = "stand",
+								type = "assault_area",
+								stance = "hos",
+								area = spawn_group.area,
+								coarse_path = {
+									{
+										spawn_group.area.pos_nav_seg,
+										spawn_group.area.pos,
+									},
+								},
+							}
+						end,
+						spawn = {
+							{
+								amount_min = 1,
+								rank = 2,
+								freq = 1,
+								unit = "Bellmead_security",
+								tactics = self._timed_tactics.bellmead_def,
+							},
+							{
+								amount_max = 2,
+								rank = 2,
+								freq = 0.5,
+								unit = "Bellmead_security",
+								tactics = self._timed_tactics.bellmead_agg,
+							},
+							{
+								amount_max = 2,
+								rank = 2,
+								freq = 0.4,
+								unit = "Bellmead_security",
+								tactics = self._timed_tactics.bellmead_snk,
+							},
+						},
+						spawn_point_chk_ref = table.list_to_set({
+							"tac_swat_rifle",
+							"tac_swat_rifle_flank",
+						}),
+					},
+				},
+			},
+			{
+				timer_data = {
+					initial_delay = 300,
+					cooldown = { 60, 90 },
+					diff_scale = { 2, 1.5, 1 },
+				},
+				group_data = {
+					Bellmead_gunner_timed_group = {
+						enabled = true,
+						team_id = "law1",
+						max_nr_simultaneous_groups = 2,
+						amount = { 3, 3 },
+						disable_timer = nil,
+						disable_diff = nil,
+						objective = function(spawn_group)
+							return {
+								attitude = "engage",
+								pose = "stand",
+								type = "assault_area",
+								stance = "hos",
+								area = spawn_group.area,
+								coarse_path = {
+									{
+										spawn_group.area.pos_nav_seg,
+										spawn_group.area.pos,
+									},
+								},
+							}
+						end,
+						spawn = {
+							{
+								amount_min = 1,
+								rank = 2,
+								amount_max = 1,
+								freq = 1,
+								unit = "Marshal_gunner",
+								tactics = self._timed_tactics.bellmead_gunner,
+							},
+							{
+								rank = 1,
+								freq = 1,
+								unit = "Bellmead_security",
+								tactics = self._timed_tactics.bellmead_gunner_spt,
 							},
 						},
 						spawn_point_chk_ref = table.list_to_set({

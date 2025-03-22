@@ -3,6 +3,11 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
+local bellmead_response_heists = {
+	["corp"] = true,
+	["deep"] = true,
+}
+
 local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
 end
@@ -265,9 +270,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.security_mcmansion = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
-
+	
 	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
 
+	presets.weapon.marshal_security = based_on(presets.weapon.swat)
+	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
+	
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
@@ -395,6 +403,32 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.boss = based_on(presets.weapon.base)
 	damage_multiplier(presets.weapon.boss, 7 / 5)
 
+	presets.weapon.marshal_marksman = based_on(presets.weapon.sniper)
+	
+	presets.weapon.marshal_marksman.is_sniper.FALLOFF = {
+		{ dmg_mul = 10 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 10 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 10 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.marshal_gunner = based_on(presets.weapon.base)
+	
+	presets.weapon.marshal_gunner.is_lmg.RELOAD_SPEED = 0.6
+	presets.weapon.marshal_gunner.is_lmg.autofire_rounds = { 15, 25 }
+	presets.weapon.marshal_gunner.is_lmg.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.6, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.2, 0.4 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.marshal_gunner.is_shotgun_mag.RELOAD_SPEED = 0.9
+	presets.weapon.marshal_gunner.is_shotgun_mag.autofire_rounds = { 1, 4 }
+	presets.weapon.marshal_gunner.is_shotgun_mag.FALLOFF = {
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
+	}
+	
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1 },
 		focus_delay = 0,
@@ -994,6 +1028,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_mcmansion.has_alarm_pager = true
 	table.insert(self._enemy_list, "security_mcmansion")
 
+	self.marshal_security = deep_clone(self.fbi_swat)
+	self.marshal_security.melee_weapon = "weapon"
+	self.marshal_security.speech_prefix_p2 = "n"
+	self.marshal_security.silent_priority_shout = "f37"
+	self.marshal_security.chatter = self.presets.enemy_chatter.fbi_security
+	self.marshal_security.has_alarm_pager = true
+	table.insert(self._enemy_list, "marshal_security")
+	
 	self.fbi_heavy_swat.HEALTH_INIT = 36
 	self.fbi_heavy_swat.headshot_dmg_mul = 1.8 -- 200 head health
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
@@ -1059,9 +1101,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marksman.priority_shout = "f34"
 	self.marksman.chatter = self.presets.enemy_chatter.no_chatter
 	--self.marksman.misses_first_player_shot = true
-	self.marksman.shooting_death = false
-	self.marksman.suppression = nil
 	self.marksman.surrender = nil
+	self.marksman.suppression = nil
+	self.marksman.shooting_death = false
 	self.marksman.no_retreat = true
 	self.marksman.no_arrest = true
 	self.marksman.steal_loot = nil
@@ -1100,7 +1142,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "city_shield")
 
 	self.city_shield_break = deep_clone(self.city_shield)
-	self.city_shield_break.tags = { "law", "shield" }
+	self.city_shield_break.tags = { 
+		"law", 
+		"special", 
+		"shield",
+	}
 	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.25
 	self.city_shield_break.chatter = self.presets.enemy_chatter.swat
 	self.city_shield_break.dodge = self.presets.dodge.athletic
@@ -1178,6 +1224,38 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_medic")
 
+	self.marshal_marksman = deep_clone(self.sniper)
+	
+	self.marshal_gunner = deep_clone(self.fbi_heavy_swat)
+	self.marshal_gunner.tags = { 
+		"law", 
+		"special", 
+		"marshal",
+	}
+	self.marshal_gunner.HEALTH_INIT = 72
+	self.marshal_gunner.headshot_dmg_mul = 2 -- 360 head health
+	self.marshal_gunner.autofire_move_speed_mul = 0.5
+	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.marshal_gunner.chatter = self.presets.enemy_chatter.no_chatter
+	self.marshal_gunner.dodge = self.presets.dodge.heavy
+	self.marshal_gunner.shooting_death = false
+	self.marshal_gunner.surrender = nil
+	self.marshal_gunner.suppression = nil
+	self.marshal_gunner.shooting_death = false
+	self.marshal_gunner.no_retreat = true
+	self.marshal_gunner.no_arrest = true
+	self.marshal_gunner.steal_loot = nil
+	self.marshal_gunner.rescue_hostages = false
+	table.insert(self._enemy_list, "marshal_gunner")
+
+	-- Different radio chatter for Bellmead units
+	if bellmead_response_heists[level_id] then
+		self.marshal_security.radio_prefix = "fri_" 
+		self.marshal_security.use_radio = "dsp_radio_russian"
+		self.marshal_marksman.use_radio = "dsp_radio_russian"
+		self.marshal_gunner.use_radio = "dsp_radio_russian"
+	end
+	
 	self.mobster_boss.HEALTH_INIT = 200
 	self.mobster_boss.headshot_dmg_mul = 2
 	self.mobster_boss.no_headshot_add_mul = true
@@ -1290,6 +1368,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.city_shield_break.speech_prefix_count = 4
 		self.zeal_shield.speech_prefix_p2 = "d"
 		self.zeal_shield.speech_prefix_count = 4
+		self.marshal_gunner.speech_prefix_p2 = "d"
+		self.marshal_gunner.speech_prefix_count = 4
 	end
 end)
 
@@ -1318,6 +1398,11 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
 
+	safe_add(char_map.usm2, "ene_male_marshal_gunner_hcar_1")
+	safe_add(char_map.usm2, "ene_male_marshal_gunner_hcar_2")
+	safe_add(char_map.usm2, "ene_male_marshal_gunner_sko12_1")
+	safe_add(char_map.usm2, "ene_male_marshal_gunner_sko12_2")
+	
 	char_map.army = {
 		path = "units/pd2_dlc_army/characters/",
 		list = {
@@ -1388,6 +1473,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "g3")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_g3/wpn_npc_g3"))
+
+	table.insert(self.weap_ids, "hcar")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_hcar/wpn_npc_hcar"))
 end)
 
 -- fixed movement speed difficulty scaling
@@ -1442,6 +1530,7 @@ CharacterTweakData.tweak_table_weapon = {
 	security_fat = "security_fat",
 	security_mcmansion = "security_mcmansion",
 	security_army = "soldier",
+	marshal_security = "marshal_security",
 	cop_fat = "cop_fat",
 	soldier = "soldier",
 	cobra = "gangster",
@@ -1454,6 +1543,8 @@ CharacterTweakData.tweak_table_weapon = {
 	marksman = "elite_sniper",
 	tank = "tank",
 	tank_elite = "elite_tank",
+	marshal_marksman = "marshal_marksman",
+	marshal_gunner = "marshal_gunner",
 	mobster_boss = "boss",
 	chavez_boss = "boss",
 	hector_boss = "boss",
@@ -1485,6 +1576,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	security_fat = "slow",
 	security_mcmansion = "fast",
 	security_army = "fast",
+	marshal_security = "fast",
 	cop_fat = "slow",
 	soldier = "fast",
 	medic = "normal",
@@ -1500,6 +1592,8 @@ CharacterTweakData.tweak_table_move_speed = {
 	deep_boss = "slow",
 	tank = "very_slow",
 	tank_elite = "very_slow",
+	marshal_marksman = "normal",
+	marshal_gunner = "normal",
 }
 
 CharacterTweakData.access_move_speed = {

@@ -2727,6 +2727,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.g3_npc = copy_data(self.g3_npc, self.m4_npc, self.g3_crew)
 
+	self.hcar_npc = copy_data(self.hcar_npc, self.m4_npc, self.hcar_crew)
+	self.hcar_npc.CLIP_AMMO_MAX = 50
+	self.hcar_npc.usage = "is_lmg"
+	
 	self.beretta92_npc.has_suppressor = "suppressed_b"
 
 	self.deagle_npc.CLIP_AMMO_MAX = 7
@@ -2765,6 +2769,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.saiga_npc.CLIP_AMMO_MAX = 20
 
 	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
+
+	self.sko12_conc_npc = copy_data(self.sko12_conc_npc, self.saiga_npc, self.sko12_crew)
+	self.sko12_conc_npc.concussion_data = nil
 
 	self.m249_npc.muzzleflash = "effects/payday2/particles/weapons/556_auto"
 

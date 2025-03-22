@@ -43,6 +43,11 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["deep"] = true,
 	}
 
+	local security_deep = {
+		["corp"] = true,
+		--["deep"] = true,
+	}
+
 	if level_id then
 		if fbi_heists[level_id] and not PackageManager:loaded("packages/security_mcmansion") then
 			Eclipse:log("Loading FBI security package...")
@@ -72,6 +77,12 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			Eclipse:log("Loading Texas Rangers package...")
 			table.insert(self._loaded_diff_packages, "packages/texas_rangers")
 			PackageManager:load("packages/texas_rangers")
+		end
+
+		if security_deep[level_id] and not PackageManager:loaded("packages/security_deep") then
+			Eclipse:log("Loading Bellmead Security package...")
+			table.insert(self._loaded_diff_packages, "packages/security_deep")
+			PackageManager:load("packages/security_deep")
 		end
 	end
 end)

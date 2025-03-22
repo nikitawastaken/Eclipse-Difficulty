@@ -3,24 +3,24 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<var_has_visor			value="0" />
-			<var_has_visor_steel	value="0" />
+			<has_visor			value="0" />
+			<has_visor_steel	value="0" />
 		</variables>
 
 		<filter name="'check_no_visor'">
-			<check value="vars.var_has_visor == 0" />
+			<check value="vars.has_visor == 0" />
 		</filter>
 
 		<filter name="'check_visor'">
-			<check value="vars.var_has_visor == 1" />
+			<check value="vars.has_visor == 1" />
 		</filter>
 
 		<filter name="'check_no_visor_steel'">
-			<check value="vars.var_has_visor_steel == 0" />
+			<check value="vars.has_visor_steel == 0" />
 		</filter>
 
 		<filter name="'check_visor_steel'">
-			<check value="vars.var_has_visor_steel == 1" />
+			<check value="vars.has_visor_steel == 1" />
 		</filter>
 		
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
@@ -56,7 +56,7 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'fbi_heavy_1'" once="true" triggable="true">
-			<set_variables 		var_has_visor="1" />
+			<set_variables 		has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
@@ -69,7 +69,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_heavy_2'" once="true" triggable="true">
-			<set_variables 		var_has_visor_steel="1" />
+			<set_variables 		has_visor_steel="1" />
 			
 			<object 			enabled="true" name="'g_gear_b'" />
 			<object 			enabled="true" name="'g_gear_b_lod1'" />

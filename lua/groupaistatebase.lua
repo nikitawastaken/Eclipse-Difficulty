@@ -124,6 +124,7 @@ Hooks:PostHook(GroupAIStateBase, "_init_misc_data", "eclipse_init_misc_data", fu
 		tank = true,
 		spooc = true,
 		marksman = true,
+		marshal = true,
 	}
 end)
 
@@ -135,6 +136,7 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		tank = true,
 		spooc = true,
 		marksman = true,
+		marshal = true,
 	}
 end)
 

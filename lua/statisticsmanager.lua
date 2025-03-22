@@ -28,6 +28,7 @@ StatisticsManager.special_unit_ids = {
 	"tank_mini",
 	"marshal_marksman",
 	"marshal_shield",
+	"marshal_gunner",
 	"triad_boss",
 	"triad_boss_no_armor",
 	"snowman_boss",
@@ -81,6 +82,13 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
+	self._defaults.killed.marshal_security = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
 	self._defaults.killed.cop_fat = {
 		count = 0,
 		head_shots = 0,
@@ -116,7 +124,21 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
+	self._defaults.killed.city_shield_break = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
 	self._defaults.killed.tank_elite = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
+	self._defaults.killed.marshal_gunner = {
 		count = 0,
 		head_shots = 0,
 		melee = 0,
@@ -138,13 +160,6 @@ function StatisticsManager:init()
 		tied = 0,
 	}
 	self._defaults.killed.zeal_medic = {
-		count = 0,
-		head_shots = 0,
-		melee = 0,
-		explosion = 0,
-		tied = 0,
-	}
-	self._defaults.killed.phalanx_minion_break = {
 		count = 0,
 		head_shots = 0,
 		melee = 0,

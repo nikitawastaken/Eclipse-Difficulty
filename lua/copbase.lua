@@ -138,6 +138,7 @@ local mat_configs = {
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
 	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
+	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
 }
 
 for _, v in pairs(mat_configs) do

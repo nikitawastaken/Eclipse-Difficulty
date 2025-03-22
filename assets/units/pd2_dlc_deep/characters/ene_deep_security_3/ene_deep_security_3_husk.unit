@@ -6,8 +6,6 @@
 	<dependencies>
 		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
 		<depends_on unit="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2" />
-		<depends_on effect="effects/payday2/particles/character/flashlight_ss" />
-		<depends_on unit="units/payday2/weapons/wpn_npc_ump/wpn_npc_ump" />
 	</dependencies>
 
 	<extensions>
@@ -89,8 +87,8 @@
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="HuskCopBase" >
 			<var name="can_be_marked" value="true"/>
-			<var name="_tweak_table" value="murky"/>
-			<var name="_default_weapon_id" value="ump"/>
+			<var name="_tweak_table" value="marshal_security"/>
+			<var name="_default_weapon_id" value="mp5"/>
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />
 		<extension name="brain" class="HuskCopBrain" />
@@ -99,7 +97,7 @@
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
 			<var name="_head_gear_object" value="g_helmet_lod" />
-			<var name="_nr_head_gear_objects" value="8" />
+			<var name="_nr_head_gear_objects" value="11" />
 			<var name="_head_gear" value="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2" />
 			<var name="_head_gear_decal_mesh" value="dm_helmet"/>
 			<var name="_death_sequence" value="kill_murky_flashlights" />

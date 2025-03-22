@@ -1,0 +1,16 @@
+<table directory="assets">
+	<add from_db="true" 	path="units/pd2_dlc_deep/characters/ene_security_deep_1/ene_deep_security_1" type="unit">
+		<unit load="true"	path="units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"/>
+		<unit load="true" 	path="units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1_husk"/>
+	</add>
+
+	<add from_db="true" 	path="units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2" type="unit">
+		<unit load="true"	path="units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"/>
+		<unit load="true" 	path="units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2_husk"/>
+	</add>
+
+	<add from_db="true" 	path="units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3" type="unit">
+		<unit load="true"	path="units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"/>
+		<unit load="true" 	path="units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3_husk"/>
+	</add>
+</table>

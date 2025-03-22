@@ -2,14 +2,14 @@ NPCRaycastWeaponBase.flashlight_blacklist = {
 	[Idstring("units/payday2/weapons/wpn_npc_sawnoff_shotgun/wpn_npc_sawnoff_shotgun"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_mp5_tactical/wpn_npc_mp5_tactical"):key()] = true,
 	[Idstring("units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper"):key()] = true,
+	[Idstring("units/payday2/weapons/wpn_npc_m14/wpn_npc_m14"):key()] = true,
 	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_svd/wpn_npc_svd"):key()] = true,
 	[Idstring("units/pd2_dlc_mad/weapons/wpn_npc_asval/wpn_npc_asval"):key()] = true,
 	[Idstring("units/pd2_dlc_spa/weapons/wpn_npc_svd_silenced/wpn_npc_svd_silenced"):key()] = true,
 	[Idstring("units/pd2_dlc_drm/weapons/wpn_npc_heavy_zeal_sniper/wpn_npc_heavy_zeal_sniper"):key()] = true,
 	[Idstring("units/pd2_dlc_uno/weapons/wpn_npc_smoke/wpn_npc_smoke"):key()] = true,
-	[Idstring("units/payday2/weapons/wpn_npc_m14/wpn_npc_m14"):key()] = true,
 	[Idstring("units/pd2_dlc_usm1/weapons/wpn_npc_dmr/wpn_npc_dmr"):key()] = true,
-	[Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle"):key()] = true,
+	[Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_deagle/wpn_npc_deagle"):key()] = true
 }
 
 Hooks:PostHook(NPCRaycastWeaponBase, "init", "eclipse_init", function(self)

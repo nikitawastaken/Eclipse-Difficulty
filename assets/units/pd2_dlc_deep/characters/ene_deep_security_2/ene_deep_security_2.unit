@@ -5,8 +5,9 @@
 
 	<dependencies>
 		<depends_on bnk="soundbanks/regular_vox" />
-		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />
-		<depends_on effect="effects/payday2/particles/character/flashlight_ss" />		
+		<depends_on bnk="soundbanks/npc_russian_mercenaries" />
+		<depends_on unit="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2" />
+		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
 	</dependencies>
 
 	<extensions>
@@ -88,8 +89,8 @@
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="CopBase" >
 			<var name="can_be_marked" value="true"/>
-			<var name="_tweak_table" value="security"/>
-			<var name="_default_weapon_id" value="c45"/>
+			<var name="_tweak_table" value="marshal_security"/>
+			<var name="_default_weapon_id" value="mp5"/>
 		</extension>
 		<extension name="inventory" class="CopInventory" />
 		<extension name="brain" class="CopBrain" />
@@ -97,6 +98,10 @@
 		<extension name="character_damage" class="CopDamage">
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
+			<var name="_head_gear_object" value="g_helmet_lod" />
+			<var name="_nr_head_gear_objects" value="11" />
+			<var name="_head_gear" value="units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2" />
+			<var name="_head_gear_decal_mesh" value="dm_helmet"/>
 			<var name="_death_sequence" value="kill_murky_flashlights" />
 		</extension>
 		<extension name="movement" class="CopMovement" >
