@@ -11,13 +11,13 @@ local helipad_spawn = {
 }
 local fueling_area_spawn1 = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local fueling_area_spawn2 = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
