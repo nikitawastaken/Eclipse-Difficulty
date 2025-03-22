@@ -3171,6 +3171,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.FBI_timed_group = { 0, 0, 0 }
 	self.besiege.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 	self.besiege.assault.groups.Army_timed_group = { 0, 0, 0 }
+	self.besiege.assault.groups.Bellmead_security = { 0, 0, 0 }
 
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
@@ -3182,6 +3183,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
 	self.besiege.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
 	self.besiege.recon.groups.Army_timed_group = { 0, 0, 0 }
+	self.besiege.recon.groups.Bellmead_security = { 0, 0, 0 }
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
@@ -3312,6 +3314,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.groups.FBI_timed_group = { 0, 0, 0 }
 	self.ponr.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
 	self.ponr.assault.groups.Army_timed_group = { 0, 0, 0 }
+	self.ponr.assault.groups.Bellmead_timed_group = { 0, 0, 0 }
 
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
@@ -3323,7 +3326,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups.FBI_timed_group = { 0, 0, 0 }
 	self.ponr.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
 	self.ponr.recon.groups.Army_timed_group = { 0, 0, 0 }
-
+	self.ponr.recon.groups.Bellmead_timed_group = { 0, 0, 0 }
+	
 	-- nuke captain
 	self.phalanx.spawn_chance = {
 		decrease = 0,
