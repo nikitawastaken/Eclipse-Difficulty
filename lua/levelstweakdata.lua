@@ -158,7 +158,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.rvd2.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
-    self.jolly.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
+	self.jolly.ai_unit_group_overrides = self.rvd1.ai_unit_group_overrides
 
 	-- SFPD
 	self.chas.ai_unit_group_overrides = {
