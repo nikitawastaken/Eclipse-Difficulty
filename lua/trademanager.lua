@@ -37,16 +37,22 @@ function TradeManager:set_trade_countdown(enabled)
 end
 
 function TradeManager:is_trading()
-	return (self._trading_hostage or self._hostage_trade_clbk or self._speaker_snd_event) and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3))
+	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
+	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
+	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < self._t
+	local is_first_assault = managers.groupai:state():_is_first_assault()
+	local is_recon_over = managers.groupai:state():_is_assault_active()
+	return (self._trading_hostage or self._hostage_trade_clbk or self._speaker_snd_event) and has_first_response_trades_delay_passed and not is_recon_over and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3))
 end
 
 function TradeManager:is_trade_allowed(t)
 	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
 	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
-	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
+	local is_first_assault = managers.groupai:state():_is_first_assault()
+	local is_recon_over = managers.groupai:state():_is_assault_active()
 
-	return Network:is_server() and not self._trading_hostage and not self._hostage_trade_clbk and has_first_response_trades_delay_passed and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and not managers.groupai:state():whisper_mode() and not self._speaker_snd_event and managers.groupai:state():hostage_count() > 0
+	return Network:is_server() and not self._trading_hostage and not self._hostage_trade_clbk and has_first_response_trades_delay_passed and not is_recon_over and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and not managers.groupai:state():whisper_mode() and not self._speaker_snd_event and managers.groupai:state():hostage_count() > 0
 end
 
 function TradeManager:update(t, dt)
@@ -64,9 +70,14 @@ function TradeManager:update(t, dt)
     self._downs_to_restore = self:get_downs_to_restore()
 	local is_trade_allowed = self:is_trade_allowed(t)
 	local is_auto_assault_ai_trade = self:update_auto_assault_ai_trade(dt, is_trade_allowed)
+	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
+	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
+	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
+	local is_first_assault = managers.groupai:state():_is_first_assault()
+	local is_recon_over = managers.groupai:state():_is_assault_active()
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
-		if not self._trading_hostage and not self._hostage_trade_clbk and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and managers.groupai:state():hostage_count() <= 0 and managers.groupai:state():bain_state() then
+		if not self._trading_hostage and not self._hostage_trade_clbk and has_first_response_trades_delay_passed and not is_recon_over and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and managers.groupai:state():hostage_count() <= 0 and managers.groupai:state():bain_state() then
 			local cable_tie_data = managers.player:has_special_equipment("cable_tie")
 
 			if cable_tie_data and Application:digest_value(cable_tie_data.amount, false) > 0 then

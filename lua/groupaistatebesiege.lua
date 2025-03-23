@@ -79,15 +79,6 @@ function GroupAIStateBesiege:_resource_trade_delay_assault_task()
 	end
 end
 
--- some getter & setter functions for synching
-function GroupAIStateBesiege:_is_first_assault()
-	return self._task_data.assault and self._task_data.assault.is_first
-end
-
-function GroupAIStateBesiege:_is_assault_active()
-	return self._task_data.assault and self._task_data.assault.active
-end
-
 -- Delay the first responders & first response trades (cause they happen unnaturaly early otherwise)
 function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 	if not self._ai_enabled then
@@ -101,6 +92,15 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 	end
 
 	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)
+end
+
+-- some helper functions
+function GroupAIStateBesiege:_is_first_assault()
+	return self._task_data.assault and self._task_data.assault.is_first
+end
+
+function GroupAIStateBesiege:_is_assault_active()
+	return self._task_data.assault and self._task_data.assault.active
 end
 
 function GroupAIStateBesiege:_first_response_trades_delay()

@@ -402,6 +402,10 @@ function PlayerManager:clbk_super_syndrome_respawn(data)
 	end
 end
 
+function PlayerManager:add_cable_ties(amount)
+	-- Dummy this out so players don't get cable ties from ammo pickups
+end
+
 -- Carry stacker start
 function PlayerManager:drop_carry(zipline_unit)
 	local carry_list = self:get_my_carry_data()
