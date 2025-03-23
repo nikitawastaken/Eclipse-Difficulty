@@ -7,6 +7,7 @@ local bellmead_response_heists = {
 	["corp"] = true,
 	["deep"] = true,
 }
+local has_bellmead_response = bellmead_response_heists[level_id]
 
 local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
@@ -1247,14 +1248,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	}
 	self.marshal_gunner.HEALTH_INIT = 72
 	self.marshal_gunner.headshot_dmg_mul = 2 -- 360 head health
-	self.marshal_gunner.autofire_move_speed_mul = 0.4
+	self.marshal_gunner.autofire_move_speed_mul = 0.5
 	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.marshal_gunner.chatter = self.presets.enemy_chatter.heavy_gunner
 	self.marshal_gunner.dodge = self.presets.dodge.heavy
-	self.marshal_gunner.shooting_death = false
 	self.marshal_gunner.spawn_sound_event = self._prefix_data_p1.heavy_swat() .. "_mov" --MOOOVE!!!
 	self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
 	self.marshal_gunner.kill_taunt = self._prefix_data_p1.heavy_swat() .. "_i03" --It's over you son of a bitch! You're done!
+	self.marshal_gunner.shooting_death = false
 	self.marshal_gunner.surrender = nil
 	self.marshal_gunner.suppression = nil
 	self.marshal_gunner.no_retreat = true
@@ -1265,13 +1266,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	-- Different radio chatter for Bellmead units
 	-- Unique voice set for Bellmead's heavy gunner
-	if bellmead_response_heists[level_id] then
-		self.marshal_gunner.speech_prefix_p1 = "l5d"
-		self.marshal_gunner.speech_prefix_p2 = nil
-		self.marshal_gunner.speech_prefix_count = nil
+	if has_bellmead_response then
 		self.marshal_security.radio_prefix = "fri_"
 		self.marshal_security.use_radio = "dsp_radio_russian"
 		self.marshal_marksman.use_radio = "dsp_radio_russian"
+		self.marshal_gunner.speech_prefix_p1 = "l5d"
+		self.marshal_gunner.speech_prefix_p2 = nil
+		self.marshal_gunner.speech_prefix_count = nil
 		self.marshal_gunner.use_radio = "dsp_radio_russian"
 	end
 
@@ -1387,8 +1388,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.city_shield_break.speech_prefix_count = 4
 		self.zeal_shield.speech_prefix_p2 = "d"
 		self.zeal_shield.speech_prefix_count = 4
-		self.marshal_gunner.speech_prefix_p2 = bellmead_response_heists[level_id] and nil or "d"
-		self.marshal_gunner.speech_prefix_count = bellmead_response_heists[level_id] and nil or 4
+		self.marshal_gunner.speech_prefix_p2 = has_bellmead_response and nil or "d"
+		self.marshal_gunner.speech_prefix_count = has_bellmead_response and nil or 4
 	end
 end)
 
