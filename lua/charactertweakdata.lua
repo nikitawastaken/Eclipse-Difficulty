@@ -274,7 +274,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
 
 	presets.weapon.marshal_security = based_on(presets.weapon.swat)
-	damage_multiplier(presets.weapon.security_mcmansion, 6 / 5)
+	damage_multiplier(presets.weapon.marshal_security, 6 / 5)
 
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
