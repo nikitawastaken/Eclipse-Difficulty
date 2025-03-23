@@ -79,6 +79,9 @@
 
 			<object 			enabled="true" name="'g_hat_lod3'" />
 			<object 			enabled="true" name="'g_hat_lod4'" />
+
+			<object 			enabled="true" name="'g_patches'" />
+			<object 			enabled="true" name="'g_patches_lod1'" />
 			
 			<object 			enabled="true" name="'g_star'" />
 			<object 			enabled="true" name="'g_star_lod1'" />
@@ -96,6 +99,12 @@
 
 			<object 			enabled="false" name="'g_hat_lod3'" />
 			<object 			enabled="false" name="'g_hat_lod4'" />
+
+			<object 			enabled="true" name="'g_patches'" />
+			<object 			enabled="true" name="'g_patches_lod1'" />
+
+			<object 			enabled="true" name="'g_patches_merc'" />
+			<object 			enabled="true" name="'g_patches_merc_lod1'" />
 			
 			<object 			enabled="false" name="'g_star'" />
 			<object 			enabled="false" name="'g_star_lod1'" />
@@ -155,14 +164,15 @@
 		
 			<run_sequence 		name="'marshal_gunner_2'" />
 		</sequence>
-		
-		<sequence editable_state="true" name="'deep_security_1'" once="true" triggable="true">
+
+		<sequence editable_state="true" name="'marshal_security_1'" once="true" triggable="true">
 			<set_variables 		has_torch="1" />	
-			
-			<run_sequence 		name="'material_merc'" />
 
 			<object 			enabled="true" name="'g_helmet_lod3'" />
 			<object 			enabled="true" name="'g_helmet_lod4'" />
+
+			<object 			enabled="true" name="'g_patches'" />
+			<object 			enabled="true" name="'g_patches_lod1'" />
 			
 			<object 			enabled="true" name="'g_gear_security'" />
 			<object 			enabled="true" name="'g_gear_security_lod1'" />		
@@ -170,6 +180,18 @@
 			<run_sequence 		name="'random_body'"/>
 			<run_sequence 		name="'random_headset'"/>
 			<run_sequence 		name="'random_head_gadget'"/>
+		</sequence>
+		
+		<sequence editable_state="true" name="'marshal_security_merc_1'" once="true" triggable="true">
+			<run_sequence 		name="'material_merc'" />
+			
+			<run_sequence 		name="'marshal_security_1'" />
+
+			<object 			enabled="false" name="'g_patches'" />
+			<object 			enabled="false" name="'g_patches_lod1'" />
+
+			<object 			enabled="true" name="'g_patches_merc'" />
+			<object 			enabled="true" name="'g_patches_merc_lod1'" />
 		</sequence>
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body'" triggable="true">

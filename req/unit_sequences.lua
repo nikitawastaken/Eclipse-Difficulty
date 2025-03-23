@@ -271,9 +271,9 @@ local M = {
 	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = { name = "marshal_gunner_merc_1", head = head_sequences.marshal_d },
 	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = { name = "marshal_gunner_2", head = head_sequences.marshal_d },
 	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = { name = "marshal_gunner_merc_2", head = head_sequences.marshal_d },
-	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "deep_security_1", head = head_sequences.marshal_c },
-	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "deep_security_1", head = head_sequences.marshal_c },
-	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "deep_security_1", head = head_sequences.marshal_c },
+	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_c },
+	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_c },
+	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_c },
 }
 
 return M
