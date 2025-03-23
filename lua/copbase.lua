@@ -61,7 +61,7 @@ function CopBase:_run_unit_sequences()
 				self._unit:damage():run_sequence_simple(light_sequence)
 			end
 		end
-	
+
 		local spawn_manager_ext = self._unit:spawn_manager()
 
 		local damage_ext = self._unit:character_damage()
