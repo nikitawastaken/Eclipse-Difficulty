@@ -3197,6 +3197,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		hox_2 = true,
 		firestarter_2 = true,
 		framing_frame_2 = true,
+        roberts = true,
 		dah = true,
 		rvd2 = true,
 		man = true,
