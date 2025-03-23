@@ -335,6 +335,18 @@
 				</object>
 			</lod_object>
 
+			<lod_object name="lod_hat_star">
+				<object name="g_hat_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_equipment" max_distance="1000" />
+					<material materials="mtr_equipment_lod_1" max_distance="1500" />
+					<material materials="mtr_equipment_lod_2" />
+				</object>
+				<object name="g_hat_lod4" 	enabled="false" lod="1" >
+					<material materials="mtr_equipment" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_equipment_lod_2" />
+				</object>
+			</lod_object>
+			
 			<lod_object name="lod_headset">
 				<object name="g_headset" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_head" max_distance="1000" />

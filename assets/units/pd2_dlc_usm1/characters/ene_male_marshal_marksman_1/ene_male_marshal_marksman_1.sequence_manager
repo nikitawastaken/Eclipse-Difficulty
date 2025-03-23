@@ -76,7 +76,10 @@
 
 			<object 			enabled="true" name="'g_hat_lod1'" />
 			<object 			enabled="true" name="'g_hat_lod2'" />
-	
+
+			<object 			enabled="true" name="'g_hat_lod3'" />
+			<object 			enabled="true" name="'g_hat_lod4'" />
+			
 			<object 			enabled="true" name="'g_star'" />
 			<object 			enabled="true" name="'g_star_lod1'" />
 		
@@ -91,6 +94,9 @@
 			
 			<run_sequence 		name="'marshal_marksman_1'" />
 
+			<object 			enabled="false" name="'g_hat_lod3'" />
+			<object 			enabled="false" name="'g_hat_lod4'" />
+			
 			<object 			enabled="false" name="'g_star'" />
 			<object 			enabled="false" name="'g_star_lod1'" />
 		</sequence>
