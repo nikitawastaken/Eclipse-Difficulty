@@ -3176,7 +3176,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
 	self.besiege.recon.groups.marshal_squad = { 0, 0, 0 }
-	self.besiege.recon.groups.custom_assault = { 0, 0, 0 }
+	self.besiege.recon.groups.custom_recon = { 0, 0, 0 }
 	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
@@ -3319,7 +3319,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
 	self.ponr.recon.groups.marshal_squad = { 0, 0, 0 }
-	self.ponr.recon.groups.custom_assault = { 0, 0, 0 }
+	self.ponr.recon.groups.custom_recon = { 0, 0, 0 }
 	self.ponr.recon.groups.snowman_boss = { 0, 0, 0 }
 	self.ponr.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
