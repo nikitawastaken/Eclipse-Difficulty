@@ -889,7 +889,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		report = true,
 	}
 
-    presets.enemy_chatter.heavy_gunner = {
+	presets.enemy_chatter.heavy_gunner = {
 		aggressive = true,
 		go_go = true,
 		contact = true,
@@ -1252,9 +1252,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_gunner.chatter = self.presets.enemy_chatter.heavy_gunner
 	self.marshal_gunner.dodge = self.presets.dodge.heavy
 	self.marshal_gunner.shooting_death = false
-    self.marshal_gunner.spawn_sound_event = self._prefix_data_p1.heavy_swat() .. "_mov" --MOOOVE!!!
+	self.marshal_gunner.spawn_sound_event = self._prefix_data_p1.heavy_swat() .. "_mov" --MOOOVE!!!
 	self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
-    self.marshal_gunner.kill_taunt = self._prefix_data_p1.heavy_swat() .. "_i03" --It's over you son of a bitch! You're done!
+	self.marshal_gunner.kill_taunt = self._prefix_data_p1.heavy_swat() .. "_i03" --It's over you son of a bitch! You're done!
 	self.marshal_gunner.surrender = nil
 	self.marshal_gunner.suppression = nil
 	self.marshal_gunner.no_retreat = true
@@ -1264,9 +1264,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "marshal_gunner")
 
 	-- Different radio chatter for Bellmead units
-    -- Unique voice set for Bellmead's heavy gunner
+	-- Unique voice set for Bellmead's heavy gunner
 	if bellmead_response_heists[level_id] then
-        self.marshal_gunner.speech_prefix_p1 = "l5d"
+		self.marshal_gunner.speech_prefix_p1 = "l5d"
 		self.marshal_gunner.speech_prefix_p2 = nil
 		self.marshal_gunner.speech_prefix_count = nil
 		self.marshal_security.radio_prefix = "fri_"
