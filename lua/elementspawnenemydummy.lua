@@ -18,6 +18,8 @@ local bellmead_response_heists = {
 	["corp"] = true,
 	["deep"] = true,
 }
+local has_marshal_response = marshal_response_heists[level_id]
+local has_bellmead_response = bellmead_response_heists[level_id]
 
 -- Map to correct incorrect faction spawns
 ElementSpawnEnemyDummy.faction_mapping = {
@@ -297,34 +299,34 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	-- Marshal Marksman
 	[("units/payday2/characters/ene_sniper_1/ene_sniper_1"):key()] = {
 		["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = 2,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = marshal_response_heists[level_id] and 1 or 0,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = bellmead_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = has_marshal_response and 1 or nil,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = has_bellmead_response and 1 or nil,
 	},
 	[("units/payday2/characters/ene_sniper_2/ene_sniper_2"):key()] = {
 		["units/payday2/characters/ene_sniper_2/ene_sniper_2"] = 2,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = marshal_response_heists[level_id] and 1 or 0,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = bellmead_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = has_marshal_response and 1 or nil,
+		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = has_bellmead_response and 1 or nil,
 	},
 	-- Marshal Gunner
 	[("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"):key()] = {
 		["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = marshal_response_heists[level_id] and 1 or 0,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = bellmead_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = has_marshal_response and 1 or nil,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = has_bellmead_response and 1 or nil,
 	},
 	[("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"):key()] = {
 		["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = marshal_response_heists[level_id] and 1 or 0,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = bellmead_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = has_marshal_response and 1 or nil,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = has_bellmead_response and 1 or nil,
 	},
 	[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = {
 		["units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = marshal_response_heists[level_id] and 1 or 0,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = bellmead_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = has_marshal_response and 1 or nil,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = has_bellmead_response and 1 or nil,
 	},
 	[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = {
 		["units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = marshal_response_heists[level_id] and 1 or 0,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = bellmead_response_heists[level_id] and 1 or 0,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = has_marshal_response and 1 or nil,
+		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = has_bellmead_response and 1 or nil,
 	},
 }
 
@@ -405,7 +407,7 @@ function ElementSpawnEnemyDummy:replace_enemy_name(name)
 	end
 end
 
-local unit_alternative_types = {
+ElementSpawnEnemyDummy.unit_alternative_types = {
 	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = "marshal",
 	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = "marshal",
 	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = "marshal",
@@ -421,21 +423,25 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 		return nil
 	end
 
-	local alternative_type
-	local type_active
-	local type_limit
-	local type_limit_reached
+	local alt_type, type_active, type_limit
 	local alternative_selector = WeightedSelector:new()
+	local special_units = managers.groupai:state()._special_units
+	local special_unit_spawn_limits = tweak_data.group_ai.special_unit_spawn_limits
+	local unit_alternative_types = self.unit_alternative_types
 	for alt_name, alt_weight in pairs(alternative_data) do
-		alternative_type = unit_alternative_types[alt_name] or nil
-		type_active = alternative_type and managers.groupai:state()._special_units[alternative_type] or {}
-		type_limit = alternative_type and tweak_data.group_ai.special_unit_spawn_limits[alternative_type]
+		alt_type = unit_alternative_types[alt_name] or nil
+		type_active = special_units[alt_type] and table.size(special_units[alt_type]) or 0
+		type_limit = special_unit_spawn_limits[alt_type] or math.huge
 
-		type_limit_reached = type_active and type_limit and table.size(type_active) >= type_limit
-
-		if not type_limit_reached then
+		if type_active < type_limit then
 			alternative_selector:add(alt_name, alt_weight)
 		end
+	end
+
+	if #alternative_selector._values < 1 then
+		Eclipse:warn("Unit alternative selector was empty")
+
+		return nil
 	end
 
 	return Idstring(alternative_selector:select())
