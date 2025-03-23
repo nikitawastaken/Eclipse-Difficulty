@@ -1244,7 +1244,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_gunner.chatter = self.presets.enemy_chatter.no_chatter
 	self.marshal_gunner.dodge = self.presets.dodge.heavy
 	self.marshal_gunner.shooting_death = false
-    self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
+	self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
 	self.marshal_gunner.surrender = nil
 	self.marshal_gunner.suppression = nil
 	self.marshal_gunner.no_retreat = true
