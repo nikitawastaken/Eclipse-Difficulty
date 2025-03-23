@@ -54,22 +54,26 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.inspire.icon_xy = { 11, 5 }
 
 	-- Forced Friendship
-	self.skills.triathlete[1].upgrades = { "cable_tie_quantity" }
-	self.skills.triathlete[2].upgrades = { "cable_tie_interact_speed_multiplier", "player_extra_hostages" }
+	self.skills.triathlete[1].upgrades = { "cable_tie_quantity", "cable_tie_interact_speed_multiplier" }
+	self.skills.triathlete[2].upgrades = { "player_extra_hostages" }
 
 	-- Stockholm Syndrome
 	self.skills.cable_guy[1].upgrades = { "player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier" }
 	self.skills.cable_guy[2].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts", "player_civilian_reviver" }
 	self.skills.cable_guy.icon_xy = { 3, 8 }
 
+	-- Joker
+	self.skills.joker[1].upgrades = { "player_convert_enemies_damage_multiplier_1", "player_convert_enemies", "player_convert_enemies_max_minions_1", "player_passive_convert_enemies_health_multiplier_1" }
+	self.skills.joker[2].upgrades = { "player_convert_enemies_damage_multiplier_2", "player_convert_enemies_interaction_speed_multiplier", "player_passive_convert_enemies_health_multiplier_2" }
+
 	-- Hostage Situation
-	self.skills.stockholm_syndrome[1].upgrades = { "team_damage_hostage_absorption" }
-	self.skills.stockholm_syndrome[2].upgrades = { "team_hostage_situation" }
+	self.skills.stockholm_syndrome[1].upgrades = { "team_resource_trading_ammo", "team_resource_trading_no_downs" }
+	self.skills.stockholm_syndrome[2].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault" }
 	self.skills.stockholm_syndrome.icon_xy = { 6, 7 }
 
 	-- Partners in Crime
-	self.skills.control_freak[1].upgrades = { "player_passive_convert_enemies_health_multiplier_1" }
-	self.skills.control_freak[2].upgrades = { "player_passive_convert_enemies_health_multiplier_2" }
+	self.skills.control_freak[1].upgrades = {  }
+	self.skills.control_freak[2].upgrades = {  }
 
 	-- Hostage Taker
 	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1", "player_hostage_min_sum_taker_1" }

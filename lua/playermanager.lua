@@ -386,6 +386,22 @@ function PlayerManager:get_max_grenades(grenade_id)
 	return math.ceil(max_amount)
 end
 
+-- Adapt a call for new params
+function PlayerManager:clbk_super_syndrome_respawn(data)
+	local trade_manager = managers.trade
+	self._clbk_super_syndrome_respawn = nil
+	local best_hostage = trade_manager:get_best_hostage(data.pos, true)
+	local criminal = trade_manager:get_criminal_by_peer(data.peer_id)
+
+	if criminal and best_hostage then
+		local pos = best_hostage.unit:position()
+		local rot = best_hostage.unit:rotation()
+
+		trade_manager:criminal_respawn(pos, rot, criminal)
+		trade_manager:begin_hostage_trade(pos, rot, best_hostage, true, true, true, true)
+	end
+end
+
 -- Carry stacker start
 function PlayerManager:drop_carry(zipline_unit)
 	local carry_list = self:get_my_carry_data()

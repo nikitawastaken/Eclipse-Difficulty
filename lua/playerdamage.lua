@@ -338,12 +338,12 @@ function PlayerDamage:restore_lives(lives_restored)
 		self:_send_set_revives()
 	end
 
-	Eclipse:log_chat("Revive restored, current revives counter: " .. Application:digest_value(self._revives, false) ..
-					"\ncurrent revive_health counter: " .. self._revive_health_i ..
-					"\ncurrent down_time counter: " .. self._down_time_i ..
-					"\ncurrent revive_health: " .. tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] ..
-					"\ncurrent down_time: " .. self._down_time
-	)
+	-- Eclipse:log_chat("Revive restored, current revives counter: " .. Application:digest_value(self._revives, false) ..
+	-- 				"\ncurrent revive_health counter: " .. self._revive_health_i ..
+	-- 				"\ncurrent down_time counter: " .. self._down_time_i ..
+	-- 				"\ncurrent revive_health: " .. tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] ..
+	-- 				"\ncurrent down_time: " .. self._down_time
+	-- )
 end
 
 function PlayerDamage:_regenerated(from_medic_bag)

@@ -2,6 +2,7 @@ Hooks:PostHook(TradeManager, "init", "eclipse_init", function(self)
     self._downs_to_restore = 0
     self._is_custody_trade = false
     self._resource_trades_done = 0 -- put a cap on resource trades so that players can't cheese the mechanic into >2min long assault breaks with hostage situation aced
+	self._nthcall = 0
 end)
 
 function TradeManager:reset_resource_trades_done()
@@ -26,7 +27,7 @@ end
 function TradeManager:set_trade_countdown(enabled)
 	self._trade_countdown = enabled
 
-	if not enabled then
+	if enabled then
 		self:reset_resource_trades_done()
 	end
 
@@ -36,11 +37,16 @@ function TradeManager:set_trade_countdown(enabled)
 end
 
 function TradeManager:is_trading()
-	return (self._trading_hostage or self._hostage_trade_clbk or self._speaker_snd_event) and (#self._criminals_to_respawn > 0 or self._downs_to_restore > 0)
+	return (self._trading_hostage or self._hostage_trade_clbk or self._speaker_snd_event) and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3))
 end
 
-function TradeManager:is_trade_allowed()
-	return Network:is_server() and not self._trading_hostage and not self._hostage_trade_clbk and (#self._criminals_to_respawn > 0 or (self._downs_to_restore > 0 and self._resource_trades_done < 3)) and not managers.groupai:state():whisper_mode() and not self._speaker_snd_event and managers.groupai:state():hostage_count() > 0
+function TradeManager:is_trade_allowed(t)
+	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
+	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
+	local is_first_assault = managers.groupai:state():_is_first_assault()
+	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
+
+	return Network:is_server() and not self._trading_hostage and not self._hostage_trade_clbk and has_first_response_trades_delay_passed and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and not managers.groupai:state():whisper_mode() and not self._speaker_snd_event and managers.groupai:state():hostage_count() > 0
 end
 
 function TradeManager:update(t, dt)
@@ -56,11 +62,11 @@ function TradeManager:update(t, dt)
 
 	self._is_custody_trade = #self._criminals_to_respawn > 0
     self._downs_to_restore = self:get_downs_to_restore()
-	local is_trade_allowed = self:is_trade_allowed()
+	local is_trade_allowed = self:is_trade_allowed(t)
 	local is_auto_assault_ai_trade = self:update_auto_assault_ai_trade(dt, is_trade_allowed)
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
-		if not self._trading_hostage and not self._hostage_trade_clbk and (#self._criminals_to_respawn > 0 or self._downs_to_restore > 0) and managers.groupai:state():hostage_count() <= 0 and managers.groupai:state():bain_state() then
+		if not self._trading_hostage and not self._hostage_trade_clbk and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and managers.groupai:state():hostage_count() <= 0 and managers.groupai:state():bain_state() then
 			local cable_tie_data = managers.player:has_special_equipment("cable_tie")
 
 			if cable_tie_data and Application:digest_value(cable_tie_data.amount, false) > 0 then
@@ -152,8 +158,6 @@ function TradeManager:update(t, dt)
 end
 
 function TradeManager:clbk_begin_hostage_trade_dialog(i)
-	self._hostage_trade_clbk = nil
-
 	local char_sync_index = i
 
 	if i == 1 then
@@ -213,8 +217,6 @@ function TradeManager:clbk_begin_hostage_trade_dialog(i)
 end
 
 function TradeManager:clbk_begin_hostage_trade()
-	self._hostage_trade_clbk = nil
-
 	local possible_criminals, is_instant_trade = self:get_possible_criminals()
 	local rescuing_criminal = possible_criminals[math.random(1, #possible_criminals)]
 	rescuing_criminal = managers.groupai:state():all_criminals()[rescuing_criminal]
@@ -283,20 +285,21 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 	end
 end
 
-function TradeManager:on_hostage_traded(pos, rotation)
+function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 	print("RC: Traded hostage!!")
 
 	if self._trade_in_progress then
 		return
 	end
 
-	if self._is_custody_trade then
+	if is_custody_trade then
 		if self._criminal_respawn_clbk then
 			return
 		end
 
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true
+		self._hostage_trade_clbk = nil
 		local respawn_t = self._t + 2
 		local clbk_id = "Respawn_criminal_on_trade"
 		self._criminal_respawn_clbk = clbk_id
@@ -306,6 +309,7 @@ function TradeManager:on_hostage_traded(pos, rotation)
 		self._resource_trades_done = self._resource_trades_done + 1
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true
+		self._hostage_trade_clbk = nil
 		self:trade_restore_resources()
 	end
 end
@@ -313,13 +317,57 @@ end
 function TradeManager:trade_restore_resources()
 	self._trading_hostage = nil
 	self._trade_in_progress = false
+	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
+	local has_trading_ammo_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_ammo")
+	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
+	local is_recon_over = managers.groupai:state():_is_assault_active()
 
     for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
-        u_data.unit:character_damage():restore_lives(1)
-        local peer = managers.network:session():peer_by_unit(u_data.unit)
-        peer:send_queued_sync("finish_trade")
-        Eclipse:log("Hostage traded, restoring a down")
+        --Eclipse:log("Hostage traded, restoring a down")
+		local unit = u_data and u_data.unit
+
+        unit:character_damage():restore_lives(1)
+
+		-- resource trading for ammo upgrade
+		if has_trading_ammo_upgrade then
+			local inventory = unit:inventory()
+
+			if not unit:character_damage():dead() and inventory then
+				local available_selections = {}
+
+				for i, weapon in pairs(inventory:available_selections()) do
+					if inventory:is_equipped(i) then
+						table.insert(available_selections, 1, weapon)
+					else
+						table.insert(available_selections, weapon)
+					end
+				end
+
+				for _, weapon in ipairs(available_selections) do
+					if not self._weapon_category or self._weapon_category == weapon.unit:base():weapon_tweak_data().categories[1] then
+						weapon.unit:base():add_ammo(amount_of_pickups, false)
+						managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
+
+						unit:sound():play("pickup_ammo_health_boost", nil, true)
+					end
+				end
+			end
+		end
+
+		-- resource trading for assault delay upgrade
+		if has_trading_delay_upgrade then
+			managers.groupai:state():_resource_trade_delay_assault_task()
+		end
+
+        local peer = managers.network:session():peer_by_unit(unit)
+        peer:send_queued_sync("finish_trade", is_recon_over)
     end
 
-	managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_restored") } )
+	if has_trading_delay_upgrade and not is_recon_over then
+		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_ammo_restored_assault_delay") } )
+	elseif has_trading_ammo_upgrade then
+		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_ammo_restored") } )
+	else
+		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_restored") } )
+	end
 end

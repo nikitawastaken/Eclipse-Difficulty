@@ -25,25 +25,87 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 	_begin_assault_task_original(self, ...)
 
 	if self._hostage_headcount > 0 then
-		local assault_task = self._task_data.assault
-		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, assault_task.was_first)
-		assault_task.phase_end_t = self._t + anticipation_duration
+		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, self._task_data.assault.was_first)
+		self._task_data.assault.phase_end_t = self._t + anticipation_duration
 	end
 end
 
+-- Make hostage count affect hesitation delay
 Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
-	local assault_task = self._task_data.assault
 	if self._hostage_headcount > 0 then
 		local hesitation_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.hostage_hesitation_delay)
-		local hostage_situation = managers.player:upgrade_value("team", "hostage_situation", 0)
 		local hostage_multiplier = math.clamp(self._hostage_headcount, 1, 4)
-		assault_task.is_hesitating = true
-		if assault_task.next_dispatch_t then
-			assault_task.voice_delay = assault_task.next_dispatch_t - self._t
-			assault_task.next_dispatch_t = assault_task.next_dispatch_t + (hesitation_delay + hostage_situation) * hostage_multiplier
+		self._task_data.assault.is_hesitating = true
+		if self._task_data.assault.next_dispatch_t then
+			self._task_data.assault.voice_delay = self._task_data.assault.next_dispatch_t - self._t
+			self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + hesitation_delay * hostage_multiplier
 		end
 	end
+
 end)
+
+-- call out delay voiceline
+-- modified from _upd_assault_task
+Hooks:PostHook(GroupAIStateBesiege, "_upd_recon_tasks", "eclipse__upd_recon_tasks", function(self)
+    if self._task_data.assault.is_hesitating and self._task_data.assault.voice_delay and self._task_data.assault.voice_delay < self._t then
+        if self._hostage_headcount > 0 then
+            local best_group = nil
+
+            for _, group in pairs(self._groups) do
+                --if possible we want retiring enemies to call for HRT but it's unlikely
+                if not best_group or group.objective.type == "retire" then
+                    best_group = group
+                elseif best_group.objective.type ~= "recon_area" and group.objective.type ~= "retire" then
+                    best_group = group
+                end
+            end
+
+            if best_group and self:_voice_delay_assault(best_group) then
+                self._task_data.assault.is_hesitating = nil
+            end
+        else
+            self._task_data.assault.is_hesitating = nil
+        end
+    end
+end)
+
+-- Resource trading during recon
+function GroupAIStateBesiege:_resource_trade_delay_assault_task()
+	local assault_delay = managers.player:team_upgrade_value("player", "resource_trading_assault_delay", 0)
+	local assault_delay_balance_mul = self:_get_balancing_multiplier_players_only(tweak_data.upgrades.resource_trade_assault_delay_balance_multiplier)
+	if self._task_data.assault.next_dispatch_t then
+		self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + assault_delay * assault_delay_balance_mul
+		--Eclipse:log_chat("Hostage traded, assault has been delayed until: " .. self._task_data.assault.next_dispatch_t)
+	end
+end
+
+-- some getter & setter functions for synching
+function GroupAIStateBesiege:_is_first_assault()
+	return self._task_data.assault and self._task_data.assault.is_first
+end
+
+function GroupAIStateBesiege:_is_assault_active()
+	return self._task_data.assault and self._task_data.assault.active
+end
+
+-- Delay the first responders & first response trades (cause they happen unnaturaly early otherwise)
+function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
+	if not self._ai_enabled then
+		return
+	end
+
+	if not self._enemy_weapons_hot then
+		self._task_data.assault.disabled = nil
+		self._task_data.assault.next_dispatch_t = self._t + (self._tweak_data.first_responders_delay_per_map[Eclipse.utils.level_id()] or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
+		self._task_data.assault.first_response_trades_delay = self._task_data.assault.next_dispatch_t / 2
+	end
+
+	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)
+end
+
+function GroupAIStateBesiege:_first_response_trades_delay()
+	return (self._task_data.assault and self._task_data.assault.first_response_trades_delay) or 0
+end
 
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
