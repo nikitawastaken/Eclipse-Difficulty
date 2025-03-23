@@ -1228,6 +1228,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_marksman.tags = {
 		"law",
 		"special",
+        "sniper",
 		"marshal",
 	}
 
