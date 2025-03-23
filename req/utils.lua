@@ -62,4 +62,56 @@ function M.diff_groups()
 	return normal, hard, eclipse
 end
 
+function M.set_diff_groups(group)
+	group = string.lower(tostring(group))
+
+	local normal, hard, eclipse, enabled
+	if group == "disable" then
+		normal = false
+		hard = false
+		eclipse = false
+		enabled = false
+	elseif group == "normal" then
+		normal = true
+		hard = false
+		eclipse = false
+	elseif group == "normal_above" then
+		normal = true
+		hard = true
+		eclipse = true
+	elseif group == "hard" then
+		normal = false
+		hard = true
+		eclipse = false
+	elseif group == "hard_below" then
+		normal = true
+		hard = true
+		eclipse = false
+	elseif group == "hard_above" then
+		normal = false
+		hard = true
+		eclipse = true
+	elseif group == "eclipse" then
+		normal = false
+		hard = false
+		eclipse = true
+	else
+		Eclipse:warn(string.format("Function set_diff_groups received invalid argument %s", group))
+
+		return nil
+	end
+
+	return {
+		enabled = enabled,
+		difficulty_easy = normal,
+		difficulty_normal = normal,
+		difficulty_hard = normal,
+		difficulty_overkill = hard,
+		difficulty_overkill_145 = hard,
+		difficulty_easy_wish = eclipse,
+		difficulty_overkill_290 = eclipse,
+		difficulty_sm_wish = eclipse,
+	}
+end
+
 return M
