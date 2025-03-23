@@ -40,15 +40,6 @@ CopBase.unit_sequence_mapping = deep_clone(unit_sequence_mapping)
 function CopBase:_run_unit_sequences()
 	local name = self._unit:name():key()
 
-	local light_sequence = "enable_light"
-
-	-- Enable a flashlight if the level has flashlights enabled
-	if managers.game_play_central and managers.game_play_central:flashlights_on() then
-		if self._unit:damage():has_sequence(light_sequence) then
-			self._unit:damage():run_sequence_simple(light_sequence)
-		end
-	end
-
 	local unit_sequence = self.unit_sequence_mapping[name]
 
 	-- Run the initial sequence to enable pouches, helmets etc.
@@ -62,6 +53,15 @@ function CopBase:_run_unit_sequences()
 			end
 		end
 
+		local light_sequence = "enable_light"
+
+		-- Enable a flashlight if the level has flashlights enabled
+		if managers.game_play_central and managers.game_play_central:flashlights_on() then
+			if self._unit:damage():has_sequence(light_sequence) then
+				self._unit:damage():run_sequence_simple(light_sequence)
+			end
+		end
+	
 		local spawn_manager_ext = self._unit:spawn_manager()
 
 		local damage_ext = self._unit:character_damage()
