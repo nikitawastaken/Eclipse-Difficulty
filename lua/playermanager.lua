@@ -917,7 +917,7 @@ function PlayerManager:add_cable_ties(amount)
 end
 
 -- Players receive penalties when leaving custody
-Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function (self)
+Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function(self)
 	if self._respawn then
 		local player_unit = managers.player:player_unit()
 		local ammo_confiscated = tweak_data.player.damage.custody_ammo_confiscated
@@ -936,6 +936,5 @@ Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function (
 				player_unit:character_damage():change_health(-health_drained)
 			end
 		end
-
 	end
 end)
