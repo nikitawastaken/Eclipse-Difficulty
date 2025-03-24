@@ -201,14 +201,15 @@ return {
 	[103595] = bellmead_merc,
 	--Update turret dozer filters to include benellidozer
 	[102783] = enemy_filter_dozers,
---[[ 	DON'T DESPAWN THOSE UNITS, PLEASEEEEE! THEY ARE IMPORTANT!
+	--[[ 	DON'T DESPAWN THOSE UNITS, PLEASEEEEE! THEY ARE IMPORTANT!
 	[103639] = enemy_filter_dozers,
 	[103640] = enemy_filter_dozers,
 	[103641] = enemy_filter_dozers,
 	[103642] = enemy_filter_dozers,
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
-]]--
+]]
+	--
 	-- spawn point delays
 	[102820] = lab_spawn,
 	[102784] = elevator_spawn,
