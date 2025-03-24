@@ -95,7 +95,7 @@ return {
 	[100377] = sniper_trigger_times,
 	-- Spawn group delays
 	-- The Dragon Heist is probably one of the less offensive revival era heists in terms of its spawn group distribution, but some improvements could definitely be made to improve their flow.
-	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents). 
+	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents).
 	-- Spawn groups that rappel directly onto the street/right next to the tea shop have also been slowed down and restricted to make them less oppressive.
 	-- Alleyway and front spawns are slower to improve pacing during early assaults.
 	[102713] = front_spawn,

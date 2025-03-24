@@ -132,7 +132,7 @@ return {
 		},
 	},
 	-- Spawn group delays
-	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed. 
+	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
 	-- Originally the spawns were nothing to write home about, so I had to come up with my own delays.
 	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.
 	-- Window spawns are much slower too, having enemies spawn right next to you is pretty annoying.
