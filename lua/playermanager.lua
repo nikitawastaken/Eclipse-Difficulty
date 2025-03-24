@@ -386,26 +386,6 @@ function PlayerManager:get_max_grenades(grenade_id)
 	return math.ceil(max_amount)
 end
 
--- Adapt a call for new params
-function PlayerManager:clbk_super_syndrome_respawn(data)
-	local trade_manager = managers.trade
-	self._clbk_super_syndrome_respawn = nil
-	local best_hostage = trade_manager:get_best_hostage(data.pos, true)
-	local criminal = trade_manager:get_criminal_by_peer(data.peer_id)
-
-	if criminal and best_hostage then
-		local pos = best_hostage.unit:position()
-		local rot = best_hostage.unit:rotation()
-
-		trade_manager:criminal_respawn(pos, rot, criminal)
-		trade_manager:begin_hostage_trade(pos, rot, best_hostage, true, true, true, true)
-	end
-end
-
-function PlayerManager:add_cable_ties(amount)
-	-- Dummy this out so players don't get cable ties from ammo pickups
-end
-
 -- Carry stacker start
 function PlayerManager:drop_carry(zipline_unit)
 	local carry_list = self:get_my_carry_data()
@@ -915,3 +895,47 @@ Hooks:PostHook(PlayerManager, "set_player_state", "eclipse_pm_set_player_state",
 	end
 end)
 -- Carry stacker end
+
+-- Adapt a call for new params
+function PlayerManager:clbk_super_syndrome_respawn(data)
+	local trade_manager = managers.trade
+	self._clbk_super_syndrome_respawn = nil
+	local best_hostage = trade_manager:get_best_hostage(data.pos, true)
+	local criminal = trade_manager:get_criminal_by_peer(data.peer_id)
+
+	if criminal and best_hostage then
+		local pos = best_hostage.unit:position()
+		local rot = best_hostage.unit:rotation()
+
+		trade_manager:criminal_respawn(pos, rot, criminal)
+		trade_manager:begin_hostage_trade(pos, rot, best_hostage, true, true, true, true)
+	end
+end
+
+function PlayerManager:add_cable_ties(amount)
+	-- Dummy this out so players don't get cable ties from ammo pickups
+end
+
+-- Players receive penalties when leaving custody
+Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function (self)
+	if self._respawn then
+		local player_unit = managers.player:player_unit()
+		local ammo_confiscated = tweak_data.player.damage.custody_ammo_confiscated
+		local health_drained = player_unit:character_damage():_max_health() * (1 - tweak_data.player.damage.custody_health_drained)
+
+		if player_unit then
+			if ammo_confiscated then
+				local first_base_ext = player_unit:inventory():unit_by_selection(1):base()
+				local second_base_ext = player_unit:inventory():unit_by_selection(2):base()
+
+				first_base_ext:remove_ammo_from_pool(ammo_confiscated)
+				second_base_ext:remove_ammo_from_pool(ammo_confiscated)
+			end
+
+			if health_drained then
+				player_unit:character_damage():change_health(-health_drained)
+			end
+		end
+
+	end
+end)
