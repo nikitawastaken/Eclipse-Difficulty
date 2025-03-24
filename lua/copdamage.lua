@@ -34,11 +34,6 @@ Hooks:PostHook(CopDamage, "init", "eclipse_init", function(self)
 	end
 end)
 
--- Default joker damage reduction
-Hooks:PostHook(CopDamage, "convert_to_criminal", "hits_convert_to_criminal", function(self)
-	self._damage_reduction_multiplier = self._damage_reduction_multiplier * 0.5
-end)
-
 -- Fixed critical hit mul and additional crit damage upgrade
 function CopDamage:roll_critical_hit(attack_data)
 	if not self:can_be_critical(attack_data) or math.random() >= managers.player:critical_hit_chance() then

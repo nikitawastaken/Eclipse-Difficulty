@@ -194,6 +194,21 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "hits_hostage_killed", functi
 	end
 end)
 
+-- Balancing multiplier for players only (used for hostage situation aced)
+function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
+	local nr_players = 0
+
+	for u_key, u_data in pairs(self:all_player_criminals()) do
+		if not u_data.status then
+			nr_players = nr_players + 1
+		end
+	end
+
+	nr_players = math.clamp(nr_players, 1, 4)
+
+	return balance_multipliers[nr_players]
+end
+
 -- Delay spawn points when enemies die close to them
 Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregistered", function(self, unit)
 	if Network:is_client() or not unit:character_damage():dead() then

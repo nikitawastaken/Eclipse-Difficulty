@@ -96,6 +96,43 @@ function BaseInteractionExt:can_interact(player)
 	return managers.player:has_special_equipment(self._tweak_data.special_equipment)
 end
 
+-- Hostage resource trade interaction
+Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", function(self, player)
+	if not self:can_interact(player) then
+		return
+	end
+
+	if self._tweak_data.sound_event then
+		player:sound():play(self._tweak_data.sound_event)
+	end
+
+	if self._unit:damage() and self._unit:damage():has_sequence("interact") then
+		self._unit:damage():run_sequence_simple("interact")
+	end
+
+	if self.tweak_data == "hostage_trade" then
+		self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
+
+		if managers.blackmarket:equipped_mask().mask_id == tweak_data.achievement.relation_with_bulldozer.mask then
+			managers.achievment:award_progress(tweak_data.achievement.relation_with_bulldozer.stat)
+		end
+
+		managers.statistics:trade({
+			name = self._unit:base()._tweak_table
+		})
+	elseif self.tweak_data == "hostage_trade_resources" then
+		self._unit:brain():on_trade(player:position(), player:rotation(), true, false)
+
+		if managers.blackmarket:equipped_mask().mask_id == tweak_data.achievement.relation_with_bulldozer.mask then
+			managers.achievment:award_progress(tweak_data.achievement.relation_with_bulldozer.stat)
+		end
+
+		managers.statistics:trade({
+			name = self._unit:base()._tweak_table
+		})
+	end
+end)
+
 -- Carry stacker start
 Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext", function(self, player)
 	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")

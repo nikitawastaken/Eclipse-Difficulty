@@ -70,11 +70,13 @@
 				<post :hook_id="explosionmanager"/>
 				<post :hook_id="killzonemanager"/>
 				<post :hook_id="firemanager"/>
+				<post :hook_id="trademanager"/>
 				<post :hook_id="hudmanagerpd2"/>
 			</group>
 
 			<group :hook_id="network/">
 				<post :hook_id="base/networkmanager"/>
+				<post :hook_id="base/handlers/connectionnetworkhandler"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
 				<post :hook_id="base/basenetworksession"/>
 				<post :hook_id="base/networkpeer"/>
@@ -127,6 +129,7 @@
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
+				<post :hook_id="contourext"/>
 
 				<group :hook_id="civilians/">
 					<group :hook_id="logics/">
@@ -201,6 +204,7 @@
 				<group :hook_id="equipment/">
 					<post :hook_id="sentry_gun/sentrygunbase"/>
 					<post :hook_id="ammo_bag/ammobagbase"/>
+					<post :hook_id="doctor_bag/doctorbagbase"/>
 					<post :hook_id="ecm_jammer/ecmjammerbase"/>
 					<post :hook_id="first_aid_kit/firstaidkitbase"/>
 				</group>

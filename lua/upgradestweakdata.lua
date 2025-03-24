@@ -133,6 +133,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.tea_cookies.multipro2 = "25%"
 	self.skill_descs.tea_cookies.multipro3 = "10"
 
+	-- Keepers
+	self.values.doctor_bag.amount_increase[1] = 1
+	self.skill_descs.medic_2x.multipro = "1"
+
 	-- Inspire
 	self.morale_boost_speed_bonus = 1.3
 	self.morale_boost_reload_speed_bonus = 1.3
@@ -146,7 +150,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- FFriendship
 	self.definitions.player_extra_hostages = {
 		category = "feature",
-		name_id = "menu_shotgun_extra_hostages",
+		name_id = "menu_player_extra_hostages",
 		upgrade = {
 			category = "player",
 			upgrade = "extra_hostages",
@@ -154,36 +158,68 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.extra_hostages = { 2 }
+	self.values.cable_tie.interact_speed_multiplier[1] = 0.75
 	self.skill_descs.triathlete.multibasic = "4"
-	self.skill_descs.triathlete.multipro = "2"
-	self.skill_descs.triathlete.multipro2 = "75%"
+	self.skill_descs.triathlete.multibasic2 = "25%"
+	self.skill_descs.triathlete.multipro = "33%"
 
 	-- Confident
 	self.skill_descs.cable_guy.multipro = "50%"
 
-	-- Parterns in Crime
-	self.values.player.passive_convert_enemies_health_multiplier = { 0.20, 0.10 }
-	self.skill_descs.control_freak.multibasic3 = "80%"
-	self.skill_descs.control_freak.multipro4 = "10%"
+	-- Joker
+	self.values.player.passive_convert_enemies_health_multiplier = { 0.5, 0.25 }
+	self.skill_descs.joker.multibasic = "35%"
+	self.skill_descs.joker.multibasic2 = "50%"
+	self.skill_descs.joker.multipro = "25%"
+	self.skill_descs.joker.multipro2 = "65%"
 
 	-- Hostage Situation
-	self.definitions.team_hostage_situation = {
-		category = "feature",
-		name_id = "hostage_situation",
+	self.definitions.team_resource_trading_ammo = {
+		category = "team",
+		name_id = "resource_trading_ammo",
 		upgrade = {
-			category = "team",
-			upgrade = "hostage_situation",
+			category = "player",
+			upgrade = "resource_trading_ammo",
 			value = 1,
 		},
 	}
-	self.values.team.hostage_situation = { 4 }
-	self.values.team.damage = {
-		hostage_absorption = { 0.2 },
-		hostage_absorption_limit = 4,
+	self.values.team.player.resource_trading_ammo = { 4 }
+	self.definitions.team_resource_trading_assault_delay = {
+		category = "team",
+		name_id = "resource_trading_assault_delay",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_assault_delay",
+			value = 1,
+		},
 	}
-	self.skill_descs.stockholm_syndrome.multibasic = "2"
-	self.skill_descs.stockholm_syndrome.multipro = "4"
-	self.skill_descs.stockholm_syndrome.multipro2 = "4"
+	self.values.team.player.resource_trading_assault_delay = { 10 }
+	self.resource_trade_assault_delay_balance_multiplier = { 2, 1, 1, 1 }
+	self.values.team.player.resource_trading_no_downs = { true }
+	self.definitions.team_resource_trading_no_downs = {
+		category = "team",
+		name_id = "resource_trading_no_downs",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_no_downs",
+			value = 1,
+		},
+	}
+	self.values.team.player.resource_trading_before_first_assault = { true }
+	self.definitions.team_resource_trading_before_first_assault = {
+		category = "team",
+		name_id = "resource_trading_before_first_assault",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_before_first_assault",
+			value = 1,
+		},
+	}
+	self.skill_descs.stockholm_syndrome.multibasic = "4"
+	self.skill_descs.stockholm_syndrome.multipro = "10"
+	self.skill_descs.stockholm_syndrome.multipro2 = "doubled"
+
+	-- Parterns in Crime
 
 	-- Hostage Taker
 	self.values.player.hostage_min_sum_taker = { 1, 1 }

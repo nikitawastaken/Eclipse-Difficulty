@@ -166,3 +166,38 @@ function ContourSwapBase:init(unit)
 	self._unit = unit
 	self._is_in_original_material = true
 end
+
+
+function CopBase:save(save_data)
+	local my_save_data = {}
+
+	if self._unit:interaction() and (self._unit:interaction().tweak_data == "hostage_trade" or self._unit:interaction().tweak_data == "hostage_trade_resources") then
+		my_save_data.is_hostage_trade = true
+	elseif self._unit:interaction() and self._unit:interaction().tweak_data == "hostage_convert" then
+		my_save_data.is_hostage_convert = true
+	end
+
+	local buffs = {}
+
+	for name, buff_list in pairs(self._buffs) do
+		buffs[name] = {
+			_total = buff_list._total
+		}
+	end
+
+	if next(buffs) then
+		my_save_data.buffs = buffs
+	end
+
+	if self._tweak_table ~= self._original_tweak_table then
+		my_save_data.tweak_name_swap = self._tweak_table
+	end
+
+	if self._stats_name ~= self._original_stats_name then
+		my_save_data.stats_name_swap = self._stats_name
+	end
+
+	if next(my_save_data) then
+		save_data.base = my_save_data
+	end
+end

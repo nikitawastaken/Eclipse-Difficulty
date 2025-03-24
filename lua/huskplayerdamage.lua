@@ -33,3 +33,8 @@ function HuskPlayerDamage:_send_damage_to_owner(attack_data)
 		managers.job:set_memory("trophy_flawless", true, false)
 	end
 end
+
+-- On demand down restore
+function HuskPlayerDamage:restore_lives(lives_restored)
+	self._revives = math.min(self._revives_max, self._revives + lives_restored)
+end

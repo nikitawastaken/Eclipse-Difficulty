@@ -135,12 +135,6 @@ function PlayerDamage:_calc_health_damage(attack_data)
 	return health_subtracted
 end
 
--- Add an upgrade that gives increased bleedout timer
-Hooks:PostHook(PlayerDamage, "_regenerated", "sh__regenerated", function(self)
-	self._down_time_i = 0
-	self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)
-end)
-
 function PlayerDamage:revive(silent)
 	local was_bleedout = self._bleed_out
 
@@ -216,7 +210,7 @@ function PlayerDamage:revive(silent)
 	end
 
 	local player_damage_tweak = tweak_data.player.damage
-	self._down_time = math.max(player_damage_tweak.DOWNED_TIME_MIN, player_damage_tweak.DOWNED_TIME - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i)
+	self._down_time = math.max(player_damage_tweak.DOWNED_TIME_MIN, (player_damage_tweak.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i)
 end
 
 --Tear gas damage slowly scales when the player is exposed to it
@@ -329,4 +323,46 @@ function PlayerDamage:is_friendly_fire(unit)
 		return true
 	end
 	return false
+end
+
+-- On demand down restore
+function PlayerDamage:restore_lives(lives_restored)
+	self._revives = Application:digest_value(math.min(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), Application:digest_value(self._revives, false) + lives_restored), true)
+	self._revive_health_i = math.max(self._revive_health_i - lives_restored, 1)
+	self._down_time_i = math.max(self._down_time_i - lives_restored, 0)
+	self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, (tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i)
+
+	if self._revives == self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0) then
+		self:_send_set_revives(true)
+	else
+		self:_send_set_revives()
+	end
+
+	-- Eclipse:log_chat("Revive restored, current revives counter: " .. Application:digest_value(self._revives, false) ..
+	-- 				"\ncurrent revive_health counter: " .. self._revive_health_i ..
+	-- 				"\ncurrent down_time counter: " .. self._down_time_i ..
+	-- 				"\ncurrent revive_health: " .. tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] ..
+	-- 				"\ncurrent down_time: " .. self._down_time
+	-- )
+end
+
+function PlayerDamage:_regenerated(from_medic_bag)
+	self:set_health(self:_max_health())
+	self:_send_set_health()
+	self:_set_health_effect()
+
+	self._said_hurt = false
+
+	-- Medic bags restore only one down
+	if from_medic_bag then
+		self:restore_lives(1)
+	else
+		self._revives = Application:digest_value(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), true)
+		self._revive_health_i = 1
+		self._down_time_i = 0
+		self._down_time = tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0) -- an upgrade that increases bleedout timer
+		self:_send_set_revives(true)
+	end
+
+	managers.environment_controller:set_last_life(false)
 end
