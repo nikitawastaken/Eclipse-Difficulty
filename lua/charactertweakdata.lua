@@ -1250,9 +1250,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.marshal_gunner.chatter = self.presets.enemy_chatter.heavy_gunner
 	self.marshal_gunner.dodge = self.presets.dodge.heavy
-	self.marshal_gunner.spawn_sound_event = has_bellmead_response and "l5d_mov" or self._prefix_data_p1.heavy_swat() .. "_mov" --MOOOVE!!!
+	self.marshal_gunner.spawn_sound_event = has_bellmead_response and "l5d_mov" or "l2d_mov" --MOOOVE!!!
 	self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
-	self.marshal_gunner.kill_taunt = has_bellmead_response and "l5d_i03" or self._prefix_data_p1.heavy_swat() .. "_i03" --It's over you son of a bitch! You're done!
+	self.marshal_gunner.kill_taunt = has_bellmead_response and "l5d_i03" or "l2d_i03" --It's over you son of a bitch! You're done!
 	self.marshal_gunner.shooting_death = false
 	self.marshal_gunner.surrender = nil
 	self.marshal_gunner.suppression = nil
@@ -1383,9 +1383,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.city_shield_break.speech_prefix_count = 4
 		self.zeal_shield.speech_prefix_p2 = "d"
 		self.zeal_shield.speech_prefix_count = 4
-		self.marshal_gunner.speech_prefix_p1 = has_bellmead_response and "l5d" or "l"
-		self.marshal_gunner.speech_prefix_p2 = has_bellmead_response and nil or "d"
-		self.marshal_gunner.speech_prefix_count = has_bellmead_response and nil or 4
+		self.marshal_gunner.speech_prefix_p1 = has_bellmead_response and "l5d" or "l2d"
+		self.marshal_gunner.speech_prefix_p2 = nil
+		self.marshal_gunner.speech_prefix_count = nil
 	end
 end)
 
