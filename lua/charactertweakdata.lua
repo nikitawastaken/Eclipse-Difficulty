@@ -242,7 +242,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.fbi = based_on(presets.weapon.cop)
 	damage_multiplier(presets.weapon.fbi, 7 / 5)
-	
+
 	presets.weapon.swat = based_on(presets.weapon.base)
 
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {

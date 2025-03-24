@@ -29,24 +29,25 @@ local us_soldier = {
 local army_dozer = {
 	enemy = overkill_and_above and us_soldier_tank,
 }
-]]--
+]]
+--
 local taser_spawn = {
 	enemy = taser,
 }
 
 local ambush_chance = {
-    chance = normal and 45 or hard and 70 or 100
+	chance = normal and 45 or hard and 70 or 100,
 }
 
 return {
-    [101949] = {
+	[101949] = {
 		ponr = {
 			length = 60,
 			player_mul = { 2, 1.5, 1, 1 },
 		},
-        on_executed = {
+		on_executed = {
 			{ id = 101952, remove = true },
-            { id = 101955, remove = true },
+			{ id = 101955, remove = true },
 		},
 	},
 	-- restore the bulldozer that drops from the chopper on higher diffs
@@ -56,7 +57,7 @@ return {
 		},
 	},
 	-- loop the chopper
-    [100022] = {
+	[100022] = {
 		on_executed = {
 			{ id = 104075, delay = overkill_and_above and 300 or 360 },
 		},
@@ -66,43 +67,43 @@ return {
 			{ id = 104075, delay = overkill_and_above and 240 or 300 },
 		},
 	},
-    [104076] = {
+	[104076] = {
 		on_executed = {
 			{ id = 104075, remove = true },
 		},
 	},
-    [104075] = {
+	[104075] = {
 		values = {
 			trigger_times = 0,
 		},
 	},
-    -- tweak the ambush near the end
-    -- both soldiers and dozer ambush on eclipse
-    [106416] = {
+	-- tweak the ambush near the end
+	-- both soldiers and dozer ambush on eclipse
+	[106416] = {
 		values = {
 			amount = is_eclipse and 2,
 		},
 	},
-    -- all 8 ambush units on eclipse
-    [104534] = {
+	-- all 8 ambush units on eclipse
+	[104534] = {
 		values = {
 			amount = is_eclipse and 8,
 		},
 	},
-    --replace the fbi with soldiers+some tasers
+	--replace the fbi with soldiers+some tasers
 	[106434] = us_soldier,
 	[106433] = taser_spawn,
 	[106435] = us_soldier,
 	[106432] = us_soldier,
 	[106440] = taser_spawn,
 	[106434] = us_soldier,
-    -- replace the door knocking dozer with army one on ovk above
+	-- replace the door knocking dozer with army one on ovk above
 	-- [106414] = army_dozer,
-    -- tweak ambush spawn chances
-    [106427] = ambush_chance,
+	-- tweak ambush spawn chances
+	[106427] = ambush_chance,
 	[106428] = ambush_chance,
 	[106429] = ambush_chance,
-    -- Holy harassers, Batman...
+	-- Holy harassers, Batman...
 	[103098] = harasser,
 	[103099] = harasser,
 	[103100] = harasser,
