@@ -54,7 +54,7 @@ return {
 		values = {
 			enabled = overkill_and_above and true,
 		},
-	}
+	},
 	-- loop the chopper
     [100022] = {
 		on_executed = {
