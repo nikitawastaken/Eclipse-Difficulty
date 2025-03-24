@@ -14,7 +14,11 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
-
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local bellmead_mercs = {
 	Idstring(bellmead_1),
 	Idstring(bellmead_2),
@@ -64,11 +68,9 @@ local specials_list_easy_normal = {
 	Idstring(taser),
 	Idstring(taser),
 }
-
 local specials = {
 	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
 }
-
 local enemy_filter_dozers = {
 	values = {
 		rules = {
@@ -106,6 +108,7 @@ local staircase_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- A bunch of reinforce spots to fill up this pretty large level
 	[100115] = {
 		reinforce = {
 			{
@@ -140,6 +143,21 @@ return {
 			},
 		},
 	},
+	-- Remove office building and research facility spawns from initial preferreds
+	[100129] = {
+		on_executed = {
+			{ id = 100006, remove = true },
+			{ id = 100021, remove = true },
+		},
+	},
+	[100124] = { -- diff 0.75
+		on_executed = {
+			{ id = 100006, delay = 0 },
+			{ id = 100021, delay = 0 },
+		},
+	},
+	-- Disable the sketchy killzone crap
+	[102159] = disabled,
 	-- tweak swat vans spawns to have variety
 	-- 2 bellmead mercs with one specials
 	-- 1st van
@@ -183,13 +201,14 @@ return {
 	[103595] = bellmead_merc,
 	--Update turret dozer filters to include benellidozer
 	[102783] = enemy_filter_dozers,
-	--DON'T DESPAWN THOSE UNITS, PLEASEEEEE! THEY ARE IMPORTANT!
+--[[ 	DON'T DESPAWN THOSE UNITS, PLEASEEEEE! THEY ARE IMPORTANT!
 	[103639] = enemy_filter_dozers,
 	[103640] = enemy_filter_dozers,
 	[103641] = enemy_filter_dozers,
 	[103642] = enemy_filter_dozers,
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
+]]--
 	-- spawn point delays
 	[102820] = lab_spawn,
 	[102784] = elevator_spawn,
