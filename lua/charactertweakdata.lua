@@ -1383,7 +1383,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.city_shield_break.speech_prefix_count = 4
 		self.zeal_shield.speech_prefix_p2 = "d"
 		self.zeal_shield.speech_prefix_count = 4
-        self.marshal_gunner.speech_prefix_p1 = has_bellmead_response and "l5d" or "l"
+		self.marshal_gunner.speech_prefix_p1 = has_bellmead_response and "l5d" or "l"
 		self.marshal_gunner.speech_prefix_p2 = has_bellmead_response and nil or "d"
 		self.marshal_gunner.speech_prefix_count = has_bellmead_response and nil or 4
 	end
