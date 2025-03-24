@@ -210,7 +210,10 @@ function PlayerDamage:revive(silent)
 	end
 
 	local player_damage_tweak = tweak_data.player.damage
-	self._down_time = math.max(player_damage_tweak.DOWNED_TIME_MIN, (player_damage_tweak.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i)
+	self._down_time = math.max(
+		player_damage_tweak.DOWNED_TIME_MIN,
+		(player_damage_tweak.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
+	)
 end
 
 --Tear gas damage slowly scales when the player is exposed to it
@@ -327,10 +330,14 @@ end
 
 -- On demand down restore
 function PlayerDamage:restore_lives(lives_restored)
-	self._revives = Application:digest_value(math.min(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), Application:digest_value(self._revives, false) + lives_restored), true)
+	self._revives =
+		Application:digest_value(math.min(self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0), Application:digest_value(self._revives, false) + lives_restored), true)
 	self._revive_health_i = math.max(self._revive_health_i - lives_restored, 1)
 	self._down_time_i = math.max(self._down_time_i - lives_restored, 0)
-	self._down_time = math.max(tweak_data.player.damage.DOWNED_TIME_MIN, (tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i)
+	self._down_time = math.max(
+		tweak_data.player.damage.DOWNED_TIME_MIN,
+		(tweak_data.player.damage.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - tweak_data.player.damage.DOWNED_TIME_DEC * self._down_time_i
+	)
 
 	if self._revives == self._lives_init + managers.player:upgrade_value("player", "additional_lives", 0) then
 		self:_send_set_revives(true)

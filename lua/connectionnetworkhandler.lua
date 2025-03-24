@@ -36,10 +36,10 @@ function ConnectionNetworkHandler:finish_trade(is_recon_over)
 	end
 
 	if has_trading_delay_upgrade and not is_recon_over then
-		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_ammo_restored_assault_delay") } )
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_ammo_restored_assault_delay") })
 	elseif has_trading_ammo_upgrade then
-		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_ammo_restored") } )
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_ammo_restored") })
 	else
-		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_restored") } )
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_restored") })
 	end
 end

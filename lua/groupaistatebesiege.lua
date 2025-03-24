@@ -41,32 +41,31 @@ Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_ta
 			self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + hesitation_delay * hostage_multiplier
 		end
 	end
-
 end)
 
 -- call out delay voiceline
 -- modified from _upd_assault_task
 Hooks:PostHook(GroupAIStateBesiege, "_upd_recon_tasks", "eclipse__upd_recon_tasks", function(self)
-    if self._task_data.assault.is_hesitating and self._task_data.assault.voice_delay and self._task_data.assault.voice_delay < self._t then
-        if self._hostage_headcount > 0 then
-            local best_group = nil
+	if self._task_data.assault.is_hesitating and self._task_data.assault.voice_delay and self._task_data.assault.voice_delay < self._t then
+		if self._hostage_headcount > 0 then
+			local best_group = nil
 
-            for _, group in pairs(self._groups) do
-                --if possible we want retiring enemies to call for HRT but it's unlikely
-                if not best_group or group.objective.type == "retire" then
-                    best_group = group
-                elseif best_group.objective.type ~= "recon_area" and group.objective.type ~= "retire" then
-                    best_group = group
-                end
-            end
+			for _, group in pairs(self._groups) do
+				--if possible we want retiring enemies to call for HRT but it's unlikely
+				if not best_group or group.objective.type == "retire" then
+					best_group = group
+				elseif best_group.objective.type ~= "recon_area" and group.objective.type ~= "retire" then
+					best_group = group
+				end
+			end
 
-            if best_group and self:_voice_delay_assault(best_group) then
-                self._task_data.assault.is_hesitating = nil
-            end
-        else
-            self._task_data.assault.is_hesitating = nil
-        end
-    end
+			if best_group and self:_voice_delay_assault(best_group) then
+				self._task_data.assault.is_hesitating = nil
+			end
+		else
+			self._task_data.assault.is_hesitating = nil
+		end
+	end
 end)
 
 -- Resource trading during recon
@@ -87,7 +86,8 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 
 	if not self._enemy_weapons_hot then
 		self._task_data.assault.disabled = nil
-		self._task_data.assault.next_dispatch_t = self._t + (self._tweak_data.first_responders_delay_per_map[Eclipse.utils.level_id()] or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
+		self._task_data.assault.next_dispatch_t = self._t
+			+ (self._tweak_data.first_responders_delay_per_map[Eclipse.utils.level_id()] or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
 		self._task_data.assault.first_response_trades_delay = self._task_data.assault.next_dispatch_t / 2
 	end
 

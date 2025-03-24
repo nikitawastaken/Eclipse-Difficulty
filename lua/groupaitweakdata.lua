@@ -2933,7 +2933,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Control
 	self.besiege.first_responders_delay_per_map = {
-		branchbank = 60
+		branchbank = 60,
 	}
 	self.besiege.assault.delay = {
 		diff_lerp(50, 40),

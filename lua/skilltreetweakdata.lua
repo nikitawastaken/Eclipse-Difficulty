@@ -63,7 +63,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.cable_guy.icon_xy = { 3, 8 }
 
 	-- Joker
-	self.skills.joker[1].upgrades = { "player_convert_enemies_damage_multiplier_1", "player_convert_enemies", "player_convert_enemies_max_minions_1", "player_passive_convert_enemies_health_multiplier_1" }
+	self.skills.joker[1].upgrades =
+		{ "player_convert_enemies_damage_multiplier_1", "player_convert_enemies", "player_convert_enemies_max_minions_1", "player_passive_convert_enemies_health_multiplier_1" }
 	self.skills.joker[2].upgrades = { "player_convert_enemies_damage_multiplier_2", "player_convert_enemies_interaction_speed_multiplier", "player_passive_convert_enemies_health_multiplier_2" }
 
 	-- Hostage Situation
@@ -72,8 +73,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stockholm_syndrome.icon_xy = { 6, 7 }
 
 	-- Partners in Crime
-	self.skills.control_freak[1].upgrades = {  }
-	self.skills.control_freak[2].upgrades = {  }
+	self.skills.control_freak[1].upgrades = {}
+	self.skills.control_freak[2].upgrades = {}
 
 	-- Hostage Taker
 	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1", "player_hostage_min_sum_taker_1" }

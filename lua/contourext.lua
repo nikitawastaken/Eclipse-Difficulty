@@ -1,15 +1,15 @@
 -- custody hostage trade outline
 ContourExt._types.hostage_trade_uncustody = {
-    priority = 2,
-    material_swap_required = true,
-    color = tweak_data.contour.character.more_dangerous_color
+	priority = 2,
+	material_swap_required = true,
+	color = tweak_data.contour.character.more_dangerous_color,
 }
 
 -- resources hostage trade outline
 ContourExt._types.hostage_trade_resources = {
-    priority = 2,
-    material_swap_required = true,
-    color = tweak_data.contour.character.heal_color
+	priority = 2,
+	material_swap_required = true,
+	color = tweak_data.contour.character.heal_color,
 }
 
 table.insert(ContourExt.indexed_types, hostage_trade_uncustody)

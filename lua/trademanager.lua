@@ -1,7 +1,7 @@
 Hooks:PostHook(TradeManager, "init", "eclipse_init", function(self)
-    self._downs_to_restore = 0
-    self._is_custody_trade = false
-    self._resource_trades_done = 0 -- put a cap on resource trades so that players can't cheese the mechanic into >2min long assault breaks with hostage situation aced
+	self._downs_to_restore = 0
+	self._is_custody_trade = false
+	self._resource_trades_done = 0 -- put a cap on resource trades so that players can't cheese the mechanic into >2min long assault breaks with hostage situation aced
 	self._nthcall = 0
 end)
 
@@ -12,16 +12,16 @@ function TradeManager:reset_resource_trades_done()
 end
 
 function TradeManager:get_downs_to_restore()
-    local downs_to_restore = 0
+	local downs_to_restore = 0
 
-    for _, criminal in pairs(managers.groupai:state():all_player_criminals()) do
-        local max_criminal_revives = criminal.unit:character_damage():get_revives_max()
-        local current_criminal_revives = criminal.unit:character_damage():get_revives()
+	for _, criminal in pairs(managers.groupai:state():all_player_criminals()) do
+		local max_criminal_revives = criminal.unit:character_damage():get_revives_max()
+		local current_criminal_revives = criminal.unit:character_damage():get_revives()
 
-        downs_to_restore = max_criminal_revives - math.min(max_criminal_revives, current_criminal_revives)
-    end
+		downs_to_restore = max_criminal_revives - math.min(max_criminal_revives, current_criminal_revives)
+	end
 
-    return downs_to_restore
+	return downs_to_restore
 end
 
 function TradeManager:set_trade_countdown(enabled)
@@ -42,7 +42,13 @@ function TradeManager:is_trading()
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < self._t
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
-	return (self._trading_hostage or self._hostage_trade_clbk or self._speaker_snd_event) and has_first_response_trades_delay_passed and not is_recon_over and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3))
+	return (self._trading_hostage or self._hostage_trade_clbk or self._speaker_snd_event)
+		and has_first_response_trades_delay_passed
+		and not is_recon_over
+		and (
+			#self._criminals_to_respawn > 0
+			or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)
+		)
 end
 
 function TradeManager:is_trade_allowed(t)
@@ -52,7 +58,15 @@ function TradeManager:is_trade_allowed(t)
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
-	return Network:is_server() and not self._trading_hostage and not self._hostage_trade_clbk and has_first_response_trades_delay_passed and not is_recon_over and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and not managers.groupai:state():whisper_mode() and not self._speaker_snd_event and managers.groupai:state():hostage_count() > 0
+	return Network:is_server()
+		and not self._trading_hostage
+		and not self._hostage_trade_clbk
+		and has_first_response_trades_delay_passed
+		and not is_recon_over
+		and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3))
+		and not managers.groupai:state():whisper_mode()
+		and not self._speaker_snd_event
+		and managers.groupai:state():hostage_count() > 0
 end
 
 function TradeManager:update(t, dt)
@@ -67,7 +81,7 @@ function TradeManager:update(t, dt)
 	end
 
 	self._is_custody_trade = #self._criminals_to_respawn > 0
-    self._downs_to_restore = self:get_downs_to_restore()
+	self._downs_to_restore = self:get_downs_to_restore()
 	local is_trade_allowed = self:is_trade_allowed(t)
 	local is_auto_assault_ai_trade = self:update_auto_assault_ai_trade(dt, is_trade_allowed)
 	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
@@ -77,7 +91,15 @@ function TradeManager:update(t, dt)
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
-		if not self._trading_hostage and not self._hostage_trade_clbk and has_first_response_trades_delay_passed and not is_recon_over and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)) and managers.groupai:state():hostage_count() <= 0 and managers.groupai:state():bain_state() then
+		if
+			not self._trading_hostage
+			and not self._hostage_trade_clbk
+			and has_first_response_trades_delay_passed
+			and not is_recon_over
+			and (#self._criminals_to_respawn > 0 or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3))
+			and managers.groupai:state():hostage_count() <= 0
+			and managers.groupai:state():bain_state()
+		then
 			local cable_tie_data = managers.player:has_special_equipment("cable_tie")
 
 			if cable_tie_data and Application:digest_value(cable_tie_data.amount, false) > 0 then
@@ -153,7 +175,7 @@ function TradeManager:update(t, dt)
 	else
 		self._pause_t = math.max(0, self._pause_t - dt)
 
-		if (self._trade_countdown) and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() then
+		if self._trade_countdown and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() then
 			print("so ")
 
 			self:_increment_trade_index()
@@ -173,10 +195,15 @@ function TradeManager:clbk_begin_hostage_trade_dialog(i)
 
 	if i == 1 then
 		self._megaphone_sound_source = self:_get_megaphone_sound_source()
-		self._speaker_snd_event = self._megaphone_sound_source:post_event("mga_t01a_con_plu", callback(self, self, "clbk_vo_end_begin_hostage_trade_dialog", {
-			i = 2,
-			hostage_trade_index = self._hostage_trade_index
-		}), nil, "end_of_event")
+		self._speaker_snd_event = self._megaphone_sound_source:post_event(
+			"mga_t01a_con_plu",
+			callback(self, self, "clbk_vo_end_begin_hostage_trade_dialog", {
+				i = 2,
+				hostage_trade_index = self._hostage_trade_index,
+			}),
+			nil,
+			"end_of_event"
+		)
 
 		if not self._speaker_snd_event then
 			self:clbk_begin_hostage_trade_dialog(2)
@@ -269,7 +296,7 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 
 		hostage.unit:brain():set_logic("trade", {
 			skip_hint = skip_hint or false,
-			is_custody_trade = self._is_custody_trade or false
+			is_custody_trade = self._is_custody_trade or false,
 		})
 
 		if not hostage.initialized then
@@ -277,7 +304,7 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 			self._hostage_to_trade.destroyed_clbk_key = clbk_key
 
 			hostage.unit:character_damage():add_listener(clbk_key, {
-				"death"
+				"death",
 			}, callback(self, self, "clbk_hostage_died"))
 			hostage.unit:base():add_destroy_listener(clbk_key, callback(self, self, "clbk_hostage_destroyed"))
 
@@ -333,11 +360,11 @@ function TradeManager:trade_restore_resources()
 	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
-    for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
-        --Eclipse:log("Hostage traded, restoring a down")
+	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
+		--Eclipse:log("Hostage traded, restoring a down")
 		local unit = u_data and u_data.unit
 
-        unit:character_damage():restore_lives(1)
+		unit:character_damage():restore_lives(1)
 
 		-- resource trading for ammo upgrade
 		if has_trading_ammo_upgrade then
@@ -370,15 +397,15 @@ function TradeManager:trade_restore_resources()
 			managers.groupai:state():_resource_trade_delay_assault_task()
 		end
 
-        local peer = managers.network:session():peer_by_unit(unit)
-        peer:send_queued_sync("finish_trade", is_recon_over)
-    end
+		local peer = managers.network:session():peer_by_unit(unit)
+		peer:send_queued_sync("finish_trade", is_recon_over)
+	end
 
 	if has_trading_delay_upgrade and not is_recon_over then
-		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_ammo_restored_assault_delay") } )
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_ammo_restored_assault_delay") })
 	elseif has_trading_ammo_upgrade then
-		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_ammo_restored") } )
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_ammo_restored") })
 	else
-		managers.hud:show_hint( { text = managers.localization:text("hint_trade_down_restored") } )
+		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_restored") })
 	end
 end

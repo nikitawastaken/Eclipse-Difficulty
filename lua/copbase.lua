@@ -167,7 +167,6 @@ function ContourSwapBase:init(unit)
 	self._is_in_original_material = true
 end
 
-
 function CopBase:save(save_data)
 	local my_save_data = {}
 
@@ -181,7 +180,7 @@ function CopBase:save(save_data)
 
 	for name, buff_list in pairs(self._buffs) do
 		buffs[name] = {
-			_total = buff_list._total
+			_total = buff_list._total,
 		}
 	end
 

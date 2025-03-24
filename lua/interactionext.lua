@@ -118,7 +118,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 		end
 
 		managers.statistics:trade({
-			name = self._unit:base()._tweak_table
+			name = self._unit:base()._tweak_table,
 		})
 	elseif self.tweak_data == "hostage_trade_resources" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, false)
@@ -128,7 +128,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 		end
 
 		managers.statistics:trade({
-			name = self._unit:base()._tweak_table
+			name = self._unit:base()._tweak_table,
 		})
 	end
 end)

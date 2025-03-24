@@ -4,7 +4,7 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 
 	local old_internal_data = data.internal_data
 	local my_data = {
-		unit = data.unit
+		unit = data.unit,
 	}
 	data.internal_data = my_data
 
@@ -19,7 +19,7 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 	CopLogicTrade.hostage_trade(data.unit, true, false, skip_hint, is_custody_trade)
 	data.unit:brain():set_update_enabled_state(true)
 	data.unit:brain():set_attention_settings({
-		peaceful = true
+		peaceful = true,
 	})
 end
 
@@ -57,7 +57,7 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 	local search_params = {
 		from_tracker = data.unit:movement():nav_tracker(),
 		id = "CopLogicTrade._get_coarse_flee_path" .. tostring(data.key),
-		access_pos = data.char_tweak.access
+		access_pos = data.char_tweak.access,
 	}
 	local max_attempts = 8
 
@@ -96,7 +96,7 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 				new_action = {
 					variant = "panic",
 					body_part = 1,
-					type = "act"
+					type = "act",
 				}
 				data.is_tied = nil
 
@@ -105,7 +105,7 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 				new_action = {
 					variant = "stand",
 					body_part = 1,
-					type = "act"
+					type = "act",
 				}
 			end
 
@@ -134,7 +134,7 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 			icon = "wp_trade",
 			text = text,
 			position = unit:movement():m_pos(),
-			distance = SystemInfo:platform() == Idstring("WIN32")
+			distance = SystemInfo:platform() == Idstring("WIN32"),
 		})
 
 		if managers.network:session() and not managers.trade:is_peer_in_custody(managers.network:session():local_peer():id()) and not skip_hint then
@@ -142,7 +142,7 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 			if is_custody_trade then
 				managers.hint:show_hint("trade_offered")
 			else
-				managers.hud:show_hint( { text = managers.localization:text("hint_trade_offered_resources") } )
+				managers.hud:show_hint({ text = managers.localization:text("hint_trade_offered_resources") })
 			end
 		end
 
@@ -175,8 +175,8 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 							light_hurt = -1,
 							hurt = -1,
 							heavy_hurt = -1,
-							walk = -1
-						}
+							walk = -1,
+						},
 					}
 				end
 			else
@@ -189,8 +189,8 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 						light_hurt = -1,
 						hurt = -1,
 						heavy_hurt = -1,
-						walk = -1
-					}
+						walk = -1,
+					},
 				}
 			end
 
