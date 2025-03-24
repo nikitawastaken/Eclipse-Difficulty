@@ -2,7 +2,6 @@ Hooks:PostHook(TradeManager, "init", "eclipse_init", function(self)
 	self._downs_to_restore = 0
 	self._is_custody_trade = false
 	self._resource_trades_done = 0 -- put a cap on resource trades so that players can't cheese the mechanic into >2min long assault breaks with hostage situation aced
-	self._nthcall = 0
 end)
 
 function TradeManager:reset_resource_trades_done()
