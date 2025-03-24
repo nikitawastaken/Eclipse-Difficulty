@@ -199,10 +199,11 @@ return {
 			{ id = 400015, delay_rand = 15, delay = normal and 75 or hard and 45 or 30 },
 		},
 	},
-	-- disable some sketchy cheat sapwns
+	-- Disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
-	-- spawn intervals
+	-- Spawn group delays
+	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
 	[102387] = flank_spawn,
 	[102331] = flank_spawn,
 	[102173] = flank_spawn,

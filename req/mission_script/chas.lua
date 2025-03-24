@@ -74,15 +74,15 @@ return {
 			},
 		},
 	},
-	--Should fix enemies getting stuck in that certain spawn point
-	--Yes, this shit was never fixed since the release of this heist lmao
+	-- Should fix enemies getting stuck in that certain spawn point
+	-- Yes, this shit was never fixed since the release of this heist lmao
 	[101088] = enabled,
 	[101238] = enabled,
 	[100999] = enabled,
 	[101265] = enabled,
 	[101262] = enabled,
 	[101264] = enabled,
-	--fixed snipers being able to spawn only once
+	-- Fixed snipers being able to spawn only once
 	[100368] = sniper_trigger_times,
 	[100369] = sniper_trigger_times,
 	[100370] = sniper_trigger_times,
@@ -93,7 +93,11 @@ return {
 	[100375] = sniper_trigger_times,
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
-	-- spawn point delays
+	-- Spawn group delays
+	-- The Dragon Heist is probably one of the less offensive revival era heists in terms of its spawn group distribution, but some improvements could definitely be made to improve their flow.
+	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents). 
+	-- Spawn groups that rappel directly onto the street/right next to the tea shop have also been slowed down and restricted to make them less oppressive.
+	-- Alleyway and front spawns are slower to improve pacing during early assaults.
 	[102713] = front_spawn,
 	[100132] = alleyway_spawn,
 	[100692] = teashop_spawn,

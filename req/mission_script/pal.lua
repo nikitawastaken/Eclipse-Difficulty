@@ -1,3 +1,5 @@
+local preferred = Eclipse.preferred
+
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_solo = Eclipse.utils.is_solo()
@@ -36,6 +38,19 @@ local c4_event = {
 	values = {
 		amount = is_solo and c4_amount_solo or c4_amount,
 	},
+}
+
+local beach_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local van_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents,
 }
 
 return {
@@ -81,22 +96,22 @@ return {
 				position = Vector3(-3680, 1926, 26.700),
 			},
 			{
-				name = "Mitchell_house_1",
+				name = "Mitchell_house1",
 				force = 3,
 				position = Vector3(-2286, 2640, 78.789),
 			},
 			{
-				name = "Mitchell_house_2",
+				name = "Mitchell_house2",
 				force = 3,
 				position = Vector3(-2556, 3836, 75.500),
 			},
 			{
-				name = "Wilson_house_1",
+				name = "Wilson_house1",
 				force = 3,
 				position = Vector3(-2080, 39, 28.970),
 			},
 			{
-				name = "Wilson_house_2",
+				name = "Wilson_house2",
 				force = 3,
 				position = Vector3(-2980, 1441, -324.500),
 			},
@@ -194,4 +209,10 @@ return {
 	[101804] = shield,
 	[101883] = shield,
 	[102098] = shield,
+	-- spawn point delays
+	[100441] = beach_spawn,
+	[100473] = beach_spawn,
+	[101107] = van_spawn,
+	[101825] = van_spawn,
+	[101827] = van_spawn,
 }

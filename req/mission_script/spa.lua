@@ -1,12 +1,32 @@
-local spawn_1 = {
+local preferred = Eclipse.preferred
+
+local escape_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
 	},
 }
-local spawn_2 = {
+local window_spawn1 = {
+	values = {
+		interval = 15,
+	},
+}
+local window_spawn2 = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local roof_spawn1 = {
 	values = {
 		interval = 30,
 	},
+	groups = preferred.no_bulldozers,
+}
+local roof_spawn2 = {
+	values = {
+		interval = 40,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 
 return {
@@ -36,23 +56,28 @@ return {
 			enabled = false,
 		},
 	},
-	-- Slow down all spawnpoints cause this is a very cramped map
-	[102664] = spawn_1,
-	[102668] = spawn_1,
-	[102667] = spawn_1,
-	[107262] = spawn_1,
-	[107263] = spawn_1,
-	[104472] = spawn_1,
-	[102140] = spawn_1,
-	[102139] = spawn_1,
-	[104336] = spawn_1,
-	[104337] = spawn_1,
-	[104347] = spawn_2,
-	[102151] = spawn_2,
-	[107261] = spawn_2,
-	[107260] = spawn_2,
-	[100750] = spawn_2,
-	[101012] = spawn_2,
-	[102138] = spawn_2,
-	[104338] = spawn_2,
+	-- Spawn group delays
+	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that. 
+	-- Spawn group delays here are balanced from top to bottom, lower level spawns are faster with more groups, higher level spawns are much slower and have group restrictions.
+	-- The ground spawns at the escape have been slowed down to allow for more diverse holdout locations, if you know you know.
+	[106717] = escape_spawn,
+	[104348] = escape_spawn,
+	[101012] = window_spawn1,
+	[101315] = window_spawn1,
+	[102138] = window_spawn1,
+	[104338] = window_spawn1,
+	[107262] = window_spawn1,
+	[107263] = window_spawn1,
+	[100750] = window_spawn2,
+	[102664] = window_spawn2,
+	[102667] = window_spawn2,
+	[102668] = window_spawn2,
+	[102139] = roof_spawn1,
+	[102140] = roof_spawn1,
+	[104336] = roof_spawn1,
+	[104337] = roof_spawn1,
+	[107260] = roof_spawn1,
+	[107261] = roof_spawn1,
+	[102151] = roof_spawn2,
+	[104347] = roof_spawn2,
 }

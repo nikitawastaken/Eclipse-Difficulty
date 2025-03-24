@@ -32,7 +32,7 @@ return {
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
-	-- new reinforce
+	-- New reinforce
 	[102758] = {
 		reinforce = {
 			{

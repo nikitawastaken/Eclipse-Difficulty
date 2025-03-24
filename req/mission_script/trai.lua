@@ -23,7 +23,7 @@ local warehouse_spawn = {
 return {
 	[103501] = disabled,
 	[103051] = disabled,
-	-- reinforce spots
+	-- Reinforce spots on traincars, it just works.
 	[102477] = {
 		reinforce = {
 			{
@@ -43,15 +43,15 @@ return {
 			},
 		},
 	},
-	-- fix snipers being able to spawn only once
+	-- Fix snipers being able to spawn only once
 	[100368] = sniper_trigger_times,
 	[100369] = sniper_trigger_times,
 	[100370] = sniper_trigger_times,
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
-	-- spawn point delays
+	-- Spawn point delays
 	[100133] = warehouse_spawn,
-	--replace generic security with soldiers (SO MANY GUARDS)
+	-- Replace generic security with soldiers (SO MANY GUARDS)
 	[100670] = security_army,
 	[100671] = security_army,
 	[100676] = security_army,

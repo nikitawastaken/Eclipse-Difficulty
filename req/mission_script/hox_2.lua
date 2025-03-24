@@ -215,7 +215,11 @@ return {
 		},
 	},
 	[102214] = exit_dozer,
-	-- Spawnpoint delays
+	-- Spawn group delays
+	-- Hox d2 originally had pretty well thought out spawn group intervals, but as we know those got "simplified". My goal was to bring some of that back in a more streamlined way.
+	-- Most notably upper floor spawns are now much slower and inaccessible to Shield groups (they are not very acrobatic). 
+	-- Side building spawn groups (including the ones which can be blocked off by keycards) are slower now as well as they are quite close to the operations room.
+	-- Skylight rappels have less harsh restrictions but they are quite slow.
 	[101662] = side_building1,
 	[100140] = side_building1,
 	[101672] = side_building2,

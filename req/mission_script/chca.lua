@@ -18,7 +18,7 @@ local lifeboat_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields,
+	groups = preferred.no_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {
@@ -47,28 +47,28 @@ local balcony_spawn = {
 	values = {
 		interval = 45,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local spa_window_spawn = {
 	values = {
 		interval = 45,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
+		interval = 75,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- delay police response
+	-- Delay police response
 	[100022] = {
 		on_executed = {
 			{ id = 100109, delay = 40 },
 		},
 	},
-	-- reenforce points
+	-- Reenforce points
 	[103167] = disabled,
 	[103168] = disabled,
 	[103169] = disabled,
@@ -103,13 +103,13 @@ return {
 			},
 		},
 	},
-	-- escape reenforce/harasser stuff
+	-- Escape reenforce/harasser stuff
 	[100918] = {
 		on_executed = {
 			{ id = 100890, remove = true },
 		},
 	},
-	[101449] = { --escape signalled
+	[101449] = { --Escape signalled
 		on_executed = {
 			{ id = 100890 },
 		},
@@ -136,10 +136,14 @@ return {
 			},
 		},
 	},
-	-- enable unused snipers
+	-- Enable unused snipers
 	[100371] = enabled,
 	[100372] = enabled,
-	-- spawn group delays
+	-- Spawn group delays
+	-- The Black Cat is one of the newer heists, so its spawn groups are not spread out at all and reach players almost immediately. 
+	-- The shortest interval is 15, for reference on most heists that would be 5. It's not uncommon even for post-Jules heists to have 15s spawn groups, but the revival era team was seemingly pretty clueless in this respect.
+	-- Rappels right next to the usual player holdout spots (Spa, Corridors around the main courtyard) are slowed down and heavily restricted. No Bulldozers spawning right next to you.
+	-- I also slowed down the courtyard spawns since that area gets crowded super fast. Originally they were as slow as corridor/spa window groups, but I figured it would impact the frequency of some groups too harshly.
 	[100786] = bow_spawn,
 	[101471] = bow_spawn,
 	[100792] = bow_spawn,

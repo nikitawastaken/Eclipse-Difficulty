@@ -14,19 +14,26 @@ local disabled = {
 		enabled = false,
 	},
 }
-local window_spawn = {
+local breach_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_shields,
 }
 local roof_spawn = {
 	values = {
 		interval = 20,
 	},
+	groups = preferred.no_cops_agents,
+}
+local window_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	--enables/disables NPCs flashlights when the power is off/on like in PDTH
+	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
 	[100756] = {
 		flashlight = true,
 	},
@@ -51,13 +58,13 @@ return {
 			{ id = 101608, remove = true },
 		},
 	},
-	-- remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
+	-- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
 	[103295] = {
 		on_executed = {
 			{ id = 102950, remove = true },
 		},
 	},
-	-- unused snipers
+	-- Unused snipers
 	[102160] = enabled,
 	[101815] = disabled,
 	[101816] = disabled,
@@ -67,7 +74,7 @@ return {
 	[102238] = enabled,
 	[102232] = enabled,
 	[102191] = enabled,
-	--Replace the spawns with dozers
+	-- Replace the spawns with dozers
 	[103293] = dozer_heli,
 	[103294] = dozer_heli,
 	[104045] = dozer_heli,
@@ -76,7 +83,7 @@ return {
 	[104048] = dozer_heli,
 	[104049] = dozer_heli,
 	[104050] = dozer_heli,
-	--disable the Gas SO (it's useless anyway)
+	-- Disable the Gas SO (it's useless anyway)
 	[103302] = disabled,
 	[103303] = disabled,
 	-- Give saw to all players
@@ -85,7 +92,7 @@ return {
 			managers.network:session():send_to_peers_synched("give_equipment", self._values.equipment, self._values.amount)
 		end,
 	},
-	--  this disables multiple spawn points when limo lands on the balcony, which is weird, to say the least
+	-- This disables multiple spawn points when limo lands on the balcony, which is weird, to say the least
 	[101898] = {
 		values = {
 			enabled = false,
@@ -124,13 +131,12 @@ return {
 			action_duration_max = 90,
 		},
 	},
-	-- spawn point delays
-	[102368] = {
-		values = {
-			interval = 10,
-		},
-		groups = preferred.no_shields,
-	},
+	-- Spawn group delays
+	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed. 
+	-- Originally the spawns were nothing to write home about, so I had to come up with my own delays.
+	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.
+	-- Window spawns are much slower too, having enemies spawn right next to you is pretty annoying.
+	[102368] = breach_spawn,
 	[101940] = window_spawn,
 	[101954] = window_spawn,
 	[101950] = window_spawn,
