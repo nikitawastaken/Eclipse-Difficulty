@@ -196,16 +196,12 @@ return {
 	[101198] = {
 		values = {
 			participate_to_group_ai = false,
+			trigger_times = 1,
 		},
 	},
 	[101210] = {
 		on_executed = {
 			{ delay = 0, id = 101198 },
-		},
-	},
-	[101212] = {
-		on_executed = {
-			{ remove = true, id = 101198 },
 		},
 	},
 	-- Exit Bulldozer
