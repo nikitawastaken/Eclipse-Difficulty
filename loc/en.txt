@@ -314,5 +314,25 @@
 	"menu_progress_msg": "Are you sure you want to max out your progress?\nThis will max out your character and unlock all available items.",
 	"menu_max_masks": "Max mask customization",
 	"menu_max_masks_help": "Max out your masks and customization for them to skip grind.",
-	"menu_masks_msg": "Are you sure you want to max out your masks?\nThis will give you 10 of each mask, material, pattern and color."
+	"menu_masks_msg": "Are you sure you want to max out your masks?\nThis will give you 10 of each mask, material, pattern and color.",
+	
+	"ene_cop_1_fat" : "Cop",
+    "ene_cop_2_fat" : "Cop",
+    "ene_cop_3_fat" : "Cop",
+    "ene_cop_4_fat" : "Cop",
+    "ene_security_1_fat" : "Security Guard",
+    "ene_security_2_fat" : "Security Guard",
+    "ene_security_3_fat" : "Security Guard",
+
+    "ene_soldier" : "US Army Soldier",
+    "ene_deep_security" : "Bellmead Security",
+    "ene_male_marshal_gunner_hcar_1" : "Marshal Gunner",
+    "ene_male_marshal_gunner_sko12_1" : "Marshal Gunner",
+    "ene_male_marshal_gunner_hcar_2" : "Bellmead Gunner",
+    "ene_male_marshal_gunner_sko12_2" : "Bellmead Gunner",
+
+    "ene_bulldozer_minigun" : "Benellidozer",
+    "ene_bulldozer_minigun_classic" : "Benellidozer",
+    "ene_sniper_3" : "GenSec Elite Sniper",
+    "ene_city_shield" : "GenSec Elite Shield",
 }
