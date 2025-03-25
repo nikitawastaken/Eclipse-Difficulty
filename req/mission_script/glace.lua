@@ -18,7 +18,7 @@ local eclipse_dozers = {
 
 local bridge_spawn1 = {
 	values = {
-		interval = 5,
+		interval = 10,
 	},
 }
 local bridge_spawn2 = {
