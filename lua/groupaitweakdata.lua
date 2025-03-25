@@ -2641,7 +2641,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 30,
-					cooldown = { 20, 30 },
+					cooldown = { 25, 40 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -2708,7 +2708,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 30,
-					cooldown = { 20, 30 },
+					cooldown = { 25, 40 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -2771,7 +2771,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 180,
-					cooldown = { 20, 30 },
+					cooldown = { 25, 40 },
 					diff_scale = { 2, 1.5, 1 },
 				},
 				group_data = {
@@ -2841,8 +2841,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
-					initial_delay = 60,
-					cooldown = { 20, 30 },
+					initial_delay = 30,
+					cooldown = { 25, 40 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
