@@ -95,18 +95,18 @@ return {
 		values = {
 			counter_target = 2,
 		},
-	},	
+	},
 	[100062] = {
 		values = {
 			counter_target = 3,
 		},
-	},	
+	},
 	[100521] = {
-		difficulty = 1
-	},	
+		difficulty = 1,
+	},
 	-- Spawn group delays
 	-- This heist is pretty cramped and also has verticality, which makes having all those spawn groups packed so close to each other especially egregious. What's new?
-	-- Every spawn group has had its interval increased, I frankly couldn't justify keeping any of them below 15s. 
+	-- Every spawn group has had its interval increased, I frankly couldn't justify keeping any of them below 15s.
 	-- You will immediately notice fewer enemies spawning from the lake at the start, but also much slower catwalk spawns inside the prison.
 	-- A lot of spawngroups have also been made inaccessible to Bulldozers and Shields to ensure that they don't spawn on top of you.
 	[100933] = window_spawn1,
