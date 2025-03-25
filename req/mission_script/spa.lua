@@ -57,7 +57,7 @@ return {
 		},
 	},
 	-- Spawn group delays
-	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that. 
+	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
 	-- Spawn group delays here are balanced from top to bottom, lower level spawns are faster with more groups, higher level spawns are much slower and have group restrictions.
 	-- The ground spawns at the escape have been slowed down to allow for more diverse holdout locations, if you know you know.
 	[106717] = escape_spawn,

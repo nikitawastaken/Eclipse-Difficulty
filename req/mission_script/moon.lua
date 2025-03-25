@@ -14,7 +14,7 @@ local roof_spawn = {
 
 return {
 	-- New reinforce
-	[100768] = { 
+	[100768] = {
 		reinforce = {
 			{
 				name = "santa",
@@ -23,7 +23,7 @@ return {
 			},
 		},
 	},
-	[100699] = { 
+	[100699] = {
 		reinforce = {
 			{
 				name = "escalator1",
@@ -38,7 +38,7 @@ return {
 		},
 	},
 	-- Spawn group delays
-	-- This heist is quite compact, so having 0s (5s) spawn groups is a bit overkill, especially when you reach the roof, things get pretty messy up there. 
+	-- This heist is quite compact, so having 0s (5s) spawn groups is a bit overkill, especially when you reach the roof, things get pretty messy up there.
 	[100131] = entrance_spawn,
 	[100130] = entrance_spawn,
 	[100133] = entrance_spawn,

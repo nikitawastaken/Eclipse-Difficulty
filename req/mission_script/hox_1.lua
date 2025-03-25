@@ -30,7 +30,7 @@ return {
 			difficulty = 0.75,
 		},
 	},
-	-- spawn point delays 
+	-- spawn point delays
 	[100128] = van_spawn,
 	[100130] = van_spawn,
 	[100131] = van_spawn,

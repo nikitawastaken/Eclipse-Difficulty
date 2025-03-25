@@ -140,7 +140,7 @@ return {
 	[100371] = enabled,
 	[100372] = enabled,
 	-- Spawn group delays
-	-- The Black Cat is one of the newer heists, so its spawn groups are not spread out at all and reach players almost immediately. 
+	-- The Black Cat is one of the newer heists, so its spawn groups are not spread out at all and reach players almost immediately.
 	-- The shortest interval is 15, for reference on most heists that would be 5. It's not uncommon even for post-Jules heists to have 15s spawn groups, but the revival era team was seemingly pretty clueless in this respect.
 	-- Rappels right next to the usual player holdout spots (Spa, Corridors around the main courtyard) are slowed down and heavily restricted. No Bulldozers spawning right next to you.
 	-- I also slowed down the courtyard spawns since that area gets crowded super fast. Originally they were as slow as corridor/spa window groups, but I figured it would impact the frequency of some groups too harshly.

@@ -196,16 +196,12 @@ return {
 	[101198] = {
 		values = {
 			participate_to_group_ai = false,
+			trigger_times = 1,
 		},
 	},
 	[101210] = {
 		on_executed = {
 			{ delay = 0, id = 101198 },
-		},
-	},
-	[101212] = {
-		on_executed = {
-			{ remove = true, id = 101198 },
 		},
 	},
 	-- Exit Bulldozer
@@ -217,7 +213,7 @@ return {
 	[102214] = exit_dozer,
 	-- Spawn group delays
 	-- Hox d2 originally had pretty well thought out spawn group intervals, but as we know those got "simplified". My goal was to bring some of that back in a more streamlined way.
-	-- Most notably upper floor spawns are now much slower and inaccessible to Shield groups (they are not very acrobatic). 
+	-- Most notably upper floor spawns are now much slower and inaccessible to Shield groups (they are not very acrobatic).
 	-- Side building spawn groups (including the ones which can be blocked off by keycards) are slower now as well as they are quite close to the operations room.
 	-- Skylight rappels have less harsh restrictions but they are quite slow.
 	[101662] = side_building1,
