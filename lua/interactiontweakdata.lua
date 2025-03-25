@@ -8,4 +8,5 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hostage_trade.contour_flash_interval = 0.5
 	self.hostage_trade_resources = deep_clone(self.hostage_trade)
 	self.hostage_trade_resources.contour_preset = "hostage_trade_resources"
+	self.hostage_trade_resources.text_id = "debug_interact_trade_resources"
 end)

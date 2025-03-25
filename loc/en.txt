@@ -279,6 +279,7 @@
 	"hint_trade_down_restored": "Hostage trade successful. A single down has been restored.",
 	"hint_trade_down_ammo_restored": "Hostage trade successful. A single down and a portion of ammo have been restored.",
 	"hint_trade_down_ammo_restored_assault_delay": "Hostage trade successful. A single down and a portion of ammo have been restored, incoming assault has been delayed.",
+	"debug_interact_trade_resources": "Hold $BTN_INTERACT; to Trade for Resources",
 	"hud_assault_ponr": "Full Force Onslaught",
 	"hud_assault_full_force_onslaught": "Full Force Onslaught",
 	"hud_assault_full_force_onslaught_in": "Full Force Onslaught in",
@@ -315,7 +316,7 @@
 	"menu_max_masks": "Max mask customization",
 	"menu_max_masks_help": "Max out your masks and customization for them to skip grind.",
 	"menu_masks_msg": "Are you sure you want to max out your masks?\nThis will give you 10 of each mask, material, pattern and color.",
-	
+
 	"ene_cop_1_fat" : "Cop",
     "ene_cop_2_fat" : "Cop",
     "ene_cop_3_fat" : "Cop",
