@@ -43,6 +43,13 @@ local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
 
+local flank_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_bulldozers,
+}
+
 return {
 	-- Boss spawn
 	[102107] = {
