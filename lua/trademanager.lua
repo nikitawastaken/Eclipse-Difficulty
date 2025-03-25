@@ -27,12 +27,25 @@ function TradeManager:set_trade_countdown(enabled)
 	self._trade_countdown = enabled
 
 	if enabled then
-		self:reset_resource_trades_done()
+		self:reset_resource_trades_done() -- reset resource trades done when the assault ends
+	else
+		self:cancel_trade() -- cancel any existing trades when the assault begins
 	end
 
 	if Network:is_server() and managers.network then
 		managers.network:session():send_to_peers_synched("set_trade_countdown", enabled)
 	end
+end
+
+function TradeManager:trade_complete()
+	self._trade_complete = true
+
+	-- why are these even nil'ed out in here, they're already nil'ed out in other functions where it's more appropriate
+	-- nil'ing them out in this one only causes the trade cancelling to shit itself
+	--self._hostage_to_trade = nil
+	--self._trading_hostage = nil
+
+	self:end_stockholm_syndrome()
 end
 
 function TradeManager:is_trading()
