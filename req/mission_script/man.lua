@@ -79,7 +79,7 @@ local heli_enemy3 = {
 	enemy = heavy_2,
 }
 local heli_enemy4 = {
-	enemy = medic_1,
+	enemy = diff_i < 5 and heavy_2 or medic_1,
 }
 local street_heli_amount = {
 	values = {
@@ -127,7 +127,7 @@ return {
 	-- Multiple interrupts once more (pain)
 	[102978] = {
 		on_executed = {
-			{ id = 103385, delay = 0, },
+			{ id = 103385, delay = 0 },
 		}
 	},
 	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
