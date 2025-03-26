@@ -65,10 +65,12 @@ end
 function M.set_diff_groups(group)
 	group = string.lower(tostring(group))
 
-	local normal, hard, eclipse, enabled
+	local easy, normal, hard, overkill, eclipse, enabled
 	if group == "disable" then
+		easy = false
 		normal = false
 		hard = false
+		overkill = false
 		eclipse = false
 		enabled = false
 	elseif group == "easy" then
@@ -83,6 +85,12 @@ function M.set_diff_groups(group)
 		hard = true
 		overkill = true
 		eclipse = true
+	elseif group == "normal" then
+		easy = false
+		normal = true
+		hard = false
+		overkill = false
+		eclipse = false
 	elseif group == "normal_above" then
 		easy = false
 		normal = true
@@ -93,6 +101,12 @@ function M.set_diff_groups(group)
 		easy = true
 		normal = true
 		hard = false
+		overkill = false
+		eclipse = false
+	elseif group == "hard" then
+		easy = false
+		normal = false
+		hard = true
 		overkill = false
 		eclipse = false
 	elseif group == "hard_above" then
@@ -106,6 +120,12 @@ function M.set_diff_groups(group)
 		normal = true
 		hard = true
 		overkill = false
+		eclipse = false
+	elseif group == "overkill" then
+		easy = false
+		normal = false
+		hard = false
+		overkill = true
 		eclipse = false
 	elseif group == "overkill_above" then
 		easy = false
