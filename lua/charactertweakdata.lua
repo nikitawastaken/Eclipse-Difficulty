@@ -7,6 +7,7 @@ local bellmead_response_heists = {
 	["corp"] = true,
 	["deep"] = true,
 }
+local is_undercover = level_id == "man" 
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 local function diff_lerp(value_1, value_2)
@@ -978,17 +979,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 
 	self.cobra = deep_clone(self.gangster)
-	if level_id == "man" then
-		self.cobra.speech_prefix_p1 = self._unit_prefixes.cop
-		self.cobra.speech_prefix_p2 = "n"
-		self.cobra.speech_prefix_count = 4
-		self.cobra.access = "fbi"
-	else
-		self.cobra.speech_prefix_p1 = "ict"
-		self.cobra.speech_prefix_p2 = nil
-		self.cobra.speech_prefix_count = 2
-		self.cobra.access = "gangster"
-	end
+	self.cobra.speech_prefix_p1 = is_undercover and self._unit_prefixes.cop or "ict"
+	self.cobra.speech_prefix_p2 = is_undercover and "n" or nil
+	self.cobra.speech_prefix_count = is_undercover and 4 or 2
+	self.cobra.access = is_undercover and "fbi" or "gangster"
+    self.cobra.chatter = is_undercover and self.presets.enemy_chatter.cop or self.presets.enemy_chatter.gangster
 	table.insert(self._enemy_list, "cobra")
 
 	self.biker.melee_weapon = "knife_1"
