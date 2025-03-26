@@ -71,29 +71,59 @@ function M.set_diff_groups(group)
 		hard = false
 		eclipse = false
 		enabled = false
-	elseif group == "normal" then
+	elseif group == "easy" then
+		easy = true
+		normal = false
+		hard = false
+		overkill = false
+		eclipse = false
+	elseif group == "easy_above" then
+		easy = true
+		normal = true
+		hard = true
+		overkill = true
+		eclipse = true
+	elseif group == "normal_above" then
+		easy = false
+		normal = true
+		hard = true
+		overkill = true
+		eclipse = true
+	elseif group == "normal_below" then
+		easy = true
 		normal = true
 		hard = false
-		eclipse = false
-	elseif group == "normal_above" then
-		normal = true
-		hard = true
-		eclipse = true
-	elseif group == "hard" then
-		normal = false
-		hard = true
-		eclipse = false
-	elseif group == "hard_below" then
-		normal = true
-		hard = true
+		overkill = false
 		eclipse = false
 	elseif group == "hard_above" then
+		easy = false
 		normal = false
 		hard = true
+		overkill = true
 		eclipse = true
-	elseif group == "eclipse" then
+	elseif group == "hard_below" then
+		easy = true
+		normal = true
+		hard = true
+		overkill = false
+		eclipse = false
+	elseif group == "overkill_above" then
+		easy = false
 		normal = false
 		hard = false
+		overkill = true
+		eclipse = true
+	elseif group == "overkill_below" then
+		easy = true
+		normal = true
+		hard = true
+		overkill = true
+		eclipse = false
+	elseif group == "eclipse" then
+		easy = false
+		normal = false
+		hard = false
+		overkill = false
 		eclipse = true
 	else
 		Eclipse:warn(string.format("Function set_diff_groups received invalid argument %s", group))
@@ -103,11 +133,11 @@ function M.set_diff_groups(group)
 
 	return {
 		enabled = enabled,
-		difficulty_easy = normal,
-		difficulty_normal = normal,
+		difficulty_easy = easy,
+		difficulty_normal = easy,
 		difficulty_hard = normal,
 		difficulty_overkill = hard,
-		difficulty_overkill_145 = hard,
+		difficulty_overkill_145 = overkill,
 		difficulty_easy_wish = eclipse,
 		difficulty_overkill_290 = eclipse,
 		difficulty_sm_wish = eclipse,
