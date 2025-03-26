@@ -1,24 +1,34 @@
+local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local diff_i = Eclipse.utils.difficulty_index()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local swat_1 = scripted_enemy.swat_1
+local heavy_1 = scripted_enemy.heavy_swat_1
+local light_harasser = swat_1
+local heavy_harasser = is_eclipse and { Idstring(heavy_1), Idstring(heavy_1), Idstring(elite_sniper) } or heavy_1
+local harasser = {
+	enemy = diff_i < 5 and light_harasser or heavy_harasser,
+}
 local flank_spawn = {
 	values = {
 		interval = 10,
 	},
 }
+local elevator_spawn = {
+	values = {
+		interval = 25,
+	},
+}
 local roof_spawn = {
 	values = {
-		interval = 15,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local elevator_spawn = {
-	values = {
-		interval = 20,
-	},
-}
 local wall_c4_chance = {
 	values = {
-		chance = normal and 25 or hard and 50 or 75,
+		chance = (normal and 40 or 60) * (is_pro_job and 1.5 or 1),
 	},
 }
 local no_shields_and_dozers = {
@@ -63,32 +73,25 @@ return {
 			},
 		},
 	},
-	-- enable roof spawngroups
+	-- Enable roof spawngroups
 	[100006] = {
 		values = {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
-	-- wall c4 chance
+	-- Wall c4 chance
 	[102451] = wall_c4_chance,
 	[102469] = wall_c4_chance,
-	-- disable cheat spawns
+	-- Disable cheat spawns
 	[102267] = {
 		values = {
 			enabled = false,
 		},
 	},
-	-- spawn point delays
-	[100019] = flank_spawn,
-	[100692] = roof_spawn,
-	[100007] = roof_spawn,
-	[105450] = elevator_spawn,
-	[105500] = elevator_spawn,
-	[105434] = elevator_spawn,
-	-- prevent shields/dozers from disabling the timelock
+	-- Prevent shields/dozers from disabling the timelock
 	[101195] = no_shields_and_dozers,
 	[102268] = no_shields_and_dozers,
-	-- make server hack guranteed when solo
+	-- Make server hack guranteed when solo
 	[104494] = {
 		pre_func = function(self)
 			if table.size(managers.network:session():peers()) == 0 then
@@ -96,4 +99,72 @@ return {
 			end
 		end,
 	},
+	-- Spawn Group delays
+	[100019] = flank_spawn,
+	[100692] = roof_spawn,
+	[100007] = roof_spawn,
+	[105450] = elevator_spawn,
+	[105500] = elevator_spawn,
+	[105434] = elevator_spawn,
+	-- Harassers
+	[100883] = harasser,
+	[100884] = harasser,
+	[100885] = harasser,
+	[100332] = harasser,
+	[100334] = harasser,
+	[100336] = harasser,
+	[100906] = harasser,
+	[100907] = harasser,
+	[100908] = harasser,
+	[100922] = harasser,
+	[100923] = harasser,
+	[100924] = harasser,
+	[100938] = harasser,
+	[100939] = harasser,
+	[100940] = harasser,
+	[100954] = harasser,
+	[100955] = harasser,
+	[100956] = harasser,
+	[100969] = harasser,
+	[100970] = harasser,
+	[100971] = harasser,
+	[100985] = harasser,
+	[100986] = harasser,
+	[100987] = harasser,
+	[101001] = harasser,
+	[101002] = harasser,
+	[101003] = harasser,
+	[101017] = harasser,
+	[101018] = harasser,
+	[101019] = harasser,
+	[101033] = harasser,
+	[101034] = harasser,
+	[101035] = harasser,
+	[101049] = harasser,
+	[101050] = harasser,
+	[101051] = harasser,
+	[101065] = harasser,
+	[101066] = harasser,
+	[101067] = harasser,
+	[101081] = harasser,
+	[101082] = harasser,
+	[101083] = harasser,
+	[101097] = harasser,
+	[101098] = harasser,
+	[101099] = harasser,
+	[101113] = harasser,
+	[101114] = harasser,
+	[101115] = harasser,
+	[101129] = harasser,
+	[101130] = harasser,
+	[101131] = harasser,
+	[101145] = harasser,
+	[101146] = harasser,
+	[101147] = harasser,
+	[101161] = harasser,
+	[101162] = harasser,
+	[101163] = harasser,
+	[101177] = harasser,
+	[101178] = harasser,
+	[101179] = harasser,
 }

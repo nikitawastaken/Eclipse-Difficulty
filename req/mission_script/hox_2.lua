@@ -1,11 +1,9 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
-
 local fbi_agents = {
 	Idstring("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"),
 	Idstring("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"),
@@ -18,7 +16,6 @@ local fbi_agents = {
 local fbi_agent = {
 	enemy = fbi_agents,
 }
-
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -26,7 +23,6 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local elite_sniper = scripted_enemy.elite_sniper
-
 local regular_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -35,18 +31,15 @@ local eclipse_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-
 local exit_dozer = {
 	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
 local exit_dozer_chance = (is_pro_job and 1.5 or 1) * (diff_i * 10)
-
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { Idstring(heavy_1), Idstring(heavy_1), Idstring(elite_sniper) } or heavy_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-
 local side_building1 = {
 	values = {
 		interval = 15,

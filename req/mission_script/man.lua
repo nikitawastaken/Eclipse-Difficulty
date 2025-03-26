@@ -53,7 +53,7 @@ local harasser_enemy = is_eclipse and { Idstring(swat_1), Idstring(swat_1), Idst
 local harasser = {
 	enemy = harasser_enemy,
 }
-local harassers = hard and 5 or 3
+local harassers = normal and 3 or 5
 local harasser_amount = {
 	values = {
 		amount = harassers,
@@ -253,13 +253,13 @@ return {
 	[102444] = {
 		values = {
 			amount = 4,
-			amount_random = hard and 4 or 2,
+			amount_random = normal and 2 or 4,
 		},
 	},
 	-- Regular harasser stuff
 	[102269] = {
 		on_executed = {
-			{ id = 102268, delay = 30, delay_rand = hard and 15 or 30 },
+			{ id = 102268, delay = 30, delay_rand = normal and 30 or 15 },
 		},
 	},
 	[101731] = {
@@ -272,7 +272,7 @@ return {
 	[102946] = harasser_counter,
 	[103833] = {
 		on_executed = {
-			{ id = 103832, delay = 30, delay_rand = hard and 15 or 30 },
+			{ id = 103832, delay = 30, delay_rand = normal and 30 or 15 },
 		},
 	},
 	[103832] = harasser_amount,
