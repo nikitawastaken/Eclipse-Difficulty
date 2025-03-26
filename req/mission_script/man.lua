@@ -128,7 +128,7 @@ return {
 	[102978] = {
 		on_executed = {
 			{ id = 103385, delay = 0 },
-		}
+		},
 	},
 	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
 	[100756] = {
@@ -160,13 +160,13 @@ return {
 	[102232] = enabled,
 	[102191] = enabled,
 	-- Disable this element which disables 7 Sniper spawns when the limo lands on the balcony
-	[101267] = disabled, 
+	[101267] = disabled,
 	-- Sniper amounts
-	[102167] = sniper_amount,  
-	[102168] = sniper_amount,  
-	[102169] = sniper_amount,  
-	[102170] = sniper_amount,  
-	[102171] = sniper_amount,  
+	[102167] = sniper_amount,
+	[102168] = sniper_amount,
+	[102169] = sniper_amount,
+	[102170] = sniper_amount,
+	[102171] = sniper_amount,
 	-- Gas Heli shit (it's evil)
 	[104041] = { -- No need for these filters to handle spawns
 		values = filters_normal_above,
@@ -197,18 +197,18 @@ return {
 	[104050] = heli_enemy4,
 	[103295] = {
 		on_executed = {
-			{ id = 103298, delay = 24, },  -- door open delay (normally 27)
+			{ id = 103298, delay = 24 }, -- door open delay (normally 27)
 		},
 	},
 	[103298] = {
 		on_executed = {
-			{ id = 101716, delay = 1.5, },  -- enemy spawn delay (normally 0, causing them to spawn before the door opens)
-			{ id = 103299, delay = 6, },  -- flyaway delay (normally 20)
+			{ id = 101716, delay = 1.5 }, -- enemy spawn delay (normally 0, causing them to spawn before the door opens)
+			{ id = 103299, delay = 6 }, -- flyaway delay (normally 20)
 		},
 	},
-	[100131] = {  -- police called, call in da choppa
+	[100131] = { -- police called, call in da choppa
 		on_executed = {
-			{ id = 101608, delay = chopper_delay_init }, 
+			{ id = 101608, delay = chopper_delay_init },
 		},
 	},
 	[101608] = {
@@ -218,10 +218,10 @@ return {
 	},
 	[102010] = {
 		on_executed = {
-			{ id = 101608, remove = true, },
+			{ id = 101608, remove = true },
 		},
 	},
-	[103302] = disabled,  -- disable gas SO. its honestly worthless.
+	[103302] = disabled, -- disable gas SO. its honestly worthless.
 	[103434] = {
 		values = filter_normal_above,
 		on_executed = {
@@ -229,10 +229,10 @@ return {
 		},
 	},
 	-- The other (lame) chopper
-	[102629] = street_heli_amount,  
-	[100431] = street_heli_amount, 
-	[102628] = street_heli_amount,  
-	[104067] = street_heli_amount, 
+	[102629] = street_heli_amount,
+	[100431] = street_heli_amount,
+	[102628] = street_heli_amount,
+	[104067] = street_heli_amount,
 	[102599] = street_heli_enemy,
 	[102600] = street_heli_enemy,
 	[102601] = street_heli_enemy,
@@ -250,7 +250,7 @@ return {
 	[104060] = street_heli_enemy,
 	[104061] = street_heli_enemy,
 	-- Escape harassers amount
-	[102444] = {  
+	[102444] = {
 		values = {
 			amount = 4,
 			amount_random = hard and 4 or 2,
@@ -259,12 +259,12 @@ return {
 	-- Regular harasser stuff
 	[102269] = {
 		on_executed = {
-			{ id = 102268, delay = 30, delay_rand = hard and 15 or 30, },
+			{ id = 102268, delay = 30, delay_rand = hard and 15 or 30 },
 		},
 	},
 	[101731] = {
 		on_executed = {
-			{ id = 102269, delay = 0, },
+			{ id = 102269, delay = 0 },
 		},
 	},
 	[102268] = harasser_amount,
@@ -272,7 +272,7 @@ return {
 	[102946] = harasser_counter,
 	[103833] = {
 		on_executed = {
-			{ id = 103832, delay = 30, delay_rand = hard and 15 or 30, },
+			{ id = 103832, delay = 30, delay_rand = hard and 15 or 30 },
 		},
 	},
 	[103832] = harasser_amount,
@@ -281,15 +281,15 @@ return {
 	--  Keep close roof harassers after sawing the limo open
 	[102989] = disabled,
 	-- Vent cloaker group, disable this non-vent spawn point
-	[103801] = disabled, 
-	[103366] = {  -- why do cloakers have gas masks if the masks cant handle gas? -Idk.
+	[103801] = disabled,
+	[103366] = { -- why do cloakers have gas masks if the masks cant handle gas? -Idk.
 		on_executed = {
-			{ id = 103458, remove = true, },
+			{ id = 103458, remove = true },
 		},
 	},
 	[103441] = {
 		on_executed = {
-			{ id = 103794, remove = true, },
+			{ id = 103794, remove = true },
 		},
 	},
 	-- Give saw to all players
