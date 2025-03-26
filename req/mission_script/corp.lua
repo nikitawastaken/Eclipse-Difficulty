@@ -2,6 +2,7 @@ local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
+
 local bellmead_1 = scripted_enemy.bellmead_security_1
 local bellmead_2 = scripted_enemy.bellmead_security_2
 local bellmead_3 = scripted_enemy.bellmead_security_3
@@ -14,6 +15,7 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
+
 local disabled = {
 	values = {
 		enabled = false,

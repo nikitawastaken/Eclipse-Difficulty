@@ -7,16 +7,16 @@ local M = {
 	gensec_1 = "units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1",
 	gensec_2 = "units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2",
 
-	murkywater_1 = "units/payday2/characters/ene_murkywater_1/ene_murkywater_1",
-	murkywater_2 = "units/payday2/characters/ene_murkywater_2/ene_murkywater_2",
-
 	green_security_1 = "units/payday2/characters/ene_security_4/ene_security_4",
 	green_security_2 = "units/payday2/characters/ene_security_5/ene_security_5",
 	green_security_3 = "units/payday2/characters/ene_security_6/ene_security_6",
 	green_security_4 = "units/payday2/characters/ene_security_7/ene_security_7",
 
-	fbi_security_1 = "units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1",
-	fbi_security_2 = "units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2",
+	ready_team_1 = "units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1",
+	ready_team_2 = "units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2",
+
+	murkywater_1 = "units/payday2/characters/ene_murkywater_1/ene_murkywater_1",
+	murkywater_2 = "units/payday2/characters/ene_murkywater_2/ene_murkywater_2",
 
 	cop_1 = "units/payday2/characters/ene_cop_1/ene_cop_1",
 	cop_2 = "units/payday2/characters/ene_cop_2/ene_cop_2",
