@@ -1,5 +1,6 @@
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local overkill_and_above = Eclipse.utils.diff_threshold()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 local army_guard = scripted_enemy.soldier_1
@@ -74,7 +75,10 @@ local specials = {
 	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
 }
 
-local bile_has_budget_costs = is_eclipse and 1
+
+local bile_has_3_bags = math.random() < 0.05
+local bile_has_2_bags = math.random() < 0.30
+local bile_lottery = not is_pro_job and bile_has_3_bags and 3 or bile_has_2_bags and 2 or 1
 local dozer_in_the_vault_chance = {
 	values = {
 		chance = overkill_and_above and 30 or 10,
@@ -82,12 +86,12 @@ local dozer_in_the_vault_chance = {
 }
 local shells_required = {
 	values = {
-		counter_target = normal and 5 or hard and 8 or 10,
+		counter_target = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0),
 	},
 }
 local shells_required_objective = {
 	values = {
-		amount = normal and 5 or hard and 8 or 10,
+		amount = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0),
 	},
 }
 
@@ -122,10 +126,10 @@ return {
 			{ id = 102767, delay = overkill_and_above and 240 or 300 },
 		},
 	},
-	-- Bile drops only one thermal drill on Eclipse
+	-- Thermal Drill Lottery (feat. Bile The Pilot)
 	[102895] = {
 		values = {
-			amount = bile_has_budget_costs,
+			amount = bile_lottery,
 		},
 	},
 	-- tweak the amount of required ammo shells
