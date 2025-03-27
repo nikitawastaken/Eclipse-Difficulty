@@ -75,7 +75,6 @@ local specials = {
 	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
 }
 
-
 local bile_has_3_bags = math.random() < 0.05
 local bile_has_2_bags = math.random() < 0.30
 local bile_lottery = not is_pro_job and bile_has_3_bags and 3 or bile_has_2_bags and 2 or 1
