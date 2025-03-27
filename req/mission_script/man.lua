@@ -113,15 +113,10 @@ local chopper_delay = 360 - (diff_i * 15) - (is_pro_job and 30 or 0)
 
 return {
 	--PONR
-	--Have the gas chopper be a dozer chopper
-	--Trigger the heli spawn during escape instead of during hacking objectives
 	[100695] = {
 		ponr = {
 			length = 60,
 			player_mul = { 1.25, 1, 0.75, 0.5 },
-		},
-		on_executed = {
-			{ id = 101608, delay = 0 },
 		},
 	},
 	-- Multiple interrupts once more (pain)
@@ -136,18 +131,6 @@ return {
 	},
 	[101801] = {
 		flashlight = false,
-	},
-	-- Remove the line
-	[102010] = {
-		on_executed = {
-			{ id = 101608, remove = true },
-		},
-	},
-	-- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
-	[103295] = {
-		on_executed = {
-			{ id = 102950, remove = true },
-		},
 	},
 	-- Unused snipers
 	[102160] = enabled,
@@ -204,6 +187,12 @@ return {
 		on_executed = {
 			{ id = 101716, delay = 1.5 }, -- enemy spawn delay (normally 0, causing them to spawn before the door opens)
 			{ id = 103299, delay = 6 }, -- flyaway delay (normally 20)
+		},
+	},
+    -- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
+	[103295] = {
+		on_executed = {
+			{ id = 102950, remove = true },
 		},
 	},
 	[100131] = { -- police called, call in da choppa
