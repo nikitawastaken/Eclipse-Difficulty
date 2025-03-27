@@ -18,38 +18,57 @@ function PlayerManager:add_bags_carried()
 end
 -- end
 
--- hostage taker min hostages count
-Hooks:OverrideFunction(PlayerManager, "get_hostage_bonus_addend", function(self, category)
+-- Hostage Taker rework
+function PlayerManager:get_hostage_bonus_addend(category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
-	local minions = self:num_local_minions() or 0
 	local addend = 0
 	local hostage_max_num = tweak_data:get_raw_value("upgrades", "hostage_max_num", category)
-	local hostage_min_sum = 0
-
-	addend = addend + self:team_upgrade_value(category, "hostage_addend", 0)
-	addend = addend + self:team_upgrade_value(category, "passive_hostage_addend", 0)
-	addend = addend + self:upgrade_value("player", "passive_hostage_" .. category .. "_addend", 0)
-	local local_player = self:local_player()
-
-	if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
-		addend = addend * tweak_data.upgrades.hostage_near_player_multiplier
-	end
-
-	if self:has_category_upgrade("player", "joker_counts_for_hostage_boost") then
-		hostages = hostages + minions
-	end
-
-	hostage_min_sum = hostage_min_sum + self:upgrade_value("player", "hostage_min_sum_taker", 0)
-	if hostages >= hostage_min_sum then
-		addend = addend + self:upgrade_value("player", "hostage_" .. category .. "_addend", 0)
-	end
+	local current_team_size = managers.groupai:state():_get_balancing_multiplier( { 1, 2, 3, 4 } )
 
 	if hostage_max_num then
 		hostages = math.min(hostages, hostage_max_num)
 	end
 
+	if category ~= "health_regen" then
+		addend = addend + self:team_upgrade_value(category, "hostage_addend", 0)
+		addend = addend + self:team_upgrade_value(category, "passive_hostage_addend", 0)
+		addend = addend + self:upgrade_value("player", "hostage_" .. category .. "_addend", 0)
+		addend = addend + self:upgrade_value("player", "passive_hostage_" .. category .. "_addend", 0)
+	else
+		hostages = math.min(hostages, current_team_size)
+		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size * hostages
+
+		if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
+			addend = addend * tweak_data.upgrades.hostage_near_player_multiplier
+		end
+	end
+
 	return addend * hostages
-end)
+end
+
+function PlayerManager:get_hostage_bonus_multiplier(category)
+	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
+	local minions = self:num_local_minions() or 0
+	local multiplier = 0
+	hostages = hostages + minions
+	local hostage_max_num = tweak_data:get_raw_value("upgrades", "hostage_max_num", category)
+
+	if hostage_max_num then
+		hostages = math.min(hostages, hostage_max_num)
+	end
+
+	multiplier = multiplier + self:team_upgrade_value(category, "hostage_multiplier", 1) - 1
+	multiplier = multiplier + self:team_upgrade_value(category, "passive_hostage_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", "hostage_" .. category .. "_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", "passive_hostage_" .. category .. "_multiplier", 1) - 1
+	local local_player = self:local_player()
+
+	-- if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
+	-- 	multiplier = multiplier * tweak_data.upgrades.hostage_near_player_multiplier
+	-- end
+
+	return 1 + multiplier * hostages
+end
 
 -- add fak health regen
 function PlayerManager:health_regen()
