@@ -189,7 +189,7 @@ return {
 			{ id = 103299, delay = 6 }, -- flyaway delay (normally 20)
 		},
 	},
-    -- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
+	-- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
 	[103295] = {
 		on_executed = {
 			{ id = 102950, remove = true },
