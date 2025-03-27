@@ -180,7 +180,7 @@ return {
 	[104050] = heli_enemy4,
 	[103295] = {
 		on_executed = {
-            { id = 102950, remove = true }, -- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
+			{ id = 102950, remove = true }, -- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
 			{ id = 103298, delay = 24 }, -- door open delay (normally 27)
 		},
 	},
