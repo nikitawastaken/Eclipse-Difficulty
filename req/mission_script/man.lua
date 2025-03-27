@@ -180,6 +180,7 @@ return {
 	[104050] = heli_enemy4,
 	[103295] = {
 		on_executed = {
+            { id = 102950, remove = true }, -- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
 			{ id = 103298, delay = 24 }, -- door open delay (normally 27)
 		},
 	},
@@ -187,12 +188,6 @@ return {
 		on_executed = {
 			{ id = 101716, delay = 1.5 }, -- enemy spawn delay (normally 0, causing them to spawn before the door opens)
 			{ id = 103299, delay = 6 }, -- flyaway delay (normally 20)
-		},
-	},
-	-- Remove bain's *chopper coming in, roof guys roof!* as it doesn't deploy tear gas anymore
-	[103295] = {
-		on_executed = {
-			{ id = 102950, remove = true },
 		},
 	},
 	[100131] = { -- police called, call in da choppa
