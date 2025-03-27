@@ -207,7 +207,7 @@ return {
 	},
 	[103302] = disabled, -- disable gas SO. its honestly worthless.
 	[103434] = {
-		values = filter_normal_above,
+		values = filter_normal_above.values,
 		on_executed = {
 			{ id = 101608, delay = 240, delay_rand = chopper_delay },
 		},
