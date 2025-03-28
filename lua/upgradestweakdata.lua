@@ -222,40 +222,14 @@ function UpgradesTweakData:init(tweak_data)
 	-- Parterns in Crime
 
 	-- Hostage Taker
-	self.values.player.hostage_min_sum_taker = { 1, 1 }
-	self.values.player.joker_counts_for_hostage_boost = { true }
-	self.values.player.hostage_health_regen_addend = { 1, 1.2 }
-	self.definitions.player_hostage_min_sum_taker_1 = {
-		category = "feature",
-		name_id = "hostage_min_sum_taker",
-		upgrade = {
-			category = "player",
-			upgrade = "hostage_min_sum_taker",
-			value = 1,
-		},
-	}
-	self.definitions.player_hostage_min_sum_taker_2 = {
-		category = "feature",
-		name_id = "hostage_min_sum_taker",
-		upgrade = {
-			category = "player",
-			upgrade = "hostage_min_sum_taker",
-			value = 2,
-		},
-	}
-	self.definitions.player_joker_counts_for_hostage_boost = {
-		category = "feature",
-		name_id = "joker_counts_for_hostage_boost",
-		upgrade = {
-			category = "player",
-			upgrade = "joker_counts_for_hostage_boost",
-			value = 1,
-		},
-	}
-	self.skill_descs.black_marketeer.multibasic = "1"
-	self.skill_descs.black_marketeer.multibasic2 = "10"
-	self.skill_descs.black_marketeer.multibasic3 = "5"
-	self.skill_descs.black_marketeer.multipro = "12"
+	self.values.player.hostage_health_regen_addend[1] = 0.8
+	self.hostage_near_player_multiplier = 1.5
+	self.hostage_near_player_radius = 700
+	self.skill_descs.black_marketeer.multibasic = "8"
+	self.skill_descs.black_marketeer.multibasic2 = "5"
+	self.skill_descs.black_marketeer.multibasic3 = "1"
+	self.skill_descs.black_marketeer.multipro = "50%"
+	self.skill_descs.black_marketeer.multipro2 = "7m"
 
 	-- Stable Shot
 	self.definitions.weapon_faster_recoil_recentering = {

@@ -8,6 +8,7 @@ if not Eclipse then
 		settings = {
 			ponr_assault_text = false,
 			max_progression_infamy = 0,
+			always_old_hitflash = false,
 		},
 		loaded_elements = false,
 	}
@@ -163,6 +164,11 @@ if not Eclipse then
 			Eclipse.settings.max_progression_infamy = value
 		end
 
+		function MenuCallbackHandler:eclipse_always_old_hitflash_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.always_old_hitflash = enabled
+		end
+
 		function MenuCallbackHandler:sh_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
@@ -190,6 +196,16 @@ if not Eclipse then
 			max = 500,
 			step = 1,
 			display_precision = 0,
+			priority = 100,
+		})
+
+		MenuHelper:AddToggle({
+			id = "always_old_hitflash",
+			title = "eclipse_menu_always_old_hitflash",
+			desc = "eclipse_menu_always_old_hitflash_desc",
+			callback = "eclipse_always_old_hitflash_toggle",
+			value = Eclipse.settings.always_old_hitflash,
+			menu_id = menu_id,
 			priority = 100,
 		})
 

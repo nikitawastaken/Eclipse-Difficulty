@@ -77,8 +77,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.control_freak[2].upgrades = {}
 
 	-- Hostage Taker
-	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1", "player_hostage_min_sum_taker_1" }
-	self.skills.black_marketeer[2].upgrades = { "player_hostage_health_regen_addend_2", "player_hostage_min_sum_taker_2", "player_joker_counts_for_hostage_boost" }
+	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1" }
+	self.skills.black_marketeer[2].upgrades = { "player_close_to_hostage_boost" }
 
 	-- Stable Shot
 	self.skills.stable_shot[1].upgrades = { "player_weapon_accuracy_increase_1" }
