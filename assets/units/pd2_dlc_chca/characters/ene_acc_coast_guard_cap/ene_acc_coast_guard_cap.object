@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
 <dynamic_object>
-	<diesel materials="units/payday2/characters/ene_acc_city_swat_cap/ene_acc_city_swat_cap" orientation_object="rp_ene_acc_city_swat_cap" />
-	
+	<diesel materials="units/pd2_dlc_chca/characters/ene_acc_coast_guard_cap/ene_acc_coast_guard_cap" orientation_object="rp_ene_acc_coast_guard_cap" />	
 	<bodies>
 	 <body name="static_body" enabled="true" template="small_prop" pushed_by_mover="false" ang_damping="0.9">
-			<object name="rp_ene_acc_city_swat_cap" />
+			<object name="rp_ene_acc_coast_guard_cap" />
 			<object name="c_convex" collision_type="convex" mass="1.5" />
 		</body>
 	</bodies>
@@ -19,6 +18,5 @@
 				<material materials="mtr_hat_lod_2" />
 			</object>
 		</lod_object>
-	</graphics>
-	
+	</graphics>	
 </dynamic_object>
