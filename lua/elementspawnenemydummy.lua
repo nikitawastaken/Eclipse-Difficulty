@@ -472,7 +472,16 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 	end
 
 	if self._enemy_table then
-		local new_enemy_name = table.random(self._enemy_table)
+		local enemy_selector = WeightedSelector:new()
+		for enemy_name, enemy_weight in pairs(self._enemy_table) do
+			if type(enemy_name) == "number" then
+				enemy_selector:add(enemy_weight, 1)
+			else
+				enemy_selector:add(enemy_name, enemy_weight)
+			end
+		end
+
+		local new_enemy_name = enemy_selector:select()
 
 		-- Idstring on an Idstring crashes
 		-- TODO: redo mission script patches to use string enemy names rather than Idstrings

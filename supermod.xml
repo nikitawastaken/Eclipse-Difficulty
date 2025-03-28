@@ -1144,6 +1144,12 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_chca/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_coast_guard_1/">
+				<xml  :name="ene_coast_guard_1.sequence_manager" dyn_package="true" />
+			</group>
+		</group>
+
 		<group name="units/pd2_dlc_ranc/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_acc_ranc_ranger_hat/">
 				<file :name="ene_acc_ranc_ranger_hat.cooked_physics" />

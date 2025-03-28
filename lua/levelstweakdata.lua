@@ -202,9 +202,50 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.sand.ai_unit_group_overrides = self.chas.ai_unit_group_overrides
-	self.chca.ai_unit_group_overrides = self.chas.ai_unit_group_overrides
 	self.pent.ai_unit_group_overrides = self.chas.ai_unit_group_overrides
 
+	-- Coast Guard
+	self.chca.ai_unit_group_overrides = {
+		CS_cop_1 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+			},
+		},
+		CS_cop_2 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+			},
+		},
+		CS_cop_3 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+			},
+		},
+		CS_cop_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+			},
+		},
+		CS_cop_1_2 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+			},
+		},
+		CS_cop_1_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_1/ene_coast_guard_1"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+			},
+		},
+		CS_cop_3_4 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
+			},
+		},
+	}
+	
 	-- Texas Rangers
 	self.ranc.ai_unit_group_overrides = {
 		CS_cop_1 = {
@@ -266,6 +307,22 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.deep.ai_unit_group_overrides = self.corp.ai_unit_group_overrides
+	self.chca.ai_unit_group_overrides = deep_clone(self.chca.ai_unit_group_overrides)
+	self.chca.ai_unit_group_overrides.Marshal_gunner_1 = {
+		america = {
+			Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"),
+		},
+	}
+	self.chca.ai_unit_group_overrides.Marshal_gunner_2 = {
+		america = {
+			Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"),
+		},
+	}
+	self.chca.ai_unit_group_overrides.Marshal_gunner = {
+		america = {
+			Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"),
+			Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"),
+		},
+	}
 	self.deep.flashlights_on = true
 end)

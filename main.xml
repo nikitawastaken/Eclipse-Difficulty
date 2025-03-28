@@ -13,6 +13,8 @@
     <Package id="packages/lapd" file="packages/lapd.xml"/>
     <!-- SFPD -->
     <Package id="packages/sfpd" file="packages/sfpd.xml"/>
+    <!-- Coast Guard -->
+    <Package id="packages/coast_guard" file="packages/coast_guard.xml"/>
     <!-- Texas Rangers -->
     <Package id="packages/texas_rangers" file="packages/texas_rangers.xml"/>
     <!-- Bellmead Security -->
