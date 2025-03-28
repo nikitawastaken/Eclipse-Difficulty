@@ -245,7 +245,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	-- Texas Rangers
 	self.ranc.ai_unit_group_overrides = {
 		CS_cop_1 = {

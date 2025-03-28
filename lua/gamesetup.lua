@@ -39,7 +39,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["chca"] = true,
 		["deep"] = true,
 	}
-	
+
 	local texas_rangers = {
 		--["ranc"] = true, -- They're already loaded here
 		["trai"] = true,
@@ -82,7 +82,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			table.insert(self._loaded_diff_packages, "packages/coast_guard")
 			PackageManager:load("packages/coast_guard")
 		end
-		
+
 		if texas_rangers[level_id] and not PackageManager:loaded("packages/texas_rangers") then
 			Eclipse:log("Loading Texas Rangers package...")
 			table.insert(self._loaded_diff_packages, "packages/texas_rangers")
