@@ -1,5 +1,6 @@
 local tmp_vec = Vector3()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local use_old_hitflash = (is_pro_job or Eclipse.settings.always_old_hitflash) and true or false
 
 -- Make flashbangs scale with look direction instead of a flat reduction at some certain angle
 Hooks:OverrideFunction(CoreEnvironmentControllerManager, "test_line_of_sight", function(self, test_pos, min_distance, dot_distance, max_distance)
@@ -48,7 +49,7 @@ local ids_LUT_settings = Idstring("lut_settings")
 local ids_LUT_settings_a = Idstring("LUT_settings_a")
 local ids_LUT_settings_b = Idstring("LUT_settings_b")
 local ids_LUT_contrast = Idstring("contrast")
-function CoreEnvironmentControllerManager:set_post_composite(t, dt)
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", function(self, t, dt)
 	local vp = managers.viewport:first_active_viewport()
 
 	if not vp then
@@ -218,52 +219,52 @@ function CoreEnvironmentControllerManager:set_post_composite(t, dt)
 	mvector3.set_static(temp_vec_2, last_life, math.max(0, flash_2 + math.clamp(hit_some_mod * 2, 0, 1) * 0.25 + blur_zone_val * 0.15), 0)
 	self._lut_modifier_material:set_variable(ids_LUT_settings_b, temp_vec_2)
 	self._lut_modifier_material:set_variable(ids_LUT_contrast, flashbang * 0.5)
-end
+end)
 
 Hooks:PostHook(CoreEnvironmentControllerManager, "init", "eclipse_init", function(self)
-	if is_pro_job then
+	if use_old_hitflash then
 		self._hit_amount = 0.3
 	end
 end)
 
-function CoreEnvironmentControllerManager:hit_feedback_front()
-	if is_pro_job then
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_front", function(self)
+	if use_old_hitflash then
 		self._hit_front = math.min(self._hit_front + self._hit_amount, 1)
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
-end
+end)
 
-function CoreEnvironmentControllerManager:hit_feedback_back()
-	if is_pro_job then
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_back", function(self)
+	if use_old_hitflash then
 		self._hit_back = math.min(self._hit_back + self._hit_amount, 1)
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
-end
+end)
 
-function CoreEnvironmentControllerManager:hit_feedback_right()
-	if is_pro_job then
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_right", function(self)
+	if use_old_hitflash then
 		self._hit_right = math.min(self._hit_right + self._hit_amount, 1)
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
-end
+end)
 
-function CoreEnvironmentControllerManager:hit_feedback_left()
-	if is_pro_job then
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_left", function(self)
+	if use_old_hitflash then
 		self._hit_left = math.min(self._hit_left + self._hit_amount, 1)
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
-end
+end)
 
-function CoreEnvironmentControllerManager:hit_feedback_up()
-	if is_pro_job then
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_up", function(self)
+	if use_old_hitflash then
 		self._hit_up = math.min(self._hit_up + self._hit_amount, 1)
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
-end
+end)
 
-function CoreEnvironmentControllerManager:hit_feedback_down()
-	if is_pro_job then
+Hooks:OverrideFunction(CoreEnvironmentControllerManager, "hit_feedback_down", function(self)
+	if use_old_hitflash then
 		self._hit_down = math.min(self._hit_down + self._hit_amount, 1)
 		self._hit_some = math.min(self._hit_some + self._hit_amount, 1)
 	end
-end
+end)
