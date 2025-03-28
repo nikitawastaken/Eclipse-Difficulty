@@ -339,6 +339,7 @@
 	"ene_security_1_fat" : "Security Guard",
 	"ene_security_2_fat" : "Security Guard",
 	"ene_security_3_fat" : "Security Guard",
+    "ene_coast_guard" : "US Coast Guard",
 
 	"ene_soldier" : "US Army Soldier",
 	"ene_hoxton_breakout_guard" : "FBI Ready Team",
