@@ -1,4 +1,5 @@
-local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
+
 return {
 	-- Combine some navigation areas
 	[101230] = {
