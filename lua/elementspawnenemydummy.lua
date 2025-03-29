@@ -350,8 +350,12 @@ function ElementSpawnEnemyDummy:chk_used_mapped_names(force)
 		if not self._enemy_table then
 			try_add_mapped_name(self._enemy_name)
 		else
-			for _, name in pairs(self._enemy_table) do
-				try_add_mapped_name(name)
+			for k, v in pairs(self._enemy_table) do
+				if type(k) == "number" then
+					try_add_mapped_name(v)
+				else
+					try_add_mapped_name(k)
+				end
 			end
 		end
 	end
