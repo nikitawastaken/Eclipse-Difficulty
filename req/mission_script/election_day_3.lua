@@ -61,7 +61,7 @@ return {
 		},
 	},
 	-- New reinforce
-	[102758] = {
+	[104306] = {
 		reinforce = {
 			{
 				name = "atrium_left",
