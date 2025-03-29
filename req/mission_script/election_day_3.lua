@@ -17,7 +17,7 @@ local low_harasser = { enemy = low_harasser_enemy }
 local med_harasser_enemy = swat_1
 local med_harasser = { enemy = med_harasser_enemy }
 local high_harasser_enemy = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
-local high_harasser = { enemy = high_harasser_enemy, }
+local high_harasser = { enemy = high_harasser_enemy }
 local low_escape_enemy = {
 	[swat_1] = 4,
 	[cop_3] = 1,
@@ -153,7 +153,7 @@ return {
 	[100271] = low_escape,
 	[100272] = low_escape,
 	[100273] = low_escape,
-	[100274] = low_escape,	
+	[100274] = low_escape,
 	[100293] = med_escape,
 	[100294] = med_escape,
 	[100295] = med_escape,
@@ -178,7 +178,7 @@ return {
 	[103319] = low_escape,
 	[103322] = low_escape,
 	[103325] = low_escape,
-	[103328] = low_escape,		
+	[103328] = low_escape,
 	[103338] = med_escape,
 	[103337] = med_escape,
 	[103336] = med_escape,
@@ -186,7 +186,7 @@ return {
 	[103334] = med_escape,
 	[103333] = med_escape,
 	[103332] = med_escape,
-	[103331] = med_escape,	
+	[103331] = med_escape,
 	[103346] = high_escape,
 	[103345] = high_escape,
 	[103344] = high_escape,

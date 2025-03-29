@@ -29,7 +29,7 @@ local taser_spawn = {
 }
 local ambush_chance = {
 	chance = normal and 45 or hard and 70 or 100,
-}	
+}
 local sewer_spawn = {
 	values = {
 		interval = 15,
@@ -125,8 +125,8 @@ return {
 	[106427] = ambush_chance,
 	[106428] = ambush_chance,
 	[106429] = ambush_chance,
-	-- Spawn group delays	
-	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame. 
+	-- Spawn group delays
+	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame.
 	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
 	[103294] = sewer_spawn,
 	[103295] = sewer_spawn,

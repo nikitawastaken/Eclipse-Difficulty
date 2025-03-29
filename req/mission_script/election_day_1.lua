@@ -38,13 +38,13 @@ return {
 		},
 	},
 	-- Tweak the difficulty curve slightly
-	[100156] = {  
+	[100156] = {
 		values = {
 			difficulty = 0.5,
 		},
 	},
-	[104076] = {  
-		values = { 
+	[104076] = {
+		values = {
 			difficulty = 0.75,
 		},
 		reinforce = { -- diff increased, add additional reinforce
@@ -60,7 +60,7 @@ return {
 			},
 		},
 	},
-	-- Spawn group delays	
+	-- Spawn group delays
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- Slightly revising the original version with more pronounced intervals.
 	[104110] = jumpdown_spawn1,
