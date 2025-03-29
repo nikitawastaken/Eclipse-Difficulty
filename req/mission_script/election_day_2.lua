@@ -32,13 +32,13 @@ return {
 			{ id = 102804, delay = 30 },
 		},
 	},
-	-- Spawn group delays	
-	-- Election Day got butchered pretty badly when spawn group intervals were standardised. 
+	-- Spawn group delays
+	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- While the original intervals would've been more than enough, I decided to slow down the skylight rappels further to make holding out under the catwalks a bit less annoying.
 	[100021] = window_spawn1,
 	[100132] = window_spawn1,
 	[100145] = window_spawn1,
-	[100147] = window_spawn1,	
+	[100147] = window_spawn1,
 	[100131] = skylight_spawn,
 	[100146] = skylight_spawn,
 	[100148] = skylight_spawn,
