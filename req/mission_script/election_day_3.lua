@@ -1,13 +1,28 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = is_eclipse and is_pro_job
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
 local cop_4 = scripted_enemy.cop_4
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local elite_sniper = scripted_enemy.elite_sniper
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
+local elevator_dozer = { enemy = is_eclipse_pro and random_elite_dozers or random_dozers }
 local low_harasser_enemy = {
 	[cop_1] = 4,
 	[cop_3] = 2,
@@ -60,6 +75,12 @@ return {
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
+	-- Delay the assault 
+	[102711] = {
+		on_executed = {
+			{ id = 102734, delay = 20 },
+		},
+	},
 	-- New reinforce
 	[104306] = {
 		reinforce = {
@@ -95,6 +116,10 @@ return {
 			{ id = 100321, delay = 0 },
 		},
 	},
+	-- elevator Dozer
+	[103222] = elevator_dozer,
+	[103241] = elevator_dozer,
+	[103254] = elevator_dozer,
 	-- spawn group delays
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,

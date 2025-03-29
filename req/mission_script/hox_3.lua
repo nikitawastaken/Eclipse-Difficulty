@@ -1,11 +1,9 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
-
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -13,7 +11,6 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local elite_sniper = scripted_enemy.elite_sniper
-
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -36,20 +33,17 @@ local ready_team_dozer_chance = {
 		chance = (is_pro_job and 1.25 or 1) * (diff_i * 10),
 	},
 }
-
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-
 local flank_spawn = {
 	values = {
 		interval = 15,
 	},
 	groups = preferred.no_bulldozers,
 }
-
 return {
 	-- Boss spawn
 	[102107] = {
