@@ -1686,8 +1686,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				amount_max = 2,
-				freq = 2,
-				rank = 0.6,
+				freq = 0.6,
+				rank = 2,
 				unit = "CS_cop_4",
 				tactics = self._tactics.cop_init,
 			},
