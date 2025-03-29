@@ -49,7 +49,7 @@ local eclipse_dozers = {
 local escape_dozer = {
 	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
-local harasser_enemy = is_eclipse and { Idstring(swat_1), Idstring(swat_1), Idstring(swat_1), Idstring(swat_1), Idstring(elite_sniper) } or swat_1
+local harasser_enemy = is_eclipse and { [swat_1] = 6, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
 }

@@ -126,7 +126,7 @@ return {
 	[100369] = reinforce_amount,
 	[102091] = reinforce_amount,
 	[100370] = reinforce_amount,
-	--spawnpoint delays
+	-- Spawn group delays
 	[100246] = {
 		values = {
 			interval = 10,

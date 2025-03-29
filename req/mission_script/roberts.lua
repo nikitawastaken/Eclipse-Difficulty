@@ -1,7 +1,8 @@
+local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local scripted_enemy = Eclipse.scripted_enemy
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
 --local us_soldier_tank = scripted_enemy.soldier_bulldozer
@@ -9,19 +10,12 @@ local taser = scripted_enemy.taser_1
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
-
 local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { heavy_1, heavy_1, elite_sniper } or heavy_1
+local heavy_harasser = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-
-local us_soldiers = {
-	us_soldier_1,
-	us_soldier_1,
-	us_soldier_1,
-	us_soldier_2,
-}
+local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 1 }
 local us_soldier = {
 	enemy = us_soldiers,
 }
@@ -30,15 +24,23 @@ local army_dozer = {
 	enemy = overkill_and_above and us_soldier_tank,
 }
 ]]
---
 local taser_spawn = {
 	enemy = taser,
 }
-
 local ambush_chance = {
 	chance = normal and 45 or hard and 70 or 100,
+}	
+local sewer_spawn = {
+	values = {
+		interval = 15,
+	},
 }
-
+local flank_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 return {
 	[101949] = {
 		ponr = {
@@ -50,7 +52,27 @@ return {
 			{ id = 101955, remove = true },
 		},
 	},
-	-- restore the bulldozer that drops from the chopper on higher diffs
+	-- Add early reinforce around the bank
+	[100109] = {
+		reinforce = {
+			{
+				name = "bank_left",
+				force = 3,
+				position = Vector3(-500, -3000, -75),
+			},
+			{
+				name = "bank_front",
+				force = 3,
+				position = Vector3(3000, 0, -75),
+			},
+			{
+				name = "bank_back",
+				force = 3,
+				position = Vector3(-3000, -1400, -60),
+			},
+		},
+	},
+	-- Restore the bulldozer that drops from the chopper on higher diffs
 	[102992] = {
 		values = {
 			enabled = overkill_and_above and true,
@@ -103,6 +125,29 @@ return {
 	[106427] = ambush_chance,
 	[106428] = ambush_chance,
 	[106429] = ambush_chance,
+	-- Spawn group delays	
+	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame. 
+	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
+	[103294] = sewer_spawn,
+	[103295] = sewer_spawn,
+	[103296] = sewer_spawn,
+	[103297] = sewer_spawn,
+	[103298] = sewer_spawn,
+	[103788] = sewer_spawn,
+	[103789] = sewer_spawn,
+	[103790] = sewer_spawn,
+	[103791] = sewer_spawn,
+	[103792] = sewer_spawn,
+	[103793] = sewer_spawn,
+	[104629] = sewer_spawn,
+	[104631] = sewer_spawn,
+	[104649] = sewer_spawn,
+	[104686] = sewer_spawn,
+	[104687] = sewer_spawn,
+	[104689] = sewer_spawn,
+	[100694] = flank_spawn,
+	[100130] = flank_spawn,
+	[100131] = flank_spawn,
 	-- Holy harassers, Batman...
 	[103098] = harasser,
 	[103099] = harasser,

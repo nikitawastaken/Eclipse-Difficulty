@@ -3,19 +3,11 @@ local overkill_and_above = Eclipse.utils.diff_threshold()
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
 --local us_soldier_tank = scripted_enemy.soldier_bulldozer
-
-local us_soldiers = {
-	Idstring(us_soldier_1),
-	Idstring(us_soldier_1),
-	Idstring(us_soldier_1),
-	Idstring(us_soldier_2),
-}
+local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 1 }
 local us_soldier = {
 	enemy = us_soldiers,
 }
-
 --local us_soldier_dozer = overkill_and_above and us_soldier_tank
-
 local missing_taser_access_fix = {
 	so_access_filter = { "cop", "swat", "tank", "shield", "taser" },
 }

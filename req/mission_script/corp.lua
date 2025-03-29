@@ -4,8 +4,6 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 
 local bellmead_1 = scripted_enemy.bellmead_security_1
-local bellmead_2 = scripted_enemy.bellmead_security_2
-local bellmead_3 = scripted_enemy.bellmead_security_3
 local bellmead_heavy_1 = scripted_enemy.bellmead_gunner_1
 local bellmead_heavy_2 = scripted_enemy.bellmead_gunner_2
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -21,55 +19,13 @@ local disabled = {
 		enabled = false,
 	},
 }
-local bellmead_mercs = {
-	Idstring(bellmead_1),
-	Idstring(bellmead_2),
-	Idstring(bellmead_3),
-	Idstring(bellmead_1),
-	Idstring(bellmead_2),
-	Idstring(bellmead_3),
-	Idstring(bellmead_heavy_1),
-	Idstring(bellmead_heavy_2),
-}
+local bellmead_mercs = { [bellmead_1] = 5, [bellmead_heavy_1] = 1, [bellmead_heavy_2] = 1 }
 local bellmead_merc = {
 	enemy = bellmead_mercs,
 }
-local specials_list_eclipse = {
-	Idstring(cloaker),
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(medic),
-	Idstring(medic),
-	Idstring(elite_ben_bulldozer),
-	Idstring(elite_skull_bulldozer),
-}
-local specials_list_hard_ovk = {
-	Idstring(cloaker),
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(medic),
-	Idstring(medic),
-	Idstring(cloaker),
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(medic),
-	Idstring(medic),
-	Idstring(green_bulldozer),
-	Idstring(black_bulldozer),
-}
-local specials_list_easy_normal = {
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-}
+local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }
+local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1 }
+local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
 local specials = {
 	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
 }

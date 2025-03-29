@@ -3,6 +3,7 @@ local flank_spawn = {
 	values = {
 		interval = 15,
 	},
+	groups = preferred.no_bulldozers,
 }
 local window_spawn = {
 	values = {
