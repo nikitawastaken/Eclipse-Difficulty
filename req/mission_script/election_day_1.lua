@@ -10,6 +10,11 @@ local heavy_harasser = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or h
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
+local waterfront_spawn = {
+	values = {
+		interval = 15,
+	},
+}
 local jumpdown_spawn1 = {
 	values = {
 		interval = 20,
@@ -52,6 +57,8 @@ return {
 	-- Spawn group delays
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- Slightly revising the original version with more pronounced intervals.
+	[101505] = waterfront_spawn,
+	[101196] = waterfront_spawn,
 	[104110] = jumpdown_spawn1,
 	[104324] = jumpdown_spawn1,
 	[104330] = jumpdown_spawn1,
