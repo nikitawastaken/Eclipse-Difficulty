@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local curly_spawn = {
 	values = {
 		interval = 15
@@ -44,6 +45,11 @@ local elevator_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local bags_required = {
+	values = {
+		counter_target = (normal and 4 or 6) + (is_pro_job and 2 or 0),
+	},
+}
 return {
 	-- Add new reinforce
 	[101577] = { 
@@ -55,6 +61,13 @@ return {
 			}
 		}
 	},
+	-- change amount of required bags
+	-- the amount of required bags in vanilla sucks so hard
+	[101753] = bags_required,
+	[101758] = bags_required,
+	[101759] = bags_required,
+	[101760] = bags_required,
+	[101761] = bags_required,
 	-- Remove a few vanilla reinforce points
 	[102054] = disabled,
 	[102057] = disabled,
