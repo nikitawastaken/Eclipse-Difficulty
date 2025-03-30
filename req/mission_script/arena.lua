@@ -2,7 +2,7 @@ local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local curly_spawn = {
 	values = {
-		interval = 15
+		interval = 15,
 	},
 }
 local disabled = {
@@ -52,14 +52,14 @@ local bags_required = {
 }
 return {
 	-- Add new reinforce
-	[101577] = { 
+	[101577] = {
 		reinforce = {
 			{
 				name = "lobby",
 				force = 4,
 				position = Vector3(-300, 550, 0),
-			}
-		}
+			},
+		},
 	},
 	-- change amount of required bags
 	-- the amount of required bags in vanilla sucks so hard

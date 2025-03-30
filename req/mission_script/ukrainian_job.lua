@@ -32,7 +32,7 @@ local rappel_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[103342] = {  -- Allow one more sniper
+	[103342] = { -- Allow one more sniper
 		values = {
 			amount = 1,
 			amount_random = 1,

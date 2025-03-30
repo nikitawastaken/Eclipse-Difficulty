@@ -6,13 +6,13 @@ local roof_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_cops_agents,	
+	groups = preferred.no_cops_agents,
 }
 local staircase_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_bulldozers,	
+	groups = preferred.no_bulldozers,
 }
 local elevator_spawn = {
 	values = {
@@ -23,13 +23,13 @@ local balcony_spawn1 = {
 	values = {
 		interval = 45,
 	},
-	groups = preferred.no_cops_agents,	
+	groups = preferred.no_cops_agents,
 }
 local balcony_spawn2 = {
 	values = {
 		interval = 60,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,	
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Fix power cut SO delay and add some random delay

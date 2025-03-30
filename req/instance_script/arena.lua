@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local patches = {
 	double_door_group = table.set(100013),
-	elevator_group = table.set(100013)
+	elevator_group = table.set(100013),
 }
 
 return {

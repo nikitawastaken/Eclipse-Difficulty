@@ -3,13 +3,13 @@ local rear_spawn = {
 	values = {
 		interval = 10,
 	},
-	groups = preferred.no_bulldozers,	
+	groups = preferred.no_bulldozers,
 }
 local breach_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields_bulldozers,	
+	groups = preferred.no_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
