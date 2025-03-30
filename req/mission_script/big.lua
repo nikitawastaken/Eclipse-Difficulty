@@ -88,6 +88,7 @@ return {
 	},
 	-- change amount of required bags
 	[101868] = bags_required,
+	[103961] = bags_required,
 	-- Wall c4 chance
 	[102451] = wall_c4_chance,
 	[102469] = wall_c4_chance,

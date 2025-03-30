@@ -23,4 +23,10 @@ return {
 	[100745] = bags_required,
 	[100746] = bags_required,
 	[101825] = bags_required,
+	[104047] = bags_required,
+	[104048] = bags_required,
+	[104049] = bags_required,
+	[100260] = bags_required,
+	[100321] = bags_required,
+	[100322] = bags_required,
 }
