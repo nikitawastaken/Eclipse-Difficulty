@@ -8,12 +8,18 @@ local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
 local cop_4 = scripted_enemy.cop_4
 local swat_1 = scripted_enemy.swat_1
+local swat_2 = scripted_enemy.swat_2
 local heavy_1 = scripted_enemy.heavy_swat_1
+local heavy_2 = scripted_enemy.heavy_swat_2
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local elite_sniper = scripted_enemy.elite_sniper
+local outside_cop_enemy = { [cop_1] = 3, [cop_2] = 1, [cop_4] = 1 }
+local outside_cop = { enemy = outside_cop_enemy }
+local inside_cop_enemy = { [cop_3] = 2, [cop_2] = 1, [cop_1] = 1 }
+local inside_cop = { enemy = inside_cop_enemy }
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -39,21 +45,39 @@ local low_escape_enemy = {
 	[cop_4] = 1,
 }
 local low_escape = { enemy = low_escape_enemy }
-local med_escape_enemy = swat_1
+local med_escape_enemy = { Idstring(swat_1), Idstring(swat_2) }
 local med_escape = { enemy = med_escape_enemy }
 local high_escape_enemy = {
-	[swat_1] = 1,
-	[heavy_1] = 1,
+	[swat_1] = 2,
+	[swat_2] = 1,
+	[heavy_1] = 2,
+	[heavy_2] = 1,
 }
 local high_escape = { enemy = high_escape_enemy }
-local atrium_spawn = {
+local front_spawn = {
+	values = {
+		interval = 10,
+	},
+}
+local front_left_spawn = {
 	values = {
 		interval = 15,
 	},
 }
+local mall_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local atrium_spawn = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_shields,
+}
 local ladder_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_bulldozers,
 }
@@ -62,6 +86,12 @@ local window_spawn = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local front_short_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,	
 }
 local cloaker_spawn = {
 	values = {
@@ -116,11 +146,29 @@ return {
 			{ id = 100321, delay = 0 },
 		},
 	},
+	-- Remove garage preferreds from initial preferreds
+	[102753] = {
+		on_executed = {
+			{ id = 103481, remove = true },
+		},
+	},
+	[100110] = { -- 2nd assault done
+		on_executed = {
+			{ id = 103481, delay = 0 },
+		},
+	},	
 	-- elevator Dozer
 	[103222] = elevator_dozer,
 	[103241] = elevator_dozer,
 	[103254] = elevator_dozer,
-	-- spawn group delays
+	-- Spawn group delays
+	-- More or less a port of the original intervals with some twists as per usual.
+	-- The main one being increasing intervals of the groups outside the bank building as they are stacked pretty close to each other.
+	-- Ladder spawns have been slowed down as well since they are very close to the area where players are expected to hold out.
+	[102751] = front_spawn,
+	[102730] = front_left_spawn,
+	[100424] = mall_spawn,
+	[100435] = mall_spawn,
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
 	[104838] = atrium_spawn,
@@ -128,9 +176,22 @@ return {
 	[101795] = ladder_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
+	[103505] = front_short_spawn,
 	[102792] = cloaker_spawn,
 	[103435] = cloaker_spawn,
 	[103437] = cloaker_spawn,
+	-- Scripted Beat Cops
+	[103944] = outside_cop,
+	[102662] = outside_cop,	
+	[102663] = outside_cop,	
+	[102666] = outside_cop,	
+	[102667] = outside_cop,
+	[102669] = outside_cop,	
+	[102670] = outside_cop,	
+	[102953] = outside_cop,	
+	[102954] = outside_cop,	
+	[103952] = inside_cop,
+	[103953] = inside_cop,
 	-- Sophisticated harasser setup, bravo Overkill!
 	-- SO FUCKING MANY
 	-- "Supressers"
