@@ -55,7 +55,7 @@ local shells_required_objective = {
 		amount = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0),
 	},
 }
-local chopper_amount = (eclipse and 2 or 1) + (is_pro_job and 1 or 0),
+local chopper_amount = (eclipse and 2 or 1) + (is_pro_job and 1 or 0)
 
 return {
 	[105046] = {
