@@ -55,6 +55,7 @@ local shells_required_objective = {
 		amount = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0),
 	},
 }
+local chopper_amount = (eclipse and 2 or 1) + (is_pro_job and 1 or 0),
 
 return {
 	[105046] = {
@@ -66,7 +67,7 @@ return {
 	-- play the background sirens that are supposed to play
 	[100022] = {
 		on_executed = {
-			{ id = 100109, delay = 30 },
+			{ id = 103046, delay = 30 },
 		},
 	},
 	-- restores unused sniper spawn
@@ -84,10 +85,30 @@ return {
 	-- loop the choppers
 	[102767] = {
 		on_executed = {
-			{ id = 102767, delay = overkill_and_above and 240 or 300 },
+			{ id = 102767, delay = overkill_and_above and 300 or 360 },
+		},
+	},
+	[104600] = {
+		values = {
+			amount = chopper_amount,
+		},
+	},
+	[104694] = {
+		values = {
+			enabled = false,
 		},
 	},
 	-- Thermal Drill Lottery (feat. Bile The Pilot)
+	[102893] = {
+		values = {
+			amount = bile_lottery,
+		},
+	},
+	[102894] = {
+		values = {
+			amount = bile_lottery,
+		},
+	},
 	[102895] = {
 		values = {
 			amount = bile_lottery,
