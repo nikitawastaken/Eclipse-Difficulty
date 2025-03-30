@@ -32,7 +32,7 @@ local enabled = {
 		enabled = true,
 	},
 }
-local ambush_chance = (is_pro_job and 1.25 or 1) * (diff_i - 2) * 15
+local ambush_chance = (is_pro_job and 1.5 or 1) * (diff_i - 2) * 15
 return {
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup

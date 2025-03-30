@@ -1,5 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
@@ -11,13 +12,13 @@ local harasser = {
 }
 local jumpdown_spawn1 = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local jumpdown_spawn2 = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -46,18 +47,6 @@ return {
 	[104076] = {
 		values = {
 			difficulty = 0.75,
-		},
-		reinforce = { -- diff increased, add additional reinforce
-			{
-				name = "container1",
-				force = 2,
-				position = Vector3(3800, 1000, 550),
-			},
-			{
-				name = "container2",
-				force = 2,
-				position = Vector3(2150, -400, 550),
-			},
 		},
 	},
 	-- Spawn group delays

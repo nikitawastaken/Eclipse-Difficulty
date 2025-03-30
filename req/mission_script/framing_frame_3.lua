@@ -1,5 +1,35 @@
+local preferred = Eclipse.preferred
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
+}
+local roof_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents,	
+}
+local staircase_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_bulldozers,	
+}
+local elevator_spawn = {
+	values = {
+		interval = 30,
+	},
+}
+local balcony_spawn1 = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents,	
+}
+local balcony_spawn2 = {
+	values = {
+		interval = 60,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,	
 }
 return {
 	-- Fix power cut SO delay and add some random delay
@@ -54,4 +84,14 @@ return {
 			},
 		},
 	},
+	-- Spawn Group delays
+	[102364] = roof_spawn,
+	[105718] = roof_spawn,
+	[100817] = staircase_spawn,
+	[100329] = elevator_spawn,
+	[100887] = balcony_spawn1,
+	[100896] = balcony_spawn1,
+	[105200] = balcony_spawn1,
+	[105201] = balcony_spawn1,
+	[105489] = balcony_spawn2,
 }

@@ -2,19 +2,16 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
-
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
-
 local snipers_amount = {
 	values = {
 		amount = normal and 2 or hard and 3 or 4,
 	},
 }
-
 local garage_door_spawn = {
 	values = {
 		interval = 10,
@@ -40,20 +37,17 @@ local container_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 120,
 	},
 }
-
 local chance_all_containers_closed = normal and 0 or hard and 0.0125 or 0.025
 local chance_zero_traversal_covers = normal and 0 or 0.05
 local chance_zero_top_containers = chance_zero_traversal_covers
 local chance_disable_catwalk_far = normal and 0 or 0.25
 local chance_no_keycard = normal and 0.1 or hard and 0.2 or 0.4
-
 local zero_traversal_covers = math.random() < chance_zero_traversal_covers
 local zero_top_containers = math.random() < chance_zero_top_containers
 local all_containers_closed = math.random() < chance_all_containers_closed
-
 return {
 	[101061] = {
 		ponr = {

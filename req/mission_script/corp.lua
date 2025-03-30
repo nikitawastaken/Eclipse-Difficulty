@@ -2,7 +2,6 @@ local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
-
 local bellmead_1 = scripted_enemy.bellmead_security_1
 local bellmead_heavy_1 = scripted_enemy.bellmead_gunner_1
 local bellmead_heavy_2 = scripted_enemy.bellmead_gunner_2
@@ -13,7 +12,6 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
-
 local disabled = {
 	values = {
 		enabled = false,
@@ -167,8 +165,7 @@ return {
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
 ]]
-	--
-	-- spawn point delays
+	-- Spawn group delays
 	[102820] = lab_spawn,
 	[102784] = elevator_spawn,
 	[102828] = elevator_spawn,

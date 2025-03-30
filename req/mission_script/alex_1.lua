@@ -1,13 +1,15 @@
+local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 -- credit for these changes goes to ASS, thanks miki <3
-local mexicans = {
+local mendoza_enemy = {
 	Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),
 	Idstring("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"),
 	Idstring("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"),
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
+local mendoza = { enemy = mendoza_enemy }
 local sniper_groups = {
 	values = {
 		amount = normal and 1 or hard and 2 or 3,
@@ -27,11 +29,37 @@ local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
 }
 local chopper_amount = is_eclipse and 2 or 1
-
 local sniper_respawn_1 = is_eclipse and 80 or hard and 100 or 140
 local sniper_respawn_2 = is_eclipse and 60 or hard and 70 or 90
 local sniper_respawn_3 = is_eclipse and 30 or hard and 40 or 60
-
+local bridge_far_spawn = {
+	values = {
+		interval = 10,
+	},
+}
+local lumber_far_spawn = {
+	values = {
+		interval = 10,
+	},
+}
+local bridge_close_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_bulldozers,
+}
+local lumber_close_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_bulldozers,
+}
+local flank_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_spawn,
@@ -215,24 +243,32 @@ return {
 			},
 		},
 	},
-	[101525] = { enemy = mexicans }, -- gangsters
-	[101527] = { enemy = mexicans },
-	[100825] = { enemy = mexicans },
-	[100826] = { enemy = mexicans },
-	[101529] = { enemy = mexicans },
-	[101530] = { enemy = mexicans },
-	[101531] = { enemy = mexicans },
-	[101284] = { enemy = mexicans },
-	[101286] = { enemy = mexicans },
-	[100417] = { enemy = mexicans },
-	[100420] = { enemy = mexicans },
-	[101060] = { enemy = mexicans },
-	[101061] = { enemy = mexicans },
-	[101293] = { enemy = mexicans },
-	[101288] = { enemy = mexicans },
-	[101294] = { enemy = mexicans },
-	[100426] = { enemy = mexicans },
-	[100431] = { enemy = mexicans },
-	[101262] = { enemy = mexicans },
-	[101263] = { enemy = mexicans },
+	[101525] = mendoza -- gangsters
+	[101527] = mendoza
+	[100825] = mendoza
+	[100826] = mendoza
+	[101529] = mendoza
+	[101530] = mendoza
+	[101531] = mendoza
+	[101284] = mendoza
+	[101286] = mendoza
+	[100417] = mendoza
+	[100420] = mendoza
+	[101060] = mendoza
+	[101061] = mendoza
+	[101293] = mendoza
+	[101288] = mendoza
+	[101294] = mendoza
+	[100426] = mendoza
+	[100431] = mendoza
+	[101262] = mendoza
+	[101263] = mendoza
+	-- Spawn Group delays
+	[100671] = bridge_far_spawn,
+	[100880] = lumber_far_spawn,
+	[100672] = bridge_close_spawn,
+	[100924] = bridge_close_spawn,
+	[100863] = lumber_close_spawn,
+	[100874] = lumber_close_spawn,
+	[100925] = flank_spawn,
 }
