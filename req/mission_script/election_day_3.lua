@@ -91,7 +91,7 @@ local front_short_spawn = {
 	values = {
 		interval = 45,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,	
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
@@ -156,7 +156,7 @@ return {
 		on_executed = {
 			{ id = 103481, delay = 0 },
 		},
-	},	
+	},
 	-- elevator Dozer
 	[103222] = elevator_dozer,
 	[103241] = elevator_dozer,
@@ -182,14 +182,14 @@ return {
 	[103437] = cloaker_spawn,
 	-- Scripted Beat Cops
 	[103944] = outside_cop,
-	[102662] = outside_cop,	
-	[102663] = outside_cop,	
-	[102666] = outside_cop,	
+	[102662] = outside_cop,
+	[102663] = outside_cop,
+	[102666] = outside_cop,
 	[102667] = outside_cop,
-	[102669] = outside_cop,	
-	[102670] = outside_cop,	
-	[102953] = outside_cop,	
-	[102954] = outside_cop,	
+	[102669] = outside_cop,
+	[102670] = outside_cop,
+	[102953] = outside_cop,
+	[102954] = outside_cop,
 	[103952] = inside_cop,
 	[103953] = inside_cop,
 	-- Sophisticated harasser setup, bravo Overkill!
