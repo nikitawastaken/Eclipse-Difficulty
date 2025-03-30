@@ -31,9 +31,13 @@ function CopLogicTravel.on_pathing_results(data)
 end
 
 -- Follow pathing improvement, use continuous instead of segmented path
+function CopLogicTravel._use_segmented_coarse_path(data)
+	return not data.objective or data.objective.type ~= "follow" or data.path_fail_t and data.t - data.path_fail_t < 2
+end
+
 local _begin_coarse_pathing_original = CopLogicTravel._begin_coarse_pathing
 function CopLogicTravel._begin_coarse_pathing(data, my_data, ...)
-	if not data.objective or data.objective.type ~= "follow" or data.path_fail_t and data.t - data.path_fail_t < 2 then
+	if CopLogicTravel._use_segmented_coarse_path(data) then
 		return _begin_coarse_pathing_original(data, my_data, ...)
 	end
 
@@ -62,8 +66,8 @@ end
 
 local _get_allowed_travel_nav_segs_original = CopLogicTravel._get_allowed_travel_nav_segs
 function CopLogicTravel._get_allowed_travel_nav_segs(data, ...)
-	-- Returning nothing here allows all nav segments
-	if not data.objective or data.objective.type ~= "follow" then
+	-- Returning nothing allows all nav segments
+	if CopLogicTravel._use_segmented_coarse_path(data) then
 		return _get_allowed_travel_nav_segs_original(data, ...)
 	end
 end

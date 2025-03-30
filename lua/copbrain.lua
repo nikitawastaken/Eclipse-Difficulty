@@ -33,6 +33,7 @@ CopBrain._logic_variants.zeal_medic.attack = MedicLogicAttack
 
 CopBrain._next_cover_grenade_chk_t = 0
 CopBrain._next_logic_upd_t = 0
+CopBrain._logic_upd_interval = 1 / 30
 
 -- Fix spamming of grenades by units that dodge with grenades (Cloaker)
 local _chk_use_cover_grenade_original = CopBrain._chk_use_cover_grenade
@@ -103,7 +104,7 @@ end)
 local update_original = CopBrain.update
 function CopBrain:update(unit, t, ...)
 	if self._next_logic_upd_t <= t then
-		self._next_logic_upd_t = t + 1 / 30
+		self._next_logic_upd_t = t + self._logic_upd_interval
 		return update_original(self, unit, t, ...)
 	end
 end
