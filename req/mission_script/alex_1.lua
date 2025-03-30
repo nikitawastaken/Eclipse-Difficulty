@@ -243,26 +243,26 @@ return {
 			},
 		},
 	},
-	[101525] = mendoza -- gangsters
-	[101527] = mendoza
-	[100825] = mendoza
-	[100826] = mendoza
-	[101529] = mendoza
-	[101530] = mendoza
-	[101531] = mendoza
-	[101284] = mendoza
-	[101286] = mendoza
-	[100417] = mendoza
-	[100420] = mendoza
-	[101060] = mendoza
-	[101061] = mendoza
-	[101293] = mendoza
-	[101288] = mendoza
-	[101294] = mendoza
-	[100426] = mendoza
-	[100431] = mendoza
-	[101262] = mendoza
-	[101263] = mendoza
+	[101525] = mendoza, -- gangsters
+	[101527] = mendoza,
+	[100825] = mendoza,
+	[100826] = mendoza,
+	[101529] = mendoza,
+	[101530] = mendoza,
+	[101531] = mendoza,
+	[101284] = mendoza,
+	[101286] = mendoza,
+	[100417] = mendoza,
+	[100420] = mendoza,
+	[101060] = mendoza,
+	[101061] = mendoza,
+	[101293] = mendoza,
+	[101288] = mendoza,
+	[101294] = mendoza,
+	[100426] = mendoza,
+	[100431] = mendoza,
+	[101262] = mendoza,
+	[101263] = mendoza,
 	-- Spawn Group delays
 	[100671] = bridge_far_spawn,
 	[100880] = lumber_far_spawn,
