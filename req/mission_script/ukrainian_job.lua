@@ -1,14 +1,18 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local cop_1 = scripted_enemy.cop_1
+local cop_2 = scripted_enemy.cop_2
+local cop_3 = scripted_enemy.cop_3
+local cop_4 = scripted_enemy.cop_4
+local street_cop_enemy = { [cop_1] = 3, [cop_2] = 1, [cop_4] = 1 }
+local street_cop = { enemy = outside_cop_enemy }
+local assault_cop_enemy = { [cop_3] = 3, [cop_4] = 2, [cop_1] = 2, [cop_2] = 1 }
+local assault_cop = { enemy = assault_cop_enemy }
 local enabled = {
 	values = {
 		enabled = true,
 	},
 }
-local street_cop_enemy = { [cop_1] = 3, [cop_2] = 1, [cop_4] = 1 }
-local street_cop = { enemy = outside_cop_enemy }
-local assault_cop_enemy = { [cop_3] = 3, [cop_4] = 2, [cop_1] = 2, [cop_2] = 1 }
-local assault_cop = { enemy = assault_cop_enemy }
 local left_spawn = {
 	values = {
 		interval = 10,
