@@ -14,6 +14,7 @@ local flank_spawn = {
 	values = {
 		interval = 10,
 	},
+	groups = preferred.no_bulldozers,
 }
 local elevator_spawn = {
 	values = {
