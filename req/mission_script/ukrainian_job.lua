@@ -6,7 +6,7 @@ local enabled = {
 	},
 }
 local street_cop_enemy = { [cop_1] = 3, [cop_2] = 1, [cop_4] = 1 }
-local street_cop = { enemy = outside_cop_enemy }
+local street_cop = { enemy = street_cop_enemy }
 local assault_cop_enemy = { [cop_3] = 3, [cop_4] = 2, [cop_1] = 2, [cop_2] = 1 }
 local assault_cop = { enemy = assault_cop_enemy }
 local left_spawn = {
