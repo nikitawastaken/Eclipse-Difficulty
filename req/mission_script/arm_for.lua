@@ -26,51 +26,13 @@ local army_dozer_vault = {
 local security_army = {
 	enemy = army_guard,
 }
-local us_soldiers = {
-	Idstring(us_soldier_1),
-	Idstring(us_soldier_1),
-	Idstring(us_soldier_1),
-	Idstring(us_soldier_2),
-}
+local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 1 }
 local us_soldier = {
 	enemy = us_soldiers,
 }
-local specials_list_eclipse = {
-	Idstring(cloaker),
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(medic),
-	Idstring(medic),
-	Idstring(elite_ben_bulldozer),
-	Idstring(elite_skull_bulldozer),
-}
-local specials_list_hard_ovk = {
-	Idstring(cloaker),
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(medic),
-	Idstring(medic),
-	Idstring(cloaker),
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(medic),
-	Idstring(medic),
-	Idstring(green_bulldozer),
-	Idstring(black_bulldozer),
-}
-local specials_list_easy_normal = {
-	Idstring(cloaker),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-	Idstring(taser),
-}
+local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }
+local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1 }
+local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
 local specials = {
 	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
 }

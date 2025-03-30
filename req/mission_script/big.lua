@@ -34,6 +34,13 @@ local wall_c4_chance = {
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
+
+local bags_required = {
+	values = {
+		amount = (normal or hard and 4 or 6) + (is_pro_job and 2 or 0),
+	},
+}
+
 return {
 	[100809] = {
 		ponr = {
@@ -79,6 +86,8 @@ return {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
+	-- change amount of required bags
+	[101868] = bags_required,
 	-- Wall c4 chance
 	[102451] = wall_c4_chance,
 	[102469] = wall_c4_chance,
