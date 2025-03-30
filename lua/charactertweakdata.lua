@@ -893,6 +893,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		aggressive = true,
 		go_go = true,
 		contact = true,
+		push = true,
 		open_fire = true,
 	}
 
@@ -1245,7 +1246,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.marshal_gunner.chatter = self.presets.enemy_chatter.heavy_gunner
 	self.marshal_gunner.dodge = self.presets.dodge.heavy
-	self.marshal_gunner.spawn_sound_event = has_bellmead_response and "l5d_mov" or "l2d_mov" --MOOOVE!!!
+	self.marshal_gunner.spawn_sound_event = has_bellmead_response and "l5d_pus" or "l2d_pus" --PUSH!!!
 	self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
 	self.marshal_gunner.kill_taunt = has_bellmead_response and "l5d_i03" or "l2d_i03" --It's over you son of a bitch! You're done!
 	self.marshal_gunner.shooting_death = false
