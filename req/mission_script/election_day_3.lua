@@ -105,7 +105,7 @@ return {
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
-	-- Delay the assault 
+	-- Delay the assault
 	[102711] = {
 		on_executed = {
 			{ id = 102734, delay = 20 },
