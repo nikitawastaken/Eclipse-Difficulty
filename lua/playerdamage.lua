@@ -214,7 +214,7 @@ function PlayerDamage:revive(silent)
 		player_damage_tweak.DOWNED_TIME_MIN,
 		(player_damage_tweak.DOWNED_TIME + managers.player:upgrade_value("player", "increased_bleedout_timer", 0)) - player_damage_tweak.DOWNED_TIME_DEC * self._down_time_i
 	)
-	
+
 	if MusicManager.set_volume_multiplier then
 		managers.music:set_volume_multiplier("downed", 1, 1)
 	end
