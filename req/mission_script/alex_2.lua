@@ -11,7 +11,7 @@ local agile_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields_bulldozers,	
+	groups = preferred.no_shields_bulldozers,
 }
 return {
 	[104480] = agile_spawn,

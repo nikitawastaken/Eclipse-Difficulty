@@ -7,7 +7,7 @@ function ConnectionNetworkHandler:finish_trade(is_recon_over)
 	local has_trading_ammo_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_ammo")
 	local unit = managers.player:player_unit()
 
-	managers.player:player_unit():character_damage():restore_lives(1)
+	unit:character_damage():restore_lives(1)
 
 	-- resource trading for ammo upgrade
 	if has_trading_ammo_upgrade then

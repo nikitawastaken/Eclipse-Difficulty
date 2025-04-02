@@ -358,46 +358,42 @@ function TradeManager:trade_restore_resources()
 	local has_trading_ammo_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_ammo")
 	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
 	local is_recon_over = managers.groupai:state():_is_assault_active()
+	local unit = managers.player:player_unit()
 
 	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
 		--Eclipse:log("Hostage traded, restoring a down")
-		local unit = u_data and u_data.unit
+		u_data.unit:character_damage():restore_lives(1)
+	end
 
-		unit:character_damage():restore_lives(1)
+	-- resource trading for ammo upgrade
+	if has_trading_ammo_upgrade then
+		local inventory = unit:inventory()
 
-		-- resource trading for ammo upgrade
-		if has_trading_ammo_upgrade then
-			local inventory = unit:inventory()
+		if not unit:character_damage():dead() and inventory then
+			local available_selections = {}
 
-			if not unit:character_damage():dead() and inventory then
-				local available_selections = {}
-
-				for i, weapon in pairs(inventory:available_selections()) do
-					if inventory:is_equipped(i) then
-						table.insert(available_selections, 1, weapon)
-					else
-						table.insert(available_selections, weapon)
-					end
+			for i, weapon in pairs(inventory:available_selections()) do
+				if inventory:is_equipped(i) then
+					table.insert(available_selections, 1, weapon)
+				else
+					table.insert(available_selections, weapon)
 				end
+			end
 
-				for _, weapon in ipairs(available_selections) do
-					if not self._weapon_category or self._weapon_category == weapon.unit:base():weapon_tweak_data().categories[1] then
-						weapon.unit:base():add_ammo(amount_of_pickups, false)
-						managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
+			for _, weapon in ipairs(available_selections) do
+				if not self._weapon_category or self._weapon_category == weapon.unit:base():weapon_tweak_data().categories[1] then
+					weapon.unit:base():add_ammo(amount_of_pickups, false)
+					managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
 
-						unit:sound():play("pickup_ammo_health_boost", nil, true)
-					end
+					unit:sound():play("pickup_ammo_health_boost", nil, true)
 				end
 			end
 		end
+	end
 
-		-- resource trading for assault delay upgrade
-		if has_trading_delay_upgrade then
-			managers.groupai:state():_resource_trade_delay_assault_task()
-		end
-
-		local peer = managers.network:session():peer_by_unit(unit)
-		peer:send_queued_sync("finish_trade", is_recon_over)
+	-- resource trading for assault delay upgrade
+	if has_trading_delay_upgrade then
+		managers.groupai:state():_resource_trade_delay_assault_task()
 	end
 
 	if has_trading_delay_upgrade and not is_recon_over then
@@ -406,5 +402,9 @@ function TradeManager:trade_restore_resources()
 		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_ammo_restored") })
 	else
 		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_restored") })
+	end
+
+	if Network:is_server() then
+		managers.network:session():send_to_peers_synched("finish_trade", is_recon_over)
 	end
 end

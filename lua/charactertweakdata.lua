@@ -978,6 +978,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster.speech_prefix_p2 = nil
 	self.mobster.speech_prefix_count = 2
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
+	self.mobster.calls_in = true
 
 	self.cobra = deep_clone(self.gangster)
 	self.cobra.speech_prefix_p1 = is_undercover and self._unit_prefixes.cop or "ict"

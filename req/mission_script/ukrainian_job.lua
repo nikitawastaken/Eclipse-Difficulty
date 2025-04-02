@@ -13,6 +13,14 @@ local enabled = {
 		enabled = true,
 	},
 }
+local cop_1 = scripted_enemy.cop_1
+local cop_2 = scripted_enemy.cop_2
+local cop_3 = scripted_enemy.cop_3
+local cop_4 = scripted_enemy.cop_4
+local street_cop_enemy = { [cop_1] = 3, [cop_2] = 1, [cop_4] = 1 }
+local street_cop = { enemy = street_cop_enemy }
+local assault_cop_enemy = { [cop_3] = 3, [cop_4] = 2, [cop_1] = 2, [cop_2] = 1 }
+local assault_cop = { enemy = assault_cop_enemy }
 local left_spawn = {
 	values = {
 		interval = 10,
@@ -36,7 +44,7 @@ local rappel_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[103342] = {  -- Allow one more sniper
+	[103342] = { -- Allow one more sniper
 		values = {
 			amount = 1,
 			amount_random = 1,
