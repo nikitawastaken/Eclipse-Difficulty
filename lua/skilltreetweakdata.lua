@@ -68,7 +68,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.joker[2].upgrades = { "player_convert_enemies_damage_multiplier_2", "player_convert_enemies_interaction_speed_multiplier", "player_passive_convert_enemies_health_multiplier_2" }
 
 	-- Hostage Situation
-	self.skills.stockholm_syndrome[1].upgrades = { --[["team_resource_trading_ammo", ]]
+	self.skills.stockholm_syndrome[1].upgrades = { 
+		"team_resource_trading_ammo",
 		"team_resource_trading_no_downs",
 	}
 	self.skills.stockholm_syndrome[2].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault" }

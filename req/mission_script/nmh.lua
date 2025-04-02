@@ -1,4 +1,7 @@
 local preferred = Eclipse.preferred
+local scripted_enemy = Eclipse.scripted_enemy
+local ben_dozer = scripted_enemy.elite_bulldozer_1
+local elite_dozer = { enemy = ben_dozer }
 local disabled = {
 	values = {
 		enabled = false,
@@ -87,6 +90,21 @@ return {
 	[103706] = disabled,
 	[103707] = disabled,
 	[103847] = disabled,
+	-- restore ovk 145+'s elevator dozers ambush at the end of the heist
+	-- keep it only on eclipse
+	[104122] = disabled,
+	[104123] = disabled,
+	[104323] = {
+		values = {
+			difficulty_overkill = false,
+			difficulty_overkill_145 = false,
+		},
+	},
+	-- 50% chance for the event to happen
+	[104124] = { chance = 50 },
+	-- replace the shield and blackdozer with elite dozers
+	[104112] = elite_dozer,
+	[104113] = elite_dozer,
 	-- spawn group delays
 	[100407] = staircase_spawn,
 	[100414] = exit_spawn,
