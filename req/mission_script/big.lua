@@ -38,7 +38,7 @@ local no_shields_and_dozers = {
 
 local bags_required = {
 	values = {
-		amount = (normal or hard and 4 or 6) + (is_pro_job and 2 or 0),
+		amount = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 
