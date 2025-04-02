@@ -1,7 +1,9 @@
 local preferred = Eclipse.preferred
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local scripted_enemy = Eclipse.scripted_enemy
 local ben_dozer = scripted_enemy.elite_bulldozer_1
 local elite_dozer = { enemy = ben_dozer }
+local cloaker_respawn_amount = normal and 1 or hard and 2 or 3
 local disabled = {
 	values = {
 		enabled = false,
@@ -22,6 +24,11 @@ local vent_spawn = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_respawn_trigger = {
+	values = {
+		trigger_times = cloaker_respawn_amount,
+	},
 }
 return {
 	--delay SWAT response
@@ -105,6 +112,9 @@ return {
 	-- replace the shield and blackdozer with elite dozers
 	[104112] = elite_dozer,
 	[104113] = elite_dozer,
+	-- tweak elevator cloakers respawns
+	[104261] = cloaker_respawn_trigger,
+	[104262] = cloaker_respawn_trigger,
 	-- spawn group delays
 	[100407] = staircase_spawn,
 	[100414] = exit_spawn,
