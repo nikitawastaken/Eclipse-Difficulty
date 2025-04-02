@@ -592,12 +592,28 @@
 				<file :name="ene_acc_head_bulldozer.unit" />
 			</group>
 
+			<group :name="ene_cop_1/">
+				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_cop_1.material_config" />
+				<file :name="ene_cop_1_contour.material_config" />
+				<file :name="ene_cop_1.model" />
+				<file :name="ene_cop_1.object" />
+				<file :name="ene_cop_1.unit" />
+				<file :name="ene_cop_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_security_1.material_config" />
+					<file :name="ene_security_1_contour.material_config" />
+
+					<file :name="ene_security_4.material_config" />
+					<file :name="ene_security_4_contour.material_config" />
+
+					<file :name="ene_fbi_1.material_config" />
+					<file :name="ene_fbi_1_contour.material_config" />
+				</group>
+			</group>
+			
 			<group :name="ene_security_1/">
-				<xml  :name="ene_security_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_security_1.material_config" />
-				<file :name="ene_security_1_contour.material_config" />
-				<file :name="ene_security_1.model" />
-				<file :name="ene_security_1.object" />
 				<file :name="ene_security_1.unit" />
 				<file :name="ene_security_1_husk.unit" />
 			</group>
@@ -628,11 +644,6 @@
 			</group>
 
 			<group :name="ene_security_4/">
-				<xml  :name="ene_security_4.sequence_manager" dyn_package="true" />
-				<file :name="ene_security_4.material_config" />
-				<file :name="ene_security_4_contour.material_config" />
-				<file :name="ene_security_4.model" />
-				<file :name="ene_security_4.object" />
 				<file :name="ene_security_4.unit" />
 				<file :name="ene_security_4_husk.unit" />
 			</group>
@@ -655,16 +666,6 @@
 			<group :name="ene_security_8/">
 				<file :name="ene_security_8.unit" />
 				<file :name="ene_security_8_husk.unit" />
-			</group>
-
-			<group :name="ene_cop_1/">
-				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_cop_1.material_config" />
-				<file :name="ene_cop_1_contour.material_config" />
-				<file :name="ene_cop_1.model" />
-				<file :name="ene_cop_1.object" />
-				<file :name="ene_cop_1.unit" />
-				<file :name="ene_cop_1_husk.unit" />
 			</group>
 
 			<group :name="ene_cop_2/">
@@ -703,11 +704,6 @@
 			</group>
 
 			<group :name="ene_fbi_1/">
-				<xml  :name="ene_fbi_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_fbi_1.material_config" />
-				<file :name="ene_fbi_1_contour.material_config" />
-				<file :name="ene_fbi_1.model" />
-				<file :name="ene_fbi_1.object" />
 				<file :name="ene_fbi_1.unit" />
 				<file :name="ene_fbi_1_husk.unit" />
 			</group>

@@ -3,7 +3,7 @@
 
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />
 	
-	<object file="units/payday2/characters/ene_fbi_1/ene_fbi_1" />
+	<object file="units/payday2/characters/ene_cop_1/ene_cop_1" />
 
 
 	<dependencies>

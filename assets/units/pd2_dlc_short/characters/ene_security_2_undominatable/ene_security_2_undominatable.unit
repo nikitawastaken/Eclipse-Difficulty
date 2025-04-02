@@ -3,7 +3,7 @@
 
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />
 	
-	<object file="units/payday2/characters/ene_security_1/ene_security_1" />
+	<object file="units/payday2/characters/ene_cop_1/ene_cop_1" />
 
 
 	<dependencies>		
@@ -111,7 +111,7 @@
 		
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
-			<var name="_head_gear_object" value="g_hat_lod" />
+			<var name="_head_gear_object" value="g_hat_security_lod" />
 			<var name="_nr_head_gear_objects" value="2" />
 			<var name="_head_gear" value="units/payday2/characters/ene_acc_security_cap/ene_acc_security_cap" />
 			
