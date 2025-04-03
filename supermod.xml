@@ -608,6 +608,9 @@
 					<file :name="ene_security_4.material_config" />
 					<file :name="ene_security_4_contour.material_config" />
 
+					<file :name="ene_la_cop_1.material_config" />
+					<file :name="ene_la_cop_1_contour.material_config" />
+					
 					<file :name="ene_fbi_1.material_config" />
 					<file :name="ene_fbi_1_contour.material_config" />
 				</group>
@@ -1048,11 +1051,6 @@
 
 		<group name="units/pd2_dlc_rvd/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
 			<group :name="ene_la_cop_1/">
-				<xml  :name="ene_la_cop_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_la_cop_1.material_config" />
-				<file :name="ene_la_cop_1_contour.material_config" />
-				<file :name="ene_la_cop_1.model" />
-				<file :name="ene_la_cop_1.object" />
 				<file :name="ene_la_cop_1.unit" />
 				<file :name="ene_la_cop_1_husk.unit" />
 			</group>

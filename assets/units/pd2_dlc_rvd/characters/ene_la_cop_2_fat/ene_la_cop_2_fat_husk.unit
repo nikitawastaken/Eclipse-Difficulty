@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <unit type="being" slot="12">
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />	
-	<object file="units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1" />
+	<object file="units/payday2/characters/ene_cop_1/ene_cop_1" />
 
 	<dependencies>		
 		<depends_on unit="units/payday2/characters/ene_acc_head_fat/ene_acc_head_fat" />		
