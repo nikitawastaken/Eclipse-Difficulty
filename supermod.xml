@@ -749,6 +749,11 @@
 				<file :name="ene_murkywater_1.object" />
 				<file :name="ene_murkywater_1.unit" />
 				<file :name="ene_murkywater_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_hoxton_breakout_guard_1.material_config" />
+					<file :name="ene_hoxton_breakout_guard_1_contour.material_config" />
+				</group>				
 			</group>
 
 			<group :name="ene_murkywater_2/">
@@ -1034,11 +1039,6 @@
 
 		<group name="units/pd2_mcmansion/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_hoxton_breakout_guard_1/">
-				<xml  :name="ene_hoxton_breakout_guard_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_hoxton_breakout_guard_1.material_config" />
-				<file :name="ene_hoxton_breakout_guard_1_contour.material_config" />
-				<file :name="ene_hoxton_breakout_guard_1.model" />
-				<file :name="ene_hoxton_breakout_guard_1.object" />
 				<file :name="ene_hoxton_breakout_guard_1.unit" />
 				<file :name="ene_hoxton_breakout_guard_1_husk.unit" />
 			</group>
