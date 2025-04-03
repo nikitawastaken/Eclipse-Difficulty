@@ -20,6 +20,9 @@ local disabled = {
 		enabled = false,
 	},
 }
+local filter_overkill_above = {
+	values = Eclipse.utils.set_diff_groups("overkill_above"),
+}
 
 local vault_ambush_enemy = bulldozer
 
@@ -96,11 +99,7 @@ return {
 		},
 	},
 	-- allow Overdrill
-	[104182] = {
-		values = {
-			difficulty_easy_wish = true,
-		},
-	},
+	[104182] = filter_overkill_above.values,
 	-- disable forced manager flee objective
 	[100665] = disabled,
 	-- disable the right vault path
