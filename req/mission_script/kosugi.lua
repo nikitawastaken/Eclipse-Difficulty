@@ -5,7 +5,7 @@ local bags_required = {
 		amount = (normal and 4 or hard and 8 or 12) + (is_pro_job and 4 or 0),
 	},
 }
-	
+
 return {
 	-- bag tweaks (4 on easy and normal, 8 on hard and overkill and 12 on eclipse)
 	-- 4 more bags to secure on pro jobs
