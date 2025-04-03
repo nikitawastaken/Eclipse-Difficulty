@@ -99,7 +99,7 @@ return {
 		},
 	},
 	-- allow Overdrill
-	[104182] = filter_overkill_above.values,
+	[104182] = filter_overkill_above,
 	-- disable forced manager flee objective
 	[100665] = disabled,
 	-- disable the right vault path

@@ -20,7 +20,7 @@ local disabled = {
 		enabled = false,
 	},
 }
-local filters_disable = {
+local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
 local filter_normal_above = {
@@ -151,18 +151,10 @@ return {
 	[102170] = sniper_amount,
 	[102171] = sniper_amount,
 	-- Gas Heli shit (it's evil)
-	[104041] = { -- No need for these filters to handle spawns
-		values = filters_normal_above,
-	},
-	[104042] = {
-		values = filters_disable,
-	},
-	[104043] = {
-		values = filters_disable,
-	},
-	[104044] = {
-		values = filters_disable,
-	},
+	[104041] = filter_normal_above, -- No need for these filters to handle spawns
+	[104042] = filter_disable,
+	[104043] = filter_disable,
+	[104044] = filter_disable,
 	[102269] = { -- Spawn 4 heli enemies
 		on_executed = {
 			{ id = 104045, delay = 0 },
