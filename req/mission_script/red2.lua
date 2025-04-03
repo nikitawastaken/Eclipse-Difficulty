@@ -95,6 +95,12 @@ return {
 			},
 		},
 	},
+	-- allow Overdrill
+	[104182] = {
+		values = {
+			difficulty_easy_wish = true,
+		},
+	},
 	-- disable forced manager flee objective
 	[100665] = disabled,
 	-- disable the right vault path
