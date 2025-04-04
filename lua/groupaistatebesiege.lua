@@ -484,7 +484,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 
 	if current_objective.open_fire then
 		if not current_objective.moving_out and (tactics_map.charge or not tactics_map.ranged_fire or in_place_duration > 10) then
-			approach = not self:_can_group_see_target(group)
+			approach = not self:_can_group_see_target(group, nil, tactics_map.no_push and 5 or not tactics_map.charge and 1)
 		end
 	else
 		local spotter_u_data
@@ -643,7 +643,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				charge = tactics_map.charge,
 				interrupt_dis = tactics_map.charge and 0,
 			})
-		elseif not current_objective.assigned_t and in_place_duration > 15 and not self:_can_group_see_target(group) then
+		elseif not current_objective.assigned_t and in_place_duration > 15 and not self:_can_group_see_target(group, nil, 5) then
 			-- Log and remove groups that get stuck
 			local element_id = group.spawn_group_element and group.spawn_group_element._id or 0
 			local element_name = group.spawn_group_element and group.spawn_group_element._editor_name or ""
@@ -693,7 +693,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 end)
 
 -- Helper to check if any group member has visuals on their focus target
-function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
+function GroupAIStateBesiege:_can_group_see_target(group, limit_range, verified_duration)
 	local preferred_range = math.huge
 	if limit_range then
 		for _, u_data in pairs(group.units) do
@@ -703,15 +703,25 @@ function GroupAIStateBesiege:_can_group_see_target(group, limit_range)
 		end
 	end
 
+	local function can_see_target(unit)
+		local logic_data = unit:brain()._logic_data
+		
+		if not logic_data.objective or logic_data.objective.grp_objective ~= group.objective then
+			return
+		end
+ 
+		local focus_enemy = logic_data.attention_obj
+
+		if not focus_enemy or focus_enemy.reaction <= AIAttentionObject.REACT_AIM or focus_enemy.dis > preferred_range then
+			return
+		end
+		
+		return focus_enemy.verified or verified_duration and focus_enemy.verified_t and self._t - focus_enemy.verified_t < verified_duration
+	end
+	
 	for _, u_data in pairs(group.units) do
-		local logic_data = u_data.unit:brain()._logic_data
-		if logic_data.objective and logic_data.objective.grp_objective == group.objective then
-			local focus_enemy = logic_data.attention_obj
-			if focus_enemy and focus_enemy.verified and focus_enemy.reaction > AIAttentionObject.REACT_AIM then
-				if not limit_range or focus_enemy.dis < preferred_range then
-					return u_data
-				end
-			end
+		if can_see_target(u_data.unit) then
+			return u_data
 		end
 	end
 end

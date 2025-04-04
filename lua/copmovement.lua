@@ -299,6 +299,8 @@ function CopMovement:damage_clbk(my_unit, damage_info)
 				type = "concussion",
 			}
 		end
+	elseif damage_info.result.type == "light_hurt" and self._ext_inventory._shield_unit and self._ext_anim.hurt then
+		return
 	end
 
 	return damage_clbk_original(self, my_unit, damage_info)
