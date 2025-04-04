@@ -12,6 +12,12 @@ local missing_taser_access_fix = {
 	so_access_filter = { "cop", "swat", "tank", "shield", "taser" },
 }
 return {
+	[103031] = {
+		ponr = {
+			length = 300,
+			player_mul = { 1.6, 1.4, 1, 1 },
+		},
+	},
 	-- fix one of the ai_hunt SOs not having taser access
 	[100675] = missing_taser_access_fix,
 	-- replace heavy response near the end with US Soldiers

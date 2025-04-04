@@ -4,6 +4,17 @@ local security_army = {
 	enemy = army_guard,
 }
 return {
+	[104838] = {
+		ponr = {
+			length = 240,
+			player_mul = { 1.25, 1.25, 1, 1 },
+		},
+	},
+	[106867] = {
+		values = {
+			enabled = false,
+		},
+	},
 	--National Guard instead of regular security
 	[101764] = security_army,
 	[101317] = security_army,
