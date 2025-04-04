@@ -705,20 +705,20 @@ function GroupAIStateBesiege:_can_group_see_target(group, limit_range, verified_
 
 	local function can_see_target(unit)
 		local logic_data = unit:brain()._logic_data
-		
+
 		if not logic_data.objective or logic_data.objective.grp_objective ~= group.objective then
 			return
 		end
- 
+
 		local focus_enemy = logic_data.attention_obj
 
 		if not focus_enemy or focus_enemy.reaction <= AIAttentionObject.REACT_AIM or focus_enemy.dis > preferred_range then
 			return
 		end
-		
+
 		return focus_enemy.verified or verified_duration and focus_enemy.verified_t and self._t - focus_enemy.verified_t < verified_duration
 	end
-	
+
 	for _, u_data in pairs(group.units) do
 		if can_see_target(u_data.unit) then
 			return u_data
