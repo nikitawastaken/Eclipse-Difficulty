@@ -10,8 +10,8 @@ local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
-local filter_disable = Eclipse.utils.set_diff_groups("disable"),
-local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above"),
+local filter_disable = Eclipse.utils.set_diff_groups("disable")
+local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 
 local bellmead_mercs = { [bellmead_1] = 5, [bellmead_heavy_1] = 1, [bellmead_heavy_2] = 1 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }
