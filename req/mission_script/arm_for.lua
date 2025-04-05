@@ -76,12 +76,6 @@ return {
 			enabled = true,
 		},
 	},
-	-- delay police choppers arrival
-	[100129] = {
-		on_executed = {
-			{ id = 102767, delay = 120 },
-		},
-	},
 	-- loop the choppers
 	[102767] = {
 		on_executed = {

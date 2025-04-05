@@ -26,6 +26,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["crojob2"] = true,
 		["crojob3"] = true,
 		["jolly"] = true,
+		["peta2"] = true,
 		["trai"] = true,
 	}
 

@@ -2547,6 +2547,7 @@ GroupAITweakData.us_army_heists = {
 	["crojob2"] = true,
 	["crojob3"] = true,
 	["jolly"] = true,
+	["peta2"] = true,
 	["trai"] = true,
 }
 GroupAITweakData.bellmead_response_heists = {

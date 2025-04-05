@@ -294,8 +294,8 @@ M.elements = {
 
 	--145+ throwback, 3 tasers + 1 heavy swat in staircase escape
 	Eclipse.mission_elements.gen_dummy(400017, "taser_escape_1", Vector3(6050, -2351, -135.691), Rotation(0, 0, -0), optsTaserEscape),
-	Eclipse.mission_elements.gen_dummy(400018, "taser_escape_2", Vector3(5887, -2347, -135.691), Rotation(0, 0, -0), optsTaser),
-	Eclipse.mission_elements.gen_dummy(400019, "taser_escape_3", Vector3(5553, -2367, -135.691), Rotation(-90, 0, -0), optsTaser),
+	Eclipse.mission_elements.gen_dummy(400018, "taser_escape_2", Vector3(5887, -2347, -135.691), Rotation(0, 0, -0), optsTaserEscape),
+	Eclipse.mission_elements.gen_dummy(400019, "taser_escape_3", Vector3(5553, -2367, -135.691), Rotation(-90, 0, -0), optsTaserEscape),
 	Eclipse.mission_elements.gen_dummy(400020, "swat_escape_1", Vector3(5553, -2502, -135.691), Rotation(-90, 0, -0), optsSWAT_HeavySG2),
 
 	-- escape dozer ambush
