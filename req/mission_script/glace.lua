@@ -64,25 +64,22 @@ return {
 			enabled = false,
 		},
 	},
-	-- delay SWAT response
-	[100529] = { -- start besiege
-		on_executed = {
-			{ id = 100530, delay = 60 }, -- difficulty 0.5
-		},
-	},
 	-- delay SWAT choppers
 	[100065] = {
 		on_executed = {
 			{ id = 100828, delay = 45 },
 		},
 	},
-	-- new reinforce
-	[100529] = {
+	-- Add new reinforce
+	[100529] = { 
+		on_executed = { -- delay SWAT response
+			{ id = 100530, delay = 60 }, -- difficulty 0.5
+		},
 		reinforce = {
 			{
 				name = "street",
 				force = 5,
-				position = Vector3(-1200, -14500, 5800),
+				position = Vector3(-1350, -15000, 5800),
 			},
 		},
 	},
@@ -90,15 +87,21 @@ return {
 		reinforce = {
 			{ name = "street" },
 			{
-				name = "construct",
-				force = 5,
-				position = Vector3(-1200, -21500, 5800),
+				name = "construct1",
+				force = 3,
+				position = Vector3(-1350, -21500, 5800),
+			},
+			{
+				name = "construct2",
+				force = 3,
+				position = Vector3(-1350, -24650, 5800),
 			},
 		},
 	},
 	[102323] = {
 		reinforce = {
-			{ name = "construct" },
+			{ name = "construct1" },
+			{ name = "construct2" },
 		},
 	},
 	-- disable the entire attack heli
