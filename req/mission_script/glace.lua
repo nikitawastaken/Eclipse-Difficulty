@@ -71,7 +71,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100529] = { 
+	[100529] = {
 		on_executed = { -- delay SWAT response
 			{ id = 100530, delay = 60 }, -- difficulty 0.5
 		},
