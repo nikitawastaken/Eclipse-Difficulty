@@ -466,9 +466,6 @@
 				<file :name="equipment_atlas_df.texture" />
 				<file :name="equipment_atlas_nm.texture" />
 
-				<file :name="city_swat_cap_df.texture" />
-				<file :name="city_swat_cap_nm.texture" />
-
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
 				<file :name="visor_glass_orange_df.texture" />
@@ -769,6 +766,14 @@
 				<file :name="ene_swat_1.object" />
 				<file :name="ene_swat_1.unit" />
 				<file :name="ene_swat_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_fbi_swat_1.material_config" />
+					<file :name="ene_fbi_swat_1_contour.material_config" />
+
+					<file :name="ene_city_swat_1.material_config" />
+					<file :name="ene_city_swat_1_contour.material_config" />
+				</group>	
 			</group>
 
 			<group :name="ene_swat_2/">
@@ -787,9 +792,6 @@
 			</group>
 
 			<group :name="ene_swat_heavy_1/">
-				<xml  :name="ene_swat_heavy_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_swat_heavy_1.model" />
-				<file :name="ene_swat_heavy_1.object" />
 				<file :name="ene_swat_heavy_1.unit" />
 				<file :name="ene_swat_heavy_1_husk.unit" />
 			</group>
@@ -820,11 +822,6 @@
 			</group>
 
 			<group :name="ene_fbi_swat_1/">
-				<xml  :name="ene_fbi_swat_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_fbi_swat_1.material_config" />
-				<file :name="ene_fbi_swat_1_contour.material_config" />
-				<file :name="ene_fbi_swat_1.model" />
-				<file :name="ene_fbi_swat_1.object" />
 				<file :name="ene_fbi_swat_1.unit" />
 				<file :name="ene_fbi_swat_1_husk.unit" />
 			</group>
@@ -890,11 +887,6 @@
 			</group>
 
 			<group :name="ene_city_swat_1/">
-				<xml  :name="ene_city_swat_1.sequence_manager" dyn_package="true" />
-				<file :name="ene_city_swat_1.material_config" />
-				<file :name="ene_city_swat_1_contour.material_config" />
-				<file :name="ene_city_swat_1.model" />
-				<file :name="ene_city_swat_1.object" />
 				<file :name="ene_city_swat_1.unit" />
 				<file :name="ene_city_swat_1_husk.unit" />
 			</group>
