@@ -58,9 +58,9 @@ M["levels/instances/unique/pet_helicopter_swat/world/world"] = function(result)
 		elseif heli_spawns.special_spawn[id] then
 			element.values.enemy_table = specials
 		elseif heli_spawns.filters_normal_above[id] then
-			table.map_append(element.values, filters_normal_above)
+			table.map_append(element.values, filter_normal_above)
 		elseif heli_spawns.filters_disable[id] then
-			table.map_append(element.values, filters_disable)
+			table.map_append(element.values, filter_disable)
 		end
 	end
 end
