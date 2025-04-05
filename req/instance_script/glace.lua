@@ -8,7 +8,6 @@ local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local specials_spawns = { [taser] = 3, [cloaker] = 1 }
 
-
 local patches = {
 	swat_chopper = {
 		regular_spawns = table.set(100014, 100015),

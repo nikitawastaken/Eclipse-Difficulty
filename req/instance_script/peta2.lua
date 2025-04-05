@@ -16,8 +16,7 @@ local soldiers = { [light_soldier] = 3, [heavy_soldier] = 1 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }
 local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1 }
 local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
-local specials =  normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
-
+local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
 
 local patches = {
 	--pet_roadswats
