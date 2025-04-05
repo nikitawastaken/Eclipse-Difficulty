@@ -36,16 +36,16 @@ M["levels/instances/unique/sub_sewer_grate/world/world"] = function(result)
 		elseif sewer_grate.filters_normal_above[id] then
 			table.map_append(element.values, filters_normal_above)
 			element.values.on_executed = {
-					{ id = 100018, remove = true },
-					{ id = 100010, delay = 0, },
-					{ id = 100019, delay = 0, },
-					{ id = 100021, delay = 0, },
-				}
+				{ id = 100018, remove = true },
+				{ id = 100010, delay = 0 },
+				{ id = 100019, delay = 0 },
+				{ id = 100021, delay = 0 },
+			}
 		elseif sewer_grate.filters_disable[id] then
 			table.map_append(element.values, filters_disable)
 		elseif sewer_grate.spawn_chance[id] then
 			element.values.chance = 45
-		end	
+		end
 	end
 end
 
@@ -62,10 +62,10 @@ M["levels/instances/unique/sub_sewer_sidespawn/world/world"] = function(result)
 		elseif side_spawn.spawn_chance[id] then
 			element.values.chance = 30
 			element.values.on_executed = {
-					{ id = 100016, remove = true },
-					{ id = 100010, delay = 0, },
-				}
-		end	
+				{ id = 100016, remove = true },
+				{ id = 100010, delay = 0 },
+			}
+		end
 	end
 end
 
