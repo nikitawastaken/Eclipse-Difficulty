@@ -10,6 +10,6 @@ M["levels/instances/unique/hox_breakout_elevator001/world/world"] = function(res
 				element.values.interval = 40
 			end
 		end
-	end,
-}
+	end
+
 return M
