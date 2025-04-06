@@ -13,17 +13,28 @@
 		<diffuse_texture 		file="units/pd2_dlc1/characters/shared_textures/ene_security_gensec_df" mip="4" />
 	</material>
 
-	<material name="mtr_police_body" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" />
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" />
+	<material name="mtr_police_body" render_template="generic:DIFFUSE_TEXTURE:GLOBAL_ENVIRONMENT_MAPPING:GLOSS_BLURS_CUBEMAP:GSMA_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df"/>
+		<material_texture 		file="units/payday2/characters/shared_textures/police_gsma"/>
 	</material>
-	<material name="mtr_police_body_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="1" />
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="1" />
+	<material name="mtr_police_body_lod_1" render_template="generic:DIFFUSE_TEXTURE:GLOBAL_ENVIRONMENT_MAPPING:GLOSS_BLURS_CUBEMAP:GSMA_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="1"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="1"/>
+		<material_texture 		file="units/payday2/characters/shared_textures/police_gsma" mip="1"/>
 	</material>
-	<material name="mtr_police_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="4" />
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="4" />
+	<material name="mtr_police_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:GLOBAL_ENVIRONMENT_MAPPING:GLOSS_BLURS_CUBEMAP:GSMA_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/police_nm" mip="4"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/police_df" mip="4"/>
+		<material_texture 		file="units/payday2/characters/shared_textures/police_gsma" mip="4"/>
 	</material>
+
+    <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">
+        <opacity_texture 		file="units/glass/vehicle_glass_dark2_op"/>
+        <diffuse_texture 		file="units/payday2/characters/shared_textures/police_df"/>
+		<variable 				value="0 1 0.66999995708466" type="vector3" name="fresnel_settings"/>
+        <reflection_texture 	type="cube" global_texture="current_global_texture" />
+    </material>
+	
     <material name="shadow_caster" render_template="shadow_caster_only:SKINNED_1WEIGHT" version="2"/>	
 </materials>
