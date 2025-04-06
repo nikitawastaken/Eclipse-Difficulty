@@ -40,12 +40,12 @@ return {
 	-- spawn points (from ASS)
 	[101112] = { -- spawn 1
 		on_executed = {
-			{ id = 103242 },
+			{ id = 103242, delay = 0 },
 		},
 	},
 	[101113] = {
 		on_executed = {
-			{ id = 103242 },
+			{ id = 103242, delay = 0 },
 		},
 		values = {
 			enabled = true,
@@ -53,7 +53,7 @@ return {
 	},
 	[101115] = {
 		on_executed = {
-			{ id = 103242 },
+			{ id = 103242, delay = 0 },
 		},
 		values = {
 			enabled = true,

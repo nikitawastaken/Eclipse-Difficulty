@@ -356,7 +356,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400095, "eclipse_dozer_hunt", Vector3(-8500, -9507, 50), Rotation(0, 0, 0), optsDozerHuntSO),
 	Eclipse.mission_elements.gen_dummy(400096, "eclipse_major_ave_sniper_01", Vector3(-1765, -3564, 1949), Rotation(0, 0, 0), optsMajorSniper_01),
 	Eclipse.mission_elements.gen_so(400097, "eclipse_armitage_ave_sniper_SO_01", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsSniperSO),
-
+	
 	-- restore pdth events
 	-- gate doors
 	Eclipse.mission_elements.gen_object_editor(400098, "open_gate_1", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_1),
