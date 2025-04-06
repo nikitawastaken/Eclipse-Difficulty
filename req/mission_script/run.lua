@@ -12,7 +12,7 @@ local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scrip
 
 local garage_swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local garage_swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
-local garage_shield = overkill_and_above and scripted_enemy.elite_shield or scripted_enemy.shield
+local garage_shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
 
 local dozer_spawn_chance = is_eclipse and 50 or 25
 
