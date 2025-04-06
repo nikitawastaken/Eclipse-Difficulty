@@ -26,15 +26,21 @@ local heli_spawn2 = {
 
 local garage_swat_spawn_1 = {
 	enemy = garage_swat_1,
-	enabled = true,
+	values = {
+		enabled = true,
+	},
 }
 local garage_swat_spawn_2 = {
 	enemy = garage_swat_2,
-	enabled = true,
+	values = {
+		enabled = true,
+	},
 }
 local garage_shield_spawn = {
 	enemy = garage_shield,
-	enabled = true,
+	values = {
+		enabled = true,
+	},
 }
 
 local disabled = {
