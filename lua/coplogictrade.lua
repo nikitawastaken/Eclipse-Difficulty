@@ -20,7 +20,7 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 		"eclipse_hostage_trade", -- id of the network data to send
 		json.encode({
 			-- Data to send
-			unit_id = data.unit:id(),
+			u_key = data.unit:key(),
 			enable = true,
 			trade_success = false,
 			skip_hint = skip_hint,
