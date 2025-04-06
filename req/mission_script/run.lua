@@ -9,12 +9,31 @@ local heli_chance = is_eclipse_pro and 100 or is_eclipse and 85 or 12.5 * diff_i
 local heli_enemy1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1
 local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser_1
 
+local garage_swat_1 = is_eclipse and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
+local garage_swat_2 = is_eclipse and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
+local garage_shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
+
+local dozer_spawn_chance = is_eclipse and 50 or 25
+
 local heli_spawn1 = {
 	enemy = heli_enemy1,
 }
 
 local heli_spawn2 = {
 	enemy = heli_enemy2,
+}
+
+local garage_swat_spawn_1 = {
+	enemy = garage_swat_1,
+	enabled = true,
+}
+local garage_swat_spawn_2 = {
+	enemy = garage_swat_2,
+	enabled = true,
+}
+local garage_shield_spawn = {
+	enemy = garage_shield,
+	enabled = true,
 }
 
 local disabled = {
@@ -39,6 +58,66 @@ return {
 			length = 480,
 			player_mul = { 2.5, 2, 1.5, 1 },
 		},
+	},
+	-- restore garage events from PDTH
+	-- inkwell industrial
+	-- replace PDTH SWAT leftovers
+	[102911] = garage_swat_spawn_1,
+	[103022] = garage_swat_spawn_1,
+	[103023] = garage_swat_spawn_2,
+	[102907] = garage_shield_spawn,
+	-- add custom unit sequence for opening the gate
+	[102376] = {
+		values = {
+			on_executed = {
+				{ remove = true, id = 100232 },
+				{ delay = 1, id = 400098 },
+			},
+		},
+	},
+	-- armitage ave.
+	-- replace PDTH SWAT leftovers
+	[102630] = garage_swat_spawn_2,
+	[102509] = garage_swat_spawn_2,
+	[100432] = garage_shield_spawn,
+	[100362] = garage_shield_spawn,
+	-- add custom unit sequence for opening the gate
+	[102376] = {
+		values = {
+			on_executed = {
+				{ remove = true, id = 102797 },
+				{ remove = true, id = 102413 },
+				{ delay = 0.5, id = 410001 },
+				{ delay = 1, id = 410000 },
+			},
+		},
+	},
+	-- parking lot
+	-- replace PDTH SWAT leftovers
+	[102801] = garage_swat_spawn_1,
+	[102800] = garage_swat_spawn_1,
+	[101756] = garage_shield_spawn,
+	[101640] = garage_shield_spawn,
+	-- add custom unit sequence for opening the gate
+	[102802] = {
+		values = {
+			on_executed = {
+				{ remove = true, id = 100665 },
+				{ delay = 1, id = 400099 },
+			},
+		},
+	},
+	-- restore dozer kicking door event from PDTH
+	[103517] = {
+		values = {
+			on_executed = {
+				{ remove = true, id = 103516 },
+				{ delay = 0, id = 410002 },
+			},
+		},
+	},
+	[103515] = {
+		chance = dozer_spawn_chance,
 	},
 	-- ovk145-alike dozer spawn on armitage ave.
 	[103592] = {

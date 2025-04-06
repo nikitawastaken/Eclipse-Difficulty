@@ -432,8 +432,8 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 	local object_editor = {
 		id = id,
 		editor_name = name,
-		module = "ElementUnitSequence",
-		class = "CoreElementUnitSequence",
+		module = "CoreElementUnitSequence",
+		class = "ElementUnitSequence",
 		values = {
 			execute_on_startup = false,
 			trigger_times = opts.trigger_times or 0,
