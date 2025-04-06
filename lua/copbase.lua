@@ -140,6 +140,7 @@ local mat_configs = {
 	"units/payday2/characters/ene_cop_1/vars/ene_security_1",
 	"units/payday2/characters/ene_cop_1/vars/ene_security_4",
 	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
+	"units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1",
 	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
 	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
 	"units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1",

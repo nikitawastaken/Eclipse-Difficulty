@@ -610,6 +610,9 @@
 					
 					<file :name="ene_fbi_1.material_config" />
 					<file :name="ene_fbi_1_contour.material_config" />
+
+					<file :name="ene_prisonguard_male_1.material_config" />
+					<file :name="ene_prisonguard_male_1_contour.material_config" />					
 				</group>
 			</group>
 			
@@ -718,6 +721,11 @@
 				<file :name="ene_fbi_3_husk.unit" />
 			</group>
 
+			<group :name="ene_prisonguard_male_1/">
+				<file :name="ene_prisonguard_male_1.unit" />
+				<file :name="ene_prisonguard_male_1_husk.unit" />
+			</group>
+			
 			<group :name="ene_secret_service_1/">
 				<xml  :name="ene_secret_service_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_secret_service_1.material_config" />

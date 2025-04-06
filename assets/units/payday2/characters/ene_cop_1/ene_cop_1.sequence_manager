@@ -215,8 +215,11 @@
 		<sequence editable_state="true" name="'security_alt'" once="true" triggable="true">		
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_4'"/>
 			
-			<object 			enabled="true" name="'g_badges_security_alt'" />
-			<object 			enabled="true" name="'g_badges_security_alt_lod1'" />
+			<object 			filter="'check_fat'" enabled="true" name="'g_badges_security_alt_fat'" />
+			<object 			filter="'check_fat'" enabled="true" name="'g_badges_security_alt_fat_lod1'" />
+			
+			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_security_alt'" />
+			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_security_alt_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'cop'" once="true" triggable="true">				
@@ -239,6 +242,13 @@
 
 		<sequence editable_state="true" name="'fbi'" once="true" triggable="true">		
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_fbi_1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'prisonguard'" once="true" triggable="true">		
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1'"/>
+
+			<object 			enabled="true" name="'g_badges_prisonguard'" />
+			<object 			enabled="true" name="'g_badges_prisonguard_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'security_1'" once="true" triggable="true">
@@ -544,6 +554,19 @@
 			<run_sequence 		name="'random_balaclava'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'prisonguard_1'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_prisonguard'" />
+			<object 			enabled="true" name="'g_gear_prisonguard_lod1'" />
+			
+			<run_sequence 		name="'prisonguard'" />
+			<run_sequence 		name="'belt_base'" />
+			<run_sequence 		name="'random_body_b'" />
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_watch_rare'" />
+			<run_sequence 		name="'random_gloves_rare'" />
+			<run_sequence 		name="'random_glasses_rare'" />
 		</sequence>
 	<!--BALACLAVA SEQUENCES-->
 		<sequence editable_state="true" name="'random_balaclava'" triggable="true">

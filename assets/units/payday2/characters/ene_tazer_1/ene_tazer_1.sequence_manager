@@ -51,7 +51,6 @@
 			
 			<object 			enabled="true" name="'g_helmet_lod6'" />
 			<object 			enabled="true" name="'g_helmet_lod7'" />
-			<object 			enabled="true" name="'g_helmet_lod8'" />
 	
 			<decal_mesh 		enabled="true" name="'dm_visor2'" />
 		</sequence>
