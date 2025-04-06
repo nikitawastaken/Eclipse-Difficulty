@@ -1,11 +1,11 @@
 local function get_unit_from_id(unit_id)
 	for _, data in pairs(managers.enemy:all_enemies()) do
-		if unit_id == data:id() then
+		if unit_id == data.u_id then
 			return data
 		end
 	end
 	for _, data in pairs(managers.enemy:all_civilians()) do
-		if unit_id == data:id() then
+		if unit_id == data.u_id then
 			return data
 		end
 	end
@@ -14,7 +14,7 @@ end
 NetworkHelper:AddReceiveHook("eclipse_hostage_trade", "eclipse_hostage_trade_hook", function(data, sender)
 	local params = json.decode(data)
 	local unit = get_unit_from_id(params.unit_id)
-	if not BaseNetworkHandler._verify_character(params.unit) then
+	if not BaseNetworkHandler._verify_character(unit) then
 		return
 	end
 	Eclipse:log_chat("called hostage_trade", sender)
