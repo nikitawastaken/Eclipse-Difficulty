@@ -18,14 +18,14 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 	-- data.unit:network():send("hostage_trade", true, false, skip_hint, is_custody_trade)
 	NetworkHelper:SendToPeers(
 		"eclipse_hostage_trade", -- id of the network data to send
-		{
+		json.encode({
 			-- Data to send
 			unit = data.unit,
 			enable = true,
 			trade_success = false,
 			skip_hint = skip_hint,
 			is_custody_trade = is_custody_trade,
-		}
+		})
 	)
 	CopLogicTrade.hostage_trade(data.unit, true, false, skip_hint, is_custody_trade)
 	data.unit:brain():set_update_enabled_state(true)
