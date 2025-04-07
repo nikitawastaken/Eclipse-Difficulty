@@ -16,7 +16,7 @@ local garage_door_spawn = {
 	values = {
 		interval = 10,
 	},
-	groups = preferred.no_cops_agents_shields,
+	groups = preferred.no_shields,
 }
 local flank_spawn1 = {
 	values = {
