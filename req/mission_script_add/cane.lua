@@ -55,7 +55,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400034, "eclipse_spawn_enemy_029", Vector3(8100, 3850, -15), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400035, "eclipse_spawn_enemy_030", Vector3(8200, 3850, -15), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400036, "eclipse_enemy_group_006", { 400031, 400032, 400033, 400034, 400035 }, 0),
-	
+
 	Eclipse.mission_elements.gen_preferedadd(400037, "eclipse_front_entrance", optsPreferedAdd1),
 	Eclipse.mission_elements.gen_preferedadd(400038, "eclipse_front_buildings", optsPreferedAdd2),
 }

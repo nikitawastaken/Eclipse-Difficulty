@@ -40,11 +40,11 @@ return {
 		},
 	},
 	-- Spawn group delays
-	-- Most of the spawns during the farm section are slower now akin to the original version. 
+	-- Most of the spawns during the farm section are slower now akin to the original version.
 	-- Sadly the weird bush groups (which are split to also spawn enemies under the bridge) are the only spawn groups during the bridge section, so they kind of had to stay fast-ish
 	[100131] = farm_spawn1,
 	[100132] = farm_spawn1,
-	[100133] = farm_spawn1,	
+	[100133] = farm_spawn1,
 	[100128] = farm_spawn2,
 	[100130] = farm_spawn2,
 	[101217] = that_fucking_bush_spawn,

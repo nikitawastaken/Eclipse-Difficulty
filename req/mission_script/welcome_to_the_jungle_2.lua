@@ -44,7 +44,7 @@ return {
 	[103172] = porch_spawn,
 	[103437] = porch_spawn,
 	[100116] = skylight_spawn,
-	[103249] = skylight_spawn,	
+	[103249] = skylight_spawn,
 	[103501] = cloaker_group,
 	[103503] = cloaker_group,
 	[103504] = cloaker_group,
