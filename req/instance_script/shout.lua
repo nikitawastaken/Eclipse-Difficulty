@@ -1,4 +1,4 @@
----@module Green Bridge
+---@module Meltdown
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local light_swat = scripted_enemy.swat_1
@@ -6,7 +6,7 @@ local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
-local specials_spawns = { [taser] = 3, [cloaker] = 1 }
+local specials_spawns = { [taser] = 2, [cloaker] = 1 }
 
 local patches = {
 	swat_chopper = {
@@ -18,7 +18,7 @@ local patches = {
 	},
 }
 
-M["levels/instances/unique/glace/glace_helicopter_swat/world/world"] = function(result)
+M["levels/instances/unique/shout_helicopter_swat/world/world"] = function(result)
 	local heli_spawns = patches.swat_chopper
 
 	for _, element in pairs(result.default.elements) do

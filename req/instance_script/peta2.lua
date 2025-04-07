@@ -30,6 +30,7 @@ local patches = {
 		special_spawn = table.set(100018),
 		filters_disable = table.set(100008, 100010),
 		filters_normal_above = table.set(100007),
+		hunt = table.set(100046),
 	},
 }
 
@@ -61,6 +62,8 @@ M["levels/instances/unique/pet_helicopter_swat/world/world"] = function(result)
 			table.map_append(element.values, filter_normal_above)
 		elseif heli_spawns.filters_disable[id] then
 			table.map_append(element.values, filter_disable)
+		elseif heli_spawns.hunt[id] then
+			element.values.enabled = true --why the fuck it's turned off?
 		end
 	end
 end
