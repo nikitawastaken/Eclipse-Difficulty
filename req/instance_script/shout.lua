@@ -16,6 +16,9 @@ local patches = {
 		filters_normal_above = table.set(100007),
 		hunt = table.set(100046),
 	},
+	dozer_tweak = {
+		dozer_hunt = table.set(100009, 100021, 100022),
+	},
 }
 
 M["levels/instances/unique/shout_helicopter_swat/world/world"] = function(result)
@@ -34,6 +37,20 @@ M["levels/instances/unique/shout_helicopter_swat/world/world"] = function(result
 			table.map_append(element.values, filter_disable)
 		elseif heli_spawns.hunt[id] then
 			element.values.enabled = true --why the fuck it's turned off?
+		end
+	end
+end
+
+M["levels/instances/unique/shout_container_normal/world/world"] = function(result)
+	local dozer_hunt_tweak = patches.dozer_tweak
+
+	for _, element in pairs(result.default.elements) do
+		local id = element.id
+
+		if dozer_hunt_tweak.dozer_hunt[id] then
+			element.values.on_executed = {
+				{ id = 100067, delay = 3 }, -- delay the hunt
+			}
 		end
 	end
 end
