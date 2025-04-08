@@ -43,7 +43,7 @@ return {
 	},
 	[100810] = { -- Gradually increase difficulty
 		values = {
-			difficulty = 0.25
+			difficulty = 0.25,
 		},
 		reinforce = { -- Add some reinforce to make up for the slower spawn groups and lower diff
 			{
@@ -64,7 +64,7 @@ return {
 		},
 	},
 	[101313] = {
-		difficulty = 1
+		difficulty = 1,
 	},
 	-- make Snipers respawn and re-enable unused ones
 	[100520] = unused_sniper_trigger_times,

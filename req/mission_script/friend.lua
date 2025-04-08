@@ -109,11 +109,10 @@ return {
 	[102583] = mobster_team,
 	-- Spawn group delays
 	[100132] = garden_spawn,
-	[102381] = garden_spawn,	
+	[102381] = garden_spawn,
 	[100206] = roof_spawn,
 	[100719] = roof_spawn,
 	[100810] = roof_spawn,
 	[100921] = roof_spawn,
 	[101920] = roof_spawn,
-
 }

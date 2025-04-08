@@ -44,34 +44,34 @@ return {
 			{
 				name = "crane1",
 				force = 2,
-				position = Vector3(-4500, 600, 125)
+				position = Vector3(-4500, 600, 125),
 			},
 			{
 				name = "crane2",
 				force = 2,
-				position = Vector3(2100, 550, 125)
+				position = Vector3(2100, 550, 125),
 			},
 			{
 				name = "wagon1",
 				force = 3,
-				position = Vector3(-2900, 2900, 500)
+				position = Vector3(-2900, 2900, 500),
 			},
 			{
 				name = "wagon2",
 				force = 3,
-				position = Vector3(-3700, 0, 500)
+				position = Vector3(-3700, 0, 500),
 			},
 			{
 				name = "roof1",
 				force = 3,
-				position = Vector3(5350, -1700, 650)
+				position = Vector3(5350, -1700, 650),
 			},
 			{
 				name = "roof2",
 				force = 3,
-				position = Vector3(5350, -2800, 650)
+				position = Vector3(5350, -2800, 650),
 			},
-		}
+		},
 	},
 	[102303] = {
 		reinforce = {
@@ -82,19 +82,19 @@ return {
 			{
 				name = "roof3",
 				force = 3,
-				position = Vector3(-8250, 8100, 750)
+				position = Vector3(-8250, 8100, 750),
 			},
 			{
 				name = "roof4",
 				force = 3,
-				position = Vector3(-9500, 5000, 750)
+				position = Vector3(-9500, 5000, 750),
 			},
 			{
 				name = "crane3",
 				force = 2,
-				position = Vector3(-6100, 8350, 125)
-			}
-		}
+				position = Vector3(-6100, 8350, 125),
+			},
+		},
 	},
 	--National Guard instead of regular security
 	[101764] = security_army,
@@ -133,7 +133,7 @@ return {
 	[101630] = roof_spawn,
 	[101771] = roof_spawn,
 	[101772] = roof_spawn,
-	[102887] = roof_spawn,	
-	[108179] = container_spawn,	
+	[102887] = roof_spawn,
+	[108179] = container_spawn,
 	[104040] = window_spawn,
 }
