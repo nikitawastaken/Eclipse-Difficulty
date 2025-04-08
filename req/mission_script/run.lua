@@ -75,11 +75,9 @@ return {
 	[102907] = garage_shield_spawn,
 	-- add custom unit sequence for opening the gate
 	[102376] = {
-		values = {
-			on_executed = {
-				{ remove = true, id = 100232 },
-				{ delay = 1, id = 400098 },
-			},
+		on_executed = {
+			{ remove = true, id = 102906 },
+			{ delay = 1, id = 400098 },
 		},
 	},
 	-- armitage ave.
@@ -89,38 +87,32 @@ return {
 	[100432] = garage_shield_spawn,
 	[100362] = garage_shield_spawn,
 	-- add custom unit sequence for opening the gate
-	[102376] = {
-		values = {
-			on_executed = {
-				{ remove = true, id = 102797 },
-				{ remove = true, id = 102413 },
-				{ delay = 0.5, id = 410001 },
-				{ delay = 1, id = 410000 },
-			},
+	[102802] = {
+		on_executed = {
+			{ remove = true, id = 102797 },
+			{ remove = true, id = 102413 },
+			{ delay = 0.5, id = 410001 },
+			{ delay = 1, id = 410000 },
 		},
 	},
 	-- parking lot
 	-- replace PDTH SWAT leftovers
 	[102801] = garage_swat_spawn_1,
 	[102800] = garage_swat_spawn_1,
-	[101756] = garage_shield_spawn,
-	[101640] = garage_shield_spawn,
+	[100364] = garage_shield_spawn,
+	[100432] = garage_shield_spawn,
 	-- add custom unit sequence for opening the gate
-	[102802] = {
-		values = {
-			on_executed = {
-				{ remove = true, id = 100665 },
-				{ delay = 1, id = 400099 },
-			},
+	[100612] = {
+		on_executed = {
+			{ remove = true, id = 100665 },
+			{ delay = 1, id = 400099 },
 		},
 	},
 	-- restore dozer kicking door event from PDTH
 	[103517] = {
-		values = {
-			on_executed = {
-				{ remove = true, id = 103516 },
-				{ delay = 0, id = 410002 },
-			},
+		on_executed = {
+			{ remove = true, id = 103516 },
+			{ delay = 0, id = 410002 },
 		},
 	},
 	[103515] = {
@@ -152,15 +144,13 @@ return {
 	[100341] = heli_spawn2,
 	[100351] = heli_spawn2,
 	[101202] = {
-		values = {
-			on_executed = {
-				{ delay = 5, id = 100232 },
-				{ delay = 5, id = 100341 },
-				{ delay = 5, id = 100351 },
-				{ delay = 5, id = 103586 },
-				{ delay = 0, id = 101669 },
-				{ delay = 15, id = 101648 },
-			},
+		on_executed = {
+			{ delay = 5, id = 100232 },
+			{ delay = 5, id = 100341 },
+			{ delay = 5, id = 100351 },
+			{ delay = 5, id = 103586 },
+			{ delay = 0, id = 101669 },
+			{ delay = 15, id = 101648 },
 		},
 	},
 	[103578] = {
