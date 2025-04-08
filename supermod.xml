@@ -1100,6 +1100,11 @@
 				<file :name="ene_male_chas_police_01.object" />
 				<file :name="ene_male_chas_police_01.unit" />
 				<file :name="ene_male_chas_police_01_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_male_ranc_ranger_01.material_config" />
+					<file :name="ene_male_ranc_ranger_01_contour.material_config" />
+				</group>
 			</group>
 
 			<group :name="ene_male_chas_police_02/">
@@ -1154,11 +1159,6 @@
 			</group>
 		
 			<group :name="ene_male_ranc_ranger_01/">
-				<xml  :name="ene_male_ranc_ranger_01.sequence_manager" dyn_package="true" />
-				<file :name="ene_male_ranc_ranger_01.material_config" />
-				<file :name="ene_male_ranc_ranger_01_contour.material_config" />
-				<file :name="ene_male_ranc_ranger_01.model" />
-				<file :name="ene_male_ranc_ranger_01.object" />
 				<file :name="ene_male_ranc_ranger_01.unit" />
 				<file :name="ene_male_ranc_ranger_01_husk.unit" />
 			</group>

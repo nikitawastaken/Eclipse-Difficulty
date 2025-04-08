@@ -403,8 +403,6 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'cop_2'" once="true" triggable="true">
-			<set_variables 		has_hat="1" />
-
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_b'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_b_lod1'" />		
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_b'" />
@@ -425,11 +423,6 @@
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_c_lod1'" />			
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_c'" />
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_cop_c_lod1'" />
-
-			<object 			enabled="true" name="'g_hat_cop_lod1'" />
-			<object 			enabled="true" name="'g_hat_cop_lod2'" />
-			<object 			enabled="true" name="'g_hat_cop_lod3'" />
-			<object 			enabled="true" name="'g_hat_cop_lod4'" />
 			
 			<run_sequence 		name="'cop'" />
 			<run_sequence 		name="'armor_body'" />
