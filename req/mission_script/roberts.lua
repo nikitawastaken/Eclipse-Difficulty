@@ -2,6 +2,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local overkill_and_above = Eclipse.utils.diff_threshold()
+local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
