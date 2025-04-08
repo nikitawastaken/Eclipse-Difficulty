@@ -66,6 +66,7 @@ return {
 			player_mul = { 2.5, 2, 1.5, 1 },
 		},
 	},
+	--[[
 	-- restore garage events from PDTH
 	-- inkwell industrial
 	-- replace PDTH SWAT leftovers
@@ -108,6 +109,7 @@ return {
 			{ delay = 1, id = 400099 },
 		},
 	},
+	]]--
 	-- restore dozer kicking door event from PDTH
 	[103517] = {
 		on_executed = {
