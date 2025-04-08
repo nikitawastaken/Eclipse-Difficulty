@@ -1,7 +1,19 @@
+local preferred = Eclipse.preferred
 local mobster_team = {
 	values = {
 		team = "mobster1",
 	},
+}
+local garden_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local roof_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Enter main hall
@@ -11,6 +23,13 @@ return {
 	-- Boss dead, safe objective
 	[101169] = {
 		difficulty = 1,
+		reinforce = {
+			{
+				name = "main_hall",
+				force = 3,
+				position = Vector3(-2000, -1100, 50),
+			},
+		},
 	},
 	-- Disable Sosa retreat on low health during boss fight
 	[101596] = {
@@ -22,6 +41,26 @@ return {
 	[102653] = {
 		on_executed = {
 			{ id = 102692, delay = 0 },
+		},
+	},
+	-- Add some reinforce around the house
+	[100109] = {
+		reinforce = {
+			{
+				name = "garden_front1",
+				force = 3,
+				position = Vector3(3150, -4250, -150),
+			},
+			{
+				name = "garden_front2",
+				force = 3,
+				position = Vector3(3150, -2000, -150),
+			},
+			{
+				name = "garden_right",
+				force = 3,
+				position = Vector3(750, 2075, -100),
+			},
 		},
 	},
 	--You're Sosa's men, not undercover cops
@@ -68,4 +107,13 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
+	-- Spawn group delays
+	[100132] = garden_spawn,
+	[102381] = garden_spawn,	
+	[100206] = roof_spawn,
+	[100719] = roof_spawn,
+	[100810] = roof_spawn,
+	[100921] = roof_spawn,
+	[101920] = roof_spawn,
+
 }

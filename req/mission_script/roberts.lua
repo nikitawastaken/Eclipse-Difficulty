@@ -30,16 +30,16 @@ local taser_spawn = {
 local ambush_chance = {
 	chance = normal and 45 or hard and 70 or 100,
 }
-local sewer_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local flank_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local sewer_spawn = {
+	values = {
+		interval = 30,
+	},
 }
 return {
 	[101949] = {

@@ -1,13 +1,13 @@
 local preferred = Eclipse.preferred
 local construction_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_bulldozers,
 }
 local bridge_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }

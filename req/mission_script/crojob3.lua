@@ -1,4 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local overkill_and_above = Eclipse.utils.diff_threshold()
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
@@ -11,12 +12,58 @@ local us_soldier = {
 local missing_taser_access_fix = {
 	so_access_filter = { "cop", "swat", "tank", "shield", "taser" },
 }
+local flank_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents_bulldozers,
+}
+local timbermill_spawn = {
+	values = {
+		interval = 30,
+	},
+}
+local woods_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_bulldozers,
+}
+local hillside_left_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_bulldozers,
+}
+local hillside_top_spawn = {
+	values = {
+		interval = 60,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 return {
 	[103031] = {
 		ponr = {
 			length = 300,
 			player_mul = { 1.6, 1.4, 1, 1 },
 		},
+	},
+	-- Delay police response
+	[100571] = {
+		on_executed = {
+			{ id = 100572, delay = 30 },
+		},
+	},
+	-- Slow down difficulty progression
+	[100557] = {
+		values = {
+			difficulty = 0.35
+		}
+	},
+	[101220] = {
+		values = {
+			difficulty = 0.65
+		}
 	},
 	-- fix one of the ai_hunt SOs not having taser access
 	[100675] = missing_taser_access_fix,
@@ -68,4 +115,12 @@ return {
 	[101371] = us_soldier,
 	[101372] = us_soldier,
 	[101373] = us_soldier,
+	-- Spawn group delays
+	[100859] = flank_spawn,
+	[100889] = flank_spawn,
+	[100231] = woods_spawn,
+	[100434] = timbermill_spawn,
+	[100437] = hillside_left_spawn,
+	[100230] = hillside_top_spawn,
+	[100230] = hillside_top_spawn,
 }
