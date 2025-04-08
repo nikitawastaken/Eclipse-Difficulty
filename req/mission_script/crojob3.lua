@@ -57,13 +57,13 @@ return {
 	-- Slow down difficulty progression
 	[100557] = {
 		values = {
-			difficulty = 0.35
-		}
+			difficulty = 0.35,
+		},
 	},
 	[101220] = {
 		values = {
-			difficulty = 0.65
-		}
+			difficulty = 0.65,
+		},
 	},
 	-- fix one of the ai_hunt SOs not having taser access
 	[100675] = missing_taser_access_fix,
