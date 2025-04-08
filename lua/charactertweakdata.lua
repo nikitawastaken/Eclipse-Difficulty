@@ -973,6 +973,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
 	self.gangster.speech_prefix_count = 2
+	
+	self.triad.speech_prefix_p1 = "lt"
+	self.triad.speech_prefix_p2 = nil
+	self.triad.speech_prefix_count = 2
 
 	self.mobster.speech_prefix_p1 = "rt"
 	self.mobster.speech_prefix_p2 = nil
