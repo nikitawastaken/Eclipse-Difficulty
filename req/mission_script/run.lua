@@ -109,7 +109,8 @@ return {
 			{ delay = 1, id = 400099 },
 		},
 	},
-	]]--
+	]]
+	--
 	-- restore dozer kicking door event from PDTH
 	[103517] = {
 		on_executed = {
