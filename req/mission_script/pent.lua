@@ -4,12 +4,6 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local roof_spawn1 = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
-}
 local ramp_spawn = {
 	values = {
 		interval = 15,
@@ -22,39 +16,45 @@ local garage_spawn1 = {
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
+local roof_spawn1 = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_cops_agents,
+}
 local pent_balcony_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields,
-}
-local garage_spawn2 = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
-local roof_spawn2 = {
 	values = {
 		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields,
 }
-local window_spawn = {
+local roof_spawn2 = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents_shields,
 }
-local lobby_balcony_spawn = {
+local garage_spawn2 = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local window_spawn = {
 	values = {
 		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local vent_spawn = {
+local lobby_balcony_spawn = {
 	values = {
 		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local vent_spawn = {
+	values = {
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
