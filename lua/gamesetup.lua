@@ -45,7 +45,6 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		--["ranc"] = true, -- They're already loaded here
 		["trai"] = true,
 		--["corp"] = true,
-		["deep"] = true,
 	}
 
 	local security_deep = {

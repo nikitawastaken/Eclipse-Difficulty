@@ -2786,11 +2786,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.m14_npc.usage = "is_sniper"
 	self.m14_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.m14_npc.CLIP_AMMO_MAX = 10
+	self.m14_npc.armor_piercing = true
 
 	self.dmr_npc.sounds.prefix = self.heavy_snp_npc.sounds.prefix
 	self.dmr_npc.usage = "is_sniper"
 	self.dmr_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.dmr_npc.CLIP_AMMO_MAX = 10
+	self.dmr_npc.armor_piercing = true
 
 	self.m14_sniper_npc.usage = "is_sniper"
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
