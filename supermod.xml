@@ -109,6 +109,7 @@
 				<post :hook_id="tweakdatavr"/>
 				<post :hook_id="carrytweakdata"/>
 				<post :hook_id="levelstweakdata"/>
+				<post :hook_id="narrativetweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
