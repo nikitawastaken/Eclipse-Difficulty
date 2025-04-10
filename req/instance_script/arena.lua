@@ -25,8 +25,8 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.disable_power_delay[element.id] then
 				element.values.on_executed = {
-				{ id = 100008, delay = 20, delay_rand = 10},
-			}
+					{ id = 100008, delay = 20, delay_rand = 10 },
+				}
 			end
 		end
 	end,

@@ -70,10 +70,10 @@ M["levels/instances/unique/sub_sewer_sidespawn/world/world"] = function(result)
 	end
 end
 M["levels/instances/unique/sub_circut_breaker/world/world"] = function(result)
-		for _, element in ipairs(result.default.elements) do
-			if patches.disable_power_delay[element.id] then
-				element.values.on_executed = {
-				{ id = 100015, delay = 20, delay_rand = 10},
+	for _, element in ipairs(result.default.elements) do
+		if patches.disable_power_delay[element.id] then
+			element.values.on_executed = {
+				{ id = 100015, delay = 20, delay_rand = 10 },
 			}
 		end
 	end
