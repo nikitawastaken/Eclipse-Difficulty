@@ -220,6 +220,27 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.stockholm_syndrome.multipro2 = "doubled"
 
 	-- Parterns in Crime
+	self.definitions.player_convert_camouflage_mul = {
+		name_id = "menu_player_convert_camouflage_mul",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "convert_camouflage_mul",
+			category = "player",
+		},
+	}
+	self.definitions.player_convert_counts_as_hostage = {
+		name_id = "menu_player_convert_counts_as_hostage",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "convert_counts_as_hostage",
+			category = "player",
+		},
+	}
+	self.values.player.convert_camouflage_mul = { 1.15 }
+	self.values.player.convert_counts_as_hostage = { true }
+	self.skill_descs.control_freak.multibasic = "15%"
 
 	-- Hostage Taker
 	self.values.player.hostage_health_regen_addend[1] = 0.8

@@ -76,8 +76,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stockholm_syndrome.icon_xy = { 6, 7 }
 
 	-- Partners in Crime
-	self.skills.control_freak[1].upgrades = {}
-	self.skills.control_freak[2].upgrades = {}
+	self.skills.control_freak[1].upgrades = { "player_convert_camouflage_mul" }
+	self.skills.control_freak[2].upgrades = { "player_convert_counts_as_hostage" }
 
 	-- Hostage Taker
 	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1" }

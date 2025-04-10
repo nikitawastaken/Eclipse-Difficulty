@@ -21,12 +21,17 @@ end
 -- Hostage Taker rework
 function PlayerManager:get_hostage_bonus_addend(category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
+	local minions = self:num_local_minions() or 0
 	local addend = 0
 	local hostage_max_num = tweak_data:get_raw_value("upgrades", "hostage_max_num", category)
 	local current_team_size = managers.groupai:state():_get_balancing_multiplier({ 1, 2, 3, 4 })
 
 	if hostage_max_num then
 		hostages = math.min(hostages, hostage_max_num)
+	end
+
+	if self:has_category_upgrade("player", "convert_counts_as_hostage") then
+		hostages = hostages + minions
 	end
 
 	if category ~= "health_regen" then
@@ -55,6 +60,10 @@ function PlayerManager:get_hostage_bonus_multiplier(category)
 
 	if hostage_max_num then
 		hostages = math.min(hostages, hostage_max_num)
+	end
+
+	if self:has_category_upgrade("player", "convert_counts_as_hostage") then
+		hostages = hostages + minions
 	end
 
 	multiplier = multiplier + self:team_upgrade_value(category, "hostage_multiplier", 1) - 1
