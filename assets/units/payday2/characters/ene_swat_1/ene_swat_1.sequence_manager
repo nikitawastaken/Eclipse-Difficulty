@@ -376,6 +376,9 @@
 			<object 			enabled="true" name="'g_gear_city_swat_b'" />
 			<object 			enabled="true" name="'g_gear_city_swat_b_lod1'" />
 
+			<object 			enabled="true" name="'g_helmet_fbi_swat_lod3'" />
+			<object 			enabled="true" name="'g_helmet_fbi_swat_lod4'" />
+			
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod9'" />
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod10'" />
 			
