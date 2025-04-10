@@ -109,24 +109,12 @@ function CopBrain:update(unit, t, ...)
 	end
 end
 
--- If Iter is installed and streamlined path option is used, don't make any further changes
-if Iter and Iter.settings and Iter.settings.streamline_path then
-	return
-end
-
--- Call pathing results callback in logic if it exists
-Hooks:PostHook(CopBrain, "clbk_pathing_results", "sh_clbk_pathing_results", function(self)
-	local current_logic = self._current_logic
-	if current_logic.on_pathing_results then
-		current_logic.on_pathing_results(self._logic_data)
-	end
-end)
-
 -- Additional is_custody_trade argument
 function CopBrain:on_trade(pos, rotation, free_criminal, is_custody_trade)
 	return self._current_logic.on_trade(self._logic_data, pos, rotation, free_criminal, is_custody_trade)
 end
 
+-- "Converted enemy has additional target priority" upgrade
 function CopBrain:convert_to_criminal(mastermind_criminal)
 	self._logic_data.is_converted = true
 	self._logic_data.group = nil
@@ -206,3 +194,16 @@ function CopBrain:convert_to_criminal(mastermind_criminal)
 	self._unit:brain():action_request(action_data)
 	self._unit:sound():say("cn1", true, nil)
 end
+
+-- If Iter is installed and streamlined path option is used, don't make any further changes
+if Iter and Iter.settings and Iter.settings.streamline_path then
+	return
+end
+
+-- Call pathing results callback in logic if it exists
+Hooks:PostHook(CopBrain, "clbk_pathing_results", "sh_clbk_pathing_results", function(self)
+	local current_logic = self._current_logic
+	if current_logic.on_pathing_results then
+		current_logic.on_pathing_results(self._logic_data)
+	end
+end)
