@@ -1148,6 +1148,26 @@
 			<group :name="ene_coast_guard_1/">
 				<xml  :name="ene_coast_guard_1.sequence_manager" dyn_package="true" />
 			</group>
+
+			<group :name="ene_security_cruise_1/">
+				<xml  :name="ene_security_cruise_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_security_cruise_1.material_config" />
+				<file :name="ene_security_cruise_1_contour.material_config" />
+				<file :name="ene_security_cruise_1.model" />
+				<file :name="ene_security_cruise_1.object" />
+				<file :name="ene_security_cruise_1.unit" />
+				<file :name="ene_security_cruise_1_husk.unit" />
+			</group>
+
+			<group :name="ene_security_cruise_2/">
+				<file :name="ene_security_cruise_2.unit" />
+				<file :name="ene_security_cruise_2_husk.unit" />
+			</group>
+
+			<group :name="ene_security_cruise_3/">
+				<file :name="ene_security_cruise_3.unit" />
+				<file :name="ene_security_cruise_3_husk.unit" />
+			</group>
 		</group>
 
 		<group name="units/pd2_dlc_ranc/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
