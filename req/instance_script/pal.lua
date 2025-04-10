@@ -8,7 +8,7 @@ local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local filter_eclipse_only = Eclipse.utils.set_diff_groups("eclipse")
 
 local patches = {
-	disable_power_delay = table.set(100016)
+	disable_power_delay = table.set(100016),
 	sewer_spawn = {
 		spooc = table.set(100010),
 		swat_sg = table.set(100019),
