@@ -136,7 +136,6 @@ function CopBrain:convert_to_criminal(mastermind_criminal)
 
 	local attention_preset = PlayerMovement._create_attention_setting_from_descriptor(self, tweak_data.attention.settings.team_enemy_cbt, "team_enemy_cbt")
 
-
 	local health_multiplier = 1
 	local damage_multiplier = 1
 
@@ -200,8 +199,8 @@ function CopBrain:convert_to_criminal(mastermind_criminal)
 			hurt = -1,
 			action = -1,
 			light_hurt = -1,
-			walk = -1
-		}
+			walk = -1,
+		},
 	}
 
 	self._unit:brain():action_request(action_data)
