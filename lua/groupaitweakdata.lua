@@ -3152,13 +3152,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			FBI_assault_shield = { 0, 0.25, 0.15 },
 			FBI_assault_taser = { 0, 0.2, 0 },
 			FBI_assault_cloaker = { 0, 0.2, 0.25 },
-			FBI_assault_bulldozer = { 0, 0, 0.1 },
+			FBI_assault_bulldozer = { 0, 0.05, 0.075 },
 
 			Elite_assault_swats = { 0, 0.5, 0.75 },
 			Elite_assault_shield = { 0, 0, 0.15 },
 			Elite_assault_sniper = { 0, 0.2, 0.25 },
 			Elite_assault_taser = { 0, 0, 0.25 },
-			Elite_assault_bulldozer = { 0, 0, 0.1 },
+			Elite_assault_bulldozer = { 0, 0, 0.125 },
 		}
 		self.besiege.recon.groups = {
 			FBI_recon_agents = { 1, 1, 0 },
