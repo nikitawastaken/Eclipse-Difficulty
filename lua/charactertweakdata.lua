@@ -1196,7 +1196,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.headshot_dmg_mul = 25 -- 320 head health
 	self.tank.ecm_vulnerability = 0
 	self.tank.min_obj_interrupt_dis = 600
-	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt 
+	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
