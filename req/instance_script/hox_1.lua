@@ -8,6 +8,9 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local greendozer_only = {
+	green_bulldozer,
+}
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -16,7 +19,7 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local server_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer
+local server_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or greendozer_only
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local patches = {
@@ -42,7 +45,7 @@ M["levels/instances/unique/hox_breakout_serverroom001/world/world"] = function(r
 		local id = element.id
 
 		if dozer_event.dozers[id] then
-			element.values.enemy = server_dozer
+			element.values.enemy_table = server_dozer
 		elseif dozer_event.filters_normal_above[id] then
 			table.map_append(element.values, filter_normal_above)
 		elseif dozer_event.filters_disable[id] then
