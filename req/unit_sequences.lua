@@ -104,7 +104,7 @@ local head_sequences = {
 		material = { 1, 2 },
 		run_sequence = {
 			"elite_swat_head_init",
-			"disable_head",
+			"balaclava_base",
 			"disable_arms",
 		},
 	},

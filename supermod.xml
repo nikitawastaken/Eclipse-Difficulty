@@ -538,23 +538,6 @@
 				<file 	:name="ene_acc_shield_city.object" />
 				<file 	:name="ene_acc_shield_city.unit" />
 				<file 	:name="ene_acc_shield_city_dummy.unit" />
-
-				<group :name="debris/">
-					<file 	:name="ene_acc_shield_city_debris_top.cooked_physics" />
-					<file 	:name="ene_acc_shield_city_debris_top.model" />
-					<file 	:name="ene_acc_shield_city_debris_top.object" />
-					<file 	:name="ene_acc_shield_city_debris_top.unit" />
-
-					<file 	:name="ene_acc_shield_city_debris_right.cooked_physics" />
-					<file 	:name="ene_acc_shield_city_debris_right.model" />
-					<file 	:name="ene_acc_shield_city_debris_right.object" />
-					<file 	:name="ene_acc_shield_city_debris_right.unit" />
-
-					<file 	:name="ene_acc_shield_city_debris_left.cooked_physics" />
-					<file 	:name="ene_acc_shield_city_debris_left.model" />
-					<file 	:name="ene_acc_shield_city_debris_left.object" />
-					<file 	:name="ene_acc_shield_city_debris_left.unit" />
-				</group>
 			</group>
 
 			<group :name="ene_acc_head/">

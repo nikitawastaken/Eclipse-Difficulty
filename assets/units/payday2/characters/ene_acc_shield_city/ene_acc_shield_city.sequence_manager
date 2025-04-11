@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <table>
 	<unit>
 		<variables>
@@ -65,18 +64,18 @@
 		</filter>
 		
 		<sequence name="'enable_body'" triggable="true">
-			<body  enabled="false" name="'held_body_top'"/>
-			<body  filter="'filter_debris_top'" enabled="true" name="'dropped_body_top'"/>
-			
-			<body enabled="false" name="'held_body_right'"/>
-			<object  filter="'filter_debris_l'" enabled="false" name="'dropped_body_right'"/>
-			
-			<body  enabled="false" name="'held_body_left'"/>
-			<body  filter="'filter_debris_r'" enabled="true" name="'dropped_body_left'"/>
-		
 			<body enabled="false" name="'held_body_middle'"/>
 			<body enabled="true" name="'dropped_body_middle'"/>
-						
+		
+			<body  enabled="false" name="'held_body_top'"/>
+			<body  filter="'filter_debris_top'" enabled="true" name="'dropped_body_top'"/>
+		
+			<body 	 enabled="false" name="'held_body_right'"/>
+			<body  enabled="true" name="'dropped_body_right'"/>
+			
+			<body  	enabled="false" name="'held_body_left'"/>
+			<body   enabled="true" name="'dropped_body_left'"/>
+		
 			<run_sequence filter="'filter_light_1_enabled'" name="'disable_light_1_blink'"/>
 			<run_sequence filter="'filter_light_2_enabled'" name="'disable_light_2_blink'"/>
 		</sequence>
@@ -132,16 +131,29 @@
 			<effect name="'effects/particles/dest/security_camera_dest'" parent="'e_02'"/>
 		</sequence>
 		<sequence editable_state="false" name="'int_seq_light_1_break'" once="true" triggable="false">
+			<sound action="'play'" event="'USM_Bulb_BRK'" object="'c_light_01'"/>
 			<effect align="object_rot('e_01')" damp_time="4" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" position="object_pos('e_01')"/>
 			<effect align="object_rot('e_01')" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" position="object_pos('e_01')"/>
-			<function extension="'base'" function="'clbk_seq_chk_interrupt_flash_hit'" param1="object_pos('e_01')" param2="object_rot_y('e_01')" param3="src_unit_unit()"/> 
+			<function extension="'base'" function="'clbk_seq_chk_interrupt_flash_hit'" param1="object_pos('e_01')" param2="object_rot_y('e_01')" param3="src_unit_unit()"/>
 			<run_sequence name="'disable_light_1_blink'"/>
 		</sequence>
 		<sequence editable_state="false" name="'int_seq_light_2_break'" once="true" triggable="false">
+			<sound action="'play'" event="'USM_Bulb_BRK'" object="'c_light_02'"/>
 			<effect align="object_rot('e_02')" damp_time="4" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" position="object_pos('e_02')"/>
 			<effect align="object_rot('e_02')" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" position="object_pos('e_02')"/>
-			<function extension="'base'" function="'clbk_seq_chk_interrupt_flash_hit'" param1="object_pos('e_02')" param2="object_rot_y('e_02')" param3="src_unit_unit()"/> 
+			<function extension="'base'" function="'clbk_seq_chk_interrupt_flash_hit'" param1="object_pos('e_02')" param2="object_rot_y('e_02')" param3="src_unit_unit()"/>
 			<run_sequence name="'disable_light_2_blink'"/>
+		</sequence>
+		
+		<sequence editable_state="false" name="'int_seq_glass_break'" once="true" triggable="false">
+			<object enabled="false" name="'g_glass'"/>	
+			<body enabled="false" name="'glass'"/>	
+			<decal_mesh enabled="false" name="'dm_glass'"/>	
+		
+			<sound action="'play'" event="'bulldozer_visor_shatter'" object="'c_glass'"/>
+			
+			<effect align="object_rot('e_03')" damp_time="4" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" position="object_pos('e_03')"/>
+			<effect align="object_rot('e_03')" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" position="object_pos('e_03')"/>
 		</sequence>
 		
 		<sequence editable_state="false" name="'int_seq_shield_break'" once="true" triggable="true">
@@ -180,8 +192,7 @@
 			<set_variables var_charging_2_state="0"/>
 			<function extension="'base'" function="'clbk_seq_flash'" param1="object_pos('e_02')" param2="object_rot_y('e_02')"/>
 		</sequence>
-		
-		<!-- mother brains -->
+
 		<body name="'held_body_middle'">
 			<endurance damage="36" explosion="54">
 				<run_sequence name="'int_seq_shield_break'"/>
@@ -205,48 +216,46 @@
 				<run_sequence name="'int_seq_shield_break_top'"/>
 			</endurance>
 		</body>
-
+		
 		<!-- destroy left -->
 		<sequence editable_state="false" name="'int_seq_shield_break_l'" once="true" triggable="true">
-			<object enabled="false" name="'g_shield_l'"/>	
-			<body enabled="false" name="'held_body_left'"/>
-			<decal_mesh enabled="false" name="'dm_metal_l'"/>	
+			<body enabled="false" name="'held_body_left'"/>					
+			<body enabled="true" name="'dropped_body_left'"/>
+			
+			<constraint  enabled="false" name="'constraint_dropped_body_left'"/>
 		
 			<set_variables var_debris_l="1"/>			
-			
-			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_left'" position="object_pos('drop_shield_r')" rotation="object_rot('rp_ene_acc_shield_phalanx')"/>						
-			
+						
 			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_phalanx'"/>
 		</sequence>		
 		
 
 		<!-- destroy right -->
 		<sequence editable_state="false" name="'int_seq_shield_break_r'" once="true" triggable="true">
-			<body enabled="false" name="'held_body_right'"/>
-			<object enabled="false" name="'g_shield_r'"/>	
-			<decal_mesh enabled="false" name="'dm_metal_r'"/>	
+			<body enabled="false" name="'held_body_right'"/>			
+			<body enabled="true" name="'dropped_body_right'"/>
+
+			<constraint  enabled="false" name="'constraint_dropped_body_right'"/>
 
 			<set_variables var_debris_r="1"/>			
 
-			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_right'" position="object_pos('drop_shield_l')" rotation="object_rot('rp_ene_acc_shield_phalanx')"/>			
 			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_phalanx'"/>
 		</sequence>		
 
 		<!-- destroy top -->
-		<sequence editable_state="false" name="'int_seq_shield_break_top'" once="true" triggable="true">
-			
-			<object enabled="false" name="'g_shield_top'"/>	
+		<sequence editable_state="false" name="'int_seq_shield_break_top'" once="true" triggable="true">		
 			<body enabled="false" name="'held_body_top'"/>
-			<decal_mesh enabled="false" name="'dm_metal_top'"/>	
+			<body enabled="true" name="'dropped_body_top'"/>
+			
+			<constraint  enabled="false" name="'constraint_dropped_body_top'"/>
 
 			<set_variables var_debris_top="1"/>			
 
-			<spawn_unit name="'units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_top'" position="object_pos('drop_shield_top')" rotation="object_rot('rp_ene_acc_shield_phalanx')"/>						
 			<sound action="'play'" event="'swatturret_plate_off'" object="'rp_ene_acc_shield_phalanx'"/>
 		</sequence>		
 		
 		<body name="'light_01'">
-			<endurance bullet="2" lock="1">
+			<endurance bullet="1" lock="1">
 				<run_sequence filter="'filter_light_1_enabled'" name="'int_seq_light_1_hit'"/>
 				<run_sequence filter="'filter_can_flash_light_1'" name="'int_seq_light_1_break'"/>
 				<run_sequence filter="'filter_light_1_enabled'" name="'reset_body_damage'"/>
@@ -254,7 +263,7 @@
 		</body>
 		
 		<body name="'light_02'">
-			<endurance bullet="2" lock="1">
+			<endurance bullet="1" lock="1">
 				<run_sequence filter="'filter_light_2_enabled'" name="'int_seq_light_2_hit'"/>
 				<run_sequence filter="'filter_can_flash_light_2'" name="'int_seq_light_2_break'"/>
 				<run_sequence filter="'filter_light_2_enabled'" name="'reset_body_damage'"/>
