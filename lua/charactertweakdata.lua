@@ -1196,7 +1196,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.headshot_dmg_mul = 25 -- 320 head health
 	self.tank.ecm_vulnerability = 0
 	self.tank.min_obj_interrupt_dis = 600
-	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt -- cool damage react thing
+	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt 
 	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
@@ -1217,16 +1217,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
-	self.medic.HEALTH_INIT = 54
-	self.medic.headshot_dmg_mul = 2 -- 270 head health
+	self.medic.HEALTH_INIT = 60
+	self.medic.headshot_dmg_mul = 2 -- 300 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.can_be_healed = false
 	self.medic.melee_weapon = "weapon"
 
 	self.zeal_medic = deep_clone(self.medic)
-	self.zeal_medic.HEALTH_INIT = 54
-	self.zeal_medic.headshot_dmg_mul = 2 -- 270 head health
+	self.zeal_medic.HEALTH_INIT = 60
+	self.zeal_medic.headshot_dmg_mul = 2 -- 300 head health
 	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
 	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_medic")
