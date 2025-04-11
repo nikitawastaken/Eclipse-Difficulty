@@ -43,14 +43,6 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
-		bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
-		},
-		elite_bulldozer = {
-			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
-			"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
-		},
 	},
 	FBI = {
 		swat_1 = {
@@ -72,14 +64,6 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
-		bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
-		},
-		elite_bulldozer = {
-			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
-			"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
-		},
 	},
 	Elite = {
 		swat_1 = {
@@ -100,14 +84,6 @@ ElementSpawnEnemyDummy.faction_mapping = {
 		taser = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
-		},
-		bulldozer = {
-			"units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1",
-			"units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2",
-		},
-		elite_bulldozer = {
-			"units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
-			"units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 		},
 	},
 	Zeal = {
