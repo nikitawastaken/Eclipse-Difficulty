@@ -44,7 +44,7 @@ M["levels/instances/unique/hox_breakout_serverroom001/world/world"] = function(r
 		if sewer_grate.dozers[id] then
 			element.values.enemy = server_dozer
 		elseif dozer_event.filters_normal_above[id] then
-			table.map_append(element.values, filter_normal_above)}
+			table.map_append(element.values, filter_normal_above)
 		elseif dozer_event.filters_disable[id] then
 			table.map_append(element.values, filter_disable)
 		end
