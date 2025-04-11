@@ -1,12 +1,27 @@
 ---@module Meltdown
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local light_swat = scripted_enemy.swat_1
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local specials_spawns = { [taser] = 2, [cloaker] = 1 }
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
+local container_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer
 
 local patches = {
 	swat_chopper = {
@@ -48,6 +63,7 @@ M["levels/instances/unique/shout_container_normal/world/world"] = function(resul
 		local id = element.id
 
 		if dozer_hunt_tweak.dozer_hunt[id] then
+			element.values.enemy = container_dozer
 			element.values.on_executed = {
 				{ id = 100067, delay = 3 }, -- delay the hunt
 			}
