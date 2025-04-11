@@ -136,8 +136,8 @@ end
 
 function MissionManager.mission_script_patch_funcs.groups(self, element, data)
 	if not element._values.preferred_spawn_groups then
-    log(element._id)
-    return
+		log(element._id)
+		return
 	end
 	local new_groups = table.list_to_set(element._values.preferred_spawn_groups)
 	for group_name, enabled in pairs(data) do
