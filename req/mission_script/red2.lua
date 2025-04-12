@@ -31,6 +31,18 @@ if math.random() < vault_ambush_chance then
 	vault_count = 2
 end
 
+
+local bags_required = {
+	values = {
+		counter_target = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+	},
+}
+local bags_required_objective = {
+	values = {
+		amount = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+	},
+}
+
 local vault_ambush = {
 	enemy = vault_ambush_enemy,
 }
@@ -98,6 +110,13 @@ return {
 			},
 		},
 	},
+	-- change the required amount of money bags 
+	[106692] = bags_required,
+	[106946] = bags_required,
+	[106947] = bags_required,
+	[105019] = bags_required_objective,
+	[103032] = bags_required_objective,
+	[103033] = bags_required_objective,
 	-- allow Overdrill
 	[104182] = filter_overkill_above,
 	-- disable forced manager flee objective
