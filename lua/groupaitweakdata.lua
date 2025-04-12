@@ -1900,8 +1900,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					difficulty_index / 48,
-					difficulty_index / 24,
+					difficulty_index / 60,
+					difficulty_index / 30,
 				},
 				rank = 1,
 				unit = "Elite_sniper",
