@@ -135,11 +135,6 @@ local optsrespawn_dozer_2 = {
 	},
 	event = "death",
 }
-local van_spawngroup = {
-	spawn_groups = {
-		400026,
-	},
-}
 local disable_dozer = {
 	enabled = true,
 	toggle = "off",
@@ -174,7 +169,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400024, "van_dummy_3", Vector3(-15495.743, 4220.271, -81.025), Rotation(-171, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400025, "van_dummy_4", Vector3(-15430.557, 4230.596, -81.025), Rotation(-171, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400026, "van_spawngroup", { 400022, 400023, 400024, 400025 }, 5),
-	Eclipse.mission_elements.gen_preferedadd(400027, "spawn_the_van_spawngroup", van_spawngroup),
 
 	--Respawns
 	Eclipse.mission_elements.gen_dummytrigger(400043, "respawn_dozer_1", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_dozer_1),

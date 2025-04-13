@@ -201,10 +201,20 @@ return {
 			{ id = 400045, delay = 0 },
 		},
 	},
-	-- Enable van spawngroup if the 2nd van arrived
-	[101656] = {
-		on_executed = {
-			{ id = 400027, delay = 10 },
+	-- add new spawngroup to the container area
+	[102370] = {
+		values = {
+			spawn_groups = {
+				400026,
+				101533,
+				102013,
+				102198,
+				101763,
+				102843,
+				102832,
+				104296,
+				101715,
+			},
 		},
 	},
 	-- Force 2 SWAT vans to spawn regardless of difficulty
@@ -215,6 +225,12 @@ return {
 		values = {
 			difficulty_normal = "true",
 			difficulty_hard = "true",
+		},
+	},
+	-- tweak swat vans arrival to be indentical to PDTH
+	[101809] = {
+		on_executed = {
+			{ id = 101621, delay = 0.750 },
 		},
 	},
 	-- limit scripted van dozers to 1 (just in case if it might spawn like 3 or 4 dozers due to being strong in Eclipse)
