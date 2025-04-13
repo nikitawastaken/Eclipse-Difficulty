@@ -170,9 +170,9 @@ return {
 	-- fixes SWAT chopper that lands on Mitchell's roof not spawning at all (also fixes choppers having no sounds)
 	[102085] = {
 		on_executed = {
-			{ id = 400015, remove = true },
-			{ id = 400015, remove = true },
-			{ id = 400015, remove = true },
+			{ id = 101687, remove = true },
+			{ id = 101688, remove = true },
+			{ id = 101689, remove = true },
 			{ id = 400039, delay = 0 },
 			{ id = 400040, delay = 0 },
 			{ id = 400041, delay = 0 },
@@ -180,9 +180,9 @@ return {
 	},
 	[101685] = {
 		on_executed = {
-			{ id = 400015, remove = true },
-			{ id = 400015, remove = true },
-			{ id = 400015, remove = true },
+			{ id = 101687, remove = true },
+			{ id = 101688, remove = true },
+			{ id = 101689, remove = true },
 			{ id = 400039, delay = 0 },
 			{ id = 400040, delay = 0 },
 			{ id = 400041, delay = 0 },
