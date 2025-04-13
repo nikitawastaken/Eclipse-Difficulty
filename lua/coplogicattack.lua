@@ -99,18 +99,20 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 end
 
 -- Improve aggressive chatter, specials get priority and are not limited by max amount of chatter in an area
-function CopLogicAttack._chk_say_chatter(data, chatter_type)
+function CopLogicAttack._chk_say_chatter(data, chatter_type, cooldown)
 	if data.unit:base():has_tag("special") then
 		if not data.unit:sound():speaking(data.t) then
 			data.unit:sound():say(tweak_data.group_ai.enemy_chatter[chatter_type].queue, true)
+			data.combat_chatter_cooldown_t = data.t + cooldown
 			return true
 		end
-	else
-		return managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, chatter_type)
+	elseif managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, chatter_type) then
+		data.combat_chatter_cooldown_t = data.t + cooldown
+		return true
 	end
 end
 
-Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(shoot, aim, data, my_data)
+Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function (shoot, aim, data, my_data)
 	local chatter = data.char_tweak.chatter
 	local is_off_cooldown = not data.combat_chatter_cooldown_t or data.combat_chatter_cooldown_t < data.t
 	if not chatter then
@@ -121,13 +123,9 @@ Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(sh
 			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
 		end
 	elseif shoot and not my_data.firing and chatter.contact then
-		if CopLogicAttack._chk_say_chatter(data, "contact") then
-			data.combat_chatter_cooldown_t = data.t + math.rand(5, 10)
-		end
+		CopLogicAttack._chk_say_chatter(data, data.attention_obj.is_deployable and "sentry_gun" or "contact", math.rand(5, 10))
 	elseif aim and is_off_cooldown and chatter.aggressive then
-		if CopLogicAttack._chk_say_chatter(data, "aggressive") then
-			data.combat_chatter_cooldown_t = data.t + math.rand(10, 20)
-		end
+		CopLogicAttack._chk_say_chatter(data, "aggressive", math.rand(10, 20))
 	end
 end)
 
