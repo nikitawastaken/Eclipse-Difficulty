@@ -50,6 +50,10 @@ function MissionManager.mission_script_patch_funcs.on_executed(self, element, da
 		else
 			Eclipse:error("Mission script element %u could not be found", v.id)
 		end
+		
+		if element._original_on_executed then
+			element._original_on_executed = clone(element._values.on_executed)
+		end
 	end
 end
 

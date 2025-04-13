@@ -10,9 +10,13 @@ local is_eclipse_pro = is_eclipse and is_pro_job
 local cop_smg = scripted_enemy.cop_3
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
+local sniper = scripted_enemy.sniper
 
 local shield = {
 	enemy = is_eclipse_pro and elite_shield or shield,
+}
+local mitchell_sniper = {
+	enemy = sniper,
 }
 local disabled = {
 	values = {
@@ -163,6 +167,30 @@ return {
 			{ id = 400015, delay = 0 },
 		},
 	},
+	-- fixes SWAT chopper that lands on Mitchell's roof not spawning at all (also fixes choppers having no sounds)
+	[102085] = {
+		on_executed = {
+			{ id = 400015, remove = true },
+			{ id = 400015, remove = true },
+			{ id = 400015, remove = true },
+			{ id = 400039, delay = 0 },
+			{ id = 400040, delay = 0 },
+			{ id = 400041, delay = 0 },
+		},
+	},
+	[101685] = {
+		on_executed = {
+			{ id = 400015, remove = true },
+			{ id = 400015, remove = true },
+			{ id = 400015, remove = true },
+			{ id = 400039, delay = 0 },
+			{ id = 400040, delay = 0 },
+			{ id = 400041, delay = 0 },
+		},
+	},
+	-- snipers on Mitchell's rooftop
+	[101717] = mitchell_sniper,
+	[101719] = mitchell_sniper,
 	-- delay the next anim by few more seconds to let the previous anim end (fix for Wilson's SWAT van)
 	[101647] = {
 		on_executed = {
