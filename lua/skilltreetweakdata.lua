@@ -304,7 +304,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Second Wind
 	self.skills.dire_need[1].upgrades = { "temporary_damage_speed_multiplier" }
-	self.skills.dire_need[2].upgrades = { "cooldown_panic_on_armor_break" }
+	self.skills.dire_need[2].upgrades = { "cooldown_dodge_on_armor_break" }
 	self.skills.dire_need.icon_xy = { 10, 9 }
 
 	-- Shockproof

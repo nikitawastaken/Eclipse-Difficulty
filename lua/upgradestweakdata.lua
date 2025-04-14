@@ -756,22 +756,22 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.optic_illusions.multipro = "10%"
 
 	-- Second Wind
-	self.definitions.cooldown_panic_on_armor_break = {
-		name_id = "menu_cooldown_panic_on_armor_break",
+	self.definitions.cooldown_dodge_on_armor_break = {
+		name_id = "menu_cooldown_dodge_on_armor_break",
 		category = "cooldown",
 		upgrade = {
 			value = 1,
-			upgrade = "panic_on_armor_break",
+			upgrade = "dodge_on_armor_break",
 			category = "cooldown",
 		},
 	}
-	self.values.cooldown.panic_on_armor_break = { { 1, 12 } }
-	self.values.player.armor_panic = { { chance = 0.75, area = 500, amount = "panic" } }
-	self.values.temporary.damage_speed_multiplier = { { 1.25, 5 } }
-	self.skill_descs.dire_need.multibasic = "25%"
+	self.values.cooldown.dodge_on_armor_break = { { 1, 10 } }
+	self.values.player.armor_break_dodge = { 0.1 }
+	self.values.temporary.damage_speed_multiplier = { { 1.2, 5 } }
+	self.skill_descs.dire_need.multibasic = "20%"
 	self.skill_descs.dire_need.multibasic2 = "5"
-	self.skill_descs.dire_need.multipro = "75%"
-	self.skill_descs.dire_need.multipro2 = "12"
+	self.skill_descs.dire_need.multipro = "10%"
+	self.skill_descs.dire_need.multipro2 = "10"
 
 	-- Shockproof
 	self.values.player.weaker_tase_effect = { 0.33 }
