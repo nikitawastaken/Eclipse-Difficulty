@@ -3,11 +3,13 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_goggles	value="0" />
-			<has_hat		value="0" />
-			<has_headset	value="0" />
-			<is_murkywater	value="0" />
-			<is_mcmansion_security	value="0" />
+			<has_goggles				value="0" />
+			<has_hat					value="0" />
+			<has_headset				value="0" />
+			<has_torch					value="0" />
+			<is_murkywater				value="0" />
+			<is_mcmansion_security		value="0" />
+			<uses_torch					value="0" />
 		</variables>
 
 		<filter name="'check_no_goggles'">
@@ -34,6 +36,14 @@
 			<check value="vars.has_headset == 1" />
 		</filter>
 
+		<filter name="'check_no_torch'">
+			<check value="vars.has_torch == 0" />
+		</filter>
+
+		<filter name="'check_torch'">
+			<check value="vars.has_torch == 1" />
+		</filter>
+
 		<filter name="'check_not_murkywater'">
 			<check value="vars.is_murkywater == 0" />
 		</filter>
@@ -50,6 +60,10 @@
 			<check value="vars.is_mcmansion_security == 1" />
 		</filter>
 
+		<filter name="'check_uses_torch'">
+			<check value="vars.uses_torch == 1" />
+		</filter>
+		
 		<sequence editable_state="true" name="'murkywater'" once="true" triggable="true">
 			<set_variables 		is_murkywater="1" />
 		</sequence>
@@ -60,14 +74,18 @@
 		</sequence>
 		
 		<sequence editable_state="false" name="'enable_light'" triggable="false" >
-			<object 			enabled="true" name="'g_torch'" />
-			<object 			enabled="true" name="'g_torch_lod1'" />
+			<set_variables 		has_torch="1" />	
 			
-			<effect_spawner 	enabled="true" name="'es_light'"/>
-			<light				enabled="true" name="'ls_light'"/>
+			<object 			filter="'check_uses_torch'" enabled="true" name="'g_torch'" />
+			<object 			filter="'check_uses_torch'" enabled="true" name="'g_torch_lod1'" />
+			
+			<effect_spawner 	filter="'check_uses_torch'" enabled="true" name="'es_light'"/>
+			<light				filter="'check_uses_torch'" enabled="true" name="'ls_light'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'murkywater_1'" once="true" triggable="true" >
+			<set_variables 		uses_torch="1" />	
+			
 			<object 			enabled="true" name="'g_gear_murkywater'" />
 			<object 			enabled="true" name="'g_gear_murkywater_lod1'" />
 		
@@ -77,7 +95,9 @@
 			<run_sequence 		name="'random_headset'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'mcmansion_security_1'" once="true" triggable="true" >		
+		<sequence editable_state="true" name="'mcmansion_security_1'" once="true" triggable="true" >	
+			<set_variables 		uses_torch="1" />	
+			
 			<object 			enabled="true" name="'g_gear_fbi'" />
 			<object 			enabled="true" name="'g_gear_fbi_lod1'" />
 
