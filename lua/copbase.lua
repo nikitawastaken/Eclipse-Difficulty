@@ -60,7 +60,6 @@ function CopBase:save(save_data)
 	end
 end
 
-
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
 
 local unit_sequence_mapping = {}
@@ -68,7 +67,7 @@ local unit_sequence_mapping = {}
 for name, sequence in pairs(unit_sequence_mapping_clean) do
 	local normal_id = Idstring(name):key()
 	local husk_id = Idstring(name .. "_husk"):key()
-	
+
 	unit_sequence_mapping[normal_id] = sequence
 	unit_sequence_mapping[husk_id] = sequence
 end
@@ -194,9 +193,9 @@ local paths = table.list_to_set({
 for path in pairs(paths) do
 	local normal_id = Idstring(path)
 	local contour_id = Idstring(path .. "_contour")
-	
+
 	CopBase._material_translation_map[tostring(normal_id:key())] = contour_id
-	CopBase._material_translation_map[tostring(contour_id:key())] = normal_id 
+	CopBase._material_translation_map[tostring(contour_id:key())] = normal_id
 end
 
 ContourSwapBase = class()
@@ -205,9 +204,9 @@ ContourSwapBase._material_translation_map = {}
 for path in pairs(paths) do
 	local normal_id = Idstring(path)
 	local contour_id = Idstring(path .. "_contour")
-	
+
 	ContourSwapBase._material_translation_map[tostring(normal_id:key())] = contour_id
-	ContourSwapBase._material_translation_map[tostring(contour_id:key())] = normal_id 
+	ContourSwapBase._material_translation_map[tostring(contour_id:key())] = normal_id
 end
 
 ContourSwapBase.swap_material_config = CopBase.swap_material_config
