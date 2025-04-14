@@ -188,6 +188,18 @@ return {
 			{ id = 400041, delay = 0 },
 		},
 	},
+	[101704] = {
+		on_executed = {
+			{ id = 101603, remove = true },
+			{ id = 400042, delay = 20 },
+		},
+	},
+	[101709] = {
+		on_executed = {
+			{ id = 101706, remove = true },
+			{ id = 400043, delay = 20 },
+		},
+	},
 	-- snipers on Mitchell's rooftop
 	[101717] = mitchell_sniper,
 	[101719] = mitchell_sniper,

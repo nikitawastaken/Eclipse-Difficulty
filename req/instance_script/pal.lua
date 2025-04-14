@@ -1,4 +1,5 @@
 ---@module Counterfeit
+--[[
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local heavy_swat = scripted_enemy.heavy_swat_2
@@ -80,3 +81,4 @@ M["levels/instances/unique/sub_circut_breaker/world/world"] = function(result)
 end
 
 return M
+]]--

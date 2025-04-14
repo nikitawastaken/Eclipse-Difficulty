@@ -17,6 +17,8 @@ local optsSniper_1 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 100675, delay = 0 },
+		{ id = 100675, delay = 30 },
+		{ id = 100675, delay = 60 },
 	},
 	enabled = true,
 }
@@ -24,6 +26,8 @@ local optsSniper_2 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 400006, delay = 0 },
+		{ id = 400006, delay = 30 },
+		{ id = 400006, delay = 60 },
 	},
 	enabled = true,
 }
@@ -31,6 +35,8 @@ local optsSniper_3 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 400007, delay = 0 },
+		{ id = 400007, delay = 30 },
+		{ id = 400007, delay = 60 },
 	},
 	enabled = overkill_above,
 }
@@ -39,6 +45,8 @@ local optsSniper_4 = {
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = {
 		{ id = 400008, delay = 0 },
+		{ id = 400008, delay = 30 },
+		{ id = 400008, delay = 60 },
 	},
 	enabled = overkill_above,
 }
@@ -244,6 +252,14 @@ local optsChopperWilson_fix = {
 	},
 	on_executed = {
 		{ id = 101712, delay = 11.5 },
+		{ id = 101758, delay = 0 },
+		{ id = 102363, delay = 8 },
+		{ id = 101715, delay = 0 },
+	},
+}
+local optsChopperWilson_stop_sound_fix = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 102724, notify_unit_sequence = "hidden", time = 0 },
 	},
 }
 local optsChopperPool_fix = {
@@ -254,6 +270,14 @@ local optsChopperPool_fix = {
 	},
 	on_executed = {
 		{ id = 101714, delay = 13 },
+		{ id = 101760, delay = 0 },
+		{ id = 100792, delay = 8 },
+		{ id = 101715, delay = 0 },
+	},
+}
+local optsChopperPool_stop_sound_fix = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100719, notify_unit_sequence = "hidden", time = 0 },
 	},
 }
 
@@ -303,6 +327,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400039, "mitchell_chopper_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperMitchell_fix),
 	Eclipse.mission_elements.gen_object_editor(400040, "wilson_chopper_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperWilson_fix),
 	Eclipse.mission_elements.gen_object_editor(400041, "pool_chopper_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperPool_fix),
+	Eclipse.mission_elements.gen_object_editor(400042, "wilson_chopper_sound_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperWilson_stop_sound_fix),
+	Eclipse.mission_elements.gen_object_editor(400043, "pool_chopper_sound_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperPool_stop_sound_fix),
 }
 
 return M
