@@ -26,13 +26,51 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	end
 end)
 
+function CopBase:save(save_data)
+	local my_save_data = {}
+
+	if self._unit:interaction() and (self._unit:interaction().tweak_data == "hostage_trade" or self._unit:interaction().tweak_data == "hostage_trade_resources") then
+		my_save_data.is_hostage_trade = true
+	elseif self._unit:interaction() and self._unit:interaction().tweak_data == "hostage_convert" then
+		my_save_data.is_hostage_convert = true
+	end
+
+	local buffs = {}
+
+	for name, buff_list in pairs(self._buffs) do
+		buffs[name] = {
+			_total = buff_list._total,
+		}
+	end
+
+	if next(buffs) then
+		my_save_data.buffs = buffs
+	end
+
+	if self._tweak_table ~= self._original_tweak_table then
+		my_save_data.tweak_name_swap = self._tweak_table
+	end
+
+	if self._stats_name ~= self._original_stats_name then
+		my_save_data.stats_name_swap = self._stats_name
+	end
+
+	if next(my_save_data) then
+		save_data.base = my_save_data
+	end
+end
+
+
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
 
 local unit_sequence_mapping = {}
 
 for name, sequence in pairs(unit_sequence_mapping_clean) do
-	unit_sequence_mapping[Idstring(name):key()] = sequence
-	unit_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
+	local normal_id = Idstring(name):key()
+	local husk_id = Idstring(name .. "_husk"):key()
+	
+	unit_sequence_mapping[normal_id] = sequence
+	unit_sequence_mapping[husk_id] = sequence
 end
 
 CopBase.unit_sequence_mapping = deep_clone(unit_sequence_mapping)
@@ -134,7 +172,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	end
 end)
 
-local mat_configs = {
+local paths = table.list_to_set({
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
 	"units/payday2/characters/ene_cop_1/vars/ene_security_1",
@@ -151,20 +189,25 @@ local mat_configs = {
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic",
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
-}
+})
 
-for _, v in pairs(mat_configs) do
-	CopBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
-	CopBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
+for path in pairs(paths) do
+	local normal_id = Idstring(path)
+	local contour_id = Idstring(path .. "_contour")
+	
+	CopBase._material_translation_map[tostring(normal_id:key())] = contour_id
+	CopBase._material_translation_map[tostring(contour_id:key())] = normal_id 
 end
 
 ContourSwapBase = class()
-
 ContourSwapBase._material_translation_map = {}
 
-for _, v in pairs(mat_configs) do
-	ContourSwapBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
-	ContourSwapBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
+for path in pairs(paths) do
+	local normal_id = Idstring(path)
+	local contour_id = Idstring(path .. "_contour")
+	
+	ContourSwapBase._material_translation_map[tostring(normal_id:key())] = contour_id
+	ContourSwapBase._material_translation_map[tostring(contour_id:key())] = normal_id 
 end
 
 ContourSwapBase.swap_material_config = CopBase.swap_material_config
@@ -177,38 +220,4 @@ function ContourSwapBase:init(unit)
 
 	self._unit = unit
 	self._is_in_original_material = true
-end
-
-function CopBase:save(save_data)
-	local my_save_data = {}
-
-	if self._unit:interaction() and (self._unit:interaction().tweak_data == "hostage_trade" or self._unit:interaction().tweak_data == "hostage_trade_resources") then
-		my_save_data.is_hostage_trade = true
-	elseif self._unit:interaction() and self._unit:interaction().tweak_data == "hostage_convert" then
-		my_save_data.is_hostage_convert = true
-	end
-
-	local buffs = {}
-
-	for name, buff_list in pairs(self._buffs) do
-		buffs[name] = {
-			_total = buff_list._total,
-		}
-	end
-
-	if next(buffs) then
-		my_save_data.buffs = buffs
-	end
-
-	if self._tweak_table ~= self._original_tweak_table then
-		my_save_data.tweak_name_swap = self._tweak_table
-	end
-
-	if self._stats_name ~= self._original_stats_name then
-		my_save_data.stats_name_swap = self._stats_name
-	end
-
-	if next(my_save_data) then
-		save_data.base = my_save_data
-	end
 end
