@@ -26,25 +26,19 @@ local gangster_stationary_amount = {
 }
 
 local heli_enemy1 = {
-	values = {
-		enemy = heavy,
-	},
+	enemy = heavy,
 	on_executed = {
 		{ id = 103457, delay = 0 },
 	},
 }
 local heli_enemy2 = {
-	values = {
-		enemy = shield,
-	},
+	enemy = shield,
 	on_executed = {
 		{ id = 103456, delay = 0 },
 	},
 }
 local heli_enemy3 = {
-	values = {
-		enemy = bulldozer,
-	},
+	enemy = bulldozer,
 	on_executed = {
 		{ id = 103455, delay = 0 },
 	},

@@ -288,11 +288,7 @@ return {
 	},
 	-- make the rest of vanilla spawns turn into zeals on E/PJ
 	-- 2 shields at the bottom of the staircase
-	[103693] = {
-		values = {
-			enemy = shield,
-		},
-	},
+	[103693] = { enemy = shield },
 	[103697] = bulldozer_spawn,
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
