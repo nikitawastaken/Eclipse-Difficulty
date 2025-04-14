@@ -3,13 +3,15 @@
 	<unit>
 	<!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_tie		value="0" />
-			<has_watch		value="0" />
-			<has_sleeves	value="0" />
-			<has_hat		value="0" />
-			<has_gloves		value="0" />
-			<has_glasses	value="0" />
-			<is_fat			value="0" />
+			<has_tie				value="0" />
+			<has_watch				value="0" />
+			<has_sleeves			value="0" />
+			<has_hat				value="0" />
+			<has_gloves				value="0" />
+			<has_glasses			value="0" />
+			<is_fat					value="0" />
+			<is_chas_police			value="0" />
+			<is_ranc_ranger			value="0" />
 		</variables>
 
 		<filter name="'check_no_tie'">
@@ -66,6 +68,22 @@
 
 		<filter name="'check_fat'">
 			<check value="vars.is_fat == 1" />
+		</filter>
+
+		<filter name="'check_not_chas_police'">
+			<check value="vars.is_chas_police == 0" />
+		</filter>
+
+		<filter name="'check_chas_police'">
+			<check value="vars.is_chas_police == 1" />
+		</filter>
+
+		<filter name="'check_not_ranc_ranger'">
+			<check value="vars.is_ranc_ranger == 0" />
+		</filter>
+
+		<filter name="'check_ranc_ranger'">
+			<check value="vars.is_ranc_ranger == 1" />
 		</filter>
 
 		<sequence editable_state="true" name="'set_fat'" once="true" triggable="true"> 
@@ -141,6 +159,16 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'chas_police'" once="true" triggable="true">				
+			<set_variables 		is_chas_police="1" />
+		</sequence>
+
+		<sequence editable_state="true" name="'ranc_ranger'" once="true" triggable="true">		
+			<set_variables 		is_ranc_ranger="1" />
+			
+			<material_config 	name="'units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01'"/>
+		</sequence>
+		
+		<sequence editable_state="true" name="'badges_chas_police'" once="true" triggable="true">				
 			<object 			filter="'check_fat'" enabled="true" name="'g_badges_chas_police_fat'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_badges_chas_police_fat_lod1'" />
 			
@@ -148,9 +176,7 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_badges_chas_police_lod1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'ranc_ranger'" once="true" triggable="true">		
-			<material_config 	name="'units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01'"/>
-			
+		<sequence editable_state="true" name="'badges_ranc_ranger'" once="true" triggable="true">		
 			<object 			filter="'check_fat'" enabled="true" name="'g_badges_ranc_ranger_fat'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_badges_ranc_ranger_fat_lod1'" />
 			
@@ -167,6 +193,7 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_chas_police_a_lod1'" />
 			
 			<run_sequence 		name="'chas_police'" />
+			<run_sequence 		name="'badges_chas_police'" />
 			<run_sequence 		name="'belt_base'" />
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
@@ -182,6 +209,7 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_chas_police_b_lod1'" />
 			
 			<run_sequence 		name="'chas_police'" />
+			<run_sequence 		name="'badges_chas_police'" />
 			<run_sequence 		name="'belt_base'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_tie_common'" />
@@ -217,6 +245,8 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_chas_police_d'" />
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_chas_police_d_lod1'" />
 
+			<run_sequence 		name="'chas_police'" />
+			<run_sequence 		name="'badges_chas_police'" />
 			<run_sequence 		name="'belt_base'" />
 			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
@@ -231,6 +261,7 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_ranc_ranger_a_lod1'" />
 			
 			<run_sequence 		name="'ranc_ranger'" />
+			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'belt_base'" />
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_tie_rare'" />
@@ -246,6 +277,7 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_ranc_ranger_b_lod1'" />
 			
 			<run_sequence 		name="'ranc_ranger'" />
+			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'belt_base'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_tie_common'" />
@@ -259,12 +291,12 @@
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_ranc_ranger_fat_c_lod1'" />			
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_ranc_ranger_c'" />
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_ranc_ranger_c_lod1'" />
-
 			
 			<run_sequence 		name="'ranc_ranger'" />
 			<run_sequence 		name="'armor_body'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'belt_base'" />
+			<run_sequence 		name="'hat_ranc_ranger'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
@@ -278,6 +310,7 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_gear_ranc_ranger_d_lod1'" />
 	
 			<run_sequence 		name="'ranc_ranger'" />
+			<run_sequence 		name="'badges_ranc_ranger'" />
 			<run_sequence 		name="'belt_base'" />
 			<run_sequence 		name="'random_body_a'" />	
 			<run_sequence 		name="'random_tie_common'" />
