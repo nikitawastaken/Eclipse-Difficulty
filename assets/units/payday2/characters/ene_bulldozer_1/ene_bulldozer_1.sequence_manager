@@ -3,12 +3,12 @@
 	<unit>
 	<!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_big_armor	value="0" />
-			<is_green		value="0" />
-			<is_black		value="0" />
-			<is_skull		value="0" />
-			<is_ben			value="0" />
-			<is_medic		value="0" />
+			<has_big_armor		value="0" />
+			<is_greendozer		value="0" />
+			<is_blackdozer		value="0" />
+			<is_skulldozer		value="0" />
+			<is_bendozer		value="0" />
+			<is_medicdozer		value="0" />
 		</variables>
 
 		<filter name="'check_no_big_armor'">
@@ -19,44 +19,44 @@
 			<check value="vars.has_big_armor == 1" />
 		</filter>
 		
-		<filter name="'check_not_green'">
-			<check value="vars.is_green == 0" />
+		<filter name="'check_not_greendozer'">
+			<check value="vars.is_greendozer == 0" />
 		</filter>
 		
-		<filter name="'check_green'">
-			<check value="vars.is_green == 1" />
+		<filter name="'check_greendozer'">
+			<check value="vars.is_greendozer == 1" />
 		</filter>
 
-		<filter name="'check_not_black'">
-			<check value="vars.is_black == 0" />
+		<filter name="'check_not_blackdozer'">
+			<check value="vars.is_blackdozer == 0" />
 		</filter>
 		
-		<filter name="'check_black'">
-			<check value="vars.is_black == 1" />
+		<filter name="'check_blackdozer'">
+			<check value="vars.is_blackdozer == 1" />
 		</filter>
 
-		<filter name="'check_not_skull'">
-			<check value="vars.is_skull == 0" />
+		<filter name="'check_not_skulldozer'">
+			<check value="vars.is_skulldozer == 0" />
 		</filter>
 		
-		<filter name="'check_skull'">
-			<check value="vars.is_skull == 1" />
+		<filter name="'check_skulldozer'">
+			<check value="vars.is_skulldozer == 1" />
 		</filter>
 
-		<filter name="'check_not_ben'">
-			<check value="vars.is_ben == 0" />
+		<filter name="'check_not_bendozer'">
+			<check value="vars.is_bendozer == 0" />
 		</filter>
 		
-		<filter name="'check_ben'">
-			<check value="vars.is_ben == 1" />
+		<filter name="'check_bendozer'">
+			<check value="vars.is_bendozer == 1" />
 		</filter>
 
-		<filter name="'check_not_medic'">
-			<check value="vars.is_medic == 0" />
+		<filter name="'check_not_medicdozer'">
+			<check value="vars.is_medicdozer == 0" />
 		</filter>
 		
-		<filter name="'check_medic'">
-			<check value="vars.is_medic == 1" />
+		<filter name="'check_medicdozer'">
+			<check value="vars.is_medicdozer == 1" />
 		</filter>
 
 		<sequence editable_state="true" name="'armor_back_big'" once="true" triggable="true">
@@ -132,35 +132,51 @@
 			<run_sequence 		name="'neck_big'" />
 			<run_sequence 		name="'throat_big'" />
 		</sequence>
+
+		<sequence editable_state="true" name="'greendozer'" once="true" triggable="true">
+			<set_variables 		is_greendozer="1" />
+		</sequence>			
+
+		<sequence editable_state="true" name="'blackdozer'" once="true" triggable="true">
+			<set_variables 		is_blackdozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'"/>
+		</sequence>		
+
+		<sequence editable_state="true" name="'skulldozer'" once="true" triggable="true">
+			<set_variables 		is_skulldozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3'"/>
+		</sequence>		
+
+		<sequence editable_state="true" name="'bendozer'" once="true" triggable="true">
+			<set_variables 		is_bendozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic'"/>
+		</sequence>			
+
+		<sequence editable_state="true" name="'medicdozer'" once="true" triggable="true">
+			<set_variables 		is_medicdozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic'"/>
+		</sequence>			
 		
-		<sequence editable_state="true" name="'bulldozer_1'" once="true" triggable="true">
-			<set_variables 		is_green="1" />
-			
+		<sequence editable_state="true" name="'bulldozer_1'" once="true" triggable="true">	
 			<object 			enabled="true" name="'g_gear_chest_a'" />
 			<object 			enabled="true" name="'g_gear_chest_a_lod1'" />
 
 			<object 			enabled="true" name="'g_gear_stomache_a'" />
 			<object 			enabled="true" name="'g_gear_stomache_a_lod1'" />
 			
+			<run_sequence 		name="'greendozer'" />
 			<run_sequence 		name="'bulldozer_face_init'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bulldozer_2'" once="true" triggable="true">
-			<set_variables 		is_black="1" />
-			
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'"/>
-			
 			<object 			enabled="true" name="'g_gear_body_a'" />
 			<object 			enabled="true" name="'g_gear_body_a_lod1'" />
 			
+			<run_sequence 		name="'blackdozer'" />
 			<run_sequence 		name="'bulldozer_face_init'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bulldozer_3'" once="true" triggable="true">
-			<set_variables 		is_skull="1" />
-			
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3'"/>
-			
 			<object 			enabled="true" name="'g_gear_body_b'" />
 			<object 			enabled="true" name="'g_gear_body_b_lod1'" />
 
@@ -170,15 +186,12 @@
 			<object 			enabled="true" name="'g_gear_stomache_b'" />
 			<object 			enabled="true" name="'g_gear_stomache_b_lod1'" />
 			
+			<run_sequence 		name="'skulldozer'" />
 			<run_sequence 		name="'big_armor'" />
 			<run_sequence 		name="'bulldozer_face_init'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'bulldozer_4'" once="true" triggable="true">
-			<set_variables 		is_ben="1" />
-			
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic'"/>
-			
+		<sequence editable_state="true" name="'bulldozer_4'" once="true" triggable="true">			
 			<object 			enabled="true" name="'g_gear_body_c'" />
 			<object 			enabled="true" name="'g_gear_body_c_lod1'" />
 
@@ -188,18 +201,16 @@
 			<object 			enabled="true" name="'g_gear_chest_c'" />
 			<object 			enabled="true" name="'g_gear_chest_c_lod1'" />
 			
+			<run_sequence 		name="'bendozer'" />
 			<run_sequence 		name="'big_armor'" />
 			<run_sequence 		name="'bulldozer_face_init'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bulldozer_medic'" once="true" triggable="true">
-			<set_variables 		is_medic="1" />
-			
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic'"/>
-			
 			<object 			enabled="true" name="'g_gear_body_d'" />
 			<object 			enabled="true" name="'g_gear_body_d_lod1'" />
 
+			<run_sequence 		name="'medicdozer'" />
 			<run_sequence 		name="'bulldozer_face_init'" />
 		</sequence>
 		

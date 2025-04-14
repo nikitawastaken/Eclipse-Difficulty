@@ -478,7 +478,7 @@
 				<file :name="ene_acc_swat_helmet.model" />
 				<file :name="ene_acc_swat_helmet.object" />
 			</group>
-
+			
 			<group :name="ene_acc_swat_cap/">
 				<file :name="ene_acc_swat_cap.cooked_physics" />
 				<file :name="ene_acc_swat_cap.material_config" />
