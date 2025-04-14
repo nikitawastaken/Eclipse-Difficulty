@@ -1,5 +1,4 @@
 ---@module Counterfeit
---[[
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local heavy_swat = scripted_enemy.heavy_swat_2
@@ -38,7 +37,6 @@ M["levels/instances/unique/sub_sewer_grate/world/world"] = function(result)
 		elseif sewer_grate.filters_normal_above[id] then
 			table.map_append(element.values, filter_normal_above)
 			element.values.on_executed = {
-				{ id = 100018, remove = true },
 				{ id = 100010, delay = 0 },
 				{ id = 100019, delay = 0 },
 				{ id = 100021, delay = 0 },
@@ -64,7 +62,6 @@ M["levels/instances/unique/sub_sewer_sidespawn/world/world"] = function(result)
 		elseif side_spawn.spawn_chance[id] then
 			element.values.chance = 30
 			element.values.on_executed = {
-				{ id = 100016, remove = true },
 				{ id = 100010, delay = 0 },
 			}
 		end
@@ -81,5 +78,3 @@ M["levels/instances/unique/sub_circut_breaker/world/world"] = function(result)
 end
 
 return M
-]]
---
