@@ -108,7 +108,7 @@ return {
 	-- trigger ambush cloakers when the time lock door opens
 	[104397] = {
 		on_executed = {
-			{ id = 400012, delay = 0 }
+			{ id = 400012, delay = 0 },
 		},
 	},
 	-- disable ambush cloakers on startup

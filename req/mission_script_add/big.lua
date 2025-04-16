@@ -15,34 +15,34 @@ local optsCloaker_1 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400005, delay = 0 } },
-    enabled = overkill_above and enabled_chance_cloakers
+	enabled = overkill_above and enabled_chance_cloakers,
 }
 local optsCloaker_2 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400006, delay = 0 } },
-    enabled = overkill_above and enabled_chance_cloakers
+	enabled = overkill_above and enabled_chance_cloakers,
 }
 local optsCloaker_3 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400007, delay = 0 } },
-    enabled = overkill_above and enabled_chance_cloakers
+	enabled = overkill_above and enabled_chance_cloakers,
 }
 local optsCloaker_4 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400008, delay = 0 } },
-    enabled = overkill_above and enabled_chance_cloakers
+	enabled = overkill_above and enabled_chance_cloakers,
 }
 local optsCloaker_5 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400009, delay = 0 } },
-    enabled = overkill_above and enabled_chance_cloakers
+	enabled = overkill_above and enabled_chance_cloakers,
 }
 local optsCloaker_Hide_SO_1 = {
-    SO_access = "1024",
+	SO_access = "1024",
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -50,10 +50,10 @@ local optsCloaker_Hide_SO_1 = {
 	interrupt_dis = 5,
 	interrupt_dmg = 0.3,
 	interval = 2,
-    so_action = "e_so_idle_by_container"
+	so_action = "e_so_idle_by_container",
 }
 local optsCloaker_Hide_SO_2 = {
-    SO_access = "1024",
+	SO_access = "1024",
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -61,7 +61,7 @@ local optsCloaker_Hide_SO_2 = {
 	interrupt_dis = 5,
 	interrupt_dmg = 0.3,
 	interval = 2,
-    so_action = "e_so_sneak_wait_stand"
+	so_action = "e_so_sneak_wait_stand",
 }
 local optsDisable_cloakers = {
 	toggle = "off",
@@ -78,15 +78,14 @@ local optsEnable_cloakers = {
 }
 local spawn_random_cloakers = {
 	amount = cloaker_amount,
-	on_executed = { 
+	on_executed = {
 		{ id = 400000, delay = 0 },
 		{ id = 400001, delay = 0 },
 		{ id = 400002, delay = 0 },
 		{ id = 400003, delay = 0 },
-		{ id = 400004, delay = 0 }
-	}
+		{ id = 400004, delay = 0 },
+	},
 }
-
 
 M.elements = {
 	-- cloakers, spawn as ambush in vault hallway (similiar to First World Bank)
