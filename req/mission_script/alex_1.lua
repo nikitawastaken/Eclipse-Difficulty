@@ -45,7 +45,7 @@ local exclude_cop_agents_shields_dozers = {
 }
 local chopper_amount = is_eclipse and 2 or 1
 local sniper_respawn_1 = (is_eclipse and 80 or hard and 100 or 140) - (is_pro_job and 30 or 0)
-local sniper_respawn_2 = (is_eclipse and 60 or hard and 70 or 90) - (is_pro_job and 20 or 0) 
+local sniper_respawn_2 = (is_eclipse and 60 or hard and 70 or 90) - (is_pro_job and 20 or 0)
 local sniper_respawn_3 = (is_eclipse and 30 or hard and 40 or 60) - (is_pro_job and 10 or 0)
 local bridge_far_spawn = {
 	values = {
