@@ -40,6 +40,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		"packages/narr_jungle1_night",
 		"levels/narratives/h_alex_must_die/stage_2/world_sounds",
 	}
+	self.alex_3.package = {
+		"packages/narr_alex3",
+		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+	}
 	self.nightclub.package = {
 		"packages/vlad_nightclub",
 		"levels/narratives/dentist/mia/stage2/world_sounds",
