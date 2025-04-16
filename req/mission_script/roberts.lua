@@ -2,6 +2,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local overkill_and_above = Eclipse.utils.diff_threshold()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local us_soldier_1 = scripted_enemy.soldier_2
@@ -31,6 +32,12 @@ local taser_spawn = {
 local ambush_chance = {
 	chance = normal and 45 or hard and 70 or 100,
 }
+local donut_lords_at_the_gas_station = {
+	chance = (eclipse and 20 or 10) + (is_pro_job and 10 or 0),
+}
+local gensec_van_at_the_bank = {
+	chance = (eclipse and 10 or 5) + (is_pro_job and 5 or 0),
+}
 local flank_spawn = {
 	values = {
 		interval = 20,
@@ -53,6 +60,10 @@ return {
 			{ id = 101955, remove = true },
 		},
 	},
+	-- chance tweaks for gensec van/cops at gas station
+	[106343] = { chance = donut_lords_at_the_gas_station },
+	[106344] = { chance = donut_lords_at_the_gas_station },
+	[105744] = { chance = gensec_van_at_the_bank },
 	-- Add early reinforce around the bank
 	[100109] = {
 		reinforce = {

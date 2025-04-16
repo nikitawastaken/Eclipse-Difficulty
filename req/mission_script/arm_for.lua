@@ -41,9 +41,7 @@ local bile_has_3_bags = math.random() < 0.05
 local bile_has_2_bags = math.random() < 0.30
 local bile_lottery = not is_pro_job and bile_has_3_bags and 3 or bile_has_2_bags and 2 or 1
 local dozer_in_the_vault_chance = {
-	values = {
-		chance = overkill_and_above and 30 or 10,
-	},
+	chance = (overkill_and_above and 30 or 10) + (is_pro_job and 10 or 0),
 }
 local shells_required = {
 	values = {

@@ -7,6 +7,7 @@ local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
+local fail_to_believe_chance = (eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
@@ -87,6 +88,8 @@ return {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
+	-- restore alternative phone call outcome that sends two beat cops to investigate (failed to fell for it)
+	[105244] = { chance = fail_to_believe_chance },
 	-- change amount of required bags
 	[101868] = bags_required,
 	[103961] = bags_required,
@@ -102,6 +105,24 @@ return {
 	-- Prevent shields/dozers from disabling the timelock
 	[101195] = no_shields_and_dozers,
 	[102268] = no_shields_and_dozers,
+	-- trigger ambush cloakers when the time lock door opens
+	[104397] = {
+		on_executed = {
+			{ id = 400012, delay = 0 }
+		},
+	},
+	-- disable ambush cloakers on startup
+	[100017] = {
+		on_executed = {
+			{ id = 400011, delay = 3 },
+		},
+	},
+	-- enable ambush cloakers on loud
+	[100023] = {
+		on_executed = {
+			{ id = 400010, delay = 0 },
+		},
+	},
 	-- Make server hack guranteed when solo
 	[104494] = {
 		pre_func = function(self)
