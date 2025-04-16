@@ -64,12 +64,12 @@ return {
 		reinforce = {
 			{
 				name = "auction_room",
-				force = 2,
+				force = 3,
 				position = Vector3(0, 2000, -100),
 			},
 			{
 				name = "outside",
-				force = 2,
+				force = 3,
 				position = Vector3(0, -3300, -50),
 			},
 		},
