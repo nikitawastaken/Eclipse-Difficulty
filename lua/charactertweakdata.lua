@@ -1200,6 +1200,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
+	
+	self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.tank_elite = deep_clone(self.tank)
 	self.tank_elite.HEALTH_INIT = 1200
@@ -1281,7 +1283,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.no_run_stop = true
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.mobster_boss.use_animation_on_fire_damage = false
-	self.mobster_boss.die_sound_event = "l2n_burndeath" --more effective death scream
 
 	self.chavez_boss.HEALTH_INIT = 200
 	self.chavez_boss.headshot_dmg_mul = 2
@@ -1290,7 +1291,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.chavez_boss.no_run_stop = true
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.chavez_boss.use_animation_on_fire_damage = false
-	self.chavez_boss.die_sound_event = "l2n_burndeath"
 
 	self.hector_boss.HEALTH_INIT = 300
 	self.hector_boss.headshot_dmg_mul = 2
@@ -1303,7 +1303,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.use_animation_on_fire_damage = false
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
-	self.hector_boss.die_sound_event = "l2n_burndeath"
 
 	self.biker_boss.HEALTH_INIT = 300
 	self.biker_boss.headshot_dmg_mul = 2
@@ -1314,7 +1313,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.use_animation_on_fire_damage = false
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
-	self.biker_boss.die_sound_event = "cf2_burndeath"
 
 	self.drug_lord_boss.HEALTH_INIT = 300
 	self.drug_lord_boss.headshot_dmg_mul = 2
@@ -1324,7 +1322,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
-	self.drug_lord_boss.die_sound_event = "l2n_burndeath"
 
 	self.triad_boss.HEALTH_INIT = 300
 	self.triad_boss.headshot_dmg_mul = 2

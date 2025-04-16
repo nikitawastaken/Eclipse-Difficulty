@@ -19,11 +19,6 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 		Eclipse:log("Loading projectile sprint unit", throwable)
 		managers.dyn_resource:load(unit_ids, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
-
-	-- Always glow cloakers (like in PDTH)
-	if self._tweak_table == "spooc" then
-		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
-	end
 end)
 
 function CopBase:save(save_data)
@@ -152,6 +147,11 @@ end
 -- Check for weapon changes and run unti sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
+	
+	-- Always glow cloakers (like in PDTH)
+	if self._tweak_table == "spooc" then
+		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
+	end
 
 	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
 
