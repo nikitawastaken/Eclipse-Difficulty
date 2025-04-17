@@ -966,7 +966,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
 	self.fbi.dodge = self.presets.dodge.average
 	self.fbi.no_arrest = false
-	
+
 	self.fbi_office = deep_clone(self.cop)
 	table.insert(self._enemy_list, "fbi_office")
 
