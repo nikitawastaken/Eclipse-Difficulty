@@ -966,6 +966,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
 	self.fbi.dodge = self.presets.dodge.average
 	self.fbi.no_arrest = false
+	
+	self.fbi_office = deep_clone(self.cop)
+	table.insert(self._enemy_list, "fbi_office")
 
 	self.fbi_female = deep_clone(self.cop_female)
 	self.fbi_female.dodge = self.presets.dodge.average
@@ -1551,6 +1554,8 @@ CharacterTweakData.tweak_table_weapon = {
 	security_army = "soldier",
 	marshal_security = "marshal_security",
 	cop_fat = "cop_fat",
+	fbi_office = "fbi",
+	fbi_female = "fbi",
 	soldier = "soldier",
 	cobra = "gangster",
 	shield = "shield",
@@ -1597,6 +1602,8 @@ CharacterTweakData.tweak_table_move_speed = {
 	security_army = "fast",
 	marshal_security = "fast",
 	cop_fat = "slow",
+	fbi_office = "normal",
+	fbi_female = "normal",
 	soldier = "fast",
 	medic = "normal",
 	zeal_medic = "normal",

@@ -12,6 +12,7 @@ CopBrain._logic_variants.security_fat = CopBrain._logic_variants.swat
 CopBrain._logic_variants.security_mcmansion = CopBrain._logic_variants.swat
 CopBrain._logic_variants.security_army = CopBrain._logic_variants.swat
 CopBrain._logic_variants.cop_fat = CopBrain._logic_variants.swat
+CopBrain._logic_variants.fbi_office = CopBrain._logic_variants.swat
 CopBrain._logic_variants.soldier = CopBrain._logic_variants.swat
 CopBrain._logic_variants.fbi_shield = clone(CopBrain._logic_variants.shield)
 CopBrain._logic_variants.medic = clone(CopBrain._logic_variants.swat)

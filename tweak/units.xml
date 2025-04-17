@@ -301,7 +301,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 
@@ -314,7 +314,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 
@@ -327,7 +327,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 
@@ -340,7 +340,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 
@@ -353,7 +353,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 
@@ -366,7 +366,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 
@@ -379,7 +379,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 
@@ -392,86 +392,7 @@
 			<var name="_tweak_table"/>
 		</search>
 		<target mode="attributes">
-			<attr name="value" value="cop"/>
-		</target>
-	</tweak>
-
-    <!-- female -->
-    <tweak version="2" name="units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="cop_female"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="units/payday2/characters/ene_fbi_female_2/ene_fbi_female_2_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="cop_female"/>
-		</target>
-	</tweak>
-
-    <tweak version="2" name="units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="cop_female"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="units/payday2/characters/ene_fbi_female_3/ene_fbi_female_3_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="cop_female"/>
-		</target>
-	</tweak>
-
-    <tweak version="2" name="units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="cop_female"/>
-		</target>
-	</tweak>
-
-	<tweak version="2" name="units/payday2/characters/ene_fbi_female_4/ene_fbi_female_4_husk" extension="unit">
-		<search>
-			<?xml version="1.0"?>
-			<unit/>
-			<extensions/>
-			<extension name="base"/>
-			<var name="_tweak_table"/>
-		</search>
-		<target mode="attributes">
-			<attr name="value" value="cop_female"/>
+			<attr name="value" value="fbi_office"/>
 		</target>
 	</tweak>
 	
