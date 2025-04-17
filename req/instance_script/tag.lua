@@ -13,7 +13,7 @@ M["levels/instances/unique/tag/tag_training/world/world"] = function(result)
 	for _, element in pairs(result.default.elements) do
 		local id = element.id
 
-		if riker_replacment.spooc[id] then
+		if riker_replacment[id] then
 			element.values.enemy = fbi_teacher
 		end
 	end
