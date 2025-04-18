@@ -8,7 +8,6 @@ local window_spawn1 = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local window_spawn2 = {
 	values = {
