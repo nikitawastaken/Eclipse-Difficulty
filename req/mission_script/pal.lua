@@ -188,6 +188,16 @@ return {
 			{ id = 400041, delay = 0 },
 		},
 	},
+	[101570] = {
+		on_executed = {
+			{ id = 400045, delay = 0 },
+		},
+	},
+	[100023] = {
+		on_executed = {
+			{ id = 400044, delay = 3 },
+		},
+	},
 	[101704] = {
 		on_executed = {
 			{ id = 101603, remove = true },

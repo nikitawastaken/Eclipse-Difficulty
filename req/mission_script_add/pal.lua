@@ -280,6 +280,19 @@ local optsChopperPool_stop_sound_fix = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100719, notify_unit_sequence = "hidden", time = 0 },
 	},
 }
+local disable_the_pool_chopper = {
+	enabled = true,
+	toggle = "off",
+	elements = {
+		400041,
+	},
+}
+local enable_the_pool_chopper = {
+	enabled = true,
+	elements = {
+		400041,
+	},
+}
 
 M.elements = {
 	--Snipers
@@ -329,6 +342,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400041, "pool_chopper_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperPool_fix),
 	Eclipse.mission_elements.gen_object_editor(400042, "wilson_chopper_sound_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperWilson_stop_sound_fix),
 	Eclipse.mission_elements.gen_object_editor(400043, "pool_chopper_sound_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperPool_stop_sound_fix),
+	Eclipse.mission_elements.gen_toggleelement(400044, "disable_the_pool_chopper", disable_the_pool_chopper),
+	Eclipse.mission_elements.gen_toggleelement(400045, "enable_the_pool_chopper", enable_the_pool_chopper),
 }
 
 return M
