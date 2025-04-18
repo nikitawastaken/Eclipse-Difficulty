@@ -169,7 +169,7 @@ return {
 		},
 	},
 	-- Spawn group delays
-	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed. 
+	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed.
 	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.
 	-- The other 2 spawn groups were slowed down because they are stacked on top of each other, simple as that.
 	[100019] = flank_spawn,

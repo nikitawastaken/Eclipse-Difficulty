@@ -24,7 +24,7 @@ local roof_spawn = {
 }
 return {
 	--Add new reinforce
-	[100109] = { 
+	[100109] = {
 		reinforce = { -- Police arrived
 			{
 				name = "patio",
@@ -57,7 +57,7 @@ return {
 			},
 		},
 	},
-	[100955] = { 
+	[100955] = {
 		reinforce = {
 			{ name = "sanctum_left" },
 			{ name = "sanctum_right" },

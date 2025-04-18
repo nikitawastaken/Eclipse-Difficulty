@@ -23,7 +23,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400010, "eclipse_spawn_enemy_009", Vector3(2500, -5300, 0), Rotation(0, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400011, "eclipse_spawn_enemy_010", Vector3(2500, -5400, 0), Rotation(0, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400012, "eclipse_enemy_group_002", { 400007, 400008, 400009, 400010, 400011 }, 0),
-	
+
 	Eclipse.mission_elements.gen_preferedadd(400013, "eclipse_street", optsPreferedAdd1),
 }
 

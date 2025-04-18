@@ -67,14 +67,14 @@ return {
 			{
 				name = "parking_lot1",
 				force = 3,
-				position = Vector3(-1100, -400, 0)
+				position = Vector3(-1100, -400, 0),
 			},
 			{
 				name = "parking_lot2",
 				force = 3,
-				position = Vector3(1800, -400, 0)
+				position = Vector3(1800, -400, 0),
 			},
-		}
+		},
 	},
 	-- Add new preferreds and adjust existing ones
 	[100129] = { -- initial preferreds
@@ -136,13 +136,13 @@ return {
 	[102025] = blue_office_cop,
 	[102030] = blue_office_cop,
 	[102031] = blue_office_cop,
-	[102032] = blue_office_cop,	
+	[102032] = blue_office_cop,
 	[102037] = blue_office_cop,
 	[102038] = blue_office_cop,
 	[102039] = blue_office_cop,
 	[100675] = white_office_cop, -- White Shirt Guards
 	[100676] = white_office_cop,
 	[100555] = random_office_cop, -- Random Indoor Guards
-	[100616] = random_office_cop, 
+	[100616] = random_office_cop,
 	[100617] = random_office_cop,
 }
