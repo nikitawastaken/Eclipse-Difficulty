@@ -1,25 +1,33 @@
+local preferred = Eclipse.preferred
 -- more based miki changes from ASS, kuss kuss
-local policia = {
+local beat_cops = {
 	Idstring("units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01"),
 	Idstring("units/pd2_dlc_bex/characters/ene_policia_02/ene_policia_02"),
 }
-local securitys = {
+local beat_cop = { enemy = beat_cops }
+local guards = {
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_01/ene_bex_security_01"),
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_02/ene_bex_security_02"),
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_03/ene_bex_security_03"),
 }
-local suits = {
+local guard = { enemy = guards }
+local suit_guards = {
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"),
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"),
 	Idstring("units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"),
 }
-
+local suit_guard = { enemy = suit_guards }
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
-
+local side_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 return {
 	[101829] = {
 		ponr = {
@@ -30,13 +38,13 @@ return {
 	[100109] = { -- police, executed on alarm
 		reinforce = {
 			{
-				name = "front",
-				force = 2,
-				position = Vector3(0, -600, 0),
+				name = "fountain",
+				force = 3,
+				position = Vector3(0, 1200, 50),
 			},
 			{
 				name = "side_entrance",
-				force = 2,
+				force = 3,
 				position = Vector3(-2250, -2350, 0),
 			},
 		},
@@ -58,7 +66,7 @@ return {
 			{
 				name = "roof1",
 				force = 2,
-				position = Vector3(0, -1000, 850),
+				position = Vector3(0, -1150, 850),
 			},
 			{
 				name = "roof2",
@@ -160,6 +168,13 @@ return {
 			dialogue = "Play_loc_bex_109",
 		},
 	},
+	-- Spawn group delays
+	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed. 
+	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.
+	-- The other 2 spawn groups were slowed down because they are stacked on top of each other, simple as that.
+	[100019] = flank_spawn,
+	[100128] = flank_spawn,
+	[100132] = flank_spawn,
 	-- cheat spawns, replaced with reenforce
 	[102369] = disabled,
 	[102355] = disabled,
@@ -169,31 +184,31 @@ return {
 	[102847] = disabled,
 	[100020] = disabled,
 	[100198] = disabled,
-	[104687] = { enemy = securitys }, -- pre-spawned policia
-	[104688] = { enemy = securitys },
-	[100675] = { enemy = securitys },
-	[100676] = { enemy = securitys },
-	[104689] = { enemy = securitys }, -- securitys
-	[100670] = { enemy = securitys },
-	[100671] = { enemy = securitys },
-	[100672] = { enemy = securitys },
-	[100673] = { enemy = securitys },
-	[100674] = { enemy = securitys },
-	[100677] = { enemy = securitys },
-	[100678] = { enemy = securitys },
-	[100679] = { enemy = securitys },
-	[101570] = { enemy = securitys },
-	[101571] = { enemy = securitys },
-	[101574] = { enemy = securitys },
-	[101507] = { enemy = securitys },
-	[101508] = { enemy = securitys },
-	[101618] = { enemy = suits },
-	[103084] = { enemy = suits },
-	[103087] = { enemy = suits },
-	[101579] = { enemy = suits }, -- suits
-	[101587] = { enemy = suits },
-	[101599] = { enemy = suits },
-	[101625] = { enemy = suits },
-	[103092] = { enemy = suits },
-	[103103] = { enemy = suits },
+	[104687] = beat_cop, -- pre-spawned policia
+	[104688] = beat_cop,
+	[100675] = beat_cop,
+	[100676] = beat_cop,
+	[104689] = guard, -- securitys
+	[100670] = guard,
+	[100671] = guard,
+	[100672] = guard,
+	[100673] = guard,
+	[100674] = guard,
+	[100677] = guard,
+	[100678] = guard,
+	[100679] = guard,
+	[101570] = guard,
+	[101571] = guard,
+	[101574] = guard,
+	[101507] = guard,
+	[101508] = guard,
+	[101618] = suit_guard,
+	[103084] = suit_guard,
+	[103087] = suit_guard,
+	[101579] = suit_guard, -- suits
+	[101587] = suit_guard,
+	[101599] = suit_guard,
+	[101625] = suit_guard,
+	[103092] = suit_guard,
+	[103103] = suit_guard,
 }
