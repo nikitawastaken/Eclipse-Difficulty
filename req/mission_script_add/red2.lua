@@ -48,42 +48,36 @@ local optsShield_2 = {
 }
 local optsSniper_1 = {
 	enemy = sniper,
-	participate_to_group_ai = true,
 	on_executed = { { id = 103091, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = overkill_and_above and enabled_chance_escape_snipers,
 }
 local optsSniper_2 = {
 	enemy = sniper,
-	participate_to_group_ai = true,
 	on_executed = { { id = 103090, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = overkill_and_above and enabled_chance_escape_snipers,
 }
 local optsSniper_3 = {
 	enemy = sniper,
-	participate_to_group_ai = true,
 	on_executed = { { id = 103117, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = overkill_and_above and enabled_chance_escape_snipers,
 }
 local optsSniper_4 = {
 	enemy = sniper,
-	participate_to_group_ai = true,
 	on_executed = { { id = 400008, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = is_eclipse,
 }
 local optsSniper_5 = {
 	enemy = sniper,
-	participate_to_group_ai = true,
 	on_executed = { { id = 400009, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = is_eclipse,
 }
 local optsSniper_6 = {
 	enemy = sniper,
-	participate_to_group_ai = true,
 	on_executed = { { id = 400010, delay = 0 } },
 	spawn_action = "e_sp_repel_into_window",
 	enabled = is_eclipse,
@@ -111,7 +105,7 @@ local optsBulldozer_193 = {
 	enabled = is_eclipse,
 }
 local optsBulldozerVault = {
-	enemy = bulldozer,
+	enemy = elite_bulldozer,
 	spawn_action = "e_sp_clk_3_5m_dwn_vent",
 	on_executed = { { id = 400014, delay = 0 } },
 	enabled = is_eclipse_pro and enabled_chance_vault_dozers,

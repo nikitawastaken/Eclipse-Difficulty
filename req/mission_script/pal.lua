@@ -12,6 +12,13 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
+local filter_normal_above = {
+	values = Eclipse.utils.set_diff_groups("normal_above"),
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
+
 local shield = {
 	enemy = is_eclipse_pro and elite_shield or shield,
 }
@@ -84,6 +91,19 @@ return {
 			time = 30,
 		},
 	},
+	-- disable turret spawn from vans completely as they're disabled in Eclipse
+	-- Wilson's Swat Van
+	[102820] = filter_normal_above,
+	[102819] = filter_disable,
+	[101965] = filter_disable,
+	-- Mitchell's Swat van
+	[102388] = filter_normal_above,
+	[102383] = filter_disable,
+	[102382] = filter_disable,
+	-- Swat van near beach_spawn
+	[102216] = filter_normal_above,
+	[102320] = filter_disable,
+	[102369] = filter_disable,
 	-- change c4's amount event to resemble more from PDTH
 	[101890] = c4_event,
 	[102569] = c4_event,
