@@ -388,7 +388,7 @@ function GroupAIStateBase.dynamic_SO_adjustment_funcs.rescue(self, objective_dat
 end
 
 function GroupAIStateBase.dynamic_SO_adjustment_funcs.drill_sabotage(self, objective_data)
-	objective_data.access = managers.navigation:convert_access_filter_to_number({ "swat", })
+	objective_data.access = managers.navigation:convert_access_filter_to_number({ "swat" })
 end
 
 -- Adjust objective data for various dynamic SOs

@@ -1,8 +1,8 @@
 local level_id = Eclipse.utils.level_id()
 
 Drill.forbid_sabotage_SO_by_unit = {
-	[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = true,  -- The Beast
-	[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = level_id == "red2" or nil,  -- Ordinary thermal lance
+	[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = true, -- The Beast
+	[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = level_id == "red2" or nil, -- Ordinary thermal lance
 }
 
 Hooks:PostHook(Drill, "init", "eclipse_init", function(self, unit)
