@@ -69,12 +69,12 @@ return {
 	-- Add custom preferreds
 	[100812] = { -- front preferreds
 		on_executed = {
-			{ id = 4000037, delay = 0 },
+			{ id = 400037, delay = 0 },
 		},
 	},
 	[101536] = { -- roof preferreds
 		on_executed = {
-			{ id = 4000038, delay = 0 },
+			{ id = 400038, delay = 0 },
 		},
 	},
 	-- Spawn group delays
