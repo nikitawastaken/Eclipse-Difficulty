@@ -226,6 +226,7 @@
 
 				<group :hook_id="props/">
 					<post :hook_id="carrydata"/>
+					<post :hook_id="drill"/>
 					<post :hook_id="timergui"/>
 				</group>
 

@@ -373,17 +373,36 @@ function GroupAIStateBase:_determine_objective_for_criminal_AI(unit, ...)
 	return _determine_objective_for_criminal_AI_original(self, unit, ...)
 end
 
--- Adjust objective data for rescue and steal SOs
-Hooks:PreHook(GroupAIStateBase, "add_special_objective", "sh_add_special_objective", function(self, id, objective_data)
-	if type(id) ~= "string" or not id:match("^carrysteal") and not id:match("^rescue") then
-		return
-	end
+GroupAIStateBase.dynamic_SO_adjustment_funcs = {}
 
+function GroupAIStateBase.dynamic_SO_adjustment_funcs.carrysteal(self, objective_data)
 	objective_data.interval = 4
 	objective_data.search_dis_sq = 4000000
 	objective_data.objective.interrupt_dis = 600
 	objective_data.objective.interrupt_health = 0.8
 	objective_data.objective.pose = nil
+end
+
+function GroupAIStateBase.dynamic_SO_adjustment_funcs.rescue(self, objective_data)
+	self.dynamic_SO_adjustment_funcs.carrysteal(self, objective_data)
+end
+
+function GroupAIStateBase.dynamic_SO_adjustment_funcs.drill_sabotage(self, objective_data)
+	objective_data.access = managers.navigation:convert_access_filter_to_number({ "swat", })
+end
+
+-- Adjust objective data for various dynamic SOs
+Hooks:PreHook(GroupAIStateBase, "add_special_objective", "eclipse_add_special_objective", function(self, id, objective_data)
+	if type(id) ~= "string" then
+		return
+	end
+
+	for func_id, func in pairs(self.dynamic_SO_adjustment_funcs) do
+		if id:match("^" .. tostring(func_id)) then
+			func(self, objective_data)
+			break
+		end
+	end
 end)
 
 -- Setup sentry marking via host
