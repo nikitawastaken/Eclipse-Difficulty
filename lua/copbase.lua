@@ -190,10 +190,6 @@ function CopBase:_run_unit_sequences()
 	end
 end
 
-if Network:is_client() then
-	return
-end
-
 -- Check for weapon changes and run unti sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
@@ -203,9 +199,13 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
 	end
 
-	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
+	if Network:is_client() then
+		return
+	end
 
+	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
 	local mapping_type = type(unit_weapon)
+	
 	if mapping_type == "table" then
 		local selector = WeightedSelector:new()
 		for k, v in pairs(unit_weapon) do
