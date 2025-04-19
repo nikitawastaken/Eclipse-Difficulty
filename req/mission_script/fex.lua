@@ -4,12 +4,12 @@ local disabled = {
 		enabled = false,
 	},
 }
-local window_spawn1 = {
+local front_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
-local window_spawn2 = {
+local window_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -21,6 +21,11 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
 return {
 	--Add new reinforce
 	[100109] = {
@@ -31,9 +36,9 @@ return {
 				position = Vector3(0, 4750, 100),
 			},
 			{
-				name = "fountain",
+				name = "stairs",
 				force = 3,
-				position = Vector3(0, -2000, -200),
+				position = Vector3(25, 600, 0),
 			},
 		},
 	},
@@ -65,15 +70,26 @@ return {
 	-- Don't kill off enemies in courtyard/patio
 	[102903] = disabled,
 	[102904] = disabled,
-	-- Disable preferred remove elements responsible for removing spawn groups in front of the mansion
+	-- Disable preferred remove elements responsible for removing spawn groups in front of the mansion#
+	[100244] = disabled,
 	[102899] = disabled,
 	[103218] = disabled,
 	-- Spawn group delays
 	-- This heist has notoriously annoying spawns all over the place.
-	[100131] = window_spawn1,
-	[100132] = window_spawn2,
-	[100133] = window_spawn2,
-	[103491] = window_spawn2,
+	[100128] = front_spawn,
+	[100130] = front_spawn,
+	[100131] = window_spawn,
+	[100132] = window_spawn,
+	[100133] = window_spawn,
+	[103491] = window_spawn,
 	[100007] = roof_spawn,
 	[103098] = roof_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
 }
