@@ -121,7 +121,7 @@ return {
 	[100019] = fence_spawn,
 	[100130] = fence_spawn,
 	[100131] = fence_spawn,
-	[100133] = fence_spawn,	
+	[100133] = fence_spawn,
 	[100007] = roof_spawn,
 	[100128] = window_spawn,
 	[100844] = cloaker_spawn,

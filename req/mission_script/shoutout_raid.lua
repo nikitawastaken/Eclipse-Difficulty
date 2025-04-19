@@ -23,7 +23,7 @@ return {
 	[103919] = flank_spawn,
 	[100007] = warehouse_spawn,
 	[100131] = roof_spawn,
-	[101008] = roof_spawn,	
+	[101008] = roof_spawn,
 	[101153] = roof_spawn,
 	[101473] = roof_spawn,
 }
