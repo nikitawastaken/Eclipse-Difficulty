@@ -205,7 +205,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 
 	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
 	local mapping_type = type(unit_weapon)
-	
+
 	if mapping_type == "table" then
 		local selector = WeightedSelector:new()
 		for k, v in pairs(unit_weapon) do
