@@ -108,7 +108,6 @@ function CopBase:save(save_data)
 end
 
 local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
-
 local unit_sequence_mapping = {}
 
 -- Handle unit sequences for gear and such
@@ -121,6 +120,7 @@ for name, sequence in pairs(unit_sequence_mapping_clean) do
 end
 
 CopBase.unit_sequence_mapping = deep_clone(unit_sequence_mapping)
+CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
 
 function CopBase:_run_unit_sequences()
 	local name = self._unit:name():key()
@@ -189,9 +189,6 @@ function CopBase:_run_unit_sequences()
 		end
 	end
 end
-
--- Check for weapon changes
-CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
 
 if Network:is_client() then
 	return
