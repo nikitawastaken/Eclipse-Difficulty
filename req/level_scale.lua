@@ -35,6 +35,7 @@ M.level_scale_map = {
 	["des"] = "small",
 	["sah"] = "small",
 	["vit"] = "small",
+	["pex"] = "small",
 	["pent"] = "small",
 	["watchdogs_2"] = "large",
 	["watchdogs_2_day"] = "large",

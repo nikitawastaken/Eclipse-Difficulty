@@ -68,9 +68,9 @@ local M = {
 	[("units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"):key()] = "r870", --stronger guard man
 	--Almir's breakout guards
 	[("units/pd2_dlc_pex/characters/ene_male_office_cop_01/ene_male_office_cop_01"):key()] = { c45 = 3, mp5 = 1 },
-	[("units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"):key()] = { raging_bull = 3, r870 = 1 },
-	[("units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"):key()] = { c45 = 3, mp5 = 1 },
-	[("units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"):key()] = { raging_bull = 3, r870 = 1 },
+	[("units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"):key()] = { c45 = 3, mp5 = 1 },
+	[("units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"):key()] = { c45 = 3, raging_bull = 1 },
+	[("units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"):key()] = { c45 = 3, raging_bull = 1 },
 	--Midland Ranch guards
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_security_1/ene_male_ranc_security_1"):key()] = { "raging_bull", "mac11", "r870", "m4" },
 	[("units/pd2_dlc_ranc/characters/ene_male_ranc_security_2/ene_male_ranc_security_2"):key()] = { "raging_bull", "mac11", "r870", "m4" },

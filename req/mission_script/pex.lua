@@ -16,6 +16,14 @@ local white_office_cops = {
 local white_office_cop = { enemy = white_office_cops }
 local random_office_cops = { [office_cop_1] = 3, [office_cop_2] = 3, [office_cop_3] = 2, [office_cop_4] = 2 }
 local random_office_cop = { enemy = random_office_cops }
+local exclude_shields_dozers = {
+	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+}
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local sniper_trigger_times = {
 	values = {
 		trigger_times = 0,
@@ -36,14 +44,9 @@ local flank_spawn = {
 	values = {
 		interval = 20,
 	},
+	groups = preferred.no_shields_bulldozers,
 }
-local roof_spawn1 = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields,
-}
-local roof_spawn2 = {
+local roof_spawn = {
 	values = {
 		interval = 40,
 	},
@@ -61,7 +64,7 @@ return {
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
-	--Add new reinforce
+	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {
 			{
@@ -76,6 +79,10 @@ return {
 			},
 		},
 	},
+	-- Disable a few vanilla reinforce spots to declutter the map
+	[102192] = disabled,
+	[104095] = disabled,
+	[104111] = disabled,
 	-- Add new preferreds and adjust existing ones
 	[100129] = { -- initial preferreds
 		on_executed = {
@@ -84,14 +91,24 @@ return {
 			{ id = 102203, remove = true }, -- remove back alley preferreds
 		},
 	},
+	[100021] = { 
+		on_executed = {
+			{ id = 101573, remove = true }, -- remove garage roof preferreds
+		},
+	},
 	[101571] = { -- fire started, enable roof preferreds
 		on_executed = {
-			{ id = 101574, delay = 0 },
+			{ id = 101574, delay = 20 },
 		},
 	},
 	[100006] = { -- fire done, enable back alley preferreds
 		on_executed = {
-			{ id = 102203, delay = 0 },
+			{ id = 102203, delay = 20 },
+		},
+	},
+	[101236] = { -- Hajrudin stopped, enable garage roof preferreds
+		on_executed = {
+			{ id = 101573, delay = 20 },
 		},
 	},
 	-- Adjust Sniper amount
@@ -104,16 +121,31 @@ return {
 	[100372] = unused_sniper_trigger_times,
 	[100371] = unused_sniper_trigger_times,
 	[100370] = unused_sniper_trigger_times,
+	-- forbid Shields and Dozers from using various SOs near the wall with a breach
+	-- e_nl_climb_over_3m
+	[102999] = exclude_shields_dozers,
+	[103000] = exclude_shields_dozers,
+	[103001] = exclude_shields_dozers,
+	[103002] = exclude_shields_dozers,
+	[103003] = exclude_shields_dozers,
+	[103005] = exclude_shields_dozers,
+	[103006] = exclude_shields_dozers,
+	-- e_nl_over_1m_jump_window
+	[101646] = exclude_shields_dozers,
+	[101647] = exclude_shields_dozers,
+	-- e_nl_under_0_7m
+	[101628] = exclude_shields_dozers,
 	-- Spawn group delays
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
 	[100019] = flank_spawn,
 	[100131] = flank_spawn,
+	[100133] = flank_spawn,
 	[104123] = flank_spawn,
-	[100132] = roof_spawn1,
-	[104091] = roof_spawn1,
-	[100128] = roof_spawn2,
-	[100692] = roof_spawn2,
-	[104117] = roof_spawn2,
+	[100132] = roof_spawn,
+	[104091] = roof_spawn,
+	[100128] = roof_spawn,
+	[100692] = roof_spawn,
+	[104117] = roof_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,
