@@ -91,7 +91,7 @@ return {
 			{ id = 102203, remove = true }, -- remove back alley preferreds
 		},
 	},
-	[100021] = { 
+	[100021] = {
 		on_executed = {
 			{ id = 101573, remove = true }, -- remove garage roof preferreds
 		},
