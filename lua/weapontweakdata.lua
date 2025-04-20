@@ -344,44 +344,44 @@ function WeaponTweakData:_init_weapons()
 						},
 						moving = {
 							hipfire = 1.5,
-							crouching = 0.5,
+							crouching = 1,
 							steelsight = 1,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
 							hipfire = 1,
-							crouching = 0.7,
+							crouching = 0.75,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.2,
-							crouching = 0.7,
+							hipfire = 1.25,
+							crouching = 1,
 							steelsight = 1,
 						}
 					}
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1,
+							hipfire = 1.25,
 							crouching = 0.5,
 							steelsight = 1,
 						},
 						moving = {
 							hipfire = 1.5,
-							crouching = 0.5,
-							steelsight = 1,
+							crouching = 1,
+							steelsight = 1.25,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.7,
+							hipfire = 1.25,
+							crouching = 0.75,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.2,
-							crouching = 0.7,
+							hipfire = 1.5,
+							crouching = 1,
 							steelsight = 1,
 						}
 					}
