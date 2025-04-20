@@ -227,6 +227,18 @@ local disable_2nd_police_cruiser = {
 local Bain_sendsnipers = {
 	dialogue = "play_pln_gen_snip_01",
 }
+local Bain_swats_from_keel_street = {
+	dialogue = "Play_pln_pal_45",
+}
+local Bain_swats_from_beach = {
+	dialogue = "Play_pln_pal_46",
+}
+local Bain_swats_from_hills = {
+	dialogue = "Play_pln_pal_47",
+}
+local Bain_swats_from_pacific_drive = {
+	dialogue = "Play_pln_pal_48",
+}
 
 local optsChopperMitchell_fix = {
 	trigger_times = 1,
@@ -344,6 +356,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400043, "pool_chopper_sound_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsChopperPool_stop_sound_fix),
 	Eclipse.mission_elements.gen_toggleelement(400044, "disable_the_pool_chopper", disable_the_pool_chopper),
 	Eclipse.mission_elements.gen_toggleelement(400045, "enable_the_pool_chopper", enable_the_pool_chopper),
+	Eclipse.mission_elements.gen_dialogue(400046, "swats_keel_street", Bain_swats_from_keel_street),
+	Eclipse.mission_elements.gen_dialogue(400047, "swats_beach", Bain_swats_from_beach),
+	Eclipse.mission_elements.gen_dialogue(400048, "swats_hills", Bain_swats_from_hills),
+	Eclipse.mission_elements.gen_dialogue(400049, "swats_pacific_drive", Bain_swats_from_pacific_drive),
 }
 
 return M

@@ -198,8 +198,8 @@ function M.gen_areatrigger(id, name, pos, rot, opts)
 			rotation = rot,
 			enabled = true,
 			interval = 0.1,
-			trigger_on = "on_enter",
-			instigator = "player",
+			trigger_on = opts.trigger_on or "on_enter",
+			instigator = opts.instigator or "player",
 			shape_type = opts.shape_type or "box",
 			width = opts.width or 500,
 			depth = opts.depth or 500,
@@ -455,7 +455,7 @@ end
 ---@param pos Vector3: position for the element to be in
 ---@param rot Rotation: direction the element is facing
 ---@param opts? table: extra parameters
-function M.gen_element_random(id, name, pos, rot, opts)
+function M.gen_element_random(id, name, opts)
 	opts = opts or {}
 	local random_element = {
 		id = id,
@@ -464,7 +464,7 @@ function M.gen_element_random(id, name, pos, rot, opts)
 		class = "ElementRandom",
 		values = {
 			execute_on_startup = false,
-			ignore_disabled = true,
+			ignore_disabled = opts.ignore_disabled or false,
 			trigger_times = opts.trigger_times or 0,
 			amount = opts.amount or 0,
 			amount_random = opts.amount_random or 0,

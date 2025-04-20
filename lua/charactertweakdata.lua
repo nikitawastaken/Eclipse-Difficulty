@@ -8,6 +8,7 @@ local bellmead_response_heists = {
 	["deep"] = true,
 }
 local is_undercover = level_id == "man"
+local is_no_mercy = level_id == "nmh"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 local function diff_lerp(value_1, value_2)
@@ -930,6 +931,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.security.chatter = self.presets.enemy_chatter.security
+	self.security.has_alarm_pager = is_no_mercy and false or true
 
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 12

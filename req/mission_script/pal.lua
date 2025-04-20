@@ -91,6 +91,27 @@ return {
 			time = 30,
 		},
 	},
+	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
+	[100714] = {
+		on_executed = {
+			{ id = 400046, delay = 0 },
+		},
+	},
+	[100713] = {
+		on_executed = {
+			{ id = 400047, delay = 0 },
+		},
+	},
+	[100715] = {
+		on_executed = {
+			{ id = 400048, delay = 0 },
+		},
+	},
+	[100720] = {
+		on_executed = {
+			{ id = 400049, delay = 0 },
+		},
+	},
 	-- disable turret spawn from vans completely as they're disabled in Eclipse
 	-- Wilson's Swat Van
 	[102820] = filter_normal_above,

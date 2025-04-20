@@ -1,8 +1,10 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local scripted_enemy = Eclipse.scripted_enemy
+local security_guard = scripted_enemy.security_1
 local ben_dozer = scripted_enemy.elite_bulldozer_1
 local elite_dozer = { enemy = ben_dozer }
+local security_spawn = { enemy = security_guard }
 local cloaker_respawn_amount = normal and 1 or hard and 2 or 3
 local disabled = {
 	values = {
@@ -37,6 +39,28 @@ return {
 			{ id = 103225, delay = 25 },
 		},
 	},
+	-- spawn elite snipers on Eclipse
+	[103278] = {
+		on_executed = {
+			{ id = 400034, delay = 10 },
+		},
+	},
+	-- disable custom spawns when all players are in the elevator
+	[102880] = {
+		on_executed = {
+			{ id = 400076, delay = 0 },
+		},
+	},
+	-- replace investigate beat cops with security guards to match with PDTH
+	[102633] = security_spawn,
+	[102632] = security_spawn,
+	[102631] = security_spawn,
+	[102629] = security_spawn,
+	[102630] = security_spawn,
+	[102625] = security_spawn,
+	[102628] = security_spawn,
+	[102626] = security_spawn,
+	[102627] = security_spawn,
 	--[[
 	[103704] = { -- remove the stair case spawn from initial preferred randomisation
 		pre_func = function(self)
