@@ -12,6 +12,8 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
+local swat_vans = is_eclipse and 2 or 1
+
 local filter_normal_above = {
 	values = Eclipse.utils.set_diff_groups("normal_above"),
 }
@@ -48,6 +50,11 @@ local c4_amount = normal and 4 or 7
 local c4_event = {
 	values = {
 		amount = is_solo and c4_amount_solo or c4_amount,
+	},
+}
+local c4_event_counter = {
+	values = {
+		counter_target = is_solo and c4_amount_solo or c4_amount,
 	},
 }
 
@@ -91,6 +98,18 @@ return {
 			time = 30,
 		},
 	},
+	-- force SWAT vans arrival on police_called like it's in PDTH
+	[103034] = {
+		on_executed = {
+			{ id = 102080, delay = 10 },
+		},
+	},
+	-- make 2 van arrive at the time on Eclipse
+	[102080] = {
+		values = {
+			amount = swat_vans,
+		},
+	},
 	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
 	[100714] = {
 		on_executed = {
@@ -129,6 +148,9 @@ return {
 	[101890] = c4_event,
 	[102569] = c4_event,
 	[101891] = c4_event,
+	[102590] = c4_event_counter,
+	[102591] = c4_event_counter,
+	[101565] = c4_event_counter,
 	-- change crowbar's amount depeniding on diffculties
 	[100127] = crowbar_amount,
 	[100129] = crowbar_sewer_amount,
