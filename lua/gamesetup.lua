@@ -33,7 +33,9 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 	local lapd = {
 		--["rvd1"] = true, -- They're already loaded here
 		--["rvd2"] = true,
+		["kenaz"] = true,
 		["jolly"] = true,
+		["pal"] = true,
 	}
 
 	local coast_guard = {
