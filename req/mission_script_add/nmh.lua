@@ -549,7 +549,7 @@ local choose_dozer_spawnpoint = {
 		{ id = 400036, delay = 0 },
 		{ id = 400037, delay = 0 },
 		{ id = 400038, delay = 0 },
-		{ id = 400039, delay = 0 },
+		--{ id = 400039, delay = 0 },
 	},
 }
 local dozer_amount_1 = {
@@ -755,11 +755,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_counter(400061, "4_civilians_killed", opts4civskilled),
 	Eclipse.mission_elements.gen_dummytrigger(400062, "civ_died", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optscivilian_is_fucking_dead),
 	Eclipse.mission_elements.gen_missionscript(400063, "dozer_spam_global", spawn_dozer_global),
-	Eclipse.mission_elements.gen_areatrigger(400064, "area_trigger_dozers_in_elevator", Vector3(1728, 298, 0.877), Rotation(0, 0, -0), optsdozers_in_elevator),
-	Eclipse.mission_elements.gen_areatrigger(400065, "area_trigger_dozers_out_of_elevator", Vector3(1728, 298, 0.877), Rotation(0, 0, -0), optsdozers_out_of_elevator),
+	--Eclipse.mission_elements.gen_areatrigger(400064, "area_trigger_dozers_in_elevator", Vector3(1728, 298, 0.877), Rotation(0, 0, -0), optsdozers_in_elevator),
+	--Eclipse.mission_elements.gen_areatrigger(400065, "area_trigger_dozers_out_of_elevator", Vector3(1728, 298, 0.877), Rotation(0, 0, -0), optsdozers_out_of_elevator),
 	Eclipse.mission_elements.gen_dialogue(400066, "they_sending_dozers", Bain_senddozers),
-	Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
-	Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
+	--Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
+	--Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
 
 	-- misc
 	Eclipse.mission_elements.gen_aiglobalevent(400075, "eclipse_start_assault_event", optsAssaultstart),
