@@ -279,8 +279,8 @@ local optscivilian_is_fucking_dead = {
 		{ id = 400061, delay = 0 },
 	},
 	elements = {
-	-- so many civlians, damn
-	-- reception
+		-- so many civlians, damn
+		-- reception
 		102373,
 		102356,
 		102357,
@@ -305,7 +305,7 @@ local optscivilian_is_fucking_dead = {
 		102365,
 		102364,
 		102372,
-	-- cafeteria
+		-- cafeteria
 		102401,
 		102400,
 		102393,
@@ -317,14 +317,14 @@ local optscivilian_is_fucking_dead = {
 		102396,
 		102397,
 		102398,
-	-- entrance (near elevators)
+		-- entrance (near elevators)
 		102387,
 		102386,
 		102385,
 		102384,
 		102388,
 		102389,
-	-- doctors 1	
+		-- doctors 1
 		102411,
 		102483,
 		102410,
@@ -334,7 +334,7 @@ local optscivilian_is_fucking_dead = {
 		102479,
 		102480,
 		102482,
-	-- doctors 2	
+		-- doctors 2
 		102484,
 		102486,
 		102488,
@@ -343,7 +343,7 @@ local optscivilian_is_fucking_dead = {
 		102489,
 		102487,
 		102485,
-	-- doctors 3
+		-- doctors 3
 		102499,
 		102500,
 		102497,
@@ -352,7 +352,7 @@ local optscivilian_is_fucking_dead = {
 		102496,
 		102493,
 		102494,
-	-- doctors 4
+		-- doctors 4
 		102502,
 		102503,
 		102504,
@@ -361,19 +361,19 @@ local optscivilian_is_fucking_dead = {
 		102507,
 		102508,
 		102509,
-	-- special civs
+		-- special civs
 		103611,
 		103816,
-	-- elevator civs 
+		-- elevator civs
 		103733,
 		103732,
 		103730,
-	-- ICU civs
+		-- ICU civs
 		104105,
 		104106,
 		104109,
 		104110,
-	-- repairman
+		-- repairman
 		102747,
 		102748,
 	},
@@ -653,7 +653,7 @@ local Bain_senddozers = {
 local optsAssaultstart = {
 	AI_event = "start_assault",
 	on_executed = {
-		{ id = 400063, delay = 30 }
+		{ id = 400063, delay = 30 },
 	},
 }
 local optsdisable_custom_spawns = {
@@ -715,7 +715,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400032, "enable_random_snipers", enable_sniper_mission_script),
 	Eclipse.mission_elements.gen_dialogue(400033, "they_sending_snipers", Bain_sendsnipers),
 	Eclipse.mission_elements.gen_missionscript(400034, "notoriety_snipers_event_global", spawn_snipers_global),
-	
+
 	-- scripted dozers
 	Eclipse.mission_elements.gen_dummy(400040, "bulldozer_1", Vector3(2244, -79, -318.756), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_dummy(400041, "bulldozer_2", Vector3(2244, -24, -318.756), Rotation(-90, 0, -0), optsBulldozer),
@@ -726,7 +726,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400067, "bulldozer_7", Vector3(1761, 276, 0.877), Rotation(0, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_dummy(400068, "bulldozer_8", Vector3(1682, 276, 0.877), Rotation(0, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400046, "dozer_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerHunt_SO),
-	
+
 	-- scripted dozers stuff
 	Eclipse.mission_elements.gen_element_random(400035, "dozer_spawnpoint_select", choose_dozer_spawnpoint),
 	Eclipse.mission_elements.gen_element_random(400036, "staircase", dozer_amount_1),
@@ -760,12 +760,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_dialogue(400066, "they_sending_dozers", Bain_senddozers),
 	Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
 	Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
-	
+
 	-- misc
 	Eclipse.mission_elements.gen_aiglobalevent(400075, "eclipse_start_assault_event", optsAssaultstart),
 	Eclipse.mission_elements.gen_toggleelement(400076, "disable_custom_spawns", optsdisable_custom_spawns),
-	
-	
-	
 }
 return M
