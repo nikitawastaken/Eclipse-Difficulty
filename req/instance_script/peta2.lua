@@ -10,7 +10,7 @@ local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
-local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
+local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 
 local soldiers = { [light_soldier] = 3, [heavy_soldier] = 1 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }

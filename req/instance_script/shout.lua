@@ -11,7 +11,7 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
-local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
+local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local specials_spawns = { [taser] = 2, [cloaker] = 1 }
 local random_dozers = {
 	green_bulldozer,

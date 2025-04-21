@@ -5,7 +5,7 @@ local light_swat = scripted_enemy.swat_1
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
-local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
+local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local specials_spawns = { [taser] = 3, [cloaker] = 1 }
 
 local patches = {
