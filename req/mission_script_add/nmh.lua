@@ -36,7 +36,7 @@ local bulldozer = is_eclipse_pro and random_normal_and_elite_dozers or diff_i > 
 
 local optsEliteSniper_1 = {
 	enemy = elite_sniper,
-	on_executed = { 
+	on_executed = {
 		{ id = 400009, delay = 0 },
 		{ id = 400009, delay = 10 },
 		{ id = 400009, delay = 20 },
@@ -45,7 +45,7 @@ local optsEliteSniper_1 = {
 }
 local optsEliteSniper_2 = {
 	enemy = elite_sniper,
-	on_executed = { 
+	on_executed = {
 		{ id = 400006, delay = 0 },
 		{ id = 400006, delay = 10 },
 		{ id = 400006, delay = 20 },
@@ -54,7 +54,7 @@ local optsEliteSniper_2 = {
 }
 local optsEliteSniper_3 = {
 	enemy = elite_sniper,
-	on_executed = { 
+	on_executed = {
 		{ id = 400007, delay = 0 },
 		{ id = 400007, delay = 10 },
 		{ id = 400007, delay = 20 },
@@ -63,7 +63,7 @@ local optsEliteSniper_3 = {
 }
 local optsEliteSniper_4 = {
 	enemy = elite_sniper,
-	on_executed = { 
+	on_executed = {
 		{ id = 400008, delay = 0 },
 		{ id = 400008, delay = 10 },
 		{ id = 400008, delay = 20 },
@@ -72,7 +72,7 @@ local optsEliteSniper_4 = {
 }
 local optsEliteSniper_5 = {
 	enemy = elite_sniper,
-	on_executed = { 
+	on_executed = {
 		{ id = 400005, delay = 0 },
 		{ id = 400005, delay = 10 },
 		{ id = 400005, delay = 20 },

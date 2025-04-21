@@ -108,7 +108,7 @@ return {
 	[102080] = {
 		values = {
 			amount = swat_vans,
-			ignore_disabled = false
+			ignore_disabled = false,
 		},
 	},
 	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
