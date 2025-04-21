@@ -7,18 +7,37 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
-local cop_smg = scripted_enemy.cop_3
+local cop_smg = scripted_enemy.la_cop_3
+local cop_pistol = scripted_enemy.la_cop_1
+local cop_revolver = scripted_enemy.la_cop_2
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
-local swat_vans = is_eclipse and 2 or 1
+local swat_vans_and_events = is_eclipse and 2 or 1
 
-local filter_normal_above = {
-	values = Eclipse.utils.set_diff_groups("normal_above"),
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
 }
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
+}
+
+local filter_players_all = {
+	values = {
+		player_1 = true,
+		player_2 = true,
+		player_3 = true,
+		player_4 = true,
+	},
+}
+local filter_players_disable = {
+	values = {
+		player_1 = false,
+		player_2 = false,
+		player_3 = false,
+		player_4 = false,
+	},
 }
 
 local shield = {
@@ -107,8 +126,21 @@ return {
 	-- make 2 van arrive at the time on Eclipse
 	[102080] = {
 		values = {
-			amount = swat_vans,
-			ignore_disabled = false,
+			amount = swat_vans_and_events,
+			ignore_disabled = false
+		},
+	},
+	-- make 2 events happen at the start of the assault on Eclipse
+	[102085] = {
+		values = {
+			amount = swat_vans_and_events,
+			ignore_disabled = false
+		},
+	},
+	[101685] = {
+		values = {
+			amount = swat_vans_and_events,
+			ignore_disabled = false
 		},
 	},
 	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
@@ -134,15 +166,15 @@ return {
 	},
 	-- disable turret spawn from vans completely as they're disabled in Eclipse
 	-- Wilson's Swat Van
-	[102820] = filter_normal_above,
+	[102820] = filter_easy_above,
 	[102819] = filter_disable,
 	[101965] = filter_disable,
 	-- Mitchell's Swat van
-	[102388] = filter_normal_above,
+	[102388] = filter_easy_above,
 	[102383] = filter_disable,
 	[102382] = filter_disable,
 	-- Swat van near beach_spawn
-	[102216] = filter_normal_above,
+	[102216] = filter_easy_above,
 	[102320] = filter_disable,
 	[102369] = filter_disable,
 	-- change c4's amount event to resemble more from PDTH
@@ -152,6 +184,12 @@ return {
 	[102590] = c4_event_counter,
 	[102591] = c4_event_counter,
 	[101565] = c4_event_counter,
+	[102284] = filter_easy_above,
+	[102287] = filter_disable,
+	[102288] = filter_disable,
+	[102294] = filter_players_all,
+	[102568] = filter_players_disable,
+	[102307] = filter_players_disable,
 	-- change crowbar's amount depeniding on diffculties
 	[100127] = crowbar_amount,
 	[100129] = crowbar_sewer_amount,
@@ -219,8 +257,11 @@ return {
 	[102814] = exclude_cop_agents_shields_dozers,
 	[102815] = exclude_cop_agents_shields_dozers,
 	[102816] = exclude_cop_agents_shields_dozers,
-	-- replace 2nd bronco cop with smg cop to match with PDTH style (even if he doesn't carry a shotgun)
+	-- replace cops with lapd
 	[100725] = { enemy = cop_smg },
+	[100726] = { enemy = cop_pistol },
+	[100210] = { enemy = cop_pistol },
+	[100212] = { enemy = cop_revolver },
 	-- disable the 2nd police crusier if the cops are already alerted
 	[103034] = {
 		on_executed = {
