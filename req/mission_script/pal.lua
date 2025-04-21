@@ -99,15 +99,16 @@ return {
 		},
 	},
 	-- force SWAT vans arrival on police_called like it's in PDTH
-	[103034] = {
+	[103343] = {
 		on_executed = {
-			{ id = 102080, delay = 10 },
+			{ id = 102080, delay = 25 },
 		},
 	},
 	-- make 2 van arrive at the time on Eclipse
 	[102080] = {
 		values = {
 			amount = swat_vans,
+			ignore_disabled = false
 		},
 	},
 	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
@@ -219,11 +220,7 @@ return {
 	[102815] = exclude_cop_agents_shields_dozers,
 	[102816] = exclude_cop_agents_shields_dozers,
 	-- replace 2nd bronco cop with smg cop to match with PDTH style (even if he doesn't carry a shotgun)
-	[100725] = {
-		values = {
-			enemy = cop_smg,
-		},
-	},
+	[100725] = { enemy = cop_smg },
 	-- disable the 2nd police crusier if the cops are already alerted
 	[103034] = {
 		on_executed = {

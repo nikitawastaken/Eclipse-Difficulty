@@ -931,7 +931,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.security.chatter = self.presets.enemy_chatter.security
-	self.security.has_alarm_pager = is_no_mercy and false or true
+	self.security.has_alarm_pager = not is_no_mercy and true or false
 
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 12

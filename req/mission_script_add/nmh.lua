@@ -36,27 +36,47 @@ local bulldozer = is_eclipse_pro and random_normal_and_elite_dozers or diff_i > 
 
 local optsEliteSniper_1 = {
 	enemy = elite_sniper,
-	on_executed = { { id = 400009, delay = 0 } },
+	on_executed = { 
+		{ id = 400009, delay = 0 },
+		{ id = 400009, delay = 10 },
+		{ id = 400009, delay = 20 },
+	},
 	enabled = true,
 }
 local optsEliteSniper_2 = {
 	enemy = elite_sniper,
-	on_executed = { { id = 400006, delay = 0 } },
+	on_executed = { 
+		{ id = 400006, delay = 0 },
+		{ id = 400006, delay = 10 },
+		{ id = 400006, delay = 20 },
+	},
 	enabled = true,
 }
 local optsEliteSniper_3 = {
 	enemy = elite_sniper,
-	on_executed = { { id = 400007, delay = 0 } },
+	on_executed = { 
+		{ id = 400007, delay = 0 },
+		{ id = 400007, delay = 10 },
+		{ id = 400007, delay = 20 },
+	},
 	enabled = true,
 }
 local optsEliteSniper_4 = {
 	enemy = elite_sniper,
-	on_executed = { { id = 400008, delay = 0 } },
+	on_executed = { 
+		{ id = 400008, delay = 0 },
+		{ id = 400008, delay = 10 },
+		{ id = 400008, delay = 20 },
+	},
 	enabled = true,
 }
 local optsEliteSniper_5 = {
 	enemy = elite_sniper,
-	on_executed = { { id = 400005, delay = 0 } },
+	on_executed = { 
+		{ id = 400005, delay = 0 },
+		{ id = 400005, delay = 10 },
+		{ id = 400005, delay = 20 },
+	},
 	enabled = true,
 }
 local optsBulldozer = {
@@ -84,7 +104,6 @@ local optsSniper_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
-	pose = "crouch",
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -516,6 +535,8 @@ local optsdozerspawned_6 = {
 local optsdozerspawned_7 = {
 	on_executed = {
 		{ id = 400058, delay = 0 },
+		{ id = 400073, delay = 0 },
+		{ id = 400074, delay = 8 },
 	},
 	elements = {
 		400067,
@@ -524,6 +545,8 @@ local optsdozerspawned_7 = {
 local optsdozerspawned_8 = {
 	on_executed = {
 		{ id = 400058, delay = 0 },
+		{ id = 400073, delay = 0 },
+		{ id = 400074, delay = 8 },
 	},
 	elements = {
 		400068,
@@ -549,7 +572,7 @@ local choose_dozer_spawnpoint = {
 		{ id = 400036, delay = 0 },
 		{ id = 400037, delay = 0 },
 		{ id = 400038, delay = 0 },
-		--{ id = 400039, delay = 0 },
+		{ id = 400039, delay = 0 },
 	},
 }
 local dozer_amount_1 = {
@@ -615,25 +638,6 @@ local spawn_snipers_global = {
 		{ id = 400033, delay = 0 },
 	},
 }
-local optsdozers_in_elevator = {
-	instigator = "enemies",
-	trigger_times = 0,
-	width = 300,
-	depth = 320,
-	on_executed = {
-		{ id = 400073, delay = 0 },
-	},
-}
-local optsdozers_out_of_elevator = {
-	instigator = "enemies",
-	trigger_on = "on_empty",
-	trigger_times = 0,
-	width = 300,
-	depth = 320,
-	on_executed = {
-		{ id = 400074, delay = 0 },
-	},
-}
 local optsOpenelevator = {
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102077, notify_unit_sequence = "anim_open_door", time = 0 },
@@ -651,9 +655,9 @@ local Bain_senddozers = {
 	dialogue = "play_pln_gen_pol_03",
 }
 local optsAssaultstart = {
-	AI_event = "start_assault",
+	global_event = "start_assault",
 	on_executed = {
-		{ id = 400063, delay = 30 },
+		{ id = 400063, delay = 0 },
 	},
 }
 local optsdisable_custom_spawns = {
@@ -755,11 +759,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_counter(400061, "4_civilians_killed", opts4civskilled),
 	Eclipse.mission_elements.gen_dummytrigger(400062, "civ_died", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optscivilian_is_fucking_dead),
 	Eclipse.mission_elements.gen_missionscript(400063, "dozer_spam_global", spawn_dozer_global),
-	--Eclipse.mission_elements.gen_areatrigger(400064, "area_trigger_dozers_in_elevator", Vector3(1728, 298, 0.877), Rotation(0, 0, -0), optsdozers_in_elevator),
-	--Eclipse.mission_elements.gen_areatrigger(400065, "area_trigger_dozers_out_of_elevator", Vector3(1728, 298, 0.877), Rotation(0, 0, -0), optsdozers_out_of_elevator),
 	Eclipse.mission_elements.gen_dialogue(400066, "they_sending_dozers", Bain_senddozers),
-	--Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
-	--Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
+	Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
+	Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
 
 	-- misc
 	Eclipse.mission_elements.gen_aiglobalevent(400075, "eclipse_start_assault_event", optsAssaultstart),
