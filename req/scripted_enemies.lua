@@ -22,6 +22,11 @@ local M = {
 	cop_2 = "units/payday2/characters/ene_cop_2/ene_cop_2",
 	cop_3 = "units/payday2/characters/ene_cop_3/ene_cop_3",
 	cop_4 = "units/payday2/characters/ene_cop_4/ene_cop_4",
+	
+	la_cop_1 = "units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1",
+	la_cop_2 = "units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2",
+	la_cop_3 = "units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3",
+	la_cop_4 = "units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4",
 
 	fbi_1 = "units/payday2/characters/ene_fbi_1/ene_fbi_1",
 	fbi_2 = "units/payday2/characters/ene_fbi_2/ene_fbi_2",
