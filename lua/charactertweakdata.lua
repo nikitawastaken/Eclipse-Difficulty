@@ -930,6 +930,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		end,
 	}
 
+	self.civilian.speech_prefix_count = 6 -- restore 4 more civilian voices that are unused
+
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
 
