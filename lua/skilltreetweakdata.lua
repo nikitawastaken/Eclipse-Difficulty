@@ -510,6 +510,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- muscle
 	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
+	table.delete(self.specializations[2][9].upgrades, "player_passive_health_regen")
 	self.specializations[2][7].upgrades = { "temporary_mrwi_health_invulnerable_1" }
 	self.specializations[2][7].texture_bundle_folder = "mrwi"
 	self.specializations[2][7].icon_xy = { 3, 0 }
