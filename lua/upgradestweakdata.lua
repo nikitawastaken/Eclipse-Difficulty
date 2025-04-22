@@ -1233,7 +1233,7 @@ function UpgradesTweakData:init(tweak_data)
 		{ 2.5, 3.75 },
 		{ 3.5, 4.5 },
 		{ 5, 6 },
-		{ 7, 9 },
+		{ 7, 8 },
 	} }
 	self.values.player.damage_to_armor = { {
 		{ 1, 1.5 },
@@ -1248,7 +1248,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[15][3].multiperk2 = "10%"
 	self.specialization_descs[15][5].multiperk2 = "15%"
 	self.specialization_descs[15][7].multiperk2 = "20%"
-	self.specialization_descs[15][7].multiperk3 = "5%"
 	self.specialization_descs[15][9].multiperk3 = "30%"
 
 	-- Biker
