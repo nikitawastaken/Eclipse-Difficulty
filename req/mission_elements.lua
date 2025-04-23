@@ -368,6 +368,28 @@ function M.gen_preferedadd(id, name, opts)
 	return preferedadd
 end
 
+---Generate a prefered remove element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param opts? table: extra parameters
+function M.gen_preferedremove(id, name, opts)
+	opts = opts or {}
+	local preferedremove = {
+		id = id,
+		editor_name = name,
+		class = "ElementEnemyPreferedRemove",
+		values = {
+			execute_on_startup = false,
+			base_delay = opts.base_delay or 0,
+			trigger_times = opts.trigger_times or 0,
+			elements = opts.elements or {},
+			on_executed = opts.on_executed or {},
+			enabled = true,
+		},
+	}
+	return preferedremove
+end
+
 ---Generate a counter element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference
