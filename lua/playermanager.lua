@@ -124,7 +124,7 @@ function PlayerManager:on_headshot_dealt()
 			self._damage_to_armor = {
 				armor_value = headshot_to_armor_data[idx][1],
 				target_tick = headshot_to_armor_data[idx][2],
-				elapsed = 0
+				elapsed = 0,
 			}
 		end
 	end

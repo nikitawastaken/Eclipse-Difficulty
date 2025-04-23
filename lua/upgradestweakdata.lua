@@ -1241,8 +1241,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "health_decrease",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.level_2_anarchist_armor_multiplier = { 1.1 }
 	self.values.player.level_3_anarchist_armor_multiplier = { 1.15 }
@@ -1256,8 +1256,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "level_2_anarchist_armor_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.player_level_3_anarchist_armor_multiplier = {
 		name_id = "menu_player_level_3_anarchist_armor_multiplier",
@@ -1265,8 +1265,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "level_3_anarchist_armor_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.player_level_4_anarchist_armor_multiplier = {
 		name_id = "menu_player_level_4_anarchist_armor_multiplier",
@@ -1274,8 +1274,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "level_4_anarchist_armor_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.player_level_5_anarchist_armor_multiplier = {
 		name_id = "menu_player_level_5_anarchist_armor_multiplier",
@@ -1283,8 +1283,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "level_5_anarchist_armor_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.player_level_6_anarchist_armor_multiplier = {
 		name_id = "menu_player_level_6_anarchist_armor_multiplier",
@@ -1292,8 +1292,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "level_6_anarchist_armor_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.player_level_7_anarchist_armor_multiplier = {
 		name_id = "menu_player_level_7_anarchist_armor_multiplier",
@@ -1301,8 +1301,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "level_7_anarchist_armor_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.headshot_to_armor = { {
 		{ 1, 2 },
@@ -1319,8 +1319,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "headshot_to_armor",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.damage_to_armor = { {
 		{ 1, 2 },

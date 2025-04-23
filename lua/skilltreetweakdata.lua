@@ -577,7 +577,7 @@ function SkillTreeTweakData:init(tweak_data)
 		"player_level_4_anarchist_armor_multiplier",
 		"player_level_5_anarchist_armor_multiplier",
 		"player_level_6_anarchist_armor_multiplier",
-		"player_level_7_anarchist_armor_multiplier"
+		"player_level_7_anarchist_armor_multiplier",
 	}
 	self.specializations[15][5].upgrades = { "player_headshot_to_armor" }
 	self.specializations[15][5].icon_xy = { 1, 0 }
