@@ -87,8 +87,8 @@ return {
 	-- Disable Titan Cams
 	[106265] = {
 		values = {
-			enabled = false
-		}
+			enabled = false,
+		},
 	},
 	-- Enable roof spawngroups
 	[100006] = {
@@ -99,13 +99,13 @@ return {
 	--More timelock timer on Eclipse and Pro Jobs
 	[103137] = {
 		values = {
-            time = timelock_normal
-		}
+			time = timelock_normal,
+		},
 	},
 	[100170] = {
 		values = {
-            time = timelock_fast
-		}
+			time = timelock_fast,
+		},
 	},
 	-- restore alternative phone call outcome that sends two beat cops to investigate (failed to fell for it)
 	[105244] = { chance = fail_to_believe_chance },
