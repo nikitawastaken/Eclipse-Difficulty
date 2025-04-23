@@ -22,7 +22,7 @@ local dozer_chance = (is_eclipse and 0.4 or diff_i > 3 and 0.2 or 0.1) + (is_pro
 
 local double_dozers = {
 	values = {
-		enabled = is_eclipse and false or true,
+		enabled = not is_eclipse and true or false,
 	},
 }
 return {
