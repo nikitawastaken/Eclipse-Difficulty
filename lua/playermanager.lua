@@ -99,14 +99,8 @@ function PlayerManager:is_charged_shot_allowed()
 end
 
 function PlayerManager:on_headshot_dealt()
-	local t = Application:time()
 	local player_unit = self:player_unit()
-	local damage_ext = player_unit:character_damage()
 	local has_hitman_ammo_refund = managers.player:has_enabled_cooldown_upgrade("cooldown", "hitman_ammo_refund")
-	local weapon_unit = self:equipped_weapon_unit()
-	local weapon = weapon_unit:base()
-	local regen_armor_bonus = managers.player:upgrade_value("player", "headshot_regen_armor_bonus", 0)
-	local meets_bullseye_conditions = weapon and weapon:is_category("snp") and regen_armor_bonus > 0
 
 	if not player_unit then
 		return
@@ -120,19 +114,18 @@ function PlayerManager:on_headshot_dealt()
 		managers.player:disable_cooldown_upgrade("cooldown", "hitman_ammo_refund")
 	end
 
-	-- make bullseye only work with sniper rifles, also make it work with non max armor
-	if meets_bullseye_conditions then
-		if damage_ext and damage_ext:armor_ratio() == 1 then
-			self._on_headshot_dealt_t = 0
-		else
-			if self._on_headshot_dealt_t and t < self._on_headshot_dealt_t then
-				return
-			end
-			self._on_headshot_dealt_t = t + (tweak_data.upgrades.on_headshot_dealt_cooldown or 0)
-		end
+	-- Anarchist on-headshot armor regen
+	if player_manager:has_category_upgrade("player", "headshot_to_armor") then
+		local headshot_to_armor_data = player_manager:upgrade_value("player", "headshot_to_armor", nil)
+		local armor_data = tweak_data.blackmarket.armors[managers.blackmarket:equipped_armor(true, true)]
 
-		if damage_ext then
-			damage_ext:restore_armor(regen_armor_bonus)
+		if headshot_to_armor_data and armor_data then
+			local idx = armor_data.upgrade_level
+			self._damage_to_armor = {
+				armor_value = headshot_to_armor_data[idx][1],
+				target_tick = headshot_to_armor_data[idx][2],
+				elapsed = 0
+			}
 		end
 	end
 
@@ -966,3 +959,20 @@ Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function(s
 		end
 	end
 end)
+
+-- Anarchist armor multipliers
+function PlayerManager:body_armor_skill_multiplier(override_armor)
+	local multiplier = 1
+	multiplier = multiplier + self:upgrade_value("player", "tier_armor_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", "passive_armor_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", "armor_multiplier", 1) - 1
+	multiplier = multiplier + self:team_upgrade_value("armor", "multiplier", 1) - 1
+	multiplier = multiplier + self:get_hostage_bonus_multiplier("armor") - 1
+	multiplier = multiplier + self:upgrade_value("player", "perk_armor_loss_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", tostring(override_armor or managers.blackmarket:equipped_armor(true, true)) .. "_armor_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", "chico_armor_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", "mrwi_armor_multiplier", 1) - 1
+	multiplier = multiplier + self:upgrade_value("player", tostring(override_armor or managers.blackmarket:equipped_armor(true, true)) .. "_anarchist_armor_multiplier", 1) - 1
+
+	return multiplier
+end

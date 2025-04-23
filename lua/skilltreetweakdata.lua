@@ -569,8 +569,20 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Maniac
 	table.insert(self.specializations[14][3].upgrades, "player_panic_suppression")
 
-	-- anarchist
-	self.specializations[15][5].upgrades = { "player_chico_armor_multiplier_1", "player_armor_increase_2" }
+	-- Anarchist
+	self.specializations[15][3].upgrades = {
+		"player_health_decrease_1",
+		"player_level_2_anarchist_armor_multiplier",
+		"player_level_3_anarchist_armor_multiplier",
+		"player_level_4_anarchist_armor_multiplier",
+		"player_level_5_anarchist_armor_multiplier",
+		"player_level_6_anarchist_armor_multiplier",
+		"player_level_7_anarchist_armor_multiplier"
+	}
+	self.specializations[15][5].upgrades = { "player_headshot_to_armor" }
+	self.specializations[15][5].icon_xy = { 1, 0 }
+	self.specializations[15][5].texture_bundle_folder = nil
+	self.specializations[15][7].upgrades = { "player_health_decrease_2" }
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
 
 	-- kingpin

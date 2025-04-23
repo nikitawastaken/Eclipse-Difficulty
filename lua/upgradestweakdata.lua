@@ -1225,30 +1225,114 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[14][9].multiperk = "50%"
 
 	-- Anarchist
-	self.values.player.chico_armor_multiplier[1] = 1.3
 	self.values.player.armor_grinding = { {
-		{ 1, 1.5 },
-		{ 1.5, 2.25 },
+		{ 1, 2 },
+		{ 1.5, 2.5 },
 		{ 2, 3 },
 		{ 2.5, 3.75 },
 		{ 3.5, 4.5 },
 		{ 5, 6 },
 		{ 7, 8 },
 	} }
-	self.values.player.damage_to_armor = { {
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
+	self.values.player.health_decrease = { 0.25, 0.5 }
+	self.definitions.player_health_decrease_2 = {
+		name_id = "menu_player_health_decrease",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "health_decrease",
+			category = "player"
+		}
+	}
+	self.values.player.level_2_anarchist_armor_multiplier = { 1.1 }
+	self.values.player.level_3_anarchist_armor_multiplier = { 1.15 }
+	self.values.player.level_4_anarchist_armor_multiplier = { 1.25 }
+	self.values.player.level_5_anarchist_armor_multiplier = { 1.4 }
+	self.values.player.level_6_anarchist_armor_multiplier = { 1.6 }
+	self.values.player.level_7_anarchist_armor_multiplier = { 1.8 }
+	self.definitions.player_level_2_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_2_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_2_anarchist_armor_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_level_3_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_3_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_3_anarchist_armor_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_level_4_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_4_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_4_anarchist_armor_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_level_5_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_5_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_5_anarchist_armor_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_level_6_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_6_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_6_anarchist_armor_multiplier",
+			category = "player"
+		}
+	}
+	self.definitions.player_level_7_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_7_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_7_anarchist_armor_multiplier",
+			category = "player"
+		}
+	}
+	self.values.player.headshot_to_armor = { {
+		{ 1, 2 },
+		{ 1.5, 2.5 },
+		{ 2, 3 },
+		{ 2.5, 3.75 },
+		{ 3.5, 4.5 },
+		{ 5, 6 },
+		{ 7, 8 },
 	} }
-	self.values.player.armor_increase = { 0.1, 0.15, 0.2 }
-	self.specialization_descs[15][3].multiperk2 = "10%"
-	self.specialization_descs[15][5].multiperk2 = "15%"
-	self.specialization_descs[15][7].multiperk2 = "20%"
-	self.specialization_descs[15][9].multiperk3 = "30%"
+	self.definitions.player_headshot_to_armor = {
+		name_id = "menu_player_headshot_to_armor",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "headshot_to_armor",
+			category = "player"
+		}
+	}
+	self.values.player.damage_to_armor = { {
+		{ 1, 2 },
+		{ 1.5, 2.5 },
+		{ 2, 3 },
+		{ 2.5, 3.75 },
+		{ 3.5, 4.5 },
+		{ 5, 6 },
+		{ 7, 8 },
+	} }
+	self.specialization_descs[15][3].multiperk = "75%"
+	self.specialization_descs[15][7].multiperk2 = "50%"
 
 	-- Biker
 	self.wild_trigger_time = 16
