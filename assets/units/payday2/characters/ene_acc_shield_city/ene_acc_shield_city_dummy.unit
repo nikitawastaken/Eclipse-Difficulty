@@ -4,9 +4,6 @@
     <object file="units/payday2/characters/ene_acc_shield_city/ene_acc_shield_city" />
 
 	<dependencies>
-		<depends_on unit="units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_top" />
-		<depends_on unit="units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_right" />
-		<depends_on unit="units/payday2/characters/ene_acc_shield_city/debris/ene_acc_shield_city_debris_left" />
 	</dependencies>	
 	
     <extensions>

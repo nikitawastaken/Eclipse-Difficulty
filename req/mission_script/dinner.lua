@@ -14,24 +14,43 @@ local snipers_amount = {
 }
 local garage_door_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
-	groups = preferred.no_cops_agents_shields,
+	groups = preferred.no_shields,
 }
-local flank_spawn1 = {
+local van_spawn = {
 	values = {
 		interval = 15,
 	},
+	groups = preferred.no_cops_agents,
 }
-local flank_spawn2 = {
+local window_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_cops_agents_shields,
+	groups = preferred.no_shields_bulldozers,
+}
+local yard_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_bulldozers,
+}
+local escape_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents,
 }
 local container_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local roof_spawn = {
+	values = {
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -201,10 +220,20 @@ return {
 			{ id = 400045, delay = 0 },
 		},
 	},
-	-- Enable van spawngroup if the 2nd van arrived
-	[101656] = {
-		on_executed = {
-			{ id = 400027, delay = 10 },
+	-- add new spawngroup to the container area
+	[102370] = {
+		values = {
+			spawn_groups = {
+				400026,
+				101533,
+				102013,
+				102198,
+				101763,
+				102843,
+				102832,
+				104296,
+				101715,
+			},
 		},
 	},
 	-- Force 2 SWAT vans to spawn regardless of difficulty
@@ -215,6 +244,12 @@ return {
 		values = {
 			difficulty_normal = "true",
 			difficulty_hard = "true",
+		},
+	},
+	-- tweak swat vans arrival to be indentical to PDTH
+	[101809] = {
+		on_executed = {
+			{ id = 101621, delay = 0.750 },
 		},
 	},
 	-- limit scripted van dozers to 1 (just in case if it might spawn like 3 or 4 dozers due to being strong in Eclipse)
@@ -236,27 +271,29 @@ return {
 	[101219] = snipers_amount,
 	[101222] = snipers_amount,
 	[101224] = snipers_amount,
-	-- spawngroup intervals
+	-- Spawn group delays
+	[400026] = van_spawn,
 	[101528] = garage_door_spawn,
-	[101523] = garage_door_spawn,
 	[101476] = garage_door_spawn,
-	[102843] = flank_spawn1,
-	[101735] = flank_spawn1,
-	[102832] = flank_spawn1,
-	[102836] = flank_spawn1,
-	[102198] = flank_spawn1,
-	[101501] = flank_spawn2,
+	[101523] = garage_door_spawn,
+	[101324] = yard_spawn,
+	[101501] = window_spawn,
+	[104307] = escape_spawn,
+	[104308] = escape_spawn,
+	[103344] = escape_spawn,
+	[103376] = escape_spawn,
+	[103378] = escape_spawn,
+	[103379] = escape_spawn,
+	[103381] = escape_spawn,
+	[103382] = escape_spawn,
+	[103383] = escape_spawn,
 	[101763] = container_spawn,
-	[101713] = container_spawn,
-	[104794] = container_spawn,
-	[104935] = container_spawn,
 	[102013] = container_spawn,
-	[101533] = container_spawn,
-	[101301] = {
-		values = {
-			interval = 30,
-		},
-	},
+	[102198] = container_spawn,
+	[102832] = container_spawn,
+	[102843] = container_spawn,
+	[101301] = roof_spawn,
+	[101533] = roof_spawn,
 	[103489] = cloaker_spawn,
 	[101715] = cloaker_spawn,
 }

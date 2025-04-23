@@ -1,0 +1,725 @@
+<?xml version="1.0" ?>
+<table>
+	<unit>
+	<!--CUSTOM SEQUENCES START-->
+		<variables>
+			<has_big_armor		value="0" />
+			<is_greendozer		value="0" />
+			<is_blackdozer		value="0" />
+			<is_skulldozer		value="0" />
+			<is_bendozer		value="0" />
+			<is_medicdozer		value="0" />
+		</variables>
+
+		<filter name="'check_no_big_armor'">
+			<check value="vars.has_big_armor == 0" />
+		</filter>
+		
+		<filter name="'check_big_armor'">
+			<check value="vars.has_big_armor == 1" />
+		</filter>
+		
+		<filter name="'check_not_greendozer'">
+			<check value="vars.is_greendozer == 0" />
+		</filter>
+		
+		<filter name="'check_greendozer'">
+			<check value="vars.is_greendozer == 1" />
+		</filter>
+
+		<filter name="'check_not_blackdozer'">
+			<check value="vars.is_blackdozer == 0" />
+		</filter>
+		
+		<filter name="'check_blackdozer'">
+			<check value="vars.is_blackdozer == 1" />
+		</filter>
+
+		<filter name="'check_not_skulldozer'">
+			<check value="vars.is_skulldozer == 0" />
+		</filter>
+		
+		<filter name="'check_skulldozer'">
+			<check value="vars.is_skulldozer == 1" />
+		</filter>
+
+		<filter name="'check_not_bendozer'">
+			<check value="vars.is_bendozer == 0" />
+		</filter>
+		
+		<filter name="'check_bendozer'">
+			<check value="vars.is_bendozer == 1" />
+		</filter>
+
+		<filter name="'check_not_medicdozer'">
+			<check value="vars.is_medicdozer == 0" />
+		</filter>
+		
+		<filter name="'check_medicdozer'">
+			<check value="vars.is_medicdozer == 1" />
+		</filter>
+
+		<sequence editable_state="true" name="'armor_back_big'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_armor_back'" />
+			<object 			enabled="false" name="'g_armor_back_lod1'" />
+
+			<object 			enabled="true" name="'g_armor_back_big'" />
+			<object 			enabled="true" name="'g_armor_back_big_lod1'" />
+			
+			<body 				enabled="false" name="'body_armor_back'"/>
+			<body 				enabled="true" name="'body_armor_back_big'"/>
+
+			<decal_mesh  		enabled="false" name="'dm_armor_back'"/>
+			<decal_mesh  		enabled="true" name="'dm_armor_back_big'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'armor_chest_big'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_armor_chest'" />
+			<object 			enabled="false" name="'g_armor_chest_lod1'" />
+
+			<object 			enabled="true" name="'g_armor_chest_big'" />
+			<object 			enabled="true" name="'g_armor_chest_big_lod1'" />
+			
+			<body 				enabled="false" name="'body_armor_chest'"/>
+			<body 				enabled="true" name="'body_armor_chest_big'"/>
+
+			<decal_mesh  		enabled="false" name="'dm_armor_chest'"/>
+			<decal_mesh  		enabled="true" name="'dm_armor_chest_big'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'armor_stomache_big'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_armor_stomache'" />
+			<object 			enabled="false" name="'g_armor_stomache_lod1'" />
+
+			<object 			enabled="true" name="'g_armor_stomache_big'" />
+			<object 			enabled="true" name="'g_armor_stomache_big_lod1'" />
+			
+			<body 				enabled="false" name="'body_armor_stomache'"/>
+			<body 				enabled="true" name="'body_armor_stomache_big'"/>
+
+			<decal_mesh  		enabled="false" name="'dm_armor_stomache'"/>
+			<decal_mesh  		enabled="true" name="'dm_armor_stomache_big'"/>
+		</sequence>
+				
+		<sequence editable_state="true" name="'neck_big'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_neck'" />
+			<object 			enabled="false" name="'g_neck_lod1'" />
+
+			<object 			enabled="true" name="'g_neck_big'" />
+			<object 			enabled="true" name="'g_neck_big_lod1'" />
+			
+			<body 				enabled="false" name="'body_armor_neck'"/>
+			<body 				enabled="true" name="'body_armor_neck_big'"/>
+		</sequence>
+		
+		<sequence editable_state="true" name="'throat_big'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_throat'" />
+			<object 			enabled="false" name="'g_throat_lod1'" />
+
+			<object 			enabled="true" name="'g_throat_big'" />
+			<object 			enabled="true" name="'g_throat_big_lod1'" />
+			
+			<body 				enabled="false" name="'body_armor_throat'"/>
+			<body 				enabled="true" name="'body_armor_throat_big'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'big_armor'" once="true" triggable="true">
+			<set_variables 		has_big_armor="1" />
+			
+			<run_sequence 		name="'armor_back_big'" />
+			<run_sequence 		name="'armor_chest_big'" />
+			<run_sequence 		name="'armor_stomache_big'" />
+			<run_sequence 		name="'neck_big'" />
+			<run_sequence 		name="'throat_big'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'greendozer'" once="true" triggable="true">
+			<set_variables 		is_greendozer="1" />
+		</sequence>			
+
+		<sequence editable_state="true" name="'blackdozer'" once="true" triggable="true">
+			<set_variables 		is_blackdozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'"/>
+		</sequence>		
+
+		<sequence editable_state="true" name="'skulldozer'" once="true" triggable="true">
+			<set_variables 		is_skulldozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3'"/>
+		</sequence>		
+
+		<sequence editable_state="true" name="'bendozer'" once="true" triggable="true">
+			<set_variables 		is_bendozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic'"/>
+		</sequence>			
+
+		<sequence editable_state="true" name="'medicdozer'" once="true" triggable="true">
+			<set_variables 		is_medicdozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic'"/>
+		</sequence>			
+		
+		<sequence editable_state="true" name="'bulldozer_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_chest_a'" />
+			<object 			enabled="true" name="'g_gear_chest_a_lod1'" />
+
+			<object 			enabled="true" name="'g_gear_stomache_a'" />
+			<object 			enabled="true" name="'g_gear_stomache_a_lod1'" />
+			
+			<run_sequence 		name="'greendozer'" />
+			<run_sequence 		name="'bulldozer_face_init'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bulldozer_2'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_body_a'" />
+			<object 			enabled="true" name="'g_gear_body_a_lod1'" />
+			
+			<run_sequence 		name="'blackdozer'" />
+			<run_sequence 		name="'bulldozer_face_init'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bulldozer_3'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_body_b'" />
+			<object 			enabled="true" name="'g_gear_body_b_lod1'" />
+
+			<object 			enabled="true" name="'g_gear_chest_b'" />
+			<object 			enabled="true" name="'g_gear_chest_b_lod1'" />
+
+			<object 			enabled="true" name="'g_gear_stomache_b'" />
+			<object 			enabled="true" name="'g_gear_stomache_b_lod1'" />
+			
+			<run_sequence 		name="'skulldozer'" />
+			<run_sequence 		name="'big_armor'" />
+			<run_sequence 		name="'bulldozer_face_init'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bulldozer_4'" once="true" triggable="true">			
+			<object 			enabled="true" name="'g_gear_body_c'" />
+			<object 			enabled="true" name="'g_gear_body_c_lod1'" />
+
+			<object 			enabled="true" name="'g_gear_chest_c'" />
+			<object 			enabled="true" name="'g_gear_chest_c_lod1'" />
+
+			<object 			enabled="true" name="'g_gear_chest_c'" />
+			<object 			enabled="true" name="'g_gear_chest_c_lod1'" />
+			
+			<run_sequence 		name="'bendozer'" />
+			<run_sequence 		name="'big_armor'" />
+			<run_sequence 		name="'bulldozer_face_init'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bulldozer_medic'" once="true" triggable="true">
+			<object 			enabled="true" name="'g_gear_body_d'" />
+			<object 			enabled="true" name="'g_gear_body_d_lod1'" />
+
+			<run_sequence 		name="'medicdozer'" />
+			<run_sequence 		name="'bulldozer_face_init'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'bulldozer_face_init'" once="true" triggable="true"> 
+			<run_sequence			name="'face_'..pick('a','b','c','d','e','f','g','h','i','j','k','l')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_a'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_a'" />
+			<object 				enabled="true" name="'g_face_a_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_b'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_b'" />
+			<object 				enabled="true" name="'g_face_b_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_c'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_c'" />
+			<object 				enabled="true" name="'g_face_c_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_d'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_d'" />
+			<object 				enabled="true" name="'g_face_d_lod1'" />
+		</sequence>
+	
+		<sequence editable_state="true" name="'face_e'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_e'" />
+			<object 				enabled="true" name="'g_face_e_lod1'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'face_f'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_f'" />
+			<object 				enabled="true" name="'g_face_f_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_g'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_g'" />
+			<object 				enabled="true" name="'g_face_g_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_h'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_h'" />
+			<object 				enabled="true" name="'g_face_h_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_i'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_i'" />
+			<object 				enabled="true" name="'g_face_i_lod1'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'face_j'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_j'" />
+			<object 				enabled="true" name="'g_face_j_lod1'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'face_k'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_k'" />
+			<object 				enabled="true" name="'g_face_k_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_l'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_l'" />
+			<object 				enabled="true" name="'g_face_l_lod1'" />
+		</sequence>
+		<!--DEBRIS SEQUENCES-->
+		<sequence editable_state="true" name="'drop_debris_armor_back'" once="true" triggable="true">
+			<body 					enabled="false" name="'body_armor_back'"/>
+			<body 					enabled="false" name="'body_armor_back_big'"/>
+			
+			<object 				enabled="false" name="'g_armor_back'" />
+			<object 				enabled="false" name="'g_armor_back_lod1'"/>
+			<object 				enabled="false" name="'g_armor_back_big'" />
+			<object 				enabled="false" name="'g_armor_back_big_lod1'"/>
+			
+			<decal_mesh 			enabled="false" name="'dm_armor_back'"/>
+			<decal_mesh 			enabled="false" name="'dm_armor_back_big'"/>
+
+			<body 					filter="'check_big_armor'" enabled="false" name="'body_armor_back_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="false" name="'body_armor_back'" />
+			
+			<object 				filter="'check_big_armor'" enabled="true" name="'g_debris_armor_back_big'" />
+			<object 				filter="'check_no_big_armor'" enabled="true" name="'g_debris_armor_back'" />
+	
+			<decal_mesh 			filter="'check_big_armor'" enabled="true" name="'c_debris_armor_back_big'" />
+			<decal_mesh 			filter="'check_no_big_armor'" enabled="true" name="'c_debris_armor_back'" />
+			
+			<body 					filter="'check_big_armor'" enabled="true" name="'body_debris_armor_back_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="true" name="'body_debris_armor_back'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'drop_debris_armor_chest'" once="true" triggable="true">
+			<body 					enabled="false" name="'body_armor_chest'"/>
+			<body 					enabled="false" name="'body_armor_chest_big'"/>
+			
+			<object 				enabled="false" name="'g_armor_chest'" />
+			<object 				enabled="false" name="'g_armor_chest_lod1'"/>
+			<object 				enabled="false" name="'g_armor_chest_big'" />
+			<object 				enabled="false" name="'g_armor_chest_big_lod1'"/>
+
+			<object 				enabled="false" name="'g_gear_chest_a'" />
+			<object 				enabled="false" name="'g_gear_chest_a_lod1'"/>
+			<object 				enabled="false" name="'g_gear_chest_b'" />
+			<object 				enabled="false" name="'g_gear_chest_b_lod1'"/>
+			<object 				enabled="false" name="'g_gear_chest_c'" />
+			<object 				enabled="false" name="'g_gear_chest_c_lod1'"/>
+						
+			<decal_mesh 			enabled="false" name="'dm_armor_chest'"/>
+			<decal_mesh 			enabled="false" name="'dm_armor_chest_big'"/>
+
+			<body 					filter="'check_big_armor'" enabled="false" name="'body_armor_chest_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="false" name="'body_armor_chest'" />
+			
+			<object 				filter="'check_big_armor'" enabled="true" name="'g_debris_armor_chest_big'" />
+			<object 				filter="'check_no_big_armor'" enabled="true" name="'g_debris_armor_chest'" />
+	
+			<decal_mesh 			filter="'check_big_armor'" enabled="true" name="'c_debris_armor_chest_big'" />
+			<decal_mesh 			filter="'check_no_big_armor'" enabled="true" name="'c_debris_armor_chest'" />
+
+			<body 					filter="'check_big_armor'" enabled="true" name="'body_debris_armor_chest_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="true" name="'body_debris_armor_chest'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'drop_debris_armor_stomache'" once="true" triggable="true">
+			<body 					enabled="false" name="'body_armor_stomache'"/>
+			<body 					enabled="false" name="'body_armor_stomache_big'"/>
+			
+			<object 				enabled="false" name="'g_armor_stomache'" />
+			<object 				enabled="false" name="'g_armor_stomache_lod1'"/>
+			<object 				enabled="false" name="'g_armor_stomache_big'" />
+			<object 				enabled="false" name="'g_armor_stomache_big_lod1'"/>
+
+			<object 				enabled="false" name="'g_gear_stomache_a'" />
+			<object 				enabled="false" name="'g_gear_stomache_a_lod1'"/>
+			<object 				enabled="false" name="'g_gear_stomache_b'" />
+			<object 				enabled="false" name="'g_gear_stomache_b_lod1'"/>
+			<object 				enabled="false" name="'g_gear_stomache_c'" />
+			<object 				enabled="false" name="'g_gear_stomache_c_lod1'"/>
+			
+			<decal_mesh 			enabled="false" name="'dm_armor_stomache'"/>
+			<decal_mesh 			enabled="false" name="'dm_armor_stomache_big'"/>
+
+			<body 					filter="'check_big_armor'" enabled="false" name="'body_armor_stomache_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="false" name="'body_armor_stomache'" />
+			
+			<object 				filter="'check_big_armor'" enabled="true" name="'g_debris_armor_stomache_big'" />
+			<object 				filter="'check_no_big_armor'" enabled="true" name="'g_debris_armor_stomache'" />
+	
+			<decal_mesh 			filter="'check_big_armor'" enabled="true" name="'c_debris_armor_stomache_big'" />
+			<decal_mesh 			filter="'check_no_big_armor'" enabled="true" name="'c_debris_armor_stomache'" />
+
+			<body 					filter="'check_big_armor'" enabled="true" name="'body_debris_armor_stomache_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="true" name="'body_debris_armor_stomache'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'drop_debris_helmet_plate'" once="true" triggable="true">
+			<body 					enabled="false" name="'body_helmet_plate'"/>
+			
+			<object 				enabled="false" name="'g_helmet_plate'" />
+			<object 				enabled="false" name="'g_helmet_plate_lod1'"/>
+			<decal_mesh 			enabled="false" name="'dm_helmet_plate'"/>
+			
+			<body 					enabled="false" name="'body_helmet_plate'" />
+		
+			<object 				enabled="true" name="'g_debris_helmet_plate'" />
+
+			<decal_mesh 			enabled="true" name="'c_debris_helmet_plate'" />
+
+			<body 					enabled="true" name="'body_debris_helmet_plate'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'drop_debris_neck'" once="true" triggable="true">
+			<body 					enabled="false" name="'body_armor_neck'"/>
+			<body 					enabled="false" name="'body_armor_neck_big'"/>
+	
+			<object 				enabled="false" name="'g_neck'" />
+			<object 				enabled="false" name="'g_neck_lod1'"/>
+			<object 				enabled="false" name="'g_neck_big'" />
+			<object 				enabled="false" name="'g_neck_big_lod1'"/>
+
+			<body 					filter="'check_big_armor'" enabled="false" name="'body_neck_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="false" name="'body_neck'" />
+			
+			<object 				filter="'check_big_armor'" enabled="true" name="'g_debris_neck_big'" />
+			<object 				filter="'check_no_big_armor'" enabled="true" name="'g_debris_neck'" />
+	
+			<decal_mesh 			filter="'check_big_armor'" enabled="true" name="'c_debris_neck_big'" />
+			<decal_mesh 			filter="'check_no_big_armor'" enabled="true" name="'c_debris_neck'" />
+
+			<body 					filter="'check_big_armor'" enabled="true" name="'body_debris_neck_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="true" name="'body_debris_neck'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'drop_debris_throat'" once="true" triggable="true">
+			<body 					enabled="false" name="'body_armor_throat'"/>
+			<body 					enabled="false" name="'body_armor_throat_big'"/>
+	
+			<object 				enabled="false" name="'g_throat'" />
+			<object 				enabled="false" name="'g_throat_lod1'"/>
+			<object 				enabled="false" name="'g_throat_big'" />
+			<object 				enabled="false" name="'g_throat_big_lod1'"/>
+
+			<body 					filter="'check_big_armor'" enabled="false" name="'body_throat_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="false" name="'body_throat'" />
+			
+			<object 				filter="'check_big_armor'" enabled="true" name="'g_debris_throat_big'" />
+			<object 				filter="'check_no_big_armor'" enabled="true" name="'g_debris_throat'" />
+	
+			<decal_mesh 			filter="'check_big_armor'" enabled="true" name="'c_debris_throat_big'" />
+			<decal_mesh 			filter="'check_no_big_armor'" enabled="true" name="'c_debris_throat'" />
+
+			<body 					filter="'check_big_armor'" enabled="true" name="'body_debris_throat_big'" />
+			<body 					filter="'check_no_big_armor'" enabled="true" name="'body_debris_throat'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'enable_helmet_glass'" once="true" triggable="true">
+			<body 					enabled="true" name="'body_helmet_glass'"/>
+			<object 				enabled="true" name="'g_helmet_glass'"/>
+			<object 				enabled="true" name="'g_helmet_glass_lod1'"/>
+			<decal_mesh 			enabled="true" name="'dm_helmet_glass'"/>
+		</sequence>		
+<!--CUSTOM SEQUENCES END-->
+		<sequence name="'int_seq_helmet_plate'" once="true">			
+			<run_sequence 			name="'drop_debris_helmet_plate'" />
+			<run_sequence 			name="'enable_helmet_glass'" />
+			<sound 					action="'play'" event="'bulldozer_metal_plate_shatter'" object="'Head'"/>
+		</sequence>
+		<sequence name="'int_seq_helmet_glass_01'" once="true">
+			<object 				enabled="false" name="'g_helmet_glass'"/>
+			<object 				enabled="false" name="'g_helmet_glass_lod1'"/>
+			<object 				enabled="true" name="'g_helmet_glass_crk'"/>
+			<object 				enabled="true" name="'g_helmet_glass_crk_lod1'"/>
+		</sequence>
+		<sequence name="'int_seq_helmet_glass_02'" once="true">
+			<sound 					action="'play'" event="'bulldozer_visor_shatter'" object="'Head'"/>
+			<body 					enabled="true" name="'head'"/>
+			<body 					enabled="false" name="'body_helmet_glass'"/>
+			<body 					enabled="false" name="'body_helmet'"/>
+			<object 				enabled="false" name="'g_helmet_glass'"/>
+			<object 				enabled="false" name="'g_helmet_glass_lod1'"/>
+			<object 				enabled="false" name="'g_helmet_glass_crk'"/>
+			<object 				enabled="false" name="'g_helmet_glass_crk_lod1'"/>
+			<decal_mesh 			enabled="false" name="'dm_helmet_glass'"/>
+			<effect 				damp_time="4" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_glass' )" position="v()"/>
+			<effect 				damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_glass' )" position="v()"/>
+			<function 				extension="'character_damage'" function="'seq_clbk_vizor_shatter'" start_time="1"/>
+		</sequence>
+		<sequence name="'int_seq_armor_back'" once="true">
+			<run_sequence 			name="'drop_debris_armor_back'" />
+			<sound 					action="'play'" event="'bulldozer_metal_plate_shatter'" object="'Spine1'"/>
+		</sequence>
+		<sequence name="'int_seq_armor_chest'" once="true">
+			<run_sequence 			name="'drop_debris_armor_chest'" />
+			<sound 					action="'play'" event="'bulldozer_metal_plate_shatter'" object="'Spine1'"/>
+		</sequence>
+		<sequence name="'int_seq_armor_stomache'" once="true">
+			<run_sequence 			name="'drop_debris_armor_stomache'" />
+			<sound 					action="'play'" event="'bulldozer_metal_plate_shatter'" object="'Spine1'"/>
+		</sequence>
+		<sequence name="'int_seq_armor_throat'" once="true">
+			<run_sequence 			name="'drop_debris_throat'" />
+			<sound 					action="'play'" event="'bulldozer_collar_plate_shatter'" object="'Neck'"/>
+		</sequence>
+		<sequence name="'int_seq_armor_neck'" once="true">
+			<run_sequence 			name="'drop_debris_neck'" />
+			<sound 					action="'play'" event="'bulldozer_collar_plate_shatter'" object="'Neck'"/>
+		</sequence>
+		<body name="'body_helmet_plate'">
+			<endurance damage="16" explosion="75">
+				<run_sequence name="'int_seq_helmet_plate'"/>
+			</endurance>
+		</body>
+		<body name="'body_helmet_glass'">
+			<endurance damage="8" explosion="75">
+				<run_sequence name="'int_seq_helmet_glass_01'"/>
+			</endurance>
+			<endurance damage="16" explosion="75">
+				<run_sequence name="'int_seq_helmet_glass_02'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_chest'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_chest'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_chest_big'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_chest'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_back'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_back'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_back_big'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_back'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_stomache'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_stomache'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_stomache_big'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_stomache'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_throat'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_throat'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_throat_big'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_throat'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_neck'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_neck'"/>
+			</endurance>
+		</body>
+		<body name="'body_armor_neck_big'">
+			<endurance damage="8" explosion="50">
+				<run_sequence name="'int_seq_armor_neck'"/>
+			</endurance>
+		</body>
+		<sequence editable_state="true" name="'leg_arm_hitbox'" triggable="true">
+			<body enabled="true" name="'body'"/>
+			<body enabled="false" name="'head'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Hips'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightLeg'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine1'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Spine2'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftForeArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightForeArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_LeftArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_RightArm'"/>
+			<body enabled="false" motion="'keyframed'" name="'rag_Head'"/>
+			<constraint enabled="false" name="'LeftUpLeg'"/>
+			<constraint enabled="false" name="'RightUpLeg'"/>
+			<constraint enabled="false" name="'LeftLeg'"/>
+			<constraint enabled="false" name="'RightLeg'"/>
+			<constraint enabled="false" name="'Spine'"/>
+			<constraint enabled="false" name="'Spine1'"/>
+			<constraint enabled="false" name="'Spine2'"/>
+			<constraint enabled="false" name="'LeftForeArm'"/>
+			<constraint enabled="false" name="'RightForeArm'"/>
+			<constraint enabled="false" name="'LeftArm'"/>
+			<constraint enabled="false" name="'RightArm'"/>
+			<constraint enabled="false" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'prepare_ragdoll'" triggable="true">
+			<body enabled="false" motion="'dynamic'" name="'rag_Hips'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightLeg'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Spine'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Spine1'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Spine2'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_LeftArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="false" motion="'dynamic'" name="'rag_Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'switch_to_ragdoll'" triggable="true">
+			<body enabled="false" name="'body'"/>
+			<body enabled="false" name="'head'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Hips'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine1'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine2'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Head'"/>
+			<constraint enabled="true" name="'LeftUpLeg'"/>
+			<constraint enabled="true" name="'RightUpLeg'"/>
+			<constraint enabled="true" name="'LeftLeg'"/>
+			<constraint enabled="true" name="'RightLeg'"/>
+			<constraint enabled="true" name="'Spine'"/>
+			<constraint enabled="true" name="'Spine1'"/>
+			<constraint enabled="true" name="'Spine2'"/>
+			<constraint enabled="true" name="'LeftForeArm'"/>
+			<constraint enabled="true" name="'RightForeArm'"/>
+			<constraint enabled="true" name="'LeftArm'"/>
+			<constraint enabled="true" name="'RightArm'"/>
+			<constraint enabled="true" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'freeze_ragdoll'" triggable="true">
+			<body motion="'fixed'" name="'rag_Hips'"/>
+			<body motion="'fixed'" name="'rag_LeftUpLeg'"/>
+			<body motion="'fixed'" name="'rag_RightUpLeg'"/>
+			<body motion="'fixed'" name="'rag_LeftLeg'"/>
+			<body motion="'fixed'" name="'rag_RightLeg'"/>
+			<body motion="'fixed'" name="'rag_Spine'"/>
+			<body motion="'fixed'" name="'rag_Spine1'"/>
+			<body motion="'fixed'" name="'rag_Spine2'"/>
+			<body motion="'fixed'" name="'rag_LeftForeArm'"/>
+			<body motion="'fixed'" name="'rag_RightForeArm'"/>
+			<body motion="'fixed'" name="'rag_LeftArm'"/>
+			<body motion="'fixed'" name="'rag_RightArm'"/>
+			<body motion="'fixed'" name="'rag_Head'"/>
+			<constraint enabled="false" name="'LeftUpLeg'"/>
+			<constraint enabled="false" name="'RightUpLeg'"/>
+			<constraint enabled="false" name="'LeftLeg'"/>
+			<constraint enabled="false" name="'RightLeg'"/>
+			<constraint enabled="false" name="'Spine'"/>
+			<constraint enabled="false" name="'Spine1'"/>
+			<constraint enabled="false" name="'Spine2'"/>
+			<constraint enabled="false" name="'LeftForeArm'"/>
+			<constraint enabled="false" name="'RightForeArm'"/>
+			<constraint enabled="false" name="'LeftArm'"/>
+			<constraint enabled="false" name="'RightArm'"/>
+			<constraint enabled="false" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="false" name="'swich_for_test'" triggable="false">
+			<body enabled="false" name="'body'"/>
+			<body enabled="false" name="'head'"/>
+			<body enabled="false" name="'mover_blocker'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Hips'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightLeg'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Spine'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Spine1'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Spine2'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_LeftArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'keyframed'" name="'rag_Head'"/>
+			<constraint enabled="true" name="'LeftUpLeg'"/>
+			<constraint enabled="true" name="'RightUpLeg'"/>
+			<constraint enabled="true" name="'LeftLeg'"/>
+			<constraint enabled="true" name="'RightLeg'"/>
+			<constraint enabled="true" name="'Spine'"/>
+			<constraint enabled="true" name="'Spine1'"/>
+			<constraint enabled="true" name="'Spine2'"/>
+			<constraint enabled="true" name="'LeftForeArm'"/>
+			<constraint enabled="true" name="'RightForeArm'"/>
+			<constraint enabled="true" name="'LeftArm'"/>
+			<constraint enabled="true" name="'RightArm'"/>
+			<constraint enabled="true" name="'Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_left_arm'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_right_arm'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_arms'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_head'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Head'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_spine'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Head'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftForeArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftArm'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine1'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_Spine2'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_left_leg'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftLeg'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_right_leg'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightLeg'"/>
+		</sequence>
+		<sequence editable_state="true" name="'activate_ragdoll_legs'" triggable="true">
+			<run_sequence name="'swich_for_test'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_RightLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftUpLeg'"/>
+			<body enabled="true" motion="'dynamic'" name="'rag_LeftLeg'"/>
+		</sequence>
+	</unit>
+</table>

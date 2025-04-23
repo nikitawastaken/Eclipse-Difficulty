@@ -130,26 +130,26 @@ function WeaponTweakData:_init_weapons()
 
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1.25,
+							hipfire = 1.5,
 							crouching = 0.75,
 							steelsight = 0.5,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 2,
 							crouching = 1,
-							steelsight = 0.875,
+							steelsight = 1.5,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.25,
+							hipfire = 1.5,
 							crouching = 1,
-							steelsight = 1,
+							steelsight = 1.25,
 						},
 						moving = {
-							hipfire = 1.35,
+							hipfire = 2,
 							crouching = 1,
-							steelsight = 1.1,
+							steelsight = 1.5,
 						}
 					}
 				else
@@ -344,44 +344,44 @@ function WeaponTweakData:_init_weapons()
 						},
 						moving = {
 							hipfire = 1.5,
-							crouching = 0.5,
+							crouching = 1,
 							steelsight = 1,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
 							hipfire = 1,
-							crouching = 0.7,
+							crouching = 0.75,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.2,
-							crouching = 0.7,
+							hipfire = 1.25,
+							crouching = 1,
 							steelsight = 1,
 						}
 					}
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1,
+							hipfire = 1.25,
 							crouching = 0.5,
 							steelsight = 1,
 						},
 						moving = {
 							hipfire = 1.5,
-							crouching = 0.5,
-							steelsight = 1,
+							crouching = 1,
+							steelsight = 1.25,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.7,
+							hipfire = 1.25,
+							crouching = 0.75,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.2,
-							crouching = 0.7,
+							hipfire = 1.5,
+							crouching = 1,
 							steelsight = 1,
 						}
 					}
@@ -674,38 +674,25 @@ function WeaponTweakData:_init_weapons()
 
 			if weap_data.kick then
 				if cat_map.assault_rifle then
-					weap_data.kick.standing = { 0.8, 1, -0.4, 0.4 }
-					weap_data.kick.single = {}
-					weap_data.kick_burst = {}
-					weap_data.kick.single.standing = { 1, 1.5, -0.2, 0.1 }
+					weap_data.kick.standing = { 0.6, 0.8, -0.4, 0.4 }
 
 				elseif cat_map.smg then
-					weap_data.kick.standing = { 0.6, 0.8, -0.6, 0.6 }
-					weap_data.kick.single = {}
-					weap_data.kick_burst = {}
-					weap_data.kick.single.standing = { 0.8, 1, -0.2, 0.1 }
+					weap_data.kick.standing = { 0.4, 0.6, -0.6, 0.6 }
 
 				elseif cat_map.lmg then
-					weap_data.kick.standing = { 0.4, 0.6, -0.8, 0.8 }
-					weap_data.kick.single = {}
-					weap_data.kick.single.standing = { 0.6, 0.8, -0.2, 0.1 }
+					weap_data.kick.standing = { 0.3, 0.5, -0.8, 0.8 }
 
 				elseif cat_map.minigun then
 					weap_data.kick.standing = { 0.2, 0.4, -0.4, 0.4 }
 
 				elseif cat_map.pistol  then
-					weap_data.kick.standing =  { 1, 1.5, -0.2, 0.1 }
-					weap_data.kick.auto = {}
-					weap_data.kick_burst = {}
-					weap_data.kick.auto.standing = { 0.6, 0.8, -0.6, 0.6 }
+					weap_data.kick.standing =  { 0.8, 1, -0.2, 0.1 }
 
 				elseif cat_map.revolver or cat_map.handcannon then
 					weap_data.kick.standing = { 1.5, 2, -0.4, 0.3 }
 
 				elseif cat_map.shotgun or cat_map.grenade_launcher or cat_map.snp then
 					weap_data.kick.standing = { 2, 3, -0.5, 0.4 }
-					weap_data.kick.auto = {}
-					weap_data.kick.auto.standing = { 1.5, 2, -0.5, 0.5 }
 
 				else
 					weap_data.kick.standing = { 0, 0, 0, 0 }
@@ -713,19 +700,10 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.kick.crouching = weap_data.kick.standing
 				weap_data.kick.steelsight = weap_data.kick.standing
-
-				if weap_data.kick.single and weap_data.kick.single.standing then
-					weap_data.kick.single.crouching = weap_data.kick.single.standing
-					weap_data.kick.single.steelsight = weap_data.kick.single.standing
-				end
-
+				
 				if weap_data.kick.auto and weap_data.kick.auto.standing then
 					weap_data.kick.auto.crouching = weap_data.kick.auto.standing
 					weap_data.kick.auto.steelsight = weap_data.kick.auto.standing
-				end
-
-				if weap_data.kick.burst then
-					weap_data.kick.burst = weap_data.kick.auto
 				end
 			end
 
@@ -1888,7 +1866,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.erma.reload_speed_multiplier = 1.3
 
 	-- Jackal
-	self.schakal.CLIP_AMMO_MAX = 30
+	self.schakal.CLIP_AMMO_MAX = 25
 	self.schakal.stats.damage = 80
 	self.schakal.stats.spread = 17
 	self.schakal.stats.recoil = 13
@@ -2786,11 +2764,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.m14_npc.usage = "is_sniper"
 	self.m14_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.m14_npc.CLIP_AMMO_MAX = 10
+	--self.m14_npc.armor_piercing = true
 
 	self.dmr_npc.sounds.prefix = self.heavy_snp_npc.sounds.prefix
 	self.dmr_npc.usage = "is_sniper"
 	self.dmr_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.dmr_npc.CLIP_AMMO_MAX = 10
+	--self.dmr_npc.armor_piercing = true
 
 	self.m14_sniper_npc.usage = "is_sniper"
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"

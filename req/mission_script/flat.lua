@@ -23,6 +23,9 @@ local retrigger = {
 	},
 }
 local alley_spawn = {
+	values = {
+		interval = 20,
+	},
 	groups = preferred.no_bulldozers,
 }
 local roof_spawn = {
@@ -81,7 +84,7 @@ return {
 			{ id = 103611, remove = true },
 		},
 	},
-	-- top with the smoke bombs, jeez....
+	-- stop with the smoke bombs, jeez....
 	[103034] = disabled,
 	[103106] = disabled,
 	-- disable scripted spawn spam
@@ -234,15 +237,6 @@ return {
 	[100645] = retrigger,
 	[103111] = retrigger,
 	[100693] = retrigger,
-	-- slow down roof spawns, these are really fuckng annoying
-	[104650] = roof_spawn,
-	[100504] = roof_spawn,
-	[100505] = roof_spawn,
-	[100509] = roof_spawn,
-	[100396] = roof_spawn,
-	-- adjust alleyway spawn preferreds
-	[100270] = alley_spawn,
-	[100287] = alley_spawn,
 	-- disable panic room reenforce (sh disables the other two points, and this heist doesnt really need it)
 	[103348] = disabled,
 	-- ambush line fix ?  hasnt been working for me since forever
@@ -267,11 +261,20 @@ return {
 			},
 		},
 	},
-	-- Enable civilian on bridge
+	-- enable civilian on bridge
 	[103353] = enabled,
 	[103354] = {
 		values = {
 			SO_access = managers.navigation:convert_access_filter_to_number({ "civ_male" }),
 		},
 	},
+	-- adjust alleyway spawn preferreds
+	[100270] = alley_spawn,
+	[100287] = alley_spawn,
+	-- slow down roof spawns, these are really fuckng annoying
+	[104650] = roof_spawn,
+	[100504] = roof_spawn,
+	[100505] = roof_spawn,
+	[100509] = roof_spawn,
+	[100396] = roof_spawn,
 }

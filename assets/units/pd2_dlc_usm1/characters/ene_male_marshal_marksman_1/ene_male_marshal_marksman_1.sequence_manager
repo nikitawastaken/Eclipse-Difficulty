@@ -3,11 +3,12 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_glasses	value="0" />
-			<has_goggles	value="0" />
-			<has_headset	value="0" />
-			<has_visor		value="0" />
-			<has_torch		value="0" />
+			<has_glasses		value="0" />
+			<has_goggles		value="0" />
+			<has_headset		value="0" />
+			<has_torch			value="0" />
+			<has_visor			value="0" />
+			<uses_torch			value="0" />
 		</variables>
 
 		<filter name="'check_no_glasses'">
@@ -34,6 +35,14 @@
 			<check value="vars.has_headset == 1" />
 		</filter>
 
+		<filter name="'check_no_torch'">
+			<check value="vars.has_torch == 0" />
+		</filter>
+
+		<filter name="'check_torch'">
+			<check value="vars.has_torch == 1" />
+		</filter>
+		
 		<filter name="'check_no_visor'">
 			<check value="vars.has_visor == 0" />
 		</filter>
@@ -41,9 +50,9 @@
 		<filter name="'check_visor'">
 			<check value="vars.has_visor == 1" />
 		</filter>
-		
-		<filter name="'check_has_torch'">
-			<check value="vars.has_torch == 1" />
+
+		<filter name="'check_uses_torch'">
+			<check value="vars.uses_torch == 1" />
 		</filter>
 
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
@@ -56,14 +65,16 @@
 		</sequence>
 		
 		<sequence editable_state="false" name="'enable_light'" triggable="false" >
-			<object 			filter="'check_has_torch'" enabled="true" name="'g_torch'" />
-			<object 			filter="'check_has_torch'" enabled="true" name="'g_torch_lod1'" />
+			<set_variables 		has_torch="1" />
 			
-			<effect_spawner 	filter="'check_has_torch'" enabled="true" name="'es_light'"/>
-			<light				filter="'check_has_torch'" enabled="true" name="'ls_light'"/>
+			<object 			filter="'check_uses_torch'" enabled="true" name="'g_torch'" />
+			<object 			filter="'check_uses_torch'" enabled="true" name="'g_torch_lod1'" />
+			
+			<effect_spawner 	filter="'check_uses_torch'" enabled="true" name="'es_light'"/>
+			<light				filter="'check_uses_torch'" enabled="true" name="'ls_light'"/>
 		</sequence>
 
-		<sequence editable_state="false" name="'material_merc'" triggable="false" >
+		<sequence editable_state="false" name="'marshal_merc'" triggable="false" >
 			<material_config 	name="'units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc'"/>
 		</sequence>
 		
@@ -93,7 +104,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'marshal_marksman_merc_1'" once="true" triggable="true">
-			<run_sequence 		name="'material_merc'" />
+			<run_sequence 		name="'marshal_merc'" />
 			
 			<run_sequence 		name="'marshal_marksman_1'" />
 
@@ -133,7 +144,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'marshal_gunner_merc_1'" once="true" triggable="true">
-			<run_sequence 		name="'material_merc'" />
+			<run_sequence 		name="'marshal_merc'" />
 			
 			<run_sequence 		name="'marshal_gunner_1'" />
 		</sequence>
@@ -160,14 +171,14 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'marshal_gunner_merc_2'" once="true" triggable="true">
-			<run_sequence 		name="'material_merc'" />
+			<run_sequence 		name="'marshal_merc'" />
 		
 			<run_sequence 		name="'marshal_gunner_2'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'marshal_security_1'" once="true" triggable="true">
-			<set_variables 		has_torch="1" />	
-
+			<set_variables 		uses_torch="1" />	
+			
 			<object 			enabled="true" name="'g_helmet_lod3'" />
 			<object 			enabled="true" name="'g_helmet_lod4'" />
 
@@ -182,9 +193,7 @@
 			<run_sequence 		name="'random_head_gadget'"/>
 		</sequence>
 		
-		<sequence editable_state="true" name="'marshal_security_merc_1'" once="true" triggable="true">
-			<run_sequence 		name="'material_merc'" />
-			
+		<sequence editable_state="true" name="'marshal_security_merc_1'" once="true" triggable="true">			
 			<run_sequence 		name="'marshal_security_1'" />
 
 			<object 			enabled="false" name="'g_patches'" />
@@ -192,6 +201,8 @@
 
 			<object 			enabled="true" name="'g_patches_merc'" />
 			<object 			enabled="true" name="'g_patches_merc_lod1'" />
+
+			<run_sequence 		name="'marshal_merc'" />
 		</sequence>
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body'" triggable="true">

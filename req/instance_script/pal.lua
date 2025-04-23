@@ -8,6 +8,7 @@ local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local filter_eclipse_only = Eclipse.utils.set_diff_groups("eclipse")
 
 local patches = {
+	disable_power_delay = table.set(100016),
 	sewer_spawn = {
 		spooc = table.set(100010),
 		swat_sg = table.set(100019),
@@ -36,7 +37,6 @@ M["levels/instances/unique/sub_sewer_grate/world/world"] = function(result)
 		elseif sewer_grate.filters_normal_above[id] then
 			table.map_append(element.values, filter_normal_above)
 			element.values.on_executed = {
-				{ id = 100018, remove = true },
 				{ id = 100010, delay = 0 },
 				{ id = 100019, delay = 0 },
 				{ id = 100021, delay = 0 },
@@ -62,8 +62,16 @@ M["levels/instances/unique/sub_sewer_sidespawn/world/world"] = function(result)
 		elseif side_spawn.spawn_chance[id] then
 			element.values.chance = 30
 			element.values.on_executed = {
-				{ id = 100016, remove = true },
 				{ id = 100010, delay = 0 },
+			}
+		end
+	end
+end
+M["levels/instances/unique/sub_circut_breaker/world/world"] = function(result)
+	for _, element in ipairs(result.default.elements) do
+		if patches.disable_power_delay[element.id] then
+			element.values.on_executed = {
+				{ id = 100015, delay = 20, delay_rand = 10 },
 			}
 		end
 	end

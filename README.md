@@ -1,3 +1,4 @@
+# [eclipse discord invite link](https://discord.gg/e99hHfuRAD)
 # this readme is outdated and will be rewritten for 6.0 release
 
 ~~# "What if Goldfarb suddenly came back?" twist to Payday

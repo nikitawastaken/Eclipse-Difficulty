@@ -76,8 +76,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stockholm_syndrome.icon_xy = { 6, 7 }
 
 	-- Partners in Crime
-	self.skills.control_freak[1].upgrades = {}
-	self.skills.control_freak[2].upgrades = {}
+	self.skills.control_freak[1].upgrades = { "player_convert_camouflage_mul" }
+	self.skills.control_freak[2].upgrades = { "player_convert_counts_as_hostage" }
 
 	-- Hostage Taker
 	self.skills.black_marketeer[1].upgrades = { "player_hostage_health_regen_addend_1" }
@@ -304,7 +304,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Second Wind
 	self.skills.dire_need[1].upgrades = { "temporary_damage_speed_multiplier" }
-	self.skills.dire_need[2].upgrades = { "cooldown_panic_on_armor_break" }
+	self.skills.dire_need[2].upgrades = { "cooldown_dodge_on_armor_break" }
 	self.skills.dire_need.icon_xy = { 10, 9 }
 
 	-- Shockproof
@@ -510,6 +510,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- muscle
 	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
+	table.delete(self.specializations[2][9].upgrades, "player_passive_health_regen")
 	self.specializations[2][7].upgrades = { "temporary_mrwi_health_invulnerable_1" }
 	self.specializations[2][7].texture_bundle_folder = "mrwi"
 	self.specializations[2][7].icon_xy = { 3, 0 }
@@ -568,9 +569,20 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Maniac
 	table.insert(self.specializations[14][3].upgrades, "player_panic_suppression")
 
-	-- anarchist
-	self.specializations[15][5].upgrades = { "player_chico_armor_multiplier_1", "player_armor_increase_2" }
-	self.specializations[15][7].upgrades = { "player_passive_dodge_chance_1", "player_armor_increase_3" }
+	-- Anarchist
+	self.specializations[15][3].upgrades = {
+		"player_health_decrease_1",
+		"player_level_2_anarchist_armor_multiplier",
+		"player_level_3_anarchist_armor_multiplier",
+		"player_level_4_anarchist_armor_multiplier",
+		"player_level_5_anarchist_armor_multiplier",
+		"player_level_6_anarchist_armor_multiplier",
+		"player_level_7_anarchist_armor_multiplier",
+	}
+	self.specializations[15][5].upgrades = { "player_headshot_to_armor" }
+	self.specializations[15][5].icon_xy = { 1, 0 }
+	self.specializations[15][5].texture_bundle_folder = nil
+	self.specializations[15][7].upgrades = { "player_health_decrease_2" }
 	table.delete(self.specializations[15][1].upgrades, "temporary_armor_break_invulnerable_1")
 
 	-- kingpin

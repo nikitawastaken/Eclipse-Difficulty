@@ -25,11 +25,22 @@ local van_enemy2 = {
 		{ id = 400001, delay = 0 },
 	},
 }
-
 local flank_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
+}
+local catwalk_spawn = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_bulldozers,
+}
+local roof_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- delay police response
@@ -45,16 +56,6 @@ return {
 	-- spawnpoint delays
 	[100767] = flank_spawn,
 	[100760] = flank_spawn,
-	[102827] = {
-		values = {
-			interval = 30,
-		},
-		groups = preferred.no_bulldozers,
-	},
-	[101687] = {
-		values = {
-			interval = 40,
-		},
-		groups = preferred.no_cops_agents_shields_bulldozers,
-	},
+	[102827] = catwalk_spawn,
+	[101687] = roof_spawn,
 }

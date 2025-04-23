@@ -1,7 +1,15 @@
+local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local random_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
+local heli_dozer = random_dozers
 local player_1 = {
 	values = {
 		player_1 = true,
@@ -53,6 +61,9 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
+	-- randomize heli dozers
+	[101785] = { enemy = heli_dozer },
+	[101786] = { enemy = heli_dozer },
 	-- special ambush chance increase
 	[103072] = {
 		chance = ambush_chance,

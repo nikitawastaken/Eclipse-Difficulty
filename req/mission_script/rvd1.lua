@@ -8,7 +8,7 @@ local alley_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -18,7 +18,6 @@ local mortuary_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-
 return {
 	[100115] = {
 		ponr = {

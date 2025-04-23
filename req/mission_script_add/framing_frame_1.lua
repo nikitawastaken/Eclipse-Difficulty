@@ -16,8 +16,8 @@ local optscloakerspawned = {
 
 M.elements = {
 	-- Vent fix
-	Eclipse.mission_elements.object_editor(400001, "break_the_vent", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsVentBreaker),
-	Eclipse.mission_elements.dummytrigger(400002, "cloaker_spawned", Vector3(-2400, -3677, 375), Rotation(0, 0, -0), optscloakerspawned),
+	Eclipse.mission_elements.gen_object_editor(400001, "break_the_vent", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsVentBreaker),
+	Eclipse.mission_elements.gen_dummytrigger(400002, "cloaker_spawned", Vector3(-2400, -3677, 375), Rotation(0, 0, -0), optscloakerspawned),
 }
 
 return M

@@ -1,7 +1,31 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local preferred = Eclipse.preferred
 local army_guard = scripted_enemy.soldier_1
 local security_army = {
 	enemy = army_guard,
+}
+local fence_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local roof_spawn = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local container_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local window_spawn = {
+	values = {
+		interval = 40,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[104838] = {
@@ -13,6 +37,63 @@ return {
 	[106867] = {
 		values = {
 			enabled = false,
+		},
+	},
+	[101882] = { -- add reinforce (loads)
+		reinforce = {
+			{
+				name = "crane1",
+				force = 2,
+				position = Vector3(-4500, 600, 125),
+			},
+			{
+				name = "crane2",
+				force = 2,
+				position = Vector3(2100, 550, 125),
+			},
+			{
+				name = "wagon1",
+				force = 3,
+				position = Vector3(-2900, 2900, 500),
+			},
+			{
+				name = "wagon2",
+				force = 3,
+				position = Vector3(-3700, 0, 500),
+			},
+			{
+				name = "roof1",
+				force = 3,
+				position = Vector3(5350, -1700, 650),
+			},
+			{
+				name = "roof2",
+				force = 3,
+				position = Vector3(5350, -2800, 650),
+			},
+		},
+	},
+	[102303] = {
+		reinforce = {
+			{ name = "crane1" },
+			{ name = "crane2" },
+			{ name = "roof1" },
+			{ name = "roof2" },
+			{
+				name = "roof3",
+				force = 3,
+				position = Vector3(-8250, 8100, 750),
+			},
+			{
+				name = "roof4",
+				force = 3,
+				position = Vector3(-9500, 5000, 750),
+			},
+			{
+				name = "crane3",
+				force = 2,
+				position = Vector3(-6100, 8350, 125),
+			},
 		},
 	},
 	--National Guard instead of regular security
@@ -46,4 +127,13 @@ return {
 	[106020] = security_army,
 	[106138] = security_army,
 	[106141] = security_army,
+	-- Spawn group delays
+	[100869] = fence_spawn,
+	[101574] = fence_spawn,
+	[101630] = roof_spawn,
+	[101771] = roof_spawn,
+	[101772] = roof_spawn,
+	[102887] = roof_spawn,
+	[108179] = container_spawn,
+	[104040] = window_spawn,
 }

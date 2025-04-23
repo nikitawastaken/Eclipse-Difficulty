@@ -18,6 +18,7 @@ local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
+local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 
 local diff_scaling = diff_i / 8
 
@@ -78,6 +79,11 @@ local optsLateDozer = {
 	participate_to_group_ai = true,
 	enabled = hard_and_above and enabled_chance_alleyway_dozer,
 }
+local optsDozerDoor = {
+	enemy = is_eclipse and elite_bulldozer_1 or bulldozer_1,
+	spawn_action = "e_sp_kick",
+	enabled = true,
+}
 local optsSpoocAmbush1 = {
 	enemy = cloaker,
 	on_executed = { { id = 400014, delay = 0 } },
@@ -127,6 +133,36 @@ local optsBesiegeDummy = {
 	participate_to_group_ai = true,
 	enabled = true,
 	spawn_action = "e_sp_armored_truck_1st",
+}
+
+local optsOpenGate_1 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100714, notify_unit_sequence = "light_on", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 600728, notify_unit_sequence = "open", time = 0 },
+	},
+}
+local optsOpenGate_2 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100696, notify_unit_sequence = "light_on", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 601195, notify_unit_sequence = "open", time = 0 },
+	},
+}
+local optsOpenGate_3 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100762, notify_unit_sequence = "light_on", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 600255, notify_unit_sequence = "open", time = 0 },
+	},
+}
+local optsKickthefuckingdoor = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 600188, notify_unit_sequence = "open_out", time = 0 },
+	},
+	on_executed = { { id = 410003, delay = 0 } },
+}
+
+local optsspawnSWATs = {
+	on_executed = { { id = 101756, delay = 0 }, { id = 101640, delay = 0 }, { id = 102801, delay = 0 }, { id = 102800, delay = 0 } },
+	enabled = true,
 }
 
 local optsAlleyAmbushTrigger = {
@@ -320,6 +356,16 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400095, "eclipse_dozer_hunt", Vector3(-8500, -9507, 50), Rotation(0, 0, 0), optsDozerHuntSO),
 	Eclipse.mission_elements.gen_dummy(400096, "eclipse_major_ave_sniper_01", Vector3(-1765, -3564, 1949), Rotation(0, 0, 0), optsMajorSniper_01),
 	Eclipse.mission_elements.gen_so(400097, "eclipse_armitage_ave_sniper_SO_01", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsSniperSO),
+
+	-- restore pdth events
+	-- gate doors
+	Eclipse.mission_elements.gen_object_editor(400098, "open_gate_1", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_1),
+	Eclipse.mission_elements.gen_object_editor(400099, "open_gate_2", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_2),
+	Eclipse.mission_elements.gen_object_editor(410000, "open_gate_3", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_3),
+	Eclipse.mission_elements.gen_missionscript(410001, "spawn_garage_swats", optsspawnSWATs),
+	-- dozer slamming door spawn
+	Eclipse.mission_elements.gen_object_editor(410002, "open_the_door", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsKickthefuckingdoor),
+	Eclipse.mission_elements.gen_dummy(410003, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
 }
 
 return M

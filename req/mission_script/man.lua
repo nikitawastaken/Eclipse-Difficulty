@@ -98,7 +98,7 @@ local breach_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
@@ -108,9 +108,13 @@ local window_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
 local chopper_delay_init = 480 - (diff_i * 30) - (is_pro_job and 60 or 0)
-local chopper_delay = 360 - (diff_i * 15) - (is_pro_job and 30 or 0)
-
+local chopper_delay = 360 - (diff_i * 15) - (is_pro_job and 45 or 0)
 return {
 	--PONR
 	[100695] = {
@@ -151,14 +155,20 @@ return {
 	[102170] = sniper_amount,
 	[102171] = sniper_amount,
 	-- Gas Heli shit (it's evil)
-	[104041] = filter_normal_above, -- No need for these filters to handle spawns
+	[104041] = {
+		values = filter_normal_above.values, -- No need for these filters to handle spawns
+		on_executed = { -- Spawn 4 heli enemies
+			{ id = 104045, delay = 0 },
+			{ id = 104046, delay = 0 },
+		},
+	},
 	[104042] = filter_disable,
 	[104043] = filter_disable,
 	[104044] = filter_disable,
-	[102269] = { -- Spawn 4 heli enemies
+	[103298] = {
 		on_executed = {
-			{ id = 104045, delay = 0 },
-			{ id = 104046, delay = 0 },
+			{ id = 101716, delay = 1.5 }, -- enemy spawn delay (normally 0, causing them to spawn before the door opens)
+			{ id = 103299, delay = 6 }, -- flyaway delay (normally 20)
 		},
 	},
 	-- Replace the spawns with a Dozer + Medic + 2 Heavy Shotgunners
@@ -176,12 +186,6 @@ return {
 			{ id = 103298, delay = 24 }, -- door open delay (normally 27)
 		},
 	},
-	[103298] = {
-		on_executed = {
-			{ id = 101716, delay = 1.5 }, -- enemy spawn delay (normally 0, causing them to spawn before the door opens)
-			{ id = 103299, delay = 6 }, -- flyaway delay (normally 20)
-		},
-	},
 	[100131] = { -- police called, call in da choppa
 		on_executed = {
 			{ id = 101608, delay = chopper_delay_init },
@@ -197,7 +201,6 @@ return {
 			{ id = 101608, remove = true },
 		},
 	},
-	[103302] = disabled, -- disable gas SO. its honestly worthless.
 	[103434] = {
 		values = filter_normal_above.values,
 		on_executed = {
@@ -327,6 +330,7 @@ return {
 	[101951] = window_spawn,
 	[101937] = roof_spawn,
 	[102189] = roof_spawn,
+	[103793] = cloaker_spawn,
 	-- Scripted FBI agents
 	[101614] = fbi_agent,
 	[102633] = fbi_agent,

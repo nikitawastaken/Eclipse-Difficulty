@@ -10,7 +10,7 @@ local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
-local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
+local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 
 local soldiers = { [light_soldier] = 3, [heavy_soldier] = 1 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1 }
@@ -30,6 +30,7 @@ local patches = {
 		special_spawn = table.set(100018),
 		filters_disable = table.set(100008, 100010),
 		filters_normal_above = table.set(100007),
+		hunt = table.set(100046),
 	},
 }
 
@@ -61,6 +62,8 @@ M["levels/instances/unique/pet_helicopter_swat/world/world"] = function(result)
 			table.map_append(element.values, filter_normal_above)
 		elseif heli_spawns.filters_disable[id] then
 			table.map_append(element.values, filter_disable)
+		elseif heli_spawns.hunt[id] then
+			element.values.enabled = true --why the fuck it's turned off?
 		end
 	end
 end

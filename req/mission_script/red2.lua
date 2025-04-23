@@ -8,9 +8,20 @@ local diff_scaling = diff_i / 8
 local hard_above = diff_i >= 3
 local overkill_above = diff_i >= 5
 
-local shield = scripted_enemy.shield
+local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
+local bulldozer_2 = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local random_dozers = {
+	bulldozer,
+	bulldozer_2,
+}
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
 
 local vault_count = 4
 local vault_ambush_chance = 0.5
@@ -31,12 +42,23 @@ if math.random() < vault_ambush_chance then
 	vault_count = 2
 end
 
+local bags_required = {
+	values = {
+		counter_target = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+	},
+}
+local bags_required_objective = {
+	values = {
+		amount = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+	},
+}
+
 local vault_ambush = {
 	enemy = vault_ambush_enemy,
 }
 
 local bulldozer_spawn = {
-	enemy = bulldozer,
+	enemy = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or bulldozer,
 }
 
 local cloaker_spawn = {
@@ -98,6 +120,13 @@ return {
 			},
 		},
 	},
+	-- change the required amount of money bags
+	[106692] = bags_required,
+	[106946] = bags_required,
+	[106947] = bags_required,
+	[105019] = bags_required_objective,
+	[103032] = bags_required_objective,
+	[103033] = bags_required_objective,
 	-- allow Overdrill
 	[104182] = filter_overkill_above,
 	-- disable forced manager flee objective
@@ -268,23 +297,15 @@ return {
 			{ id = 400045, delay = 0 },
 		},
 	},
-	-- make the rest of vanilla spawns turn into zeals on E/PJ
-	-- 2 shields at the bottom of the staircase
-	[103693] = {
-		values = {
-			enemy = shield,
-		},
-	},
+	-- make the rest of vanilla escape spawns turn into gensec on E/PJ
+	-- 2 shields at the bottom of the staircase, replaced one shield with bulldozer
+	[103693] = { enemy = shield },
 	[103697] = bulldozer_spawn,
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
 	[103163] = bulldozer_spawn,
 	[103198] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
-	-- ambush cloakers
-	[103136] = cloaker_spawn,
-	[103143] = cloaker_spawn,
-	[103151] = cloaker_spawn,
 	-- spawnpoint delays
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,

@@ -1,9 +1,20 @@
-local ground_spawn = {
+local preferred = Eclipse.preferred
+local wall_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
-
+local sewer_spawn = {
+	values = {
+		interval = 30,
+	},
+}
+local roof_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 return {
 	[100104] = {
 		values = {
@@ -16,11 +27,21 @@ return {
 			player_mul = { 1.67, 1.34, 1, 1 },
 		},
 	},
-	-- slow down a bunch of ground level spawnpoints
-	[100411] = ground_spawn,
-	[100403] = ground_spawn,
-	[100412] = ground_spawn,
-	[100413] = ground_spawn,
-	[100409] = ground_spawn,
-	[100408] = ground_spawn,
+	-- Spawn group delays
+	[100403] = wall_spawn,
+	[100408] = wall_spawn,
+	[100409] = wall_spawn,
+	[100411] = wall_spawn,
+	[100412] = wall_spawn,
+	[100413] = wall_spawn,
+	[100405] = roof_spawn,
+	[100406] = roof_spawn,
+	[100414] = roof_spawn,
+	[100415] = roof_spawn,
+	[100078] = sewer_spawn,
+	[100080] = sewer_spawn,
+	[100082] = sewer_spawn,
+	[100088] = sewer_spawn,
+	[100089] = sewer_spawn,
+	[100094] = sewer_spawn,
 }

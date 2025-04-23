@@ -9,36 +9,81 @@ local bikers = {
 	Idstring("units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"),
 	Idstring("units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"),
 }
-return {
-	[103048] = {
-		groups = preferred.no_shields_bulldozers,
+local biker = { enemy = bikers }
+local wall_spawn = {
+	values = {
+		interval = 10,
 	},
+}
+local window_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 120,
+	},
+}
+return {
 	-- gangsters
-	[100670] = { enemy = bikers },
-	[100671] = { enemy = bikers },
-	[100672] = { enemy = bikers },
-	[100673] = { enemy = bikers },
-	[100674] = { enemy = bikers },
-	[100675] = { enemy = bikers },
-	[100116] = { enemy = bikers },
-	[101564] = { enemy = bikers },
-	[101571] = { enemy = bikers },
-	[101572] = { enemy = bikers },
-	[101555] = { enemy = bikers },
-	[101556] = { enemy = bikers },
-	[101037] = { enemy = bikers },
-	[101034] = { enemy = bikers },
-	[101222] = { enemy = bikers },
-	[101235] = { enemy = bikers },
-	[101272] = { enemy = bikers },
-	[101274] = { enemy = bikers },
-	[101296] = { enemy = bikers },
-	[101329] = { enemy = bikers },
-	[101355] = { enemy = bikers },
-	[101363] = { enemy = bikers },
-	[101400] = { enemy = bikers },
-	[101310] = { enemy = bikers }, -- camera man
-	[101683] = { enemy = bikers },
-	[101774] = { enemy = bikers },
-	[101866] = { enemy = bikers }, -- camera man
+	[100670] = biker,
+	[100671] = biker,
+	[100672] = biker,
+	[100673] = biker,
+	[100674] = biker,
+	[100675] = biker,
+	[100116] = biker,
+	[101564] = biker,
+	[101571] = biker,
+	[101572] = biker,
+	[101555] = biker,
+	[101556] = biker,
+	[101037] = biker,
+	[101034] = biker,
+	[101222] = biker,
+	[101235] = biker,
+	[101272] = biker,
+	[101274] = biker,
+	[101296] = biker,
+	[101329] = biker,
+	[101355] = biker,
+	[101363] = biker,
+	[101400] = biker,
+	[101310] = biker, -- camera man
+	[101683] = biker,
+	[101774] = biker,
+	[101866] = biker, -- camera man
+	-- Spawn group delays
+	[100128] = wall_spawn, -- American side
+	[100131] = wall_spawn,
+	[100132] = wall_spawn,
+	[100694] = wall_spawn, -- Mexican side
+	[102227] = wall_spawn,
+	[102228] = wall_spawn,
+	[102254] = wall_spawn,
+	[102255] = wall_spawn,
+	[102423] = wall_spawn,
+	[102424] = wall_spawn,
+	[102442] = wall_spawn,
+	[103235] = window_spawn,
+	[103048] = window_spawn,
+	[103067] = window_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
+	[102553] = cloaker_spawn,
+	[102554] = cloaker_spawn,
+	[102555] = cloaker_spawn,
+	[102556] = cloaker_spawn,
+	[102557] = cloaker_spawn,
+	[102558] = cloaker_spawn,
+	[102559] = cloaker_spawn,
+	[102560] = cloaker_spawn,
 }

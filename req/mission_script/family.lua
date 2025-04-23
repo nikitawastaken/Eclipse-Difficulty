@@ -12,6 +12,12 @@ return {
 			enabled = true,
 		},
 	},
+	-- Disable Titan Cams
+	[102211] = {
+		values = {
+			enabled = false,
+		},
+	},
 	-- Delay Twitch from leaving the area after the heist goes loud
 	[100022] = {
 		on_executed = {

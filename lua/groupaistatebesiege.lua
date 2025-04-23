@@ -94,17 +94,20 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)
 end
 
--- some helper functions
+-- Some helper functions
 function GroupAIStateBesiege:_is_first_assault()
-	return self._task_data.assault and self._task_data.assault.is_first
+	local task_data = self._task_data and self._task_data.assault
+	return task_data and task_data.is_first
 end
 
 function GroupAIStateBesiege:_is_assault_active()
-	return self._task_data.assault and self._task_data.assault.active
+	local task_data = self._task_data and self._task_data.assault
+	return task_data and task_data.active
 end
 
 function GroupAIStateBesiege:_first_response_trades_delay()
-	return (self._task_data.assault and self._task_data.assault.first_response_trades_delay) or 0
+	local task_data = self._task_data and self._task_data.assault
+	return task_data and task_data.first_response_trades_delay or 0
 end
 
 -- Fix reenforce group delay

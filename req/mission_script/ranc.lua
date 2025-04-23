@@ -48,12 +48,12 @@ return {
 	-- tweak difficulty scaling
 	[100122] = {
 		values = {
-			difficulty = 0.5,
+			difficulty = 0.35,
 		},
 	},
 	[100124] = {
 		values = {
-			difficulty = 0.75,
+			difficulty = 0.65,
 		},
 	},
 	[101582] = {

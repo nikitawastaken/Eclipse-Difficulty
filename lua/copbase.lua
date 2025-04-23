@@ -1,4 +1,56 @@
+ContourSwapBase = class()
+ContourSwapBase._material_translation_map = {}
+
+local paths = table.list_to_set({
+	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
+	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
+	"units/payday2/characters/ene_cop_1/vars/ene_security_1",
+	"units/payday2/characters/ene_cop_1/vars/ene_security_4",
+	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
+	"units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1",
+	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
+	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
+	"units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01",
+	"units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1",
+	"units/payday2/characters/ene_swat_1/vars/ene_city_swat_1",
+	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2",
+	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3",
+	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic",
+	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic",
+	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
+})
+
+for path in pairs(paths) do
+	local normal_id = Idstring(path)
+	local contour_id = Idstring(path .. "_contour")
+
+	ContourSwapBase._material_translation_map[tostring(normal_id:key())] = contour_id
+	ContourSwapBase._material_translation_map[tostring(contour_id:key())] = normal_id
+end
+
+ContourSwapBase.swap_material_config = CopBase.swap_material_config
+ContourSwapBase.on_material_applied = CopBase.on_material_applied
+ContourSwapBase.is_in_original_material = CopBase.is_in_original_material
+ContourSwapBase.set_material_state = CopBase.set_material_state
+
+function ContourSwapBase:init(unit)
+	UnitBase.init(self, unit, false)
+
+	self._unit = unit
+	self._is_in_original_material = true
+end
+
+-- Handle material swaps
+for path in pairs(paths) do
+	local normal_id = Idstring(path)
+	local contour_id = Idstring(path .. "_contour")
+
+	CopBase._material_translation_map[tostring(normal_id:key())] = contour_id
+	CopBase._material_translation_map[tostring(contour_id:key())] = normal_id
+end
+
 local unit_ids = Idstring("unit")
+
 Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	-- Dynamically load throwable if we have one
 	local throwable = self._char_tweak.throwable
@@ -19,23 +71,56 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 		Eclipse:log("Loading projectile sprint unit", throwable)
 		managers.dyn_resource:load(unit_ids, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
-
-	-- Always glow cloakers (like in PDTH)
-	if self._tweak_table == "spooc" then
-		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
-	end
 end)
 
-local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
+function CopBase:save(save_data)
+	local my_save_data = {}
 
+	if self._unit:interaction() and (self._unit:interaction().tweak_data == "hostage_trade" or self._unit:interaction().tweak_data == "hostage_trade_resources") then
+		my_save_data.is_hostage_trade = true
+	elseif self._unit:interaction() and self._unit:interaction().tweak_data == "hostage_convert" then
+		my_save_data.is_hostage_convert = true
+	end
+
+	local buffs = {}
+
+	for name, buff_list in pairs(self._buffs) do
+		buffs[name] = {
+			_total = buff_list._total,
+		}
+	end
+
+	if next(buffs) then
+		my_save_data.buffs = buffs
+	end
+
+	if self._tweak_table ~= self._original_tweak_table then
+		my_save_data.tweak_name_swap = self._tweak_table
+	end
+
+	if self._stats_name ~= self._original_stats_name then
+		my_save_data.stats_name_swap = self._stats_name
+	end
+
+	if next(my_save_data) then
+		save_data.base = my_save_data
+	end
+end
+
+local unit_sequence_mapping_clean = Eclipse:require("unit_sequences")
 local unit_sequence_mapping = {}
 
+-- Handle unit sequences for gear and such
 for name, sequence in pairs(unit_sequence_mapping_clean) do
-	unit_sequence_mapping[Idstring(name):key()] = sequence
-	unit_sequence_mapping[Idstring(name .. "_husk"):key()] = sequence
+	local normal_id = Idstring(name):key()
+	local husk_id = Idstring(name .. "_husk"):key()
+
+	unit_sequence_mapping[normal_id] = sequence
+	unit_sequence_mapping[husk_id] = sequence
 end
 
 CopBase.unit_sequence_mapping = deep_clone(unit_sequence_mapping)
+CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
 
 function CopBase:_run_unit_sequences()
 	local name = self._unit:name():key()
@@ -105,20 +190,22 @@ function CopBase:_run_unit_sequences()
 	end
 end
 
--- Check for weapon changes
-CopBase.unit_weapon_mapping = Eclipse:require("unit_weapons")
-
-if Network:is_client() then
-	return
-end
-
 -- Check for weapon changes and run unti sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
 
-	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
+	-- Always glow cloakers (like in PDTH)
+	if self._tweak_table == "spooc" then
+		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
+	end
 
+	if Network:is_client() then
+		return
+	end
+
+	local unit_weapon = self.unit_weapon_mapping[self._unit:name():key()]
 	local mapping_type = type(unit_weapon)
+
 	if mapping_type == "table" then
 		local selector = WeightedSelector:new()
 		for k, v in pairs(unit_weapon) do
@@ -133,76 +220,3 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 		self._default_weapon_id = unit_weapon
 	end
 end)
-
-local mat_configs = {
-	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
-	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
-	"units/payday2/characters/ene_cop_1/vars/ene_security_1",
-	"units/payday2/characters/ene_cop_1/vars/ene_security_4",
-	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
-	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
-	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
-	"units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1",
-	"units/payday2/characters/ene_swat_1/vars/ene_city_swat_1",
-	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
-}
-
-for _, v in pairs(mat_configs) do
-	CopBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
-	CopBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
-end
-
-ContourSwapBase = class()
-
-ContourSwapBase._material_translation_map = {}
-
-for _, v in pairs(mat_configs) do
-	ContourSwapBase._material_translation_map[tostring(Idstring(v):key())] = Idstring(v .. "_contour")
-	ContourSwapBase._material_translation_map[tostring(Idstring(v .. "_contour"):key())] = Idstring(v)
-end
-
-ContourSwapBase.swap_material_config = CopBase.swap_material_config
-ContourSwapBase.on_material_applied = CopBase.on_material_applied
-ContourSwapBase.is_in_original_material = CopBase.is_in_original_material
-ContourSwapBase.set_material_state = CopBase.set_material_state
-
-function ContourSwapBase:init(unit)
-	UnitBase.init(self, unit, false)
-
-	self._unit = unit
-	self._is_in_original_material = true
-end
-
-function CopBase:save(save_data)
-	local my_save_data = {}
-
-	if self._unit:interaction() and (self._unit:interaction().tweak_data == "hostage_trade" or self._unit:interaction().tweak_data == "hostage_trade_resources") then
-		my_save_data.is_hostage_trade = true
-	elseif self._unit:interaction() and self._unit:interaction().tweak_data == "hostage_convert" then
-		my_save_data.is_hostage_convert = true
-	end
-
-	local buffs = {}
-
-	for name, buff_list in pairs(self._buffs) do
-		buffs[name] = {
-			_total = buff_list._total,
-		}
-	end
-
-	if next(buffs) then
-		my_save_data.buffs = buffs
-	end
-
-	if self._tweak_table ~= self._original_tweak_table then
-		my_save_data.tweak_name_swap = self._tweak_table
-	end
-
-	if self._stats_name ~= self._original_stats_name then
-		my_save_data.stats_name_swap = self._stats_name
-	end
-
-	if next(my_save_data) then
-		save_data.base = my_save_data
-	end
-end

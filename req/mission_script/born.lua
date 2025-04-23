@@ -1,5 +1,28 @@
+local preferred = Eclipse.preferred
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
+}
+local fence_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local window_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local roof_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 120,
+	},
 }
 return {
 	[100628] = {
@@ -94,30 +117,19 @@ return {
 			{ id = 102530, delay = 180 },
 		},
 	},
-	-- slow down a few spawnpoints
-	[100007] = {
-		values = {
-			interval = 20,
-		},
-	},
-	[100130] = {
-		values = {
-			interval = 10,
-		},
-	},
-	[100131] = {
-		values = {
-			interval = 10,
-		},
-	},
-	[100019] = {
-		values = {
-			interval = 10,
-		},
-	},
-	[100133] = {
-		values = {
-			interval = 10,
-		},
-	},
+	-- Spawn group delays
+	[100019] = fence_spawn,
+	[100130] = fence_spawn,
+	[100131] = fence_spawn,
+	[100133] = fence_spawn,
+	[100007] = roof_spawn,
+	[100128] = window_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
 }

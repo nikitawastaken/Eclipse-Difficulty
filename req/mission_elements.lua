@@ -198,8 +198,8 @@ function M.gen_areatrigger(id, name, pos, rot, opts)
 			rotation = rot,
 			enabled = true,
 			interval = 0.1,
-			trigger_on = "on_enter",
-			instigator = "player",
+			trigger_on = opts.trigger_on or "on_enter",
+			instigator = opts.instigator or "player",
 			shape_type = opts.shape_type or "box",
 			width = opts.width or 500,
 			depth = opts.depth or 500,
@@ -432,8 +432,8 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 	local object_editor = {
 		id = id,
 		editor_name = name,
-		module = "ElementUnitSequence",
-		class = "CoreElementUnitSequence",
+		module = "CoreElementUnitSequence",
+		class = "ElementUnitSequence",
 		values = {
 			execute_on_startup = false,
 			trigger_times = opts.trigger_times or 0,
@@ -447,6 +447,34 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 	}
 
 	return object_editor
+end
+
+---Generate a random element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_element_random(id, name, opts)
+	opts = opts or {}
+	local random_element = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementRandom",
+		class = "ElementRandom",
+		values = {
+			execute_on_startup = false,
+			ignore_disabled = opts.ignore_disabled or false,
+			trigger_times = opts.trigger_times or 0,
+			amount = opts.amount or 0,
+			amount_random = opts.amount_random or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			enabled = true,
+		},
+	}
+
+	return random_element
 end
 
 return M

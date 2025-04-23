@@ -1304,26 +1304,26 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	local dmr_stance_muls = {
 		spread = {
 			standing = {
-				hipfire = 1.25,
+				hipfire = 1.5,
 				crouching = 0.75,
 				steelsight = 0.5,
 			},
 			moving = {
-				hipfire = 1.5,
+				hipfire = 2,
 				crouching = 1,
-				steelsight = 0.875,
+				steelsight = 1.5,
 			},
 		},
 		recoil = {
 			standing = {
-				hipfire = 1.25,
+				hipfire = 1.5,
 				crouching = 1,
-				steelsight = 0.85,
+				steelsight = 1.25,
 			},
 			moving = {
-				hipfire = 1.3,
+				hipfire = 2,
 				crouching = 1,
-				steelsight = 1,
+				steelsight = 1.5,
 			},
 		},
 	}

@@ -4,14 +4,31 @@ TankCopDamage.IS_TANK = true
 TankCopDamage.armor_body_names = {
 	[Idstring("body_helmet"):key()] = true,
 	[Idstring("body_armor_back"):key()] = true,
+	[Idstring("body_armor_back_big"):key()] = true,
 	[Idstring("body_armor_chest"):key()] = true,
+	[Idstring("body_armor_chest_big"):key()] = true,
 	[Idstring("body_armor_neck"):key()] = true,
+	[Idstring("body_armor_neck_big"):key()] = true,
 	[Idstring("body_armor_stomache"):key()] = true,
+	[Idstring("body_armor_stomache_big"):key()] = true,
 	[Idstring("body_armor_throat"):key()] = true,
+	[Idstring("body_armor_throat_big"):key()] = true,
 	[Idstring("body_helmet_glass"):key()] = true,
 	[Idstring("body_helmet_plate"):key()] = true,
 	[Idstring("body_ammo"):key()] = true,
 	[Idstring("body_vest"):key()] = true,
+	-- DEBRIS OBJECTS
+	[Idstring("body_debris_armor_back"):key()] = true,
+	[Idstring("body_debris_armor_back_big"):key()] = true,
+	[Idstring("body_debris_armor_chest"):key()] = true,
+	[Idstring("body_debris_armor_chest_big"):key()] = true,
+	[Idstring("body_debris_armor_stomache"):key()] = true,
+	[Idstring("body_debris_armor_stomache_big"):key()] = true,
+	[Idstring("body_debris_helmet_plate"):key()] = true,
+	[Idstring("body_debris_neck"):key()] = true,
+	[Idstring("body_debris_neck_big"):key()] = true,
+	[Idstring("body_debris_throat"):key()] = true,
+	[Idstring("body_debris_throat_big"):key()] = true,
 }
 
 function TankCopDamage:damage_bullet(attack_data, ...)

@@ -7,12 +7,44 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
-local cop_smg = scripted_enemy.cop_3
+local cop_smg = scripted_enemy.la_cop_3
+local cop_pistol = scripted_enemy.la_cop_1
+local cop_revolver = scripted_enemy.la_cop_2
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
+local sniper = scripted_enemy.sniper
+
+local swat_vans_and_events = is_eclipse and 2 or 1
+
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
+
+local filter_players_all = {
+	values = {
+		player_1 = true,
+		player_2 = true,
+		player_3 = true,
+		player_4 = true,
+	},
+}
+local filter_players_disable = {
+	values = {
+		player_1 = false,
+		player_2 = false,
+		player_3 = false,
+		player_4 = false,
+	},
+}
 
 local shield = {
 	enemy = is_eclipse_pro and elite_shield or shield,
+}
+local mitchell_sniper = {
+	enemy = sniper,
 }
 local disabled = {
 	values = {
@@ -37,6 +69,11 @@ local c4_amount = normal and 4 or 7
 local c4_event = {
 	values = {
 		amount = is_solo and c4_amount_solo or c4_amount,
+	},
+}
+local c4_event_counter = {
+	values = {
+		counter_target = is_solo and c4_amount_solo or c4_amount,
 	},
 }
 
@@ -80,10 +117,79 @@ return {
 			time = 30,
 		},
 	},
+	-- force SWAT vans arrival on police_called like it's in PDTH
+	[103343] = {
+		on_executed = {
+			{ id = 102080, delay = 25 },
+		},
+	},
+	-- make 2 van arrive at the time on Eclipse
+	[102080] = {
+		values = {
+			amount = swat_vans_and_events,
+			ignore_disabled = false,
+		},
+	},
+	-- make 2 events happen at the start of the assault on Eclipse
+	[102085] = {
+		values = {
+			amount = swat_vans_and_events,
+			ignore_disabled = false,
+		},
+	},
+	[101685] = {
+		values = {
+			amount = swat_vans_and_events,
+			ignore_disabled = false,
+		},
+	},
+	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
+	[100714] = {
+		on_executed = {
+			{ id = 400046, delay = 0 },
+		},
+	},
+	[100713] = {
+		on_executed = {
+			{ id = 400047, delay = 0 },
+		},
+	},
+	[100715] = {
+		on_executed = {
+			{ id = 400048, delay = 0 },
+		},
+	},
+	[100720] = {
+		on_executed = {
+			{ id = 400049, delay = 0 },
+		},
+	},
+	-- disable turret spawn from vans completely as they're disabled in Eclipse
+	-- Wilson's Swat Van
+	[102820] = filter_easy_above,
+	[102819] = filter_disable,
+	[101965] = filter_disable,
+	-- Mitchell's Swat van
+	[102388] = filter_easy_above,
+	[102383] = filter_disable,
+	[102382] = filter_disable,
+	-- Swat van near beach_spawn
+	[102216] = filter_easy_above,
+	[102320] = filter_disable,
+	[102369] = filter_disable,
 	-- change c4's amount event to resemble more from PDTH
 	[101890] = c4_event,
 	[102569] = c4_event,
 	[101891] = c4_event,
+	[102590] = c4_event_counter,
+	[102591] = c4_event_counter,
+	[101565] = c4_event_counter,
+	[102284] = filter_easy_above,
+	[102287] = filter_disable,
+	[102288] = filter_disable,
+	[102294] = filter_players_all,
+	[102568] = filter_players_disable,
+	[102307] = filter_players_disable,
 	-- change crowbar's amount depeniding on diffculties
 	[100127] = crowbar_amount,
 	[100129] = crowbar_sewer_amount,
@@ -151,18 +257,63 @@ return {
 	[102814] = exclude_cop_agents_shields_dozers,
 	[102815] = exclude_cop_agents_shields_dozers,
 	[102816] = exclude_cop_agents_shields_dozers,
-	-- replace 2nd bronco cop with smg cop to match with PDTH style (even if he doesn't carry a shotgun)
-	[100725] = {
-		values = {
-			enemy = cop_smg,
-		},
-	},
+	-- replace cops with lapd
+	[100725] = { enemy = cop_smg },
+	[100726] = { enemy = cop_pistol },
+	[100210] = { enemy = cop_pistol },
+	[100212] = { enemy = cop_revolver },
 	-- disable the 2nd police crusier if the cops are already alerted
 	[103034] = {
 		on_executed = {
 			{ id = 400015, delay = 0 },
 		},
 	},
+	-- fixes SWAT chopper that lands on Mitchell's roof not spawning at all (also fixes choppers having no sounds)
+	[102085] = {
+		on_executed = {
+			{ id = 101687, remove = true },
+			{ id = 101688, remove = true },
+			{ id = 101689, remove = true },
+			{ id = 400039, delay = 0 },
+			{ id = 400040, delay = 0 },
+			{ id = 400041, delay = 0 },
+		},
+	},
+	[101685] = {
+		on_executed = {
+			{ id = 101687, remove = true },
+			{ id = 101688, remove = true },
+			{ id = 101689, remove = true },
+			{ id = 400039, delay = 0 },
+			{ id = 400040, delay = 0 },
+			{ id = 400041, delay = 0 },
+		},
+	},
+	[101570] = {
+		on_executed = {
+			{ id = 400045, delay = 0 },
+		},
+	},
+	[100023] = {
+		on_executed = {
+			{ id = 400044, delay = 3 },
+		},
+	},
+	[101704] = {
+		on_executed = {
+			{ id = 101603, remove = true },
+			{ id = 400042, delay = 20 },
+		},
+	},
+	[101709] = {
+		on_executed = {
+			{ id = 101706, remove = true },
+			{ id = 400043, delay = 20 },
+		},
+	},
+	-- snipers on Mitchell's rooftop
+	[101717] = mitchell_sniper,
+	[101719] = mitchell_sniper,
 	-- delay the next anim by few more seconds to let the previous anim end (fix for Wilson's SWAT van)
 	[101647] = {
 		on_executed = {

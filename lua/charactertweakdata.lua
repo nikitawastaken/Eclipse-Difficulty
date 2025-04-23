@@ -8,6 +8,7 @@ local bellmead_response_heists = {
 	["deep"] = true,
 }
 local is_undercover = level_id == "man"
+local is_no_mercy = level_id == "nmh"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 local function diff_lerp(value_1, value_2)
@@ -929,7 +930,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		end,
 	}
 
+	self.civilian.speech_prefix_count = 6 -- restore 4 more civilian voices that are unused
+
 	self.security.chatter = self.presets.enemy_chatter.security
+	self.security.has_alarm_pager = not is_no_mercy and true or false
 
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 12
@@ -967,12 +971,19 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi.dodge = self.presets.dodge.average
 	self.fbi.no_arrest = false
 
+	self.fbi_office = deep_clone(self.cop)
+	table.insert(self._enemy_list, "fbi_office")
+
 	self.fbi_female = deep_clone(self.cop_female)
 	self.fbi_female.dodge = self.presets.dodge.average
 
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
 	self.gangster.speech_prefix_count = 2
+
+	self.triad.speech_prefix_p1 = "lt"
+	self.triad.speech_prefix_p2 = nil
+	self.triad.speech_prefix_count = 2
 
 	self.mobster.speech_prefix_p1 = "rt"
 	self.mobster.speech_prefix_p2 = nil
@@ -1192,10 +1203,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.headshot_dmg_mul = 25 -- 320 head health
 	self.tank.ecm_vulnerability = 0
 	self.tank.min_obj_interrupt_dis = 600
-	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt -- cool damage react thing
+	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
+
+	self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.tank_elite = deep_clone(self.tank)
 	self.tank_elite.HEALTH_INIT = 1200
@@ -1213,16 +1226,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
-	self.medic.HEALTH_INIT = 54
-	self.medic.headshot_dmg_mul = 2 -- 270 head health
+	self.medic.HEALTH_INIT = 60
+	self.medic.headshot_dmg_mul = 2 -- 300 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.can_be_healed = false
 	self.medic.melee_weapon = "weapon"
 
 	self.zeal_medic = deep_clone(self.medic)
-	self.zeal_medic.HEALTH_INIT = 54
-	self.zeal_medic.headshot_dmg_mul = 2 -- 270 head health
+	self.zeal_medic.HEALTH_INIT = 60
+	self.zeal_medic.headshot_dmg_mul = 2 -- 300 head health
 	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
 	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_medic")
@@ -1277,7 +1290,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.no_run_stop = true
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.mobster_boss.use_animation_on_fire_damage = false
-	self.mobster_boss.die_sound_event = "l2n_burndeath" --more effective death scream
 
 	self.chavez_boss.HEALTH_INIT = 200
 	self.chavez_boss.headshot_dmg_mul = 2
@@ -1286,7 +1298,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.chavez_boss.no_run_stop = true
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.chavez_boss.use_animation_on_fire_damage = false
-	self.chavez_boss.die_sound_event = "l2n_burndeath"
 
 	self.hector_boss.HEALTH_INIT = 300
 	self.hector_boss.headshot_dmg_mul = 2
@@ -1299,7 +1310,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.use_animation_on_fire_damage = false
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
-	self.hector_boss.die_sound_event = "l2n_burndeath"
 
 	self.biker_boss.HEALTH_INIT = 300
 	self.biker_boss.headshot_dmg_mul = 2
@@ -1310,7 +1320,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.use_animation_on_fire_damage = false
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
-	self.biker_boss.die_sound_event = "cf2_burndeath"
 
 	self.drug_lord_boss.HEALTH_INIT = 300
 	self.drug_lord_boss.headshot_dmg_mul = 2
@@ -1320,7 +1329,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
-	self.drug_lord_boss.die_sound_event = "l2n_burndeath"
 
 	self.triad_boss.HEALTH_INIT = 300
 	self.triad_boss.headshot_dmg_mul = 2
@@ -1550,6 +1558,8 @@ CharacterTweakData.tweak_table_weapon = {
 	security_army = "soldier",
 	marshal_security = "marshal_security",
 	cop_fat = "cop_fat",
+	fbi_office = "fbi",
+	fbi_female = "fbi",
 	soldier = "soldier",
 	cobra = "gangster",
 	shield = "shield",
@@ -1596,6 +1606,8 @@ CharacterTweakData.tweak_table_move_speed = {
 	security_army = "fast",
 	marshal_security = "fast",
 	cop_fat = "slow",
+	fbi_office = "normal",
+	fbi_female = "normal",
 	soldier = "fast",
 	medic = "normal",
 	zeal_medic = "normal",

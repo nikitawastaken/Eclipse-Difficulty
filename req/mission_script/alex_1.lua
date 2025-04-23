@@ -1,7 +1,21 @@
 local preferred = Eclipse.preferred
+local scripted_enemy = Eclipse.scripted_enemy
+local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local scripted_enemy = Eclipse.scripted_enemy
+local is_eclipse_pro = is_eclipse and is_pro_job
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
+local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
 -- credit for these changes goes to ASS, thanks miki <3
 local mendoza_enemy = {
 	Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),
@@ -10,6 +24,7 @@ local mendoza_enemy = {
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
 local mendoza = { enemy = mendoza_enemy }
+local heli_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer
 local sniper_groups = {
 	values = {
 		amount = normal and 1 or hard and 2 or 3,
@@ -29,9 +44,9 @@ local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
 }
 local chopper_amount = is_eclipse and 2 or 1
-local sniper_respawn_1 = is_eclipse and 80 or hard and 100 or 140
-local sniper_respawn_2 = is_eclipse and 60 or hard and 70 or 90
-local sniper_respawn_3 = is_eclipse and 30 or hard and 40 or 60
+local sniper_respawn_1 = (is_eclipse and 80 or hard and 100 or 140) - (is_pro_job and 30 or 0)
+local sniper_respawn_2 = (is_eclipse and 60 or hard and 70 or 90) - (is_pro_job and 20 or 0)
+local sniper_respawn_3 = (is_eclipse and 30 or hard and 40 or 60) - (is_pro_job and 10 or 0)
 local bridge_far_spawn = {
 	values = {
 		interval = 10,
@@ -64,8 +79,10 @@ return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
 	[101571] = cloaker_spawn,
 	[101572] = cloaker_spawn,
+	-- randomize dozer spawn
 	-- let bulldozer end his spawn anim before going into hunt mode
 	[100952] = {
+		enemy = heli_dozer,
 		on_executed = {
 			{ id = 100376, delay = 3.25 },
 		},

@@ -220,6 +220,27 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.stockholm_syndrome.multipro2 = "doubled"
 
 	-- Parterns in Crime
+	self.definitions.player_convert_camouflage_mul = {
+		name_id = "menu_player_convert_camouflage_mul",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "convert_camouflage_mul",
+			category = "player",
+		},
+	}
+	self.definitions.player_convert_counts_as_hostage = {
+		name_id = "menu_player_convert_counts_as_hostage",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "convert_counts_as_hostage",
+			category = "player",
+		},
+	}
+	self.values.player.convert_camouflage_mul = { 1.15 }
+	self.values.player.convert_counts_as_hostage = { true }
+	self.skill_descs.control_freak.multibasic = "15%"
 
 	-- Hostage Taker
 	self.values.player.hostage_health_regen_addend[1] = 0.8
@@ -735,22 +756,22 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.optic_illusions.multipro = "10%"
 
 	-- Second Wind
-	self.definitions.cooldown_panic_on_armor_break = {
-		name_id = "menu_cooldown_panic_on_armor_break",
+	self.definitions.cooldown_dodge_on_armor_break = {
+		name_id = "menu_cooldown_dodge_on_armor_break",
 		category = "cooldown",
 		upgrade = {
 			value = 1,
-			upgrade = "panic_on_armor_break",
+			upgrade = "dodge_on_armor_break",
 			category = "cooldown",
 		},
 	}
-	self.values.cooldown.panic_on_armor_break = { { 1, 12 } }
-	self.values.player.armor_panic = { { chance = 0.75, area = 500, amount = "panic" } }
-	self.values.temporary.damage_speed_multiplier = { { 1.25, 5 } }
-	self.skill_descs.dire_need.multibasic = "25%"
+	self.values.cooldown.dodge_on_armor_break = { { 1, 10 } }
+	self.values.player.armor_break_dodge = { 0.1 }
+	self.values.temporary.damage_speed_multiplier = { { 1.2, 5 } }
+	self.skill_descs.dire_need.multibasic = "20%"
 	self.skill_descs.dire_need.multibasic2 = "5"
-	self.skill_descs.dire_need.multipro = "75%"
-	self.skill_descs.dire_need.multipro2 = "12"
+	self.skill_descs.dire_need.multipro = "10%"
+	self.skill_descs.dire_need.multipro2 = "10"
 
 	-- Shockproof
 	self.values.player.weaker_tase_effect = { 0.33 }
@@ -1032,10 +1053,11 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Muscle
 	self.values.player.passive_health_regen = { 0.8 }
+	self.values.temporary.mrwi_health_invulnerable[1][1] = 0.25
 	self.values.temporary.mrwi_health_invulnerable[1][3] = 60
 	self.specialization_descs[2][9].multiperk = "40%"
 	self.specialization_descs[2][9].multiperk2 = "8"
-	self.specialization_descs[2][7].multiperk = "50%"
+	self.specialization_descs[2][7].multiperk = "25%"
 	self.specialization_descs[2][7].multiperk2 = "2"
 	self.specialization_descs[2][7].multiperk3 = "60"
 
@@ -1203,31 +1225,114 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[14][9].multiperk = "50%"
 
 	-- Anarchist
-	self.values.player.chico_armor_multiplier[1] = 1.3
 	self.values.player.armor_grinding = { {
-		{ 1, 1.5 },
-		{ 1.5, 2.25 },
+		{ 1, 2 },
+		{ 1.5, 2.5 },
 		{ 2, 3 },
 		{ 2.5, 3.75 },
 		{ 3.5, 4.5 },
 		{ 5, 6 },
-		{ 7, 9 },
+		{ 7, 8 },
 	} }
+	self.values.player.health_decrease = { 0.25, 0.5 }
+	self.definitions.player_health_decrease_2 = {
+		name_id = "menu_player_health_decrease",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "health_decrease",
+			category = "player",
+		},
+	}
+	self.values.player.level_2_anarchist_armor_multiplier = { 1.1 }
+	self.values.player.level_3_anarchist_armor_multiplier = { 1.15 }
+	self.values.player.level_4_anarchist_armor_multiplier = { 1.25 }
+	self.values.player.level_5_anarchist_armor_multiplier = { 1.4 }
+	self.values.player.level_6_anarchist_armor_multiplier = { 1.6 }
+	self.values.player.level_7_anarchist_armor_multiplier = { 1.8 }
+	self.definitions.player_level_2_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_2_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_2_anarchist_armor_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.player_level_3_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_3_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_3_anarchist_armor_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.player_level_4_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_4_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_4_anarchist_armor_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.player_level_5_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_5_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_5_anarchist_armor_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.player_level_6_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_6_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_6_anarchist_armor_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.player_level_7_anarchist_armor_multiplier = {
+		name_id = "menu_player_level_7_anarchist_armor_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "level_7_anarchist_armor_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.headshot_to_armor = { {
+		{ 1, 2 },
+		{ 1.5, 2.5 },
+		{ 2, 3 },
+		{ 2.5, 3.75 },
+		{ 3.5, 4.5 },
+		{ 5, 6 },
+		{ 7, 8 },
+	} }
+	self.definitions.player_headshot_to_armor = {
+		name_id = "menu_player_headshot_to_armor",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "headshot_to_armor",
+			category = "player",
+		},
+	}
 	self.values.player.damage_to_armor = { {
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
-		{ 1, 1.5 },
+		{ 1, 2 },
+		{ 1.5, 2.5 },
+		{ 2, 3 },
+		{ 2.5, 3.75 },
+		{ 3.5, 4.5 },
+		{ 5, 6 },
+		{ 7, 8 },
 	} }
-	self.values.player.armor_increase = { 0.1, 0.15, 0.2 }
-	self.specialization_descs[15][3].multiperk2 = "10%"
-	self.specialization_descs[15][5].multiperk2 = "15%"
-	self.specialization_descs[15][7].multiperk2 = "20%"
-	self.specialization_descs[15][7].multiperk3 = "5%"
-	self.specialization_descs[15][9].multiperk3 = "30%"
+	self.specialization_descs[15][3].multiperk = "75%"
+	self.specialization_descs[15][7].multiperk2 = "50%"
 
 	-- Biker
 	self.wild_trigger_time = 16
