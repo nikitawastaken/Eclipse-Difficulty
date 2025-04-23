@@ -8,6 +8,8 @@ local heavy_1 = scripted_enemy.heavy_swat_1
 local light_harasser = swat_1
 local heavy_harasser = eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
 local fail_to_believe_chance = (eclipse and 30 or 20) + (is_pro_job and 5 or 0)
+local timelock_normal = (eclipse and 240 or 180) + (is_pro_job and 30 or 0)
+local timelock_fast = (eclipse and 210 or 150) + (is_pro_job and 30 or 0)
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
@@ -82,11 +84,28 @@ return {
 			},
 		},
 	},
+	-- Disable Titan Cams
+	[106265] = {
+		values = {
+			enabled = false
+		}
+	},
 	-- Enable roof spawngroups
 	[100006] = {
 		values = {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
+	},
+	--More timelock timer on Eclipse and Pro Jobs
+	[103137] = {
+		values = {
+            time = timelock_normal
+		}
+	},
+	[100170] = {
+		values = {
+            time = timelock_fast
+		}
 	},
 	-- restore alternative phone call outcome that sends two beat cops to investigate (failed to fell for it)
 	[105244] = { chance = fail_to_believe_chance },
