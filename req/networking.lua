@@ -16,9 +16,10 @@ end
 NetworkHelper:AddReceiveHook("eclipse_hostage_trade", "eclipse_hostage_trade_hook", function(data, sender)
 	local params = json.decode(data)
 	local unit = get_unit_from_id(params.unit_id)
-	if not BaseNetworkHandler._verify_character(unit) then
+	if not unit or not alive(unit) then
 		return
 	end
+
 	Eclipse:log_chat("called hostage_trade", sender)
 	CopLogicTrade.hostage_trade(unit, params.enable, params.trade_success, params.skip_hint, params.is_custody_trade)
 end)
