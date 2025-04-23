@@ -115,8 +115,8 @@ function PlayerManager:on_headshot_dealt()
 	end
 
 	-- Anarchist on-headshot armor regen
-	if player_manager:has_category_upgrade("player", "headshot_to_armor") then
-		local headshot_to_armor_data = player_manager:upgrade_value("player", "headshot_to_armor", nil)
+	if managers.player:has_category_upgrade("player", "headshot_to_armor") then
+		local headshot_to_armor_data = managers.player:upgrade_value("player", "headshot_to_armor", nil)
 		local armor_data = tweak_data.blackmarket.armors[managers.blackmarket:equipped_armor(true, true)]
 
 		if headshot_to_armor_data and armor_data then
