@@ -27,6 +27,7 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 			is_custody_trade = is_custody_trade,
 		})
 	)
+	Eclipse:log_chat("sent hostage trade network rq")
 	CopLogicTrade.hostage_trade(data.unit, true, false, skip_hint, is_custody_trade)
 	data.unit:brain():set_update_enabled_state(true)
 	data.unit:brain():set_attention_settings({
