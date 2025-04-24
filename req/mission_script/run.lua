@@ -23,17 +23,26 @@ local garage_swat_spawn_1 = {
 	values = {
 		enabled = true,
 	},
+	on_executed = {
+		{ delay = 2, id = 410012 },
+	},
 }
 local garage_swat_spawn_2 = {
 	enemy = garage_swat_2,
 	values = {
 		enabled = true,
 	},
+	on_executed = {
+		{ delay = 2, id = 410012 },
+	},
 }
 local garage_shield_spawn = {
 	enemy = garage_shield,
 	values = {
 		enabled = true,
+	},
+	on_executed = {
+		{ delay = 2, id = 410012 },
 	},
 }
 
@@ -91,7 +100,6 @@ return {
 	[101760] = { -- players reached the top of the overpass
 		difficulty = 1,
 	},
-	--[[
 	-- restore garage events from PDTH
 	-- inkwell industrial
 	-- replace PDTH SWAT leftovers
@@ -111,7 +119,20 @@ return {
 	[102630] = garage_swat_spawn_2,
 	[102509] = garage_swat_spawn_2,
 	[100432] = garage_shield_spawn,
-	[100362] = garage_shield_spawn,
+	[100364] = garage_shield_spawn,
+	-- add custom unit sequence for opening the gate
+	[100612] = {
+		on_executed = {
+			{ remove = true, id = 100665 },
+			{ delay = 1, id = 400099 },
+		},
+	},
+	-- parking lot
+	-- replace PDTH SWAT leftovers
+	[102801] = garage_swat_spawn_1,
+	[102800] = garage_swat_spawn_1,
+	[101640] = garage_shield_spawn,
+	[101756] = garage_shield_spawn,
 	-- add custom unit sequence for opening the gate
 	[102802] = {
 		on_executed = {
@@ -121,21 +142,6 @@ return {
 			{ delay = 1, id = 410000 },
 		},
 	},
-	-- parking lot
-	-- replace PDTH SWAT leftovers
-	[102801] = garage_swat_spawn_1,
-	[102800] = garage_swat_spawn_1,
-	[100364] = garage_shield_spawn,
-	[100432] = garage_shield_spawn,
-	-- add custom unit sequence for opening the gate
-	[100612] = {
-		on_executed = {
-			{ remove = true, id = 100665 },
-			{ delay = 1, id = 400099 },
-		},
-	},
-	]]
-	--
 	-- restore dozer kicking door event from PDTH
 	[103517] = {
 		on_executed = {
