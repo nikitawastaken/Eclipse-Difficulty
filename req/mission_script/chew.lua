@@ -23,6 +23,6 @@ return {
 			player_1 = true,
 			player_2 = true,
 			player_3 = true,
-		}
-	}
+		},
+	},
 }
