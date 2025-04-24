@@ -462,7 +462,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- ccf
 	self.specializations[1].category = { "health", "support" }
 	-- mus
-	self.specializations[2].category = { "health", "healing" }
+	self.specializations[2].category = { "health" }
 	-- arm
 	self.specializations[3].category = "armor"
 	-- rog
