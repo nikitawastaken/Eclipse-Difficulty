@@ -294,11 +294,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 6 * dmg_mul, r = 4000, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.elite_shield.is_shotgun_mag.autofire_rounds = { 1, 4 }
 	presets.weapon.elite_shield.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
-		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.45, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 3 } },
-		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
+		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.45, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.zeal_shield = based_on(presets.weapon.shield)
@@ -380,8 +379,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.tank.is_shotgun_mag.RELOAD_SPEED = 0.9
 	presets.weapon.tank.is_shotgun_mag.autofire_rounds = { 1, 6 }
 	presets.weapon.tank.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 5, 6 } },
-		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.45, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
+		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.7 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
+		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.45, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 3 } },
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
