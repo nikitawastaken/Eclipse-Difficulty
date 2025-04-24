@@ -19,7 +19,7 @@ return {
 	-- make it appear on ovk above and enable it to all players
 	[100560] = {
 		values = {
-			enabled = not overkill_and_above and false or true,
+			enabled = overkill_and_above and true or false,
 			player_1 = true,
 			player_2 = true,
 			player_3 = true,
