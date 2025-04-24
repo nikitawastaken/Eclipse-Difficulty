@@ -75,21 +75,21 @@ return {
 	-- Adjust difficulty scaling
 	[103749] = { -- players spawned
 		values = {
-			difficulty = 0.4
+			difficulty = 0.4,
 		},
 	},
 	[103750] = { -- players reached Inkwell Industrial
 		values = {
-			difficulty = 0.6
+			difficulty = 0.6,
 		},
 	},
 	[103751] = { -- players reached the fence
 		values = {
-			difficulty = 0.8
+			difficulty = 0.8,
 		},
 	},
 	[101760] = { -- players reached the top of the overpass
-		difficulty = 1
+		difficulty = 1,
 	},
 	--[[
 	-- restore garage events from PDTH
@@ -405,7 +405,7 @@ return {
 	[103883] = { -- Matt is out, go to parking
 		on_executed = {
 			{ id = 410006, delay = 0 }, -- second Major Ave preferred add
-			{ id = 410011, delay = 0 }, -- Inkwell Industrial preferred remove	
+			{ id = 410011, delay = 0 }, -- Inkwell Industrial preferred remove
 		},
 		reinforce = { -- remove Inkwell reinforce
 			{ name = "inkwell" },
@@ -464,11 +464,11 @@ return {
 	[100210] = cheat_spawn,
 	[100249] = cheat_spawn,
 	[100295] = cheat_spawn,
-	[100597] = cheat_spawn,	
+	[100597] = cheat_spawn,
 	[101597] = cheat_spawn,
 	[101527] = cheat_spawn,
 	[101587] = cheat_spawn,
-	[103561] = cheat_spawn,	
+	[103561] = cheat_spawn,
 	[103998] = cheat_spawn,
 	[100310] = van_spawn,
 	[103701] = van_spawn,

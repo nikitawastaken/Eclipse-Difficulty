@@ -397,16 +397,16 @@ M.elements = {
 	-- dozer slamming door spawn
 	Eclipse.mission_elements.gen_object_editor(410002, "open_the_door", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsKickthefuckingdoor),
 	Eclipse.mission_elements.gen_dummy(410003, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
-	
+
 	Eclipse.mission_elements.gen_preferedadd(410004, "eclipse_major_ave_preferedadd_1", optsPreferedAdd1),
 	Eclipse.mission_elements.gen_preferedremove(410005, "eclipse_major_ave_preferedremove_1", optsPreferedRemove1),
-	
+
 	Eclipse.mission_elements.gen_preferedadd(410006, "eclipse_major_ave_preferedadd_2", optsPreferedAdd2),
 	Eclipse.mission_elements.gen_preferedremove(410007, "eclipse_major_ave_preferedremove_2", optsPreferedRemove2),
-	
+
 	Eclipse.mission_elements.gen_preferedadd(410008, "eclipse_easy_st_preferedadd", optsPreferedAdd3),
 	Eclipse.mission_elements.gen_preferedremove(410009, "eclipse_easy_st_preferedremove", optsPreferedRemove3),
-	
+
 	Eclipse.mission_elements.gen_preferedadd(410010, "eclipse_inkwell_preferedadd", optsPreferedAdd4),
 	Eclipse.mission_elements.gen_preferedremove(410011, "eclipse_inkwell_preferedremove", optsPreferedRemove4),
 }
