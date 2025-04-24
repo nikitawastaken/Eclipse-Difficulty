@@ -1,4 +1,4 @@
-local overkill_and_above = Eclipse.utils.diff_threshold()
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 
 return {
 	-- Boss spawn
