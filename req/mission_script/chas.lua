@@ -10,7 +10,7 @@ local exclude_shields_dozers = {
 local exclude_shields = {
 	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc", "tank" },
 }
-local warehouse_preferred_delay = { 
+local warehouse_preferred_delay = {
 	on_executed = {
 		{ id = 101196, delay = 30 },
 	},
@@ -54,7 +54,7 @@ return {
 		},
 	},
 	[101198] = { -- warehouse door open
-		reinforce = { 
+		reinforce = {
 			{
 				name = "tea_shop",
 				force = 2,
