@@ -11,5 +11,14 @@ end
 
 -- Additional is_custody_trade argument
 function HuskCopBrain:on_trade(position, rotation, is_custody_trade)
-	self._unit:network():send_to_host("unit_traded", position, rotation, is_custody_trade)
+	-- self._unit:network():send_to_host("unit_traded", position, rotation, is_custody_trade)
+	NetworkHelper:SendToHost(
+		"Eclipse_HuskCopBrain:on_trade",
+		json.encode({
+			unit_id = self._unit:id(),
+			position = position,
+			rotation = rotation,
+			is_custody_trade = is_custody_trade,
+		})
+	)
 end
