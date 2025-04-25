@@ -333,8 +333,12 @@ return {
 			{ id = 400016, delay = 3.5 },
 		},
 	},
-	-- disable vanilla snipers
-	[102941] = disabled,
+	-- keep vanilla snipers off (except on eclipse pro job)
+	[102941] = {
+		values = {
+			enabled = not is_eclipse_pro and false or true,
+		},
+	},	
 	-- spawn two extra tasers with blockade shields on Eclipse (193+ throwback)
 	[101926] = {
 		on_executed = {

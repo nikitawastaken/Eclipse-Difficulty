@@ -87,6 +87,27 @@ local spawn_random_cloakers = {
 	},
 }
 
+local optsBesiegeDummy = {
+	trigger_times = 0,
+	participate_to_group_ai = true,
+	spawn_action = "e_sp_down_10m_swing_in_var2",
+	enabled = true,
+}
+local optsPreferedAdd1 = {
+	spawn_groups = { 400019 },
+	on_executed = {
+		{ id = 400021, delay = 0 },
+	},
+	enabled = true,
+}
+local optsOpen_the_elevator = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 103057, notify_unit_sequence = "open_doors", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 103070, notify_unit_sequence = "open_doors", time = 0 },
+	},
+}
+
+
 M.elements = {
 	-- cloakers, spawn as ambush in vault hallway (similiar to First World Bank)
 	Eclipse.mission_elements.gen_dummy(400000, "spooc_1", Vector3(-2864, 746, -1000), Rotation(-180, 0, -0), optsCloaker_1),
@@ -103,5 +124,18 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400010, "enable_cloakers", optsEnable_cloakers),
 	Eclipse.mission_elements.gen_toggleelement(400011, "disable_cloakers", optsDisable_cloakers),
 	Eclipse.mission_elements.gen_element_random(400012, "cloaker_ambush_event", spawn_random_cloakers),
+	
+	-- 3rd elevator spawn
+	Eclipse.mission_elements.gen_dummy(400013, "eclipse_spawn_enemy_001", Vector3(-745, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400014, "eclipse_spawn_enemy_002", Vector3(-801, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400015, "eclipse_spawn_enemy_003", Vector3(-858, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400016, "eclipse_spawn_enemy_004", Vector3(-1130, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400017, "eclipse_spawn_enemy_005", Vector3(-1201, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400018, "eclipse_spawn_enemy_006", Vector3(-1268, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(400019, "eclipse_enemy_group_001", { 400013, 400014, 400015, 400016, 400017, 400018 }, 0),
+	
+	Eclipse.mission_elements.gen_preferedadd(400020, "eclipse_3rd_elevator_spawn", optsPreferedAdd1),
+	Eclipse.mission_elements.gen_object_editor(400021, "hit_it", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpen_the_elevator),
+	
 }
 return M
