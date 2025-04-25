@@ -167,14 +167,14 @@ return {
 	},
 	--PDTH styled ambushes
 	[102524] = {
+		values = {
+			position = Vector3(-12584, 6678, 100.995),
+		},
 		on_executed = {
 			--be gone
 			{ id = 102442, remove = true },
-			--trigger ambushes after 10 seconds
-			{ id = 400052, delay = 10 },
-			{ id = 400053, delay = 10 },
-			{ id = 400054, delay = 10 },
-			{ id = 400055, delay = 10 },
+			--trigger ambushes
+			{ id = 400058, delay = 0 },
 		},
 	},
 	[102505] = {

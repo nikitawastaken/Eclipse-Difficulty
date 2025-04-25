@@ -36,6 +36,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["kenaz"] = true,
 		["jolly"] = true,
 		["pal"] = true,
+		["friend"] = true,
 	}
 
 	local coast_guard = {
