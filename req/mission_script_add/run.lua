@@ -160,6 +160,14 @@ local optsKickthefuckingdoor = {
 	on_executed = { { id = 410003, delay = 0 } },
 }
 
+local optsGarageHunt = {
+	SO_access = tostring(128 + 2048),
+	path_style = "none",
+	pose = "crouch",
+	scan = true,
+	so_action = "AI_hunt",
+}
+
 local optsspawnSWATs = {
 	on_executed = { { id = 101756, delay = 0 }, { id = 101640, delay = 0 }, { id = 102801, delay = 0 }, { id = 102800, delay = 0 } },
 	enabled = true,
@@ -228,7 +236,38 @@ local optsBesiegeStart = {
 		{ id = 400090, delay = 4.150 },
 	},
 }
-
+local optsPreferedAdd1 = {
+	spawn_groups = { 400027, 400032, 400037, 400042 },
+	enabled = true,
+}
+local optsPreferedRemove1 = {
+	elements = { 410004 },
+	enabled = true,
+}
+local optsPreferedAdd2 = {
+	spawn_groups = { 400048, 400053 },
+	enabled = true,
+}
+local optsPreferedRemove2 = {
+	elements = { 410006 },
+	enabled = true,
+}
+local optsPreferedAdd3 = {
+	spawn_groups = { 400058, 400063, 400068 },
+	enabled = true,
+}
+local optsPreferedRemove3 = {
+	elements = { 410008 },
+	enabled = true,
+}
+local optsPreferedAdd4 = {
+	spawn_groups = { 400073, 400078 },
+	enabled = true,
+}
+local optsPreferedRemove4 = {
+	elements = { 410010 },
+	enabled = true,
+}
 M.elements = {
 	-- 193+ alike shield wall on turning the corner on major ave.
 	Eclipse.mission_elements.gen_dummy(400000, "eclipse_shield_wall_1", Vector3(-6805, -2965, 50), Rotation(0, 0, 0), optsShieldWall1),
@@ -363,9 +402,22 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400099, "open_gate_2", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_2),
 	Eclipse.mission_elements.gen_object_editor(410000, "open_gate_3", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_3),
 	Eclipse.mission_elements.gen_missionscript(410001, "spawn_garage_swats", optsspawnSWATs),
+	Eclipse.mission_elements.gen_so(410012, "garage_hunt", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGarageHunt),
 	-- dozer slamming door spawn
 	Eclipse.mission_elements.gen_object_editor(410002, "open_the_door", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsKickthefuckingdoor),
 	Eclipse.mission_elements.gen_dummy(410003, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
+
+	Eclipse.mission_elements.gen_preferedadd(410004, "eclipse_major_ave_preferedadd_1", optsPreferedAdd1),
+	Eclipse.mission_elements.gen_preferedremove(410005, "eclipse_major_ave_preferedremove_1", optsPreferedRemove1),
+
+	Eclipse.mission_elements.gen_preferedadd(410006, "eclipse_major_ave_preferedadd_2", optsPreferedAdd2),
+	Eclipse.mission_elements.gen_preferedremove(410007, "eclipse_major_ave_preferedremove_2", optsPreferedRemove2),
+
+	Eclipse.mission_elements.gen_preferedadd(410008, "eclipse_easy_st_preferedadd", optsPreferedAdd3),
+	Eclipse.mission_elements.gen_preferedremove(410009, "eclipse_easy_st_preferedremove", optsPreferedRemove3),
+
+	Eclipse.mission_elements.gen_preferedadd(410010, "eclipse_inkwell_preferedadd", optsPreferedAdd4),
+	Eclipse.mission_elements.gen_preferedremove(410011, "eclipse_inkwell_preferedremove", optsPreferedRemove4),
 }
 
 return M

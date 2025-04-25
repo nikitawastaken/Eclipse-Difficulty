@@ -47,8 +47,8 @@ return {
 	},
 	-- second, change enemy spawn and position
 	[101053] = {
+		enemy = dozer_spawn,
 		values = {
-			enemy = dozer_spawn,
 			enabled = dozer_chance,
 			position = Vector3(1421.624, 2495.052, -800.000),
 			rotation = Rotation(138.000, 0, -0),

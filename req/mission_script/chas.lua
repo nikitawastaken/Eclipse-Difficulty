@@ -4,28 +4,29 @@ local enabled = {
 		enabled = true,
 	},
 }
+local exclude_shields_dozers = {
+	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+}
+local exclude_shields = {
+	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc", "tank" },
+}
+local warehouse_preferred_delay = {
+	on_executed = {
+		{ id = 101196, delay = 30 },
+	},
+}
 local sniper_trigger_times = {
 	values = {
 		trigger_times = 0,
 	},
 }
-local front_spawn = {
-	values = {
-		interval = 10,
-	},
-}
-local alleyway_spawn = {
+local close_spawn = {
 	values = {
 		interval = 15,
 	},
+	groups = preferred.no_shields_bulldozers,
 }
 local building_spawn = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_cops_agents_bulldozers,
-}
-local teashop_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -33,35 +34,38 @@ local teashop_spawn = {
 }
 local warehouse_spawn = {
 	values = {
-		interval = 40,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local scaffolding_spawn = {
-	values = {
 		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[101190] = {
-		reinforce = {
+	[100109] = {
+		reinforce = { -- Police arrived
 			{
-				name = "store_front1",
+				name = "shop_front1",
 				force = 3,
 				position = Vector3(-2000, 300, -10),
 			},
 			{
-				name = "store_front2",
+				name = "shop_front2",
 				force = 3,
 				position = Vector3(-1000, 300, -10),
 			},
 		},
 	},
-	[101647] = {
+	[101198] = { -- warehouse door open
 		reinforce = {
-			{ name = "store_front1" },
-			{ name = "store_front2" },
+			{
+				name = "tea_shop",
+				force = 2,
+				position = Vector3(-2900, -1400, 0),
+			},
+		},
+	},
+	[101647] = { -- Dragon found, change reinfroce
+		reinforce = {
+			{ name = "shop_front1" },
+			{ name = "shop_front2" },
 			{
 				name = "back_alley",
 				force = 3,
@@ -74,6 +78,45 @@ return {
 			},
 		},
 	},
+	-- Don't remove some preferreds
+	[100606] = {
+		on_executed = {
+			{ id = 102459, remove = true }, -- 3rd preferred remove
+		},
+	},
+	[100821] = {
+		on_executed = {
+			{ id = 102459, remove = true }, -- 3rd preferred remove
+		},
+	},
+	[100774] = {
+		on_executed = {
+			{ id = 102469, remove = true }, -- 5th preferred remove
+		},
+	},
+	-- Delay preferreds inside the warehouse
+	[101190] = warehouse_preferred_delay,
+	[101791] = warehouse_preferred_delay,
+	-- Restrict a few SOs
+	[101029] = exclude_shields, -- no Shields
+	[101031] = exclude_shields,
+	[101033] = exclude_shields,
+	[101034] = exclude_shields,
+	[101067] = exclude_shields,
+	[101066] = exclude_shields,
+	[101065] = exclude_shields,
+	[101063] = exclude_shields,
+	[103062] = exclude_shields,
+	[101036] = exclude_shields,
+	[101035] = exclude_shields,
+	[100978] = exclude_shields_dozers,
+	[100985] = exclude_shields_dozers, -- no Shields or Dozers
+	[100984] = exclude_shields_dozers,
+	[100983] = exclude_shields_dozers,
+	[100982] = exclude_shields_dozers,
+	[100981] = exclude_shields_dozers,
+	[100979] = exclude_shields_dozers,
+	[100978] = exclude_shields_dozers,
 	-- Should fix enemies getting stuck in that certain spawn point
 	-- Yes, this shit was never fixed since the release of this heist lmao
 	[101088] = enabled,
@@ -98,18 +141,19 @@ return {
 	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents).
 	-- Spawn groups that rappel directly onto the street/right next to the tea shop have also been slowed down and restricted to make them less oppressive.
 	-- Alleyway and front spawns are slower to improve pacing during early assaults.
-	[102713] = front_spawn,
-	[100132] = alleyway_spawn,
-	[100692] = teashop_spawn,
-	[100694] = teashop_spawn,
+	[100131] = close_spawn,
+	[100132] = close_spawn,
+	[102713] = close_spawn,
+	[100133] = building_spawn,
+	[100692] = building_spawn,
+	[100694] = building_spawn,
 	[100033] = building_spawn,
 	[100693] = building_spawn,
+	[101006] = building_spawn,
 	[101047] = building_spawn,
 	[101053] = building_spawn,
-	[100019] = warehouse_spawn,
-	[101133] = warehouse_spawn,
 	[100007] = warehouse_spawn,
+	[100019] = warehouse_spawn,
 	[101201] = warehouse_spawn,
-	[100133] = scaffolding_spawn,
-	[101006] = scaffolding_spawn,
+	[101133] = warehouse_spawn,
 }

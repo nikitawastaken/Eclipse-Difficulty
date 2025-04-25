@@ -14,7 +14,7 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
-local swat_vans_and_events = is_eclipse and 2 or 1
+local swat_vans_and_events = not is_eclipse and 1 or 2
 
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
@@ -68,12 +68,12 @@ local c4_amount_solo = normal and 2 or 4
 local c4_amount = normal and 4 or 7
 local c4_event = {
 	values = {
-		amount = is_solo and c4_amount_solo or c4_amount,
+		amount = not is_solo and c4_amount or c4_amount_solo,
 	},
 }
 local c4_event_counter = {
 	values = {
-		counter_target = is_solo and c4_amount_solo or c4_amount,
+		counter_target = not is_solo and c4_amount or c4_amount_solo,
 	},
 }
 
@@ -120,7 +120,8 @@ return {
 	-- force SWAT vans arrival on police_called like it's in PDTH
 	[103343] = {
 		on_executed = {
-			{ id = 102080, delay = 25 },
+			{ id = 102080, delay = 35 },
+			{ id = 102080, delay = 120 },
 		},
 	},
 	-- make 2 van arrive at the time on Eclipse

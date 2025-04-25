@@ -62,7 +62,7 @@ M["levels/instances/unique/sub_sewer_sidespawn/world/world"] = function(result)
 		elseif side_spawn.spawn_chance[id] then
 			element.values.chance = 30
 			element.values.on_executed = {
-				{ id = 100010, delay = 0 },
+				{ id = 100020, delay = 0 },
 			}
 		end
 	end
