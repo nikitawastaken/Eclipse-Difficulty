@@ -336,7 +336,7 @@ return {
 	-- keep vanilla snipers off (except on eclipse pro job)
 	[102941] = {
 		values = {
-			enabled = not is_eclipse_pro and false or true,
+			enabled = is_eclipse_pro and true or false,
 		},
 	},
 	-- spawn two extra tasers with blockade shields on Eclipse (193+ throwback)
