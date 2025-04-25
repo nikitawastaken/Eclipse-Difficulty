@@ -6,7 +6,6 @@ local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local ambush_amount = 2 + (is_pro_job and 1 or 0)
 
-
 local shield = scripted_enemy.shield
 local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
