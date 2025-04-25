@@ -19,6 +19,21 @@ function M.diff_lerp(value_1, value_2)
 	return math.lerp(value_1, value_2, math.min(f, 1))
 end
 
+function M.get_unit_from_id(unit_id)
+	for _, data in pairs(managers.enemy:all_enemies()) do
+		if data.unit:id() == unit_id then
+			return data.unit
+		end
+	end
+	for _, data in pairs(managers.enemy:all_civilians()) do
+		if data.unit:id() == unit_id then
+			return data.unit
+		end
+	end
+
+	return false
+end
+
 function M.difficulty_index()
 	return diff_i
 end
