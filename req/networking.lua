@@ -37,6 +37,9 @@ function NetworkHelper:encode(data)
 	return json.encode(data)
 end
 
+---Decodes networked data and handles Vector3/Rotation properly
+---@param data string @Data to deserialize
+---@return table @Data deserialized as a lua table
 function NetworkHelper:decode(data)
 	local t = json.decode(data)
 	for k, v in pairs(data) do
