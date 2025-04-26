@@ -454,8 +454,8 @@ function SkillTreeTweakData:init(tweak_data)
 			category = "dodge",
 		},
 		{
-			name_id = "menu_st_category_favorites",
-			category = "favorites",
+			name_id = "menu_st_category_special",
+			category = "special",
 		},
 	}
 
@@ -597,6 +597,133 @@ function SkillTreeTweakData:init(tweak_data)
 	-- leech
 	table.delete(self.specializations[22][9].upgrades, "player_activate_ability_downed")
 	table.delete(self.specializations[22][9].upgrades, "player_passive_health_multiplier_4")
+
+	local wildcard_perkdeck = {
+		{
+			cost = 200,
+			desc_id = "menu_deck_wildcard_1_desc",
+			short_id = "menu_deck_wildcard_1_short",
+			name_id = "menu_deck_wildcard_1",
+			upgrades = {
+				"passive_player_xp_multiplier"
+			},
+			icon_xy = {
+				5,
+				8
+			}
+		},
+		{
+			cost = 300,
+			desc_id = "menu_deckall_2_desc",
+			name_id = "menu_deckall_2",
+			upgrades = {
+				"player_regain_throwable_from_ammo_1"
+			},
+			icon_xy = {
+				0,
+				8
+			}
+		},
+		{
+			cost = 400,
+			desc_id = "menu_deck_wildcard_3_desc",
+			short_id = "menu_deck_wildcard_3_short",
+			name_id = "menu_deck_wildcard_3",
+			upgrades = {
+				"passive_player_cash_multiplier"
+			},
+			icon_xy = {
+				5,
+				8
+			}
+		},
+		{
+			cost = 600,
+			desc_id = "menu_deckall_4_desc",
+			name_id = "menu_deckall_4",
+			upgrades = {
+				"player_passive_suspicion_bonus",
+				"player_buy_bodybags_asset",
+				"player_additional_assets",
+				"player_buy_spotter_asset"
+			},
+			icon_xy = {
+				3,
+				0
+			}
+		},
+		{
+			cost = 1000,
+			desc_id = "menu_deck_wildcard_5_desc",
+			short_id = "menu_deck_wildcard_5_short",
+			name_id = "menu_deck_wildcard_5",
+			upgrades = {
+				"passive_player_xp_multiplier_2"
+			},
+			icon_xy = {
+				5,
+				8
+			}
+		},
+		{
+			cost = 1600,
+			desc_id = "menu_deckall_6_desc",
+			name_id = "menu_deckall_6",
+			upgrades = {
+				"armor_kit",
+				"player_passive_armor_movement_penalty_multiplier"
+			},
+			icon_xy = {
+				5,
+				0
+			}
+		},
+		{
+			cost = 2400,
+			desc_id = "menu_deck_wildcard_7_desc",
+			short_id = "menu_deck_wildcard_7_short",
+			name_id = "menu_deck_wildcard_7",
+			upgrades = {
+				"passive_player_cash_multiplier_2"
+			},
+			icon_xy = {
+				5,
+				8
+			}
+		},
+		{
+			cost = 3200,
+			desc_id = "menu_deckall_8_desc",
+			name_id = "menu_deckall_8",
+			upgrades = {
+				"passive_doctor_bag_interaction_speed_multiplier"
+			},
+			icon_xy = {
+				7,
+				0
+			}
+		},
+		{
+			cost = 4000,
+			desc_id = "menu_deck_wildcard_9_desc",
+			short_id = "menu_deck_wildcard_9_short",
+			name_id = "menu_deck_wildcard_9",
+			upgrades = {
+				"player_passive_loot_drop_multiplier",
+				"passive_player_xp_multiplier_3",
+				"passive_player_cash_multiplier_3"
+			},
+			icon_xy = {
+				5,
+				8
+			}
+		},
+		name_id = "menu_st_spec_wildcard",
+		desc_id = "menu_st_spec_wildcard_desc",
+		category = "special"
+	}
+
+	self.specializations[23] = wildcard_perkdeck
 
 	-- wild cards
 	for _, perkdeck in pairs(self.specializations) do
