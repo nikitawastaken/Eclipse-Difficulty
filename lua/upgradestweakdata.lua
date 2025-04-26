@@ -1411,10 +1411,63 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[22][9].multiperk = "6.25%"
 	self.specialization_descs[22][9].multiperk2 = "40%"
 
+	-- Wildcard Perkdeck
+	self.values.player.passive_xp_multiplier = { 1.1, 1.25, 1.45 }
+	self.definitions.passive_player_xp_multiplier_2 = {
+		name_id = "menu_player_xp_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "passive_xp_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.passive_player_xp_multiplier_3 = {
+		name_id = "menu_player_xp_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 3,
+			upgrade = "passive_xp_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.passive_cash_multiplier = { 1.1, 1.25, 1.45 }
+	self.definitions.passive_player_cash_multiplier = {
+		name_id = "menu_player_cash_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "passive_cash_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.passive_player_cash_multiplier_2 = {
+		name_id = "menu_player_cash_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "passive_cash_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.passive_player_cash_multiplier_3 = {
+		name_id = "menu_player_cash_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 3,
+			upgrade = "passive_cash_multiplier",
+			category = "player",
+		},
+	}
+	self.specialization_descs[23][1].multiperk = "10%"
+	self.specialization_descs[23][3].multiperk = "10%"
+	self.specialization_descs[23][5].multiperk = "15%"
+	self.specialization_descs[23][7].multiperk = "15%"
+	self.specialization_descs[23][9].multiperk = "20%"
+
 	-- misc
 	self.values.player.crouch_speed_multiplier[1] = 1.1
 	self.values.player.run_speed_multiplier[1] = 1.1
-	self.values.player.passive_xp_multiplier[1] = 1.2
 	self.values.player.regain_throwable_from_ammo[1].chance = 0.02
 	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.001
 end

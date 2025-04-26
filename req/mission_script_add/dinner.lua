@@ -3,22 +3,16 @@ local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
-local diff_i = Eclipse.utils.difficulty_index()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local ambush_amount = 2 + (is_pro_job and 1 or 0)
 
 local shield = scripted_enemy.shield
 local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 
-local diff_scaling = diff_i / 8
-
-local enabled_chance_cloakers = math.random() < diff_scaling
-local enabled_chance_shields_and_tazer = math.random() < diff_scaling
-local enabled_chance_shields_and_tazer_2 = math.random() < diff_scaling
-local enabled_chance_shields_and_dozer = math.random() < diff_scaling
-
 local spawn_cloakers = {
-	enabled = hard_and_above and enabled_chance_cloakers,
+	enabled = hard_and_above,
 	on_executed = {
 		{ id = 400001, delay = 0 },
 		{ id = 400002, delay = 0 },
@@ -26,7 +20,7 @@ local spawn_cloakers = {
 	},
 }
 local spawn_shields_and_taser_1 = {
-	enabled = enabled_chance_shields_and_tazer,
+	enabled = true,
 	on_executed = {
 		{ id = 400004, delay = 0 },
 		{ id = 400005, delay = 0 },
@@ -34,7 +28,7 @@ local spawn_shields_and_taser_1 = {
 	},
 }
 local spawn_shields_and_taser_2 = {
-	enabled = enabled_chance_shields_and_tazer_2,
+	enabled = true,
 	on_executed = {
 		{ id = 400007, delay = 0 },
 		{ id = 400008, delay = 0 },
@@ -42,11 +36,20 @@ local spawn_shields_and_taser_2 = {
 	},
 }
 local spawn_shields_and_dozer = {
-	enabled = hard_and_above and enabled_chance_shields_and_dozer,
+	enabled = hard_and_above,
 	on_executed = {
 		{ id = 400010, delay = 0 },
 		{ id = 400011, delay = 0 },
 		{ id = 400012, delay = 0 },
+	},
+}
+local spawn_random_ambush = {
+	amount = ambush_amount,
+	on_executed = {
+		{ id = 400050, delay = 0 },
+		{ id = 400051, delay = 0 },
+		{ id = 400052, delay = 0 },
+		{ id = 400053, delay = 0 },
 	},
 }
 local optsBesiegeDummy = {
@@ -179,6 +182,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400051, "spawn_shields_and_taser_1", spawn_shields_and_taser_1),
 	Eclipse.mission_elements.gen_missionscript(400052, "spawn_shields_and_taser_2", spawn_shields_and_taser_2),
 	Eclipse.mission_elements.gen_missionscript(400053, "spawn_shields_and_dozer", spawn_shields_and_dozer),
+	Eclipse.mission_elements.gen_element_random(400058, "ambush_event", spawn_random_ambush),
 	Eclipse.mission_elements.gen_missionscript(400054, "spawn_dozer_1", spawn_dozer_1),
 	Eclipse.mission_elements.gen_missionscript(400055, "spawn_dozer_2", spawn_dozer_2),
 	Eclipse.mission_elements.gen_so(400057, "hunt_so", Vector3(3600, 2473, -1200), Rotation(0, 0, 0), optsHunt_SO),

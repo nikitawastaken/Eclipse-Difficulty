@@ -168,6 +168,7 @@
 	"menu_st_category_resistance": "Resistance",
 	"menu_st_category_support": "Support",
 	"menu_st_category_dodge": "Dodge",
+	"menu_st_category_special": "Special",
 
 
 	"menu_deckall_2": "Refund",
@@ -274,6 +275,26 @@
 	"menu_deck22_1_short": "Unlocks and equips the Leech Ampule.",
 	"menu_deck22_5_short": "The Leech Ampule duration is increased to ##$multiperk## seconds. Killing an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s). Taking damage now heals teammates for ##$multiperk3## health.",
 	"menu_deck22_9_short": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##. Your maximum health is increased by ##$multiperk2##.",
+
+
+	"menu_st_spec_wildcard": "Wildcard",
+	"menu_st_spec_wildcard_desc": "The Wildcard is the one who walks in with nothing up his sleeve - and still walks out with the pot. No tells. No bluff. Just steel nerves and perfect reads. While others hide behind stacked decks, wildcard plays every hand straight, trusting in timing, instinct, and the sharp edge of experience.\n\nEvery heist is a gamble, but he doesn’t chase luck - he makes it. No wild cards in his hand, because he is the wild card. High risk. High stakes. And when the job is done, he doesn’t just walk away - he cashes out.",
+	"menu_deck_wildcard_1": "Cold Table, Warm Gun",
+	"menu_deck_wildcard_1_desc": "Your experience gained during the heist is increased by ##$multiperk##.",
+	"menu_deck_wildcard_1_short": "Your experience gained during the heist is increased by ##$multiperk##.",
+	"menu_deck_wildcard_3": "Price of a Seat",
+	"menu_deck_wildcard_3_desc": "Your money gained during the heist is increased by ##$multiperk##.",
+	"menu_deck_wildcard_3_short": "Your money gained during the heist is increased by ##$multiperk##.",
+	"menu_deck_wildcard_5": "High Stakes",
+	"menu_deck_wildcard_5_desc": "Your experience gained during the heist is increased by an additional ##$multiperk##.",
+	"menu_deck_wildcard_5_short": "Your experience gained during the heist is increased by an additional ##$multiperk##.",
+	"menu_deck_wildcard_7": "Hardest Hand at the Table",
+	"menu_deck_wildcard_7_desc": "Your money gained during the heist is increased by an additional ##$multiperk##.",
+	"menu_deck_wildcard_7_short": "Your money gained during the heist is increased by an additional ##$multiperk##.",
+	"menu_deck_wildcard_9": "All-in",
+	"menu_deck_wildcard_9_desc": "Your money and experience gained during the heist is increased by an additional ##$multiperk##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
+	"menu_deck_wildcard_9_short": "Your money and experienced gained during the heist is increased by an additional ##$multiperk##.",
+
 
 
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",

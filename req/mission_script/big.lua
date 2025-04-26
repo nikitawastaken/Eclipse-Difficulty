@@ -24,6 +24,12 @@ local elevator_spawn = {
 		interval = 25,
 	},
 }
+local elevator_spawn_2 = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local roof_spawn = {
 	values = {
 		interval = 30,
@@ -96,6 +102,12 @@ return {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
+	-- enable new elevator spawngroup
+	[104530] = {
+		on_executed = {
+			{ id = 400020, delay = 0 },
+		},
+	},
 	--More timelock timer on Eclipse and Pro Jobs
 	[103137] = {
 		values = {
@@ -157,6 +169,7 @@ return {
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,
 	[105434] = elevator_spawn,
+	[400019] = elevator_spawn_2,
 	-- Harassers
 	[100883] = harasser,
 	[100884] = harasser,

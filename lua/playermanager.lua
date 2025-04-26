@@ -976,3 +976,13 @@ function PlayerManager:body_armor_skill_multiplier(override_armor)
 
 	return multiplier
 end
+
+-- Wildcard money multiplier
+local get_skill_money_multiplier_orig = PlayerManager.get_skill_money_multiplier
+function PlayerManager:get_skill_money_multiplier(whisper_mode)
+	local cash_skill_mulitplier, bag_skill_mulitplier = get_skill_money_multiplier_orig(whisper_mode)
+	cash_skill_mulitplier = cash_skill_mulitplier * self:upgrade_value("player", "passive_cash_multiplier", 1)
+	bag_skill_mulitplier = bag_skill_mulitplier * self:upgrade_value("player", "passive_cash_multiplier", 1)
+
+	return cash_skill_mulitplier, bag_skill_mulitplier
+end
