@@ -32,30 +32,6 @@ local gensec_tank = {
 }
 
 return {
-	[100109] = {
-		reinforce = {
-			{
-				name = "north",
-				force = 2,
-				position = Vector3(0, -3000, -195),
-			},
-			{
-				name = "south",
-				force = 2,
-				position = Vector3(1250, 2500, -195),
-			},
-			{
-				name = "west",
-				force = 2,
-				position = Vector3(2750, -150, -195),
-			},
-			{
-				name = "east",
-				force = 2,
-				position = Vector3(4500, -150, -150),
-			},
-		},
-	},
 	-- GenSec scripted spawns
 	-- drivers
 	[100279] = gensec,
@@ -102,7 +78,16 @@ return {
 	[100524] = gensec,
 	[100525] = gensec,
 	-- van bulldozers
-	[102058] = gensec_tank,
-	[102068] = gensec_tank,
-	[102057] = gensec_tank
+	[103750] = gensec_tank,
+	[103751] = gensec_tank,
+	[103752] = gensec_tank,
+	[103753] = gensec_tank,
+	[103754] = gensec_tank,
+	[103755] = gensec_tank,
+	[103756] = gensec_tank,
+	[103757] = gensec_tank,
+	[103758] = gensec_tank,
+	[103759] = gensec_tank,
+	[103760] = gensec_tank,
+	[103761] = gensec_tank
 }
