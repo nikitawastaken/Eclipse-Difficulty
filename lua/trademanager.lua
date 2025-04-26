@@ -360,8 +360,8 @@ function TradeManager:trade_restore_resources()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	local unit = managers.player:player_unit()
 
+	Eclipse:log_chat("trade_restore_resources called")
 	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
-		Eclipse:log("Hostage traded, restoring a down")
 		u_data.unit:character_damage():restore_lives(1)
 	end
 
