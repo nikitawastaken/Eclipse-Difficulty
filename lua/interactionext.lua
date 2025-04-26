@@ -119,7 +119,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				json.encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					is_custody_trade = true,
+					type = "custody",
 				})
 			)
 		else
@@ -128,7 +128,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				json.encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					is_custody_trade = true,
+					type = "custody",
 				})
 			)
 		end
@@ -149,7 +149,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				json.encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					is_custody_trade = false,
+					type = "resource",
 				})
 			)
 		else
@@ -158,7 +158,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				json.encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					is_custody_trade = false,
+					type = "resource",
 				})
 			)
 		end
