@@ -324,8 +324,6 @@ end
 
 function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 	print("RC: Traded hostage!!")
-	Eclipse:log_chat("on_hostage_traded called")
-	Eclipse:log_chat(tostring(pos), tostring(rotation), tostring(is_custody_trade))
 
 	if self._trade_in_progress then
 		return
@@ -362,7 +360,6 @@ function TradeManager:trade_restore_resources()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	local unit = managers.player:player_unit()
 
-	Eclipse:log_chat("trade_restore_resources called")
 	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
 		u_data.unit:character_damage():restore_lives(1)
 	end
@@ -408,6 +405,6 @@ function TradeManager:trade_restore_resources()
 
 	if Network:is_server() then
 		-- managers.network:session():send_to_peers_synched("finish_trade", is_recon_over)
-		NetworkHelper:SendToPeers("Eclipse_TradeManager:trade_restore_resources", json.encode({ is_recon_over = is_recon_over and "yes" or "no" }))
+		NetworkHelper:SendToPeers("Eclipse_TradeManager:trade_restore_resources", NetworkHelper:encode({ is_recon_over = is_recon_over and "yes" or "no" }))
 	end
 end

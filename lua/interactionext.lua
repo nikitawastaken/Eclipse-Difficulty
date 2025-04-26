@@ -113,10 +113,9 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 	if self.tweak_data == "hostage_trade" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
 		if not NetworkHelper:IsHost() then
-			Eclipse:log_chat("Sending normal hostage trade")
 			NetworkHelper:SendToHost(
 				"Eclipse_HuskCopBrain:on_trade",
-				json.encode({
+				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
 					type = "custody",
@@ -125,7 +124,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 		else
 			NetworkHelper:SendToPeers(
 				"Eclipse_HuskCopBrain:on_trade2",
-				json.encode({
+				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
 					type = "custody",
@@ -143,10 +142,9 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 	elseif self.tweak_data == "hostage_trade_resources" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, false)
 		if not NetworkHelper:IsHost() then
-			Eclipse:log_chat("Sending resource hostage trade")
 			NetworkHelper:SendToHost(
 				"Eclipse_HuskCopBrain:on_trade",
-				json.encode({
+				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
 					type = "resource",
@@ -155,7 +153,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 		else
 			NetworkHelper:SendToPeers(
 				"Eclipse_HuskCopBrain:on_trade2",
-				json.encode({
+				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
 					type = "resource",

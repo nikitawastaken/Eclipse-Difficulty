@@ -21,19 +21,49 @@ function NetworkHelper:SendToHost(id, data)
 	end
 end
 
+---Encodes networked data and handles Vector3/Rotation properly
+---@param data table @Data to serialize
+---@return string @Data serialized as a string
+function NetworkHelper:encode(data)
+	for k, v in pairs(data) do
+		-- You better hope no networked tables have this in somehow :skull:
+		if type(v) == "Vector3" then
+			data[k] = { "Vector3", vector_to_string(v) }
+		elseif type(v) == "Rotation" then
+			data[k] = { "Rotation", rotation_to_string(v) }
+		end
+	end
+
+	return json.encode(data)
+end
+
+function NetworkHelper:decode(data)
+	local t = json.decode(data)
+	for k, v in pairs(data) do
+		if type(v) == "table" then
+			if v[1] == "Vector3" then
+				t[k] = math.string_to_vector(v[2])
+			elseif v[1] == "Rotation" then
+				t[k] = math.string_to_rotation(v[2])
+			end
+		end
+	end
+
+	return t
+end
+
 NetworkHelper:AddReceiveHook("Eclipse_CopLogicTrade.enter", "eclipse_hostage_trade_hook", function(data, sender)
-	local params = json.decode(data)
+	local params = NetworkHelper:decode(data)
 	local unit = Eclipse.utils.get_unit_from_id(params.unit_id)
 	if not unit or not alive(unit) then
 		return
 	end
 
-	Eclipse:log_chat("called hostage_trade", sender)
 	CopLogicTrade.hostage_trade(unit, params.enable, params.trade_success, params.skip_hint, params.is_custody_trade)
 end)
 
 NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade", "eclipse_on_trade_hook", function(data, sender)
-	local params = json.decode(data)
+	local params = NetworkHelper:decode(data)
 	local unit = Eclipse.utils.get_unit_from_id(params.unit_id)
 	if not unit or not alive(unit) then
 		return
@@ -43,12 +73,11 @@ NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade", "eclipse_on_trade_
 		return
 	end
 
-	Eclipse:log_chat("called on_trade", sender)
 	local is_custody_trade = params.type == "custody"
 	unit:brain():on_trade(params.position, params.rotation, true, is_custody_trade)
 	NetworkHelper:SendToPeers(
 		"Eclipse_HuskCopBrain:on_trade2",
-		json.encode({
+		NetworkHelper:encode({
 			position = params.position,
 			rotation = params.rotation,
 			type = params.type,
@@ -57,16 +86,15 @@ NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade", "eclipse_on_trade_
 end)
 
 NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade2", "eclipse_on_trade_hook2", function(data, sender)
-	Eclipse:log_chat("called on_trade2", sender)
 	if NetworkHelper:IsClient() then
-		local params = json.decode(data)
+		local params = NetworkHelper:decode(data)
 		local is_custody_trade = params.type == "custody"
 		managers.trade:on_hostage_traded(params.position, params.rotation, is_custody_trade)
 	end
 end)
 
 NetworkHelper:AddReceiveHook("Eclipse_TradeManager:trade_restore_resources", "eclipse_trade_sync_hook", function(data, sender)
-	local params = json.decode(data)
+	local params = NetworkHelper:decode(data)
 	local is_recon_over = params.is_recon_over == "yes"
 
 	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
@@ -91,12 +119,10 @@ NetworkHelper:AddReceiveHook("Eclipse_TradeManager:trade_restore_resources", "ec
 			end
 
 			for _, weapon in ipairs(available_selections) do
-				if not self._weapon_category or self._weapon_category == weapon.unit:base():weapon_tweak_data().categories[1] then
-					weapon.unit:base():add_ammo(amount_of_pickups, false)
-					managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
+				weapon.unit:base():add_ammo(amount_of_pickups, false)
+				managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
 
-					unit:sound():play("pickup_ammo_health_boost", nil, true)
-				end
+				unit:sound():play("pickup_ammo_health_boost", nil, true)
 			end
 		end
 	end
