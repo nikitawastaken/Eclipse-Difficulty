@@ -97,6 +97,9 @@ if not Eclipse then
 	Eclipse.level_scale = Eclipse:require("level_scale")
 	Eclipse.access_filter_presets = Eclipse:require("access_filter_presets")
 
+	-- Setup networking
+	Eclipse:require("networking")
+
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
 			[("english"):key()] = "en.txt",

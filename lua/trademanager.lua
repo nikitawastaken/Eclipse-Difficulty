@@ -361,7 +361,6 @@ function TradeManager:trade_restore_resources()
 	local unit = managers.player:player_unit()
 
 	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
-		--Eclipse:log("Hostage traded, restoring a down")
 		u_data.unit:character_damage():restore_lives(1)
 	end
 
@@ -405,6 +404,7 @@ function TradeManager:trade_restore_resources()
 	end
 
 	if Network:is_server() then
-		managers.network:session():send_to_peers_synched("finish_trade", is_recon_over)
+		-- managers.network:session():send_to_peers_synched("finish_trade", is_recon_over)
+		NetworkHelper:SendToPeers("Eclipse_TradeManager:trade_restore_resources", NetworkHelper:encode({ is_recon_over = is_recon_over and "yes" or "no" }))
 	end
 end

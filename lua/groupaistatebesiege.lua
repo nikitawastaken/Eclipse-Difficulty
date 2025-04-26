@@ -74,7 +74,6 @@ function GroupAIStateBesiege:_resource_trade_delay_assault_task()
 	local assault_delay_balance_mul = self:_get_balancing_multiplier_players_only(tweak_data.upgrades.resource_trade_assault_delay_balance_multiplier)
 	if self._task_data.assault.next_dispatch_t then
 		self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + assault_delay * assault_delay_balance_mul
-		--Eclipse:log_chat("Hostage traded, assault has been delayed until: " .. self._task_data.assault.next_dispatch_t)
 	end
 end
 
