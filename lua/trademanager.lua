@@ -325,6 +325,7 @@ end
 function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 	print("RC: Traded hostage!!")
 	Eclipse:log_chat("on_hostage_traded called")
+	Eclipse:log_chat(tostring(pos), tostring(rotation), tostring(is_custody_trade))
 
 	if self._trade_in_progress then
 		return
