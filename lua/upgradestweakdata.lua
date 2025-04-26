@@ -1468,7 +1468,6 @@ function UpgradesTweakData:init(tweak_data)
 	-- misc
 	self.values.player.crouch_speed_multiplier[1] = 1.1
 	self.values.player.run_speed_multiplier[1] = 1.1
-	self.values.player.passive_xp_multiplier[1] = 1.2
 	self.values.player.regain_throwable_from_ammo[1].chance = 0.02
 	self.values.player.regain_throwable_from_ammo[1].chance_inc = 0.001
 end
