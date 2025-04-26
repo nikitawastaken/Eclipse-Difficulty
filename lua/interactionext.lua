@@ -112,6 +112,14 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 
 	if self.tweak_data == "hostage_trade" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
+		NetworkHelper:SendToPeers(
+			"Eclipse_HuskCopBrain:on_trade2",
+			json.encode({
+				position = player:position(),
+				rotation = player:rotation(),
+				is_custody_trade = true,
+			})
+		)
 
 		if managers.blackmarket:equipped_mask().mask_id == tweak_data.achievement.relation_with_bulldozer.mask then
 			managers.achievment:award_progress(tweak_data.achievement.relation_with_bulldozer.stat)
@@ -122,6 +130,14 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 		})
 	elseif self.tweak_data == "hostage_trade_resources" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, false)
+		NetworkHelper:SendToPeers(
+			"Eclipse_HuskCopBrain:on_trade2",
+			json.encode({
+				position = player:position(),
+				rotation = player:rotation(),
+				is_custody_trade = false,
+			})
+		)
 
 		if managers.blackmarket:equipped_mask().mask_id == tweak_data.achievement.relation_with_bulldozer.mask then
 			managers.achievment:award_progress(tweak_data.achievement.relation_with_bulldozer.stat)
