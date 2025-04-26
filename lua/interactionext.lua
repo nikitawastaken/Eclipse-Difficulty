@@ -110,6 +110,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 		self._unit:damage():run_sequence_simple("interact")
 	end
 
+	Eclipse:log_chat(self.tweak_data)
 	if self.tweak_data == "hostage_trade" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
 
