@@ -1,6 +1,6 @@
 local gensec_operators = {
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
-	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2")
+	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
 }
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
@@ -23,13 +23,13 @@ local random_elite_dozers = {
 	elite_skull_bulldozer,
 }
 local gensec_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer
-		
+
 local gensec = {
-       enemy = overkill_and_above and gensec_operators
+	enemy = overkill_and_above and gensec_operators,
 }
 local gensec_tank = {
-       enemy = gensec_dozer
-}	
+	enemy = gensec_dozer,
+}
 
 return {
 	-- GenSec scripted spawns
@@ -89,5 +89,5 @@ return {
 	[101765] = gensec_tank,
 	[101766] = gensec_tank,
 	[101767] = gensec_tank,
-	[101768] = gensec_tank
+	[101768] = gensec_tank,
 }
