@@ -27,9 +27,9 @@ end
 function NetworkHelper:encode(data)
 	for k, v in pairs(data) do
 		-- You better hope no networked tables have this in somehow :skull:
-		if type(v) == "Vector3" then
+		if type_name(v) == "Vector3" then
 			data[k] = { "Vector3", vector_to_string(v) }
-		elseif type(v) == "Rotation" then
+		elseif type_name(v) == "Rotation" then
 			data[k] = { "Rotation", rotation_to_string(v) }
 		end
 	end
@@ -43,7 +43,7 @@ end
 function NetworkHelper:decode(data)
 	local t = json.decode(data)
 	for k, v in pairs(data) do
-		if type(v) == "table" then
+		if type_name(v) == "table" then
 			if v[1] == "Vector3" then
 				t[k] = math.string_to_vector(v[2])
 			elseif v[1] == "Rotation" then
