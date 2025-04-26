@@ -472,6 +472,7 @@
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
 				<file :name="visor_glass_orange_df.texture" />
+				<file :name="visor_glass_red_df.texture" />
 			</group>
 
 			<group :name="ene_acc_swat_helmet/">
@@ -479,7 +480,7 @@
 				<file :name="ene_acc_swat_helmet.model" />
 				<file :name="ene_acc_swat_helmet.object" />
 			</group>
-			
+
 			<group :name="ene_acc_swat_cap/">
 				<file :name="ene_acc_swat_cap.cooked_physics" />
 				<file :name="ene_acc_swat_cap.material_config" />
@@ -585,15 +586,15 @@
 
 					<file :name="ene_la_cop_1.material_config" />
 					<file :name="ene_la_cop_1_contour.material_config" />
-					
+
 					<file :name="ene_fbi_1.material_config" />
 					<file :name="ene_fbi_1_contour.material_config" />
 
 					<file :name="ene_prisonguard_male_1.material_config" />
-					<file :name="ene_prisonguard_male_1_contour.material_config" />					
+					<file :name="ene_prisonguard_male_1_contour.material_config" />
 				</group>
 			</group>
-			
+
 			<group :name="ene_security_1/">
 				<file :name="ene_security_1.unit" />
 				<file :name="ene_security_1_husk.unit" />
@@ -703,7 +704,7 @@
 				<file :name="ene_prisonguard_male_1.unit" />
 				<file :name="ene_prisonguard_male_1_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_secret_service_1/">
 				<xml  :name="ene_secret_service_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_secret_service_1.material_config" />
@@ -736,7 +737,7 @@
 				<group :name="vars/">
 					<file :name="ene_hoxton_breakout_guard_1.material_config" />
 					<file :name="ene_hoxton_breakout_guard_1_contour.material_config" />
-				</group>				
+				</group>
 			</group>
 
 			<group :name="ene_murkywater_2/">
@@ -759,7 +760,7 @@
 
 					<file :name="ene_city_swat_1.material_config" />
 					<file :name="ene_city_swat_1_contour.material_config" />
-				</group>	
+				</group>
 			</group>
 
 			<group :name="ene_swat_2/">
@@ -944,6 +945,11 @@
 		</group>
 
 		<group name="units/pd2_dlc1/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="ene_gensec_operator_df.texture" />
+				<file :name="ene_gensec_operator_nm.texture" />
+			</group>
+			
 			<group :name="ene_acc_gensec_beret/">
 				<file :name="ene_acc_gensec_beret.cooked_physics" />
 				<file :name="ene_acc_gensec_beret.material_config" />
@@ -965,6 +971,21 @@
 			<group :name="ene_security_gensec_2/">
 				<file :name="ene_security_gensec_2.unit" />
 				<file :name="ene_security_gensec_2_husk.unit" />
+			</group>
+
+			<group :name="ene_gensec_operator_1/">
+				<xml  :name="ene_gensec_operator_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_gensec_operator_1.material_config" />
+				<file :name="ene_gensec_operator_1_contour.material_config" />
+				<file :name="ene_gensec_operator_1.model" />
+				<file :name="ene_gensec_operator_1.object" />
+				<file :name="ene_gensec_operator_1.unit" />
+				<file :name="ene_gensec_operator_1_husk.unit" />
+			</group>
+
+			<group :name="ene_gensec_operator_2/">
+				<file :name="ene_gensec_operator_2.unit" />
+				<file :name="ene_gensec_operator_2_husk.unit" />
 			</group>
 		</group>
 
@@ -988,7 +1009,7 @@
 			</group>
 		</group>
 
-		<group name="units/pd2_dlc_rvd/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
+		<group name="units/pd2_dlc_rvd/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_la_cop_1/">
 				<file :name="ene_la_cop_1.unit" />
 				<file :name="ene_la_cop_1_husk.unit" />
@@ -1008,29 +1029,29 @@
 				<file :name="ene_la_cop_4.unit" />
 				<file :name="ene_la_cop_4_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_la_cop_1_fat/">
 				<file :name="ene_la_cop_1_fat.unit" />
 				<file :name="ene_la_cop_1_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_la_cop_2_fat/">
 				<file :name="ene_la_cop_2_fat.unit" />
 				<file :name="ene_la_cop_2_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_la_cop_3_fat/">
 				<file :name="ene_la_cop_3_fat.unit" />
 				<file :name="ene_la_cop_3_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_la_cop_4_fat/">
 				<file :name="ene_la_cop_4_fat.unit" />
 				<file :name="ene_la_cop_4_fat_husk.unit" />
 			</group>
 		</group>
-		
-		<group name="units/pd2_dlc_chas/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">	
+
+		<group name="units/pd2_dlc_chas/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_male_chas_police_01/">
 				<xml  :name="ene_male_chas_police_01.sequence_manager" dyn_package="true" />
 				<file :name="ene_male_chas_police_01.material_config" />
@@ -1060,22 +1081,22 @@
 				<file :name="ene_male_chas_police_04.unit" />
 				<file :name="ene_male_chas_police_04_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_male_chas_police_01_fat/">
 				<file :name="ene_male_chas_police_01_fat.unit" />
 				<file :name="ene_male_chas_police_01_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_chas_police_02_fat/">
 				<file :name="ene_male_chas_police_02_fat.unit" />
 				<file :name="ene_male_chas_police_02_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_chas_police_03_fat/">
 				<file :name="ene_male_chas_police_03_fat.unit" />
 				<file :name="ene_male_chas_police_03_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_chas_police_04_fat/">
 				<file :name="ene_male_chas_police_04_fat.unit" />
 				<file :name="ene_male_chas_police_04_fat_husk.unit" />
@@ -1116,7 +1137,7 @@
 				<file :name="ene_acc_ranc_ranger_hat.object" />
 				<file :name="ene_acc_ranc_ranger_hat.unit" />
 			</group>
-		
+
 			<group :name="ene_male_ranc_ranger_01/">
 				<file :name="ene_male_ranc_ranger_01.unit" />
 				<file :name="ene_male_ranc_ranger_01_husk.unit" />
@@ -1136,28 +1157,28 @@
 				<file :name="ene_male_ranc_ranger_04.unit" />
 				<file :name="ene_male_ranc_ranger_04_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_male_ranc_ranger_01_fat/">
 				<file :name="ene_male_ranc_ranger_01_fat.unit" />
 				<file :name="ene_male_ranc_ranger_01_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_ranc_ranger_02_fat/">
 				<file :name="ene_male_ranc_ranger_02_fat.unit" />
 				<file :name="ene_male_ranc_ranger_02_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_ranc_ranger_03_fat/">
 				<file :name="ene_male_ranc_ranger_03_fat.unit" />
 				<file :name="ene_male_ranc_ranger_03_fat_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_male_ranc_ranger_04_fat/">
 				<file :name="ene_male_ranc_ranger_04_fat.unit" />
 				<file :name="ene_male_ranc_ranger_04_fat_husk.unit" />
 			</group>
 		</group>
-		
+
 		<!-- zeals -->
 		<group name="units/pd2_dlc_gitgud/characters/" dyn_package="false">
 			<file :name="shared_textures/swat_df.texture"/>
@@ -1312,7 +1333,7 @@
 			<group :name="ene_acc_marksman_hat_2/">
 				<file :name="ene_acc_marksman_hat_2.model" />
 			</group>
-				
+
 			<group :name="ene_male_marshal_marksman_1/">
 				<xml  :name="ene_male_marshal_marksman_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_male_marshal_marksman_1.material_config" />
@@ -1345,7 +1366,7 @@
 				<file :name="wpn_npc_hcar.unit"/>
 			</group>
 		</group>
-		
+
 		<group name="units/pd2_dlc_usm2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_acc_marshal_shield_helmet/">
 				<file :name="ene_acc_marshal_shield_helmet.cooked_physics" />
@@ -1362,7 +1383,7 @@
 				<file :name="ene_acc_marshal_shield_helmet_2.object" />
 				<file :name="ene_acc_marshal_shield_helmet_2.unit" />
 			</group>
-			
+
 			<group :name="ene_male_marshal_shield_1/">
 				<file :name="ene_male_marshal_shield_1.unit" />
 				<file :name="ene_male_marshal_shield_1_husk.unit" />
@@ -1372,7 +1393,7 @@
 				<file :name="ene_male_marshal_shield_2.unit" />
 				<file :name="ene_male_marshal_shield_2_husk.unit" />
 			</group>
-	
+
 			<group :name="ene_male_marshal_gunner_hcar_1/">
 				<file :name="ene_male_marshal_gunner_hcar_1.unit" />
 				<file :name="ene_male_marshal_gunner_hcar_1_husk.unit" />
@@ -1410,7 +1431,7 @@
 				<file :name="ene_deep_security_3_husk.unit" />
 			</group>
 		</group>
-		
+
 		<!-- animations -->
 		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
 	</assets>

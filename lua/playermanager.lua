@@ -986,3 +986,47 @@ function PlayerManager:get_skill_money_multiplier(whisper_mode)
 
 	return cash_skill_mulitplier, bag_skill_mulitplier
 end
+
+-- Grenade refund requires a specific amount of pickups instead of being chance based
+local function on_ammo_pickup(unit, current_pickups, required_pickups)
+	local gained_throwable = false
+	local pickups = current_pickups
+
+	if unit == managers.player:player_unit() then
+		if required_pickups <= pickups then
+			gained_throwable = true
+
+			managers.player:add_grenade_amount(1, true)
+		else
+			pickups = pickups + 1
+		end
+	end
+
+	return gained_throwable, pickups
+end
+
+PlayerAction.FullyLoaded = {
+	Priority = 1,
+	Function = function(player_manager, required_pickups)
+		local co = coroutine.running()
+		local gained_throwable = false
+		local current_pickups = 1
+
+		local function on_ammo_pickup_message(unit)
+			gained_throwable, current_pickups = on_ammo_pickup(unit, current_pickups, required_pickups)
+			Eclipse:log_chat("current pickups: " .. current_pickups)
+		end
+
+		player_manager:register_message(Message.OnAmmoPickup, co, on_ammo_pickup_message)
+		player_manager:register_message(Message.OnAmmoPickup, co, on_ammo_pickup)
+
+		while not gained_throwable do
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnAmmoPickup, co)
+	end,
+	Function_Force_Remove = function(co)
+		managers.player:unregister_message(Message.OnAmmoPickup, co)
+	end,
+}

@@ -38,43 +38,18 @@ local dozer_van_chance = {
 }
 
 return {
-	[100109] = {
-		reinforce = {
-			{
-				name = "north",
-				force = 2,
-				position = Vector3(0, -3000, -195),
-			},
-			{
-				name = "south",
-				force = 2,
-				position = Vector3(1250, 2500, -195),
-			},
-			{
-				name = "west",
-				force = 2,
-				position = Vector3(2750, -150, -195),
-			},
-			{
-				name = "east",
-				force = 2,
-				position = Vector3(4500, -150, -150),
-			},
-		},
-	},
 	-- add more chance for dozers coming out the gensec van
-	[101994] = dozer_van_chance,
-	[101995] = dozer_van_chance,
-	[101996] = dozer_van_chance,
-	[101997] = dozer_van_chance,
-	[101998] = dozer_van_chance,
-	[101999] = dozer_van_chance,
-	[102000] = dozer_van_chance,
-	[102001] = dozer_van_chance,
-	[102002] = dozer_van_chance,
-	[102003] = dozer_van_chance,
-	[102004] = dozer_van_chance,
-	[102005] = dozer_van_chance,
+	[101700] = dozer_van_chance,
+	[101701] = dozer_van_chance,
+	[101702] = dozer_van_chance,
+	[101703] = dozer_van_chance,
+	[101704] = dozer_van_chance,
+	[101705] = dozer_van_chance,
+	[101706] = dozer_van_chance,
+	[101707] = dozer_van_chance,
+	[101708] = dozer_van_chance,
+	[101709] = dozer_van_chance,
+	[101710] = dozer_van_chance,
 	-- GenSec scripted spawns
 	-- drivers
 	[100279] = gensec,
@@ -121,7 +96,16 @@ return {
 	[100524] = gensec,
 	[100525] = gensec,
 	-- van bulldozers
-	[102058] = gensec_tank,
-	[102068] = gensec_tank,
-	[102057] = gensec_tank,
+	[101747] = gensec_tank,
+	[101748] = gensec_tank,
+	[101759] = gensec_tank,
+	[101760] = gensec_tank,
+	[101761] = gensec_tank,
+	[101762] = gensec_tank,
+	[101763] = gensec_tank,
+	[101764] = gensec_tank,
+	[101765] = gensec_tank,
+	[101766] = gensec_tank,
+	[101767] = gensec_tank,
+	[101768] = gensec_tank,
 }

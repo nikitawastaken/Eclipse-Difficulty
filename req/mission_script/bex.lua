@@ -1,4 +1,6 @@
 local preferred = Eclipse.preferred
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_pro_job = Eclipse.utils.is_pro_job()
 -- more based miki changes from ASS, kuss kuss
 local beat_cops = {
 	Idstring("units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01"),
@@ -28,6 +30,18 @@ local side_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+
+local bags_required = {
+	values = {
+		counter_target = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+	},
+}
+local bags_required_objective = {
+	values = {
+		amount = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+	},
+}
+
 return {
 	[101829] = {
 		ponr = {
@@ -168,6 +182,11 @@ return {
 			dialogue = "Play_loc_bex_109",
 		},
 	},
+	-- change amount of required bags
+	[101482] = bags_required_objective,
+	[102533] = bags_required_objective,
+	[101498] = bags_required,
+	[103954] = bags_required,
 	-- Spawn group delays
 	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed.
 	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.

@@ -32,6 +32,9 @@ local M = {
 	--Red GenSec guards
 	[("units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"):key()] = { c45 = 3, ump = 1 },
 	[("units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2"):key()] = { g36 = 2, ump = 1 },
+	--Tactical GenSec guards
+	[("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"):key()] = { ump = 3, g36 = 2, benelli = 1 },
+	[("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"):key()] = { ump = 3, g36 = 2, benelli = 1 },
 	--Prison guards (accurate to Hoxton Breakout's live action trailer)
 	[("units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1"):key()] = "m4",
 	[("units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1"):key()] = "c45",

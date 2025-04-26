@@ -1,29 +1,43 @@
-local weaponlab_spawn = {
+local preferred = Eclipse.preferred
+local disabled = {
 	values = {
-		interval = 20,
+		enabled = false,
 	},
 }
-local computerlab_spawn_1 = {
-	values = {
-		interval = 20,
-	},
-}
-local intro_spawn = {
+local low_catwalk_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local computerlab_spawn_2 = {
+local escape_spawn = {
 	values = {
-		interval = 10,
+		interval = 20,
 	},
 }
-local archeology_spawn = {
+local garage_door_spawn = {
 	values = {
-		interval = 10,
+		interval = 25,
 	},
+	groups = preferred.no_shields_bulldozers,
 }
-
+local upper_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local flank_spawn = {
+	values = {
+		interval = 40,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local high_catwalk_spawn = {
+	values = {
+		interval = 60,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 return {
 	[100286] = {
 		reinforce = {
@@ -44,21 +58,38 @@ return {
 			},
 		},
 	},
-	-- slow down the spawnpoints in weaponlab
-	[107981] = weaponlab_spawn,
-	[100133] = weaponlab_spawn,
-	[100941] = weaponlab_spawn,
-	[107911] = weaponlab_spawn,
-	[107983] = weaponlab_spawn,
-	[102407] = weaponlab_spawn,
-	-- slow down the spawnpoints in computerlab
-	[100128] = computerlab_spawn_1,
-	[107977] = computerlab_spawn_1,
-	[100130] = computerlab_spawn_2,
-	[107913] = computerlab_spawn_2,
-	-- slightly in archeologylab too
-	[100131] = archeology_spawn,
-	-- slow down the top spawnpoints in the starting sequence
-	[101074] = intro_spawn,
-	[101350] = intro_spawn,
+	-- Disable a bunch of cheaty preferreds
+	[100919] = disabled, -- weapon preferreds 6
+	[101320] = disabled, -- biolab preferreds 6
+	[101334] = disabled, -- books preferreds 4
+	[101334] = disabled, -- books preferreds 4
+	[108442] = disabled, -- entrance preferreds 3
+	-- Spawn group delays
+	[102439] = low_catwalk_spawn,
+	[108291] = escape_spawn,
+	[108292] = escape_spawn,
+	[107909] = garage_door_spawn,
+	[108287] = garage_door_spawn,
+	[108289] = garage_door_spawn,
+	[100128] = upper_spawn,
+	[100130] = upper_spawn,
+	[100131] = upper_spawn,
+	[100132] = upper_spawn,
+	[100133] = upper_spawn,
+	[100941] = upper_spawn,
+	[107911] = upper_spawn,
+	[101451] = upper_spawn,
+	[102407] = upper_spawn,
+	[107908] = upper_spawn,
+	[107913] = upper_spawn,
+	[107975] = upper_spawn,
+	[107977] = upper_spawn,
+	[107979] = upper_spawn,
+	[107980] = upper_spawn,
+	[107981] = upper_spawn,
+	[107983] = upper_spawn,
+	[108290] = upper_spawn,
+	[104794] = flank_spawn,
+	[101074] = high_catwalk_spawn,
+	[101350] = high_catwalk_spawn,
 }
