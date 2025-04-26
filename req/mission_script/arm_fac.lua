@@ -3,6 +3,7 @@ local gensec_operators = {
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
 }
 local scripted_enemy = Eclipse.scripted_enemy
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -31,8 +32,25 @@ local gensec = {
 local gensec_tank = {
 	enemy = gensec_dozer,
 }
+local dozer_chance = (normal and 10 or hard and 15 or 20) + (is_pro_job and 10 or 0)
+local dozer_van_chance = {
+	chance = dozer_chance,
+}
 
 return {
+	-- add more chance for dozers coming out the gensec van
+	[104544] = dozer_van_chance,
+	[104545] = dozer_van_chance,
+	[104546] = dozer_van_chance,
+	[104547] = dozer_van_chance,
+	[104548] = dozer_van_chance,
+	[104549] = dozer_van_chance,
+	[104550] = dozer_van_chance,
+	[104551] = dozer_van_chance,
+	[104552] = dozer_van_chance,
+	[104553] = dozer_van_chance,
+	[104554] = dozer_van_chance,
+	[104555] = dozer_van_chance,
 	-- GenSec scripted spawns
 	-- drivers
 	[100279] = gensec,
