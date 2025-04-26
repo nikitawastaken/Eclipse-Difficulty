@@ -1425,7 +1425,7 @@ function CharacterTweakData:character_map(...)
 
 	safe_add(char_map.dlc1, "ene_gensec_operator_1")
 	safe_add(char_map.dlc1, "ene_gensec_operator_2")
-	
+
 	char_map.army = {
 		path = "units/pd2_dlc_army/characters/",
 		list = {
