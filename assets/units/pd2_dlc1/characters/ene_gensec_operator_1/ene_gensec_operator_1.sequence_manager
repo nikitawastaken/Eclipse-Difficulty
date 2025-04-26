@@ -73,7 +73,7 @@
 		</sequence>
 	<!--GLASSES SEQUENCES-->
 		<sequence editable_state="true" name="'random_goggles'" triggable="true" >
-			<run_sequence		name="'goggles_'..pick('none','base')" />
+			<run_sequence		name="'goggles_'..pick('base','base','none')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'goggles_none'" once="true" triggable="true" />
