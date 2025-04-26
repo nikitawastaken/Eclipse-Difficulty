@@ -361,7 +361,7 @@ function TradeManager:trade_restore_resources()
 	local unit = managers.player:player_unit()
 
 	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
-		--Eclipse:log("Hostage traded, restoring a down")
+		Eclipse:log("Hostage traded, restoring a down")
 		u_data.unit:character_damage():restore_lives(1)
 	end
 
