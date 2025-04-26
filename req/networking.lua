@@ -56,6 +56,7 @@ NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade", "eclipse_on_trade_
 end)
 
 NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade2", "eclipse_on_trade_hook2", function(data, sender)
+	Eclipse:log_chat("called on_trade2", sender)
 	if NetworkHelper:IsClient() then
 		local params = json.decode(data)
 		managers.trade:on_hostage_traded(params.position, params.rotation, params.is_custody_trade)
