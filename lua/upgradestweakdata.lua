@@ -1419,8 +1419,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "passive_xp_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.passive_player_xp_multiplier_3 = {
 		name_id = "menu_player_xp_multiplier",
@@ -1428,8 +1428,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 3,
 			upgrade = "passive_xp_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.passive_cash_multiplier = { 1.1, 1.25, 1.45 }
 	self.definitions.passive_player_cash_multiplier = {
@@ -1438,8 +1438,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "passive_cash_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.passive_player_cash_multiplier_2 = {
 		name_id = "menu_player_cash_multiplier",
@@ -1447,8 +1447,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "passive_cash_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.definitions.passive_player_cash_multiplier_3 = {
 		name_id = "menu_player_cash_multiplier",
@@ -1456,8 +1456,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 3,
 			upgrade = "passive_cash_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.specialization_descs[23][1].multiperk = "10%"
 	self.specialization_descs[23][3].multiperk = "10%"
