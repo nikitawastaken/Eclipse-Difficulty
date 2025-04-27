@@ -59,24 +59,24 @@ return {
 	-- rock music on Eclipse
 	[101475] = {
 		values = {
-            sound_event = club_music_off
-		}
+			sound_event = club_music_off,
+		},
 	},
 	[103041] = {
 		values = {
-            sound_event = club_music
-		}
+			sound_event = club_music,
+		},
 	},
 	-- more civilians on the dance floor on Eclipse
 	[101916] = {
 		values = {
-            counter_target = dance_civs
-		}
+			counter_target = dance_civs,
+		},
 	},
 	[101949] = {
 		values = {
-            amount = dance_civs_bad_music
-		}
+			amount = dance_civs_bad_music,
+		},
 	},
 	-- spawn point delays
 	[101046] = flank_spawn,
