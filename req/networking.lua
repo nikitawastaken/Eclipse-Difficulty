@@ -44,7 +44,7 @@ end
 ---@return table @Data deserialized as a lua table
 function NetworkHelper:decode(data)
 	local t = json.decode(data)
-	for k, v in pairs(data) do
+	for k, v in pairs(t) do
 		if type_name(v) == "table" then
 			if v[1] == "Vector3" then
 				t[k] = math.string_to_vector(v[2])
