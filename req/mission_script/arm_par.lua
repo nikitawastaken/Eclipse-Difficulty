@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local gensec_operators = {
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
@@ -36,28 +37,33 @@ local dozer_chance = (normal and 10 or hard and 15 or 20) + (is_pro_job and 10 o
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
-
+local close_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_bulldozers,
+}
 return {
 	[100109] = {
 		reinforce = {
 			{
 				name = "north",
-				force = 2,
+				force = 3,
 				position = Vector3(0, -3000, -195),
 			},
 			{
 				name = "south",
-				force = 2,
+				force = 3,
 				position = Vector3(1250, 2500, -195),
 			},
 			{
 				name = "west",
-				force = 2,
+				force = 3,
 				position = Vector3(2750, -150, -195),
 			},
 			{
 				name = "east",
-				force = 2,
+				force = 3,
 				position = Vector3(4500, -150, -150),
 			},
 		},
@@ -124,4 +130,9 @@ return {
 	[102058] = gensec_tank,
 	[102068] = gensec_tank,
 	[102057] = gensec_tank,
+	-- Spawn group delays
+	[100128] = close_spawn,
+	[100133] = close_spawn,
+	[101046] = close_spawn,
+	[101159] = close_spawn,
 }
