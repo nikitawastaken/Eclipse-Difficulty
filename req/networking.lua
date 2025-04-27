@@ -21,37 +21,46 @@ function NetworkHelper:SendToHost(id, data)
 	end
 end
 
----Encodes networked data and handles Vector3/Rotation properly
+---Encodes networked data and handles Vector3/Rotation/Bools properly
 ---@param data table @Data to serialize
 ---@return string @Data serialized as a string
 function NetworkHelper:encode(data)
 	for k, v in pairs(data) do
 		-- You better hope no networked tables have this in somehow :skull:
 		if type_name(v) == "Vector3" then
-			data[k] = { "Vector3", vector_to_string(v) }
+			data[k] = {
+				serialized_data_type = "Vector3",
+				serialized_data = vector_to_string(v),
+			}
 		elseif type_name(v) == "Rotation" then
-			data[k] = { "Rotation", rotation_to_string(v) }
+			data[k] = {
+				serialized_data_type = "Rotation",
+				serialized_data = rotation_to_string(v),
+			}
 		elseif type_name(v) == "boolean" then
-			data[k] = { "Boolean", tostring(v) }
+			data[k] = {
+				serialized_data_type = "Boolean",
+				serialized_data = tostring(v),
+			}
 		end
 	end
 
 	return json.encode(data)
 end
 
----Decodes networked data and handles Vector3/Rotation properly
+---Decodes networked data and handles Vector3/Rotation/Bools properly
 ---@param data string @Data to deserialize
 ---@return table @Data deserialized as a lua table
 function NetworkHelper:decode(data)
 	local t = json.decode(data)
 	for k, v in pairs(t) do
-		if type_name(v) == "table" then
-			if v[1] == "Vector3" then
-				t[k] = math.string_to_vector(v[2])
-			elseif v[1] == "Rotation" then
-				t[k] = math.string_to_rotation(v[2])
-			elseif v[1] == "Boolean" then
-				t[k] = v[2] == "true"
+		if type_name(v) == "table" and v.serialized_data_type then
+			if v.serialized_data_type == "Vector3" then
+				t[k] = math.string_to_vector(v.serialized_data)
+			elseif v.serialized_data_type == "Rotation" then
+				t[k] = math.string_to_rotation(v.serialized_data)
+			elseif v.serialized_data_type == "Boolean" then
+				t[k] = v.serialized_data == "true"
 			end
 		end
 	end
