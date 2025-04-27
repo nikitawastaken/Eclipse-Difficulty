@@ -106,7 +106,7 @@ return {
 	[101289] = { -- Matt reached the top of the overpass
 		difficulty = 1,
 	},
-	-- restore garage events from PDTH
+	-- restore events from PDTH
 	-- inkwell industrial
 	-- replace PDTH SWAT leftovers
 	[102911] = garage_swat_spawn_1,
@@ -157,6 +157,18 @@ return {
 	},
 	[103515] = {
 		chance = dozer_spawn_chance,
+	},
+	-- restore first swat blockade on ovk above
+	[102682] = {
+		on_executed = {
+			{ delay = 0, id = 410067 },
+		},
+	},
+	-- restore cop cars having lights on
+	[101037] = {
+		on_executed = {
+			{ delay = 0, id = 410068 },
+		},
 	},
 	-- ovk145-alike dozer spawn on armitage ave.
 	[103592] = {

@@ -134,6 +134,36 @@ local optsBesiegeDummy = {
 	enabled = true,
 	spawn_action = "e_sp_armored_truck_1st",
 }
+local optsShieldWallFirstStreet1 = {
+	enemy = is_eclipse and elite_shield or shield,
+	on_executed = { { id = 410061, delay = 0 } },
+	enabled = true,
+}
+local optsShieldWallFirstStreet2 = {
+	enemy = is_eclipse and elite_shield or shield,
+	on_executed = { { id = 410062, delay = 0 } },
+	enabled = true,
+}
+local optsSwatWallFirstStreet1 = {
+	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	on_executed = { { id = 410063, delay = 0 } },
+	enabled = true,
+}
+local optsSwatWallFirstStreet2 = {
+	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	on_executed = { { id = 410064, delay = 0 } },
+	enabled = true,
+}
+local optsSwatWallFirstStreet3 = {
+	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	on_executed = { { id = 410065, delay = 0 } },
+	enabled = true,
+}
+local optsSwatWallFirstStreet4 = {
+	enemy = is_eclipse and heavy_rifle or swat_rifle,
+	on_executed = { { id = 410066, delay = 0 } },
+	enabled = true,
+}
 
 local optsOpenGate_1 = {
 	trigger_list = {
@@ -153,6 +183,30 @@ local optsOpenGate_3 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 600255, notify_unit_sequence = "open", time = 0 },
 	},
 }
+local optscop_car_lights_on = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100469, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100471, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 3, name = "run_sequence", notify_unit_id = 100474, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 4, name = "run_sequence", notify_unit_id = 100397, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100047, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100560, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100561, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100099, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 9, name = "run_sequence", notify_unit_id = 100562, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 10, name = "run_sequence", notify_unit_id = 100563, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 11, name = "run_sequence", notify_unit_id = 100565, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 12, name = "run_sequence", notify_unit_id = 100566, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 13, name = "run_sequence", notify_unit_id = 100061, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 14, name = "run_sequence", notify_unit_id = 100568, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 15, name = "run_sequence", notify_unit_id = 100569, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 16, name = "run_sequence", notify_unit_id = 100574, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 17, name = "run_sequence", notify_unit_id = 100164, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 18, name = "run_sequence", notify_unit_id = 100147, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 19, name = "run_sequence", notify_unit_id = 100576, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+		{ id = 20, name = "run_sequence", notify_unit_id = 100479, notify_unit_sequence = "state_lights_siren_on", time = 0 },
+	},
+}
 local optsKickthefuckingdoor = {
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 600188, notify_unit_sequence = "open_out", time = 0 },
@@ -167,10 +221,24 @@ local optsGarageHunt = {
 	scan = true,
 	so_action = "AI_hunt",
 }
+local optsFirstStreet_AIsniper = {
+	SO_access = tostring(128 + 2048),
+	scan = true,
+	needs_pos_rsrv = true,
+	align_position = true,
+	align_rotation = true,
+	scan = true,
+	so_action = "AI_sniper",
+}
 
 local optsspawnSWATs = {
 	on_executed = { { id = 101756, delay = 0 }, { id = 101640, delay = 0 }, { id = 102801, delay = 0 }, { id = 102800, delay = 0 } },
 	enabled = true,
+}
+
+local optsspawnfirststreetSWATs = {
+	on_executed = { { id = 410055, delay = 0 }, { id = 410056, delay = 0 }, { id = 410057, delay = 0 }, { id = 410058, delay = 0 }, { id = 410059, delay = 0 }, { id = 410060, delay = 0 } },
+	enabled = overkill_and_above,
 }
 
 local optsAlleyAmbushTrigger = {
@@ -495,6 +563,23 @@ M.elements = {
 	-- dozer slamming door spawn
 	Eclipse.mission_elements.gen_object_editor(410002, "open_the_door", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsKickthefuckingdoor),
 	Eclipse.mission_elements.gen_dummy(410003, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
+	-- first street blockade on ovk above
+	Eclipse.mission_elements.gen_dummy(410055, "shield_wall_1", Vector3(5473, 7144, 37.731), Rotation(0, 0, 0), optsShieldWallFirstStreet1),
+	Eclipse.mission_elements.gen_dummy(410056, "shield_wall_2", Vector3(5396, 7144, 37.731), Rotation(0, 0, 0), optsShieldWallFirstStreet2),
+	Eclipse.mission_elements.gen_dummy(410057, "swat_wall_1", Vector3(5467, 6940, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet1),
+	Eclipse.mission_elements.gen_dummy(410058, "swat_wall_2", Vector3(5375, 6940, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet2),
+	Eclipse.mission_elements.gen_dummy(410059, "swat_wall_3", Vector3(5473, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet3),
+	Eclipse.mission_elements.gen_dummy(410060, "swat_wall_4", Vector3(5375, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet4),
+	
+	Eclipse.mission_elements.gen_so(410061, "wall_so_1", Vector3(5683.251, 7805.179, 50.238), Rotation(-57, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410062, "wall_so_2", Vector3(5608.774, 7902.256, 40.070), Rotation(-73, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410063, "wall_so_3", Vector3(5545.174, 7779.762, 37.728), Rotation(-63, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410064, "wall_so_4", Vector3(5719, 8462, 37.068), Rotation(-87, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410065, "wall_so_5", Vector3(5394.246, 8257.724, 37.068), Rotation(-87, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410066, "wall_so_6", Vector3(5470.247, 8966.672, 37.068), Rotation(-87, 0, 0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_missionscript(410067, "spawn_first_street_swats", optsspawnfirststreetSWATs),
+	-- lights on for cop cars
+	Eclipse.mission_elements.gen_object_editor(410068, "cop_car_lights", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optscop_car_lights_on),
 
 	Eclipse.mission_elements.gen_preferedadd(410004, "eclipse_major_ave_preferedadd_1", optsPreferedAdd1),
 	Eclipse.mission_elements.gen_preferedremove(410005, "eclipse_major_ave_preferedremove_1", optsPreferedRemove1),
