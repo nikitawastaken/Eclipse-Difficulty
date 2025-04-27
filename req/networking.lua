@@ -31,6 +31,8 @@ function NetworkHelper:encode(data)
 			data[k] = { "Vector3", vector_to_string(v) }
 		elseif type_name(v) == "Rotation" then
 			data[k] = { "Rotation", rotation_to_string(v) }
+		elseif type_name(v) == "boolean" then
+			data[k] = { "Boolean", tostring(v) }
 		end
 	end
 
@@ -48,6 +50,8 @@ function NetworkHelper:decode(data)
 				t[k] = math.string_to_vector(v[2])
 			elseif v[1] == "Rotation" then
 				t[k] = math.string_to_rotation(v[2])
+			elseif v[1] == "Boolean" then
+				t[k] = v[2] == "true"
 			end
 		end
 	end
