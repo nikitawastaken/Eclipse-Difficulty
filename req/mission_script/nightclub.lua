@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local is_eclipse = Eclipse.utils.is_eclipse()
+local club_music = is_eclipse and "diegetic_club_rock_music" or "diegetic_club_music"
+local club_music_off = is_eclipse and "diegetic_club_rock_music_stop" or "diegetic_club_music_stop"
+local dance_civs = is_eclipse and 17 or 7
+local dance_civs_bad_music = is_eclipse and 7 or 3
 local flank_spawn = {
 	values = {
 		interval = 15,
@@ -50,6 +55,28 @@ return {
 				position = Vector3(1400, -2900, 25),
 			},
 		},
+	},
+	-- rock music on Eclipse
+	[101475] = {
+		values = {
+            sound_event = club_music_off
+		}
+	},
+	[103041] = {
+		values = {
+            sound_event = club_music
+		}
+	},
+	-- more civilians on the dance floor on Eclipse
+	[101916] = {
+		values = {
+            counter_target = dance_civs
+		}
+	},
+	[101949] = {
+		values = {
+            amount = dance_civs_bad_music
+		}
 	},
 	-- spawn point delays
 	[101046] = flank_spawn,
