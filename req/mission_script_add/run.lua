@@ -570,7 +570,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(410058, "swat_wall_2", Vector3(5375, 6940, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet2),
 	Eclipse.mission_elements.gen_dummy(410059, "swat_wall_3", Vector3(5473, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet3),
 	Eclipse.mission_elements.gen_dummy(410060, "swat_wall_4", Vector3(5375, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet4),
-	
+
 	Eclipse.mission_elements.gen_so(410061, "wall_so_1", Vector3(5683.251, 7805.179, 50.238), Rotation(-57, 0, -0), optsFirstStreet_AIsniper),
 	Eclipse.mission_elements.gen_so(410062, "wall_so_2", Vector3(5608.774, 7902.256, 40.070), Rotation(-73, 0, -0), optsFirstStreet_AIsniper),
 	Eclipse.mission_elements.gen_so(410063, "wall_so_3", Vector3(5545.174, 7779.762, 37.728), Rotation(-63, 0, -0), optsFirstStreet_AIsniper),
