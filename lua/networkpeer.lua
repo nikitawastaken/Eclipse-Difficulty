@@ -32,7 +32,8 @@ function NetworkPeer:verify_grenade(value)
 	end
 
 	local max_amount = tweak_entry and tweak_entry.max_amount or tweak_data.equipments.max_amount.grenades
-	max_amount = max_amount * managers.player:upgrade_value("player", "extra_throwables_multiplier", 1)
+	-- max if player has fully loaded
+	max_amount = max_amount * 1.33
 	max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
 	max_amount = math.ceil(max_amount)
 
