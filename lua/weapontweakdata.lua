@@ -258,7 +258,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.alert_size = 13
 				weap_data.steelsight_time = steelsight_times.smg
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
-				weap_data.pickup_mul = weap_data.pickup_mul or ( 4 / 3 )
+				--weap_data.pickup_mul = weap_data.pickup_mul or ( 4 / 3 )
 				weap_data.steelsight_move_speed_mul = 0.7
 
 				weap_data.spread_multiplier = {
@@ -277,7 +277,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.75,
+						steelsight = 1,
 					},
 					moving = {
 						hipfire = 1,
