@@ -44,7 +44,7 @@ local optsSWAT_Rooftop_2 = {
 	enabled = true,
 }
 local optsBulldozer = {
-	enemy = tank,
+	enemy = bulldozer,
 	trigger_times = 3,
 	on_executed = {
 		{ id = 400014, delay = 0 },
@@ -52,7 +52,7 @@ local optsBulldozer = {
 	enabled = hard_above,
 }
 local optsBulldozerscripted = {
-	enemy = tank,
+	enemy = bulldozer,
 	on_executed = {
 		{ id = 400041, delay = 0 },
 	},
@@ -118,7 +118,7 @@ local optsTaser = {
 	enabled = true,
 }
 local optsBulldozerchopper = {
-	enemy = tank,
+	enemy = bulldozer,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_jump_down_heli_cbt_left",
 	enabled = true,
