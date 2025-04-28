@@ -400,9 +400,12 @@ function PlayerManager:get_max_grenades(grenade_id)
 	grenade_id = grenade_id or managers.blackmarket:equipped_grenade()
 	local max_amount = tweak_data:get_raw_value("blackmarket", "projectiles", grenade_id, "max_amount") or 0
 
-	max_amount = max_amount * self:upgrade_value("player", "extra_throwables_multiplier", 1)
+	local grenade_tweak = tweak_data.blackmarket.projectiles[managers.blackmarket:equipped_grenade()]
+	if not grenade_tweak.base_cooldown then
+		max_amount = max_amount * self:upgrade_value("player", "extra_throwables_multiplier", 1)
 
-	max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+		max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+	end
 
 	return math.ceil(max_amount)
 end
