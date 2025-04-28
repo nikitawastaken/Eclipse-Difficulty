@@ -31,7 +31,7 @@ local cloaker_respawn_trigger = {
 		trigger_times = cloaker_respawn_amount,
 	},
 }
-local terminator_dozer_1 {
+local terminator_dozer_1 = {
 	enemy = ben_dozer,
 	spawn_action = "e_sp_kick_enter_bulldozer",
 	values = {
@@ -40,7 +40,7 @@ local terminator_dozer_1 {
 	},
 }
 
-local terminator_dozer_2 {
+local terminator_dozer_2 = {
 	enemy = ben_dozer,
 	spawn_action = "e_sp_kick_enter_bulldozer",
 	values = {
