@@ -218,12 +218,12 @@ return {
 		on_executed = {
 			{ id = 103914, delay = 0 },
 		},
-	},	
+	},
 	[103914] = {
 		values = {
 			enabled = cloaker_basement_chance,
 		},
-	},	
+	},
 	-- vault ambush
 	[104132] = vault_ambush,
 	[104170] = vault_ambush,
