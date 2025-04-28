@@ -20,9 +20,9 @@ NetworkHelper.Chunk = {
 }
 
 -- Rework this function to allow chunking of network strings
-function NetworkHelper:SendStringThroughChat(message, receivers, chunk)
+function NetworkHelper:SendStringThroughChat(message, receivers, chunk, chunk_id)
 	if chunk then
-		self:ChunkStringThroughChat(message, receivers)
+		self:ChunkStringThroughChat(message, receivers, chunk_id)
 	else
 		for _, peer in pairs(receivers or self:GetPeers()) do
 			if peer:ip_verified() then
@@ -36,18 +36,21 @@ function NetworkHelper:SendStringThroughChat(message, receivers, chunk)
 end
 
 -- Ghetto chunker
-function NetworkHelper:ChunkStringThroughChat(message, receivers)
+function NetworkHelper:ChunkStringThroughChat(message, receivers, chunk_id)
 	local position
-	local first_chunk = NetworkHelper.Chunk.prefix .. message:sub(1, 100)
+	local msg = NetworkHelper.Chunk.prefix .. message:sub(1, 100)
+	local first_chunk = NetworkHelper.AllPeersString:format(NetworkHelper.AllPeers, chunk_id, msg)
 	position = 101
 	self:SendStringThroughChat(first_chunk, receivers)
 	while true do
 		if position + 101 < message:len() then
-			local chunk = message:sub(position, position + 100)
+			msg = message:sub(position, position + 100)
+			local chunk = NetworkHelper.AllPeersString:format(NetworkHelper.AllPeers, chunk_id, msg)
 			position = position + 101
 			self:SendStringThroughChat(chunk, receivers)
 		else
-			local chunk = message:sub(position) .. NetworkHelper.Chunk.suffix
+			msg = message:sub(position) .. NetworkHelper.Chunk.suffix
+			local chunk = NetworkHelper.AllPeersString:format(NetworkHelper.AllPeers, chunk_id, msg)
 			self:SendStringThroughChat(chunk, receivers)
 			break
 		end
@@ -78,8 +81,7 @@ end
 ---@param id string @Unique name of the data to send
 ---@param data string @Data to send
 function NetworkHelper:SendToPeersChunk(id, data)
-	local message = NetworkHelper.AllPeersString:format(NetworkHelper.AllPeers, id, data)
-	self:SendStringThroughChat(message, self:GetPeers(), true)
+	self:SendStringThroughChat(data, self:GetPeers(), true, id)
 end
 
 ---Sends networked data with a message id to a specific player, chunked
@@ -87,8 +89,7 @@ end
 ---@param id string @Unique name of the data to send
 ---@param data string @Data to send
 function NetworkHelper:SendToPeerChunk(peer_id, id, data)
-	local message = NetworkHelper.AllPeersString:format(NetworkHelper.AllPeers, id, data)
-	self:SendStringThroughChat(message, { self:GetPeers()[peer_id] }, true)
+	self:SendStringThroughChat(data, { self:GetPeers()[peer_id] }, true, id)
 end
 
 ---Encodes networked data and handles Vector3/Rotation/Bools properly
@@ -141,7 +142,7 @@ function NetworkHelper:decode(data)
 end
 
 function NetworkHelper:IsChunk(hook_id, data)
-	return Eclipse.network_data[hook_id] or data:find("^(%%begin%%)") or data:find("(%%end%%)$")
+	return Eclipse.network_data[hook_id] or data:find("^(%%begin%%)") or data:find("(%%end%%)$") and true
 end
 
 function NetworkHelper:ReceiveChunks(hook_id, data)
