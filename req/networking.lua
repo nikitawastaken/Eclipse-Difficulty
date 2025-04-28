@@ -168,16 +168,16 @@ NetworkHelper:AddReceiveHook("Eclipse_CopLogicTrade.enter", "eclipse_hostage_tra
 		else
 			return
 		end
-	else
-		local params = NetworkHelper:decode(data)
-		local unit = Eclipse.utils.get_unit_from_id(params.unit_id)
-		if not unit or not alive(unit) then
-			return
-		end
-
-		CopLogicTrade.hostage_trade(unit, params.enable, params.trade_success, params.skip_hint, params.is_custody_trade)
-		Eclipse.network_data["Eclipse_CopLogicTrade.enter"] = nil
 	end
+
+	local params = NetworkHelper:decode(data)
+	local unit = Eclipse.utils.get_unit_from_id(params.unit_id)
+	if not unit or not alive(unit) then
+		return
+	end
+
+	CopLogicTrade.hostage_trade(unit, params.enable, params.trade_success, params.skip_hint, params.is_custody_trade)
+	Eclipse.network_data["Eclipse_CopLogicTrade.enter"] = nil
 end)
 
 NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade", "eclipse_on_trade_hook", function(data, sender)
