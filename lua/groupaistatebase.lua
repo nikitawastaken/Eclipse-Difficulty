@@ -87,7 +87,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 		if self._point_of_no_return_timer <= 0 then
 			if Network:is_server() then
 				managers.groupai:set_state("ponr")
-				LuaNetworking:SendToPeers("sync_assault_ponr", "0")
+				LuaNetworking:SendToPeersChunk("sync_assault_ponr", "0")
 				self:set_difficulty(1)
 			end
 			self:remove_point_of_no_return_timer(-1)

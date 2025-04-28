@@ -113,7 +113,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 	if self.tweak_data == "hostage_trade" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
 		if not NetworkHelper:IsHost() then
-			NetworkHelper:SendToHost(
+			NetworkHelper:SendToHostChunk(
 				"Eclipse_HuskCopBrain:on_trade",
 				NetworkHelper:encode({
 					position = player:position(),
@@ -122,7 +122,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				})
 			)
 		else
-			NetworkHelper:SendToPeers(
+			NetworkHelper:SendToPeersChunk(
 				"Eclipse_HuskCopBrain:on_trade2",
 				NetworkHelper:encode({
 					position = player:position(),
@@ -142,7 +142,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 	elseif self.tweak_data == "hostage_trade_resources" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, false)
 		if not NetworkHelper:IsHost() then
-			NetworkHelper:SendToHost(
+			NetworkHelper:SendToHostChunk(
 				"Eclipse_HuskCopBrain:on_trade",
 				NetworkHelper:encode({
 					position = player:position(),
@@ -151,7 +151,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				})
 			)
 		else
-			NetworkHelper:SendToPeers(
+			NetworkHelper:SendToPeersChunk(
 				"Eclipse_HuskCopBrain:on_trade2",
 				NetworkHelper:encode({
 					position = player:position(),

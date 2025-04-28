@@ -77,7 +77,6 @@
 			<group :hook_id="network/">
 				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
-				<post :hook_id="base/handlers/connectionnetworkhandler"/>
 				<post :hook_id="base/basenetworksession"/>
 				<post :hook_id="base/networkpeer"/>
 			</group>
