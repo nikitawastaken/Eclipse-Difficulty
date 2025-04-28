@@ -152,6 +152,7 @@ function NetworkHelper:ReceiveChunks(hook_id, data)
 		Eclipse.network_data[hook_id] = Eclipse.network_data[hook_id] .. data:sub(1, NetworkHelper.Chunk.suffix:len())
 		local t = Eclipse.network_data[hook_id]
 		Eclipse.network_data[hook_id] = nil
+		Eclipse:log_chat(t)
 		return t
 	-- In between the first and last chunk
 	elseif Eclipse.network_data[hook_id] then
