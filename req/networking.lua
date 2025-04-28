@@ -149,7 +149,7 @@ function NetworkHelper:ReceiveChunks(hook_id, data)
 		Eclipse.network_data[hook_id] = data:sub(NetworkHelper.Chunk.prefix:len())
 	-- Chunk suffix check
 	elseif data:find("(%%end%%)$") then
-		Eclipse.network_data[hook_id] = Eclipse.network_data[hook_id] .. data:sub(1, NetworkHelper.Chunk.suffix:len())
+		Eclipse.network_data[hook_id] = Eclipse.network_data[hook_id] .. data:sub(1, data:len() - NetworkHelper.Chunk.suffix:len())
 		local t = Eclipse.network_data[hook_id]
 		Eclipse.network_data[hook_id] = nil
 		Eclipse:log_chat(t)
