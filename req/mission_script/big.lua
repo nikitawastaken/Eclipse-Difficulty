@@ -21,7 +21,7 @@ local flank_spawn = {
 }
 local elevator_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 }
 local elevator_spawn_2 = {

@@ -30,7 +30,7 @@ local alley_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -43,22 +43,13 @@ return {
 		},
 	},
 	-- make difficulty scaling smoother
-	[102841] = {
+	[102841] = { -- all saws placed
 		values = {
 			difficulty = 0.5,
 		},
 	},
-	[102842] = {
-		values = {
-			difficulty = 0.75,
-			enabled = true,
-		},
-	},
-	[102843] = {
-		values = {
-			difficulty = 1,
-			enabled = true,
-		},
+	[100130] = { -- explosion
+		difficulty = 1,
 	},
 	-- Restore roof access blockade
 	[100095] = {
@@ -96,6 +87,21 @@ return {
 	[102263] = {
 		on_executed = {
 			{ id = 400039, delay = 3 },
+		},
+	},
+	-- Add new reinforce
+	[100247] = { -- saws are done, roof objectives begin
+		reinforce = {
+			{
+				name = "third_floor",
+				force = 2,
+				position = Vector3(-925, 600, 700),
+			},
+			{
+				name = "fourth_floor",
+				force = 2,
+				position = Vector3(-1600, 500, 1025),
+			},
 		},
 	},
 	-- add missing navlinks
@@ -139,7 +145,9 @@ return {
 	},
 	-- spawn Rooftop Heavy SWATs after killing all of the snipers
 	-- enable Cloaker spawns
+	-- increase diff
 	[104573] = {
+		difficulty = 0.75,
 		on_executed = {
 			{ id = 400025, delay = 15 },
 			{ id = 400038, delay = 0 },
@@ -154,6 +162,10 @@ return {
 	},
 	-- trigger dozer spawn during the escape
 	[104706] = {
+		reinforce = { -- remove reinforce
+			{ name = "third_floor" },
+			{ name = "fourth_floor" },
+		},
 		on_executed = {
 			{ id = 400040, delay = 0 },
 		},
@@ -206,8 +218,7 @@ return {
 		},
 	},
 	-- disable roof/stairs reinforcement
-	[102501] = disabled,
-	[103181] = disabled,
+	[103181] = disabled, -- 5, fucking, force
 	-- adjust the Sniper kill objective
 	[104516] = sniper_kills,
 	[104692] = sniper_kills,
