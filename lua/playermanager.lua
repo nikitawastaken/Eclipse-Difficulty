@@ -1014,7 +1014,7 @@ PlayerAction.FullyLoaded = {
 
 		local function on_ammo_pickup_message(unit)
 			gained_throwable, current_pickups = on_ammo_pickup(unit, current_pickups, required_pickups)
-			Eclipse:log_chat("current pickups: " .. current_pickups)
+			-- Eclipse:log_chat("current pickups: " .. current_pickups)
 		end
 
 		player_manager:register_message(Message.OnAmmoPickup, co, on_ammo_pickup_message)
