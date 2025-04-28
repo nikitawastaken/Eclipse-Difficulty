@@ -123,7 +123,6 @@ end
 ---@param data string @Data to deserialize
 ---@return table @Data deserialized as a lua table
 function NetworkHelper:decode(data)
-	log("\n\n", data, "\n\n")
 	local t = json.decode(data)
 	for k, v in pairs(t) do
 		if type_name(v) == "table" and v.serialized_data_type then
