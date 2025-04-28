@@ -3,7 +3,6 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local scripted_enemy = Eclipse.scripted_enemy
 local security_guard = scripted_enemy.security_1
 local ben_dozer = scripted_enemy.elite_bulldozer_1
-local elite_dozer = { enemy = ben_dozer }
 local security_spawn = { enemy = security_guard }
 local cloaker_respawn_amount = normal and 1 or hard and 2 or 3
 local disabled = {
@@ -30,6 +29,23 @@ local vent_spawn = {
 local cloaker_respawn_trigger = {
 	values = {
 		trigger_times = cloaker_respawn_amount,
+	},
+}
+local terminator_dozer_1 {
+	enemy = ben_dozer,
+	spawn_action = "e_sp_kick_enter_bulldozer",
+	values = {
+		position = Vector3(-2378.635, 2784.454, 0),
+		rotation = Rotation(88.329, 0, 0),
+	},
+}
+
+local terminator_dozer_2 {
+	enemy = ben_dozer,
+	spawn_action = "e_sp_kick_enter_bulldozer",
+	values = {
+		position = Vector3(-2376, 2887, 0),
+		rotation = Rotation(90, 0, 0),
 	},
 }
 return {
@@ -134,8 +150,8 @@ return {
 	-- 50% chance for the event to happen
 	[104124] = { chance = 50 },
 	-- replace the shield and blackdozer with elite dozers
-	[104112] = elite_dozer,
-	[104113] = elite_dozer,
+	[104113] = terminator_dozer_1,
+	[104112] = terminator_dozer_2,
 	-- tweak elevator cloakers respawns
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,

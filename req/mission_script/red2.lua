@@ -1,6 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
@@ -10,10 +11,13 @@ local overkill_above = diff_i >= 5
 
 local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
 local cloaker = scripted_enemy.cloaker
+local taser = scripted_enemy.taser_1
 local bulldozer = scripted_enemy.bulldozer_1
 local bulldozer_2 = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local cloaker_basement_chance = 0.1 + (is_pro_job and 0.1)
+local basement_enemies_amount = 2
 local random_dozers = {
 	bulldozer,
 	bulldozer_2,
@@ -63,6 +67,20 @@ local bulldozer_spawn = {
 
 local cloaker_spawn = {
 	enemy = cloaker,
+}
+local taser_spawn_1 = {
+	enemy = taser,
+	spawn_action = "e_sp_kick_enter",
+	values = {
+		position = Vector3(4819, -1821, -735),
+	},
+}
+local taser_spawn_2 = {
+	enemy = taser,
+	spawn_action = "e_sp_kick_enter",
+	values = {
+		position = Vector3(5358, 588, -733),
+	},
 }
 
 local elevator_spawn = {
@@ -182,6 +200,30 @@ return {
 	-- replace SWAT with cloakers that spawn with taser to match with PDTH
 	[100617] = cloaker_spawn,
 	[100618] = cloaker_spawn,
+	-- change some basement dozers to tasers like in PDTH
+	[103163] = taser_spawn_1,
+	[103198] = taser_spawn_2,
+	-- remove cloakers from basement door suprise
+	-- add 1 additonal enemy to random basement ambush
+	[100529] = {
+		values = {
+			amount = basement_enemies_amount,
+		},
+		on_executed = {
+			{ id = 103906, remove = true },
+		},
+	},
+	-- make it trigger from unused area trigger and add chance
+	[106042] = {
+		on_executed = {
+			{ id = 103914, delay = 0 },
+		},
+	},	
+	[103914] = {
+		values = {
+			enabled = cloaker_basement_chance,
+		},
+	},	
 	-- vault ambush
 	[104132] = vault_ambush,
 	[104170] = vault_ambush,

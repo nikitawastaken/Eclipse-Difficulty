@@ -177,6 +177,11 @@ function MissionManager.mission_script_patch_funcs.chance(self, element, data)
 	element._chance = data
 end
 
+function MissionManager.mission_script_patch_funcs.spawn_action(self, element, data)
+	local spawn_action = table.index_of(CopActionAct._act_redirects.enemy_spawn, data)
+	element._values.spawn_action = spawn_action ~= -1 and spawn_action or nil
+end
+
 function MissionManager.mission_script_patch_funcs.modify_list_value(self, element, data)
 	for k, v in pairs(data) do
 		if type(element._values[k]) ~= "table" then

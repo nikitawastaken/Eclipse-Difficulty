@@ -5,9 +5,7 @@ local sniper_trigger_times = {
 	},
 }
 local spawn_anim_fix = {
-	values = {
-		spawn_action = "e_sp_over_3m",
-	},
+	spawn_action = "e_sp_over_3m",
 }
 local fence_spawn1 = {
 	values = {
