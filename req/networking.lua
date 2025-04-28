@@ -147,7 +147,7 @@ end
 
 function NetworkHelper:ReceiveChunks(hook_id, data)
 	if data:find("^(%%begin%%)") then
-		Eclipse.network_data[hook_id] = data:sub(NetworkHelper.Chunk.prefix:len())
+		Eclipse.network_data[hook_id] = data:sub(NetworkHelper.Chunk.prefix:len() + 1)
 	-- Chunk suffix check
 	elseif data:find("(%%end%%)$") then
 		Eclipse.network_data[hook_id] = Eclipse.network_data[hook_id] .. data:sub(1, data:len() - NetworkHelper.Chunk.suffix:len())
