@@ -218,7 +218,7 @@ return {
 		},
 	},
 	-- disable roof/stairs reinforcement
-	[103181] = disabled, -- 5, fucking, force 
+	[103181] = disabled, -- 5, fucking, force
 	-- adjust the Sniper kill objective
 	[104516] = sniper_kills,
 	[104692] = sniper_kills,
