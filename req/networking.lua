@@ -123,7 +123,6 @@ end
 ---@param data string @Data to deserialize
 ---@return table @Data deserialized as a lua table
 function NetworkHelper:decode(data)
-	Eclipse:log_chat(data)
 	log("\n\n", data, "\n\n")
 	local t = json.decode(data)
 	for k, v in pairs(t) do
@@ -153,7 +152,6 @@ function NetworkHelper:ReceiveChunks(hook_id, data)
 		Eclipse.network_data[hook_id] = Eclipse.network_data[hook_id] .. data:sub(1, data:len() - NetworkHelper.Chunk.suffix:len())
 		local t = Eclipse.network_data[hook_id]
 		Eclipse.network_data[hook_id] = nil
-		Eclipse:log_chat(t)
 		return t
 	-- In between the first and last chunk
 	elseif Eclipse.network_data[hook_id] then
@@ -164,11 +162,9 @@ end
 
 NetworkHelper:AddReceiveHook("Eclipse_CopLogicTrade.enter", "eclipse_hostage_trade_hook", function(data, sender)
 	if NetworkHelper:IsChunk("Eclipse_CopLogicTrade.enter", data) then
-		Eclipse:log_chat("Processing chunk")
 		local t = NetworkHelper:ReceiveChunks("Eclipse_CopLogicTrade.enter", data)
 		if t then
 			data = t
-			Eclipse:log_chat("Finished processing chunk")
 		else
 			return
 		end
