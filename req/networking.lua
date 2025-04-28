@@ -163,9 +163,11 @@ end
 
 NetworkHelper:AddReceiveHook("Eclipse_CopLogicTrade.enter", "eclipse_hostage_trade_hook", function(data, sender)
 	if NetworkHelper:IsChunk("Eclipse_CopLogicTrade.enter", data) then
+		Eclipse:log_chat("Processing chunk")
 		local t = NetworkHelper:ReceiveChunks("Eclipse_CopLogicTrade.enter", data)
 		if t then
 			data = t
+			Eclipse:log_chat("Finished processing chunk")
 		else
 			return
 		end
