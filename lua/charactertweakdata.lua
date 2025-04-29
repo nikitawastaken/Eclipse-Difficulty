@@ -218,35 +218,34 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.security_fat = based_on(presets.weapon.security, {
 		melee_dmg = 8 * dmg_mul,
+		melee_force = 500,
 	})
 	damage_multiplier(presets.weapon.security_fat, 6 / 5)
 
 	presets.weapon.cop = based_on(presets.weapon.base, {
-		aim_delay = { 0, 1.25 },
-		focus_delay = 1,
 		melee_dmg = 6 * dmg_mul,
 	})
 	accuracy_multiplier(presets.weapon.cop, 0.9)
 
 	presets.weapon.cop_fat = based_on(presets.weapon.cop, {
 		melee_dmg = 8 * dmg_mul,
+		melee_force = 500,
 	})
 	damage_multiplier(presets.weapon.cop_fat, 6 / 5)
 
-	presets.weapon.gangster = based_on(presets.weapon.base, {
-		aim_delay = { 0, 1.25 },
-		focus_delay = 1,
-	})
+	presets.weapon.gangster = based_on(presets.weapon.base)
 	damage_multiplier(presets.weapon.gangster, 7 / 5)
 	accuracy_multiplier(presets.weapon.gangster, 0.6)
 	recoil_multiplier(presets.weapon.gangster, 0.8)
 	burst_multiplier(presets.weapon.gangster, 1.5)
 
-	presets.weapon.fbi = based_on(presets.weapon.cop)
-	damage_multiplier(presets.weapon.fbi, 7 / 5)
-
 	presets.weapon.swat = based_on(presets.weapon.base)
 
+	presets.weapon.fbi = based_on(presets.weapon.base, {
+		melee_dmg = 6 * dmg_mul,
+	})
+	damage_multiplier(presets.weapon.fbi, 7 / 5)
+	
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.75 },
 		focus_delay = 0.6,
@@ -267,7 +266,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.murky = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.murky, 7 / 5)
-	accuracy_multiplier(presets.weapon.murky, 1.1)
+	accuracy_multiplier(presets.weapon.murky, 1.2)
 	recoil_multiplier(presets.weapon.murky, 1.2)
 	burst_multiplier(presets.weapon.murky, 0.6)
 
