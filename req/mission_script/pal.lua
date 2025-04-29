@@ -14,7 +14,7 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
-local swat_vans_and_events = not is_eclipse and 1 or 2
+local swat_vans_and_events = is_eclipse and 2 or 1
 
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),

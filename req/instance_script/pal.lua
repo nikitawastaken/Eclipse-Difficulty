@@ -18,7 +18,7 @@ local patches = {
 		squad = table.set(100003),
 	},
 	pipe_spawn = {
-		filters_disable = table.set(100014, 100015),
+		filters_disable = table.set(100014, 100015, 100011),
 		filters_eclipse = table.set(100013),
 		spawn_chance = table.set(100000),
 	},
