@@ -133,7 +133,7 @@ return {
 			},
 		},
 	},
-	[103401] = {  -- vent loot secure point is available
+	[103401] = { -- vent loot secure point is available
 		reinforce = {
 			{
 				name = "matrix",
