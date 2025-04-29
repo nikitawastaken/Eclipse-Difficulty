@@ -261,6 +261,12 @@ return {
 			enabled = cloaker_basement_chance,
 		},
 	},
+	-- restore unused shield army script from pdth 
+	[106547] = {
+		on_executed = {
+			{ id = 400059, delay = 0 },
+		},
+	},
 	-- vault ambush
 	[104132] = vault_ambush,
 	[104170] = vault_ambush,
