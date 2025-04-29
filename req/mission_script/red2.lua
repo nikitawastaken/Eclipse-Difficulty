@@ -56,15 +56,12 @@ local bags_required_objective = {
 		amount = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
 	},
 }
-
 local vault_ambush = {
 	enemy = vault_ambush_enemy,
 }
-
 local bulldozer_spawn = {
 	enemy = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or bulldozer,
 }
-
 local cloaker_spawn = {
 	enemy = cloaker,
 }
@@ -82,59 +79,93 @@ local taser_spawn_2 = {
 		position = Vector3(5358, 588, -733),
 	},
 }
-
 local elevator_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-
-local skylight_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents,
-}
-
-local office_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
+local skylight_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents,
+}
+local office_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local vent_spawn = {
 	values = {
-		enabled = is_eclipse and true or false,
 		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
 local windows_swat = {
 	values = {
 		enabled = false,
 	},
 }
-
 return {
-	-- new reinforce
-	[101401] = {
+	-- Add new reinforce
+	[100901] = { -- SWAT incoming
 		reinforce = {
 			{
 				name = "lobby",
-				force = 3,
+				force = 4,
 				position = Vector3(-1800, 25, 0),
 			},
 		},
 	},
-	[101544] = {
+	-- Edit preferreds to make the initial assault have less dense spawns
+	[103984] = { -- assault start
+		on_executed = {
+			{ id = 100043, remove = true }, -- start more preferreds
+		},
+	},
+	[103336] = { -- choose security footage location
+		on_executed = {
+			{ id = 100043, delay = 40 }, -- start more preferreds
+		},
+		reinforce = {
+			{
+				name = "cafeteria",
+				force = 3,
+				position = Vector3(-2350, -2050, -20),
+			},
+			{
+				name = "offices",
+				force = 3,
+				position = Vector3(-2750, 2050, -20),
+			},
+		},
+	},
+	[105504] = { -- enable right side gate
+		reinforce = {
+			{
+				name = "top_left",
+				force = 2,
+				position = Vector3(400, 1850, 480),
+			},
+		},
+	},	
+	[105505] = { -- enable left side gate
+		reinforce = {
+			{
+				name = "top_right",
+				force = 2,
+				position = Vector3(250, -1950, 480),
+			},
+		},
+	},			
+	[101544] = { -- players entered the vault
 		reinforce = {
 			{
 				name = "matrix",
-				force = 2,
-				position = Vector3(1600, 1250, 0),
+				force = 3,
+				position = Vector3(1800, 1250, 0),
 			},
 		},
 	},
@@ -156,6 +187,12 @@ return {
 	-- disable sniper spawns that I don't like
 	[105826] = disabled,
 	[101619] = disabled,
+	-- don't remove outside preferreds with far preferreds
+	[107018] = { 
+		on_executed = {
+			{ id = 100923, remove = true }, 
+		},
+	},
 	--Let the cops finish their spawn anim before moving into SO spot
 	[103720] = {
 		on_executed = {
@@ -348,7 +385,7 @@ return {
 	[103163] = bulldozer_spawn,
 	[103198] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
-	-- spawnpoint delays
+	-- Spawn group delays
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,
 	[103135] = elevator_spawn,

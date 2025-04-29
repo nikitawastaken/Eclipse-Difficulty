@@ -1,5 +1,25 @@
 local preferred = Eclipse.preferred
-
+local street_spawn = {
+	values = {
+		interval = 10,
+	},
+}
+local parking_lot_spawn = {
+	values = {
+		interval = 20,
+	},
+}
+local rappel_spawn = {
+	values = {
+		interval = 40,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 120,
+	},
+}
 return {
 	-- Combine some navigation areas
 	[101230] = {
@@ -29,6 +49,56 @@ return {
 			{ 107, 74, 133, 12, 19, 21 },
 			{ 64, 135, 63, 58, 134 },
 			{ 52, 53 },
+		},
+	},
+	-- Add new reinforce
+	[101169] = { -- First cop car arrived
+		reinforce = {
+			{
+				name = "pear_shop",
+				force = 3,
+				position = Vector3(1450, -2700, 25),
+			},
+			{
+				name = "convenience_store",
+				force = 3,
+				position = Vector3(-750, 2700, 25),
+			},
+			{
+				name = "cafe",
+				force = 3,
+				position = Vector3(0, -4075, 25),
+			},
+			{
+				name = "china",
+				force = 3,
+				position = Vector3(1450, -4050, 25),
+			},
+		},
+	},
+	[101470] = { -- Safe 5, Pear shop safe
+		reinforce = {
+			{ name = "pear_shop" },
+		},
+	},
+	[101449] = { -- Safe 4, Cafe safe
+		reinforce = {
+			{ name = "cafe" },
+		},
+	},
+	[101450] = { -- Safe 3, China store safe 2
+		reinforce = {
+			{ name = "china" },
+		},
+	},
+	[101469] = { -- Safe 2, China store safe 1
+		reinforce = {
+			{ name = "china" },
+		},
+	},
+	[101477] = { -- Safe 1, Convenience store safe
+		reinforce = {
+			{ name = "convenience_store" },
 		},
 	},
 	-- disable Titan cams
@@ -64,15 +134,28 @@ return {
 			{ id = 103242, remove = true },
 		},
 	},
-	[102929] = {
-		values = {
-			interval = 10,
+	-- Remove the rappel group from initital preferreds
+	[101334] = { -- 1st preferred add
+		on_executed = {
+			{ id = 101375, remove = true },
 		},
 	},
-	[101375] = {
-		values = {
-			interval = 30,
+	[101832] = { -- diff 65
+		on_executed = {
+			{ id = 400001, delay = 20 },
 		},
-		groups = preferred.no_cops_agents_shields_bulldozers,
 	},
+	-- Spawn group delays
+	[101221] = street_spawn,
+	[101213] = street_spawn,
+	[101345] = street_spawn,
+	[101369] = street_spawn,
+	[102929] = parking_lot_spawn,
+	[101375] = rappel_spawn,	
+	[103543] = cloaker_spawn,
+	[103544] = cloaker_spawn,
+	[103545] = cloaker_spawn,
+	[103546] = cloaker_spawn,
+	[103547] = cloaker_spawn,
+	[103548] = cloaker_spawn,
 }

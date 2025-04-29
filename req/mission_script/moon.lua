@@ -1,5 +1,4 @@
 local preferred = Eclipse.preferred
-
 local entrance_spawn = {
 	values = {
 		interval = 15,
@@ -11,9 +10,8 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
 return {
-	-- New reinforce
+	-- Add new reinforce
 	[100768] = {
 		reinforce = {
 			{
@@ -27,12 +25,12 @@ return {
 		reinforce = {
 			{
 				name = "escalator1",
-				force = 2,
+				force = 3,
 				position = Vector3(-900, 250, 400),
 			},
 			{
 				name = "escalator2",
-				force = 2,
+				force = 3,
 				position = Vector3(250, -900, 400),
 			},
 		},

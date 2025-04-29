@@ -204,22 +204,22 @@ return {
 			},
 			{
 				name = "Mitchell_house1",
-				force = 3,
+				force = 2,
 				position = Vector3(-2286, 2640, 78.789),
 			},
 			{
 				name = "Mitchell_house2",
-				force = 3,
+				force = 2,
 				position = Vector3(-2556, 3836, 75.500),
 			},
 			{
 				name = "Wilson_house1",
-				force = 3,
+				force = 2,
 				position = Vector3(-2080, 39, 28.970),
 			},
 			{
 				name = "Wilson_house2",
-				force = 3,
+				force = 2,
 				position = Vector3(-2980, 1441, -324.500),
 			},
 		},
