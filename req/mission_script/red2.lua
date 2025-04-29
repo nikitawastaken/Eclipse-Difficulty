@@ -119,16 +119,7 @@ return {
 			},
 		},
 	},
-	-- Edit preferreds to make the initial assault have less dense spawns
-	[103984] = { -- assault start
-		on_executed = {
-			{ id = 100043, remove = true }, -- start more preferreds
-		},
-	},
 	[103336] = { -- choose security footage location
-		on_executed = {
-			{ id = 100043, delay = 40 }, -- start more preferreds
-		},
 		reinforce = {
 			{
 				name = "cafeteria",
@@ -142,25 +133,7 @@ return {
 			},
 		},
 	},
-	[105504] = { -- enable right side gate
-		reinforce = {
-			{
-				name = "top_left",
-				force = 2,
-				position = Vector3(400, 1850, 480),
-			},
-		},
-	},
-	[105505] = { -- enable left side gate
-		reinforce = {
-			{
-				name = "top_right",
-				force = 2,
-				position = Vector3(250, -1950, 480),
-			},
-		},
-	},
-	[101544] = { -- players entered the vault
+	[103401] = {  -- vent loot secure point is available
 		reinforce = {
 			{
 				name = "matrix",
@@ -169,6 +142,9 @@ return {
 			},
 		},
 	},
+	-- disable a few vanilla reinforce spots
+	[105905] = disabled, -- counting rooms
+	[105910] = disabled, -- vault
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,
@@ -187,10 +163,15 @@ return {
 	-- disable sniper spawns that I don't like
 	[105826] = disabled,
 	[101619] = disabled,
-	-- don't remove outside preferreds with far preferreds
-	[107018] = {
+	-- Edit preferreds to make the initial assault have less dense spawns
+	[103984] = { -- assault start
 		on_executed = {
-			{ id = 100923, remove = true },
+			{ id = 100043, remove = true }, -- start more preferreds
+		},
+	},
+	[100955] = { -- diff 0.75
+		on_executed = {
+			{ id = 100043, delay = 40 }, -- start more preferreds
 		},
 	},
 	--Let the cops finish their spawn anim before moving into SO spot
