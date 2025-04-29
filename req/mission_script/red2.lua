@@ -264,7 +264,7 @@ return {
 	-- restore unused shield army script from pdth
 	[106547] = {
 		on_executed = {
-			{ id = 400059, delay = 0 },
+			{ id = 400059, delay = 5 },
 		},
 	},
 	-- vault ambush
