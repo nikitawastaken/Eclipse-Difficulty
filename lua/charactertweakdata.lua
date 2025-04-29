@@ -316,7 +316,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.fbi_sniper = based_on(presets.weapon.sniper)
-	
+
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
@@ -1105,7 +1105,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi_sniper = deep_clone(self.sniper)
-	
+
 	self.city_sniper = deep_clone(self.swat)
 	self.city_sniper.tags = {
 		"law",
