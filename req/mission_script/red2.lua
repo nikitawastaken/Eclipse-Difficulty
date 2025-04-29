@@ -150,7 +150,7 @@ return {
 				position = Vector3(400, 1850, 480),
 			},
 		},
-	},	
+	},
 	[105505] = { -- enable left side gate
 		reinforce = {
 			{
@@ -159,7 +159,7 @@ return {
 				position = Vector3(250, -1950, 480),
 			},
 		},
-	},			
+	},
 	[101544] = { -- players entered the vault
 		reinforce = {
 			{
@@ -188,9 +188,9 @@ return {
 	[105826] = disabled,
 	[101619] = disabled,
 	-- don't remove outside preferreds with far preferreds
-	[107018] = { 
+	[107018] = {
 		on_executed = {
-			{ id = 100923, remove = true }, 
+			{ id = 100923, remove = true },
 		},
 	},
 	--Let the cops finish their spawn anim before moving into SO spot

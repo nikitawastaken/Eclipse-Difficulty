@@ -88,7 +88,7 @@ return {
 
 	[102399] = window_spawn2,
 	[102400] = window_spawn2,
-	
+
 	[100019] = skylight_spawn1,
 	[100809] = skylight_spawn1,
 
@@ -99,8 +99,7 @@ return {
 	[101941] = skylight_spawn2,
 	[101943] = skylight_spawn2,
 	[101942] = skylight_spawn2,
-	
+
 	[101959] = skylight_spawn2,
 	[101946] = skylight_spawn2,
-
 }
