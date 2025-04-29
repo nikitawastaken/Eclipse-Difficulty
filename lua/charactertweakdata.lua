@@ -245,7 +245,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 6 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.fbi, 7 / 5)
-	
+
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.75 },
 		focus_delay = 0.6,
