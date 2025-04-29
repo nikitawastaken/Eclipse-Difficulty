@@ -254,15 +254,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.fbi_swat, 6 / 5)
 	accuracy_multiplier(presets.weapon.fbi_swat, 1.1)
 
-	presets.weapon.city_swat = based_on(presets.weapon.swat, {
+	presets.weapon.elite_swat = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.5 },
 		focus_delay = 0.4,
 		melee_dmg = 12 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.city_swat, 8 / 5)
-	accuracy_multiplier(presets.weapon.city_swat, 1.2)
+	damage_multiplier(presets.weapon.elite_swat, 8 / 5)
+	accuracy_multiplier(presets.weapon.elite_swat, 1.2)
 
-	presets.weapon.zeal_swat = based_on(presets.weapon.city_swat)
+	presets.weapon.zeal_swat = based_on(presets.weapon.elite_swat)
 
 	presets.weapon.murky = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.murky, 7 / 5)
@@ -315,6 +315,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 20 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	presets.weapon.fbi_sniper = based_on(presets.weapon.sniper)
+	
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
@@ -1102,25 +1104,27 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.sniper.headshot_dmg_mul = 4 -- 20 head health
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
 
-	self.marksman = deep_clone(self.swat)
-	self.marksman.tags = {
+	self.fbi_sniper = deep_clone(self.sniper)
+	
+	self.city_sniper = deep_clone(self.swat)
+	self.city_sniper.tags = {
 		"law",
 		"marksman",
 		"special",
 	}
-	self.marksman.HEALTH_INIT = 24
-	self.marksman.headshot_dmg_mul = 3 -- 80 head health
-	self.marksman.priority_shout = "f34"
-	self.marksman.chatter = self.presets.enemy_chatter.no_chatter
-	--self.marksman.misses_first_player_shot = true
-	self.marksman.surrender = nil
-	self.marksman.suppression = nil
-	self.marksman.shooting_death = false
-	self.marksman.no_retreat = true
-	self.marksman.no_arrest = true
-	self.marksman.steal_loot = nil
-	self.marksman.rescue_hostages = false
-	table.insert(self._enemy_list, "marksman")
+	self.city_sniper.HEALTH_INIT = 36
+	self.city_sniper.headshot_dmg_mul = 3 -- 120 head health
+	self.city_sniper.priority_shout = "f34"
+	self.city_sniper.chatter = self.presets.enemy_chatter.no_chatter
+	--self.city_sniper.misses_first_player_shot = true
+	self.city_sniper.surrender = nil
+	self.city_sniper.suppression = nil
+	self.city_sniper.shooting_death = false
+	self.city_sniper.no_retreat = true
+	self.city_sniper.no_arrest = true
+	self.city_sniper.steal_loot = nil
+	self.city_sniper.rescue_hostages = false
+	table.insert(self._enemy_list, "city_sniper")
 
 	self.shield.HEALTH_INIT = 30
 	self.shield.headshot_dmg_mul = 1.875 -- 160 head health
@@ -1550,7 +1554,7 @@ CharacterTweakData.tweak_table_weapon = {
 	heavy_swat = "swat",
 	fbi_swat = "fbi_swat",
 	fbi_heavy_swat = "fbi_swat",
-	city_swat = "city_swat",
+	city_swat = "elite_swat",
 	zeal_swat = "zeal_swat",
 	zeal_heavy_swat = "zeal_swat",
 	murky = "murky",
@@ -1563,13 +1567,14 @@ CharacterTweakData.tweak_table_weapon = {
 	fbi_female = "fbi",
 	soldier = "soldier",
 	cobra = "gangster",
+	sniper = "sniper",
 	shield = "shield",
+	fbi_sniper = "fbi_sniper",
 	fbi_shield = "fbi_shield",
+	city_sniper = "elite_sniper",
 	city_shield = "elite_shield",
 	city_shield_break = "elite_shield",
 	zeal_shield = "zeal_shield",
-	sniper = "sniper",
-	marksman = "elite_sniper",
 	tank = "tank",
 	tank_elite = "elite_tank",
 	marshal_marksman = "marshal_marksman",
@@ -1598,7 +1603,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	zeal_swat = "very_fast",
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
-	marksman = "normal",
+	city_sniper = "fast",
 	zeal_heavy_swat = "fast",
 	cobra = "fast",
 	murky = "fast",
@@ -1612,7 +1617,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	soldier = "fast",
 	medic = "normal",
 	zeal_medic = "normal",
-	heavy_swat_sniper = "fast",
+	heavy_swat_sniper = "normal",
 	mobster_boss = "fast",
 	chavez_boss = "fast",
 	drug_lord_boss = "normal",

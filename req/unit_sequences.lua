@@ -231,7 +231,7 @@ local M = {
 	["units/payday2/characters/ene_city_swat_2/ene_city_swat_2"] = { name = "city_swat_2", head = head_sequences.city_swat_a },
 	["units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870"] = { name = "city_swat_2", head = head_sequences.city_swat_a },
 	["units/payday2/characters/ene_city_swat_3/ene_city_swat_3"] = { name = "city_swat_3", head = head_sequences.city_swat_a },
-	["units/payday2/characters/ene_sniper_3/ene_sniper_3"] = { name = "sniper_3", head = head_sequences.city_swat_a },
+	["units/payday2/characters/ene_sniper_3/ene_sniper_3"] = { name = "sniper_3", head = head_sequences.city_swat_b },
 	["units/payday2/characters/ene_city_shield/ene_city_shield"] = { name = "shield_3", head = head_sequences.blue_swat_c },
 	["units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"] = { name = "bulldozer_1", head = head_sequences.bulldozer },
 	["units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"] = { name = "bulldozer_2", head = head_sequences.bulldozer },

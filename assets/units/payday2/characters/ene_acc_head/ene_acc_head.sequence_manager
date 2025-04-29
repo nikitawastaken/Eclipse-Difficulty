@@ -83,10 +83,14 @@
 			<run_sequence 		name="'balaclava_'..pick('base','base','base','none')" />
 		</sequence>
 
+		<sequence editable_state="true" name="'random_balaclava'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_'..pick('none','base')" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'random_balaclava_rare'" once="true" triggable="true"> 
 			<run_sequence 		name="'balaclava_'..pick('none','none','none','base')" />
 		</sequence>
-		
+
 		<sequence editable_state="true" name="'balaclava_none'" once="true" triggable="true" >
 			<run_sequence 		name="'disable_face'" />
 		</sequence>
