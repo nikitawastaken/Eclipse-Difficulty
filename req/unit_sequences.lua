@@ -236,6 +236,7 @@ local M = {
 	["units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"] = { name = "bulldozer_1", head = head_sequences.bulldozer },
 	["units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"] = { name = "bulldozer_2", head = head_sequences.bulldozer },
 	["units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"] = { name = "bulldozer_3", head = head_sequences.bulldozer },
+	["units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"] = { name = "bulldozer_headless", head = head_sequences.bulldozer },
 	["units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"] = { name = "bulldozer_4", head = head_sequences.bulldozer },
 	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"] = { name = "mcmansion_security_1", head = head_sequences.blue_swat_b },
 	["units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_2/ene_hoxton_breakout_guard_2"] = { name = "mcmansion_security_1", head = head_sequences.blue_swat_b },

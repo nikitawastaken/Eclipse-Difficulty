@@ -918,6 +918,9 @@
 					<file :name="ene_bulldozer_3.material_config" />
 					<file :name="ene_bulldozer_3_contour.material_config" />
 
+					<file :name="ene_bulldozer_4.material_config" />
+					<file :name="ene_bulldozer_4_contour.material_config" />
+					
 					<file :name="ene_bulldozer_minigun_classic.material_config" />
 					<file :name="ene_bulldozer_minigun_classic_contour.material_config" />
 
@@ -934,6 +937,11 @@
 			<group :name="ene_bulldozer_3/">
 				<file :name="ene_bulldozer_3.unit" />
 				<file :name="ene_bulldozer_3_husk.unit" />
+			</group>
+
+			<group :name="ene_bulldozer_4/">
+				<file :name="ene_bulldozer_4.unit" />
+				<file :name="ene_bulldozer_4_husk.unit" />
 			</group>
 		</group>
 

@@ -15,6 +15,7 @@ local paths = table.list_to_set({
 	"units/payday2/characters/ene_swat_1/vars/ene_city_swat_1",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3",
+	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_4",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic",
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
