@@ -296,7 +296,7 @@ local optsDefendSO = {
 	pose = "stand",
 }
 local optsspawnArmy = {
-	on_executed = { { id = 400054, delay = 0 }, { id = 400055, delay = 0 }, { id = 400056, delay = 0 }, { id = 400057, delay = 1 }, { id = 400058, delay = 1 }, },
+	on_executed = { { id = 400054, delay = 0 }, { id = 400055, delay = 0 }, { id = 400056, delay = 0 }, { id = 400057, delay = 1 }, { id = 400058, delay = 1 } },
 	enabled = overkill_and_above and enabled_chance_shield_army,
 }
 
@@ -341,20 +341,20 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400024, "shield_defend_2", Vector3(3959, 721, -43.895), Rotation(90, -0, -0), optsVaultShield2),
 	Eclipse.mission_elements.gen_so(400025, "shield_defend_so_1", Vector3(3307, 1800, -15), Rotation(90, -0, -0), optsShieldSO),
 	Eclipse.mission_elements.gen_so(400026, "shield_defend_so_2", Vector3(3307, 700, -15), Rotation(90, -0, -0), optsShieldSO),
-	
+
 	-- shield army restoration
 	Eclipse.mission_elements.gen_dummy(400054, "shield_1", Vector3(-5646, 1989, -137.025), Rotation(-160, 0, 0), optsShieldArmy_1),
 	Eclipse.mission_elements.gen_dummy(400055, "shield_2", Vector3(-5583.041, 2011.915, -137.025), Rotation(-160, 0, 0), optsShieldArmy_2),
 	Eclipse.mission_elements.gen_dummy(400056, "shield_3", Vector3(-5521.021, 2034.489, -137.025), Rotation(-160, 0, 0), optsShieldArmy_3),
-	Eclipse.mission_elements.gen_dummy(400057, "taser_1",  Vector3(-5664, 2140, -137.025), Rotation(-162, 0, 0), optsShieldArmy_4),
-	Eclipse.mission_elements.gen_dummy(400058, "taser_2",  Vector3(-5578.405, 2167.812, -137.025), Rotation(-162, 0, 0), optsShieldArmy_5),
+	Eclipse.mission_elements.gen_dummy(400057, "taser_1", Vector3(-5664, 2140, -137.025), Rotation(-162, 0, 0), optsShieldArmy_4),
+	Eclipse.mission_elements.gen_dummy(400058, "taser_2", Vector3(-5578.405, 2167.812, -137.025), Rotation(-162, 0, 0), optsShieldArmy_5),
 	Eclipse.mission_elements.gen_missionscript(400059, "shield_army", optsspawnArmy),
-	
-	Eclipse.mission_elements.gen_so(400060, "army_so_1",  Vector3(-1624, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400061, "army_so_2",  Vector3(-1526, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400062, "army_so_3",  Vector3(-1425, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400063, "army_so_4",  Vector3(-1477, 991, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400064, "army_so_5",  Vector3(-1574, 988, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+
+	Eclipse.mission_elements.gen_so(400060, "army_so_1", Vector3(-1624, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400061, "army_so_2", Vector3(-1526, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400062, "army_so_3", Vector3(-1425, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400063, "army_so_4", Vector3(-1477, 991, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400064, "army_so_5", Vector3(-1574, 988, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
 
 	-- escape spooc ambush
 	Eclipse.mission_elements.gen_dummy(400027, "eclipse_spooc_ambush_1", Vector3(677, 57, 475.020), Rotation(90, -0, -0), optsSpoocAmbush1),

@@ -261,7 +261,7 @@ return {
 			enabled = cloaker_basement_chance,
 		},
 	},
-	-- restore unused shield army script from pdth 
+	-- restore unused shield army script from pdth
 	[106547] = {
 		on_executed = {
 			{ id = 400059, delay = 0 },
