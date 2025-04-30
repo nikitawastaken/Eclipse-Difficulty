@@ -1226,6 +1226,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.melee_weapon = "weapon"
 
 	self.tank_hw = deep_clone(self.tank)
+	self.tank_hw.HEALTH_INIT = 400
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
 	self.tank_hw.melee_anims = nil

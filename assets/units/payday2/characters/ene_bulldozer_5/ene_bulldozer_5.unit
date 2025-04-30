@@ -7,7 +7,7 @@
 		<depends_on bnk="soundbanks/regular_vox" />
 		<depends_on bnk="soundbanks/regular_sfx" />
 		<depends_on effect="effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable" />
-		<depends_on unit="units/payday2/weapons/wpn_npc_benelli_bulldozer/wpn_npc_benelli_bulldozer" />		
+		<depends_on unit="units/payday2/weapons/wpn_npc_aa12_bulldozer/wpn_npc_aa12_bulldozer" />
 		<depends_on unit="units/pd2_halloween/weapons/wpn_mel_titan_sword/wpn_mel_titan_sword" />
 	</dependencies>
 
@@ -16,7 +16,7 @@
 		<extension name="base" class="CopBase" >		
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="tank_hw" />
-			<var name="_default_weapon_id" value="benelli_tank" />
+			<var name="_default_weapon_id" value="aa12_tank" />
 			<var name="_melee_weapon_table" value="hw_sword" />		
 		</extension>
 		<extension name="inventory" class="CopInventory" />
