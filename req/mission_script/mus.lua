@@ -76,7 +76,7 @@ return {
 		},
 	},
 	[101733] = { -- opened the door to the diamond room
-		difficulty = 1
+		difficulty = 1,
 	},
 	-- prevent cops from spawning too soon
 	[100022] = {
@@ -113,7 +113,7 @@ return {
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,
 	[100790] = courtyard_spawn,
-	[100791] = courtyard_spawn,	
+	[100791] = courtyard_spawn,
 	[100007] = window_spawn1,
 	[102418] = window_spawn1,
 	[102399] = window_spawn2,
