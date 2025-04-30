@@ -50,7 +50,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 
 	local headless_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"))
 	load_unload_unit("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5", headless_needed, false)
-	
+
 	local rvd_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"))
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_1_fat/ene_la_cop_1_fat", rvd_needed, false)
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat", rvd_needed, false)

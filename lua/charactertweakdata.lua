@@ -399,7 +399,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.3, 0.5 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.elite_tank = based_on(presets.weapon.tank)
 
 	presets.weapon.elite_tank.is_shotgun_pump.FALLOFF = {
@@ -1225,7 +1225,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
 
-	self.tank_hw = deep_clone(self.tank)	
+	self.tank_hw = deep_clone(self.tank)
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
 	self.tank_hw.melee_anims = nil
@@ -1651,7 +1651,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	deep_boss = "slow",
 	tank = "very_slow",
 	tank_hw = "very_slow",
-	tank_elite = "very_slow",	
+	tank_elite = "very_slow",
 	marshal_marksman = "normal",
 	marshal_gunner = "normal",
 }
