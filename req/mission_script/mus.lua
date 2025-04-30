@@ -52,6 +52,9 @@ return {
 	},
 	[102154] = { -- 1st timelock done
 		difficulty = 0.75,
+		on_executed = {
+			{ id = 100345, delay = 0 }, -- Bain diff increase dialogue
+		},
 		reinforce = {
 			{
 				name = "south",
@@ -77,6 +80,9 @@ return {
 	},
 	[101733] = { -- opened the door to the diamond room
 		difficulty = 1,
+		on_executed = {
+			{ id = 100345, delay = 0 }, -- Bain diff increase dialogue
+		},
 	},
 	-- prevent cops from spawning too soon
 	[100022] = {
