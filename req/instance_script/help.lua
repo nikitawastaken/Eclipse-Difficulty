@@ -5,7 +5,7 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local headless_dozer_black = scripted_enemy.headless_bulldozer_1
 local headless_dozer_white = scripted_enemy.headless_bulldozer_2
 local headless_black_only = {
-	headless_dozer_black
+	headless_dozer_black,
 }
 local headless_tanks = is_eclipse and { [headless_dozer_black] = 3, [headless_dozer_white] = 1 } or headless_black_only
 

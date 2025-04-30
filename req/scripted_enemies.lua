@@ -76,7 +76,7 @@ local M = {
 	elite_bulldozer_1 = "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 
 	elite_bulldozer_2 = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
-	
+
 	headless_bulldozer_1 = "units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5",
 
 	headless_bulldozer_2 = "units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4",

@@ -7,7 +7,7 @@ local headless_tanks = is_eclipse and { [headless_dozer_black] = 3, [headless_do
 local headless_tank = {
 	enemy = headless_tanks,
 	values = {
-		participate_to_group_ai = true
+		participate_to_group_ai = true,
 	},
 }
 
@@ -20,5 +20,5 @@ return {
 	[100347] = headless_tank,
 	[100348] = headless_tank,
 	[100349] = headless_tank,
-	[100350] = headless_tank
+	[100350] = headless_tank,
 }
