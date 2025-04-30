@@ -1543,10 +1543,10 @@ CharacterTweakData.access_health = {
 }
 
 CharacterTweakData.access_hs_mul = {
-	security = 4,
-	cop = 4,
-	gangster = 4,
-	fbi = 4,
+	security = 3.2,
+	cop = 3,
+	gangster = 3.2,
+	fbi = 3.2,
 }
 
 CharacterTweakData.tweak_table_weapon = {
@@ -1612,8 +1612,8 @@ CharacterTweakData.tweak_table_move_speed = {
 	security_army = "fast",
 	marshal_security = "fast",
 	cop_fat = "slow",
-	fbi_office = "normal",
-	fbi_female = "normal",
+	fbi_office = "fast",
+	fbi_female = "fast",
 	soldier = "fast",
 	medic = "normal",
 	zeal_medic = "normal",
