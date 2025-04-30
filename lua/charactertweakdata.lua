@@ -1101,7 +1101,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "soldier")
 
 	self.sniper.HEALTH_INIT = 8
-	self.sniper.headshot_dmg_mul = 4 -- 20 head health
+	self.sniper.headshot_dmg_mul = 3.2 -- 25 head health
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi_sniper = deep_clone(self.sniper)
