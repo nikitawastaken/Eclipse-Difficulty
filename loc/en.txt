@@ -378,6 +378,7 @@
 
 	"ene_bulldozer_minigun" : "Benellidozer",
 	"ene_bulldozer_minigun_classic" : "Benellidozer",
+	"ene_bulldozer_5" : "Headless Blackdozer",
 	"ene_sniper_3" : "GenSec Elite Sniper",
 	"ene_city_shield" : "GenSec Elite Shield",
 }

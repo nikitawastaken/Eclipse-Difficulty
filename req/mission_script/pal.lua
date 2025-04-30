@@ -64,16 +64,15 @@ local crowbar_sewer_amount = {
 		amount = (normal or hard) and 1 or 0,
 	},
 }
-local c4_amount_solo = normal and 2 or 4
-local c4_amount = normal and 4 or 7
+local c4_amount = (normal or hard) and 4 or 7
 local c4_event = {
 	values = {
-		amount = not is_solo and c4_amount or c4_amount_solo,
+		amount = c4_amount,
 	},
 }
 local c4_event_counter = {
 	values = {
-		counter_target = not is_solo and c4_amount or c4_amount_solo,
+		counter_target = c4_amount,
 	},
 }
 
