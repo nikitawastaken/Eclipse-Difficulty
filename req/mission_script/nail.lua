@@ -13,7 +13,6 @@ local ledge_spawn = {
 	values = {
 		interval = 20,
 	},
-	
 }
 return {
 	[100342] = headless_tank,
@@ -26,13 +25,13 @@ return {
 	[100349] = headless_tank,
 	[100350] = headless_tank,
 	-- Spawn group delays
-	[101601] = ledge_spawn,	
-	[101603] = ledge_spawn,	
-	[101604] = ledge_spawn,	
-	[101605] = ledge_spawn,	
-	[101607] = ledge_spawn,	
-	[101501] = ledge_spawn,	
-	[101799] = ledge_spawn,	
-	[101800] = ledge_spawn,	
-	[101801] = ledge_spawn,	
+	[101601] = ledge_spawn,
+	[101603] = ledge_spawn,
+	[101604] = ledge_spawn,
+	[101605] = ledge_spawn,
+	[101607] = ledge_spawn,
+	[101501] = ledge_spawn,
+	[101799] = ledge_spawn,
+	[101800] = ledge_spawn,
+	[101801] = ledge_spawn,
 }
