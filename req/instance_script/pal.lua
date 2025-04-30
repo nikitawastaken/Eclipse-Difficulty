@@ -35,7 +35,7 @@ M["levels/instances/unique/sub_sewer_grate/world/world"] = function(result)
 			element.values.enemy = cloaker
 			element.values.position = Vector3(-109, 20, 0)
 		elseif sewer_grate.taser[id] then
-			element.values.position = Vector3(-48, 17, 0)	
+			element.values.position = Vector3(-48, 17, 0)
 		elseif sewer_grate.swat_sg[id] then
 			element.values.enemy = heavy_swat
 			element.values.position = Vector3(13, 16, 0)
