@@ -359,13 +359,13 @@ return {
 	},
 	[100570] = { -- trigger close to Eddie #2
 		on_executed = {
-			{ id = 410004, delay = 5 }, -- first Major Ave preferred add
+			{ id = 410004, delay = 5, delay_rand = 5 }, -- first Major Ave preferred add
 			{ id = 102440, delay = 0 }, -- 5th preferred add
 		},
 	},
 	[100430] = { -- reached Eddie crash site
 		on_executed = {
-			{ id = 410006, delay = 5 }, -- second Major Ave preferred add
+			{ id = 410006, delay = 5, delay_rand = 5 }, -- second Major Ave preferred add
 			{ id = 101476, delay = 0 }, -- 10th preferred add
 		},
 		reinforce = { -- add crane "blockade" reinforce
@@ -400,7 +400,7 @@ return {
 	},
 	[100959] = { -- area player by street
 		on_executed = {
-			{ id = 410008, delay = 5 }, -- East St. preferred add
+			{ id = 410008, delay = 5, delay_rand = 5 }, -- East St. preferred add
 			{ id = 102734, delay = 0 }, -- 7th preferred add
 		},
 	},
@@ -417,7 +417,7 @@ return {
 	},
 	[101339] = {
 		on_executed = {
-			{ id = 410010, delay = 15 }, -- Inkwell Industrial preferred add
+			{ id = 410010, delay = 20, delay_rand = 10 }, -- Inkwell Industrial preferred add
 			{ id = 101086, delay = 30 }, -- 9th preferred add (vanilla)
 		},
 		reinforce = { -- add Inkwell reinforce
@@ -430,7 +430,7 @@ return {
 	},
 	[103883] = { -- Matt is out, go to parking
 		on_executed = {
-			{ id = 410006, delay = 0 }, -- second Major Ave preferred add
+			{ id = 410006, delay = 5, delay_rand = 5 }, -- second Major Ave preferred add
 			{ id = 410011, delay = 0 }, -- Inkwell Industrial preferred remove
 		},
 		reinforce = { -- remove Inkwell reinforce
@@ -440,7 +440,7 @@ return {
 	[103885] = { -- reached gate
 		on_executed = {
 			{ id = 410007, delay = 0 }, -- second Major Ave preferred remove
-			{ id = 410022, delay = 0 }, -- Armitage Avenue preferred add
+			{ id = 410022, delay = 5, delay_rand = 5 }, -- Armitage Avenue preferred add
 		},
 		reinforce = { -- add alley "blockade" reinforce
 			{
@@ -468,7 +468,7 @@ return {
 	},
 	[103492] = { -- remove spawns trigger
 		on_executed = {
-			{ id = 410034, delay = 0 }, -- first Overpass preferred add
+			{ id = 410034, delay = 5, delay_rand = 5 }, -- first Overpass preferred add
 		},
 		reinforce = { -- add overpass "blockade" reinforce
 			{
@@ -485,13 +485,13 @@ return {
 	},
 	[101962] = { -- trigger area 8
 		on_executed = {
-			{ id = 410041, delay = 0 }, -- second Overpass preferred add
+			{ id = 410041, delay = 5, delay_rand = 5 }, -- second Overpass preferred add
 		},
 	},
 	[100271] = { -- trigger area 11
 		on_executed = {
 			{ id = 410035, delay = 0 }, -- first Overpass preferred remove
-			{ id = 410053, delay = 0 }, -- finale preferred add
+			{ id = 410053, delay = 10, delay_rand = 10 }, -- finale preferred add
 		},
 		reinforce = { -- remove overpass "blockade" reinforce
 			{ name = "overpass1" },

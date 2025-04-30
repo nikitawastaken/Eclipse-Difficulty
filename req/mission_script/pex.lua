@@ -98,17 +98,17 @@ return {
 	},
 	[101571] = { -- fire started, enable roof preferreds
 		on_executed = {
-			{ id = 101574, delay = 20 },
+			{ id = 101574, delay = 20, delay_rand = 10 },
 		},
 	},
 	[100006] = { -- fire done, enable back alley preferreds
 		on_executed = {
-			{ id = 102203, delay = 20 },
+			{ id = 102203, delay = 20, delay_rand = 10 },
 		},
 	},
 	[101236] = { -- Hajrudin stopped, enable garage roof preferreds
 		on_executed = {
-			{ id = 101573, delay = 20 },
+			{ id = 101573, delay = 20, delay_rand = 10 },
 		},
 	},
 	-- Adjust Sniper amount

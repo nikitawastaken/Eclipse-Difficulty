@@ -45,8 +45,8 @@ return {
 	--Delay sanctum preferreds
 	[103217] = {
 		on_executed = {
-			{ id = 103216, delay = 30 },
-			{ id = 103493, delay = 30 },
+			{ id = 103216, delay = 30, delay_rand = 10 },
+			{ id = 103493, delay = 30, delay_rand = 10 },
 		},
 		reinforce = { -- Enable reinforce
 			{

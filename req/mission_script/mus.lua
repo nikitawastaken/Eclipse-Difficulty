@@ -9,6 +9,12 @@ local enabled = {
 		enabled = true,
 	},
 }
+local courtyard_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents,
+}
 local window_spawn1 = {
 	values = {
 		interval = 30,
@@ -17,7 +23,7 @@ local window_spawn1 = {
 }
 local window_spawn2 = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -44,7 +50,8 @@ return {
 			},
 		},
 	},
-	[102154] = { -- timelock done
+	[102154] = { -- 1st timelock done
+		difficulty = 0.75,
 		reinforce = {
 			{
 				name = "south",
@@ -68,12 +75,32 @@ return {
 			},
 		},
 	},
+	[101733] = { -- opened the door to the diamond room
+		difficulty = 1
+	},
 	-- prevent cops from spawning too soon
 	[100022] = {
 		on_executed = {
 			{ id = 100109, delay = 30 },
 		},
 	},
+	-- remove exhibition room rappels from one security room's on_executed
+	[102137] = { -- security room 3
+		on_executed = {
+			{ id = 102128, remove = true }, -- add 10
+		},
+	},
+	-- delay pillar room rappel preferreds
+	[102154] = {
+		on_executed = {
+			{ id = 100128, delay = 30, delay_rand = 10 }, -- add 40
+			{ id = 100130, delay = 30, delay_rand = 10 }, -- add 41
+			{ id = 102129, delay = 20, delay_rand = 10 }, -- add 11
+		},
+	},
+	-- disable vanilla difficulty scaling
+	[100124] = disabled,
+	[100125] = disabled,
 	-- don't remove front spawns
 	[102159] = disabled,
 	-- remove sketchy cheat spawns
@@ -82,24 +109,23 @@ return {
 	[102225] = disabled,
 	[102224] = disabled,
 	[102226] = disabled,
-	-- spawn group delays
+	-- Spawn group delays
+	[100786] = courtyard_spawn,
+	[100789] = courtyard_spawn,
+	[100790] = courtyard_spawn,
+	[100791] = courtyard_spawn,	
 	[100007] = window_spawn1,
 	[102418] = window_spawn1,
-
 	[102399] = window_spawn2,
 	[102400] = window_spawn2,
-
 	[100019] = skylight_spawn1,
 	[100809] = skylight_spawn1,
-
 	[100021] = skylight_spawn1,
 	[100810] = skylight_spawn1,
-
 	[101924] = skylight_spawn2,
 	[101941] = skylight_spawn2,
 	[101943] = skylight_spawn2,
 	[101942] = skylight_spawn2,
-
 	[101959] = skylight_spawn2,
 	[101946] = skylight_spawn2,
 }
