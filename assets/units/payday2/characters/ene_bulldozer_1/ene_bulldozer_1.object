@@ -313,6 +313,8 @@
 		<decal_mesh name="dm_shield1" 							enabled="false" 	material="shield" />
 		<decal_mesh name="dm_shield2" 							enabled="false" 	material="shield" />
 		<decal_mesh name="dm_shield3" 							enabled="false" 	material="shield" />
+		<decal_mesh name="dm_sword1" 							enabled="false" 	material="steel_no_decal" />
+		<decal_mesh name="dm_sword2" 							enabled="false" 	material="steel_no_decal" />
 		
 		<decal_mesh name="c_debris_armor_back" 					enabled="false" 	material="steel_no_decal" />	
 		<decal_mesh name="c_debris_armor_chest" 				enabled="false" 	material="steel_no_decal" />	
@@ -715,6 +717,18 @@
 				<object name="g_shield_lod1" 				enabled="false" lod="1" >			
 					<material materials="mtr_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
 					<material materials="mtr_shield_lod_2" />			
+				</object>			
+			</lod_object>
+
+			<lod_object name="lod_sword">		
+				<object name="g_sword" 					enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">			
+					<material materials="mtr_headless" max_distance="1000" />
+					<material materials="mtr_headless_lod_1" max_distance="1500" />
+					<material materials="mtr_headless_lod_2" />				
+				</object>			
+				<object name="g_sword_lod1" 				enabled="false" lod="1" >			
+					<material materials="mtr_headless" max_distance="0" cpy_material_vars="contour_color, contour_opacity"/>
+					<material materials="mtr_headless_lod_2" />			
 				</object>			
 			</lod_object>
 			

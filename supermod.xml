@@ -453,7 +453,16 @@
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
 		</group>
 
-
+		<group name="units/pd2_halloween/weapons/">
+			<group :name="wpn_mel_titan_sword/">
+				<file :name="wpn_mel_titan_sword.cooked_physics"/>
+				<file :name="wpn_mel_titan_sword.material_config"/>
+				<file :name="wpn_mel_titan_sword.model"/>
+				<file :name="wpn_mel_titan_sword.object"/>
+				<file :name="wpn_mel_titan_sword.unit"/>
+			</group>
+		</group>
+		
 		<group name="units/payday2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
 				<file :name="arms_atlas_df.texture" />
@@ -942,6 +951,11 @@
 			<group :name="ene_bulldozer_4/">
 				<file :name="ene_bulldozer_4.unit" />
 				<file :name="ene_bulldozer_4_husk.unit" />
+			</group>
+
+			<group :name="ene_bulldozer_5/">
+				<file :name="ene_bulldozer_5.unit" />
+				<file :name="ene_bulldozer_5_husk.unit" />
 			</group>
 		</group>
 

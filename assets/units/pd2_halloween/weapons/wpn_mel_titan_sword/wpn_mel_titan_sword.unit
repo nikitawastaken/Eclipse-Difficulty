@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<unit type="wpn" slot="1" >
+    <object file="units/pd2_halloween/weapons/wpn_mel_titan_sword/wpn_mel_titan_sword" />
+</unit>

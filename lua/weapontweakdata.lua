@@ -2794,6 +2794,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 end)
 
 
+Hooks:PostHook(WeaponTweakData, "_init_data_npc_melee", "eclipse_init_data_npc_melee", function(self)
+	self.npc_melee.hw_sword = deep_clone(self.npc_melee.helloween)
+	self.npc_melee.hw_sword.unit_name = Idstring("units/pd2_halloween/weapons/wpn_mel_titan_sword/wpn_mel_titan_sword")
+end)
+
 local turret_damage_mul = {
 	{ 0, 1 },
 	{ 1500, 0.5 },

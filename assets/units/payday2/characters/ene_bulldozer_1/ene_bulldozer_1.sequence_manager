@@ -3,13 +3,14 @@
 	<unit>
 	<!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_big_armor		value="0" />
-			<is_greendozer		value="0" />
-			<is_blackdozer		value="0" />
-			<is_skulldozer		value="0" />
-			<is_bendozer		value="0" />
-			<is_medicdozer		value="0" />
-			<is_headless		value="0" />
+			<has_big_armor			value="0" />
+			<is_greendozer			value="0" />
+			<is_blackdozer			value="0" />
+			<is_skulldozer			value="0" />
+			<is_bendozer			value="0" />
+			<is_medicdozer			value="0" />
+			<is_headless			value="0" />
+			<is_headless_black		value="0" />
 		</variables>
 
 		<filter name="'check_no_big_armor'">
@@ -67,6 +68,14 @@
 		<filter name="'check_headless'">
 			<check value="vars.is_headless == 1" />
 		</filter>
+
+		<filter name="'check_not_headless_black'">
+			<check value="vars.is_headless_black == 0" />
+		</filter>
+		
+		<filter name="'check_headless_black'">
+			<check value="vars.is_headless_black == 1" />
+		</filter>
 		
 		<sequence editable_state="true" name="'neck_big'" once="true" triggable="true">
 			<object 			enabled="false" name="'g_neck'" />
@@ -115,6 +124,14 @@
 			<decal_mesh 			enabled="true" name="'dm_shield3'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'sword'" once="true" triggable="true">	
+			<object 				enabled="true" name="'g_sword'"/>
+			<object 				enabled="true" name="'g_sword_lod1'"/>
+
+			<decal_mesh 			enabled="true" name="'dm_sword1'" />
+			<decal_mesh 			enabled="true" name="'dm_sword2'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'no_head'" once="true" triggable="true">
 			<object 			enabled="false" name="'g_head'" />
 			<object 			enabled="false" name="'g_head_lod1'" />	
@@ -172,7 +189,12 @@
 			<set_variables 		is_headless="1" />
 			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_4'"/>
 		</sequence>		
-		
+
+		<sequence editable_state="true" name="'headless_black'" once="true" triggable="true">
+			<set_variables 		is_headless_black="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'"/>
+		</sequence>	
+	
 		<sequence editable_state="true" name="'bulldozer_1'" once="true" triggable="true">	
 			<object 			enabled="true" name="'g_gear_chest_a'" />
 			<object 			enabled="true" name="'g_gear_chest_a_lod1'" />
@@ -233,6 +255,12 @@
 		<sequence editable_state="true" name="'bulldozer_headless'" once="true" triggable="true">
 			<run_sequence 		name="'headless'" />
 			<run_sequence 		name="'suck_it'" />
+			<run_sequence 		name="'no_head'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bulldozer_headless_black'" once="true" triggable="true">
+			<run_sequence 		name="'headless_black'" />
+			<run_sequence 		name="'sword'" />
 			<run_sequence 		name="'no_head'" />
 		</sequence>
 		

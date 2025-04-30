@@ -361,6 +361,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.tank = based_on(presets.weapon.base, {
 		aim_delay = { 0, 2 },
 		melee_dmg = 30 * dmg_mul,
+		melee_speed = 0.8,
 		melee_range = 175,
 		melee_force = 600,
 	})
@@ -380,6 +381,25 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
+	presets.weapon.hw_tank = based_on(presets.weapon.tank, {
+		melee_speed = 0.5,
+		melee_range = 200,
+	})
+
+	presets.weapon.hw_tank.is_shotgun_pump.FALLOFF = {
+		{ dmg_mul = 24 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 16 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.hw_tank.is_lmg.RELOAD_SPEED = 0.7
+	presets.weapon.hw_tank.is_lmg.autofire_rounds = { 20, 50 }
+	presets.weapon.hw_tank.is_lmg.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.3, 0.5 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+	}
+	
 	presets.weapon.elite_tank = based_on(presets.weapon.tank)
 
 	presets.weapon.elite_tank.is_shotgun_pump.FALLOFF = {
@@ -1205,7 +1225,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
 
-	self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
+	self.tank_hw = deep_clone(self.tank)	
+	self.tank_hw.headshot_dmg_mul = 1
+	self.tank_hw.ignore_headshot = true
+	self.tank_hw.melee_anims = nil
+	self.tank_hw.move_speed_mul = { walk = 0.75, run = 0.75 }
+	self.tank_hw.melee_weapon = "helloween"
+	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.tank_elite = deep_clone(self.tank)
 	self.tank_elite.HEALTH_INIT = 1200
@@ -1415,6 +1441,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_fbi_swat_3")
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
+	safe_add(char_map.basic, "ene_bulldozer_5")
 
 	safe_add(char_map.usm2, "ene_male_marshal_gunner_hcar_1")
 	safe_add(char_map.usm2, "ene_male_marshal_gunner_hcar_2")
@@ -1571,6 +1598,7 @@ CharacterTweakData.tweak_table_weapon = {
 	city_shield_break = "elite_shield",
 	zeal_shield = "zeal_shield",
 	tank = "tank",
+	tank_hw = "hw_tank",
 	tank_elite = "elite_tank",
 	marshal_marksman = "marshal_marksman",
 	marshal_gunner = "marshal_gunner",
@@ -1622,7 +1650,8 @@ CharacterTweakData.tweak_table_move_speed = {
 	biker_boss = "slow",
 	deep_boss = "slow",
 	tank = "very_slow",
-	tank_elite = "very_slow",
+	tank_hw = "very_slow",
+	tank_elite = "very_slow",	
 	marshal_marksman = "normal",
 	marshal_gunner = "normal",
 }
@@ -1731,8 +1760,8 @@ function CharacterTweakData:_set_presets()
 	local elite_bulldozer_armor = diff_lerp(2, 3)
 
 	self.tank.armor_damage_mul = 1 / bulldozer_armor
-	self.tank_elite.armor_damage_mul = 1 / elite_bulldozer_armor
 	self.tank_hw.armor_damage_mul = self.tank_elite.armor_damage_mul -- bandaid
+	self.tank_elite.armor_damage_mul = 1 / elite_bulldozer_armor
 
 	self.tank_armor_balance_mul = { 1, 1.5, 2, 2.5 }
 
