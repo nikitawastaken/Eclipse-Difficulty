@@ -482,7 +482,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.extremely_slow, 0.4)
 	speed_multiplier(presets.move_speed.very_slow, 0.6)
 	speed_multiplier(presets.move_speed.slow, 0.8)
-	speed_multiplier(presets.move_speed.fast, 1.15)
+	speed_multiplier(presets.move_speed.fast, 1.2)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
 
