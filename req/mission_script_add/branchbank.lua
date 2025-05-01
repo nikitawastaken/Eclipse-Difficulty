@@ -46,25 +46,25 @@ local optsEnable_DWDozer = {
 local optsSWAT = {
 	enemy_table = swats,
 	spawn_action = "e_sp_armored_truck_1st",
-	participate_to_group_ai = true,
+	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
 }
 local optsMedic = {
 	enemy = medic,
 	spawn_action = "e_sp_armored_truck_1st",
-	participate_to_group_ai = true,
+	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
 }
 local optsTaser = {
 	enemy = taser,
 	spawn_action = "e_sp_armored_truck_1st",
-	participate_to_group_ai = true,
+	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
 }
 local optsShield = {
 	enemy = shield,
 	spawn_action = "e_sp_armored_truck_1st",
-	participate_to_group_ai = true,
+	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
 }
 local optsOpenSwatVanDoors_1 = {
@@ -82,8 +82,14 @@ local optsspawnvanSWATs_1 = {
 	enabled = true,
 }
 local optsspawnvanSWATs_2 = {
-	on_executed = { { id = 400012, delay = 0 }, { id = 400013, delay = 0 }, { id = 400014, delay = 0 }, { id = 400015, delay = 0 }, { id = 400016, delay = 0 }, { id = 400028, delay = 0 } },
+	on_executed = { { id = 400012, delay = 0 }, { id = 400013, delay = 0 }, { id = 400014, delay = 0 }, { id = 400015, delay = 0 }, { id = 400016, delay = 0 }, { id = 400018, delay = 0 } },
 	enabled = true,
+}
+local optsHuntSO = {
+	SO_access = tostring(128 + 2048 + 8192),
+	path_style = "none",
+	scan = true,
+	so_action = "AI_hunt",
 }
 
 M.elements = {
@@ -110,6 +116,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400016, "swat_van_spawn_5", Vector3(661.351, 2611.769, -19.850), Rotation(16, 0, 0), optsShield),
 	Eclipse.mission_elements.gen_missionscript(400017, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400018, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
+	
+	Eclipse.mission_elements.gen_so(400019, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
 }
 
 return M
