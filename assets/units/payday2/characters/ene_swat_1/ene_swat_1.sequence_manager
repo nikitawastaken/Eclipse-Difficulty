@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+ <?xml version="1.0"?>
 <table>
 	<unit>
 <!--CUSTOM SEQUENCES START-->
@@ -433,7 +433,7 @@
 			<run_sequence 		name="'armor_crotch'" />
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />
-			<run_sequence 		name="'patch_body_a'" />
+			<run_sequence 		name="'patch_body_b'" />
 			<run_sequence 		name="'helmet_fbi_swat'" />
 			<run_sequence 		name="'random_goggles_head'" />
 			<run_sequence 		name="'mandibles'" />
