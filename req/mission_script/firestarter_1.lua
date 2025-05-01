@@ -99,6 +99,8 @@ return {
 		on_executed = {
 			{ id = 101906, delay = 0 },
 			{ id = 101908, delay = 0 },
+			{ id = 100168, delay = 0 },
+			{ id = 100163, delay = 0 },
 		},
 	},
 	-- tweak gangsters amount
