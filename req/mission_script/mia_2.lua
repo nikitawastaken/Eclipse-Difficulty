@@ -25,18 +25,18 @@ local no_spawn_instigator_ids = {
 }
 local scaffolding_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local penthouse_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
