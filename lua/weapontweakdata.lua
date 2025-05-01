@@ -720,7 +720,7 @@ function WeaponTweakData:_init_weapons()
 				end
 			end
 
-			local base_spread = weap_data.rays and 6 or 3
+			local base_spread = 3
 
 			--set spread values
 			if weap_data.spread then
