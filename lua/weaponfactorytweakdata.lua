@@ -879,8 +879,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.stats = nil
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.pcs = nil
 
+	self.parts.wpn_fps_upg_m4_m_straight.stats.extra_ammo = -5
+	
 	self.parts.wpn_fps_m4_uupg_m_std = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
-	self.parts.wpn_fps_m4_uupg_m_std.stats.extra_ammo = -5
 
 	-- DMR Mods
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.spread = -6
@@ -1732,9 +1733,9 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 							local concealment_stat
 							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
-							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.25, 0.25)
-							concealment_stat = -math.clamp(math.round(capacity_increase / 25), -6, 6)
-
+							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.35, 0.35)
+							concealment_stat = -math.clamp(math.round(capacity_increase / 20), -6, 6)
+							
 							part.stats.concealment = concealment_stat
 							part.custom_stats.reload_speed_multiplier = shotgun_reload and 1 or reload_speed_stat
 						end
