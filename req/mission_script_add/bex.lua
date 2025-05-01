@@ -21,18 +21,18 @@ local swats = { [swat_1] = 2, [swat_2] = 1 }
 local optsDwTrailer_Dozer_1 = {
 	enemy = elite_skull_bulldozer,
 	spawn_action = "e_sp_armored_truck_1st",
-	on_executed = { 
+	on_executed = {
 		{ id = 400002, delay = 0 },
-		{ id = 400008, delay = 0 } 
+		{ id = 400008, delay = 0 },
 	},
 	enabled = true,
 }
 local optsDwTrailer_Dozer_2 = {
 	enemy = elite_skull_bulldozer,
 	spawn_action = "e_sp_armored_truck_1st",
-	on_executed = { 
+	on_executed = {
 		{ id = 400003, delay = 0 },
-		{ id = 400007, delay = 0 } 
+		{ id = 400007, delay = 0 },
 	},
 	enabled = true,
 }
@@ -111,7 +111,7 @@ local optsDisable_dwdozers = {
 	enabled = true,
 	elements = {
 		400000,
-		400001
+		400001,
 	},
 }
 local optsEnable_dwdozer_1 = {
@@ -147,11 +147,19 @@ local optsOpenSwatVanDoors_4 = {
 	},
 }
 local optsspawnvanSWATs_1 = {
-	on_executed = { { id = 400011, delay = 0 }, { id = 400012, delay = 0 }, { id = 400013, delay = 0 }, { id = 400014, delay = 0 }, { id = 400015, delay = 0 }, { id = 400017, delay = 0 }, },
+	on_executed = { { id = 400011, delay = 0 }, { id = 400012, delay = 0 }, { id = 400013, delay = 0 }, { id = 400014, delay = 0 }, { id = 400015, delay = 0 }, { id = 400017, delay = 0 } },
 	enabled = true,
 }
 local optsspawnvanSWATs_2 = {
-	on_executed = { { id = 400018, delay = 0 }, { id = 400019, delay = 0 }, { id = 400020, delay = 0 }, { id = 400021, delay = 0 }, { id = 400022, delay = 0 }, { id = 400023, delay = 0 }, { id = 400025, delay = 0 }, },
+	on_executed = {
+		{ id = 400018, delay = 0 },
+		{ id = 400019, delay = 0 },
+		{ id = 400020, delay = 0 },
+		{ id = 400021, delay = 0 },
+		{ id = 400022, delay = 0 },
+		{ id = 400023, delay = 0 },
+		{ id = 400025, delay = 0 },
+	},
 	enabled = true,
 }
 
@@ -168,10 +176,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400007, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 	Eclipse.mission_elements.gen_object_editor(400008, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 
-	-- bulldozers inside the vault 
+	-- bulldozers inside the vault
 	Eclipse.mission_elements.gen_dummy(400009, "tank_vault_1", Vector3(45, -5729, -400), Rotation(0, 0, 0), optVaultDozer),
 	Eclipse.mission_elements.gen_dummy(400010, "tank_vault_2", Vector3(-53, -5729, -400), Rotation(0, 0, 0), optVaultDozer),
-	
+
 	-- swat van 1 (that crashes at the wall)
 	Eclipse.mission_elements.gen_dummy(400011, "swat_van_spawn_1", Vector3(-2319, -6194, -13.500), Rotation(116, 0, 0), optsSWAT_wall),
 	Eclipse.mission_elements.gen_dummy(400012, "swat_van_spawn_2", Vector3(-2297.082, -6238.939, -13.500), Rotation(116, 0, 0), optsSWAT_wall),
@@ -180,7 +188,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400015, "swat_van_spawn_5", Vector3(-2321.878, -6304.438, -13.500), Rotation(116, 0, 0), optsShield_wall),
 	Eclipse.mission_elements.gen_missionscript(400016, "spawn_swats_1", optsspawnvanSWATs_1),
 	Eclipse.mission_elements.gen_object_editor(400017, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_4),
-	
+
 	-- swat van 2 (middle)
 	Eclipse.mission_elements.gen_dummy(400018, "swat_van_spawn_1", Vector3(-2608, 50, -13.500), Rotation(99, 0, 0), optsSWAT_1),
 	Eclipse.mission_elements.gen_dummy(400019, "swat_van_spawn_2", Vector3(-2601.273, 7.529, -13.500), Rotation(99, 0, 0), optsSWAT_2),
@@ -190,7 +198,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400023, "swat_van_spawn_6", Vector3(-2659.179, 47.273, -13.500), Rotation(99, 0, 0), optsTaser),
 	Eclipse.mission_elements.gen_missionscript(400024, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400025, "open_swat_doors_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_3),
-	
+
 	Eclipse.mission_elements.gen_so(400026, "swat_so_1", Vector3(-247.473, -1317.539, 0), Rotation(-174, 0, 0), optsDefend_SWAT),
 	Eclipse.mission_elements.gen_so(400027, "swat_so_2", Vector3(-516, -1410, 0), Rotation(-161, 0, 0), optsDefend_SWAT),
 	Eclipse.mission_elements.gen_so(400028, "swat_so_3", Vector3(298.423, -1398.999, 0), Rotation(163, 0, 0), optsDefend_SWAT),

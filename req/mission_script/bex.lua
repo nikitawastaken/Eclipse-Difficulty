@@ -55,8 +55,8 @@ return {
 		},
 		-- add dozers chance based event to the vault
 		on_executed = {
-			{id = 400009, delay = 10},
-			{id = 400010, delay = 10}
+			{ id = 400009, delay = 10 },
+			{ id = 400010, delay = 10 },
 		},
 	},
 	[100109] = { -- police, executed on alarm
@@ -199,12 +199,12 @@ return {
 	[102992] = disabled,
 	[103003] = disabled,
 	-- add scripted spawns that come out of swat vans
-	[102987] = { 
+	[102987] = {
 		on_executed = {
-			{ id = 400024, delay = 10 }, 
+			{ id = 400024, delay = 10 },
 		},
 	},
-	[103002] = { 
+	[103002] = {
 		on_executed = {
 			{ id = 400016, delay = 10 },
 		},
