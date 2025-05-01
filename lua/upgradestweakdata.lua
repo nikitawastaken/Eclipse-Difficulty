@@ -1093,8 +1093,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.chain_headshot_kills = {
 		{
 			headshot_kills = 3,
-			max_time = 5
-		}
+			max_time = 5,
+		},
 	}
 	self.definitions.temporary_chain_headshot_dodge_1 = {
 		name_id = "menu_player_chain_headshot_dodge",
@@ -1116,7 +1116,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.values.temporary.chain_headshot_dodge = {
 		{ 0.1, 5 },
-		{ 0.2, 5 }
+		{ 0.2, 5 },
 	}
 	self.definitions.temporary_dodge_outnumbered = {
 		name_id = "menu_player_dodge_outnumbered",

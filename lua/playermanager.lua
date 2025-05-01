@@ -265,7 +265,7 @@ end
 
 PlayerAction.JohnWickKillChain = {
 	Priority = 1,
-	Function = function (player_manager, target_kills, target_time)
+	Function = function(player_manager, target_kills, target_time)
 		local co = coroutine.running()
 		local time = Application:time()
 		local pm = managers.player
@@ -281,7 +281,6 @@ PlayerAction.JohnWickKillChain = {
 				kills = kills + 1
 
 				if kills == target_kills then
-
 					if has_chain_dodge then
 						pm:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
 					end
@@ -304,7 +303,7 @@ PlayerAction.JohnWickKillChain = {
 		end
 
 		player_manager:unregister_message(Message.OnLethalHeadShot, co)
-	end
+	end,
 }
 
 function PlayerManager:_on_enter_chain_headshot_kills_event(attack_data)
