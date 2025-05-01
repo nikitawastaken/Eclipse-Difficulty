@@ -79,6 +79,7 @@
 	"menu_overkill_beta": "Shotgun Rampage",
 	"menu_overkill_beta_desc": "BASIC: ##$basic##\nFor every kill with a Shotgun you gain a ##$multibasic## movement speed boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nWhen killing an enemy with a Shotgun, you have a ##$multipro## chance to cause nearby enemies to panic.\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nWhen you melee shield enemies, they get knocked back by the sheer force.\n\nYour ranged weapons have a chance of knocking down shields as well. Knock back chance scales with the total damage of the used weapon.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
+	"bm_menu_skill_locked_level_7" : "Requires the aced version of Iron Man skill",
 	"menu_show_of_force_beta": "Plates of Steel",
 	"menu_show_of_force_beta_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nIncreases the armor of all ballistic vests by ##$multipro2##.",
 	"menu_pack_mule_beta": "Pack Mule",
