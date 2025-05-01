@@ -362,12 +362,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.cloaker.is_pistol.RELOAD_SPEED = 1.1
 	presets.weapon.cloaker.is_pistol.FALLOFF = {
 		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 2500, acc = { 0.2, 0.4 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	presets.weapon.cloaker.is_smg.range = { close = 750, optimal = 1250, far = 2500 }
 	presets.weapon.cloaker.is_smg.FALLOFF = {
 		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 2500, acc = { 0.1, 0.2 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.tank = based_on(presets.weapon.base, {
@@ -429,7 +430,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.boss = based_on(presets.weapon.base)
-	damage_multiplier(presets.weapon.boss, 7 / 5)
+	
+	damage_multiplier(presets.weapon.boss, 3 / 2)
 
 	presets.weapon.marshal_marksman = based_on(presets.weapon.sniper)
 
@@ -1512,6 +1514,9 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 
 	table.insert(self.weap_ids, "r870_tank")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_bulldozer/wpn_npc_r870_bulldozer"))
+
+	table.insert(self.weap_ids, "usp_tactical")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_usp_tactical/wpn_npc_usp_tactical"))
 
 	table.insert(self.weap_ids, "aa12")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_aa12/wpn_npc_aa12"))

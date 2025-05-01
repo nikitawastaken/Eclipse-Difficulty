@@ -358,6 +358,17 @@
 				<file :name="wpn_npc_r870_bulldozer.unit" />
 			</group>
 
+			<!-- Cloaker USP -->
+			<group :name="wpn_npc_usp_tactical/">
+				<file :name="usp_df.texture" />
+				<file :name="usp_nm.texture" />
+				<file :name="wpn_npc_usp_tactical.cooked_physics" />
+				<file :name="wpn_npc_usp_tactical.material_config" />
+				<file :name="wpn_npc_usp_tactical.model" />
+				<file :name="wpn_npc_usp_tactical.object" />
+				<file :name="wpn_npc_usp_tactical.unit"/>
+			</group>
+
 			<!-- NPC Steakout -->
 			<group :name="wpn_npc_aa12/">
 				<file :name="aa12_df.texture" />
