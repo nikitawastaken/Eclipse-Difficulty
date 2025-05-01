@@ -470,8 +470,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
 			{ dmg_mul = 12, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 8, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 4, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 9, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 6, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
