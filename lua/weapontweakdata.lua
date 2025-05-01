@@ -690,7 +690,7 @@ function WeaponTweakData:_init_weapons()
 					weap_data.kick.standing =  { 0.8, 1, -0.2, 0.1 }
 
 				elseif cat_map.revolver or cat_map.handcannon then
-					weap_data.kick.standing = { 1.5, 2, -0.4, 0.3 }
+					weap_data.kick.standing = { 1.5, 2.5, -0.4, 0.3 }
 
 				elseif cat_map.shotgun or cat_map.grenade_launcher or cat_map.snp then
 					weap_data.kick.standing = { 2, 3, -0.5, 0.4 }
