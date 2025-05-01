@@ -2,6 +2,7 @@ local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = is_eclipse and is_pro_job
 local green_bulldozer = scripted_enemy.bulldozer_1
