@@ -116,7 +116,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400016, "swat_van_spawn_5", Vector3(661.351, 2611.769, -19.850), Rotation(16, 0, 0), optsShield),
 	Eclipse.mission_elements.gen_missionscript(400017, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400018, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
-	
+
 	Eclipse.mission_elements.gen_so(400019, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
 }
 
