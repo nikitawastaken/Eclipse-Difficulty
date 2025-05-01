@@ -1081,28 +1081,77 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[21][5].multiperk2 = "5%"
 
 	-- Hitman
-	self.values.player.primary_reload_secondary[1] = 5
-	self.values.player.secondary_reload_primary[1] = 5
-	self.values.temporary.unseen_strike[1] = { 1.2, 5 }
-	self.values.cooldown.hitman_ammo_refund = { { 1, 2 } }
-	self.specialization_descs[5][1].multiperk = "5"
-	self.specialization_descs[5][3].multiperk = "80%"
-	self.specialization_descs[5][5].multiperk = "20%"
-	self.specialization_descs[5][5].multiperk2 = "5"
-	self.specialization_descs[5][5].multiperk3 = "4"
-	self.specialization_descs[5][7].multiperk = "1"
-	self.specialization_descs[5][7].multiperk2 = "3"
-	self.specialization_descs[5][9].multiperk = "30"
-	self.specialization_descs[5][9].multiperk2 = "1"
-	self.definitions.cooldown_hitman_ammo_refund = {
-		name_id = "menu_cooldown_hitman_ammo_refund",
-		category = "cooldown",
+	self.definitions.player_chain_headshot_kills = {
+		name_id = "menu_player_chain_headshot_kills",
+		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "hitman_ammo_refund",
-			category = "cooldown",
+			upgrade = "chain_headshot_kills",
+			category = "player",
 		},
 	}
+	self.values.player.chain_headshot_kills = {
+		{
+			headshot_kills = 3,
+			max_time = 5
+		}
+	}
+	self.definitions.temporary_chain_headshot_dodge_1 = {
+		name_id = "menu_player_chain_headshot_dodge",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "chain_headshot_dodge",
+			category = "temporary",
+		},
+	}
+	self.definitions.temporary_chain_headshot_dodge_2 = {
+		name_id = "menu_player_chain_headshot_dodge",
+		category = "temporary",
+		upgrade = {
+			value = 2,
+			upgrade = "chain_headshot_dodge",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.chain_headshot_dodge = {
+		{ 0.1, 5 },
+		{ 0.2, 5 }
+	}
+	self.definitions.temporary_dodge_outnumbered = {
+		name_id = "menu_player_dodge_outnumbered",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "dodge_outnumbered",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.dodge_outnumbered = { { 0.1, 7 } }
+	self.values.player.cheat_death_chance[1] = 0.2
+	self.definitions.player_cheat_death_inc = {
+		name_id = "menu_player_cheat_death_inc",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "cheat_death_inc",
+			category = "player",
+		},
+	}
+	self.values.player.cheat_death_inc = { 0.03 }
+	self.specialization_descs[5][1].multiperk = "3"
+	self.specialization_descs[5][1].multiperk2 = "5"
+	self.specialization_descs[5][1].multiperk3 = "10%"
+	self.specialization_descs[5][1].multiperk4 = "5"
+	self.specialization_descs[5][3].multiperk = "10%"
+	self.specialization_descs[5][5].multiperk = "3"
+	self.specialization_descs[5][5].multiperk2 = "5"
+	self.specialization_descs[5][5].multiperk3 = "10%"
+	self.specialization_descs[5][5].multiperk4 = "5"
+	self.specialization_descs[5][7].multiperk = "20%"
+	self.specialization_descs[5][9].multiperk = "3"
+	self.specialization_descs[5][9].multiperk2 = "5"
+	self.specialization_descs[5][9].multiperk3 = "3%"
 
 	-- Crook
 	self.values.player.level_2_dodge_addend = {

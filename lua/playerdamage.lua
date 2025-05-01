@@ -557,3 +557,30 @@ function PlayerDamage:_regenerated(from_medic_bag)
 
 	managers.environment_controller:set_last_life(false)
 end
+
+-- Hitman self-revive chance increase
+function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
+	local can_revive = (Application:digest_value(self._revives, false) > 1 or ignore_reduce_revive) and not self._check_berserker_done
+
+	if can_revive and managers.player:has_category_upgrade("player", "cheat_death_chance") then
+		local r = math.rand(1)
+		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_headshot_cheat_death", 0)
+
+		if r <= self_revive_chance then
+			self._auto_revive_timer = 1
+			managers.player:remove_property("chain_headshot_cheat_death")
+		end
+	end
+
+	if can_revive and not self._auto_revive_timer then
+		local mutator = nil
+
+		if managers.mutators:is_mutator_active(MutatorPiggyRevenge) then
+			mutator = managers.mutators:get_mutator(MutatorPiggyRevenge)
+		end
+
+		if mutator and mutator.auto_revive_timer then
+			self._auto_revive_timer = mutator:auto_revive_timer()
+		end
+	end
+end

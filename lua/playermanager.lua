@@ -100,19 +100,12 @@ end
 
 function PlayerManager:on_headshot_dealt()
 	local player_unit = self:player_unit()
-	local has_hitman_ammo_refund = managers.player:has_enabled_cooldown_upgrade("cooldown", "hitman_ammo_refund")
 
 	if not player_unit then
 		return
 	end
 
 	self._message_system:notify(Message.OnHeadShot, nil, nil)
-
-	-- hitman refunds ammo on headshots
-	if has_hitman_ammo_refund and variant ~= "melee" then
-		managers.player:on_ammo_increase(1)
-		managers.player:disable_cooldown_upgrade("cooldown", "hitman_ammo_refund")
-	end
 
 	-- Anarchist on-headshot armor regen
 	if managers.player:has_category_upgrade("player", "headshot_to_armor") then
@@ -171,6 +164,26 @@ function PlayerManager:_on_enter_shock_and_awe_event()
 		end
 	end
 end
+
+Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
+	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
+		self._message_system:register(Message.OnEnemyKilled, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
+	else
+		self._message_system:unregister(Message.OnEnemyKilled, "shotguncqb")
+	end
+
+	if self:has_category_upgrade("snp", "consecutive_headshots") then
+		self:register_message(Message.OnWeaponFired, "consecutive_headshots", callback(self, self, "_on_enter_consecutive_headshots_event"))
+	else
+		self:unregister_message(Message.OnWeaponFired, "consecutive_headshots")
+	end
+
+	if self:has_category_upgrade("player", "chain_headshot_kills") then
+		self:register_message(Message.OnLethalHeadShot, "chain_headshot_kills", callback(self, self, "_on_enter_chain_headshot_kills_event"))
+	else
+		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
+	end
+end)
 
 -- shotgun panic stuff
 local on_killshot_old = PlayerManager.on_killshot
@@ -237,29 +250,72 @@ PlayerAction.ShotgunCQB = {
 	end,
 }
 
-Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
-	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
-		self._message_system:register(Message.OnEnemyKilled, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
-	else
-		self._message_system:unregister(Message.OnEnemyKilled, "shotguncqb")
-	end
-
-	if self:has_category_upgrade("snp", "consecutive_headshots") then
-		self:register_message(Message.OnWeaponFired, "consecutive_headshots", callback(self, self, "_on_enter_consecutive_headshots_event"))
-	else
-		self:unregister_message(Message.OnWeaponFired, "consecutive_headshots")
-	end
-end)
-
 function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
 	local attacker_unit = attack_data.attacker_unit
-	local variant = attack_data.variant
+	local variant = attack_data.variation_data
 
 	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("shotguncqb") and self:is_current_weapon_of_category("shotgun") then
 		local data = self:upgrade_value("shotgun", "speed_stack_on_kill", 0)
 
 		if data ~= 0 then
 			self._coroutine_mgr:add_coroutine("shotguncqb", PlayerAction.ShotgunCQB, self, data.speed_bonus, data.max_stacks, Application:time() + data.max_time)
+		end
+	end
+end
+
+PlayerAction.JohnWickKillChain = {
+	Priority = 1,
+	Function = function (player_manager, target_kills, target_time)
+		local co = coroutine.running()
+		local time = Application:time()
+		local pm = managers.player
+		local kills = 1
+		local has_chain_dodge = pm:has_category_upgrade("temporary", "chain_headshot_dodge")
+		local cheat_death_upgrade_value = pm:upgrade_value("player", "cheat_death_inc", 0)
+
+		local function on_lethal_headshot(attack_data)
+			local attacker_unit = attack_data.attacker_unit
+			local variant = attack_data.variant
+
+			if attacker_unit == pm:player_unit() and variant == "bullet" then
+				kills = kills + 1
+
+				if kills == target_kills then
+
+					if has_chain_dodge then
+						pm:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
+					end
+
+					if cheat_death_upgrade_value ~= 0 then
+						pm:add_to_property("chain_headshot_cheat_death", cheat_death_upgrade_value)
+					end
+
+					time = target_time
+				end
+			end
+		end
+
+		player_manager:register_message(Message.OnLethalHeadShot, co, on_lethal_headshot)
+
+		while time < target_time do
+			time = Application:time()
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnLethalHeadShot, co)
+	end
+}
+
+function PlayerManager:_on_enter_chain_headshot_kills_event(attack_data)
+	local attacker_unit = attack_data.attacker_unit
+	local variant = attack_data.variant
+
+	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
+		local data = self:upgrade_value("player", "chain_headshot_kills", 0)
+
+		if data ~= 0 then
+			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.headshot_kills, Application:time() + data.max_time)
 		end
 	end
 end
@@ -368,7 +424,6 @@ function PlayerManager:movement_speed_multiplier(...)
 end
 
 local old_skill_dodge = PlayerManager.skill_dodge_chance
-
 function PlayerManager:skill_dodge_chance(...)
 	local dodge = old_skill_dodge(self, ...)
 
@@ -378,6 +433,9 @@ function PlayerManager:skill_dodge_chance(...)
 
 		dodge = dodge + self:upgrade_value("player", "dodge_health_ratio_multiplier", 0) * damage_health_ratio
 	end
+
+	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_headshot_dodge", 0)
+	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
 
 	return dodge
 end
