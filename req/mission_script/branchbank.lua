@@ -1,5 +1,5 @@
-local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
@@ -47,6 +47,22 @@ local disabled = {
 }
 local swat_vans_amount = eclipse and 2 or 1
 local ambush_chance = (is_pro_job and 1.5 or 1) * (diff_i - 2) * 15
+local street_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local parking_lot_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 120,
+	},
+}
 return {
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup
@@ -203,10 +219,6 @@ return {
 			amount = normal and 1 or hard and 2 or 3,
 		},
 	},
-	-- cloaker spawns
-	[105571] = enabled,
-	[105584] = enabled,
-	[105607] = enabled,
 	-- vault gate chance
 	[100195] = gate_chance,
 	[100196] = gate_chance,
@@ -219,15 +231,21 @@ return {
 	[102091] = reinforce_amount,
 	[100370] = reinforce_amount,
 	-- Spawn group delays
-	[100246] = {
-		values = {
-			interval = 10,
-		},
-	},
-	[101211] = {
-		values = {
-			interval = 30,
-		},
-		groups = preferred.no_cops_agents_shields,
-	},
+	[100246] = street_spawn,
+	[100249] = street_spawn,
+	[100250] = street_spawn,
+	[101211] = parking_lot_spawn,
+	[103742] = cloaker_spawn,
+	[102914] = cloaker_spawn,
+	[102917] = cloaker_spawn,
+	[102922] = cloaker_spawn,
+	[103458] = cloaker_spawn,
+	[103460] = cloaker_spawn,
+	[103487] = cloaker_spawn,
+	[103498] = cloaker_spawn,
+	[103518] = cloaker_spawn,
+	[103520] = cloaker_spawn,
+	[103525] = cloaker_spawn,
+	[103550] = cloaker_spawn,
+	[103562] = cloaker_spawn,
 }
