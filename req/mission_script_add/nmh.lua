@@ -11,8 +11,8 @@ local is_eclipse_pro = is_eclipse and is_pro_job
 local sniper_amount = is_pro_job and 2 or 1
 local sniper_amount_random = is_pro_job and 3 or 2
 local dozer_random_amount = is_eclipse and 2 or 1
-local elite_snipers_respawn = is_eclipse_pro and 120 or 180
-local dozers_respawn = is_eclipse and 150 or 180
+local elite_snipers_respawn = (is_eclipse and 120 or 180) - (is_pro_job and 30 or 0)
+local dozers_respawn = (is_eclipse and 210 or 240) - (is_pro_job and 30 or 0)
 local dozer_event = not normal and true or false
 
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -294,117 +294,6 @@ local optssniperspawned_5 = {
 		400004,
 	},
 }
-local optscivilian_is_fucking_dead = {
-	on_executed = {
-		{ id = 400061, delay = 0 },
-	},
-	elements = {
-		-- so many civlians, damn
-		-- reception
-		102373,
-		102356,
-		102357,
-		102355,
-		102354,
-		102362,
-		102375,
-		102363,
-		102374,
-		102361,
-		102359,
-		102358,
-		102367,
-		102365,
-		102364,
-		102372,
-		102371,
-		102366,
-		102369,
-		102370,
-		102367,
-		102365,
-		102364,
-		102372,
-		-- cafeteria
-		102401,
-		102400,
-		102393,
-		102392,
-		102391,
-		102390,
-		102394,
-		102395,
-		102396,
-		102397,
-		102398,
-		-- entrance (near elevators)
-		102387,
-		102386,
-		102385,
-		102384,
-		102388,
-		102389,
-		-- doctors 1
-		102411,
-		102483,
-		102410,
-		102482,
-		102478,
-		102481,
-		102479,
-		102480,
-		102482,
-		-- doctors 2
-		102484,
-		102486,
-		102488,
-		102490,
-		102491,
-		102489,
-		102487,
-		102485,
-		-- doctors 3
-		102499,
-		102500,
-		102497,
-		102498,
-		102495,
-		102496,
-		102493,
-		102494,
-		-- doctors 4
-		102502,
-		102503,
-		102504,
-		102505,
-		102506,
-		102507,
-		102508,
-		102509,
-		-- special civs
-		103611,
-		103816,
-		-- elevator civs
-		103733,
-		103732,
-		103730,
-		-- ICU civs
-		104105,
-		104106,
-		104109,
-		104110,
-		-- repairman
-		102747,
-		102748,
-	},
-	event = "death",
-}
-local opts4civskilled = {
-	on_executed = {
-		{ id = 400060, delay = 0 },
-	},
-	counter_target = 4,
-}
 local optsdozerdied_1 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
@@ -617,12 +506,6 @@ local optsenable_random_dozers = {
 		400035,
 	},
 }
-local optsenable_random_dozers_civs_got_killed = {
-	enabled = true,
-	elements = {
-		400063,
-	},
-}
 local spawn_dozer_global = {
 	enabled = dozer_event,
 	on_executed = {
@@ -653,12 +536,6 @@ local Bain_sendsnipers = {
 }
 local Bain_senddozers = {
 	dialogue = "play_pln_gen_pol_03",
-}
-local optsAssaultstart = {
-	global_event = "start_assault",
-	on_executed = {
-		{ id = 400063, delay = 0 },
-	},
 }
 local optsdisable_custom_spawns = {
 	enabled = true,
@@ -755,16 +632,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400072, "dozer_died_8", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsdozerdied_8),
 	Eclipse.mission_elements.gen_toggleelement(400058, "disable_random_dozers", optsdisable_random_dozers),
 	Eclipse.mission_elements.gen_toggleelement(400059, "enable_random_dozers", optsenable_random_dozers),
-	--Eclipse.mission_elements.gen_toggleelement(400060, "youre_a_fucking_dead_man", optsenable_random_dozers_civs_got_killed),
-	--Eclipse.mission_elements.gen_counter(400061, "4_civilians_killed", opts4civskilled),
-	--Eclipse.mission_elements.gen_dummytrigger(400062, "civ_died", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optscivilian_is_fucking_dead),
 	Eclipse.mission_elements.gen_missionscript(400063, "hello_its_me_the_angry_man", spawn_dozer_global),
 	Eclipse.mission_elements.gen_dialogue(400066, "they_sending_dozers", Bain_senddozers),
 	Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
 	Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
 
 	-- misc
-	--Eclipse.mission_elements.gen_aiglobalevent(400075, "eclipse_start_assault_event", optsAssaultstart),
 	Eclipse.mission_elements.gen_toggleelement(400076, "disable_custom_spawns", optsdisable_custom_spawns),
 }
 return M
