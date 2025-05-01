@@ -351,9 +351,9 @@ function NewRaycastWeaponBase:spread_multiplier()
 	end
 
 	if managers.player:current_state() and managers.player:current_state() == "bipod" then
-		multiplier = multiplier * (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.bipod or 1)	
+		multiplier = multiplier * (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.bipod or 1)
 	end
-	
+
 	if self._silencer then
 		multiplier = multiplier * managers.player:upgrade_value("weapon", "silencer_spread_multiplier", 1)
 	end
