@@ -4,6 +4,7 @@ local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
@@ -11,12 +12,14 @@ local sniper_amount = is_pro_job and 2 or 1
 local sniper_amount_random = is_pro_job and 3 or 2
 local dozer_random_amount = is_eclipse and 2 or 1
 local elite_snipers_respawn = is_eclipse_pro and 120 or 180
+local dozers_respawn = is_eclipse and 150 or 180
+local dozer_event = normal and false or true
 
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local elite_sniper = scripted_enemy.elite_sniper
+local sniper = scripted_enemy.sniper
 local cloaker = scripted_enemy.cloaker
 
 local greendozer_only = {
@@ -35,7 +38,7 @@ local random_normal_and_elite_dozers = {
 local bulldozer = is_eclipse_pro and random_normal_and_elite_dozers or diff_i > 3 and random_dozers or greendozer_only
 
 local optsEliteSniper_1 = {
-	enemy = elite_sniper,
+	enemy = sniper,
 	on_executed = {
 		{ id = 400009, delay = 0 },
 		{ id = 400009, delay = 10 },
@@ -44,7 +47,7 @@ local optsEliteSniper_1 = {
 	enabled = true,
 }
 local optsEliteSniper_2 = {
-	enemy = elite_sniper,
+	enemy = sniper,
 	on_executed = {
 		{ id = 400006, delay = 0 },
 		{ id = 400006, delay = 10 },
@@ -53,7 +56,7 @@ local optsEliteSniper_2 = {
 	enabled = true,
 }
 local optsEliteSniper_3 = {
-	enemy = elite_sniper,
+	enemy = sniper,
 	on_executed = {
 		{ id = 400007, delay = 0 },
 		{ id = 400007, delay = 10 },
@@ -62,7 +65,7 @@ local optsEliteSniper_3 = {
 	enabled = true,
 }
 local optsEliteSniper_4 = {
-	enemy = elite_sniper,
+	enemy = sniper,
 	on_executed = {
 		{ id = 400008, delay = 0 },
 		{ id = 400008, delay = 10 },
@@ -71,7 +74,7 @@ local optsEliteSniper_4 = {
 	enabled = true,
 }
 local optsEliteSniper_5 = {
-	enemy = elite_sniper,
+	enemy = sniper,
 	on_executed = {
 		{ id = 400005, delay = 0 },
 		{ id = 400005, delay = 10 },
@@ -83,7 +86,6 @@ local optsBulldozer = {
 	enemy_table = bulldozer,
 	on_executed = {
 		{ id = 400046, delay = 2 },
-		{ id = 400066, delay = 0 },
 	},
 	enabled = true,
 }
@@ -99,7 +101,6 @@ local optsCloaker_Hide_SO = {
 	so_action = "e_so_idle_by_container",
 }
 local optsSniper_SO = {
-	SO_access = "128",
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -407,7 +408,7 @@ local opts4civskilled = {
 local optsdozerdied_1 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400040,
@@ -417,7 +418,7 @@ local optsdozerdied_1 = {
 local optsdozerdied_2 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400041,
@@ -427,7 +428,7 @@ local optsdozerdied_2 = {
 local optsdozerdied_3 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400042,
@@ -437,7 +438,7 @@ local optsdozerdied_3 = {
 local optsdozerdied_4 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400043,
@@ -447,7 +448,7 @@ local optsdozerdied_4 = {
 local optsdozerdied_5 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400044,
@@ -457,7 +458,7 @@ local optsdozerdied_5 = {
 local optsdozerdied_6 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400045,
@@ -467,7 +468,7 @@ local optsdozerdied_6 = {
 local optsdozerdied_7 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400067,
@@ -477,7 +478,7 @@ local optsdozerdied_7 = {
 local optsdozerdied_8 = {
 	on_executed = {
 		{ id = 400059, delay = 0 },
-		{ id = 400035, delay = 180 },
+		{ id = 400035, delay = dozers_respawn },
 	},
 	elements = {
 		400068,
@@ -612,7 +613,6 @@ local optsdisable_random_dozers = {
 }
 local optsenable_random_dozers = {
 	enabled = true,
-	set_trigger_times = 1,
 	elements = {
 		400035,
 	},
@@ -624,7 +624,7 @@ local optsenable_random_dozers_civs_got_killed = {
 	},
 }
 local spawn_dozer_global = {
-	trigger_times = 1,
+	enabled = dozer_event,
 	on_executed = {
 		{ id = 400035, delay = 30 },
 		{ id = 400066, delay = 30 },
@@ -755,16 +755,16 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400072, "dozer_died_8", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsdozerdied_8),
 	Eclipse.mission_elements.gen_toggleelement(400058, "disable_random_dozers", optsdisable_random_dozers),
 	Eclipse.mission_elements.gen_toggleelement(400059, "enable_random_dozers", optsenable_random_dozers),
-	Eclipse.mission_elements.gen_toggleelement(400060, "youre_a_fucking_dead_man", optsenable_random_dozers_civs_got_killed),
-	Eclipse.mission_elements.gen_counter(400061, "4_civilians_killed", opts4civskilled),
-	Eclipse.mission_elements.gen_dummytrigger(400062, "civ_died", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optscivilian_is_fucking_dead),
-	Eclipse.mission_elements.gen_missionscript(400063, "dozer_spam_global", spawn_dozer_global),
+	--Eclipse.mission_elements.gen_toggleelement(400060, "youre_a_fucking_dead_man", optsenable_random_dozers_civs_got_killed),
+	--Eclipse.mission_elements.gen_counter(400061, "4_civilians_killed", opts4civskilled),
+	--Eclipse.mission_elements.gen_dummytrigger(400062, "civ_died", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optscivilian_is_fucking_dead),
+	Eclipse.mission_elements.gen_missionscript(400063, "hello_its_me_the_angry_man", spawn_dozer_global),
 	Eclipse.mission_elements.gen_dialogue(400066, "they_sending_dozers", Bain_senddozers),
 	Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
 	Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
 
 	-- misc
-	Eclipse.mission_elements.gen_aiglobalevent(400075, "eclipse_start_assault_event", optsAssaultstart),
+	--Eclipse.mission_elements.gen_aiglobalevent(400075, "eclipse_start_assault_event", optsAssaultstart),
 	Eclipse.mission_elements.gen_toggleelement(400076, "disable_custom_spawns", optsdisable_custom_spawns),
 }
 return M
