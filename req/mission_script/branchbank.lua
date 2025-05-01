@@ -40,6 +40,12 @@ local enabled = {
 		enabled = true,
 	},
 }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+local swat_vans_amount = eclipse and 2 or 1
 local ambush_chance = (is_pro_job and 1.5 or 1) * (diff_i - 2) * 15
 return {
 	-- DW Trailer Skulldozer spawn event
@@ -61,6 +67,12 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
+	-- trigger cops loot drop off on alarm
+	[102133] = {
+		on_executed = {
+			{ id = 102206, delay = 0 },
+		},
+	},
 	-- randomize heli dozers
 	[101785] = { enemy = heli_dozer },
 	[101786] = { enemy = heli_dozer },
@@ -70,10 +82,79 @@ return {
 	},
 	[105563] = player_1,
 	[105574] = player_1,
+	[105588] = player_1,
 	-- restore unused cloaker ambush spawns
 	[105571] = enabled,
 	[105584] = enabled,
 	[105607] = enabled,
+	-- restore unused ambush event
+	[105586] = {
+		values = {
+			width = 2000,
+			depth = 3000,
+		},
+	},
+	-- disable shield
+	[105608] = disabled,
+	-- tweak swat vans
+	[104738] = {
+		on_executed = {
+			{ id = 102206, remove = true }, -- why it enables loot drop off for cops here?
+			{ id = 104733, remove = true },
+			{ id = 400010, delay = 0 },
+		},
+	},
+	[104739] = {
+		on_executed = {
+			{ id = 105214, remove = true },
+			{ id = 400017, delay = 0 },
+		},
+	},
+	-- make the swat vans trigger instantly
+	[104735] = {
+		on_executed = {
+			{ id = 104736, delay = 0 },
+		},
+	},
+	[105660] = {
+		on_executed = {
+			{ id = 104737, delay = 0 },
+		},
+	},
+	[105655] = disabled,
+	[105659] = disabled,
+	-- allow swat vans on all difficulties
+	[103540] = {
+		on_executed = {
+			{ id = 104734, delay = 0 },
+			{ id = 105648, remove = true },
+		},
+	},
+	-- trigger on diff 0.75 and 1 respectfully
+	[100438] = {
+		on_executed = {
+			{ id = 103540, remove = true },
+			{ id = 105326, remove = true },
+		},
+	},
+	[101293] = {
+		on_executed = {
+			{ id = 103540, delay = 10 },
+			{ id = 105648, remove = true },
+		},
+	},
+	[101301] = {
+		on_executed = {
+			{ id = 103540, delay = 10 },
+			{ id = 105648, remove = true },
+		},
+	},
+	-- 2 vans on eclipse
+	[104734] = {
+		values = {
+			amount = swat_vans_amount,
+		},
+	},
 	-- enable max diff after 2 instead of 3 assault waves
 	[101307] = {
 		values = {

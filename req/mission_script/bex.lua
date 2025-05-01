@@ -24,6 +24,11 @@ local disabled = {
 		enabled = false,
 	},
 }
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local side_spawn = {
 	values = {
 		interval = 15,
@@ -47,6 +52,11 @@ return {
 		ponr = {
 			length = 240,
 			player_mul = { 2, 1.5, 1.25, 1 },
+		},
+		-- add dozers chance based event to the vault
+		on_executed = {
+			{id = 400009, delay = 10},
+			{id = 400010, delay = 10}
 		},
 	},
 	[100109] = { -- police, executed on alarm
@@ -173,6 +183,53 @@ return {
 				position = Vector3(1150, -4400, 0),
 			},
 		},
+	},
+	-- restores some unused sniper spawns with their SOs
+	[100372] = enabled,
+	[100402] = enabled,
+	[100392] = enabled,
+	[100412] = enabled,
+	[100377] = enabled,
+	[100407] = enabled,
+	[100397] = enabled,
+	[100417] = enabled,
+	-- disable turrets sequences
+	[102990] = disabled,
+	[102991] = disabled,
+	[102992] = disabled,
+	[103003] = disabled,
+	-- add scripted spawns that come out of swat vans
+	[102987] = { 
+	on_executed = {
+		{ id = 400024, delay = 10 }, 
+	},
+	[103002] = { 
+	on_executed = {
+		{ id = 400016, delay = 10 }, 
+	},
+	-- disable dozers
+	[100018] = {
+		on_executed = {
+			{ id = 400004, delay = 0 },
+		}
+	},
+	-- enable dozer depending on which swat van arrrived
+	[102989] = {
+		on_executed = {
+			{ id = 400005, delay = 0 },
+		}
+	},
+	[102988] = {
+		on_executed = {
+			{ id = 400006, delay = 0 },
+		}
+	},
+	-- spawn the skulldozer that defends your van on Eclipse
+	[101499] = {
+		on_executed = {
+			{ id = 400000, delay = 10 },
+			{ id = 400001, delay = 10 },
+		}
 	},
 	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?
 	[101835] = disabled, -- point area min police force 2
