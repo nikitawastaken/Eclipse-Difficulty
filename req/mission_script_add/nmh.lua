@@ -13,7 +13,7 @@ local sniper_amount_random = is_pro_job and 3 or 2
 local dozer_random_amount = is_eclipse and 2 or 1
 local elite_snipers_respawn = is_eclipse_pro and 120 or 180
 local dozers_respawn = is_eclipse and 150 or 180
-local dozer_event = normal and false or true
+local dozer_event = not normal and true or false
 
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
