@@ -8,7 +8,7 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
-local medic = hard_and_above and scripted_enemy.taser_1 or scripted_enemy.medic_1
+local medic = hard_and_above and scripted_enemy.medic_1 or scripted_enemy.taser_1
 local taser = scripted_enemy.taser_1
 local green_bulldozer = scripted_enemy.bulldozer_1
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
@@ -114,15 +114,10 @@ local optsDisable_dwdozers = {
 		400001,
 	},
 }
-local optsEnable_dwdozer_1 = {
+local optsEnable_dwdozer = {
 	enabled = is_eclipse,
 	elements = {
 		400000,
-	},
-}
-local optsEnable_dwdozer_2 = {
-	enabled = is_eclipse,
-	elements = {
 		400001,
 	},
 }
@@ -171,8 +166,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400003, "tank_so_2", Vector3(-2979.969, 3633.456, 0), Rotation(-90, 0, 0), optsDefend_Dozer),
 
 	Eclipse.mission_elements.gen_toggleelement(400004, "disable_dozers", optsDisable_dwdozers),
-	Eclipse.mission_elements.gen_toggleelement(400005, "enable_dozer_1", optsEnable_dwdozer_1),
-	Eclipse.mission_elements.gen_toggleelement(400006, "enable_dozer_2", optsEnable_dwdozer_2),
+	Eclipse.mission_elements.gen_toggleelement(400005, "enable_dozers", optsEnable_dwdozer),
 	Eclipse.mission_elements.gen_object_editor(400007, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 	Eclipse.mission_elements.gen_object_editor(400008, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 
