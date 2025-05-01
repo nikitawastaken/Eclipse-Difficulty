@@ -150,7 +150,6 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, remove = true },
-			{ id = 105326, remove = true },
 		},
 	},
 	[101293] = {
