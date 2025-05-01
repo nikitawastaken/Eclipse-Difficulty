@@ -257,7 +257,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.suppression = 16
 				weap_data.stats.alert_size = 13
 				weap_data.steelsight_time = steelsight_times.smg
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.2
 				weap_data.steelsight_move_speed_mul = 0.7
 
 				weap_data.spread_multiplier = {
@@ -1674,13 +1674,22 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Blaster
 	self.tec9.CLIP_AMMO_MAX = 20
 	self.tec9.stats.damage = 40
-	self.tec9.stats.spread = 10
-	self.tec9.stats.recoil = 21
+	self.tec9.stats.spread = 11
+	self.tec9.stats.recoil = 20
 	self.tec9.stats.concealment = 27
 	self.tec9.fire_mode_data.fire_rate = 60 / 1000
 	self.tec9.reload_speed_multiplier = 1.2
 	self.tec9.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
 
+	-- Kobus
+	self.p90.use_data.selection_index = 2
+	self.p90.CLIP_AMMO_MAX = 50
+	self.p90.stats.damage = 40
+	self.p90.stats.spread = 16
+	self.p90.stats.recoil = 17
+	self.p90.stats.concealment = 25
+	self.p90.fire_mode_data.fire_rate = 60 / 900
+	
 	-- Cobra
 	self.scorpion.CLIP_AMMO_MAX = 20
 	self.scorpion.stats.damage = 40
@@ -1693,8 +1702,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Micro Uzi
 	self.baka.CLIP_AMMO_MAX = 32
 	self.baka.stats.damage = 40
-	self.baka.stats.spread = 11
-	self.baka.stats.recoil = 20
+	self.baka.stats.spread = 10
+	self.baka.stats.recoil = 21
 	self.baka.stats.concealment = 27
 	self.baka.fire_mode_data.fire_rate = 60 / 1200
 	self.baka.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
@@ -1705,7 +1714,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pm9.stats.damage = 40
 	self.pm9.stats.spread = 11
 	self.pm9.stats.recoil = 21
-	self.pm9.stats.concealment = 25
+	self.pm9.stats.concealment = 26
 	self.pm9.fire_mode_data.fire_rate = 60 / 1100
 	self.pm9.steelsight_speed_multiplier = steelsight_times.smg / steelsight_times.pistol
 
@@ -1731,15 +1740,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		toggable = { "auto", "burst", "single" }
 	}
 	self.new_mp5.BURST_COUNT = 3
-
-	-- Kobus
-	self.p90.use_data.selection_index = 2
-	self.p90.CLIP_AMMO_MAX = 50
-	self.p90.stats.damage = 45
-	self.p90.stats.spread = 16
-	self.p90.stats.recoil = 17
-	self.p90.stats.concealment = 25
-	self.p90.fire_mode_data.fire_rate = 60 / 900
 
 	-- Jacket's Piece
 	self.cobray.CLIP_AMMO_MAX = 32
@@ -1867,6 +1867,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.erma.reload_speed_multiplier = 1.3
 
 	-- Jackal
+	self.schakal.use_data.selection_index = 2
 	self.schakal.CLIP_AMMO_MAX = 25
 	self.schakal.stats.damage = 75
 	self.schakal.stats.spread = 17
@@ -2623,7 +2624,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw_flamethrower.stats.concealment = 20
 	self.kacchainsaw_flamethrower.fire_mode_data.fire_rate = 60 / 2000
 	self.kacchainsaw_flamethrower.dot_data_name = "weapon_kacchainsaw_flamethrower"
-
 
 	-- removed shit
 	self.x_akmsu.use_data.selection_index = 4
