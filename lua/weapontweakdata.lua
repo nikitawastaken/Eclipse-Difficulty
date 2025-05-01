@@ -11,12 +11,12 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 
 	self.stats.spread = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread, (math.lerp(1, 0.05, i / 25)))
+		table.insert(self.stats.spread, (math.lerp(1.5, 0.1, i / 25)))
 	end
 
 	self.stats.spread_moving = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread_moving, (math.lerp(1, 0.05, i / 25)))
+		table.insert(self.stats.spread_moving, (math.lerp(1.5, 0.1, i / 25)))
 	end
 
 	self.stats.suppression = {}
@@ -258,7 +258,6 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.alert_size = 13
 				weap_data.steelsight_time = steelsight_times.smg
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
-				--weap_data.pickup_mul = weap_data.pickup_mul or ( 4 / 3 )
 				weap_data.steelsight_move_speed_mul = 0.7
 
 				weap_data.spread_multiplier = {
@@ -346,7 +345,8 @@ function WeaponTweakData:_init_weapons()
 							hipfire = 1.5,
 							crouching = 1,
 							steelsight = 1,
-						}
+						},
+						bipod = 0.5,
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
@@ -371,7 +371,8 @@ function WeaponTweakData:_init_weapons()
 							hipfire = 1.75,
 							crouching = 1,
 							steelsight = 1,
-						}
+						},
+						bipod = 0.5,
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
@@ -719,7 +720,7 @@ function WeaponTweakData:_init_weapons()
 				end
 			end
 
-			local base_spread = cat_map.rays and 6 or 3
+			local base_spread = weap_data.rays and 6 or 3
 
 			--set spread values
 			if weap_data.spread then
@@ -739,13 +740,13 @@ function WeaponTweakData:_init_weapons()
 					weap_data.spread = {
 						standing = base_spread,
 						crouching = base_spread,
-						steelsight = 1,
+						steelsight = base_spread,
 
 						moving_standing = base_spread,
 						moving_crouching = base_spread,
-						moving_steelsight = 1,
+						moving_steelsight = base_spread,
 
-						bipod = weap_data.spread.standing * 0.25
+						bipod = base_spread,
 					}
 				end
 			end
