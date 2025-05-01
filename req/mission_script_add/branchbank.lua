@@ -2,15 +2,16 @@
 local M = {}
 
 local diff_i = Eclipse.utils.difficulty_index()
-local scripted_enemy = Eclipse.scripted_enemy
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local elite_bulldozer = scripted_enemy.elite_bulldozer_2
+local scripted_enemy = Eclipse.scripted_enemy
 
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
 local taser = scripted_enemy.taser_1
 local medic = diff_i < 4 and scripted_enemy.taser_1 or scripted_enemy.medic_1
+local elite_bulldozer = scripted_enemy.elite_bulldozer_2
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
