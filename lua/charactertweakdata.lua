@@ -430,7 +430,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.boss = based_on(presets.weapon.base)
-	
+
 	damage_multiplier(presets.weapon.boss, 3 / 2)
 
 	presets.weapon.marshal_marksman = based_on(presets.weapon.sniper)
