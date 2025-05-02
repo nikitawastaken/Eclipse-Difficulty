@@ -910,8 +910,7 @@
 			<run_sequence 		name="'hat_bex_cop'" />
 			<run_sequence 		name="'hat_bex_cop_badge'" />
 			<run_sequence 		name="'radio_back'" />
-			<run_sequence 		name="'armor_body'" />
-			<run_sequence 		name="'armor_shoulders'" />
+			<run_sequence 		name="'vest'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
@@ -964,8 +963,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_fbi_3'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_fbi_c'" />
-			<object 			enabled="true" name="'g_gear_fbi_c_lod1'" />
+			<object 			enabled="true" name="'g_gear_cop_c'" />
+			<object 			enabled="true" name="'g_gear_cop_c_lod1'" />
 			
 			<run_sequence 		name="'bex_fbi'" />
 			<run_sequence 		name="'belt'" />

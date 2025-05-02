@@ -1504,6 +1504,12 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.gitgud, "ene_zeal_medic_m4")
 	safe_add(char_map.gitgud, "ene_zeal_medic_r870")
 
+	safe_add(char_map.bex, "ene_policia_03")
+	safe_add(char_map.bex, "ene_policia_04")
+	safe_add(char_map.bex, "ene_policia_agent_01")
+	safe_add(char_map.bex, "ene_policia_agent_02")
+	safe_add(char_map.bex, "ene_policia_agent_03")
+
 	return char_map
 end
 

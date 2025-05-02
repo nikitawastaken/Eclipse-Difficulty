@@ -295,7 +295,7 @@ local M = {
 	["units/pd2_dlc_bex/characters/ene_policia_04/ene_policia_04"] = { name = "bex_cop_4", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01"] = { name = "bex_fbi_1", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02"] = { name = "bex_fbi_2", head = head_sequences.security },
-	["units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03"] = { name = "bex_fbi_3", head = head_sequences.security },
+	["units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03"] = { name = "bex_fbi_3", head = head_sequences.hrt },	
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_01/ene_male_office_cop_01"] = { name = "pex_cop_1", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"] = { name = "pex_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
