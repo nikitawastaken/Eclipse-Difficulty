@@ -10,10 +10,24 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: JohnnyMorganz/stylua-action@v3
+        id: codeFormatting
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
           args: --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- .
+      - name: Discord Error
+        uses: sarisia/actions-status-discord@v1
+        if: failure() && steps.codeFormatting.outcome == 'failure'
+        with:
+          webhook: ${{ secrets.WEBHOOK_URL }}
+          status: ${{ job.status }}
+          nodetail: true
+          username: "Github"
+          color: 0xff0000
+          avatar_url: ${{ secrets.AVATAR_URL }}
+          title: "StyLua Error"
+          description: |
+            https://github.com/nikitawastaken/Eclipse-Difficulty/actions/runs/${{ github.run_id }}
       - uses: EndBug/add-and-commit@v9
         with:
           add: "*.lua"
