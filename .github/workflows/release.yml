@@ -40,10 +40,12 @@ jobs:
     continue-on-error: true
     steps:
       - id: artifactDownload
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           name: stylua_log
       - id: get_log
+        if: ${{ steps.artifactDownload.outcome == 'success' }}
         run: |
           stylua_out=$(cat stylua.log)
           echo "::set-output name=stylua_out::`echo $stylua_out | sed 's/$/\n/'`"
