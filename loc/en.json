@@ -345,7 +345,7 @@
 	"menu_max_masks_help": "Max out your masks and customization for them to skip grind.",
 	"menu_masks_msg": "Are you sure you want to max out your masks?\nThis will give you 10 of each mask, material, pattern and color.",
 
-	"ene_cop_1" : "MPDC Cop",
+	"ene_cop" : "MPDC Cop",
 	"ene_cop_1_fat" : "MPDC Cop",
 	"ene_cop_2_fat" : "MPDC Cop",
 	"ene_cop_3_fat" : "MPDC Cop",
