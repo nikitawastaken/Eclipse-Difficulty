@@ -102,7 +102,7 @@ if not Eclipse then
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
-			[("english"):key()] = "en.txt",
+			[("english"):key()] = "en.json",
 			[("schinese"):key()] = "schinese.json",
 			[("russian"):key()] = "ru.txt",
 		}
