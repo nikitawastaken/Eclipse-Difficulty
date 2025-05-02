@@ -5,6 +5,11 @@ local bags_required = {
 		amount = (normal and 4 or hard and 6 or 8) + (is_pro_job and 4 or 0),
 	},
 }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 return {
 	-- Restores unused sniper spawn
 	[100370] = {
@@ -18,10 +23,61 @@ return {
 			enabled = false,
 		},
 	},
-	-- Delay Twitch from leaving the area after the heist goes loud
+	-- add custom reinforce from ASS
+	[100324] = disabled,  -- reenforce
 	[100022] = {
-		on_executed = {
+		on_executed = {  -- delay Twitch from leaving the area after the heist goes loud
 			{ id = 100168, delay = 8 },
+		},
+		reinforce = {
+			{
+				name = "street1",
+				force = 2,
+				position = Vector3(-750, 450, 0),
+			},
+			{
+				name = "street2",
+				force = 2,
+				position = Vector3(-1750, 450, 0),
+			},
+			{
+				name = "street3",
+				force = 2,
+				position = Vector3(-1000, -4000, 0),
+			},
+			{
+				name = "street4",
+				force = 2,
+				position = Vector3(3000, -4000, 0),
+			},
+			{
+				name = "alley",
+				force = 2,
+				position = Vector3(2200, 1000, 0),
+			},
+			{
+				name = "plaza",
+				force = 3,
+				position = Vector3(4250, -1700, 0),
+			},
+		},
+	},
+	-- tweak the swat van
+	[102031] = {
+		on_executed = {
+			{ id = 102033, remove = true },
+		},
+	},
+	[102033] = {
+		on_executed = {
+			{ id = 102033, delay = 35 },
+			{ id = 102034, remove = true },
+		},
+	},
+	-- trigger on diff 0.75
+	[100124] = {
+		on_executed = {
+			{ id = 102033, delay = 0 },
 		},
 	},
 	-- tweak the amount of required bags
