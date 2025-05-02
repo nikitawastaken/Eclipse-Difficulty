@@ -201,7 +201,7 @@ local M = {
 	["units/payday2/characters/ene_secret_service_1/ene_secret_service_1"] = { name = "secret_service_1", head = head_sequences.security },
 	["units/payday2/characters/ene_secret_service_2/ene_secret_service_2"] = { name = "secret_service_1", head = head_sequences.security },
 	["units/pd2_dlc_short/characters/ene_secret_service_1_undominatable/ene_secret_service_1_undominatable"] = { name = "secret_service_1", head = head_sequences.security },
-	["units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"] = { name = "secret_service_2", head = head_sequences.security },
+	["units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"] = { name = "secret_service_casino", head = head_sequences.security },
 	["units/payday2/characters/ene_murkywater_1/ene_murkywater_1"] = { name = "murkywater_1", head = head_sequences.blue_swat_b },
 	["units/payday2/characters/ene_murkywater_2/ene_murkywater_2"] = { name = "murkywater_1", head = head_sequences.blue_swat_b },
 	["units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"] = { name = "murkywater_1", head = head_sequences.blue_swat_b },
@@ -286,6 +286,9 @@ local M = {
 	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_c },
 	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_c },
 	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_c },
+	["units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"] = { name = "secret_service_bex", head = head_sequences.security },
+	["units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"] = { name = "secret_service_bex", head = head_sequences.security },
+	["units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_01/ene_bex_security_01"] = { name = "bex_security_1", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_02/ene_bex_security_02"] = { name = "bex_security_2", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_03/ene_bex_security_03"] = { name = "bex_security_3", head = head_sequences.security },
@@ -300,6 +303,7 @@ local M = {
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"] = { name = "pex_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"] = { name = "pex_cop_3", head = head_sequences.security },
+	["units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex"] = { name = "secret_service_fex", head = head_sequences.security },
 }
 
 return M

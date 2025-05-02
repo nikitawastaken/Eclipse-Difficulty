@@ -95,7 +95,7 @@
 		<extension name="character_damage" class="HuskCopDamage" >		
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />		
-			<var name="_head_gear_object" value="g_hat_cop_lod" />
+			<var name="_head_gear_object" value="g_hat_bex_cop_lod" />
 			<var name="_nr_head_gear_objects" value="6" />
 			<var name="_head_gear" value="units/payday2/characters/ene_acc_cop_hat/ene_acc_cop_hat" />			
 		</extension>

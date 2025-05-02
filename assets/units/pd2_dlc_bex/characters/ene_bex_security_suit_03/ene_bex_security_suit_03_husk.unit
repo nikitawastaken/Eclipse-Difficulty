@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <unit type="being" slot="12">
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />	
-	<object file="units/payday2/characters/ene_cop_1/ene_cop_1" />
+	<object file="units/payday2/characters/ene_secret_service_1/ene_secret_service_1" />
 
 	<dependencies>	
-		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
-		<depends_on unit="units/payday2/characters/ene_acc_cop_hat/ene_acc_cop_hat" />
+		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />
+		<depends_on effect="effects/payday2/particles/character/flashlight_ss" />	
 	</dependencies>
 
 	<extensions>	
 		<extension name="spawn_manager" class="ManageSpawnedUnits" >		
-			<var name="_char_joint_names" type="table" >			
+			<var name="_char_joint_names" type="table" >		
 				<var value="root_point" />
 				<var value="Hips" />
 				<var value="Spine" />
@@ -79,25 +79,24 @@
 				<var value="RightUpLeg" />
 				<var value="RightLeg" />
 				<var value="RightFoot" />
-				<var value="RightToeBase" />				
+				<var value="RightToeBase" />
+				
 			</var>
 			<var name="allow_client_spawn" value="true" />
-			<var name="local_only" value="true "/>			
+			<var name="local_only" value="true "/>		
 		</extension>
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="HuskCopBase" >		
-			<var name="_tweak_table" value="fbi" />
-			<var name="_default_weapon_id" value="c45" />			
+			<var name="_tweak_table" value="security_mex" />
+			<var name="_default_weapon_id" value="mp5" />		
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />
 		<extension name="brain" class="HuskCopBrain" />
 		<extension name="anim_data" class="PlayerAnimationData" />
 		<extension name="character_damage" class="HuskCopDamage" >		
 			<var name="_head_body_name" value="head" />
-			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />		
-			<var name="_head_gear_object" value="g_hat_bex_cop_lod" />
-			<var name="_nr_head_gear_objects" value="6" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_cop_hat/ene_acc_cop_hat" />			
+			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
+			<var name="_death_sequence" value="kill_murky_flashlights" />			
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		
 			<var name="_footwear" value="hardsole" />
@@ -111,12 +110,12 @@
 			<var name="_skip_save_anim_state_machine" value="true" />			
 		</extension>
 		<extension name="contour" class="ContourExt" />
-		<extension name="sound" class="CopSound" />		
+		<extension name="sound" class="CopSound" />	
 	</extensions>
 
 	<network sync="husk" remote_unit=""/>
 
-	<sounds> 
+	<sounds>
 		<default_soundsource source="Hips" />		
 	</sounds> 
 </unit>

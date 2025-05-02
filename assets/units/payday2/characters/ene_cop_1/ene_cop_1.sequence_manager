@@ -830,7 +830,7 @@
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_common'" />
+			<run_sequence 		name="'random_glasses_b_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_security_2'" once="true" triggable="true">
@@ -846,7 +846,7 @@
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_security_3'" once="true" triggable="true">
@@ -862,7 +862,7 @@
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_glasses_common'" />
+			<run_sequence 		name="'random_glasses_b_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_1'" once="true" triggable="true">		
@@ -879,7 +879,7 @@
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_common'" />
+			<run_sequence 		name="'random_glasses_b_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_2'" once="true" triggable="true">
@@ -896,7 +896,7 @@
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_3'" once="true" triggable="true">	
@@ -914,7 +914,7 @@
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_glasses_common'" />
+			<run_sequence 		name="'random_glasses_b_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_cop_4'" once="true" triggable="true">			
@@ -929,7 +929,7 @@
 			<run_sequence 		name="'random_body_a'" />			
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_fbi_1'" once="true" triggable="true">		
@@ -944,7 +944,7 @@
 			<run_sequence 		name="'random_body_c'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_fbi_2'" once="true" triggable="true">
@@ -959,7 +959,7 @@
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'bex_fbi_3'" once="true" triggable="true">
@@ -988,7 +988,7 @@
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_common'" />
+			<run_sequence 		name="'random_glasses_b_common'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'pex_cop_2'" once="true" triggable="true">
@@ -1004,7 +1004,7 @@
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'pex_cop_3'" once="true" triggable="true">
@@ -1019,7 +1019,7 @@
 			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_common'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'pex_cop_4'" once="true" triggable="true">
@@ -1034,7 +1034,7 @@
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
-			<run_sequence 		name="'random_glasses_rare'" />
+			<run_sequence 		name="'random_glasses_b_rare'" />
 		</sequence>
 		
 	<!--BALACLAVA SEQUENCES-->
@@ -1135,9 +1135,27 @@
 		<sequence editable_state="true" name="'glasses_base'" once="true" triggable="true">
 			<set_variables 		has_glasses="1" />
 			
-			<object 			enabled="true" name="'g_glasses'" />
-			<object 			enabled="true" name="'g_glasses_lod1'" />
-			<object 			enabled="true" name="'g_glass_glasses'" />
+			<object 			enabled="true" name="'g_shades'" />
+			<object 			enabled="true" name="'g_shades_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass'" />
+		</sequence>
+	<!--GLASSES SEQUENCES B-->
+		<sequence editable_state="true" name="'random_glasses_b_common'" triggable="true">
+			<run_sequence 		name="'glasses_b_'..pick('base','base','none')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'random_glasses_b_rare'" triggable="true">
+			<run_sequence 		name="'glasses_b_'..pick('none','none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'glasses_b_none'" once="true" triggable="true" />
+
+		<sequence editable_state="true" name="'glasses_b_base'" once="true" triggable="true">
+			<set_variables 		has_glasses="1" />
+			
+			<object 			enabled="true" name="'g_shades_b'" />
+			<object 			enabled="true" name="'g_shades_b_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass_b'" />
 		</sequence>
 	<!--GLOVES SEQUENCES-->
 		<sequence editable_state="true" name="'random_gloves_common'" triggable="true">

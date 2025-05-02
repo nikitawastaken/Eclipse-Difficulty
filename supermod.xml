@@ -748,6 +748,12 @@
 				<group :name="vars/">
 					<file :name="ene_secret_service_1_casino.material_config" />
 					<file :name="ene_secret_service_1_casino_contour.material_config" />
+
+					<file :name="ene_bex_security_suit_01.material_config" />
+					<file :name="ene_bex_security_suit_01_contour.material_config" />
+
+					<file :name="ene_secret_service_fex.material_config" />
+					<file :name="ene_secret_service_fex_contour.material_config" />
 				</group>
 			</group>
 
@@ -1327,7 +1333,22 @@
 				<file :name="ene_bex_security_03.unit" />
 				<file :name="ene_bex_security_03_husk.unit" />
 			</group>
-					
+
+			<group :name="ene_bex_security_suit_01/">
+				<file :name="ene_bex_security_suit_01.unit" />
+				<file :name="ene_bex_security_suit_01_husk.unit" />
+			</group>
+
+			<group :name="ene_bex_security_suit_02/">
+				<file :name="ene_bex_security_suit_02.unit" />
+				<file :name="ene_bex_security_suit_02_husk.unit" />
+			</group>
+
+			<group :name="ene_bex_security_suit_03/">
+				<file :name="ene_bex_security_suit_03.unit" />
+				<file :name="ene_bex_security_suit_03_husk.unit" />
+			</group>
+
 			<group :name="ene_policia_01/">
 				<file :name="ene_policia_01.unit" />
 				<file :name="ene_policia_01_husk.unit" />
@@ -1386,6 +1407,14 @@
 			<group :name="ene_male_office_cop_04/">
 				<file :name="ene_male_office_cop_04.unit" />
 				<file :name="ene_male_office_cop_04_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_fex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_secret_service_fex/">
+				<file :name="ene_secret_service_fex.unit" />
+				<file :name="ene_secret_service_fex_husk.unit" />
+				<file :name="ene_secret_service_fex_df.texture" />
 			</group>
 		</group>
 		

@@ -12,6 +12,8 @@ local paths = table.list_to_set({
 	"units/payday2/characters/ene_cop_1/vars/ene_policia_01",
 	"units/payday2/characters/ene_cop_1/vars/ene_male_marshal_marksman_1_merc",
 	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
+	"units/payday2/characters/ene_secret_service_1/vars/ene_bex_security_suit_01",
+	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_fex",
 	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
 	"units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01",
 	"units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1",
