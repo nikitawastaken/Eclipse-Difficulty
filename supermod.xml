@@ -488,6 +488,9 @@
 				<file :name="equipment_atlas_df.texture" />
 				<file :name="equipment_atlas_nm.texture" />
 
+				<file :name="police_vest_df.texture" />
+				<file :name="police_vest_nm.texture" />
+				
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
 				<file :name="visor_glass_orange_df.texture" />
@@ -611,6 +614,15 @@
 
 					<file :name="ene_prisonguard_male_1.material_config" />
 					<file :name="ene_prisonguard_male_1_contour.material_config" />
+
+					<file :name="ene_bex_security_01.material_config" />
+					<file :name="ene_bex_security_01_contour.material_config" />
+
+					<file :name="ene_policia_01.material_config" />
+					<file :name="ene_policia_01_contour.material_config" />
+
+					<file :name="ene_policia_agent_01.material_config" />
+					<file :name="ene_policia_agent_01_contour.material_config" />
 				</group>
 			</group>
 
@@ -1299,6 +1311,84 @@
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
 
+		<group name="units/pd2_dlc_bex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_bex_security_01/">
+				<file :name="ene_bex_security_01.unit" />
+				<file :name="ene_bex_security_01_husk.unit" />
+				<file :name="bex_ene_security_body_atlas_df.texture" />
+			</group>
+
+			<group :name="ene_bex_security_02/">
+				<file :name="ene_bex_security_02.unit" />
+				<file :name="ene_bex_security_02_husk.unit" />
+			</group>
+
+			<group :name="ene_bex_security_03/">
+				<file :name="ene_bex_security_03.unit" />
+				<file :name="ene_bex_security_03_husk.unit" />
+			</group>
+					
+			<group :name="ene_policia_01/">
+				<file :name="ene_policia_01.unit" />
+				<file :name="ene_policia_01_husk.unit" />
+				<file :name="ene_bex_cop_policia_body_atlas_df.texture" />
+				<file :name="ene_bex_cop_policia_body_atlas_nm.texture" />
+			</group>
+
+			<group :name="ene_policia_02/">
+				<file :name="ene_policia_02.unit" />
+				<file :name="ene_policia_02_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_03/">
+				<file :name="ene_policia_03.unit" />
+				<file :name="ene_policia_03_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_04/">
+				<file :name="ene_policia_04.unit" />
+				<file :name="ene_policia_04_husk.unit" />
+			</group>
+		
+			<group :name="ene_policia_agent_01/">
+				<file :name="ene_policia_agent_01.unit" />
+				<file :name="ene_policia_agent_01_husk.unit" />
+				<file :name="ene_bex_agent_body_atlas_df.texture" />
+			</group>
+
+			<group :name="ene_policia_agent_02/">
+				<file :name="ene_policia_agent_02.unit" />
+				<file :name="ene_policia_agent_02_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_agent_03/">
+				<file :name="ene_policia_agent_03.unit" />
+				<file :name="ene_policia_agent_03_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_pex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_male_office_cop_01/">
+				<file :name="ene_male_office_cop_01.unit" />
+				<file :name="ene_male_office_cop_01_husk.unit" />
+			</group>
+
+			<group :name="ene_male_office_cop_02/">
+				<file :name="ene_male_office_cop_02.unit" />
+				<file :name="ene_male_office_cop_02_husk.unit" />
+			</group>
+
+			<group :name="ene_male_office_cop_03/">
+				<file :name="ene_male_office_cop_03.unit" />
+				<file :name="ene_male_office_cop_03_husk.unit" />
+			</group>
+
+			<group :name="ene_male_office_cop_04/">
+				<file :name="ene_male_office_cop_04.unit" />
+				<file :name="ene_male_office_cop_04_husk.unit" />
+			</group>
+		</group>
+		
 		<group name="units/pd2_dlc_berry/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_murkywater_no_light/">
 				<file :name="ene_murkywater_no_light.unit" />

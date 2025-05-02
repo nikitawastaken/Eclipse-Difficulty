@@ -87,4 +87,13 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2", gitgud_needed, false)
 	load_unload_unit("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4", gitgud_needed, false)
 	load_unload_unit("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870", gitgud_needed, false)
+
+	local bex_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_02/ene_policia_02", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_03/ene_policia_03", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_04/ene_policia_04", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03", bex_needed, false)
 end)
