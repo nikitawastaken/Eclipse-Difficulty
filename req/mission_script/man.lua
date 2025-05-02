@@ -108,10 +108,11 @@ local window_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local cloaker_spawn = {
+local new_cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 120,
 	},
+	groups = preferred.only_cloakers,
 }
 local chopper_delay_init = 480 - (diff_i * 30) - (is_pro_job and 60 or 0)
 local chopper_delay = 360 - (diff_i * 15) - (is_pro_job and 45 or 0)
@@ -135,6 +136,90 @@ return {
 	},
 	[101801] = {
 		flashlight = false,
+	},
+	-- add new cloaker spawns to dummy trigger
+	-- on spawn
+	[103544] = {
+		values = {
+			elements = {
+				400000,
+			},
+		},
+	},
+	-- disable the spawn
+	[103535] = {
+		values = {
+			elements = {
+				400000,
+			},
+		},
+	},
+	-- enable the spawn
+	[103534] = {
+		values = {
+			elements = {
+				400000,
+			},
+		},
+	},
+	-- on spawn
+	[103540] = {
+		values = {
+			elements = {
+				400001,
+			},
+		},
+	},
+	-- disable the spawn
+	[103531] = {
+		values = {
+			elements = {
+				400001,
+			},
+		},
+	},
+	-- enable the spawn
+	[103530] = {
+		values = {
+			elements = {
+				400001,
+			},
+		},
+	},
+	-- on spawn
+	[103479] = {
+		values = {
+			elements = {
+				400002,
+			},
+		},
+	},
+	-- disable the spawn
+	[103483] = {
+		values = {
+			elements = {
+				400002,
+			},
+		},
+	},
+	-- enable the spawn
+	[103482] = {
+		values = {
+			elements = {
+				400002,
+			},
+		},
+	},
+	-- replace cloaker spawngroup with new one
+	[103792] = {
+		on_executed = {
+			{ id = 103798, remove = true },
+		},
+	},
+	[100130] = {
+		on_executed = {
+			{ id = 400004, delay = 20 },
+		},
 	},
 	-- Unused snipers
 	[102160] = enabled,
@@ -330,7 +415,7 @@ return {
 	[101951] = window_spawn,
 	[101937] = roof_spawn,
 	[102189] = roof_spawn,
-	[103793] = cloaker_spawn,
+	[400003] = new_cloaker_spawn,
 	-- Scripted FBI agents
 	[101614] = fbi_agent,
 	[102633] = fbi_agent,
