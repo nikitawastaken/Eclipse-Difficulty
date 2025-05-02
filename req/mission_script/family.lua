@@ -24,9 +24,9 @@ return {
 		},
 	},
 	-- add custom reinforce from ASS
-	[100324] = disabled,  -- reenforce
+	[100324] = disabled, -- reenforce
 	[100022] = {
-		on_executed = {  -- delay Twitch from leaving the area after the heist goes loud
+		on_executed = { -- delay Twitch from leaving the area after the heist goes loud
 			{ id = 100168, delay = 8 },
 		},
 		reinforce = {
