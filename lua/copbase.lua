@@ -135,6 +135,8 @@ function CopBase:_run_unit_sequences()
 
 	-- Run the initial sequence to enable pouches, helmets etc.
 	if unit_sequence then
+		self._block_seq_manager_material_load = true
+
 		local sequence_name = unit_sequence and unit_sequence.name
 		local sequence_head = unit_sequence and unit_sequence.head
 
