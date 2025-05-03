@@ -3,7 +3,7 @@ local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local swat_1 = scripted_enemy.swat_1
 local elite_sniper = scripted_enemy.elite_sniper
-local harasser_enemy = is_eclipse and { [swat_1] = 6, [elite_sniper] = 1 } or swat_1
+local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
 }

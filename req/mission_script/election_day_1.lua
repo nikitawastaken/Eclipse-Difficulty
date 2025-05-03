@@ -6,7 +6,7 @@ local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
+local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }

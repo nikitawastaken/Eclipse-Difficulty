@@ -90,7 +90,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100247] = { -- saws are done, roof objectives begin
+	[100533] = { -- saws are done, roof objectives begin
 		reinforce = {
 			{
 				name = "third_floor",
