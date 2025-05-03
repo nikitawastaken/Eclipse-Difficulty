@@ -793,25 +793,25 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 	}
 
-	presets.surrender.very_hard = deep_clone(presets.surrender.hard)
-	presets.surrender.very_hard = {
+	presets.surrender.no_assault = deep_clone(presets.surrender.hard)
+	presets.surrender.no_assault = {
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.7,
-			pants_down = 0.5,
-			weapon_down = 0.2,
-			flanked = 0.1,
+			not_assault = 0.4,
+			pants_down = 0,
+			weapon_down = 0,
+			flanked = 0,
 			unaware_of_aggressor = 0,
 			isolated = 0,
 		},
 		factors = {
 			health = {
-				[0.75] = 0,
-				[0.0] = 0.25,
+				[1] = 0,
+				[0.0] = 0,
 			},
 			aggressor_dis = {
-				[100] = 0.1,
+				[100] = 0,
 				[800] = 0,
 			},
 		},
@@ -847,9 +847,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.suppression.very_hard = deep_clone(presets.surrender.easy)
 
 	presets.suppression.very_hard = {
-		panic_chance_mul = 0.5,
-		duration = { 3, 5 },
-		react_point = { 5, 7 },
+		panic_chance_mul = 0.4,
+		duration = { 2, 4 },
+		react_point = { 6, 8 },
 		brown_point = { 8, 10 },
 	}
 
@@ -1089,6 +1089,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	self.city_heavy_swat.HEALTH_INIT = 48
 	self.city_heavy_swat.headshot_dmg_mul = 1.6
+	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
+	self.city_heavy_swat.suppression = self.presets.suppression.very_hard
 
 	self.zeal_swat = deep_clone(self.city_swat)
 	self.zeal_swat.HEALTH_INIT = 32
@@ -1412,6 +1414,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.heavy_swat.speech_prefix_count = 4
 		self.fbi_heavy_swat.speech_prefix_p2 = "d"
 		self.fbi_heavy_swat.speech_prefix_count = 4
+		self.city_heavy_swat.speech_prefix_p2 = "d"
+		self.city_heavy_swat.speech_prefix_count = 4
 		self.zeal_heavy_swat.speech_prefix_p2 = "d"
 		self.zeal_heavy_swat.speech_prefix_count = 4
 		self.shield.speech_prefix_p2 = "d"
