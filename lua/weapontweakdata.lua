@@ -2148,7 +2148,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Brenner
 	self.hk21.CLIP_AMMO_MAX = 100
 	self.hk21.stats.damage = 75
-	self.hk21.stats.spread = 15
+	self.hk21.stats.spread = 16
 	self.hk21.stats.recoil = 9
 	self.hk21.stats.concealment = 4
 	self.hk21.fire_mode_data.fire_rate = 60 / 750
@@ -2189,8 +2189,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Minigun
 	self.m134.CLIP_AMMO_MAX = 600
 	self.m134.stats.damage = 30
-	self.m134.stats.spread = 9
-	self.m134.stats.recoil = 7
+	self.m134.stats.spread = 13
+	self.m134.stats.recoil = 11
 	self.m134.stats.concealment = 2
 	self.m134.fire_mode_data.fire_rate = 60 / 3000
 	self.m134.spray = spray_tables.mini
@@ -2200,8 +2200,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Microgun
 	self.shuno.CLIP_AMMO_MAX = 450
 	self.shuno.stats.damage = 40
-	self.shuno.stats.spread = 7
-	self.shuno.stats.recoil = 9
+	self.shuno.stats.spread = 11
+	self.shuno.stats.recoil = 13
 	self.shuno.stats.concealment = 2
 	self.shuno.fire_mode_data.fire_rate = 60 / 2000
 	self.shuno.spray = spray_tables.mini
