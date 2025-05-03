@@ -262,12 +262,12 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.spread_multiplier = {
 					standing = {
-						hipfire = 1.25,
+						hipfire = 1,
 						crouching = 1,
 						steelsight = 0.75,
 					},
 					moving = {
-						hipfire = 1.5,
+						hipfire = 1.25,
 						crouching = 1,
 						steelsight = 1,
 					}
@@ -2083,8 +2083,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tecci.categories = { "lmg" }
 	self.tecci.CLIP_AMMO_MAX = 100
 	self.tecci.stats.damage = 45
-	self.tecci.stats.spread = 11
-	self.tecci.stats.recoil = 13
+	self.tecci.stats.spread = 13
+	self.tecci.stats.recoil = 14
 	self.tecci.stats.concealment = 14
 	self.tecci.fire_mode_data.fire_rate = 60 / 800
 	self.tecci.steelsight_speed_multiplier = steelsight_times.lmg / steelsight_times.lmg_light
@@ -2094,7 +2094,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- KSP
 	self.m249.CLIP_AMMO_MAX = 200
 	self.m249.stats.damage = 45
-	self.m249.stats.spread = 12
+	self.m249.stats.spread = 15
 	self.m249.stats.recoil = 11
 	self.m249.stats.concealment = 8
 	self.m249.fire_mode_data.fire_rate = 60 / 900
@@ -2105,7 +2105,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw.CLIP_AMMO_MAX = 200
 	self.kacchainsaw.stats.damage = 45
 	self.kacchainsaw.stats.spread = 13
-	self.kacchainsaw.stats.recoil = 11
+	self.kacchainsaw.stats.recoil = 16
 	self.kacchainsaw.stats.concealment = 8
 	self.kacchainsaw.fire_mode_data.fire_rate = 60 / 800
 	self.kacchainsaw.no_steelsight = true
@@ -2115,19 +2115,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- RPK
 	self.rpk.CLIP_AMMO_MAX = 75
 	self.rpk.stats.damage = 60
-	self.rpk.stats.spread = 14
-	self.rpk.stats.recoil = 9
+	self.rpk.stats.spread = 16
+	self.rpk.stats.recoil = 11
 	self.rpk.stats.concealment = 6
-	self.rpk.fire_mode_data.fire_rate = 60 / 600
+	self.rpk.fire_mode_data.fire_rate = 60 / 650
 	self.rpk.steelsight_speed_multiplier = 0.5 / 0.45
 	self.rpk.spray = spray_tables.lmg_right
 	self.rpk.recoil_recovery_timer = recovery_tables.high
 
 	-- Buzzsaw
-	self.mg42.CLIP_AMMO_MAX = 150
+	self.mg42.CLIP_AMMO_MAX = 100
 	self.mg42.stats.damage = 60
-	self.mg42.stats.spread = 13
-	self.mg42.stats.recoil = 11
+	self.mg42.stats.spread = 16
+	self.mg42.stats.recoil = 10
 	self.mg42.stats.concealment = 4
 	self.mg42.fire_mode_data.fire_rate = 60 / 1200
 	self.mg42.spray = spray_tables.lmg_left
@@ -2136,8 +2136,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Versteckt
 	self.hk51b.CLIP_AMMO_MAX = 50
 	self.hk51b.stats.damage = 60
-	self.hk51b.stats.spread = 10
-	self.hk51b.stats.recoil = 6
+	self.hk51b.stats.spread = 13
+	self.hk51b.stats.recoil = 7
 	self.hk51b.stats.concealment = 14
 	self.hk51b.fire_mode_data.fire_rate = 60 / 750
 	self.hk51b.steelsight_speed_multiplier = steelsight_times.lmg / steelsight_times.lmg_light
@@ -2148,8 +2148,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Brenner
 	self.hk21.CLIP_AMMO_MAX = 100
 	self.hk21.stats.damage = 75
-	self.hk21.stats.spread = 13
-	self.hk21.stats.recoil = 10
+	self.hk21.stats.spread = 15
+	self.hk21.stats.recoil = 9
 	self.hk21.stats.concealment = 4
 	self.hk21.fire_mode_data.fire_rate = 60 / 750
 	self.hk21.spray = spray_tables.lmg_left
@@ -2158,7 +2158,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- KSP 58
 	self.par.CLIP_AMMO_MAX = 100
 	self.par.stats.damage = 75
-	self.par.stats.spread = 16
+	self.par.stats.spread = 17
 	self.par.stats.recoil = 8
 	self.par.stats.concealment = 4
 	self.par.fire_mode_data.fire_rate = 60 / 700
@@ -2169,7 +2169,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- M60
 	self.m60.CLIP_AMMO_MAX = 100
 	self.m60.stats.damage = 80
-	self.m60.stats.spread = 16
+	self.m60.stats.spread = 17
 	self.m60.stats.recoil = 6
 	self.m60.stats.concealment = 4
 	self.m60.fire_mode_data.fire_rate = 60 / 550
@@ -2179,7 +2179,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Akron
 	self.hcar.CLIP_AMMO_MAX = 20
 	self.hcar.stats.damage = 80
-	self.hcar.stats.spread = 17
+	self.hcar.stats.spread = 19
 	self.hcar.stats.recoil = 3
 	self.hcar.stats.concealment = 6
 	self.hcar.fire_mode_data.fire_rate = 60 / 500
