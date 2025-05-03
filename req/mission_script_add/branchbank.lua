@@ -11,12 +11,15 @@ local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_en
 local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
 local taser = scripted_enemy.taser_1
 local medic = diff_i < 4 and scripted_enemy.taser_1 or scripted_enemy.medic_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_2
+local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
+local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local cloaker = scripted_enemy.cloaker
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
 local optsBulldozer = {
-	enemy = elite_bulldozer,
+	enemy = elite_bulldozer_skull,
 	on_executed = {
 		{ id = 400002, delay = 0 },
 	},
@@ -56,6 +59,18 @@ local optsMedic = {
 	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
 }
+local optsDozer = {
+	enemy = is_eclipse and elite_bulldozer_neil or green_bulldozer,
+	spawn_action = "e_sp_armored_truck_1st",
+	on_executed = { { id = 400019, delay = 0 } },
+	enabled = true,
+}
+local optsCloaker = {
+	enemy = cloaker,
+	spawn_action = "e_sp_armored_truck_1st",
+	on_executed = { { id = 400019, delay = 0 } },
+	enabled = true,
+}
 local optsTaser = {
 	enemy = taser,
 	spawn_action = "e_sp_armored_truck_1st",
@@ -87,7 +102,7 @@ local optsspawnvanSWATs_2 = {
 	enabled = true,
 }
 local optsHuntSO = {
-	SO_access = tostring(128 + 2048 + 8192),
+	SO_access = tostring(128 + 1024 + 2048 + 4096 + 8192),
 	path_style = "none",
 	scan = true,
 	so_action = "AI_hunt",
@@ -104,17 +119,17 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400005, "swat_van_spawn_1", Vector3(-110, -1023, -19.999), Rotation(-84, 0, 0), optsSWAT),
 	Eclipse.mission_elements.gen_dummy(400006, "swat_van_spawn_2", Vector3(-114.599, -979.241, -19.999), Rotation(-84, 0, 0), optsMedic),
 	Eclipse.mission_elements.gen_dummy(400007, "swat_van_spawn_3", Vector3(-118.989, -937.471, -19.999), Rotation(-84, 0, 0), optsSWAT),
-	Eclipse.mission_elements.gen_dummy(400008, "swat_van_spawn_4", Vector3(-38.866, -1020.551, -19.999), Rotation(-84, 0, 0), optsShield),
-	Eclipse.mission_elements.gen_dummy(400009, "swat_van_spawn_5", Vector3(-48.378, -930.050, -19.999), Rotation(-84, 0, 0), optsShield),
+	Eclipse.mission_elements.gen_dummy(400008, "swat_van_spawn_4", Vector3(-38.866, -1020.551, -19.999), Rotation(-84, 0, 0), optsCloaker),
+	Eclipse.mission_elements.gen_dummy(400009, "swat_van_spawn_5", Vector3(-48.378, -930.050, -19.999), Rotation(-84, 0, 0), optsDozer),
 	Eclipse.mission_elements.gen_missionscript(400010, "spawn_swats_1", optsspawnvanSWATs_1),
 	Eclipse.mission_elements.gen_object_editor(400011, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 
 	-- swat van 2
-	Eclipse.mission_elements.gen_dummy(400012, "swat_van_spawn_1", Vector3(760, 2587, -19.850), Rotation(16, 0, 0), optsSWAT),
-	Eclipse.mission_elements.gen_dummy(400013, "swat_van_spawn_2", Vector3(719.627, 2575.423, -19.850), Rotation(16, 0, 0), optsTaser),
-	Eclipse.mission_elements.gen_dummy(400014, "swat_van_spawn_3", Vector3(675.409, 2562.744, -19.850), Rotation(16, 0, 0), optsSWAT),
-	Eclipse.mission_elements.gen_dummy(400015, "swat_van_spawn_4", Vector3(748.826, 2636.852, -19.850), Rotation(16, 0, 0), optsShield),
-	Eclipse.mission_elements.gen_dummy(400016, "swat_van_spawn_5", Vector3(661.351, 2611.769, -19.850), Rotation(16, 0, 0), optsShield),
+	Eclipse.mission_elements.gen_dummy(400012, "swat_van_spawn_6", Vector3(760, 2587, -19.850), Rotation(16, 0, 0), optsSWAT),
+	Eclipse.mission_elements.gen_dummy(400013, "swat_van_spawn_7", Vector3(719.627, 2575.423, -19.850), Rotation(16, 0, 0), optsTaser),
+	Eclipse.mission_elements.gen_dummy(400014, "swat_van_spawn_8", Vector3(675.409, 2562.744, -19.850), Rotation(16, 0, 0), optsSWAT),
+	Eclipse.mission_elements.gen_dummy(400015, "swat_van_spawn_9", Vector3(748.826, 2636.852, -19.850), Rotation(16, 0, 0), optsShield),
+	Eclipse.mission_elements.gen_dummy(400016, "swat_van_spawn_10", Vector3(661.351, 2611.769, -19.850), Rotation(16, 0, 0), optsShield),
 	Eclipse.mission_elements.gen_missionscript(400017, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400018, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 
