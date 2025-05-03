@@ -350,8 +350,8 @@ function CopDamage:sync_damage_melee(attacker_unit, damage_percent, damage_effec
 		pos = self._unit:position(),
 		result = {
 			variant = "melee",
-			type = "healed"
-		}
+			type = "healed",
+		},
 	}
 
 	self:do_medic_heal()
