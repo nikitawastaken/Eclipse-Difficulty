@@ -399,12 +399,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_range = 200,
 	})
 
-	presets.weapon.hw_tank.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 24 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 16 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-	}
-
 	presets.weapon.hw_tank.is_lmg.RELOAD_SPEED = 0.7
 	presets.weapon.hw_tank.is_lmg.autofire_rounds = { 20, 50 }
 	presets.weapon.hw_tank.is_lmg.FALLOFF = {
@@ -416,8 +410,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_tank = based_on(presets.weapon.tank)
 
 	presets.weapon.elite_tank.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 24 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 16 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
