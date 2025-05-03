@@ -866,7 +866,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.Elite_sniper = {
 		special_type = "marksman",
 		unit_types = {
@@ -2326,7 +2326,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.Elite_assault_sniper = {
 		amount = { 1, 1 },
 		spawn = {
