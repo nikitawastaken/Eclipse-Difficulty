@@ -4,7 +4,7 @@ local M = {}
 local patches = {
 	harasser = {
 		assault_filters = table.set(100010, 100029),
-		disabled_forced_behaviour = table.set(100000, 100002),
+		disabled_forced_behaviour = table.set(100000, 100001),
 	},
 }
 
