@@ -819,6 +819,54 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+	self.unit_categories.Elite_heavy_1 = {
+		unit_types = {
+			america = { Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36") },
+			russia = { Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36") },
+			zombie = { Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36") },
+			murkywater = { Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36") },
+			federales = { Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36") },
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.Elite_heavy_2 = {
+		unit_types = {
+			america = { Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870") },
+			russia = { Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870") },
+			zombie = { Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870") },
+			murkywater = { Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870") },
+			federales = { Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870") },
+		},
+		access = access_type_all,
+	}
+
+	self.unit_categories.Elite_heavy = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"),
+				Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"),
+				Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"),
+				Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"),
+				Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"),
+				Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"),
+			},
+		},
+		access = access_type_all,
+	}
+	
 	self.unit_categories.Elite_sniper = {
 		special_type = "marksman",
 		unit_types = {
@@ -2235,6 +2283,50 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
+	self.enemy_spawn_groups.Elite_assault_heavies = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				freq = 1,
+				rank = 3,
+				unit = "Elite_heavy_1",
+				tactics = self._tactics.swat_def,
+				random_tactics = swat_random_tactics_2,
+			},
+			{
+				amount_max = 2,
+				freq = 0.6,
+				rank = 3,
+				unit = "Elite_heavy_2",
+				tactics = self._tactics.swat_agg,
+				random_tactics = swat_random_tactics_3,
+			},
+			{
+				amount_max = 2,
+				freq_by_diff = {
+					6 / difficulty_index,
+					4 / difficulty_index,
+					2 / difficulty_index,
+				},
+				rank = 2,
+				unit = "Elite_swat_1_3",
+				tactics = self._tactics.swat_spt,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					difficulty_index / 24,
+					difficulty_index / 12,
+				},
+				rank = 1,
+				unit = "medic",
+				tactics = self._tactics.medic,
+			},
+		},
+	}
+	
 	self.enemy_spawn_groups.Elite_assault_sniper = {
 		amount = { 1, 1 },
 		spawn = {
@@ -3309,7 +3401,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 6 then
 		self.ponr.assault.groups = {
 			FBI_assault_cloaker = { 0.4, 0.4, 0.4 },
-			FBI_assault_heavies = { 1, 1, 1 },
+			Elite_assault_heavies = { 1, 1, 1 },
 
 			Elite_assault_swats = { 0.5, 0.5, 0.5 },
 			Elite_assault_shield = { 0.5, 0.5, 0.5 },
