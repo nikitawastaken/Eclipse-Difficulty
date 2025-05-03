@@ -35,7 +35,7 @@ local bridge_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 45,
+		interval = 60,
 	},
 }
 return {

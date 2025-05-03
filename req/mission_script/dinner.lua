@@ -56,7 +56,7 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 180,
 	},
 }
 local chance_all_containers_closed = normal and 0 or hard and 0.0125 or 0.025

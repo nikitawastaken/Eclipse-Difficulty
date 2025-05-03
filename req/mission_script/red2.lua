@@ -62,7 +62,7 @@ local vault_ambush = {
 local bulldozer_spawn = {
 	enemy = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or bulldozer,
 }
-local cloaker_spawn = {
+local taser_cloaker = {
 	enemy = cloaker,
 }
 local taser_spawn_1 = {
@@ -216,8 +216,8 @@ return {
 	[102271] = windows_swat,
 	[102276] = windows_swat,
 	-- replace SWAT with cloakers that spawn with taser to match with PDTH
-	[100617] = cloaker_spawn,
-	[100618] = cloaker_spawn,
+	[100617] = taser_cloaker,
+	[100618] = taser_cloaker,
 	-- change some basement dozers to tasers like in PDTH
 	[103163] = taser_spawn_1,
 	[103198] = taser_spawn_2,

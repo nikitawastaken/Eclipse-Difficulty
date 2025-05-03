@@ -95,7 +95,7 @@ local front_short_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 180,
 	},
 }
 return {

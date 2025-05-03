@@ -13,7 +13,7 @@ local breach_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 120,
 	},
 }
 return {

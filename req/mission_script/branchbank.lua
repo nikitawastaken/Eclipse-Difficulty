@@ -60,7 +60,7 @@ local parking_lot_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 180,
 	},
 }
 return {
