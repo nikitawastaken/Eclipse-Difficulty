@@ -2,14 +2,15 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local light_harasser = swat_1
-local heavy_harasser = eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
-local fail_to_believe_chance = (eclipse and 30 or 20) + (is_pro_job and 5 or 0)
-local timelock_normal = (eclipse and 240 or 180) + (is_pro_job and 30 or 0)
-local timelock_fast = (eclipse and 210 or 150) + (is_pro_job and 30 or 0)
+local heavy_harasser = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
+local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
+local timelock_normal = (is_eclipse and 240 or 180) + (is_pro_job and 30 or 0)
+local timelock_fast = (is_eclipse and 210 or 150) + (is_pro_job and 30 or 0)
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
