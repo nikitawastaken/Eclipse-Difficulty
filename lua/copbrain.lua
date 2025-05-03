@@ -18,6 +18,7 @@ CopBrain._logic_variants.fbi_sniper = clone(CopBrain._logic_variants.sniper)
 CopBrain._logic_variants.fbi_shield = clone(CopBrain._logic_variants.shield)
 CopBrain._logic_variants.medic = clone(CopBrain._logic_variants.swat)
 CopBrain._logic_variants.medic.attack = MedicLogicAttack
+CopBrain._logic_variants.city_heavy_swat = CopBrain._logic_variants.swat
 CopBrain._logic_variants.city_sniper = clone(CopBrain._logic_variants.swat)
 CopBrain._logic_variants.city_sniper.attack = MarshalLogicAttack
 CopBrain._logic_variants.city_shield = clone(CopBrain._logic_variants.shield)

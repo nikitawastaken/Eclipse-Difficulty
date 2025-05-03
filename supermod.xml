@@ -491,6 +491,9 @@
 
 				<file :name="police_vest_df.texture" />
 				<file :name="police_vest_nm.texture" />
+
+				<file :name="city_heavy_helmets_atlas_df.texture" />
+				<file :name="city_heavy_helmets_atlas_nm.texture" />
 				
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
@@ -879,6 +882,11 @@
 				<file :name="ene_fbi_heavy_1.object" />
 				<file :name="ene_fbi_heavy_1.unit" />
 				<file :name="ene_fbi_heavy_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_city_heavy_g36.material_config" />
+					<file :name="ene_city_heavy_g36_contour.material_config" />
+				</group>
 			</group>
 
 			<group :name="ene_fbi_heavy_r870/">
@@ -886,6 +894,16 @@
 				<file :name="ene_fbi_heavy_r870_husk.unit" />
 			</group>
 
+			<group :name="ene_city_heavy_g36/">
+				<file :name="ene_city_heavy_g36.unit" />
+				<file :name="ene_city_heavy_g36_husk.unit" />
+			</group>
+
+			<group :name="ene_city_heavy_r870/">
+				<file :name="ene_city_heavy_r870.unit" />
+				<file :name="ene_city_heavy_r870_husk.unit" />
+			</group>
+			
 			<group :name="ene_medic_m4/">
 				<xml  :name="ene_medic_m4.sequence_manager" dyn_package="true" />
 				<file :name="ene_medic_m4.material_config" />

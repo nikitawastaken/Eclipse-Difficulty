@@ -118,6 +118,13 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
+	self._defaults.killed.city_heavy_swat = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
 	self._defaults.killed.city_sniper = {
 		count = 0,
 		head_shots = 0,

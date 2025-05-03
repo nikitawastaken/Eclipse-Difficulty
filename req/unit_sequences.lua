@@ -224,6 +224,8 @@ local M = {
 	["units/payday2/characters/ene_shield_1/ene_shield_1"] = { name = "shield_1", head = head_sequences.blue_swat_c },
 	["units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"] = { name = "fbi_heavy_1", head = head_sequences.blue_swat_c },
 	["units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"] = { name = "fbi_heavy_2", head = head_sequences.blue_swat_c },
+	["units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"] = { name = "city_heavy_1", head = head_sequences.blue_swat_c },
+	["units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"] = { name = "city_heavy_2", head = head_sequences.blue_swat_c },
 	["units/payday2/characters/ene_medic_m4/ene_medic_m4"] = { name = "medic_1", head = head_sequences.medic },
 	["units/payday2/characters/ene_medic_r870/ene_medic_r870"] = { name = "medic_2", head = head_sequences.medic },
 	["units/payday2/characters/ene_spook_1/ene_spook_1"] = { name = "spook_1", head = head_sequences.cloaker },

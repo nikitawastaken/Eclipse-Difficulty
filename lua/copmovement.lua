@@ -10,6 +10,7 @@ CopMovement._action_variants.fbi_office = CopMovement._action_variants.swat
 CopMovement._action_variants.soldier = CopMovement._action_variants.swat
 CopMovement._action_variants.fbi_sniper = CopMovement._action_variants.sniper
 CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
+CopMovement._action_variants.city_heavy_swat = CopMovement._action_variants.swat
 CopMovement._action_variants.city_sniper = CopMovement._action_variants.swat
 CopMovement._action_variants.city_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.city_shield_break = CopMovement._action_variants.swat

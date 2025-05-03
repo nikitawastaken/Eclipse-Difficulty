@@ -8,6 +8,7 @@ local paths = table.list_to_set({
 	"units/payday2/characters/ene_cop_1/vars/ene_security_4",
 	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
 	"units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1",
+	"units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_g36",
 	"units/payday2/characters/ene_cop_1/vars/ene_male_marshal_marksman_1_merc",
 	"units/payday2/characters/ene_cop_1/vars/ene_policia_01",
 	"units/payday2/characters/ene_cop_1/vars/ene_male_marshal_marksman_1_merc",

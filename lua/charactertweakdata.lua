@@ -1086,6 +1086,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.surrender = self.presets.surrender.hard
 	self.city_swat.suppression = self.presets.suppression.hard
 
+	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
+	self.city_heavy_swat.HEALTH_INIT = 48
+	self.city_heavy_swat.headshot_dmg_mul = 1.6
+	
 	self.zeal_swat = deep_clone(self.city_swat)
 	self.zeal_swat.HEALTH_INIT = 32
 	self.zeal_swat.headshot_dmg_mul = 1.6 -- 200 head health
@@ -1590,6 +1594,7 @@ CharacterTweakData.tweak_table_weapon = {
 	fbi_swat = "fbi_swat",
 	fbi_heavy_swat = "fbi_swat",
 	city_swat = "elite_swat",
+	city_heavy_swat = "elite_swat",
 	zeal_swat = "zeal_swat",
 	zeal_heavy_swat = "zeal_swat",
 	murky = "murky",
@@ -1635,11 +1640,12 @@ CharacterTweakData.access_weapon = {
 }
 
 CharacterTweakData.tweak_table_move_speed = {
-	city_swat = "very_fast",
-	zeal_swat = "very_fast",
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
+	city_swat = "very_fast",
+	city_heavy_swat = "fast",
 	city_sniper = "fast",
+	zeal_swat = "very_fast",
 	zeal_heavy_swat = "fast",
 	cobra = "fast",
 	murky = "fast",
