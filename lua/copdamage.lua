@@ -334,3 +334,44 @@ function CopDamage:sync_damage_explosion(attacker_unit, damage_percent, i_attack
 
 	return result
 end
+
+-- Fix synced melee damage ignoring medic heal
+local sync_damage_melee_original = CopDamage.sync_damage_melee
+function CopDamage:sync_damage_melee(attacker_unit, damage_percent, damage_effect_percent, i_body, hit_offset_height, variant, death, ...)
+	if death or variant ~= 7 then
+		return sync_damage_melee_original(self, attacker_unit, damage_percent, damage_effect_percent, i_body, hit_offset_height, variant, death, ...)
+	end
+
+	local attack_data = {
+		variant = "healed",
+		attacker_unit = attacker_unit,
+		damage = damage_percent * self._HEALTH_INIT_PRECENT,
+		is_synced = true,
+		pos = self._unit:position(),
+		result = {
+			variant = "melee",
+			type = "healed"
+		}
+	}
+
+	self:do_medic_heal()
+
+	if attacker_unit then
+		attack_data.attack_dir = self._unit:position() - attacker_unit:position()
+		mvector3.normalize(attack_data.attack_dir)
+		attack_data.name_id = attacker_unit:inventory() and attacker_unit:inventory():get_melee_weapon_id()
+	else
+		attack_data.attack_dir = -self._unit:rotation():y()
+	end
+
+	mvector3.set_z(attack_data.pos, attack_data.pos.z + math.random() * 180)
+
+	if not self._no_blood then
+		local from = Vector3(0, 0, hit_offset_height)
+		mvector3.add(from, self._unit:movement():m_pos())
+		managers.game_play_central:sync_play_impact_flesh(from, attack_data.attack_dir)
+	end
+
+	self:_send_sync_melee_attack_result(attack_data, hit_offset_height)
+	self:_on_damage_received(attack_data)
+end
