@@ -1493,11 +1493,6 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_03_fat")
 	safe_add(char_map.ranc, "ene_male_ranc_ranger_04_fat")
 
-	safe_add(char_map.gitgud, "ene_zeal_swat_2")
-	safe_add(char_map.gitgud, "ene_zeal_swat_heavy_2")
-	safe_add(char_map.gitgud, "ene_zeal_medic_m4")
-	safe_add(char_map.gitgud, "ene_zeal_medic_r870")
-
 	safe_add(char_map.bex, "ene_policia_03")
 	safe_add(char_map.bex, "ene_policia_04")
 	safe_add(char_map.bex, "ene_policia_agent_01")
