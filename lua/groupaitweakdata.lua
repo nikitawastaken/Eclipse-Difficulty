@@ -3308,13 +3308,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 6 then
 		self.ponr.assault.groups = {
-			FBI_assault_cloaker = { 0.3, 0.3, 0.3 },
+			FBI_assault_cloaker = { 0.4, 0.4, 0.4 },
 			FBI_assault_heavies = { 1, 1, 1 },
 
 			Elite_assault_swats = { 0.5, 0.5, 0.5 },
-			Elite_assault_shield = { 0.4, 0.4, 0.4 },
-			Elite_assault_taser = { 0.3, 0.3, 0.3 },
-			Elite_assault_bulldozer = { 0.25, 0.25, 0.25 },
+			Elite_assault_shield = { 0.5, 0.5, 0.5 },
+			Elite_assault_taser = { 0.4, 0.4, 0.4 },
+			Elite_assault_bulldozer = { 0.35, 0.35, 0.35 },
 		}
 		self.ponr.reenforce.groups = {
 			Elite_reinforce_swats = { 1, 1, 1 },

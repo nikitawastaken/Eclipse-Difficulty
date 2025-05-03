@@ -54,8 +54,8 @@ local bags_required = {
 return {
 	[100809] = {
 		ponr = {
-			length = 180,
-			player_mul = { 2, 1.25, 1., 1 },
+			length = 240,
+			player_mul = { 2, 1.25, 1, 1 },
 		},
 	},
 	[105844] = {
