@@ -49,19 +49,19 @@ local optsBulldozer = {
 	on_executed = {
 		{ id = 400014, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = hard_and_above,
 }
 local optsBulldozerscripted = {
 	enemy = bulldozer,
 	on_executed = {
 		{ id = 400041, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = hard_and_above,
 }
 local optsCloaker = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
-	enabled = hard_above,
+	enabled = hard_and_above,
 }
 local optsShield_1 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -69,7 +69,7 @@ local optsShield_1 = {
 	on_executed = {
 		{ id = 400050, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_2 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -77,7 +77,7 @@ local optsShield_2 = {
 	on_executed = {
 		{ id = 400051, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_3 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -85,7 +85,7 @@ local optsShield_3 = {
 	on_executed = {
 		{ id = 400052, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_4 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -93,7 +93,7 @@ local optsShield_4 = {
 	on_executed = {
 		{ id = 400053, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_5 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -101,7 +101,7 @@ local optsShield_5 = {
 	on_executed = {
 		{ id = 400054, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_6 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -109,7 +109,7 @@ local optsShield_6 = {
 	on_executed = {
 		{ id = 400055, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsTaser = {
 	enemy = taser_shotgun,
