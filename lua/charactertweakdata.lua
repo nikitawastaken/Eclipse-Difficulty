@@ -1089,7 +1089,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	self.city_heavy_swat.HEALTH_INIT = 48
 	self.city_heavy_swat.headshot_dmg_mul = 1.6
-	
+
 	self.zeal_swat = deep_clone(self.city_swat)
 	self.zeal_swat.HEALTH_INIT = 32
 	self.zeal_swat.headshot_dmg_mul = 1.6 -- 200 head health
