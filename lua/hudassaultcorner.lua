@@ -43,29 +43,16 @@ if Eclipse.settings.ponr_assault_text then
 				local ids_risk = Idstring("risk")
 
 				if managers.groupai:state_name() == "ponr" or self._ponr_state then
-					if diff_i == 6 then
-						return {
-							"hud_assault_ponr",
-							"hud_assault_end_line",
-							ids_risk,
-							"hud_assault_end_line",
-							"hud_assault_zeal_ponr",
-							"hud_assault_end_line",
-							ids_risk,
-							"hud_assault_end_line",
-						}
-					else
-						return {
-							"hud_assault_ponr",
-							"hud_assault_end_line",
-							ids_risk,
-							"hud_assault_end_line",
-							"hud_assault_normal_ponr",
-							"hud_assault_end_line",
-							ids_risk,
-							"hud_assault_end_line",
-						}
-					end
+					return {
+						"hud_assault_ponr",
+						"hud_assault_end_line",
+						ids_risk,
+						"hud_assault_end_line",
+						"hud_assault_normal_ponr",
+						"hud_assault_end_line",
+						ids_risk,
+						"hud_assault_end_line",
+					}
 				else
 					return {
 						"hud_assault_assault",
