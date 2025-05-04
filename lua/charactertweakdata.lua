@@ -371,7 +371,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 2.5 * dmg_mul, r = 2500, acc = { 0.1, 0.2 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.tank = based_on(presets.weapon.base, {
+	presets.weapon.bulldozer = based_on(presets.weapon.base, {
 		aim_delay = { 0, 2 },
 		melee_dmg = 30 * dmg_mul,
 		melee_speed = 0.8,
@@ -379,45 +379,45 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 600,
 	})
 
-	presets.weapon.tank.is_shotgun_pump.RELOAD_SPEED = 1
-	presets.weapon.tank.is_shotgun_pump.FALLOFF = {
+	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
+	presets.weapon.bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 24 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 16 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.tank.is_shotgun_mag.RELOAD_SPEED = 0.9
-	presets.weapon.tank.is_shotgun_mag.autofire_rounds = { 1, 5 }
-	presets.weapon.tank.is_shotgun_mag.FALLOFF = {
+	presets.weapon.bulldozer.is_shotgun_mag.RELOAD_SPEED = 0.9
+	presets.weapon.bulldozer.is_shotgun_mag.autofire_rounds = { 1, 5 }
+	presets.weapon.bulldozer.is_shotgun_mag.FALLOFF = {
 		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 5 } },
 		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 4 } },
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
-	presets.weapon.hw_tank = based_on(presets.weapon.tank, {
+	presets.weapon.hw_bulldozer = based_on(presets.weapon.bulldozer, {
 		melee_speed = 0.5,
 		melee_range = 200,
 	})
 
-	presets.weapon.hw_tank.is_lmg.RELOAD_SPEED = 0.7
-	presets.weapon.hw_tank.is_lmg.autofire_rounds = { 20, 50 }
-	presets.weapon.hw_tank.is_lmg.FALLOFF = {
+	presets.weapon.hw_bulldozer.is_lmg.RELOAD_SPEED = 0.7
+	presets.weapon.hw_bulldozer.is_lmg.autofire_rounds = { 20, 50 }
+	presets.weapon.hw_bulldozer.is_lmg.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.3, 0.5 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.elite_tank = based_on(presets.weapon.tank)
+	presets.weapon.elite_bulldozer = based_on(presets.weapon.bulldozer)
 
-	presets.weapon.elite_tank.is_shotgun_pump.FALLOFF = {
+	presets.weapon.elite_bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 20 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 12 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.elite_tank.is_lmg.RELOAD_SPEED = 0.7
-	presets.weapon.elite_tank.is_lmg.autofire_rounds = { 20, 50 }
-	presets.weapon.elite_tank.is_lmg.FALLOFF = {
+	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.7
+	presets.weapon.elite_bulldozer.is_lmg.autofire_rounds = { 20, 50 }
+	presets.weapon.elite_bulldozer.is_lmg.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.3, 0.5 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
@@ -1619,9 +1619,9 @@ CharacterTweakData.tweak_table_weapon = {
 	city_shield = "elite_shield",
 	city_shield_break = "elite_shield",
 	zeal_shield = "zeal_shield",
-	tank = "tank",
-	tank_hw = "hw_tank",
-	tank_elite = "elite_tank",
+	tank = "bulldozer",
+	tank_hw = "hw_bulldozer",
+	tank_elite = "elite_bulldozer",
 	marshal_marksman = "marshal_marksman",
 	marshal_gunner = "marshal_gunner",
 	mobster_boss = "boss",
@@ -1783,7 +1783,7 @@ function CharacterTweakData:_set_presets()
 	local elite_bulldozer_armor = diff_lerp(2, 3)
 
 	self.tank.armor_damage_mul = 1 / bulldozer_armor
-	self.tank_hw.armor_damage_mul = self.tank_elite.armor_damage_mul -- bandaid
+	self.tank_hw.armor_damage_mul = self.tank.armor_damage_mul 
 	self.tank_elite.armor_damage_mul = 1 / elite_bulldozer_armor
 
 	self.tank_armor_balance_mul = { 1, 1.5, 2, 2.5 }
