@@ -74,7 +74,7 @@ return {
 			},
 		},
 	},
-	[100170] = { -- objective 8, entered the vault	
+	[100170] = { -- objective 8, entered the vault
 		difficulty = 1,
 		reinforce = {
 			{
@@ -96,7 +96,7 @@ return {
 	},
 	-- disable vanilla difficulty scaling
 	[100077] = { -- objective 3, look for the CFO
-		difficulty = 0.75
+		difficulty = 0.75,
 	},
 	[104890] = disabled,
 	-- enable pretty much all of the spawnpoints on the map from the very beginning, except those in the vault
@@ -296,7 +296,7 @@ return {
 		},
 	},
 	-- Spawn Group delays
-	[102737] = office_spawn,	
+	[102737] = office_spawn,
 	[104469] = office_spawn,
 	[104479] = office_spawn,
 	[104480] = office_spawn,
