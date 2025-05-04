@@ -1801,7 +1801,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-	self.enemy_spawn_groups.CS_recon_swatss = {
+	self.enemy_spawn_groups.CS_recon_swats = {
 		amount = { 2, 3 },
 		spawn = {
 			{

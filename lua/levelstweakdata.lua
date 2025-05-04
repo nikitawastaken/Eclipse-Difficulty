@@ -41,6 +41,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3.group_ai_preset = "remote"
 	self.crojob3_night.group_ai_preset = "remote"
 	self.pines.group_ai_preset = "remote"
+	self.peta2.group_ai_preset = "remote"
 	self.wwh.group_ai_preset = "remote"
 	self.sah.group_ai_preset = "remote"
 	self.fex.group_ai_preset = "remote"
