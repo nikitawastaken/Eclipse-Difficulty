@@ -374,7 +374,7 @@
 	"ene_security_1_fat" : "Security Guard",
 	"ene_security_2_fat" : "Security Guard",
 	"ene_security_3_fat" : "Security Guard",
-    "ene_coast_guard" : "US Coast Guard",
+	"ene_coast_guard" : "US Coast Guard",
 	"ene_gensec_operator" : "GenSec Tactical Security",
 
 	"ene_soldier" : "US Army Soldier",
@@ -386,9 +386,16 @@
 	"ene_male_marshal_gunner_sko12_2" : "Bellmead Gunner",
 	"ene_male_marshal_marksman_2" : "Bellmead Marksman",
 
-	"ene_bulldozer_minigun" : "Benellidozer",
-	"ene_bulldozer_minigun_classic" : "Benellidozer",
+	"ene_bulldozer_1" : "FBI Bulldozer",
+	"ene_bulldozer_2" : "FBI Blackdozer",
+	"ene_bulldozer_3" : "GenSec Elite Skulldozer",
+	"ene_bulldozer_minigun" : "ZEAL Elite Benellidozer",
+	"ene_bulldozer_minigun_classic" : "GenSec Elite Benellidozer",
 	"ene_bulldozer_5" : "Headless Blackdozer",
+	"ene_sniper_1" : "SWAT Sniper",
+	"ene_sniper_2" : "FBI Sniper",
 	"ene_sniper_3" : "GenSec Elite Sniper",
+	"ene_shield_1" : "FBI Shield",
+	"ene_shield_2" : "SWAT Shield",
 	"ene_city_shield" : "GenSec Elite Shield"
 }
