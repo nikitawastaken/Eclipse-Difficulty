@@ -12,6 +12,7 @@ local real_difficulty_index = ({
 	sm_wish = 8,
 })[difficulty] or 2
 local diff_i = real_difficulty_index
+local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
 
 function M.diff_lerp(value_1, value_2)
 	local f = math.max(0, diff_i - 2) / 4
@@ -38,9 +39,13 @@ function M.difficulty_index()
 	return diff_i
 end
 
-function M.level_id()
-	local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
+function M.difficulty_name()
+	local is_skirmish = tweak_data.levels[level_id] and tweak_data.levels[level_id].group_ai_state == "skirmish"
+	
+	return is_skirmish and "normal" or difficulty
+end
 
+function M.level_id()
 	return level_id
 end
 
