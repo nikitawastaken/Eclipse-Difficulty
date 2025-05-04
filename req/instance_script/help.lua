@@ -21,7 +21,7 @@ M["levels/instances/unique/help/help_king_cloaker_dozer/world/world"] = function
 	for _, element in pairs(result.default.elements) do
 		local id = element.id
 
-		if dozer_event.dozers[id] then
+		if dozer_event.dozer[id] then
 			element.values.enemy_table = headless_tanks
 		end
 	end
