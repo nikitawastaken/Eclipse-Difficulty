@@ -1783,7 +1783,7 @@ function CharacterTweakData:_set_presets()
 	local elite_bulldozer_armor = diff_lerp(2, 3)
 
 	self.tank.armor_damage_mul = 1 / bulldozer_armor
-	self.tank_hw.armor_damage_mul = self.tank.armor_damage_mul 
+	self.tank_hw.armor_damage_mul = self.tank.armor_damage_mul
 	self.tank_elite.armor_damage_mul = 1 / elite_bulldozer_armor
 
 	self.tank_armor_balance_mul = { 1, 1.5, 2, 2.5 }
