@@ -50,7 +50,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.framing_frame_3.group_ai_preset = "skyscraper"
 	self.dah.group_ai_preset = "skyscraper"
 	self.pent.group_ai_preset = "skyscraper"
-	
+
 	-- load required gangster vo to heists where it actually needs
 	-- for reference: Rats day 1 has regular latin vo,
 	-- Rats day 2 has cobra vo,

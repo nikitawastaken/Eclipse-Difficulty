@@ -17,24 +17,24 @@ GroupAITweakData.group_ai_presets = {
 		CS_assault_shield = { 1, 1.2, 1.2 },
 		FBI_assault_shield = { 1, 1.2, 1.2 },
 		Elite_assault_shield = { 1, 1.2, 1.2 },
-		
+
 		CS_assault_taser = { 1, 1.2, 1.2 },
 		FBI_assault_taser = { 1, 1.2, 1.2 },
 		Elite_assault_taser = { 1, 1.2, 1.2 },
-		
+
 		CS_assault_bulldozer = { 1, 1.2, 1.2 },
 		FBI_assault_bulldozer = { 1, 1.2, 1.2 },
 		Elite_assault_bulldozer = { 1, 1.2, 1.2 },
-		
+
 		FBI_assault_cloaker = { 1, 1.4, 1.4 },
 	},
 	["small_urban"] = {
 		CS_assault_cops = { 1.5, 1.5, 1 },
-		
+
 		CS_assault_bulldozer = { 0, 0, 0.8 },
 		FBI_assault_bulldozer = { 0, 0, 0.8 },
 		Elite_assault_bulldozer = { 0, 0, 0.8 },
-		
+
 		CS_reinforce_cops = { 1.5, 1.5, 1 },
 
 		CS_reinforce_swats = { 0, 0.4, 0.6 },
@@ -42,49 +42,49 @@ GroupAITweakData.group_ai_presets = {
 	},
 	["remote"] = {
 		CS_assault_cops = { 0, 0, 0 },
-		
-		CS_reinforce_cops = { 0.6, 0.6, 0 },	
+
+		CS_reinforce_cops = { 0.6, 0.6, 0 },
 		FBI_reinforce_agents = { 0.6, 0.6, 0 },
-		
+
 		CS_reinforce_swats = { 1, 1, 1.5 },
 		FBI_reinforce_swats = { 1, 1, 1.5 },
-		
+
 		CS_recon_cops = { 0.5, 0.5, 0 },
-		FBI_recon_agents = { 0.5, 0.5, 0 },		
+		FBI_recon_agents = { 0.5, 0.5, 0 },
 	},
 	["skyscraper"] = {
 		CS_assault_cops = { 0, 0, 0 },
-		
+
 		CS_assault_shield = { 0, 0.6, 0.8 },
 		FBI_assault_shield = { 0, 0.6, 0.8 },
 		Elite_assault_shield = { 0, 0.6, 0.8 },
-		
+
 		FBI_assault_cloaker = { 1, 1.2, 1.2 },
 
-		CS_reinforce_cops = { 0.6, 0.6, 0 },	
+		CS_reinforce_cops = { 0.6, 0.6, 0 },
 		FBI_reinforce_agents = { 0.6, 0.6, 0 },
-		
+
 		CS_recon_cops = { 0.5, 0.5, 0 },
-		FBI_recon_agents = { 0.5, 0.5, 0 },		
+		FBI_recon_agents = { 0.5, 0.5, 0 },
 	},
 }
 
 function GroupAITweakData:_run_group_ai_preset(preset)
 	local preset_settings = self.group_ai_presets[preset]
-	
+
 	if not preset_settings then
 		return
 	end
-	
+
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse", "ponr" }) do
 		for _, assault_state in pairs(self[group_ai_state_name]) do
 			if type(assault_state) == "table" and type(assault_state.groups) == "table" then
 				for group_name, group_weights in pairs(assault_state.groups) do
-					local weight_muls = preset_settings[group_name] 
-		
+					local weight_muls = preset_settings[group_name]
+
 					if weight_muls then
 						group_weight_multiplier(group_weights, weight_muls)
-						
+
 						Eclipse:log("Weight multipliers for " .. group_name .. " set.")
 					end
 				end
@@ -3540,10 +3540,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.street = deep_clone(self.besiege)
 	self.safehouse = deep_clone(self.besiege)
-	
+
 	if self._mission_preset then
 		self:_run_group_ai_preset(self._mission_preset)
-		
+
 		Eclipse:log("Group AI preset for " .. level_id .. " set to " .. self._mission_preset)
 	end
 end)
