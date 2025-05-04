@@ -44,7 +44,7 @@ local escape_spawn = {
 }
 local container_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -93,26 +93,33 @@ return {
 			},
 		},
 	},
+	[100907] = { -- gas container hidden
+		reinforce = {
+			{
+				name = "courtyard",
+				force = 3,
+				position = Vector3(-15200, 6300, -75),
+			},
+		},
+	},
 	-- Disable a few vanilla reinforce points
 	[104143] = disabled,
 	[104144] = disabled,
 	-- Slightly slower difficulty ramp up
-	[101357] = {
+	[102162] = disabled,
+	[101357] = { -- initial diff
 		values = {
 			difficulty = 0.5,
 		},
 	},
-	[102158] = disabled,
-	[101696] = {
+	[101696] = { -- players entered container area
 		difficulty = 0.75,
 		on_executed = {
 			{ id = 102804, delay = 0 },
 		},
 	},
-	[104186] = {
-		on_executed = {
-			{ id = 102162, delay = 0 },
-		},
+	[100680] = { -- trap hidden, start lifting gold
+		difficulty = 1,
 	},
 	[105038] = math.random() < chance_no_keycard and disabled or nil,
 	[103563] = math.random() < chance_disable_catwalk_far and disabled or nil,
