@@ -31,7 +31,7 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"CS_assault_swats",
 		"CS_assault_heavies",
 		"CS_recon_cops",
-		"CS_recon_swat",
+		"CS_recon_swats",
 		"CS_reinforce_cops",
 		"CS_reinforce_swats",
 		"FBI_assault_swats",
