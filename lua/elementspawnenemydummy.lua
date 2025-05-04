@@ -1,5 +1,6 @@
 -- Don't replace spawns on custom enemy spawner map
 local level_id = Eclipse.utils.level_id()
+local diff_name = Eclipse.utils.difficulty_name()
 
 if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spawner" then
 	ElementSpawnEnemyDummy.chk_used_mapped_names = function() end
@@ -306,6 +307,17 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 	},
 }
 
+ElementSpawnEnemyDummy.ponr_unit_replacements = {
+	normal = {},
+	overkill = {},
+	easy_wish = {
+		[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = "units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36",
+		[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = "units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870",
+	},
+}
+ElementSpawnEnemyDummy.faction_mapping.hard = ElementSpawnEnemyDummy.faction_mapping.normal
+ElementSpawnEnemyDummy.faction_mapping.overkill_145 = ElementSpawnEnemyDummy.faction_mapping.overkill
+
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 	self._enemy_table = self._values.enemy_table
 	self._values.enemy_table = nil
@@ -396,6 +408,7 @@ ElementSpawnEnemyDummy.unit_alternative_types = {
 	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = "marshal",
 }
 
+-- Random unit replacements (used for spawning scripted and non-scripted fat Security and Beat Cops and more)
 function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	local alternative_data = self.unit_alternatives[name:key()]
 
@@ -427,6 +440,23 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	return Idstring(alternative_selector:select())
 end
 
+-- PONR assault state unit replacements (used for replacing units during Full Force Onslaught)
+function ElementSpawnEnemyDummy:get_ponr_unit(name)
+	local is_ponr = managers.groupai:state_name() == "ponr"
+	
+	if not is_ponr then
+		return
+	end
+	
+	local ponr_unit_data = self.ponr_unit_replacements[diff_name] and self.ponr_unit_replacements[diff_name][name:key()]
+
+	if not ponr_unit_data or not next(ponr_unit_data) then
+		return nil
+	end
+
+	return Idstring(ponr_unit_data)
+end
+
 local access_replacement = {
 	cop = "fbi",
 }
@@ -435,7 +465,7 @@ local produce_original = ElementSpawnEnemyDummy.produce
 function ElementSpawnEnemyDummy:produce(params, ...)
 	-- give assault-spawned beat cops fbi access to keep them from getting stuck
 	if params and params.name then
-		params.name = self:get_unit_alternative(params.name) or params.name
+		params.name = self:get_ponr_unit(params.name) or self:get_unit_alternative(params.name) or params.name
 
 		local unit = produce_original(self, params, ...)
 		local u_brain = alive(unit) and unit:brain()
@@ -473,7 +503,7 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 	end
 
 	local original_enemy_name = self._enemy_name
-	self._enemy_name = self:get_unit_alternative(original_enemy_name) or original_enemy_name
+	self._enemy_name = self:get_ponr_unit(original_enemy_name) or self:get_unit_alternative(original_enemy_name) or original_enemy_name
 
 	local unit = produce_original(self, params, ...)
 
