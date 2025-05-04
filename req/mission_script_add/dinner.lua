@@ -198,14 +198,14 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400024, "van_dummy_3", Vector3(-15495.743, 4220.271, -81.025), Rotation(-171, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400025, "van_dummy_4", Vector3(-15430.557, 4230.596, -81.025), Rotation(-171, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400026, "van_spawngroup", { 400022, 400023, 400024, 400025 }, 5),
-	
+
 	--Snipers
 	Eclipse.mission_elements.gen_dummy(400027, "sniper_1", Vector3(-13496, 6470, 889.902), Rotation(90, 0, 0), optsSniper_1),
 	Eclipse.mission_elements.gen_dummy(400028, "sniper_2", Vector3(-20101, 6888, 747.404), Rotation(90, 0, 0), optsSniper_2),
 	Eclipse.mission_elements.gen_so(400029, "sniper_so_1", Vector3(-19603, 6971, 747.404), Rotation(-90, 0, 0), optsBulldozer_SO),
 	Eclipse.mission_elements.gen_so(400030, "sniper_so_2", Vector3(-16155, 9187, 1012.404), Rotation(180, 0, 0), optsBulldozer_SO),
 	Eclipse.mission_elements.gen_missionscript(400031, "spawn_snipers", spawn_snipers),
-	
+
 	--Respawns
 	Eclipse.mission_elements.gen_dummytrigger(400043, "respawn_dozer_1", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_dozer_1),
 	Eclipse.mission_elements.gen_dummytrigger(400044, "respawn_dozer_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_dozer_2),
