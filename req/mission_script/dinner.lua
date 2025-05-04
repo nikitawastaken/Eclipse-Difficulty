@@ -2,6 +2,7 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
 	values = {
 		enabled = false,
@@ -9,7 +10,7 @@ local disabled = {
 }
 local snipers_amount = {
 	values = {
-		amount = normal and 2 or hard and 3 or 4,
+		amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0),
 	},
 }
 local garage_door_spawn = {
@@ -220,10 +221,12 @@ return {
 			},
 		},
 	},
-	--disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
+	-- disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
+	-- spawn container snipers
 	[105117] = {
 		on_executed = {
 			{ id = 400055, delay = 90 },
+			{ id = 400031, delay = 0 },
 			{ id = 400045, delay = 0 },
 		},
 	},

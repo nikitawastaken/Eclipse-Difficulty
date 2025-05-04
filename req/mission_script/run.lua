@@ -22,6 +22,7 @@ local garage_swat_spawn_1 = {
 	enemy = garage_swat_1,
 	values = {
 		enabled = true,
+		participate_to_group_ai = false,
 	},
 	on_executed = {
 		{ delay = 2, id = 410012 },
@@ -31,6 +32,7 @@ local garage_swat_spawn_2 = {
 	enemy = garage_swat_2,
 	values = {
 		enabled = true,
+		participate_to_group_ai = false,
 	},
 	on_executed = {
 		{ delay = 2, id = 410012 },
@@ -40,6 +42,7 @@ local garage_shield_spawn = {
 	enemy = garage_shield,
 	values = {
 		enabled = true,
+		participate_to_group_ai = false,
 	},
 	on_executed = {
 		{ delay = 2, id = 410012 },
@@ -80,6 +83,18 @@ local building_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+
+local swat_heli_incoming = {
+	values = {
+		comment = "p41",
+	},
+}
+local garage_event_triggered = {
+	values = {
+		comment = "v18",
+	},
+}
+
 return {
 	[101356] = {
 		ponr = {
@@ -170,6 +185,17 @@ return {
 			{ delay = 0, id = 410068 },
 		},
 	},
+	-- add commments on incoming helis or garage events
+	[102109] = swat_heli_incoming,
+	[102130] = swat_heli_incoming,
+	[101950] = swat_heli_incoming,
+	[102163] = swat_heli_incoming,
+	[102166] = swat_heli_incoming,
+	[102175] = swat_heli_incoming,
+	[102186] = swat_heli_incoming,
+	[101733] = garage_event_triggered,
+	[102303] = garage_event_triggered,
+	[102304] = garage_event_triggered,
 	-- ovk145-alike dozer spawn on armitage ave.
 	[103592] = {
 		values = {

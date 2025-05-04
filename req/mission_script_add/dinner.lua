@@ -6,7 +6,10 @@ local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local ambush_amount = 2 + (is_pro_job and 1 or 0)
 
+local enabled_chance_snipers = math.random() < 0.45
+
 local shield = scripted_enemy.shield
+local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
@@ -85,6 +88,22 @@ local optsBulldozer_Ambush = {
 	},
 	enabled = true,
 }
+local optsSniper_1 = {
+	enemy = sniper,
+	spawn_action = "e_sp_up_ledge",
+	on_executed = {
+		{ id = 400029, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSniper_2 = {
+	enemy = sniper,
+	spawn_action = "e_sp_up_ledge",
+	on_executed = {
+		{ id = 400030, delay = 0 },
+	},
+	enabled = true,
+}
 local spawn_dozer_1 = {
 	enabled = true,
 	trigger_times = 1,
@@ -145,6 +164,13 @@ local disable_dozer = {
 		400019,
 	},
 }
+local spawn_snipers = {
+	enabled = hard_and_above and enabled_chance_snipers,
+	on_executed = {
+		{ id = 400027, delay = 0 },
+		{ id = 400028, delay = 0 },
+	},
+}
 
 M.elements = {
 	--Ambush
@@ -172,12 +198,18 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400024, "van_dummy_3", Vector3(-15495.743, 4220.271, -81.025), Rotation(-171, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400025, "van_dummy_4", Vector3(-15430.557, 4230.596, -81.025), Rotation(-171, 0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400026, "van_spawngroup", { 400022, 400023, 400024, 400025 }, 5),
-
+	
+	--Snipers
+	Eclipse.mission_elements.gen_dummy(400027, "sniper_1", Vector3(-13496, 6470, 889.902), Rotation(90, 0, 0), optsSniper_1),
+	Eclipse.mission_elements.gen_dummy(400028, "sniper_2", Vector3(-20101, 6888, 747.404), Rotation(90, 0, 0), optsSniper_2),
+	Eclipse.mission_elements.gen_so(400029, "sniper_so_1", Vector3(-19603, 6971, 747.404), Rotation(-90, 0, 0), optsBulldozer_SO),
+	Eclipse.mission_elements.gen_so(400030, "sniper_so_2", Vector3(-16155, 9187, 1012.404), Rotation(180, 0, 0), optsBulldozer_SO),
+	Eclipse.mission_elements.gen_missionscript(400031, "spawn_snipers", spawn_snipers),
+	
 	--Respawns
 	Eclipse.mission_elements.gen_dummytrigger(400043, "respawn_dozer_1", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_dozer_1),
 	Eclipse.mission_elements.gen_dummytrigger(400044, "respawn_dozer_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_dozer_2),
 	Eclipse.mission_elements.gen_toggleelement(400045, "disable_dozer", disable_dozer),
-	Eclipse.mission_elements.gen_missionscript(400046, "spawn_murkies", spawn_murkies),
 	Eclipse.mission_elements.gen_missionscript(400050, "spawn_cloakers", spawn_cloakers),
 	Eclipse.mission_elements.gen_missionscript(400051, "spawn_shields_and_taser_1", spawn_shields_and_taser_1),
 	Eclipse.mission_elements.gen_missionscript(400052, "spawn_shields_and_taser_2", spawn_shields_and_taser_2),
