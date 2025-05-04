@@ -13,7 +13,7 @@ end
 if has_ponr_text then
 	function HUDAssaultCorner:sync_start_assault(assault_number)
 		local is_ponr = managers.groupai:state_name() == "ponr" or self._ponr_state
-		
+
 		if self._point_of_no_return or self._casing then
 			return
 		end
@@ -48,7 +48,7 @@ function HUDAssaultCorner:_get_assault_strings()
 	local level_faction = tweak_data.levels[level_id] and tweak_data.levels[level_id].ai_group_type
 	local primary_assault_text = has_faction_text and "hud_assault_" .. level_faction .. "_assault" or "hud_assault_assault"
 	local secondary_assault_text = has_ponr_text and is_ponr and "hud_assault_ponr" or primary_assault_text
-	
+
 	if self._assault_mode == "normal" then
 		if managers.job:current_difficulty_stars() > 0 then
 			local ids_risk = Idstring("risk")
@@ -61,18 +61,18 @@ function HUDAssaultCorner:_get_assault_strings()
 				primary_assault_text,
 				"hud_assault_end_line",
 				ids_risk,
-				"hud_assault_end_line"
+				"hud_assault_end_line",
 			}
 		else
 			return {
 				secondary_assault_text,
 				"hud_assault_end_line",
 				primary_assault_text,
-				"hud_assault_end_line"
+				"hud_assault_end_line",
 			}
 		end
 	end
---[[
+	--[[
 	if self._assault_mode == "phalanx" then
 		if managers.job:current_difficulty_stars() > 0 then
 			local ids_risk = Idstring("risk")
