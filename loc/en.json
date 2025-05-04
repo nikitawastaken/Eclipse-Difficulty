@@ -311,11 +311,18 @@
 	"hud_assault_full_force_onslaught": "Full Force Onslaught",
 	"hud_assault_full_force_onslaught_in": "Full Force Onslaught in",
 	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
-
+	
+	"hud_assault_america_assault": "Police Assault In Progress",
+	"hud_assault_russia_assault": "Mercenary Assault In Progress",
+	"hud_assault_zombie_assault": "REDRUM REDRUM REDRUM",
+	"hud_assault_murkywater_assault": "Murkywater Assault In Progress",
+	"hud_assault_federales_assault": "Mexican Police Assault In Progress",
 
 	"eclipse_menu_main": "Eclipse",
-	"eclipse_menu_ponr_assault_text": "Assault banner edits",
-	"eclipse_menu_ponr_assault_text_desc": "Assault banner flavor edits. Incompatible with mods that edit assault banner.",
+	"eclipse_menu_ponr_assault_text": "Full Force Onslaught Assault Banner",
+	"eclipse_menu_ponr_assault_text_desc": "Adds additional text to the assault banner during Full Force Onslaught. Incompatible with mods that edit assault banner.",
+	"eclipse_menu_faction_assault_text": "Faction Assault Banner",
+	"eclipse_menu_faction_assault_text_desc": "Changes the text on the assault banner to be different for each faction. Incompatible with mods that edit assault banner.",
 	"eclipse_menu_max_progression_infamy": "Max Progression Infamy",
 	"eclipse_menu_max_progression_infamy_desc": "The level of infamy that you will receive upon hitting max progression button.",
 	"eclipse_menu_always_old_hitflash": "Always Old Hitflash",

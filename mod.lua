@@ -7,6 +7,7 @@ if not Eclipse then
 		required = {},
 		settings = {
 			ponr_assault_text = false,
+			faction_assault_text = true,
 			max_progression_infamy = 0,
 			always_old_hitflash = false,
 		},
@@ -161,6 +162,11 @@ if not Eclipse then
 			Eclipse.settings.ponr_assault_text = enabled
 		end
 
+		function MenuCallbackHandler:eclipse_faction_assault_text_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.faction_assault_text = enabled
+		end
+
 		function MenuCallbackHandler:eclipse_max_progression_infamy_edit(item)
 			local value = math.floor(item:value() + 0.5)
 
@@ -182,6 +188,16 @@ if not Eclipse then
 			desc = "eclipse_menu_ponr_assault_text_desc",
 			callback = "eclipse_ponr_assault_text_toggle",
 			value = Eclipse.settings.ponr_assault_text,
+			menu_id = menu_id,
+			priority = 100,
+		})
+
+		MenuHelper:AddToggle({
+			id = "faction_assault_text",
+			title = "eclipse_menu_faction_assault_text",
+			desc = "eclipse_menu_faction_assault_text_desc",
+			callback = "eclipse_faction_assault_text_toggle",
+			value = Eclipse.settings.faction_assault_text,
 			menu_id = menu_id,
 			priority = 100,
 		})
