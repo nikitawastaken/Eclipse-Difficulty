@@ -323,7 +323,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1.5 * aim_delay_mul,
 	}
 	presets.weapon.elite_sniper.is_sniper.focus_delay = 0.8 * aim_delay_mul
-	
+
 	presets.weapon.elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
