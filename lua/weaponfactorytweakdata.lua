@@ -857,17 +857,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			end
 		end
 	end
-	
+
 	local function generate_fast_mag(part_id)
 		local part = self.parts[part_id]
-		
+
 		if part then
 			part.stats = {}
 			part.stats.concealment = -1
 			part.custom_stats.reload_speed_multiplier = 1.1
 		end
 	end
-	
+
 	local piggyback_stats = { value = 1, gadget_zoom = 1 }
 
 	self.parts.wpn_fps_upg_o_specter_piggyback.stats = clone(piggyback_stats)
