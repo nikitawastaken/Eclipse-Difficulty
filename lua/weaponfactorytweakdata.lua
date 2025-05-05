@@ -857,7 +857,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			end
 		end
 	end
-
+	
+	local function generate_fast_mag(part_id)
+		local part = self.parts[part_id]
+		
+		if part then
+			part.stats = {}
+			part.stats.concealment = -1
+			part.custom_stats.reload_speed_multiplier = 1.1
+		end
+	end
+	
 	local piggyback_stats = { value = 1, gadget_zoom = 1 }
 
 	self.parts.wpn_fps_upg_o_specter_piggyback.stats = clone(piggyback_stats)
@@ -1733,9 +1743,10 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 							local concealment_stat
 							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
-							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.35, 0.35)
-							concealment_stat = -math.clamp(math.round(capacity_increase / 20), -6, 6)
+							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.25, 0.25)
+							concealment_stat = -math.clamp(math.round(capacity_increase / 20), -5, 5)
 
+							part.stats.reload = 0
 							part.stats.concealment = concealment_stat
 							part.custom_stats.reload_speed_multiplier = shotgun_reload and 1 or reload_speed_stat
 						end
