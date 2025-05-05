@@ -313,7 +313,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400021, "swat_rooftop_1", Vector3(-1855, 3449, 1931.656), Rotation(90, -0, -0), optsSWAT_Rooftop_1),
 	Eclipse.mission_elements.gen_dummy(400022, "swat_rooftop_2", Vector3(-4081, 1580, 1937.656), Rotation(180, 0, -0), optsSWAT_Rooftop_2),
 	Eclipse.mission_elements.gen_so(400023, "swat_spot_so_1", Vector3(-1522.207, 2149.161, 1936.735), Rotation(180, 0, 0), optsSniper_SO),
-	Eclipse.mission_elements.gen_so(400024, "swat_spot_so_2", Vector3(-2673, 675, 1936.735), Rotation(-76, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400024, "swat_spot_so_2", Vector3(-2549.067, 989.091, 1936.735), Rotation(-90, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_missionscript(400025, "annoying_Heavy_SWAT", spawn_rooftopSWAT),
 	Eclipse.mission_elements.gen_dummytrigger(400026, "respawn_swat_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_swat_1),
 	Eclipse.mission_elements.gen_dummytrigger(400027, "respawn_swat_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_swat_2),

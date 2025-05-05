@@ -160,6 +160,12 @@ return {
 			{ id = 400032, delay = 17 },
 		},
 	},
+	-- delay Bile's chopper trigger after c4 blows up
+	[100082] = {
+		on_executed = {
+			{ id = 101562, delay = 110 },
+		},
+	},
 	-- trigger dozer spawn during the escape
 	[104706] = {
 		reinforce = { -- remove reinforce
@@ -176,11 +182,23 @@ return {
 			{ id = 104691, remove = true },
 		},
 	},
-	--spawn Heavy SWAT squad if it's overkill above
+	-- call the cops when the red door opens
 	[102680] = {
 		on_executed = {
 			{ id = 104691, delay = 0 },
-			{ id = 400001, delay = 7.5 },
+		},
+	},
+	-- spawn Heavy SWAT squad if it's overkill above
+	-- earlier cops
+	[100528] = {
+		on_executed = {
+			{ id = 400001, delay = 10 },
+		},
+	},
+	-- late cops
+	[100527] = {
+		on_executed = {
+			{ id = 400001, delay = 45 },
 		},
 	},
 	-- more oppressive open door amounts
