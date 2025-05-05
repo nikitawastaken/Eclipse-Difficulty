@@ -144,10 +144,9 @@ function PlayerDamage:damage_bullet(attack_data)
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number
-	local shake_multiplier = math.clamp(attack_data.damage, 0.2, 2) * shake_armor_multiplier
 
-	self._unit:camera()._damage_bullet_shake_multiplier = math.clamp(attack_data.damage, 0, 16) * shake_armor_multiplier
-	self._unit:camera():play_shaker("player_bullet_damage", 1 * shake_multiplier)
+	local shake_mul = math.clamp(attack_data.damage, 1, 18) * shake_armor_multiplier
+	self._unit:camera():play_shaker("player_bullet_damage", shake_mul)
 
 	if not _G.IS_VR then
 		managers.rumble:play("damage_bullet")

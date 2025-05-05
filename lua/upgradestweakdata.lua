@@ -422,8 +422,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.oppressor.multipro2 = "50%"
 
 	-- Plates of Steel
-	self.values.player.damage_shake_addend[1] = 1.5
-	self.skill_descs.show_of_force.multibasic = "15"
+	self.values.player.damage_shake_addend[1] = 1
+	self.skill_descs.show_of_force.multibasic = "10"
 
 	-- Pack Mule
 	self.skill_descs.pack_mule.multipro = "2"
