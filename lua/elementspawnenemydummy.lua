@@ -450,7 +450,7 @@ function ElementSpawnEnemyDummy:get_ponr_unit(name)
 
 	local ponr_unit_data = self.ponr_unit_replacements[diff_name] and self.ponr_unit_replacements[diff_name][name:key()]
 
-	if not ponr_unit_data or not next(ponr_unit_data) then
+	if not ponr_unit_data then
 		return nil
 	end
 
