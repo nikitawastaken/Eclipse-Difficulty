@@ -1084,8 +1084,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.temporary.unseen_dodge = {
 		{
 			0.1,
-			6
-		}
+			6,
+		},
 	}
 	self.definitions.player_unseen_temp_increased_dodge_chance = {
 		name_id = "menu_player_unseen_increased_dodge_chance",
@@ -1093,8 +1093,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "unseen_dodge",
-			category = "temporary"
-		}
+			category = "temporary",
+		},
 	}
 	self.specialization_descs[4][3].multiperk = "4"
 	self.specialization_descs[4][3].multiperk2 = "10%"

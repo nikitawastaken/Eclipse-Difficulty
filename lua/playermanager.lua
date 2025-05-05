@@ -1094,7 +1094,7 @@ PlayerAction.FullyLoaded = {
 -- Unseen dodge for Rogue
 PlayerAction.UnseenStrike = {
 	Priority = 1,
-	Function = function (player_manager, min_time, max_duration, crit_chance)
+	Function = function(player_manager, min_time, max_duration, crit_chance)
 		local co = coroutine.running()
 		local current_time = Application:time()
 		local target_time = Application:time() + min_time
@@ -1130,5 +1130,5 @@ PlayerAction.UnseenStrike = {
 		end
 
 		player_manager:unregister_message(Message.OnPlayerDamage, co)
-	end
+	end,
 }
