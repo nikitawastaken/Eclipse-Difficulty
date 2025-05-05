@@ -1068,17 +1068,41 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[3][3].multiperk = "5%"
 	self.specialization_descs[3][5].multiperk = "5%"
 
-	-- Rogue (and other dodge decks)
-	self.values.player.passive_dodge_chance = { 0.05, 0.15, 0.25 }
+	-- All dodge decks
+	self.values.player.passive_dodge_chance = { 0.05, 0.1, 0.15 }
 	self.values.player.tier_dodge_chance = { 0.1, 0.15, 0.2 }
 	self.specialization_descs[4][1].multiperk = "5%"
-	self.specialization_descs[4][5].multiperk = "10%"
-	self.specialization_descs[4][7].multiperk = "10%"
+	self.specialization_descs[4][5].multiperk = "5%"
+	self.specialization_descs[4][7].multiperk = "5%"
 	self.specialization_descs[6][1].multiperk = "5%"
 	self.specialization_descs[7][1].multiperk = "10%"
 	self.specialization_descs[13][5].multiperk3 = "5%"
 	self.specialization_descs[18][5].multiperk = "5%"
 	self.specialization_descs[21][5].multiperk2 = "5%"
+
+	-- Rogue Specific
+	self.values.temporary.unseen_dodge = {
+		{
+			0.1,
+			6
+		}
+	}
+	self.definitions.player_unseen_temp_increased_dodge_chance = {
+		name_id = "menu_player_unseen_increased_dodge_chance",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "unseen_dodge",
+			category = "temporary"
+		}
+	}
+	self.specialization_descs[4][3].multiperk = "4"
+	self.specialization_descs[4][3].multiperk2 = "10%"
+	self.specialization_descs[4][3].multiperk3 = "6"
+	self.specialization_descs[4][9].multiperk = "4"
+	self.specialization_descs[4][9].multiperk2 = "20%"
+	self.specialization_descs[4][9].multiperk3 = "6"
+	self.specialization_descs[4][9].multiperk4 = "200%"
 
 	-- Hitman
 	self.definitions.player_chain_headshot_kills = {

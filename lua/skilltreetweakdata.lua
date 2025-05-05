@@ -521,6 +521,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[3][3].upgrades = { "player_tier_armor_multiplier_2" }
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5" }
 
+	-- rogue
+	self.specializations[4][3].upgrades = { "player_unseen_increased_crit_chance_1", "player_unseen_temp_increased_dodge_chance" }
+	self.specializations[4][9].upgrades = { "player_unseen_temp_increased_crit_chance_1" }
+
 	-- hitman
 	self.specializations[5][1].upgrades = { "player_chain_headshot_kills", "temporary_chain_headshot_dodge_1" }
 	self.specializations[5][3].upgrades = { "temporary_dodge_outnumbered" }

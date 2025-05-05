@@ -268,25 +268,24 @@ PlayerAction.JohnWickKillChain = {
 	Function = function(player_manager, target_kills, target_time)
 		local co = coroutine.running()
 		local time = Application:time()
-		local pm = managers.player
 		local kills = 1
-		local has_chain_dodge = pm:has_category_upgrade("temporary", "chain_headshot_dodge")
-		local cheat_death_upgrade_value = pm:upgrade_value("player", "cheat_death_inc", 0)
+		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_headshot_dodge")
+		local cheat_death_upgrade_value = player_manager:upgrade_value("player", "cheat_death_inc", 0)
 
 		local function on_lethal_headshot(attack_data)
 			local attacker_unit = attack_data.attacker_unit
 			local variant = attack_data.variant
 
-			if attacker_unit == pm:player_unit() and variant == "bullet" then
+			if attacker_unit == player_manager:player_unit() and variant == "bullet" then
 				kills = kills + 1
 
 				if kills == target_kills then
 					if has_chain_dodge then
-						pm:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
+						player_manager:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
 					end
 
 					if cheat_death_upgrade_value ~= 0 then
-						pm:add_to_property("chain_headshot_cheat_death", cheat_death_upgrade_value)
+						player_manager:add_to_property("chain_headshot_cheat_death", cheat_death_upgrade_value)
 					end
 
 					time = target_time
@@ -435,6 +434,7 @@ function PlayerManager:skill_dodge_chance(...)
 
 	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_headshot_dodge", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
+	dodge = dodge + self:temporary_upgrade_value("temporary", "unseen_dodge", 0)
 
 	return dodge
 end
@@ -1089,4 +1089,46 @@ PlayerAction.FullyLoaded = {
 	Function_Force_Remove = function(co)
 		managers.player:unregister_message(Message.OnAmmoPickup, co)
 	end,
+}
+
+-- Unseen dodge for Rogue
+PlayerAction.UnseenStrike = {
+	Priority = 1,
+	Function = function (player_manager, min_time, max_duration, crit_chance)
+		local co = coroutine.running()
+		local current_time = Application:time()
+		local target_time = Application:time() + min_time
+		local can_activate = true
+		local has_unseen_dodge = player_manager:has_category_upgrade("temporary", "unseen_dodge")
+		local has_unseen_strike = player_manager:has_category_upgrade("temporary", "unseen_strike")
+
+		local function on_damage_taken()
+			if not (player_manager:has_activate_temporary_upgrade("temporary", "unseen_strike") or player_manager:has_activate_temporary_upgrade("temporary", "unseen_dodge")) then
+				target_time = Application:time() + min_time
+				can_activate = true
+			end
+		end
+
+		player_manager:register_message(Message.OnPlayerDamage, co, on_damage_taken)
+
+		while true do
+			current_time = Application:time()
+
+			if target_time <= current_time and can_activate then
+				if has_unseen_dodge then
+					player_manager:activate_temporary_upgrade("temporary", "unseen_dodge")
+				end
+
+				if has_unseen_strike then
+					player_manager:activate_temporary_upgrade("temporary", "unseen_strike")
+				end
+
+				can_activate = false
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnPlayerDamage, co)
+	end
 }

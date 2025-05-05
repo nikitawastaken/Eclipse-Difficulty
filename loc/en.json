@@ -183,6 +183,8 @@
 	"menu_deck2_7_desc": "When your health gets below ##$multiperk## you will be immune to health damage for ##$multiperk2## seconds.\n\nThis cannot occur more than once every ##$multiperk3## seconds.",
 	"menu_deck2_9_desc": "You gain an additional ##$multiperk## more health.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck3_9_desc": "Reduces the armor recovery time for you and your crew by ##$multiperk2##.\n\nNote: Crew perks do not stack.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
+	"menu_deck4_3_desc": "If you do not lose any armor or health for ##$multiperk## seconds, you gain ##$multiperk2## dodge chance for ##$multiperk3## seconds.",
+	"menu_deck4_9_desc": "If you do not lose any armor or health for ##$multiperk## seconds, you gain ##$multiperk2## critical hit chance for ##$multiperk3## seconds.\nCritical hits deal ##$multiperk4## damage.\n\nNote: Critical hit damage can be increased by ##\"Low Blow\"## ACED skill.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck5_1": "Death in Motion",
 	"menu_deck5_1_desc": "Getting ##$multiperk## headshot kills in less than ##$multiperk2## seconds increases your chance to dodge by ##$multiperk3## for ##$multiperk4## seconds.",
 	"menu_deck5_3": "Controlled Chaos",
@@ -236,6 +238,8 @@
 	"menu_deck2_7_short": "When your health gets below ##$multiperk## you will be immune to health damage for ##$multiperk2## seconds. This cannot occur more than once every ##$multiperk3## seconds.",
 	"menu_deck2_9_short": "You gain an additional ##$multiperk## more health.",
 	"menu_deck3_9_short": "Reduces the armor recovery time for you and your crew by ##$multiperk2##. Note: Crew perks do not stack.",
+	"menu_deck4_3_short": "If you do not lose any armor or health for ##$multiperk## seconds, you gain ##$multiperk2## dodge chance for ##$multiperk3## seconds.",
+	"menu_deck4_9_short": "If you do not lose any armor or health for ##$multiperk## seconds, you gain ##$multiperk2## critical hit chance for ##$multiperk3## seconds.\nCritical hits deal ##$multiperk4## damage.",
 	"menu_deck5_1_short": "Getting ##$multiperk## headshot kills in less than ##$multiperk2## seconds increases your chance to dodge by ##$multiperk3## for ##$multiperk4## seconds.",
 	"menu_deck5_3_short": "When you are surrounded by three enemies or more, your chance to dodge is increased by ##$multiperk##.",
 	"menu_deck5_5_short": "Getting ##$multiperk## headshot kills in less than ##$multiperk2## seconds increases your chance to dodge by an additional ##$multiperk3## for ##$multiperk4## seconds.",
@@ -311,7 +315,7 @@
 	"hud_assault_full_force_onslaught": "Full Force Onslaught",
 	"hud_assault_full_force_onslaught_in": "Full Force Onslaught in",
 	"hud_assault_normal_ponr": "Maximum Force Responders Inbound",
-	
+
 	"hud_assault_america_assault": "Police Assault In Progress",
 	"hud_assault_russia_assault": "Mercenary Assault In Progress",
 	"hud_assault_zombie_assault": "REDRUM REDRUM REDRUM",
