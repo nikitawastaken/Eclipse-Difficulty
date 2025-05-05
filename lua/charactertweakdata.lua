@@ -308,7 +308,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 20 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -323,9 +323,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 	presets.weapon.elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 10 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.taser = based_on(presets.weapon.swat, {
