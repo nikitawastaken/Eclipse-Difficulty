@@ -140,7 +140,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400014, "respawn_bulldozer", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_dozer),
 	Eclipse.mission_elements.gen_spawngroup(400015, "construct_enemy_group_011", { 101146, 101147, 101148, 101149, 101150 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400016, "construct_enemy_group_012", { 101115, 101114, 101121, 101123, 101127 }, 0),
-	Eclipse.mission_elements.gen_dummy(400017, "sniper_scaffolding_1",Vector3(558, -22816, 6998.516), Rotation(0, 0, 0), optsSniper_1),
+	Eclipse.mission_elements.gen_dummy(400017, "sniper_scaffolding_1", Vector3(558, -22816, 6998.516), Rotation(0, 0, 0), optsSniper_1),
 	Eclipse.mission_elements.gen_dummy(400018, "sniper_scaffolding_2", Vector3(558, -22863, 6998.516), Rotation(0, 0, 0), optsSniper_2),
 	Eclipse.mission_elements.gen_dummy(400019, "swat_scaffolding_1", Vector3(558, -22720, 6998.516), Rotation(-180, 0, 0), optsSWAT_1),
 	Eclipse.mission_elements.gen_dummy(400020, "swat_scaffolding_2", Vector3(558, -22664, 6998.516), Rotation(-180, 0, 0), optsSWAT_2),
