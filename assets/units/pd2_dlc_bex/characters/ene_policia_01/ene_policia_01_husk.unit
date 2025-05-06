@@ -3,8 +3,8 @@
 	<anim_state_machine name="anims/units/enemies/cop/cop_machine" />	
 	<object file="units/payday2/characters/ene_cop_1/ene_cop_1" />
 
-	<dependencies>	
-		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
+	<dependencies>		
+		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />	
 	</dependencies>
 
 	<extensions>	
@@ -93,7 +93,7 @@
 		<extension name="anim_data" class="PlayerAnimationData" />
 		<extension name="character_damage" class="HuskCopDamage" >		
 			<var name="_head_body_name" value="head" />
-			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />			
+			<var name="_head" value="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />			
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		
 			<var name="_footwear" value="hardsole" />
