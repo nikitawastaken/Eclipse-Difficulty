@@ -321,7 +321,7 @@ return {
 		},
 	},
 	-- always make dealer walk up to 4th floor (from ASS)
-	[101888] = dealer_walk_so, 
+	[101888] = dealer_walk_so,
 	[101891] = dealer_walk_so,
 	[101899] = dealer_walk_so,
 	-- change gangster spawns
@@ -402,7 +402,7 @@ return {
 	-- misc
 	-- dealer
 	[104782] = dealer,
-	
+
 	[100025] = gangster,
 	[100039] = gangster,
 	[100050] = gangster,
@@ -413,7 +413,7 @@ return {
 	[102170] = gangster,
 	[101421] = gangster,
 	[102165] = gangster,
-	
+
 	[100513] = gangster,
 	[100512] = gangster,
 	[100516] = gangster,
@@ -421,7 +421,7 @@ return {
 	[100407] = gangster,
 	[100406] = gangster,
 	[100409] = gangster,
-	
+
 	-- 145+ room (unused)
 	[103231] = gangster,
 	[103232] = gangster,
