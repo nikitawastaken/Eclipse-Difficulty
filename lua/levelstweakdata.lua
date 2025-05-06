@@ -104,7 +104,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.flat.package = {
 		"packages/narr_flat",
 		"levels/narratives/h_alex_must_die/stage_2/world_sounds",
-		"levels/narratives/dentist/mia/stage2/world_sounds",
 	}
 	self.friend.package = {
 		"packages/lvl_friend",

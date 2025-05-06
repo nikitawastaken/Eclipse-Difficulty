@@ -108,7 +108,7 @@ local optsDefend_and_Sniper_SO = {
 }
 local optsrespawn_dozer = {
 	on_executed = {
-		{ id = 101320, delay = 30, delay_rand = 10 },
+		{ id = 101320, delay = 60, delay_rand = 10 },
 	},
 	elements = {
 		101320,
