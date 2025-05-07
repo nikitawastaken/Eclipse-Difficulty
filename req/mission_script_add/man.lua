@@ -42,7 +42,7 @@ local optsTaserChopper = {
 	},
 }
 local optsspawntaserchopper = {
-	on_executed = { { id = 400006, delay = 26 }, { id = 400007, delay = 26 }, { id = 400008, delay = 26 }, { id = 400011, delay = 0 }, },
+	on_executed = { { id = 400006, delay = 26 }, { id = 400007, delay = 26 }, { id = 400008, delay = 26 }, { id = 400011, delay = 0 } },
 	enabled = hard_and_above,
 }
 
@@ -55,12 +55,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400004, "new_cloaker_spawngroup", { 400000, 400001, 400002, 400003, 103794, 103796, 103797, 103800, 103801 }, 0),
 
 	Eclipse.mission_elements.gen_preferedadd(400005, "new_cloaker_spawns", optsPreferedCloakerAdd1),
-	
+
 	-- taser chopper spawn from PDTH
 	Eclipse.mission_elements.gen_dummy(400006, "taser_chopper_1", Vector3(-1804.570, -2569.821, 1961.254), Rotation(83, 0, 0), optsTaser),
 	Eclipse.mission_elements.gen_dummy(400007, "taser_chopper_2", Vector3(-1803.140, -2656.642, 1961.254), Rotation(83, 0, 0), optsTaser),
 	Eclipse.mission_elements.gen_dummy(400008, "taser_chopper_3", Vector3(-2091.744, -2537.606, 1961.254), Rotation(-90, 0, 0), optsTaser),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400010, "spawn_tasers", optsspawntaserchopper),
 	Eclipse.mission_elements.gen_object_editor(400011, "chopper_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsTaserChopper),
 
