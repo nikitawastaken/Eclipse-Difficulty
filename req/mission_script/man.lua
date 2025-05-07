@@ -251,6 +251,12 @@ return {
 			{ id = 103589, remove = true },
 		},
 	},
+	-- trigger taser chopper event if the limo stays on the roof
+	[101782] = {
+		on_executed = {
+			{ id = 400010, delay = 90, delay_rand = 30 },
+		},
+	},
 	-- Unused snipers
 	[102160] = enabled,
 	[101815] = disabled,

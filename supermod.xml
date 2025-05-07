@@ -311,6 +311,7 @@
 		<group name="levels/narratives/">
 			<file :name="bain/big/world/world.continent"/>
 			<file :name="classics/pal/world/world.continent"/>
+			<file :name="classics/man/world/world.continent"/>
 			<file :name="classics/flat/nav_manager_data.nav_data"/>
 			<file :name="classics/run/nav_manager_data.nav_data"/>
 			<file :name="dentist/hox/stage_2/nav_manager_data.nav_data"/>
