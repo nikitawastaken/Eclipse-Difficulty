@@ -210,6 +210,30 @@ return {
 			},
 		},
 	},
+	-- on spawn
+	[103474] = {
+		values = {
+			elements = {
+				400003,
+			},
+		},
+	},
+	-- disable the spawn
+	[103473] = {
+		values = {
+			elements = {
+				400003,
+			},
+		},
+	},
+	-- enable the spawn
+	[103472] = {
+		values = {
+			elements = {
+				400003,
+			},
+		},
+	},
 	-- replace cloaker spawngroup with new one
 	[103792] = {
 		on_executed = {
@@ -218,7 +242,13 @@ return {
 	},
 	[100130] = {
 		on_executed = {
-			{ id = 400004, delay = 20 },
+			{ id = 400005, delay = 20 },
+		},
+	},
+	-- get rid off medium spawn
+	[100055] = {
+		on_executed = {
+			{ id = 103589, remove = true },
 		},
 	},
 	-- Unused snipers
@@ -415,7 +445,7 @@ return {
 	[101951] = window_spawn,
 	[101937] = roof_spawn,
 	[102189] = roof_spawn,
-	[400003] = new_cloaker_spawn,
+	[400004] = new_cloaker_spawn,
 	-- Scripted FBI agents
 	[101614] = fbi_agent,
 	[102633] = fbi_agent,
