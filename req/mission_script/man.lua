@@ -69,6 +69,14 @@ local sniper_amount = {
 		amount = (normal and 4 or hard and 6 or 8) + (is_pro_job and 2 or 0),
 	},
 }
+local law_team = {
+	values = {
+		team = "law1",
+	},
+}
+local fbi_intro_so = {
+	so_access_filter = { "cop", "fbi", "gangster" },
+}
 local heli_enemy1 = {
 	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 }
@@ -136,6 +144,12 @@ return {
 	},
 	[101801] = {
 		flashlight = false,
+	},
+	-- increase the amount of planks
+	[101661] = {
+		values = {
+			amount = 20,
+		},
 	},
 	-- add new cloaker spawns to dummy trigger
 	-- on spawn
@@ -583,6 +597,13 @@ return {
 	[102592] = fbi_agent,
 	[102586] = fbi_agent,
 	[102588] = fbi_agent,
+	-- set the undercover cops be on law team (so the FBI won't kill them)
+	[101609] = law_team,
+	[101612] = law_team,
+	[103078] = law_team,
+	[103079] = law_team,
+	-- tweak SO access
+	[102610] = fbi_intro_so,
 	-- Escape Dozers
 	[102433] = escape_dozer,
 	[102434] = escape_dozer,
