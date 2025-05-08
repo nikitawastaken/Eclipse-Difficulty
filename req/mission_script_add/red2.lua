@@ -23,7 +23,7 @@ local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 local security_guard_1 = scripted_enemy.security_1
 local security_guard_2 = scripted_enemy.security_2
 local security_guard_3 = scripted_enemy.security_3
-local security = { security_guard_1, security_guard_1, security_guard_2, security_guard_2, security_guard_3, }
+local security = { security_guard_1, security_guard_1, security_guard_2, security_guard_2, security_guard_3 }
 
 local diff_scaling = diff_i / 8
 
@@ -42,7 +42,7 @@ local enabled_chance_more_guards = math.random() < 0.5
 
 local optsSecurity = {
 	enemy_table = security,
-	enabled = true
+	enabled = true,
 }
 local optsShield_1 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -309,7 +309,18 @@ local optsspawnArmy = {
 	enabled = overkill_and_above and enabled_chance_shield_army,
 }
 local optsspawnSecurity = {
-	on_executed = { { id = 400065, delay = 0 }, { id = 400066, delay = 0 }, { id = 400067, delay = 0 }, { id = 400068, delay = 0 }, { id = 400069, delay = 0 }, { id = 400070, delay = 0 }, { id = 400071, delay = 0 }, { id = 400072, delay = 0 }, { id = 400073, delay = 0 }, { id = 400074, delay = 0 }, },
+	on_executed = {
+		{ id = 400065, delay = 0 },
+		{ id = 400066, delay = 0 },
+		{ id = 400067, delay = 0 },
+		{ id = 400068, delay = 0 },
+		{ id = 400069, delay = 0 },
+		{ id = 400070, delay = 0 },
+		{ id = 400071, delay = 0 },
+		{ id = 400072, delay = 0 },
+		{ id = 400073, delay = 0 },
+		{ id = 400074, delay = 0 },
+	},
 	enabled = enabled_chance_more_guards,
 }
 
@@ -383,7 +394,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400051, "shield_escape_hall_wall_2", Vector3(-3225, 3750, -125), Rotation(90, 0, -0), optsEscapeShield7),
 	Eclipse.mission_elements.gen_so(400052, "shield_escape_hall_wall_so_1", Vector3(341, 1658, -25), Rotation(180, -0, -0), optsShieldSO),
 	Eclipse.mission_elements.gen_so(400053, "shield_escape_hall_wall_so_2", Vector3(475, 1658, -25), Rotation(180, -0, -0), optsShieldSO),
-	
+
 	-- shield army restoration
 	Eclipse.mission_elements.gen_dummy(400054, "shield_1", Vector3(-5646, 1989, -137.025), Rotation(-160, 0, 0), optsShieldArmy_1),
 	Eclipse.mission_elements.gen_dummy(400055, "shield_2", Vector3(-5583.041, 2011.915, -137.025), Rotation(-160, 0, 0), optsShieldArmy_2),
@@ -397,7 +408,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400062, "army_so_3", Vector3(-1425, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
 	Eclipse.mission_elements.gen_so(400063, "army_so_4", Vector3(-1477, 991, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
 	Eclipse.mission_elements.gen_so(400064, "army_so_5", Vector3(-1574, 988, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	
+
 	-- fucking bank guards, why they are so many?
 	Eclipse.mission_elements.gen_dummy(400065, "loud_sec_vault_hallway_1", Vector3(1887, 1002, -24.895), Rotation(90, 0, 0), optsSecurity),
 	Eclipse.mission_elements.gen_dummy(400066, "loud_sec_vault_hallway_2", Vector3(1887, 1493, -24.895), Rotation(90, 0, 0), optsSecurity),
