@@ -20,6 +20,10 @@ local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 local elite_bulldozer = scripted_enemy.elite_bulldozer_1
+local security_guard_1 = scripted_enemy.security_1
+local security_guard_2 = scripted_enemy.security_2
+local security_guard_3 = scripted_enemy.security_3
+local security = { security_guard_1, security_guard_1, security_guard_2, security_guard_2, security_guard_3, }
 
 local diff_scaling = diff_i / 8
 
@@ -33,8 +37,13 @@ local enabled_chance_escape_hallway_wall = math.random() < diff_scaling
 local enabled_chance_escape_dozers = math.random() < 0.5
 local enabled_chance_escape_cloakers = math.random() < 0.5
 local enabled_chance_escape_shield_wall = math.random() < 0.75
-local enabled_chance_shield_army = math.random() < 0.3
+local enabled_chance_shield_army = math.random() < 0.6
+local enabled_chance_more_guards = math.random() < 0.5
 
+local optsSecurity = {
+	enemy_table = security,
+	enabled = true
+}
 local optsShield_1 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 100696, delay = 0 } },
@@ -299,6 +308,10 @@ local optsspawnArmy = {
 	on_executed = { { id = 400054, delay = 0 }, { id = 400055, delay = 0 }, { id = 400056, delay = 0 }, { id = 400057, delay = 1 }, { id = 400058, delay = 1 } },
 	enabled = overkill_and_above and enabled_chance_shield_army,
 }
+local optsspawnSecurity = {
+	on_executed = { { id = 400065, delay = 0 }, { id = 400066, delay = 0 }, { id = 400067, delay = 0 }, { id = 400068, delay = 0 }, { id = 400069, delay = 0 }, { id = 400070, delay = 0 }, { id = 400071, delay = 0 }, { id = 400072, delay = 0 }, { id = 400073, delay = 0 }, { id = 400074, delay = 0 }, },
+	enabled = enabled_chance_more_guards,
+}
 
 M.elements = {
 	--Lobby Shields
@@ -342,20 +355,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400025, "shield_defend_so_1", Vector3(3307, 1800, -15), Rotation(90, -0, -0), optsShieldSO),
 	Eclipse.mission_elements.gen_so(400026, "shield_defend_so_2", Vector3(3307, 700, -15), Rotation(90, -0, -0), optsShieldSO),
 
-	-- shield army restoration
-	Eclipse.mission_elements.gen_dummy(400054, "shield_1", Vector3(-5646, 1989, -137.025), Rotation(-160, 0, 0), optsShieldArmy_1),
-	Eclipse.mission_elements.gen_dummy(400055, "shield_2", Vector3(-5583.041, 2011.915, -137.025), Rotation(-160, 0, 0), optsShieldArmy_2),
-	Eclipse.mission_elements.gen_dummy(400056, "shield_3", Vector3(-5521.021, 2034.489, -137.025), Rotation(-160, 0, 0), optsShieldArmy_3),
-	Eclipse.mission_elements.gen_dummy(400057, "taser_1", Vector3(-5664, 2140, -137.025), Rotation(-162, 0, 0), optsShieldArmy_4),
-	Eclipse.mission_elements.gen_dummy(400058, "taser_2", Vector3(-5578.405, 2167.812, -137.025), Rotation(-162, 0, 0), optsShieldArmy_5),
-	Eclipse.mission_elements.gen_missionscript(400059, "shield_army", optsspawnArmy),
-
-	Eclipse.mission_elements.gen_so(400060, "army_so_1", Vector3(-1624, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400061, "army_so_2", Vector3(-1526, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400062, "army_so_3", Vector3(-1425, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400063, "army_so_4", Vector3(-1477, 991, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400064, "army_so_5", Vector3(-1574, 988, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-
 	-- escape spooc ambush
 	Eclipse.mission_elements.gen_dummy(400027, "eclipse_spooc_ambush_1", Vector3(677, 57, 475.020), Rotation(90, -0, -0), optsSpoocAmbush1),
 	Eclipse.mission_elements.gen_dummy(400028, "eclipse_spooc_ambush_2", Vector3(677, 12, 475.020), Rotation(90, -0, -0), optsSpoocAmbush2),
@@ -384,6 +383,33 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400051, "shield_escape_hall_wall_2", Vector3(-3225, 3750, -125), Rotation(90, 0, -0), optsEscapeShield7),
 	Eclipse.mission_elements.gen_so(400052, "shield_escape_hall_wall_so_1", Vector3(341, 1658, -25), Rotation(180, -0, -0), optsShieldSO),
 	Eclipse.mission_elements.gen_so(400053, "shield_escape_hall_wall_so_2", Vector3(475, 1658, -25), Rotation(180, -0, -0), optsShieldSO),
+	
+	-- shield army restoration
+	Eclipse.mission_elements.gen_dummy(400054, "shield_1", Vector3(-5646, 1989, -137.025), Rotation(-160, 0, 0), optsShieldArmy_1),
+	Eclipse.mission_elements.gen_dummy(400055, "shield_2", Vector3(-5583.041, 2011.915, -137.025), Rotation(-160, 0, 0), optsShieldArmy_2),
+	Eclipse.mission_elements.gen_dummy(400056, "shield_3", Vector3(-5521.021, 2034.489, -137.025), Rotation(-160, 0, 0), optsShieldArmy_3),
+	Eclipse.mission_elements.gen_dummy(400057, "taser_1", Vector3(-5664, 2140, -137.025), Rotation(-162, 0, 0), optsShieldArmy_4),
+	Eclipse.mission_elements.gen_dummy(400058, "taser_2", Vector3(-5578.405, 2167.812, -137.025), Rotation(-162, 0, 0), optsShieldArmy_5),
+	Eclipse.mission_elements.gen_missionscript(400059, "shield_army", optsspawnArmy),
+
+	Eclipse.mission_elements.gen_so(400060, "army_so_1", Vector3(-1624, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400061, "army_so_2", Vector3(-1526, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400062, "army_so_3", Vector3(-1425, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400063, "army_so_4", Vector3(-1477, 991, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400064, "army_so_5", Vector3(-1574, 988, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	
+	-- fucking bank guards, why they are so many?
+	Eclipse.mission_elements.gen_dummy(400065, "loud_sec_vault_hallway_1", Vector3(1887, 1002, -24.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400066, "loud_sec_vault_hallway_2", Vector3(1887, 1493, -24.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400067, "loud_sec_vault_hallway_3", Vector3(2276, 1493, -24.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400068, "loud_sec_vault_hallway_4", Vector3(2276, 998, -24.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400069, "loud_sec_vault_hallway_5", Vector3(2797, 1243, -24.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400070, "loud_sec_vault_hallway_6", Vector3(3447, 1794, -14.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400071, "loud_sec_vault_hallway_7", Vector3(3447, 704, -14.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400072, "loud_sec_vault_hallway_8", Vector3(5959, 704, -21.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400073, "loud_sec_vault_hallway_9", Vector3(5959, 1810, -21.895), Rotation(90, 0, 0), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400074, "loud_sec_vault_hallway_10", Vector3(6650, 1249, -21.895), optsSecurity),
+	Eclipse.mission_elements.gen_missionscript(400075, "loud_sec_event", optsspawnSecurity),
 }
 
 return M

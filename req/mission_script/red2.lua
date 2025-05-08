@@ -321,9 +321,11 @@ return {
 			{ id = 100682, delay = 0 },
 		},
 	},
+	-- MORE BANK GUARDS, HUH?! (Spawns extra blockade guards after opening the vault gates on loud)
 	-- 2 blockade shields in vault area
 	[100635] = {
 		on_executed = {
+			{ id = 400075, delay = 0 },
 			{ id = 400023, delay = 0 },
 			{ id = 400024, delay = 0 },
 		},
