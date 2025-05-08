@@ -818,15 +818,15 @@
 			</lod_object>
 			
 			<!-- GLASS OBJECTS -->
-			<object name="g_glass_a" 			enabled="false" />	
+			<object name="g_goggles_glass_a" 				enabled="false" />	
 			
-			<object name="g_glass_b" 			enabled="false" />	
+			<object name="g_goggles_glass_b" 				enabled="false" />	
 
-			<object name="g_hat_swat_lod5" 		enabled="false" />	
+			<object name="g_hat_swat_lod5" 					enabled="false" />	
 			
-			<object name="g_hat_swat_lod6" 		enabled="false" />	
+			<object name="g_hat_swat_lod6" 					enabled="false" />	
 			
-			<object name="g_hat_swat_lod9" 		enabled="false" />	
+			<object name="g_hat_swat_lod9" 					enabled="false" />	
 			
 			<object name="g_helmet_swat_heavy_lod5" 		enabled="false" />	
 			

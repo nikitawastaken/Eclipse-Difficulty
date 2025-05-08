@@ -19,12 +19,11 @@
 			
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
-
-			<object 			enabled="true" name="'g_glass'" />
-			
+		
 			<object 			enabled="true" name="'g_goggles'" />
 			<object 			enabled="true" name="'g_goggles_lod1'" />
-			
+			<object 			enabled="true" name="'g_goggles_glass'" />
+				
 			<run_sequence 		name="'random_body'"/>
 		</sequence>
 
