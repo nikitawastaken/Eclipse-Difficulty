@@ -113,13 +113,13 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400011, "chopper_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsTaserChopper),
 
 	Eclipse.mission_elements.gen_so(400012, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
-	
+
 	-- buff the hack timer (use PDTH values)
 	-- lower PC
 	Eclipse.mission_elements.gen_object_editor(400013, "new_hack_lower_floor_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optslowerNewComputerHack_1),
 	Eclipse.mission_elements.gen_object_editor(400014, "new_hack_lower_floor_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optslowerNewComputerHack_2),
 	Eclipse.mission_elements.gen_object_editor(400015, "new_hack_lower_floor_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optslowerNewComputerHack_3),
-	
+
 	-- higher PC
 	Eclipse.mission_elements.gen_object_editor(400016, "new_hack_higher_floor_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_1),
 	Eclipse.mission_elements.gen_object_editor(400017, "new_hack_higher_floor_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_2),
