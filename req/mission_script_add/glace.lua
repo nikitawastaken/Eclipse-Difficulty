@@ -10,6 +10,7 @@ local is_eclipse_pro = is_eclipse and is_pro_job
 
 local shield = scripted_enemy.shield
 local sniper = scripted_enemy.sniper
+local cloaker = scripted_enemy.cloaker
 local swat = scripted_enemy.swat_1
 local elite_shield = scripted_enemy.elite_shield
 local taser = scripted_enemy.taser_1
@@ -97,6 +98,12 @@ local optsSniper_2 = {
 	},
 	enabled = true,
 }
+local optsCloaker = {
+	enemy = cloaker,
+	spawn_action = "e_sp_climb_up_11m_down_0_7m",
+	participate_to_group_ai = true,
+	enabled = true,
+}
 local optsDefend_and_Sniper_SO = {
 	SO_access = tostring(128 + 512 + 2048 + 8192),
 	scan = true,
@@ -106,18 +113,26 @@ local optsDefend_and_Sniper_SO = {
 	interval = 2,
 	so_action = "AI_sniper",
 }
-local optsrespawn_dozer = {
+local optsrespawn_scaffold_spawn = {
 	on_executed = {
-		{ id = 101320, delay = 60, delay_rand = 10 },
+		{ id = 400027, delay = 50, delay_rand = 10 },
 	},
 	elements = {
 		101320,
+		400026,
 	},
 	event = "death",
 }
 local optsspawnSWATs = {
 	on_executed = { { id = 400017, delay = 0 }, { id = 400018, delay = 0 }, { id = 400019, delay = 0 }, { id = 400020, delay = 0 } },
 	enabled = true,
+}
+local spawn_random_cloaker_dozer = {
+	amount = 1,
+	on_executed = {
+		{ id = 101320, delay = 0 },
+		{ id = 400026, delay = 0 },
+	},
 }
 
 M.elements = {
@@ -149,6 +164,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400023, "swat_so_1", Vector3(-42, -22633, 6998.516), Rotation(90, 0, 0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400024, "swat_so_2", Vector3(-42, -22419, 6998.516), Rotation(90, 0, 0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_missionscript(400025, "spawn_swats", optsspawnSWATs),
+	
+	Eclipse.mission_elements.gen_dummy(400026, "spooc_scaffolding", Vector3(1285, -22260, 7757.596), Rotation(0, 0, 0), optsCloaker),
+	Eclipse.mission_elements.gen_element_random(400027, "random_scaffolding_special", spawn_random_cloaker_dozer),
+	
 }
 
 return M
