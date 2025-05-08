@@ -1,6 +1,7 @@
 ---@module Framing Frame Day 1
 local M = {}
 local optsVentBreaker = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 104021, notify_unit_sequence = "release_vent", time = 0 },
 	},

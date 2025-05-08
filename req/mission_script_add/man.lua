@@ -45,6 +45,54 @@ local optsspawntaserchopper = {
 	on_executed = { { id = 400006, delay = 26 }, { id = 400007, delay = 26 }, { id = 400008, delay = 26 }, { id = 400011, delay = 0 } },
 	enabled = hard_and_above,
 }
+local optslowerNewComputerHack_1 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101877, notify_unit_sequence = "start_1", time = 0 },
+	},
+	on_executed = {
+		{ id = 102832, delay = 0 },
+	},
+}
+local optslowerNewComputerHack_2 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101877, notify_unit_sequence = "start_2", time = 0 },
+	},
+	on_executed = {
+		{ id = 102832, delay = 0 },
+	},
+}
+local optslowerNewComputerHack_3 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101877, notify_unit_sequence = "start_3", time = 0 },
+	},
+	on_executed = {
+		{ id = 102832, delay = 0 },
+	},
+}
+local optshigherNewComputerHack_1 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101880, notify_unit_sequence = "start_1", time = 0 },
+	},
+	on_executed = {
+		{ id = 102829, delay = 0 },
+	},
+}
+local optshigherNewComputerHack_2 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101880, notify_unit_sequence = "start_2", time = 0 },
+	},
+	on_executed = {
+		{ id = 102829, delay = 0 },
+	},
+}
+local optshigherNewComputerHack_3 = {
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101880, notify_unit_sequence = "start_3", time = 0 },
+	},
+	on_executed = {
+		{ id = 102829, delay = 0 },
+	},
+}
 
 M.elements = {
 	-- restore cloaker vent spawns and add missing spawns
@@ -65,5 +113,16 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400011, "chopper_sequence", Vector3(0, 0, 0), Rotation(0, 0, -0), optsTaserChopper),
 
 	Eclipse.mission_elements.gen_so(400012, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHuntSO),
+	
+	-- buff the hack timer (use PDTH values)
+	-- lower PC
+	Eclipse.mission_elements.gen_object_editor(400013, "new_hack_lower_floor_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optslowerNewComputerHack_1),
+	Eclipse.mission_elements.gen_object_editor(400014, "new_hack_lower_floor_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optslowerNewComputerHack_2),
+	Eclipse.mission_elements.gen_object_editor(400015, "new_hack_lower_floor_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optslowerNewComputerHack_3),
+	
+	-- higher PC
+	Eclipse.mission_elements.gen_object_editor(400016, "new_hack_higher_floor_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_1),
+	Eclipse.mission_elements.gen_object_editor(400017, "new_hack_higher_floor_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_2),
+	Eclipse.mission_elements.gen_object_editor(400018, "new_hack_higher_floor_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_3),
 }
 return M

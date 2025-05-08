@@ -464,7 +464,7 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 			base_delay = opts.base_delay or 0,
 			position = pos,
 			rotation = rot,
-			enabled = true,
+			enabled = opts.enabled or false,
 		},
 	}
 

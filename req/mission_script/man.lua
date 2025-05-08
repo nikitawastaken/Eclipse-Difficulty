@@ -257,6 +257,129 @@ return {
 			{ id = 400010, delay = 90, delay_rand = 30 },
 		},
 	},
+	-- tweak the PC hack to use PDTH values
+	-- lower floor
+	-- startup and first hack
+	[102119] = {
+		on_executed = {
+			{ id = 103798, remove = true },
+			{ id = 400013, delay = 9 },
+		},
+	},
+	-- higher floor
+	[102338] = {
+		on_executed = {
+			{ id = 102339, remove = true },
+			{ id = 400016, delay = 9 },
+		},
+	},
+	-- second hack
+	[102103] = {
+		on_executed = {
+			-- lower floor
+			{ id = 102050, remove = true },
+			{ id = 400014, delay = 0 },
+			-- higher floor
+			{ id = 102340, remove = true },
+			{ id = 400017, delay = 0 },
+		},
+	},
+	-- third hack
+	[102104] = {
+		on_executed = {
+			-- lower floor
+			{ id = 102051, remove = true },
+			{ id = 400015, delay = 0 },
+			-- higher floor
+			{ id = 102342, remove = true },
+			{ id = 400018, delay = 0 },
+		},
+	},
+	-- toggles (lower floor)
+	[102038] = {
+		values = {
+			elements = {
+				102036,
+				102056,
+				102264,
+				102052,
+				400013, -- first hack
+				102119,
+				400014, -- second hack
+				400015, -- third hack
+				102071,
+				102011,
+				102085,
+				102086,
+				102049,
+				102324,
+				101866,
+				102323,
+				101844,
+				102009,
+				102833,
+				102867,
+				102832,
+				103095,
+				100234,
+				100235,
+				101815,
+				103213,
+				103242,
+				103418,
+				103776,
+				103822,
+				103804,
+				103465,
+				102956,
+				102631,
+				103783,
+			},
+		},
+	},
+	-- toggles (higher floor)
+	[102039] = {
+		values = {
+			elements = {
+				102037,
+				102057,
+				102265,
+				102282,
+				102343,
+				400016, -- first hack
+				102338,
+				400017, -- second hack
+				400018, -- third hack
+				102341,
+				102345,
+				102344,
+				102336,
+				102871,
+				102332,
+				102333,
+				102935,
+				102335,
+				102830,
+				102938,
+				102829,
+				102954,
+				100008,
+				100208,
+				101816,
+				103214,
+				103241,
+				103419,
+				103775,
+				103777,
+				103823,
+				103805,
+				103870,
+				101969,
+				102632,
+				103799,
+			},
+		},
+	},
 	-- Unused snipers
 	[102160] = enabled,
 	[101815] = disabled,

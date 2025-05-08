@@ -31,6 +31,7 @@ local optsShield = {
 	enabled = true,
 }
 local optsOpenSwatVanDoors_1 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102017, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
 	},

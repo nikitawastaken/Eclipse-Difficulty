@@ -272,11 +272,13 @@ local spawn_dozer_global = {
 	},
 }
 local optsOpenelevator = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102077, notify_unit_sequence = "anim_open_door", time = 0 },
 	},
 }
 local optsCloseelevator = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102077, notify_unit_sequence = "anim_close_door", time = 0 },
 	},

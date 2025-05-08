@@ -166,24 +166,28 @@ local optsSwatWallFirstStreet4 = {
 }
 
 local optsOpenGate_1 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100714, notify_unit_sequence = "light_on", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 600728, notify_unit_sequence = "open", time = 0 },
 	},
 }
 local optsOpenGate_2 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100696, notify_unit_sequence = "light_on", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 601195, notify_unit_sequence = "open", time = 0 },
 	},
 }
 local optsOpenGate_3 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100762, notify_unit_sequence = "light_on", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 600255, notify_unit_sequence = "open", time = 0 },
 	},
 }
 local optscop_car_lights_on = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100469, notify_unit_sequence = "state_lights_siren_on", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 100471, notify_unit_sequence = "state_lights_siren_on", time = 0 },
@@ -208,6 +212,7 @@ local optscop_car_lights_on = {
 	},
 }
 local optsKickthefuckingdoor = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 600188, notify_unit_sequence = "open_out", time = 0 },
 	},

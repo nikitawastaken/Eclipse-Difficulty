@@ -122,21 +122,25 @@ local optsEnable_dwdozer = {
 	},
 }
 local optsOpenSwatVanDoors_1 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102986, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
 	},
 }
 local optsOpenSwatVanDoors_2 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 104797, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
 	},
 }
 local optsOpenSwatVanDoors_3 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 104798, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
 	},
 }
 local optsOpenSwatVanDoors_4 = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102821, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
 	},
