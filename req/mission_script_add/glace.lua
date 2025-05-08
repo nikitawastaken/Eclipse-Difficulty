@@ -164,10 +164,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400023, "swat_so_1", Vector3(-42, -22633, 6998.516), Rotation(90, 0, 0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400024, "swat_so_2", Vector3(-42, -22419, 6998.516), Rotation(90, 0, 0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_missionscript(400025, "spawn_swats", optsspawnSWATs),
-	
+
 	Eclipse.mission_elements.gen_dummy(400026, "spooc_scaffolding", Vector3(1285, -22260, 7757.596), Rotation(0, 0, 0), optsCloaker),
 	Eclipse.mission_elements.gen_element_random(400027, "random_scaffolding_special", spawn_random_cloaker_dozer),
-	
 }
 
 return M
