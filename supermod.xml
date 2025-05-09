@@ -510,9 +510,11 @@
 				<file :name="city_heavy_helmets_atlas_nm.texture" />
 				
 				<file :name="visor_glass_df.texture" />
+				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
 				<file :name="visor_glass_orange_df.texture" />
 				<file :name="visor_glass_red_df.texture" />
+				<file :name="visor_glass_yellow_df.texture" />
 			</group>
 
 			<group :name="ene_acc_swat_helmet/">
