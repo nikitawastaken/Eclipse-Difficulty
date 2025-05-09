@@ -2,9 +2,8 @@
 <table>
 	<unit>	
 		<variables>
-			<material_var		value="0" />
-			<is_blue_swat		value="0" />
-			<is_medic			value="0" />
+			<material_var				value="0" />
+			<has_random_balaclava		value="0" />
 		</variables>
 
 		<filter name="'check_mat_var1'">
@@ -15,22 +14,14 @@
 			<check value="vars.material_var == 2" />
 		</filter>
 
-		<filter name="'check_is_blue_swat'">
-			<check value="vars.is_blue_swat == 1" />
+		<filter name="'check_random_balaclava'">
+			<check value="vars.has_random_balaclava == 1" />
 		</filter>
 		
-		<filter name="'check_is_not_blue_swat'">
-			<check value="vars.is_blue_swat == 0" />
+		<filter name="'check_no_random_balaclava'">
+			<check value="vars.has_random_balaclava == 0" />
 		</filter>
 		
-		<filter name="'check_is_medic'">
-			<check value="vars.is_medic == 1" />
-		</filter>
-		
-		<filter name="'check_is_not_medic'">
-			<check value="vars.is_medic == 0" />
-		</filter>
-
 		<sequence editable_state="true" name="'head_material_var1'" once="true" triggable="true"> 
 			<set_variables 		material_var="1" />
 			<material_config 	name="'units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var1'" />
@@ -41,91 +32,109 @@
 			<material_config 	name="'units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var2'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'set_blue_swat'" once="true" triggable="true"> 
-			<set_variables 		is_blue_swat="1" />
+		<sequence editable_state="true" name="'set_random_balaclava'" once="true" triggable="true"> 
+			<set_variables 		has_random_balaclava="1" />
 		</sequence>
 
-		<sequence editable_state="true" name="'set_medic'" once="true" triggable="true"> 
-			<set_variables 		is_medic="1" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'security_head_init'" once="true" triggable="true"> 
-			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','c','d','f','g','h')..'_var2'" />
-			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','c','d','f','g','h')..'_var1'" />
+		<sequence editable_state="true" name="'head_init'" once="true" triggable="true"> 
+			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','b','c','d','e','f','g','h')..'_var2'" />
+			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','b','c','d','e','f','g','h')..'_var1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'security_fat_head_init'" once="true" triggable="true"> 
-			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','c','d','f','g','h')..'_var2'" />
-			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','c','d','f','g','h')..'_var1'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'swat_head_init'" once="true" triggable="true"> 
-			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','c','d','f','g','h')..'_var2'" />
-			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','c','d','f','g','h')..'_var1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'bulldozer_head_init'" once="true" triggable="true"> 
-			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','c','d','f','g','h')..'_var2'" />
-			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','c','d','f','g','h')..'_var1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'elite_swat_head_init'" once="true" triggable="true"> 
-			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','c','d','f','g','h')..'_var2'" />
-			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','c','d','f','g','h')..'_var1'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'random_balaclava_common'" once="true" triggable="true"> 
-			<run_sequence 		name="'balaclava_'..pick('base','base','base','none')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'random_balaclava'" once="true" triggable="true"> 
-			<run_sequence 		name="'balaclava_'..pick('none','base')" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'random_balaclava_rare'" once="true" triggable="true"> 
-			<run_sequence 		name="'balaclava_'..pick('none','none','none','base')" />
-		</sequence>
-
-		<sequence editable_state="true" name="'balaclava_none'" once="true" triggable="true" >
-			<run_sequence 		name="'disable_face'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'balaclava_base'" once="true" triggable="true">
-			<run_sequence 		filter="'check_is_blue_swat'" name="'balaclava_a'" />		
-			<run_sequence 		filter="'check_is_not_blue_swat'" name="'balaclava_'..pick('a','a','a','b','c','d')" />
+		<sequence editable_state="true" name="'balaclava_cop_base'" once="true" triggable="true">	
+			<run_sequence 		name="'balaclava_cop_'..pick('a','a','a','a','b','c')" />
 			<run_sequence 		name="'disable_head'" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'balaclava_a'" once="true" triggable="true"> 
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_a'" />
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_a_lod1'" />
-
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_a'" />
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_a_lod1'" />
+		<sequence editable_state="true" name="'balaclava_cop_a'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_cop_a'" />
+			<object 		enabled="true" name="'g_balaclava_cop_a_lod1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'balaclava_b'" once="true" triggable="true"> 
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_b'" />
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_b_lod1'" />
-
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_b'" />
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_b_lod1'" />
+		<sequence editable_state="true" name="'balaclava_cop_b'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_cop_b'" />
+			<object 		enabled="true" name="'g_balaclava_cop_b_lod1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'balaclava_c'" once="true" triggable="true"> 
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_c'" />
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_c_lod1'" />
-
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_c'" />
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_c_lod1'" />
+		<sequence editable_state="true" name="'balaclava_cop_c'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_cop_c'" />
+			<object 		enabled="true" name="'g_balaclava_cop_c_lod1'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'random_balaclava_swat_common'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_swat_'..pick('base','base','base','none')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'balaclava_d'" once="true" triggable="true"> 
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_d'" />
-			<object 		filter="'check_is_medic'" enabled="true" name="'g_balaclava_medic_d_lod1'" />
+		<sequence editable_state="true" name="'random_balaclava_swat'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_swat_'..pick('none','base')" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'random_balaclava_swat_rare'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_swat_'..pick('none','none','none','base')" />
+		</sequence>
 
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_d'" />
-			<object 		filter="'check_is_not_medic'" enabled="true" name="'g_balaclava_d_lod1'" />
+		<sequence editable_state="true" name="'balaclava_swat_none'" once="true" triggable="true" >
+			<run_sequence 		name="'disable_face'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'balaclava_swat_base'" once="true" triggable="true">
+			<run_sequence 		filter="'check_no_random_balaclava'" name="'balaclava_swat_a'" />		
+			<run_sequence 		filter="'check_random_balaclava'" name="'balaclava_swat_'..pick('a','a','a','a','b','c')" />
+			<run_sequence 		name="'disable_head'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'balaclava_swat_a'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_a'" />
+			<object 		enabled="true" name="'g_balaclava_swat_a_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_swat_b'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_b'" />
+			<object 		enabled="true" name="'g_balaclava_swat_b_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_swat_c'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_c'" />
+			<object 		enabled="true" name="'g_balaclava_swat_c_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_swat_d'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_d'" />
+			<object 		enabled="true" name="'g_balaclava_swat_d_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'random_balaclava_medic'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_medic_'..pick('none','base')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_medic_none'" once="true" triggable="true" >
+			<run_sequence 		name="'disable_face'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'balaclava_medic_base'" once="true" triggable="true">
+			<run_sequence 		filter="'check_no_random_balaclava'" name="'balaclava_medic_a'" />		
+			<run_sequence 		filter="'check_random_balaclava'" name="'balaclava_medic_'..pick('a','a','a','b','c','d')" />
+			<run_sequence 		name="'disable_head'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'balaclava_medic_a'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_medic_a'" />
+			<object 		enabled="true" name="'g_balaclava_medic_a_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_medic_b'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_medic_b'" />
+			<object 		enabled="true" name="'g_balaclava_medic_b_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_medic_c'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_medic_c'" />
+			<object 		enabled="true" name="'g_balaclava_medic_c_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_medic_d'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_medic_d'" />
+			<object 		enabled="true" name="'g_balaclava_medic_d_lod1'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'disable_arms'" once="true" triggable="true">	
@@ -204,6 +213,30 @@
 			
 			<object 		enabled="false" name="'g_face_h'"/>
 			<object 		enabled="false" name="'g_face_h_lod1'"/>
+
+			<object 		enabled="false" name="'g_face_i'"/>
+			<object 		enabled="false" name="'g_face_i_lod1'"/>
+
+			<object 		enabled="false" name="'g_face_j'"/>
+			<object 		enabled="false" name="'g_face_j_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_k'"/>
+			<object 		enabled="false" name="'g_face_k_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_l'"/>
+			<object 		enabled="false" name="'g_face_l_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_m'"/>
+			<object 		enabled="false" name="'g_face_m_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_n'"/>
+			<object 		enabled="false" name="'g_face_n_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_o'"/>
+			<object 		enabled="false" name="'g_face_o_lod1'"/>
+			
+			<object 		enabled="false" name="'g_face_p'"/>
+			<object 		enabled="false" name="'g_face_p_lod1'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'disable_head'" once="true" triggable="true">	
@@ -230,11 +263,35 @@
 			
 			<object 		enabled="false" name="'g_head_h'"/>
 			<object 		enabled="false" name="'g_head_h_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_i'"/>
+			<object 		enabled="false" name="'g_head_i_lod1'"/>
+
+			<object 		enabled="false" name="'g_head_j'"/>
+			<object 		enabled="false" name="'g_head_j_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_k'"/>
+			<object 		enabled="false" name="'g_head_k_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_l'"/>
+			<object 		enabled="false" name="'g_head_l_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_m'"/>
+			<object 		enabled="false" name="'g_head_m_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_n'"/>
+			<object 		enabled="false" name="'g_head_n_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_o'"/>
+			<object 		enabled="false" name="'g_head_o_lod1'"/>
+			
+			<object 		enabled="false" name="'g_head_p'"/>
+			<object 		enabled="false" name="'g_head_p_lod1'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'body_a_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_e'"/>
-			<object 		enabled="true" name="'g_arms_e_lod1'"/>
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_a'"/>
 			<object 		enabled="true" name="'g_face_a_lod1'"/>
@@ -244,8 +301,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_b_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_a'"/>
-			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_b'"/>
 			<object 		enabled="true" name="'g_face_b_lod1'"/>
@@ -277,8 +334,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_e_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_c'"/>
-			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			<object 		enabled="true" name="'g_arms_g'"/>
+			<object 		enabled="true" name="'g_arms_g_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_e'"/>
 			<object 		enabled="true" name="'g_face_e_lod1'"/>
@@ -310,8 +367,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_h_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_h'"/>
-			<object 		enabled="true" name="'g_arms_h_lod1'"/>
+			<object 		enabled="true" name="'g_arms_g'"/>
+			<object 		enabled="true" name="'g_arms_g_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_h'"/>
 			<object 		enabled="true" name="'g_face_h_lod1'"/>
@@ -332,8 +389,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_b_var2'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_a'"/>
-			<object 		enabled="true" name="'g_arms_a_lod1'"/>
+			<object 		enabled="true" name="'g_arms_c'"/>
+			<object 		enabled="true" name="'g_arms_c_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_b'"/>
 			<object 		enabled="true" name="'g_face_b_lod1'"/>
@@ -365,8 +422,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_e_var2'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_c'"/>
-			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_e'"/>
 			<object 		enabled="true" name="'g_face_e_lod1'"/>
@@ -398,8 +455,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_h_var2'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_h'"/>
-			<object 		enabled="true" name="'g_arms_h_lod1'"/>
+			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_h'"/>
 			<object 		enabled="true" name="'g_face_h_lod1'"/>
@@ -407,7 +464,7 @@
 			<object 		enabled="true" name="'g_head_h'"/>
 			<object 		enabled="true" name="'g_head_h_lod1'"/>
 		</sequence>
-	
+
 		<sequence editable_state="true" name="'body_fat_a_var1'" once="true" triggable="true">
 			<object 		enabled="true" name="'g_arms_c'"/>
 			<object 		enabled="true" name="'g_arms_c_lod1'"/>
