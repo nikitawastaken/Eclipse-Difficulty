@@ -11,7 +11,7 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 
 	self.stats.spread = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread, (math.lerp(1.5, 0.1, i / 25)))
+		table.insert(self.stats.spread, (math.lerp(1.5, 0.05, i / 25)))
 	end
 
 	self.stats.spread_moving = {}
