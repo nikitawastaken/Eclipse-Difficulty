@@ -237,6 +237,12 @@ NetworkHelper:AddReceiveHook("Eclipse_TradeManager:trade_restore_resources", "ec
 		end
 	end
 
+	-- If you're not in a game, not in a heist, or somehow this got called
+	-- when you were in custody, don't continue with the resource trade
+	if not Utils:IsInGameState() or not Utils:IsInHeist() or Utils:IsInCustody() then
+		return
+	end
+
 	local params = NetworkHelper:decode(data)
 	local is_recon_over = params.is_recon_over == "yes"
 
