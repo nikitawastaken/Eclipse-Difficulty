@@ -9,7 +9,7 @@ local head_sequences = {
 	security_fat = {
 		material = { 1, 2 },
 		run_sequence = {
-			"head_init",
+			"fat_head_init",
 			"disable_face",
 		},
 	},
