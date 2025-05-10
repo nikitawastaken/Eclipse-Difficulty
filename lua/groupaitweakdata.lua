@@ -1510,7 +1510,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_security = {
+	self.unit_categories.FBI_readyteam = {
 		unit_types = {
 			america = {
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"),
@@ -2838,7 +2838,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 30,
-					cooldown = { 25, 40 },
+					cooldown = { 20, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -2869,14 +2869,14 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								amount_min = 1,
 								rank = 2,
 								freq = 1,
-								unit = "FBI_security",
+								unit = "FBI_readyteam",
 								tactics = self._timed_tactics.fbi_def,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.5,
-								unit = "FBI_security",
+								unit = "FBI_readyteam",
 								tactics = self._timed_tactics.fbi_snk,
 							},
 							{
@@ -2905,7 +2905,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 30,
-					cooldown = { 25, 40 },
+					cooldown = { 20, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -2968,7 +2968,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 180,
-					cooldown = { 25, 40 },
+					cooldown = { 20, 30 },
 					diff_scale = { 2, 1.5, 1 },
 				},
 				group_data = {
@@ -3039,7 +3039,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 30,
-					cooldown = { 25, 40 },
+					cooldown = { 20, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
