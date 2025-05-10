@@ -265,7 +265,7 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'bulldozer_face_init'" once="true" triggable="true"> 
-			<run_sequence			name="'face_'..pick('a','b','c','d','e','f','g','h','i','j','k','l')" />
+			<run_sequence			name="'face_'..pick('a','b','c','d','e','f','g','h')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'face_a'" once="true" triggable="true">
@@ -306,26 +306,6 @@
 		<sequence editable_state="true" name="'face_h'" once="true" triggable="true">
 			<object 				enabled="true" name="'g_face_h'" />
 			<object 				enabled="true" name="'g_face_h_lod1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'face_i'" once="true" triggable="true">
-			<object 				enabled="true" name="'g_face_i'" />
-			<object 				enabled="true" name="'g_face_i_lod1'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'face_j'" once="true" triggable="true">
-			<object 				enabled="true" name="'g_face_j'" />
-			<object 				enabled="true" name="'g_face_j_lod1'" />
-		</sequence>
-		
-		<sequence editable_state="true" name="'face_k'" once="true" triggable="true">
-			<object 				enabled="true" name="'g_face_k'" />
-			<object 				enabled="true" name="'g_face_k_lod1'" />
-		</sequence>
-
-		<sequence editable_state="true" name="'face_l'" once="true" triggable="true">
-			<object 				enabled="true" name="'g_face_l'" />
-			<object 				enabled="true" name="'g_face_l_lod1'" />
 		</sequence>
 		<!--DEBRIS SEQUENCES-->
 		<sequence editable_state="true" name="'drop_debris_armor_back'" once="true" triggable="true">
