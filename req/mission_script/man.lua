@@ -100,13 +100,13 @@ local street_heli_enemy = {
 }
 local breach_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
-	groups = preferred.no_shields,
+	groups = preferred.no_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
@@ -131,6 +131,49 @@ return {
 			length = 60,
 			player_mul = { 1.25, 1, 0.75, 0.5 },
 		},
+	},
+	-- Add new reinforce
+	[101825] = { -- Interrogation started
+		difficulty = 0.6,
+		reinforce = {
+			{
+				name = "staircase_main1",
+				force = 2,
+				position = Vector3(-1250, -2750, 300),
+			},
+			{
+				name = "staircase_main2",
+				force = 2,
+				position = Vector3(-1250, -2750, 1000),
+			},
+			{
+				name = "staircase_side1",
+				force = 2,
+				position = Vector3(-1250, 975, 475),
+			},
+			{
+				name = "staircase_side2",
+				force = 2,
+				position = Vector3(-1850, 1000, 1375),
+			},
+		},
+		on_executed = { -- Bain diff increase line
+			{ id = 103896, delay = 0 },
+		},
+	},
+	-- Tweak diff scaling
+	[102305] = disabled, -- saw in place, diff 0.75
+	[101760] = disabled, -- interrogation started, diff 1
+	[102305] = { -- initial diff
+		values = {
+			difficulty = 0.4,
+		},
+	},
+	[102013] = { -- 1st hack done
+		difficulty = 0.8,
+	},
+	[102014] = { -- 2nd hack done
+		difficulty = 1,
 	},
 	-- Multiple interrupts once more (pain)
 	[102978] = {

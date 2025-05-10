@@ -10,29 +10,23 @@ local ramp_spawn = {
 	},
 	groups = preferred.no_bulldozers,
 }
-local garage_spawn1 = {
+local garage_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
-}
-local roof_spawn1 = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_cops_agents,
 }
 local pent_balcony_spawn = {
 	values = {
 		interval = 25,
 	},
-	groups = preferred.no_cops_agents_shields,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local roof_spawn2 = {
+local roof_spawn1 = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields,
+	groups = preferred.no_cops_agents_bulldozers,
 }
 local garage_spawn2 = {
 	values = {
@@ -46,6 +40,12 @@ local window_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local roof_spawn2 = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields,
+}
 local lobby_balcony_spawn = {
 	values = {
 		interval = 45,
@@ -54,9 +54,9 @@ local lobby_balcony_spawn = {
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
+		interval = 120,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.only_cloakers,
 }
 return {
 	[101607] = {
@@ -90,7 +90,13 @@ return {
 			},
 		},
 	},
-	-- spawn point delays
+	-- Do not disable certain preferreds when players are on the roof
+	[102132] = {
+		on_executed = {
+			{ id = 102497, remove = true }, -- spawns outside pent
+		},
+	},
+	-- Spawn group delays
 	[102112] = ramp_spawn,
 	[102115] = roof_spawn1,
 	[102159] = roof_spawn1,
