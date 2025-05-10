@@ -3,9 +3,11 @@ local level_id = Eclipse.utils.level_id()
 local diff_name = Eclipse.utils.difficulty_name()
 
 if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spawner" then
-	ElementSpawnEnemyDummy.chk_used_mapped_names = function() end
-	ElementSpawnEnemyDummy.get_replacement_enemy_name = function() end
-	ElementSpawnEnemyDummy.replace_enemy_name = function() end
+	function ElementSpawnEnemyDummy:chk_used_mapped_names(...) end
+	function ElementSpawnEnemyDummy:get_replacement_enemy_name(...) end
+	function ElementSpawnEnemyDummy:replace_enemy_name(...) end
+	function ElementSpawnEnemyDummy:get_unit_alternative(...) end
+	function ElementSpawnEnemyDummy:get_ponr_unit(...) end
 
 	Eclipse:log("Editor/Spawner mode is active, spawn group fixes disabled")
 	return
@@ -44,6 +46,7 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
+		cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
 	},
 	FBI = {
 		swat_1 = {
@@ -65,6 +68,7 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
+		cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
 	},
 	Elite = {
 		swat_1 = {
@@ -86,6 +90,7 @@ ElementSpawnEnemyDummy.faction_mapping = {
 			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		},
+		cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
 	},
 	Zeal = {
 		swat_1 = "units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
@@ -327,22 +332,22 @@ function ElementSpawnEnemyDummy:chk_used_mapped_names(force)
 	if not self._used_mapped_names or force then
 		self._used_mapped_names = {}
 
-		local function try_add_mapped_name(name)
+		local function try_add_mapped_name(name, weight)
 			local mapped_name = self.enemy_mapping[name:key()]
 
 			if mapped_name then
-				self._used_mapped_names[mapped_name] = mapped_name
+				self._used_mapped_names[mapped_name] = weight
 			end
 		end
 
 		if not self._enemy_table then
-			try_add_mapped_name(self._enemy_name)
+			try_add_mapped_name(self._enemy_name, 1)
 		else
 			for k, v in pairs(self._enemy_table) do
 				if type(k) == "number" then
-					try_add_mapped_name(v)
+					try_add_mapped_name(v, 1)
 				else
-					try_add_mapped_name(k)
+					try_add_mapped_name(k, v)
 				end
 			end
 		end
@@ -363,21 +368,21 @@ function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
 		return nil
 	end
 
-	local add
 	local enemy_table = {}
-	for mapped in pairs(used_mapped_names) do
-		add = faction[mapped]
-
-		if type(add) == "table" then
-			table.list_append(enemy_table, add)
-		elseif add then
-			table.insert(enemy_table, add)
+	for mapped, weight in pairs(used_mapped_names) do
+		local add = faction[mapped]
+		if add then
+			enemy_table[add] = weight
 		end
 	end
 
 	-- nil if none, non-table name if one
-	if #enemy_table < 2 then
-		return enemy_table[1]
+	if table.size(enemy_table) < 2 then
+		local k, v = next(enemy_table)
+		if type(k) == "number" then
+			return v
+		end
+		return k
 	end
 
 	return enemy_table
@@ -457,6 +462,33 @@ function ElementSpawnEnemyDummy:get_ponr_unit(name)
 	return Idstring(ponr_unit_data)
 end
 
+function ElementSpawnEnemyDummy:_process_enemy_tbl(enemy_tbl)
+	if type(enemy_tbl) ~= "table" then
+		return nil
+	end
+
+	local enemy_selector = WeightedSelector:new()
+	for enemy_name, enemy_weight in pairs(enemy_tbl) do
+		if type(enemy_name) == "number" then
+			enemy_selector:add(enemy_weight, 1)
+		else
+			enemy_selector:add(enemy_name, enemy_weight)
+		end
+	end
+
+	-- Idstring on an Idstring crashes
+	-- TODO: redo mission script patches to use string enemy names rather than Idstrings
+	local new_enemy_name = enemy_selector:select()
+	local typ = type(new_enemy_name)
+	if typ == "userdata" then
+		return new_enemy_name
+	elseif typ == "string" then
+		return Idstring(new_enemy_name)
+	elseif typ == "table" then
+		return self:_process_enemy_tbl(new_enemy_name)
+	end
+end
+
 local access_replacement = {
 	cop = "fbi",
 }
@@ -482,24 +514,7 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 	end
 
 	if self._enemy_table then
-		local enemy_selector = WeightedSelector:new()
-		for enemy_name, enemy_weight in pairs(self._enemy_table) do
-			if type(enemy_name) == "number" then
-				enemy_selector:add(enemy_weight, 1)
-			else
-				enemy_selector:add(enemy_name, enemy_weight)
-			end
-		end
-
-		local new_enemy_name = enemy_selector:select()
-
-		-- Idstring on an Idstring crashes
-		-- TODO: redo mission script patches to use string enemy names rather than Idstrings
-		if type(new_enemy_name) == "userdata" then
-			self._enemy_name = new_enemy_name
-		elseif new_enemy_name then
-			self._enemy_name = Idstring(new_enemy_name)
-		end
+		self._enemy_name = self:_process_enemy_tbl(self._enemy_table) or self._enemy_name
 	end
 
 	local original_enemy_name = self._enemy_name
