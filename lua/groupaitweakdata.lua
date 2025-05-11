@@ -3107,7 +3107,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		Eclipse:log("Map scale multiplier for " .. level_id .. " set to " .. level_scale_mul)
 	end
 
-	local force_mul = level_scale_mul 
+	local force_mul = level_scale_mul
 	--force_mul = force_mul * (is_solo and 0.75 or 1)
 	local spawnrate_mul = math.sqrt(force_mul)
 
