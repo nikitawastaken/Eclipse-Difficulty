@@ -1,6 +1,7 @@
 local level_id = Eclipse.utils.level_id()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local is_solo = Eclipse.utils.is_solo
 
 local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
@@ -3106,8 +3107,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		Eclipse:log("Map scale multiplier for " .. level_id .. " set to " .. level_scale_mul)
 	end
 
-	local level_scale_force = level_scale_mul
-	local level_scale_spawnrate = math.sqrt(level_scale_mul)
+	local force_mul = level_scale_mul 
+	--force_mul = force_mul * (is_solo and 0.75 or 1)
+	local spawnrate_mul = math.sqrt(force_mul)
 
 	-- Assault Data
 	-- AI Tickrate
@@ -3151,9 +3153,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawncap
 	self.besiege.assault.force = {
-		diff_lerp(5, 6) * level_scale_force,
-		diff_lerp(7, 9) * level_scale_force,
-		diff_lerp(9, 12) * level_scale_force,
+		diff_lerp(5, 6) * force_mul,
+		diff_lerp(7, 9) * force_mul,
+		diff_lerp(9, 12) * force_mul,
 	}
 	self.besiege.assault.force_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
@@ -3168,9 +3170,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.spawn_kill_cooldown = 10
 
 	self.besiege.assault.spawnrate = {
-		diff_lerp(3, 2) / level_scale_spawnrate,
-		diff_lerp(2.5, 1.5) / level_scale_spawnrate,
-		diff_lerp(2, 1) / level_scale_spawnrate,
+		diff_lerp(3, 2) / spawnrate_mul,
+		diff_lerp(2.5, 1.5) / spawnrate_mul,
+		diff_lerp(2, 1) / spawnrate_mul,
 	}
 	self.besiege.assault.spawnrate_balance_mul = { 2.5, 2, 1.5, 1 }
 
@@ -3182,9 +3184,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Recon spawn interval and spawncap
 	self.besiege.recon.interval_variation = 20
 	self.besiege.recon.force = {
-		2 * math.sqrt(level_scale_force),
-		4 * math.sqrt(level_scale_force),
-		6 * math.sqrt(level_scale_force),
+		2 * math.sqrt(force_mul),
+		4 * math.sqrt(force_mul),
+		6 * math.sqrt(force_mul),
 	}
 
 	self.besiege.push_delay = {
