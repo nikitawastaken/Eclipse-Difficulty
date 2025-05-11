@@ -1,8 +1,8 @@
 local preferred = Eclipse.preferred
 local disabled = {
 	values = {
-		enabled = false
-	}
+		enabled = false,
+	},
 }
 local standard_spawn = {
 	values = {
@@ -22,8 +22,8 @@ local roof_spawn = {
 }
 local sniper_amount = {
 	values = {
-		amount = easy and 1 or normal and 2 or 3
-	}
+		amount = easy and 1 or normal and 2 or 3,
+	},
 }
 local money_pile_reinforce01 = {
 	reinforce = {
