@@ -90,7 +90,7 @@ return {
 		on_executed = {
 			{ id = 100987, remove = true }, -- preferred add 1
 			{ id = 400001, delay = 0, delay_rand = 0 }, -- custom street preferreds
-			{ id = 400002, delay = 0, delay_rand = 15  }, -- custom bush preferreds
+			{ id = 400002, delay = 0, delay_rand = 15 }, -- custom bush preferreds
 		},
 	},
 	-- Add new reinforce
