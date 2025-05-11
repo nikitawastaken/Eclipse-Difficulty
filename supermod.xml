@@ -1022,6 +1022,10 @@
 		</group>
 
 		<group name="units/pd2_dlc_army/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_acc_soldier_head/">
+				<xml  :name="ene_acc_soldier_head.sequence_manager" dyn_package="true" />
+			</group>
+			
 			<group :name="ene_soldier_1/">
 				<xml  :name="ene_soldier_1.sequence_manager" dyn_package="true" />
 			</group>

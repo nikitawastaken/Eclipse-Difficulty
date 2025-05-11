@@ -1,7 +1,22 @@
 <table directory="assets">
-	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_df" />
-	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_nm" />	
-
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_heads_atlas_var1_df" />
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_heads_atlas_var1_nm" />	
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_heads_atlas_var2_df" />
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_heads_atlas_var2_nm" />	
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_body_df" />
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_body_nm" />	
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_head_df" />
+	<texture			path="units/pd2_dlc_army/characters/shared_textures/soldier_head_nm" />	
+	
+	<material_config	path="units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var1" />
+	<material_config	path="units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var1_contour" />
+	<material_config	path="units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2" />
+	<material_config	path="units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2_contour" />
+	<cooked_physics		path="units/pd2_dlc_army/characters/ene_acc_soldier_head/ene_acc_soldier_head" />	
+	<model				path="units/pd2_dlc_army/characters/ene_acc_soldier_head/ene_acc_soldier_head" />	
+	<object				path="units/pd2_dlc_army/characters/ene_acc_soldier_head/ene_acc_soldier_head" />
+	<unit				path="units/pd2_dlc_army/characters/ene_acc_soldier_head/ene_acc_soldier_head" />
+	
 	<cooked_physics		path="units/pd2_dlc_army/characters/ene_acc_soldier_helmet/ene_acc_soldier_helmet" />	
 	<material_config	path="units/pd2_dlc_army/characters/ene_acc_soldier_helmet/ene_acc_soldier_helmet" />
 	<model				path="units/pd2_dlc_army/characters/ene_acc_soldier_helmet/ene_acc_soldier_helmet" />	
