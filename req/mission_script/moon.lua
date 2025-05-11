@@ -59,14 +59,14 @@ return {
 				position = Vector3(600, 600, 1050),
 			},
 		},
-	},		
+	},
 	-- Rework preferreds, separate street spawns from roof spawns
 	[100129] = { -- preferred
 		on_executed = {
 			{ id = 100127, remove = true }, -- default preferreds
 			{ id = 400001, delay = 0 }, -- custom street preferreds
 		},
-	},	
+	},
 	-- e_nl_up_1m_down_5m_swing
 	[103784] = exclude_shields_dozers,
 	[103785] = exclude_shields_dozers,
