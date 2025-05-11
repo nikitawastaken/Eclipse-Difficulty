@@ -1,3 +1,58 @@
+local preferred = Eclipse.preferred
+local disabled = {
+	values = {
+		enabled = false
+	}
+}
+local standard_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local bush_spawn = {
+	values = {
+		interval = 20,
+	},
+}
+local roof_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local sniper_amount = {
+	values = {
+		amount = easy and 1 or normal and 2 or 3
+	}
+}
+local money_pile_reinforce01 = {
+	reinforce = {
+		{
+			name = "garage",
+			force = 2,
+			position = Vector3(300, 1200, 0),
+		},
+		{
+			name = "armory",
+			force = 2,
+			position = Vector3(800, -1200, 0),
+		},
+	},
+}
+local money_pile_reinforce02 = {
+	reinforce = {
+		{
+			name = "upstairs1",
+			force = 2,
+			position = Vector3(1000, 400, 400),
+		},
+		{
+			name = "upstairs2",
+			force = 2,
+			position = Vector3(450, -550, 400),
+		},
+	},
+}
 return {
 	[100981] = {
 		values = {
@@ -10,4 +65,43 @@ return {
 	[102511] = {
 		difficulty = 1,
 	},
+	-- Add new reinforce
+	[100979] = {
+		reinforce = {
+			{
+				name = "touch_grass1",
+				force = 3,
+				position = Vector3(-1500, 800, 300),
+			},
+			{
+				name = "touch_grass2",
+				force = 3,
+				position = Vector3(-500, 2150, 300),
+			},
+		},
+	},
+	-- Upstairs money piles
+	[101362] = money_pile_reinforce01,
+	[101363] = money_pile_reinforce01,
+	[101364] = money_pile_reinforce01,
+	-- Downstairs money piles
+	[101349] = money_pile_reinforce02,
+	[101367] = money_pile_reinforce02,
+	-- Disable vanilla reinforce
+	[101646] = disabled,
+	[102590] = disabled,
+	--[[set sniper amounts
+	[102450] = sniper_amount,
+	[102451] = sniper_amount,
+	]]
+	-- Spawn group delays
+	[101178] = standard_spawn,
+	[100994] = standard_spawn,
+	[100993] = bush_spawn,
+	[100993] = bush_spawn,
+	[101038] = roof_spawn,
+	[101204] = roof_spawn,
+	[101656] = roof_spawn,
+	[101859] = roof_spawn,
+	[101864] = roof_spawn,
 }

@@ -37,6 +37,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nightclub.group_ai_preset = "small_urban"
 	self.branchbank.group_ai_preset = "small_urban"
 	self.gallery.group_ai_preset = "small_urban"
+	self.chill_combat.group_ai_preset = "small_urban"
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
 	self.crojob3.group_ai_preset = "remote"
 	self.crojob3_night.group_ai_preset = "remote"
