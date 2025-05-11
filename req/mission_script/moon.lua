@@ -5,7 +5,7 @@ local disabled = {
 	},
 }
 local exclude_shields_dozers = {
-	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+	so_access_filter = { "swat", "taser", "spooc" },
 }
 local entrance_spawn = {
 	values = {
