@@ -20,6 +20,12 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local window_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local sniper_amount = {
 	values = {
 		amount = easy and 1 or normal and 2 or 3,
@@ -37,6 +43,11 @@ local money_pile_reinforce01 = {
 			force = 2,
 			position = Vector3(800, -1200, 0),
 		},
+		{
+			name = "staircase",
+			force = 2,
+			position = Vector3(2050, -600, 200),
+		},
 	},
 }
 local money_pile_reinforce02 = {
@@ -51,19 +62,36 @@ local money_pile_reinforce02 = {
 			force = 2,
 			position = Vector3(450, -550, 400),
 		},
+		{
+			name = "kitchen",
+			force = 2,
+			position = Vector3(400, 1200, 400),
+		},
 	},
 }
 return {
 	[100981] = {
-		values = {
+		values = { -- initial diff
 			difficulty = 0.33,
 		},
 	},
-	[102510] = {
+	[102510] = { -- 1st wave complete
 		difficulty = 0.66,
+		on_executed = {
+			{ id = 400003, delay = 0, delay_rand = 15 }, -- custom roof preferreds
+			{ id = 400004, delay = 15, delay_rand = 30 }, -- custom window preferreds
+		},
 	},
-	[102511] = {
+	[102511] = { -- 2nd wave complete
 		difficulty = 1,
+	},
+	-- Change how preferreds are distributed
+	[100982] = { -- preferred
+		on_executed = {
+			{ id = 100987, remove = true }, -- preferred add 1
+			{ id = 400001, delay = 0, delay_rand = 0 }, -- custom street preferreds
+			{ id = 400002, delay = 0, delay_rand = 15  }, -- custom bush preferreds
+		},
 	},
 	-- Add new reinforce
 	[100979] = {
@@ -98,10 +126,10 @@ return {
 	[101178] = standard_spawn,
 	[100994] = standard_spawn,
 	[100993] = bush_spawn,
-	[100993] = bush_spawn,
+	[101131] = bush_spawn,
 	[101038] = roof_spawn,
 	[101204] = roof_spawn,
 	[101656] = roof_spawn,
-	[101859] = roof_spawn,
-	[101864] = roof_spawn,
+	[101859] = window_spawn,
+	[101864] = window_spawn,
 }

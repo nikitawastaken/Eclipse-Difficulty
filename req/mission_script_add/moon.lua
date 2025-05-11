@@ -1,4 +1,4 @@
----@module Four Stores
+---@module Stealing Xmas
 local M = {}
 local optsPreferedAdd1 = {
 	spawn_groups = { 100128, 100130, 100131, 100133 },
