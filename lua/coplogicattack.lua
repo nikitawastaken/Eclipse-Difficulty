@@ -388,7 +388,6 @@ function MarshalLogicAttack.update_cover(data) end
 --Medic attack logic
 MedicLogicAttack = MedicLogicAttack or class(CopLogicAttack)
 
-
 function MedicLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, engage, range)
 	if not focus_enemy or not focus_enemy.nav_tracker or not focus_enemy.verified then
 		return
@@ -424,7 +423,6 @@ function MedicLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy
 		return true
 	end
 end
-
 
 function MedicLogicAttack._upd_combat_movement(data)
 	local my_data = data.internal_data
