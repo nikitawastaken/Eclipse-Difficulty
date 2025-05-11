@@ -554,7 +554,6 @@
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_watch_rare'" />
-			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_glasses_rare'" />
 		</sequence>
@@ -1051,9 +1050,7 @@
 			<run_sequence 		filter="'check_not_fat'" name="'body_'..pick('jacket')" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'body_short'" once="true" triggable="true">
-			<run_sequence 		name="'random_watch'" />
-		</sequence>
+		<sequence editable_state="true" name="'body_short'" once="true" triggable="true"/>
 		
 		<sequence editable_state="true" name="'body_long'" once="true" triggable="true">
 			<set_variables 		has_sleeves="1" />
@@ -1156,9 +1153,13 @@
 			<object 			enabled="true" name="'g_gloves_lod1'" />
 		</sequence>
 	<!--WATCH SEQUENCES-->
-		<sequence editable_state="true" name="'random_watch_common'" triggable="true"/>
+		<sequence editable_state="true" name="'random_watch_common'" triggable="true">
+			<run_sequence 		name="'watch_'..pick('base','base','none')" />
+		</sequence>
 
-		<sequence editable_state="true" name="'random_watch_rare'" triggable="true"/>
+		<sequence editable_state="true" name="'random_watch_rare'" triggable="true">
+			<run_sequence 		name="'watch_'..pick('none','none','base')" />
+		</sequence>
 
 		<sequence editable_state="true" name="'random_watch'" triggable="true">
 			<run_sequence 		name="'watch_'..pick('none','base')" />
