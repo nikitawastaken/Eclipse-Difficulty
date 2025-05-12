@@ -309,6 +309,7 @@
 
 		<!-- Improve navigation data -->
 		<group name="levels/narratives/">
+			<file :name="h_firestarter/stage_3/world/world.continent"/>
 			<file :name="bain/big/world/world.continent"/>
 			<file :name="classics/pal/world/world.continent"/>
 			<file :name="classics/man/world/world.continent"/>

@@ -146,28 +146,22 @@ return {
 			{ id = 105648, remove = true },
 		},
 	},
-	-- trigger on diff 0.75 and 1 respectfully
-	[100438] = {
-		on_executed = {
-			{ id = 103540, remove = true },
-		},
-	},
-	[101293] = {
+	-- trigger on end assault
+	[101304] = {
 		on_executed = {
 			{ id = 103540, delay = 10 },
-			{ id = 105648, remove = true },
 		},
 	},
-	[101301] = {
-		on_executed = {
-			{ id = 103540, delay = 10 },
-			{ id = 105648, remove = true },
-		},
-	},
-	-- 2 vans on eclipse
+	-- add 3 heli events to the elementrandom script
+	-- 2 events on eclipse
 	[104734] = {
 		values = {
 			amount = swat_vans_amount,
+		},
+		on_executed = {
+			{ id = 400025, delay = 0 },
+			{ id = 400031, delay = 0 },
+			{ id = 400037, delay = 0 },
 		},
 	},
 	-- enable max diff after 2 instead of 3 assault waves
