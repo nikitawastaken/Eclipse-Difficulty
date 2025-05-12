@@ -156,16 +156,17 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_shotgun_mag.RELOAD_SPEED = 1
 	presets.weapon.base.is_shotgun_mag.autofire_rounds = { 1, 3 }
 	presets.weapon.base.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4.5 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_double_barrel = deep_clone(presets.weapon.base.is_shotgun_pump)
 	presets.weapon.base.is_double_barrel.RELOAD_SPEED = 6
 	presets.weapon.base.is_double_barrel.FALLOFF = {
 		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_rifle.autofire_rounds = { 1, 5 }
@@ -178,7 +179,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_smg = deep_clone(presets.weapon.base.is_rifle)
 	presets.weapon.base.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.base.is_smg.FALLOFF = {
-		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.6 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 2500, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
@@ -287,14 +288,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_shield = based_on(presets.weapon.shield)
 
 	presets.weapon.elite_shield.is_revolver.FALLOFF = {
-		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.75 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_shield.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.zeal_shield = based_on(presets.weapon.shield)
@@ -342,8 +343,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.taser.is_rifle.autofire_rounds = nil
 	presets.weapon.taser.is_rifle.FALLOFF = {
-		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.taser.is_shotgun_pump.FALLOFF = {
@@ -351,8 +352,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 5 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
-
-	presets.weapon.zeal_tazer = based_on(presets.weapon.taser)
 
 	presets.weapon.medic = based_on(presets.weapon.swat, {
 		melee_dmg = 6 * dmg_mul,
@@ -390,11 +389,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.bulldozer.is_shotgun_mag.RELOAD_SPEED = 0.9
-	presets.weapon.bulldozer.is_shotgun_mag.autofire_rounds = { 1, 5 }
+	presets.weapon.bulldozer.is_shotgun_mag.autofire_rounds = { 1, 6 }
 	presets.weapon.bulldozer.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 5 } },
-		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 4 } },
-		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 4, 6 } },
+		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 4 } },
+		{ dmg_mul = 2 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
 	presets.weapon.hw_bulldozer = based_on(presets.weapon.bulldozer, {
@@ -433,9 +432,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.marshal_marksman = based_on(presets.weapon.sniper)
 
 	presets.weapon.marshal_marksman.is_sniper.FALLOFF = {
-		{ dmg_mul = 10 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.marshal_gunner = based_on(presets.weapon.base)
@@ -1194,8 +1193,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"special",
 		"shield",
 	}
-	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.25
-	self.city_shield_break.chatter = self.presets.enemy_chatter.swat
+	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.4
+	self.city_shield_break.chatter = self.presets.enemy_chatter.none
 	self.city_shield_break.dodge = self.presets.dodge.athletic
 	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.base
 	self.city_shield_break.move_speed = self.presets.move_speed.fast
