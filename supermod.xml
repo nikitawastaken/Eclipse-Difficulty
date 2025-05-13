@@ -1556,6 +1556,11 @@
 				<file :name="ene_deep_security_3_husk.unit" />
 			</group>
 		</group>
+		
+		<!-- objects -->
+		<group name="units/pd2_dlc_pal/props/pal_prop_flames_of_love_boombox/" dyn_package="false">
+				<file :name="pal_prop_flames_of_love_boombox.sequence_manager"/> <!-- Where is my Payday for you and me??????? -->
+		</group>
 
 		<!-- animations -->
 		<file name="anims/shared/boss/shield/cbt_crh_melee.animation"/>
