@@ -13,6 +13,9 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local specials_spawns = { [taser] = 2, [cloaker] = 1 }
+local greendozer_only = {
+	green_bulldozer,
+}
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -21,7 +24,7 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local container_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer
+local container_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or greendozer_only
 
 local patches = {
 	swat_chopper = {
@@ -63,7 +66,7 @@ M["levels/instances/unique/shout_container_normal/world/world"] = function(resul
 		local id = element.id
 
 		if dozer_hunt_tweak.dozer_hunt[id] then
-			element.values.enemy = container_dozer
+			element.values.enemy_table = container_dozer
 			element.values.on_executed = {
 				{ id = 100067, delay = 3 }, -- delay the hunt
 			}
