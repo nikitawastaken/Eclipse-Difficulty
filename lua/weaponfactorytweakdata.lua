@@ -1420,14 +1420,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_pis_c96_b_long.desc_id = "bm_wp_dmr_kit_penetration_desc"
 
 	-- Saw mods
-	
+
 	self.parts.wpn_fps_saw_body_silent.stats.suppression = 10
 	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -12
-	
+
 	self.parts.wpn_fps_saw_body_speed.stats.damage = 0
 	self.parts.wpn_fps_saw_body_speed.stats.concealment = -2
 	self.parts.wpn_fps_saw_body_speed.custom_stats = { fire_rate_multiplier = 1.5 }
-	
+
 	-- Flamethrower Tanks
 	-- MK1
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats.damage = -10
