@@ -164,6 +164,11 @@ return {
 			{ id = 400037, delay = 0 },
 		},
 	},
+	[100438] = {
+		on_executed = {
+			{ id = 103540, remove = true },
+		},
+	},
 	-- enable max diff after 2 instead of 3 assault waves
 	[101307] = {
 		values = {
