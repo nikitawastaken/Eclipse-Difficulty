@@ -350,7 +350,7 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(dat
 	end
 end) -- Make better use of pathing priority
 function CopLogicTravel.get_pathing_prio(data)
-	if data.team and data.team.friends.player then
+	if data.team and (data.team.id == "criminal1" or data.team.friends.criminal1) then
 		return 6
 	elseif data.unit:base().has_tag and data.unit:base():has_tag("special") then
 		return 4
