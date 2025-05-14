@@ -1507,7 +1507,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	local shotgun_barrel_ext_stats = {
 		medium_loud = { spread = 2, concealment = -2 },
 		big_loud = { spread = 3, concealment = -3 },
-		horizontal_loud = { spread = -2, recoil = 1, spread_multi = { 2.25, 0.5 }, concealment = -3 },
+		horizontal_loud = { spread = -2, recoil = 1, spread_multi = { 1.5, 0.5 }, concealment = -3 },
 		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
 		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
 	}
