@@ -192,7 +192,7 @@ return {
 	--skylight chance
 	[104324] = {
 		values = {
-			chance = 50,
+			chance = eclipse and 100 or 50,
 		},
 	},
 	[101930] = {
