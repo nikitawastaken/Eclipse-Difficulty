@@ -44,6 +44,20 @@ return {
 			{ id = 300164, delay = 45 },
 		},
 	},
+	-- fix one of the cop cars not being hidden
+	[302012] = {
+		values = {
+			unit_ids = {
+				302026,
+				302025,
+				302023,
+				302027,
+				500501,
+				500857,
+				500851
+			}
+		}
+	}
 	-- disable the silly jump SOs for some enemies
 	[301777] = exclude_cop_agents_shields_dozers,
 	[302013] = exclude_cop_agents_shields_dozers,
