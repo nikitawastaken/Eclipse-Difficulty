@@ -54,8 +54,8 @@ return {
 				302027,
 				500501,
 				500857,
-				500851
-			}
+				500851,
+			},
 		},
 	},
 	-- disable the silly jump SOs for some enemies
