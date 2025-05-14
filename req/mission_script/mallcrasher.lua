@@ -56,8 +56,8 @@ return {
 				500857,
 				500851
 			}
-		}
-	}
+		},
+	},
 	-- disable the silly jump SOs for some enemies
 	[301777] = exclude_cop_agents_shields_dozers,
 	[302013] = exclude_cop_agents_shields_dozers,
