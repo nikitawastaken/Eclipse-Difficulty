@@ -188,6 +188,12 @@ return {
 	[101801] = {
 		flashlight = false,
 	},
+	-- fix the early loud issue
+	[103178] = {
+		on_executed = {
+			{ id = 102610, remove = true }, -- seriously, why the hell are you making them use AI_hunt if the heist hasn't gone loud yet?????
+		},
+	},
 	-- increase the amount of planks
 	[101661] = {
 		values = {
