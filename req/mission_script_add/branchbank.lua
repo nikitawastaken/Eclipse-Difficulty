@@ -33,7 +33,6 @@ local optsBulldozer = {
 	on_executed = {
 		{ id = 400002, delay = 0 },
 	},
-	enabled = is_eclipse,
 }
 local optsDefend_SO = {
 	SO_access = "4096",
@@ -52,7 +51,7 @@ local optsDisable_DWDozer = {
 	},
 }
 local optsEnable_DWDozer = {
-	enabled = true,
+	enabled = is_eclipse,
 	elements = {
 		400001,
 	},
