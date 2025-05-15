@@ -915,12 +915,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		report = true,
 	}
 
-	presets.enemy_chatter.heavy_gunner = {
+	presets.enemy_chatter.special = {
 		aggressive = true,
-		go_go = true,
 		contact = true,
-		push = true,
-		open_fire = true,
+		go_go = true,
 	}
 
 	presets.enemy_chatter.fbi_security = deep_clone(presets.enemy_chatter.swat)
@@ -1194,7 +1192,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"shield",
 	}
 	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.4
-	self.city_shield_break.chatter = self.presets.enemy_chatter.none
+	self.city_shield_break.chatter = self.presets.enemy_chatter.special
 	self.city_shield_break.dodge = self.presets.dodge.athletic
 	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.base
 	self.city_shield_break.move_speed = self.presets.move_speed.fast
@@ -1297,7 +1295,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_gunner.headshot_dmg_mul = 2 -- 360 head health
 	self.marshal_gunner.autofire_move_speed_mul = 0.5
 	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-	self.marshal_gunner.chatter = self.presets.enemy_chatter.heavy_gunner
+	self.marshal_gunner.chatter = self.presets.enemy_chatter.special
 	self.marshal_gunner.dodge = self.presets.dodge.heavy
 	self.marshal_gunner.spawn_sound_event = has_bellmead_response and "l5d_pus" or "l2d_pus" --PUSH!!!
 	self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
