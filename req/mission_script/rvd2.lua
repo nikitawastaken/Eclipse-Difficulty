@@ -101,7 +101,7 @@ return {
 	[101059] = exclude_shields_dozers,
 	[101058] = exclude_shields_dozers,
 	[101057] = exclude_shields_dozers,
-	[101056] = exclude_shields_dozers,	
+	[101056] = exclude_shields_dozers,
 	[101055] = exclude_shields_dozers,
 	[101054] = exclude_shields_dozers,
 	[101031] = exclude_shields_dozers,
