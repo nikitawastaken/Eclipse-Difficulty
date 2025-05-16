@@ -394,7 +394,6 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.alert_size = 18
 				weap_data.steelsight_time = steelsight_times.lmg
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.25
-				weap_data.pickup_mul = weap_data.pickup_mul or 1.5
 				weap_data.steelsight_move_speed_mul = 0.4
 
 				if weap_data.no_steelsight then
