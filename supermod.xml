@@ -1462,6 +1462,10 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_spa/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="str_vehicle_car_police_new_york/str_vehicle_car_police_new_york.material_config" />
+		</group>
+		
 		<group name="units/pd2_dlc_des/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_murkywater_no_light_not_security/">
 				<file :name="ene_murkywater_no_light_not_security.unit" />
