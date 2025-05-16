@@ -3410,8 +3410,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
 	self.ponr.push_delay = {
-		diff_lerp(20, 16),
-		diff_lerp(16, 12),
+		diff_lerp(12, 8),
+		diff_lerp(12, 8),
 		diff_lerp(12, 8),
 	}
 
