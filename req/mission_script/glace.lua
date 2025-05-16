@@ -17,11 +17,11 @@ local eclipse_dozers = {
 	elite_skull_bulldozer,
 }
 
-local swat_sniper_heli_amount = 2 + (is_pro_job and 1 or 0)
+local swat_heli_amount = 2 + (is_pro_job and 1 or 0)
 
 local chopper_amount = {
 	values = {
-		amount = swat_sniper_heli_amount,
+		amount = swat_heli_amount,
 	},
 }
 
@@ -156,10 +156,7 @@ return {
 			{ id = 400025, delay = 60, delay_rand = 30 },
 		},
 	},
-	-- tweak the amount of swat/sniper choppers
-	[100427] = chopper_amount,
-	[100428] = chopper_amount,
-	[100429] = chopper_amount,
+	-- tweak the amount of swat choppers
 	[100817] = chopper_amount,
 	[100821] = chopper_amount,
 	[100822] = chopper_amount,
