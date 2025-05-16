@@ -17,6 +17,14 @@ local eclipse_dozers = {
 	elite_skull_bulldozer,
 }
 
+local swat_sniper_heli_amount = 2 + (is_pro_job and 1 or 0)
+
+local chopper_amount = {
+	values = {
+		amount = swat_sniper_heli_amount,
+	},
+}
+
 local bridge_spawn1 = {
 	values = {
 		interval = 10,
@@ -148,6 +156,13 @@ return {
 			{ id = 400025, delay = 60, delay_rand = 30 },
 		},
 	},
+	-- tweak the amount of swat/sniper choppers
+	[100427] = chopper_amount,
+	[100428] = chopper_amount,
+	[100429] = chopper_amount,
+	[100817] = chopper_amount,
+	[100821] = chopper_amount,
+	[100822] = chopper_amount,
 	-- disable dozer spawn once George the pilot gets Kauzo out
 	[100121] = {
 		func = function(self)
