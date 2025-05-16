@@ -3190,9 +3190,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	self.besiege.push_delay = {
-		diff_lerp(25, 20),
-		diff_lerp(20, 15),
-		diff_lerp(15, 10),
+		diff_lerp(20, 16),
+		diff_lerp(16, 12),
+		diff_lerp(12, 8),
 	}
 
 	-- GRENADES --
