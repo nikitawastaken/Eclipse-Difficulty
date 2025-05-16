@@ -280,7 +280,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_range = 150,
 		melee_force = 500,
 		range = { close = 500, optimal = 1000, far = 2000 },
-		melee_retry_delay = { 2, 3 },
 	})
 	damage_multiplier(presets.weapon.shield, 4 / 5)
 
@@ -380,7 +379,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_speed = 0.8,
 		melee_range = 175,
 		melee_force = 600,
-		melee_retry_delay = { 3, 4 },
 	})
 
 	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
@@ -457,11 +455,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	local bot_dmg_mul_tbl = { 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1, 1 }
+	local bot_dmg_mul = bot_dmg_mul_tbl[diff_i]
+
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1 },
 		focus_delay = 0,
 		melee_dmg = 24,
-		melee_retry_delay = { 2, 3 },
 	})
 
 	for _, v in pairs(presets.weapon.gang_member) do
