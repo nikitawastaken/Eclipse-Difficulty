@@ -1,43 +1,4 @@
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(self)
-	self.parts.wpn_fps_lmg_o_empty = {
-		a_obj = "a_body",
-		type = "bonus",
-		name_id = "bm_wp_lmg_o_empty",
-		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		internal_part = true,
-		stats = {
-			value = 5,
-		},
-		forbids = {},
-		stance_mod = {
-			wpn_fps_lmg_rpk = {
-				translation = Vector3(0.4, 0.2, -0.2),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_hk21 = {
-				translation = Vector3(0.5, 0.1, -0.3),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_m249 = {
-				translation = Vector3(0.5, 0.1, -0.3),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_mg42 = {
-				translation = Vector3(0.5, 0.3, -0.2),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_par = {
-				translation = Vector3(0.4, 0, -0.2),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_m60 = {
-				translation = Vector3(0.5, 0.2, -0.1),
-				rotation = Rotation(0, 0, -1),
-			},
-		},
-	}
-
 	local stat_blacklist = {
 		"foregrip",
 		"extra",
@@ -193,16 +154,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 			--Set stance_mods
 			self.parts[sight_id].stance_mod[weapon_id] = lmg_stance_mod_map[weapon_id]
-
-			--Add a default part that forbids sights
-			table.insert(self[weapon_id].uses_parts, "wpn_fps_lmg_o_empty")
-			table.insert(self[weapon_id].default_blueprint, "wpn_fps_lmg_o_empty")
 		end
 	end
 
 	for index, sight_id in ipairs(sight_table) do
-		table.insert(self.parts.wpn_fps_lmg_o_empty.forbids, sight_id)
-
 		--Add sight mounts and rails
 		self.wpn_fps_lmg_rpk.adds[sight_id] = { "wpn_fps_ak_extra_ris" }
 		--self.wpn_fps_lmg_m249.override[sight_id] = { parent = "upper_reciever" }
@@ -215,7 +170,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		--self.wpn_fps_lmg_m60.override[sight_id] = { forbids = { "wpn_fps_lmg_m60_sight_standard" }, parent = "upper_reciever" }
 
 		--Add suport for the AK scope mount
-		table.insert(self.parts.wpn_fps_lmg_o_empty.forbids, "wpn_fps_upg_o_ak_scopemount")
 		table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")
 		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount = {}
 		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override = {}
@@ -1846,21 +1800,9 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 		stance_mul = {
 			spread = {
 				standing = {
-					hipfire = 1.5,
-					crouching = 0.75,
-					steelsight = 0.75,
-				},
-				moving = {
-					hipfire = 2,
-					crouching = 1,
-					steelsight = 1.5,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.25,
-					crouching = 0.75,
-					steelsight = 0.75,
+					hipfire = 1,
+					crouching = 0.5,
+					steelsight = 1,
 				},
 				moving = {
 					hipfire = 1.5,
@@ -1868,9 +1810,46 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 					steelsight = 1,
 				},
 			},
+			recoil = {
+				standing = {
+					hipfire = 1,
+					crouching = 0.75,
+					steelsight = 1,
+				},
+				moving = {
+					hipfire = 1.25,
+					crouching = 1,
+					steelsight = 1,
+				},
+			},
 		},
 	}
-	self.parts.wpn_fps_upg_perk_gunner.forbids = { "wpn_fps_lmg_o_empty" }
+	self.parts.wpn_fps_upg_perk_gunner.stance_mod = {
+		wpn_fps_lmg_rpk = {
+			translation = Vector3(0.4, 0.2, -0.2),
+			rotation = Rotation(0, 0, -1)
+		},
+		wpn_fps_lmg_hk21 = {
+			translation = Vector3(0.5, 0.1, -0.3),
+			rotation = Rotation(0, 0, -1)
+		},
+		wpn_fps_lmg_m249 = {
+			translation = Vector3(0.5, 0.1, -0.3),
+			rotation = Rotation(0, 0, -1)
+		},
+		wpn_fps_lmg_mg42 = {
+			translation = Vector3(0.5, 0.3, -0.2),
+			rotation = Rotation(0, 0, -1)
+		},
+		wpn_fps_lmg_par = {
+			translation = Vector3(0.4, 0, -0.2),
+			rotation = Rotation(0, 0, -1)
+		},
+		wpn_fps_lmg_m60 = {
+			translation = Vector3(0.5, 0.2, -0.1),
+			rotation = Rotation(0, 0, -1)
+		},
+	}
 
 	local uses_parts = {
 		wpn_fps_upg_perk_speedloader = { category = { "assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg", "bow" } },

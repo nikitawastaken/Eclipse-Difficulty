@@ -463,7 +463,7 @@ function WeaponTweakData:_init_weapons()
                     local true_damage = weap_data.stats.damage * damage_modifier
 
                     local bolt_action_pickup_mul = 1
-                    bolt_action_pickup_mul = (true_damage / 900) * 3
+                    bolt_action_pickup_mul = (true_damage / 960) * 3
                     bolt_action_pickup_mul = bolt_action_pickup_mul * math.sqrt(480 / true_damage)
 
                     weap_data.pickup_mul = weap_data.pickup_mul or bolt_action_pickup_mul or 1
@@ -779,7 +779,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.total_damage = weap_data.total_damage * total_damage_mul
 			end
 
-			if weap_data.can_shoot_through_enemy and not (cat_map.snp or cat_map.dmr) then
+			if weap_data.can_shoot_through_wall and not cat_map.snp then
 				weap_data.total_damage = weap_data.total_damage / 2
 			end
 
@@ -788,14 +788,14 @@ function WeaponTweakData:_init_weapons()
 			end
 
 			--set pickup damage
-			weap_data.pickup_damage = 30 * (weap_data.pickup_mul or 1)
+			weap_data.pickup_damage = 36 * (weap_data.pickup_mul or 1)
 
 			if burst_only then
 				local total_damage_mul = 1 + (burst_count - 1) * 0.25
 				weap_data.pickup_damage = weap_data.pickup_damage * total_damage_mul
 			end
 
-			if weap_data.can_shoot_through_enemy and not (cat_map.snp or cat_map.dmr) then
+			if weap_data.can_shoot_through_wall and not cat_map.snp then
 				weap_data.pickup_damage = weap_data.pickup_damage / 2
 			end
 
@@ -809,7 +809,7 @@ function WeaponTweakData:_init_weapons()
 
 			if weap_data.AMMO_PICKUP and weap_data.AMMO_PICKUP[2] > 0 then
 				local pickup_dmg_max = weap_data.pickup_damage
-				local pickup_dmg_min = pickup_dmg_max * 2 / 3
+				local pickup_dmg_min = pickup_dmg_max / 2
 
 				weap_data.AMMO_PICKUP = { math.floor(pickup_dmg_min / weap_dmg * 100) / 100, math.floor(pickup_dmg_max / weap_dmg * 100) / 100 }
 			end
@@ -850,38 +850,38 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 				{ up = 0.3, down = 0.5, left = -0.8, right = 0.8 }
 			},
 			persist_pattern = {
-				{ up = 0.1, down = 0.1, left = 0.8, right = 0.8 },
-				{ up = 0.25, down = 0.4, left = 0.8, right = 0.8 },
-				{ up = 0.4, down = 0.4, left = 0.6, right = 0.6 },
-				{ up = 0.45, down = 0.5, left = 0.6, right = 0.6 },
-				{ up = 0.5, down = 0.55, left = 0.6, right = 0.6 },
-				{ up = 0.55, down = 0.6, left = 0.6, right = 0.6 },
-				{ up = 0.6, down = 0.65, left = 0.4, right = 0.4 },
-				{ up = 0.6, down = 0.7, left = 0.2, right = 0.3 },
-				{ up = 0.4, down = 0.4, left = -0.2, right = -0.3 },
-				{ up = 0.4, down = 0.4, left = -0.4, right = -0.8 },
-				{ up = 0.5, down = 0.5, left = -0.8, right = -1 },
-				{ up = 0.5, down = 0.55, left = -1, right = -1 },
-				{ up = 0.55, down = 0.65, left = -0.8, right = -1 },
-				{ up = 0.65, down = 0.65, left = -0.7, right = -0.7 },
-				{ up = 0.55, down = 0.55, left = -0.3, right = -0.2 },
-				{ up = 0.5, down = 0.6, left = 0.3, right = 0.4 },
-				{ up = 0.1, down = 0.1, left = -0.8, right = -0.8 },
-				{ up = 0.25, down = 0.4, left = -0.8, right = -0.8 },
-				{ up = 0.4, down = 0.4, left = -0.6, right = -0.6 },
-				{ up = 0.45, down = 0.5, left = -0.6, right = -0.6 },
-				{ up = 0.5, down = 0.55, left = -0.6, right = -0.6 },
-				{ up = 0.55, down = 0.6, left = -0.6, right = -0.6 },
-				{ up = 0.6, down = 0.65, left = -0.4, right = -0.4 },
-				{ up = 0.6, down = 0.7, left = 0.2, right = 0.3 },
-				{ up = 0.4, down = 0.4, left = 0.2, right = 0.3 },
-				{ up = 0.4, down = 0.4, left = 0.4, right = 0.8 },
-				{ up = 0.5, down = 0.5, left = 0.8, right = 1 },
-				{ up = 0.5, down = 0.55, left = 1, right = 1 },
-				{ up = 0.55, down = 0.65, left = 0.8, right = 1 },
-				{ up = 0.65, down = 0.65, left = 0.7, right = 0.7 },
-				{ up = 0.55, down = 0.55, left = 0.3, right = 0.2 },
-				{ up = 0.5, down = 0.6, left = -0.3, right = -0.4 },
+				{ up = 0.1, down = 0.1, left = 0.6, right = 0.6 },
+				{ up = 0.2, down = 0.3, left = 0.6, right = 0.6 },
+				{ up = 0.3, down = 0.3, left = 0.4, right = 0.4 },
+				{ up = 0.4, down = 0.4, left = 0.4, right = 0.4 },
+				{ up = 0.4, down = 0.4, left = 0.4, right = 0.4 },
+				{ up = 0.4, down = 0.5, left = 0.4, right = 0.4 },
+				{ up = 0.5, down = 0.6, left = 0.3, right = 0.3 },
+				{ up = 0.5, down = 0.6, left = 0.1, right = 0.2 },
+				{ up = 0.3, down = 0.3, left = -0.1, right = -0.2 },
+				{ up = 0.3, down = 0.3, left = -0.2, right = -0.6 },
+				{ up = 0.4, down = 0.4, left = -0.6, right = -0.8 },
+				{ up = 0.4, down = 0.5, left = -0.8, right = -0.8 },
+				{ up = 0.4, down = 0.6, left = -0.6, right = -0.8 },
+				{ up = 0.5, down = 0.6, left = -0.4, right = -0.6 },
+				{ up = 0.4, down = 0.4, left = -0.2, right = -0.1 },
+				{ up = 0.4, down = 0.5, left = 0.2, right = 0.3 },
+				{ up = 0.1, down = 0.1, left = -0.6, right = -0.6 },
+				{ up = 0.2, down = 0.3, left = -0.6, right = -0.6 },
+				{ up = 0.3, down = 0.3, left = -0.4, right = -0.4 },
+				{ up = 0.3, down = 0.4, left = -0.4, right = -0.4 },
+				{ up = 0.4, down = 0.4, left = -0.4, right = -0.4 },
+				{ up = 0.4, down = 0.5, left = -0.4, right = -0.4 },
+				{ up = 0.5, down = 0.5, left = -0.3, right = -0.3 },
+				{ up = 0.5, down = 0.6, left = 0.1, right = 0.2 },
+				{ up = 0.3, down = 0.3, left = 0.1, right = 0.2 },
+				{ up = 0.3, down = 0.3, left = 0.3, right = 0.6 },
+				{ up = 0.4, down = 0.4, left = 0.6, right = 0.8 },
+				{ up = 0.5, down = 0.5, left = 0.8, right = 0.8 },
+				{ up = 0.4, down = 0.5, left = 0.6, right = 0.8 },
+				{ up = 0.5, down = 0.5, left = 0.4, right = 0.4 },
+				{ up = 0.4, down = 0.4, left = 0.2, right = 0.1 },
+				{ up = 0.4, down = 0.5, left = -0.2, right = -0.3 },
 			}
 		},
 		lmg_left = {
@@ -889,38 +889,38 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 				{ up = 0.3, down = 0.5, left = -0.8, right = 0.8 }
 			},
 			persist_pattern = {
-				{ up = 0.1, down = 0.1, left = -0.8, right = -0.8 },
-				{ up = 0.25, down = 0.4, left = -0.8, right = -0.8 },
-				{ up = 0.4, down = 0.4, left = -0.6, right = -0.6 },
-				{ up = 0.45, down = 0.5, left = -0.6, right = -0.6 },
-				{ up = 0.5, down = 0.55, left = -0.6, right = -0.6 },
-				{ up = 0.55, down = 0.6, left = -0.6, right = -0.6 },
-				{ up = 0.6, down = 0.65, left = -0.4, right = -0.4 },
-				{ up = 0.6, down = 0.7, left = -0.2, right = -0.3 },
-				{ up = 0.4, down = 0.4, left = 0.2, right = 0.3 },
-				{ up = 0.4, down = 0.4, left = 0.4, right = 0.8 },
-				{ up = 0.5, down = 0.5, left = 0.8, right = 1 },
-				{ up = 0.5, down = 0.55, left = 1, right = 1 },
-				{ up = 0.55, down = 0.65, left = 0.8, right = 1 },
-				{ up = 0.65, down = 0.65, left = 0.7, right = 0.7 },
-				{ up = 0.55, down = 0.55, left = 0.3, right = 0.2 },
-				{ up = 0.5, down = 0.6, left = -0.3, right = -0.4 },
-				{ up = 0.1, down = 0.1, left = 0.8, right = 0.8 },
-				{ up = 0.25, down = 0.4, left = 0.8, right = 0.8 },
-				{ up = 0.4, down = 0.4, left = 0.6, right = 0.6 },
-				{ up = 0.45, down = 0.5, left = 0.6, right = 0.6 },
-				{ up = 0.5, down = 0.55, left = 0.6, right = 0.6 },
-				{ up = 0.55, down = 0.6, left = 0.6, right = 0.6 },
-				{ up = 0.6, down = 0.65, left = 0.4, right = 0.4 },
-				{ up = 0.6, down = 0.7, left = -0.2, right = -0.3 },
-				{ up = 0.4, down = 0.4, left = -0.2, right = -0.3 },
-				{ up = 0.4, down = 0.4, left = -0.4, right = -0.8 },
-				{ up = 0.5, down = 0.5, left = -0.8, right = -1 },
-				{ up = 0.5, down = 0.55, left = -1, right = -1 },
-				{ up = 0.55, down = 0.65, left = -0.8, right = -1 },
-				{ up = 0.65, down = 0.65, left = -0.7, right = -0.7 },
-				{ up = 0.55, down = 0.55, left = -0.3, right = -0.2 },
-				{ up = 0.5, down = 0.6, left = 0.3, right = 0.4 },
+				{ up = 0.1, down = 0.1, left = -0.6, right = -0.6 },
+				{ up = 0.2, down = 0.3, left = -0.6, right = -0.6 },
+				{ up = 0.3, down = 0.3, left = -0.4, right = -0.4 },
+				{ up = 0.4, down = 0.4, left = -0.4, right = -0.4 },
+				{ up = 0.4, down = 0.4, left = -0.4, right = -0.4 },
+				{ up = 0.4, down = 0.5, left = -0.4, right = -0.4 },
+				{ up = 0.5, down = 0.6, left = -0.3, right = -0.3 },
+				{ up = 0.5, down = 0.6, left = 0.1, right = 0.2 },
+				{ up = 0.3, down = 0.3, left = 0.1, right = 0.2 },
+				{ up = 0.3, down = 0.3, left = 0.2, right = 0.6 },
+				{ up = 0.4, down = 0.4, left = 0.6, right = 0.8 },
+				{ up = 0.4, down = 0.5, left = 0.8, right = 0.8 },
+				{ up = 0.4, down = 0.6, left = 0.6, right = 0.8 },
+				{ up = 0.5, down = 0.6, left = 0.4, right = 0.6 },
+				{ up = 0.4, down = 0.4, left = 0.2, right = 0.1 },
+				{ up = 0.4, down = 0.5, left = -0.2, right = -0.3 },
+				{ up = 0.1, down = 0.1, left = 0.6, right = 0.6 },
+				{ up = 0.2, down = 0.3, left = 0.6, right = 0.6 },
+				{ up = 0.3, down = 0.3, left = 0.4, right = 0.4 },
+				{ up = 0.3, down = 0.4, left = 0.4, right = 0.4 },
+				{ up = 0.4, down = 0.4, left = 0.4, right = 0.4 },
+				{ up = 0.4, down = 0.5, left = 0.4, right = 0.4 },
+				{ up = 0.5, down = 0.5, left = 0.3, right = 0.3 },
+				{ up = 0.5, down = 0.6, left = -0.1, right = -0.2 },
+				{ up = 0.3, down = 0.3, left = -0.1, right = -0.2 },
+				{ up = 0.3, down = 0.3, left = -0.3, right = -0.6 },
+				{ up = 0.4, down = 0.4, left = -0.6, right = -0.8 },
+				{ up = 0.5, down = 0.5, left = -0.8, right = -0.8 },
+				{ up = 0.4, down = 0.5, left = -0.6, right = -0.8 },
+				{ up = 0.5, down = 0.5, left = -0.4, right = -0.4 },
+				{ up = 0.4, down = 0.4, left = -0.2, right = -0.1 },
+				{ up = 0.4, down = 0.5, left = 0.2, right = 0.3 },
 			}
 		},
 		mini = {
@@ -1626,7 +1626,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.concealment = 27
 	self.deagle.fire_mode_data.fire_rate = 60 / 300
 	self.deagle.steelsight_speed_multiplier = steelsight_times.pistol / steelsight_times.pistol_heavy
-
+	
 	--Peacemaker
 	self.peacemaker.CLIP_AMMO_MAX = 6
 	self.peacemaker.stats.damage = 200
