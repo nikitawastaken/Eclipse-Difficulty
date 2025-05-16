@@ -331,7 +331,6 @@ function WeaponTweakData:_init_weapons()
 				weap_data.bipod_camera_spin_limit = 40
 				weap_data.bipod_camera_pitch_limit = 15
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.85
-				weap_data.pickup_mul = weap_data.pickup_mul or 1.5
 				weap_data.steelsight_move_speed_mul = 0.4
 
 				if weap_data.no_steelsight then
