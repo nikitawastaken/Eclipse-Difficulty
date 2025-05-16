@@ -4,7 +4,7 @@ local disabled = {
 		enabled = false,
 	},
 }
-local exclude_shields_dozers = {
+local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
 }
 local entrance_spawn = {
@@ -25,7 +25,7 @@ return {
 			{
 				name = "santa",
 				force = 2,
-				position = Vector3(-367, -278, -98),
+				position = Vector3(-365, -275, -100),
 			},
 		},
 	},
@@ -46,20 +46,6 @@ return {
 			},
 		},
 	},
-	[101334] = { -- skylight has been blown up
-		reinforce = {
-			{
-				name = "roof1",
-				force = 2,
-				position = Vector3(-600, -600, 1050),
-			},
-			{
-				name = "roof2",
-				force = 2,
-				position = Vector3(600, 600, 1050),
-			},
-		},
-	},
 	-- Rework preferreds, separate street spawns from roof spawns
 	[100129] = { -- preferred
 		on_executed = {
@@ -67,13 +53,15 @@ return {
 			{ id = 400001, delay = 0 }, -- custom street preferreds
 		},
 	},
+	-- disable harassers, they make an already annoying objective even more annoying
+	[105852] = disabled,
 	-- e_nl_up_1m_down_5m_swing
-	[103784] = exclude_shields_dozers,
-	[103785] = exclude_shields_dozers,
-	[103786] = exclude_shields_dozers,
-	[103790] = exclude_shields_dozers,
-	[103791] = exclude_shields_dozers,
-	[103792] = exclude_shields_dozers,
+	[103784] = exclude_cop_agents_shields_dozers,
+	[103785] = exclude_cop_agents_shields_dozers,
+	[103786] = exclude_cop_agents_shields_dozers,
+	[103790] = exclude_cop_agents_shields_dozers,
+	[103791] = exclude_cop_agents_shields_dozers,
+	[103792] = exclude_cop_agents_shields_dozers,
 	-- Spawn group delays
 	-- This heist is quite compact, so having 0s (5s) spawn groups is a bit overkill, especially when you reach the roof, things get pretty messy up there.
 	[100131] = entrance_spawn,
