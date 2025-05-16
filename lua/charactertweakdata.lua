@@ -455,12 +455,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	local bot_dmg_mul_tbl = { 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1, 1 }
+	local bot_dmg_mul = bot_dmg_mul_tbl[diff_i]
+
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1 },
 		focus_delay = 0,
-		melee_speed = nil_value,
-		melee_dmg = nil_value,
-		melee_retry_delay = nil_value,
+		melee_dmg = 24,
 	})
 
 	for _, v in pairs(presets.weapon.gang_member) do
