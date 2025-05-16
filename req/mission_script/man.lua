@@ -118,7 +118,7 @@ local window_spawn = {
 }
 local new_cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 	groups = preferred.only_cloakers,
 }
