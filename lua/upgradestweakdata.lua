@@ -12,15 +12,61 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	-- 100 skill points
 	self.values.rep_upgrades.values = { 0 }
 
-	self.values.player.body_armor = {
-		armor = { 0, 3, 4, 5, 10, 14, 18 },
-		movement = { 1, 0.925, 0.85, 0.775, 0.7, 0.625, 0.55 },
-		concealment = { 30, 26, 23, 21, 18, 12, 1 },
-		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
-		damage_shake = { 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4 },
-		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
-		regen_time = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 }
+	-- Movement speed nerfs
+	self.values.player.body_armor.movement = {
+		1,
+		0.925,
+		0.85,
+		0.775,
+		0.7,
+		0.625,
+		0.55,
 	}
+	self.values.player.body_armor.stamina = {
+		1,
+		0.925,
+		0.85,
+		0.775,
+		0.7,
+		0.625,
+		0.55,
+	}
+
+	-- steadiness
+	self.values.player.body_armor.damage_shake = {
+		1,
+		0.9,
+		0.8,
+		0.7,
+		0.6,
+		0.5,
+		0.4,
+	}
+
+	-- dodge
+	self.values.player.body_armor.dodge = {
+		0.1,
+		0.05,
+		0,
+		-0.05,
+		-0.2,
+		-0.25,
+		-0.55,
+	}
+
+	-- regen timer
+	self.values.player.body_armor.regen_timer = {
+		3,
+		3.25,
+		3.5,
+		3.75,
+		4,
+		4.25,
+		4.5,
+	}
+
+	-- ictv nerf
+	self.values.player.body_armor.armor[7] = 18
 
 	-- make sna less cancer
 	self.values.player.shield_knock_bullet.chance = 0.7
