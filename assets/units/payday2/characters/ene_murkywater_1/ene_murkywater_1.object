@@ -369,9 +369,9 @@
 				</object>
 			</lod_object>
 	
-			<object name="g_glass_a" 	enabled="false" />	
+			<object name="g_goggles_glass_a" 	enabled="false" />	
 
-			<object name="g_glass_b" 	enabled="false" />	
+			<object name="g_goggles_glass_b" 	enabled="false" />	
 
 			<object name="g_helmet_lod5" 	enabled="false" />	
 			
