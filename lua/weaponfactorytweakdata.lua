@@ -1827,27 +1827,27 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 	self.parts.wpn_fps_upg_perk_gunner.stance_mod = {
 		wpn_fps_lmg_rpk = {
 			translation = Vector3(0.4, 0.2, -0.2),
-			rotation = Rotation(0, 0, -1)
+			rotation = Rotation(0, 0, -1),
 		},
 		wpn_fps_lmg_hk21 = {
 			translation = Vector3(0.5, 0.1, -0.3),
-			rotation = Rotation(0, 0, -1)
+			rotation = Rotation(0, 0, -1),
 		},
 		wpn_fps_lmg_m249 = {
 			translation = Vector3(0.5, 0.1, -0.3),
-			rotation = Rotation(0, 0, -1)
+			rotation = Rotation(0, 0, -1),
 		},
 		wpn_fps_lmg_mg42 = {
 			translation = Vector3(0.5, 0.3, -0.2),
-			rotation = Rotation(0, 0, -1)
+			rotation = Rotation(0, 0, -1),
 		},
 		wpn_fps_lmg_par = {
 			translation = Vector3(0.4, 0, -0.2),
-			rotation = Rotation(0, 0, -1)
+			rotation = Rotation(0, 0, -1),
 		},
 		wpn_fps_lmg_m60 = {
 			translation = Vector3(0.5, 0.2, -0.1),
-			rotation = Rotation(0, 0, -1)
+			rotation = Rotation(0, 0, -1),
 		},
 	}
 
