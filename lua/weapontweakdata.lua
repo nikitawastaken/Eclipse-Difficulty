@@ -185,7 +185,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.suppression = (cat_map.revolver or cat_map.handcannon) and 9 or 16
 				weap_data.stats.alert_size = (cat_map.revolver or cat_map.handcannon) and 15 or 12
 				weap_data.steelsight_time = steelsight_times.pistol
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.5
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not (cat_map.revolver or cat_map.handcannon) and 1.25 or 1
 				weap_data.swap_speed_multiplier = weap_data.swap_speed_multiplier or 1.5
 				weap_data.steelsight_move_speed_mul = 0.8
 
@@ -257,7 +257,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.suppression = 16
 				weap_data.stats.alert_size = 13
 				weap_data.steelsight_time = steelsight_times.smg
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.2
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
 				weap_data.steelsight_move_speed_mul = 0.7
 
 				weap_data.spread_multiplier = {
@@ -290,8 +290,8 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / 8.6)
-				weap_data.pickup_mul = weap_data.pickup_mul or 0.14
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / 9)
+				weap_data.pickup_mul = weap_data.pickup_mul or 0.15
 				weap_data.damage_near = 2000
 				weap_data.damage_far = 3000
 				weap_data.rays = 8
@@ -720,7 +720,7 @@ function WeaponTweakData:_init_weapons()
 				end
 			end
 
-			local base_spread = 3
+			local base_spread = weap_data.rays and 4 or 3
 
 			--set spread values
 			if weap_data.spread then
