@@ -1,5 +1,4 @@
 local preferred = Eclipse.preferred
-
 local van_spawn = {
 	values = {
 		interval = 10,

@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local sniper_trigger_times = {
 	values = {
 		trigger_times = 0,
@@ -18,37 +23,37 @@ local garage_spawn = {
 }
 local pent_balcony_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn1 = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local garage_spawn2 = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn2 = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields,
 }
 local lobby_balcony_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -58,19 +63,18 @@ local vent_spawn = {
 	},
 	groups = preferred.only_cloakers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 120,
+	},
+}
 return {
-	[101607] = {
+	[101607] = { -- Yufu is dead
 		ponr = {
 			length = 180,
 			player_mul = { 1.33, 1.15, 1, 0.85 },
 		},
 	},
-	--Fixed snipers being able to spawn only once
-	[100368] = sniper_trigger_times,
-	[100369] = sniper_trigger_times,
-	[100370] = sniper_trigger_times,
-	[100371] = sniper_trigger_times,
-	[100372] = sniper_trigger_times,
 	[103595] = {
 		reinforce = {
 			{
@@ -90,10 +94,27 @@ return {
 			},
 		},
 	},
+	--Fixed snipers being able to spawn only once
+	[100368] = sniper_trigger_times,
+	[100369] = sniper_trigger_times,
+	[100370] = sniper_trigger_times,
+	[100371] = sniper_trigger_times,
+	[100372] = sniper_trigger_times,
 	-- Do not disable certain preferreds when players are on the roof
 	[102132] = {
 		on_executed = {
 			{ id = 102497, remove = true }, -- spawns outside pent
+		},
+	},
+	-- Disable a bunch diff scaling elements
+	[102486] = { -- players upstairs, decrease diff temporarily
+		values = {
+			difficulty = 0.35,
+		},
+	},
+	[102490] = { -- Yufu defeated, max diff
+		values = {
+			difficulty = 1,
 		},
 	},
 	-- Spawn group delays
@@ -115,4 +136,13 @@ return {
 	[103357] = lobby_balcony_spawn,
 	[103381] = lobby_balcony_spawn,
 	[100007] = vent_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
+	[101869] = cloaker_spawn,
+	[104393] = cloaker_spawn,
 }
