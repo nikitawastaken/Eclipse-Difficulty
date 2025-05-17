@@ -39,7 +39,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			local is_sight = part.type and part.type == "sight"
 			local is_magazine = part.type and part.type == "magazine"
 			local is_optic = is_sight and part.perks and table.contains(part.perks, "scope")
-			local zoom_level = part.stats.zoom 
+			local zoom_level = part.stats.zoom
 			local is_scope = is_optic and zoom_level and zoom_level > 3
 			local is_silencer = part.perks and table.contains(part.perks, "silencer")
 
@@ -69,7 +69,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 					part.stats.spread = zoom_to_spread or 1
 					part.stats.concealment = zoom_to_concealment or -2
 				end
-				
+
 				local zoom_to_steelsight_speed = math.clamp(1 - (zoom_level and (zoom_level * 0.2) or 0), 0.5, 1)
 				part.custom_stats.steelsight_speed_multiplier = zoom_to_steelsight_speed or 1
 			end

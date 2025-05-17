@@ -17,14 +17,14 @@ end
 
 -- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
 function PlayerStandard:full_steelsight()
-	local weap_base = self._equipped_unit:base()	
+	local weap_base = self._equipped_unit:base()
 	local is_bow = table.contains(weap_base:weapon_tweak_data().categories, "bow")
 	local is_turret = managers.player:current_state() and managers.player:current_state() == "player_turret"
 
 	if self._shooting and self._state_data.in_steelsight and not weap_base.akimbo and not is_bow and not is_turret then
 		self._ext_camera:play_redirect(self:get_animation("idle"))
 	end
-	
+
 	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
 end
 
@@ -32,7 +32,7 @@ Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
 	if self:full_steelsight() and not self._state_data.in_full_steelsight then
 		self._state_data.in_full_steelsight = true
 	end
-	
+
 	if self._state_data.in_full_steelsight and not self:in_steelsight() then
 		self._state_data.in_full_steelsight = nil
 	end
@@ -43,7 +43,7 @@ function PlayerStandard:_stance_entered(unequipped)
 	local head_stance = self._state_data.ducking and tweak_data.player.stances.default.crouched.head or stance_standard.head
 	local stance_id = nil
 	local stance_mod = {
-		translation = Vector3(0, 0, 0)
+		translation = Vector3(0, 0, 0),
 	}
 
 	if not unequipped then
@@ -57,12 +57,13 @@ function PlayerStandard:_stance_entered(unequipped)
 	local stances = nil
 	stances = (self:_is_meleeing() or self:_is_throwing_projectile()) and tweak_data.player.stances.default or tweak_data.player.stances[stance_id] or tweak_data.player.stances.default
 	local misc_attribs = stances.standard
-	misc_attribs = (not self:_is_using_bipod() or self:_is_throwing_projectile() or stances.bipod) and (self._state_data.in_steelsight and stances.steelsight or self._state_data.ducking and stances.crouched or stances.standard)
+	misc_attribs = (not self:_is_using_bipod() or self:_is_throwing_projectile() or stances.bipod)
+		and (self._state_data.in_steelsight and stances.steelsight or self._state_data.ducking and stances.crouched or stances.standard)
 	local head_duration = tweak_data.player.TRANSITION_DURATION
 	local head_duration_multiplier = 1
 	local duration_multiplier = not self._state_data.in_full_steelsight and self._state_data.in_steelsight and 1 / self._equipped_unit:base():enter_steelsight_speed_multiplier() or 1 -- Make sure the ADS transition is over
 	local duration = head_duration + (self._equipped_unit:base():transition_duration() or 0)
-	
+
 	if self._instant_stance_transition then
 		self._instant_stance_transition = nil
 		duration_multiplier = 0
@@ -70,7 +71,18 @@ function PlayerStandard:_stance_entered(unequipped)
 
 	local new_fov = self:get_zoom_fov(misc_attribs) + 0
 
-	self._camera_unit:base():clbk_stance_entered(misc_attribs.shoulders, head_stance, misc_attribs.vel_overshot, new_fov, misc_attribs.shakers, stance_mod, duration_multiplier, duration, head_duration_multiplier, head_duration)
+	self._camera_unit:base():clbk_stance_entered(
+		misc_attribs.shoulders,
+		head_stance,
+		misc_attribs.vel_overshot,
+		new_fov,
+		misc_attribs.shakers,
+		stance_mod,
+		duration_multiplier,
+		duration,
+		head_duration_multiplier,
+		head_duration
+	)
 	managers.menu:set_mouse_sensitivity(self:in_steelsight())
 end
 
@@ -78,7 +90,7 @@ function PlayerStandard:get_movement_state()
 	if self._state_data.in_steelsight and self._state_data.in_full_steelsight then
 		return self._moving and "moving_steelsight" or "steelsight"
 	end
-	
+
 	if self._state_data.ducking then
 		return self._moving and "moving_crouching" or "crouching"
 	else
