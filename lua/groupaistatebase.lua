@@ -157,7 +157,7 @@ function GroupAIStateBase:_update_difficulty_value()
 		if self._difficulty_value >= self._target_difficulty then
 			self._target_difficulty = nil
 		else
-			self._next_difficulty_step_t = self._t + 15
+			self._next_difficulty_step_t = self._t + (tweak_data.group_ai.difficulty_step_time or 15)
 		end
 		self:_calculate_difficulty_ratio()
 	end
