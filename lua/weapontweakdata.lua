@@ -49,15 +49,15 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 end)
 
 local steelsight_times = {
-	default = 0.3,
-	pistol = 0.2,
-	pistol_heavy = 0.25,
-	smg = 0.25,
-	lmg_light = 0.4,
-	dmr = 0.4,
-	snp = 0.4,
-	snp_heavy = 0.5,
-	lmg = 0.5
+	default = 0.25,
+	pistol = 0.15,
+	pistol_heavy = 0.2,
+	smg = 0.2,
+	lmg_light = 0.3,
+	dmr = 0.3,
+	snp = 0.3,
+	snp_heavy = 0.4,
+	lmg = 0.4,
 }
 
 function WeaponTweakData:_init_weapons()

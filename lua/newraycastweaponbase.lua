@@ -183,7 +183,7 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	if user_unit then
 		is_moving = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state._moving
 		is_crouching = alive(user_unit) and user_unit:movement() and user_unit:movement():crouching()
-		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:in_steelsight()
+		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
 	end
 
 	local weapon_tweak = self:weapon_tweak_data()
@@ -287,7 +287,7 @@ function NewRaycastWeaponBase:spread_multiplier()
 	if user_unit then
 		is_moving = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state._moving
 		is_crouching = alive(user_unit) and user_unit:movement() and user_unit:movement():crouching()
-		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:in_steelsight()
+		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
 	end
 
 	local weapon_tweak = self:weapon_tweak_data()
@@ -489,11 +489,11 @@ function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 
 	local pm = managers.player
 
-	if current_state:in_steelsight() and self:is_single_shot() then
+	if current_state:full_steelsight() and self:is_single_shot() then
 		mul = mul + 1 - pm:upgrade_value("player", "single_shot_accuracy_inc", 1)
 	end
 
-	if current_state:in_steelsight() then
+	if current_state:full_steelsight() then
 		for _, category in ipairs(self:categories()) do
 			mul = mul + 1 - managers.player:upgrade_value(category, "steelsight_accuracy_inc", 1)
 		end
