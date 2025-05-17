@@ -99,9 +99,6 @@ return {
 	[101186] = { -- saved the crew
 		difficulty = 0.66,
 	},
-	[100877] = { -- saved the captain
-		difficulty = 1,
-	},
 	-- make Snipers respawn and re-enable unused ones
 	[100520] = unused_sniper_trigger_times,
 	[100525] = sniper_trigger_times,
@@ -143,8 +140,9 @@ return {
 	},
 	-- "captain_reached_boat"
 	[100877] = {
+		difficulty = 1,
 		on_executed = {
-			{ id = 100612, delay = 5 },
+			{ id = 100612, delay = 10, delay_rand = 20 },
 		},
 	},
 	-- tweak choppers amount
