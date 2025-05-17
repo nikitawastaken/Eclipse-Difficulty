@@ -3115,15 +3115,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local is_small_urban = self._mission_preset and self._mission_preset == "small_urban"
 	local is_remote = self._mission_preset and self._mission_preset == "remote"
 	local is_skyscraper = self._mission_preset and self._mission_preset == "skyscraper"
-	
+
 	-- Assault Data
 	-- AI Tickrate
 	self.ai_tickrate = 1 / (is_pro_job and 90 or 60)
-	
+
 	--In-heist difficulty scaling
 	self.difficulty_curve_points = { 0.5 }
 	self.difficulty_step_time = 15
-	
+
 	-- BESIEGE --
 
 	-- PHASES --
