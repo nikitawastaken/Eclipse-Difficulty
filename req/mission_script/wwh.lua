@@ -35,7 +35,7 @@ local unused_sniper_trigger_times = {
 		enabled = true,
 	},
 }
-local flank_spawn = {
+local roof_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -81,7 +81,7 @@ return {
 	},
 	[100810] = { -- Gradually increase difficulty
 		values = {
-			difficulty = 0.25,
+			difficulty = 0.33,
 		},
 		reinforce = { -- Add some reinforce to make up for the slower spawn groups and lower diff
 			{
@@ -94,14 +94,12 @@ return {
 				force = 2,
 				position = Vector3(6700, 600, 1650),
 			},
-			{
-				name = "gate",
-				force = 3,
-				position = Vector3(1600, 3750, 950),
-			},
 		},
 	},
-	[101313] = {
+	[101186] = { -- saved the crew
+		difficulty = 0.66,
+	},
+	[100877] = { -- saved the captain
 		difficulty = 1,
 	},
 	-- make Snipers respawn and re-enable unused ones
@@ -111,7 +109,7 @@ return {
 	[100534] = sniper_trigger_times,
 	[100540] = unused_sniper_trigger_times,
 	[100545] = unused_sniper_trigger_times,
-	[100549] = unused_sniper_trigger_times,
+	--[100549] = unused_sniper_trigger_times,
 	[100553] = sniper_trigger_times,
 	[100557] = unused_sniper_trigger_times,
 	-- tweak the ambush enemy script
@@ -164,9 +162,9 @@ return {
 	[100615] = chopper_trigger_times,
 	[100616] = chopper_trigger_times,
 	-- slow down a few spawnpoints
-	[100817] = flank_spawn,
-	[101024] = flank_spawn,
-	[101029] = flank_spawn,
+	[100817] = roof_spawn,
+	[101024] = roof_spawn,
+	[101029] = roof_spawn,
 	[100605] = window_spawn,
 	[100177] = boat_spawn,
 	[100737] = boat_spawn,
