@@ -130,19 +130,6 @@ return {
 			ignore_disabled = false,
 		},
 	},
-	-- make 2 events happen at the start of the assault on Eclipse
-	[102085] = {
-		values = {
-			amount = swat_vans_and_events,
-			ignore_disabled = false,
-		},
-	},
-	[101685] = {
-		values = {
-			amount = swat_vans_and_events,
-			ignore_disabled = false,
-		},
-	},
 	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
 	[100714] = {
 		on_executed = {
