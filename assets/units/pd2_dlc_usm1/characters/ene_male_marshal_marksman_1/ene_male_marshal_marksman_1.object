@@ -287,29 +287,41 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_glasses">
-				<object name="g_glasses" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_shades">
+				<object name="g_shades" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_equipment_shield" max_distance="1000" />
 					<material materials="mtr_equipment_shield_lod_1" max_distance="1500" />
 					<material materials="mtr_equipment_shield_lod_2" />
 				</object>
-				<object name="g_glasses_lod1" 	enabled="false" lod="1" >
+				<object name="g_shades_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_equipment_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_equipment_shield_lod_2" />
 				</object>
 			</lod_object>
 			
-			<lod_object name="lod_goggles">
-				<object name="g_goggles" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_goggles_a">
+				<object name="g_goggles_a" 			enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_head" max_distance="1000" />
 					<material materials="mtr_head_lod_1" max_distance="1500" />
 					<material materials="mtr_head_lod_2" />
 				</object>
-				<object name="g_goggles_lod1" 	enabled="false" lod="1" >
+				<object name="g_goggles_a_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_head_lod_2" />
 				</object>
-			</lod_object>
+			</lod_object>		
+
+			<lod_object name="lod_goggles_b">
+				<object name="g_goggles_b" 			enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+				<object name="g_goggles_b_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+			</lod_object>	
 			
 			<lod_object name="lod_gloves">
 				<object name="g_gloves" 		enabled="true"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -467,13 +479,14 @@
 				</object>
 			</lod_object>
 			
-			<object name="g_glass" 			enabled="false" />
+			<object name="g_goggles_glass_a" 		enabled="false" />
+			<object name="g_goggles_glass_b" 		enabled="false" />
+
+			<object name="g_shades_glass" 			enabled="false" />
 			
-			<object name="g_glasses_glass" 	enabled="false" />
+			<object name="g_helmet_lod7" 			enabled="false" />
 			
-			<object name="g_helmet_lod7" 	enabled="false" />
-			
-			<object name="s_body" 	enabled="true" shadow_caster="true" />			
+			<object name="s_body" 					enabled="true" shadow_caster="true" />			
 		</graphic_group>		
 	</graphics>
 	

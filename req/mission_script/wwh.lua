@@ -64,7 +64,7 @@ local filter_disable = {
 }
 local chopper_respawn = {
 	on_executed = {
-		{ id = 100664, delay = 150, delay_rand = 30 },
+		{ id = 100664, delay = 180, delay_rand = 60 },
 	},
 }
 local chopper_trigger_times = {

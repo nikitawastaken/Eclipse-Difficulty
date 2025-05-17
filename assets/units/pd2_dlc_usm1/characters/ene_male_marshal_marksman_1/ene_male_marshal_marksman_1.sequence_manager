@@ -3,7 +3,7 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_glasses		value="0" />
+			<has_shades		value="0" />
 			<has_goggles		value="0" />
 			<has_headset		value="0" />
 			<has_torch			value="0" />
@@ -11,12 +11,12 @@
 			<uses_torch			value="0" />
 		</variables>
 
-		<filter name="'check_no_glasses'">
-			<check value="vars.has_glasses == 0" />
+		<filter name="'check_no_shades'">
+			<check value="vars.has_shades == 0" />
 		</filter>
 
-		<filter name="'check_glasses'">
-			<check value="vars.has_glasses == 1" />
+		<filter name="'check_shades'">
+			<check value="vars.has_shades == 1" />
 		</filter>
 
 		<filter name="'check_no_goggles'">
@@ -100,7 +100,7 @@
 			<decal_mesh 		enabled="false" name="'dm_helmet'"/>
 			
 			<run_sequence 		name="'random_body'"/>
-			<run_sequence 		name="'head_glasses'"/>
+			<run_sequence 		name="'head_shades'"/>
 		</sequence>
 
 		<sequence editable_state="true" name="'marshal_marksman_merc_1'" once="true" triggable="true">
@@ -226,25 +226,35 @@
 		<sequence editable_state="true" name="'head_gadget_none'" once="true" triggable="true" />
 		
 		<sequence editable_state="true" name="'head_gadget_base'" once="true" triggable="true">
-			<run_sequence 		name="'head_'..pick('glasses','glasses','goggles')"/>
+			<run_sequence 		name="'head_'..pick('shades','shades','goggles')"/>
 		</sequence>
 				
-		<sequence editable_state="true" name="'head_glasses'" once="true" triggable="true">
-			<set_variables 		has_glasses="1" />
+		<sequence editable_state="true" name="'head_shades'" once="true" triggable="true">
+			<set_variables 		has_shades="1" />
 			
-			<object 			enabled="true" name="'g_glasses_glass'" />	
+			<object 			enabled="true" name="'g_shades_glass'" />	
 			
-			<object 			enabled="true" name="'g_glasses'" />
-			<object 			enabled="true" name="'g_glasses_lod1'" />			
+			<object 			enabled="true" name="'g_shades'" />
+			<object 			enabled="true" name="'g_shades_lod1'" />			
 		</sequence>
 
 		<sequence editable_state="true" name="'head_goggles'" once="true" triggable="true">
-			<set_variables 		has_goggles="1" />
-			
-			<object 			enabled="true" name="'g_glass'" />	
-			
-			<object 			enabled="true" name="'g_goggles'" />
-			<object 			enabled="true" name="'g_goggles_lod1'" />			
+			<set_variables 		has_goggles="1" />		
+			<run_sequence 		name="'goggles_head_'..pick('a','a','b')" />	
+		</sequence>
+
+		<sequence editable_state="true" name="'goggles_head_a'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_goggles_glass_a'" />
+
+			<object 			enabled="true" name="'g_goggles_a'" />
+			<object 			enabled="true" name="'g_goggles_a_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'goggles_head_b'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_goggles_glass_b'" />
+
+			<object 			enabled="true" name="'g_goggles_b'" />
+			<object 			enabled="true" name="'g_goggles_b_lod1'" />
 		</sequence>
 	<!--HEADSET SEQUENCES-->
 		<sequence editable_state="true" name="'random_headset'" triggable="true">
