@@ -199,14 +199,14 @@ NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade", "eclipse_on_trade_
 		return
 	end
 
-	local is_custody_trade = params.type == "custody"
+	local is_custody_trade = params.is_custody_trade
 	unit:brain():on_trade(params.position, params.rotation, true, is_custody_trade)
 	NetworkHelper:SendToPeers(
 		"Eclipse_HuskCopBrain:on_trade2",
 		NetworkHelper:encode({
 			position = params.position,
 			rotation = params.rotation,
-			type = params.type,
+			is_custody_trade = is_custody_trade,
 		})
 	)
 end)
@@ -222,7 +222,7 @@ NetworkHelper:AddReceiveHook("Eclipse_HuskCopBrain:on_trade2", "eclipse_on_trade
 			end
 		end
 		local params = NetworkHelper:decode(data)
-		local is_custody_trade = params.type == "custody"
+		local is_custody_trade = params.is_custody_trade
 		managers.trade:on_hostage_traded(params.position, params.rotation, is_custody_trade)
 	end
 end)

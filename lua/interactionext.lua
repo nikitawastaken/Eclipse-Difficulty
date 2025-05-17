@@ -118,7 +118,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					type = "custody",
+					is_custody_trade = true,
 				})
 			)
 		else
@@ -127,7 +127,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					type = "custody",
+					is_custody_trade = true,
 				})
 			)
 		end
@@ -147,7 +147,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					type = "resource",
+					is_custody_trade = false,
 				})
 			)
 		else
@@ -156,7 +156,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 				NetworkHelper:encode({
 					position = player:position(),
 					rotation = player:rotation(),
-					type = "resource",
+					is_custody_trade = false,
 				})
 			)
 		end
