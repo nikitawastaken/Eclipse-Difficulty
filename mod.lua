@@ -100,6 +100,7 @@ if not Eclipse then
 
 	-- Setup networking
 	Eclipse:require("networking")
+	Eclipse:require("network_hooks")
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
