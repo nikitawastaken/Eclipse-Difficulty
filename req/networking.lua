@@ -128,7 +128,7 @@ function NetworkHelper:decode(data)
 end
 
 function NetworkHelper:IsChunk(hook_id, data)
-	return Eclipse.network_data[hook_id] or data:find("^(%%begin%%)") or data:find("(%%end%%)$") and true
+	return Eclipse.network_data[hook_id] or data:find("^(%%chunk%%)") or data:find("^(%%begin%%)") or data:find("^(%%end%%)")
 end
 
 function NetworkHelper:ReceiveChunks(hook_id, data)
