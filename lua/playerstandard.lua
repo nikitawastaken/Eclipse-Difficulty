@@ -20,7 +20,7 @@ function PlayerStandard:full_steelsight()
 	local weap_base = self._equipped_unit:base()
 	local is_bow = table.contains(weap_base:weapon_tweak_data().categories, "bow")
 	local is_turret = managers.player:current_state() and managers.player:current_state() == "player_turret"
-	
+
 	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
 end
 
