@@ -20,11 +20,7 @@ function PlayerStandard:full_steelsight()
 	local weap_base = self._equipped_unit:base()
 	local is_bow = table.contains(weap_base:weapon_tweak_data().categories, "bow")
 	local is_turret = managers.player:current_state() and managers.player:current_state() == "player_turret"
-
-	if self._shooting and self._state_data.in_steelsight and not weap_base.akimbo and not is_bow and not is_turret then
-		self._ext_camera:play_redirect(self:get_animation("idle"))
-	end
-
+	
 	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
 end
 
