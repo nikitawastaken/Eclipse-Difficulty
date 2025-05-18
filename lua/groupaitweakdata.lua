@@ -1926,10 +1926,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				freq_by_diff = { 
-					difficulty_index / 45, 
-					difficulty_index / 30, 
-					difficulty_index / 15, 
+				freq_by_diff = {
+					difficulty_index / 45,
+					difficulty_index / 30,
+					difficulty_index / 15,
 				},
 				amount_max = 2,
 				rank = 3,
@@ -2176,10 +2176,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				freq_by_diff = { 
-					difficulty_index / 45, 
-					difficulty_index / 30, 
-					difficulty_index / 15, 
+				freq_by_diff = {
+					difficulty_index / 45,
+					difficulty_index / 30,
+					difficulty_index / 15,
 				},
 				amount_max = 2,
 				rank = 3,
@@ -2636,10 +2636,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				freq_by_diff = { 
-					difficulty_index / 45, 
-					difficulty_index / 30, 
-					difficulty_index / 15, 
+				freq_by_diff = {
+					difficulty_index / 45,
+					difficulty_index / 30,
+					difficulty_index / 15,
 				},
 				amount_max = 2,
 				rank = 3,
