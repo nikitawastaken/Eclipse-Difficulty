@@ -78,12 +78,27 @@ end
 
 function WeaponDescription._get_base_steelsight_time(weapon, name)
 	local mul = tweak_data.weapon[name].steelsight_speed_multiplier or 1
-	return tweak_data.weapon[name].steelsight_time * mul
+	return tweak_data.weapon[name].steelsight_time / mul
 end
 
-function WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats)
-	-- Currently no mods affect ads time
-	return 0
+-- it's janky but what can you do
+function WeaponDescription._get_mods_steelsight_time(weapon, name, base, mods)
+	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
+	local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
+
+	local multiplier = 1
+	for _, mod in ipairs(mods) do
+		local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
+		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_speed_multiplier then
+			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_speed_multiplier
+		end
+	end
+
+	multiplier = convert_add_to_mul(multiplier)
+
+	local difference = base.steelsight_time.value - (base.steelsight_time.value * multiplier)
+
+	return difference
 end
 
 function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, mods_stats)
@@ -116,7 +131,7 @@ function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, 
 	if new == cur then
 		return false, 0
 	else
-		return true, result - base_stats.steelsight_time.value
+		return true, result - base_stats.steelsight_time.value + mods_stats.steelsight_time.value
 	end
 end
 
@@ -165,7 +180,7 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	skill_stats.pickup.skill_in_effect, skill_stats.pickup.value = WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stats)
 
 	base_stats.steelsight_time.value = WeaponDescription._get_base_steelsight_time(weapon, name)
-	mods_stats.steelsight_time.value = WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats)
+	mods_stats.steelsight_time.value = WeaponDescription._get_mods_steelsight_time(weapon, name, base_stats, equipped_mods)
 	skill_stats.steelsight_time.skill_in_effect, skill_stats.steelsight_time.value = WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, mods_stats)
 
 	local my_clip = base_stats.magazine.value + mods_stats.magazine.value + skill_stats.magazine.value
