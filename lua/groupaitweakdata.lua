@@ -1646,7 +1646,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		hrt = {
 			"rescue",
 			"flank",
-			"deathguard",
 		},
 		swat_init = {
 			"rescue",
@@ -1716,7 +1715,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		cloaker_def = {
 			"no_push",
-			"target_isolated",
+			"deathguard",
 			"smoke_grenade",
 		},
 		cloaker_snk = {
@@ -1927,8 +1926,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
+				freq_by_diff = { 
+					difficulty_index / 45, 
+					difficulty_index / 30, 
+					difficulty_index / 15, 
+				},
+				amount_max = 2,
 				rank = 3,
 				unit = "CS_shield",
 				tactics = self._tactics.shield_agg,
@@ -2173,8 +2176,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
+				freq_by_diff = { 
+					difficulty_index / 45, 
+					difficulty_index / 30, 
+					difficulty_index / 15, 
+				},
+				amount_max = 2,
 				rank = 3,
 				unit = "FBI_shield",
 				tactics = self._tactics.shield_agg,
@@ -2629,8 +2636,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
+				freq_by_diff = { 
+					difficulty_index / 45, 
+					difficulty_index / 30, 
+					difficulty_index / 15, 
+				},
+				amount_max = 2,
 				rank = 3,
 				unit = "Zeal_shield",
 				tactics = self._tactics.shield_agg,
@@ -3369,7 +3380,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = {
 		diff_lerp(120, 30),
-		diff_lerp(180, 60),
+		diff_lerp(180, 45),
 	}
 
 	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
