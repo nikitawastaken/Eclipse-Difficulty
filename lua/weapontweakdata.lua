@@ -117,7 +117,6 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.suppression = cat_map.dmr and 1 or 11
 				weap_data.stats.alert_size = cat_map.dmr and 19 or 15
 				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
-				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
 				weap_data.steelsight_move_speed_mul = cat_map.dmr and 0.5 or 0.6
 
 				if cat_map.dmr then
@@ -290,7 +289,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / 9)
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 0.13
 				weap_data.pickup_mul = weap_data.pickup_mul or 0.15
 				weap_data.damage_near = 2000
 				weap_data.damage_far = 3000
@@ -1947,7 +1946,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ultima.reload_speed_multiplier = 0.7
 
 	-- VD-12
-	self.sko12.CLIP_AMMO_MAX = 28
+	self.sko12.CLIP_AMMO_MAX = 25
 	self.sko12.stats.damage = 30
 	self.sko12.stats.spread = 16
 	self.sko12.stats.recoil = 6
