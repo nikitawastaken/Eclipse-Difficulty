@@ -235,7 +235,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.gangster = based_on(presets.weapon.base)
 	damage_multiplier(presets.weapon.gangster, 7 / 5)
-	accuracy_multiplier(presets.weapon.gangster, 0.6)
+	accuracy_multiplier(presets.weapon.gangster, 0.5)
 	recoil_multiplier(presets.weapon.gangster, 0.8)
 	burst_multiplier(presets.weapon.gangster, 1.5)
 
@@ -252,7 +252,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 10 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.fbi_swat, 6 / 5)
-	accuracy_multiplier(presets.weapon.fbi_swat, 1.1)
+	accuracy_multiplier(presets.weapon.fbi_swat, 1.2)
 
 	presets.weapon.elite_swat = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.5 },
@@ -260,13 +260,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 12 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.elite_swat, 8 / 5)
-	accuracy_multiplier(presets.weapon.elite_swat, 1.2)
+	accuracy_multiplier(presets.weapon.elite_swat, 1.4)
 
 	presets.weapon.zeal_swat = based_on(presets.weapon.elite_swat)
 
 	presets.weapon.murky = based_on(presets.weapon.swat)
 	damage_multiplier(presets.weapon.murky, 7 / 5)
-	accuracy_multiplier(presets.weapon.murky, 1.2)
+	accuracy_multiplier(presets.weapon.murky, 1.4)
 	recoil_multiplier(presets.weapon.murky, 1.2)
 	burst_multiplier(presets.weapon.murky, 0.6)
 
