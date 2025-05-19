@@ -3306,10 +3306,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			FBI_assault_swats = { 0, 0.5, 0.5 },
 			FBI_assault_heavies = { 0, 0, 1 },
-			FBI_assault_shield = { 0, 0.15, 0.2 },
-			FBI_assault_taser = { 0, 0.1, 0.15 },
-			FBI_assault_cloaker = { 0, 0.1, 0.15 },
-			FBI_assault_bulldozer = { 0, 0, 0.1 },
+			FBI_assault_shield = { 0, 0.15, 0.25 },
+			FBI_assault_taser = { 0, 0.1, 0.2 },
+			FBI_assault_cloaker = { 0, 0.1, 0.2 },
+			FBI_assault_bulldozer = { 0, 0, 0.15 },
 		}
 		self.besiege.recon.groups = {
 			FBI_recon_agents = { 1, 1, 0 },
@@ -3328,10 +3328,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			FBI_assault_swats = { 0.75, 1, 0.5 },
 			FBI_assault_heavies = { 0, 0, 1 },
-			FBI_assault_shield = { 0, 0.2, 0.25 },
-			FBI_assault_taser = { 0, 0.15, 0.2 },
-			FBI_assault_cloaker = { 0, 0.15, 0.2 },
-			FBI_assault_bulldozer = { 0, 0, 0.15 },
+			FBI_assault_shield = { 0, 0.2, 0.3 },
+			FBI_assault_taser = { 0, 0.15, 0.25 },
+			FBI_assault_cloaker = { 0, 0.15, 0.25 },
+			FBI_assault_bulldozer = { 0, 0, 0.2 },
 		}
 		self.besiege.recon.groups = {
 			FBI_recon_agents = { 1, 1, 0 },
@@ -3350,16 +3350,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			FBI_assault_swats = { 1, 0.75, 0 },
 			FBI_assault_heavies = { 0, 0.25, 0.75 },
-			FBI_assault_shield = { 0, 0.25, 0.15 },
+			FBI_assault_shield = { 0, 0.25, 0.2 },
 			FBI_assault_taser = { 0, 0.2, 0 },
-			FBI_assault_cloaker = { 0, 0.2, 0.25 },
-			FBI_assault_bulldozer = { 0, 0.05, 0.075 },
+			FBI_assault_cloaker = { 0, 0.2, 0.3 },
+			FBI_assault_bulldozer = { 0, 0.05, 0.1 },
 
 			Elite_assault_swats = { 0, 0.5, 0.75 },
-			Elite_assault_shield = { 0, 0, 0.15 },
-			Elite_assault_sniper = { 0, 0.2, 0.25 },
-			Elite_assault_taser = { 0, 0, 0.25 },
-			Elite_assault_bulldozer = { 0, 0, 0.125 },
+			Elite_assault_shield = { 0, 0, 0.2 },
+			Elite_assault_sniper = { 0, 0.2, 0.3 },
+			Elite_assault_taser = { 0, 0, 0.3 },
+			Elite_assault_bulldozer = { 0, 0, 0.15 },
 		}
 		self.besiege.recon.groups = {
 			FBI_recon_agents = { 1, 1, 0 },
