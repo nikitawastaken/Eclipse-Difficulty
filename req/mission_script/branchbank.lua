@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local level_id = Eclipse.utils.level_id()
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -166,7 +167,7 @@ return {
 	},
 	[100438] = {
 		on_executed = {
-			{ id = 103540, remove = true },
+			{ id = 103540, remove = level_id ~= "firestarter_3" and true or false },
 		},
 	},
 	-- enable max diff after 2 instead of 3 assault waves
