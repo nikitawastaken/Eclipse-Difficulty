@@ -130,6 +130,14 @@ function MissionManager.mission_script_patch_funcs.difficulty(self, element, dat
 	Eclipse:log("%s hooked as difficulty change trigger", element:editor_name())
 end
 
+function MissionManager.mission_script_patch_funcs.difficulty_add(self, element, data)
+	Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_add_" .. element:id(), function()
+		Eclipse:log("%s executed, increased difficulty by %.2g", element:editor_name(), data)
+		managers.groupai:state():add_difficulty(data)
+	end)
+	Eclipse:log("%s hooked as difficulty addition trigger", element:editor_name())
+end
+
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_flashlight_" .. element:id(), function()
 		Eclipse:log("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
