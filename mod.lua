@@ -10,6 +10,7 @@ if not Eclipse then
 			faction_assault_text = true,
 			max_progression_infamy = 0,
 			always_old_hitflash = false,
+			player_styles = 1,
 		},
 		loaded_elements = false,
 	}
@@ -179,7 +180,13 @@ if not Eclipse then
 			Eclipse.settings.always_old_hitflash = enabled
 		end
 
-		function MenuCallbackHandler:sh_save()
+		function MenuCallbackHandler:eclipse_player_styles_setting(item)
+			local value = item:value()
+			
+			Eclipse.settings.player_styles = value
+		end
+		
+		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
 
@@ -229,7 +236,22 @@ if not Eclipse then
 			priority = 100,
 		})
 
-		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "sh_save" })
+		MenuHelper:AddMultipleChoice({
+			id = "player_styles",
+			title = "eclipse_menu_player_styles",
+			desc = "eclipse_menu_player_styles_desc",
+			callback = "eclipse_player_styles_setting",
+			items = {
+				"eclipse_menu_player_styles_vanilla",
+				"eclipse_menu_player_styles_expanded",
+				"eclipse_menu_player_styles_none",
+			},
+			value = Eclipse.settings.player_styles,
+			menu_id = menu_id,
+			priority = 100,
+		})
+		
+		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
 

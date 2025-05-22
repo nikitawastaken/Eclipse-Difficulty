@@ -1,4 +1,88 @@
+local vanilla_outfits = Eclipse.settings.player_styles == 1
+local expanded_outfits = Eclipse.settings.player_styles == 2
+local no_outfits = Eclipse.settings.player_styles == 3
+	
 Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
+	for _, level in pairs(self) do 
+		level.player_style = nil
+	end
+	
+	if not no_outfits then 
+		if expanded_outfits or vanilla_outfits then -- Vanilla setting, the same as vanilla, also on for the Expanded setting
+			self.pal.player_style = "raincoat"
+			self.dah.player_style = "sneak_suit"
+			self.wwh.player_style = "winter_suit"
+			self.sah.player_style = "tux"
+			self.bph.player_style = "sneak_suit"
+			self.vit.player_style = "murky_suit"
+			self.pal.player_style = "poolrepair"
+		end
+		
+		if expanded_outfits then -- Expanded setting, fitting default outfits for more heists
+			-- Tactical BDU
+			self.firestarter_2.player_style = "sneak_suit"
+			self.framing_frame_1.player_style = "sneak_suit"
+			self.framing_frame_2.player_style = "sneak_suit"
+			self.framing_frame_3.player_style = "sneak_suit"
+			self.election_day_1.player_style = "sneak_suit"
+			self.election_day_2.player_style = "sneak_suit"
+			self.gallery.player_style = "sneak_suit"
+			self.kosugi.player_style = "sneak_suit"
+			self.tag.player_style = "sneak_suit"
+			self.dark.player_style = "sneak_suit"
+			self.mus.player_style = "sneak_suit"
+			self.hox_3.player_style = "sneak_suit"
+			self.bph.player_style = "sneak_suit"
+			self.pex.player_style = "sneak_suit"
+			self.sand.player_style = "sneak_suit"
+			self.skm_mus.player_style = "sneak_suit"
+
+			-- Winter Camo Parka
+			self.mad.player_style = "winter_suit"
+
+			-- Tuxedo
+			self.kenaz.player_style = "tux"
+			self.fish.player_style = "tux"
+			self.sah.player_style = "tux"
+			self.chca.player_style = "tux"
+			self.fex.player_style = "tux"
+			self.skm_cas.player_style = "tux"
+					
+			-- Murkywater Uniform
+			self.pbr.player_style = "murky_suit"
+			self.pbr2.player_style = "murky_suit"
+			self.des.player_style = "murky_suit"
+			self.vit.player_style = "murky_suit"
+			
+			-- Legacy Tactical
+			self.alex_1.player_style = "slaughterhouse"
+			self.alex_3.player_style = "slaughterhouse"
+			self.welcome_to_the_jungle_1.player_style = "slaughterhouse"
+			self.welcome_to_the_jungle_1_night.player_style = "slaughterhouse"
+			self.welcome_to_the_jungle_2.player_style = "slaughterhouse"
+			self.watchdogs_1.player_style = "slaughterhouse"
+			self.watchdogs_1_night.player_style = "slaughterhouse"
+			self.watchdogs_2.player_style = "slaughterhouse"
+			self.watchdogs_2_day.player_style = "slaughterhouse"
+			self.firestarter_1.player_style = "slaughterhouse"
+			self.mia_1.player_style = "slaughterhouse"
+			self.mia_2.player_style = "slaughterhouse"
+			self.crojob2.player_style = "slaughterhouse"
+			self.crojob3.player_style = "slaughterhouse"
+			self.crojob3_night.player_style = "slaughterhouse"
+			self.shoutout_raid.player_style = "slaughterhouse"
+			self.dinner.player_style = "slaughterhouse"
+			self.man.player_style = "slaughterhouse"
+			self.spa.player_style = "slaughterhouse"
+			self.mex.player_style = "slaughterhouse"
+			self.mex_cooking.player_style = "slaughterhouse"
+			self.ranc.player_style = "slaughterhouse"
+			self.trai.player_style = "slaughterhouse"
+			self.deep.player_style = "slaughterhouse"
+			self.skm_watchdogs_stage2.player_style = "slaughterhouse"
+		end
+	end
+	
 	-- add flashlights to heists that take place during night (not to every heist)
 	self.welcome_to_the_jungle_1_night.flashlights_on = true
 	self.framing_frame_1.flashlights_on = true
@@ -26,6 +110,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.glace.flashlights_on = true -- PDTH vibes
 	self.dah.flashlights_on = true -- PDTH vibes
 	self.sah.flashlights_on = true
+	self.deep.flashlights_on = true
 
 	-- set Group AI presets
 	self.framing_frame_2.group_ai_preset = "ambush"
@@ -356,5 +441,4 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"),
 		},
 	}
-	self.deep.flashlights_on = true
 end)
