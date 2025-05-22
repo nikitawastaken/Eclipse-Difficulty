@@ -1,13 +1,13 @@
 local vanilla_outfits = Eclipse.settings.player_styles == 1
 local expanded_outfits = Eclipse.settings.player_styles == 2
 local no_outfits = Eclipse.settings.player_styles == 3
-	
+
 Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
-	for _, level in pairs(self) do 
+	for _, level in pairs(self) do
 		level.player_style = nil
 	end
-	
-	if not no_outfits then 
+
+	if not no_outfits then
 		if expanded_outfits or vanilla_outfits then -- Vanilla setting, the same as vanilla, also on for the Expanded setting
 			self.pal.player_style = "raincoat"
 			self.dah.player_style = "sneak_suit"
@@ -17,7 +17,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.vit.player_style = "murky_suit"
 			self.pal.player_style = "poolrepair"
 		end
-		
+
 		if expanded_outfits then -- Expanded setting, fitting default outfits for more heists
 			-- Tactical BDU
 			self.firestarter_2.player_style = "sneak_suit"
@@ -47,13 +47,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.chca.player_style = "tux"
 			self.fex.player_style = "tux"
 			self.skm_cas.player_style = "tux"
-					
+
 			-- Murkywater Uniform
 			self.pbr.player_style = "murky_suit"
 			self.pbr2.player_style = "murky_suit"
 			self.des.player_style = "murky_suit"
 			self.vit.player_style = "murky_suit"
-			
+
 			-- Legacy Tactical
 			self.alex_1.player_style = "slaughterhouse"
 			self.alex_3.player_style = "slaughterhouse"
@@ -82,7 +82,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.skm_watchdogs_stage2.player_style = "slaughterhouse"
 		end
 	end
-	
+
 	-- add flashlights to heists that take place during night (not to every heist)
 	self.welcome_to_the_jungle_1_night.flashlights_on = true
 	self.framing_frame_1.flashlights_on = true

@@ -182,10 +182,10 @@ if not Eclipse then
 
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
-			
+
 			Eclipse.settings.player_styles = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
@@ -250,7 +250,7 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
