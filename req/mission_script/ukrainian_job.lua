@@ -69,13 +69,13 @@ return {
 	-- Spawn Group delays
 	[103884] = street_spawn,
 	[103887] = street_spawn,
-	[104050] = street_spawn,	
+	[104050] = street_spawn,
 	[103917] = alleyway_spawn,
 	[104008] = alleyway_spawn,
 	[104015] = alleyway_spawn,
 	[100704] = rappel_spawn,
 	[101030] = rappel_spawn,
-	[104070] = flank_spawn,	
+	[104070] = flank_spawn,
 	-- You have alerted the Beat Cop horde
 	[102536] = assault_cop,
 	[102537] = assault_cop,

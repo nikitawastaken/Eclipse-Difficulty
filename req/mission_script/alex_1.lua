@@ -250,22 +250,22 @@ return {
 			{
 				name = "basement",
 				force = 2,
-				position = Vector3(2050, 975, 900), 
+				position = Vector3(2050, 975, 900),
 			},
 			{
 				name = "such_a_nice_car", -- mendoza car to the right of player spawn, near cloaker hiding spot
 				force = 3,
-				position = Vector3(675, -1200, 900), 
+				position = Vector3(675, -1200, 900),
 			},
 			{
 				name = "such_an_ugly_car",
 				force = 3,
-				position = Vector3(300, 1300, 1200), 
+				position = Vector3(300, 1300, 1200),
 			},
 			{
 				name = "redeyes",
 				force = 3,
-				position = Vector3(3000, -900, 900), 
+				position = Vector3(3000, -900, 900),
 			},
 		},
 	},

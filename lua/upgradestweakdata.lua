@@ -822,8 +822,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "critical_hit_chance",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.detection_risk_add_crit_chance = {
 		{ 0.01, 2, "below", 35, 0.3 },
