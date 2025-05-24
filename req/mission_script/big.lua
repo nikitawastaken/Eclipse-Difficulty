@@ -21,16 +21,16 @@ local flank_spawn = {
 	},
 	groups = preferred.no_bulldozers,
 }
+local roof_spawn = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local elevator_spawn = {
 	values = {
 		interval = 30,
 	},
-}
-local roof_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn_2 = {
 	values = {

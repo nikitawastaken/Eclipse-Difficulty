@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local upper_spawn = {
 	values = {
 		interval = 15,
@@ -11,6 +16,17 @@ local close_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 return {
+	-- Disable wave-based scaling
+	[100122] = { -- Initial diff
+		values = {
+			difficulty = 0.4,
+		},
+	},
+	[100124] = disabled,
+	[100125] = disabled,
+	[101127] = { -- Safe event done
+		difficulty_add = 0.15,
+	},
 	-- Spawn group delays
 	-- This heist is microscopic, thankfully whoever was setting up these spawns bothered to set them to 15s intervals.
 	-- That said, some of them could be slower because they are bit closer to player holdout areas.

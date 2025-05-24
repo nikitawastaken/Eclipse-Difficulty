@@ -2,7 +2,7 @@ local preferred = Eclipse.preferred
 
 local escape_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local window_spawn1 = {
@@ -12,7 +12,7 @@ local window_spawn1 = {
 }
 local window_spawn2 = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }

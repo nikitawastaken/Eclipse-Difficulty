@@ -1,21 +1,9 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-
 local cloaker = scripted_enemy.cloaker
-
 local disabled = {
 	values = {
 		enabled = false,
-	},
-}
-local sniper_trigger_times = {
-	values = {
-		trigger_times = 0,
-	},
-}
-local fail_add_chance = {
-	values = {
-		chance = 5,
 	},
 }
 local no_spawn_instigator_ids = {
@@ -55,28 +43,22 @@ return {
 	[101141] = {
 		enemy = cloaker,
 	},
-	-- Snipers that look on Panic Room zone now spawn more than 1 time
-	[101128] = sniper_trigger_times,
-	[101121] = sniper_trigger_times,
-	[101520] = sniper_trigger_times,
-	[101113] = sniper_trigger_times,
-	[101140] = sniper_trigger_times,
-	[101136] = sniper_trigger_times,
 	--Should decrease sniper spawn intensity (I hope)
-	[100685] = {
+	[101202] = {
 		values = {
-			chance = 10,
-		},
+			chance = 2
+		}
 	},
-	[101202] = fail_add_chance,
-	[100686] = fail_add_chance,
+	[100686] = {
+		values = {
+			chance = 4
+		}
+	},
 	-- Fix nav links
 	[101433] = no_spawn_instigator_ids,
 	[101434] = no_spawn_instigator_ids,
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
-	-- Disable penthouse reinforce
-	[100183] = disabled,
 	-- Keep some spawns around for the penthouse holdout
 	[100512] = {
 		on_executed = {

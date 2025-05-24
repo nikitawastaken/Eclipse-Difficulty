@@ -1759,7 +1759,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				amount_max = 1,
-				freq = 0.3,
+				freq = 0.4,
 				rank = 1,
 				unit = "CS_cop_2",
 				tactics = self._tactics.cop_def,
@@ -2006,14 +2006,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				rank = 2,
-				unit = "FBI_agent_1",
+				unit = "FBI_agent_1_2",
 				tactics = self._tactics.cop_def,
 			},
 			{
 				amount_max = 2,
 				freq_by_diff = {
-					difficulty_index / 12,
-					difficulty_index / 4,
+					difficulty_index / 10,
+					difficulty_index / 5,
 					difficulty_index,
 				},
 				rank = 1,
@@ -2058,7 +2058,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 3 },
 		spawn = {
 			{
-				freq_by_diff = { 1.5, 1, 0.5 },
+				freq_by_diff = { 1, 1, 0.5 },
 				rank = 1,
 				unit = "FBI_agent_1_2",
 				tactics = self._tactics.hrt_def,
