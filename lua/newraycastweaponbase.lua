@@ -29,9 +29,9 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			end
 		end
 	end
-	
+
 	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
-	
+
 	self._steelsight_move_speed_mul = weapon_tweak.steelsight_move_speed_mul or 0.6
 
 	self._steelsight_time = weapon_tweak.steelsight_time or 0.3
@@ -51,7 +51,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._exit_run_speed_multiplier = weapon_tweak.exit_run_speed_multiplier or 1
 
 	self._fire_mode_mul = weapon_tweak.fire_mode_mul or {}
-	
+
 	self._standing_hipfire_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.hipfire) or 1
 	self._standing_crouching_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.crouching) or 1
 	self._standing_steelsight_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.steelsight) or 1
@@ -100,7 +100,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if stats.total_ammo_multiplier then
 			self._total_ammo_multiplier = self._total_ammo_multiplier * stats.total_ammo_multiplier
 		end
-			
+
 		local stats_stance_mul = stats.stance_mul
 
 		if stats_stance_mul then

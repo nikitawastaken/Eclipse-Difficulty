@@ -1298,7 +1298,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	local dmr_fire_mode_muls = {
 		auto = {},
 	}
-	
+
 	local conversion_kit_stats = {
 		low_dmr_to_high_dmr = {
 			custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75 },
