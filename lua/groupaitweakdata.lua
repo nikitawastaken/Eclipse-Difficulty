@@ -1908,7 +1908,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq_by_diff = {
 					2 / difficulty_index,
 					2 / difficulty_index,
-					0,
+					1 / difficulty_index,
 				},
 				rank = 1,
 				unit = "CS_swat_1_3",
@@ -2165,7 +2165,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq_by_diff = {
 					2 / difficulty_index,
 					2 / difficulty_index,
-					0,
+					1 / difficulty_index,
 				},
 				rank = 2,
 				unit = "FBI_swat_1_3",
