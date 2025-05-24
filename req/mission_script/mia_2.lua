@@ -46,13 +46,13 @@ return {
 	--Should decrease sniper spawn intensity (I hope)
 	[101202] = {
 		values = {
-			chance = 2
-		}
+			chance = 2,
+		},
 	},
 	[100686] = {
 		values = {
-			chance = 4
-		}
+			chance = 4,
+		},
 	},
 	-- Fix nav links
 	[101433] = no_spawn_instigator_ids,

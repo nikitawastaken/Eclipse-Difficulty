@@ -74,7 +74,7 @@ return {
 	-- Introduce preferreds gradually
 	[100812] = { -- front basic
 		on_executed = {
-			{ id = 400037, delay = 0 }, -- eclipse front entrance 
+			{ id = 400037, delay = 0 }, -- eclipse front entrance
 		},
 	},
 	[100806] = { -- Link
