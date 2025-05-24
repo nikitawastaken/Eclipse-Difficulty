@@ -60,6 +60,7 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"Zeal_assault_taser",
 	},
 	FBI_spoocs = {
+		"FBI_recon_cloaker",
 		"FBI_assault_cloaker",
 		"Zeal_assault_cloaker",
 	},
@@ -68,10 +69,6 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"FBI_assault_bulldozer",
 		"Elite_assault_bulldozer",
 		--"Zeal_assault_bulldozer",
-	},
-	single_spooc = {
-		"FBI_assault_cloaker",
-		"Zeal_assault_cloaker",
 	},
 }
 ElementSpawnEnemyGroup.group_mapping.tac_swat_rifle_flank = ElementSpawnEnemyGroup.group_mapping.tac_swat_rifle
