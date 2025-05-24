@@ -745,9 +745,18 @@ function UpgradesTweakData:init(tweak_data)
 		{ 0.01, 2, "below", 35, 0.1 },
 		{ 0.015, 1, "below", 35, 0.15 },
 	}
+	self.values.cooldown.dodge_replenish_armor = { { 1, 10 } }
+	self.definitions.cooldown_dodge_replenish_armor = {
+		name_id = "menu_cooldown_dodge_replenish_armor",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "dodge_replenish_armor",
+			category = "cooldown",
+		},
+	}
 	self.skill_descs.jail_diet.multibasic2 = "2"
-	self.skill_descs.jail_diet.multipro = "1.5%"
-	self.skill_descs.jail_diet.multipro4 = "15%"
+	self.skill_descs.jail_diet.multipro = "10"
 
 	-- Resilient Assault
 	self.values.player.critical_hit_chance[1] = 0.05

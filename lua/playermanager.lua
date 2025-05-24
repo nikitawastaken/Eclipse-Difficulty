@@ -183,6 +183,12 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	else
 		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
 	end
+
+	if self:has_category_upgrade("cooldown", "dodge_replenish_armor") then
+		self:register_message(Message.OnPlayerDodge, "dodge_replenish_armor", callback(self, self, "_dodge_replenish_armor"))
+	else
+		self:unregister_message(Message.OnPlayerDodge, "dodge_replenish_armor")
+	end
 end)
 
 -- shotgun panic stuff
@@ -190,12 +196,12 @@ local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	on_killshot_old(self, killed_unit, variant, headshot, weapon_id)
 
-	local has_shotgun_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+	local has_shotgun_panic = self:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
 	if has_shotgun_panic and variant ~= "melee" then
 		local equipped_unit = self:get_current_state()._equipped_unit:base()
 
 		if equipped_unit:is_category("shotgun") then
-			local pos = managers.player:player_unit():position()
+			local pos = self:player_unit():position()
 			local skill = tweak_data.upgrades.values.shotgun.panic[1]
 
 			if skill then
@@ -361,6 +367,18 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 			self._consecutive_headshots = 0
 			self:remove_property("snp_consecutive_headshots_mul")
 		end
+	end
+end
+
+function PlayerManager:_dodge_replenish_armor()
+	local has_dodge_armor_replenish = self:has_enabled_cooldown_upgrade("cooldown", "dodge_replenish_armor")
+	local player_dmg = self:player_unit():character_damage()
+	local armor_broken = player_dmg:_max_armor() > 0 and player_dmg:get_real_armor() <= 0
+
+	if has_dodge_armor_replenish and armor_broken then
+		player_dmg:_regenerate_armor()
+
+		self:disable_cooldown_upgrade("cooldown", "dodge_replenish_armor")
 	end
 end
 

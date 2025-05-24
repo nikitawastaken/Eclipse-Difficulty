@@ -310,6 +310,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Shockproof
 	self.skills.insulation[1].upgrades = { "player_resist_firing_tased", "player_weaker_tase_effect" }
 
+	-- Sneaky Bastard
+	self.skills.jail_diet[2].upgrades = { "cooldown_dodge_replenish_armor" }
+
 	-- Resilient Assault
 	self.skills.scavenger[1].upgrades = { "player_critical_hit_chance_1" }
 	self.skills.scavenger[2].upgrades = { "player_armor_depleted_stagger_shot_1", "player_armor_depleted_stagger_shot_2" }

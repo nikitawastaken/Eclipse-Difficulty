@@ -47,6 +47,7 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 	end
 end
 
+-- DnC on-crouch stamina regen increase
 function PlayerMovement:add_stamina(value)
 	self:_change_stamina(
 		math.abs(value)

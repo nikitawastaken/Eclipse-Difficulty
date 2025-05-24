@@ -130,6 +130,7 @@
 	"menu_dire_need_beta": "Second Wind",
 	"menu_dire_need_beta_desc": "BASIC: ##$basic##\nWhen your armor breaks, your movement speed is increased by ##$multibasic## for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while your armor is broken.\n\nThis cannot occur again for another ##$multipro2## seconds after your armor regenerating.",
 	"menu_insulation_beta_desc": "BASIC: ##$basic##\nWhen tased, the shock effect will be ##$multibasic## weaker.\n\nYou no longer randomly pull the trigger while being tased.\n\nACE: ##$pro##\nWhen tased, you are able to free yourself from the taser by interacting with it within ##$multipro2## seconds of getting tased.",
+	"menu_jail_diet_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## chance to dodge for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nWhile your armor is broken, dodging will fully regenerate it.\n\nThis cannot occur more than once every ##$multipro## seconds.",
 	"st_menu_ghost_silencer": "Specialized Killing",
 	"menu_scavenger_beta": "Resilient Assault",
 	"menu_scavenger_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## critical hit chance.\n\nCritical hits deal ##$multibasic2## damage.\n\nACE: ##$pro##\nWhen your armor breaks, the first shot on every enemy will cause that enemy to stagger.\n\nThe effect persists for ##$multipro## seconds after your armor has recovered.",
