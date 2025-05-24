@@ -134,7 +134,7 @@
 	"menu_scavenger_beta": "Resilient Assault",
 	"menu_scavenger_beta_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## critical hit chance.\n\nCritical hits deal ##$multibasic2## damage.\n\nACE: ##$pro##\nWhen your armor breaks, the first shot on every enemy will cause that enemy to stagger.\n\nThe effect persists for ##$multipro## seconds after your armor has recovered.",
 	"menu_silenced_damage": "Silent Killer",
-	"menu_silenced_damage_desc": "BASIC: ##$basic##\nYour silenced weapons gain a ##$multibasic## rate of fire increase.\n\nACE: ##$pro##\nYou deal ##$multipro## more damage and have a ##$multipro2## chance to pierce enemy armor with all silenced weapons.",
+	"menu_silenced_damage_desc": "BASIC: ##$basic##\nYour silenced weapons gain ##$multibasic## stability and accuracy, as well as a ##$multibasic2## chance to pierce enemy armor.\n\nACE: ##$pro##\nYour silenced weapons gain a ##$multipro## damage increase.",
 	"menu_silence_expert_beta_desc": "BASIC: ##$basic##\nYou snap to zoom ##$multibasic## faster with silenced weapons.\n\nACE: ##$pro##\nYou gain ##$multipro## concealment for each silenced weapon equipped. Reduce the concealment penalty of silencers by ##$multipro2##.",
 	"menu_spotter_teamwork_beta_desc": "BASIC: ##$basic##\nEnemies you mark take ##$multibasic## more damage when farther away than ##$multibasic2## meters.\n\nACE: ##$pro##\nEnemies you mark take ##$multipro## more damage at all ranges.\n\nThe marked state duration is increased by ##$multipro2##.\n\nNote: This effect is applied separately from the Basic version.",
 	"menu_jail_workout_beta_desc": "BASIC: ##$basic##\nIncreases the time before you start getting detected by ##$multibasic## while in casing mode.\n\nYou are ##$multibasic## less likely to be targeted when you are close to your crew members in loud.\n\nACE: ##$pro##\nYour concealment is increased by ##$multipro##.",
@@ -147,7 +147,7 @@
 	"menu_ecm_booster_beta": "ECM Feedback",
 	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\nYou can now interact with ECM jammers to cause a feedback loop that stuns enemies.\n\nFeedback loop has a ##$multibasic## radius.\nObstructed line of sight ##halves## the radius.\n\nACE: ##$pro##\nECM feedback now recharges every ##$multipro## minutes.",
 	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last ##$multipro## seconds.",
-	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou now gain a ##$multipro## critical hit chance for every ##$multipro2## point of detection rate instead.\n\nCritical hits now deal an additional ##$multipro3## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
+	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## critical hit chance.\n\nCritical hits now deal an additional ##$multipro2## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
 
 
 	"menu_nine_lives_beta": "Tough Guy",
@@ -336,7 +336,7 @@
 	"eclipse_menu_player_styles_vanilla": "Vanilla heist outfits",
 	"eclipse_menu_player_styles_expanded": "Expanded heist outfits",
 	"eclipse_menu_player_styles_none": "No heist outfits",
-	
+
 	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
 	"menu_difficulty_easy_wish": "Eclipse",
 	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",

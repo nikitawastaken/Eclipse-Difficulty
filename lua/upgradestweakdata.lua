@@ -779,7 +779,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.hitman.multipro = "30%"
 	self.skill_descs.hitman.multipro2 = "100%"
 
-	-- Silencer Expert
+	-- Silent Killer
 	self.definitions.weapon_silencer_damage_multiplier = {
 		category = "feature",
 		name_id = "silencer_damage_multiplier",
@@ -798,20 +798,12 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.definitions.weapon_silencer_fire_rate_multiplier = {
-		category = "feature",
-		name_id = "silencer_fire_rate_multiplier",
-		upgrade = {
-			category = "weapon",
-			upgrade = "silencer_fire_rate_multiplier",
-			value = 1,
-		},
-	}
-	self.values.weapon.silencer_fire_rate_multiplier = { 1.15 }
-	self.values.weapon.armor_piercing_chance_silencer[1] = 0.5
-	self.skill_descs.backstab.multibasic = "15%"
+	self.values.weapon.silencer_spread_index_addend[1] = 1
+	self.values.weapon.silencer_recoil_index_addend[1] = 1
+	self.values.weapon.armor_piercing_chance_silencer[1] = 0.3
+	self.skill_descs.backstab.multibasic = "4"
+	self.skill_descs.backstab.multibasic2 = "30%"
 	self.skill_descs.backstab.multipro = "15%"
-	self.skill_descs.backstab.multipro2 = "50%"
 
 	-- Low Blow
 	self.definitions.weapon_extra_crit_damage_mul = {
@@ -823,18 +815,28 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
+	self.definitions.player_critical_hit_chance_2 = {
+		incremental = true,
+		name_id = "menu_player_critical_hit_chance",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "critical_hit_chance",
+			category = "player"
+		}
+	}
 	self.values.player.detection_risk_add_crit_chance = {
-		{ 0.03, 2, "below", 35, 0.3 },
+		{ 0.01, 2, "below", 35, 0.3 },
 		{ 0.03, 1, "below", 35, 0.3 },
 	}
 	self.values.weapon.extra_crit_damage_mul = { 1 }
-	self.skill_descs.unseen_strike.multibasic = "3%"
+	self.values.player.critical_hit_chance[2] = 0.25
+	self.skill_descs.unseen_strike.multibasic = "1%"
 	self.skill_descs.unseen_strike.multibasic2 = "2"
 	self.skill_descs.unseen_strike.multibasic3 = "35"
-	self.skill_descs.unseen_strike.multibasic4 = "30%"
-	self.skill_descs.unseen_strike.multipro = "3%"
-	self.skill_descs.unseen_strike.multipro2 = "1"
-	self.skill_descs.unseen_strike.multipro3 = "100%"
+	self.skill_descs.unseen_strike.multibasic4 = "10%"
+	self.skill_descs.unseen_strike.multipro = "20%"
+	self.skill_descs.unseen_strike.multipro2 = "100%"
 
 	-- Fugitive --
 

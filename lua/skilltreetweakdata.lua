@@ -330,16 +330,16 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.hitman[1].upgrades = { "player_marked_inc_dmg_distance_1" }
 	self.skills.hitman[2].upgrades = { "player_marked_enemy_extra_damage", "player_mark_enemy_time_multiplier" }
 
-	-- Silencer Expert
-	self.skills.backstab[1].upgrades = { "weapon_silencer_fire_rate_multiplier" }
-	self.skills.backstab[2].upgrades = { "weapon_silencer_damage_multiplier", "weapon_armor_piercing_chance_silencer" }
+	-- Silent Killer
+	self.skills.backstab[1].upgrades = { "weapon_silencer_recoil_index_addend", "weapon_silencer_spread_index_addend", "weapon_armor_piercing_chance_silencer" }
+	self.skills.backstab[2].upgrades = { "weapon_silencer_damage_multiplier" }
 	self.skills.backstab.icon_xy = { 5, 9 }
 	self.skills.backstab.name_id = "menu_silenced_damage"
 	self.skills.backstab.desc_id = "menu_silenced_damage_desc"
 
 	-- Low Blow
 	self.skills.unseen_strike[1].upgrades = { "player_detection_risk_add_crit_chance_1" }
-	self.skills.unseen_strike[2].upgrades = { "player_detection_risk_add_crit_chance_2", "weapon_extra_crit_damage_mul" }
+	self.skills.unseen_strike[2].upgrades = { "player_critical_hit_chance_2", "weapon_extra_crit_damage_mul" }
 	self.skills.unseen_strike.icon_xy = { 0, 12 }
 	self.skills.unseen_strike.name_id = "menu_backstab_beta"
 	self.skills.unseen_strike.desc_id = "menu_backstab_beta_desc"
