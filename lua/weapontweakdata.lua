@@ -71,14 +71,6 @@ function WeaponTweakData:_init_weapons()
 
 		local ROF = 60 / (weap_data.fire_mode_data and weap_data.fire_mode_data.fire_rate or 0.1)
 
-		local no_falloff = {
-			optimal_distance = 0,
-			optimal_range = 0,
-			near_falloff = 0,
-			far_falloff = 0,
-			near_multiplier = 1,
-			far_multiplier = 1
-		}
 		local no_stance_mults = {
 			standing = {
 				hipfire = 1,
@@ -93,10 +85,13 @@ function WeaponTweakData:_init_weapons()
 		}
 		local base_fire_mode_mul = {
 			auto = {},
-			single = {},
+			single = {
+				recoil = 1.5,
+				spread = 0.5,
+			},
 			burst = {
 				recoil = 0.75,
-				spread = 0.5,
+				spread = 1,
 			},
 			volley = {}
 		}
@@ -178,7 +173,7 @@ function WeaponTweakData:_init_weapons()
 					}
 				end
 
-				weap_data.fire_mode_mul = base_fire_mode_mul
+				weap_data.fire_mode_mul = not cat_map.dmr and base_fire_mode_mul or nil
 
 			elseif cat_map.pistol then
 				weap_data.stats.suppression = (cat_map.revolver or cat_map.handcannon) and 9 or 16
@@ -239,19 +234,7 @@ function WeaponTweakData:_init_weapons()
 						}
 					}
 				end
-
-				weap_data.fire_mode_mul = {
-					single = {},
-					auto = {
-						spread = 1.5,
-					},
-					burst = {
-						recoil = 0.75,
-						spread = 1,
-					},
-					volley = {}
-				}
-
+		
 			elseif cat_map.smg then
 				weap_data.stats.suppression = 16
 				weap_data.stats.alert_size = 13
@@ -284,7 +267,16 @@ function WeaponTweakData:_init_weapons()
 					}
 				}
 
-				weap_data.fire_mode_mul = base_fire_mode_mul
+				weap_data.fire_mode_mul = {
+					single = {
+						recoil = 1.25,
+						spread = 0.75,
+					},
+					burst = {
+						recoil = 0.75,
+						spread = 1,
+					},
+				}
 
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 1
@@ -319,9 +311,6 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1,
 					}
 				}
-				
-				weap_data.fire_mode_mul = nil
-
 			elseif cat_map.lmg then
 				weap_data.stats.suppression = 3
 				weap_data.stats.alert_size = 18
@@ -385,9 +374,6 @@ function WeaponTweakData:_init_weapons()
 						}
 					}
 				end
-
-				weap_data.fire_mode_mul = nil
-
 			elseif cat_map.minigun then
 				weap_data.stats.suppression = 6
 				weap_data.stats.alert_size = 18
@@ -446,9 +432,6 @@ function WeaponTweakData:_init_weapons()
 						}
 					}
 				end
-
-				weap_data.fire_mode_mul = nil
-
 			elseif cat_map.snp then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 20
@@ -496,9 +479,6 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1.5,
 					}
 				}
-
-				weap_data.fire_mode_mul = nil
-
 			elseif cat_map.bow then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 1
@@ -513,9 +493,6 @@ function WeaponTweakData:_init_weapons()
 				if weap_data.charge_data and weap_data.charge_data.max_t then
 					weap_data.charge_data.max_t = weap_data.charge_data.max_t * 0.5
 				end
-
-				weap_data.fire_mode_mul = nil
-
 			elseif cat_map.crossbow then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 1
@@ -523,9 +500,6 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
-
-				weap_data.fire_mode_mul = nil
-
 			elseif cat_map.grenade_launcher or cat_map.rocket_launcher then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
@@ -559,11 +533,6 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1,
 					}
 				}
-
-				weap_data.fire_mode_mul = nil
-
-				weap_data.damage_falloff = no_falloff
-
 			elseif cat_map.flamethrower then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 11
@@ -572,9 +541,6 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
-
-				weap_data.fire_mode_mul = nil
-
 			elseif cat_map.saw then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 6
@@ -585,9 +551,6 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.spread_multiplier = no_stance_mults
 				weap_data.recoil_multiplier = no_stance_mults
-
-				weap_data.fire_mode_mul = nil
-
 			end
 
 			if cat_map.akimbo then
@@ -662,7 +625,8 @@ function WeaponTweakData:_init_weapons()
 			weap_data.steelsight_time = weap_data.steelsight_time or steelsight_times.default
 			weap_data.steelsight_move_speed_mul = weap_data.no_steelsight and 1 or weap_data.steelsight_move_speed_mul or 0.6
 			weap_data.penetration_damage_mul = base_penetration_damage_mul
-			weap_data.damage_falloff = no_falloff
+			weap_data.damage_falloff = nil
+			weap_data.fire_mode_mul = weap_data.fire_mode_mul or nil
 
 			if weap_data.damage_melee and weap_data.damage_melee_effect_mul then
 				weap_data.damage_melee = 1

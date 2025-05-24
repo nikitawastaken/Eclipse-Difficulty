@@ -16,7 +16,7 @@ local medic = diff_i < 4 and scripted_enemy.taser_1 or scripted_enemy.medic_1
 local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
 local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
 local green_bulldozer = scripted_enemy.bulldozer_1
-local black_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
 local cloaker = scripted_enemy.cloaker
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }

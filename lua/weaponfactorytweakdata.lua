@@ -1295,7 +1295,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			},
 		},
 	}
-
+	local dmr_fire_mode_muls = {
+		auto = {},
+	}
+	
 	local conversion_kit_stats = {
 		low_dmr_to_high_dmr = {
 			custom_stats = { ammo_pickup_min_mul = 0.75, ammo_pickup_max_mul = 0.75 },
@@ -1310,6 +1313,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				ammo_pickup_min_mul = 0.4,
 				ammo_pickup_max_mul = 0.4,
 				stance_mul = dmr_stance_muls,
+				fire_mode_mul = dmr_fire_mode_muls,
 			},
 			stats = { value = 1, total_ammo_mod = -10, concealment = -6, spread = 4, recoil = -8, damage = 80, suppression = -10, alert_size = 4 },
 		},
@@ -1322,6 +1326,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				ammo_pickup_min_mul = 0.4,
 				ammo_pickup_max_mul = 0.4,
 				stance_mul = dmr_stance_muls,
+				fire_mode_mul = dmr_fire_mode_muls,
 			},
 			stats = { value = 1, total_ammo_mod = -12, concealment = -6, spread = 4, recoil = -11, damage = 60, suppression = -10, alert_size = 4 },
 		},
