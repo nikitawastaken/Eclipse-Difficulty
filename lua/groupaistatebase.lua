@@ -291,6 +291,10 @@ function GroupAIStateBase:is_nav_seg_safe(nav_seg)
 	return true
 end
 
+function GroupAIStateBase:is_nav_seg_area_safe(nav_seg)
+	return self:is_area_safe(self:get_area_from_nav_seg_id(nav_seg))
+end
+
 -- Don't count recon as assault force and vice versa
 function GroupAIStateBase:_count_police_force(task_name)
 	local amount = 0

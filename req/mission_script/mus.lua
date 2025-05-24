@@ -29,7 +29,7 @@ local window_spawn2 = {
 }
 local skylight_spawn1 = {
 	values = {
-		interval = 30,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -40,6 +40,25 @@ local skylight_spawn2 = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 38, 39 },
+			{ 52, 90 },
+			{ 53, 54 },
+			{ 60, 61 },
+			{ 64, 65 },
+			{ 120, 121 },
+			{ 123, 124 },
+			{ 125, 128, 138 },
+			{ 126, 127, 137 },
+			{ 129, 136 },
+			{ 130, 135 },
+			{ 131, 132 },
+			{ 133, 134 },
+			{ 139, 153 }
+		}
+	},
 	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {
@@ -85,9 +104,9 @@ return {
 		},
 	},
 	-- prevent cops from spawning too soon
-	[100022] = {
+	[100116] = {
 		on_executed = {
-			{ id = 100109, delay = 30 },
+			{ id = 100122, delay = 60 },
 		},
 	},
 	-- remove exhibition room rappels from one security room's on_executed
@@ -99,9 +118,9 @@ return {
 	-- delay pillar room rappel preferreds
 	[102154] = {
 		on_executed = {
-			{ id = 100128, delay = 30, delay_rand = 10 }, -- add 40
-			{ id = 100130, delay = 30, delay_rand = 10 }, -- add 41
-			{ id = 102129, delay = 20, delay_rand = 10 }, -- add 11
+			{ id = 100128, delay = 30, delay_rand = 15 }, -- add 40
+			{ id = 100130, delay = 30, delay_rand = 15 }, -- add 41
+			{ id = 102129, delay = 15, delay_rand = 15 }, -- add 11
 		},
 	},
 	-- disable vanilla difficulty scaling
