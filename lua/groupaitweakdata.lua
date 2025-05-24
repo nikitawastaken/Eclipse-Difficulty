@@ -1721,12 +1721,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		cloaker_def = {
 			"no_push",
 			"deathguard",
-			"smoke_grenade",
 		},
 		cloaker_snk = {
 			"flank",
 			"target_isolated",
-			"smoke_grenade",
 		},
 		sniper = {
 			"no_push",
