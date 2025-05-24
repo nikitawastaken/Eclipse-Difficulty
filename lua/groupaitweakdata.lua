@@ -1643,12 +1643,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"flank",
 			"ranged_fire",
 		},
-		hrt_def = {
-			"rescue",
-			"no_push",
-			"flank",
-		},
-		hrt_agg = {
+		hrt = {
 			"rescue",
 			"flank",
 		},
@@ -1792,14 +1787,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq_by_diff = { 1.5, 1, 0.5 },
 				rank = 1,
 				unit = "CS_cop_1",
-				tactics = self._tactics.hrt_def,
+				tactics = self._tactics.hrt,
 			},
 			{
 				amount_max = 2,
 				freq = 1,
 				rank = 2,
 				unit = "CS_cop_3",
-				tactics = self._tactics.hrt_def,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}
@@ -1811,7 +1806,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 1,
 				unit = "CS_swat",
-				tactics = self._tactics.hrt_agg,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}
@@ -2059,14 +2054,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq_by_diff = { 1, 1, 0.5 },
 				rank = 1,
 				unit = "FBI_agent_1_2",
-				tactics = self._tactics.hrt_def,
+				tactics = self._tactics.hrt,
 			},
 			{
 				amount_max = 2,
 				freq = 1,
 				rank = 2,
 				unit = "FBI_agent_2_3",
-				tactics = self._tactics.hrt_def,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}
@@ -2078,7 +2073,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 1,
 				unit = "FBI_swat",
-				tactics = self._tactics.hrt_agg,
+				tactics = self._tactics.hrt,
 			},
 		},
 	}

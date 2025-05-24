@@ -277,10 +277,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
 
 	presets.weapon.shield = based_on(presets.weapon.base, {
+		melee_speed = 0.9,
 		melee_range = 150,
 		melee_force = 500,
 		range = { close = 500, optimal = 1000, far = 2000 },
-		melee_retry_delay = { 2, 3 },
 	})
 	damage_multiplier(presets.weapon.shield, 4 / 5)
 
