@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local initial_diff = { 
+local initial_diff = {
 	values = {
 		difficulty = 0.5,
 	},

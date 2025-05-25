@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local initial_diff = { 
+local initial_diff = {
 	values = {
 		difficulty = 0.33,
 	},
@@ -23,7 +23,7 @@ return {
 		difficulty = 0.66,
 	},
 	-- Loot secure difficulty spike
-	[101582] = { 
+	[101582] = {
 		values = {
 			difficulty = 1,
 		},
