@@ -608,7 +608,7 @@ function PlayerStandard:_start_action_running(t)
 	self._start_running_t = t
 	self._play_stop_running_anim = nil
 
-	if not self:_is_reloading() or not self.RUN_AND_RELOAD then
+	if (not self:_is_reloading() or not self.RUN_AND_RELOAD) and (not self:_is_meleeing() or not managers.player:has_category_upgrade("player", "run_and_melee_eclipse")) then
 		if not self._equipped_unit:base():run_and_shoot_allowed() then
 			self._ext_camera:play_redirect(self:get_animation("start_running"))
 		else
