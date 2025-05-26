@@ -549,7 +549,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 						from_seg = objective_area.pos_nav_seg,
 						to_seg = target_area.pos_nav_seg,
 						access_pos = group_access_mask,
-						verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, target_area })
+						verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, target_area }),
 					})
 
 					if new_assault_path then
@@ -1476,7 +1476,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		from_seg = objective_area.pos_nav_seg,
 		to_seg = target_area.pos_nav_seg,
 		access_pos = self._get_group_acces_mask(group),
-		verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, target_area })
+		verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, target_area }),
 	}
 
 	local coarse_path = managers.navigation:search_coarse(search_params)
@@ -1621,7 +1621,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 				from_seg = objective_area.pos_nav_seg,
 				to_seg = search_area.pos_nav_seg,
 				access_pos = group_access_mask,
-				verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, search_area })
+				verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, search_area }),
 			})
 
 			if new_recon_path then
