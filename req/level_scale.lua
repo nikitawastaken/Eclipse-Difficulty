@@ -18,7 +18,6 @@ M.level_scale_map = {
 	["nightclub"] = "small",
 	["ukrainian_job"] = "small",
 	["hox_1"] = "small",
-	["mus"] = "small",
 	["man"] = "small",
 	["flat"] = "small",
 	["help"] = "small",

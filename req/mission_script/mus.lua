@@ -10,30 +10,27 @@ local enabled = {
 	},
 }
 local courtyard_spawn = {
-	values = {
-		interval = 20,
-	},
 	groups = preferred.no_cops_agents,
 }
-local window_spawn1 = {
+local staircase_window_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local window_spawn2 = {
-	values = {
-		interval = 40,
-	},
+local matrix_window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local skylight_spawn1 = {
+local exhibit_rappel_spawn = {
 	values = {
-		interval = 40,
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents,
 }
-local skylight_spawn2 = {
+local last_rappel_spawn = {
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local hallway_rappel_spawn = {
 	values = {
 		interval = 60,
 	},
@@ -54,7 +51,7 @@ return {
 		reinforce = {
 			{
 				name = "entrance",
-				force = 3,
+				force = 4,
 				position = Vector3(-3450, 200, -700),
 			},
 		},
@@ -63,6 +60,9 @@ return {
 		difficulty = 0.75,
 		on_executed = {
 			{ id = 100345, delay = 0 }, -- Bain diff increase dialogue
+			{ id = 100128, delay = 10, delay_rand = 20 }, -- add 40
+			{ id = 100130, delay = 10, delay_rand = 20 }, -- add 41
+			{ id = 102129, delay = 20, delay_rand = 40 }, -- add 11
 		},
 		reinforce = {
 			{
@@ -105,19 +105,20 @@ return {
 			{ id = 102128, remove = true }, -- add 10
 		},
 	},
-	-- delay pillar room rappel preferreds
-	[102154] = {
-		on_executed = {
-			{ id = 100128, delay = 30, delay_rand = 15 }, -- add 40
-			{ id = 100130, delay = 30, delay_rand = 15 }, -- add 41
-			{ id = 102129, delay = 15, delay_rand = 15 }, -- add 11
-		},
-	},
 	-- disable vanilla difficulty scaling
 	[100124] = disabled,
 	[100125] = disabled,
 	-- don't remove front spawns
-	[102159] = disabled,
+	[102131] = { -- security room 1
+		on_executed = {
+			{ id = 102159, remove = true }, 
+		},
+	},
+	[102137] = { -- security room 3
+		on_executed = {
+			{ id = 102159, remove = true }, 
+		},
+	},
 	-- remove sketchy cheat spawns
 	[102317] = disabled,
 	[101258] = disabled,
@@ -129,18 +130,18 @@ return {
 	[100789] = courtyard_spawn,
 	[100790] = courtyard_spawn,
 	[100791] = courtyard_spawn,
-	[100007] = window_spawn1,
-	[102418] = window_spawn1,
-	[102399] = window_spawn2,
-	[102400] = window_spawn2,
-	[100019] = skylight_spawn1,
-	[100809] = skylight_spawn1,
-	[100021] = skylight_spawn1,
-	[100810] = skylight_spawn1,
-	[101924] = skylight_spawn2,
-	[101941] = skylight_spawn2,
-	[101943] = skylight_spawn2,
-	[101942] = skylight_spawn2,
-	[101959] = skylight_spawn2,
-	[101946] = skylight_spawn2,
+	[100007] = staircase_window_spawn,
+	[102418] = staircase_window_spawn,
+	[102399] = matrix_window_spawn,
+	[102400] = matrix_window_spawn,
+	[100019] = exhibit_rappel_spawn,
+	[100809] = exhibit_rappel_spawn,
+	[100021] = exhibit_rappel_spawn,
+	[100810] = exhibit_rappel_spawn,
+	[101959] = hallway_rappel_spawn,
+	[101946] = hallway_rappel_spawn,	
+	[101924] = last_rappel_spawn,
+	[101941] = last_rappel_spawn,
+	[101942] = last_rappel_spawn,
+	[101943] = last_rappel_spawn,	
 }

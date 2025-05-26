@@ -370,7 +370,7 @@ function GroupAIStateBesiege:get_all_needed_doors()
 
 	local reinforce_doors = {}
 	for nav_seg_id, nav_seg_data in pairs(all_nav_segs) do
-		if not managers.groupai:state():is_nav_seg_area_safe(nav_seg_id) then
+		if not managers.groupai:state():is_nav_seg_safe(nav_seg_id) then
 			for neighbour_seg_id, door_list in pairs(nav_seg_data.neighbours) do
 				if not all_nav_segs[neighbour_seg_id].disabled then
 					for _, i_door in ipairs(door_list) do
