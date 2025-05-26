@@ -1042,7 +1042,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[6][1].multiperk = "5%"
 	self.specialization_descs[7][1].multiperk = "10%"
 	self.specialization_descs[13][5].multiperk3 = "5%"
-	self.specialization_descs[18][5].multiperk = "5%"
+	self.specialization_descs[18][5].multiperk = "15%"
 	self.specialization_descs[21][5].multiperk2 = "5%"
 
 	-- Rogue Specific
@@ -1404,9 +1404,62 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[17][9].multiperk3 = "1"
 
 	-- Sicario
-	self.values.player.dodge_shot_gain = { { 0.1, 1 } }
-	self.specialization_descs[18][3].multiperk = "10%"
-	self.specialization_descs[18][3].multiperk2 = "1"
+	self.definitions.player_smoke_grenade_no_armor_suppression = {
+		name_id = "menu_smoke_grenade_no_armor_suppression",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_grenade_no_armor_suppression",
+			synced = true,
+			category = "player"
+		}
+	}
+	self.values.player.smoke_grenade_no_armor_suppression = { true }
+	self.definitions.player_smoke_screen_armor_regen_mul = {
+		name_id = "menu_smoke_screen_armor_regen_mul",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_screen_armor_regen_mul",
+			category = "player"
+		}
+	}
+	self.values.player.smoke_screen_armor_regen_mul = { 0.7 }
+	self.definitions.player_smoke_grenade_dodge_buff = {
+		name_id = "menu_smoke_grenade_dodge_buff",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_grenade_dodge_buff",
+			synced = true,
+			category = "player"
+		}
+	}
+	self.values.player.smoke_grenade_dodge_buff = { true }
+	self.definitions.player_smoke_screen_dodge_add = {
+		name_id = "menu_smoke_screen_dodge_add",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_screen_dodge_add",
+			category = "player"
+		}
+	}
+	self.values.player.smoke_screen_dodge_add = { 0.25 }
+	self.definitions.player_smoke_grenade_lingering_effect = {
+		name_id = "menu_smoke_grenade_lingering_effect",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_grenade_lingering_effect",
+			synced = true,
+			category = "player"
+		}
+	}
+	self.values.player.smoke_grenade_lingering_effect = { 3 }
+	self.specialization_descs[18][3].multiperk = "30%"
+	self.specialization_descs[18][7].multiperk = "25%"
+	self.specialization_descs[18][9].multiperk = "3"
 
 	-- Stoic
 	self.specialization_descs[19][1].multiperk3 = "16"

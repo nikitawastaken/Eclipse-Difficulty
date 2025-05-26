@@ -590,6 +590,14 @@ function SkillTreeTweakData:init(tweak_data)
 	-- kingpin
 	table.delete(self.specializations[17][9].upgrades, "player_passive_health_multiplier_4")
 
+	-- sicario
+	self.specializations[18][3].upgrades = { "player_smoke_grenade_no_armor_suppression" }
+	self.specializations[18][3].icon_xy = { 3, 0 }
+	self.specializations[18][5].upgrades = { "player_passive_dodge_chance_1", "player_passive_dodge_chance_2", "player_passive_dodge_chance_3" }
+	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
+	self.specializations[18][7].icon_xy = { 1, 0 }
+	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect" }
+
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
 	table.insert(self.specializations[21][7].upgrades, "player_passive_health_multiplier_2")
@@ -743,6 +751,8 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
 	table.insert(self.default_upgrades, "player_run_speed_multiplier")
+	table.insert(self.default_upgrades, "player_smoke_screen_armor_regen_mul")
+	table.insert(self.default_upgrades, "player_smoke_screen_dodge_add")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")

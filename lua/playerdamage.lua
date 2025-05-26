@@ -583,3 +583,32 @@ function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
 		end
 	end
 end
+
+function PlayerDamage:_upd_suppression(t, dt)
+	for _, smoke_screen in ipairs(managers.player:smoke_screens()) do
+		if smoke_screen:is_in_smoke(managers.player:player_unit()) and smoke_screen:armor_bonus() then
+			return
+		end
+	end
+
+	local data = self._supperssion_data
+
+	if data.value then
+		if data.decay_start_t < t then
+			data.value = data.value - dt
+
+			if data.value <= 0 then
+				data.value = nil
+				data.decay_start_t = nil
+
+				managers.environment_controller:set_suppression_value(0, 0)
+			end
+		elseif data.value == tweak_data.player.suppression.max_value and self._regenerate_timer then
+			self._listener_holder:call("suppression_max")
+		end
+
+		if data.value then
+			managers.environment_controller:set_suppression_value(self:effective_suppression_ratio(), self:suppression_ratio())
+		end
+	end
+end

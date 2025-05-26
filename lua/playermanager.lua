@@ -454,7 +454,40 @@ function PlayerManager:skill_dodge_chance(...)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
 	dodge = dodge + self:temporary_upgrade_value("temporary", "unseen_dodge", 0)
 
+	for _, smoke_screen in ipairs(self._smoke_screen_effects or {}) do
+		if smoke_screen:is_in_smoke(self:player_unit()) then
+			dodge = dodge + (smoke_screen:dodge_bonus() and self:upgrade_value("player", "smoke_screen_dodge_add", 0))
+		end
+	end
+
 	return dodge
+end
+
+local old_skill_armor_regen = PlayerManager.body_armor_regen_multiplier
+function PlayerManager:body_armor_regen_multiplier(...)
+	local armor_regen = old_skill_armor_regen(self, ...)
+
+	for _, smoke_screen in ipairs(self._smoke_screen_effects or {}) do
+		if smoke_screen:is_in_smoke(self:player_unit()) then
+			armor_regen = armor_regen * (smoke_screen:armor_bonus() and self:upgrade_value("player", "smoke_screen_armor_regen_mul", 0))
+		end
+	end
+
+	return armor_regen
+end
+
+-- Sicario smoke bomb buffs
+function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_armor_bonus, has_dodge_bonus, linger_bonus)
+	local time = tweak_data.projectiles.smoke_screen_grenade.duration
+	self._smoke_screen_effects = self._smoke_screen_effects or {}
+
+	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_armor_bonus, has_dodge_bonus, linger_bonus, grenade_unit))
+
+	if alive(self._smoke_grenade) and Network:is_server() then
+		self._smoke_grenade:set_slot(0)
+	end
+
+	self._smoke_grenade = grenade_unit
 end
 
 -- Reduce damage taken while inside of vehicles
