@@ -530,7 +530,7 @@
 		</sequence>
 	<!--HAT SEQUENCES-->
 		<sequence editable_state="true" name="'random_hat'" triggable="true">
-			<run_sequence 		name="'hat_'..pick('base','base','base','backward','backward')" />
+			<run_sequence 		name="'hat_'..pick('base','backward')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'hat_base'" once="true" triggable="true">
