@@ -111,12 +111,12 @@ return {
 	-- don't remove front spawns
 	[102131] = { -- security room 1
 		on_executed = {
-			{ id = 102159, remove = true }, 
+			{ id = 102159, remove = true },
 		},
 	},
 	[102137] = { -- security room 3
 		on_executed = {
-			{ id = 102159, remove = true }, 
+			{ id = 102159, remove = true },
 		},
 	},
 	-- remove sketchy cheat spawns
@@ -139,9 +139,9 @@ return {
 	[100021] = exhibit_rappel_spawn,
 	[100810] = exhibit_rappel_spawn,
 	[101959] = hallway_rappel_spawn,
-	[101946] = hallway_rappel_spawn,	
+	[101946] = hallway_rappel_spawn,
 	[101924] = last_rappel_spawn,
 	[101941] = last_rappel_spawn,
 	[101942] = last_rappel_spawn,
-	[101943] = last_rappel_spawn,	
+	[101943] = last_rappel_spawn,
 }
