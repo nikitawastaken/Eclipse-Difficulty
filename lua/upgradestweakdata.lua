@@ -370,7 +370,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.overkill.multipro2 = "5"
 
 	-- Resilience
-	self.values.player.armor_regen_timer_multiplier[1] = 0.9
+	self.values.player.armor_regen_time_mul[1] = 0.9
 	self.values.player.flashbang_multiplier = { 0.5, 0.5 }
 	self.skill_descs.oppressor.multibasic2 = "10%"
 	self.skill_descs.oppressor.multipro2 = "50%"
