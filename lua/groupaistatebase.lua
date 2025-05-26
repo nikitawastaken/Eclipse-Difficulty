@@ -291,7 +291,12 @@ function GroupAIStateBase:is_nav_seg_safe(nav_seg)
 	return true
 end
 
-function GroupAIStateBase:is_nav_seg_area_safe(nav_seg)
+function GroupAIStateBase:is_nav_seg_area_safe(skip_areas, nav_seg)
+	for _, area in pairs(skip_areas) do
+		if area.nav_segs[nav_seg] then
+			return true
+		end
+	end
 	return self:is_area_safe(self:get_area_from_nav_seg_id(nav_seg))
 end
 
