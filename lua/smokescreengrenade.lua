@@ -23,7 +23,7 @@ function SmokeScreenGrenade:_detonate(tag, unit, body, other_unit, other_body, p
 			pos,
 			range,
 			managers.groupai:state("civilian_enemies"),
-			self._unit
+			self._unit,
 		})
 	end
 end

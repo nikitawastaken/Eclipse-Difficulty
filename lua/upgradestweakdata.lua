@@ -1411,8 +1411,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "smoke_grenade_no_armor_suppression",
 			synced = true,
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.smoke_grenade_no_armor_suppression = { true }
 	self.definitions.player_smoke_screen_armor_regen_mul = {
@@ -1421,8 +1421,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "smoke_screen_armor_regen_mul",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.smoke_screen_armor_regen_mul = { 0.7 }
 	self.definitions.player_smoke_grenade_dodge_buff = {
@@ -1432,8 +1432,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "smoke_grenade_dodge_buff",
 			synced = true,
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.smoke_grenade_dodge_buff = { true }
 	self.definitions.player_smoke_screen_dodge_add = {
@@ -1442,8 +1442,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "smoke_screen_dodge_add",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.smoke_screen_dodge_add = { 0.25 }
 	self.definitions.player_smoke_grenade_lingering_effect = {
@@ -1453,8 +1453,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "smoke_grenade_lingering_effect",
 			synced = true,
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.smoke_grenade_lingering_effect = { 3 }
 	self.specialization_descs[18][3].multiperk = "30%"

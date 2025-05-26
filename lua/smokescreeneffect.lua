@@ -14,12 +14,12 @@ function SmokeScreenEffect:init(position, normal, time, has_armor_bonus, has_dod
 	self._effect = World:effect_manager():spawn({
 		effect = Idstring("effects/particles/explosions/smoke_screen"),
 		position = position,
-		normal = normal
+		normal = normal,
 	})
 	self._variant = grenade_unit and grenade_unit:base() and grenade_unit:base()._projectile_entry
 	self._mine = grenade_unit and grenade_unit:base():thrower_unit() == managers.player:player_unit()
-    self._linger_time = linger_bonus -- lingering shadows
-    self._smoke_history = {}
+	self._linger_time = linger_bonus -- lingering shadows
+	self._smoke_history = {}
 end
 
 function SmokeScreenEffect:armor_bonus()
@@ -39,9 +39,13 @@ function SmokeScreenEffect:update(t, dt)
 
 			if not self._sound_killed then
 				self._sound_source:post_event("lung_loop_end")
-				managers.enemy:add_delayed_clbk("SmokeScreenEffect", callback(ProjectileBase, ProjectileBase, "_dispose_of_sound", {
-					sound_source = self._sound_source
-				}), TimerManager:game():time() + 4)
+				managers.enemy:add_delayed_clbk(
+					"SmokeScreenEffect",
+					callback(ProjectileBase, ProjectileBase, "_dispose_of_sound", {
+						sound_source = self._sound_source,
+					}),
+					TimerManager:game():time() + 4
+				)
 
 				self._sound_killed = true
 			end
@@ -53,26 +57,26 @@ function SmokeScreenEffect:update(t, dt)
 	end
 
 	self._unit_list = {}
-    local nearby_units = World:find_units_quick("sphere", self._position, self._radius, managers.slot:get_mask("persons"))
-    local now = TimerManager:game():time()
+	local nearby_units = World:find_units_quick("sphere", self._position, self._radius, managers.slot:get_mask("persons"))
+	local now = TimerManager:game():time()
 
-    for _, unit in ipairs(nearby_units) do
-        self._unit_list[unit:key()] = true
-        self._smoke_history[unit:key()] = now
-    end
+	for _, unit in ipairs(nearby_units) do
+		self._unit_list[unit:key()] = true
+		self._smoke_history[unit:key()] = now
+	end
 
-    for key, last_time in pairs(self._smoke_history) do
-        if now - last_time > self._linger_time then
-            self._smoke_history[key] = nil
-        end
-    end
+	for key, last_time in pairs(self._smoke_history) do
+		if now - last_time > self._linger_time then
+			self._smoke_history[key] = nil
+		end
+	end
 end
 
 function SmokeScreenEffect:is_in_smoke(unit)
-    local now = TimerManager:game():time()
-    local last = self._smoke_history[unit:key()]
+	local now = TimerManager:game():time()
+	local last = self._smoke_history[unit:key()]
 
-    local in_smoke = self._unit_list[unit:key()] or (last and now - last <= self._linger_time)
+	local in_smoke = self._unit_list[unit:key()] or (last and now - last <= self._linger_time)
 
-    return in_smoke, self._variant
+	return in_smoke, self._variant
 end
