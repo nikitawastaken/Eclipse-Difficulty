@@ -9,27 +9,21 @@ local enabled = {
 		enabled = true,
 	},
 }
-local bow_spawn = {
-	values = {
-		interval = 15,
-	},
-}
-local lifeboat_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local elevator_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local bow_spawn = {
 	values = {
 		interval = 20,
 	},
 }
-local courtyard_spawn = {
+local lifeboat_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_shields_bulldozers,
 }
 local casino_spawn = {
 	values = {
@@ -45,9 +39,15 @@ local spa_ceiling_spawn = {
 }
 local balcony_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local courtyard_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents,
 }
 local spa_window_spawn = {
 	values = {
@@ -57,7 +57,7 @@ local spa_window_spawn = {
 }
 local vent_spawn = {
 	values = {
-		interval = 75,
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

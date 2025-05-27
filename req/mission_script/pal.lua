@@ -75,7 +75,6 @@ local c4_event_counter = {
 		counter_target = c4_amount,
 	},
 }
-
 local beach_spawn = {
 	values = {
 		interval = 15,
@@ -88,7 +87,6 @@ local van_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-
 return {
 	-- water from the hose fills the safe much slower like in PDTH
 	[101229] = {

@@ -29,7 +29,7 @@ local window_spawn = {
 }
 local escape_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

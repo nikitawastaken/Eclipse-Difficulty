@@ -29,15 +29,9 @@ local woods_spawn = {
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
-local hillside_left_spawn = {
+local hillside_spawn = {
 	values = {
 		interval = 45,
-	},
-	groups = preferred.no_cops_agents_bulldozers,
-}
-local hillside_top_spawn = {
-	values = {
-		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -51,7 +45,7 @@ return {
 	-- Delay police response
 	[100571] = {
 		on_executed = {
-			{ id = 100572, delay = 30 },
+			{ id = 100572, delay = 40 },
 		},
 	},
 	-- Slow down difficulty progression
@@ -120,7 +114,7 @@ return {
 	[100889] = flank_spawn,
 	[100231] = woods_spawn,
 	[100434] = timbermill_spawn,
-	[100437] = hillside_left_spawn,
-	[100230] = hillside_top_spawn,
-	[100230] = hillside_top_spawn,
+	[100437] = hillside_spawn,
+	[100230] = hillside_spawn,
+	[100230] = hillside_spawn,
 }

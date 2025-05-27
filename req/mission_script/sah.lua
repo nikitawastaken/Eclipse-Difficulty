@@ -15,31 +15,31 @@ local balcony_spawn = {
 	},
 	groups = preferred.no_bulldozers,
 }
-local roof_spawn1 = {
+local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }
-local roof_spawn2 = {
+local skylight_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
-local storage_spawn1 = {
-	values = {
-		interval = 40,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local window_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local storage_spawn2 = {
+local storage_door_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local storage_window_spawn = {
 	values = {
 		interval = 60,
 	},
@@ -122,15 +122,15 @@ return {
 	[100130] = flank_spawn,
 	[103662] = flank_spawn,
 	[106779] = balcony_spawn,
-	[102667] = roof_spawn1,
-	[103307] = roof_spawn1,
-	[106776] = roof_spawn1,
-	[106764] = roof_spawn1,
-	[106767] = roof_spawn1,
-	[100133] = roof_spawn2,
-	[100694] = roof_spawn2,
-	[102303] = storage_spawn1,
-	[104089] = storage_spawn1,
+	[102667] = roof_spawn,
+	[103307] = roof_spawn,
+	[106776] = roof_spawn,
+	[106764] = roof_spawn,
+	[106767] = roof_spawn,
+	[100133] = skylight_spawn,
+	[100694] = skylight_spawn,
 	[106826] = window_spawn,
-	[103522] = storage_spawn2,
+	[102303] = storage_door_spawn,
+	[104089] = storage_door_spawn,
+	[103522] = storage_window_spawn,
 }

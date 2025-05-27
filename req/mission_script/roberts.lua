@@ -40,7 +40,7 @@ local gensec_van_at_the_bank = {
 }
 local flank_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }

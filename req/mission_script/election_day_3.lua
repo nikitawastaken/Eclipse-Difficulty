@@ -54,11 +54,6 @@ local high_escape_enemy = {
 	[heavy_2] = 1,
 }
 local high_escape = { enemy = high_escape_enemy }
-local front_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local front_left_spawn = {
 	values = {
 		interval = 15,
@@ -69,17 +64,17 @@ local mall_spawn = {
 		interval = 15,
 	},
 }
-local atrium_spawn = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_shields,
-}
 local ladder_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_bulldozers,
+}
+local atrium_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_shields,
 }
 local window_spawn = {
 	values = {
@@ -108,7 +103,7 @@ return {
 	-- Delay the assault
 	[102711] = {
 		on_executed = {
-			{ id = 102734, delay = 20 },
+			{ id = 102734, delay = 30 },
 		},
 	},
 	-- New reinforce
@@ -121,7 +116,7 @@ return {
 			},
 			{
 				name = "atrium_middle",
-				force = 3,
+				force = 2,
 				position = Vector3(-1300, -1600, 0),
 			},
 			{
@@ -165,7 +160,6 @@ return {
 	-- More or less a port of the original intervals with some twists as per usual.
 	-- The main one being increasing intervals of the groups outside the bank building as they are stacked pretty close to each other.
 	-- Ladder spawns have been slowed down as well since they are very close to the area where players are expected to hold out.
-	[102751] = front_spawn,
 	[102730] = front_left_spawn,
 	[100424] = mall_spawn,
 	[100435] = mall_spawn,

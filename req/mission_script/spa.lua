@@ -1,5 +1,4 @@
 local preferred = Eclipse.preferred
-
 local escape_spawn = {
 	values = {
 		interval = 15,
@@ -24,7 +23,7 @@ local roof_spawn1 = {
 }
 local roof_spawn2 = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

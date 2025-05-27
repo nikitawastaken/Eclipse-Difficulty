@@ -48,7 +48,6 @@ local garage_shield_spawn = {
 		{ delay = 2, id = 410012 },
 	},
 }
-
 local disabled = {
 	values = {
 		enabled = false,
@@ -56,7 +55,7 @@ local disabled = {
 }
 local street_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local van_spawn = {
@@ -83,7 +82,6 @@ local building_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
 local swat_heli_incoming = {
 	values = {
 		comment = "p41",
@@ -94,7 +92,6 @@ local garage_event_triggered = {
 		comment = "v18",
 	},
 }
-
 return {
 	[101356] = {
 		ponr = {

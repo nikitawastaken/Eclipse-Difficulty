@@ -16,13 +16,7 @@ local bush_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local window_spawn = {
-	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -130,6 +124,6 @@ return {
 	[101038] = roof_spawn,
 	[101204] = roof_spawn,
 	[101656] = roof_spawn,
-	[101859] = window_spawn,
-	[101864] = window_spawn,
+	[101859] = roof_spawn,
+	[101864] = roof_spawn,
 }

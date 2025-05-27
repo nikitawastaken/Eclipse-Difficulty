@@ -1,10 +1,4 @@
 local preferred = Eclipse.preferred
-local construction_spawn = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_bulldozers,
-}
 local bridge_spawn = {
 	values = {
 		interval = 30,
@@ -40,17 +34,16 @@ return {
 			{
 				name = "parking_lot",
 				force = 3,
-				position = Vector3(-1950, -2750, 10),
+				position = Vector3(-1950, -2750, 0),
 			},
 			{
 				name = "construction",
 				force = 3,
-				position = Vector3(3100, -3750, 10),
+				position = Vector3(3100, -3750, 0),
 			},
 		},
 	},
 	-- spawn point delays
-	[100461] = construction_spawn,
 	[100168] = bridge_spawn,
 	[100369] = bridge_spawn,
 	[100429] = bridge_spawn,

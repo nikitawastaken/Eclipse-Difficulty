@@ -122,7 +122,7 @@ return {
 	[100789] = spawn_anim_fix,
 	[100790] = spawn_anim_fix,
 	[100791] = spawn_anim_fix,
-	-- spawn point delays
+	-- Spawn group delays
 	[100128] = fence_spawn1,
 	[100692] = fence_spawn1,
 	[100693] = fence_spawn1,

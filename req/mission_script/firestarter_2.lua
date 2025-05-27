@@ -11,7 +11,7 @@ local street_spawn = {
 }
 local elevator_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_snipers,
 }

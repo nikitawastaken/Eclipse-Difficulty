@@ -6,12 +6,12 @@ local street_spawn = {
 }
 local parking_lot_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

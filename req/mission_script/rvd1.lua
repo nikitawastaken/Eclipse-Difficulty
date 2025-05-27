@@ -1,11 +1,4 @@
 local preferred = Eclipse.preferred
-
-local alley_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
-}
 local roof_spawn = {
 	values = {
 		interval = 20,
@@ -98,7 +91,7 @@ return {
 		},
 	},
 	-- Spawn point delays
-	[100131] = alley_spawn,
+	[100131] = roof_spawn,
 	[100007] = roof_spawn,
 	[100130] = roof_spawn,
 	[101683] = roof_spawn,

@@ -24,7 +24,6 @@ local chopper_amount = {
 		amount = swat_heli_amount,
 	},
 }
-
 local bridge_spawn1 = {
 	values = {
 		interval = 10,

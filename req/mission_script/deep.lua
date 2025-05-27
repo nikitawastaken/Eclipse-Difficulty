@@ -4,24 +4,13 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local helipad_spawn = {
+local bridge_spawn = {
 	values = {
-		interval = 15,
-	},
-}
-local fueling_area_spawn1 = {
-	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local fueling_area_spawn2 = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents,
-}
-local bridge_spawn = {
+local fueling_area_spawn1 = {
 	values = {
 		interval = 30,
 	},
@@ -38,6 +27,12 @@ local closet_spawn = {
 		interval = 40,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
+}
+local fueling_area_spawn2 = {
+	values = {
+		interval = 40,
+	},
+	groups = preferred.no_cops_agents,
 }
 local drill_room_spawn = {
 	values = {
@@ -98,7 +93,6 @@ return {
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
 	-- spawn point delays
-	[100133] = helipad_spawn,
 	[102086] = fueling_area_spawn1,
 	[103986] = fueling_area_spawn1,
 	[105278] = fueling_area_spawn1,

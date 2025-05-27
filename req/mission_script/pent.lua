@@ -21,31 +21,25 @@ local garage_spawn = {
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
-local pent_balcony_spawn = {
+local pent_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local roof_spawn1 = {
+local roof_lower_spawn = {
 	values = {
 		interval = 25,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
-local garage_spawn2 = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
-local window_spawn = {
+local garage_window_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
-local roof_spawn2 = {
+local roof_upper_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -53,15 +47,15 @@ local roof_spawn2 = {
 }
 local lobby_balcony_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
-		interval = 120,
+		interval = 60,
 	},
-	groups = preferred.only_cloakers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
@@ -119,20 +113,20 @@ return {
 	},
 	-- Spawn group delays
 	[102112] = ramp_spawn,
-	[102115] = roof_spawn1,
-	[102159] = roof_spawn1,
-	[101629] = roof_spawn2,
-	[101630] = roof_spawn2,
-	[102724] = roof_spawn2,
+	[102115] = roof_lower_spawn,
+	[102159] = roof_lower_spawn,
+	[101629] = roof_upper_spawn,
+	[101630] = roof_upper_spawn,
+	[102724] = roof_upper_spawn,
 	[103027] = garage_spawn1,
-	[103355] = garage_spawn2,
-	[102137] = pent_balcony_spawn,
-	[102138] = pent_balcony_spawn,
-	[102113] = pent_balcony_spawn,
-	[102114] = pent_balcony_spawn,
-	[100131] = window_spawn,
-	[100694] = window_spawn,
-	[100133] = window_spawn,
+	[103355] = garage_window_spawn,
+	[102137] = pent_spawn,
+	[102138] = pent_spawn,
+	[102113] = pent_spawn,
+	[102114] = pent_spawn,
+	[100131] = pent_spawn,
+	[100694] = pent_spawn,
+	[100133] = pent_spawn,
 	[103357] = lobby_balcony_spawn,
 	[103381] = lobby_balcony_spawn,
 	[100007] = vent_spawn,

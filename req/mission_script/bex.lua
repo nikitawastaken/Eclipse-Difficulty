@@ -35,7 +35,6 @@ local side_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-
 local bags_required = {
 	values = {
 		counter_target = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
@@ -46,7 +45,6 @@ local bags_required_objective = {
 		amount = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-
 return {
 	[101829] = {
 		ponr = {

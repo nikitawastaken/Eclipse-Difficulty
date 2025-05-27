@@ -26,7 +26,7 @@ local container_spawn = {
 }
 local office_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

@@ -17,13 +17,13 @@ local harasser = {
 }
 local flank_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 	groups = preferred.no_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
