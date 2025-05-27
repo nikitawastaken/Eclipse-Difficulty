@@ -48,7 +48,7 @@ jobs:
         if: ${{ steps.artifactDownload.outcome == 'success' }}
         run: |
           stylua_out=$(cat stylua.log)
-          echo "::set-output name=stylua_out::`echo $stylua_out | sed 's/$/\n/'`"
+          echo "stylua_out=`echo $stylua_out | sed 's/$/\n/'`" >> $GITHUB_OUTPUT
       - uses: sarisia/actions-status-discord@v1
         if: ${{ steps.artifactDownload.outcome == 'success' }}
         with:
