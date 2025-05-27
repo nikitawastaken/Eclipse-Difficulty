@@ -15,58 +15,55 @@ end
 
 GroupAITweakData.group_ai_presets = {
 	["ambush"] = {
-		CS_assault_shield = { 1, 1.2, 1.2 },
-		FBI_assault_shield = { 1, 1.2, 1.2 },
-		Elite_assault_shield = { 1, 1.2, 1.2 },
+		CS_assault_shield = { 1, 1.25, 1.25 },
+		FBI_assault_shield = { 1, 1.25, 1.25 },
+		Elite_assault_shield = { 1, 1.25, 1.25 },
 
-		CS_assault_taser = { 1, 1.2, 1.2 },
-		FBI_assault_taser = { 1, 1.2, 1.2 },
-		Elite_assault_taser = { 1, 1.2, 1.2 },
+		CS_assault_taser = { 1, 1.25, 1.25 },
+		FBI_assault_taser = { 1, 1.25, 1.25 },
+		Elite_assault_taser = { 1, 1.25, 1.25 },
 
-		CS_assault_bulldozer = { 1, 1.2, 1.2 },
-		FBI_assault_bulldozer = { 1, 1.2, 1.2 },
-		Elite_assault_bulldozer = { 1, 1.2, 1.2 },
+		CS_assault_bulldozer = { 1, 1.25, 1.25 },
+		FBI_assault_bulldozer = { 1, 1.25, 1.25 },
+		Elite_assault_bulldozer = { 1, 1.25, 1.25 },
 
-		FBI_assault_cloaker = { 1, 1.4, 1.4 },
+		FBI_assault_cloaker = { 1, 1.5, 1.5 },
 	},
 	["small_urban"] = {
-		CS_assault_cops = { 1.5, 1.5, 1 },
+		CS_assault_cops = { 1.5, 1.25, 1 },
 
-		CS_assault_bulldozer = { 0, 0, 0.8 },
-		FBI_assault_bulldozer = { 0, 0, 0.8 },
-		Elite_assault_bulldozer = { 0, 0, 0.8 },
+		CS_assault_bulldozer = { 0, 0, 0.75 },
+		FBI_assault_bulldozer = { 0, 0, 0.75 },
+		Elite_assault_bulldozer = { 0, 0, 0.75 },
 
-		CS_reinforce_cops = { 1.5, 1.5, 1 },
+		CS_reinforce_cops = { 1.5, 1.25, 1 },
 
-		CS_reinforce_swats = { 0, 0.4, 0.6 },
-		FBI_reinforce_swats = { 0, 0.4, 0.6 },
+		CS_reinforce_swats = { 0, 0.5, 1 },
+		FBI_reinforce_swats = { 0, 0.5, 1 },
 	},
 	["remote"] = {
 		CS_assault_cops = { 0, 0, 0 },
 
-		CS_reinforce_cops = { 0.6, 0.6, 0 },
-		FBI_reinforce_agents = { 0.6, 0.6, 0 },
+		CS_reinforce_cops = { 0.5, 0.25, 0 },
+		FBI_reinforce_agents = { 0.5, 0.25 0 },
 
-		CS_reinforce_swats = { 1, 1, 1.5 },
-		FBI_reinforce_swats = { 1, 1, 1.5 },
-
-		CS_recon_cops = { 0.5, 0.5, 0 },
-		FBI_recon_agents = { 0.5, 0.5, 0 },
+		CS_recon_cops = { 0.5, 0.25, 0 },
+		FBI_recon_agents = { 0.5, 0.25, 0 },
 	},
 	["skyscraper"] = {
 		CS_assault_cops = { 0, 0, 0 },
 
-		CS_assault_shield = { 0, 0.6, 0.8 },
-		FBI_assault_shield = { 0, 0.6, 0.8 },
-		Elite_assault_shield = { 0, 0.6, 0.8 },
+		CS_assault_shield = { 0, 0.75, 1 },
+		FBI_assault_shield = { 0, 0.75, 1 },
+		Elite_assault_shield = { 0, 0.75, 1 },
 
-		FBI_assault_cloaker = { 1, 1.2, 1.2 },
+		FBI_assault_cloaker = { 1, 1.25, 1.25 },
 
-		CS_reinforce_cops = { 0.6, 0.6, 0 },
-		FBI_reinforce_agents = { 0.6, 0.6, 0 },
+		CS_reinforce_cops = { 0.5, 0.25, 0 },
+		FBI_reinforce_agents = { 0.5, 0.25 0 },
 
-		CS_recon_cops = { 0.5, 0.5, 0 },
-		FBI_recon_agents = { 0.5, 0.5, 0 },
+		CS_recon_cops = { 0.5, 0.25, 0 },
+		FBI_recon_agents = { 0.5, 0.25, 0 },
 	},
 }
 
@@ -1745,9 +1742,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				amount_max = 2,
-				freq = 0.5,
+				freq_by_diff = {
+					difficulty_index / 6,
+					difficulty_index / 3,
+					difficulty_index,
+				},
 				rank = 3,
-				unit = "CS_cop_4",
+				unit = "CS_cop_3_4",
 				tactics = self._tactics.cop_def,
 			},
 			{
@@ -1785,15 +1786,22 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq_by_diff = { 1, 0.75, 0.5 },
-				rank = 1,
+				rank = 2,
 				unit = "CS_cop_1",
 				tactics = self._tactics.hrt,
 			},
 			{
 				amount_max = 2,
 				freq = 1,
-				rank = 2,
+				rank = 3,
 				unit = "CS_cop_3",
+				tactics = self._tactics.hrt,
+			},
+			{
+				amount_max = 1,
+				freq = 0.25,
+				rank = 1,
+				unit = "CS_cop_2",
 				tactics = self._tactics.hrt,
 			},
 		},
@@ -1997,17 +2005,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self.enemy_spawn_groups.FBI_reinforce_agents = {
 		amount = { 2, 3 },
 		spawn = {
-			{
-				amount_max = 2,
-				freq_by_diff = {
-					5 / difficulty_index,
-					0,
-					0,
-				},
-				rank = 1,
-				unit = "CS_cop_3_4",
-				tactics = self._tactics.cop_def,
-			},
 			{
 				freq = 1,
 				rank = 1,
