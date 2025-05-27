@@ -45,7 +45,7 @@ GroupAITweakData.group_ai_presets = {
 		CS_assault_cops = { 0, 0, 0 },
 
 		CS_reinforce_cops = { 0.5, 0.25, 0 },
-		FBI_reinforce_agents = { 0.5, 0.25 0 },
+		FBI_reinforce_agents = { 0.5, 0.25, 0 },
 
 		CS_recon_cops = { 0.5, 0.25, 0 },
 		FBI_recon_agents = { 0.5, 0.25, 0 },
@@ -60,7 +60,7 @@ GroupAITweakData.group_ai_presets = {
 		FBI_assault_cloaker = { 1, 1.25, 1.25 },
 
 		CS_reinforce_cops = { 0.5, 0.25, 0 },
-		FBI_reinforce_agents = { 0.5, 0.25 0 },
+		FBI_reinforce_agents = { 0.5, 0.25, 0 },
 
 		CS_recon_cops = { 0.5, 0.25, 0 },
 		FBI_recon_agents = { 0.5, 0.25, 0 },
