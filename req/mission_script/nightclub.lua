@@ -89,12 +89,12 @@ return {
 			amount = dance_civs_bad_music,
 		},
 	},
-	-- spawn point delays	
+	-- spawn point delays
 	[101046] = side_spawn,
 	[101213] = side_spawn,
 	[100806] = rear_spawn,
-	[101345] = rear_spawn,	
-	[103174] = window_spawn,	
+	[101345] = rear_spawn,
+	[103174] = window_spawn,
 	[104731] = window_spawn,
 	[101221] = alleyway_spawn,
 	-- Dimitri's men are friendly to cops

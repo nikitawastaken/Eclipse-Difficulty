@@ -28,7 +28,7 @@ local van_enemy2 = {
 local street_spawn = {
 	values = {
 		interval = 15,
-	}
+	},
 }
 local catwalk_spawn = {
 	values = {
