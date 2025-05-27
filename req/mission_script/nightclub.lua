@@ -8,6 +8,7 @@ local side_spawn = {
 	values = {
 		interval = 15,
 	},
+}
 local rear_spawn = {
 	values = {
 		interval = 25,
