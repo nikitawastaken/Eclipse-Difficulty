@@ -96,7 +96,7 @@ return {
 	[101345] = rear_spawn,	
 	[103174] = window_spawn,	
 	[104731] = window_spawn,
-	[101221] = alleyway_spawn
+	[101221] = alleyway_spawn,
 	-- Dimitri's men are friendly to cops
 	[101858] = law_team,
 	[101865] = law_team,
