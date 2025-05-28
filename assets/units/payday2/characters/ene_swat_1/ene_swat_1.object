@@ -429,7 +429,7 @@
 					<material materials="mtr_swat_lod_1, mtr_equipment_lod_1" max_distance="2000" />
 					<material materials="mtr_swat_lod_2, mtr_equipment_lod_2" />
 				</object>
-				<object name="g_gear_city_swat_a_lod1" 	enabled="false" lod="1" >
+				<object name="g_gear_city_swat_b_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_swat, mtr_equipment" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_swat_lod_2, mtr_equipment_lod_2" />
 				</object>
