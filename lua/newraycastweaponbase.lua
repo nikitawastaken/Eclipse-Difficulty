@@ -374,13 +374,9 @@ function NewRaycastWeaponBase:fire_rate_multiplier()
 
 	local weapon_tweak = self:weapon_tweak_data()
 
-	local fire_modes = weapon_tweak.fire_mode_data and weapon_tweak.fire_mode_data.toggable
-
-	if fire_modes then
-		for _, fire_mode in ipairs(fire_modes) do
-			if self:fire_mode() == fire_mode then
-				multiplier = multiplier * (weapon_tweak.fire_mode_mul and weapon_tweak.fire_mode_mul[fire_mode].fire_rate or 1)
-			end
+	for _, fire_mode in ipairs(self._fire_modes) do
+		if self:fire_mode() == fire_mode then
+			multiplier = multiplier * (self._fire_mode_mul and self._fire_mode_mul[fire_mode] and self._fire_mode_mul[fire_mode].fire_rate or 1)
 		end
 	end
 

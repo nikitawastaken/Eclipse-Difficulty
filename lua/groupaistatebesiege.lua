@@ -621,7 +621,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				end
 			else
 				-- If we aren't pushing, we go to one area before the criminal area
-				if #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] then
+				while #assault_path > 2 and assault_area.nav_segs[assault_path[#assault_path][1]] do
 					table.remove(assault_path)
 				end
 				assault_area = assault_from

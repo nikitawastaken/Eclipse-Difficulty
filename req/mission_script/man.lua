@@ -125,6 +125,15 @@ local new_cloaker_spawn = {
 local chopper_delay_init = 480 - (diff_i * 30) - (is_pro_job and 60 or 0)
 local chopper_delay = 360 - (diff_i * 15) - (is_pro_job and 45 or 0)
 return {
+	-- Combine some navigation areas
+	[100053] = {
+		ai_area = {
+			{ 38, 39, 40 },
+			{ 50, 51, 52 },
+			{ 55, 78 },
+			{ 61, 165 }
+		}
+	},
 	--PONR
 	[100695] = {
 		ponr = {
