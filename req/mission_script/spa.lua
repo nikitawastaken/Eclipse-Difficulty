@@ -6,24 +6,25 @@ local escape_spawn = {
 }
 local window_spawn1 = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
+	groups = preferred.no_cops_agents,
 }
 local window_spawn2 = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
-	groups = preferred.no_shields_bulldozers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn1 = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local roof_spawn2 = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
