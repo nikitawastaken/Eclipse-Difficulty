@@ -71,7 +71,7 @@ return {
 	-- Lower level spawns are faster with more groups, higher level spawns are much slower and have group restrictions.
 	-- The ground spawns at the escape have been slowed down to allow for more diverse holdout locations, if you know you know.
 	[106717] = escape_spawn,
-	[104348] = escape_spawn,	
+	[104348] = escape_spawn,
 	[107262] = breach_lower_spawn,
 	[107263] = breach_lower_spawn,
 	[101012] = window_lower_spawn,
@@ -87,7 +87,7 @@ return {
 	[104336] = skylight_spawn,
 	[104337] = skylight_spawn,
 	[107260] = skylight_spawn,
-	[107261] = skylight_spawn,	
+	[107261] = skylight_spawn,
 	[102151] = roof_spawn,
 	[104347] = roof_spawn,
 }
