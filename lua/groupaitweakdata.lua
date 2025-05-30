@@ -1933,12 +1933,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				freq_by_diff = {
-					difficulty_index / 24,
-					difficulty_index / 18,
-					difficulty_index / 12,
-				},
-				amount_max = 2,
+				freq = 1,
+				amount_max = 1,
 				rank = 3,
 				unit = "CS_shield",
 				tactics = self._tactics.shield_agg,
