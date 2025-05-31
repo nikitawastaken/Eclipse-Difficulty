@@ -171,7 +171,7 @@ return {
 	},
 	[100955] = { -- diff 0.75
 		on_executed = {
-			{ id = 100043, delay = 30, delay_rand = 10 }, -- start more preferreds
+			{ id = 100043, delay = 30, delay_rand = 30 }, -- start more preferreds
 		},
 	},
 	--Let the cops finish their spawn anim before moving into SO spot
