@@ -16,7 +16,7 @@ local bulldozer = scripted_enemy.bulldozer_1
 local bulldozer_2 = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cloaker_basement_chance = 0.1 + (is_pro_job and 0.1)
+local cloaker_basement_chance = 0.1 + (is_pro_job and 0.1 or 0)
 local basement_enemies_amount = 2
 local random_dozers = {
 	bulldozer,
