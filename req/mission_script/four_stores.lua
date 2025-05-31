@@ -1,11 +1,6 @@
 local preferred = Eclipse.preferred
 local street_spawn = {
 	values = {
-		interval = 10,
-	},
-}
-local parking_lot_spawn = {
-	values = {
 		interval = 15,
 	},
 }
@@ -56,22 +51,22 @@ return {
 		reinforce = {
 			{
 				name = "pear_shop",
-				force = 3,
+				force = 2,
 				position = Vector3(1450, -2700, 25),
 			},
 			{
 				name = "convenience_store",
-				force = 3,
+				force = 2,
 				position = Vector3(-750, 2700, 25),
 			},
 			{
 				name = "cafe",
-				force = 3,
+				force = 2,
 				position = Vector3(0, -4075, 25),
 			},
 			{
 				name = "china",
-				force = 3,
+				force = 2,
 				position = Vector3(1450, -4050, 25),
 			},
 		},
@@ -150,7 +145,6 @@ return {
 	[101213] = street_spawn,
 	[101345] = street_spawn,
 	[101369] = street_spawn,
-	[102929] = parking_lot_spawn,
 	[101375] = rappel_spawn,
 	[103543] = cloaker_spawn,
 	[103544] = cloaker_spawn,

@@ -1,37 +1,46 @@
 local preferred = Eclipse.preferred
-
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
-
-local construction_spawn1 = {
+local construction_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 local bridge_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local construction_spawn2 = {
+local train_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
-
 return {
+	[100009] = disabled, -- diff 1
+	[100212] = { -- Initial diff
+		values = {
+			difficulty = 0.35,
+		},
+	},
+	[100696] = { -- Van opened
+		difficulty_add = 0.15,
+	},
+	[100082] = { -- Signalled escape
+		difficulty = 1,
+	},
 	-- Disable hunt
 	[101598] = disabled,
 	-- Spawn point delays
-	[101063] = construction_spawn1,
-	[100979] = construction_spawn2,
-	[100996] = construction_spawn2,
-	[100997] = construction_spawn2,
+	[101063] = construction_spawn,
+	[100979] = train_spawn,
+	[100996] = train_spawn,
+	[100997] = train_spawn,
 	[100381] = bridge_spawn,
 	[100532] = bridge_spawn,
 	[100214] = bridge_spawn,
