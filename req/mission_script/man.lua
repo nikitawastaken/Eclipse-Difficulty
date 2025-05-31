@@ -104,17 +104,17 @@ local breach_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local window_spawn = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local roof_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
-}
-local window_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local new_cloaker_spawn = {
 	values = {

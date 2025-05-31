@@ -63,7 +63,8 @@ local cloaker_spawn = {
 	},
 }
 return {
-	[101607] = { -- Yufu is dead
+	[101607] = { -- Yufu is dead	
+		difficulty = 1,
 		ponr = {
 			length = 180,
 			player_mul = { 1.33, 1.15, 1, 0.85 },
@@ -94,32 +95,9 @@ return {
 	[100370] = sniper_trigger_times,
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
-	-- Do not disable certain preferreds when players are on the roof
-	[102132] = {
-		on_executed = {
-			{ id = 102497, remove = true }, -- spawns outside pent
-		},
-	},
-	-- Disable a bunch diff scaling elements
-	[102486] = { -- players upstairs, decrease diff temporarily
-		values = {
-			difficulty = 0.35,
-		},
-	},
-	[102490] = { -- Yufu defeated, max diff
-		values = {
-			difficulty = 1,
-		},
-	},
 	-- Spawn group delays
 	[102112] = ramp_spawn,
-	[102115] = roof_lower_spawn,
-	[102159] = roof_lower_spawn,
-	[101629] = roof_upper_spawn,
-	[101630] = roof_upper_spawn,
-	[102724] = roof_upper_spawn,
-	[103027] = garage_spawn1,
-	[103355] = garage_window_spawn,
+	[103027] = garage_spawn,
 	[102137] = pent_spawn,
 	[102138] = pent_spawn,
 	[102113] = pent_spawn,
@@ -127,6 +105,12 @@ return {
 	[100131] = pent_spawn,
 	[100694] = pent_spawn,
 	[100133] = pent_spawn,
+	[102115] = roof_lower_spawn,
+	[102159] = roof_lower_spawn,
+	[103355] = garage_window_spawn,
+	[101629] = roof_upper_spawn,
+	[101630] = roof_upper_spawn,
+	[102724] = roof_upper_spawn,
 	[103357] = lobby_balcony_spawn,
 	[103381] = lobby_balcony_spawn,
 	[100007] = vent_spawn,
