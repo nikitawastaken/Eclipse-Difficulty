@@ -63,7 +63,7 @@ local cloaker_spawn = {
 	},
 }
 return {
-	[101607] = { -- Yufu is dead	
+	[101607] = { -- Yufu is dead
 		difficulty = 1,
 		ponr = {
 			length = 180,
