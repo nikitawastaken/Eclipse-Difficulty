@@ -352,25 +352,25 @@ function WeaponTweakData:_init_weapons()
 						standing = {
 							hipfire = 1.5,
 							crouching = 0.75,
-							steelsight = 0.75	,
+							steelsight = 0.75,
 						},
 						moving = {
 							hipfire = 1.75,
 							crouching = 1,
-							steelsight = 1,
+							steelsight = 1.25,
 						},
 						bipod = 0.5,
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.25,
+							hipfire = 1.5,
 							crouching = 0.75,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.75,
 							crouching = 1,
-							steelsight = 1,
+							steelsight = 1.25,
 						}
 					}
 				end
@@ -984,15 +984,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.famas.BURST_COUNT = 3
 
-	-- Valkyria
-	self.asval.CLIP_AMMO_MAX = 20
-	self.asval.stats.damage = 45
-	self.asval.stats.spread = 16
-	self.asval.stats.recoil = 17
-	self.asval.stats.concealment = 24
-	self.asval.fire_mode_data.fire_rate = 60 / 900
-	self.asval.reload_speed_multiplier = 1.25
-
 	-- Union
 	self.corgi.CLIP_AMMO_MAX = 30
 	self.corgi.stats.damage = 45
@@ -1018,6 +1009,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.amcar.stats.concealment = 20
 	self.amcar.fire_mode_data.fire_rate = 60 / 800
 
+	-- Para
+	self.olympic.categories = { "assault_rifle" }
+	self.olympic.CLIP_AMMO_MAX = 30
+	self.olympic.stats.damage = 50
+	self.olympic.stats.spread = 11
+	self.olympic.stats.recoil = 16
+	self.olympic.stats.concealment = 24
+	self.olympic.fire_mode_data.fire_rate = 60 / 800
+	
 	-- JP36
 	self.g36.CLIP_AMMO_MAX = 30
 	self.g36.stats.damage = 50
@@ -1032,9 +1032,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.g36.BURST_COUNT = 3
 
+	-- CAR-4
+	self.new_m4.CLIP_AMMO_MAX = 30
+	self.new_m4.stats.damage = 60
+	self.new_m4.stats.spread = 12
+	self.new_m4.stats.recoil = 16
+	self.new_m4.stats.concealment = 18
+	self.new_m4.fire_mode_data.fire_rate = 60 / 750
+
 	-- Commando 553
 	self.s552.CLIP_AMMO_MAX = 30
-	self.s552.stats.damage = 50
+	self.s552.stats.damage = 60
 	self.s552.stats.spread = 16
 	self.s552.stats.recoil = 14
 	self.s552.stats.concealment = 22
@@ -1045,51 +1053,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.s552.BURST_COUNT = 3
 
-	-- Rodion
-	self.tkb.CLIP_AMMO_MAX = 60
-	self.tkb.stats.damage = 50
-	self.tkb.stats.spread = 16
-	self.tkb.stats.recoil = 10
-	self.tkb.stats.concealment = 12
-	self.tkb.fire_mode_data.fire_rate = 60 / 800
-	self.tkb.reload_speed_multiplier = 0.8
-	self.tkb.fire_mode_data.volley = {
-		spread_mul = 1.5,
-		damage_mul = 1,
-		ammo_usage = 3,
-		rays = 3,
-		can_shoot_through_wall = false,
-		can_shoot_through_shield = true,
-		can_shoot_through_enemy = true,
-		muzzleflash = "effects/payday2/particles/weapons/tkb_muzzle",
-		muzzleflash_silenced = "effects/payday2/particles/weapons/tkb_suppressed"
-	}
-
-	-- CAR-4
-	self.new_m4.CLIP_AMMO_MAX = 30
-	self.new_m4.stats.damage = 60
-	self.new_m4.stats.spread = 12
-	self.new_m4.stats.recoil = 16
-	self.new_m4.stats.concealment = 18
-	self.new_m4.fire_mode_data.fire_rate = 60 / 750
-
-	-- Para
-	self.olympic.categories = { "assault_rifle" }
-	self.olympic.CLIP_AMMO_MAX = 30
-	self.olympic.stats.damage = 60
-	self.olympic.stats.spread = 11
-	self.olympic.stats.recoil = 16
-	self.olympic.stats.concealment = 24
-	self.olympic.fire_mode_data.fire_rate = 60 / 800
-
-	-- AK Rifle
-	self.ak74.CLIP_AMMO_MAX = 30
-	self.ak74.stats.damage = 60
-	self.ak74.stats.spread = 13
-	self.ak74.stats.recoil = 17
-	self.ak74.stats.concealment = 18
-	self.ak74.fire_mode_data.fire_rate = 60 / 650
-	self.ak74.reload_speed_multiplier = 1.2
+	-- UAR
+	self.aug.CLIP_AMMO_MAX = 30
+	self.aug.stats.damage = 60
+	self.aug.stats.spread = 17
+	self.aug.stats.recoil = 10
+	self.aug.stats.concealment = 22
+	self.aug.fire_mode_data.fire_rate = 60 / 650
 
 	-- AK5
 	self.ak5.CLIP_AMMO_MAX = 30
@@ -1098,7 +1068,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ak5.stats.recoil = 16
 	self.ak5.stats.concealment = 17
 	self.ak5.fire_mode_data.fire_rate = 60 / 700
-
+	
 	-- Lion's Roar
 	self.vhs.CLIP_AMMO_MAX = 30
 	self.vhs.stats.damage = 60
@@ -1108,76 +1078,26 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.vhs.fire_mode_data.fire_rate = 60 / 850
 	self.vhs.reload_speed_multiplier = 1.25
 
-	-- CR805
-	self.hajk.use_data.selection_index = 2
-	self.hajk.categories = { "assault_rifle" }
-	self.hajk.CLIP_AMMO_MAX = 30
-	self.hajk.stats.damage = 60
-	self.hajk.stats.spread = 14
-	self.hajk.stats.recoil = 18
-	self.hajk.stats.concealment = 16
-	self.hajk.fire_mode_data.fire_rate = 60 / 750
-
-	-- AK17
-	self.flint.CLIP_AMMO_MAX = 30
-	self.flint.stats.damage = 60
-	self.flint.stats.spread = 15
-	self.flint.stats.recoil = 13
-	self.flint.stats.concealment = 16
-	self.flint.fire_mode_data = {
-		fire_rate = 60 / 700,
-		burst = {},
-		toggable = { "auto", "burst", "single" }
-	}
-	self.flint.BURST_COUNT = 3
-
-
+	-- AK Rifle
+	self.ak74.CLIP_AMMO_MAX = 30
+	self.ak74.stats.damage = 75
+	self.ak74.stats.spread = 13
+	self.ak74.stats.recoil = 17
+	self.ak74.stats.concealment = 18
+	self.ak74.fire_mode_data.fire_rate = 60 / 650
+	self.ak74.reload_speed_multiplier = 1.2
+	
 	-- AMR
 	self.m16.CLIP_AMMO_MAX = 30
-	self.m16.stats.damage = 80
+	self.m16.stats.damage = 75
 	self.m16.stats.spread = 16
 	self.m16.stats.recoil = 15
 	self.m16.stats.concealment = 14
 	self.m16.fire_mode_data.fire_rate = 60 / 850
 
-	-- UAR
-	self.aug.CLIP_AMMO_MAX = 30
-	self.aug.stats.damage = 80
-	self.aug.stats.spread = 17
-	self.aug.stats.recoil = 10
-	self.aug.stats.concealment = 22
-	self.aug.fire_mode_data.fire_rate = 60 / 650
-
-	-- AK 7.62
-	self.akm.CLIP_AMMO_MAX = 30
-	self.akm.stats.damage = 80
-	self.akm.stats.spread = 16
-	self.akm.stats.recoil = 11
-	self.akm.stats.concealment = 17
-	self.akm.fire_mode_data.fire_rate = 60 / 600
-	self.akm.timers.reload_not_empty = 2.2
-	
-	-- Krinkov
-	self.akmsu.categories = { "assault_rifle" }
-	self.akmsu.CLIP_AMMO_MAX = 30
-	self.akmsu.stats.damage = 80
-	self.akmsu.stats.spread = 14
-	self.akmsu.stats.recoil = 10
-	self.akmsu.stats.concealment = 23
-	self.akmsu.fire_mode_data.fire_rate = 60 / 800
-
-	-- Gold AK 7.62
-	self.akm_gold.CLIP_AMMO_MAX = 30
-	self.akm_gold.stats.damage = 80
-	self.akm_gold.stats.spread = 16
-	self.akm_gold.stats.recoil = 11
-	self.akm_gold.stats.concealment = 17
-	self.akm_gold.fire_mode_data.fire_rate = 60 / 600
-	self.akm_gold.timers.reload_not_empty = 2.2
-
 	-- Queen's Wrath
 	self.l85a2.CLIP_AMMO_MAX = 30
-	self.l85a2.stats.damage = 80
+	self.l85a2.stats.damage = 75
 	self.l85a2.stats.spread = 17
 	self.l85a2.stats.recoil = 16
 	self.l85a2.stats.concealment = 19
@@ -1186,6 +1106,24 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.l85a2.timers.reload_not_empty = 3
 	self.l85a2.timers.reload_empty = 4
 
+	-- CR805
+	self.hajk.use_data.selection_index = 2
+	self.hajk.categories = { "assault_rifle" }
+	self.hajk.CLIP_AMMO_MAX = 30
+	self.hajk.stats.damage = 75
+	self.hajk.stats.spread = 14
+	self.hajk.stats.recoil = 18
+	self.hajk.stats.concealment = 16
+	self.hajk.fire_mode_data.fire_rate = 60 / 750
+	
+	-- Valkyria
+	self.asval.CLIP_AMMO_MAX = 20
+	self.asval.stats.damage = 80
+	self.asval.stats.spread = 16
+	self.asval.stats.recoil = 13
+	self.asval.stats.concealment = 24
+	self.asval.fire_mode_data.fire_rate = 60 / 900
+	
 	-- Ketchnov
 	self.groza.CLIP_AMMO_MAX = 20
 	self.groza.stats.damage = 80
@@ -1204,6 +1142,67 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.groza_underbarrel.fire_mode_data.fire_rate = 60 / 60
 	self.groza_underbarrel.stats_modifiers = { damage = 5 }
 	self.groza_underbarrel.reload_speed_multiplier = 0.7
+
+	-- Rodion
+	self.tkb.CLIP_AMMO_MAX = 60
+	self.tkb.stats.damage = 80
+	self.tkb.stats.spread = 16
+	self.tkb.stats.recoil = 10
+	self.tkb.stats.concealment = 12
+	self.tkb.fire_mode_data.fire_rate = 60 / 800
+	self.tkb.reload_speed_multiplier = 0.8
+	self.tkb.fire_mode_data.volley = {
+		spread_mul = 1.5,
+		damage_mul = 1,
+		ammo_usage = 3,
+		rays = 3,
+		can_shoot_through_wall = false,
+		can_shoot_through_shield = true,
+		can_shoot_through_enemy = true,
+		muzzleflash = "effects/payday2/particles/weapons/tkb_muzzle",
+		muzzleflash_silenced = "effects/payday2/particles/weapons/tkb_suppressed"
+	}
+	
+	-- AK 7.62
+	self.akm.CLIP_AMMO_MAX = 30
+	self.akm.stats.damage = 90
+	self.akm.stats.spread = 16
+	self.akm.stats.recoil = 11
+	self.akm.stats.concealment = 17
+	self.akm.fire_mode_data.fire_rate = 60 / 600
+	self.akm.timers.reload_not_empty = 2.2
+	
+	-- Krinkov
+	self.akmsu.categories = { "assault_rifle" }
+	self.akmsu.CLIP_AMMO_MAX = 30
+	self.akmsu.stats.damage = 90
+	self.akmsu.stats.spread = 14
+	self.akmsu.stats.recoil = 10
+	self.akmsu.stats.concealment = 23
+	self.akmsu.fire_mode_data.fire_rate = 60 / 800
+
+	-- Gold AK 7.62
+	self.akm_gold.CLIP_AMMO_MAX = 30
+	self.akm_gold.stats.damage = 90
+	self.akm_gold.stats.spread = 16
+	self.akm_gold.stats.recoil = 11
+	self.akm_gold.stats.concealment = 17
+	self.akm_gold.fire_mode_data.fire_rate = 60 / 600
+	self.akm_gold.timers.reload_not_empty = 2.2
+
+	-- AK17
+	self.flint.CLIP_AMMO_MAX = 30
+	self.flint.stats.damage = 90
+	self.flint.stats.spread = 15
+	self.flint.stats.recoil = 13
+	self.flint.stats.concealment = 16
+	self.flint.fire_mode_data = {
+		fire_rate = 60 / 700,
+		burst = {},
+		toggable = { "auto", "burst", "single" }
+	}
+	self.flint.BURST_COUNT = 3
+
 
 	-- Eagle Heavy
 	table.insert(self.scar.categories, "dmr")
