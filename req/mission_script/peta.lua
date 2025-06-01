@@ -59,11 +59,11 @@ return {
 	[100506] = scene_cop_count,
 	[100630] = scene_cop_count,
 	-- Scale assault cop amount
-	[103451] = wave_cop_count,	
-	[103450] = wave_cop_count,	
-	[103449] = wave_cop_count,	
-	[103448] = wave_cop_count,	
-	[103447] = wave_cop_count,		
+	[103451] = wave_cop_count,
+	[103450] = wave_cop_count,
+	[103449] = wave_cop_count,
+	[103448] = wave_cop_count,
+	[103447] = wave_cop_count,
 	-- Spawn group delays
 	[100132] = close_spawn,
 	[106017] = close_spawn,
