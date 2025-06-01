@@ -160,9 +160,6 @@ return {
 	[105498] = disabled,
 	-- nuke swat van
 	[105921] = disabled,
-	-- disable sniper spawns that I don't like
-	[105826] = disabled,
-	[101619] = disabled,
 	-- Edit preferreds to make the initial assault have less dense spawns
 	[103984] = { -- assault start
 		on_executed = {
@@ -171,7 +168,18 @@ return {
 	},
 	[100955] = { -- diff 0.75
 		on_executed = {
-			{ id = 100043, delay = 30, delay_rand = 30 }, -- start more preferreds
+			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
+		},
+	},
+	-- Increase the number of assaults needed for each diff spike
+	[100962] = { -- diff 0.75
+		values = {
+			counter_target = 2, -- used to be 1
+		},
+	},
+	[100966] = { -- diff 1
+		values = {
+			counter_target = 3, -- used to be 2
 		},
 	},
 	--Let the cops finish their spawn anim before moving into SO spot
@@ -383,6 +391,7 @@ return {
 	[105112] = skylight_spawn,
 	[106890] = skylight_spawn,
 	[103953] = office_spawn,
+	[103068] = office_spawn,
 	[103081] = office_spawn,
 	[103011] = office_spawn,
 	[103689] = office_spawn,
