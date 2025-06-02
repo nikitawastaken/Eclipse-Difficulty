@@ -40,7 +40,6 @@ end
 -- proper 3rd person idle stance, broken in u150
 local orig = HuskPlayerMovement.sync_stance
 function HuskPlayerMovement:sync_stance(code, ...)
-    return orig(self, code > 1 and 2 or code, ...)
+	return orig(self, code > 1 and 2 or code, ...)
 end
-function HuskPlayerMovement:set_cbt_permanent()
-end
+function HuskPlayerMovement:set_cbt_permanent() end
