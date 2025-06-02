@@ -558,12 +558,13 @@ function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
 		end
 	end
 
-	local ammo = tweak_data.weapon[self._name_id].CLIP_AMMO_MAX + added
-	ammo = ammo + managers.player:upgrade_value(self._name_id, "clip_ammo_increase")
+	local ammo = tweak_data.weapon[self._name_id].CLIP_AMMO_MAX
 
 	if not self:upgrade_blocked("weapon", "clip_ammo_increase") then
 		ammo = math.ceil(ammo * managers.player:upgrade_value("weapon", "clip_ammo_increase", 1))
 	end
+
+	ammo = ammo + managers.player:upgrade_value(self._name_id, "clip_ammo_increase")
 
 	for _, category in ipairs(tweak_data.weapon[self._name_id].categories) do
 		if not self:upgrade_blocked(category, "clip_ammo_increase") then
@@ -571,6 +572,7 @@ function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
 		end
 	end
 
+	ammo = ammo + added
 	ammo = ammo + (self._extra_ammo or 0)
 
 	return ammo

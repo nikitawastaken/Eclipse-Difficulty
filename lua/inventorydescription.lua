@@ -389,8 +389,8 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 					skill_stats[stat.name].value = math.ceil(base_stats[stat.name].value * (managers.player:upgrade_value("weapon", "clip_ammo_increase", 1) - 1))
 				end
 
-				if not weapon_tweak.upgrade_blocks or not weapon_tweak.upgrade_blocks[primary_category] or not table.contains(weapon_tweak.upgrade_blocks[primary_category], "clip_ammo_increase") then
-					skill_stats[stat.name].value = skill_stats[stat.name].value + managers.player:upgrade_value(primary_category, "clip_ammo_increase", 0)
+				if not weapon_tweak.upgrade_blocks or not weapon_tweak.upgrade_blocks[primary_category] or not table.contains(weapon_tweak.upgrade_blocks[primary_category], "magazine_capacity_inc") then
+					skill_stats[stat.name].value = skill_stats[stat.name].value + managers.player:upgrade_value(primary_category, "magazine_capacity_inc", 0)
 				end
 
 				skill_stats[stat.name].skill_in_effect = managers.player:has_category_upgrade(name, "clip_ammo_increase")
