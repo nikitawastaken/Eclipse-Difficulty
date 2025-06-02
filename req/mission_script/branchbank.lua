@@ -163,8 +163,12 @@ return {
 			{ id = 400025, delay = 0 },
 			{ id = 400031, delay = 0 },
 			{ id = 400037, delay = 0 },
+			-- these vans are exclusive to firestarter day 3
+			{ id = 104735, remove = level_id ~= "firestarter_3" and true or false },
+			{ id = 105660, remove = level_id ~= "firestarter_3" and true or false },
 		},
 	},
+	-- make the SWAT events happen earlier if it's Firestater Day 3
 	[100438] = {
 		on_executed = {
 			{ id = 103540, remove = level_id ~= "firestarter_3" and true or false },
@@ -181,6 +185,7 @@ return {
 		on_executed = {
 			{ id = 100251, delay = 30 },
 			{ id = 105774, delay = 20 },
+			{ id = 400039, delay = level_id ~= "firestarter_3" and 40 or nil }, -- old swat vans spots restoration (only in bank heist)
 		},
 	},
 	-- random plank amounts
