@@ -270,7 +270,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.values.snp.charged_shot = {
 		{
-			time_to_charge = 3,
+			time_to_charge = 2,
 			radius = 500,
 			damage_factor = 1,
 		},
@@ -287,7 +287,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.skill_descs.single_shot_ammo_return.multibasic = "20%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "5"
-	self.skill_descs.single_shot_ammo_return.multipro = "3"
+	self.skill_descs.single_shot_ammo_return.multipro = "2"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
 	self.skill_descs.single_shot_ammo_return.multipro3 = "5m"
 
