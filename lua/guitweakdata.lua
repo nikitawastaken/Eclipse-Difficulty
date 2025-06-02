@@ -31,6 +31,9 @@ Hooks:PostHook(GuiTweakData, "init", "eclipse_init", function(self)
 				"pistol",
 			},
 			{
+				"revolver",
+			},
+			{
 				"assault_rifle",
 			},
 			{

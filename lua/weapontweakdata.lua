@@ -1564,6 +1564,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.type54_underbarrel.stats_modifiers = nil
 
 	-- Frenchman
+	self.model3.categories = {
+		"revolver",
+		"pistol"
+	}
 	self.model3.CLIP_AMMO_MAX = 6
 	self.model3.stats.damage = 160
 	self.model3.stats.spread = 21
@@ -1572,6 +1576,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.model3.fire_mode_data.fire_rate = 60 / 240
 
 	-- Matever
+	self.mateba.categories = {
+		"revolver",
+		"pistol"
+	}
 	self.mateba.CLIP_AMMO_MAX = 6
 	self.mateba.stats.damage = 160
 	self.mateba.stats.spread = 22
@@ -1581,6 +1589,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mateba.reload_speed_multiplier = 1.35
 
 	-- Kahn
+	self.korth.categories = {
+		"revolver",
+		"pistol"
+	}
 	self.korth.CLIP_AMMO_MAX = 8
 	self.korth.stats.damage = 160
 	self.korth.stats.spread = 20
@@ -1589,6 +1601,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.korth.fire_mode_data.fire_rate = 60 / 240
 
 	-- Bronco
+	self.new_raging_bull.categories = {
+		"revolver",
+		"pistol"
+	}
 	self.new_raging_bull.CLIP_AMMO_MAX = 6
 	self.new_raging_bull.stats.damage = 200
 	self.new_raging_bull.stats.spread = 22
@@ -1606,6 +1622,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.fire_mode_data.fire_rate = 60 / 300
 
 	--Peacemaker
+	self.peacemaker.categories = {
+		"revolver",
+		"pistol"
+	}
 	self.peacemaker.CLIP_AMMO_MAX = 6
 	self.peacemaker.stats.damage = 200
 	self.peacemaker.stats.spread = 22
@@ -1622,6 +1642,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.peacemaker.desc_id = "bm_w_lemming_desc"
 
 	-- Castigo
+	self.chinchilla.categories = {
+		"revolver",
+		"pistol"
+	}
 	self.chinchilla.CLIP_AMMO_MAX = 6
 	self.chinchilla.stats.damage = 200
 	self.chinchilla.stats.spread = 23
@@ -1631,6 +1655,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.chinchilla.reload_speed_multiplier = 1.2
 
 	-- Angry Tiger
+	self.rsh12.categories = {
+		"revolver",
+		"pistol"
+	}
 	self.rsh12.CLIP_AMMO_MAX = 5
 	self.rsh12.stats.damage = 240
 	self.rsh12.stats.spread = 23
