@@ -17,6 +17,7 @@
 
 	"bm_wp_hcar_barrel_dmr": "Long Barrel",
 
+	"menu_dmr": "Marksman Rifle",
 	"bm_menu_swing_time": "Swing Time",
 	"bm_menu_reswing_time": "Reswing Time",
 	"bm_menu_type": "Melee Type",
@@ -63,7 +64,7 @@
 	"menu_stable_shot_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## accuracy.\n\nACE: ##$pro##\nThe time it takes for your aim to recenter after last shot is reduced by ##$multipro##.",
 	"menu_rifleman_beta_desc": "BASIC: ##$basic##\nYou snap to zoom ##$multibasic## faster.\n\nACE: ##$pro##\nYou swap your weapons ##$multipro## faster.",
 	"menu_sharpshooter_beta_desc": "BASIC: ##$basic##\nYour weapon recoil is reduced by ##$multibasic## when you are aiming down sights.\n\nACE: ##$pro##\nYou gain ##$multipro## weapon accuracy while standing still.",
-	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Sniper and Assault Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot will increase your reload speed by ##$multipro## for ##$multipro2## seconds. Can only be triggered by SMGs, Assault Rifles and Sniper Rifles fired in single shot fire mode.",
+	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Assault, Marksman and Sniper Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot will increase your reload speed by ##$multipro## for ##$multipro2## seconds. Can only be triggered by SMGs, Assault, Marksman and Sniper Rifles fired in single shot fire mode.",
 	"menu_sniper_graze_damage": "Headshot Fury",
 	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\nStacks up to ##$multibasic2## consecutive headshots.\n\nMissing a headshot resets your stacks.\n\nACE: ##$pro##\nWhile aiming down the sights with your Sniper Rifle, a charge meter builds up over the period of ##$multipro## seconds. When fully charged, your next headshot becomes explosive, dealing up to ##$multipro2## of the bullet's damage in a ##$multipro3## radius around the bullet impact and discharging the meter.\n\nLeaving the aiming stance or firing the weapon during the charging process resets the meter.",
 
