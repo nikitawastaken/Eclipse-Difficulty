@@ -130,6 +130,17 @@ function PlayerManager:on_headshot_dealt()
 	end
 end
 
+-- Ammo Efficiency does not work on SMGs anymore
+function PlayerManager:_on_enter_ammo_efficiency_event()
+	if not self._coroutine_mgr:is_running("ammo_efficiency") then
+		local weapon_unit = self:equipped_weapon_unit()
+
+		if weapon_unit and weapon_unit:base():fire_mode() == "single" and weapon_unit:base():is_category("dmr", "assault_rifle", "snp") then
+			self._coroutine_mgr:add_coroutine("ammo_efficiency", PlayerAction.AmmoEfficiency, self, self._ammo_efficiency.headshots, self._ammo_efficiency.ammo, Application:time() + self._ammo_efficiency.time)
+		end
+	end
+end
+
 -- Kilmer does not work on SMGs anymore
 function PlayerManager:_on_activate_aggressive_reload_event(attack_data)
 	if attack_data and attack_data.variant ~= "projectile" then
