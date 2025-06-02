@@ -234,7 +234,7 @@ function WeaponTweakData:_init_weapons()
 						}
 					}
 				end
-		
+
 			elseif cat_map.smg then
 				weap_data.stats.suppression = 16
 				weap_data.stats.alert_size = 13
@@ -632,10 +632,10 @@ function WeaponTweakData:_init_weapons()
 				weap_data.damage_melee = 1
 				weap_data.damage_melee_effect_mul = 1
 			end
-			
+
 			local auto_shotgun = cat_map.shotgun and weap_data.auto
 			local single_shotgun = cat_map.shotgun and not auto_shotgun
-			
+
 			if weap_data.kick then
 				if cat_map.assault_rifle then
 					weap_data.kick.standing = { 0.6, 0.8, -0.4, 0.4 }
@@ -664,7 +664,7 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.kick.crouching = weap_data.kick.standing
 				weap_data.kick.steelsight = weap_data.kick.standing
-				
+
 				if weap_data.kick.auto and weap_data.kick.auto.standing then
 					weap_data.kick.auto.crouching = weap_data.kick.auto.standing
 					weap_data.kick.auto.steelsight = weap_data.kick.auto.standing
@@ -1017,7 +1017,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.olympic.stats.recoil = 16
 	self.olympic.stats.concealment = 24
 	self.olympic.fire_mode_data.fire_rate = 60 / 800
-	
+
 	-- JP36
 	self.g36.CLIP_AMMO_MAX = 30
 	self.g36.stats.damage = 50
@@ -1068,7 +1068,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ak5.stats.recoil = 16
 	self.ak5.stats.concealment = 17
 	self.ak5.fire_mode_data.fire_rate = 60 / 700
-	
+
 	-- Lion's Roar
 	self.vhs.CLIP_AMMO_MAX = 30
 	self.vhs.stats.damage = 60
@@ -1086,7 +1086,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ak74.stats.concealment = 18
 	self.ak74.fire_mode_data.fire_rate = 60 / 650
 	self.ak74.reload_speed_multiplier = 1.2
-	
+
 	-- AMR
 	self.m16.CLIP_AMMO_MAX = 30
 	self.m16.stats.damage = 75
@@ -1115,7 +1115,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hajk.stats.recoil = 18
 	self.hajk.stats.concealment = 16
 	self.hajk.fire_mode_data.fire_rate = 60 / 750
-	
+
 	-- Valkyria
 	self.asval.CLIP_AMMO_MAX = 20
 	self.asval.stats.damage = 80
@@ -1123,7 +1123,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.asval.stats.recoil = 13
 	self.asval.stats.concealment = 24
 	self.asval.fire_mode_data.fire_rate = 60 / 900
-	
+
 	-- Ketchnov
 	self.groza.CLIP_AMMO_MAX = 20
 	self.groza.stats.damage = 80
@@ -1162,7 +1162,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		muzzleflash = "effects/payday2/particles/weapons/tkb_muzzle",
 		muzzleflash_silenced = "effects/payday2/particles/weapons/tkb_suppressed"
 	}
-	
+
 	-- AK 7.62
 	self.akm.CLIP_AMMO_MAX = 30
 	self.akm.stats.damage = 90
@@ -1171,7 +1171,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.akm.stats.concealment = 17
 	self.akm.fire_mode_data.fire_rate = 60 / 600
 	self.akm.timers.reload_not_empty = 2.2
-	
+
 	-- Krinkov
 	self.akmsu.categories = { "assault_rifle" }
 	self.akmsu.CLIP_AMMO_MAX = 30
@@ -1205,7 +1205,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 
 	-- Eagle Heavy
-	table.insert(self.scar.categories, "dmr")
+	self.scar.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.scar.CLIP_AMMO_MAX = 20
 	self.scar.stats.damage = 120
 	self.scar.stats.spread = 19
@@ -1214,7 +1217,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scar.fire_mode_data.fire_rate = 60 / 600
 
 	-- Gewehr
-	table.insert(self.g3.categories, "dmr")
+	self.g3.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.g3.CLIP_AMMO_MAX = 20
 	self.g3.stats.damage = 120
 	self.g3.stats.spread = 21
@@ -1223,7 +1229,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g3.fire_mode_data.fire_rate = 60 / 550
 
 	-- Gecko
-	table.insert(self.galil.categories, "dmr")
+	self.galil.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.galil.CLIP_AMMO_MAX = 25
 	self.galil.stats.damage = 120
 	self.galil.stats.spread = 18
@@ -1232,7 +1241,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.galil.fire_mode_data.fire_rate = 60 / 750
 
 	-- Falcon
-	table.insert(self.fal.categories, "dmr")
+	self.fal.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.fal.CLIP_AMMO_MAX = 20
 	self.fal.stats.damage = 120
 	self.fal.stats.spread = 19
@@ -1241,7 +1253,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.fal.fire_mode_data.fire_rate = 60 / 700
 
 	-- Little Friend
-	table.insert(self.contraband.categories, "dmr")
+	self.contraband.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.contraband.CLIP_AMMO_MAX = 20
 	self.contraband.stats.damage = 120
 	self.contraband.stats.spread = 19
@@ -1260,7 +1275,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contraband_m203.stats_modifiers = { damage = 5 }
 
 	-- M308
-	table.insert(self.new_m14.categories, "dmr")
+	self.new_m14.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.new_m14.CLIP_AMMO_MAX = 15
 	self.new_m14.stats.damage = 160
 	self.new_m14.stats.spread = 22
@@ -1269,7 +1287,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_m14.fire_mode_data.fire_rate = 60 / 700
 
 	-- Cavity
-	table.insert(self.sub2000.categories, "dmr")
+	self.sub2000.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.sub2000.CLIP_AMMO_MAX = 20
 	self.sub2000.stats.damage = 160
 	self.sub2000.stats.spread = 19
@@ -1278,7 +1299,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sub2000.fire_mode_data.fire_rate = 60 / 700
 
 	-- Galant
-	table.insert(self.ching.categories, "dmr")
+	self.ching.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.ching.CLIP_AMMO_MAX = 8
 	self.ching.stats.damage = 160
 	self.ching.stats.spread = 23
@@ -1287,7 +1311,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ching.fire_mode_data.fire_rate = 60 / 600
 
 	-- KS12
-	table.insert(self.shak12.categories, "dmr")
+	self.shak12.categories = {
+		"dmr",
+		"assault_rifle"
+	}
 	self.shak12.CLIP_AMMO_MAX = 20
 	self.shak12.stats.damage = 160
 	self.shak12.stats.spread = 17
@@ -1577,7 +1604,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.deagle.stats.recoil = 2
 	self.deagle.stats.concealment = 27
 	self.deagle.fire_mode_data.fire_rate = 60 / 300
-	
+
 	--Peacemaker
 	self.peacemaker.CLIP_AMMO_MAX = 6
 	self.peacemaker.stats.damage = 200
@@ -1640,7 +1667,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.p90.stats.recoil = 17
 	self.p90.stats.concealment = 25
 	self.p90.fire_mode_data.fire_rate = 60 / 900
-	
+
 	-- Cobra
 	self.scorpion.CLIP_AMMO_MAX = 20
 	self.scorpion.stats.damage = 40
@@ -1762,7 +1789,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mp7.stats.recoil = 16
 	self.mp7.stats.concealment = 26
 	self.mp7.fire_mode_data.fire_rate = 60 / 900
-	
+
 	-- AK GEN
 	self.vityaz.use_data.selection_index = 2
 	self.vityaz.CLIP_AMMO_MAX = 30
@@ -2644,7 +2671,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.hcar_npc = copy_data(self.hcar_npc, self.m4_npc, self.hcar_crew)
 	self.hcar_npc.CLIP_AMMO_MAX = 50
 	self.hcar_npc.usage = "is_lmg"
-	
+
 	self.beretta92_npc.has_suppressor = "suppressed_b"
 
 	self.uspsil_npc = copy_data(self.uspsil_npc, self.c45_npc, self.usp_crew)

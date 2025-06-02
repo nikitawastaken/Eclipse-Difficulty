@@ -130,6 +130,21 @@ function PlayerManager:on_headshot_dealt()
 	end
 end
 
+-- Kilmer does not work on SMGs anymore
+function PlayerManager:_on_activate_aggressive_reload_event(attack_data)
+	if attack_data and attack_data.variant ~= "projectile" then
+		local weapon_unit = self:equipped_weapon_unit()
+
+		if weapon_unit then
+			local weapon = weapon_unit:base()
+
+			if weapon and weapon:fire_mode() == "single" and weapon:is_category("dmr", "assault_rifle", "snp") then
+				self:activate_temporary_upgrade("temporary", "single_shot_fast_reload")
+			end
+		end
+	end
+end
+
 -- sleight of hand check for weapon category
 function PlayerManager:_on_enter_shock_and_awe_event()
 	local equipped_unit = self:get_current_state()._equipped_unit
