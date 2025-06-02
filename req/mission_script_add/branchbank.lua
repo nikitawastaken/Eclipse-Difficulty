@@ -280,7 +280,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400035, "swat_heli_8", Vector3(903, -663, -19.814), Rotation(-180, 0, 0), optsSpecial_heli),
 	Eclipse.mission_elements.gen_object_editor(400036, "swat_heli_sequence_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_2),
 	Eclipse.mission_elements.gen_missionscript(400037, "swat_heli_event_2", optsspawnswatchopper_2),
-	
+
 	-- old swat vans restoration
 	Eclipse.mission_elements.gen_object_editor(400038, "branchbank_swatvans", Vector3(0, 0, 0), Rotation(0, 0, 0), optsCallSwatVans),
 	Eclipse.mission_elements.gen_missionscript(400039, "deploy_swat_vans", optsSwatVans_trigger),
