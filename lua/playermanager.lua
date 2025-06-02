@@ -136,7 +136,14 @@ function PlayerManager:_on_enter_ammo_efficiency_event()
 		local weapon_unit = self:equipped_weapon_unit()
 
 		if weapon_unit and weapon_unit:base():fire_mode() == "single" and weapon_unit:base():is_category("dmr", "assault_rifle", "snp") then
-			self._coroutine_mgr:add_coroutine("ammo_efficiency", PlayerAction.AmmoEfficiency, self, self._ammo_efficiency.headshots, self._ammo_efficiency.ammo, Application:time() + self._ammo_efficiency.time)
+			self._coroutine_mgr:add_coroutine(
+				"ammo_efficiency",
+				PlayerAction.AmmoEfficiency,
+				self,
+				self._ammo_efficiency.headshots,
+				self._ammo_efficiency.ammo,
+				Application:time() + self._ammo_efficiency.time
+			)
 		end
 	end
 end
