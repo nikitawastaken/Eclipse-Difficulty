@@ -40,15 +40,26 @@ local sniper_amount = {
 		amount = normal and 3 or hard and 4 or 5,
 	},
 }
-local flank_spawn = {
+local street_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local close_spawn = {
 	values = {
 		interval = 20,
+	},
+	groups = preferred.no_bulldozers_snipers,
+}
+local alley_spawn = {
+	values = {
+		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -137,10 +148,13 @@ return {
 	[101628] = exclude_shields_dozers,
 	-- Spawn group delays
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
-	[100019] = flank_spawn,
-	[100131] = flank_spawn,
-	[100133] = flank_spawn,
-	[104123] = flank_spawn,
+	[400006] = street_spawn,
+	[400012] = street_spawn,
+	[100130] = close_spawn,
+	[100133] = close_spawn,
+	[100019] = alley_spawn,
+	[100131] = alley_spawn,
+	[104123] = alley_spawn,
 	[100132] = roof_spawn,
 	[104091] = roof_spawn,
 	[100128] = roof_spawn,

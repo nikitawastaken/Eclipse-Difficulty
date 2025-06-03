@@ -9,13 +9,13 @@ local goats_required = {
 local scene_cop_count = {
 	values = {
 		amount = diff_i + 2,
-		amount_random = diff_i,
+		amount_random = 4,
 	},
 }
 local wave_cop_count = {
 	values = {
-		amount = diff_i + 4,
-		amount_random = diff_i + 2,
+		amount = diff_i * 2,
+		amount_random = 6,
 	},
 }
 local close_spawn = {

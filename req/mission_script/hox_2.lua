@@ -40,44 +40,50 @@ local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or 
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-local side_building1 = {
+local left_side_lower_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local side_building2 = {
+local right_side_upper_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields,
-}
-local upper_floor = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_shields,
-}
-local side_building3 = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_shields,
-}
-local atrium_roof_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents,
-}
-local atrium_elevator_spawn = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local archives_spawn = {
 	values = {
-		interval = 45,
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local atrium_skylight_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents,
+}
+local atrium_upper_spawn = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_shields,
+}
+local left_side_upper_spawn = {
+	values = {
+		interval = 25,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local offices_upper_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_shields,
+}
+local atrium_elevator_spawn = {
+	values = {
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -181,8 +187,8 @@ return {
 	-- Randomise initial FBI agent amounts
 	[101195] = {
 		values = {
-			amount = normal and 4 or 6,
-			amount_random = 6,
+			amount = diff_i,
+			amount_random = 4,
 		},
 	},
 	-- Force Riker spawn
@@ -209,20 +215,20 @@ return {
 	-- Most notably upper floor spawns are now much slower and inaccessible to Shield groups (they are not very acrobatic).
 	-- Side building spawn groups (including the ones which can be blocked off by keycards) are slower now as well as they are quite close to the operations room.
 	-- Skylight rappels have less harsh restrictions but they are quite slow.
-	[101662] = side_building1,
-	[100140] = side_building1,
-	[101672] = side_building2,
-	[101677] = side_building2,
-	[100139] = side_building2,
-	[100007] = side_building3,
-	[101667] = side_building3,
-	[100694] = upper_floor,
-	[101441] = upper_floor,
-	[100131] = upper_floor,
-	[100128] = atrium_roof_spawn,
-	[100130] = atrium_roof_spawn,
+	[100140] = left_side_lower_spawn,
+	[101662] = left_side_lower_spawn,	
+	[101672] = right_side_upper_spawn,
+	[101677] = right_side_upper_spawn,
 	[101687] = archives_spawn,
-	[101682] = archives_spawn,
+	[101682] = archives_spawn,	
+	[100128] = atrium_skylight_spawn,
+	[100130] = atrium_skylight_spawn,	
+	[100007] = left_side_upper_spawn,
+	[101667] = left_side_upper_spawn,
+	[100131] = atrium_upper_spawn,
+	[101441] = atrium_upper_spawn,	
+	[100694] = offices_upper_spawn,
+	[100139] = offices_upper_spawn,
 	[101688] = atrium_elevator_spawn,
 	-- Holy FBI agents, Batman...
 	[101490] = fbi_agent,
