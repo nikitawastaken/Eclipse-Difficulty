@@ -17,25 +17,25 @@ local swats = { [swat_1] = 2, [swat_2] = 1 }
 local optsBulldozer = {
 	enemy = black_bulldozer,
 	spawn_action = "e_sp_armored_truck_1st",
-	on_executed = { { id = 400002, delay = 0 } },
+	on_executed = { { id = 400002, delay = 0 }, { id = 400010, delay = 0 } },
 	enabled = overkill_and_above and enabled_chance_dozer,
 }
 local optsSWAT = {
 	enemy_table = swats,
 	spawn_action = "e_sp_armored_truck_1st",
-	on_executed = { { id = 400009, delay = 0 } },
+	on_executed = { { id = 400010, delay = 0 } },
 	enabled = true,
 }
 local optsTaser = {
 	enemy = taser,
 	spawn_action = "e_sp_armored_truck_1st",
-	on_executed = { { id = 400009, delay = 0 } },
+	on_executed = { { id = 400010, delay = 0 } },
 	enabled = true,
 }
 local optsShield = {
 	enemy = shield,
 	spawn_action = "e_sp_armored_truck_1st",
-	on_executed = { { id = 400009, delay = 0 } },
+	on_executed = { { id = 400010, delay = 0 } },
 	enabled = true,
 }
 local optsOpenSwatVanDoors_1 = {
