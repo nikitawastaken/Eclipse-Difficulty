@@ -329,7 +329,7 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		return
 	end
 
-	if is_custody_trade then
+	if is_custody_trade and NetworkHelper:IsHost() then
 		if self._criminal_respawn_clbk then
 			return
 		end
