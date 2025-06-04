@@ -30,7 +30,7 @@ local gangster_team = {
 }
 local bridge_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 local cloaker_spawn = {

@@ -54,11 +54,6 @@ local high_escape_enemy = {
 	[heavy_2] = 1,
 }
 local high_escape = { enemy = high_escape_enemy }
-local front_left_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local mall_spawn = {
 	values = {
 		interval = 15,
@@ -79,12 +74,6 @@ local atrium_spawn = {
 local window_spawn = {
 	values = {
 		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local front_short_spawn = {
-	values = {
-		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -160,7 +149,6 @@ return {
 	-- More or less a port of the original intervals with some twists as per usual.
 	-- The main one being increasing intervals of the groups outside the bank building as they are stacked pretty close to each other.
 	-- Ladder spawns have been slowed down as well since they are very close to the area where players are expected to hold out.
-	[102730] = front_left_spawn,
 	[100424] = mall_spawn,
 	[100435] = mall_spawn,
 	[100439] = atrium_spawn,
@@ -170,7 +158,6 @@ return {
 	[101795] = ladder_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
-	[103505] = front_short_spawn,
 	[102792] = cloaker_spawn,
 	[103435] = cloaker_spawn,
 	[103437] = cloaker_spawn,

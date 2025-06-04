@@ -7,32 +7,20 @@ local sniper_trigger_times = {
 local spawn_anim_fix = {
 	spawn_action = "e_sp_over_3m",
 }
-local fence_spawn1 = {
+local fence_far_spawn = {
 	values = {
 		interval = 10,
 	},
 }
-local fence_spawn2 = {
+local fence_close_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields,
-}
-local haybale_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers_snipers,
 }
 local roof_spawn = {
 	values = {
 		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local shaft_spawn = {
-	values = {
-		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -123,22 +111,22 @@ return {
 	[100790] = spawn_anim_fix,
 	[100791] = spawn_anim_fix,
 	-- Spawn group delays
-	[100128] = fence_spawn1,
-	[100692] = fence_spawn1,
-	[100693] = fence_spawn1,
-	[100908] = fence_spawn1,
-	[100912] = fence_spawn1,
-	[100913] = fence_spawn1,
-	[102443] = fence_spawn1,
-	[100909] = fence_spawn1,
-	[100916] = fence_spawn1,
-	[100007] = fence_spawn1,
-	[100694] = fence_spawn1,
-	[100133] = fence_spawn1,
-	[100132] = fence_spawn1,
-	[100779] = fence_spawn2,
-	[100131] = haybale_spawn,
+	[100128] = fence_far_spawn,
+	[100692] = fence_far_spawn,
+	[100693] = fence_far_spawn,
+	[100908] = fence_far_spawn,
+	[100912] = fence_far_spawn,
+	[100913] = fence_far_spawn,
+	[102443] = fence_far_spawn,
+	[100909] = fence_far_spawn,
+	[100916] = fence_far_spawn,
+	[100007] = fence_far_spawn,
+	[100694] = fence_far_spawn,
+	[100133] = fence_far_spawn,
+	[100132] = fence_far_spawn,
+	[100779] = fence_close_spawn,
+	[100131] = fence_close_spawn,
 	[100911] = roof_spawn,
-	[100019] = shaft_spawn,
+	[100019] = roof_spawn,
 	[102484] = vent_spawn,
 }

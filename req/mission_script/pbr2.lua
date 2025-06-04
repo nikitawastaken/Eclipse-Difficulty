@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local wall_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 local sewer_spawn = {

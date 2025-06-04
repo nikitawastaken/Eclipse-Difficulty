@@ -15,7 +15,7 @@ local snipers_amount = {
 }
 local garage_door_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_shields,
 }

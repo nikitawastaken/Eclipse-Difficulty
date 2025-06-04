@@ -31,13 +31,13 @@ local casino_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-local spa_ceiling_spawn = {
+local balcony_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_shields_bulldozers,
 }
-local balcony_spawn = {
+local spa_window_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -49,11 +49,11 @@ local courtyard_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-local spa_window_spawn = {
+local spa_ceiling_spawn = {
 	values = {
 		interval = 45,
 	},
-	groups = preferred.no_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local vent_spawn = {
 	values = {

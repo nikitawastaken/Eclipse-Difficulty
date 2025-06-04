@@ -42,7 +42,7 @@ local harasser = {
 }
 local left_side_lower_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local right_side_upper_spawn = {

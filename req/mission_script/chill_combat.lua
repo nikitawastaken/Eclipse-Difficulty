@@ -6,17 +6,17 @@ local disabled = {
 }
 local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local bush_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

@@ -7,7 +7,7 @@ local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or s
 local harasser = {
 	enemy = harasser_enemy,
 }
-local window_spawn1 = {
+local window_far_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -15,13 +15,13 @@ local window_spawn1 = {
 }
 local skylight_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
-local window_spawn2 = {
+local window_close_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -35,15 +35,15 @@ return {
 	-- Spawn group delays
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- While the original intervals would've been more than enough, I decided to slow down the skylight rappels further to make holding out under the catwalks a bit less annoying.
-	[100021] = window_spawn1,
-	[100132] = window_spawn1,
-	[100145] = window_spawn1,
-	[100147] = window_spawn1,
+	[100021] = window_far_spawn,
+	[100132] = window_far_spawn,
+	[100145] = window_far_spawn,
+	[100147] = window_far_spawn,
 	[100131] = skylight_spawn,
 	[100146] = skylight_spawn,
 	[100148] = skylight_spawn,
-	[100149] = window_spawn2,
-	[100150] = window_spawn2,
+	[100149] = window_close_spawn,
+	[100150] = window_close_spawn,
 	-- Harassers
 	[102732] = harasser,
 	[102733] = harasser,
