@@ -3264,12 +3264,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			"Elite",
 		}
 	end
-	
+
 	local special_weight = diff_lerp(1, 3)
-	local common_special_weights = { 0, special_weight * 0.75, special_weight * 1.5 } 
-	local medium_special_weights = { 0, special_weight * 0.5, special_weight * 1 } 
-	local rare_special_weights = { 0, special_weight * 0.25, special_weight * 0.5 } 
-	
+	local common_special_weights = { 0, special_weight * 0.75, special_weight * 1.5 }
+	local medium_special_weights = { 0, special_weight * 0.5, special_weight * 1 }
+	local rare_special_weights = { 0, special_weight * 0.25, special_weight * 0.5 }
+
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
@@ -3463,7 +3463,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			"Elite",
 		}
 	end
-	
+
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.ponr.assault.groups = {
