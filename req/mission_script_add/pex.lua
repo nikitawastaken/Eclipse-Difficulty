@@ -1,4 +1,4 @@
----@module Heat Street
+---@module Breakfast in Tijuana
 local M = {}
 local optsBesiegeDummy = {
 	trigger_times = 0,

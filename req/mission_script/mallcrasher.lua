@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local swat_delay = 45
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
 }
@@ -37,7 +38,8 @@ return {
 	-- Delay SWAT response
 	[300203] = {
 		on_executed = {
-			{ id = 300164, delay = 45 },
+			{ id = 300164, delay = swat_delay },
+			{ id = 400000, delay = swat_delay }, -- activate an unused spawngroup
 		},
 	},
 	-- fix one of the cop cars not being hidden

@@ -12,7 +12,7 @@ local bikers = {
 local biker = { enemy = bikers }
 local standard_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local garage_door_spawn = {
@@ -63,7 +63,7 @@ return {
 	-- Disable wave-based scaling
 	[100079] = { -- Initial diff
 		values = {
-			difficulty = 0.5,
+			difficulty = 0.25,
 		},
 	},
 	[100080] = disabled,

@@ -1,4 +1,4 @@
----@module Heat Street
+---@module Santa's Workshop
 local M = {}
 local optsBesiegeDummy = {
 	trigger_times = 0,
