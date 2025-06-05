@@ -17,8 +17,10 @@
 		</group>
 
 		<group hook_id="lib/">
+			<post :hook_id="gamemodes/gamemodestandard"/>
 			<post :hook_id="utils/inventorydescription"/>
 			<post :hook_id="states/missionendstate"/>
+			
 			<group :hook_id="managers/">
 				<group :hook_id="group_ai_states/">
 					<post :hook_id="groupaistatebase"/>
