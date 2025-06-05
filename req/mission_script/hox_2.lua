@@ -75,17 +75,17 @@ local left_side_upper_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local offices_upper_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields,
-}
 local atrium_elevator_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local offices_upper_spawn = {
+	values = {
+		interval = 35,
+	},
+	groups = preferred.no_shields,
 }
 return {
 	-- add ponr state
