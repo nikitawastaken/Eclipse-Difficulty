@@ -2513,7 +2513,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				amount_max = 1,
-				freq = 0.4,
+				freq = 0.5,
 				rank = 1,
 				unit = "cloaker",
 				tactics = self._tactics.cloaker_snk,
@@ -2533,6 +2533,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.bulldozer,
 			},
 			{
+				amount_min = 2,
 				freq = 1,
 				rank = 2,
 				unit = "FBI_heavy",
@@ -2548,6 +2549,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "medic_2",
 				tactics = self._tactics.medic,
+			},
+			{
+				amount_max = 1,
+				freq = 0.25,
+				rank = 1,
+				unit = "taser",
+				tactics = self._tactics.taser_snk,
 			},
 		},
 	}
