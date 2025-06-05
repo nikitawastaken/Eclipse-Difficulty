@@ -42,48 +42,48 @@ local harasser = {
 }
 local left_side_lower_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local right_side_upper_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_shields,
 }
 local archives_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local atrium_skylight_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents,
 }
 local atrium_upper_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_shields,
 }
 local left_side_upper_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local offices_upper_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
 	},
 	groups = preferred.no_shields,
 }
 local atrium_elevator_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
