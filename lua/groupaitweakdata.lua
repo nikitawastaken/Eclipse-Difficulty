@@ -2482,7 +2482,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.Elite_assault_taser = {
-		amount = { 3, 3 },
+		amount = { 3, 4 },
 		spawn = {
 			{
 				amount_min = 1,
@@ -2494,6 +2494,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = taser_random_tactics,
 			},
 			{
+				amount_min = 2,
 				freq = 1,
 				rank = 2,
 				unit = "Elite_swat",
@@ -2509,6 +2510,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "medic_1",
 				tactics = self._tactics.medic,
+			},
+			{
+				amount_max = 1,
+				freq = 0.4,
+				rank = 1,
+				unit = "cloaker",
+				tactics = self._tactics.cloaker_snk,
 			},
 		},
 	}
@@ -3248,7 +3256,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			"Elite",
 		}
 	end
-
+	
+	local special_weight = diff_lerp(1, 3)
+	local common_special_weights = { 0, special_weight * 0.75, special_weight * 1.5 } 
+	local medium_special_weights = { 0, special_weight * 0.5, special_weight * 1 } 
+	local rare_special_weights = { 0, special_weight * 0.25, special_weight * 0.5 } 
+	
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
@@ -3442,7 +3455,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			"Elite",
 		}
 	end
-
+	
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.ponr.assault.groups = {
