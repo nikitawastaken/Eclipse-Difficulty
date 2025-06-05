@@ -2783,14 +2783,6 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 
 	self._timed_tactics = {
 		none = {},
-		gangster_def = {
-			"no_push",
-			"ranged_fire",
-		},
-		gangster_agg = {
-			"charge",
-			"murder",
-		},
 		murky_def = {
 			"ranged_fire",
 			"murder",
@@ -2808,19 +2800,10 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		fbi_def = {
 			"rescue",
 			"ranged_fire",
-			"flash_grenade",
-			"smoke_grenade",
 		},
 		fbi_snk = {
-			"flank",
-			"deathguard",
-			"flash_grenade",
-			"smoke_grenade",
-		},
-		fbi_spt = {
 			"rescue",
-			"unit_cover",
-			"ranged_fire",
+			"flank",
 		},
 		army_def = {
 			"ranged_fire",
@@ -2839,18 +2822,17 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		},
 		bellmead_def = {
 			"ranged_fire",
-			"flash_grenade",
-			"smoke_grenade",
+			"murder",
 		},
 		bellmead_agg = {
 			"charge",
 			"deathguard",
-			"flash_grenade",
+			"murder",
 		},
 		bellmead_snk = {
 			"flank",
 			"deathguard",
-			"smoke_grenade",
+			"murder",
 		},
 	}
 
@@ -2860,8 +2842,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
-					initial_delay = 30,
-					cooldown = { 20, 30 },
+					initial_delay = 0,
+					cooldown = { 15, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -2902,17 +2884,6 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								unit = "FBI_readyteam",
 								tactics = self._timed_tactics.fbi_snk,
 							},
-							{
-								amount_max = 1,
-								rank = 1,
-								freq_by_diff = {
-									2 / difficulty_index,
-									1 / difficulty_index,
-									0,
-								},
-								unit = "FBI_agent_2_3",
-								tactics = self._timed_tactics.fbi_spt,
-							},
 						},
 						spawn_point_chk_ref = table.list_to_set({
 							"tac_swat_rifle",
@@ -2927,8 +2898,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
-					initial_delay = 30,
-					cooldown = { 20, 30 },
+					initial_delay = 0,
+					cooldown = { 15, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
@@ -3061,8 +3032,8 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
-					initial_delay = 30,
-					cooldown = { 20, 30 },
+					initial_delay = 0,
+					cooldown = { 15, 30 },
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
