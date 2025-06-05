@@ -147,10 +147,11 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	end
 
 	local melee_entry = managers.blackmarket:equipped_melee_weapon()
-	local is_blunt_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.weapon_type == "blunt" and 1.5 or 1
+	local melee_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.headshot_damage_mul or 1
+	
 	if not self._char_tweak.ignore_headshot and not self._damage_reduction_multiplier and head then
 		if self._char_tweak.headshot_dmg_mul then
-			damage = damage * self._char_tweak.headshot_dmg_mul * is_blunt_headshot_mul
+			damage = damage * self._char_tweak.headshot_dmg_mul * melee_headshot_mul
 		else
 			damage = self._health * 10
 		end
@@ -164,6 +165,16 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 
 	attack_data.headshot = head
 	local damage_effect = attack_data.damage_effect
+
+	if self._health <= damage then
+		if head then
+			self:_spawn_head_gadget({
+				position = attack_data.col_ray.body:position(),
+				rotation = attack_data.col_ray.body:rotation(),
+				dir = attack_data.col_ray.ray
+			})
+		end
+	end
 
 	local damage_effect_percent = 1
 	damage = self:_apply_damage_reduction(damage)
