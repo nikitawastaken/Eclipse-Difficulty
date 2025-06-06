@@ -27,7 +27,7 @@ function M.access_table(t, ...)
 	local varargs = { ... }
 	if #varargs > 0 then
 		local idx = table.remove(varargs, 1)
-		return t and access_table(t[idx], unpack(varargs))
+		return t and M.access_table(t[idx], unpack(varargs))
 	else
 		return t
 	end
