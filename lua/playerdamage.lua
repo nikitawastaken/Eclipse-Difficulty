@@ -140,7 +140,7 @@ function PlayerDamage:damage_bullet(attack_data)
 	end
 
 	-- Aimpunch
-	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 1.25)
+	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 1.25) * (self._state_data.in_full_steelsight and pm:upgrade_value("player", "steelsight_aimpunch_multiplier", 1))
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number

@@ -223,12 +223,30 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Rifleman
 	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.25
-	self.values.weapon.swap_speed_multiplier = { 1.33 }
+	self.values.weapon.standing_spread_multiplier = { 0.8 }
+	self.definitions.weapon_standing_spread_multiplier = {
+		name_id = "menu_weapon_standing_spread_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "standing_spread_multiplier",
+			category = "weapon",
+		},
+	}
 	self.skill_descs.rifleman.multibasic = "25%"
-	self.skill_descs.rifleman.multipro = "33%"
+	self.skill_descs.rifleman.multipro = "20%"
 
 	-- Marksman
-	self.values.player.not_moving_accuracy_increase[1] = 3
+	self.values.player.steelsight_aimpunch_multiplier = { 0.85 }
+	self.definitions.player_steelsight_aimpunch_multiplier = {
+		name_id = "menu_player_steelsight_aimpunch_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "steelsight_aimpunch_multiplier",
+			category = "player",
+		},
+	}
 	self.values.weapon.steelsight_recoil_multiplier = { 0.8 }
 	self.definitions.weapon_steelsight_recoil_multiplier = {
 		name_id = "menu_weapon_steelsight_recoil_multiplier",
@@ -239,8 +257,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.skill_descs.sharpshooter.multibasic = "20%"
-	self.skill_descs.sharpshooter.multipro = "12"
+	self.skill_descs.sharpshooter.multibasic = "15%"
+	self.skill_descs.sharpshooter.multipro = "20%"
 
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = { 1.25 }

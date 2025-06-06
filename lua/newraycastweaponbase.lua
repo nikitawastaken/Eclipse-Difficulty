@@ -238,17 +238,17 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_recoil_multiplier", 1)
-
-			multiplier = multiplier * managers.player:upgrade_value("weapon", "steelsight_recoil_multiplier", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "steelsight_recoil_multiplier", 1)
 	end
 
 	if is_moving then
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "moving_recoil_multiplier", 1)
-
-			multiplier = multiplier * managers.player:upgrade_value("weapon", "moving_recoil_penalty_reduction", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "moving_recoil_penalty_reduction", 1)
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "standing_recoil_multiplier", 1)
@@ -325,9 +325,9 @@ function NewRaycastWeaponBase:spread_multiplier()
 	if not in_steelsight then
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "hipfire_spread_multiplier", 1)
-
-			multiplier = multiplier * managers.player:upgrade_value("weapon", "hipfire_spread_penalty_reduction", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "hipfire_spread_penalty_reduction", 1)
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_spread_multiplier", 1)
@@ -342,6 +342,8 @@ function NewRaycastWeaponBase:spread_multiplier()
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "standing_spread_multiplier", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "standing_spread_multiplier", 1)
 	end
 
 	if is_crouching then

@@ -87,13 +87,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stable_shot[1].upgrades = { "player_weapon_accuracy_increase_1" }
 	self.skills.stable_shot[2].upgrades = { "weapon_faster_recoil_recentering" }
 
-	-- Marksman
-	self.skills.sharpshooter[1].upgrades = { "weapon_steelsight_recoil_multiplier" }
-	self.skills.sharpshooter[2].upgrades = { "player_not_moving_accuracy_increase_bonus_1" }
-
 	-- Rifleman
 	self.skills.rifleman[1].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
-	self.skills.rifleman[2].upgrades = { "weapon_swap_speed_multiplier" }
+	self.skills.rifleman[2].upgrades = { "weapon_standing_spread_multiplier" }
+
+	-- Marksman
+	self.skills.sharpshooter[1].upgrades = { "player_steelsight_aimpunch_multiplier" }
+	self.skills.sharpshooter[2].upgrades = { "weapon_steelsight_recoil_multiplier" }
 
 	-- Kilmer
 	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")
