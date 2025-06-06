@@ -11,20 +11,15 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local scaffolding_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local penthouse_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
 	},
 	groups = preferred.no_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -66,18 +61,6 @@ return {
 		},
 	},
 	-- Spawn point delays
-	[101607] = scaffolding_spawn,
-	[100147] = scaffolding_spawn,
-	[100148] = scaffolding_spawn,
-	[100335] = scaffolding_spawn,
-	[101622] = scaffolding_spawn,
-	[100161] = scaffolding_spawn,
-	[101633] = scaffolding_spawn,
-	[101636] = scaffolding_spawn,
-	[101642] = scaffolding_spawn,
-	[101663] = scaffolding_spawn,
-	[101651] = scaffolding_spawn,
-	[101657] = scaffolding_spawn,
 	[101084] = penthouse_spawn,
 	[101085] = penthouse_spawn,
 	[100666] = roof_spawn,

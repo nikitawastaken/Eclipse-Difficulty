@@ -1,18 +1,18 @@
 local preferred = Eclipse.preferred
+local van_spawn = {
+	values = {
+		interval = 10,
+	},
+	groups = preferred.no_cops_agents,
+}
 local street_spawn = {
 	values = {
 		interval = 10,
 	},
 }
-local van_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
-}
 local avalon_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local upper_spawn = {
@@ -45,10 +45,8 @@ return {
 			},
 		},
 	},
-	[100124] = {
-		values = {
-			difficulty = 0.75,
-		},
+	[102128] = {
+		difficulty_add = 0.05,
 	},
 	-- Spawn group delays
 	[101719] = street_spawn,
