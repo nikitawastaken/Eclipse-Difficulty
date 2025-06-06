@@ -83,7 +83,7 @@ function GroupAITweakData:_run_group_ai_preset(preset)
 					if weight_muls then
 						group_weight_multiplier(group_weights, weight_muls)
 
-						Eclipse:log("Weight multipliers for " .. group_name .. " set.")
+						Eclipse:log_console("Weight multipliers for " .. group_name .. " set.")
 					end
 				end
 			end
@@ -166,7 +166,7 @@ end)
 
 Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_categories", function(self, difficulty_index)
 	if difficulty_index then
-		Eclipse:log("Difficulty index is " .. difficulty_index)
+		Eclipse:log_console("Difficulty index is " .. difficulty_index)
 	end
 
 	local access_type_walk_only = {
@@ -3113,7 +3113,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local level_scale_mul = Eclipse.level_scale and Eclipse.level_scale.scale_multiplier(level_id) or 1
 
 	if level_id then
-		Eclipse:log("Map scale multiplier for " .. level_id .. " set to " .. level_scale_mul)
+		Eclipse:log_console("Map scale multiplier for " .. level_id .. " set to " .. level_scale_mul)
 	end
 
 	local force_mul = level_scale_mul
@@ -3572,6 +3572,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	if self._mission_preset then
 		self:_run_group_ai_preset(self._mission_preset)
 
-		Eclipse:log("Group AI preset for " .. level_id .. " set to " .. self._mission_preset)
+		Eclipse:log_console("Group AI preset for " .. level_id .. " set to " .. self._mission_preset)
 	end
 end)

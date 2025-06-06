@@ -650,7 +650,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			-- Log and remove groups that get stuck
 			local element_id = group.spawn_group_element and group.spawn_group_element._id or 0
 			local element_name = group.spawn_group_element and group.spawn_group_element._editor_name or ""
-			Eclipse:warn(string.format("Group %s spawned from element %u (%s) is stuck, removing it!", group.id, element_id, element_name))
+			Eclipse:warn_console(string.format("Group %s spawned from element %u (%s) is stuck, removing it!", group.id, element_id, element_name))
 
 			for _, u_data in pairs(group.units) do
 				u_data.unit:brain():set_active(false)
@@ -1050,7 +1050,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 	local function _try_spawn_unit(u_type_name, spawn_entry)
 		local u_category = unit_categories[u_type_name]
 		if not u_category then
-			Eclipse:error("Unit category %s does not exist", u_type_name)
+			Eclipse:error_console("Unit category %s does not exist", u_type_name)
 			return true
 		end
 
@@ -1131,7 +1131,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 		end
 
 		if hopeless then
-			Eclipse:warn("Spawn group %s failed to spawn unit %s", spawn_task.spawn_group.id, u_type_name)
+			Eclipse:warn_console("Spawn group %s failed to spawn unit %s", spawn_task.spawn_group.id, u_type_name)
 			return true
 		end
 	end
@@ -1278,7 +1278,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		if wanted_nr_units < add_amount then
 			add_amount = wanted_nr_units
-			Eclipse:warn("Can not satisfy amount_min for unit category %s in spawn group type %s", spawn_entry.unit, spawn_group_type)
+			Eclipse:warn_console("Can not satisfy amount_min for unit category %s in spawn group type %s", spawn_entry.unit, spawn_group_type)
 		end
 
 		spawn_task.units_remaining[spawn_entry.unit] = spawn_task.units_remaining[spawn_entry.unit] or {
@@ -2047,7 +2047,7 @@ end
 function GroupAIStateBesiege:disable_timed_spawngroup(idx, group_id)
 	local remove_index = table.index_of(self._enabled_timed_groups[idx], group_id)
 	if remove_index == -1 then
-		Eclipse:warn(string.format("Tried to disable timed group [%s] from group [%d], but it doesn't exist!", group_id, idx))
+		Eclipse:warn_console(string.format("Tried to disable timed group [%s] from group [%d], but it doesn't exist!", group_id, idx))
 		return
 	end
 	table.insert(self._disabled_timed_groups[idx], table.remove(self._enabled_timed_groups[idx], remove_index))
@@ -2057,7 +2057,7 @@ end
 function GroupAIStateBesiege:enable_timed_spawngroup(idx, group_id)
 	local remove_index = table.index_of(self._enabled_timed_groups[idx], group_id)
 	if remove_index == -1 then
-		Eclipse:warn(string.format("Tried to enable timed group [%s] from group [%d], but it doesn't exist!", group_id, idx))
+		Eclipse:warn_console(string.format("Tried to enable timed group [%s] from group [%d], but it doesn't exist!", group_id, idx))
 		return
 	end
 	table.insert(self._enabled_timed_groups[idx], table.remove(self._disabled_timed_groups[idx], remove_index))

@@ -9,7 +9,7 @@ if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spaw
 	function ElementSpawnEnemyDummy:get_unit_alternative(...) end
 	function ElementSpawnEnemyDummy:get_ponr_unit(...) end
 
-	Eclipse:log("Editor/Spawner mode is active, spawn group fixes disabled")
+	Eclipse:log_console("Editor/Spawner mode is active, spawn group fixes disabled")
 	return
 end
 
@@ -437,7 +437,7 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	end
 
 	if #alternative_selector._values < 1 then
-		Eclipse:warn("Unit alternative selector was empty")
+		Eclipse:warn_console("Unit alternative selector was empty")
 
 		return nil
 	end

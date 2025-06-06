@@ -20,6 +20,19 @@ function M.diff_lerp(value_1, value_2)
 	return math.lerp(value_1, value_2, math.min(f, 1))
 end
 
+-- This is how you make checking each subtable less verbose, e.g.
+-- local and_chain = foo and foo.bar and foo.bar.baz and foo.bar.baz.stuff
+-- local check_val = access_table(foo, "bar", "baz", "stuff")
+function M.access_table(t, ...)
+	local varargs = { ... }
+	if #varargs > 0 then
+		local idx = table.remove(varargs, 1)
+		return t and access_table(t[idx], unpack(varargs))
+	else
+		return t
+	end
+end
+
 function M.get_unit_from_id(unit_id)
 	for _, data in pairs(managers.enemy:all_enemies()) do
 		if data.unit:id() == unit_id then
@@ -166,7 +179,7 @@ function M.set_diff_groups(group)
 		overkill = false
 		eclipse = true
 	else
-		Eclipse:warn(string.format("Function set_diff_groups received invalid argument %s", group))
+		Eclipse:warn_console(string.format("Function set_diff_groups received invalid argument %s", group))
 
 		return nil
 	end

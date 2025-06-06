@@ -23,7 +23,7 @@ MissionManager.mission_script_patch_funcs = {}
 function MissionManager.mission_script_patch_funcs.values(self, element, data)
 	for k, v in pairs(data) do
 		element._values[k] = v
-		Eclipse:log('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v))
+		Eclipse:log_console('%s value "%s" has been set to "%s"', element:editor_name(), k, tostring(v))
 	end
 end
 
@@ -37,18 +37,18 @@ function MissionManager.mission_script_patch_funcs.on_executed(self, element, da
 			if v.remove then
 				if val then
 					table.remove(element._values.on_executed, i)
-					Eclipse:log("Removed element %s from on_executed of %s", new_element:editor_name(), element:editor_name())
+					Eclipse:log_console("Removed element %s from on_executed of %s", new_element:editor_name(), element:editor_name())
 				end
 			elseif val then
 				val.delay = v.delay or 0
 				val.delay_rand = v.delay_rand or 0
-				Eclipse:log("Modified element %s in on_executed of %s", new_element:editor_name(), element:editor_name())
+				Eclipse:log_console("Modified element %s in on_executed of %s", new_element:editor_name(), element:editor_name())
 			else
 				table.insert(element._values.on_executed, v)
-				Eclipse:log("Added element %s to on_executed of %s", new_element:editor_name(), element:editor_name())
+				Eclipse:log_console("Added element %s to on_executed of %s", new_element:editor_name(), element:editor_name())
 			end
 		else
-			Eclipse:error("Mission script element %u could not be found", v.id)
+			Eclipse:error_console("Mission script element %u could not be found", v.id)
 		end
 
 		if element._original_on_executed then
@@ -59,12 +59,12 @@ end
 
 function MissionManager.mission_script_patch_funcs.pre_func(self, element, data)
 	Hooks:PreHook(element, "on_executed", "sh_on_executed_pre_func_" .. element:id(), data)
-	Eclipse:log("%s hooked as pre function call trigger", element:editor_name())
+	Eclipse:log_console("%s hooked as pre function call trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.func(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_func_" .. element:id(), data)
-	Eclipse:log("%s hooked as function call trigger", element:editor_name())
+	Eclipse:log_console("%s hooked as function call trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.ponr(self, element, data)
@@ -105,45 +105,45 @@ function MissionManager.mission_script_patch_funcs.spawn_instigator_ids(self, el
 		local new_element = self:get_element_by_id(v)
 		if new_element then
 			table.insert(element._values.spawn_instigator_ids, v)
-			Eclipse:log(string.format("Added element %s to spawn_instigator_ids of %s", new_element:editor_name(), element:editor_name()))
+			Eclipse:log_console(string.format("Added element %s to spawn_instigator_ids of %s", new_element:editor_name(), element:editor_name()))
 		else
-			Eclipse:error(string.format("Mission script element %u could not be found", v))
+			Eclipse:error_console(string.format("Mission script element %u could not be found", v))
 		end
 	end
 end
 
 function MissionManager.mission_script_patch_funcs.reinforce(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_reinforce_" .. element:id(), function()
-		Eclipse:log("%s executed, toggled %u reinforce point(s)", element:editor_name(), #data)
+		Eclipse:log_console("%s executed, toggled %u reinforce point(s)", element:editor_name(), #data)
 		for _, v in pairs(data) do
 			managers.groupai:state():set_area_min_police_force(v.name, v.force, v.position)
 		end
 	end)
-	Eclipse:log("%s hooked as reinforce trigger for %u area(s)", element:editor_name(), #data)
+	Eclipse:log_console("%s hooked as reinforce trigger for %u area(s)", element:editor_name(), #data)
 end
 
 function MissionManager.mission_script_patch_funcs.difficulty(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_" .. element:id(), function()
-		Eclipse:log("%s executed, set difficulty to %.2g", element:editor_name(), data)
+		Eclipse:log_console("%s executed, set difficulty to %.2g", element:editor_name(), data)
 		managers.groupai:state():set_difficulty(data)
 	end)
-	Eclipse:log("%s hooked as difficulty change trigger", element:editor_name())
+	Eclipse:log_console("%s hooked as difficulty change trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.difficulty_add(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_add_" .. element:id(), function()
-		Eclipse:log("%s executed, increased difficulty by %.2g", element:editor_name(), data)
+		Eclipse:log_console("%s executed, increased difficulty by %.2g", element:editor_name(), data)
 		managers.groupai:state():add_difficulty(data)
 	end)
-	Eclipse:log("%s hooked as difficulty addition trigger", element:editor_name())
+	Eclipse:log_console("%s hooked as difficulty addition trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_flashlight_" .. element:id(), function()
-		Eclipse:log("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
+		Eclipse:log_console("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
 		managers.game_play_central:set_flashlights_on(data)
 	end)
-	Eclipse:log("%s hooked as flashlight state trigger", element:editor_name())
+	Eclipse:log_console("%s hooked as flashlight state trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.groups(self, element, data)
@@ -156,18 +156,18 @@ function MissionManager.mission_script_patch_funcs.groups(self, element, data)
 		new_groups[group_name] = enabled or nil
 	end
 	element._values.preferred_spawn_groups = table.map_keys(new_groups)
-	Eclipse:log("Changed %u preferred group(s) of %s", table.size(data), element:editor_name())
+	Eclipse:log_console("Changed %u preferred group(s) of %s", table.size(data), element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.ai_area(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_ai_area_" .. element:id(), function()
-		Eclipse:log("%s executed, creating %d AI area(s)", element:editor_name(), #data)
+		Eclipse:log_console("%s executed, creating %d AI area(s)", element:editor_name(), #data)
 		for _, nav_segs in ipairs(data) do
 			local area_pos = Vector3()
 			for _, nav_seg_id in ipairs(nav_segs) do
 				local nav_seg = managers.navigation._nav_segments[nav_seg_id]
 				if not nav_seg then
-					Eclipse:error("Nav segment %u could not be found", nav_seg_id)
+					Eclipse:error_console("Nav segment %u could not be found", nav_seg_id)
 					return
 				end
 				mvector3.add_scaled(area_pos, nav_seg.pos, 1 / #nav_segs)
@@ -176,7 +176,7 @@ function MissionManager.mission_script_patch_funcs.ai_area(self, element, data)
 			managers.groupai:state():add_area(self._ai_area_id, nav_segs, area_pos)
 		end
 	end)
-	Eclipse:log("%s hooked as AI area trigger", element:editor_name())
+	Eclipse:log_console("%s hooked as AI area trigger", element:editor_name())
 end
 
 -- TODO: integrate into values patch like modern ASS
@@ -193,7 +193,7 @@ end
 function MissionManager.mission_script_patch_funcs.modify_list_value(self, element, data)
 	for k, v in pairs(data) do
 		if type(element._values[k]) ~= "table" then
-			Eclipse:log("warn", 'Invalid modify list value name "%s" on element "%s" (%s)!', k, element:editor_name(), element:id())
+			Eclipse:log_console("warn", 'Invalid modify list value name "%s" on element "%s" (%s)!', k, element:editor_name(), element:id())
 		else
 			for id, enabled in pairs(v) do
 				if enabled then
@@ -210,18 +210,18 @@ function MissionManager.mission_script_patch_funcs.enemy(self, element, data)
 	element:replace_enemy_name(data)
 	element:chk_used_mapped_names(true)
 
-	Eclipse:log(string.format("Modified enemy spawn in element %s", element:editor_name()))
+	Eclipse:log_console(string.format("Modified enemy spawn in element %s", element:editor_name()))
 end
 
 -- Thank you ASS :pray:
 function MissionManager.mission_script_patch_funcs.so_access_filter(self, element, data)
 	if not data then -- dont point fingers at sh if i fuck up
-		Eclipse:log("warn", 'Invalid SO access filter preset "%s" for element "%s" (%s)!', data, element:editor_name(), element:id())
+		Eclipse:log_console("warn", 'Invalid SO access filter preset "%s" for element "%s" (%s)!', data, element:editor_name(), element:id())
 	else
 		element._values.SO_access_original = element._values.SO_access
 		element._values.SO_access = managers.navigation:convert_access_filter_to_number(data)
 
-		Eclipse:log("Replaced SO access filter of element %s", element:editor_name())
+		Eclipse:log_console("Replaced SO access filter of element %s", element:editor_name())
 	end
 end
 
@@ -234,13 +234,13 @@ Hooks:PreHook(MissionManager, "_activate_mission", "sh__activate_mission", funct
 	for element_id, data in pairs(mission_script_elements) do
 		local element = self:get_element_by_id(element_id)
 		if not element then
-			Eclipse:error("Mission script element %u could not be found", element_id)
+			Eclipse:error_console("Mission script element %u could not be found", element_id)
 		else
 			for patch_name, patch_data in pairs(data) do
 				if self.mission_script_patch_funcs[patch_name] then
 					self.mission_script_patch_funcs[patch_name](self, element, patch_data)
 				else
-					Eclipse:warn("MissionManager.mission_script_patch_funcs.%s does not exist", patch_name)
+					Eclipse:warn_console("MissionManager.mission_script_patch_funcs.%s does not exist", patch_name)
 				end
 			end
 		end

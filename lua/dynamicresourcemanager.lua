@@ -5,20 +5,20 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 		if load and not has then
 			self:load(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
 
-			Eclipse:log("Loaded " .. path)
+			Eclipse:log_console("Loaded " .. path)
 			if not no_husk then
 				self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
 
-				Eclipse:log("Loaded " .. path .. "_husk")
+				Eclipse:log_console("Loaded " .. path .. "_husk")
 			end
 		elseif not load and has then
 			self:unload(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
 
-			Eclipse:log("Unloaded " .. path)
+			Eclipse:log_console("Unloaded " .. path)
 			if not no_husk then
 				self:unload(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
 
-				Eclipse:log("Unloaded " .. path .. "_husk")
+				Eclipse:log_console("Unloaded " .. path .. "_husk")
 			end
 		end
 	end
