@@ -53,15 +53,15 @@ end
 local mt = {
 	__call = function(self, level, ...)
 		if level == "debug" then
-			self.debug(unpack({...}))
+			self.debug(unpack({ ... }))
 		elseif level == "warn" then
-			self.warn(unpack({...}))
+			self.warn(unpack({ ... }))
 		elseif level == "error" then
-			self.error(unpack({...}))
+			self.error(unpack({ ... }))
 		else -- default to info log
-			self.log(level, unpack({...}))
+			self.log(level, unpack({ ... }))
 		end
-	end
+	end,
 }
 setmetatable(M, mt)
 
