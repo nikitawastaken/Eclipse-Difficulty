@@ -104,9 +104,6 @@ if not Eclipse then
 	Eclipse:require("networking")
 	Eclipse:require("network_hooks")
 
-	-- Setup networking
-	Eclipse:require("networking")
-
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
 			[("english"):key()] = "en.json",

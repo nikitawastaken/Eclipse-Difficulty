@@ -136,22 +136,3 @@ NetworkHelper:AddReceiveHook("Eclipse_TradeManager:trade_restore_resources", "ec
 		managers.hud:show_hint({ text = managers.localization:text("hint_trade_down_restored") })
 	end
 end)
-
-NetworkHelper:AddReceiveHook("Eclipse_CopLogicTrade.on_trade_cancel", "eclipse_cancel_trade_sync", function(data, sender)
-	if NetworkHelper:IsChunk("Eclipse_CopLogicTrade.on_trade_cancel", data) then
-		local t = NetworkHelper:ReceiveChunks("Eclipse_TradeManager:trade_restore_resources", data)
-		if t then
-			data = t
-		else
-			return
-		end
-	end
-
-	local params = NetworkHelper:decode(data)
-	local unit = Eclipse.utils.get_unit_from_id(params.unit_id)
-	if not unit or not alive(unit) then
-		return
-	end
-
-	unit:brain():cancel_trade()
-end)
