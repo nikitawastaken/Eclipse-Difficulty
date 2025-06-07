@@ -153,5 +153,5 @@ NetworkHelper:AddReceiveHook("Eclipse_CopLogicTrade.on_trade_cancel", "eclipse_c
 		return
 	end
 
-	CopLogicTrade.hostage_trade_cancel(unit)
+	unit:brain():cancel_trade()
 end)

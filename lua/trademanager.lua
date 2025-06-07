@@ -58,7 +58,7 @@ function TradeManager:is_trade_allowed(t)
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	if not self.__last_chat_t or (self.__last_chat_t + 0.3) < t then
 		self.__last_chat_t = t
-		Eclipse:log_chat("Trades done: ", tostring(self._resource_trades_done))
+		Eclipse:log_chat("assault phase:", tostring(managers.groupai:state():besiege_assault_phase()))
 	end
 
 	return Network:is_server()
@@ -196,7 +196,7 @@ function TradeManager:update(t, dt)
 	-- If the assault is in progress, cancel trades
 	local is_build = assault_phase and assault_phase == "build"
 	if is_build and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
-		self._hostage_to_trade.unit:brain():on_trade_cancel()
+		self._hostage_to_trade.unit:brain():cancel_trade()
 	end
 end
 
