@@ -135,6 +135,101 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 	data.unit:network():send("set_unit_invulnerable", true, data.unit:character_damage()._immortal)
 end
 
+function CopLogicTrade.on_trade_cancel(data)
+	if not data.internal_data._trade_enabled then
+		return
+	end
+
+	data.internal_data._trade_enabled = false
+
+	NetworkHelper:SendToPeersChunk(
+		"Eclipse_CopLogicTrade.on_trade_cancel",
+		NetworkHelper:encode({
+			unit_id = data.unit:id(),
+		})
+	)
+	CopLogicTrade.hostage_trade_cancel(data.unit)
+	managers.groupai:state():on_hostage_state(false, data.key, managers.enemy:all_enemies()[data.key] and true or false)
+
+	if data.is_converted then
+		managers.groupai:state():remove_minion(data.key, nil)
+	end
+
+	local ignore_segments = {}
+	local flee_pos = managers.groupai:state():flee_point(data.unit:movement():nav_tracker():nav_segment(), ignore_segments)
+
+	if not flee_pos then
+		data.unit:set_slot(0)
+
+		return
+	end
+
+	local iterations = 1
+	local coarse_path = nil
+	local search_params = {
+		from_tracker = data.unit:movement():nav_tracker(),
+		id = "CopLogicTrade._get_coarse_flee_path" .. tostring(data.key),
+		access_pos = data.char_tweak.access,
+	}
+	local max_attempts = 8
+
+	while iterations < max_attempts do
+		local nav_seg = managers.navigation:get_nav_seg_from_pos(flee_pos)
+		search_params.to_seg = nav_seg
+		coarse_path = managers.navigation:search_coarse(search_params)
+
+		if not coarse_path then
+			coarse_path = nil
+
+			table.insert(ignore_segments, nav_seg)
+		else
+			break
+		end
+
+		iterations = iterations + 1
+
+		if max_attempts > iterations then
+			flee_pos = managers.groupai:state():flee_point(data.unit:movement():nav_tracker():nav_segment(), ignore_segments)
+
+			if not flee_pos then
+				break
+			end
+		end
+	end
+
+	if flee_pos then
+		data.internal_data.fleeing = true
+		data.internal_data.flee_pos = flee_pos
+
+		if data.unit:anim_data().hands_tied or data.unit:anim_data().tied then
+			local new_action = nil
+
+			if data.unit:anim_data().stand and data.is_tied then
+				new_action = {
+					variant = "panic",
+					body_part = 1,
+					type = "act",
+				}
+				data.is_tied = nil
+
+				data.unit:movement():set_stance("hos")
+			else
+				new_action = {
+					variant = "stand",
+					body_part = 1,
+					type = "act",
+				}
+			end
+
+			data.unit:brain():action_request(new_action)
+		end
+
+		data.unit:contour():add("hostage_trade", true, nil)
+	else
+		data.unit:set_slot(0)
+	end
+end
+
 function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
 	local wp_id = "wp_hostage_trade" .. tostring(unit:key())
 
@@ -226,4 +321,16 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 			unit:interaction():set_active(false, false)
 		end
 	end
+end
+
+function CopLogicTrade.hostage_trade_cancel(unit)
+	unit:interaction():set_active(false, false)
+
+	if managers.enemy:all_civilians()[unit:key()] then
+		unit:interaction():set_tweak_data("hostage_move")
+	else
+		unit:interaction():set_tweak_data("intimidate")
+	end
+
+	unit:interaction():set_active(false, false)
 end

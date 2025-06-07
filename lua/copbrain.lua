@@ -117,6 +117,10 @@ function CopBrain:on_trade(pos, rotation, free_criminal, is_custody_trade)
 	return self._current_logic.on_trade(self._logic_data, pos, rotation, free_criminal, is_custody_trade)
 end
 
+function CopBrain:on_trade_cancel()
+	return self._current_logic.on_trade(self._logic_data)
+end
+
 -- "Converted enemy has additional target priority" upgrade
 function CopBrain:convert_to_criminal(mastermind_criminal)
 	self._logic_data.is_converted = true

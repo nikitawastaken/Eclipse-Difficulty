@@ -56,6 +56,10 @@ function TradeManager:is_trade_allowed(t)
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
+	if not self.__last_chat_t or (self.__last_chat_t + 0.3) < t then
+		self.__last_chat_t = t
+		Eclipse:log_chat("Trades done: ", tostring(self._resource_trades_done))
+	end
 
 	return Network:is_server()
 		and not self._trading_hostage
@@ -88,6 +92,7 @@ function TradeManager:update(t, dt)
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
+	local assault_phase = managers.groupai:state():besiege_assault_phase()
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
 		if
@@ -186,6 +191,12 @@ function TradeManager:update(t, dt)
 
 			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 1), respawn_t)
 		end
+	end
+
+	-- If the assault is in progress, cancel trades
+	local is_build = assault_phase and assault_phase == "build"
+	if is_build and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
+		self._hostage_to_trade.unit:brain():on_trade_cancel()
 	end
 end
 
@@ -342,7 +353,7 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		self._criminal_respawn_clbk = clbk_id
 
 		managers.enemy:add_delayed_clbk(clbk_id, callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
-	else
+	elseif not is_custody_trade then
 		self._resource_trades_done = self._resource_trades_done + 1
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true
