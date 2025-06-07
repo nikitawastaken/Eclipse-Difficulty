@@ -46,6 +46,12 @@ if math.random() < vault_ambush_chance then
 	vault_count = 2
 end
 
+local ambush_enemies = {
+	values = {
+		amount = 3 + (is_pro_job and 2 or 0),
+		amount_random = 0,
+	},
+}
 local bags_required = {
 	values = {
 		counter_target = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
@@ -133,15 +139,6 @@ return {
 			},
 		},
 	},
-	[103401] = { -- vent loot secure point is available
-		reinforce = {
-			{
-				name = "matrix",
-				force = 3,
-				position = Vector3(1800, 1250, 0),
-			},
-		},
-	},
 	-- disable a few vanilla reinforce spots
 	[105905] = disabled, -- counting rooms
 	[105910] = disabled, -- vault
@@ -160,13 +157,15 @@ return {
 	[105498] = disabled,
 	-- nuke swat van
 	[105921] = disabled,
+	-- Edit the vault opening ambush
+	[100569] = ambush_enemies,
 	-- Edit preferreds to make the initial assault have less dense spawns
 	[103984] = { -- assault start
 		on_executed = {
 			{ id = 100043, remove = true }, -- start more preferreds
 		},
 	},
-	[100955] = { -- diff 0.75
+	[100359] = { -- assault ended
 		on_executed = {
 			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
 		},
