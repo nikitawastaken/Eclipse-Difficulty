@@ -56,10 +56,10 @@ function TradeManager:is_trade_allowed(t)
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
-	if not self.__last_chat_t or (self.__last_chat_t + 0.3) < t then
-		self.__last_chat_t = t
-		Eclipse:log_chat("assault phase:", tostring(managers.groupai:state():besiege_assault_phase()))
-	end
+	-- if not self.__last_chat_t or (self.__last_chat_t + 0.3) < t then
+	-- 	self.__last_chat_t = t
+	-- 	Eclipse:log_chat("assault phase:", tostring(managers.groupai:state():besiege_assault_phase()))
+	-- end
 
 	return Network:is_server()
 		and not self._trading_hostage
