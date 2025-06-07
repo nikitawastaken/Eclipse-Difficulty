@@ -7,13 +7,13 @@ local skylight_far_spawn = {
 	values = {
 		interval = 45,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.only_swats_tasers_cloakers,
 }
 local skylight_close_spawn = {
 	values = {
 		interval = 60,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.only_swats_tasers_cloakers,
 }
 return {
 	-- Combine some navigation areas

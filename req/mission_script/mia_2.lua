@@ -1,6 +1,9 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local cloaker = scripted_enemy.cloaker
+local cloaker_enemy = {
+	enemy = cloaker,
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -21,7 +24,7 @@ local roof_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_shields_bulldozers,
+	groups = preferred.only_swats_tasers_cloakers,
 }
 return {
 	-- Boss spawn
@@ -32,12 +35,8 @@ return {
 	[100153] = {
 		difficulty = 1,
 	},
-	[101133] = {
-		enemy = cloaker,
-	},
-	[101141] = {
-		enemy = cloaker,
-	},
+	[101133] = cloaker_enemy,
+	[101141] = cloaker_enemy,
 	--Should decrease sniper spawn intensity (I hope)
 	[101202] = {
 		values = {
