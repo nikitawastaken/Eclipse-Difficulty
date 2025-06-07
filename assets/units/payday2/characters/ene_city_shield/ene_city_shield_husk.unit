@@ -92,23 +92,23 @@
 		<extension name="base" class="HuskCopBase" >
 			<var name="can_be_marked" value="true" />
 			<var name="_tweak_table" value="city_shield" />
-			<var name="_default_weapon_id" value="deagle" />
-			<var name="_default_weapons" type="table">		
+			<var name="_default_weapon_id" value="deagle"/>
+			<var name="_default_weapons" type="table">
 				<var name="primary" value="aa12"/>
-				<var name="secondary" value="deagle"/>			
+				<var name="secondary" value="deagle"/>
 			</var>
+            <var name="_stats_name" value="marshal_shield"/>
 		</extension>
-		<extension name="inventory" class="HuskCopInventory" >	
+		<extension name="inventory" class="HuskCopInventory">
 			<var name="_shield_unit_name" value="units/payday2/characters/ene_acc_shield_city/ene_acc_shield_city_dummy" />
 			<var name="_shield_break_data" type="table">
 				<var name="anim_global_switch" value="cop"/>
 				<var name="stats_name_switch" value="city_shield_break"/>
 				<var name="tweak_table_name_switch" value="city_shield_break"/>
-				<var name="weapon_switch_selection" value="2"/>
 				<var name="hurt_data" value="table">
 					<var name="hurt_type" value="hurt"/>
 				</var>
-			</var>			
+			</var>
 		</extension>
 		<extension name="brain" class="HuskCopBrain" />
 		<extension name="anim_data" class="PlayerAnimationData" />

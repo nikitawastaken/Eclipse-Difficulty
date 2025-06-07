@@ -11,13 +11,16 @@
 
 		<group hook_id="core/lib/">
 			<post :hook_id="managers/coreenvironmentcontrollermanager"/>
+			<post :hook_id="managers/coresequencemanager"/>
 			<post :hook_id="managers/coreworldinstancemanager"/>
 			<post :hook_id="units/coreunitdamage"/>
 		</group>
 
 		<group hook_id="lib/">
+			<post :hook_id="gamemodes/gamemodestandard"/>
 			<post :hook_id="utils/inventorydescription"/>
 			<post :hook_id="states/missionendstate"/>
+			
 			<group :hook_id="managers/">
 				<group :hook_id="group_ai_states/">
 					<post :hook_id="groupaistatebase"/>
@@ -48,6 +51,11 @@
 					<post :hook_id="skilltreeguinew"/>
 				</group>
 
+				<group :hook_id="player/">
+					<post :hook_id="snipergrazedamage"/>
+					<post :hook_id="smokescreeneffect"/>
+				</group>
+
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
 
 				<post :hook_id="missionmanager"/>
@@ -61,7 +69,6 @@
 				<post :hook_id="blackmarketmanager"/>
 				<post :hook_id="dynamicresourcemanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
-				<post :hook_id="player/snipergrazedamage"/>
 				<post :hook_id="criminalsmanager"/>
 				<post :hook_id="crimenetmanager"/>
 				<post :hook_id="playermanager"/>
@@ -238,6 +245,7 @@
 						<post :hook_id="molotovgrenade"/>
 						<post :hook_id="incendiarygrenade"/>
 						<post :hook_id="grenadebase"/>
+						<post :hook_id="smokescreengrenade"/>
 					</group>
 					<post :hook_id="projectiles/projectilebase"/>
 					<post :hook_id="shotgun/shotgunbase"/>
@@ -306,6 +314,22 @@
 			<file :name="938455201.stream"/>
 		</group>
 
+		<!-- Improve navigation data -->
+		<group name="levels/narratives/">
+			<file :name="h_firestarter/stage_3/world/world.continent"/>
+			<file :name="bain/big/world/world.continent"/>
+			<file :name="classics/pal/world/world.continent"/>
+			<file :name="classics/man/world/world.continent"/>
+			<file :name="classics/flat/nav_manager_data.nav_data"/>
+			<file :name="classics/run/nav_manager_data.nav_data"/>
+			<file :name="dentist/hox/stage_2/nav_manager_data.nav_data"/>
+			<file :name="dentist/mus/nav_manager_data.nav_data"/>
+			<file :name="e_framing_frame/stage_1/nav_manager_data.nav_data"/>
+			<file :name="e_framing_frame/stage_3/nav_manager_data.nav_data"/>
+			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
+			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
+		</group>
+
 		<!-- New NPC weapons -->
 		<group name="units/payday2/weapons/">
 
@@ -356,6 +380,17 @@
 				<file :name="wpn_npc_r870_bulldozer.model" />
 				<file :name="wpn_npc_r870_bulldozer.object" />
 				<file :name="wpn_npc_r870_bulldozer.unit" />
+			</group>
+
+			<!-- Cloaker USP -->
+			<group :name="wpn_npc_usp_tactical/">
+				<file :name="usp_df.texture" />
+				<file :name="usp_nm.texture" />
+				<file :name="wpn_npc_usp_tactical.cooked_physics" />
+				<file :name="wpn_npc_usp_tactical.material_config" />
+				<file :name="wpn_npc_usp_tactical.model" />
+				<file :name="wpn_npc_usp_tactical.object" />
+				<file :name="wpn_npc_usp_tactical.unit"/>
 			</group>
 
 			<!-- NPC Steakout -->
@@ -453,6 +488,24 @@
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
 		</group>
 
+		<group name="units/pd2_halloween/weapons/">
+			<group :name="wpn_mel_titan_sword/">
+				<file :name="wpn_mel_titan_sword.cooked_physics"/>
+				<file :name="wpn_mel_titan_sword.material_config"/>
+				<file :name="wpn_mel_titan_sword.model"/>
+				<file :name="wpn_mel_titan_sword.object"/>
+				<file :name="wpn_mel_titan_sword.unit"/>
+			</group>
+		</group>
+
+		<group name="units/payday2/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="anim_vehicle_car_police/anim_vehicle_car_police.material_config" />
+			<file :name="bnk_vehicle_car_police_anim_1/bnk_vehicle_car_police_anim_1.material_config" />
+			<file :name="bnk_vehicle_car_police_anim_2/bnk_vehicle_car_police_anim_2.material_config" />
+			<file :name="bnk_vehicle_car_police_anim_3/bnk_vehicle_car_police_anim_3.material_config" />
+			<file :name="bnk_vehicle_car_police_anim_4/bnk_vehicle_car_police_anim_4.material_config" />
+			<file :name="bnk_vehicle_police_animated/bnk_vehicle_police_animated.material_config" />
+		</group>
 
 		<group name="units/payday2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
@@ -468,10 +521,18 @@
 				<file :name="equipment_atlas_df.texture" />
 				<file :name="equipment_atlas_nm.texture" />
 
+				<file :name="police_vest_df.texture" />
+				<file :name="police_vest_nm.texture" />
+
+				<file :name="city_heavy_helmets_atlas_df.texture" />
+				<file :name="city_heavy_helmets_atlas_nm.texture" />
+
 				<file :name="visor_glass_df.texture" />
+				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
 				<file :name="visor_glass_orange_df.texture" />
 				<file :name="visor_glass_red_df.texture" />
+				<file :name="visor_glass_yellow_df.texture" />
 			</group>
 
 			<group :name="ene_acc_swat_helmet/">
@@ -545,8 +606,6 @@
 			<group :name="ene_acc_head/">
 				<xml  :name="ene_acc_head.sequence_manager" />
 				<file :name="ene_acc_head.cooked_physics" />
-				<file :name="ene_acc_head.material_config" />
-				<file :name="ene_acc_head_contour.material_config" />
 				<file :name="ene_acc_head.model" />
 				<file :name="ene_acc_head.object" />
 				<file :name="ene_acc_head.unit" />
@@ -591,6 +650,15 @@
 
 					<file :name="ene_prisonguard_male_1.material_config" />
 					<file :name="ene_prisonguard_male_1_contour.material_config" />
+
+					<file :name="ene_bex_security_01.material_config" />
+					<file :name="ene_bex_security_01_contour.material_config" />
+
+					<file :name="ene_policia_01.material_config" />
+					<file :name="ene_policia_01_contour.material_config" />
+
+					<file :name="ene_policia_agent_01.material_config" />
+					<file :name="ene_policia_agent_01_contour.material_config" />
 				</group>
 			</group>
 
@@ -716,6 +784,12 @@
 				<group :name="vars/">
 					<file :name="ene_secret_service_1_casino.material_config" />
 					<file :name="ene_secret_service_1_casino_contour.material_config" />
+
+					<file :name="ene_bex_security_suit_01.material_config" />
+					<file :name="ene_bex_security_suit_01_contour.material_config" />
+
+					<file :name="ene_secret_service_fex.material_config" />
+					<file :name="ene_secret_service_fex_contour.material_config" />
 				</group>
 			</group>
 
@@ -840,11 +914,26 @@
 				<file :name="ene_fbi_heavy_1.object" />
 				<file :name="ene_fbi_heavy_1.unit" />
 				<file :name="ene_fbi_heavy_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_city_heavy_g36.material_config" />
+					<file :name="ene_city_heavy_g36_contour.material_config" />
+				</group>
 			</group>
 
 			<group :name="ene_fbi_heavy_r870/">
 				<file :name="ene_fbi_heavy_r870.unit" />
 				<file :name="ene_fbi_heavy_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_city_heavy_g36/">
+				<file :name="ene_city_heavy_g36.unit" />
+				<file :name="ene_city_heavy_g36_husk.unit" />
+			</group>
+
+			<group :name="ene_city_heavy_r870/">
+				<file :name="ene_city_heavy_r870.unit" />
+				<file :name="ene_city_heavy_r870_husk.unit" />
 			</group>
 
 			<group :name="ene_medic_m4/">
@@ -918,6 +1007,9 @@
 					<file :name="ene_bulldozer_3.material_config" />
 					<file :name="ene_bulldozer_3_contour.material_config" />
 
+					<file :name="ene_bulldozer_4.material_config" />
+					<file :name="ene_bulldozer_4_contour.material_config" />
+
 					<file :name="ene_bulldozer_minigun_classic.material_config" />
 					<file :name="ene_bulldozer_minigun_classic_contour.material_config" />
 
@@ -935,9 +1027,23 @@
 				<file :name="ene_bulldozer_3.unit" />
 				<file :name="ene_bulldozer_3_husk.unit" />
 			</group>
+
+			<group :name="ene_bulldozer_4/">
+				<file :name="ene_bulldozer_4.unit" />
+				<file :name="ene_bulldozer_4_husk.unit" />
+			</group>
+
+			<group :name="ene_bulldozer_5/">
+				<file :name="ene_bulldozer_5.unit" />
+				<file :name="ene_bulldozer_5_husk.unit" />
+			</group>
 		</group>
 
 		<group name="units/pd2_dlc_army/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_acc_soldier_head/">
+				<xml  :name="ene_acc_soldier_head.sequence_manager" dyn_package="true" />
+			</group>
+
 			<group :name="ene_soldier_1/">
 				<xml  :name="ene_soldier_1.sequence_manager" dyn_package="true" />
 			</group>
@@ -948,7 +1054,7 @@
 				<file :name="ene_gensec_operator_df.texture" />
 				<file :name="ene_gensec_operator_nm.texture" />
 			</group>
-			
+
 			<group :name="ene_acc_gensec_beret/">
 				<file :name="ene_acc_gensec_beret.cooked_physics" />
 				<file :name="ene_acc_gensec_beret.material_config" />
@@ -1008,6 +1114,10 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_rvd/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="anim_vehicle_car_police_los_angeles.material_config" />
+		</group>
+
 		<group name="units/pd2_dlc_rvd/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_la_cop_1/">
 				<file :name="ene_la_cop_1.unit" />
@@ -1048,6 +1158,10 @@
 				<file :name="ene_la_cop_4_fat.unit" />
 				<file :name="ene_la_cop_4_fat_husk.unit" />
 			</group>
+		</group>
+
+		<group name="units/pd2_dlc_chas/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="chas_vehicle_car_police_sfpd/chas_vehicle_car_police_sfpd.material_config" />
 		</group>
 
 		<group name="units/pd2_dlc_chas/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
@@ -1128,6 +1242,10 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_ranc/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="ranc_vehicle_car_police_tdps/ranc_vehicle_car_police_tdps.material_config" />
+		</group>
+
 		<group name="units/pd2_dlc_ranc/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_acc_ranc_ranger_hat/">
 				<file :name="ene_acc_ranc_ranger_hat.cooked_physics" />
@@ -1178,92 +1296,137 @@
 			</group>
 		</group>
 
-		<!-- zeals -->
-		<group name="units/pd2_dlc_gitgud/characters/" dyn_package="false">
-			<file :name="shared_textures/swat_df.texture"/>
-			<file :name="shared_textures/swat_nm.texture"/>
-			<file :name="shared_textures/swat_head_df.texture"/>
-			<file :name="shared_textures/swat_head_nm.texture"/>
-			<file :name="shared_textures/swat_heavy_df.texture"/>
-			<file :name="shared_textures/swat_heavy_nm.texture"/>
-			<file :name="shared_textures/swat_heavy_head_df.texture"/>
-			<file :name="shared_textures/swat_heavy_head_nm.texture"/>
-			<file :name="shared_textures/zeal_medic_df.texture"/>
-			<file :name="shared_textures/zeal_medic_head_df.texture"/>
-
-			<file :name="ene_acc_zeal_swat_helmet/ene_acc_zeal_swat_helmet.material_config"/>
-			<file :name="ene_acc_zeal_swat_helmet/ene_acc_zeal_swat_helmet.model"/>
-			<file :name="ene_acc_zeal_swat_heavy_helmet/ene_acc_zeal_swat_heavy_helmet.material_config"/>
-			<file :name="ene_acc_zeal_swat_heavy_helmet/ene_acc_zeal_swat_heavy_helmet.model"/>
-
-			<!-- fix shield illumination -->
-			<file :name="ene_acc_shield_new_swat/ene_acc_shield_new_swat.model"/>
-			<file :name="ene_acc_shield_new_swat/ene_acc_shield_new_swat.object"/>
-
-			<!-- make original zeal swat distinct -->
-			<file :name="ene_zeal_swat/ene_zeal_swat.material_config"/>
-			<file :name="ene_zeal_swat/ene_zeal_swat_contour.material_config"/>
-			<file :name="ene_zeal_swat/ene_zeal_swat.model"/>
-			<file :name="ene_zeal_swat/ene_zeal_swat.unit"/>
-			<file :name="ene_zeal_swat/ene_zeal_swat_husk.unit"/>
-
-			<!-- make shield use unique model -->
-			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield.material_config"/>
-			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield_contour.material_config"/>
-			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield.model"/>
-			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield.unit"/>
-			<file :name="ene_zeal_swat_shield/ene_zeal_swat_shield_husk.unit"/>
-
-			<!-- make heavy zeal distinct -->
-			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy.material_config"/>
-			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy_contour.material_config"/>
-			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy.model"/>
-			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy.unit"/>
-			<file :name="ene_zeal_swat_heavy/ene_zeal_swat_heavy_husk.unit"/>
-
-			<!-- add zeal shotgunner -->
-			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.cooked_physics"/>
-			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.material_config"/>
-			<file :name="ene_zeal_swat_2/ene_zeal_swat_2_contour.material_config"/>
-			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.model"/>
-			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.object"/>
-			<file :name="ene_zeal_swat_2/ene_zeal_swat_2.unit"/>
-			<file :name="ene_zeal_swat_2/ene_zeal_swat_2_husk.unit"/>
-
-			<!-- add heavy zeal shotgunner -->
-			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.cooked_physics"/>
-			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.material_config"/>
-			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2_contour.material_config"/>
-			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.model"/>
-			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.object"/>
-			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2.unit"/>
-			<file :name="ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2_husk.unit"/>
-
-			<!-- add zeal m4 medic -->
-			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.cooked_physics"/>
-			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.material_config"/>
-			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4_contour.material_config"/>
-			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.model"/>
-			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.object"/>
-			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4.unit"/>
-			<file :name="ene_zeal_medic_m4/ene_zeal_medic_m4_husk.unit"/>
-
-			<!-- add zeal r870 medic -->
-			<file :name="ene_zeal_medic_r870/ene_zeal_medic_r870.unit"/>
-			<file :name="ene_zeal_medic_r870/ene_zeal_medic_r870_husk.unit"/>
+		<group name="units/pd2_dlc_bex/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="bex_vehicles_car_police_mexico/bex_vehicle_car_police_mexico.material_config" />
 		</group>
 
-		<!-- Improve navigation data -->
-		<group name="levels/narratives/">
-			<file :name="bain/big/world/world.continent"/>
-			<file :name="classics/pal/world/world.continent"/>
-			<file :name="classics/flat/nav_manager_data.nav_data"/>
-			<file :name="classics/run/nav_manager_data.nav_data"/>
-			<file :name="dentist/hox/stage_2/nav_manager_data.nav_data"/>
-			<file :name="e_framing_frame/stage_1/nav_manager_data.nav_data"/>
-			<file :name="e_framing_frame/stage_3/nav_manager_data.nav_data"/>
-			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
-			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
+		<group name="units/pd2_dlc_bex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="mexican_heads_atlas_var1_df.texture" />
+				<file :name="mexican_heads_atlas_var1_nm.texture" />
+
+				<file :name="mexican_heads_atlas_var2_df.texture" />
+				<file :name="mexican_heads_atlas_var2_nm.texture" />
+			</group>
+
+			<group :name="ene_acc_mexican_head/">
+				<xml  :name="ene_acc_mexican_head.sequence_manager" />
+				<file :name="ene_acc_mexican_head.cooked_physics" />
+				<file :name="ene_acc_mexican_head.model" />
+				<file :name="ene_acc_mexican_head.object" />
+				<file :name="ene_acc_mexican_head.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_acc_mexican_head_var1.material_config" />
+					<file :name="ene_acc_mexican_head_var1_contour.material_config" />
+
+					<file :name="ene_acc_mexican_head_var2.material_config" />
+					<file :name="ene_acc_mexican_head_var2_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_bex_security_01/">
+				<file :name="ene_bex_security_01.unit" />
+				<file :name="ene_bex_security_01_husk.unit" />
+				<file :name="bex_ene_security_body_atlas_df.texture" />
+			</group>
+
+			<group :name="ene_bex_security_02/">
+				<file :name="ene_bex_security_02.unit" />
+				<file :name="ene_bex_security_02_husk.unit" />
+			</group>
+
+			<group :name="ene_bex_security_03/">
+				<file :name="ene_bex_security_03.unit" />
+				<file :name="ene_bex_security_03_husk.unit" />
+			</group>
+
+			<group :name="ene_bex_security_suit_01/">
+				<file :name="ene_bex_security_suit_01.unit" />
+				<file :name="ene_bex_security_suit_01_husk.unit" />
+			</group>
+
+			<group :name="ene_bex_security_suit_02/">
+				<file :name="ene_bex_security_suit_02.unit" />
+				<file :name="ene_bex_security_suit_02_husk.unit" />
+			</group>
+
+			<group :name="ene_bex_security_suit_03/">
+				<file :name="ene_bex_security_suit_03.unit" />
+				<file :name="ene_bex_security_suit_03_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_01/">
+				<file :name="ene_policia_01.unit" />
+				<file :name="ene_policia_01_husk.unit" />
+				<file :name="ene_bex_cop_policia_body_atlas_df.texture" />
+				<file :name="ene_bex_cop_policia_body_atlas_nm.texture" />
+			</group>
+
+			<group :name="ene_policia_02/">
+				<file :name="ene_policia_02.unit" />
+				<file :name="ene_policia_02_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_03/">
+				<file :name="ene_policia_03.unit" />
+				<file :name="ene_policia_03_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_04/">
+				<file :name="ene_policia_04.unit" />
+				<file :name="ene_policia_04_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_agent_01/">
+				<file :name="ene_policia_agent_01.unit" />
+				<file :name="ene_policia_agent_01_husk.unit" />
+				<file :name="ene_bex_agent_body_atlas_df.texture" />
+			</group>
+
+			<group :name="ene_policia_agent_02/">
+				<file :name="ene_policia_agent_02.unit" />
+				<file :name="ene_policia_agent_02_husk.unit" />
+			</group>
+
+			<group :name="ene_policia_agent_03/">
+				<file :name="ene_policia_agent_03.unit" />
+				<file :name="ene_policia_agent_03_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_pex/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="pex_vehicles_car_police_federal/pex_vehicle_car_police_federal.material_config" />
+		</group>
+
+		<group name="units/pd2_dlc_pex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_male_office_cop_01/">
+				<file :name="ene_male_office_cop_01.unit" />
+				<file :name="ene_male_office_cop_01_husk.unit" />
+			</group>
+
+			<group :name="ene_male_office_cop_02/">
+				<file :name="ene_male_office_cop_02.unit" />
+				<file :name="ene_male_office_cop_02_husk.unit" />
+			</group>
+
+			<group :name="ene_male_office_cop_03/">
+				<file :name="ene_male_office_cop_03.unit" />
+				<file :name="ene_male_office_cop_03_husk.unit" />
+			</group>
+
+			<group :name="ene_male_office_cop_04/">
+				<file :name="ene_male_office_cop_04.unit" />
+				<file :name="ene_male_office_cop_04_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_fex/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_secret_service_fex/">
+				<file :name="ene_secret_service_fex.unit" />
+				<file :name="ene_secret_service_fex_husk.unit" />
+				<file :name="ene_secret_service_fex_df.texture" />
+			</group>
 		</group>
 
 		<group name="units/pd2_dlc_berry/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
@@ -1305,6 +1468,10 @@
 				<file :name="ene_security_3_undominatable.unit" />
 				<file :name="ene_security_3_undominatable_husk.unit" />
 			</group>
+		</group>
+
+		<group name="units/pd2_dlc_spa/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<file :name="str_vehicle_car_police_new_york/str_vehicle_car_police_new_york.material_config" />
 		</group>
 
 		<group name="units/pd2_dlc_des/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
@@ -1429,6 +1596,11 @@
 				<file :name="ene_deep_security_3.unit" />
 				<file :name="ene_deep_security_3_husk.unit" />
 			</group>
+		</group>
+
+		<!-- objects -->
+		<group name="units/pd2_dlc_pal/props/pal_prop_flames_of_love_boombox/" dyn_package="false">
+				<file :name="pal_prop_flames_of_love_boombox.sequence_manager"/> <!-- Where is my Payday for you and me??????? -->
 		</group>
 
 		<!-- animations -->

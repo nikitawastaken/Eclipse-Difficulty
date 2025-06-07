@@ -6,24 +6,24 @@ local disabled = {
 }
 local front_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 120,
 	},
 }
 return {
@@ -45,8 +45,8 @@ return {
 	--Delay sanctum preferreds
 	[103217] = {
 		on_executed = {
-			{ id = 103216, delay = 30 },
-			{ id = 103493, delay = 30 },
+			{ id = 103216, delay = 15, delay_rand = 30 },
+			{ id = 103493, delay = 15, delay_rand = 30 },
 		},
 		reinforce = { -- Enable reinforce
 			{

@@ -2,37 +2,39 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
+local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
-local heavy_harasser = eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
-local fail_to_believe_chance = (eclipse and 30 or 20) + (is_pro_job and 5 or 0)
-local timelock_normal = (eclipse and 240 or 180) + (is_pro_job and 30 or 0)
-local timelock_fast = (eclipse and 210 or 150) + (is_pro_job and 30 or 0)
+local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
+local timelock_normal = (is_eclipse and 240 or 180) + (is_pro_job and 30 or 0)
+local timelock_fast = (is_eclipse and 210 or 150) + (is_pro_job and 30 or 0)
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
 local flank_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 	groups = preferred.no_bulldozers,
 }
+local roof_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local elevator_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 }
 local elevator_spawn_2 = {
 	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local roof_spawn = {
-	values = {
-		interval = 30,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -44,18 +46,16 @@ local wall_c4_chance = {
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
-
 local bags_required = {
 	values = {
-		amount = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-
 return {
 	[100809] = {
 		ponr = {
-			length = 180,
-			player_mul = { 2, 1.25, 1., 1 },
+			length = 240,
+			player_mul = { 2, 1.25, 1, 1 },
 		},
 	},
 	[105844] = {

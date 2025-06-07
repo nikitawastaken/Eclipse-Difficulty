@@ -1,34 +1,44 @@
 local preferred = Eclipse.preferred
-
 local escape_spawn = {
 	values = {
 		interval = 10,
 	},
 }
-local window_spawn1 = {
+local breach_lower_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local window_spawn2 = {
+local window_lower_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents,
+}
+local breach_upper_spawn = {
 	values = {
 		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local roof_spawn1 = {
+local window_upper_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local roof_spawn2 = {
+local skylight_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents,
+}
+local roof_spawn = {
+	values = {
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
 return {
 	-- Combine some navigation areas
 	[100303] = {
@@ -62,22 +72,22 @@ return {
 	-- The ground spawns at the escape have been slowed down to allow for more diverse holdout locations, if you know you know.
 	[106717] = escape_spawn,
 	[104348] = escape_spawn,
-	[101012] = window_spawn1,
-	[101315] = window_spawn1,
-	[102138] = window_spawn1,
-	[104338] = window_spawn1,
-	[107262] = window_spawn1,
-	[107263] = window_spawn1,
-	[100750] = window_spawn2,
-	[102664] = window_spawn2,
-	[102667] = window_spawn2,
-	[102668] = window_spawn2,
-	[102139] = roof_spawn1,
-	[102140] = roof_spawn1,
-	[104336] = roof_spawn1,
-	[104337] = roof_spawn1,
-	[107260] = roof_spawn1,
-	[107261] = roof_spawn1,
-	[102151] = roof_spawn2,
-	[104347] = roof_spawn2,
+	[107262] = breach_lower_spawn,
+	[107263] = breach_lower_spawn,
+	[101012] = window_lower_spawn,
+	[102138] = window_lower_spawn,
+	[104338] = window_lower_spawn,
+	[104472] = window_lower_spawn,
+	[102667] = breach_upper_spawn,
+	[102668] = breach_upper_spawn,
+	[100750] = window_upper_spawn,
+	[102664] = window_upper_spawn,
+	[102139] = skylight_spawn,
+	[102140] = skylight_spawn,
+	[104336] = skylight_spawn,
+	[104337] = skylight_spawn,
+	[107260] = skylight_spawn,
+	[107261] = skylight_spawn,
+	[102151] = roof_spawn,
+	[104347] = roof_spawn,
 }

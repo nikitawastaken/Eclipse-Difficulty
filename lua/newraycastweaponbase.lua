@@ -18,7 +18,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	local weapon_tweak = self:weapon_tweak_data()
 
 	local fire_mode_data = self:weapon_tweak_data().fire_mode_data or {}
-	local toggable_fire_modes = custom_stats and custom_stats.fire_modes or fire_mode_data and fire_mode_data.toggable
+	local toggable_fire_modes = fire_mode_data and fire_mode_data.toggable
 
 	if toggable_fire_modes then
 		self._toggable_fire_modes = {}
@@ -29,6 +29,8 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 			end
 		end
 	end
+
+	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
 
 	self._steelsight_move_speed_mul = weapon_tweak.steelsight_move_speed_mul or 0.6
 
@@ -47,6 +49,8 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._reload_speed_multiplier = weapon_tweak.reload_speed_multiplier or 1
 
 	self._exit_run_speed_multiplier = weapon_tweak.exit_run_speed_multiplier or 1
+
+	self._fire_mode_mul = weapon_tweak.fire_mode_mul or {}
 
 	self._standing_hipfire_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.hipfire) or 1
 	self._standing_crouching_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.crouching) or 1
@@ -87,6 +91,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 		if stats.exit_run_speed_multiplier then
 			self._exit_run_speed_multiplier = self._exit_run_speed_multiplier * stats.exit_run_speed_multiplier
+		end
+
+		if stats.fire_mode_mul then
+			self._fire_mode_mul = stats.fire_mode_mul
 		end
 
 		if stats.total_ammo_multiplier then
@@ -183,18 +191,14 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	if user_unit then
 		is_moving = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state._moving
 		is_crouching = alive(user_unit) and user_unit:movement() and user_unit:movement():crouching()
-		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:in_steelsight()
+		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
 	end
 
 	local weapon_tweak = self:weapon_tweak_data()
 
-	local fire_modes = weapon_tweak.fire_mode_data and weapon_tweak.fire_mode_data.toggable
-
-	if fire_modes then
-		for _, fire_mode in ipairs(fire_modes) do
-			if self:fire_mode() == fire_mode then
-				multiplier = multiplier * (weapon_tweak.fire_mode_mul and weapon_tweak.fire_mode_mul[fire_mode].recoil or 1)
-			end
+	for _, fire_mode in ipairs(self._fire_modes) do
+		if self:fire_mode() == fire_mode then
+			multiplier = multiplier * (self._fire_mode_mul and self._fire_mode_mul[fire_mode] and self._fire_mode_mul[fire_mode].recoil or 1)
 		end
 	end
 
@@ -234,17 +238,17 @@ function NewRaycastWeaponBase:recoil_multiplier()
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_recoil_multiplier", 1)
-
-			multiplier = multiplier * managers.player:upgrade_value("weapon", "steelsight_recoil_multiplier", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "steelsight_recoil_multiplier", 1)
 	end
 
 	if is_moving then
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "moving_recoil_multiplier", 1)
-
-			multiplier = multiplier * managers.player:upgrade_value("weapon", "moving_recoil_penalty_reduction", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "moving_recoil_penalty_reduction", 1)
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "standing_recoil_multiplier", 1)
@@ -287,18 +291,14 @@ function NewRaycastWeaponBase:spread_multiplier()
 	if user_unit then
 		is_moving = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state._moving
 		is_crouching = alive(user_unit) and user_unit:movement() and user_unit:movement():crouching()
-		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:in_steelsight()
+		in_steelsight = alive(user_unit) and user_unit:movement() and user_unit:movement()._current_state and user_unit:movement()._current_state:full_steelsight()
 	end
 
 	local weapon_tweak = self:weapon_tweak_data()
 
-	local fire_modes = weapon_tweak.fire_mode_data and weapon_tweak.fire_mode_data.toggable
-
-	if fire_modes then
-		for _, fire_mode in ipairs(fire_modes) do
-			if self:fire_mode() == fire_mode then
-				multiplier = multiplier * (weapon_tweak.fire_mode_mul and weapon_tweak.fire_mode_mul[fire_mode].spread or 1)
-			end
+	for _, fire_mode in ipairs(self._fire_modes) do
+		if self:fire_mode() == fire_mode then
+			multiplier = multiplier * (self._fire_mode_mul and self._fire_mode_mul[fire_mode] and self._fire_mode_mul[fire_mode].spread or 1)
 		end
 	end
 
@@ -325,9 +325,9 @@ function NewRaycastWeaponBase:spread_multiplier()
 	if not in_steelsight then
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "hipfire_spread_multiplier", 1)
-
-			multiplier = multiplier * managers.player:upgrade_value("weapon", "hipfire_spread_penalty_reduction", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "hipfire_spread_penalty_reduction", 1)
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_spread_multiplier", 1)
@@ -342,12 +342,18 @@ function NewRaycastWeaponBase:spread_multiplier()
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "standing_spread_multiplier", 1)
 		end
+
+		multiplier = multiplier * managers.player:upgrade_value("weapon", "standing_spread_multiplier", 1)
 	end
 
 	if is_crouching then
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "crouching_spread_multiplier", 1)
 		end
+	end
+
+	if managers.player:current_state() and managers.player:current_state() == "bipod" then
+		multiplier = multiplier * (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.bipod or 1)
 	end
 
 	if self._silencer then
@@ -370,13 +376,9 @@ function NewRaycastWeaponBase:fire_rate_multiplier()
 
 	local weapon_tweak = self:weapon_tweak_data()
 
-	local fire_modes = weapon_tweak.fire_mode_data and weapon_tweak.fire_mode_data.toggable
-
-	if fire_modes then
-		for _, fire_mode in ipairs(fire_modes) do
-			if self:fire_mode() == fire_mode then
-				multiplier = multiplier * (weapon_tweak.fire_mode_mul and weapon_tweak.fire_mode_mul[fire_mode].fire_rate or 1)
-			end
+	for _, fire_mode in ipairs(self._fire_modes) do
+		if self:fire_mode() == fire_mode then
+			multiplier = multiplier * (self._fire_mode_mul and self._fire_mode_mul[fire_mode] and self._fire_mode_mul[fire_mode].fire_rate or 1)
 		end
 	end
 
@@ -485,11 +487,11 @@ function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 
 	local pm = managers.player
 
-	if current_state:in_steelsight() and self:is_single_shot() then
+	if current_state:full_steelsight() and self:is_single_shot() then
 		mul = mul + 1 - pm:upgrade_value("player", "single_shot_accuracy_inc", 1)
 	end
 
-	if current_state:in_steelsight() then
+	if current_state:full_steelsight() then
 		for _, category in ipairs(self:categories()) do
 			mul = mul + 1 - managers.player:upgrade_value(category, "steelsight_accuracy_inc", 1)
 		end
@@ -558,12 +560,13 @@ function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
 		end
 	end
 
-	local ammo = tweak_data.weapon[self._name_id].CLIP_AMMO_MAX + added
-	ammo = ammo + managers.player:upgrade_value(self._name_id, "clip_ammo_increase")
+	local ammo = tweak_data.weapon[self._name_id].CLIP_AMMO_MAX
 
 	if not self:upgrade_blocked("weapon", "clip_ammo_increase") then
 		ammo = math.ceil(ammo * managers.player:upgrade_value("weapon", "clip_ammo_increase", 1))
 	end
+
+	ammo = ammo + managers.player:upgrade_value(self._name_id, "clip_ammo_increase")
 
 	for _, category in ipairs(tweak_data.weapon[self._name_id].categories) do
 		if not self:upgrade_blocked(category, "clip_ammo_increase") then
@@ -571,6 +574,7 @@ function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
 		end
 	end
 
+	ammo = ammo + added
 	ammo = ammo + (self._extra_ammo or 0)
 
 	return ammo

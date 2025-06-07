@@ -49,7 +49,7 @@ local eclipse_dozers = {
 local escape_dozer = {
 	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
-local harasser_enemy = is_eclipse and { [swat_1] = 6, [elite_sniper] = 1 } or swat_1
+local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
 }
@@ -68,6 +68,14 @@ local sniper_amount = {
 	values = {
 		amount = (normal and 4 or hard and 6 or 8) + (is_pro_job and 2 or 0),
 	},
+}
+local law_team = {
+	values = {
+		team = "law1",
+	},
+}
+local fbi_intro_so = {
+	so_access_filter = { "cop", "fbi", "gangster" },
 }
 local heli_enemy1 = {
 	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
@@ -94,34 +102,87 @@ local breach_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields,
-}
-local roof_spawn = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_cops_agents_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local cloaker_spawn = {
+local roof_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_bulldozers,
+}
+local new_cloaker_spawn = {
 	values = {
 		interval = 90,
 	},
+	groups = preferred.only_cloakers,
 }
 local chopper_delay_init = 480 - (diff_i * 30) - (is_pro_job and 60 or 0)
 local chopper_delay = 360 - (diff_i * 15) - (is_pro_job and 45 or 0)
 return {
+	-- Combine some navigation areas
+	[100053] = {
+		ai_area = {
+			{ 38, 39, 40 },
+			{ 50, 51, 52 },
+			{ 55, 78 },
+			{ 61, 165 },
+		},
+	},
 	--PONR
 	[100695] = {
 		ponr = {
 			length = 60,
 			player_mul = { 1.25, 1, 0.75, 0.5 },
 		},
+	},
+	-- Add new reinforce
+	[101825] = { -- Interrogation started
+		difficulty = 0.6,
+		reinforce = {
+			{
+				name = "staircase_main1",
+				force = 2,
+				position = Vector3(-1250, -2750, 300),
+			},
+			{
+				name = "staircase_main2",
+				force = 2,
+				position = Vector3(-1250, -2750, 1000),
+			},
+			{
+				name = "staircase_side1",
+				force = 2,
+				position = Vector3(-1250, 975, 475),
+			},
+			{
+				name = "staircase_side2",
+				force = 2,
+				position = Vector3(-1850, 1000, 1375),
+			},
+		},
+		on_executed = { -- Bain diff increase line
+			{ id = 103896, delay = 0 },
+		},
+	},
+	-- Tweak diff scaling
+	[102305] = disabled, -- saw in place, diff 0.75
+	[101760] = disabled, -- interrogation started, diff 1
+	[102305] = { -- initial diff
+		values = {
+			difficulty = 0.4,
+		},
+	},
+	[102013] = { -- 1st hack done
+		difficulty = 0.8,
+	},
+	[102014] = { -- 2nd hack done
+		difficulty = 1,
 	},
 	-- Multiple interrupts once more (pain)
 	[102978] = {
@@ -135,6 +196,296 @@ return {
 	},
 	[101801] = {
 		flashlight = false,
+	},
+	-- fix the early loud issue
+	[103178] = {
+		values = {
+			elements = {
+				102601,
+				102600,
+				102599,
+				102602,
+				102633,
+				102634,
+				101614,
+				103078,
+				103079,
+				102591,
+				102592,
+				102588,
+				102586,
+				101575,
+				101946,
+				101949,
+				101948,
+				101955,
+				101956,
+				101957,
+				101953,
+				101952,
+				104051,
+				103315,
+				104055,
+				104054,
+				104059,
+				104058,
+				104060,
+				104061,
+				104056,
+				104057,
+				104052,
+				104053,
+			},
+		},
+	},
+	-- increase the amount of planks
+	[101661] = {
+		values = {
+			amount = 20,
+		},
+	},
+	-- add new cloaker spawns to dummy trigger
+	-- on spawn
+	[103544] = {
+		values = {
+			elements = {
+				400000,
+			},
+		},
+	},
+	-- disable the spawn
+	[103535] = {
+		values = {
+			elements = {
+				400000,
+			},
+		},
+	},
+	-- enable the spawn
+	[103534] = {
+		values = {
+			elements = {
+				400000,
+			},
+		},
+	},
+	-- on spawn
+	[103540] = {
+		values = {
+			elements = {
+				400001,
+			},
+		},
+	},
+	-- disable the spawn
+	[103531] = {
+		values = {
+			elements = {
+				400001,
+			},
+		},
+	},
+	-- enable the spawn
+	[103530] = {
+		values = {
+			elements = {
+				400001,
+			},
+		},
+	},
+	-- on spawn
+	[103479] = {
+		values = {
+			elements = {
+				400002,
+			},
+		},
+	},
+	-- disable the spawn
+	[103483] = {
+		values = {
+			elements = {
+				400002,
+			},
+		},
+	},
+	-- enable the spawn
+	[103482] = {
+		values = {
+			elements = {
+				400002,
+			},
+		},
+	},
+	-- on spawn
+	[103474] = {
+		values = {
+			elements = {
+				400003,
+			},
+		},
+	},
+	-- disable the spawn
+	[103473] = {
+		values = {
+			elements = {
+				400003,
+			},
+		},
+	},
+	-- enable the spawn
+	[103472] = {
+		values = {
+			elements = {
+				400003,
+			},
+		},
+	},
+	-- replace cloaker spawngroup with new one
+	[103792] = {
+		on_executed = {
+			{ id = 103798, remove = true },
+		},
+	},
+	[100130] = {
+		on_executed = {
+			{ id = 400005, delay = 20 },
+		},
+	},
+	-- get rid off medium spawn
+	[100055] = {
+		on_executed = {
+			{ id = 103589, remove = true },
+		},
+	},
+	-- trigger taser chopper event if the limo stays on the roof
+	[101782] = {
+		on_executed = {
+			{ id = 400010, delay = 90, delay_rand = 30 },
+		},
+	},
+	-- tweak the PC hack to use PDTH values
+	-- lower floor
+	-- startup and first hack
+	[102119] = {
+		on_executed = {
+			{ id = 103798, remove = true },
+			{ id = 400013, delay = 9 },
+		},
+	},
+	-- higher floor
+	[102338] = {
+		on_executed = {
+			{ id = 102339, remove = true },
+			{ id = 400016, delay = 9 },
+		},
+	},
+	-- second hack
+	[102103] = {
+		on_executed = {
+			-- lower floor
+			{ id = 102050, remove = true },
+			{ id = 400014, delay = 0 },
+			-- higher floor
+			{ id = 102340, remove = true },
+			{ id = 400017, delay = 0 },
+		},
+	},
+	-- third hack
+	[102104] = {
+		on_executed = {
+			-- lower floor
+			{ id = 102051, remove = true },
+			{ id = 400015, delay = 0 },
+			-- higher floor
+			{ id = 102342, remove = true },
+			{ id = 400018, delay = 0 },
+		},
+	},
+	-- toggles (lower floor)
+	[102038] = {
+		values = {
+			elements = {
+				102036,
+				102056,
+				102264,
+				102052,
+				400013, -- first hack
+				102119,
+				400014, -- second hack
+				400015, -- third hack
+				102071,
+				102011,
+				102085,
+				102086,
+				102049,
+				102324,
+				101866,
+				102323,
+				101844,
+				102009,
+				102833,
+				102867,
+				102832,
+				103095,
+				100234,
+				100235,
+				101815,
+				103213,
+				103242,
+				103418,
+				103776,
+				103822,
+				103804,
+				103465,
+				102956,
+				102631,
+				103783,
+			},
+		},
+	},
+	-- toggles (higher floor)
+	[102039] = {
+		values = {
+			elements = {
+				102037,
+				102057,
+				102265,
+				102282,
+				102343,
+				400016, -- first hack
+				102338,
+				400017, -- second hack
+				400018, -- third hack
+				102341,
+				102345,
+				102344,
+				102336,
+				102871,
+				102332,
+				102333,
+				102935,
+				102335,
+				102830,
+				102938,
+				102829,
+				102954,
+				100008,
+				100208,
+				101816,
+				103214,
+				103241,
+				103419,
+				103775,
+				103777,
+				103823,
+				103805,
+				103870,
+				101969,
+				102632,
+				103799,
+			},
+		},
 	},
 	-- Unused snipers
 	[102160] = enabled,
@@ -330,7 +681,7 @@ return {
 	[101951] = window_spawn,
 	[101937] = roof_spawn,
 	[102189] = roof_spawn,
-	[103793] = cloaker_spawn,
+	[400004] = new_cloaker_spawn,
 	-- Scripted FBI agents
 	[101614] = fbi_agent,
 	[102633] = fbi_agent,
@@ -339,6 +690,13 @@ return {
 	[102592] = fbi_agent,
 	[102586] = fbi_agent,
 	[102588] = fbi_agent,
+	-- set the undercover cops be on law team (so the FBI won't kill them)
+	[101609] = law_team,
+	[101612] = law_team,
+	[103078] = law_team,
+	[103079] = law_team,
+	-- tweak SO access
+	[102610] = fbi_intro_so,
 	-- Escape Dozers
 	[102433] = escape_dozer,
 	[102434] = escape_dozer,

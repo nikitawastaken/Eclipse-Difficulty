@@ -1,7 +1,17 @@
 local preferred = Eclipse.preferred
-local flank_spawn = {
+local is_eclipse = Eclipse.utils.is_eclipse()
+local club_music = is_eclipse and "diegetic_club_rock_music" or "diegetic_club_music"
+local club_music_off = is_eclipse and "diegetic_club_rock_music_stop" or "diegetic_club_music_stop"
+local dance_civs = is_eclipse and 17 or 7
+local dance_civs_bad_music = is_eclipse and 7 or 3
+local side_spawn = {
 	values = {
 		interval = 15,
+	},
+}
+local rear_spawn = {
+	values = {
+		interval = 25,
 	},
 	groups = preferred.no_bulldozers,
 }
@@ -10,6 +20,12 @@ local window_spawn = {
 		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local alleyway_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_bulldozers,
 }
 local law_team = {
 	values = {
@@ -51,12 +67,36 @@ return {
 			},
 		},
 	},
+	-- rock music on Eclipse
+	[101475] = {
+		values = {
+			sound_event = club_music_off,
+		},
+	},
+	[103041] = {
+		values = {
+			sound_event = club_music,
+		},
+	},
+	-- more civilians on the dance floor on Eclipse
+	[101916] = {
+		values = {
+			counter_target = dance_civs,
+		},
+	},
+	[101949] = {
+		values = {
+			amount = dance_civs_bad_music,
+		},
+	},
 	-- spawn point delays
-	[101046] = flank_spawn,
-	[101345] = flank_spawn,
-	[100806] = flank_spawn,
+	[101046] = side_spawn,
+	[101213] = side_spawn,
+	[100806] = rear_spawn,
+	[101345] = rear_spawn,
 	[103174] = window_spawn,
 	[104731] = window_spawn,
+	[101221] = alleyway_spawn,
 	-- Dimitri's men are friendly to cops
 	[101858] = law_team,
 	[101865] = law_team,

@@ -5,13 +5,11 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
-
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local taser = scripted_enemy.taser
 local bulldozer = scripted_enemy.bulldozer_1
 local elite_bulldozer = scripted_enemy.elite_bulldozer_2
-
 local disabled = {
 	values = {
 		enabled = false,
@@ -23,47 +21,39 @@ local enabled = {
 		enabled = true,
 	},
 }
-
-local flank_spawn = {
+local ship_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
 local no_participate_to_group_ai = {
 	values = {
 		participate_to_group_ai = false,
 	},
 }
-
 local blockade_enemy1 = {
 	values = {
 		enemy = is_eclipse and elite_bulldozer or bulldozer,
 	},
 }
-
 local blockade_enemy2 = {
 	values = {
 		enemy = is_eclipse_pro and elite_shield or shield,
 	},
 }
-
 local heli_enemy1 = {
 	values = {
 		enemy = taser,
 	},
 }
-
 local heli_enemy2 = {
 	values = {
 		enemy = is_eclipse_pro and elite_bulldozer or bulldozer,
 		trigger_times = 0,
 	},
 }
-
 local heli_chance = (is_pro_job and 1.25 or 1) * (diff_i - 2) * 20
-
 local function cloaker_add(id)
 	return id and {
 		modify_list_value = {
@@ -73,7 +63,6 @@ local function cloaker_add(id)
 		},
 	} or nil
 end
-
 return {
 	-- 1st assault reinforce
 	[100511] = {
@@ -204,7 +193,7 @@ return {
 	[100844] = disabled,
 	-- Spawn group delays
 	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
-	[102387] = flank_spawn,
-	[102331] = flank_spawn,
-	[102173] = flank_spawn,
+	[102387] = ship_spawn,
+	[102331] = ship_spawn,
+	[102173] = ship_spawn,
 }

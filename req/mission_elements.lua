@@ -464,7 +464,7 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 			base_delay = opts.base_delay or 0,
 			position = pos,
 			rotation = rot,
-			enabled = true,
+			enabled = opts.enabled or false,
 		},
 	}
 
@@ -474,8 +474,6 @@ end
 ---Generate a random element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference
----@param pos Vector3: position for the element to be in
----@param rot Rotation: direction the element is facing
 ---@param opts? table: extra parameters
 function M.gen_element_random(id, name, opts)
 	opts = opts or {}
@@ -497,6 +495,33 @@ function M.gen_element_random(id, name, opts)
 	}
 
 	return random_element
+end
+
+---Generate a difficulty element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_difficulty(id, name, pos, rot, opts)
+	opts = opts or {}
+	local difficulty_element = {
+		id = id,
+		editor_name = name,
+		class = "ElementDifficulty",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 0,
+			difficulty = opts.difficulty or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = true,
+		},
+	}
+
+	return difficulty_element
 end
 
 return M

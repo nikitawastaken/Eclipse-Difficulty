@@ -9,7 +9,7 @@ function SpoocLogicAttack._upd_spooc_attack(data, my_data)
 		return
 	end
 
-	if not focus_enemy.criminal_record or focus_enemy.criminal_record.status then
+	if not focus_enemy.criminal_record or focus_enemy.criminal_record.status and focus_enemy.criminal_record.status ~= "electrified" then
 		return
 	end
 

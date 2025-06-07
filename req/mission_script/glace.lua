@@ -1,6 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
@@ -16,6 +17,13 @@ local eclipse_dozers = {
 	elite_skull_bulldozer,
 }
 
+local swat_heli_amount = 2 + (is_pro_job and 1 or 0)
+
+local chopper_amount = {
+	values = {
+		amount = swat_heli_amount,
+	},
+}
 local bridge_spawn1 = {
 	values = {
 		interval = 10,
@@ -135,13 +143,29 @@ return {
 			{ id = 400008, delay = 0 },
 		},
 	},
+	-- tweak special scaffolding spawn event
+	[105159] = {
+		on_executed = {
+			{ id = 400027, delay = 0 },
+		},
+	},
+	-- add spawns to nearby scaffolding
+	[103255] = {
+		on_executed = {
+			{ id = 400025, delay = 60, delay_rand = 30 },
+		},
+	},
+	-- tweak the amount of swat choppers
+	[100817] = chopper_amount,
+	[100821] = chopper_amount,
+	[100822] = chopper_amount,
 	-- disable dozer spawn once George the pilot gets Kauzo out
 	[100121] = {
 		func = function(self)
-			local turn_this_shit_off = self:get_mission_element(101320)
+			local turn_it_off = self:get_mission_element(400027)
 
-			if turn_this_shit_off then
-				turn_this_shit_off:set_enabled(false)
+			if turn_it_off then
+				turn_it_off:set_enabled(false)
 			end
 		end,
 	},

@@ -16,7 +16,6 @@ local beat_cops = {
 		participate_to_group_ai = true,
 	},
 }
-
 local enabled = {
 	values = {
 		enabled = true,
@@ -27,55 +26,61 @@ local disabled = {
 		enabled = false,
 	},
 }
-local vault_spawn = {
+local office_spawn = {
+	values = {
+		interval = 20,
+	},
+}
+local roof_spawn1 = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents,
+}
+local roof_spawn2 = {
 	values = {
 		interval = 45,
+	},
+	groups = preferred.no_cops_agents,
+}
+local vault_spawn = {
+	values = {
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local roof_spawn_1 = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents,
-}
-local roof_spawn_2 = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_cops_agents,
-}
 return {
-	[103969] = {
+	[100757] = { -- first responders
 		reinforce = {
 			{
-				name = "atrium1",
+				name = "atrium_upper1",
 				force = 2,
 				position = Vector3(-4000, -2200, 750),
 			},
 			{
-				name = "atrium2",
+				name = "atrium_upper2",
 				force = 2,
 				position = Vector3(-2750, -2200, 750),
 			},
 			{
-				name = "atrium3",
+				name = "atrium_upper3",
 				force = 2,
 				position = Vector3(-2750, -1000, 750),
 			},
 			{
-				name = "atrium4",
+				name = "atrium_upper4",
 				force = 2,
 				position = Vector3(-4000, -1000, 750),
 			},
 		},
 	},
-	[101342] = {
+	[100170] = { -- objective 8, entered the vault
+		difficulty = 1,
 		reinforce = {
 			{
 				name = "vault_entrance",
 				force = 3,
-				position = Vector3(-3250, -2850, 0),
+				position = Vector3(-3300, -2100, 30),
 			},
 			{
 				name = "atrium_lower1",
@@ -89,6 +94,11 @@ return {
 			},
 		},
 	},
+	-- disable vanilla difficulty scaling
+	[100077] = { -- objective 3, look for the CFO
+		difficulty = 0.75,
+	},
+	[104890] = disabled,
 	-- enable pretty much all of the spawnpoints on the map from the very beginning, except those in the vault
 	-- should be impossible to spawncamp the heist that way
 	[104385] = enabled,
@@ -285,17 +295,20 @@ return {
 			{ id = 400021, delay = 38 },
 		},
 	},
-	-- slow down vault spawnpoints
-	[104822] = vault_spawn,
-	[104821] = vault_spawn,
-	[100723] = vault_spawn,
+	-- Spawn Group delays
+	[102737] = office_spawn,
+	[104469] = office_spawn,
+	[104479] = office_spawn,
+	[104480] = office_spawn,
+	[104896] = roof_spawn2,
+	[104852] = roof_spawn2,
+	[104846] = roof_spawn2,
+	[104764] = roof_spawn2,
+	[102772] = roof_spawn2,
+	[102784] = roof_spawn1, -- intentionally slightly lower delay for the groups that are on the other side of the roof
+	[102778] = roof_spawn1,
 	[100722] = vault_spawn,
-	-- slow down roof spawnpoints
-	[104896] = roof_spawn_1,
-	[102778] = roof_spawn_1,
-	[104846] = roof_spawn_1,
-	[104764] = roof_spawn_1,
-	[102772] = roof_spawn_1,
-	[102784] = roof_spawn_2, -- intentionally slightly lower delay for the groups that are on the other side of the roof
-	[104852] = roof_spawn_2,
+	[100723] = vault_spawn,
+	[104821] = vault_spawn,
+	[104822] = vault_spawn,
 }

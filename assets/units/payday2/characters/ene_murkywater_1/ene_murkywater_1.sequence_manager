@@ -82,6 +82,13 @@
 			<effect_spawner 	filter="'check_uses_torch'" enabled="true" name="'es_light'"/>
 			<light				filter="'check_uses_torch'" enabled="true" name="'ls_light'"/>
 		</sequence>
+
+		<sequence editable_state="true" name="'helmet_swat'" once="true" triggable="true"> 
+			<decal_mesh 		enabled="true" name="'dm_helmet'" />
+			
+			<object 			enabled="true" name="'g_helmet_lod1'" />
+			<object 			enabled="true" name="'g_helmet_lod2'" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'murkywater_1'" once="true" triggable="true" >
 			<set_variables 		uses_torch="1" />	
@@ -100,14 +107,12 @@
 			
 			<object 			enabled="true" name="'g_gear_fbi'" />
 			<object 			enabled="true" name="'g_gear_fbi_lod1'" />
-
-			<object 			enabled="true" name="'g_helmet_lod1'" />
-			<object 			enabled="true" name="'g_helmet_lod2'" />
 		
 			<run_sequence 		name="'mcmansion_security'" />
 			<run_sequence 		name="'random_body'" />
 			<run_sequence 		name="'random_goggles_b'" />
 			<run_sequence 		name="'random_headset'" />
+			<run_sequence 		name="'helmet_swat'" />
 		</sequence>
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body'" triggable="true">
@@ -150,14 +155,14 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'goggles_head_a'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_glass_a'" />
+			<object 			enabled="true" name="'g_goggles_glass_a'" />
 
 			<object 			enabled="true" name="'g_goggles_a'" />
 			<object 			enabled="true" name="'g_goggles_a_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'goggles_head_b'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_glass_b'" />
+			<object 			enabled="true" name="'g_goggles_glass_b'" />
 
 			<object 			enabled="true" name="'g_goggles_b'" />
 			<object 			enabled="true" name="'g_goggles_b_lod1'" />

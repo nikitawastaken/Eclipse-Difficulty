@@ -1,10 +1,7 @@
 local preferred = Eclipse.preferred
-
 local scripted_enemy = Eclipse.scripted_enemy
-
 local taser = scripted_enemy.taser_1
 local taser_sg = scripted_enemy.taser_2
-
 local tasers = {
 	taser,
 	taser_sg,
@@ -12,8 +9,16 @@ local tasers = {
 local ambush_taser = {
 	enemy = tasers,
 }
-
+local exclude_shields = {
+	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc", "tank" },
+}
+local exclude_shields_dozers = {
+	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+}
 local building_spawn = {
+	values = {
+		interval = 20,
+	},
 	groups = preferred.no_cops_agents,
 }
 local window_spawn = {
@@ -77,6 +82,42 @@ return {
 	},
 	-- Disable hunt
 	[102176] = disabled,
+	-- e_nl_up_0_75m_dwn_0_25m
+	[100073] = exclude_shields,
+	[100072] = exclude_shields,
+	[100071] = exclude_shields,
+	[100068] = exclude_shields,
+	[100065] = exclude_shields,
+	[100063] = exclude_shields,
+	[100062] = exclude_shields,
+	[100059] = exclude_shields,
+	[100057] = exclude_shields,
+	-- e_nl_over_1_15m
+	[101064] = exclude_shields_dozers,
+	[101063] = exclude_shields_dozers,
+	[101062] = exclude_shields_dozers,
+	[101061] = exclude_shields_dozers,
+	[101060] = exclude_shields_dozers,
+	[101059] = exclude_shields_dozers,
+	[101058] = exclude_shields_dozers,
+	[101057] = exclude_shields_dozers,
+	[101056] = exclude_shields_dozers,
+	[101055] = exclude_shields_dozers,
+	[101054] = exclude_shields_dozers,
+	[101031] = exclude_shields_dozers,
+	-- e_nl_over_and_fwd_1m_var2
+	[100271] = exclude_shields_dozers,
+	[100275] = exclude_shields_dozers,
+	[100276] = exclude_shields_dozers,
+	[101889] = exclude_shields_dozers,
+	-- e_nl_over_and_fwd_1m
+	[100272] = exclude_shields_dozers,
+	[100273] = exclude_shields_dozers,
+	[100274] = exclude_shields_dozers,
+	[101031] = exclude_shields_dozers,
+	[101054] = exclude_shields_dozers,
+	[101055] = exclude_shields_dozers,
+	[101887] = exclude_shields_dozers,
 	-- Replace dozer spam with less stupid enemies
 	[101557] = disabled,
 	[100567] = disabled,

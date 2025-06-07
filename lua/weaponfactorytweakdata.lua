@@ -1,43 +1,4 @@
 Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(self)
-	self.parts.wpn_fps_lmg_o_empty = {
-		a_obj = "a_body",
-		type = "bonus",
-		name_id = "bm_wp_lmg_o_empty",
-		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		internal_part = true,
-		stats = {
-			value = 5,
-		},
-		forbids = {},
-		stance_mod = {
-			wpn_fps_lmg_rpk = {
-				translation = Vector3(0.4, 0.2, -0.2),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_hk21 = {
-				translation = Vector3(0.5, 0.1, -0.3),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_m249 = {
-				translation = Vector3(0.5, 0.1, -0.3),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_mg42 = {
-				translation = Vector3(0.5, 0.3, -0.2),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_par = {
-				translation = Vector3(0.4, 0, -0.2),
-				rotation = Rotation(0, 0, -1),
-			},
-			wpn_fps_lmg_m60 = {
-				translation = Vector3(0.5, 0.2, -0.1),
-				rotation = Rotation(0, 0, -1),
-			},
-		},
-	}
-
 	local stat_blacklist = {
 		"foregrip",
 		"extra",
@@ -78,7 +39,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			local is_sight = part.type and part.type == "sight"
 			local is_magazine = part.type and part.type == "magazine"
 			local is_optic = is_sight and part.perks and table.contains(part.perks, "scope")
-			local is_scope = is_optic and part.stats.zoom and part.stats.zoom > 3
+			local zoom_level = part.stats.zoom
+			local is_scope = is_optic and zoom_level and zoom_level > 3
 			local is_silencer = part.perks and table.contains(part.perks, "silencer")
 
 			if part.stats.suppression then
@@ -98,7 +60,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				if is_scope then
 					local zoom_to_spread
 					local zoom_to_concealment
-					local zoom_level = part.stats.zoom
 					if zoom_level then
 						zoom_to_spread = math.clamp((zoom_level - 3) * 1, 1, 4)
 						zoom_to_concealment = -math.clamp((zoom_level - 3) * 1, 1, 4)
@@ -108,6 +69,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 					part.stats.spread = zoom_to_spread or 1
 					part.stats.concealment = zoom_to_concealment or -2
 				end
+
+				local zoom_to_steelsight_speed = math.clamp(1 - (zoom_level and (zoom_level * 0.2) or 0), 0.5, 1)
+				part.custom_stats.steelsight_speed_multiplier = zoom_to_steelsight_speed or 1
 			end
 
 			if is_second_sight then
@@ -193,16 +157,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 			--Set stance_mods
 			self.parts[sight_id].stance_mod[weapon_id] = lmg_stance_mod_map[weapon_id]
-
-			--Add a default part that forbids sights
-			table.insert(self[weapon_id].uses_parts, "wpn_fps_lmg_o_empty")
-			table.insert(self[weapon_id].default_blueprint, "wpn_fps_lmg_o_empty")
 		end
 	end
 
 	for index, sight_id in ipairs(sight_table) do
-		table.insert(self.parts.wpn_fps_lmg_o_empty.forbids, sight_id)
-
 		--Add sight mounts and rails
 		self.wpn_fps_lmg_rpk.adds[sight_id] = { "wpn_fps_ak_extra_ris" }
 		--self.wpn_fps_lmg_m249.override[sight_id] = { parent = "upper_reciever" }
@@ -215,7 +173,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		--self.wpn_fps_lmg_m60.override[sight_id] = { forbids = { "wpn_fps_lmg_m60_sight_standard" }, parent = "upper_reciever" }
 
 		--Add suport for the AK scope mount
-		table.insert(self.parts.wpn_fps_lmg_o_empty.forbids, "wpn_fps_upg_o_ak_scopemount")
 		table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")
 		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount = {}
 		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override = {}
@@ -858,6 +815,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		end
 	end
 
+	local function generate_fast_mag(part_id)
+		local part = self.parts[part_id]
+
+		if part then
+			part.stats = {}
+			part.stats.concealment = -1
+			part.custom_stats.reload_speed_multiplier = 1.1
+		end
+	end
+
 	local piggyback_stats = { value = 1, gadget_zoom = 1 }
 
 	self.parts.wpn_fps_upg_o_specter_piggyback.stats = clone(piggyback_stats)
@@ -879,8 +846,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.stats = nil
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.pcs = nil
 
+	self.parts.wpn_fps_upg_m4_m_straight.stats.extra_ammo = -5
+
 	self.parts.wpn_fps_m4_uupg_m_std = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
-	self.parts.wpn_fps_m4_uupg_m_std.stats.extra_ammo = -5
 
 	-- DMR Mods
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.spread = -6
@@ -1316,16 +1284,19 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		},
 		recoil = {
 			standing = {
-				hipfire = 1.5,
-				crouching = 1,
-				steelsight = 1.25,
-			},
-			moving = {
 				hipfire = 2,
 				crouching = 1,
 				steelsight = 1.5,
 			},
+			moving = {
+				hipfire = 2.5,
+				crouching = 1,
+				steelsight = 2,
+			},
 		},
+	}
+	local dmr_fire_mode_muls = {
+		auto = {},
 	}
 
 	local conversion_kit_stats = {
@@ -1342,6 +1313,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				ammo_pickup_min_mul = 0.4,
 				ammo_pickup_max_mul = 0.4,
 				stance_mul = dmr_stance_muls,
+				fire_mode_mul = dmr_fire_mode_muls,
 			},
 			stats = { value = 1, total_ammo_mod = -10, concealment = -6, spread = 4, recoil = -8, damage = 80, suppression = -10, alert_size = 4 },
 		},
@@ -1354,6 +1326,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				ammo_pickup_min_mul = 0.4,
 				ammo_pickup_max_mul = 0.4,
 				stance_mul = dmr_stance_muls,
+				fire_mode_mul = dmr_fire_mode_muls,
 			},
 			stats = { value = 1, total_ammo_mod = -12, concealment = -6, spread = 4, recoil = -11, damage = 60, suppression = -10, alert_size = 4 },
 		},
@@ -1407,6 +1380,15 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_pis_c96_b_long.stats = { value = 1, total_ammo_mod = -5, concealment = -6, spread = 2, recoil = -3, damage = 70, suppression = -5, alert_size = 4 }
 	self.parts.wpn_fps_pis_c96_b_long.has_description = true
 	self.parts.wpn_fps_pis_c96_b_long.desc_id = "bm_wp_dmr_kit_penetration_desc"
+
+	-- Saw mods
+
+	self.parts.wpn_fps_saw_body_silent.stats.suppression = 10
+	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -12
+
+	self.parts.wpn_fps_saw_body_speed.stats.damage = 0
+	self.parts.wpn_fps_saw_body_speed.stats.concealment = -2
+	self.parts.wpn_fps_saw_body_speed.custom_stats = { fire_rate_multiplier = 1.5 }
 
 	-- Flamethrower Tanks
 	-- MK1
@@ -1496,7 +1478,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	local shotgun_barrel_ext_stats = {
 		medium_loud = { spread = 2, concealment = -2 },
 		big_loud = { spread = 3, concealment = -3 },
-		horizontal_loud = { spread = -2, recoil = 1, spread_multi = { 2.25, 0.5 }, concealment = -3 },
+		horizontal_loud = { spread = -2, recoil = 1, spread_multi = { 1.5, 0.5 }, concealment = -3 },
 		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
 		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
 	}
@@ -1733,8 +1715,9 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
 							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.25, 0.25)
-							concealment_stat = -math.clamp(math.round(capacity_increase / 25), -6, 6)
+							concealment_stat = -math.clamp(math.round(capacity_increase / 20), -5, 5)
 
+							part.stats.reload = 0
 							part.stats.concealment = concealment_stat
 							part.custom_stats.reload_speed_multiplier = shotgun_reload and 1 or reload_speed_stat
 						end
@@ -1825,21 +1808,9 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 		stance_mul = {
 			spread = {
 				standing = {
-					hipfire = 1.5,
-					crouching = 0.75,
-					steelsight = 0.75,
-				},
-				moving = {
-					hipfire = 2,
-					crouching = 1,
-					steelsight = 1.5,
-				},
-			},
-			recoil = {
-				standing = {
-					hipfire = 1.25,
-					crouching = 0.75,
-					steelsight = 0.75,
+					hipfire = 1,
+					crouching = 0.5,
+					steelsight = 1,
 				},
 				moving = {
 					hipfire = 1.5,
@@ -1847,9 +1818,46 @@ function WeaponFactoryTweakData:create_bonuses(tweak_data, weapon_skins)
 					steelsight = 1,
 				},
 			},
+			recoil = {
+				standing = {
+					hipfire = 1,
+					crouching = 0.75,
+					steelsight = 1,
+				},
+				moving = {
+					hipfire = 1.25,
+					crouching = 1,
+					steelsight = 1,
+				},
+			},
 		},
 	}
-	self.parts.wpn_fps_upg_perk_gunner.forbids = { "wpn_fps_lmg_o_empty" }
+	self.parts.wpn_fps_upg_perk_gunner.stance_mod = {
+		wpn_fps_lmg_rpk = {
+			translation = Vector3(0.4, 0.2, -0.2),
+			rotation = Rotation(0, 0, -1),
+		},
+		wpn_fps_lmg_hk21 = {
+			translation = Vector3(0.5, 0.1, -0.3),
+			rotation = Rotation(0, 0, -1),
+		},
+		wpn_fps_lmg_m249 = {
+			translation = Vector3(0.5, 0.1, -0.3),
+			rotation = Rotation(0, 0, -1),
+		},
+		wpn_fps_lmg_mg42 = {
+			translation = Vector3(0.5, 0.3, -0.2),
+			rotation = Rotation(0, 0, -1),
+		},
+		wpn_fps_lmg_par = {
+			translation = Vector3(0.4, 0, -0.2),
+			rotation = Rotation(0, 0, -1),
+		},
+		wpn_fps_lmg_m60 = {
+			translation = Vector3(0.5, 0.2, -0.1),
+			rotation = Rotation(0, 0, -1),
+		},
+	}
 
 	local uses_parts = {
 		wpn_fps_upg_perk_speedloader = { category = { "assault_rifle", "smg", "snp", "shotgun", "crossbow", "flamethrower", "pistol", "minigun", "akimbo", "lmg", "bow" } },

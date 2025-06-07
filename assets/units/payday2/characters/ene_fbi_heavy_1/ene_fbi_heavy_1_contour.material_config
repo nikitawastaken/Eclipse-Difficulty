@@ -94,15 +94,15 @@
         <variable value="1 1 1" type="vector3" name="contour_color"/>
         <variable value="0" type="scalar" name="contour_opacity"/>
     </material>
-	
-    <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">
-        <opacity_texture 	 	file="units/glass/vehicle_glass_dark2_op" />
-        <diffuse_texture 	   	file="units/payday2/characters/shared_textures/visor_glass_df" />
+
+    <material name="mtr_glass_static" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE" version="2">
+        <opacity_texture 	 	file="units/payday2/characters/shared_textures/visor_glass_op" />
+        <diffuse_texture 	   	file="units/payday2/characters/shared_textures/visor_glass_yellow_df" />
         <variable 				value="2 1 0.6" type="vector3" name="fresnel_settings" />
         <reflection_texture 	type="cube" global_texture="current_global_texture" />
     </material>
 
-    <material name="mtr_glass_static" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE" version="2">
+    <material name="mtr_glass_static_alt" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE" version="2">
         <opacity_texture 	 	file="units/glass/vehicle_glass_dark2_op" />
         <diffuse_texture 	   	file="units/payday2/characters/shared_textures/visor_glass_df" />
         <variable 				value="2 1 0.6" type="vector3" name="fresnel_settings" />

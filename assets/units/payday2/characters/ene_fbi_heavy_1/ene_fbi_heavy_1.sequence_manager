@@ -5,6 +5,8 @@
 		<variables>
 			<has_visor			value="0" />
 			<has_visor_steel	value="0" />
+			<is_fbi_heavy		value="0" />
+			<is_city_heavy		value="0" />
 		</variables>
 
 		<filter name="'check_no_visor'">
@@ -22,6 +24,22 @@
 		<filter name="'check_visor_steel'">
 			<check value="vars.has_visor_steel == 1" />
 		</filter>
+
+		<filter name="'check_not_fbi_heavy'">
+			<check value="vars.is_fbi_heavy == 0" />
+		</filter>
+
+		<filter name="'check_fbi_heavy'">
+			<check value="vars.is_fbi_heavy == 1" />
+		</filter>
+
+		<filter name="'check_not_city_heavy'">
+			<check value="vars.is_city_heavy == 0" />
+		</filter>
+
+		<filter name="'check_city_heavy'">
+			<check value="vars.is_city_heavy == 1" />
+		</filter>
 		
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
 			<run_sequence		filter="'check_visor'" name="'break_visor_a'" />
@@ -29,59 +47,133 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'break_visor_a'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_helmet_lod3'" />
-			<object 			enabled="false" name="'g_helmet_lod4'" />
-			<object 			enabled="false" name="'g_helmet_lod5'" />
+			<object 			enabled="false" name="'g_helmet_lod9'" />
+			<object 			enabled="false" name="'g_helmet_lod14'" />
+			<object 			enabled="false" name="'g_helmet_lod17'" />
 
-			<decal_mesh 		enabled="false" name="'dm_visor1'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor_glass1'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor2'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor_glass3'"/>
+			
 			<effect 			damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
 			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'break_visor_b'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_helmet_lod6'" />
-			<object 			enabled="false" name="'g_helmet_lod7'" />
-			<object 			enabled="false" name="'g_helmet_lod8'" />
-			<object 			enabled="false" name="'g_helmet_lod9'" />
-			<object 			enabled="false" name="'g_helmet_lod10'" />
-		
+			<object 			enabled="false" name="'g_helmet_lod12'" />
+			<object 			enabled="false" name="'g_helmet_lod13'" />
+			<object 			enabled="false" name="'g_helmet_lod14'" />
+			<object 			enabled="false" name="'g_helmet_lod18'" />
+			<object 			enabled="false" name="'g_helmet_lod19'" />
+			<object 			enabled="false" name="'g_helmet_lod20'" />
 			
-			<decal_mesh 		enabled="false" name="'dm_visor2'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor1'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor_glass2'"/>
 			<decal_mesh 		enabled="false" name="'dm_visor3'"/>
+			
 			<effect 			damp_time="5" name="'effects/payday2/particles/impacts/metal_impact_pd2'" parent="object( 'e_visor_shatter' )" position="v()"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
 			<spawn_unit 		name="'units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor'" position="object_pos('e_visor_shatter')" rotation="object_rot('root_point')" transfer_ang_velocity="v( 50 * rand(), 50 * rand(), 500 * rand() )" transfer_velocity="v( 0, 200 * rand(), 200 * rand() )" />
 		</sequence>
+
+		<sequence editable_state="true" name="'armor'" once="true" triggable="true"> 
+			<object 			enabled="true" name="'g_armor'" />
+			<object 			enabled="true" name="'g_armor_lod1'" />
+		</sequence>
 		
+		<sequence editable_state="true" name="'armor_big'" once="true" triggable="true"> 
+			<object 			enabled="true" name="'g_armor_big'" />
+			<object 			enabled="true" name="'g_armor_big_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'helmet_chinstrap'" once="true" triggable="true"> 
+			<object 			enabled="true" name="'g_helmet_lod3'" />
+			<object 			enabled="true" name="'g_helmet_lod4'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'fbi_heavy'" once="true" triggable="true">
+			<set_variables 		is_fbi_heavy="1" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'city_heavy'" once="true" triggable="true">
+			<set_variables 		is_city_heavy="1" />
+			<material_config 	name="'units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_g36'"/>
+		</sequence>
+				
 		<sequence editable_state="true" name="'fbi_heavy_1'" once="true" triggable="true">
 			<set_variables 		has_visor="1" />
 			
-			<object 			enabled="true" name="'g_gear_a'" />
-			<object 			enabled="true" name="'g_gear_a_lod1'" />
+			<object 			enabled="true" name="'g_gear_fbi_heavy_a'" />
+			<object 			enabled="true" name="'g_gear_fbi_heavy_a_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_lod3'" />
-			<object 			enabled="true" name="'g_helmet_lod4'" />
-			<object 			enabled="true" name="'g_helmet_lod5'" />
+			<object 			enabled="true" name="'g_helmet_lod7'" />
+			<object 			enabled="true" name="'g_helmet_lod8'" />
+			<object 			enabled="true" name="'g_helmet_lod9'" />
 			
-			<decal_mesh 		enabled="true" name="'dm_visor1'" />
+			<decal_mesh 		enabled="true" name="'dm_visor_glass1'" />
+			
+			<run_sequence		name="'fbi_heavy'" />
+			<run_sequence		name="'armor'" />
+			<run_sequence		name="'helmet_chinstrap'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_heavy_2'" once="true" triggable="true">
 			<set_variables 		has_visor_steel="1" />
 			
-			<object 			enabled="true" name="'g_gear_b'" />
-			<object 			enabled="true" name="'g_gear_b_lod1'" />
+			<object 			enabled="true" name="'g_gear_fbi_heavy_b'" />
+			<object 			enabled="true" name="'g_gear_fbi_heavy_b_lod1'" />
 
+			<object 			enabled="true" name="'g_helmet_lod5'" />
 			<object 			enabled="true" name="'g_helmet_lod6'" />
-			<object 			enabled="true" name="'g_helmet_lod7'" />
-			<object 			enabled="true" name="'g_helmet_lod8'" />
-			<object 			enabled="true" name="'g_helmet_lod9'" />
 			<object 			enabled="true" name="'g_helmet_lod10'" />
+			<object 			enabled="true" name="'g_helmet_lod11'" />
+			<object 			enabled="true" name="'g_helmet_lod12'" />
+			<object 			enabled="true" name="'g_helmet_lod13'" />
+			<object 			enabled="true" name="'g_helmet_lod14'" />
+			
+			<decal_mesh 		enabled="true" name="'dm_visor1'" />
+			<decal_mesh 		enabled="true" name="'dm_visor_glass2'" />
+			
+			<run_sequence		name="'fbi_heavy'" />
+			<run_sequence		name="'armor'" />
+			<run_sequence		name="'helmet_chinstrap'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'city_heavy_1'" once="true" triggable="true">
+			<set_variables 		has_visor="1" />
+			
+			<object 			enabled="true" name="'g_gear_city_heavy_a'" />
+			<object 			enabled="true" name="'g_gear_city_heavy_a_lod1'" />
+
+			<object 			enabled="true" name="'g_helmet_lod15'" />
+			<object 			enabled="true" name="'g_helmet_lod16'" />
+			<object 			enabled="true" name="'g_helmet_lod17'" />
 			
 			<decal_mesh 		enabled="true" name="'dm_visor2'" />
+			<decal_mesh 		enabled="true" name="'dm_visor_glass3'" />
+			
+			<run_sequence		name="'city_heavy'" />
+			<run_sequence		name="'armor_big'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'city_heavy_2'" once="true" triggable="true">
+			<set_variables 		has_visor_steel="1" />
+			
+			<object 			enabled="true" name="'g_gear_city_heavy_b'" />
+			<object 			enabled="true" name="'g_gear_city_heavy_b_lod1'" />
+
+			<object 			enabled="true" name="'g_helmet_lod5'" />
+			<object 			enabled="true" name="'g_helmet_lod6'" />
+			<object 			enabled="true" name="'g_helmet_lod18'" />
+			<object 			enabled="true" name="'g_helmet_lod19'" />
+			<object 			enabled="true" name="'g_helmet_lod20'" />
+			
 			<decal_mesh 		enabled="true" name="'dm_visor3'" />
+			
+			<run_sequence		name="'city_heavy'" />
+			<run_sequence		name="'armor_big'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

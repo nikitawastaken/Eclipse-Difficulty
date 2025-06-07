@@ -1,7 +1,7 @@
 ---@module The Ukrainian Prisoner
 local M = {}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local overkill_and_above = Eclipse.utils.diff_threshold()
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local scripted_enemy = Eclipse.scripted_enemy
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2

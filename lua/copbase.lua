@@ -8,13 +8,20 @@ local paths = table.list_to_set({
 	"units/payday2/characters/ene_cop_1/vars/ene_security_4",
 	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
 	"units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1",
+	"units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_g36",
+	"units/payday2/characters/ene_cop_1/vars/ene_male_marshal_marksman_1_merc",
+	"units/payday2/characters/ene_cop_1/vars/ene_policia_01",
+	"units/payday2/characters/ene_cop_1/vars/ene_male_marshal_marksman_1_merc",
 	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
+	"units/payday2/characters/ene_secret_service_1/vars/ene_bex_security_suit_01",
+	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_fex",
 	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
 	"units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01",
 	"units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1",
 	"units/payday2/characters/ene_swat_1/vars/ene_city_swat_1",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3",
+	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_4",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic",
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic",
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
@@ -63,12 +70,12 @@ Hooks:PostHook(CopBase, "init", "eclipse_init", function(self)
 	local sprint_unit_name = tweak_entry.sprint_unit and Idstring(tweak_entry.sprint_unit)
 
 	if not PackageManager:has(unit_ids, unit_name) then
-		Eclipse:log("Loading projectile unit", throwable)
+		Eclipse:log_console("Loading projectile unit", throwable)
 		managers.dyn_resource:load(unit_ids, unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 
 	if sprint_unit_name and not PackageManager:has(unit_ids, sprint_unit_name) then
-		Eclipse:log("Loading projectile sprint unit", throwable)
+		Eclipse:log_console("Loading projectile sprint unit", throwable)
 		managers.dyn_resource:load(unit_ids, sprint_unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
 end)
@@ -129,6 +136,8 @@ function CopBase:_run_unit_sequences()
 
 	-- Run the initial sequence to enable pouches, helmets etc.
 	if unit_sequence then
+		self._block_seq_manager_material_load = true
+
 		local sequence_name = unit_sequence and unit_sequence.name
 		local sequence_head = unit_sequence and unit_sequence.head
 

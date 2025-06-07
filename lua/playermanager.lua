@@ -100,19 +100,12 @@ end
 
 function PlayerManager:on_headshot_dealt()
 	local player_unit = self:player_unit()
-	local has_hitman_ammo_refund = managers.player:has_enabled_cooldown_upgrade("cooldown", "hitman_ammo_refund")
 
 	if not player_unit then
 		return
 	end
 
 	self._message_system:notify(Message.OnHeadShot, nil, nil)
-
-	-- hitman refunds ammo on headshots
-	if has_hitman_ammo_refund and variant ~= "melee" then
-		managers.player:on_ammo_increase(1)
-		managers.player:disable_cooldown_upgrade("cooldown", "hitman_ammo_refund")
-	end
 
 	-- Anarchist on-headshot armor regen
 	if managers.player:has_category_upgrade("player", "headshot_to_armor") then
@@ -134,6 +127,39 @@ function PlayerManager:on_headshot_dealt()
 		self:register_message(Message.OnWeaponFired, "graze_damage", callback(SniperGrazeDamage, SniperGrazeDamage, "on_weapon_fired"))
 	else
 		self:unregister_message(Message.OnWeaponFired, "graze_damage")
+	end
+end
+
+-- Ammo Efficiency does not work on SMGs anymore
+function PlayerManager:_on_enter_ammo_efficiency_event()
+	if not self._coroutine_mgr:is_running("ammo_efficiency") then
+		local weapon_unit = self:equipped_weapon_unit()
+
+		if weapon_unit and weapon_unit:base():fire_mode() == "single" and weapon_unit:base():is_category("dmr", "assault_rifle", "snp") then
+			self._coroutine_mgr:add_coroutine(
+				"ammo_efficiency",
+				PlayerAction.AmmoEfficiency,
+				self,
+				self._ammo_efficiency.headshots,
+				self._ammo_efficiency.ammo,
+				Application:time() + self._ammo_efficiency.time
+			)
+		end
+	end
+end
+
+-- Kilmer does not work on SMGs anymore
+function PlayerManager:_on_activate_aggressive_reload_event(attack_data)
+	if attack_data and attack_data.variant ~= "projectile" then
+		local weapon_unit = self:equipped_weapon_unit()
+
+		if weapon_unit then
+			local weapon = weapon_unit:base()
+
+			if weapon and weapon:fire_mode() == "single" and weapon:is_category("dmr", "assault_rifle", "snp") then
+				self:activate_temporary_upgrade("temporary", "single_shot_fast_reload")
+			end
+		end
 	end
 end
 
@@ -172,17 +198,43 @@ function PlayerManager:_on_enter_shock_and_awe_event()
 	end
 end
 
+Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
+	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
+		self._message_system:register(Message.OnEnemyKilled, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
+	else
+		self._message_system:unregister(Message.OnEnemyKilled, "shotguncqb")
+	end
+
+	if self:has_category_upgrade("snp", "consecutive_headshots") then
+		self:register_message(Message.OnWeaponFired, "consecutive_headshots", callback(self, self, "_on_enter_consecutive_headshots_event"))
+	else
+		self:unregister_message(Message.OnWeaponFired, "consecutive_headshots")
+	end
+
+	if self:has_category_upgrade("player", "chain_headshot_kills") then
+		self:register_message(Message.OnLethalHeadShot, "chain_headshot_kills", callback(self, self, "_on_enter_chain_headshot_kills_event"))
+	else
+		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
+	end
+
+	if self:has_category_upgrade("cooldown", "dodge_replenish_armor") then
+		self:register_message(Message.OnPlayerDodge, "dodge_replenish_armor", callback(self, self, "_dodge_replenish_armor"))
+	else
+		self:unregister_message(Message.OnPlayerDodge, "dodge_replenish_armor")
+	end
+end)
+
 -- shotgun panic stuff
 local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	on_killshot_old(self, killed_unit, variant, headshot, weapon_id)
 
-	local has_shotgun_panic = managers.player:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+	local has_shotgun_panic = self:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
 	if has_shotgun_panic and variant ~= "melee" then
 		local equipped_unit = self:get_current_state()._equipped_unit:base()
 
 		if equipped_unit:is_category("shotgun") then
-			local pos = managers.player:player_unit():position()
+			local pos = self:player_unit():position()
 			local skill = tweak_data.upgrades.values.shotgun.panic[1]
 
 			if skill then
@@ -237,29 +289,70 @@ PlayerAction.ShotgunCQB = {
 	end,
 }
 
-Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
-	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
-		self._message_system:register(Message.OnEnemyKilled, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
-	else
-		self._message_system:unregister(Message.OnEnemyKilled, "shotguncqb")
-	end
-
-	if self:has_category_upgrade("snp", "consecutive_headshots") then
-		self:register_message(Message.OnWeaponFired, "consecutive_headshots", callback(self, self, "_on_enter_consecutive_headshots_event"))
-	else
-		self:unregister_message(Message.OnWeaponFired, "consecutive_headshots")
-	end
-end)
-
 function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
 	local attacker_unit = attack_data.attacker_unit
-	local variant = attack_data.variant
+	local variant = attack_data.variation_data
 
 	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("shotguncqb") and self:is_current_weapon_of_category("shotgun") then
 		local data = self:upgrade_value("shotgun", "speed_stack_on_kill", 0)
 
 		if data ~= 0 then
 			self._coroutine_mgr:add_coroutine("shotguncqb", PlayerAction.ShotgunCQB, self, data.speed_bonus, data.max_stacks, Application:time() + data.max_time)
+		end
+	end
+end
+
+PlayerAction.JohnWickKillChain = {
+	Priority = 1,
+	Function = function(player_manager, target_kills, target_time)
+		local co = coroutine.running()
+		local time = Application:time()
+		local kills = 1
+		local has_chain_dodge = player_manager:has_category_upgrade("temporary", "chain_headshot_dodge")
+		local cheat_death_upgrade_value = player_manager:upgrade_value("player", "cheat_death_inc", 0)
+
+		local function on_lethal_headshot(attack_data)
+			local attacker_unit = attack_data.attacker_unit
+			local variant = attack_data.variant
+
+			if attacker_unit == player_manager:player_unit() and variant == "bullet" then
+				kills = kills + 1
+
+				if kills == target_kills then
+					if has_chain_dodge then
+						player_manager:activate_temporary_upgrade("temporary", "chain_headshot_dodge")
+					end
+
+					if cheat_death_upgrade_value ~= 0 then
+						player_manager:add_to_property("chain_headshot_cheat_death", cheat_death_upgrade_value)
+					end
+
+					time = target_time
+				end
+			end
+		end
+
+		player_manager:register_message(Message.OnLethalHeadShot, co, on_lethal_headshot)
+
+		while time < target_time do
+			time = Application:time()
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnLethalHeadShot, co)
+	end,
+}
+
+function PlayerManager:_on_enter_chain_headshot_kills_event(attack_data)
+	local attacker_unit = attack_data.attacker_unit
+	local variant = attack_data.variant
+
+	if attacker_unit == self:player_unit() and variant == "bullet" and not self._coroutine_mgr:is_running("johnwick_kill_chain") then
+		local data = self:upgrade_value("player", "chain_headshot_kills", 0)
+
+		if data ~= 0 then
+			self._coroutine_mgr:add_coroutine("johnwick_kill_chain", PlayerAction.JohnWickKillChain, self, data.headshot_kills, Application:time() + data.max_time)
 		end
 	end
 end
@@ -307,6 +400,18 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 			self._consecutive_headshots = 0
 			self:remove_property("snp_consecutive_headshots_mul")
 		end
+	end
+end
+
+function PlayerManager:_dodge_replenish_armor()
+	local has_dodge_armor_replenish = self:has_enabled_cooldown_upgrade("cooldown", "dodge_replenish_armor")
+	local player_dmg = self:player_unit():character_damage()
+	local armor_broken = player_dmg:_max_armor() > 0 and player_dmg:get_real_armor() <= 0
+
+	if has_dodge_armor_replenish and armor_broken then
+		player_dmg:_regenerate_armor()
+
+		self:disable_cooldown_upgrade("cooldown", "dodge_replenish_armor")
 	end
 end
 
@@ -368,7 +473,6 @@ function PlayerManager:movement_speed_multiplier(...)
 end
 
 local old_skill_dodge = PlayerManager.skill_dodge_chance
-
 function PlayerManager:skill_dodge_chance(...)
 	local dodge = old_skill_dodge(self, ...)
 
@@ -379,7 +483,44 @@ function PlayerManager:skill_dodge_chance(...)
 		dodge = dodge + self:upgrade_value("player", "dodge_health_ratio_multiplier", 0) * damage_health_ratio
 	end
 
+	dodge = dodge + self:temporary_upgrade_value("temporary", "chain_headshot_dodge", 0)
+	dodge = dodge + self:temporary_upgrade_value("temporary", "dodge_outnumbered", 0)
+	dodge = dodge + self:temporary_upgrade_value("temporary", "unseen_dodge", 0)
+
+	for _, smoke_screen in ipairs(self._smoke_screen_effects or {}) do
+		if smoke_screen:is_in_smoke(self:player_unit()) then
+			dodge = dodge + (smoke_screen:dodge_bonus() and self:upgrade_value("player", "smoke_screen_dodge_add", 0))
+		end
+	end
+
 	return dodge
+end
+
+local old_skill_armor_regen = PlayerManager.body_armor_regen_multiplier
+function PlayerManager:body_armor_regen_multiplier(...)
+	local armor_regen = old_skill_armor_regen(self, ...)
+
+	for _, smoke_screen in ipairs(self._smoke_screen_effects or {}) do
+		if smoke_screen:is_in_smoke(self:player_unit()) then
+			armor_regen = armor_regen * (smoke_screen:armor_bonus() and self:upgrade_value("player", "smoke_screen_armor_regen_mul", 0))
+		end
+	end
+
+	return armor_regen
+end
+
+-- Sicario smoke bomb buffs
+function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_armor_bonus, has_dodge_bonus, linger_bonus)
+	local time = tweak_data.projectiles.smoke_screen_grenade.duration
+	self._smoke_screen_effects = self._smoke_screen_effects or {}
+
+	table.insert(self._smoke_screen_effects, SmokeScreenEffect:new(position, normal, time, has_armor_bonus, has_dodge_bonus, linger_bonus, grenade_unit))
+
+	if alive(self._smoke_grenade) and Network:is_server() then
+		self._smoke_grenade:set_slot(0)
+	end
+
+	self._smoke_grenade = grenade_unit
 end
 
 -- Reduce damage taken while inside of vehicles
@@ -400,9 +541,12 @@ function PlayerManager:get_max_grenades(grenade_id)
 	grenade_id = grenade_id or managers.blackmarket:equipped_grenade()
 	local max_amount = tweak_data:get_raw_value("blackmarket", "projectiles", grenade_id, "max_amount") or 0
 
-	max_amount = max_amount * self:upgrade_value("player", "extra_throwables_multiplier", 1)
+	local grenade_tweak = tweak_data.blackmarket.projectiles[managers.blackmarket:equipped_grenade()]
+	if not grenade_tweak.base_cooldown then
+		max_amount = max_amount * self:upgrade_value("player", "extra_throwables_multiplier", 1)
 
-	max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+		max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+	end
 
 	return math.ceil(max_amount)
 end
@@ -1014,7 +1158,7 @@ PlayerAction.FullyLoaded = {
 
 		local function on_ammo_pickup_message(unit)
 			gained_throwable, current_pickups = on_ammo_pickup(unit, current_pickups, required_pickups)
-			Eclipse:log_chat("current pickups: " .. current_pickups)
+			-- Eclipse:log_chat("current pickups: " .. current_pickups)
 		end
 
 		player_manager:register_message(Message.OnAmmoPickup, co, on_ammo_pickup_message)
@@ -1028,5 +1172,47 @@ PlayerAction.FullyLoaded = {
 	end,
 	Function_Force_Remove = function(co)
 		managers.player:unregister_message(Message.OnAmmoPickup, co)
+	end,
+}
+
+-- Unseen dodge for Rogue
+PlayerAction.UnseenStrike = {
+	Priority = 1,
+	Function = function(player_manager, min_time, max_duration, crit_chance)
+		local co = coroutine.running()
+		local current_time = Application:time()
+		local target_time = Application:time() + min_time
+		local can_activate = true
+		local has_unseen_dodge = player_manager:has_category_upgrade("temporary", "unseen_dodge")
+		local has_unseen_strike = player_manager:has_category_upgrade("temporary", "unseen_strike")
+
+		local function on_damage_taken()
+			if not (player_manager:has_activate_temporary_upgrade("temporary", "unseen_strike") or player_manager:has_activate_temporary_upgrade("temporary", "unseen_dodge")) then
+				target_time = Application:time() + min_time
+				can_activate = true
+			end
+		end
+
+		player_manager:register_message(Message.OnPlayerDamage, co, on_damage_taken)
+
+		while true do
+			current_time = Application:time()
+
+			if target_time <= current_time and can_activate then
+				if has_unseen_dodge then
+					player_manager:activate_temporary_upgrade("temporary", "unseen_dodge")
+				end
+
+				if has_unseen_strike then
+					player_manager:activate_temporary_upgrade("temporary", "unseen_strike")
+				end
+
+				can_activate = false
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnPlayerDamage, co)
 	end,
 }

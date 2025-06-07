@@ -4,8 +4,8 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local enabled_chance_elite_shield_blockade_1 = math.random() < 0.6
-local enabled_chance_elite_shield_blockade_2 = math.random() < 0.6
+local enabled_chance_elite_shield_blockade_1 = math.random() < 0.2
+local enabled_chance_elite_shield_blockade_2 = math.random() < 0.2
 
 local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1
@@ -241,6 +241,7 @@ local Bain_swats_from_pacific_drive = {
 }
 
 local optsChopperMitchell_fix = {
+	enabled = true,
 	trigger_times = 1,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100000, notify_unit_sequence = "swat", time = 0 },
@@ -257,6 +258,7 @@ local optsChopperMitchell_fix = {
 	},
 }
 local optsChopperWilson_fix = {
+	enabled = true,
 	trigger_times = 1,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102724, notify_unit_sequence = "swat", time = 0 },
@@ -270,11 +272,13 @@ local optsChopperWilson_fix = {
 	},
 }
 local optsChopperWilson_stop_sound_fix = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 102724, notify_unit_sequence = "hidden", time = 0 },
 	},
 }
 local optsChopperPool_fix = {
+	enabled = true,
 	trigger_times = 1,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100719, notify_unit_sequence = "swat", time = 0 },
@@ -288,6 +292,7 @@ local optsChopperPool_fix = {
 	},
 }
 local optsChopperPool_stop_sound_fix = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100719, notify_unit_sequence = "hidden", time = 0 },
 	},

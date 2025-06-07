@@ -202,3 +202,27 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 
 	return self:_convert_add_to_mul(multiplier)
 end
+
+function BlackMarketManager:equipped_grenade()
+	local forced_throwable = self:forced_throwable()
+
+	if forced_throwable then
+		if forced_throwable == "none" then
+			return self._defaults.grenade, 0
+		else
+			return forced_throwable, math.ceil(Global.blackmarket_manager.grenades[forced_throwable].amount * managers.player:upgrade_value("player", "extra_throwables_multiplier", 1))
+		end
+	end
+
+	local grenade = nil
+
+	for grenade_id, tweak in pairs(tweak_data.blackmarket.projectiles) do
+		grenade = Global.blackmarket_manager.grenades[grenade_id]
+
+		if grenade and grenade.equipped and grenade.unlocked then
+			return grenade_id, math.ceil(grenade.amount * managers.player:upgrade_value("player", "extra_throwables_multiplier", 1)) or 0
+		end
+	end
+
+	return self._defaults.grenade, math.ceil(Global.blackmarket_manager.grenades[self._defaults.grenade].amount * managers.player:upgrade_value("player", "extra_throwables_multiplier", 1))
+end

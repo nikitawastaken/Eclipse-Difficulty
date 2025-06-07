@@ -44,24 +44,24 @@ local optsSWAT_Rooftop_2 = {
 	enabled = true,
 }
 local optsBulldozer = {
-	enemy = tank,
+	enemy = bulldozer,
 	trigger_times = 3,
 	on_executed = {
 		{ id = 400014, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = hard_and_above,
 }
 local optsBulldozerscripted = {
-	enemy = tank,
+	enemy = bulldozer,
 	on_executed = {
 		{ id = 400041, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = hard_and_above,
 }
 local optsCloaker = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
-	enabled = hard_above,
+	enabled = hard_and_above,
 }
 local optsShield_1 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -69,7 +69,7 @@ local optsShield_1 = {
 	on_executed = {
 		{ id = 400050, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_2 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -77,7 +77,7 @@ local optsShield_2 = {
 	on_executed = {
 		{ id = 400051, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_3 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -85,7 +85,7 @@ local optsShield_3 = {
 	on_executed = {
 		{ id = 400052, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_4 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -93,7 +93,7 @@ local optsShield_4 = {
 	on_executed = {
 		{ id = 400053, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_5 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -101,7 +101,7 @@ local optsShield_5 = {
 	on_executed = {
 		{ id = 400054, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsShield_6 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -109,7 +109,7 @@ local optsShield_6 = {
 	on_executed = {
 		{ id = 400055, delay = 0 },
 	},
-	enabled = hard_above,
+	enabled = true,
 }
 local optsTaser = {
 	enemy = taser_shotgun,
@@ -118,7 +118,7 @@ local optsTaser = {
 	enabled = true,
 }
 local optsBulldozerchopper = {
-	enemy = tank,
+	enemy = bulldozer,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_jump_down_heli_cbt_left",
 	enabled = true,
@@ -313,7 +313,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400021, "swat_rooftop_1", Vector3(-1855, 3449, 1931.656), Rotation(90, -0, -0), optsSWAT_Rooftop_1),
 	Eclipse.mission_elements.gen_dummy(400022, "swat_rooftop_2", Vector3(-4081, 1580, 1937.656), Rotation(180, 0, -0), optsSWAT_Rooftop_2),
 	Eclipse.mission_elements.gen_so(400023, "swat_spot_so_1", Vector3(-1522.207, 2149.161, 1936.735), Rotation(180, 0, 0), optsSniper_SO),
-	Eclipse.mission_elements.gen_so(400024, "swat_spot_so_2", Vector3(-2673, 675, 1936.735), Rotation(-76, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400024, "swat_spot_so_2", Vector3(-2549.067, 989.091, 1936.735), Rotation(-90, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_missionscript(400025, "annoying_Heavy_SWAT", spawn_rooftopSWAT),
 	Eclipse.mission_elements.gen_dummytrigger(400026, "respawn_swat_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_swat_1),
 	Eclipse.mission_elements.gen_dummytrigger(400027, "respawn_swat_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_swat_2),

@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -36,7 +37,6 @@ local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
 local specials = {
 	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
 }
-
 local bile_has_3_bags = math.random() < 0.05
 local bile_has_2_bags = math.random() < 0.30
 local bile_lottery = not is_pro_job and bile_has_3_bags and 3 or bile_has_2_bags and 2 or 1
@@ -54,7 +54,11 @@ local shells_required_objective = {
 	},
 }
 local chopper_amount = (eclipse and 2 or 1) + (is_pro_job and 1 or 0)
-
+local upper_spawn = {
+	values = {
+		interval = 20,
+	},
+}
 return {
 	[105046] = {
 		ponr = {
@@ -164,4 +168,8 @@ return {
 	[103033] = security_army,
 	[105209] = security_army,
 	[105241] = security_army,
+	-- Spawn group delays
+	[100131] = upper_spawn,
+	[100133] = upper_spawn,
+	[103003] = upper_spawn,
 }

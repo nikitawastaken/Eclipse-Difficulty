@@ -12,11 +12,25 @@ local real_difficulty_index = ({
 	sm_wish = 8,
 })[difficulty] or 2
 local diff_i = real_difficulty_index
+local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
 
 function M.diff_lerp(value_1, value_2)
 	local f = math.max(0, diff_i - 2) / 4
 
 	return math.lerp(value_1, value_2, math.min(f, 1))
+end
+
+-- This is how you make checking each subtable less verbose, e.g.
+-- local and_chain = foo and foo.bar and foo.bar.baz and foo.bar.baz.stuff
+-- local check_val = access_table(foo, "bar", "baz", "stuff")
+function M.access_table(t, ...)
+	local varargs = { ... }
+	if #varargs > 0 then
+		local idx = table.remove(varargs, 1)
+		return t and M.access_table(t[idx], unpack(varargs))
+	else
+		return t
+	end
 end
 
 function M.get_unit_from_id(unit_id)
@@ -38,9 +52,13 @@ function M.difficulty_index()
 	return diff_i
 end
 
-function M.level_id()
-	local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
+function M.difficulty_name()
+	local is_skirmish = tweak_data.levels[level_id] and tweak_data.levels[level_id].group_ai_state == "skirmish"
 
+	return is_skirmish and "normal" or difficulty
+end
+
+function M.level_id()
 	return level_id
 end
 
@@ -161,7 +179,7 @@ function M.set_diff_groups(group)
 		overkill = false
 		eclipse = true
 	else
-		Eclipse:warn(string.format("Function set_diff_groups received invalid argument %s", group))
+		Eclipse:warn_console(string.format("Function set_diff_groups received invalid argument %s", group))
 
 		return nil
 	end

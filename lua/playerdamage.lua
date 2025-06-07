@@ -140,14 +140,15 @@ function PlayerDamage:damage_bullet(attack_data)
 	end
 
 	-- Aimpunch
-	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake") * (self:get_real_armor() > 0 and 1 or 1.25)
+	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake")
+		* (self:get_real_armor() > 0 and 1 or 1.25)
+		* (self._unit:movement():current_state()._state_data.in_full_steelsight and pm:upgrade_value("player", "steelsight_aimpunch_multiplier", 1) or 1)
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
 	shake_armor_multiplier = tweak_data.gui.armor_damage_shake_base / gui_shake_number
-	local shake_multiplier = math.clamp(attack_data.damage, 0.2, 2) * shake_armor_multiplier
 
-	self._unit:camera()._damage_bullet_shake_multiplier = math.clamp(attack_data.damage, 0, 16) * shake_armor_multiplier
-	self._unit:camera():play_shaker("player_bullet_damage", 1 * shake_multiplier)
+	local shake_mul = math.clamp(attack_data.damage, 1, 18) * shake_armor_multiplier
+	self._unit:camera():play_shaker("player_bullet_damage", shake_mul)
 
 	if not _G.IS_VR then
 		managers.rumble:play("damage_bullet")
@@ -424,9 +425,9 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 
 	local t = managers.player:player_timer():time()
 	if not self._last_teargas_hit_t or self._last_teargas_hit_t + 5 < t then
-		self._teargas_damage_ramp = -0.1
+		self._teargas_damage_ramp = -0.15
 	else
-		self._teargas_damage_ramp = math.min(self._teargas_damage_ramp + 0.1, 1)
+		self._teargas_damage_ramp = math.min(self._teargas_damage_ramp + 0.15, 1)
 	end
 
 	self._last_teargas_hit_t = t
@@ -556,4 +557,60 @@ function PlayerDamage:_regenerated(from_medic_bag)
 	end
 
 	managers.environment_controller:set_last_life(false)
+end
+
+-- Hitman self-revive chance increase
+function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
+	local can_revive = (Application:digest_value(self._revives, false) > 1 or ignore_reduce_revive) and not self._check_berserker_done
+
+	if can_revive and managers.player:has_category_upgrade("player", "cheat_death_chance") then
+		local r = math.rand(1)
+		local self_revive_chance = managers.player:upgrade_value("player", "cheat_death_chance", 0) + managers.player:get_property("chain_headshot_cheat_death", 0)
+
+		if r <= self_revive_chance then
+			self._auto_revive_timer = 1
+			managers.player:remove_property("chain_headshot_cheat_death")
+		end
+	end
+
+	if can_revive and not self._auto_revive_timer then
+		local mutator = nil
+
+		if managers.mutators:is_mutator_active(MutatorPiggyRevenge) then
+			mutator = managers.mutators:get_mutator(MutatorPiggyRevenge)
+		end
+
+		if mutator and mutator.auto_revive_timer then
+			self._auto_revive_timer = mutator:auto_revive_timer()
+		end
+	end
+end
+
+function PlayerDamage:_upd_suppression(t, dt)
+	for _, smoke_screen in ipairs(managers.player:smoke_screens()) do
+		if smoke_screen:is_in_smoke(managers.player:player_unit()) and smoke_screen:armor_bonus() then
+			return
+		end
+	end
+
+	local data = self._supperssion_data
+
+	if data.value then
+		if data.decay_start_t < t then
+			data.value = data.value - dt
+
+			if data.value <= 0 then
+				data.value = nil
+				data.decay_start_t = nil
+
+				managers.environment_controller:set_suppression_value(0, 0)
+			end
+		elseif data.value == tweak_data.player.suppression.max_value and self._regenerate_timer then
+			self._listener_holder:call("suppression_max")
+		end
+
+		if data.value then
+			managers.environment_controller:set_suppression_value(self:effective_suppression_ratio(), self:suppression_ratio())
+		end
+	end
 end

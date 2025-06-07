@@ -2,6 +2,17 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local enabled_blocked_roof_access = math.random() < 0.6
+local gangsters = {
+	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
+	Idstring("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"),
+	Idstring("units/payday2/characters/ene_gang_black_3/ene_gang_black_3"),
+	Idstring("units/payday2/characters/ene_gang_black_4/ene_gang_black_4"),
+	Idstring("units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1"),
+	Idstring("units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2"),
+	Idstring("units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3"),
+	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
+}
+local chavez_dealer = Idstring("units/pd2_dlc_flat/characters/npc_jamaican/npc_jamaican")
 local enabled = {
 	values = {
 		enabled = true,
@@ -30,9 +41,20 @@ local alley_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local gangster = {
+	enemy = gangsters,
+}
+local dealer = {
+	enemy = chavez_dealer,
+}
+local dealer_walk_so = {
+	values = {
+		patrol_path = "inpath2",
+	},
 }
 return {
 	-- Add point of no return
@@ -43,22 +65,13 @@ return {
 		},
 	},
 	-- make difficulty scaling smoother
-	[102841] = {
+	[102841] = { -- all saws placed
 		values = {
 			difficulty = 0.5,
 		},
 	},
-	[102842] = {
-		values = {
-			difficulty = 0.75,
-			enabled = true,
-		},
-	},
-	[102843] = {
-		values = {
-			difficulty = 1,
-			enabled = true,
-		},
+	[100130] = { -- explosion
+		difficulty = 1,
 	},
 	-- Restore roof access blockade
 	[100095] = {
@@ -96,6 +109,21 @@ return {
 	[102263] = {
 		on_executed = {
 			{ id = 400039, delay = 3 },
+		},
+	},
+	-- Add new reinforce
+	[100533] = { -- saws are done, roof objectives begin
+		reinforce = {
+			{
+				name = "third_floor",
+				force = 2,
+				position = Vector3(-925, 600, 700),
+			},
+			{
+				name = "fourth_floor",
+				force = 2,
+				position = Vector3(-1600, 500, 1025),
+			},
 		},
 	},
 	-- add missing navlinks
@@ -139,7 +167,9 @@ return {
 	},
 	-- spawn Rooftop Heavy SWATs after killing all of the snipers
 	-- enable Cloaker spawns
+	-- increase diff
 	[104573] = {
+		difficulty = 0.75,
 		on_executed = {
 			{ id = 400025, delay = 15 },
 			{ id = 400038, delay = 0 },
@@ -152,8 +182,18 @@ return {
 			{ id = 400032, delay = 17 },
 		},
 	},
+	-- delay Bile's chopper trigger after c4 blows up
+	[100082] = {
+		on_executed = {
+			{ id = 101562, delay = 110 },
+		},
+	},
 	-- trigger dozer spawn during the escape
 	[104706] = {
+		reinforce = { -- remove reinforce
+			{ name = "third_floor" },
+			{ name = "fourth_floor" },
+		},
 		on_executed = {
 			{ id = 400040, delay = 0 },
 		},
@@ -164,11 +204,24 @@ return {
 			{ id = 104691, remove = true },
 		},
 	},
-	--spawn Heavy SWAT squad if it's overkill above
+	-- call the cops when the red door opens
 	[102680] = {
 		on_executed = {
 			{ id = 104691, delay = 0 },
-			{ id = 400001, delay = 7.5 },
+		},
+	},
+	-- spawn Heavy SWAT squad if it's overkill above
+	-- earlier cops
+	[100528] = {
+		on_executed = {
+			{ id = 400001, delay = 10 },
+			{ id = 103960, delay = 20 }, -- make the cop cars sequence always trigger after 20 seconds
+		},
+	},
+	-- late cops
+	[100527] = {
+		on_executed = {
+			{ id = 400001, delay = 45 },
 		},
 	},
 	-- more oppressive open door amounts
@@ -206,8 +259,7 @@ return {
 		},
 	},
 	-- disable roof/stairs reinforcement
-	[102501] = disabled,
-	[103181] = disabled,
+	[103181] = disabled, -- 5, fucking, force
 	-- adjust the Sniper kill objective
 	[104516] = sniper_kills,
 	[104692] = sniper_kills,
@@ -268,6 +320,114 @@ return {
 			SO_access = managers.navigation:convert_access_filter_to_number({ "civ_male" }),
 		},
 	},
+	-- always make dealer walk up to 4th floor (from ASS)
+	[101888] = dealer_walk_so,
+	[101891] = dealer_walk_so,
+	[101899] = dealer_walk_so,
+	-- change gangster spawns
+	-- outside
+	[101881] = gangster,
+	[101395] = gangster,
+	[101746] = gangster,
+	[101749] = gangster,
+	[102330] = gangster,
+	[102333] = gangster,
+	[102335] = gangster,
+	[100767] = gangster,
+	[102717] = gangster,
+	[102718] = gangster,
+	-- 1st floor
+	[100085] = gangster,
+	[102456] = gangster,
+	[102197] = gangster,
+	[101375] = gangster,
+	[101743] = gangster,
+	[100169] = gangster,
+	[101802] = gangster,
+	[101804] = gangster,
+	-- 2nd floor
+	[102596] = gangster,
+	[102592] = gangster,
+	[101401] = gangster,
+	[101539] = gangster,
+	[101540] = gangster,
+	[101433] = gangster,
+	[101435] = gangster,
+	[102586] = gangster,
+	[101668] = gangster,
+	[101434] = gangster,
+	-- 3rd floor
+	[104793] = gangster,
+	[102563] = gangster,
+	[101441] = gangster,
+	[102558] = gangster,
+	[101442] = gangster,
+	[102564] = gangster,
+	[101422] = gangster,
+	[101437] = gangster,
+	[103450] = gangster,
+	-- 4th floor
+	[100431] = gangster,
+	[101661] = gangster,
+	[104889] = gangster,
+	[100234] = gangster,
+	[104930] = gangster,
+	[104932] = gangster,
+	[100496] = gangster,
+	[100495] = gangster,
+	[100494] = gangster,
+	[100484] = gangster,
+	-- 5th floor
+	[101425] = gangster,
+	[100418] = gangster,
+	[100081] = gangster,
+	[101200] = gangster,
+	[101438] = gangster,
+	[103702] = gangster,
+	[103703] = gangster,
+	[102191] = gangster,
+	[102192] = gangster,
+	[102193] = gangster,
+	-- basement
+	[100253] = gangster,
+	[100236] = gangster,
+	[103102] = gangster,
+	[103101] = gangster,
+	[100305] = gangster,
+	[103104] = gangster,
+	[103180] = gangster,
+	[103103] = gangster,
+	[102562] = gangster,
+	[103179] = gangster,
+	-- misc
+	-- dealer
+	[104782] = dealer,
+
+	[100025] = gangster,
+	[100039] = gangster,
+	[100050] = gangster,
+	[100055] = gangster,
+	[100056] = gangster,
+	[100057] = gangster,
+	[101512] = gangster,
+	[102170] = gangster,
+	[101421] = gangster,
+	[102165] = gangster,
+
+	[100513] = gangster,
+	[100512] = gangster,
+	[100516] = gangster,
+	[104781] = gangster,
+	[100407] = gangster,
+	[100406] = gangster,
+	[100409] = gangster,
+
+	-- 145+ room (unused)
+	[103231] = gangster,
+	[103232] = gangster,
+	[103234] = gangster,
+	[103235] = gangster,
+	[103236] = gangster,
 	-- adjust alleyway spawn preferreds
 	[100270] = alley_spawn,
 	[100287] = alley_spawn,

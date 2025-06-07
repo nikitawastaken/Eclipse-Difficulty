@@ -16,7 +16,7 @@ local escape_spawn = {
 }
 local garage_door_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -28,7 +28,7 @@ local upper_spawn = {
 }
 local flank_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_shields_bulldozers,
 }

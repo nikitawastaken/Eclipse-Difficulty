@@ -3,7 +3,7 @@ local M = {
 	--Specials
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "benelli_tank",
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
-	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "beretta92", "mp5_tactical" },
+	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "usp_tactical", "mp5_tactical" },
 	--Misc (Scripted Murkies, Gangsters etc.)
 	--Security guards
 	--Regular security
@@ -52,13 +52,13 @@ local M = {
 	[("units/pd2_dlc_arena/characters/ene_guard_security_heavy_1/ene_guard_security_heavy_1"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
 	[("units/pd2_dlc_arena/characters/ene_guard_security_heavy_2/ene_guard_security_heavy_2"):key()] = { c45 = 4, mp5 = 2, deagle = 1 },
 	--casino guard gets silenced pistol
-	[("units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"):key()] = { beretta92 = 3, raging_bull = 1 },
+	[("units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"):key()] = { beretta92 = 6, raging_bull = 1 },
 	--murky sercret service
 	[("units/pd2_dlc_vit/characters/ene_murkywater_secret_service/ene_murkywater_secret_service"):key()] = { c45 = 3, ump = 1 },
 	--Black Cat guards
-	[("units/pd2_dlc_chca/characters/ene_security_cruise_1/ene_security_cruise_1"):key()] = { beretta92 = 3, raging_bull = 1 },
-	[("units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2"):key()] = { beretta92 = 3, raging_bull = 1 },
-	[("units/pd2_dlc_chca/characters/ene_security_cruise_3/ene_security_cruise_3"):key()] = { beretta92 = 3, raging_bull = 1 },
+	[("units/pd2_dlc_chca/characters/ene_security_cruise_1/ene_security_cruise_1"):key()] = { beretta92 = 6, raging_bull = 1 },
+	[("units/pd2_dlc_chca/characters/ene_security_cruise_2/ene_security_cruise_2"):key()] = { beretta92 = 6, raging_bull = 1 },
+	[("units/pd2_dlc_chca/characters/ene_security_cruise_3/ene_security_cruise_3"):key()] = { beretta92 = 6, raging_bull = 1 },
 	--Penthouse guards
 	[("units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1"):key()] = { "c45", "akmsu_smg", "r870", "ak47" },
 	[("units/pd2_dlc_pent/characters/ene_male_security_penthouse_2/ene_male_security_penthouse_2"):key()] = { "c45", "akmsu_smg", "r870", "ak47" },
@@ -177,7 +177,7 @@ local M = {
 	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1"):key()] = { "c45", "mac11", "r870", "ak47" },
 	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2"):key()] = { "c45", "mac11", "r870", "ak47" },
 	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3"):key()] = { "c45", "mac11", "r870", "ak47" },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { " c45", "mac11", "r870", "ak47" },
+	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { "c45", "mac11", "r870", "ak47" },
 	--The Army
 	[("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"):key()] = { m4 = 3, benelli = 1 },

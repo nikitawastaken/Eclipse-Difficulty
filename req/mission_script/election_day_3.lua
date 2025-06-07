@@ -37,7 +37,7 @@ local low_harasser_enemy = {
 local low_harasser = { enemy = low_harasser_enemy }
 local med_harasser_enemy = swat_1
 local med_harasser = { enemy = med_harasser_enemy }
-local high_harasser_enemy = is_eclipse and { [heavy_1] = 4, [elite_sniper] = 1 } or heavy_1
+local high_harasser_enemy = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
 local high_harasser = { enemy = high_harasser_enemy }
 local low_escape_enemy = {
 	[swat_1] = 4,
@@ -54,32 +54,22 @@ local high_escape_enemy = {
 	[heavy_2] = 1,
 }
 local high_escape = { enemy = high_escape_enemy }
-local front_spawn = {
-	values = {
-		interval = 10,
-	},
-}
-local front_left_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local mall_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local atrium_spawn = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_shields,
-}
 local ladder_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_bulldozers,
+}
+local atrium_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_shields,
 }
 local window_spawn = {
 	values = {
@@ -87,15 +77,9 @@ local window_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local front_short_spawn = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 180,
 	},
 }
 return {
@@ -108,7 +92,7 @@ return {
 	-- Delay the assault
 	[102711] = {
 		on_executed = {
-			{ id = 102734, delay = 20 },
+			{ id = 102734, delay = 30 },
 		},
 	},
 	-- New reinforce
@@ -121,7 +105,7 @@ return {
 			},
 			{
 				name = "atrium_middle",
-				force = 3,
+				force = 2,
 				position = Vector3(-1300, -1600, 0),
 			},
 			{
@@ -165,8 +149,6 @@ return {
 	-- More or less a port of the original intervals with some twists as per usual.
 	-- The main one being increasing intervals of the groups outside the bank building as they are stacked pretty close to each other.
 	-- Ladder spawns have been slowed down as well since they are very close to the area where players are expected to hold out.
-	[102751] = front_spawn,
-	[102730] = front_left_spawn,
 	[100424] = mall_spawn,
 	[100435] = mall_spawn,
 	[100439] = atrium_spawn,
@@ -176,7 +158,6 @@ return {
 	[101795] = ladder_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
-	[103505] = front_short_spawn,
 	[102792] = cloaker_spawn,
 	[103435] = cloaker_spawn,
 	[103437] = cloaker_spawn,

@@ -5,20 +5,20 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 		if load and not has then
 			self:load(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
 
-			Eclipse:log("Loaded " .. path)
+			Eclipse:log_console("Loaded " .. path)
 			if not no_husk then
 				self:load(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
 
-				Eclipse:log("Loaded " .. path .. "_husk")
+				Eclipse:log_console("Loaded " .. path .. "_husk")
 			end
 		elseif not load and has then
 			self:unload(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
 
-			Eclipse:log("Unloaded " .. path)
+			Eclipse:log_console("Unloaded " .. path)
 			if not no_husk then
 				self:unload(ids_unit, Idstring(path .. "_husk"), self.DYN_RESOURCES_PACKAGE)
 
-				Eclipse:log("Unloaded " .. path .. "_husk")
+				Eclipse:log_console("Unloaded " .. path .. "_husk")
 			end
 		end
 	end
@@ -47,6 +47,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc1/characters/ene_acc_gensec_beret/ene_acc_gensec_beret", dlc1_needed, true)
 	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1", dlc1_needed, false)
 	load_unload_unit("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2", dlc1_needed, false)
+
+	local headless_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_bulldozer_4/ene_bulldozer_4"))
+	load_unload_unit("units/payday2/characters/ene_bulldozer_5/ene_bulldozer_5", headless_needed, false)
 
 	local rvd_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"))
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_1_fat/ene_la_cop_1_fat", rvd_needed, false)
@@ -79,9 +82,12 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1", usm2_needed, false)
 	load_unload_unit("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2", usm2_needed, false)
 
-	local gitgud_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"))
-	load_unload_unit("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2", gitgud_needed, false)
-	load_unload_unit("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2", gitgud_needed, false)
-	load_unload_unit("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4", gitgud_needed, false)
-	load_unload_unit("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870", gitgud_needed, false)
+	local bex_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_02/ene_policia_02", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_03/ene_policia_03", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_04/ene_policia_04", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03", bex_needed, false)
 end)

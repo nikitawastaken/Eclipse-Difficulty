@@ -191,7 +191,9 @@
 		</constraint>
 	</constraints>
 	
-	<decal_surfaces default_material="flesh" />
+	<decal_surfaces default_material="flesh" >
+		<decal_mesh name="dm_helmet" 					enabled="false" material="steel_no_decal" />
+	</decal_surfaces>
 
 	<effects>
 		<effect_spawner name="es_light" enabled="false" object="e_light" effect="effects/payday2/particles/character/flashlight_ss" />		
@@ -367,9 +369,9 @@
 				</object>
 			</lod_object>
 	
-			<object name="g_glass_a" 	enabled="false" />	
+			<object name="g_goggles_glass_a" 	enabled="false" />	
 
-			<object name="g_glass_b" 	enabled="false" />	
+			<object name="g_goggles_glass_b" 	enabled="false" />	
 
 			<object name="g_helmet_lod5" 	enabled="false" />	
 			

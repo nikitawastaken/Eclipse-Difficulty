@@ -1,6 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
@@ -10,10 +11,13 @@ local overkill_above = diff_i >= 5
 
 local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
 local cloaker = scripted_enemy.cloaker
+local taser = scripted_enemy.taser_1
 local bulldozer = scripted_enemy.bulldozer_1
 local bulldozer_2 = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local cloaker_basement_chance = 0.1 + (is_pro_job and 0.1 or 0)
+local basement_enemies_amount = 2
 local random_dozers = {
 	bulldozer,
 	bulldozer_2,
@@ -52,74 +56,95 @@ local bags_required_objective = {
 		amount = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
 	},
 }
-
 local vault_ambush = {
 	enemy = vault_ambush_enemy,
 }
-
 local bulldozer_spawn = {
 	enemy = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or bulldozer,
 }
-
-local cloaker_spawn = {
+local taser_cloaker = {
 	enemy = cloaker,
 }
-
+local taser_spawn_1 = {
+	enemy = taser,
+	spawn_action = "e_sp_kick_enter",
+	values = {
+		position = Vector3(4819, -1821, -735),
+	},
+}
+local taser_spawn_2 = {
+	enemy = taser,
+	spawn_action = "e_sp_kick_enter",
+	values = {
+		position = Vector3(5358, 588, -733),
+	},
+}
 local elevator_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-
-local skylight_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents,
-}
-
-local office_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
+local skylight_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents,
+}
+local office_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local vent_spawn = {
 	values = {
-		enabled = is_eclipse and true or false,
 		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-
 local windows_swat = {
 	values = {
 		enabled = false,
 	},
 }
-
 return {
-	-- new reinforce
-	[101401] = {
+	-- Add new reinforce
+	[100901] = { -- SWAT incoming
 		reinforce = {
 			{
 				name = "lobby",
-				force = 3,
+				force = 4,
 				position = Vector3(-1800, 25, 0),
 			},
 		},
 	},
-	[101544] = {
+	[103336] = { -- choose security footage location
 		reinforce = {
 			{
-				name = "matrix",
-				force = 2,
-				position = Vector3(1600, 1250, 0),
+				name = "cafeteria",
+				force = 3,
+				position = Vector3(-2350, -2050, -20),
+			},
+			{
+				name = "offices",
+				force = 3,
+				position = Vector3(-2750, 2050, -20),
 			},
 		},
 	},
+	[103401] = { -- vent loot secure point is available
+		reinforce = {
+			{
+				name = "matrix",
+				force = 3,
+				position = Vector3(1800, 1250, 0),
+			},
+		},
+	},
+	-- disable a few vanilla reinforce spots
+	[105905] = disabled, -- counting rooms
+	[105910] = disabled, -- vault
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,
@@ -135,9 +160,28 @@ return {
 	[105498] = disabled,
 	-- nuke swat van
 	[105921] = disabled,
-	-- disable sniper spawns that I don't like
-	[105826] = disabled,
-	[101619] = disabled,
+	-- Edit preferreds to make the initial assault have less dense spawns
+	[103984] = { -- assault start
+		on_executed = {
+			{ id = 100043, remove = true }, -- start more preferreds
+		},
+	},
+	[100955] = { -- diff 0.75
+		on_executed = {
+			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
+		},
+	},
+	-- Increase the number of assaults needed for each diff spike
+	[100962] = { -- diff 0.75
+		values = {
+			counter_target = 2, -- used to be 1
+		},
+	},
+	[100966] = { -- diff 1
+		values = {
+			counter_target = 3, -- used to be 2
+		},
+	},
 	--Let the cops finish their spawn anim before moving into SO spot
 	[103720] = {
 		on_executed = {
@@ -180,8 +224,38 @@ return {
 	[102271] = windows_swat,
 	[102276] = windows_swat,
 	-- replace SWAT with cloakers that spawn with taser to match with PDTH
-	[100617] = cloaker_spawn,
-	[100618] = cloaker_spawn,
+	[100617] = taser_cloaker,
+	[100618] = taser_cloaker,
+	-- change some basement dozers to tasers like in PDTH
+	[103163] = taser_spawn_1,
+	[103198] = taser_spawn_2,
+	-- remove cloakers from basement door suprise
+	-- add 1 additonal enemy to random basement ambush
+	[100529] = {
+		values = {
+			amount = basement_enemies_amount,
+		},
+		on_executed = {
+			{ id = 103906, remove = true },
+		},
+	},
+	-- make it trigger from unused area trigger and add chance
+	[106042] = {
+		on_executed = {
+			{ id = 103914, delay = 0 },
+		},
+	},
+	[103914] = {
+		values = {
+			enabled = cloaker_basement_chance,
+		},
+	},
+	-- restore unused shield army script from pdth
+	[106547] = {
+		on_executed = {
+			{ id = 400059, delay = 5 },
+		},
+	},
 	-- vault ambush
 	[104132] = vault_ambush,
 	[104170] = vault_ambush,
@@ -255,9 +329,11 @@ return {
 			{ id = 100682, delay = 0 },
 		},
 	},
+	-- MORE BANK GUARDS, HUH?! (Spawns extra blockade guards after opening the vault gates on loud)
 	-- 2 blockade shields in vault area
 	[100635] = {
 		on_executed = {
+			{ id = 400075, delay = 0 },
 			{ id = 400023, delay = 0 },
 			{ id = 400024, delay = 0 },
 		},
@@ -306,7 +382,7 @@ return {
 	[103163] = bulldozer_spawn,
 	[103198] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
-	-- spawnpoint delays
+	-- Spawn group delays
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,
 	[103135] = elevator_spawn,
@@ -315,6 +391,7 @@ return {
 	[105112] = skylight_spawn,
 	[106890] = skylight_spawn,
 	[103953] = office_spawn,
+	[103068] = office_spawn,
 	[103081] = office_spawn,
 	[103011] = office_spawn,
 	[103689] = office_spawn,

@@ -16,7 +16,7 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 	my_data._trade_enabled = true
 
 	-- data.unit:network():send("hostage_trade", true, false, skip_hint, is_custody_trade)
-	NetworkHelper:SendToPeers(
+	NetworkHelper:SendToPeersChunk(
 		"Eclipse_CopLogicTrade.enter", -- id of the network data to send
 		NetworkHelper:encode({
 			-- Data to send

@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 -- more based miki changes from ASS, kuss kuss
 local beat_cops = {
@@ -24,29 +25,37 @@ local disabled = {
 		enabled = false,
 	},
 }
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
 local side_spawn = {
 	values = {
 		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-
 local bags_required = {
 	values = {
-		counter_target = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 local bags_required_objective = {
 	values = {
-		amount = (eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-
 return {
 	[101829] = {
 		ponr = {
 			length = 240,
 			player_mul = { 2, 1.5, 1.25, 1 },
+		},
+		-- add dozers chance based event to the vault
+		on_executed = {
+			{ id = 400009, delay = 10 },
+			{ id = 400010, delay = 10 },
 		},
 	},
 	[100109] = { -- police, executed on alarm
@@ -172,6 +181,57 @@ return {
 				force = 2,
 				position = Vector3(1150, -4400, 0),
 			},
+		},
+	},
+	-- restores some unused sniper spawns with their SOs
+	[100372] = enabled,
+	[100402] = enabled,
+	[100392] = enabled,
+	[100412] = enabled,
+	[100377] = enabled,
+	[100407] = enabled,
+	[100397] = enabled,
+	[100417] = enabled,
+	-- disable turrets sequences
+	[102990] = disabled,
+	[102991] = disabled,
+	[102992] = disabled,
+	[103003] = disabled,
+	-- enable swat vans regardless of the side where player spawned
+	[102988] = enabled,
+	[102989] = enabled,
+	-- add scripted spawns that come out of swat vans
+	[102987] = {
+		on_executed = {
+			{ id = 400024, delay = 10 },
+		},
+	},
+	[103002] = {
+		on_executed = {
+			{ id = 400016, delay = 10 },
+		},
+	},
+	-- disable dozers
+	[100018] = {
+		on_executed = {
+			{ id = 400004, delay = 0 },
+		},
+	},
+	-- enable dozers on loud
+	[100022] = {
+		on_executed = {
+			{ id = 400005, delay = 0 },
+		},
+	},
+	-- spawn the skulldozer that defends your van on Eclipse
+	[100210] = {
+		on_executed = {
+			{ id = 400000, delay = 0 },
+		},
+	},
+	[100211] = {
+		on_executed = {
+			{ id = 400001, delay = 0 },
 		},
 	},
 	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?

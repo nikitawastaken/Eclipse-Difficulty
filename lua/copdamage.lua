@@ -3,16 +3,6 @@
 -- Increasing the health granularity makes damage dealt more accurate to the actual weapon damage stats
 CopDamage._HEALTH_GRANULARITY = 8192
 
-Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", function(self)
-	local is_moving = self._unit:anim_data().move
-	local is_running = is_moving and self._unit:anim_data().run
-	local is_walking = is_moving and not is_running
-
-	local accuracy_mul = is_running and 0.75 or is_walking and 1 or 1.25
-
-	return Hooks:GetReturn() * accuracy_mul
-end)
-
 function CopDamage:_send_melee_attack_result(attack_data, damage_percent, damage_effect_percent, hit_offset_height, variant, body_index)
 	body_index = math.clamp(body_index, 0, 128)
 	damage_percent = math.clamp(damage_percent, 0, self._HEALTH_GRANULARITY)
@@ -157,10 +147,11 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	end
 
 	local melee_entry = managers.blackmarket:equipped_melee_weapon()
-	local is_blunt_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.weapon_type == "blunt" and 1.5 or 1
+	local melee_headshot_mul = tweak_data.blackmarket.melee_weapons[melee_entry].stats.headshot_damage_mul or 1
+
 	if not self._char_tweak.ignore_headshot and not self._damage_reduction_multiplier and head then
 		if self._char_tweak.headshot_dmg_mul then
-			damage = damage * self._char_tweak.headshot_dmg_mul * is_blunt_headshot_mul
+			damage = damage * self._char_tweak.headshot_dmg_mul * melee_headshot_mul
 		else
 			damage = self._health * 10
 		end
@@ -174,6 +165,16 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 
 	attack_data.headshot = head
 	local damage_effect = attack_data.damage_effect
+
+	if self._health <= damage then
+		if head then
+			self:_spawn_head_gadget({
+				position = attack_data.col_ray.body:position(),
+				rotation = attack_data.col_ray.body:rotation(),
+				dir = attack_data.col_ray.ray,
+			})
+		end
+	end
 
 	local damage_effect_percent = 1
 	damage = self:_apply_damage_reduction(damage)
@@ -333,4 +334,45 @@ function CopDamage:sync_damage_explosion(attacker_unit, damage_percent, i_attack
 	self._no_blood = no_blood
 
 	return result
+end
+
+-- Fix synced melee damage ignoring medic heal
+local sync_damage_melee_original = CopDamage.sync_damage_melee
+function CopDamage:sync_damage_melee(attacker_unit, damage_percent, damage_effect_percent, i_body, hit_offset_height, variant, death, ...)
+	if death or variant ~= 7 then
+		return sync_damage_melee_original(self, attacker_unit, damage_percent, damage_effect_percent, i_body, hit_offset_height, variant, death, ...)
+	end
+
+	local attack_data = {
+		variant = "healed",
+		attacker_unit = attacker_unit,
+		damage = damage_percent * self._HEALTH_INIT_PRECENT,
+		is_synced = true,
+		pos = self._unit:position(),
+		result = {
+			variant = "melee",
+			type = "healed",
+		},
+	}
+
+	self:do_medic_heal()
+
+	if attacker_unit then
+		attack_data.attack_dir = self._unit:position() - attacker_unit:position()
+		mvector3.normalize(attack_data.attack_dir)
+		attack_data.name_id = attacker_unit:inventory() and attacker_unit:inventory():get_melee_weapon_id()
+	else
+		attack_data.attack_dir = -self._unit:rotation():y()
+	end
+
+	mvector3.set_z(attack_data.pos, attack_data.pos.z + math.random() * 180)
+
+	if not self._no_blood then
+		local from = Vector3(0, 0, hit_offset_height)
+		mvector3.add(from, self._unit:movement():m_pos())
+		managers.game_play_central:sync_play_impact_flesh(from, attack_data.attack_dir)
+	end
+
+	self:_send_sync_melee_attack_result(attack_data, hit_offset_height)
+	self:_on_damage_received(attack_data)
 end

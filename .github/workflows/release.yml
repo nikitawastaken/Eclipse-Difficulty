@@ -1,22 +1,65 @@
 name: Format Eclipse Code
 on:
   push:
-    branches: [ main, dev, enemies ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ main, dev, enemies ]
+    branches: [ main, dev ]
 jobs:
   format_lua:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@main
-      - uses: JohnnyMorganz/stylua-action@v3
+      - uses: JohnnyMorganz/stylua-action@v4
+        continue-on-error: true
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
-          args: --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- .
+          args: false
+      - name: Format code and store error log
+        id: codeFormatting
+        run: |
+          stylua --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- . &> stylua.log
+      - name: Archive error log
+        uses: actions/upload-artifact@v4
+        if: failure() && steps.codeFormatting.outcome == 'failure'
+        with:
+          name: stylua_log
+          path: |
+            stylua.log
       - uses: EndBug/add-and-commit@v9
+        if: success() && steps.codeFormatting.outcome == 'success'
         with:
           add: "*.lua"
           committer_name: GitHub Actions
           committer_email: actions@github.com
           message: Code formatting
+  discord_error:
+    runs-on: ubuntu-latest
+    needs: format_lua
+    continue-on-error: true
+    steps:
+      - id: artifactDownload
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: stylua_log
+      - id: get_log
+        if: ${{ steps.artifactDownload.outcome == 'success' }}
+        run: |
+          stylua_out=$(cat stylua.log)
+          echo "stylua_out=`echo $stylua_out | sed 's/$/\n/'`" >> $GITHUB_OUTPUT
+      - uses: sarisia/actions-status-discord@v1
+        if: ${{ steps.artifactDownload.outcome == 'success' }}
+        with:
+          webhook: ${{ secrets.WEBHOOK_URL }}
+          status: ${{ job.status }}
+          nodetail: true
+          username: "Github"
+          color: 0xff0000
+          avatar_url: ${{ secrets.AVATAR_URL }}
+          title: "StyLua Error"
+          description: |
+            ${{ steps.get_log.outputs.stylua_out }}
+
+            https://github.com/nikitawastaken/Eclipse-Difficulty/actions/runs/${{ github.run_id }}

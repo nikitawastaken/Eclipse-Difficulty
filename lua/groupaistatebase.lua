@@ -87,7 +87,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 		if self._point_of_no_return_timer <= 0 then
 			if Network:is_server() then
 				managers.groupai:set_state("ponr")
-				LuaNetworking:SendToPeers("sync_assault_ponr", "0")
+				LuaNetworking:SendToPeersChunk("sync_assault_ponr", "0")
 				self:set_difficulty(1)
 			end
 			self:remove_point_of_no_return_timer(-1)
@@ -157,7 +157,7 @@ function GroupAIStateBase:_update_difficulty_value()
 		if self._difficulty_value >= self._target_difficulty then
 			self._target_difficulty = nil
 		else
-			self._next_difficulty_step_t = self._t + 15
+			self._next_difficulty_step_t = self._t + (tweak_data.group_ai.difficulty_step_time or 15)
 		end
 		self:_calculate_difficulty_ratio()
 	end
@@ -289,6 +289,15 @@ function GroupAIStateBase:is_nav_seg_safe(nav_seg)
 		end
 	end
 	return true
+end
+
+function GroupAIStateBase:is_nav_seg_area_safe(skip_areas, nav_seg)
+	for _, area in pairs(skip_areas) do
+		if area.nav_segs[nav_seg] then
+			return true
+		end
+	end
+	return self:is_area_safe(self:get_area_from_nav_seg_id(nav_seg))
 end
 
 -- Don't count recon as assault force and vice versa
@@ -428,6 +437,13 @@ Hooks:PostHook(GroupAIStateBase, "update", "eclipse_sentry_update", function(sel
 		end
 	end
 end)
+
+-- Disable drama zones to prevent skipping of anticipation, build and regroup phases
+-- The zones are only used for that, which makes the phases inconsistent for no real reason
+function GroupAIStateBase:_add_drama(amount)
+	self._drama_data.amount = math.clamp(self._drama_data.amount + amount, 0, 1)
+	self._drama_data.zone = nil
+end
 
 -- Set a minimum gunshot and bullet impact alert range in loud
 Hooks:PreHook(GroupAIStateBase, "propagate_alert", "sh_propagate_alert", function(self, alert_data)

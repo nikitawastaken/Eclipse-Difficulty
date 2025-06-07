@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local gensec_operators = {
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
@@ -36,7 +37,12 @@ local dozer_chance = (normal and 10 or hard and 15 or 20) + (is_pro_job and 10 o
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
-
+local elevator_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields,
+}
 return {
 	-- add more chance for dozers coming out the gensec van
 	[103624] = dozer_van_chance,
@@ -109,4 +115,8 @@ return {
 	[103759] = gensec_tank,
 	[103760] = gensec_tank,
 	[103761] = gensec_tank,
+	-- Spawn group delays
+	[100981] = elevator_spawn,
+	[101039] = elevator_spawn,
+	[101156] = elevator_spawn,
 }

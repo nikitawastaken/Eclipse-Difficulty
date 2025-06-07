@@ -14,7 +14,7 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
-local swat_vans_and_events = not is_eclipse and 1 or 2
+local swat_vans_and_events = is_eclipse and 2 or 1
 
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
@@ -64,19 +64,17 @@ local crowbar_sewer_amount = {
 		amount = (normal or hard) and 1 or 0,
 	},
 }
-local c4_amount_solo = normal and 2 or 4
-local c4_amount = normal and 4 or 7
+local c4_amount = (normal or hard) and 4 or 7
 local c4_event = {
 	values = {
-		amount = not is_solo and c4_amount or c4_amount_solo,
+		amount = c4_amount,
 	},
 }
 local c4_event_counter = {
 	values = {
-		counter_target = not is_solo and c4_amount or c4_amount_solo,
+		counter_target = c4_amount,
 	},
 }
-
 local beach_spawn = {
 	values = {
 		interval = 15,
@@ -89,7 +87,6 @@ local van_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-
 return {
 	-- water from the hose fills the safe much slower like in PDTH
 	[101229] = {
@@ -126,19 +123,6 @@ return {
 	},
 	-- make 2 van arrive at the time on Eclipse
 	[102080] = {
-		values = {
-			amount = swat_vans_and_events,
-			ignore_disabled = false,
-		},
-	},
-	-- make 2 events happen at the start of the assault on Eclipse
-	[102085] = {
-		values = {
-			amount = swat_vans_and_events,
-			ignore_disabled = false,
-		},
-	},
-	[101685] = {
 		values = {
 			amount = swat_vans_and_events,
 			ignore_disabled = false,
@@ -182,6 +166,7 @@ return {
 	[101890] = c4_event,
 	[102569] = c4_event,
 	[101891] = c4_event,
+	[101815] = c4_event,
 	[102590] = c4_event_counter,
 	[102591] = c4_event_counter,
 	[101565] = c4_event_counter,
@@ -204,22 +189,22 @@ return {
 			},
 			{
 				name = "Mitchell_house1",
-				force = 3,
+				force = 2,
 				position = Vector3(-2286, 2640, 78.789),
 			},
 			{
 				name = "Mitchell_house2",
-				force = 3,
+				force = 2,
 				position = Vector3(-2556, 3836, 75.500),
 			},
 			{
 				name = "Wilson_house1",
-				force = 3,
+				force = 2,
 				position = Vector3(-2080, 39, 28.970),
 			},
 			{
 				name = "Wilson_house2",
-				force = 3,
+				force = 2,
 				position = Vector3(-2980, 1441, -324.500),
 			},
 		},

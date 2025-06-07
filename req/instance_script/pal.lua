@@ -12,13 +12,14 @@ local patches = {
 	sewer_spawn = {
 		spooc = table.set(100010),
 		swat_sg = table.set(100019),
+		taser = table.set(100021),
 		filters_disable = table.set(100011, 100012),
 		filters_normal_above = table.set(100013),
 		spawn_chance = table.set(100003),
 		squad = table.set(100003),
 	},
 	pipe_spawn = {
-		filters_disable = table.set(100014, 100015),
+		filters_disable = table.set(100014, 100015, 100011),
 		filters_eclipse = table.set(100013),
 		spawn_chance = table.set(100000),
 	},
@@ -32,8 +33,12 @@ M["levels/instances/unique/sub_sewer_grate/world/world"] = function(result)
 
 		if sewer_grate.spooc[id] then
 			element.values.enemy = cloaker
+			element.values.position = Vector3(-109, 20, 0)
+		elseif sewer_grate.taser[id] then
+			element.values.position = Vector3(-48, 17, 0)
 		elseif sewer_grate.swat_sg[id] then
 			element.values.enemy = heavy_swat
+			element.values.position = Vector3(13, 16, 0)
 		elseif sewer_grate.filters_normal_above[id] then
 			table.map_append(element.values, filter_normal_above)
 			element.values.on_executed = {

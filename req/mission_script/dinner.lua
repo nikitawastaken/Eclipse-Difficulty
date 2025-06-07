@@ -2,6 +2,7 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
 	values = {
 		enabled = false,
@@ -9,12 +10,12 @@ local disabled = {
 }
 local snipers_amount = {
 	values = {
-		amount = normal and 2 or hard and 3 or 4,
+		amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0),
 	},
 }
 local garage_door_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_shields,
 }
@@ -44,7 +45,7 @@ local escape_spawn = {
 }
 local container_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -56,7 +57,7 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 180,
 	},
 }
 local chance_all_containers_closed = normal and 0 or hard and 0.0125 or 0.025
@@ -93,26 +94,33 @@ return {
 			},
 		},
 	},
+	[100907] = { -- gas container hidden
+		reinforce = {
+			{
+				name = "courtyard",
+				force = 3,
+				position = Vector3(-15200, 6300, -75),
+			},
+		},
+	},
 	-- Disable a few vanilla reinforce points
 	[104143] = disabled,
 	[104144] = disabled,
 	-- Slightly slower difficulty ramp up
-	[101357] = {
+	[102162] = disabled,
+	[101357] = { -- initial diff
 		values = {
 			difficulty = 0.5,
 		},
 	},
-	[102158] = disabled,
-	[101696] = {
+	[101696] = { -- players entered container area
 		difficulty = 0.75,
 		on_executed = {
 			{ id = 102804, delay = 0 },
 		},
 	},
-	[104186] = {
-		on_executed = {
-			{ id = 102162, delay = 0 },
-		},
+	[100680] = { -- trap hidden, start lifting gold
+		difficulty = 1,
 	},
 	[105038] = math.random() < chance_no_keycard and disabled or nil,
 	[103563] = math.random() < chance_disable_catwalk_far and disabled or nil,
@@ -213,10 +221,12 @@ return {
 			},
 		},
 	},
-	--disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
+	-- disable the slaughterhouse dozer and enable 2nd one nearby container area when the drill is finished
+	-- spawn container snipers
 	[105117] = {
 		on_executed = {
 			{ id = 400055, delay = 90 },
+			{ id = 400031, delay = 0 },
 			{ id = 400045, delay = 0 },
 		},
 	},

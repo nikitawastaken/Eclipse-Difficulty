@@ -57,43 +57,43 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 
 	if level_id then
 		if fbi_heists[level_id] and not PackageManager:loaded("packages/security_mcmansion") then
-			Eclipse:log("Loading FBI security package...")
+			Eclipse:log_console("Loading FBI security package...")
 			table.insert(self._loaded_diff_packages, "packages/security_mcmansion")
 			PackageManager:load("packages/security_mcmansion")
 		end
 
 		if female_bikers[level_id] and not PackageManager:loaded("packages/female_bikers") then
-			Eclipse:log("Loading female biker package...")
+			Eclipse:log_console("Loading female biker package...")
 			table.insert(self._loaded_diff_packages, "packages/female_bikers")
 			PackageManager:load("packages/female_bikers")
 		end
 
 		if us_army[level_id] and not PackageManager:loaded("packages/us_army") then
-			Eclipse:log("Loading US army package...")
+			Eclipse:log_console("Loading US army package...")
 			table.insert(self._loaded_diff_packages, "packages/us_army")
 			PackageManager:load("packages/us_army")
 		end
 
 		if lapd[level_id] and not PackageManager:loaded("packages/lapd") then
-			Eclipse:log("Loading LAPD package...")
+			Eclipse:log_console("Loading LAPD package...")
 			table.insert(self._loaded_diff_packages, "packages/lapd")
 			PackageManager:load("packages/lapd")
 		end
 
 		if coast_guard[level_id] and not PackageManager:loaded("packages/coast_guard") then
-			Eclipse:log("Loading Coast Guard package...")
+			Eclipse:log_console("Loading Coast Guard package...")
 			table.insert(self._loaded_diff_packages, "packages/coast_guard")
 			PackageManager:load("packages/coast_guard")
 		end
 
 		if texas_rangers[level_id] and not PackageManager:loaded("packages/texas_rangers") then
-			Eclipse:log("Loading Texas Rangers package...")
+			Eclipse:log_console("Loading Texas Rangers package...")
 			table.insert(self._loaded_diff_packages, "packages/texas_rangers")
 			PackageManager:load("packages/texas_rangers")
 		end
 
 		if security_deep[level_id] and not PackageManager:loaded("packages/security_deep") then
-			Eclipse:log("Loading Bellmead Security package...")
+			Eclipse:log_console("Loading Bellmead Security package...")
 			table.insert(self._loaded_diff_packages, "packages/security_deep")
 			PackageManager:load("packages/security_deep")
 		end

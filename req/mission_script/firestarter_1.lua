@@ -1,11 +1,9 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
-
 local heavy = scripted_enemy.heavy_swat_2
 local bulldozer = scripted_enemy.bulldozer_1
 local shield = scripted_enemy.shield
-
 local gangster_outside_amount = {
 	values = {
 		amount = 3,
@@ -48,12 +46,22 @@ local heli_enemy4 = {
 		participate_to_group_ai = false,
 	},
 }
-
 local pro_chance_mul = is_pro_job and 1.5 or 1
 local swat_shield_dozer_filter = {
 	so_access_filter = { "swat", "shield", "tank" },
 }
-
+local terminal_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_shields,
+}
+local alleyway_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 return {
 	-- adjust FBI chopper ambush
 	[103432] = {
@@ -99,6 +107,8 @@ return {
 		on_executed = {
 			{ id = 101906, delay = 0 },
 			{ id = 101908, delay = 0 },
+			{ id = 100168, delay = 0 },
+			{ id = 100163, delay = 0 },
 		},
 	},
 	-- tweak gangsters amount
@@ -112,17 +122,7 @@ return {
 	[103168] = gangster_inside_amount,
 	[101306] = gangster_stationary_amount,
 	[101046] = gangster_stationary_amount,
-	-- group tweaks
-	[103553] = {
-		values = {
-			interval = 10,
-		},
-		groups = preferred.no_cops_agents_shields,
-	},
-	[101374] = {
-		values = {
-			interval = 15,
-		},
-		groups = preferred.no_cops_agents_shields_bulldozers,
-	},
+	-- Spawn group delays
+	[103553] = terminal_spawn,
+	[101374] = alleyway_spawn,
 }

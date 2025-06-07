@@ -12,61 +12,15 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	-- 100 skill points
 	self.values.rep_upgrades.values = { 0 }
 
-	-- Movement speed nerfs
-	self.values.player.body_armor.movement = {
-		1,
-		0.925,
-		0.85,
-		0.775,
-		0.7,
-		0.625,
-		0.55,
+	self.values.player.body_armor = {
+		armor = { 0, 3, 4, 5, 10, 14, 18 },
+		movement = { 1, 0.925, 0.85, 0.775, 0.7, 0.625, 0.55 },
+		concealment = { 30, 26, 23, 21, 18, 12, 1 },
+		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
+		damage_shake = { 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4 },
+		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
+		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
 	}
-	self.values.player.body_armor.stamina = {
-		1,
-		0.925,
-		0.85,
-		0.775,
-		0.7,
-		0.625,
-		0.55,
-	}
-
-	-- steadiness
-	self.values.player.body_armor.damage_shake = {
-		1,
-		0.9,
-		0.8,
-		0.7,
-		0.6,
-		0.5,
-		0.4,
-	}
-
-	-- dodge
-	self.values.player.body_armor.dodge = {
-		0.1,
-		0.05,
-		0,
-		-0.05,
-		-0.2,
-		-0.25,
-		-0.55,
-	}
-
-	-- regen timer
-	self.values.player.body_armor.regen_timer = {
-		3,
-		3.25,
-		3.5,
-		3.75,
-		4,
-		4.25,
-		4.5,
-	}
-
-	-- ictv nerf
-	self.values.player.body_armor.armor[7] = 18
 
 	-- make sna less cancer
 	self.values.player.shield_knock_bullet.chance = 0.7
@@ -269,12 +223,30 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Rifleman
 	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.25
-	self.values.weapon.swap_speed_multiplier = { 1.33 }
+	self.values.weapon.standing_spread_multiplier = { 0.8 }
+	self.definitions.weapon_standing_spread_multiplier = {
+		name_id = "menu_weapon_standing_spread_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "standing_spread_multiplier",
+			category = "weapon",
+		},
+	}
 	self.skill_descs.rifleman.multibasic = "25%"
-	self.skill_descs.rifleman.multipro = "33%"
+	self.skill_descs.rifleman.multipro = "20%"
 
 	-- Marksman
-	self.values.player.not_moving_accuracy_increase[1] = 3
+	self.values.player.steelsight_aimpunch_multiplier = { 0.85 }
+	self.definitions.player_steelsight_aimpunch_multiplier = {
+		name_id = "menu_player_steelsight_aimpunch_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "steelsight_aimpunch_multiplier",
+			category = "player",
+		},
+	}
 	self.values.weapon.steelsight_recoil_multiplier = { 0.8 }
 	self.definitions.weapon_steelsight_recoil_multiplier = {
 		name_id = "menu_weapon_steelsight_recoil_multiplier",
@@ -285,8 +257,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.skill_descs.sharpshooter.multibasic = "20%"
-	self.skill_descs.sharpshooter.multipro = "12"
+	self.skill_descs.sharpshooter.multibasic = "15%"
+	self.skill_descs.sharpshooter.multipro = "20%"
 
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = { 1.25 }
@@ -316,7 +288,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.values.snp.charged_shot = {
 		{
-			time_to_charge = 3,
+			time_to_charge = 2,
 			radius = 500,
 			damage_factor = 1,
 		},
@@ -333,7 +305,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	self.skill_descs.single_shot_ammo_return.multibasic = "20%"
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "5"
-	self.skill_descs.single_shot_ammo_return.multipro = "3"
+	self.skill_descs.single_shot_ammo_return.multipro = "2"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
 	self.skill_descs.single_shot_ammo_return.multipro3 = "5m"
 
@@ -416,14 +388,14 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.overkill.multipro2 = "5"
 
 	-- Resilience
-	self.values.player.armor_regen_timer_multiplier[1] = 0.9
+	self.values.player.armor_regen_time_mul[1] = 0.9
 	self.values.player.flashbang_multiplier = { 0.5, 0.5 }
 	self.skill_descs.oppressor.multibasic2 = "10%"
 	self.skill_descs.oppressor.multipro2 = "50%"
 
 	-- Plates of Steel
-	self.values.player.damage_shake_addend[1] = 1.5
-	self.skill_descs.show_of_force.multibasic = "15"
+	self.values.player.damage_shake_addend[1] = 1
+	self.skill_descs.show_of_force.multibasic = "10"
 
 	-- Pack Mule
 	self.skill_descs.pack_mule.multipro = "2"
@@ -791,9 +763,18 @@ function UpgradesTweakData:init(tweak_data)
 		{ 0.01, 2, "below", 35, 0.1 },
 		{ 0.015, 1, "below", 35, 0.15 },
 	}
+	self.values.cooldown.dodge_replenish_armor = { { 1, 10 } }
+	self.definitions.cooldown_dodge_replenish_armor = {
+		name_id = "menu_cooldown_dodge_replenish_armor",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "dodge_replenish_armor",
+			category = "cooldown",
+		},
+	}
 	self.skill_descs.jail_diet.multibasic2 = "2"
-	self.skill_descs.jail_diet.multipro = "1.5%"
-	self.skill_descs.jail_diet.multipro4 = "15%"
+	self.skill_descs.jail_diet.multipro = "10"
 
 	-- Resilient Assault
 	self.values.player.critical_hit_chance[1] = 0.05
@@ -825,7 +806,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.hitman.multipro = "30%"
 	self.skill_descs.hitman.multipro2 = "100%"
 
-	-- Silencer Expert
+	-- Silent Killer
 	self.definitions.weapon_silencer_damage_multiplier = {
 		category = "feature",
 		name_id = "silencer_damage_multiplier",
@@ -844,20 +825,12 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.definitions.weapon_silencer_fire_rate_multiplier = {
-		category = "feature",
-		name_id = "silencer_fire_rate_multiplier",
-		upgrade = {
-			category = "weapon",
-			upgrade = "silencer_fire_rate_multiplier",
-			value = 1,
-		},
-	}
-	self.values.weapon.silencer_fire_rate_multiplier = { 1.15 }
-	self.values.weapon.armor_piercing_chance_silencer[1] = 0.5
-	self.skill_descs.backstab.multibasic = "15%"
+	self.values.weapon.silencer_spread_index_addend[1] = 1
+	self.values.weapon.silencer_recoil_index_addend[1] = 1
+	self.values.weapon.armor_piercing_chance_silencer[1] = 0.3
+	self.skill_descs.backstab.multibasic = "4"
+	self.skill_descs.backstab.multibasic2 = "30%"
 	self.skill_descs.backstab.multipro = "15%"
-	self.skill_descs.backstab.multipro2 = "50%"
 
 	-- Low Blow
 	self.definitions.weapon_extra_crit_damage_mul = {
@@ -869,18 +842,28 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
+	self.definitions.player_critical_hit_chance_2 = {
+		incremental = true,
+		name_id = "menu_player_critical_hit_chance",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "critical_hit_chance",
+			category = "player",
+		},
+	}
 	self.values.player.detection_risk_add_crit_chance = {
-		{ 0.03, 2, "below", 35, 0.3 },
+		{ 0.01, 2, "below", 35, 0.3 },
 		{ 0.03, 1, "below", 35, 0.3 },
 	}
 	self.values.weapon.extra_crit_damage_mul = { 1 }
-	self.skill_descs.unseen_strike.multibasic = "3%"
+	self.values.player.critical_hit_chance[2] = 0.25
+	self.skill_descs.unseen_strike.multibasic = "1%"
 	self.skill_descs.unseen_strike.multibasic2 = "2"
 	self.skill_descs.unseen_strike.multibasic3 = "35"
-	self.skill_descs.unseen_strike.multibasic4 = "30%"
-	self.skill_descs.unseen_strike.multipro = "3%"
-	self.skill_descs.unseen_strike.multipro2 = "1"
-	self.skill_descs.unseen_strike.multipro3 = "100%"
+	self.skill_descs.unseen_strike.multibasic4 = "10%"
+	self.skill_descs.unseen_strike.multipro = "20%"
+	self.skill_descs.unseen_strike.multipro2 = "100%"
 
 	-- Fugitive --
 
@@ -1068,41 +1051,114 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[3][3].multiperk = "5%"
 	self.specialization_descs[3][5].multiperk = "5%"
 
-	-- Rogue (and other dodge decks)
-	self.values.player.passive_dodge_chance = { 0.05, 0.15, 0.25 }
+	-- All dodge decks
+	self.values.player.passive_dodge_chance = { 0.05, 0.1, 0.15 }
 	self.values.player.tier_dodge_chance = { 0.1, 0.15, 0.2 }
 	self.specialization_descs[4][1].multiperk = "5%"
-	self.specialization_descs[4][5].multiperk = "10%"
-	self.specialization_descs[4][7].multiperk = "10%"
+	self.specialization_descs[4][5].multiperk = "5%"
+	self.specialization_descs[4][7].multiperk = "5%"
 	self.specialization_descs[6][1].multiperk = "5%"
 	self.specialization_descs[7][1].multiperk = "10%"
 	self.specialization_descs[13][5].multiperk3 = "5%"
-	self.specialization_descs[18][5].multiperk = "5%"
+	self.specialization_descs[18][5].multiperk = "15%"
 	self.specialization_descs[21][5].multiperk2 = "5%"
 
-	-- Hitman
-	self.values.player.primary_reload_secondary[1] = 5
-	self.values.player.secondary_reload_primary[1] = 5
-	self.values.temporary.unseen_strike[1] = { 1.2, 5 }
-	self.values.cooldown.hitman_ammo_refund = { { 1, 2 } }
-	self.specialization_descs[5][1].multiperk = "5"
-	self.specialization_descs[5][3].multiperk = "80%"
-	self.specialization_descs[5][5].multiperk = "20%"
-	self.specialization_descs[5][5].multiperk2 = "5"
-	self.specialization_descs[5][5].multiperk3 = "4"
-	self.specialization_descs[5][7].multiperk = "1"
-	self.specialization_descs[5][7].multiperk2 = "3"
-	self.specialization_descs[5][9].multiperk = "30"
-	self.specialization_descs[5][9].multiperk2 = "1"
-	self.definitions.cooldown_hitman_ammo_refund = {
-		name_id = "menu_cooldown_hitman_ammo_refund",
-		category = "cooldown",
-		upgrade = {
-			value = 1,
-			upgrade = "hitman_ammo_refund",
-			category = "cooldown",
+	-- Rogue Specific
+	self.values.temporary.unseen_dodge = {
+		{
+			0.1,
+			6,
 		},
 	}
+	self.definitions.player_unseen_temp_increased_dodge_chance = {
+		name_id = "menu_player_unseen_increased_dodge_chance",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "unseen_dodge",
+			category = "temporary",
+		},
+	}
+	self.specialization_descs[4][3].multiperk = "4"
+	self.specialization_descs[4][3].multiperk2 = "10%"
+	self.specialization_descs[4][3].multiperk3 = "6"
+	self.specialization_descs[4][9].multiperk = "4"
+	self.specialization_descs[4][9].multiperk2 = "20%"
+	self.specialization_descs[4][9].multiperk3 = "6"
+	self.specialization_descs[4][9].multiperk4 = "200%"
+
+	-- Hitman
+	self.definitions.player_chain_headshot_kills = {
+		name_id = "menu_player_chain_headshot_kills",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "chain_headshot_kills",
+			category = "player",
+		},
+	}
+	self.values.player.chain_headshot_kills = {
+		{
+			headshot_kills = 3,
+			max_time = 5,
+		},
+	}
+	self.definitions.temporary_chain_headshot_dodge_1 = {
+		name_id = "menu_player_chain_headshot_dodge",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "chain_headshot_dodge",
+			category = "temporary",
+		},
+	}
+	self.definitions.temporary_chain_headshot_dodge_2 = {
+		name_id = "menu_player_chain_headshot_dodge",
+		category = "temporary",
+		upgrade = {
+			value = 2,
+			upgrade = "chain_headshot_dodge",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.chain_headshot_dodge = {
+		{ 0.1, 5 },
+		{ 0.2, 5 },
+	}
+	self.definitions.temporary_dodge_outnumbered = {
+		name_id = "menu_player_dodge_outnumbered",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "dodge_outnumbered",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.dodge_outnumbered = { { 0.1, 7 } }
+	self.values.player.cheat_death_chance[1] = 0.2
+	self.definitions.player_cheat_death_inc = {
+		name_id = "menu_player_cheat_death_inc",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "cheat_death_inc",
+			category = "player",
+		},
+	}
+	self.values.player.cheat_death_inc = { 0.03 }
+	self.specialization_descs[5][1].multiperk = "3"
+	self.specialization_descs[5][1].multiperk2 = "5"
+	self.specialization_descs[5][1].multiperk3 = "10%"
+	self.specialization_descs[5][1].multiperk4 = "5"
+	self.specialization_descs[5][3].multiperk = "10%"
+	self.specialization_descs[5][5].multiperk = "3"
+	self.specialization_descs[5][5].multiperk2 = "5"
+	self.specialization_descs[5][5].multiperk3 = "10%"
+	self.specialization_descs[5][5].multiperk4 = "5"
+	self.specialization_descs[5][7].multiperk = "20%"
+	self.specialization_descs[5][9].multiperk = "3"
+	self.specialization_descs[5][9].multiperk2 = "5"
+	self.specialization_descs[5][9].multiperk3 = "3%"
 
 	-- Crook
 	self.values.player.level_2_dodge_addend = {
@@ -1366,9 +1422,62 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[17][9].multiperk3 = "1"
 
 	-- Sicario
-	self.values.player.dodge_shot_gain = { { 0.1, 1 } }
-	self.specialization_descs[18][3].multiperk = "10%"
-	self.specialization_descs[18][3].multiperk2 = "1"
+	self.definitions.player_smoke_grenade_no_armor_suppression = {
+		name_id = "menu_smoke_grenade_no_armor_suppression",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_grenade_no_armor_suppression",
+			synced = true,
+			category = "player",
+		},
+	}
+	self.values.player.smoke_grenade_no_armor_suppression = { true }
+	self.definitions.player_smoke_screen_armor_regen_mul = {
+		name_id = "menu_smoke_screen_armor_regen_mul",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_screen_armor_regen_mul",
+			category = "player",
+		},
+	}
+	self.values.player.smoke_screen_armor_regen_mul = { 0.7 }
+	self.definitions.player_smoke_grenade_dodge_buff = {
+		name_id = "menu_smoke_grenade_dodge_buff",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_grenade_dodge_buff",
+			synced = true,
+			category = "player",
+		},
+	}
+	self.values.player.smoke_grenade_dodge_buff = { true }
+	self.definitions.player_smoke_screen_dodge_add = {
+		name_id = "menu_smoke_screen_dodge_add",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_screen_dodge_add",
+			category = "player",
+		},
+	}
+	self.values.player.smoke_screen_dodge_add = { 0.25 }
+	self.definitions.player_smoke_grenade_lingering_effect = {
+		name_id = "menu_smoke_grenade_lingering_effect",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "smoke_grenade_lingering_effect",
+			synced = true,
+			category = "player",
+		},
+	}
+	self.values.player.smoke_grenade_lingering_effect = { 3 }
+	self.specialization_descs[18][3].multiperk = "30%"
+	self.specialization_descs[18][7].multiperk = "25%"
+	self.specialization_descs[18][9].multiperk = "3"
 
 	-- Stoic
 	self.specialization_descs[19][1].multiperk3 = "16"

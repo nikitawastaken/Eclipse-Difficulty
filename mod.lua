@@ -7,8 +7,10 @@ if not Eclipse then
 		required = {},
 		settings = {
 			ponr_assault_text = false,
+			faction_assault_text = true,
 			max_progression_infamy = 0,
 			always_old_hitflash = false,
+			player_styles = 1,
 		},
 		loaded_elements = false,
 	}
@@ -50,17 +52,17 @@ if not Eclipse then
 		return self._mission_script_add
 	end
 
-	function Eclipse:log(...)
+	function Eclipse:log_console(...)
 		if self.logging then
 			log("[EclipseOverhaul] " .. table.concat({ ... }, " "))
 		end
 	end
 
-	function Eclipse:warn(...)
+	function Eclipse:warn_console(...)
 		log("[EclipseOverhaul][Warning] " .. table.concat({ ... }, " "))
 	end
 
-	function Eclipse:error(...)
+	function Eclipse:error_console(...)
 		log("[EclipseOverhaul][Error] " .. table.concat({ ... }, " "))
 	end
 
@@ -96,13 +98,18 @@ if not Eclipse then
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.level_scale = Eclipse:require("level_scale")
 	Eclipse.access_filter_presets = Eclipse:require("access_filter_presets")
+	Eclipse.log = Eclipse:require("log")
+
+	-- Setup networking
+	Eclipse:require("networking")
+	Eclipse:require("network_hooks")
 
 	-- Setup networking
 	Eclipse:require("networking")
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
-			[("english"):key()] = "en.txt",
+			[("english"):key()] = "en.json",
 			[("schinese"):key()] = "schinese.json",
 			[("russian"):key()] = "ru.txt",
 		}
@@ -161,6 +168,11 @@ if not Eclipse then
 			Eclipse.settings.ponr_assault_text = enabled
 		end
 
+		function MenuCallbackHandler:eclipse_faction_assault_text_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.faction_assault_text = enabled
+		end
+
 		function MenuCallbackHandler:eclipse_max_progression_infamy_edit(item)
 			local value = math.floor(item:value() + 0.5)
 
@@ -172,7 +184,13 @@ if not Eclipse then
 			Eclipse.settings.always_old_hitflash = enabled
 		end
 
-		function MenuCallbackHandler:sh_save()
+		function MenuCallbackHandler:eclipse_player_styles_setting(item)
+			local value = item:value()
+
+			Eclipse.settings.player_styles = value
+		end
+
+		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
 
@@ -182,6 +200,16 @@ if not Eclipse then
 			desc = "eclipse_menu_ponr_assault_text_desc",
 			callback = "eclipse_ponr_assault_text_toggle",
 			value = Eclipse.settings.ponr_assault_text,
+			menu_id = menu_id,
+			priority = 100,
+		})
+
+		MenuHelper:AddToggle({
+			id = "faction_assault_text",
+			title = "eclipse_menu_faction_assault_text",
+			desc = "eclipse_menu_faction_assault_text_desc",
+			callback = "eclipse_faction_assault_text_toggle",
+			value = Eclipse.settings.faction_assault_text,
 			menu_id = menu_id,
 			priority = 100,
 		})
@@ -212,7 +240,22 @@ if not Eclipse then
 			priority = 100,
 		})
 
-		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "sh_save" })
+		MenuHelper:AddMultipleChoice({
+			id = "player_styles",
+			title = "eclipse_menu_player_styles",
+			desc = "eclipse_menu_player_styles_desc",
+			callback = "eclipse_player_styles_setting",
+			items = {
+				"eclipse_menu_player_styles_vanilla",
+				"eclipse_menu_player_styles_expanded",
+				"eclipse_menu_player_styles_none",
+			},
+			value = Eclipse.settings.player_styles,
+			menu_id = menu_id,
+			priority = 100,
+		})
+
+		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
 
