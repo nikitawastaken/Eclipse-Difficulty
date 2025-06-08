@@ -56,10 +56,6 @@ function TradeManager:is_trade_allowed(t)
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
-	-- if not self.__last_chat_t or (self.__last_chat_t + 0.3) < t then
-	-- 	self.__last_chat_t = t
-	-- 	Eclipse:log_chat("assault phase:", tostring(managers.groupai:state():besiege_assault_phase()))
-	-- end
 
 	return Network:is_server()
 		and not self._trading_hostage
@@ -93,6 +89,7 @@ function TradeManager:update(t, dt)
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	local assault_phase = managers.groupai:state():besiege_assault_phase()
+	local trade_completed = not self._trade_in_progress and self._trade_complete
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
 		if
@@ -151,7 +148,8 @@ function TradeManager:update(t, dt)
 
 		self._pause_t = math.max(0, self._pause_t - dt)
 
-		if (self._trade_countdown or is_auto_assault_ai_trade) and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() then
+		if (self._trade_countdown or is_auto_assault_ai_trade) and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
+			self._trade_complete = false
 			print("so ")
 
 			local trade = self:get_criminal_to_trade(true)
@@ -179,7 +177,8 @@ function TradeManager:update(t, dt)
 	else
 		self._pause_t = math.max(0, self._pause_t - dt)
 
-		if self._trade_countdown and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() then
+		if self._trade_countdown and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
+			self._trade_complete = false
 			print("so ")
 
 			self:_increment_trade_index()
@@ -195,8 +194,16 @@ function TradeManager:update(t, dt)
 
 	-- If the assault is in progress, cancel trades
 	local is_build = assault_phase and assault_phase == "build"
+	if not self.__last_chat_t or (self.__last_chat_t + 3) < t then
+		self.__last_chat_t = t
+		Eclipse:log_chat(string.format("Assault phase: %s\nHostage: %s\nTrade complete: %s", assault_phase, self._hostage_to_trade and "true", tostring(trade_completed)))
+	end
 	if is_build and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
 		self._hostage_to_trade.unit:brain():cancel_trade()
+
+		self._hostage_to_trade = nil
+		self._trade_in_progress = false
+		self._hostage_trade_clbk = nil
 	end
 end
 
@@ -418,4 +425,12 @@ function TradeManager:trade_restore_resources()
 		-- managers.network:session():send_to_peers_synched("finish_trade", is_recon_over)
 		NetworkHelper:SendToPeersChunk("Eclipse_TradeManager:trade_restore_resources", NetworkHelper:encode({ is_recon_over = is_recon_over and "yes" or "no" }))
 	end
+end
+
+function TradeManager:trade_complete()
+	self._hostage_to_trade = nil
+	self._trading_hostage = nil
+
+	self:end_stockholm_syndrome()
+	self._trade_complete = true
 end
