@@ -1771,13 +1771,10 @@ function CharacterTweakData:_set_presets()
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
-	self.spooc.spooc_attack_timeout = {
-		diff_lerp(2, 6),
-		diff_lerp(4, 8),
-	}
+	self.spooc.spooc_attack_timeout = { diff_lerp(6, 2), diff_lerp(8, 4), }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 
-	self.spooc.spooc_attack_dodge_timeout = { diff_lerp(0, 0.5), diff_lerp(0.25, 1) }
+	self.spooc.spooc_attack_dodge_timeout = { diff_lerp(1, 0.5), diff_lerp(1.5, 1) }
 	self.shadow_spooc.spooc_attack_dodge_timeout = self.spooc.spooc_attack_dodge_timeout
 
 	self.flashbang_multiplier = diff_lerp(1, 1.5)
