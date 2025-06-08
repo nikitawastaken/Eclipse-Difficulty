@@ -339,7 +339,8 @@ local optsSwatVans_trigger = {
 	on_executed = { { id = 400038, delay = 0 } },
 	enabled = level_id ~= "firestarter_3" and true or false,
 }
-]]--
+]]
+--
 
 M.elements = {
 	-- skulldozer nearby the van on Eclipse (based on DW Trailer)
