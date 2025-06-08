@@ -201,9 +201,8 @@ local Smoke_bomb = {
 	duration = 12,
 }
 
-local ambush_chance = {
-	chance = ambush_event_chance,
-	enabled = (hard_and_above and level_id == "firestarter_3") and true or false,
+local ambush_event_global = {
+	enabled = true,
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
@@ -223,16 +222,19 @@ local optsdisable_locked_vault_door = {
 	enabled = (hard_and_above and level_id == "firestarter_3") and true or false,
 	toggle = "off",
 	elements = {
-		100196,
+		100197,
+		100198,
 	},
 }
 local Smoke_bomb_ambush = {
 	duration = 7,
 }
 local begin_ambush_event_left = {
+	enabled = (ambush_event_chance and hard_and_above and level_id == "firestarter_3") and true or false,
 	on_executed = { { id = 400057, delay = 2 }, { id = 400070, delay = 2.5 } },
 }
 local begin_ambush_event_right = {
+	enabled = (ambush_event_chance and hard_and_above and level_id == "firestarter_3") and true or false,
 	on_executed = { { id = 400058, delay = 2 }, { id = 400071, delay = 2.5 } },
 }
 local left_ambush_amount = {
@@ -435,7 +437,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400070, "smoke_grenade_left", Vector3(-2208, 1742, 0), Rotation(0, 0, 0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb),
 	-- chance
-	Eclipse.mission_elements.gen_chance(400072, "ambush_chance", Vector3(0, 0, 0), Rotation(0, 0, 0), ambush_chance),
+	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
 }
 
 return M
