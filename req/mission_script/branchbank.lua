@@ -100,14 +100,14 @@ return {
 	-- right
 	[102160] = {
 		on_executed = {
-			{ id = 400056, delay = 0 }, 
+			{ id = 400056, delay = 0 },
 		},
 	},
 	-- trigger cops loot drop off on alarm
 	[102133] = {
 		on_executed = {
 			{ id = 102206, delay = 0 },
-			{ id = 400068, delay = 0 }, -- enable the ambush 
+			{ id = 400068, delay = 0 }, -- enable the ambush
 		},
 	},
 	-- randomize heli dozers

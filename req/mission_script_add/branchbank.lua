@@ -254,7 +254,7 @@ local right_ambush_amount = {
 	},
 }
 local three_cloakers_left = {
-	on_executed = { { id = 400045, delay = 0 }, { id = 400046, delay = 0 }, { id = 400047, delay = 0 }, },
+	on_executed = { { id = 400045, delay = 0 }, { id = 400046, delay = 0 }, { id = 400047, delay = 0 } },
 	enabled = true,
 }
 local two_dozers_left = {
@@ -270,7 +270,7 @@ local cloaker_dozer_left = {
 	enabled = true,
 }
 local three_cloakers_right = {
-	on_executed = { { id = 400052, delay = 0 }, { id = 400053, delay = 0 }, { id = 400054, delay = 0 }, },
+	on_executed = { { id = 400052, delay = 0 }, { id = 400053, delay = 0 }, { id = 400054, delay = 0 } },
 	enabled = true,
 }
 local two_dozers_right = {
@@ -391,7 +391,7 @@ M.elements = {
 	-- old swat vans restoration
 	Eclipse.mission_elements.gen_object_editor(400038, "branchbank_swatvans", Vector3(0, 0, 0), Rotation(0, 0, 0), optsCallSwatVans),
 	Eclipse.mission_elements.gen_missionscript(400039, "deploy_swat_vans", optsSwatVans_trigger),
-	
+
 	-- vault ambush
 	-- left
 	Eclipse.mission_elements.gen_dummy(400040, "dozer_ambush_left_1", Vector3(-2168, 1941, 0), Rotation(180, 0, 0), optsDozerAmbush),
