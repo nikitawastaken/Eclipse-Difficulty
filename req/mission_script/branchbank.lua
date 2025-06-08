@@ -70,7 +70,7 @@ return {
 	[100004] = {
 		on_executed = {
 			{ id = 400004, delay = 3 },
-			{ id = 400072, delay = 2 },	-- vault ambush for fs day 3
+			{ id = 400072, delay = 2 }, -- vault ambush for fs day 3
 		},
 	},
 	-- enable the dozer when things go loud
@@ -95,14 +95,14 @@ return {
 	-- right
 	[102160] = {
 		on_executed = {
-			{ id = 400056, delay = 0 }, 
+			{ id = 400056, delay = 0 },
 		},
 	},
 	-- trigger cops loot drop off on alarm
 	[102133] = {
 		on_executed = {
 			{ id = 102206, delay = 0 },
-			{ id = 400068, delay = 0 }, -- enable the ambush 
+			{ id = 400068, delay = 0 }, -- enable the ambush
 		},
 	},
 	-- randomize heli dozers
