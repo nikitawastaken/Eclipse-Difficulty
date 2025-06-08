@@ -559,7 +559,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			end
 		end
 	end
-			
+
 	presets.hurt_severities.base.bullet.zones = {
 		{
 			health_limit = 0.2,
@@ -1000,7 +1000,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.fbi_female = deep_clone(self.cop_female)
 	self.fbi_female.dodge = self.presets.dodge.average
-	
+
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
 	self.gangster.speech_prefix_count = 2
@@ -1043,7 +1043,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.swat.surrender = self.presets.surrender.average
 	self.swat.suppression = self.presets.suppression.average
 	self.swat.no_arrest = false
-	
+
 	self.heavy_swat.HEALTH_INIT = 30
 	self.heavy_swat.headshot_dmg_mul = 1.875 -- 160 head health
 	self.heavy_swat.surrender = self.presets.surrender.average
