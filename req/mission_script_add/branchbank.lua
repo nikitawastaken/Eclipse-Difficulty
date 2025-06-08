@@ -207,20 +207,20 @@ local ambush_chance = {
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
-	enabled = true,
+	enabled = (hard_and_above and level_id == "firestarter_3") and true or false,
 	elements = {
 		400068,
 	},
 }
 local optsEnable_ambush_alarm = {
-	enabled = true,
+	enabled = (hard_and_above and level_id == "firestarter_3") and true or false,
 	elements = {
 		400055,
 		400056,
 	},
 }
 local optsdisable_locked_vault_door = {
-	enabled = true,
+	enabled = (hard_and_above and level_id == "firestarter_3") and true or false,
 	toggle = "off",
 	elements = {
 		100196,
