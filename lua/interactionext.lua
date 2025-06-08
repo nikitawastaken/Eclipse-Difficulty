@@ -116,6 +116,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 			NetworkHelper:SendToHostChunk(
 				"Eclipse_HuskCopBrain:on_trade",
 				NetworkHelper:encode({
+					unit_id = self._unit:id(),
 					position = player:position(),
 					rotation = player:rotation(),
 					is_custody_trade = true,
@@ -145,6 +146,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 			NetworkHelper:SendToHostChunk(
 				"Eclipse_HuskCopBrain:on_trade",
 				NetworkHelper:encode({
+					unit_id = self._unit:id(),
 					position = player:position(),
 					rotation = player:rotation(),
 					is_custody_trade = false,

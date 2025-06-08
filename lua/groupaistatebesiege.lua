@@ -112,6 +112,11 @@ function GroupAIStateBesiege:_first_response_trades_delay()
 	return task_data and task_data.first_response_trades_delay or 0
 end
 
+function GroupAIStateBesiege:besiege_assault_phase()
+	local task_data = self._task_data and self._task_data.assault
+	return task_data and task_data.phase
+end
+
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
 function GroupAIStateBesiege:_begin_reenforce_task(...)

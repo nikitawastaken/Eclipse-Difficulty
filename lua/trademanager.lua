@@ -10,6 +10,10 @@ function TradeManager:reset_resource_trades_done()
 	end
 end
 
+function TradeManager:increment_resource_trade()
+	self._resource_trades_done = self._resource_trades_done + 1
+end
+
 function TradeManager:get_downs_to_restore()
 	local downs_to_restore = 0
 
@@ -88,6 +92,8 @@ function TradeManager:update(t, dt)
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
+	local assault_phase = managers.groupai:state():besiege_assault_phase()
+	local trade_completed = not self._trade_in_progress and self._trade_complete
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
 		if
@@ -146,7 +152,8 @@ function TradeManager:update(t, dt)
 
 		self._pause_t = math.max(0, self._pause_t - dt)
 
-		if (self._trade_countdown or is_auto_assault_ai_trade) and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() then
+		if (self._trade_countdown or is_auto_assault_ai_trade) and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
+			self._trade_complete = false
 			print("so ")
 
 			local trade = self:get_criminal_to_trade(true)
@@ -174,7 +181,8 @@ function TradeManager:update(t, dt)
 	else
 		self._pause_t = math.max(0, self._pause_t - dt)
 
-		if self._trade_countdown and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() then
+		if self._trade_countdown and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
+			self._trade_complete = false
 			print("so ")
 
 			self:_increment_trade_index()
@@ -186,6 +194,16 @@ function TradeManager:update(t, dt)
 
 			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 1), respawn_t)
 		end
+	end
+
+	-- If the assault is in progress, cancel trades
+	local is_build = assault_phase and assault_phase == "build"
+	if is_build and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
+		self._hostage_to_trade.unit:brain():cancel_trade()
+
+		self._hostage_to_trade = nil
+		self._trade_in_progress = false
+		self._hostage_trade_clbk = nil
 	end
 end
 
@@ -342,8 +360,7 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		self._criminal_respawn_clbk = clbk_id
 
 		managers.enemy:add_delayed_clbk(clbk_id, callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
-	else
-		self._resource_trades_done = self._resource_trades_done + 1
+	elseif not is_custody_trade then
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true
 		self._hostage_trade_clbk = nil
@@ -406,5 +423,16 @@ function TradeManager:trade_restore_resources()
 	if Network:is_server() then
 		-- managers.network:session():send_to_peers_synched("finish_trade", is_recon_over)
 		NetworkHelper:SendToPeersChunk("Eclipse_TradeManager:trade_restore_resources", NetworkHelper:encode({ is_recon_over = is_recon_over and "yes" or "no" }))
+	end
+end
+
+function TradeManager:trade_complete()
+	self._hostage_to_trade = nil
+	self._trading_hostage = nil
+
+	self:end_stockholm_syndrome()
+	self._trade_complete = true
+	if not self._is_custody_trade then
+		self:increment_resource_trade()
 	end
 end
