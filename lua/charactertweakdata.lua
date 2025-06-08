@@ -639,24 +639,24 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.only_light_hurt.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 	presets.hurt_severities.only_light_hurt.explosion.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 
-	presets.hurt_severities.only_light_hurt_and_fire = deep_clone(presets.hurt_severities.base)
-	presets.hurt_severities.only_light_hurt_and_fire.bullet.zones = {
-		{ light = 1 },
+	presets.hurt_severities.only_explosion_and_fire = deep_clone(presets.hurt_severities.base)
+	presets.hurt_severities.only_explosion_and_fire.bullet.zones = {
+		{ none = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.explosion.zones = {
+	presets.hurt_severities.only_explosion_and_fire.explosion.zones = {
 		{ explode = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.melee.zones = {
-		{ light = 1 },
+	presets.hurt_severities.only_explosion_and_fire.melee.zones = {
+		{ none = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.fire.zones = {
+	presets.hurt_severities.only_explosion_and_fire.fire.zones = {
 		{ fire = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.poison.zones = {
+	presets.hurt_severities.only_explosion_and_fire.poison.zones = {
 		{ none = 1 },
 	}
 
@@ -1143,9 +1143,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"special",
 	}
 	self.city_sniper.HEALTH_INIT = 36
-	self.city_sniper.headshot_dmg_mul = 3 -- 120 head health
+	self.city_sniper.headshot_dmg_mul = 2 -- 180 head health
 	self.city_sniper.priority_shout = "f34"
 	self.city_sniper.chatter = self.presets.enemy_chatter.no_chatter
+	self.city_sniper.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	--self.city_sniper.misses_first_player_shot = true
 	self.city_sniper.surrender = nil
 	self.city_sniper.suppression = nil
@@ -1259,8 +1260,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.headshot_dmg_mul = 3 -- 160 head health
 	self.spooc.min_obj_interrupt_dis = 800
 	self.spooc.spooc_attack_use_smoke_chance = 0
-	self.spooc.spooc_charge_move_speed_mul = 1.75
-	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
+	self.spooc.spooc_attack_move_speed_mul = 1.75
+	self.spooc.spooc_attack_dodge_timeout = { 0.5, 1 }
+	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
 	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
@@ -1768,13 +1770,16 @@ function CharacterTweakData:_set_presets()
 
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
-
+	
 	self.spooc.spooc_attack_timeout = {
-		diff_lerp(2, 4),
-		diff_lerp(4, 6),
+		diff_lerp(2, 6),
+		diff_lerp(4, 8),
 	}
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 
+	self.spooc.spooc_attack_dodge_timeout = { diff_lerp(0, 0.5), diff_lerp(0.25, 1) } 
+	self.shadow_spooc.spooc_attack_dodge_timeout = self.spooc.spooc_attack_dodge_timeout
+	
 	self.flashbang_multiplier = diff_lerp(1, 1.5)
 	self.concussion_multiplier = 1
 
