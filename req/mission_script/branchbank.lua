@@ -200,7 +200,7 @@ return {
 		on_executed = {
 			{ id = 100251, delay = 30 },
 			{ id = 105774, delay = 20 },
-			{ id = 400039, delay = level_id ~= "firestarter_3" and 40 or nil }, -- old swat vans spots restoration (only in bank heist)
+			--{ id = 400039, delay = level_id ~= "firestarter_3" and 40 or nil }, -- old swat vans spots restoration (only in bank heist)
 		},
 	},
 	-- random plank amounts

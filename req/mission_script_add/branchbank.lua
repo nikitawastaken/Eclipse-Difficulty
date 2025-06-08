@@ -327,6 +327,7 @@ local optsSWATChopper_2 = {
 		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = 65 },
 	},
 }
+--[[
 local optsCallSwatVans = {
 	enabled = true,
 	trigger_list = {
@@ -338,6 +339,7 @@ local optsSwatVans_trigger = {
 	on_executed = { { id = 400038, delay = 0 } },
 	enabled = level_id ~= "firestarter_3" and true or false,
 }
+]]--
 
 M.elements = {
 	-- skulldozer nearby the van on Eclipse (based on DW Trailer)
@@ -389,8 +391,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400037, "swat_heli_event_2", optsspawnswatchopper_2),
 
 	-- old swat vans restoration
-	Eclipse.mission_elements.gen_object_editor(400038, "branchbank_swatvans", Vector3(0, 0, 0), Rotation(0, 0, 0), optsCallSwatVans),
-	Eclipse.mission_elements.gen_missionscript(400039, "deploy_swat_vans", optsSwatVans_trigger),
+	--Eclipse.mission_elements.gen_object_editor(400038, "branchbank_swatvans", Vector3(0, 0, 0), Rotation(0, 0, 0), optsCallSwatVans),
+	--Eclipse.mission_elements.gen_missionscript(400039, "deploy_swat_vans", optsSwatVans_trigger),
 
 	-- vault ambush
 	-- left
