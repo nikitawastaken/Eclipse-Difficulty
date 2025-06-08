@@ -165,6 +165,7 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 			unit:interaction():set_tweak_data("hostage_trade")
 			unit:contour():flash("hostage_trade_uncustody", 0.5)
 		else
+			Eclipse:log_chat("set proper tweak data")
 			unit:interaction():set_tweak_data("hostage_trade_resources")
 			unit:contour():flash("hostage_trade_resources", 0.5)
 		end

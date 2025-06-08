@@ -10,6 +10,10 @@ function TradeManager:reset_resource_trades_done()
 	end
 end
 
+function TradeManager:increment_resource_trade()
+	self._resource_trades_done = self._resource_trades_done + 1
+end
+
 function TradeManager:get_downs_to_restore()
 	local downs_to_restore = 0
 
@@ -167,7 +171,7 @@ function TradeManager:update(t, dt)
 				else
 					print("so far so good")
 
-					local respawn_t = self._t + math.random(2, 5)
+					local respawn_t = self._t --+ math.random(2, 5)
 					self._hostage_trade_clbk = "TradeManager"
 
 					managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 1), respawn_t)
@@ -185,7 +189,7 @@ function TradeManager:update(t, dt)
 
 			print("so far so good")
 
-			local respawn_t = self._t + math.random(2, 5)
+			local respawn_t = self._t --+ math.random(2, 5)
 			self._hostage_trade_clbk = "TradeManager"
 
 			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 1), respawn_t)
