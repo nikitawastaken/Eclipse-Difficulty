@@ -1736,7 +1736,7 @@ function CharacterTweakData:_set_presets()
 		-- Boss related stuff
 		if is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
-			char_preset.player_health_scaling_mul = 1.5
+			char_preset.player_health_scaling_mul = 1.25
 			char_preset.no_headshot_add_mul = true
 			char_preset.no_run_start = true
 			char_preset.no_run_stop = true
