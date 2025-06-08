@@ -194,10 +194,6 @@ function TradeManager:update(t, dt)
 
 	-- If the assault is in progress, cancel trades
 	local is_build = assault_phase and assault_phase == "build"
-	if not self.__last_chat_t or (self.__last_chat_t + 3) < t then
-		self.__last_chat_t = t
-		Eclipse:log_chat(string.format("Assault phase: %s\nHostage: %s\nTrade complete: %s", assault_phase, self._hostage_to_trade and "true", tostring(trade_completed)))
-	end
 	if is_build and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
 		self._hostage_to_trade.unit:brain():cancel_trade()
 
@@ -433,4 +429,5 @@ function TradeManager:trade_complete()
 
 	self:end_stockholm_syndrome()
 	self._trade_complete = true
+	Eclipse:log_chat("Trades: ", tostring(self._resource_trades_done))
 end
