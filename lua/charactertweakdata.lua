@@ -639,24 +639,24 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.only_light_hurt.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 	presets.hurt_severities.only_light_hurt.explosion.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 
-	presets.hurt_severities.only_light_hurt_and_fire = deep_clone(presets.hurt_severities.base)
-	presets.hurt_severities.only_light_hurt_and_fire.bullet.zones = {
-		{ light = 1 },
+	presets.hurt_severities.only_explosion_and_fire = deep_clone(presets.hurt_severities.base)
+	presets.hurt_severities.only_explosion_and_fire.bullet.zones = {
+		{ none = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.explosion.zones = {
+	presets.hurt_severities.only_explosion_and_fire.explosion.zones = {
 		{ explode = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.melee.zones = {
-		{ light = 1 },
+	presets.hurt_severities.only_explosion_and_fire.melee.zones = {
+		{ none = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.fire.zones = {
+	presets.hurt_severities.only_explosion_and_fire.fire.zones = {
 		{ fire = 1 },
 	}
 
-	presets.hurt_severities.only_light_hurt_and_fire.poison.zones = {
+	presets.hurt_severities.only_explosion_and_fire.poison.zones = {
 		{ none = 1 },
 	}
 
@@ -1143,9 +1143,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"special",
 	}
 	self.city_sniper.HEALTH_INIT = 36
-	self.city_sniper.headshot_dmg_mul = 3 -- 120 head health
+	self.city_sniper.headshot_dmg_mul = 2 -- 180 head health
 	self.city_sniper.priority_shout = "f34"
 	self.city_sniper.chatter = self.presets.enemy_chatter.no_chatter
+	self.city_sniper.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	--self.city_sniper.misses_first_player_shot = true
 	self.city_sniper.surrender = nil
 	self.city_sniper.suppression = nil
@@ -1161,7 +1162,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.move_speed.crouch = self.shield.move_speed.stand
 	self.shield.speech_prefix_p1 = self._unit_prefixes.heavy_swat
 	self.shield.min_obj_interrupt_dis = 500
-	self.shield.shield_explosion_damage_mul = 0.8 -- % of damage blocked by the Shield opeator's shield
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt
 	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
 	self.shield.die_sound_event = nil --he already has his death sound
@@ -1169,13 +1169,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_shield = deep_clone(self.shield)
 	self.fbi_shield.HEALTH_INIT = 30
 	self.fbi_shield.headshot_dmg_mul = 1.875 -- 160 head health
-	self.fbi_shield.shield_explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "fbi_shield")
 
 	self.city_shield = deep_clone(self.shield)
 	self.city_shield.HEALTH_INIT = 60
 	self.city_shield.headshot_dmg_mul = 1.875 -- 320 head health
-	self.city_shield.shield_explosion_damage_mul = 0.2
 	self.city_shield.ecm_vulnerability = 0
 	self.city_shield.move_speed.crouch = self.city_shield.move_speed.stand
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1259,8 +1257,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.headshot_dmg_mul = 3 -- 160 head health
 	self.spooc.min_obj_interrupt_dis = 800
 	self.spooc.spooc_attack_use_smoke_chance = 0
-	self.spooc.spooc_charge_move_speed_mul = 1.75
-	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt_and_fire
+	self.spooc.spooc_attack_move_speed_mul = 1.75
+	self.spooc.spooc_attack_dodge_timeout = { 0.5, 1 }
+	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
 	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
@@ -1736,7 +1735,7 @@ function CharacterTweakData:_set_presets()
 		-- Boss related stuff
 		if is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
-			char_preset.player_health_scaling_mul = 1.5
+			char_preset.player_health_scaling_mul = 1.25
 			char_preset.no_headshot_add_mul = true
 			char_preset.no_run_start = true
 			char_preset.no_run_stop = true
@@ -1769,11 +1768,11 @@ function CharacterTweakData:_set_presets()
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
-	self.spooc.spooc_attack_timeout = {
-		diff_lerp(2, 4),
-		diff_lerp(4, 6),
-	}
+	self.spooc.spooc_attack_timeout = { diff_lerp(6, 2), diff_lerp(8, 4) }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
+
+	self.spooc.spooc_attack_dodge_timeout = { diff_lerp(1, 0.5), diff_lerp(1.5, 1) }
+	self.shadow_spooc.spooc_attack_dodge_timeout = self.spooc.spooc_attack_dodge_timeout
 
 	self.flashbang_multiplier = diff_lerp(1, 1.5)
 	self.concussion_multiplier = 1

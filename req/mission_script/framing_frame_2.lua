@@ -8,7 +8,7 @@ local upper_spawn = {
 	values = {
 		interval = 25,
 	},
-	groups = preferred.only_swats_heavies_tasers,
+	groups = preferred.only_swats_tasers,
 }
 return {
 	[102064] = {

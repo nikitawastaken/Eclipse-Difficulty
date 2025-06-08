@@ -15,15 +15,13 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
---[[
 local army_dozer_vault = {
-	enemy = overkill_and_above and us_soldier_tank,
+	enemy = is_eclipse and elite_ben_bulldozer or green_bulldozer,
 	values = {
 		participate_to_group_ai = false,
 	},
 }
-]]
---
+
 local security_army = {
 	enemy = army_guard,
 }
@@ -135,9 +133,9 @@ return {
 	[102807] = specials,
 	[102806] = us_soldier,
 	-- tweak vault dozers
-	--[103224] = army_dozer_vault,
-	-- [103225] = army_dozer_vault,
-	-- [103226] = army_dozer_vault,
+	[103224] = army_dozer_vault,
+	[103225] = army_dozer_vault,
+	[103226] = army_dozer_vault,
 	[103227] = dozer_in_the_vault_chance,
 	[103228] = dozer_in_the_vault_chance,
 	[103229] = dozer_in_the_vault_chance,
