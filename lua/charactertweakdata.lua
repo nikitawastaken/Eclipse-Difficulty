@@ -1162,7 +1162,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.move_speed.crouch = self.shield.move_speed.stand
 	self.shield.speech_prefix_p1 = self._unit_prefixes.heavy_swat
 	self.shield.min_obj_interrupt_dis = 500
-	self.shield.shield_explosion_damage_mul = 0.8 -- % of damage blocked by the Shield opeator's shield
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt
 	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
 	self.shield.die_sound_event = nil --he already has his death sound
@@ -1170,13 +1169,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_shield = deep_clone(self.shield)
 	self.fbi_shield.HEALTH_INIT = 30
 	self.fbi_shield.headshot_dmg_mul = 1.875 -- 160 head health
-	self.fbi_shield.shield_explosion_damage_mul = 0.6
 	table.insert(self._enemy_list, "fbi_shield")
 
 	self.city_shield = deep_clone(self.shield)
 	self.city_shield.HEALTH_INIT = 60
 	self.city_shield.headshot_dmg_mul = 1.875 -- 320 head health
-	self.city_shield.shield_explosion_damage_mul = 0.2
 	self.city_shield.ecm_vulnerability = 0
 	self.city_shield.move_speed.crouch = self.city_shield.move_speed.stand
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt

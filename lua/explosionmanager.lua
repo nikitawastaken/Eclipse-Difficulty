@@ -68,9 +68,7 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, de
 					local shield_block = World:raycast("ray", hit_pos, hit_body_pos, "slot_mask", shield_slot_mask)
 					local shield_unit = shield_block and shield_block.unit
 					if alive(shield_unit) and alive(shield_unit:parent()) and mvector3.dot(shield_unit:rotation():y(), hit_dir) < -0.5 then
-						local char_tweak = shield_unit:base() and shield_unit:base()._tweak_table and tweak_data.character[shield_unit:base()._tweak_table]
-
-						action_data.damage = action_data.damage * (char_tweak and char_tweak.shield_explosion_damage_mul or 1)
+						action_data.damage = action_data.damage * 0.5
 					end
 				else
 					action_data.damage = 0
