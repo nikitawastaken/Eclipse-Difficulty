@@ -137,6 +137,23 @@ function NewRaycastWeaponBase:movement_penalty()
 	end
 end
 
+--Calculate weapon swap speed and sprint-to-fire speed based on concealment 
+function NewRaycastWeaponBase:concealment_to_handling()
+	local base_stats = self:weapon_tweak_data().stats
+	local parts_stats = managers.weapon_factory:get_stats(self._factory_id, self._blueprint)
+	
+	local total_concealment = math.max((base_stats and base_stats.concealment or 0) + (parts_stats and parts_stats.concealment or 0), 0)
+	
+	local concealment_stat_table = tweak_data.weapon.stats and tweak_data.weapon.stats.concealment
+	
+	local concealment_lerp = total_concealment / (#concealment_stat_table or 30)
+	
+	local multiplier = 1
+	multiplier = multiplier * math.lerp(0.5, 1.5, concealment_lerp)
+	
+	return multiplier
+end
+
 -- remove ARs from BE
 function NewRaycastWeaponBase:get_add_head_shot_mul()
 	if self:is_category("smg", "lmg", "minigun") and self._fire_mode == ids_auto or self:is_category("bow", "saw") then

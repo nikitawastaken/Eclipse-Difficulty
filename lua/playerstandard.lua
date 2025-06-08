@@ -100,6 +100,8 @@ function PlayerStandard:_get_swap_speed_multiplier()
 	local weap_base = self._equipped_unit:base()
 	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 
+	multiplier = multiplier * (weap_base:concealment_to_handling() or 1)
+		
 	multiplier = multiplier * (weapon_tweak_data.swap_speed_multiplier or 1)
 
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "swap_speed_multiplier", 1)
@@ -129,7 +131,7 @@ function PlayerStandard:_end_action_running(t)
 	if not self._end_running_expire_t then
 		local weap_base = self._equipped_unit:base()
 
-		local speed_multiplier = weap_base:exit_run_speed_multiplier()
+		local speed_multiplier = weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1)
 
 		self._end_running_expire_t = t + 0.4 / speed_multiplier
 
