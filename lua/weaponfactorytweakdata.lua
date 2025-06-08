@@ -1284,14 +1284,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		},
 		recoil = {
 			standing = {
-				hipfire = 2,
+				hipfire = 1.25,
 				crouching = 1,
-				steelsight = 1.5,
+				steelsight = 1,
 			},
 			moving = {
-				hipfire = 2.5,
+				hipfire = 1.5,
 				crouching = 1,
-				steelsight = 2,
+				steelsight = 1.25,
 			},
 		},
 	}
