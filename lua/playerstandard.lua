@@ -101,7 +101,7 @@ function PlayerStandard:_get_swap_speed_multiplier()
 	local weapon_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 
 	multiplier = multiplier * (weap_base:concealment_to_handling() or 1)
-		
+
 	multiplier = multiplier * (weapon_tweak_data.swap_speed_multiplier or 1)
 
 	multiplier = multiplier * managers.player:upgrade_value("weapon", "swap_speed_multiplier", 1)
