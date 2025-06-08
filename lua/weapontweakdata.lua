@@ -648,7 +648,7 @@ function WeaponTweakData:_init_weapons()
 					weap_data.kick.standing = { 1.6, 2, -0.2, 0.2 }
 
 				elseif cat_map.grenade_launcher or cat_map.snp then
-					weap_data.kick.standing = { 2, 2.5, -0.1, 0.1 }
+					weap_data.kick.standing = { 2, 3, -0.1, 0.1 }
 
 				else
 					weap_data.kick.standing = { 0, 0, 0, 0 }

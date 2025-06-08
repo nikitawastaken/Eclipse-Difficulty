@@ -1690,44 +1690,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	table.insert(self.parts.wpn_fps_smg_fmg9_conversion.forbids, "wpn_fps_lmg_hk51b_ns_jcomp")
 end)
 
-function WeaponFactoryTweakData:_balanace_ammo_types(tweak_data)
-	for id, data in pairs(tweak_data.upgrades.definitions) do
-		local weapon_id = data.weapon_id
-		local factory_id = data.factory_id
-
-		local akimbo_mappings = tweak_data.weapon:get_akimbo_mappings()
-
-		local weapon_tweak = tweak_data.weapon[weapon_id]
-		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
-
-		local shotgun_reload = weapon_tweak and weapon_tweak.use_shotgun_reload or weapon_tweak and weapon_tweak.timers and weapon_tweak.timers.shotgun_reload_shell or nil
-		local mag_capacity = weapon_tweak and weapon_tweak.CLIP_AMMO_MAX / (is_akimbo and 2 or 1)
-
-		for id, part in pairs(self.parts) do
-			if self[factory_id] and table.contains(self[factory_id].uses_parts, id) then
-				if part.stats then
-					local extra_ammo_stat = part.stats.extra_ammo
-					local ammo_offset_stat = part.custom_stats and part.custom_stats.ammo_offset
-					if extra_ammo_stat or ammo_offset_stat then
-						if mag_capacity then
-							local reload_speed_stat
-							local concealment_stat
-							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
-							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
-							reload_speed_stat = 1 - math.clamp(math.round((capacity_increase / 10) * 0.05, 0.01), -0.25, 0.25)
-							concealment_stat = -math.clamp(math.round(capacity_increase / 20), -5, 5)
-
-							part.stats.reload = 0
-							part.stats.concealment = concealment_stat
-							part.custom_stats.reload_speed_multiplier = shotgun_reload and 1 or reload_speed_stat
-						end
-					end
-				end
-			end
-		end
-	end
-end
-
 function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 	for id, data in pairs(tweak_data.upgrades.definitions) do
 		local weapon_id = data.weapon_id
@@ -1769,7 +1731,6 @@ end
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
 	self:_balance_magazines(tweak_data)
-	self:_balanace_ammo_types(tweak_data)
 end)
 
 -- Gun Perks replace stat boosts
