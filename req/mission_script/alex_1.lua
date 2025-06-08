@@ -36,7 +36,7 @@ local sniper_amount_counter = {
 		counter_target = normal and 2 or hard and 4 or 6,
 	},
 }
-local heli_cloaker = {
+local cloaker_enemy = {
 	enemy = normal and scripted_enemy.heavy_swat_1 or scripted_enemy.cloaker,
 }
 local exclude_cop_agents_shields_dozers = {
@@ -76,8 +76,11 @@ local flank_spawn = {
 }
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
-	[101571] = heli_cloaker,
-	[101572] = heli_cloaker,
+	[101571] = cloaker_enemy,
+	[101572] = cloaker_enemy,
+	-- replace scripted heavies with cloakers on higher difficulties
+	[101660] = cloaker_enemy,
+	[101661] = cloaker_enemy,
 	-- randomize dozer spawn
 	-- let bulldozer end his spawn anim before going into hunt mode
 	[100952] = {
