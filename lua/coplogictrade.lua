@@ -161,15 +161,16 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 			unit:brain():on_hostage_move_interaction(nil, "stay")
 		end
 
-		if is_custody_trade then
-			unit:interaction():set_tweak_data("hostage_trade")
-			unit:contour():flash("hostage_trade_uncustody", 0.5)
-		else
-			Eclipse:log_chat("set proper tweak data")
-			unit:interaction():set_tweak_data("hostage_trade_resources")
-			unit:contour():flash("hostage_trade_resources", 0.5)
+		if Network:is_server() then
+			if is_custody_trade then
+				unit:interaction():set_tweak_data("hostage_trade")
+				unit:contour():flash("hostage_trade_uncustody", 0.5)
+			else
+				unit:interaction():set_tweak_data("hostage_trade_resources")
+				unit:contour():flash("hostage_trade_resources", 0.5)
+			end
+			unit:interaction():set_active(true, true)
 		end
-		unit:interaction():set_active(true, true)
 
 		if Network:is_server() and not unit:anim_data().hands_tied and not unit:anim_data().tied then
 			local action_data = nil

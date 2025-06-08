@@ -361,7 +361,6 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 
 		managers.enemy:add_delayed_clbk(clbk_id, callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
 	elseif not is_custody_trade then
-		self._resource_trades_done = self._resource_trades_done + 1
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true
 		self._hostage_trade_clbk = nil
@@ -433,5 +432,7 @@ function TradeManager:trade_complete()
 
 	self:end_stockholm_syndrome()
 	self._trade_complete = true
-	Eclipse:log_chat("Trades: ", tostring(self._resource_trades_done))
+	if not self._is_custody_trade then
+		self:increment_resource_trade()
+	end
 end
