@@ -36,6 +36,37 @@ function M.gen_dummy(id, name, pos, rot, opts)
 
 	return dummy
 end
+
+---Generate a civilian dummy element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_civilian_dummy(id, name, pos, rot, opts)
+	opts = opts or {}
+	local civilian_dummy = {
+		id = id,
+		editor_name = name,
+		class = "ElementSpawnCivilian",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			position = pos,
+			force_pickup = opts.force_pickup or "none",
+			enemy = opts.enemy or nil,
+			trigger_times = opts.trigger_times or 0,
+			state = opts.state or "none",
+			on_executed = opts.on_executed or {},
+			rotation = rot,
+			team = opts.team or "default",
+			base_delay = opts.base_delay or 0,
+			enabled = opts.enabled or false,
+		},
+	}
+
+	return civilian_dummy
+end
+
 ---Generate a spawngroup element, used to organize dummys
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference
@@ -522,6 +553,34 @@ function M.gen_difficulty(id, name, pos, rot, opts)
 	}
 
 	return difficulty_element
+end
+
+---Generate a chance element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_chance(id, name, pos, rot, opts)
+	opts = opts or {}
+	local chance_element = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementLogicChance",
+		class = "ElementLogicChance",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 0,
+			chance = opts.chance or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+		},
+	}
+
+	return chance_element
 end
 
 return M
