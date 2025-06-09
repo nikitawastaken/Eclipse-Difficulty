@@ -419,7 +419,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400071, "loud_sec_vault_hallway_7", Vector3(3447, 704, -14.895), Rotation(90, 0, 0), optsSecurity),
 	Eclipse.mission_elements.gen_dummy(400072, "loud_sec_vault_hallway_8", Vector3(5959, 704, -21.895), Rotation(90, 0, 0), optsSecurity),
 	Eclipse.mission_elements.gen_dummy(400073, "loud_sec_vault_hallway_9", Vector3(5959, 1810, -21.895), Rotation(90, 0, 0), optsSecurity),
-	Eclipse.mission_elements.gen_dummy(400074, "loud_sec_vault_hallway_10", Vector3(6650, 1249, -21.895), optsSecurity),
+	Eclipse.mission_elements.gen_dummy(400074, "loud_sec_vault_hallway_10", Vector3(6650, 1249, -21.895), Rotation(90, 0, 0), optsSecurity),
 	Eclipse.mission_elements.gen_missionscript(400075, "loud_sec_event", optsspawnSecurity),
 }
 
