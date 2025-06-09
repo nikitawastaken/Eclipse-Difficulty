@@ -310,6 +310,16 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	return result
 end)
 
+-- Revert headshot multipliers for fire damage
+local damage_fire_original = CopDamage.damage_fire
+function CopDamage:damage_fire(attack_data, ...)
+	local head_body_name = self._head_body_name
+	self._head_body_name = nil
+	local result = damage_fire_original(self, attack_data, ...)
+	self._head_body_name = head_body_name
+	return result
+end
+
 -- Disable impact sounds and blood effects for stuns
 local damage_explosion = CopDamage.damage_explosion
 function CopDamage:damage_explosion(attack_data, ...)

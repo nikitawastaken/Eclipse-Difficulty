@@ -22,11 +22,11 @@ end
 
 -- Fix and improve enemies breaking out of intimidated state
 -- Don't immediately break out of surrender when the conditions are met
-Hooks:PostHook(CopLogicIntimidated, "enter", "sh_enter", function(data)
+Hooks:PostHook(CopLogicIntimidated, "enter", "sh_enter", function (data)
 	data.internal_data.surrender_break_delay_t = TimerManager:game():time() + 2
 end)
 
-Hooks:PostHook(CopLogicIntimidated, "on_intimidated", "sh_on_intimidated", function(data)
+Hooks:PostHook(CopLogicIntimidated, "on_intimidated", "sh_on_intimidated", function (data)
 	data.internal_data.surrender_break_delay_t = data.t + 2
 end)
 
@@ -69,3 +69,17 @@ function CopLogicIntimidated._update_enemy_detection(data, my_data)
 	data.brain:set_objective(nil)
 	CopLogicBase._exit(data.unit, "attack")
 end
+
+-- Remove surrendered enemies from their groups and make them retire if they are freed
+Hooks:PostHook(CopLogicIntimidated, "_do_tied", "sh__do_tied", function(data)
+	if data.group then
+		managers.groupai:state():unit_leave_group(data.unit)
+	end
+end)
+
+Hooks:PostHook(CopLogicIntimidated, "on_rescue_SO_completed", "sh_on_rescue_SO_completed", function(ignore_this, data)
+	if not data.group then
+		managers.groupai:state():assign_enemy_to_group_ai(data.unit, data.team.id)More actions
+		managers.groupai:state():_assign_group_to_retire(data.group)
+	end
+end)
