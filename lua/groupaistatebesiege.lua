@@ -92,9 +92,10 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 			)
 		self._task_data.assault.first_response_trades_delay = self._t
 			+ (
-				self._tweak_data.first_responders_delay_per_map and self._tweak_data.first_responders_delay_per_map[Eclipse.utils.level_id()]
-				or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
-			) / 2
+					self._tweak_data.first_responders_delay_per_map and self._tweak_data.first_responders_delay_per_map[Eclipse.utils.level_id()]
+					or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
+				)
+				/ 2
 	end
 
 	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)
