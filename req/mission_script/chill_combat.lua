@@ -4,17 +4,24 @@ local disabled = {
 		enabled = false,
 	},
 }
-local standard_spawn = {
+local fence_spawn = {
 	values = {
-		interval = 15,
+		interval = 5,
 	},
 }
 local bush_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
+	groups = preferred.no_shields,
 }
 local roof_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local window_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -92,12 +99,12 @@ return {
 		reinforce = {
 			{
 				name = "touch_grass1",
-				force = 3,
+				force = 2,
 				position = Vector3(-1500, 800, 300),
 			},
 			{
 				name = "touch_grass2",
-				force = 3,
+				force = 2,
 				position = Vector3(-500, 2150, 300),
 			},
 		},
@@ -117,13 +124,13 @@ return {
 	[102451] = sniper_amount,
 	]]
 	-- Spawn group delays
-	[101178] = standard_spawn,
-	[100994] = standard_spawn,
+	[101178] = fence_spawn,
+	[100994] = fence_spawn,
 	[100993] = bush_spawn,
 	[101131] = bush_spawn,
 	[101038] = roof_spawn,
 	[101204] = roof_spawn,
 	[101656] = roof_spawn,
-	[101859] = roof_spawn,
-	[101864] = roof_spawn,
+	[101859] = window_spawn,
+	[101864] = window_spawn,
 }
