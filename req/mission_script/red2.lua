@@ -378,8 +378,6 @@ return {
 	[103697] = bulldozer_spawn,
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
-	[103163] = bulldozer_spawn,
-	[103198] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
 	-- Spawn group delays
 	[102154] = elevator_spawn,
