@@ -22,9 +22,7 @@ local tear_gas_amount = {
 	},
 }
 local gate_chance = {
-	values = {
-		chance = normal and 25 or hard and 50 or 75,
-	},
+	chance = normal and 25 or hard and 50 or 75,
 }
 local reinforce = {
 	on_executed = {
@@ -212,9 +210,7 @@ return {
 	},
 	--skylight chance
 	[104324] = {
-		values = {
-			chance = eclipse and 100 or 50,
-		},
+		chance = eclipse and 100 or 50,
 	},
 	[101930] = {
 		values = {

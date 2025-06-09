@@ -28,9 +28,8 @@ local swats = { [swat_1] = 2, [swat_2] = 1 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_bulldozer_neil] = 1, [elite_bulldozer_skull] = 1 }
 local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
 local specials_list_easy_normal = { [taser] = 6, [cloaker] = 1 }
-local specials = {
-	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
-}
+local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
+
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -140,7 +139,7 @@ local optsDozerChopper_2 = {
 	enabled = true,
 }
 local optsDozerAmbush = {
-	enemy_table = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers,
+	enemy_table = is_eclipse and random_elite_dozers or (normal or hard) and random_dozers,
 	enabled = true,
 }
 local optsCloakerAmbush = {
@@ -206,6 +205,7 @@ local ambush_event_global = {
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
+	enabled = level_id == "firestarter_3" and true or false,
 	elements = {
 		400068,
 	},
@@ -217,6 +217,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
+	enabled = level_id == "firestarter_3" and true or false,
 	toggle = "off",
 	elements = {
 		100197,
