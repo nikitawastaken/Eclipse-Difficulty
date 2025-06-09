@@ -42,7 +42,7 @@ end
 function TradeManager:is_trading()
 	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
 	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
-	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < self._t
+	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay_passed()
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	return (self._trading_hostage or self._hostage_trade_clbk or self._speaker_snd_event)
@@ -57,7 +57,7 @@ end
 function TradeManager:is_trade_allowed(t)
 	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
 	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
-	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
+	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay_passed()
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
@@ -89,7 +89,7 @@ function TradeManager:update(t, dt)
 	local is_auto_assault_ai_trade = self:update_auto_assault_ai_trade(dt, is_trade_allowed)
 	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
 	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
-	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay() < t
+	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay_passed()
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	local assault_phase = managers.groupai:state():besiege_assault_phase()
