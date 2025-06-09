@@ -28,7 +28,7 @@ local swats = { [swat_1] = 2, [swat_2] = 1 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_bulldozer_neil] = 1, [elite_bulldozer_skull] = 1 }
 local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
 local specials_list_easy_normal = { [taser] = 6, [cloaker] = 1 }
-local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
+local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
 
 local random_dozers = {
 	green_bulldozer,
