@@ -79,7 +79,7 @@ end)
 
 Hooks:PostHook(CopLogicIntimidated, "on_rescue_SO_completed", "sh_on_rescue_SO_completed", function(ignore_this, data)
 	if not data.group then
-		managers.groupai:state():assign_enemy_to_group_ai(data.unit, data.team.id)More actions
+		managers.groupai:state():assign_enemy_to_group_ai(data.unit, data.team.id)
 		managers.groupai:state():_assign_group_to_retire(data.group)
 	end
 end)
