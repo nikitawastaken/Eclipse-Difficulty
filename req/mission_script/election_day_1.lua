@@ -15,13 +15,13 @@ local waterfront_spawn = {
 		interval = 15,
 	},
 }
-local jumpdown_far_spawn = {
+local jumpdown_spawn1 = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local jumpdown_close_spawn = {
+local jumpdown_spawn2 = {
 	values = {
 		interval = 30,
 	},
@@ -33,12 +33,12 @@ return {
 		reinforce = {
 			{
 				name = "ground1",
-				force = 2,
+				force = 3,
 				position = Vector3(1850, 3150, 0),
 			},
 			{
 				name = "ground2",
-				force = 2,
+				force = 3,
 				position = Vector3(300, -900, 0),
 			},
 		},
@@ -59,12 +59,12 @@ return {
 	-- Slightly revising the original version with more pronounced intervals.
 	[101505] = waterfront_spawn,
 	[101196] = waterfront_spawn,
-	[104110] = jumpdown_far_spawn,
-	[104324] = jumpdown_far_spawn,
-	[104330] = jumpdown_far_spawn,
-	[104410] = jumpdown_far_spawn,
-	[104111] = jumpdown_close_spawn,
-	[104321] = jumpdown_close_spawn,
+	[104110] = jumpdown_spawn1,
+	[104324] = jumpdown_spawn1,
+	[104330] = jumpdown_spawn1,
+	[104410] = jumpdown_spawn1,
+	[104111] = jumpdown_spawn2,
+	[104321] = jumpdown_spawn2,
 	-- Harassers
 	[104583] = harasser,
 	[104112] = harasser,

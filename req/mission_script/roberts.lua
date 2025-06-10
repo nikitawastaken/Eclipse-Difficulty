@@ -47,12 +47,12 @@ local plank_amount = {
 }
 local street_spawn = {
 	values = {
-		interval = 10,
+		interval = 5,
 	},
 }
 local front_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
