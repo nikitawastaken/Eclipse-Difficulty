@@ -3092,13 +3092,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq = 1,
-				rank = 2,
+				rank = 1,
 				unit = "bulldozer",
 				tactics = self._tactics.bulldozer_support_charge,
 			},
 			{
 				freq = 0.5,
-				rank = 2,
+				rank = 1,
 				unit = "elite_bulldozer",
 				tactics = self._tactics.bulldozer_support_charge,
 			},
