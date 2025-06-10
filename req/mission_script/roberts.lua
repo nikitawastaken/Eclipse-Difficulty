@@ -38,7 +38,7 @@ local donut_lords_at_the_gas_station = {
 local gensec_van_at_the_bank = {
 	chance = (eclipse and 10 or 5) + (is_pro_job and 5 or 0),
 }
-local plank_amount =  {
+local plank_amount = {
 	values = {
 		amount = 4,
 		amount_random = 6 - (is_pro_job and 4 or 0),
