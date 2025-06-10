@@ -114,7 +114,10 @@ end
 
 function GroupAIStateBesiege:_first_response_trades_delay_passed()
 	local task_data = self._task_data and self._task_data.assault
-	return (task_data and task_data.first_response_trades_delay or 0) < self._t
+	if task_data and task_data.first_response_trades_delay then
+		return (task_data.first_response_trades_delay or 0) < self._t
+	end
+	return false
 end
 
 function GroupAIStateBesiege:besiege_assault_phase()
