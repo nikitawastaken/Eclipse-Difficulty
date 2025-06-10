@@ -3889,7 +3889,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_taser_flank = { 4, 4, 4 },
 			fbi_taser_charge = { 4, 4, 4 },
 
-			fbi_bulldozer_charge = { 3, 3, 3 },
+			fbi_bulldozer_charge = { 4, 4, 4 },
 		}
 		self.ponr.reenforce.groups = {
 			fbi_defend_light = { 2, 2, 2 },
@@ -3915,9 +3915,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_cloaker_hide = { 6, 6, 6 },
 			fbi_cloaker_charge = { 6, 6, 6 },
 
-			fbi_bulldozer_charge = { 2, 2, 2 },
+			fbi_bulldozer_charge = { 3, 3, 3 },
 
-			elite_bulldozer_charge = { 2, 2, 2 },
+			elite_bulldozer_charge = { 3, 3, 3 },
 		}
 		self.ponr.reenforce.groups = {
 			elite_defend_light = { 1, 1, 1 },
@@ -3943,9 +3943,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_cloaker_hide = { 8, 8, 8 },
 			fbi_cloaker_charge = { 8, 8, 8 },
 
-			fbi_bulldozer_charge = { 3, 3, 3 },
+			fbi_bulldozer_charge = { 4, 4, 4 },
 
-			elite_bulldozer_charge = { 3, 3, 3 },
+			elite_bulldozer_charge = { 4, 4, 4 },
 		}
 		self.ponr.reenforce.groups = {
 			elite_defend_light = { 1, 1, 1 },
@@ -3959,11 +3959,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			elite_heavies_ranged = { 16, 16, 16 },
 			elite_heavies_charge = { 8, 8, 8 },
 
-			fbi_shield_ranged = { 8, 8, 8 },
-			fbi_shield_charge = { 8, 8, 8 },
-
-			elite_shield_ranged = { 8, 8, 8 },
-			elite_shield_charge = { 8, 8, 8 },
+			elite_shield_ranged = { 10, 10, 10 },
+			elite_shield_charge = { 10, 10, 10 },
 
 			elite_taser_flank = { 10, 10, 10 },
 			elite_taser_charge = { 10, 10, 10 },
@@ -3971,9 +3968,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_cloaker_hide = { 10, 10, 10 },
 			fbi_cloaker_charge = { 10, 10, 10 },
 
-			fbi_bulldozer_charge = { 4, 4, 4 },
-
-			elite_bulldozer_charge = { 4, 4, 4 },
+			elite_bulldozer_charge = { 10, 10, 10 },
 		}
 		self.ponr.reenforce.groups = {
 			elite_defend_light = { 1, 1, 1 },
