@@ -2611,13 +2611,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				amount_max = 1,
-				freq = 1,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 200,
 				rank = 3,
 				unit = "bulldozer",
 				tactics = self._tactics.bulldozer_charge,
 			},
 			{
+				amount_min = 2,
 				freq = 1,
 				rank = 2,
 				unit = "fbi_heavy",
@@ -3027,13 +3028,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				amount_min = 1,
-				amount_max = 1,
-				freq = 1,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 200,
 				rank = 3,
 				unit = "elite_bulldozer",
 				tactics = self._tactics.bulldozer_charge,
 			},
 			{
+				amount_min = 2,
 				freq = 1,
 				rank = 2,
 				unit = "fbi_heavy",
