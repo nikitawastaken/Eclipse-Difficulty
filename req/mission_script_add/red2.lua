@@ -251,6 +251,57 @@ local optsShieldArmy_5 = {
 	on_executed = { { id = 400064, delay = 0 } },
 	enabled = true,
 }
+local optsTaserGarbagetruck = {
+	enemy = taser,
+	on_executed = { { id = 400078, delay = 0 } },
+	enabled = true,
+}
+local optsCloakerAmbush_193 = {
+	enemy = cloaker,
+	enabled = true,
+}
+local Smoke_bomb = {
+	duration = 12,
+}
+local optsReachedEscapeElevators = {
+	width = 900,
+	depth = 200,
+	on_executed = {
+		{ id = 400076, delay = 0 },
+		{ id = 400079, delay = 0 },
+	},
+}
+local optsReachedNearGarbagetruck = {
+	width = 300,
+	on_executed = {
+		{ id = 400077, delay = 0 },
+		{ id = 400080, delay = 0 },
+	},
+}
+local optsTaser_Sniper_SO = {
+	SO_access = "8192",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	interval = 2,
+	so_action = "AI_sniper",
+}
+local disable_193_ambushes = {
+	enabled = true,
+	toggle = "off",
+	elements = {
+		400081,
+		400082,
+	},
+}
+local enable_193_ambushes = {
+	enabled = is_eclipse,
+	elements = {
+		400081,
+		400082,
+	},
+}
 local optsShieldArmySO = {
 	SO_access = tostring(2048 + 8192),
 	scan = true,
@@ -421,6 +472,20 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400073, "loud_sec_vault_hallway_9", Vector3(5959, 1810, -21.895), Rotation(90, 0, 0), optsSecurity),
 	Eclipse.mission_elements.gen_dummy(400074, "loud_sec_vault_hallway_10", Vector3(6650, 1249, -21.895), Rotation(90, 0, 0), optsSecurity),
 	Eclipse.mission_elements.gen_missionscript(400075, "loud_sec_event", optsspawnSecurity),
+	
+	-- 193+ events
+	Eclipse.mission_elements.gen_dummy(400076, "cloaker_near_elevator", Vector3(5141, -2911, -735.693), Rotation(-90, 0, 0), optsCloakerAmbush_193),
+	Eclipse.mission_elements.gen_dummy(400077, "taser_garbage_truck", Vector3(3811, -187, -735.693), Rotation(-57, 0, 0), optsTaserGarbagetruck),
+	Eclipse.mission_elements.gen_so(400078, "taser_camp_so", Vector3(3835, -170, -735.693), Rotation(-58, 0, 0), optsTaser_Sniper_SO),
+	
+	Eclipse.mission_elements.gen_smokegrenade(400079, "smoke_grenade_1", Vector3(5373, -2915, -735.693), Rotation(0, 0, 0), Smoke_bomb),
+	Eclipse.mission_elements.gen_smokegrenade(400080, "smoke_grenade_2", Vector3(4653.735, 217.405, -735.693), Rotation(0, 0, 0), Smoke_bomb),
+	
+	Eclipse.mission_elements.gen_areatrigger(400081, "area_trigger_near_elevators", Vector3(5687, -2442, -735.693), Rotation(0, 0, 0), optsReachedEscapeElevators),
+	Eclipse.mission_elements.gen_areatrigger(400082, "area_trigger_near_garbage_truck", Vector3(5510, -76, -735.693), Rotation(0, 0, 0), optsReachedNearGarbagetruck),
+	
+	Eclipse.mission_elements.gen_toggleelement(400083, "disable_193plus_escape_events", disable_193_ambushes),
+	Eclipse.mission_elements.gen_toggleelement(400084, "enable_193plus_escape_events", enable_193_ambushes),
 }
 
 return M

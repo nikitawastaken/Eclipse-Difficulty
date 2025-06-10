@@ -9,6 +9,7 @@ local diff_scaling = diff_i / 8
 local hard_above = diff_i >= 3
 local overkill_above = diff_i >= 5
 
+local security_guard_1 = scripted_enemy.security_1
 local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
@@ -217,6 +218,18 @@ return {
 			{ id = 105732, delay = 2.75 },
 		},
 	},
+	-- disable 193+ events on startup
+	[100326] = {
+		on_executed = {
+			{ id = 400083, delay = 3 },
+		},
+	},
+	-- enable them on loud (eclipse only)
+	[101300] = {
+		on_executed = {
+			{ id = 400084, delay = 0 },
+		},
+	},
 	-- always force cloaker and taser to spawn like in PDTH
 	[100875] = windows_swat,
 	[102245] = windows_swat,
@@ -269,9 +282,9 @@ return {
 			amount = vault_count,
 		},
 	},
-	[103999] = disabled,
-	[103985] = disabled,
-	[104049] = disabled,
+	[103998] = disabled,
+	[103377] = disabled,
+	[104041] = disabled,
 	-- custom spawns
 	-- add point of no return and spawn lobby ambushes
 	[101660] = {
@@ -379,6 +392,8 @@ return {
 	-- door knock dozers
 	[103162] = bulldozer_spawn,
 	[103231] = bulldozer_spawn,
+	-- why is there a beat cop instead of security guard in the vault???
+	[104001] = { enemy = security_guard_1 },
 	-- Spawn group delays
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,
