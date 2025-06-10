@@ -38,6 +38,12 @@ local donut_lords_at_the_gas_station = {
 local gensec_van_at_the_bank = {
 	chance = (eclipse and 10 or 5) + (is_pro_job and 5 or 0),
 }
+local plank_amount =  {
+	values = {
+		amount = 4,
+		amount_random = 6 - (is_pro_job and 4 or 0),
+	},
+}
 local street_spawn = {
 	values = {
 		interval = 5,
@@ -140,6 +146,10 @@ return {
 			amount = is_eclipse and 8,
 		},
 	},
+	-- adjust plank amount
+	[101803] = plank_amount,
+	[101804] = plank_amount,
+	[101805] = plank_amount,
 	--replace the fbi with soldiers+some tasers
 	[106434] = us_soldier,
 	[106433] = taser_spawn,
