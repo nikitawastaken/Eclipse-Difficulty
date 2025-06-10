@@ -5,6 +5,7 @@ local overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_eclipse_pro = is_pro_job and eclipse
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
 --local us_soldier_tank = scripted_enemy.soldier_bulldozer
@@ -30,7 +31,7 @@ local taser_spawn = {
 	enemy = taser,
 }
 local ambush_chance = {
-	chance = normal and 45 or hard and 70 or 100,
+	chance = (normal and 20 or hard and 30 or 40) + (is_pro_job and 20 or 0),
 }
 local donut_lords_at_the_gas_station = {
 	chance = (eclipse and 20 or 10) + (is_pro_job and 10 or 0),
@@ -106,44 +107,17 @@ return {
 			},
 		},
 	},
-	-- Restore the bulldozer that drops from the chopper on higher diffs
-	[102992] = {
-		values = {
-			enabled = overkill_and_above and true,
-		},
-	},
-	-- loop the chopper
-	[100022] = {
-		on_executed = {
-			{ id = 104075, delay = overkill_and_above and 300 or 360 },
-		},
-	},
-	[104078] = {
-		on_executed = {
-			{ id = 104075, delay = overkill_and_above and 240 or 300 },
-		},
-	},
-	[104076] = {
-		on_executed = {
-			{ id = 104075, remove = true },
-		},
-	},
-	[104075] = {
-		values = {
-			trigger_times = 0,
-		},
-	},
 	-- tweak the ambush near the end
-	-- both soldiers and dozer ambush on eclipse
+	-- both soldiers and dozer ambush on eclipse pro
 	[106416] = {
 		values = {
-			amount = is_eclipse and 2,
+			amount = is_eclipse_pro and 2 or 1,
 		},
 	},
-	-- all 8 ambush units on eclipse
+	-- all 8 ambush units on eclipse pro
 	[104534] = {
 		values = {
-			amount = is_eclipse and 8,
+			amount = is_eclipse_pro and 8 or 6,
 		},
 	},
 	-- adjust plank amount
