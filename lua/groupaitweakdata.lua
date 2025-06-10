@@ -15,58 +15,80 @@ end
 
 GroupAITweakData.group_ai_presets = {
 	["ambush"] = {
-		CS_assault_shield = { 1, 1.25, 1.25 },
-		FBI_assault_shield = { 1, 1.25, 1.25 },
-		Elite_assault_shield = { 1, 1.25, 1.25 },
+		cs_shield_ranged = { 1, 1.25, 1.25 },
+		cs_shield_charge = { 1, 1.25, 1.25 },
+		fbi_shield_ranged = { 1, 1.25, 1.25 },
+		fbi_shield_charge = { 1, 1.25, 1.25 },
+		elite_shield_ranged = { 1, 1.25, 1.25 },
+		elite_shield_charge = { 1, 1.25, 1.25 },
 
-		CS_assault_taser = { 1, 1.25, 1.25 },
-		FBI_assault_taser = { 1, 1.25, 1.25 },
-		Elite_assault_taser = { 1, 1.25, 1.25 },
+		cs_taser_flank = { 1, 1.25, 1.25 },
+		cs_taser_charge = { 1, 1.25, 1.25 },
+		fbi_taser_flank = { 1, 1.25, 1.25 },
+		fbi_taser_charge = { 1, 1.25, 1.25 },
+		elite_taser_takedown = { 1, 1.25, 1.25 },
+		elite_taser_flank = { 1, 1.25, 1.25 },
+		elite_taser_charge = { 1, 1.25, 1.25 },
+		
+		cs_bulldozer_charge = { 1, 1.25, 1.25 },
+		fbi_bulldozer_charge = { 1, 1.25, 1.25 },
+		elite_bulldozer_shield = { 1, 1.25, 1.25 },
+		elite_bulldozer_takedown = { 1, 1.25, 1.25 },
+		elite_bulldozer_charge = { 1, 1.25, 1.25 },
 
-		CS_assault_bulldozer = { 1, 1.25, 1.25 },
-		FBI_assault_bulldozer = { 1, 1.25, 1.25 },
-		Elite_assault_bulldozer = { 1, 1.25, 1.25 },
-
-		FBI_assault_cloaker = { 1, 1.5, 1.5 },
+		fbi_cloaker_charge = { 1, 1.5, 1.5 },
+		fbi_cloaker_hide = { 1, 1.5, 1.5 },
 	},
 	["small_urban"] = {
-		CS_assault_cops = { 1.5, 1.25, 1 },
+		cs_cops_init = { 1.5, 1.25, 1 },
 
-		CS_assault_bulldozer = { 0, 0, 0.75 },
-		FBI_assault_bulldozer = { 0, 0, 0.75 },
-		Elite_assault_bulldozer = { 0, 0, 0.75 },
+		cs_bulldozer_charge = { 0, 0, 0.75 },
+		fbi_bulldozer_charge = { 0, 0, 0.75 },
+		elite_bulldozer_shield = { 0, 0, 0.75 },
+		elite_bulldozer_takedown = { 0, 0, 0.75 },
+		elite_bulldozer_charge = { 0, 0, 0.75 },
 
-		CS_reinforce_cops = { 1.5, 1.25, 1 },
+		cs_defend_init = { 1.5, 1.25, 1 },
 
-		CS_reinforce_swats = { 0, 0.5, 1 },
-		FBI_reinforce_swats = { 0, 0.5, 1 },
+		cs_defend_light = { 0, 0.5, 1 },
+		fbi_defend_light = { 0, 0.5, 1 },
+		elite_defend_light = { 0, 0.5, 1 },
+
+		cs_defend_heavy = { 0, 0, 1 },
+		fbi_defend_heavy = { 0, 0, 1 },
+		elite_defend_heavy = { 0, 0, 1 },
 	},
 	["remote"] = {
-		CS_assault_cops = { 0, 0, 0 },
+		cs_cops_init = { 0, 0, 0 },
 
-		CS_reinforce_cops = { 0.5, 0.25, 0 },
-		FBI_reinforce_agents = { 0.5, 0.25, 0 },
+		cs_defend_init = { 0.5, 0.25, 0 },
+		fbi_defend_init = { 0.5, 0.25, 0 },
 
-		CS_recon_cops = { 0.5, 0.25, 0 },
-		FBI_recon_agents = { 0.5, 0.25, 0 },
+		cs_stealth_light = { 0.5, 0.25, 0 },
+		fbi_stealth_light = { 0.5, 0.25, 0 },
 	},
 	["skyscraper"] = {
-		CS_assault_cops = { 0, 0, 0 },
+		cs_defend_init = { 1.5, 1.25, 1 },
 
-		CS_assault_shield = { 0, 0.75, 1 },
-		FBI_assault_shield = { 0, 0.75, 1 },
-		Elite_assault_shield = { 0, 0.75, 1 },
+		cs_shield_ranged = { 0, 0.75, 1 },
+		cs_shield_charge = { 0, 0.75, 1 },
+		fbi_shield_ranged = { 0, 0.75, 1 },
+		fbi_shield_charge = { 0, 0.75, 1 },
+		elite_shield_ranged = { 0, 0.75, 1 },
+		elite_shield_charge = { 0, 0.75, 1 },
 
-		FBI_assault_cloaker = { 1, 1.25, 1.25 },
+		fbi_cloaker_charge = { 1, 1.25, 1.25 },
+		fbi_cloaker_hide = { 1, 1.25, 1.25 },
+		
+		cs_defend_init = { 0.5, 0.25, 0 },
+		fbi_defend_init = { 0.5, 0.25, 0 },
 
-		CS_reinforce_cops = { 0.5, 0.25, 0 },
-		FBI_reinforce_agents = { 0.5, 0.25, 0 },
-
-		CS_recon_cops = { 0.5, 0.25, 0 },
-		FBI_recon_agents = { 0.5, 0.25, 0 },
+		cs_stealth_light = { 0.5, 0.25, 0 },
+		fbi_stealth_light = { 0.5, 0.25, 0 },
 	},
 }
 
+-- Helper function for Group AI presets
 function GroupAITweakData:_run_group_ai_preset(preset)
 	local preset_settings = self.group_ai_presets[preset]
 
@@ -89,6 +111,42 @@ function GroupAITweakData:_run_group_ai_preset(preset)
 			end
 		end
 	end
+end
+
+-- Helper to change freq based on engagement distance
+function GroupAITweakData:_distance_weighted_spawn_entry(spawn_entry, from_dis, to_dis, from_weight, to_weight)
+	local function dis_freq()
+		local dis = 0
+		local num = 0
+		for _, data in pairs(managers and managers.groupai and managers.groupai:state()._police or {}) do
+			local focus_enemy = data.unit:brain()._logic_data.attention_obj
+			if focus_enemy and focus_enemy.criminal_record and focus_enemy.verified_dis and focus_enemy.verified_t then
+				dis = dis + focus_enemy.verified_dis
+				num = num + 1
+			end
+		end
+		if num > 0 then
+			self._last_dis_freq = dis / num
+		end
+		return math.map_range_clamped(self._last_dis_freq or (from_dis + to_dis) / 2, from_dis, to_dis, from_weight, to_weight)
+	end
+
+	local entry_freq = spawn_entry.freq_by_diff or spawn_entry.freq or 1
+	spawn_entry.freq_by_diff = nil
+	spawn_entry.freq = nil
+	return setmetatable(spawn_entry, {
+		__index = function(t, k)
+			if k == "freq_by_diff" and type(entry_freq) == "table" then -- edit here
+				for i, weight in pairs(entry_freq) do 
+					entry_freq[i] = weight * dis_freq()
+				end
+				
+				return entry_freq
+			elseif k == "freq" then
+				return entry_freq * dis_freq()
+			end
+		end
+	})
 end
 
 -- Top level init
@@ -229,7 +287,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		}
 	end
 
-	self.unit_categories.CS_cop_1 = {
+	self.unit_categories.cs_cop_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
 			russia = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
@@ -240,7 +298,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_cop_2 = {
+	self.unit_categories.cs_cop_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_cop_2/ene_cop_2") },
 			russia = { Idstring("units/payday2/characters/ene_cop_2/ene_cop_2") },
@@ -251,7 +309,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_cop_3 = {
+	self.unit_categories.cs_cop_3 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_cop_3/ene_cop_3") },
 			russia = { Idstring("units/payday2/characters/ene_cop_3/ene_cop_3") },
@@ -262,7 +320,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_cop_4 = {
+	self.unit_categories.cs_cop_4 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_cop_4/ene_cop_4") },
 			russia = { Idstring("units/payday2/characters/ene_cop_4/ene_cop_4") },
@@ -273,7 +331,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_cop_1_2 = {
+	self.unit_categories.cs_cop_1_2 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
@@ -299,7 +357,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_cop_1_4 = {
+	self.unit_categories.cs_cop_1_4 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
@@ -325,7 +383,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_cop_3_4 = {
+	self.unit_categories.cs_cop_3_4 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
@@ -351,7 +409,43 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.CS_swat_1 = {
+	self.unit_categories.cs_cop = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"),
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+		},
+		access = access_type_walk_only,
+	}
+	
+	self.unit_categories.cs_swat_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_swat_1/ene_swat_1") },
 			russia = { Idstring("units/payday2/characters/ene_swat_1/ene_swat_1") },
@@ -362,7 +456,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_swat_2 = {
+	self.unit_categories.cs_swat_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_swat_2/ene_swat_2") },
 			russia = { Idstring("units/payday2/characters/ene_swat_2/ene_swat_2") },
@@ -373,7 +467,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_swat_3 = {
+	self.unit_categories.cs_swat_3 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_swat_3/ene_swat_3") },
 			russia = { Idstring("units/payday2/characters/ene_swat_3/ene_swat_3") },
@@ -384,7 +478,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_swat_1_3 = {
+	self.unit_categories.cs_swat_1_3 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_swat_1/ene_swat_1"),
@@ -410,7 +504,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_swat_2_3 = {
+	self.unit_categories.cs_swat_2_3 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_swat_2/ene_swat_2"),
@@ -436,7 +530,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_swat = {
+	self.unit_categories.cs_swat = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_swat_1/ene_swat_1"),
@@ -467,7 +561,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_heavy_1 = {
+	self.unit_categories.cs_heavy_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1") },
 			russia = { Idstring("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1") },
@@ -478,7 +572,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_heavy_2 = {
+	self.unit_categories.cs_heavy_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870") },
 			russia = { Idstring("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870") },
@@ -489,7 +583,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_heavy = {
+	self.unit_categories.cs_heavy = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"),
@@ -515,7 +609,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.CS_shield = {
+	self.unit_categories.cs_shield = {
 		special_type = "shield",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_shield_2/ene_shield_2") },
@@ -527,7 +621,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.FBI_agent_1 = {
+	self.unit_categories.fbi_agent_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1") },
@@ -538,7 +632,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.FBI_agent_2 = {
+	self.unit_categories.fbi_agent_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2") },
@@ -549,7 +643,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.FBI_agent_3 = {
+	self.unit_categories.fbi_agent_3 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3") },
@@ -560,7 +654,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.FBI_agent_1_2 = {
+	self.unit_categories.fbi_agent_1_2 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
@@ -586,7 +680,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.FBI_agent_2_3 = {
+	self.unit_categories.fbi_agent_2_3 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2"),
@@ -612,7 +706,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.FBI_swat_1 = {
+	self.unit_categories.fbi_swat_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1") },
@@ -623,7 +717,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_swat_2 = {
+	self.unit_categories.fbi_swat_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2") },
@@ -634,7 +728,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_swat_3 = {
+	self.unit_categories.fbi_swat_3 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3") },
@@ -645,7 +739,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_swat_1_3 = {
+	self.unit_categories.fbi_swat_1_3 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"),
@@ -671,7 +765,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_swat_2_3 = {
+	self.unit_categories.fbi_swat_2_3 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"),
@@ -697,7 +791,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_swat = {
+	self.unit_categories.fbi_swat = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"),
@@ -728,7 +822,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_heavy_1 = {
+	self.unit_categories.fbi_heavy_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1") },
@@ -739,7 +833,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_heavy_2 = {
+	self.unit_categories.fbi_heavy_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870") },
 			russia = { Idstring("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870") },
@@ -750,7 +844,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_heavy = {
+	self.unit_categories.fbi_heavy = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"),
@@ -776,7 +870,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.FBI_shield = {
+	self.unit_categories.fbi_shield = {
 		special_type = "shield",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_shield_1/ene_shield_1") },
@@ -788,7 +882,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.Elite_swat_1 = {
+	self.unit_categories.elite_swat_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1") },
 			russia = { Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1") },
@@ -799,7 +893,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_swat_2 = {
+	self.unit_categories.elite_swat_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2") },
 			russia = { Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2") },
@@ -810,7 +904,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_swat_3 = {
+	self.unit_categories.elite_swat_3 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3") },
 			russia = { Idstring("units/payday2/characters/ene_city_swat_3/ene_city_swat_3") },
@@ -821,7 +915,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_swat_1_3 = {
+	self.unit_categories.elite_swat_1_3 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
@@ -847,7 +941,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_swat_2_3 = {
+	self.unit_categories.elite_swat_2_3 = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"),
@@ -873,7 +967,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_swat = {
+	self.unit_categories.elite_swat = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"),
@@ -904,7 +998,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_heavy_1 = {
+	self.unit_categories.elite_heavy_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36") },
 			russia = { Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36") },
@@ -915,7 +1009,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_heavy_2 = {
+	self.unit_categories.elite_heavy_2 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870") },
 			russia = { Idstring("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870") },
@@ -926,7 +1020,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_heavy = {
+	self.unit_categories.elite_heavy = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"),
@@ -952,7 +1046,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_sniper = {
+	self.unit_categories.elite_sniper = {
 		special_type = "marksman",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_sniper_3/ene_sniper_3") },
@@ -964,7 +1058,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Elite_shield = {
+	self.unit_categories.elite_shield = {
 		special_type = "shield",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_city_shield/ene_city_shield") },
@@ -1129,7 +1223,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.Elite_bulldozer_1 = {
+	self.unit_categories.elite_bulldozer_1 = {
 		special_type = "tank",
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") },
@@ -1141,7 +1235,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.Elite_bulldozer_2 = {
+	self.unit_categories.elite_bulldozer_2 = {
 		special_type = "tank",
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3") },
@@ -1153,7 +1247,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.Elite_bulldozer = {
+	self.unit_categories.elite_bulldozer = {
 		special_type = "tank",
 		unit_types = {
 			america = {
@@ -1192,7 +1286,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_swat_1 = {
+	self.unit_categories.zeal_swat_1 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
 			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
@@ -1203,7 +1297,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_swat_2 = {
+	self.unit_categories.zeal_swat_2 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2") },
 			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2") },
@@ -1214,7 +1308,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_swat_3 = {
+	self.unit_categories.zeal_swat_3 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
 			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
@@ -1225,7 +1319,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_swat = {
+	self.unit_categories.zeal_swat = {
 		unit_types = {
 			america = {
 				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
@@ -1256,7 +1350,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_heavy_1 = {
+	self.unit_categories.zeal_heavy_1 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy") },
 			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy") },
@@ -1267,7 +1361,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_heavy_2 = {
+	self.unit_categories.zeal_heavy_2 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2") },
 			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2") },
@@ -1278,7 +1372,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_heavy = {
+	self.unit_categories.zeal_heavy = {
 		unit_types = {
 			america = {
 				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
@@ -1304,7 +1398,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_shield = {
+	self.unit_categories.zeal_shield = {
 		special_type = "shield",
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") },
@@ -1316,7 +1410,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.Zeal_taser_1 = {
+	self.unit_categories.zeal_taser_1 = {
 		special_type = "taser",
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
@@ -1328,7 +1422,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_taser_2 = {
+	self.unit_categories.zeal_taser_2 = {
 		special_type = "taser",
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
@@ -1340,7 +1434,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_taser = {
+	self.unit_categories.zeal_taser = {
 		special_type = "taser",
 		unit_types = {
 			america = {
@@ -1367,7 +1461,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_medic_1 = {
+	self.unit_categories.zeal_medic_1 = {
 		special_type = "medic",
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4") },
@@ -1379,7 +1473,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_medic_2 = {
+	self.unit_categories.zeal_medic_2 = {
 		special_type = "medic",
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870") },
@@ -1391,7 +1485,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_medic = {
+	self.unit_categories.zeal_medic = {
 		special_type = "medic",
 		unit_types = {
 			america = {
@@ -1418,7 +1512,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_cloaker = {
+	self.unit_categories.zeal_cloaker = {
 		special_type = "spooc",
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker") },
@@ -1430,7 +1524,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Zeal_tank = {
+	self.unit_categories.zeal_tank = {
 		special_type = "tank",
 		unit_types = {
 			america = {
@@ -1457,58 +1551,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
-	self.unit_categories.Marshal_gunner_1 = {
-		special_type = "marshal",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
-			russia = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
-			zombie = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
-			murkywater = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
-			federales = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.Marshal_gunner_2 = {
-		special_type = "marshal",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
-			russia = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
-			zombie = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
-			murkywater = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
-			federales = { Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.Marshal_gunner = {
-		special_type = "marshal",
-		unit_types = {
-			america = {
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
-			},
-			russia = {
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
-			},
-			zombie = {
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
-			},
-			murkywater = {
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
-			},
-			federales = {
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"),
-				Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"),
-			},
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.FBI_readyteam = {
+	self.unit_categories.fbi_readyteam = {
 		unit_types = {
 			america = {
 				Idstring("units/pd2_mcmansion/characters/ene_hoxton_breakout_guard_1/ene_hoxton_breakout_guard_1"),
@@ -1534,7 +1577,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Murky_response = {
+	self.unit_categories.murkywater = {
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_murkywater_1/ene_murkywater_1"),
@@ -1560,7 +1603,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Army_soldier_1 = {
+	self.unit_categories.army_soldier_1 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
 			russia = { Idstring("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1") },
@@ -1571,7 +1614,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Army_soldier_2 = {
+	self.unit_categories.army_soldier_2 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2") },
 			russia = { Idstring("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2") },
@@ -1582,7 +1625,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Army_soldier_3 = {
+	self.unit_categories.army_soldier_3 = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
 			russia = { Idstring("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3") },
@@ -1593,7 +1636,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.Bellmead_security = {
+	self.unit_categories.bellmead_security = {
 		unit_types = {
 			america = {
 				Idstring("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"),
@@ -1629,16 +1672,15 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self._tactics = {
 		none = {},
 		cop_init = {
-			"rescue",
 			"no_push",
+		},
+		cop_ranged = {
 			"ranged_fire",
-		},
-		cop_def = {
 			"no_push",
 		},
-		cop_snk = {
+		cop_flank = {
+			"ranged_fire",
 			"flank",
-			"ranged_fire",
 		},
 		hrt = {
 			"rescue",
@@ -1648,639 +1690,938 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"rescue",
 			"ranged_fire",
 		},
-		swat_def = {
+		swat_ranged = {
 			"ranged_fire",
-			"flash_grenade",
 			"smoke_grenade",
+			"flash_grenade",
 		},
-		swat_agg = {
+		swat_charge = {
 			"charge",
 			"deathguard",
 			"flash_grenade",
 		},
-		swat_snk = {
+		swat_flank = {
 			"flank",
 			"deathguard",
 			"smoke_grenade",
 		},
-		swat_spt = {
+		swat_support_ranged = {
 			"unit_cover",
 			"ranged_fire",
 		},
-		shield_def = {
+		swat_support_charge = {
+			"unit_cover",
+			"charge",
+		},
+		swat_support_flank = {
+			"unit_cover",
+			"flank",
+		},
+		shield_ranged = {
+			"shield",
 			"ranged_fire",
 			"door_ambush",
-			"shield",
 		},
-		shield_agg = {
+		shield_charge = {
+			"shield",
 			"charge",
 			"deathguard",
-			"shield",
 		},
-		shield_spt = {
+		shield_support_ranged = {
 			"shield_cover",
-			"flash_grenade",
-			"smoke_grenade",
+			"ranged_fire",
 		},
-		taser_agg = {
+		shield_support_charge = {
+			"shield_cover",
 			"charge",
-			"murder",
 		},
-		taser_snk = {
+		taser_flank = {
+			"murder",
 			"flank",
-			"murder",
 		},
-		taser_spt = {
+		taser_charge = {
 			"murder",
-			"flash_grenade",
-			"smoke_grenade",
-		},
-		bulldozer = {
 			"charge",
+		},
+		bulldozer_charge = {
 			"shield",
 			"murder",
-			"target_vulnerable",
+			"charge",
 		},
-		bulldozer_spt = {
+		bulldozer_support_charge = {
 			"shield_cover",
-			"target_vulnerable",
-			"flash_grenade",
+			"charge",
 			"smoke_grenade",
+			"flash_grenade",
 		},
-		medic = {
-			"unit_cover",
-		},
-		cloaker_def = {
+		cloaker_hide = {
 			"no_push",
 			"deathguard",
 		},
-		cloaker_snk = {
+		cloaker_charge = {
 			"flank",
-			"target_isolated",
+			"charge",
 		},
 		sniper = {
-			"no_push",
+			"unit_cover",
 			"ranged_fire",
+			"no_push",
 		},
 	}
 
 	-- соси хуй кк?
 	self.enemy_spawn_groups = {}
 
-	local swat_random_tactics_1 = { self._tactics.swat_def, self._tactics.swat_def, self._tactics.swat_snk }
-	local swat_random_tactics_2 = { self._tactics.swat_def, self._tactics.swat_snk }
-	local swat_random_tactics_3 = { self._tactics.swat_agg, self._tactics.swat_snk }
-
-	self.enemy_spawn_groups.CS_reinforce_cops = {
+	local cloaker_medic_1 = { "medic_1", "medic_1", "cloaker" }
+	local cloaker_medic_2 = { "medic_2", "medic_2", "cloaker" }
+	
+	local taser_medic_1 = { "medic_1", "medic_1", "taser_1" }
+	local taser_medic_2 = { "medic_2", "medic_2", "taser_2" }
+	 
+	local taser_cloaker = { "taser_1", "taser_2", "cloaker", "cloaker" }
+	
+	self.enemy_spawn_groups.cs_defend_init = {
 		amount = { 2, 3 },
 		spawn = {
-			{
-				freq = 1,
-				rank = 2,
-				unit = "CS_cop_1",
-				tactics = self._tactics.cop_def,
-			},
 			{
 				amount_max = 2,
-				freq_by_diff = {
-					difficulty_index / 6,
-					difficulty_index / 3,
-					difficulty_index,
-				},
+				freq = 2,
 				rank = 3,
-				unit = "CS_cop_3_4",
-				tactics = self._tactics.cop_def,
+				unit = "cs_cop_4",
+				tactics = self._tactics.cop_init,
 			},
-			{
-				amount_max = 1,
-				freq = 0.25,
-				rank = 1,
-				unit = "CS_cop_2",
-				tactics = self._tactics.cop_def,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.CS_reinforce_swats = {
-		amount = { 2, 3 },
-		spawn = {
 			{
 				amount_min = 1,
-				freq = 1,
-				rank = 1,
-				unit = "CS_swat_1_3",
-				tactics = self._tactics.none,
+				freq = 4,
+				rank = 2,
+				unit = "cs_cop_1",
+				tactics = self._tactics.cop_init,
 			},
 			{
-				amount_max = 2,
-				freq = 0.5,
-				rank = 2,
-				unit = "CS_swat_2",
-				tactics = self._tactics.none,
+				amount_max = 1,
+				freq = 1,
+				rank = 1,
+				unit = "cs_cop_2",
+				tactics = self._tactics.cop_init,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.CS_recon_cops = {
+	self.enemy_spawn_groups.cs_defend_light = {
 		amount = { 2, 3 },
 		spawn = {
-			{
-				freq_by_diff = { 1, 0.75, 0.5 },
-				rank = 2,
-				unit = "CS_cop_1",
-				tactics = self._tactics.hrt,
-			},
 			{
 				amount_max = 2,
 				freq = 1,
 				rank = 3,
-				unit = "CS_cop_3",
-				tactics = self._tactics.hrt,
+				unit = "cs_swat_2_3",
+				tactics = self._tactics.none,
+			},
+			{
+				amount_min = 1,
+				freq = 2,
+				rank = 2,
+				unit = "cs_swat_1",
+				tactics = self._tactics.none,
 			},
 			{
 				amount_max = 1,
-				freq = 0.25,
+				freq_by_diff = {
+					15 / (difficulty_index ^ 2),
+					0,
+					0,
+				},
 				rank = 1,
-				unit = "CS_cop_2",
+				unit = "cs_cop_3",
+				tactics = self._tactics.none,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.cs_defend_heavy = {
+		amount = { 2, 3 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 1,
+				rank = 3,
+				unit = "cs_heavy_2",
+				tactics = self._tactics.none,
+			},
+			{
+				amount_min = 1,
+				freq = 2,
+				rank = 2,
+				unit = "cs_heavy_1",
+				tactics = self._tactics.none,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					45 / (difficulty_index ^ 2),
+					30 / (difficulty_index ^ 2),
+					15 / (difficulty_index ^ 2),
+				},
+				freq = 1,
+				rank = 1,
+				unit = "cs_swat_3",
+				tactics = self._tactics.none,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.cs_stealth_light = {
+		amount = { 2, 3 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq_by_diff = { 0, 1, 1 },
+				rank = 3,
+				unit = "cs_cop_3",
+				tactics = self._tactics.hrt,
+			},
+			{
+				amount_max = 2,
+				freq_by_diff = { 1, 1, 0 },
+				rank = 2,
+				unit = "cs_cop_1",
 				tactics = self._tactics.hrt,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.CS_recon_swats = {
+	self.enemy_spawn_groups.cs_stealth_heavy = {
 		amount = { 2, 3 },
 		spawn = {
 			{
 				freq = 1,
 				rank = 1,
-				unit = "CS_swat",
+				unit = "cs_cop_3",
 				tactics = self._tactics.hrt,
 			},
 		},
 	}
-
-	self.enemy_spawn_groups.CS_assault_cops = {
+	
+	self.enemy_spawn_groups.cs_cops_init = {
 		amount = { 3, 3 },
 		spawn = {
 			{
-				freq = 1,
-				rank = 1,
-				unit = "CS_cop_1",
-				tactics = self._tactics.cop_init,
+				amount_min = 1,
+				freq = 4,
+				rank = 2,
+				unit = "cs_cop_1",
+				tactics = self._tactics.cop_ranged,
 			},
 			{
 				amount_max = 2,
-				freq = 0.5,
-				rank = 2,
-				unit = "CS_cop_4",
-				tactics = self._tactics.cop_init,
-			},
-			{
-				amount_max = 1,
-				freq = 0.25,
+				freq = 1,
 				rank = 1,
-				unit = "CS_cop_2",
-				tactics = self._tactics.cop_init,
+				unit = "cs_cop_2",
+				tactics = self._tactics.cop_ranged,
 			},
 			{
-				amount_max = 1,
+				amount_max = 2,
 				freq_by_diff = {
-					difficulty_index / 6,
-					difficulty_index / 3,
-					difficulty_index,
+					(difficulty_index ^ 2) / 5,
+					(difficulty_index ^ 2),
+					(difficulty_index ^ 2),
 				},
 				rank = 3,
-				unit = "CS_cop_3",
-				tactics = self._tactics.cop_snk,
+				unit = "cs_cop_3_4",
+				tactics = self._tactics.cop_flank,
 			},
 		},
 	}
-
-	self.enemy_spawn_groups.CS_assault_swats = {
+	
+	self.enemy_spawn_groups.cs_swats_ranged = {
 		amount = { 3, 4 },
 		spawn = {
 			{
+				amount_max = 2,
+				freq = 1,
+				rank = 3,
+				unit = "cs_swat_2_3",
+				tactics = self._tactics.swat_flank,
+			},
+			{
 				amount_max = 3,
-				freq_by_diff = { 1, 0.5, 0 },
-				rank = 1,
-				unit = "CS_swat",
+				freq_by_diff = { 10, 1, 0 },
+				rank = 2,
+				unit = "cs_swat",
 				tactics = self._tactics.swat_init,
 			},
 			{
-				amount_min = 1,
-				freq = 1,
+				amount_min = 2,
+				amount_max = 3,
+				freq = 2,
 				rank = 2,
-				unit = "CS_swat_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_1,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = { 0, 0.75, 0.75 },
-				rank = 2,
-				unit = "CS_swat_3",
-				tactics = self._tactics.swat_snk,
-				random_tactics = swat_random_tactics_2,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = { 0, 0.5, 0.5 },
-				rank = 2,
-				unit = "CS_swat_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
+				unit = "cs_swat_1",
+				tactics = self._tactics.swat_ranged,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.CS_assault_heavies = {
+	self.enemy_spawn_groups.cs_swats_charge = {
 		amount = { 3, 4 },
 		spawn = {
 			{
-				amount_min = 1,
+				amount_max = 2,
 				freq = 1,
-				rank = 2,
-				unit = "CS_heavy_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_2,
+				rank = 3,
+				unit = "cs_swat_1_3",
+				tactics = self._tactics.swat_flank,
 			},
 			{
-				amount_max = 2,
-				freq = 0.5,
+				amount_max = 3,
+				freq_by_diff = { 10, 1, 0 },
 				rank = 2,
-				unit = "CS_heavy_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
+				unit = "cs_swat",
+				tactics = self._tactics.swat_init,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 2,
+				rank = 2,
+				unit = "cs_swat_2",
+				tactics = self._tactics.swat_ranged,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.cs_heavies_ranged = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 1,
+				rank = 3,
+				unit = "cs_heavy_2",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 2,
+				rank = 2,
+				unit = "cs_heavy_1",
+				tactics = self._tactics.swat_ranged,
 			},
 			{
 				amount_max = 2,
 				freq_by_diff = {
-					2 / difficulty_index,
-					2 / difficulty_index,
-					1 / difficulty_index,
+					45 / (difficulty_index ^ 2),
+					30 / (difficulty_index ^ 2),
+					15 / (difficulty_index ^ 2),
 				},
 				rank = 1,
-				unit = "CS_swat_1_3",
-				tactics = self._tactics.swat_spt,
+				unit = "cs_swat_1_3",
+				tactics = self._tactics.swat_support_ranged,
 			},
 		},
 	}
 
-	local shield_random_tactics = { self._tactics.shield_def, self._tactics.shield_agg }
-
-	self.enemy_spawn_groups.CS_assault_shield = {
-		amount = { 4, 4 },
+	self.enemy_spawn_groups.cs_heavies_charge = {
+		amount = { 3, 4 },
 		spawn = {
 			{
-				amount_min = 1,
+				amount_max = 2,
 				freq = 1,
-				amount_max = 1,
 				rank = 3,
-				unit = "CS_shield",
-				tactics = self._tactics.shield_agg,
-				random_tactics = shield_random_tactics,
+				unit = "cs_heavy_1",
+				tactics = self._tactics.swat_flank,
 			},
 			{
-				freq_by_diff = { 0, 0.25, 0.75 },
+				amount_min = 2,
+				amount_max = 3,
+				freq = 2,
 				rank = 2,
-				unit = "CS_heavy",
-				tactics = self._tactics.shield_spt,
+				unit = "cs_heavy_2",
+				tactics = self._tactics.swat_charge,
 			},
 			{
-				freq_by_diff = { 1, 0.75, 0.25 },
+				amount_max = 2,
+				freq_by_diff = {
+					45 / (difficulty_index ^ 2),
+					30 / (difficulty_index ^ 2),
+					15 / (difficulty_index ^ 2),
+				},
 				rank = 1,
-				unit = "CS_swat_2_3",
-				tactics = self._tactics.shield_spt,
+				unit = "cs_swat_1_3",
+				tactics = self._tactics.swat_support_charge,
 			},
 		},
 	}
 
-	local taser_random_tactics = { self._tactics.taser_agg, self._tactics.taser_snk }
-
-	self.enemy_spawn_groups.CS_assault_taser = {
-		amount = { 3, 3 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
-				rank = 2,
-				unit = "taser",
-				tactics = self._tactics.taser_snk,
-				random_tactics = taser_random_tactics,
-			},
-			{
-				freq = 1,
-				rank = 1,
-				unit = "CS_swat",
-				tactics = self._tactics.taser_spt,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.CS_assault_bulldozer = {
+	self.enemy_spawn_groups.cs_shield_ranged = {
 		amount = { 3, 4 },
 		spawn = {
 			{
 				amount_min = 1,
-				freq = 1,
 				amount_max = 1,
+				freq = 1,
+				rank = 3,
+				unit = "cs_shield",
+				tactics = self._tactics.shield_ranged,
+			},
+			{
+				freq_by_diff = { 3, 2, 1 },
 				rank = 2,
+				unit = "cs_swat_1_3",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			{
+				freq_by_diff = { 0, 1, 2 },
+				rank = 2,
+				unit = "cs_heavy_1",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			{
+				freq_by_diff = { 2, 0, 0 },
+				rank = 1,
+				unit = "cs_cop_3",
+				tactics = self._tactics.shield_support_ranged,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.cs_shield_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 1,
+				freq = 1,
+				rank = 3,
+				unit = "cs_shield",
+				tactics = self._tactics.shield_charge,
+			},
+			{
+				freq_by_diff = { 1, 2, 1 },
+				rank = 2,
+				unit = "cs_swat_2_3",
+				tactics = self._tactics.shield_support_charge,
+			},
+			{
+				freq_by_diff = { 0, 1, 2 },
+				rank = 2,
+				unit = "cs_heavy_2",
+				tactics = self._tactics.shield_support_charge,
+			},
+			{
+				freq_by_diff = { 2, 0, 0 },
+				rank = 1,
+				unit = "cs_cop_3",
+				tactics = self._tactics.shield_support_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.cs_taser_flank = {
+		amount = { 3, 3 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 1,
+				freq = 1,
+				rank = 3,
+				unit = "taser_1",
+				tactics = self._tactics.taser_flank,
+			},
+			{
+				freq = 1,
+				rank = 2,
+				unit = "cs_swat_1_3",
+				tactics = self._tactics.taser_flank,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.cs_taser_charge = {
+		amount = { 3, 3 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 1,
+				freq = 1,
+				rank = 3,
+				unit = "taser_2",
+				tactics = self._tactics.taser_charge,
+			},
+			{
+				freq = 1,
+				rank = 2,
+				unit = "cs_swat_2_3",
+				tactics = self._tactics.taser_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.cs_bulldozer_charge = {
+		amount = { 3, 3 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 1,
+				freq = 1,
+				rank = 3,
 				unit = "bulldozer_1",
-				tactics = self._tactics.bulldozer,
+				tactics = self._tactics.bulldozer_charge,
 			},
 			{
 				freq = 1,
-				rank = 1,
-				unit = "CS_heavy",
-				tactics = self._tactics.bulldozer_spt,
+				rank = 2,
+				unit = "cs_heavy",
+				tactics = self._tactics.bulldozer_support_charge,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.FBI_reinforce_agents = {
+	self.enemy_spawn_groups.fbi_defend_init = {
 		amount = { 2, 3 },
 		spawn = {
 			{
-				freq = 1,
-				rank = 1,
-				unit = "FBI_agent_1_2",
-				tactics = self._tactics.cop_def,
+				amount_max = 2,
+				freq_by_diff = { 1, 2, 2 },
+				rank = 3,
+				unit = "fbi_agent_2_3",
+				tactics = self._tactics.cop_init,
 			},
 			{
 				amount_max = 2,
-				freq_by_diff = {
-					difficulty_index / 10,
-					difficulty_index / 5,
-					difficulty_index,
-				},
+				freq_by_diff = { 2, 1, 0 },
 				rank = 2,
-				unit = "FBI_agent_2_3",
-				tactics = self._tactics.cop_def,
+				unit = "fbi_agent_1_2",
+				tactics = self._tactics.cop_init,
+			},
+			{
+				amount_max = 2,
+				freq_by_diff = { 
+					25 / (difficulty_index ^ 2), 
+					0,
+					0,
+				},
+				rank = 1,
+				unit = "cs_cop",
+				tactics = self._tactics.cop_init,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.FBI_reinforce_swats = {
+	self.enemy_spawn_groups.fbi_defend_light = {
 		amount = { 2, 3 },
 		spawn = {
 			{
-				amount_min = 1,
+				amount_max = 2,
 				freq = 1,
-				rank = 2,
-				unit = "FBI_swat_1_3",
+				rank = 3,
+				unit = "fbi_swat_2_3",
 				tactics = self._tactics.none,
 			},
 			{
-				amount_max = 2,
-				freq = 0.5,
-				rank = 3,
-				unit = "FBI_swat_2",
+				amount_min = 1,
+				freq = 2,
+				rank = 2,
+				unit = "fbi_swat_1",
 				tactics = self._tactics.none,
 			},
 			{
 				amount_max = 1,
 				freq_by_diff = {
+					25 / (difficulty_index ^ 2),
 					0,
 					0,
-					difficulty_index / 30,
 				},
 				rank = 1,
-				unit = "Elite_sniper",
-				tactics = self._tactics.sniper,
+				unit = "fbi_agent_3",
+				tactics = self._tactics.none,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.FBI_recon_agents = {
+	self.enemy_spawn_groups.fbi_defend_heavy = {
 		amount = { 2, 3 },
 		spawn = {
 			{
-				freq_by_diff = { 1, 0.75, 0.5 },
+				amount_max = 2,
+				freq = 1,
+				rank = 3,
+				unit = "fbi_heavy_2",
+				tactics = self._tactics.none,
+			},
+			{
+				amount_min = 1,
+				freq = 2,
+				rank = 2,
+				unit = "fbi_heavy_1",
+				tactics = self._tactics.none,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					75 / (difficulty_index ^ 2),
+					50 / (difficulty_index ^ 2),
+					25 / (difficulty_index ^ 2),
+				},
+				freq = 1,
 				rank = 1,
-				unit = "FBI_agent_1_2",
+				unit = "fbi_swat_3",
+				tactics = self._tactics.none,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_stealth_light = {
+		amount = { 2, 3 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq_by_diff = { 0, 1, 1 },
+				rank = 3,
+				unit = "fbi_agent_2_3",
 				tactics = self._tactics.hrt,
 			},
 			{
 				amount_max = 2,
-				freq = 1,
+				freq_by_diff = { 1, 1, 0 },
 				rank = 2,
-				unit = "FBI_agent_2_3",
+				unit = "fbi_agent_1_2",
 				tactics = self._tactics.hrt,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.FBI_recon_swats = {
+	self.enemy_spawn_groups.fbi_stealth_heavy = {
 		amount = { 2, 3 },
 		spawn = {
 			{
-				freq = 1,
-				rank = 1,
-				unit = "FBI_swat",
+				amount_min = 1,
+				freq = 4,
+				rank = 2,
+				unit = "fbi_agent_3",
 				tactics = self._tactics.hrt,
 			},
-		},
-	}
-
-	local cloaker_random_tactics_1 = { self._tactics.cloaker_def, self._tactics.cloaker_def, self._tactics.cloaker_snk }
-	local cloaker_random_tactics_2 = { self._tactics.cloaker_def, self._tactics.cloaker_snk }
-
-	self.enemy_spawn_groups.FBI_recon_cloaker = {
-		amount = { 1, 1 },
-		spawn = {
 			{
-				freq = 1,
+				amount_max = 1,
+				freq = (difficulty_index ^ 2) / 25,
 				rank = 1,
-				unit = "cloaker",
-				tactics = self._tactics.cloaker_def,
-				random_tactics = cloaker_random_tactics_1,
+				unit = "taser",
+				random_unit = taser_cloaker,
+				tactics = self._tactics.swat_support_flank,
 			},
 		},
 	}
-
-	self.enemy_spawn_groups.FBI_assault_swats = {
+	
+	self.enemy_spawn_groups.fbi_swats_ranged = {
 		amount = { 3, 4 },
 		spawn = {
 			{
+				amount_max = 2,
+				freq = 2,
+				rank = 3,
+				unit = "fbi_swat_2_3",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
 				amount_max = 3,
-				freq_by_diff = { 1, 0.5, 0 },
+				freq = 3,
 				rank = 2,
-				unit = "FBI_swat",
+				unit = "fbi_swat_1",
+				tactics = self._tactics.swat_ranged,
+			},
+			{
+				amount_max = 3,
+				freq_by_diff = { 10, 1, 0 },
+				rank = 2,
+				unit = "fbi_swat",
 				tactics = self._tactics.swat_init,
 			},
 			{
-				amount_min = 1,
-				freq = 1,
-				rank = 3,
-				unit = "FBI_swat_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_1,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = { 0, 0.75, 0.75 },
-				rank = 3,
-				unit = "FBI_swat_3",
-				tactics = self._tactics.swat_snk,
-				random_tactics = swat_random_tactics_2,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = { 0, 0.5, 0.5 },
-				rank = 3,
-				unit = "FBI_swat_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
-			},
-			{
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					(difficulty_index ^ 2) / 120,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.FBI_assault_heavies = {
-		amount = { 3, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = 1,
-				rank = 3,
-				unit = "FBI_heavy_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_2,
-			},
-			{
-				amount_max = 2,
-				freq = 0.5,
-				rank = 3,
-				unit = "FBI_heavy_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = {
-					2 / difficulty_index,
-					2 / difficulty_index,
-					1 / difficulty_index,
-				},
-				rank = 2,
-				unit = "FBI_swat_1_3",
-				tactics = self._tactics.swat_spt,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					(difficulty_index ^ 2) / 120,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.FBI_assault_shield = {
-		amount = { 4, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq_by_diff = {
-					difficulty_index / 45,
-					difficulty_index / 30,
-					difficulty_index / 15,
-				},
-				amount_max = 2,
-				rank = 3,
-				unit = "FBI_shield",
-				tactics = self._tactics.shield_agg,
-				random_tactics = shield_random_tactics,
-			},
-			{
-				freq_by_diff = { 0, 0.25, 0.75 },
-				rank = 2,
-				unit = "FBI_heavy",
-				tactics = self._tactics.shield_spt,
-			},
-			{
-				freq_by_diff = { 1, 0.75, 0.25 },
-				rank = 1,
-				unit = "FBI_swat_2_3",
-				tactics = self._tactics.shield_spt,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					0,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "medic_2",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.FBI_assault_taser = {
-		amount = { 3, 3 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
-				rank = 3,
-				unit = "taser",
-				tactics = self._tactics.taser_snk,
-				random_tactics = taser_random_tactics,
-			},
-			{
-				freq = 1,
-				rank = 2,
-				unit = "FBI_swat",
-				tactics = self._tactics.taser_spt,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					0,
-					(difficulty_index ^ 2) / 80,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
 				},
 				rank = 1,
 				unit = "medic_1",
-				tactics = self._tactics.medic,
+				random_unit = cloaker_medic_1,
+				tactics = self._tactics.swat_support_ranged,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.FBI_assault_bulldozer = {
+	self.enemy_spawn_groups.fbi_swats_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 2,
+				rank = 3,
+				unit = "fbi_swat_1_3",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 3,
+				rank = 2,
+				unit = "fbi_swat_2",
+				tactics = self._tactics.swat_ranged,
+			},
+			{
+				amount_max = 3,
+				freq_by_diff = { 10, 1, 0 },
+				rank = 2,
+				unit = "fbi_swat",
+				tactics = self._tactics.swat_init,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "medic_2",
+				random_unit = cloaker_medic_2,
+				tactics = self._tactics.swat_support_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_heavies_ranged = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 2,
+				rank = 3,
+				unit = "fbi_heavy_2",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 3,
+				rank = 2,
+				unit = "fbi_heavy_1",
+				tactics = self._tactics.swat_ranged,
+			},
+			{
+				amount_max = 2,
+				freq_by_diff = {
+					75 / (difficulty_index ^ 2),
+					50 / (difficulty_index ^ 2),
+					25 / (difficulty_index ^ 2),
+				},
+				rank = 1,
+				unit = "fbi_swat_1_3",
+				tactics = self._tactics.swat_support_ranged,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "medic_1",
+				random_unit = taser_medic_1,
+				tactics = self._tactics.swat_support_ranged,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_heavies_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 2,
+				rank = 3,
+				unit = "fbi_heavy_1",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 3,
+				rank = 2,
+				unit = "fbi_heavy_2",
+				tactics = self._tactics.swat_charge,
+			},
+			{
+				amount_max = 2,
+				freq_by_diff = {
+					75 / (difficulty_index ^ 2),
+					50 / (difficulty_index ^ 2),
+					25 / (difficulty_index ^ 2),
+				},
+				rank = 1,
+				unit = "fbi_swat_1_3",
+				tactics = self._tactics.swat_support_charge,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "medic_2",
+				random_unit = taser_medic_2,
+				tactics = self._tactics.swat_support_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_shield_ranged = {
+		amount = { 4, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 25,
+				rank = 3,
+				unit = "fbi_shield",
+				tactics = self._tactics.shield_ranged,
+			},
+			{
+				freq_by_diff = { 1, 2, 1 },
+				rank = 2,
+				unit = "fbi_swat_1_3",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			{
+				freq_by_diff = { 0, 1, 2 },
+				rank = 2,
+				unit = "fbi_heavy_1",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			{
+				freq_by_diff = { 2, 0, 0 },
+				rank = 1,
+				unit = "fbi_agent_3",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					0,
+					(difficulty_index ^ 2) / 50,
+				},
+				rank = 1,
+				unit = "medic_1",
+				tactics = self._tactics.shield_support_ranged,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_shield_charge = {
+		amount = { 4, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 25,
+				rank = 3,
+				unit = "fbi_shield",
+				tactics = self._tactics.shield_charge,
+			},
+			{
+				freq_by_diff = { 1, 2, 1 },
+				rank = 2,
+				unit = "fbi_swat_2_3",
+				tactics = self._tactics.shield_support_charge,
+			},
+			{
+				freq_by_diff = { 0, 1, 2 },
+				rank = 2,
+				unit = "fbi_heavy_2",
+				tactics = self._tactics.shield_support_charge,
+			},
+			{
+				freq_by_diff = { 2, 0, 0 },
+				rank = 1,
+				unit = "fbi_agent_3",
+				tactics = self._tactics.shield_support_charge,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					0,
+					(difficulty_index ^ 2) / 50,
+				},
+				rank = 1,
+				unit = "medic_2",
+				tactics = self._tactics.shield_support_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_taser_flank = {
 		amount = { 3, 4 },
 		spawn = {
 			{
 				amount_min = 1,
-				freq = 1,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 25,
+				rank = 2,
+				unit = "taser_1",
+				tactics = self._tactics.taser_flank,
+			},
+			{
+				freq = 3,
+				rank = 1,
+				unit = "fbi_swat_1_3",
+				tactics = self._tactics.taser_flank,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_taser_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 25,
+				rank = 2,
+				unit = "taser_2",
+				tactics = self._tactics.taser_charge,
+			},
+			{
+				freq = 3,
+				rank = 1,
+				unit = "fbi_swat_2_3",
+				tactics = self._tactics.taser_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.fbi_bulldozer_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_min = 1,
 				amount_max = 1,
+				freq = 1,
 				rank = 3,
 				unit = "bulldozer",
-				tactics = self._tactics.bulldozer,
+				tactics = self._tactics.bulldozer_charge,
 			},
 			{
 				freq = 1,
 				rank = 2,
-				unit = "FBI_heavy",
-				tactics = self._tactics.bulldozer_spt,
+				unit = "fbi_heavy",
+				tactics = self._tactics.bulldozer_support_charge,
 			},
 			{
 				amount_max = 1,
@@ -2291,253 +2632,412 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				},
 				rank = 1,
 				unit = "medic_2",
-				tactics = self._tactics.medic,
+				tactics = self._tactics.bulldozer_support_charge,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.FBI_assault_cloaker = {
-		amount = { 1, 2 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = (difficulty_index ^ 2) / 50,
-				amount_max = 2,
-				rank = 1,
-				unit = "cloaker",
-				tactics = self._tactics.cloaker_snk,
-				random_tactics = cloaker_random_tactics_2,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.single_spooc = {
-		amount = { 1, 1 },
+	self.enemy_spawn_groups.fbi_cloaker_charge = {
+		amount = { 2, 2 },
 		spawn = {
 			{
 				freq = 1,
 				rank = 1,
 				unit = "cloaker",
-				tactics = self._tactics.cloaker_snk,
-				random_tactics = cloaker_random_tactics_2,
+				tactics = self._tactics.cloaker_charge,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.FBI_spoocs = self.enemy_spawn_groups.single_spooc
+	self.enemy_spawn_groups.fbi_cloaker_hide = {
+		amount = { 2, 2 },
+		spawn = {
+			{
+				freq = 1,
+				rank = 1,
+				unit = "cloaker",
+				tactics = self._tactics.cloaker_hide,
+			},
+		},
+	}
 
-	self.enemy_spawn_groups.Elite_reinforce_swats = {
+	self.enemy_spawn_groups.elite_defend_light = {
 		amount = { 2, 3 },
 		spawn = {
 			{
-				amount_min = 1,
-				freq = 1,
-				rank = 2,
-				unit = "Elite_swat_1_3",
+				amount_max = 2,
+				freq = 2,
+				rank = 3,
+				unit = "elite_swat_2_3",
 				tactics = self._tactics.none,
 			},
 			{
+				amount_min = 1,
+				freq = 4,
+				rank = 2,
+				unit = "elite_swat_1",
+				tactics = self._tactics.none,
+			},
+			self:_distance_weighted_spawn_entry({
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "elite_sniper",
+				tactics = self._tactics.sniper,
+			}, 1500, 3000, 0, 1),
+		},
+	}
+
+	self.enemy_spawn_groups.elite_defend_heavy = {
+		amount = { 2, 3 },
+		spawn = {
+			{
 				amount_max = 2,
-				freq = 0.5,
-				rank = 3,
-				unit = "Elite_swat_2",
+				freq = 1,
+				rank = 2,
+				unit = "elite_heavy_2",
 				tactics = self._tactics.none,
 			},
 			{
+				amount_min = 1,
+				freq = 2,
+				rank = 1,
+				unit = "elite_heavy_1",
+				tactics = self._tactics.none,
+			},
+			self:_distance_weighted_spawn_entry({
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					0,
-					difficulty_index / 30,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
 				},
 				rank = 1,
-				unit = "Elite_sniper",
+				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			},
+			}, 1500, 3000, 0, 1),
 		},
 	}
-
-	self.enemy_spawn_groups.Elite_assault_swats = {
+	
+	self.enemy_spawn_groups.elite_swats_ranged = {
 		amount = { 3, 4 },
 		spawn = {
 			{
-				amount_min = 1,
-				freq_by_diff = { 0, 1, 1 },
-				rank = 2,
-				unit = "Elite_swat_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_1,
-			},
-			{
 				amount_max = 2,
-				freq_by_diff = { 0, 0.75, 0.75 },
-				rank = 2,
-				unit = "Elite_swat_3",
-				tactics = self._tactics.swat_snk,
-				random_tactics = swat_random_tactics_2,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = { 0, 0.5, 0.5 },
-				rank = 2,
-				unit = "Elite_swat_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					(difficulty_index ^ 2) / 120,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Elite_assault_heavies = {
-		amount = { 3, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = 1,
+				freq = 2,
 				rank = 3,
-				unit = "Elite_heavy_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_2,
-			},
-			{
-				amount_max = 2,
-				freq = 0.5,
-				rank = 3,
-				unit = "Elite_heavy_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					(difficulty_index ^ 2) / 120,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Elite_assault_sniper = {
-		amount = { 1, 1 },
-		spawn = {
-			{
-				freq = 1,
-				rank = 1,
-				unit = "Elite_sniper",
-				tactics = self._tactics.sniper,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Elite_assault_shield = {
-		amount = { 4, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
-				rank = 3,
-				unit = "Elite_shield",
-				tactics = self._tactics.shield_agg,
-				random_tactics = shield_random_tactics,
-			},
-			{
-				freq_by_diff = { 0, 0, 1 },
-				rank = 2,
-				unit = "FBI_heavy",
-				tactics = self._tactics.shield_spt,
-			},
-			{
-				freq_by_diff = { 1, 1, 0.5 },
-				rank = 1,
-				unit = "Elite_swat_2_3",
-				tactics = self._tactics.shield_spt,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					0,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "medic_2",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Elite_assault_taser = {
-		amount = { 3, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
-				rank = 3,
-				unit = "taser",
-				tactics = self._tactics.taser_snk,
-				random_tactics = taser_random_tactics,
+				unit = "elite_swat_2_3",
+				tactics = self._tactics.swat_flank,
 			},
 			{
 				amount_min = 2,
-				freq = 1,
+				amount_max = 3,
+				freq = 3,
 				rank = 2,
-				unit = "Elite_swat",
-				tactics = self._tactics.taser_spt,
+				unit = "elite_swat_1",
+				tactics = self._tactics.swat_ranged,
 			},
 			{
 				amount_max = 1,
 				freq_by_diff = {
 					0,
-					0,
-					(difficulty_index ^ 2) / 80,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
 				},
 				rank = 1,
 				unit = "medic_1",
-				tactics = self._tactics.medic,
+				random_unit = cloaker_medic_1,
+				tactics = self._tactics.swat_support_ranged,
+			},
+			self:_distance_weighted_spawn_entry({
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "elite_sniper",
+				tactics = self._tactics.sniper,
+			}, 1500, 3000, 0, 1),
+		},
+	}
+
+	self.enemy_spawn_groups.elite_swats_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 2,
+				rank = 3,
+				unit = "elite_swat_1_3",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 3,
+				rank = 2,
+				unit = "elite_swat_2",
+				tactics = self._tactics.swat_ranged,
 			},
 			{
 				amount_max = 1,
-				freq = 0.5,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
 				rank = 1,
-				unit = "cloaker",
-				tactics = self._tactics.cloaker_snk,
+				unit = "medic_2",
+				random_unit = cloaker_medic_2,
+				tactics = self._tactics.swat_support_charge,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.Elite_assault_bulldozer = {
+	self.enemy_spawn_groups.elite_heavies_ranged = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 1,
+				rank = 3,
+				unit = "elite_heavy_2",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 2,
+				rank = 2,
+				unit = "elite_heavy_1",
+				tactics = self._tactics.swat_ranged,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "medic_1",
+				random_unit = taser_medic_1,
+				tactics = self._tactics.swat_support_ranged,
+			},
+			self:_distance_weighted_spawn_entry({
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "elite_sniper",
+				tactics = self._tactics.sniper,
+			}, 1500, 3000, 0, 1),
+		},
+	}
+
+	self.enemy_spawn_groups.elite_heavies_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_max = 2,
+				freq = 1,
+				rank = 3,
+				unit = "elite_heavy_1",
+				tactics = self._tactics.swat_flank,
+			},
+			{
+				amount_min = 2,
+				amount_max = 3,
+				freq = 2,
+				rank = 2,
+				unit = "elite_heavy_2",
+				tactics = self._tactics.swat_charge,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					(difficulty_index ^ 2) / 50,
+					(difficulty_index ^ 2) / 25,
+				},
+				rank = 1,
+				unit = "medic_2",
+				random_unit = taser_medic_2,
+				tactics = self._tactics.swat_support_charge,
+			},
+		},
+	}
+	
+	self.enemy_spawn_groups.elite_shield_ranged = {
+		amount = { 4, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 1,
+				freq = 1,
+				rank = 3,
+				unit = "elite_shield",
+				tactics = self._tactics.shield_ranged,
+			},
+			{
+				freq_by_diff = { 2, 2, 1 },
+				rank = 2,
+				unit = "city_swat_1_3",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			{
+				freq_by_diff = { 0, 1, 2 },
+				rank = 2,
+				unit = "fbi_heavy_1",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					0,
+					(difficulty_index ^ 2) / 50,
+				},
+				rank = 1,
+				unit = "medic_1",
+				tactics = self._tactics.shield_support_ranged,
+			},
+			self:_distance_weighted_spawn_entry({
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					0,
+					(difficulty_index ^ 2) / 50,
+				},
+				rank = 1,
+				unit = "elite_sniper",
+				tactics = self._tactics.sniper,
+			}, 1500, 3000, 0, 1),
+		},
+	}
+
+	self.enemy_spawn_groups.elite_shield_charge = {
+		amount = { 4, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 1,
+				freq = 1,
+				rank = 3,
+				unit = "elite_shield",
+				tactics = self._tactics.shield_charge,
+			},
+			{
+				freq_by_diff = { 2, 2, 1 },
+				rank = 2,
+				unit = "city_swat_2_3",
+				tactics = self._tactics.shield_support_charge,
+			},
+			{
+				freq_by_diff = { 0, 1, 2 },
+				rank = 2,
+				unit = "fbi_heavy_2",
+				tactics = self._tactics.shield_support_charge,
+			},
+			{
+				amount_max = 1,
+				freq_by_diff = {
+					0,
+					0,
+					(difficulty_index ^ 2) / 50,
+				},
+				rank = 1,
+				unit = "medic_2",
+				tactics = self._tactics.shield_support_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.elite_taser_flank = {
 		amount = { 3, 4 },
 		spawn = {
 			{
 				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
-				rank = 3,
-				unit = "Elite_bulldozer",
-				tactics = self._tactics.bulldozer,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 25,
+				rank = 2,
+				unit = "taser_1",
+				tactics = self._tactics.taser_flank,
 			},
 			{
-				amount_min = 2,
+				freq = 3,
+				rank = 1,
+				unit = "elite_swat_1_3",
+				tactics = self._tactics.taser_flank,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.elite_taser_takedown = {
+		amount = { 2, 2 },
+		spawn = {
+			{
+				amount_min = 1,
 				freq = 1,
 				rank = 2,
-				unit = "FBI_heavy",
-				tactics = self._tactics.bulldozer_spt,
+				unit = "taser",
+				tactics = self._tactics.taser_flank,
+			},
+			{
+				amount_min = 1,
+				freq = 1,
+				rank = 1,
+				unit = "cloaker",
+				tactics = self._tactics.swat_support_flank,
+			},
+		},
+	}
+	
+	self.enemy_spawn_groups.elite_taser_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 2,
+				freq = (difficulty_index ^ 2) / 25,
+				rank = 2,
+				unit = "taser_2",
+				tactics = self._tactics.taser_charge,
+			},
+			{
+				freq = 3,
+				rank = 1,
+				unit = "elite_swat_2_3",
+				tactics = self._tactics.taser_charge,
+			},
+		},
+	}
+	
+	self.enemy_spawn_groups.elite_bulldozer_charge = {
+		amount = { 3, 4 },
+		spawn = {
+			{
+				amount_min = 1,
+				amount_max = 1,
+				freq = 1,
+				rank = 3,
+				unit = "elite_bulldozer",
+				tactics = self._tactics.bulldozer_charge,
+			},
+			{
+				freq = 1,
+				rank = 2,
+				unit = "fbi_heavy",
+				tactics = self._tactics.bulldozer_support_charge,
 			},
 			{
 				amount_max = 1,
@@ -2548,202 +3048,63 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				},
 				rank = 1,
 				unit = "medic_2",
-				tactics = self._tactics.medic,
+				tactics = self._tactics.bulldozer_support_charge,
+			},
+		},
+	}
+
+	self.enemy_spawn_groups.elite_bulldozer_takedown = {
+		amount = { 2, 2 },
+		spawn = {
+			{
+				freq = 1,
+				rank = 2,
+				unit = "bulldozer",
+				tactics = self._tactics.bulldozer_charge,
 			},
 			{
+				freq = 0.5,
+				rank = 2,
+				unit = "elite_bulldozer",
+				tactics = self._tactics.bulldozer_charge,
+			},
+			{
+				amount_min = 1,
 				amount_max = 1,
-				freq = 0.25,
+				freq = 1,
 				rank = 1,
 				unit = "taser",
-				tactics = self._tactics.taser_snk,
+				tactics = self._tactics.bulldozer_support_charge,
 			},
 		},
 	}
 
-	self.enemy_spawn_groups.Zeal_reinforce_swats = {
-		amount = { 2, 3 },
-		spawn = {
-			{
-				freq = 1,
-				rank = 2,
-				unit = "Zeal_swat",
-				tactics = self._tactics.none,
-			},
-		},
-	}
-	self.enemy_spawn_groups.Zeal_assault_swats = {
-		amount = { 3, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq_by_diff = { 0, 1, 1 },
-				rank = 2,
-				unit = "Zeal_swat_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_1,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = { 0, 0.75, 0.75 },
-				rank = 2,
-				unit = "Zeal_swat_3",
-				tactics = self._tactics.swat_snk,
-				random_tactics = swat_random_tactics_2,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = { 0, 0.5, 0.5 },
-				rank = 2,
-				unit = "Zeal_swat_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					(difficulty_index ^ 2) / 120,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "Zeal_medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Zeal_assault_heavies = {
-		amount = { 3, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = 1,
-				rank = 3,
-				unit = "Zeal_heavy_1",
-				tactics = self._tactics.swat_def,
-				random_tactics = swat_random_tactics_2,
-			},
-			{
-				amount_max = 2,
-				freq = 0.5,
-				rank = 3,
-				unit = "Zeal_heavy_2",
-				tactics = self._tactics.swat_agg,
-				random_tactics = swat_random_tactics_3,
-			},
-			{
-				amount_max = 2,
-				freq_by_diff = {
-					24 / (difficulty_index ^ 2),
-					16 / (difficulty_index ^ 2),
-					8 / (difficulty_index ^ 2),
-				},
-				rank = 2,
-				unit = "Zeal_swat",
-				tactics = self._tactics.swat_spt,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					(difficulty_index ^ 2) / 120,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "Zeal_medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Zeal_assault_shield = {
-		amount = { 4, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq_by_diff = {
-					difficulty_index / 24,
-					difficulty_index / 18,
-					difficulty_index / 12,
-				},
-				amount_max = 2,
-				rank = 3,
-				unit = "Zeal_shield",
-				tactics = self._tactics.shield_agg,
-				random_tactics = shield_random_tactics,
-			},
-			{
-				freq_by_diff = { 0, 0, 1 },
-				rank = 2,
-				unit = "Zeal_heavy",
-				tactics = self._tactics.shield_spt,
-			},
-			{
-				freq_by_diff = { 1, 1, 0.5 },
-				rank = 1,
-				unit = "Zeal_swat",
-				tactics = self._tactics.shield_spt,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					0,
-					(difficulty_index ^ 2) / 60,
-				},
-				rank = 1,
-				unit = "Zeal_medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Zeal_assault_taser = {
+	self.enemy_spawn_groups.elite_bulldozer_shield = {
 		amount = { 3, 3 },
 		spawn = {
 			{
-				amount_min = 1,
-				freq = 1,
-				amount_max = 1,
-				rank = 2,
-				unit = "Zeal_taser",
-				tactics = self._tactics.taser_snk,
-				random_tactics = taser_random_tactics,
-			},
-			{
-				freq = 1,
-				rank = 1,
-				unit = "Zeal_swat",
-				tactics = self._tactics.taser_spt,
-			},
-			{
-				amount_max = 1,
-				freq_by_diff = {
-					0,
-					0,
-					(difficulty_index ^ 2) / 80,
-				},
-				rank = 1,
-				unit = "Zeal_medic",
-				tactics = self._tactics.medic,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.Zeal_assault_cloaker = {
-		amount = { 1, 2 },
-		spawn = {
-			{
-				amount_min = 1,
-				freq = (difficulty_index ^ 2) / 50,
+				amount_min = 2,
 				amount_max = 2,
-				rank = 1,
-				unit = "Zeal_cloaker",
-				tactics = self._tactics.cloaker_snk,
-				random_tactics = cloaker_random_tactics_2,
+				freq = 1,
+				rank = 2,
+				unit = "fbi_shield",
+				tactics = self._tactics.shield_charge,
+			},
+			{
+				freq = 1,
+				rank = 2,
+				unit = "bulldozer",
+				tactics = self._tactics.bulldozer_support_charge,
+			},
+			{
+				freq = 0.5,
+				rank = 2,
+				unit = "elite_bulldozer",
+				tactics = self._tactics.bulldozer_support_charge,
 			},
 		},
 	}
+	
 end)
 
 GroupAITweakData.fbi_heists = {
@@ -2863,7 +3224,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
-					FBI_timed_group = {
+					fbi_timed_group = {
 						enabled = true,
 						team_id = "law1",
 						max_nr_simultaneous_groups = 2,
@@ -2890,14 +3251,14 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								amount_min = 1,
 								rank = 2,
 								freq = 1,
-								unit = "FBI_readyteam",
+								unit = "fbi_readyteam",
 								tactics = self._timed_tactics.fbi_def,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.5,
-								unit = "FBI_readyteam",
+								unit = "fbi_readyteam",
 								tactics = self._timed_tactics.fbi_snk,
 							},
 						},
@@ -2919,7 +3280,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
-					Murkywater_timed_group = {
+					murkywater_timed_group = {
 						enabled = true,
 						team_id = "law1",
 						max_nr_simultaneous_groups = 2,
@@ -2946,21 +3307,21 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								amount_min = 1,
 								rank = 2,
 								freq = 1,
-								unit = "Murky_response",
+								unit = "murkywater",
 								tactics = self._timed_tactics.murky_def,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.4,
-								unit = "Murky_response",
+								unit = "murkywater",
 								tactics = self._timed_tactics.murky_agg,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.6,
-								unit = "Murky_response",
+								unit = "murkywater",
 								tactics = self._timed_tactics.murky_snk,
 							},
 						},
@@ -2982,7 +3343,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 					diff_scale = { 2, 1.5, 1 },
 				},
 				group_data = {
-					Army_timed_group = {
+					army_timed_group = {
 						enabled = true,
 						team_id = "law1",
 						max_nr_simultaneous_groups = 2,
@@ -3009,7 +3370,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								amount_min = 1,
 								rank = 2,
 								freq = 1,
-								unit = "Army_soldier_2",
+								unit = "army_soldier_2",
 								tactics = self._tactics.army_def,
 							},
 							{
@@ -3020,7 +3381,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 									difficulty_index / 12,
 									difficulty_index / 8,
 								},
-								unit = "Army_soldier_2",
+								unit = "army_soldier_2",
 								tactics = self._tactics.army_agg,
 							},
 							{
@@ -3031,7 +3392,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 									difficulty_index / 30,
 									difficulty_index / 10,
 								},
-								unit = "Army_soldier_3",
+								unit = "army_soldier_3",
 								tactics = self._timed_tactics.army_spt,
 							},
 						},
@@ -3053,7 +3414,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 					diff_scale = { 1, 1.5, 2 },
 				},
 				group_data = {
-					Bellmead_timed_group = {
+					bellmead_timed_group = {
 						enabled = true,
 						team_id = "law1",
 						max_nr_simultaneous_groups = 2,
@@ -3080,21 +3441,21 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								amount_min = 1,
 								rank = 2,
 								freq = 1,
-								unit = "Bellmead_security",
+								unit = "bellmead_security",
 								tactics = self._timed_tactics.bellmead_def,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.4,
-								unit = "Bellmead_security",
+								unit = "bellmead_security",
 								tactics = self._timed_tactics.bellmead_agg,
 							},
 							{
 								amount_max = 2,
 								rank = 2,
 								freq = 0.6,
-								unit = "Bellmead_security",
+								unit = "bellmead_security",
 								tactics = self._timed_tactics.bellmead_snk,
 							},
 						},
@@ -3171,9 +3532,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawncap
 	self.besiege.assault.force = {
-		diff_lerp(5, 6) * force_mul,
-		diff_lerp(7, 9) * force_mul,
-		diff_lerp(9, 12) * force_mul,
+		diff_lerp(4, 6) * force_mul,
+		diff_lerp(6, 9) * force_mul,
+		diff_lerp(8, 12) * force_mul,
 	}
 	self.besiege.assault.force_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
@@ -3265,118 +3626,153 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	end
 
-	local special_weight = diff_lerp(1, 3)
-	local common_special_weights = { 0, special_weight * 0.75, special_weight * 1.5 }
-	local medium_special_weights = { 0, special_weight * 0.5, special_weight * 1 }
-	local rare_special_weights = { 0, special_weight * 0.25, special_weight * 0.5 }
-
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
-			CS_assault_cops = { 0.5, 0.25, 0 },
-			CS_assault_swats = { 1, 1, 0.5 },
-			CS_assault_heavies = { 0, 0, 1 },
-			CS_assault_shield = { 0, 0.15, 0.2 },
+			cs_cops_init = { 18, 0, 0 },
+			
+			cs_swats_ranged = { 36, 48, 16 },
+			cs_swats_charge = { 18, 24, 8 },
+			
+			cs_heavies_ranged = { 0, 0, 32 },
+			cs_heavies_charge = { 0, 0, 16 },
+			
+			cs_shield_ranged = { 0, 2, 4 },
+			cs_shield_charge = { 0, 2, 4 },
 		}
 		self.besiege.recon.groups = {
-			CS_recon_cops = { 1, 1, 0 },
-			CS_recon_swats = { 0, 0, 1 },
+			cs_stealth_light = { 1, 3, 1 },
+			cs_stealth_heavy = { 0, 1, 3 },
 		}
 		self.besiege.reenforce.groups = {
-			CS_reinforce_cops = { 1, 0.5, 0 },
-			CS_reinforce_swats = { 0, 0.5, 1 },
+			cs_defend_init = { 1, 1, 0 },
+			cs_defend_light = { 0, 1, 1 },
 		}
 	elseif difficulty_index == 3 then
 		self.besiege.assault.groups = {
-			CS_assault_cops = { 0.5, 0, 0 },
-			CS_assault_swats = { 1, 1, 0.5 },
-			CS_assault_heavies = { 0, 0, 1 },
-			CS_assault_shield = { 0, 0.15, 0.2 },
-			CS_assault_taser = { 0, 0.1, 0.15 },
-			CS_assault_bulldozer = { 0, 0, 0.1 },
+			cs_cops_init = { 18, 0, 0 },
+			
+			cs_swats_ranged = { 36, 48, 16 },
+			cs_swats_charge = { 18, 24, 8 },
+			
+			cs_heavies_ranged = { 0, 0, 16 },
+			cs_heavies_charge = { 0, 0, 8 },
+			
+			cs_shield_ranged = { 0, 2, 4 },
+			cs_shield_charge = { 0, 2, 4 },
+
+			cs_taser_flank = { 0, 2, 4 },
+			cs_taser_charge = { 0, 2, 4 },
+			
+			cs_bulldozer_charge = { 0, 0, 4 },
 		}
 		self.besiege.recon.groups = {
-			CS_recon_cops = { 1, 1, 0 },
-			CS_recon_swats = { 0, 0, 1 },
+			cs_stealth_light = { 1, 3, 1 },
+			cs_stealth_heavy = { 0, 1, 3 },
 		}
 		self.besiege.reenforce.groups = {
-			CS_reinforce_cops = { 1, 0.5, 0 },
-			CS_reinforce_swats = { 0, 0.5, 1 },
+			cs_defend_init = { 1, 1, 0 },
+			cs_defend_light = { 0, 1, 1 },
 		}
 	elseif difficulty_index == 4 then
-		self.besiege.assault.groups = {
-			CS_assault_swats = { 1, 1, 0 },
+		self.besiege.assault.groups = {	
+			cs_swats_ranged = { 48, 24, 0 },
+			cs_swats_charge = { 24, 12, 0 },	
+			
+			fbi_swats_ranged = { 0, 24, 16 },
+			fbi_swats_charge = { 0, 12, 8 },
+			
+			fbi_heavies_ranged = { 0, 0, 32 },
+			fbi_heavies_charge = { 0, 0, 16 },
+			
+			fbi_shield_ranged = { 0, 3, 6 },
+			fbi_shield_charge = { 0, 3, 6 },
 
-			FBI_assault_swats = { 0, 0.5, 0.5 },
-			FBI_assault_heavies = { 0, 0, 1 },
-			FBI_assault_shield = { 0, 0.15, 0.25 },
-			FBI_assault_taser = { 0, 0.1, 0.2 },
-			FBI_assault_cloaker = { 0, 0.1, 0.2 },
-			FBI_assault_bulldozer = { 0, 0, 0.15 },
+			fbi_taser_flank = { 0, 3, 6 },
+			fbi_taser_charge = { 0, 3, 6 },
+
+			fbi_cloaker_hide = { 0, 3, 6 },
+			fbi_cloaker_charge = { 0, 3, 6 },
+			
+			fbi_bulldozer_charge = { 0, 0, 6 },
 		}
 		self.besiege.recon.groups = {
-			FBI_recon_agents = { 1, 0.75, 0.25 },
-			FBI_recon_swats = { 0, 0.25, 0.75 },
-			FBI_recon_cloaker = { 0, 0.1, 0.2 },
+			fbi_stealth_light = { 1, 3, 1 },
+			fbi_stealth_heavy = { 0, 1, 3 },
 		}
 		self.besiege.reenforce.groups = {
-			CS_reinforce_cops = { 0.5, 0, 0 },
-			CS_reinforce_swats = { 0, 0.5, 0 },
-
-			FBI_reinforce_agents = { 0.5, 0.5, 0 },
-			FBI_reinforce_swats = { 0, 0, 1 },
+			fbi_defend_init = { 1, 1, 0 },
+			fbi_defend_light = { 0, 1, 1 },
 		}
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
-			CS_assault_swats = { 0.75, 0.5, 0 },
+			cs_swats_ranged = { 32, 12, 0 },
+			cs_swats_charge = { 16, 6, 0 },	
+			
+			fbi_swats_ranged = { 0, 36, 16 },
+			fbi_swats_charge = { 0, 18, 8 },
+			
+			fbi_heavies_ranged = { 0, 0, 32 },
+			fbi_heavies_charge = { 0, 0, 16 },
+			
+			fbi_shield_ranged = { 0, 4, 8 },
+			fbi_shield_charge = { 0, 4, 8 },
 
-			FBI_assault_swats = { 0.75, 1, 0.5 },
-			FBI_assault_heavies = { 0, 0, 1 },
-			FBI_assault_shield = { 0, 0.2, 0.3 },
-			FBI_assault_taser = { 0, 0.15, 0.25 },
-			FBI_assault_cloaker = { 0, 0.15, 0.25 },
-			FBI_assault_bulldozer = { 0, 0, 0.2 },
+			fbi_taser_flank = { 0, 4, 8 },
+			fbi_taser_charge = { 0, 4, 8 },
+
+			fbi_cloaker_hide = { 0, 4, 8 },
+			fbi_cloaker_charge = { 0, 4, 8 },
+			
+			fbi_bulldozer_charge = { 0, 0, 8 },
 		}
 		self.besiege.recon.groups = {
-			FBI_recon_agents = { 1, 0.75, 0.25 },
-			FBI_recon_swats = { 0, 0.25, 0.75 },
-			FBI_recon_cloaker = { 0, 0.15, 0.25 },
+			fbi_stealth_light = { 1, 3, 1 },
+			fbi_stealth_heavy = { 0, 1, 3 },
 		}
 		self.besiege.reenforce.groups = {
-			CS_reinforce_cops = { 0.5, 0, 0 },
-			CS_reinforce_swats = { 0, 0.5, 0 },
-
-			FBI_reinforce_agents = { 0.5, 0.5, 0 },
-			FBI_reinforce_swats = { 0, 0, 1 },
+			fbi_defend_init = { 1, 1, 0 },
+			fbi_defend_light = { 0, 1, 1 },
 		}
-	elseif difficulty_index == 6 then
+	else
 		self.besiege.assault.groups = {
-			CS_assault_swats = { 0.5, 0, 0 },
+			cs_swats_ranged = { 24, 0, 0 },
+			cs_swats_charge = { 12, 0, 0 },	
+			
+			fbi_swats_ranged = { 24, 24, 0 },
+			fbi_swats_charge = { 12, 12, 0 },
 
-			FBI_assault_swats = { 1, 0.75, 0 },
-			FBI_assault_heavies = { 0, 0.25, 0.75 },
-			FBI_assault_shield = { 0, 0.25, 0.2 },
-			FBI_assault_taser = { 0, 0.2, 0 },
-			FBI_assault_cloaker = { 0, 0.2, 0.3 },
-			FBI_assault_bulldozer = { 0, 0.05, 0.1 },
+			elite_swats_ranged = { 0, 16, 24 },
+			elite_swats_charge = { 0, 8, 12 },
+			
+			fbi_heavies_ranged = { 0, 8, 24 },
+			fbi_heavies_charge = { 0, 4, 12 },
+			
+			fbi_shield_ranged = { 0, 5, 5 },
+			fbi_shield_charge = { 0, 5, 5 },
 
-			Elite_assault_swats = { 0, 0.5, 0.75 },
-			Elite_assault_shield = { 0, 0, 0.2 },
-			Elite_assault_sniper = { 0, 0.2, 0.3 },
-			Elite_assault_taser = { 0, 0, 0.3 },
-			Elite_assault_bulldozer = { 0, 0, 0.15 },
+			elite_shield_ranged = { 0, 0, 5 },
+			elite_shield_charge = { 0, 0, 5 },
+			
+			elite_taser_flank = { 0, 5, 10 },
+			elite_taser_charge = { 0, 5, 10 },
+			elite_taser_takedown = { 0, 5, 10 },
+
+			fbi_cloaker_hide = { 0, 5, 10 },
+			fbi_cloaker_charge = { 0, 5, 10 },
+			
+			elite_bulldozer_charge = { 0, 0, 4 },
+			elite_bulldozer_shield = { 0, 0, 3 },
+			elite_bulldozer_takedown = { 0, 0, 3 },
 		}
 		self.besiege.recon.groups = {
-			FBI_recon_agents = { 1, 0.75, 0.25 },
-			FBI_recon_swats = { 0, 0.25, 0.75 },
-			FBI_recon_cloaker = { 0, 0.2, 0.3 },
+			fbi_stealth_light = { 1, 3, 1 },
+			fbi_stealth_heavy = { 0, 1, 3 },
 		}
 		self.besiege.reenforce.groups = {
-			CS_reinforce_cops = { 0.5, 0, 0 },
-			CS_reinforce_swats = { 0, 0.5, 0 },
-
-			FBI_reinforce_agents = { 0.5, 0.5, 0 },
-			FBI_reinforce_swats = { 0, 0, 1 },
+			fbi_defend_init = { 2, 1, 0 },
+			fbi_defend_light = { 0, 2, 1 },
+			elite_defend_light = { 0, 0, 2 },
 		}
 	end
 
@@ -3385,8 +3781,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = {
-		diff_lerp(120, 30),
-		diff_lerp(180, 45),
+		diff_lerp(120, 20),
+		diff_lerp(180, 40),
 	}
 
 	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
@@ -3396,10 +3792,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.snowman_boss = { 0, 0, 0 }
 	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
-	self.besiege.assault.groups.FBI_timed_group = { 0, 0, 0 }
-	self.besiege.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
-	self.besiege.assault.groups.Army_timed_group = { 0, 0, 0 }
-	self.besiege.assault.groups.Bellmead_timed_group = { 0, 0, 0 }
+	self.besiege.assault.groups.fbi_timed_group = { 0, 0, 0 }
+	self.besiege.assault.groups.murkywater_timed_group = { 0, 0, 0 }
+	self.besiege.assault.groups.army_timed_group = { 0, 0, 0 }
+	self.besiege.assault.groups.bellmead_timed_group = { 0, 0, 0 }
 
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
@@ -3408,10 +3804,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
-	self.besiege.recon.groups.FBI_timed_group = { 0, 0, 0 }
-	self.besiege.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
-	self.besiege.recon.groups.Army_timed_group = { 0, 0, 0 }
-	self.besiege.recon.groups.Bellmead_timed_group = { 0, 0, 0 }
+	self.besiege.recon.groups.fbi_timed_group = { 0, 0, 0 }
+	self.besiege.recon.groups.murkywater_timed_group = { 0, 0, 0 }
+	self.besiege.recon.groups.army_timed_group = { 0, 0, 0 }
+	self.besiege.recon.groups.bellmead_timed_group = { 0, 0, 0 }
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
@@ -3467,64 +3863,122 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.ponr.assault.groups = {
-			FBI_assault_swats = { 0.5, 0.5, 0.5 },
-			FBI_assault_heavies = { 1, 1, 1 },
-			FBI_assault_shield = { 0.3, 0.3, 0.3 },
+			fbi_swats_ranged = { 8, 8, 8 },
+			fbi_swats_charge = { 4, 4, 4 },
+			
+			fbi_heavies_ranged = { 16, 16, 16 },
+			fbi_heavies_charge = { 8, 8, 8 },
+			
+			fbi_shield_ranged = { 6, 6, 6 },
+			fbi_shield_charge = { 6, 6, 6 },
 		}
 		self.ponr.reenforce.groups = {
-			FBI_reinforce_swats = { 1, 1, 1 },
+			fbi_defend_light = { 2, 2, 2 },
+			fbi_defend_heavy = { 1, 1, 1 },
 		}
 	elseif difficulty_index == 3 then
 		self.ponr.assault.groups = {
-			FBI_assault_swats = { 0.5, 0.5, 0.5 },
-			FBI_assault_heavies = { 1, 1, 1 },
-			FBI_assault_shield = { 0.3, 0.3, 0.3 },
-			FBI_assault_taser = { 0.2, 0.2, 0.2 },
-			FBI_assault_bulldozer = { 0.15, 0.15, 0.15 },
+			fbi_swats_ranged = { 8, 8, 8 },
+			fbi_swats_charge = { 4, 4, 4 },
+			
+			fbi_heavies_ranged = { 16, 16, 16 },
+			fbi_heavies_charge = { 8, 8, 8 },
+			
+			fbi_shield_ranged = { 6, 6, 6 },
+			fbi_shield_charge = { 6, 6, 6 },
+
+			fbi_taser_flank = { 4, 4, 4 },
+			fbi_taser_charge = { 4, 4, 4 },
+			
+			fbi_bulldozer_charge = { 3, 3, 3 },
 		}
 		self.ponr.reenforce.groups = {
-			FBI_reinforce_swats = { 1, 1, 1 },
+			fbi_defend_light = { 2, 2, 2 },
+			fbi_defend_heavy = { 1, 1, 1 },
 		}
 	elseif difficulty_index == 4 then
 		self.ponr.assault.groups = {
-			FBI_assault_heavies = { 1, 1, 1 },
-			FBI_assault_shield = { 0.3, 0.3, 0.3 },
-			FBI_assault_cloaker = { 0.25, 0.25, 0.25 },
+			elite_swats_ranged = { 12, 12, 12 },
+			elite_swats_charge = { 6, 6, 6 },
+			
+			fbi_heavies_ranged = { 12, 12, 12 },
+			fbi_heavies_charge = { 6, 6, 6 },
+			
+			fbi_shield_ranged = { 4, 4, 4 },
+			fbi_shield_charge = { 4, 4, 4 },
 
-			Elite_assault_swats = { 0.5, 0.5, 0.5 },
-			Elite_assault_shield = { 0.4, 0.4, 0.4 },
-			Elite_assault_taser = { 0.25, 0.25, 0.25 },
-			Elite_assault_bulldozer = { 0.2, 0.2, 0.2 },
+			elite_shield_ranged = { 4, 4, 4 },
+			elite_shield_charge = { 4, 4, 4 },
+			
+			elite_taser_flank = { 6, 6, 6 },
+			elite_taser_charge = { 6, 6, 6 },
+
+			fbi_cloaker_hide = { 6, 6, 6 },
+			fbi_cloaker_charge = { 6, 6, 6 },
+			
+			fbi_bulldozer_charge = { 2, 2, 2 },
+			
+			elite_bulldozer_charge = { 2, 2, 2 },
 		}
 		self.ponr.reenforce.groups = {
-			Elite_reinforce_swats = { 1, 1, 1 },
+			elite_defend_light = { 1, 1, 1 },
+			fbi_defend_heavy = { 1, 1, 1 },
 		}
 	elseif difficulty_index == 5 then
 		self.ponr.assault.groups = {
-			FBI_assault_heavies = { 1, 1, 1 },
-			FBI_assault_shield = { 0.3, 0.3, 0.3 },
-			FBI_assault_cloaker = { 0.25, 0.25, 0.25 },
+			elite_swats_ranged = { 12, 12, 12 },
+			elite_swats_charge = { 6, 6, 6 },
+			
+			fbi_heavies_ranged = { 12, 12, 12 },
+			fbi_heavies_charge = { 6, 6, 6 },
+			
+			fbi_shield_ranged = { 6, 6, 6 },
+			fbi_shield_charge = { 6, 6, 6 },
 
-			Elite_assault_swats = { 0.5, 0.5, 0.5 },
-			Elite_assault_shield = { 0.4, 0.4, 0.4 },
-			Elite_assault_taser = { 0.25, 0.25, 0.25 },
-			Elite_assault_bulldozer = { 0.2, 0.2, 0.2 },
+			elite_shield_ranged = { 6, 6, 6 },
+			elite_shield_charge = { 6, 6, 6 },
+			
+			elite_taser_flank = { 8, 8, 8 },
+			elite_taser_charge = { 8, 8, 8 },
+
+			fbi_cloaker_hide = { 8, 8, 8 },
+			fbi_cloaker_charge = { 8, 8, 8 },
+			
+			fbi_bulldozer_charge = { 3, 3, 3 },
+			
+			elite_bulldozer_charge = { 3, 3, 3 },
 		}
 		self.ponr.reenforce.groups = {
-			Elite_reinforce_swats = { 1, 1, 1 },
+			elite_defend_light = { 1, 1, 1 },
+			fbi_defend_heavy = { 1, 1, 1 },
 		}
-	elseif difficulty_index == 6 then
+	else
 		self.ponr.assault.groups = {
-			FBI_assault_cloaker = { 0.4, 0.4, 0.4 },
-			Elite_assault_heavies = { 1, 1, 1 },
+			elite_swats_ranged = { 8, 8, 8 },
+			elite_swats_charge = { 4, 4, 4 },
+			
+			elite_heavies_ranged = { 16, 16, 16 },
+			elite_heavies_charge = { 8, 8, 8 },
+			
+			fbi_shield_ranged = { 8, 8, 8 },
+			fbi_shield_charge = { 8, 8, 8 },
 
-			Elite_assault_swats = { 0.5, 0.5, 0.5 },
-			Elite_assault_shield = { 0.5, 0.5, 0.5 },
-			Elite_assault_taser = { 0.4, 0.4, 0.4 },
-			Elite_assault_bulldozer = { 0.35, 0.35, 0.35 },
+			elite_shield_ranged = { 8, 8, 8 },
+			elite_shield_charge = { 8, 8, 8 },
+			
+			elite_taser_flank = { 10, 10, 10 },
+			elite_taser_charge = { 10, 10, 10 },
+
+			fbi_cloaker_hide = { 10, 10, 10 },
+			fbi_cloaker_charge = { 10, 10, 10 },
+			
+			fbi_bulldozer_charge = { 4, 4, 4 },
+			
+			elite_bulldozer_charge = { 4, 4, 4 },
 		}
 		self.ponr.reenforce.groups = {
-			Elite_reinforce_swats = { 1, 1, 1 },
+			elite_defend_light = { 1, 1, 1 },
+			elite_defend_heavy = { 1, 1, 1 },
 		}
 	end
 
@@ -3539,11 +3993,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.assault.groups.custom_assault = { 0, 0, 0 }
 	self.ponr.assault.groups.snowman_boss = { 0, 0, 0 }
 	self.ponr.assault.groups.piggydozer = { 0, 0, 0 }
+	
 	-- recurring groups
-	self.ponr.assault.groups.FBI_timed_group = { 0, 0, 0 }
-	self.ponr.assault.groups.Murkywater_timed_group = { 0, 0, 0 }
-	self.ponr.assault.groups.Army_timed_group = { 0, 0, 0 }
-	self.ponr.assault.groups.Bellmead_timed_group = { 0, 0, 0 }
+	self.ponr.assault.groups.fbi_timed_group = { 0, 0, 0 }
+	self.ponr.assault.groups.murkywater_timed_group = { 0, 0, 0 }
+	self.ponr.assault.groups.army_timed_group = { 0, 0, 0 }
+	self.ponr.assault.groups.bellmead_timed_group = { 0, 0, 0 }
 
 	self.ponr.recon.groups.single_spooc = { 0, 0, 0 }
 	self.ponr.recon.groups.Phalanx = { 0, 0, 0 }
@@ -3552,10 +4007,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.groups.snowman_boss = { 0, 0, 0 }
 	self.ponr.recon.groups.piggydozer = { 0, 0, 0 }
 	-- recurring groups
-	self.ponr.recon.groups.FBI_timed_group = { 0, 0, 0 }
-	self.ponr.recon.groups.Murkywater_timed_group = { 0, 0, 0 }
-	self.ponr.recon.groups.Army_timed_group = { 0, 0, 0 }
-	self.ponr.recon.groups.Bellmead_timed_group = { 0, 0, 0 }
+	self.ponr.recon.groups.fbi_timed_group = { 0, 0, 0 }
+	self.ponr.recon.groups.murkywater_timed_group = { 0, 0, 0 }
+	self.ponr.recon.groups.army_timed_group = { 0, 0, 0 }
+	self.ponr.recon.groups.bellmead_timed_group = { 0, 0, 0 }
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {
