@@ -169,23 +169,23 @@ local optsBreak_The_Glass = {
 	},
 }
 local optsspawnvanSWATs_1 = {
-	on_executed = { 
-	--	{ id = 400005, delay = 0 }, 
-		{ id = 400006, delay = 0 }, 
-	--	{ id = 400007, delay = 0 }, 
-		{ id = 400008, delay = 0 }, 
-		{ id = 400009, delay = 0 }, 
-		{ id = 400011, delay = 0 }, 
+	on_executed = {
+		--	{ id = 400005, delay = 0 },
+		{ id = 400006, delay = 0 },
+		--	{ id = 400007, delay = 0 },
+		{ id = 400008, delay = 0 },
+		{ id = 400009, delay = 0 },
+		{ id = 400011, delay = 0 },
 	},
 	enabled = true,
 }
 local optsspawnvanSWATs_2 = {
-	on_executed = { 
-	--	{ id = 400012, delay = 0 }, 
-		{ id = 400013, delay = 0 }, 
-	--	{ id = 400014, delay = 0 }, 
-		{ id = 400015, delay = 0 }, 
-		{ id = 400016, delay = 0 }, 
+	on_executed = {
+		--	{ id = 400012, delay = 0 },
+		{ id = 400013, delay = 0 },
+		--	{ id = 400014, delay = 0 },
+		{ id = 400015, delay = 0 },
+		{ id = 400016, delay = 0 },
 		{ id = 400018, delay = 0 },
 	},
 	enabled = true,

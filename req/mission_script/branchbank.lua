@@ -64,7 +64,7 @@ local sniper_amount = {
 		amount = 1 + (is_pro_job and 1 or 0),
 		amount_random = normal and 0 or hard and 1 or 2,
 	},
-}	
+}
 local swat_vans_amount = is_eclipse_pro and 2 or 1
 local ambush_chance = (is_pro_job and 1.5 or 1) * diff_scale * 15
 local street_spawn = {
