@@ -15,7 +15,6 @@ local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_en
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
 local taser = scripted_enemy.taser_1
-local elite_sniper = scripted_enemy.elite_sniper
 local medic = diff_i < 4 and scripted_enemy.taser_1 or scripted_enemy.medic_1
 local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
 local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
@@ -25,8 +24,8 @@ local cloaker = scripted_enemy.cloaker
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_bulldozer_neil] = 1, [elite_bulldozer_skull] = 1 }
-local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
+local specials_list_eclipse = { [taser] = 5, [medic] = 5, [cloaker] = 4, [elite_bulldozer_neil] = 1, [elite_bulldozer_skull] = 1 }
+local specials_list_hard_ovk = { [taser] = 5, [medic] = 5, [cloaker] = 4, [green_bulldozer] = 1, [black_bulldozer] = 1 }
 local specials_list_easy_normal = { [taser] = 6, [cloaker] = 1 }
 local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
 
@@ -103,7 +102,7 @@ local optsShield = {
 	enabled = true,
 }
 local optsSWAT_heli_1 = {
-	enemy = is_eclipse and elite_sniper or swat_1,
+	enemy_table = swats,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
@@ -139,7 +138,7 @@ local optsDozerChopper_2 = {
 	enabled = true,
 }
 local optsDozerAmbush = {
-	enemy_table = is_eclipse and random_elite_dozers or (normal or hard) and random_dozers,
+	enemy_table = is_eclipse and random_elite_dozers or random_dozers,
 	enabled = true,
 }
 local optsCloakerAmbush = {
@@ -170,11 +169,25 @@ local optsBreak_The_Glass = {
 	},
 }
 local optsspawnvanSWATs_1 = {
-	on_executed = { { id = 400005, delay = 0 }, { id = 400006, delay = 0 }, { id = 400007, delay = 0 }, { id = 400008, delay = 0 }, { id = 400009, delay = 0 }, { id = 400011, delay = 0 } },
+	on_executed = { 
+	--	{ id = 400005, delay = 0 }, 
+		{ id = 400006, delay = 0 }, 
+	--	{ id = 400007, delay = 0 }, 
+		{ id = 400008, delay = 0 }, 
+		{ id = 400009, delay = 0 }, 
+		{ id = 400011, delay = 0 }, 
+	},
 	enabled = true,
 }
 local optsspawnvanSWATs_2 = {
-	on_executed = { { id = 400012, delay = 0 }, { id = 400013, delay = 0 }, { id = 400014, delay = 0 }, { id = 400015, delay = 0 }, { id = 400016, delay = 0 }, { id = 400018, delay = 0 } },
+	on_executed = { 
+	--	{ id = 400012, delay = 0 }, 
+		{ id = 400013, delay = 0 }, 
+	--	{ id = 400014, delay = 0 }, 
+		{ id = 400015, delay = 0 }, 
+		{ id = 400016, delay = 0 }, 
+		{ id = 400018, delay = 0 },
+	},
 	enabled = true,
 }
 local optsspawndozerchopper = {

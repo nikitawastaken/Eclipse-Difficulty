@@ -12,24 +12,24 @@ local bikers = {
 local biker = { enemy = bikers }
 local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 5,
 	},
 }
 local garage_door_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields,
 }
 local train_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_shields,
 }
 local building_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }

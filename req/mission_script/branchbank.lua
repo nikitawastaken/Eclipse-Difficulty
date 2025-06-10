@@ -4,6 +4,9 @@ local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse_pro = is_pro_job and eclipse
+local diff_scale = math.max(diff_i - 2, 0)
+local bank_heist = level_id ~= "firestarter_3"
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local random_dozers = {
@@ -18,18 +21,19 @@ local player_1 = {
 }
 local tear_gas_amount = {
 	values = {
-		amount = normal and 2 or hard and 3 or 4,
+		amount = 1,
+		amount_random = normal and 1 or hard and 2 or 3,
 	},
 }
 local gate_chance = {
 	chance = normal and 25 or hard and 50 or 75,
 }
-local reinforce = {
+local initial_reinforce = {
 	on_executed = {
 		{ id = 100364, delay = 0 },
 	},
 }
-local reinforce_amount = {
+local initial_reinforce_amount = {
 	values = {
 		amount = 3,
 	},
@@ -44,8 +48,25 @@ local disabled = {
 		enabled = false,
 	},
 }
-local swat_vans_amount = eclipse and 2 or 1
-local ambush_chance = (is_pro_job and 1.5 or 1) * (diff_i - 2) * 15
+local extra_cop_car_chance = diff_scale * 0.25
+local cop_car_amount = {
+	values = {
+		amount = 1,
+	},
+	func = function(self)
+		if math.random() < extra_cop_car_chance then
+			self._values.amount = (self._values.amount or 0) + 1
+		end
+	end,
+}
+local sniper_amount = {
+	values = {
+		amount = 1 + (is_pro_job and 1 or 0),
+		amount_random = normal and 0 or hard and 1 or 2,
+	},
+}	
+local swat_vans_amount = is_eclipse_pro and 2 or 1
+local ambush_chance = (is_pro_job and 1.5 or 1) * diff_scale * 15
 local street_spawn = {
 	values = {
 		interval = 15,
@@ -53,7 +74,7 @@ local street_spawn = {
 }
 local parking_lot_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields,
 }
@@ -173,18 +194,24 @@ return {
 			amount = swat_vans_amount,
 		},
 		on_executed = {
-			{ id = 400025, delay = 0 },
-			{ id = 400031, delay = 0 },
-			{ id = 400037, delay = 0 },
+			{ id = 400025, delay = 0, delay_rand = 10 },
+			{ id = 400031, delay = 0, delay_rand = 10 },
+			{ id = 400037, delay = 0, delay_rand = 10 },
 			-- these vans are exclusive to firestarter day 3
-			{ id = 104735, remove = level_id ~= "firestarter_3" and true or false },
-			{ id = 105660, remove = level_id ~= "firestarter_3" and true or false },
+			{ id = 104735, remove = bank_heist and true or false },
+			{ id = 105660, remove = bank_heist and true or false },
+		},
+	},
+	-- Delay initial diff
+	[100251] = {
+		on_executed = {
+			{ id = 100438, delay = 30 },
 		},
 	},
 	-- make the SWAT events happen earlier if it's Firestater Day 3
 	[100438] = {
 		on_executed = {
-			{ id = 103540, remove = level_id ~= "firestarter_3" and true or false },
+			{ id = 103540, remove = bank_heist and true or false },
 		},
 	},
 	-- enable max diff after 2 instead of 3 assault waves
@@ -223,28 +250,20 @@ return {
 		},
 	},
 	-- police car amount
-	[103879] = {
-		values = {
-			amount = normal and 1 or 2,
-		},
-	},
+	[103879] = cop_car_amount,
 	-- sniper amount
-	[101200] = {
-		values = {
-			amount = normal and 1 or hard and 2 or 3,
-		},
-	},
+	[101200] = sniper_amount,
 	-- vault gate chance
 	[100195] = gate_chance,
 	[100196] = gate_chance,
-	-- enable all street reinforce spots when first responders arrive, increase the amount of enemies for reinforce points
-	[104727] = reinforce,
-	[104728] = reinforce,
-	[104729] = reinforce,
-	[104730] = reinforce,
-	[100369] = reinforce_amount,
-	[102091] = reinforce_amount,
-	[100370] = reinforce_amount,
+	-- enable all street initial_reinforce spots when first responders arrive, increase the amount of enemies for initial_reinforce points
+	[104727] = initial_reinforce,
+	[104728] = initial_reinforce,
+	[104729] = initial_reinforce,
+	[104730] = initial_reinforce,
+	[100369] = initial_reinforce_amount,
+	[102091] = initial_reinforce_amount,
+	[100370] = initial_reinforce_amount,
 	-- Spawn group delays
 	[100246] = street_spawn,
 	[100249] = street_spawn,
