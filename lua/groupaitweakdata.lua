@@ -3762,9 +3762,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_cloaker_hide = { 0, 5, 10 },
 			fbi_cloaker_charge = { 0, 5, 10 },
 
+			fbi_bulldozer_charge = { 0, 0, 2 },
+			
 			elite_bulldozer_charge = { 0, 0, 4 },
-			elite_bulldozer_shield = { 0, 0, 3 },
-			elite_bulldozer_takedown = { 0, 0, 3 },
+			elite_bulldozer_shield = { 0, 0, 2 },
+			elite_bulldozer_takedown = { 0, 0, 2 },
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_light = { 1, 3, 1 },
