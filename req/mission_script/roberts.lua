@@ -78,9 +78,9 @@ return {
 		},
 	},
 	-- chance tweaks for gensec van/cops at gas station
-	[106343] = { chance = donut_lords_at_the_gas_station },
-	[106344] = { chance = donut_lords_at_the_gas_station },
-	[105744] = { chance = gensec_van_at_the_bank },
+	[106343] = donut_lords_at_the_gas_station,
+	[106344] = donut_lords_at_the_gas_station,
+	[105744] = gensec_van_at_the_bank,
 	-- Add early reinforce around the bank
 	[100109] = {
 		reinforce = {
