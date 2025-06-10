@@ -38,15 +38,26 @@ local donut_lords_at_the_gas_station = {
 local gensec_van_at_the_bank = {
 	chance = (eclipse and 10 or 5) + (is_pro_job and 5 or 0),
 }
-local flank_spawn = {
+local street_spawn = {
 	values = {
-		interval = 20,
+		interval = 5,
+	},
+}
+local front_spawn = {
+	values = {
+		interval = 10,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local rear_spawn = {
+	values = {
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local sewer_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 return {
@@ -69,18 +80,23 @@ return {
 		reinforce = {
 			{
 				name = "bank_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-500, -3000, -75),
 			},
 			{
+				name = "bank_right",
+				force = 2,
+				position = Vector3(450, 1750, -75),
+			},
+			{
 				name = "bank_front",
-				force = 3,
-				position = Vector3(3000, 0, -75),
+				force = 2,
+				position = Vector3(2950, -650, -75),
 			},
 			{
 				name = "bank_back",
-				force = 3,
-				position = Vector3(-3000, -1400, -60),
+				force = 2,
+				position = Vector3(-3250, -1375, -60),
 			},
 		},
 	},
@@ -140,6 +156,12 @@ return {
 	-- Spawn group delays
 	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame.
 	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
+	[100128] = street_spawn,
+	[100132] = street_spawn,
+	[100133] = street_spawn,
+	[100130] = front_spawn,
+	[100131] = rear_spawn,
+	[100694] = rear_spawn,
 	[103294] = sewer_spawn,
 	[103295] = sewer_spawn,
 	[103296] = sewer_spawn,
@@ -157,9 +179,6 @@ return {
 	[104686] = sewer_spawn,
 	[104687] = sewer_spawn,
 	[104689] = sewer_spawn,
-	[100694] = flank_spawn,
-	[100130] = flank_spawn,
-	[100131] = flank_spawn,
 	-- Holy harassers, Batman...
 	[103098] = harasser,
 	[103099] = harasser,
