@@ -3455,7 +3455,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	if difficulty_index <= 2 then
 		self.ponr.assault.groups = {
 			fbi_swats = { 30, 30, 30 },
-			
+
 			fbi_heavies = { 30, 30, 30 },
 
 			fbi_shield = { 12, 12, 12 },
@@ -3467,7 +3467,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 3 then
 		self.ponr.assault.groups = {
 			fbi_swats = { 30, 30, 30 },
-			
+
 			fbi_heavies = { 30, 30, 30 },
 
 			fbi_shield = { 12, 12, 12 },
@@ -3495,7 +3495,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_cloaker = { 16, 16, 16 },
 
 			fbi_bulldozer = { 4, 4, 4 },
-			
+
 			elite_bulldozer = { 4, 4, 4 },
 		}
 		self.ponr.reenforce.groups = {
@@ -3517,7 +3517,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_cloaker = { 20, 20, 20 },
 
 			fbi_bulldozer = { 5, 5, 5 },
-			
+
 			elite_bulldozer = { 5, 5, 5 },
 		}
 		self.ponr.reenforce.groups = {
