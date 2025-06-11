@@ -41,11 +41,11 @@ M.level_scale_map = {
 }
 
 M.level_scales = {
-	["very_small"] = 0.5,
-	["small"] = 0.75,
+	["very_small"] = 0.6,
+	["small"] = 0.8,
 	["medium"] = 1,
-	["large"] = 1.25,
-	["very_large"] = 1.5,
+	["large"] = 1.2,
+	["very_large"] = 1.4,
 }
 
 function M.scale_multiplier(level)

@@ -1945,7 +1945,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.swat_snk,
 			},
 			{
-				amount_min = 2,
+				amount_min = 1,
 				amount_max = 3,
 				freq = 1.5,
 				rank = 1,
@@ -1973,7 +1973,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.swat_snk,
 			},
 			{
-				amount_min = 2,
+				amount_min = 1,
 				amount_max = 3,
 				freq = 1.5,
 				rank = 2,
@@ -2227,7 +2227,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.swat_snk,
 			},
 			{
-				amount_min = 2,
+				amount_min = 1,
 				amount_max = 3,
 				freq = 1.5,
 				rank = 2,
@@ -2267,7 +2267,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.swat_snk,
 			},
 			{
-				amount_min = 2,
+				amount_min = 1,
 				amount_max = 3,
 				freq = 1.5,
 				rank = 3,
@@ -2487,7 +2487,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.swat_snk,
 			},
 			{
-				amount_min = 2,
+				amount_min = 1,
 				amount_max = 3,
 				freq = 1.5,
 				rank = 2,
@@ -2527,7 +2527,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.swat_snk,
 			},
 			{
-				amount_min = 2,
+				amount_min = 1,
 				amount_max = 3,
 				freq = 1.5,
 				rank = 3,
@@ -3156,40 +3156,40 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawncap
 	self.besiege.assault.force = {
-		diff_lerp(4, 6) * force_mul,
-		diff_lerp(6, 9) * force_mul,
+		diff_lerp(4, 8) * force_mul,
 		diff_lerp(8, 12) * force_mul,
+		diff_lerp(12, 16) * force_mul,
 	}
-	self.besiege.assault.force_balance_mul = { 1, 1.25, 1.5, 1.75 }
+	self.besiege.assault.force_balance_mul = { 0.55, 0.7, 0.85, 1 }
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = { 0.75, 1, 1.25, 1.5 }
+	self.besiege.assault.force_pool_balance_mul = { 0.55, 0.7, 0.85, 1 }
 
 	-- Spawnrate
 	self.spawn_kill_cooldown = 10
 
 	self.besiege.assault.spawnrate = {
-		diff_lerp(3, 2) / spawnrate_mul,
-		diff_lerp(2.5, 1.5) / spawnrate_mul,
-		diff_lerp(2, 1) / spawnrate_mul,
+		diff_lerp(3, 2.5) / spawnrate_mul,
+		diff_lerp(2.5, 2) / spawnrate_mul,
+		diff_lerp(2, 1.5) / spawnrate_mul,
 	}
-	self.besiege.assault.spawnrate_balance_mul = { 2.5, 2, 1.5, 1 }
+	self.besiege.assault.spawnrate_balance_mul = { 1.75, 1.6, 1.25, 1 }
 
 	-- RECON / REENFORCE --
 
 	-- Reenforce spawn interval
-	self.besiege.reenforce.interval = { 15, 30, 45 }
+	self.besiege.reenforce.interval = { 10, 20, 30 }
 
 	-- Recon spawn interval and spawncap
 	self.besiege.recon.interval_variation = 20
 	self.besiege.recon.force = {
-		2 * math.sqrt(force_mul),
-		4 * math.sqrt(force_mul),
-		6 * math.sqrt(force_mul),
+		diff_lerp(2, 4) * force_mul,
+		diff_lerp(4, 6) * force_mul,
+		diff_lerp(6, 8) * force_mul,
 	}
 
 	self.besiege.push_delay = {
