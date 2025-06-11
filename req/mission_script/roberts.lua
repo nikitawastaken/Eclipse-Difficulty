@@ -50,7 +50,7 @@ local street_spawn = {
 		interval = 5,
 	},
 }
-local front_spawn = {
+local wall_spawn = {
 	values = {
 		interval = 10,
 	},
@@ -107,6 +107,12 @@ return {
 			},
 		},
 	},
+	-- Delay initial diff
+	[100116] = {
+		on_executed = {
+			{ id = 100122, delay = 30 },
+		},
+	},
 	-- tweak the ambush near the end
 	-- both soldiers and dozer ambush on eclipse pro
 	[106416] = {
@@ -143,9 +149,9 @@ return {
 	[100128] = street_spawn,
 	[100132] = street_spawn,
 	[100133] = street_spawn,
-	[100130] = front_spawn,
-	[100131] = rear_spawn,
 	[100694] = rear_spawn,
+	[100130] = wall_spawn,
+	[100131] = wall_spawn,
 	[103294] = sewer_spawn,
 	[103295] = sewer_spawn,
 	[103296] = sewer_spawn,

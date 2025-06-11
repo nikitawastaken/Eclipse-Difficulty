@@ -10,36 +10,40 @@ local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or 
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
+local ground_spawn = {
+	values = {
+		interval = 5,
+	},
+}
 local waterfront_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local jumpdown_spawn1 = {
+local jumpdown_lower_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local jumpdown_spawn2 = {
+local jumpdown_upper_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- Reinforce that scales with diff.
 	[100150] = {
 		reinforce = {
 			{
-				name = "ground1",
-				force = 3,
-				position = Vector3(1850, 3150, 0),
+				name = "warehouse1",
+				force = 2,
+				position = Vector3(1800, 3135, 0),
 			},
 			{
-				name = "ground2",
-				force = 3,
-				position = Vector3(300, -900, 0),
+				name = "warehouse2",
+				force = 2,
+				position = Vector3(525, -300, 0),
 			},
 		},
 	},
@@ -57,14 +61,17 @@ return {
 	-- Spawn group delays
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- Slightly revising the original version with more pronounced intervals.
-	[101505] = waterfront_spawn,
+	[104064] = ground_spawn,
+	[104065] = ground_spawn,
+	[101055] = waterfront_spawn,
+	[101189] = waterfront_spawn,
 	[101196] = waterfront_spawn,
-	[104110] = jumpdown_spawn1,
-	[104324] = jumpdown_spawn1,
-	[104330] = jumpdown_spawn1,
-	[104410] = jumpdown_spawn1,
-	[104111] = jumpdown_spawn2,
-	[104321] = jumpdown_spawn2,
+	[104110] = jumpdown_lower_spawn,
+	[104324] = jumpdown_lower_spawn,
+	[104330] = jumpdown_lower_spawn,
+	[104410] = jumpdown_lower_spawn,
+	[104111] = jumpdown_upper_spawn,
+	[104321] = jumpdown_upper_spawn,
 	-- Harassers
 	[104583] = harasser,
 	[104112] = harasser,
