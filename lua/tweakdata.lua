@@ -181,7 +181,7 @@ tweak_data.projectiles.concussion.name_id = "bm_concussion"
 tweak_data.projectiles.concussion.sound_event = "concussion_explosion"
 tweak_data.projectiles.concussion.damage = 1
 tweak_data.projectiles.concussion.range = 800
-tweak_data.projectiles.concussion.duration = { additional = 10,  min = 4 }
+tweak_data.projectiles.concussion.duration = { additional = 10, min = 4 }
 
 tweak_data.projectiles.launcher_frag = {
 	damage = 72,
