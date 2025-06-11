@@ -252,7 +252,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 							target_priority_slot = target_priority_slot - 1
 						end
 					end
-					
+
 					-- If we have murder tactic and criminal is downed or tased, focus on them
 					if murder and reaction ~= AIAttentionObject.REACT_SPECIAL_ATTACK and (status == "electrified" or status == "disabled") then
 						target_priority_slot = target_priority_slot - 1
