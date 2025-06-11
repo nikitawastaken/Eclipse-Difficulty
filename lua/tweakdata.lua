@@ -158,10 +158,10 @@ tweak_data.projectiles.arblast_poison_arrow = create_poison_arrow(tweak_data.pro
 
 tweak_data.projectiles.frag = {
 	damage = 96,
-	curve_pow = 2,
+	curve_pow = 4,
 	player_damage = 1,
 	player_dmg_mul = 1 / 4,
-	range = 450,
+	range = 500,
 	name_id = "bm_grenade_frag",
 }
 
@@ -176,13 +176,20 @@ tweak_data.projectiles.dynamite = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.dynamite.name_id = "bm_grenade_frag"
 tweak_data.projectiles.dynamite.effect_name = "effects/payday2/particles/explosions/dynamite_explosion"
 
+tweak_data.projectiles.concussion = deep_clone(tweak_data.projectiles.frag)
+tweak_data.projectiles.concussion.name_id = "bm_concussion"
+tweak_data.projectiles.concussion.sound_event = "concussion_explosion"
+tweak_data.projectiles.concussion.damage = 1
+tweak_data.projectiles.concussion.range = 800
+tweak_data.projectiles.concussion.duration = { additional = 10,  min = 4 }
+
 tweak_data.projectiles.launcher_frag = {
 	damage = 72,
 	launch_speed = 1500,
-	curve_pow = 2,
+	curve_pow = 4,
 	player_damage = 1,
 	player_dmg_mul = 1 / 6,
-	range = 450,
+	range = 500,
 	init_timer = 2.5,
 	mass_look_up_modifier = 1,
 	sound_event = "gl_explode",
