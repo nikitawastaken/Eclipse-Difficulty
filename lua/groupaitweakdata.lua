@@ -2306,7 +2306,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_min = 1,
 				amount_max = 2,
-				freq = (difficulty_index ^ 2) / 50,
+				freq = (difficulty_index ^ 2) / 75,
 				rank = 3,
 				unit = "fbi_shield",
 				tactics = self._random_tactics.shield,
