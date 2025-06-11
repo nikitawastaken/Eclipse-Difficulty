@@ -1206,27 +1206,42 @@ local function spawn_group_id(spawn_group)
 	return spawn_group.mission_element:id()
 end
 
-function GroupAIStateBesiege:_choose_best_group(best_groups, total_weight)
-	local rand_wgt = total_weight * math.random()
-	local best_grp, best_grp_type = nil
+function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight)
+	local total_weight = 0
+	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
+	local unit_categories = tweak_data.group_ai.unit_categories
 
-	for i, candidate in ipairs(best_groups) do
-		rand_wgt = rand_wgt - candidate.wght
+	for _, group_type in ipairs(group_types) do
+		local spawn_group_desc = spawn_groups[group_type]
+		local cat_weights = allowed_groups[group_type]
+		if spawn_group_desc and cat_weights then
+			for _, spawn_entry in ipairs(spawn_group_desc.spawn) do
+				local cat_data = unit_categories[spawn_entry.unit]
+				local special_type = cat_data and not cat_data.is_captain and cat_data.special_type
+				if special_type and managers.job:current_spawn_limit(special_type) < self:_get_special_unit_type_count(special_type) + (spawn_entry.amount_min or 0) then
+					cat_weights = nil
+					break
+				end
+			end
 
-		if rand_wgt <= 0 then
-			-- fuck u240.3 (prob not setting it back to 15, 20 though cause i already reduced spawns after the update)
-			-- https://imgur.com/a/v9T4mwq
-			self._spawn_group_timers[spawn_group_id(candidate.group)] = TimerManager:game():time() + math.random(10, 15)
+			if cat_weights then
+				local cat_weight = self:_get_difficulty_dependent_value(cat_weights)
+				local mod_weight = weight * cat_weight
 
-			best_grp = candidate.group
-			best_grp_type = candidate.group_type
-			best_grp.delay_t = self._t + best_grp.interval
+				table.insert(best_groups, {
+					group = group,
+					group_type = group_type,
+					wght = mod_weight,
+					cat_weight = cat_weight,
+					dis_weight = weight
+				})
 
-			break
+				total_weight = total_weight + mod_weight
+			end
 		end
 	end
 
-	return best_grp, best_grp_type
+	return total_weight
 end
 
 function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task, timed_desc)

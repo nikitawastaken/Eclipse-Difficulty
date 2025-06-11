@@ -26,20 +26,6 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 		return math.min(attention_reaction, AIAttentionObject.REACT_AIM)
 	end
 
-	--Add a "target_vulnerable" tactic that causes an enemy to focus-fire players who are reloading/interacting/switching weapons
-	if data.tactics and data.tactics.target_vulnerable then
-		local att_unit = attention_data.unit
-		local movement = alive(att_unit) and att_unit.movement and att_unit:movement()
-		local current_state = movement and movement.current_state and movement:current_state()
-		local current_state_reloading = current_state and current_state._is_reloading and current_state:_is_reloading()
-		local current_state_changing_weapon = current_state and current_state._changing_weapon and current_state:_changing_weapon()
-		local current_state_interacting = current_state and current_state._interacting and current_state:_interacting()
-
-		if current_state_reloading or current_state_changing_weapon or current_state_interacting then
-			return AIAttentionObject.REACT_COMBAT
-		end
-	end
-
 	local can_arrest = not record.status and record.arrest_timeout < data.t and CopLogicBase._can_arrest(data)
 	if not can_arrest or record.assault_t and attention_data.unit:base():arrest_settings().aggression_timeout > data.t - record.assault_t then
 		return attention_data.verified and AIAttentionObject.REACT_COMBAT or attention_reaction
@@ -178,6 +164,7 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 	local optimal_range = weapon_range.optimal
 	local close_range = weapon_range.close
 	local murder = data.tactics and data.tactics.murder
+	local target_vulnerable = data.tactics and data.tactics.target_vulnerable
 
 	for u_key, attention_data in pairs(attention_objects) do
 		local att_unit = attention_data.unit
@@ -214,9 +201,9 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 				local dmg_dt = attention_data.dmg_t and (data.t - attention_data.dmg_t) * weight_mul or 10000
 				distance = distance * weight_mul
 
-				--Add a "target_isolated" tactic that makes an enemy go after isolated players
+				--Add a "target_vulnerable" tactic that makes an enemy go after isolated players
 				if crim_record then
-					if data.tactics and data.tactics.target_isolated then
+					if target_vulnerable then
 						local closest_dis = nil
 						for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
 							if not other_crim_rec == crim_record then
@@ -254,6 +241,18 @@ function CopLogicIdle._get_priority_attention(data, attention_objects, reaction_
 						target_priority_slot = target_priority_slot - 1
 					end
 
+					local movement = att_unit and alive(att_unit) and att_unit.movement and att_unit:movement()
+					local current_state = movement and movement.current_state and movement:current_state()
+					local current_state_reloading = current_state and current_state._is_reloading and current_state:_is_reloading()
+					local current_state_changing_weapon = current_state and current_state._changing_weapon and current_state:_changing_weapon()
+					local current_state_interacting = current_state and current_state._interacting and current_state:_interacting()
+
+					if target_vulnerable then
+						if current_state_reloading or current_state_changing_weapon or current_state_interacting then
+							target_priority_slot = target_priority_slot - 1
+						end
+					end
+					
 					-- If we have murder tactic and criminal is downed or tased, focus on them
 					if murder and reaction ~= AIAttentionObject.REACT_SPECIAL_ATTACK and (status == "electrified" or status == "disabled") then
 						target_priority_slot = target_priority_slot - 1
