@@ -88,6 +88,11 @@
 			<object 			enabled="true" name="'g_armor_big_lod1'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'headset_base'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_headset'" />
+			<object 			enabled="true" name="'g_headset_lod1'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'helmet_chinstrap'" once="true" triggable="true"> 
 			<object 			enabled="true" name="'g_helmet_lod3'" />
 			<object 			enabled="true" name="'g_helmet_lod4'" />
@@ -116,6 +121,7 @@
 			
 			<run_sequence		name="'fbi_heavy'" />
 			<run_sequence		name="'armor'" />
+			<run_sequence 		name="'headset_base'" />
 			<run_sequence		name="'helmet_chinstrap'" />
 		</sequence>
 
@@ -138,6 +144,7 @@
 			
 			<run_sequence		name="'fbi_heavy'" />
 			<run_sequence		name="'armor'" />
+			<run_sequence 		name="'headset_base'" />
 			<run_sequence		name="'helmet_chinstrap'" />
 		</sequence>
 
