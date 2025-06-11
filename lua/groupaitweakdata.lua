@@ -1756,11 +1756,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self._random_tactics = {
 		shield = { self._tactics.shield_def, self._tactics.shield_agg },
-		taser = { self._tactics.taser_agg, self._tactics.taser_snk},
+		taser = { self._tactics.taser_agg, self._tactics.taser_snk },
 		bulldozer = { self._tactics.bulldozer_init, self._tactics.bulldozer_agg },
 		cloaker = { self._tactics.cloaker_def, self._tactics.cloaker_agg },
 	}
-	
+
 	-- соси хуй кк?
 	self.enemy_spawn_groups = {}
 
@@ -1954,7 +1954,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.cs_heavies = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2201,7 +2201,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.fbi_swats = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2248,7 +2248,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.fbi_heavies = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2508,7 +2508,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.elite_heavies = {
 		amount = { 3, 4 },
 		spawn = {
@@ -3255,9 +3255,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_cops = { 20, 0, 0 },
 			cs_swats = { 40, 60, 30 },
-			
+
 			cs_heavies = { 0, 0, 30 },
-			
+
 			cs_shield = { 0, 6, 12 },
 		}
 		self.besiege.recon.groups = {
@@ -3272,13 +3272,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_cops = { 20, 0, 0 },
 			cs_swats = { 40, 60, 30 },
-			
+
 			cs_heavies = { 0, 0, 30 },
-			
+
 			cs_shield = { 0, 6, 12 },
-			
+
 			cs_taser = { 0, 6, 12 },
-			
+
 			cs_bulldozer = { 0, 0, 6 },
 		}
 		self.besiege.recon.groups = {
@@ -3293,15 +3293,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_swats = { 60, 40, 0 },
 			fbi_swats = { 0, 20, 30 },
-			
+
 			fbi_heavies = { 0, 0, 30 },
-			
+
 			fbi_shield = { 0, 8, 16 },
-			
+
 			fbi_taser = { 0, 8, 16 },
-			
+
 			fbi_cloaker = { 0, 8, 16 },
-			
+
 			fbi_bulldozer = { 0, 0, 8 },
 		}
 		self.besiege.recon.groups = {
@@ -3316,15 +3316,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_swats = { 40, 20, 0 },
 			fbi_swats = { 20, 40, 30 },
-			
+
 			fbi_heavies = { 0, 0, 30 },
-			
+
 			fbi_shield = { 0, 10, 20 },
-			
+
 			fbi_taser = { 0, 10, 20 },
-			
+
 			fbi_cloaker = { 0, 10, 20 },
-			
+
 			fbi_bulldozer = { 0, 0, 10 },
 		}
 		self.besiege.recon.groups = {
@@ -3340,17 +3340,17 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_swats = { 30, 0, 0 },
 			fbi_swats = { 30, 30, 0 },
 			elite_swat = { 0, 20, 30 },
-			
+
 			fbi_heavies = { 0, 10, 30 },
-			
+
 			fbi_shield = { 0, 12, 12 },
 			elite_shield = { 0, 0, 12 },
-			
+
 			elite_taser = { 0, 8, 16 },
 			elite_taser_takedown = { 0, 4, 8 },
-			
+
 			fbi_cloaker = { 0, 12, 24 },
-			
+
 			fbi_bulldozer = { 0, 0, 4 },
 			elite_bulldozer = { 0, 0, 4 },
 			elite_bulldozer_takedown = { 0, 0, 2 },

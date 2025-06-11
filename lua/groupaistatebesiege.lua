@@ -1233,7 +1233,7 @@ function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types
 					group_type = group_type,
 					wght = mod_weight,
 					cat_weight = cat_weight,
-					dis_weight = weight
+					dis_weight = weight,
 				})
 
 				total_weight = total_weight + mod_weight
