@@ -15,38 +15,31 @@ end
 
 GroupAITweakData.group_ai_presets = {
 	["ambush"] = {
-		cs_shield_ranged = { 1, 1.25, 1.25 },
-		cs_shield_charge = { 1, 1.25, 1.25 },
-		fbi_shield_ranged = { 1, 1.25, 1.25 },
-		fbi_shield_charge = { 1, 1.25, 1.25 },
-		elite_shield_ranged = { 1, 1.25, 1.25 },
-		elite_shield_charge = { 1, 1.25, 1.25 },
+		cs_shield = { 1, 1.25, 1.25 },
+		fbi_shield = { 1, 1.25, 1.25 },
+		elite_shield = { 1, 1.25, 1.25 },
 
-		cs_taser_flank = { 1, 1.25, 1.25 },
-		cs_taser_charge = { 1, 1.25, 1.25 },
-		fbi_taser_flank = { 1, 1.25, 1.25 },
-		fbi_taser_charge = { 1, 1.25, 1.25 },
+		cs_taser = { 1, 1.25, 1.25 },
+		fbi_taser = { 1, 1.25, 1.25 },
+		elite_taser = { 1, 1.25, 1.25 },
 		elite_taser_takedown = { 1, 1.25, 1.25 },
-		elite_taser_flank = { 1, 1.25, 1.25 },
-		elite_taser_charge = { 1, 1.25, 1.25 },
 
-		cs_bulldozer_charge = { 1, 1.25, 1.25 },
-		fbi_bulldozer_charge = { 1, 1.25, 1.25 },
+		cs_bulldozer = { 1, 1.25, 1.25 },
+		fbi_bulldozer = { 1, 1.25, 1.25 },
+		elite_bulldozer = { 1, 1.25, 1.25 },
 		elite_bulldozer_shield = { 1, 1.25, 1.25 },
 		elite_bulldozer_takedown = { 1, 1.25, 1.25 },
-		elite_bulldozer_charge = { 1, 1.25, 1.25 },
 
-		fbi_cloaker_charge = { 1, 1.5, 1.5 },
-		fbi_cloaker_hide = { 1, 1.5, 1.5 },
+		fbi_cloaker = { 1, 1.25, 1.25 },
 	},
 	["small_urban"] = {
-		cs_cops_init = { 1.5, 1.25, 1 },
+		cs_cops = { 1.5, 1.25, 1 },
 
-		cs_bulldozer_charge = { 0, 0, 0.75 },
-		fbi_bulldozer_charge = { 0, 0, 0.75 },
+		cs_bulldozer = { 0, 0, 0.75 },
+		fbi_bulldozer = { 0, 0, 0.75 },
+		elite_bulldozer = { 0, 0, 0.75 },
 		elite_bulldozer_shield = { 0, 0, 0.75 },
 		elite_bulldozer_takedown = { 0, 0, 0.75 },
-		elite_bulldozer_charge = { 0, 0, 0.75 },
 
 		cs_defend_init = { 1.5, 1.25, 1 },
 
@@ -59,7 +52,7 @@ GroupAITweakData.group_ai_presets = {
 		elite_defend_heavy = { 0, 0, 1 },
 	},
 	["remote"] = {
-		cs_cops_init = { 0, 0, 0 },
+		cs_cops = { 0, 0, 0 },
 
 		cs_defend_init = { 0.5, 0.25, 0 },
 		fbi_defend_init = { 0.5, 0.25, 0 },
@@ -70,15 +63,11 @@ GroupAITweakData.group_ai_presets = {
 	["skyscraper"] = {
 		cs_defend_init = { 1.5, 1.25, 1 },
 
-		cs_shield_ranged = { 0, 0.75, 1 },
-		cs_shield_charge = { 0, 0.75, 1 },
-		fbi_shield_ranged = { 0, 0.75, 1 },
-		fbi_shield_charge = { 0, 0.75, 1 },
-		elite_shield_ranged = { 0, 0.75, 1 },
-		elite_shield_charge = { 0, 0.75, 1 },
+		cs_shield = { 0, 0.75, 1 },
+		fbi_shield = { 0, 0.75, 1 },
+		elite_shield = { 0, 0.75, 1 },
 
-		fbi_cloaker_charge = { 1, 1.25, 1.25 },
-		fbi_cloaker_hide = { 1, 1.25, 1.25 },
+		fbi_cloaker = { 1, 1.25, 1.25 },
 
 		cs_defend_init = { 0.5, 0.25, 0 },
 		fbi_defend_init = { 0.5, 0.25, 0 },
@@ -1994,9 +1983,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = {
-					15 / (difficulty_index ^ 2),
+					30 / (difficulty_index ^ 2),
+					20 / (difficulty_index ^ 2),
 					10 / (difficulty_index ^ 2),
-					5 / (difficulty_index ^ 2),
 				},
 				rank = 1,
 				unit = "cs_swat_1_3",
@@ -2288,9 +2277,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq_by_diff = {
+					45 / (difficulty_index ^ 2),
 					30 / (difficulty_index ^ 2),
-					20 / (difficulty_index ^ 2),
-					10 / (difficulty_index ^ 2),
+					15 / (difficulty_index ^ 2),
 				},
 				rank = 2,
 				unit = "fbi_swat_1_3",
