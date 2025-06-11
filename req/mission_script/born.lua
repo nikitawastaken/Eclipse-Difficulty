@@ -4,14 +4,8 @@ local exclude_cop_agents_shields_dozers = {
 }
 local fence_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
-}
-local window_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
@@ -123,7 +117,7 @@ return {
 	[100131] = fence_spawn,
 	[100133] = fence_spawn,
 	[100007] = roof_spawn,
-	[100128] = window_spawn,
+	[100128] = roof_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,
