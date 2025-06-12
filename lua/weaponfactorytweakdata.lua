@@ -1986,24 +1986,24 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			standing = {
 				hipfire = 1,
 				crouching = 1,
-				steelsight = 0.75,
+				steelsight = 0.8,
 			},
 			moving = {
-				hipfire = 1.25,
+				hipfire = 1.2,
 				crouching = 1,
 				steelsight = 1,
 			},
 		},
 		recoil = {
 			standing = {
-				hipfire = 1.25,
+				hipfire = 1.2,
 				crouching = 1,
 				steelsight = 1,
 			},
 			moving = {
-				hipfire = 1.5,
+				hipfire = 1.6,
 				crouching = 1,
-				steelsight = 1,
+				steelsight = 1.2,
 			},
 		},
 	}

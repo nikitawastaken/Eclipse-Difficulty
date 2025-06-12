@@ -11,12 +11,12 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 
 	self.stats.spread = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread, (math.lerp(1.5, 0.05, i / 25)))
+		table.insert(self.stats.spread, (math.lerp(2, 0.1, i / 25)))
 	end
 
 	self.stats.spread_moving = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread_moving, (math.lerp(1.5, 0.05, i / 25)))
+		table.insert(self.stats.spread_moving, (math.lerp(2, 0.1, i / 25)))
 	end
 
 	self.stats.suppression = {}
@@ -87,10 +87,10 @@ function WeaponTweakData:_init_weapons()
 			auto = {},
 			single = {
 				recoil = 1.5,
-				spread = 0.5,
+				spread = 0.4,
 			},
 			burst = {
-				recoil = 0.75,
+				recoil = 0.8,
 				spread = 1,
 			},
 			volley = {}
@@ -119,48 +119,48 @@ function WeaponTweakData:_init_weapons()
 					weap_data.spread_multiplier = {
 						standing = {
 							hipfire = 1.5,
-							crouching = 0.75,
-							steelsight = 0.5,
+							crouching = 0.8,
+							steelsight = 0.4,
 						},
 						moving = {
 							hipfire = 2,
 							crouching = 1,
-							steelsight = 1.5,
+							steelsight = 1.8,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.25,
+							hipfire = 1.2,
 							crouching = 1,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.6,
 							crouching = 1,
-							steelsight = 1.25,
+							steelsight = 1.4,
 						}
 					}
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.75,
+							hipfire = 1.2,
+							crouching = 0.8,
 							steelsight = 0.5,
 						},
 						moving = {
 							hipfire = 1.5,
 							crouching = 1,
-							steelsight = 0.75,
+							steelsight = 1,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
 							hipfire = 1,
 							crouching = 1,
-							steelsight = 0.75,
+							steelsight = 0.8,
 						},
 						moving = {
-							hipfire = 1.25,
+							hipfire = 1.2,
 							crouching = 1,
 							steelsight = 1,
 						}
@@ -180,33 +180,33 @@ function WeaponTweakData:_init_weapons()
 					weap_data.spread_multiplier = {
 						standing = {
 							hipfire = 1.5,
-							crouching = 0.75,
+							crouching = 0.8,
 							steelsight = 0.5,
 						},
 						moving = {
 							hipfire = 2,
 							crouching = 1,
-							steelsight = 1.5,
+							steelsight = 1.8,
 						}
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.25,
+							hipfire = 1.4,
 							crouching = 1,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.6,
 							crouching = 1,
-							steelsight = 1.25,
+							steelsight = 1.4,
 						}
 					}
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1.25,
+							hipfire = 1.2,
 							crouching = 1,
-							steelsight = 0.75,
+							steelsight = 0.8,
 						},
 						moving = {
 							hipfire = 1.5,
@@ -218,10 +218,10 @@ function WeaponTweakData:_init_weapons()
 						standing = {
 							hipfire = 1,
 							crouching = 1,
-							steelsight = 0.75,
+							steelsight = 0.8,
 						},
 						moving = {
-							hipfire = 1.25,
+							hipfire = 1.2,
 							crouching = 1,
 							steelsight = 1,
 						}
@@ -239,10 +239,10 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.75,
+						steelsight = 0.6,
 					},
 					moving = {
-						hipfire = 1.25,
+						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 1,
 					}
@@ -262,11 +262,11 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.fire_mode_mul = {
 					single = {
-						recoil = 1.25,
-						spread = 0.75,
+						recoil = 1.4,
+						spread = 0.6,
 					},
 					burst = {
-						recoil = 0.75,
+						recoil = 0.8,
 						spread = 1,
 					},
 				}
@@ -284,10 +284,10 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.75,
+						steelsight = 0.8,
 					},
 					moving = {
-						hipfire = 1.25,
+						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 1,
 					}
@@ -295,14 +295,14 @@ function WeaponTweakData:_init_weapons()
 				
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.25,
+						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 1,
 					},
 					moving = {
-						hipfire = 1.5,
+						hipfire = 1.6,
 						crouching = 1,
-						steelsight = 1,
+						steelsight = 1.2,
 					}
 				}
 			
@@ -319,12 +319,12 @@ function WeaponTweakData:_init_weapons()
 				if weap_data.no_steelsight then
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.5,
+							hipfire = 1.3,
+							crouching = 0.7,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.6,
 							crouching = 1,
 							steelsight = 1,
 						},
@@ -332,12 +332,12 @@ function WeaponTweakData:_init_weapons()
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.75,
+							hipfire = 1.2,
+							crouching = 0.7,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.25,
+							hipfire = 1.5,
 							crouching = 1,
 							steelsight = 1,
 						}
@@ -345,27 +345,27 @@ function WeaponTweakData:_init_weapons()
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1.5,
-							crouching = 0.75,
-							steelsight = 0.75,
+							hipfire = 1.4,
+							crouching = 0.8,
+							steelsight = 0.7,
 						},
 						moving = {
-							hipfire = 1.75,
+							hipfire = 1.6,
 							crouching = 1,
-							steelsight = 1.25,
+							steelsight = 1.2,
 						},
 						bipod = 0.5,
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.25,
-							crouching = 0.75,
+							hipfire = 1.3,
+							crouching = 0.8,
 							steelsight = 1,
 						},
 						moving = {
 							hipfire = 1.5,
 							crouching = 1,
-							steelsight = 1.25,
+							steelsight = 1.2,
 						}
 					}
 				end
@@ -380,51 +380,51 @@ function WeaponTweakData:_init_weapons()
 				if weap_data.no_steelsight then
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1.25,
-							crouching = 0.5,
+							hipfire = 1.3,
+							crouching = 0.7,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.75,
-							crouching = 0.5,
+							hipfire = 1.6,
+							crouching = 1,
 							steelsight = 1,
-						}
+						},
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.75,
+							hipfire = 1.2,
+							crouching = 0.7,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.25,
-							crouching = 0.75,
+							hipfire = 1.5,
+							crouching = 1,
 							steelsight = 1,
 						}
 					}
 				else
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1.25,
-							crouching = 0.5,
-							steelsight = 1,
+							hipfire = 1.4,
+							crouching = 0.8,
+							steelsight = 0.7,
 						},
 						moving = {
-							hipfire = 1.75,
-							crouching = 0.5,
-							steelsight = 1,
-						}
+							hipfire = 1.6,
+							crouching = 1,
+							steelsight = 1.2,
+						},
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1,
-							crouching = 0.75,
+							hipfire = 1.3,
+							crouching = 0.8,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.25,
-							crouching = 0.75,
-							steelsight = 1,
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1.2,
 						}
 					}
 				end
@@ -454,25 +454,25 @@ function WeaponTweakData:_init_weapons()
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 2,
-						crouching = 0.75,
-						steelsight = 0.25,
+						crouching = 0.8,
+						steelsight = 0.2,
 					},
 					moving = {
 						hipfire = 4,
 						crouching = 1,
-						steelsight = 1,
+						steelsight = 2,
 					}
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.5,
+						hipfire = 1.4,
 						crouching = 1,
 						steelsight = 1,
 					},
 					moving = {
 						hipfire = 2,
 						crouching = 1,
-						steelsight = 1.5,
+						steelsight = 1.6,
 					}
 				}
 			elseif cat_map.bow then
@@ -506,24 +506,24 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.spread_multiplier = {
 					standing = {
-						hipfire = 1.5,
+						hipfire = 4,
 						crouching = 1,
 						steelsight = 0.5,
 					},
 					moving = {
-						hipfire = 2,
+						hipfire = 6,
 						crouching = 1,
 						steelsight = 1,
 					}
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.25,
+						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 1,
 					},
 					moving = {
-						hipfire = 1.5,
+						hipfire = 1.6,
 						crouching = 1,
 						steelsight = 1,
 					}
