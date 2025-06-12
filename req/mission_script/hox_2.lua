@@ -85,7 +85,7 @@ local offices_upper_spawn = {
 	values = {
 		interval = 35,
 	},
-	groups = preferred.no_shields,
+	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- add ponr state

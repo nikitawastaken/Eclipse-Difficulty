@@ -6,7 +6,7 @@ return {
 	["levels/instances/unique/hox_fbi_ceiling_breach/world/world"] = function(result)
 		for _, element in ipairs(result.default.elements) do
 			if patches.breach_group[element.id] then
-				element.values.interval = 45
+				element.values.interval = 30
 			end
 		end
 	end,
