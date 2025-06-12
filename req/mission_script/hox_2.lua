@@ -110,6 +110,23 @@ return {
 			},
 		},
 	},
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 3, 17 },
+			{ 11, 18 },
+			{ 12, 16 },
+			{ 40, 42 },
+			{ 41, 102 },
+			{ 56, 101 },
+			{ 57, 100 },
+			{ 58, 110 },
+			{ 68, 69 },
+			{ 70, 71 },
+			{ 78, 99 },
+			{ 79, 106 }
+		}
+	},
 	-- Tweak keycard spawns
 	[101218] = { -- Extra keycard, now also spawns on Normal aka Hard
 		values = {

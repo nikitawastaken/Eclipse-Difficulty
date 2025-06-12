@@ -59,6 +59,31 @@ return {
 			base_delay = 40,
 		},
 	},
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 7, 8, 9 },
+			{ 34, 35 }
+		}
+	},
+	[100814] = {
+		ai_area = {
+			{ 33, 51 },
+			{ 38, 40 }
+		}
+	},
+	[100817] = {
+		ai_area = {
+			{ 38, 40 },
+			{ 42, 73 }
+		}
+	},
+	[100819] = {
+		ai_area = {
+			{ 33, 51 },
+			{ 42, 73 }
+		}
+	},
 	[100129] = {
 		difficulty = 0.4,
 		reinforce = {

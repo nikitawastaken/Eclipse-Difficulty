@@ -32,7 +32,7 @@ local enabled = {
 }
 local side_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -57,6 +57,13 @@ return {
 			{ id = 400009, delay = 10 },
 			{ id = 400010, delay = 10 },
 		},
+	},
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 57, 59 },
+			{ 68, 77 }
+		}
 	},
 	[100109] = { -- police, executed on alarm
 		reinforce = {
@@ -242,6 +249,17 @@ return {
 			dialogue = "Play_loc_bex_109",
 		},
 	},
+	-- Disable broken navlinks
+	[102541] = {
+		on_executed = {
+			{ id = 102544, remove = true }
+		}
+	},
+	[104726] = {
+		on_executed = {
+			{ id = 101490, remove = true }
+		}
+	},
 	-- change amount of required bags
 	[101482] = bags_required_objective,
 	[102533] = bags_required_objective,
@@ -255,14 +273,10 @@ return {
 	[100128] = flank_spawn,
 	[100132] = flank_spawn,
 	-- cheat spawns, replaced with reenforce
+	[100741] = disabled,
 	[102369] = disabled,
-	[102355] = disabled,
-	[102363] = disabled,
-	[100007] = disabled,
-	[102388] = disabled,
-	[102847] = disabled,
-	[100020] = disabled,
-	[100198] = disabled,
+	[102382] = disabled,
+	[102781] = disabled,
 	[104687] = beat_cop, -- pre-spawned policia
 	[104688] = beat_cop,
 	[100675] = beat_cop,
