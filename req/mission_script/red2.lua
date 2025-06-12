@@ -110,11 +110,6 @@ local vent_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local windows_swat = {
-	values = {
-		enabled = false,
-	},
-}
 return {
 	-- Add new reinforce
 	[100901] = { -- SWAT incoming
@@ -218,23 +213,24 @@ return {
 			{ id = 105732, delay = 2.75 },
 		},
 	},
-	-- disable 193+ events on startup
+	-- disable special basement ambushes on startup
 	[100326] = {
 		on_executed = {
 			{ id = 400083, delay = 3 },
 		},
 	},
-	-- enable them on loud (eclipse only)
+	-- enable them on loud
 	[101300] = {
 		on_executed = {
 			{ id = 400084, delay = 0 },
+			{ id = 400085, delay = 0 },
 		},
 	},
 	-- always force cloaker and taser to spawn like in PDTH
-	[100875] = windows_swat,
-	[102245] = windows_swat,
-	[102271] = windows_swat,
-	[102276] = windows_swat,
+	[100875] = disabled,
+	[102245] = disabled,
+	[102271] = disabled,
+	[102276] = disabled,
 	-- replace SWAT with cloakers that spawn with taser to match with PDTH
 	[100617] = taser_cloaker,
 	[100618] = taser_cloaker,
