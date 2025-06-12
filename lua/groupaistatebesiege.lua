@@ -1206,44 +1206,6 @@ local function spawn_group_id(spawn_group)
 	return spawn_group.mission_element:id()
 end
 
-function GroupAIStateBesiege:_choose_best_groups(best_groups, group, group_types, allowed_groups, weight)
-	local total_weight = 0
-	local spawn_groups = tweak_data.group_ai.enemy_spawn_groups
-	local unit_categories = tweak_data.group_ai.unit_categories
-
-	for _, group_type in ipairs(group_types) do
-		local spawn_group_desc = spawn_groups[group_type]
-		local cat_weights = allowed_groups[group_type]
-		if spawn_group_desc and cat_weights then
-			for _, spawn_entry in ipairs(spawn_group_desc.spawn) do
-				local cat_data = unit_categories[spawn_entry.unit]
-				local special_type = cat_data and not cat_data.is_captain and cat_data.special_type
-				if special_type and managers.job:current_spawn_limit(special_type) < self:_get_special_unit_type_count(special_type) + (spawn_entry.amount_min or 0) then
-					cat_weights = nil
-					break
-				end
-			end
-
-			if cat_weights then
-				local cat_weight = self:_get_difficulty_dependent_value(cat_weights)
-				local mod_weight = weight * cat_weight
-
-				table.insert(best_groups, {
-					group = group,
-					group_type = group_type,
-					wght = mod_weight,
-					cat_weight = cat_weight,
-					dis_weight = weight,
-				})
-
-				total_weight = total_weight + mod_weight
-			end
-		end
-	end
-
-	return total_weight
-end
-
 function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task, timed_desc)
 	local spawn_group_desc
 	if timed_desc then
