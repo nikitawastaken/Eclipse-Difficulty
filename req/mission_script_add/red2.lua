@@ -287,19 +287,26 @@ local optsTaser_Sniper_SO = {
 	interval = 2,
 	so_action = "AI_sniper",
 }
-local disable_193_ambushes = {
+local disable_basement_ambushes = {
 	enabled = true,
 	toggle = "off",
 	elements = {
 		400081,
 		400082,
+		106042,
 	},
 }
-local enable_193_ambushes = {
+local enable_193_basement_ambushes = {
 	enabled = is_eclipse,
 	elements = {
 		400081,
 		400082,
+	},
+}
+local enable_cloaker_basement_ambush = {
+	enabled = true,
+	elements = {
+		106042,
 	},
 }
 local optsShieldArmySO = {
@@ -484,8 +491,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_areatrigger(400081, "area_trigger_near_elevators", Vector3(5687, -2442, -735.693), Rotation(0, 0, 0), optsReachedEscapeElevators),
 	Eclipse.mission_elements.gen_areatrigger(400082, "area_trigger_near_garbage_truck", Vector3(5510, -76, -735.693), Rotation(0, 0, 0), optsReachedNearGarbagetruck),
 
-	Eclipse.mission_elements.gen_toggleelement(400083, "disable_193plus_escape_events", disable_193_ambushes),
-	Eclipse.mission_elements.gen_toggleelement(400084, "enable_193plus_escape_events", enable_193_ambushes),
+	Eclipse.mission_elements.gen_toggleelement(400083, "disable_escape_events", disable_basement_ambushes),
+	Eclipse.mission_elements.gen_toggleelement(400084, "enable_193plus_escape_events", enable_193_basement_ambushes),
+	Eclipse.mission_elements.gen_toggleelement(400085, "enable_cloaker_ambush_event", enable_cloaker_basement_ambush),
 }
 
 return M

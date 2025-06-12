@@ -101,13 +101,7 @@ local optsShield = {
 	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
 }
-local optsSWAT_heli_1 = {
-	enemy_table = swats,
-	spawn_action = "e_sp_down_16m_right",
-	on_executed = { { id = 400019, delay = 0 } },
-	enabled = true,
-}
-local optsSWAT_heli_2 = {
+local optsSWAT_heli = {
 	enemy_table = swats,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400019, delay = 0 } },
@@ -388,15 +382,15 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400024, "dozer_heli_sequence", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerChopper),
 	Eclipse.mission_elements.gen_missionscript(400025, "dozer_heli_event", optsspawndozerchopper),
 	-- chopper 2
-	Eclipse.mission_elements.gen_dummy(400026, "swat_heli_1", Vector3(-607, 4091.155, 0), Rotation(137, 0, 0), optsSWAT_heli_1),
-	Eclipse.mission_elements.gen_dummy(400027, "swat_heli_2", Vector3(-534.196, 4022.955, 0), Rotation(137, 0, 0), optsSWAT_heli_1),
-	Eclipse.mission_elements.gen_dummy(400028, "swat_heli_3", Vector3(-793.310, 3894.095, 0), Rotation(-46, 0, 0), optsSWAT_heli_1),
+	Eclipse.mission_elements.gen_dummy(400026, "swat_heli_1", Vector3(-607, 4091.155, 0), Rotation(137, 0, 0), optsSWAT_heli),
+	Eclipse.mission_elements.gen_dummy(400027, "swat_heli_2", Vector3(-534.196, 4022.955, 0), Rotation(137, 0, 0), optsSWAT_heli),
+	Eclipse.mission_elements.gen_dummy(400028, "swat_heli_3", Vector3(-793.310, 3894.095, 0), Rotation(-46, 0, 0), optsSWAT_heli),
 	Eclipse.mission_elements.gen_dummy(400029, "swat_heli_4", Vector3(-716.203, 3814.249, 0), Rotation(-46, 0, 0), optsTaser_heli),
 	Eclipse.mission_elements.gen_object_editor(400030, "swat_heli_sequence_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_1),
 	Eclipse.mission_elements.gen_missionscript(400031, "swat_heli_event_1", optsspawnswatchopper_1),
 	-- chopper 3
-	Eclipse.mission_elements.gen_dummy(400032, "swat_heli_5", Vector3(1061, -934, -19.814), Rotation(0, 0, 0), optsSWAT_heli_2),
-	Eclipse.mission_elements.gen_dummy(400033, "swat_heli_6", Vector3(906, -934, -19.814), Rotation(0, 0, 0), optsSWAT_heli_2),
+	Eclipse.mission_elements.gen_dummy(400032, "swat_heli_5", Vector3(1061, -934, -19.814), Rotation(0, 0, 0), optsSWAT_heli),
+	Eclipse.mission_elements.gen_dummy(400033, "swat_heli_6", Vector3(906, -934, -19.814), Rotation(0, 0, 0), optsSWAT_heli),
 	Eclipse.mission_elements.gen_dummy(400034, "swat_heli_7", Vector3(1061, -663, -19.814), Rotation(-180, 0, 0), optsSpecial_heli),
 	Eclipse.mission_elements.gen_dummy(400035, "swat_heli_8", Vector3(903, -663, -19.814), Rotation(-180, 0, 0), optsSpecial_heli),
 	Eclipse.mission_elements.gen_object_editor(400036, "swat_heli_sequence_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_2),
