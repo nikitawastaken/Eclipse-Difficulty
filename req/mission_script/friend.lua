@@ -6,8 +6,9 @@ local mobster_team = {
 }
 local garden_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
+	groups = preferred.no_bulldozers,
 }
 local roof_spawn = {
 	values = {
@@ -27,7 +28,7 @@ return {
 			{
 				name = "main_hall",
 				force = 3,
-				position = Vector3(-2000, -1100, 50),
+				position = Vector3(-1700, -1075, 50),
 			},
 		},
 	},
@@ -44,22 +45,27 @@ return {
 		},
 	},
 	-- Add some reinforce around the house
-	[100109] = {
+	[100791] = { -- players entered the mansion
 		reinforce = {
 			{
-				name = "garden_front1",
-				force = 3,
-				position = Vector3(3150, -4250, -150),
+				name = "garden_left",
+				force = 2,
+				position = Vector3(1425, -5950, -150),
 			},
 			{
-				name = "garden_front2",
-				force = 3,
-				position = Vector3(3150, -2000, -150),
+				name = "garden_back",
+				force = 2,
+				position = Vector3(-3400, -2100, -50),
+			},
+			{
+				name = "garden_front",
+				force = 2,
+				position = Vector3(-3150, -3125, -150),
 			},
 			{
 				name = "garden_right",
-				force = 3,
-				position = Vector3(750, 2075, -100),
+				force = 2,
+				position = Vector3(1375, 2650, -150),
 			},
 		},
 	},
