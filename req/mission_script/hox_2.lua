@@ -124,8 +124,8 @@ return {
 			{ 68, 69 },
 			{ 70, 71 },
 			{ 78, 99 },
-			{ 79, 106 }
-		}
+			{ 79, 106 },
+		},
 	},
 	-- Tweak keycard spawns
 	[101218] = { -- Extra keycard, now also spawns on Normal aka Hard

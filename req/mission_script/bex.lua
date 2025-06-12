@@ -62,8 +62,8 @@ return {
 	[100017] = {
 		ai_area = {
 			{ 57, 59 },
-			{ 68, 77 }
-		}
+			{ 68, 77 },
+		},
 	},
 	[100109] = { -- police, executed on alarm
 		reinforce = {
@@ -252,13 +252,13 @@ return {
 	-- Disable broken navlinks
 	[102541] = {
 		on_executed = {
-			{ id = 102544, remove = true }
-		}
+			{ id = 102544, remove = true },
+		},
 	},
 	[104726] = {
 		on_executed = {
-			{ id = 101490, remove = true }
-		}
+			{ id = 101490, remove = true },
+		},
 	},
 	-- change amount of required bags
 	[101482] = bags_required_objective,
