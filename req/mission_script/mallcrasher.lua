@@ -31,8 +31,8 @@ return {
 			{ 55, 111 },
 			{ 86, 101, 104, 106, 108, 109 },
 			{ 24, 39 },
-			{ 90, 93, 94, 96 }
-		}
+			{ 90, 93, 94, 96 },
+		},
 	},
 	-- Delay SWAT response
 	[300203] = {
@@ -42,8 +42,8 @@ return {
 	},
 	[300164] = { -- Add an unused spawngroup
 		values = {
-			spawn_groups = { 300313, 300314, 300281 }
-		}
+			spawn_groups = { 300313, 300314, 300281 },
+		},
 	},
 	-- fix one of the cop cars not being hidden
 	[302012] = {
