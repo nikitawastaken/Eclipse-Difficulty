@@ -1975,7 +1975,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_min = 1,
 				amount_max = 3,
-				freq = 1.5,
+				freq = 1,
+				freq = 1,
 				rank = 2,
 				unit = "cs_heavy_1",
 				tactics = self._tactics.swat_def,
@@ -2197,7 +2198,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "taser",
 				random_unit = taser_cloaker,
-				tactics = self._tactics.swat_support_flank,
+				tactics = self._tactics.swat_support,
 			},
 		},
 	}
@@ -2269,7 +2270,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_min = 1,
 				amount_max = 3,
-				freq = 1.5,
+				freq = 1,
 				rank = 3,
 				unit = "fbi_heavy_1",
 				tactics = self._tactics.swat_def,
@@ -2515,22 +2516,22 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				amount_max = 2,
 				freq = 1,
-				rank = 3,
+				rank = 2,
 				unit = "elite_heavy_2",
 				tactics = self._tactics.swat_agg,
 			},
 			{
 				amount_max = 2,
 				freq = 1,
-				rank = 3,
+				rank = 2,
 				unit = "elite_heavy_1",
 				tactics = self._tactics.swat_snk,
 			},
 			{
 				amount_min = 1,
 				amount_max = 3,
-				freq = 1.5,
-				rank = 3,
+				freq = 1,
+				rank = 2,
 				unit = "elite_heavy_1",
 				tactics = self._tactics.swat_def,
 			},
@@ -2621,27 +2622,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 1,
 				unit = "cloaker",
-				tactics = self._tactics.swat_support_flank,
-			},
-		},
-	}
-
-	self.enemy_spawn_groups.elite_taser_charge = {
-		amount = { 3, 4 },
-		spawn = {
-			{
-				amount_min = 1,
-				amount_max = 2,
-				freq = (difficulty_index ^ 2) / 25,
-				rank = 2,
-				unit = "taser_2",
-				tactics = self._tactics.taser_charge,
-			},
-			{
-				freq = 3,
-				rank = 1,
-				unit = "elite_swat_2_3",
-				tactics = self._tactics.taser_charge,
+				tactics = self._tactics.taser_support,
 			},
 		},
 	}
@@ -3474,7 +3455,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			fbi_taser = { 12, 12, 12 },
 
-			fbi_bulldozer_charge = { 6, 6, 6 },
+			fbi_bulldozer = { 6, 6, 6 },
 		}
 		self.ponr.reenforce.groups = {
 			fbi_defend_light = { 2, 2, 2 },
@@ -3482,9 +3463,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 4 then
 		self.ponr.assault.groups = {
-			elite_swats_ranged = { 30, 30, 30 },
+			elite_swats = { 30, 30, 30 },
 
-			fbi_heavies_charge = { 30, 30, 30 },
+			fbi_heavies = { 30, 30, 30 },
 
 			fbi_shield = { 8, 8, 8 },
 
@@ -3504,9 +3485,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 5 then
 		self.ponr.assault.groups = {
-			elite_swats_ranged = { 30, 30, 30 },
+			elite_swats = { 30, 30, 30 },
 
-			fbi_heavies_charge = { 30, 30, 30 },
+			fbi_heavies = { 30, 30, 30 },
 
 			fbi_shield = { 10, 10, 10 },
 
@@ -3526,9 +3507,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.ponr.assault.groups = {
-			elite_swats_ranged = { 20, 20, 20 },
+			elite_swats = { 20, 20, 20 },
 
-			elite_heavies_charge = { 40, 40, 40 },
+			fbi_heavies = { 40, 40, 40 },
 
 			elite_shield = { 24, 24, 24 },
 
