@@ -3353,8 +3353,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = {
-		diff_lerp(120, 20),
-		diff_lerp(180, 40),
+		diff_lerp(60, 20),
+		diff_lerp(120, 40),
 	}
 
 	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
