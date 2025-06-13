@@ -15,36 +15,6 @@ function PlayerStandard:init(unit)
 	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1)
 end
 
--- Increase gravity to make movement less floaty
-function PlayerStandard:_activate_mover(mover, velocity)
-	self._unit:activate_mover(mover, velocity)
-
-	if self._state_data.on_ladder then
-		self._unit:mover():set_gravity(Vector3(0, 0, 0))
-	else
-		self._unit:mover():set_gravity(Vector3(0, 0, -1964))
-	end
-
-	if self._is_jumping then
-		self._unit:mover():jump()
-		self._unit:mover():set_velocity(velocity)
-	end
-end
-
-function PlayerStandard:_end_action_ladder(t, input)
-	if not self._state_data.on_ladder then
-		return
-	end
-
-	self._state_data.on_ladder = false
-
-	if self._unit:mover() then
-		self._unit:mover():set_gravity(Vector3(0, 0, -1964))
-	end
-
-	self._unit:movement():on_exit_ladder()
-end
-
 -- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
 function PlayerStandard:full_steelsight()
 	local weap_base = self._equipped_unit:base()

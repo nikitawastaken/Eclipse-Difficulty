@@ -57,7 +57,7 @@ function PlayerTweakData:_set_easy_wish()
 end
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
-	self.gravity = -1964
+	self.gravity = -982
 
 	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
 
@@ -81,9 +81,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1
 	self.suppression.tolerance = 0
-
-	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5
-	self.movement_state.standard.movement.jump_velocity.xy.walk = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.5
 end)
 
 -- Game too hard for single player appparently????
