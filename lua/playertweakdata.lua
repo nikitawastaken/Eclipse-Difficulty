@@ -79,8 +79,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.suppression.receive_mul = 1
 	self.suppression.tolerance = 0
 
-	self.max_nr_following_hostages = 0
-
 	self.movement_state.standard.movement.speed.STANDARD_MAX = 300 --300, vanilla = 350
 	self.movement_state.standard.movement.speed.RUNNING_MAX = self.movement_state.standard.movement.speed.STANDARD_MAX * 1.5 --450, vanilla = 575
 	self.movement_state.standard.movement.speed.CROUCHING_MAX = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.8 --240, vanilla = 225

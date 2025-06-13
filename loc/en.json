@@ -319,7 +319,6 @@
 
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
-	"hud_hint_hostage_follow_limit": "Hostages are not cooperating with you.",
 	"hint_trade_offered_resources": "Set this hostage free in exchange for resources!",
 	"hint_trade_down_restored": "Hostage trade successful. A single down has been restored.",
 	"hint_trade_down_ammo_restored": "Hostage trade successful. A single down and a portion of ammo have been restored.",
