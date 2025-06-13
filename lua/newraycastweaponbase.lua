@@ -521,9 +521,9 @@ end
 
 Hooks:PreHook(NewRaycastWeaponBase, "_fire_raycast", "eclipse_fire_raycast", function(self)
 	self._enemy_penetrations = nil
+	self._surface_penetrations = nil
 	self._hit_through_enemy = nil
-	self._hit_through_wall = nil
-	self._hit_through_shield = nil
+	self._hit_through_surface = nil
 end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_falloff", function(self, damage, hit)
@@ -533,21 +533,27 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 	local penetration_dmg_mul = weapon_tweak.penetration_damage_mul
 
 	self._hit_through_enemy = self._hit_through_enemy or hit.unit:in_slot(self.enemy_mask)
-	self._hit_through_wall = self._hit_through_wall or hit.unit:in_slot(self.wall_mask)
-	self._hit_through_shield = self._hit_through_shield or hit.unit:in_slot(self.shield_mask)
-
+	self._hit_through_surface = self._hit_through_surface or hit.unit:in_slot(self.shield_mask) or hit.unit:in_slot(self.wall_mask)
+	
 	if self._hit_through_enemy then
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
 		if self._enemy_penetrations > 1 then
-			local pen_mult = (penetration_dmg_mul and penetration_dmg_mul.enemy or 1) ^ math.max(1, self._enemy_penetrations - 1)
+			local enemy_pen_mult = (penetration_dmg_mul and penetration_dmg_mul.enemy or 1) ^ math.max(1, self._enemy_penetrations - 1)
 
-			multiplier = multiplier * pen_mult
+			multiplier = multiplier * enemy_pen_mult
 		end
 	end
 
-	multiplier = multiplier * (self._hit_through_wall and penetration_dmg_mul and penetration_dmg_mul.wall or 1)
-	multiplier = multiplier * (self._hit_through_shield and penetration_dmg_mul and penetration_dmg_mul.shield or 1)
+	if self._hit_through_surface then
+		self._surface_penetrations = (self._surface_penetrations or 0) + 1
+
+		if self._surface_penetrations > 1 then
+			local surface_pen_mult = (penetration_dmg_mul and penetration_dmg_mul.surface or 1) ^ math.max(1, self._surface_penetrations - 1)
+
+			multiplier = multiplier * surface_pen_mult
+		end
+	end
 
 	return Hooks:GetReturn() * multiplier
 end)

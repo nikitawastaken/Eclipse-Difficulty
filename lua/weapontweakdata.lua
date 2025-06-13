@@ -97,10 +97,9 @@ function WeaponTweakData:_init_weapons()
 		}
 
 		local base_penetration_damage_mul = {
-			shield = 0.5,
-			wall = 0.5,
+			surface = 0.5,
+			enemy = 0.75,
 			armor = 0.75,
-			enemy = 0.75
 		}
 
 		if type(weap_data) == "table" and weap_data.stats then
@@ -1601,7 +1600,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_raging_bull.stats.damage = 200
 	self.new_raging_bull.stats.spread = 22
 	self.new_raging_bull.stats.recoil = 2
-	self.new_raging_bull.stats.concealment = 27
+	self.new_raging_bull.stats.concealment = 28
 	self.new_raging_bull.fire_mode_data.fire_rate = 60 / 300
 
 	-- Deagle
@@ -1644,7 +1643,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.chinchilla.stats.recoil = 2
 	self.chinchilla.stats.concealment = 28
 	self.chinchilla.fire_mode_data.fire_rate = 60 / 300
-	self.chinchilla.reload_speed_multiplier = 1.2
+	self.chinchilla.reload_speed_multiplier = 1.25
 
 	-- Angry Tiger
 	self.rsh12.categories = {
