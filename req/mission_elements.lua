@@ -31,6 +31,7 @@ function M.gen_dummy(id, name, pos, rot, opts)
 			enabled = opts.enabled or false,
 			amount = opts.amount or 0,
 			interval = opts.interval or 5,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -61,6 +62,7 @@ function M.gen_civilian_dummy(id, name, pos, rot, opts)
 			team = opts.team or "default",
 			base_delay = opts.base_delay or 0,
 			enabled = opts.enabled or false,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -99,6 +101,7 @@ function M.gen_spawngroup(id, name, elements, interval)
 			},
 			elements = elements,
 			interval = interval or 0,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -156,6 +159,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			followup_elements = opts.followup_elements or {},
 			interrupt_dis = opts.interrupt_dis or 1,
 			patrol_path = "none",
+			callback = opts.callback or false,
 		},
 	}
 
@@ -181,6 +185,7 @@ function M.gen_aiglobalevent(id, name, opts)
 			wave_mode = opts.wave_mode or "none",
 			AI_event = opts.AI_event or "none",
 			blame = opts.blame or "empty",
+			callback = opts.callback or false,
 		},
 	}
 
@@ -203,6 +208,7 @@ function M.gen_fakeassaultstate(id, name, state)
 			execute_on_startup = false,
 			enabled = true,
 			state = state or false,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -243,6 +249,7 @@ function M.gen_areatrigger(id, name, pos, rot, opts)
 			instigator_name = "",
 			use_disabled_shapes = false,
 			substitute_object = "",
+			callback = opts.callback or false,
 		},
 	}
 
@@ -271,6 +278,7 @@ function M.gen_dummytrigger(id, name, pos, rot, opts)
 			rotation = rot,
 			enabled = true,
 			event = opts.event or "spawn",
+			callback = opts.callback or false,
 		},
 	}
 	return dummytrigger
@@ -293,6 +301,7 @@ function M.gen_missionscript(id, name, opts)
 			on_executed = opts.on_executed or {},
 			base_delay = opts.base_delay or 0,
 			enabled = opts.enabled or false,
+			callback = opts.callback or false,
 		},
 	}
 	return missionscript
@@ -318,6 +327,7 @@ function M.gen_toggleelement(id, name, opts)
 			base_delay = opts.base_delay or 0,
 			enabled = opts.enabled or false,
 			toggle = opts.toggle or "on",
+			callback = opts.callback or false,
 		},
 	}
 	return toggleelement
@@ -345,6 +355,7 @@ function M.gen_dialogue(id, name, opts)
 			play_on_player_instigator_only = opts.play_on_player_instigator_only or false,
 			use_instigator = opts.use_instigator or false,
 			use_position = opts.use_position or false,
+			callback = opts.callback or false,
 		},
 	}
 	return dialogue
@@ -374,6 +385,7 @@ function M.gen_smokegrenade(id, name, pos, rot, opts)
 			immediate = true,
 			on_executed = opts.on_executed or {},
 			trigger_times = opts.trigger_times or 0,
+			callback = opts.callback or false,
 		},
 	}
 	return smokegrenade
@@ -396,6 +408,7 @@ function M.gen_preferedadd(id, name, opts)
 			spawn_groups = opts.spawn_groups or {},
 			on_executed = opts.on_executed or {},
 			enabled = true,
+			callback = opts.callback or false,
 		},
 	}
 	return preferedadd
@@ -418,6 +431,7 @@ function M.gen_preferedremove(id, name, opts)
 			elements = opts.elements or {},
 			on_executed = opts.on_executed or {},
 			enabled = true,
+			callback = opts.callback or false,
 		},
 	}
 	return preferedremove
@@ -442,6 +456,7 @@ function M.gen_counter(id, name, opts)
 			enabled = opts.enabled or true,
 			base_delay = opts.base_delay or 0,
 			digital_gui_unit_ids = opts.digital_gui_unit_ids or {},
+			callback = opts.callback or false,
 		},
 	}
 
@@ -470,6 +485,7 @@ function M.gen_global_event(id, name, pos, rot, opts)
 			base_delay = opts.base_delay or 0,
 			position = pos,
 			rotation = rot,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -498,6 +514,7 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 			position = pos,
 			rotation = rot,
 			enabled = opts.enabled or false,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -524,6 +541,7 @@ function M.gen_element_random(id, name, opts)
 			on_executed = opts.on_executed or {},
 			base_delay = opts.base_delay or 0,
 			enabled = true,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -551,6 +569,7 @@ function M.gen_difficulty(id, name, pos, rot, opts)
 			position = pos,
 			rotation = rot,
 			enabled = true,
+			callback = opts.callback or false,
 		},
 	}
 
@@ -579,6 +598,7 @@ function M.gen_chance(id, name, pos, rot, opts)
 			position = pos,
 			rotation = rot,
 			enabled = opts.enabled or false,
+			callback = opts.callback or false,
 		},
 	}
 

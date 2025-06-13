@@ -33,6 +33,7 @@
 					<post :hook_id="elementspawnenemygroup"/>
 					<post :hook_id="elementspecialobjective"/>
 					<post :hook_id="elementinstigatorrule"/>
+					<post :hook_id="missionscriptelement"/>
 				</group>
 
 				<group :hook_id="hud/">
