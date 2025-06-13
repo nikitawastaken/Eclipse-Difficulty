@@ -401,7 +401,101 @@ function PlayerDamage:revive(silent)
 	end
 end
 
---Tear gas damage slowly scales when the player is exposed to it
+-- Proper fall damage that scales based on height
+function PlayerDamage:damage_fall(data)
+	local player_tweak = tweak_data.player
+	
+	local damage_info = {
+		result = {
+			variant = "fall",
+			type = "hurt"
+		}
+	}
+	local is_free_falling = self._unit:movement():current_state_name() == "jerry1"
+
+	if self._god_mode and not is_free_falling or self._invulnerable or self._mission_damage_blockers.invulnerable then
+		self:_call_listeners(damage_info)
+
+		return
+	elseif self:incapacitated() then
+		return
+	elseif self._unit:movement():current_state().immortal then
+		return
+	elseif self._mission_damage_blockers.damage_fall_disabled then
+		return
+	end
+
+	local height_limit = 300
+	local death_limit = 631
+
+	if data.height < height_limit then
+		return
+	end
+
+	local die = death_limit < data.height
+
+	self._unit:sound():play("player_hit")
+	managers.environment_controller:hit_feedback_down()
+	managers.hud:on_hit_direction(Vector3(0, 0, -1), die and HUDHitDirection.DAMAGE_TYPES.HEALTH or HUDHitDirection.DAMAGE_TYPES.ARMOUR, 0)
+
+	if self._bleed_out and not is_free_falling then
+		return
+	end
+
+	local fall_damage_ramp
+	local fall_multiplier = 1
+	if die then
+		managers.player:force_end_copr_ability()
+
+		self._check_berserker_done = false
+
+		self:set_health(0)
+
+		if is_free_falling then
+			self._revives = Application:digest_value(1, true)
+
+			self:_send_set_revives()
+		end
+	else
+		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.25, 1)
+		
+		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
+		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_health_damage_multiplier", 1)
+	
+		self:change_health(-player_tweak.fall_health_damage * fall_multiplier)
+		self._unit:camera():play_shaker("player_fall_damage", 1 * fall_multiplier)
+	end
+
+	if die or fall_multiplier > 0 then
+		local alert_rad = player_tweak.fall_damage_alert_size or 500
+		local new_alert = {
+			"vo_cbt",
+			self._unit:movement():m_head_pos(),
+			alert_rad,
+			self._unit:movement():SO_access(),
+			self._unit
+		}
+
+		managers.groupai:state():propagate_alert(new_alert)
+	end
+	
+	self._bleed_out_blocked_by_movement_state = nil
+
+	managers.hud:set_player_health({
+		current = self:get_real_health(),
+		total = self:_max_health(),
+		revives = Application:digest_value(self._revives, false)
+	})
+	self:_send_set_health()
+	self:_set_health_effect()
+	self:_damage_screen()
+	self:_check_bleed_out(nil, true)
+	self:_call_listeners(damage_info)
+
+	return true
+end
+
+-- Tear gas damage slowly scales when the player is exposed to it and goes through armor
 local damage_killzone_original = PlayerDamage.damage_killzone
 function PlayerDamage:damage_killzone(attack_data, ...)
 	if attack_data.variant ~= "teargas" then
@@ -442,7 +536,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 
 	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data) * self._teargas_damage_ramp
 
-	self._unit:movement():subtract_stamina(10 * self._teargas_damage_ramp)
+	self._unit:movement():subtract_stamina(5 * self._teargas_damage_ramp)
 
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)

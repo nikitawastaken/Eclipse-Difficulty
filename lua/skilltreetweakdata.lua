@@ -745,17 +745,19 @@ function SkillTreeTweakData:init(tweak_data)
 	end
 
 	-- Buncha default upgrade fuckery
-	table.insert(self.default_upgrades, "player_bleed_out_health_multiplier")
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")
 	table.insert(self.default_upgrades, "bodybags_bag_quantity")
-	table.insert(self.default_upgrades, "player_run_speed_multiplier")
 	table.insert(self.default_upgrades, "player_smoke_screen_armor_regen_mul")
 	table.insert(self.default_upgrades, "player_smoke_screen_dodge_add")
+	table.delete(self.default_upgrades, "player_fall_damage_multiplier")
+	table.delete(self.default_upgrades, "player_fall_health_damage_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
 	table.delete(self.default_upgrades, "carry_interact_speed_multiplier_2")
 	table.delete(self.default_upgrades, "ecm_jammer_can_activate_feedback")
 	table.delete(self.default_upgrades, "ecm_jammer_can_retrigger")
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
+	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
+	table.delete(self.default_upgrades, "striker_reload_speed_default") -- why did they do it like this?
 end

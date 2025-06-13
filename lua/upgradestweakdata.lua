@@ -4,7 +4,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- why is this here?
 	self.explosive_bullet = {
-		curve_pow = 1,
+		curve_pow = 3,
 		player_dmg_mul = 1 / 4,
 		range = 300,
 	}
@@ -38,8 +38,8 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- LMG / Minigun movement penalties revert
 	self.weapon_movement_penalty.lmg = 0.8
-	self.weapon_movement_penalty.minigun = 0.75
-	self.weapon_movement_penalty.heavy = 0.75
+	self.weapon_movement_penalty.minigun = 0.7
+	self.weapon_movement_penalty.heavy = 0.7
 
 	-- Skills
 	-------------

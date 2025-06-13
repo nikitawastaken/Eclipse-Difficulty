@@ -57,17 +57,20 @@ function PlayerTweakData:_set_easy_wish()
 end
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
+	self.gravity = -982
+	
 	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
-	self.damage.BLEED_OUT_HEALTH_INIT = 23
+	
 	self.damage.respawn_time_penalty = 0
 	self.damage.custody_ammo_confiscated = 0.4
 	self.damage.custody_health_drained = 0.4
-
+	
+	self.fall_health_damage = 12
+	
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
 	self.omniscience.target_resense_t = 0
 
-	self.damage.DOWNED_TIME = 30
 	self.damage.DOWNED_TIME_DEC = is_eclipse_pro and 15 or is_pro_job and 10 or 0
 	self.damage.DOWNED_TIME_MIN = is_eclipse_pro and 5 or is_pro_job and 10 or 30
 
@@ -78,11 +81,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1
 	self.suppression.tolerance = 0
-
-	self.movement_state.standard.movement.speed.STANDARD_MAX = 300 --300, vanilla = 350
-	self.movement_state.standard.movement.speed.RUNNING_MAX = self.movement_state.standard.movement.speed.STANDARD_MAX * 1.5 --450, vanilla = 575
-	self.movement_state.standard.movement.speed.CROUCHING_MAX = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.8 --240, vanilla = 225
-	self.movement_state.standard.movement.speed.STEELSIGHT_MAX = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.6 --180, vanilla = 185
 end)
 
 -- Game too hard for single player appparently????
