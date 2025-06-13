@@ -534,7 +534,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 
 	self._hit_through_enemy = self._hit_through_enemy or hit.unit:in_slot(self.enemy_mask)
 	self._hit_through_surface = self._hit_through_surface or hit.unit:in_slot(self.shield_mask) or hit.unit:in_slot(self.wall_mask)
-	
+
 	if self._hit_through_enemy then
 		self._enemy_penetrations = (self._enemy_penetrations or 0) + 1
 
