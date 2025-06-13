@@ -404,12 +404,12 @@ end
 -- Proper fall damage that scales based on height
 function PlayerDamage:damage_fall(data)
 	local player_tweak = tweak_data.player
-	
+
 	local damage_info = {
 		result = {
 			variant = "fall",
-			type = "hurt"
-		}
+			type = "hurt",
+		},
 	}
 	local is_free_falling = self._unit:movement():current_state_name() == "jerry1"
 
@@ -458,10 +458,10 @@ function PlayerDamage:damage_fall(data)
 		end
 	else
 		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.25, 1)
-		
+
 		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
 		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_health_damage_multiplier", 1)
-	
+
 		self:change_health(-player_tweak.fall_health_damage * fall_multiplier)
 		self._unit:camera():play_shaker("player_fall_damage", 1 * fall_multiplier)
 	end
@@ -473,18 +473,18 @@ function PlayerDamage:damage_fall(data)
 			self._unit:movement():m_head_pos(),
 			alert_rad,
 			self._unit:movement():SO_access(),
-			self._unit
+			self._unit,
 		}
 
 		managers.groupai:state():propagate_alert(new_alert)
 	end
-	
+
 	self._bleed_out_blocked_by_movement_state = nil
 
 	managers.hud:set_player_health({
 		current = self:get_real_health(),
 		total = self:_max_health(),
-		revives = Application:digest_value(self._revives, false)
+		revives = Application:digest_value(self._revives, false),
 	})
 	self:_send_set_health()
 	self:_set_health_effect()

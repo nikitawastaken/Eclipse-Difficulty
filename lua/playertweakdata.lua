@@ -58,15 +58,15 @@ end
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.gravity = -982
-	
+
 	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
-	
+
 	self.damage.respawn_time_penalty = 0
 	self.damage.custody_ammo_confiscated = 0.4
 	self.damage.custody_health_drained = 0.4
-	
+
 	self.fall_health_damage = 12
-	
+
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
 	self.omniscience.target_resense_t = 0
