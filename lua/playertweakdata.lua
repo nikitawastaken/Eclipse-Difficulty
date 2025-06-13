@@ -82,7 +82,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.suppression.receive_mul = 1
 	self.suppression.tolerance = 0
 
-	self.movement_state.standard.movement.jump_velocity.z = 470 * 1.5
 	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5
 	self.movement_state.standard.movement.jump_velocity.xy.walk = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.5
 end)
