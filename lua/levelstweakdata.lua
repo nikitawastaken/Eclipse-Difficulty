@@ -163,7 +163,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	
 	self.framing_frame_3.group_ai_settings = {
 		recurring_cloaker_spawn_interval_mul = 0.75,
-		spawn_kill_cooldown_mul = 1.5
+		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.65,
 		spawnrate_mul = 1.2,
 		recon_force_mul = 0.8,
@@ -209,7 +209,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	
 	self.hox_2.group_ai_settings = {
 		difficulty_step_time = 10,
-		sustain_duration_mul = 1.15
+		sustain_duration_mul = 1.15,
 		recon_interval_variation_mul = 0.75,
 	}
 
