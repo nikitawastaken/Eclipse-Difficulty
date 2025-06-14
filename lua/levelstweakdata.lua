@@ -293,7 +293,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			cloaker = 1,
 		},
 	}
-	
+
 	self.flat.group_ai_settings = {
 		assault_force_mul = 0.75,
 		spawnrate_mul = 1.15,
@@ -381,9 +381,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	
+
 	self.hvh.group_ai_settings = {
 		assault_force_mul = 0.5,
 		spawnrate_mul = 1.3,
@@ -406,7 +406,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
-	
+
 	self.bex.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.35,
 		assault_force_mul = 1.2,
@@ -415,7 +415,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			taser = 1,
 		},
 	}
-	
+
 	self.pex.group_ai_settings = {
 		sustain_duration_mul = 1.25, -- Bird flu
 		min_grenade_timeout_mul = 0.65,
@@ -442,7 +442,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pent.group_ai_settings.assault_force_mul = 0.75
 	self.pent.group_ai_settings.spawnrate_mul = 1.15
 	self.pent.group_ai_settings.recon_force_mul = 0.85
-	
+
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 1.35,
