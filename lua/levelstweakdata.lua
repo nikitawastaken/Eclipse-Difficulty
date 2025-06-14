@@ -213,10 +213,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recon_interval_variation_mul = 0.75,
 	}
 
-	self.born.group_ai_settings = {
-		difficulty_step_time = 20,
-		assault_force_mul = 0.85,
-		spawnrate_mul = 1.15,
+	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+
+	self.kenaz.group_ai_settings = {
+		hostage_hesitation_delay_mul = 1.35,
+		assault_force_mul = 1.2,
+		reenforce_interval_mul = 2,
+		special_limit_add = {
+			medic = -1,
+		},
 		force_tactics = {
 			shield_def = {
 				ranged_fire = false,
@@ -224,7 +229,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+	self.born.group_ai_settings = {
+		assault_force_mul = 0.85,
+		spawnrate_mul = 1.15,
+		grenade_timeout_mul = {
+			smoke_grenade = 0.5,
+			cs_grenade = 0.5,
+		},
+		force_tactics = {
+			shield_def = {
+				ranged_fire = false,
+			},
+		},
+	}
 
 	self.chew.group_ai_settings = {
 		assault_force_mul = 0.35,
@@ -232,7 +249,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recon_force_mul = 0,
 		cs_grenade_chance_times_mul = 1.5,
 		special_limit_add = {
-			shield = -1,
+			shield = -2,
+			cloaker = -1,
 			marksman = -2,
 		},
 		force_tactics = {
@@ -255,6 +273,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.flat.group_ai_settings = {
 		assault_force_mul = 0.8,
 		spawnrate_mul = 1.15,
+		reenforce_interval_mul = 1.5,
 		force_tactics = {
 			swat_init = {
 				flank = true,
@@ -289,10 +308,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.help.group_ai_settings = deep_clone(self.flat.group_ai_settings)
+	self.help.group_ai_settings.reenforce_interval_mul = nil
 	self.help.group_ai_settings.spawn_kill_cooldown_mul = 1.5
 	self.help.group_ai_settings.min_grenade_timeout_mul = 0.65
 
+	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
+	self.friend.group_ai_settings.reenforce_interval_mul = nil
+	self.friend.group_ai_settings.special_limit_add = nil
+	
 	self.moon.group_ai_settings = deep_clone(self.flat.group_ai_settings)
+	self.moon.group_ai_settings.reenforce_interval_mul = nil
 	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
 
 	self.hvh.group_ai_settings = {
