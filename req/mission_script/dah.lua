@@ -161,7 +161,8 @@ return {
 			{ id = 400063, delay = 40 },
 		},
 	},
-	[102167] = {
+	-- fix the elevator door
+	[101642] = {
 		values = {
 			elements = {
 				102813,
@@ -174,7 +175,21 @@ return {
 				400063,
 			},
 		},
+		on_executed = {
+			{ id = 102820, delay = 8 },
+		},
 	},
+	[101838] = {
+		values = {
+            sound_event = "elevator_doors_open"
+		}
+	},
+	[101837] = {
+		values = {
+            sound_event = "elevator_doors_open"
+		}
+	},
+	[102103] = disabled,
 	-- Restore 3 cloakers event from PDTH
 	-- remove 2 diff checkers, trigger it on hard and above
 	[102196] = {

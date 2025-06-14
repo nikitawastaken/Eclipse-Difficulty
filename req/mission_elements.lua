@@ -100,7 +100,7 @@ function M.gen_spawngroup(id, name, elements, interval)
 				"tac_bull_rush",
 			},
 			elements = elements,
-			interval = interval or 0,
+			interval = opts.interval or 0,
 			callback = opts.callback or false,
 		},
 	}
