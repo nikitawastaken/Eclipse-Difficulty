@@ -26,5 +26,5 @@ return {
 				element.values.interval = 45
 			end
 		end
-	end,	
+	end,
 }

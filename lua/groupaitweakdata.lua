@@ -12,12 +12,12 @@ local function table_multiplier(target_table, mul)
 	for diff_step, value in pairs(target_table) do
 		target_table[diff_step] = value * mul
 	end
-end	
+end
 
 local function group_weight_multiplier(group_weights, mul)
 	for diff_step, weight in pairs(group_weights) do
 		group_weights[diff_step] = weight * mul[diff_step]
-	end	
+	end
 end
 
 GroupAITweakData.group_ai_presets = {
@@ -131,9 +131,9 @@ end
 -- Top level init
 Hooks:PostHook(GroupAITweakData, "init", "eclipse_groupaitd_init", function(self, tweak_data)
 	self.tweak_data = tweak_data
-	
+
 	self.timer_data = {}
-	
+
 	local lvl_tweak = self.tweak_data.levels[level_id]
 	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil
 end)
@@ -3101,7 +3101,7 @@ end
 
 function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	local lvl_tweak = self.tweak_data.levels[level_id]
-	
+
 	self.difficulty_curve_points = level_settings.difficulty_curve_points or self.difficulty_curve_points
 	self.difficulty_step_time = level_settings.difficulty_step_time or self.difficulty_step_time
 
@@ -3110,113 +3110,113 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.spawn_kill_cooldown_mul ~= 1 then
 		Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
 	end
-	
+
 	self.min_grenade_timeout = self.min_grenade_timeout * (level_settings.min_grenade_timeout_mul or 1)
 
 	if level_settings.min_grenade_timeout_mul ~= 1 then
 		Eclipse:log_console("Min grenade timeout for " .. level_id .. " set to " .. self.min_grenade_timeout)
 	end
-	
+
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse", "ponr", "skirmish" }) do
-		local assault_state = self[group_ai_state_name] 
+		local assault_state = self[group_ai_state_name]
 		local level_group_ai_state = (lvl_tweak and lvl_tweak.group_ai_state or "besiege") == group_ai_state_name
-		
+
 		if assault_state then
 			if assault_state.recurring_group_SO and assault_state.recurring_group_SO.recurring_cloaker_spawn then
 				table_multiplier(assault_state.recurring_group_SO.recurring_cloaker_spawn.interval, level_settings.recurring_cloaker_spawn_interval_mul or 1)
-				
+
 				if level_group_ai_state and level_settings.recurring_cloaker_spawn_interval_mul ~= 1 then
-					Eclipse:log_console("Recurring Cloaker spawn intervals for " .. level_id .. " set to: ") 
+					Eclipse:log_console("Recurring Cloaker spawn intervals for " .. level_id .. " set to: ")
 					Utils.PrintTable(assault_state.recurring_group_SO.recurring_cloaker_spawn.interval)
 				end
 			end
-			
+
 			if assault_state.assault then
 				if assault_state.assault.sustain_duration_min then
 					table_multiplier(assault_state.assault.sustain_duration_min, level_settings.sustain_duration_mul or 1)
 					assault_state.assault.sustain_duration_max = assault_state.assault.sustain_duration_min
-					
+
 					if level_group_ai_state and level_settings.sustain_duration_mul ~= 1 then
-						Eclipse:log_console("Sustain duration for " .. level_id .. " set to: ") 
+						Eclipse:log_console("Sustain duration for " .. level_id .. " set to: ")
 						Utils.PrintTable(assault_state.assault.sustain_duration_min)
 					end
 				end
-				
+
 				if assault_state.assault.delay then
 					table_multiplier(assault_state.assault.delay, level_settings.assault_delay_mul or 1)
-				
+
 					if level_group_ai_state and level_settings.assault_delay_mul ~= 1 then
-						Eclipse:log_console("Assault delay for " .. level_id .. " set to: ") 
+						Eclipse:log_console("Assault delay for " .. level_id .. " set to: ")
 						Utils.PrintTable(assault_state.assault.delay)
 					end
 				end
-				
+
 				if assault_state.assault.hostage_hesitation_delay then
 					table_multiplier(assault_state.assault.hostage_hesitation_delay, level_settings.hostage_hesitation_delay_mul or 1)
 
 					if level_group_ai_state and level_settings.hostage_hesitation_delay_mul ~= 1 then
-						Eclipse:log_console("Hostage hesitation delay for " .. level_id .. " set to: ") 
+						Eclipse:log_console("Hostage hesitation delay for " .. level_id .. " set to: ")
 						Utils.PrintTable(assault_state.assault.hostage_hesitation_delay)
 					end
 				end
-				
+
 				if assault_state.assault.force then
 					table_multiplier(assault_state.assault.force, level_settings.assault_force_mul or 1)
 
 					if level_group_ai_state and level_settings.assault_force_mul ~= 1 then
-						Eclipse:log_console("Assault force for " .. level_id .. " set to: ") 
+						Eclipse:log_console("Assault force for " .. level_id .. " set to: ")
 						Utils.PrintTable(assault_state.assault.force)
 					end
 				end
-				
+
 				if assault_state.assault.force_pool then
 					table_multiplier(assault_state.assault.force_pool, level_settings.assault_force_mul or 1)
-					
+
 					if level_group_ai_state and level_settings.assault_force_mul ~= 1 then
-						Eclipse:log_console("Assault force for pool " .. level_id .. " set to: ") 
+						Eclipse:log_console("Assault force for pool " .. level_id .. " set to: ")
 						Utils.PrintTable(assault_state.assault.force_pool)
 					end
 				end
 
-				if assault_state.assault.spawnrate then			
+				if assault_state.assault.spawnrate then
 					table_multiplier(assault_state.assault.spawnrate, level_settings.spawnrate_mul or 1)
-				
+
 					if level_group_ai_state and level_settings.spawnrate_mul ~= 1 then
-						Eclipse:log_console("Spawnrate for " .. level_id .. " set to: ") 
+						Eclipse:log_console("Spawnrate for " .. level_id .. " set to: ")
 						Utils.PrintTable(assault_state.assault.spawnrate)
 					end
 				end
 			end
-			
-			if assault_state.recon then	
+
+			if assault_state.recon then
 				assault_state.recon.interval_variation = assault_state.recon.interval_variation * (level_settings.recon_interval_variation_mul or 1)
-				
+
 				if level_group_ai_state and level_settings.recon_interval_variation_mul ~= 1 then
 					Eclipse:log_console("Recon interval variation for " .. level_id .. " set to " .. assault_state.recon.interval_variation)
 				end
-				
+
 				table_multiplier(assault_state.recon.force, level_settings.recon_force_mul or 1)
-			
+
 				if level_group_ai_state and level_settings.recon_force_mul ~= 1 then
-					Eclipse:log_console("Recon force for " .. level_id .. " set to: ") 
+					Eclipse:log_console("Recon force for " .. level_id .. " set to: ")
 					Utils.PrintTable(assault_state.recon.force)
 				end
 			end
-		
+
 			if assault_state.reenforce then
 				table_multiplier(assault_state.reenforce.interval, level_settings.reenforce_interval_mul or 1)
-				
+
 				if level_group_ai_state and level_settings.reenforce_interval_mul ~= 1 then
-					Eclipse:log_console("Reenforce interval for " .. level_id .. " set to: ") 
+					Eclipse:log_console("Reenforce interval for " .. level_id .. " set to: ")
 					Utils.PrintTable(assault_state.reenforce.interval)
 				end
 			end
-			
+
 			if assault_state.push_delay then
 				table_multiplier(assault_state.push_delay, level_settings.push_delay_mul or 1)
-				
+
 				if level_group_ai_state and level_settings.push_delay_mul ~= 1 then
-					Eclipse:log_console("Push delay for " .. level_id .. " set to: ") 
+					Eclipse:log_console("Push delay for " .. level_id .. " set to: ")
 					Utils.PrintTable(assault_state.push_delay)
 				end
 			end
@@ -3225,23 +3225,23 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 
 	if level_settings.grenade_timeout_mul then
 		table_multiplier(self.flash_grenade_timeout, level_settings.grenade_timeout_mul.flash_grenade or 1)
-		
+
 		if level_settings.grenade_timeout_mul.flash_grenade ~= 1 then
-			Eclipse:log_console("Flash grenade timeout set to: ") 
+			Eclipse:log_console("Flash grenade timeout set to: ")
 			Utils.PrintTable(self.flash_grenade_timeout)
 		end
-		
+
 		table_multiplier(self.smoke_grenade_timeout, level_settings.grenade_timeout_mul.smoke_grenade or 1)
-		
+
 		if level_settings.grenade_timeout_mul.smoke_grenade ~= 1 then
-			Eclipse:log_console("Smoke grenade timeout set to: ") 
+			Eclipse:log_console("Smoke grenade timeout set to: ")
 			Utils.PrintTable(self.smoke_grenade_timeout)
 		end
-		
+
 		table_multiplier(self.cs_grenade_timeout, level_settings.grenade_timeout_mul.cs_grenade or 1)
-		
+
 		if level_settings.grenade_timeout_mul.cs_grenade ~= 1 then
-			Eclipse:log_console("CS grenade timeout set to: ") 
+			Eclipse:log_console("CS grenade timeout set to: ")
 			Utils.PrintTable(self.cs_grenade_timeout)
 		end
 	end
@@ -3249,22 +3249,22 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	table_multiplier(self.cs_grenade_chance_times, level_settings.cs_grenade_chance_times_mul or 1)
 
 	if level_settings.cs_grenade_chance_times_mul ~= 1 then
-		Eclipse:log_console("CS grenade chance times set to: ") 
+		Eclipse:log_console("CS grenade chance times set to: ")
 		Utils.PrintTable(self.cs_grenade_chance_times)
 	end
-		
+
 	for name, force_tactics_table in pairs(level_settings.force_tactics) do
 		local tactics_table = self._tactics[name]
-		
+
 		if tactics_table then
 			for tactic, add in pairs(force_tactics_table) do
 				if add and not table.contains(tactics_table, tactic) then
-					table.insert(tactics_table, tactic)		
+					table.insert(tactics_table, tactic)
 
 					Eclipse:log_console("Added " .. tactic .. " to: " .. name)
-				elseif not add and table.contains(tactics_table, tactic) then	
-					table.delete(tactics_table, tactic)	
-					
+				elseif not add and table.contains(tactics_table, tactic) then
+					table.delete(tactics_table, tactic)
+
 					Eclipse:log_console("Removed " .. tactic .. " from: " .. name)
 				end
 			end
@@ -3282,7 +3282,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		end
 
 		self.special_unit_spawn_limits[special] = limit
-		
+
 		if add ~= 0 then
 			Eclipse:log_console("Special limit for " .. special .. " on " .. level_id .. " set to: " .. self.special_unit_spawn_limits[special])
 		end
@@ -3771,7 +3771,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 		Eclipse:log_console("Group AI preset for " .. level_id .. " set to " .. self._mission_preset)
 	end
-	
+
 	if self._mission_settings then
 		self:_apply_group_ai_settings(self._mission_settings)
 	end

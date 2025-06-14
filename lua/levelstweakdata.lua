@@ -69,7 +69,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dah.flashlights_on = true -- PDTH vibes
 	self.sah.flashlights_on = true
 	self.deep.flashlights_on = true
-	
+
 	-- add Group AI presets
 	self.framing_frame_1.group_ai_preset = "small_urban"
 	self.ukrainian_job.group_ai_preset = "small_urban"
@@ -114,19 +114,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)	
-	
-	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)	
+	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
-	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)	
+	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+
+	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.branchbank.group_ai_settings.difficulty_curve_points = nil
 	self.branchbank.group_ai_settings.assault_force_mul = 1
-	
-	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)	
+
+	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.four_stores.group_ai_settings.assault_force_mul = 0.8
 	self.four_stores.group_ai_settings.spawnrate_mul = 1.15
 
-	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)	
+	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
 	self.nightclub.group_ai_settings.difficulty_curve_points = nil
 	self.nightclub.group_ai_settings.hostage_hesitation_delay_mul = nil
 	self.nightclub.group_ai_settings.recon_interval_variation_mul = nil
@@ -138,12 +138,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 1.2,
 		cs_grenade_chance_times_mul = 0.75,
 		special_limit_add = {
-			shield = 1,	
+			shield = 1,
 		},
 	}
 
-	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)	
-	
+	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+
 	self.framing_frame_2.group_ai_settings = {
 		difficulty_curve_points = { 0.75 },
 		difficulty_step_time = 5,
@@ -160,7 +160,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.framing_frame_3.group_ai_settings = {
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		spawn_kill_cooldown_mul = 1.5,
@@ -173,11 +173,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -2,
 		},
 	}
-	
+
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.recurring_cloaker_spawn_interval_mul = nil
 	self.mia_2.group_ai_settings.assault_force_mul = 0.6
-	
+
 	self.hox_1.group_ai_settings = {
 		assault_delay_mul = 1.2,
 		assault_force_mul = 0.75,
@@ -206,7 +206,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.hox_2.group_ai_settings = {
 		difficulty_step_time = 10,
 		sustain_duration_mul = 1.15,
@@ -223,9 +223,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-	
+
 	self.chew.group_ai_settings = {
 		assault_force_mul = 0.35,
 		spawnrate_mul = 1.35,
@@ -287,23 +287,23 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.help.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.help.group_ai_settings.spawn_kill_cooldown_mul = 1.5
 	self.help.group_ai_settings.min_grenade_timeout_mul = 0.65
-	
+
 	self.moon.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
-	
+
 	self.hvh.group_ai_settings = {
 		assault_force_mul = 0.5,
 		spawnrate_mul = 1.3,
 		recon_force_mul = 0.75,
 		special_limit_add = {
-			shield = -2,	
+			shield = -2,
 		},
 	}
-	
+
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.65,
@@ -312,29 +312,29 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		special_limit_add = {
 			shield = -1,
 			tank = 1,
-			marksman = -2,		
+			marksman = -2,
 		},
 	}
-	
+
 	self.pex.group_ai_settings = {
 		sustain_duration_mul = 1.25, -- Bird flu
 		min_grenade_timeout_mul = 0.65,
 	}
-	
+
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 	self.fex.group_ai_settings.reenforce_interval_mul = nil
-	
+
 	self.chas.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.35,
 		cs_grenade_chance_times_mul = 0.75, -- Gas it up
 	}
-	
+
 	self.chca.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.75,
 		spawnrate_mul = 1.15,
 	}
-	
+
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 1.3,
@@ -349,7 +349,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = 1,
 		},
 	}
-			
+
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {
@@ -576,7 +576,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			Idstring("units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"),
 		},
 	}
-		
+
 	self.deep.ai_unit_group_overrides = deep_clone(self.chca.ai_unit_group_overrides)
 	self.deep.ai_unit_group_overrides.Marshal_gunner_1 = {
 		america = {
