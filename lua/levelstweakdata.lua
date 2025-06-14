@@ -315,7 +315,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 	self.friend.group_ai_settings.reenforce_interval_mul = nil
 	self.friend.group_ai_settings.special_limit_add = nil
-	
+
 	self.moon.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.moon.group_ai_settings.reenforce_interval_mul = nil
 	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
