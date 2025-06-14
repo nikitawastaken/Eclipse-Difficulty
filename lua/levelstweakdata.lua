@@ -163,7 +163,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.framing_frame_3.group_ai_settings = {
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		spawn_kill_cooldown_mul = 1.5,
-		assault_force_mul = 0.65,
+		assault_force_mul = 0.6,
 		spawnrate_mul = 1.2,
 		recon_force_mul = 0.8,
 		min_grenade_timeout_mul = 0.8,
@@ -178,9 +178,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 
 	self.hox_1.group_ai_settings = {
+		sustain_duration_mul = 0.75,
 		assault_delay_mul = 1.35,
-		assault_force_mul = 0.75,
-		spawnrate_mul = 1.2,
+		assault_force_mul = 0.6,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
 		min_grenade_timeout_mul = 1.35,
@@ -235,7 +235,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.born.group_ai_settings = {
-		assault_force_mul = 0.8,
+		assault_force_mul = 0.75,
 		spawnrate_mul = 1.15,
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
@@ -249,7 +249,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.chew.group_ai_settings = {
-		assault_force_mul = 0.35,
+		assault_force_mul = 0.3,
 		spawnrate_mul = 1.35,
 		recon_force_mul = 0,
 		cs_grenade_chance_times_mul = 1.5,
@@ -310,7 +310,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chill_combat.group_ai_settings = {
 		sustain_duration_mul = 0.65,
-		assault_force_mul = 0.6,
+		assault_force_mul = 0.5,
 		spawnrate_mul = 1.2,
 		recon_force_mul = 0.75,
 		cs_grenade_chance_times_mul = 0.5,
@@ -347,8 +347,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.run.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_delay_mul = 1.35,
-		assault_force_mul = 0.75,
-		spawnrate_mul = 1.2,
+		assault_force_mul = 0.65,
 		reenforce_interval_mul = 0.75,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
@@ -395,7 +394,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
-		assault_force_mul = 0.65,
+		assault_force_mul = 0.6,
 		spawnrate_mul = 1.2,
 		reenforce_interval_mul = 1.5,
 		special_limit_add = {

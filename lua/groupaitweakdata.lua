@@ -3342,14 +3342,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(8, 12),
 		diff_lerp(12, 16),
 	}
-	self.besiege.assault.force_balance_mul = { 0.55, 0.7, 0.85, 1 }
+	self.besiege.assault.force_balance_mul = { 0.5, 0.75, 1, 1.25 }
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = { 0.55, 0.7, 0.85, 1 }
+	self.besiege.assault.force_pool_balance_mul = { 0.5, 0.75, 1, 1.25 }
 
 	-- Spawnrate
 	self.spawn_kill_cooldown = 10
@@ -3359,7 +3359,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(2.5, 2),
 		diff_lerp(2, 1.5),
 	}
-	self.besiege.assault.spawnrate_balance_mul = { 1.75, 1.6, 1.25, 1 }
+	self.besiege.assault.spawnrate_balance_mul = { 1.75, 1.5, 1.25, 1 }
 
 	-- RECON / REENFORCE --
 
