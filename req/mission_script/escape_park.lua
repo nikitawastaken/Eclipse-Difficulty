@@ -34,13 +34,13 @@ return {
 	-- fix some sniping swats not spawning
 	[102486] = {
 		on_executed = {
-            {id = 100677, delay = 0}
-		}
+			{ id = 100677, delay = 0 },
+		},
 	},
 	[102457] = {
 		on_executed = {
-           {id = 100677, delay = 0}
-		}
+			{ id = 100677, delay = 0 },
+		},
 	},
 	-- fix spawn anims for rappeling SWATs
 	[100747] = swat_spawn_fix,

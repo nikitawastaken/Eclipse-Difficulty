@@ -181,13 +181,13 @@ return {
 	},
 	[101838] = {
 		values = {
-            sound_event = "elevator_doors_open"
-		}
+			sound_event = "elevator_doors_open",
+		},
 	},
 	[101837] = {
 		values = {
-            sound_event = "elevator_doors_open"
-		}
+			sound_event = "elevator_doors_open",
+		},
 	},
 	[102103] = disabled,
 	-- Restore 3 cloakers event from PDTH
