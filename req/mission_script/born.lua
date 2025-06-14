@@ -4,7 +4,7 @@ local exclude_cop_agents_shields_dozers = {
 }
 local fence_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
 	},
 }
 local roof_spawn = {
