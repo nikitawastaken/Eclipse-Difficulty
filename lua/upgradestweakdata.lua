@@ -891,8 +891,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "pistols_reload_primary",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.skill_descs.dance_instructor.multibasic = "15%"
 	self.skill_descs.dance_instructor.multipro = "6"
@@ -905,8 +905,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "sprint_to_fire_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.revolvers_reload_primary = { true }
 	self.definitions.player_revolvers_reload_primary = {
@@ -915,8 +915,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "revolvers_reload_primary",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.skill_descs.akimbo.multibasic = "25%"
 
@@ -925,8 +925,8 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			max_stacks = 6,
 			reload_bonus = 0.075,
-			max_time = 3
-		}
+			max_time = 3,
+		},
 	}
 	self.definitions.pistol_stacked_reload_bonus = {
 		name_id = "menu_pistol_stacked_reload_bonus",
@@ -934,15 +934,15 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "stacked_reload_bonus",
-			category = "pistol"
-		}
+			category = "pistol",
+		},
 	}
 	self.values.pistol.stacked_accuracy_bonus = {
 		{
 			max_stacks = 4,
 			accuracy_bonus = 0.12,
-			max_time = 6
-		}
+			max_time = 6,
+		},
 	}
 	self.skill_descs.gun_fighter.multibasic = "7.5%"
 	self.skill_descs.gun_fighter.multibasic2 = "3"

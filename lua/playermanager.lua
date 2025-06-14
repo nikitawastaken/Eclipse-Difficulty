@@ -1276,7 +1276,7 @@ PlayerAction.UnseenStrike = {
 -- Handled in a separate playeraction due to stacking at a different rate, as well as having a different max time
 PlayerAction.ExpertHandlingReload = {
 	Priority = 1,
-	Function = function (player_manager, reload_bonus, max_stacks, max_time)
+	Function = function(player_manager, reload_bonus, max_stacks, max_time)
 		local co = coroutine.running()
 		local current_time = Application:time()
 		local current_stacks = 0
@@ -1304,7 +1304,7 @@ PlayerAction.ExpertHandlingReload = {
 
 		player_manager:remove_property("desperado_reload")
 		player_manager:unregister_message(Message.OnEnemyShot, co)
-	end
+	end,
 }
 
 function PlayerManager:_on_expert_handling_reload_event(unit, attack_data)
@@ -1323,7 +1323,7 @@ end
 -- Pistol on-hit accuracy stacks additively instead
 PlayerAction.ExpertHandling = {
 	Priority = 1,
-	Function = function (player_manager, accuracy_bonus, max_stacks, max_time)
+	Function = function(player_manager, accuracy_bonus, max_stacks, max_time)
 		local co = coroutine.running()
 		local current_time = Application:time()
 		local current_stacks = 0
@@ -1351,5 +1351,5 @@ PlayerAction.ExpertHandling = {
 
 		player_manager:remove_property("desperado")
 		player_manager:unregister_message(Message.OnEnemyShot, co)
-	end
+	end,
 }
