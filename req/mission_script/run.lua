@@ -55,12 +55,12 @@ local disabled = {
 }
 local street_spawn = {
 	values = {
-		interval = 15,
+		interval = 5,
 	},
 }
 local van_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
