@@ -222,7 +222,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.stable_shot.multipro = "50%"
 
 	-- Rifleman
-	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.25
 	self.values.weapon.standing_spread_multiplier = { 0.8 }
 	self.definitions.weapon_standing_spread_multiplier = {
 		name_id = "menu_weapon_standing_spread_multiplier",
@@ -867,21 +866,94 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Fugitive --
 
-	-- Equilbrium nerf
-	self.values.pistol.swap_speed_multiplier = { 1.10 } -- funny how this is actually 50% in vanilla and not 30%
-	self.skill_descs.equilibrium.multibasic3 = "10%"
-
-	-- Trigger Happy
-	self.values.pistol.stacking_hit_damage_multiplier = {
-		{ max_stacks = 5, max_time = 3, damage_bonus = 1.15 },
-		{ max_stacks = 2, max_time = 6, damage_bonus = 1.375 },
+	-- Gun Drill Savvy
+	self.values.weapon.steelsight_move_speed_penalty_multiplier = { 0.8 }
+	self.definitions.weapon_steelsight_move_speed_penalty_multiplier = {
+		incremental = true,
+		name_id = "menu_weapon_steelsight_move_speed_penalty_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "steelsight_move_speed_penalty_multiplier",
+			category = "weapon",
+		},
 	}
-	self.skill_descs.trigger_happy.multibasic = "15%"
-	self.skill_descs.trigger_happy.multibasic2 = "3"
-	self.skill_descs.trigger_happy.multibasic3 = "5"
-	self.skill_descs.trigger_happy.multipro = "37.5%"
-	self.skill_descs.trigger_happy.multipro2 = "6"
-	self.skill_descs.trigger_happy.multipro3 = "2"
+	self.values.weapon.enter_steelsight_speed_multiplier[1] = 1.3
+	self.skill_descs.equilibrium.multibasic = "20%"
+	self.skill_descs.equilibrium.multipro = "30%"
+
+	-- Slide Action
+	self.values.weapon.swap_speed_multiplier[1] = 1.15
+	self.values.player.pistols_reload_primary = { 6 }
+	self.definitions.player_pistols_reload_primary = {
+		name_id = "menu_player_pistols_reload_primary",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pistols_reload_primary",
+			category = "player"
+		}
+	}
+	self.skill_descs.dance_instructor.multibasic = "15%"
+	self.skill_descs.dance_instructor.multipro = "6"
+
+	-- Spin N' Fire
+	self.values.player.sprint_to_fire_multiplier = { 1.25 }
+	self.definitions.player_sprint_to_fire_multiplier = {
+		name_id = "menu_player_sprint_to_fire_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "sprint_to_fire_multiplier",
+			category = "player"
+		}
+	}
+	self.values.player.revolvers_reload_primary = { true }
+	self.definitions.player_revolvers_reload_primary = {
+		name_id = "menu_player_revolvers_reload_primary",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "revolvers_reload_primary",
+			category = "player"
+		}
+	}
+	self.skill_descs.akimbo.multibasic = "25%"
+
+	-- Pistol Overdrive
+	self.values.pistol.stacked_reload_bonus = {
+		{
+			max_stacks = 6,
+			reload_bonus = 0.075,
+			max_time = 3
+		}
+	}
+	self.definitions.pistol_stacked_reload_bonus = {
+		name_id = "menu_pistol_stacked_reload_bonus",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "stacked_reload_bonus",
+			category = "pistol"
+		}
+	}
+	self.values.pistol.stacked_accuracy_bonus = {
+		{
+			max_stacks = 4,
+			accuracy_bonus = 0.12,
+			max_time = 6
+		}
+	}
+	self.skill_descs.gun_fighter.multibasic = "7.5%"
+	self.skill_descs.gun_fighter.multibasic2 = "3"
+	self.skill_descs.gun_fighter.multibasic3 = "6"
+	self.skill_descs.gun_fighter.multipro = "12%"
+	self.skill_descs.gun_fighter.multipro2 = "6"
+	self.skill_descs.gun_fighter.multipro3 = "4"
+
+	-- Revolver Wrath
+
+	-- Peacemaker's Lament
 
 	-- Tough Guy
 	self.definitions.player_swap_weapon_when_downed = {

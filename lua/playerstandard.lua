@@ -131,7 +131,7 @@ function PlayerStandard:_end_action_running(t)
 	if not self._end_running_expire_t then
 		local weap_base = self._equipped_unit:base()
 
-		local speed_multiplier = weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1)
+		local speed_multiplier = weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1) * managers.player:upgrade_value("player", "sprint_to_fire_multiplier", 1)
 
 		self._end_running_expire_t = t + 0.4 / speed_multiplier
 

@@ -137,7 +137,7 @@ function NewRaycastWeaponBase:movement_penalty()
 	end
 end
 
---Calculate weapon swap speed and sprint-to-fire speed based on concealment
+-- Calculate weapon swap speed and sprint-to-fire speed based on concealment
 function NewRaycastWeaponBase:concealment_to_handling()
 	local base_stats = self:weapon_tweak_data().stats
 	local parts_stats = managers.weapon_factory:get_stats(self._factory_id, self._blueprint)
@@ -164,6 +164,11 @@ function NewRaycastWeaponBase:get_add_head_shot_mul()
 end
 
 function NewRaycastWeaponBase:steelsight_move_speed_multiplier()
+	if managers.player:has_category_upgrade("weapon", "steelsight_move_speed_penalty_multiplier") then
+		local speed_penalty = 1 - self._steelsight_move_speed_mul
+		return (1 - speed_penalty * managers.player:upgrade_value("weapon", "steelsight_move_speed_penalty_multiplier", 1))
+	end
+
 	return self._steelsight_move_speed_mul
 end
 
@@ -412,23 +417,24 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 	end
 
 	local multiplier = 1
+	local pm = managers.player
 
 	multiplier = multiplier + 1 - self._reload_speed_multiplier
 
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
-		multiplier = multiplier + 1 - managers.player:upgrade_value(category, "reload_speed_multiplier", 1)
+		multiplier = multiplier + 1 - pm:upgrade_value(category, "reload_speed_multiplier", 1)
 
 		if category == "shotgun" then -- shotgun reload speed stuff
 			if self._use_shotgun_reload then
-				multiplier = multiplier + 1 - managers.player:upgrade_value("shotgun", "pump_reload_speed_mul", 1)
+				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "pump_reload_speed_mul", 1)
 			else
-				multiplier = multiplier + 1 - managers.player:upgrade_value("shotgun", "mag_reload_speed_mul", 1)
+				multiplier = multiplier + 1 - pm:upgrade_value("shotgun", "mag_reload_speed_mul", 1)
 			end
 		end
 	end
 
-	multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "passive_reload_speed_multiplier", 1)
-	multiplier = multiplier + 1 - managers.player:upgrade_value(self._name_id, "reload_speed_multiplier", 1)
+	multiplier = multiplier + 1 - pm:upgrade_value("weapon", "passive_reload_speed_multiplier", 1)
+	multiplier = multiplier + 1 - pm:upgrade_value(self._name_id, "reload_speed_multiplier", 1)
 
 	if self._setup and alive(self._setup.user_unit) and self._setup.user_unit:movement() then
 		local morale_boost_bonus = self._setup.user_unit:movement():morale_boost()
@@ -442,20 +448,22 @@ function NewRaycastWeaponBase:reload_speed_multiplier()
 		end
 	end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "reload_weapon_faster") then
-		multiplier = multiplier + 1 - managers.player:temporary_upgrade_value("temporary", "reload_weapon_faster", 1)
+	if pm:has_activate_temporary_upgrade("temporary", "reload_weapon_faster") then
+		multiplier = multiplier + 1 - pm:temporary_upgrade_value("temporary", "reload_weapon_faster", 1)
 	end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "single_shot_fast_reload") then
-		multiplier = multiplier + 1 - managers.player:temporary_upgrade_value("temporary", "single_shot_fast_reload", 1)
+	if pm:has_activate_temporary_upgrade("temporary", "single_shot_fast_reload") then
+		multiplier = multiplier + 1 - pm:temporary_upgrade_value("temporary", "single_shot_fast_reload", 1)
 	end
 
-	multiplier = multiplier + 1 - managers.player:get_property("shock_and_awe_reload_multiplier", 1)
-	multiplier = multiplier + 1 - managers.player:get_temporary_property("bloodthirst_reload_speed", 1)
-	multiplier = multiplier + 1 - managers.player:upgrade_value("team", "crew_faster_reload", 1)
+	multiplier = multiplier + 1 - pm:get_property("shock_and_awe_reload_multiplier", 1)
+	multiplier = multiplier + 1 - pm:get_temporary_property("bloodthirst_reload_speed", 1)
+	multiplier = multiplier + 1 - pm:upgrade_value("team", "crew_faster_reload", 1)
 
 	multiplier = self:_convert_add_to_mul(multiplier)
 	multiplier = multiplier * self:reload_speed_stat()
+
+	multiplier = multiplier + pm:get_property("desperado_reload", 0)
 
 	multiplier = managers.modifiers:modify_value("WeaponBase:GetReloadSpeedMultiplier", multiplier)
 
@@ -514,7 +522,7 @@ function NewRaycastWeaponBase:conditional_accuracy_multiplier(current_state)
 		end
 	end
 
-	mul = mul + 1 - pm:get_property("desperado", 1)
+	mul = mul + pm:get_property("desperado", 0)
 
 	return self:_convert_add_to_mul(mul)
 end

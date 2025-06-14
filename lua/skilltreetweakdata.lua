@@ -68,10 +68,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.joker[2].upgrades = { "player_convert_enemies_damage_multiplier_2", "player_convert_enemies_interaction_speed_multiplier", "player_passive_convert_enemies_health_multiplier_2" }
 
 	-- Hostage Situation
-	self.skills.stockholm_syndrome[1].upgrades = {
-		"team_resource_trading_ammo",
-		"team_resource_trading_no_downs",
-	}
+	self.skills.stockholm_syndrome[1].upgrades = { "team_resource_trading_ammo", "team_resource_trading_no_downs" }
 	self.skills.stockholm_syndrome[2].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault" }
 	self.skills.stockholm_syndrome.icon_xy = { 6, 7 }
 
@@ -88,8 +85,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stable_shot[2].upgrades = { "weapon_faster_recoil_recentering" }
 
 	-- Rifleman
-	self.skills.rifleman[1].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
+	self.skills.rifleman[1].upgrades = { "" }
 	self.skills.rifleman[2].upgrades = { "weapon_standing_spread_multiplier" }
+	self.skills.rifleman.icon_xy = { 8, 5 }
 
 	-- Marksman
 	self.skills.sharpshooter[1].upgrades = { "player_steelsight_aimpunch_multiplier" }
@@ -348,6 +346,36 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.unseen_strike.desc_id = "menu_backstab_beta_desc"
 
 	-- FUGITIVE --
+
+	-- Gun Drill Savvy
+	self.skills.equilibrium[1].upgrades = { "weapon_steelsight_move_speed_penalty_multiplier" }
+	self.skills.equilibrium[2].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
+	self.skills.equilibrium.icon_xy = { 8, 0 }
+
+	-- Slide Action
+	self.skills.dance_instructor[1].upgrades = { "weapon_swap_speed_multiplier" }
+	self.skills.dance_instructor[2].upgrades = { "player_pistols_reload_primary" }
+	self.skills.dance_instructor.icon_xy = { 8, 0 }
+
+	-- Spin N' Fire
+	self.skills.akimbo[1].upgrades = { "player_sprint_to_fire_multiplier" }
+	self.skills.akimbo[2].upgrades = { "player_revolvers_reload_primary" }
+	self.skills.akimbo.icon_xy = { 8, 0 }
+
+	-- Pistol Overdrive
+	self.skills.gun_fighter[1].upgrades = { "pistol_stacked_reload_bonus" }
+	self.skills.gun_fighter[2].upgrades = { "pistol_stacked_accuracy_bonus_1" }
+	self.skills.gun_fighter.icon_xy = { 8, 0 }
+
+	-- Revolver Wrath
+	self.skills.expert_handling[1].upgrades = { "" }
+	self.skills.expert_handling[2].upgrades = { "" }
+	self.skills.expert_handling.icon_xy = { 0, 0 }
+
+	-- Peacemaker's Lament
+	self.skills.trigger_happy[1].upgrades = { "" }
+	self.skills.trigger_happy[2].upgrades = { "" }
+	self.skills.trigger_happy.icon_xy = { 0, 0 }
 
 	-- Tough Guy
 	self.skills.nine_lives[1].upgrades = { "player_steelsight_when_downed" }

@@ -222,17 +222,28 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	else
 		self:unregister_message(Message.OnPlayerDodge, "dodge_replenish_armor")
 	end
+
+	if self:has_category_upgrade("pistol", "stacked_reload_bonus") then
+		self:register_message(Message.OnEnemyShot, "stacked_reload_bonus", callback(self, self, "_on_expert_handling_reload_event"))
+	else
+		self:unregister_message(Message.OnEnemyShot, "stacked_reload_bonus")
+	end
+
+	self:set_property("pistols_reload_primary_kills", 0)
 end)
 
--- shotgun panic stuff
+-- Killshot skills
 local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	on_killshot_old(self, killed_unit, variant, headshot, weapon_id)
+	local equipped_unit = self:get_current_state()._equipped_unit:base()
+	local selection_index = equipped_unit and equipped_unit and equipped_unit:selection_index() or 0
+	local equipped_weapon_id = equipped_unit and equipped_unit:get_name_id()
+	local player_unit = self:player_unit()
 
+	-- Shotgun panic
 	local has_shotgun_panic = self:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
 	if has_shotgun_panic and variant ~= "melee" then
-		local equipped_unit = self:get_current_state()._equipped_unit:base()
-
 		if equipped_unit:is_category("shotgun") then
 			local pos = self:player_unit():position()
 			local skill = tweak_data.upgrades.values.shotgun.panic[1]
@@ -251,6 +262,50 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 			end
 
 			managers.player:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+		end
+	end
+
+	-- Pistol kills autoreload primary
+	local pistol_reload_primary = selection_index == 1 and self:has_category_upgrade("player", "pistols_reload_primary")
+	local equipped_unit_is_pistol = equipped_unit:is_category("pistol")
+	pistol_reload_primary = pistol_reload_primary and weapon_id == equipped_weapon_id and equipped_unit_is_pistol
+	if pistol_reload_primary then
+		local kills_to_reload = self:upgrade_value("player", "pistols_reload_primary", 6)
+		local pistol_kills = self:get_property("pistols_reload_primary_kills", 0) + 1
+
+		if kills_to_reload <= pistol_kills then
+			local primary_unit = player_unit:inventory():unit_by_selection(2)
+			local primary_base = alive(primary_unit) and primary_unit:base()
+			local can_reload = primary_base and primary_base.can_reload and primary_base:can_reload()
+
+			if can_reload then
+				primary_base:on_reload()
+				managers.statistics:reloaded()
+				managers.hud:set_ammo_amount(primary_base:selection_index(), primary_base:ammo_info())
+				player_unit:sound():play("pickup_ammo_health_boost")
+			end
+
+			pistol_kills = 0
+		end
+
+		self:set_property("pistols_reload_primary_kills", pistol_kills)
+	end
+
+	-- Last bullet revolver kills autoreload primary
+	local revolver_reload_primary = selection_index == 1 and self:has_category_upgrade("player", "revolvers_reload_primary")
+	local equipped_unit_is_revolver = equipped_unit:is_category("revolver")
+	local is_last_bullet = equipped_unit:get_ammo_remaining_in_clip() == 0
+	revolver_reload_primary = revolver_reload_primary and weapon_id == equipped_weapon_id and equipped_unit_is_revolver and is_last_bullet
+	if revolver_reload_primary then
+		local primary_unit = player_unit:inventory():unit_by_selection(2)
+		local primary_base = alive(primary_unit) and primary_unit:base()
+		local can_reload = primary_base and primary_base.can_reload and primary_base:can_reload()
+
+		if can_reload then
+			primary_base:on_reload()
+			managers.statistics:reloaded()
+			managers.hud:set_ammo_amount(primary_base:selection_index(), primary_base:ammo_info())
+			player_unit:sound():play("pickup_ammo_health_boost")
 		end
 	end
 end
@@ -1215,4 +1270,86 @@ PlayerAction.UnseenStrike = {
 
 		player_manager:unregister_message(Message.OnPlayerDamage, co)
 	end,
+}
+
+-- Pistol on-hit reload speed stacking
+-- Handled in a separate playeraction due to stacking at a different rate, as well as having a different max time
+PlayerAction.ExpertHandlingReload = {
+	Priority = 1,
+	Function = function (player_manager, reload_bonus, max_stacks, max_time)
+		local co = coroutine.running()
+		local current_time = Application:time()
+		local current_stacks = 0
+
+		local function on_hit()
+			current_stacks = current_stacks + 1
+
+			if current_stacks <= max_stacks then
+				player_manager:add_to_property("desperado_reload", reload_bonus)
+			end
+		end
+
+		on_hit()
+		player_manager:register_message(Message.OnEnemyShot, co, on_hit)
+
+		while current_time < max_time do
+			current_time = Application:time()
+
+			if not player_manager:is_current_weapon_of_category("pistol") then
+				break
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:remove_property("desperado_reload")
+		player_manager:unregister_message(Message.OnEnemyShot, co)
+	end
+}
+
+function PlayerManager:_on_expert_handling_reload_event(unit, attack_data)
+	local attacker_unit = attack_data.attacker_unit
+	local variant = attack_data.variant
+
+	if attacker_unit == self:player_unit() and self:is_current_weapon_of_category("pistol") and variant == "bullet" and not self._coroutine_mgr:is_running(PlayerAction.ExpertHandlingReload) then
+		local data = self:upgrade_value("pistol", "stacked_reload_bonus", nil)
+
+		if data and type(data) ~= "number" then
+			self._coroutine_mgr:add_coroutine(PlayerAction.ExpertHandlingReload, PlayerAction.ExpertHandlingReload, self, data.reload_bonus, data.max_stacks, Application:time() + data.max_time)
+		end
+	end
+end
+
+-- Pistol on-hit accuracy stacks additively instead
+PlayerAction.ExpertHandling = {
+	Priority = 1,
+	Function = function (player_manager, accuracy_bonus, max_stacks, max_time)
+		local co = coroutine.running()
+		local current_time = Application:time()
+		local current_stacks = 0
+
+		local function on_hit()
+			current_stacks = current_stacks + 1
+
+			if current_stacks <= max_stacks then
+				player_manager:add_to_property("desperado", accuracy_bonus)
+			end
+		end
+
+		on_hit()
+		player_manager:register_message(Message.OnEnemyShot, co, on_hit)
+
+		while current_time < max_time do
+			current_time = Application:time()
+
+			if not player_manager:is_current_weapon_of_category("pistol") then
+				break
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:remove_property("desperado")
+		player_manager:unregister_message(Message.OnEnemyShot, co)
+	end
 }
