@@ -3253,24 +3253,26 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		Utils.PrintTable(self.cs_grenade_chance_times)
 	end
 
-	for name, force_tactics_table in pairs(level_settings.force_tactics) do
-		local tactics_table = self._tactics[name]
+	if level_settings.force_tactics then
+		for name, force_tactics_table in pairs(level_settings.force_tactics) do
+			local tactics_table = self._tactics[name]
 
-		if tactics_table then
-			for tactic, add in pairs(force_tactics_table) do
-				if add and not table.contains(tactics_table, tactic) then
-					table.insert(tactics_table, tactic)
+			if tactics_table then
+				for tactic, add in pairs(force_tactics_table) do
+					if add and not table.contains(tactics_table, tactic) then
+						table.insert(tactics_table, tactic)
 
-					Eclipse:log_console("Added " .. tactic .. " to: " .. name)
-				elseif not add and table.contains(tactics_table, tactic) then
-					table.delete(tactics_table, tactic)
+						Eclipse:log_console("Added " .. tactic .. " to: " .. name)
+					elseif not add and table.contains(tactics_table, tactic) then
+						table.delete(tactics_table, tactic)
 
-					Eclipse:log_console("Removed " .. tactic .. " from: " .. name)
+						Eclipse:log_console("Removed " .. tactic .. " from: " .. name)
+					end
 				end
 			end
 		end
 	end
-
+	
 	local special_limits = deep_clone(self.special_unit_spawn_limits)
 	for special, limit in pairs(special_limits) do
 		local add = level_settings.special_limit_add and level_settings.special_limit_add[special] or 0

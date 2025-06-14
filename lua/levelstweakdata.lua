@@ -178,9 +178,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 
 	self.hox_1.group_ai_settings = {
-		assault_delay_mul = 1.5,
-		assault_force_mul = 0.65,
-		spawnrate_mul = 1.25,
+		assault_delay_mul = 1.35,
+		assault_force_mul = 0.75,
+		spawnrate_mul = 1.2,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
 		min_grenade_timeout_mul = 1.35,
@@ -346,7 +346,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.run.group_ai_settings = {
 		sustain_duration_mul = 0.75,
-		assault_delay_mul = 1.5,
+		assault_delay_mul = 1.35,
 		assault_force_mul = 0.75,
 		spawnrate_mul = 1.2,
 		reenforce_interval_mul = 0.75,
@@ -374,7 +374,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				charge = false,
 			},
 			taser_snk = {
-				charge = false,
+				ranged_fire = true,
 			},
 			bulldozer_def = {
 				ranged_fire = true,
