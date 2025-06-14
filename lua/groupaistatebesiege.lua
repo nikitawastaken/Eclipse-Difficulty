@@ -1396,8 +1396,8 @@ end
 -- Make a generic group voice function instead of individual ones and make retiring groups play retreat lines
 function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 	for _, u_data in pairs(group.units) do
-		if u_data.char_tweak.chatter[chatter_type] and not u_data.unit:brain():is_current_logic("intimidated") and not u_data.unit:character_damage():dead() then
-			if self:chk_say_enemy_chatter(u_data.unit, u_data.m_pos, chatter_type) then
+		if alive(u_data.unit) and not u_data.unit:brain():is_current_logic("intimidated") and not u_data.unit:character_damage():dead() then
+			if u_data.char_tweak.chatter[chatter_type] and self:chk_say_enemy_chatter(u_data.unit, u_data.m_pos, chatter_type) then
 				return true
 			end
 		end
