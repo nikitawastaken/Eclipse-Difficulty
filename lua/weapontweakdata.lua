@@ -112,7 +112,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.alert_size = cat_map.dmr and 19 or 15
 				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
 				weap_data.steelsight_move_speed_mul = cat_map.dmr and 0.5 or 0.6
-				
+
 				if cat_map.dmr then
 					weap_data.FIRE_MODE = "single"
 					weap_data.spread_multiplier = {
@@ -169,13 +169,13 @@ function WeaponTweakData:_init_weapons()
 				weap_data.fire_mode_mul = not cat_map.dmr and base_fire_mode_mul or nil
 
 			elseif cat_map.pistol then
-				weap_data.stats.suppression = (cat_map.revolver or cat_map.handcannon) and 9 or 16
-				weap_data.stats.alert_size = (cat_map.revolver or cat_map.handcannon) and 15 or 12
+				weap_data.stats.suppression = cat_map.handcannon and 9 or 16
+				weap_data.stats.alert_size = cat_map.handcannon and 15 or 12
 				weap_data.steelsight_time = steelsight_times.pistol
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not (cat_map.revolver or cat_map.handcannon) and 1.25 or 1
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not cat_map.handcannon and 1.25 or 1
 				weap_data.steelsight_move_speed_mul = 0.8
-				
-				if cat_map.revolver or cat_map.handcannon then
+
+				if cat_map.handcannon then
 					weap_data.spread_multiplier = {
 						standing = {
 							hipfire = 1.5,
@@ -225,7 +225,39 @@ function WeaponTweakData:_init_weapons()
 							steelsight = 1,
 						}
 					}
-			end
+				end
+
+			elseif cat_map.revolver then
+				weap_data.stats.suppression = 9
+				weap_data.stats.alert_size = 15
+				weap_data.steelsight_time = steelsight_times.pistol
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1
+				weap_data.steelsight_move_speed_mul = 0.8
+
+				weap_data.spread_multiplier = {
+					standing = {
+						hipfire = 1.5,
+						crouching = 0.8,
+						steelsight = 0.5,
+					},
+					moving = {
+						hipfire = 2,
+						crouching = 1,
+						steelsight = 1.8,
+					}
+				}
+				weap_data.recoil_multiplier = {
+					standing = {
+						hipfire = 1.4,
+						crouching = 1,
+						steelsight = 1,
+					},
+					moving = {
+						hipfire = 1.6,
+						crouching = 1,
+						steelsight = 1.4,
+					}
+				}
 
 			elseif cat_map.smg then
 				weap_data.stats.suppression = 16
@@ -273,7 +305,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 17
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 24 / 180 
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 24 / 180
 				weap_data.pickup_mul = weap_data.pickup_mul or 1 / 5.4
 				weap_data.damage_near = 2000
 				weap_data.damage_far = 3000
@@ -291,7 +323,7 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1,
 					}
 				}
-				
+
 				weap_data.recoil_multiplier = {
 					standing = {
 						hipfire = 1.2,
@@ -304,7 +336,7 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1.2,
 					}
 				}
-			
+
 			elseif cat_map.lmg then
 				weap_data.stats.suppression = 3
 				weap_data.stats.alert_size = 18
@@ -1556,8 +1588,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Frenchman
 	self.model3.categories = {
-		"revolver",
-		"pistol"
+		"revolver"
 	}
 	self.model3.CLIP_AMMO_MAX = 6
 	self.model3.stats.damage = 160
@@ -1568,8 +1599,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Matever
 	self.mateba.categories = {
-		"revolver",
-		"pistol"
+		"revolver"
 	}
 	self.mateba.CLIP_AMMO_MAX = 6
 	self.mateba.stats.damage = 160
@@ -1581,8 +1611,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Kahn
 	self.korth.categories = {
-		"revolver",
-		"pistol"
+		"revolver"
 	}
 	self.korth.CLIP_AMMO_MAX = 8
 	self.korth.stats.damage = 160
@@ -1593,8 +1622,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Bronco
 	self.new_raging_bull.categories = {
-		"revolver",
-		"pistol"
+		"revolver"
 	}
 	self.new_raging_bull.CLIP_AMMO_MAX = 6
 	self.new_raging_bull.stats.damage = 200
@@ -1614,8 +1642,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	--Peacemaker
 	self.peacemaker.categories = {
-		"revolver",
-		"pistol"
+		"revolver"
 	}
 	self.peacemaker.CLIP_AMMO_MAX = 6
 	self.peacemaker.stats.damage = 200
@@ -1634,8 +1661,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Castigo
 	self.chinchilla.categories = {
-		"revolver",
-		"pistol"
+		"revolver"
 	}
 	self.chinchilla.CLIP_AMMO_MAX = 6
 	self.chinchilla.stats.damage = 200
@@ -1647,8 +1673,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Angry Tiger
 	self.rsh12.categories = {
-		"revolver",
-		"pistol"
+		"revolver"
 	}
 	self.rsh12.CLIP_AMMO_MAX = 5
 	self.rsh12.stats.damage = 240
@@ -1807,7 +1832,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		toggable = { "auto", "burst", "single" }
 	}
 	self.polymer.BURST_COUNT = 3
-	
+
 	-- AK GEN
 	self.vityaz.use_data.selection_index = 2
 	self.vityaz.CLIP_AMMO_MAX = 30
@@ -1870,7 +1895,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.basset.stats.recoil = 13
 	self.basset.stats.concealment = 23
 	self.basset.fire_mode_data.fire_rate = 60 / 350
-	
+
 	-- Izhma
 	self.saiga.CLIP_AMMO_MAX = 7
 	self.saiga.stats.damage = 25
@@ -2179,7 +2204,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	--self.shuno.spray = spray_tables.mini
 	--self.shuno.recoil_recovery_timer = recovery_tables.high
 	self.shuno.no_steelsight = true
-	
+
 	-- Minigun
 	self.m134.CLIP_AMMO_MAX = 600
 	self.m134.stats.damage = 60
