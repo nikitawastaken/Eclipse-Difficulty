@@ -101,7 +101,6 @@ function M.gen_spawngroup(id, name, elements, interval)
 			},
 			elements = elements,
 			interval = opts.interval or 0,
-			callback = opts.callback or false,
 		},
 	}
 
@@ -208,7 +207,6 @@ function M.gen_fakeassaultstate(id, name, state)
 			execute_on_startup = false,
 			enabled = true,
 			state = state or false,
-			callback = opts.callback or false,
 		},
 	}
 
