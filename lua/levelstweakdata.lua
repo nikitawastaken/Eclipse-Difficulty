@@ -444,7 +444,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
 		sustain_duration_mul = 1.35,
-		assault_force_mul = 1.35,
+		assault_force_mul = 1.4,
 		spawnrate_mul = 0.85,
 		recon_interval_variation_mul = 0.5,
 		grenade_timeout_mul = {
