@@ -102,7 +102,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		hostage_hesitation_delay_mul = 1.35,
 		sustain_duration_mul = 0.85,
 		assault_delay_mul = 1.25,
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.7,
 		spawnrate_mul = 1.15,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
@@ -175,7 +175,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.recurring_cloaker_spawn_interval_mul = nil
-	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 
 	self.hox_1.group_ai_settings = {
 		sustain_duration_mul = 0.75,
@@ -235,7 +234,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.born.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		spawnrate_mul = 1.15,
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
@@ -250,7 +249,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chew.group_ai_settings = {
 		assault_force_mul = 0.3,
-		spawnrate_mul = 1.35,
+		spawnrate_mul = 1.3,
 		recon_force_mul = 0,
 		cs_grenade_chance_times_mul = 1.5,
 		special_limit_add = {
@@ -279,7 +278,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		difficulty_step_time = 10,
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		spawnrate_mul = 1.15,
 		reenforce_interval_mul = 1.5,
 		recon_force_mul = 0.8,
@@ -295,7 +294,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.flat.group_ai_settings = {
-		assault_force_mul = 0.75,
+		assault_force_mul = 0.8,
 		spawnrate_mul = 1.15,
 		reenforce_interval_mul = 1.5,
 		force_tactics = {
@@ -347,7 +346,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.run.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_delay_mul = 1.35,
-		assault_force_mul = 0.65,
+		assault_force_mul = 0.6,
 		reenforce_interval_mul = 0.75,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
@@ -385,8 +384,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.hvh.group_ai_settings = {
 		assault_force_mul = 0.5,
-		spawnrate_mul = 1.3,
-		recon_force_mul = 0.75,
+		spawnrate_mul = 1.25,
+		recon_force_mul = 0.6,
 		special_limit_add = {
 			shield = -2,
 		},
@@ -438,9 +437,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.pent.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
-	self.pent.group_ai_settings.assault_force_mul = 0.75
+	self.pent.group_ai_settings.recon_force_mul = nil
+	self.pent.group_ai_settings.assault_force_mul = 0.8
 	self.pent.group_ai_settings.spawnrate_mul = 1.15
-	self.pent.group_ai_settings.recon_force_mul = 0.85
 
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
 		sustain_duration_mul = 1.35,

@@ -3370,8 +3370,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.interval_variation = 20
 	self.besiege.recon.force = {
 		diff_lerp(2, 4),
+		diff_lerp(3, 5),
 		diff_lerp(4, 6),
-		diff_lerp(6, 8),
 	}
 
 	self.besiege.push_delay = {
