@@ -3272,7 +3272,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			end
 		end
 	end
-	
+
 	local special_limits = deep_clone(self.special_unit_spawn_limits)
 	for special, limit in pairs(special_limits) do
 		local add = level_settings.special_limit_add and level_settings.special_limit_add[special] or 0
