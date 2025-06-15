@@ -518,7 +518,14 @@
 				<file :name="swat_city_df.texture" />
 				<file :name="spook_heavy_df.texture" />
 				<file :name="ene_city_heavy_df.texture" />
-						
+				<file :name="helmets_atlas_df.texture" />
+				<file :name="city_heavy_helmets_atlas_df.texture" />
+				<file :name="city_heavy_helmets_atlas_nm.texture" />
+				<file :name="equipment_atlas_df.texture" />
+				<file :name="equipment_atlas_nm.texture" />
+				<file :name="police_vest_df.texture" />
+				<file :name="police_vest_nm.texture" />
+		
 				<file :name="arms_atlas_df.texture" />
 				<file :name="arms_atlas_nm.texture" />
 
@@ -527,15 +534,6 @@
 
 				<file :name="heads_atlas_var2_df.texture" />
 				<file :name="heads_atlas_var2_nm.texture" />
-
-				<file :name="equipment_atlas_df.texture" />
-				<file :name="equipment_atlas_nm.texture" />
-
-				<file :name="police_vest_df.texture" />
-				<file :name="police_vest_nm.texture" />
-
-				<file :name="city_heavy_helmets_atlas_df.texture" />
-				<file :name="city_heavy_helmets_atlas_nm.texture" />
 
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_op.texture" />
