@@ -1,4 +1,12 @@
 local preferred = Eclipse.preferred
+local diff_i = Eclipse.utils.difficulty_index()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local diff_i_no_norm = diff_i - 2
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
 }
@@ -18,15 +26,17 @@ local cloaker_spawn = {
 		interval = 180,
 	},
 }
+local chopper_delay_init = 480 - (diff_i_no_norm * 30) - (is_pro_job and 120 or 0)
+local chopper_delay = 300 - (diff_i_no_norm * 15) - (is_pro_job and 60 or 0)
 return {
-	[100628] = {
-		values = {
-			enabled = false,
-		},
-	},
 	[100720] = {
 		set_ponr_state = true,
 	},
+	[100628] = disabled,
+	-- Disable reinforce inside the garage
+	[101596] = disabled,
+	-- Disable forced spawns inside the garage THEY SUCK
+	[101589] = disabled,
 	-- only let swats, tasers, snipers and cloakers use climbing SOs
 	[100089] = exclude_cop_agents_shields_dozers,
 	[100091] = exclude_cop_agents_shields_dozers,
@@ -87,28 +97,20 @@ return {
 	-- trigger in alarm rather than in the second assault
 	[100022] = {
 		on_executed = {
-			{ id = 102530, delay = 360 }, --6 mins delay to trigger
+			{ id = 102530, delay = chopper_delay_init, delay_rand = 60 },
 		},
 	},
 	-- not need to have that anymore
-	[101908] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[101908] = disabled,
 	-- and you too
-	[102538] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[102538] = disabled,
 	-- loop the choppa
 	[102530] = {
 		values = {
 			trigger_times = 0,
 		},
 		on_executed = {
-			{ id = 102530, delay = 180 },
+			{ id = 102530, delay = chopper_delay, delay_rand = 60 },
 		},
 	},
 	-- Spawn group delays

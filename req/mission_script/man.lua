@@ -1,6 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_norm = diff_i - 2
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -53,7 +54,7 @@ local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or s
 local harasser = {
 	enemy = harasser_enemy,
 }
-local harassers = normal and 3 or 5
+local harassers = normal and 3 or hard and 4 or 5
 local harasser_amount = {
 	values = {
 		amount = harassers,
@@ -122,8 +123,9 @@ local new_cloaker_spawn = {
 	},
 	groups = preferred.only_cloakers,
 }
-local chopper_delay_init = 480 - (diff_i * 30) - (is_pro_job and 60 or 0)
-local chopper_delay = 360 - (diff_i * 15) - (is_pro_job and 45 or 0)
+local chopper_delay_init = 420 - (diff_i_no_norm * 30) - (is_pro_job and 120 or 0)
+local chopper_delay = 480 - (diff_i_no_norm * 15) - (is_pro_job and 90 or 0)
+local harasser_delay = (normal and 60 or 30) - (is_pro_job and 15 or 0)
 return {
 	-- Combine some navigation areas
 	[100053] = {
@@ -539,7 +541,7 @@ return {
 	},
 	[100131] = { -- police called, call in da choppa
 		on_executed = {
-			{ id = 101608, delay = chopper_delay_init },
+			{ id = 101608, delay = chopper_delay_init, delay_rand = 120 },
 		},
 	},
 	[101608] = {
@@ -555,7 +557,7 @@ return {
 	[103434] = {
 		values = filter_normal_above.values,
 		on_executed = {
-			{ id = 101608, delay = 240, delay_rand = chopper_delay },
+			{ id = 101608, delay = chopper_delay, delay_rand = 60 },
 		},
 	},
 	-- The other (lame) chopper
@@ -582,14 +584,14 @@ return {
 	-- Escape harassers amount
 	[102444] = {
 		values = {
-			amount = 4,
-			amount_random = normal and 2 or 4,
+			amount = harassers,
+			amount_random = 3,
 		},
 	},
 	-- Regular harasser stuff
 	[102269] = {
 		on_executed = {
-			{ id = 102268, delay = 30, delay_rand = normal and 30 or 15 },
+			{ id = 102268, delay = 30, delay_rand = harasser_delay },
 		},
 	},
 	[101731] = {
@@ -602,7 +604,7 @@ return {
 	[102946] = harasser_counter,
 	[103833] = {
 		on_executed = {
-			{ id = 103832, delay = 30, delay_rand = normal and 30 or 15 },
+			{ id = 103832, delay = 30, delay_rand = harasser_delay },
 		},
 	},
 	[103832] = harasser_amount,
