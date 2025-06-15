@@ -103,7 +103,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 0.85,
 		assault_delay_mul = 1.25,
 		assault_force_mul = 0.7,
-		spawnrate_mul = 1.15,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
 		force_tactics = {
@@ -129,7 +128,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nightclub.group_ai_settings.difficulty_curve_points = nil
 	self.nightclub.group_ai_settings.hostage_hesitation_delay_mul = nil
 	self.nightclub.group_ai_settings.recon_interval_variation_mul = nil
-	self.nightclub.group_ai_settings.assault_force_mul = 0.65
+	self.nightclub.group_ai_settings.assault_force_mul = 0.6
+	self.nightclub.group_ai_settings.spawnrate_mul = 1.15
 	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, medic = -1, marksman = -1 }
 
 	self.watchdogs_2.group_ai_settings = {

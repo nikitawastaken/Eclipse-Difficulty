@@ -237,7 +237,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 0,
 			medic = 0,
 			marksman = 0,
-			marshal = 2,
+			marshal = 0,
 		}
 	elseif difficulty_index == 4 then
 		self.special_unit_spawn_limits = {
@@ -247,7 +247,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 2,
 			marksman = 0,
-			marshal = 2,
+			marshal = 0,
 		}
 	elseif difficulty_index == 5 then
 		self.special_unit_spawn_limits = {
@@ -257,7 +257,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 3,
 			marksman = 0,
-			marshal = 3,
+			marshal = 0,
 		}
 	elseif difficulty_index == 6 then
 		self.special_unit_spawn_limits = {
@@ -267,7 +267,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 3,
 			medic = 4,
 			marksman = 3,
-			marshal = 4,
+			marshal = 0,
 		}
 	end
 
@@ -3386,15 +3386,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- GRENADES --
 	self.min_grenade_timeout = 15
 
-	local timeout_mult = diff_lerp(1, 0.75)
+	local timeout_mult = diff_lerp(1, 0.6)
 
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
 	self.flash_grenade.light_range = (is_eclipse and 0) or 500
 	self.flash_grenade_timeout = {
-		10 * timeout_mult,
+		15 * timeout_mult,
 		20 * timeout_mult,
 	}
-	self.flash_grenade.timer = 2
+	self.flash_grenade.timer = diff_lerp(2.5, 1.5)
 
 	self.smoke_grenade_timeout = {
 		30 * timeout_mult,
@@ -3406,7 +3406,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		60 * timeout_mult,
 		90 * timeout_mult,
 	}
-	self.cs_grenade_lifetime = self.smoke_grenade_lifetime * 2
+	self.cs_grenade_lifetime = diff_lerp(20, 30)
 	self.cs_grenade_chance_times = { 60, diff_lerp(240, 180) }
 
 	if difficulty_index <= 3 then
