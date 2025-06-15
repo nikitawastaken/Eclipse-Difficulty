@@ -510,6 +510,15 @@
 
 		<group name="units/payday2/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
+				<file :name="security_df.texture" />
+				<file :name="police_df.texture" />
+				<file :name="fbi_df.texture" />
+				<file :name="swat_body_df.texture" />
+				<file :name="swat_fbi_body_df.texture" />
+				<file :name="swat_city_df.texture" />
+				<file :name="spook_heavy_df.texture" />
+				<file :name="ene_city_heavy_df.texture" />
+						
 				<file :name="arms_atlas_df.texture" />
 				<file :name="arms_atlas_nm.texture" />
 
