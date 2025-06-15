@@ -202,7 +202,7 @@ return {
 	[101578] = {
 		on_executed = {
 			{ id = 101582, remove = true },
-			{ id = 101599, delay = true },
+			{ id = 101599, remove = true },
 		},
 	},
 	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
