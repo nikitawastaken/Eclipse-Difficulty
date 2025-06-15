@@ -1086,6 +1086,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.speech_prefix_p2 = "n"
 	self.city_swat.surrender = self.presets.surrender.hard
 	self.city_swat.suppression = self.presets.suppression.hard
+	self.city_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 
 	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	self.city_heavy_swat.HEALTH_INIT = 48
