@@ -30,6 +30,7 @@ local optsHuntSO = {
 	so_action = "AI_hunt",
 }
 local optsTaserChopper = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 100008, notify_unit_sequence = "swat", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 100008, notify_unit_sequence = "flyin_fwd_hover", time = 0 },
