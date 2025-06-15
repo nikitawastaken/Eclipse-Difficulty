@@ -1862,7 +1862,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq_by_diff = { 0, 1, 2 },
-				amount_max = 2,				
+				amount_max = 2,
 				rank = 2,
 				unit = "cs_cop_3",
 				tactics = self._tactics.hrt_snk,
