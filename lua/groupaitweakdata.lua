@@ -2748,7 +2748,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-
 	self.enemy_spawn_groups.single_spooc = {
 		amount = { 1, 1 },
 		spawn = {
