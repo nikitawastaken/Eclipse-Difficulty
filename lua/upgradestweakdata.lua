@@ -882,22 +882,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.equilibrium.multibasic = "20%"
 	self.skill_descs.equilibrium.multipro = "30%"
 
-	-- Slide Action
-	self.values.weapon.swap_speed_multiplier[1] = 1.15
-	self.values.player.pistols_reload_primary = { 6 }
-	self.definitions.player_pistols_reload_primary = {
-		name_id = "menu_player_pistols_reload_primary",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "pistols_reload_primary",
-			category = "player",
-		},
-	}
-	self.skill_descs.dance_instructor.multibasic = "15%"
-	self.skill_descs.dance_instructor.multipro = "6"
-
-	-- Spin N' Fire
+	-- Gunfighter
 	self.values.player.sprint_to_fire_multiplier = { 1.25 }
 	self.definitions.player_sprint_to_fire_multiplier = {
 		name_id = "menu_player_sprint_to_fire_multiplier",
@@ -908,19 +893,34 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.revolvers_reload_primary = { true }
-	self.definitions.player_revolvers_reload_primary = {
-		name_id = "menu_player_revolvers_reload_primary",
+	self.values.weapon.swap_speed_multiplier[1] = 1.25
+	self.skill_descs.dance_instructor.multibasic = "25%"
+	self.skill_descs.dance_instructor.multipro = "25%"
+
+	-- Sidearm Savvy
+	self.values.player.sidearm_move_speed_multiplier = { 1.15 }
+	self.definitions.player_sidearm_move_speed_multiplier = {
+		name_id = "menu_player_sidearm_move_speed_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "revolvers_reload_primary",
+			upgrade = "sidearm_move_speed_multiplier",
 			category = "player",
 		},
 	}
-	self.skill_descs.akimbo.multibasic = "25%"
+	self.values.player.sidearms_reload_primary = { true }
+	self.definitions.player_sidearms_reload_primary = {
+		name_id = "menu_player_sidearms_reload_primary",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "sidearms_reload_primary",
+			category = "player",
+		},
+	}
+	self.skill_descs.akimbo.multibasic = "15%"
 
-	-- Pistol Overdrive
+	-- Trigger Overdrive
 	self.values.pistol.stacked_reload_bonus = {
 		{
 			max_stacks = 6,

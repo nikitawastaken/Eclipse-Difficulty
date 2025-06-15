@@ -347,22 +347,22 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- FUGITIVE --
 
-	-- Gun Drill Savvy
+	-- Equilibrium
 	self.skills.equilibrium[1].upgrades = { "weapon_steelsight_move_speed_penalty_multiplier" }
 	self.skills.equilibrium[2].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
 	self.skills.equilibrium.icon_xy = { 8, 0 }
 
-	-- Slide Action
-	self.skills.dance_instructor[1].upgrades = { "weapon_swap_speed_multiplier" }
-	self.skills.dance_instructor[2].upgrades = { "player_pistols_reload_primary" }
+	-- Gunfighter
+	self.skills.dance_instructor[1].upgrades = { "player_sprint_to_fire_multiplier" }
+	self.skills.dance_instructor[2].upgrades = { "weapon_swap_speed_multiplier" }
 	self.skills.dance_instructor.icon_xy = { 8, 0 }
 
-	-- Spin N' Fire
-	self.skills.akimbo[1].upgrades = { "player_sprint_to_fire_multiplier" }
-	self.skills.akimbo[2].upgrades = { "player_revolvers_reload_primary" }
+	-- Sidearm Savvy
+	self.skills.akimbo[1].upgrades = { "player_sidearm_move_speed_multiplier" }
+	self.skills.akimbo[2].upgrades = { "player_sidearms_reload_primary" }
 	self.skills.akimbo.icon_xy = { 8, 0 }
 
-	-- Pistol Overdrive
+	-- Triggery Overdrive
 	self.skills.gun_fighter[1].upgrades = { "pistol_stacked_reload_bonus" }
 	self.skills.gun_fighter[2].upgrades = { "pistol_stacked_accuracy_bonus_1" }
 	self.skills.gun_fighter.icon_xy = { 8, 0 }

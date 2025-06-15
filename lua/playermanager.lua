@@ -166,15 +166,7 @@ end
 -- sleight of hand check for weapon category
 function PlayerManager:_on_enter_shock_and_awe_event()
 	local equipped_unit = self:get_current_state()._equipped_unit
-	if
-		not (
-			equipped_unit:base():is_category("smg")
-			or equipped_unit:base():is_category("lmg")
-			or equipped_unit:base():is_category("minigun")
-			or equipped_unit:base():is_category("flamethrower")
-			or equipped_unit:base():is_category("bow")
-		)
-	then
+	if not equipped_unit:base():is_category("smg", "lmg", "minigun", "flamethrower", "bow") then
 		return
 	end
 
@@ -265,38 +257,12 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		end
 	end
 
-	-- Pistol kills autoreload primary
-	local pistol_reload_primary = selection_index == 1 and self:has_category_upgrade("player", "pistols_reload_primary")
-	local equipped_unit_is_pistol = equipped_unit:is_category("pistol")
-	pistol_reload_primary = pistol_reload_primary and weapon_id == equipped_weapon_id and equipped_unit_is_pistol
-	if pistol_reload_primary then
-		local kills_to_reload = self:upgrade_value("player", "pistols_reload_primary", 6)
-		local pistol_kills = self:get_property("pistols_reload_primary_kills", 0) + 1
-
-		if kills_to_reload <= pistol_kills then
-			local primary_unit = player_unit:inventory():unit_by_selection(2)
-			local primary_base = alive(primary_unit) and primary_unit:base()
-			local can_reload = primary_base and primary_base.can_reload and primary_base:can_reload()
-
-			if can_reload then
-				primary_base:on_reload()
-				managers.statistics:reloaded()
-				managers.hud:set_ammo_amount(primary_base:selection_index(), primary_base:ammo_info())
-				player_unit:sound():play("pickup_ammo_health_boost")
-			end
-
-			pistol_kills = 0
-		end
-
-		self:set_property("pistols_reload_primary_kills", pistol_kills)
-	end
-
-	-- Last bullet revolver kills autoreload primary
-	local revolver_reload_primary = selection_index == 1 and self:has_category_upgrade("player", "revolvers_reload_primary")
-	local equipped_unit_is_revolver = equipped_unit:is_category("revolver")
+	-- Last bullet sidearm kills autoreload primary
+	local sideram_reload_primary = selection_index == 1 and self:has_category_upgrade("player", "sidearms_reload_primary")
+	local equipped_unit_is_sidearm = equipped_unit:is_category("revolver", "pistol")
 	local is_last_bullet = equipped_unit:get_ammo_remaining_in_clip() == 0
-	revolver_reload_primary = revolver_reload_primary and weapon_id == equipped_weapon_id and equipped_unit_is_revolver and is_last_bullet
-	if revolver_reload_primary then
+	sideram_reload_primary = sideram_reload_primary and weapon_id == equipped_weapon_id and equipped_unit_is_sidearm and is_last_bullet
+	if sideram_reload_primary then
 		local primary_unit = player_unit:inventory():unit_by_selection(2)
 		local primary_base = alive(primary_unit) and primary_unit:base()
 		local can_reload = primary_base and primary_base.can_reload and primary_base:can_reload()
