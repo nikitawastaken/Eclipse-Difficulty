@@ -121,27 +121,7 @@
 			<object 			enabled="false" name="'g_star_lod1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'marshal_gunner_1'" once="true" triggable="true">
-			<set_variables 		has_visor="1" />	
-			
-			<object 			enabled="false" name="'g_body'" />
-			<object 			enabled="false" name="'g_body_lod1'" />
-
-			<object 			enabled="true" name="'g_body_gunner'" />
-			<object 			enabled="true" name="'g_body_gunner_lod1'" />
-
-			<object 			enabled="true" name="'g_gear_gunner_a'" />
-			<object 			enabled="true" name="'g_gear_gunner_a_lod1'" />
-
-			<object 			enabled="true" name="'g_helmet_lod5'" />
-			<object 			enabled="true" name="'g_helmet_lod6'" />
-			<object 			enabled="true" name="'g_helmet_lod7'" />
-			
-			<object 			enabled="true" name="'g_helmet_lod8'" />
-			<object 			enabled="true" name="'g_helmet_lod9'" />
-			
-			<decal_mesh 		enabled="true" name="'dm_visor'"/>
-		</sequence>
+		<sequence editable_state="true" name="'marshal_gunner_1'" once="true" triggable="true"/>
 
 		<sequence editable_state="true" name="'marshal_gunner_merc_1'" once="true" triggable="true">
 			<run_sequence 		name="'marshal_merc'" />
@@ -149,26 +129,7 @@
 			<run_sequence 		name="'marshal_gunner_1'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'marshal_gunner_2'" once="true" triggable="true">
-			<object 			enabled="false" name="'g_body'" />
-			<object 			enabled="false" name="'g_body_lod1'" />
-
-			<object 			enabled="true" name="'g_body_gunner'" />
-			<object 			enabled="true" name="'g_body_gunner_lod1'" />
-
-			<object 			enabled="true" name="'g_gear_gunner_b'" />
-			<object 			enabled="true" name="'g_gear_gunner_b_lod1'" />
-			
-			<object 			enabled="true" name="'g_helmet_lod8'" />
-			<object 			enabled="true" name="'g_helmet_lod9'" />
-
-			<object 			enabled="true" name="'g_helmet_lod10'" />
-			<object 			enabled="true" name="'g_helmet_lod11'" />
-			
-			<decal_mesh 		enabled="true" name="'dm_mandibles'"/>
-			
-			<run_sequence 		name="'head_goggles'"/>
-		</sequence>
+		<sequence editable_state="true" name="'marshal_gunner_2'" once="true" triggable="true"/>
 		
 		<sequence editable_state="true" name="'marshal_gunner_merc_2'" once="true" triggable="true">
 			<run_sequence 		name="'marshal_merc'" />
