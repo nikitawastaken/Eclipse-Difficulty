@@ -445,7 +445,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.7,
 		spawnrate_mul = 1.1,
 		recon_force_mul = 0.5,
-		cs_grenade_chance_times_mul = 1.25, 
+		cs_grenade_chance_times_mul = 1.25,
 		grenade_timeout_mul = {
 			flash_grenade = 0.5,
 			smoke_grenade = 0.75,
