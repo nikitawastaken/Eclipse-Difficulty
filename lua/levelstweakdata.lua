@@ -408,7 +408,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			taser = 1,
 		},
 	}
-	
+
 	self.hvh.group_ai_settings = {
 		assault_force_mul = 0.5,
 		spawnrate_mul = 1.25,
@@ -418,10 +418,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			shield = -2,
 		},
 	}
-	
+
 	self.des.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.des.group_ai_settings.force_tactics = nil
-	
+
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.6,
@@ -455,7 +455,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			medic = 1,
 		},
 	}
-	
+
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
 
 	self.bex.group_ai_settings = {
