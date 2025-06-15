@@ -408,7 +408,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		shield = -1,
 		marksman = -1,
 	}
-				
+
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
 
 	self.bex.group_ai_settings = {
@@ -446,8 +446,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pent.group_ai_settings.recon_force_mul = nil
 	self.pent.group_ai_settings.assault_force_mul = 0.8
 	self.pent.group_ai_settings.spawnrate_mul = 1.15
-	
-	self.trai.group_ai_settings = { 
+
+	self.trai.group_ai_settings = {
 		difficulty_step_time = 10,
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
@@ -455,7 +455,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			tank = 1,
 		},
 	}
-	
+
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 1.4,
@@ -470,7 +470,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = 1,
 		},
 	}
-	
+
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {
