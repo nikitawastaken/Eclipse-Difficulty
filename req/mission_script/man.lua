@@ -192,6 +192,19 @@ return {
 			{ id = 103385, delay = 0 },
 		},
 	},
+	-- fix Taxman's getting into the limo event
+	[101581] = {
+		on_executed = {
+			{ id = 101599, delay = 2.5 },
+			{ id = 101582, delay = 2.5 },
+		},
+	},
+	[101578] = {
+		on_executed = {
+			{ id = 101582, remove = true },
+			{ id = 101599, delay = true },
+		},
+	},
 	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
 	[100756] = {
 		flashlight = true,
