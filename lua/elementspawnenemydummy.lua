@@ -278,6 +278,7 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"] = 4,
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat"] = 1,
 	},
+	--[[
 	-- Marshal Marksman
 	[("units/payday2/characters/ene_sniper_1/ene_sniper_1"):key()] = {
 		["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = 2,
@@ -310,6 +311,7 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = has_marshal_response and 1 or nil,
 		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = has_bellmead_response and 1 or nil,
 	},
+	]]
 }
 
 ElementSpawnEnemyDummy.ponr_unit_replacements = {

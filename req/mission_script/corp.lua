@@ -17,9 +17,8 @@ local disabled = {
 		enabled = false,
 	},
 }
-local bellmead_mercs = { [bellmead_1] = 5, [bellmead_heavy_1] = 1, [bellmead_heavy_2] = 1 }
 local bellmead_merc = {
-	enemy = bellmead_mercs,
+	enemy = bellmead_1,
 }
 local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 2, [elite_ben_bulldozer] = 1, [elite_skull_bulldozer] = 1 }
 local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2, [green_bulldozer] = 1, [black_bulldozer] = 1 }
@@ -41,19 +40,18 @@ local enemy_filter_dozers = {
 }
 local lab_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
+	groups = preferred.no_bulldozers,
 }
 local elevator_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
-	groups = preferred.no_cops_agents,
 }
 local office_window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

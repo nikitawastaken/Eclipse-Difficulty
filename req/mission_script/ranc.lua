@@ -20,13 +20,13 @@ local fence_close_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -34,12 +34,12 @@ return {
 	-- tweak difficulty scaling
 	[100122] = {
 		values = {
-			difficulty = 0.35,
+			difficulty = 0.33,
 		},
 	},
 	[100124] = {
 		values = {
-			difficulty = 0.65,
+			difficulty = 0.66,
 		},
 	},
 	[101582] = {
