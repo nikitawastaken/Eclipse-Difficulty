@@ -53,12 +53,6 @@ return {
 	[101434] = no_spawn_instigator_ids,
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
-	-- Keep some spawns around for the penthouse holdout
-	[100512] = {
-		on_executed = {
-			{ id = 100511, remove = true },
-		},
-	},
 	-- Spawn point delays
 	[101084] = penthouse_spawn,
 	[101085] = penthouse_spawn,

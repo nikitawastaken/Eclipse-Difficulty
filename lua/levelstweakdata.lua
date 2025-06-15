@@ -329,6 +329,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				smoke_grenade = true,
 				flash_grenade = true,
 			},
+			swat_def = {
+				rescue = true,
+			},
+			swat_agg = {
+				rescue = true,
+			},
+			swat_support = {
+				rescue = true,
+			},
+			taser_snk = {
+				rescue = true,
+			},
 			shield_def = {
 				ranged_fire = false,
 			},
@@ -433,6 +445,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.7,
 		spawnrate_mul = 1.1,
 		recon_force_mul = 0.5,
+		cs_grenade_chance_times_mul = 1.25, 
 		grenade_timeout_mul = {
 			flash_grenade = 0.5,
 			smoke_grenade = 0.75,
@@ -478,6 +491,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.pent.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.pent.group_ai_settings.recon_force_mul = nil
+	self.pent.group_ai_settings.special_limit_add = nil
 	self.pent.group_ai_settings.assault_force_mul = 0.8
 	self.pent.group_ai_settings.spawnrate_mul = 1.1
 
