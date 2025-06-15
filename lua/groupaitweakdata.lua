@@ -2399,6 +2399,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = 1,
+				rank = 2,
+				unit = "cloaker",
+				random_tactics = self._random_tactics.cloaker,
+			},
+			{
+				freq = 1,
 				rank = 1,
 				unit = "cloaker",
 				random_tactics = self._random_tactics.cloaker,
@@ -2738,6 +2744,19 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "elite_bulldozer",
 				tactics = self._tactics.shield_support,
+			},
+		},
+	}
+
+
+	self.enemy_spawn_groups.single_spooc = {
+		amount = { 1, 1 },
+		spawn = {
+			{
+				freq = 1,
+				rank = 1,
+				unit = "cloaker",
+				random_tactics = self._random_tactics.cloaker,
 			},
 		},
 	}
