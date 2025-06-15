@@ -16,6 +16,7 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local elite_sniper = scripted_enemy.elite_sniper
+local more_chance_for_the_code = overkill_and_above and 0 or 5
 local disabled = {
 	values = {
 		enabled = false,
@@ -365,6 +366,8 @@ return {
 	[100130] = {
 		on_executed = {
 			{ id = 400005, delay = 20 },
+			{ id = 103765, remove = true },
+			{ id = 103766, remove = true },
 		},
 	},
 	-- get rid off medium spawn
@@ -565,6 +568,8 @@ return {
 	[102010] = {
 		on_executed = {
 			{ id = 101608, remove = true },
+			{ id = 103765, delay = 60, delay_rand = 30 }, -- trigger the c4 breach during hacking objetives rather than in police_called
+			{ id = 103766, delay = 60, delay_rand = 30 },
 		},
 	},
 	[103434] = {
@@ -667,9 +672,9 @@ return {
 			{ id = 102887, delay = 0 },
 		},
 	},
-	-- Code chance increase amount
+	-- tweak code chance increase (no more increases on ovk above like in PDTH)
 	[102887] = {
-		chance = 10,
+		chance = more_chance_for_the_code,
 	},
 	-- Faint duration increase
 	[102860] = {

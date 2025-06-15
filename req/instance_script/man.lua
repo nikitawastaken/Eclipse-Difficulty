@@ -2,6 +2,7 @@ local so_access = Eclipse.access_filter_presets
 local swat_only = so_access.swat
 local patches = {
 	so_access_tweak = table.set(100003, 100013),
+	bain_warning = table.set(100012),
 }
 
 return {
@@ -9,6 +10,9 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.so_access_tweak[element.id] then
 				element.values.SO_access = swat_only -- only let SWATs plant the c4
+			end
+			elseif patches.bain_warning[element.id] then
+				element.values.trigger_times = 1 -- only one warning dialogue for the c4 breach from Bain
 			end
 		end
 	end,
