@@ -107,7 +107,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
-		focus_delay = 0.8,
+		focus_delay = 0.7,
 		melee_dmg = 8 * dmg_mul,
 		melee_speed = 1,
 		melee_retry_delay = { 1, 2 },
@@ -211,7 +211,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.security = based_on(presets.weapon.base, {
 		aim_delay = { 0, 1.25 },
-		focus_delay = 1,
+		focus_delay = 0.8,
 		melee_dmg = 6 * dmg_mul,
 	})
 	accuracy_multiplier(presets.weapon.security, 0.8)
@@ -248,7 +248,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.75 },
-		focus_delay = 0.6,
+		focus_delay = 0.5,
 		melee_dmg = 10 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.fbi_swat, 6 / 5)
@@ -256,7 +256,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.elite_swat = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.5 },
-		focus_delay = 0.4,
+		focus_delay = 0.3,
 		melee_dmg = 12 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.elite_swat, 8 / 5)
