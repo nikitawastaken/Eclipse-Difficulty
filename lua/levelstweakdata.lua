@@ -164,9 +164,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.6,
-		spawnrate_mul = 1.2,
+		spawnrate_mul = 1.15,
 		recon_force_mul = 0.8,
-		min_grenade_timeout_mul = 0.8,
+		grenade_timeout_mul = {
+			flash_grenade = 0.5,
+			smoke_grenade = 0.75,
+		},
 		special_limit_add = {
 			shield = -1,
 			marksman = -2,
@@ -184,7 +187,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		push_delay_mul = 1.25,
 		min_grenade_timeout_mul = 1.35,
 		force_tactics = {
-			hrt = {
+			hrt_snk = {
 				smoke_grenade = true,
 			},
 			swat_init = {
@@ -235,7 +238,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.born.group_ai_settings = {
 		assault_force_mul = 0.8,
-		spawnrate_mul = 1.15,
+		spawnrate_mul = 1.1,
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
 			cs_grenade = 0.5,
@@ -279,7 +282,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 0.8,
-		spawnrate_mul = 1.15,
+		spawnrate_mul = 1.1,
 		reenforce_interval_mul = 1.5,
 		recon_force_mul = 0.8,
 		cs_grenade_chance_times_mul = 0.75,
@@ -295,9 +298,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.flat.group_ai_settings = {
 		assault_force_mul = 0.8,
-		spawnrate_mul = 1.15,
+		spawnrate_mul = 1.1,
 		reenforce_interval_mul = 1.5,
 		force_tactics = {
+			cop_snk = {
+				smoke_grenade = true,
+				flash_grenade = true,
+			},
 			swat_init = {
 				flank = true,
 			},
@@ -311,16 +318,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 0.65,
 		assault_force_mul = 0.5,
 		spawnrate_mul = 1.2,
-		recon_force_mul = 0.75,
 		cs_grenade_chance_times_mul = 0.5,
-		grenade_timeout_mul = {
-			flash_grenade = 0.5,
-		},
+		min_grenade_timeout_mul = 0.5,
 		force_tactics = {
 			cop_snk = {
 				smoke_grenade = true,
+				flash_grenade = true,
 			},
-			hrt = {
+			hrt_snk = {
 				smoke_grenade = true,
 				flash_grenade = true,
 			},
@@ -333,7 +338,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.help.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.help.group_ai_settings.reenforce_interval_mul = nil
 	self.help.group_ai_settings.spawn_kill_cooldown_mul = 1.5
-	self.help.group_ai_settings.min_grenade_timeout_mul = 0.65
 
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 	self.friend.group_ai_settings.reenforce_interval_mul = nil
@@ -342,6 +346,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.moon.group_ai_settings.reenforce_interval_mul = nil
 	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
+	self.moon.group_ai_settings.push_delay_mul = 1.25
 
 	self.run.group_ai_settings = {
 		sustain_duration_mul = 0.75,
@@ -382,19 +387,33 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
 
+	self.wwh.group_ai_settings = {
+		assault_force_mul = 0.7,
+		spawnrate_mul = 1.1,
+		recon_force_mul = 0.5,
+		special_limit_add = {
+			shield = -1,
+			taser = 1,
+		},
+	}
+	
 	self.hvh.group_ai_settings = {
 		assault_force_mul = 0.5,
 		spawnrate_mul = 1.25,
 		recon_force_mul = 0.6,
+		push_delay_mul = 0.75,
 		special_limit_add = {
 			shield = -2,
 		},
 	}
-
+	
+	self.des.group_ai_settings = deep_clone(self.flat.group_ai_settings)
+	self.des.group_ai_settings.force_tactics = nil
+	
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.6,
-		spawnrate_mul = 1.2,
+		spawnrate_mul = 1.15,
 		reenforce_interval_mul = 1.5,
 		special_limit_add = {
 			shield = -1,
@@ -409,6 +428,21 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		marksman = -1,
 	}
 
+	self.vit.group_ai_settings = { -- Greatest heist of all
+		sustain_duration_mul = 1.35,
+		assault_force_mul = 0.7,
+		spawnrate_mul = 1.1,
+		recon_force_mul = 0.5,
+		grenade_timeout_mul = {
+			flash_grenade = 0.5,
+			smoke_grenade = 0.75,
+		},
+		special_limit_add = {
+			tank = 1,
+			medic = 1,
+		},
+	}
+	
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
 
 	self.bex.group_ai_settings = {
@@ -436,7 +470,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chca.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.8,
-		spawnrate_mul = 1.15,
+		spawnrate_mul = 1.1,
 		special_limit_add = {
 			marksman = -1,
 		},
@@ -445,7 +479,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pent.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.pent.group_ai_settings.recon_force_mul = nil
 	self.pent.group_ai_settings.assault_force_mul = 0.8
-	self.pent.group_ai_settings.spawnrate_mul = 1.15
+	self.pent.group_ai_settings.spawnrate_mul = 1.1
 
 	self.trai.group_ai_settings = {
 		difficulty_step_time = 10,
@@ -462,7 +496,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		spawnrate_mul = 0.85,
 		recon_interval_variation_mul = 0.5,
 		grenade_timeout_mul = {
-			smoke_grenade = 0.75,
+			smoke_grenade = 0.5,
 		},
 		special_limit_add = {
 			taser = 1,
