@@ -285,7 +285,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.shield, 4 / 5)
 
 	presets.weapon.fbi_shield = based_on(presets.weapon.shield)
-	
+
 	presets.weapon.elite_shield = based_on(presets.weapon.shield)
 
 	presets.weapon.elite_shield.is_revolver.FALLOFF = {
@@ -304,7 +304,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.sniper = based_on(presets.weapon.swat)
 
 	local cs_sniper_aim_delay_mul = math.sqrt(aim_delay_mul)
-	
+
 	presets.weapon.sniper.is_sniper.aim_delay = {
 		1 * cs_sniper_aim_delay_mul,
 		2 * cs_sniper_aim_delay_mul,
@@ -319,13 +319,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.fbi_sniper = based_on(presets.weapon.sniper)
-	
+
 	presets.weapon.fbi_sniper.is_sniper.aim_delay = {
 		1 * aim_delay_mul,
 		2 * aim_delay_mul,
 	}
 	presets.weapon.fbi_sniper.is_sniper.focus_delay = 0.6 * aim_delay_mul
-	
+
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
