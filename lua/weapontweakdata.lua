@@ -562,6 +562,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.flamethrower then
 				weap_data.stats.suppression = 1
 				weap_data.stats.alert_size = 11
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
 				weap_data.pickup_mul = weap_data.pickup_mul or 0
 				weap_data.no_steelsight = true
 
@@ -2220,17 +2221,23 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m134.no_steelsight = true
 
 	-- Hailstorm
-	self.hailstorm.CLIP_AMMO_MAX = 150
+	self.hailstorm.CLIP_AMMO_MAX = 120
 	self.hailstorm.stats.damage = 75
 	self.hailstorm.stats.spread = 19
-	self.hailstorm.stats.recoil = 14
+	self.hailstorm.stats.recoil = 11
 	self.hailstorm.stats.concealment = 16
 	self.hailstorm.fire_mode_data.fire_rate = 60 / 2000
-	self.hailstorm.fire_mode_data.volley.rays = 12
+	self.hailstorm.fire_mode_data.volley.spread_mul = 1
 	self.hailstorm.fire_mode_data.volley.spread_mul = 1
 	self.hailstorm.fire_mode_data.volley.damage_mul = 0.75
-	self.hailstorm.fire_mode_data.volley.ammo_usage = 75
+	self.hailstorm.fire_mode_data.volley.ammo_usage = 30
 	self.hailstorm.fire_mode_data.volley.can_shoot_through_wall = true
+	self.hailstorm.fire_mode_mul = {
+		volley = {
+			recoil = 2,
+			spread = 6,
+		},
+	}
 	--self.hailstorm.spray = spray_tables.lmg_left
 	--self.hailstorm.recoil_recovery_timer = recovery_tables.mid
 
