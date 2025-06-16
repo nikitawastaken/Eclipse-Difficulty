@@ -691,11 +691,6 @@ function WeaponTweakData:_init_weapons()
 
 				weap_data.kick.crouching = weap_data.kick.standing
 				weap_data.kick.steelsight = weap_data.kick.standing
-
-				if weap_data.kick.auto and weap_data.kick.auto.standing then
-					weap_data.kick.auto.crouching = weap_data.kick.auto.standing
-					weap_data.kick.auto.steelsight = weap_data.kick.auto.standing
-				end
 			end
 
 			local default_burst_cooldown = 0.25
@@ -2224,20 +2219,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hailstorm.CLIP_AMMO_MAX = 120
 	self.hailstorm.stats.damage = 75
 	self.hailstorm.stats.spread = 19
-	self.hailstorm.stats.recoil = 11
+	self.hailstorm.stats.recoil = 10
 	self.hailstorm.stats.concealment = 16
 	self.hailstorm.fire_mode_data.fire_rate = 60 / 2000
-	self.hailstorm.fire_mode_data.volley.spread_mul = 1
-	self.hailstorm.fire_mode_data.volley.spread_mul = 1
-	self.hailstorm.fire_mode_data.volley.damage_mul = 0.75
+	self.hailstorm.fire_mode_data.volley.spread_mul = 4
+	self.hailstorm.fire_mode_data.volley.recoil_mul = 1
+	self.hailstorm.fire_mode_data.volley.damage_mul = 0.65
 	self.hailstorm.fire_mode_data.volley.ammo_usage = 30
 	self.hailstorm.fire_mode_data.volley.can_shoot_through_wall = true
-	self.hailstorm.fire_mode_mul = {
-		volley = {
-			recoil = 2,
-			spread = 6,
-		},
-	}
+	self.hailstorm.kick.volley.standing = { 3.6, 4, -0.3, 0.3 }
 	--self.hailstorm.spray = spray_tables.lmg_left
 	--self.hailstorm.recoil_recovery_timer = recovery_tables.mid
 
