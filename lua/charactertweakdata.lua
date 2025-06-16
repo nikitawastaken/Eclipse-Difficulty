@@ -102,7 +102,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local dmg_mul_tbl = { 0.2, 0.4, 0.6, 0.8, 1, 1, 1, 1 }
 	local dmg_mul = dmg_mul_tbl[diff_i]
 
-	local aim_delay_tbl = { 1.25, 1, 0.875, 0.75, 0.625, 0.5, 0.5, 0.5 }
+	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
 	local aim_delay_mul = aim_delay_tbl[diff_i]
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
