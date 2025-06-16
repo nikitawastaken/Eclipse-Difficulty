@@ -39,7 +39,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				},
 				force_tactics = {},
 				spawn_group_presets = {
-					heavy_reponse = false,
+					heavy_response = false,
 					special_operation = false,
 					small_squads = false,
 					shield_wall = false,
@@ -152,7 +152,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			shield = 1,
 		},
 		spawn_group_presets = {
-			heavy_reponse = true,
+			heavy_response = true,
 			feds = true,
 		},
 	}
@@ -316,7 +316,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			cloaker = 1,
 		},
 		spawn_group_presets = {
-			heavy_reponse = true,
+			heavy_response = true,
 			special_operation = true,
 			feds = true,
 		},
@@ -526,7 +526,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = 1,
 		},
 		spawn_group_presets = {
-			heavy_reponse = true,
+			heavy_response = true,
 			special_operation = true,
 			yeehaw = true,
 		},
