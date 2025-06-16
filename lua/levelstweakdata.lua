@@ -237,7 +237,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		min_grenade_timeout_mul = 0.8,
 		spawn_group_presets = {
 			feds = true,
-		},		
+		},
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
@@ -386,10 +386,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
 	self.moon.group_ai_settings.push_delay_mul = 1.25
 
-
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
-	self.run.group_ai_settings.special_limit_add = { 
-		taser = 1, 
+	self.run.group_ai_settings.special_limit_add = {
+		taser = 1,
 		medic = 1,
 	}
 
@@ -475,9 +474,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 	self.fex.group_ai_settings.reenforce_interval_mul = nil
-	
+
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	
+
 	self.chca.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.8,
@@ -499,7 +498,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			yeehaw = true,
 		},
 	}
-	
+
 	self.trai.group_ai_settings = {
 		difficulty_step_time = 10,
 		sustain_duration_mul = 1.25,

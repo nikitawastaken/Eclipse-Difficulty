@@ -866,9 +866,9 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	end
 
 	local min_grenade_timeout = self:_get_difficulty_dependent_value(tweak_data.group_ai.min_grenade_timeout)
-	
+
 	task_data.use_smoke = false
-	
+
 	-- Minimum grenade cooldown
 	task_data.use_smoke_timer = self._t + min_grenade_timeout
 	-- Individual grenade cooldowns

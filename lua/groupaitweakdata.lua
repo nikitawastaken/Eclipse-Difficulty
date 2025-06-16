@@ -135,10 +135,10 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_groupaitd_init", function(self
 	self.timer_data = {}
 
 	local lvl_tweak = self.tweak_data.levels[level_id]
-	
-	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil	
+
+	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil
 	self._spawn_group_presets = self._mission_settings and self._mission_settings.spawn_group_presets or nil
-	
+
 	if self._spawn_group_presets then
 		for preset, enabled in pairs(self._spawn_group_presets) do
 			if enabled then
@@ -1662,7 +1662,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 	}
 end)
 
-Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)	
+Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
 	self._tactics = {
 		none = {},
 		cop_init = {
@@ -3141,7 +3141,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.spawn_kill_distance_mul ~= 1 then
 		Eclipse:log_console("Spawn kill distance for " .. level_id .. " set to " .. self.spawn_kill_distance)
 	end
-	
+
 	self.spawn_kill_cooldown = self.spawn_kill_cooldown * (level_settings.spawn_kill_cooldown_mul or 1)
 
 	if level_settings.spawn_kill_cooldown_mul ~= 1 then
@@ -3154,7 +3154,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		Eclipse:log_console("Min grenade timeout for " .. level_id .. " set to: ")
 		Utils.PrintTable(self.min_grenade_timeout)
 	end
-				
+
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse", "ponr", "skirmish" }) do
 		local assault_state = self[group_ai_state_name]
 		local level_group_ai_state = (lvl_tweak and lvl_tweak.group_ai_state or "besiege") == group_ai_state_name
