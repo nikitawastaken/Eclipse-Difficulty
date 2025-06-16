@@ -135,7 +135,17 @@ Hooks:PostHook(GroupAITweakData, "init", "eclipse_groupaitd_init", function(self
 	self.timer_data = {}
 
 	local lvl_tweak = self.tweak_data.levels[level_id]
-	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil
+	
+	self._mission_settings = lvl_tweak and lvl_tweak.group_ai_settings or nil	
+	self._spawn_group_presets = self._mission_settings and self._mission_settings.spawn_group_presets or nil
+	
+	if self._spawn_group_presets then
+		for preset, enabled in pairs(self._spawn_group_presets) do
+			if enabled then
+				Eclipse:log_console("Enabled " .. tostring(preset) .. " preset for " .. level_id)
+			end
+		end
+	end
 end)
 
 -- Improve enemy chatter, make proper use of chatter settings like duration and radius
@@ -1652,7 +1662,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 	}
 end)
 
-Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
+Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)	
 	self._tactics = {
 		none = {},
 		cop_init = {
@@ -3126,18 +3136,25 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	self.difficulty_curve_points = level_settings.difficulty_curve_points or self.difficulty_curve_points
 	self.difficulty_step_time = level_settings.difficulty_step_time or self.difficulty_step_time
 
+	self.spawn_kill_distance = self.spawn_kill_distance * (level_settings.spawn_kill_distance_mul or 1)
+
+	if level_settings.spawn_kill_distance_mul ~= 1 then
+		Eclipse:log_console("Spawn kill distance for " .. level_id .. " set to " .. self.spawn_kill_distance)
+	end
+	
 	self.spawn_kill_cooldown = self.spawn_kill_cooldown * (level_settings.spawn_kill_cooldown_mul or 1)
 
 	if level_settings.spawn_kill_cooldown_mul ~= 1 then
 		Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
 	end
 
-	self.min_grenade_timeout = self.min_grenade_timeout * (level_settings.min_grenade_timeout_mul or 1)
+	table_multiplier(self.min_grenade_timeout, level_settings.min_grenade_timeout_mul or 1)
 
 	if level_settings.min_grenade_timeout_mul ~= 1 then
-		Eclipse:log_console("Min grenade timeout for " .. level_id .. " set to " .. self.min_grenade_timeout)
+		Eclipse:log_console("Min grenade timeout for " .. level_id .. " set to: ")
+		Utils.PrintTable(self.min_grenade_timeout)
 	end
-
+				
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse", "ponr", "skirmish" }) do
 		local assault_state = self[group_ai_state_name]
 		local level_group_ai_state = (lvl_tweak and lvl_tweak.group_ai_state or "besiege") == group_ai_state_name
@@ -3373,6 +3390,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.force_pool_balance_mul = { 0.5, 0.75, 1, 1.25 }
 
 	-- Spawnrate
+	self.spawn_kill_distance = 1500
 	self.spawn_kill_cooldown = 10
 
 	self.besiege.assault.spawnrate = {
@@ -3402,27 +3420,25 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	-- GRENADES --
-	self.min_grenade_timeout = 15
-
-	local timeout_mult = diff_lerp(1, 0.6)
+	self.min_grenade_timeout = { 20, 15, 10 }
 
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
 	self.flash_grenade.light_range = (is_eclipse and 0) or 500
 	self.flash_grenade_timeout = {
-		15 * timeout_mult,
-		20 * timeout_mult,
+		15,
+		20,
 	}
 	self.flash_grenade.timer = diff_lerp(2.5, 1.5)
 
 	self.smoke_grenade_timeout = {
-		30 * timeout_mult,
-		40 * timeout_mult,
+		30,
+		40,
 	}
 	self.smoke_grenade_lifetime = diff_lerp(10, 15)
 
 	self.cs_grenade_timeout = {
-		60 * timeout_mult,
-		90 * timeout_mult,
+		60,
+		90,
 	}
 	self.cs_grenade_lifetime = diff_lerp(20, 30)
 	self.cs_grenade_chance_times = { 60, diff_lerp(240, 180) }

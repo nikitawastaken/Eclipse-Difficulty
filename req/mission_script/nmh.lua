@@ -12,7 +12,7 @@ local disabled = {
 }
 local staircase_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local exit_spawn = {

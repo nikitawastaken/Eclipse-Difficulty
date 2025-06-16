@@ -488,6 +488,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 						type = "defend_area",
 						attitude = "engage",
 						pose = "stand",
+						tactic = "door_ambush",
 						door_id = door_id,
 						pos = door_data.center,
 						moving_in = true,
@@ -864,9 +865,12 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 		timeout = tweak_data.group_ai[grenade_type .. "_timeout"] or tweak_data.group_ai.smoke_and_flash_grenade_timeout
 	end
 
+	local min_grenade_timeout = self:_get_difficulty_dependent_value(tweak_data.group_ai.min_grenade_timeout)
+	
 	task_data.use_smoke = false
+	
 	-- Minimum grenade cooldown
-	task_data.use_smoke_timer = self._t + tweak_data.group_ai.min_grenade_timeout
+	task_data.use_smoke_timer = self._t + min_grenade_timeout
 	-- Individual grenade cooldowns
 	task_data[grenade_type .. "_next_t"] = self._t + math.lerp(timeout[1], timeout[2], math.random())
 

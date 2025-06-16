@@ -225,7 +225,7 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 		return
 	end
 
-	local max_dis = 1000
+	local max_dis = tweak_data.spawn_kill_distance or 1500
 	local dis = mvector3.distance(spawn_point:value("position"), e_data.m_pos)
 	if dis > max_dis then
 		return
