@@ -460,20 +460,20 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400079, "smoke_grenade_1", Vector3(-2358, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400080, "smoke_grenade_2", Vector3(-3291, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400081, "smoke_grenade_3", Vector3(-4283, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
-	
+
 	-- Secret Service that tries to defend the CFO
 	-- left spawn
 	Eclipse.mission_elements.gen_dummy(400086, "secret_service_1", Vector3(-596.422, -3435.197, 775.001), Rotation(-90, 0, 0), optsSecret_Service_1),
 	Eclipse.mission_elements.gen_dummy(400087, "secret_service_2", Vector3(-682.057, -3433.874, 775.001), Rotation(-90, 0, 0), optsSecret_Service_2),
 	Eclipse.mission_elements.gen_so(400088, "secret_service_so_1", Vector3(-429, -3406, 775.001), Rotation(15, 0, 0), optsSecret_Service_Defend),
 	Eclipse.mission_elements.gen_so(400089, "secret_service_so_2", Vector3(-498.168, -3425.772, 775.001), Rotation(-15, 0, 0), optsSecret_Service_Defend),
-	
+
 	-- middle spawn
 	Eclipse.mission_elements.gen_dummy(400090, "secret_service_3", Vector3(-5191, -1548, 375), Rotation(180, 0, 0), optsSecret_Service_3),
 	Eclipse.mission_elements.gen_dummy(400091, "secret_service_4", Vector3(-5191, -1622, 375), Rotation(180, 0, 0), optsSecret_Service_4),
 	Eclipse.mission_elements.gen_so(400092, "secret_service_so_3", Vector3(-5192.193, -2000.666, 375), Rotation(-103, 0, 0), optsSecret_Service_Defend),
 	Eclipse.mission_elements.gen_so(400093, "secret_service_so_4", Vector3(-5190.011, -2071.920, 375), Rotation(-83, 0, 0), optsSecret_Service_Defend),
-	
+
 	-- right spawn
 	Eclipse.mission_elements.gen_dummy(400094, "secret_service_5", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_5),
 	Eclipse.mission_elements.gen_dummy(400095, "secret_service_6", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_6),
