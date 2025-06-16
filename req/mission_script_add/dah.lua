@@ -7,6 +7,7 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
+local secret_service = scripted_enemy.secret_service_1
 local swat_rifle = scripted_enemy.swat_1
 local swat_sg = scripted_enemy.swat_2
 local swat_smg = scripted_enemy.swat_1
@@ -189,6 +190,62 @@ local optsSWAT_Ambush = {
 	participate_to_group_ai = true,
 	enabled = true,
 }
+local optsSecret_Service_1 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 400088, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_2 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 400089, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_3 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 400092, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_4 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 400093, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_5 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 400098, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_6 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 400099, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_7 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 410000, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_8 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 410001, delay = 0 },
+	},
+	enabled = true,
+}
 local optsDefend_and_Sniper_SO = {
 	SO_access = tostring(128 + 512 + 2048 + 8192),
 	scan = true,
@@ -213,6 +270,15 @@ local optsCloaker_SO = {
 	scan = true,
 	interval = 2,
 	so_action = "AI_hunt",
+}
+local optsSecret_Service_Defend = {
+	SO_access = "8",
+	scan = true,
+	needs_pos_rsrv = true,
+	align_position = true,
+	align_rotation = true,
+	so_action = "AI_sniper",
+	path_haste = "walk",
 }
 local optsrespawn_taser_1 = {
 	on_executed = {
@@ -370,12 +436,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400063, "taser_elevator_2", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsTaser),
 
 	--Respawns
-	Eclipse.mission_elements.gen_dummytrigger(400064, "respawn_taser_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_taser_1),
-	Eclipse.mission_elements.gen_dummytrigger(400065, "respawn_taser_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_taser_2),
-	Eclipse.mission_elements.gen_dummytrigger(400082, "respawn_shield_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_shield_1),
-	Eclipse.mission_elements.gen_dummytrigger(400083, "respawn_shield_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_shield_2),
-	Eclipse.mission_elements.gen_dummytrigger(400084, "respawn_shield_3", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_shield_3),
-	Eclipse.mission_elements.gen_dummytrigger(400085, "respawn_shield_4", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_shield_4),
+	Eclipse.mission_elements.gen_dummytrigger(400064, "respawn_taser_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_taser_1),
+	Eclipse.mission_elements.gen_dummytrigger(400065, "respawn_taser_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_taser_2),
+	Eclipse.mission_elements.gen_dummytrigger(400082, "respawn_shield_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_shield_1),
+	Eclipse.mission_elements.gen_dummytrigger(400083, "respawn_shield_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_shield_2),
+	Eclipse.mission_elements.gen_dummytrigger(400084, "respawn_shield_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_shield_3),
+	Eclipse.mission_elements.gen_dummytrigger(400085, "respawn_shield_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_shield_4),
 
 	--Helipad blockade
 	Eclipse.mission_elements.gen_dummy(400066, "dozer_helipad_1", Vector3(-6327, -1493, 1175), Rotation(0, 0, -0), optsBulldozer_helipad),
@@ -394,6 +460,29 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400079, "smoke_grenade_1", Vector3(-2358, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400080, "smoke_grenade_2", Vector3(-3291, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400081, "smoke_grenade_3", Vector3(-4283, -4657, 21.226), Rotation(0, 0, -0), Smoke_bomb),
+	
+	-- Secret Service that tries to defend the CFO
+	-- left spawn
+	Eclipse.mission_elements.gen_dummy(400086, "secret_service_1", Vector3(-596.422, -3435.197, 775.001), Rotation(-90, 0, 0), optsSecret_Service_1),
+	Eclipse.mission_elements.gen_dummy(400087, "secret_service_2", Vector3(-682.057, -3433.874, 775.001), Rotation(-90, 0, 0), optsSecret_Service_2),
+	Eclipse.mission_elements.gen_so(400088, "secret_service_so_1", Vector3(-429, -3406, 775.001), Rotation(15, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(400089, "secret_service_so_2", Vector3(-498.168, -3425.772, 775.001), Rotation(-15, 0, 0), optsSecret_Service_Defend),
+	
+	-- middle spawn
+	Eclipse.mission_elements.gen_dummy(400090, "secret_service_3", Vector3(-5191, -1548, 375), Rotation(180, 0, 0), optsSecret_Service_3),
+	Eclipse.mission_elements.gen_dummy(400091, "secret_service_4", Vector3(-5191, -1622, 375), Rotation(180, 0, 0), optsSecret_Service_4),
+	Eclipse.mission_elements.gen_so(400092, "secret_service_so_3", Vector3(-5192.193, -2000.666, 375), Rotation(-103, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(400093, "secret_service_so_4", Vector3(-5190.011, -2071.920, 375), Rotation(-83, 0, 0), optsSecret_Service_Defend),
+	
+	-- right spawn
+	Eclipse.mission_elements.gen_dummy(400094, "secret_service_5", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_5),
+	Eclipse.mission_elements.gen_dummy(400095, "secret_service_6", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_6),
+	Eclipse.mission_elements.gen_dummy(400096, "secret_service_7", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_7),
+	Eclipse.mission_elements.gen_dummy(400097, "secret_service_8", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_8),
+	Eclipse.mission_elements.gen_so(400098, "secret_service_so_5", Vector3(-5264, 1152, 375), Rotation(82, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(400099, "secret_service_so_6", Vector3(-5254.397, 1220.328, 375), Rotation(82, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(410000, "secret_service_so_7", Vector3(-4891.752, 1152.085, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(410001, "secret_service_so_8", Vector3(-4885.969, 1261.932, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
 }
 
 return M

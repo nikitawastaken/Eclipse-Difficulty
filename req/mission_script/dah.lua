@@ -310,6 +310,27 @@ return {
 			{ id = 400021, delay = 38 },
 		},
 	},
+	-- add Secret Service that tries to protect the CFO
+	[103308] = {
+		on_executed = {
+			{ id = 400086, delay = 0 },
+			{ id = 400087, delay = 0 },
+		},
+	},
+	[103306] = {
+		on_executed = {
+			{ id = 400090, delay = 0 },
+			{ id = 400091, delay = 0 },
+		},
+	},
+	[103305] = {
+		on_executed = {
+			{ id = 400094, delay = 0 },
+			{ id = 400095, delay = 0 },
+			{ id = 400096, delay = 0 },
+			{ id = 400097, delay = 0 },
+		},
+	},
 	-- Spawn Group delays
 	[102737] = office_spawn,
 	[104469] = office_spawn,

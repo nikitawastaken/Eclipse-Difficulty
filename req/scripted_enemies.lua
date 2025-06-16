@@ -3,6 +3,9 @@ local M = {
 	security_1 = "units/payday2/characters/ene_security_1/ene_security_1",
 	security_2 = "units/payday2/characters/ene_security_2/ene_security_2",
 	security_3 = "units/payday2/characters/ene_security_3/ene_security_3",
+	
+	secret_service_1 = "units/payday2/characters/ene_secret_service_1/ene_secret_service_1",
+	secret_service_2 = "units/payday2/characters/ene_secret_service_2/ene_secret_service_2",
 
 	gensec_1 = "units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1",
 	gensec_2 = "units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2",
