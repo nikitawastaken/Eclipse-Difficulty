@@ -124,7 +124,7 @@ function WeaponTweakData:_init_weapons()
 						moving = {
 							hipfire = 2,
 							crouching = 1,
-							steelsight = 1.8,
+							steelsight = 1.6,
 						}
 					}
 					weap_data.recoil_multiplier = {
@@ -350,12 +350,12 @@ function WeaponTweakData:_init_weapons()
 				if weap_data.no_steelsight then
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1.3,
+							hipfire = 1.2,
 							crouching = 0.7,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.6,
+							hipfire = 1.5,
 							crouching = 1,
 							steelsight = 1,
 						},
@@ -363,12 +363,12 @@ function WeaponTweakData:_init_weapons()
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.2,
+							hipfire = 1,
 							crouching = 0.7,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.4,
 							crouching = 1,
 							steelsight = 1,
 						}
@@ -389,12 +389,12 @@ function WeaponTweakData:_init_weapons()
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.3,
+							hipfire = 1.4,
 							crouching = 0.8,
-							steelsight = 1,
+							steelsight = 0.8,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.6,
 							crouching = 1,
 							steelsight = 1.2,
 						}
@@ -411,24 +411,24 @@ function WeaponTweakData:_init_weapons()
 				if weap_data.no_steelsight then
 					weap_data.spread_multiplier = {
 						standing = {
-							hipfire = 1.3,
-							crouching = 0.7,
+							hipfire = 1.2,
+							crouching = 1,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.6,
+							hipfire = 1.5,
 							crouching = 1,
 							steelsight = 1,
 						},
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.2,
-							crouching = 0.7,
+							hipfire = 1,
+							crouching = 1,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.4,
 							crouching = 1,
 							steelsight = 1,
 						}
@@ -437,8 +437,8 @@ function WeaponTweakData:_init_weapons()
 					weap_data.spread_multiplier = {
 						standing = {
 							hipfire = 1.4,
-							crouching = 0.8,
-							steelsight = 0.7,
+							crouching = 1,
+							steelsight = 0.8,
 						},
 						moving = {
 							hipfire = 1.6,
@@ -448,12 +448,12 @@ function WeaponTweakData:_init_weapons()
 					}
 					weap_data.recoil_multiplier = {
 						standing = {
-							hipfire = 1.3,
-							crouching = 0.8,
+							hipfire = 1.4,
+							crouching = 1,
 							steelsight = 1,
 						},
 						moving = {
-							hipfire = 1.5,
+							hipfire = 1.6,
 							crouching = 1,
 							steelsight = 1.2,
 						}
@@ -501,9 +501,9 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1,
 					},
 					moving = {
-						hipfire = 2,
+						hipfire = 1.6,
 						crouching = 1,
-						steelsight = 1.6,
+						steelsight = 1.5,
 					}
 				}
 			elseif cat_map.bow then
@@ -665,7 +665,7 @@ function WeaponTweakData:_init_weapons()
 					weap_data.kick.standing = { 0.8, 1, -1, 1 }
 
 				elseif cat_map.smg then
-					weap_data.kick.standing = { 0.4, 0.8, -1.2, 1.2 }
+					weap_data.kick.standing = { 0.3, 0.8, -1.2, 1.2 }
 
 				elseif cat_map.lmg then
 					weap_data.kick.standing = { -0.2, 0.8, -0.8, 1 }
@@ -2095,7 +2095,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.tecci.stats.recoil = 14
 	self.tecci.stats.concealment = 18
 	self.tecci.fire_mode_data.fire_rate = 60 / 800
-	self.tecci.swap_speed_multiplier = 0.8
+	self.tecci.swap_speed_multiplier = 0.75
 	--self.tecci.spray = spray_tables.lmg_right
 	--self.tecci.recoil_recovery_timer = recovery_tables.mid
 
@@ -2124,7 +2124,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpk.CLIP_AMMO_MAX = 75
 	self.rpk.stats.damage = 60
 	self.rpk.stats.spread = 15
-	self.rpk.stats.recoil = 3
+	self.rpk.stats.recoil = 6
 	self.rpk.stats.concealment = 10
 	self.rpk.fire_mode_data.fire_rate = 60 / 650
 	--self.rpk.spray = spray_tables.lmg_right
@@ -2147,8 +2147,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hk51b.stats.recoil = 2
 	self.hk51b.stats.concealment = 20
 	self.hk51b.fire_mode_data.fire_rate = 60 / 750
-	self.hk51b.reload_speed_multiplier = 0.8
-	self.hk51b.swap_speed_multiplier = 0.8
+	self.hk51b.reload_speed_multiplier = 0.75
+	self.hk51b.swap_speed_multiplier = 0.75
 	--self.hk51b.spray = spray_tables.lmg_left
 	--self.hk51b.recoil_recovery_timer = recovery_tables.high
 
