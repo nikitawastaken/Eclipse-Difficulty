@@ -13,5 +13,3 @@ return {
 		end
 	end,
 }
-
-return M
