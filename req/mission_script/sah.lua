@@ -48,7 +48,7 @@ local storage_window_spawn = {
 return {
 	-- PONR state
 	[101175] = disabled,
-	[101177] = {
+	[101006] = {
 		set_ponr_state = true,
 	},
 	-- Disable instant difficulty increase
@@ -56,32 +56,7 @@ return {
 	-- Loud, slightly delay police response
 	[100109] = {
 		values = {
-			base_delay = 40,
-		},
-	},
-	-- Combine some navigation areas
-	[100017] = {
-		ai_area = {
-			{ 7, 8, 9 },
-			{ 34, 35 },
-		},
-	},
-	[100814] = {
-		ai_area = {
-			{ 33, 51 },
-			{ 38, 40 },
-		},
-	},
-	[100817] = {
-		ai_area = {
-			{ 38, 40 },
-			{ 42, 73 },
-		},
-	},
-	[100819] = {
-		ai_area = {
-			{ 33, 51 },
-			{ 42, 73 },
+			base_delay = 30,
 		},
 	},
 	[100129] = {
@@ -110,12 +85,12 @@ return {
 	[100124] = {
 		reinforce = {
 			{
-				name = "upper1",
+				name = "upper_right",
 				force = 2,
 				position = Vector3(800, 2000, 500),
 			},
 			{
-				name = "upper2",
+				name = "upper_left",
 				force = 2,
 				position = Vector3(-800, 2000, 500),
 			},
@@ -126,7 +101,7 @@ return {
 	[106783] = disabled,
 	[103926] = disabled,
 	[106784] = disabled,
-	-- Remove some sketchy hackbox preferreds
+	--[[ Remove some sketchy hackbox preferreds (DISABLED FOR NOW)
 	[106852] = { -- Hackbox 1
 		on_executed = {
 			{ id = 103906, remove = true },
@@ -142,6 +117,7 @@ return {
 			{ id = 103911, remove = true },
 		},
 	},
+	]]
 	-- Spawn point delays
 	[100128] = flank_spawn,
 	[100130] = flank_spawn,
@@ -158,4 +134,29 @@ return {
 	[102303] = storage_door_spawn,
 	[104089] = storage_door_spawn,
 	[103522] = storage_window_spawn,
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 7, 8, 9 },
+			{ 34, 35 },
+		},
+	},
+	[100814] = {
+		ai_area = {
+			{ 33, 51 },
+			{ 38, 40 },
+		},
+	},
+	[100817] = {
+		ai_area = {
+			{ 38, 40 },
+			{ 42, 73 },
+		},
+	},
+	[100819] = {
+		ai_area = {
+			{ 33, 51 },
+			{ 42, 73 },
+		},
+	},
 }

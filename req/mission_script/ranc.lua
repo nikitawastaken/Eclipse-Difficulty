@@ -49,7 +49,7 @@ return {
 	},
 	[100022] = { -- alarm
 		on_executed = { -- delay the initial assault (you are in the middle of nowhere)
-			{ id = 100109, delay = 40 },
+			{ id = 100109, delay = 45 },
 		},
 		reinforce = { -- add all at once so they get populated quickly
 			{

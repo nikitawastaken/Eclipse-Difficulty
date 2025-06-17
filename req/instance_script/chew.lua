@@ -1,3 +1,5 @@
+---@module Interception
+local M = {}
 local patches = {
 	train_car_tanker = table.set(100598),
 	train_car_boxcar = table.set(100599),
@@ -28,3 +30,5 @@ return {
 		end
 	end,
 }
+
+return M

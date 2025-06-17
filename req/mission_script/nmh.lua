@@ -52,7 +52,7 @@ return {
 	--delay SWAT response
 	[102675] = {
 		on_executed = {
-			{ id = 103225, delay = 25 },
+			{ id = 103225, delay = 30 },
 		},
 	},
 	-- trigger dozers event

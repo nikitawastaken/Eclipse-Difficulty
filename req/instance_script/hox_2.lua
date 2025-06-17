@@ -1,3 +1,5 @@
+---@module The Search
+local M = {}
 local patches = {
 	breach_group = table.set(100012),
 }
@@ -11,3 +13,5 @@ return {
 		end
 	end,
 }
+
+return M
