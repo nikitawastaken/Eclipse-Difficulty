@@ -183,7 +183,7 @@ local M = {
 	["units/payday2/characters/ene_secret_service_1/ene_secret_service_1"] = { name = "secret_service_1", head = head_sequences.security },
 	["units/payday2/characters/ene_secret_service_2/ene_secret_service_2"] = { name = "secret_service_1", head = head_sequences.security },
 	["units/pd2_dlc_short/characters/ene_secret_service_1_undominatable/ene_secret_service_1_undominatable"] = { name = "secret_service_1", head = head_sequences.security },
-	["units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"] = { name = "secret_service_casino", head = head_sequences.security },
+	["units/pd2_dlc_casino/characters/ene_secret_service_1_casino/ene_secret_service_1_casino"] = { name = "secret_service_1_casino", head = head_sequences.security },
 	["units/payday2/characters/ene_murkywater_1/ene_murkywater_1"] = { name = "murkywater_1", head = head_sequences.swat_b },
 	["units/payday2/characters/ene_murkywater_2/ene_murkywater_2"] = { name = "murkywater_1", head = head_sequences.swat_b },
 	["units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light"] = { name = "murkywater_1", head = head_sequences.swat_b },
