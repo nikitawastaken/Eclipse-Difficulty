@@ -180,7 +180,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_smg.autofire_rounds = { 3, 8 }
 	presets.weapon.base.is_smg.FALLOFF = {
 		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_lmg = deep_clone(presets.weapon.base.is_smg)
@@ -290,12 +290,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.elite_shield.is_revolver.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.4 }, recoil = { 0.9, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_shield.is_shotgun_mag.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 0.9 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 0.5 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
