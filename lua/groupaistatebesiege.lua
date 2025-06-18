@@ -486,7 +486,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					door_data.assigned_group_id = group.id
 					self:_set_objective_to_enemy_group(group, {
 						type = "defend_area",
-						attitude = "engage",
+						attitude = "avoid",
 						pose = "stand",
 						tactic = "door_ambush",
 						door_id = door_id,
