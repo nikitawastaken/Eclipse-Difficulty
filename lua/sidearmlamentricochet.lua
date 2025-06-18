@@ -13,9 +13,9 @@ function SidearmLamentRicochet:on_weapon_fired(weapon_unit, result)
 		return
 	end
 
-    if not managers.player:is_lament_ricochet_allowed() then
-        return
-    end
+	if not managers.player:is_lament_ricochet_allowed() then
+		return
+	end
 
 	local player_unit = managers.player:player_unit()
 	if not player_unit then

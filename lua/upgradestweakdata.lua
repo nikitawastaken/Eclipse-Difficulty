@@ -1040,7 +1040,7 @@ function UpgradesTweakData:init(tweak_data)
 			radius = 500,
 			times = 1,
 			damage_factor = 1,
-		}
+		},
 	}
 	self.definitions.player_sidearm_ricochet_damage = {
 		name_id = "menu_player_sidearm_ricochet_damage",

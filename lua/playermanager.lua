@@ -28,7 +28,9 @@ function PlayerManager:is_charged_shot_allowed()
 end
 
 function PlayerManager:is_lament_ricochet_allowed()
-    return self:has_category_upgrade("player", "sidearm_ricochet_damage") and self:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") and self:equipped_weapon_unit():base():is_category("revoler", "pistol")
+	return self:has_category_upgrade("player", "sidearm_ricochet_damage")
+		and self:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
+		and self:equipped_weapon_unit():base():is_category("revoler", "pistol")
 end
 -- end
 
