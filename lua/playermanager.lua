@@ -1343,7 +1343,7 @@ PlayerAction.ExpertHandling = {
 -- Deadeye instant reload event
 PlayerAction.DeadeyeReload = {
 	Priority = 1,
-	Function = function (player_manager, target_headshots)
+	Function = function(player_manager, target_headshots)
 		local co = coroutine.running()
 		local running = true
 		local headshots = 1
@@ -1387,7 +1387,7 @@ PlayerAction.DeadeyeReload = {
 		end
 
 		player_manager:unregister_message(Message.OnWeaponFired, co)
-	end
+	end,
 }
 
 function PlayerManager:_on_enter_deadeye_reload_event()
@@ -1403,7 +1403,7 @@ end
 -- Deadeye slowmo event
 PlayerAction.DeadeyeSlowmo = {
 	Priority = 1,
-	Function = function (player_manager, target_headshots, target_time, slowmo_world, slowmo_player)
+	Function = function(player_manager, target_headshots, target_time, slowmo_world, slowmo_player)
 		local co = coroutine.running()
 		local time = Application:time()
 		local headshots = 1
@@ -1438,7 +1438,7 @@ PlayerAction.DeadeyeSlowmo = {
 		end
 
 		player_manager:unregister_message(Message.OnLethalHeadShot, co)
-	end
+	end,
 }
 
 function PlayerManager:_on_enter_deadeye_slowmo_event()
@@ -1447,7 +1447,15 @@ function PlayerManager:_on_enter_deadeye_slowmo_event()
 		local has_deadeye_slowmo = self:has_enabled_cooldown_upgrade("cooldown", "revolver_slowmo_chain")
 
 		if weapon_unit and weapon_unit:base():is_category("revolver") and has_deadeye_slowmo then
-			self._coroutine_mgr:add_coroutine("deadeye_slowmo", PlayerAction.DeadeyeSlowmo, self, self._deadeye_slowmo.headshots, Application:time() + self._deadeye_slowmo.max_time, self._deadeye_slowmo.slowmo_world, self._deadeye_slowmo.slowmo_player)
+			self._coroutine_mgr:add_coroutine(
+				"deadeye_slowmo",
+				PlayerAction.DeadeyeSlowmo,
+				self,
+				self._deadeye_slowmo.headshots,
+				Application:time() + self._deadeye_slowmo.max_time,
+				self._deadeye_slowmo.slowmo_world,
+				self._deadeye_slowmo.slowmo_player
+			)
 		end
 	end
 end

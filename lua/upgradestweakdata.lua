@@ -986,7 +986,7 @@ function UpgradesTweakData:init(tweak_data)
 				fade_out = 1,
 				fade_in = 1,
 				affect_timer = "player",
-			}
+			},
 		},
 	}
 	self.definitions.revolver_headshot_chain_slowmo = {
@@ -1013,7 +1013,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.expert_handling.multipro2 = "3"
 	self.skill_descs.expert_handling.multipro3 = "5"
 	self.skill_descs.expert_handling.multipro4 = "20"
-
 
 	-- Peacemaker's Lament
 
