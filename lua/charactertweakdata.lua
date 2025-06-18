@@ -1028,7 +1028,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cobra.speech_prefix_p1 = is_undercover and self._unit_prefixes.cop or "ict"
 	self.cobra.speech_prefix_p2 = is_undercover and "n" or nil
 	self.cobra.speech_prefix_count = is_undercover and 4 or 2
-	self.cobra.chatter = is_undercover and self.presets.enemy_chatter.cop or self.presets.enemy_chatter.gangster
 	table.insert(self._enemy_list, "cobra")
 
 	self.biker.melee_weapon = "knife_1"
