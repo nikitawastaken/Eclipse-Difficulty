@@ -1015,6 +1015,47 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.expert_handling.multipro4 = "20"
 
 	-- Peacemaker's Lament
+	self.values.temporary.sidearm_pullout_damage_multiplier = { { 2, 1 } }
+	self.definitions.temporary_sidearm_pullout_damage_multiplier = {
+		name_id = "menu_temporary_sidearm_pullout_damage_multiplier",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "sidearm_pullout_damage_multiplier",
+			category = "temporary",
+		},
+	}
+	self.values.temporary.sidearm_reload_damage_multiplier = { { 2, 2 } }
+	self.definitions.temporary_sidearm_reload_damage_multiplier = {
+		name_id = "menu_temporary_sidearm_reload_damage_multiplier",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "sidearm_reload_damage_multiplier",
+			category = "temporary",
+		},
+	}
+	self.values.player.sidearm_ricochet_damage = {
+		{
+			radius = 500,
+			times = 1,
+			damage_factor = 1,
+		}
+	}
+	self.definitions.player_sidearm_ricochet_damage = {
+		name_id = "menu_player_sidearm_ricochet_damage",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "sidearm_ricochet_damage",
+			category = "player",
+		},
+	}
+	self.skill_descs.trigger_happy.multibasic = "1"
+	self.skill_descs.trigger_happy.multibasic2 = "100%"
+	self.skill_descs.trigger_happy.multipro = "2"
+	self.skill_descs.trigger_happy.multipro2 = "100%"
+	self.skill_descs.trigger_happy.multipro3 = "5"
 
 	-- Tough Guy
 	self.definitions.player_swap_weapon_when_downed = {

@@ -373,9 +373,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.expert_handling.icon_xy = { 8, 0 }
 
 	-- Peacemaker's Lament
-	self.skills.trigger_happy[1].upgrades = { "" }
-	self.skills.trigger_happy[2].upgrades = { "" }
-	self.skills.trigger_happy.icon_xy = { 0, 0 }
+	self.skills.trigger_happy[1].upgrades = { "temporary_sidearm_pullout_damage_multiplier" }
+	self.skills.trigger_happy[2].upgrades = { "temporary_sidearm_reload_damage_multiplier", "player_sidearm_ricochet_damage" }
+	self.skills.trigger_happy.icon_xy = { 8, 0 }
 
 	-- Tough Guy
 	self.skills.nine_lives[1].upgrades = { "player_steelsight_when_downed" }

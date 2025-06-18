@@ -1,10 +1,12 @@
+Eclipse:require_lua("sidearmlamentricochet")
+
 Hooks:PostHook(PlayerManager, "init", "eclipse_init", function(self)
 	self._consecutive_headshots = 0
 	self._charged_shot_allowed = false
 	self._eclipse_bags_carried = 0
 end)
 
--- Carry stacker helper functions
+-- Helper fuctions
 function PlayerManager:get_bags_carried()
 	return self._eclipse_bags_carried
 end
@@ -16,7 +18,88 @@ end
 function PlayerManager:add_bags_carried()
 	self._eclipse_bags_carried = self._eclipse_bags_carried + 1
 end
+
+function PlayerManager:charged_shot_allowed(is_allowed)
+	self._charged_shot_allowed = is_allowed
+end
+
+function PlayerManager:is_charged_shot_allowed()
+	return self._charged_shot_allowed
+end
+
+function PlayerManager:is_lament_ricochet_allowed()
+    return self:has_category_upgrade("player", "sidearm_ricochet_damage") and self:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") and self:equipped_weapon_unit():base():is_category("revoler", "pistol")
+end
 -- end
+
+-- Additional skills
+Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
+	-- Shotgun Rampage BASIC
+	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
+		self._message_system:register(Message.OnEnemyKilled, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
+	else
+		self._message_system:unregister(Message.OnEnemyKilled, "shotguncqb")
+	end
+
+	-- Headshot Fury BASIC
+	if self:has_category_upgrade("snp", "consecutive_headshots") then
+		self:register_message(Message.OnWeaponFired, "consecutive_headshots", callback(self, self, "_on_enter_consecutive_headshots_event"))
+	else
+		self:unregister_message(Message.OnWeaponFired, "consecutive_headshots")
+	end
+
+	-- Hitman headshot killchain
+	if self:has_category_upgrade("player", "chain_headshot_kills") then
+		self:register_message(Message.OnLethalHeadShot, "chain_headshot_kills", callback(self, self, "_on_enter_chain_headshot_kills_event"))
+	else
+		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
+	end
+
+	-- Second Wind ACED
+	if self:has_category_upgrade("cooldown", "dodge_replenish_armor") then
+		self:register_message(Message.OnPlayerDodge, "dodge_replenish_armor", callback(self, self, "_dodge_replenish_armor"))
+	else
+		self:unregister_message(Message.OnPlayerDodge, "dodge_replenish_armor")
+	end
+
+	-- Trigger Overdrive BASIC
+	if self:has_category_upgrade("pistol", "stacked_reload_bonus") then
+		self:register_message(Message.OnEnemyShot, "stacked_reload_bonus", callback(self, self, "_on_expert_handling_reload_event"))
+	else
+		self:unregister_message(Message.OnEnemyShot, "stacked_reload_bonus")
+	end
+
+	-- Deadeye BASIC
+	if self:has_category_upgrade("revolver", "headshot_chain_instant_reload") then
+		self._deadeye_reload = self:upgrade_value("revolver", "headshot_chain_instant_reload", nil)
+
+		self._message_system:register(Message.OnHeadShot, "deadeye_reload", callback(self, self, "_on_enter_deadeye_reload_event"))
+	else
+		self._deadeye_reload = nil
+
+		self._message_system:unregister(Message.OnHeadShot, "deadeye_reload")
+	end
+
+	-- Deadeye ACED
+	if self:has_category_upgrade("revolver", "headshot_chain_slowmo") then
+		self._deadeye_slowmo = self:upgrade_value("revolver", "headshot_chain_slowmo", nil)
+
+		self._message_system:register(Message.OnLethalHeadShot, "deadeye_slowmo", callback(self, self, "_on_enter_deadeye_slowmo_event"))
+	else
+		self._deadeye_slowmo = nil
+
+		self._message_system:unregister(Message.OnLethalHeadShot, "deadeye_slowmo")
+	end
+
+	-- Peacemaker's Lament ACED
+	if self:has_category_upgrade("player", "sidearm_ricochet_damage") then
+		self:register_message(Message.OnWeaponFired, "sidearmlamentricochet", callback(SidearmLamentRicochet, SidearmLamentRicochet, "on_weapon_fired"))
+	else
+		self:unregister_message(Message.OnWeaponFired, "sidearmlamentricochet")
+	end
+
+	self:set_property("pistols_reload_primary_kills", 0)
+end)
 
 -- Hostage Taker rework
 function PlayerManager:get_hostage_bonus_addend(category)
@@ -88,14 +171,6 @@ function PlayerManager:health_regen()
 	health_regen = health_regen + self:temporary_upgrade_value("temporary", "first_aid_health_regen", 0)
 
 	return health_regen
-end
-
-function PlayerManager:charged_shot_allowed(is_allowed)
-	self._charged_shot_allowed = is_allowed
-end
-
-function PlayerManager:is_charged_shot_allowed()
-	return self._charged_shot_allowed
 end
 
 function PlayerManager:on_headshot_dealt()
@@ -189,60 +264,6 @@ function PlayerManager:_on_enter_shock_and_awe_event()
 		end
 	end
 end
-
-Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
-	if self:has_category_upgrade("shotgun", "speed_stack_on_kill") then
-		self._message_system:register(Message.OnEnemyKilled, "shotguncqb", callback(self, self, "_on_enter_shotguncqb_event"))
-	else
-		self._message_system:unregister(Message.OnEnemyKilled, "shotguncqb")
-	end
-
-	if self:has_category_upgrade("snp", "consecutive_headshots") then
-		self:register_message(Message.OnWeaponFired, "consecutive_headshots", callback(self, self, "_on_enter_consecutive_headshots_event"))
-	else
-		self:unregister_message(Message.OnWeaponFired, "consecutive_headshots")
-	end
-
-	if self:has_category_upgrade("player", "chain_headshot_kills") then
-		self:register_message(Message.OnLethalHeadShot, "chain_headshot_kills", callback(self, self, "_on_enter_chain_headshot_kills_event"))
-	else
-		self:unregister_message(Message.OnLethalHeadShot, "chain_headshot_kills")
-	end
-
-	if self:has_category_upgrade("cooldown", "dodge_replenish_armor") then
-		self:register_message(Message.OnPlayerDodge, "dodge_replenish_armor", callback(self, self, "_dodge_replenish_armor"))
-	else
-		self:unregister_message(Message.OnPlayerDodge, "dodge_replenish_armor")
-	end
-
-	if self:has_category_upgrade("pistol", "stacked_reload_bonus") then
-		self:register_message(Message.OnEnemyShot, "stacked_reload_bonus", callback(self, self, "_on_expert_handling_reload_event"))
-	else
-		self:unregister_message(Message.OnEnemyShot, "stacked_reload_bonus")
-	end
-
-	if self:has_category_upgrade("revolver", "headshot_chain_instant_reload") then
-		self._deadeye_reload = self:upgrade_value("revolver", "headshot_chain_instant_reload", nil)
-
-		self._message_system:register(Message.OnHeadShot, "deadeye_reload", callback(self, self, "_on_enter_deadeye_reload_event"))
-	else
-		self._deadeye_reload = nil
-
-		self._message_system:unregister(Message.OnHeadShot, "deadeye_reload")
-	end
-
-	if self:has_category_upgrade("revolver", "headshot_chain_slowmo") then
-		self._deadeye_slowmo = self:upgrade_value("revolver", "headshot_chain_slowmo", nil)
-
-		self._message_system:register(Message.OnLethalHeadShot, "deadeye_slowmo", callback(self, self, "_on_enter_deadeye_slowmo_event"))
-	else
-		self._deadeye_slowmo = nil
-
-		self._message_system:unregister(Message.OnLethalHeadShot, "deadeye_slowmo")
-	end
-
-	self:set_property("pistols_reload_primary_kills", 0)
-end)
 
 -- Killshot skills
 local on_killshot_old = PlayerManager.on_killshot
@@ -343,6 +364,7 @@ function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
 	end
 end
 
+-- Hitman headshot kills chain
 PlayerAction.JohnWickKillChain = {
 	Priority = 1,
 	Function = function(player_manager, target_kills, target_time)
@@ -398,6 +420,7 @@ function PlayerManager:_on_enter_chain_headshot_kills_event(attack_data)
 	end
 end
 
+-- Sniper Rifle headshot chain damage multiplier
 function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result)
 	local upgrade_value = self:upgrade_value("snp", "consecutive_headshots")
 
@@ -441,18 +464,6 @@ function PlayerManager:_on_enter_consecutive_headshots_event(weapon_unit, result
 			self._consecutive_headshots = 0
 			self:remove_property("snp_consecutive_headshots_mul")
 		end
-	end
-end
-
-function PlayerManager:_dodge_replenish_armor()
-	local has_dodge_armor_replenish = self:has_enabled_cooldown_upgrade("cooldown", "dodge_replenish_armor")
-	local player_dmg = self:player_unit():character_damage()
-	local armor_broken = player_dmg:_max_armor() > 0 and player_dmg:get_real_armor() <= 0
-
-	if has_dodge_armor_replenish and armor_broken then
-		player_dmg:_regenerate_armor()
-
-		self:disable_cooldown_upgrade("cooldown", "dodge_replenish_armor")
 	end
 end
 
@@ -504,6 +515,19 @@ function PlayerManager:on_enter_custody(_player, already_dead)
 	player:base():_unregister()
 	World:delete_unit(player)
 	managers.hud:remove_interact()
+end
+
+-- Put dodge armor replenish on cooldown
+function PlayerManager:_dodge_replenish_armor()
+	local has_dodge_armor_replenish = self:has_enabled_cooldown_upgrade("cooldown", "dodge_replenish_armor")
+	local player_dmg = self:player_unit():character_damage()
+	local armor_broken = player_dmg:_max_armor() > 0 and player_dmg:get_real_armor() <= 0
+
+	if has_dodge_armor_replenish and armor_broken then
+		player_dmg:_regenerate_armor()
+
+		self:disable_cooldown_upgrade("cooldown", "dodge_replenish_armor")
+	end
 end
 
 local old_speed_multiplier = PlayerManager.movement_speed_multiplier

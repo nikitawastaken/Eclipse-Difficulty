@@ -350,6 +350,16 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							dmg_mul = dmg_mul * (1 + upgrade * damage_health_ratio)
 						end
 
+						if weap_base:is_category("revolver", "pistol") then
+							if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
+								dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "sidearm_pullout_damage_multiplier", 1)
+							end
+
+							if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") then
+								dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "sidearm_reload_damage_multiplier", 1)
+							end
+						end
+
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "berserker_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:get_property("trigger_happy", 1)
 						dmg_mul = dmg_mul * (1 + managers.player:get_property("snp_consecutive_headshots_mul", 0))
@@ -395,6 +405,12 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							self._state_data.snp_shot_charge_t = nil
 							self._sniper_shot_is_charged = false
 							managers.player:charged_shot_allowed(self._sniper_shot_is_charged)
+						end
+
+						if weap_base:is_category("revolver", "pistol") then
+							if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
+								managers.player:deactivate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier")
+							end
 						end
 
 						local weap_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
@@ -741,6 +757,11 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 			else
 				self._ext_camera:play_redirect(self:get_animation("idle"))
 			end
+		end
+
+		-- sidearm pullout extra damage
+		if managers.player:has_category_upgrade("temporary", "sidearm_pullout_damage_multiplier") and managers.player:equipped_weapon_unit():base():is_category("revolver", "pistol") then
+			managers.player:activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier")
 		end
 
 		TestAPIHelper.on_event("load_weapon")

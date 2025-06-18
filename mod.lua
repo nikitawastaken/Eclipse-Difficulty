@@ -20,6 +20,11 @@ if not Eclipse then
 		return io.file_is_readable(path) and blt.vm.dofile(path)
 	end
 
+	function Eclipse:require_lua(file)
+		local path = self.mod_path .. "lua/" .. file .. ".lua"
+		return io.file_is_readable(path) and blt.vm.dofile(path)
+	end
+
 	function Eclipse:instance_script_patches()
 		if self._instance_script_patches == nil then
 			local level_id = Global.game_settings and Global.game_settings.level_id

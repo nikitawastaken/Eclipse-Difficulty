@@ -610,3 +610,22 @@ function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
 
 	return ammo
 end
+
+-- Sidearm reload extra damage and ricochet
+function NewRaycastWeaponBase:on_reload(...)
+	NewRaycastWeaponBase.super.on_reload(self, ...)
+
+	local user_unit = managers.player:player_unit()
+
+	if managers.player:has_category_upgrade("temporary", "sidearm_reload_damage_multiplier") and self:is_category("revolver", "pistol") then
+		managers.player:activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
+	end
+
+	if user_unit then
+		user_unit:movement():current_state():send_reload_interupt()
+	end
+
+	self:set_reload_objects_visible(false)
+
+	self._reload_objects = {}
+end
