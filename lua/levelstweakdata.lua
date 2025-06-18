@@ -109,7 +109,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
-		difficulty_curve_points = { 0.35 },
+		difficulty_curve_points = { 0.75 },
 		difficulty_step_time = 20,
 		hostage_hesitation_delay_mul = 1.35,
 		sustain_duration_mul = 0.85,
@@ -160,7 +160,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
 	self.framing_frame_2.group_ai_settings = {
-		difficulty_curve_points = { 0.75 },
+		difficulty_curve_points = { 0.25 },
 		difficulty_step_time = 5,
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		hostage_hesitation_delay_mul = 0,
