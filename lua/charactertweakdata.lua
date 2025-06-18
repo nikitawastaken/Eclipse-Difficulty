@@ -244,7 +244,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.fbi = based_on(presets.weapon.base, {
 		melee_dmg = 6 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.fbi, 7 / 5)
+	damage_multiplier(presets.weapon.fbi, 6 / 4)
 
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.75 },
@@ -259,13 +259,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		focus_delay = 0.3,
 		melee_dmg = 12 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.elite_swat, 8 / 5)
+	damage_multiplier(presets.weapon.elite_swat, 7 / 5)
 	accuracy_multiplier(presets.weapon.elite_swat, 1.4)
 
 	presets.weapon.zeal_swat = based_on(presets.weapon.elite_swat)
 
 	presets.weapon.murky = based_on(presets.weapon.swat)
-	damage_multiplier(presets.weapon.murky, 7 / 5)
+	damage_multiplier(presets.weapon.murky, 6 / 4)
 	accuracy_multiplier(presets.weapon.murky, 1.4)
 	recoil_multiplier(presets.weapon.murky, 1.2)
 	burst_multiplier(presets.weapon.murky, 0.6)
@@ -277,7 +277,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
 
 	presets.weapon.shield = based_on(presets.weapon.base, {
-		melee_speed = 0.9,
+		melee_speed = 0.75,
 		melee_range = 150,
 		melee_force = 500,
 		range = { close = 500, optimal = 1000, far = 2000 },
