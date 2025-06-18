@@ -55,7 +55,7 @@ jobs:
           webhook: ${{ secrets.WEBHOOK_URL }}
           status: ${{ job.status }}
           nodetail: true
-          username: "Github"
+          username: "Your Mom"
           color: 0xff0000
           avatar_url: ${{ secrets.AVATAR_URL }}
           title: "StyLua Error"
