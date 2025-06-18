@@ -283,7 +283,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		range = { close = 500, optimal = 1000, far = 2000 },
 	})
 	damage_multiplier(presets.weapon.shield, 4 / 5)
-	
+
 	presets.weapon.fbi_shield = based_on(presets.weapon.shield)
 
 	presets.weapon.elite_shield = based_on(presets.weapon.shield)
