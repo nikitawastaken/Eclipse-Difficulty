@@ -103,10 +103,10 @@ local M = {
 	--Garret has bronco
 	[("units/pd2_dlc_tag/characters/ene_male_commissioner/ene_male_commissioner"):key()] = "raging_bull",
 	--Bikers (the Overkill MC)
-	[("units/payday2/characters/ene_biker_1/ene_biker_1"):key()] = { c45 = 3, mac11, = 3, mossberg = 2, ak47 = 2 },
-	[("units/payday2/characters/ene_biker_2/ene_biker_3"):key()] = { c45 = 3, mac11, = 3, mossberg = 2, ak47 = 2 },
-	[("units/payday2/characters/ene_biker_3/ene_biker_3"):key()] = { c45 = 3, mac11, = 3, mossberg = 2, ak47 = 2 },
-	[("units/payday2/characters/ene_biker_4/ene_biker_4"):key()] = { c45 = 3, mac11, = 3, mossberg = 2, ak47 = 2 },
+	[("units/payday2/characters/ene_biker_1/ene_biker_1"):key()] = { c45 = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
+	[("units/payday2/characters/ene_biker_2/ene_biker_3"):key()] = { c45 = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
+	[("units/payday2/characters/ene_biker_3/ene_biker_3"):key()] = { c45 = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
+	[("units/payday2/characters/ene_biker_4/ene_biker_4"):key()] = { c45 = 3, mac11 = 3, mossberg = 2, ak47 = 2 },
 	--woman bikers have broncos instead of c45
 	[("units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"):key()] = { raging_bull = 3, mac11 = 2, mossberg = 1 },
 	[("units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"):key()] = { raging_bull = 3, mac11 = 2, mossberg = 1 },
