@@ -16,7 +16,6 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local elite_sniper = scripted_enemy.elite_sniper
-local more_chance_for_the_code = overkill_and_above and 0 or 5
 local disabled = {
 	values = {
 		enabled = false,
@@ -671,10 +670,6 @@ return {
 		on_executed = {
 			{ id = 102887, delay = 0 },
 		},
-	},
-	-- tweak code chance increase (no more increases on ovk above like in PDTH)
-	[102887] = {
-		chance = more_chance_for_the_code,
 	},
 	-- Faint duration increase
 	[102860] = {
