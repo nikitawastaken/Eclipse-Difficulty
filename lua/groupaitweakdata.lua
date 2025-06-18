@@ -12,7 +12,7 @@ local function table_multiplier(target_table, mul)
 	for diff_step, value in pairs(target_table) do
 		target_table[diff_step] = value * mul
 	end
-	
+
 	return target_table
 end
 
@@ -1665,17 +1665,17 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
-	local heavy_response = self._spawn_group_presets and self._spawn_group_presets.heavy_response 
-	local special_operation = self._spawn_group_presets and self._spawn_group_presets.special_operation 
-	local small_squads = self._spawn_group_presets and self._spawn_group_presets.small_squads 
-	local shield_wall = self._spawn_group_presets and self._spawn_group_presets.shield_wall 
-	local taser_overcharge = self._spawn_group_presets and self._spawn_group_presets.taser_overcharge 
-	local cloaker_beatdown = self._spawn_group_presets and self._spawn_group_presets.cloaker_beatdown 
-	local standard_issue = self._spawn_group_presets and self._spawn_group_presets.standard_issue 
-	local full_force = self._spawn_group_presets and self._spawn_group_presets.full_force 
-	local feds = self._spawn_group_presets and self._spawn_group_presets.feds 
-	local yeehaw = self._spawn_group_presets and self._spawn_group_presets.yeehaw 
-		
+	local heavy_response = self._spawn_group_presets and self._spawn_group_presets.heavy_response
+	local special_operation = self._spawn_group_presets and self._spawn_group_presets.special_operation
+	local small_squads = self._spawn_group_presets and self._spawn_group_presets.small_squads
+	local shield_wall = self._spawn_group_presets and self._spawn_group_presets.shield_wall
+	local taser_overcharge = self._spawn_group_presets and self._spawn_group_presets.taser_overcharge
+	local cloaker_beatdown = self._spawn_group_presets and self._spawn_group_presets.cloaker_beatdown
+	local standard_issue = self._spawn_group_presets and self._spawn_group_presets.standard_issue
+	local full_force = self._spawn_group_presets and self._spawn_group_presets.full_force
+	local feds = self._spawn_group_presets and self._spawn_group_presets.feds
+	local yeehaw = self._spawn_group_presets and self._spawn_group_presets.yeehaw
+
 	self._tactics = {
 		none = {},
 		cop_init = {
@@ -1823,7 +1823,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.cs_defend_light = {
 		amount = { 2, 3 },
 		spawn = {
@@ -3184,7 +3184,8 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 
 		if assault_state then
 			if assault_state.recurring_group_SO and assault_state.recurring_group_SO.recurring_cloaker_spawn then
-				assault_state.recurring_group_SO.recurring_cloaker_spawn.interval = table_multiplier(assault_state.recurring_group_SO.recurring_cloaker_spawn.interval, level_settings.recurring_cloaker_spawn_interval_mul or 1)
+				assault_state.recurring_group_SO.recurring_cloaker_spawn.interval =
+					table_multiplier(assault_state.recurring_group_SO.recurring_cloaker_spawn.interval, level_settings.recurring_cloaker_spawn_interval_mul or 1)
 
 				if level_group_ai_state and level_settings.recurring_cloaker_spawn_interval_mul ~= 1 then
 					Eclipse:log_console("Recurring Cloaker spawn intervals for " .. level_id .. " set to: ")
@@ -3195,7 +3196,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			if assault_state.assault then
 				if assault_state.assault.sustain_duration_min then
 					assault_state.assault.sustain_duration_min = table_multiplier(assault_state.assault.sustain_duration_min, level_settings.sustain_duration_mul or 1)
-					
+
 					assault_state.assault.sustain_duration_max = assault_state.assault.sustain_duration_min
 
 					if level_group_ai_state and level_settings.sustain_duration_mul ~= 1 then

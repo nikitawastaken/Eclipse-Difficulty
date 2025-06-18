@@ -139,9 +139,9 @@ return {
 	[100124] = disabled,
 	[100125] = disabled,
 	-- Delay roof rappels at the start
-	[101660] = { 
+	[101660] = {
 		on_executed = {
-			{ id = 101280, delay = 30 }, -- roof 1 
+			{ id = 101280, delay = 30 }, -- roof 1
 			{ id = 101279, delay = 30 }, -- roof 2
 			{ id = 101272, delay = 30 }, -- roof 3
 		},

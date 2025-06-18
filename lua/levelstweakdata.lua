@@ -188,15 +188,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -2,
 		},
 	}
-	
+
 	self.election_day_2.group_ai_settings = {
-		cs_grenade_chance_times_mul = 0.5,	
+		cs_grenade_chance_times_mul = 0.5,
 		min_grenade_timeout_mul = 0.75,
 		spawn_group_presets = {
 			special_operation = true,
-		},		
+		},
 	}
-	
+
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.recurring_cloaker_spawn_interval_mul = nil
 
