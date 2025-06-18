@@ -42,12 +42,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 					heavy_response = false,
 					special_operation = false,
 					small_squads = false,
-					shield_wall = false,
-					taser_overcharge = false,
-					cloaker_beatdown = false,
 					standard_issue = false,
 					full_force = false,
 					feds = false,
+					yeehaw = false,
 				},
 			}
 		end
@@ -147,7 +145,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
-		cs_grenade_chance_times_mul = 0.75,
 		special_limit_add = {
 			shield = 1,
 		},
@@ -191,16 +188,25 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -2,
 		},
 	}
-
+	
+	self.election_day_2.group_ai_settings = {
+		cs_grenade_chance_times_mul = 0.5,	
+		min_grenade_timeout_mul = 0.75,
+		spawn_group_presets = {
+			special_operation = true,
+		},		
+	}
+	
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.recurring_cloaker_spawn_interval_mul = nil
 
 	self.hox_1.group_ai_settings = {
 		sustain_duration_mul = 0.75,
-		assault_delay_mul = 1.35,
+		assault_delay_mul = 1.5,
 		assault_force_mul = 0.6,
+		reenforce_interval_mul = 0.5,
 		recon_interval_variation_mul = 0.5,
-		push_delay_mul = 1.25,
+		push_delay_mul = 1.35,
 		min_grenade_timeout_mul = 1.5,
 		force_tactics = {
 			swat_init = {
@@ -234,7 +240,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hox_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		recon_interval_variation_mul = 0.75,
-		min_grenade_timeout_mul = 0.8,
+		min_grenade_timeout_mul = 0.75,
 		spawn_group_presets = {
 			feds = true,
 		},
@@ -345,7 +351,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.5,
 		spawnrate_mul = 1.2,
 		cs_grenade_chance_times_mul = 0.5,
-		min_grenade_timeout_mul = 0.6,
+		min_grenade_timeout_mul = 0.75,
 		force_tactics = {
 			cop_snk = {
 				smoke_grenade = true,
@@ -445,7 +451,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.7,
 		spawnrate_mul = 1.1,
 		recon_force_mul = 0.5,
-		cs_grenade_chance_times_mul = 1.25,
 		grenade_timeout_mul = {
 			flash_grenade = 0.5,
 			smoke_grenade = 0.75,
@@ -469,7 +474,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.pex.group_ai_settings = {
 		sustain_duration_mul = 1.25, -- Bird flu
-		min_grenade_timeout_mul = 0.8,
+		min_grenade_timeout_mul = 0.75,
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)

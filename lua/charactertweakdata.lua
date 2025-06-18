@@ -423,8 +423,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.elite_bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 18 * dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.4, 0.9 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 12 * dmg_mul, r = 1000, acc = { 0.6, 0.9 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.5, 0.8 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12 * dmg_mul, r = 1000, acc = { 0.6, 0.9 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 2000, acc = { 0.5, 0.8 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.7
