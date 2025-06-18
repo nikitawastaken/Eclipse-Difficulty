@@ -221,6 +221,26 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 		self:unregister_message(Message.OnEnemyShot, "stacked_reload_bonus")
 	end
 
+	if self:has_category_upgrade("revolver", "headshot_chain_instant_reload") then
+		self._deadeye_reload = self:upgrade_value("revolver", "headshot_chain_instant_reload", nil)
+
+		self._message_system:register(Message.OnHeadShot, "deadeye_reload", callback(self, self, "_on_enter_deadeye_reload_event"))
+	else
+		self._deadeye_reload = nil
+
+		self._message_system:unregister(Message.OnHeadShot, "deadeye_reload")
+	end
+
+	if self:has_category_upgrade("revolver", "headshot_chain_slowmo") then
+		self._deadeye_slowmo = self:upgrade_value("revolver", "headshot_chain_slowmo", nil)
+
+		self._message_system:register(Message.OnLethalHeadShot, "deadeye_slowmo", callback(self, self, "_on_enter_deadeye_slowmo_event"))
+	else
+		self._deadeye_slowmo = nil
+
+		self._message_system:unregister(Message.OnLethalHeadShot, "deadeye_slowmo")
+	end
+
 	self:set_property("pistols_reload_primary_kills", 0)
 end)
 
@@ -253,7 +273,7 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 				end
 			end
 
-			managers.player:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
+			self:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
 		end
 	end
 
@@ -1319,3 +1339,115 @@ PlayerAction.ExpertHandling = {
 		player_manager:unregister_message(Message.OnEnemyShot, co)
 	end,
 }
+
+-- Deadeye instant reload event
+PlayerAction.DeadeyeReload = {
+	Priority = 1,
+	Function = function (player_manager, target_headshots)
+		local co = coroutine.running()
+		local running = true
+		local headshots = 1
+		local player_unit = player_manager:player_unit()
+
+		local function on_shot_fired(weapon_unit, result)
+			if not weapon_unit:base():is_category("revolver") or not result.hit_enemy then
+				running = false
+				return
+			end
+
+			for _, hit in ipairs(result.rays) do
+				local is_turret = hit.unit:in_slot(sentry_mask)
+				local is_ally = hit.unit:in_slot(ally_mask)
+
+				local result_hit = hit.damage_result
+				local attack_data = result_hit and result_hit.attack_data
+				if attack_data and attack_data.headshot and not is_turret and not is_ally then
+					headshots = headshots + 1
+					break
+				else
+					running = false
+					return
+				end
+			end
+
+			if headshots == target_headshots then
+				weapon_unit:base():on_reload()
+				managers.statistics:reloaded()
+				managers.hud:set_ammo_amount(weapon_unit:base():selection_index(), weapon_unit:base():ammo_info())
+				player_unit:sound():play("pickup_ammo_health_boost")
+
+				running = false
+			end
+		end
+
+		player_manager:register_message(Message.OnWeaponFired, co, on_shot_fired)
+
+		while running do
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnWeaponFired, co)
+	end
+}
+
+function PlayerManager:_on_enter_deadeye_reload_event()
+	if not self._coroutine_mgr:is_running("deadeye_reload") then
+		local weapon_unit = self:equipped_weapon_unit()
+
+		if weapon_unit and weapon_unit:base():is_category("revolver") then
+			self._coroutine_mgr:add_coroutine("deadeye_reload", PlayerAction.DeadeyeReload, self, self._deadeye_reload.headshots)
+		end
+	end
+end
+
+-- Deadeye slowmo event
+PlayerAction.DeadeyeSlowmo = {
+	Priority = 1,
+	Function = function (player_manager, target_headshots, target_time, slowmo_world, slowmo_player)
+		local co = coroutine.running()
+		local time = Application:time()
+		local headshots = 1
+
+		local function on_headshot()
+			headshots = headshots + 1
+
+			if headshots == target_headshots then
+				player_manager:disable_cooldown_upgrade("cooldown", "revolver_slowmo_chain")
+
+				local effect_id_world = "world_Deadeye_Peer" .. tostring(managers.network:session():local_peer():id())
+				managers.time_speed:play_effect(effect_id_world, slowmo_world)
+
+				local effect_id_player = "player_Deadeye_Peer" .. tostring(managers.network:session():local_peer():id())
+				managers.time_speed:play_effect(effect_id_player, slowmo_player)
+
+				time = target_time
+			end
+		end
+
+		player_manager:register_message(Message.OnLethalHeadShot, co, on_headshot)
+
+		while time < target_time do
+			time = Application:time()
+			local weapon_unit = player_manager:equipped_weapon_unit()
+
+			if weapon_unit and not weapon_unit:base():is_category("revolver") then
+				break
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnLethalHeadShot, co)
+	end
+}
+
+function PlayerManager:_on_enter_deadeye_slowmo_event()
+	if not self._coroutine_mgr:is_running("deadeye_slowmo") then
+		local weapon_unit = self:equipped_weapon_unit()
+		local has_deadeye_slowmo = self:has_enabled_cooldown_upgrade("cooldown", "revolver_slowmo_chain")
+
+		if weapon_unit and weapon_unit:base():is_category("revolver") and has_deadeye_slowmo then
+			self._coroutine_mgr:add_coroutine("deadeye_slowmo", PlayerAction.DeadeyeSlowmo, self, self._deadeye_slowmo.headshots, Application:time() + self._deadeye_slowmo.max_time, self._deadeye_slowmo.slowmo_world, self._deadeye_slowmo.slowmo_player)
+		end
+	end
+end

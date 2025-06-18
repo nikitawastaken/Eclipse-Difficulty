@@ -2,6 +2,8 @@ local old_pd2_values_init = UpgradesTweakData._init_pd2_values
 function UpgradesTweakData:_init_pd2_values(tweak_data)
 	old_pd2_values_init(self, tweak_data)
 
+	self.values.revolver = {} -- init revolver category table
+
 	-- why is this here?
 	self.explosive_bullet = {
 		curve_pow = 3,
@@ -951,7 +953,67 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.gun_fighter.multipro2 = "6"
 	self.skill_descs.gun_fighter.multipro3 = "4"
 
-	-- Revolver Wrath
+	-- Deadeye
+	self.values.revolver.headshot_chain_instant_reload = {
+		{
+			headshots = 5,
+		},
+	}
+	self.definitions.revolver_headshot_chain_instant_reload = {
+		name_id = "menu_revolver_headshot_chain_instant_reload",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "headshot_chain_instant_reload",
+			category = "revolver",
+		},
+	}
+	self.values.revolver.headshot_chain_slowmo = {
+		{
+			headshots = 3,
+			max_time = 3,
+			slowmo_world = {
+				sustain = 5,
+				timer = "pausable",
+				speed = 0.45,
+				fade_out = 1,
+				fade_in = 1,
+			},
+			slowmo_player = {
+				sustain = 5,
+				timer = "pausable",
+				speed = 0.55,
+				fade_out = 1,
+				fade_in = 1,
+				affect_timer = "player",
+			}
+		},
+	}
+	self.definitions.revolver_headshot_chain_slowmo = {
+		name_id = "menu_revolver_headshot_chain_slowmo",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "headshot_chain_slowmo",
+			category = "revolver",
+		},
+	}
+	self.values.cooldown.revolver_slowmo_chain = { { 1, 25 } } -- 25s cd because first 5s account for the slowdown itself
+	self.definitions.cooldown_revolver_slowmo_chain = {
+		name_id = "menu_cooldown_revolver_slowmo_chain",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "revolver_slowmo_chain",
+			category = "cooldown",
+		},
+	}
+	self.skill_descs.expert_handling.multibasic = "5"
+	self.skill_descs.expert_handling.multipro = "3"
+	self.skill_descs.expert_handling.multipro2 = "3"
+	self.skill_descs.expert_handling.multipro3 = "5"
+	self.skill_descs.expert_handling.multipro4 = "20"
+
 
 	-- Peacemaker's Lament
 

@@ -367,10 +367,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.gun_fighter[2].upgrades = { "pistol_stacked_accuracy_bonus_1" }
 	self.skills.gun_fighter.icon_xy = { 8, 0 }
 
-	-- Revolver Wrath
-	self.skills.expert_handling[1].upgrades = { "" }
-	self.skills.expert_handling[2].upgrades = { "" }
-	self.skills.expert_handling.icon_xy = { 0, 0 }
+	-- Deadeye
+	self.skills.expert_handling[1].upgrades = { "revolver_headshot_chain_instant_reload" }
+	self.skills.expert_handling[2].upgrades = { "revolver_headshot_chain_slowmo", "cooldown_revolver_slowmo_chain" }
+	self.skills.expert_handling.icon_xy = { 8, 0 }
 
 	-- Peacemaker's Lament
 	self.skills.trigger_happy[1].upgrades = { "" }

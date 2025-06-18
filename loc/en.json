@@ -68,7 +68,7 @@
 	"menu_single_shot_ammo_return_beta_desc": "BASIC: ##$basic##\nScoring ##$multibasic## headshots in less than ##$multibasic## seconds with either Assault, Marksman or Sniper Rifles set to single fire mode will refund ##$multibasic3## bullet into your reserves.\n\nACE: ##$pro##\nThe amount of headshots required is reduced to ##$multipro##.",
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Assault, Marksman and Sniper Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot with either Assault, Marksman or Sniper Rifles set to single fire mode will increase your reload speed by ##$multipro## for ##$multipro2## seconds.",
 	"menu_sniper_graze_damage": "Headshot Fury",
-	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\nStacks up to ##$multibasic2## consecutive headshots.\n\nMissing a headshot resets your stacks.\n\nACE: ##$pro##\nWhile aiming down the sights with your Sniper Rifle, a charge meter builds up over the period of ##$multipro## seconds. When fully charged, your next headshot becomes explosive, dealing up to ##$multipro2## of the bullet's damage in a ##$multipro3## radius around the bullet impact and discharging the meter.\n\nLeaving the aiming stance or firing the weapon during the charging process resets the meter.",
+	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\nStacks up to ##$multibasic2## consecutive headshots.\n\nMissing a headshot in any capacity resets your stacks.\n\nACE: ##$pro##\nWhile aiming down the sights with your Sniper Rifle, a charge meter builds up over the period of ##$multipro## seconds. When fully charged, your next headshot becomes explosive, dealing up to ##$multipro2## of the bullet's damage in a ##$multipro3## radius around the bullet impact and discharging the meter.\n\nLeaving the aiming stance or firing the weapon during the charging process resets the meter.",
 
 
 	"menu_from_the_hip_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage with Shotguns.\n\nACE: ##$pro##\nThe time it takes to draw and holster Shotguns is decreased by ##$multipro##.",
@@ -162,7 +162,7 @@
 	"menu_gun_fighter_beta": "Trigger Overdrive",
 	"menu_gun_fighter_beta_desc": "BASIC: ##$basic##\nEach successful Pistol hit grants you a ##$multibasic## reload speed boost that lasts ##$multibasic2## seconds.\n\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nEach successful Pistol hit grants you a ##$multipro## accuracy boost that lasts ##$multipro2## seconds.\n\nStacks up to ##$multipro3## times.",
 	"menu_expert_handling": "Deadeye",
-	"menu_expert_handling_desc": "BASIC: ##$basic##\nWork in progress.\n\nACE: ##$pro##\nWork in progress.",
+	"menu_expert_handling_desc": "BASIC: ##$basic##\nScoring ##$multibasic## headshots in a row with your Revolver will instantly reload it.\n\nMissing a headshot in any capacity resets the counter.\n\nACE: ##$pro##\nScoring ##$multipro## lethal headshots in less than ##$multipro2## seconds with your Revolver will slow down the time for you for ##$multipro3## seconds.\n\nThis cannot occur more than once every ##$multipro4## seconds after the slowdown ends.",
 	"menu_trigger_happy_beta": "Peacemaker's Lament",
 	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nWork in progress.\n\nACE: ##$pro##\nWork in progress.",
 	"menu_nine_lives_beta": "Tough Guy",
