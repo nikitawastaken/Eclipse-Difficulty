@@ -75,8 +75,8 @@ local M = {
 	[("units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"):key()] = { c45 = 3, raging_bull = 1 },
 	--Midland Ranch guards
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_security_1/ene_male_ranc_security_1"):key()] = {  raging_bull = 3, mac11 = 3, r870 = 2, m4 = 2 },
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_security_2/ene_male_ranc_security_2"):key()] = {  raging_bull = 3, mac11 = 3, r870 = 2, m4 = 2 },
+	[("units/pd2_dlc_ranc/characters/ene_male_ranc_security_1/ene_male_ranc_security_1"):key()] = { raging_bull = 3, mac11 = 3, r870 = 2, m4 = 2 },
+	[("units/pd2_dlc_ranc/characters/ene_male_ranc_security_2/ene_male_ranc_security_2"):key()] = { raging_bull = 3, mac11 = 3, r870 = 2, m4 = 2 },
 	--Bellmead guards
 	[("units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"):key()] = { ump = 3, s552 = 2, benelli = 1 },
 	[("units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"):key()] = { ump = 3, s552 = 2, benelli = 1 },
