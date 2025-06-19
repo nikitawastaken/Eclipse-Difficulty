@@ -29,11 +29,11 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.fire.ammo_dragons_breath_light.dot_trigger_max_distance = 1200
 
 	self.dot_entries.fire.ammo_dragons_breath_medium = clone(self.dot_entries.fire.ammo_dragons_breath)
-	self.dot_entries.fire.ammo_dragons_breath_medium.dot_damage = 2.4
+	self.dot_entries.fire.ammo_dragons_breath_medium.dot_damage = 1.8
 	self.dot_entries.fire.ammo_dragons_breath_medium.dot_trigger_max_distance = 1600
 
 	self.dot_entries.fire.ammo_dragons_breath_heavy = clone(self.dot_entries.fire.ammo_dragons_breath)
-	self.dot_entries.fire.ammo_dragons_breath_heavy.dot_damage = 3.6
+	self.dot_entries.fire.ammo_dragons_breath_heavy.dot_damage = 2.4
 	self.dot_entries.fire.ammo_dragons_breath_heavy.dot_trigger_max_distance = 2000
 
 	self.dot_entries.fire.weapon_system.dot_trigger_chance = trigger_chance_flamethrower

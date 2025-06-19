@@ -1,12 +1,10 @@
 Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 	for _, poison_type in pairs(self.dot_entries.poison) do
-		poison_type.dot_damage = 2.4
+		poison_type.dot_damage = 3.6
 		poison_type.dot_length = 6
 		poison_type.dot_tick_period = 0.5
 	end
 
-	self.dot_entries.poison.ammo_proj_bow.dot_damage = 3
-	self.dot_entries.poison.ammo_proj_bow.dot_length = 4
 	self.dot_entries.poison.ammo_proj_bow.damage_class = "ProjectilesPoisonBulletBase"
 
 	self.dot_entries.poison.ammo_proj_crossbow = clone(self.dot_entries.poison.ammo_proj_bow)
