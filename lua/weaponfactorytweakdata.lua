@@ -1240,41 +1240,41 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 			very_heavy = { -- double barrels
 				stats = { damage = -9, total_ammo_mod = -2, spread = 2 },
 				custom_stats = {
-					rays = 12, 
-					armor_piercing_add = 1, 
-					can_shoot_through_enemy = true 
+					rays = 12,
+					armor_piercing_add = 1,
+					can_shoot_through_enemy = true,
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = -8, total_ammo_mod = -2, spread = 2 },
 				custom_stats = {
-					rays = 12, 
-					armor_piercing_add = 1, 
-					can_shoot_through_enemy = true 
+					rays = 12,
+					armor_piercing_add = 1,
+					can_shoot_through_enemy = true,
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = -7, total_ammo_mod = -2, spread = 2 },
 				custom_stats = {
-					rays = 12, 
-					armor_piercing_add = 1, 
-					can_shoot_through_enemy = true 
+					rays = 12,
+					armor_piercing_add = 1,
+					can_shoot_through_enemy = true,
 				},
 			},
 			light = { -- semi autos
 				stats = { damage = -5, total_ammo_mod = -2, spread = 2 },
 				custom_stats = {
-					rays = 12, 
-					armor_piercing_add = 1, 
-					can_shoot_through_enemy = true 
+					rays = 12,
+					armor_piercing_add = 1,
+					can_shoot_through_enemy = true,
 				},
 			},
 			very_light = { -- full autos
 				stats = { damage = -4, total_ammo_mod = -2, spread = 2 },
 				custom_stats = {
-					rays = 12, 
-					armor_piercing_add = 1, 
-					can_shoot_through_enemy = true 
+					rays = 12,
+					armor_piercing_add = 1,
+					can_shoot_through_enemy = true,
 				},
 			},
 		},
@@ -1442,7 +1442,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		["wpn_fps_shot_b682"] = "very_heavy",
 		["wpn_fps_sho_coach"] = "very_heavy",
 	}
-	
+
 	for id, data in pairs(tweak_data.upgrades.definitions) do
 		local weapon_id = data.weapon_id
 		local factory_id = data.factory_id
@@ -1450,17 +1450,17 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weapon_id]
 
 		local based_on
-		local based_on_weapon_id 
-		local based_on_factory_id 
+		local based_on_weapon_id
+		local based_on_factory_id
 		if weapon_tweak and weapon_tweak.custom then
 			based_on = weapon_tweak.based_on
-			
+
 			if based_on then
 				based_on_weapon_id = tweak_data.upgrades.definitions[based_on].weapon_id
 				based_on_factory_id = tweak_data.upgrades.definitions[based_on].factory_id
 			end
 		end
-	
+
 		for part_id, part in pairs(self.parts) do
 			local ammo_override = shotgun_ammo_override_map[based_on_factory_id or factory_id] or "medium"
 
@@ -1468,7 +1468,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				if not self[factory_id].override then
 					self[factory_id].override = {}
 				end
-		
+
 				if shotgun_ammo_overrides[part_id] and shotgun_ammo_overrides[part_id][ammo_override] then
 					self[factory_id].override[part_id] = shotgun_ammo_overrides[part_id][ammo_override]
 				end
@@ -1546,7 +1546,7 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 		["wpn_fps_ass_contraband"] = "heavy",
 		["wpn_fps_ass_groza"] = "heavy",
 	}
-	
+
 	for id, data in pairs(tweak_data.upgrades.definitions) do
 		local weapon_id = data.weapon_id
 		local factory_id = data.factory_id
@@ -1554,17 +1554,17 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weapon_id]
 
 		local based_on
-		local based_on_weapon_id 
-		local based_on_factory_id 
+		local based_on_weapon_id
+		local based_on_factory_id
 		if weapon_tweak and weapon_tweak.custom then
 			based_on = weapon_tweak.based_on
-			
+
 			if based_on then
 				based_on_weapon_id = tweak_data.upgrades.definitions[based_on].weapon_id
 				based_on_factory_id = tweak_data.upgrades.definitions[based_on].factory_id
 			end
 		end
-	
+
 		for part_id, part in pairs(self.parts) do
 			local ammo_override = grenade_launcher_ammo_override_map[based_on_factory_id or factory_id] or "medium"
 
@@ -1572,7 +1572,7 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 				if not self[factory_id].override then
 					self[factory_id].override = {}
 				end
-		
+
 				if grenade_launcher_ammo_overrides[part_id] and grenade_launcher_ammo_overrides[part_id][ammo_override] then
 					self[factory_id].override[part_id] = grenade_launcher_ammo_overrides[part_id][ammo_override]
 				end

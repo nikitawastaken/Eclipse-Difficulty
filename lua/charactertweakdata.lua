@@ -1098,13 +1098,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
 	self.city_heavy_swat.suppression = self.presets.suppression.very_hard
 	table.insert(self._enemy_list, "city_heavy_swat")
-	
+
 	self.zeal_swat = deep_clone(self.city_swat)
 	table.insert(self._enemy_list, "zeal_swat")
-	
+
 	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	table.insert(self._enemy_list, "zeal_heavy_swat")
-	
+
 	self.murky = deep_clone(self.swat)
 	self.murky.HEALTH_INIT = 10
 	self.murky.headshot_dmg_mul = 2.5 -- 40 head health
@@ -1237,7 +1237,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.tank_elite = deep_clone(self.tank)
-	self.tank_elite.HEALTH_INIT = 400 
+	self.tank_elite.HEALTH_INIT = 400
 	self.tank_elite.move_speed_mul = { walk = 0.85, run = 0.85 }
 	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
@@ -1763,11 +1763,11 @@ function CharacterTweakData:_set_presets()
 	self.shield_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
 
 	self.tank.tank_armor_health_mul = 1 / diff_lerp(1, 2)
-	self.tank_hw.tank_armor_health_mul = self.tank.tank_armor_health_mul	
+	self.tank_hw.tank_armor_health_mul = self.tank.tank_armor_health_mul
 	self.tank_elite.tank_armor_health_mul = 1 / diff_lerp(2, 3)
-	
+
 	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
-	
+
 	-- eclipse exclusive edits
 	if is_eclipse then
 		self:_multiply_all_speeds(1.1, 1.05)
