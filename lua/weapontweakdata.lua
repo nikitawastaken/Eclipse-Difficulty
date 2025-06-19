@@ -72,20 +72,13 @@ function WeaponTweakData:_init_weapons()
 			-- Automatically assign new weapon (sub)categories to custom weapons to avoid stat discrepancies 
 			local based_on = weap_data.custom and weap_data.based_on or nil
 			
-			if based_on then
-				local bolt_action_base = table.contains(self[based_on].categories, "bolt_action") -- Check for Single Action weapons
-				local dmr_base = table.contains(self[based_on].categories, "dmr") -- Check for Marksman rifles
-				local ar_base = table.contains(self[based_on].categories, "assault_rifle") and weap_data.muzzleflash == "effects/payday2/particles/weapons/556_auto_fps" -- Check for secondary Carbines
-				local revolver_base = table.contains(self[based_on].categories, "revolver") -- Check for Revolvers
-		
-				if bolt_action_base then
-					weap_data.categories = { "bolt_action", "snp" }
-				elseif dmr_base then
-					weap_data.categories = { "dmr", "assault_rifle" }
-				elseif ar_base and not dmr_base then
-					weap_data.categories = { "assault_rifle" }
-				elseif revolver_base then
-					weap_data.categories = { "revolver" }
+			local category_blacklist = { -- This is needed just in case
+				["car9"] = true, 
+			}
+			
+			if not category_blacklist[weap_id] then
+				if based_on then
+					weap_data.categories = clone(self[based_on].categories)
 				end
 			end
 					
