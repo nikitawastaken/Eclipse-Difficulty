@@ -1,7 +1,7 @@
 -- Rebalance melee weapons based on their range, concealment and speed
 Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_weapons", function(self, tweak_data)
-	self.melee_weapons.iceaxe.stats.min_damage = 6
-	self.melee_weapons.iceaxe.stats.max_damage = 24
+	self.melee_weapons.iceaxe.stats.min_damage = 3
+	self.melee_weapons.iceaxe.stats.max_damage = 12
 
 	local min_conceal, max_conceal = 30, 0
 	local min_range, max_range = 300, 0
