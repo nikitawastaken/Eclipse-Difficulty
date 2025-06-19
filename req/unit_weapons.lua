@@ -113,11 +113,11 @@ local M = {
 	[("units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"):key()] = { raging_bull = 3, mac11 = 2, mossberg = 1 },
 	--Russian Gangsters (not to be confused with mobsters from Hotline Miami)
 	--they have akmsu's instead of mac11 as their smgs
-	[("units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1"):key()] = { c45 = 3, mossberg = 2, mac11 = 1 },
-	[("units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2"):key()] = { c45 = 3, mossberg = 2, mac11 = 1 },
-	[("units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3"):key()] = { c45 = 3, mossberg = 2, mac11 = 1 },
-	[("units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4"):key()] = { c45 = 3, mossberg = 2, mac11 = 1 },
-	[("units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5"):key()] = { c45 = 3, mossberg = 2, mac11 = 1 },
+	[("units/payday2/characters/ene_gang_russian_1/ene_gang_russian_1"):key()] = { c45 = 3, mac11 = 2, mossberg = 1 },
+	[("units/payday2/characters/ene_gang_russian_2/ene_gang_russian_2"):key()] = { c45 = 3, mac11 = 2, mossberg = 1 },
+	[("units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3"):key()] = { c45 = 3, mac11 = 2, mossberg = 1 },
+	[("units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4"):key()] = { c45 = 3, mac11 = 2, mossberg = 1 },
+	[("units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5"):key()] = { c45 = 3, mac11 = 2, mossberg = 1 },
 	--Cobras (vicious pricks that even Hector's people don't deal with)
 	[("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"):key()] = { c45 = 3, mac11 = 2, mossberg = 1 },
 	[("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"):key()] = { c45 = 3, mac11 = 2, mossberg = 1 },
