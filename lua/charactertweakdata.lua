@@ -474,9 +474,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 10, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 10, r = 2000, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 5, r = 4000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 4, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 4, r = 2000, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 2, r = 4000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
@@ -968,7 +968,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security.has_alarm_pager = not is_no_mercy and true or false
 
 	self.security_fat = deep_clone(self.security)
-	self.security_fat.HEALTH_INIT = 12
+	self.security_fat.HEALTH_INIT = 6
 	self.security_fat.dodge = nil
 	self.security_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "security_fat")
@@ -984,7 +984,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_mex_no_pager.chatter = self.presets.enemy_chatter.security
 
 	self.security_army = deep_clone(self.security)
-	self.security_army.HEALTH_INIT = 12
 	self.security_army.melee_weapon = "weapon"
 	--self.security_army.no_arrest = true
 	table.insert(self._enemy_list, "security_army")
@@ -1000,14 +999,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
-	self.fbi.dodge = self.presets.dodge.average
 	self.fbi.no_arrest = false
 
 	self.fbi_office = deep_clone(self.cop)
 	table.insert(self._enemy_list, "fbi_office")
 
 	self.fbi_female = deep_clone(self.cop_female)
-	self.fbi_female.dodge = self.presets.dodge.average
 
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
@@ -1044,22 +1041,22 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
 
-	self.swat.HEALTH_INIT = 20
-	self.swat.headshot_dmg_mul = 2 -- 100 head health
+	self.swat.HEALTH_INIT = 8
+	self.swat.headshot_dmg_mul = 2.5 -- 32 head health
 	self.swat.speech_prefix_p2 = "n"
 	self.swat.surrender = self.presets.surrender.average
 	self.swat.suppression = self.presets.suppression.average
 	self.swat.no_arrest = false
 
-	self.heavy_swat.HEALTH_INIT = 30
-	self.heavy_swat.headshot_dmg_mul = 1.875 -- 160 head health
+	self.heavy_swat.HEALTH_INIT = 16
+	self.heavy_swat.headshot_dmg_mul = 2.5 -- 64 head health
 	self.heavy_swat.surrender = self.presets.surrender.average
 	self.heavy_swat.suppression = self.presets.suppression.average
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.heavy_swat.no_arrest = false
 
-	self.fbi_swat.HEALTH_INIT = 24
-	self.fbi_swat.headshot_dmg_mul = 2 -- 120 head health
+	self.fbi_swat.HEALTH_INIT = 12
+	self.fbi_swat.headshot_dmg_mul = 2.5 -- 48 head health
 	self.fbi_swat.speech_prefix_p2 = "n"
 	self.fbi_swat.surrender = self.presets.surrender.average
 	self.fbi_swat.suppression = self.presets.suppression.average
@@ -1081,43 +1078,36 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.marshal_security.has_alarm_pager = true
 	table.insert(self._enemy_list, "marshal_security")
 
-	self.fbi_heavy_swat.HEALTH_INIT = 36
-	self.fbi_heavy_swat.headshot_dmg_mul = 1.8 -- 200 head health
+	self.fbi_heavy_swat.HEALTH_INIT = 20
+	self.fbi_heavy_swat.headshot_dmg_mul = 2.5 -- 80 head health
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
 	self.fbi_heavy_swat.suppression = self.presets.suppression.hard
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.fbi_heavy_swat.no_arrest = false
 
-	self.city_swat.HEALTH_INIT = 28
-	self.city_swat.headshot_dmg_mul = 1.75 -- 160 head health
+	self.city_swat.HEALTH_INIT = 16
+	self.city_swat.headshot_dmg_mul = 2.5 -- 64 head health
 	self.city_swat.speech_prefix_p2 = "n"
 	self.city_swat.surrender = self.presets.surrender.hard
 	self.city_swat.suppression = self.presets.suppression.hard
 	self.city_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 
 	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
-	self.city_heavy_swat.HEALTH_INIT = 48
-	self.city_heavy_swat.headshot_dmg_mul = 1.6
+	self.city_heavy_swat.HEALTH_INIT = 24
+	self.city_heavy_swat.headshot_dmg_mul = 2.5 -- 96 head health
 	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
 	self.city_heavy_swat.suppression = self.presets.suppression.very_hard
-
+	table.insert(self._enemy_list, "city_heavy_swat")
+	
 	self.zeal_swat = deep_clone(self.city_swat)
-	self.zeal_swat.HEALTH_INIT = 32
-	self.zeal_swat.headshot_dmg_mul = 1.6 -- 200 head health
-	self.zeal_swat.surrender = self.presets.surrender.very_hard
-	self.zeal_swat.suppression = self.presets.suppression.hard
-	self.zeal_swat.move_speed_mul = { walk = 1.1, run = 1.1 }
-
+	table.insert(self._enemy_list, "zeal_swat")
+	
 	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
-	self.zeal_heavy_swat.HEALTH_INIT = 48
-	self.zeal_heavy_swat.headshot_dmg_mul = 1.5 -- 320 head health
-	self.zeal_heavy_swat.surrender = self.presets.surrender.very_hard
-	self.zeal_heavy_swat.suppression = self.presets.suppression.very_hard
-	self.zeal_heavy_swat.move_speed_mul = { walk = 1.1, run = 1.1 }
-
+	table.insert(self._enemy_list, "zeal_heavy_swat")
+	
 	self.murky = deep_clone(self.swat)
-	self.murky.HEALTH_INIT = 24
-	self.murky.headshot_dmg_mul = 3 -- 80 head health
+	self.murky.HEALTH_INIT = 10
+	self.murky.headshot_dmg_mul = 2.5 -- 40 head health
 	self.murky.silent_priority_shout = "f37"
 	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
 	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
@@ -1129,8 +1119,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "murky")
 
 	self.soldier = deep_clone(self.fbi_swat)
-	self.soldier.HEALTH_INIT = 24
-	self.soldier.headshot_dmg_mul = 2 -- 80 head health
+	self.soldier.HEALTH_INIT = 10
+	self.soldier.headshot_dmg_mul = 2.5 -- 40 head health
 	self.soldier.surrender = self.presets.surrender.hard
 	self.soldier.suppression = self.presets.suppression.hard
 	self.soldier.use_radio = "dsp_radio_russian"
@@ -1138,8 +1128,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.soldier.steal_loot = false
 	table.insert(self._enemy_list, "soldier")
 
-	self.sniper.HEALTH_INIT = 8
-	self.sniper.headshot_dmg_mul = 3.2 -- 25 head health
+	self.sniper.HEALTH_INIT = 4
+	self.sniper.headshot_dmg_mul = 2.5 -- 16 head health
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi_sniper = deep_clone(self.sniper)
@@ -1150,8 +1140,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"marksman",
 		"special",
 	}
-	self.city_sniper.HEALTH_INIT = 36
-	self.city_sniper.headshot_dmg_mul = 2 -- 180 head health
+	self.city_sniper.HEALTH_INIT = 20
+	self.city_sniper.headshot_dmg_mul = 2.5 -- 80 head health
 	self.city_sniper.priority_shout = "f34"
 	self.city_sniper.chatter = self.presets.enemy_chatter.no_chatter
 	self.city_sniper.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
@@ -1165,8 +1155,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_sniper.rescue_hostages = false
 	table.insert(self._enemy_list, "city_sniper")
 
-	self.shield.HEALTH_INIT = 30
-	self.shield.headshot_dmg_mul = 1.875 -- 160 head health
+	self.shield.HEALTH_INIT = 16
+	self.shield.headshot_dmg_mul = 2.5 -- 64 head health
 	self.shield.move_speed.crouch = self.shield.move_speed.stand
 	self.shield.speech_prefix_p1 = self._unit_prefixes.heavy_swat
 	self.shield.min_obj_interrupt_dis = 500
@@ -1175,13 +1165,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.die_sound_event = nil --he already has his death sound
 
 	self.fbi_shield = deep_clone(self.shield)
-	self.fbi_shield.HEALTH_INIT = 30
-	self.fbi_shield.headshot_dmg_mul = 1.875 -- 160 head health
 	table.insert(self._enemy_list, "fbi_shield")
 
 	self.city_shield = deep_clone(self.shield)
-	self.city_shield.HEALTH_INIT = 60
-	self.city_shield.headshot_dmg_mul = 1.875 -- 320 head health
+	self.city_shield.HEALTH_INIT = 28
+	self.city_shield.headshot_dmg_mul = 2.5 -- 112 head health
 	self.city_shield.ecm_vulnerability = 0
 	self.city_shield.move_speed.crouch = self.city_shield.move_speed.stand
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1219,26 +1207,19 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "city_shield_break")
 
 	self.zeal_shield = deep_clone(self.fbi_shield)
-	self.zeal_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --Come with me if you wanna live...
-	self.zeal_shield.shield_explosion_damage_mul = 0.4
-	self.zeal_shield.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_shield")
 
-	self.taser.HEALTH_INIT = 72
-	self.taser.headshot_dmg_mul = 2 -- 360 head health
+	self.taser.HEALTH_INIT = 32
+	self.taser.headshot_dmg_mul = 2.5 -- 128 head health
 	self.taser.min_obj_interrupt_dis = 1000
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
 
 	self.zeal_taser = deep_clone(self.taser)
-	self.zeal_taser.HEALTH_INIT = 72
-	self.zeal_taser.headshot_dmg_mul = 2 -- 360 head health
-	self.zeal_taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" --elite tazeah coming through!!!
-	self.zeal_taser.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_taser")
 
-	self.tank.HEALTH_INIT = 800
-	self.tank.headshot_dmg_mul = 25 -- 320 head health
+	self.tank.HEALTH_INIT = 200
+	self.tank.headshot_dmg_mul = 25 -- 80 head health
 	self.tank.ecm_vulnerability = 0
 	self.tank.min_obj_interrupt_dis = 600
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1247,7 +1228,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.melee_weapon = "weapon"
 
 	self.tank_hw = deep_clone(self.tank)
-	self.tank_hw.HEALTH_INIT = 400
+	self.tank_hw.HEALTH_INIT = 100
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
 	self.tank_hw.melee_anims = nil
@@ -1256,13 +1237,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.tank_elite = deep_clone(self.tank)
-	self.tank_elite.HEALTH_INIT = 1200
+	self.tank_elite.HEALTH_INIT = 400 
 	self.tank_elite.move_speed_mul = { walk = 0.85, run = 0.85 }
 	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
 
-	self.spooc.HEALTH_INIT = 48
-	self.spooc.headshot_dmg_mul = 3 -- 160 head health
+	self.spooc.HEALTH_INIT = 16
+	self.spooc.headshot_dmg_mul = 2.5 -- 64 head health
 	self.spooc.min_obj_interrupt_dis = 800
 	self.spooc.spooc_attack_use_smoke_chance = 0
 	self.spooc.spooc_attack_move_speed_mul = 1.75
@@ -1272,18 +1253,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
-	self.medic.HEALTH_INIT = 60
-	self.medic.headshot_dmg_mul = 2 -- 300 head health
+	self.medic.HEALTH_INIT = 24
+	self.medic.headshot_dmg_mul = 2.5 -- 96 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.can_be_healed = false
 	self.medic.melee_weapon = "weapon"
 
 	self.zeal_medic = deep_clone(self.medic)
-	self.zeal_medic.HEALTH_INIT = 60
-	self.zeal_medic.headshot_dmg_mul = 2 -- 300 head health
-	self.zeal_medic.spawn_sound_event = self._prefix_data_p1.medic() .. "_g90" --You chose the wrong career, asshole! (More aggresive spawn voicelines)
-	self.zeal_medic.move_speed_mul = { walk = 1.1, run = 1.1 }
 	table.insert(self._enemy_list, "zeal_medic")
 
 	self.marshal_marksman = deep_clone(self.sniper)
@@ -1300,8 +1277,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"special",
 		"marshal",
 	}
-	self.marshal_gunner.HEALTH_INIT = 72
-	self.marshal_gunner.headshot_dmg_mul = 2 -- 360 head health
+	self.marshal_gunner.HEALTH_INIT = 24
+	self.marshal_gunner.headshot_dmg_mul = 2 -- 120 head health
 	self.marshal_gunner.autofire_move_speed_mul = 0.5
 	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.marshal_gunner.chatter = self.presets.enemy_chatter.special
@@ -1327,7 +1304,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.marshal_gunner.use_radio = "dsp_radio_russian"
 	end
 
-	self.mobster_boss.HEALTH_INIT = 200
+	self.mobster_boss.HEALTH_INIT = 80
 	self.mobster_boss.headshot_dmg_mul = 2
 	self.mobster_boss.no_headshot_add_mul = true
 	self.mobster_boss.immune_to_knock_down = true
@@ -1337,7 +1314,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.mobster_boss.use_animation_on_fire_damage = false
 
-	self.chavez_boss.HEALTH_INIT = 200
+	self.chavez_boss.HEALTH_INIT = 80
 	self.chavez_boss.headshot_dmg_mul = 2
 	self.chavez_boss.no_headshot_add_mul = true
 	self.chavez_boss.no_run_start = true
@@ -1345,7 +1322,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.chavez_boss.use_animation_on_fire_damage = false
 
-	self.hector_boss.HEALTH_INIT = 300
+	self.hector_boss.HEALTH_INIT = 100
 	self.hector_boss.headshot_dmg_mul = 2
 	self.hector_boss.no_headshot_add_mul = true
 	self.hector_boss.immune_to_knock_down = true
@@ -1357,7 +1334,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
 
-	self.biker_boss.HEALTH_INIT = 300
+	self.biker_boss.HEALTH_INIT = 100
 	self.biker_boss.headshot_dmg_mul = 2
 	self.biker_boss.no_headshot_add_mul = true
 	self.biker_boss.no_run_start = true
@@ -1367,7 +1344,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
 
-	self.drug_lord_boss.HEALTH_INIT = 300
+	self.drug_lord_boss.HEALTH_INIT = 100
 	self.drug_lord_boss.headshot_dmg_mul = 2
 	self.drug_lord_boss.no_headshot_add_mul = true
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1376,7 +1353,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
 
-	self.triad_boss.HEALTH_INIT = 300
+	self.triad_boss.HEALTH_INIT = 100
 	self.triad_boss.headshot_dmg_mul = 2
 	self.triad_boss.no_headshot_add_mul = true
 	self.triad_boss.no_run_start = true
@@ -1388,7 +1365,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.throwable_target_verified = false
 	self.triad_boss.throwable_cooldown = 20
 
-	self.deep_boss.HEALTH_INIT = 400
+	self.deep_boss.HEALTH_INIT = 120
 	self.deep_boss.headshot_dmg_mul = 2
 	self.deep_boss.ignore_headshot = false
 	self.deep_boss.no_headshot_add_mul = true
@@ -1398,7 +1375,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.use_animation_on_fire_damage = false
 
 	self.fbi_boss = deep_clone(self.chavez_boss)
-	self.fbi_boss.HEALTH_INIT = 200
+	self.fbi_boss.HEALTH_INIT = 80
 	self.fbi_boss.throwable_cooldown = 10
 	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.access = "fbi"
@@ -1587,17 +1564,17 @@ CharacterTweakData.access_health_hs_mul_blacklist = {
 }
 
 CharacterTweakData.access_health = {
-	security = 8,
-	cop = 12,
-	gangster = 16,
-	fbi = 16,
+	security = 4,
+	cop = 4,
+	gangster = 6,
+	fbi = 6,
 }
 
 CharacterTweakData.access_hs_mul = {
-	security = 3.2,
-	cop = 3,
-	gangster = 3.2,
-	fbi = 3.2,
+	security = 2.5,
+	cop = 2.5,
+	gangster = 2.5,
+	fbi = 2.5,
 }
 
 CharacterTweakData.tweak_table_weapon = {
@@ -1654,11 +1631,9 @@ CharacterTweakData.access_weapon = {
 CharacterTweakData.tweak_table_move_speed = {
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
-	city_swat = "very_fast",
-	city_heavy_swat = "fast",
+	city_heavy_swat = "normal",
+	zeal_heavy_swat = "normal",
 	city_sniper = "fast",
-	zeal_swat = "very_fast",
-	zeal_heavy_swat = "fast",
 	cobra = "fast",
 	murky = "fast",
 	security_fat = "slow",
@@ -1785,17 +1760,14 @@ function CharacterTweakData:_set_presets()
 	self.flashbang_multiplier = diff_lerp(1, 1.5)
 	self.concussion_multiplier = 1
 
-	self.elite_shield_balance_mul = { 1, 1.5, 2, 2.5 }
+	self.shield_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
 
-	local bulldozer_armor = diff_lerp(1, 2)
-	local elite_bulldozer_armor = diff_lerp(2, 3)
-
-	self.tank.armor_damage_mul = 1 / bulldozer_armor
-	self.tank_hw.armor_damage_mul = self.tank.armor_damage_mul
-	self.tank_elite.armor_damage_mul = 1 / elite_bulldozer_armor
-
-	self.tank_armor_balance_mul = { 1, 1.5, 2, 2.5 }
-
+	self.tank.tank_armor_health_mul = 1 / diff_lerp(1, 2)
+	self.tank_hw.tank_armor_health_mul = self.tank.tank_armor_health_mul	
+	self.tank_elite.tank_armor_health_mul = 1 / diff_lerp(2, 3)
+	
+	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
+	
 	-- eclipse exclusive edits
 	if is_eclipse then
 		self:_multiply_all_speeds(1.1, 1.05)

@@ -55,33 +55,3 @@ function SawWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spread_m
 
 	return ray_res
 end
-
-function SawHit:on_collision(col_ray, weapon_unit, user_unit, damage)
-	local hit_unit = col_ray.unit
-	local is_enemy = hit_unit:character_damage() ~= nil
-	local base_ext = hit_unit:base()
-
-	local enemy_dmg_mul = 2
-
-	if base_ext and base_ext.has_tag and base_ext:has_tag("tank") then
-		enemy_dmg_mul = enemy_dmg_mul * 2
-
-		damage = damage * enemy_dmg_mul
-	elseif is_enemy then
-		damage = damage * enemy_dmg_mul
-	end
-
-	local result = InstantBulletBase.on_collision(self, col_ray, weapon_unit, user_unit, damage)
-
-	if hit_unit:damage() and col_ray.body:extension() and col_ray.body:extension().damage then
-		damage = math.clamp(damage * managers.player:upgrade_value("saw", "lock_damage_multiplier", 1) * 4, 0, 200)
-
-		col_ray.body:extension().damage:damage_lock(user_unit, col_ray.normal, col_ray.position, col_ray.direction, damage)
-
-		if hit_unit:id() ~= -1 then
-			managers.network:session():send_to_peers_synched("sync_body_damage_lock", col_ray.body, damage)
-		end
-	end
-
-	return result
-end
