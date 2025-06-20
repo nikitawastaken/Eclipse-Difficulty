@@ -1357,7 +1357,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Bernetti Auto
 	self.beer.CLIP_AMMO_MAX = 15
-	self.beer.stats.damage = 16
+	self.beer.stats.damage = 18
 	self.beer.stats.spread = 13
 	self.beer.stats.recoil = 20
 	self.beer.stats.concealment = 28
@@ -1371,7 +1371,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Stryk
 	self.glock_18c.CLIP_AMMO_MAX = 17
-	self.glock_18c.stats.damage = 16
+	self.glock_18c.stats.damage = 20
 	self.glock_18c.stats.spread = 14
 	self.glock_18c.stats.recoil = 17
 	self.glock_18c.stats.concealment = 29
@@ -1555,8 +1555,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Crosskill Guard
 	self.shrew.CLIP_AMMO_MAX = 8
 	self.shrew.stats.damage = 48
-	self.shrew.stats.spread = 14
-	self.shrew.stats.recoil = 8
+	self.shrew.stats.spread = 15
+	self.shrew.stats.recoil = 9
 	self.shrew.stats.concealment = 30
 	self.shrew.fire_mode_data.fire_rate = 60 / 600
 	self.shrew.reload_speed_multiplier = 1.25
