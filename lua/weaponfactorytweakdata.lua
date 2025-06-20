@@ -51,6 +51,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				part.stats.spread_moving = 0
 			end
 
+			if part.stats.damage then
+				part.stats.damage = math.round(part.stats.damage / 2.5)
+			end
+
 			local shortdot = id == "wpn_fps_upg_o_shortdot"
 			if is_optic and not shortdot then
 				part.stats.concealment = -1
@@ -855,9 +859,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		recoil_favored = { value = 1, recoil = 2, concealment = -2 },
 		spread_heavily_favored = { value = 1, recoil = -1, spread = 3, concealment = -2 },
 		recoil_heavily_favored = { value = 1, recoil = 3, spread = -1, concealment = -2 },
-		small_silencer = { value = 1, damage = -5, concealment = -1 },
-		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
-		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
+		small_silencer = { value = 1, damage = -3, concealment = -1 },
+		medium_silencer = { value = 1, damage = -2, spread = 1, concealment = -2 },
+		big_silencer = { value = 1, damage = -1, recoil = 1, spread = 1, concealment = -3 },
 		massive_silencer = { value = 1, recoil = 3, spread = 2, concealment = -5 },
 	}
 
@@ -909,8 +913,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		medium_loud = { spread = 2, concealment = -2 },
 		big_loud = { spread = 3, concealment = -3 },
 		horizontal_loud = { spread = -2, recoil = 1, spread_multi = { 1.5, 0.5 }, concealment = -3 },
-		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
-		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
+		medium_silencer = { value = 1, damage = -2, spread = 1, concealment = -2 },
+		big_silencer = { value = 1, damage = -1, recoil = 1, spread = 1, concealment = -3 },
 	}
 
 	-- Shark Teeth

@@ -487,7 +487,6 @@ function WeaponTweakData:_init_weapons()
 			weap_data.armor_piercing_chance = 1
 			weap_data.bow_reload_speed_multiplier = nil
 			weap_data.reload_speed_multiplier = 2
-			weap_data.steelsight_move_speed_mul = 0.5
 
 			weap_data.spread_multiplier = nil
 			weap_data.recoil_multiplier = nil
@@ -505,21 +504,21 @@ function WeaponTweakData:_init_weapons()
 		elseif cat_map.grenade_launcher or cat_map.rocket_launcher then
 			weap_data.stats.suppression = 1
 			weap_data.stats.alert_size = 17
-			weap_data.pickup_mul = weap_data.pickup_mul or cat_map.rocket_launcher and 0 or 0.1 / 0.6
+			weap_data.pickup_mul = weap_data.pickup_mul or cat_map.rocket_launcher and 0 or 0.225
 			weap_data.damage_near = 2000
 			weap_data.damage_far = 3000
 			weap_data.rays = 8
 
 			weap_data.spread_multiplier = {
 				standing = {
-					hipfire = 4,
-					crouching = 1,
-					steelsight = 0.5,
-				},
-				moving = {
-					hipfire = 6,
+					hipfire = 3,
 					crouching = 1,
 					steelsight = 1,
+				},
+				moving = {
+					hipfire = 5,
+					crouching = 1,
+					steelsight = 2,
 				}
 			}
 			weap_data.recoil_multiplier = {
