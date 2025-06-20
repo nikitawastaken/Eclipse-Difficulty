@@ -19,6 +19,7 @@ local M = {
 	election_day_3_skip1 = true,
 	election_day_3_skip2 = true,
 	run = true, -- hstreet
+	sah = true, -- shacklethrone auction
 	bph = true, -- hisland
 	big = true, -- bigbank
 	wwh = true, -- kolyaskindeal

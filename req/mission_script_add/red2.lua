@@ -39,6 +39,7 @@ local enabled_chance_escape_cloakers = math.random() < 0.5
 local enabled_chance_escape_shield_wall = math.random() < 0.75
 local enabled_chance_shield_army = math.random() < 0.6
 local enabled_chance_more_guards = math.random() < 0.5
+local enabled_chance_escape_basement_cloakers = 0.1 + (is_pro_job and 0.1 or 0) 
 
 local optsSecurity = {
 	enemy_table = security,
@@ -147,7 +148,7 @@ local optsSpoocAmbush2 = {
 	enabled = is_eclipse_pro and enabled_chance_escape_cloakers,
 }
 local optsTaserEscape = {
-	enemy = taser_shotgun,
+	enemy = taser,
 	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_145_group),
 }
 local optsSWAT_HeavySG2 = {
@@ -304,7 +305,7 @@ local enable_193_basement_ambushes = {
 	},
 }
 local enable_cloaker_basement_ambush = {
-	enabled = true,
+	enabled = enabled_chance_escape_basement_cloakers,
 	elements = {
 		106042,
 	},
@@ -316,9 +317,6 @@ local optsShieldArmySO = {
 	align_position = true,
 	align_rotation = true,
 	so_action = "AI_sniper",
-	pose = "crouch",
-	path_haste = "walk",
-	path_stance = "cbt",
 }
 local optsDozerHunt = {
 	SO_access = "4096",

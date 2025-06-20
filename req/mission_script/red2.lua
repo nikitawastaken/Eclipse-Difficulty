@@ -18,7 +18,6 @@ local bulldozer = scripted_enemy.bulldozer_1
 local bulldozer_2 = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cloaker_basement_chance = 0.1 + (is_pro_job and 0.1 or 0)
 local close_shutters_chance = (normal and 20 or hard and 40 or 60) + (is_pro_job and 20 or 0)
 local basement_ambush_chance = (normal and 25 or hard and 45 or 65) + (is_pro_job and 10 or 0)
 local basement_enemies_amount = 2
@@ -256,11 +255,6 @@ return {
 			{ id = 103914, delay = 0 },
 		},
 	},
-	[103914] = {
-		values = {
-			enabled = cloaker_basement_chance,
-		},
-	},
 	-- restore unused shield army script from pdth
 	[106547] = {
 		on_executed = {
@@ -284,6 +278,12 @@ return {
 	[103998] = disabled,
 	[103377] = disabled,
 	[104041] = disabled,
+	-- tweak vent spawns to trigger only on Eclipse
+	[104076] = {
+		values = {
+			enabled = is_eclipse,
+		},
+	},
 	-- tweak chances for closing shutters and basement ambush
 	[102813] = { chance = close_shutters_chance },
 	[100528] = { chance = basement_ambush_chance },
