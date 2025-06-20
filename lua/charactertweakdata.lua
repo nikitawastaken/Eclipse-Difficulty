@@ -1219,7 +1219,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "zeal_taser")
 
 	self.tank.HEALTH_INIT = 240
-	self.tank.headshot_dmg_mul = 20 -- 120 head health
+	self.tank.headshot_dmg_mul = 15 -- 160 head health
 	self.tank.ecm_vulnerability = 0
 	self.tank.min_obj_interrupt_dis = 600
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1238,7 +1238,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.tank_elite = deep_clone(self.tank)
 	self.tank_elite.HEALTH_INIT = 360
-	self.tank_elite.headshot_dmg_mul = 20 -- 180 head health
+	self.tank_elite.headshot_dmg_mul = 15 -- 240 head health
 	self.tank_elite.move_speed_mul = { walk = 0.85, run = 0.85 }
 	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
