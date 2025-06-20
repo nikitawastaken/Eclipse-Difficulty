@@ -2584,7 +2584,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ray.use_data.selection_index = 2
 	self.ray.categories = { "grenade_launcher", "heavy" }
 	self.ray.CLIP_AMMO_MAX = 4
-	self.ray.stats.damage = 80
+	self.ray.stats.damage = 72
 	self.ray.stats.spread = 25
 	self.ray.stats.recoil = 25
 	self.ray.stats.concealment = 4
@@ -2596,12 +2596,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpg7.use_data.selection_index = 2
 	self.rpg7.categories = { "grenade_launcher", "heavy" }
 	self.rpg7.CLIP_AMMO_MAX = 1
-	self.rpg7.stats.damage = 80
+	self.rpg7.stats.damage = 180
 	self.rpg7.stats.spread = 25
 	self.rpg7.stats.recoil = 25
 	self.rpg7.stats.concealment = 4
 	self.rpg7.fire_mode_data.fire_rate = 60 / 30
-	self.rpg7.stats_modifiers = { damage = 30 }
+	self.rpg7.stats_modifiers = { damage = 20 }
 	self.rpg7.total_ammo_mul = 4
 
 	-- Flamethrowers
