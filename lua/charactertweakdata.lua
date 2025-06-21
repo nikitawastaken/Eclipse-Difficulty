@@ -234,7 +234,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.cop_fat, 6 / 5)
 
 	presets.weapon.gangster = based_on(presets.weapon.base)
-	damage_multiplier(presets.weapon.gangster, 7 / 5)
+	damage_multiplier(presets.weapon.gangster, 6 / 4)
 	accuracy_multiplier(presets.weapon.gangster, 0.5)
 	recoil_multiplier(presets.weapon.gangster, 0.8)
 	burst_multiplier(presets.weapon.gangster, 1.5)
@@ -1062,7 +1062,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_swat.suppression = self.presets.suppression.average
 	self.fbi_swat.no_arrest = false
 
-	self.security_mcmansion = deep_clone(self.fbi_swat)
+	self.security_mcmansion = deep_clone(self.swat)
+	self.swat.HEALTH_INIT = 10
+	self.swat.headshot_dmg_mul = 2.5 -- 40 head health
 	self.security_mcmansion.melee_weapon = "weapon"
 	self.security_mcmansion.speech_prefix_p2 = "n"
 	self.security_mcmansion.silent_priority_shout = "f37"
