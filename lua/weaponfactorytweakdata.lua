@@ -407,7 +407,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
 	self.parts.wpn_fps_pis_korth_m_6.stats.total_ammo_mod = -5
-	self.parts.wpn_fps_pis_korth_m_6.stats.damage = 60
+	self.parts.wpn_fps_pis_korth_m_6.stats.damage = 16
 	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
 	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -3
 	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
@@ -415,7 +415,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	-- SMG Mods
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 10
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 6
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
 	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 0.8333333333333333, ammo_pickup_min_mul = 0.8333333333333333 }
 
@@ -561,7 +561,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.extra_ammo = 15
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.total_ammo_mod = 13
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = -30
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = -12
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -4
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 2
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
@@ -582,7 +582,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 50
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.total_ammo_mod = 10
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = -10
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = -4
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.spread = -3
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.recoil = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.concealment = 0
@@ -619,12 +619,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_hailstorm_b_extended.stats.recoil = 1
 	self.parts.wpn_fps_hailstorm_b_extended.stats.concealment = -2
 
-	self.parts.wpn_fps_hailstorm_b_suppressed.stats.damage = -3
+	self.parts.wpn_fps_hailstorm_b_suppressed.stats.damage = -2
 	self.parts.wpn_fps_hailstorm_b_suppressed.stats.spread = 0
 	self.parts.wpn_fps_hailstorm_b_suppressed.stats.recoil = 0
 	self.parts.wpn_fps_hailstorm_b_suppressed.stats.concealment = -2
 
-	self.parts.wpn_fps_hailstorm_b_ext_suppressed.stats.damage = 0
+	self.parts.wpn_fps_hailstorm_b_ext_suppressed.stats.damage = -1
 	self.parts.wpn_fps_hailstorm_b_ext_suppressed.stats.spread = 1
 	self.parts.wpn_fps_hailstorm_b_ext_suppressed.stats.recoil = 1
 	self.parts.wpn_fps_hailstorm_b_ext_suppressed.stats.concealment = -3
@@ -741,7 +741,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	-- broomstick
 	self.parts.wpn_fps_pis_c96_b_long.custom_stats = conversion_kit_stats.high_dmg.custom_stats
-	self.parts.wpn_fps_pis_c96_b_long.stats = { value = 1, total_ammo_mod = -5, concealment = -6, spread = 2, recoil = -3, damage = 70, suppression = -5, alert_size = 4 }
+	self.parts.wpn_fps_pis_c96_b_long.stats = { value = 1, total_ammo_mod = -5, concealment = -6, spread = 2, recoil = -3, damage = 18, suppression = -5, alert_size = 4 }
 	self.parts.wpn_fps_pis_c96_b_long.has_description = true
 	self.parts.wpn_fps_pis_c96_b_long.desc_id = "bm_wp_dmr_kit_penetration_desc"
 
@@ -933,9 +933,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		balanced = { value = 1, recoil = 1, spread = 1, concealment = -2 },
 		spread_favored = { value = 1, spread = 2, concealment = -2 },
 		recoil_favored = { value = 1, recoil = 2, concealment = -2 },
-		small_silencer = { value = 1, damage = -5, concealment = -1 },
-		medium_silencer = { value = 1, damage = -3, spread = 1, concealment = -2 },
-		big_silencer = { value = 1, recoil = 1, spread = 1, concealment = -3 },
+		small_silencer = { value = 1, damage = -3, concealment = -1 },
+		medium_silencer = { value = 1, damage = -2, spread = 1, concealment = -2 },
+		big_silencer = { value = 1, damage = -1, recoil = 1, spread = 1, concealment = -3 },
 		massive_silencer = { value = 1, recoil = 3, spread = 1, concealment = -4 },
 	}
 
@@ -958,7 +958,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	-- Asepsis
 	self.parts.wpn_fps_upg_ns_pis_medium_slim.stats = pistol_barrel_ext_stats.medium_silencer
 	-- Budget
-	self.parts.wpn_fps_upg_ns_ass_filter.stats = { value = 1, recoil = -1, spread = -2, concealment = -2, damage = -5 }
+	self.parts.wpn_fps_upg_ns_ass_filter.stats = { value = 1, recoil = -1, spread = -2, concealment = -2, damage = -3 }
 	-- Jungle Ninja
 	self.parts.wpn_fps_upg_ns_pis_jungle.stats = pistol_barrel_ext_stats.massive_silencer
 	-- Roctec
@@ -1055,7 +1055,6 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 	}
 
-	-- SHOTGUNS --
 	local shotgun_ammo_overrides = {
 		wpn_fps_upg_a_custom = {
 			very_heavy = { -- double barrels

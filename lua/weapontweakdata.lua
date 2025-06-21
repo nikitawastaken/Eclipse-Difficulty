@@ -2163,6 +2163,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Brenner
 	self.hk21.CLIP_AMMO_MAX = 100
 	self.hk21.stats.damage = 32
+	self.hk21.stats.damage = 32
 	self.hk21.stats.spread = 14
 	self.hk21.stats.recoil = 5
 	self.hk21.stats.concealment = 8
@@ -2193,7 +2194,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Akron
 	self.hcar.CLIP_AMMO_MAX = 20
-	self.hcar.stats.damage = 36
+	self.hcar.stats.damage = 40
 	self.hcar.stats.spread = 19
 	self.hcar.stats.recoil = 4
 	self.hcar.stats.concealment = 12
