@@ -10,19 +10,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local staircase_spawn = {
-	values = {
-		interval = 10,
-	},
-}
-local exit_spawn = {
-	values = {
-		interval = 20,
-	},
-}
 local vent_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -156,9 +146,6 @@ return {
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- spawn group delays
-	[100407] = staircase_spawn,
-	[100414] = exit_spawn,
-	[100420] = exit_spawn,
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,
 	[103111] = vent_spawn,

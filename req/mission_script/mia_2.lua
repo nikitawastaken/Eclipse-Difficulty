@@ -14,15 +14,9 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local penthouse_spawn = {
-	values = {
-		interval = 10,
-	},
-	groups = preferred.no_bulldozers,
-}
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.only_swats_tasers_cloakers,
 }
@@ -54,8 +48,6 @@ return {
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn point delays
-	[101084] = penthouse_spawn,
-	[101085] = penthouse_spawn,
 	[100666] = roof_spawn,
 	[101034] = roof_spawn,
 	[101530] = roof_spawn,

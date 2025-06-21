@@ -107,13 +107,13 @@ local breach_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
@@ -145,7 +145,7 @@ return {
 	},
 	-- Add new reinforce
 	[101825] = { -- Interrogation started
-		difficulty = 0.6,
+		difficulty = 0.75,
 		reinforce = {
 			{
 				name = "staircase_main1",
@@ -177,13 +177,10 @@ return {
 	[101760] = disabled, -- interrogation started, diff 1
 	[102305] = { -- initial diff
 		values = {
-			difficulty = 0.4,
+			difficulty = 0.5,
 		},
 	},
 	[102013] = { -- 1st hack done
-		difficulty = 0.8,
-	},
-	[102014] = { -- 2nd hack done
 		difficulty = 1,
 	},
 	-- Multiple interrupts once more (pain)

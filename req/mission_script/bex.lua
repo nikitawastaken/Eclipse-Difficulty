@@ -32,7 +32,7 @@ local enabled = {
 }
 local side_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
