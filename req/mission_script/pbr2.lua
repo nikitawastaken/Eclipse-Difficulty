@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local wall_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
 	},
 }
 local sewer_spawn = {
@@ -11,7 +11,7 @@ local sewer_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
