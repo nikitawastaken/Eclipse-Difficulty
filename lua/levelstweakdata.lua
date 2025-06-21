@@ -147,7 +147,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		special_limit_add = {
 			shield = 1,
 		},
-		spawn_group_presets = {	
+		spawn_group_presets = {
 			full_force = true,
 			heavy_response = true,
 			feds = true,
