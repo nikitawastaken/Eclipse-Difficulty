@@ -839,9 +839,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.weapon.silencer_spread_index_addend[1] = 1
 	self.values.weapon.silencer_recoil_index_addend[1] = 1
 	self.values.weapon.armor_piercing_chance_silencer[1] = 0.3
+	self.values.weapon.silencer_damage_multiplier[1] = 1.2
 	self.skill_descs.backstab.multibasic = "4"
 	self.skill_descs.backstab.multibasic2 = "30%"
-	self.skill_descs.backstab.multipro = "15%"
+	self.skill_descs.backstab.multipro = "20%"
 
 	-- Low Blow
 	self.definitions.weapon_extra_crit_damage_mul = {
