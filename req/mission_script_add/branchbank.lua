@@ -34,8 +34,8 @@ local random_dozers = {
 	black_bulldozer,
 }
 local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
+	elite_bulldozer_neil,
+	elite_bulldozer_skull,
 }
 local optsBulldozer = {
 	enemy = elite_bulldozer_skull,
