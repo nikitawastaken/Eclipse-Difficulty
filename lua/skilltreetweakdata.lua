@@ -85,7 +85,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.stable_shot[2].upgrades = { "weapon_faster_recoil_recentering" }
 
 	-- Rifleman
-	self.skills.rifleman[1].upgrades = { "" }
+	self.skills.rifleman[1].upgrades = { "player_steelsight_stamina_reduction_multiplier" }
 	self.skills.rifleman[2].upgrades = { "weapon_standing_spread_multiplier" }
 	self.skills.rifleman.icon_xy = { 8, 5 }
 

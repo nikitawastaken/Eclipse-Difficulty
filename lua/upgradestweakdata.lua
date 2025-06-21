@@ -224,6 +224,16 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.stable_shot.multipro = "50%"
 
 	-- Rifleman
+	self.values.player.steelsight_stamina_reduction_multiplier = { 0.85 }
+	self.definitions.player_steelsight_stamina_reduction_multiplier = {
+		name_id = "menu_player_steelsight_stamina_reduction_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "steelsight_stamina_reduction_multiplier",
+			category = "player"
+		}
+	}
 	self.values.weapon.standing_spread_multiplier = { 0.8 }
 	self.definitions.weapon_standing_spread_multiplier = {
 		name_id = "menu_weapon_standing_spread_multiplier",
@@ -234,7 +244,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.skill_descs.rifleman.multibasic = "25%"
+	self.skill_descs.rifleman.multibasic = "15%"
 	self.skill_descs.rifleman.multipro = "20%"
 
 	-- Marksman
