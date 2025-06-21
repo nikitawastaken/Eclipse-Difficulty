@@ -101,6 +101,7 @@ local optsPreferedAdd1 = {
 	enabled = true,
 }
 local optsOpen_the_elevator = {
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 103057, notify_unit_sequence = "open_doors", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 103070, notify_unit_sequence = "open_doors", time = 0 },

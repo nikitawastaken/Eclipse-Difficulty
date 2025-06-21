@@ -41,6 +41,9 @@ local disabled = {
 local filter_overkill_above = {
 	values = Eclipse.utils.set_diff_groups("overkill_above"),
 }
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
 
 local vault_ambush_enemy = bulldozer
 
@@ -149,6 +152,8 @@ return {
 	[103033] = bags_required_objective,
 	-- allow Overdrill
 	[104182] = filter_overkill_above,
+	-- allow Bo's dozers on all diffs
+	[100682] = filter_easy_above,
 	-- disable forced manager flee objective
 	[100665] = disabled,
 	-- disable the right vault path
