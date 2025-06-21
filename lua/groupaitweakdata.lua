@@ -2471,7 +2471,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1500, 3000, 0.5, 1),
+			}, 1000, 3000, 0.5, 1),
 		},
 	}
 
@@ -2502,7 +2502,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1500, 3000, 0.5, 1),
+			}, 1000, 3000, 0.5, 1),
 		},
 	}
 
@@ -2553,7 +2553,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1500, 3000, 0.5, 1),
+			}, 1000, 3000, 0.5, 1),
 		},
 	}
 
@@ -2604,7 +2604,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1500, 3000, 0.5, 1),
+			}, 1000, 3000, 0.5, 1),
 		},
 	}
 
@@ -2653,7 +2653,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1500, 3000, 0.5, 1),
+			}, 1000, 3000, 0.5, 1),
 		},
 	}
 
@@ -3583,7 +3583,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_swats = { 36, 0, 0 },
 			fbi_swats = { 36, 36, 0 },
-			elite_swat = { 0, 24, 36 },
+			elite_swats = { 0, 24, 36 },
 
 			fbi_heavies = { 0, 12, 36 },
 
