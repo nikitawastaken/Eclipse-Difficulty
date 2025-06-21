@@ -25,7 +25,7 @@ Hooks:PostHook(CoreBodyDamage, "init", "eclipse_init", function(self)
 		or self._body_element._name == "held_body_right"
 		or self._body_element._name == "held_body_top"
 	then
-		local shield_balance_mul = managers.groupai:state():_get_balancing_multiplier(tweak_data.character.elite_shield_balance_mul)
+		local shield_balance_mul = managers.groupai:state():_get_balancing_multiplier(tweak_data.character.shield_health_balance_mul)
 
 		self._body_element._damage_multiplier = math.min(1 / shield_balance_mul, 1) or self._body_element._damage_multiplier
 	elseif self._body_element._name == "planks_body" then
