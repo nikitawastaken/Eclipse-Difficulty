@@ -1063,8 +1063,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_swat.no_arrest = false
 
 	self.security_mcmansion = deep_clone(self.swat)
-	self.swat.HEALTH_INIT = 10
-	self.swat.headshot_dmg_mul = 2.5 -- 40 head health
+	self.security_mcmansion.HEALTH_INIT = 10
+	self.security_mcmansion.headshot_dmg_mul = 2.5 -- 40 head health
 	self.security_mcmansion.melee_weapon = "weapon"
 	self.security_mcmansion.speech_prefix_p2 = "n"
 	self.security_mcmansion.silent_priority_shout = "f37"
