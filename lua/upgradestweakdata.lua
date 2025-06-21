@@ -231,8 +231,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "steelsight_stamina_reduction_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.weapon.standing_spread_multiplier = { 0.8 }
 	self.definitions.weapon_standing_spread_multiplier = {
