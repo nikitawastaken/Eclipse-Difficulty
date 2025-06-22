@@ -14,7 +14,7 @@ local entrance_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
