@@ -17,7 +17,7 @@ local eclipse_dozers = {
 	elite_skull_bulldozer,
 }
 
-local swat_heli_amount = 2 + (is_pro_job and 1 or 0)
+local swat_heli_amount = 2
 
 local chopper_amount = {
 	values = {
@@ -147,6 +147,7 @@ return {
 	[105159] = {
 		on_executed = {
 			{ id = 400027, delay = 0 },
+			{ id = 101320, remove = true },
 		},
 	},
 	-- add spawns to nearby scaffolding

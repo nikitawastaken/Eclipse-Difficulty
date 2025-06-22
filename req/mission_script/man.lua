@@ -568,6 +568,16 @@ return {
 			{ id = 103766, delay = 60, delay_rand = 30 },
 		},
 	},
+	[103765] = {
+		values = {
+			trigger_times = 1,
+		},
+	},
+	[103766] = {
+		values = {
+			trigger_times = 1,
+		},
+	},
 	[103434] = {
 		values = filter_normal_above.values,
 		on_executed = {
