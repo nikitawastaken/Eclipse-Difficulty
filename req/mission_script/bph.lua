@@ -52,7 +52,7 @@ return {
 	[100130] = upper_spawn,
 	[100663] = upper_spawn,
 	[100669] = upper_spawn,
-	[100675] = upper_spawn,	
+	[100675] = upper_spawn,
 	[100741] = upper_init_spawn,
 	[100131] = upper_init_spawn,
 	[101365] = tower_spawn,
@@ -60,5 +60,4 @@ return {
 	[100951] = flank_spawn,
 	[101420] = flank_spawn,
 	[100888] = window_spawn,
-	
 }

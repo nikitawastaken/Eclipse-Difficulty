@@ -296,7 +296,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			feds = true,
 		},
 	}
-	
+
 	self.born.group_ai_settings = {
 		assault_force_mul = 0.8,
 		grenade_timeout_mul = {
@@ -339,7 +339,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			small_squads = true,
 		},
 	}
-	
+
 	self.flat.group_ai_settings = {
 		assault_force_mul = 0.8,
 		reenforce_interval_mul = 1.5,
