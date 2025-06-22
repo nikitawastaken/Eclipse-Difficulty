@@ -11,7 +11,7 @@ local fence_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -23,7 +23,7 @@ local container_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

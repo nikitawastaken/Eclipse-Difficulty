@@ -1,47 +1,37 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local curly_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
-local reinforce_amount = {
-	values = {
-		amount = 3,
-	},
-}
 local skylight_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents,
 }
-local upper_spawn = {
+local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local window_spawn = {
+local upper_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local garage_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -68,11 +58,9 @@ return {
 	[101759] = bags_required,
 	[101760] = bags_required,
 	[101761] = bags_required,
-	-- Remove a few vanilla reinforce points
-	[102054] = disabled,
-	[102057] = disabled,
-	[102070] = disabled,
-	-- Spawn group delays
+	-- remove curly spawns
+	[101653] = disabled,
+	-- spawn group delays
 	[100130] = curly_spawn,
 	[102078] = curly_spawn,
 	[101166] = skylight_spawn,

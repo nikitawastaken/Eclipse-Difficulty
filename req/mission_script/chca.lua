@@ -25,11 +25,11 @@ local lifeboat_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local casino_spawn = {
+local spa_window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_shields_bulldozers,
 }
 local balcony_spawn = {
 	values = {
@@ -37,13 +37,13 @@ local balcony_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local spa_window_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local courtyard_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_cops_agents,
+}
+local casino_spawn = {
 	values = {
 		interval = 45,
 	},

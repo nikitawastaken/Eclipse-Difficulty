@@ -10,6 +10,16 @@ local disabled = {
 		enabled = false,
 	},
 }
+local staircase_spawn = {
+	values = {
+		interval = 5,
+	},
+}
+local exit_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local vent_spawn = {
 	values = {
 		interval = 20,
@@ -39,7 +49,7 @@ local terminator_dozer_2 = {
 	},
 }
 return {
-	--delay SWAT response
+	-- delay SWAT response
 	[102675] = {
 		on_executed = {
 			{ id = 103225, delay = 30 },
@@ -91,14 +101,14 @@ return {
 			{
 				name = "reception",
 				force = 3,
-				position = Vector3(700, 675, 0),
+				position = Vector3(925, 650, 0),
 			},
 		},
 		on_executed = {
 			{ id = 103700, delay = 0 }, -- activate stair case spawns immediately
 		},
 	},
-	--diff 1, blow wall
+	-- diff 1, blow the wall
 	[104057] = disabled,
 	[103279] = {
 		on_executed = {
@@ -146,6 +156,9 @@ return {
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- spawn group delays
+	[100407] = staircase_spawn,
+	[100414] = exit_spawn,
+	[100420] = exit_spawn,
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,
 	[103111] = vent_spawn,

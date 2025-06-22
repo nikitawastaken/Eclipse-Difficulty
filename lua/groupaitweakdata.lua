@@ -112,17 +112,17 @@ function GroupAITweakData:_distance_weighted_spawn_entry(spawn_entry, from_dis, 
 		return math.map_range_clamped(self._last_dis_freq or (from_dis + to_dis) / 2, from_dis, to_dis, from_weight, to_weight)
 	end
 
-	local entry_freq = spawn_entry.freq_by_diff or spawn_entry.freq or 1
+	local entry_freq = clone(spawn_entry.freq_by_diff) or spawn_entry.freq or 1
 	spawn_entry.freq_by_diff = nil
 	spawn_entry.freq = nil
 	return setmetatable(spawn_entry, {
 		__index = function(t, k)
 			if k == "freq_by_diff" and type(entry_freq) == "table" then -- edit here
+				local new_freq = {}
 				for i, weight in pairs(entry_freq) do
-					entry_freq[i] = weight * dis_freq()
+					new_freq[i] = weight * dis_freq()
 				end
-
-				return entry_freq
+				return new_freq
 			elseif k == "freq" then
 				return entry_freq * dis_freq()
 			end
@@ -3523,7 +3523,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			cs_taser = { 0, 6, 12 },
 
-			cs_bulldozer = { 0, 0, 6 },
+			cs_bulldozer = { 0, 0, 9 },
 		}
 		self.besiege.recon.groups = {
 			cs_stealth_light = { 1, 3, 1 },
@@ -3546,7 +3546,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			fbi_cloaker = { 0, 8, 16 },
 
-			fbi_bulldozer = { 0, 0, 8 },
+			fbi_bulldozer = { 0, 0, 12 },
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_light = { 1, 2, 1 },
@@ -3569,7 +3569,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			fbi_cloaker = { 0, 10, 20 },
 
-			fbi_bulldozer = { 0, 0, 10 },
+			fbi_bulldozer = { 0, 0, 15 },
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_light = { 1, 2, 1 },
@@ -3595,10 +3595,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 			fbi_cloaker = { 0, 12, 24 },
 
-			fbi_bulldozer = { 0, 0, 4 },
-			elite_bulldozer = { 0, 0, 4 },
-			elite_bulldozer_takedown = { 0, 0, 2 },
-			elite_bulldozer_shield = { 0, 0, 2 },
+			fbi_bulldozer = { 0, 0, 6 },
+			elite_bulldozer = { 0, 0, 6 },
+			elite_bulldozer_takedown = { 0, 0, 3 },
+			elite_bulldozer_shield = { 0, 0, 3 },
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_light = { 1, 2, 1 },
@@ -3663,6 +3663,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	-- Control
+	self.ponr.assault.force = {
+		diff_lerp(4, 8),
+		diff_lerp(8, 12),
+		diff_lerp(12, 16),
+	}
+	self.ponr.assault.force_balance_mul = { 0.5, 0.75, 1, 1.25 }
+	
 	self.ponr.assault.delay = { 20, 20, 20 }
 	self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
