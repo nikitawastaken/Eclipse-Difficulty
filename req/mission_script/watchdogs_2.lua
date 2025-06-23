@@ -64,7 +64,6 @@ local function cloaker_add(id)
 	} or nil
 end
 
-
 local john_boat_driver_chance = math.random() < 0.1
 
 local john_dialogue_1 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_01" or "bot_wd2_01"
@@ -82,7 +81,6 @@ local john_dialogue_12 = john_boat_driver_chance and "Play_bot_watchdogs_new_sta
 local john_dialogue_13 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_02" or "Play_bot_a04"
 local john_dialogue_14 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_03" or "Play_bot_a05"
 local john_dialogue_15 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_04" or "Play_bot_a06"
-
 
 return {
 	-- 10% of pre beta boat driver taking it's place
