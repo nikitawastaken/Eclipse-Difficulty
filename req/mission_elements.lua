@@ -153,7 +153,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			chance_inc = 0,
 			interrupt_dmg = 1,
 			interrupt_objective = false,
-			on_executed = {},
+			on_executed = opts.on_executed or {},
 			spawn_instigator_ids = opts.spawn_instigator_ids or {},
 			followup_elements = opts.followup_elements or {},
 			interrupt_dis = opts.interrupt_dis or 1,

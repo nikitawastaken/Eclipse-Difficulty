@@ -229,6 +229,21 @@ local optsdisable_locked_vault_door = {
 	elements = {
 		100197,
 		100198,
+		102716,
+		102717,
+	},
+}
+ocal optsdisable_dozer_chopper = {
+	enabled = is_eclipse,
+	elements = {
+		400025,
+	},
+}
+local optsenable_dozer_chopper = {
+	enabled = is_eclipse,
+	toggle = "off",
+	elements = {
+		400025,
 	},
 }
 local Smoke_bomb_ambush = {
@@ -381,6 +396,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400023, "shatter_glass", Vector3(0, 0, 0), Rotation(0, 0, 0), optsBreak_The_Glass),
 	Eclipse.mission_elements.gen_object_editor(400024, "dozer_heli_sequence", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerChopper),
 	Eclipse.mission_elements.gen_missionscript(400025, "dozer_heli_event", optsspawndozerchopper),
+	Eclipse.mission_elements.gen_toggleelement(400073, "enable_dozer_chopper", optsenable_dozer_chopper),
+	Eclipse.mission_elements.gen_toggleelement(400074, "disable_dozer_chopper", optsdisable_dozer_chopper),
 	-- chopper 2
 	Eclipse.mission_elements.gen_dummy(400026, "swat_heli_1", Vector3(-607, 4091.155, 0), Rotation(137, 0, 0), optsSWAT_heli),
 	Eclipse.mission_elements.gen_dummy(400027, "swat_heli_2", Vector3(-534.196, 4022.955, 0), Rotation(137, 0, 0), optsSWAT_heli),

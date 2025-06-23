@@ -429,5 +429,59 @@
 	"ene_sniper_3" : "GenSec Elite Sniper",
 	"ene_shield_1" : "FBI Shield",
 	"ene_shield_2" : "SWAT Shield",
-	"ene_city_shield" : "GenSec Elite Shield"
+	"ene_city_shield" : "GenSec Elite Shield",
+	
+	"bot_watchdogs_new_stage2_01_any_02" : "This is the boat. I see the signal, will be there soon.",
+	"bot_watchdogs_new_stage2_01_any_03" : "This is the boat. Signal on sight, I'm on my way.",
+	
+	"bot_watchdogs_new_stage2_02_any_01" : "This is the boat. I'll be there in two minutes",
+	"bot_watchdogs_new_stage2_02_any_02" : "This is the boat. Give me two minutes to be there, I'll be there in two minutes, guys.",
+	"bot_watchdogs_new_stage2_02_any_03" : "This is the boat. I'm there in two minutes, two minutes!",
+	
+	"bot_watchdogs_new_stage2_03_any_01" : "This is the boat. I'm almost there, one minute!",
+	"bot_watchdogs_new_stage2_03_any_02" : "Yeah this is the boat guys. There's one minute, one minute more",
+	"bot_watchdogs_new_stage2_03_any_03" : "This is the boat. I'm going to be there in one minute.",
+	
+	"bot_watchdogs_new_stage2_04_any_01" : "This is the boat, thirty seconds guys. Get ready!",
+	"bot_watchdogs_new_stage2_04_any_02" : "This is the boat, thirty seconds more.",
+	"bot_watchdogs_new_stage2_04_any_03" : "This is the boat, i'm there in thirty seconds.",
+
+	"bot_watchdogs_new_stage2_05_any_02" : "Okay I'm here, now throw the bags into the boat!",
+	"bot_watchdogs_new_stage2_05_any_03" : "Okay guys, get the god damn bags into the boat!",
+	"bot_watchdogs_new_stage2_05_any_04" : "Okay everyone, get the fucking bags into the boat!",
+
+	"bot_watchdogs_new_stage2_06_any_01" : "I can only take four at the time! Fill it up and I come back for more.",
+	"bot_watchdogs_new_stage2_06_any_02" : "Four at the time! Sorry...I come back for the rest.",
+	"bot_watchdogs_new_stage2_06_any_03" : "Only four at the time, I come back for the rest!",
+
+	"bot_watchdogs_new_stage2_07_any_01" : "Come on, fill the barrels!",
+	"bot_watchdogs_new_stage2_07_any_02" : "Get the barrels filled! GO! GO! GO!",
+	"bot_watchdogs_new_stage2_07_any_03" : "Fill up those barrels, guys!",
+
+	"bot_watchdogs_new_stage2_08_any_02" : "Okay, that's four!",
+	"bot_watchdogs_new_stage2_08_any_03" : "Okay, that's four!", 
+
+	"bot_watchdogs_new_stage2_09_any_01" : "Okay I'm taking this shit, then I'm coming back for the rest!",
+	"bot_watchdogs_new_stage2_09_any_02" : "I'm taking the stuff, but I be back for the rest as soon as I can if you whine up getting more stuff for me.",
+	"bot_watchdogs_new_stage2_09_any_03" : "So i'm gonna take this now but don't worry, I be back if you get more stuff.",
+
+	"bot_watchdogs_new_stage2_10_any_01" : "Alright, it's unloaded. I'll be back in a bit.",
+	"bot_watchdogs_new_stage2_10_any_02" : "It's unloaded! I'll be back.",
+	"bot_watchdogs_new_stage2_10_any_03" : "Hold on. I'll be back!",
+
+	"bot_watchdogs_new_stage2_11_any_01" : "Man, I said into the barrels, not the water!",
+	"bot_watchdogs_new_stage2_11_any_02" : "What did I say? INTO THE BARRELS, RIGHT?!",
+	"bot_watchdogs_new_stage2_11_any_03" : "Into the barrels! Fill it in a fucking barrels!",
+
+	"bot_watchdogs_new_stage2_12_any_01" : "Roger! I'm coming in at Dock 7.",
+	"bot_watchdogs_new_stage2_12_any_02" : "Roger! Coming in at Dock 7.",
+	"bot_watchdogs_new_stage2_12_any_03" : "Copy that, coming in at Dock 7!",
+
+	"bot_watchdogs_new_stage2_13_any_01" : "Roger! I'm coming in at Dock 8.",
+	"bot_watchdogs_new_stage2_13_any_02" : "Roger! Coming in at Dock 8.",
+	"bot_watchdogs_new_stage2_13_any_03" : "Copy that, coming in at Dock 8!",
+
+	"bot_watchdogs_new_stage2_14_any_01" : "Confirmed! I'm coming in at Dock 9.",
+	"bot_watchdogs_new_stage2_14_any_02" : "Copy that, coming in at Dock 9!",
+	"bot_watchdogs_new_stage2_14_any_03" : "Copy, coming in at Dock 9!"
 }

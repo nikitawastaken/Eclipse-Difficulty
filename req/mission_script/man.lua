@@ -202,6 +202,8 @@ return {
 			{ id = 101599, remove = true },
 		},
 	},
+	-- guarnteed chance of no fence near the escape zone
+	[102766] = { chance = 100 },
 	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
 	[100756] = {
 		flashlight = true,

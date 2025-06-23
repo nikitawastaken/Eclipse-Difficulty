@@ -63,7 +63,119 @@ local function cloaker_add(id)
 		},
 	} or nil
 end
+
+
+local john_boat_driver_chance = math.random() < 0.1
+
+local john_dialogue_1 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_01" or "bot_wd2_01"
+local john_dialogue_2 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_05" or "bot_wd2_02"
+local john_dialogue_3 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_06" or "bot_wd2_04a"
+local john_dialogue_4 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_07" or "bot_wd2_03"
+local john_dialogue_5 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_08" or "bot_wd2_06"
+local john_dialogue_6 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_09" or "bot_wd2_07"
+local john_dialogue_7 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_10" or "bot_wd2_08"
+local john_dialogue_8 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_07" or "bot_wd2_10"
+local john_dialogue_9 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_11" or "bot_wd2_11"
+local john_dialogue_10 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_12" or "bot_wd2_19"
+local john_dialogue_11 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_13" or "bot_wd2_20"
+local john_dialogue_12 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_14" or "bot_wd2_21b"
+local john_dialogue_13 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_02" or "Play_bot_a04"
+local john_dialogue_14 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_03" or "Play_bot_a05"
+local john_dialogue_15 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_04" or "Play_bot_a06"
+
+
 return {
+	-- 10% of pre beta boat driver taking it's place
+	-- lights are on
+	[101233] = {
+		values = {
+			dialogue = john_dialogue_1,
+		},
+	},
+	-- 2 mins to arrive
+	[100628] = {
+		values = {
+			dialogue = john_dialogue_13,
+		},
+	},
+	-- 1 min to arrive
+	[101231] = {
+		values = {
+			dialogue = john_dialogue_14,
+		},
+	},
+	-- 30 secs to arrive
+	[101232] = {
+		values = {
+			dialogue = john_dialogue_15,
+		},
+	},
+	-- boat arrived
+	[101586] = {
+		values = {
+			dialogue = john_dialogue_2,
+		},
+	},
+	-- 4 bags only reminder
+	[101588] = {
+		values = {
+			dialogue = john_dialogue_3,
+		},
+	},
+	-- bag secured
+	[101592] = {
+		values = {
+			dialogue = john_dialogue_4,
+		},
+	},
+	-- all 4 bags are in
+	[102357] = {
+		values = {
+			dialogue = john_dialogue_5,
+		},
+	},
+	-- going back soon, unloading the bags
+	[103808] = {
+		values = {
+			dialogue = john_dialogue_6,
+		},
+	},
+	-- going back soon, bags unloaded
+	[103809] = {
+		values = {
+			dialogue = john_dialogue_7,
+		},
+	},
+	-- 4 bags only reminder (again)
+	[103810] = {
+		values = {
+			dialogue = john_dialogue_8,
+		},
+	},
+	-- threw the bag into the water
+	[103811] = {
+		values = {
+			dialogue = john_dialogue_9,
+		},
+	},
+	-- coming in dock 7
+	[103812] = {
+		values = {
+			dialogue = john_dialogue_10,
+		},
+	},
+	-- coming in dock 8
+	[103813] = {
+		values = {
+			dialogue = john_dialogue_11,
+		},
+	},
+	-- coming in dock 9
+	[103815] = {
+		values = {
+			dialogue = john_dialogue_12,
+		},
+	},
 	-- 1st assault reinforce
 	[100511] = {
 		reinforce = {

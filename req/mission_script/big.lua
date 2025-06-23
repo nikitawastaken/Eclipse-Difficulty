@@ -114,7 +114,7 @@ return {
 		},
 	},
 	-- enable new elevator spawngroup
-	[104530] = {
+	[103316] = {
 		on_executed = {
 			{ id = 400020, delay = 0 },
 		},

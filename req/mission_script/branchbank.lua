@@ -202,6 +202,18 @@ return {
 			{ id = 105660, remove = bank_heist and true or false },
 		},
 	},
+	-- disable the dozer chopper event if the heli1 gas event has been triggered
+	[101424] = {
+		on_executed = {
+			{ id = 400074, delay = 0 },
+		},
+	},
+	-- enable the dozer chopper after heli1 gas event finishes deploying units
+	[101428] = {
+		on_executed = {
+			{ id = 400073, delay = 0 },
+		},
+	},
 	-- Delay initial diff
 	[100251] = {
 		on_executed = {

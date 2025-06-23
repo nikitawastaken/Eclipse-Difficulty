@@ -787,6 +787,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	-- load the missing boat driver lines to Watchdogs day 2
+	self.watchdogs_2.package = {
+		"packages/narr_watchdogs2",
+		"levels/narratives/vlad/cane/world_sounds",
+	}
+	self.watchdogs_2_day.package = {
+		"packages/narr_watchdogs2_day",
+		"levels/narratives/vlad/cane/world_sounds",
+	}
+
 	-- load required gangster vo to heists where it actually needs
 	-- for reference: Rats day 1 has regular latin vo,
 	-- Rats day 2 has cobra vo,
