@@ -233,7 +233,7 @@ local optsdisable_locked_vault_door = {
 		102717,
 	},
 }
-ocal optsdisable_dozer_chopper = {
+local optsdisable_dozer_chopper = {
 	enabled = is_eclipse,
 	elements = {
 		400025,
