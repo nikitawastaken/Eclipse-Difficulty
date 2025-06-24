@@ -967,7 +967,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Deadeye
 	self.values.revolver.headshot_chain_instant_reload = {
 		{
-			headshots = 5,
+			headshots = 4,
 		},
 	}
 	self.definitions.revolver_headshot_chain_instant_reload = {
@@ -1019,7 +1019,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.skill_descs.expert_handling.multibasic = "5"
+	self.skill_descs.expert_handling.multibasic = "4"
 	self.skill_descs.expert_handling.multipro = "3"
 	self.skill_descs.expert_handling.multipro2 = "3"
 	self.skill_descs.expert_handling.multipro3 = "5"
