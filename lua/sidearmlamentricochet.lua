@@ -22,9 +22,9 @@ function SidearmLamentRicochet:on_weapon_fired(weapon_unit, result)
 		return
 	end
 
-	if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") then
-		managers.player:deactivate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
-	end
+	-- if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") then
+	-- 	managers.player:deactivate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
+	-- end
 
 	local upgrade_value = managers.player:upgrade_value("player", "sidearm_ricochet_damage")
 	local sentry_mask = managers.slot:get_mask("sentry_gun")

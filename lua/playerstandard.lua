@@ -407,11 +407,11 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							managers.player:charged_shot_allowed(self._sniper_shot_is_charged)
 						end
 
-						if weap_base:is_category("revolver", "pistol") then
-							if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
-								managers.player:deactivate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier")
-							end
-						end
+						-- if weap_base:is_category("revolver", "pistol") then
+						-- 	if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
+						-- 		managers.player:deactivate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier")
+						-- 	end
+						-- end
 
 						local weap_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 
