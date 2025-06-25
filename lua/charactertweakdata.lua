@@ -474,9 +474,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 4, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 4, r = 2000, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 2, r = 4000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 4, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 4, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 2, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
@@ -525,7 +525,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
 
-	presets.gang_member_damage.HEALTH_INIT = 60 + (30 * (diff_i - 2))
+	presets.gang_member_damage.HEALTH_INIT = 80 + (30 * (diff_i - 2))
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
 	presets.gang_member_damage.REGENERATE_TIME = 5
