@@ -64,6 +64,13 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 		self:unregister_message(Message.OnPlayerDodge, "dodge_replenish_armor")
 	end
 
+	-- Sidearm Savvy ACED
+	if self:has_category_upgrade("player", "sidearms_reload_primary") then
+		self._message_system:register(Message.OnEnemyKilled, "sidearms_reload_primary", callback(self, self, "_on_sidearms_reload_primary_event"))
+	else
+		self._message_system:register(Message.OnEnemyKilled, "sidearms_reload_primary")
+	end
+
 	-- Trigger Overdrive BASIC
 	if self:has_category_upgrade("pistol", "stacked_reload_bonus") then
 		self:register_message(Message.OnEnemyShot, "stacked_reload_bonus", callback(self, self, "_on_expert_handling_reload_event"))
@@ -272,9 +279,6 @@ local on_killshot_old = PlayerManager.on_killshot
 function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 	on_killshot_old(self, killed_unit, variant, headshot, weapon_id)
 	local equipped_unit = self:get_current_state()._equipped_unit:base()
-	local selection_index = equipped_unit and equipped_unit and equipped_unit:selection_index() or 0
-	local equipped_weapon_id = equipped_unit and equipped_unit:get_name_id()
-	local player_unit = self:player_unit()
 
 	-- Shotgun panic
 	local has_shotgun_panic = self:has_enabled_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
@@ -297,24 +301,6 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 			end
 
 			self:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
-		end
-	end
-
-	-- Last bullet sidearm kills autoreload primary
-	local sideram_reload_primary = selection_index == 1 and self:has_category_upgrade("player", "sidearms_reload_primary")
-	local equipped_unit_is_sidearm = equipped_unit:is_category("revolver", "pistol")
-	local is_last_bullet = equipped_unit:get_ammo_remaining_in_clip() == 0
-	sideram_reload_primary = sideram_reload_primary and weapon_id == equipped_weapon_id and equipped_unit_is_sidearm and is_last_bullet
-	if sideram_reload_primary then
-		local primary_unit = player_unit:inventory():unit_by_selection(2)
-		local primary_base = alive(primary_unit) and primary_unit:base()
-		local can_reload = primary_base and primary_base.can_reload and primary_base:can_reload()
-
-		if can_reload then
-			primary_base:on_reload()
-			managers.statistics:reloaded()
-			managers.hud:set_ammo_amount(primary_base:selection_index(), primary_base:ammo_info())
-			player_unit:sound():play("pickup_ammo_health_boost")
 		end
 	end
 end
@@ -1283,6 +1269,66 @@ PlayerAction.UnseenStrike = {
 		player_manager:unregister_message(Message.OnPlayerDamage, co)
 	end,
 }
+
+-- Pistol on-hit reload speed stacking
+-- Handled in a separate playeraction due to stacking at a different rate, as well as having a different max time
+PlayerAction.SidearmReloadPrimary = {
+	Priority = 1,
+	Function = function (player_manager, target_kills, target_time)
+		local co = coroutine.running()
+		local time = Application:time()
+		local kills = 1
+		local player_unit = player_manager:player_unit()
+
+		local function on_kill()
+			kills = kills + 1
+
+			if kills == target_kills then
+				local primary_unit = player_unit:inventory():unit_by_selection(2)
+				local primary_base = alive(primary_unit) and primary_unit:base()
+				local can_reload = primary_base and primary_base.can_reload and primary_base:can_reload()
+
+				if can_reload then
+					primary_base:on_reload()
+					managers.statistics:reloaded()
+					managers.hud:set_ammo_amount(primary_base:selection_index(), primary_base:ammo_info())
+					player_unit:sound():play("pickup_ammo_health_boost")
+				end
+
+				time = target_time
+			end
+		end
+
+		player_manager:register_message(Message.OnEnemyKilled, co, on_kill)
+
+		while time < target_time do
+			time = Application:time()
+			local weapon_unit_base = player_manager:equipped_weapon_unit():base()
+			local selection_index = weapon_unit_base and weapon_unit_base:selection_index() or 0
+			local equipped_weapon_id = weapon_unit_base and weapon_unit_base:get_name_id()
+			local sideram_reload_primary = selection_index == 1 and weapon_id == equipped_weapon_id
+
+			if weapon_unit_base and not weapon_unit_base:is_category("pistol", "revolver") and sideram_reload_primary then
+				break
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnEnemyKilled, co)
+	end
+}
+
+-- Automatic primary reload with sidearms
+function PlayerManager:_on_sidearms_reload_primary_event(weapon_unit, variant)
+	if variant == "bullet" and not self._coroutine_mgr:is_running("sidearm_reloads_primary") and weapon_unit:base():is_category("revolver", "pistol") then
+		local data = self:upgrade_value("player", "sidearms_reload_primary", 0)
+		Eclipse:log_chat("yes")
+		if data ~= 0 then
+			self._coroutine_mgr:add_coroutine("sidearm_reloads_primary", PlayerAction.SidearmReloadPrimary, self, data.kills, Application:time() + data.max_time)
+		end
+	end
+end
 
 -- Pistol on-hit reload speed stacking
 -- Handled in a separate playeraction due to stacking at a different rate, as well as having a different max time

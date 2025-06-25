@@ -921,7 +921,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.sidearms_reload_primary = { true }
+	self.values.player.sidearms_reload_primary = {
+		{
+			kills = 3,
+			max_time = 3,
+		},
+	}
 	self.definitions.player_sidearms_reload_primary = {
 		name_id = "menu_player_sidearms_reload_primary",
 		category = "feature",
@@ -932,6 +937,8 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.akimbo.multibasic = "15%"
+	self.skill_descs.akimbo.multipro = "3"
+	self.skill_descs.akimbo.multipro2 = "3"
 
 	-- Trigger Overdrive
 	self.values.pistol.stacked_reload_bonus = {
