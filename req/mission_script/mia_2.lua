@@ -14,11 +14,22 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local roof_spawn = {
+local penthouse_spawn = {
+	values = {
+		interval = 5,
+	},
+}
+local roof_far_spawn = {
+	values = {
+		interval = 10,
+	},
+	groups = preferred.no_cops_agents_shields,
+}
+local roof_close_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.only_swats_tasers_cloakers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Boss spawn
@@ -48,8 +59,10 @@ return {
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn point delays
-	[100666] = roof_spawn,
-	[101034] = roof_spawn,
-	[101530] = roof_spawn,
-	[101534] = roof_spawn,
+	[101084] = penthouse_spawn,
+	[101085] = penthouse_spawn,
+	[100666] = roof_far_spawn,
+	[101034] = roof_far_spawn,
+	[101530] = roof_close_spawn,
+	[101534] = roof_close_spawn,
 }
