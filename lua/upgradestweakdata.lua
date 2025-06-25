@@ -1386,8 +1386,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "melee_kill_armor_leech",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.specialization_descs[9][5].multiperk = "90"
 
