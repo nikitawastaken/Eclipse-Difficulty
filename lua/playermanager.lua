@@ -1323,7 +1323,6 @@ PlayerAction.SidearmReloadPrimary = {
 function PlayerManager:_on_sidearms_reload_primary_event(weapon_unit, variant)
 	if variant == "bullet" and not self._coroutine_mgr:is_running("sidearm_reloads_primary") and weapon_unit:base():is_category("revolver", "pistol") then
 		local data = self:upgrade_value("player", "sidearms_reload_primary", 0)
-		Eclipse:log_chat("yes")
 		if data ~= 0 then
 			self._coroutine_mgr:add_coroutine("sidearm_reloads_primary", PlayerAction.SidearmReloadPrimary, self, data.kills, Application:time() + data.max_time)
 		end
