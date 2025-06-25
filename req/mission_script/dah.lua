@@ -164,6 +164,7 @@ return {
 	-- fix the elevator door
 	[101642] = {
 		values = {
+		trigger_times = 0,
 			elements = {
 				102813,
 				102812,
@@ -321,6 +322,12 @@ return {
 		on_executed = {
 			{ id = 400090, delay = 0 },
 			{ id = 400091, delay = 0 },
+		},
+	},
+	[103307] = {
+		on_executed = {
+			{ id = 410002, delay = 0 },
+			{ id = 410003, delay = 0 },
 		},
 	},
 	[103305] = {

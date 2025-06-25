@@ -245,6 +245,20 @@ local optsSecret_Service_8 = {
 	},
 	enabled = true,
 }
+local optsSecret_Service_9 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 410004, delay = 0 },
+	},
+	enabled = true,
+}
+local optsSecret_Service_10 = {
+	enemy = secret_service,
+	on_executed = {
+		{ id = 410005, delay = 0 },
+	},
+	enabled = true,
+}
 local optsDefend_and_Sniper_SO = {
 	SO_access = tostring(128 + 512 + 2048 + 8192),
 	scan = true,
@@ -483,6 +497,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400099, "secret_service_so_6", Vector3(-5254.397, 1220.328, 375), Rotation(82, 0, 0), optsSecret_Service_Defend),
 	Eclipse.mission_elements.gen_so(410000, "secret_service_so_7", Vector3(-4891.752, 1152.085, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
 	Eclipse.mission_elements.gen_so(410001, "secret_service_so_8", Vector3(-4885.969, 1261.932, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
+	
+	-- upper middle spawn
+	Eclipse.mission_elements.gen_dummy(410002, "secret_service_9", Vector3(-5397, -2171, 775.001), Rotation(-90, 0, 0), optsSecret_Service_9),
+	Eclipse.mission_elements.gen_dummy(410003, "secret_service_10", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
+	Eclipse.mission_elements.gen_so(410004, "secret_service_so_9", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(410005, "secret_service_so_10", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
 }
 
 return M
