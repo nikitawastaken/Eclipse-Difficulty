@@ -303,6 +303,17 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 			self:disable_cooldown_upgrade("cooldown", "shotgun_panic_on_kill")
 		end
 	end
+
+	local damage_ext = self:player_unit():character_damage()
+	local regen_armor_melee_bonus = 0
+
+	if variant == "melee" then
+		regen_armor_melee_bonus = regen_armor_melee_bonus + self:upgrade_value("player", "melee_kill_armor_leech", 0)
+	end
+
+	if damage_ext and regen_armor_melee_bonus > 0 then
+		damage_ext:restore_armor(regen_armor_melee_bonus)
+	end
 end
 
 -- Shotgun CQB

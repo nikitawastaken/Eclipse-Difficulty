@@ -571,6 +571,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
+	self.specializations[9][5].upgrades = { "player_melee_kill_armor_leech", "player_damage_dampener_close_contact_1" }
 
 	-- Gambler
 	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")

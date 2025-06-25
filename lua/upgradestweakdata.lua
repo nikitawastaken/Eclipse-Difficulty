@@ -1374,12 +1374,24 @@ function UpgradesTweakData:init(tweak_data)
 		1.5,
 	}
 
-	-- Infiltrator / Socio
-	self.values.player.melee_kill_life_leech = { 1.5 }
-	self.specialization_descs[9][5].multiperk = "15"
+	-- Infiltrator
 	self.values.temporary.melee_life_leech[1][1] = 4
 	self.specialization_descs[8][9].multiperk = "40"
 
+	-- Sociopath
+	self.values.player.melee_kill_armor_leech = { 9 }
+	self.definitions.player_melee_kill_armor_leech = {
+		name_id = "menu_player_melee_kill_armor_leech",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "melee_kill_armor_leech",
+			category = "player"
+		}
+	}
+	self.specialization_descs[9][5].multiperk = "90"
+
+	-- Infil / Socio shared melee card
 	self.max_melee_weapon_dmg_mul_stacks = 4
 	self.values.melee.stacking_hit_damage_multiplier = {
 		1,
