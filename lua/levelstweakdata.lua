@@ -275,7 +275,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			shield = -1,
 		},
 	}
-	
+
 	self.mad.group_ai_settings = {
 		force_tactics = {
 			shield_def = {
