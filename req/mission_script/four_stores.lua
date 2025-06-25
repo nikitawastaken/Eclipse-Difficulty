@@ -137,7 +137,7 @@ return {
 	},
 	[101832] = { -- diff 65
 		on_executed = {
-			{ id = 400001, delay = 20 },
+			{ id = 400001, delay = 0, delay_rand = 20 },
 		},
 	},
 	-- Spawn group delays

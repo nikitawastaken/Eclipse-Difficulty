@@ -80,7 +80,7 @@ return {
 		difficulty = 0.66,
 		on_executed = {
 			{ id = 400003, delay = 0, delay_rand = 15 }, -- custom roof preferreds
-			{ id = 400004, delay = 15, delay_rand = 30 }, -- custom window preferreds
+			{ id = 400004, delay = 0, delay_rand = 30 }, -- custom window preferreds
 		},
 	},
 	[102511] = { -- 2nd wave complete

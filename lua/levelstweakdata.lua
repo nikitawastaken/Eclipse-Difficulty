@@ -112,7 +112,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		hostage_hesitation_delay_mul = 1.35,
 		sustain_duration_mul = 0.85,
 		assault_delay_mul = 1.25,
-		assault_force_mul = 0.8,
+		assault_force_mul = 0.7,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
 		force_tactics = {
@@ -266,6 +266,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.pbr2.group_ai_settings = {
+		spawn_kill_cooldown_mul = 1.5,
+		sustain_duration_mul = 0.85,
+		assault_force_mul = 0.7,
+		push_delay_mul = 1.25,
+		special_limit_add = {
+			shield = -1,
+		},
+	}
+	
 	self.mad.group_ai_settings = {
 		force_tactics = {
 			shield_def = {

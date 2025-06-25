@@ -60,9 +60,9 @@ return {
 		difficulty = 0.75,
 		on_executed = {
 			{ id = 100345, delay = 0 }, -- Bain diff increase dialogue
-			{ id = 100128, delay = 10, delay_rand = 20 }, -- add 40
-			{ id = 100130, delay = 10, delay_rand = 20 }, -- add 41
-			{ id = 102129, delay = 20, delay_rand = 40 }, -- add 11
+			{ id = 100128, delay = 0, delay_rand = 30 }, -- add 40
+			{ id = 100130, delay = 0, delay_rand = 30 }, -- add 41
+			{ id = 102129, delay = 15, delay_rand = 30 }, -- add 11
 		},
 		reinforce = {
 			{
