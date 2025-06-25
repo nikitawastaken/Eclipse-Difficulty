@@ -1613,6 +1613,8 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 							concealment_stat = -math.clamp(math.round(capacity_increase / 20), -5, 5)
 
 							part.stats.reload = 0
+							part.stats.spread = 0
+							part.stats.recoil = 0
 							part.stats.concealment = concealment_stat
 							part.custom_stats.reload_speed_multiplier = shotgun_reload and 1 or reload_speed_stat
 						end

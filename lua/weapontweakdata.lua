@@ -166,13 +166,13 @@ function WeaponTweakData:_init_weapons()
 			weap_data.steelsight_time = steelsight_times.pistol
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not cat_map.handcannon and 1.25 or 1
 			weap_data.steelsight_move_speed_mul = 0.7
-
+			
 			if cat_map.handcannon then
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 1.5,
 						crouching = 0.8,
-						steelsight = 0.5,
+						steelsight = 0.6,
 					},
 					moving = {
 						hipfire = 2,
@@ -195,12 +195,12 @@ function WeaponTweakData:_init_weapons()
 			else
 				weap_data.spread_multiplier = {
 					standing = {
-						hipfire = 1.2,
+						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.8,
+						steelsight = 0.6,
 					},
 					moving = {
-						hipfire = 1.5,
+						hipfire = 1.4,
 						crouching = 1,
 						steelsight = 1,
 					}
@@ -217,6 +217,10 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 1,
 					}
 				}
+
+				if weap_data.fire_mode_data and not weap_data.auto then
+					weap_data.fire_mode_data.fire_rate = 60 / 675
+				end
 			end
 
 		elseif cat_map.revolver then
@@ -226,6 +230,10 @@ function WeaponTweakData:_init_weapons()
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1
 			weap_data.steelsight_move_speed_mul = 0.65
 
+			if weap_data.fire_mode_data and not weap_data.auto then
+				weap_data.fire_mode_data.fire_rate = 60 / 360
+			end
+				
 			weap_data.spread_multiplier = {
 				standing = {
 					hipfire = 1.5,
@@ -619,7 +627,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.kick.standing = { 0.8, 1, -1, 1 }
 
 			elseif cat_map.smg then
-				weap_data.kick.standing = { 0.3, 0.8, -1.2, 1.2 }
+				weap_data.kick.standing = { 0.4, 0.8, -1.2, 1.2 }
 
 			elseif cat_map.lmg then
 				weap_data.kick.standing = { -0.2, 0.8, -0.8, 1 }
@@ -643,7 +651,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.kick.standing = { 0, 0, 0, 0 }
 				
 			else -- Pistols, Revolvers
-				weap_data.kick.standing =  { 1.2, 1.8, -0.5, 0.5 }
+				weap_data.kick.standing =  { 1.2, 1.5, -0.5, 0.5 }
 				
 			end
 
@@ -1621,7 +1629,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.korth.CLIP_AMMO_MAX = 8
 	self.korth.stats.damage = 64
-	self.korth.stats.spread = 20
+	self.korth.stats.spread = 19
 	self.korth.stats.recoil = 4
 	self.korth.stats.concealment = 28
 	self.korth.fire_mode_data.fire_rate = 60 / 300
