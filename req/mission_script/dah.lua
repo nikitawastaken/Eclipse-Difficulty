@@ -164,7 +164,7 @@ return {
 	-- fix the elevator door
 	[101642] = {
 		values = {
-		trigger_times = 0,
+			trigger_times = 0,
 			elements = {
 				102813,
 				102812,
