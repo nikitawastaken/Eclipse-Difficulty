@@ -200,6 +200,7 @@ local optsHuntSO = {
 	SO_access = tostring(128 + 1024 + 2048 + 4096 + 8192),
 	path_style = "none",
 	scan = true,
+	interval = 2,
 	so_action = "AI_hunt",
 }
 

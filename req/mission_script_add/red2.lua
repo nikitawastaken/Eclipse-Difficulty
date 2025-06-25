@@ -16,7 +16,6 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1
-local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 local elite_bulldozer = scripted_enemy.elite_bulldozer_1
@@ -316,12 +315,14 @@ local optsShieldArmySO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	interval = 2,
 	so_action = "AI_sniper",
 }
 local optsDozerHunt = {
 	SO_access = "4096",
 	path_style = "none",
 	scan = true,
+	interval = 2,
 	so_action = "AI_hunt",
 }
 local optsShieldSO = {
@@ -331,6 +332,7 @@ local optsShieldSO = {
 	align_position = true,
 	align_rotation = true,
 	so_action = "AI_sniper",
+	interval = 2,
 	pose = "crouch",
 	path_stance = "cbt",
 }
@@ -339,6 +341,7 @@ local optsSniperSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	interval = 2,
 	so_action = "AI_sniper",
 	pose = "stand",
 }
@@ -357,6 +360,7 @@ local optsDefendSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	interval = 2,
 	so_action = "AI_defend",
 	pose = "stand",
 }

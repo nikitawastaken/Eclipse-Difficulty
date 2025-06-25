@@ -18,7 +18,6 @@ local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 local elite_sniper = scripted_enemy.elite_sniper
 local taser = scripted_enemy.taser_1
-local taser_shotgun = scripted_enemy.taser_2
 local cloaker = scripted_enemy.cloaker
 local bulldozer = scripted_enemy.bulldozer_1
 local swat_ambush_table = { swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg }
@@ -91,44 +90,44 @@ local optsSniper_2 = {
 	enabled = overkill_and_above,
 }
 local optsShield_roofblockade_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = {
 		{ id = 400051, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_3_5m_dwn_vent_var2",
-	enabled = overkill_and_above,
+	enabled = is_eclipse,
 }
 local optsShield_roofblockade_2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = {
 		{ id = 400052, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_3_5m_dwn_vent_var2",
-	enabled = overkill_and_above,
+	enabled = is_eclipse,
 }
 local optsShield_roofblockade_3 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = {
 		{ id = 400057, delay = 0 },
 	},
 	spawn_action = "e_sp_climb_up_3m_down_1m",
-	enabled = overkill_and_above,
+	enabled = is_eclipse,
 }
 local optsShield_roofblockade_4 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = {
 		{ id = 400058, delay = 0 },
 	},
 	spawn_action = "e_sp_climb_up_3m_down_1m",
-	enabled = overkill_and_above,
+	enabled = is_eclipse,
 }
 local optsTaser_roofblockade_1 = {
-	enemy = taser_shotgun,
+	enemy = taser,
 	on_executed = {
 		{ id = 400050, delay = 0 },
 	},
 	spawn_action = "e_sp_clk_3_5m_dwn_vent_var2",
-	enabled = overkill_and_above,
+	enabled = is_eclipse,
 }
 local optsTaser_roofblockade_2 = {
 	enemy = taser,
@@ -136,7 +135,7 @@ local optsTaser_roofblockade_2 = {
 		{ id = 400056, delay = 0 },
 	},
 	spawn_action = "e_sp_climb_up_3m_down_1m",
-	enabled = overkill_and_above,
+	enabled = is_eclipse,
 }
 local optsBulldozer = {
 	enemy = bulldozer,
@@ -277,6 +276,7 @@ local optsSecret_Service_Defend = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	interval = 2,
 	so_action = "AI_sniper",
 	path_haste = "walk",
 }
