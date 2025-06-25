@@ -991,7 +991,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.cop_fat = deep_clone(self.cop)
-	self.cop_fat.HEALTH_INIT = 16
+	self.cop_fat.HEALTH_INIT = 6
 	self.cop_fat.dodge = nil
 	self.cop_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "cop_fat")
