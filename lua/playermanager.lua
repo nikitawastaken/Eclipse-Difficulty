@@ -1274,7 +1274,7 @@ PlayerAction.UnseenStrike = {
 -- Handled in a separate playeraction due to stacking at a different rate, as well as having a different max time
 PlayerAction.SidearmReloadPrimary = {
 	Priority = 1,
-	Function = function (player_manager, target_kills, target_time)
+	Function = function(player_manager, target_kills, target_time)
 		local co = coroutine.running()
 		local time = Application:time()
 		local kills = 1
@@ -1316,7 +1316,7 @@ PlayerAction.SidearmReloadPrimary = {
 		end
 
 		player_manager:unregister_message(Message.OnEnemyKilled, co)
-	end
+	end,
 }
 
 -- Automatic primary reload with sidearms
