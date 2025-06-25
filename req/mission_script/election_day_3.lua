@@ -40,7 +40,7 @@ local med_harasser = { enemy = med_harasser_enemy }
 local high_harasser_enemy = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
 local high_harasser = { enemy = high_harasser_enemy }
 local low_escape_enemy = {
-	[swat_1] = 4,
+	[swat_1] = 3,
 	[cop_3] = 1,
 	[cop_4] = 1,
 }
@@ -50,30 +50,24 @@ local med_escape = { enemy = med_escape_enemy }
 local high_escape_enemy = {
 	[swat_1] = 2,
 	[swat_2] = 1,
-	[heavy_1] = 2,
-	[heavy_2] = 1,
+	[heavy_1] = 4,
+	[heavy_2] = 2,
 }
 local high_escape = { enemy = high_escape_enemy }
 local mall_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
-}
-local ladder_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_bulldozers,
 }
 local atrium_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields,
 }
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -117,7 +111,9 @@ return {
 	},
 	-- Vault is open, diff 1
 	[104599] = {
-		difficulty = 1,
+		on_executed = {
+			{ id = 103519, delay = 0 },
+		},
 	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass
 	[100082] = {
@@ -128,17 +124,6 @@ return {
 	[100446] = {
 		on_executed = {
 			{ id = 100321, delay = 0 },
-		},
-	},
-	-- Remove garage preferreds from initial preferreds
-	[102753] = {
-		on_executed = {
-			{ id = 103481, remove = true },
-		},
-	},
-	[100110] = { -- 2nd assault done
-		on_executed = {
-			{ id = 103481, delay = 0 },
 		},
 	},
 	-- elevator Dozer
@@ -154,8 +139,6 @@ return {
 	[100439] = atrium_spawn,
 	[100431] = atrium_spawn,
 	[104838] = atrium_spawn,
-	[101794] = ladder_spawn,
-	[101795] = ladder_spawn,
 	[103702] = window_spawn,
 	[100438] = window_spawn,
 	[102792] = cloaker_spawn,
