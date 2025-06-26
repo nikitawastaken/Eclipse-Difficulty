@@ -487,26 +487,23 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.normal = {
 		stand = {
 			walk = {
-				ntl = { fwd = 180, strafe = 130, bwd = 90 },
-				cbt = { fwd = 220, strafe = 170, bwd = 130 },
-				hos = { fwd = 260, strafe = 210, bwd = 170 },
+				ntl = { fwd = 160, strafe = 120, bwd = 100 },
+				cbt = { fwd = 220, strafe = 180, bwd = 160 },
+				hos = { fwd = 220, strafe = 180, bwd = 160 },
 			},
 			run = {
-				ntl = { fwd = 300, strafe = 250, bwd = 200 },
-				cbt = { fwd = 375, strafe = 300, bwd = 225 },
-				hos = { fwd = 450, strafe = 350, bwd = 250 },
+				cbt = { fwd = 400, strafe = 240, bwd = 240 },
+				hos = { fwd = 450, strafe = 300, bwd = 240 },
 			},
 		},
 		crouch = {
 			walk = {
-				ntl = { fwd = 140, strafe = 90, bwd = 60 },
-				cbt = { fwd = 160, strafe = 120, bwd = 80 },
-				hos = { fwd = 200, strafe = 150, bwd = 120 },
+				cbt = { fwd = 200, strafe = 140, bwd = 120 },
+				hos = { fwd = 200, strafe = 140, bwd = 120 },
 			},
 			run = {
-				ntl = { fwd = 180, strafe = 130, bwd = 90 },
-				cbt = { fwd = 220, strafe = 170, bwd = 130 },
-				hos = { fwd = 260, strafe = 210, bwd = 170 },
+				cbt = { fwd = 300, strafe = 240, bwd = 200 },
+				hos = { fwd = 360, strafe = 240, bwd = 200 },
 			},
 		},
 	}
@@ -1159,7 +1156,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.shield.HEALTH_INIT = 16
 	self.shield.headshot_dmg_mul = 2.5 -- 64 head health
-	self.shield.move_speed.crouch = self.shield.move_speed.stand
 	self.shield.speech_prefix_p1 = self._unit_prefixes.heavy_swat
 	self.shield.min_obj_interrupt_dis = 500
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt
@@ -1173,7 +1169,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_shield.HEALTH_INIT = 28
 	self.city_shield.headshot_dmg_mul = 2.5 -- 112 head health
 	self.city_shield.ecm_vulnerability = 0
-	self.city_shield.move_speed.crouch = self.city_shield.move_speed.stand
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.city_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
 	self.city_shield.can_be_tased = false
@@ -1667,8 +1662,8 @@ CharacterTweakData.tweak_table_move_speed = {
 
 CharacterTweakData.access_move_speed = {
 	spooc = "lightning",
+	shield = "very_fast",
 	swat = "fast",
-	shield = "fast",
 	fbi = "fast",
 	gangster = "fast",
 	taser = "normal",
