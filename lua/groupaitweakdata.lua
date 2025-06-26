@@ -1724,12 +1724,16 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		shield_def = {
 			"shield",
 			"ranged_fire",
-			"door_ambush",
+			"deathguard",
 		},
 		shield_agg = {
 			"shield",
 			"charge",
 			"deathguard",
+		},
+		shield_wall = {
+			"door_ambush",
+			"no_push",
 		},
 		shield_support = {
 			"shield_cover",
@@ -1762,12 +1766,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		cloaker_def = {
 			"no_push",
-			"deathguard",
+			"door_ambush",
 		},
 		cloaker_agg = {
 			"flank",
 			"charge",
-			"target_vulnerable",
 		},
 		sniper = {
 			"unit_cover",
