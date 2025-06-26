@@ -5,7 +5,7 @@ function AmmoClip:_pickup(unit)
 
 	local player_manager = managers.player
 	local inventory = unit:inventory()
-    local has_cable_tie_pickup = player_manager:has_category_upgrade("cable_tie", "pickup_chance")
+	local has_cable_tie_pickup = player_manager:has_category_upgrade("cable_tie", "pickup_chance")
 
 	if not unit:character_damage():dead() and inventory then
 		local picked_up = false
@@ -48,20 +48,24 @@ function AmmoClip:_pickup(unit)
 		if picked_up then
 			self._picked_up = true
 
-            if has_cable_tie_pickup then
-                local rand = math.random()
-                local chance = player_manager:upgrade_value("cable_tie", "pickup_chance", 0) or 0
-                local amount = 1
+			if has_cable_tie_pickup then
+				local rand = math.random()
+				local chance = player_manager:upgrade_value("cable_tie", "pickup_chance", 0) or 0
+				local amount = 1
 
-                if rand <= chance and self._ammo_box then
-                    player_manager:add_cable_ties(amount)
-                end
-            end
+				if rand <= chance and self._ammo_box then
+					player_manager:add_cable_ties(amount)
+				end
+			end
 
 			if not self._projectile_id and not self._weapon_category then
 				local restored_health = nil
 
-				if not unit:character_damage():is_downed() and player_manager:has_category_upgrade("temporary", "loose_ammo_restore_health") and not player_manager:has_activate_temporary_upgrade("temporary", "loose_ammo_restore_health") then
+				if
+					not unit:character_damage():is_downed()
+					and player_manager:has_category_upgrade("temporary", "loose_ammo_restore_health")
+					and not player_manager:has_activate_temporary_upgrade("temporary", "loose_ammo_restore_health")
+				then
 					player_manager:activate_temporary_upgrade("temporary", "loose_ammo_restore_health")
 
 					local values = player_manager:temporary_upgrade_value("temporary", "loose_ammo_restore_health", 0)
