@@ -2733,7 +2733,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 2 },
 		spawn = {
 			{
-				freq = 2,
+				freq = 1,
 				rank = 2,
 				unit = "bulldozer",
 				random_tactics = self._random_tactics.bulldozer,
