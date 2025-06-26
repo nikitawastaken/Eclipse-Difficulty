@@ -1141,10 +1141,6 @@ function PlayerManager:clbk_super_syndrome_respawn(data)
 	end
 end
 
-function PlayerManager:add_cable_ties(amount)
-	-- Dummy this out so players don't get cable ties from ammo pickups
-end
-
 -- Players receive penalties when leaving custody
 Hooks:PostHook(PlayerManager, "_internal_load", "hits_internal_load", function(self)
 	if self._respawn then

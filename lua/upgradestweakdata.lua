@@ -103,7 +103,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.inspire.multibasic3 = "7"
 	self.skill_descs.inspire.multipro = "120"
 
-	-- FFriendship
+	-- Forced Friendship
+	self.values.cable_tie.interact_speed_multiplier[1] = 0.75
 	self.definitions.player_extra_hostages = {
 		category = "feature",
 		name_id = "menu_player_extra_hostages",
@@ -114,10 +115,19 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.extra_hostages = { 2 }
-	self.values.cable_tie.interact_speed_multiplier[1] = 0.75
+	self.definitions.cable_tie_pickup_chance = {
+		category = "equipment_upgrade",
+		name_id = "menu_cable_tie_pickup_chance",
+		upgrade = {
+			category = "cable_tie",
+			upgrade = "pickup_chance",
+			value = 1,
+		},
+	}
+	self.values.cable_tie.pickup_chance = { 0.1 }
 	self.skill_descs.triathlete.multibasic = "4"
 	self.skill_descs.triathlete.multibasic2 = "25%"
-	self.skill_descs.triathlete.multipro = "33%"
+	self.skill_descs.triathlete.multipro = "10%"
 
 	-- Confident
 	self.skill_descs.cable_guy.multipro = "50%"
