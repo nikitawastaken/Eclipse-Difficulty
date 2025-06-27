@@ -304,15 +304,16 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 		end
 	end
 
-	local damage_ext = self:player_unit():character_damage()
-	local regen_armor_melee_bonus = 0
+	local has_socio_melee_armor = self:has_enabled_cooldown_upgrade("cooldown", "melee_kill_armor_leech")
+	if variant == "melee" and has_socio_melee_armor then
+		local damage_ext = self:player_unit():character_damage()
+		local skill = tweak_data.upgrades.values.player.melee_kill_armor_regen[1] or 0
 
-	if variant == "melee" then
-		regen_armor_melee_bonus = regen_armor_melee_bonus + self:upgrade_value("player", "melee_kill_armor_leech", 0)
-	end
+		if damage_ext and skill > 0 then
+			damage_ext:restore_armor(skill)
+		end
 
-	if damage_ext and regen_armor_melee_bonus > 0 then
-		damage_ext:restore_armor(regen_armor_melee_bonus)
+		self:disable_cooldown_upgrade("cooldown", "melee_kill_armor_leech")
 	end
 end
 
