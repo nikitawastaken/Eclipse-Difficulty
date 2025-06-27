@@ -507,7 +507,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- inf
 	self.specializations[8].category = "resistance"
 	-- soc
-	self.specializations[9].category = { "healing", "armor_gating" }
+	self.specializations[9].category = { "armor", "armor_gating" }
 	-- gmb
 	self.specializations[10].category = { "healing", "support" }
 	-- grd
