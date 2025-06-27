@@ -1415,10 +1415,47 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[9][1].multiperk4 = "4"
 
 	-- Gambler
-	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do
-		v[2] = 10
-	end
-	self.values.temporary.loose_ammo_give_team[1][2] = 5
+	self.values.player.pickup_restore_health = { 0.2, 0.4 }
+	self.definitions.player_pickup_restore_health_1 = {
+		name_id = "menu_player_pickup_restore_health",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pickup_restore_health",
+			category = "player",
+		},
+	}
+	self.loose_ammo_give_team_ratio = 0.25
+	self.values.player.pickup_restore_team_ammo = { true }
+	self.definitions.player_pickup_restore_team_ammo = {
+		name_id = "menu_player_pickup_restore_team_ammo",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pickup_restore_team_ammo",
+			category = "player",
+		},
+	}
+	self.loose_health_give_team_ratio = 0.5
+	self.values.player.pickup_restore_team_health = { true }
+	self.definitions.player_pickup_restore_team_health = {
+		name_id = "menu_player_pickup_restore_team_health",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pickup_restore_team_health",
+			category = "player",
+		},
+	}
+	self.definitions.player_pickup_restore_health_2 = {
+		name_id = "menu_player_pickup_restore_health",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "pickup_restore_health",
+			category = "player",
+		},
+	}
 	self.values.player.increased_pickup_area_gambler = { 2 }
 	self.definitions.player_increased_pickup_area_gambler = {
 		name_id = "menu_player_increased_pickup_area_gambler",
@@ -1429,8 +1466,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.specialization_descs[10][1].multiperk3 = "10"
-	self.specialization_descs[10][9].multiperk4 = "100%"
+	self.specialization_descs[10][1].multiperk = "2"
+	self.specialization_descs[10][3].multiperk = "25%"
+	self.specialization_descs[10][5].multiperk = "50%"
+	self.specialization_descs[10][7].multiperk = "100%"
+	self.specialization_descs[10][7].multiperk2 = "20%"
+	self.specialization_descs[10][9].multiperk = "100%"
 
 	-- Grinder
 	self.damage_to_hot_data.tick_time = 0.5

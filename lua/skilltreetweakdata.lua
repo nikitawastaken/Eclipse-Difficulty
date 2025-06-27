@@ -554,14 +554,14 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- rogue
 	self.specializations[4][3].upgrades = { "player_unseen_increased_crit_chance_1", "player_unseen_temp_increased_dodge_chance" }
-	self.specializations[4][9].upgrades = { "player_unseen_temp_increased_crit_chance_1" }
+	self.specializations[4][9].upgrades = { "player_unseen_temp_increased_crit_chance_1", "player_passive_loot_drop_multiplier" }
 
 	-- hitman
 	self.specializations[5][1].upgrades = { "player_chain_headshot_kills", "temporary_chain_headshot_dodge_1" }
 	self.specializations[5][3].upgrades = { "temporary_dodge_outnumbered" }
 	self.specializations[5][5].upgrades = { "temporary_chain_headshot_dodge_2" }
 	self.specializations[5][7].upgrades = { "player_cheat_death_chance_1" }
-	self.specializations[5][9].upgrades = { "player_cheat_death_inc" }
+	self.specializations[5][9].upgrades = { "player_cheat_death_inc", "player_passive_loot_drop_multiplier" }
 
 	-- burglar
 	table.delete(self.specializations[7][7].upgrades, "player_tier_dodge_chance_3")
@@ -574,9 +574,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[9][5].upgrades = { "player_melee_kill_armor_leech", "player_damage_dampener_close_contact_1" }
 
 	-- Gambler
-	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_1")
-	table.insert(self.specializations[10][9].upgrades, "player_increased_pickup_area_2")
-	table.delete(self.specializations[10][3].upgrades, "temporary_loose_ammo_give_team")
+	self.specializations[10][1].upgrades = { "player_pickup_restore_health_1" }
+	self.specializations[10][3].upgrades = { "player_pickup_restore_team_ammo" }
+	self.specializations[10][5].upgrades = { "player_pickup_restore_team_health" }
+	self.specializations[10][7].upgrades = { "player_pickup_restore_health_2", "player_passive_health_multiplier_1", "player_passive_health_multiplier_2" }
+	self.specializations[10][9].upgrades = { "player_increased_pickup_area_gambler", "player_passive_loot_drop_multiplier" }
 
 	-- yakuza
 	self.specializations[12][1].upgrades = { "player_armor_regen_damage_health_ratio_multiplier_1", "player_armor_regen_damage_health_ratio_threshold_multiplier" }
@@ -587,7 +589,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[12][5].icon_xy = { 4, 2 }
 	self.specializations[12][7].upgrades = { "player_dodge_health_ratio_multiplier" }
 	self.specializations[12][7].icon_xy = { 1, 8 }
-	self.specializations[12][9].upgrades = { "player_damage_health_ratio_multiplier", "player_damage_damage_health_ratio_threshold_multiplier" }
+	self.specializations[12][9].upgrades = { "player_damage_health_ratio_multiplier", "player_damage_damage_health_ratio_threshold_multiplier", "player_passive_loot_drop_multiplier" }
 
 	-- Grinder and Ex-President
 	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_1")
@@ -625,7 +627,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[18][5].upgrades = { "player_passive_dodge_chance_1", "player_passive_dodge_chance_2", "player_passive_dodge_chance_3" }
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
 	self.specializations[18][7].icon_xy = { 1, 0 }
-	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect" }
+	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
 
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
