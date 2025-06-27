@@ -20,7 +20,7 @@
 			<post :hook_id="gamemodes/gamemodestandard"/>
 			<post :hook_id="utils/inventorydescription"/>
 			<post :hook_id="states/missionendstate"/>
-			
+
 			<group :hook_id="managers/">
 				<group :hook_id="group_ai_states/">
 					<post :hook_id="groupaistatebase"/>
@@ -137,6 +137,7 @@
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
+				<post :hook_id="pickups/ammoclip"/>
 				<post :hook_id="contourext"/>
 
 				<group :hook_id="civilians/">
@@ -525,7 +526,7 @@
 				<file :name="equipment_atlas_nm.texture" />
 				<file :name="police_vest_df.texture" />
 				<file :name="police_vest_nm.texture" />
-		
+
 				<file :name="arms_atlas_df.texture" />
 				<file :name="arms_atlas_nm.texture" />
 
@@ -1101,7 +1102,7 @@
 				<file :name="ene_gensec_operator_2_husk.unit" />
 			</group>
 		</group>
-		
+
 		<group name="units/pd2_mcmansion/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="ene_hoxton_breakout_guard_1/">
 				<file :name="ene_hoxton_breakout_guard_1.unit" />
@@ -1168,7 +1169,7 @@
 				<file :name="ene_bulldozer_minigun_classic_husk.unit" />
 			</group>
 		</group>
-		
+
 		<group name="units/pd2_dlc_rvd/vehicles/" dyn_package="false">
 			<file :name="anim_vehicle_car_police_los_angeles.material_config" />
 		</group>
@@ -1362,7 +1363,7 @@
 			<file :name="ene_secret_service_fex_husk.unit" />
 			<file :name="ene_secret_service_fex_df.texture" />
 		</group>
-		
+
 		<group name="units/pd2_dlc_chas/vehicles/chas_vehicle_car_police_sfpd/" dyn_package="false">
 			<file :name="chas_vehicle_car_police_sfpd.material_config" />
 		</group>
@@ -1444,14 +1445,14 @@
 				<file :name="ene_security_cruise_3_husk.unit" />
 			</group>
 		</group>
-		
+
 		<!-- yufu wang hitboxes -->
 		<group name="units/pd2_dlc_pent/characters/npc_male_yufuwang_armored/" dyn_package="false">
 			<file :name="npc_male_yufuwang_armored.object"/>
 			<file :name="npc_male_yufuwang_armored.unit"/>
 			<file :name="npc_male_yufuwang_armored_husk.unit"/>
 		</group>
-		
+
 		<group name="units/pd2_dlc_ranc/vehicles/ranc_vehicle_car_police_tdps/" dyn_package="false">
 			<file :name="ranc_vehicle_car_police_tdps.material_config" />
 		</group>
@@ -1535,7 +1536,7 @@
 				<file :name="ene_male_marshal_marksman_2_husk.unit" />
 			</group>
 		</group>
-		
+
 		<group name="units/pd2_dlc_usm2/weapons/">
 			<group :name="wpn_npc_hcar/">
 				<file :name="hcar_df.texture" />

@@ -103,7 +103,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.inspire.multibasic3 = "7"
 	self.skill_descs.inspire.multipro = "120"
 
-	-- FFriendship
+	-- Forced Friendship
+	self.values.cable_tie.interact_speed_multiplier[1] = 0.75
 	self.definitions.player_extra_hostages = {
 		category = "feature",
 		name_id = "menu_player_extra_hostages",
@@ -114,10 +115,19 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.extra_hostages = { 2 }
-	self.values.cable_tie.interact_speed_multiplier[1] = 0.75
+	self.definitions.cable_tie_pickup_chance = {
+		category = "equipment_upgrade",
+		name_id = "menu_cable_tie_pickup_chance",
+		upgrade = {
+			category = "cable_tie",
+			upgrade = "pickup_chance",
+			value = 1,
+		},
+	}
+	self.values.cable_tie.pickup_chance = { 0.1 }
 	self.skill_descs.triathlete.multibasic = "4"
 	self.skill_descs.triathlete.multibasic2 = "25%"
-	self.skill_descs.triathlete.multipro = "33%"
+	self.skill_descs.triathlete.multipro = "10%"
 
 	-- Confident
 	self.skill_descs.cable_guy.multipro = "50%"
@@ -1379,17 +1389,18 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[8][9].multiperk = "40"
 
 	-- Sociopath
-	self.values.player.melee_kill_armor_leech = { 9 }
-	self.definitions.player_melee_kill_armor_leech = {
-		name_id = "menu_player_melee_kill_armor_leech",
+	self.values.player.melee_kill_armor_regen = { 3 }
+	self.values.cooldown.melee_kill_armor_leech = { { 1, 1 } }
+	self.definitions.cooldown_melee_kill_armor_leech = {
+		name_id = "menu_cooldown_melee_kill_armor_leech",
 		category = "feature",
 		upgrade = {
 			value = 1,
 			upgrade = "melee_kill_armor_leech",
-			category = "player",
+			category = "cooldown",
 		},
 	}
-	self.specialization_descs[9][5].multiperk = "90"
+	self.specialization_descs[9][5].multiperk = "30"
 
 	-- Infil / Socio shared melee card
 	self.max_melee_weapon_dmg_mul_stacks = 4
@@ -1405,10 +1416,47 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[9][1].multiperk4 = "4"
 
 	-- Gambler
-	for _, v in pairs(self.values.temporary.loose_ammo_restore_health) do
-		v[2] = 10
-	end
-	self.values.temporary.loose_ammo_give_team[1][2] = 5
+	self.values.player.pickup_restore_health = { 0.2, 0.4 }
+	self.definitions.player_pickup_restore_health_1 = {
+		name_id = "menu_player_pickup_restore_health",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pickup_restore_health",
+			category = "player",
+		},
+	}
+	self.loose_ammo_give_team_ratio = 0.25
+	self.values.player.pickup_restore_team_ammo = { true }
+	self.definitions.player_pickup_restore_team_ammo = {
+		name_id = "menu_player_pickup_restore_team_ammo",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pickup_restore_team_ammo",
+			category = "player",
+		},
+	}
+	self.loose_health_give_team_ratio = 0.5
+	self.values.player.pickup_restore_team_health = { true }
+	self.definitions.player_pickup_restore_team_health = {
+		name_id = "menu_player_pickup_restore_team_health",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "pickup_restore_team_health",
+			category = "player",
+		},
+	}
+	self.definitions.player_pickup_restore_health_2 = {
+		name_id = "menu_player_pickup_restore_health",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "pickup_restore_health",
+			category = "player",
+		},
+	}
 	self.values.player.increased_pickup_area_gambler = { 2 }
 	self.definitions.player_increased_pickup_area_gambler = {
 		name_id = "menu_player_increased_pickup_area_gambler",
@@ -1419,8 +1467,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.specialization_descs[10][1].multiperk3 = "10"
-	self.specialization_descs[10][9].multiperk4 = "100%"
+	self.specialization_descs[10][1].multiperk = "2"
+	self.specialization_descs[10][3].multiperk = "25%"
+	self.specialization_descs[10][5].multiperk = "50%"
+	self.specialization_descs[10][7].multiperk = "100%"
+	self.specialization_descs[10][7].multiperk2 = "20%"
+	self.specialization_descs[10][9].multiperk = "100%"
 
 	-- Grinder
 	self.damage_to_hot_data.tick_time = 0.5
