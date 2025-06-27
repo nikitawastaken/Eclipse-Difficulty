@@ -1278,8 +1278,7 @@ PlayerAction.UnseenStrike = {
 	end,
 }
 
--- Pistol on-hit reload speed stacking
--- Handled in a separate playeraction due to stacking at a different rate, as well as having a different max time
+-- Sidearm killchain reloads primary
 PlayerAction.SidearmReloadPrimary = {
 	Priority = 1,
 	Function = function(player_manager, target_kills, target_time)
