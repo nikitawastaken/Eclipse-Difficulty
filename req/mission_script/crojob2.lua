@@ -23,7 +23,7 @@ local container_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -53,23 +53,13 @@ return {
 			},
 			{
 				name = "wagon1",
-				force = 3,
+				force = 2,
 				position = Vector3(-2900, 2900, 500),
 			},
 			{
 				name = "wagon2",
-				force = 3,
+				force = 2,
 				position = Vector3(-3700, 0, 500),
-			},
-			{
-				name = "roof1",
-				force = 3,
-				position = Vector3(5350, -1700, 650),
-			},
-			{
-				name = "roof2",
-				force = 3,
-				position = Vector3(5350, -2800, 650),
 			},
 		},
 	},
@@ -81,12 +71,12 @@ return {
 			{ name = "roof2" },
 			{
 				name = "roof3",
-				force = 3,
+				force = 2,
 				position = Vector3(-8250, 8100, 750),
 			},
 			{
 				name = "roof4",
-				force = 3,
+				force = 2,
 				position = Vector3(-9500, 5000, 750),
 			},
 			{
