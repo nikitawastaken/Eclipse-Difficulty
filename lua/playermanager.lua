@@ -1313,10 +1313,8 @@ PlayerAction.SidearmReloadPrimary = {
 			time = Application:time()
 			local weapon_unit_base = player_manager:equipped_weapon_unit():base()
 			local selection_index = weapon_unit_base and weapon_unit_base:selection_index() or 0
-			local equipped_weapon_id = weapon_unit_base and weapon_unit_base:get_name_id()
-			local sideram_reload_primary = selection_index == 1 and weapon_id == equipped_weapon_id
 
-			if weapon_unit_base and not weapon_unit_base:is_category("pistol", "revolver") and sideram_reload_primary then
+			if weapon_unit_base and not weapon_unit_base:is_category("pistol", "revolver") or not selection_index == 1 then
 				break
 			end
 
