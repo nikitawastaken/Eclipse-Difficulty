@@ -61,12 +61,12 @@ function AmmoClip:_pickup(unit)
 			if not self._projectile_id and not self._weapon_category then
 				if not unit:character_damage():is_downed() and player_manager:has_category_upgrade("player", "pickup_restore_health") then
 					local health_to_restore = player_manager:upgrade_value("player", "pickup_restore_health", 0)
-                    local damage_ext = unit:character_damage()
+					local damage_ext = unit:character_damage()
 
-                    if not damage_ext:need_revive() and not damage_ext:dead() and not damage_ext:is_berserker() then
-                        damage_ext:restore_health(health_to_restore, true)
-                        unit:sound():play("pickup_ammo_health_boost", nil, true)
-                    end
+					if not damage_ext:need_revive() and not damage_ext:dead() and not damage_ext:is_berserker() then
+						damage_ext:restore_health(health_to_restore, true)
+						unit:sound():play("pickup_ammo_health_boost", nil, true)
+					end
 
 					if player_manager:has_category_upgrade("player", "pickup_restore_team_health") then
 						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore)
