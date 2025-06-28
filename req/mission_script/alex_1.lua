@@ -182,7 +182,7 @@ return {
 	-- loop the choppa+2 chopper spawns on Eclipse
 	[100965] = {
 		on_executed = {
-			{ id = 100965, delay = 300 },
+			{ id = 400009, delay = 0 },
 		},
 	},
 	[100966] = {
