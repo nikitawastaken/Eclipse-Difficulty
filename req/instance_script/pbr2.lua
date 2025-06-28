@@ -39,7 +39,29 @@ local patches = {
 		taser = table.set(100015),
 		shields = table.set(100016, 100017),
 		cloaker = table.set(100004),
-		filters_disable = table.set(100025, 100026, 100027, 100028, 100029, 100030, 100031, 100032, 100033, 100037, 100038, 100039, 100040, 100043, 100044, 100045, 100046, 100047, 100048, 100050, 100051),
+		filters_disable = table.set(
+			100025,
+			100026,
+			100027,
+			100028,
+			100029,
+			100030,
+			100031,
+			100032,
+			100033,
+			100037,
+			100038,
+			100039,
+			100040,
+			100043,
+			100044,
+			100045,
+			100046,
+			100047,
+			100048,
+			100050,
+			100051
+		),
 		filters_easy = table.set(100023),
 		filters_normal_above = table.set(100024),
 	},
@@ -76,7 +98,7 @@ M["levels/instances/unique/pbr/pbr_sewer_enemies/world/world"] = function(result
 				{ id = 100020, delay = 0 },
 				{ id = 100021, delay = 0 },
 				{ id = 100022, delay = 0 },
-			}	
+			}
 		elseif sewer_ambush.spawn_the_bulldozer[id] then
 			element.values.on_executed = {
 				{ id = 100011, delay = 0 },
@@ -92,7 +114,7 @@ M["levels/instances/unique/pbr/pbr_sewer_enemies/world/world"] = function(result
 				{ id = 100004, delay = 0 },
 				{ id = 100016, delay = 0 },
 				{ id = 100017, delay = 0 },
-			}	
+			}
 		elseif sewer_ambush.dozer[id] then
 			element.values.enemy_table = bulldozer
 		elseif sewer_ambush.cloaker[id] then

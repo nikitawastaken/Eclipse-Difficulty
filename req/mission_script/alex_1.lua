@@ -79,7 +79,7 @@ local flank_spawn_1 = {
 local flank_spawn_2 = {
 	values = {
 		interval = 30,
-	}
+	},
 }
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
