@@ -255,7 +255,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		hostage_hesitation_delay_mul = 1.35,
 		assault_force_mul = 0.8,
 	}
-	
+
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
 	self.kenaz.group_ai_settings = {
@@ -299,13 +299,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			standard_issue = true,
 		},
 	}
-	
+
 	self.peta2.group_ai_settings = {
 		assault_force_mul = 0.6,
 		assault_delay_mul = 1.25,
 		recon_force_mul = 0.5,
 	}
-	
+
 	self.mad.group_ai_settings = {
 		assault_force_mul = 0.8,
 		force_tactics = {
@@ -476,14 +476,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.rvd1.group_ai_settings = { 
+	self.rvd1.group_ai_settings = {
 		recon_interval_variation_mul = 0.75,
 		spawn_group_presets = {
 			full_force = true,
 		},
 	}
-	
-	self.rvd2.group_ai_settings = { 
+
+	self.rvd2.group_ai_settings = {
 		assault_force_mul = 0.6,
 		special_limit_add = {
 			taser = 1,
@@ -493,7 +493,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			full_force = true,
 		},
 	}
-	
+
 	self.des.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.des.group_ai_settings.force_tactics = nil
 	self.des.group_ai_settings.assault_force_mul = 0.6

@@ -203,7 +203,7 @@ return {
 		},
 	},
 	-- lower no-fence chance for Pro Jobs
-	[102766] = { 
+	[102766] = {
 		chance = is_pro_job and 100 or 50,
 	},
 	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
