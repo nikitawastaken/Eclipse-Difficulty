@@ -108,12 +108,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
 		difficulty_curve_points = { 0.75 },
-		difficulty_step_time = 20,
 		hostage_hesitation_delay_mul = 1.35,
 		sustain_duration_mul = 0.85,
 		assault_delay_mul = 1.25,
 		assault_force_mul = 0.7,
-		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
 		force_tactics = {
 			swat_init = {
@@ -134,11 +132,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.branchbank.group_ai_settings.difficulty_curve_points = nil
 	self.branchbank.group_ai_settings.assault_force_mul = nil
 
-	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
-	self.nightclub.group_ai_settings.difficulty_curve_points = nil
-	self.nightclub.group_ai_settings.hostage_hesitation_delay_mul = nil
-	self.nightclub.group_ai_settings.recon_interval_variation_mul = nil
-	self.nightclub.group_ai_settings.assault_force_mul = 0.5
+	self.nightclub.group_ai_settings = deep_clone(self.branchbank.group_ai_settings)
+	self.nightclub.group_ai_settings.assault_force_mul = 0.6
+	self.nightclub.group_ai_settings.recon_force_mul = 0.8
 	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, medic = -1, marksman = -1 }
 
 	self.watchdogs_2.group_ai_settings = {
@@ -158,7 +154,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.framing_frame_2.group_ai_settings = {
 		difficulty_curve_points = { 0.25 },
-		difficulty_step_time = 5,
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		hostage_hesitation_delay_mul = 0,
 		assault_force_mul = 0.4,
@@ -181,7 +176,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.6,
-		recon_force_mul = 0.75,
+		recon_force_mul = 0.8,
 		grenade_timeout_mul = {
 			flash_grenade = 0.5,
 			smoke_grenade = 0.75,
@@ -318,7 +313,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.man.group_ai_settings = {
-		difficulty_step_time = 10,
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		sustain_duration_mul = 1.25,
 		reenforce_interval_mul = 1.5,
@@ -573,7 +567,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.trai.group_ai_settings = {
-		difficulty_step_time = 10,
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
 		special_limit_add = {
