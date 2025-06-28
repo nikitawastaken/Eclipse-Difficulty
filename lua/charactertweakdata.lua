@@ -522,6 +522,17 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
 	speed_multiplier(presets.move_speed.lightning, 1.4)
 
+	for speed_preset_name, poses in pairs(presets.move_speed) do
+		for pose, hastes in pairs(poses) do
+			hastes.run.ntl = hastes.run.hos
+		end
+
+		poses.crouch.walk.ntl = poses.crouch.walk.hos
+		poses.crouch.run.ntl = poses.crouch.run.hos
+		poses.stand.run.ntl = poses.stand.run.hos
+		poses.panic = poses.stand
+	end
+	
 	presets.gang_member_damage.HEALTH_INIT = 80 + (30 * (diff_i - 2))
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
@@ -1184,10 +1195,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"special",
 		"shield",
 	}
-	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.4
+	self.city_shield_break.tmp_invulnerable_on_tweak_change = 0.5
 	self.city_shield_break.chatter = self.presets.enemy_chatter.special
 	self.city_shield_break.dodge = self.presets.dodge.athletic
-	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.base
+	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.city_shield_break.move_speed = self.presets.move_speed.fast
 	self.city_shield_break.allowed_stances = nil
 	self.city_shield_break.allowed_poses = nil
