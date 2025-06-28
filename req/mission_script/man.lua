@@ -202,8 +202,10 @@ return {
 			{ id = 101599, remove = true },
 		},
 	},
-	-- guarnteed chance of no fence near the escape zone
-	[102766] = { chance = 100 },
+	-- lower no-fence chance for Pro Jobs
+	[102766] = { 
+		chance = is_pro_job and 100 or 50,
+	},
 	-- Enables/disables NPCs flashlights when the power is off/on like in PDTH
 	[100756] = {
 		flashlight = true,
@@ -377,7 +379,7 @@ return {
 	-- trigger taser chopper event if the limo stays on the roof
 	[101782] = {
 		on_executed = {
-			{ id = 400010, delay = 90, delay_rand = 30 },
+			{ id = 400010, delay = 60, delay_rand = is_pro_job and 60 or 90 },
 		},
 	},
 	-- tweak the PC hack to use PDTH values
@@ -617,7 +619,7 @@ return {
 	-- Regular harasser stuff
 	[102269] = {
 		on_executed = {
-			{ id = 102268, delay = 30, delay_rand = harasser_delay },
+			{ id = 102268, delay = harasser_delay, delay_rand = 30 },
 		},
 	},
 	[101731] = {
@@ -630,7 +632,7 @@ return {
 	[102946] = harasser_counter,
 	[103833] = {
 		on_executed = {
-			{ id = 103832, delay = 30, delay_rand = harasser_delay },
+			{ id = 103832, delay = harasser_delay, delay_rand = 30 },
 		},
 	},
 	[103832] = harasser_amount,

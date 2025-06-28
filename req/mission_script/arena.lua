@@ -13,13 +13,13 @@ local skylight_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local upper_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

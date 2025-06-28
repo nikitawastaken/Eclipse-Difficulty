@@ -112,7 +112,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		hostage_hesitation_delay_mul = 1.35,
 		sustain_duration_mul = 0.85,
 		assault_delay_mul = 1.25,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.6,
 		recon_interval_variation_mul = 0.5,
 		push_delay_mul = 1.25,
 		force_tactics = {
@@ -138,7 +138,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nightclub.group_ai_settings.difficulty_curve_points = nil
 	self.nightclub.group_ai_settings.hostage_hesitation_delay_mul = nil
 	self.nightclub.group_ai_settings.recon_interval_variation_mul = nil
-	self.nightclub.group_ai_settings.assault_force_mul = 0.6
+	self.nightclub.group_ai_settings.assault_force_mul = 0.5
 	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, medic = -1, marksman = -1 }
 
 	self.watchdogs_2.group_ai_settings = {
@@ -250,6 +250,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.arena.group_ai_settings = {
+		spawn_kill_cooldown_mul = 1.5,
+		hostage_hesitation_delay_mul = 1.35,
+		assault_force_mul = 0.8,
+	}
+	
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
 	self.kenaz.group_ai_settings = {
@@ -269,14 +275,39 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pbr2.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
 		sustain_duration_mul = 0.85,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.6,
 		push_delay_mul = 1.25,
 		special_limit_add = {
 			shield = -1,
 		},
 	}
 
+	self.peta.group_ai_settings = {
+		assault_force_mul = 1.2,
+		reenforce_interval_mul = 1.5,
+		assault_delay_mul = 1.25,
+		push_delay_mul = 1.25,
+		force_tactics = {
+			swat_init = {
+				flank = true,
+			},
+			bulldozer_def = {
+				door_ambush = true,
+			},
+		},
+		spawn_group_presets = {
+			standard_issue = true,
+		},
+	}
+	
+	self.peta2.group_ai_settings = {
+		assault_force_mul = 0.6,
+		assault_delay_mul = 1.25,
+		recon_force_mul = 0.5,
+	}
+	
 	self.mad.group_ai_settings = {
+		assault_force_mul = 0.8,
 		force_tactics = {
 			shield_def = {
 				ranged_fire = false,
@@ -369,7 +400,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chill_combat.group_ai_settings = {
 		sustain_duration_mul = 0.65,
-		assault_force_mul = 0.5,
+		assault_force_mul = 0.4,
 		cs_grenade_chance_times_mul = 0.5,
 		min_grenade_timeout_mul = 0.75,
 		grenade_timeout_mul = {
@@ -436,8 +467,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hvh.group_ai_settings = {
 		spawn_kill_distance_mul = 0.65,
 		assault_force_mul = 0.4,
-		recon_force_mul = 0.6,
-		push_delay_mul = 0.75,
+		recon_force_mul = 0.5,
 		special_limit_add = {
 			shield = -2,
 		},
@@ -446,8 +476,27 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.rvd1.group_ai_settings = { 
+		recon_interval_variation_mul = 0.75,
+		spawn_group_presets = {
+			full_force = true,
+		},
+	}
+	
+	self.rvd2.group_ai_settings = { 
+		assault_force_mul = 0.6,
+		special_limit_add = {
+			taser = 1,
+			tank = 1,
+		},
+		spawn_group_presets = {
+			full_force = true,
+		},
+	}
+	
 	self.des.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.des.group_ai_settings.force_tactics = nil
+	self.des.group_ai_settings.assault_force_mul = 0.6
 
 	self.nmh.group_ai_settings = {
 		assault_force_mul = 0.5,
@@ -475,6 +524,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		spawn_group_presets = {
 			full_force = true,
 			heavy_response = true,
+			special_operation = true,
 		},
 	}
 
@@ -501,7 +551,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chca.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
-		assault_force_mul = 0.8,
+		assault_force_mul = 0.6,
 		assault_delay_mul = 1.25,
 		special_limit_add = {
 			marksman = -1,
