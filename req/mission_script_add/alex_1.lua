@@ -22,6 +22,10 @@ local activate_navlinks = {
 		{ id = 101873, delay = 0 },
 	},
 }
+local optschopper_loop = {
+	on_executed = { { id = 100965, delay = 300, delay_rand = 60 } },
+	enabled = true,
+}
 local optsBesiegeDummy = {
 	trigger_times = 0,
 	participate_to_group_ai = true,
@@ -51,6 +55,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400007, "eclipse_enemy_group_001", { 400002, 400003, 400004, 400005, 400006 }, 0),
 	-- fix for cook off police chopper
 	Eclipse.mission_elements.gen_object_editor(400008, "cook_off_police_chopper_fix", Vector3(0, 0, 0), Rotation(0, 0, -0), optsPolice_chopper_fix),
+	-- loop script for the choppers
+	Eclipse.mission_elements.gen_missionscript(400009, "activate_eclipse_navlinks", optschopper_loop),
 }
 
 return M
