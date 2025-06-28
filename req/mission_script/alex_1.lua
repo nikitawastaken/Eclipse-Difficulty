@@ -220,7 +220,7 @@ return {
 	-- fix the police chopper on cook off being invisible
 	[100922] = {
 		on_executed = {
-			{ id = 100893, remove = cook_off and true or false },
+			{ id = 101647, remove = cook_off and true or false },
 			{ id = 400008, delay = cook_off and 0 or nil },
 		},
 	},
