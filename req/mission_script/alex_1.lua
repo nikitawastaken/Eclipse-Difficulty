@@ -97,12 +97,6 @@ return {
 			{ id = 100376, delay = 3.25 },
 		},
 	},
-	-- restore meth lab in the basement
-	[100486] = {
-		values = {
-			enabled = meth_lab_in_basement_chance,
-		},
-	},
 	-- more snipers on higher difficulties
 	[101070] = sniper_groups,
 	-- prevent snipers from stacking up
