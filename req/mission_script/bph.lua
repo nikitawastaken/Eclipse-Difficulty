@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local staircase_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local upper_spawn = {
 	values = {
 		interval = 15,
@@ -22,7 +27,7 @@ local flank_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local flank_spawn = {
+local window_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -47,6 +52,9 @@ return {
 		},
 	},
 	-- Spawn group delays
+	[100821] = staircase_spawn,
+	[100875] = staircase_spawn,
+	[102431] = staircase_spawn,
 	[100007] = upper_spawn,
 	[100128] = upper_spawn,
 	[100130] = upper_spawn,
