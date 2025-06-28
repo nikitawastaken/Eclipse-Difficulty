@@ -33,12 +33,12 @@
 	<material_config	path="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1_contour" />
 	<model				path="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1" />	
 	<object				path="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1" />
-	<unit				path="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1" />
-	<unit				path="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1_husk" />	
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1" load="true" />
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1_husk" load="true" />	
 
-	<unit				path="units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2" />
-	<unit				path="units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2_husk" />	
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2" load="true" />
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2_husk" load="true" />	
 
-	<unit				path="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3" />
-	<unit				path="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3_husk" />	
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3" load="true" />
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3_husk" load="true" />	
 </table>
