@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local level_id = Eclipse.utils.level_id()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
@@ -9,6 +10,7 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
+local cook_off = level_id ~= "alex_1"
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -68,11 +70,16 @@ local lumber_close_spawn = {
 	},
 	groups = preferred.no_bulldozers,
 }
-local flank_spawn = {
+local flank_spawn_1 = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers_snipers,
+}
+local flank_spawn_2 = {
+	values = {
+		interval = 30,
+	}
 }
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
@@ -173,12 +180,17 @@ return {
 		},
 	},
 	-- loop the choppa+2 chopper spawns on Eclipse
+	[100965] = {
+		on_executed = {
+			{ id = 100965, delay = 300 },
+		},
+	},
 	[100966] = {
 		values = {
 			amount = chopper_amount,
 		},
 		on_executed = {
-			{ id = 100965, delay = 300 },
+			{ id = 100993, remove = cook_off and true or false }, -- unused spawn snipers script
 		},
 	},
 	-- trigger_times to 0; making the loop possible
@@ -203,6 +215,13 @@ return {
 		on_executed = {
 			{ id = 100893, remove = true },
 			{ id = 100894, delay = 24 },
+		},
+	},
+	-- fix the police chopper on cook off being invisible
+	[100922] = {
+		on_executed = {
+			{ id = 100893, remove = cook_off and true or false },
+			{ id = 400008, delay = cook_off and 0 or nil },
 		},
 	},
 	-- planks amount, normally always 3, now you can get anywhere from fuck-all to more than you know what to do with
@@ -267,6 +286,17 @@ return {
 			},
 		},
 	},
+	-- add new unused spawngroup
+	[100846] = {
+		values = {
+			spawn_groups = {
+				400007,
+				100874,
+				100880,
+				100863,
+			},
+		},
+	},
 	[101525] = mendoza, -- gangsters
 	[101527] = mendoza,
 	[100825] = mendoza,
@@ -295,4 +325,5 @@ return {
 	[100863] = lumber_close_spawn,
 	[100874] = lumber_close_spawn,
 	[100925] = flank_spawn,
+	[400007] = flank_spawn_2,
 }
