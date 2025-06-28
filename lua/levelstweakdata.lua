@@ -532,7 +532,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex.group_ai_settings.sustain_duration_mul = 1.25
 
 	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
-	
+
 	self.bex.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.35,
 		assault_force_mul = 1.2,
