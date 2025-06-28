@@ -284,11 +284,11 @@ return {
 	[103377] = disabled,
 	[104041] = disabled,
 	-- tweak chances for closing shutters and basement ambush
-	[102813] = { 
-		chance = close_shutters_chance 
+	[102813] = {
+		chance = close_shutters_chance,
 	},
-	[100528] = { 
-		chance = basement_ambush_chance 
+	[100528] = {
+		chance = basement_ambush_chance,
 	},
 	-- custom spawns
 	-- add point of no return and spawn lobby ambushes
