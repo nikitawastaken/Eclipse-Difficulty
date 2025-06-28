@@ -1,8 +1,6 @@
 ---@module Rats Day 1
 local M = {}
 local is_eclipse = Eclipse.utils.is_eclipse()
-local level_id = Eclipse.utils.level_id()
-local cook_off = level_id ~= "alex_1"
 
 local activate_navlinks = {
 	enabled = is_eclipse,
@@ -33,7 +31,7 @@ local optsBesiegeDummy = {
 	enabled = true,
 }
 local optsPolice_chopper_fix = {
-	enabled = cook_off,
+	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101646, notify_unit_sequence = "swat_night", time = 0 },
 		{ id = 2, name = "run_sequence", notify_unit_id = 101646, notify_unit_sequence = "flyin_fwd_hover", time = 0 },
@@ -53,7 +51,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400005, "eclipse_spawn_enemy_004", Vector3(1539, -1931, 874.683), Rotation(0, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400006, "eclipse_spawn_enemy_005", Vector3(1469, -1931, 874.683), Rotation(0, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400007, "eclipse_enemy_group_001", { 400002, 400003, 400004, 400005, 400006 }, 0),
-	-- fix for cook off police chopper
+	-- fix for police chopper
 	Eclipse.mission_elements.gen_object_editor(400008, "cook_off_police_chopper_fix", Vector3(0, 0, 0), Rotation(0, 0, -0), optsPolice_chopper_fix),
 	-- loop script for the choppers
 	Eclipse.mission_elements.gen_missionscript(400009, "activate_eclipse_navlinks", optschopper_loop),

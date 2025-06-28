@@ -11,6 +11,7 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cook_off = level_id ~= "alex_1"
+local meth_lab_in_basement_chance = cook_off and math.random() < 0.2
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -94,6 +95,12 @@ return {
 		enemy = heli_dozer,
 		on_executed = {
 			{ id = 100376, delay = 3.25 },
+		},
+	},
+	-- restore meth lab in the basement
+	[100486] = {
+		values = {
+			enabled = meth_lab_in_basement_chance,
 		},
 	},
 	-- more snipers on higher difficulties
@@ -183,6 +190,13 @@ return {
 	[100965] = {
 		on_executed = {
 			{ id = 400009, delay = 0 },
+			{ id = 100966, delay = 0 },
+		},
+	},
+	-- this makes the dozer chopper spawn twice sometimes
+	[100239] = {
+		values = {
+			enabled = false,
 		},
 	},
 	[100966] = {
@@ -220,8 +234,8 @@ return {
 	-- fix the police chopper on cook off being invisible
 	[100922] = {
 		on_executed = {
-			{ id = 101647, remove = cook_off and true or false },
-			{ id = 400008, delay = cook_off and 0 or nil },
+			{ id = 101647, remove = true },
+			{ id = 400008, delay = 0 },
 		},
 	},
 	-- planks amount, normally always 3, now you can get anywhere from fuck-all to more than you know what to do with
