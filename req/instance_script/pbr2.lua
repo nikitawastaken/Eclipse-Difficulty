@@ -121,7 +121,7 @@ M["levels/instances/unique/pbr/pbr_sewer_enemies/world/world"] = function(result
 			element.values.enemy = cloaker
 		elseif sewer_ambush.taser[id] then
 			element.values.enemy = taser
-		elseif sewer_ambush.shield[id] then
+		elseif sewer_ambush.shields[id] then
 			element.values.enemy = shield
 		elseif sewer_ambush.filters_easy[id] then
 			table.map_append(element.values, filter_easy)
