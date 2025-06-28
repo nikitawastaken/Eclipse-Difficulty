@@ -112,7 +112,7 @@ function GroupAITweakData:_distance_weighted_spawn_entry(spawn_entry, from_dis, 
 		return math.map_range_clamped(self._last_dis_freq or (from_dis + to_dis) / 2, from_dis, to_dis, from_weight, to_weight)
 	end
 
-	local entry_freq = clone(spawn_entry.freq_by_diff) or spawn_entry.freq or 1
+	local entry_freq = spawn_entry.freq_by_diff or spawn_entry.freq or 1
 	spawn_entry.freq_by_diff = nil
 	spawn_entry.freq = nil
 	return setmetatable(spawn_entry, {
