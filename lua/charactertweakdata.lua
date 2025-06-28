@@ -532,7 +532,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.stand.run.ntl = poses.stand.run.hos
 		poses.panic = poses.stand
 	end
-	
+
 	presets.gang_member_damage.HEALTH_INIT = 80 + (30 * (diff_i - 2))
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
