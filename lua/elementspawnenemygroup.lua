@@ -42,6 +42,7 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"fbi_stealth_heavy",
 		"fbi_swats",
 		"fbi_heavies",
+		"elite_sniper",
 		"elite_defend_light",
 		"elite_defend_heavy",
 		"elite_swats",

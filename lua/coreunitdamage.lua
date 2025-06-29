@@ -27,7 +27,7 @@ Hooks:PostHook(CoreBodyDamage, "init", "eclipse_init", function(self)
 	then
 		local shield_balance_mul = managers.groupai:state():_get_balancing_multiplier(tweak_data.character.shield_health_balance_mul)
 
-		self._body_element._damage_multiplier = math.min(1 / shield_balance_mul, 1) or self._body_element._damage_multiplier
+		self._body_element._damage_multiplier = (1 / shield_balance_mul) or self._body_element._damage_multiplier
 	elseif self._body_element._name == "planks_body" then
 		self._body_element._damage_multiplier = 0.33
 	end
