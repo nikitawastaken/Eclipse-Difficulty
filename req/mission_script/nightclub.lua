@@ -4,16 +4,15 @@ local club_music = is_eclipse and "diegetic_club_rock_music" or "diegetic_club_m
 local club_music_off = is_eclipse and "diegetic_club_rock_music_stop" or "diegetic_club_music_stop"
 local dance_civs = is_eclipse and 17 or 7
 local dance_civs_bad_music = is_eclipse and 7 or 3
+local rear_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local side_spawn = {
 	values = {
 		interval = 15,
 	},
-}
-local rear_spawn = {
-	values = {
-		interval = 25,
-	},
-	groups = preferred.no_bulldozers,
 }
 local window_spawn = {
 	values = {
@@ -23,7 +22,7 @@ local window_spawn = {
 }
 local alleyway_spawn = {
 	values = {
-		interval = 45,
+		interval = 50,
 	},
 	groups = preferred.no_bulldozers,
 }
@@ -57,7 +56,7 @@ return {
 		reinforce = {
 			{
 				name = "dance_floor",
-				force = 2,
+				force = 3,
 				position = Vector3(2400, -5600, -50),
 			},
 			{
