@@ -260,6 +260,18 @@ local optsCloakerAmbush_193 = {
 	enemy = cloaker,
 	enabled = true,
 }
+local optsTaserConferenceRoom = {
+	enemy = taser,
+	spawn_action = "e_sp_repel_into_window",
+	participate_to_group_ai = true,
+	enabled = true,
+}
+local optsCloakerConferenceRoom = {
+	enemy = cloaker,
+	spawn_action = "e_sp_repel_into_window",
+	participate_to_group_ai = true,
+	enabled = true,
+}
 local Smoke_bomb = {
 	duration = 12,
 }
@@ -367,6 +379,10 @@ local optsDefendSO = {
 local optsspawnArmy = {
 	on_executed = { { id = 400054, delay = 0 }, { id = 400055, delay = 0 }, { id = 400056, delay = 0 }, { id = 400057, delay = 1 }, { id = 400058, delay = 1 } },
 	enabled = overkill_and_above and enabled_chance_shield_army,
+}
+local optsspawnConferenceRoomAmbush = {
+	on_executed = { { id = 101844, delay = 0 }, { id = 400089, delay = 2 }, { id = 400086, delay = 2.5 }, { id = 400087, delay = 2.5 }, { id = 400088, delay = 2.5 } },
+	enabled = true,
 }
 local optsspawnSecurity = {
 	on_executed = {
@@ -496,6 +512,14 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400083, "disable_escape_events", disable_basement_ambushes),
 	Eclipse.mission_elements.gen_toggleelement(400084, "enable_193plus_escape_events", enable_193_basement_ambushes),
 	Eclipse.mission_elements.gen_toggleelement(400085, "enable_cloaker_ambush_event", enable_cloaker_basement_ambush),
+	
+	-- conference room ambush spawn
+	Eclipse.mission_elements.gen_dummy(400086, "taser_conference_room_1", Vector3(-2675, -2300, 475), Rotation(-90, 0, 0), optsTaserConferenceRoom),
+	Eclipse.mission_elements.gen_dummy(400087, "cloaker_conference_room_1", Vector3(-2675, -2725, 475), Rotation(-90, 0, 0), optsCloakerConferenceRoom),
+	Eclipse.mission_elements.gen_dummy(400088, "cloaker_conference_room_2", Vector3(-2675, -1875, 475), Rotation(-90, 0, 0), optsCloakerConferenceRoom),
+	
+	Eclipse.mission_elements.gen_smokegrenade(400089, "smoke_grenade_3", Vector3(4653.735, 217.405, -735.693), Rotation(0, 0, 0), Smoke_bomb),
+	Eclipse.mission_elements.gen_missionscript(400090, "conference_room_event", optsspawnConferenceRoomAmbush),
 }
 
 return M

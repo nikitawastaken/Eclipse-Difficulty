@@ -13,6 +13,7 @@ local overkill_above = diff_i >= 5
 local security_guard_1 = scripted_enemy.security_1
 local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
 local cloaker = scripted_enemy.cloaker
+local heavy_swat = scripted_enemy.heavy_swat_2
 local taser = scripted_enemy.taser_1
 local bulldozer = scripted_enemy.bulldozer_1
 local bulldozer_2 = scripted_enemy.bulldozer_2
@@ -76,6 +77,9 @@ local bulldozer_spawn = {
 }
 local taser_cloaker = {
 	enemy = cloaker,
+}
+local cloaker_escape = {
+	enemy = normal and heavy_swat or cloaker,
 }
 local taser_spawn_1 = {
 	enemy = taser,
@@ -290,6 +294,14 @@ return {
 	[100528] = {
 		chance = basement_ambush_chance,
 	},
+	-- add ambush to conference room
+	-- guaranteed chance
+	[103756] = {
+		chance = 100,
+		on_executed = {
+			{ id = 400090, delay = 3 },
+		},
+	},
 	-- custom spawns
 	-- add point of no return and spawn lobby ambushes
 	[101660] = {
@@ -390,6 +402,8 @@ return {
 			{ id = 400045, delay = 0 },
 		},
 	},
+	-- replace shield on the left with cloaker (heavy swat on easy and normal)
+	[103395] = cloaker_escape,
 	-- make the rest of vanilla escape spawns turn into gensec on E/PJ
 	-- 2 shields at the bottom of the staircase, replaced one shield with bulldozer
 	[103693] = { enemy = shield },
