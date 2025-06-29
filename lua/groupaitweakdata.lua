@@ -2795,7 +2795,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.single_spooc = {
 		amount = { 1, 1 },
 		spawn = {
@@ -3603,13 +3603,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_heavies = { 0, 12, 36 },
 
 			elite_sniper = { 0, 12, 24 },
-			
+
 			fbi_shield = { 0, 12, 12 },
 			elite_shield = { 0, 0, 12 },
 
 			elite_taser = { 0, 8, 16 },
 			elite_taser_takedown = { 0, 4, 8 },
-			
+
 			fbi_cloaker = { 0, 12, 24 },
 
 			fbi_bulldozer = { 0, 0, 6 },

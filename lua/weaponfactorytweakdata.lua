@@ -109,7 +109,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		local part = self.parts and self.parts[part_id]
 		local is_barrel_ext = part and part.type == "barrel_ext"
 		local default_part = table.contains(self.wpn_fps_ass_m4.default_blueprint, part_id)
-		
+
 		if is_barrel_ext and not default_part then
 			rifle_barrel_exts[part_id] = true
 		end
@@ -128,12 +128,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	local function assign_barrel_exts(factory_id, barrel_ext_list, exclude_silencer, blacklist)
 		local barrel_exts = clone(barrel_ext_list)
-		for part_id, add in pairs(barrel_exts) do	
+		for part_id, add in pairs(barrel_exts) do
 			if add then
 				local part = self.parts[part_id]
 				local is_barrel_ext = part and part.type == "barrel_ext"
 				local is_silencer = is_barrel_ext and part.sub_type == "silencer"
-				
+
 				if not blacklist and blacklist[part_id] then
 					if not exclude_silencer and is_silencer then
 						table.insert(self[factory_id].uses_parts, part_id)
@@ -222,7 +222,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override = {}
 		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override[sight_id] = { a_obj = "a_o_sm", stance_mod = { wpn_fps_lmg_rpk = { translation = Vector3(0, 0, -4.6) } } }
 	end
-	
+
 	local piggyback_stats = { value = 1, gadget_zoom = 1 }
 
 	self.parts.wpn_fps_upg_o_specter_piggyback.stats = clone(piggyback_stats)
@@ -245,7 +245,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla.pcs = nil
 
 	self.parts.wpn_fps_m4_uupg_m_std = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
-	
+
 	self.parts.wpn_fps_upg_m4_m_straight.stats.extra_ammo = -5
 
 	self.parts.wpn_fps_m4_uupg_b_long.stats.spread = -2
@@ -255,10 +255,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_m4_uupg_b_short.stats.damage = 0
 	self.parts.wpn_fps_m4_uupg_b_short.stats.spread = 2
-	
+
 	self.parts.wpn_fps_m4_uupg_s_fold.stats.recoil = -2
 	self.parts.wpn_fps_m4_uupg_s_fold.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_upg_ak_b_draco.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_draco.stats.concealment = 2
 
@@ -266,12 +266,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_upg_ak_b_ak105.stats.spread = -1
 
 	self.parts.wpn_upg_ak_s_folding.stats.recoil = -2
-	
+
 	self.parts.wpn_upg_ak_s_skfoldable.stats.recoil = -2
 
 	self.parts.wpn_upg_ak_s_psl.stats.spread = 3
 	self.parts.wpn_upg_ak_s_psl.stats.concealment = -3
-			
+
 	self.parts.wpn_fps_upg_ak_m_uspalm.stats.extra_ammo = 0
 	self.parts.wpn_fps_upg_ak_m_uspalm.custom_stats.ammo_offset = 5
 
@@ -280,31 +280,31 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_aug_b_long.stats.recoil = 0
 	self.parts.wpn_fps_aug_b_long.stats.concealment = -1
-	
+
 	self.parts.wpn_fps_ass_ak5_b_short.stats.damage = 0
 	self.parts.wpn_fps_ass_ak5_b_short.stats.spread = -2
 
 	self.parts.wpn_fps_ass_g36_fg_c.stats.spread = -1
 	self.parts.wpn_fps_ass_g36_fg_c.stats.concealment = 1
-	
+
 	self.parts.wpn_fps_upg_g36_fg_long.stats.spread = 2
 	self.parts.wpn_fps_upg_g36_fg_long.stats.recoil = 1
 	self.parts.wpn_fps_upg_g36_fg_long.stats.concealment = -3
-	
-	self.parts.wpn_fps_ass_s552_b_long.stats.concealment = -1	 
+
+	self.parts.wpn_fps_ass_s552_b_long.stats.concealment = -1
 
 	self.parts.wpn_fps_ass_famas_b_short.stats.damage = 0
-	
+
 	self.parts.wpn_fps_ass_famas_b_sniper.stats.spread = 3
 
 	self.parts.wpn_fps_ass_famas_b_suppressed.stats.concealment = -2
-	
+
 	self.parts.wpn_fps_ass_l85a2_b_long.stats.spread = 2
 	self.parts.wpn_fps_ass_l85a2_b_long.stats.concealment = -2
 
 	self.parts.wpn_fps_ass_l85a2_b_short.stats.spread = -2
 	self.parts.wpn_fps_ass_l85a2_b_short.stats.concealment = 2
-		
+
 	self.parts.wpn_fps_ass_vhs_b_short.stats.spread = -2
 	self.parts.wpn_fps_ass_vhs_b_short.stats.recoil = 0
 	self.parts.wpn_fps_ass_vhs_b_short.stats.concealment = 2
@@ -314,19 +314,19 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_ass_vhs_m.stats.recoil = 0
 
 	self.parts.wpn_fps_ass_asval_b_proto.stats.spread = -2
-	
+
 	self.parts.wpn_fps_ass_asval_s_solid.stats.spread = 1
 	self.parts.wpn_fps_ass_asval_s_solid.stats.recoil = 2
 	self.parts.wpn_fps_ass_asval_s_solid.stats.concealment = -3
 
 	self.parts.wpn_fps_smg_hajk_b_medium.stats.spread = -1
 	self.parts.wpn_fps_smg_hajk_b_medium.stats.concealment = 1
-	
+
 	self.parts.wpn_fps_smg_hajk_b_short.stats.spread = 2
 	self.parts.wpn_fps_smg_hajk_b_short.stats.concealment = -2
 
 	self.parts.wpn_fps_ass_corgi_b_short.stats.concealment = 2
-		
+
 	-- DMR Mods
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.spread = -6
 	self.parts.wpn_fps_ass_m14_body_ruger.stats.recoil = -2
@@ -339,28 +339,28 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_ass_sub2000_fg_suppressed.spread = -2
 	self.parts.wpn_fps_ass_sub2000_fg_suppressed.concealment = 1
-	
+
 	self.parts.wpn_fps_ass_g3_fg_retro.stats.spread = -2
 	self.parts.wpn_fps_ass_g3_fg_retro.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_ass_g3_fg_retro_plastic.stats.recoil = -2
 	self.parts.wpn_fps_ass_g3_fg_retro_plastic.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_ass_fal_fg_03.stats.recoil = 0
 	self.parts.wpn_fps_ass_fal_fg_03.stats.concealment = 0
 
-	self.parts.wpn_fps_ass_fal_fg_01.stats.spread = -4 
-	self.parts.wpn_fps_ass_fal_fg_01.stats.concealment = 4 
-	
+	self.parts.wpn_fps_ass_fal_fg_01.stats.spread = -4
+	self.parts.wpn_fps_ass_fal_fg_01.stats.concealment = 4
+
 	self.parts.wpn_fps_ass_fal_s_01.stats.recoil = -2
 	self.parts.wpn_fps_ass_fal_s_01.stats.concealment = 2
 
 	self.parts.wpn_fps_ass_ching_b_short.stats.spread = -3
 	self.parts.wpn_fps_ass_ching_b_short.stats.concealment = 3
-	
+
 	self.parts.wpn_fps_ass_ching_s_pouch.stats.total_ammo_mod = 3
 	self.parts.wpn_fps_ass_ching_s_pouch.stats.concealment = -2
-	
+
 	-- Pistol mods
 	self.parts.wpn_fps_pis_g18c_m_mag_33rnd.stats.extra_ammo = 8
 
@@ -555,7 +555,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_smg_mp9_s_skel.stats.spread = 1
 	self.parts.wpn_fps_smg_mp9_s_skel.stats.recoil = 2
 	self.parts.wpn_fps_smg_mp9_s_skel.stats.concealment = -3
-	
+
 	self.parts.wpn_fps_smg_mp5_fg_m5k.stats.spread = -2
 	self.parts.wpn_fps_smg_mp5_fg_m5k.stats.concealment = 2
 
@@ -567,7 +567,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.recoil = -2
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 6
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
@@ -580,44 +580,44 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_smg_p90_b_civilian.stats.concealment = -3
 
 	self.parts.wpn_fps_smg_p90_b_ninja.stats.concealment = -4
-	
+
 	self.parts.wpn_fps_smg_m45_b_small.stats.concealment = 2
 
 	self.parts.wpn_fps_smg_m45_s_folded.stats.recoil = -3
 	self.parts.wpn_fps_smg_m45_s_folded.stats.concealment = 3
-	
+
 	self.parts.wpn_fps_smg_mp7_s_long.stats.recoil = 2
 	self.parts.wpn_fps_smg_mp7_s_long.stats.concealment = -2
-	
+
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats = { value = 1, concealment = -2 }
-	self.parts.wpn_fps_smg_scorpion_m_extended.custom_stats = { reload_speed_multiplier = 1.2 } 
+	self.parts.wpn_fps_smg_scorpion_m_extended.custom_stats = { reload_speed_multiplier = 1.2 }
 
 	self.parts.wpn_fps_smg_scorpion_s_nostock.stats.recoil = -1
 	self.parts.wpn_fps_smg_scorpion_s_nostock.stats.concealment = 1
-	
+
 	self.parts.wpn_fps_smg_scorpion_s_unfolded.stats.spread = 1
 	self.parts.wpn_fps_smg_scorpion_s_unfolded.stats.recoil = 2
 	self.parts.wpn_fps_smg_scorpion_s_unfolded.stats.concealment = -3
-	
+
 	self.parts.wpn_fps_smg_thompson_barrel_short.stats.spread = -2
 	self.parts.wpn_fps_smg_thompson_barrel_short.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_smg_thompson_barrel_long.stats.damage = 0
 	self.parts.wpn_fps_smg_thompson_barrel_long.stats.concealment = -2
-	
+
 	self.parts.wpn_fps_smg_thompson_stock_nostock.stats.recoil = -3
 	self.parts.wpn_fps_smg_thompson_stock_nostock.stats.concealment = 3
 
 	self.parts.wpn_fps_smg_baka_s_standard.stats.recoil = -1
 	self.parts.wpn_fps_smg_baka_s_standard.stats.concealment = 1
-		
+
 	self.parts.wpn_fps_smg_baka_s_unfolded.stats.spread = 1
 	self.parts.wpn_fps_smg_baka_s_unfolded.stats.recoil = 2
 	self.parts.wpn_fps_smg_baka_s_unfolded.stats.concealment = -3
-	
+
 	self.parts.wpn_fps_smg_shepheard_body_short.stats.spread = -2
 	self.parts.wpn_fps_smg_shepheard_body_short.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_smg_shepheard_mag_extended.unit = "units/pd2_dlc_joy/weapons/wpn_fps_smg_shepheard_pts/wpn_fps_smg_shepheard_mag_standard"
 	self.parts.wpn_fps_smg_shepheard_mag_extended.bullet_objects = { amount = 20, prefix = "g_bullet_" }
 	self.parts.wpn_fps_smg_shepheard_mag_extended.stats = { value = 1, extra_ammo = -5, concealment = 1, reload = 2 }
@@ -627,17 +627,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_smg_shepheard_s_no.stats.recoil = -2
 	self.parts.wpn_fps_smg_shepheard_s_no.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_smg_schakal_b_civil.stats.damage = 0
 	self.parts.wpn_fps_smg_schakal_b_civil.stats.spread = 2
 	self.parts.wpn_fps_smg_schakal_b_civil.stats.concealment = -2
-	
+
 	self.parts.wpn_fps_smg_erma_s_folded.stats.recoil = -2
 	self.parts.wpn_fps_smg_erma_s_folded.stats.concealment = 2
 
 	self.parts.wpn_fps_smg_pm9_b_short.stats.spread = -2
 	self.parts.wpn_fps_smg_pm9_b_short.stats.recoil = 0
-	
+
 	self.parts.wpn_fps_smg_pm9_s_tactical.stats.recoil = 2
 	self.parts.wpn_fps_smg_pm9_s_tactical.stats.concealment = -2
 
