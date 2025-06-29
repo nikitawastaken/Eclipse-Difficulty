@@ -875,7 +875,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.detection_risk_add_crit_chance = {
-		{ 0.01, 2, "below", 35, 0.3 },
+		{ 0.01, 2, "below", 35, 0.1 },
 		{ 0.03, 1, "below", 35, 0.3 },
 	}
 	self.values.weapon.extra_crit_damage_mul = { 1 }
