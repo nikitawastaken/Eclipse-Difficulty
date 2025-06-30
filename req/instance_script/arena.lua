@@ -9,7 +9,7 @@ return {
 	["levels/instances/unique/are_ps_double_doors/world/world"] = function(result)
 		for _, element in ipairs(result.default.elements) do
 			if patches.double_door_group[element.id] then
-				element.values.interval = 10
+				element.values.interval = 15
 			end
 		end
 	end,

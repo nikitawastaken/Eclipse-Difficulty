@@ -6,36 +6,36 @@ local spawn_so = {
 	},
 }
 
-local window_spawn1 = {
+local window_far_spawn = {
 	values = {
 		interval = 15,
 	},
+}
+local bridge_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents,
 }
 local water_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
-local upper_spawn1 = {
+local upper_far_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
-	groups = preferred.no_cops_agents_shields,
+	groups = preferred.no_shields,
 }
-local bridge_spawn = {
+local upper_close_spawn = {
 	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents,
-}
-local upper_spawn2 = {
-	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local window_spawn2 = {
+local window_close_spawn = {
 	values = {
 		interval = 45,
 	},
@@ -109,27 +109,27 @@ return {
 	-- Every spawn group has had its interval increased, I frankly couldn't justify keeping any of them below 15s.
 	-- You will immediately notice fewer enemies spawning from the lake at the start, but also much slower catwalk spawns inside the prison.
 	-- A lot of spawngroups have also been made inaccessible to Bulldozers and Shields to ensure that they don't spawn on top of you.
-	[100933] = window_spawn1,
-	[101369] = window_spawn1,
+	[100933] = window_far_spawn,
+	[101369] = window_far_spawn,
 	[100554] = water_spawn,
-	[100575] = upper_spawn1,
-	[100618] = upper_spawn1,
-	[100619] = upper_spawn1,
-	[100631] = upper_spawn1,
-	[100673] = upper_spawn1,
-	[101050] = upper_spawn1,
-	[101056] = upper_spawn1,
+	[100575] = upper_far_spawn,
+	[100618] = upper_far_spawn,
+	[100619] = upper_far_spawn,
+	[100631] = upper_far_spawn,
+	[100673] = upper_far_spawn,
+	[101050] = upper_far_spawn,
+	[101056] = upper_far_spawn,
 	[100576] = bridge_spawn,
-	[100419] = upper_spawn2,
-	[100659] = upper_spawn2,
-	[100659] = upper_spawn2,
-	[100900] = upper_spawn2,
-	[100906] = upper_spawn2,
-	[100939] = upper_spawn2,
-	[100955] = upper_spawn2,
-	[100907] = window_spawn2,
-	[100913] = window_spawn2,
-	[100932] = window_spawn2,
+	[100419] = upper_close_spawn,
+	[100659] = upper_close_spawn,
+	[100659] = upper_close_spawn,
+	[100900] = upper_close_spawn,
+	[100906] = upper_close_spawn,
+	[100939] = upper_close_spawn,
+	[100955] = upper_close_spawn,
+	[100907] = window_close_spawn,
+	[100913] = window_close_spawn,
+	[100932] = window_close_spawn,
 	[100684] = flank_spawn,
 	[100921] = flank_spawn,
 	[101143] = portal_spawn,
