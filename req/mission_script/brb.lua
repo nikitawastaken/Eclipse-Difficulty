@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local bridge_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }

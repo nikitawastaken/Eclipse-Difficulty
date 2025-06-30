@@ -17,7 +17,7 @@ local harasser = {
 }
 local flank_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_bulldozers,
 }
@@ -34,7 +34,7 @@ local elevator_spawn = {
 }
 local elevator_spawn_2 = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

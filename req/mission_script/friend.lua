@@ -6,9 +6,9 @@ local mobster_team = {
 }
 local garden_spawn = {
 	values = {
-		interval = 10,
+		interval = 20,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {

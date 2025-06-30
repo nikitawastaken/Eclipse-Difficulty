@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local escape_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local breach_lower_spawn = {

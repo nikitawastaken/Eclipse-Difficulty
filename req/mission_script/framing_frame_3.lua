@@ -2,30 +2,23 @@ local preferred = Eclipse.preferred
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
-local roof_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
-}
 local staircase_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_bulldozers,
 }
 local elevator_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
-local balcony_spawn1 = {
+local balcony_close_spawn = {
 	values = {
 		interval = 45,
 	},
 	groups = preferred.no_cops_agents,
 }
-local balcony_spawn2 = {
+local balcony_far_spawn = {
 	values = {
 		interval = 60,
 	},
@@ -85,13 +78,11 @@ return {
 		},
 	},
 	-- Spawn Group delays
-	[102364] = roof_spawn,
-	[105718] = roof_spawn,
 	[100817] = staircase_spawn,
 	[100329] = elevator_spawn,
-	[100887] = balcony_spawn1,
-	[100896] = balcony_spawn1,
-	[105200] = balcony_spawn1,
-	[105201] = balcony_spawn1,
-	[105489] = balcony_spawn2,
+	[100887] = balcony_close_spawn,
+	[100896] = balcony_close_spawn,
+	[105200] = balcony_close_spawn,
+	[105201] = balcony_close_spawn,
+	[105489] = balcony_far_spawn,
 }

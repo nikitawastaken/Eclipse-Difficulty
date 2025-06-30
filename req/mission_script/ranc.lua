@@ -9,12 +9,12 @@ local spawn_anim_fix = {
 }
 local fence_far_spawn = {
 	values = {
-		interval = 5,
+		interval = 10,
 	},
 }
 local fence_close_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers_snipers,
 }
@@ -26,7 +26,7 @@ local roof_spawn = {
 }
 local vent_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

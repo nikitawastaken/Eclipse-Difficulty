@@ -16,7 +16,7 @@ local elevator_spawn = {
 }
 local bow_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local lifeboat_spawn = {

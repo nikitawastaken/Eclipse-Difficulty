@@ -1,20 +1,20 @@
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
+local warehouse_spawn = {
+	values = {
+		interval = 10,
+	},
+	groups = preferred.no_shields,
+}
 local flank_spawn = {
 	values = {
 		interval = 15,
 	},
 	groups = preferred.no_bulldozers,
 }
-local warehouse_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_shields,
-}
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

@@ -16,9 +16,6 @@ local exclude_shields_dozers = {
 	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
 }
 local building_spawn = {
-	values = {
-		interval = 20,
-	},
 	groups = preferred.no_cops_agents,
 }
 local window_spawn = {

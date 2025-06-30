@@ -29,13 +29,13 @@ local timbermill_spawn = {
 }
 local woods_spawn = {
 	values = {
-		interval = 30,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local hillside_spawn = {
 	values = {
-		interval = 45,
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
