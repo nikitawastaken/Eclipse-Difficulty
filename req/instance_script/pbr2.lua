@@ -85,7 +85,7 @@ M["levels/instances/unique/pbr/pbr_plane_cargo/world/world"] = function(result)
 			element.values.amount_random = 2
 		elseif cargo_plane.ambush_amount[id] then
 			element.values.amount = 2
-			element.values.amount_random = 4	
+			element.values.amount_random = 4
 		end
 	end
 end
