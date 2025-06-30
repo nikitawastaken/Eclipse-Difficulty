@@ -68,7 +68,27 @@ local patches = {
 	pbr_sewer_stationary_enemy = {
 		enemies = table.set(100016, 100017, 100018, 100012),
 	},
+	murky_plane = {
+		reinforcment_amount = table.set(100088),
+		ambush_amount = table.set(100342),
+	},
 }
+
+M["levels/instances/unique/pbr/pbr_plane_cargo/world/world"] = function(result)
+	local cargo_plane = patches.murky_plane
+
+	for _, element in pairs(result.default.elements) do
+		local id = element.id
+
+		if cargo_plane.reinforcment_amount[id] then
+			element.values.amount = 1
+			element.values.amount_random = 2
+		elseif cargo_plane.ambush_amount[id] then
+			element.values.amount = 2
+			element.values.amount_random = 4	
+		end
+	end
+end
 
 M["levels/instances/unique/pbr/pbr_stationary_enemy/world/world"] = function(result)
 	local sewer_ambush_single_enemy = patches.pbr_sewer_stationary_enemy
