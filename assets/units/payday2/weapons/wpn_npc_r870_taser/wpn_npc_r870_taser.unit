@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<unit type="wpn" slot="1" >
+<unit type="wpn" slot="13" >
 	<object file="units/payday2/weapons/wpn_npc_r870_taser/wpn_npc_r870_taser" />
 	<dependencies>
 		<depends_on effect="effects/particles/weapons/shotgun/muzzleflash_3dp" />
