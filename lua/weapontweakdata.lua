@@ -389,18 +389,18 @@ function WeaponTweakData:_init_weapons()
 					moving = {
 						hipfire = 1.6,
 						crouching = 1,
-						steelsight = 1,
+						steelsight = 1.2,
 					},
 					bipod = 0.5,
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.3,
+						hipfire = 1.4,
 						crouching = 0.8,
-						steelsight = 1,
+						steelsight = 0.8,
 					},
 					moving = {
-						hipfire = 1.5,
+						hipfire = 1.6,
 						crouching = 1,
 						steelsight = 1.2,
 					}
@@ -2681,7 +2681,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	self.saw_secondary = deep_clone(self.saw)
 	self.saw_secondary.parent_weapon_id = "saw"
-	self.saw_secondary.use_data.selection_index = SELECTION.SECONDARY
+	self.saw_secondary.use_data.selection_index = 1
 	self.saw_secondary.animations.reload_name_id = "saw"
 	self.saw_secondary.use_stance = "saw"
 	self.saw_secondary.texture_name = "saw"
