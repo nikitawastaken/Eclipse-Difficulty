@@ -94,9 +94,10 @@ function WeaponTweakData:_init_weapons()
 		end
 		
 		local cat_map = table.list_to_set(weap_data.categories)
-
+		local is_browning_mg = weap_id == "ranc_heavy_machine_gun"
+		
 		--catch-all stat setups
-		if cat_map.assault_rifle then
+		if cat_map.assault_rifle and not is_browning_mg then
 			weap_data.stats.suppression = cat_map.dmr and 1 or 11
 			weap_data.stats.alert_size = cat_map.dmr and 19 or 15
 			weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
@@ -231,7 +232,7 @@ function WeaponTweakData:_init_weapons()
 		elseif cat_map.revolver then
 			weap_data.stats.suppression = 9
 			weap_data.stats.alert_size = 15
-			weap_data.steelsight_time = steelsight_times.pistol
+			weap_data.steelsight_time = steelsight_times.pistol_heavy
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1
 			weap_data.steelsight_move_speed_mul = 0.65
 
@@ -388,18 +389,18 @@ function WeaponTweakData:_init_weapons()
 					moving = {
 						hipfire = 1.6,
 						crouching = 1,
-						steelsight = 1.2,
+						steelsight = 1,
 					},
 					bipod = 0.5,
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.2,
+						hipfire = 1.3,
 						crouching = 0.8,
 						steelsight = 1,
 					},
 					moving = {
-						hipfire = 1.4,
+						hipfire = 1.5,
 						crouching = 1,
 						steelsight = 1.2,
 					}
@@ -558,10 +559,27 @@ function WeaponTweakData:_init_weapons()
 		elseif cat_map.saw then
 			weap_data.stats.suppression = 1
 			weap_data.stats.alert_size = 6
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
 			weap_data.armor_piercing_chance = 1
 			weap_data.hit_alert_size_increase = -9
-			weap_data.saw_ammo_usage = 5
 			weap_data.no_steelsight = true
+
+			weap_data.spread_multiplier = no_stance_mults
+			weap_data.recoil_multiplier = {
+				standing = {
+					hipfire = 1,
+					crouching = 1,
+					steelsight = 0.7,
+				},
+				moving = {
+					hipfire = 1,
+					crouching = 1,
+					steelsight = 1,
+				}
+			}
+		elseif is_browning_mg then -- Yes, I had to bullshit it like this
+			weap_data.stats.suppression = 1
+			weap_data.stats.alert_size = 20
 
 			weap_data.spread_multiplier = no_stance_mults
 			weap_data.recoil_multiplier = no_stance_mults
@@ -2219,31 +2237,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	--self.hcar.spray = spray_tables.lmg_left
 	--self.hcar.recoil_recovery_timer = recovery_tables.high
 
-	-- Microgun
-	self.shuno.CLIP_AMMO_MAX = 600
-	self.shuno.stats.damage = 18
-	self.shuno.stats.spread = 7
-	self.shuno.stats.recoil = 11
-	self.shuno.stats.concealment = 6
-	self.shuno.fire_mode_data.fire_rate = 60 / 3000
-	--self.shuno.spray = spray_tables.mini
-	--self.shuno.recoil_recovery_timer = recovery_tables.high
-	self.shuno.no_steelsight = true
-
-	-- Minigun
-	self.m134.CLIP_AMMO_MAX = 600
-	self.m134.stats.damage = 24
-	self.m134.stats.spread = 9
-	self.m134.stats.recoil = 7
-	self.m134.stats.concealment = 6
-	self.m134.fire_mode_data.fire_rate = 60 / 3000
-	--self.m134.spray = spray_tables.mini
-	--self.m134.recoil_recovery_timer = recovery_tables.high
-	self.m134.no_steelsight = true
-
 	-- Hailstorm
 	self.hailstorm.CLIP_AMMO_MAX = 120
-	self.hailstorm.stats.damage = 30
+	self.hailstorm.stats.damage = 20
 	self.hailstorm.stats.spread = 19
 	self.hailstorm.stats.recoil = 10
 	self.hailstorm.stats.concealment = 16
@@ -2257,6 +2253,29 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	--self.hailstorm.spray = spray_tables.lmg_left
 	--self.hailstorm.recoil_recovery_timer = recovery_tables.mid
 
+	-- Minigun
+	self.m134.CLIP_AMMO_MAX = 600
+	self.m134.stats.damage = 24
+	self.m134.stats.spread = 9
+	self.m134.stats.recoil = 7
+	self.m134.stats.concealment = 6
+	self.m134.fire_mode_data.fire_rate = 60 / 3000
+	--self.m134.spray = spray_tables.mini
+	--self.m134.recoil_recovery_timer = recovery_tables.high
+	self.m134.no_steelsight = true
+
+	-- Microgun
+	self.shuno.CLIP_AMMO_MAX = 600
+	self.shuno.stats.damage = 24
+	self.shuno.stats.spread = 7
+	self.shuno.stats.recoil = 11
+	self.shuno.stats.concealment = 6
+	self.shuno.fire_mode_data.fire_rate = 60 / 3000
+	--self.shuno.spray = spray_tables.mini
+	--self.shuno.recoil_recovery_timer = recovery_tables.high
+	self.shuno.no_steelsight = true
+
+	
 	-- Snipers
 
 	-- Contractor
@@ -2652,6 +2671,31 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.kacchainsaw_flamethrower.fire_mode_data.fire_rate = 60 / 2000
 	self.kacchainsaw_flamethrower.dot_data_name = "weapon_kacchainsaw_flamethrower"
 
+	-- OVE9000 Saw
+	self.saw.CLIP_AMMO_MAX = 150
+	self.saw.stats.damage = 24
+	self.saw.stats.spread = 3
+	self.saw.stats.recoil = 7
+	self.saw.stats.concealment = 16
+	self.saw.fire_mode_data.fire_rate = 60 / 400
+
+	self.saw_secondary = deep_clone(self.saw)
+	self.saw_secondary.parent_weapon_id = "saw"
+	self.saw_secondary.use_data.selection_index = SELECTION.SECONDARY
+	self.saw_secondary.animations.reload_name_id = "saw"
+	self.saw_secondary.use_stance = "saw"
+	self.saw_secondary.texture_name = "saw"
+	self.saw_secondary.weapon_hold = "saw"
+	
+	-- Midland Ranch Turret
+	self.ranc_heavy_machine_gun.CLIP_AMMO_MAX = 200
+	self.ranc_heavy_machine_gun.stats.damage = 60
+	self.ranc_heavy_machine_gun.stats.spread = 19
+	self.ranc_heavy_machine_gun.stats.recoil = 21
+	self.ranc_heavy_machine_gun.stats.concealment = 20
+	self.ranc_heavy_machine_gun.fire_mode_data.fire_rate = 60 / 400	
+	self.ranc_heavy_machine_gun.stats_modifiers = { damage = 2 }
+	
 	-- removed shit
 	self.x_akmsu.use_data.selection_index = 4
 	self.x_sr2.use_data.selection_index = 4
