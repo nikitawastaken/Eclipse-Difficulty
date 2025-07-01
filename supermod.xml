@@ -320,6 +320,7 @@
 		<group name="levels/narratives/">
 			<file :name="h_firestarter/stage_3/world/world.continent"/>
 			<file :name="bain/big/world/world.continent"/>
+			<file :name="classics/dinner/world/world.continent"/>
 			<file :name="classics/pal/world/world.continent"/>
 			<file :name="classics/man/world/world.continent"/>
 			<file :name="classics/flat/nav_manager_data.nav_data"/>

@@ -276,6 +276,7 @@ local Smoke_bomb = {
 	duration = 12,
 }
 local optsReachedEscapeElevators = {
+	enabled = true,
 	width = 900,
 	depth = 200,
 	on_executed = {
@@ -284,6 +285,7 @@ local optsReachedEscapeElevators = {
 	},
 }
 local optsReachedNearGarbagetruck = {
+	enabled = true,
 	width = 300,
 	on_executed = {
 		{ id = 400077, delay = 0 },
@@ -518,7 +520,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400087, "cloaker_conference_room_1", Vector3(-2675, -2725, 475), Rotation(-90, 0, 0), optsCloakerConferenceRoom),
 	Eclipse.mission_elements.gen_dummy(400088, "cloaker_conference_room_2", Vector3(-2675, -1875, 475), Rotation(-90, 0, 0), optsCloakerConferenceRoom),
 
-	Eclipse.mission_elements.gen_smokegrenade(400089, "smoke_grenade_3", Vector3(4653.735, 217.405, -735.693), Rotation(0, 0, 0), Smoke_bomb),
+	Eclipse.mission_elements.gen_smokegrenade(400089, "smoke_grenade_3", Vector3(-2362, -2273, 551.843), Rotation(0, 0, 0), Smoke_bomb),
 	Eclipse.mission_elements.gen_missionscript(400090, "conference_room_event", optsspawnConferenceRoomAmbush),
 }
 

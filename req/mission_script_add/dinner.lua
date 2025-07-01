@@ -12,7 +12,19 @@ local shield = scripted_enemy.shield
 local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1
 local cloaker = scripted_enemy.cloaker
-local bulldozer = scripted_enemy.bulldozer_1
+local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
+local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_bulldozer_neil,
+	elite_bulldozer_skull,
+}
 
 local spawn_cloakers = {
 	enabled = hard_and_above,
@@ -82,7 +94,7 @@ local optsShield = {
 	enabled = true,
 }
 local optsBulldozer_Ambush = {
-	enemy = bulldozer,
+	enemy = green_bulldozer,
 	on_executed = {
 		{ id = 400057, delay = 3 },
 	},
@@ -119,7 +131,7 @@ local spawn_dozer_2 = {
 	},
 }
 local optsBulldozer = {
-	enemy = bulldozer,
+	enemy = green_bulldozer,
 	on_executed = {
 		{ id = 400021, delay = 0 },
 	},
@@ -171,6 +183,48 @@ local spawn_snipers = {
 		{ id = 400028, delay = 0 },
 	},
 }
+local optsSpecialChopper = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "swat", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "flyin_fwd_hover", time = 0 },
+		{ id = 3, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "open_door_left", time = 24 },
+		{ id = 4, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "open_door_right", time = 24 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "close_door_left", time = 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "close_door_right", time = 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "hover_flyout_right", time = 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100007, notify_unit_sequence = "hidden", time = 65 },
+	},
+}
+local optsTaser_heli = {
+	enemy = taser,
+	spawn_action = "e_sp_down_16m_right",
+	on_executed = { { id = 400057, delay = 0 } },
+	enabled = true,
+}
+local optsCloaker_heli = {
+	enemy = cloaker,
+	spawn_action = "e_sp_down_16m_left",
+	on_executed = { { id = 400057, delay = 0 } },
+	enabled = true,
+}
+local optsDozer_heli = {
+	enemy_table = is_eclipse and random_elite_dozers or random_dozers,
+	spawn_action = "e_sp_down_16m_right",
+	on_executed = { { id = 400057, delay = 0 } },
+	enabled = true,
+}
+local optsspawnspecial_chopper = {
+	on_executed = { { id = 400059, delay = 26 }, { id = 400060, delay = 26 }, { id = 400061, delay = 26 }, { id = 400063, delay = 0 } },
+	enabled = hard_and_above,
+}
+local optsNewAmbushTrigger = {
+	width = 800,
+	depth = 800,
+	on_executed = {
+		{ id = 400058, delay = 0 },
+	},
+}
 
 M.elements = {
 	--Ambush
@@ -217,7 +271,17 @@ M.elements = {
 	Eclipse.mission_elements.gen_element_random(400058, "ambush_event", spawn_random_ambush),
 	Eclipse.mission_elements.gen_missionscript(400054, "spawn_dozer_1", spawn_dozer_1),
 	Eclipse.mission_elements.gen_missionscript(400055, "spawn_dozer_2", spawn_dozer_2),
-	Eclipse.mission_elements.gen_so(400057, "hunt_so", Vector3(3600, 2473, -1200), Rotation(0, 0, 0), optsHunt_SO),
+	Eclipse.mission_elements.gen_so(400057, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHunt_SO),
+	
+	--Revenge chopper
+	Eclipse.mission_elements.gen_dummy(400059, "dozer_heli", Vector3(-15400.147, 6491.773, -73), Rotation(143, 0, 0), optsDozer_heli),
+	Eclipse.mission_elements.gen_dummy(400060, "taser_heli", Vector3(-15460.844, 6537.511, -73), Rotation(143, 0, 0), optsTaser_heli),
+	Eclipse.mission_elements.gen_dummy(400061, "cloaker_heli", Vector3(-15670.720, 6344.092, -73), Rotation(0, 0, 0), optsCloaker_heli),
+	
+	Eclipse.mission_elements.gen_missionscript(400062, "special_chopper_event", optsspawnspecial_chopper),
+	Eclipse.mission_elements.gen_object_editor(400063, "revenge_chopper", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSpecialChopper),
+	-- new area trigger for the Ambush
+	Eclipse.mission_elements.gen_areatrigger(400064, "new_area_trigger_ambush", Vector3(-12657, 6709, 104.007), Rotation(0, 0, 0), optsNewAmbushTrigger),
 }
 
 return M

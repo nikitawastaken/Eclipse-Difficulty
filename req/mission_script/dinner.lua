@@ -174,15 +174,12 @@ return {
 		},
 	},
 	--PDTH styled ambushes
-	[102524] = {
+	[100355] = {
 		values = {
-			position = Vector3(-12584, 6678, 100.995),
-		},
-		on_executed = {
-			--be gone
-			{ id = 102442, remove = true },
-			--trigger ambushes
-			{ id = 400058, delay = 0 },
+			elements = {
+				101696,
+				400064,
+			},
 		},
 	},
 	[102505] = {
@@ -228,6 +225,12 @@ return {
 			{ id = 400055, delay = 90 },
 			{ id = 400031, delay = 0 },
 			{ id = 400045, delay = 0 },
+		},
+	},
+	-- the chopper that you forced to fly away comes back with specials after few mins
+	[103243] = {
+		on_executed = {
+			{ id = 400062, delay = 150, delay_rand = 30 },
 		},
 	},
 	-- add new spawngroup to the container area

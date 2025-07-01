@@ -132,6 +132,7 @@ local optsShieldDefend_6 = {
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade_2,
 }
 local optsReachedNearLeftPipeTrigger = {
+	enabled = true,
 	on_executed = {
 		{ id = 400027, delay = 0 },
 		{ id = 400028, delay = 0.5 },
@@ -139,6 +140,7 @@ local optsReachedNearLeftPipeTrigger = {
 	},
 }
 local optsReachedNearEscapeTrigger = {
+	enabled = true,
 	on_executed = {
 		{ id = 400030, delay = 0 },
 		{ id = 400031, delay = 0 },

@@ -247,16 +247,19 @@ local optsspawnfirststreetSWATs = {
 }
 
 local optsAlleyAmbushTrigger = {
+	enabled = true,
 	on_executed = { { id = 400013, delay = 0 }, { id = 400016, delay = 0 } },
 	width = 200,
 	depth = 1000,
 }
 local optsReachedSwatVansTrigger = {
+	enabled = true,
 	width = 3000,
 	depth = 2250,
 	height = 1000,
 }
 local optsReachedFarSwatVansTrigger = {
+	enabled = true,
 	width = 2000,
 	height = 2000,
 }

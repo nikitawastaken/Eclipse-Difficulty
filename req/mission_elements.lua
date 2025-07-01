@@ -233,7 +233,7 @@ function M.gen_areatrigger(id, name, pos, rot, opts)
 			base_delay = opts.base_delay or 0,
 			position = pos,
 			rotation = rot,
-			enabled = true,
+			enabled = opts.enabled or false,
 			interval = 0.1,
 			trigger_on = opts.trigger_on or "on_enter",
 			instigator = opts.instigator or "player",
