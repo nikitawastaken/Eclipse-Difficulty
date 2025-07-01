@@ -272,12 +272,12 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400054, "spawn_dozer_1", spawn_dozer_1),
 	Eclipse.mission_elements.gen_missionscript(400055, "spawn_dozer_2", spawn_dozer_2),
 	Eclipse.mission_elements.gen_so(400057, "hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsHunt_SO),
-	
+
 	--Revenge chopper
 	Eclipse.mission_elements.gen_dummy(400059, "dozer_heli", Vector3(-15400.147, 6491.773, -73), Rotation(143, 0, 0), optsDozer_heli),
 	Eclipse.mission_elements.gen_dummy(400060, "taser_heli", Vector3(-15460.844, 6537.511, -73), Rotation(143, 0, 0), optsTaser_heli),
 	Eclipse.mission_elements.gen_dummy(400061, "cloaker_heli", Vector3(-15670.720, 6344.092, -73), Rotation(0, 0, 0), optsCloaker_heli),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400062, "special_chopper_event", optsspawnspecial_chopper),
 	Eclipse.mission_elements.gen_object_editor(400063, "revenge_chopper", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSpecialChopper),
 	-- new area trigger for the Ambush
