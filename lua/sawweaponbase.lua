@@ -1,5 +1,5 @@
 -- Fix hardcoded damage increase against Bulldozers and make it multiply instead of static
-Hooks:OverrideFunction(SawHit, "on_collision", function (self, col_ray, weapon_unit, user_unit, damage)
+Hooks:OverrideFunction(SawHit, "on_collision", function(self, col_ray, weapon_unit, user_unit, damage)
 	local hit_unit = col_ray.unit
 	if hit_unit:base() and hit_unit:base().has_tag and hit_unit:base():has_tag("tank") then
 		damage = damage * 5
@@ -19,7 +19,7 @@ Hooks:OverrideFunction(SawHit, "on_collision", function (self, col_ray, weapon_u
 end)
 
 -- Make ammo use consistent
-Hooks:OverrideFunction(SawHit, "fire", function (self, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, target_unit)
+Hooks:OverrideFunction(SawHit, "fire", function(self, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, target_unit)
 	if self:get_ammo_remaining_in_clip() == 0 then
 		return
 	end
