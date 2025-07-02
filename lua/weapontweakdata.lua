@@ -135,7 +135,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.2,
 						crouching = 0.8,
-						steelsight = 0.4,
+						steelsight = 0.5,
 					},
 					moving = {
 						hipfire = 1.5,
@@ -157,8 +157,8 @@ function WeaponTweakData:_init_weapons()
 				}				
 				weap_data.fire_mode_mul = {
 					single = {
-						recoil = 1.5,
-						spread = 0.4,
+						recoil = 1.3,
+						spread = 0.5,
 					},
 					burst = {
 						recoil = 0.8,
@@ -178,7 +178,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.5,
 						crouching = 0.8,
-						steelsight = 0.5,
+						steelsight = 0.6,
 					},
 					moving = {
 						hipfire = 2,
@@ -244,7 +244,7 @@ function WeaponTweakData:_init_weapons()
 				standing = {
 					hipfire = 1.5,
 					crouching = 0.8,
-					steelsight = 0.4,
+					steelsight = 0.5,
 				},
 				moving = {
 					hipfire = 2,
@@ -276,7 +276,7 @@ function WeaponTweakData:_init_weapons()
 				standing = {
 					hipfire = 1,
 					crouching = 1,
-					steelsight = 0.5,
+					steelsight = 0.6,
 				},
 				moving = {
 					hipfire = 1.2,
@@ -299,7 +299,7 @@ function WeaponTweakData:_init_weapons()
 
 			weap_data.fire_mode_mul = {
 				single = {
-					recoil = 1.4,
+					recoil = 1.2,
 					spread = 0.6,
 				},
 				burst = {
@@ -1725,7 +1725,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- CMP
 	self.mp9.CLIP_AMMO_MAX = 30
 	self.mp9.stats.damage = 16
-	self.mp9.stats.spread = 11
+	self.mp9.stats.spread = 9
 	self.mp9.stats.recoil = 20
 	self.mp9.stats.concealment = 27
 	self.mp9.fire_mode_data.fire_rate = 60 / 950
@@ -1733,7 +1733,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Cobra
 	self.scorpion.CLIP_AMMO_MAX = 20
 	self.scorpion.stats.damage = 16
-	self.scorpion.stats.spread = 13
+	self.scorpion.stats.spread = 10
 	self.scorpion.stats.recoil = 18
 	self.scorpion.stats.concealment = 28
 	self.scorpion.fire_mode_data.fire_rate = 60 / 1000
@@ -1741,7 +1741,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Micro Uzi
 	self.baka.CLIP_AMMO_MAX = 32
 	self.baka.stats.damage = 16
-	self.baka.stats.spread = 10
+	self.baka.stats.spread = 8
 	self.baka.stats.recoil = 20
 	self.baka.stats.concealment = 28
 	self.baka.fire_mode_data.fire_rate = 60 / 1200
@@ -1750,7 +1750,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pm9.use_data.selection_index = 2
 	self.pm9.CLIP_AMMO_MAX = 25
 	self.pm9.stats.damage = 16
-	self.pm9.stats.spread = 11
+	self.pm9.stats.spread = 9
 	self.pm9.stats.recoil = 19
 	self.pm9.stats.concealment = 26
 	self.pm9.fire_mode_data.fire_rate = 60 / 1100
@@ -1759,7 +1759,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.fmg9.CLIP_AMMO_MAX = 30
 	self.fmg9.stats.damage = 16
 	self.fmg9.stats.spread = 15
-	self.fmg9.stats.recoil = 17
+	self.fmg9.stats.recoil = 10
 	self.fmg9.stats.concealment = 28
 	self.fmg9.fire_mode_data.fire_rate = 60 / 1350
 	self.fmg9.timers.unequip = 1.2
@@ -1767,7 +1767,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Compact-5
 	self.new_mp5.CLIP_AMMO_MAX = 30
 	self.new_mp5.stats.damage = 18
-	self.new_mp5.stats.spread = 14
+	self.new_mp5.stats.spread = 13
 	self.new_mp5.stats.recoil = 19
 	self.new_mp5.stats.concealment = 24
 	self.new_mp5.fire_mode_data = {
@@ -1780,7 +1780,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Blaster
 	self.tec9.CLIP_AMMO_MAX = 20
 	self.tec9.stats.damage = 18
-	self.tec9.stats.spread = 10
+	self.tec9.stats.spread = 8
 	self.tec9.stats.recoil = 20
 	self.tec9.stats.concealment = 27
 	self.tec9.fire_mode_data.fire_rate = 60 / 900
@@ -1788,7 +1788,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Heather
 	self.sr2.CLIP_AMMO_MAX = 32
 	self.sr2.stats.damage = 18
-	self.sr2.stats.spread = 14
+	self.sr2.stats.spread = 12
 	self.sr2.stats.recoil = 18
 	self.sr2.stats.concealment = 27
 	self.sr2.fire_mode_data.fire_rate = 60 / 750
@@ -1806,7 +1806,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shepheard.use_data.selection_index = 2
 	self.shepheard.CLIP_AMMO_MAX = 30
 	self.shepheard.stats.damage = 18
-	self.shepheard.stats.spread = 15
+	self.shepheard.stats.spread = 14
 	self.shepheard.stats.recoil = 17
 	self.shepheard.stats.concealment = 24
 	self.shepheard.fire_mode_data.fire_rate = 60 / 800
@@ -1814,7 +1814,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Mark 10
 	self.mac10.CLIP_AMMO_MAX = 20
 	self.mac10.stats.damage = 20
-	self.mac10.stats.spread = 11
+	self.mac10.stats.spread = 9
 	self.mac10.stats.recoil = 17
 	self.mac10.stats.concealment = 27
 	self.mac10.fire_mode_data.fire_rate = 60 / 1000
@@ -1899,7 +1899,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Uzi
 	self.uzi.CLIP_AMMO_MAX = 20
 	self.uzi.stats.damage = 30
-	self.uzi.stats.spread = 13
+	self.uzi.stats.spread = 14
 	self.uzi.stats.recoil = 18
 	self.uzi.stats.concealment = 25
 	self.uzi.fire_mode_data.fire_rate = 60 / 700
@@ -1929,7 +1929,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Izhma
 	self.saiga.CLIP_AMMO_MAX = 7
 	self.saiga.stats.damage = 10
-	self.saiga.stats.spread = 11
+	self.saiga.stats.spread = 13
 	self.saiga.stats.recoil = 12
 	self.saiga.stats.concealment = 18
 	self.saiga.fire_mode_data.fire_rate = 60 / 350
@@ -1937,7 +1937,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Street Sweeper
 	self.striker.CLIP_AMMO_MAX = 12
 	self.striker.stats.damage = 10
-	self.striker.stats.spread = 11
+	self.striker.stats.spread = 13
 	self.striker.stats.recoil = 12
 	self.striker.stats.concealment = 24
 	self.striker.fire_mode_data.fire_rate = 60 / 450
@@ -1946,7 +1946,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Steakout
 	self.aa12.CLIP_AMMO_MAX = 8
 	self.aa12.stats.damage = 10
-	self.aa12.stats.spread = 11
+	self.aa12.stats.spread = 13
 	self.aa12.stats.recoil = 14
 	self.aa12.stats.concealment = 14
 	self.aa12.fire_mode_data.fire_rate = 60 / 300
@@ -1954,7 +1954,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Grimm
 	self.basset.CLIP_AMMO_MAX = 7
 	self.basset.stats.damage = 10
-	self.basset.stats.spread = 9
+	self.basset.stats.spread = 11
 	self.basset.stats.recoil = 13
 	self.basset.stats.concealment = 23
 	self.basset.fire_mode_data.fire_rate = 60 / 350
@@ -1962,7 +1962,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- M1014
 	self.benelli.CLIP_AMMO_MAX = 8
 	self.benelli.stats.damage = 12
-	self.benelli.stats.spread = 11
+	self.benelli.stats.spread = 13
 	self.benelli.stats.recoil = 9
 	self.benelli.stats.concealment = 16
 	self.benelli.fire_mode_data.fire_rate = 60 / 300
@@ -1970,7 +1970,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Predator
 	self.spas12.CLIP_AMMO_MAX = 8
 	self.spas12.stats.damage = 12
-	self.spas12.stats.spread = 12
+	self.spas12.stats.spread = 14
 	self.spas12.stats.recoil = 9
 	self.spas12.stats.concealment = 18
 	self.spas12.fire_mode_data.fire_rate = 60 / 300
@@ -1979,7 +1979,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Goliath
 	self.rota.CLIP_AMMO_MAX = 6
 	self.rota.stats.damage = 12
-	self.rota.stats.spread = 17
+	self.rota.stats.spread = 18
 	self.rota.stats.recoil = 11
 	self.rota.stats.concealment = 20
 	self.rota.fire_mode_data.fire_rate = 60 / 300
@@ -1998,7 +1998,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- VD-12
 	self.sko12.CLIP_AMMO_MAX = 25
 	self.sko12.stats.damage = 12
-	self.sko12.stats.spread = 13
+	self.sko12.stats.spread = 15
 	self.sko12.stats.recoil = 11
 	self.sko12.stats.concealment = 10
 	self.sko12.fire_mode_data.fire_rate = 60 / 400
@@ -2009,7 +2009,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Reinfeld 880
 	self.r870.CLIP_AMMO_MAX = 8
 	self.r870.stats.damage = 16
-	self.r870.stats.spread = 16
+	self.r870.stats.spread = 17
 	self.r870.stats.recoil = 9
 	self.r870.stats.concealment = 16
 	self.r870.fire_mode_data.fire_rate = 60 / 120
@@ -2018,7 +2018,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Loco
 	self.serbu.CLIP_AMMO_MAX = 4
 	self.serbu.stats.damage = 16
-	self.serbu.stats.spread = 13
+	self.serbu.stats.spread = 14
 	self.serbu.stats.recoil = 6
 	self.serbu.stats.concealment = 23
 	self.serbu.fire_mode_data.fire_rate = 60 / 120
@@ -2028,7 +2028,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Raven
 	self.ksg.CLIP_AMMO_MAX = 14
 	self.ksg.stats.damage = 16
-	self.ksg.stats.spread = 14
+	self.ksg.stats.spread = 15
 	self.ksg.stats.recoil = 9
 	self.ksg.stats.concealment = 22
 	self.ksg.fire_mode_data.fire_rate = 60 / 120
@@ -2060,7 +2060,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Mosconi Tactical
 	self.m590.CLIP_AMMO_MAX = 7
 	self.m590.stats.damage = 16
-	self.m590.stats.spread = 15
+	self.m590.stats.spread = 16
 	self.m590.stats.recoil = 9
 	self.m590.stats.concealment = 19
 	self.m590.fire_mode_data.fire_rate = 60 / 120
@@ -2070,7 +2070,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Nova
 	self.supernova.CLIP_AMMO_MAX = 5
 	self.supernova.stats.damage = 16
-	self.supernova.stats.spread = 16
+	self.supernova.stats.spread = 17
 	self.supernova.stats.recoil = 9
 	self.supernova.stats.concealment = 18
 	self.supernova.fire_mode_data.fire_rate = 60 / 90
@@ -2080,7 +2080,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Breaker
 	self.boot.CLIP_AMMO_MAX = 7
 	self.boot.stats.damage = 18
-	self.boot.stats.spread = 15
+	self.boot.stats.spread = 16
 	self.boot.stats.recoil = 6
 	self.boot.stats.concealment = 20
 	self.boot.fire_mode_data.fire_rate = 60 / 65
@@ -2090,7 +2090,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- GSPS
 	self.m37.CLIP_AMMO_MAX = 7
 	self.m37.stats.damage = 18
-	self.m37.stats.spread = 15
+	self.m37.stats.spread = 16
 	self.m37.stats.recoil = 7
 	self.m37.stats.concealment = 19
 	self.m37.fire_mode_data.fire_rate = 60 / 100
@@ -2100,7 +2100,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Reinfeld 88
 	self.m1897.CLIP_AMMO_MAX = 7
 	self.m1897.stats.damage = 18
-	self.m1897.stats.spread = 14
+	self.m1897.stats.spread = 15
 	self.m1897.stats.recoil = 10
 	self.m1897.stats.concealment = 17
 	self.m1897.fire_mode_data.fire_rate = 60 / 100
