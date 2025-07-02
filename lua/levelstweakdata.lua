@@ -201,7 +201,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	
+
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.recurring_cloaker_spawn_interval_mul = nil
 	self.mia_2.group_ai_settings.assault_force_mul = 0.5
@@ -427,14 +427,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.help.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.help.group_ai_settings.force_tactics = nil
-	
+
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 	self.friend.group_ai_settings.reenforce_interval_mul = nil
 	self.friend.group_ai_settings.special_limit_add = nil
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
 	self.moon.group_ai_settings.reenforce_interval_mul = nil
-	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35 
+	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
 
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.run.group_ai_settings.special_limit_add = {
