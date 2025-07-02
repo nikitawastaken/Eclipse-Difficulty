@@ -2916,10 +2916,10 @@ function WeaponTweakData:_set_presets()
 	local crew_presets = self.tweak_data.character.presets.weapon.gang_member
 	for k, v in pairs(self) do
 		if k:match("_turret_module") then
-			v.DAMAGE = 1 + (0.25 * diff_i_no_normal)
+			v.DAMAGE = 1 + (0.5 * diff_i_no_normal)
 			v.DAMAGE_MUL_RANGE = turret_damage_mul
-			v.HEALTH_INIT = 400 + (100 * diff_i_no_normal)
-			v.SHIELD_HEALTH_INIT = 100  + (25 * diff_i_no_normal)
+			v.HEALTH_INIT = 200 + (80 * diff_i_no_normal)
+			v.SHIELD_HEALTH_INIT = 80  + (20 * diff_i_no_normal)
 			v.CLIP_SIZE = 400
 			v.BAG_DMG_MUL = 20
 			v.SHIELD_DMG_MUL = 1
