@@ -17,13 +17,7 @@ local avalon_spawn = {
 }
 local upper_spawn = {
 	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local building_spawn = {
-	values = {
-		interval = 30,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -61,5 +55,5 @@ return {
 	[101725] = upper_spawn,
 	[101737] = upper_spawn,
 	[101789] = upper_spawn,
-	[101734] = building_spawn,
+	[101734] = upper_spawn,
 }

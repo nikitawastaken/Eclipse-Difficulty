@@ -4,14 +4,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local low_catwalk_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local escape_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local garage_door_spawn = {
@@ -32,7 +27,7 @@ local flank_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local high_catwalk_spawn = {
+local catwalk_spawn = {
 	values = {
 		interval = 60,
 	},
@@ -65,7 +60,6 @@ return {
 	[101334] = disabled, -- books preferreds 4
 	[108442] = disabled, -- entrance preferreds 3
 	-- Spawn group delays
-	[102439] = low_catwalk_spawn,
 	[108291] = escape_spawn,
 	[108292] = escape_spawn,
 	[107909] = garage_door_spawn,
@@ -90,6 +84,6 @@ return {
 	[107983] = upper_spawn,
 	[108290] = upper_spawn,
 	[104794] = flank_spawn,
-	[101074] = high_catwalk_spawn,
-	[101350] = high_catwalk_spawn,
+	[101074] = catwalk_spawn,
+	[101350] = catwalk_spawn,
 }

@@ -38,12 +38,6 @@ local enemy_filter_dozers = {
 		},
 	},
 }
-local lab_spawn = {
-	values = {
-		interval = 10,
-	},
-	groups = preferred.no_bulldozers,
-}
 local elevator_spawn = {
 	values = {
 		interval = 15,
@@ -51,7 +45,7 @@ local elevator_spawn = {
 }
 local office_window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -164,7 +158,6 @@ return {
 	[103644] = enemy_filter_dozers,
 ]]
 	-- Spawn group delays
-	[102820] = lab_spawn,
 	[102784] = elevator_spawn,
 	[102828] = elevator_spawn,
 	[102044] = office_window_spawn,

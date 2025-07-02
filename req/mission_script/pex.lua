@@ -40,20 +40,15 @@ local sniper_amount = {
 		amount = normal and 3 or hard and 4 or 5,
 	},
 }
-local street_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local close_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_bulldozers_snipers,
 }
 local alley_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -148,8 +143,6 @@ return {
 	[101628] = exclude_shields_dozers,
 	-- Spawn group delays
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
-	[400006] = street_spawn,
-	[400012] = street_spawn,
 	[100130] = close_spawn,
 	[100133] = close_spawn,
 	[100019] = alley_spawn,

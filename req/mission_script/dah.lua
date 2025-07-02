@@ -31,13 +31,13 @@ local office_spawn = {
 		interval = 20,
 	},
 }
-local roof_spawn1 = {
+local roof_far_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
-local roof_spawn2 = {
+local roof_close_spawn = {
 	values = {
 		interval = 45,
 	},
@@ -343,13 +343,13 @@ return {
 	[104469] = office_spawn,
 	[104479] = office_spawn,
 	[104480] = office_spawn,
-	[104896] = roof_spawn2,
-	[104852] = roof_spawn2,
-	[104846] = roof_spawn2,
-	[104764] = roof_spawn2,
-	[102772] = roof_spawn2,
-	[102784] = roof_spawn1, -- intentionally slightly lower delay for the groups that are on the other side of the roof
-	[102778] = roof_spawn1,
+	[104896] = roof_close_spawn,
+	[104852] = roof_close_spawn,
+	[104846] = roof_close_spawn,
+	[104764] = roof_close_spawn,
+	[102772] = roof_close_spawn,
+	[102784] = roof_far_spawn, -- intentionally slightly lower delay for the groups that are on the other side of the roof
+	[102778] = roof_far_spawn,
 	[100722] = vault_spawn,
 	[100723] = vault_spawn,
 	[104821] = vault_spawn,

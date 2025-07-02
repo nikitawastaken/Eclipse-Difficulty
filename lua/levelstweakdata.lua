@@ -117,9 +117,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			swat_init = {
 				flank = true,
 			},
-			bulldozer_def = {
-				door_ambush = true,
-			},
 		},
 	}
 	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
@@ -195,6 +192,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.roberts.group_ai_settings = {
+		assault_force_mul = 0.8,
+		push_delay_mul = 1.25,
+		force_tactics = {
+			shield_def = {
+				ranged_fire = false,
+			},
+		},
+	}
+	
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.recurring_cloaker_spawn_interval_mul = nil
 	self.mia_2.group_ai_settings.assault_force_mul = 0.5
@@ -285,8 +292,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			swat_init = {
 				flank = true,
 			},
-			bulldozer_def = {
-				door_ambush = true,
+			shield_def = {
+				ranged_fire = false,
 			},
 		},
 		spawn_group_presets = {
@@ -302,11 +309,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mad.group_ai_settings = {
 		assault_force_mul = 0.8,
-		force_tactics = {
-			shield_def = {
-				ranged_fire = false,
-			},
-		},
 		spawn_group_presets = {
 			standard_issue = true,
 		},
@@ -385,9 +387,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			swat_init = {
 				flank = true,
 			},
-			bulldozer_def = {
-				door_ambush = true,
-			},
 		},
 	}
 
@@ -427,14 +426,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.help.group_ai_settings = deep_clone(self.flat.group_ai_settings)
-
+	self.help.group_ai_settings.force_tactics = nil
+	
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 	self.friend.group_ai_settings.reenforce_interval_mul = nil
 	self.friend.group_ai_settings.special_limit_add = nil
 
-	self.moon.group_ai_settings = deep_clone(self.flat.group_ai_settings)
+	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
 	self.moon.group_ai_settings.reenforce_interval_mul = nil
-	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
+	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35 
 
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.run.group_ai_settings.special_limit_add = {
@@ -487,8 +487,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.des.group_ai_settings = deep_clone(self.flat.group_ai_settings)
-	self.des.group_ai_settings.force_tactics = nil
+	self.des.group_ai_settings = deep_clone(self.help.group_ai_settings)
+	self.des.group_ai_settings.spawn_kill_cooldown_mul = 1.5
 	self.des.group_ai_settings.assault_force_mul = 0.6
 
 	self.nmh.group_ai_settings = {
