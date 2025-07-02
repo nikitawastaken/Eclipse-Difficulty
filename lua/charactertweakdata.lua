@@ -1322,7 +1322,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.hector_boss_no_armor.HEALTH_INIT = 8
 	self.hector_boss_no_armor.headshot_dmg_mul = 2
-	
+
 	self.biker_boss.HEALTH_INIT = 100
 	self.biker_boss.headshot_dmg_mul = 2
 	self.biker_boss.no_headshot_add_mul = true
@@ -1344,7 +1344,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.drug_lord_boss_stealth.HEALTH_INIT = 8
 	self.drug_lord_boss_stealth.headshot_dmg_mul = 2
-	
+
 	self.triad_boss.HEALTH_INIT = 100
 	self.triad_boss.headshot_dmg_mul = 2
 	self.triad_boss.no_headshot_add_mul = true
@@ -1356,10 +1356,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.invulnerable_to_slotmask = nil
 	self.triad_boss.throwable_target_verified = false
 	self.triad_boss.throwable_cooldown = 20
-	
+
 	self.triad_boss_no_armor.HEALTH_INIT = 8
 	self.triad_boss_no_armor.headshot_dmg_mul = 2
-	
+
 	self.deep_boss.HEALTH_INIT = 120
 	self.deep_boss.headshot_dmg_mul = 2
 	self.deep_boss.ignore_headshot = false
