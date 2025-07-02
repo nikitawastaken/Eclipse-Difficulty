@@ -238,6 +238,32 @@ return {
 			{ id = 105774, delay = 20 },
 		},
 	},
+	-- tweak how enemies from gas chopper work
+	-- first disable the spawn script that makes them come to gas SO spot
+	[101436] = disabled,
+	-- make so heavies deploy the tear gas on difficulties lower than eclipse, otherwise it's the elite dozer
+	-- heavies
+	[101433] = {
+		on_executed = {
+			{ id = 102296, delay = not eclipse and 0 or nil },
+		},
+	},
+	[105620] = {
+		on_executed = {
+			{ id = 102296, delay = not eclipse and 0 or nil },
+		},
+	},
+	-- dozers
+	[101785] = {
+		on_executed = {
+			{ id = 102296, delay = 0 },
+		},
+	},
+	[101786] = {
+		on_executed = {
+			{ id = 102296, delay = 0 },
+		},
+	},
 	-- random plank amounts
 	[105129] = {
 		values = {
