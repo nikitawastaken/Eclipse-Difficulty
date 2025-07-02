@@ -56,7 +56,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			end
 
 			local shortdot = id == "wpn_fps_upg_o_shortdot" or id == "wpn_fps_upg_o_shortdot_vanilla"
-			if is_optic and not shortdot then
+			local claymore = id == "wpn_fps_hailstorm_o_claymore" 
+			if is_optic and not shortdot and not claymore then
 				part.stats.concealment = -1
 				part.stats.recoil = 1
 				part.stats.spread = 0
