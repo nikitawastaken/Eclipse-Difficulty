@@ -187,7 +187,7 @@ return {
 			{ id = 103540, delay = 10 },
 		},
 	},
-	-- add 3 heli events to the elementrandom script
+	-- add 3 new heli events to the elementrandom script
 	-- 2 events on eclipse
 	[104734] = {
 		values = {
@@ -197,9 +197,8 @@ return {
 			{ id = 400025, delay = 0, delay_rand = 10 },
 			{ id = 400031, delay = 0, delay_rand = 10 },
 			{ id = 400037, delay = 0, delay_rand = 10 },
-			-- these vans are exclusive to firestarter day 3
-			{ id = 104735, remove = bank_heist and true or false },
-			{ id = 105660, remove = bank_heist and true or false },
+			{ id = 104735, delay = 0, delay_rand = 10 },
+			{ id = 105660, delay = 0, delay_rand = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
@@ -220,10 +219,10 @@ return {
 			{ id = 100438, delay = 30 },
 		},
 	},
-	-- make the SWAT events happen earlier if it's Firestater Day 3
+	-- make the SWAT events happen earlier if it's Firestater Day 3 or Bank Heist if it's on eclipsepj
 	[100438] = {
 		on_executed = {
-			{ id = 103540, remove = bank_heist and true or false },
+			{ id = 103540, remove = (bank_heist and not is_eclipse_pro) and true or false },
 		},
 	},
 	-- enable max diff after 2 instead of 3 assault waves
@@ -237,7 +236,6 @@ return {
 		on_executed = {
 			{ id = 100251, delay = 30 },
 			{ id = 105774, delay = 20 },
-			--{ id = 400039, delay = level_id ~= "firestarter_3" and 40 or nil }, -- old swat vans spots restoration (only in bank heist)
 		},
 	},
 	-- random plank amounts
