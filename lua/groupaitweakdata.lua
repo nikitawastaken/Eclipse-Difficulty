@@ -1752,6 +1752,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		bulldozer_def = {
 			"shield",
+			"door_ambush",
 			"murder",
 		},
 		bulldozer_agg = {
@@ -1790,7 +1791,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	self.enemy_spawn_groups = {}
 
 	local medic_cloaker = { "medic_1", "medic_2", "cloaker" }
-	local medic_taser = { "medic_1", "medic_2", "medic_1", "medic_2", "taser_1", "taser_2" }
+	local medic_taser = { "medic_1", "medic_2", "taser_1" }
 	local taser_cloaker = { "taser_1", "cloaker" }
 
 	self.enemy_spawn_groups.cs_defend_init = {
