@@ -11,12 +11,12 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 
 	self.stats.spread = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread, (math.lerp(2, 0.1, i / 25)))
+		table.insert(self.stats.spread, (math.lerp(2, 0.2, i / 25)))
 	end
 
 	self.stats.spread_moving = {}
 	for i = 0, 25, 1 do
-		table.insert(self.stats.spread_moving, (math.lerp(2, 0.1, i / 25)))
+		table.insert(self.stats.spread_moving, (math.lerp(2, 0.2, i / 25)))
 	end
 
 	self.stats.suppression = {}
@@ -114,7 +114,7 @@ function WeaponTweakData:_init_weapons()
 					moving = {
 						hipfire = 2,
 						crouching = 1,
-						steelsight = 1.6,
+						steelsight = 1.5,
 					}
 				}
 				weap_data.recoil_multiplier = {
@@ -135,7 +135,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.2,
 						crouching = 0.8,
-						steelsight = 0.5,
+						steelsight = 0.4,
 					},
 					moving = {
 						hipfire = 1.5,
@@ -178,7 +178,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.5,
 						crouching = 0.8,
-						steelsight = 0.6,
+						steelsight = 0.5,
 					},
 					moving = {
 						hipfire = 2,
@@ -244,7 +244,7 @@ function WeaponTweakData:_init_weapons()
 				standing = {
 					hipfire = 1.5,
 					crouching = 0.8,
-					steelsight = 0.5,
+					steelsight = 0.4,
 				},
 				moving = {
 					hipfire = 2,
@@ -276,7 +276,7 @@ function WeaponTweakData:_init_weapons()
 				standing = {
 					hipfire = 1,
 					crouching = 1,
-					steelsight = 0.6,
+					steelsight = 0.5,
 				},
 				moving = {
 					hipfire = 1.2,
@@ -321,7 +321,7 @@ function WeaponTweakData:_init_weapons()
 				standing = {
 					hipfire = 1,
 					crouching = 1,
-					steelsight = 0.8,
+					steelsight = 0.6,
 				},
 				moving = {
 					hipfire = 1.2,
@@ -384,7 +384,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.4,
 						crouching = 0.8,
-						steelsight = 0.6,
+						steelsight = 0.5,
 					},
 					moving = {
 						hipfire = 1.6,
@@ -694,7 +694,7 @@ function WeaponTweakData:_init_weapons()
 			end
 		end
 
-		local base_spread = 3
+		local base_spread = weap_data.rays and 3 or 2
 
 		--set spread values
 		if weap_data.spread then
