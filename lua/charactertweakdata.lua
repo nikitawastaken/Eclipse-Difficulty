@@ -402,8 +402,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.bulldozer.is_shotgun_mag.autofire_rounds = { 1, 6 }
 	presets.weapon.bulldozer.is_shotgun_mag.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 4, 6 } },
-		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.6, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 4 } },
-		{ dmg_mul = 2 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
+		{ dmg_mul = 4.5 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.6, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 4 } },
+		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
 	presets.weapon.hw_bulldozer = based_on(presets.weapon.bulldozer, {
@@ -437,33 +437,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.boss = based_on(presets.weapon.base)
 
-	damage_multiplier(presets.weapon.boss, 3 / 2)
-
 	presets.weapon.marshal_marksman = based_on(presets.weapon.sniper)
 
-	presets.weapon.marshal_marksman.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-	}
-
 	presets.weapon.marshal_gunner = based_on(presets.weapon.base)
-
-	presets.weapon.marshal_gunner.is_lmg.RELOAD_SPEED = 0.6
-	presets.weapon.marshal_gunner.is_lmg.autofire_rounds = { 15, 25 }
-	presets.weapon.marshal_gunner.is_lmg.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.6, 1.2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.2, 0.4 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-	}
-
-	presets.weapon.marshal_gunner.is_shotgun_mag.RELOAD_SPEED = 0.9
-	presets.weapon.marshal_gunner.is_shotgun_mag.autofire_rounds = { 1, 4 }
-	presets.weapon.marshal_gunner.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.3, 0.6 }, recoil = { 1, 1.2 }, mode = { 1, 0, 0, 0 } },
-	}
 
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 0.25 },
@@ -1344,6 +1320,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
 
+	self.hector_boss_no_armor.HEALTH_INIT = 8
+	self.hector_boss_no_armor.headshot_dmg_mul = 2
+	
 	self.biker_boss.HEALTH_INIT = 100
 	self.biker_boss.headshot_dmg_mul = 2
 	self.biker_boss.no_headshot_add_mul = true
@@ -1363,6 +1342,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
 
+	self.drug_lord_boss_stealth.HEALTH_INIT = 8
+	self.drug_lord_boss_stealth.headshot_dmg_mul = 2
+	
 	self.triad_boss.HEALTH_INIT = 100
 	self.triad_boss.headshot_dmg_mul = 2
 	self.triad_boss.no_headshot_add_mul = true
@@ -1374,7 +1356,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.invulnerable_to_slotmask = nil
 	self.triad_boss.throwable_target_verified = false
 	self.triad_boss.throwable_cooldown = 20
-
+	
+	self.triad_boss_no_armor.HEALTH_INIT = 8
+	self.triad_boss_no_armor.headshot_dmg_mul = 2
+	
 	self.deep_boss.HEALTH_INIT = 120
 	self.deep_boss.headshot_dmg_mul = 2
 	self.deep_boss.ignore_headshot = false
