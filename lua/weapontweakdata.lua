@@ -224,7 +224,7 @@ function WeaponTweakData:_init_weapons()
 					}
 				}
 
-				if weap_data.fire_mode_data and not weap_data.auto then
+				if weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 					weap_data.fire_mode_data.fire_rate = 60 / 675
 				end
 			end
