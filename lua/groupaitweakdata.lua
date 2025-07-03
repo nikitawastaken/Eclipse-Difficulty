@@ -239,17 +239,15 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 0,
 			medic = 0,
 			marksman = 0,
-			marshal = 0,
 		}
 	elseif difficulty_index == 3 then
 		self.special_unit_spawn_limits = {
 			shield = 2,
 			taser = 1,
 			tank = 1,
-			spooc = 0,
+			spooc = 1,
 			medic = 0,
 			marksman = 0,
-			marshal = 0,
 		}
 	elseif difficulty_index == 4 then
 		self.special_unit_spawn_limits = {
@@ -259,7 +257,6 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 2,
 			marksman = 0,
-			marshal = 0,
 		}
 	elseif difficulty_index == 5 then
 		self.special_unit_spawn_limits = {
@@ -269,7 +266,6 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 2,
 			medic = 3,
 			marksman = 0,
-			marshal = 0,
 		}
 	elseif difficulty_index == 6 then
 		self.special_unit_spawn_limits = {
@@ -279,7 +275,6 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			spooc = 3,
 			medic = 4,
 			marksman = 3,
-			marshal = 0,
 		}
 	end
 
@@ -2431,7 +2426,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_cloaker = {
-		amount = { 2, 2 },
+		amount = { 1, 2 },
 		spawn = {
 			{
 				freq = 1,
