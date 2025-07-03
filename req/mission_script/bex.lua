@@ -66,6 +66,12 @@ return {
 		},
 	},
 	[100109] = { -- police, executed on alarm
+		on_executed = { -- delay preferreds and SWAT vans
+			{ id = 100129, delay = 90 }, -- preferred
+			{ id = 102987, delay = 60 }, -- deploy SWAT van
+			{ id = 102988, delay = 60 }, -- deploy SWAT van left
+			{ id = 102989, delay = 60 }, -- deploy SWAT van right
+		},
 		reinforce = {
 			{
 				name = "fountain",
@@ -269,9 +275,9 @@ return {
 	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed.
 	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.
 	-- The other 2 spawn groups were slowed down because they are stacked on top of each other, simple as that.
-	[100019] = flank_spawn,
-	[100128] = flank_spawn,
-	[100132] = flank_spawn,
+	[100019] = side_spawn,
+	[100128] = side_spawn,
+	[100132] = side_spawn,
 	-- cheat spawns, replaced with reenforce
 	[100741] = disabled,
 	[102369] = disabled,
