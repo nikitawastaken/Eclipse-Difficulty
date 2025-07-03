@@ -107,10 +107,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
-		difficulty_curve_points = { 0.75 },
-		hostage_hesitation_delay_mul = 1.35,
-		sustain_duration_mul = 0.85,
-		assault_delay_mul = 1.25,
 		assault_force_mul = 0.7,
 		push_delay_mul = 1.25,
 		force_tactics = {
@@ -126,7 +122,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.branchbank.group_ai_settings.difficulty_curve_points = nil
 	self.branchbank.group_ai_settings.assault_force_mul = nil
 
 	self.nightclub.group_ai_settings = deep_clone(self.branchbank.group_ai_settings)
@@ -150,10 +145,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
 	self.framing_frame_2.group_ai_settings = {
-		difficulty_curve_points = { 0.25 },
 		recurring_cloaker_spawn_interval_mul = 0.75,
-		hostage_hesitation_delay_mul = 0,
-		assault_force_mul = 0.4,
+		assault_force_mul = 0.5,
 		recon_force_mul = 0,
 		force_tactics = {
 			swat_snk = {
@@ -164,6 +157,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 		spawn_group_presets = {
+			full_force = true,
 			small_squads = true,
 			heavy_response = true,
 		},
