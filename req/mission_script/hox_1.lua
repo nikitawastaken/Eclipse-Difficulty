@@ -18,7 +18,7 @@ local swats = {
 	[sniper] = 2,
 }
 local swat_harasser = {
-     enemy = diff_i < 5 and swats or cops
+	enemy = diff_i < 5 and swats or cops,
 }
 local van_spawn = {
 	values = {
@@ -65,13 +65,13 @@ return {
 	},
 	-- tweak harassers
 	[102029] = swat_harasser,
-    [102031] = swat_harasser,
-    [102033] = swat_harasser,
-    [102035] = swat_harasser,
-    [102037] = swat_harasser,
-    [102039] = swat_harasser,
-    [102041] = swat_harasser,
-    [102043] = swat_harasser,
+	[102031] = swat_harasser,
+	[102033] = swat_harasser,
+	[102035] = swat_harasser,
+	[102037] = swat_harasser,
+	[102039] = swat_harasser,
+	[102041] = swat_harasser,
+	[102043] = swat_harasser,
 	-- Spawn group delays
 	[101719] = street_spawn,
 	[101728] = street_spawn,
