@@ -75,6 +75,13 @@ if not Eclipse then
 		managers.chat:_receive_message(managers.chat.GAME, "Eclipse Debug", table.concat({ ... }, " "), Color.green)
 	end
 
+	function Eclipse:log_chat_interval(int, ...)
+		if not self._last_chat_t or (self._last_chat_t + int) < Application:time() then
+			managers.chat:_receive_message(managers.chat.GAME, "Eclipse Debug", table.concat({ ... }, " "), Color.green)
+			self._last_chat_t = Application:time()
+		end
+	end
+
 	function Eclipse:log_chat_unique(...)
 		local vals = { ... }
 		if Eclipse._old_chat_vals then
@@ -165,6 +172,11 @@ if not Eclipse then
 		local menu_id = "eclipse_menu"
 		MenuHelper:NewMenu(menu_id)
 
+		function MenuCallbackHandler:eclipse_trade_chat_spam_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.trade_chat_spam = enabled
+		end
+
 		function MenuCallbackHandler:eclipse_ponr_assault_text_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.ponr_assault_text = enabled
@@ -195,6 +207,16 @@ if not Eclipse then
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
+
+		MenuHelper:AddToggle({
+			id = "trade_chat_spam",
+			title = "eclipse_menu_trade_chat_spam_text",
+			desc = "eclipse_menu_trade_chat_spam_desc",
+			callback = "eclipse_trade_chat_spam_toggle",
+			value = Eclipse.settings.trade_chat_spam,
+			menu_id = menu_id,
+			priority = 100,
+		})
 
 		MenuHelper:AddToggle({
 			id = "ponr_assault_text",

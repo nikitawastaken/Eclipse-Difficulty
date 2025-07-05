@@ -61,6 +61,31 @@ function TradeManager:is_trade_allowed(t)
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
+	if Eclipse.settings.trade_chat_spam and (not self._chat_spam_check or (self._chat_spam_check + 1) < t) then
+		local checks = {
+			trading_hostage = not self._trading_hostage,
+			hostage_trade_clbk = not self._hostage_trade_clbk,
+			first_response_delay_pass = has_first_response_trades_delay_passed,
+			is_recon_over = not is_recon_over,
+			really_long_one = (
+				#self._criminals_to_respawn > 0
+				or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)
+			),
+			whisper_mode = not managers.groupai:state():whisper_mode(),
+			speaker_snd_event = not self._speaker_snd_event,
+			hostage_count = managers.groupai:state():hostage_count() > 0,
+		}
+
+		for name, check in pairs(checks) do
+			if not check then
+				Eclipse:log_chat(string.format("Check %s did not pass.", name))
+			end
+		end
+		Eclipse:log_chat(string.rep("=-", 10) .. "=")
+
+		self._chat_spam_check = t
+	end
+
 	return Network:is_server()
 		and not self._trading_hostage
 		and not self._hostage_trade_clbk
