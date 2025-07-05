@@ -331,7 +331,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 16 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
-
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
