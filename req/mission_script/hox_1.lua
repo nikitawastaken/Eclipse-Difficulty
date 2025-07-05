@@ -1,11 +1,12 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
-local swat_1 = diff_i < 5 and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
-local swat_2 = diff_i < 5 and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
+local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
+local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
 local sniper = scripted_enemy.sniper
 local cops = {
 	[cop_1] = 4,
