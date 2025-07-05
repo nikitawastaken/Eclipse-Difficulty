@@ -3412,18 +3412,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawncap
 	self.besiege.assault.force = {
-		diff_lerp(4, 8),
-		diff_lerp(8, 12),
-		diff_lerp(12, 16),
+		diff_lerp(4, 10),
+		diff_lerp(8, 14),
+		diff_lerp(12, 18),
 	}
-	self.besiege.assault.force_balance_mul = { 0.5, 0.75, 1, 1.25 }
+	self.besiege.assault.force_balance_mul = { 0.6, 0.8, 1, 1.2 }
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = { 0.5, 0.75, 1, 1.25 }
+	self.besiege.assault.force_pool_balance_mul = { 0.6, 0.8, 1, 1.2 }
 
 	-- Spawnrate
 	self.spawn_kill_distance = 1500
