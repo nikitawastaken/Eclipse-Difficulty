@@ -18,7 +18,7 @@ local swats = {
 	[sniper] = 2,
 }
 local swat_harasser = {
-	enemy = diff_i < 5 and swats or cops,
+	enemy = diff_i < 5 and cops or swats,
 }
 local van_spawn = {
 	values = {
