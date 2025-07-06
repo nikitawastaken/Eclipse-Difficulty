@@ -248,16 +248,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.arena.group_ai_settings = {
 		spawn_kill_cooldown_mul = 1.5,
-		hostage_hesitation_delay_mul = 1.35,
+		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 0.8,
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
 	self.kenaz.group_ai_settings = {
-		hostage_hesitation_delay_mul = 1.35,
+		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 1.2,
-		reenforce_interval_mul = 2,
 		special_limit_add = {
 			medic = -1,
 		},
@@ -428,7 +427,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
 	self.moon.group_ai_settings.reenforce_interval_mul = nil
-	self.moon.group_ai_settings.hostage_hesitation_delay_mul = 1.35
 
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.run.group_ai_settings.special_limit_add = {
@@ -522,7 +520,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
 
 	self.bex.group_ai_settings = {
-		hostage_hesitation_delay_mul = 1.35,
 		assault_force_mul = 1.2,
 		special_limit_add = {
 			shield = 1,
