@@ -111,7 +111,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 	end
 
 	if self.tweak_data == "hostage_trade" then
-		self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
+		-- self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
 		if not NetworkHelper:IsHost() then
 			NetworkHelper:SendToHostChunk(
 				"Eclipse_HuskCopBrain:on_trade",
@@ -141,7 +141,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 			name = self._unit:base()._tweak_table,
 		})
 	elseif self.tweak_data == "hostage_trade_resources" then
-		self._unit:brain():on_trade(player:position(), player:rotation(), true, false)
+		-- self._unit:brain():on_trade(player:position(), player:rotation(), true, false)
 		if not NetworkHelper:IsHost() then
 			NetworkHelper:SendToHostChunk(
 				"Eclipse_HuskCopBrain:on_trade",
