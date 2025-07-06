@@ -70,7 +70,6 @@ function AmmoClip:_pickup(unit)
 
 					if player_manager:has_category_upgrade("player", "pickup_restore_team_health") then
 						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore)
-						Eclipse:log_chat("health to restore: " .. health_to_restore)
 					end
 				end
 
@@ -100,7 +99,7 @@ function AmmoClip:_pickup(unit)
 	return false
 end
 
-Hooks:OverrideFunction(AmmoClip, "sync_net_event", function(self, event, peer)
+function AmmoClip:sync_net_event(event, peer)
 	local player = managers.player:local_player()
 
 	if not alive(player) or not player:character_damage() or player:character_damage():is_downed() or player:character_damage():dead() then
@@ -148,4 +147,4 @@ Hooks:OverrideFunction(AmmoClip, "sync_net_event", function(self, event, peer)
 			end
 		end
 	end
-end)
+end
