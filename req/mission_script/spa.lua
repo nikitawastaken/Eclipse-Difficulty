@@ -1,41 +1,31 @@
 local preferred = Eclipse.preferred
-local escape_spawn = {
-	values = {
-		interval = 15,
-	},
-}
-local breach_lower_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local window_lower_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents,
 }
 local breach_upper_spawn = {
 	values = {
-		interval = 25,
+		interval = 10,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local window_upper_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local skylight_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }
 local roof_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -70,10 +60,6 @@ return {
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
 	-- Lower level spawns are faster with more groups, higher level spawns are much slower and have group restrictions.
 	-- The ground spawns at the escape have been slowed down to allow for more diverse holdout locations, if you know you know.
-	[106717] = escape_spawn,
-	[104348] = escape_spawn,
-	[107262] = breach_lower_spawn,
-	[107263] = breach_lower_spawn,
 	[101012] = window_lower_spawn,
 	[102138] = window_lower_spawn,
 	[104338] = window_lower_spawn,

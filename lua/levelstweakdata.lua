@@ -428,6 +428,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
 	self.moon.group_ai_settings.reenforce_interval_mul = nil
 
+	self.spa.group_ai_settings = {
+		assault_force_mul = 0.7,
+		special_limit_add = {
+			shield = -1,
+		},
+	}
+	
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.run.group_ai_settings.special_limit_add = {
 		taser = 1,
