@@ -122,6 +122,7 @@ function AmmoClip:sync_net_event(event, peer)
 				for id, weapon in pairs(inventory:available_selections()) do
 					managers.hud:set_ammo_amount(id, weapon.unit:base():ammo_info())
 				end
+				Eclipse:log_chat("client restored ammo")
 			end
 		end
 	elseif event == AmmoClip.EVENT_IDS.register_grenade then
@@ -138,6 +139,7 @@ function AmmoClip:sync_net_event(event, peer)
 
 			if damage_ext:restore_health(health_to_restore, true, true) then
 				player:sound():play("pickup_ammo_health_boost", nil, true)
+				Eclipse:log_chat("client restored health")
 			end
 		end
 	end
