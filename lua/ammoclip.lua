@@ -100,7 +100,7 @@ function AmmoClip:_pickup(unit)
 	return false
 end
 
-function AmmoClip:sync_net_event(event, peer)
+Hooks:OverrideFunction(AmmoClip, "sync_net_event", function(self, event, peer)
 	local player = managers.player:local_player()
 
 	if not alive(player) or not player:character_damage() or player:character_damage():is_downed() or player:character_damage():dead() then
@@ -148,4 +148,4 @@ function AmmoClip:sync_net_event(event, peer)
 			end
 		end
 	end
-end
+end)
