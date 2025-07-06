@@ -1467,7 +1467,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.specialization_descs[10][1].multiperk = "2"
+	self.specialization_descs[10][1].multiperk = "3"
 	self.specialization_descs[10][3].multiperk = "25%"
 	self.specialization_descs[10][5].multiperk = "50%"
 	self.specialization_descs[10][7].multiperk = "100%"
