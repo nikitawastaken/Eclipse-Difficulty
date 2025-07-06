@@ -434,7 +434,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			shield = -1,
 		},
 	}
-	
+
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.run.group_ai_settings.special_limit_add = {
 		taser = 1,
