@@ -5,11 +5,12 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
-local dozer_random_amount = is_eclipse and 2 or 1
-local dozers_respawn = (is_eclipse and 210 or 240) - (is_pro_job and 30 or 0)
+local dozer_random_amount = overkill_and_above and 2 or 1
+local dozers_respawn = (is_eclipse and 210 or 240) - (is_eclipse_pro and 60 or is_pro_job and 30 or 0)
 local dozer_event = not normal and true or false
 
 local green_bulldozer = scripted_enemy.bulldozer_1
