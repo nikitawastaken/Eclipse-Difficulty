@@ -106,6 +106,7 @@ function AmmoClip:sync_net_event(event, peer)
 	if not alive(player) or not player:character_damage() or player:character_damage():is_downed() or player:character_damage():dead() then
 		return
 	end
+	Eclipse:log_chat("sync net event received, event: " .. event)
 
 	if event == AmmoClip.EVENT_IDS.bonnie_share_ammo then
 		Eclipse:log_chat("first ammo restore check passed")
