@@ -1813,13 +1813,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "cs_cop_1",
 				tactics = self._tactics.cop_init,
 			},
-			{
-				freq = 1,
-				amount_max = 1,
-				rank = 1,
-				unit = "cs_cop_2",
-				tactics = self._tactics.cop_init,
-			},
 		},
 	}
 
@@ -1838,17 +1831,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_min = 1,
 				rank = 2,
 				unit = "cs_swat_1",
-				tactics = self._tactics.none,
-			},
-			{
-				freq_by_diff = {
-					15 / (difficulty_index ^ 2),
-					0,
-					0,
-				},
-				amount_max = 1,
-				rank = 1,
-				unit = "cs_cop_3",
 				tactics = self._tactics.none,
 			},
 		},
@@ -2116,8 +2098,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq_by_diff = {
-					50 / (difficulty_index ^ 2),
-					25 / (difficulty_index ^ 2),
+					40 / (difficulty_index ^ 2),
+					20 / (difficulty_index ^ 2),
 					0,
 				},
 				amount_max = 2,
@@ -2132,28 +2114,37 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 3 },
 		spawn = {
 			{
+				freq_by_diff = {
+					30 / (difficulty_index ^ 2),
+					15 / (difficulty_index ^ 2),
+					0,
+				},
+				amount_max = 1,
+				rank = 1,
+				unit = "cs_swat_2_3",
+				tactics = self._tactics.none,
+			},
+			{
+				freq_by_diff = {
+					60 / (difficulty_index ^ 2),
+					30 / (difficulty_index ^ 2),
+					0,
+				},
+				rank = 1,
+				unit = "cs_swat_1",
+				tactics = self._tactics.none,
+			},
+			{
 				freq = 1,
-				amount_max = 2,
+				amount_max = 1,
 				rank = 3,
 				unit = "fbi_swat_2_3",
 				tactics = self._tactics.none,
 			},
 			{
 				freq = 2,
-				amount_min = 1,
 				rank = 2,
 				unit = "fbi_swat_1",
-				tactics = self._tactics.none,
-			},
-			{
-				freq_by_diff = {
-					25 / (difficulty_index ^ 2),
-					0,
-					0,
-				},
-				amount_max = 1,
-				rank = 1,
-				unit = "fbi_agent_3",
 				tactics = self._tactics.none,
 			},
 		},
@@ -2184,7 +2175,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				},
 				amount_max = 1,
 				rank = 1,
-				unit = "fbi_swat_3",
+				unit = "fbi_swat_1_3",
 				tactics = self._tactics.none,
 			},
 		},
@@ -3412,18 +3403,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawncap
 	self.besiege.assault.force = {
-		diff_lerp(4, 10),
-		diff_lerp(8, 14),
-		diff_lerp(12, 18),
+		diff_lerp(4, 8),
+		diff_lerp(8, 12),
+		diff_lerp(12, 16),
 	}
-	self.besiege.assault.force_balance_mul = { 0.6, 0.8, 1, 1.2 }
+	self.besiege.assault.force_balance_mul = { 0.5, 0.75, 1, 1.25 }
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = { 0.6, 0.8, 1, 1.2 }
+	self.besiege.assault.force_pool_balance_mul = { 0.5, 0.75, 1, 1.25 }
 
 	-- Spawnrate
 	self.spawn_kill_distance = 1500
