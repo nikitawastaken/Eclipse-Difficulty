@@ -1416,7 +1416,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[9][1].multiperk4 = "4"
 
 	-- Gambler
-	self.values.player.pickup_restore_health = { 0.2, 0.4 }
+	self.values.player.pickup_restore_health = { 0.3, 0.6 }
 	self.definitions.player_pickup_restore_health_1 = {
 		name_id = "menu_player_pickup_restore_health",
 		category = "feature",
