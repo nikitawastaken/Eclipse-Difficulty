@@ -37,27 +37,27 @@ return {
 	[100229] = { -- enemies add
 		reinforce = {
 			{
-				name = "exterior_entrance", 
+				name = "exterior_entrance",
 				force = 4,
 				position = Vector3(0, -8000, 0),
 			},
 			{
-				name = "exterior_right1",  
+				name = "exterior_right1",
 				force = 2,
 				position = Vector3(3400, -2600, 20),
 			},
 			{
-				name = "exterior_right2",  
+				name = "exterior_right2",
 				force = 2,
 				position = Vector3(2200, -5400, 20),
 			},
 			{
-				name = "exterior_left1",  
+				name = "exterior_left1",
 				force = 2,
 				position = Vector3(-3000, -3200, 20),
 			},
 			{
-				name = "exterior_left2",  
+				name = "exterior_left2",
 				force = 2,
 				position = Vector3(-2900, -5500, 20),
 			},
@@ -66,45 +66,45 @@ return {
 	[101620] = { -- assemble the winch
 		reinforce = {
 			{
-				name = "bar", 
+				name = "bar",
 				force = 3,
 				position = Vector3(20, -4000, 10),
 			},
 			{
-				name = "interior_balcony1",  
+				name = "interior_balcony1",
 				force = 2,
 				position = Vector3(-1300, -550, 600),
 			},
 			{
-				name = "interior_balcony2", 
+				name = "interior_balcony2",
 				force = 2,
 				position = Vector3(1200, 600, 600),
 			},
 			{
-				name = "interior_balcony3", 
+				name = "interior_balcony3",
 				force = 2,
 				position = Vector3(-1300, -2400, 500),
 			},
 			{
-				name = "interior_balcony4", 
+				name = "interior_balcony4",
 				force = 2,
 				position = Vector3(1300, -2400, 500),
 			},
 		},
-	},		
+	},
 	[100379] = { -- drill done
 		reinforce = {
 			{
-				name = "security1",  
+				name = "security1",
 				force = 2,
 				position = Vector3(-1100, 1500, 100),
 			},
 			{
-				name = "security2",  
+				name = "security2",
 				force = 2,
 				position = Vector3(1000, 1500, 100),
 			},
-		}
+		},
 	},
 	-- Spawn group delays
 	[103218] = skylight_spawn,
