@@ -87,30 +87,6 @@ local optsShield_3 = {
 	},
 	enabled = true,
 }
-local optsShield_4 = {
-	enemy = is_eclipse and elite_shield or shield,
-	participate_to_group_ai = true,
-	on_executed = {
-		{ id = 400053, delay = 0 },
-	},
-	enabled = true,
-}
-local optsShield_5 = {
-	enemy = is_eclipse and elite_shield or shield,
-	participate_to_group_ai = true,
-	on_executed = {
-		{ id = 400054, delay = 0 },
-	},
-	enabled = true,
-}
-local optsShield_6 = {
-	enemy = is_eclipse and elite_shield or shield,
-	participate_to_group_ai = true,
-	on_executed = {
-		{ id = 400055, delay = 0 },
-	},
-	enabled = true,
-}
 local optsTaser = {
 	enemy = taser_shotgun,
 	spawn_action = "e_sp_run_jump_far",
@@ -232,9 +208,6 @@ local spawn_Shields = {
 		{ id = 400044, delay = 0 },
 		{ id = 400045, delay = 0 },
 		{ id = 400046, delay = 0 },
-		{ id = 400047, delay = 0 },
-		{ id = 400048, delay = 0 },
-		{ id = 400049, delay = 0 },
 	},
 }
 local optsrespawn_swat_1 = {
@@ -342,15 +315,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400044, "shield_1", Vector3(-889.027, 18.536, 700.001), Rotation(-90, 0, -0), optsShield_1),
 	Eclipse.mission_elements.gen_dummy(400045, "shield_2", Vector3(-956.985, 16.162, 700.001), Rotation(-90, -0, -0), optsShield_2),
 	Eclipse.mission_elements.gen_dummy(400046, "shield_3", Vector3(-1012.951, 14.208, 700.001), Rotation(-90, 0, -0), optsShield_3),
-	Eclipse.mission_elements.gen_dummy(400047, "shield_4", Vector3(-57, 1640, 697.988), Rotation(90, -0, -0), optsShield_4),
-	Eclipse.mission_elements.gen_dummy(400048, "shield_5", Vector3(-1704, 1478, 375.600), Rotation(-90, -0, -0), optsShield_5),
-	Eclipse.mission_elements.gen_dummy(400049, "shield_6", Vector3(22, 1430, 375.600), Rotation(90, -0, -0), optsShield_6),
 	Eclipse.mission_elements.gen_so(400050, "shield_defend_so_1", Vector3(-1057, 497, 700.001), Rotation(78, -0, -0), optsShield_Defend_SO),
 	Eclipse.mission_elements.gen_so(400051, "shield_defend_so_2", Vector3(-1037.821, 698.270, 700.001), Rotation(109, -0, -0), optsShield_Defend_SO),
 	Eclipse.mission_elements.gen_so(400052, "shield_defend_so_3", Vector3(-962.004, 583.511, 700.001), Rotation(89, -0, -0), optsShield_Defend_SO),
-	Eclipse.mission_elements.gen_so(400053, "shield_defend_so_4", Vector3(-684, 1663, 746.988), Rotation(90, -0, -0), optsShield_Defend_SO),
-	Eclipse.mission_elements.gen_so(400054, "shield_defend_so_5", Vector3(-1470, 1486, 375.600), Rotation(0, 0, -0), optsShield_Defend_SO),
-	Eclipse.mission_elements.gen_so(400055, "shield_defend_so_6", Vector3(-289, 1521, 375.600), Rotation(0, 0, -0), optsShield_Defend_SO),
 
 	--Block the roof access (from PDTH)
 	Eclipse.mission_elements.gen_missionscript(400064, "roof_access_blockade_random", Roof_access_block),

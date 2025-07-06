@@ -1,7 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local enabled_blocked_roof_access = math.random() < 0.6
+local enabled_blocked_roof_access = math.random() < 0.45 + (is_pro_job and 0.1)
 local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
 	Idstring("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"),
@@ -100,6 +100,40 @@ return {
 	-- stop with the smoke bombs, jeez....
 	[103034] = disabled,
 	[103106] = disabled,
+	-- restore c4 alley drop on higher diffs
+	[102261] = {
+		on_executed = {
+			{ id = 100350, delay = 0 },
+		},
+	},
+	[101572] = {
+		on_executed = {
+			{ id = 100350, delay = 0 },
+		},
+	},
+	-- 2 scripted cloakers spawn on overkill and above when the cops arrive
+	[100314] = {
+		on_executed = {
+			{ id = 103038, delay = overkill_and_above and 20 or nil },
+			{ id = 103080, delay = overkill_and_above and 20 or nil },
+		},
+	},
+	-- make some beat cops camp near police cars
+	[100040] = {
+		on_executed = {
+			{ id = 102579, remove = true },
+		},
+	},
+	[100035] = {
+		on_executed = {
+			{ id = 102579, remove = true },
+		},
+	},
+	[100037] = {
+		on_executed = {
+			{ id = 102579, remove = true },
+		},
+	},
 	-- disable scripted spawn spam
 	[101745] = disabled,
 	-- don't remove ground level spawns at any point

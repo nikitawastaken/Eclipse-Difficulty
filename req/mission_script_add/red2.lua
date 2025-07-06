@@ -38,7 +38,7 @@ local enabled_chance_escape_cloakers = math.random() < 0.5
 local enabled_chance_escape_shield_wall = math.random() < 0.75
 local enabled_chance_shield_army = math.random() < 0.6
 local enabled_chance_more_guards = math.random() < 0.2 + (is_pro_job and 0.1 or 0)
-local enabled_chance_escape_basement_cloakers = 0.1 + (is_pro_job and 0.1 or 0)
+local enabled_chance_escape_basement_cloakers = math.random() < 0.1 + (is_pro_job and 0.1 or 0)
 
 local optsSecurity = {
 	enemy_table = security,
