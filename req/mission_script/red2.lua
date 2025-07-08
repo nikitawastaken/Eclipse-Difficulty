@@ -121,7 +121,7 @@ local vent_spawn = {
 }
 local forced_off = {
 	values = {
-		forced = false
+		forced = false,
 	},
 }
 return {

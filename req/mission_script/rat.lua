@@ -202,7 +202,7 @@ return {
 			amount = chopper_amount,
 		},
 		on_executed = {
-			{ id = 100993, remove = true }
+			{ id = 100993, remove = true },
 		},
 	},
 	-- trigger_times to 0; making the loop possible
