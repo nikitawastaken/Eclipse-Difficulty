@@ -1,4 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
@@ -101,17 +102,6 @@ return {
 	-- stop with the smoke bombs, jeez....
 	[103034] = disabled,
 	[103106] = disabled,
-	-- restore c4 alley drop on higher diffs
-	[102261] = {
-		on_executed = {
-			{ id = 100350, delay = 0 },
-		},
-	},
-	[101572] = {
-		on_executed = {
-			{ id = 100350, delay = 0 },
-		},
-	},
 	-- 2 scripted cloakers spawn on overkill and above when the cops arrive
 	[100314] = {
 		on_executed = {
