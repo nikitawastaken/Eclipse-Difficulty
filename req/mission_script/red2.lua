@@ -119,6 +119,11 @@ local vent_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local forced_off = {
+	values = {
+		forced = false
+	},
+}
 return {
 	-- Add new reinforce
 	[100901] = { -- SWAT incoming
@@ -189,41 +194,13 @@ return {
 		},
 	},
 	--Let the cops finish their spawn anim before moving into SO spot
-	[103720] = {
-		on_executed = {
-			{ id = 104029, delay = 2.75 },
-		},
-	},
-	[103721] = {
-		on_executed = {
-			{ id = 104071, delay = 2.75 },
-		},
-	},
-	[103722] = {
-		on_executed = {
-			{ id = 105734, delay = 2.75 },
-		},
-	},
-	[103723] = {
-		on_executed = {
-			{ id = 105736, delay = 2.75 },
-		},
-	},
-	[103724] = {
-		on_executed = {
-			{ id = 100226, delay = 2.75 },
-		},
-	},
-	[103732] = {
-		on_executed = {
-			{ id = 100077, delay = 2.75 },
-		},
-	},
-	[103737] = {
-		on_executed = {
-			{ id = 105732, delay = 2.75 },
-		},
-	},
+	[104029] = forced_off,
+	[104071] = forced_off,
+	[105734] = forced_off,
+	[105736] = forced_off,
+	[100226] = forced_off,
+	[100077] = forced_off,
+	[105732] = forced_off,
 	-- disable special basement ambushes on startup
 	[100326] = {
 		on_executed = {

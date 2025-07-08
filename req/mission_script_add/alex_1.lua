@@ -54,7 +54,7 @@ M.elements = {
 	-- fix for police chopper
 	Eclipse.mission_elements.gen_object_editor(400008, "cook_off_police_chopper_fix", Vector3(0, 0, 0), Rotation(0, 0, -0), optsPolice_chopper_fix),
 	-- loop script for the choppers
-	Eclipse.mission_elements.gen_missionscript(400009, "activate_eclipse_navlinks", optschopper_loop),
+	Eclipse.mission_elements.gen_missionscript(400009, "chopper_loop", optschopper_loop),
 }
 
 return M

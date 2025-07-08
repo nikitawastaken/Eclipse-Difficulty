@@ -1,5 +1,4 @@
 local preferred = Eclipse.preferred
-local level_id = Eclipse.utils.level_id()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
@@ -10,8 +9,6 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cook_off = level_id ~= "alex_1"
-local meth_lab_in_basement_chance = cook_off and math.random() < 0.2
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -187,18 +184,9 @@ return {
 			{ id = 100966, delay = 0 },
 		},
 	},
-	-- this makes the dozer chopper spawn twice sometimes
-	[100239] = {
-		values = {
-			enabled = false,
-		},
-	},
 	[100966] = {
 		values = {
 			amount = chopper_amount,
-		},
-		on_executed = {
-			{ id = 100993, remove = cook_off and true or false }, -- unused spawn snipers script
 		},
 	},
 	-- trigger_times to 0; making the loop possible
