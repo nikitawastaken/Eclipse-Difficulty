@@ -308,7 +308,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.sniper = based_on(presets.weapon.swat)
 
 	local cs_sniper_aim_delay_mul = math.sqrt(aim_delay_mul)
-	
+
 	presets.weapon.sniper.is_sniper.aim_delay = {
 		1 * cs_sniper_aim_delay_mul,
 		2 * cs_sniper_aim_delay_mul,
