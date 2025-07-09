@@ -588,7 +588,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400032, "enable_random_snipers", enable_sniper_mission_script),
 	Eclipse.mission_elements.gen_dialogue(400033, "they_sending_snipers", Bain_sendsnipers),
 	Eclipse.mission_elements.gen_missionscript(400034, "notoriety_snipers_event_global", spawn_snipers_global),
-	
+
 	-- scripted dozers
 	Eclipse.mission_elements.gen_dummy(400040, "bulldozer_1", Vector3(2244, -79, -318.756), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_dummy(400041, "bulldozer_2", Vector3(2244, -24, -318.756), Rotation(-90, 0, -0), optsBulldozer),
