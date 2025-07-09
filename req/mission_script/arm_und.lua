@@ -25,7 +25,7 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local gensec_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer
+local gensec_dozer = is_eclipse_pro and random_elite_dozers or diff_i < 4 and random_dozers or green_bulldozer
 
 local gensec = {
 	enemy = overkill_and_above and gensec_operators,

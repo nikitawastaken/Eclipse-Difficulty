@@ -33,8 +33,8 @@ local cops = {
 	[cop_2] = 1,
 }
 local swats = {
-	[swat_1] = 3,
-	[swat_2] = 3,
+	[swat_1] = 6,
+	[swat_2] = 2,
 	[sniper] = 2,
 }
 local swat_or_dozer = {
@@ -42,7 +42,7 @@ local swat_or_dozer = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local server_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers
+local server_dozer = is_eclipse_pro and random_elite_dozers or diff_i < 4 and random_dozers
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local patches = {

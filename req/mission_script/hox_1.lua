@@ -14,8 +14,8 @@ local cops = {
 	[cop_2] = 1,
 }
 local swats = {
-	[swat_1] = 3,
-	[swat_2] = 3,
+	[swat_1] = 6,
+	[swat_2] = 2,
 	[sniper] = 2,
 }
 local swat_harasser = {

@@ -26,7 +26,7 @@ local mendoza_enemy = {
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
 local mendoza = { enemy = mendoza_enemy }
-local heli_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or green_bulldozer
+local heli_dozer = is_eclipse_pro and random_elite_dozers or diff_i < 4 and random_dozers
 local sniper_groups = {
 	values = {
 		amount = normal and 1 or hard and 2 or 3,
