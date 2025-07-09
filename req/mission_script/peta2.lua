@@ -32,7 +32,7 @@ return {
 		values = {
 			callback = function() -- Somebody call the National Guard!
 				if not normal then
-					managers.groupai:state():enabled_timed_group(1)
+					managers.groupai:state():enabled_timed_group("us_scripted_group1")
 				end
 			end,
 		},
