@@ -78,6 +78,15 @@ return {
 			{ id = 101955, remove = true },
 		},
 	},
+	[101938] = { -- Bag in cage
+		values = {
+			callback = function() -- Somebody call the National Guard!
+				if not normal then
+					managers.groupai:state():enabled_timed_group(1)
+				end
+			end,
+		},
+	},
 	-- chance tweaks for gensec van/cops at gas station
 	[106343] = donut_lords_at_the_gas_station,
 	[106344] = donut_lords_at_the_gas_station,

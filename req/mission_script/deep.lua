@@ -6,7 +6,7 @@ local sniper_trigger_times = {
 }
 local bridge_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -18,19 +18,19 @@ local fueling_area_spawn1 = {
 }
 local lab_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local closet_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local fueling_area_spawn2 = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents,
 }

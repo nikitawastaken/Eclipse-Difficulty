@@ -1,9 +1,9 @@
 return function(timed_tactics, tactics)
 	return {
 		timer_data = {
-			initial_delay = 180,
-			cooldown = { 15, 30 },
-			diff_scale = { 2, 1.5, 1 },
+			initial_delay = 180, -- 3 minutes
+			cooldown = { 15, 20 },
+			diff_scale = { 3, 2, 1 },
 		},
 		group_data = {
 			army_timed_group = {

@@ -1,16 +1,16 @@
-return function(timed_tactics)
+return function(timed_tactics, tactics)
 	return {
 		timer_data = {
-			initial_delay = 0,
+			initial_delay = 30,
 			cooldown = { 10, 15 },
-			diff_scale = { 1, 2, 3 },
+			diff_scale = { 1, 1, 1 },
 		},
 		group_data = {
-			bellmead_timed_group = {
-				enabled = true,
+			army_timed_group = {
+				enabled = false,
 				team_id = "law1",
-				max_nr_simultaneous_groups = 2,
-				amount = { 2, 3 },
+				max_nr_simultaneous_groups = 3,
+				amount = { 3, 4 },
 				disable_timer = nil,
 				disable_diff = nil,
 				objective = function(spawn_group)
@@ -32,23 +32,27 @@ return function(timed_tactics)
 					{
 						amount_min = 1,
 						rank = 2,
-						freq = 2,
-						unit = "bellmead_security",
-						tactics = self._timed_tactics.bellmead_def,
+						freq = 1.5,
+						unit = "army_soldier_2",
+						tactics = tactics.army_def,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
 						freq = 1,
-						unit = "bellmead_security",
-						tactics = self._timed_tactics.bellmead_agg,
+						unit = "army_soldier_2",
+						tactics = tactics.army_agg,
 					},
 					{
-						amount_max = 2,
-						rank = 2,
-						freq = 1,
-						unit = "bellmead_security",
-						tactics = self._timed_tactics.bellmead_snk,
+						amount_max = 1,
+						rank = 1,
+						freq_by_diff = {
+							0,
+							(difficulty_index ^ 2) / 100,
+							(difficulty_index ^ 2) / 50,
+						},
+						unit = "army_soldier_3",
+						tactics = timed_tactics.army_spt,
 					},
 				},
 				spawn_point_chk_ref = table.list_to_set({

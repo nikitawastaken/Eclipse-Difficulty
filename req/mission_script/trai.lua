@@ -16,7 +16,7 @@ local sniper_trigger_times = {
 }
 local warehouse_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

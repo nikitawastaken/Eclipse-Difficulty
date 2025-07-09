@@ -2,16 +2,16 @@ return function(timed_tactics)
 	return {
 		timer_data = {
 			initial_delay = 0,
-			cooldown = { 15, 30 },
-			diff_scale = { 1, 1.5, 2 },
+			cooldown = { 10, 15 },
+			diff_scale = { 1, 2, 3 },
 		},
 		group_data = {
 			murkywater_timed_group = {
 				enabled = true,
 				team_id = "law1",
 				max_nr_simultaneous_groups = 2,
-				amount = { 3, 3 },
-				disable_timer = 360, -- 6 minutes
+				amount = { 2, 3 },
+				disable_timer = 300, -- 5 minutes
 				disable_diff = nil,
 				objective = function(spawn_group)
 					return {
@@ -32,7 +32,7 @@ return function(timed_tactics)
 					{
 						amount_min = 1,
 						rank = 2,
-						freq = 1.5,
+						freq = 2,
 						unit = "murkywater",
 						tactics = timed_tactics.murky_def,
 					},

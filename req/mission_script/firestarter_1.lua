@@ -52,7 +52,7 @@ local swat_shield_dozer_filter = {
 }
 local terminal_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_shields,
 }

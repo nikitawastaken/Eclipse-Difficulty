@@ -4,14 +4,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local fence_spawn = {
-	values = {
-		interval = 5,
-	},
-}
 local bush_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_shields,
 }
@@ -124,8 +119,6 @@ return {
 	[102451] = sniper_amount,
 	]]
 	-- Spawn group delays
-	[101178] = fence_spawn,
-	[100994] = fence_spawn,
 	[100993] = bush_spawn,
 	[101131] = bush_spawn,
 	[101038] = roof_spawn,

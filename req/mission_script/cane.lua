@@ -12,7 +12,7 @@ local bikers = {
 local biker = { enemy = bikers }
 local standard_spawn = {
 	values = {
-		interval = 5,
+		interval = 10,
 	},
 }
 local garage_door_spawn = {

@@ -2,15 +2,15 @@ return function(timed_tactics)
 	return {
 		timer_data = {
 			initial_delay = 0,
-			cooldown = { 15, 30 },
-			diff_scale = { 1, 1.5, 2 },
+			cooldown = { 10, 15 },
+			diff_scale = { 1, 2, 3 },
 		},
 		group_data = {
 			fbi_timed_group = {
 				enabled = true,
 				team_id = "law1",
-				max_nr_simultaneous_groups = 2,
-				amount = { 3, 3 },
+				max_nr_simultaneous_groups = 3,
+				amount = { 2, 3 },
 				disable_timer = nil,
 				disable_diff = 0.75,
 				objective = function(spawn_group)
