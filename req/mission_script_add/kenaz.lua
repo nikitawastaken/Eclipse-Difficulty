@@ -69,7 +69,7 @@ local optsSniper_3_1SO = {
 	so_action = "AI_sniper",
 	on_executed = {
 		{ id = 400035, delay = 20 },
-	},	
+	},
 }
 local optsSniper_3_2SO = {
 	scan = true,
@@ -80,7 +80,7 @@ local optsSniper_3_2SO = {
 	so_action = "AI_sniper",
 	on_executed = {
 		{ id = 400007, delay = 20 },
-	},	
+	},
 }
 local optsSniper_4_1SO = {
 	scan = true,
@@ -91,7 +91,7 @@ local optsSniper_4_1SO = {
 	so_action = "AI_sniper",
 	on_executed = {
 		{ id = 400036, delay = 20 },
-	},	
+	},
 }
 local optsSniper_4_2SO = {
 	scan = true,
@@ -102,7 +102,7 @@ local optsSniper_4_2SO = {
 	so_action = "AI_sniper",
 	on_executed = {
 		{ id = 400008, delay = 20 },
-	},	
+	},
 }
 local disable_sniper_mission_script = {
 	enabled = true,
