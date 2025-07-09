@@ -27,6 +27,12 @@ return {
 			{ id = 100230, delay = 90 }, -- wall spawns
 		},
 	},
+	-- the BFD is running, start spawning interior snipers
+	[100394] = {
+		on_executed = {
+			{ id = 400034, delay = 30 },
+		},
+	},
 	-- Remove vanilla reinforce
 	[103204] = disabled,
 	[103205] = disabled,

@@ -90,7 +90,7 @@ local optsSniper_2 = {
 	enabled = overkill_and_above,
 }
 local optsShield_roofblockade_1 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = elite_shield,
 	on_executed = {
 		{ id = 400051, delay = 0 },
 	},
@@ -98,7 +98,7 @@ local optsShield_roofblockade_1 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_2 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = elite_shield,
 	on_executed = {
 		{ id = 400052, delay = 0 },
 	},
@@ -106,7 +106,7 @@ local optsShield_roofblockade_2 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_3 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = elite_shield,
 	on_executed = {
 		{ id = 400057, delay = 0 },
 	},
@@ -114,7 +114,7 @@ local optsShield_roofblockade_3 = {
 	enabled = is_eclipse,
 }
 local optsShield_roofblockade_4 = {
-	enemy = is_eclipse_pro and elite_shield or shield,
+	enemy = elite_shield,
 	on_executed = {
 		{ id = 400058, delay = 0 },
 	},
