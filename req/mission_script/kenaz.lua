@@ -24,7 +24,7 @@ return {
 	},
 	[101907] = { -- start enemies delay end
 		on_executed = {
-			{ id = 100230, delay = 90 }, -- wall spawns
+			{ id = 100230, delay = 75 }, -- wall spawns
 		},
 	},
 	-- the BFD is running, start spawning interior snipers

@@ -1807,7 +1807,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.cop_init,
 			},
 			{
-				freq = 4,
+				freq = 3,
 				amount_min = 1,
 				rank = 2,
 				unit = "cs_cop_1",
@@ -1879,7 +1879,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.hrt_snk,
 			},
 			{
-				freq = 1,
+				freq = 1.5,
 				amount_max = 2,
 				rank = 1,
 				unit = "cs_cop_1",
@@ -1904,7 +1904,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = small_squads and { 2, 2 } or { 3, 3 },
 		spawn = {
 			{
-				freq = 4,
+				freq = 3,
 				amount_min = 1,
 				rank = 2,
 				unit = "cs_cop_1",
@@ -1912,15 +1912,15 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq = 1,
-				amount_max = 2,
+				amount_max = 1,
 				rank = 1,
 				unit = "cs_cop_2",
 				tactics = self._tactics.cop_def,
 			},
 			{
 				freq_by_diff = {
-					(difficulty_index ^ 2) / 5,
-					(difficulty_index ^ 2),
+					(difficulty_index ^ 2) / 6,
+					(difficulty_index ^ 2) / 3,
 					(difficulty_index ^ 2),
 				},
 				amount_max = 2,
@@ -2192,7 +2192,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.hrt_snk,
 			},
 			{
-				freq = 1,
+				freq = 1.5,
 				amount_max = 2,
 				rank = 1,
 				unit = "fbi_agent_1_2",
@@ -2814,12 +2814,14 @@ GroupAITweakData.murky_response_heists = {
 }
 GroupAITweakData.us_army_heists = {
 	["arm_for"] = true,
-	--["roberts"] = true,
 	["crojob2"] = true,
 	["crojob3"] = true,
 	["jolly"] = true,
-	["peta2"] = true,
 	["trai"] = true,
+}
+GroupAITweakData.us_army_heists_scripted = {
+	["roberts"] = true,
+	["peta2"] = true,
 }
 GroupAITweakData.bellmead_response_heists = {
 	["corp"] = true,
@@ -2909,15 +2911,15 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 0,
-					cooldown = { 15, 30 },
-					diff_scale = { 1, 1.5, 2 },
+					cooldown = { 10, 15 },
+					diff_scale = { 1, 2, 3 },
 				},
 				group_data = {
 					fbi_timed_group = {
 						enabled = true,
 						team_id = "law1",
-						max_nr_simultaneous_groups = 2,
-						amount = { 3, 3 },
+						max_nr_simultaneous_groups = 3,
+						amount = { 2, 3 },
 						disable_timer = nil,
 						disable_diff = 0.75,
 						objective = function(spawn_group)
@@ -2965,16 +2967,16 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			{
 				timer_data = {
 					initial_delay = 0,
-					cooldown = { 15, 30 },
-					diff_scale = { 1, 1.5, 2 },
+					cooldown = { 10, 15 },
+					diff_scale = { 1, 2, 3 },
 				},
 				group_data = {
 					murkywater_timed_group = {
 						enabled = true,
 						team_id = "law1",
 						max_nr_simultaneous_groups = 2,
-						amount = { 3, 3 },
-						disable_timer = 360, -- 6 minutes
+						amount = { 2, 3 },
+						disable_timer = 300, -- 5 minutes
 						disable_diff = nil,
 						objective = function(spawn_group)
 							return {
@@ -2995,7 +2997,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 							{
 								amount_min = 1,
 								rank = 2,
-								freq = 1.5,
+								freq = 2,
 								unit = "murkywater",
 								tactics = self._timed_tactics.murky_def,
 							},
@@ -3027,9 +3029,9 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
-					initial_delay = 180,
-					cooldown = { 15, 30 },
-					diff_scale = { 2, 1.5, 1 },
+					initial_delay = 180, -- 3 minutes
+					cooldown = { 15, 20 },
+					diff_scale = { 3, 2, 1 },
 				},
 				group_data = {
 					army_timed_group = {
@@ -3090,20 +3092,20 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			},
 		}
 	end
-	if self.bellmead_response_heists[level_id] then
+	if self.us_army_heists_scripted[level_id] then
 		self.timed_enemy_spawn_groups = {
 			{
 				timer_data = {
-					initial_delay = 0,
-					cooldown = { 15, 30 },
-					diff_scale = { 1, 1.5, 2 },
+					initial_delay = 30,
+					cooldown = { 10, 15 },
+					diff_scale = { 1, 1, 1 },
 				},
 				group_data = {
-					bellmead_timed_group = {
-						enabled = true,
+					army_timed_group = {
+						enabled = false,
 						team_id = "law1",
-						max_nr_simultaneous_groups = 2,
-						amount = { 3, 3 },
+						max_nr_simultaneous_groups = 3,
+						amount = { 3, 4 },
 						disable_timer = nil,
 						disable_diff = nil,
 						objective = function(spawn_group)
@@ -3126,6 +3128,73 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 								amount_min = 1,
 								rank = 2,
 								freq = 1.5,
+								unit = "army_soldier_2",
+								tactics = self._tactics.army_def,
+							},
+							{
+								amount_max = 2,
+								rank = 2,
+								freq = 1,
+								unit = "army_soldier_2",
+								tactics = self._tactics.army_agg,
+							},
+							{
+								amount_max = 1,
+								rank = 1,
+								freq_by_diff = {
+									0,
+									(difficulty_index ^ 2) / 100,
+									(difficulty_index ^ 2) / 50,
+								},
+								unit = "army_soldier_3",
+								tactics = self._timed_tactics.army_spt,
+							},
+						},
+						spawn_point_chk_ref = table.list_to_set({
+							"tac_swat_rifle",
+							"tac_swat_rifle_flank",
+						}),
+					},
+				},
+			},
+		}
+	end
+	if self.bellmead_response_heists[level_id] then
+		self.timed_enemy_spawn_groups = {
+			{
+				timer_data = {
+					initial_delay = 0,
+					cooldown = { 10, 15 },
+					diff_scale = { 1, 2, 3 },
+				},
+				group_data = {
+					bellmead_timed_group = {
+						enabled = true,
+						team_id = "law1",
+						max_nr_simultaneous_groups = 2,
+						amount = { 2, 3 },
+						disable_timer = nil,
+						disable_diff = nil,
+						objective = function(spawn_group)
+							return {
+								attitude = "engage",
+								pose = "stand",
+								type = "assault_area",
+								stance = "hos",
+								area = spawn_group.area,
+								coarse_path = {
+									{
+										spawn_group.area.pos_nav_seg,
+										spawn_group.area.pos,
+									},
+								},
+							}
+						end,
+						spawn = {
+							{
+								amount_min = 1,
+								rank = 2,
+								freq = 2,
 								unit = "bellmead_security",
 								tactics = self._timed_tactics.bellmead_def,
 							},
@@ -3403,18 +3472,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawncap
 	self.besiege.assault.force = {
-		diff_lerp(4, 8),
+		diff_lerp(2, 4),
+		diff_lerp(5, 8),
 		diff_lerp(8, 12),
-		diff_lerp(12, 16),
 	}
-	self.besiege.assault.force_balance_mul = { 0.5, 0.75, 1, 1.25 }
+	self.besiege.assault.force_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = { 0.5, 0.75, 1, 1.25 }
+	self.besiege.assault.force_pool_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
 	-- Spawnrate
 	self.spawn_kill_distance = 1500
@@ -3435,9 +3504,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Recon spawn interval and spawncap
 	self.besiege.recon.interval_variation = 30
 	self.besiege.recon.force = {
+		diff_lerp(1, 3),
 		diff_lerp(2, 4),
 		diff_lerp(3, 5),
-		diff_lerp(4, 6),
 	}
 
 	self.besiege.push_delay = {
@@ -3499,16 +3568,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
-			cs_cops = { 24, 0, 0 },
-			cs_swats = { 48, 72, 36 },
-
-			cs_heavies = { 0, 0, 36 },
+			cs_cops = { 24, 12, 0 },
+			cs_swats = { 48, 60, 72 },
 
 			cs_shield = { 0, 6, 12 },
 		}
 		self.besiege.recon.groups = {
-			cs_stealth_light = { 1, 3, 1 },
-			cs_stealth_heavy = { 0, 1, 3 },
+			cs_stealth_light = { 1, 2, 1 },
+			cs_stealth_heavy = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 1, 1, 0 },
@@ -3528,8 +3595,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_bulldozer = { 0, 0, 9 },
 		}
 		self.besiege.recon.groups = {
-			cs_stealth_light = { 1, 3, 1 },
-			cs_stealth_heavy = { 0, 1, 3 },
+			cs_stealth_light = { 1, 2, 1 },
+			cs_stealth_heavy = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 1, 1, 0 },

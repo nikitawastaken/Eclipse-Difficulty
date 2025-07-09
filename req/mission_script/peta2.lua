@@ -1,28 +1,44 @@
 local preferred = Eclipse.preferred
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local farm_far_spawn = {
 	values = {
 		interval = 10,
 	},
 }
+local that_fucking_bush_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 local farm_close_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_bulldozers,
-}
-local that_fucking_bush_spawn = {
-	values = {
-		interval = 25,
-	},
+	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- add point of no return
-	[100580] = {
+	[100580] = { -- All goats secured
 		ponr = {
-			length = 120,
+			length = 180,
 			player_mul = { 2, 1.25, 1, 1 },
 		},
+		values = {
+			callback = function() -- Somebody call the National Guard!
+				if not normal then
+					managers.groupai:state():enabled_timed_group(1)
+				end
+			end,
+		},
 	},
+	[101707] = disabled, -- Disable hunt
+	-- Tweak one of the bridge spawngroups
 	[102374] = {
 		values = {
 			elements = {
@@ -34,19 +50,20 @@ return {
 			},
 		},
 	},
-	[101707] = {
+	-- Disable one reinforce point on the bridge, increase the force of the other from 2 to 3
+	[101385] = {
 		values = {
-			enabled = false,
+			amount = 3,
 		},
 	},
+	[101386] = disabled,
 	-- Spawn group delays
 	-- Most of the spawns during the farm section are slower now akin to the original version.
-	-- Sadly the weird bush groups (which are split to also spawn enemies under the bridge) are the only spawn groups during the bridge section, so they kind of had to stay fast-ish
+	-- Fuck the bush spawngroup or something.
 	[100131] = farm_far_spawn,
 	[100132] = farm_far_spawn,
 	[100133] = farm_far_spawn,
 	[100128] = farm_close_spawn,
 	[100130] = farm_close_spawn,
 	[101217] = that_fucking_bush_spawn,
-	[102374] = that_fucking_bush_spawn,
 }

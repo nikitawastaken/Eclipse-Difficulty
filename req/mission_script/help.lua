@@ -6,11 +6,6 @@ local spawn_so = {
 	},
 }
 
-local window_far_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local bridge_spawn = {
 	values = {
 		interval = 15,
@@ -31,25 +26,25 @@ local upper_far_spawn = {
 }
 local upper_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local window_close_spawn = {
+local window_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local flank_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local portal_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -109,8 +104,6 @@ return {
 	-- Every spawn group has had its interval increased, I frankly couldn't justify keeping any of them below 15s.
 	-- You will immediately notice fewer enemies spawning from the lake at the start, but also much slower catwalk spawns inside the prison.
 	-- A lot of spawngroups have also been made inaccessible to Bulldozers and Shields to ensure that they don't spawn on top of you.
-	[100933] = window_far_spawn,
-	[101369] = window_far_spawn,
 	[100554] = water_spawn,
 	[100575] = upper_far_spawn,
 	[100618] = upper_far_spawn,
@@ -127,9 +120,9 @@ return {
 	[100906] = upper_close_spawn,
 	[100939] = upper_close_spawn,
 	[100955] = upper_close_spawn,
-	[100907] = window_close_spawn,
-	[100913] = window_close_spawn,
-	[100932] = window_close_spawn,
+	[100907] = window_spawn,
+	[100913] = window_spawn,
+	[100932] = window_spawn,
 	[100684] = flank_spawn,
 	[100921] = flank_spawn,
 	[101143] = portal_spawn,

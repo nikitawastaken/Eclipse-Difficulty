@@ -9,16 +9,16 @@ local wall_spawn = {
 		interval = 10,
 	},
 }
-local sewer_spawn = {
-	values = {
-		interval = 30,
-	},
-}
 local roof_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local sewer_spawn = {
+	values = {
+		interval = 30,
+	},
 }
 return {
 	[100104] = disabled,

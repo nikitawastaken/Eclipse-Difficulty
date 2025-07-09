@@ -24,7 +24,7 @@ local exit_spawn = {
 }
 local vent_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

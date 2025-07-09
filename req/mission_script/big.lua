@@ -15,12 +15,6 @@ local timelock_fast = (is_eclipse and 210 or 150) + (is_pro_job and 30 or 0)
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-local flank_spawn = {
-	values = {
-		interval = 10,
-	},
-	groups = preferred.no_bulldozers,
-}
 local roof_spawn = {
 	values = {
 		interval = 20,
@@ -174,7 +168,6 @@ return {
 		end,
 	},
 	-- Spawn Group delays
-	[100019] = flank_spawn,
 	[100692] = roof_spawn,
 	[100007] = roof_spawn,
 	[105450] = elevator_spawn,

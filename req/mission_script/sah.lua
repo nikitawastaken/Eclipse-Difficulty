@@ -11,7 +11,7 @@ local flank_spawn = {
 }
 local balcony_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_bulldozers,
 }

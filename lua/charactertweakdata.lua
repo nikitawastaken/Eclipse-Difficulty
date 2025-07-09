@@ -973,6 +973,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_mex_no_pager.chatter = self.presets.enemy_chatter.security
 
 	self.security_army = deep_clone(self.security)
+	self.security_army.HEALTH_INIT = 6
 	self.security_army.melee_weapon = "weapon"
 	--self.security_army.no_arrest = true
 	table.insert(self._enemy_list, "security_army")
@@ -1110,10 +1111,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "murky")
 
 	self.soldier = deep_clone(self.fbi_swat)
-	self.soldier.HEALTH_INIT = 10
-	self.soldier.headshot_dmg_mul = 2.5 -- 40 head health
-	self.soldier.surrender = self.presets.surrender.hard
+	self.soldier.HEALTH_INIT = 14
+	self.soldier.headshot_dmg_mul = 2.5 -- 56 head health
+	self.soldier.surrender = self.presets.surrender.no_assault
 	self.soldier.suppression = self.presets.suppression.hard
+	self.soldier.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.soldier.use_radio = "dsp_radio_russian"
 	self.soldier.no_arrest = true
 	self.soldier.steal_loot = false
@@ -1640,7 +1642,6 @@ CharacterTweakData.tweak_table_move_speed = {
 	security_mcmansion = "fast",
 	security_army = "fast",
 	marshal_security = "fast",
-	cop_fat = "slow",
 	fbi_office = "fast",
 	fbi_female = "fast",
 	soldier = "fast",
@@ -1652,6 +1653,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	drug_lord_boss = "normal",
 	triad_boss = "normal",
 	fbi_boss = "normal",
+	cop_fat = "slow",
 	hector_boss = "slow",
 	biker_boss = "slow",
 	deep_boss = "slow",
