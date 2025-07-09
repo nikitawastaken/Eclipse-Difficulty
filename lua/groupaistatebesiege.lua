@@ -1950,7 +1950,7 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 	-- Check spawns for each "spawn group"
 	local t = TimerManager:game():time()
 	for timer_id, group in ipairs(self._enabled_timed_groups) do
-		if not self._next_timed_group_spawns_t[timer_id] or not group then
+		if self._next_timed_group_spawns_t[timer_id] == false then
 			-- Lua has no native continue statement...
 			goto __continue
 		end
@@ -1967,7 +1967,7 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 		if self._next_timed_group_spawns_t[timer_id] == nil then
 			self._next_timed_group_spawns_t[timer_id] = t + diff_scale * (timer_data.initial_delay + cooldown)
 		elseif self._next_timed_group_spawns_t[timer_id] <= t then
-			local random_group = table.random_key(group)
+			local random_group = table.random(group)
 			local group_id = group[random_group]
 			local group_data = self._timed_groups[timer_id].group_data[group_id]
 			if group_id and self:_spawn_timed_group(task_data, group_data, target_area, {
@@ -2033,6 +2033,16 @@ function GroupAIStateBesiege:_spawn_timed_group(task_data, group_data_dynamic, t
 end
 
 -- Manually disable timed spawn group
+--
+-- group_id is optional
+-- e.g. if you want to disable 'bellmead_timed_group' in the timer 'bellmead_group1'
+-- then you can do disable_timed_spawngroup("bellmead_group1", "bellmead_timed_group")
+--
+-- if you want to disable the timer 'bellmead_group1'
+-- then you can do disable_timed_spawngroup("bellmead_group1")
+--
+-- This will also save the state of the timer in case you disabled a specific spawn
+-- group in the timer but have other ones enabled.
 function GroupAIStateBesiege:disable_timed_spawngroup(timer_id, group_id)
 	if group_id then
 		local remove_idx = table.index_of(self._enabled_timed_groups[timer_id], group_id)
@@ -2049,6 +2059,8 @@ function GroupAIStateBesiege:disable_timed_spawngroup(timer_id, group_id)
 end
 
 -- Manually enable timed spawn group
+--
+-- group_id is optional
 function GroupAIStateBesiege:enable_timed_spawngroup(timer_id, group_id)
 	if group_id then
 		if table.has(self._enabled_timed_groups, timer_id) then
