@@ -115,13 +115,6 @@ return {
 				position = Vector3(-3250, -1375, -60),
 			},
 		},
-		values = {
-			callback = function() -- Somebody call the National Guard!
-				if not normal then
-					managers.groupai:state():enabled_timed_group(1)
-				end
-			end,
-		},
 	},
 	-- Delay initial diff
 	[100116] = {
