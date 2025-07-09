@@ -1,4 +1,6 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter_presets
+local cops_so = so_access.law
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local scripted_enemy = Eclipse.scripted_enemy
 local security_guard = scripted_enemy.security_1
@@ -55,6 +57,34 @@ return {
 			{ id = 103225, delay = 30 },
 		},
 	},
+	-- spawn snipers on Eclipse
+	[103278] = {
+		on_executed = {
+			{ id = 400034, delay = 10 },
+		},
+	},
+	[103238] = cops_so,
+	[103237] = cops_so,
+	[103272] = cops_so,
+	[103239] = cops_so,
+	[103240] = cops_so,
+	[103050] = cops_so,
+	[103051] = cops_so,
+	[103090] = cops_so,
+	[103091] = cops_so,
+	[103285] = cops_so,
+	[103286] = cops_so,
+	[103065] = cops_so,
+	[103064] = cops_so,
+	[103188] = cops_so,
+	[103189] = cops_so,
+	[103190] = cops_so,
+	[103187] = cops_so,
+	[103192] = cops_so,
+	[103191] = cops_so,
+	[103185] = cops_so,
+	[103186] = cops_so,
+	[103193] = cops_so,
 	-- trigger dozers event
 	[103450] = {
 		on_executed = {

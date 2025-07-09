@@ -186,7 +186,7 @@ local otpsenable_sniper_5 = {
 
 local optssniperdied_1 = {
 	on_executed = {
-		{ id = 400011, delay = 0 },
+		{ id = 400011, delay = 1 },
 		{ id = 400010, delay = snipers_respawn },
 		{ id = 400032, delay = 0 },
 	},
@@ -197,7 +197,7 @@ local optssniperdied_1 = {
 }
 local optssniperdied_2 = {
 	on_executed = {
-		{ id = 400012, delay = 0 },
+		{ id = 400012, delay = 1 },
 		{ id = 400010, delay = snipers_respawn },
 		{ id = 400032, delay = 0 },
 	},
@@ -208,7 +208,7 @@ local optssniperdied_2 = {
 }
 local optssniperdied_3 = {
 	on_executed = {
-		{ id = 400013, delay = 0 },
+		{ id = 400013, delay = 1 },
 		{ id = 400010, delay = snipers_respawn },
 		{ id = 400032, delay = 0 },
 	},
@@ -219,7 +219,7 @@ local optssniperdied_3 = {
 }
 local optssniperdied_4 = {
 	on_executed = {
-		{ id = 400014, delay = 0 },
+		{ id = 400014, delay = 1 },
 		{ id = 400010, delay = snipers_respawn },
 		{ id = 400032, delay = 0 },
 	},
@@ -230,7 +230,7 @@ local optssniperdied_4 = {
 }
 local optssniperdied_5 = {
 	on_executed = {
-		{ id = 400015, delay = 0 },
+		{ id = 400015, delay = 1 },
 		{ id = 400010, delay = snipers_respawn },
 		{ id = 400032, delay = 0 },
 	},
@@ -241,7 +241,7 @@ local optssniperdied_5 = {
 }
 local optssniperspawned_1 = {
 	on_executed = {
-		{ id = 400016, delay = 0 },
+		{ id = 400016, delay = 1 }, -- apperantly they are broken if it's set to 0
 		{ id = 400031, delay = 0 },
 	},
 	elements = {
@@ -250,7 +250,7 @@ local optssniperspawned_1 = {
 }
 local optssniperspawned_2 = {
 	on_executed = {
-		{ id = 400017, delay = 0 },
+		{ id = 400017, delay = 1 },
 		{ id = 400031, delay = 0 },
 	},
 	elements = {
@@ -259,7 +259,7 @@ local optssniperspawned_2 = {
 }
 local optssniperspawned_3 = {
 	on_executed = {
-		{ id = 400018, delay = 0 },
+		{ id = 400018, delay = 1 },
 		{ id = 400031, delay = 0 },
 	},
 	elements = {
@@ -268,7 +268,7 @@ local optssniperspawned_3 = {
 }
 local optssniperspawned_4 = {
 	on_executed = {
-		{ id = 400019, delay = 0 },
+		{ id = 400019, delay = 1 },
 		{ id = 400031, delay = 0 },
 	},
 	elements = {
@@ -277,7 +277,7 @@ local optssniperspawned_4 = {
 }
 local optssniperspawned_5 = {
 	on_executed = {
-		{ id = 400020, delay = 0 },
+		{ id = 400020, delay = 1 },
 		{ id = 400031, delay = 0 },
 	},
 	elements = {
