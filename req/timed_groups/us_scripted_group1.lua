@@ -1,5 +1,6 @@
 return function(timed_tactics, tactics)
 	return {
+		disabled = true,
 		timer_data = {
 			initial_delay = 30,
 			cooldown = { 10, 15 },
@@ -7,7 +8,7 @@ return function(timed_tactics, tactics)
 		},
 		group_data = {
 			army_timed_group = {
-				enabled = false,
+				enabled = true,
 				team_id = "law1",
 				max_nr_simultaneous_groups = 3,
 				amount = { 3, 4 },
