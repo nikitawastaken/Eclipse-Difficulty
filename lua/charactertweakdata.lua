@@ -1,5 +1,6 @@
 local level_id = Eclipse.utils.level_id()
 local diff_i = Eclipse.utils.difficulty_index()
+local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
@@ -101,6 +102,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	local dmg_mul_tbl = { 1, 1, 1, 1, 1, 1, 1, 1 }
 	local dmg_mul = dmg_mul_tbl[diff_i]
+
+	local special_dmg_mul_tbl = { 0.4, 0.6, 0.8, 1, 1, 1, 1, 1 }
+	local special_dmg_mul = special_dmg_mul_tbl[diff_i]
 
 	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
 	local aim_delay_mul = aim_delay_tbl[diff_i]
@@ -282,7 +286,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 500,
 		range = { close = 500, optimal = 1000, far = 2000 },
 	})
-	damage_multiplier(presets.weapon.shield, 4 / 5)
+	damage_multiplier(presets.weapon.shield, 3 / 4)
 
 	presets.weapon.fbi_shield = based_on(presets.weapon.shield)
 
@@ -304,7 +308,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.sniper = based_on(presets.weapon.swat)
 
 	local cs_sniper_aim_delay_mul = math.sqrt(aim_delay_mul)
-
+	
 	presets.weapon.sniper.is_sniper.aim_delay = {
 		1 * cs_sniper_aim_delay_mul,
 		2 * cs_sniper_aim_delay_mul,
@@ -313,22 +317,17 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 10 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 14 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 14 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 14 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.fbi_sniper = based_on(presets.weapon.sniper)
 
-	presets.weapon.fbi_sniper.is_sniper.aim_delay = {
-		1 * aim_delay_mul,
-		2 * aim_delay_mul,
-	}
-	presets.weapon.fbi_sniper.is_sniper.focus_delay = 0.6 * aim_delay_mul
 	presets.weapon.fbi_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 16 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 16 * dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 16 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
@@ -371,7 +370,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 6 * dmg_mul,
 		range = { close = 1500, optimal = 2750, far = 4000 },
 	})
-	damage_multiplier(presets.weapon.medic, 4 / 5)
+	damage_multiplier(presets.weapon.medic, 3 / 4)
 
 	presets.weapon.cloaker = based_on(presets.weapon.swat)
 
@@ -398,9 +397,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.bulldozer.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 30 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 15 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 30 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 15 * special_dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.bulldozer.is_shotgun_mag.RELOAD_SPEED = 0.9
@@ -427,9 +426,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_bulldozer = based_on(presets.weapon.bulldozer)
 
 	presets.weapon.elite_bulldozer.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 20 * dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.4, 0.9 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * dmg_mul, r = 1000, acc = { 0.6, 0.9 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 5 * dmg_mul, r = 2000, acc = { 0.5, 0.8 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.4, 0.9 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 10 * special_dmg_mul, r = 1000, acc = { 0.6, 0.9 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.5, 0.8 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.7
@@ -455,9 +454,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 4, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 4, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 2, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 3, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 2, r = 2500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 1, r = 5000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
@@ -514,11 +513,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = 80 + (30 * (diff_i - 2))
-	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
-	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.05
+	presets.gang_member_damage.HEALTH_INIT = 30
+	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.2
+	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
-	presets.gang_member_damage.REGENERATE_TIME_AWAY = 5
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = presets.gang_member_damage.REGENERATE_TIME
 	presets.gang_member_damage.hurt_severity.bullet = {
 		health_reference = "full",
 		zones = {
@@ -1759,17 +1758,21 @@ function CharacterTweakData:_set_presets()
 	self.spooc.spooc_attack_timeout = { diff_lerp(6, 3), diff_lerp(8, 4) }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 
-	self.shield_health_balance_mul = { 0.7, 0.8, 0.9, 1 }
+	self.shield_health_balance_mul = { 1, 1.5, 2, 2.5 }
 
-	self.tank.tank_armor_health_mul = 1 / diff_lerp(1, 1.5)
-	self.tank_hw.tank_armor_health_mul = self.tank.tank_armor_health_mul
-	self.tank_elite.tank_armor_health_mul = 1 / diff_lerp(1.5, 2)
+	self.tank.damage.armor_health = is_eclipse and 20 or is_overkill and 16 or 12
 
-	self.tank_armor_health_balance_mul = { 0.7, 0.8, 0.9, 1 }
+	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
+
+	self.tank_elite.damage.armor_health = self.tank.damage.armor_health * 1.5
+
+	self.tank_armor_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
 	-- eclipse exclusive edits
-	if is_eclipse then
-		self:_multiply_all_speeds(1.1, 1.05)
+	if is_overkill then
+		self:_multiply_all_speeds(1.05, 1.05)
+	elseif is_eclipse then
+		self:_multiply_all_speeds(1.1, 1.1)
 
 		self.spooc.spooc_sound_events = { detect_stop = nil, detect = "clk_c01x_plu" } -- cloakers whistle to announce their charge
 		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line

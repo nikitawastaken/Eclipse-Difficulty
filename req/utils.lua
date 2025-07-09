@@ -62,6 +62,12 @@ function M.level_id()
 	return level_id
 end
 
+function M.is_overkill()
+	local is_overkill = diff_i == 5
+
+	return is_overkill
+end
+
 function M.is_eclipse()
 	local is_eclipse = diff_i == 6
 
