@@ -1994,8 +1994,6 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 				self:disable_timed_spawngroup(timer_id, group_id)
 			elseif group_data.disable_diff and group_data.disable_diff <= self._difficulty_value then
 				self:disable_timed_spawngroup(timer_id, group_id)
-			elseif not group_data.enabled then
-				self:disable_timed_spawngroup(timer_id, group_id)
 			end
 		end
 	end
