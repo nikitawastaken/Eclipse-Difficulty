@@ -23,10 +23,6 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local random_elite_dozers = {
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
-}
 local cops = {
 	[cop_1] = 4,
 	[cop_3] = 2,
@@ -42,7 +38,7 @@ local swat_or_dozer = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local server_dozer = is_eclipse_pro and random_elite_dozers or diff_i < 4 and random_dozers
+local server_dozer = is_eclipse_pro and random_elite_dozers or random_dozers
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("normal_above")
 local patches = {
