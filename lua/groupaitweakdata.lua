@@ -2909,19 +2909,19 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 	if self.fbi_heists[level_id] then
 		self.timed_enemy_spawn_groups.fbi_group1 = Eclipse:require("timed_groups/fbi_group1")(self._timed_tactics)
 	end
-	
+
 	if self.murky_response_heists[level_id] then
 		self.timed_enemy_spawn_groups.murky_group1 = Eclipse:require("timed_groups/murky_group1")(self._timed_tactics)
 	end
-	
+
 	if self.us_army_heists[level_id] then
 		self.timed_enemy_spawn_groups.us_group1 = Eclipse:require("timed_groups/us_group1")(self._timed_tactics, difficulty_index)
 	end
-	
+
 	if self.bellmead_response_heists[level_id] then
 		self.timed_enemy_spawn_groups.bellmead_group1 = Eclipse:require("timed_groups/bellmead_group1")(self._timed_tactics)
 	end
-	
+
 	if self.us_army_heists_scripted[level_id] then
 		self.timed_enemy_spawn_groups.us_scripted_group1 = Eclipse:require("timed_groups/us_scripted_group1")(self._timed_tactics, difficulty_index)
 	end
