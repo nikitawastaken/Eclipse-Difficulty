@@ -79,7 +79,7 @@ function WeaponTweakData:_init_weapons()
 		}
 		local selection_index_blacklist = {} 
 
-		if based_on then
+		if based_on_id then
 			if not category_blacklist[weap_id] then
 				weap_data.categories = clone(based_on_data.categories)
 			end
