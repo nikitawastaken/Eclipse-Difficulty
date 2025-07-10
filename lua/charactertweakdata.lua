@@ -448,15 +448,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 0.25 },
 		focus_delay = 0,
-		melee_dmg = 24,
-		melee_retry_delay = { 2, 3 },
+		melee_dmg = 16,
 	})
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
 			{ dmg_mul = 3, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 2, r = 2500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 1, r = 5000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 2, r = 2500, acc = { 0.5, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 1, r = 5000, acc = { 0.25, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
@@ -513,8 +512,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = 30
-	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.2
+	presets.gang_member_damage.HEALTH_INIT = 40
+	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
 	presets.gang_member_damage.REGENERATE_TIME_AWAY = presets.gang_member_damage.REGENERATE_TIME
@@ -1758,7 +1757,7 @@ function CharacterTweakData:_set_presets()
 	self.spooc.spooc_attack_timeout = { diff_lerp(6, 3), diff_lerp(8, 4) }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 
-	self.shield_health_balance_mul = { 1, 1.5, 2, 2.5 }
+	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
 	self.tank.damage.armor_health = is_eclipse and 20 or is_overkill and 16 or 12
 
