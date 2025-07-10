@@ -9,11 +9,17 @@ M.enabled = {
 	all = true,
 }
 
+local function get_time()
+	return os.date("%H:%M:%S", os.time())
+end
+
 function M.log(...)
 	if M.enabled.all and M.enabled.info then
 		local f = io.open(M.log_file, "a")
 		if f then
-			f:write(table.concat({ "[INFO]:", ... }, "\t") .. "\n")
+			local args = { ... }
+			local log = table.remove(args, 1)
+			f:write(table.concat({ get_time() .. " [INFO]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end
 	end
@@ -23,7 +29,9 @@ function M.debug(...)
 	if M.enabled.all and M.enabled.debug then
 		local f = io.open(M.log_file, "a")
 		if f then
-			f:write(table.concat({ "[DEBUG]:", ... }, "\t") .. "\n")
+			local args = { ... }
+			local log = table.remove(args, 1)
+			f:write(table.concat({ get_time() .. " [DEBUG]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end
 	end
@@ -33,7 +41,9 @@ function M.warn(...)
 	if M.enabled.all and M.enabled.warn then
 		local f = io.open(M.log_file, "a")
 		if f then
-			f:write(table.concat({ "[WARN]:", ... }, "\t") .. "\n")
+			local args = { ... }
+			local log = table.remove(args, 1)
+			f:write(table.concat({ get_time() .. " [WARN]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end
 	end
@@ -43,7 +53,9 @@ function M.error(...)
 	if M.enabled.all and M.enabled.error then
 		local f = io.open(M.log_file, "a")
 		if f then
-			f:write(table.concat({ "[ERROR]:", ... }, "\t") .. "\n")
+			local args = { ... }
+			local log = table.remove(args, 1)
+			f:write(table.concat({ get_time() .. " [ERROR]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end
 	end

@@ -1943,13 +1943,13 @@ end
 ---	spawn = table
 ---}
 function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
-	if not self._timed_groups or #self._timed_groups < 1 then
+	if not self._timed_groups or table.size(self._timed_groups) < 1 then
 		return
 	end
 
 	-- Check spawns for each "spawn group"
 	local t = TimerManager:game():time()
-	for timer_id, group in ipairs(self._enabled_timed_groups) do
+	for timer_id, group in pairs(self._enabled_timed_groups) do
 		if self._next_timed_group_spawns_t[timer_id] == false then
 			-- Lua has no native continue statement...
 			goto __continue
@@ -1967,8 +1967,7 @@ function GroupAIStateBesiege:_check_spawn_timed_groups(target_area, task_data)
 		if self._next_timed_group_spawns_t[timer_id] == nil then
 			self._next_timed_group_spawns_t[timer_id] = t + diff_scale * (timer_data.initial_delay + cooldown)
 		elseif self._next_timed_group_spawns_t[timer_id] <= t then
-			local random_group = table.random(group)
-			local group_id = group[random_group]
+			local group_id = table.random(group)
 			local group_data = self._timed_groups[timer_id].group_data[group_id]
 			if group_id and self:_spawn_timed_group(task_data, group_data, target_area, {
 				[group_id] = {
@@ -2047,7 +2046,7 @@ function GroupAIStateBesiege:disable_timed_spawngroup(timer_id, group_id)
 		if remove_idx == -1 then
 			Eclipse:warn_console("Tried to disable " .. remove_key .. " but key doesn't exist.")
 		else
-			table.remove(self._enabled_timed_groups[timer_id].group_data, remove_idx)
+			table.remove(self._enabled_timed_groups[timer_id], remove_idx)
 		end
 	else
 		-- Save the status of this current timer
