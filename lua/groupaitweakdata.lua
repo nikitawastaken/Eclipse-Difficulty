@@ -3262,7 +3262,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.besiege.faction = {
-			"CS",
+			"FBI",
 			"FBI",
 			"Elite",
 		}
@@ -3307,8 +3307,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
-			cs_swats = { 72, 48, 0 },
-			fbi_swats = { 0, 24, 36 },
+			cs_swats = { 72, 36, 0 },
+			fbi_swats = { 0, 36, 36 },
 
 			fbi_heavies = { 0, 0, 36 },
 
@@ -3330,10 +3330,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
-			cs_swats = { 48, 24, 0 },
-			fbi_swats = { 24, 36, 36 },
+			cs_swats = { 36, 18, 0 },
+			fbi_swats = { 36, 36, 36 },
 
-			fbi_heavies = { 0, 12, 36 },
+			fbi_heavies = { 0, 18, 36 },
 
 			fbi_shield = { 0, 10, 20 },
 
@@ -3354,11 +3354,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.besiege.assault.groups = {
-			cs_swats = { 36, 0, 0 },
-			fbi_swats = { 36, 36, 0 },
-			elite_swats = { 0, 24, 36 },
+			cs_swats = { 24, 0, 0 },
+			fbi_swats = { 48, 36, 0 },
+			elite_swats = { 0, 18, 36 },
 
-			fbi_heavies = { 0, 12, 36 },
+			fbi_heavies = { 0, 18, 36 },
 
 			elite_sniper = { 0, 12, 24 },
 
