@@ -1,4 +1,4 @@
-return function(timed_tactics, tactics)
+return function(timed_tactics, difficulty_index)
 	return {
 		timer_data = {
 			initial_delay = 180, -- 3 minutes
@@ -34,14 +34,14 @@ return function(timed_tactics, tactics)
 						rank = 2,
 						freq = 1.5,
 						unit = "army_soldier_2",
-						tactics = tactics.army_def,
+						tactics = timed_tactics.army_def,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
 						freq = 1,
 						unit = "army_soldier_2",
-						tactics = tactics.army_agg,
+						tactics = timed_tactics.army_agg,
 					},
 					{
 						amount_max = 1,

@@ -512,7 +512,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = 40
+	presets.gang_member_damage.HEALTH_INIT = 50
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5

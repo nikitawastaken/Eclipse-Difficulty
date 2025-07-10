@@ -200,19 +200,19 @@
 		</body>
 		
 		<body name="'held_body_left'">
-			<endurance damage="20" explosion="48">
+			<endurance damage="12" explosion="40">
 				<run_sequence name="'int_seq_shield_break_l'"/>
 			</endurance>
 		</body>
 
 		<body name="'held_body_right'">
-			<endurance damage="20" explosion="48">
+			<endurance damage="12" explosion="40">
 				<run_sequence name="'int_seq_shield_break_r'"/>
 			</endurance>
 		</body>
 
 		<body name="'held_body_top'">
-			<endurance damage="20" explosion="48">
+			<endurance damage="12" explosion="40">
 				<run_sequence name="'int_seq_shield_break_top'"/>
 			</endurance>
 		</body>

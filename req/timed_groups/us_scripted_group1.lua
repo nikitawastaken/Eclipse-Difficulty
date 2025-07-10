@@ -1,4 +1,4 @@
-return function(timed_tactics, tactics)
+return function(timed_tactics, difficulty_index)
 	return {
 		disabled = true,
 		timer_data = {
@@ -10,7 +10,7 @@ return function(timed_tactics, tactics)
 			army_timed_group = {
 				enabled = true,
 				team_id = "law1",
-				max_nr_simultaneous_groups = 3,
+				max_nr_simultaneous_groups = 2,
 				amount = { 3, 4 },
 				disable_timer = nil,
 				disable_diff = nil,
@@ -35,14 +35,14 @@ return function(timed_tactics, tactics)
 						rank = 2,
 						freq = 1.5,
 						unit = "army_soldier_2",
-						tactics = tactics.army_def,
+						tactics = timed_tactics.army_def,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
 						freq = 1,
 						unit = "army_soldier_2",
-						tactics = tactics.army_agg,
+						tactics = timed_tactics.army_agg,
 					},
 					{
 						amount_max = 1,
