@@ -192,6 +192,30 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "hits_hostage_killed", functi
 	end
 end)
 
+--Edit the balancing multiplier function to not be clamped to 4 players
+function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
+	local nr_players = 0
+
+	for u_key, u_data in pairs(self:all_player_criminals()) do
+		if not u_data.status then
+			nr_players = nr_players + 1
+		end
+	end
+
+	local nr_ai = 0
+
+	for u_key, u_data in pairs(self:all_AI_criminals()) do
+		if not u_data.status then
+			nr_ai = nr_ai + 1
+		end
+	end
+
+	nr_players = nr_players == 1 and nr_players + math.max(0, nr_ai - 1) or nr_players + nr_ai
+	nr_players = math.clamp(nr_players, 1, #balance_multipliers)
+
+	return balance_multipliers[nr_players]
+end
+
 -- Balancing multiplier for players only (used for hostage situation aced)
 function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
 	local nr_players = 0
@@ -202,7 +226,7 @@ function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipl
 		end
 	end
 
-	nr_players = math.clamp(nr_players, 1, 4)
+	nr_players = math.clamp(nr_players, 1, #balance_multipliers)
 
 	return balance_multipliers[nr_players]
 end
