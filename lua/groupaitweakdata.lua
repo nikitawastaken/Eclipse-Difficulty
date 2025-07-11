@@ -3199,7 +3199,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	Utils.PrintTable(self.besiege.assault.force_balance_mul)
-		
+
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
 		self.besiege.assault.force[2] * 10,
@@ -3209,9 +3209,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_pool_balance_mul, 1 + (i * 0.25))
 	end
-	
+
 	Utils.PrintTable(self.besiege.assault.force_pool_balance_mul)
-	
+
 	-- Spawnrate
 	self.spawn_kill_distance = 1500
 	self.spawn_kill_cooldown = 10
@@ -3221,18 +3221,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(2.5, 2),
 		diff_lerp(2, 1.5),
 	}
-	
+
 	self.besiege.assault.spawnrate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
 	local spawn_rate_entry
 	for i = 0, 21, 1 do
 		spawn_rate_entry = 1.75 * math.exp(-i * 0.185)
 		spawn_rate_entry = math.round(spawn_rate_entry / 0.025) * 0.025
-		 
+
 		table.insert(self.besiege.assault.spawnrate_balance_mul, spawn_rate_entry)
 	end
 
 	Utils.PrintTable(self.besiege.assault.spawnrate_balance_mul)
-	
+
 	-- RECON / REENFORCE --
 
 	-- Reenforce spawn interval

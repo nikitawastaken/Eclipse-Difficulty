@@ -1205,7 +1205,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul)
 	local spawn_rate = self:_get_difficulty_dependent_value(self._tweak_data.assault.spawnrate)
 	local spawn_cooldown = math.max(1, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)
-	
+
 	self:_set_spawn_task_type_cooldown(spawn_task, spawn_cooldown)
 end
 
