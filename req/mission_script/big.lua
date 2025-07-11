@@ -160,7 +160,7 @@ return {
 				400026,
 			},
 			on_executed = {
-			{ id = 106701, delay = 8 },
+				{ id = 106701, delay = 8 },
 			},
 		},
 	},
@@ -176,7 +176,7 @@ return {
 				400033,
 			},
 			on_executed = {
-			{ id = 106700, delay = 8 },
+				{ id = 106700, delay = 8 },
 			},
 		},
 	},
