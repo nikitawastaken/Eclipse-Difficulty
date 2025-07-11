@@ -149,7 +149,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_preferedadd(400020, "eclipse_3rd_elevator_spawn", optsPreferedAdd1),
 	Eclipse.mission_elements.gen_object_editor(400021, "hit_it", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpen_the_elevator),
-	
+
 	-- 4th elevator spawn
 	Eclipse.mission_elements.gen_dummy(400022, "eclipse_spawn_enemy_007", Vector3(545, 2116, -600.005), Rotation(180, 0, 0), optsBesiegeDummy_2),
 	Eclipse.mission_elements.gen_dummy(400023, "eclipse_spawn_enemy_008", Vector3(674, 2116, -600.005), Rotation(180, 0, 0), optsBesiegeDummy_2),
@@ -159,7 +159,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400027, "eclipse_enemy_group_002", { 400022, 400023, 400024, 400025, 400026 }, 0),
 
 	Eclipse.mission_elements.gen_preferedadd(400028, "eclipse_4rd_elevator_spawn", optsPreferedAdd2),
-	
+
 	-- 5th elevator spawn
 	Eclipse.mission_elements.gen_dummy(400029, "eclipse_spawn_enemy_012", Vector3(264, 1225, -1000), Rotation(180, 0, 0), optsBesiegeDummy_2),
 	Eclipse.mission_elements.gen_dummy(400030, "eclipse_spawn_enemy_013", Vector3(398, 1225, -1000), Rotation(180, 0, 0), optsBesiegeDummy_2),

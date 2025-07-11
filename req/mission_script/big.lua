@@ -23,7 +23,6 @@ local timelock_fast_variant_2 = (is_eclipse and 90 or 60) + (is_pro_job and 15 o
 local timelock_normal_variant_3 = (is_eclipse and 210 or 180) + (is_pro_job and 30 or 0)
 local timelock_fast_variant_3 = (is_eclipse and 180 or 150) + (is_pro_job and 30 or 0)
 
-
 -- roll the chance of selected timelock variant
 -- thanks Mint
 local timelock_variant_chance = math.random()
@@ -32,14 +31,14 @@ local timelock_normal = nil
 local timelock_fast = nil
 
 if timelock_variant_chance <= 0.05 then
-	  timelock_normal = timelock_normal_variant_1
-	  timelock_fast = timelock_fast_variant_1
+	timelock_normal = timelock_normal_variant_1
+	timelock_fast = timelock_fast_variant_1
 elseif timelock_variant_chance <= 0.2 then
-	  timelock_normal = timelock_normal_variant_2
-	  timelock_fast = timelock_fast_variant_2
+	timelock_normal = timelock_normal_variant_2
+	timelock_fast = timelock_fast_variant_2
 else
-	  timelock_normal = timelock_normal_variant_3
-	  timelock_fast = timelock_fast_variant_3
+	timelock_normal = timelock_normal_variant_3
+	timelock_fast = timelock_fast_variant_3
 end
 
 local harasser = {

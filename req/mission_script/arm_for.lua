@@ -41,11 +41,11 @@ local bile_random_bags = math.random()
 local bile_lottery = nil
 
 if bile_random_bags <= 0.10 then
-	  bile_lottery = 3
+	bile_lottery = 3
 elseif bile_random_bags <= 0.90 then
-	  bile_lottery = 2
+	bile_lottery = 2
 else
-	  bile_lottery = 1
+	bile_lottery = 1
 end
 
 local dozer_in_the_vault_chance = {
