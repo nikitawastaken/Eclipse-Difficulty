@@ -583,6 +583,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
+		reenforce_interval_mul = 0.5,
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
 		},
