@@ -35,9 +35,19 @@ local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
 local specials = {
 	enemy = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse,
 }
-local bile_has_3_bags = math.random() < 0.05
-local bile_has_2_bags = math.random() < 0.30
-local bile_lottery = not is_pro_job and bile_has_3_bags and 3 or bile_has_2_bags and 2 or 1
+
+local bile_random_bags = math.random()
+
+local bile_lottery = nil
+
+if bile_random_bags <= 0.10 then
+	  bile_lottery = 3
+elseif bile_random_bags <= 0.90 then
+	  bile_lottery = 2
+else
+	  bile_lottery = 1
+end
+
 local dozer_in_the_vault_chance = {
 	chance = (overkill_and_above and 30 or 10) + (is_pro_job and 10 or 0),
 }

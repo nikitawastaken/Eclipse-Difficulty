@@ -10,8 +10,38 @@ local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
 local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
-local timelock_normal = (is_eclipse and 240 or 180) + (is_pro_job and 30 or 0)
-local timelock_fast = (is_eclipse and 210 or 150) + (is_pro_job and 30 or 0)
+
+-- the evil one
+local timelock_normal_variant_1 = (is_eclipse and 270 or 240) + (is_pro_job and 60 or 0)
+local timelock_fast_variant_1 = (is_eclipse and 240 or 180) + (is_pro_job and 60 or 0)
+
+-- the lucky one
+local timelock_normal_variant_2 = (is_eclipse and 120 or 90) + (is_pro_job and 15 or 0)
+local timelock_fast_variant_2 = (is_eclipse and 90 or 60) + (is_pro_job and 15 or 0)
+
+-- the normal one
+local timelock_normal_variant_3 = (is_eclipse and 210 or 180) + (is_pro_job and 30 or 0)
+local timelock_fast_variant_3 = (is_eclipse and 180 or 150) + (is_pro_job and 30 or 0)
+
+
+-- roll the chance of selected timelock variant
+-- thanks Mint
+local timelock_variant_chance = math.random()
+
+local timelock_normal = nil
+local timelock_fast = nil
+
+if timelock_variant_chance <= 0.05 then
+	  timelock_normal = timelock_normal_variant_1
+	  timelock_fast = timelock_fast_variant_1
+elseif timelock_variant_chance <= 0.2 then
+	  timelock_normal = timelock_normal_variant_2
+	  timelock_fast = timelock_fast_variant_2
+else
+	  timelock_normal = timelock_normal_variant_3
+	  timelock_fast = timelock_fast_variant_3
+end
+
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
@@ -107,13 +137,42 @@ return {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
-	-- enable new elevator spawngroup
+	-- enable new elevator spawngroups
 	[103316] = {
 		on_executed = {
 			{ id = 400020, delay = 0 },
+			{ id = 400028, delay = 0 },
+			{ id = 400035, delay = 0 },
 		},
 	},
-	--More timelock timer on Eclipse and Pro Jobs
+	-- add new ids to enemy triggers
+	[106571] = {
+		values = {
+			elements = {
+				106567,
+				106569,
+				400022,
+				400023,
+				400024,
+				400025,
+				400026,
+			},
+		},
+	},
+	[106572] = {
+		values = {
+			elements = {
+				106566,
+				106568,
+				400029,
+				400030,
+				400031,
+				400032,
+				400033,
+			},
+		},
+	},
+	-- time lock is now randomized
 	[103137] = {
 		values = {
 			time = timelock_normal,
@@ -122,6 +181,12 @@ return {
 	[100170] = {
 		values = {
 			time = timelock_fast,
+		},
+	},
+	-- open the locked door if you bought the access asset
+	[106046] = {
+		on_executed = {
+			{ id = 104260, delay = 0 },
 		},
 	},
 	-- restore alternative phone call outcome that sends two beat cops to investigate (failed to fell for it)
@@ -173,6 +238,8 @@ return {
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,
 	[105434] = elevator_spawn,
+	[400027] = elevator_spawn,
+	[400034] = elevator_spawn,
 	[400019] = elevator_spawn_2,
 	-- Harassers
 	[100883] = harasser,

@@ -9,37 +9,37 @@ local cloaker_amount = (is_eclipse and 3 or 2) + (is_pro_job and 1 or 0)
 
 local cloaker = scripted_enemy.cloaker
 
-local enabled_chance_cloakers = math.random() < 0.4
+local enabled_chance_cloakers = math.random() < 0.4 + (is_pro_job and 0.2 or 0)
 
 local optsCloaker_1 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400005, delay = 0 } },
-	enabled = overkill_above and enabled_chance_cloakers,
+	enabled = overkill_and_above and enabled_chance_cloakers,
 }
 local optsCloaker_2 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400006, delay = 0 } },
-	enabled = overkill_above and enabled_chance_cloakers,
+	enabled = overkill_and_above and enabled_chance_cloakers,
 }
 local optsCloaker_3 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400007, delay = 0 } },
-	enabled = overkill_above and enabled_chance_cloakers,
+	enabled = overkill_and_above and enabled_chance_cloakers,
 }
 local optsCloaker_4 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400008, delay = 0 } },
-	enabled = overkill_above and enabled_chance_cloakers,
+	enabled = overkill_and_above and enabled_chance_cloakers,
 }
 local optsCloaker_5 = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400009, delay = 0 } },
-	enabled = overkill_above and enabled_chance_cloakers,
+	enabled = overkill_and_above and enabled_chance_cloakers,
 }
 local optsCloaker_Hide_SO_1 = {
 	SO_access = "1024",
@@ -87,10 +87,15 @@ local spawn_random_cloakers = {
 	},
 }
 
-local optsBesiegeDummy = {
+local optsBesiegeDummy_1 = {
 	trigger_times = 0,
 	participate_to_group_ai = true,
 	spawn_action = "e_sp_down_10m_swing_in_var2",
+	enabled = true,
+}
+local optsBesiegeDummy_2 = {
+	trigger_times = 0,
+	participate_to_group_ai = true,
 	enabled = true,
 }
 local optsPreferedAdd1 = {
@@ -98,6 +103,14 @@ local optsPreferedAdd1 = {
 	on_executed = {
 		{ id = 400021, delay = 0 },
 	},
+	enabled = true,
+}
+local optsPreferedAdd2 = {
+	spawn_groups = { 400027 },
+	enabled = true,
+}
+local optsPreferedAdd3 = {
+	spawn_groups = { 400034 },
 	enabled = true,
 }
 local optsOpen_the_elevator = {
@@ -126,15 +139,35 @@ M.elements = {
 	Eclipse.mission_elements.gen_element_random(400012, "cloaker_ambush_event", spawn_random_cloakers),
 
 	-- 3rd elevator spawn
-	Eclipse.mission_elements.gen_dummy(400013, "eclipse_spawn_enemy_001", Vector3(-745, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400014, "eclipse_spawn_enemy_002", Vector3(-801, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400015, "eclipse_spawn_enemy_003", Vector3(-858, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400016, "eclipse_spawn_enemy_004", Vector3(-1130, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400017, "eclipse_spawn_enemy_005", Vector3(-1201, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(400018, "eclipse_spawn_enemy_006", Vector3(-1268, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400019, "eclipse_enemy_group_001", { 400013, 400014, 400015, 400016, 400017, 400018 }, 0),
+	Eclipse.mission_elements.gen_dummy(400013, "eclipse_spawn_enemy_001", Vector3(-745, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy_1),
+	--Eclipse.mission_elements.gen_dummy(400014, "eclipse_spawn_enemy_002", Vector3(-801, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy_1),
+	Eclipse.mission_elements.gen_dummy(400015, "eclipse_spawn_enemy_003", Vector3(-858, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy_1),
+	Eclipse.mission_elements.gen_dummy(400016, "eclipse_spawn_enemy_004", Vector3(-1130, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy_1),
+	--Eclipse.mission_elements.gen_dummy(400017, "eclipse_spawn_enemy_005", Vector3(-1201, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy_1),
+	Eclipse.mission_elements.gen_dummy(400018, "eclipse_spawn_enemy_006", Vector3(-1268, -804, -600), Rotation(0, 0, 0), optsBesiegeDummy_1),
+	Eclipse.mission_elements.gen_spawngroup(400019, "eclipse_enemy_group_001", { 400013, 400015, 400016, 400018 }, 0),
 
 	Eclipse.mission_elements.gen_preferedadd(400020, "eclipse_3rd_elevator_spawn", optsPreferedAdd1),
 	Eclipse.mission_elements.gen_object_editor(400021, "hit_it", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpen_the_elevator),
+	
+	-- 4th elevator spawn
+	Eclipse.mission_elements.gen_dummy(400022, "eclipse_spawn_enemy_007", Vector3(545, 2116, -600.005), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400023, "eclipse_spawn_enemy_008", Vector3(674, 2116, -600.005), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400024, "eclipse_spawn_enemy_009", Vector3(605, 2179, -600.005), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400025, "eclipse_spawn_enemy_010", Vector3(543, 2253, -600.005), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400026, "eclipse_spawn_enemy_011", Vector3(674, 2253, -600.005), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_spawngroup(400027, "eclipse_enemy_group_002", { 400022, 400023, 400024, 400025, 400026 }, 0),
+
+	Eclipse.mission_elements.gen_preferedadd(400028, "eclipse_4rd_elevator_spawn", optsPreferedAdd2),
+	
+	-- 5th elevator spawn
+	Eclipse.mission_elements.gen_dummy(400029, "eclipse_spawn_enemy_012", Vector3(264, 1225, -1000), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400030, "eclipse_spawn_enemy_013", Vector3(398, 1225, -1000), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400031, "eclipse_spawn_enemy_014", Vector3(330, 1309, -1000), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400032, "eclipse_spawn_enemy_015", Vector3(259, 1384, -1000), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_dummy(400033, "eclipse_spawn_enemy_016", Vector3(407, 1384, -1000), Rotation(180, 0, 0), optsBesiegeDummy_2),
+	Eclipse.mission_elements.gen_spawngroup(400034, "eclipse_enemy_group_003", { 400029, 400030, 400031, 400032, 400033 }, 0),
+
+	Eclipse.mission_elements.gen_preferedadd(400035, "eclipse_5rd_elevator_spawn", optsPreferedAdd3),
 }
 return M
