@@ -567,7 +567,7 @@ function PlayerManager:body_armor_regen_multiplier(...)
 
 	for _, smoke_screen in ipairs(self._smoke_screen_effects or {}) do
 		if smoke_screen:is_in_smoke(self:player_unit()) then
-			armor_regen = armor_regen * (smoke_screen:armor_bonus() and self:upgrade_value("player", "smoke_screen_armor_regen_mul", 0))
+			armor_regen = armor_regen * (smoke_screen:armor_bonus() and self:upgrade_value("player", "smoke_screen_armor_regen_mul", 1) or 1)
 		end
 	end
 
