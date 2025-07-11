@@ -1637,7 +1637,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.bellmead_security = {
 		unit_types = {
 			america = {
