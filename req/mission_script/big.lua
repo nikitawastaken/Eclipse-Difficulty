@@ -142,6 +142,9 @@ return {
 			{ id = 400020, delay = 0 },
 			{ id = 400028, delay = 0 },
 			{ id = 400035, delay = 0 },
+			-- enable ai graphs
+			{ id = 106694, delay = 0 },
+			{ id = 106697, delay = 0 },
 		},
 	},
 	-- add new ids to enemy triggers
@@ -156,6 +159,9 @@ return {
 				400025,
 				400026,
 			},
+			on_executed = {
+			{ id = 106701, delay = 8 },
+			},
 		},
 	},
 	[106572] = {
@@ -169,6 +175,19 @@ return {
 				400032,
 				400033,
 			},
+			on_executed = {
+			{ id = 106700, delay = 8 },
+			},
+		},
+	},
+	[106694] = {
+		on_executed = {
+			{ id = 106695, remove = true },
+		},
+	},
+	[106697] = {
+		on_executed = {
+			{ id = 106696, remove = true },
 		},
 	},
 	-- time lock is now randomized
