@@ -180,7 +180,5 @@ local M = {
 	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
 	--The Army
 	[("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = { c45 = 3, mp5 = 1 },
-	[("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"):key()] = { m4 = 3, benelli = 1 },
-	[("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"):key()] = "m249",
 }
 return M

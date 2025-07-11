@@ -189,10 +189,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.base.is_lmg = deep_clone(presets.weapon.base.is_smg)
 	presets.weapon.base.is_lmg.autofire_rounds = { 10, 30 }
+	presets.weapon.base.is_lmg.range = { close = 1000, optimal = 2000, far = 4000 }
 	presets.weapon.base.is_lmg.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.3, 0.7 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.2, 0.5 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.3, 0.7 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 1000, acc = { 0.2, 0.5 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.mini = deep_clone(presets.weapon.base.is_lmg)
@@ -1459,6 +1460,7 @@ function CharacterTweakData:character_map(...)
 			"ene_soldier_1",
 			"ene_soldier_2",
 			"ene_soldier_3",
+			"ene_soldier_4",
 		},
 	}
 

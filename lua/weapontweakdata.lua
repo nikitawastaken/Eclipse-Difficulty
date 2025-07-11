@@ -2087,7 +2087,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1897.stats.recoil = 10
 	self.m1897.stats.concealment = 17
 	self.m1897.fire_mode_data.fire_rate = 60 / 100
-	self.m1897.fire_rate_multiplier = 90 / 100
+	self.m1897.fire_rate_multiplier = 105 / 100
 	self.m1897.use_shotgun_reload = true
 
 	-- Mosconi

@@ -41,4 +41,7 @@
 
 	<unit				path="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3" load="true" />
 	<unit				path="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3_husk" load="true" />	
+
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4" load="true" />
+	<unit				path="units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4_husk" load="true" />	
 </table>

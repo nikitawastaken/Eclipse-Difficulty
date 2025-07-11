@@ -24,6 +24,8 @@ local head_sequences = {
 		material = 2,
 		run_sequence = {
 			"head_init",
+			"disable_face",
+			"disable_arms",
 		},
 	},
 	soldier_b = {
@@ -31,6 +33,7 @@ local head_sequences = {
 		run_sequence = {
 			"head_init",
 			"disable_arms",
+			"random_balaclava_swat_rare",
 		},
 	},
 	swat_a = {
@@ -228,6 +231,7 @@ local M = {
 	["units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"] = { name = "soldier_1", head = head_sequences.soldier_a },
 	["units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"] = { name = "soldier_2", head = head_sequences.soldier_b },
 	["units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"] = { name = "soldier_3", head = head_sequences.soldier_b },
+	["units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4"] = { name = "soldier_4", head = head_sequences.soldier_b },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"] = { name = "la_cop_1", head = head_sequences.security },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"] = { name = "la_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"] = { name = "la_cop_3", head = head_sequences.security },

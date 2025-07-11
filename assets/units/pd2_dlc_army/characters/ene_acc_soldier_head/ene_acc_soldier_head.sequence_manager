@@ -3,6 +3,7 @@
 	<unit>	
 		<variables>
 			<material_var				value="0" />
+			<has_random_balaclava		value="0" />
 		</variables>
 
 		<filter name="'check_mat_var1'">
@@ -11,6 +12,14 @@
 		
 		<filter name="'check_mat_var2'">
 			<check value="vars.material_var == 2" />
+		</filter>
+
+		<filter name="'check_random_balaclava'">
+			<check value="vars.has_random_balaclava == 1" />
+		</filter>
+		
+		<filter name="'check_no_random_balaclava'">
+			<check value="vars.has_random_balaclava == 0" />
 		</filter>
 		
 		<sequence editable_state="true" name="'head_material_var1'" once="true" triggable="true"> 
@@ -23,37 +32,57 @@
 			<material_config 	name="'units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'set_random_balaclava'" once="true" triggable="true"> 
+			<set_variables 		has_random_balaclava="1" />
+		</sequence>
+
 		<sequence editable_state="true" name="'head_init'" once="true" triggable="true"> 
 			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','b','c','d')..'_var2'" />
 			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','b','c','d')..'_var1'" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'disable_arms'" once="true" triggable="true">	
-			<object 		enabled="false" name="'g_arms_a'"/>
-			<object 		enabled="false" name="'g_arms_a_lod1'"/>
+		<sequence editable_state="true" name="'random_balaclava_swat_common'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_swat_'..pick('base','base','base','none')" />
+		</sequence>
 
-			<object 		enabled="false" name="'g_arms_b'"/>
-			<object 		enabled="false" name="'g_arms_b_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_c'"/>
-			<object 		enabled="false" name="'g_arms_c_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_d'"/>
-			<object 		enabled="false" name="'g_arms_d_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_e'"/>
-			<object 		enabled="false" name="'g_arms_e_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_f'"/>
-			<object 		enabled="false" name="'g_arms_f_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_g'"/>
-			<object 		enabled="false" name="'g_arms_g_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_h'"/>
-			<object 		enabled="false" name="'g_arms_h_lod1'"/>
+		<sequence editable_state="true" name="'random_balaclava_swat'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_swat_'..pick('none','base')" />
 		</sequence>
 		
+		<sequence editable_state="true" name="'random_balaclava_swat_rare'" once="true" triggable="true"> 
+			<run_sequence 		name="'balaclava_swat_'..pick('none','none','none','base')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_swat_none'" once="true" triggable="true" >
+			<run_sequence 		name="'disable_face'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'balaclava_swat_base'" once="true" triggable="true">
+			<run_sequence 		filter="'check_no_random_balaclava'" name="'balaclava_swat_a'" />		
+			<run_sequence 		filter="'check_random_balaclava'" name="'balaclava_swat_'..pick('a','a','a','a','b','c')" />
+			<run_sequence 		name="'disable_head'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'balaclava_swat_a'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_a'" />
+			<object 		enabled="true" name="'g_balaclava_swat_a_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_swat_b'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_b'" />
+			<object 		enabled="true" name="'g_balaclava_swat_b_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_swat_c'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_c'" />
+			<object 		enabled="true" name="'g_balaclava_swat_c_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'balaclava_swat_d'" once="true" triggable="true"> 
+			<object 		enabled="true" name="'g_balaclava_swat_d'" />
+			<object 		enabled="true" name="'g_balaclava_swat_d_lod1'" />
+		</sequence>
+
 		<sequence editable_state="true" name="'disable_arms'" once="true" triggable="true">	
 			<object 		enabled="false" name="'g_arms_a'"/>
 			<object 		enabled="false" name="'g_arms_a_lod1'"/>
@@ -131,7 +160,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_c_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e"/>
 			<object 		enabled="true" name="'g_arms_e_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_c'"/>
@@ -151,7 +180,7 @@
 			<object 		enabled="true" name="'g_head_d'"/>
 			<object 		enabled="true" name="'g_head_d_lod1'"/>
 		</sequence>
-	
+
 		<sequence editable_state="true" name="'body_a_var2'" once="true" triggable="true">
 			<object 		enabled="true" name="'g_arms_c'"/>
 			<object 		enabled="true" name="'g_arms_c_lod1'"/>
@@ -175,8 +204,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_c_var2'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_g'"/>
-			<object 		enabled="true" name="'g_arms_g_lod1'"/>
+			<object 		enabled="true" name="'g_arms_e"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_c'"/>
 			<object 		enabled="true" name="'g_face_c_lod1'"/>

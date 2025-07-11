@@ -167,32 +167,6 @@
 			<object 		enabled="false" name="'g_arms_h'"/>
 			<object 		enabled="false" name="'g_arms_h_lod1'"/>
 		</sequence>
-		
-		<sequence editable_state="true" name="'disable_arms'" once="true" triggable="true">	
-			<object 		enabled="false" name="'g_arms_a'"/>
-			<object 		enabled="false" name="'g_arms_a_lod1'"/>
-
-			<object 		enabled="false" name="'g_arms_b'"/>
-			<object 		enabled="false" name="'g_arms_b_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_c'"/>
-			<object 		enabled="false" name="'g_arms_c_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_d'"/>
-			<object 		enabled="false" name="'g_arms_d_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_e'"/>
-			<object 		enabled="false" name="'g_arms_e_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_f'"/>
-			<object 		enabled="false" name="'g_arms_f_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_g'"/>
-			<object 		enabled="false" name="'g_arms_g_lod1'"/>
-			
-			<object 		enabled="false" name="'g_arms_h'"/>
-			<object 		enabled="false" name="'g_arms_h_lod1'"/>
-		</sequence>
 
 		<sequence editable_state="true" name="'disable_face'" once="true" triggable="true">	
 			<object 		enabled="false" name="'g_face_a'"/>
@@ -218,30 +192,6 @@
 			
 			<object 		enabled="false" name="'g_face_h'"/>
 			<object 		enabled="false" name="'g_face_h_lod1'"/>
-
-			<object 		enabled="false" name="'g_face_i'"/>
-			<object 		enabled="false" name="'g_face_i_lod1'"/>
-
-			<object 		enabled="false" name="'g_face_j'"/>
-			<object 		enabled="false" name="'g_face_j_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_k'"/>
-			<object 		enabled="false" name="'g_face_k_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_l'"/>
-			<object 		enabled="false" name="'g_face_l_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_m'"/>
-			<object 		enabled="false" name="'g_face_m_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_n'"/>
-			<object 		enabled="false" name="'g_face_n_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_o'"/>
-			<object 		enabled="false" name="'g_face_o_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_p'"/>
-			<object 		enabled="false" name="'g_face_p_lod1'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'disable_head'" once="true" triggable="true">	
@@ -268,30 +218,6 @@
 			
 			<object 		enabled="false" name="'g_head_h'"/>
 			<object 		enabled="false" name="'g_head_h_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_i'"/>
-			<object 		enabled="false" name="'g_head_i_lod1'"/>
-
-			<object 		enabled="false" name="'g_head_j'"/>
-			<object 		enabled="false" name="'g_head_j_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_k'"/>
-			<object 		enabled="false" name="'g_head_k_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_l'"/>
-			<object 		enabled="false" name="'g_head_l_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_m'"/>
-			<object 		enabled="false" name="'g_head_m_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_n'"/>
-			<object 		enabled="false" name="'g_head_n_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_o'"/>
-			<object 		enabled="false" name="'g_head_o_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_p'"/>
-			<object 		enabled="false" name="'g_head_p_lod1'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'body_a_var1'" once="true" triggable="true">

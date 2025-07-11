@@ -9,7 +9,7 @@
 		<depends_on bnk="soundbanks/npc_russian_mercenaries" />
 		<depends_on unit="units/pd2_dlc_army/characters/ene_acc_soldier_helmet/ene_acc_soldier_helmet" />
 		<depends_on unit="units/pd2_dlc_army/characters/ene_acc_soldier_head/ene_acc_soldier_head" />	
-		<depends_on unit="units/payday2/weapons/wpn_npc_benelli/wpn_npc_benelli" />		
+		<depends_on unit="units/payday2/weapons/wpn_npc_lmg_m249/wpn_npc_lmg_m249" />	
 	</dependencies>
 
 	<extensions>	
@@ -91,7 +91,7 @@
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="CopBase" >		
 			<var name="_tweak_table" value="soldier" />
-			<var name="_default_weapon_id" value="benelli" />
+			<var name="_default_weapon_id" value="m249" />
 		</extension>
 		<extension name="inventory" class="CopInventory" />
 		<extension name="brain" class="CopBrain" />
@@ -119,7 +119,7 @@
 		<extension name="sound" class="CopSound" />		
 	</extensions>
 
-	<network sync="spawn" remote_unit="units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3_husk" />
+	<network sync="spawn" remote_unit="units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4_husk" />
 
 	<sounds>	
 		<default_soundsource source="Hips" />		

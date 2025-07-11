@@ -103,6 +103,55 @@
 					<material materials="mtr_arms_lod_2" />
 				</object>
 			</lod_object>
+
+			<!--FACES-->	
+			<lod_object name="lod_face_a">
+				<object name="g_face_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+				<object name="g_face_a_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+			</lod_object>
+						
+			<lod_object name="lod_face_b">
+				<object name="g_face_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+				<object name="g_face_b_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_face_c">
+				<object name="g_face_c" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+				<object name="g_face_c_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_face_d">
+				<object name="g_face_d" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_head" max_distance="1000" />
+					<material materials="mtr_head_lod_1" max_distance="1500" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+				<object name="g_face_d_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+			</lod_object>
 			
 			<!--HEADS-->	
 			<lod_object name="lod_head_a">
@@ -152,6 +201,54 @@
 					<material materials="mtr_head_lod_2" />
 				</object>
 			</lod_object>
+
+			<lod_object name="lod_balaclava_swat_a">
+				<object name="g_balaclava_swat_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_balaclava_swat" max_distance="1000" />
+					<material materials="mtr_balaclava_swat_lod_1" max_distance="1500" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+				<object name="g_balaclava_swat_a_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_balaclava_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+			</lod_object>			
+
+			<lod_object name="lod_balaclava_swat_b">
+				<object name="g_balaclava_swat_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_balaclava_swat" max_distance="1000" />
+					<material materials="mtr_balaclava_swat_lod_1" max_distance="1500" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+				<object name="g_balaclava_swat_b_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_balaclava_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+			</lod_object>			
+			
+			<lod_object name="lod_balaclava_swat_c">
+				<object name="g_balaclava_swat_c" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_balaclava_swat" max_distance="1000" />
+					<material materials="mtr_balaclava_swat_lod_1" max_distance="1500" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+				<object name="g_balaclava_swat_c_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_balaclava_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_balaclava_swat_d">
+				<object name="g_balaclava_swat_d" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_balaclava_swat" max_distance="1000" />
+					<material materials="mtr_balaclava_swat_lod_1" max_distance="1500" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+				<object name="g_balaclava_swat_d_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_balaclava_swat" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_balaclava_swat_lod_2" />
+				</object>
+			</lod_object>	
 		</graphic_group>		
     </graphics>	
 </dynamic_object>
