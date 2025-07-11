@@ -8,6 +8,7 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = is_pro_job and eclipse
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
+local us_soldier_3 = scripted_enemy.soldier_4
 --local us_soldier_tank = scripted_enemy.soldier_bulldozer
 local taser = scripted_enemy.taser_1
 local swat_1 = scripted_enemy.swat_1
@@ -18,7 +19,7 @@ local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or 
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 1 }
+local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1 }
 local us_soldier = {
 	enemy = us_soldiers,
 }

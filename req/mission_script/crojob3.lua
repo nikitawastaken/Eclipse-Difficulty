@@ -5,8 +5,9 @@ local overkill_and_above = Eclipse.utils.diff_threshold()
 local bulldozer_1 = scripted_enemy.bulldozer_1
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
+local us_soldier_3 = scripted_enemy.soldier_4
 local us_soldier_tank = scripted_enemy.elite_bulldozer_1
-local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 1 }
+local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1 }
 local us_soldier = {
 	enemy = us_soldiers,
 }

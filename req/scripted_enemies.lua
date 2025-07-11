@@ -42,6 +42,7 @@ local M = {
 	soldier_1 = "units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1",
 	soldier_2 = "units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2",
 	soldier_3 = "units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3",
+	soldier_4 = "units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4",
 	--soldier_bulldozer = "units/pd2_dlc_army/characters/ene_bulldozer_minigun/ene_bulldozer_minigun",
 
 	heavy_swat_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
