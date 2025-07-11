@@ -138,6 +138,9 @@ end
 function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
 	local wp_id = "wp_hostage_trade" .. tostring(unit:key())
 
+	if Eclipse.settings.trade_chat_spam then
+		Eclipse:log_chat("Hostage trade called with enable = " .. tostring(enable))
+	end
 	if enable then
 		local text = managers.localization:text("debug_trade_hostage")
 
@@ -213,8 +216,14 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 		managers.hud:remove_waypoint(wp_id)
 
 		if trade_success then
+			if Eclipse.settings.trade_chat_spam then
+				Eclipse:log_chat("Deactivated interaction due to successful trade!")
+			end
 			unit:interaction():set_active(false, false)
 		else
+			if Eclipse.settings.trade_chat_spam then
+				Eclipse:log_chat("Deactivated interaction due to failed trade")
+			end
 			unit:interaction():set_active(false, false)
 
 			if managers.enemy:all_civilians()[unit:key()] then

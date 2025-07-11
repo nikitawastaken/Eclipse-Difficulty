@@ -298,6 +298,10 @@ end
 
 function TradeManager:clbk_begin_hostage_trade()
 	local possible_criminals, is_instant_trade = self:get_possible_criminals()
+	if Eclipse.settings.trade_chat_spam and possible_criminals then
+		local crims = table.concat(possible_criminals, " ")
+		Eclipse:log_chat("Candidates for trade:", crims)
+	end
 	local rescuing_criminal = possible_criminals[math.random(1, #possible_criminals)]
 	rescuing_criminal = managers.groupai:state():all_criminals()[rescuing_criminal]
 	local rescuing_criminal_pos = nil
@@ -361,6 +365,9 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 			self._trade_complete = false
 		end
 	else
+		if Eclipse.settings.trade_chat_spam then
+			Eclipse:log_chat("Trade initialized but hostage not found.")
+		end
 		self:cancel_trade()
 	end
 end
