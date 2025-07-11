@@ -3194,7 +3194,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(8, 12),
 	}
 	self.besiege.assault.force_balance_mul = {} -- { 1, 1.25, 1.5, 1.75 }
-	for i = 0, 24, 1 do
+	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_balance_mul, 1 + (i * 0.25))
 	end
 
