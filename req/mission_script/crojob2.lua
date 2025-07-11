@@ -11,7 +11,7 @@ local fence_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -70,19 +70,14 @@ return {
 			{ name = "roof1" },
 			{ name = "roof2" },
 			{
-				name = "roof3",
+				name = "roof1",
 				force = 2,
 				position = Vector3(-8250, 8100, 750),
 			},
 			{
-				name = "roof4",
+				name = "roof2",
 				force = 2,
 				position = Vector3(-9500, 5000, 750),
-			},
-			{
-				name = "crane3",
-				force = 2,
-				position = Vector3(-6100, 8350, 125),
 			},
 		},
 	},
@@ -120,6 +115,7 @@ return {
 	-- Spawn group delays
 	[100869] = fence_spawn,
 	[101574] = fence_spawn,
+	[104040] = fence_spawn,
 	[101630] = roof_spawn,
 	[101771] = roof_spawn,
 	[101772] = roof_spawn,

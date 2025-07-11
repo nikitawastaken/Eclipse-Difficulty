@@ -1627,6 +1627,17 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
+	self.unit_categories.army_soldier_4 = {
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4") },
+			russia = { Idstring("units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4") },
+			zombie = { Idstring("units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4") },
+			murkywater = { Idstring("units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4") },
+			federales = { Idstring("units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4") },
+		},
+		access = access_type_all,
+	}
+	
 	self.unit_categories.bellmead_security = {
 		unit_types = {
 			america = {
@@ -1684,9 +1695,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire",
 			"flank",
 		},
-		hrt_init = {
+		hrt_def = {
 			"rescue",
-			"no_push",
+			"ranged_fire",
+			"flank",
 		},
 		hrt_snk = {
 			"rescue",
@@ -1883,7 +1895,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 2,
 				rank = 1,
 				unit = "cs_cop_1",
-				tactics = self._tactics.hrt_init,
+				tactics = self._tactics.hrt_def,
 			},
 		},
 	}
@@ -2083,7 +2095,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 3 },
 		spawn = {
 			{
-				freq_by_diff = { 0, 1, 2 },
+				freq_by_diff = { 0, 0.5, 1.5 },
 				amount_max = 2,
 				rank = 3,
 				unit = "fbi_agent_2_3",
@@ -2091,6 +2103,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq = 1,
+				amount_min = 1,
 				amount_max = 2,
 				rank = 2,
 				unit = "fbi_agent_1_2",
@@ -2098,8 +2111,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq_by_diff = {
-					40 / (difficulty_index ^ 2),
-					20 / (difficulty_index ^ 2),
+					45 / (difficulty_index ^ 2),
+					15 / (difficulty_index ^ 2),
 					0,
 				},
 				amount_max = 2,
@@ -2192,11 +2205,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.hrt_snk,
 			},
 			{
-				freq = 1.5,
+				freq = 1,
+				amount_min = 1,
 				amount_max = 2,
 				rank = 1,
 				unit = "fbi_agent_1_2",
-				tactics = self._tactics.hrt_init,
+				tactics = self._tactics.hrt_def,
 			},
 		},
 	}
