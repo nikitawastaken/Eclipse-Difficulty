@@ -3,7 +3,7 @@ Hooks:PostHook(CoreBodyDamage, "init", "eclipse_init", function(self)
 	if not self._body_element then
 		return
 	end
-	
+
 	if self._unit:character_damage() and self._unit:character_damage().IS_TANK then
 		local tank_balance_mul = managers.groupai:state():_get_balancing_multiplier(tweak_data.character.tank_armor_health_balance_mul)
 		local armor_health = tweak_data.character[self._unit:base()._tweak_table].damage.armor_health
