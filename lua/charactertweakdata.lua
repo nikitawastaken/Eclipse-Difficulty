@@ -449,14 +449,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 0.25 },
 		focus_delay = 0,
-		melee_dmg = 16,
+		melee_dmg = 15,
 	})
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 3, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 2, r = 2500, acc = { 0.5, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 1, r = 5000, acc = { 0.25, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 5, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 3, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 1, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
@@ -513,7 +513,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = 60
+	presets.gang_member_damage.HEALTH_INIT = 80
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
@@ -522,7 +522,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		health_reference = "full",
 		zones = {
 			{
-				health_limit = 0.3,
+				health_limit = 0.4,
 				none = 0.6,
 				light = 0.4,
 			},
@@ -1688,9 +1688,10 @@ function CharacterTweakData:_set_presets()
 
 	for _, name in pairs(self._enemy_list) do
 		local char_preset = self[name]
-
+		local char_access = char_preset.access
+		
 		-- Set move speed based on the tweak table or access
-		local move_speed_preset = self.tweak_table_move_speed[name] or self.access_move_speed[char_preset.access]
+		local move_speed_preset = self.tweak_table_move_speed[name] or self.access_move_speed[char_access]
 
 		if move_speed_preset then
 			char_preset.move_speed = self.presets.move_speed[move_speed_preset] or self.presets.move_speed.normal
@@ -1698,25 +1699,25 @@ function CharacterTweakData:_set_presets()
 
 		local is_boss = name:match("_boss$")
 
-		local surrender_preset = not is_boss and self.access_surrender[char_preset.access] or nil
+		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 
 		if surrender_preset then
 			char_preset.surrender = self.presets.surrender[surrender_preset]
 		end
-
+	
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
 			if not is_boss then
-				if self.access_health[char_preset.access] then
-					char_preset.HEALTH_INIT = self.access_health[char_preset.access]
+				if self.access_health[char_access] then
+					char_preset.HEALTH_INIT = self.access_health[char_access]
 				end
 
-				if self.access_hs_mul[char_preset.access] then
-					char_preset.headshot_dmg_mul = self.access_hs_mul[char_preset.access]
+				if self.access_hs_mul[char_access] then
+					char_preset.headshot_dmg_mul = self.access_hs_mul[char_access]
 				end
 			end
 		end
-
+	
 		-- Boss related stuff
 		if is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
@@ -1725,7 +1726,14 @@ function CharacterTweakData:_set_presets()
 			char_preset.no_run_start = true
 			char_preset.no_run_stop = true
 		end
-
+		
+		-- Make sure that Shield type enemies cannot do the grenade throwing animation
+		local is_shield = char_access == "shield" and char_preset.wall_fwd_offset
+		
+		if is_shield then
+			char_preset.no_grenade_anim = true
+		end
+	
 		-- Remove damage clamps, they are not a fun or intuitive mechanic
 		char_preset.DAMAGE_CLAMP_BULLET = nil
 		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
