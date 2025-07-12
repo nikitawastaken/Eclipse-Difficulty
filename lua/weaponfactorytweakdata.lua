@@ -249,13 +249,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_upg_m4_m_straight.stats.extra_ammo = -5
 
-	self.parts.wpn_fps_m4_uupg_b_long.stats.spread = -2
+	self.parts.wpn_fps_m4_uupg_b_short.stats.spread = -2
 
-	self.parts.wpn_fps_m4_uupg_b_short.stats.damage = 0
-	self.parts.wpn_fps_m4_uupg_b_short.stats.spread = 2
-
-	self.parts.wpn_fps_m4_uupg_b_short.stats.damage = 0
-	self.parts.wpn_fps_m4_uupg_b_short.stats.spread = 2
+	self.parts.wpn_fps_m4_uupg_b_long.stats.damage = 0
+	self.parts.wpn_fps_m4_uupg_b_long.stats.spread = 2
 
 	self.parts.wpn_fps_m4_uupg_s_fold.stats.recoil = -2
 	self.parts.wpn_fps_m4_uupg_s_fold.stats.concealment = 2
