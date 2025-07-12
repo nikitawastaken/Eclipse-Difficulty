@@ -1689,7 +1689,7 @@ function CharacterTweakData:_set_presets()
 	for _, name in pairs(self._enemy_list) do
 		local char_preset = self[name]
 		local char_access = char_preset.access
-		
+
 		-- Set move speed based on the tweak table or access
 		local move_speed_preset = self.tweak_table_move_speed[name] or self.access_move_speed[char_access]
 
@@ -1704,7 +1704,7 @@ function CharacterTweakData:_set_presets()
 		if surrender_preset then
 			char_preset.surrender = self.presets.surrender[surrender_preset]
 		end
-	
+
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
 			if not is_boss then
@@ -1717,7 +1717,7 @@ function CharacterTweakData:_set_presets()
 				end
 			end
 		end
-	
+
 		-- Boss related stuff
 		if is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
@@ -1726,14 +1726,14 @@ function CharacterTweakData:_set_presets()
 			char_preset.no_run_start = true
 			char_preset.no_run_stop = true
 		end
-		
+
 		-- Make sure that Shield type enemies cannot do the grenade throwing animation
 		local is_shield = char_access == "shield" and char_preset.wall_fwd_offset
-		
+
 		if is_shield then
 			char_preset.no_grenade_anim = true
 		end
-	
+
 		-- Remove damage clamps, they are not a fun or intuitive mechanic
 		char_preset.DAMAGE_CLAMP_BULLET = nil
 		char_preset.DAMAGE_CLAMP_EXPLOSION = nil
