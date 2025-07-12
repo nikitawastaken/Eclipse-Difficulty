@@ -2283,6 +2283,16 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Snipers
 
+	-- Kang Arms
+	self.qbu88.CLIP_AMMO_MAX = 10
+	self.qbu88.stats.damage = 24
+	self.qbu88.stats.spread = 20
+	self.qbu88.stats.recoil = 13
+	self.qbu88.stats.concealment = 18
+	self.qbu88.fire_mode_data.fire_rate = 60 / 250
+	self.qbu88.fire_rate_multiplier = 200 / 250
+	self.qbu88.stats_modifiers = { damage =  2 }
+	
 	-- Contractor
 	self.tti.CLIP_AMMO_MAX = 20
 	self.tti.stats.damage = 32
@@ -2301,16 +2311,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.siltstone.stats.concealment = 20
 	self.siltstone.fire_mode_data.fire_rate = 60 / 150
 	self.siltstone.stats_modifiers = { damage =  2 }
-
-	-- Kang Arms
-	self.qbu88.CLIP_AMMO_MAX = 10
-	self.qbu88.stats.damage = 32
-	self.qbu88.stats.spread = 21
-	self.qbu88.stats.recoil = 13
-	self.qbu88.stats.concealment = 18
-	self.qbu88.fire_mode_data.fire_rate = 60 / 250
-	self.qbu88.fire_rate_multiplier = 150 / 250
-	self.qbu88.stats_modifiers = { damage =  2 }
 
 	-- North Star
 	self.victor.CLIP_AMMO_MAX = 10
