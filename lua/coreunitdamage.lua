@@ -1,23 +1,22 @@
 -- Increase bulldozer armor health and increase planks durability (SH)
 Hooks:PostHook(CoreBodyDamage, "init", "eclipse_init", function(self)
+	if not self._body_element then
+		return
+	end
+	
 	if self._unit:character_damage() and self._unit:character_damage().IS_TANK then
 		local tank_balance_mul = managers.groupai:state():_get_balancing_multiplier(tweak_data.character.tank_armor_health_balance_mul)
-
 		local armor_health = tweak_data.character[self._unit:base()._tweak_table].damage.armor_health
 
 		if not armor_health then
 			-- nothing
-		elseif self._body_element._name == "body_helmet_plate" then
+		elseif self._body_element._name:find("plate") then
 			self._endurance["explosion"]["_endurance"]["damage"] = armor_health * tank_balance_mul
-		elseif self._body_element._name == "body_helmet_glass" then
+		elseif self._body_element._name:find("glass") then
 			self._endurance["explosion"]["_endurance"]["damage"] = (armor_health / 2) * tank_balance_mul
 		else
-			self._endurance["explosion"]["_endurance"]["damage"] = (armor_health / 3) * tank_balance_mul
+			self._endurance["explosion"]["_endurance"]["damage"] = (armor_health / 4) * tank_balance_mul
 		end
-	end
-
-	if not self._body_element then
-		return
 	end
 
 	if

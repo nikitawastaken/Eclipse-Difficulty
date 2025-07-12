@@ -1769,7 +1769,7 @@ function CharacterTweakData:_set_presets()
 
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
-	self.tank.damage.armor_health = is_eclipse and 20 or is_overkill and 16 or 12
+	self.tank.damage.armor_health = is_eclipse and 18 or is_overkill and 14 or 10
 
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
 
