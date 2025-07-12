@@ -830,22 +830,11 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	detonate_pos = grenade_tracker:field_position()
 	managers.navigation:destroy_nav_tracker(grenade_tracker)
 
-	if not grenade_user.unit:movement():chk_action_forbidden("action") then
-		if not grenade_user.char_tweak.no_grenade_anim then
-			local action = {
-				clamp_to_graph = true,
-				type = "act",
-				body_part = 1,
-				variant = "e_so_throw_grenade",
-				blocks = {
-					light_hurt = -1,
-					hurt = -1,
-					heavy_hurt = -1,
-					walk = -1,
-				},
-			}
-
-			grenade_user.unit:movement():action_request(action)
+	if not grenade_user.char_tweak.no_grenade_anim then
+		if not grenade_user.unit:movement():chk_action_forbidden("interact") then
+			if grenade_user.unit:movement():play_redirect("throw_grenade") then
+				managers.network:session():send_to_peers_synched("play_distance_interact_redirect", grenade_user.unit, "throw_grenade")
+			end
 		end
 	end
 
