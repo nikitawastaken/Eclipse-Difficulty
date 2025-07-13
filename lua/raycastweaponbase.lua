@@ -387,9 +387,9 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 				hit_enemy = true
 			end
 
-			local parent_unit_tweak = hit.unit:parent() and hit.unit:parent():base() and hit.unit:parent():base()._tweak_table 
+			local parent_unit_tweak = hit.unit:parent() and hit.unit:parent():base() and hit.unit:parent():base()._tweak_table
 			local no_penetration = parent_unit_tweak and tweak_data.character[parent_unit_tweak] and tweak_data.character[parent_unit_tweak].no_shield_penetration
-			
+
 			if not can_shoot_through_enemy and is_enemy then
 				break
 			elseif not can_shoot_through_shield and in_slot_func(unit, shield_mask) then
