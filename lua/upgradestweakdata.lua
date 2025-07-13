@@ -1376,7 +1376,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.level_4_dodge_addend = {
 		0.06,
 		0.12,
-		0.18
+		0.18,
 	}
 	self.values.player.level_2_armor_multiplier = {
 		1.1,
