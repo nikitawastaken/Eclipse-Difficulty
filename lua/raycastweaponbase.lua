@@ -387,13 +387,16 @@ function RaycastWeaponBase.collect_hits(from, to, setup_data)
 				hit_enemy = true
 			end
 
+			local parent_unit_tweak = hit.unit:parent() and hit.unit:parent():base() and hit.unit:parent():base()._tweak_table 
+			local no_penetration = parent_unit_tweak and tweak_data.character[parent_unit_tweak] and tweak_data.character[parent_unit_tweak].no_shield_penetration
+			
 			if not can_shoot_through_enemy and is_enemy then
 				break
 			elseif not can_shoot_through_shield and in_slot_func(unit, shield_mask) then
 				break
 			elseif not can_shoot_through_wall and in_slot_func(unit, wall_mask) and (has_ray_type_func(hit.body, ai_vision_ids) or has_ray_type_func(hit.body, bulletproof_ids)) then
 				break
-			elseif hit.unit:in_slot(shield_mask) and (hit.unit:name():key() == "af254947f0288a6c" or hit.unit:name():key() == "15cbabccf0841ff8") then -- hi thanks resmod if you're reading this :)
+			elseif hit.unit:in_slot(shield_mask) and no_penetration then -- hi thanks resmod if you're reading this :)
 				break
 			end
 		end

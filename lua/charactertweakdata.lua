@@ -1169,6 +1169,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_shield.damage.immune_to_knockback = true
 	self.city_shield.immune_to_knock_down = true
 	self.city_shield.immune_to_concussion = true
+	self.city_shield.no_shield_penetration = true
 	table.insert(self._enemy_list, "city_shield")
 
 	self.city_shield_break = deep_clone(self.city_shield)
