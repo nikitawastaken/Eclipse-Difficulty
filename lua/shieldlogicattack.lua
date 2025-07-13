@@ -9,6 +9,17 @@ end
 -- Stop walking action upon entering or leaving attack logic
 Hooks:PreHook(ShieldLogicAttack, "enter", "sh_enter", function(data)
 	CopLogicTravel.cancel_advance(data)
+	
+	-- elite shields do their unique bang sound when entering attack logic
+	if not data.attack_sound_t or data.t - data.attack_sound_t > 40 then
+		data.attack_sound_t = data.t
+	
+	if data.unit:base()._tweak_table == "city_shield" then	
+		data.unit:sound():play("hos_shield_indication_sound_terminator_style", nil, true)
+	else
+		data.unit:sound():play("shield_identification", nil, true)
+	end 
+end
 end)
 
 Hooks:PreHook(ShieldLogicAttack, "exit", "sh_exit", function(data)
