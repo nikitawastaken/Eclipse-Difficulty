@@ -182,7 +182,7 @@ function WeaponTweakData:_init_weapons()
 			weap_data.stats.suppression = cat_map.handcannon and 9 or 16
 			weap_data.stats.alert_size = cat_map.handcannon and 15 or 12
 			weap_data.steelsight_time = cat_map.handcannon and steelsight_times.pistol_heavy or steelsight_times.pistol
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not cat_map.handcannon and 1.25 or 1
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not cat_map.handcannon and 1.5 or 1
 			weap_data.steelsight_move_speed_mul = 0.7
 			
 			if cat_map.handcannon then
@@ -1572,6 +1572,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.c96.stats.recoil = 11
 	self.c96.stats.concealment = 28
 	self.c96.fire_mode_data.fire_rate = 60 / 500
+	self.c96.reload_speed_multiplier = 1.25
 	
 	-- Crosskill Chunky Compact
 	self.m1911.CLIP_AMMO_MAX = 12
@@ -1612,7 +1613,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.pl14.fire_mode_data.fire_rate = 60 / 600
 
 	-- 5/7
-	self.lemming.CLIP_AMMO_MAX = 20
+	self.lemming.CLIP_AMMO_MAX = 15
 	self.lemming.stats.damage = 48
 	self.lemming.stats.spread = 16
 	self.lemming.stats.recoil = 10
