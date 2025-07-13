@@ -171,9 +171,9 @@ return {
 	},
 	-- loop helis
 	-- remove the line+trigger the loop here
-	[100945] = {
+	[100941] = {
 		on_executed = {
-			{ id = 100946, remove = true },
+			{ id = 100945, remove = true },
 			{ id = 100965, delay = 180 },
 		},
 	},
@@ -181,12 +181,15 @@ return {
 	[100965] = {
 		on_executed = {
 			{ id = 400009, delay = 0 },
-			{ id = 100966, delay = 0 },
+			{ id = 100968, remove = true },
 		},
 	},
 	[100966] = {
 		values = {
 			amount = chopper_amount,
+		},
+		on_executed = {
+			{ id = 100993, remove = true },
 		},
 	},
 	-- trigger_times to 0; making the loop possible
