@@ -2160,6 +2160,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "fbi_swat_1",
 				tactics = self._tactics.none,
 			},
+			self:_distance_weighted_spawn_entry({
+				freq_by_diff = table_multiplier({
+					0,
+					(difficulty_index ^ 2) / 300,
+					(difficulty_index ^ 2) / 150,
+				}, special_operation and 1.5 or 1),
+				amount_max = 1,
+				rank = 1,
+				unit = "elite_sniper",
+				tactics = self._tactics.sniper,
+			}, 1000, 3000, 0.5, 2),
 		},
 	}
 
@@ -2191,6 +2202,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "fbi_swat_1_3",
 				tactics = self._tactics.none,
 			},
+			self:_distance_weighted_spawn_entry({
+				freq_by_diff = table_multiplier({
+					0,
+					(difficulty_index ^ 2) / 300,
+					(difficulty_index ^ 2) / 150,
+				}, special_operation and 1.5 or 1),
+				amount_max = 1,
+				rank = 1,
+				unit = "elite_sniper",
+				tactics = self._tactics.sniper,
+			}, 1000, 3000, 0.5, 2),
 		},
 	}
 
