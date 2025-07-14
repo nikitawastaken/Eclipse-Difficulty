@@ -1,7 +1,11 @@
+local gensec_operators = {
+	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
+	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
+}
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local overkill_and_above = Eclipse.utils.diff_threshold()
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -30,6 +34,9 @@ local army_dozer = {
 ]]
 local taser_spawn = {
 	enemy = taser,
+}
+local gensec_truck = {
+	enemy = overkill_and_above and gensec_operators,
 }
 local ambush_chance = {
 	chance = (normal and 20 or hard and 30 or 40) + (is_pro_job and 20 or 0),
@@ -140,6 +147,9 @@ return {
 	[101803] = plank_amount,
 	[101804] = plank_amount,
 	[101805] = plank_amount,
+	-- GenSec Operators near the GenSec truck on overkill and above
+	[105748] = gensec_truck,
+	[105749] = gensec_truck,
 	--replace the fbi with soldiers+some tasers
 	[106434] = us_soldier,
 	[106433] = taser_spawn,

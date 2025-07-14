@@ -42,6 +42,7 @@ local optsEliteSniper_1 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 400009, delay = 0 },
+		{ id = 400009, delay = 10 },
 	},
 	enabled = true,
 }
@@ -49,6 +50,7 @@ local optsEliteSniper_2 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 400006, delay = 0 },
+		{ id = 400006, delay = 10 },
 	},
 	enabled = true,
 }
@@ -56,6 +58,7 @@ local optsEliteSniper_3 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 400007, delay = 0 },
+		{ id = 400007, delay = 10 },
 	},
 	enabled = true,
 }
@@ -63,6 +66,7 @@ local optsEliteSniper_4 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 400008, delay = 0 },
+		{ id = 400008, delay = 10 },
 	},
 	enabled = true,
 }
@@ -70,6 +74,7 @@ local optsEliteSniper_5 = {
 	enemy = sniper,
 	on_executed = {
 		{ id = 400005, delay = 0 },
+		{ id = 400005, delay = 10 },
 	},
 	enabled = true,
 }
