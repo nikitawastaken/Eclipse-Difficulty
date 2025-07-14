@@ -190,7 +190,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.4, -- Not really needed, they are all scripted
 		push_delay_mul = 0.75,
 	}
-	
+
 	self.roberts.group_ai_settings = {
 		assault_force_mul = 0.8,
 		push_delay_mul = 1.25,
