@@ -291,7 +291,7 @@ local M = {
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"] = { name = "pex_cop_2", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"] = { name = "pex_cop_3", head = head_sequences.security },
-	["units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex"] = { name = "secret_service_fex", head = head_sequences.security },
+	["units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex"] = { name = "secret_service_1", head = head_sequences.security },
 }
 
 return M

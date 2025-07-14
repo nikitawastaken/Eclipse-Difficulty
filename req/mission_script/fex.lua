@@ -1,4 +1,6 @@
 local preferred = Eclipse.preferred
+local security_enemy = "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex"
+local security = { enemy = security_enemy }
 local disabled = {
 	values = {
 		enabled = false,
@@ -92,4 +94,41 @@ return {
 	[100864] = cloaker_spawn,
 	[100868] = cloaker_spawn,
 	[100873] = cloaker_spawn,
+	-- Replace Secret Service with the suit thugs
+	[100673] = security,
+	[100674] = security,
+	[100675] = security,
+	[100676] = security,
+	[100677] = security,
+	[100678] = security,
+	[100679] = security,
+	[101135] = security,
+	[101137] = security,
+	[101139] = security,
+	[101143] = security,
+	[101149] = security,
+	[101809] = security,
+	[101812] = security,
+	[101814] = security,
+	[101817] = security,
+	[101819] = security,
+	[101746] = security,
+	[101748] = security,
+	[101750] = security,
+	[101828] = security,
+	[101832] = security,
+	[101864] = security,
+	[101865] = security,
+	[103373] = security,
+	[101853] = security,
+	[101884] = security,
+	[101861] = security,
+	[101867] = security,
+	[101889] = security,
+	[101902] = security,
+	[101957] = security,
+	[101960] = security,
+	[101963] = security,
+	[101966] = security,
+	[101968] = security,
 }

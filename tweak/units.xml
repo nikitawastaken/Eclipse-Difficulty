@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <tweaks>
 
-    <!-- Fix secret_service_fex _tweak_table -->
-	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex" extension="unit">
+    <!-- Change ene_thug_outdoor_fex _tweak_table -->
+	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>
@@ -15,7 +15,7 @@
 		</target>
 	</tweak>
 
-	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex_husk" extension="unit">
+	<tweak version="2" name="units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex_husk" extension="unit">
 		<search>
 			<?xml version="1.0"?>
 			<unit/>

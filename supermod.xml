@@ -797,9 +797,6 @@
 
 					<file :name="ene_bex_security_suit_01.material_config" />
 					<file :name="ene_bex_security_suit_01_contour.material_config" />
-
-					<file :name="ene_secret_service_fex.material_config" />
-					<file :name="ene_secret_service_fex_contour.material_config" />
 				</group>
 			</group>
 
@@ -1234,7 +1231,7 @@
 			</group>
 		</group>
 
-		<group name="units/pd2_dlc_bex/vehicles/" dyn_package="false" from_type="custom_xml" to_type="binary">
+		<group name="units/pd2_dlc_bex/vehicles/" dyn_package="false">
 			<file :name="bex_vehicles_car_police_mexico/bex_vehicle_car_police_mexico.material_config" />
 		</group>
 
@@ -1359,10 +1356,9 @@
 			</group>
 		</group>
 
-		<group name="units/pd2_dlc_fex/characters/ene_secret_service_fex/" dyn_package="false">
+		<group name="units/pd2_dlc_fex/characters/ene_secret_service_fex/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<file :name="ene_secret_service_fex.unit" />
 			<file :name="ene_secret_service_fex_husk.unit" />
-			<file :name="ene_secret_service_fex_df.texture" />
 		</group>
 
 		<group name="units/pd2_dlc_chas/vehicles/chas_vehicle_car_police_sfpd/" dyn_package="false">
