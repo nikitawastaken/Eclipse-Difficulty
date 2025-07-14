@@ -186,6 +186,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.haunted.group_ai_settings = {
+		assault_force_mul = 0.4, -- Not really needed, they are all scripted
+		push_delay_mul = 0.75,
+	}
+	
 	self.roberts.group_ai_settings = {
 		assault_force_mul = 0.8,
 		push_delay_mul = 1.25,
@@ -278,7 +283,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.peta.group_ai_settings = {
 		assault_force_mul = 1.2,
-		reenforce_interval_mul = 1.5,
 		assault_delay_mul = 1.25,
 		push_delay_mul = 1.25,
 		force_tactics = {
@@ -310,7 +314,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.man.group_ai_settings = {
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		sustain_duration_mul = 1.25,
-		reenforce_interval_mul = 1.5,
+		assault_force_mul = 0.8,
 		cs_grenade_chance_times_mul = 0.75,
 		grenade_timeout_mul = {
 			flash_grenade = 0.5,
@@ -371,7 +375,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.flat.group_ai_settings = {
 		assault_force_mul = 0.8,
-		reenforce_interval_mul = 1.5,
 		force_tactics = {
 			cop_snk = {
 				smoke_grenade = true,
@@ -422,11 +425,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.help.group_ai_settings.force_tactics = nil
 
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
-	self.friend.group_ai_settings.reenforce_interval_mul = nil
 	self.friend.group_ai_settings.special_limit_add = nil
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
-	self.moon.group_ai_settings.reenforce_interval_mul = nil
 
 	self.spa.group_ai_settings = {
 		assault_force_mul = 0.7,
@@ -543,7 +544,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-	self.fex.group_ai_settings.reenforce_interval_mul = nil
 
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 
@@ -583,7 +583,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
-		reenforce_interval_mul = 0.5,
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
 		},

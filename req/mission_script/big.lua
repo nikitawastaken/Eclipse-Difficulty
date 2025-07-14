@@ -92,21 +92,25 @@ return {
 			{ 43, 44, 51 },
 		},
 	},
-	[105844] = {
+	[100109] = { -- Police
+		reinforce = {
+			{
+				name = "entrance",
+				force = 3,
+				position = Vector3(4400, 0, -1100),
+			},
+		},
+	},
+	[100833] = { -- C4 Escape
 		reinforce = {
 			{
 				name = "meetingroom",
 				force = 2,
 				position = Vector3(-3400, 1000, -600),
 			},
-			{
-				name = "outside_vault",
-				force = 2,
-				position = Vector3(-3000, 500, -1000),
-			},
 		},
 	},
-	[100834] = {
+	[100834] = { -- Elevator Escape
 		reinforce = {
 			{
 				name = "elevator",
@@ -115,7 +119,7 @@ return {
 			},
 		},
 	},
-	[104523] = {
+	[104523] = { -- Bus Escape
 		reinforce = {
 			{
 				name = "bus",
