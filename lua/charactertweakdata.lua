@@ -1132,8 +1132,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		"marksman",
 		"special",
 	}
-	self.city_sniper.HEALTH_INIT = 20
-	self.city_sniper.headshot_dmg_mul = 2.5 -- 80 head health
+	self.city_sniper.HEALTH_INIT = 24
+	self.city_sniper.headshot_dmg_mul = 2.5 -- 96 head health
 	self.city_sniper.priority_shout = "f34"
 	self.city_sniper.chatter = self.presets.enemy_chatter.no_chatter
 	self.city_sniper.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
@@ -1159,8 +1159,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	table.insert(self._enemy_list, "fbi_shield")
 
 	self.city_shield = deep_clone(self.shield)
-	self.city_shield.HEALTH_INIT = 28
-	self.city_shield.headshot_dmg_mul = 2.5 -- 112 head health
+	self.city_shield.HEALTH_INIT = 36
+	self.city_shield.headshot_dmg_mul = 2.5 -- 144 head health
 	self.city_shield.ecm_vulnerability = 0
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.city_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
@@ -1200,8 +1200,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_shield = deep_clone(self.fbi_shield)
 	table.insert(self._enemy_list, "zeal_shield")
 
-	self.taser.HEALTH_INIT = 32
-	self.taser.headshot_dmg_mul = 2.5 -- 128 head health
+	self.taser.HEALTH_INIT = 36
+	self.taser.headshot_dmg_mul = 2.5 -- 144 head health
 	self.taser.min_obj_interrupt_dis = 1000
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
@@ -1235,8 +1235,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
 
-	self.spooc.HEALTH_INIT = 16
-	self.spooc.headshot_dmg_mul = 2.5 -- 64 head health
+	self.spooc.HEALTH_INIT = 18
+	self.spooc.headshot_dmg_mul = 3.75 -- 48 head health
 	self.spooc.min_obj_interrupt_dis = 800
 	self.spooc.spooc_attack_use_smoke_chance = 0
 	self.spooc.spooc_attack_move_speed_mul = 1.75
@@ -1246,8 +1246,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
 
-	self.medic.HEALTH_INIT = 24
-	self.medic.headshot_dmg_mul = 2.5 -- 96 head health
+	self.medic.HEALTH_INIT = 30
+	self.medic.headshot_dmg_mul = 2.5 -- 120 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.use_animation_on_fire_damage = true
 	self.medic.can_be_healed = false
