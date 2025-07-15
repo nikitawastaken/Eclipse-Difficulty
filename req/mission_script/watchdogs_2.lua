@@ -64,7 +64,7 @@ local function cloaker_add(id)
 	} or nil
 end
 
-local john_boat_driver_chance = math.random() < 0.1
+local john_boat_driver_chance = math.random() <= 0.1
 
 local john_dialogue_1 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_01" or "bot_wd2_01"
 local john_dialogue_2 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_05" or "bot_wd2_02"

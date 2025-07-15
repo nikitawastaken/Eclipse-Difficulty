@@ -3,12 +3,13 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
+local us_soldier_3 = scripted_enemy.soldier_4
 local patches = {
 	soldiers = {
 		soldier_spawn = table.set(100003, 100005, 100007),
 	},
 }
-local us_soldiers = { [us_soldier_1] = 3, [us_soldier_2] = 1 }
+local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1 }
 
 M["levels/instances/unique/crojob/veh_truck_police_anim_01_stage_02/world/world"] = function(result)
 	local soldier_tweaks = patches.soldiers
