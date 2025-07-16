@@ -855,7 +855,9 @@ end
 
 Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_data)
 	self.tweak_data = tweak_data
-
+	
+	self.sentry_gun.DAMAGE = 1
+	
 	self.trip_mines = {
 		delay = 0.1,
 		damage = 200,
