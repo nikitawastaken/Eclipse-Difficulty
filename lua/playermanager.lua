@@ -206,6 +206,13 @@ function PlayerManager:on_headshot_dealt()
 		end
 	end
 
+	local damage_ext = player_unit:character_damage()
+	local regen_health_bonus = managers.player:upgrade_value("player", "headshot_regen_health_bonus", 0)
+
+	if damage_ext and regen_health_bonus > 0 then
+		damage_ext:restore_health(regen_health_bonus, true)
+	end
+
 	-- snp_charged_shot has to be put here because check_skills() is only called once at the initialization
 	if self:has_category_upgrade("snp", "charged_shot") and self._charged_shot_allowed then
 		self:register_message(Message.OnWeaponFired, "graze_damage", callback(SniperGrazeDamage, SniperGrazeDamage, "on_weapon_fired"))

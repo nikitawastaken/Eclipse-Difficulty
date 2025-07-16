@@ -1489,7 +1489,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.headshot_regen_health_bonus[1] = 0.5
+	self.values.player.headshot_regen_health_bonus = { 0.5 }
 	self.definitions.player_extra_health_multiplier_2 = {
 		name_id = "menu_player_health_multiplier",
 		category = "feature",
