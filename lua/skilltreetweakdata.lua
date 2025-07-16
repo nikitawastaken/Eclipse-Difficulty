@@ -511,7 +511,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- gmb
 	self.specializations[10].category = { "healing", "support" }
 	-- grd
-	self.specializations[11].category = "healing"
+	self.specializations[11].category = { "health", "healing" }
 	-- yak
 	self.specializations[12].category = "dodge"
 	-- exp
@@ -580,6 +580,18 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[10][7].upgrades = { "player_pickup_restore_health_2", "player_passive_health_multiplier_1", "player_passive_health_multiplier_2" }
 	self.specializations[10][9].upgrades = { "player_increased_pickup_area_gambler", "player_passive_loot_drop_multiplier" }
 
+	-- Grinder
+	self.specializations[11][1].upgrades = { "player_passive_health_regen" }
+	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion" }
+	self.specializations[11][5].upgrades = { "player_headshot_regen_health_bonus_1" }
+	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
+	self.specializations[11][9].upgrades = { "player_damage_to_hot_1", "player_damage_to_hot_2", "player_damage_to_hot_3" }
+
+	-- Ex-President
+	table.delete(self.specializations[13][3].upgrades, "player_passive_health_multiplier_1")
+	table.delete(self.specializations[13][5].upgrades, "player_passive_health_multiplier_2")
+	table.delete(self.specializations[13][7].upgrades, "player_passive_health_multiplier_3")
+
 	-- yakuza
 	self.specializations[12][1].upgrades = { "player_armor_regen_damage_health_ratio_multiplier_1", "player_armor_regen_damage_health_ratio_threshold_multiplier" }
 	self.specializations[12][3].upgrades = { "weapon_passive_swap_speed_multiplier_1" }
@@ -590,14 +602,6 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[12][7].upgrades = { "player_dodge_health_ratio_multiplier" }
 	self.specializations[12][7].icon_xy = { 1, 8 }
 	self.specializations[12][9].upgrades = { "player_damage_health_ratio_multiplier", "player_damage_damage_health_ratio_threshold_multiplier", "player_passive_loot_drop_multiplier" }
-
-	-- Grinder and Ex-President
-	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_1")
-	table.delete(self.specializations[11][3].upgrades, "player_passive_health_multiplier_2")
-	table.delete(self.specializations[11][7].upgrades, "player_passive_health_multiplier_3")
-	table.delete(self.specializations[13][3].upgrades, "player_passive_health_multiplier_1")
-	table.delete(self.specializations[13][5].upgrades, "player_passive_health_multiplier_2")
-	table.delete(self.specializations[13][7].upgrades, "player_passive_health_multiplier_3")
 
 	-- Maniac
 	table.insert(self.specializations[14][3].upgrades, "player_panic_suppression")

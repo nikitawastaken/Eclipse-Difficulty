@@ -1237,11 +1237,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[1][9].multiperk = "4%"
 
 	-- Muscle
-	self.values.player.passive_health_regen = { 0.8 }
 	self.values.temporary.mrwi_health_invulnerable[1][1] = 0.25
 	self.values.temporary.mrwi_health_invulnerable[1][3] = 60
 	self.specialization_descs[2][9].multiperk = "40%"
-	self.specialization_descs[2][9].multiperk2 = "8"
 	self.specialization_descs[2][7].multiperk = "25%"
 	self.specialization_descs[2][7].multiperk2 = "2"
 	self.specialization_descs[2][7].multiperk3 = "60"
@@ -1480,22 +1478,38 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[10][9].multiperk = "100%"
 
 	-- Grinder
-	self.damage_to_hot_data.tick_time = 0.5
-	self.damage_to_hot_data.total_ticks = 3
-	self.damage_to_hot_data.stacking_cooldown = 1.25
-	self.values.player.damage_to_hot_extra_ticks[1] = 2
-	self.damage_to_hot_data.armors_allowed = { "level_1" }
-	self.specialization_descs[11][1].multiperk2 = "0.5"
-	self.specialization_descs[11][3].multiperk2 = "0.5"
-	self.specialization_descs[11][5].multiperk2 = "0.5"
-	self.specialization_descs[11][7].multiperk2 = "0.5"
-	self.specialization_descs[11][9].multiperk2 = "0.5"
-	self.specialization_descs[11][1].multiperk3 = "1.5"
-	self.specialization_descs[11][3].multiperk3 = "1.5"
-	self.specialization_descs[11][5].multiperk3 = "1.5"
-	self.specialization_descs[11][7].multiperk3 = "1.5"
-	self.specialization_descs[11][9].multiperk3 = "2.5"
-	self.specialization_descs[11][1].multiperk4 = "1.25"
+	self.values.player.passive_health_regen = { 0.5 }
+	self.values.player.extra_health_multiplier = { 1.3, 1.6 }
+	self.definitions.player_extra_health_multiplier_1 = {
+		name_id = "menu_player_health_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "extra_health_multiplier",
+			category = "player"
+		}
+	}
+	self.values.player.headshot_regen_health_bonus[1] = 0.5
+	self.definitions.player_extra_health_multiplier_2 = {
+		name_id = "menu_player_health_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "extra_health_multiplier",
+			category = "player"
+		}
+	}
+	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
+	self.damage_to_hot_data.stacking_cooldown = 1
+	self.specialization_descs[11][1].multiperk = "5"
+	self.specialization_descs[11][1].multiperk2 = "5"
+	self.specialization_descs[11][3].multiperk = "30%"
+	self.specialization_descs[11][5].multiperk = "5"
+	self.specialization_descs[11][7].multiperk = "30%"
+	self.specialization_descs[11][9].multiperk = "3"
+	self.specialization_descs[11][9].multiperk2 = "0.3"
+	self.specialization_descs[11][9].multiperk3 = "3"
+	self.specialization_descs[11][9].multiperk4 = "1"
 
 	-- Yakuza
 	self.values.player.damage_health_ratio_multiplier = { 0.30 }
