@@ -77,9 +77,6 @@ local optsSniper_SO = {
 	interval = 2,
 	so_action = "AI_sniper",
 }
-local Bain_sendsnipers = {
-	dialogue = "play_pln_gen_snip_01",
-}
 local spawn_snipers = {
 	enabled = true,
 	trigger_times = 1,
@@ -93,7 +90,6 @@ local spawn_snipers = {
 }
 local Bain_sendsnipers = {
 	dialogue = "play_pln_gen_snip_01",
-	can_not_be_muted = true,
 }
 
 M.elements = {

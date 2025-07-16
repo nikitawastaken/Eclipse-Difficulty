@@ -4,8 +4,9 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local enabled_chance_elite_shield_blockade_1 = math.random() < 0.2
-local enabled_chance_elite_shield_blockade_2 = math.random() < 0.2
+local is_pro_job = Eclipse.utils.is_pro_job()
+local enabled_chance_elite_shield_blockade_1 = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
+local enabled_chance_elite_shield_blockade_2 = math.random() <= 0.2 + (is_pro_job and 0.2 or 0)
 
 local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1

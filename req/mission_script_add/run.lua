@@ -22,16 +22,16 @@ local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 
 local diff_scaling = diff_i / 8
 
-local enabled_chance_alleyway_wall = math.random() < diff_scaling
-local enabled_chance_alleyway_dozer = math.random() < diff_scaling
-local enabled_chance_alleyway_spook1 = math.random() < diff_scaling
-local enabled_chance_alleyway_spook2 = math.random() < diff_scaling
-local enabled_chance_parkinglot_spook1 = math.random() < diff_scaling
-local enabled_chance_parkinglot_spook2 = math.random() < diff_scaling
-local enabled_chance_sniper_major_rooftop = math.random() < diff_scaling
-local enabled_chance_sniper_armitage_underpass = math.random() < diff_scaling
-local enabled_chance_sniper_armitage_rooftop = math.random() < diff_scaling
-local enabled_chance_inkwell_dozer = math.random() < 0.8
+local enabled_chance_alleyway_wall = math.random() <= diff_scaling
+local enabled_chance_alleyway_dozer = math.random() <= diff_scaling
+local enabled_chance_alleyway_spook1 = math.random() <= diff_scaling
+local enabled_chance_alleyway_spook2 = math.random() <= diff_scaling
+local enabled_chance_parkinglot_spook1 = math.random() <= diff_scaling
+local enabled_chance_parkinglot_spook2 = math.random() <= diff_scaling
+local enabled_chance_sniper_major_rooftop = math.random() <= diff_scaling
+local enabled_chance_sniper_armitage_underpass = math.random() <= diff_scaling
+local enabled_chance_sniper_armitage_rooftop = math.random() <= diff_scaling
+local enabled_chance_inkwell_dozer = math.random() <= 0.8
 
 local optsShieldWall1 = {
 	enemy = is_eclipse and elite_shield or shield,

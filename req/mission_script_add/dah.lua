@@ -24,9 +24,9 @@ local swat_ambush_table = { swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg
 
 local diff_scaling = diff_i / 8
 
-local enabled_chance_extra_elevator_spawns = math.random() < diff_scaling
-local enabled_chance_helipad_shields = math.random() < diff_scaling
-local enabled_chance_helipad_dozer = math.random() < diff_scaling
+local enabled_chance_extra_elevator_spawns = math.random() <= diff_scaling
+local enabled_chance_helipad_shields = math.random() <= diff_scaling
+local enabled_chance_helipad_dozer = math.random() <= diff_scaling
 
 local optsCloaker = {
 	enemy = cloaker,

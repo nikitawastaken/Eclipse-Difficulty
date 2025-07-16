@@ -7,6 +7,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local army_guard = scripted_enemy.soldier_1
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
+local us_soldier_3 = scripted_enemy.soldier_4
 --local us_soldier_tank = scripted_enemy.soldier_bulldozer
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
@@ -15,17 +16,24 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
 local army_dozer_vault = {
-	enemy = is_eclipse and elite_ben_bulldozer or green_bulldozer,
+	enemy = is_eclipse and random_elite_dozers or random_dozers,
 	values = {
 		participate_to_group_ai = false,
 	},
 }
-
 local security_army = {
 	enemy = army_guard,
 }
-local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 1 }
+local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1 }
 local us_soldier = {
 	enemy = us_soldiers,
 }

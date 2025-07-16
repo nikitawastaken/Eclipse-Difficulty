@@ -26,19 +26,19 @@ local security = { security_guard_1, security_guard_1, security_guard_2, securit
 
 local diff_scaling = diff_i / 8
 
-local enabled_chance_escape_snipers = math.random() < diff_scaling
-local enabled_chance_vault_shields = math.random() < diff_scaling
-local enabled_chance_escape_shields = math.random() < diff_scaling
-local enabled_chance_vault_dozers = math.random() < diff_scaling
-local enabled_chance_escape_145_group = math.random() < diff_scaling
-local enabled_chance_escape_swats = math.random() < diff_scaling
-local enabled_chance_escape_hallway_wall = math.random() < diff_scaling
-local enabled_chance_escape_dozers = math.random() < 0.5
-local enabled_chance_escape_cloakers = math.random() < 0.5
-local enabled_chance_escape_shield_wall = math.random() < 0.75
-local enabled_chance_shield_army = math.random() < 0.6
-local enabled_chance_more_guards = math.random() < 0.2 + (is_pro_job and 0.1 or 0)
-local enabled_chance_escape_basement_cloakers = math.random() < 0.1 + (is_pro_job and 0.1 or 0)
+local enabled_chance_escape_snipers = math.random() <= diff_scaling
+local enabled_chance_vault_shields = math.random() <= diff_scaling
+local enabled_chance_escape_shields = math.random() <= diff_scaling
+local enabled_chance_vault_dozers = math.random() <= diff_scaling
+local enabled_chance_escape_145_group = math.random() <= diff_scaling
+local enabled_chance_escape_swats = math.random() <= diff_scaling
+local enabled_chance_escape_hallway_wall = math.random() <= diff_scaling
+local enabled_chance_escape_dozers = math.random() <= 0.5
+local enabled_chance_escape_cloakers = math.random() <= 0.5
+local enabled_chance_escape_shield_wall = math.random() <= 0.75
+local enabled_chance_shield_army = math.random() <= 0.3
+local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.1 or 0)
+local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.1 or 0)
 
 local optsSecurity = {
 	enemy_table = security,

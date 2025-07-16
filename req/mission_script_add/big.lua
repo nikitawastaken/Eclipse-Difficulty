@@ -9,7 +9,7 @@ local cloaker_amount = (is_eclipse and 3 or 2) + (is_pro_job and 1 or 0)
 
 local cloaker = scripted_enemy.cloaker
 
-local enabled_chance_cloakers = math.random() < 0.4 + (is_pro_job and 0.2 or 0)
+local enabled_chance_cloakers = math.random() <= 0.4 + (is_pro_job and 0.2 or 0)
 
 local optsCloaker_1 = {
 	enemy = cloaker,

@@ -14,7 +14,7 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 
-local enabled_chance_dozers = math.random() < 0.4
+local enabled_chance_dozers = math.random() <= 0.4
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 

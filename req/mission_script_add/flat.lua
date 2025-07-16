@@ -16,7 +16,7 @@ local bulldozer = scripted_enemy.bulldozer_1
 
 local diff_scaling = diff_i / 8
 
-local enabled_chance_shields = math.random() < diff_scaling
+local enabled_chance_shields = math.random() <= diff_scaling
 
 local optsSWAT_Heavy145 = {
 	enemy = heavy_sg,

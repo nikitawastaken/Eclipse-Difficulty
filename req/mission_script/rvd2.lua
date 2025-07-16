@@ -1,13 +1,8 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
 local taser = scripted_enemy.taser_1
-local taser_sg = scripted_enemy.taser_2
-local tasers = {
-	taser,
-	taser_sg,
-}
 local ambush_taser = {
-	enemy = tasers,
+	enemy = taser,
 }
 local exclude_shields = {
 	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc", "tank" },

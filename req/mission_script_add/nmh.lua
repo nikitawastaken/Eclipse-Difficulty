@@ -23,9 +23,6 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local sniper = scripted_enemy.sniper
 local cloaker = scripted_enemy.cloaker
 
-local greendozer_only = {
-	green_bulldozer,
-}
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -36,7 +33,11 @@ local random_normal_and_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local bulldozer = is_eclipse_pro and random_normal_and_elite_dozers or diff_i > 3 and random_dozers or greendozer_only
+local random_elite_dozers = {
+	elite_ben_bulldozer,
+	elite_skull_bulldozer,
+}
+local bulldozer = is_eclipse_pro and random_elite_dozers or is_eclipse and random_normal_and_elite_dozers or random_dozers
 
 local optsEliteSniper_1 = {
 	enemy = sniper,
