@@ -1184,7 +1184,6 @@ end
 
 -- Grinder extra health multiplier
 
-
 function PlayerManager:health_skill_multiplier()
 	local multiplier = 1
 	multiplier = multiplier + self:upgrade_value("player", "health_multiplier", 1) - 1

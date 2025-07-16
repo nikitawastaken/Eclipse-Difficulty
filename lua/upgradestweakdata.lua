@@ -1486,8 +1486,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "extra_health_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.headshot_regen_health_bonus[1] = 0.5
 	self.definitions.player_extra_health_multiplier_2 = {
@@ -1496,8 +1496,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 2,
 			upgrade = "extra_health_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
 	self.damage_to_hot_data.stacking_cooldown = 1
