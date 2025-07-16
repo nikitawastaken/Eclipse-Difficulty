@@ -3,7 +3,7 @@ local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local enabled_blocked_roof_access = math.random() < 0.45 + (is_pro_job and 0.1 or 0)
+local enabled_blocked_roof_access = math.random() <= 0.45 + (is_pro_job and 0.1 or 0)
 local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
 	Idstring("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"),
