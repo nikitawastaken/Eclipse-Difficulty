@@ -76,6 +76,7 @@ function WeaponTweakData:_init_weapons()
 		-- These are needed just in case
 		local category_blacklist = { 
 			["car9"] = true, 
+			["scar16"] = true, 
 		}
 		local selection_index_blacklist = {} 
 
