@@ -729,7 +729,6 @@
 			<run_sequence 		name="'la_cop'" />
 			<run_sequence 		name="'baton'" />
 			<run_sequence 		name="'belt'" />
-			<run_sequence 		name="'handcuffs_b'" />
 			<run_sequence 		name="'radio_back'" />
 			<run_sequence 		name="'armor_body'" />
 			<run_sequence 		name="'armor_shoulders'" />
@@ -748,8 +747,7 @@
 			<run_sequence 		name="'la_cop'" />
 			<run_sequence 		name="'badges_cop'" />
 			<run_sequence 		name="'belt'" />	
-			<run_sequence 		name="'handcuffs'" />
-			<run_sequence 		name="'radio_front'" />
+			<run_sequence 		name="'radio_back'" />
 			<run_sequence 		name="'random_body_a'" />			
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
@@ -904,7 +902,6 @@
 			<run_sequence 		name="'bex_cop'" />
 			<run_sequence 		name="'baton'" />
 			<run_sequence 		name="'belt'" />
-			<run_sequence 		name="'handcuffs_b'" />
 			<run_sequence 		name="'hat_bex_cop'" />
 			<run_sequence 		name="'hat_bex_cop_badge'" />
 			<run_sequence 		name="'radio_back'" />
@@ -922,8 +919,7 @@
 			<run_sequence 		name="'bex_cop'" />
 			<run_sequence 		name="'badges_bex_cop'" />
 			<run_sequence 		name="'belt'" />	
-			<run_sequence 		name="'handcuffs'" />
-			<run_sequence 		name="'radio_front'" />
+			<run_sequence 		name="'radio_back'" />
 			<run_sequence 		name="'random_body_a'" />			
 			<run_sequence 		name="'random_tie_common'" />
 			<run_sequence 		name="'random_gloves_common'" />
