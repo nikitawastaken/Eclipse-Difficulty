@@ -131,18 +131,6 @@ function WeaponTweakData:_init_weapons()
 					}
 				}
 				weap_data.fire_mode_mul = nil
-				
-				local dmr_dmg_modifier = self.new_m14.stats_modifiers.damage
-				
-				if weap_data.custom then
-					if not weap_data.stats_modifiers then
-						weap_data.stats_modifiers = { damage = dmr_dmg_modifier }
-					else
-						weap_data.stats_modifiers.damage = dmr_dmg_modifier
-					end
-					
-					self[weap_id].stats.damage = math.clamp(math.round(self[weap_id].stats.damage / dmr_dmg_modifier), 1, #self.stats.damage)
-				end
 			else
 				weap_data.spread_multiplier = {
 					standing = {
@@ -531,10 +519,10 @@ function WeaponTweakData:_init_weapons()
 		elseif cat_map.grenade_launcher or cat_map.rocket_launcher then
 			weap_data.stats.suppression = 1
 			weap_data.stats.alert_size = 17
-			weap_data.pickup_mul = weap_data.pickup_mul or cat_map.rocket_launcher and 0 or 0.225
+			weap_data.pickup_mul = weap_data.pickup_mul or cat_map.rocket_launcher and 0 or (not weap_data.use_data.selection_index == 2 and 1 / 5 or 1 / 2.5)
 			weap_data.damage_near = 1000
 			weap_data.damage_far = 2000
-			weap_data.rays = 8
+			weap_data.rays = 12
 
 			weap_data.spread_multiplier = {
 				standing = {
@@ -1283,12 +1271,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.scar.CLIP_AMMO_MAX = 20
-	self.scar.stats.damage = 24
+	self.scar.stats.damage = 48
 	self.scar.stats.spread = 18
 	self.scar.stats.recoil = 9
 	self.scar.stats.concealment = 15
 	self.scar.fire_mode_data.fire_rate = 60 / 600
-	self.scar.stats_modifiers = { damage =  2 }
 
 	-- Gewehr
 	self.g3.categories = {
@@ -1296,12 +1283,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.g3.CLIP_AMMO_MAX = 20
-	self.g3.stats.damage = 24
+	self.g3.stats.damage = 48
 	self.g3.stats.spread = 19
 	self.g3.stats.recoil = 8
 	self.g3.stats.concealment = 14
 	self.g3.fire_mode_data.fire_rate = 60 / 550
-	self.g3.stats_modifiers = { damage =  2 }
 
 	-- Gecko
 	self.galil.categories = {
@@ -1309,12 +1295,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.galil.CLIP_AMMO_MAX = 25
-	self.galil.stats.damage = 24
+	self.galil.stats.damage = 48
 	self.galil.stats.spread = 15
 	self.galil.stats.recoil = 14
 	self.galil.stats.concealment = 14
 	self.galil.fire_mode_data.fire_rate = 60 / 750
-	self.galil.stats_modifiers = { damage =  2 }
 
 	-- Falcon
 	self.fal.categories = {
@@ -1322,12 +1307,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.fal.CLIP_AMMO_MAX = 20
-	self.fal.stats.damage = 24
+	self.fal.stats.damage = 48
 	self.fal.stats.spread = 18
 	self.fal.stats.recoil = 8
 	self.fal.stats.concealment = 16
 	self.fal.fire_mode_data.fire_rate = 60 / 700
-	self.fal.stats_modifiers = { damage =  2 }
 
 	-- M308
 	self.new_m14.categories = {
@@ -1335,12 +1319,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.new_m14.CLIP_AMMO_MAX = 15
-	self.new_m14.stats.damage = 32
+	self.new_m14.stats.damage = 64
 	self.new_m14.stats.spread = 22
 	self.new_m14.stats.recoil = 6
 	self.new_m14.stats.concealment = 14
 	self.new_m14.fire_mode_data.fire_rate = 60 / 700
-	self.new_m14.stats_modifiers = { damage =  2 }
 
 	-- Cavity
 	self.sub2000.categories = {
@@ -1348,12 +1331,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.sub2000.CLIP_AMMO_MAX = 20
-	self.sub2000.stats.damage = 32
+	self.sub2000.stats.damage = 64
 	self.sub2000.stats.spread = 19
 	self.sub2000.stats.recoil = 9
 	self.sub2000.stats.concealment = 20
 	self.sub2000.fire_mode_data.fire_rate = 60 / 700
-	self.sub2000.stats_modifiers = { damage =  2 }
 
 	-- Little Friend
 	self.contraband.categories = {
@@ -1361,12 +1343,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.contraband.CLIP_AMMO_MAX = 20
-	self.contraband.stats.damage = 32
+	self.contraband.stats.damage = 64
 	self.contraband.stats.spread = 19
 	self.contraband.stats.recoil = 9
 	self.contraband.stats.concealment = 10
 	self.contraband.fire_mode_data.fire_rate = 60 / 600
-	self.contraband.stats_modifiers = { damage =  2 }
 
 	-- Little Friend GL
 	self.contraband_m203.CLIP_AMMO_MAX = 1
@@ -1383,12 +1364,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.ching.CLIP_AMMO_MAX = 8
-	self.ching.stats.damage = 36
+	self.ching.stats.damage = 64
 	self.ching.stats.spread = 22
 	self.ching.stats.recoil = 6
 	self.ching.stats.concealment = 15
 	self.ching.fire_mode_data.fire_rate = 60 / 600
-	self.ching.stats_modifiers = { damage =  2 }
 
 	-- KS12
 	self.shak12.categories = {
@@ -1396,13 +1376,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		"assault_rifle"
 	}
 	self.shak12.CLIP_AMMO_MAX = 20
-	self.shak12.stats.damage = 32
+	self.shak12.stats.damage = 64
 	self.shak12.stats.spread = 16
 	self.shak12.stats.recoil = 8
 	self.shak12.stats.concealment = 20
 	self.shak12.fire_mode_data.fire_rate = 60 / 500
-	self.shak12.reload_speed_multiplier = 0.7
-	self.shak12.stats_modifiers = { damage =  2 }
+	self.shak12.reload_speed_multiplier = 0.75
 
 	-- Pistols
 
@@ -2545,13 +2524,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		launcher_poison = "launcher_poison_ms3gl",
 	}
 	self.ms3gl.CLIP_AMMO_MAX = 3
-	self.ms3gl.stats.damage = 48
+	self.ms3gl.stats.damage = 40
 	self.ms3gl.stats.spread = 19
 	self.ms3gl.stats.recoil = 21
 	self.ms3gl.stats.concealment = 24
 	self.ms3gl.fire_mode_data.fire_rate = 60 / 90
 	self.ms3gl.timers.equip = 0.75
-	self.ms3gl.stats_modifiers = { damage = 5 }
+	self.ms3gl.stats_modifiers = { damage = 6 }
 	self.ms3gl.FIRE_MODE = "single"
 	self.ms3gl.CAN_TOGGLE_FIREMODE = false
 
@@ -2563,12 +2542,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.arbiter.use_data.selection_index = 2
 	self.arbiter.CLIP_AMMO_MAX = 5
-	self.arbiter.stats.damage = 48
+	self.arbiter.stats.damage = 40
 	self.arbiter.stats.spread = 25
 	self.arbiter.stats.recoil = 25
 	self.arbiter.stats.concealment = 20
 	self.arbiter.fire_mode_data.fire_rate = 60 / 90
-	self.arbiter.stats_modifiers = { damage = 5 }
+	self.arbiter.stats_modifiers = { damage = 6 }
 
 	-- Piglet
 	self.m32.projectile_types = {
@@ -2577,13 +2556,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		launcher_poison = "launcher_poison_m32",
 	}
 	self.m32.CLIP_AMMO_MAX = 6
-	self.m32.stats.damage = 60
+	self.m32.stats.damage = 50
 	self.m32.stats.spread = 21
 	self.m32.stats.recoil = 23
 	self.m32.stats.concealment = 16
 	self.m32.fire_mode_data.fire_rate = 60 / 60
 	self.m32.reload_speed_multiplier = 1.5
-	self.m32.stats_modifiers = { damage = 5 }
+	self.m32.stats_modifiers = { damage = 6 }
 
 	-- China Puff
 	self.china.projectile_types = {
@@ -2593,12 +2572,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.china.use_data.selection_index = 2
 	self.china.CLIP_AMMO_MAX = 3
-	self.china.stats.damage = 60
+	self.china.stats.damage = 50
 	self.china.stats.spread = 23
 	self.china.stats.recoil = 23
 	self.china.stats.concealment = 15
 	self.china.fire_mode_data.fire_rate = 60 / 50
-	self.china.stats_modifiers = { damage = 5 }
+	self.china.stats_modifiers = { damage = 6 }
 
 	-- GL40
 	self.gre_m79.projectile_types = {
@@ -2608,12 +2587,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.gre_m79.use_data.selection_index = 1
 	self.gre_m79.CLIP_AMMO_MAX = 1
-	self.gre_m79.stats.damage = 72
+	self.gre_m79.stats.damage = 60
 	self.gre_m79.stats.spread = 25
 	self.gre_m79.stats.recoil = 25
 	self.gre_m79.stats.concealment = 22
 	self.gre_m79.fire_mode_data.fire_rate = 60 / 60
-	self.gre_m79.stats_modifiers = { damage = 5 }
+	self.gre_m79.stats_modifiers = { damage = 6 }
 
 	-- Compact 40
 	self.slap.projectile_types = {
@@ -2622,7 +2601,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		launcher_poison = "launcher_poison_slap",
 	}
 	self.slap.CLIP_AMMO_MAX = 1
-	self.slap.stats.damage = 72
+	self.slap.stats.damage = 60
 	self.slap.stats.spread = 21
 	self.slap.stats.recoil = 23
 	self.slap.stats.concealment = 24
@@ -2630,7 +2609,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.slap.reload_speed_multiplier = 1.2
 	self.slap.timers.reload_not_empty = 3.1
 	self.slap.timers.reload_empty = self.slap.timers.reload_not_empty
-	self.slap.stats_modifiers = { damage = 5 }
+	self.slap.stats_modifiers = { damage = 6 }
 
 	-- Commando 101
 	self.ray.use_data.selection_index = 2

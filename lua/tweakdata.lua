@@ -40,7 +40,7 @@ tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 1.5
 
 local function create_explosive_arrow(base_arrow)
 	local explosive_arrow = deep_clone(base_arrow)
-	local damage = explosive_arrow.damage
+	local damage = base_arrow.damage
 	explosive_arrow.bullet_class = "InstantExplosiveBulletBase"
 	explosive_arrow.damage = damage * 1.5
 	explosive_arrow.remove_on_impact = true
@@ -50,7 +50,7 @@ end
 
 local function create_poison_arrow(base_arrow)
 	local poison_arrow = deep_clone(base_arrow)
-	local damage = poison_arrow.damage
+	local damage = base_arrow.damage
 	poison_arrow.bullet_class = "PoisonBulletBase"
 	poison_arrow.damage = damage * 0.25
 
@@ -59,11 +59,11 @@ end
 
 local function create_incendiary_grenade(base_grenade, class)
 	local incendiary_grenade = deep_clone(base_grenade)
-	local damage = incendiary_grenade.damage
+	local damage = base_grenade.damage
 	incendiary_grenade.dot_data_name = "proj_launcher_incendiary_" .. class
-	incendiary_grenade.burn_duration = math.max(1, damage / 12)
-	incendiary_grenade.damage = base_grenade.damage * 0.25
-	incendiary_grenade.burn_tick_period = 0.25
+	incendiary_grenade.burn_duration = math.max(1, damage / 4)
+	incendiary_grenade.damage = math.round(damage / 4)
+	incendiary_grenade.burn_tick_period = 0.5
 	incendiary_grenade.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
 
 	return incendiary_grenade
@@ -71,10 +71,10 @@ end
 
 local function create_electric_grenade(base_grenade)
 	local electric_grenade = deep_clone(base_grenade)
-	local damage = electric_grenade.damage
-	electric_grenade.damage = base_grenade.damage * 0.75
+	local damage = base_grenade.damage
+	electric_grenade.damage = math.round(damage / 2)
 	electric_grenade.curve_pow = 3
-	electric_grenade.range = 4 * (electric_grenade.range / 3)
+	electric_grenade.range = 4 * (base_grenade.range / 3)
 	electric_grenade.projectile_trail = true
 	electric_grenade.sound_event = "gl_electric_explode"
 
@@ -83,12 +83,12 @@ end
 
 local function create_poison_grenade(base_grenade, class)
 	local poison_grenade = deep_clone(base_grenade)
-	local damage = poison_grenade.damage
+	local damage = base_grenade.damage
 	poison_grenade.poison_gas_dot_data_name = "proj_launcher_poison_" .. class
 	poison_grenade.poison_gas_range = (damage / 24) * 150
-	poison_grenade.poison_gas_duration = math.max(1, damage / 8)
-	poison_grenade.damage = base_grenade.damage * 0.05
-	poison_grenade.poison_gas_fade_time = poison_grenade.poison_gas_duration * 0.2
+	poison_grenade.poison_gas_duration = math.max(1, damage / 3)
+	poison_grenade.damage = math.round(damage / 8)
+	poison_grenade.poison_gas_fade_time = poison_grenade.poison_gas_duration / 5
 	poison_grenade.poison_gas_tick_time = 0.5
 	poison_grenade.projectile_trail = true
 
@@ -157,7 +157,7 @@ tweak_data.projectiles.frankish_poison_arrow = create_poison_arrow(tweak_data.pr
 tweak_data.projectiles.arblast_poison_arrow = create_poison_arrow(tweak_data.projectiles.arblast_arrow)
 
 tweak_data.projectiles.frag = {
-	damage = 36,
+	damage = 48,
 	curve_pow = 1,
 	player_damage = 1,
 	range = 500,

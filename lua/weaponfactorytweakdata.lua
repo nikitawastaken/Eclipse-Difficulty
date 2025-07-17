@@ -57,7 +57,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 			local shortdot = id == "wpn_fps_upg_o_shortdot" or id == "wpn_fps_upg_o_shortdot_vanilla"
 			local claymore = id == "wpn_fps_hailstorm_o_claymore"
-			if is_optic and not shortdot and not claymore then
+			
+			if is_optic and not default_sights[id] then
 				part.stats.concealment = -1
 				part.stats.recoil = 1
 				part.stats.spread = 0
@@ -1705,55 +1706,55 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 		wpn_fps_upg_a_grenade_launcher_incendiary = {
 			heavy = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.5, ammo_pickup_min_mul = 0.5, launcher_grenade = "launcher_incendiary" },
+				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 			medium = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.5, ammo_pickup_min_mul = 0.5, launcher_grenade = "launcher_incendiary" },
+				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 			light = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.5, ammo_pickup_min_mul = 0.5, launcher_grenade = "launcher_incendiary" },
+				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 			default = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.5, ammo_pickup_min_mul = 0.5, launcher_grenade = "launcher_incendiary" },
+				custom_stats = { ammo_pickup_max_mul = 0.6, ammo_pickup_min_mul = 0.6, launcher_grenade = "launcher_incendiary" },
 			},
 		},
 		wpn_fps_upg_a_grenade_launcher_electric = {
 			heavy = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75, launcher_grenade = "launcher_electric" },
+				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 			medium = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75, launcher_grenade = "launcher_electric" },
+				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 			light = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75, launcher_grenade = "launcher_electric" },
+				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 			default = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75, launcher_grenade = "launcher_electric" },
+				custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8, launcher_grenade = "launcher_electric" },
 			},
 		},
 		wpn_fps_upg_a_grenade_launcher_poison = {
 			heavy = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.35, ammo_pickup_min_mul = 0.35, launcher_grenade = "launcher_poison" },
+				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 			medium = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.35, ammo_pickup_min_mul = 0.35, launcher_grenade = "launcher_poison" },
+				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 			light = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.35, ammo_pickup_min_mul = 0.35, launcher_grenade = "launcher_poison" },
+				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 			default = {
 				stats = { damage = 0 },
-				custom_stats = { ammo_pickup_max_mul = 0.35, ammo_pickup_min_mul = 0.35, launcher_grenade = "launcher_poison" },
+				custom_stats = { ammo_pickup_max_mul = 0.4, ammo_pickup_min_mul = 0.4, launcher_grenade = "launcher_poison" },
 			},
 		},
 	}
@@ -2028,8 +2029,6 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			value = 4,
 		},
 		custom_stats = {
-			ammo_pickup_min_mul = 2,
-			ammo_pickup_max_mul = 2,
 			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 		},
 		override = {
@@ -2067,8 +2066,6 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			value = 2,
 		},
 		custom_stats = {
-			ammo_pickup_min_mul = 1.5,
-			ammo_pickup_max_mul = 1.5,
 			muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 		},
 		override = {
@@ -2086,16 +2083,16 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 
 	local sting_stats = {
 		light = {
-			damage = -16,
-			spread = -12,
+			damage = -36,
+			spread = -6,
 		},
 		medium = {
-			damage = -20,
-			spread = -12,
+			damage = -46,
+			spread = -6,
 		},
 		heavy = {
-			damage = -24,
-			spread = -12,
+			damage = -55,
+			spread = -6,
 		},
 	}
 
@@ -2196,6 +2193,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
+				stance_mul = shotgun_stance_muls,
 				sounds = {
 					fire_single = "hornet_fire",
 				},
@@ -2250,8 +2248,8 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 		},
 	}
 	local launcher_value = self.parts.wpn_fps_upg_a_grenade_launcher_hornet.stats.value
-	local launcher_pickup_min = self.parts.wpn_fps_upg_a_grenade_launcher_hornet.custom_stats.ammo_pickup_min_mul
-	local launcher_pickup_max = self.parts.wpn_fps_upg_a_grenade_launcher_hornet.custom_stats.ammo_pickup_max_mul
+	local launcher_pickup_min = 1.5
+	local launcher_pickup_max = launcher_pickup_min
 	local fps_data, npc_data, hornet_override = nil
 
 	for factory_id, override in pairs(grenade_launchers) do
