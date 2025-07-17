@@ -55,8 +55,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				part.stats.damage = math.round(part.stats.damage / 2.5)
 			end
 
-			local shortdot = id == "wpn_fps_upg_o_shortdot" or id == "wpn_fps_upg_o_shortdot_vanilla"
-			local claymore = id == "wpn_fps_hailstorm_o_claymore"
+			local default_sights = {
+				wpn_fps_upg_o_shortdot = true,
+				wpn_fps_upg_o_shortdot_vanilla = true,
+				wpn_fps_hailstorm_o_claymore = true,
+			}
 
 			if is_optic and not default_sights[id] then
 				part.stats.concealment = -1
