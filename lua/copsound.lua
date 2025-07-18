@@ -54,6 +54,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		end
 	end
 
+	-- fix one of the latin thug quotes being missing
 	if self._prefix == "lt1_" then
 		if sound_name == "g90" then
 			sound_name = "c01"
@@ -105,7 +106,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		end
 	end
 
-	-- give regular clear lines for radio filtered enemies in stelf
+	-- give regular clear lines for radio filtered enemies in stelf (just in case for maps that has heavy guards)
 	if self._prefix == "l1d_" or self._prefix == "l2d_" or self._prefix == "l3d_" or self._prefix == "l4d_" or self._prefix == "l5d_" then
 		if sound_name == "a05" or sound_name == "a06" then
 			sound_name = "clr"
@@ -144,9 +145,9 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		if sound_name == "x01a_any_3p" then
 			if self._unit:base():has_tag("spooc") then
 				if faction == "russia" then
-					full_sound = "rclk_x01a_any_3p" -- weird he has hurt noises but the regular cloaker doesnt
+					full_sound = "rclk_x01a_any_3p"
 				else
-					full_sound = full_sound
+					full_sound = "l2d_x01a_any_3p" -- give him radio filtered hurting sounds since he doesn't have any unlike foregin cloakers
 				end
 			end
 			if self._unit:base():has_tag("taser") then
