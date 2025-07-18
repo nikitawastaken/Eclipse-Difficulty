@@ -529,7 +529,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
 	self.mex.group_ai_settings.assault_force_mul = 0.7
-	
+
 	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
 
 	self.bex.group_ai_settings = {
