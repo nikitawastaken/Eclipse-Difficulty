@@ -2095,14 +2095,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 3 },
 		spawn = {
 			{
-				freq_by_diff = { 0, 0.5, 1.5 },
+				freq_by_diff = { 0, 1, 2 },
 				amount_max = 2,
 				rank = 3,
 				unit = "fbi_agent_2_3",
 				tactics = self._tactics.cop_init,
 			},
 			{
-				freq = 1,
+				freq = 1.5,
 				amount_min = 1,
 				amount_max = 2,
 				rank = 2,
@@ -2111,7 +2111,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq_by_diff = {
-					45 / (difficulty_index ^ 2),
+					60 / (difficulty_index ^ 2),
 					15 / (difficulty_index ^ 2),
 					0,
 				},
@@ -3372,8 +3372,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	else
 		self.besiege.assault.groups = {
 			cs_swats = { 24, 0, 0 },
-			fbi_swats = { 48, 36, 0 },
-			elite_swats = { 0, 18, 36 },
+			fbi_swats = { 48, 24, 0 },
+			elite_swats = { 0, 24, 36 },
 
 			fbi_heavies = { 0, 18, 36 },
 
