@@ -2112,7 +2112,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq_by_diff = {
 					60 / (difficulty_index ^ 2),
-					15 / (difficulty_index ^ 2),
+					20 / (difficulty_index ^ 2),
 					0,
 				},
 				amount_max = 2,
