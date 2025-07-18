@@ -222,7 +222,7 @@ return {
 	-- make the SWAT events happen earlier if it's Firestater Day 3 or Bank Heist if it's on eclipsepj
 	[100438] = {
 		on_executed = {
-			{ id = 103540, remove = (bank_heist and not is_eclipse_pro) and true or false },
+			{ id = 103540, remove = (bank_heist and not is_eclipse_pro) and true or nil, delay = 0 },
 		},
 	},
 	-- enable max diff after 2 instead of 3 assault waves
@@ -245,12 +245,12 @@ return {
 	-- heavies
 	[101433] = {
 		on_executed = {
-			{ id = 102296, delay = not eclipse and 0 or nil },
+			{ id = 102296, delay = 0, remove = eclipse and true or nil },
 		},
 	},
 	[105620] = {
 		on_executed = {
-			{ id = 102296, delay = not eclipse and 0 or nil },
+			{ id = 102296, delay = 0, remove = eclipse and true or nil },
 		},
 	},
 	-- dozers
