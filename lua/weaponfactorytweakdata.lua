@@ -60,7 +60,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				wpn_fps_upg_o_shortdot_vanilla = true,
 				wpn_fps_hailstorm_o_claymore = true,
 			}
-			
+
 			if is_optic and not default_sights[id] then
 				part.stats.concealment = -1
 				part.stats.recoil = 1
@@ -1801,9 +1801,9 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 
 				if grenade_launcher_ammo_overrides[part_id] and grenade_launcher_ammo_overrides[part_id][ammo_override] then
 					self[factory_id].override[part_id] = grenade_launcher_ammo_overrides[part_id][ammo_override]
-						
+
 					local grenade_type = self[factory_id].override[part_id].custom_stats and self[factory_id].override[part_id].custom_stats.launcher_grenade
-					
+
 					if grenade_type and type(grenade_type) == "string" then
 						self[factory_id].override[part_id].custom_stats.launcher_grenade = grenade_type .. (based_on_weapon_id or weapon_id)
 					end

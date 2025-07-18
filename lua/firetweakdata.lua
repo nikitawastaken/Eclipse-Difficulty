@@ -33,7 +33,7 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.fire.weapon_money.fire_effect_variant = "endless_money"
 
 	self.dot_entries.fire.weapon_kacchainsaw_flamethrower = clone(self.dot_entries.fire.weapon_flamethrower_mk2)
-	
+
 	self.dot_entries.fire.ammo_dragons_breath.dot_damage = 3.6
 	self.dot_entries.fire.ammo_dragons_breath.dot_length = 3
 	self.dot_entries.fire.ammo_dragons_breath.dot_trigger_chance = trigger_chance_dragons

@@ -16,7 +16,7 @@ function EnvEffectTweakData:molotov_fire()
 		burn_tick_period = 0.5,
 		burn_duration = 15,
 		dot_data_name = "proj_molotov_groundfire",
-		effect_name = "effects/payday2/particles/explosions/molotov_grenade"
+		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
 	}
 
 	return params
@@ -37,7 +37,7 @@ function EnvEffectTweakData:incendiary_fire()
 		burn_tick_period = 0.5,
 		burn_duration = 6,
 		dot_data_name = "proj_launcher_incendiary_arbiter_groundfire",
-		effect_name = "effects/payday2/particles/explosions/molotov_grenade"
+		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
 	}
 
 	return params
@@ -58,7 +58,7 @@ function EnvEffectTweakData:incendiary_fire_arbiter()
 		burn_tick_period = 0.5,
 		burn_duration = 4,
 		dot_data_name = "proj_launcher_incendiary_arbiter_groundfire",
-		effect_name = "effects/payday2/particles/explosions/molotov_grenade"
+		effect_name = "effects/payday2/particles/explosions/molotov_grenade",
 	}
 
 	return params
