@@ -66,12 +66,13 @@ function WeaponTweakData:_init_weapons()
 	for k, v in pairs(self:get_akimbo_mappings()) do
 		akimbo_single_map[v] = k
 	end
-	
+		
 	for weap_id, weap_data in pairs(self) do
+		local based_on_id = weap_data.custom and weap_data.based_on or nil
+		local based_on_data = based_on_id and self[based_on_id]
+	
 		if type(weap_data) == "table" and weap_data.stats then
 		-- Automatically assign new weapon (sub)categories to custom weapons to avoid stat discrepancies 
-		local based_on_id = weap_data.custom and weap_data.based_on or nil
-		local based_on_data = self[based_on_id]
 		
 		-- These are needed just in case
 		local category_blacklist = { 
@@ -96,7 +97,7 @@ function WeaponTweakData:_init_weapons()
 		
 		local cat_map = table.list_to_set(weap_data.categories)
 		local is_browning_mg = weap_id == "ranc_heavy_machine_gun"
-		
+
 		--catch-all stat setups
 		if cat_map.assault_rifle and not is_browning_mg then
 			weap_data.stats.suppression = cat_map.dmr and 1 or 11
@@ -471,6 +472,13 @@ function WeaponTweakData:_init_weapons()
 			weap_data.stats.alert_size = 20
 			weap_data.steelsight_time = steelsight_times.snp
 			weap_data.steelsight_move_speed_mul = 0.45
+
+			-- Increase Sniper Rifle ammo based on damage
+			local dmg_mul = based_on_data and based_on_data.stats_modifiers and based_on_data.stats_modifiers.damage or weap_data.stats_modifiers and  weap_data.stats_modifiers.damage or 0
+			local snp_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
+			
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 0.675 + (snp_ammo_mul * 0.25)
+			weap_data.pickup_mul = weap_data.pickup_mul or 1 + (snp_ammo_mul * 0.125)
 			
 			weap_data.spread_multiplier = {
 				standing = {
@@ -1524,7 +1532,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Crosskill
 	self.colt_1911.CLIP_AMMO_MAX = 10
 	self.colt_1911.stats.damage = 36
-	self.colt_1911.stats.spread = 18
+	self.colt_1911.stats.spread = 17
 	self.colt_1911.stats.recoil = 11
 	self.colt_1911.stats.concealment = 29
 	self.colt_1911.fire_mode_data.fire_rate = 60 / 600
@@ -1582,7 +1590,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sparrow.CLIP_AMMO_MAX = 12
 	self.sparrow.stats.damage = 48
 	self.sparrow.stats.spread = 18
-	self.sparrow.stats.recoil = 9
+	self.sparrow.stats.recoil = 10
 	self.sparrow.stats.concealment = 29
 	self.sparrow.fire_mode_data.fire_rate = 60 / 600
 
@@ -2390,7 +2398,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r93.stats.concealment = 10
 	self.r93.fire_mode_data.fire_rate = 60 / 50
 	self.r93.fire_rate_multiplier = 1
-	self.r93.stats_modifiers = { damage = 3 }
+	self.r93.stats_modifiers = { damage = 4 }
 
 	-- Platypus
 	table.insert(self.model70.categories, "bolt_action")
@@ -2401,7 +2409,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.model70.stats.concealment = 12
 	self.model70.fire_mode_data.fire_rate = 60 / 60
 	self.model70.reload_speed_multiplier = 1.25
-	self.model70.stats_modifiers = { damage = 3 }
+	self.model70.stats_modifiers = { damage = 4 }
 	
 	-- Desert Fox
 	table.insert(self.desertfox.categories, "bolt_action")
@@ -2412,7 +2420,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.desertfox.stats.concealment = 19
 	self.desertfox.fire_mode_data.fire_rate = 60 / 45
 	self.desertfox.fire_rate_multiplier = 50 / 45
-	self.desertfox.stats_modifiers = { damage = 3 }
+	self.desertfox.stats_modifiers = { damage = 4 }
 
 	-- Aran
 	self.contender.CLIP_AMMO_MAX = 1
@@ -2425,7 +2433,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contender.timers.reload_not_empty = self.contender.timers.reload_empty
 	self.contender.timers.reload_steelsight = self.contender.timers.reload_empty
 	self.contender.timers.reload_steelsight_not_empty = self.contender.timers.reload_empty
-	self.contender.stats_modifiers = { damage = 3 }
+	self.contender.stats_modifiers = { damage = 4 }
 	self.contender.ignore_damage_upgrades = nil
 	self.contender.rays = nil
 
@@ -2437,7 +2445,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.awp.stats.recoil = 4
 	self.awp.stats.concealment = 10
 	self.awp.fire_mode_data.fire_rate = 60 / 45
-	self.awp.stats_modifiers = { damage = 3 }
+	self.awp.stats_modifiers = { damage = 4 }
 	
 	-- Thanatos
 	table.insert(self.m95.categories, "bolt_action")
@@ -2448,7 +2456,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.stats.concealment = 8
 	self.m95.fire_mode_data.fire_rate = 60 / 40
 	self.m95.fire_rate_multiplier = 45 / 40
-	self.m95.stats_modifiers = { damage = 6 }
+	self.m95.stats_modifiers = { damage = 8 }
 
 	-- Specials
 
@@ -2796,8 +2804,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.shepheard_npc = copy_data(self.shepheard_npc, self.mp5_npc, self.shepheard_crew)
 
 	self.mac11_npc.sounds.prefix = self.mac10_crew.sounds.prefix
-	self.mac11_npc.hold = "pistol"
-	self.mac11_npc.reload = "uzi"
 
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix
 
@@ -2924,17 +2930,19 @@ function WeaponTweakData:_set_presets()
 			v.suppression = v.armor_piercing and 3 or v.is_shotgun and 2 or 1
 			v.spread = v.rays and v.rays > 1 and 6 or 0
 			v.alert_size = (alert_sizes[v.usage] or 4000) * (v.has_suppressor and 0.2 or 1)
-
-			if v.usage == "is_rifle" or v.usage == "is_bullpup" then
-				v.auto = { fire_rate = 0.2 }
-			elseif v.usage == "is_smg" then
-				v.auto = { fire_rate = 0.15 }
-			elseif v.usage == "is_lmg" or v.reload == "uzi" then
-				v.auto = { fire_rate = 0.1 }
-			elseif v.usage == "mini" or v.usage == "is_flamethrower" then
-				v.auto = { fire_rate = 0.05 }
+			
+			local is_uzi = v.usage == "is_smg" and v.reload == "uzi"
+			
+			if v.usage == "is_smg" and not is_uzi then
+				v.auto = { fire_rate = 60 / 400 }
+			elseif is_uzi or v.usage == "is_lmg" then
+				v.auto = { fire_rate = 60 / 600 }
+			elseif v.usage == "is_flamethrower" then
+				v.auto = { fire_rate = 60 / 2000 }
+			elseif v.usage == "mini" then
+				v.auto = { fire_rate = 60 / 3000 }
 			else
-				v.auto = { fire_rate = 0.25 }
+				v.auto = { fire_rate = 60 / 300 }
 			end
 		elseif k:match("_crew$") then
 			local player_id = k:gsub("_crew$", ""):gsub("_secondary$", ""):gsub("_primary$", "")

@@ -60,7 +60,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				wpn_fps_upg_o_shortdot_vanilla = true,
 				wpn_fps_hailstorm_o_claymore = true,
 			}
-
+			
 			if is_optic and not default_sights[id] then
 				part.stats.concealment = -1
 				part.stats.recoil = 1
@@ -865,7 +865,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			moving = {
 				hipfire = 2,
 				crouching = 1,
-				steelsight = 1.6,
+				steelsight = 1.5,
 			},
 		},
 		recoil = {
@@ -1255,11 +1255,11 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		spread = {
 			standing = {
 				hipfire = 1.2,
-				crouching = 0.8,
-				steelsight = 0.5,
+				crouching = 1,
+				steelsight = 0.6,
 			},
 			moving = {
-				hipfire = 1.5,
+				hipfire = 1.6,
 				crouching = 1,
 				steelsight = 1,
 			},
@@ -1293,7 +1293,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8 },
 			},
 			light = { -- semi autos
-				stats = { damage = 7, total_ammo_mod = -4, recoil = -3 },
+				stats = { damage = 6, total_ammo_mod = -4, recoil = -3 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8 },
 			},
 			very_light = { -- full autos
@@ -1315,7 +1315,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8 },
 			},
 			light = { -- semi autos
-				stats = { damage = 7, total_ammo_mod = -4, recoil = -3 },
+				stats = { damage = 6, total_ammo_mod = -4, recoil = -3 },
 				custom_stats = { rays = 6, ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8 },
 			},
 			very_light = { -- full autos
@@ -1325,7 +1325,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_explosive = {
 			very_heavy = { -- double barrels
-				stats = { damage = 220, total_ammo_mod = -10, recoil = -2, spread = 3, spread_multi = { 0.5, 0.5 } },
+				stats = { damage = 180, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.4,
@@ -1338,7 +1338,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 198, total_ammo_mod = -10, spread = 2 },
+				stats = { damage = 162, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.4,
@@ -1351,7 +1351,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 176, total_ammo_mod = -10, spread = 2 },
+				stats = { damage = 144, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.4,
@@ -1364,7 +1364,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			light = { -- semi autos
-				stats = { damage = 132, total_ammo_mod = -10, spread = 2 },
+				stats = { damage = 108, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.4,
@@ -1377,7 +1377,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			very_light = { -- full autos
-				stats = { damage = 110, total_ammo_mod = -10, spread = 2 },
+				stats = { damage = 90, total_ammo_mod = -9, spread = 1, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
 					ammo_pickup_max_mul = 0.4,
@@ -1392,7 +1392,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_slug = {
 			very_heavy = { -- double barrels
-				stats = { damage = 92, total_ammo_mod = -4, spread = 4 },
+				stats = { damage = 88, total_ammo_mod = -4, recoil = -2, spread = 3, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					armor_piercing_add = 1,
 					can_shoot_through_shield = true,
@@ -1406,7 +1406,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 78, total_ammo_mod = -4, spread = 4 },
+				stats = { damage = 78, total_ammo_mod = -4, recoil = -2, spread = 3, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					armor_piercing_add = 1,
 					can_shoot_through_shield = true,
@@ -1420,7 +1420,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 64, total_ammo_mod = -4, spread = 4 },
+				stats = { damage = 64, total_ammo_mod = -4, recoil = -2, spread = 3, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					armor_piercing_add = 1,
 					can_shoot_through_shield = true,
@@ -1434,7 +1434,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			light = { -- semi autos
-				stats = { damage = 52, total_ammo_mod = -4, spread = 4 },
+				stats = { damage = 52, total_ammo_mod = -4, recoil = -2, spread = 3, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					armor_piercing_add = 1,
 					can_shoot_through_shield = true,
@@ -1448,7 +1448,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			very_light = { -- full autos
-				stats = { damage = 38, total_ammo_mod = -4, spread = 4 },
+				stats = { damage = 38, total_ammo_mod = -4, recoil = -2, spread = 3, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					armor_piercing_add = 1,
 					can_shoot_through_shield = true,
@@ -1506,7 +1506,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_dragons_breath = {
 			very_heavy = { -- double barrels
-				stats = { damage = -10, total_ammo_mod = -8, spread = -2 },
+				stats = { damage = -10, total_ammo_mod = -7, spread = -2 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
@@ -1518,7 +1518,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = -9, total_ammo_mod = -8, spread = -2 },
+				stats = { damage = -9, total_ammo_mod = -7, spread = -2 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
@@ -1530,7 +1530,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = -8, total_ammo_mod = -8, spread = -2 },
+				stats = { damage = -8, total_ammo_mod = -7, spread = -2 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
@@ -1542,7 +1542,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			light = { -- semi autos
-				stats = { damage = -6, total_ammo_mod = -8, spread = -2 },
+				stats = { damage = -6, total_ammo_mod = -7, spread = -2 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
@@ -1554,7 +1554,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				},
 			},
 			very_light = { -- full autos
-				stats = { damage = -5, total_ammo_mod = -8, spread = -2 },
+				stats = { damage = -5, total_ammo_mod = -7, spread = -2 },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
@@ -1568,7 +1568,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		wpn_fps_upg_a_rip = {
 			very_heavy = { -- double barrels
-				stats = { damage = 34, total_ammo_mod = -8 },
+				stats = { damage = 60, total_ammo_mod = -9, spread = 1, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.4,
 					ammo_pickup_max_mul = 0.4,
@@ -1576,14 +1576,14 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
 					dot_data_name = "ammo_rip_heavy",
 					stance_mul = slug_stance_muls,
-					damage_near_mul = 2,
-					damage_far_mul = 1,
+					damage_near_mul = 3,
+					damage_far_mul = 2,
 					rays = 1,
 					bullet_class = "PoisonBulletBase",
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
-				stats = { damage = 30, total_ammo_mod = -8 },
+				stats = { damage = 54, total_ammo_mod = -9, spread = 1, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.4,
 					ammo_pickup_max_mul = 0.4,
@@ -1591,14 +1591,14 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
 					dot_data_name = "ammo_rip_heavy",
 					stance_mul = slug_stance_muls,
-					damage_near_mul = 2,
-					damage_far_mul = 1,
+					damage_near_mul = 3,
+					damage_far_mul = 2,
 					rays = 1,
 					bullet_class = "PoisonBulletBase",
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
-				stats = { damage = 24, total_ammo_mod = -8 },
+				stats = { damage = 48, total_ammo_mod = -9, spread = 1, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.4,
 					ammo_pickup_max_mul = 0.4,
@@ -1606,14 +1606,14 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
 					dot_data_name = "ammo_rip_medium",
 					stance_mul = slug_stance_muls,
-					damage_near_mul = 2,
-					damage_far_mul = 1,
+					damage_near_mul = 3,
+					damage_far_mul = 2,
 					rays = 1,
 					bullet_class = "PoisonBulletBase",
 				},
 			},
 			light = { -- semi autos
-				stats = { damage = 24, total_ammo_mod = -8 },
+				stats = { damage = 36, total_ammo_mod = -9, spread = 1, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.4,
 					ammo_pickup_max_mul = 0.4,
@@ -1621,14 +1621,14 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
 					dot_data_name = "ammo_rip_light",
 					stance_mul = slug_stance_muls,
-					damage_near_mul = 2,
-					damage_far_mul = 1,
+					damage_near_mul = 3,
+					damage_far_mul = 2,
 					rays = 1,
 					bullet_class = "PoisonBulletBase",
 				},
 			},
 			very_light = { -- full autos
-				stats = { damage = 20, total_ammo_mod = -8 },
+				stats = { damage = 30, total_ammo_mod = -9, spread = 1, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ammo_pickup_min_mul = 0.4,
 					ammo_pickup_max_mul = 0.4,
@@ -1636,8 +1636,8 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
 					dot_data_name = "ammo_rip_light",
 					stance_mul = slug_stance_muls,
-					damage_near_mul = 2,
-					damage_far_mul = 1,
+					damage_near_mul = 3,
+					damage_far_mul = 2,
 					rays = 1,
 					bullet_class = "PoisonBulletBase",
 				},
@@ -1658,9 +1658,9 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		["wpn_fps_shot_r870"] = "medium",
 		["wpn_fps_shot_serbu"] = "medium",
 		["wpn_fps_sho_ksg"] = "medium",
-		["wpn_fps_pis_judge"] = "medium",
 		["wpn_fps_sho_m590"] = "medium",
 		["wpn_fps_sho_supernova"] = "medium",
+		["wpn_fps_pis_judge"] = "heavy",
 		["wpn_fps_sho_boot"] = "heavy",
 		["wpn_fps_shot_m37"] = "heavy",
 		["wpn_fps_shot_m1897"] = "heavy",
@@ -1801,6 +1801,12 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 
 				if grenade_launcher_ammo_overrides[part_id] and grenade_launcher_ammo_overrides[part_id][ammo_override] then
 					self[factory_id].override[part_id] = grenade_launcher_ammo_overrides[part_id][ammo_override]
+						
+					local grenade_type = self[factory_id].override[part_id].custom_stats and self[factory_id].override[part_id].custom_stats.launcher_grenade
+					
+					if grenade_type and type(grenade_type) == "string" then
+						self[factory_id].override[part_id].custom_stats.launcher_grenade = grenade_type .. (based_on_weapon_id or weapon_id)
+					end
 				end
 			end
 		end

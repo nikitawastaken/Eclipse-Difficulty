@@ -31,4 +31,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	self.projectiles.launcher_poison_m79 = deep_clone(self.projectiles.launcher_poison)
 	self.projectiles.launcher_poison_m79.weapon_id = "gre_m79"
+
+	self.projectiles.launcher_poison_m79 = deep_clone(self.projectiles.launcher_poison)
+	self.projectiles.launcher_poison_m79.weapon_id = "gre_m79"
 end
