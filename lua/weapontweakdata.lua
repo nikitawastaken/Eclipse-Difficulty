@@ -2931,14 +2931,16 @@ function WeaponTweakData:_set_presets()
 			v.spread = v.rays and v.rays > 1 and 6 or 0
 			v.alert_size = (alert_sizes[v.usage] or 4000) * (v.has_suppressor and 0.2 or 1)
 			
-			local is_uzi = v.usage == "is_smg" and v.reload == "uzi"
+			local is_uzi = v.reload == "uzi"
 			
 			if v.usage == "is_smg" and not is_uzi then
-				v.auto = { fire_rate = 60 / 400 }
-			elseif is_uzi or v.usage == "is_lmg" then
+				v.auto = { fire_rate = 60 / 500 }
+			elseif v.usage == "is_smg" and is_uzi then
 				v.auto = { fire_rate = 60 / 600 }
+			elseif v.usage == "is_lmg" then
+				v.auto = { fire_rate = 60 / 750 }
 			elseif v.usage == "is_flamethrower" then
-				v.auto = { fire_rate = 60 / 2000 }
+				v.auto = { fire_rate = 60 / 1200 }
 			elseif v.usage == "mini" then
 				v.auto = { fire_rate = 60 / 3000 }
 			else
