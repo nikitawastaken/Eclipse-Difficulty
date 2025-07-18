@@ -38,13 +38,18 @@ return {
 		reinforce = {
 			{
 				name = "street1",
-				force = 3,
+				force = 2,
 				position = Vector3(0, 3600, 0),
 			},
 			{
 				name = "street2",
-				force = 3,
+				force = 2,
 				position = Vector3(3000, -900, 0),
+			},
+			{
+				name = "street3",
+				force = 2,
+				position = Vector3(0, 1250, 0),
 			},
 		},
 	},

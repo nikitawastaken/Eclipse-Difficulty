@@ -9,27 +9,21 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local ramp_spawn = {
+local garage_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_bulldozers,
 }
-local garage_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_bulldozers,
-}
 local pent_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_lower_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
@@ -47,7 +41,7 @@ local roof_upper_spawn = {
 }
 local lobby_balcony_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -96,7 +90,7 @@ return {
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
 	-- Spawn group delays
-	[102112] = ramp_spawn,
+	[102112] = garage_spawn,
 	[103027] = garage_spawn,
 	[102137] = pent_spawn,
 	[102138] = pent_spawn,

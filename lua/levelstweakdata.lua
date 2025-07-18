@@ -470,13 +470,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.rvd1.group_ai_settings = {
-		recon_interval_variation_mul = 0.75,
+		recon_interval_variation_mul = 0.5,
+		special_limit_add = {
+			shield = 1,
+		},
 		spawn_group_presets = {
 			full_force = true,
 		},
 	}
 
 	self.rvd2.group_ai_settings = {
+		sustain_duration_mul = 1.25,
 		assault_force_mul = 0.6,
 		special_limit_add = {
 			taser = 1,
@@ -484,6 +488,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 		spawn_group_presets = {
 			full_force = true,
+			heavy_response = true,
+			special_operation = true,
 		},
 	}
 
@@ -523,8 +529,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
 	self.mex.group_ai_settings.assault_force_mul = 0.7
-	self.mex.group_ai_settings.sustain_duration_mul = 1.25
-
+	
 	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
 
 	self.bex.group_ai_settings = {
@@ -557,6 +562,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.pent.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
+	self.pent.group_ai_settings.difficulty_step_time = 10 -- The heist has really fucked up difficulty scaling
 	self.pent.group_ai_settings.special_limit_add = nil
 	self.pent.group_ai_settings.assault_force_mul = 0.8
 

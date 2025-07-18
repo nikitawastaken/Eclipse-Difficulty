@@ -1,6 +1,12 @@
 local preferred = Eclipse.preferred
 local roof_spawn = {
 	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local objective_spawn = {
+	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
@@ -24,12 +30,17 @@ return {
 			{
 				name = "street",
 				force = 3,
-				position = Vector3(-3150, -500, 0),
+				position = Vector3(-3600, -500, 0),
 			},
 			{
 				name = "parking_lot",
 				force = 3,
-				position = Vector3(200, -1150, 0),
+				position = Vector3(200, -1200, 0),
+			},
+			{
+				name = "construction",
+				force = 3,
+				position = Vector3(-2900, -3400, 0),
 			},
 		},
 	},
@@ -91,9 +102,11 @@ return {
 		},
 	},
 	-- Spawn point delays
-	[100131] = roof_spawn,
+	[100133] = objective_spawn,
+	[101715] = objective_spawn,
 	[100007] = roof_spawn,
 	[100130] = roof_spawn,
+	[100131] = roof_spawn,
 	[101683] = roof_spawn,
 	[101820] = roof_spawn,
 	[100019] = mortuary_spawn,
