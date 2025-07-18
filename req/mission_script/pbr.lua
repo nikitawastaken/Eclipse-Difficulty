@@ -45,76 +45,76 @@ return {
 			{
 				name = "entrance1",
 				force = 2,
-				position = Vector3(725, 150, 0)
-			}
-		}
+				position = Vector3(725, 150, 0),
+			},
+		},
 	},
 	[100004] = {
 		reinforce = {
 			{
 				name = "entrance2",
 				force = 2,
-				position = Vector3(825, -3400, -300)
-			}
-		}
+				position = Vector3(825, -3400, -300),
+			},
+		},
 	},
 	[100005] = {
 		reinforce = {
 			{
 				name = "entrance3",
 				force = 2,
-				position = Vector3(2780, -4615, 0)
-			}
-		}
+				position = Vector3(2780, -4615, 0),
+			},
+		},
 	},
 	[100085] = {
 		reinforce = {
 			{ name = "entrance1" },
-		}
+		},
 	},
 	[100086] = {
 		reinforce = {
 			{ name = "entrance2" },
-		}
+		},
 	},
 	[100087] = {
 		reinforce = {
 			{ name = "entrance3" },
-		}
+		},
 	},
 	[101027] = {
 		reinforce = {
 			{
 				name = "demeter",
 				force = 2,
-				position = Vector3(-12645, -1165, -900)
+				position = Vector3(-12645, -1165, -900),
 			},
 			{
 				name = "hades",
 				force = 2,
-				position = Vector3(-9235, -490, -900)
+				position = Vector3(-9235, -490, -900),
 			},
 			{
 				name = "ares",
 				force = 2,
-				position = Vector3(-8765, -5100, -900)
+				position = Vector3(-8765, -5100, -900),
 			},
 			{
 				name = "chronos",
 				force = 2,
-				position = Vector3(-11170, -3015, -900)
+				position = Vector3(-11170, -3015, -900),
 			},
 			{
 				name = "zeus",
 				force = 2,
-				position = Vector3(-7080, -4205, -900)
+				position = Vector3(-7080, -4205, -900),
 			},
 			{
 				name = "poseidon",
 				force = 2,
-				position = Vector3(-7100, -2950, -900)
+				position = Vector3(-7100, -2950, -900),
 			},
-		}
+		},
 	},
 	[101434] = {
 		reinforce = {
@@ -123,8 +123,8 @@ return {
 			{ name = "ares" },
 			{ name = "chronos" },
 			{ name = "zeus" },
-			{ name = "poseidon" }
-		}
+			{ name = "poseidon" },
+		},
 	},
 	[100437] = roof_spawn,
 	[100438] = roof_spawn,
