@@ -255,7 +255,7 @@ tweak_data.projectiles.launcher_electric_ms3gl = create_electric_grenade(tweak_d
 tweak_data.projectiles.launcher_poison_ms3gl = create_poison_grenade(tweak_data.projectiles.launcher_frag_ms3gl, "light")
 
 tweak_data.projectiles.launcher_rocket = {
-	damage = 240,
+	damage = 480,
 	launch_speed = 3000,
 	curve_pow = 1,
 	player_damage = 1,

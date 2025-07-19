@@ -855,13 +855,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	
 	self.sentry_gun.DAMAGE = 1
 	
-	self.trip_mines = {
-		delay = 0.1,
-		damage = 200,
-		player_damage = 6,
-		damage_size = 300,
-		alert_radius = 5000
-	}
+	self.trip_mines.delay = 0.1
+	self.trip_mines.damage = 360
 
 	-- spray pattern tables
 	local spray_tables = {
@@ -2624,24 +2619,24 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ray.use_data.selection_index = 2
 	self.ray.categories = { "grenade_launcher", "heavy" }
 	self.ray.CLIP_AMMO_MAX = 4
-	self.ray.stats.damage = 72
+	self.ray.stats.damage = 80
 	self.ray.stats.spread = 25
 	self.ray.stats.recoil = 25
 	self.ray.stats.concealment = 4
 	self.ray.fire_mode_data.fire_rate = 60 / 60
 	self.ray.stats_modifiers = { damage = 10 }
-	self.ray.has_description = false
+	self.ray.total_ammo_mul = 2
 
 	-- RPG
 	self.rpg7.use_data.selection_index = 2
 	self.rpg7.categories = { "grenade_launcher", "heavy" }
 	self.rpg7.CLIP_AMMO_MAX = 1
-	self.rpg7.stats.damage = 180
+	self.rpg7.stats.damage = 96
 	self.rpg7.stats.spread = 25
 	self.rpg7.stats.recoil = 25
 	self.rpg7.stats.concealment = 4
 	self.rpg7.fire_mode_data.fire_rate = 60 / 30
-	self.rpg7.stats_modifiers = { damage = 20 }
+	self.rpg7.stats_modifiers = { damage = 50 }
 	self.rpg7.total_ammo_mul = 4
 
 	-- Flamethrowers
