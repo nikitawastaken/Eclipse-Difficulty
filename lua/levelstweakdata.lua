@@ -262,8 +262,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.kenaz.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 1.2,
+		force_tactics = {
+			shield_def = {
+				ranged_fire = false,
+			},
+		},
+	}
+
+	self.pbr.group_ai_settings = {
 		special_limit_add = {
-			medic = -1,
+			shield = 1,
 		},
 		force_tactics = {
 			shield_def = {
@@ -365,6 +373,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 			shield_def = {
 				ranged_fire = false,
+			},
+			bulldozer_def = {
 				door_ambush = false,
 			},
 		},
@@ -414,9 +424,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 			taser_snk = {
 				rescue = true,
-			},
-			shield_def = {
-				ranged_fire = false,
 			},
 		},
 	}

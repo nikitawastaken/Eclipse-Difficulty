@@ -26,7 +26,7 @@ return {
 			enabled = false,
 		},
 	},
-	[100472] = { -- Spaned
+	[100472] = { -- Spawned
 		values = {
 			difficulty = 0.5,
 		},
@@ -38,6 +38,18 @@ return {
 	},
 	[101125] = { -- Escape
 		difficulty = 1,
+		reinforce = {
+			{
+				name = "gate",
+				force = 3,
+				position = Vector3(-11000, -6800, 7000),
+			},
+			{
+				name = "what_a_nice_car",
+				force = 3,
+				position = Vector3(-11200, 400, 7400),
+			},
+		},
 	},
 	--add reinforce
 	[100003] = {

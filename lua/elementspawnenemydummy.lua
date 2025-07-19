@@ -122,6 +122,7 @@ ElementSpawnEnemyDummy.enemy_mapping = {
 	[("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"):key()] = "swat_1",
 	[("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"):key()] = "heavy_1",
 	[("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"):key()] = "heavy_2",
+	[("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"):key()] = "swat_1",
 	[("units/payday2/characters/ene_sniper_1/ene_sniper_1"):key()] = "sniper",
 	[("units/payday2/characters/ene_sniper_2/ene_sniper_2"):key()] = "sniper",
 	[("units/payday2/characters/ene_sniper_3/ene_sniper_3"):key()] = "elite_sniper",
