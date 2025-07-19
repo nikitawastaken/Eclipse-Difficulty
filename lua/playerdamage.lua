@@ -50,7 +50,7 @@ function PlayerDamage:damage_bullet(attack_data)
 	end
 
 	-- crook ballistic vest hp dmg reduction
-	if pm:is_wearing_a_ballistic_vest() and self:get_real_armor() <= 0  then
+	if pm:is_wearing_a_ballistic_vest() and self:get_real_armor() <= 0 then
 		attack_data.damage = attack_data.damage * pm:upgrade_value("player", "bv_health_damage_reduction", 1)
 	end
 
