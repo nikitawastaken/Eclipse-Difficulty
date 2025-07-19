@@ -568,7 +568,7 @@ function WeaponTweakData:_init_weapons()
 			weap_data.recoil_multiplier = nil
 		elseif cat_map.saw then
 			weap_data.stats.suppression = 1
-			weap_data.stats.alert_size = 17
+			weap_data.stats.alert_size = 18
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
 			weap_data.armor_piercing_chance = 1
 			weap_data.hit_alert_size_increase = -9
