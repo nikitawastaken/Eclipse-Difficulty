@@ -1297,8 +1297,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.marshal_gunner.use_radio = "dsp_radio_russian"
 	end
 
-	self.mobster_boss.HEALTH_INIT = 80
-	self.mobster_boss.headshot_dmg_mul = 2
+	self.mobster_boss.HEALTH_INIT = 180
+	self.mobster_boss.headshot_dmg_mul = 1.5
 	self.mobster_boss.no_headshot_add_mul = true
 	self.mobster_boss.immune_to_knock_down = true
 	self.mobster_boss.immune_to_concussion = true
@@ -1307,16 +1307,16 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.mobster_boss.use_animation_on_fire_damage = false
 
-	self.chavez_boss.HEALTH_INIT = 80
-	self.chavez_boss.headshot_dmg_mul = 2
+	self.chavez_boss.HEALTH_INIT = 180
+	self.chavez_boss.headshot_dmg_mul = 1.5
 	self.chavez_boss.no_headshot_add_mul = true
 	self.chavez_boss.no_run_start = true
 	self.chavez_boss.no_run_stop = true
-	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 	self.chavez_boss.use_animation_on_fire_damage = false
 
-	self.hector_boss.HEALTH_INIT = 100
-	self.hector_boss.headshot_dmg_mul = 2
+	self.hector_boss.HEALTH_INIT = 240
+	self.hector_boss.headshot_dmg_mul = 1.5
 	self.hector_boss.no_headshot_add_mul = true
 	self.hector_boss.immune_to_knock_down = true
 	self.hector_boss.immune_to_concussion = true
@@ -1328,10 +1328,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss.throwable_cooldown = 10
 
 	self.hector_boss_no_armor.HEALTH_INIT = 8
-	self.hector_boss_no_armor.headshot_dmg_mul = 2
+	self.hector_boss_no_armor.headshot_dmg_mul = 2.5
 
-	self.biker_boss.HEALTH_INIT = 100
-	self.biker_boss.headshot_dmg_mul = 2
+	self.biker_boss.HEALTH_INIT = 240
+	self.biker_boss.headshot_dmg_mul = 1.5
 	self.biker_boss.no_headshot_add_mul = true
 	self.biker_boss.no_run_start = true
 	self.biker_boss.no_run_stop = true
@@ -1340,8 +1340,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
 
-	self.drug_lord_boss.HEALTH_INIT = 100
-	self.drug_lord_boss.headshot_dmg_mul = 2
+	self.drug_lord_boss.HEALTH_INIT = 240
+	self.drug_lord_boss.headshot_dmg_mul = 1.5
 	self.drug_lord_boss.no_headshot_add_mul = true
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.drug_lord_boss.use_animation_on_fire_damage = false
@@ -1350,10 +1350,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss.throwable_cooldown = 15
 
 	self.drug_lord_boss_stealth.HEALTH_INIT = 8
-	self.drug_lord_boss_stealth.headshot_dmg_mul = 2
+	self.drug_lord_boss_stealth.headshot_dmg_mul = 2.5
 
-	self.triad_boss.HEALTH_INIT = 100
-	self.triad_boss.headshot_dmg_mul = 2
+	self.triad_boss.HEALTH_INIT = 240
+	self.triad_boss.headshot_dmg_mul = 1.5
 	self.triad_boss.no_headshot_add_mul = true
 	self.triad_boss.no_run_start = true
 	self.triad_boss.no_run_stop = true
@@ -1365,10 +1365,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss.throwable_cooldown = 20
 
 	self.triad_boss_no_armor.HEALTH_INIT = 8
-	self.triad_boss_no_armor.headshot_dmg_mul = 2
+	self.triad_boss_no_armor.headshot_dmg_mul = 2.5
 
-	self.deep_boss.HEALTH_INIT = 120
-	self.deep_boss.headshot_dmg_mul = 2
+	self.deep_boss.HEALTH_INIT = 300
+	self.deep_boss.headshot_dmg_mul = 1.5
 	self.deep_boss.ignore_headshot = false
 	self.deep_boss.no_headshot_add_mul = true
 	self.deep_boss.no_run_start = true
@@ -1377,7 +1377,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.use_animation_on_fire_damage = false
 
 	self.fbi_boss = deep_clone(self.chavez_boss)
-	self.fbi_boss.HEALTH_INIT = 80
+	self.fbi_boss.HEALTH_INIT = 180
 	self.fbi_boss.throwable_cooldown = 10
 	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.access = "fbi"
@@ -1726,6 +1726,9 @@ function CharacterTweakData:_set_presets()
 			char_preset.no_headshot_add_mul = true
 			char_preset.no_run_start = true
 			char_preset.no_run_stop = true
+			char_preset.immune_to_knock_down = true
+			char_preset.immune_to_concussion = true
+			char_preset.use_animation_on_fire_damage = false
 		end
 
 		-- Make sure that Shield type enemies cannot do the grenade throwing animation
