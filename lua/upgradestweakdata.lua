@@ -808,9 +808,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.scavenger.multipro = "3"
 
 	-- Eagle Eye
-	self.values.weapon.special_damage_taken_multiplier[1] = 1.1
+	self.values.weapon.special_damage_taken_multiplier[1] = 1.15
 	self.values.player.marked_distance_mul[1] = 4
-	self.skill_descs.thick_skin.multibasic = "10%"
+	self.skill_descs.thick_skin.multibasic = "15%"
 	self.skill_descs.thick_skin.multipro = "4"
 
 	-- The Professional
