@@ -563,6 +563,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[5][7].upgrades = { "player_cheat_death_chance_1" }
 	self.specializations[5][9].upgrades = { "player_cheat_death_inc", "player_passive_loot_drop_multiplier" }
 
+	-- crook
+	self.specializations[6][1].upgrades = { "player_bv_stamina_reduction_multiplier" }
+	self.specializations[6][3].upgrades = { "player_bv_health_damage_reduction" }
+	self.specializations[6][5].upgrades = { "player_bv_ap_rnds_protection" }
+	self.specializations[6][7].upgrades = { "player_level_2_armor_multiplier_1", "player_level_3_armor_multiplier_1", "player_level_4_armor_multiplier_1" }
+	self.specializations[6][9].upgrades = { "player_bv_no_armor_suppression" }
+
 	-- burglar
 	table.delete(self.specializations[7][7].upgrades, "player_tier_dodge_chance_3")
 	self.specializations[7][9].upgrades = { "player_dodge_ricochet_bullets", "player_passive_loot_drop_multiplier" }

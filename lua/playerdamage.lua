@@ -49,11 +49,18 @@ function PlayerDamage:damage_bullet(attack_data)
 		end
 	end
 
+	-- crook ballistic vest hp dmg reduction
+	if pm:is_wearing_a_ballistic_vest() and self:get_real_armor() <= 0  then
+		attack_data.damage = attack_data.damage * pm:upgrade_value("player", "bv_health_damage_reduction", 1)
+	end
+
 	local damage_absorption = pm:damage_absorption()
 
 	if damage_absorption > 0 then
 		attack_data.damage = math.max(0, attack_data.damage - damage_absorption)
 	end
+
+	-- Eclipse:log_chat("damage received: " .. attack_data.damage * 10)
 
 	self:copr_update_attack_data(attack_data)
 
@@ -141,7 +148,7 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	-- Aimpunch
 	local is_in_steelsight = self._unit:movement():current_state()._state_data.in_full_steelsight
-	local shake_armor_multiplier = managers.player:body_armor_value("damage_shake")
+	local shake_armor_multiplier = pm:body_armor_value("damage_shake")
 		* (self:get_real_armor() > 0 and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_aimpunch_multiplier", 1) or 1)
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
@@ -152,9 +159,11 @@ function PlayerDamage:damage_bullet(attack_data)
 	self._unit:camera():play_shaker("player_bullet_damage", shake_mul)
 
 	-- On-hit stamina strip
-	local stamina_strip_armor_multiplier = managers.player:body_armor_value("damage_shake")
-		* (self:get_real_armor() > 0 and 1 or 1.25)
+	local stamina_strip_ballistic_vest_multiplier = (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1)) or 1
+	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
+		* (self:get_real_armor() > 0 and 1 * stamina_strip_ballistic_vest_multiplier or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_stamina_reduction_multiplier", 1) or 1)
+
 	local stamina_mul = math.clamp(attack_data.damage, 1, 18) * stamina_strip_armor_multiplier
 	self._unit:movement():subtract_stamina(stamina_mul)
 
@@ -188,7 +197,8 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	local health_subtracted = self:_calc_armor_damage(attack_data)
 
-	if attack_data.armor_piercing then
+	-- crook ballistic vest ap rounds protection
+	if attack_data.armor_piercing and not (pm:is_wearing_a_ballistic_vest() and pm:has_category_upgrade("player", "bv_ap_rnds_protection")) then
 		attack_data.damage = attack_data.damage - health_subtracted
 	else
 		attack_data.damage = attack_data.damage * armor_reduction_multiplier
@@ -696,6 +706,12 @@ function PlayerDamage:_chk_cheat_death(ignore_reduce_revive)
 end
 
 function PlayerDamage:_upd_suppression(t, dt)
+	-- crook's ballistic vests block suppression
+	if managers.player:is_wearing_a_ballistic_vest() and managers.player:has_category_upgrade("player", "bv_no_armor_suppression") then
+		return
+	end
+
+	-- sicario's smoke screen blocks suppression
 	for _, smoke_screen in ipairs(managers.player:smoke_screens()) do
 		if smoke_screen:is_in_smoke(managers.player:player_unit()) and smoke_screen:armor_bonus() then
 			return

@@ -32,6 +32,11 @@ function PlayerManager:is_lament_ricochet_allowed()
 		and self:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
 		and self:equipped_weapon_unit():base():is_category("revolver", "pistol")
 end
+
+function PlayerManager:is_wearing_a_ballistic_vest()
+	local equipped_armor = managers.blackmarket:equipped_armor(true, true)
+	return equipped_armor == "level_2" or equipped_armor == "level_3" or equipped_armor == "level_4"
+end
 -- end
 
 -- Additional skills
@@ -1190,7 +1195,6 @@ function PlayerManager:body_armor_skill_multiplier(override_armor)
 end
 
 -- Grinder extra health multiplier
-
 function PlayerManager:health_skill_multiplier()
 	local multiplier = 1
 	multiplier = multiplier + self:upgrade_value("player", "health_multiplier", 1) - 1

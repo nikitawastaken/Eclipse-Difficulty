@@ -1361,31 +1361,52 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[5][9].multiperk3 = "3%"
 
 	-- Crook
-	self.values.player.level_2_dodge_addend = {
-		0.04,
-		0.08,
-		0.12,
+	self.values.player.bv_stamina_reduction_multiplier = { 0.7 }
+	self.definitions.player_bv_stamina_reduction_multiplier = {
+		name_id = "menu_player_bv_stamina_reduction_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "bv_stamina_reduction_multiplier",
+			category = "player",
+		},
 	}
-	self.values.player.level_3_dodge_addend = {
-		0.05,
-		0.10,
-		0.15,
+	self.values.player.bv_health_damage_reduction = { 0.75 }
+	self.definitions.player_bv_health_damage_reduction = {
+		name_id = "menu_player_bv_health_damage_reduction",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "bv_health_damage_reduction",
+			category = "player",
+		},
 	}
-	self.values.player.level_4_dodge_addend = {
-		0.06,
-		0.12,
-		0.18,
+	self.values.player.bv_ap_rnds_protection = { true }
+	self.definitions.player_bv_ap_rnds_protection = {
+		name_id = "menu_player_bv_ap_rnds_protection",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "bv_ap_rnds_protection",
+			category = "player",
+		},
 	}
-	self.values.player.level_2_armor_multiplier = {
-		1.1,
-		1.2,
-		1.35,
+	self.values.player.level_2_armor_multiplier[1] = 1.25
+	self.values.player.level_3_armor_multiplier[1] = 1.25
+	self.values.player.level_4_armor_multiplier[1] = 1.25
+	self.values.player.bv_no_armor_suppression = { true }
+	self.definitions.player_bv_no_armor_suppression = {
+		name_id = "menu_player_bv_no_armor_suppression",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "bv_no_armor_suppression",
+			category = "player",
+		},
 	}
-	self.values.player.level_3_armor_multiplier = {
-		1.2,
-		1.3,
-		1.5,
-	}
+	self.specialization_descs[6][1].multiperk = "30%"
+	self.specialization_descs[6][3].multiperk = "25%"
+	self.specialization_descs[6][7].multiperk = "25%"
 
 	-- Infiltrator
 	self.values.temporary.melee_life_leech[1][1] = 4
