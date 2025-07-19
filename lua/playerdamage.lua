@@ -159,11 +159,10 @@ function PlayerDamage:damage_bullet(attack_data)
 	self._unit:camera():play_shaker("player_bullet_damage", shake_mul)
 
 	-- On-hit stamina strip
-	local stamina_strip_ballistic_vest_multiplier = (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1)) or 1
 	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
 		* (self:get_real_armor() > 0 and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_stamina_reduction_multiplier", 1) or 1)
-		* stamina_strip_ballistic_vest_multiplier
+		* (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1) or 1)
 
 	local stamina_mul = math.clamp(attack_data.damage, 1, 18) * stamina_strip_armor_multiplier
 	self._unit:movement():subtract_stamina(stamina_mul)
