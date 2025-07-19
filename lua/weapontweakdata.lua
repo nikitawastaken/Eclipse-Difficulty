@@ -26,25 +26,25 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 
 	self.stats.alert_size = { --for some reason alert sizes are halved now lol
 		0, --1
-		400, --2
-		600, --3
-		800, --4
-		1000, --5
-		1200, --6
-		1600, --7
-		2000, --8
-		2400, --9
-		3000, --10
-		4000, --11
-		5000, --12
-		6000, --13
-		7000, --14
-		8000, --15
-		9000, --16
-		10000, --17
-		12000, --18
-		16000, --19
-		20000 --20
+		100, --2
+		200, --3
+		300, --4
+		400, --5
+		500, --6
+		700, --7
+		800, --8
+		1000, --9
+		1200, --10
+		1400, --11
+		1600, --12
+		1800, --13
+		2000, --14
+		3000, --15
+		4000, --16
+		5000, --17
+		6000, --18
+		8000, --19
+		10000 --20
 	}
 end)
 
@@ -101,7 +101,7 @@ function WeaponTweakData:_init_weapons()
 		--catch-all stat setups
 		if cat_map.assault_rifle and not is_browning_mg then
 			weap_data.stats.suppression = cat_map.dmr and 1 or 11
-			weap_data.stats.alert_size = cat_map.dmr and 18 or 15
+			weap_data.stats.alert_size = cat_map.dmr and 18 or 17
 			weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
 			weap_data.steelsight_move_speed_mul = 0.5
 
@@ -170,7 +170,7 @@ function WeaponTweakData:_init_weapons()
 			end
 		elseif cat_map.pistol then
 			weap_data.stats.suppression = cat_map.handcannon and 9 or 16
-			weap_data.stats.alert_size = cat_map.handcannon and 15 or 12
+			weap_data.stats.alert_size = cat_map.handcannon and 17 or 15
 			weap_data.steelsight_time = cat_map.handcannon and steelsight_times.pistol_heavy or steelsight_times.pistol
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not cat_map.handcannon and 1.5 or 1
 			weap_data.steelsight_move_speed_mul = 0.7
@@ -233,7 +233,7 @@ function WeaponTweakData:_init_weapons()
 
 		elseif cat_map.revolver then
 			weap_data.stats.suppression = 9
-			weap_data.stats.alert_size = 15
+			weap_data.stats.alert_size = 17
 			weap_data.steelsight_time = steelsight_times.pistol_heavy
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1
 			weap_data.steelsight_move_speed_mul = 0.65
@@ -269,7 +269,7 @@ function WeaponTweakData:_init_weapons()
 
 		elseif cat_map.smg then
 			weap_data.stats.suppression = 16
-			weap_data.stats.alert_size = 13
+			weap_data.stats.alert_size = 16
 			weap_data.steelsight_time = steelsight_times.smg
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
 			weap_data.steelsight_move_speed_mul = 0.6
@@ -313,8 +313,8 @@ function WeaponTweakData:_init_weapons()
 		elseif cat_map.shotgun then
 			weap_data.stats.suppression = 1
 			weap_data.stats.alert_size = 18
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 24 / 180
-			weap_data.pickup_mul = weap_data.pickup_mul or (1 / 8) * 1.336
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (24 / 180)
+			weap_data.pickup_mul = weap_data.pickup_mul or ((1 / 8) * 1.336)
 			weap_data.damage_near = weap_data.damage_near or 1000
 			weap_data.damage_far = weap_data.damage_far or 2000
 			weap_data.rays = 8
@@ -352,7 +352,8 @@ function WeaponTweakData:_init_weapons()
 			weap_data.bipod_deploy_multiplier = 1
 			weap_data.bipod_camera_spin_limit = 40
 			weap_data.bipod_camera_pitch_limit = 15
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.85
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (7.4 / 4)
+			weap_data.pickup_mul = weap_data.pickup_mul or (3 / 4)
 			weap_data.steelsight_move_speed_mul = 0.4
 
 			if weap_data.no_steelsight then
@@ -391,20 +392,20 @@ function WeaponTweakData:_init_weapons()
 					moving = {
 						hipfire = 1.6,
 						crouching = 1,
-						steelsight = 1.2,
+						steelsight = 1.4,
 					},
 					bipod = 0.5,
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.4,
+						hipfire = 1.3,
 						crouching = 0.8,
 						steelsight = 1,
 					},
 					moving = {
-						hipfire = 1.6,
+						hipfire = 1.5,
 						crouching = 1,
-						steelsight = 1.2,
+						steelsight = 1.3,
 					}
 				}
 			end
@@ -477,8 +478,8 @@ function WeaponTweakData:_init_weapons()
 			local dmg_mul = based_on_data and based_on_data.stats_modifiers and based_on_data.stats_modifiers.damage or weap_data.stats_modifiers and  weap_data.stats_modifiers.damage or 0
 			local snp_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
 			
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 0.675 + (snp_ammo_mul * 0.25)
-			weap_data.pickup_mul = weap_data.pickup_mul or 1 + (snp_ammo_mul * 0.125)
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (0.675 + (snp_ammo_mul * 0.25))
+			weap_data.pickup_mul = weap_data.pickup_mul or (1 + (snp_ammo_mul * 0.125))
 			
 			weap_data.spread_multiplier = {
 				standing = {
@@ -526,7 +527,7 @@ function WeaponTweakData:_init_weapons()
 			weap_data.recoil_multiplier = nil
 		elseif cat_map.grenade_launcher or cat_map.rocket_launcher then
 			weap_data.stats.suppression = 1
-			weap_data.stats.alert_size = 17
+			weap_data.stats.alert_size = 18
 			weap_data.pickup_mul = weap_data.pickup_mul or cat_map.rocket_launcher and 0 or (not weap_data.use_data.selection_index == 2 and 1 / 5 or 1 / 2.5)
 			weap_data.damage_near = 1000
 			weap_data.damage_far = 2000
@@ -567,7 +568,7 @@ function WeaponTweakData:_init_weapons()
 			weap_data.recoil_multiplier = nil
 		elseif cat_map.saw then
 			weap_data.stats.suppression = 1
-			weap_data.stats.alert_size = 6
+			weap_data.stats.alert_size = 17
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
 			weap_data.armor_piercing_chance = 1
 			weap_data.hit_alert_size_increase = -9
@@ -662,10 +663,10 @@ function WeaponTweakData:_init_weapons()
 				weap_data.kick.standing = { 0.4, 0.8, -1.2, 1.2 }
 
 			elseif cat_map.lmg then
-				weap_data.kick.standing = { -0.2, 0.8, -0.8, 1 }
+				weap_data.kick.standing = { -0.2, 1, -0.8, 1.4 }
 
 			elseif cat_map.minigun then
-				weap_data.kick.standing = { -0.1, 0.3, -0.3, 0.4 }
+				weap_data.kick.standing = { -0.1, 0.4, -0.3, 0.4 }
 
 			elseif cat_map.shotgun then
 				weap_data.kick.standing = { 1.8, 2, -0.2, 0.2 }
@@ -2899,12 +2900,12 @@ local crew_weapon_mapping = {
 
 local alert_sizes = {
 	is_sniper = 10000,
-	is_lmg = 6000,
+	is_lmg = 5000,
 	is_shotgun_pump = 5000,
 	is_shotgun_mag = 5000,
 	is_double_barrel = 5000,
 	is_smg = 3000,
-	is_pistol = 2500
+	is_pistol = 2500,
 }
 
 local diff_i = Eclipse.utils.difficulty_index()

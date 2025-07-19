@@ -899,7 +899,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				stance_mul = dmr_stance_muls,
 				fire_mode_mul = dmr_fire_mode_muls,
 			},
-			stats = { value = 1, total_ammo_mod = -10, concealment = -6, spread = 4, recoil = -8, damage = 36, suppression = -10, alert_size = 4 },
+			stats = { value = 1, total_ammo_mod = -10, concealment = -6, spread = 4, recoil = -8, damage = 36, suppression = -10, alert_size = 1 },
 		},
 		low_dmg = {
 			custom_stats = {
@@ -910,7 +910,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				stance_mul = dmr_stance_muls,
 				fire_mode_mul = dmr_fire_mode_muls,
 			},
-			stats = { value = 1, total_ammo_mod = -12, concealment = -6, spread = 4, recoil = -11, damage = 24, suppression = -10, alert_size = 4 },
+			stats = { value = 1, total_ammo_mod = -12, concealment = -6, spread = 4, recoil = -11, damage = 24, suppression = -10, alert_size = 1 },
 		},
 	}
 
@@ -967,7 +967,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	-- Saw mods
 
 	self.parts.wpn_fps_saw_body_silent.stats.suppression = 10
-	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -12
+	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -9
 
 	self.parts.wpn_fps_saw_body_speed.stats.damage = 0
 	self.parts.wpn_fps_saw_body_speed.stats.concealment = -2
