@@ -427,9 +427,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_bulldozer = based_on(presets.weapon.bulldozer)
 
 	presets.weapon.elite_bulldozer.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.4, 0.9 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * special_dmg_mul, r = 1000, acc = { 0.6, 0.9 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.5, 0.8 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.6, 0.9 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 10 * special_dmg_mul, r = 1000, acc = { 0.6, 0.8 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.5, 0.7 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.7
@@ -1209,8 +1209,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_taser = deep_clone(self.taser)
 	table.insert(self._enemy_list, "zeal_taser")
 
-	self.tank.HEALTH_INIT = 240
-	self.tank.headshot_dmg_mul = 15 -- 160 head health
+	self.tank.HEALTH_INIT = 400
+	self.tank.headshot_dmg_mul = 25 -- 160 head health
 	self.tank.ecm_vulnerability = 0
 	self.tank.min_obj_interrupt_dis = 600
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1220,7 +1220,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.melee_weapon = "weapon"
 
 	self.tank_hw = deep_clone(self.tank)
-	self.tank_hw.HEALTH_INIT = 120
+	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
 	self.tank_hw.melee_anims = nil
@@ -1229,8 +1229,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.tank_elite = deep_clone(self.tank)
-	self.tank_elite.HEALTH_INIT = 360
-	self.tank_elite.headshot_dmg_mul = 15 -- 240 head health
+	self.tank_elite.HEALTH_INIT = 800
+	self.tank_elite.headshot_dmg_mul = 25 -- 320 head health
 	self.tank_elite.move_speed_mul = { walk = 0.85, run = 0.85 }
 	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "tank_elite")
@@ -1777,7 +1777,7 @@ function CharacterTweakData:_set_presets()
 
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
 
-	self.tank_elite.damage.armor_health = self.tank.damage.armor_health * 1.5
+	self.tank_elite.damage.armor_health = self.tank.damage.armor_health * (4 / 3)
 
 	self.tank_armor_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
