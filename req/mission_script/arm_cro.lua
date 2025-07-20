@@ -73,7 +73,7 @@ return {
 	},
 	-- Lower initial diff
 	[100122] = {
-		values = { 
+		values = {
 			difficulty = 0.5, -- diff 65 originally
 		},
 	},
