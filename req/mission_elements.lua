@@ -85,7 +85,7 @@ function M.gen_spawngroup(id, name, elements, interval)
 			base_delay = 0,
 			ignore_disabled = false,
 			amount = 0,
-			spawn_type = "ordered",
+			spawn_type = opts.spawn_type or "ordered",
 			team = "default",
 			execute_on_startup = false,
 			enabled = true,

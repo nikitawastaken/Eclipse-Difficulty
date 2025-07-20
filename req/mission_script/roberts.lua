@@ -75,6 +75,10 @@ local sewer_spawn = {
 		interval = 20,
 	},
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
+
 return {
 	[101949] = {
 		ponr = {
@@ -143,6 +147,13 @@ return {
 			amount = is_eclipse_pro and 8 or 6,
 		},
 	},
+	-- replace the turret with a spawngroup
+	[106548] = {
+		on_executed = {
+			{ id = 106539, remove = true },
+			{ id = 400005, delay = 0 },
+		},
+	},
 	-- adjust plank amount
 	[101803] = plank_amount,
 	[101804] = plank_amount,
@@ -166,6 +177,7 @@ return {
 	-- Spawn group delays
 	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame.
 	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
+	[400007] = scripted_swat_van_spawn,
 	[100128] = street_spawn,
 	[100132] = street_spawn,
 	[100133] = street_spawn,

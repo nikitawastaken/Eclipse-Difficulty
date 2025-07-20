@@ -15,6 +15,10 @@ local cloaker_spawn = {
 		interval = 180,
 	},
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
+
 return {
 	-- Combine some navigation areas
 	[101230] = {
@@ -140,7 +144,15 @@ return {
 			{ id = 400001, delay = 0, delay_rand = 20 },
 		},
 	},
+	-- replace the turret with a spawngroup
+	[103641] = {
+		on_executed = {
+			{ id = 103632, remove = true },
+			{ id = 400006, delay = 0 },
+		},
+	},
 	-- Spawn group delays
+	[400008] = scripted_swat_van_spawn,
 	[101221] = street_spawn,
 	[101213] = street_spawn,
 	[101345] = street_spawn,
