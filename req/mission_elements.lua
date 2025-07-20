@@ -75,6 +75,7 @@ end
 ---@param elements table: what dummies will be used
 ---@param interval number: how minimum delay between spawns
 function M.gen_spawngroup(id, name, elements, interval)
+	opts = opts or {}
 	local spawngroup = {
 		id = id,
 		editor_name = name,
