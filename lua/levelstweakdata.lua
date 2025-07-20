@@ -88,7 +88,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mallcrasher.group_ai_preset = "small_urban"
 	self.nightclub.group_ai_preset = "small_urban"
 	self.chill_combat.group_ai_preset = "small_urban"
-	
+
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
 	self.crojob3.group_ai_preset = "remote"
 	self.crojob3_night.group_ai_preset = "remote"
@@ -100,7 +100,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chca.group_ai_preset = "remote"
 	self.ranc.group_ai_preset = "remote"
 	self.deep.group_ai_preset = "remote"
-	
+
 	self.framing_frame_3.group_ai_preset = "skyscraper"
 	self.dah.group_ai_preset = "skyscraper"
 	self.pent.group_ai_preset = "skyscraper"
@@ -134,7 +134,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arm_hcm.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 
 	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	
+
 	self.nightclub.group_ai_settings = deep_clone(self.branchbank.group_ai_settings)
 	self.nightclub.group_ai_settings.assault_force_mul = 0.6
 	self.nightclub.group_ai_settings.recon_force_mul = 0.8

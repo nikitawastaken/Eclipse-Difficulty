@@ -74,13 +74,13 @@ return {
 	-- Vanilla delay is 30s
 	[100109] = {
 		on_executed = {
-			{ id = 100129, delay = 20 }
+			{ id = 100129, delay = 20 },
 		},
 	},
 	-- Delay initial diff
 	[100116] = {
 		on_executed = {
-			{ id = 100122, delay = 45 }
+			{ id = 100122, delay = 45 },
 		},
 	},
 	-- Disable vanilla reinforce on the trucks

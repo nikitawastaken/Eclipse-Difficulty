@@ -167,7 +167,7 @@ return {
 	[100128] = street_spawn,
 	[100130] = street_spawn,
 	[100131] = street_spawn,
-	[100132] = street_spawn,				
+	[100132] = street_spawn,
 	[100981] = elevator_spawn,
 	[101039] = elevator_spawn,
 	[101156] = elevator_spawn,

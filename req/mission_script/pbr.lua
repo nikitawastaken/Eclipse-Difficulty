@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local no_participate = { 
+local no_participate = {
 	values = {
 		participate_to_group_ai = false,
 	},
@@ -144,7 +144,7 @@ return {
 		},
 	},
 	-- make snipers not participate to group ai
-	[100602] = no_participate, 
+	[100602] = no_participate,
 	[100603] = no_participate,
 	[100604] = no_participate,
 	[100605] = no_participate,

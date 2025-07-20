@@ -5,12 +5,12 @@ Drill.forbid_sabotage_SO_by_unit = {
 	[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = level_id == "red2" or nil, -- Ordinary thermal lance
 }
 Drill.no_automatic_drill_reinforce = {
-	["arm_fac"] = true,  
-	["arm_par"] = true,  
-	["arm_hcm"] = true,  
-	["arm_und"] = true,  
-	["arm_cro"] = true,  
-	["arm_for"] = true,  
+	["arm_fac"] = true,
+	["arm_par"] = true,
+	["arm_hcm"] = true,
+	["arm_und"] = true,
+	["arm_cro"] = true,
+	["arm_for"] = true,
 }
 
 Hooks:PostHook(Drill, "init", "eclipse_init", function(self, unit)

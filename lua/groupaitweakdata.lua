@@ -2947,7 +2947,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.spawn_kill_cooldown_mul ~= 1 then
 		Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
 	end
-	
+
 	self.min_grenade_timeout = table_multiplier(self.min_grenade_timeout, level_settings.min_grenade_timeout_mul or 1)
 
 	if level_settings.min_grenade_timeout_mul ~= 1 then
@@ -3099,7 +3099,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		Eclipse:log_console("Min reenforce interval for " .. level_id .. " set to: ")
 		Utils.PrintTable(self.min_reenforce_interval)
 	end
-	
+
 	if level_settings.force_tactics then
 		for name, force_tactics_table in pairs(level_settings.force_tactics) do
 			local tactics_table = self._tactics[name]
@@ -3227,7 +3227,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Reenforce spawn interval
 	self.min_reenforce_interval = { 5, 7.5, 10 }
-	
+
 	self.besiege.reenforce.interval = { 10, 20, 30 }
 
 	-- Recon spawn interval and spawncap
