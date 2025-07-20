@@ -1,3 +1,8 @@
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local gensec_operators = {
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
@@ -35,8 +40,62 @@ local dozer_chance = (normal and 10 or hard and 15 or 20) + (is_pro_job and 10 o
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
-
+local street_spawn = {
+	values = {
+		interval = 15,
+	},
+}
 return {
+	-- New reinforce
+	[100129] = {
+		reinforce = {
+			{
+				name = "north",
+				force = 3,
+				position = Vector3(0, 4300, 0),
+			},
+			{
+				name = "west",
+				force = 3,
+				position = Vector3(2600, 0, 0),
+			},
+			{
+				name = "east",
+				force = 3,
+				position = Vector3(-3400, 0, 0),
+			},
+			{
+				name = "south",
+				force = 3,
+				position = Vector3(0, -3800, 0),
+			},
+		},
+	},
+	-- Vanilla delay is 30s
+	[100109] = {
+		on_executed = {
+			{ id = 100129, delay = 20 }
+		},
+	},
+	-- Delay initial diff
+	[100116] = {
+		on_executed = {
+			{ id = 100122, delay = 45 }
+		},
+	},
+	-- Disable vanilla reinforce on the trucks
+	[100267] = disable,
+	[100268] = disable,
+	[100269] = disable,
+	[100270] = disable,
+	[100271] = disable,
+	[100272] = disable,
+	[100273] = disable,
+	[100274] = disable,
+	[100275] = disable,
+	[100276] = disable,
+	[100277] = disable,
+	[100278] = disable,
 	-- add more chance for dozers coming out the gensec van
 	[101700] = dozer_van_chance,
 	[101701] = dozer_van_chance,
@@ -107,4 +166,14 @@ return {
 	[101766] = gensec_tank,
 	[101767] = gensec_tank,
 	[101768] = gensec_tank,
+	-- Spawn group delays
+	[100128] = street_spawn,
+	[100130] = street_spawn,
+	[100131] = street_spawn,
+	[100132] = street_spawn,
+	[100133] = street_spawn,
+	[101843] = street_spawn,
+	[101844] = street_spawn,
+	[101845] = street_spawn,
+	[101846] = street_spawn,
 }

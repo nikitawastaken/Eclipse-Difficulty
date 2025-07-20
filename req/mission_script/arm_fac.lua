@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local gensec_operators = {
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
@@ -37,6 +42,11 @@ local dozer_chance = (normal and 10 or hard and 15 or 20) + (is_pro_job and 10 o
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
+local street_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local upper_spawn = {
 	values = {
 		interval = 20,
@@ -44,6 +54,49 @@ local upper_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- New reinforce
+	[100129] = {
+		reinforce = {
+			{
+				name = "containers",
+				force = 3,
+				position = Vector3(3100, -2400, 500),
+			},
+			{
+				name = "flank_right",
+				force = 2,
+				position = Vector3(4700, -2600, 400),
+			},
+			{
+				name = "flank_left",
+				force = 2,
+				position = Vector3(2800, 1000, 0),
+			},
+			{
+				name = "reachstacker1",
+				force = 3,
+				position = Vector3(-1700, -2300, 200),
+			},
+			{
+				name = "reachstacker2",
+				force = 3,
+				position = Vector3(3350, -5200, 200),
+			},
+		},
+	},
+	-- Disable vanilla reinforce on the trucks
+	[100084] = disable,
+	[100086] = disable,
+	[100087] = disable,
+	[100088] = disable,
+	[100089] = disable,
+	[100090] = disable,
+	[100091] = disable,
+	[100092] = disable,
+	[100093] = disable,
+	[100094] = disable,
+	[100095] = disable,
+	[100096] = disable,
 	-- add more chance for dozers coming out the gensec van
 	[104544] = dozer_van_chance,
 	[104545] = dozer_van_chance,
@@ -97,6 +150,12 @@ return {
 	[100325] = gensec_tank,
 	[100452] = gensec_tank,
 	-- Spawn group delays
+	[100132] = street_spawn,
+	[100133] = street_spawn,
+	[100154] = street_spawn,
+	[101205] = street_spawn,
+	[104938] = street_spawn,
 	[100128] = upper_spawn,
+	[100131] = upper_spawn,
 	[103176] = upper_spawn,
 }

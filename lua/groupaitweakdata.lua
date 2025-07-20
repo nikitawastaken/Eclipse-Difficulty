@@ -2947,7 +2947,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.spawn_kill_cooldown_mul ~= 1 then
 		Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
 	end
-
+	
 	self.min_grenade_timeout = table_multiplier(self.min_grenade_timeout, level_settings.min_grenade_timeout_mul or 1)
 
 	if level_settings.min_grenade_timeout_mul ~= 1 then
@@ -3067,21 +3067,21 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		self.flash_grenade_timeout = table_multiplier(self.flash_grenade_timeout, level_settings.grenade_timeout_mul.flash_grenade or 1)
 
 		if level_settings.grenade_timeout_mul.flash_grenade ~= 1 then
-			Eclipse:log_console("Flash grenade timeout set to: ")
+			Eclipse:log_console("Flash grenade timeout for " .. level_id .. " set to: ")
 			Utils.PrintTable(self.flash_grenade_timeout)
 		end
 
 		self.smoke_grenade_timeout = table_multiplier(self.smoke_grenade_timeout, level_settings.grenade_timeout_mul.smoke_grenade or 1)
 
 		if level_settings.grenade_timeout_mul.smoke_grenade ~= 1 then
-			Eclipse:log_console("Smoke grenade timeout set to: ")
+			Eclipse:log_console("Smoke grenade timeout for " .. level_id .. " set to: ")
 			Utils.PrintTable(self.smoke_grenade_timeout)
 		end
 
 		self.cs_grenade_timeout = table_multiplier(self.cs_grenade_timeout, level_settings.grenade_timeout_mul.cs_grenade or 1)
 
 		if level_settings.grenade_timeout_mul.cs_grenade ~= 1 then
-			Eclipse:log_console("CS grenade timeout set to: ")
+			Eclipse:log_console("CS grenade timeout for " .. level_id .. " set to: ")
 			Utils.PrintTable(self.cs_grenade_timeout)
 		end
 	end
@@ -3089,10 +3089,17 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	self.cs_grenade_chance_times = table_multiplier(self.cs_grenade_chance_times, level_settings.cs_grenade_chance_times_mul or 1)
 
 	if level_settings.cs_grenade_chance_times_mul ~= 1 then
-		Eclipse:log_console("CS grenade chance times set to: ")
+		Eclipse:log_console("CS grenade chance times for " .. level_id .. " set to: ")
 		Utils.PrintTable(self.cs_grenade_chance_times)
 	end
 
+	self.min_reenforce_interval = table_multiplier(self.min_reenforce_interval, level_settings.min_reenforce_interval_mul or 1)
+
+	if level_settings.min_reenforce_interval_mul ~= 1 then
+		Eclipse:log_console("Min reenforce interval for " .. level_id .. " set to: ")
+		Utils.PrintTable(self.min_reenforce_interval)
+	end
+	
 	if level_settings.force_tactics then
 		for name, force_tactics_table in pairs(level_settings.force_tactics) do
 			local tactics_table = self._tactics[name]
@@ -3219,6 +3226,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- RECON / REENFORCE --
 
 	-- Reenforce spawn interval
+	self.min_reenforce_interval = { 5, 7.5, 10 }
+	
 	self.besiege.reenforce.interval = { 10, 20, 30 }
 
 	-- Recon spawn interval and spawncap

@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local no_participate = { 
+	values = {
+		participate_to_group_ai = false,
+	},
+}
 local roof_spawn = {
 	values = {
 		interval = 20,
@@ -56,7 +61,7 @@ return {
 		reinforce = {
 			{
 				name = "entrance1",
-				force = 2,
+				force = 3,
 				position = Vector3(725, 150, 0),
 			},
 		},
@@ -65,7 +70,7 @@ return {
 		reinforce = {
 			{
 				name = "entrance2",
-				force = 2,
+				force = 3,
 				position = Vector3(825, -3400, -300),
 			},
 		},
@@ -74,7 +79,7 @@ return {
 		reinforce = {
 			{
 				name = "entrance3",
-				force = 2,
+				force = 3,
 				position = Vector3(2780, -4615, 0),
 			},
 		},
@@ -138,6 +143,20 @@ return {
 			{ name = "poseidon" },
 		},
 	},
+	-- make snipers not participate to group ai
+	[100602] = no_participate, 
+	[100603] = no_participate,
+	[100604] = no_participate,
+	[100605] = no_participate,
+	[100606] = no_participate,
+	[100369] = no_participate,
+	[101627] = no_participate,
+	[101628] = no_participate,
+	[101236] = no_participate,
+	[101237] = no_participate,
+	[101238] = no_participate,
+	[101239] = no_participate,
+	-- Spawn group delays
 	[100437] = roof_spawn,
 	[100438] = roof_spawn,
 	[100455] = agile_spawn,

@@ -55,18 +55,18 @@ local plank_amount = {
 }
 local street_spawn = {
 	values = {
-		interval = 5,
-	},
-}
-local wall_spawn = {
-	values = {
 		interval = 10,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local rear_spawn = {
 	values = {
 		interval = 15,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local wall_spawn = {
+	values = {
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -104,22 +104,22 @@ return {
 		reinforce = {
 			{
 				name = "bank_left",
-				force = 2,
+				force = 3,
 				position = Vector3(-500, -3000, -75),
 			},
 			{
 				name = "bank_right",
-				force = 2,
+				force = 3,
 				position = Vector3(450, 1750, -75),
 			},
 			{
 				name = "bank_front",
-				force = 2,
+				force = 3,
 				position = Vector3(2950, -650, -75),
 			},
 			{
 				name = "bank_back",
-				force = 2,
+				force = 3,
 				position = Vector3(-3250, -1375, -60),
 			},
 		},

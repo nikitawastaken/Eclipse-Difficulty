@@ -17,6 +17,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				assault_delay_mul = 1,
 				assault_force_mul = 1,
 				spawnrate_mul = 1,
+				min_reenforce_interval_mul = 1,
 				reenforce_interval_mul = 1,
 				recon_interval_variation_mul = 1,
 				recon_force_mul = 1,
@@ -81,15 +82,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.deep.flashlights_on = true
 
 	-- add Group AI presets
-	self.framing_frame_1.group_ai_preset = "small_urban"
 	self.ukrainian_job.group_ai_preset = "small_urban"
 	self.four_stores.group_ai_preset = "small_urban"
 	self.jewelry_store.group_ai_preset = "small_urban"
 	self.mallcrasher.group_ai_preset = "small_urban"
 	self.nightclub.group_ai_preset = "small_urban"
-	self.branchbank.group_ai_preset = "small_urban"
-	self.gallery.group_ai_preset = "small_urban"
 	self.chill_combat.group_ai_preset = "small_urban"
+	
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
 	self.crojob3.group_ai_preset = "remote"
 	self.crojob3_night.group_ai_preset = "remote"
@@ -101,6 +100,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chca.group_ai_preset = "remote"
 	self.ranc.group_ai_preset = "remote"
 	self.deep.group_ai_preset = "remote"
+	
 	self.framing_frame_3.group_ai_preset = "skyscraper"
 	self.dah.group_ai_preset = "skyscraper"
 	self.pent.group_ai_preset = "skyscraper"
@@ -121,9 +121,20 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
-	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.branchbank.group_ai_settings.assault_force_mul = nil
+	self.arm_par.group_ai_settings = {
+		assault_force_mul = 0.7,
+		recon_interval_variation_mul = 0.75,
+		push_delay_mul = 1.25,
+	}
 
+	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
+
+	self.arm_fac.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
+
+	self.arm_hcm.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
+
+	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
+	
 	self.nightclub.group_ai_settings = deep_clone(self.branchbank.group_ai_settings)
 	self.nightclub.group_ai_settings.assault_force_mul = 0.6
 	self.nightclub.group_ai_settings.recon_force_mul = 0.8
@@ -245,7 +256,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hox_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		recon_interval_variation_mul = 0.75,
-		min_grenade_timeout_mul = 0.75,
 		spawn_group_presets = {
 			feds = true,
 		},
@@ -596,6 +606,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
+		min_reenforce_interval_mul = 0.5,
 		grenade_timeout_mul = {
 			smoke_grenade = 0.5,
 		},
