@@ -40,6 +40,11 @@ local sniper_amount = {
 		amount = normal and 3 or hard and 4 or 5,
 	},
 }
+local street_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local close_spawn = {
 	values = {
 		interval = 15,
@@ -57,6 +62,9 @@ local roof_spawn = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local van_scripted_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
 }
 local cloaker_spawn = {
 	values = {
@@ -84,11 +92,12 @@ return {
 				position = Vector3(1800, -400, 0),
 			},
 		},
+		--[[
+		on_executed = {
+			{ id = 100129, delay = 45 },
+		},
+		]]
 	},
-	-- Disable a few vanilla reinforce spots to declutter the map
-	[102192] = disabled,
-	[104095] = disabled,
-	[104111] = disabled,
 	-- Add new preferreds and adjust existing ones
 	[100129] = { -- initial preferreds
 		on_executed = {
@@ -117,6 +126,22 @@ return {
 			{ id = 101573, delay = 0, delay_rand = 20 },
 		},
 	},
+	-- replace the turret with a spawngroup
+	[101592] = { -- arrive 1
+		on_executed = {
+			{ id = 400018, delay = 0 },
+		},
+	},
+	[101586] = { -- arrive 2
+		on_executed = {
+			{ id = 400025, delay = 0 },
+		},
+	},
+	[101641] = { -- arrive 3
+		on_executed = {
+			{ id = 400032, delay = 0 },
+		},
+	},
 	-- Adjust Sniper amount
 	[100358] = sniper_amount,
 	[100359] = sniper_amount,
@@ -143,6 +168,8 @@ return {
 	[101628] = exclude_shields_dozers,
 	-- Spawn group delays
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
+	[400006] = street_spawn,
+	[400012] = street_spawn,
 	[100130] = close_spawn,
 	[100133] = close_spawn,
 	[100019] = alley_spawn,
@@ -153,6 +180,9 @@ return {
 	[100128] = roof_spawn,
 	[100692] = roof_spawn,
 	[104117] = roof_spawn,
+	[400020] = van_scripted_spawn,
+	[400027] = van_scripted_spawn,
+	[400034] = van_scripted_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,
