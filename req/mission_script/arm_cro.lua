@@ -36,13 +36,13 @@ local gensec = {
 local gensec_tank = {
 	enemy = gensec_dozer,
 }
-local dozer_chance = (normal and 10 or hard and 15 or 20) + (is_pro_job and 10 or 0)
+local dozer_chance = (eclipse and 25 or hard and 15 or 0) + (is_pro_job and 20 or 0)
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
 local street_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 return {
@@ -52,23 +52,29 @@ return {
 			{
 				name = "north",
 				force = 3,
-				position = Vector3(0, 4300, 0),
+				position = Vector3(0, -3200, 0),
 			},
 			{
 				name = "west",
 				force = 3,
-				position = Vector3(2600, 0, 0),
+				position = Vector3(3200, 0, 0),
 			},
 			{
 				name = "east",
 				force = 3,
-				position = Vector3(-3400, 0, 0),
+				position = Vector3(-3200, 0, 0),
 			},
 			{
 				name = "south",
 				force = 3,
-				position = Vector3(0, -3800, 0),
+				position = Vector3(0, 3200, 0),
 			},
+		},
+	},
+	-- Lower initial diff
+	[100122] = {
+		values = { 
+			difficulty = 0.5, -- diff 65 originally
 		},
 	},
 	-- Vanilla delay is 30s

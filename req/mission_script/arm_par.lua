@@ -38,7 +38,7 @@ local gensec = {
 local gensec_tank = {
 	enemy = gensec_dozer,
 }
-local dozer_chance = (normal and 10 or hard and 15 or 20) + (is_pro_job and 10 or 0)
+local dozer_chance = (eclipse and 25 or hard and 15 or 0) + (is_pro_job and 20 or 0)
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
@@ -80,18 +80,18 @@ return {
 		},
 	},
 	-- Disable vanilla reinforce on the trucks
-	[100084] = disabled,
-	[100086] = disabled,
-	[100087] = disabled,
-	[100088] = disabled,
-	[100089] = disabled,
-	[100090] = disabled,
-	[100091] = disabled,
-	[100092] = disabled,
-	[100093] = disabled,
-	[100094] = disabled,
-	[100095] = disabled,
-	[100096] = disabled,
+	[100267] = disabled,
+	[100268] = disabled,
+	[100269] = disabled,
+	[100270] = disabled,
+	[100271] = disabled,
+	[100272] = disabled,
+	[100273] = disabled,
+	[100274] = disabled,
+	[100275] = disabled,
+	[100276] = disabled,
+	[100277] = disabled,
+	[100278] = disabled,
 	-- add more chance for dozers coming out the gensec van
 	[101994] = dozer_van_chance,
 	[101995] = dozer_van_chance,

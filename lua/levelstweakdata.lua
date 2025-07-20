@@ -122,9 +122,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
 	self.arm_par.group_ai_settings = {
+		difficulty_step_time = 10,
+		sustain_duration_mul = 0.85,
 		assault_force_mul = 0.7,
-		recon_interval_variation_mul = 0.75,
-		push_delay_mul = 1.25,
 	}
 
 	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)

@@ -4,7 +4,7 @@ Drill.forbid_sabotage_SO_by_unit = {
 	[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = true, -- The Beast
 	[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = level_id == "red2" or nil, -- Ordinary thermal lance
 }
-Drill.no_automatic_drill_reinforce = {
+Drill.no_automatic_drill_reenforce = {
 	["arm_fac"] = true,
 	["arm_par"] = true,
 	["arm_hcm"] = true,
@@ -18,7 +18,7 @@ Hooks:PostHook(Drill, "init", "eclipse_init", function(self, unit)
 end)
 
 Hooks:PostHook(Drill, "start", "eclipse_start", function(self)
-	if not self.no_automatic_drill_reinforce[level_id] then
+	if not self.no_automatic_drill_reenforce[level_id] then
 		managers.groupai:state():set_area_min_police_force(self._unit:key(), 2, self._unit:position())
 	end
 end)
