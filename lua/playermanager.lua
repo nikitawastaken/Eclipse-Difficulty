@@ -770,7 +770,7 @@ function PlayerManager:remove_synced_carry(peer)
 		local local_peer_id = managers.network:session():local_peer():id()
 
 		local next_carry_id = self._global.synced_carry[peer_id][1] and self._global.synced_carry[peer_id][1].carry_id
-		if peer_id ~= local_peer_id then
+		if peer_id ~= local_peer_id and alive(peer:unit()) then
 			peer:unit():movement():set_visual_carry(next_carry_id)
 		end
 	end
