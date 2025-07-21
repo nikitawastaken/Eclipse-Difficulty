@@ -111,17 +111,17 @@ return {
 	-- replace the turret with a spawngroup
 	[104070] = { -- arrive 1
 		on_executed = {
-			{ id = 400005, delay = 0 },
+			{ id = 400005, delay = 0, delay_rand = 5 },
 		},
 	},
 	[104068] = { -- arrive 2
 		on_executed = {
-			{ id = 400012, delay = 0 },
+			{ id = 400012, delay = 0, delay_rand = 5 },
 		},
 	},
 	[104066] = { -- arrive 3
 		on_executed = {
-			{ id = 400019, delay = 0 },
+			{ id = 400019, delay = 0, delay_rand = 5 },
 		},
 	},
 	-- Adjust Sniper amount
