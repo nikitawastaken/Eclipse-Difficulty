@@ -34,6 +34,13 @@ return {
 			{ id = 101495, delay = 0 },
 		},
 	},
+	-- replace the turret with a spawngroup
+	[100790] = {
+		on_executed = {
+			{ id = 104266, remove = true },
+			{ id = 400007, delay = 0 },
+		},
+	},
 	-- Spawn Group delays
 	[102061] = rear_spawn,
 	[102065] = rear_spawn,

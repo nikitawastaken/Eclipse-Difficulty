@@ -74,7 +74,7 @@ end
 ---@param name string: name of element for reference
 ---@param elements table: what dummies will be used
 ---@param interval number: how minimum delay between spawns
-function M.gen_spawngroup(id, name, elements, interval)
+function M.gen_spawngroup(id, name, elements, interval, opts)
 	opts = opts or {}
 	local spawngroup = {
 		id = id,
@@ -85,7 +85,7 @@ function M.gen_spawngroup(id, name, elements, interval)
 			trigger_times = 0,
 			base_delay = 0,
 			ignore_disabled = false,
-			amount = 0,
+			amount = opts.amount or 0,
 			spawn_type = opts.spawn_type or "ordered",
 			team = "default",
 			execute_on_startup = false,

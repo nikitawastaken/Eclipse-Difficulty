@@ -25,6 +25,7 @@ local optsspawnvanSWATs_1 = {
 }
 local opts_swat_group = {
 	spawn_type = "group_guaranteed",
+	amount = 4,
 }
 
 M.elements = {

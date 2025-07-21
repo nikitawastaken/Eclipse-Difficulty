@@ -55,6 +55,7 @@ local optsspawnvanSWATs_3 = {
 }
 local opts_swat_group = {
 	spawn_type = "group_guaranteed",
+	amount = 4,
 }
 M.elements = {
 	Eclipse.mission_elements.gen_dummy(400001, "eclipse_spawn_enemy_001", Vector3(2200, 4500, -25), Rotation(-90, 0, 0), optsBesiegeDummy),
