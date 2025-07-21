@@ -16,6 +16,9 @@ local cloaker_spawn = {
 		interval = 120,
 	},
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 return {
 	-- Set difficulty
 	[100648] = {
@@ -42,6 +45,7 @@ return {
 		},
 	},
 	-- Spawn Group delays
+	[400009] = scripted_swat_van_spawn,
 	[102061] = rear_spawn,
 	[102065] = rear_spawn,
 	[101043] = rear_spawn,
