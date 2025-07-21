@@ -40,26 +40,14 @@ local sniper_amount = {
 		amount = normal and 3 or hard and 4 or 5,
 	},
 }
-local street_spawn = {
+local alley_spawn = {
 	values = {
 		interval = 10,
 	},
 }
-local close_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_bulldozers_snipers,
-}
-local alley_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -103,7 +91,6 @@ return {
 		on_executed = {
 			{ id = 400013, delay = 0 },
 			{ id = 101574, remove = true }, -- remove roof preferreds
-			{ id = 102203, remove = true }, -- remove back alley preferreds
 		},
 	},
 	[100021] = {
@@ -116,11 +103,6 @@ return {
 			{ id = 101574, delay = 0, delay_rand = 20 },
 		},
 	},
-	[100006] = { -- fire done, enable back alley preferreds
-		on_executed = {
-			{ id = 102203, delay = 0, delay_rand = 20 },
-		},
-	},
 	[101236] = { -- Hajrudin stopped, enable garage roof preferreds
 		on_executed = {
 			{ id = 101573, delay = 0, delay_rand = 20 },
@@ -129,17 +111,17 @@ return {
 	-- replace the turret with a spawngroup
 	[101592] = { -- arrive 1
 		on_executed = {
-			{ id = 400018, delay = 0 },
+			{ id = 400005, delay = 30 },
 		},
 	},
 	[101586] = { -- arrive 2
 		on_executed = {
-			{ id = 400025, delay = 0 },
+			{ id = 400012, delay = 30 },
 		},
 	},
 	[101641] = { -- arrive 3
 		on_executed = {
-			{ id = 400032, delay = 0 },
+			{ id = 400019, delay = 30 },
 		},
 	},
 	-- Adjust Sniper amount
@@ -168,10 +150,6 @@ return {
 	[101628] = exclude_shields_dozers,
 	-- Spawn group delays
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
-	[400006] = street_spawn,
-	[400012] = street_spawn,
-	[100130] = close_spawn,
-	[100133] = close_spawn,
 	[100019] = alley_spawn,
 	[100131] = alley_spawn,
 	[104123] = alley_spawn,
