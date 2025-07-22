@@ -121,12 +121,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	
+
 	self.nightclub.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.nightclub.group_ai_settings.assault_force_mul = 0.6
 	self.nightclub.group_ai_settings.recon_force_mul = 0.8
 	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, marksman = -1 }
-	
+
 	self.arm_par.group_ai_settings = {
 		difficulty_step_time = 10,
 		sustain_duration_mul = 0.85,
