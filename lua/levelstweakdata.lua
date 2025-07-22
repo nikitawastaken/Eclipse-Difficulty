@@ -107,6 +107,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
+		difficulty_curve_points = { 0.75 },
 		assault_force_mul = 0.7,
 		push_delay_mul = 1.25,
 		force_tactics = {
@@ -117,10 +118,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
-	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
+	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	
+	self.nightclub.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	self.nightclub.group_ai_settings.assault_force_mul = 0.6
+	self.nightclub.group_ai_settings.recon_force_mul = 0.8
+	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, marksman = -1 }
+	
 	self.arm_par.group_ai_settings = {
 		difficulty_step_time = 10,
 		sustain_duration_mul = 0.85,
@@ -134,11 +140,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arm_hcm.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 
 	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-
-	self.nightclub.group_ai_settings = deep_clone(self.branchbank.group_ai_settings)
-	self.nightclub.group_ai_settings.assault_force_mul = 0.6
-	self.nightclub.group_ai_settings.recon_force_mul = 0.8
-	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, medic = -1, marksman = -1 }
 
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,

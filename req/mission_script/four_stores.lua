@@ -1,12 +1,12 @@
 local preferred = Eclipse.preferred
 local street_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
