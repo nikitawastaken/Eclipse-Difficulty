@@ -165,29 +165,29 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 			end
 		end
 	end
-	
+
 	-- give tasers and medics burndeath screams when getting affected by ecm feedback
 	if sound_name == "ch3" then
-			if self._unit:base():has_tag("taser") then
-				if faction == "russia" then
-					full_sound = "rtsr_burndeath"
-				elseif faction == "federales" then
-					full_sound = "mtsr_burndeath"
-				else
-					full_sound = "tsr_burndeath"
-				end
-			end
-
-			if self._unit:base():has_tag("medic") then
-				if faction == "russia" then
-					full_sound = "rmdc_burndeath"
-				elseif faction == "federales" then
-					full_sound = "mmdc_burndeath"
-				else
-					full_sound = "mdc_burndeath"
-				end
+		if self._unit:base():has_tag("taser") then
+			if faction == "russia" then
+				full_sound = "rtsr_burndeath"
+			elseif faction == "federales" then
+				full_sound = "mtsr_burndeath"
+			else
+				full_sound = "tsr_burndeath"
 			end
 		end
+
+		if self._unit:base():has_tag("medic") then
+			if faction == "russia" then
+				full_sound = "rmdc_burndeath"
+			elseif faction == "federales" then
+				full_sound = "mmdc_burndeath"
+			else
+				full_sound = "mdc_burndeath"
+			end
+		end
+	end
 
 	-- fix l2d having missing death sound
 	if self._prefix == "l2d_" then
