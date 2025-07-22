@@ -204,7 +204,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
 
 	-- Always glow cloakers (like in PDTH)
-	if self._tweak_table == "spooc" then
+	if self:has_tag("spooc") then
 		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
 	end
 
