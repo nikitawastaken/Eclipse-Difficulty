@@ -1008,13 +1008,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		},
 	}
 
-	self.parts.wpn_fps_fla_mk2_mag_rare.stats = { value = 1, damage = -6, extra_ammo = 50, total_ammo_mod = 5 }
+	self.parts.wpn_fps_fla_mk2_mag_rare.stats = { value = 1, damage = -4, extra_ammo = 50, total_ammo_mod = 5 }
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
 	self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = { value = 1, damage = 6, extra_ammo = -50, total_ammo_mod = -5 }
+	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = { value = 1, damage = 4, extra_ammo = -50, total_ammo_mod = -5 }
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
@@ -1057,13 +1057,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		},
 	}
 
-	self.parts.wpn_fps_fla_system_m_low.stats = { value = 1, damage = -6, extra_ammo = 25, total_ammo_mod = 5 }
+	self.parts.wpn_fps_fla_system_m_low.stats = { value = 1, damage = -4, extra_ammo = 25, total_ammo_mod = 5 }
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_low.has_description = true
 	self.parts.wpn_fps_fla_system_m_low.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_system_m_high.stats = { value = 1, damage = 6, extra_ammo = -25, total_ammo_mod = -5 }
+	self.parts.wpn_fps_fla_system_m_high.stats = { value = 1, damage = 4, extra_ammo = -25, total_ammo_mod = -5 }
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
 	self.parts.wpn_fps_fla_system_m_high.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_high.has_description = true
