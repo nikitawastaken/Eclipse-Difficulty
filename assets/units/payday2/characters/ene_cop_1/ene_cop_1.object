@@ -382,31 +382,6 @@
 				</object>
 			</lod_object>
 
-			<!-- FBI AGENT BADGE OBJECTS -->
-			<lod_object name="lod_badges_fbi">
-				<object name="g_badges_fbi" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_badges_fbi_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>		
-
-			<lod_object name="lod_badges_fbi_b">
-				<object name="g_badges_fbi_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_badges_fbi_b_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>	
-
 			<!-- SAN MARTIN SECURITY BADGE OBJECTS -->
 			<lod_object name="lod_badges_bex_security">
 				<object name="g_badges_bex_security" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -485,12 +460,12 @@
 			
 			<!-- BELT OBJECTS -->
 			<lod_object name="lod_belt">
-				<object name="g_belt" 		enabled="true"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+				<object name="g_belt" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_police_body" max_distance="1000" />
 					<material materials="mtr_police_body_lod_1" max_distance="1500" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
-				<object name="g_belt_lod1" 	enabled="true" lod="1" >
+				<object name="g_belt_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>

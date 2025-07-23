@@ -760,6 +760,7 @@
 				
 			<run_sequence 		name="'fbi'" />
 			<run_sequence 		name="'badges_fbi'" />
+			<run_sequence 		name="'belt'" />	
 			<run_sequence 		name="'hat_security'" />
 			<run_sequence 		name="'handcuffs'" />
 			<run_sequence 		name="'random_body_c'" />
