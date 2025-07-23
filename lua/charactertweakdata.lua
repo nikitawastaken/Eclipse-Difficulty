@@ -1680,7 +1680,7 @@ CharacterTweakData.tweak_table_ecm_hurts = {
 	city_sniper = 4,
 	mobster_boss = 2,
 	chavez_boss = 2,
-	hector_boss = 2, 
+	hector_boss = 2,
 	biker_boss = 2,
 	drug_lord_boss = 2,
 	triad_boss = 2,
@@ -1731,18 +1731,18 @@ function CharacterTweakData:_set_presets()
 		-- Set ECM hurt durations based on tweak table or access
 		local char_ecm_hurts = self.tweak_table_ecm_hurts[name] or self.access_ecm_hurts[char_access]
 
-		char_preset.ecm_hurts = { ears = char_ecm_hurts or 8 } 
+		char_preset.ecm_hurts = { ears = char_ecm_hurts or 8 }
 
 		-- Set ECM vulnerability based on tweak table or access
 		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access]
 
 		char_preset.ecm_vulnerability = char_ecm_vuln or 0.6
-		
+
 		-- Set move speed based on the tweak table or access
 		local char_move_speed = self.presets.move_speed[self.tweak_table_move_speed[name] or self.access_move_speed[char_access]]
 
 		char_preset.move_speed = char_move_speed or self.presets.move_speed.normal
-		
+
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
 			if not is_boss then
@@ -1767,7 +1767,6 @@ function CharacterTweakData:_set_presets()
 			char_preset.immune_to_concussion = true
 			char_preset.use_animation_on_fire_damage = false
 		end
-
 
 		-- Make sure that Shield type enemies cannot do the grenade throwing animation
 		local is_shield = char_access == "shield" and char_preset.wall_fwd_offset
