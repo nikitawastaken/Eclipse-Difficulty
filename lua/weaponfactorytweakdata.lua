@@ -40,7 +40,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				part.custom_stats.explosive_ammo = true
 			end
 		end
-		
+
 		if part.stats then
 			local is_sight = part.type and part.type == "sight"
 			local is_magazine = part.type and part.type == "magazine"
@@ -60,7 +60,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			if part.stats.damage then
 				part.stats.damage = math.round(part.stats.damage / 2.5)
 			end
-			
+
 			local default_sights = {
 				wpn_fps_upg_o_shortdot = true,
 				wpn_fps_upg_o_shortdot_vanilla = true,

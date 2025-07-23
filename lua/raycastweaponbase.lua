@@ -245,16 +245,21 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 
 	local is_player = self._setup.user_unit == managers.player:player_unit()
 	local is_explosive = self:is_explosive()
-	local consume_ammo = is_explosive or not managers.player:has_active_temporary_property("bullet_storm") and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost")) or not is_player
+	local consume_ammo = is_explosive
+		or not managers.player:has_active_temporary_property("bullet_storm") and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade(
+			"player",
+			"berserker_no_ammo_cost"
+		))
+		or not is_player
 	local ammo_usage = self:ammo_usage()
-		
+
 	if consume_ammo and (is_player or Network:is_server()) then
 		local base = self:ammo_base()
 
 		if base:get_ammo_remaining_in_clip() == 0 then
 			return
 		end
-		
+
 		if is_player and not is_explosive then
 			if managers.player:has_category_upgrade("weapon", "consume_no_ammo_chance") then
 				local roll = math.rand(1)
