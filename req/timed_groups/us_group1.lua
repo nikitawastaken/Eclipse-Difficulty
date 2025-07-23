@@ -56,8 +56,8 @@ return function(timed_tactics, difficulty_index)
 					},
 				},
 				spawn_point_chk_ref = table.list_to_set({
-					"tac_swat_rifle",
-					"tac_swat_rifle_flank",
+					"cs_swats",
+					"cs_heavies",
 				}),
 			},
 		},
