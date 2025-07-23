@@ -116,7 +116,7 @@ return {
 		},
 	},
 	-- Reinforce second floor above tellers
-	[100123] = { -- Assault done 
+	[100123] = { -- Assault done
 		reinforce = {
 			{
 				name = "teller_balcony1",
