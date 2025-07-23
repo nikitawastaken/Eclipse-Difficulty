@@ -50,8 +50,13 @@ function PlayerDamage:damage_bullet(attack_data)
 	end
 
 	-- crook ballistic vest hp dmg reduction
-	if pm:is_wearing_a_ballistic_vest() and self:get_real_armor() <= 0 then
+	if pm:has_category_upgrade("player", "bv_health_damage_reduction") and pm:is_wearing_a_ballistic_vest() and self:get_real_armor() <= 0 then
 		attack_data.damage = attack_data.damage * pm:upgrade_value("player", "bv_health_damage_reduction", 1)
+	end
+
+	-- armorer full armor dmg reduction
+	if pm:has_category_upgrade("player", "full_armor_damage_reduction") and self:armor_ratio() == 1 then
+		attack_data.damage = attack_data.damage * pm:upgrade_value("player", "full_armor_damage_reduction", 1)
 	end
 
 	local damage_absorption = pm:damage_absorption()

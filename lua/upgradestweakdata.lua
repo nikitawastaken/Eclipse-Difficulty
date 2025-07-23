@@ -1245,11 +1245,26 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[2][7].multiperk3 = "60"
 
 	-- Armorer
-	self.values.temporary.armor_break_invulnerable = { { 2, 45 } }
-	self.specialization_descs[3][7].multiperk3 = "45"
-	self.specialization_descs[3][1].multiperk = "5%"
-	self.specialization_descs[3][3].multiperk = "5%"
-	self.specialization_descs[3][5].multiperk = "5%"
+	self.values.player.armor_regen_timer_multiplier_passive[1] = 0.85
+	self.values.player.passive_armor_movement_penalty_multiplier[1] = 0.8
+	self.values.player.tier_armor_multiplier[3] = 1.15
+	self.values.player.full_armor_damage_reduction = { 0.75 }
+	self.definitions.player_full_armor_damage_reduction = {
+		name_id = "menu_player_full_armor_damage_reduction",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "full_armor_damage_reduction",
+			category = "player",
+		},
+	}
+	self.values.temporary.armor_break_invulnerable = { { 2, 60 } }
+	self.specialization_descs[3][1].multiperk = "15%"
+	self.specialization_descs[3][3].multiperk = "20%"
+	self.specialization_descs[3][5].multiperk = "15%"
+	self.specialization_descs[3][7].multiperk = "25%"
+	self.specialization_descs[3][9].multiperk = "2"
+	self.specialization_descs[3][9].multiperk2 = "60"
 
 	-- All dodge decks
 	self.values.player.passive_dodge_chance = { 0.05, 0.1, 0.15 }

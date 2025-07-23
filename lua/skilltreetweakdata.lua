@@ -547,10 +547,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[2][7].icon_xy = { 3, 0 }
 
 	-- armorer
-	table.delete(self.specializations[3][1].upgrades, "player_tier_armor_multiplier_2")
-	table.delete(self.specializations[3][9].upgrades, "player_tier_armor_multiplier_6")
-	self.specializations[3][3].upgrades = { "player_tier_armor_multiplier_2" }
-	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_3", "player_tier_armor_multiplier_4", "player_tier_armor_multiplier_5" }
+	self.specializations[3][1].upgrades = { "player_armor_regen_timer_multiplier_passive" }
+	self.specializations[3][3].upgrades = { "player_passive_armor_movement_penalty_multiplier" }
+	self.specializations[3][5].upgrades = {  "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
+	self.specializations[3][7].upgrades = { "player_full_armor_damage_reduction" }
+	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
 
 	-- rogue
 	self.specializations[4][3].upgrades = { "player_unseen_increased_crit_chance_1", "player_unseen_temp_increased_dodge_chance" }
@@ -568,7 +569,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[6][3].upgrades = { "player_bv_health_damage_reduction" }
 	self.specializations[6][5].upgrades = { "player_bv_ap_rnds_protection" }
 	self.specializations[6][7].upgrades = { "player_level_2_armor_multiplier_1", "player_level_3_armor_multiplier_1", "player_level_4_armor_multiplier_1" }
-	self.specializations[6][9].upgrades = { "player_bv_no_armor_suppression" }
+	self.specializations[6][9].upgrades = { "player_bv_no_armor_suppression", "player_passive_loot_drop_multiplier" }
 
 	-- burglar
 	table.delete(self.specializations[7][7].upgrades, "player_tier_dodge_chance_3")
@@ -723,7 +724,6 @@ function SkillTreeTweakData:init(tweak_data)
 			name_id = "menu_deckall_6",
 			upgrades = {
 				"armor_kit",
-				"player_passive_armor_movement_penalty_multiplier",
 			},
 			icon_xy = {
 				5,
@@ -782,7 +782,7 @@ function SkillTreeTweakData:init(tweak_data)
 		perkdeck[2].upgrades = { "player_regain_throwable_from_ammo_1" }
 		perkdeck[2].icon_xy = { 0, 8 }
 		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
-		perkdeck[6].upgrades = { "armor_kit", "player_passive_armor_movement_penalty_multiplier" }
+		perkdeck[6].upgrades = { "armor_kit" }
 		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
 	end
 
