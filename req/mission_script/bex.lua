@@ -36,6 +36,9 @@ local side_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local van_scripted_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 local bags_required = {
 	values = {
 		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
@@ -65,135 +68,114 @@ return {
 			{ 68, 77 },
 		},
 	},
-	[100109] = { -- police, executed on alarm
-		on_executed = { -- delay preferreds and SWAT vans
-			{ id = 100129, delay = 90 }, -- preferred
-			{ id = 102987, delay = 60 }, -- deploy SWAT van
-			{ id = 102988, delay = 60 }, -- deploy SWAT van left
-			{ id = 102989, delay = 60 }, -- deploy SWAT van right
+	[100109] = { -- Police
+		on_executed = { -- delay preferreds 
+			{ id = 100129, delay = 60 }, -- preferred
 		},
+	},
+	[100810] = { -- start police car drive-in
 		reinforce = {
 			{
-				name = "fountain",
+				name = "police_car1",
 				force = 3,
-				position = Vector3(0, 1200, 50),
+				position = Vector3(0, 600, 0),
 			},
 			{
-				name = "side_entrance",
+				name = "police_car2",
 				force = 3,
-				position = Vector3(-2250, -2350, 0),
+				position = Vector3(2200, 500, 0),
+			},
+			{
+				name = "police_car3",
+				force = 3,
+				position = Vector3(-2500, -3000, 0),
 			},
 		},
 	},
-	[102311] = { -- func sequence trigger 003
+	[102311] = {  -- func sequence trigger 003
 		reinforce = {
 			{
-				name = "backdoor", -- lockpick door by the mechanic shop
+				name = "backdoor", 
 				force = 2,
-				position = Vector3(1750, -2100, 0),
+				position = Vector3(1800, -2200, 0),
 			},
 		},
 	},
-	[102541] = { -- link activate navlinks roof
+	[102541] = {  -- link activate navlinks roof
 		on_executed = {
-			{ id = 101618, remove = true }, -- why does this spawn a guard ?
+			{ id = 101618, remove = true, },  -- why does this spawn a guard ?
 		},
+	},
+	[103692] = {  -- break wall
 		reinforce = {
 			{
-				name = "roof1",
+				name = "breach",
 				force = 2,
-				position = Vector3(0, -1150, 850),
-			},
-			{
-				name = "roof2",
-				force = 2,
-				position = Vector3(0, -4000, 850),
+				position = Vector3(-1700, -5600, 0),
 			},
 		},
 	},
-	[103692] = { -- break wall
+	-- Reinforce second floor above tellers
+	[101822] = { -- Wait for drill parts
 		reinforce = {
 			{
-				name = "back_turret",
+				name = "teller_balcony1",
 				force = 2,
-				position = Vector3(-1700, -5650, 0),
+				position = Vector3(1200, -2200, 400),
+			},
+			{
+				name = "teller_balcony2",
+				force = 2,
+				position = Vector3(-1200, -2200, 400),
+			},
+			{
+				name = "bank_interior",
+				force = 2,
+				position = Vector3(0, -1400, 0),
 			},
 		},
 	},
-	-- add reenforce to office rooms at start
-	[101758] = { -- server room point 1
+	-- Reinforce drill parts car on first break
+	[103346] = {
 		reinforce = {
 			{
-				name = "office1",
+				name = "parts_car",
 				force = 2,
-				position = Vector3(700, -6000, 0),
-			},
-			{
-				name = "office2",
-				force = 2,
-				position = Vector3(-700, -6000, 0),
+				position = Vector3(3100, -1400, 0),
 			},
 		},
 	},
-	[101013] = { -- server room point 2
+	[103347] = {
 		reinforce = {
 			{
-				name = "office2",
+				name = "parts_car",
 				force = 2,
-				position = Vector3(-700, -6000, 0),
-			},
-			{
-				name = "office3",
-				force = 2,
-				position = Vector3(1150, -4400, 0),
+				position = Vector3(1600, 2100, 0),
 			},
 		},
 	},
-	[101886] = { -- server room point 3 (same room as 1)
+	[103352] = {
 		reinforce = {
 			{
-				name = "office1",
+				name = "parts_car",
 				force = 2,
-				position = Vector3(700, -6000, 0),
-			},
-			{
-				name = "office2",
-				force = 2,
-				position = Vector3(-700, -6000, 0),
+				position = Vector3(1800, -2000, 0),
 			},
 		},
 	},
-	[101022] = { -- server room point 4
+	[103354] = {
 		reinforce = {
 			{
-				name = "office1",
+				name = "parts_car",
 				force = 2,
-				position = Vector3(700, -6000, 0),
-			},
-			{
-				name = "office3",
-				force = 2,
-				position = Vector3(1150, -4400, 0),
+				position = Vector3(-1700, 3300, 0),
 			},
 		},
 	},
-	[101801] = { -- hacking completed - server room is fair game for reenforce
+	-- Disable parts reinforce when drill is done
+	[101829] = {
 		reinforce = {
-			{
-				name = "office1",
-				force = 2,
-				position = Vector3(700, -6000, 0),
-			},
-			{
-				name = "office2",
-				force = 2,
-				position = Vector3(-700, -6000, 0),
-			},
-			{
-				name = "office3",
-				force = 2,
-				position = Vector3(1150, -4400, 0),
-			},
+			{ name = "parts_car" },
 		},
 	},
 	-- restores some unused sniper spawns with their SOs
@@ -213,15 +195,18 @@ return {
 	-- enable swat vans regardless of the side where player spawned
 	[102988] = enabled,
 	[102989] = enabled,
-	-- add scripted spawns that come out of swat vans
+	-- disable a few reinforce points
+	[101834] = disabled, -- drill, Eclipse automates those
+	[101835] = disabled, -- server room, only 1, for some reason
+	-- add guaranteed spawns that come out of swat vans
 	[102987] = {
 		on_executed = {
-			{ id = 400024, delay = 10 },
+			{ id = 400022, delay = 0, delay_rand = 5 },
 		},
 	},
 	[103002] = {
 		on_executed = {
-			{ id = 400016, delay = 10 },
+			{ id = 400015, delay = 0, delay_rand = 5 },
 		},
 	},
 	-- disable dozers
@@ -247,8 +232,6 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
-	-- disable guaranteed reenforce in one of the server rooms, the others dont have reenforce, why this one ?
-	[101835] = disabled, -- point area min police force 2
 	-- fix Locke repeating the same "Play_loc_bex_108" dialogue instead of using the right one
 	[103317] = {
 		values = {
@@ -271,6 +254,11 @@ return {
 	[102533] = bags_required_objective,
 	[101498] = bags_required,
 	[103954] = bags_required,
+	-- nuke stupid cheat spawns
+	[100741] = disabled,
+	[102369] = disabled,
+	[102382] = disabled,
+	[102781] = disabled,
 	-- Spawn group delays
 	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed.
 	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.
@@ -278,11 +266,8 @@ return {
 	[100019] = side_spawn,
 	[100128] = side_spawn,
 	[100132] = side_spawn,
-	-- cheat spawns, replaced with reenforce
-	[100741] = disabled,
-	[102369] = disabled,
-	[102382] = disabled,
-	[102781] = disabled,
+	[400017] = van_scripted_spawn,
+	[400024] = van_scripted_spawn,
 	[104687] = beat_cop, -- pre-spawned policia
 	[104688] = beat_cop,
 	[100675] = beat_cop,
