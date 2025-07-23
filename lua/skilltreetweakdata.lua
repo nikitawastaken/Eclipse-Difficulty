@@ -549,7 +549,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- armorer
 	self.specializations[3][1].upgrades = { "player_armor_regen_timer_multiplier_passive" }
 	self.specializations[3][3].upgrades = { "player_passive_armor_movement_penalty_multiplier" }
-	self.specializations[3][5].upgrades = {  "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
+	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
 	self.specializations[3][7].upgrades = { "player_full_armor_damage_reduction" }
 	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
 
