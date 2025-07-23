@@ -35,6 +35,10 @@ function RaycastWeaponBase:exit_run_speed_multiplier()
 	return multiplier
 end
 
+function RaycastWeaponBase:is_explosive()
+	return self._ammo_data and self._ammo_data.explosive_ammo or self:is_category("grenade_launcher") or false
+end
+
 local mvec_to = Vector3()
 local mvec_right_ax = Vector3()
 local mvec_up_ay = Vector3()
@@ -216,7 +220,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	return result
 end
 
--- no ammo consumption chance
+-- Make explsoive weaposn not benefit from infinite ammo upgrades / add no ammo consumption chance upgrade
 function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul, target_unit)
 	if managers.player:has_activate_temporary_upgrade("temporary", "no_ammo_cost_buff") then
 		managers.player:deactivate_temporary_upgrade("temporary", "no_ammo_cost_buff")
@@ -240,19 +244,18 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 	end
 
 	local is_player = self._setup.user_unit == managers.player:player_unit()
-	local consume_ammo = not managers.player:has_active_temporary_property("bullet_storm")
-			and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost"))
-		or not is_player
+	local is_explosive = self:is_explosive()
+	local consume_ammo = is_explosive or not managers.player:has_active_temporary_property("bullet_storm") and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost")) or not is_player
 	local ammo_usage = self:ammo_usage()
-
+		
 	if consume_ammo and (is_player or Network:is_server()) then
 		local base = self:ammo_base()
 
 		if base:get_ammo_remaining_in_clip() == 0 then
 			return
 		end
-
-		if is_player then
+		
+		if is_player and not is_explosive then
 			if managers.player:has_category_upgrade("weapon", "consume_no_ammo_chance") then
 				local roll = math.rand(1)
 				local chance = managers.player:upgrade_value("weapon", "consume_no_ammo_chance", 0)
@@ -327,7 +330,7 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 	return ray_res
 end
 
--- no elite shield pen
+-- Elite Shields cannot be penetrated
 function RaycastWeaponBase.collect_hits(from, to, setup_data)
 	setup_data = setup_data or {}
 	local ray_hits = nil

@@ -526,13 +526,15 @@ function WeaponTweakData:_init_weapons()
 
 			weap_data.spread_multiplier = nil
 			weap_data.recoil_multiplier = nil
-		elseif cat_map.grenade_launcher or cat_map.rocket_launcher then
+		elseif cat_map.grenade_launcher then
 			weap_data.stats.suppression = 1
 			weap_data.stats.alert_size = 18
-			weap_data.pickup_mul = weap_data.pickup_mul or cat_map.rocket_launcher and 0 or (not weap_data.use_data.selection_index == 2 and 1 / 5 or 1 / 2.5)
+			weap_data.pickup_mul = weap_data.pickup_mul or (not weap_data.use_data.selection_index == 2 and 1 / 5 or 1 / 2.5)
 			weap_data.damage_near = 1000
 			weap_data.damage_far = 2000
 			weap_data.rays = 12
+			
+			weap_data.explosive_ammo = true
 
 			weap_data.spread_multiplier = {
 				standing = {
@@ -672,7 +674,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.shotgun then
 				weap_data.kick.standing = { 1.8, 2, -0.2, 0.2 }
 
-			elseif cat_map.snp or cat_map.grenade_launcher or cat_map.rocket_launcher then
+			elseif cat_map.snp or cat_map.grenade_launcher then
 				weap_data.kick.standing = { 3, 4, -0.3, 0.3 }
 
 			elseif cat_map.saw then
@@ -2618,7 +2620,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Commando 101
 	self.ray.use_data.selection_index = 2
-	self.ray.categories = { "grenade_launcher", "heavy" }
+	table.insert(self.ray.categories, "heavy")
 	self.ray.CLIP_AMMO_MAX = 4
 	self.ray.stats.damage = 80
 	self.ray.stats.spread = 25
@@ -2626,11 +2628,12 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ray.stats.concealment = 4
 	self.ray.fire_mode_data.fire_rate = 60 / 60
 	self.ray.stats_modifiers = { damage = 10 }
+	self.ray.pickup_mul = 0
 	self.ray.total_ammo_mul = 2
 
 	-- RPG
 	self.rpg7.use_data.selection_index = 2
-	self.rpg7.categories = { "grenade_launcher", "heavy" }
+	table.insert(self.rpg7.categories, "heavy")
 	self.rpg7.CLIP_AMMO_MAX = 1
 	self.rpg7.stats.damage = 96
 	self.rpg7.stats.spread = 25
@@ -2638,6 +2641,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpg7.stats.concealment = 4
 	self.rpg7.fire_mode_data.fire_rate = 60 / 30
 	self.rpg7.stats_modifiers = { damage = 50 }
+	self.rpg7.pickup_mul = 0
 	self.rpg7.total_ammo_mul = 4
 
 	-- Flamethrowers

@@ -96,10 +96,10 @@
 	"menu_new_ammo_skill": "Work in Progress",
 	"menu_new_ammo_skill_desc": "BASIC: ##$basic##\nWork in progress.\n\nACE: ##$pro##\nWork in progress.",
 	"menu_mag_plus_beta": "Mag Plus",
-	"menu_mag_plus_beta_desc": "BASIC: ##$basic##\nFiring a weapon has a ##$multibasic## chance to not consume any ammo.\n\nACE: ##$pro##\nYour weapons gain ##$multipro## more rounds in their magazine.\n\nNote: Does not affect the Aced ##\"Sleight of Hand\"## Skill.",
+	"menu_mag_plus_beta_desc": "BASIC: ##$basic##\nFiring a weapon has a ##$multibasic## chance to not consume any ammo.\n\nNote: Does not affect weapons using explosive ammunition.\n\nACE: ##$pro##\nYour weapons gain ##$multipro## more rounds in their magazine.\n\nNote: Does not affect the Aced ##\"Sleight of Hand\"## Skill.",
 	"menu_big_game_hunters_beta": "Big Game Hunters",
 	"menu_big_game_hunters_beta_desc": "BASIC: ##$basic##\nEvery ##$multibasic## enemy you kill will drop an extra ammo box.\n\nACE: ##$pro##\nYour ammo pickup rate is increased by an additional ##$multipro##.",
-
+	"menu_ammo_reservoir_beta_desc": "BASIC: ##$basic##\nAmmo bags placed by you grant players the ability to shoot without depleting their ammunition for up to ##$multibasic## seconds after interacting with it. The more ammo players replenish, the longer the duration of the effect.\n\nNote: Does not affect weapons using explosive ammunition.\n\nACE: ##$pro##\nIncreases the base duration of the effect by up to ##$multipro2## seconds.",
 
 	"menu_defense_up_beta": "Transporter",
 	"menu_defense_up_beta_desc": "BASIC: ##$basic##\nYou can pack and interact with loot bags ##$multibasic## faster.\n\nACE: ##$pro##\nYou can throw bags ##$multipro## further.",

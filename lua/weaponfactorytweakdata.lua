@@ -35,6 +35,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			part.custom_stats = {}
 		end
 
+		if part.custom_stats then
+			if part.sub_type == "ammo_explosive" then
+				part.custom_stats.explosive_ammo = true
+			end
+		end
+		
 		if part.stats then
 			local is_sight = part.type and part.type == "sight"
 			local is_magazine = part.type and part.type == "magazine"
@@ -54,7 +60,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 			if part.stats.damage then
 				part.stats.damage = math.round(part.stats.damage / 2.5)
 			end
-
+			
 			local default_sights = {
 				wpn_fps_upg_o_shortdot = true,
 				wpn_fps_upg_o_shortdot_vanilla = true,
@@ -1328,6 +1334,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				stats = { damage = 180, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
+					explosive_ammo = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1341,6 +1348,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				stats = { damage = 162, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
+					explosive_ammo = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1354,6 +1362,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				stats = { damage = 144, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
+					explosive_ammo = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1367,6 +1376,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				stats = { damage = 108, total_ammo_mod = -9, spread = 2, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
+					explosive_ammo = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -1380,6 +1390,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 				stats = { damage = 90, total_ammo_mod = -9, spread = 1, spread_multi = { 2 / 3, 2 / 3 } },
 				custom_stats = {
 					ignore_statistic = true,
+					explosive_ammo = true,
 					ammo_pickup_max_mul = 0.4,
 					ammo_pickup_min_mul = 0.4,
 					stance_mul = slug_stance_muls,
@@ -2139,6 +2150,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
@@ -2154,6 +2166,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
@@ -2169,6 +2182,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
@@ -2184,6 +2198,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
@@ -2199,6 +2214,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
@@ -2214,6 +2230,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
@@ -2231,6 +2248,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,
@@ -2246,6 +2264,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 			custom_stats = {
 				muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_hornet",
 				armor_piercing_add = 1,
+				is_explosive = false,
 				can_shoot_through_shield = true,
 				can_shoot_through_enemy = true,
 				ignore_damage_upgrades = false,

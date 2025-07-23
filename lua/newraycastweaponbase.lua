@@ -30,6 +30,8 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		end
 	end
 
+	self._explosive_ammo = weapon_tweak.explosive_ammo
+ 
 	self._fire_modes = toggable_fire_modes or weapon_tweak.CAN_TOGGLE_FIREMODE and { "auto", "single" } or { "single" }
 
 	self._steelsight_move_speed_mul = weapon_tweak.steelsight_move_speed_mul or 0.6
@@ -49,7 +51,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._reload_speed_multiplier = weapon_tweak.reload_speed_multiplier or 1
 
 	self._exit_run_speed_multiplier = weapon_tweak.exit_run_speed_multiplier or 1
-
+	
 	self._fire_mode_mul = weapon_tweak.fire_mode_mul or {}
 
 	self._standing_hipfire_recoil_mul = (weapon_tweak.recoil_multiplier and weapon_tweak.recoil_multiplier.standing and weapon_tweak.recoil_multiplier.standing.hipfire) or 1
@@ -68,6 +70,12 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._moving_crouching_spread_mul = (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.moving and weapon_tweak.spread_multiplier.moving.crouching) or 1
 	self._moving_steelsight_spread_mul = (weapon_tweak.spread_multiplier and weapon_tweak.spread_multiplier.moving and weapon_tweak.spread_multiplier.moving.steelsight) or 1
 
+	if self._ammo_data then
+		if self._ammo_data.explosive_ammo ~= nil then
+			self._explosive_ammo = self._ammo_data.explosive_ammo
+		end		
+	end
+	
 	for part_id, stats in pairs(custom_stats) do
 		if stats.steelsight_move_speed_mul then
 			self._steelsight_move_speed_mul = stats.steelsight_move_speed_mul
