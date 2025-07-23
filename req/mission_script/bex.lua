@@ -69,7 +69,7 @@ return {
 		},
 	},
 	[100109] = { -- Police
-		on_executed = { -- delay preferreds 
+		on_executed = { -- delay preferreds
 			{ id = 100129, delay = 60 }, -- preferred
 		},
 	},
@@ -92,21 +92,21 @@ return {
 			},
 		},
 	},
-	[102311] = {  -- func sequence trigger 003
+	[102311] = { -- func sequence trigger 003
 		reinforce = {
 			{
-				name = "backdoor", 
+				name = "backdoor",
 				force = 2,
 				position = Vector3(1800, -2200, 0),
 			},
 		},
 	},
-	[102541] = {  -- link activate navlinks roof
+	[102541] = { -- link activate navlinks roof
 		on_executed = {
-			{ id = 101618, remove = true, },  -- why does this spawn a guard ?
+			{ id = 101618, remove = true }, -- why does this spawn a guard ?
 		},
 	},
-	[103692] = {  -- break wall
+	[103692] = { -- break wall
 		reinforce = {
 			{
 				name = "breach",

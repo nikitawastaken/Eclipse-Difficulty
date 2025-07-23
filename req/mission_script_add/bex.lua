@@ -123,7 +123,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_toggleelement(400004, "disable_dozers", optsDisable_dwdozers),
 	Eclipse.mission_elements.gen_toggleelement(400005, "enable_dozers", optsEnable_dwdozer),
-	
+
 	Eclipse.mission_elements.gen_object_editor(400007, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 	Eclipse.mission_elements.gen_object_editor(400008, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 
