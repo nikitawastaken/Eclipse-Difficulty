@@ -1551,6 +1551,14 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	end
 end
 
+local ecm_hurt_swat = 6
+local ecm_hurt_heavy = 4
+local ecm_hurt_boss = 2
+
+local ecm_vuln_special = 0.4
+local ecm_vuln_boss = 0.2
+local ecm_vuln_none = 0
+
 CharacterTweakData.access_health_hs_mul_blacklist = {
 	security_fat = true,
 	security_army = true,
@@ -1652,49 +1660,46 @@ CharacterTweakData.access_move_speed = {
 }
 
 CharacterTweakData.tweak_table_ecm_vulnerability = {
-	medic = 0.4,
-	city_sniper = 0.4,
-	mobster_boss = 0.2,
-	chavez_boss = 0.2,
-	hector_boss = 0.2,
-	biker_boss = 0.2,
-	drug_lord_boss = 0.2,
-	triad_boss = 0.2,
-	deep_boss = 0.2,
-	fbi_boss = 0.2,
-	city_shield = 0,
+	medic = ecm_vuln_special,
+	city_sniper = ecm_vuln_special,
+	mobster_boss = ecm_vuln_boss,
+	chavez_boss = ecm_vuln_boss,
+	hector_boss = ecm_vuln_boss,
+	biker_boss = ecm_vuln_boss,
+	drug_lord_boss = ecm_vuln_boss,
+	triad_boss = ecm_vuln_boss,
+	deep_boss = ecm_vuln_boss,
+	fbi_boss = ecm_vuln_boss,
+	city_shield = ecm_vuln_none,
 }
 
 CharacterTweakData.access_ecm_vulnerability = {
-	shield = 0.4,
-	taser = 0.4,
-	spooc = 0,
-	tank = 0,
+	shield = ecm_vuln_special,
+	taser = ecm_vuln_special,
+	spooc = ecm_vuln_none,
+	tank = ecm_vuln_none,
 }
 
 CharacterTweakData.tweak_table_ecm_hurts = {
-	fbi_heavy_swat = 4,
-	city_swat = 4,
-	city_heavy_swat = 4,
-	medic = 4,
-	city_sniper = 4,
-	mobster_boss = 2,
-	chavez_boss = 2,
-	hector_boss = 2,
-	biker_boss = 2,
-	drug_lord_boss = 2,
-	triad_boss = 2,
-	deep_boss = 2,
-	fbi_boss = 2,
-	city_shield = 0,
+	fbi_heavy_swat = ecm_hurt_heavy,
+	city_swat = ecm_hurt_heavy,
+	city_heavy_swat = ecm_hurt_heavy,
+	medic = ecm_hurt_heavy,
+	city_sniper = ecm_hurt_heavy,
+	mobster_boss = ecm_hurt_boss,
+	chavez_boss = ecm_hurt_boss,
+	hector_boss = ecm_hurt_boss, 
+	biker_boss = ecm_hurt_boss,
+	drug_lord_boss = ecm_hurt_boss,
+	triad_boss = ecm_hurt_boss,
+	deep_boss = ecm_hurt_boss,
+	fbi_boss = ecm_hurt_boss,
 }
 
 CharacterTweakData.access_ecm_hurts = {
-	swat = 6,
-	shield = 4,
-	taser = 4,
-	spooc = 0,
-	tank = 0,
+	swat = ecm_hurt_swat,
+	shield = ecm_hurt_heavy,
+	taser = ecm_hurt_heavy,
 }
 
 CharacterTweakData.access_surrender_break = {
