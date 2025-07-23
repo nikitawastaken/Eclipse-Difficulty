@@ -727,8 +727,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.8,
 			pants_down = 0.7,
+			not_assault = 0.6,
 			weapon_down = 0.5,
 			flanked = 0.4,
 			unaware_of_aggressor = 0.3,
@@ -737,21 +737,20 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		factors = {
 			health = {
 				[1.0] = 0,
-				[0.0] = 1,
+				[0.0] = 0.8,
 			},
 			aggressor_dis = {
-				[100] = 0.25,
+				[100] = 0.3,
 				[800] = 0,
 			},
 		},
 	}
-
-	presets.surrender.average = {
+	presets.surrender.normal = {
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.7,
 			pants_down = 0.6,
+			not_assault = 0.5,
 			weapon_down = 0.4,
 			flanked = 0.3,
 			unaware_of_aggressor = 0.2,
@@ -759,8 +758,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 		factors = {
 			health = {
-				[0.75] = 0,
-				[0.0] = 0.75,
+				[0.8] = 0,
+				[0.0] = 0.6,
 			},
 			aggressor_dis = {
 				[100] = 0.2,
@@ -768,13 +767,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			},
 		},
 	}
-
 	presets.surrender.hard = {
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.6,
 			pants_down = 0.5,
+			not_assault = 0.4,
 			weapon_down = 0.3,
 			flanked = 0.2,
 			unaware_of_aggressor = 0.1,
@@ -782,11 +780,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 		factors = {
 			health = {
-				[0.5] = 0,
-				[0.0] = 0.5,
+				[0.6] = 0,
+				[0.0] = 0.4,
 			},
 			aggressor_dis = {
-				[100] = 0.15,
+				[100] = 0.1,
 				[800] = 0,
 			},
 		},
@@ -797,8 +795,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			not_assault = 0.4,
 			pants_down = 0,
+			not_assault = 0.4,
 			weapon_down = 0,
 			flanked = 0,
 			unaware_of_aggressor = 0,
@@ -816,41 +814,21 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 	}
 
-	presets.base.surrender_break_time = { 10, 15 }
+	-- Tweak suppression presets
+	presets.suppression.easy.panic_chance_mul = 1
+	presets.suppression.easy.duration = { 8, 10 }
+	presets.suppression.easy.react_point = { 0, 2 }
+	presets.suppression.easy.brown_point = { 3, 5 }
 
-	presets.suppression.easy = {
-		panic_chance_mul = 1,
-		duration = { 8, 10 },
-		react_point = { 0, 2 },
-		brown_point = { 3, 5 },
-	}
+	presets.suppression.hard_def.panic_chance_mul = 0.8
+	presets.suppression.hard_def.duration = { 6, 8 }
+	presets.suppression.hard_def.react_point = { 2, 4 }
+	presets.suppression.hard_def.brown_point = { 5, 7 }
 
-	presets.suppression.average = deep_clone(presets.surrender.easy)
-
-	presets.suppression.average = {
-		panic_chance_mul = 0.8,
-		duration = { 6, 8 },
-		react_point = { 2, 4 },
-		brown_point = { 5, 7 },
-	}
-
-	presets.suppression.hard = deep_clone(presets.surrender.easy)
-
-	presets.suppression.hard = {
-		panic_chance_mul = 0.6,
-		duration = { 4, 6 },
-		react_point = { 4, 6 },
-		brown_point = { 7, 9 },
-	}
-
-	presets.suppression.very_hard = deep_clone(presets.surrender.easy)
-
-	presets.suppression.very_hard = {
-		panic_chance_mul = 0.4,
-		duration = { 2, 4 },
-		react_point = { 6, 8 },
-		brown_point = { 8, 10 },
-	}
+	presets.suppression.hard_agg.panic_chance_mul = 0.6
+	presets.suppression.hard_agg.duration = { 4, 6 }
+	presets.suppression.hard_agg.react_point = { 4, 6 }
+	presets.suppression.hard_agg.brown_point = { 7, 9 }
 
 	-- Enemy chatter
 	presets.enemy_chatter.cop.aggressive = true
@@ -963,9 +941,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
 
-	self.gensec.speech_prefix_p1 = self._unit_prefixes.cop
-	self.gensec.dodge = self.presets.dodge.poor
 	self.gensec.chatter = self.presets.enemy_chatter.security
+	self.gensec.speech_prefix_p1 = self._unit_prefixes.cop
+	self.gensec.suppression = self.presets.suppression.easy
+	self.gensec.dodge = self.presets.dodge.poor
 
 	self.security_mex.chatter = self.presets.enemy_chatter.security
 
@@ -988,6 +967,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
+	self.fbi.suppression = self.presets.suppression.easy
 	self.fbi.no_arrest = false
 
 	self.fbi_office = deep_clone(self.cop)
@@ -1044,22 +1024,22 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.swat.HEALTH_INIT = 8
 	self.swat.headshot_dmg_mul = 2.5 -- 32 head health
 	self.swat.speech_prefix_p2 = "n"
-	self.swat.surrender = self.presets.surrender.average
-	self.swat.suppression = self.presets.suppression.average
+	self.swat.surrender = self.presets.surrender.normal
+	self.swat.suppression = self.presets.suppression.hard_def
 	self.swat.no_arrest = false
 
 	self.heavy_swat.HEALTH_INIT = 16
 	self.heavy_swat.headshot_dmg_mul = 2.5 -- 64 head health
-	self.heavy_swat.surrender = self.presets.surrender.average
-	self.heavy_swat.suppression = self.presets.suppression.average
+	self.heavy_swat.surrender = self.presets.surrender.normal
+	self.heavy_swat.suppression = self.presets.suppression.hard_def
 	self.heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.heavy_swat.no_arrest = false
 
 	self.fbi_swat.HEALTH_INIT = 12
 	self.fbi_swat.headshot_dmg_mul = 2.5 -- 48 head health
 	self.fbi_swat.speech_prefix_p2 = "n"
-	self.fbi_swat.surrender = self.presets.surrender.average
-	self.fbi_swat.suppression = self.presets.suppression.average
+	self.fbi_swat.surrender = self.presets.surrender.normal
+	self.fbi_swat.suppression = self.presets.suppression.hard_def
 	self.fbi_swat.no_arrest = false
 
 	self.security_mcmansion = deep_clone(self.swat)
@@ -1083,7 +1063,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_heavy_swat.HEALTH_INIT = 20
 	self.fbi_heavy_swat.headshot_dmg_mul = 2.5 -- 80 head health
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
-	self.fbi_heavy_swat.suppression = self.presets.suppression.hard
+	self.fbi_heavy_swat.suppression = self.presets.suppression.hard_agg
 	self.fbi_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.fbi_heavy_swat.no_arrest = false
 
@@ -1091,14 +1071,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.headshot_dmg_mul = 2.5 -- 64 head health
 	self.city_swat.speech_prefix_p2 = "n"
 	self.city_swat.surrender = self.presets.surrender.hard
-	self.city_swat.suppression = self.presets.suppression.hard
+	self.city_swat.suppression = self.presets.suppression.hard_agg
 	self.city_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 
 	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	self.city_heavy_swat.HEALTH_INIT = 24
 	self.city_heavy_swat.headshot_dmg_mul = 2.5 -- 96 head health
 	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
-	self.city_heavy_swat.suppression = self.presets.suppression.very_hard
+	self.city_heavy_swat.suppression = self.presets.suppression.hard_agg
 	table.insert(self._enemy_list, "city_heavy_swat")
 
 	self.zeal_swat = deep_clone(self.city_swat)
@@ -1124,7 +1104,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.soldier.HEALTH_INIT = 14
 	self.soldier.headshot_dmg_mul = 2.5 -- 56 head health
 	self.soldier.surrender = self.presets.surrender.no_assault
-	self.soldier.suppression = self.presets.suppression.hard
+	self.soldier.suppression = self.presets.suppression.hard_agg
 	self.soldier.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.soldier.use_radio = "dsp_radio_russian"
 	self.soldier.no_arrest = true
@@ -1643,11 +1623,6 @@ CharacterTweakData.access_weapon = {
 }
 
 CharacterTweakData.tweak_table_move_speed = {
-	heavy_swat = "normal",
-	fbi_heavy_swat = "normal",
-	city_heavy_swat = "normal",
-	zeal_heavy_swat = "normal",
-	city_sniper = "fast",
 	cobra = "fast",
 	murky = "fast",
 	security_fat = "slow",
@@ -1657,14 +1632,8 @@ CharacterTweakData.tweak_table_move_speed = {
 	fbi_office = "fast",
 	fbi_female = "fast",
 	soldier = "fast",
-	medic = "normal",
-	zeal_medic = "normal",
-	heavy_swat_sniper = "normal",
 	mobster_boss = "fast",
 	chavez_boss = "fast",
-	drug_lord_boss = "normal",
-	triad_boss = "normal",
-	fbi_boss = "normal",
 	cop_fat = "slow",
 	hector_boss = "slow",
 	biker_boss = "slow",
@@ -1672,8 +1641,6 @@ CharacterTweakData.tweak_table_move_speed = {
 	tank = "very_slow",
 	tank_hw = "very_slow",
 	tank_elite = "very_slow",
-	marshal_marksman = "normal",
-	marshal_gunner = "normal",
 }
 
 CharacterTweakData.access_move_speed = {
@@ -1682,10 +1649,57 @@ CharacterTweakData.access_move_speed = {
 	swat = "fast",
 	fbi = "fast",
 	gangster = "fast",
-	taser = "normal",
-	security = "normal",
-	cop = "normal",
-	sniper = "normal",
+}
+
+CharacterTweakData.tweak_table_ecm_vulnerability = {
+	medic = 0.4,
+	city_sniper = 0.4,
+	mobster_boss = 0.2,
+	chavez_boss = 0.2,
+	hector_boss = 0.2,
+	biker_boss = 0.2,
+	drug_lord_boss = 0.2,
+	triad_boss = 0.2,
+	deep_boss = 0.2,
+	fbi_boss = 0.2,
+	city_shield = 0,
+}
+
+CharacterTweakData.access_ecm_vulnerability = {
+	shield = 0.4,
+	taser = 0.4,
+	spooc = 0,
+	tank = 0,
+}
+
+CharacterTweakData.tweak_table_ecm_hurts = {
+	fbi_heavy_swat = 4,
+	city_swat = 4,
+	city_heavy_swat = 4,
+	medic = 4,
+	city_sniper = 4,
+	mobster_boss = 2,
+	chavez_boss = 2,
+	hector_boss = 2, 
+	biker_boss = 2,
+	drug_lord_boss = 2,
+	triad_boss = 2,
+	deep_boss = 2,
+	fbi_boss = 2,
+	city_shield = 0,
+}
+
+CharacterTweakData.access_ecm_hurts = {
+	swat = 6,
+	shield = 4,
+	taser = 4,
+	spooc = 0,
+	tank = 0,
+}
+
+CharacterTweakData.access_surrender_break = {
+	security = { 20, 30 },
+	swat = { 5, 10 },
 }
 
 CharacterTweakData.access_surrender = {
@@ -1702,21 +1716,33 @@ function CharacterTweakData:_set_presets()
 		local char_preset = self[name]
 		local char_access = char_preset.access
 
-		-- Set move speed based on the tweak table or access
-		local move_speed_preset = self.tweak_table_move_speed[name] or self.access_move_speed[char_access]
-
-		if move_speed_preset then
-			char_preset.move_speed = self.presets.move_speed[move_speed_preset] or self.presets.move_speed.normal
-		end
-
 		local is_boss = name:match("_boss$")
 
+		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 
 		if surrender_preset then
 			char_preset.surrender = self.presets.surrender[surrender_preset]
 		end
 
+		-- Set surrender break time based on access
+		char_preset.surrender_break_time = self.access_surrender_break[char_access] or { 10, 15 }
+
+		-- Set ECM hurt durations based on tweak table or access
+		local char_ecm_hurts = self.tweak_table_ecm_hurts[name] or self.access_ecm_hurts[char_access]
+
+		char_preset.ecm_hurts = { ears = char_ecm_hurts or 8 } 
+
+		-- Set ECM vulnerability based on tweak table or access
+		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access]
+
+		char_preset.ecm_vulnerability = char_ecm_vuln or 0.6
+		
+		-- Set move speed based on the tweak table or access
+		local char_move_speed = self.presets.move_speed[self.tweak_table_move_speed[name] or self.access_move_speed[char_access]]
+
+		char_preset.move_speed = char_move_speed or self.presets.move_speed.normal
+		
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
 			if not is_boss then
@@ -1742,6 +1768,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.use_animation_on_fire_damage = false
 		end
 
+
 		-- Make sure that Shield type enemies cannot do the grenade throwing animation
 		local is_shield = char_access == "shield" and char_preset.wall_fwd_offset
 
@@ -1755,10 +1782,6 @@ function CharacterTweakData:_set_presets()
 
 		if char_preset.damage and char_preset.damage.explosion_damage_mul then
 			char_preset.damage.explosion_damage_mul = 1
-		end
-
-		if char_preset.surrender_break_time then
-			char_preset.surrender_break_time = self.presets.base.surrender_break_time
 		end
 
 		char_preset.weapon = self.presets.weapon[self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "base"]
