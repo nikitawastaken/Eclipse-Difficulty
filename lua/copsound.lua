@@ -76,24 +76,26 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	if self._prefix == "ict1_" or self._prefix == "bik1_" or self._prefix == "lt1_" or self._prefix == "rt1_" then
 		if sound_name == "burnhurt" then
 			full_sound = "l1n_burnhurt"
-		elseif sound_name == "burndeath" then
+		elseif sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l1n_burndeath"
 		end
 	end
 	if self._prefix == "ict2_" or self._prefix == "bik2_" or self._prefix == "lt2_" or self._prefix == "rt2_" then
 		if sound_name == "burnhurt" then
 			full_sound = "l2n_burnhurt"
-		elseif sound_name == "burndeath" then
+		elseif sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l2n_burndeath"
 		end
 	end
 
-	-- fix female enemies not having any pain burn lines
+	-- female enemies vo fix
 	if self._prefix == "fl1n_" then
 		if sound_name == "burnhurt" then
 			full_sound = "cf2_burnhurt"
 		elseif sound_name == "burndeath" then
 			full_sound = "cf2_burndeath"
+		elseif sound_name == "x02a_any_3p" then
+			full_sound = "fl1n_x01a_any_3p_01"	
 		end
 	end
 
@@ -105,6 +107,15 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 			sound_name = "l1n_x02a_any_3p"
 		end
 	end
+	
+	-- l2n has these lines swapped for some odd reason
+	if self._prefix == "l2n_" then
+			if sound_name == "lk3a" then
+				sound_name = "lk3b"
+			elseif sound_name == "lk3b" then
+				sound_name = "lk3a"
+			end
+		end
 
 	-- give regular clear lines for radio filtered enemies in stelf (just in case for maps that has heavy guards)
 	if self._prefix == "l1d_" or self._prefix == "l2d_" or self._prefix == "l3d_" or self._prefix == "l4d_" or self._prefix == "l5d_" then
@@ -206,25 +217,61 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		end
 	end
 
-	if self._prefix == "z1n_" or self._prefix == "z2n_" or self._prefix == "z3n_" or self._prefix == "z4n_" then
-		if sound_name == "x02a_any_3p" then
-			full_sound = "l2n_x01a_any_3p"
-		end
-
-		if sound_name == "x01a_any_3p" then
-			full_sound = "l2n_x02a_any_3p"
-		end
-
-		if sound_name ~= "x01a_any_3p" and sound_name ~= "x02a_any_3p" then
-			sound_name = "g90"
+	local zombie_sounds = {
+				"z1n_g90",
+				"z2n_mov",
+				"z3n_rdy",
+				"z4n_c01",
+				"z1n_d01"
+					
+	}
+	-- tweak zombie quotes
+	if self._prefix == "z1n_" or self._prefix == "z2n_" or self._prefix == "z3n_" or self._prefix == "z4n_" then	
+		if sound_name == "x01a_any_3p" or sound_name == "x02a_any_3p" or sound_name == "burndeath" or sound_name == "burnhurt" or sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch3" or sound_name == "ch4" then
+			full_sound = zombie_sounds[math.random(#zombie_sounds)] -- pure zombie sounds
 		end
 	end
 
+	local hurt_sounds = {
+			"l1n_x01a_any_3p",
+			"l2n_x01a_any_3p",
+			"l3n_x01a_any_3p",
+			"l4n_x01a_any_3p",
+	}
+	local death_sounds = {
+			"l1n_x02a_any_3p",
+			"l2n_x02a_any_3p",
+			"l3n_x02a_any_3p",			
+	}
+	local ecm_feedback_screams = {
+			"l1n_burndeath",
+			"l2n_burndeath",
+			"l3n_burndeath",
+			"l4n_burndeath",		
+	}
+	-- tweak reaper quotes
 	if self._prefix == "r1n_" or self._prefix == "r2n_" or self._prefix == "r3n_" or self._prefix == "r4n_" then
 		if sound_name == "x02a_any_3p" then
-			full_sound = "l2n_x01a_any_3p"
+			full_sound = hurt_sounds[math.random(#hurt_sounds)]
 		elseif sound_name == "x01a_any_3p" then
-			full_sound = "l2n_x02a_any_3p"
+			full_sound = death_sounds[math.random(#death_sounds)]
+		elseif sound_name == "ch3" then
+			full_sound = ecm_feedback_screams[math.random(#ecm_feedback_screams)] -- ARGH MY FUCKING EARS!!!!!!!
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" then
+			sound_name = "hlp" -- use supressed lines when reacting to sentry gun, saw or trip mine blowing up
+		elseif sound_name == "d02" then
+			sound_name = "g90" -- use regular taunt lines when deploying flashbangs	
+		end
+	end
+	
+	-- tweak federales quotes
+	if self._prefix == "m1n_" or self._prefix == "m2n_" or self._prefix == "m3n_" or self._prefix == "m4n_" then
+		if sound_name == "ch3" then
+			full_sound = ecm_feedback_screams[math.random(#ecm_feedback_screams)] -- ARGH MY FUCKING EARS!!!!!!!
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" then
+			sound_name = "hlp" -- use supressed lines when reacting to sentry gun, saw or trip mine blowing up
+		elseif sound_name == "d02" then
+			sound_name = "g90" -- use regular taunt lines when deploying flashbangs
 		end
 	end
 
