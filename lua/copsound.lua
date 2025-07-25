@@ -56,7 +56,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 
 	if self._prefix == "l5n_" then
 		if sound_name == "c01" or sound_name == "att" then
-			full_sound = "Play_l5n_c01a"
+			full_sound = "Play_l5n_i01_con"
 		elseif sound_name == "rdy" then
 			full_sound = "Play_l5n_rdy"
 		elseif sound_name == "g90" then
@@ -111,6 +111,10 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 			full_sound = "l1n_x01a_any_3p"
 		elseif sound_name == "x01a_any_3p" then
 			full_sound = "l1n_x02a_any_3p"
+		elseif sound_name == "a07a" or sound_name == "a07b" then
+			full_sound = l5n_spotting_something_suspicious[math.random(#l5n_spotting_something_suspicious)]
+		elseif sound_name == "a10" or sound_name == "a11" or sound_name == "a12" then
+			full_sound = l5n_missing_calls[math.random(#l5n_missing_calls)]
 		end
 	end
 
