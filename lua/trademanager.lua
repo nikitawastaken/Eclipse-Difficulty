@@ -196,7 +196,7 @@ function TradeManager:update(t, dt)
 				else
 					print("so far so good")
 
-					local respawn_t = self._t + math.random(0.5, 1.25)
+					local respawn_t = self._t + math.rand(0.5, 1.25)
 					self._hostage_trade_clbk = "TradeManager"
 
 					managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 1), respawn_t)
@@ -214,7 +214,7 @@ function TradeManager:update(t, dt)
 
 			print("so far so good")
 
-			local respawn_t = self._t + math.random(0.5, 1.25)
+			local respawn_t = self._t + math.rand(0.5, 1.25)
 			self._hostage_trade_clbk = "TradeManager"
 
 			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade_dialog", 1), respawn_t)
