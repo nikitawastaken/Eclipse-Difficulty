@@ -548,10 +548,10 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	end
 
 	local t = managers.player:player_timer():time()
-	if not self._last_teargas_hit_t or self._last_teargas_hit_t + 5 < t then
-		self._teargas_damage_ramp = -0.15
+	if not self._last_teargas_hit_t or self._last_teargas_hit_t + 4 < t then
+		self._teargas_damage_ramp = -0.1
 	else
-		self._teargas_damage_ramp = math.min(self._teargas_damage_ramp + 0.15, 1)
+		self._teargas_damage_ramp = math.min(self._teargas_damage_ramp + 0.1, 1)
 	end
 
 	self._last_teargas_hit_t = t
