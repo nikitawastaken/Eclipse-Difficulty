@@ -101,8 +101,6 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 			full_sound = "Play_l5n_i03_con__________________MISSING_i03c"
 		elseif sound_name == "l01" then
 			full_sound = "Play_l5n_l01_con__________________MISSING_l01b"
-		elseif sound_name == "i03" then
-			full_sound = "Play_l5n_i03_con__________________MISSING_i03c"
 		elseif sound_name == "lk3a" then
 			full_sound = "Play_l5n_lk3_ass"
 		elseif sound_name == "lk3b" then
