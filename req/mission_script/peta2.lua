@@ -22,6 +22,9 @@ local farm_close_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 return {
 	-- add point of no return
 	[100580] = { -- All goats secured
@@ -57,9 +60,38 @@ return {
 		},
 	},
 	[101386] = disabled,
+	-- replace the turret/scripted van spawn with a spawngroups
+	[100264] = { -- arrive 1
+		on_executed = {
+			{ id = 400005, delay = 0 },
+			{ id = 101791, remove = true},
+		},
+	},
+	[101974] = { -- arrive 2
+		on_executed = {
+			{ id = 400011, delay = 0 },
+			{ id = 101938, remove = true},
+		},
+	},
+	[101972] = { -- arrive 3
+		on_executed = {
+			{ id = 400017, delay = 0 },
+			{ id = 101936, remove = true},
+		},
+	},
+	[101966] = { -- arrive 4
+		on_executed = {
+			{ id = 400023, delay = 0 },
+			{ id = 101939, remove = true},
+		},
+	},
 	-- Spawn group delays
 	-- Most of the spawns during the farm section are slower now akin to the original version.
 	-- Fuck the bush spawngroup or something.
+	[400006] = scripted_swat_van_spawn,
+	[400012] = scripted_swat_van_spawn,
+	[400018] = scripted_swat_van_spawn,
+	[400024] = scripted_swat_van_spawn,
 	[100131] = farm_far_spawn,
 	[100132] = farm_far_spawn,
 	[100133] = farm_far_spawn,

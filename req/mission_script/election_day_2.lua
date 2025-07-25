@@ -7,6 +7,12 @@ local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or s
 local harasser = {
 	enemy = harasser_enemy,
 }
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
+
 local window_far_spawn = {
 	values = {
 		interval = 30,
@@ -25,6 +31,9 @@ local window_close_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 return {
 	-- Fix harasser respawn delay
 	[102807] = {
@@ -32,9 +41,31 @@ return {
 			{ id = 102804, delay = 30 },
 		},
 	},
+	-- replace the turrets with spawngroups
+	-- enable van arrived checks
+	[101488] = {
+		values = {
+			enabled = true,
+		},
+		on_executed = {
+			{ id = 101495, remove = true },
+			{ id = 400005, delay = 0, delay_rand = 5 },
+		},
+	},
+	[101492] = {
+		values = {
+			enabled = true,
+		},
+		on_executed = {
+			{ id = 101496, remove = true },
+			{ id = 400012, delay = 0, delay_rand = 5 },
+		},
+	},
 	-- Spawn group delays
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- While the original intervals would've been more than enough, I decided to slow down the skylight rappels further to make holding out under the catwalks a bit less annoying.
+	[400007] = scripted_swat_van_spawn,
+	[400014] = scripted_swat_van_spawn,
 	[100021] = window_far_spawn,
 	[100132] = window_far_spawn,
 	[100145] = window_far_spawn,

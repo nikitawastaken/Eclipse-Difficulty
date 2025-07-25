@@ -53,6 +53,68 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 			sound_name = "h10"
 		end
 	end
+	
+	if self._prefix == "l5n_" then
+		if sound_name == "c01" or sound_name == "att" then
+			full_sound = "Play_l5n_c01a"
+		elseif sound_name == "rdy" then
+			full_sound = "Play_l5n_rdy"	
+		elseif sound_name == "g90" then
+			full_sound = "Play_l5n_g90"
+		elseif sound_name == "d01" then
+			full_sound = "Play_l5n_d01_con"	
+		elseif sound_name == "d02" then
+			full_sound = "Play_l5n_d02_con"
+		elseif sound_name == "ch1" then
+			full_sound = "Play_l5n_ch1_con"
+		elseif sound_name == "ch2" then
+			full_sound = "Play_l5n_ch2_con"
+		elseif sound_name == "ch3" then
+			full_sound = "Play_l5n_ch3_con"
+		elseif sound_name == "ch4" then
+			full_sound = "Play_l5n_ch4_con"	
+		elseif sound_name == "m01" then
+			full_sound = "Play_l5n_m01_any"
+		elseif sound_name == "mov" then
+			full_sound = "Play_l5n_mov_ass"
+		elseif sound_name == "p01" then
+			full_sound = "Play_l5n_p01_ass"
+		elseif sound_name == "p02" then
+			full_sound = "Play_l5n_p02_ass"	
+		elseif sound_name == "p03" then
+			full_sound = "Play_l5n_p03_ass"
+		elseif sound_name == "pos" then
+			full_sound = "Play_l5n_pos_con"	
+		elseif sound_name == "prm" then
+			full_sound = "Play_l5n_prm_con"
+		elseif sound_name == "pus" then
+			full_sound = "Play_l5n_pus_con"
+		elseif sound_name == "r01" then
+			full_sound = "Play_l5n_r01_con"
+		elseif sound_name == "s01x" then
+			full_sound = "Play_l5n_s01x_con"
+		elseif sound_name == "i01" then
+			full_sound = "Play_l5n_i01_con"
+		elseif sound_name == "i02" then
+			full_sound = "Play_l5n_i02_con"
+		elseif sound_name == "i03" then
+			full_sound = "Play_l5n_i03_con__________________MISSING_i03c"
+		elseif sound_name == "l01" then
+			full_sound = "Play_l5n_l01_con__________________MISSING_l01b"
+		elseif sound_name == "i03" then
+			full_sound = "Play_l5n_i03_con__________________MISSING_i03c"	
+		elseif sound_name == "lk3a" then
+			full_sound = "Play_l5n_lk3_ass"
+		elseif sound_name == "lk3b" then
+			full_sound = "Play_l5n_lk3_con"
+		elseif sound_name == "hlp" then
+			full_sound = "Play_l5n_hlp_con"	
+		elseif sound_name == "x02a_any_3p" then
+			full_sound = "l1n_x01a_any_3p"
+		elseif sound_name == "x01a_any_3p" then
+			full_sound = "l1n_x02a_any_3p"	
+		end
+	end
 
 	-- fix one of the latin thug quotes being missing
 	if self._prefix == "lt1_" then
@@ -67,7 +129,8 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		if sound_name == "x02a_any_3p" then
 			sound_name = "x01a_any_3p"
 			fixed_sound = true
-		elseif sound_name == "x01a_any_3p" then
+		end	
+		if sound_name == "x01a_any_3p" then
 			sound_name = "x02a_any_3p"
 		end
 	end
@@ -76,14 +139,16 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	if self._prefix == "ict1_" or self._prefix == "bik1_" or self._prefix == "lt1_" or self._prefix == "rt1_" then
 		if sound_name == "burnhurt" then
 			full_sound = "l1n_burnhurt"
-		elseif sound_name == "burndeath" or sound_name == "ch3" then
+		end	
+		if sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l1n_burndeath"
 		end
 	end
 	if self._prefix == "ict2_" or self._prefix == "bik2_" or self._prefix == "lt2_" or self._prefix == "rt2_" then
 		if sound_name == "burnhurt" then
 			full_sound = "l2n_burnhurt"
-		elseif sound_name == "burndeath" or sound_name == "ch3" then
+		end	
+		if sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l2n_burndeath"
 		end
 	end
@@ -92,10 +157,12 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	if self._prefix == "fl1n_" then
 		if sound_name == "burnhurt" then
 			full_sound = "cf2_burnhurt"
-		elseif sound_name == "burndeath" then
+		end	
+		if sound_name == "burndeath" then
 			full_sound = "cf2_burndeath"
-		elseif sound_name == "x02a_any_3p" then
-			full_sound = "fl1n_x01a_any_3p_01"
+		end	
+		if sound_name == "x02a_any_3p" then
+			full_sound = "fl1n_x01a_any_3p_01"	
 		end
 	end
 
@@ -107,15 +174,16 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 			sound_name = "l1n_x02a_any_3p"
 		end
 	end
-
+	
 	-- l2n has these lines swapped for some odd reason
 	if self._prefix == "l2n_" then
-		if sound_name == "lk3a" then
-			sound_name = "lk3b"
-		elseif sound_name == "lk3b" then
-			sound_name = "lk3a"
+			if sound_name == "lk3a" then
+				sound_name = "lk3b"
+			end	
+			if sound_name == "lk3b" then
+				sound_name = "lk3a"
+			end
 		end
-	end
 
 	-- give regular clear lines for radio filtered enemies in stelf (just in case for maps that has heavy guards)
 	if self._prefix == "l1d_" or self._prefix == "l2d_" or self._prefix == "l3d_" or self._prefix == "l4d_" or self._prefix == "l5d_" then
@@ -218,68 +286,133 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	end
 
 	local zombie_sounds = {
-		"z1n_g90",
-		"z2n_mov",
-		"z3n_rdy",
-		"z4n_c01",
-		"z1n_d01",
+				"g90",
+				"mov",
+				"rdy",
+				"c01",
+				"d01"
+					
 	}
 	-- tweak zombie quotes
-	if self._prefix == "z1n_" or self._prefix == "z2n_" or self._prefix == "z3n_" or self._prefix == "z4n_" then
-		if
-			sound_name == "x01a_any_3p"
-			or sound_name == "x02a_any_3p"
-			or sound_name == "burndeath"
-			or sound_name == "burnhurt"
-			or sound_name == "ch1"
-			or sound_name == "ch2"
-			or sound_name == "ch3"
-			or sound_name == "ch4"
-		then
+	if self._prefix == "z1n_" then	
+		if sound_name == "x01a_any_3p" or sound_name == "x02a_any_3p" or sound_name == "burndeath" or sound_name == "burnhurt" or sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch3" or sound_name == "ch4" then
 			full_sound = zombie_sounds[math.random(#zombie_sounds)] -- pure zombie sounds
 		end
 	end
-
-	local hurt_sounds = {
-		"l1n_x01a_any_3p",
-		"l2n_x01a_any_3p",
-		"l3n_x01a_any_3p",
-		"l4n_x01a_any_3p",
-	}
-	local death_sounds = {
-		"l1n_x02a_any_3p",
-		"l2n_x02a_any_3p",
-		"l3n_x02a_any_3p",
-	}
-	local ecm_feedback_screams = {
-		"l1n_burndeath",
-		"l2n_burndeath",
-		"l3n_burndeath",
-		"l4n_burndeath",
-	}
-	-- tweak reaper quotes
-	if self._prefix == "r1n_" or self._prefix == "r2n_" or self._prefix == "r3n_" or self._prefix == "r4n_" then
-		if sound_name == "x02a_any_3p" then
-			full_sound = hurt_sounds[math.random(#hurt_sounds)]
-		elseif sound_name == "x01a_any_3p" then
-			full_sound = death_sounds[math.random(#death_sounds)]
-		elseif sound_name == "ch3" then
-			full_sound = ecm_feedback_screams[math.random(#ecm_feedback_screams)] -- ARGH MY FUCKING EARS!!!!!!!
-		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" then
-			sound_name = "hlp" -- use supressed lines when reacting to sentry gun, saw or trip mine blowing up
-		elseif sound_name == "d02" then
-			sound_name = "g90" -- use regular taunt lines when deploying flashbangs
+	
+	if self._prefix == "z2n_" then	
+		if sound_name == "x01a_any_3p" or sound_name == "x02a_any_3p" or sound_name == "burndeath" or sound_name == "burnhurt" or sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch3" or sound_name == "ch4" then
+			full_sound = zombie_sounds[math.random(#zombie_sounds)] -- ditto
 		end
 	end
-
-	-- tweak federales quotes
-	if self._prefix == "m1n_" or self._prefix == "m2n_" or self._prefix == "m3n_" or self._prefix == "m4n_" then
-		if sound_name == "ch3" then
-			full_sound = ecm_feedback_screams[math.random(#ecm_feedback_screams)] -- ARGH MY FUCKING EARS!!!!!!!
-		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" then
-			sound_name = "hlp" -- use supressed lines when reacting to sentry gun, saw or trip mine blowing up
+	
+	if self._prefix == "z3n_" then	
+		if sound_name == "x01a_any_3p" or sound_name == "x02a_any_3p" or sound_name == "burndeath" or sound_name == "burnhurt" or sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch3" or sound_name == "ch4" then
+			full_sound = zombie_sounds[math.random(#zombie_sounds)] -- ditto
+		end
+	end
+	
+	if self._prefix == "z4n_" then	
+		if sound_name == "x01a_any_3p" or sound_name == "x02a_any_3p" or sound_name == "burndeath" or sound_name == "burnhurt" or sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch3" or sound_name == "ch4" then
+			full_sound = zombie_sounds[math.random(#zombie_sounds)] -- ditto
+		end
+	end
+	
+	-- tweak reaper quotes
+	if self._prefix == "r1n_" then
+		if sound_name == "x02a_any_3p" then
+			full_sound = "l1n_x01a_any_3p"
+		elseif sound_name == "x01a_any_3p" then
+			full_sound = "l1n_x02a_any_3p"
+		elseif sound_name == "ch3" then
+			full_sound = "l1n_burndeath" -- ARGH MY FUCKING EARS!!!!!!!
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "r1n_hlp" -- use supressed lines when reacting to sentry gun, saw, being intimitaed or trip mine blowing up
 		elseif sound_name == "d02" then
-			sound_name = "g90" -- use regular taunt lines when deploying flashbangs
+			full_sound = "r1n_g90" -- use regular taunt lines when deploying flashbangs	
+		end
+	end
+	
+	if self._prefix == "r2n_" then
+		if sound_name == "x02a_any_3p" then
+			full_sound = "l2n_x01a_any_3p"
+		elseif sound_name == "x01a_any_3p" then
+			full_sound = "l2n_x02a_any_3p"
+		elseif sound_name == "ch3" then
+			full_sound = "l2n_burndeath" -- ditto
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "r2n_hlp" -- ditto
+		elseif sound_name == "d02" then
+			full_sound = "r2n_g90" -- ditto	
+		end
+	end
+	
+	if self._prefix == "r3n_" then
+		if sound_name == "x02a_any_3p" then
+			full_sound = "l3n_x01a_any_3p"
+		elseif sound_name == "x01a_any_3p" then
+			full_sound = "l3n_x02a_any_3p"
+		elseif sound_name == "ch3" then
+			full_sound = "l3n_burndeath" -- ditto
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "r3n_hlp" -- ditto
+		elseif sound_name == "d02" then
+			full_sound = "r3n_g90" -- ditto
+		end
+	end
+	
+	if self._prefix == "r4n_" then
+		if sound_name == "x02a_any_3p" then
+			full_sound = "l4n_x01a_any_3p"
+		elseif sound_name == "x01a_any_3p" then
+			full_sound = "l4n_x02a_any_3p"
+		elseif sound_name == "ch3" then
+			full_sound = "l4n_burndeath" -- ditto
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "r4n_hlp" -- ditto
+		elseif sound_name == "d02" then
+			full_sound = "r4n_g90" -- ditto	
+		end
+	end
+	
+	-- tweak federales quotes
+	if self._prefix == "m1n_" then
+		if sound_name == "ch3" then
+			full_sound = "l1n_burndeath" -- ARGH MY FUCKING EARS!!!!!!!
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "m1n_hlp" -- use supressed lines when reacting to sentry gun, saw, being intimitaed or trip mine blowing up
+		elseif sound_name == "d02" then
+			full_sound = "m1n_g90" -- use regular taunt lines when deploying flashbangs
+		end
+	end
+	
+	if self._prefix == "m2n_" then
+		if sound_name == "ch3" then
+			full_sound = "l2n_burndeath" -- ditto
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "m2n_hlp" -- ditto
+		elseif sound_name == "d02" then
+			full_sound = "m2n_g90" -- ditto
+		end
+	end
+	
+	if self._prefix == "m3n_" then
+		if sound_name == "ch3" then
+			full_sound = "l3n_burndeath" -- ditto
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "m3n_hlp" -- ditto
+		elseif sound_name == "d02" then
+			full_sound = "m3n_g90" -- ditto
+		end
+	end
+	
+	if self._prefix == "m4n_" then
+		if sound_name == "ch3" then
+			full_sound = "l4n_burndeath" -- ditto
+		elseif sound_name == "ch1" or sound_name == "ch2" or sound_name == "ch4" or sound_name == "s01x" then
+			full_sound = "m4n_hlp" -- ditto
+		elseif sound_name == "d02" then
+			full_sound = "m4n_g90" -- ditto
 		end
 	end
 

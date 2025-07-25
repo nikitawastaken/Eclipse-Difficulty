@@ -954,6 +954,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_army.HEALTH_INIT = 6
 	self.security_army.melee_weapon = "weapon"
 	--self.security_army.no_arrest = true
+	self.security_army.speech_prefix_count = 5
 	table.insert(self._enemy_list, "security_army")
 
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
@@ -1090,6 +1091,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.murky = deep_clone(self.swat)
 	self.murky.HEALTH_INIT = 10
 	self.murky.headshot_dmg_mul = 2.5 -- 40 head health
+	self.murky.speech_prefix_p1 = "l5n"
+	self.murky.speech_prefix_p2 = nil
+	self.murky.speech_prefix_count = nil
 	self.murky.silent_priority_shout = "f37"
 	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
 	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
@@ -1109,6 +1113,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.soldier.use_radio = "dsp_radio_russian"
 	self.soldier.no_arrest = true
 	self.soldier.steal_loot = false
+	self.soldier.speech_prefix_count = 5
 	table.insert(self._enemy_list, "soldier")
 
 	self.sniper.HEALTH_INIT = 4

@@ -151,7 +151,7 @@ return {
 	[106548] = {
 		on_executed = {
 			{ id = 106539, remove = true },
-			{ id = 400005, delay = 0 },
+			{ id = 400005, delay = 0, delay_rand = 5 },
 		},
 	},
 	-- adjust plank amount
