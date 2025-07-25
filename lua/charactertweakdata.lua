@@ -229,8 +229,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.cop = based_on(presets.weapon.base)
 
-	accuracy_multiplier(presets.weapon.cop, 0.9)
-
 	presets.weapon.cop_fat = based_on(presets.weapon.cop, {
 		melee_dmg = 10 * dmg_mul,
 		melee_force = 500,
