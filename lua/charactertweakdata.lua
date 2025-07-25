@@ -228,7 +228,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.security_fat, 6 / 5)
 
 	presets.weapon.cop = based_on(presets.weapon.base)
-	
+
 	accuracy_multiplier(presets.weapon.cop, 0.9)
 
 	presets.weapon.cop_fat = based_on(presets.weapon.cop, {
@@ -240,7 +240,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gangster = based_on(presets.weapon.base, {
 		range = { close = 750, optimal = 1250, far = 2500 },
 	})
-	
+
 	damage_multiplier(presets.weapon.gangster, 6 / 4)
 	accuracy_multiplier(presets.weapon.gangster, 0.6)
 	recoil_multiplier(presets.weapon.gangster, 0.8)
@@ -249,7 +249,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.swat = based_on(presets.weapon.base)
 
 	presets.weapon.fbi = based_on(presets.weapon.base)
-	
+
 	damage_multiplier(presets.weapon.fbi, 6 / 4)
 
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
@@ -295,13 +295,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 1500, acc = { 0.3, 0.6 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.3 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.shield.is_smg.FALLOFF = {
 		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2 * dmg_mul, r = 1500, acc = { 0.2, 0.4 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.1, 0.2 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.fbi_shield = based_on(presets.weapon.shield)
 
 	presets.weapon.elite_shield = based_on(presets.weapon.shield)
@@ -386,7 +386,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.medic, 4 / 5)
 
 	presets.weapon.cloaker = based_on(presets.weapon.swat, {
-		range = { close = 750, optimal = 1250, far = 2500 }
+		range = { close = 750, optimal = 1250, far = 2500 },
 	})
 
 	presets.weapon.cloaker.is_pistol.FALLOFF = {
