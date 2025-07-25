@@ -1691,10 +1691,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire",
 			"no_push",
 		},
-		cop_snk = {
-			"ranged_fire",
-			"flank",
-		},
 		hrt_def = {
 			"rescue",
 			"ranged_fire",
@@ -1726,6 +1722,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"flash_grenade",
 		},
 		swat_support = {
+			"ranged_fire",
 			"unit_cover",
 		},
 		shield_def = {
@@ -1938,7 +1935,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 2,
 				rank = 3,
 				unit = "cs_cop_3_4",
-				tactics = self._tactics.cop_snk,
+				tactics = self._tactics.hrt_def,
 			},
 		},
 	}
