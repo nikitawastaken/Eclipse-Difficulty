@@ -48,7 +48,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400005, "spawn_swats_1", optsspawnvanSWATs_1),
 	Eclipse.mission_elements.gen_object_editor(400006, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 	Eclipse.mission_elements.gen_spawngroup(400007, "swat_group_1", { 400001, 400002, 400003, 400004 }, 0, opts_swat_group),
-	
+
 	-- swat van 2
 	Eclipse.mission_elements.gen_dummy(400008, "swat_van_spawn_5", Vector3(-2241.963, 2003.063, -19.999), Rotation(74, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400009, "swat_van_spawn_6", Vector3(-2260.706, 1937.698, -19.999), Rotation(74, 0, 0), optsBesiegeDummy),

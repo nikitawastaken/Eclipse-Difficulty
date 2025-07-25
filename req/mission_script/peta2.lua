@@ -64,25 +64,25 @@ return {
 	[100264] = { -- arrive 1
 		on_executed = {
 			{ id = 400005, delay = 0 },
-			{ id = 101791, remove = true},
+			{ id = 101791, remove = true },
 		},
 	},
 	[101974] = { -- arrive 2
 		on_executed = {
 			{ id = 400011, delay = 0 },
-			{ id = 101938, remove = true},
+			{ id = 101938, remove = true },
 		},
 	},
 	[101972] = { -- arrive 3
 		on_executed = {
 			{ id = 400017, delay = 0 },
-			{ id = 101936, remove = true},
+			{ id = 101936, remove = true },
 		},
 	},
 	[101966] = { -- arrive 4
 		on_executed = {
 			{ id = 400023, delay = 0 },
-			{ id = 101939, remove = true},
+			{ id = 101939, remove = true },
 		},
 	},
 	-- Spawn group delays
