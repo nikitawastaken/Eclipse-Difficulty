@@ -236,7 +236,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.cop_fat, 6 / 5)
 
 	presets.weapon.gangster = based_on(presets.weapon.base, {
-		range = { close = 750, optimal = 1250, far = 2500 },
+		range = { close = 750, optimal = 1000, far = 2500 },
 	})
 
 	damage_multiplier(presets.weapon.gangster, 6 / 4)
