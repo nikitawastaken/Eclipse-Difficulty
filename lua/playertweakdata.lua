@@ -120,7 +120,7 @@ Hooks:PostHook(PlayerTweakData, "_init_new_stances", "eclipse_init_new_stances",
 	self.stances.par.steelsight.shoulders.rotation = pivot_head_rotation * pivot_shoulder_rotation:inverse()
 
 	local pivot_shoulder_translation = Vector3(10.716, 4, -0.1)
-	local pivot_shoulder_rotation = Rotation(0.106596, -0.0844502, 0.629187)   
+	local pivot_shoulder_rotation = Rotation(0.106596, -0.0844502, 0.629187)
 	local pivot_head_translation = Vector3(0, -2, 0) -- 7.5, 6, -2
 	local pivot_head_rotation = Rotation(-0.13, 0, 0) -- 0, 0, -5
 	self.stances.m60.steelsight.shoulders.translation = pivot_head_translation - pivot_shoulder_translation:rotate_with(pivot_shoulder_rotation:inverse()):rotate_with(pivot_head_rotation)
