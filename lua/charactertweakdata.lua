@@ -1294,6 +1294,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	-- Different radio chatter for Bellmead units
 	-- Unique voice set for Bellmead's heavy gunner
 	if has_bellmead_response then
+		self.marshal_security.speech_prefix_p1 = "l5n"
+		self.marshal_security.speech_prefix_p2 = nil
+		self.marshal_security.speech_prefix_count = nil
 		self.marshal_security.radio_prefix = "fri_"
 		self.marshal_security.use_radio = "dsp_radio_russian"
 		self.marshal_marksman.use_radio = "dsp_radio_russian"
