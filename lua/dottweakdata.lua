@@ -27,13 +27,13 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.poison.ammo_rip_heavy = deep_clone(self.dot_entries.poison.ammo_rip)
 	self.dot_entries.poison.ammo_rip_heavy.dot_damage = 1.6
 
-	self.dot_entries.poison.proj_gas_grenade_cloud.dot_damage = 1.6
+	self.dot_entries.poison.proj_gas_grenade_cloud.dot_damage = 1.2
 	self.dot_entries.poison.proj_gas_grenade_cloud.dot_length = 15
 	self.dot_entries.poison.proj_gas_grenade_cloud.hurt_animation_chance = 1 / 5
 	self.dot_entries.poison.proj_gas_grenade_cloud.apply_hurt_once = true
 
 	self.dot_entries.poison.proj_launcher_poison = deep_clone(self.dot_entries.poison.proj_gas_grenade_cloud)
-	self.dot_entries.poison.proj_launcher_poison.dot_damage = 0.8
+	self.dot_entries.poison.proj_launcher_poison.dot_damage = 0.6
 	self.dot_entries.poison.proj_launcher_poison.hurt_animation_chance = 1 / 10
 
 	self.dot_entries.poison.proj_launcher_poison_light = deep_clone(self.dot_entries.poison.proj_launcher_poison)
@@ -42,7 +42,7 @@ Hooks:PostHook(DOTTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.poison.proj_launcher_poison_medium = deep_clone(self.dot_entries.poison.proj_launcher_poison)
 
 	self.dot_entries.poison.proj_launcher_poison_heavy = deep_clone(self.dot_entries.poison.proj_launcher_poison)
-	self.dot_entries.poison.proj_launcher_poison_heavy.dot_damage = 1.2
+	self.dot_entries.poison.proj_launcher_poison_heavy.dot_damage = 0.8
 
 	self.dot_entries.poison.melee_cqc.dot_damage = 7.2
 	self.dot_entries.poison.melee_cqc.dot_length = 2
