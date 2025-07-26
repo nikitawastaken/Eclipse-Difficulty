@@ -13,8 +13,8 @@ function KillzoneManager:_deal_fire_damage(unit)
 		variant = "fire",
 		damage = 1,
 		col_ray = {
-			ray = math.UP
-		}
+			ray = math.UP,
+		},
 	}
 
 	unit:character_damage():damage_killzone(attack_data)
