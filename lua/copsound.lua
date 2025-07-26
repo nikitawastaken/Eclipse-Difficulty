@@ -54,67 +54,152 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		end
 	end
 
+	local l5n_missing_police_calls = {
+		"l5n_a08",
+		"l5n_a09",
+	}
+	local l5n_contact_lines = {
+		"Play_l5n_i01_con",
+		"Play_l5n_g90",
+	}
+	local l5n_alert = {
+		"Play_l5n_lk3_con",
+		"l5n_a08",
+	}
+	
+	-- restore the entire l5n voiceset
 	if self._prefix == "l5n_" then
 		if sound_name == "c01" or sound_name == "att" then
-			full_sound = "Play_l5n_i01_con"
-		elseif sound_name == "rdy" then
+			full_sound = l5n_contact_lines[math.random(#l5n_contact_lines)] -- use i01 and g90 as contact since l5n doesn't have any
+		end	
+		if sound_name == "rdy" then
 			full_sound = "Play_l5n_rdy"
-		elseif sound_name == "g90" then
+		end	
+		if sound_name == "h01" then
+			full_sound = "Play_l5n_c01a" -- contact line is actually a rescue line
+		end
+		if sound_name == "cn1" then
+			full_sound = "Play_l5n_cn1_con"
+		end
+		if sound_name == "civ" then
+			full_sound = "Play_l5n_civ_con"
+		end
+		if sound_name == "cr1" then
+			full_sound = "Play_l5n_cr1_con"
+		end	
+		if sound_name == "clr" then
+			full_sound = "Play_l5n_clr_con"
+		end	
+		if sound_name == "g90" then
 			full_sound = "Play_l5n_g90"
-		elseif sound_name == "d01" then
+		end	
+		if sound_name == "d01" then
 			full_sound = "Play_l5n_d01_con"
-		elseif sound_name == "d02" then
+		end	
+		if sound_name == "d02" then
 			full_sound = "Play_l5n_d02_con"
-		elseif sound_name == "ch1" then
+		end	
+		if sound_name == "ch1" then
 			full_sound = "Play_l5n_ch1_con"
-		elseif sound_name == "ch2" then
+		end	
+		if sound_name == "ch2" then
 			full_sound = "Play_l5n_ch2_con"
-		elseif sound_name == "ch3" then
+		end	
+		if sound_name == "ch3" then
 			full_sound = "Play_l5n_ch3_con"
-		elseif sound_name == "ch4" then
+		end	
+		if sound_name == "ch4" then
 			full_sound = "Play_l5n_ch4_con"
-		elseif sound_name == "m01" then
+		end
+		if sound_name == "gr1a" then
+			full_sound = "Play_l5n_gr1a_con"
+		end	
+		if sound_name == "gr1b" then
+			full_sound = "Play_l5n_gr1b_con"
+		end	
+		if sound_name == "gr1c" then
+			full_sound = "Play_l5n_gr1c_con"
+		end	
+		if sound_name == "gr1d" then
+			full_sound = "Play_l5n_gr1d_con"
+		end
+		if sound_name == "gr2a" then
+			full_sound = "Play_l5n_gr2a_con"
+		end	
+		if sound_name == "gr2b" then
+			full_sound = "Play_l5n_gr2b_con"
+		end	
+		if sound_name == "gr2c" then
+			full_sound = "Play_l5n_gr2c_con"
+		end	
+		if sound_name == "gr2d" then
+			full_sound = "Play_l5n_gr2d_con"
+		end
+		if sound_name == "med" then
+			full_sound = "Play_l5n_med_con"
+		end
+		if sound_name == "m01" then
 			full_sound = "Play_l5n_m01_any"
-		elseif sound_name == "mov" then
+		end	
+		if sound_name == "mov" then
 			full_sound = "Play_l5n_mov_ass"
-		elseif sound_name == "p01" then
+		end	
+		if sound_name == "p01" then
 			full_sound = "Play_l5n_p01_ass"
-		elseif sound_name == "p02" then
+		end	
+		if sound_name == "p02" then
 			full_sound = "Play_l5n_p02_ass"
-		elseif sound_name == "p03" then
+		end	
+		if sound_name == "p03" then
 			full_sound = "Play_l5n_p03_ass"
-		elseif sound_name == "pos" then
+		end	
+		if sound_name == "pos" then
 			full_sound = "Play_l5n_pos_con"
-		elseif sound_name == "prm" then
+		end	
+		if sound_name == "prm" then
 			full_sound = "Play_l5n_prm_con"
-		elseif sound_name == "pus" then
+		end	
+		if sound_name == "pus" then
 			full_sound = "Play_l5n_pus_con"
-		elseif sound_name == "r01" then
+		end	
+		if sound_name == "r01" then
 			full_sound = "Play_l5n_r01_con"
-		elseif sound_name == "s01x" then
+		end	
+		if sound_name == "s01x" then
 			full_sound = "Play_l5n_s01x_con"
-		elseif sound_name == "i01" then
+		end	
+		if sound_name == "i01" then
 			full_sound = "Play_l5n_i01_con"
-		elseif sound_name == "i02" then
+		end	
+		if sound_name == "i02" then
 			full_sound = "Play_l5n_i02_con"
-		elseif sound_name == "i03" then
+		end	
+		if sound_name == "i03" then
 			full_sound = "Play_l5n_i03_con__________________MISSING_i03c"
-		elseif sound_name == "l01" then
+		end	
+		if sound_name == "l01" then
 			full_sound = "Play_l5n_l01_con__________________MISSING_l01b"
-		elseif sound_name == "lk3a" then
+		end	
+		if sound_name == "lk3a" then
 			full_sound = "Play_l5n_lk3_ass"
-		elseif sound_name == "lk3b" then
+		end	
+		if sound_name == "lk3b" then
 			full_sound = "Play_l5n_lk3_con"
-		elseif sound_name == "hlp" then
+		end	
+		if sound_name == "hlp" then
 			full_sound = "Play_l5n_hlp_con"
-		elseif sound_name == "x02a_any_3p" then
+		end	
+		if sound_name == "x02a_any_3p" then
 			full_sound = "l1n_x01a_any_3p"
-		elseif sound_name == "x01a_any_3p" then
+		end	
+		if sound_name == "x01a_any_3p" then
 			full_sound = "l1n_x02a_any_3p"
-		elseif sound_name == "a07a" or sound_name == "a07b" then
-			full_sound = l5n_spotting_something_suspicious[math.random(#l5n_spotting_something_suspicious)]
-		elseif sound_name == "a10" or sound_name == "a11" or sound_name == "a12" then
-			full_sound = l5n_missing_calls[math.random(#l5n_missing_calls)]
+		end	
+		if sound_name == "a07a" or sound_name == "a07b" then
+			full_sound = l5n_alert[math.random(#l5n_alert)]
+		end	
+		if sound_name == "a10" or sound_name == "a11" or sound_name == "a12" then
+			full_sound = l5n_missing_police_calls[math.random(#l5n_missing_police_calls)]
 		end
 	end
 
@@ -127,6 +212,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 
 	local fixed_sound = nil
 
+	-- fix death and pain sounds being swapped
 	if self._prefix == "l1n_" or self._prefix == "l2n_" or self._prefix == "l3n_" then
 		if sound_name == "x02a_any_3p" then
 			sound_name = "x01a_any_3p"
@@ -172,13 +258,14 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		if sound_name == "x02a_any_3p" then
 			sound_name = "x01a_any_3p"
 			fixed_sound = true
-		elseif sound_name == "x01a_any_3p" then
+		end	
+		if sound_name == "x01a_any_3p" then
 			sound_name = "l1n_x02a_any_3p"
 		end
 	end
 
-	-- l2n has these lines swapped for some odd reason
-	if self._prefix == "l2n_" then
+	-- l2n and l3n has these lines swapped for some odd reason
+	if self._prefix == "l2n_" or self._prefix == "l3n_" then
 		if sound_name == "lk3a" then
 			sound_name = "lk3b"
 		end
