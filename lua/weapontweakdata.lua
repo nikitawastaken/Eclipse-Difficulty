@@ -98,7 +98,9 @@ function WeaponTweakData:_init_weapons()
 		
 		local cat_map = table.list_to_set(weap_data.categories)
 		local is_browning_mg = weap_id == "ranc_heavy_machine_gun"
-
+		local is_deagle = based_on_id == "deagle" or weap_id == "deagle"
+		local is_judge = based_on_id == "judge" or weap_id == "judge"
+		
 		--catch-all stat setups
 		if cat_map.assault_rifle and not is_browning_mg then
 			weap_data.stats.suppression = cat_map.dmr and 1 or 11
@@ -138,7 +140,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.2,
 						crouching = 0.8,
-						steelsight = 0.5,
+						steelsight = 0.6,
 					},
 					moving = {
 						hipfire = 1.5,
@@ -170,18 +172,18 @@ function WeaponTweakData:_init_weapons()
 				}
 			end
 		elseif cat_map.pistol then
-			weap_data.stats.suppression = cat_map.handcannon and 9 or 16
-			weap_data.stats.alert_size = cat_map.handcannon and 17 or 15
-			weap_data.steelsight_time = cat_map.handcannon and steelsight_times.pistol_heavy or steelsight_times.pistol
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not cat_map.handcannon and 1.5 or 1
+			weap_data.stats.suppression = is_deagle and 9 or 16
+			weap_data.stats.alert_size = is_deagle and 17 or 15
+			weap_data.steelsight_time = is_deagle and steelsight_times.pistol_heavy or steelsight_times.pistol
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not is_deagle and 1.5 or 1
 			weap_data.steelsight_move_speed_mul = 0.7
 			
-			if cat_map.handcannon then
+			if is_deagle then
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 1.5,
-						crouching = 0.8,
-						steelsight = 0.6,
+						crouching = 1,
+						steelsight = 0.7,
 					},
 					moving = {
 						hipfire = 2,
@@ -191,14 +193,14 @@ function WeaponTweakData:_init_weapons()
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
-						hipfire = 1.4,
+						hipfire = 1.2,
 						crouching = 1,
 						steelsight = 1,
 					},
 					moving = {
-						hipfire = 1.6,
+						hipfire = 1.5,
 						crouching = 1,
-						steelsight = 1.4,
+						steelsight = 1.3,
 					}
 				}
 			else
@@ -206,7 +208,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.6,
+						steelsight = 0.7,
 					},
 					moving = {
 						hipfire = 1.4,
@@ -247,7 +249,7 @@ function WeaponTweakData:_init_weapons()
 				standing = {
 					hipfire = 1.5,
 					crouching = 0.8,
-					steelsight = 0.5,
+					steelsight = 0.6,
 				},
 				moving = {
 					hipfire = 2,
@@ -257,14 +259,14 @@ function WeaponTweakData:_init_weapons()
 			}
 			weap_data.recoil_multiplier = {
 				standing = {
-					hipfire = 1.4,
+					hipfire = 1.2,
 					crouching = 1,
 					steelsight = 1,
 				},
 				moving = {
-					hipfire = 1.6,
+					hipfire = 1.5,
 					crouching = 1,
-					steelsight = 1.4,
+					steelsight = 1.3,
 				}
 			}
 
@@ -279,26 +281,15 @@ function WeaponTweakData:_init_weapons()
 				standing = {
 					hipfire = 1,
 					crouching = 1,
-					steelsight = 0.6,
+					steelsight = 0.7,
 				},
 				moving = {
 					hipfire = 1.2,
 					crouching = 1,
-					steelsight = 1,
+					steelsight = 0.8,
 				}
 			}
-			weap_data.recoil_multiplier = {
-				standing = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 1,
-				},
-				moving = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 1,
-				}
-			}
+			weap_data.recoil_multiplier = nil
 
 			weap_data.fire_mode_mul = {
 				single = {
@@ -314,6 +305,7 @@ function WeaponTweakData:_init_weapons()
 		elseif cat_map.shotgun then
 			weap_data.stats.suppression = 1
 			weap_data.stats.alert_size = 18
+			weap_data.steelsight_time = weap_data.steelsight_time or is_judge and steelsight_times.pistol_heavy or steelsight_times.default
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (24 / 180)
 			weap_data.pickup_mul = weap_data.pickup_mul or ((1 / 8) * 1.336)
 			weap_data.damage_near = weap_data.damage_near or 1000
@@ -388,7 +380,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.4,
 						crouching = 0.8,
-						steelsight = 0.6,
+						steelsight = 0.7,
 					},
 					moving = {
 						hipfire = 1.6,
@@ -448,7 +440,7 @@ function WeaponTweakData:_init_weapons()
 					standing = {
 						hipfire = 1.4,
 						crouching = 1,
-						steelsight = 0.6,
+						steelsight = 0.7,
 					},
 					moving = {
 						hipfire = 1.6,
@@ -538,14 +530,14 @@ function WeaponTweakData:_init_weapons()
 
 			weap_data.spread_multiplier = {
 				standing = {
-					hipfire = 8,
+					hipfire = 6,
 					crouching = 1,
 					steelsight = 1,
 				},
 				moving = {
-					hipfire = 12,
+					hipfire = 10,
 					crouching = 1,
-					steelsight = 10,
+					steelsight = 8,
 				}
 			}
 			weap_data.recoil_multiplier = {
@@ -663,7 +655,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.kick.standing = { 0.8, 1, -1, 1 }
 
 			elseif cat_map.smg then
-				weap_data.kick.standing = { 0.4, 0.8, -1.2, 1.2 }
+				weap_data.kick.standing = { 0.6, 0.8, -1.2, 1.2 }
 
 			elseif cat_map.lmg then
 				weap_data.kick.standing = { -0.2, 1, -0.8, 1.4 }
@@ -671,8 +663,11 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.minigun then
 				weap_data.kick.standing = { -0.1, 0.4, -0.3, 0.4 }
 
-			elseif cat_map.shotgun then
+			elseif cat_map.shotgun and not is_judge then
 				weap_data.kick.standing = { 1.8, 2, -0.2, 0.2 }
+
+			elseif cat_map.revolver or is_deagle or is_judge then
+				weap_data.kick.standing = { 1.8, 2.4, -0.5, 0.5 }
 
 			elseif cat_map.snp or cat_map.grenade_launcher then
 				weap_data.kick.standing = { 3, 4, -0.3, 0.3 }
@@ -686,7 +681,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.flamethrower then
 				weap_data.kick.standing = { 0, 0, 0, 0 }
 				
-			else -- Pistols, Revolvers
+			else -- Pistols
 				weap_data.kick.standing =  { 1.2, 1.8, -0.5, 0.5 }
 				
 			end
@@ -1073,7 +1068,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.komodo.stats.damage = 18
 	self.komodo.stats.spread = 14
 	self.komodo.stats.recoil = 17
-	self.komodo.stats.concealment = 26
+	self.komodo.stats.concealment = 25
 	self.komodo.fire_mode_data.fire_rate = 60 / 800
 	
 	-- Clarion
@@ -1663,12 +1658,11 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_raging_bull.fire_mode_data.fire_rate = 60 / 300
 
 	-- Deagle
-	table.insert(self.deagle.categories, "handcannon")
 	self.deagle.CLIP_AMMO_MAX = 7
 	self.deagle.stats.damage = 80
 	self.deagle.stats.spread = 19
 	self.deagle.stats.recoil = 3
-	self.deagle.stats.concealment = 27
+	self.deagle.stats.concealment = 26
 	self.deagle.fire_mode_data.fire_rate = 60 / 400
 
 	--Peacemaker
@@ -1710,7 +1704,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rsh12.stats.damage = 96
 	self.rsh12.stats.spread = 23
 	self.rsh12.stats.recoil = 2
-	self.rsh12.stats.concealment = 27
+	self.rsh12.stats.concealment = 26
 	self.rsh12.fire_mode_data.fire_rate = 60 / 300
 	self.rsh12.reload_speed_multiplier = 0.65
 	self.rsh12.stats_modifiers = nil

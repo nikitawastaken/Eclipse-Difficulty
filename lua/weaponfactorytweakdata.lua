@@ -557,7 +557,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
 	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -3
 	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
-	self.parts.wpn_fps_pis_korth_m_6.custom_stats = { ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75 }
+	self.parts.wpn_fps_pis_korth_m_6.custom_stats = { ammo_pickup_max_mul = 0.8, ammo_pickup_min_mul = 0.8 }
 
 	-- SMG Mods
 	self.parts.wpn_fps_smg_mp9_s_skel.stats.spread = 1
@@ -787,7 +787,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.total_ammo_mod = 13
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = -20
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -4
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 2
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 6
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = { fire_rate_multiplier = 1.5, ammo_pickup_min_mul = 2, ammo_pickup_max_mul = 2 }
 
@@ -804,13 +804,13 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.recoil = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.concealment = -4
 
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 50
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.total_ammo_mod = 10
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = -4
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.spread = -3
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.recoil = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.concealment = 0
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1.25, ammo_pickup_min_mul = 4 / 3, ammo_pickup_max_mul = 4 / 3 }
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1400 / 1100, ammo_pickup_min_mul = 0.7, ammo_pickup_max_mul = 0.7 }
 
 	--Minigun Mods
 	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.spread = 3
