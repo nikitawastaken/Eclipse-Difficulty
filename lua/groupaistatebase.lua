@@ -143,7 +143,7 @@ end
 
 -- Make difficulty progress smoother
 function GroupAIStateBase:_update_difficulty_value()
-	if not self:whisper_mode() and self._target_difficulty and self._t >= self._next_difficulty_step_t then
+	if self:enemy_weapons_hot() and self._target_difficulty and self._t >= self._next_difficulty_step_t then
 		self._difficulty_value = math.min((self._difficulty_value or 0) + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
 		if self._difficulty_value >= self._target_difficulty then
 			self._target_difficulty = self._difficulty_value
