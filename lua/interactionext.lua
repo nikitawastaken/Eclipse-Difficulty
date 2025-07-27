@@ -110,12 +110,7 @@ Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", fu
 		self._unit:damage():run_sequence_simple("interact")
 	end
 
-	if self.tweak_data == "intimidate" then
-		self:remove_interact()
-		self:set_active(false)
-		player:sound():play("cable_tie_apply")
-		self._unit:brain():on_tied(player, false, not managers.player:has_category_upgrade("player", "civilians_dont_flee"))
-	elseif self.tweak_data == "hostage_trade" then
+	if self.tweak_data == "hostage_trade" then
 		self._unit:brain():on_trade(player:position(), player:rotation(), true, true)
 		if not NetworkHelper:IsHost() then
 			NetworkHelper:SendToHostChunk(
@@ -181,7 +176,12 @@ end)
 -- Carry stacker start
 Hooks:PostHook(IntimitateInteractionExt, "interact", "eclipse_int_interact_ext", function(self, player)
 	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")
-	if self.tweak_data == "corpse_dispose" and has_carry_stacker then
+	if self.tweak_data == "intimidate" then
+		self:remove_interact()
+		self:set_active(false)
+		player:sound():play("cable_tie_apply")
+		self._unit:brain():on_tied(player, false, not managers.player:has_category_upgrade("player", "civilians_dont_flee"))
+	elseif self.tweak_data == "corpse_dispose" and has_carry_stacker then
 		if managers.player:get_bags_carried() < 2 then
 			player:movement():set_carry_restriction(false)
 		end
