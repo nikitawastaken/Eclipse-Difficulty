@@ -105,8 +105,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 0.85,
 		assault_force_mul = 0.7,
 		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_add = 0.25,
+			assault_add = 0.3,
 		},
 	}
 
@@ -535,7 +534,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chca.group_ai_preset = "remote"
 
 	self.pent.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
-	self.pent.group_ai_settings.diff_step_interval = { 10, 15 } -- The heist has really fucked up difficulty scaling
 	self.pent.group_ai_settings.special_limit_add = nil
 	self.pent.group_ai_settings.assault_force_mul = 0.8
 	self.pent.group_ai_preset = "skyscraper"

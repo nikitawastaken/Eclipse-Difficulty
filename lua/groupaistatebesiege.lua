@@ -179,8 +179,6 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 				self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add or 0.25)
 			end
 
-			Eclipse:log_chat("Assault over. Increasing diff.")
-
 			return
 		end
 	end
