@@ -153,7 +153,7 @@ tweak_data.projectiles.ecp_arrow_poison = create_poison_arrow(tweak_data.project
 tweak_data.projectiles.frankish_poison_arrow = create_poison_arrow(tweak_data.projectiles.frankish_arrow)
 tweak_data.projectiles.arblast_poison_arrow = create_poison_arrow(tweak_data.projectiles.arblast_arrow)
 
--- Throwing Knives/Stars etc. 
+-- Throwing Knives/Stars etc.
 tweak_data.projectiles.wpn_prj_four.damage = 4
 
 tweak_data.projectiles.wpn_prj_ace.damage = 1
