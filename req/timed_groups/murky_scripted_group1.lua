@@ -1,13 +1,13 @@
-return function(timed_tactics, difficulty_index)
+return function(timed_tactics)
 	return {
 		disabled = true,
 		timer_data = {
-			initial_delay = 30,
+			initial_delay = 0,
 			cooldown = { 15, 20 },
 			diff_scale = { 1, 1, 1 },
 		},
 		group_data = {
-			army_timed_group = {
+			murkywater_timed_group = {
 				enabled = true,
 				team_id = "law1",
 				max_nr_simultaneous_groups = 3,
@@ -33,27 +33,23 @@ return function(timed_tactics, difficulty_index)
 					{
 						amount_min = 1,
 						rank = 2,
-						freq = 1.5,
-						unit = "army_soldier_2",
-						tactics = timed_tactics.army_def,
+						freq = 2,
+						unit = "murkywater",
+						tactics = timed_tactics.murky_def,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
 						freq = 1,
-						unit = "army_soldier_3",
-						tactics = timed_tactics.army_agg,
+						unit = "murkywater",
+						tactics = timed_tactics.murky_agg,
 					},
 					{
-						amount_max = 1,
-						rank = 1,
-						freq_by_diff = {
-							0,
-							(difficulty_index ^ 2) / 100,
-							(difficulty_index ^ 2) / 50,
-						},
-						unit = "army_soldier_4",
-						tactics = timed_tactics.army_spt,
+						amount_max = 2,
+						rank = 2,
+						freq = 1,
+						unit = "murkywater",
+						tactics = timed_tactics.murky_snk,
 					},
 				},
 				spawn_point_chk_ref = table.list_to_set({

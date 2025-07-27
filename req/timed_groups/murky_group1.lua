@@ -9,7 +9,7 @@ return function(timed_tactics)
 			murkywater_timed_group = {
 				enabled = true,
 				team_id = "law1",
-				max_nr_simultaneous_groups = 2,
+				max_nr_simultaneous_groups = 3,
 				amount = { 2, 3 },
 				disable_timer = 300, -- 5 minutes
 				disable_diff = nil,
