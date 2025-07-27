@@ -144,7 +144,7 @@ end
 -- Make difficulty progress smoother
 function GroupAIStateBase:_update_difficulty_value()
 	if self:enemy_weapons_hot() and self._target_difficulty and self._t >= self._next_difficulty_step_t then
-		self._difficulty_value = math.min((self._difficulty_value or 0) + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
+		self._difficulty_value = math.min(self._difficulty_value + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
 		if self._difficulty_value >= self._target_difficulty then
 			self._target_difficulty = self._difficulty_value
 		else
@@ -159,6 +159,7 @@ function GroupAIStateBase:set_difficulty(forced_value)
 	self._next_difficulty_step_t = self._next_difficulty_step_t or self._t
 
 	if not self._set_initial_diff then
+		self._difficulty_value = 0
 		self._target_difficulty = tweak_data.group_ai.difficulty_scaling.diff_init
 
 		self._set_initial_diff = true
