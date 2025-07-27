@@ -159,7 +159,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		if sound_name == "prm" then
 			full_sound = "Play_l5n_prm_con"
 		end
-		if sound_name == "pus" then
+		if sound_name == "pus" or sound_name == "rrl" then
 			full_sound = "Play_l5n_pus_con"
 		end
 		if sound_name == "r01" then
