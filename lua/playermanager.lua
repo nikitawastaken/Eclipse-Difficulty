@@ -600,17 +600,27 @@ function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_ar
 	self._smoke_grenade = grenade_unit
 end
 
--- Reduce damage taken while inside of vehicles
 local damage_reduction_skill_multiplier_original = PlayerManager.damage_reduction_skill_multiplier
 function PlayerManager:damage_reduction_skill_multiplier(...)
-	local dmg_reduction = damage_reduction_skill_multiplier_original(self, ...)
+	local multiplier = damage_reduction_skill_multiplier_original(self, ...)
 
+	-- Reduce damage taken while inside of vehicles
 	local player = self:player_unit()
 	if player and player:movement()._current_state_name == "driving" then
-		dmg_reduction = dmg_reduction * 0.33
+		multiplier = multiplier * 0.33
 	end
 
-	return dmg_reduction
+	-- crook ballistic vest hp dmg reduction
+	if self:has_category_upgrade("player", "bv_health_damage_reduction") and self:is_wearing_a_ballistic_vest() and player:character_damage():get_real_armor() <= 0 then
+		multiplier = multiplier * self:upgrade_value("player", "bv_health_damage_reduction", 1)
+	end
+
+	-- armorer full armor dmg reduction
+	if self:has_category_upgrade("player", "full_armor_damage_reduction") and player:character_damage():armor_ratio() == 1 then
+		multiplier = multiplier * self:upgrade_value("player", "full_armor_damage_reduction", 1)
+	end
+
+	return multiplier
 end
 
 -- An upgrade that increases the amount of carried throwables
