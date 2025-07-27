@@ -1006,7 +1006,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
                 prio = 2,
                 pc_btn = "menu_preview_item",
                 callback = callback(self, self, "preview_glove_variation_callback")
-            }
+            },
 			m_equip = {
 				btn = "BTN_A",
 				prio = 1,
