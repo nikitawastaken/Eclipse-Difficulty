@@ -261,9 +261,14 @@ return {
 			amount = vault_count,
 		},
 	},
-	[103998] = disabled,
-	[103377] = disabled,
-	[104041] = disabled,
+	[101544] = {
+		on_executed = {
+			{ id = 103998, remove = true },
+			{ id = 103377, remove = true },
+			{ id = 104041, remove = true },
+			
+		},
+	},
 	-- tweak chances for closing shutters and basement ambush
 	[102813] = {
 		chance = close_shutters_chance,
