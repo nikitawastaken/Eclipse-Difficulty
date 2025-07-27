@@ -129,7 +129,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.triathlete.multibasic2 = "25%"
 	self.skill_descs.triathlete.multipro = "10%"
 
-	-- Confident
+	-- Control Freak
 	self.skill_descs.cable_guy.multipro = "50%"
 
 	-- Joker
@@ -139,51 +139,29 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.joker.multipro = "25%"
 	self.skill_descs.joker.multipro2 = "65%"
 
-	-- Hostage Situation
-	self.definitions.team_resource_trading_ammo = {
-		category = "team",
-		name_id = "resource_trading_ammo",
+	-- Stockhilm Syndrome
+	self.values.player.civilians_dont_flee = { true }
+	self.definitions.player_civilians_dont_flee = {
+		category = "feature",
+		name_id = "menu_player_civilians_dont_flee",
 		upgrade = {
 			category = "player",
-			upgrade = "resource_trading_ammo",
+			upgrade = "civilians_dont_flee",
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_ammo = { 4 }
-	self.definitions.team_resource_trading_assault_delay = {
-		category = "team",
-		name_id = "resource_trading_assault_delay",
+	self.values.player.near_hostage_damage_multiplier = { 0.8 }
+	self.definitions.player_near_hostage_damage_multiplier = {
+		category = "feature",
+		name_id = "menu_player_near_hostage_damage_multiplier",
 		upgrade = {
 			category = "player",
-			upgrade = "resource_trading_assault_delay",
+			upgrade = "near_hostage_damage_multiplier",
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_assault_delay = { 10 }
-	self.resource_trade_assault_delay_balance_multiplier = { 2, 1, 1, 1 }
-	self.values.team.player.resource_trading_no_downs = { true }
-	self.definitions.team_resource_trading_no_downs = {
-		category = "team",
-		name_id = "resource_trading_no_downs",
-		upgrade = {
-			category = "player",
-			upgrade = "resource_trading_no_downs",
-			value = 1,
-		},
-	}
-	self.values.team.player.resource_trading_before_first_assault = { true }
-	self.definitions.team_resource_trading_before_first_assault = {
-		category = "team",
-		name_id = "resource_trading_before_first_assault",
-		upgrade = {
-			category = "player",
-			upgrade = "resource_trading_before_first_assault",
-			value = 1,
-		},
-	}
-	self.skill_descs.stockholm_syndrome.multibasic = "4"
-	self.skill_descs.stockholm_syndrome.multipro = "10"
-	self.skill_descs.stockholm_syndrome.multipro2 = "doubled"
+	self.skill_descs.stockholm_syndrome.multipro = "20%"
+	self.skill_descs.stockholm_syndrome.multipro2 = "7m"
 
 	-- Parterns in Crime
 	self.definitions.player_convert_camouflage_mul = {
@@ -1233,6 +1211,47 @@ function UpgradesTweakData:init(tweak_data)
 	-------------
 
 	-- Crew Chief
+	self.definitions.team_resource_trading_ammo = {
+		category = "team",
+		name_id = "resource_trading_ammo",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_ammo",
+			value = 1,
+		},
+	}
+	self.values.team.player.resource_trading_ammo = { 4 }
+	self.definitions.team_resource_trading_assault_delay = {
+		category = "team",
+		name_id = "resource_trading_assault_delay",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_assault_delay",
+			value = 1,
+		},
+	}
+	self.values.team.player.resource_trading_assault_delay = { 10 }
+	self.resource_trade_assault_delay_balance_multiplier = { 2, 1, 1, 1 }
+	self.values.team.player.resource_trading_no_downs = { true }
+	self.definitions.team_resource_trading_no_downs = {
+		category = "team",
+		name_id = "resource_trading_no_downs",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_no_downs",
+			value = 1,
+		},
+	}
+	self.values.team.player.resource_trading_before_first_assault = { true }
+	self.definitions.team_resource_trading_before_first_assault = {
+		category = "team",
+		name_id = "resource_trading_before_first_assault",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_before_first_assault",
+			value = 1,
+		},
+	}
 	self.values.team.health.hostage_multiplier = { 1.04 }
 	self.specialization_descs[1][9].multiperk = "4%"
 

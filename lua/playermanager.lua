@@ -39,6 +39,16 @@ function PlayerManager:is_wearing_a_ballistic_vest()
 end
 -- end
 
+Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
+	local local_player = self:local_player()
+
+	-- allow the close to hostage checker to work without player_close_to_hostage_boost upgrade
+	if self:has_category_upgrade("player", "near_hostage_damage_multiplier") and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t) then
+		self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), 400) -- hardcode the radius for now but when hostage taker gets a rework i'll replace it
+		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
+	end
+end)
+
 -- Additional skills
 Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(self)
 	-- Shotgun Rampage BASIC
@@ -618,6 +628,11 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 	-- armorer full armor dmg reduction
 	if self:has_category_upgrade("player", "full_armor_damage_reduction") and player:character_damage():armor_ratio() == 1 then
 		multiplier = multiplier * self:upgrade_value("player", "full_armor_damage_reduction", 1)
+	end
+
+	-- sthlm syndrome aced standing near hostage dmg reduction
+	if self:has_category_upgrade("player", "near_hostage_damage_multiplier") and self._is_local_close_to_hostage then
+		multiplier = multiplier * self:upgrade_value("player", "near_hostage_damage_multiplier", 1)
 	end
 
 	return multiplier

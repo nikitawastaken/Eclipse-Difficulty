@@ -57,20 +57,20 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.triathlete[1].upgrades = { "cable_tie_quantity", "cable_tie_interact_speed_multiplier" }
 	self.skills.triathlete[2].upgrades = { "player_extra_hostages", "cable_tie_pickup_chance" }
 
-	-- Stockholm Syndrome
+	-- Control Freak
 	self.skills.cable_guy[1].upgrades = { "player_intimidate_range_mul", "player_intimidate_aura", "player_intimidation_multiplier" }
-	self.skills.cable_guy[2].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts", "player_civilian_reviver" }
-	self.skills.cable_guy.icon_xy = { 3, 8 }
+	self.skills.cable_guy[2].upgrades = { "player_civ_intimidation_mul", "player_civ_calming_alerts" }
+	self.skills.cable_guy.icon_xy = { 6, 7 }
 
 	-- Joker
 	self.skills.joker[1].upgrades =
 		{ "player_convert_enemies_damage_multiplier_1", "player_convert_enemies", "player_convert_enemies_max_minions_1", "player_passive_convert_enemies_health_multiplier_1" }
 	self.skills.joker[2].upgrades = { "player_convert_enemies_damage_multiplier_2", "player_convert_enemies_interaction_speed_multiplier", "player_passive_convert_enemies_health_multiplier_2" }
 
-	-- Hostage Situation
-	self.skills.stockholm_syndrome[1].upgrades = { "team_resource_trading_ammo", "team_resource_trading_no_downs" }
-	self.skills.stockholm_syndrome[2].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault" }
-	self.skills.stockholm_syndrome.icon_xy = { 6, 7 }
+	-- Stockholm Syndrome
+	self.skills.stockholm_syndrome[1].upgrades = { "player_civilians_dont_flee", "player_civilian_reviver" }
+	self.skills.stockholm_syndrome[2].upgrades = { "player_near_hostage_damage_multiplier" }
+	self.skills.stockholm_syndrome.icon_xy = { 3, 8 }
 
 	-- Partners in Crime
 	self.skills.control_freak[1].upgrades = { "player_convert_camouflage_mul" }
