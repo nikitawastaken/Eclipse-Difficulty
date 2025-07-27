@@ -87,7 +87,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.jewelry_store.group_ai_preset = "small_urban"
-	
+
 	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.ukrainian_job.group_ai_preset = "small_urban"
 
@@ -96,11 +96,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.four_stores.group_ai_settings.assault_force_mul = 0.6
 	self.four_stores.group_ai_preset = "small_urban"
-	
+
 	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
 	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, marksman = -1 }
 	self.nightclub.group_ai_preset = "small_urban"
-	
+
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.85,
 		assault_force_mul = 0.7,
@@ -121,9 +121,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		special_limit_add = {
 			shield = -1,
 		},
-	}	
+	}
 	self.arm_for.group_ai_preset = "heavy_response"
-	
+
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
@@ -444,7 +444,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.wwh.group_ai_preset = "remote"
 
 	self.dah.group_ai_preset = "skyscraper"
-	
+
 	self.hvh.group_ai_settings = {
 		spawn_kill_distance_mul = 1000,
 		assault_force_mul = 0.5,
@@ -538,7 +538,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pent.group_ai_settings.special_limit_add = nil
 	self.pent.group_ai_settings.assault_force_mul = 0.8
 	self.pent.group_ai_preset = "skyscraper"
-	
+
 	self.trai.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,

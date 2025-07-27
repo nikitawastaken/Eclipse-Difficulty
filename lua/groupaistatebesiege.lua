@@ -172,15 +172,15 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 				self._draw_drama.assault_hist[#self._draw_drama.assault_hist][2] = t
 			end
 
-			managers.mission:call_global_event("end_assault")			
+			managers.mission:call_global_event("end_assault")
 			self:_begin_regroup_task(force_regroup)
 
 			if self._difficulty_value < 1 then
 				self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add or 0.25)
 			end
-			
+
 			Eclipse:log_chat("Assault over. Increasing diff.")
-			
+
 			return
 		end
 	end

@@ -25,7 +25,7 @@ local window_spawn = {
 return {
 	[100145] = { -- Floor blown
 		values = {
-			callback = function() 
+			callback = function()
 				managers.groupai:state():enable_timed_spawngroup("murky_scripted_group1")
 			end,
 		},

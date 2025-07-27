@@ -14,7 +14,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["hox_3"] = true,
 		["man"] = true,
 	}
-	
+
 	local female_bikers = {
 		["welcome_to_the_jungle_1"] = true,
 		["welcome_to_the_jungle_1_night"] = true,
@@ -25,7 +25,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 	local murkies = {
 		["brb"] = true,
 	}
-	
+
 	local us_army = {
 		["arm_for"] = true,
 		["roberts"] = true,

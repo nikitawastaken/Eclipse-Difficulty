@@ -29,7 +29,7 @@ GroupAITweakData.group_ai_presets = {
 		cs_heavies = { 0, 0, 0.75 },
 		fbi_heavies = { 0, 0, 0.75 },
 		elite_heavies = { 0, 0, 0.75 },
-		
+
 		cs_bulldozer = { 0, 0, 0.75 },
 		fbi_bulldozer = { 0, 0, 0.75 },
 		elite_bulldozer = { 0, 0, 0.75 },
@@ -2927,7 +2927,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 	if self.murky_response_heists_scripted[level_id] then
 		self.timed_enemy_spawn_groups.murky_scripted_group1 = Eclipse:require("timed_groups/murky_scripted_group1")(self._timed_tactics)
 	end
-	
+
 	if self.us_army_heists[level_id] then
 		self.timed_enemy_spawn_groups.us_group1 = Eclipse:require("timed_groups/us_group1")(self._timed_tactics, difficulty_index)
 	end
@@ -2977,12 +2977,12 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			if self.difficulty_scaling[name] then
 				self.difficulty_scaling[name] = value
 			end
-			
+
 			Eclipse:log_console("Difficulty scaling for " .. level_id .. " set to: ")
 			Utils.PrintTable(self.difficulty_scaling)
 		end
 	end
-	
+
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse", "ponr", "skirmish" }) do
 		local assault_state = self[group_ai_state_name]
 		local level_group_ai_state = (lvl_tweak and lvl_tweak.group_ai_state or "besiege") == group_ai_state_name
@@ -3199,7 +3199,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Control
 	self.first_responders_trade_delay = 45
-	
+
 	self.besiege.assault.delay = {
 		diff_lerp(60, 40),
 		diff_lerp(45, 30),
@@ -3332,7 +3332,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
 			cs_cops = { 24, 12, 0 },
-			
+
 			cs_swats = { 48, 60, 72 },
 
 			cs_shield = { 0, 6, 12 },
@@ -3348,7 +3348,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 3 then
 		self.besiege.assault.groups = {
 			cs_cops = { 24, 12, 0 },
-			
+
 			cs_swats = { 48, 60, 48 },
 
 			cs_heavies = { 0, 0, 24 },

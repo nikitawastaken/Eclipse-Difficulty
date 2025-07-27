@@ -144,32 +144,33 @@ end
 -- Make difficulty progress smoother
 function GroupAIStateBase:_update_difficulty_value()
 	if not self:whisper_mode() and self._target_difficulty and self._t >= self._next_difficulty_step_t then
-			self._difficulty_value = math.min((self._difficulty_value or 0) + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
+		self._difficulty_value = math.min((self._difficulty_value or 0) + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
 		if self._difficulty_value >= self._target_difficulty then
 			self._target_difficulty = self._difficulty_value
 		else
-			self._next_difficulty_step_t = self._t + math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
+			self._next_difficulty_step_t = self._t
+				+ math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
 		end
 		self:_calculate_difficulty_ratio()
 	end
 end
 
-function GroupAIStateBase:set_difficulty(forced_value)	
+function GroupAIStateBase:set_difficulty(forced_value)
 	self._next_difficulty_step_t = self._next_difficulty_step_t or self._t
-	
+
 	if not self._set_initial_diff then
 		self._target_difficulty = tweak_data.group_ai.difficulty_scaling.diff_init
 
 		self._set_initial_diff = true
-		
+
 		self:_update_difficulty_value()
-		
+
 		return
 	end
-	
+
 	if forced_value then
 		self._target_difficulty = forced_value
-		
+
 		self:_update_difficulty_value()
 	end
 end
@@ -178,7 +179,7 @@ Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update
 
 function GroupAIStateBase:add_difficulty(value)
 	self._target_difficulty = math.min(tweak_data.group_ai.difficulty_scaling.diff_max, math.max(tweak_data.group_ai.difficulty_scaling.diff_min, (self._target_difficulty + value)))
-	
+
 	self:_calculate_difficulty_ratio()
 end
 
@@ -186,7 +187,7 @@ end
 local is_pro_job = Eclipse.utils.is_pro_job()
 Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)
 	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_add
-	
+
 	if hostage_kill_add then
 		self:add_difficulty(hostage_kill_add)
 	end
