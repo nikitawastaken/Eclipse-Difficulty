@@ -3173,12 +3173,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	--In-heist difficulty scaling
 	self.difficulty_scaling = {
-		diff_init = 0.5,
+		diff_init = 0.4,
 		diff_min = 0,
 		diff_max = 1,
 		diff_step = 0.05,
 		diff_step_interval = { 15, 20 },
-		assault_add = 0.25,
+		assault_add = 0.2,
 		hostage_add = is_pro_job and 0.1 or nil,
 	}
 

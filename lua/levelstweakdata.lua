@@ -78,7 +78,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.7,
 		push_delay_mul = 1.25,
 		difficulty_scaling = {
-			diff_init = 0.25,
+			diff_init = 0.2,
 		},
 		force_tactics = {
 			swat_init = {
@@ -105,7 +105,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 0.85,
 		assault_force_mul = 0.7,
 		difficulty_scaling = {
-			diff_step_interval = { 10, 15 },
+			diff_init = 0.5,
+			assault_add = 0.25,
 		},
 	}
 
