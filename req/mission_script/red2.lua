@@ -266,7 +266,6 @@ return {
 			{ id = 103998, remove = true },
 			{ id = 103377, remove = true },
 			{ id = 104041, remove = true },
-			
 		},
 	},
 	-- tweak chances for closing shutters and basement ambush
