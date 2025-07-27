@@ -55,8 +55,8 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	end
 
 	local l5n_missing_police_calls = {
-		"l5n_a08",
 		"l5n_a09",
+		"l5n_a23",
 	}
 	local l5n_contact_lines = {
 		"Play_l5n_i01_con",
