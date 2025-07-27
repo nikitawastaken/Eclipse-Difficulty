@@ -1810,15 +1810,16 @@ function WeaponFactoryTweakData:_balance_launcher_ammo(tweak_data)
 					self[factory_id].override = {}
 				end
 
+			--[[
 				if grenade_launcher_ammo_overrides[part_id] and grenade_launcher_ammo_overrides[part_id][ammo_override] then
 					self[factory_id].override[part_id] = grenade_launcher_ammo_overrides[part_id][ammo_override]
 
 					local grenade_type = self[factory_id].override[part_id].custom_stats and self[factory_id].override[part_id].custom_stats.launcher_grenade
-
 					if grenade_type and type(grenade_type) == "string" then
 						self[factory_id].override[part_id].custom_stats.launcher_grenade = grenade_type .. (based_on_weapon_id or weapon_id)
 					end
 				end
+			]]
 			end
 		end
 	end

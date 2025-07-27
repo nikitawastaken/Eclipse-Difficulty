@@ -97,10 +97,11 @@ function WeaponTweakData:_init_weapons()
 		end
 		
 		local cat_map = table.list_to_set(weap_data.categories)
+		local dmg_mul = based_on_data and based_on_data.stats_modifiers and based_on_data.stats_modifiers.damage or weap_data.stats_modifiers and  weap_data.stats_modifiers.damage or 0
 		local is_browning_mg = weap_id == "ranc_heavy_machine_gun"
 		local is_deagle = based_on_id == "deagle" or weap_id == "deagle"
 		local is_judge = based_on_id == "judge" or weap_id == "judge"
-		
+	
 		--catch-all stat setups
 		if cat_map.assault_rifle and not is_browning_mg then
 			weap_data.stats.suppression = cat_map.dmr and 1 or 11
@@ -468,7 +469,6 @@ function WeaponTweakData:_init_weapons()
 			weap_data.steelsight_move_speed_mul = 0.45
 
 			-- Increase Sniper Rifle ammo based on damage
-			local dmg_mul = based_on_data and based_on_data.stats_modifiers and based_on_data.stats_modifiers.damage or weap_data.stats_modifiers and  weap_data.stats_modifiers.damage or 0
 			local snp_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
 			
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (0.675 + (snp_ammo_mul * 0.25))
@@ -502,9 +502,14 @@ function WeaponTweakData:_init_weapons()
 			weap_data.stats.suppression = 1
 			weap_data.stats.alert_size = 1
 			weap_data.armor_piercing_chance = 1
-			weap_data.bow_reload_speed_multiplier = nil
 			weap_data.reload_speed_multiplier = 2
-
+			
+			local bow_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
+			
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 + (bow_ammo_mul * 0.33))
+			
+			weap_data.bow_reload_speed_multiplier = nil
+		
 			weap_data.spread_multiplier = nil
 			weap_data.recoil_multiplier = nil
 
@@ -516,6 +521,10 @@ function WeaponTweakData:_init_weapons()
 			weap_data.stats.alert_size = 1
 			weap_data.armor_piercing_chance = 1
 
+			local crossbow_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
+			
+			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 + (crossbow_ammo_mul * 0.33))
+			
 			weap_data.spread_multiplier = nil
 			weap_data.recoil_multiplier = nil
 		elseif cat_map.grenade_launcher then
@@ -800,6 +809,13 @@ function WeaponTweakData:_init_weapons()
 
 		if weap_data.AMMO_MAX then
 			weap_data.NR_CLIPS_MAX = math.max(1, math.round(weap_data.total_damage / clip_dmg)) -- Round total ammo to magazine capacity
+			
+			if cat_map.bow or cat_map.crossbow then
+				if weap_data.CLIP_AMMO_MAX == 1 then
+					weap_data.NR_CLIPS_MAX = math.floor(weap_data.NR_CLIPS_MAX / 5) * 5
+				end
+			end
+			
 			weap_data.AMMO_MAX = weap_data.CLIP_AMMO_MAX * weap_data.NR_CLIPS_MAX
 		end
 
@@ -2454,17 +2470,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Specials
 
 	-- Airbow
-	self.ecp.use_data.selection_index = 1
 	self.ecp.CLIP_AMMO_MAX = 6
-	self.ecp.stats.damage = 24
+	self.ecp.stats.damage = 60
 	self.ecp.stats.spread = 21
 	self.ecp.stats.recoil = 25
 	self.ecp.stats.concealment = 20
 	self.ecp.fire_mode_data.fire_rate = 60 / 120
-	self.ecp.stats_modifiers = { damage = 10 }
+	self.ecp.stats_modifiers = { damage = 2 }
 
 	-- Pistol Crossbow
-	self.hunter.projectile_type = "hunter_arrow"
 	self.hunter.CLIP_AMMO_MAX = 1
 	self.hunter.stats.damage = 40
 	self.hunter.stats.spread = 25
@@ -2474,7 +2488,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hunter.stats_modifiers = { damage = 2 }
 
 	-- Light Crossbow
-	self.frankish.use_data.selection_index = 1
 	self.frankish.CLIP_AMMO_MAX = 1
 	self.frankish.stats.damage = 60
 	self.frankish.stats.spread = 25
@@ -2490,7 +2503,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arblast.stats.recoil = 25
 	self.arblast.stats.concealment = 20
 	self.arblast.fire_mode_data.fire_rate = 60 / 30
-	self.arblast.stats_modifiers = { damage = 4 }
+	self.arblast.stats_modifiers = { damage = 5 }
 	self.arblast.reload_speed_multiplier = 1.3
 
 	-- Plainsrider
@@ -2508,7 +2521,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.long.stats.recoil = 25
 	self.long.stats.concealment = 22
 	self.long.fire_mode_data.fire_rate = 60 / 300
-	self.long.stats_modifiers = { damage = 10 }
+	self.long.stats_modifiers = { damage = 5 }
 
 	self.elastic.CLIP_AMMO_MAX = 1
 	self.elastic.stats.damage = 60
@@ -2516,7 +2529,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.elastic.stats.recoil = 25
 	self.elastic.stats.concealment = 22
 	self.elastic.fire_mode_data.fire_rate = 60 / 300
-	self.elastic.stats_modifiers = { damage = 10 }
+	self.elastic.stats_modifiers = { damage = 5 }
 
 	-- Basilisk
 	self.ms3gl.projectile_types = {
@@ -2802,8 +2815,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix
 
-	self.r870_npc.CLIP_AMMO_MAX = 8
-
 	self.r870_yellow_npc = deep_clone(self.r870_npc)
 
 	self.benelli_npc = copy_data(self.benelli_npc, self.r870_npc, self.ben_crew)
@@ -2821,8 +2832,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.sko12_conc_npc = copy_data(self.sko12_conc_npc, self.saiga_npc, self.sko12_crew)
 	self.sko12_conc_npc.bullet_class = nil
 	self.sko12_conc_npc.concussion_data = nil
-
-	self.m249_npc.muzzleflash = "effects/payday2/particles/weapons/556_auto"
 
 	self.rpk_lmg_npc = copy_data(self.rpk_lmg_npc, self.m249_npc, self.rpk_crew)
 
@@ -2846,21 +2855,20 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.m14_sniper_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.m14_sniper_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.m14_sniper_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
-	self.m14_sniper_npc.CLIP_AMMO_MAX = 5
 
 	self.svd_snp_npc.usage = "is_sniper"
 	self.svd_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svd_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svd_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
-	self.svd_snp_npc.CLIP_AMMO_MAX = 5
 
 	self.svdsil_snp_npc.usage = "is_sniper"
 	self.svdsil_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svdsil_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svdsil_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
-	self.svdsil_snp_npc.CLIP_AMMO_MAX = 5
 
-	self.flamethrower_npc.flame_max_range = 600
+	self.flamethrower_npc.flame_max_range = 1000
+	
+	self.snowthrower_npc.flame_max_range = 1000
 end)
 
 
