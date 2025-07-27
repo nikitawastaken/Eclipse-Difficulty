@@ -8,9 +8,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			level.player_style = nil
 			level.group_ai_settings = {
 				difficulty_curve_points = { 0.5 },
-				difficulty_step_time = 15,
-				spawn_kill_distance_mul = 1,
-				spawn_kill_cooldown_mul = 1,
+				spawn_kill_distance = 1500,
+				spawn_kill_cooldown = 10,
+				first_responders_trade_delay = 45,
 				recurring_cloaker_spawn_interval_mul = 1,
 				hostage_hesitation_delay_mul = 1,
 				sustain_duration_mul = 1,
@@ -24,6 +24,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				push_delay_mul = 1,
 				min_grenade_timeout_mul = 1,
 				cs_grenade_chance_times_mul = 1,
+				difficulty_scaling = {},
 				grenade_timeout_mul = {
 					flash_grenade = 1,
 					smoke_grenade = 1,
@@ -39,15 +40,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 					marshal = 0,
 				},
 				force_tactics = {},
-				spawn_group_presets = {
-					heavy_response = false,
-					special_operation = false,
-					small_squads = false,
-					standard_issue = false,
-					full_force = false,
-					feds = false,
-					yeehaw = false,
-				},
 			}
 		end
 	end
@@ -81,56 +73,40 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sah.flashlights_on = true
 	self.deep.flashlights_on = true
 
-	-- add Group AI presets
-	self.ukrainian_job.group_ai_preset = "small_urban"
-	self.four_stores.group_ai_preset = "small_urban"
-	self.jewelry_store.group_ai_preset = "small_urban"
-	self.mallcrasher.group_ai_preset = "small_urban"
-	self.nightclub.group_ai_preset = "small_urban"
-	self.chill_combat.group_ai_preset = "small_urban"
-
-	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
-	self.crojob3.group_ai_preset = "remote"
-	self.crojob3_night.group_ai_preset = "remote"
-	self.pines.group_ai_preset = "remote"
-	self.peta2.group_ai_preset = "remote"
-	self.wwh.group_ai_preset = "remote"
-	self.sah.group_ai_preset = "remote"
-	self.fex.group_ai_preset = "remote"
-	self.chca.group_ai_preset = "remote"
-	self.ranc.group_ai_preset = "remote"
-	self.deep.group_ai_preset = "remote"
-
-	self.framing_frame_3.group_ai_preset = "skyscraper"
-	self.dah.group_ai_preset = "skyscraper"
-	self.pent.group_ai_preset = "skyscraper"
-
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
-		difficulty_curve_points = { 0.75 },
 		assault_force_mul = 0.7,
 		push_delay_mul = 1.25,
+		difficulty_scaling = {
+			diff_init = 0.25,
+		},
 		force_tactics = {
 			swat_init = {
 				flank = true,
 			},
 		},
 	}
+	self.jewelry_store.group_ai_preset = "small_urban"
+	
 	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	self.ukrainian_job.group_ai_preset = "small_urban"
 
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-
-	self.nightclub.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.nightclub.group_ai_settings.assault_force_mul = 0.6
-	self.nightclub.group_ai_settings.recon_force_mul = 0.8
+	self.four_stores.group_ai_settings.assault_force_mul = 0.6
+	self.four_stores.group_ai_preset = "small_urban"
+	
+	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
 	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, marksman = -1 }
-
+	self.nightclub.group_ai_preset = "small_urban"
+	
 	self.arm_par.group_ai_settings = {
-		difficulty_step_time = 10,
 		sustain_duration_mul = 0.85,
 		assault_force_mul = 0.7,
+		difficulty_scaling = {
+			diff_step_interval = { 10, 15 },
+		},
 	}
 
 	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
@@ -141,18 +117,21 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 
+	self.arm_for.group_ai_settings = {
+		special_limit_add = {
+			shield = -1,
+		},
+	}	
+	self.arm_for.group_ai_preset = "heavy_response"
+	
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
 		special_limit_add = {
 			shield = 1,
 		},
-		spawn_group_presets = {
-			full_force = true,
-			heavy_response = true,
-			feds = true,
-		},
 	}
+	self.watchdogs_2.group_ai_preset = "heavy_response"
 
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
@@ -168,12 +147,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				door_ambush = true,
 			},
 		},
-		spawn_group_presets = {
-			full_force = true,
-			small_squads = true,
-			heavy_response = true,
-		},
 	}
+	self.framing_frame_2.group_ai_preset = "heavy_response"
 
 	self.framing_frame_3.group_ai_settings = {
 		recurring_cloaker_spawn_interval_mul = 0.75,
@@ -189,13 +164,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -2,
 		},
 	}
+	self.framing_frame_3.group_ai_preset = "skyscraper"
 
 	self.election_day_2.group_ai_settings = {
 		cs_grenade_chance_times_mul = 0.5,
 		min_grenade_timeout_mul = 0.75,
-		spawn_group_presets = {
-			special_operation = true,
-		},
 	}
 
 	self.haunted.group_ai_settings = {
@@ -248,27 +221,29 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				ranged_fire = true,
 			},
 		},
-		spawn_group_presets = {
-			small_squads = true,
-			standard_issue = true,
-		},
 	}
 
 	self.hox_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		recon_interval_variation_mul = 0.75,
-		spawn_group_presets = {
-			feds = true,
-		},
 	}
 
 	self.arena.group_ai_settings = {
-		spawn_kill_cooldown_mul = 1.5,
+		spawn_kill_cooldown = 15,
 		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 0.8,
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+
+	self.crojob3.group_ai_settings = {
+		assault_delay_mul = 1.25,
+		assault_force_mul = 0.8,
+	}
+	self.crojob3.group_ai_preset = "remote"
+
+	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
+	self.crojob3_night.group_ai_preset = "remote"
 
 	self.kenaz.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.5,
@@ -292,7 +267,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.pbr2.group_ai_settings = {
-		spawn_kill_cooldown_mul = 1.5,
+		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.6,
 		push_delay_mul = 1.25,
 		special_limit_add = {
@@ -312,9 +287,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				ranged_fire = false,
 			},
 		},
-		spawn_group_presets = {
-			standard_issue = true,
-		},
 	}
 
 	self.peta2.group_ai_settings = {
@@ -322,11 +294,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_delay_mul = 1.25,
 		recon_force_mul = 0.5,
 	}
+	self.peta2.group_ai_preset = "remote"
 
 	self.mad.group_ai_settings = {
 		assault_force_mul = 0.8,
-		spawn_group_presets = {
-			standard_issue = true,
+		difficulty_scaling = {
+			diff_init = 0.4,
+			assault_add = 0.3,
 		},
 	}
 
@@ -342,12 +316,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			tank = 1,
 			cloaker = 1,
 		},
-		spawn_group_presets = {
-			heavy_response = true,
-			special_operation = true,
-			feds = true,
-		},
 	}
+	self.man.group_ai_preset = "heavy_response"
 
 	self.born.group_ai_settings = {
 		assault_force_mul = 0.8,
@@ -363,7 +333,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.chew.group_ai_settings = {
-		spawn_kill_cooldown_mul = 1.5,
 		assault_force_mul = 0.3,
 		recon_force_mul = 0,
 		cs_grenade_chance_times_mul = 1.5,
@@ -389,9 +358,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				door_ambush = false,
 			},
 		},
-		spawn_group_presets = {
-			small_squads = true,
-		},
 	}
 
 	self.flat.group_ai_settings = {
@@ -412,6 +378,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.5,
 		cs_grenade_chance_times_mul = 0.5,
 		min_grenade_timeout_mul = 0.75,
+		difficulty_scaling = {
+			diff_init = 0.33,
+			assault_add = 0.33,
+		},
 		grenade_timeout_mul = {
 			cs_grenade = 0.5,
 		},
@@ -438,6 +408,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
+	self.chill_combat.group_ai_preset = "small_urban"
 
 	self.help.group_ai_settings = deep_clone(self.flat.group_ai_settings)
 	self.help.group_ai_settings.force_tactics = nil
@@ -465,25 +436,21 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.wwh.group_ai_settings = {
 		assault_force_mul = 0.8,
 		recon_force_mul = 0.5,
-		assault_delay_mul = 1.25,
 		special_limit_add = {
 			shield = -1,
 			taser = 1,
 		},
-		spawn_group_presets = {
-			full_force = true,
-		},
 	}
+	self.wwh.group_ai_preset = "remote"
 
+	self.dah.group_ai_preset = "skyscraper"
+	
 	self.hvh.group_ai_settings = {
-		spawn_kill_distance_mul = 0.65,
+		spawn_kill_distance_mul = 1000,
 		assault_force_mul = 0.5,
 		recon_force_mul = 0.5,
 		special_limit_add = {
 			shield = -2,
-		},
-		spawn_group_presets = {
-			small_squads = true,
 		},
 	}
 
@@ -491,9 +458,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recon_interval_variation_mul = 0.5,
 		special_limit_add = {
 			shield = 1,
-		},
-		spawn_group_presets = {
-			full_force = true,
 		},
 	}
 
@@ -504,15 +468,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			taser = 1,
 			tank = 1,
 		},
-		spawn_group_presets = {
-			full_force = true,
-			heavy_response = true,
-			special_operation = true,
-		},
 	}
+	self.rvd2.group_ai_preset = "heavy_response"
 
 	self.des.group_ai_settings = deep_clone(self.help.group_ai_settings)
-	self.des.group_ai_settings.spawn_kill_cooldown_mul = 1.5
+	self.des.group_ai_settings.spawn_kill_cooldown = 15
 	self.des.group_ai_settings.assault_force_mul = 0.6
 
 	self.nmh.group_ai_settings = {
@@ -538,12 +498,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			tank = 1,
 			medic = 1,
 		},
-		spawn_group_presets = {
-			full_force = true,
-			heavy_response = true,
-			special_operation = true,
-		},
 	}
+	self.vit.group_ai_preset = "heavy_response"
 
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
 	self.mex.group_ai_settings.assault_force_mul = 0.7
@@ -561,9 +517,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pex.group_ai_settings = {
 		sustain_duration_mul = 1.25, -- Bird flu
 		min_grenade_timeout_mul = 0.75,
-		spawn_group_presets = {
-			feds = true,
-		},
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
@@ -571,35 +524,26 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 
 	self.chca.group_ai_settings = {
-		spawn_kill_cooldown_mul = 1.5,
+		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.7,
 		assault_delay_mul = 1.25,
 		special_limit_add = {
 			marksman = -1,
 		},
 	}
+	self.chca.group_ai_preset = "remote"
 
 	self.pent.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
-	self.pent.group_ai_settings.difficulty_step_time = 10 -- The heist has really fucked up difficulty scaling
+	self.pent.group_ai_settings.diff_step_interval = { 10, 15 } -- The heist has really fucked up difficulty scaling
 	self.pent.group_ai_settings.special_limit_add = nil
 	self.pent.group_ai_settings.assault_force_mul = 0.8
-
-	self.ranc.group_ai_settings = {
-		spawn_group_presets = {
-			standard_issue = true,
-			yeehaw = true,
-		},
-	}
-
+	self.pent.group_ai_preset = "skyscraper"
+	
 	self.trai.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
 		special_limit_add = {
 			tank = 1,
-		},
-		spawn_group_presets = {
-			standard_issue = true,
-			yeehaw = true,
 		},
 	}
 
@@ -616,13 +560,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			tank = 1,
 			marksman = 1,
 		},
-		spawn_group_presets = {
-			full_force = true,
-			heavy_response = true,
-			special_operation = true,
-			yeehaw = true,
-		},
 	}
+	self.corp.group_ai_preset = "heavy_response"
+
+	self.deep.group_ai_preset = "remote"
 
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD

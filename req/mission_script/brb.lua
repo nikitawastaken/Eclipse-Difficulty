@@ -1,9 +1,20 @@
 local preferred = Eclipse.preferred
-local bridge_spawn = {
+local back_street_spawn = {
 	values = {
-		interval = 20,
+		interval = 10,
+	},
+}
+local bridge_far_spawn = {
+	values = {
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents,
+}
+local bridge_close_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
@@ -12,6 +23,13 @@ local window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	[100145] = { -- Floor blown
+		values = {
+			callback = function() 
+				managers.groupai:state():enable_timed_spawngroup("murky_scripted_group1")
+			end,
+		},
+	},
 	-- Combine some navigation areas
 	[100287] = {
 		ai_area = {
@@ -32,25 +50,43 @@ return {
 	[100001] = {
 		reinforce = {
 			{
+				name = "entrance1",
+				force = 2,
+				position = Vector3(-400, -900, 10),
+			},
+			{
+				name = "entrance2",
+				force = 2,
+				position = Vector3(1350, -2200, 10),
+			},
+			{
+				name = "entrance3",
+				force = 2,
+				position = Vector3(2850, -2200, 10),
+			},
+			{
 				name = "parking_lot",
 				force = 3,
-				position = Vector3(-1950, -2750, 0),
+				position = Vector3(-2000, -2750, 10),
 			},
 			{
 				name = "construction",
 				force = 3,
-				position = Vector3(3100, -3750, 0),
+				position = Vector3(3000, -3750, 10),
 			},
 		},
 	},
-	-- spawn point delays
-	[100168] = bridge_spawn,
-	[100369] = bridge_spawn,
-	[100429] = bridge_spawn,
-	[100435] = bridge_spawn,
-	[100441] = bridge_spawn,
-	[100454] = bridge_spawn,
-	[100455] = bridge_spawn,
+	-- Spawn point delays
+	[100332] = back_street_spawn,
+	[100965] = back_street_spawn,
+	[100435] = bridge_far_spawn,
+	[100454] = bridge_far_spawn,
+	[100455] = bridge_far_spawn,
+	[100461] = bridge_far_spawn,
+	[100168] = bridge_close_spawn,
+	[100369] = bridge_close_spawn,
+	[100429] = bridge_close_spawn,
+	[100441] = bridge_close_spawn,
 	[100247] = window_spawn,
 	[100067] = window_spawn,
 	[100068] = window_spawn,

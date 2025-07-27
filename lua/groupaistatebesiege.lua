@@ -85,17 +85,8 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 
 	if not self._enemy_weapons_hot then
 		self._task_data.assault.disabled = nil
-		self._task_data.assault.next_dispatch_t = self._t
-			+ (
-				self._tweak_data.first_responders_delay_per_map and self._tweak_data.first_responders_delay_per_map[Eclipse.utils.level_id()]
-				or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
-			)
-		self._task_data.assault.first_response_trades_delay = self._t
-			+ (
-					self._tweak_data.first_responders_delay_per_map and self._tweak_data.first_responders_delay_per_map[Eclipse.utils.level_id()]
-					or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)
-				)
-				/ 2
+		self._task_data.assault.next_dispatch_t = self._t + (tweak_data.group_ai.first_responders_trade_delay or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
+		self._task_data.assault.first_response_trades_delay = self._t + (tweak_data.group_ai.first_responders_trade_delay or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)) / 2
 	end
 
 	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)
@@ -181,8 +172,15 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 				self._draw_drama.assault_hist[#self._draw_drama.assault_hist][2] = t
 			end
 
-			managers.mission:call_global_event("end_assault")
+			managers.mission:call_global_event("end_assault")			
 			self:_begin_regroup_task(force_regroup)
+
+			if self._difficulty_value < 1 then
+				self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add or 0.25)
+			end
+			
+			Eclipse:log_chat("Assault over. Increasing diff.")
+			
 			return
 		end
 	end

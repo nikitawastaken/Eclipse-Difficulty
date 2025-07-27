@@ -1,14 +1,14 @@
 -- add female bikers to spawn roster
-local bikers = {
-	Idstring("units/payday2/characters/ene_biker_1/ene_biker_1"),
-	Idstring("units/payday2/characters/ene_biker_2/ene_biker_2"),
-	Idstring("units/payday2/characters/ene_biker_3/ene_biker_3"),
-	Idstring("units/payday2/characters/ene_biker_4/ene_biker_4"),
-	Idstring("units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"),
-	Idstring("units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"),
-	Idstring("units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"),
+local biker_enemy = {
+	["units/payday2/characters/ene_biker_1/ene_biker_1"] = 5,
+	["units/payday2/characters/ene_biker_2/ene_biker_2"] = 5,
+	["units/payday2/characters/ene_biker_3/ene_biker_3"] = 5,
+	["units/payday2/characters/ene_biker_4/ene_biker_4"] = 5,
+	["units/pd2_dlc_born/characters/ene_biker_female_1/ene_biker_female_1"] = 2,
+	["units/pd2_dlc_born/characters/ene_biker_female_2/ene_biker_female_2"] = 2,
+	["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
 }
-local biker = { enemy = bikers }
+local biker = { enemy = biker_enemy }
 
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },

@@ -14,12 +14,18 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["hox_3"] = true,
 		["man"] = true,
 	}
+	
 	local female_bikers = {
 		["welcome_to_the_jungle_1"] = true,
 		["welcome_to_the_jungle_1_night"] = true,
 		["cane"] = true,
 		["mex"] = true,
 	}
+
+	local murkies = {
+		["brb"] = true,
+	}
+	
 	local us_army = {
 		["arm_for"] = true,
 		["roberts"] = true,
@@ -66,6 +72,12 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			Eclipse:log_console("Loading female biker package...")
 			table.insert(self._loaded_diff_packages, "packages/female_bikers")
 			PackageManager:load("packages/female_bikers")
+		end
+
+		if murkies[level_id] and not PackageManager:loaded("packages/murkywater") then
+			Eclipse:log_console("Loading Murkywater package...")
+			table.insert(self._loaded_diff_packages, "packages/murkywater")
+			PackageManager:load("packages/murkywater")
 		end
 
 		if us_army[level_id] and not PackageManager:loaded("packages/us_army") then

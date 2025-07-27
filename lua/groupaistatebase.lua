@@ -19,13 +19,6 @@ end
 -- scale scripted spawn tier with current diff value
 local _calculate_difficulty_ratio = GroupAIStateBase._calculate_difficulty_ratio
 function GroupAIStateBase:_calculate_difficulty_ratio(...)
-	if self._hostage_killed_diff_add then
-		self._difficulty_value = math.min(self._difficulty_value + (self._hostage_killed_diff_add or 0), 1)
-		self._hostage_killed_diff_add = nil
-	else
-		self._difficulty_value = math.min(self._difficulty_value + (self._added_difficulty_value or 0), 1) -- addend difficulty
-	end
-
 	_calculate_difficulty_ratio(self, ...)
 
 	local tier = self:_get_scripted_tier()
@@ -150,45 +143,52 @@ end
 
 -- Make difficulty progress smoother
 function GroupAIStateBase:_update_difficulty_value()
-	if self._target_difficulty and self._t >= self._next_difficulty_step_t then
-		self._difficulty_value = math.min(self._difficulty_value + self._difficulty_step, self._target_difficulty)
+	if not self:whisper_mode() and self._target_difficulty and self._t >= self._next_difficulty_step_t then
+			self._difficulty_value = math.min((self._difficulty_value or 0) + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
 		if self._difficulty_value >= self._target_difficulty then
-			self._target_difficulty = nil
+			self._target_difficulty = self._difficulty_value
 		else
-			self._next_difficulty_step_t = self._t + (tweak_data.group_ai.difficulty_step_time or 15)
+			self._next_difficulty_step_t = self._t + math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
 		end
 		self:_calculate_difficulty_ratio()
 	end
 end
 
-local set_difficulty_original = GroupAIStateBase.set_difficulty
-function GroupAIStateBase:set_difficulty(value, ...)
-	if not managers.game_play_central or managers.game_play_central:get_heist_timer() < 1 or value < self._difficulty_value then
-		self._target_difficulty = nil
-
-		return set_difficulty_original(self, value, ...)
-	end
-
-	self._difficulty_step = 0.05
-	self._target_difficulty = value
+function GroupAIStateBase:set_difficulty(forced_value)	
 	self._next_difficulty_step_t = self._next_difficulty_step_t or self._t
+	
+	if not self._set_initial_diff then
+		self._target_difficulty = tweak_data.group_ai.difficulty_scaling.diff_init
 
-	self:_update_difficulty_value()
+		self._set_initial_diff = true
+		
+		self:_update_difficulty_value()
+		
+		return
+	end
+	
+	if forced_value then
+		self._target_difficulty = forced_value
+		
+		self:_update_difficulty_value()
+	end
 end
 
 Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update_difficulty_value)
 
 function GroupAIStateBase:add_difficulty(value)
-	self._added_difficulty_value = (self._added_difficulty_value or 0) + value
+	self._target_difficulty = math.min(tweak_data.group_ai.difficulty_scaling.diff_max, math.max(tweak_data.group_ai.difficulty_scaling.diff_min, (self._target_difficulty + value)))
+	
 	self:_calculate_difficulty_ratio()
 end
 
 --Killing hostages in Pro Jobs increases diff
 local is_pro_job = Eclipse.utils.is_pro_job()
-Hooks:PostHook(GroupAIStateBase, "hostage_killed", "hits_hostage_killed", function(self)
-	if is_pro_job then
-		self._hostage_killed_diff_add = math.random(75, 100) / 1000
-		self:add_difficulty(self._hostage_killed_diff_add)
+Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)
+	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_add
+	
+	if hostage_kill_add then
+		self:add_difficulty(hostage_kill_add)
 	end
 end)
 
