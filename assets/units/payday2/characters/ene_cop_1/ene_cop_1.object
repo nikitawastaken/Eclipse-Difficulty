@@ -257,18 +257,6 @@
 				</object>
 			</lod_object>
 			
-			<lod_object name="lod_vest_fat">
-				<object name="g_vest_fat" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_vest" max_distance="1000" />
-					<material materials="mtr_vest_lod_1" max_distance="1500" />
-					<material materials="mtr_vest_lod_2" />
-				</object>
-				<object name="g_vest_fat_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_vest" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_vest_lod_2" />
-				</object>
-			</lod_object>
-			
 			<!-- WASHINGTON SECURITY BADGE OBJECTS -->
 			<lod_object name="lod_badges_security">
 				<object name="g_badges_security" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -403,6 +391,19 @@
 					<material materials="mtr_police_body_lod_2" />
 				</object>
 				<object name="g_badges_bex_cop_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<!-- POLICIA FEDERAL BADGE OBJECTS -->
+			<lod_object name="lod_badges_bex_cop_b">
+				<object name="g_badges_bex_cop_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_badges_bex_cop_b_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
@@ -652,7 +653,32 @@
 					<material materials="mtr_police_body_lod_2" />
 				</object>
 			</lod_object>
-					
+
+			<!-- SUSPENDERS -->
+			<lod_object name="lod_suspenders">
+				<object name="g_suspenders" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_suspenders_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_suspenders_bex">
+				<object name="g_suspenders_bex" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_suspenders_bex_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+			
 			<!-- BODY OBJECTS -->
 			<lod_object name="lod_body">
 				<object name="g_body" 		enabled="true"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -726,6 +752,31 @@
 				</object>
 			</lod_object>
 
+			<!-- BEX BODY OBJECTS -->
+			<lod_object name="lod_body_bex">
+				<object name="g_body_bex" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_body_bex_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_body_bex_b">
+				<object name="g_body_bex_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_body_bex_b_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+			
 			<!-- EARPIECE OBJECTS -->
 			<lod_object name="lod_earpiece">
 				<object name="g_earpiece" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -734,6 +785,31 @@
 					<material materials="mtr_police_body_lod_2" />
 				</object>
 				<object name="g_earpiece_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<!-- EARPIECE OBJECTS -->
+			<lod_object name="lod_shoulderloops">
+				<object name="g_shoulderloops" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_shoulderloops_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_shoulderloops_fat">
+				<object name="g_shoulderloops_fat" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_shoulderloops_fat_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
@@ -983,6 +1059,18 @@
 				</object>
 			</lod_object>
 
+			<lod_object name="lod_gear_cop_e">
+				<object name="g_gear_cop_e" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_police_body" max_distance="1000" />
+					<material materials="mtr_police_body_lod_1" max_distance="1500" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+				<object name="g_gear_cop_e_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_police_body_lod_2" />
+				</object>
+			</lod_object>
+			
 			<lod_object name="lod_gear_cop_fat_a">
 				<object name="g_gear_cop_fat_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_police_body" max_distance="1000" />
@@ -1031,98 +1119,13 @@
 				</object>
 			</lod_object>
 
-			<!-- LA COP GEAR OBJECTS -->
-			<lod_object name="lod_gear_la_cop_a">
-				<object name="g_gear_la_cop_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_gear_cop_fat_e">
+				<object name="g_gear_cop_fat_e" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_police_body" max_distance="1000" />
 					<material materials="mtr_police_body_lod_1" max_distance="1500" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
-				<object name="g_gear_la_cop_a_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>
-			
-			<lod_object name="lod_gear_la_cop_b">
-				<object name="g_gear_la_cop_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_la_cop_b_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_gear_la_cop_c">
-				<object name="g_gear_la_cop_c" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_la_cop_c_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>			
-
-			<lod_object name="lod_gear_la_cop_d">
-				<object name="g_gear_la_cop_d" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_la_cop_d_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_gear_la_cop_fat_a">
-				<object name="g_gear_la_cop_fat_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_la_cop_fat_a_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_gear_la_cop_fat_b">
-				<object name="g_gear_la_cop_fat_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_la_cop_fat_b_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>
-
-			<lod_object name="lod_gear_la_cop_fat_c">
-				<object name="g_gear_la_cop_fat_c" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_la_cop_fat_c_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>
-			
-			<lod_object name="lod_gear_la_cop_fat_d">
-				<object name="g_gear_la_cop_fat_d" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_la_cop_fat_d_lod1" 	enabled="false" lod="1" >
+				<object name="g_gear_cop_fat_e_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
@@ -1163,19 +1166,6 @@
 					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
-			</lod_object>	
-
-			<!-- PRISON GUARD GEAR OBJECTS -->
-			<lod_object name="lod_gear_prisonguard">
-				<object name="g_gear_prisonguard" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_gear_prisonguard_lod1" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
 			</lod_object>
 			
 			<!-- GLASSES OBJECTS -->
@@ -1191,13 +1181,13 @@
 				</object>
 			</lod_object>
 
-			<lod_object name="lod_shades_b">
-				<object name="g_shades_b" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+			<lod_object name="lod_shades_bex">
+				<object name="g_shades_bex" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_police_body" max_distance="1000" />
 					<material materials="mtr_police_body_lod_1" max_distance="1500" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
-				<object name="g_shades_b_lod1" 	enabled="false" lod="1" >
+				<object name="g_shades_bex_lod1" 	enabled="false" lod="1" >
 					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
 					<material materials="mtr_police_body_lod_2" />
 				</object>
@@ -1405,7 +1395,7 @@
 			
 			<object name="g_shades_glass" 		enabled="false" />	
 
-			<object name="g_shades_glass_b" 		enabled="false" />	
+			<object name="g_shades_glass_bex" 		enabled="false" />	
 				
 			<object name="s_body" 				enabled="true" shadow_caster="true" />			
 		</graphic_group>
