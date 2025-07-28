@@ -278,7 +278,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.man.group_ai_settings = {
 		recurring_cloaker_spawn_interval_mul = 0.75,
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 0.8,
+		assault_force_mul = 0.7,
 		cs_grenade_chance_times_mul = 0.75,
 		special_limit_add = {
 			shield = -1,
@@ -452,7 +452,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.6,
 		cs_grenade_chance_times_mul = 1.25,
 		special_limit_add = {
 			tank = 1,
@@ -479,7 +479,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-
+	
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 
 	self.chca.group_ai_settings = {
