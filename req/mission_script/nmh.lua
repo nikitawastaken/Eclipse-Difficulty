@@ -14,17 +14,17 @@ local disabled = {
 }
 local staircase_spawn = {
 	values = {
-		interval = 5,
+		interval = 10,
 	},
 }
 local exit_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local vent_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
