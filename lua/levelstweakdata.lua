@@ -479,7 +479,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-	
+
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 
 	self.chca.group_ai_settings = {
