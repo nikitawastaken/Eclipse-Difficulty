@@ -321,17 +321,3 @@ function CopMovement:damage_clbk(my_unit, damage_info)
 
 	return damage_clbk_original(self, my_unit, damage_info)
 end
-
--- Fix a crash when a cop shoots while inside the smoke screen
--- instead of using the overhauled function for players (which i didn't think would cause any issues) we just clone the vanilla function and use it for cops
-function CopMovement:in_smoke()
-	for _, smoke_screen in ipairs(managers.player:smoke_screens()) do
-		local in_smoke, variant = smoke_screen:is_cop_in_smoke(self._unit)
-
-		if in_smoke then
-			return true, variant
-		end
-	end
-
-	return false
-end

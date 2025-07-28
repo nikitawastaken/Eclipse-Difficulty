@@ -80,7 +80,3 @@ function SmokeScreenEffect:is_in_smoke(unit)
 
 	return in_smoke, self._variant
 end
-
-function SmokeScreenEffect:is_cop_in_smoke(unit)
-	return self._unit_list[unit:key()], self._variant
-end
