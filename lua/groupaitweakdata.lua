@@ -1093,21 +1093,26 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
+				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
 				Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"),
 			},
 			russia = {
+				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
 				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
 				Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"),
 			},
 			zombie = {
 				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
+				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
 				Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"),
 			},
 			murkywater = {
 				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
+				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
 				Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"),
 			},
 			federales = {
+				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
 				Idstring("units/payday2/characters/ene_tazer_1/ene_tazer_1"),
 				Idstring("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"),
 			},
