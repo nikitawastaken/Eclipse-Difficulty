@@ -2383,7 +2383,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = self._random_tactics.shield,
 			},
 			{
-				freq_by_diff  = { 0.5, 1, 0.5 },
+				freq_by_diff = { 0.5, 1, 0.5 },
 				rank = 2,
 				unit = "fbi_swat",
 				tactics = self._tactics.shield_support,
