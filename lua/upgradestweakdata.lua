@@ -1556,6 +1556,8 @@ function UpgradesTweakData:init(tweak_data)
 	}
 	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
 	self.damage_to_hot_data.stacking_cooldown = 1
+	self.damage_to_hot_data.add_stack_sources.poison = false
+	self.damage_to_hot_data.add_stack_sources.swat_van = false
 	self.specialization_descs[11][1].multiperk = "5"
 	self.specialization_descs[11][1].multiperk2 = "5"
 	self.specialization_descs[11][3].multiperk = "30%"
