@@ -1,6 +1,9 @@
 local ffo_heists = Eclipse.ffo_heists
 
--- Peak scripting
+Hooks:PostHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
+	self._on_enemy_weapons_hot_t = self._on_enemy_weapons_hot_t or self._t
+end)
+
 function GroupAIStateBase:_get_scripted_tier()
 	local state = managers.groupai and managers.groupai:state_name()
 
@@ -143,15 +146,19 @@ end
 
 -- Make difficulty progress smoother
 function GroupAIStateBase:_update_difficulty_value()
-	if self:enemy_weapons_hot() and self._target_difficulty and self._t >= self._next_difficulty_step_t then
-		self._difficulty_value = math.min(self._difficulty_value + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
-		if self._difficulty_value >= self._target_difficulty then
-			self._target_difficulty = self._difficulty_value
-		else
-			self._next_difficulty_step_t = self._t
-				+ math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
+	if self:enemy_weapons_hot() and self._on_enemy_weapons_hot_t and self._t >= (self._on_enemy_weapons_hot_t + tweak_data.group_ai.difficulty_scaling.diff_delay_init) then
+		if self._target_difficulty and self._t >= self._next_difficulty_step_t then
+		
+			self._difficulty_value = math.min(self._difficulty_value + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
+			
+			if self._difficulty_value >= self._target_difficulty then
+				self._target_difficulty = self._difficulty_value
+			else
+				self._next_difficulty_step_t = self._t
+					+ math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
+			end
+			self:_calculate_difficulty_ratio()
 		end
-		self:_calculate_difficulty_ratio()
 	end
 end
 
