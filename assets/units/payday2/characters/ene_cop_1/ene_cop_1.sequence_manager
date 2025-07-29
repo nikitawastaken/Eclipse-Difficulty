@@ -8,7 +8,7 @@
 			<has_sleeves			value="0" />
 			<has_hat				value="0" />
 			<has_gloves				value="0" />
-			<has_shades			value="0" />
+			<has_shades				value="0" />
 			<is_fat					value="0" />
 			<is_security			value="0" />
 			<is_green_security		value="0" />
@@ -1239,7 +1239,7 @@
 		
 		<sequence editable_state="true" name="'shades_none'" once="true" triggable="true" />
 
-		<sequence editable_state="true" name="'shades_bexase'" once="true" triggable="true">
+		<sequence editable_state="true" name="'shades_base'" once="true" triggable="true">
 			<set_variables 		has_shades="1" />
 			
 			<object 			enabled="true" name="'g_shades'" />
