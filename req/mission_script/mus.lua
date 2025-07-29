@@ -57,7 +57,6 @@ return {
 		},
 	},
 	[102154] = { -- 1st timelock done
-		difficulty = 0.75,
 		on_executed = {
 			{ id = 100345, delay = 0 }, -- Bain diff increase dialogue
 			{ id = 100128, delay = 0, delay_rand = 30 }, -- add 40
@@ -85,12 +84,6 @@ return {
 				force = 2,
 				position = Vector3(0, -2500, -300),
 			},
-		},
-	},
-	[101733] = { -- opened the door to the diamond room
-		difficulty = 1,
-		on_executed = {
-			{ id = 100345, delay = 0 }, -- Bain diff increase dialogue
 		},
 	},
 	-- prevent cops from spawning too soon
