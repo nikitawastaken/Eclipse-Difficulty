@@ -205,7 +205,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mus.group_ai_settings = {
 		assault_force_mul = 0.7,
 	}
-	
+
 	self.arena.group_ai_settings = {
 		spawn_kill_cooldown = 15,
 		hostage_hesitation_delay_mul = 1.5,
