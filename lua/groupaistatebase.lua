@@ -109,6 +109,10 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
+	-- New diff curve blocks diff increases (including initializing these variables) until X time after enemy weapons hot
+	self._difficulty_value = self._difficulty_value or 0
+	self._difficulty_point_index = self._difficulty_point_index or 1
+	self._difficulty_ramp = self._difficulty_ramp or 0
 end)
 
 -- Add the marksman enemy to special unit types
