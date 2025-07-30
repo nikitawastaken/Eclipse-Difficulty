@@ -1816,7 +1816,7 @@ function CharacterTweakData:_set_presets()
 	self.flashbang_multiplier = diff_lerp(1, 1.5)
 	self.concussion_multiplier = 1
 
-	self.tase_shock_strength = diff_lerp(4, 6)
+	self.tase_shock_strength = is_eclipse and 7 or is_overkill and 6 or 5
 
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
