@@ -125,7 +125,7 @@ end
 function MissionManager.mission_script_patch_funcs.difficulty(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_" .. element:id(), function()
 		Eclipse:log_console("%s executed, set difficulty to %.2g", element:editor_name(), data)
-		managers.groupai:state():set_difficulty(data)
+		--managers.groupai:state():set_difficulty(data)
 	end)
 	Eclipse:log_console("%s hooked as difficulty change trigger", element:editor_name())
 end
@@ -133,7 +133,7 @@ end
 function MissionManager.mission_script_patch_funcs.difficulty_add(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_add_" .. element:id(), function()
 		Eclipse:log_console("%s executed, increased difficulty by %.2g", element:editor_name(), data)
-		managers.groupai:state():add_difficulty(data)
+		--managers.groupai:state():add_difficulty(data)
 	end)
 	Eclipse:log_console("%s hooked as difficulty addition trigger", element:editor_name())
 end
