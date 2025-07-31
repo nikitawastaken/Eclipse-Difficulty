@@ -1,5 +1,5 @@
 local is_eclipse = Eclipse.utils.is_eclipse()
-local is_overkill = Eclipse.utils.is_eclipse()
+local is_overkill = Eclipse.utils.is_overkill()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
