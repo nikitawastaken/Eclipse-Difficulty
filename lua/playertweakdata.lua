@@ -1,4 +1,5 @@
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_overkill = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
@@ -6,8 +7,11 @@ local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
 end
 
+function PlayerTweakData:_set_easy() end
+
 function PlayerTweakData:_set_normal()
 	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.35 or 0.4
+	
 	self.damage.custody_ammo_confiscated = 0.15
 	self.damage.custody_health_drained = 0.15
 
@@ -18,6 +22,7 @@ end
 
 function PlayerTweakData:_set_hard()
 	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.3 or 0.35
+	
 	self.damage.custody_ammo_confiscated = 0.3
 	self.damage.custody_health_drained = 0.3
 
@@ -28,6 +33,7 @@ end
 
 function PlayerTweakData:_set_overkill()
 	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.25 or 0.3
+	
 	self.damage.custody_ammo_confiscated = 0.45
 	self.damage.custody_health_drained = 0.45
 
@@ -38,6 +44,7 @@ end
 
 function PlayerTweakData:_set_overkill_145()
 	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.2 or 0.25
+	
 	self.damage.custody_ammo_confiscated = 0.6
 	self.damage.custody_health_drained = 0.6
 
@@ -48,6 +55,7 @@ end
 
 function PlayerTweakData:_set_easy_wish()
 	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.15 or 0.2
+	
 	self.damage.custody_ammo_confiscated = 0.75
 	self.damage.custody_health_drained = 0.75
 
@@ -62,6 +70,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
 
 	self.damage.respawn_time_penalty = 0
+	self.damage.automatic_respawn_time = 120 + (is_eclipse and 60 or is_overkill and 30 or 0) + (is_pro_job and 60 or 0)
 	self.damage.custody_ammo_confiscated = 0.4
 	self.damage.custody_health_drained = 0.4
 
