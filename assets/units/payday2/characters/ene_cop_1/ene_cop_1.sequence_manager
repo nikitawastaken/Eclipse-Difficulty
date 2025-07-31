@@ -544,7 +544,6 @@
 			
 			<run_sequence 		name="'armor_body'" />
 			<run_sequence 		name="'badges_security'" />
-			<run_sequence 		name="'shoulder_loops'" />
 			
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_watch_rare'" />		
