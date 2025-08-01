@@ -440,7 +440,6 @@ function TradeManager:trade_restore_resources()
 				weapon.unit:base():add_ammo(amount_of_pickups, false)
 				managers.hud:set_ammo_amount(weapon.unit:base():selection_index(), weapon.unit:base():ammo_info())
 			end
-
 		end
 	end
 

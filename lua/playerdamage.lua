@@ -580,7 +580,7 @@ function PlayerDamage:restore_health_percentage(health_restored, is_static, chk_
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
 		return false
 	end
-		local max_health = self:_max_health()
+	local max_health = self:_max_health()
 
 	return self:change_health(max_health * health_restored * self._healing_reduction)
 end
