@@ -137,6 +137,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
 		special_limit_add = {
 			shield = 1,
 		},
@@ -156,7 +160,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.framing_frame_3.group_ai_settings = {
 		assault_force_mul = 0.6,
-		recon_force_mul = 0.8,
 		grenade_timeout_mul = {
 			flash_grenade = 0.75,
 		},
@@ -181,10 +184,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.hox_1.group_ai_settings = {
 		sustain_duration_mul = 0.75,
-		assault_delay_mul = 1.35,
+		assault_delay_mul = 1.25,
 		assault_force_mul = 0.6,
 		min_reenforce_interval_mul = 0,
-		push_delay_mul = 1.35,
+		push_delay_mul = 1.25,
 		min_grenade_timeout_mul = 1.5,
 		force_tactics = {
 			swat_init = {
@@ -212,8 +215,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.8,
 	}
 
-	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-
 	self.crojob3.group_ai_settings = {
 		assault_delay_mul = 1.25,
 		assault_force_mul = 0.8,
@@ -226,17 +227,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.kenaz.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 1.2,
-		force_tactics = {
-			shield_def = {
-				ranged_fire = false,
-			},
-		},
-	}
-
-	self.pbr.group_ai_settings = {
-		special_limit_add = {
-			shield = 1,
-		},
 		force_tactics = {
 			shield_def = {
 				ranged_fire = false,
@@ -399,7 +389,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.wwh.group_ai_settings = {
 		assault_force_mul = 0.8,
-		recon_force_mul = 0.5,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
 		special_limit_add = {
 			taser = 1,
 		},
@@ -423,28 +416,26 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.rvd1.group_ai_settings = {
 		recon_interval_variation_mul = 0.5,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
 		special_limit_add = {
 			shield = 1,
 		},
 	}
 
 	self.rvd2.group_ai_settings = {
-		sustain_duration_mul = 1.25,
 		assault_force_mul = 0.6,
-		special_limit_add = {
-			taser = 1,
-			tank = 1,
-		},
 	}
 	self.rvd2.group_ai_preset = "heavy_response"
 
 	self.des.group_ai_settings = deep_clone(self.help.group_ai_settings)
-	self.des.group_ai_settings.spawn_kill_cooldown = 15
 	self.des.group_ai_settings.assault_force_mul = 0.6
 
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.5,
+		assault_force_mul = 0.6,
 		special_limit_add = {
 			shield = -1,
 			tank = 1,
@@ -466,7 +457,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.vit.group_ai_preset = "heavy_response"
 
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
-	self.mex.group_ai_settings.assault_force_mul = 0.7
 
 	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
 
@@ -514,6 +504,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
 		min_reenforce_interval_mul = 0.5,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
 		grenade_timeout_mul = {
 			smoke_grenade = 0.75,
 		},

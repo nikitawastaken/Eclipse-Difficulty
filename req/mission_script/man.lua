@@ -101,7 +101,7 @@ local street_heli_enemy = {
 }
 local breach_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -113,9 +113,9 @@ local window_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local new_cloaker_spawn = {
 	values = {
@@ -145,7 +145,6 @@ return {
 	},
 	-- Add new reinforce
 	[101825] = { -- Interrogation started
-		difficulty = 0.75,
 		reinforce = {
 			{
 				name = "staircase_main1",
@@ -175,14 +174,6 @@ return {
 	-- Tweak diff scaling
 	[102305] = disabled, -- saw in place, diff 0.75
 	[101760] = disabled, -- interrogation started, diff 1
-	[102305] = { -- initial diff
-		values = {
-			difficulty = 0.5,
-		},
-	},
-	[102013] = { -- 1st hack done
-		difficulty = 1,
-	},
 	-- Multiple interrupts once more (pain)
 	[102978] = {
 		on_executed = {
