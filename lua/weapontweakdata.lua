@@ -101,7 +101,7 @@ function WeaponTweakData:_init_weapons()
 		local is_browning_mg = weap_id == "ranc_heavy_machine_gun"
 		local is_deagle = based_on_id == "deagle" or weap_id == "deagle"
 		local is_judge = based_on_id == "judge" or weap_id == "judge"
-	
+		
 		--catch-all stat setups
 		if cat_map.assault_rifle and not is_browning_mg then
 			weap_data.stats.suppression = cat_map.dmr and 1 or 11
@@ -2322,7 +2322,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.victor.stats_modifiers = { damage =  2 }
 
 	-- Nagant
-	table.insert(self.mosin.categories, "bolt_action")
 	self.mosin.CLIP_AMMO_MAX = 5
 	self.mosin.stats.damage = 40
 	self.mosin.stats.spread = 24
@@ -2343,7 +2342,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.wa2000.stats_modifiers = { damage =  2 }
 
 	-- Rangehitter
-	table.insert(self.sbl.categories, "bolt_action")
 	self.sbl.use_data.selection_index = 1
 	self.sbl.CLIP_AMMO_MAX = 6
 	self.sbl.stats.damage = 40
@@ -2355,7 +2353,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sbl.stats_modifiers = { damage = 2 }
 
 	-- Rattlesnake
-	table.insert(self.msr.categories, "bolt_action")
 	self.msr.CLIP_AMMO_MAX = 10
 	self.msr.stats.damage = 40
 	self.msr.stats.spread = 23
@@ -2366,7 +2363,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.msr.stats_modifiers = { damage = 3 }
 
 	-- Repeater
-	table.insert(self.winchester1874.categories, "bolt_action")
 	self.winchester1874.CLIP_AMMO_MAX = 15
 	self.winchester1874.stats.damage = 40
 	self.winchester1874.stats.spread = 24
@@ -2377,7 +2373,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.winchester1874.stats_modifiers = { damage = 3 }
 
 	-- R700
-	table.insert(self.r700.categories, "bolt_action")
 	self.r700.CLIP_AMMO_MAX = 5
 	self.r700.stats.damage = 40
 	self.r700.stats.spread = 24
@@ -2389,7 +2384,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r700.stats_modifiers = { damage = 3 }
 
 	-- Pronghorn
-	table.insert(self.scout.categories, "bolt_action")
 	self.scout.CLIP_AMMO_MAX = 5
 	self.scout.stats.damage = 40
 	self.scout.stats.spread = 21
@@ -2399,7 +2393,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scout.stats_modifiers = { damage = 3 }
 
 	-- R93
-	table.insert(self.r93.categories, "bolt_action")
 	self.r93.CLIP_AMMO_MAX = 6
 	self.r93.stats.damage = 60
 	self.r93.stats.spread = 24
@@ -2410,7 +2403,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r93.stats_modifiers = { damage = 4 }
 
 	-- Platypus
-	table.insert(self.model70.categories, "bolt_action")
 	self.model70.CLIP_AMMO_MAX = 5
 	self.model70.stats.damage = 60
 	self.model70.stats.spread = 24
@@ -2421,7 +2413,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.model70.stats_modifiers = { damage = 4 }
 	
 	-- Desert Fox
-	table.insert(self.desertfox.categories, "bolt_action")
 	self.desertfox.CLIP_AMMO_MAX = 5
 	self.desertfox.stats.damage = 60
 	self.desertfox.stats.spread = 20
@@ -2447,7 +2438,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.contender.rays = nil
 
 	-- Amaroq
-	table.insert(self.awp.categories, "bolt_action")
 	self.awp.CLIP_AMMO_MAX = 10
 	self.awp.stats.damage = 60
 	self.awp.stats.spread = 23
@@ -2457,7 +2447,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.awp.stats_modifiers = { damage = 4 }
 	
 	-- Thanatos
-	table.insert(self.m95.categories, "bolt_action")
 	self.m95.CLIP_AMMO_MAX = 5
 	self.m95.stats.damage = 60
 	self.m95.stats.spread = 24
@@ -2467,6 +2456,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m95.fire_rate_multiplier = 45 / 40
 	self.m95.stats_modifiers = { damage = 8 }
 
+	-- Musket
+	self.bessy.CLIP_AMMO_MAX = 1
+	self.bessy.stats.damage = 60
+	self.bessy.stats.spread = 24
+	self.bessy.stats.recoil = 1
+	self.bessy.stats.concealment = 8
+	self.bessy.fire_mode_data.fire_rate = 60 / 30
+	self.bessy.stats_modifiers = { damage = 20 }
+	self.bessy.total_ammo_mul = 10 / 3
+	self.bessy.pickup_mul = self.bessy.total_ammo_mul
+	
 	-- Specials
 
 	-- Airbow
@@ -2635,9 +2635,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ray.stats.concealment = 4
 	self.ray.fire_mode_data.fire_rate = 60 / 60
 	self.ray.stats_modifiers = { damage = 10 }
-	self.ray.pickup_mul = 0
 	self.ray.total_ammo_mul = 2
-
+	self.ray.pickup_mul = 0
+	
 	-- RPG
 	self.rpg7.use_data.selection_index = 2
 	table.insert(self.rpg7.categories, "heavy")
@@ -2648,9 +2648,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpg7.stats.concealment = 4
 	self.rpg7.fire_mode_data.fire_rate = 60 / 30
 	self.rpg7.stats_modifiers = { damage = 50 }
-	self.rpg7.pickup_mul = 0
 	self.rpg7.total_ammo_mul = 4
-
+	self.rpg7.pickup_mul = 0
+	
 	-- Flamethrowers
 
 	-- MK2
