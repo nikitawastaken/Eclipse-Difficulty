@@ -402,9 +402,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_range = 175,
 		melee_force = 600,
 	})
-	
+
 	presets.weapon.bulldozer.is_smg.range = { close = 750, optimal = 1250, far = 2500 }
-	
+
 	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 30 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
@@ -1225,7 +1225,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.tank_medic = deep_clone(self.tank)
 	table.insert(self.tank_medic.tags, "medic")
-	
+
 	self.tank_hw = deep_clone(self.tank)
 	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
