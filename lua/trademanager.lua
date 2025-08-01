@@ -61,30 +61,31 @@ function TradeManager:is_trade_allowed(t)
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 
-	if Eclipse.settings.trade_chat_spam and (not self._chat_spam_check or (self._chat_spam_check + 1) < t) then
-		local checks = {
-			trading_hostage = not self._trading_hostage,
-			hostage_trade_clbk = not self._hostage_trade_clbk,
-			first_response_delay_pass = has_first_response_trades_delay_passed,
-			is_recon_over = not is_recon_over,
-			really_long_one = (
-				#self._criminals_to_respawn > 0
-				or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)
-			),
-			whisper_mode = not managers.groupai:state():whisper_mode(),
-			speaker_snd_event = not self._speaker_snd_event,
-			hostage_count = managers.groupai:state():hostage_count() > 0,
-		}
+	--#region chat spam
+	local checks = {
+		not_currently_trading_hostage = not self._trading_hostage,
+		not_currently_active_hostage_trade_callback = not self._hostage_trade_clbk,
+		is_recon_not_over = not is_recon_over,
+		really_long_check = ( -- Unlikely to be the issue
+			#self._criminals_to_respawn > 0
+			or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)
+		),
+		not_speaker_snd_event = not self._speaker_snd_event,
+		existing_hostage = managers.groupai:state():hostage_count() > 0,
+	}
 
-		for name, check in pairs(checks) do
-			if not check then
-				Eclipse:log_chat(string.format("Check %s did not pass.", name))
-			end
+	local fails = {}
+	for name, check in pairs(checks) do
+		if not check then
+			table.insert(fails, name)
 		end
-		Eclipse:log_chat(string.rep("=-", 10) .. "=")
-
-		self._chat_spam_check = t
 	end
+	if #fails > 0 then
+		Eclipse.log.chat_spam("trade_manager3", table.concat(fails, ": failed\n") .. ": failed")
+	else
+		Eclipse.log.chat_spam("trade_manager3")
+	end
+	--#end_region
 
 	return Network:is_server()
 		and not self._trading_hostage
@@ -177,6 +178,28 @@ function TradeManager:update(t, dt)
 
 		self._pause_t = math.max(0, self._pause_t - dt)
 
+		--#region chat spam
+		local checks = {
+			no_ongoing_custody_countdown = self._trade_countdown or is_auto_assault_ai_trade,
+			is_trade_allowed = is_trade_allowed,
+			trades_not_pause = self._pause_t <= 0,
+			not_all_cust = not managers.player:_is_all_in_custody(),
+			not_trade_completed = trade_completed,
+		}
+
+		local fails = {}
+		for name, check in pairs(checks) do
+			if not check then
+				table.insert(fails, name)
+			end
+		end
+		if #fails > 0 then
+			Eclipse.log.chat_spam("trade_manager2", table.concat(fails, " failed\n"))
+		else
+			Eclipse.log.chat_spam("trade_manager2")
+		end
+		--#end_region
+
 		if (self._trade_countdown or is_auto_assault_ai_trade) and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
 			self._trade_complete = false
 			print("so ")
@@ -189,6 +212,7 @@ function TradeManager:update(t, dt)
 			end
 
 			if trade then
+				Eclipse:log_chat("Queuing custody trade")
 				self:_increment_trade_index()
 
 				if is_ai_trade_possible then
@@ -298,9 +322,10 @@ end
 
 function TradeManager:clbk_begin_hostage_trade()
 	local possible_criminals, is_instant_trade = self:get_possible_criminals()
-	if Eclipse.settings.trade_chat_spam and possible_criminals then
-		local crims = table.concat(possible_criminals, " ")
-		Eclipse:log_chat("Candidates for trade:", crims)
+	if possible_criminals and #possible_criminals == 0 then
+		Eclipse.log.chat_spam("trade_manager", "No possible criminals")
+	else
+		Eclipse.log.chat_spam("trade_manager")
 	end
 	local rescuing_criminal = possible_criminals[math.random(1, #possible_criminals)]
 	rescuing_criminal = managers.groupai:state():all_criminals()[rescuing_criminal]
@@ -365,9 +390,7 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 			self._trade_complete = false
 		end
 	else
-		if Eclipse.settings.trade_chat_spam then
-			Eclipse:log_chat("Trade initialized but hostage not found.")
-		end
+		Eclipse.log.chat_spam("trade_manager4", "No hostage found.")
 		self:cancel_trade()
 	end
 end

@@ -1,6 +1,13 @@
 ---@module log
 local M = {}
 M.log_file = Eclipse.mod_path .. "log.txt"
+M.Level = {
+	INFO = "info",
+	DEBUG = "debug",
+	WARN = "warn",
+	ERROR = "error",
+}
+M._level = M.Level.INFO
 M.enabled = {
 	info = true,
 	debug = true,
@@ -8,12 +15,20 @@ M.enabled = {
 	error = true,
 	all = true,
 }
+M._spam_t = 0
+M._spam_buff = {}
+M._spam_sep = "\n" .. string.rep("=-", 10) .. "="
+M._spam_prev_msg = ""
 
 local function get_time()
 	return os.date("%H:%M:%S", os.time())
 end
 
 function M.log(...)
+	return M[M._level](...)
+end
+
+function M.info(...)
 	if M.enabled.all and M.enabled.info then
 		local f = io.open(M.log_file, "a")
 		if f then
@@ -61,16 +76,43 @@ function M.error(...)
 	end
 end
 
+function M.set_file(f)
+	M.log_file = f
+end
+
+function M.chat_spam(id, msg)
+	if not Utils:IsInGameState() or not Utils:IsInHeist() then
+		return
+	end
+
+	local t = Application:time()
+	M._spam_buff[id] = msg
+	if not managers.groupai:state():whisper_mode() and (M._spam_t + 2) < t and table.size(M._spam_buff) > 0 then
+		M._spam_t = t
+		local chat_msg = ""
+		for _, buff in pairs(M._spam_buff) do
+			chat_msg = chat_msg .. buff .. M._spam_sep
+		end
+		if chat_msg ~= M._spam_prev_msg then
+			Eclipse:log_chat(chat_msg)
+			M.info(chat_msg)
+			M._spam_prev_msg = chat_msg
+		end
+	end
+end
+
 -- Allow this table to be called as a function
 local mt = {
 	__call = function(self, level, ...)
-		if level == "debug" then
+		if level == M.Level.DEBUG then
 			self.debug(unpack({ ... }))
-		elseif level == "warn" then
+		elseif level == M.Level.WARN then
 			self.warn(unpack({ ... }))
-		elseif level == "error" then
+		elseif level == M.Level.ERROR then
 			self.error(unpack({ ... }))
-		else -- default to info log
+		elseif level == M.Level.INFO then
+			self.info(unpack({ ... }))
+		else -- default to global log
 			self.log(level, unpack({ ... }))
 		end
 	end,

@@ -392,8 +392,6 @@
 	"hud_assault_federales_assault": "Federales Assault In Progress",
 
 	"eclipse_menu_main": "Eclipse",
-	"eclipse_menu_trade_chat_spam_text": "Show trade checks in chat",
-	"eclipse_menu_trade_chat_spam_desc": "Dumps all trade checks to chat for debugging purposes.",
 	"eclipse_menu_ponr_assault_text": "Full Force Onslaught Assault Banner",
 	"eclipse_menu_ponr_assault_text_desc": "Adds additional text to the assault banner during Full Force Onslaught. Incompatible with mods that edit assault banner.",
 	"eclipse_menu_faction_assault_text": "Faction Assault Banner",
