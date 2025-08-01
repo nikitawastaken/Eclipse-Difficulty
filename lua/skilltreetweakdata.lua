@@ -536,8 +536,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[22].category = { "health", "resistance" }
 
 	-- crew chief
-	table.delete(self.specializations[1][3].upgrades, "player_damage_dampener_close_contact_1")
-	table.delete(self.specializations[1][9].upgrades, "team_hostage_damage_dampener_multiplier")
+	self.specializations[1][1].upgrades = { "team_resource_trading_health", "team_resource_trading_no_downs" }
+	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_passive_intimidate_range_mul" }
+	self.specializations[1][5].upgrades = { "team_resource_trading_ammo" }
+	self.specializations[1][7].upgrades = { "team_hostage_health_multiplier", "team_hostage_stamina_multiplier", "cable_tie_quantity_2" }
+	self.specializations[1][9].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault", "player_passive_loot_drop_multiplier" }
 
 	-- muscle
 	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")

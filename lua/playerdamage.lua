@@ -566,13 +566,23 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	self:_call_listeners(damage_info)
 end
 
--- Make healing fixed instead of % of max health
+-- Make most healing fixed instead of % of max health
 function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
 		return false
 	end
 
 	return self:change_health(health_restored * self._healing_reduction)
+end
+
+-- A separate function for % based healing
+function PlayerDamage:restore_health_percentage(health_restored, is_static, chk_health_ratio)
+	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
+		return false
+	end
+		local max_health = self:_max_health()
+
+	return self:change_health(max_health * health_restored * self._healing_reduction)
 end
 
 -- lower the on-kill godmode length for leech

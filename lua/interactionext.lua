@@ -52,7 +52,7 @@ function IntimitateInteractionExt:_interact_blocked(player)
 
 		local following_hostages = managers.groupai:state():get_following_hostages(player)
 
-		if tweak_data.player.max_nr_following_hostages < 1 or following_hostages and tweak_data.player.max_nr_following_hostages <= table.size(following_hostages) then
+		if managers.player:max_following_hostages() < 1 or following_hostages and managers.player:max_following_hostages() <= table.size(following_hostages) then
 			return true, nil, "hint_hostage_follow_limit"
 		end
 	elseif self.tweak_data == "hostage_stay" then
@@ -69,7 +69,7 @@ function BaseInteractionExt:can_interact(player)
 		return false
 	end
 
-	if self.tweak_data == "hostage_move" and tweak_data.player.max_nr_following_hostages < 1 then -- can't move hostages if you don't have the skill to do so
+	if self.tweak_data == "hostage_move" and managers.player:max_following_hostages() < 1 then -- can't move hostages if you don't have the skill to do so
 		return false
 	end
 

@@ -114,7 +114,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.player.extra_hostages = { 2 }
+	self.values.player.extra_hostages = { 1 }
 	self.definitions.cable_tie_pickup_chance = {
 		category = "equipment_upgrade",
 		name_id = "menu_cable_tie_pickup_chance",
@@ -1211,6 +1211,27 @@ function UpgradesTweakData:init(tweak_data)
 	-------------
 
 	-- Crew Chief
+	self.definitions.team_resource_trading_health = {
+		category = "team",
+		name_id = "resource_trading_health",
+		upgrade = {
+			category = "player",
+			upgrade = "resource_trading_health",
+			value = 1,
+		},
+	}
+	self.values.team.player.resource_trading_health = { 0.25 }
+	self.definitions.player_extra_hostages_chief = {
+		category = "feature",
+		name_id = "menu_player_extra_hostages_chief",
+		upgrade = {
+			category = "player",
+			upgrade = "extra_hostages_chief",
+			value = 1,
+		},
+	}
+	self.values.player.extra_hostages_chief = { 2 }
+	self.values.player.passive_intimidate_range_mul[1] = 1.5
 	self.definitions.team_resource_trading_ammo = {
 		category = "team",
 		name_id = "resource_trading_ammo",
@@ -1220,7 +1241,9 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_ammo = { 4 }
+	self.values.team.player.resource_trading_ammo = { 5 }
+	self.values.team.health.hostage_multiplier[1] = 1.05
+	self.values.team.stamina.hostage_multiplier[1] = 1.05
 	self.definitions.team_resource_trading_assault_delay = {
 		category = "team",
 		name_id = "resource_trading_assault_delay",
@@ -1252,8 +1275,16 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.team.health.hostage_multiplier = { 1.04 }
-	self.specialization_descs[1][9].multiperk = "4%"
+	self.specialization_descs[1][1].multiperk = "25%"
+	self.specialization_descs[1][3].multiperk = "2"
+	self.specialization_descs[1][3].multiperk2 = "50%"
+	self.specialization_descs[1][5].multiperk = "5"
+	self.specialization_descs[1][7].multiperk = "5%"
+	self.specialization_descs[1][7].multiperk2 = "5%"
+	self.specialization_descs[1][7].multiperk3 = "4"
+	self.specialization_descs[1][7].multiperk4 = "4"
+	self.specialization_descs[1][9].multiperk = "10"
+	self.specialization_descs[1][9].multiperk2 = "doubled"
 
 	-- Muscle
 	self.values.temporary.mrwi_health_invulnerable[1][1] = 0.25

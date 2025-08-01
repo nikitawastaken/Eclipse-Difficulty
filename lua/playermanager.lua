@@ -37,6 +37,10 @@ function PlayerManager:is_wearing_a_ballistic_vest()
 	local equipped_armor = managers.blackmarket:equipped_armor(true, true)
 	return equipped_armor == "level_2" or equipped_armor == "level_3" or equipped_armor == "level_4"
 end
+
+function PlayerManager:max_following_hostages()
+	return tweak_data.player.max_nr_following_hostages + self:upgrade_value("player", "extra_hostages", 0) + self:upgrade_value("player", "extra_hostages_chief", 0)
+end
 -- end
 
 Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)

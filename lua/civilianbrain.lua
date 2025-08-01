@@ -7,28 +7,6 @@ function CivilianBrain:update(unit, t, ...)
 	end
 end
 
-function CivilianBrain:init(unit)
-	self._unit = unit
-	self._timer = TimerManager:game()
-
-	self:set_update_enabled_state(false)
-
-	self._current_logic = nil
-	self._current_logic_name = nil
-	self._active = true
-	self._SO_access = managers.navigation:convert_access_flag(tweak_data.character[unit:base()._tweak_table].access)
-	self._slotmask_enemies = managers.slot:get_mask("criminals")
-	CopBrain._reload_clbks[unit:key()] = callback(self, self, "on_reload")
-
-	if unit:base().add_tweak_data_changed_listener then
-		unit:base():add_tweak_data_changed_listener("CivilianBrainTweakDataChange" .. tostring(unit:key()), callback(self, self, "_clbk_tweak_data_changed"))
-	end
-
-	local tutorial = Global.level_data and (Global.level_data.level_id == "short2_stage1" or Global.level_data.level_id == "short2_stage2b")
-	local extra_hostages = managers.player:upgrade_value("player", "extra_hostages", 1)
-	tweak_data.player.max_nr_following_hostages = extra_hostages
-end
-
 function CivilianBrain:on_hostage_move_interaction(interacting_unit, command)
 	if not self._logic_data.is_tied then
 		return
@@ -37,7 +15,7 @@ function CivilianBrain:on_hostage_move_interaction(interacting_unit, command)
 	if command == "move" then
 		local following_hostages = managers.groupai:state():get_following_hostages(interacting_unit)
 
-		if tweak_data.player.max_nr_following_hostages < 1 or following_hostages and tweak_data.player.max_nr_following_hostages <= table.size(following_hostages) then
+		if managers.player:max_following_hostages() < 1 or following_hostages and managers.player:max_following_hostages() <= table.size(following_hostages) then
 			return
 		end
 
