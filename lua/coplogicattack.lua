@@ -388,42 +388,6 @@ function MarshalLogicAttack.update_cover(data) end
 --Medic attack logic
 MedicLogicAttack = MedicLogicAttack or class(CopLogicAttack)
 
-function MedicLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, engage, range)
-	if not focus_enemy or not focus_enemy.nav_tracker or not focus_enemy.verified then
-		return
-	end
-
-	local close_range = my_data.weapon_range and (my_data.weapon_range[range] or my_data.weapon_range.close) or 800
-	if focus_enemy.dis > close_range or not CopLogicAttack._can_move(data) then
-		return
-	end
-
-	local from_pos = mvector3.copy(data.m_pos)
-	local threat_tracker = focus_enemy.nav_tracker
-	local threat_head_pos = focus_enemy.m_head_pos
-	local retreat_to = CopLogicAttack._find_retreat_position(from_pos, focus_enemy.m_pos, threat_head_pos, threat_tracker, close_range, engage)
-	if not retreat_to then
-		return
-	end
-
-	CopLogicAttack._cancel_cover_pathing(data, my_data)
-
-	my_data.advancing = data.brain:action_request({
-		type = "walk",
-		variant = "walk",
-		body_part = 2,
-		nav_path = {
-			from_pos,
-			retreat_to,
-		},
-	})
-
-	if my_data.advancing then
-		my_data.surprised = true
-		return true
-	end
-end
-
 function MedicLogicAttack._upd_combat_movement(data)
 	local my_data = data.internal_data
 	local focus_enemy = data.attention_obj
@@ -437,10 +401,10 @@ function MedicLogicAttack._upd_combat_movement(data)
 	end
 
 	if focus_enemy.verified then
-		if MedicLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, true, "optimal") then
+		if CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, true, "optimal") then
 			return
 		end
 	end
 
-	MedicLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
+	CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 end
