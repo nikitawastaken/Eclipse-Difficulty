@@ -153,6 +153,7 @@ function GroupAIStateBase:_update_difficulty_value()
 	if self:enemy_weapons_hot() and self._t >= ((self._on_enemy_weapons_hot_t or 0) + tweak_data.group_ai.difficulty_scaling.assault_delay) then
 		if self._target_difficulty and self._t >= self._next_difficulty_step_t then
 			self._difficulty_value = math.min(self._difficulty_value + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
+			self._difficulty_value = math.min(tweak_data.group_ai.difficulty_scaling.diff_max, math.max(tweak_data.group_ai.difficulty_scaling.diff_min, self._difficulty_value))
 
 			if self._difficulty_value >= self._target_difficulty then
 				self._target_difficulty = self._difficulty_value
@@ -189,7 +190,7 @@ end
 Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update_difficulty_value)
 
 function GroupAIStateBase:add_difficulty(value)
-	self._target_difficulty = math.min(tweak_data.group_ai.difficulty_scaling.diff_max, math.max(tweak_data.group_ai.difficulty_scaling.diff_min, (self._target_difficulty + value)))
+	self._target_difficulty = self._target_difficulty + value
 
 	self:_calculate_difficulty_ratio()
 end

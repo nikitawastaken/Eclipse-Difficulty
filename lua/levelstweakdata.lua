@@ -232,6 +232,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.8,
 	}
 
+	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+	self.crojob2.group_ai_preset = "heavy_response"
+	
 	self.crojob3.group_ai_settings = {
 		assault_delay_mul = 1.25,
 		assault_force_mul = 0.8,
@@ -242,7 +245,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3.group_ai_preset = "remote"
 
 	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
-	self.crojob3_night.group_ai_preset = "remote"
+	self.crojob3_night.group_ai_preset = "heavy_response"
 
 	self.kenaz.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.5,
@@ -318,6 +321,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.3,
 		recon_force_mul = 0,
 		cs_grenade_chance_times_mul = 1.5,
+		difficulty_scaling = {
+			diff_init = 1,
+			assault_add = 0,
+		},
 		special_limit_add = {
 			shield = -2,
 			cloaker = -1,
@@ -540,6 +547,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			tank = 1,
 		},
 	}
+	self.trai.group_ai_preset = "heavy_response"
 
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
 		sustain_duration_mul = 1.35,
