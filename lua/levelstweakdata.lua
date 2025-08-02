@@ -150,7 +150,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			shield = 1,
 		},
 	}
-	
+
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
@@ -410,7 +410,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
 	self.glace.group_ai_settings.difficulty_scaling = { assault_delay = 120 }
-	
+
 	self.wwh.group_ai_settings = {
 		assault_force_mul = 0.8,
 		difficulty_scaling = {
@@ -463,7 +463,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_delay = 60,
 		},
 	}
-	
+
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.6,
@@ -535,7 +535,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_delay = 75,
 		},
 	}
-	
+
 	self.trai.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
