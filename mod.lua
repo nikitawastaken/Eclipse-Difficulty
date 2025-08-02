@@ -11,6 +11,7 @@ if not Eclipse then
 			max_progression_infamy = 0,
 			always_old_hitflash = false,
 			player_styles = 1,
+			flavor_text_tips = false,
 		},
 		loaded_elements = false,
 	}
@@ -192,6 +193,11 @@ if not Eclipse then
 			local enabled = (item:value() == "on")
 			Eclipse.settings.always_old_hitflash = enabled
 		end
+		
+		function MenuCallbackHandler:eclipse_flavor_text_tips_toggle(item)
+			local enabled = (item:value() == "on")
+			Eclipse.settings.flavor_text_tips = enabled
+		end
 
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
@@ -245,6 +251,16 @@ if not Eclipse then
 			desc = "eclipse_menu_always_old_hitflash_desc",
 			callback = "eclipse_always_old_hitflash_toggle",
 			value = Eclipse.settings.always_old_hitflash,
+			menu_id = menu_id,
+			priority = 100,
+		})
+		
+		MenuHelper:AddToggle({
+			id = "flavor_text_tips",
+			title = "eclipse_menu_flavor_text_tips",
+			desc = "eclipse_menu_flavor_text_tips_desc",
+			callback = "eclipse_flavor_text_tips_toggle",
+			value = Eclipse.settings.flavor_text_tips,
 			menu_id = menu_id,
 			priority = 100,
 		})
