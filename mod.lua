@@ -193,7 +193,7 @@ if not Eclipse then
 			local enabled = (item:value() == "on")
 			Eclipse.settings.always_old_hitflash = enabled
 		end
-		
+
 		function MenuCallbackHandler:eclipse_flavor_text_tips_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.flavor_text_tips = enabled
@@ -254,7 +254,7 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddToggle({
 			id = "flavor_text_tips",
 			title = "eclipse_menu_flavor_text_tips",
