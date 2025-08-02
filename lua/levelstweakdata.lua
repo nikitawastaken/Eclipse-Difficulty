@@ -348,6 +348,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
+	self.chew.group_ai_preset = "remote"
 
 	self.flat.group_ai_settings = {
 		assault_force_mul = 0.8,
@@ -495,8 +496,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.vit.group_ai_preset = "heavy_response"
 
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
+	self.mex.group_ai_preset = "remote"
 
 	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
+	self.mex_cooking.group_ai_preset = "remote"
 
 	self.bex.group_ai_settings = {
 		assault_force_mul = 1.2,
