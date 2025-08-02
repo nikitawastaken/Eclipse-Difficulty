@@ -68,14 +68,11 @@ return {
 	-- delay SWAT choppers
 	[100065] = {
 		on_executed = {
-			{ id = 100828, delay = 45 },
+			{ id = 100828, delay = 90 },
 		},
 	},
 	-- Add new reinforce
 	[100529] = {
-		on_executed = { -- delay SWAT response
-			{ id = 100530, delay = 60 }, -- difficulty 0.5
-		},
 		reinforce = {
 			{
 				name = "street",

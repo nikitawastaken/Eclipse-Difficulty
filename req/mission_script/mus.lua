@@ -86,12 +86,6 @@ return {
 			},
 		},
 	},
-	-- prevent cops from spawning too soon
-	[100116] = {
-		on_executed = {
-			{ id = 100122, delay = 60 },
-		},
-	},
 	-- remove exhibition room rappels from one security room's on_executed
 	[102137] = { -- security room 3
 		on_executed = {

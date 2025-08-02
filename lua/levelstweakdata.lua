@@ -93,6 +93,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ukrainian_job.group_ai_preset = "small_urban"
 
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	self.mallcrasher.group_ai_settings.difficulty_scaling = {
+		diff_init = 0.2,
+		assault_delay = 75,
+	}
 	self.mallcrasher.group_ai_preset = "small_urban"
 
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
@@ -134,6 +138,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_overpass_night.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
 	self.escape_garage.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
 
+	self.watchdogs_2.group_ai_settings = {
+		sustain_duration_mul = 1.25,
+		assault_force_mul = 1.2,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+			assault_delay = 60,
+		},
+		special_limit_add = {
+			shield = 1,
+		},
+	}
+	
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,
@@ -207,6 +224,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mus.group_ai_settings = {
 		assault_force_mul = 0.7,
+		difficulty_scaling = {
+			assault_delay = 90,
+		},
 	}
 
 	self.arena.group_ai_settings = {
@@ -218,6 +238,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3.group_ai_settings = {
 		assault_delay_mul = 1.25,
 		assault_force_mul = 0.8,
+		difficulty_scaling = {
+			assault_delay = 75,
+		},
 	}
 	self.crojob3.group_ai_preset = "remote"
 
@@ -386,7 +409,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
-
+	self.glace.group_ai_settings.difficulty_scaling = { assault_delay = 120 }
+	
 	self.wwh.group_ai_settings = {
 		assault_force_mul = 0.8,
 		difficulty_scaling = {
@@ -433,9 +457,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.des.group_ai_settings = deep_clone(self.help.group_ai_settings)
 	self.des.group_ai_settings.assault_force_mul = 0.6
 
+	self.sah.group_ai_settings = {
+		assault_force_mul = 0.7,
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
+	}
+	
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.6,
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
 		special_limit_add = {
 			shield = -1,
 			tank = 1,
@@ -477,9 +511,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 
 	self.chca.group_ai_settings = {
+		first_responders_trade_delay = 60,
 		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.7,
 		assault_delay_mul = 1.25,
+		difficulty_scaling = {
+			assault_delay = 75,
+		},
 		special_limit_add = {
 			marksman = -1,
 		},
@@ -491,6 +529,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pent.group_ai_settings.assault_force_mul = 0.8
 	self.pent.group_ai_preset = "skyscraper"
 
+	self.ranc.group_ai_settings = {
+		first_responders_trade_delay = 60,
+		difficulty_scaling = {
+			assault_delay = 75,
+		},
+	}
+	
 	self.trai.group_ai_settings = {
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 1.2,

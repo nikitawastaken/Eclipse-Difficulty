@@ -11,6 +11,7 @@ Drill.no_automatic_drill_reenforce = {
 	["arm_und"] = true,
 	["arm_cro"] = true,
 	["arm_for"] = true,
+	["glace"] = true,
 }
 
 Hooks:PostHook(Drill, "init", "eclipse_init", function(self, unit)

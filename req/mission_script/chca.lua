@@ -62,12 +62,6 @@ local vent_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- Delay police response
-	[100022] = {
-		on_executed = {
-			{ id = 100109, delay = 40 },
-		},
-	},
 	-- Reenforce points
 	[103167] = disabled,
 	[103168] = disabled,

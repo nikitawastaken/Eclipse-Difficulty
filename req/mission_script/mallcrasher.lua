@@ -34,12 +34,6 @@ return {
 			{ 90, 93, 94, 96 },
 		},
 	},
-	-- Delay SWAT response
-	[300203] = {
-		on_executed = {
-			{ id = 300164, delay = 45 },
-		},
-	},
 	[300164] = { -- Add an unused spawngroup
 		values = {
 			spawn_groups = { 300313, 300314, 300281 },

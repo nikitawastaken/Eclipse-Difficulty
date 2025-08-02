@@ -3190,7 +3190,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_min = 0,
 		diff_max = 1,
 		diff_step = 0.05,
-		diff_delay_init = 30,
+		assault_delay = 30,
 		diff_step_interval = { 15, 20 },
 		assault_add = 0.2,
 		hostage_add = is_pro_job and 0.1 or nil,

@@ -51,16 +51,10 @@ local terminator_dozer_2 = {
 	},
 }
 return {
-	-- delay SWAT response
-	[102675] = {
-		on_executed = {
-			{ id = 103225, delay = 30 },
-		},
-	},
 	-- spawn snipers on Eclipse
 	[103278] = {
 		on_executed = {
-			{ id = 400034, delay = 10 },
+			{ id = 400034, delay = 15 },
 		},
 	},
 	[103238] = cops_so,

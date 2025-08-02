@@ -43,12 +43,6 @@ local roof_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- delay police response
-	[100327] = {
-		on_executed = {
-			{ id = 100768, delay = 30 },
-		},
-	},
 	[101291] = van_enemy1,
 	[101298] = van_enemy1,
 	[101292] = van_enemy2,

@@ -31,26 +31,7 @@ local vent_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- tweak difficulty scaling
-	[100122] = {
-		values = {
-			difficulty = 0.33,
-		},
-	},
-	[100124] = {
-		values = {
-			difficulty = 0.66,
-		},
-	},
-	[101582] = {
-		values = {
-			difficulty = 1,
-		},
-	},
 	[100022] = { -- alarm
-		on_executed = { -- delay the initial assault (you are in the middle of nowhere)
-			{ id = 100109, delay = 45 },
-		},
 		reinforce = { -- add all at once so they get populated quickly
 			{
 				name = "fork",

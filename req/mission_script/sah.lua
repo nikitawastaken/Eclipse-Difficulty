@@ -53,14 +53,7 @@ return {
 	},
 	-- Disable instant difficulty increase
 	[100122] = disabled,
-	-- Loud, slightly delay police response
-	[100109] = {
-		values = {
-			base_delay = 30,
-		},
-	},
 	[100129] = {
-		difficulty = 0.4,
 		reinforce = {
 			{
 				name = "auction_room",
