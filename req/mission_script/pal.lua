@@ -70,7 +70,7 @@ local c4_event_func = {
 	pre_func = function(self)
 		local values = self._values
 		local is_solo = table.size(managers.network:session():peers()) == 0
-		
+
 		if values.amount then
 			values.amount = is_solo and c4_amount_solo or c4_amount
 		end
@@ -80,7 +80,7 @@ local c4_event_counter_func = {
 	pre_func = function(self)
 		local values = self._values
 		local is_solo = table.size(managers.network:session():peers()) == 0
-		
+
 		if values.counter_target then
 			values.counter_target = is_solo and c4_amount_solo or c4_amount
 		end
