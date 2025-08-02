@@ -119,16 +119,21 @@ if not Eclipse then
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
-			[("english"):key()] = "en.json",
-			[("schinese"):key()] = "schinese.json",
-			[("russian"):key()] = "ru.txt",
+			[("english"):key()] = "en",
+			[("schinese"):key()] = "schinese",
+			[("russian"):key()] = "ru",
 		}
 
-		local language = language_tbl[SystemInfo:language():key()] or "en.txt"
+		local language = language_tbl[SystemInfo:language():key()] or "en"
 		local path = Eclipse.mod_path .. "loc/" .. language
-		path = io.file_is_readable(path) and path or Eclipse.mod_path .. "loc/en.txt"
+		path = file.DirectoryExists(path) and path or Eclipse.mod_path .. "loc/en"
+		local files = file.GetFiles(path .. "/")
 
-		loc:load_localization_file(path)
+		if files then
+			for _, f in pairs(files) do
+				loc:load_localization_file(path .. "/" .. f)
+			end
+		end
 	end)
 
 	-- Check for common mod conflicts
