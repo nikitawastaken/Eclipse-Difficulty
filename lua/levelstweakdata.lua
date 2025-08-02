@@ -234,7 +234,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 	self.crojob2.group_ai_preset = "heavy_response"
-	
+
 	self.crojob3.group_ai_settings = {
 		assault_delay_mul = 1.25,
 		assault_force_mul = 0.8,
