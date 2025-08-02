@@ -1286,13 +1286,16 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[1][9].multiperk = "10"
 	self.specialization_descs[1][9].multiperk2 = "doubled"
 
-	-- Muscle
+	-- Muscle (uses same extra hp upgrade as grinder)
+	self.values.player.uncover_multiplier[1] = 1.25
 	self.values.temporary.mrwi_health_invulnerable[1][1] = 0.25
 	self.values.temporary.mrwi_health_invulnerable[1][3] = 60
-	self.specialization_descs[2][9].multiperk = "40%"
+	self.specialization_descs[2][3].multiperk = "30%"
+	self.specialization_descs[2][5].multiperk = "25%"
 	self.specialization_descs[2][7].multiperk = "25%"
 	self.specialization_descs[2][7].multiperk2 = "2"
 	self.specialization_descs[2][7].multiperk3 = "60"
+	self.specialization_descs[2][9].multiperk = "30%"
 
 	-- Armorer
 	self.values.player.armor_regen_timer_multiplier_passive[1] = 0.85

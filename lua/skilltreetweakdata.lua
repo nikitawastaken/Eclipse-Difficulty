@@ -543,11 +543,16 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[1][9].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault", "player_passive_loot_drop_multiplier" }
 
 	-- muscle
-	table.delete(self.specializations[2][9].upgrades, "player_passive_health_multiplier_5")
-	table.delete(self.specializations[2][9].upgrades, "player_passive_health_regen")
+	self.specializations[2][1].upgrades = { "player_panic_suppression" }
+	self.specializations[2][1].icon_xy = { 3, 1 }
+	self.specializations[2][3].upgrades = { "player_extra_health_multiplier_1" }
+	self.specializations[2][3].icon_xy = { 2, 1 }
+	self.specializations[2][5].upgrades = { "player_uncover_multiplier" }
+	self.specializations[2][5].icon_xy = { 1, 1 }
 	self.specializations[2][7].upgrades = { "temporary_mrwi_health_invulnerable_1" }
 	self.specializations[2][7].texture_bundle_folder = "mrwi"
 	self.specializations[2][7].icon_xy = { 3, 0 }
+	self.specializations[2][9].upgrades = { "player_extra_health_multiplier_2" }
 
 	-- armorer
 	self.specializations[3][1].upgrades = { "player_armor_regen_timer_multiplier_passive" }
