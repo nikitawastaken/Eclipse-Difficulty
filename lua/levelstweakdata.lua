@@ -242,7 +242,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_delay = 75,
 		},
 	}
-	self.crojob3.group_ai_preset = "remote"
+	self.crojob3.group_ai_preset = "heavy_response"
 
 	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
 	self.crojob3_night.group_ai_preset = "heavy_response"
