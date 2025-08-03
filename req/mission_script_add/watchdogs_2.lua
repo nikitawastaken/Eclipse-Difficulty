@@ -4,7 +4,6 @@ local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 
 local sniper = scripted_enemy.sniper
-local elite_sniper = scripted_enemy.elite_sniper
 
 local optsSniper_1 = {
 	enemy = sniper,
@@ -37,12 +36,12 @@ local optsSniper_6 = {
 	enabled = true,
 }
 local optsGroundSniper_1 = {
-	enemy = is_eclipse and elite_sniper or sniper,
+	enemy = sniper,
 	on_executed = { { id = 400025, delay = 0 } },
 	enabled = true,
 }
 local optsGroundSniper_2 = {
-	enemy = is_eclipse and elite_sniper or sniper,
+	enemy = sniper,
 	on_executed = { { id = 400029, delay = 0 } },
 	enabled = true,
 }
@@ -55,7 +54,6 @@ local optsSniper_SO = {
 	so_action = "AI_sniper",
 }
 local optsgroundSniper_SO_1_1 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -67,7 +65,6 @@ local optsgroundSniper_SO_1_1 = {
 	},
 }
 local optsgroundSniper_SO_1_2 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -79,7 +76,6 @@ local optsgroundSniper_SO_1_2 = {
 	},
 }
 local optsgroundSniper_SO_1_3 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -91,7 +87,6 @@ local optsgroundSniper_SO_1_3 = {
 	},
 }
 local optsgroundSniper_SO_1_4 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -103,7 +98,6 @@ local optsgroundSniper_SO_1_4 = {
 	},
 }
 local optsgroundSniper_SO_2_1 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -115,7 +109,6 @@ local optsgroundSniper_SO_2_1 = {
 	},
 }
 local optsgroundSniper_SO_2_2 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -127,7 +120,6 @@ local optsgroundSniper_SO_2_2 = {
 	},
 }
 local optsgroundSniper_SO_2_3 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -139,7 +131,6 @@ local optsgroundSniper_SO_2_3 = {
 	},
 }
 local optsgroundSniper_SO_2_4 = {
-	SO_access = tostring(128 + 512),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
