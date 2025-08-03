@@ -1788,9 +1788,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self._random_tactics = {
-		shield = { self._tactics.shield_def, self._tactics.shield_agg },
+		shield = { self._tactics.shield_def, self._tactics.shield_agg, self._tactics.shield_agg },
 		taser = { self._tactics.taser_agg, self._tactics.taser_snk },
-		bulldozer = { self._tactics.bulldozer_def, self._tactics.bulldozer_agg },
+		bulldozer = { self._tactics.bulldozer_def, self._tactics.bulldozer_agg, self._tactics.bulldozer_agg },
 		cloaker = { self._tactics.cloaker_def, self._tactics.cloaker_agg },
 	}
 
