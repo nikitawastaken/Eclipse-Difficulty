@@ -597,11 +597,15 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[10][9].upgrades = { "player_increased_pickup_area_gambler", "player_passive_loot_drop_multiplier" }
 
 	-- Grinder
-	self.specializations[11][1].upgrades = { "player_passive_health_regen" }
+	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
 	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion" }
+	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "player_headshot_regen_health_bonus_1" }
+	self.specializations[11][5].texture_bundle_folder = "mrwi"
+	self.specializations[11][5].icon_xy = { 1, 0 }
 	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
-	self.specializations[11][9].upgrades = { "player_damage_to_hot_1", "player_damage_to_hot_2", "player_damage_to_hot_3" }
+	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_3" }
+	self.specializations[11][7].icon_xy = { 4, 1 }
 
 	-- Ex-President
 	table.delete(self.specializations[13][3].upgrades, "player_passive_health_multiplier_1")
