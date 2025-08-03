@@ -49,8 +49,8 @@ return function(timed_tactics, difficulty_index)
 						rank = 1,
 						freq_by_diff = {
 							0,
-							(difficulty_index ^ 2) / 100,
-							(difficulty_index ^ 2) / 50,
+							(difficulty_index ^ 2) / 120,
+							(difficulty_index ^ 2) / 60,
 						},
 						unit = "army_soldier_4",
 						tactics = timed_tactics.army_spt,

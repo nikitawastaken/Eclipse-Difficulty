@@ -128,7 +128,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arm_for.group_ai_preset = "heavy_response"
 
 	self.escape_park.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.escape_park.group_ai_settings.difficulty_scaling = { diff_init = 0.5, assault_add = 0.25 }
+	self.escape_park.group_ai_settings.difficulty_scaling = { 
+		diff_init = 0.5, 
+		diff_min = 0.25,
+		assault_add = 0.25, 
+	}
 
 	self.escape_cafe_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
 	self.escape_park_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
@@ -250,6 +254,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.kenaz.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 1.2,
+		difficulty_scaling = {
+			assault_delay = 90,
+		},
 		force_tactics = {
 			shield_def = {
 				ranged_fire = false,
@@ -260,6 +267,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pbr2.group_ai_settings = {
 		spawn_kill_cooldown = 20,
 		assault_force_mul = 0.6,
+		difficulty_scaling = {
+			assault_delay = 45,
+		},
 		special_limit_add = {
 			shield = -1,
 		},
@@ -323,7 +333,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		cs_grenade_chance_times_mul = 1.5,
 		difficulty_scaling = {
 			diff_init = 1,
-			assault_add = 0,
 		},
 		special_limit_add = {
 			shield = -2,
@@ -434,6 +443,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		spawn_kill_distance_mul = 1000,
 		assault_force_mul = 0.5,
 		recon_force_mul = 0.6,
+		difficulty_scaling = {
+			assault_add = 0,
+		},
 		grenade_timeout_mul = {
 			smoke_grenade = 1.25,
 		},

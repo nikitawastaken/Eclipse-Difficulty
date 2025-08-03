@@ -109,6 +109,8 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
+	self._difficulty_min = tweak_data.group_ai.difficulty_scaling.diff_min or 0
+	self._difficulty_max = tweak_data.group_ai.difficulty_scaling.diff_max or 1
 	-- New diff curve blocks diff increases (including initializing these variables) until X time after enemy weapons hot
 	self._difficulty_value = self._difficulty_value or 0
 	self._difficulty_point_index = self._difficulty_point_index or 1
@@ -153,7 +155,7 @@ function GroupAIStateBase:_update_difficulty_value()
 	if self:enemy_weapons_hot() and self._t >= ((self._on_enemy_weapons_hot_t or 0) + tweak_data.group_ai.difficulty_scaling.assault_delay) then
 		if self._target_difficulty and self._t >= self._next_difficulty_step_t then
 			self._difficulty_value = math.min(self._difficulty_value + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
-			self._difficulty_value = math.min(tweak_data.group_ai.difficulty_scaling.diff_max, math.max(tweak_data.group_ai.difficulty_scaling.diff_min, self._difficulty_value))
+			self._difficulty_value = math.clamp(self._difficulty_value, self._difficulty_min, self._difficulty_max)
 
 			if self._difficulty_value >= self._target_difficulty then
 				self._target_difficulty = self._difficulty_value
@@ -192,7 +194,19 @@ Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update
 function GroupAIStateBase:add_difficulty(value)
 	self._target_difficulty = self._target_difficulty + value
 
-	self:_calculate_difficulty_ratio()
+	self:_update_difficulty_value()
+end
+
+function GroupAIStateBase:min_difficulty(value)
+	self._difficulty_min = value or self._difficulty_min
+
+	self:_update_difficulty_value()
+end
+
+function GroupAIStateBase:max_difficulty(value)
+	self._difficulty_max = value or self._difficulty_max
+
+	self:_update_difficulty_value()
 end
 
 --Killing hostages in Pro Jobs increases diff

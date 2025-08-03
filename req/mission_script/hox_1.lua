@@ -53,6 +53,7 @@ return {
 	},
 	-- Add new reinforce
 	[102850] = { -- in garage
+		difficulty_add = 0.5,
 		reinforce = {
 			{
 				name = "car",
@@ -60,9 +61,6 @@ return {
 				position = Vector3(10600, 5500, -2400),
 			},
 		},
-	},
-	[102128] = {
-		difficulty_add = 0.05,
 	},
 	-- tweak harassers
 	[102029] = swat_harasser,

@@ -16,15 +16,8 @@ local close_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 return {
-	-- Disable wave-based scaling
-	[100122] = { -- Initial diff
-		values = {
-			difficulty = 0.4,
-		},
-	},
-	[100124] = disabled,
-	[100125] = disabled,
-	[101127] = { -- Safe event done
+	-- Increase difficulty when a safe is breached
+	[101127] = { 
 		difficulty_add = 0.15,
 	},
 	-- Spawn group delays

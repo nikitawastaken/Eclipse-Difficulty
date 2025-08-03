@@ -22,18 +22,6 @@ local train_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 return {
-	[100009] = disabled, -- diff 1
-	[100212] = { -- Initial diff
-		values = {
-			difficulty = 0.35,
-		},
-	},
-	[100696] = { -- Van opened
-		difficulty_add = 0.15,
-	},
-	[100082] = { -- Signalled escape
-		difficulty = 1,
-	},
 	-- Disable hunt
 	[101598] = disabled,
 	-- Spawn point delays

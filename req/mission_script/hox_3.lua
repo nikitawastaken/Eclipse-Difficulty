@@ -47,11 +47,12 @@ local flank_spawn = {
 return {
 	-- Boss spawn
 	[102107] = {
-		difficulty = 0.1,
+		difficulty_max = 0.1,
 	},
 	-- Boss dead
 	[100788] = {
-		difficulty = 1,
+		difficulty_max = 1,
+		difficulty_min = 0.8,
 	},
 	-- Add new reinforce around the house
 	[100109] = {

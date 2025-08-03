@@ -19,11 +19,12 @@ local roof_spawn = {
 return {
 	-- Enter main hall
 	[103594] = {
-		difficulty = 0.1,
+		difficulty_max = 0.1,
 	},
 	-- Boss dead, safe objective
 	[101169] = {
-		difficulty = 1,
+		difficulty_max = 1,
+		difficulty_min = 0.8,
 		reinforce = {
 			{
 				name = "main_hall",

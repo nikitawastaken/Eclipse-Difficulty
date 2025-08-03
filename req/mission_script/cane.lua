@@ -61,17 +61,6 @@ return {
 	[102529] = biker,
 	[102531] = biker,
 	[102535] = biker,
-	-- Disable wave-based scaling
-	[100079] = { -- Initial diff
-		values = {
-			difficulty = 0.25,
-		},
-	},
-	[100080] = disabled,
-	[100084] = disabled,
-	[101139] = { -- Present finished
-		difficulty_add = 0.05,
-	},
 	-- Introduce preferreds gradually
 	[100812] = { -- front basic
 		on_executed = {

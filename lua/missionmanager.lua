@@ -131,11 +131,27 @@ function MissionManager.mission_script_patch_funcs.difficulty(self, element, dat
 end
 
 function MissionManager.mission_script_patch_funcs.difficulty_add(self, element, data)
-	Hooks:PostHook(element, "on_executed", "sh_on_executed_difficulty_add_" .. element:id(), function()
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_add_" .. element:id(), function()
 		Eclipse:log_console("%s executed, increased difficulty by %.2g", element:editor_name(), data)
-		--managers.groupai:state():add_difficulty(data)
+		managers.groupai:state():add_difficulty(data)
 	end)
 	Eclipse:log_console("%s hooked as difficulty addition trigger", element:editor_name())
+end
+
+function MissionManager.mission_script_patch_funcs.difficulty_min(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_min_" .. element:id(), function()
+		Eclipse:log_console("%s executed, set minimum difficulty to %.2g", element:editor_name(), data)
+		managers.groupai:state():min_difficulty(data)
+	end)
+	Eclipse:log_console("%s hooked as minimum difficulty trigger", element:editor_name())
+end
+
+function MissionManager.mission_script_patch_funcs.difficulty_max(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_difficulty_max_" .. element:id(), function()
+		Eclipse:log_console("%s executed, set maximum difficulty to %.2g", element:editor_name(), data)
+		managers.groupai:state():max_difficulty(data)
+	end)
+	Eclipse:log_console("%s hooked as maximum difficulty trigger", element:editor_name())
 end
 
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)

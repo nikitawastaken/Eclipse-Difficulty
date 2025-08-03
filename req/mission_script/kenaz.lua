@@ -16,17 +16,6 @@ local cloaker_spawn = {
 	},
 }
 return {
-	-- Delay enemy spawns
-	[100224] = { -- Combat ON
-		on_executed = {
-			{ id = 101024, delay = 60 }, -- elevators
-		},
-	},
-	[101907] = { -- start enemies delay end
-		on_executed = {
-			{ id = 100230, delay = 75 }, -- wall spawns
-		},
-	},
 	-- the BFD is running, start spawning interior snipers
 	[100394] = {
 		on_executed = {

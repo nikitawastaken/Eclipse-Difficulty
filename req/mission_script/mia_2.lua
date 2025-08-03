@@ -34,11 +34,12 @@ local roof_close_spawn = {
 return {
 	-- Boss spawn
 	[100154] = {
-		difficulty = 0.1,
+		difficulty_max = 0.1,
 	},
 	-- Boss dead
 	[100153] = {
-		difficulty = 1,
+		difficulty_max = 1,
+		difficulty_min = 0.8,
 	},
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,

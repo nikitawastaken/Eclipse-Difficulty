@@ -2,11 +2,12 @@ local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 return {
 	-- Boss spawn
 	[100707] = {
-		difficulty = 0.1,
+		difficulty_max = 0.1,
 	},
 	-- Boss dead
 	[100645] = {
-		difficulty = 0.75,
+		difficulty_max = 1,
+		difficulty_min = 0.8,
 	},
 	-- Disable difficulty 1 element
 	[100909] = {

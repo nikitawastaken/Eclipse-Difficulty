@@ -30,7 +30,6 @@ return {
 	},
 	-- Add new reinforce
 	[100653] = { -- Players are on the ground
-		difficulty = 0.25,
 		reinforce = {
 			{
 				name = "fast_food",
@@ -57,12 +56,6 @@ return {
 			{ id = 100426, delay = 30 },
 		},
 	},
-	-- Tweak difficulty scaling (it's aids in vanilla)
-	[100661] = { -- pallet discovered
-		difficulty_add = 0.25,
-	},
-	[100424] = disabled, -- diff 0.75
-	[100124] = disabled, -- diff 1
 	-- Introduce roof preferreds after the 1st wave
 	[102470] = {
 		on_executed = {
