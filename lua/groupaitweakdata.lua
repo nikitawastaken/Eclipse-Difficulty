@@ -1735,16 +1735,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		shield_def = {
 			"shield",
 			"ranged_fire",
-			"deathguard",
+			"door_ambush",
 		},
 		shield_agg = {
 			"shield",
 			"charge",
 			"deathguard",
-		},
-		shield_wall = {
-			"shield",
-			"door_ambush",
 		},
 		shield_support = {
 			"shield_cover",

@@ -351,6 +351,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 			shield_def = {
 				ranged_fire = false,
+				door_ambush = false,
 			},
 			bulldozer_def = {
 				door_ambush = false,
