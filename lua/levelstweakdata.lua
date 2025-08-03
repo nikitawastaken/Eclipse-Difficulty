@@ -128,10 +128,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arm_for.group_ai_preset = "heavy_response"
 
 	self.escape_park.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.escape_park.group_ai_settings.difficulty_scaling = { 
-		diff_init = 0.5, 
+	self.escape_park.group_ai_settings.difficulty_scaling = {
+		diff_init = 0.5,
 		diff_min = 0.25,
-		assault_add = 0.25, 
+		assault_add = 0.25,
 	}
 
 	self.escape_cafe_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)

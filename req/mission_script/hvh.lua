@@ -17,7 +17,7 @@ local close_spawn = {
 }
 return {
 	-- Increase difficulty when a safe is breached
-	[101127] = { 
+	[101127] = {
 		difficulty_add = 0.15,
 	},
 	-- Spawn group delays
