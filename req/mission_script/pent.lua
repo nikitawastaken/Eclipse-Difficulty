@@ -57,8 +57,13 @@ local cloaker_spawn = {
 	},
 }
 return {
+	-- Yufu spawned
+	[101650] = {
+		difficulty_max = 0.1,
+	},
 	[101607] = { -- Yufu is dead
-		difficulty = 1,
+		difficulty_max = 1,
+		difficulty_min = 0.8,
 		ponr = {
 			length = 180,
 			player_mul = { 1.33, 1.15, 1, 0.85 },
