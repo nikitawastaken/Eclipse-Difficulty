@@ -299,14 +299,14 @@ end)
 
 function ElementSpawnEnemyDummy:_chk_is_sniper(unit)
 	local snipers_but_not_really = {
-		["units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3"] = true,
+		[("units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3"):key()] = true,
 	}
 
 	if not unit then
 		return
 	end
 
-	if snipers_but_not_really[unit] then
+	if snipers_but_not_really[unit:name():key()] then
 		return
 	end
 
