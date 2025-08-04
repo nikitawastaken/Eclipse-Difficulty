@@ -301,15 +301,15 @@ function ElementSpawnEnemyDummy:_chk_is_sniper(unit)
 	local snipers_but_not_really = {
 		["units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3"] = true,
 	}
-	
+
 	if not unit then
 		return
 	end
-	
+
 	if snipers_but_not_really[unit] then
 		return
 	end
-	
+
 	if unit:base():has_tag("law") and unit:base():char_tweak().access == "sniper" then
 		managers.groupai:state():megaphone_announce_snipers()
 	end
@@ -502,7 +502,7 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 
 		return unit
 	end
-	
+
 	if self._enemy_table then
 		self._enemy_name = self:_process_enemy_tbl(self._enemy_table) or self._enemy_name
 	end
@@ -513,8 +513,8 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 	local unit = produce_original(self, params, ...)
 
 	self:_chk_is_sniper(unit)
-	
+
 	self._enemy_name = original_enemy_name
-	
+
 	return unit
 end

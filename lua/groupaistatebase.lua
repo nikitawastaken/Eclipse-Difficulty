@@ -120,11 +120,11 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
-	
+
 	self._mga_hostage_kills = self._mga_hostage_kills or 0
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
 	self._mga_said_deploy_snipers_t = self._mga_said_deploy_snipers_t or self._t
-	
+
 	self._difficulty_min = tweak_data.group_ai.difficulty_scaling.diff_min or 0
 	self._difficulty_max = tweak_data.group_ai.difficulty_scaling.diff_max or 1
 	-- New diff curve blocks diff increases (including initializing these variables) until X time after enemy weapons hot
@@ -159,15 +159,15 @@ end)
 -- Add megaphone cop lines to specific heists (from Restoration Mod)
 function GroupAIStateBase:_post_megaphone_event(event)
 	local level_tweak = tweak_data.levels[level_id]
-	
+
 	if not level_tweak then
 		return
 	end
-	
+
 	if not level_tweak.has_megaphone_cop then
 		return
 	end
-	
+
 	local pos = level_tweak.megaphone_pos or Vector3(0, 0, 0)
 	local sound_source = SoundDevice:create_source("megaphone")
 
@@ -175,10 +175,10 @@ function GroupAIStateBase:_post_megaphone_event(event)
 	if type(mga_voice_line) == "table" then
 		mga_voice_line = table.random(mga_voice_line)
 	end
-	
+
 	sound_source:set_position(pos)
 	sound_source:post_event(mga_voice_line)
-		
+
 	if self._is_server then
 		local event_id = self:get_sync_event_id(mga_voice_line)
 		if event_id then
@@ -201,15 +201,15 @@ function GroupAIStateBase:megaphone_announce_snipers()
 	if not self:enemy_weapons_hot() then
 		return
 	end
-	
+
 	if self._t >= self._mga_said_deploy_snipers_t then
 		self:_post_megaphone_event("mga_deploy_snipers")
-			
+
 		-- Put the "deploy Snipers" line on a cooldown
 		self._mga_said_deploy_snipers_t = self._t + 120
-		
+
 		Eclipse:log_chat("Mega announced snipers.")
-	end	
+	end
 end
 
 -- Restore scripted cloaker spawn noise
@@ -282,20 +282,20 @@ function GroupAIStateBase:max_difficulty(value)
 end
 
 --Killing hostages in Pro Jobs increases diff
-Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)	
+Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)
 	if not self._hunt_mode and self._assault_number and self._assault_number >= 1 then
 		self._mga_hostage_kills = self._mga_hostage_kills + 1 -- have to track separately to self._hostages_killed because some may be killed before going loud
 
 		local mga_killed_civ_line = self._mga_hostage_kills == 1 and "mga_killed_civ_1st" or self._mga_hostage_kills < 4 and "mga_killed_civ_2nd" or nil
-		
-		if self._t >= self._mga_said_hostage_kill_t and mga_killed_civ_line then		
+
+		if self._t >= self._mga_said_hostage_kill_t and mga_killed_civ_line then
 			self:_post_megaphone_event(mga_killed_civ_line)
-			
+
 			-- Put the "civilian killed" line on a cooldown
 			self._mga_said_hostage_kill_t = self._t + 5
 		end
 	end
-	
+
 	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_add
 
 	if hostage_kill_add then
