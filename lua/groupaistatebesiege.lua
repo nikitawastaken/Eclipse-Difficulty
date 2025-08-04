@@ -28,8 +28,6 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 		self:_post_megaphone_event({ "mga_generic_a", "mga_generic_b" })
 
 		self._mga_said_arrival = true
-
-		Eclipse:log_chat("Mega said arrival line.")
 	end
 
 	if self._hostage_headcount > 0 then
@@ -49,8 +47,6 @@ Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_ta
 			self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + hesitation_delay * hostage_multiplier
 
 			self:_post_megaphone_event("mga_hostage_assault_delay")
-
-			Eclipse:log_chat("Mega announced hostage delay.")
 		end
 	end
 end)
@@ -152,8 +148,6 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 		managers.groupai:state():_post_megaphone_event("mga_generic_c")
 
 		self._mga_said_start_assault = true
-
-		Eclipse:log_chat("Mega announced assault.")
 	end
 
 	if task_data.phase ~= "fade" or self._hunt_mode then
@@ -176,8 +170,6 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 					self:_police_announce_retreat()
 
 					self:_post_megaphone_event("mga_leave")
-
-					Eclipse:log_chat("Mega announced retreat.")
 				end
 			elseif task_data.phase_end_t < t and self._drama_data.amount < tweak_data.drama.assault_fade_end and self:_count_criminals_engaged_force(5) <= 4 then
 				end_assault = true

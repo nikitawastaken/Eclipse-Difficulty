@@ -207,8 +207,6 @@ function GroupAIStateBase:megaphone_announce_snipers()
 
 		-- Put the "deploy Snipers" line on a cooldown
 		self._mga_said_deploy_snipers_t = self._t + 120
-
-		Eclipse:log_chat("Mega announced snipers.")
 	end
 end
 
