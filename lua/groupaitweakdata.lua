@@ -3138,7 +3138,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Assault Data
 	-- AI Tickrate
-	self.ai_tickrate = 1 / (is_pro_job and 90 or 60)
+	self.ai_tickrate = 1 / (below_overkill and 60 or 90)
 
 	--In-heist difficulty scaling
 	self.difficulty_scaling = {
@@ -3146,7 +3146,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_min = 0,
 		diff_max = 1,
 		diff_step = 0.05,
-		assault_delay = 30,
+		assault_delay = 45,
 		diff_step_interval = { 15, 20 },
 		assault_add = 0.2,
 		hostage_add = is_pro_job and 0.1 or nil,
@@ -3335,7 +3335,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 0.4, 0, 0 },
-			cs_defend_light = { 0.2, 0.4, 0 },
+			cs_defend_light = { 0.3, 0.1, 0 },
+			cs_defend_heavy = { 0.1, 0.2, 0 },
 			fbi_defend_init = { 0.6, 0.3, 0 },
 			fbi_defend_light = { 0, 0.4, 0.8 },
 			fbi_defend_heavy = { 0, 0, 0.6 },
@@ -3356,7 +3357,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 0.4, 0, 0 },
-			cs_defend_light = { 0.2, 0.4, 0 },
+			cs_defend_light = { 0.3, 0.1, 0 },
+			cs_defend_heavy = { 0.1, 0.2, 0 },
 			fbi_defend_init = { 0.6, 0.3, 0 },
 			fbi_defend_light = { 0, 0.4, 0.8 },
 			fbi_defend_heavy = { 0, 0, 0.6 },
@@ -3384,7 +3386,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 0.2, 0, 0 },
-			cs_defend_light = { 0.3, 0.1, 0 },
+			cs_defend_light = { 0.2, 0.1, 0 },
+			cs_defend_heavy = { 0.1, 0.2, 0 },
 			fbi_defend_init = { 0.4, 0.2, 0 },
 			fbi_defend_light = { 0.1, 0.3, 0 },
 			fbi_defend_heavy = { 0, 0.2, 0.6 },
