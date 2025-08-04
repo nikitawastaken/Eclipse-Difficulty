@@ -47,7 +47,7 @@ local lobby_balcony_spawn = {
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -58,7 +58,7 @@ local cloaker_spawn = {
 }
 return {
 	-- Yufu spawned
-	[101650] = {
+	[100765] = { -- diff 10
 		difficulty_max = 0.1,
 	},
 	[101607] = { -- Yufu is dead

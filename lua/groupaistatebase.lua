@@ -1,4 +1,18 @@
 local ffo_heists = Eclipse.ffo_heists
+local level_id = Eclipse.utils.level_id()
+
+GroupAIStateBase.MEGAPHONE_EVENTS = {
+	"mga_deploy_snipers",
+	"mga_killed_civ_1st",
+	"mga_killed_civ_2nd",
+	"mga_hostage_assault_delay",
+	"mga_generic_a",
+	"mga_generic_b",
+	"mga_generic_c",
+	"mga_robbers_clever",
+	"mga_leave",
+}
+table.list_append(GroupAIStateBase.EVENT_SYNC, GroupAIStateBase.MEGAPHONE_EVENTS)
 
 Hooks:PostHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
 	self._on_enemy_weapons_hot_t = self._on_enemy_weapons_hot_t or self._t
@@ -63,7 +77,6 @@ end
 
 -- Code from Dr. Newbie
 local _old_update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
-
 function GroupAIStateBase:_update_point_of_no_return(t, dt)
 	local get_mission_script_element = function(id)
 		for name, script in pairs(managers.mission:scripts()) do
@@ -72,8 +85,6 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 			end
 		end
 	end
-
-	local level_id = managers.job:has_active_job() and managers.job:current_level_id() or ""
 
 	if ffo_heists[level_id] then
 		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
@@ -109,6 +120,11 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
+	
+	self._mga_hostage_kills = self._mga_hostage_kills or 0
+	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
+	self._mga_said_deploy_snipers_t = self._mga_said_deploy_snipers_t or self._t
+	
 	self._difficulty_min = tweak_data.group_ai.difficulty_scaling.diff_min or 0
 	self._difficulty_max = tweak_data.group_ai.difficulty_scaling.diff_max or 1
 	-- New diff curve blocks diff increases (including initializing these variables) until X time after enemy weapons hot
@@ -139,6 +155,62 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		marksman = true,
 	}
 end)
+
+-- Add megaphone cop lines to specific heists (from Restoration Mod)
+function GroupAIStateBase:_post_megaphone_event(event)
+	local level_tweak = tweak_data.levels[level_id]
+	
+	if not level_tweak then
+		return
+	end
+	
+	if not level_tweak.has_megaphone_cop then
+		return
+	end
+	
+	local pos = level_tweak.megaphone_pos or Vector3(0, 0, 0)
+	local sound_source = SoundDevice:create_source("megaphone")
+
+	local mga_voice_line = event
+	if type(mga_voice_line) == "table" then
+		mga_voice_line = table.random(mga_voice_line)
+	end
+	
+	sound_source:set_position(pos)
+	sound_source:post_event(mga_voice_line)
+		
+	if self._is_server then
+		local event_id = self:get_sync_event_id(mga_voice_line)
+		if event_id then
+			managers.network:session():send_to_peers_synched("group_ai_event", event_id, 0)
+		end
+	end
+end
+
+local sync_event_orig = GroupAIStateBase.sync_event
+function GroupAIStateBase:sync_event(event_id, ...)
+	local event_name = self.EVENT_SYNC[event_id]
+	if table.contains(self.MEGAPHONE_EVENTS, event_name) then
+		self:_post_megaphone_event(event_name)
+	elseif event_name ~= "cloaker_spawned" then
+		return sync_event_orig(self, event_id, ...)
+	end
+end
+
+function GroupAIStateBase:megaphone_announce_snipers()
+	if not self:enemy_weapons_hot() then
+		return
+	end
+	
+	if self._t >= self._mga_said_deploy_snipers_t then
+		self:_post_megaphone_event("mga_deploy_snipers")
+			
+		-- Put the "deploy Snipers" line on a cooldown
+		self._mga_said_deploy_snipers_t = self._t + 120
+		
+		Eclipse:log_chat("Mega announced snipers.")
+	end	
+end
 
 -- Restore scripted cloaker spawn noise
 local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
@@ -210,8 +282,20 @@ function GroupAIStateBase:max_difficulty(value)
 end
 
 --Killing hostages in Pro Jobs increases diff
-local is_pro_job = Eclipse.utils.is_pro_job()
-Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)
+Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)	
+	if not self._hunt_mode and self._assault_number and self._assault_number >= 1 then
+		self._mga_hostage_kills = self._mga_hostage_kills + 1 -- have to track separately to self._hostages_killed because some may be killed before going loud
+
+		local mga_killed_civ_line = self._mga_hostage_kills == 1 and "mga_killed_civ_1st" or self._mga_hostage_kills < 4 and "mga_killed_civ_2nd" or nil
+		
+		if self._t >= self._mga_said_hostage_kill_t and mga_killed_civ_line then		
+			self:_post_megaphone_event(mga_killed_civ_line)
+			
+			-- Put the "civilian killed" line on a cooldown
+			self._mga_said_hostage_kill_t = self._t + 5
+		end
+	end
+	
 	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_add
 
 	if hostage_kill_add then

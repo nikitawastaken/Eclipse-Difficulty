@@ -9,7 +9,7 @@ local mvec_set = mvector3.set
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
---all reenforce poins now have a force value of at least 2 (from ASS)
+-- All reenforce poins now have a force value of at least 2 (from ASS)
 GroupAIStateBesiege.set_area_min_police_force_original = GroupAIStateBesiege.set_area_min_police_force
 function GroupAIStateBesiege:set_area_min_police_force(id, force, ...)
 	force = force and math.max(force, 2)
@@ -23,7 +23,15 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 	self._task_data.assault.was_first = self._task_data.assault.is_first
 
 	_begin_assault_task_original(self, ...)
-
+	
+	if not self._mga_said_arrival then
+		self:_post_megaphone_event({ "mga_generic_a", "mga_generic_b" })
+		
+		self._mga_said_arrival = true
+		
+		Eclipse:log_chat("Mega said arrival line.")
+	end
+	
 	if self._hostage_headcount > 0 then
 		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, self._task_data.assault.was_first)
 		self._task_data.assault.phase_end_t = self._t + anticipation_duration
@@ -39,6 +47,10 @@ Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_ta
 		if self._task_data.assault.next_dispatch_t then
 			self._task_data.assault.voice_delay = self._task_data.assault.next_dispatch_t - self._t
 			self._task_data.assault.next_dispatch_t = self._task_data.assault.next_dispatch_t + hesitation_delay * hostage_multiplier
+			
+			self:_post_megaphone_event("mga_hostage_assault_delay")
+		
+			Eclipse:log_chat("Mega announced hostage delay.")
 		end
 	end
 end)
@@ -135,7 +147,15 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 	if not task_data.active then
 		return
 	end
-
+	
+	if task_data.phase == "build" and not self._mga_said_start_assault then
+		managers.groupai:state():_post_megaphone_event("mga_generic_c")
+		
+		self._mga_said_start_assault = true
+		
+		Eclipse:log_chat("Mega announced assault.")
+	end
+	
 	if task_data.phase ~= "fade" or self._hunt_mode then
 		return _upd_assault_task_original(self, ...)
 	end
@@ -154,6 +174,10 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 					task_data.said_retreat = true
 
 					self:_police_announce_retreat()
+
+					self:_post_megaphone_event("mga_leave")
+					
+					Eclipse:log_chat("Mega announced retreat.")
 				end
 			elseif task_data.phase_end_t < t and self._drama_data.amount < tweak_data.drama.assault_fade_end and self:_count_criminals_engaged_force(5) <= 4 then
 				end_assault = true
@@ -173,6 +197,7 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 			end
 
 			managers.mission:call_global_event("end_assault")
+	
 			self:_begin_regroup_task(force_regroup)
 
 			if self._difficulty_value < 1 then

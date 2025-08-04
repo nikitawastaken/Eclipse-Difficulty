@@ -92,21 +92,31 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ukrainian_job.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.ukrainian_job.group_ai_preset = "small_urban"
 
+	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	self.branchbank.group_ai_settings.assault_force_mul = nil
+	self.branchbank.group_ai_settings.difficulty_scaling = {
+		assault_delay = 60,
+	}
+	self.branchbank.group_ai_preset = "small_urban"
+	self.branchbank.has_megaphone_cop = true
+	
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.mallcrasher.group_ai_settings.difficulty_scaling = {
 		diff_init = 0.2,
 		assault_delay = 75,
 	}
 	self.mallcrasher.group_ai_preset = "small_urban"
+	self.mallcrasher.has_megaphone_cop = true
 
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.four_stores.group_ai_settings.assault_force_mul = 0.6
 	self.four_stores.group_ai_preset = "small_urban"
+	self.four_stores.has_megaphone_cop = true
 
 	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
 	self.nightclub.group_ai_settings.special_limit_add = { shield = -1, marksman = -1 }
 	self.nightclub.group_ai_preset = "small_urban"
-
+	
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_force_mul = 0.7,
@@ -167,6 +177,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
+	self.firestarter_3.group_ai_settings = deep_clone(self.branchbank.group_ai_settings)
+	self.firestarter_3.group_ai_preset = nil
+	self.firestarter_3.has_megaphone_cop = true
+
 	self.framing_frame_2.group_ai_settings = {
 		recon_force_mul = 0,
 		difficulty_scaling = {
@@ -196,6 +210,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
+	self.roberts.has_megaphone_cop = true
+
+	self.big.has_megaphone_cop = true
 
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.5
@@ -409,6 +426,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
+	self.moon.has_megaphone_cop = true
 
 	self.spa.group_ai_settings = {
 		assault_force_mul = 0.7,
@@ -528,7 +546,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 
-	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
+	self.chas.has_megaphone_cop = true
+
+	self.sand.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 
 	self.chca.group_ai_settings = {
 		first_responders_trade_delay = 60,

@@ -279,40 +279,6 @@ ElementSpawnEnemyDummy.unit_alternatives = {
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"] = 4,
 		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat"] = 1,
 	},
-	--[[
-	-- Marshal Marksman
-	[("units/payday2/characters/ene_sniper_1/ene_sniper_1"):key()] = {
-		["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = 2,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = has_marshal_response and 1 or nil,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = has_bellmead_response and 1 or nil,
-	},
-	[("units/payday2/characters/ene_sniper_2/ene_sniper_2"):key()] = {
-		["units/payday2/characters/ene_sniper_2/ene_sniper_2"] = 2,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = has_marshal_response and 1 or nil,
-		["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = has_bellmead_response and 1 or nil,
-	},
-	-- Marshal Gunner
-	[("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"):key()] = {
-		["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = has_marshal_response and 1 or nil,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = has_bellmead_response and 1 or nil,
-	},
-	[("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"):key()] = {
-		["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = has_marshal_response and 1 or nil,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = has_bellmead_response and 1 or nil,
-	},
-	[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = {
-		["units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = has_marshal_response and 1 or nil,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = has_bellmead_response and 1 or nil,
-	},
-	[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = {
-		["units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"] = 8,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = has_marshal_response and 1 or nil,
-		["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = has_bellmead_response and 1 or nil,
-	},
-	]]
 }
 
 ElementSpawnEnemyDummy.ponr_unit_replacements = {
@@ -330,6 +296,24 @@ Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 	self._enemy_table = self._values.enemy_table
 	self._values.enemy_table = nil
 end)
+
+function ElementSpawnEnemyDummy:_chk_is_sniper(unit)
+	local snipers_but_not_really = {
+		["units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3"] = true,
+	}
+	
+	if not unit then
+		return
+	end
+	
+	if snipers_but_not_really[unit] then
+		return
+	end
+	
+	if unit:base():has_tag("law") and unit:base():char_tweak().access == "sniper" then
+		managers.groupai:state():megaphone_announce_snipers()
+	end
+end
 
 function ElementSpawnEnemyDummy:chk_used_mapped_names(force)
 	if not self._used_mapped_names or force then
@@ -518,7 +502,7 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 
 		return unit
 	end
-
+	
 	if self._enemy_table then
 		self._enemy_name = self:_process_enemy_tbl(self._enemy_table) or self._enemy_name
 	end
@@ -528,7 +512,9 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 
 	local unit = produce_original(self, params, ...)
 
+	self:_chk_is_sniper(unit)
+	
 	self._enemy_name = original_enemy_name
-
+	
 	return unit
 end
