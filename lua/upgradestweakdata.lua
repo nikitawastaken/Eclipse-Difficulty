@@ -139,7 +139,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.joker.multipro = "25%"
 	self.skill_descs.joker.multipro2 = "65%"
 
-	-- Stockhilm Syndrome
+	-- Stockholm Syndrome
 	self.values.player.civilians_dont_flee = { true }
 	self.definitions.player_civilians_dont_flee = {
 		category = "feature",
@@ -161,7 +161,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.stockholm_syndrome.multipro = "20%"
-	self.skill_descs.stockholm_syndrome.multipro2 = "7m"
+	self.skill_descs.stockholm_syndrome.multipro2 = "4m"
 
 	-- Parterns in Crime
 	self.definitions.player_convert_camouflage_mul = {
