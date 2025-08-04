@@ -436,12 +436,12 @@ function TradeManager:trade_restore_resources()
 
 	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
 		u_data.unit:character_damage():restore_lives(1)
+	end
 
-		if has_trading_health_upgrade then
-			u_data.unit:character_damage():restore_health_percentage(amount_of_health)
+	if has_trading_health_upgrade then
+		unit:character_damage():restore_health_percentage(amount_of_health)
 
-			unit:sound():play("pickup_ammo_health_boost", nil, true)
-		end
+		unit:sound():play("pickup_ammo_health_boost", nil, true)
 	end
 
 	-- resource trading for ammo upgrade
