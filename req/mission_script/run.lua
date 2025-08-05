@@ -25,7 +25,7 @@ local garage_swat_spawn_1 = {
 		participate_to_group_ai = false,
 	},
 	on_executed = {
-		{ delay = 2, id = 410012 },
+		{ delay = 2, id = 410002 },
 	},
 }
 local garage_swat_spawn_2 = {
@@ -35,7 +35,7 @@ local garage_swat_spawn_2 = {
 		participate_to_group_ai = false,
 	},
 	on_executed = {
-		{ delay = 2, id = 410012 },
+		{ delay = 2, id = 410002 },
 	},
 }
 local garage_shield_spawn = {
@@ -45,7 +45,7 @@ local garage_shield_spawn = {
 		participate_to_group_ai = false,
 	},
 	on_executed = {
-		{ delay = 2, id = 410012 },
+		{ delay = 2, id = 410002 },
 	},
 }
 local disabled = {
@@ -53,26 +53,43 @@ local disabled = {
 		enabled = false,
 	},
 }
+local helicopter_guaranteed_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
+local van_guaranteed_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
 local street_spawn = {
 	values = {
-		interval = 5,
+		interval = 10,
 	},
 }
 local van_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents,
 }
-local inkwell_spawn1 = {
+local overpass_spawn = {
+	values = {
+		interval = 20,
+	},
+}
+local inkwell_ground_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local inkwell_spawn2 = {
+local armitage_spawn = {
 	values = {
-		interval = 60,
+		interval = 30,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
+local inkwell_upper_spawn = {
+	values = {
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -98,25 +115,6 @@ return {
 			length = 480,
 			player_mul = { 2.5, 2, 1.5, 1 },
 		},
-	},
-	-- Adjust difficulty scaling
-	[103749] = { -- players spawned
-		values = {
-			difficulty = 0.4,
-		},
-	},
-	[103750] = { -- players reached Inkwell Industrial
-		values = {
-			difficulty = 0.6,
-		},
-	},
-	[103751] = { -- players reached the fence
-		values = {
-			difficulty = 0.8,
-		},
-	},
-	[101289] = { -- Matt reached the top of the overpass
-		difficulty = 1,
 	},
 	-- restore events from PDTH
 	-- inkwell industrial
@@ -164,7 +162,7 @@ return {
 	[103517] = {
 		on_executed = {
 			{ remove = true, id = 103516 },
-			{ delay = 0, id = 410002 },
+			{ delay = 0, id = 410003 },
 		},
 	},
 	[103515] = {
@@ -173,13 +171,13 @@ return {
 	-- restore first swat blockade on ovk above
 	[102682] = {
 		on_executed = {
-			{ delay = 0, id = 410067 },
+			{ delay = 0, id = 410068 },
 		},
 	},
 	-- restore cop cars having lights on
 	[101037] = {
 		on_executed = {
-			{ delay = 0, id = 410068 },
+			{ delay = 0, id = 410069 },
 		},
 	},
 	-- add commments on incoming helis or garage events
@@ -353,7 +351,6 @@ return {
 			{ id = 100937, delay = 20 },
 		},
 	},
-
 	-- rework spawngroups for the entire chase section cause they're absolutely dogshit in vanilla
 	-- lots of comments here so that i don't lose track of anything
 
@@ -362,11 +359,7 @@ return {
 	[103355] = disabled, -- 2nd preferred add
 	[102106] = disabled, -- 3rd preferred add
 	[102418] = disabled, -- 4th preferred add
-	[102944] = disabled, -- 6th preferred add
 	[100256] = disabled, -- 8th preferred add
-	[102088] = disabled, -- 12th preferred add
-	[101583] = disabled, -- 13th preferred add
-	[103520] = disabled, -- 15th preferred add
 	-- note: second preferred add is executed on player_spawned
 	[102426] = { -- player_spawned
 		on_executed = {
@@ -382,14 +375,17 @@ return {
 	},
 	[100570] = { -- trigger close to Eddie #2
 		on_executed = {
-			{ id = 410004, delay = 5, delay_rand = 5 }, -- first Major Ave preferred add
-			{ id = 102440, delay = 0 }, -- 5th preferred add
+			{ id = 410005, delay = 0, delay_rand = 5 }, -- first Major Ave preferred add
+		},
+	},
+	[102440] = { -- 5th preferred add
+		on_executed = {
+			{ id = 101476, delay = 0 }, -- 10th preferred add
 		},
 	},
 	[100430] = { -- reached Eddie crash site
 		on_executed = {
-			{ id = 410006, delay = 5, delay_rand = 5 }, -- second Major Ave preferred add
-			{ id = 101476, delay = 0 }, -- 10th preferred add
+			{ id = 410007, delay = 0, delay_rand = 5 }, -- second Major Ave preferred add
 		},
 		reinforce = { -- add crane "blockade" reinforce
 			{
@@ -407,15 +403,9 @@ return {
 	[102786] = { -- trigger area 53 (next to before crane #1 trigger)
 		on_executed = {
 			{ id = 400096, delay = 0 }, -- major ave. sniper
-			{ id = 410005, delay = 0 }, -- first Major Ave preferred remove
-			{ id = 102484, delay = 0 }, -- 5th preferred remove
 		},
 	},
 	[100101] = { -- remove enemies trigger (reached the construction crane)
-		on_executed = {
-			{ id = 410007, delay = 0 }, -- second Major Ave preferred remove
-			{ id = 101477, delay = 0 }, -- 10th preferred remove
-		},
 		reinforce = { -- remove crane "blockade" reinforce
 			{ name = "major_ave1" },
 			{ name = "major_ave2" },
@@ -423,13 +413,7 @@ return {
 	},
 	[100959] = { -- area player by street
 		on_executed = {
-			{ id = 410008, delay = 5, delay_rand = 5 }, -- East St. preferred add
-			{ id = 102734, delay = 0 }, -- 7th preferred add
-		},
-	},
-	[400043] = { -- reached East St. vans trigger
-		on_executed = {
-			{ id = 410009, delay = 0 }, -- East St. preferred remove
+			{ id = 410009, delay = 0, delay_rand = 5 }, -- East St. preferred add
 		},
 	},
 	[103726] = { -- remove_enemy_spawns trigger
@@ -440,8 +424,8 @@ return {
 	},
 	[101339] = {
 		on_executed = {
-			{ id = 410010, delay = 20, delay_rand = 10 }, -- Inkwell Industrial preferred add
-			{ id = 101086, delay = 30 }, -- 9th preferred add (vanilla)
+			{ id = 410011, delay = 0, delay_rand = 15 }, -- Inkwell Industrial preferred add
+			{ id = 101086, delay = 0, delay_rand = 15 }, -- 9th preferred add (vanilla)
 		},
 		reinforce = { -- add Inkwell reinforce
 			{
@@ -453,8 +437,8 @@ return {
 	},
 	[103883] = { -- Matt is out, go to parking
 		on_executed = {
-			{ id = 410006, delay = 5, delay_rand = 5 }, -- second Major Ave preferred add
-			{ id = 410011, delay = 0 }, -- Inkwell Industrial preferred remove
+			{ id = 410005, delay = 0, delay_rand = 5 }, -- second Major Ave preferred add
+			{ id = 410012, delay = 0 }, -- Inkwell Industrial preferred remove
 		},
 		reinforce = { -- remove Inkwell reinforce
 			{ name = "inkwell" },
@@ -462,8 +446,7 @@ return {
 	},
 	[103885] = { -- reached gate
 		on_executed = {
-			{ id = 410007, delay = 0 }, -- second Major Ave preferred remove
-			{ id = 410022, delay = 5, delay_rand = 5 }, -- Armitage Avenue preferred add
+			{ id = 410023, delay = 0, delay_rand = 5 }, -- Armitage Avenue preferred add
 		},
 		reinforce = { -- add alley "blockade" reinforce
 			{
@@ -491,7 +474,7 @@ return {
 	},
 	[103492] = { -- remove spawns trigger
 		on_executed = {
-			{ id = 410034, delay = 5, delay_rand = 5 }, -- first Overpass preferred add
+			{ id = 410035, delay = 0, delay_rand = 5 }, -- first Overpass preferred add
 		},
 		reinforce = { -- add overpass "blockade" reinforce
 			{
@@ -508,61 +491,59 @@ return {
 	},
 	[101962] = { -- trigger area 8
 		on_executed = {
-			{ id = 410041, delay = 5, delay_rand = 5 }, -- second Overpass preferred add
+			{ id = 410042, delay = 0, delay_rand = 5 }, -- second Overpass preferred add
 		},
 	},
 	[100271] = { -- trigger area 11
 		on_executed = {
-			{ id = 410035, delay = 0 }, -- first Overpass preferred remove
-			{ id = 410053, delay = 10, delay_rand = 10 }, -- finale preferred add
+			{ id = 410053, delay = 0, delay_rand = 15 }, -- finale preferred add
 		},
 		reinforce = { -- remove overpass "blockade" reinforce
 			{ name = "overpass1" },
 			{ name = "overpass2" },
 		},
 	},
-	[103284] = { -- trigger area 48
-		on_executed = {
-			{ id = 410042, delay = 0 }, -- second Overpass preferred remove
-		},
-	},
 	-- Spawn group delays
+	[100071] = helicopter_guaranteed_spawn,
+	[100476] = helicopter_guaranteed_spawn,
+	[102354] = helicopter_guaranteed_spawn,
+	[400027] = van_guaranteed_spawn,
+	[400032] = van_guaranteed_spawn,
+	[400037] = van_guaranteed_spawn,
+	[400042] = van_guaranteed_spawn,
+	[400048] = van_guaranteed_spawn,
+	[400053] = van_guaranteed_spawn,
+	[400058] = van_guaranteed_spawn,
+	[400063] = van_guaranteed_spawn,
+	[400068] = van_guaranteed_spawn,
+	[410017] = van_guaranteed_spawn,
+	[410022] = van_guaranteed_spawn,
+	[410029] = van_guaranteed_spawn,
+	[410034] = van_guaranteed_spawn,
+	[410052] = van_guaranteed_spawn,
 	[100210] = street_spawn,
-	[100249] = street_spawn,
 	[100295] = street_spawn,
 	[100597] = street_spawn,
 	[101597] = street_spawn,
-	[101527] = street_spawn,
 	[101587] = street_spawn,
 	[103702] = street_spawn,
 	[103561] = street_spawn,
-	[103740] = street_spawn,
-	[103998] = street_spawn,
+	[100249] = overpass_spawn,
+	[101527] = overpass_spawn,
+	[103740] = overpass_spawn,
+	[103998] = overpass_spawn,
 	[100310] = van_spawn,
 	[103701] = van_spawn,
 	[103704] = van_spawn,
 	[103734] = van_spawn,
-	[400027] = van_spawn,
-	[400032] = van_spawn,
-	[400037] = van_spawn,
-	[400042] = van_spawn,
-	[400048] = van_spawn,
-	[400053] = van_spawn,
-	[400058] = van_spawn,
-	[400063] = van_spawn,
-	[400068] = van_spawn,
 	[400073] = van_spawn,
 	[400078] = van_spawn,
-	[410016] = van_spawn,
-	[410021] = van_spawn,
-	[410028] = van_spawn,
-	[410033] = van_spawn,
-	[410040] = van_spawn,
-	[410047] = van_spawn,
-	[410052] = van_spawn,
-	[103703] = inkwell_spawn1,
-	[100441] = inkwell_spawn2,
-	[103333] = inkwell_spawn2,
-	[103785] = inkwell_spawn2,
+	[410041] = van_spawn,
+	[410048] = van_spawn,
+	[103703] = inkwell_ground_spawn,
+	[102475] = armitage_spawn,
+	[100441] = inkwell_upper_spawn,
+	[103333] = inkwell_upper_spawn,
+	[103785] = inkwell_upper_spawn,
 	[100029] = building_spawn,
 }

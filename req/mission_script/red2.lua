@@ -95,6 +95,12 @@ local taser_spawn_2 = {
 		position = Vector3(5358, 588, -733),
 	},
 }
+local mga_thermite_event = {
+	post_mga_event = "mga_thermite",
+}
+local mga_vault_event = {
+	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
+}
 local elevator_spawn = {
 	values = {
 		interval = 30,
@@ -165,8 +171,6 @@ return {
 	[100682] = filter_easy_above,
 	-- disable forced manager flee objective
 	[100665] = disabled,
-	-- disable the right vault path
-	[105498] = disabled,
 	-- nuke swat van
 	[105921] = disabled,
 	-- Edit the vault opening ambush
@@ -179,18 +183,7 @@ return {
 	},
 	[100359] = { -- assault ended
 		on_executed = {
-			{ id = 100043, delay = 15, delay_rand = 30 }, -- start more preferreds
-		},
-	},
-	-- Increase the number of assaults needed for each diff spike
-	[100962] = { -- diff 0.75
-		values = {
-			counter_target = 2, -- used to be 1
-		},
-	},
-	[100966] = { -- diff 1
-		values = {
-			counter_target = 3, -- used to be 2
+			{ id = 100043, delay = 0, delay_rand = 30 }, -- start more preferreds
 		},
 	},
 	--Let the cops finish their spawn anim before moving into SO spot
@@ -394,6 +387,9 @@ return {
 	[103231] = bulldozer_spawn,
 	-- why is there a beat cop instead of security guard in the vault???
 	[104001] = { enemy = security_guard_1 },
+	-- Play megaphone cop voice lines
+	[103232] = mga_thermite_event,
+	[101543] = mga_vault_event,
 	-- Spawn group delays
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,

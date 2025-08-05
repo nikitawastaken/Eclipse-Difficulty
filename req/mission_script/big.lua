@@ -44,6 +44,25 @@ end
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
+local wall_c4_chance = {
+	values = {
+		chance = (normal and 40 or 60) * (is_pro_job and 1.5 or 1),
+	},
+}
+local no_shields_and_dozers = {
+	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
+}
+local bags_required = {
+	values = {
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
+	},
+}
+local mga_thermite_event = {
+	post_mga_event = "mga_thermite",
+}
+local mga_vault_event = {
+	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
+}
 local roof_spawn = {
 	values = {
 		interval = 20,
@@ -60,19 +79,6 @@ local elevator_spawn_2 = {
 		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local wall_c4_chance = {
-	values = {
-		chance = (normal and 40 or 60) * (is_pro_job and 1.5 or 1),
-	},
-}
-local no_shields_and_dozers = {
-	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
-}
-local bags_required = {
-	values = {
-		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
-	},
 }
 return {
 	[100809] = {
@@ -254,6 +260,9 @@ return {
 			end
 		end,
 	},
+	-- Play megaphone cop voice lines
+	[105842] = mga_thermite_event,
+	[105792] = mga_vault_event,
 	-- Spawn Group delays
 	[100692] = roof_spawn,
 	[100007] = roof_spawn,

@@ -17,7 +17,7 @@ local cloaker_spawn = {
 	},
 }
 local scripted_swat_van_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
 	-- Set difficulty

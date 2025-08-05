@@ -154,6 +154,14 @@ function MissionManager.mission_script_patch_funcs.difficulty_max(self, element,
 	Eclipse:log_console("%s hooked as maximum difficulty trigger", element:editor_name())
 end
 
+function MissionManager.mission_script_patch_funcs.post_mga_event(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_post_mga_event_" .. element:id(), function()
+		--Eclipse:log_console("%s executed, playing %.2g", element:editor_name(), data)
+		managers.groupai:state():_post_megaphone_event(data)
+	end)
+	Eclipse:log_console("%s hooked as megaphone cop event trigger", element:editor_name())
+end
+
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_flashlight_" .. element:id(), function()
 		Eclipse:log_console("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
