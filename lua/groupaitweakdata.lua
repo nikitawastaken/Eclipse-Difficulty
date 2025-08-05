@@ -1906,28 +1906,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = 1,
-				amount_min = 1,
-				rank = 2,
-				unit = "cs_cop_1",
-				tactics = self._tactics.cop_def,
-			},
-			{
-				freq = 0.25,
-				amount_max = 1,
 				rank = 1,
-				unit = "cs_cop_2",
+				unit = "cs_cop",
 				tactics = self._tactics.cop_def,
-			},
-			{
-				freq_by_diff = {
-					(difficulty_index ^ 2) / 12,
-					(difficulty_index ^ 2) / 6,
-					(difficulty_index ^ 2),
-				},
-				amount_max = 2,
-				rank = 3,
-				unit = "cs_cop_3_4",
-				tactics = self._tactics.hrt_def,
 			},
 		},
 	}
@@ -1963,7 +1944,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 3,
+				amount_max = 2,
 				rank = 2,
 				unit = "cs_swat_1",
 				tactics = self._tactics.swat_def,
@@ -1991,7 +1972,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 3,
+				amount_max = 2,
 				rank = 2,
 				unit = "cs_heavy_1",
 				tactics = self._tactics.swat_def,
@@ -2260,7 +2241,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 3,
+				amount_max = 2,
 				rank = 3,
 				unit = "fbi_swat_1",
 				tactics = self._tactics.swat_def,
@@ -2300,7 +2281,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 3,
+				amount_max = 2,
 				rank = 3,
 				unit = "fbi_heavy_1",
 				tactics = self._tactics.swat_def,
@@ -2524,7 +2505,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 3,
+				amount_max = 2,
 				rank = 2,
 				unit = "elite_swat_1",
 				tactics = self._tactics.swat_def,
@@ -2563,8 +2544,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq = 1,
-				amount_min = standard_issue and 2 or 1,
-				amount_max = 3,
+				amount_min = 1,
+				amount_max = 2,
 				rank = 2,
 				unit = "elite_heavy_1",
 				tactics = self._tactics.swat_def,
@@ -3267,7 +3248,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 4 then
 		self.besiege.faction = {
 			"CS",
-			"CS",
+			"FBI",
 			"FBI",
 		}
 	elseif difficulty_index == 5 then
