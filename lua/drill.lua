@@ -91,13 +91,10 @@ function Drill:on_sabotage_SO_started(saboteur)
 			ignore_unit = self._unit,
 			alert_radius = 1
 		})
-		Eclipse:log_chat("hit_units: " .. tostring(hit_units) .. "\nsplinters: " .. tostring(splinters))
 
 		saboteur:sound():play("gl_electric_explode", nil, true)
 
 		managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "base", GrenadeBase.EVENT_IDS.detonate)
-
-		managers.player:disable_cooldown_upgrade("cooldown", "electrocuting_drill")
 
 		self._saboteur = nil
 
