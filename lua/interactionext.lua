@@ -299,4 +299,56 @@ function DrivingInteractionExt:interact(player, locator)
 
 	return success
 end
--- Cary stacker end
+-- Carry stacker end
+
+
+-- Extra drill upgrades
+function MissionDoorDeviceInteractionExt:server_place_mission_door_device(player, sender)
+	local can_place = not self._unit:mission_door_device() or self._unit:mission_door_device():can_place()
+
+	if sender then
+		sender:result_place_mission_door_device(self._unit, can_place)
+	else
+		self:result_place_mission_door_device(can_place)
+	end
+
+	local network_session = managers.network:session()
+
+	self:remove_interact()
+
+	local is_saw = self._unit:base() and self._unit:base().is_saw
+	local is_drill = self._unit:base() and self._unit:base().is_drill
+
+	if is_saw or is_drill then
+		local user_unit = nil
+
+		if player and player:base() and not player:base().is_local_player then
+			user_unit = player
+		end
+
+		local upgrades = Drill.get_upgrades(self._unit, user_unit)
+
+		self._unit:base():set_skill_upgrades(upgrades)
+		network_session:send_to_peers_synched("sync_drill_upgrades", self._unit, upgrades.auto_repair_level_1, upgrades.auto_repair_level_2, upgrades.speed_upgrade_level, upgrades.silent_drill, upgrades.reduced_alert, upgrades.electrocuting_drill)
+	end
+
+	if self._unit:damage() then
+		self._unit:damage():run_sequence_simple("interact", {
+			unit = player
+		})
+	end
+
+	network_session:send_to_peers_synched("sync_interacted", self._unit, -2, self.tweak_data, 1)
+	self:set_active(false)
+	self:check_for_upgrade()
+
+	if self._unit:mission_door_device() then
+		self._unit:mission_door_device():placed()
+	end
+
+	if self._tweak_data.sound_event then
+		player:sound():play(self._tweak_data.sound_event)
+	end
+
+	return can_place
+end

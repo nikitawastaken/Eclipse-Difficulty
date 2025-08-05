@@ -75,3 +75,16 @@ function UnitNetworkHandler:hostage_trade(unit, enable, trade_success, skip_hint
 
 	CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
 end
+
+-- Extra drill upgrades
+function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, sender_rpc, electrocuting_drill)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender_rpc) then
+		return
+	end
+
+	local base_ext = alive(unit) and unit:base()
+
+	if base_ext and base_ext.set_skill_upgrades then
+		base_ext:set_skill_upgrades(Drill.create_upgrades(autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, electrocuting_drill))
+	end
+end

@@ -1476,6 +1476,61 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[6][3].multiperk = "25%"
 	self.specialization_descs[6][7].multiperk = "25%"
 
+	-- Tactician (ex-Burglar)
+	self.values.player.near_teammate_damage_multiplier = {
+		{
+			mul = 0.8,
+			range = 700
+		}
+	}
+	self.definitions.player_near_teammate_damage_multiplier = {
+		name_id = "menu_player_near_teammate_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "near_teammate_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.electrocuting_drill = { true }
+	self.definitions.player_electrocuting_drill = {
+		name_id = "menu_player_electrocuting_drill",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "electrocuting_drill",
+			synced = true,
+			category = "player"
+		}
+	}
+	self.values.cooldown.electrocuting_drill = { { 1, 20 } }
+	self.definitions.cooldown_electrocuting_drill = {
+		name_id = "menu_cooldown_electrocuting_drill",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "electrocuting_drill",
+			category = "cooldown",
+		},
+	}
+	self.values.player.no_secondary_deployable_penalty = { true }
+	self.definitions.player_no_secondary_deployable_penalty = {
+		name_id = "menu_player_no_secondary_deployable_penalty",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "no_secondary_deployable_penalty",
+			category = "player",
+		},
+	}
+	self.specialization_descs[7][1].multiperk = "half"
+	self.specialization_descs[7][3].multiperk = "30%"
+	self.specialization_descs[7][5].multiperk = "20%"
+	self.specialization_descs[7][5].multiperk2 = "7m"
+	self.specialization_descs[7][7].multiperk = "20"
+	self.specialization_descs[7][9].multiperk = "full"
+	self.specialization_descs[7][9].multiperk2 = "100%"
+
 	-- Infiltrator
 	self.values.temporary.melee_life_leech[1][1] = 4
 	self.specialization_descs[8][9].multiperk = "40"

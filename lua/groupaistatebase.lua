@@ -449,6 +449,13 @@ Hooks:PostHook(GroupAIStateBase, "criminal_spotted", "sh_criminal_spotted", func
 	mvector3.set(u_sighting.pos, u_sighting.m_det_pos)
 end)
 
+-- Check for criminals around the unit
+function GroupAIStateBase:is_a_criminal_within(mvec_pos, radius)
+	local units = World:find_units_quick("sphere", mvec_pos, radius, managers.slot:get_mask("criminals"))
+
+	return units and #units > 1
+end
+
 -- Do not update detected position and time on nav segment change
 -- Log time when criminals enter an area to use for the teargas check
 Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_nav_seg_change", function(self, unit, nav_seg_id)
