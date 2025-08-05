@@ -302,7 +302,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			smoke_grenade = 0.5,
 		},
 	}
-	
+
 	self.red2.has_megaphone_cop = true
 
 	self.pbr2.group_ai_settings = {
@@ -572,7 +572,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sand.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.sand.group_ai_settings.assault_force_mul = 0.8
 	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
-	
+
 	self.chca.group_ai_settings = {
 		first_responders_trade_delay = 60,
 		spawn_kill_cooldown = 15,

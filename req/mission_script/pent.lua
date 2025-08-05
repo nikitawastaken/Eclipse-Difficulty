@@ -89,7 +89,7 @@ return {
 		},
 	},
 	-- Reduce difficulty when upstairs
-	[102486] = { 
+	[102486] = {
 		difficulty_add = -0.4,
 	},
 	--Fixed snipers being able to spawn only once
