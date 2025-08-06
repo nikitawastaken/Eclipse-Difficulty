@@ -224,7 +224,9 @@ end
 function GroupAIStateBase:_update_difficulty_value()
 	if self:enemy_weapons_hot() and self._t >= ((self._on_enemy_weapons_hot_t or 0) + tweak_data.group_ai.difficulty_scaling.assault_delay) then
 		if self._target_difficulty and self._t >= self._next_difficulty_step_t then
-			self._difficulty_value = math.min(self._difficulty_value + tweak_data.group_ai.difficulty_scaling.diff_step, self._target_difficulty)
+			local diff_step = tweak_data.group_ai.difficulty_scaling.diff_step * (self._difficulty_value > self._target_difficulty and -1 or 1)
+
+			self._difficulty_value = math.min(self._difficulty_value + diff_step, self._target_difficulty)
 			self._difficulty_value = math.clamp(self._difficulty_value, self._difficulty_min, self._difficulty_max)
 
 			if self._difficulty_value >= self._target_difficulty then

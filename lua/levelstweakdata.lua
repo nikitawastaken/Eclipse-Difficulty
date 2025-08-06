@@ -141,6 +141,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_park.group_ai_settings.difficulty_scaling = {
 		diff_init = 0.5,
 		diff_min = 0.25,
+		assault_delay = 30,
 		assault_add = 0.25,
 	}
 
@@ -185,6 +186,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recon_force_mul = 0,
 		difficulty_scaling = {
 			diff_init = 0.5,
+			diff_min = 0.25,
 			assault_add = 0.5,
 		},
 	}
@@ -212,6 +214,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.roberts.has_megaphone_cop = true
 
+	self.big.group_ai_settings = {
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
+	}
 	self.big.has_megaphone_cop = true
 
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
@@ -220,10 +227,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hox_1.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_delay_mul = 1.25,
-		assault_force_mul = 0.6,
+		assault_force_mul = 0.7,
 		min_reenforce_interval_mul = 0,
 		push_delay_mul = 1.25,
 		min_grenade_timeout_mul = 1.5,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_delay = 15,
+			assault_add = 0.25,
+		},
 		force_tactics = {
 			swat_init = {
 				no_push = true,
@@ -281,11 +293,23 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.dinner.group_ai_settings = {
+		first_responders_trade_delay = 90,
+		difficulty_scaling = {
+			assault_delay = 75,
+		},
+		grenade_timeout_mul = {
+			smoke_grenade = 0.5,
+		},
+	}
+
+	self.red2.has_megaphone_cop = true
+
 	self.pbr2.group_ai_settings = {
 		spawn_kill_cooldown = 20,
 		assault_force_mul = 0.6,
 		difficulty_scaling = {
-			assault_delay = 45,
+			assault_delay = 60,
 		},
 		special_limit_add = {
 			shield = -1,
@@ -436,22 +460,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
-	self.run.group_ai_settings.special_limit_add = {
-		taser = 1,
-		medic = 1,
-	}
+	self.run.group_ai_settings.assault_force_mul = 0.8
+	self.run.group_ai_settings.difficulty_scaling = { assault_delay = 30 }
+	self.run.group_ai_settings.special_limit_add = { taser = 1 }
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
 	self.glace.group_ai_settings.difficulty_scaling = { assault_delay = 120 }
 
 	self.wwh.group_ai_settings = {
-		assault_force_mul = 0.8,
+		assault_force_mul = 0.6,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
-		},
-		special_limit_add = {
-			taser = 1,
 		},
 	}
 	self.wwh.group_ai_preset = "remote"
@@ -486,9 +506,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.rvd2.group_ai_settings = {
-		assault_force_mul = 0.6,
+		assault_force_mul = 0.8,
 	}
 	self.rvd2.group_ai_preset = "heavy_response"
+
+	self.brb.has_megaphone_cop = true
 
 	self.des.group_ai_settings = deep_clone(self.help.group_ai_settings)
 	self.des.group_ai_settings.assault_force_mul = 0.6
@@ -521,7 +543,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		cs_grenade_chance_times_mul = 1.25,
 		special_limit_add = {
 			tank = 1,
-			medic = 1,
 		},
 	}
 	self.vit.group_ai_preset = "heavy_response"
@@ -549,6 +570,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chas.has_megaphone_cop = true
 
 	self.sand.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
+	self.sand.group_ai_settings.assault_force_mul = 0.8
+	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 
 	self.chca.group_ai_settings = {
 		first_responders_trade_delay = 60,
@@ -593,9 +616,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
-		},
-		grenade_timeout_mul = {
-			smoke_grenade = 0.75,
 		},
 		special_limit_add = {
 			taser = 1,

@@ -52,7 +52,7 @@ local roof_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local van_scripted_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 local cloaker_spawn = {
 	values = {

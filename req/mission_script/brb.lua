@@ -1,12 +1,13 @@
 local preferred = Eclipse.preferred
-local back_street_spawn = {
-	values = {
-		interval = 10,
-	},
+local mga_thermite_event = {
+	post_mga_event = "mga_thermite",
+}
+local mga_vault_event = {
+	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
 }
 local bridge_far_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -76,9 +77,10 @@ return {
 			},
 		},
 	},
+	-- Play megaphone cop voice lines
+	[100837] = mga_thermite_event,
+	[101114] = mga_vault_event,
 	-- Spawn point delays
-	[100332] = back_street_spawn,
-	[100965] = back_street_spawn,
 	[100435] = bridge_far_spawn,
 	[100454] = bridge_far_spawn,
 	[100455] = bridge_far_spawn,

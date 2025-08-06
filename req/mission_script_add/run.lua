@@ -136,32 +136,32 @@ local optsBesiegeDummy = {
 }
 local optsShieldWallFirstStreet1 = {
 	enemy = is_eclipse and elite_shield or shield,
-	on_executed = { { id = 410061, delay = 0 } },
+	on_executed = { { id = 410062, delay = 0 } },
 	enabled = true,
 }
 local optsShieldWallFirstStreet2 = {
 	enemy = is_eclipse and elite_shield or shield,
-	on_executed = { { id = 410062, delay = 0 } },
+	on_executed = { { id = 410063, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet1 = {
 	enemy = is_eclipse and heavy_rifle or swat_rifle,
-	on_executed = { { id = 410063, delay = 0 } },
+	on_executed = { { id = 410064, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet2 = {
 	enemy = is_eclipse and heavy_rifle or swat_rifle,
-	on_executed = { { id = 410064, delay = 0 } },
+	on_executed = { { id = 410065, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet3 = {
 	enemy = is_eclipse and heavy_rifle or swat_rifle,
-	on_executed = { { id = 410065, delay = 0 } },
+	on_executed = { { id = 410066, delay = 0 } },
 	enabled = true,
 }
 local optsSwatWallFirstStreet4 = {
 	enemy = is_eclipse and heavy_rifle or swat_rifle,
-	on_executed = { { id = 410066, delay = 0 } },
+	on_executed = { { id = 410067, delay = 0 } },
 	enabled = true,
 }
 
@@ -216,7 +216,7 @@ local optsKickthefuckingdoor = {
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 600188, notify_unit_sequence = "open_out", time = 0 },
 	},
-	on_executed = { { id = 410003, delay = 0 } },
+	on_executed = { { id = 410004, delay = 0 } },
 }
 
 local optsGarageHunt = {
@@ -242,7 +242,7 @@ local optsspawnSWATs = {
 }
 
 local optsspawnfirststreetSWATs = {
-	on_executed = { { id = 410055, delay = 0 }, { id = 410056, delay = 0 }, { id = 410057, delay = 0 }, { id = 410058, delay = 0 }, { id = 410059, delay = 0 }, { id = 410060, delay = 0 } },
+	on_executed = { { id = 410056, delay = 0 }, { id = 410057, delay = 0 }, { id = 410058, delay = 0 }, { id = 410059, delay = 0 }, { id = 410060, delay = 0 }, { id = 410061, delay = 0 } },
 	enabled = overkill_and_above,
 }
 
@@ -313,27 +313,36 @@ local optsBesiegeStart = {
 	},
 }
 local optsPreferedAdd1 = { -- Major Ave. 1
-	spawn_groups = { 400027, 400032, 400037, 400042 },
+	on_executed = {
+		{ id = 400027, delay = 0 },
+		{ id = 400032, delay = 0 },
+		{ id = 400037, delay = 0 },
+		{ id = 400042, delay = 0 },
+	},
 	enabled = true,
 }
 local optsPreferedRemove1 = { -- Major Ave. 1
-	elements = { 410004 },
 	enabled = true,
 }
 local optsPreferedAdd2 = {
-	spawn_groups = { 400048, 400053 }, -- Major Ave. 2
+	on_executed = {
+		{ id = 400048, delay = 0 },
+		{ id = 400053, delay = 0 },
+	},
 	enabled = true,
 }
 local optsPreferedRemove2 = { -- Major Ave. 2
-	elements = { 410006 },
 	enabled = true,
 }
 local optsPreferedAdd3 = { -- Easy St.
-	spawn_groups = { 400058, 400063, 400068 },
+	on_executed = {
+		{ id = 400058, delay = 0 },
+		{ id = 400063, delay = 0 },
+		{ id = 400068, delay = 0 },
+	},
 	enabled = true,
 }
 local optsPreferedRemove3 = { -- Easy St.
-	elements = { 410008 },
 	enabled = true,
 }
 local optsPreferedAdd4 = { -- Inkwell
@@ -341,40 +350,50 @@ local optsPreferedAdd4 = { -- Inkwell
 	enabled = true,
 }
 local optsPreferedRemove4 = { -- Inkwell
-	elements = { 410010 },
+	elements = { 410011 },
 	enabled = true,
 }
 local optsPreferedAdd5 = { -- Armitage Ave.
-	spawn_groups = { 410016, 410021 },
+	on_executed = {
+		{ id = 410017, delay = 0 },
+		{ id = 410022, delay = 0 },
+	},
 	enabled = true,
 }
 local optsPreferedRemove5 = { -- Armitage Ave.
-	elements = { 410022 },
 	enabled = true,
 }
 local optsPreferedAdd6 = { -- Overpass 1
-	spawn_groups = { 410028, 410033 },
+	on_executed = {
+		{ id = 410029, delay = 0 },
+		{ id = 410034, delay = 0 },
+	},
 	enabled = true,
 }
 local optsPreferedRemove6 = { -- Overpass 1
-	elements = { 410034 },
 	enabled = true,
 }
 local optsPreferedAdd7 = { -- Overpass 2
-	spawn_groups = { 103998, 410040 },
+	on_executed = {
+		{ id = 103998, delay = 0 },
+		{ id = 410041, delay = 0 },
+	},
 	enabled = true,
 }
 local optsPreferedRemove7 = { -- Overpass 2
-	elements = { 410041 },
 	enabled = true,
 }
 local optsPreferedAdd8 = { -- Finale
-	spawn_groups = { 410047, 410052 },
+	spawn_groups = { 410048, 410053 },
 	enabled = true,
 }
 local optsPreferedRemove8 = { -- Finale
-	elements = { 410053 },
+	elements = { 410054 },
 	enabled = true,
+}
+local opts_swat_van_group = {
+	spawn_type = "group_guaranteed",
+	amount = 4,
 }
 M.elements = {
 	-- 193+ alike shield wall on turning the corner on major ave.
@@ -416,51 +435,57 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400024, "eclipse_besiege_swat_02", Vector3(-1782, -441, 50), Rotation(97, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400025, "eclipse_besiege_swat_03", Vector3(-1827, -382, 50), Rotation(97, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400026, "eclipse_besiege_swat_04", Vector3(-1821, -427, 50), Rotation(97, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400027, "eclipse_swat_van_besiege_01", { 400023, 400024, 400025, 400026 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400027, "eclipse_swat_van_besiege_01", { 400023, 400024, 400025, 400026 }, 0, opts_swat_van_group),
+
 	Eclipse.mission_elements.gen_dummy(400028, "eclipse_besiege_swat_05", Vector3(-2055, -2876, 50), Rotation(110, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400029, "eclipse_besiege_swat_06", Vector3(-2027, -2953, 50), Rotation(110, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400030, "eclipse_besiege_swat_07", Vector3(-2076, -2903, 50), Rotation(110, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400031, "eclipse_besiege_swat_08", Vector3(-2062, -2943, 50), Rotation(110, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400032, "eclipse_swat_van_besiege_02", { 400028, 400029, 400030, 400031 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400032, "eclipse_swat_van_besiege_02", { 400028, 400029, 400030, 400031 }, 0, opts_swat_van_group),
+
 	Eclipse.mission_elements.gen_dummy(400033, "eclipse_besiege_swat_09", Vector3(-3406, 306, 50), Rotation(51, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400034, "eclipse_besiege_swat_10", Vector3(-3448, 254, 50), Rotation(51, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400035, "eclipse_besiege_swat_11", Vector3(-3440, 318, 50), Rotation(51, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400036, "eclipse_besiege_swat_12", Vector3(-3464, 288, 50), Rotation(51, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400037, "eclipse_swat_van_besiege_03", { 400033, 400034, 400035, 400036 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400037, "eclipse_swat_van_besiege_03", { 400033, 400034, 400035, 400036 }, 0, opts_swat_van_group),
+
 	Eclipse.mission_elements.gen_dummy(400038, "eclipse_besiege_swat_13", Vector3(-1178, -2047, 50), Rotation(173, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400039, "eclipse_besiege_swat_14", Vector3(-1087, -2058, 50), Rotation(173, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400040, "eclipse_besiege_swat_15", Vector3(-1164, -2082, 50), Rotation(173, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400041, "eclipse_besiege_swat_16", Vector3(-1116, -2088, 50), Rotation(173, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400042, "eclipse_swat_van_besiege_04", { 400038, 400039, 400040, 400041 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400042, "eclipse_swat_van_besiege_04", { 400038, 400039, 400040, 400041 }, 0, opts_swat_van_group),
+
+	-- major ave. crossroad swat vans
 	Eclipse.mission_elements.gen_dummy(400044, "eclipse_besiege_swat_17", Vector3(-8317, -1038, 38), Rotation(115, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400045, "eclipse_besiege_swat_18", Vector3(-8281, -1112, 38), Rotation(115, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400046, "eclipse_besiege_swat_19", Vector3(-8344, -1070, 38), Rotation(115, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400047, "eclipse_besiege_swat_20", Vector3(-8326, -1108, 38), Rotation(115, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(400048, "eclipse_swat_van_besiege_05", { 400044, 400045, 400046, 400047 }, 0, opts_swat_van_group),
 
-	-- major ave. crossroad swat vans
-	Eclipse.mission_elements.gen_spawngroup(400048, "eclipse_swat_van_besiege_05", { 400044, 400045, 400046, 400047 }, 20),
 	Eclipse.mission_elements.gen_dummy(400049, "eclipse_besiege_swat_21", Vector3(-7315, -2660, 50), Rotation(-160, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400050, "eclipse_besiege_swat_22", Vector3(-7241, -2632, 50), Rotation(-160, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400051, "eclipse_besiege_swat_23", Vector3(-7282, -2690, 50), Rotation(-160, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400052, "eclipse_besiege_swat_24", Vector3(-7240, -2673, 50), Rotation(-160, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400053, "eclipse_swat_van_besiege_06", { 400049, 400050, 400051, 400052 }, 20),
+	Eclipse.mission_elements.gen_spawngroup(400053, "eclipse_swat_van_besiege_06", { 400049, 400050, 400051, 400052 }, 0, opts_swat_van_group),
 
 	-- easy st. swat vans
 	Eclipse.mission_elements.gen_dummy(400054, "eclipse_besiege_swat_25", Vector3(-8283, -8506, 38), Rotation(135, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400055, "eclipse_besiege_swat_26", Vector3(-8236, -8552, 38), Rotation(135, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400056, "eclipse_besiege_swat_27", Vector3(-8301, -8540, 38), Rotation(135, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400057, "eclipse_besiege_swat_28", Vector3(-8270, -8571, 38), Rotation(135, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400058, "eclipse_swat_van_besiege_07", { 400054, 400055, 400056, 400057 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400058, "eclipse_swat_van_besiege_07", { 400054, 400055, 400056, 400057 }, 0, opts_swat_van_group),
+
 	Eclipse.mission_elements.gen_dummy(400059, "eclipse_besiege_swat_29", Vector3(-9177, -8072, 50), Rotation(-137, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400060, "eclipse_besiege_swat_30", Vector3(-9230, -8122, 50), Rotation(-137, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400061, "eclipse_besiege_swat_31", Vector3(-9195, -8135, 50), Rotation(-137, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400062, "eclipse_besiege_swat_32", Vector3(-9166, -8107, 50), Rotation(-137, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400063, "eclipse_swat_van_besiege_08", { 400059, 400060, 400061, 400062 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400063, "eclipse_swat_van_besiege_08", { 400059, 400060, 400061, 400062 }, 0, opts_swat_van_group),
+
 	Eclipse.mission_elements.gen_dummy(400064, "eclipse_besiege_swat_33", Vector3(-8352, -11690, 38), Rotation(-163, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400065, "eclipse_besiege_swat_34", Vector3(-8274, -11667, 38), Rotation(-163, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400066, "eclipse_besiege_swat_35", Vector3(-8322, -11714, 38), Rotation(-163, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400067, "eclipse_besiege_swat_36", Vector3(-8279, -11703, 38), Rotation(-163, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400068, "eclipse_swat_van_besiege_09", { 400064, 400065, 400066, 400067 }, 15),
+	Eclipse.mission_elements.gen_spawngroup(400068, "eclipse_swat_van_besiege_09", { 400064, 400065, 400066, 400067 }, 0, opts_swat_van_group),
 	Eclipse.mission_elements.gen_areatrigger(400043, "eclipse_reached_easy_st_vans_trigger", Vector3(-9034, -7941, 38), Rotation(0, 0, 0), optsReachedSwatVansTrigger),
 
 	-- inkwell blockade swat van spawns
@@ -468,75 +493,21 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400070, "eclipse_besiege_swat_38", Vector3(-9286, -15461, 50), Rotation(-173, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400071, "eclipse_besiege_swat_39", Vector3(-9229, -15444, 50), Rotation(-135, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400072, "eclipse_besiege_swat_40", Vector3(-9216, -15418, 50), Rotation(-135, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400073, "eclipse_swat_van_besiege_10", { 400069, 400070, 400071, 400072 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400073, "eclipse_swat_van_besiege_10", { 400069, 400070, 400071, 400072 }, 0),
+
 	Eclipse.mission_elements.gen_dummy(400074, "eclipse_besiege_swat_41", Vector3(-8493, -15553, 38), Rotation(167, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400075, "eclipse_besiege_swat_42", Vector3(-8469, -15558, 38), Rotation(167, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400076, "eclipse_besiege_swat_43", Vector3(-8431, -15572, 38), Rotation(180, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400077, "eclipse_besiege_swat_44", Vector3(-8400, -15572, 38), Rotation(180, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400078, "eclipse_swat_van_besiege_11", { 400074, 400075, 400076, 400077 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400078, "eclipse_swat_van_besiege_11", { 400074, 400075, 400076, 400077 }, 0),
 
 	-- one inkwell spawngroup just to diverisify the directions that cops come from
 	Eclipse.mission_elements.gen_dummy(400079, "eclipse_besiege_swat_45", Vector3(-11868, -11613, 49), Rotation(-90, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400080, "eclipse_besiege_swat_46", Vector3(-11852, -11752, 49), Rotation(-90, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400081, "eclipse_besiege_swat_47", Vector3(-11930, -11650, 49), Rotation(-90, -0, -0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400082, "eclipse_besiege_swat_48", Vector3(-11922, -11718, 49), Rotation(-90, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(400083, "eclipse_inkwell_besiege_01", { 400079, 400080, 400081, 400082 }, 10),
+	Eclipse.mission_elements.gen_spawngroup(400083, "eclipse_inkwell_besiege_01", { 400079, 400080, 400081, 400082 }, 0),
 	Eclipse.mission_elements.gen_areatrigger(400084, "eclipse_reached_easy_st_far_vans_trigger", Vector3(-8552, -10462, 38), Rotation(0, 0, 0), optsReachedFarSwatVansTrigger),
-
-	--uphill spawns
-	Eclipse.mission_elements.gen_dummy(410012, "eclipse_besiege_swat_49", Vector3(-17529.900, -10240.912, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410013, "eclipse_besiege_swat_50", Vector3(-17615, -10259, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410014, "eclipse_besiege_swat_51", Vector3(-17615.658, -10318.437, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410015, "eclipse_besiege_swat_52", Vector3(-17510.016, -10295.912, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410016, "eclipse_swat_van_besiege_12", { 410012, 410013, 410014, 410015 }, 10),
-
-	Eclipse.mission_elements.gen_dummy(410017, "eclipse_besiege_swat_53", Vector3(-15721, -10454, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410018, "eclipse_besiege_swat_54", Vector3(-15655.909, -10393.303, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410019, "eclipse_besiege_swat_55", Vector3(-15687.395, -10504.700, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410020, "eclipse_besiege_swat_56", Vector3(-15614.989, -10437.184, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410021, "eclipse_swat_van_besiege_12", { 410017, 410018, 410019, 410020 }, 10),
-
-	Eclipse.mission_elements.gen_preferedadd(410022, "eclipse_armitage_ave_preferedadd", optsPreferedAdd5),
-	Eclipse.mission_elements.gen_preferedremove(410023, "eclipse_armitage_ave_preferedremove", optsPreferedRemove5),
-
-	Eclipse.mission_elements.gen_dummy(410024, "eclipse_besiege_swat_57", Vector3(-8183, -10629, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410025, "eclipse_besiege_swat_59", Vector3(-8208.882, -10532.407, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410026, "eclipse_besiege_swat_60", Vector3(-8133.668, -10619.924, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410027, "eclipse_besiege_swat_61", Vector3(-8160.585, -10519.467, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410028, "eclipse_swat_van_besiege_13", { 410024, 410025, 410026, 410027 }, 10),
-
-	Eclipse.mission_elements.gen_dummy(410029, "eclipse_besiege_swat_62", Vector3(-6407, -9807, 1786.910), Rotation(-108, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410030, "eclipse_besiege_swat_63", Vector3(-6379.807, -9723.307, 1786.910), Rotation(-108, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410031, "eclipse_besiege_swat_64", Vector3(-6351.815, -9828.086, 1786.910), Rotation(-108, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410032, "eclipse_besiege_swat_65", Vector3(-6323.694, -9741.539, 1786.910), Rotation(-108, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410033, "eclipse_swat_van_besiege_14", { 410029, 410030, 410031, 410032 }, 10),
-
-	Eclipse.mission_elements.gen_preferedadd(410034, "eclipse_overpass_preferedadd_1", optsPreferedAdd6),
-	Eclipse.mission_elements.gen_preferedremove(410035, "eclipse_overpass_preferedremove_1", optsPreferedRemove6),
-
-	Eclipse.mission_elements.gen_dummy(410036, "eclipse_besiege_swat_66", Vector3(-3760.446, -11386.476, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410037, "eclipse_besiege_swat_67", Vector3(-3691.239, -11420.230, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410038, "eclipse_besiege_swat_68", Vector3(-3794.377, -11437.795, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410039, "eclipse_besiege_swat_69", Vector3(-3717.979, -11475.059, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410040, "eclipse_swat_van_besiege_15", { 410036, 410037, 410038, 410039 }, 10),
-
-	Eclipse.mission_elements.gen_preferedadd(410041, "eclipse_overpass_preferedadd_2", optsPreferedAdd7),
-	Eclipse.mission_elements.gen_preferedremove(410042, "eclipse_overpass_preferedremove_2", optsPreferedRemove7),
-
-	Eclipse.mission_elements.gen_dummy(410043, "eclipse_besiege_swat_70", Vector3(365, -10482, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410044, "eclipse_besiege_swat_71", Vector3(382.257, -10400.814, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410045, "eclipse_besiege_swat_72", Vector3(415.325, -10504.966, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410046, "eclipse_besiege_swat_73", Vector3(435.077, -10412.042, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410047, "eclipse_swat_van_besiege_16", { 410043, 410044, 410045, 410046 }, 10),
-
-	Eclipse.mission_elements.gen_dummy(410048, "eclipse_besiege_swat_74", Vector3(127.124, -9174.840, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410049, "eclipse_besiege_swat_75", Vector3(72.330, -9104.707, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410050, "eclipse_besiege_swat_76", Vector3(178.468, -9151.223, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_dummy(410051, "eclipse_besiege_swat_77", Vector3(115.671, -9070.846, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_spawngroup(410052, "eclipse_swat_van_besiege_17", { 410048, 410049, 410050, 410051 }, 10),
-
-	Eclipse.mission_elements.gen_preferedadd(410053, "eclipse_finale_preferedadd", optsPreferedAdd8),
-	Eclipse.mission_elements.gen_preferedremove(410054, "eclipse_finale_preferedremove", optsPreferedRemove8),
 
 	-- more scripted sniper spots
 	Eclipse.mission_elements.gen_dummy(400085, "eclipse_armitage_ave_sniper_01", Vector3(-8377, -9876, 1569), Rotation(0, 0, 0), optsArmitageSniper_01),
@@ -557,7 +528,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400094, "eclipse_inkwell_dozer_2", Vector3(-7323, -11120, 50), Rotation(90, 0, -0), optsInkwellDozer),
 	Eclipse.mission_elements.gen_so(400095, "eclipse_dozer_hunt", Vector3(-8500, -9507, 50), Rotation(0, 0, 0), optsDozerHuntSO),
 	Eclipse.mission_elements.gen_dummy(400096, "eclipse_major_ave_sniper_01", Vector3(-1765, -3564, 1949), Rotation(0, 0, 0), optsMajorSniper_01),
-	Eclipse.mission_elements.gen_so(400097, "eclipse_armitage_ave_sniper_SO_01", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsSniperSO),
+	Eclipse.mission_elements.gen_so(400097, "eclipse_major_ave_sniper_SO_01", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsSniperSO),
 
 	-- restore pdth events
 	-- gate doors
@@ -565,39 +536,95 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400099, "open_gate_2", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_2),
 	Eclipse.mission_elements.gen_object_editor(410000, "open_gate_3", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_3),
 	Eclipse.mission_elements.gen_missionscript(410001, "spawn_garage_swats", optsspawnSWATs),
-	Eclipse.mission_elements.gen_so(410012, "garage_hunt", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGarageHunt),
+	Eclipse.mission_elements.gen_so(410002, "garage_hunt", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGarageHunt),
 	-- dozer slamming door spawn
-	Eclipse.mission_elements.gen_object_editor(410002, "open_the_door", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsKickthefuckingdoor),
-	Eclipse.mission_elements.gen_dummy(410003, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
+	Eclipse.mission_elements.gen_object_editor(410003, "open_the_door", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsKickthefuckingdoor),
+	Eclipse.mission_elements.gen_dummy(410004, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
+
+	Eclipse.mission_elements.gen_missionscript(410005, "eclipse_major_ave_preferedadd_1", optsPreferedAdd1),
+	Eclipse.mission_elements.gen_preferedremove(410006, "eclipse_major_ave_preferedremove_1", optsPreferedRemove1),
+
+	Eclipse.mission_elements.gen_missionscript(410007, "eclipse_major_ave_preferedadd_2", optsPreferedAdd2),
+	Eclipse.mission_elements.gen_preferedremove(410008, "eclipse_major_ave_preferedremove_2", optsPreferedRemove2),
+
+	Eclipse.mission_elements.gen_missionscript(410009, "eclipse_easy_st_preferedadd", optsPreferedAdd3),
+	Eclipse.mission_elements.gen_preferedremove(410010, "eclipse_easy_st_preferedremove", optsPreferedRemove3),
+
+	Eclipse.mission_elements.gen_preferedadd(410011, "eclipse_inkwell_preferedadd", optsPreferedAdd4),
+	Eclipse.mission_elements.gen_preferedremove(410012, "eclipse_inkwell_preferedremove", optsPreferedRemove4),
+
+	--uphill spawns
+	Eclipse.mission_elements.gen_dummy(410013, "eclipse_besiege_swat_49", Vector3(-17529.900, -10240.912, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410014, "eclipse_besiege_swat_50", Vector3(-17615, -10259, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410015, "eclipse_besiege_swat_51", Vector3(-17615.658, -10318.437, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410016, "eclipse_besiege_swat_52", Vector3(-17510.016, -10295.912, 1037.997), Rotation(-168, 0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(410017, "eclipse_swat_van_besiege_12", { 410013, 410014, 410015, 410016 }, 0, opts_swat_van_group),
+
+	Eclipse.mission_elements.gen_dummy(410018, "eclipse_besiege_swat_53", Vector3(-15721, -10454, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410019, "eclipse_besiege_swat_54", Vector3(-15655.909, -10393.303, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410020, "eclipse_besiege_swat_55", Vector3(-15687.395, -10504.700, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410021, "eclipse_besiege_swat_56", Vector3(-15614.989, -10437.184, 1037.997), Rotation(-137, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(410022, "eclipse_swat_van_besiege_12", { 410018, 410019, 410020, 410021 }, 0, opts_swat_van_group),
+
+	Eclipse.mission_elements.gen_missionscript(410023, "eclipse_armitage_ave_preferedadd", optsPreferedAdd5),
+	Eclipse.mission_elements.gen_preferedremove(410025, "eclipse_armitage_ave_preferedremove", optsPreferedRemove5),
+
+	Eclipse.mission_elements.gen_dummy(410025, "eclipse_besiege_swat_57", Vector3(-8183, -10629, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410026, "eclipse_besiege_swat_59", Vector3(-8208.882, -10532.407, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410027, "eclipse_besiege_swat_60", Vector3(-8133.668, -10619.924, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410028, "eclipse_besiege_swat_61", Vector3(-8160.585, -10519.467, 1603.626), Rotation(-75, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(410029, "eclipse_swat_van_besiege_13", { 410025, 410026, 410027, 410028 }, 0, opts_swat_van_group),
+
+	Eclipse.mission_elements.gen_dummy(410030, "eclipse_besiege_swat_62", Vector3(-6407, -9807, 1786.90), Rotation(-108, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410031, "eclipse_besiege_swat_63", Vector3(-6379.807, -9723.307, 1786.90), Rotation(-108, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410032, "eclipse_besiege_swat_64", Vector3(-6351.815, -9828.086, 1786.90), Rotation(-108, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410033, "eclipse_besiege_swat_65", Vector3(-6323.694, -9741.539, 1786.90), Rotation(-108, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(410034, "eclipse_swat_van_besiege_14", { 410030, 410031, 410032, 410033 }, 0, opts_swat_van_group),
+
+	Eclipse.mission_elements.gen_missionscript(410035, "eclipse_overpass_preferedadd_1", optsPreferedAdd6),
+	Eclipse.mission_elements.gen_preferedremove(410036, "eclipse_overpass_preferedremove_1", optsPreferedRemove6),
+
+	Eclipse.mission_elements.gen_dummy(410037, "eclipse_besiege_swat_66", Vector3(-3760.446, -11386.476, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410038, "eclipse_besiege_swat_67", Vector3(-3691.239, -11420.230, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410039, "eclipse_besiege_swat_68", Vector3(-3794.377, -11437.795, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410040, "eclipse_besiege_swat_69", Vector3(-3717.979, -11475.059, 2050), Rotation(154, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(410041, "eclipse_swat_van_besiege_15", { 410037, 410038, 410039, 410040 }, 0, opts_swat_van_group),
+
+	Eclipse.mission_elements.gen_missionscript(410042, "eclipse_overpass_preferedadd_2", optsPreferedAdd7),
+	Eclipse.mission_elements.gen_preferedremove(410043, "eclipse_overpass_preferedremove_2", optsPreferedRemove7),
+
+	Eclipse.mission_elements.gen_dummy(410044, "eclipse_besiege_swat_70", Vector3(365, -10482, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410045, "eclipse_besiege_swat_71", Vector3(382.257, -10400.814, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410046, "eclipse_besiege_swat_72", Vector3(415.325, -10504.966, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410047, "eclipse_besiege_swat_73", Vector3(435.077, -10412.042, 2038.007), Rotation(-102, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(410048, "eclipse_swat_van_besiege_16", { 410043, 410044, 410045, 410046 }, 0),
+
+	Eclipse.mission_elements.gen_dummy(410049, "eclipse_besiege_swat_74", Vector3(127.124, -9174.840, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410050, "eclipse_besiege_swat_75", Vector3(72.330, -9104.707, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410051, "eclipse_besiege_swat_76", Vector3(178.468, -9151.223, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(410052, "eclipse_besiege_swat_77", Vector3(115.671, -9070.846, 2050.007), Rotation(-52, -0, -0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_spawngroup(410053, "eclipse_swat_van_besiege_17", { 410048, 410049, 410050, 410051 }, 0),
+
+	Eclipse.mission_elements.gen_preferedadd(410054, "eclipse_finale_preferedadd", optsPreferedAdd8),
+	Eclipse.mission_elements.gen_preferedremove(410055, "eclipse_finale_preferedremove", optsPreferedRemove8),
+
 	-- first street blockade on ovk above
-	Eclipse.mission_elements.gen_dummy(410055, "shield_wall_1", Vector3(5473, 7144, 37.731), Rotation(0, 0, 0), optsShieldWallFirstStreet1),
-	Eclipse.mission_elements.gen_dummy(410056, "shield_wall_2", Vector3(5396, 7144, 37.731), Rotation(0, 0, 0), optsShieldWallFirstStreet2),
-	Eclipse.mission_elements.gen_dummy(410057, "swat_wall_1", Vector3(5467, 6940, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet1),
-	Eclipse.mission_elements.gen_dummy(410058, "swat_wall_2", Vector3(5375, 6940, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet2),
-	Eclipse.mission_elements.gen_dummy(410059, "swat_wall_3", Vector3(5473, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet3),
-	Eclipse.mission_elements.gen_dummy(410060, "swat_wall_4", Vector3(5375, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet4),
+	Eclipse.mission_elements.gen_dummy(410056, "shield_wall_1", Vector3(5473, 7144, 37.731), Rotation(0, 0, 0), optsShieldWallFirstStreet1),
+	Eclipse.mission_elements.gen_dummy(410057, "shield_wall_2", Vector3(5396, 7144, 37.731), Rotation(0, 0, 0), optsShieldWallFirstStreet2),
+	Eclipse.mission_elements.gen_dummy(410058, "swat_wall_1", Vector3(5467, 6940, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet1),
+	Eclipse.mission_elements.gen_dummy(410059, "swat_wall_2", Vector3(5375, 6940, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet2),
+	Eclipse.mission_elements.gen_dummy(410060, "swat_wall_3", Vector3(5473, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet3),
+	Eclipse.mission_elements.gen_dummy(410061, "swat_wall_4", Vector3(5375, 7043, 37.731), Rotation(0, 0, 0), optsSwatWallFirstStreet4),
 
-	Eclipse.mission_elements.gen_so(410061, "wall_so_1", Vector3(5683.251, 7805.179, 50.238), Rotation(-57, 0, -0), optsFirstStreet_AIsniper),
-	Eclipse.mission_elements.gen_so(410062, "wall_so_2", Vector3(5608.774, 7902.256, 40.070), Rotation(-73, 0, -0), optsFirstStreet_AIsniper),
-	Eclipse.mission_elements.gen_so(410063, "wall_so_3", Vector3(5545.174, 7779.762, 37.728), Rotation(-63, 0, -0), optsFirstStreet_AIsniper),
-	Eclipse.mission_elements.gen_so(410064, "wall_so_4", Vector3(5719, 8462, 37.068), Rotation(-87, 0, -0), optsFirstStreet_AIsniper),
-	Eclipse.mission_elements.gen_so(410065, "wall_so_5", Vector3(5394.246, 8257.724, 37.068), Rotation(-87, 0, -0), optsFirstStreet_AIsniper),
-	Eclipse.mission_elements.gen_so(410066, "wall_so_6", Vector3(5470.247, 8966.672, 37.068), Rotation(-87, 0, 0), optsFirstStreet_AIsniper),
-	Eclipse.mission_elements.gen_missionscript(410067, "spawn_first_street_swats", optsspawnfirststreetSWATs),
+	Eclipse.mission_elements.gen_so(410062, "wall_so_1", Vector3(5683.251, 7805.179, 50.238), Rotation(-57, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410063, "wall_so_2", Vector3(5608.774, 7902.256, 40.070), Rotation(-73, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410064, "wall_so_3", Vector3(5545.174, 7779.762, 37.728), Rotation(-63, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410065, "wall_so_4", Vector3(5719, 8462, 37.068), Rotation(-87, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410066, "wall_so_5", Vector3(5394.246, 8257.724, 37.068), Rotation(-87, 0, -0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_so(410067, "wall_so_6", Vector3(5470.247, 8966.672, 37.068), Rotation(-87, 0, 0), optsFirstStreet_AIsniper),
+	Eclipse.mission_elements.gen_missionscript(410068, "spawn_first_street_swats", optsspawnfirststreetSWATs),
 	-- lights on for cop cars
-	Eclipse.mission_elements.gen_object_editor(410068, "cop_car_lights", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optscop_car_lights_on),
-
-	Eclipse.mission_elements.gen_preferedadd(410004, "eclipse_major_ave_preferedadd_1", optsPreferedAdd1),
-	Eclipse.mission_elements.gen_preferedremove(410005, "eclipse_major_ave_preferedremove_1", optsPreferedRemove1),
-
-	Eclipse.mission_elements.gen_preferedadd(410006, "eclipse_major_ave_preferedadd_2", optsPreferedAdd2),
-	Eclipse.mission_elements.gen_preferedremove(410007, "eclipse_major_ave_preferedremove_2", optsPreferedRemove2),
-
-	Eclipse.mission_elements.gen_preferedadd(410008, "eclipse_easy_st_preferedadd", optsPreferedAdd3),
-	Eclipse.mission_elements.gen_preferedremove(410009, "eclipse_easy_st_preferedremove", optsPreferedRemove3),
-
-	Eclipse.mission_elements.gen_preferedadd(410010, "eclipse_inkwell_preferedadd", optsPreferedAdd4),
-	Eclipse.mission_elements.gen_preferedremove(410011, "eclipse_inkwell_preferedremove", optsPreferedRemove4),
+	Eclipse.mission_elements.gen_object_editor(410069, "cop_car_lights", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optscop_car_lights_on),
 }
 
 return M
