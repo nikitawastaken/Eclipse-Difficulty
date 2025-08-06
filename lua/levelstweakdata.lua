@@ -455,7 +455,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			cloaker = 1,
 		},
 	}
-	
+
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)

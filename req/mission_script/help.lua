@@ -8,7 +8,7 @@ local spawn_so = {
 local water_spawn = {
 	values = {
 		interval = 15,
-	},	
+	},
 }
 local portal_spawn = {
 	values = {
