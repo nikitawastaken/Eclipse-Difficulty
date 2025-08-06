@@ -61,7 +61,7 @@ local van_guaranteed_spawn = {
 }
 local street_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local van_spawn = {
