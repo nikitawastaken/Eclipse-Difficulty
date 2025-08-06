@@ -444,9 +444,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.chill_combat.group_ai_preset = "small_urban"
 
-	self.help.group_ai_settings = deep_clone(self.flat.group_ai_settings)
-	self.help.group_ai_settings.force_tactics = nil
-
+	self.help.group_ai_settings = {
+		spawn_kill_cooldown = 15,
+		assault_force_mul = 0.7,
+		difficulty_scaling = {
+			assault_delay = 30,
+			assault_add = 0.15,
+		},
+		special_limit_add = {
+			cloaker = 1,
+		},
+	}
+	
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 
 	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
@@ -479,7 +488,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.dah.group_ai_preset = "skyscraper"
 
 	self.hvh.group_ai_settings = {
-		spawn_kill_distance_mul = 1000,
+		spawn_kill_distance = 1000,
 		assault_force_mul = 0.5,
 		recon_force_mul = 0.6,
 		difficulty_scaling = {
