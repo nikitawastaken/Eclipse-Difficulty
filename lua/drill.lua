@@ -76,7 +76,7 @@ function Drill:on_sabotage_SO_started(saboteur)
 
 	if can_stun then
 		local pos = saboteur:position()
-		local range = 500
+		local range = 50
 		local slot_mask = managers.slot:get_mask("explosion_targets")
 
 		managers.explosion:tase_area({
@@ -88,8 +88,7 @@ function Drill:on_sabotage_SO_started(saboteur)
 			curve_pow = 3,
 			damage = 10,
 			ignore_unit = self._unit,
-			user = self._unit,
-			owner = self._unit,
+			unit = self._unit,
 			alert_radius = 1,
 		})
 
