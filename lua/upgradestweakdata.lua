@@ -1480,8 +1480,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.near_teammate_damage_multiplier = {
 		{
 			mul = 0.8,
-			range = 700
-		}
+			range = 700,
+		},
 	}
 	self.definitions.player_near_teammate_damage_multiplier = {
 		name_id = "menu_player_near_teammate_damage_multiplier",
@@ -1500,8 +1500,8 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "electrocuting_drill",
 			synced = true,
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.cooldown.electrocuting_drill = { { 1, 20 } }
 	self.definitions.cooldown_electrocuting_drill = {

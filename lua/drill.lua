@@ -49,7 +49,7 @@ function Drill.get_upgrades(drill_unit, player)
 			speed_upgrade_level = player_skill.skill_level("player", "drill_speed_multiplier", 0, player),
 			silent_drill = player_skill.has_skill("player", "silent_drill", player),
 			reduced_alert = player_skill.has_skill("player", "drill_alert_rad", player),
-			electrocuting_drill = player_skill.has_skill("player", "electrocuting_drill", player)
+			electrocuting_drill = player_skill.has_skill("player", "electrocuting_drill", player),
 		}
 	end
 
@@ -63,7 +63,7 @@ function Drill.create_upgrades(auto_repair_level_1, auto_repair_level_2, speed_u
 		speed_upgrade_level = speed_upgrade_level,
 		silent_drill = silent_drill,
 		reduced_alert = reduced_alert,
-		electrocuting_drill = electrocuting_drill
+		electrocuting_drill = electrocuting_drill,
 	}
 end
 
@@ -76,11 +76,10 @@ function Drill:on_sabotage_SO_started(saboteur)
 
 	if can_stun then
 		local pos = saboteur:position()
-		local normal = math.UP
 		local range = 500
 		local slot_mask = managers.slot:get_mask("explosion_targets")
 
-		local hit_units, splinters = managers.explosion:detect_and_tase({
+		managers.explosion:tase_area({
 			player_damage = 0,
 			tase_strength = "heavy",
 			hit_pos = pos,
@@ -89,7 +88,9 @@ function Drill:on_sabotage_SO_started(saboteur)
 			curve_pow = 3,
 			damage = 10,
 			ignore_unit = self._unit,
-			alert_radius = 1
+			user = self._unit,
+			owner = self._unit,
+			alert_radius = 1,
 		})
 
 		saboteur:sound():play("gl_electric_explode", nil, true)

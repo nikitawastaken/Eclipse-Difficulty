@@ -111,3 +111,74 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, de
 
 	return results
 end)
+
+function ExplosionManager:tase_area(params)
+	local slotmask = params.collision_slotmask
+	local bodies = World:find_bodies("intersect", "sphere", params.hit_pos, params.range, slotmask)
+	local damage = params.damage
+	local characters_hit = {}
+
+	for _, hit_body in ipairs(bodies) do
+		if alive(hit_body) then
+			local character = hit_body:unit():character_damage()
+			local apply_dmg = hit_body:extension() and hit_body:extension().damage
+			local dir, ray_hit = nil
+
+			if character and not characters_hit[hit_body:unit():key()] then
+				local com = hit_body:center_of_mass()
+				ray_hit = not World:raycast("ray", params.hit_pos, com, "slot_mask", slotmask, "ignore_unit", {
+					hit_body:unit(),
+				}, "report")
+
+				if ray_hit then
+					characters_hit[hit_body:unit():key()] = true
+				end
+			elseif apply_dmg or hit_body:dynamic() then
+				ray_hit = true
+			end
+
+			if ray_hit then
+				dir = hit_body:center_of_mass()
+				local len = mvector3.direction(dir, params.hit_pos, dir)
+
+				mvector3.direction(dir, params.hit_pos, dir)
+
+				if apply_dmg then
+					local normal = dir
+					local prop_damage = math.min(damage, 200)
+					local network_damage = math.ceil(prop_damage * 163.84)
+					prop_damage = network_damage / 163.84
+
+					hit_body:extension().damage:damage_electricity(player, normal, hit_body:position(), dir, prop_damage)
+					hit_body:extension().damage:damage_damage(player, normal, hit_body:position(), dir, prop_damage)
+
+					if hit_body:unit():id() ~= -1 then
+						if player then
+							managers.network:session():send_to_peers_synched("sync_body_damage_explosion", hit_body, player, normal, hit_body:position(), dir, math.min(32768, network_damage))
+						else
+							managers.network:session():send_to_peers_synched("sync_body_damage_explosion_no_attacker", hit_body, normal, hit_body:position(), dir, math.min(32768, network_damage))
+						end
+					end
+				end
+
+				if hit_body:unit():in_slot(managers.game_play_central._slotmask_physics_push) then
+					hit_body:unit():push(5, dir * 500)
+				end
+
+				if hit_body:unit():character_damage() then
+					Eclipse:log_chat("Applying tase")
+					hit_body:unit():character_damage():damage_tase({
+						variant = "heavy",
+						damage = math.max(params.damage * math.pow(math.clamp(1 - len / params.range, 0, 1), params.curve_pow), 1),
+						attacker_unit = params.user,
+						weapon_unit = params.owner,
+						col_ray = {
+							position = hit_body:unit():position(),
+							ray = dir,
+						},
+					})
+				end
+			end
+		end
+	end
+end
