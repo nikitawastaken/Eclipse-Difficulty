@@ -101,7 +101,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 				part.stats.zoom = 0
 			end
 
-			if is_magazine and id:match("_quick$") or id:match("_speed$") then
+			if is_magazine and id:match("_quick$") or id:match("_speed$") or id:match("_strap$") then
 				part.stats = {}
 				part.stats.concealment = -1
 				part.custom_stats = { reload_speed_multiplier = 1.1 }
@@ -296,8 +296,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_ass_g36_fg_c.stats.concealment = 1
 
 	self.parts.wpn_fps_upg_g36_fg_long.stats.spread = 2
-	self.parts.wpn_fps_upg_g36_fg_long.stats.recoil = 1
-	self.parts.wpn_fps_upg_g36_fg_long.stats.concealment = -3
+	self.parts.wpn_fps_upg_g36_fg_long.stats.recoil = 0
+	self.parts.wpn_fps_upg_g36_fg_long.stats.concealment = -2
 
 	self.parts.wpn_fps_ass_s552_b_long.stats.concealment = -1
 
@@ -876,14 +876,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		},
 		recoil = {
 			standing = {
-				hipfire = 1.2,
+				hipfire = 1.3,
 				crouching = 1,
 				steelsight = 1,
 			},
 			moving = {
-				hipfire = 1.6,
+				hipfire = 1.5,
 				crouching = 1,
-				steelsight = 1.4,
+				steelsight = 1.3,
 			},
 		},
 	}
@@ -1162,6 +1162,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		balanced = { value = 1, recoil = 1, spread = 1, concealment = -2 },
 		spread_favored = { value = 1, spread = 2, concealment = -2 },
 		recoil_favored = { value = 1, recoil = 2, concealment = -2 },
+		spread_heavily_favored = { value = 1, recoil = -1, spread = 3, concealment = -2 },
+		recoil_heavily_favored = { value = 1, recoil = 3, spread = -1, concealment = -2 },
 		small_silencer = { value = 1, damage = -3, concealment = -1 },
 		medium_silencer = { value = 1, damage = -2, spread = 1, concealment = -2 },
 		big_silencer = { value = 1, damage = -1, recoil = 1, spread = 1, concealment = -3 },
@@ -1192,9 +1194,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_upg_ns_pis_jungle.stats = pistol_barrel_ext_stats.massive_silencer
 	-- Roctec
 	self.parts.wpn_fps_upg_ns_pis_medium_gem.stats = pistol_barrel_ext_stats.medium_silencer
-	-- Champion's
-	self.parts.wpn_fps_upg_ns_pis_large_kac.stats = pistol_barrel_ext_stats.big_silencer
+	
+	-- Weapon-specific extensions
+	self.parts.wpn_fps_pis_g18c_co_1.stats = pistol_barrel_ext_stats.recoil_heavily_favored
+	self.parts.wpn_fps_pis_g18c_co_comp_2.stats = pistol_barrel_ext_stats.spread_heavily_favored
 
+	self.parts.wpn_fps_pis_1911_co_1.stats = pistol_barrel_ext_stats.recoil_heavily_favored
+	self.parts.wpn_fps_pis_1911_co_2.stats = pistol_barrel_ext_stats.spread_heavily_favored
+	
+	self.parts.wpn_fps_pis_p226_co_comp_1.stats = pistol_barrel_ext_stats.recoil_heavily_favored
+	self.parts.wpn_fps_pis_p226_co_comp_2.stats = pistol_barrel_ext_stats.spread_heavily_favored
+	
 	-- set suppression and alert size for all suppressors
 	for id, part in pairs(self.parts) do
 		local is_silencer = part.perks and table.contains(part.perks, "silencer")
@@ -2137,7 +2147,7 @@ function WeaponFactoryTweakData:_init_hornet_grenade()
 				steelsight = 1,
 			},
 			moving = {
-				hipfire = 1.6,
+				hipfire = 1.4,
 				crouching = 1,
 				steelsight = 1.2,
 			},
