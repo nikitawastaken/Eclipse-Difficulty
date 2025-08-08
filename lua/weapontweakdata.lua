@@ -2904,8 +2904,10 @@ function WeaponTweakData:_set_presets()
 			v.alert_size = (alert_sizes[v.usage] or 4000) * (v.has_suppressor and 0.2 or 1)
 			
 			local is_uzi = v.reload == "uzi"
-			
-			if v.usage == "is_smg" and not is_uzi then
+
+			if v.usage == "is_shotgun_mag" then
+				v.auto = { fire_rate = 60 / 300 }			
+			elseif v.usage == "is_smg" and not is_uzi then
 				v.auto = { fire_rate = 60 / 500 }
 			elseif v.usage == "is_smg" and is_uzi then
 				v.auto = { fire_rate = 60 / 600 }
@@ -2916,7 +2918,7 @@ function WeaponTweakData:_set_presets()
 			elseif v.usage == "mini" then
 				v.auto = { fire_rate = 60 / 3000 }
 			else
-				v.auto = { fire_rate = 60 / 300 }
+				v.auto = { fire_rate = 60 / 400 }
 			end
 		elseif k:match("_crew$") then
 			local player_id = k:gsub("_crew$", ""):gsub("_secondary$", ""):gsub("_primary$", "")
