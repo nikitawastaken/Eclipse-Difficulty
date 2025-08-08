@@ -1503,16 +1503,6 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.cooldown.electrocuting_drill = { { 1, 20 } }
-	self.definitions.cooldown_electrocuting_drill = {
-		name_id = "menu_cooldown_electrocuting_drill",
-		category = "cooldown",
-		upgrade = {
-			value = 1,
-			upgrade = "electrocuting_drill",
-			category = "cooldown",
-		},
-	}
 	self.values.player.no_secondary_deployable_penalty = { true }
 	self.definitions.player_no_secondary_deployable_penalty = {
 		name_id = "menu_player_no_secondary_deployable_penalty",
@@ -1527,7 +1517,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[7][3].multiperk = "30%"
 	self.specialization_descs[7][5].multiperk = "20%"
 	self.specialization_descs[7][5].multiperk2 = "7m"
-	self.specialization_descs[7][7].multiperk = "20"
+	self.specialization_descs[7][7].multiperk = "90%"
 	self.specialization_descs[7][9].multiperk = "full"
 	self.specialization_descs[7][9].multiperk2 = "100%"
 

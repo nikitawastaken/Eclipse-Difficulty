@@ -586,7 +586,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[7][3].icon_xy = { 5, 8 }
 	self.specializations[7][5].upgrades = { "player_near_teammate_damage_multiplier" }
 	self.specializations[7][5].icon_xy = { 5, 8 }
-	self.specializations[7][7].upgrades = { "player_electrocuting_drill", "cooldown_electrocuting_drill" }
+	self.specializations[7][7].upgrades = { "player_electrocuting_drill" }
 	self.specializations[7][7].icon_xy = { 5, 8 }
 	self.specializations[7][9].upgrades = { "player_no_secondary_deployable_penalty", "deploy_interact_faster_1", "player_passive_loot_drop_multiplier" }
 	self.specializations[7][9].icon_xy = { 5, 8 }

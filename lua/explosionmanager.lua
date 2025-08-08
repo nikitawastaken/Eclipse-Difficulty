@@ -117,7 +117,7 @@ function ExplosionManager:tase_area(params)
 	local units = World:find_units_quick("sphere", params.hit_pos, params.range, slotmask)
 
 	for _, unit in ipairs(units) do
-		if alive(unit) and unit.character_damage then
+		if alive(unit) and unit.character_damage and unit:character_damage() and unit:character_damage().damage_tase then
 			Eclipse:log_chat("Applying tase")
 			local attack_dir = params.unit:position() - unit:position()
 			mvector3.normalize(attack_dir)

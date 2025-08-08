@@ -1,3 +1,5 @@
+Drill._electrocution_chance = 0.9
+
 local level_id = Eclipse.utils.level_id()
 
 Drill.forbid_sabotage_SO_by_unit = {
@@ -74,7 +76,7 @@ function Drill:on_sabotage_SO_started(saboteur)
 
 	local can_stun = self._skill_upgrades.electrocuting_drill
 
-	if can_stun then
+	if can_stun and math.random() < Drill._electrocution_chance then
 		local pos = saboteur:position()
 		local range = 50
 		local slot_mask = managers.slot:get_mask("explosion_targets")
