@@ -350,7 +350,6 @@ function PlayerInventoryGui:_update_info_melee(name)
 	end
 end
 
-
 function PlayerInventoryGui:_update_info_deployable(name, slot)
 	local deployable_id = managers.blackmarket:equipped_deployable(slot)
 	local equipment_data = deployable_id and tweak_data.equipments[deployable_id]
@@ -373,10 +372,12 @@ function PlayerInventoryGui:_update_info_deployable(name, slot)
 		text_string = text_string .. managers.localization:text(deployable_data.name_id) .. " (x" .. tostring(amount) .. ")" .. "\n\n"
 
 		if self:_should_show_description() then
-			text_string = text_string .. managers.localization:text(deployable_data.desc_id, {
-				BTN_INTERACT = managers.localization:btn_macro("interact", true),
-				BTN_USE_ITEM = managers.localization:btn_macro("use_item", true)
-			}) .. "\n"
+			text_string = text_string
+				.. managers.localization:text(deployable_data.desc_id, {
+					BTN_INTERACT = managers.localization:btn_macro("interact", true),
+					BTN_USE_ITEM = managers.localization:btn_macro("use_item", true),
+				})
+				.. "\n"
 		end
 	end
 

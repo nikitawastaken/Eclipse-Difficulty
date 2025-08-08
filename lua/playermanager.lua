@@ -52,12 +52,12 @@ local function add_hud_item(amount, icon)
 		managers.hud:add_item_from_string({
 			amount_str = make_double_hud_string(amount[1], amount[2]),
 			amount = amount,
-			icon = icon
+			icon = icon,
 		})
 	else
 		managers.hud:add_item({
 			amount = amount[1],
-			icon = icon
+			icon = icon,
 		})
 	end
 end
@@ -66,7 +66,10 @@ end
 Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
 	local local_player = self:local_player()
 
-	if (self:has_category_upgrade("player", "near_hostage_damage_multiplier") or self:has_category_upgrade("player", "near_teammate_damage_multiplier")) and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t) then
+	if
+		(self:has_category_upgrade("player", "near_hostage_damage_multiplier") or self:has_category_upgrade("player", "near_teammate_damage_multiplier"))
+		and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t)
+	then
 		if self:has_category_upgrade("player", "near_hostage_damage_multiplier") then
 			local near_hostage_distance = self:upgrade_value("player", "near_hostage_damage_multiplier", nil).range or 0
 			self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), near_hostage_distance)
@@ -1675,7 +1678,7 @@ function PlayerManager:_add_equipment(params)
 		action_timer = tweak_data.action_timer,
 		icon = icon,
 		unit = tweak_data.unit,
-		on_use_callback = tweak_data.on_use_callback
+		on_use_callback = tweak_data.on_use_callback,
 	})
 
 	self._equipment.selected_index = self._equipment.selected_index or 1

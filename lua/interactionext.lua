@@ -301,7 +301,6 @@ function DrivingInteractionExt:interact(player, locator)
 end
 -- Carry stacker end
 
-
 -- Extra drill upgrades
 function MissionDoorDeviceInteractionExt:server_place_mission_door_device(player, sender)
 	local can_place = not self._unit:mission_door_device() or self._unit:mission_door_device():can_place()
@@ -329,12 +328,21 @@ function MissionDoorDeviceInteractionExt:server_place_mission_door_device(player
 		local upgrades = Drill.get_upgrades(self._unit, user_unit)
 
 		self._unit:base():set_skill_upgrades(upgrades)
-		network_session:send_to_peers_synched("sync_drill_upgrades", self._unit, upgrades.auto_repair_level_1, upgrades.auto_repair_level_2, upgrades.speed_upgrade_level, upgrades.silent_drill, upgrades.reduced_alert, upgrades.electrocuting_drill)
+		network_session:send_to_peers_synched(
+			"sync_drill_upgrades",
+			self._unit,
+			upgrades.auto_repair_level_1,
+			upgrades.auto_repair_level_2,
+			upgrades.speed_upgrade_level,
+			upgrades.silent_drill,
+			upgrades.reduced_alert,
+			upgrades.electrocuting_drill
+		)
 	end
 
 	if self._unit:damage() then
 		self._unit:damage():run_sequence_simple("interact", {
-			unit = player
+			unit = player,
 		})
 	end
 
