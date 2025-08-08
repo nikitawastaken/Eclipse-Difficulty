@@ -12,21 +12,10 @@ local harasser = {
 }
 local ground_spawn = {
 	values = {
-		interval = 5,
-	},
-}
-local waterfront_spawn = {
-	values = {
 		interval = 15,
 	},
 }
-local jumpdown_lower_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local jumpdown_upper_spawn = {
+local jumpdown_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -47,31 +36,20 @@ return {
 			},
 		},
 	},
-	-- Tweak the difficulty curve slightly
-	[100156] = {
-		values = {
-			difficulty = 0.5,
-		},
-	},
-	[104076] = {
-		values = {
-			difficulty = 0.75,
-		},
-	},
 	-- Spawn group delays
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- Slightly revising the original version with more pronounced intervals.
 	[104064] = ground_spawn,
 	[104065] = ground_spawn,
-	[101055] = waterfront_spawn,
-	[101189] = waterfront_spawn,
-	[101196] = waterfront_spawn,
-	[104110] = jumpdown_lower_spawn,
-	[104324] = jumpdown_lower_spawn,
-	[104330] = jumpdown_lower_spawn,
-	[104410] = jumpdown_lower_spawn,
-	[104111] = jumpdown_upper_spawn,
-	[104321] = jumpdown_upper_spawn,
+	[101055] = ground_spawn,
+	[101189] = ground_spawn,
+	[101196] = ground_spawn,
+	[104110] = jumpdown_spawn,
+	[104324] = jumpdown_spawn,
+	[104330] = jumpdown_spawn,
+	[104410] = jumpdown_spawn,
+	[104111] = jumpdown_spawn,
+	[104321] = jumpdown_spawn,
 	-- Harassers
 	[104583] = harasser,
 	[104112] = harasser,
