@@ -2124,14 +2124,25 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 480,
 					(difficulty_index ^ 2) / 240,
+					(difficulty_index ^ 2) / 120,
+				}, skyscraper and 1.25 or 1),
+				amount_max = 1,
+				rank = 1,
+				unit = "cloaker",
+				tactics = self._tactics.none,
+			}, 1000, 3000, 1.5, 0.5),
+			self:_distance_weighted_spawn_entry({
+				freq_by_diff = table_multiplier({
+					0,
+					(difficulty_index ^ 2) / 360,
+					(difficulty_index ^ 2) / 180,
 				}, small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1000, 3000, 0.5, 2),
+			}, 1000, 3000, 0.5, 1.5),
 		},
 	}
 
@@ -2166,14 +2177,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 480,
-					(difficulty_index ^ 2) / 240,
+					(difficulty_index ^ 2) / 360,
+					(difficulty_index ^ 2) / 180,
 				}, small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1000, 3000, 0.5, 2),
+			}, 1000, 3000, 0.5, 1.5),
 		},
 	}
 
@@ -2200,7 +2211,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.hrt_snk,
 			},
 			{
-				freq = (difficulty_index ^ 2) / 80 * (skyscraper and 1.25 or 1),
+				freq_by_diff = table_multiplier({
+					0,
+					(difficulty_index ^ 2) / 160,
+					(difficulty_index ^ 2) / 80,
+				}, skyscraper and 1.25 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "taser",
@@ -2443,14 +2458,25 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 480,
 					(difficulty_index ^ 2) / 240,
+					(difficulty_index ^ 2) / 120,
+				}, skyscraper and 1.25 or 1),
+				amount_max = 1,
+				rank = 1,
+				unit = "cloaker",
+				tactics = self._tactics.none,
+			}, 1000, 3000, 1.5, 0.5),
+			self:_distance_weighted_spawn_entry({
+				freq_by_diff = table_multiplier({
+					0,
+					(difficulty_index ^ 2) / 360,
+					(difficulty_index ^ 2) / 180,
 				}, small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1000, 3000, 0.5, 2),
+			}, 1000, 3000, 0.5, 1.5),
 		},
 	}
 
@@ -2474,14 +2500,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 480,
-					(difficulty_index ^ 2) / 240,
+					(difficulty_index ^ 2) / 360,
+					(difficulty_index ^ 2) / 180,
 				}, small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1000, 3000, 0.5, 2),
+			}, 1000, 3000, 0.5, 1.5),
 		},
 	}
 
