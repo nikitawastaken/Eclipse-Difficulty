@@ -41,14 +41,42 @@ end
 function PlayerManager:max_following_hostages()
 	return tweak_data.player.max_nr_following_hostages + self:upgrade_value("player", "extra_hostages", 0) + self:upgrade_value("player", "extra_hostages_chief", 0)
 end
+
+-- vanilla funcs needed to not crash
+local function make_double_hud_string(a, b)
+	return string.format("%01d|%01d", a, b)
+end
+
+local function add_hud_item(amount, icon)
+	if #amount > 1 then
+		managers.hud:add_item_from_string({
+			amount_str = make_double_hud_string(amount[1], amount[2]),
+			amount = amount,
+			icon = icon
+		})
+	else
+		managers.hud:add_item({
+			amount = amount[1],
+			icon = icon
+		})
+	end
+end
 -- end
 
 Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
 	local local_player = self:local_player()
 
-	-- allow the close to hostage checker to work without player_close_to_hostage_boost upgrade
-	if self:has_category_upgrade("player", "near_hostage_damage_multiplier") and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t) then
-		self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), 400) -- hardcode the radius for now but when hostage taker gets a rework i'll replace it
+	if (self:has_category_upgrade("player", "near_hostage_damage_multiplier") or self:has_category_upgrade("player", "near_teammate_damage_multiplier")) and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t) then
+		if self:has_category_upgrade("player", "near_hostage_damage_multiplier") then
+			local near_hostage_distance = self:upgrade_value("player", "near_hostage_damage_multiplier", nil).range or 0
+			self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), near_hostage_distance)
+		end
+
+		if self:has_category_upgrade("player", "near_teammate_damage_multiplier") then
+			local near_teammate_distance = self:upgrade_value("player", "near_teammate_damage_multiplier", nil).range or 0
+			self._is_local_close_to_criminal = alive(local_player) and managers.groupai and managers.groupai:state():is_a_criminal_within(local_player:movement():m_pos(), near_teammate_distance)
+		end
+
 		self._hostage_close_to_local_t = t + tweak_data.upgrades.hostage_near_player_check_t
 	end
 end)
@@ -637,6 +665,13 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 	-- sthlm syndrome aced standing near hostage dmg reduction
 	if self:has_category_upgrade("player", "near_hostage_damage_multiplier") and self._is_local_close_to_hostage then
 		multiplier = multiplier * self:upgrade_value("player", "near_hostage_damage_multiplier", 1)
+	end
+
+	-- tactician standing near teammate dmg reduction
+	if self:has_category_upgrade("player", "near_teammate_damage_multiplier") and self._is_local_close_to_criminal then
+		local skill = self:upgrade_value("player", "near_teammate_damage_multiplier", nil)
+
+		multiplier = multiplier * (skill.mul or 1)
 	end
 
 	return multiplier
@@ -1592,5 +1627,62 @@ function PlayerManager:_on_enter_deadeye_slowmo_event()
 				self._deadeye_slowmo.slowmo_player
 			)
 		end
+	end
+end
+
+-- Upgrade to remove secondary deployable quantity penalty
+function PlayerManager:_add_equipment(params)
+	if self:has_equipment(params.equipment) then
+		print("Allready have equipment", params.equipment)
+
+		return
+	end
+
+	local equipment = params.equipment
+	local tweak_data = tweak_data.equipments[equipment]
+	local amount = {}
+	local amount_digest = {}
+	local quantity = tweak_data.quantity
+
+	for i = 1, #quantity do
+		local equipment_name = equipment
+
+		if tweak_data.upgrade_name then
+			equipment_name = tweak_data.upgrade_name[i]
+		end
+
+		local amt = (quantity[i] or 0) + self:equiptment_upgrade_value(equipment_name, "quantity")
+		amt = managers.modifiers:modify_value("PlayerManager:GetEquipmentMaxAmount", amt, params)
+
+		table.insert(amount, amt)
+		table.insert(amount_digest, Application:digest_value(0, true))
+	end
+
+	local icon = params.icon or tweak_data and tweak_data.icon
+	local use_function_name = params.use_function_name or tweak_data and tweak_data.use_function_name
+	local use_function = use_function_name or nil
+
+	if not self:has_category_upgrade("player", "no_secondary_deployable_penalty") and params.slot and params.slot > 1 then
+		for i = 1, #quantity do
+			amount[i] = math.ceil(amount[i] / 2)
+		end
+	end
+
+	table.insert(self._equipment.selections, {
+		equipment = equipment,
+		amount = amount_digest,
+		use_function = use_function,
+		action_timer = tweak_data.action_timer,
+		icon = icon,
+		unit = tweak_data.unit,
+		on_use_callback = tweak_data.on_use_callback
+	})
+
+	self._equipment.selected_index = self._equipment.selected_index or 1
+
+	add_hud_item(amount, icon)
+
+	for i = 1, #amount do
+		self:add_equipment_amount(equipment, amount[i], i)
 	end
 end

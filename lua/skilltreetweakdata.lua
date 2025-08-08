@@ -505,7 +505,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- brg
 	self.specializations[7].category = "dodge"
 	-- inf
-	self.specializations[8].category = "resistance"
+	self.specializations[8].category = { "resistance", "healing" }
 	-- soc
 	self.specializations[9].category = { "armor", "armor_gating" }
 	-- gmb
@@ -579,11 +579,17 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[6][7].upgrades = { "player_level_2_armor_multiplier_1", "player_level_3_armor_multiplier_1", "player_level_4_armor_multiplier_1" }
 	self.specializations[6][9].upgrades = { "player_bv_no_armor_suppression", "player_passive_loot_drop_multiplier" }
 
-	-- burglar
-	table.delete(self.specializations[7][7].upgrades, "player_tier_dodge_chance_3")
-	self.specializations[7][9].upgrades = { "player_dodge_ricochet_bullets", "player_passive_loot_drop_multiplier" }
-	self.specializations[7][9].texture_bundle_folder = "mrwi"
-	self.specializations[7][9].icon_xy = { 2, 0 }
+	-- tactician (ex-burglar)
+	self.specializations[7][1].upgrades = { "second_deployable_1" }
+	self.specializations[7][1].icon_xy = { 5, 8 }
+	self.specializations[7][3].upgrades = { "player_drill_speed_multiplier1", "player_drill_speed_multiplier2" }
+	self.specializations[7][3].icon_xy = { 5, 8 }
+	self.specializations[7][5].upgrades = { "player_near_teammate_damage_multiplier" }
+	self.specializations[7][5].icon_xy = { 5, 8 }
+	self.specializations[7][7].upgrades = { "player_electrocuting_drill" }
+	self.specializations[7][7].icon_xy = { 5, 8 }
+	self.specializations[7][9].upgrades = { "player_no_secondary_deployable_penalty", "deploy_interact_faster_1", "player_passive_loot_drop_multiplier" }
+	self.specializations[7][9].icon_xy = { 5, 8 }
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
@@ -782,8 +788,8 @@ function SkillTreeTweakData:init(tweak_data)
 				8,
 			},
 		},
-		name_id = "menu_st_spec_wildcard",
-		desc_id = "menu_st_spec_wildcard_desc",
+		name_id = "menu_st_spec_23",
+		desc_id = "menu_st_spec_23_desc",
 		category = "special",
 	}
 

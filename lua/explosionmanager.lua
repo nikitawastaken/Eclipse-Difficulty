@@ -111,3 +111,24 @@ Hooks:OverrideFunction(ExplosionManager, "_damage_characters", function(self, de
 
 	return results
 end)
+
+function ExplosionManager:tase_area(params)
+	local slotmask = params.collision_slotmask
+	local units = World:find_units_quick("sphere", params.hit_pos, params.range, slotmask)
+
+	for _, unit in ipairs(units) do
+		if alive(unit) and unit.character_damage and unit:character_damage() and unit:character_damage().damage_tase then
+			Eclipse:log_chat("Applying tase")
+			local attack_dir = params.unit:position() - unit:position()
+			mvector3.normalize(attack_dir)
+			unit:character_damage():damage_tase({
+				variant = "heavy",
+				damage = math.max(params.damage),
+				attack_dir = attack_dir,
+				col_ray = {
+					position = unit:position(),
+				},
+			})
+		end
+	end
+end
