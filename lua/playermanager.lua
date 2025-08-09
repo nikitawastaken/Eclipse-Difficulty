@@ -1693,7 +1693,7 @@ end
 -- remove this when there's no more need for debugging
 -- hopefully this fixes the crash?
 function PlayerManager:_is_all_in_custody(ignored_peer_id)
-	if not Utils:IsInGameState() or not Utils:IsInHeist()then
+	if not Utils:IsInGameState() or not Utils:IsInHeist() then
 		return true
 	end
 
