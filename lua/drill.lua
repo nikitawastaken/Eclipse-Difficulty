@@ -135,7 +135,7 @@ function Drill:set_jammed(jammed)
 		if self._use_effect then
 			local params = {
 				effect = Idstring("effects/payday2/environment/drill_jammed"),
-				parent = self._unit:get_object(Idstring("e_drill_particles"))
+				parent = self._unit:get_object(Idstring("e_drill_particles")),
 			}
 			self._jammed_effect = World:effect_manager():spawn(params)
 		end
@@ -213,7 +213,7 @@ function Drill:on_melee_hit(peer_id)
 
 	-- Eclipse:log_chat("melee hit count: " .. tostring(self._melee_hit_count) .. "/" .. tostring(tweak_data.upgrades.drill_hits_to_restart or "N/A"))
 
-	if self._melee_hit_count >= (tweak_data.upgrades.drill_hits_to_restart) then
+	if self._melee_hit_count >= tweak_data.upgrades.drill_hits_to_restart then
 		self._melee_hit_count = 0
 		self:on_melee_hit_success()
 	end
