@@ -1693,19 +1693,21 @@ end
 -- remove this when there's no more need for debugging
 -- hopefully this fixes the crash?
 function PlayerManager:_is_all_in_custody(ignored_peer_id)
-	if managers.network:session() then
-		for _, peer in pairs(managers.network:session():all_peers()) do
-			if peer and alive(peer:unit()) and peer:id() ~= ignored_peer_id then
-				return false
-			end
-		end
-
-		for _, ai in pairs(managers.groupai:state():all_AI_criminals()) do
-			if ai and alive(ai.unit) then
-				return false
-			end
-		end
-
+	if not Utils:IsInGameState() or not Utils:IsInHeist()then
 		return true
 	end
+
+	for _, peer in pairs(managers.network:session():all_peers()) do
+		if peer and alive(peer:unit()) and peer:id() ~= ignored_peer_id then
+			return false
+		end
+	end
+
+	for _, ai in pairs(managers.groupai:state():all_AI_criminals()) do
+		if ai and alive(ai.unit) then
+			return false
+		end
+	end
+
+	return true
 end
