@@ -1785,7 +1785,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		cloaker_support = {
 			"unit_cover",
 			"murder",
-		},	
+		},
 		sniper = {
 			"unit_cover",
 			"ranged_fire",

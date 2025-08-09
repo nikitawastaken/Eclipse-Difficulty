@@ -208,7 +208,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.8,
 		cs_grenade_chance_times_mul = 0.75,
 	}
-	
+
 	self.roberts.group_ai_settings = {
 		assault_force_mul = 0.8,
 		force_tactics = {
