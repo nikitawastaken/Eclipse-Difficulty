@@ -3471,8 +3471,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(8, 12),
 		diff_lerp(12, 16),
 	}
-	self.ponr.assault.force_balance_mul = { 0.5, 0.75, 1, 1.25 }
-
+	
 	self.ponr.assault.delay = { 20, 20, 20 }
 	self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
@@ -3488,7 +3487,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	-- Recon
-	self.ponr.recon.groups = {}
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
 	if difficulty_index < 4 then
