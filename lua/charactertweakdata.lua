@@ -1081,7 +1081,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.speech_prefix_p2 = "n"
 	self.city_swat.surrender = self.presets.surrender.hard
 	self.city_swat.suppression = self.presets.suppression.hard_agg
-	self.city_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 
 	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	self.city_heavy_swat.HEALTH_INIT = 24
@@ -1648,6 +1647,9 @@ CharacterTweakData.access_weapon = {
 }
 
 CharacterTweakData.tweak_table_move_speed = {
+	heavy_swat = "normal",
+	fbi_heavy_swat = "normal",
+	city_heavy_swat = "normal",
 	cobra = "fast",
 	murky = "fast",
 	security_fat = "slow",
@@ -1675,9 +1677,8 @@ CharacterTweakData.access_move_speed = {
 }
 
 CharacterTweakData.tweak_table_ecm_vulnerability = {
-	swat_heavy = ecm_vuln_heavy,
+	heavy_swat = ecm_vuln_heavy,
 	fbi_heavy_swat = ecm_vuln_heavy,
-	city_swat = ecm_vuln_heavy,
 	city_heavy_swat = ecm_vuln_heavy,
 	medic = ecm_vuln_heavy,
 	city_sniper = ecm_vuln_heavy,
