@@ -478,15 +478,8 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Technician --
 
-	-- Transporter
-	self.values.carry.interact_speed_multiplier[1] = 0.75
-	self.skill_descs.defense_up.multibasic = "25%"
-
-	-- Rifleman
-	self.skill_descs.defense_up.multibasic = "50%"
-	self.skill_descs.defense_up.multipro = "50%"
-
 	-- Daredevil
+	self.values.player.interacting_damage_multiplier[1] = 0.9
 	self.values.player.total_interaction_timer_multiplier = { 0.9 }
 	self.definitions.player_total_interaction_timer_multiplier = {
 		name_id = "menu_player_total_interaction_timer_multiplier",
@@ -497,9 +490,18 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.interacting_damage_multiplier[1] = 0.65
-	self.skill_descs.sentry_targeting_package.multibasic = "10%"
-	self.skill_descs.sentry_targeting_package.multipro = "35%"
+	self.skill_descs.defense_up.multibasic = "10%"
+	self.skill_descs.defense_up.multipro = "10%"
+
+	-- Hardware Expert
+	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.5
+	self.skill_descs.sentry_targeting_package.multipro = "50%"
+
+	-- Kickstarter
+	self.drill_time_to_autorepair = 60
+	self.drill_hits_to_restart = 3
+	self.skill_descs.jack_of_all_trades.multibasic = "60"
+	self.skill_descs.jack_of_all_trades.multipro = "3"
 
 	-- Defense Package
 	self.skill_descs.engineering.multibasic = "150%"
@@ -523,14 +525,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.eco_sentry.multibasic = "100%"
 	self.skill_descs.eco_sentry.multipro = "75%"
 	self.skill_descs.eco_sentry.multipro2 = "250%"
-
-	-- Hardware Expert
-	self.values.player.drill_autorepair_1[1] = 0.2
-	self.skill_descs.hardware_expert.multipro3 = "20%"
-
-	-- Kickstarter
-	self.values.player.drill_autorepair_2[1] = 0.3
-	self.skill_descs.kick_starter.multibasic = "30%"
 
 	-- Combat Engineering
 	self.values.trip_mine.explosion_size_multiplier_1 = { 1.5 }
@@ -1492,6 +1486,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	self.drill_electrocution_chance = 0.9
 	self.values.player.electrocuting_drill = { true }
 	self.definitions.player_electrocuting_drill = {
 		name_id = "menu_player_electrocuting_drill",

@@ -1,5 +1,3 @@
-Drill._electrocution_chance = 0.9
-
 local level_id = Eclipse.utils.level_id()
 
 Drill.forbid_sabotage_SO_by_unit = {
@@ -76,7 +74,7 @@ function Drill:on_sabotage_SO_started(saboteur)
 
 	local can_stun = self._skill_upgrades.electrocuting_drill
 
-	if can_stun and math.random() < Drill._electrocution_chance then
+	if can_stun and math.random() < tweak_data.upgrades.drill_electrocution_chance then
 		local pos = saboteur:position()
 		local range = 50
 		local slot_mask = managers.slot:get_mask("explosion_targets")
@@ -117,3 +115,106 @@ end
 Hooks:PostHook(Drill, "on_sabotage_SO_completed", "RR_on_sabotage_SO_completed", function(self, saboteur)
 	saboteur:sound():say(self.is_drill and "e05" or "e06", true)
 end)
+
+-- Drill autorestarter is guaranteed and rolls after a specific amount of time, instead of a random delay
+function Drill:set_jammed(jammed)
+	jammed = jammed and true or false
+
+	if self._jammed == jammed then
+		return
+	end
+
+	self._jammed = jammed
+
+	if self._jammed then
+		self._jammed_count = self._jammed_count + 1
+		self._melee_hit_count = 0 -- init or reinit to prevent (if for whatever reason a player decides to) storing for kickstarter aced
+
+		self:_kill_drill_effect()
+
+		if self._use_effect then
+			local params = {
+				effect = Idstring("effects/payday2/environment/drill_jammed"),
+				parent = self._unit:get_object(Idstring("e_drill_particles"))
+			}
+			self._jammed_effect = World:effect_manager():spawn(params)
+		end
+
+		self:_reset_melee_autorepair()
+
+		-- get rid of math random so it's a guaranteed autorestarter
+		if self._autorepair_chance and not self._autorepair_clbk_id then
+			self._autorepair_clbk_id = "Drill_autorepair" .. tostring(self._unit:key())
+
+			-- no random delay
+			managers.enemy:add_delayed_clbk(self._autorepair_clbk_id, callback(self, self, "clbk_autorepair"), TimerManager:game():time() + tweak_data.upgrades.drill_time_to_autorepair)
+		end
+	elseif self._jammed_effect then
+		self:_kill_jammed_effect()
+		self:_start_drill_effect()
+
+		if not self.is_hacking_device and not self.is_saw and not managers.groupai:state():whisper_mode() then
+			managers.groupai:state():teammate_comment(nil, "g22", self._unit:position(), true, 500, false)
+		end
+
+		if self._autorepair_clbk_id then
+			managers.enemy:remove_delayed_clbk(self._autorepair_clbk_id)
+
+			self._autorepair_clbk_id = nil
+		end
+
+		if self._bain_report_sabotage_clbk_id then
+			managers.enemy:remove_delayed_clbk(self._bain_report_sabotage_clbk_id)
+
+			self._bain_report_sabotage_clbk_id = nil
+		end
+	end
+
+	self:_change_num_jammed_drills(self._jammed and 1 or -1)
+
+	if Network:is_server() then
+		if jammed then
+			self:_unregister_sabotage_SO()
+		else
+			self:_register_sabotage_SO()
+		end
+	end
+end
+
+-- Melee autorestarter gets triggered after a certain amount of hits instead of a random chance
+function Drill:on_melee_hit(peer_id)
+	if self._disable_upgrades or not self._jammed then
+		return
+	end
+
+	local unit = self._unit
+	local session = managers.network:session()
+	local local_peer = session:local_peer()
+
+	if local_peer:id() == peer_id then
+		local peer_unit = local_peer and local_peer:unit()
+
+		if not alive(peer_unit) or not unit:interaction():can_interact(peer_unit) then
+			return
+		end
+	end
+
+	local registered_peers = self._peer_ids
+	registered_peers[#registered_peers + 1] = peer_id
+
+	if Network:is_client() then
+		session:send_to_host("sync_unit_event_id_16", unit, "base", Drill.EVENT_IDS.melee_restart_client)
+
+		return
+	end
+
+	-- counter
+	self._melee_hit_count = self._melee_hit_count + 1
+
+	-- Eclipse:log_chat("melee hit count: " .. tostring(self._melee_hit_count) .. "/" .. tostring(tweak_data.upgrades.drill_hits_to_restart or "N/A"))
+
+	if self._melee_hit_count >= (tweak_data.upgrades.drill_hits_to_restart) then
+		self._melee_hit_count = 0
+		self:on_melee_hit_success()
+	end
+end

@@ -150,6 +150,8 @@ function SkillTreeTweakData:init(tweak_data)
 	-- empty potential armor bag skill
 	self.skills.iron_man[1].upgrades = {}
 	self.skills.iron_man[2].upgrades = {}
+	self.skills.iron_man.name_id = "menu_work_in_progress_beta"
+	self.skills.iron_man.desc_id = "menu_work_in_progress_beta_desc"
 	self.skills.iron_man.icon_xy = { 0, 0 }
 
 	-- Thick Skin
@@ -195,15 +197,20 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- TECHNICIAN --
 
-	-- Transporter
-	self.skills.defense_up[1].upgrades = { "carry_interact_speed_multiplier_2" }
-	self.skills.defense_up[2].upgrades = { "carry_throw_distance_multiplier" }
-	self.skills.defense_up.icon_xy = { 8, 8 }
-
 	-- Daredevil
-	self.skills.sentry_targeting_package[1].upgrades = { "player_total_interaction_timer_multiplier" }
-	self.skills.sentry_targeting_package[2].upgrades = { "player_interacting_damage_multiplier" }
-	self.skills.sentry_targeting_package.icon_xy = { 8, 9 }
+	self.skills.defense_up[1].upgrades = { "player_total_interaction_timer_multiplier" }
+	self.skills.defense_up[2].upgrades = { "player_interacting_damage_multiplier" }
+	self.skills.defense_up.icon_xy = { 8, 9 }
+
+	-- Hardware Expert
+	self.skills.sentry_targeting_package[1].upgrades = { "player_drill_alert", "player_silent_drill" }
+	self.skills.sentry_targeting_package[2].upgrades = { "player_drill_fix_interaction_speed_multiplier" }
+	self.skills.sentry_targeting_package.icon_xy = { 9, 6 }
+
+	-- Kickstarter
+	self.skills.jack_of_all_trades[1].upgrades = { "player_drill_autorepair_1", "player_drill_autorepair_2" }
+	self.skills.jack_of_all_trades[2].upgrades = { "player_drill_melee_hit_restart_chance_1" }
+	self.skills.jack_of_all_trades.icon_xy = { 9, 8 }
 
 	-- Defense Package
 	self.skills.engineering[1].upgrades = { "sentry_gun_armor_multiplier" }
@@ -218,6 +225,25 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.eco_sentry[1].upgrades = { "sentry_gun_standstill_omniscience", "sentry_gun_spread_multiplier" }
 	self.skills.eco_sentry[2].upgrades = { "sentry_gun_ap_bullets", "sentry_gun_fire_rate_reduction_1" }
 	self.skills.eco_sentry.icon_xy = { 7, 8 }
+
+	-- Breacher Tree WIP
+	self.skills.hardware_expert[1].upgrades = { "" }
+	self.skills.hardware_expert[2].upgrades = { "" }
+	self.skills.hardware_expert.name_id = "menu_work_in_progress_beta"
+	self.skills.hardware_expert.desc_id = "menu_work_in_progress_beta_desc"
+	self.skills.hardware_expert.icon_xy = { 0, 0 }
+
+	self.skills.drill_expert[1].upgrades = { "" }
+	self.skills.drill_expert[2].upgrades = { "" }
+	self.skills.drill_expert.name_id = "menu_work_in_progress_beta"
+	self.skills.drill_expert.desc_id = "menu_work_in_progress_beta_desc"
+	self.skills.drill_expert.icon_xy = { 0, 0 }
+
+	self.skills.kick_starter[1].upgrades = { "" }
+	self.skills.kick_starter[2].upgrades = { "" }
+	self.skills.kick_starter.name_id = "menu_work_in_progress_beta"
+	self.skills.kick_starter.desc_id = "menu_work_in_progress_beta_desc"
+	self.skills.kick_starter.icon_xy = { 0, 0 }
 
 	-- Steady Grip
 	self.skills.steady_grip[1].upgrades = { "player_stability_increase_bonus_1" }
