@@ -5,21 +5,15 @@ local disabled = {
 		enabled = false,
 	},
 }
-local skylight_spawn = {
+local rappel_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }
-local window_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local upper_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -27,7 +21,6 @@ local garage_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {
@@ -61,14 +54,12 @@ return {
 	-- remove curly spawns
 	[101653] = disabled,
 	-- spawn group delays
-	[100130] = curly_spawn,
-	[102078] = curly_spawn,
-	[101166] = skylight_spawn,
-	[104406] = skylight_spawn,
+	[101166] = rappel_spawn,
+	[104406] = rappel_spawn,
+	[100128] = rappel_spawn,
+	[101309] = rappel_spawn,
 	[104471] = upper_spawn,
 	[100132] = upper_spawn,
-	[100128] = window_spawn,
-	[101309] = window_spawn,
 	[101310] = garage_spawn,
 	[102066] = garage_spawn,
 	[100805] = elevator_spawn,

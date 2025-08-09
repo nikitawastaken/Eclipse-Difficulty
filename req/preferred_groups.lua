@@ -106,6 +106,5 @@ M.no_cops_agents_cloakers_snipers = create_preferred({ "cop_group", "agent_group
 M.only_cloakers = create_preferred({ "cop_group", "swat_group", "heavy_group", "agent_group", "shield_group", "bulldozer_group", "taser_group", "sniper_group" })
 M.only_swats_tasers_cloakers = create_preferred({ "cop_group", "agent_group", "shield_group", "bulldozer_group", "sniper_group" })
 M.only_swats_tasers = create_preferred({ "cop_group", "agent_group", "shield_group", "bulldozer_group", "cloaker_group", "sniper_group" })
-M.no_cops_agents_hrt_cloakers_snipers = create_preferred({ "cop_group", "agent_group", "hrt_group", "cloaker_group", "sniper_group" })
 
 return M

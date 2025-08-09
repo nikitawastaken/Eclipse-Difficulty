@@ -1732,6 +1732,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"ranged_fire",
 			"unit_cover",
 		},
+		shield_wall = {
+			"shield",
+		},
 		shield_def = {
 			"shield",
 			"ranged_fire",
@@ -1755,7 +1758,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		taser_support = {
 			"murder",
-			"unit_cover",
 		},
 		bulldozer_def = {
 			"shield",
@@ -1780,6 +1782,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"flank",
 			"charge",
 		},
+		cloaker_support = {
+			"unit_cover",
+			"murder",
+		},	
 		sniper = {
 			"unit_cover",
 			"ranged_fire",
@@ -2128,13 +2134,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 360,
-					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 480,
+					(difficulty_index ^ 2) / 240,
 				}, skyscraper and 1.25 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
-				tactics = self._tactics.none,
+				tactics = self._tactics.cloaker_support,
 			}, 1000, 3000, 3, 1),
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
@@ -2156,7 +2162,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.5,
 				amount_max = 2,
-				rank = 3,
+				rank = 2,
 				unit = "fbi_heavy_2",
 				tactics = self._tactics.none,
 			},
@@ -2183,12 +2189,23 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					0,
 					(difficulty_index ^ 2) / 480,
 					(difficulty_index ^ 2) / 240,
+				}, heavy_response and 1.25 or 1),
+				amount_max = 1,
+				rank = 3,
+				unit = "fbi_shield",
+				tactics = self._tactics.shield_wall,
+			}, 1000, 3000, 3, 1),
+			self:_distance_weighted_spawn_entry({
+				freq_by_diff = table_multiplier({
+					0,
+					(difficulty_index ^ 2) / 480,
+					(difficulty_index ^ 2) / 240,
 				}, small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "elite_sniper",
 				tactics = self._tactics.sniper,
-			}, 1000, 3000, 0.5, 1.5),
+			}, 1000, 3000, 1, 3),
 		},
 	}
 
@@ -2466,13 +2483,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 360,
-					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 480,
+					(difficulty_index ^ 2) / 240,
 				}, skyscraper and 1.25 or 1),
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
-				tactics = self._tactics.none,
+				tactics = self._tactics.cloaker_support,
 			}, 1000, 3000, 3, 1),
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
@@ -2494,17 +2511,39 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.5,
 				amount_max = 2,
-				rank = 2,
+				rank = 3,
 				unit = "elite_heavy_2",
 				tactics = self._tactics.none,
 			},
 			{
 				freq = 1,
 				amount_min = 1,
-				rank = 1,
+				rank = 2,
 				unit = "elite_heavy_1",
 				tactics = self._tactics.none,
 			},
+			{
+				freq_by_diff = table_multiplier({
+					18 / (difficulty_index ^ 2),
+					12 / (difficulty_index ^ 2),
+					6 / (difficulty_index ^ 2),
+				}, heavy_response and 0.5 or 1),
+				amount_max = 1,
+				rank = 1,
+				unit = "elite_swat_1_3",
+				tactics = self._tactics.none,
+			},
+			self:_distance_weighted_spawn_entry({
+				freq_by_diff = table_multiplier({
+					0,
+					(difficulty_index ^ 2) / 480,
+					(difficulty_index ^ 2) / 240,
+				}, heavy_response and 1.25 or 1),
+				amount_max = 1,
+				rank = 4,
+				unit = "fbi_shield",
+				tactics = self._tactics.shield_wall,
+			}, 1000, 3000, 3, 1),
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
@@ -2565,14 +2604,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.75,
 				amount_max = 2,
-				rank = 2,
+				rank = 3,
 				unit = "elite_heavy_2",
 				tactics = self._tactics.swat_agg,
 			},
 			{
 				freq = 0.75,
 				amount_max = 2,
-				rank = 2,
+				rank = 3,
 				unit = "elite_heavy_1",
 				tactics = self._tactics.swat_snk,
 			},
@@ -2580,9 +2619,20 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_min = 1,
 				amount_max = 2,
-				rank = 2,
+				rank = 3,
 				unit = "elite_heavy_1",
 				tactics = self._tactics.swat_def,
+			},
+			{
+				freq_by_diff = table_multiplier({
+					18 / (difficulty_index ^ 2),
+					12 / (difficulty_index ^ 2),
+					6 / (difficulty_index ^ 2),
+				}, heavy_response and 0.5 or 1),
+				amount_max = 2,
+				rank = 2,
+				unit = "elite_swat_1_3",
+				tactics = self._tactics.swat_support,
 			},
 			{
 				freq_by_diff = table_multiplier({
@@ -2671,7 +2721,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_min = 1,
 				rank = 1,
 				unit = "cloaker",
-				tactics = self._tactics.taser_support,
+				tactics = self._tactics.cloaker_support,
 			},
 		},
 	}
@@ -2743,7 +2793,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 2,
 				rank = 2,
 				unit = "fbi_shield",
-				random_tactics = self._random_tactics.shield,
+				tactics = self._tactics.shield_wall,
 			},
 			{
 				freq = 1,
@@ -3249,6 +3299,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(3, 5),
 	}
 
+	self.hostage_push_delay_mul = 1.5
 	self.besiege.push_delay = {
 		diff_lerp(20, 16),
 		diff_lerp(16, 12),

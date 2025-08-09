@@ -16,7 +16,7 @@ local cloaker_spawn = {
 	},
 }
 local van_scripted_spawn = {
-	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+	groups = preferred.no_cops_agents_cloakers_snipers,
 }
 
 return {

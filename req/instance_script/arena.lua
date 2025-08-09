@@ -16,7 +16,7 @@ return {
 	["levels/instances/unique/are_elevator/world/world"] = function(result)
 		for _, element in ipairs(result.default.elements) do
 			if patches.elevator_group[element.id] then
-				element.groups = preferred.no_shields_bulldozers
+				element.groups = preferred.no_cops_agents_shields_bulldozers
 				element.values.interval = 45
 			end
 		end

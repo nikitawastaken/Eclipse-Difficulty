@@ -204,6 +204,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.framing_frame_3.group_ai_preset = "skyscraper"
 
+	self.election_day_2.group_ai_settings = {
+		assault_force_mul = 0.8,
+		cs_grenade_chance_times_mul = 0.75,
+	}
+	
 	self.roberts.group_ai_settings = {
 		assault_force_mul = 0.8,
 		force_tactics = {
@@ -263,6 +268,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		spawn_kill_cooldown = 15,
 		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 0.8,
+		difficulty_scaling = {
+			assault_add = 0.15,
+		},
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
@@ -470,7 +478,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.run.group_ai_settings.assault_force_mul = 0.8
-	self.run.group_ai_settings.difficulty_scaling = { assault_delay = 30 }
+	self.run.group_ai_settings.difficulty_scaling = { assault_delay = 15 }
 	self.run.group_ai_settings.special_limit_add = { taser = 1 }
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
