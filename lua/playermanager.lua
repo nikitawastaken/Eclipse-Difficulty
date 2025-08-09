@@ -71,8 +71,7 @@ Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
 		and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t)
 	then
 		if self:has_category_upgrade("player", "near_hostage_damage_multiplier") then
-			local near_hostage_distance = self:upgrade_value("player", "near_hostage_damage_multiplier", nil).range or 0
-			self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), near_hostage_distance)
+			self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), 400)
 		end
 
 		if self:has_category_upgrade("player", "near_teammate_damage_multiplier") then
