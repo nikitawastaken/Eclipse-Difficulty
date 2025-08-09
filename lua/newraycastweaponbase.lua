@@ -260,11 +260,6 @@ function NewRaycastWeaponBase:recoil_multiplier()
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "hipfire_recoil_multiplier", 1)
 		end
-
-		for _, category in ipairs(categories) do
-			multiplier = multiplier
-				* math.max(tweak_data.upgrades.max_spray_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
-		end
 	else
 		for _, category in ipairs(categories) do
 			multiplier = multiplier * managers.player:upgrade_value(category, "steelsight_recoil_multiplier", 1)
@@ -293,6 +288,12 @@ function NewRaycastWeaponBase:recoil_multiplier()
 
 	if self._silencer then
 		multiplier = multiplier * managers.player:upgrade_value("weapon", "silencer_recoil_multiplier", 1)
+	end
+
+	-- upgrade that reduces recoil as you fire
+	for _, category in ipairs(categories) do
+		multiplier = multiplier
+			* math.max(tweak_data.upgrades.max_spray_recoil_reduction, (1 - (managers.player:upgrade_value(category, "spray_recoil_multiplier", 0) * self._shots_fired_consecutively)))
 	end
 
 	if self._alt_fire_active and self._alt_fire_data then
