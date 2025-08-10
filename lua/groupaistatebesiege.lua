@@ -2087,3 +2087,27 @@ function GroupAIStateBesiege:enable_timed_spawngroup(timer_id, group_id)
 	end
 end
 -- Timed groups end
+
+-- Hostage damage absorption is no longer a team upgrade
+function GroupAIStateBase:sync_hostage_headcount(nr_hostages)
+	if nr_hostages and self._hostage_headcount < nr_hostages then
+		managers.player:captured_hostage()
+	end
+
+	if nr_hostages then
+		self._hostage_headcount = nr_hostages
+	elseif Network:is_server() then
+		managers.network:session():send_to_peers_synched("sync_hostage_headcount", math.min(self._hostage_headcount, 63))
+	end
+
+	if managers.player:has_category_upgrade("player", "hostage_absorption_addend") then
+		local absorption = managers.player:get_hostage_bonus_addend("absorption")
+
+		managers.player:set_damage_absorption("hostage_absorption", absorption)
+	end
+
+	managers.hud:set_control_info({
+		nr_hostages = self._hostage_headcount
+	})
+	self:check_gameover_conditions()
+end

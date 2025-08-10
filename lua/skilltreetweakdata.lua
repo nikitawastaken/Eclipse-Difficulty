@@ -16,11 +16,9 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- MASTERMIND --
 
-	-- Company Soul
+	-- Aftercare
 	self.skills.combat_medic[1].upgrades = { "player_revive_damage_reduction_level_1", "player_revive_health_boost" }
-	self.skills.combat_medic[2].upgrades = { "team_stamina_multiplier" }
-	self.skills.combat_medic.name_id = "menu_company_soul"
-	self.skills.combat_medic.desc_id = "menu_company_soul_desc"
+	self.skills.combat_medic[2].upgrades = { "player_action_revive_health_regen" }
 	self.skills.combat_medic.icon_xy = { 5, 2 }
 
 	-- Bandages
@@ -69,7 +67,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Stockholm Syndrome
 	self.skills.stockholm_syndrome[1].upgrades = { "player_civilians_dont_flee", "player_civilian_reviver" }
-	self.skills.stockholm_syndrome[2].upgrades = { "player_near_hostage_damage_multiplier" }
+	self.skills.stockholm_syndrome[2].upgrades = { "player_hostage_absorption_addend" }
 	self.skills.stockholm_syndrome.icon_xy = { 3, 8 }
 
 	-- Partners in Crime
@@ -98,7 +96,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.speedy_reload.name_id = "menu_kilmer"
 	self.skills.speedy_reload.icon_xy = { 1, 9 }
 
-	-- Bullseye
+	-- Headshot Fury
 	self.skills.single_shot_ammo_return[1].upgrades = { "snp_consecutive_headshots" }
 	self.skills.single_shot_ammo_return[2].upgrades = { "snp_charged_shot" }
 	self.skills.single_shot_ammo_return.icon_xy = { 6, 11 }

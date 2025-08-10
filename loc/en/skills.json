@@ -3,8 +3,8 @@
 	"menu_work_in_progress_beta_desc": "BASIC: ##$basic##\nWork in progress.\n\nACE: ##$pro##\nWork in progress.",
 
 	"st_menu_mastermind_inspire": "Support",
-	"menu_company_soul": "Company Soul",
-	"menu_company_soul_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds and get an additional ##$multibasic3## health.\n\nACE: ##$pro##\nYou and your crew's stamina is increased by ##$multipro##.\n\nNote: Crew perks do not stack.",
+	"menu_combat_medic_beta": "Aftercare",
+	"menu_combat_medic_beta_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds and get an additional ##$multibasic3## health.\n\nACE: ##$pro##\nUpon reviving a crew memeber you regenerate ##$multipro## health.",
 	"menu_bandages": "Bandages",
 	"menu_bandages_desc": "BASIC: ##$basic##\nCrew members you revive get an additional ##$multibasic## health.\n\nACE: ##$pro##\nYou get an additional ##$multipro## health after being revived.",
 	"menu_fast_learner_beta_desc": "BASIC: ##$basic##\nCrew members you revive take an additional ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou take ##$multipro## less damage for ##$multibasic2## seconds after being revived.",
@@ -17,7 +17,7 @@
 	"menu_cable_guy_beta_desc": "BASIC: ##$basic##\nThe power and range of your intimidation is increased by ##$multibasic2##.\n\nACE: ##$pro##\nCivilians are intimidated by the noise you make and remain intimidated ##$multipro## longer.",
 	"menu_triathlete_beta_desc": "BASIC: ##$basic##\nYour cable tie supply is increased by ##$multibasic##.\n\nYou can cable tie hostages ##$multibasic2## faster.\n\nACE: ##$pro##\nYou can now have an additional hostage following you at the same time.\n\nThere is now a ##$multipro## chance for you to find a cable tie in an ammo box.",
 	"menu_joker_beta_desc": "BASIC: ##$basic##\nYou can now convert a non-special enemy to fight on your side.\n\nYour converted enemy deals ##$multibasic## more damage and takes ##$multibasic2## less damage.\n\nACE: ##$pro##\nYour converted enemy now takes an additional ##$multipro## less damage.\n\nThe time to convert an enemy is reduced by ##$multipro2##.",
-	"menu_stockholm_syndrome_beta_desc": "BASIC: ##$basic##\nHostages will not flee the scene after being rescued by law enforcers.\n\nNearby untied civilians have a chance of reviving you if you interact with them.\n\nACE: ##$pro##\nYou receive a ##$multipro## damage reduction when standing within ##$multipro2## of a hostage.",
+	"menu_stockholm_syndrome_beta_desc": "BASIC: ##$basic##\nHostages will not flee the scene after being rescued by law enforcers.\n\nNearby untied civilians have a chance of reviving you if you interact with them.\n\nACE: ##$pro##\nYou receive ##$multipro## damage absorption for every hostage that you control.\n\nStacks up to ##$multipro2## times.",
 	"menu_control_freak_beta_desc": "BASIC: ##$basic##\nYour converted enemy is ##$multibasic## more likely to be targeted when close to you or your crew.\n\nACE: ##$pro##\nYour converted enemy counts towards hostage related bonuses.",
 	"menu_stable_shot_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## accuracy.\n\nACE: ##$pro##\nThe time it takes for your aim to recenter after last shot is reduced by ##$multipro##.",
 	"menu_rifleman_beta_desc": "BASIC: ##$basic##\nYour stamina loss from being hit is reduced by ##$multibasic## while aiming down sights.\n\nACE: ##$pro##\nYour weapons are ##$multipro## more accurate while standing still.",
@@ -25,7 +25,7 @@
 	"menu_single_shot_ammo_return_beta_desc": "BASIC: ##$basic##\nScoring ##$multibasic## headshots in less than ##$multibasic## seconds with either Assault, Marksman or Sniper Rifles set to single fire mode will refund ##$multibasic3## bullet into your reserves.\n\nACE: ##$pro##\nThe amount of headshots required is reduced to ##$multipro##.",
 	"menu_speedy_reload_beta_desc": "BASIC: ##$basic##\nYou reload your Assault, Marksman and Sniper Rifles ##$multibasic## faster.\n\nACE: ##$pro##\nAny killing headshot with either Assault, Marksman or Sniper Rifles set to single fire mode will increase your reload speed by ##$multipro## for ##$multipro2## seconds.",
 	"menu_sniper_graze_damage": "Headshot Fury",
-	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\n\nStacks up to ##$multibasic2## times, and missing a headshot in any capacity removes all accumulated stacks.\n\nACE: ##$pro##\nWhile aiming down sights with your Sniper Rifle, a charge meter builds up over a period of ##$multipro## seconds. When fully charged, your next headshot becomes explosive, dealing up to ##$multipro2## of the bullet's damage in a ##$multipro3## radius around the bullet impact and discharging the meter.\n\nLeaving the aiming stance or firing the weapon during the charging process resets the meter.",
+	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\n\nStacks up to ##$multibasic2## times, and missing a headshot in any capacity removes all accumulated stacks.\n\nACE: ##$pro##\nWhile aiming down sights with your Sniper Rifle, a charge meter builds up over a period of ##$multipro## seconds.\n\nWhen fully charged, your next headshot becomes explosive, dealing up to ##$multipro2## of the bullet's damage in a ##$multipro3## radius around the bullet impact.\n\nLeaving the aiming stance or firing the weapon at any point discharges the meter.",
 
 
 	"menu_from_the_hip_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage with Shotguns.\n\nACE: ##$pro##\nThe time it takes to draw and holster Shotguns is decreased by ##$multipro##.",
@@ -103,7 +103,7 @@
 	"menu_chameleon_beta_desc": "BASIC: ##$basic##\nYou gain the ability to disable ##1## camera from detecting you and your crew. Effect lasts for ##25## seconds.\n\nACE: ##$pro##\nYour ECM jammer can now also be used to open certain electronic doors. Pagers are delayed by the ECM jammers.",
 	"menu_ecm_booster_beta": "ECM Feedback",
 	"menu_ecm_booster_beta_desc": "BASIC: ##$basic##\nYou can now interact with ECM jammers to cause a feedback loop that stuns enemies.\n\nFeedback loop has a ##$multibasic## radius.\nObstructed line of sight ##halves## the radius.\n\nACE: ##$pro##\nECM feedback now recharges every ##$multipro## minutes.",
-	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now lasts for ##$multipro## seconds.",
+	"menu_ecm_2x_beta_desc": "BASIC: ##$basic##\nYou can now place ##2## ECM jammers instead of just one.\n\nACE: ##$pro##\nYour ECM jammer and feedback now last for ##$multipro## seconds.",
 	"menu_backstab_beta_desc": "BASIC: ##$basic##\nYou gain a ##$multibasic## critical hit chance for every ##$multibasic2## points of detection rate under ##$multibasic3## up to ##$multibasic4##.\n\nACE: ##$pro##\nYou gain an additional ##$multipro## critical hit chance.\n\nCritical hits now deal an additional ##$multipro2## damage.\n\nNote: Critical hits don't apply to grenade / rocket launchers.",
 
 

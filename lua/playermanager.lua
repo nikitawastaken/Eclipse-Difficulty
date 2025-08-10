@@ -66,14 +66,7 @@ end
 Hooks:PostHook(PlayerManager, "update", "eclipse_update", function(self, t)
 	local local_player = self:local_player()
 
-	if
-		(self:has_category_upgrade("player", "near_hostage_damage_multiplier") or self:has_category_upgrade("player", "near_teammate_damage_multiplier"))
-		and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t)
-	then
-		if self:has_category_upgrade("player", "near_hostage_damage_multiplier") then
-			self._is_local_close_to_hostage = alive(local_player) and managers.groupai and managers.groupai:state():is_a_hostage_within(local_player:movement():m_pos(), 400)
-		end
-
+	if self:has_category_upgrade("player", "near_teammate_damage_multiplier") and (not self._hostage_close_to_local_t or self._hostage_close_to_local_t <= t) then
 		if self:has_category_upgrade("player", "near_teammate_damage_multiplier") then
 			local near_teammate_distance = self:upgrade_value("player", "near_teammate_damage_multiplier", nil).range or 0
 			self._is_local_close_to_criminal = alive(local_player) and managers.groupai and managers.groupai:state():is_a_criminal_within(local_player:movement():m_pos(), near_teammate_distance)
@@ -159,7 +152,6 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	self:set_property("pistols_reload_primary_kills", 0)
 end)
 
--- Hostage Taker rework
 function PlayerManager:get_hostage_bonus_addend(category)
 	local hostages = managers.groupai and managers.groupai:state():hostage_count() or 0
 	local minions = self:num_local_minions() or 0
@@ -167,12 +159,13 @@ function PlayerManager:get_hostage_bonus_addend(category)
 	local hostage_max_num = tweak_data:get_raw_value("upgrades", "hostage_max_num", category)
 	local current_team_size = managers.groupai:state():_get_balancing_multiplier({ 1, 2, 3, 4 })
 
-	if hostage_max_num then
-		hostages = math.min(hostages, hostage_max_num)
-	end
-
+	-- "Converts count for hostage boosts" upgrade
 	if self:has_category_upgrade("player", "convert_counts_as_hostage") then
 		hostages = hostages + minions
+	end
+
+	if hostage_max_num then
+		hostages = math.min(hostages, hostage_max_num)
 	end
 
 	if category ~= "health_regen" then
@@ -180,7 +173,7 @@ function PlayerManager:get_hostage_bonus_addend(category)
 		addend = addend + self:team_upgrade_value(category, "passive_hostage_addend", 0)
 		addend = addend + self:upgrade_value("player", "hostage_" .. category .. "_addend", 0)
 		addend = addend + self:upgrade_value("player", "passive_hostage_" .. category .. "_addend", 0)
-	else
+	else -- Hostage Taker rework
 		hostages = math.min(hostages, current_team_size)
 		addend = addend + self:upgrade_value("player", "hostage_health_regen_addend", 0) / current_team_size * hostages
 
@@ -662,11 +655,6 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 	-- armorer full armor dmg reduction
 	if self:has_category_upgrade("player", "full_armor_damage_reduction") and player:character_damage():armor_ratio() == 1 then
 		multiplier = multiplier * self:upgrade_value("player", "full_armor_damage_reduction", 1)
-	end
-
-	-- sthlm syndrome aced standing near hostage dmg reduction
-	if self:has_category_upgrade("player", "near_hostage_damage_multiplier") and self._is_local_close_to_hostage then
-		multiplier = multiplier * self:upgrade_value("player", "near_hostage_damage_multiplier", 1)
 	end
 
 	-- tactician standing near teammate dmg reduction

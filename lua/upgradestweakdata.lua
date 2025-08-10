@@ -51,10 +51,20 @@ function UpgradesTweakData:init(tweak_data)
 	-- Company Soul
 	self.revive_health_multiplier[1] = 0.05
 	self.values.temporary.passive_revive_damage_reduction[1] = { 0.9, 5 }
+	self.definitions.player_action_revive_health_regen = {
+		category = "feature",
+		name_id = "menu_player_action_revive_health_regen",
+		upgrade = {
+			category = "player",
+			upgrade = "action_revive_health_regen",
+			value = 1,
+		},
+	}
+	self.values.player.action_revive_health_regen = { 0.2 }
 	self.skill_descs.combat_medic.multibasic = "10%"
 	self.skill_descs.combat_medic.multibasic2 = "5"
 	self.skill_descs.combat_medic.multibasic3 = "5%"
-	self.skill_descs.combat_medic.multipro = "50%"
+	self.skill_descs.combat_medic.multipro = "20%"
 
 	-- Bandages
 	self.definitions.player_revive_health_boost_2 = {
@@ -66,8 +76,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.revive_health_multiplier[2] = 0.2
-	self.values.player.revive_health_boost[2] = 2
+	self.revive_health_multiplier[2] = 0.2 -- actual multiplier
+	self.values.player.revive_health_boost[2] = 2 -- second level, not multiplier or a static amount of hp (yes it's stupid that way)
 	self.values.player.revived_health_regain[1] = 0.2
 	self.skill_descs.fast_learner.multibasic = "15%"
 	self.skill_descs.fast_learner.multipro = "20%"
@@ -79,7 +89,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.tea_time.multipro = "50%"
 	self.skill_descs.tea_time.multibasic2 = "5"
 
-	-- Combat Medic
+	-- Combat Doctor
 	self.values.player.revive_damage_reduction[1] = 0.6
 	self.values.temporary.revive_damage_reduction[1][1] = 0.6
 	self.values.player.revive_interaction_speed_multiplier = { 2 / 3 }
@@ -150,18 +160,29 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.player.near_hostage_damage_multiplier = { 0.8 }
-	self.definitions.player_near_hostage_damage_multiplier = {
+	self.hostage_max_num.absorption = 4
+	self.values.player.hostage_absorption_addend = { 0.2 }
+	self.definitions.player_hostage_absorption_addend = {
 		category = "feature",
-		name_id = "menu_player_near_hostage_damage_multiplier",
+		name_id = "menu_player_hostage_absorption_addend",
 		upgrade = {
 			category = "player",
-			upgrade = "near_hostage_damage_multiplier",
+			upgrade = "hostage_absorption_addend",
 			value = 1,
 		},
 	}
-	self.skill_descs.stockholm_syndrome.multipro = "20%"
-	self.skill_descs.stockholm_syndrome.multipro2 = "4m"
+	-- self.values.player.near_hostage_damage_multiplier = { 0.8 }
+	-- self.definitions.player_near_hostage_damage_multiplier = {
+	-- 	category = "feature",
+	-- 	name_id = "menu_player_near_hostage_damage_multiplier",
+	-- 	upgrade = {
+	-- 		category = "player",
+	-- 		upgrade = "near_hostage_damage_multiplier",
+	-- 		value = 1,
+	-- 	},
+	-- }
+	self.skill_descs.stockholm_syndrome.multipro = "2"
+	self.skill_descs.stockholm_syndrome.multipro2 = "4"
 
 	-- Parterns in Crime
 	self.definitions.player_convert_camouflage_mul = {
@@ -182,9 +203,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.convert_camouflage_mul = { 1.15 }
+	self.values.player.convert_camouflage_mul = { 1.20 }
 	self.values.player.convert_counts_as_hostage = { true }
-	self.skill_descs.control_freak.multibasic = "15%"
+	self.skill_descs.control_freak.multibasic = "20%"
 
 	-- Hostage Taker
 	self.values.player.hostage_health_regen_addend[1] = 0.8
@@ -1055,7 +1076,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.trigger_happy.multibasic2 = "100%"
 	self.skill_descs.trigger_happy.multipro = "2"
 	self.skill_descs.trigger_happy.multipro2 = "100%"
-	self.skill_descs.trigger_happy.multipro3 = "5"
+	self.skill_descs.trigger_happy.multipro3 = "5m"
 
 	-- Tough Guy
 	self.definitions.player_swap_weapon_when_downed = {

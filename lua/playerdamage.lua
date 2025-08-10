@@ -10,6 +10,19 @@ Hooks:PreHook(PlayerDamage, "replenish", "eclipse_replenish", function(self)
 	end
 end)
 
+-- Upgrade that heals you when you revive others
+Hooks:PostHook(PlayerDamage, "init", "eclipse_init", function(self)
+	if managers.player:has_category_upgrade("player", "action_revive_health_regen") then
+		local function on_revive_interaction_success()
+			self:restore_health_percentage(managers.player:upgrade_value("player", "action_revive_health_regen", 0))
+		end
+
+		self._listener_holder:add("on_revive_interaction_success", {
+			"on_revive_interaction_success"
+		}, on_revive_interaction_success)
+	end
+end)
+
 -- Armor regen time depends on the armor you're wearing
 function PlayerDamage:set_regenerate_timer_to_max()
 	local mul = managers.player:body_armor_regen_multiplier(alive(self._unit) and self._unit:movement():current_state()._moving, self:health_ratio())
