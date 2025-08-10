@@ -66,6 +66,10 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		"Play_l5n_lk3_con",
 		"l5n_a08",
 	}
+	local l5n_sabotage_lines = {
+		"Play_l5n_prm_con",
+		"Play_l5n_r01_con",
+	}
 
 	-- restore the entire l5n voiceset
 	if self._prefix == "l5n_" then
@@ -110,6 +114,18 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		end
 		if sound_name == "ch4" then
 			full_sound = "Play_l5n_ch4_con"
+		end
+		if sound_name == "e01" or sound_name == "e02" or sound_name == "e03" then
+			full_sound = l5n_sabotage_lines[math.random(#l5n_sabotage_lines)]
+		end
+		if sound_name == "e04" then
+			full_sound = "Play_l5n_g90"
+		end
+		if sound_name == "e05" or sound_name == "e06" then
+			full_sound = "Play_l5n_clr_con"
+		end
+		if sound_name == "prm" or sound_name == "t01" then
+			full_sound = "Play_l5n_prm_con"
 		end
 		if sound_name == "gr1a" then
 			full_sound = "Play_l5n_gr1a_con"
@@ -278,6 +294,29 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	if self._prefix == "l1d_" or self._prefix == "l2d_" or self._prefix == "l3d_" or self._prefix == "l4d_" or self._prefix == "l5d_" then
 		if sound_name == "a05" or sound_name == "a06" then
 			sound_name = "clr"
+		end
+	end
+	
+	
+	local sabotage_lines = {
+		"prm",
+		"r01",
+	}
+	
+	-- give sabotage lines to non filtered voicesets
+	if self._prefix == "l1n_" or self._prefix == "l2n_" or self._prefix == "l3n_" or self._prefix == "l4n_" then
+		if sound_name == "e01" or sound_name == "e02" or sound_name == "e03" then
+			sound_name = sabotage_lines[math.random(#sabotage_lines)]
+		elseif sound_name == "e04" then
+			sound_name = "g90"
+		elseif sound_name == "e05" or sound_name == "e06" then
+			sound_name = "clr"	
+		end
+	end
+	
+	if self._prefix == "l1d_" then
+		if sound_name == "e05" or sound_name == "e06" then
+			sound_name = "clr"	
 		end
 	end
 

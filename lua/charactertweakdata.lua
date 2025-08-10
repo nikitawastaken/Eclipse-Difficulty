@@ -1000,9 +1000,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.cobra = deep_clone(self.gangster)
 	self.cobra.tags = is_undercover and { "law" } or { "gangster" }
-	self.cobra.speech_prefix_p1 = is_undercover and self._unit_prefixes.cop or "ict"
-	self.cobra.speech_prefix_p2 = is_undercover and "n" or nil
-	self.cobra.speech_prefix_count = is_undercover and 4 or 2
+	self.cobra.speech_prefix_p1 = is_undercover and "l5n" or "ict"
+	self.cobra.speech_prefix_count = is_undercover and nil or 2
 	table.insert(self._enemy_list, "cobra")
 
 	self.biker.melee_weapon = "knife_1"
@@ -1105,7 +1104,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
 	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
 	self.murky.chatter = self.presets.enemy_chatter.murkywater
-	self.murky.no_arrest = true -- harder stealth
+	--self.murky.no_arrest = true -- harder stealth
 	self.murky.has_alarm_pager = true
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
