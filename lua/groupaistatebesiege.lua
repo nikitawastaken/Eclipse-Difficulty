@@ -2107,7 +2107,7 @@ function GroupAIStateBase:sync_hostage_headcount(nr_hostages)
 	end
 
 	managers.hud:set_control_info({
-		nr_hostages = self._hostage_headcount
+		nr_hostages = self._hostage_headcount,
 	})
 	self:check_gameover_conditions()
 end

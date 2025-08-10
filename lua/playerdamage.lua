@@ -18,7 +18,7 @@ Hooks:PostHook(PlayerDamage, "init", "eclipse_init", function(self)
 		end
 
 		self._listener_holder:add("on_revive_interaction_success", {
-			"on_revive_interaction_success"
+			"on_revive_interaction_success",
 		}, on_revive_interaction_success)
 	end
 end)
