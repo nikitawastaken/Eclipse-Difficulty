@@ -296,13 +296,12 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 			sound_name = "clr"
 		end
 	end
-	
-	
+
 	local sabotage_lines = {
 		"prm",
 		"r01",
 	}
-	
+
 	-- give sabotage lines to non filtered voicesets
 	if self._prefix == "l1n_" or self._prefix == "l2n_" or self._prefix == "l3n_" or self._prefix == "l4n_" then
 		if sound_name == "e01" or sound_name == "e02" or sound_name == "e03" then
@@ -310,13 +309,13 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		elseif sound_name == "e04" then
 			sound_name = "g90"
 		elseif sound_name == "e05" or sound_name == "e06" then
-			sound_name = "clr"	
+			sound_name = "clr"
 		end
 	end
-	
+
 	if self._prefix == "l1d_" then
 		if sound_name == "e05" or sound_name == "e06" then
-			sound_name = "clr"	
+			sound_name = "clr"
 		end
 	end
 
