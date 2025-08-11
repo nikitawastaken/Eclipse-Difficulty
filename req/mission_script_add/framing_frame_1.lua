@@ -88,9 +88,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400011, "swat_chopper_spawn_2", Vector3(10, -181, 475), Rotation(90, 0, 0), optsBesiegeDummy_heli_2),
 	Eclipse.mission_elements.gen_missionscript(400012, "spawn_swats_2", optsspawnchopperSWATs_1),
 	Eclipse.mission_elements.gen_spawngroup(400013, "swat_group_2", { 101949, 101950, 400010, 400011 }, 0, opts_swat_group),
-	
+
 	-- civ restoration
-		Eclipse.mission_elements.gen_missionscript(400014, "civ_event", optscivevent),
+	Eclipse.mission_elements.gen_missionscript(400014, "civ_event", optscivevent),
 	Eclipse.mission_elements.gen_element_random(400015, "random_civ", random_civ),
 }
 
