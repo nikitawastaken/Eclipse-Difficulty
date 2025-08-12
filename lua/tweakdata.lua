@@ -36,7 +36,7 @@ tweak_data.experience_manager.alive_humans_multiplier = {
 -- the Medic's heal cooldown scales
 tweak_data.medic.cooldown = diff_lerp(5, 3)
 
-tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 1.5
+tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.1
 
 local function create_explosive_arrow(base_arrow)
 	local explosive_arrow = deep_clone(base_arrow)

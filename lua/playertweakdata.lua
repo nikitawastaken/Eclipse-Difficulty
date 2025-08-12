@@ -74,7 +74,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.damage.custody_ammo_confiscated = 0.4
 	self.damage.custody_health_drained = 0.4
 
-	self.fall_health_damage = 12
+	self.fall_health_damage = 0.6
 
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5

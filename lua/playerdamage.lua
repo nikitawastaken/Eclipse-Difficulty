@@ -292,6 +292,15 @@ function PlayerDamage:set_armor(armor)
 end
 
 function PlayerDamage:_calc_health_damage(attack_data)
+	if attack_data.weapon_unit then
+		local weap_base = alive(attack_data.weapon_unit) and attack_data.weapon_unit:base()
+		local weap_tweak_data = weap_base and weap_base.weapon_tweak_data and weap_base:weapon_tweak_data()
+
+		if weap_tweak_data and weap_tweak_data.slowdown_data then
+			self:apply_slowdown(weap_tweak_data.slowdown_data)
+		end
+	end
+
 	if managers.player:has_activate_temporary_upgrade("temporary", "mrwi_health_invulnerable") then
 		return 0
 	end
@@ -476,7 +485,7 @@ function PlayerDamage:damage_fall(data)
 	end
 
 	local fall_damage_ramp
-	local fall_multiplier = 1
+	local fall_multiplier = player_tweak.fall_health_damage
 	if die then
 		managers.player:force_end_copr_ability()
 
@@ -495,7 +504,9 @@ function PlayerDamage:damage_fall(data)
 		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
 		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_health_damage_multiplier", 1)
 
-		self:change_health(-player_tweak.fall_health_damage * fall_multiplier)
+		local fall_damage = self:_max_health() * fall_multiplier
+		
+		self:change_health(-fall_damage)
 		self._unit:camera():play_shaker("player_fall_damage", 1 * fall_multiplier)
 	end
 
@@ -567,10 +578,8 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 		return
 	end
 
-	attack_data.damage = managers.player:modify_value("damage_taken", attack_data.damage, attack_data) * self._teargas_damage_ramp
-
-	self._unit:movement():subtract_stamina(5 * self._teargas_damage_ramp)
-
+	attack_data.damage = managers.player:modify_value("damage_taken", self:_max_health() * attack_data.damage, attack_data) * self._teargas_damage_ramp
+		
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)
 
