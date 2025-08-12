@@ -209,7 +209,7 @@ if not Eclipse then
 			local enabled = (item:value() == "on")
 			Eclipse.settings.autofire_sound_fix = enabled
 		end
-		
+
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
 
@@ -285,7 +285,7 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddMultipleChoice({
 			id = "player_styles",
 			title = "eclipse_menu_player_styles",
