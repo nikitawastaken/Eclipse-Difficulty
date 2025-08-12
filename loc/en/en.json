@@ -79,7 +79,9 @@
 	"eclipse_menu_player_styles_none": "No heist outfits",
 	"eclipse_menu_flavor_text_tips": "Enable Misc. Tips",
 	"eclipse_menu_flavor_text_tips_desc": "Jerome's helpful tips to help you get better.",
-
+	"eclipse_menu_autofire_sound_fix": "Auto-fire sound fix",
+	"eclipse_menu_autofire_sound_fix_desc": "Fixes an issue where a weapon sound may play twice when firing single shots in auto-fire mode. Disabling the fix will cause auto-fire sounds to be out of sync with the actual fire rates for certain weapons.",
+	
 	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
 	"menu_difficulty_easy_wish": "Eclipse",
 	"menu_risk_easy_wish": "Operation 'Eclipse'.\nFor you, action is the juice.",
