@@ -69,11 +69,16 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 		return
 	end
 
-	if not self:_is_hiding_cloaker_SO() then
+	if not alive(unit) or not self:_is_hiding_cloaker_SO() then
 		return
 	end
 
-	local base_ext = alive(unit) and unit:base()
+	local char_dmg_ext = unit:character_damage()
+	if char_dmg_ext and char_dmg_ext:dead() then
+		return
+	end
+
+	local base_ext = unit:base()
 	if not base_ext then
 		return
 	end
