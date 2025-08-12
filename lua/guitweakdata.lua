@@ -1,4 +1,5 @@
 Hooks:PostHook(GuiTweakData, "init", "eclipse_init", function(self)
+	self.armor_damage_shake_base = 1
 	self.buy_weapon_categories = {
 		primaries = {
 			{
