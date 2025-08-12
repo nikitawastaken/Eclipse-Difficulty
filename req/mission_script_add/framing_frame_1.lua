@@ -61,7 +61,7 @@ local optscivevent = {
 	on_executed = {
 		{ id = 400015, delay = 0 },
 	},
-	enabled = overkill_and_above and enabled_chance_cloakers,
+	enabled = overkill_and_above and civilian_chance,
 }
 local random_civ = {
 	amount = 1,
