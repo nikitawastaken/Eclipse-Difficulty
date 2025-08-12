@@ -846,13 +846,13 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 	local cloaker_limit = managers.job:current_spawn_limit("spooc") or -math.huge
 	local active_cloakers = self:_get_special_unit_type_count("spooc") or math.huge
 	if active_cloakers >= cloaker_limit then
-		Eclipse:log_console("Too many alive Cloakers")
+		-- Eclipse:log_console("Too many alive Cloakers")
 		return
 	end
 
 	local simultaneous_hiding_limit = hiding_cloaker_tweak.simultaneous_hiding_limit or 1
 	if data.groups and table.size(data.groups) >= simultaneous_hiding_limit then
-		Eclipse:log_console("Too many hiding Cloakers")
+		-- Eclipse:log_console("Too many hiding Cloakers")
 		return
 	end
 
