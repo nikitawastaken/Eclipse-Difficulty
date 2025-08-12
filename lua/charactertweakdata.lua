@@ -429,7 +429,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.hw_bulldozer = based_on(presets.weapon.bulldozer, {
 		melee_speed = 0.5,
 		melee_range = 200,
@@ -1250,7 +1250,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_tank.move_speed_mul = { walk = 0.85, run = 0.85 }
 	self.city_tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "city_tank")
-	
+
 	self.spooc.HEALTH_INIT = 18
 	self.spooc.headshot_dmg_mul = 3.75 -- 48 head health
 	self.spooc.min_obj_interrupt_dis = 800
@@ -1379,7 +1379,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.piggydozer.HEALTH_INIT = 400
 	self.piggydozer.headshot_dmg_mul = 2
 	self.piggydozer.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	
+
 	-- escort speed stuff
 	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
 
@@ -1710,7 +1710,7 @@ function CharacterTweakData:_set_presets()
 
 		local is_boss = name:match("_boss$")
 		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
-		
+
 		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 

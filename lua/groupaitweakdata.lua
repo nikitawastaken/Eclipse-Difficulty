@@ -1425,9 +1425,9 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			murkywater = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
 			federales = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
 		},
-		access = access_type_walk_only
+		access = access_type_walk_only,
 	}
-	
+
 	self.unit_categories.piggydozer = {
 		unit_types = {
 			america = { Idstring("units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy") },
@@ -1436,9 +1436,8 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			murkywater = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
 			federales = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
 		},
-		access = access_type_walk_only
+		access = access_type_walk_only,
 	}
-	
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
@@ -1549,13 +1548,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 	self._random_tactics = {
-		shield = { 
-			shield_agg = 2, 
-			shield_def = 1, 
+		shield = {
+			shield_agg = 2,
+			shield_def = 1,
 		},
-		bulldozer = { 
-			bulldozer_agg = 2, 
-			bulldozer_def = 1, 
+		bulldozer = {
+			bulldozer_agg = 2,
+			bulldozer_def = 1,
 		},
 		taser = { "taser_agg", "taser_snk" },
 		cloaker = { "cloaker_def", "cloaker_agg" },
@@ -1564,12 +1563,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	-- соси хуй кк?
 	self.enemy_spawn_groups = {}
 
-	local medic_cloaker = { 
+	local medic_cloaker = {
 		["medic_1"] = 2,
 		["medic_2"] = 1,
 		["cloaker"] = 1,
 	}
-	local medic_taser = { 
+	local medic_taser = {
 		["medic_1"] = 4,
 		["medic_2"] = 2,
 		["taser_1"] = 2,
@@ -2613,11 +2612,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "snowman_boss",
 				random_tactics = self._random_tactics.bulldozer,
-			}
+			},
 		},
 		spawn_point_chk_ref = table.list_to_set({
 			"cs_bulldozer",
-		})
+		}),
 	}
 	self.enemy_spawn_groups.piggydozer = {
 		amount = { 1, 1 },
@@ -2628,13 +2627,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 1,
 				unit = "piggydozer",
 				random_tactics = self._random_tactics.bulldozer,
-			}
+			},
 		},
 		spawn_point_chk_ref = table.list_to_set({
 			"cs_bulldozer",
-		})
+		}),
 	}
-	
 end)
 
 GroupAITweakData.fbi_heists = {
@@ -2912,7 +2910,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 					Utils.PrintTable(assault_state.cloaker.interval)
 				end
 			end
-		
+
 			if assault_state.push_delay then
 				assault_state.push_delay = table_multiplier(assault_state.push_delay, level_settings.push_delay_mul or 1)
 
