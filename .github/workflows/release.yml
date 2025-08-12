@@ -20,7 +20,7 @@ jobs:
       - name: Format code and store error log
         id: codeFormatting
         run: |
-          stylua --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- . &> stylua.log
+          ./stylua --config-path ./.github/stylua.toml -g "*.lua" -g "!weapontweakdata.lua" -- . &> stylua.log
       - name: Archive error log
         uses: actions/upload-artifact@v4
         if: failure() && steps.codeFormatting.outcome == 'failure'
