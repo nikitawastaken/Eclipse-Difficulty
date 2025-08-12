@@ -11,6 +11,8 @@
 			<is_medicdozer			value="0" />
 			<is_headless			value="0" />
 			<is_headless_black		value="0" />
+			<is_piggydozer			value="0" />
+			<is_snowman_boss		value="0" />
 		</variables>
 
 		<filter name="'check_no_big_armor'">
@@ -160,6 +162,17 @@
 				
 			<decal_mesh 		enabled="true" name="'dm_head_headless'" />
 		</sequence>
+
+		<sequence editable_state="true" name="'disable_armor_bodies'" once="true" triggable="true">
+			<body 				enabled="false" name="'body_helmet'" />
+			<body 				enabled="false" name="'body_helmet_glass'" />
+			<body 				enabled="false" name="'body_helmet_plate'" />
+			<body 				enabled="false" name="'body_armor_chest'" />
+			<body 				enabled="false" name="'body_armor_stomache'" />
+			<body 				enabled="false" name="'body_armor_back'" />
+			<body 				enabled="false" name="'body_armor_throat'" />
+			<body 				enabled="false" name="'body_armor_neck'" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'greendozer'" once="true" triggable="true">
 			<set_variables 		is_greendozer="1" />
@@ -194,7 +207,17 @@
 			<set_variables 		is_headless_black="1" />
 			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'"/>
 		</sequence>	
-	
+
+		<sequence editable_state="true" name="'piggydozer'" once="true" triggable="true">
+			<set_variables 		is_piggydozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_dozer_piggy'"/>
+		</sequence>	
+
+		<sequence editable_state="true" name="'snowman_boss'" once="true" triggable="true">
+			<set_variables 		is_snowman_boss="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_snowman_boss'"/>
+		</sequence>	
+		
 		<sequence editable_state="true" name="'bulldozer_1'" once="true" triggable="true">	
 			<object 			enabled="true" name="'g_gear_chest_a'" />
 			<object 			enabled="true" name="'g_gear_chest_a_lod1'" />
@@ -262,6 +285,16 @@
 			<run_sequence 		name="'headless_black'" />
 			<run_sequence 		name="'sword'" />
 			<run_sequence 		name="'no_head'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bulldozer_piggy'" once="true" triggable="true">
+			<run_sequence 		name="'piggydozer'" />
+			<run_sequence 		name="'disable_armor_bodies'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'bulldozer_snowman'" once="true" triggable="true">
+			<run_sequence 		name="'snowman_boss'" />
+			<run_sequence 		name="'disable_armor_bodies'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'bulldozer_face_init'" once="true" triggable="true"> 

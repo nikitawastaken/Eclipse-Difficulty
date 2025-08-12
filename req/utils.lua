@@ -203,4 +203,20 @@ function M.set_diff_groups(group)
 	}
 end
 
+function M.weighted_selector(t)
+	if type(t) ~= "table" then
+		t = { t }
+	end
+
+	local selector = WeightedSelector:new()
+	for k, v in pairs(t) do
+		if type(k) == "number" then
+			selector:add(v, 1)
+		else
+			selector:add(k, v)
+		end
+	end
+	return selector
+end
+
 return M

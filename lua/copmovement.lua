@@ -1,6 +1,6 @@
 CopMovement._action_variants.cobra = CopMovement._action_variants.gangster
 CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
-CopMovement._action_variants.tank_elite = CopMovement._action_variants.tank
+CopMovement._action_variants.city_tank = CopMovement._action_variants.tank
 CopMovement._action_variants.murky = CopMovement._action_variants.swat
 CopMovement._action_variants.security_fat = CopMovement._action_variants.swat
 CopMovement._action_variants.security_mcmansion = CopMovement._action_variants.swat
@@ -106,7 +106,7 @@ end
 Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damage_info)
 	local hurt_type = damage_info.result.type
 	-- If it's a dozer and the hurt type is expl_hurt, use the medium hurt preset instead
-	local is_tank = self._unit:base()._tweak_table == "tank" or self._unit:base()._tweak_table == "tank_elite"
+	local is_tank = self._unit:base():has_tag("tank")
 	if is_tank and hurt_type == "expl_hurt" then
 		hurt_type = "hurt"
 	end

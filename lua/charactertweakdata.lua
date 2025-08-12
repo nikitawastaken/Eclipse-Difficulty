@@ -206,7 +206,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_flamethrower.melee_dmg = nil
 	presets.weapon.base.is_flamethrower.melee_speed = nil
 	presets.weapon.base.is_flamethrower.melee_retry_delay = nil
-	presets.weapon.base.is_flamethrower.range = { close = 500, optimal = 1000, far = 1750 }
+	presets.weapon.base.is_flamethrower.RELOAD_SPEED = 0.6
+	presets.weapon.base.is_flamethrower.autofire_rounds = { 20, 40 }
+	presets.weapon.base.is_flamethrower.range = { close = 450, optimal = 900, far = 1800 }
 	presets.weapon.base.is_flamethrower.FALLOFF = {
 		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -383,7 +385,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.medic, 4 / 5)
 
 	presets.weapon.cloaker = based_on(presets.weapon.swat, {
-		range = { close = 750, optimal = 1250, far = 2500 },
+		range = { close = 500, optimal = 1000, far = 3000 },
 	})
 
 	presets.weapon.cloaker.is_pistol.FALLOFF = {
@@ -419,6 +421,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
+	presets.weapon.bulldozer.is_flamethrower.melee_dmg = nil
+	presets.weapon.bulldozer.is_flamethrower.melee_speed = nil
+	presets.weapon.bulldozer.is_flamethrower.melee_retry_delay = nil
+	presets.weapon.bulldozer.is_flamethrower.FALLOFF = {
+		{ dmg_mul = 5 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+	}
+	
 	presets.weapon.hw_bulldozer = based_on(presets.weapon.bulldozer, {
 		melee_speed = 0.5,
 		melee_range = 200,
@@ -1233,13 +1244,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank_hw.melee_weapon = "helloween"
 	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
-	self.tank_elite = deep_clone(self.tank)
-	self.tank_elite.HEALTH_INIT = 800
-	self.tank_elite.headshot_dmg_mul = 25 -- 320 head health
-	self.tank_elite.move_speed_mul = { walk = 0.85, run = 0.85 }
-	self.tank_elite.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
-	table.insert(self._enemy_list, "tank_elite")
-
+	self.city_tank = deep_clone(self.tank)
+	self.city_tank.HEALTH_INIT = 800
+	self.city_tank.headshot_dmg_mul = 25 -- 320 head health
+	self.city_tank.move_speed_mul = { walk = 0.85, run = 0.85 }
+	self.city_tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
+	table.insert(self._enemy_list, "city_tank")
+	
 	self.spooc.HEALTH_INIT = 18
 	self.spooc.headshot_dmg_mul = 3.75 -- 48 head health
 	self.spooc.min_obj_interrupt_dis = 800
@@ -1307,31 +1318,15 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.mobster_boss.HEALTH_INIT = 180
 	self.mobster_boss.headshot_dmg_mul = 1.5
-	self.mobster_boss.no_headshot_add_mul = true
-	self.mobster_boss.immune_to_knock_down = true
-	self.mobster_boss.immune_to_concussion = true
-	self.mobster_boss.no_run_start = true
-	self.mobster_boss.no_run_stop = true
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.mobster_boss.use_animation_on_fire_damage = false
 
 	self.chavez_boss.HEALTH_INIT = 180
 	self.chavez_boss.headshot_dmg_mul = 1.5
-	self.chavez_boss.no_headshot_add_mul = true
-	self.chavez_boss.no_run_start = true
-	self.chavez_boss.no_run_stop = true
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
-	self.chavez_boss.use_animation_on_fire_damage = false
 
 	self.hector_boss.HEALTH_INIT = 240
 	self.hector_boss.headshot_dmg_mul = 1.5
-	self.hector_boss.no_headshot_add_mul = true
-	self.hector_boss.immune_to_knock_down = true
-	self.hector_boss.immune_to_concussion = true
-	self.hector_boss.no_run_start = true
-	self.hector_boss.no_run_stop = true
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.hector_boss.use_animation_on_fire_damage = false
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
 
@@ -1340,19 +1335,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.biker_boss.HEALTH_INIT = 240
 	self.biker_boss.headshot_dmg_mul = 1.5
-	self.biker_boss.no_headshot_add_mul = true
-	self.biker_boss.no_run_start = true
-	self.biker_boss.no_run_stop = true
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.biker_boss.use_animation_on_fire_damage = false
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
 
 	self.drug_lord_boss.HEALTH_INIT = 240
 	self.drug_lord_boss.headshot_dmg_mul = 1.5
-	self.drug_lord_boss.no_headshot_add_mul = true
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.drug_lord_boss.use_animation_on_fire_damage = false
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
@@ -1362,11 +1351,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.triad_boss.HEALTH_INIT = 240
 	self.triad_boss.headshot_dmg_mul = 1.5
-	self.triad_boss.no_headshot_add_mul = true
-	self.triad_boss.no_run_start = true
-	self.triad_boss.no_run_stop = true
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.triad_boss.use_animation_on_fire_damage = false
 	self.triad_boss.bullet_damage_only_from_front = nil
 	self.triad_boss.invulnerable_to_slotmask = nil
 	self.triad_boss.throwable_target_verified = false
@@ -1378,11 +1363,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.deep_boss.HEALTH_INIT = 300
 	self.deep_boss.headshot_dmg_mul = 1.5
 	self.deep_boss.ignore_headshot = false
-	self.deep_boss.no_headshot_add_mul = true
-	self.deep_boss.no_run_start = true
-	self.deep_boss.no_run_stop = true
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.deep_boss.use_animation_on_fire_damage = false
 
 	self.fbi_boss = deep_clone(self.chavez_boss)
 	self.fbi_boss.HEALTH_INIT = 180
@@ -1391,6 +1372,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_boss.access = "fbi"
 	table.insert(self._enemy_list, "fbi_boss")
 
+	self.snowman_boss.HEALTH_INIT = 400
+	self.snowman_boss.headshot_dmg_mul = 2
+	self.snowman_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+
+	self.piggydozer.HEALTH_INIT = 400
+	self.piggydozer.headshot_dmg_mul = 2
+	self.piggydozer.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	
 	-- escort speed stuff
 	self.escort_cfo.move_speed = self.presets.move_speed.escort_normal
 
@@ -1622,10 +1611,10 @@ CharacterTweakData.tweak_table_weapon = {
 	zeal_shield = "zeal_shield",
 	tank = "bulldozer",
 	tank_medic = "bulldozer",
+	snowman_boss = "bulldozer",
+	piggydozer = "bulldozer",
 	tank_hw = "hw_bulldozer",
-	tank_elite = "elite_bulldozer",
-	marshal_marksman = "marshal_marksman",
-	marshal_gunner = "marshal_gunner",
+	city_tank = "elite_bulldozer",
 	mobster_boss = "boss",
 	chavez_boss = "boss",
 	hector_boss = "boss",
@@ -1720,7 +1709,8 @@ function CharacterTweakData:_set_presets()
 		local char_access = char_preset.access
 
 		local is_boss = name:match("_boss$")
-
+		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
+		
 		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 
@@ -1756,7 +1746,7 @@ function CharacterTweakData:_set_presets()
 		end
 
 		-- Boss related stuff
-		if is_boss then
+		if is_event_tank or is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
 			char_preset.player_health_scaling_mul = 1.25
 			char_preset.no_headshot_add_mul = true
@@ -1809,7 +1799,7 @@ function CharacterTweakData:_set_presets()
 
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
 
-	self.tank_elite.damage.armor_health = self.tank.damage.armor_health * (4 / 3)
+	self.city_tank.damage.armor_health = self.tank.damage.armor_health * (4 / 3)
 
 	self.tank_armor_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 

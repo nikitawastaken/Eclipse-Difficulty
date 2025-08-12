@@ -9,6 +9,10 @@ local mvec_set = mvector3.set
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
+local function weighted_selector(t)
+	return Eclipse.utils.weighted_selector(t)
+end
+
 -- All reenforce poins now have a force value of at least 2 (from ASS)
 GroupAIStateBesiege.set_area_min_police_force_original = GroupAIStateBesiege.set_area_min_police_force
 function GroupAIStateBesiege:set_area_min_police_force(id, force, ...)
@@ -1231,14 +1235,14 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
 	end
-
-	for _, enemy in pairs(spawn_group_desc.spawn) do
+	for _, enemy in pairs(spawn_group_desc.spawn) do			
 		if enemy.random_tactics then
-			enemy.tactics = table.random(enemy.random_tactics)
+			tactic_str = weighted_selector(enemy.random_tactics):select()
+			enemy.tactics = tweak_data.group_ai._tactics[tactic_str] or enemy.tactics
 		end
-
+			
 		if enemy.random_unit then
-			enemy.unit = table.random(enemy.random_unit)
+			enemy.unit = weighted_selector(enemy.random_unit):select() or enemy.unit
 
 			if check_special_limit_reached(enemy.unit) then
 				for _, unit in pairs(enemy.random_unit) do

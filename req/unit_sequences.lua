@@ -36,6 +36,14 @@ local head_sequences = {
 			"random_balaclava_swat_rare",
 		},
 	},
+	heavy_swat = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"random_balaclava_heavy_swat",
+			"disable_arms",
+		},
+	},
 	swat_a = {
 		material = { 1, 2 },
 		run_sequence = {
@@ -196,8 +204,8 @@ local M = {
 	["units/payday2/characters/ene_swat_1/ene_swat_1"] = { name = "swat_1", head = head_sequences.swat_b },
 	["units/payday2/characters/ene_swat_2/ene_swat_2"] = { name = "swat_2", head = head_sequences.swat_a },
 	["units/payday2/characters/ene_swat_3/ene_swat_3"] = { name = "swat_3", head = head_sequences.swat_a },
-	["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = { name = "swat_heavy_1", head = head_sequences.swat_a },
-	["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = { name = "swat_heavy_2", head = head_sequences.swat_a },
+	["units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"] = { name = "swat_heavy_1", head = head_sequences.heavy_swat },
+	["units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"] = { name = "swat_heavy_2", head = head_sequences.heavy_swat },
 	["units/payday2/characters/ene_shield_2/ene_shield_2"] = { name = "shield_2", head = head_sequences.swat_d },
 	["units/payday2/characters/ene_sniper_1/ene_sniper_1"] = { name = "sniper_1", head = head_sequences.swat_b },
 	["units/payday2/characters/ene_tazer_1/ene_tazer_1"] = { name = "taser_1", head = head_sequences.swat_b },
@@ -292,6 +300,8 @@ local M = {
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"] = { name = "pex_cop_3", head = head_sequences.security },
 	["units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex"] = { name = "secret_service_1", head = head_sequences.security },
+	["units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy"] = { name = "bulldozer_piggy", head = head_sequences.bulldozer },
+	["units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss"] = { name = "bulldozer_snowman", head = head_sequences.bulldozer },
 }
 
 return M

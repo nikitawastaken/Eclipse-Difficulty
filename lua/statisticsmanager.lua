@@ -6,7 +6,7 @@ StatisticsManager.special_unit_ids = {
 	"city_shield_break",
 	"spooc",
 	"tank",
-	"tank_elite",
+	"city_tank",
 	"tank_hw",
 	"taser",
 	"medic",
@@ -146,7 +146,7 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
-	self._defaults.killed.tank_elite = {
+	self._defaults.killed.city_tank = {
 		count = 0,
 		head_shots = 0,
 		melee = 0,

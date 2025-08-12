@@ -3,7 +3,6 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_solo = Eclipse.utils.is_solo
 
 local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
@@ -1291,271 +1290,6 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_all,
 	}
 
-	self.unit_categories.zeal_swat_1 = {
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_swat_2 = {
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_swat_3 = {
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_swat = {
-		unit_types = {
-			america = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-			},
-			russia = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-			},
-			zombie = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-			},
-			murkywater = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-			},
-			federales = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat"),
-			},
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_heavy_1 = {
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_heavy_2 = {
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_heavy = {
-		unit_types = {
-			america = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
-			},
-			russia = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
-			},
-			zombie = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
-			},
-			murkywater = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
-			},
-			federales = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2"),
-			},
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_shield = {
-		special_type = "shield",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield") },
-		},
-		access = access_type_walk_only,
-	}
-
-	self.unit_categories.zeal_taser_1 = {
-		special_type = "taser",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_taser_2 = {
-		special_type = "taser",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_taser = {
-		special_type = "taser",
-		unit_types = {
-			america = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-			},
-			russia = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-			},
-			zombie = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-			},
-			murkywater = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-			},
-			federales = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer"),
-			},
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_medic_1 = {
-		special_type = "medic",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_medic_2 = {
-		special_type = "medic",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_medic = {
-		special_type = "medic",
-		unit_types = {
-			america = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
-			},
-			russia = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
-			},
-			zombie = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
-			},
-			murkywater = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
-			},
-			federales = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4"),
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870"),
-			},
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_cloaker = {
-		special_type = "spooc",
-		unit_types = {
-			america = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker") },
-			russia = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker") },
-			zombie = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker") },
-			murkywater = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker") },
-			federales = { Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker") },
-		},
-		access = access_type_all,
-	}
-
-	self.unit_categories.zeal_tank = {
-		special_type = "tank",
-		unit_types = {
-			america = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
-				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
-			},
-			russia = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
-				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
-			},
-			zombie = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
-				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
-			},
-			murkywater = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
-				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
-			},
-			federales = {
-				Idstring("units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer/ene_zeal_bulldozer"),
-				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"),
-			},
-		},
-		access = access_type_walk_only,
-	}
-
 	self.unit_categories.fbi_readyteam = {
 		unit_types = {
 			america = {
@@ -1682,6 +1416,29 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
+
+	self.unit_categories.snowman_boss = {
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+			russia = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+			zombie = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+			murkywater = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+			federales = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+		},
+		access = access_type_walk_only
+	}
+	
+	self.unit_categories.piggydozer = {
+		unit_types = {
+			america = { Idstring("units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy") },
+			russia = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+			zombie = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+			murkywater = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+			federales = { Idstring("units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss") },
+		},
+		access = access_type_walk_only
+	}
+	
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
@@ -1776,7 +1533,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		cloaker_def = {
 			"no_push",
-			--"door_ambush",
 		},
 		cloaker_agg = {
 			"flank",
@@ -1792,19 +1548,33 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"no_push",
 		},
 	}
-
 	self._random_tactics = {
-		shield = { self._tactics.shield_def, self._tactics.shield_agg, self._tactics.shield_agg },
-		taser = { self._tactics.taser_agg, self._tactics.taser_snk },
-		bulldozer = { self._tactics.bulldozer_def, self._tactics.bulldozer_agg, self._tactics.bulldozer_agg },
-		cloaker = { self._tactics.cloaker_def, self._tactics.cloaker_agg },
+		shield = { 
+			shield_agg = 2, 
+			shield_def = 1, 
+		},
+		bulldozer = { 
+			bulldozer_agg = 2, 
+			bulldozer_def = 1, 
+		},
+		taser = { "taser_agg", "taser_snk" },
+		cloaker = { "cloaker_def", "cloaker_agg" },
 	}
 
 	-- соси хуй кк?
 	self.enemy_spawn_groups = {}
 
-	local medic_cloaker = { "medic_1", "medic_1", "medic_2", "cloaker", "cloaker" }
-	local medic_taser = { "medic_1", "medic_1", "medic_2", "taser_1", "taser_1" }
+	local medic_cloaker = { 
+		["medic_1"] = 2,
+		["medic_2"] = 1,
+		["cloaker"] = 1,
+	}
+	local medic_taser = { 
+		["medic_1"] = 4,
+		["medic_2"] = 2,
+		["taser_1"] = 2,
+		["taser_2"] = 1,
+	}
 	local taser_cloaker = { "taser_1", "cloaker" }
 
 	self.enemy_spawn_groups.cs_defend_init = {
@@ -2038,7 +1808,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_taser = {
-		amount = { 3, 3 },
+		amount = { 1, 3 },
 		spawn = {
 			{
 				freq = 1,
@@ -2069,7 +1839,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = self._random_tactics.bulldozer,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				amount_min = 2,
 				rank = 2,
 				unit = "cs_heavy",
@@ -2400,7 +2170,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_taser = {
-		amount = { 3, 4 },
+		amount = { 2, 4 },
 		spawn = {
 			{
 				freq = (difficulty_index ^ 2) / 80 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
@@ -2431,7 +2201,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = self._random_tactics.bulldozer,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				amount_min = 2,
 				rank = 2,
 				unit = "fbi_heavy",
@@ -2687,7 +2457,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.elite_taser = {
-		amount = { 3, 4 },
+		amount = { 2, 4 },
 		spawn = {
 			{
 				freq = (difficulty_index ^ 2) / 80 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
@@ -2738,7 +2508,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = self._random_tactics.bulldozer,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				amount_min = 2,
 				rank = 2,
 				unit = "fbi_heavy",
@@ -2833,6 +2603,38 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
+
+	self.enemy_spawn_groups.snowman_boss = {
+		amount = { 1, 1 },
+		spawn = {
+			{
+				freq = 1,
+				amount_min = 1,
+				rank = 1,
+				unit = "snowman_boss",
+				random_tactics = self._random_tactics.bulldozer,
+			}
+		},
+		spawn_point_chk_ref = table.list_to_set({
+			"cs_bulldozer",
+		})
+	}
+	self.enemy_spawn_groups.piggydozer = {
+		amount = { 1, 1 },
+		spawn = {
+			{
+				freq = 1,
+				amount_min = 1,
+				rank = 1,
+				unit = "piggydozer",
+				random_tactics = self._random_tactics.bulldozer,
+			}
+		},
+		spawn_point_chk_ref = table.list_to_set({
+			"cs_bulldozer",
+		})
+	}
+	
 end)
 
 GroupAITweakData.fbi_heists = {
@@ -2903,16 +2705,16 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		murky_snk = {
 			"flank",
 			"deathguard",
-			"murder",
 		},
 		fbi_def = {
 			"ranged_fire",
-			"flash_grenade",
 			"smoke_grenade",
+			"flash_grenade",
 		},
 		fbi_snk = {
 			"rescue",
 			"flank",
+			"deathguard",
 			"flash_grenade",
 		},
 		army_def = {
@@ -3020,16 +2822,6 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		local level_group_ai_state = (lvl_tweak and lvl_tweak.group_ai_state or "besiege") == group_ai_state_name
 
 		if assault_state then
-			if assault_state.recurring_group_SO and assault_state.recurring_group_SO.recurring_cloaker_spawn then
-				assault_state.recurring_group_SO.recurring_cloaker_spawn.interval =
-					table_multiplier(assault_state.recurring_group_SO.recurring_cloaker_spawn.interval, level_settings.recurring_cloaker_spawn_interval_mul or 1)
-
-				if level_group_ai_state and level_settings.recurring_cloaker_spawn_interval_mul ~= 1 then
-					Eclipse:log_console("Recurring Cloaker spawn intervals for " .. level_id .. " set to: ")
-					Utils.PrintTable(assault_state.recurring_group_SO.recurring_cloaker_spawn.interval)
-				end
-			end
-
 			if assault_state.assault then
 				if assault_state.assault.sustain_duration_min then
 					assault_state.assault.sustain_duration_min = table_multiplier(assault_state.assault.sustain_duration_min, level_settings.sustain_duration_mul or 1)
@@ -3104,7 +2896,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			end
 
 			if assault_state.reenforce then
-				assault_state.recon.force = table_multiplier(assault_state.reenforce.interval, level_settings.reenforce_interval_mul or 1)
+				assault_state.reenforce.interval = table_multiplier(assault_state.reenforce.interval, level_settings.reenforce_interval_mul or 1)
 
 				if level_group_ai_state and level_settings.reenforce_interval_mul ~= 1 then
 					Eclipse:log_console("Reenforce interval for " .. level_id .. " set to: ")
@@ -3112,6 +2904,15 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 				end
 			end
 
+			if assault_state.cloaker then
+				assault_state.cloaker.interval = table_multiplier(assault_state.cloaker.interval, level_settings.cloaker_interval_mul or 1)
+
+				if level_group_ai_state and level_settings.cloaker_interval_mul ~= 1 then
+					Eclipse:log_console("Cloaker spawn intervals for " .. level_id .. " set to: ")
+					Utils.PrintTable(assault_state.cloaker.interval)
+				end
+			end
+		
 			if assault_state.push_delay then
 				assault_state.push_delay = table_multiplier(assault_state.push_delay, level_settings.push_delay_mul or 1)
 
@@ -3443,8 +3244,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_cloaker = { 0, 0.15, 0.3 },
 			fbi_bulldozer = { 0, 0, 0.25 },
 			elite_bulldozer = { 0, 0, 0.25 },
-			elite_bulldozer_takedown = { 0, 0, 0.15 },
-			elite_bulldozer_shield = { 0, 0, 0.15 },
+			elite_bulldozer_takedown = { 0, 0, 0.1 },
+			elite_bulldozer_shield = { 0, 0, 0.1 },
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_light = { 1, 0.7, 0.4 },
@@ -3470,14 +3271,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(60, 20),
 		diff_lerp(120, 40),
 	}
-	self.besiege.cloaker.hide_durations = {
-		120,
-		180,
-	}
-	self.besiege.cloaker.hide_retry_delay = {
-		10,
-		20,
-	}
+	self.besiege.cloaker.hide_durations = { 120, 180 }
+	self.besiege.cloaker.hide_retry_delay = { 10, 20 }
 	self.besiege.cloaker.avoid_repeat_hiding_spots = true -- Rehiding not implemented yet
 	self.besiege.cloaker.avoid_repeat_hiding_spots_min_elements = 2 -- Rehiding not implemented yet
 	self.besiege.cloaker.simultaneous_hiding_limit = 1

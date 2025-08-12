@@ -1025,6 +1025,12 @@
 
 					<file :name="ene_bulldozer_medic_classic.material_config" />
 					<file :name="ene_bulldozer_medic_classic_contour.material_config" />
+
+					<file :name="ene_dozer_piggy.material_config" />
+					<file :name="ene_dozer_piggy_contour.material_config" />
+
+					<file :name="ene_snowman_boss.material_config" />
+					<file :name="ene_snowman_boss_contour.material_config" />
 				</group>
 			</group>
 
@@ -1623,6 +1629,20 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_pda10/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_dozer_piggy/">
+				<file :name="ene_dozer_piggy.unit" />
+				<file :name="ene_dozer_piggy_husk.unit" />
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_cg22/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_snowman_boss/">
+				<file :name="ene_snowman_boss.unit" />
+				<file :name="ene_snowman_boss_husk.unit" />
+			</group>
+		</group>
+		
 		<!-- objects -->
 		<group name="units/pd2_dlc_pal/props/pal_prop_flames_of_love_boombox/" dyn_package="false">
 				<file :name="pal_prop_flames_of_love_boombox.sequence_manager"/> <!-- Where is my Payday for you and me??????? -->
