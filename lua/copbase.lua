@@ -204,9 +204,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
 
 	-- Always glow cloakers (like in PDTH)
-	if self:has_tag("spooc") then
-		self._unit:damage():run_sequence_simple("turn_on_spook_lights")
-	end
+	self:set_cloaker_goggles_on(true)
 
 	if Network:is_client() then
 		return
@@ -229,3 +227,38 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 		self._default_weapon_id = unit_weapon
 	end
 end)
+
+function CopBase:set_cloaker_goggles_on(state)
+	if not self:has_tag("spooc") then
+		return
+	end
+
+	local sequence = state and "turn_on_spook_lights" or "kill_spook_lights"
+	local damage_ext = self._unit:damage()
+	if damage_ext and damage_ext:has_sequence(sequence) then
+		damage_ext:run_sequence_simple(sequence)
+	end
+end
+
+-- No idea if play() needs source_name or sync arguments here
+function CopBase:set_cloaker_noise_on(state, whistle)
+	if not self:has_tag("spooc") then
+		return
+	end
+
+	local char_tweak = self._char_tweak
+	if not char_tweak or not char_tweak.spawn_sound_event or not char_tweak.die_sound_event then
+		return
+	end
+
+	local sound_ext = self._unit:sound()
+	if not sound_ext then
+		return
+	end
+
+	local sound_event = state and char_tweak.spawn_sound_event or char_tweak.die_sound_event
+	sound_ext:play(sound_event)
+	if whistle then
+		sound_ext:play("clk_c01x_plu")
+	end
+end

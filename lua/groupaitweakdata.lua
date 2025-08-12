@@ -3465,10 +3465,28 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		single_spooc = { 1, 1, 1 },
 	}
 
-	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = {
+	-- New data for the reworked Cloaker task
+	self.besiege.cloaker.interval = {
 		diff_lerp(60, 20),
 		diff_lerp(120, 40),
 	}
+	self.besiege.cloaker.hide_durations = {
+		120,
+		180,
+	}
+	self.besiege.cloaker.hide_retry_delay = {
+		10,
+		20,
+	}
+	self.besiege.cloaker.avoid_repeat_hiding_spots = true -- Rehiding not implemented yet
+	self.besiege.cloaker.avoid_repeat_hiding_spots_min_elements = 2 -- Rehiding not implemented yet
+	self.besiege.cloaker.simultaneous_hiding_limit = 1
+	self.besiege.cloaker.goggles_on_when_hiding = false
+	self.besiege.cloaker.use_spawn_noise = true
+	self.besiege.cloaker.use_idle_noise_when_hiding = true
+	self.besiege.cloaker.whistle_on_leave_hiding = true
+	self.besiege.cloaker.assault_on_objective_failed_chance = 1 -- Rehiding not implemented yet
+	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = clone(self.besiege.cloaker.interval)
 
 	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.assault.groups.Phalanx = { 0, 0, 0 }

@@ -32,6 +32,7 @@
 					<post :hook_id="elementspawnenemydummy"/>
 					<post :hook_id="elementspawnenemygroup"/>
 					<post :hook_id="elementspecialobjective"/>
+					<post :hook_id="elementspecialobjectivegroup"/>
 					<post :hook_id="elementinstigatorrule"/>
 					<post :hook_id="elementdifficulty"/>
 					<post :hook_id="missionscriptelement"/>

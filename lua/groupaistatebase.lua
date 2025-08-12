@@ -120,6 +120,7 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
+	self._hiding_cloakers_set_to_assault = {}
 
 	self._mga_hostage_kills = self._mga_hostage_kills or 0
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
@@ -192,9 +193,9 @@ function GroupAIStateBase:sync_event(event_id, ...)
 	local event_name = self.EVENT_SYNC[event_id]
 	if table.contains(self.MEGAPHONE_EVENTS, event_name) then
 		self:_post_megaphone_event(event_name)
-	elseif event_name ~= "cloaker_spawned" then
-		return sync_event_orig(self, event_id, ...)
+		return
 	end
+	return sync_event_orig(self, event_id, ...)
 end
 
 function GroupAIStateBase:megaphone_announce_snipers()
@@ -207,16 +208,6 @@ function GroupAIStateBase:megaphone_announce_snipers()
 
 		-- Put the "deploy Snipers" line on a cooldown
 		self._mga_said_deploy_snipers_t = self._t + 120
-	end
-end
-
--- Restore scripted cloaker spawn noise
-local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
-function GroupAIStateBase:_process_recurring_grp_SO(...)
-	if _process_recurring_grp_SO_original(self, ...) then
-		managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
-		managers.hud:post_event("cloaker_spawn")
-		return true
 	end
 end
 
@@ -575,12 +566,13 @@ function GroupAIStateBase:unregister_marking_sentry(unit)
 end
 
 -- Do sentry marking if you are the host
-Hooks:PostHook(GroupAIStateBase, "update", "eclipse_sentry_update", function(self, t, dt)
+Hooks:PostHook(GroupAIStateBase, "update", "eclipse_update", function(self, t, dt)
 	if Network:is_server() then
 		for _, sentry in pairs(self._marking_sentries) do
 			sentry:base():_update_omniscience(t, dt)
 		end
 	end
+	self:_update_hiding_cloakers_set_to_assault()
 end)
 
 -- Disable drama zones to prevent skipping of anticipation, build and regroup phases
@@ -625,4 +617,266 @@ end)
 -- disable ai trades when all players are in custody, if you fucked up - you fucked up
 function GroupAIStateBase:is_ai_trade_possible()
 	return false
+end
+
+-- Overhaul hiding Cloaker task
+-- Make it less prone to spamming Cloakers
+-- Add a tweakdata limit on the number of hiding Cloaker groups
+-- Reduced hide durations - see elementspecialobjectivegroup
+-- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting - NOT FULLY IMPLEMENTED YET
+-- Cloakers getting new hide SOs can be set to not use the same one they just used - NOT IMPLEMENTED YET
+-- Spawn noise being used is now a tweakdata flag
+-- Idle noise and goggles being on while hiding are now tweakdata flags
+local junk_reason_group_nil = "group_nil"
+local junk_reason_group_mismatch = "groups_mismatched"
+local junk_reason_group_empty = "group_empty"
+local junk_reason_no_objective = "no_objective"
+local junk_reason_mismatched_objective = "mismatched_objective"
+local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_grp_SO
+function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
+	if recurring_id ~= "recurring_cloaker_spawn" then
+		return _process_recurring_grp_SO_original(self, recurring_id, data, ...)
+	end
+
+	local hiding_cloaker_tweak = self._tweak_data.cloaker
+	if not hiding_cloaker_tweak then
+		Eclipse:error_console("Hiding Cloaker task tweakdata missing!")
+		return _process_recurring_grp_SO_original(self, recurring_id, data, ...)
+	end
+
+	data.interval = hiding_cloaker_tweak.interval or data.interval
+
+	if data.groups then
+		local junk_groups = self:_evaluate_hiding_cloaker_groups(data.groups, hiding_cloaker_tweak)
+		if junk_groups then
+			self:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
+		end
+	end
+
+	return self:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
+end
+
+-- Hiding Cloakers switched to assault retire after the assault ends
+-- TODO: set to re-hide instead once implemented
+function GroupAIStateBase:_update_hiding_cloakers_set_to_assault()
+	local hiding_cloakers_set_to_assault = self._hiding_cloakers_set_to_assault
+	if not hiding_cloakers_set_to_assault then
+		return
+	end
+
+	if not self:_should_retire_hiding_cloakers_set_to_assault() then
+		return
+	end
+
+	for group_id, group in pairs(hiding_cloakers_set_to_assault) do
+		self:_retire_hiding_cloaker(group_id, group)
+	end
+end
+
+-- Assault task is still active during regroup, when other assault groups retire
+function GroupAIStateBase:_should_retire_hiding_cloakers_set_to_assault()
+	local task_data = self._task_data
+	if not task_data then
+		return
+	end
+
+	local regroup_active = task_data.regroup and task_data.regroup.active
+	if regroup_active then
+		return true
+	end
+
+	local assault_active = task_data.assault and task_data.assault.active
+	return not assault_active
+end
+
+function GroupAIStateBase:_retire_hiding_cloaker(group_id, group)
+	self._hiding_cloakers_set_to_assault[group_id] = nil
+	self:_assign_group_to_retire(group)
+	Eclipse:log_console(string.format('Set assaulting "hide" Cloaker group to retire: %s', group_id))
+end
+
+function GroupAIStateBase:_get_hiding_cloaker_SO(elements, last_element, hiding_cloaker_tweak)
+	if last_element then
+		local min_elements = math.max(2, hiding_cloaker_tweak.avoid_repeat_hiding_spots_min_elements or 2)
+		if #elements < min_elements or hiding_cloaker_tweak.avoid_repeat_hiding_spots == false then
+			last_element = nil
+		end
+	end
+
+	local total_w = 0
+	for _, element in ipairs(elements) do
+		if not last_element or last_element ~= element then
+			total_w = total_w + element:value("base_chance")
+		end
+	end
+
+	local rand_w = total_w * math.random()
+	for _, element in ipairs(elements) do
+		if not last_element or last_element ~= element then
+			rand_w = rand_w - element:value("base_chance")
+
+			if rand_w <= 0 then
+				return element
+			end
+		end
+	end
+
+	Eclipse:error_console("GroupAIStateBase:_get_hiding_cloaker_SO() had no return, picking element at random!")
+	return table.random(elements)
+end
+
+function GroupAIStateBase:_evaluate_hiding_cloaker_groups(groups, hiding_cloaker_tweak)
+	local junk_groups = nil
+	local hide_retry_delay = hiding_cloaker_tweak.hide_retry_delay or {
+		10,
+		20,
+	}
+
+	for group_id, group in pairs(groups) do
+		if not group.objective.hide_retry_delay then
+			group.objective.hide_retry_delay = math.lerp(hide_retry_delay[1], hide_retry_delay[2], math.random())
+		end
+
+		if group.has_spawned then
+			local junk_reason = nil
+			if not self._groups[group_id] then
+				junk_reason = junk_reason_group_nil
+			elseif self._groups[group_id] ~= group then
+				junk_reason = junk_reason_group_mismatch
+			end
+
+			if not junk_reason then
+				junk_reason = junk_reason_group_empty
+				for u_key, unit_data in pairs(group.units) do
+					junk_reason = junk_reason_no_objective
+					local objective = unit_data.unit:brain():objective()
+					if not objective then
+						-- Nothing, probably waiting to be assigned
+					elseif objective.grp_objective == group.objective then
+						junk_reason = nil
+						break
+					else
+						junk_reason = junk_reason_mismatched_objective
+					end
+				end
+
+				if junk_reason then
+					if group.objective.fail_t then
+						local retry_delay = tonumber(group.objective.hide_retry_delay) or hide_retry_delay[1]
+						if self._t - group.objective.fail_t < retry_delay then
+							-- Eclipse:log_console(string.format("Retry delay has not expired for hiding Cloaker %s", group_id))
+							junk_reason = nil
+						else
+							Eclipse:log_console(string.format("Retry delay expired for hiding Cloaker %s", group_id))
+						end
+					else
+						Eclipse:log_console(string.format("Objective failed for hiding Cloaker %s", group_id))
+						group.objective.fail_t = self._t
+						junk_reason = nil
+					end
+				elseif group.objective.fail_t then
+					Eclipse:log_console(string.format("Hiding Cloaker %s is no longer junk", group_id))
+					group.objective.fail_t = nil
+				end
+			end
+
+			if junk_reason then
+				Eclipse:log_console(string.format("Found junk hiding Cloaker %s: %s", group_id, junk_reason))
+				junk_groups = junk_groups or {}
+				junk_groups[group_id] = junk_reason
+			end
+		end
+	end
+
+	return junk_groups
+end
+
+-- Reasons not in this table are valid for rehide/switch to assault
+local remove_group_reasons = table.list_to_set({
+	junk_reason_group_nil,
+	junk_reason_group_mismatch,
+	junk_reason_group_empty,
+})
+
+-- TODO: figure out rehiding
+function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
+	local assault_chance = hiding_cloaker_tweak.assault_on_objective_failed_chance or 0.5
+	local retire_instead_of_assault = self:_should_retire_hiding_cloakers_set_to_assault()
+	for group_id, junk_reason in pairs(junk_groups) do
+		local assault = assault_chance == 1 or math.random() < assault_chance
+		local group = data.groups[group_id]
+		if not group or remove_group_reasons[junk_reason] then
+			data.groups[group_id] = nil
+		elseif assault then
+			data.groups[group_id] = nil
+			if retire_instead_of_assault then
+				self:_retire_hiding_cloaker(group_id, group)
+			else
+				Eclipse:log_console(string.format("Hiding Cloaker %s set to assault", group_id))
+				local _, leader_data = self._determine_group_leader(group.units)
+				local new_objective = {
+					moving_out = group.objective.moving_out,
+					area = leader_data.assigned_area,
+					type = "assault_area",
+				}
+				self:_set_objective_to_enemy_group(group, new_objective)
+				self._hiding_cloakers_set_to_assault[group_id] = group
+			end
+		else
+			data.groups[group_id] = nil
+			self:_retire_hiding_cloaker(group_id, group)
+		end
+	end
+
+	-- Unsure why this is in vanilla
+	if not next(data.groups) then
+		data.groups = nil
+	end
+
+	-- Vanilla thing, disabled - don't delay spawns because of junk Cloaker groups
+	-- data.delay_t = math.max(data.delay_t, self._t + math.lerp(data.interval[1], data.interval[2], math.random()))
+end
+
+-- _spawn_in_group() still returns a new group even if the Cloaker limit is reached
+function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
+	if self._t < data.delay_t then
+		return
+	end
+
+	local cloaker_limit = managers.job:current_spawn_limit("spooc") or -math.huge
+	local active_cloakers = self:_get_special_unit_type_count("spooc") or math.huge
+	if active_cloakers >= cloaker_limit then
+		Eclipse:log_console("Too many alive Cloakers")
+		return
+	end
+
+	local simultaneous_hiding_limit = hiding_cloaker_tweak.simultaneous_hiding_limit or 1
+	if data.groups and table.size(data.groups) >= simultaneous_hiding_limit then
+		Eclipse:log_console("Too many hiding Cloakers")
+		return
+	end
+
+	local element = self:_get_hiding_cloaker_SO(data.elements, nil, hiding_cloaker_tweak)
+	local grp_objective = element:get_grp_objective()
+	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(grp_objective.area, hiding_cloaker_tweak.groups, element:value("position"), nil, nil)
+	if not spawn_group then
+		Eclipse:log_console("No spawn group")
+		return
+	end
+
+	local new_group = self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, nil)
+	if new_group then
+		data.groups = data.groups or {}
+		data.groups[new_group.id] = new_group
+		new_group.last_element = element
+
+		if hiding_cloaker_tweak.use_spawn_noise ~= false then
+			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
+			managers.hud:post_event("cloaker_spawn")
+		end
+	end
+
+	data.delay_t = math.max(data.delay_t, self._t + math.lerp(data.interval[1], data.interval[2], math.random()))
+
+	return new_group and true
 end
