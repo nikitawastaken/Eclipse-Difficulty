@@ -505,7 +505,7 @@ function PlayerDamage:damage_fall(data)
 		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_health_damage_multiplier", 1)
 
 		local fall_damage = self:_max_health() * fall_multiplier
-		
+
 		self:change_health(-fall_damage)
 		self._unit:camera():play_shaker("player_fall_damage", 1 * fall_multiplier)
 	end
@@ -579,7 +579,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	end
 
 	attack_data.damage = managers.player:modify_value("damage_taken", self:_max_health() * attack_data.damage, attack_data) * self._teargas_damage_ramp
-		
+
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)
 
