@@ -63,7 +63,6 @@ Hooks:PreHook(ElementSpecialObjective, "_get_action_duration", "eclipse__get_act
 end)
 
 -- Surely there's a better way to do this?
--- TODO: make whistle on leave hiding not occur if interrupted on the way to the SO location
 Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self, name, unit)
 	if not (name == "anim_start" or name == "fail" or name == "complete") then
 		return
@@ -85,6 +84,8 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 
 	local hiding_cloaker_tweak = self:_hiding_cloaker_tweak()
 	if name == "anim_start" then
+		self:_set_cloaker_is_hiding(unit:key(), true)
+
 		if hiding_cloaker_tweak.goggles_on_when_hiding == false then
 			base_ext:set_cloaker_goggles_on(false)
 		end
@@ -92,9 +93,23 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 		if hiding_cloaker_tweak.use_idle_noise_when_hiding == false then
 			base_ext:set_cloaker_noise_on(false)
 		end
-	else
+	elseif self._cloakers_currently_hiding and self._cloakers_currently_hiding[unit:key()] then
+		self:_set_cloaker_is_hiding(unit:key(), false)
+
 		local whistle = hiding_cloaker_tweak.whistle_on_leave_hiding ~= false
 		base_ext:set_cloaker_goggles_on(true)
 		base_ext:set_cloaker_noise_on(true, whistle)
 	end
 end)
+
+function ElementSpecialObjective:_set_cloaker_is_hiding(u_key, is_hiding)
+	if is_hiding then
+		self._cloakers_currently_hiding = self._cloakers_currently_hiding or {}
+		self._cloakers_currently_hiding[u_key] = true
+	elseif self._cloakers_currently_hiding then
+		self._cloakers_currently_hiding[u_key] = nil
+		if not next(self._cloakers_currently_hiding) then
+			self._cloakers_currently_hiding = nil
+		end
+	end
+end
