@@ -547,23 +547,93 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.eco_sentry.multipro = "75%"
 	self.skill_descs.eco_sentry.multipro2 = "250%"
 
+	-- Blast Shield
+	self.values.player.explosive_damage_multiplier = { 0.8 }
+	self.definitions.player_explosive_damage_multiplier = {
+		name_id = "menu_player_explosive_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.values.weapon.explosive_team_damage_multiplier = { 0.7 }
+	self.definitions.weapon_explosive_team_damage_multiplier = {
+		name_id = "menu_weapon_explosive_team_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_team_damage_multiplier",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.hardware_expert.multibasic = "20%"
+	self.skill_descs.hardware_expert.multipro = "30%"
+
 	-- Combat Engineering
 	self.values.trip_mine.explosion_size_multiplier_1 = { 1.5 }
 	self.skill_descs.combat_engineering.multibasic = "50%"
 
-	-- More Firepower
-	self.values.shape_charge.quantity = { 2, 5 }
-	self.values.trip_mine.quantity = { 5, 15 }
-	self.skill_descs.more_fire_power.multibasic = "2"
+	-- Hellwire
+	self.values.shape_charge.quantity[1] = 5
+	self.values.trip_mine.quantity[1] = 5
+	self.values.trip_mine.fire_trap[1] = { 50, 1.5 }
+	self.skill_descs.more_fire_power.multibasic = "5"
 	self.skill_descs.more_fire_power.multibasic2 = "5"
-	self.skill_descs.more_fire_power.multipro = "3"
-	self.skill_descs.more_fire_power.multipro2 = "10"
+	self.skill_descs.more_fire_power.multipro = "60"
+	self.skill_descs.more_fire_power.multipro2 = "6"
 
-	-- Fire Trap
-	self.values.trip_mine.fire_trap[1][1] = 10
-	self.values.trip_mine.fire_trap[2][1] = 30
-	self.skill_descs.fire_trap.multibasic = "20"
-	self.skill_descs.fire_trap.multipro = "20"
+	-- Powder Keg
+	self.values.weapon.explosive_range_multiplier = { 1.25 }
+	self.definitions.weapon_explosive_range_multiplier = {
+		name_id = "menu_player_explosive_range_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_range_multiplier",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.explosive_no_damage_curve = { true }
+	self.definitions.weapon_explosive_no_damage_curve = {
+		name_id = "menu_weapon_explosive_no_damage_curve",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_no_damage_curve",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.kick_starter.multibasic = "25%"
+
+	-- Carpet Bombing
+	self.values.weapon.explosive_cluster_grenades = { true }
+	self.definitions.weapon_explosive_cluster_grenades = {
+		name_id = "menu_player_explosive_cluster_grenades",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_cluster_grenades",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.cluster_incendiary_grenades = { true }
+	self.definitions.weapon_cluster_incendiary_grenades = {
+		name_id = "menu_player_cluster_incendiary_grenades",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "cluster_incendiary_grenades",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.fire_trap.multibasic = "4"
+	self.skill_descs.fire_trap.multibasic2 = "2m"
+	self.skill_descs.fire_trap.multibasic3 = "100"
+	self.skill_descs.fire_trap.multipro = "50"
+	self.skill_descs.fire_trap.multipro2 = "4"
+	self.skill_descs.fire_trap.multipro3 = "50%"
 
 	-- Steady Grip
 	self.values.weapon.moving_recoil_penalty_reduction = { 0.8 }

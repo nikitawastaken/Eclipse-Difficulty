@@ -638,8 +638,8 @@ function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_ar
 end
 
 local damage_reduction_skill_multiplier_original = PlayerManager.damage_reduction_skill_multiplier
-function PlayerManager:damage_reduction_skill_multiplier(...)
-	local multiplier = damage_reduction_skill_multiplier_original(self, ...)
+function PlayerManager:damage_reduction_skill_multiplier(damage_type)
+	local multiplier = damage_reduction_skill_multiplier_original(self, damage_type)
 
 	-- Reduce damage taken while inside of vehicles
 	local player = self:player_unit()
@@ -662,6 +662,11 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 		local skill = self:upgrade_value("player", "near_teammate_damage_multiplier", nil)
 
 		multiplier = multiplier * (skill.mul or 1)
+	end
+
+	-- blast shield explosive dmg reduction
+	if self:has_category_upgrade("player", "explosive_damage_multiplier") and damage_type == "explosion" then
+		multiplier = multiplier * self:upgrade_value("player", "explosive_damage_multiplier", 1)
 	end
 
 	return multiplier
