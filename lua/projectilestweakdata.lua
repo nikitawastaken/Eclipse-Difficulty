@@ -50,7 +50,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 	table.insert(self._projectiles_index, "cluster")
 
 	self.projectiles.cluster_incendiary = {
-		name_id = "bm_grenade_cluster",
+		name_id = "bm_grenade_cluster_incendiary",
 		unit = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade",
 		unit_dummy = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade_husk",
 		sprint_unit = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade_sprint",
