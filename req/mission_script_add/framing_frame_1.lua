@@ -40,6 +40,13 @@ local optsOpenSwatVanDoors_1 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 101884, notify_unit_sequence = "anim_door_left_open", time = 0 },
 	},
 }
+local optsCloseHeliDoorsFix = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 101058, notify_unit_sequence = "close_door_left", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 101058, notify_unit_sequence = "close_door_right", time = 0 },
+	},
+}
 local optsspawnvanSWATs_1 = {
 	on_executed = {
 		{ id = 400008, delay = 0 },
@@ -88,6 +95,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400011, "swat_chopper_spawn_2", Vector3(10, -181, 475), Rotation(90, 0, 0), optsBesiegeDummy_heli_2),
 	Eclipse.mission_elements.gen_missionscript(400012, "spawn_swats_2", optsspawnchopperSWATs_1),
 	Eclipse.mission_elements.gen_spawngroup(400013, "swat_group_2", { 101949, 101950, 400010, 400011 }, 0, opts_swat_group),
+	Eclipse.mission_elements.gen_object_editor(400016, "close_heli_doors_fix", Vector3(0, 0, 0), Rotation(0, 0, -0), optsCloseHeliDoorsFix),
 
 	-- civ restoration
 	Eclipse.mission_elements.gen_missionscript(400014, "civ_event", optscivevent),

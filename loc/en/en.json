@@ -153,6 +153,12 @@
 	"ene_shield_2" : "SWAT Shield",
 	"ene_city_shield" : "GenSec Elite Shield",
 
+	
+	"hud_arm_forest4_hl" : "Secure turret ammo bags",
+	"hud_arm_forest5_hl" : "Secure turret ammo bags",
+	"hud_arm_forest6_hl" : "Secure turret ammo bags",
+	"hud_arm_forest7_hl" : "Secure turret ammo bags",
+
 	"bot_watchdogs_new_stage2_01_any_02" : "This is the boat. I see the signal, will be there soon.",
 	"bot_watchdogs_new_stage2_01_any_03" : "This is the boat. Signal on sight, I'm on my way.",
 

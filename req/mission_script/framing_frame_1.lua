@@ -65,12 +65,24 @@ return {
 			{ id = 101956, remove = true },
 			{ id = 101957, remove = true },
 			{ id = 400012, delay = 5 },
+			{ id = 101958, delay = 10 }, -- make the chopper fly out much faster
+		},
+	},
+	-- close the heli doors once it begins to fly out
+	[101958] = {
+		on_executed = {
+			{ id = 400016, delay = 0 },
 		},
 	},
 	-- loop the chopper after it goes hidden
 	[101959] = {
 		on_executed = {
 			{ id = 101951, delay = 120, delay_rand = 60 },
+		},
+	},
+	[103041] = {
+		values = {
+			trigger_times = 0,
 		},
 	},
 	-- restore unused civilian event
