@@ -84,7 +84,7 @@ function ProjectileBase:create_sweep_data()
 end
 
 
-function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_id)
+function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_id, dont_apply_player_velocity)
 	if not ProjectileBase.check_time_cheat(projectile_type, owner_peer_id) then
 		return
 	end
@@ -110,7 +110,8 @@ function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_i
 
 	unit:base():throw({
 		dir = dir,
-		projectile_entry = projectile_type
+		projectile_entry = projectile_type,
+		dont_apply_player_velocity = dont_apply_player_velocity
 	})
 
 	if unit:base().set_owner_peer_id then

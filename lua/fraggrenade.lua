@@ -45,6 +45,8 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
 		local base_angle = math.random() * 360
+		local player_peer_id = managers.network:session():peer_by_unit(self:thrower_unit()):id()
+		local dont_apply_player_velocity = true
 
 		for i = 0, 3 do
 			local angle = (base_angle + i * 90)
@@ -56,7 +58,8 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 				self._cluster_grenade_type,
 				pos,
 				Vector3(dir_x, dir_y, 0.2),
-				managers.network:session():peer_by_unit(self:thrower_unit()):id()
+				player_peer_id,
+				dont_apply_player_velocity
 			)
 		end
 	end

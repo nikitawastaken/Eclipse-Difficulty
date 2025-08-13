@@ -9,6 +9,7 @@ function GrenadeBase:throw(params)
 	local adjust_z = 50
 	local launch_speed = 250
 	local push_at_body_index = nil
+	local dont_apply_player_velocity = params.dont_apply_player_velocity or false
 
 	if params.projectile_entry and tweak_data.projectiles[params.projectile_entry] then
 		adjust_z = tweak_data.projectiles[params.projectile_entry].adjust_z or adjust_z
@@ -17,7 +18,9 @@ function GrenadeBase:throw(params)
 	end
 
 	-- Add player's velocity
-	if self._thrower_unit then
+	if dont_apply_player_velocity then
+		velocity = (velocity * launch_speed)
+	else
 		local is_player = self._thrower_unit:movement().current_state
 		local thrower_state = is_player and self._thrower_unit:movement():current_state() or false
 		local velocity_addend_xy = Vector3(0, 0, 0)
@@ -29,8 +32,6 @@ function GrenadeBase:throw(params)
 		end
 
 		velocity = (velocity * launch_speed) + velocity_addend_xy + velocity_addend_z
-	else
-		velocity = (velocity * launch_speed)
 	end
 
 	velocity = Vector3(velocity.x, velocity.y, velocity.z + adjust_z)
