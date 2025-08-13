@@ -5,7 +5,17 @@
 			<object 			enabled="true" name="'g_gadgets'" />
 			<object 			enabled="true" name="'g_gadgets_lod1'" />
 		</sequence>
-		
+		<sequence editable_state="false" name="'spook_lights_flicker'" triggable="false">
+			<run_sequence name="'kill_spook_lights'" 		start_time="0.1" />
+			<run_sequence name="'turn_on_spook_lights'" 	start_time="0.25"/>
+			<run_sequence name="'kill_spook_lights'" 		start_time="0.4"/>
+			<run_sequence name="'turn_on_spook_lights'" 	start_time="0.6"/>
+			<run_sequence name="'kill_spook_lights'" 		start_time="0.8"/>
+			<run_sequence name="'turn_on_spook_lights'" 	start_time="1.15"/>
+			<run_sequence name="'kill_spook_lights'" 		start_time="1.3"/>
+			<run_sequence name="'turn_on_spook_lights'" 	start_time="1.5"/>
+			<run_sequence name="'kill_spook_lights'" 		start_time="1.8"/>
+		</sequence>		
 		<sequence editable_state="false" name="'kill_spook_lights'" triggable="false">
 			<effect_spawner enabled="false" name="'es_light'"/>
 			<light enabled="false" name="'point_light'"/>
