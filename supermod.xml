@@ -336,9 +336,22 @@
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
 
-		<!-- New NPC weapons -->
+		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
-
+			<group :name="wpn_gre_cluster/">
+				<file :name="wpn_gre_cluster_df.texture"/>
+				<file :name="wpn_gre_cluster_nm.texture"/>
+				<file :name="wpn_gre_cluster.cooked_physics"/>
+				<file :name="wpn_gre_cluster.material_config"/>
+				<file :name="wpn_gre_cluster.model"/>
+				<file :name="wpn_gre_cluster.object"/>
+				<file :name="wpn_gre_cluster.unit"/>
+				<file :name="wpn_gre_cluster_husk.cooked_physics"/>
+				<file :name="wpn_gre_cluster_husk.model"/>
+				<file :name="wpn_gre_cluster_husk.object"/>
+				<file :name="wpn_gre_cluster_husk.unit"/>
+			</group>
+			
 			<!-- NPC Mosconi retexture/model -->
 			<group :name="wpn_npc_sawnoff_shotgun/">
 				<file :name="sawnoff_df.texture"/>

@@ -37,9 +37,8 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	self.projectiles.cluster = {
 		name_id = "bm_grenade_cluster",
-		unit = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade",
-		unit_dummy = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade_husk",
-		sprint_unit = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade_sprint",
+		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster",
+		unit_dummy = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_husk",
 		throw_allowed_expire_t = 0.1,
 		expire_t = 1.1,
 		repeat_expire_t = 1.5,
@@ -51,9 +50,8 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	self.projectiles.cluster_incendiary = {
 		name_id = "bm_grenade_cluster_incendiary",
-		unit = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade",
-		unit_dummy = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade_husk",
-		sprint_unit = "units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade_sprint",
+		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster",
+		unit_dummy = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_husk",
 		throw_allowed_expire_t = 0.1,
 		expire_t = 1.1,
 		repeat_expire_t = 1.5,
