@@ -52,6 +52,12 @@ local flank_spawn = {
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
+local escape_guaranteed_spawn = {
+	values = {
+		spawn_type = "group_guaranteed",
+	},
+	groups = preferred.no_cops_agents,
+}
 
 return {
 	[100533] = {
@@ -156,6 +162,19 @@ return {
 			end
 		end,
 	},
+	-- fix escape spawngroups not working as intended
+	[100638] = escape_guaranteed_spawn,
+	[101812] = escape_guaranteed_spawn,
+	[101819] = escape_guaranteed_spawn,
+	[101826] = escape_guaranteed_spawn,
+	[101987] = escape_guaranteed_spawn,
+	[102003] = escape_guaranteed_spawn,
+	[102004] = escape_guaranteed_spawn,
+	[102005] = escape_guaranteed_spawn,
+	[102006] = escape_guaranteed_spawn,
+	[102007] = escape_guaranteed_spawn,
+	[102008] = escape_guaranteed_spawn,
+	[102009] = escape_guaranteed_spawn,
 	-- sawing section preferreds
 	[101176] = {
 		values = {
