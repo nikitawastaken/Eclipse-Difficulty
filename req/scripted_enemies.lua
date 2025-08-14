@@ -52,8 +52,8 @@ local M = {
 	bellmead_security_2 = "units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2",
 	bellmead_security_3 = "units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3",
 
-	bellmead_gunner_1 = "units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2",
-	bellmead_gunner_2 = "units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2",
+	bellmead_gunner_1 = "units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1",
+	bellmead_gunner_2 = "units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2",
 
 	shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
 

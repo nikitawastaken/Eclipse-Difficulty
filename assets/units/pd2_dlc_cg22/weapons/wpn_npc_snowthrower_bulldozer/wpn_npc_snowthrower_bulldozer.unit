@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<unit type="wpn" slot="13">
+  <object file="units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer" />
+
+  <dependencies>
+	   <depends_on effect="effects/payday2/particles/weapons/heat/overheat" />
+	   <depends_on effect="effects/payday2/particles/explosions/snowthrower" />
+	   <depends_on bnk="soundbanks/weapon_snowthrower" />
+  </dependencies>
+
+  <extensions>
+  	<extension name="unit_data" class="ScriptUnitData" />
+    <extension name="base" class="NPCBossFlamethrowerBase" >
+		<var name="name_id" value="snowthrower_npc" />
+    </extension>
+  <extension name="damage" class="UnitDamage" />
+  </extensions>
+</unit>

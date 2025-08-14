@@ -461,10 +461,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.boss = based_on(presets.weapon.base)
 
-	presets.weapon.marshal_marksman = based_on(presets.weapon.sniper)
-
-	presets.weapon.marshal_gunner = based_on(presets.weapon.base)
-
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 0.25 },
 		focus_delay = 0,
@@ -1272,38 +1268,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_medic = deep_clone(self.medic)
 	table.insert(self._enemy_list, "zeal_medic")
 
-	self.marshal_marksman = deep_clone(self.sniper)
-	self.marshal_marksman.tags = {
-		"law",
-		"special",
-		"sniper",
-		"marshal",
-	}
-
-	self.marshal_gunner = deep_clone(self.fbi_heavy_swat)
-	self.marshal_gunner.tags = {
-		"law",
-		"special",
-		"marshal",
-	}
-	self.marshal_gunner.HEALTH_INIT = 24
-	self.marshal_gunner.headshot_dmg_mul = 2 -- 120 head health
-	self.marshal_gunner.autofire_move_speed_mul = 0.5
-	self.marshal_gunner.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-	self.marshal_gunner.chatter = self.presets.enemy_chatter.special
-	self.marshal_gunner.dodge = self.presets.dodge.heavy
-	self.marshal_gunner.spawn_sound_event = has_bellmead_response and "l5d_pus" or "l2d_pus" --PUSH!!!
-	self.marshal_gunner.priority_shout = "f42" -- WATCH OUT!!
-	self.marshal_gunner.kill_taunt = has_bellmead_response and "l5d_i03" or "l2d_i03" --It's over you son of a bitch! You're done!
-	self.marshal_gunner.shooting_death = false
-	self.marshal_gunner.surrender = nil
-	self.marshal_gunner.suppression = nil
-	self.marshal_gunner.no_retreat = true
-	self.marshal_gunner.no_arrest = true
-	self.marshal_gunner.steal_loot = nil
-	self.marshal_gunner.rescue_hostages = false
-	table.insert(self._enemy_list, "marshal_gunner")
-
 	-- Different radio chatter for Bellmead units
 	-- Unique voice set for Bellmead's heavy gunner
 	if has_bellmead_response then
@@ -1312,8 +1276,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.marshal_security.speech_prefix_count = nil
 		self.marshal_security.radio_prefix = "fri_"
 		self.marshal_security.use_radio = "dsp_radio_russian"
-		self.marshal_marksman.use_radio = "dsp_radio_russian"
-		self.marshal_gunner.use_radio = "dsp_radio_russian"
 	end
 
 	self.mobster_boss.HEALTH_INIT = 180
@@ -1412,9 +1374,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.city_shield_break.speech_prefix_count = 4
 		self.zeal_shield.speech_prefix_p2 = "d"
 		self.zeal_shield.speech_prefix_count = 4
-		self.marshal_gunner.speech_prefix_p1 = has_bellmead_response and "l5d" or "l2d"
-		self.marshal_gunner.speech_prefix_p2 = nil
-		self.marshal_gunner.speech_prefix_count = nil
 	end
 end)
 
@@ -1443,11 +1402,6 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_sniper_3")
 	safe_add(char_map.basic, "ene_city_shield")
 	safe_add(char_map.basic, "ene_bulldozer_5")
-
-	safe_add(char_map.usm2, "ene_male_marshal_gunner_hcar_1")
-	safe_add(char_map.usm2, "ene_male_marshal_gunner_hcar_2")
-	safe_add(char_map.usm2, "ene_male_marshal_gunner_sko12_1")
-	safe_add(char_map.usm2, "ene_male_marshal_gunner_sko12_2")
 
 	safe_add(char_map.dlc1, "ene_gensec_operator_1")
 	safe_add(char_map.dlc1, "ene_gensec_operator_2")
@@ -1521,20 +1475,11 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_ids, "m14")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_m14/wpn_npc_m14"))
 
-	table.insert(self.weap_ids, "shepheard")
-	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_shepheard/wpn_npc_shepheard"))
+	table.insert(self.weap_ids, "flamethrower_tank")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_pent/weapons/wpn_npc_flamethrower_bulldozer/wpn_npc_flamethrower_bulldozer"))
 
-	table.insert(self.weap_ids, "ksg")
-	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_ksg/wpn_npc_ksg"))
-
-	table.insert(self.weap_ids, "s552_zeal")
-	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_s552/wpn_npc_s552_zeal"))
-
-	table.insert(self.weap_ids, "g3")
-	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_g3/wpn_npc_g3"))
-
-	table.insert(self.weap_ids, "hcar")
-	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_usm2/weapons/wpn_npc_hcar/wpn_npc_hcar"))
+	table.insert(self.weap_ids, "snowthrower_tank")
+	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 end)
 
 -- fixed movement speed difficulty scaling
