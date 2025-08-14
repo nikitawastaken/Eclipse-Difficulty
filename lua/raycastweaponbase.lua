@@ -1,5 +1,3 @@
-local use_autofire_sound_fix = Eclipse.settings.autofire_sound_fix
-
 RaycastWeaponBase.autofire_fix_blacklist = {
 	["saw"] = true,
 	["saw_secondary"] = true,
@@ -342,47 +340,45 @@ function RaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, spre
 	self:_build_suppression(ray_res.enemies_in_cone, suppr_mul)
 	managers.player:send_message(Message.OnWeaponFired, nil, self._unit, ray_res)
 
-	if use_autofire_sound_fix then
-		--Autofire soundfix integration.
-		if self:_soundfix_should_play_normal() then
-			if self._bullets_fired then
-				if self._bullets_fired == 1 and self:weapon_tweak_data().sounds.fire_single then
-					self:play_tweak_data_sound("stop_fire")
-					if self:_get_sound_event("stop_fire2") then
-						self:play_tweak_data_sound("stop_fire2")
-					end
-					if self:_get_sound_event("stop_fire3") then
-						self:play_tweak_data_sound("stop_fire3")
-					end
-					self:play_tweak_data_sound("fire_auto", "fire")
-					if self:_get_sound_event("fire_auto2", "fire2") then
-						self:play_tweak_data_sound("fire_auto2", "fire2")
-					end
-					if self:_get_sound_event("fire_auto3", "fire3") then
-						self:play_tweak_data_sound("fire_auto3", "fire3")
-					end
+	--Autofire soundfix integration.
+	if self:_soundfix_should_play_normal() then
+		if self._bullets_fired then
+			if self._bullets_fired == 1 and self:weapon_tweak_data().sounds.fire_single then
+				self:play_tweak_data_sound("stop_fire")
+				if self:_get_sound_event("stop_fire2") then
+					self:play_tweak_data_sound("stop_fire2")
 				end
-				self._bullets_fired = self._bullets_fired + 1
+				if self:_get_sound_event("stop_fire3") then
+					self:play_tweak_data_sound("stop_fire3")
+				end
+				self:play_tweak_data_sound("fire_auto", "fire")
+				if self:_get_sound_event("fire_auto2", "fire2") then
+					self:play_tweak_data_sound("fire_auto2", "fire2")
+				end
+				if self:_get_sound_event("fire_auto3", "fire3") then
+					self:play_tweak_data_sound("fire_auto3", "fire3")
+				end
 			end
-			return ray_res
+			self._bullets_fired = self._bullets_fired + 1
 		end
+		return ray_res
+	end
 
-		local name_id = self:get_name_id() or "xX69dank420blazermachineXx"
-		if ray_res and self._setup.user_unit == managers.player:player_unit() and not tweak_data.weapon[name_id].sounds.no_fix then
-			self:play_tweak_data_sound("fire_single", "fire")
-			if self:_get_sound_event("fire_single2", "fire2") then
-				self:play_tweak_data_sound("fire_single2", "fire2")
-			end
-			if self:_get_sound_event("fire_single3", "fire3") then
-				self:play_tweak_data_sound("fire_single3", "fire3")
-			end
-			self:play_tweak_data_sound("stop_fire")
-			if self:_get_sound_event("stop_fire2") then
-				self:play_tweak_data_sound("stop_fire2")
-			end
-			if self:_get_sound_event("stop_fire3") then
-				self:play_tweak_data_sound("stop_fire3")
-			end
+	local name_id = self:get_name_id() or "xX69dank420blazermachineXx"
+	if ray_res and self._setup.user_unit == managers.player:player_unit() and not tweak_data.weapon[name_id].sounds.no_fix then
+		self:play_tweak_data_sound("fire_single", "fire")
+		if self:_get_sound_event("fire_single2", "fire2") then
+			self:play_tweak_data_sound("fire_single2", "fire2")
+		end
+		if self:_get_sound_event("fire_single3", "fire3") then
+			self:play_tweak_data_sound("fire_single3", "fire3")
+		end
+		self:play_tweak_data_sound("stop_fire")
+		if self:_get_sound_event("stop_fire2") then
+			self:play_tweak_data_sound("stop_fire2")
+		end
+		if self:_get_sound_event("stop_fire3") then
+			self:play_tweak_data_sound("stop_fire3")
 		end
 	end
 
@@ -472,49 +468,66 @@ function FlameBulletBase:bullet_slotmask()
 	return managers.slot:get_mask("bullet_impact_targets")
 end
 
-if use_autofire_sound_fix then
-	function RaycastWeaponBase:_soundfix_should_play_normal()
-		local name_id = self:get_name_id() or "xX69dank420blazermachineXx"
-		if not self._setup.user_unit == managers.player:player_unit() then
-			return true
-		elseif self.autofire_fix_blacklist[name_id] or tweak_data.weapon[name_id].sounds.no_fix then
-			return true
-		elseif not tweak_data.weapon[name_id].sounds.fire_single then
-			return true
+-- Change the conditions for the "ammo low" voice line
+local said_ammo_t = 0
+function RaycastWeaponBase:_check_ammo_total(unit)
+    if not unit:base().is_local_player or self:get_ammo_remaining_in_clip() > 0 then
+        return
+    end
+
+    local ratio = 0
+    for _, weapon in pairs(unit:inventory():available_selections()) do
+        ratio = ratio + weapon.unit:base():get_ammo_ratio() * 0.5
+    end
+
+    local t = self._unit:timer():time()
+    if ratio < 0.25 and t > said_ammo_t + 10 then
+        PlayerStandard.say_line(unit:sound(), "g81x_plu")
+        said_ammo_t = t
+    end
+end
+
+function RaycastWeaponBase:_soundfix_should_play_normal()
+	local name_id = self:get_name_id() or "xX69dank420blazermachineXx"
+	if not self._setup.user_unit == managers.player:player_unit() then
+		return true
+	elseif self.autofire_fix_blacklist[name_id] or tweak_data.weapon[name_id].sounds.no_fix then
+		return true
+	elseif not tweak_data.weapon[name_id].sounds.fire_single then
+		return true
+	end
+end
+
+local orig_fire_sound = RaycastWeaponBase._fire_sound
+function RaycastWeaponBase:_fire_sound(...)
+	if self:_soundfix_should_play_normal() then
+		orig_fire_sound(self, ...)
+
+		local auto_fire = self:fire_mode() == "auto"
+
+		if self:_get_sound_event(auto_fire and not self:weapon_tweak_data().sounds.fire_single2 and "fire_auto2" or "fire_single2", "fire2") then
+			self:play_tweak_data_sound(auto_fire and not self:weapon_tweak_data().sounds.fire_single2 and "fire_auto2" or "fire_single2", "fire2")
+		end
+		if self:_get_sound_event(auto_fire and not self:weapon_tweak_data().sounds.fire_single3 and "fire_auto3" or "fire_single3", "fire3") then
+			self:play_tweak_data_sound(auto_fire and not self:weapon_tweak_data().sounds.fire_single3 and "fire_auto3" or "fire_single3", "fire3")
 		end
 	end
+end
 
-	local orig_fire_sound = RaycastWeaponBase._fire_sound
-	function RaycastWeaponBase:_fire_sound(...)
-		if self:_soundfix_should_play_normal() then
-			orig_fire_sound(self, ...)
-
-			local auto_fire = self:fire_mode() == "auto"
-
-			if self:_get_sound_event(auto_fire and not self:weapon_tweak_data().sounds.fire_single2 and "fire_auto2" or "fire_single2", "fire2") then
-				self:play_tweak_data_sound(auto_fire and not self:weapon_tweak_data().sounds.fire_single2 and "fire_auto2" or "fire_single2", "fire2")
-			end
-			if self:_get_sound_event(auto_fire and not self:weapon_tweak_data().sounds.fire_single3 and "fire_auto3" or "fire_single3", "fire3") then
-				self:play_tweak_data_sound(auto_fire and not self:weapon_tweak_data().sounds.fire_single3 and "fire_auto3" or "fire_single3", "fire3")
-			end
-		end
+local orig_stop_shooting = RaycastWeaponBase.stop_shooting
+function RaycastWeaponBase:stop_shooting(...)
+	if self._shots_without_releasing_trigger then
+		self._shots_without_releasing_trigger = 0
 	end
-
-	local orig_stop_shooting = RaycastWeaponBase.stop_shooting
-	function RaycastWeaponBase:stop_shooting(...)
-		if self._shots_without_releasing_trigger then
-			self._shots_without_releasing_trigger = 0
-		end
-		if self:_get_sound_event("stop_fire2") then
-			--self._sound_fire:stop()
-			self:play_tweak_data_sound("stop_fire2")
-		end
-		if self:_get_sound_event("stop_fire3") then
-			--self._sound_fire:stop()
-			self:play_tweak_data_sound("stop_fire3")
-		end
-		if self:_soundfix_should_play_normal() then
-			orig_stop_shooting(self, ...)
-		end
+	if self:_get_sound_event("stop_fire2") then
+		--self._sound_fire:stop()
+		self:play_tweak_data_sound("stop_fire2")
+	end
+	if self:_get_sound_event("stop_fire3") then
+		--self._sound_fire:stop()
+		self:play_tweak_data_sound("stop_fire3")
+	end
+	if self:_soundfix_should_play_normal() then
+		orig_stop_shooting(self, ...)
 	end
 end

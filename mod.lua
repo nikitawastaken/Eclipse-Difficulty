@@ -12,7 +12,6 @@ if not Eclipse then
 			always_old_hitflash = false,
 			player_styles = 1,
 			flavor_text_tips = false,
-			autofire_sound_fix = true,
 		},
 		loaded_elements = false,
 	}
@@ -205,11 +204,6 @@ if not Eclipse then
 			Eclipse.settings.flavor_text_tips = enabled
 		end
 
-		function MenuCallbackHandler:eclipse_autofire_sound_fix_toggle(item)
-			local enabled = (item:value() == "on")
-			Eclipse.settings.autofire_sound_fix = enabled
-		end
-
 		function MenuCallbackHandler:eclipse_player_styles_setting(item)
 			local value = item:value()
 
@@ -272,16 +266,6 @@ if not Eclipse then
 			desc = "eclipse_menu_flavor_text_tips_desc",
 			callback = "eclipse_flavor_text_tips_toggle",
 			value = Eclipse.settings.flavor_text_tips,
-			menu_id = menu_id,
-			priority = 100,
-		})
-
-		MenuHelper:AddToggle({
-			id = "autofire_sound_fix",
-			title = "eclipse_menu_autofire_sound_fix",
-			desc = "eclipse_menu_autofire_sound_fix_desc",
-			callback = "eclipse_autofire_sound_fix_toggle",
-			value = Eclipse.settings.autofire_sound_fix,
 			menu_id = menu_id,
 			priority = 100,
 		})
