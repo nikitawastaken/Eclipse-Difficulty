@@ -57,16 +57,16 @@ return {
 	-- open/close the left heli door
 	[102597] = {
 		values = {
-		enabled = true,
-	},
+			enabled = true,
+		},
 		on_executed = {
 			{ id = 400007, delay = 0 },
 		},
 	},
 	[102598] = {
 		values = {
-		enabled = true,
-	},
+			enabled = true,
+		},
 		on_executed = {
 			{ id = 400008, delay = 0 },
 		},
@@ -74,8 +74,8 @@ return {
 	-- loop the chopper after it goes hidden
 	[102601] = {
 		values = {
-		enabled = true,
-	},
+			enabled = true,
+		},
 		on_executed = {
 			{ id = 102594, delay = 120, delay_rand = 60 },
 		},
