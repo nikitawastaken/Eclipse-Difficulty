@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
 	values = {
 		enabled = false,
