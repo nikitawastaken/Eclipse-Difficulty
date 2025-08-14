@@ -471,20 +471,20 @@ end
 -- Change the conditions for the "ammo low" voice line
 local said_ammo_t = 0
 function RaycastWeaponBase:_check_ammo_total(unit)
-    if not unit:base().is_local_player or self:get_ammo_remaining_in_clip() > 0 then
-        return
-    end
+	if not unit:base().is_local_player or self:get_ammo_remaining_in_clip() > 0 then
+		return
+	end
 
-    local ratio = 0
-    for _, weapon in pairs(unit:inventory():available_selections()) do
-        ratio = ratio + weapon.unit:base():get_ammo_ratio() * 0.5
-    end
+	local ratio = 0
+	for _, weapon in pairs(unit:inventory():available_selections()) do
+		ratio = ratio + weapon.unit:base():get_ammo_ratio() * 0.5
+	end
 
-    local t = self._unit:timer():time()
-    if ratio < 0.25 and t > said_ammo_t + 10 then
-        PlayerStandard.say_line(unit:sound(), "g81x_plu")
-        said_ammo_t = t
-    end
+	local t = self._unit:timer():time()
+	if ratio < 0.25 and t > said_ammo_t + 10 then
+		PlayerStandard.say_line(unit:sound(), "g81x_plu")
+		said_ammo_t = t
+	end
 end
 
 function RaycastWeaponBase:_soundfix_should_play_normal()
