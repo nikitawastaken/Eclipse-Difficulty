@@ -50,8 +50,8 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	self.projectiles.cluster_incendiary = {
 		name_id = "bm_grenade_cluster_incendiary",
-		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster",
-		unit_dummy = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_husk",
+		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_incendiary",
+		unit_dummy = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_incendiary_husk",
 		throw_allowed_expire_t = 0.1,
 		expire_t = 1.1,
 		repeat_expire_t = 1.5,

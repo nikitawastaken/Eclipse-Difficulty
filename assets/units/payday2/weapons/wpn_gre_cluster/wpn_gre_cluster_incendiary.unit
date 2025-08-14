@@ -13,7 +13,7 @@
 		<depends_on bnk="soundbanks/weapon_grenade" />
 	</dependencies>
 	<extensions>
-		<extension name="base" class="ClusterGrenade" />
+		<extension name="base" class="IncendiaryClusterGrenade" />
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="damage" class="UnitDamage" >
 			<var name="_collision_event" value="grenade_hit_ground" />

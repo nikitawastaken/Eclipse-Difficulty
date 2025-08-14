@@ -350,8 +350,11 @@
 				<file :name="wpn_gre_cluster_husk.model"/>
 				<file :name="wpn_gre_cluster_husk.object"/>
 				<file :name="wpn_gre_cluster_husk.unit"/>
+
+				<file :name="wpn_gre_cluster_incendiary.unit"/>
+				<file :name="wpn_gre_cluster_incendiary_husk.unit"/>
 			</group>
-			
+
 			<!-- NPC Mosconi retexture/model -->
 			<group :name="wpn_npc_sawnoff_shotgun/">
 				<file :name="sawnoff_df.texture"/>
@@ -1533,7 +1536,7 @@
 				<file :name="ene_marshal_equipment_df.texture" />
 				<file :name="ene_marshal_equipment_merc_df.texture" />
 			</group>
-			
+
 			<group :name="ene_acc_marksman_hat/">
 				<file :name="ene_acc_marksman_hat.model" />
 			</group>
@@ -1655,7 +1658,7 @@
 				<file :name="ene_snowman_boss_husk.unit" />
 			</group>
 		</group>
-		
+
 		<!-- objects -->
 		<group name="units/pd2_dlc_pal/props/pal_prop_flames_of_love_boombox/" dyn_package="false">
 				<file :name="pal_prop_flames_of_love_boombox.sequence_manager"/> <!-- Where is my Payday for you and me??????? -->
