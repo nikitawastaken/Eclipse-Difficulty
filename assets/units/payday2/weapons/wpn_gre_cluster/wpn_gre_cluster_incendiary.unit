@@ -10,14 +10,14 @@
 		<depends_on effect="effects/payday2/particles/impacts/metal_explosion_impact_pd2" />
 		<depends_on effect="effects/payday2/particles/impacts/dirt_explosion_impact_pd2" />
 		<depends_on effect="effects/payday2/particles/impacts/concrete_explosion_impact_pd2" />
-		<depends_on bnk="soundbanks/weapon_grenade" />
+		<depends_on bnk="soundbanks/weapon_white" />
 	</dependencies>
 	<extensions>
 		<extension name="base" class="IncendiaryClusterGrenade" />
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="damage" class="UnitDamage" >
-			<var name="_collision_event" value="grenade_hit_ground" />
-			<var name="_collision_sfx_quite_time" value="0" />
+			<!-- <var name="_collision_event" value="grenade_hit_ground" />
+			<var name="_collision_sfx_quite_time" value="0" /> -->
 		</extension>
 		</extensions>
 	<sounds>

@@ -2,15 +2,15 @@
 <dynamic_object>
 	<diesel materials="units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster" orientation_object="rp_grenade" />
 	<sequence_manager file="units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade" />
-  
+
 	<bodies>
-		<body name="static_body" enabled="true" template="dynamic" collision_class="projectile" friction="0.5" sweep="true" restitution="0.4" ang_damping="0.1" pushed_by_mover="false" collides_with_mover="false" > <!--error in havok forces pushed_by_mover="false" to be used to not collide with mover-->
+		<body name="static_body" enabled="true" template="dynamic" collision_class="projectile" collision_script_tag="impact" friction="0.5" sweep="true" restitution="0.4" ang_damping="0.1" pushed_by_mover="false" collides_with_mover="false" > <!--error in havok forces pushed_by_mover="false" to be used to not collide with mover-->
 			<object name="rp_grenade" />
 			<object name="c_sphere" enabled="true" collision_type="sphere" mass="0.4" padding="-2.5" />
 			<object name="g_grenade" enabled="true" />
 		</body>
 	</bodies>
-  
+
 	<graphics>
 		<object name="g_grenade" enabled="true" />
 	</graphics>

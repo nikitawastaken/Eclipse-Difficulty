@@ -49,6 +49,7 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 		name_id = "bm_grenade_cluster_incendiary",
 		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_incendiary",
 		unit_dummy = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_incendiary_husk",
+		impact_detonation = true,
 		is_a_grenade = true,
 		is_explosive = true,
 	}

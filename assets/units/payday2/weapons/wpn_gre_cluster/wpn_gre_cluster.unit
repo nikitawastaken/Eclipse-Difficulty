@@ -16,8 +16,8 @@
 		<extension name="base" class="ClusterGrenade" />
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="damage" class="UnitDamage" >
-			<var name="_collision_event" value="grenade_hit_ground" />
-			<var name="_collision_sfx_quite_time" value="0" />
+			<!-- <var name="_collision_event" value="grenade_hit_ground" />
+			<var name="_collision_sfx_quite_time" value="0" /> -->
 		</extension>
 		</extensions>
 	<sounds>

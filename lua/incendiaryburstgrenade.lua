@@ -13,7 +13,7 @@ function IncendiaryClusterGrenade:_setup_from_tweak_data()
 	self._alert_radius = tweak_entry.alert_radius
 	self._idstr_decal = tweak_entry.idstr_decal
 	self._idstr_effect = tweak_entry.idstr_effect
-	local sound_event = tweak_entry.sound_event or "white_explosion"
+	local sound_event = tweak_entry.sound_event or "grenade_explode"
 	self._custom_params = {
 		camera_shake_max_mul = 2,
 		sound_muffle_effect = true,
