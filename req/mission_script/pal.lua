@@ -14,8 +14,6 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
-local swat_vans = is_eclipse and 4 or 2
-
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
 }
@@ -130,13 +128,6 @@ return {
 			time = 30,
 		},
 	},
-	-- make 2 van arrive at the time (all 4 on Eclipse)
-	[102080] = {
-		values = {
-			amount = swat_vans,
-			ignore_disabled = false,
-		},
-	},
 	-- restore Bain's SWAT warnings from PDTH (why they were removed is beyond me)
 	[100714] = {
 		on_executed = {
@@ -221,9 +212,11 @@ return {
 		},
 		-- force SWAT vans arrival on police_called like it's in PDTH
 		on_executed = {
-			{ id = 102080, delay = 10 },
+			{ id = 400050, delay = 15 },
 		},
 	},
+	-- disable vanilla's swat van randomizer
+	[102080] = disabled,
 	-- disable vanilla's reinforce points
 	[100218] = disabled,
 	[101635] = disabled,
@@ -365,8 +358,8 @@ return {
 	-- civs go full alert when you mask up
 	[100302] = {
 		values = {
-			amount = 1,
-		},
+		amount = 1,
+	},
 		func = function()
 			for _, u_data in pairs(managers.enemy:all_civilians()) do
 				u_data.unit:movement():set_cool(false)
