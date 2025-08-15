@@ -47,10 +47,12 @@ return {
 	[102594] = enabled,
 	[102596] = enabled,
 	[103518] = enabled,
-	[102599] = enabled,
 	[102600] = enabled,
 	-- replace mission scripts with a actual spawngroup
 	[102599] = {
+		values = {
+			enabled = true,
+		},
 		on_executed = {
 			{ id = 400005, delay = 0 },
 		},
