@@ -127,33 +127,3 @@ function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_i
 
 	return unit
 end
-
-function ProjectileBase:init(unit)
-	ProjectileBase.super.init(self, unit, true)
-
-	self._unit = unit
-	self._damage_results = {}
-	self._spawn_position = self._unit:position()
-	self._simulated = true
-	self._orient_to_vel = true
-
-	if self._setup_from_tweak_data then
-		self:_setup_from_tweak_data()
-	end
-
-	Eclipse:log_chat("ProjectileBase._tweak_projectile_entry: " .. tostring(self._tweak_projectile_entry))
-
-	if self._setup_server_data and Network:is_server() then
-		self:_setup_server_data()
-	end
-
-	self._variant = "projectile"
-	local projectile_entry = self._tweak_projectile_entry
-	local tweak_entry = tweak_data.projectiles[projectile_entry]
-
-	if tweak_entry then
-		local blackmarket_tweak_entry = tweak_data.blackmarket.projectiles[projectile_entry]
-
-		self:_setup_warning_fx_vfx(tweak_entry, blackmarket_tweak_entry)
-	end
-end

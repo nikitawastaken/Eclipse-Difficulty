@@ -247,7 +247,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Powder Keg
 	self.skills.kick_starter[1].upgrades = { "weapon_explosive_range_multiplier" }
-	self.skills.kick_starter[2].upgrades = { "weapon_explosive_no_damage_curve" }
+	self.skills.kick_starter[2].upgrades = { "weapon_explosive_curve_multiplier" }
 	self.skills.kick_starter.name_id = "menu_powder_keg"
 	self.skills.kick_starter.desc_id = "menu_powder_keg_desc"
 	self.skills.kick_starter.icon_xy = { 8, 0 }

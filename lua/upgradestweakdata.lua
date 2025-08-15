@@ -595,17 +595,18 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.values.weapon.explosive_no_damage_curve = { true }
-	self.definitions.weapon_explosive_no_damage_curve = {
-		name_id = "menu_weapon_explosive_no_damage_curve",
+	self.values.weapon.explosive_curve_multiplier = { 0.25 }
+	self.definitions.weapon_explosive_curve_multiplier = {
+		name_id = "menu_weapon_explosive_curve_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "explosive_no_damage_curve",
+			upgrade = "explosive_curve_multiplier",
 			category = "weapon",
 		},
 	}
 	self.skill_descs.kick_starter.multibasic = "25%"
+	self.skill_descs.kick_starter.multipro = "75%"
 
 	-- Carpet Bombing
 	self.values.weapon.explosive_cluster_grenades = { true }
@@ -629,7 +630,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.fire_trap.multibasic = "4"
-	self.skill_descs.fire_trap.multibasic2 = "2m"
+	self.skill_descs.fire_trap.multibasic2 = "3m"
 	self.skill_descs.fire_trap.multibasic3 = "100"
 	self.skill_descs.fire_trap.multipro = "50"
 	self.skill_descs.fire_trap.multipro2 = "4"

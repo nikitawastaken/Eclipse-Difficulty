@@ -249,6 +249,7 @@
 						<post :hook_id="fraggrenade"/>
 						<post :hook_id="molotovgrenade"/>
 						<post :hook_id="incendiarygrenade"/>
+						<post :hook_id="incendiaryburstgrenade"/>
 						<post :hook_id="grenadebase"/>
 						<post :hook_id="smokescreengrenade"/>
 					</group>
