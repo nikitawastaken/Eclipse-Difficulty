@@ -399,7 +399,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400052, "swat_van_response_2", swat_van_response_variant_2),
 	Eclipse.mission_elements.gen_missionscript(400053, "swat_van_response_3", swat_van_response_variant_3),
 	Eclipse.mission_elements.gen_missionscript(400054, "swat_van_response_4", swat_van_response_variant_4),
-	
 }
 
 return M

@@ -358,8 +358,8 @@ return {
 	-- civs go full alert when you mask up
 	[100302] = {
 		values = {
-		amount = 1,
-	},
+			amount = 1,
+		},
 		func = function()
 			for _, u_data in pairs(managers.enemy:all_civilians()) do
 				u_data.unit:movement():set_cool(false)
