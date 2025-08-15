@@ -14,7 +14,7 @@ local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local sniper = scripted_enemy.sniper
 
-local swat_vans_and_events = is_eclipse and 2 or 1
+local swat_vans = is_eclipse and 4 or 2
 
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),
@@ -49,6 +49,11 @@ local mitchell_sniper = {
 local disabled = {
 	values = {
 		enabled = false,
+	},
+}
+local enabled = {
+	values = {
+		enabled = true,
 	},
 }
 local exclude_cop_agents_shields_dozers = {
@@ -125,17 +130,10 @@ return {
 			time = 30,
 		},
 	},
-	-- force SWAT vans arrival on police_called like it's in PDTH
-	[103343] = {
-		on_executed = {
-			{ id = 102080, delay = 35 },
-			{ id = 102080, delay = 120 },
-		},
-	},
-	-- make 2 van arrive at the time on Eclipse
+	-- make 2 van arrive at the time (all 4 on Eclipse)
 	[102080] = {
 		values = {
-			amount = swat_vans_and_events,
+			amount = swat_vans,
 			ignore_disabled = false,
 		},
 	},
@@ -174,6 +172,7 @@ return {
 	[102320] = filter_disable,
 	[102369] = filter_disable,
 	-- change c4's amount event to resemble more from PDTH
+	--[[
 	[101890] = c4_event_func,
 	[102569] = c4_event_func,
 	[101891] = c4_event_func,
@@ -187,7 +186,7 @@ return {
 	[102294] = filter_players_all,
 	[102568] = filter_players_disable,
 	[102307] = filter_players_disable,
-	--[[ change crowbar's amount depeniding on diffculties
+	-- change crowbar's amount depeniding on diffculties
 	[100127] = crowbar_amount,
 	[100129] = crowbar_sewer_amount,
 	]]
@@ -219,6 +218,10 @@ return {
 				force = 2,
 				position = Vector3(-2980, 1441, -324.500),
 			},
+		},
+		-- force SWAT vans arrival on police_called like it's in PDTH
+		on_executed = {
+			{ id = 102080, delay = 10 },
 		},
 	},
 	-- disable vanilla's reinforce points
@@ -348,6 +351,27 @@ return {
 			{ id = 400019, delay = 0 },
 			{ id = 400020, delay = 0 },
 		},
+	},
+	-- re-enable flee spots for civilians
+	[100685] = enabled,
+	[100515] = enabled,
+	[100684] = enabled,
+	[100686] = enabled,
+	[100687] = enabled,
+	[100688] = enabled,
+	[100689] = enabled,
+	[100690] = enabled,
+	[100691] = enabled,
+	-- civs go full alert when you mask up
+	[100302] = {
+		values = {
+		amount = 1,
+	},
+		func = function()
+			for _, u_data in pairs(managers.enemy:all_civilians()) do
+				u_data.unit:movement():set_cool(false)
+			end
+		end,
 	},
 	-- elite Shields replaces FBI ones that cover the manhole on Eclipse (PJ only)
 	[100036] = shield,
