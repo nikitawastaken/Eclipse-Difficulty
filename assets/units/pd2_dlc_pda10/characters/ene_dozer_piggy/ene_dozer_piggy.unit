@@ -6,7 +6,7 @@
         <depends_on bnk="soundbanks/regular_vox" />
         <depends_on bnk="soundbanks/regular_sfx" />
         <depends_on bnk="soundbanks/melee_piggy"/>
-        <depends_on unit="units/pd2_dlc_pent/weapons/wpn_npc_flamethrower/wpn_npc_flamethrower"/>
+        <depends_on unit="units/pd2_dlc_pent/weapons/wpn_npc_flamethrower_bulldozer/wpn_npc_flamethrower_bulldozer"/>
         <depends_on unit="units/pd2_dlc_bbq/weapons/molotov_cocktail/wpn_molotov_third"/>
         <depends_on effect="effects/payday2/particles/explosions/molotov_grenade_pent_boss"/>
     </dependencies>
@@ -15,7 +15,7 @@
         <extension name="base" class="CopBase">
 			<var name="can_be_marked" value="true"/>
             <var name="_tweak_table" value="piggydozer"/>
-            <var name="_default_weapon_id" value="flamethrower"/>
+            <var name="_default_weapon_id" value="flamethrower_tank"/>
             <var name="_stats_name" value="piggydozer"/>
         </extension>
         <extension name="inventory" class="CopInventory"/>

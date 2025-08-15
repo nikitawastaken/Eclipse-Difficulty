@@ -195,7 +195,9 @@
 		<decal_mesh name="dm_helmet_swat" 					enabled="false" material="steel_no_decal" />
 		<decal_mesh name="dm_helmet_fbi_swat" 				enabled="false" material="steel_no_decal" />
 		<decal_mesh name="dm_helmet_swat_heavy" 			enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet_shield" 				enabled="false" material="steel_no_decal" />
 		<decal_mesh name="dm_mandibles" 					enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet_shield_glass" 			enabled="false" material="glass_no_decal" />
 		<decal_mesh name="dm_visor" 						enabled="false" material="glass_no_decal" />
 	</decal_surfaces>
 
@@ -779,6 +781,31 @@
 				</object>
 			</lod_object>
 
+			<!-- FBI SHIELD HELMET OBJECTS -->
+			<lod_object name="lod_helmet_shield">
+				<object name="g_helmet_shield_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet_shield" max_distance="1500" />
+					<material materials="mtr_helmet_shield_lod_1" max_distance="2000" />
+					<material materials="mtr_helmet_shield_lod_2" />
+				</object>
+				<object name="g_helmet_shield_lod2" 	enabled="false" lod="1" >
+					<material materials="mtr_helmet_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_helmet_shield_lod_2" />
+				</object>
+			</lod_object>
+
+			<lod_object name="lod_helmet_shield_visor">
+				<object name="g_helmet_shield_lod3" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_helmet_shield" max_distance="1500" />
+					<material materials="mtr_helmet_shield_lod_1" max_distance="2000" />
+					<material materials="mtr_helmet_shield_lod_2" />
+				</object>
+				<object name="g_helmet_shield_lod4" 	enabled="false" lod="1" >
+					<material materials="mtr_helmet_shield" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_helmet_shield_lod_2" />
+				</object>
+			</lod_object>
+			
 			<!-- FBI SWAT ARM PATCH OBJECTS -->
 			<lod_object name="lod_patch_arm_fbi_swat">
 				<object name="g_patch_arm_fbi_swat" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
@@ -843,7 +870,9 @@
 			<object name="g_helmet_fbi_swat_lod22" 			enabled="false" />	
 			
 			<object name="g_helmet_fbi_swat_lod25" 			enabled="false" />	
-			
+
+			<object name="g_helmet_shield_lod5" 			enabled="false" />	
+					
 			<object name="s_body" 	enabled="true" shadow_caster="true" />			
 		</graphic_group>
 	</graphics>

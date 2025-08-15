@@ -10,7 +10,7 @@
 		<extension name="base" class="HuskCopBase" >
 			<var name="can_be_marked" value="true"/>
 			<var name="_tweak_table" value="piggydozer" />
-			<var name="_default_weapon_id" value="flamethrower" />
+			<var name="_default_weapon_id" value="flamethrower_tank" />
 			<var name="_stats_name" value="piggydozer" />
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />

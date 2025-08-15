@@ -56,6 +56,43 @@ return {
 			amount_random = 1,
 		},
 	},
+	-- edit SWAT heli dropoff
+	-- remove SO from SWATs
+	[102595] = {
+		on_executed = {
+			{ id = 102603, remove = true },
+		},
+	},
+	[102602] = {
+		on_executed = {
+			{ id = 102604, remove = true },
+		},
+	},
+	-- replace mission scripts with a actual spawngroup
+	[102599] = {
+		on_executed = {
+			{ id = 102602, remove = true },
+			{ id = 102595, remove = true },
+			{ id = 400003, delay = 0 },
+		},
+	},
+	-- open/close the left heli door
+	[102597] = {
+		on_executed = {
+			{ id = 400005, delay = 0 },
+		},
+	},
+	[102598] = {
+		on_executed = {
+			{ id = 400006, delay = 0 },
+		},
+	},
+	-- loop the chopper after it goes hidden
+	[102601] = {
+		on_executed = {
+			{ id = 102594, delay = 120, delay_rand = 60 },
+		},
+	},
 	[103344] = enabled, -- Enable unused sniper spawns (vantage point roof, but, vanilla san martin)
 	[103347] = enabled,
 	-- Disable escape reinforce, it's frankly redundant

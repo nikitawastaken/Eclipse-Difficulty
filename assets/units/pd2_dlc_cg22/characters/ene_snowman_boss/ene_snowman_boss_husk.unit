@@ -10,7 +10,7 @@
 		<extension name="base" class="HuskCopBase" >
 			<var name="can_be_marked" value="true"/>
 			<var name="_tweak_table" value="snowman_boss" />
-			<var name="_default_weapon_id" value="snowthrower" />
+			<var name="_default_weapon_id" value="snowthrower_tank" />
 			<var name="_stats_name" value="snowman_boss" />
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />

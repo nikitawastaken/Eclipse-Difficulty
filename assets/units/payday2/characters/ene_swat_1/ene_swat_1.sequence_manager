@@ -3,14 +3,15 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>	
-			<has_goggles	value="0" />
-			<has_headset	value="0" />
-			<has_mandibles	value="0" />
-			<has_visor		value="0" />
-			<is_swat		value="0" />
-			<is_swat_heavy	value="0" />
-			<is_fbi_swat	value="0" />
-			<is_city_swat	value="0" />
+			<has_goggles		value="0" />
+			<has_headset		value="0" />
+			<has_mandibles		value="0" />
+			<has_visor			value="0" />
+			<has_visor_steel	value="0" />
+			<is_swat			value="0" />
+			<is_swat_heavy		value="0" />
+			<is_fbi_swat		value="0" />
+			<is_city_swat		value="0" />
 		</variables>
 		
 		<filter name="'check_no_goggles'">
@@ -43,6 +44,14 @@
 
 		<filter name="'check_visor'">
 			<check value="vars.has_visor == 1" />
+		</filter>
+
+		<filter name="'check_no_visor_steel'">
+			<check value="vars.has_visor_steel == 0" />
+		</filter>
+
+		<filter name="'check_visor_steel'">
+			<check value="vars.has_visor_steel == 1" />
 		</filter>
 
 		<filter name="'check_not_swat'">
@@ -82,22 +91,39 @@
 			<decal_mesh 		enabled="true" name="'dm_mandibles'"/>
 		</sequence>
 		
-		<sequence editable_state="true" name="'visor'" once="true" triggable="true">
-			<set_variables 		has_visor="1" />
-			<decal_mesh 		enabled="true" name="'dm_visor'"/>
+		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
+			<run_sequence		filter="'check_visor'" name="'break_visor_a'" />
+			<run_sequence		filter="'check_visor_steel'" name="'break_visor_b'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'break_visor_a'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_helmet_lod9'" />
+			<object 			enabled="false" name="'g_helmet_lod14'" />
+			<object 			enabled="false" name="'g_helmet_lod17'" />
+
+			<decal_mesh 		enabled="false" name="'dm_visor_glass1'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor2'"/>
+			<decal_mesh 		enabled="false" name="'dm_visor_glass3'"/>
+			
+			<effect 			damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
+			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
+			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'break_visor_b'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_helmet_shield_lod3'" />
+			<object 			enabled="false" name="'g_helmet_shield_lod4'" />
+			<object 			enabled="false" name="'g_helmet_shield_lod5'" />
+			
+			<decal_mesh 		enabled="false" name="'dm_helmet_shield'"/>
+			<decal_mesh 		enabled="false" name="'dm_helmet_shield_glass'"/>
+		
+			<effect 			damp_time="5" name="'effects/payday2/particles/impacts/metal_impact_pd2'" parent="object( 'e_visor_shatter' )" position="v()"/>
+			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
+			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
+			<spawn_unit 		name="'units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor'" position="object_pos('e_visor_shatter')" rotation="object_rot('root_point')" transfer_ang_velocity="v( 50 * rand(), 50 * rand(), 500 * rand() )" transfer_velocity="v( 0, 200 * rand(), 200 * rand() )" />
 		</sequence>
 		
-		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_fbi_swat_lod13'" />
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_swat_heavy_lod5'" />
-			<object 			filter="'check_visor'" enabled="false" name="'g_helmet_swat_heavy_lod8'" />
-
-			<decal_mesh 		filter="'check_visor'" enabled="false" name="'dm_visor'"/>
-			<effect 			filter="'check_visor'" damp_time="5" name="'effects/particles/bullet_hit/glass_breakable/bullet_hit_glass_breakable'" parent="object( 'e_visor_shatter' )" position="v()" />
-			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
-			<sound 				filter="'check_visor'" action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
-		</sequence>
-
 		<sequence editable_state="true" name="'armor_crotch'" once="true" triggable="true"> 
 			<object 			enabled="true" name="'g_armor_crotch'" />
 			<object 			enabled="true" name="'g_armor_crotch_lod1'" />
@@ -120,13 +146,15 @@
 			<object 			enabled="true" name="'g_helmet_swat_lod2'" />
 		</sequence>
 
-		<sequence editable_state="true" name="'helmet_swat_heavy'" once="true" triggable="true"> 
+		<sequence editable_state="true" name="'helmet_swat_heavy'" once="true" triggable="true"> 		
+			<set_variables 		has_visor="1" />
+			
 			<decal_mesh 		enabled="true" name="'dm_helmet_swat_heavy'" />
-
+			<decal_mesh 		enabled="true" name="'dm_visor'"/>
+			
 			<object 			enabled="true" name="'g_helmet_swat_heavy_lod1'" />
 			<object 			enabled="true" name="'g_helmet_swat_heavy_lod2'" />
 			
-			<run_sequence 		name="'visor'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'helmet_fbi_swat'" once="true" triggable="true"> 
@@ -134,6 +162,19 @@
 			
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod1'" />
 			<object 			enabled="true" name="'g_helmet_fbi_swat_lod2'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'helmet_shield'" once="true" triggable="true"> 
+			<set_variables 		has_visor_steel="1" />
+			
+			<decal_mesh 		enabled="true" name="'dm_helmet_shield'" />
+			<decal_mesh 		enabled="true" name="'dm_helmet_shield_glass'" />
+
+			<object 			enabled="true" name="'g_helmet_shield_lod1'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod2'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod3'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod4'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod5'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'patch_arm_swat'" once="true" triggable="true">
@@ -240,7 +281,6 @@
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'helmet_swat_heavy'" />
-			<run_sequence 		name="'visor'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'swat_heavy_2'" once="true" triggable="true">
@@ -257,7 +297,6 @@
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'helmet_swat_heavy'" />
-			<run_sequence 		name="'visor'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_2'" once="true" triggable="true">
@@ -275,7 +314,6 @@
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'patch_body_a'" />
 			<run_sequence 		name="'helmet_swat_heavy'" />
-			<run_sequence 		name="'visor'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'fbi_swat_1'" once="true" triggable="true">
@@ -338,18 +376,13 @@
 			<object 			enabled="true" name="'g_gear_fbi_swat_e'" />
 			<object 			enabled="true" name="'g_gear_fbi_swat_e_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod11'" />
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod12'" />
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod13'" />
-			
 			<run_sequence 		name="'fbi_swat'" />
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'armor_crotch'" />
 			<run_sequence 		name="'armor_neck'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'patch_body_a'" />
-			<run_sequence 		name="'helmet_fbi_swat'" />
-			<run_sequence 		name="'visor'" />
+			<run_sequence 		name="'helmet_shield'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'city_swat_1'" once="true" triggable="true">

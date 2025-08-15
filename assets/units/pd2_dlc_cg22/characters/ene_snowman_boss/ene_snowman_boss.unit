@@ -6,7 +6,7 @@
         <depends_on bnk="soundbanks/regular_vox"/>
         <depends_on bnk="soundbanks/regular_sfx"/>
         <depends_on bnk="soundbanks/weapon_snowmolo"/>
-        <depends_on unit="units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower/wpn_npc_snowthrower"/>
+        <depends_on unit="units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"/>
         <depends_on effect="effects/payday2/particles/character/snowman_molotov"/>
     </dependencies>
     <extensions>
@@ -14,7 +14,7 @@
         <extension name="base" class="CopBase">
 			<var name="can_be_marked" value="true"/>
             <var name="_tweak_table" value="snowman_boss"/>
-            <var name="_default_weapon_id" value="snowthrower"/>
+            <var name="_default_weapon_id" value="snowthrower_tank"/>
             <var name="_stats_name" value="snowman_boss"/>
         </extension>
         <extension name="inventory" class="CopInventory"/>

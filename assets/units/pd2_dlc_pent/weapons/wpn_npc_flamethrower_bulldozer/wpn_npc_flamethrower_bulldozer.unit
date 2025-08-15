@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<unit type="wpn" slot="13">
+  <object file="units/pd2_dlc_pent/weapons/wpn_npc_flamethrower_bulldozer/wpn_npc_flamethrower_bulldozer" />
+
+  <dependencies>
+	   <depends_on effect="effects/payday2/particles/weapons/heat/overheat" />
+	   <depends_on effect="effects/payday2/particles/explosions/flamethrower_cheap" />
+	   <depends_on bnk="soundbanks/weapon_flamethrower" />
+  </dependencies>
+
+  <extensions>
+  	<extension name="unit_data" class="ScriptUnitData" />
+    <extension name="base" class="NPCBossFlamethrowerBase" >
+		<var name="name_id" value="flamethrower_npc" />
+    </extension>
+  <extension name="damage" class="UnitDamage" />
+  </extensions>
+</unit>
