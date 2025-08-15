@@ -212,7 +212,7 @@ return {
 		},
 		-- force SWAT vans arrival on police_called like it's in PDTH
 		on_executed = {
-			{ id = 400050, delay = 15 },
+			{ id = 400050, delay = 30 },
 		},
 	},
 	-- disable vanilla's swat van randomizer
