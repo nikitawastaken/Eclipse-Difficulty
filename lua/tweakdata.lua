@@ -283,7 +283,7 @@ tweak_data.weapon_disable_crit_for_damage.cluster = { explosion = false, fire = 
 tweak_data.projectiles.cluster = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
 tweak_data.projectiles.cluster.damage = 10
-tweak_data.projectiles.cluster.init_timer = 5
+tweak_data.projectiles.cluster.init_timer = 1
 tweak_data.projectiles.cluster.range = 300
 
 -- Incendiary Cluster Grenade

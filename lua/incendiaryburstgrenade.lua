@@ -13,7 +13,7 @@ function IncendiaryClusterGrenade:_setup_from_tweak_data()
 	self._alert_radius = tweak_entry.alert_radius
 	self._idstr_decal = tweak_entry.idstr_decal
 	self._idstr_effect = tweak_entry.idstr_effect
-	local sound_event = tweak_entry.sound_event or "grenade_explode"
+	local sound_event = tweak_entry.sound_event or "white_explosion"
 	self._custom_params = {
 		camera_shake_max_mul = 2,
 		sound_muffle_effect = true,
@@ -27,12 +27,4 @@ function IncendiaryClusterGrenade:_setup_from_tweak_data()
 	self._dot_data = tweak_entry.dot_data_name and tweak_data.dot:get_dot_data(tweak_entry.dot_data_name)
 
 	return tweak_entry
-end
-
-function IncendiaryClusterGrenade:_on_collision(col_ray)
-	self:_detonate()
-end
-
-function IncendiaryClusterGrenade:clbk_impact(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
-	self:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
 end

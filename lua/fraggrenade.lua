@@ -97,11 +97,3 @@ function ClusterGrenade:_setup_from_tweak_data()
 
 	return tweak_entry
 end
-
-function ClusterGrenade:_on_collision(col_ray)
-	self:_detonate()
-end
-
-function ClusterGrenade:clbk_impact(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
-	self:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
-end

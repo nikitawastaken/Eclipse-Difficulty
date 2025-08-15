@@ -576,12 +576,12 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.combat_engineering.multibasic = "50%"
 
 	-- Hellwire
-	self.values.shape_charge.quantity[1] = 5
-	self.values.trip_mine.quantity[1] = 5
-	self.values.trip_mine.fire_trap[1] = { 50, 1.5 }
-	self.skill_descs.more_fire_power.multibasic = "5"
-	self.skill_descs.more_fire_power.multibasic2 = "5"
-	self.skill_descs.more_fire_power.multipro = "60"
+	self.values.shape_charge.quantity[1] = 4
+	self.values.trip_mine.quantity[1] = 6
+	self.values.trip_mine.fire_trap[1] = { 30, 1.5 }
+	self.skill_descs.more_fire_power.multibasic = "4"
+	self.skill_descs.more_fire_power.multibasic2 = "6"
+	self.skill_descs.more_fire_power.multipro = "40"
 	self.skill_descs.more_fire_power.multipro2 = "6"
 
 	-- Powder Keg
