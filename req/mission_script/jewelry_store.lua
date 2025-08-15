@@ -45,6 +45,7 @@ return {
 	-- First enable the chopper since it is disabled for some odd reason
 	[102593] = enabled,
 	[102594] = enabled,
+	[102596] = enabled,
 	[103518] = enabled,
 	[102599] = enabled,
 	[102600] = enabled,
