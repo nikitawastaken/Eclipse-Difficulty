@@ -21,7 +21,7 @@ function IncendiaryClusterGrenade:_setup_from_tweak_data()
 		idstr_decal = self._idstr_decal,
 		idstr_effect = self._idstr_effect,
 		sound_event = sound_event,
-		feedback_range = self._range * 2
+		feedback_range = self._range * 2,
 	}
 
 	self._dot_data = tweak_entry.dot_data_name and tweak_data.dot:get_dot_data(tweak_entry.dot_data_name)
