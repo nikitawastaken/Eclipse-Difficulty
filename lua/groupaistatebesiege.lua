@@ -1242,7 +1242,12 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		end
 
 		if enemy.random_unit then
-			enemy.unit = weighted_selector(enemy.random_unit):select() or enemy.unit
+			local random = weighted_selector(enemy.random_unit):select()
+			if tweak_data.group_ai.unit_categories[random] and tweak_data.group_ai.unit_categories[random].access then
+				enemy.unit = random
+			else
+				Eclipse:error_console(string.format("Invalid random unit %s", tostring(random)))
+			end
 
 			if check_special_limit_reached(enemy.unit) then
 				for _, unit in pairs(enemy.random_unit) do
