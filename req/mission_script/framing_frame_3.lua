@@ -35,7 +35,7 @@ return {
 	--Spawn snipers after 120 seconds of starting the assault
 	[103812] = {
 		on_executed = {
-			{ id = 400010, delay = 120 },
+			{ id = 400009, delay = 120 },
 		},
 	},
 	--this makes snipers in the nearby building not floating
