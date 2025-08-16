@@ -643,7 +643,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				-- If grenade isn't available, push regardless anyway after a short delay
 				if not self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
 					if not group.ignore_grenade_check_t then
-						local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+						local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.push_delay)
 						local delay = push_delay * (assault_area.hostages and tweak_data.group_ai.hostage_push_delay_mul or 1) * (tactics_map.charge and 0.5 or 1)
 						local num_criminals = table.size(assault_area.criminal.units)
 						group.ignore_grenade_check_t = self._t + math.map_range_clamped(num_criminals, 1, 4, delay, delay * 0.75)
@@ -1668,7 +1668,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.push_delay)
 
 			if in_place_duration < push_delay * 0.5 then
 				move_in = false
