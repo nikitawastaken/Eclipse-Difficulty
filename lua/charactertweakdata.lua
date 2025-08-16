@@ -1415,7 +1415,7 @@ function CharacterTweakData:character_map(...)
 			"ene_soldier_4",
 		},
 	}
-	
+
 	safe_add(char_map.drm, "ene_bulldozer_medic_classic")
 
 	safe_add(char_map.rvd, "ene_la_cop_1_fat")
