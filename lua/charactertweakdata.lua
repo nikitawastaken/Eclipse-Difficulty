@@ -405,7 +405,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 600,
 	})
 
-	presets.weapon.bulldozer.is_smg.range = { close = 750, optimal = 1250, far = 2500 }
+	presets.weapon.bulldozer.is_smg.range = { close = 1500, optimal = 2750, far = 4000 }
 
 	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.bulldozer.is_shotgun_pump.FALLOFF = {
@@ -1415,6 +1415,8 @@ function CharacterTweakData:character_map(...)
 			"ene_soldier_4",
 		},
 	}
+	
+	safe_add(char_map.drm, "ene_bulldozer_medic_classic")
 
 	safe_add(char_map.rvd, "ene_la_cop_1_fat")
 	safe_add(char_map.rvd, "ene_la_cop_2_fat")
@@ -1451,6 +1453,9 @@ end
 
 -- Add new weapons
 Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function(self)
+	table.insert(self.weap_ids, "mp5_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_mp5_bulldozer/wpn_npc_mp5_bulldozer"))
+
 	table.insert(self.weap_ids, "r870_yellow")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_taser/wpn_npc_r870_taser"))
 

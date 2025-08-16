@@ -371,6 +371,14 @@
 				<file :name="wpn_npc_mp5_tactical.unit" />
 			</group>
 
+			<!-- Bulldozer MP5 -->
+			<group :name="wpn_npc_mp5_bulldozer/">
+				<file :name="wpn_npc_mp5_bulldozer.cooked_physics" />	
+				<file :name="wpn_npc_mp5_bulldozer.model" />
+				<file :name="wpn_npc_mp5_bulldozer.object" />
+				<file :name="wpn_npc_mp5_bulldozer.unit" />
+			</group>
+
 			<!-- Taser Reinfeld 88 -->
 			<group :name="wpn_npc_r870_taser/">
 				<file :name="wpn_npc_r870_taser.cooked_physics" />
@@ -1127,6 +1135,12 @@
 		</group>
 
 		<group name="units/pd2_dlc_drm/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="ene_bulldozer_medic_classic/">
+				<file :name="ene_bulldozer_medic_classic.unit" />
+				<file :name="ene_bulldozer_medic_classic_husk.unit" />
+				<file :name="ene_bulldozer_medic_df.texture" />
+			</group>
+			
 			<group :name="ene_bulldozer_minigun_classic/">
 				<file :name="ene_bulldozer_minigun_classic.unit" />
 				<file :name="ene_bulldozer_minigun_classic_husk.unit" />
