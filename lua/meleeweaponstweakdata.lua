@@ -1,12 +1,21 @@
 -- Rebalance melee weapons based on their range, concealment and speed
-Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_weapons", function(self, tweak_data)
-	self.melee_weapons.iceaxe.stats.min_damage = 2.4
+Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_weapons", function(self, tweak_data)
+	self.melee_weapons.iceaxe.stats.min_damage = 2
 	self.melee_weapons.iceaxe.stats.max_damage = 12
 
+	-- Change a few weapons' damage type
+	self.melee_weapons.cs.type = "sharp"
+
+	local type_map = {
+		["fists"] = "blunt",
+		["axe"] = "sharp",
+		["knife"] = "sharp",
+		["sword"] = "sharp",
+	}	
 	local min_conceal, max_conceal = 30, 0
 	local min_range, max_range = 300, 0
 	local min_expire, max_expire = 10, 0
-	for _, data in pairs(self.melee_weapons) do
+	for id, data in pairs(self.melee_weapons) do		
 		if data.stats.concealment then
 			min_conceal = data.stats.concealment < min_conceal and data.stats.concealment or min_conceal
 			max_conceal = data.stats.concealment > max_conceal and data.stats.concealment or max_conceal
@@ -39,22 +48,23 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "shc__init_melee_wea
 		return min, max
 	end
 
-	for _, data in pairs(self.melee_weapons) do
+	for id, data in pairs(self.melee_weapons) do
+		data.type = type_map[data.type] or data.type
+
+		local golden_spoon = id == "spoon_gold"
 		local expire = (data.expire_t + data.repeat_expire_t) * 0.5
 		local range = math.map_range(data.stats.range, min_range, max_range, 1, 0)
 		local conceal = math.map_range(data.stats.concealment or 30, min_conceal, max_conceal, 1, 0)
 		local charge_t = data.stats.charge_time or 0
-		local is_sharp_mul = data.stats.weapon_type == "sharp" and 1.5 or 1
-		local is_blunt_mul = data.stats.weapon_type == "blunt" and 1.5 or 1
-		local damage_mul = ((data.tase_data or data.dot_data_name) and 0.4 or 1)
-		local effect_mul = ((data.tase_data or data.dot_data_name) and 0.1 or 1) * is_blunt_mul
+		local damage_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0.4 or 1) * (data.stats.weapon_type == "sharp" and 1.5 or data.stats.weapon_type == "blunt" and 0.75 or 1)
+		local effect_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0 or 1) * (data.stats.weapon_type == "blunt" and 1.25 or data.stats.weapon_type == "sharp" and 0.75 or 1)
 		local min, max = get_damage(expire, range, conceal, charge_t)
-		data.stats.min_damage = math.round(min * damage_mul * is_sharp_mul, 0.5)
+		data.stats.min_damage = math.round(min * damage_mul, 0.5)
 		data.stats.max_damage = math.round(max * damage_mul, 0.5)
 		data.stats.min_damage_effect = math.round((math.map_range(expire, min_expire, max_expire, 30, 350) + (data.melee_damage_delay or 0) * 350) * effect_mul, 10)
 		data.stats.max_damage_effect = data.stats.min_damage_effect
 		data.stats.remove_weapon_movement_penalty = nil
 		data.stats.charge_time = data.stats.charge_time and data.stats.charge_time * 0.5
-		data.stats.headshot_damage_mul = is_blunt_mul
+		data.stats.headshot_damage_mul = data.stats.weapon_type == "blunt" and 1.5 or 1
 	end
 end)
