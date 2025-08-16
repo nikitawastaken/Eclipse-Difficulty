@@ -225,12 +225,6 @@ return {
 			{ id = 103540, remove = (bank_heist and not is_eclipse_pro) and true or nil, delay = 0 },
 		},
 	},
-	-- enable max diff after 2 instead of 3 assault waves
-	[101307] = {
-		values = {
-			amount = 2,
-		},
-	},
 	-- enable spawns sooner
 	[103882] = {
 		on_executed = {
@@ -300,7 +294,11 @@ return {
 	[100369] = initial_reinforce_amount,
 	[102091] = initial_reinforce_amount,
 	[100370] = initial_reinforce_amount,
-	-- Spawn group delays
+	-- disable drill and escape reinforce (it's done automatically now)
+	[101125] = disabled,
+	[101126] = disabled,
+	[105331] = disabled,
+	-- spawn group delays
 	[100246] = street_spawn,
 	[100249] = street_spawn,
 	[100250] = street_spawn,

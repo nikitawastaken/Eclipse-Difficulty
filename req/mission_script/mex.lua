@@ -17,7 +17,7 @@ local wall_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

@@ -16,13 +16,13 @@ local side_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local alleyway_spawn = {
 	values = {
-		interval = 50,
+		interval = 45,
 	},
 	groups = preferred.no_bulldozers,
 }

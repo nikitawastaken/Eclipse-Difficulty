@@ -5,7 +5,7 @@ local disabled = {
 }
 local alleyway_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 return {

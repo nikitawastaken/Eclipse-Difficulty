@@ -22,7 +22,7 @@ local sniper_trigger_times = {
 }
 local close_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -34,7 +34,7 @@ local building_spawn = {
 }
 local warehouse_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -76,6 +76,37 @@ return {
 				force = 3,
 				position = Vector3(2650, 4300, 575),
 			},
+		},
+	},
+	-- make Swat vans drop units
+	[103615] = { -- arrive 1
+		on_executed = {
+			{ id = 400005, delay = 0, delay_rand = 5 },
+		},
+	},
+	[103612] = { -- arrive 2
+		on_executed = {
+			{ id = 400012, delay = 0, delay_rand = 5 },
+		},
+	},
+	[103611] = { -- arrive 3
+		on_executed = {
+			{ id = 400019, delay = 0, delay_rand = 5 },
+		},
+	},
+	[103614] = { -- arrive 4
+		on_executed = {
+			{ id = 400026, delay = 0, delay_rand = 5 },
+		},
+	},
+	[103613] = { -- arrive 5
+		on_executed = {
+			{ id = 400033, delay = 0, delay_rand = 5 },
+		},
+	},
+	[103610] = { -- arrive 6
+		on_executed = {
+			{ id = 400040, delay = 0, delay_rand = 5 },
 		},
 	},
 	-- Don't remove some preferreds

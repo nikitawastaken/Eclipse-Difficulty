@@ -1,23 +1,23 @@
 local preferred = Eclipse.preferred
 local staircase_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local upper_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 local upper_init_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local tower_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -26,12 +26,6 @@ local flank_spawn = {
 		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
-}
-local window_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Allow bot navigation earlier
@@ -65,7 +59,7 @@ return {
 	[100131] = upper_init_spawn,
 	[101365] = tower_spawn,
 	[103529] = tower_spawn,
+	[100888] = flank_spawn,
 	[100951] = flank_spawn,
 	[101420] = flank_spawn,
-	[100888] = window_spawn,
 }

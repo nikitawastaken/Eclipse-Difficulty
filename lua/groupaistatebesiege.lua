@@ -327,7 +327,7 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 			end
 
 			-- Adjust next reinforce dispatch time based on the amount of tasks still needed
-			local min_reenforce_interval = self:_get_difficulty_dependent_value(tweak_data.group_ai.min_reenforce_interval)
+			local min_reenforce_interval = self:_get_difficulty_dependent_value(self._tweak_data.reenforce.min_interval)
 
 			if spawned then
 				--self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks
@@ -643,7 +643,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				-- If grenade isn't available, push regardless anyway after a short delay
 				if not self:_chk_group_use_grenade(assault_area, group, detonate_pos) then
 					if not group.ignore_grenade_check_t then
-						local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+						local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.push_delay)
 						local delay = push_delay * (assault_area.hostages and tweak_data.group_ai.hostage_push_delay_mul or 1) * (tactics_map.charge and 0.5 or 1)
 						local num_criminals = table.size(assault_area.criminal.units)
 						group.ignore_grenade_check_t = self._t + math.map_range_clamped(num_criminals, 1, 4, delay, delay * 0.75)
@@ -1242,7 +1242,12 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		end
 
 		if enemy.random_unit then
-			enemy.unit = weighted_selector(enemy.random_unit):select() or enemy.unit
+			local random = weighted_selector(enemy.random_unit):select()
+			if tweak_data.group_ai.unit_categories[random] and tweak_data.group_ai.unit_categories[random].access then
+				enemy.unit = random
+			else
+				Eclipse:error_console(string.format("Invalid random unit %s", tostring(random)))
+			end
 
 			if check_special_limit_reached(enemy.unit) then
 				for _, unit in pairs(enemy.random_unit) do
@@ -1531,7 +1536,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.push_delay)
 
 			if in_place_duration < push_delay * 0.5 then
 				move_in = false
@@ -1668,7 +1673,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.push_delay)
 
 			if in_place_duration < push_delay * 0.5 then
 				move_in = false

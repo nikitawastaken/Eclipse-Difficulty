@@ -1,17 +1,17 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
-local is_eclipse = Eclipse.utils.is_eclipse()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
-local heli_chance = is_eclipse_pro and 100 or is_eclipse and 85 or 12.5 * diff_i
+local is_eclipse_pro = eclipse and is_pro_job
+local heli_chance = is_eclipse_pro and 100 or eclipse and 85 or 12.5 * diff_i
 local heli_enemy1 = is_eclipse_pro and scripted_enemy.elite_bulldozer_1 or scripted_enemy.bulldozer_1
 local heli_enemy2 = is_eclipse_pro and scripted_enemy.elite_bulldozer_2 or scripted_enemy.taser_1
 local garage_swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local garage_swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
-local garage_shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
-local dozer_spawn_chance = is_eclipse and 50 or 25
+local garage_shield = eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
+local dozer_spawn_chance = eclipse and 50 or 25
 local heli_spawn1 = {
 	enemy = heli_enemy1,
 }
@@ -61,7 +61,7 @@ local van_guaranteed_spawn = {
 }
 local street_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local van_spawn = {
@@ -75,7 +75,7 @@ local overpass_spawn = {
 		interval = 20,
 	},
 }
-local inkwell_ground_spawn = {
+local inkwell_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -87,15 +87,9 @@ local armitage_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local inkwell_upper_spawn = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local building_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -305,17 +299,12 @@ return {
 	-- custom scripted spawns
 	[101240] = {
 		on_executed = {
-			{ id = 400000, delay = 0 },
-			{ id = 400001, delay = 0 },
-			{ id = 400002, delay = 0 },
-			{ id = 400003, delay = 0 },
-			{ id = 101476, delay = 0 }, -- tenth preferred add (have to put it here but whatever)
+			{ id = 410070, delay = 0 },
 		},
 	},
 	[103729] = {
 		on_executed = {
-			{ id = 400008, delay = 0 },
-			{ id = 400009, delay = 0 },
+			{ id = 410071, delay = 0 },
 			{ id = 400087, delay = 0 },
 			{ id = 400091, delay = 0 },
 		},
@@ -327,8 +316,7 @@ return {
 	},
 	[100353] = {
 		on_executed = {
-			{ id = 400018, delay = 0 },
-			{ id = 400020, delay = 0 },
+			{ id = 410072, delay = 0 },
 			{ id = 400085, delay = 0 },
 		},
 	},
@@ -430,7 +418,7 @@ return {
 		reinforce = { -- add Inkwell reinforce
 			{
 				name = "inkwell",
-				force = 3,
+				force = 4,
 				position = Vector3(-9250, -12775, 75),
 			},
 		},
@@ -540,10 +528,10 @@ return {
 	[400078] = van_spawn,
 	[410041] = van_spawn,
 	[410048] = van_spawn,
-	[103703] = inkwell_ground_spawn,
+	[103703] = inkwell_spawn,
 	[102475] = armitage_spawn,
-	[100441] = inkwell_upper_spawn,
-	[103333] = inkwell_upper_spawn,
-	[103785] = inkwell_upper_spawn,
+	[100441] = building_spawn,
+	[103333] = building_spawn,
+	[103785] = building_spawn,
 	[100029] = building_spawn,
 }

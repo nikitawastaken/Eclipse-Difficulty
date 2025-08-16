@@ -7,12 +7,15 @@ local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local exclude_shields_dozers = {
+	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+}
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-local ground_spawn = {
+local waterfront_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 local jumpdown_spawn = {
@@ -32,18 +35,36 @@ return {
 			{
 				name = "warehouse2",
 				force = 2,
-				position = Vector3(525, -300, 0),
+				position = Vector3(540, -300, 0),
 			},
 		},
 	},
+	[103164] = exclude_shields_dozers,
+	[103423] = exclude_shields_dozers,
+	[103457] = exclude_shields_dozers,
+	[103627] = exclude_shields_dozers,
+	[104017] = exclude_shields_dozers,
+	[104018] = exclude_shields_dozers,
+	[104019] = exclude_shields_dozers,
+	[104243] = exclude_shields_dozers,
+	[104298] = exclude_shields_dozers,
+	[104299] = exclude_shields_dozers,
+	[104299] = exclude_shields_dozers,
+	[104858] = exclude_shields_dozers,
+	[104859] = exclude_shields_dozers,
+	[104000] = exclude_shields_dozers,
+	[104001] = exclude_shields_dozers,
+	[104002] = exclude_shields_dozers,
+	[104005] = exclude_shields_dozers,
+	[104007] = exclude_shields_dozers,
 	-- Spawn group delays
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- Slightly revising the original version with more pronounced intervals.
-	[104064] = ground_spawn,
-	[104065] = ground_spawn,
-	[101055] = ground_spawn,
-	[101189] = ground_spawn,
-	[101196] = ground_spawn,
+	[101055] = waterfront_spawn,
+	[101188] = waterfront_spawn,
+	[101189] = waterfront_spawn,
+	[101196] = waterfront_spawn,
+	[101211] = waterfront_spawn,
 	[104110] = jumpdown_spawn,
 	[104324] = jumpdown_spawn,
 	[104330] = jumpdown_spawn,

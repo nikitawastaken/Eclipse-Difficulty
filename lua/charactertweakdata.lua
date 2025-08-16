@@ -106,7 +106,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local special_dmg_mul_tbl = { 0.4, 0.6, 0.8, 1, 1, 1, 1, 1 }
 	local special_dmg_mul = special_dmg_mul_tbl[diff_i]
 
-	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
+	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.4, 0.3, 0.3, 0.3 }
 	local aim_delay_mul = aim_delay_tbl[diff_i]
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
@@ -143,7 +143,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_sniper = deep_clone(presets.weapon.base.is_revolver)
 	presets.weapon.base.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.base.is_sniper.FALLOFF = {
-		{ dmg_mul = 12 * dmg_mul, r = 0, acc = { 0, 0.5 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 12 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 12 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 12 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -317,7 +317,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.sniper = based_on(presets.weapon.swat)
 
-	local cs_sniper_aim_delay_mul = math.sqrt(aim_delay_mul)
+	local cs_sniper_aim_delay_mul = aim_delay_mul ^ 0.6
 
 	presets.weapon.sniper.is_sniper.aim_delay = {
 		1 * cs_sniper_aim_delay_mul,
@@ -326,9 +326,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * cs_sniper_aim_delay_mul
 	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 16 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 16 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 16 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 14 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 14 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 14 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.fbi_sniper = based_on(presets.weapon.sniper)
@@ -347,10 +347,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
-		0.75 * aim_delay_mul,
-		1.5 * aim_delay_mul,
+		1 * aim_delay_mul,
+		2 * aim_delay_mul,
 	}
-	presets.weapon.elite_sniper.is_sniper.focus_delay = 0.6 * aim_delay_mul
+	presets.weapon.elite_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * aim_delay_mul
 	presets.weapon.elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -405,7 +405,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 600,
 	})
 
-	presets.weapon.bulldozer.is_smg.range = { close = 750, optimal = 1250, far = 2500 }
+	presets.weapon.bulldozer.is_smg.range = { close = 1500, optimal = 2750, far = 4000 }
 
 	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.bulldozer.is_shotgun_pump.FALLOFF = {
@@ -1416,6 +1416,8 @@ function CharacterTweakData:character_map(...)
 		},
 	}
 
+	safe_add(char_map.drm, "ene_bulldozer_medic_classic")
+
 	safe_add(char_map.rvd, "ene_la_cop_1_fat")
 	safe_add(char_map.rvd, "ene_la_cop_2_fat")
 	safe_add(char_map.rvd, "ene_la_cop_3_fat")
@@ -1451,6 +1453,9 @@ end
 
 -- Add new weapons
 Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_structure", function(self)
+	table.insert(self.weap_ids, "mp5_tank")
+	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_mp5_bulldozer/wpn_npc_mp5_bulldozer"))
+
 	table.insert(self.weap_ids, "r870_yellow")
 	table.insert(self.weap_unit_names, Idstring("units/payday2/weapons/wpn_npc_r870_taser/wpn_npc_r870_taser"))
 

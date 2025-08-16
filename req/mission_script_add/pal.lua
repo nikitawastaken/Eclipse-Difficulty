@@ -314,6 +314,32 @@ local enable_the_pool_chopper = {
 	},
 }
 
+local pick_a_swat_van = {
+	amount = 1,
+	on_executed = {
+		{ id = 400051, delay = 0 },
+		{ id = 400052, delay = 0 },
+		{ id = 400053, delay = 0 },
+		{ id = 400054, delay = 0 },
+	},
+}
+local swat_van_response_variant_1 = {
+	on_executed = { { id = 100714, delay = 0 }, { id = 100713, delay = 180, delay_rand = 30 }, { id = 100715, delay = 300, delay_rand = 30 }, { id = 100720, delay = 420, delay_rand = 30 } },
+	enabled = true,
+}
+local swat_van_response_variant_2 = {
+	on_executed = { { id = 100720, delay = 0 }, { id = 100715, delay = 180, delay_rand = 30 }, { id = 100713, delay = 300, delay_rand = 30 }, { id = 100714, delay = 420, delay_rand = 30 } },
+	enabled = true,
+}
+local swat_van_response_variant_3 = {
+	on_executed = { { id = 100715, delay = 0 }, { id = 100720, delay = 180, delay_rand = 30 }, { id = 100714, delay = 300, delay_rand = 30 }, { id = 100713, delay = 420, delay_rand = 30 } },
+	enabled = true,
+}
+local swat_van_response_variant_4 = {
+	on_executed = { { id = 100713, delay = 0 }, { id = 100714, delay = 180, delay_rand = 30 }, { id = 100720, delay = 300, delay_rand = 30 }, { id = 100715, delay = 420, delay_rand = 30 } },
+	enabled = true,
+}
+
 M.elements = {
 	--Snipers
 	Eclipse.mission_elements.gen_dummy(400001, "sniper_1", Vector3(4082, 2186, 120.142), Rotation(-180, 0, -0), optsSniper_1),
@@ -368,6 +394,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_dialogue(400047, "swats_beach", Bain_swats_from_beach),
 	Eclipse.mission_elements.gen_dialogue(400048, "swats_hills", Bain_swats_from_hills),
 	Eclipse.mission_elements.gen_dialogue(400049, "swats_pacific_drive", Bain_swats_from_pacific_drive),
+	Eclipse.mission_elements.gen_element_random(400050, "begin_swat_vans", pick_a_swat_van),
+	Eclipse.mission_elements.gen_missionscript(400051, "swat_van_response_1", swat_van_response_variant_1),
+	Eclipse.mission_elements.gen_missionscript(400052, "swat_van_response_2", swat_van_response_variant_2),
+	Eclipse.mission_elements.gen_missionscript(400053, "swat_van_response_3", swat_van_response_variant_3),
+	Eclipse.mission_elements.gen_missionscript(400054, "swat_van_response_4", swat_van_response_variant_4),
 }
 
 return M

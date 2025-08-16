@@ -9,13 +9,7 @@ local fence_spawn = {
 		interval = 15,
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local container_spawn = {
+local upper_spawn = {
 	values = {
 		interval = 30,
 	},
@@ -115,11 +109,10 @@ return {
 	-- Spawn group delays
 	[100869] = fence_spawn,
 	[101574] = fence_spawn,
-	[104040] = fence_spawn,
-	[101630] = roof_spawn,
-	[101771] = roof_spawn,
-	[101772] = roof_spawn,
-	[102887] = roof_spawn,
-	[108179] = container_spawn,
+	[101630] = upper_spawn,
+	[101771] = upper_spawn,
+	[101772] = upper_spawn,
+	[102887] = upper_spawn,
+	[108179] = upper_spawn,
 	[104040] = window_spawn,
 }

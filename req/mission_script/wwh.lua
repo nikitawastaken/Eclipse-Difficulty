@@ -37,13 +37,13 @@ local unused_sniper_trigger_times = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -79,10 +79,7 @@ return {
 			player_mul = { 2, 1.25, 1, 0.8 },
 		},
 	},
-	[100810] = { -- Gradually increase difficulty
-		values = {
-			difficulty = 0.33,
-		},
+	[100810] = {
 		reinforce = { -- Add some reinforce to make up for the slower spawn groups and lower diff
 			{
 				name = "roof1",
@@ -95,9 +92,6 @@ return {
 				position = Vector3(6700, 600, 1650),
 			},
 		},
-	},
-	[101186] = { -- saved the crew
-		difficulty = 0.66,
 	},
 	-- make Snipers respawn and re-enable unused ones
 	[100520] = unused_sniper_trigger_times,

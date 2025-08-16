@@ -1,23 +1,10 @@
 local preferred = Eclipse.preferred
-local initial_diff = {
-	values = {
-		difficulty = 0.5,
-	},
-}
 local reinforcement_spawn = {
 	values = {
 		interval = 10,
 	},
 }
 return {
-	[101831] = initial_diff,
-	[102461] = initial_diff,
-	[101968] = { -- waiting done
-		difficulty = 0.75,
-	},
-	[101976] = { -- escape link
-		difficulty = 1,
-	},
 	[102508] = { -- activte all preferreds
 		reinforce = {
 			{

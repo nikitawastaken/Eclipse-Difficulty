@@ -2894,6 +2894,13 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			end
 
 			if assault_state.reenforce then
+				assault_state.reenforce.min_interval = table_multiplier(assault_state.reenforce.min_interval, level_settings.reenforce_min_interval_mul or 1)
+
+				if level_settings.reenforce_min_interval_mul ~= 1 then
+					Eclipse:log_console("Min reenforce interval for " .. level_id .. " set to: ")
+					Utils.PrintTable(assault_state.reenforce.min_interval)
+				end
+
 				assault_state.reenforce.interval = table_multiplier(assault_state.reenforce.interval, level_settings.reenforce_interval_mul or 1)
 
 				if level_group_ai_state and level_settings.reenforce_interval_mul ~= 1 then
@@ -2950,13 +2957,6 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.cs_grenade_chance_times_mul ~= 1 then
 		Eclipse:log_console("CS grenade chance times for " .. level_id .. " set to: ")
 		Utils.PrintTable(self.cs_grenade_chance_times)
-	end
-
-	self.min_reenforce_interval = table_multiplier(self.min_reenforce_interval, level_settings.min_reenforce_interval_mul or 1)
-
-	if level_settings.min_reenforce_interval_mul ~= 1 then
-		Eclipse:log_console("Min reenforce interval for " .. level_id .. " set to: ")
-		Utils.PrintTable(self.min_reenforce_interval)
 	end
 
 	if level_settings.force_tactics then
@@ -3086,8 +3086,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- RECON / REENFORCE --
 
 	-- Reenforce spawn interval
-	self.min_reenforce_interval = { 5, 7.5, 10 }
-
+	self.besiege.reenforce.min_interval = { 5, 7.5, 10 }
 	self.besiege.reenforce.interval = { 10, 20, 30 }
 
 	-- Recon spawn interval and spawncap
@@ -3099,7 +3098,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	self.hostage_push_delay_mul = 1.5
-	self.besiege.push_delay = {
+	self.besiege.assault.push_delay = {
 		diff_lerp(20, 16),
 		diff_lerp(16, 12),
 		diff_lerp(12, 8),

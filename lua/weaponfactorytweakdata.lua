@@ -154,86 +154,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 		end
 	end
 
-	local lmg_table = {
-		"wpn_fps_lmg_rpk",
-		"wpn_fps_lmg_hk21",
-		"wpn_fps_lmg_m249",
-		"wpn_fps_lmg_par",
-		"wpn_fps_lmg_mg42",
-		"wpn_fps_lmg_m60",
-	}
-
-	local sight_table = {
-		"wpn_fps_upg_o_specter",
-		"wpn_fps_upg_o_aimpoint",
-		"wpn_fps_upg_o_aimpoint_2",
-		"wpn_fps_upg_o_docter",
-		"wpn_fps_upg_o_eotech",
-		"wpn_fps_upg_o_t1micro",
-		"wpn_fps_upg_o_cmore",
-		"wpn_fps_upg_o_acog",
-		"wpn_fps_upg_o_cs",
-		"wpn_fps_upg_o_eotech_xps",
-		"wpn_fps_upg_o_reflex",
-		"wpn_fps_upg_o_rx01",
-		"wpn_fps_upg_o_rx30",
-		"wpn_fps_upg_o_spot",
-		"wpn_fps_upg_o_xpsg33_magnifier",
-		"wpn_fps_upg_o_bmg",
-		"wpn_fps_upg_o_uh",
-		"wpn_fps_upg_o_fc1",
-		"wpn_fps_upg_o_poe",
-		"wpn_fps_upg_o_hamr",
-		"wpn_fps_upg_o_atibal",
-	}
-
-	local lmg_stance_mod_map = {
-		["wpn_fps_lmg_rpk"] = { translation = Vector3(-0, -0, -3) },
-		["wpn_fps_lmg_hk21"] = { translation = Vector3(0, -0, -3.2) },
-		["wpn_fps_lmg_m249"] = { translation = Vector3(0, 0, -3.4) },
-		["wpn_fps_lmg_par"] = { translation = Vector3(0, 8, -3.2) },
-		["wpn_fps_lmg_mg42"] = { translation = Vector3(0, 8, -2.4) },
-		["wpn_fps_lmg_m60"] = { translation = Vector3(0.1, 8, 0) },
-	}
-
-	for index, weapon_id in ipairs(lmg_table) do
-		if not self[weapon_id].adds then
-			self[weapon_id].adds = {}
-		end
-		if not self[weapon_id].override then
-			self[weapon_id].override = {}
-		end
-	end
-
-	for index, weapon_id in ipairs(lmg_table) do
-		for index, sight_id in ipairs(sight_table) do
-			--Add sights to uses_parts
-			table.insert(self[weapon_id].uses_parts, sight_id)
-
-			--Set stance_mods
-			self.parts[sight_id].stance_mod[weapon_id] = lmg_stance_mod_map[weapon_id]
-		end
-	end
-
-	for index, sight_id in ipairs(sight_table) do
-		--Add sight mounts and rails
-		self.wpn_fps_lmg_rpk.adds[sight_id] = { "wpn_fps_ak_extra_ris" }
-		--self.wpn_fps_lmg_m249.override[sight_id] = { parent = "upper_reciever" }
-		self.wpn_fps_lmg_hk21.adds[sight_id] = { "wpn_fps_ass_g3_body_rail" }
-		self.wpn_fps_lmg_mg42.adds[sight_id] = { "wpn_fps_rpg7_sight_adapter" }
-		--self.wpn_fps_lmg_mg42.override[sight_id] = { parent = "upper_reciever" }
-		--self.wpn_fps_lmg_par.override[sight_id] = { parent = "upper_reciever" }
-		self.wpn_fps_lmg_m60.adds[sight_id] = { "wpn_fps_ass_groza_o_adapter" }
-		self.wpn_fps_lmg_m60.override[sight_id] = { forbids = { "wpn_fps_lmg_m60_sight_standard" } }
-		--self.wpn_fps_lmg_m60.override[sight_id] = { forbids = { "wpn_fps_lmg_m60_sight_standard" }, parent = "upper_reciever" }
-
-		--Add suport for the AK scope mount
-		table.insert(self.wpn_fps_lmg_rpk.uses_parts, "wpn_fps_upg_o_ak_scopemount")
-		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount = {}
-		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override = {}
-		self.wpn_fps_lmg_rpk.override.wpn_fps_upg_o_ak_scopemount.override[sight_id] = { a_obj = "a_o_sm", stance_mod = { wpn_fps_lmg_rpk = { translation = Vector3(0, 0, -4.6) } } }
-	end
-
 	local piggyback_stats = { value = 1, gadget_zoom = 1 }
 
 	self.parts.wpn_fps_upg_o_specter_piggyback.stats = clone(piggyback_stats)
@@ -1282,14 +1202,14 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		},
 		recoil = {
 			standing = {
+				hipfire = 1,
+				crouching = 1,
+				steelsight = 0.7,
+			},
+			moving = {
 				hipfire = 1.2,
 				crouching = 1,
 				steelsight = 1,
-			},
-			moving = {
-				hipfire = 1.6,
-				crouching = 1,
-				steelsight = 1.2,
 			},
 		},
 	}

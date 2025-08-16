@@ -42,12 +42,12 @@ local sniper_amount = {
 }
 local alley_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

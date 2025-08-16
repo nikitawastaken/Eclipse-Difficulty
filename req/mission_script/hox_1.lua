@@ -21,16 +21,16 @@ local swats = {
 local swat_harasser = {
 	enemy = diff_i < 5 and cops or swats,
 }
+local street_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local van_spawn = {
 	values = {
 		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
-}
-local street_spawn = {
-	values = {
-		interval = 10,
-	},
 }
 local avalon_spawn = {
 	values = {
@@ -39,7 +39,7 @@ local avalon_spawn = {
 }
 local upper_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -53,7 +53,6 @@ return {
 	},
 	-- Add new reinforce
 	[102850] = { -- in garage
-		difficulty_add = 0.5,
 		reinforce = {
 			{
 				name = "car",
