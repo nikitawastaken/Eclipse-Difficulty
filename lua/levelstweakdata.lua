@@ -326,7 +326,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
 	self.nail.group_ai_settings.difficulty_scaling = nil
-	
+
 	self.peta.group_ai_settings = {
 		assault_force_mul = 1.15,
 		assault_delay_mul = 1.25,

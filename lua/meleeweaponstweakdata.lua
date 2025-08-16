@@ -11,11 +11,11 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 		["axe"] = "sharp",
 		["knife"] = "sharp",
 		["sword"] = "sharp",
-	}	
+	}
 	local min_conceal, max_conceal = 30, 0
 	local min_range, max_range = 300, 0
 	local min_expire, max_expire = 10, 0
-	for id, data in pairs(self.melee_weapons) do		
+	for id, data in pairs(self.melee_weapons) do
 		if data.stats.concealment then
 			min_conceal = data.stats.concealment < min_conceal and data.stats.concealment or min_conceal
 			max_conceal = data.stats.concealment > max_conceal and data.stats.concealment or max_conceal

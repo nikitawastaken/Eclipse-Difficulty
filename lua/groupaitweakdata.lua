@@ -2900,7 +2900,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 					Eclipse:log_console("Min reenforce interval for " .. level_id .. " set to: ")
 					Utils.PrintTable(assault_state.reenforce.min_interval)
 				end
-	
+
 				assault_state.reenforce.interval = table_multiplier(assault_state.reenforce.interval, level_settings.reenforce_interval_mul or 1)
 
 				if level_group_ai_state and level_settings.reenforce_interval_mul ~= 1 then

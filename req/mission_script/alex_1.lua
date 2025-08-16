@@ -253,7 +253,7 @@ return {
 	[100941] = {
 		reinforce = {
 			{
-				name = "such_a_nice_car", 
+				name = "such_a_nice_car",
 				force = 2,
 				position = Vector3(675, -1200, 900),
 			},
