@@ -66,15 +66,6 @@ return {
 			player_mul = { 1.33, 1.167, 1, 1 },
 		},
 	},
-	-- make difficulty scaling smoother
-	[102841] = { -- all saws placed
-		values = {
-			difficulty = 0.5,
-		},
-	},
-	[100130] = { -- explosion
-		difficulty = 1,
-	},
 	-- Restore roof access blockade
 	[100095] = {
 		on_executed = {

@@ -2,14 +2,9 @@ local preferred = Eclipse.preferred
 local swat_spawn_fix = {
 	spawn_action = "e_sp_down_16m_right",
 }
-local initial_diff = {
-	values = {
-		difficulty = 0.33,
-	},
-}
 local reinforcement_spawn = {
 	values = {
-		interval = 10,
+		interval = 5,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -20,17 +15,6 @@ local wall_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 return {
-	[101580] = initial_diff,
-	[102090] = initial_diff,
-	[101582] = { -- random helicopter
-		difficulty = 0.66,
-	},
-	-- Loot secure difficulty spike
-	[101582] = {
-		values = {
-			difficulty = 1,
-		},
-	},
 	-- fix some sniping swats not spawning
 	[102486] = {
 		on_executed = {

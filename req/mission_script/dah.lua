@@ -26,11 +26,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local office_spawn = {
-	values = {
-		interval = 20,
-	},
-}
 local roof_far_spawn = {
 	values = {
 		interval = 30,
@@ -339,10 +334,6 @@ return {
 		},
 	},
 	-- Spawn Group delays
-	[102737] = office_spawn,
-	[104469] = office_spawn,
-	[104479] = office_spawn,
-	[104480] = office_spawn,
 	[104896] = roof_close_spawn,
 	[104852] = roof_close_spawn,
 	[104846] = roof_close_spawn,

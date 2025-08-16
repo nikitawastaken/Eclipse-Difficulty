@@ -22,7 +22,7 @@ local sniper_trigger_times = {
 }
 local close_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -34,7 +34,7 @@ local building_spawn = {
 }
 local warehouse_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

@@ -12,7 +12,7 @@ local water_spawn = {
 }
 local portal_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

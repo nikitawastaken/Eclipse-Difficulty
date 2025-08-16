@@ -2,6 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -244,6 +245,21 @@ local optsspawnSWATs = {
 local optsspawnfirststreetSWATs = {
 	on_executed = { { id = 410056, delay = 0 }, { id = 410057, delay = 0 }, { id = 410058, delay = 0 }, { id = 410059, delay = 0 }, { id = 410060, delay = 0 }, { id = 410061, delay = 0 } },
 	enabled = overkill_and_above,
+}
+
+local optsspawnmajorshieldwall = {
+	on_executed = { { id = 400000, delay = 0 }, { id = 400001, delay = 0 }, { id = 400002, delay = 0 }, { id = 400003, delay = 0 } },
+	enabled = hard_and_above,
+}
+
+local optsspawnlateshieldwall = {
+	on_executed = { { id = 400008, delay = 0 }, { id = 400009, delay = 0 } },
+	enabled = hard_and_above,
+}
+
+local optsspawnparkingspoocs = {
+	on_executed = { { id = 400018, delay = 0 }, { id = 400020, delay = 0 } },
+	enabled = hard_and_above,
 }
 
 local optsAlleyAmbushTrigger = {
@@ -625,6 +641,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(410068, "spawn_first_street_swats", optsspawnfirststreetSWATs),
 	-- lights on for cop cars
 	Eclipse.mission_elements.gen_object_editor(410069, "cop_car_lights", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optscop_car_lights_on),
+	-- move a few older ambush event scripts to a different format
+	Eclipse.mission_elements.gen_missionscript(410070, "spawn_major_ave_shield_wall", optsspawnmajorshieldwall),
+	Eclipse.mission_elements.gen_missionscript(410071, "spawn_late_shield_wall", optsspawnlateshieldwall),
+	Eclipse.mission_elements.gen_missionscript(410072, "spawn_parking_spoocs", optsspawnparkingspoocs),
 }
 
 return M

@@ -46,38 +46,22 @@ local chopper_amount = is_eclipse and 2 or 1
 local sniper_respawn_1 = (is_eclipse and 80 or hard and 100 or 140) - (is_pro_job and 30 or 0)
 local sniper_respawn_2 = (is_eclipse and 60 or hard and 70 or 90) - (is_pro_job and 20 or 0)
 local sniper_respawn_3 = (is_eclipse and 30 or hard and 40 or 60) - (is_pro_job and 10 or 0)
-local bridge_far_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 10,
 	},
 }
-local lumber_far_spawn = {
-	values = {
-		interval = 10,
-	},
-}
-local bridge_close_spawn = {
+local close_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers_snipers,
 }
-local lumber_close_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_bulldozers,
-}
-local flank_spawn_1 = {
+local flank_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers_snipers,
-}
-local flank_spawn_2 = {
-	values = {
-		interval = 30,
-	},
 }
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
@@ -269,7 +253,7 @@ return {
 	[100941] = {
 		reinforce = {
 			{
-				name = "such_a_nice_car", -- mendoza car to the right of player spawn, near cloaker hiding spot
+				name = "such_a_nice_car", 
 				force = 2,
 				position = Vector3(675, -1200, 900),
 			},
@@ -283,16 +267,19 @@ return {
 				force = 2,
 				position = Vector3(3000, -900, 900),
 			},
+			{
+				name = "basement",
+				force = 2,
+				position = Vector3(1875, 900, 950),
+			},
 		},
 	},
 	-- add new unused spawngroup
-	[100846] = {
+	[100937] = {
 		values = {
 			spawn_groups = {
 				400007,
-				100874,
-				100880,
-				100863,
+				100925,
 			},
 		},
 	},
@@ -317,12 +304,15 @@ return {
 	[101262] = mendoza,
 	[101263] = mendoza,
 	-- Spawn Group delays
-	[100671] = bridge_far_spawn,
-	[100880] = lumber_far_spawn,
-	[100672] = bridge_close_spawn,
-	[100924] = bridge_close_spawn,
-	[100863] = lumber_close_spawn,
-	[100874] = lumber_close_spawn,
+	[100467] = standard_spawn,
+	[100550] = standard_spawn,
+	[100671] = standard_spawn,
+	[100840] = standard_spawn,
+	[100880] = standard_spawn,
+	[100672] = close_spawn,
+	[100924] = close_spawn,
+	[100863] = close_spawn,
+	[100874] = close_spawn,
 	[100925] = flank_spawn,
-	[400007] = flank_spawn_2,
+	[400007] = flank_spawn,
 }

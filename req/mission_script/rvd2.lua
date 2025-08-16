@@ -34,47 +34,61 @@ return {
 	-- Disable the turret
 	[101147] = disabled,
 	-- New reinforce spots
-	[100109] = {
+	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "street1",
-				force = 2,
-				position = Vector3(0, 3600, 0),
+				name = "store1",
+				force = 3,
+				position = Vector3(1200, 900, 0),
 			},
 			{
-				name = "street2",
-				force = 2,
-				position = Vector3(3000, -900, 0),
+				name = "store2",
+				force = 3,
+				position = Vector3(1250, 3250, 0),
 			},
 			{
 				name = "street3",
-				force = 2,
-				position = Vector3(0, 1250, 0),
+				force = 3,
+				position = Vector3(3000, 1050, 0),
 			},
 		},
 	},
-	[100990] = {
+	[100123] = { -- End assault
 		reinforce = {
 			{
-				name = "blonde_car1",
+				name = "boutique1",
 				force = 2,
-				position = Vector3(-250, 5150, 0),
+				position = Vector3(2600, 3400, 0),
+			},
+			{
+				name = "boutique2",
+				force = 2,
+				position = Vector3(2900, 2325, 0),
 			},
 		},
 	},
-	[100991] = {
+	[100969] = { -- Interacted with zipline 1
 		reinforce = {
 			{
-				name = "blonde_car2",
+				name = "zipline1",
 				force = 2,
-				position = Vector3(3950, -800, 0),
+				position = Vector3(6550, 5875, 0),
+			},
+		},
+	},
+	[100912] = { -- Interacted with zipline 2
+		reinforce = {
+			{
+				name = "zipline2",
+				force = 2,
+				position = Vector3(3550, 4085, 0),
 			},
 		},
 	},
 	[100953] = {
 		reinforce = {
-			{ name = "blonde_car1" },
-			{ name = "blonde_car2" },
+			{ name = "zipline1" },
+			{ name = "zipline2" },
 		},
 	},
 	-- Disable hunt

@@ -5,9 +5,6 @@ local reinforcement_spawn = {
 	},
 }
 return {
-	[101598] = { -- loot link
-		difficulty = 1,
-	},
 	-- Spawn group delays
 	[102193] = reinforcement_spawn,
 	[102204] = reinforcement_spawn,

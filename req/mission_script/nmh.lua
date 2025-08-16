@@ -12,16 +12,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local staircase_spawn = {
-	values = {
-		interval = 10,
-	},
-}
-local exit_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local vent_spawn = {
 	values = {
 		interval = 30,
@@ -101,42 +91,35 @@ return {
 	[102628] = security_spawn,
 	[102626] = security_spawn,
 	[102627] = security_spawn,
-	--[[
-	[103704] = { -- remove the stair case spawn from initial preferred randomisation
-		pre_func = function(self)
-			local groups = self._group_data.spawn_groups
-			local exclude_element
-			local exclude_ids = {
-				103700,
-			}
-
-			for _, id in pairs(exclude_ids) do
-				exclude_element = self:get_mission_element(id)
-
-				while table.contains(groups, exclude_element) do
-					table.delete(groups, exclude_element)
-				end
-			end
-		end
-	},
-	]]
-	[103225] = {
+	-- disable most vanilla reinforce points
+	[103706] = disabled,
+	[103707] = disabled,
+	[103847] = disabled,
+	[102551] = { -- ALARM ALARM
 		reinforce = {
 			{
 				name = "reception",
-				force = 3,
-				position = Vector3(925, 650, 0),
+				force = 2,
+				position = Vector3(900, 650, 0),
+			},
+			{
+				name = "canteen",
+				force = 2,
+				position = Vector3(3350, 1150, 0),
 			},
 		},
-		on_executed = {
-			{ id = 103700, delay = 0 }, -- activate stair case spawns immediately
+	},
+	-- Reduce this reinforce point's force from 3
+	[103882] = {
+		values = {
+			amount = 2,
 		},
 	},
 	-- diff 1, blow the wall
 	[104057] = disabled,
 	[103279] = {
 		on_executed = {
-			{ id = 104066, delay = 5 },
+			{ id = 104066, delay = 0, delay_rand = 10 },
 		},
 	},
 	-- alert all civs on mask up and delay panic button SO
@@ -157,10 +140,6 @@ return {
 	[103470] = {
 		flashlight = false,
 	},
-	-- disable most reinforce points
-	[103706] = disabled,
-	[103707] = disabled,
-	[103847] = disabled,
 	-- restore ovk 145+'s elevator dozers ambush at the end of the heist
 	-- keep it only on eclipse
 	[104122] = disabled,
@@ -180,19 +159,18 @@ return {
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- spawn group delays
-	[100407] = staircase_spawn,
-	[100414] = exit_spawn,
-	[100420] = exit_spawn,
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,
 	[103111] = vent_spawn,
 	[101740] = vent_spawn,
+	[102665] = vent_spawn,
 	[103097] = vent_spawn,
 	[103761] = vent_spawn,
 	[103479] = vent_spawn,
 	[103751] = vent_spawn,
 	[103099] = vent_spawn,
 	[103104] = vent_spawn,
+	[103128] = vent_spawn,
 	[103273] = vent_spawn,
 	[100406] = vent_spawn,
 	[103134] = vent_spawn,

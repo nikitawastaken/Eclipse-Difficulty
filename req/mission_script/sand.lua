@@ -85,7 +85,6 @@ return {
 		},
 	},
 	[104374] = {
-		difficulty = 0.75,
 		reinforce = {
 			{
 				name = "harbor_office1",
@@ -112,11 +111,10 @@ return {
 		},
 	},
 	[101630] = {
-		difficulty = 1,
 		reinforce = {
 			{
 				name = "harbor",
-				force = 6,
+				force = 5,
 				position = Vector3(15500, -2750, -300),
 			},
 		},
@@ -141,9 +139,9 @@ return {
 	-- Delay roof rappels at the start
 	[101660] = {
 		on_executed = {
-			{ id = 101280, delay = 30 }, -- roof 1
-			{ id = 101279, delay = 30 }, -- roof 2
-			{ id = 101272, delay = 30 }, -- roof 3
+			{ id = 101280, delay = 20, delay_rand = 20 }, -- roof 1
+			{ id = 101279, delay = 20, delay_rand = 20 }, -- roof 2
+			{ id = 101272, delay = 20, delay_rand = 20 }, -- roof 3
 		},
 	},
 	-- disable the helicopter turret since it does nothing anyway

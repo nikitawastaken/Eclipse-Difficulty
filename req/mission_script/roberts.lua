@@ -55,24 +55,18 @@ local plank_amount = {
 }
 local street_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local rear_spawn = {
 	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
-local wall_spawn = {
-	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
 local sewer_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 }
 local scripted_swat_van_spawn = {
@@ -179,11 +173,11 @@ return {
 	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
 	[400007] = scripted_swat_van_spawn,
 	[100128] = street_spawn,
+	[100131] = street_spawn,
 	[100132] = street_spawn,
 	[100133] = street_spawn,
+	[100130] = rear_spawn,
 	[100694] = rear_spawn,
-	[100130] = wall_spawn,
-	[100131] = wall_spawn,
 	[103294] = sewer_spawn,
 	[103295] = sewer_spawn,
 	[103296] = sewer_spawn,

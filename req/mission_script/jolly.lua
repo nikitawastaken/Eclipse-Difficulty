@@ -4,11 +4,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local construction_spawn = {
-	values = {
-		interval = 20,
-	},
-}
 local bridge_spawn = {
 	values = {
 		interval = 30,
@@ -17,7 +12,7 @@ local bridge_spawn = {
 }
 local train_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -25,7 +20,8 @@ return {
 	-- Disable hunt
 	[101598] = disabled,
 	-- Spawn point delays
-	[101063] = construction_spawn,
+	[100944] = train_spawn,
+	[100945] = train_spawn,
 	[100979] = train_spawn,
 	[100996] = train_spawn,
 	[100997] = train_spawn,

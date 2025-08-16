@@ -9,17 +9,15 @@ local disabled = {
 		enabled = false,
 	},
 }
-local rear_spawn = {
-	values = {
-		interval = 10,
-	},
-	groups = preferred.no_bulldozers,
-}
 local breach_spawn = {
+	values = {
+		interval = 5,
+	},
+}
+local street_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local cloaker_spawn = {
 	values = {
@@ -30,19 +28,7 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_cloakers_snipers,
 }
 return {
-	-- Set difficulty
-	[100648] = {
-		difficulty = 0.5,
-	},
-	[101961] = {
-		values = {
-			difficulty = 0.5,
-		},
-	},
 	[100812] = {
-		values = {
-			difficulty = 0.5,
-		},
 		on_executed = {
 			{ id = 101495, delay = 0 },
 		},
@@ -94,9 +80,9 @@ return {
 	-- Spawn Group delays
 	[400009] = scripted_swat_van_spawn,
 	[400013] = scripted_swat_van_spawn,
-	[102061] = rear_spawn,
-	[102065] = rear_spawn,
-	[101043] = rear_spawn,
+	[100811] = street_spawn,
+	[100829] = street_spawn,
+	[101485] = street_spawn,
 	[101685] = breach_spawn,
 	[101694] = breach_spawn,
 	[102439] = breach_spawn,

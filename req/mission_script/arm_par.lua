@@ -44,12 +44,12 @@ local dozer_van_chance = {
 }
 local street_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local close_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 	groups = preferred.no_bulldozers,
 }

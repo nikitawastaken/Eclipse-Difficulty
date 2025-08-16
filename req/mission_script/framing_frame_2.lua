@@ -1,12 +1,12 @@
 local preferred = Eclipse.preferred
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 10,
 	},
 }
 local upper_spawn = {
 	values = {
-		interval = 25,
+		interval = 15,
 	},
 	groups = preferred.only_swats_tasers,
 }
@@ -25,8 +25,9 @@ return {
 			{ id = 400008, delay = 0 },
 		},
 	},
-	[103530] = street_spawn,
-	[103531] = street_spawn,
+	-- spawn point delays
+	[103530] = standard_spawn,
+	[103531] = standard_spawn,
 	[101583] = upper_spawn,
 	[102299] = upper_spawn,
 	[103423] = upper_spawn,

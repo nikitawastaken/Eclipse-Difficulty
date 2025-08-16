@@ -22,6 +22,7 @@ local garage_spawn = {
 	values = {
 		interval = 30,
 	},
+	groups = preferred.no_shields_bulldozers,
 }
 local elevator_spawn = {
 	values = {

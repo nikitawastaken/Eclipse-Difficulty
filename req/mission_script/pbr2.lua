@@ -52,9 +52,6 @@ return {
 				position = Vector3(-1000, 150, 25),
 			},
 		},
-		on_executed = { -- delay besiege
-			{ id = 100426, delay = 30 },
-		},
 	},
 	-- Introduce roof preferreds after the 1st wave
 	[102470] = {

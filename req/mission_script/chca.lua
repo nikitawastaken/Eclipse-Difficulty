@@ -9,49 +9,25 @@ local enabled = {
 		enabled = true,
 	},
 }
-local elevator_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local bow_spawn = {
-	values = {
-		interval = 15,
-	},
-}
-local lifeboat_spawn = {
+local rappel_horizontal_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
-local spa_window_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
-local balcony_spawn = {
+local casino_balcony_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_shields_bulldozers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local courtyard_spawn = {
+local rappel_vertical_spawn = {
 	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents,
-}
-local casino_spawn = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents,
-}
-local spa_ceiling_spawn = {
-	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -138,28 +114,28 @@ return {
 	-- The shortest interval is 15s, for reference on most heists that would be 5s. It's not uncommon even for post-Jules heists to have 15s spawn groups, but the revival era team was seemingly pretty clueless in this respect.
 	-- Rappels right next to the usual player holdout spots (Spa, Corridors around the main courtyard) are slowed down and heavily restricted. No Bulldozers spawning right next to you.
 	-- I also slowed down the courtyard spawns since that area gets crowded super fast. Originally they were as slow as corridor/spa window groups, but I figured it would impact the frequency of some groups too harshly.
-	[100786] = bow_spawn,
-	[101471] = bow_spawn,
-	[100792] = bow_spawn,
-	[100131] = bow_spawn,
-	[100648] = lifeboat_spawn,
-	[100704] = lifeboat_spawn,
-	[100712] = lifeboat_spawn,
-	[100693] = lifeboat_spawn,
-	[100019] = casino_spawn,
-	[100757] = courtyard_spawn,
-	[100758] = courtyard_spawn,
-	[100759] = courtyard_spawn,
-	[100692] = balcony_spawn,
-	[100007] = balcony_spawn,
-	[100312] = balcony_spawn,
-	[100325] = balcony_spawn,
-	[100766] = balcony_spawn,
-	[100768] = balcony_spawn,
-	[100647] = elevator_spawn,
-	[100132] = spa_window_spawn,
-	[100133] = spa_window_spawn,
-	[100779] = spa_ceiling_spawn,
-	[101468] = spa_ceiling_spawn,
+	[100786] = standard_spawn,
+	[101471] = standard_spawn,
+	[100792] = standard_spawn,
+	[100131] = standard_spawn,
+	[100647] = standard_spawn,
+	[100648] = rappel_horizontal_spawn,
+	[100704] = rappel_horizontal_spawn,
+	[100712] = rappel_horizontal_spawn,
+	[100693] = rappel_horizontal_spawn,
+	[100692] = rappel_horizontal_spawn,
+	[100007] = rappel_horizontal_spawn,
+	[100766] = rappel_horizontal_spawn,
+	[100768] = rappel_horizontal_spawn,
+	[100132] = rappel_horizontal_spawn,
+	[100133] = rappel_horizontal_spawn,
+	[100312] = casino_balcony_spawn,
+	[100325] = casino_balcony_spawn,
+	[100019] = rappel_vertical_spawn,
+	[100757] = rappel_vertical_spawn,
+	[100758] = rappel_vertical_spawn,
+	[100759] = rappel_vertical_spawn,
+	[100779] = rappel_vertical_spawn,
+	[101468] = rappel_vertical_spawn,
 	[101470] = vent_spawn,
 }

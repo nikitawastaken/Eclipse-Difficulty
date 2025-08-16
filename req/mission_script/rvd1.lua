@@ -28,19 +28,24 @@ return {
 	[100109] = {
 		reinforce = {
 			{
-				name = "street",
-				force = 3,
-				position = Vector3(-3600, -500, 0),
+				name = "warehouse1",
+				force = 2,
+				position = Vector3(-1550, -2425, 0),
 			},
 			{
-				name = "parking_lot",
-				force = 3,
-				position = Vector3(200, -1200, 0),
+				name = "warehouse2",
+				force = 2,
+				position = Vector3(-200, -2300, 0),
 			},
 			{
-				name = "construction",
-				force = 3,
-				position = Vector3(-2900, -3400, 0),
+				name = "warehouse3",
+				force = 2,
+				position = Vector3(-1225, -2150, 0),
+			},
+			{
+				name = "warehouse4",
+				force = 2,
+				position = Vector3(-1650, -4000, 0),
 			},
 		},
 	},

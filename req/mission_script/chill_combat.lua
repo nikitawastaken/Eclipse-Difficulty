@@ -6,13 +6,12 @@ local disabled = {
 }
 local bush_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
-	groups = preferred.no_shields,
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -66,16 +65,10 @@ local money_pile_reinforce02 = {
 	},
 }
 return {
-	[100981] = {
-		values = { -- initial diff
-			difficulty = 0.33,
-		},
-	},
 	[102510] = { -- 1st wave complete
-		difficulty = 0.66,
 		on_executed = {
-			{ id = 400003, delay = 0, delay_rand = 15 }, -- custom roof preferreds
-			{ id = 400004, delay = 0, delay_rand = 30 }, -- custom window preferreds
+			{ id = 400003, delay = 0, delay_rand = 10 }, -- custom roof preferreds
+			{ id = 400004, delay = 0, delay_rand = 20 }, -- custom window preferreds
 		},
 	},
 	[102511] = { -- 2nd wave complete
@@ -86,7 +79,7 @@ return {
 		on_executed = {
 			{ id = 100987, remove = true }, -- preferred add 1
 			{ id = 400001, delay = 0, delay_rand = 0 }, -- custom street preferreds
-			{ id = 400002, delay = 0, delay_rand = 15 }, -- custom bush preferreds
+			{ id = 400002, delay = 0, delay_rand = 10 }, -- custom bush preferreds
 		},
 	},
 	-- Add new reinforce
@@ -94,12 +87,12 @@ return {
 		reinforce = {
 			{
 				name = "touch_grass1",
-				force = 2,
+				force = 3,
 				position = Vector3(-1500, 800, 300),
 			},
 			{
 				name = "touch_grass2",
-				force = 2,
+				force = 3,
 				position = Vector3(-500, 2150, 300),
 			},
 		},

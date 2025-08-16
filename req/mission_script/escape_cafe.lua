@@ -1,32 +1,16 @@
 local preferred = Eclipse.preferred
-local initial_diff = {
-	values = {
-		difficulty = 0.33,
-	},
-}
 local reinforcement_spawn = {
 	values = {
-		interval = 10,
+		interval = 5,
 	},
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[100251] = initial_diff,
-	[101378] = initial_diff,
-	[101181] = { -- enable roof preferreds and Snipers
-		difficulty = 0.66,
-	},
-	-- Loot secure difficulty spike
-	[100993] = {
-		values = {
-			difficulty = 1,
-		},
-	},
 	[101377] = { -- enable main preferreds
 		reinforce = {
 			{

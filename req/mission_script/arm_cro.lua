@@ -71,12 +71,6 @@ return {
 			},
 		},
 	},
-	-- Lower initial diff
-	[100122] = {
-		values = {
-			difficulty = 0.5, -- diff 65 originally
-		},
-	},
 	-- Vanilla delay is 30s
 	[100109] = {
 		on_executed = {

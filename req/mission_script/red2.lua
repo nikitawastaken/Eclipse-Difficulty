@@ -103,7 +103,7 @@ local mga_vault_event = {
 }
 local elevator_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -115,7 +115,7 @@ local skylight_spawn = {
 }
 local office_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -158,6 +158,8 @@ return {
 	-- disable a few vanilla reinforce spots
 	[105905] = disabled, -- counting rooms
 	[105910] = disabled, -- vault
+	[105902] = disabled, -- left gate
+	[105904] = disabled, -- right gate
 	-- change the required amount of money bags
 	[106692] = bags_required,
 	[106946] = bags_required,

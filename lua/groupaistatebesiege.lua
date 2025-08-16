@@ -327,8 +327,8 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 			end
 
 			-- Adjust next reinforce dispatch time based on the amount of tasks still needed
-			local min_reenforce_interval = self:_get_difficulty_dependent_value(tweak_data.group_ai.min_reenforce_interval)
-
+			local min_reenforce_interval = self:_get_difficulty_dependent_value(self._tweak_data.reenforce.min_interval)  
+ 
 			if spawned then
 				--self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks
 				self._task_data.reenforce.next_dispatch_t = self._t + math.max(min_reenforce_interval, self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks)
@@ -1531,7 +1531,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		elseif self:_can_group_see_target(group, "close") then
 			move_in = false
 		elseif not self:_chk_group_use_grenade(target_area, group) then
-			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.push_delay)
+			local push_delay = self:_get_difficulty_dependent_value(self._tweak_data.assault.push_delay)
 
 			if in_place_duration < push_delay * 0.5 then
 				move_in = false

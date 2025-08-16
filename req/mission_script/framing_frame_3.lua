@@ -2,12 +2,7 @@ local preferred = Eclipse.preferred
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
-local staircase_spawn = {
-	values = {
-		interval = 20,
-	},
-}
-local elevator_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 20,
 	},
@@ -78,8 +73,8 @@ return {
 		},
 	},
 	-- Spawn Group delays
-	[100817] = staircase_spawn,
-	[100329] = elevator_spawn,
+	[100817] = standard_spawn,
+	[100329] = standard_spawn,
 	[100887] = balcony_close_spawn,
 	[100896] = balcony_close_spawn,
 	[105200] = balcony_close_spawn,
