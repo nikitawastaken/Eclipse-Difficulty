@@ -1428,7 +1428,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	},
 	["old_hoxton"] = {
 		primary = "wpn_fps_sho_spas12_npc",
-		secondary = "wpn_fps_pis_rage_npc",
+		secondary = "wpn_fps_pis_deagle_npc",
 	},
 	["female_1"] = {
 		primary = "wpn_fps_ass_l85a2_npc",
