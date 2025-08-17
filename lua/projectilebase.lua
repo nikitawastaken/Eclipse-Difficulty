@@ -83,7 +83,7 @@ function ProjectileBase:create_sweep_data()
 	self._sweep_data.last_pos = mvector3.copy(self._sweep_data.current_pos)
 end
 
-function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_id, dont_apply_player_velocity)
+function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_id, dont_apply_player_velocity, source_grenade_damage)
 	if not ProjectileBase.check_time_cheat(projectile_type, owner_peer_id) then
 		return
 	end
@@ -97,7 +97,7 @@ function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_i
 		local thrower_unit = peer and peer:unit()
 
 		if alive(thrower_unit) then
-			unit:base():set_thrower_unit(thrower_unit, true, false)
+			unit:base():set_thrower_unit(thrower_unit, true, false, source_grenade_damage)
 
 			if not tweak_entry.throwable and thrower_unit:movement() and thrower_unit:movement():current_state() then
 				unit:base():set_weapon_unit(thrower_unit:movement():current_state()._equipped_unit)
@@ -125,4 +125,130 @@ function ProjectileBase.throw_projectile(projectile_type, pos, dir, owner_peer_i
 	end
 
 	return unit
+end
+
+function ProjectileBase:set_thrower_unit(unit, proj_ignore_thrower, thrower_ignore_proj, source_grenade_damage)
+	if self._thrower_unit then
+		if not unit or self._thrower_unit:key() ~= unit:key() then
+			local has_destroy_listener = nil
+			local listener_class = self._thrower_unit:base()
+
+			if listener_class and listener_class.add_destroy_listener then
+				has_destroy_listener = true
+			else
+				listener_class = self._thrower_unit:unit_data()
+
+				if listener_class and listener_class.add_destroy_listener then
+					has_destroy_listener = true
+				end
+			end
+
+			if has_destroy_listener then
+				listener_class:remove_destroy_listener(self._thrower_destroy_listener_key)
+			end
+
+			if self._ignore_units and table.contains(self._ignore_units, self._thrower_unit) then
+				self:remove_ignore_unit(self._thrower_unit, true)
+
+				local shield_unit = self._thrower_unit:inventory() and self._thrower_unit:inventory():shield_unit()
+
+				if alive(shield_unit) and table.contains(self._ignore_units, shield_unit) then
+					self:remove_ignore_unit(shield_unit)
+				end
+			end
+
+			if self._thrower_ignore_proj then
+				self._thrower_ignore_proj = nil
+
+				self._thrower_unit:inventory():remove_ignore_unit(self._unit)
+			end
+
+			if not unit then
+				return
+			end
+		else
+			if proj_ignore_thrower then
+				if not self._ignore_units or not table.contains(self._ignore_units, unit) then
+					self._ignore_units = self._ignore_units or {}
+					self._ignore_destroy_listener_key = self._ignore_destroy_listener_key or "ProjectileBase" .. tostring(self._unit:key())
+
+					table.insert(self._ignore_units, unit)
+
+					local shield_unit = unit:inventory() and unit:inventory():shield_unit()
+
+					if alive(shield_unit) then
+						self:add_ignore_unit(shield_unit)
+					end
+				end
+			elseif self._ignore_units and table.contains(self._ignore_units, unit) then
+				self:remove_ignore_unit(unit, true)
+
+				local shield_unit = unit:inventory() and unit:inventory():shield_unit()
+
+				if alive(shield_unit) and table.contains(self._ignore_units, shield_unit) then
+					self:remove_ignore_unit(shield_unit)
+				end
+			end
+
+			if thrower_ignore_proj then
+				if not self._thrower_ignore_proj and unit:inventory() and unit:inventory().add_ignore_unit then
+					self._thrower_ignore_proj = true
+
+					unit:inventory():add_ignore_unit(self._unit)
+				end
+			elseif self._thrower_ignore_proj then
+				self._thrower_ignore_proj = nil
+
+				unit:inventory():remove_ignore_unit(self._unit)
+			end
+		end
+	end
+
+	local has_destroy_listener = nil
+	local listener_class = unit:base()
+
+	if listener_class and listener_class.add_destroy_listener then
+		has_destroy_listener = true
+	else
+		listener_class = unit:unit_data()
+
+		if listener_class and listener_class.add_destroy_listener then
+			has_destroy_listener = true
+		end
+	end
+
+	if not has_destroy_listener then
+		print("[ProjectileBase:set_thrower_unit] Cannot set thrower unit as it lacks a destroy listener.", unit)
+
+		return
+	end
+
+	self._thrower_destroy_listener_key = self._thrower_destroy_listener_key or "ProjectileBase" .. tostring(self._unit:key())
+
+	listener_class:add_destroy_listener(self._thrower_destroy_listener_key, callback(self, self, "_clbk_thrower_unit_destroyed"))
+
+	self._thrower_unit = unit
+
+	if proj_ignore_thrower then
+		self._ignore_units = self._ignore_units or {}
+		self._ignore_destroy_listener_key = self._ignore_destroy_listener_key or "ProjectileBase" .. tostring(self._unit:key())
+
+		table.insert(self._ignore_units, unit)
+
+		local shield_unit = unit:inventory() and unit:inventory():shield_unit()
+
+		if alive(shield_unit) then
+			self:add_ignore_unit(shield_unit)
+		end
+	end
+
+	if thrower_ignore_proj and unit:inventory() and unit:inventory().add_ignore_unit then
+		self._thrower_ignore_proj = true
+
+		unit:inventory():add_ignore_unit(self._unit)
+	end
+
+	if source_grenade_damage then
+		self._source_grenade_damage = source_grenade_damage
+	end
 end

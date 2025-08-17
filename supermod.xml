@@ -248,6 +248,7 @@
 						<post :hook_id="quicksmokegrenade"/>
 						<post :hook_id="fraggrenade"/>
 						<post :hook_id="molotovgrenade"/>
+						<post :hook_id="electricgrenade"/>
 						<post :hook_id="incendiarygrenade"/>
 						<post :hook_id="incendiaryburstgrenade"/>
 						<post :hook_id="grenadebase"/>
@@ -390,7 +391,7 @@
 
 			<!-- Bulldozer MP5 -->
 			<group :name="wpn_npc_mp5_bulldozer/">
-				<file :name="wpn_npc_mp5_bulldozer.cooked_physics" />	
+				<file :name="wpn_npc_mp5_bulldozer.cooked_physics" />
 				<file :name="wpn_npc_mp5_bulldozer.model" />
 				<file :name="wpn_npc_mp5_bulldozer.object" />
 				<file :name="wpn_npc_mp5_bulldozer.unit" />
@@ -470,7 +471,7 @@
 				<file :name="wpn_npc_m14.object" />
 				<file :name="wpn_npc_m14.unit"/>
 			</group>
-			
+
 			<!-- NPC Jackal sound -->
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
 		</group>
@@ -1157,7 +1158,7 @@
 				<file :name="ene_bulldozer_medic_classic_husk.unit" />
 				<file :name="ene_bulldozer_medic_df.texture" />
 			</group>
-			
+
 			<group :name="ene_bulldozer_minigun_classic/">
 				<file :name="ene_bulldozer_minigun_classic.unit" />
 				<file :name="ene_bulldozer_minigun_classic_husk.unit" />
@@ -1447,7 +1448,7 @@
 				<file :name="wpn_npc_flamethrower_bulldozer.object"/>
 				<file :name="wpn_npc_flamethrower_bulldozer.unit"/>
 			</group>
-			
+
 			<group :name="characters/npc_male_yufuwang_armored/">
 				<file :name="npc_male_yufuwang_armored.object"/>
 				<file :name="npc_male_yufuwang_armored.unit"/>
@@ -1607,7 +1608,7 @@
 				<file :name="wpn_npc_snowthrower_bulldozer.object" />
 				<file :name="wpn_npc_snowthrower_bulldozer.unit" />
 			</group>
-			
+
 			<group :name="characters/ene_snowman_boss/">
 				<file :name="ene_snowman_boss.unit" />
 				<file :name="ene_snowman_boss_husk.unit" />

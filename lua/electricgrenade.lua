@@ -1,24 +1,18 @@
-function FragGrenade:bullet_hit() end
+function ElectricGrenade:bullet_hit() end
 
-function FragGrenade:set_thrower_unit(unit, ...)
-	FragGrenade.super.set_thrower_unit(self, unit, ...)
+function ElectricGrenade:set_thrower_unit(unit, ...)
+	ElectricGrenade.super.set_thrower_unit(self, unit, ...)
 
-	self._explosive_team_damage_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_team_damage_multiplier") or 1
 	self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
 	self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
 	self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") or nil
 	self._cluster_grenade_type = self._thrower_unit:base():upgrade_value("weapon", "cluster_incendiary_grenades") and "cluster_incendiary" or "cluster"
 
-	self._player_damage = self._player_damage * self._explosive_team_damage_multiplier
 	self._range = self._range * self._explosive_range_multiplier
 	self._curve_pow = self._curve_pow * self._explosive_curve_multiplier
-
-	if self._source_grenade_damage then
-		self._damage = self._source_grenade_damage * tweak_data.upgrades.cluster_grenade_damage_multiplier
-	end
 end
 
-function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
+function ElectricGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
 	if self._detonated then
 		return
 	end
@@ -29,11 +23,11 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 	local range = self._range
 	local slot_mask = managers.slot:get_mask("explosion_targets")
 
-	managers.explosion:give_local_player_dmg(pos, range, self._player_damage)
 	managers.explosion:play_sound_and_effects(pos, normal, range, self._custom_params)
 
-	local hit_units, splinters = managers.explosion:detect_and_give_dmg({
+	local hit_units, splinters = managers.explosion:detect_and_tase({
 		player_damage = 0,
+		tase_strength = "heavy",
 		hit_pos = pos,
 		range = range,
 		collision_slotmask = slot_mask,
@@ -42,7 +36,8 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 		ignore_unit = self._unit,
 		alert_radius = self._alert_radius,
 		user = self:thrower_unit() or self._unit,
-		owner = self._unit
+		owner = self._unit,
+		verify_callback = callback(self, self, "_can_tase_unit")
 	})
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
@@ -71,34 +66,6 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 		managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "base", GrenadeBase.EVENT_IDS.detonate)
 	end
 
+	self:_tase_player()
 	self:_handle_hiding_and_destroying(true, nil)
-end
-
-ClusterGrenade = ClusterGrenade or class(FragGrenade)
-
-function ClusterGrenade:_setup_from_tweak_data()
-	local grenade_entry = self._tweak_projectile_entry or "cluster"
-	local tweak_entry = tweak_data.projectiles[grenade_entry]
-	self._init_timer = tweak_entry.init_timer or 2.5
-	self._mass_look_up_modifier = tweak_entry.mass_look_up_modifier
-	self._range = tweak_entry.range
-	self._effect_name = tweak_entry.effect_name or "effects/payday2/particles/explosions/grenade_explosion"
-	self._curve_pow = tweak_entry.curve_pow or 3
-	self._damage = tweak_entry.damage
-	self._player_damage = tweak_entry.player_damage
-	self._alert_radius = tweak_entry.alert_radius
-	self._idstr_decal = tweak_entry.idstr_decal
-	self._idstr_effect = tweak_entry.idstr_effect
-	local sound_event = tweak_entry.sound_event or "grenade_explode"
-	self._custom_params = {
-		camera_shake_max_mul = 2,
-		sound_muffle_effect = true,
-		effect = self._effect_name,
-		idstr_decal = self._idstr_decal,
-		idstr_effect = self._idstr_effect,
-		sound_event = sound_event,
-		feedback_range = self._range * 2
-	}
-
-	return tweak_entry
 end

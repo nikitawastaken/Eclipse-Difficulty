@@ -282,7 +282,8 @@ tweak_data.projectiles.rocket_ray_frag.push_at_body_index = 0
 tweak_data.weapon_disable_crit_for_damage.cluster = { explosion = false, fire = false }
 tweak_data.projectiles.cluster = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
-tweak_data.projectiles.cluster.damage = 10
+tweak_data.projectiles.cluster.effect_name = "effects/payday2/particles/impacts/shotgun_explosive_round"
+tweak_data.projectiles.cluster.init_timer = 2
 tweak_data.projectiles.cluster.range = 300
 
 -- Incendiary Cluster Grenade
@@ -292,7 +293,6 @@ tweak_data.projectiles.cluster_incendiary.name_id = "bm_grenade_cluster_incendia
 tweak_data.projectiles.cluster_incendiary.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
 tweak_data.projectiles.cluster_incendiary.sound_event = "white_explosion"
 tweak_data.projectiles.cluster_incendiary.dot_data_name = "cluster_incendiary"
-tweak_data.projectiles.cluster_incendiary.damage = 15
 
 -- FFO ponr
 tweak_data.point_of_no_returns.ffo = {
