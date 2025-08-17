@@ -278,6 +278,8 @@ tweak_data.projectiles.rocket_ray_frag.projectile_trail = true
 tweak_data.projectiles.rocket_ray_frag.adjust_z = 0
 tweak_data.projectiles.rocket_ray_frag.push_at_body_index = 0
 
+tweak_data.scene_pose_items.husk_ray = { "primary" }
+
 -- Cluster Grenade
 tweak_data.weapon_disable_crit_for_damage.cluster = { explosion = false, fire = false }
 tweak_data.projectiles.cluster = deep_clone(tweak_data.projectiles.frag)
