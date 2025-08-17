@@ -38,6 +38,9 @@ local warehouse_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 return {
 	[100109] = {
 		reinforce = { -- Police arrived
@@ -172,6 +175,12 @@ return {
 	-- Most notably, the basement spawns are much much slower and do not spawn Bulldozers or Shields (including the very elegantly placed vent spawns, for some reason the revival era map designers really liked putting whole spawngroups in vents).
 	-- Spawn groups that rappel directly onto the street/right next to the tea shop have also been slowed down and restricted to make them less oppressive.
 	-- Alleyway and front spawns are slower to improve pacing during early assaults.
+	[400007] = scripted_swat_van_spawn,
+	[400014] = scripted_swat_van_spawn,
+	[400021] = scripted_swat_van_spawn,
+	[400028] = scripted_swat_van_spawn,
+	[400035] = scripted_swat_van_spawn,
+	[400042] = scripted_swat_van_spawn,
 	[100131] = close_spawn,
 	[100132] = close_spawn,
 	[102713] = close_spawn,

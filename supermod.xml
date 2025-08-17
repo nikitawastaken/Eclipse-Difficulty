@@ -233,6 +233,7 @@
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>
 					<post :hook_id="huskteamaidamage"/>
+					<post :hook_id="huskteamaimovement"/>
 				</group>
 
 				<group :hook_id="props/">
@@ -510,8 +511,6 @@
 				<file :name="city_heavy_helmets_atlas_nm.texture" />
 				<file :name="equipment_atlas_df.texture" />
 				<file :name="equipment_atlas_nm.texture" />
-				<file :name="police_vest_df.texture" />
-				<file :name="police_vest_nm.texture" />
 
 				<file :name="arms_atlas_df.texture" />
 				<file :name="arms_atlas_nm.texture" />

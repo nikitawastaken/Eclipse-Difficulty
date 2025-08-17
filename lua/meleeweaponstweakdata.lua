@@ -1,7 +1,7 @@
 -- Rebalance melee weapons based on their range, concealment and speed
 Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_weapons", function(self, tweak_data)
-	self.melee_weapons.iceaxe.stats.min_damage = 2
-	self.melee_weapons.iceaxe.stats.max_damage = 12
+	self.melee_weapons.iceaxe.stats.min_damage = 1.5
+	self.melee_weapons.iceaxe.stats.max_damage = 9
 
 	-- Change a few weapons' damage type
 	self.melee_weapons.cs.type = "sharp"
