@@ -290,7 +290,7 @@ tweak_data.projectiles.cluster.range = 300
 tweak_data.weapon_disable_crit_for_damage.cluster_incendiary = { explosion = false, fire = false }
 tweak_data.projectiles.cluster_incendiary = deep_clone(tweak_data.projectiles.cluster)
 tweak_data.projectiles.cluster_incendiary.name_id = "bm_grenade_cluster_incendiary"
-tweak_data.projectiles.cluster_incendiary.effect_name = "effects/payday2/particles/explosions/grenade_incendiary_explosion"
+tweak_data.projectiles.cluster_incendiary.effect_name = "effects/payday2/particles/explosions/cluster_incendiary_explosion"
 tweak_data.projectiles.cluster_incendiary.sound_event = "white_explosion"
 tweak_data.projectiles.cluster_incendiary.dot_data_name = "cluster_incendiary"
 
