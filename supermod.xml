@@ -233,6 +233,7 @@
 					<post :hook_id="teamaidamage"/>
 					<post :hook_id="teamaimovement"/>
 					<post :hook_id="huskteamaidamage"/>
+					<post :hook_id="huskteamaimovement"/>
 				</group>
 
 				<group :hook_id="props/">

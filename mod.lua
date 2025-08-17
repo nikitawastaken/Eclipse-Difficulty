@@ -12,6 +12,7 @@ if not Eclipse then
 			always_old_hitflash = false,
 			player_styles = 1,
 			flavor_text_tips = false,
+			team_ai_weapons = 1,
 		},
 		loaded_elements = false,
 	}
@@ -210,6 +211,12 @@ if not Eclipse then
 			Eclipse.settings.player_styles = value
 		end
 
+		function MenuCallbackHandler:eclipse_team_ai_weapons_setting(item)
+			local value = item:value()
+
+			Eclipse.settings.team_ai_weapons = value
+		end
+		
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
@@ -285,6 +292,21 @@ if not Eclipse then
 			priority = 100,
 		})
 
+		MenuHelper:AddMultipleChoice({
+			id = "team_ai_weapons",
+			title = "eclipse_menu_team_ai_weapons",
+			desc = "eclipse_menu_team_ai_weapons_desc",
+			callback = "eclipse_team_ai_weapons_setting",
+			items = {
+				"eclipse_menu_team_ai_weapons_vanilla",
+				"eclipse_menu_team_ai_weapons_lorefriendly",
+				"eclipse_menu_team_ai_weapons_classic",
+			},
+			value = Eclipse.settings.team_ai_weapons,
+			menu_id = menu_id,
+			priority = 100,
+		})
+		
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
