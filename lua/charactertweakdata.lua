@@ -1407,7 +1407,7 @@ CharacterTweakData.team_ai_tweak_names = {
 }
 CharacterTweakData.team_ai_weapons_mapped = {
 	["russian"] = {
-		primary = "wpn_fps_ass_m4_npc",
+		primary = "wpn_fps_ass_amcar_npc",
 		secondary = "wpn_fps_pis_beretta_npc",
 	},
 	["german"] = {
@@ -1448,7 +1448,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	},
 	["sokol"] = {
 		primary = "wpn_fps_ass_asval_npc",
-		secondary = "wpn_fps_pis_g17_npc",
+		secondary = "wpn_fps_pis_pl14_npc",
 	},
 	["dragon"] = {
 		primary = "wpn_fps_snp_wa2000_npc",
@@ -1459,7 +1459,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		secondary = "wpn_fps_pis_sparrow_npc",
 	},
 	["jimmy"] = {
-		primary = "wpn_fps_ass_akm_npc",
+		primary = "wpn_fps_lmg_rpk_npc",
 		secondary = "wpn_fps_smg_sr2_npc",
 	},
 	["sydney"] = {
@@ -1487,12 +1487,12 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		secondary = "wpn_fps_pis_shrew_npc",
 	},
 	["ecp_female"] = {
-		primary = "wpn_fps_ass_m4_npc",
-		secondary = "wpn_fps_pis_beretta_npc",
+		primary = "wpn_fps_ass_galil_npc",
+		secondary = "wpn_fps_pis_sparrow_npc",
 	},
 	["ecp_male"] = {
-		primary = "wpn_fps_ass_m4_npc",
-		secondary = "wpn_fps_pis_beretta_npc",
+		primary = "wpn_fps_shot_huntsman_npc",
+		secondary = "wpn_fps_smg_mac10_npc",
 	},
 }
 
