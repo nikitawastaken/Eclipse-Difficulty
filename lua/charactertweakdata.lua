@@ -1403,104 +1403,108 @@ CharacterTweakData.team_ai_tweak_names = {
 	"joy",
 	"myh",
 	"ecp_female",
-	"ecp_male"
+	"ecp_male",
 }
 CharacterTweakData.team_ai_weapons_mapped = {
-	["russian"] = { 
+	["russian"] = {
 		primary = "wpn_fps_ass_m4_npc",
 		secondary = "wpn_fps_pis_beretta_npc",
 	},
-	["german"] = { 
+	["german"] = {
 		primary = "wpn_fps_shot_r870_npc",
 		secondary = "wpn_fps_pis_g18c_npc",
 	},
-	["spanish"] = { 
+	["spanish"] = {
 		primary = "wpn_fps_lmg_m249_npc",
 		secondary = "wpn_fps_smg_mac10_npc",
 	},
-	["american"] = { 
+	["american"] = {
 		primary = "wpn_fps_ass_m14_npc",
 		secondary = "wpn_fps_pis_rage_npc",
 	},
-	["jowi"] = { 
+	["jowi"] = {
 		primary = "wpn_fps_snp_tti_npc",
 		secondary = "wpn_fps_pis_g26_npc",
 	},
-	["old_hoxton"] = { 
+	["old_hoxton"] = {
 		primary = "wpn_fps_sho_spas12_npc",
 		secondary = "wpn_fps_pis_rage_npc",
 	},
-	["female_1"] = { 
+	["female_1"] = {
 		primary = "wpn_fps_ass_l85a2_npc",
 		secondary = "wpn_fps_pis_ppk_npc",
 	},
-	["dragan"] = { 
+	["dragan"] = {
 		primary = "wpn_fps_ass_vhs_npc",
 		secondary = "wpn_fps_pis_hs2000_npc",
 	},
-	["jacket"] = { 
+	["jacket"] = {
 		primary = "wpn_fps_smg_cobray_npc",
 		secondary = "wpn_fps_pis_g17_npc",
 	},
-	["bonnie"] = { 
+	["bonnie"] = {
 		primary = "wpn_fps_shot_b682_npc",
 		secondary = "wpn_fps_pis_g17_npc",
 	},
-	["sokol"] = { 
+	["sokol"] = {
 		primary = "wpn_fps_ass_asval_npc",
 		secondary = "wpn_fps_pis_g17_npc",
 	},
-	["dragon"] = { 
+	["dragon"] = {
 		primary = "wpn_fps_snp_wa2000_npc",
 		secondary = "wpn_fps_smg_baka_npc",
 	},
-	["bodhi"] = { 
+	["bodhi"] = {
 		primary = "wpn_fps_snp_model70_npc",
 		secondary = "wpn_fps_pis_sparrow_npc",
 	},
-	["jimmy"] = { 
+	["jimmy"] = {
 		primary = "wpn_fps_ass_akm_npc",
 		secondary = "wpn_fps_smg_sr2_npc",
 	},
-	["sydney"] = { 
+	["sydney"] = {
 		primary = "wpn_fps_ass_tecci_npc",
 		secondary = "wpn_fps_smg_mac10_npc",
 	},
-	["wild"] = { 
+	["wild"] = {
 		primary = "wpn_fps_sho_boot_npc",
 		secondary = "wpn_fps_smg_mac10_npc",
 	},
-	["chico"] = { 
+	["chico"] = {
 		primary = "wpn_fps_ass_contraband_npc",
 		secondary = "wpn_fps_smg_mac10_npc",
 	},
-	["max"] = { 
+	["max"] = {
 		primary = "wpn_fps_ass_akm_npc",
 		secondary = "wpn_fps_pis_chinchilla_npc",
 	},
-	["joy"] = { 
+	["joy"] = {
 		primary = "wpn_fps_smg_shepheard_npc",
 		secondary = "wpn_fps_pis_g17_npc",
 	},
-	["myh"] = { 
+	["myh"] = {
 		primary = "wpn_fps_ass_m4_npc",
 		secondary = "wpn_fps_pis_shrew_npc",
 	},
-	["ecp_female"] = { 
+	["ecp_female"] = {
 		primary = "wpn_fps_ass_m4_npc",
 		secondary = "wpn_fps_pis_beretta_npc",
 	},
-	["ecp_male"] = { 
+	["ecp_male"] = {
 		primary = "wpn_fps_ass_m4_npc",
 		secondary = "wpn_fps_pis_beretta_npc",
 	},
-}	
+}
 
 Hooks:PostHook(CharacterTweakData, "_init_team_ai", "eclipse_init_team_ai", function(self)
 	for _, tweak_name in ipairs(self.team_ai_tweak_names) do
 		self[tweak_name].weapon.weapons_of_choice = {
-			primary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].primary or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc" or "wpn_fps_ass_m4_npc",
-			secondary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].secondary or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc" or "wpn_fps_ass_m4_npc",
+			primary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].primary
+				or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc"
+				or "wpn_fps_ass_m4_npc",
+			secondary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].secondary
+				or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc"
+				or "wpn_fps_ass_m4_npc",
 		}
 	end
 end)
