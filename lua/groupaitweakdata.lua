@@ -1925,7 +1925,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
---[[
+	--[[
 	self.enemy_spawn_groups.fbi_defend_heavy = {
 		amount = { 2, 3 },
 		spawn = {
@@ -2021,7 +2021,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			}, 1000, 3000, 1, 3),
 		},
 	}
-	
+
 	self.enemy_spawn_groups.fbi_stealth_light = {
 		amount = { 2, 3 },
 		spawn = {
@@ -2318,7 +2318,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
---[[
+	--[[
 	self.enemy_spawn_groups.elite_defend_heavy = {
 		amount = { 2, 3 },
 		spawn = {
@@ -2414,7 +2414,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			}, 1000, 3000, 1, 3),
 		},
 	}
-	
+
 	self.enemy_spawn_groups.elite_swats = {
 		amount = { 3, 4 },
 		spawn = {
