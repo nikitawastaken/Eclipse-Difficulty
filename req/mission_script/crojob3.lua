@@ -101,7 +101,7 @@ return {
 	-- don't disable the choppers when you pick up the bomb part
 	[104312] = {
 		on_executed = {
-			{ id = 104312, remove = true },
+			{ id = 100374, remove = true },
 		},
 	},
 	-- more choppers on eclipse and pro jobs
