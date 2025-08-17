@@ -96,6 +96,11 @@ return {
 	[100485] = specials,
 	[100482] = us_soldier,
 	[100479] = specials,
+	-- 4th chopper
+	[101163] = us_soldier,
+	[101161] = specials,
+	[101164] = us_soldier,
+	[101162] = specials,
 	-- don't disable the choppers when you pick up the bomb part
 	[104312] = {
 		on_executed = {
