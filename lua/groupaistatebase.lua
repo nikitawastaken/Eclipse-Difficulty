@@ -25,7 +25,7 @@ function GroupAIStateBase:_get_scripted_tier()
 		return "CS"
 	end
 
-	local diff_rounded = self._difficulty_value >= 1 and 1 or self._difficulty_value < 0.5 and 0 or 0.5
+	local diff_rounded = self._difficulty_value >= 1 and 1 or self._difficulty_value < tweak_data.group_ai.difficulty_curve_points[1] and 0 or 0.5
 	local index = 1 + (diff_rounded / 0.5)
 	local tier = tweak_data.group_ai[state] and tweak_data.group_ai[state].faction[index]
 
