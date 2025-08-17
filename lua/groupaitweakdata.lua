@@ -1933,14 +1933,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 2,
 				rank = 2,
 				unit = "fbi_heavy_2",
-				tactics = self._tactics.none,
+				tactics = self._tactics.shield_support,
 			},
 			{
 				freq = 1,
 				amount_min = 1,
 				rank = 2,
 				unit = "fbi_heavy_1",
-				tactics = self._tactics.none,
+				tactics = self._tactics.shield_support,
 			},
 			{
 				freq_by_diff = table_multiplier({
@@ -1951,7 +1951,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "fbi_swat_1_3",
-				tactics = self._tactics.none,
+				tactics = self._tactics.shield_support,
 			},
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
@@ -2280,16 +2280,16 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.5,
 				amount_max = 2,
-				rank = 3,
+				rank = 2,
 				unit = "elite_heavy_2",
-				tactics = self._tactics.none,
+				tactics = self._tactics.shield_support,
 			},
 			{
 				freq = 1,
 				amount_min = 1,
 				rank = 2,
 				unit = "elite_heavy_1",
-				tactics = self._tactics.none,
+				tactics = self._tactics.shield_support,
 			},
 			{
 				freq_by_diff = table_multiplier({
@@ -2300,7 +2300,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "elite_swat_1_3",
-				tactics = self._tactics.none,
+				tactics = self._tactics.shield_support,
 			},
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
@@ -2309,7 +2309,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					(difficulty_index ^ 2) / 240,
 				}, heavy_response and 1.25 or 1),
 				amount_max = 1,
-				rank = 4,
+				rank = 3,
 				unit = "fbi_shield",
 				tactics = self._tactics.shield_wall,
 			}, 1000, 3000, 3, 1),
