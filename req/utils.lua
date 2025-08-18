@@ -62,6 +62,10 @@ function M.level_id()
 	return level_id
 end
 
+function M.is_testmap()
+	return level_id == "modders_devmap" or level_id == "Enemy_Spawner"
+end
+
 function M.is_overkill()
 	local is_overkill = diff_i == 5
 
