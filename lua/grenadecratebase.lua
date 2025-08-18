@@ -1,5 +1,5 @@
 -- Handle grenade case as a percentage based deployable
--- todo: test this cause i have no idea if it works lmfao, also apply it to ordnance bag.
+-- todo: make all of this properly sync, also apply it to ordnance bag
 
 local dec_mul = 10000
 
