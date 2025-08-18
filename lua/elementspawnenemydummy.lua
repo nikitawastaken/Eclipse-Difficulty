@@ -72,7 +72,8 @@ end
 
 function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
 	local level_tweak = tweak_data.levels[level_id]
-	local faction = self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"] and self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"][tier or managers.groupai:state():_get_scripted_tier()]
+	local faction = self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"]
+		and self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"][tier or managers.groupai:state():_get_scripted_tier()]
 
 	if not faction then
 		return nil
