@@ -1,3 +1,5 @@
+local is_pro_job = Eclipse.utils.is_pro_job()
+
 -- Friendly Fire
 function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, variant, sender)
 	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
@@ -31,7 +33,7 @@ function UnitNetworkHandler:sync_friendly_fire_damage(peer_id, unit, damage, var
 		end
 	end
 
-	if not Global.game_settings and Global.game_settings.one_down then
+	if not is_pro_job then
 		managers.job:set_memory("trophy_flawless", true, false)
 	end
 end

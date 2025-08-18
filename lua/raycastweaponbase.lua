@@ -6,12 +6,14 @@ RaycastWeaponBase.autofire_fix_blacklist = {
 	["system"] = true,
 }
 
+local is_pro_job = Eclipse.utils.is_pro_job()
+
 local init_original = RaycastWeaponBase.init
 function RaycastWeaponBase:init(...)
 	init_original(self, ...)
 
 	-- Friendly Fire
-	if Global.game_settings and Global.game_settings.one_down then
+	if is_pro_job then
 		self._bullet_slotmask = self._bullet_slotmask + 3
 	else
 		self._bullet_slotmask = managers.mutators:modify_value("RaycastWeaponBase:setup:weapon_slot_mask", self._bullet_slotmask)
