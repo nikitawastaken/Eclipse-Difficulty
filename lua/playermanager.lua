@@ -1703,3 +1703,33 @@ function PlayerManager:_is_all_in_custody(ignored_peer_id)
 
 	return true
 end
+
+-- handle grenade case and ordnance bag as percentage based deployables
+function PlayerManager:add_grenade_from_bag(available)
+	local peer_id = managers.network:session():local_peer():id()
+	local max_nades = self:get_max_grenades_by_peer_id(peer_id)
+	local total_nades = self._global.synced_grenades[peer_id].amount
+
+	local function process_ammo(ammo_base, amount_available)
+		if self:get_max_grenades_by_peer_id(peer_id) == self._global.synced_grenades[peer_id].amount then
+			return 0
+		end
+
+		local wanted = 1 - total_nades / max_nades
+		local can_have = math.min(wanted, amount_available)
+
+		total_nades = math.min(max_nades, total_nades + math.ceil(can_have * max_nades))
+
+		return can_have
+	end
+
+	local can_have = process_ammo(self, available)
+
+	managers.hud:set_teammate_grenades_amount(HUDManager.PLAYER_PANEL, {
+		icon = icon,
+		amount = amount
+	})
+	self:update_grenades_amount_to_peers(grenade, amount, sync and peer_id)
+
+	return can_have
+end

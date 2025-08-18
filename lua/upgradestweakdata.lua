@@ -2080,4 +2080,5 @@ function UpgradesTweakData:init(tweak_data)
 			required_pickups = 50,
 		},
 	}
+	self.grenade_crate_base = 4
 end

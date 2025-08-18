@@ -214,11 +214,12 @@
 				</group>
 
 				<group :hook_id="equipment/">
-					<post :hook_id="sentry_gun/sentrygunbase"/>
 					<post :hook_id="ammo_bag/ammobagbase"/>
+					<post :hook_id="sentry_gun/sentrygunbase"/>
 					<post :hook_id="doctor_bag/doctorbagbase"/>
 					<post :hook_id="ecm_jammer/ecmjammerbase"/>
 					<post :hook_id="first_aid_kit/firstaidkitbase"/>
+					<post :hook_id="grenade_crate/grenadecratebase"/>
 				</group>
 
 				<post :hook_id="civilians/civilianbase"/>
@@ -277,10 +278,10 @@
 		<!-- sniper glare -->
 		<file name="effects/particles/weapons/sniper_glint.effect"/>
 		<file name="effects/textures/weapons/sniper_glint.dds"/>
-		
+
 		<!-- incendiary cluster grenade explosion -->
 		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
-		
+
 		<!-- weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
 
