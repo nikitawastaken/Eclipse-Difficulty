@@ -370,7 +370,15 @@ local optsDefendSO = {
 	pose = "stand",
 }
 local optsspawnArmy = {
-	on_executed = { { id = 400092, delay = 0 }, { id = 400054, delay = 0 }, { id = 400055, delay = 0 }, { id = 400056, delay = 0 }, { id = 400057, delay = 0 }, { id = 400058, delay = 0 }, { id = 400091, delay = 0 } },
+	on_executed = {
+		{ id = 400092, delay = 0 },
+		{ id = 400054, delay = 0 },
+		{ id = 400055, delay = 0 },
+		{ id = 400056, delay = 0 },
+		{ id = 400057, delay = 0 },
+		{ id = 400058, delay = 0 },
+		{ id = 400091, delay = 0 },
+	},
 	enabled = true,
 }
 local optsOpenSwatVanDoors_1 = {
