@@ -1235,7 +1235,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
 	end
-	
+
 	for _, enemy in pairs(spawn_group_desc.spawn) do
 		if enemy.random_tactics then
 			tactic_str = weighted_selector(enemy.random_tactics):select()
