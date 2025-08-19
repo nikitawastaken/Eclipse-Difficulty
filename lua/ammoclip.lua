@@ -69,6 +69,7 @@ function AmmoClip:_pickup(unit)
 					end
 
 					if player_manager:has_category_upgrade("player", "pickup_restore_team_health") then
+						health_to_restore = health_to_restore * 100
 						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore)
 						Eclipse:log_chat("health to restore for team value passed: " .. health_to_restore)
 					end
