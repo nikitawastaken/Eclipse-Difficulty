@@ -228,6 +228,20 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	end
 end)
 
+-- Properly load player melee weapons for use by NPCs
+function CopBase:melee_weapon()
+	if not self._melee_weapon then
+		self._melee_weapon = self._char_tweak.melee_weapon or "weapon"
+		self._melee_weapon_data = tweak_data.weapon.npc_melee[self._melee_weapon]
+		if self._melee_weapon_data and self._melee_weapon_data.unit_name and DB:has(Idstring("unit"), self._melee_weapon_data.unit_name) then
+			managers.dyn_resource:load(Idstring("unit"), self._melee_weapon_data.unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
+		else
+			self._melee_weapon_data = nil
+		end
+	end
+	return self._melee_weapon
+end
+
 function CopBase:set_cloaker_goggles_on(state)
 	if not self:has_tag("spooc") then
 		return

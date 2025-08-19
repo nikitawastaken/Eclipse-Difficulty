@@ -404,6 +404,14 @@ function MedicLogicAttack._upd_combat_movement(data)
 		if CopLogicAttack._chk_start_action_move_back(data, my_data, focus_enemy, true, "optimal") then
 			return
 		end
+
+		if data.important then
+			if data.is_suppressed and data.t - data.unit:character_damage():last_suppression_t() < 0.7 then
+				if CopLogicBase.chk_start_action_dodge(data, "scared") then
+					return
+				end
+			end
+		end
 	end
 
 	CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
