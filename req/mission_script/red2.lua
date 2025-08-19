@@ -237,9 +237,30 @@ return {
 		},
 	},
 	-- restore unused shield army script from pdth
+	[105894] = disabled,
+	[101544] = {
+		on_executed = {
+			{ id = 103998, remove = true },
+		},
+	},
+	-- the van drives in when the player is in the vault
 	[106547] = {
 		on_executed = {
-			{ id = 400059, delay = 5 },
+			{ id = 105914, delay = 90, delay_rand = 30 },
+		},
+	},
+	-- lower the chance of swat van spawn and enable it only on ovk above
+	[105914] = {
+		chance = 40,
+		values = {
+			enabled = overkill_above,
+		},
+	},
+	-- replace turret with the shield army script
+	[105922] = {
+		on_executed = {
+			{ id = 105924, remove = true },
+			{ id = 400059, delay = 0 },
 		},
 	},
 	-- vault ambush
@@ -296,6 +317,7 @@ return {
 			{ id = 400007, delay = 7 },
 			{ id = 400027, delay = 8 },
 			{ id = 400028, delay = 9 },
+			{ id = 105913, remove = true },
 		},
 	},
 	-- two dozers spawn on e/pj when leaving vault
