@@ -133,12 +133,13 @@ function AmmoClip:sync_net_event(event, peer)
 
 			self._grenade_registered = true
 		end
-	elseif event > AmmoClip.EVENT_IDS.bonnie_share_ammo and event < AmmoClip.EVENT_IDS.register_grenade then
+	elseif (event / 10) == tweak_data.upgrades.values.player.pickup_restore_health[1] or (event / 10) == tweak_data.upgrades.values.player.pickup_restore_health[2] then
+		event = event / 10
 		Eclipse:log_chat("first health restore check passed")
 		local damage_ext = player:character_damage()
 
 		if not damage_ext:need_revive() and not damage_ext:dead() and not damage_ext:is_berserker() then
-			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5) / 10
+			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5)
 
 			if damage_ext:restore_health(health_to_restore, true, true) then
 				player:sound():play("pickup_ammo_health_boost", nil, true)
