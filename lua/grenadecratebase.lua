@@ -9,7 +9,11 @@ end
 
 function GrenadeCrateBase:_set_visual_stage()
 	if alive(self._unit) and self._unit:damage() then
-		local consumed_units = math.clamp(math.ceil((self._max_grenade_amount - self._grenade_amount)), 0, math.floor(self._max_grenade_amount))
+		local nr_visual_states = 3
+		local consumed_units = math.clamp(math.round(1 / (self._grenade_amount / self._max_grenade_amount)) - 1, 0, nr_visual_states) 
+
+		Eclipse:log_chat(consumed_units)
+		
 		local state = "state_" .. tostring(consumed_units)
 
 		if self._unit:damage():has_sequence(state) then
