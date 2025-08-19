@@ -563,7 +563,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.dodge.medic = deep_clone(presets.dodge.poor)
 	presets.dodge.medic.speed = 1
 	presets.dodge.medic.occasions.scared.chance = 0.6
-	
+
 	presets.dodge.ninja.speed = 2
 	for _, occasion in pairs(presets.dodge.ninja.occasions) do
 		occasion.chance = 1
@@ -995,14 +995,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi.no_arrest = false
 
 	self.fbi_office = deep_clone(self.fbi)
-	self.fbi_office.melee_weapon = "taser"	
+	self.fbi_office.melee_weapon = "taser"
 	table.insert(self._enemy_list, "fbi_office")
 
 	self.fbi_female = deep_clone(self.fbi_office)
 	self.fbi_female.speech_prefix_p1 = "fl"
 	self.fbi_female.speech_prefix_p2 = "n"
 	self.fbi_female.speech_prefix_count = 1
-	
+
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
 	self.gangster.speech_prefix_count = 2
@@ -1336,7 +1336,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_boss.HEALTH_INIT = 180
 	self.fbi_boss.throwable_cooldown = 10
 	self.fbi_boss.throwable = "concussion"
-	self.fbi_boss.melee_weapon = "taser"	
+	self.fbi_boss.melee_weapon = "taser"
 	self.fbi_boss.access = "fbi"
 	table.insert(self._enemy_list, "fbi_boss")
 
@@ -1788,7 +1788,7 @@ function CharacterTweakData:_set_presets()
 
 		local is_boss = name:match("_boss$")
 		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
-		
+
 		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 
@@ -1809,7 +1809,7 @@ function CharacterTweakData:_set_presets()
 		local char_move_speed = self.presets.move_speed[self.tweak_table_move_speed[name] or self.access_move_speed[char_access]]
 
 		char_preset.move_speed = char_move_speed or self.presets.move_speed.normal
-		
+
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
 			if not is_boss then
@@ -1866,7 +1866,7 @@ function CharacterTweakData:_set_presets()
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
 	self.tase_multiplier = is_eclipse and 1.5 or is_overkill and 1.25 or 1
-	
+
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
@@ -1874,7 +1874,7 @@ function CharacterTweakData:_set_presets()
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 
 	self.medic_heal_cooldown = 3
-	
+
 	self.tank.damage.armor_health = is_eclipse and 18 or is_overkill and 14 or 10
 
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
