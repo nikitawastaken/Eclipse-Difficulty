@@ -70,7 +70,6 @@ function AmmoClip:_pickup(unit)
 
 					if player_manager:has_category_upgrade("player", "pickup_restore_team_health") then
 						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore * 10)
-						Eclipse:log_chat("health to restore for team value passed: " .. health_to_restore)
 					end
 				end
 
@@ -106,7 +105,6 @@ function AmmoClip:sync_net_event(event, peer)
 	if not alive(player) or not player:character_damage() or player:character_damage():is_downed() or player:character_damage():dead() then
 		return
 	end
-	Eclipse:log_chat("sync net event received, event: " .. event)
 
 	if event == AmmoClip.EVENT_IDS.bonnie_share_ammo then
 		local inventory = player:inventory()
@@ -124,7 +122,6 @@ function AmmoClip:sync_net_event(event, peer)
 				for id, weapon in pairs(inventory:available_selections()) do
 					managers.hud:set_ammo_amount(id, weapon.unit:base():ammo_info())
 				end
-				Eclipse:log_chat("client restored ammo")
 			end
 		end
 	elseif event == AmmoClip.EVENT_IDS.register_grenade then
@@ -133,17 +130,14 @@ function AmmoClip:sync_net_event(event, peer)
 
 			self._grenade_registered = true
 		end
-	elseif (event / 10) == tweak_data.upgrades.values.player.pickup_restore_health[1] or (event / 10) == tweak_data.upgrades.values.player.pickup_restore_health[2] then
-		event = event / 10
-		Eclipse:log_chat("first health restore check passed")
+	elseif event == (tweak_data.upgrades.values.player.pickup_restore_health[1] * 10) or event == (tweak_data.upgrades.values.player.pickup_restore_health[2] * 10) then
 		local damage_ext = player:character_damage()
 
 		if not damage_ext:need_revive() and not damage_ext:dead() and not damage_ext:is_berserker() then
-			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5)
+			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5) / 10
 
 			if damage_ext:restore_health(health_to_restore, true, true) then
 				player:sound():play("pickup_ammo_health_boost", nil, true)
-				Eclipse:log_chat("client restored health")
 			end
 		end
 	end
