@@ -69,8 +69,7 @@ function AmmoClip:_pickup(unit)
 					end
 
 					if player_manager:has_category_upgrade("player", "pickup_restore_team_health") then
-						health_to_restore = health_to_restore * 100
-						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore)
+						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore * 10)
 						Eclipse:log_chat("health to restore for team value passed: " .. health_to_restore)
 					end
 				end
@@ -134,12 +133,12 @@ function AmmoClip:sync_net_event(event, peer)
 
 			self._grenade_registered = true
 		end
-	elseif event < AmmoClip.EVENT_IDS.bonnie_share_ammo then
+	elseif event > AmmoClip.EVENT_IDS.bonnie_share_ammo and event < AmmoClip.EVENT_IDS.register_grenade then
 		Eclipse:log_chat("first health restore check passed")
 		local damage_ext = player:character_damage()
 
 		if not damage_ext:need_revive() and not damage_ext:dead() and not damage_ext:is_berserker() then
-			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5)
+			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5) / 10
 
 			if damage_ext:restore_health(health_to_restore, true, true) then
 				player:sound():play("pickup_ammo_health_boost", nil, true)
