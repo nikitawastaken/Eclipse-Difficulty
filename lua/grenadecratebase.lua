@@ -18,18 +18,6 @@ function GrenadeCrateBase:_set_visual_stage()
 	end
 end
 
-function GrenadeCrateBase:sync_net_event(event_id, peer)
-	if event_id == 1 then
-		if peer then
-			managers.player:register_grenade(peer:id())
-		end
-
-		self:sync_grenade_taken(1)
-	elseif event_id == 2 then
-		self:_set_dynamic()
-	end
-end
-
 function GrenadeCrateBase:sync_grenade_taken(amount)
 	amount = self:round_value(amount)
 	self._grenade_amount = self:round_value(self._grenade_amount - amount)
@@ -47,10 +35,11 @@ function GrenadeCrateBase:take_grenade(unit)
 	end
 
 	local taken = self:_take_grenades()
+	Eclipse:log_chat("taken: " .. taken .. "\ngrenade amount:" .. self._grenade_amount)
 
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
-		managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, taken)
+		managers.network:session():send_to_peers_synched("sync_grenade_crate_ammo_taken", self._unit, taken)
         managers.player:register_grenade(managers.network:session():local_peer():id())
     end
 

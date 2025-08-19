@@ -88,3 +88,11 @@ function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autore
 		base_ext:set_skill_upgrades(Drill.create_upgrades(autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, electrocuting_drill))
 	end
 end
+
+function UnitNetworkHandler:sync_grenade_crate_ammo_taken(unit, amount, sender)
+	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
+		return
+	end
+
+	unit:base():sync_grenade_taken(amount)
+end
