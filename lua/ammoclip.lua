@@ -101,6 +101,9 @@ end
 
 function AmmoClip:sync_net_event(event, peer)
 	local player = managers.player:local_player()
+	if event ~= AmmoClip.EVENT_IDS.bonnie_share_ammo then
+		Eclipse:log_chat("event: " .. event)
+	end
 
 	if not alive(player) or not player:character_damage() or player:character_damage():is_downed() or player:character_damage():dead() then
 		return
