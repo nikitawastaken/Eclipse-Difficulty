@@ -1,5 +1,5 @@
 -- Handle grenade case as a percentage based deployable
--- todo: make all of this properly sync, also apply it to ordnance bag
+-- todo: fix any potential rounding errors, test syncing, fix cheater tag, fix visuals, apply to ordnance
 
 local dec_mul = 10000
 
