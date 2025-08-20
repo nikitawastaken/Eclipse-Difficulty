@@ -527,7 +527,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- crk
 	self.specializations[6].category = { "armor", "dodge" }
 	-- tct
-	self.specializations[7].category = { "support" , "resistance"}
+	self.specializations[7].category = { "support", "resistance" }
 	-- inf
 	self.specializations[8].category = { "resistance", "healing" }
 	-- soc
