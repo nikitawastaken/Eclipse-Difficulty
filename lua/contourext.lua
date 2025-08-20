@@ -20,3 +20,12 @@ table.sort(ContourExt.indexed_types)
 if #ContourExt.indexed_types > 128 then
 	Application:error("[ContourExt] max # contour presets exceeded!")
 end
+
+local add_original = ContourExt.add
+function ContourExt:add(...)
+	local result = add_original(self, ...)
+	
+	call_on_next_update(function() 
+		return result
+	end)
+end
