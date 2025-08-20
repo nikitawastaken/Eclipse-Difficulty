@@ -161,9 +161,9 @@ function NewRaycastWeaponBase:concealment_to_handling()
 	return multiplier
 end
 
--- remove ARs from BE
+-- Body Expertise only works on LMGs and Miniguns
 function NewRaycastWeaponBase:get_add_head_shot_mul()
-	if self:is_category("smg", "lmg", "minigun") and self._fire_mode == ids_auto or self:is_category("bow", "saw") then
+	if self:is_category("lmg", "minigun") then
 		return managers.player:upgrade_value("weapon", "automatic_head_shot_add", nil)
 	end
 
