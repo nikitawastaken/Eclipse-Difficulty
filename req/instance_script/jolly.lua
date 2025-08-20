@@ -41,7 +41,7 @@ return {
 			if heli_army.soldiers[id] then
 				element.values.enemy_table = us_soldiers
 			elseif heli_army.specials[id] then
-				element.values.enemy_table = specials	
+				element.values.enemy_table = specials
 			elseif heli_army.hunt_so[id] then
 				element.values.SO_access = law
 			elseif heli_army.filters_normal_above[id] then
