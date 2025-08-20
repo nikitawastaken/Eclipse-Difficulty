@@ -1,4 +1,9 @@
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 return {
 	-- Boss spawn
 	[100707] = {
@@ -10,11 +15,10 @@ return {
 		difficulty_min = 0.8,
 	},
 	-- Disable difficulty 1 element
-	[100909] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[100909] = disabled,
+	-- disable anything related to swat turret
+	[101107] = disabled,
+	[101108] = disabled,
 	-- restore 4 Player C4 Event
 	-- make it appear on ovk above and enable it to all players
 	[100560] = {

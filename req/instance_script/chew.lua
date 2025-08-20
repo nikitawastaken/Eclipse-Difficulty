@@ -2,7 +2,7 @@
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
-local swat_1 = diff_i < 6 and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
+local swat_1 = diff_i < 6 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
 local sniper = scripted_enemy.sniper
 local so_access = Eclipse.access_filter_presets
 local law = so_access.law
