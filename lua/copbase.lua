@@ -268,4 +268,3 @@ for path in pairs(paths) do
 	CopBase._material_translation_map[tostring(normal_id:key())] = contour_id
 	CopBase._material_translation_map[tostring(contour_id:key())] = normal_id
 end
-
