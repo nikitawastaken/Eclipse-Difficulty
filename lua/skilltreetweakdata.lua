@@ -526,8 +526,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[5].category = "dodge"
 	-- crk
 	self.specializations[6].category = { "armor", "dodge" }
-	-- brg
-	self.specializations[7].category = "dodge"
+	-- tct
+	self.specializations[7].category = { "support" , "resistance"}
 	-- inf
 	self.specializations[8].category = { "resistance", "healing" }
 	-- soc
@@ -549,7 +549,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- kpn
 	self.specializations[17].category = { "health", "resistance" }
 	-- sic
-	self.specializations[18].category = { "dodge", "armor_gating" }
+	self.specializations[18].category = { "dodge", "support" }
 	-- stc
 	self.specializations[19].category = { "health", "resistance" }
 	-- tgt
