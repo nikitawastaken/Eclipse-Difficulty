@@ -543,7 +543,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- man
 	self.specializations[14].category = { "resistance", "support" }
 	-- anr
-	self.specializations[15].category = {"armor_gating", "armor" }
+	self.specializations[15].category = { "armor_gating", "armor" }
 	-- bik
 	self.specializations[16].category = { "healing", "armor_gating" }
 	-- kpn
