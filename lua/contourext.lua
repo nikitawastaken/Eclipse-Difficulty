@@ -23,8 +23,8 @@ end
 
 local add_original = ContourExt.add
 function ContourExt:add(...)
-    local params = {...}
-    call_on_next_update(function() 
-        add_original(self, unpack(params))
-    end)
+	local params = { ... }
+	call_on_next_update(function()
+		add_original(self, unpack(params))
+	end)
 end
