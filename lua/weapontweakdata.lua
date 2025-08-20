@@ -111,7 +111,7 @@ function WeaponTweakData:_init_weapons()
 		
 		--catch-all stat setups
 		if cat_map.assault_rifle and not is_browning_mg then
-			weap_data.stats.suppression = cat_map.dmr and 1 or 11
+			weap_data.stats.suppression = cat_map.dmr and 6 or 11
 			weap_data.stats.alert_size = cat_map.dmr and 18 or 17
 			weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
 			weap_data.steelsight_move_speed_mul = 0.5
@@ -180,7 +180,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			end
 		elseif cat_map.pistol then
-			weap_data.stats.suppression = is_deagle and 9 or 16
+			weap_data.stats.suppression = is_deagle and 7 or 16
 			weap_data.stats.alert_size = is_deagle and 17 or 15
 			weap_data.steelsight_time = is_deagle and steelsight_times.pistol_heavy or steelsight_times.pistol
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not is_deagle and 1.5 or 1
@@ -243,7 +243,7 @@ function WeaponTweakData:_init_weapons()
 			end
 
 		elseif cat_map.revolver then
-			weap_data.stats.suppression = 9
+			weap_data.stats.suppression = 7
 			weap_data.stats.alert_size = 17
 			weap_data.steelsight_time = steelsight_times.pistol_heavy
 			weap_data.steelsight_move_speed_mul = 0.6
@@ -310,7 +310,7 @@ function WeaponTweakData:_init_weapons()
 			}
 
 		elseif cat_map.shotgun then
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 5
 			weap_data.stats.alert_size = 18
 			weap_data.steelsight_time = weap_data.steelsight_time or is_judge and steelsight_times.pistol_heavy or steelsight_times.default
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (24 / 180)
@@ -350,12 +350,12 @@ function WeaponTweakData:_init_weapons()
 			weap_data.stats.suppression = 3
 			weap_data.stats.alert_size = 18
 			weap_data.steelsight_time = steelsight_times.lmg
-			weap_data.bipod_deploy_multiplier = 1
-			weap_data.bipod_camera_spin_limit = 40
-			weap_data.bipod_camera_pitch_limit = 15
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
 			weap_data.pickup_mul = weap_data.pickup_mul or (3 / 4)
 			weap_data.steelsight_move_speed_mul = 0.4
+			weap_data.bipod_camera_spin_limit = 40
+			weap_data.bipod_camera_pitch_limit = 15
+			weap_data.bipod_deploy_multiplier = 1
 			
 			local has_bipod = weap_data.timers and weap_data.timers.deploy_bipod
 			
@@ -412,7 +412,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			end
 		elseif cat_map.minigun then
-			weap_data.stats.suppression = 6
+			weap_data.stats.suppression = 4
 			weap_data.stats.alert_size = 18
 			weap_data.steelsight_time = steelsight_times.lmg
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.25
@@ -471,7 +471,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			end
 		elseif cat_map.snp then
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 4
 			weap_data.stats.alert_size = 20
 			weap_data.steelsight_time = steelsight_times.snp
 			weap_data.steelsight_move_speed_mul = 0.45
@@ -507,7 +507,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			}
 		elseif cat_map.bow then
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 2
 			weap_data.stats.alert_size = 1
 			weap_data.armor_piercing_chance = 1
 			weap_data.reload_speed_multiplier = 2
@@ -525,7 +525,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.charge_data.max_t = weap_data.charge_data.max_t * 0.5
 			end
 		elseif cat_map.crossbow then
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 14
 			weap_data.stats.alert_size = 1
 			weap_data.armor_piercing_chance = 1
 
@@ -536,7 +536,7 @@ function WeaponTweakData:_init_weapons()
 			weap_data.spread_multiplier = nil
 			weap_data.recoil_multiplier = nil
 		elseif cat_map.grenade_launcher then
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 2
 			weap_data.stats.alert_size = 18
 			weap_data.pickup_mul = weap_data.pickup_mul or is_primary and 1 / 2.5 or 1 / 5
 			weap_data.damage_near = 1000
@@ -570,7 +570,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			}
 		elseif cat_map.flamethrower then
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 2
 			weap_data.stats.alert_size = 11
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.5
 			weap_data.pickup_mul = weap_data.pickup_mul or 0
@@ -578,7 +578,7 @@ function WeaponTweakData:_init_weapons()
 			weap_data.spread_multiplier = nil
 			weap_data.recoil_multiplier = nil
 		elseif cat_map.saw then
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 7
 			weap_data.stats.alert_size = 18
 			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
 			weap_data.armor_piercing_chance = 1
@@ -598,7 +598,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			}
 		elseif is_browning_mg then -- Yes, I had to bullshit it like this
-			weap_data.stats.suppression = 1
+			weap_data.stats.suppression = 3
 			weap_data.stats.alert_size = 20
 
 			weap_data.spread_multiplier = nil
@@ -715,7 +715,7 @@ function WeaponTweakData:_init_weapons()
 
 		if weap_data.kick then
 			if is_browning_mg then
-				weap_data.kick.standing =  { -0.1, 0.2, -0.15, 0.15 }		
+				weap_data.kick.standing =  { -0.05, 0.1, -0.1, 0.1 }		
 			
 			elseif cat_map.lmg then
 				weap_data.kick.standing = { -0.4, 1.2, -0.8, 1.4 }
@@ -768,37 +768,15 @@ function WeaponTweakData:_init_weapons()
 			end
 		end
 
-		local base_spread = 2.5
-
-		--set spread values
+		-- Set spread values
 		if weap_data.spread then
-			if cat_map.flamethrower or cat_map.saw then
-				weap_data.spread = {
-					standing = 0,
-					crouching = 0,
-					steelsight = 0,
-
-					moving_standing = 0,
-					moving_crouching = 0,
-					moving_steelsight = 0,
-
-					bipod = 0
-				}
-			else
-				weap_data.spread = {
-					standing = base_spread,
-					crouching = base_spread,
-					steelsight = base_spread,
-
-					moving_standing = base_spread,
-					moving_crouching = base_spread,
-					moving_steelsight = base_spread,
-
-					bipod = base_spread,
-				}
+			weap_data.spread.bipod = 69 -- Make sure bipod spread is defined
+			
+			for i, v in pairs(weap_data.spread) do
+				weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or 2.5
 			end
 		end
-
+		
 		-- Set total damage (translates to total ammo)
 		weap_data.total_damage = 360 * (weap_data.total_ammo_mul or 1)
 
@@ -1126,6 +1104,16 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.olympic.stats.recoil = 16
 	self.olympic.stats.concealment = 24
 	self.olympic.fire_mode_data.fire_rate = 60 / 800
+
+	-- Akimbo Para
+	self.x_olympic.sounds.reload = {
+		wp_akmsu_x_take_new = "wp_m4_clip_take_new",
+		wp_akmsu_x_clip_slide_out = "wp_m4_clip_grab_out",
+		wp_akmsu_x_clip_slide_in = "wp_m4_clip_slide_in",	
+		wp_akmsu_x_clip_in_contact = "wp_m4_clip_in_contact",
+		wp_akmsu_x_lever_pull = "wp_m4_lever_pull_in",
+		wp_akmsu_x_lever_release = "wp_m4_lever_release"
+	}	
 	
 	-- Union
 	self.corgi.CLIP_AMMO_MAX = 30
@@ -1796,6 +1784,16 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.baka.stats.concealment = 28
 	self.baka.fire_mode_data.fire_rate = 60 / 1200
 
+	-- Akimbo Micro Uzi
+	self.x_baka.sounds.reload = {
+		wp_akmsu_x_take_new = "wp_baka_take_new",
+		wp_akmsu_x_clip_slide_out = "wp_baka_mag_slide_out",
+		wp_akmsu_x_clip_slide_in = "wp_baka_mag_slide_in",	
+		wp_akmsu_x_clip_in_contact = "",
+		wp_akmsu_x_lever_pull = "wp_baka_lever_pull",
+		wp_akmsu_x_lever_release = "wp_baka_lever_release"
+	}
+	
 	-- Wasp
 	self.fmg9.CLIP_AMMO_MAX = 30
 	self.fmg9.stats.damage = 16
@@ -1860,6 +1858,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mac10.stats.concealment = 27
 	self.mac10.fire_mode_data.fire_rate = 60 / 1000
 
+	-- Akimbo Mark 10
+	self.x_mac10.sounds.reload = {
+		wp_akmsu_x_clip_slide_out = "wp_mac10_clip_slide_out",
+		wp_akmsu_x_clip_slide_in = "wp_mac10_clip_slide_in",	
+		wp_akmsu_x_clip_in_contact = "wp_mac10_clip_in_contact",
+		wp_akmsu_x_lever_pull = "wp_mac10_lever_pull",
+		wp_akmsu_x_lever_release = "wp_mac10_lever_release"
+	}
+	
 	-- Blaster
 	self.tec9.CLIP_AMMO_MAX = 20
 	self.tec9.stats.damage = 20
@@ -2886,10 +2893,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.svdsil_snp_npc.trail = "effects/particles/weapons/sniper_trail"
 	self.svdsil_snp_npc.muzzleflash = "effects/payday2/particles/weapons/big_762_auto"
 	self.svdsil_snp_npc.shell_ejection = "effects/payday2/particles/weapons/shells/shell_sniper"
-
-	self.flamethrower_npc.flame_max_range = 1000
-	
-	self.snowthrower_npc.flame_max_range = 1000
 
 	self.contender_crew.reload = "looped"
 	self.hailstorm_crew.looped_reload_single = true
