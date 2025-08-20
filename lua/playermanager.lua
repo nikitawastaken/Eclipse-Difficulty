@@ -1682,10 +1682,9 @@ function PlayerManager:_add_equipment(params)
 	end
 end
 
--- remove this when there's no more need for debugging
--- hopefully this fixes the crash?
+-- TODO: remove this when there's no more need for debugging
 function PlayerManager:_is_all_in_custody(ignored_peer_id)
-	if not Utils:IsInGameState() or not Utils:IsInHeist() then
+	if not Utils:IsInGameState() or not Utils:IsInHeist() or not managers.network:session() then
 		return true
 	end
 

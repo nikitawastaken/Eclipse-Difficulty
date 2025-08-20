@@ -91,4 +91,8 @@ return {
 	[100260] = bags_required,
 	[100321] = bags_required,
 	[100322] = bags_required,
+	[102013] = bags_required,
+	[102014] = bags_required,
+	[102015] = bags_required,
+	[102016] = bags_required,
 }

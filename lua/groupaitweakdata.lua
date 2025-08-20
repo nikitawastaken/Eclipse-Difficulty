@@ -1925,7 +1925,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-	--[[
 	self.enemy_spawn_groups.fbi_defend_heavy = {
 		amount = { 2, 3 },
 		spawn = {
@@ -1965,49 +1964,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "fbi_shield",
 				tactics = self._tactics.shield_wall,
 			}, 1000, 3000, 3, 1),
-			self:_distance_weighted_spawn_entry({
-				freq_by_diff = table_multiplier({
-					0,
-					(difficulty_index ^ 2) / 480,
-					(difficulty_index ^ 2) / 240,
-				}, small_urban and 0.75 or 1),
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_sniper",
-				tactics = self._tactics.sniper,
-			}, 1000, 3000, 1, 3),
-		},
-	}
-]]
-
-	self.enemy_spawn_groups.fbi_defend_heavy = {
-		amount = { 2, 3 },
-		spawn = {
-			{
-				freq = 0.5,
-				amount_max = 2,
-				rank = 2,
-				unit = "fbi_heavy_2",
-				tactics = self._tactics.none,
-			},
-			{
-				freq = 1,
-				amount_min = 1,
-				rank = 2,
-				unit = "fbi_heavy_1",
-				tactics = self._tactics.none,
-			},
-			{
-				freq_by_diff = table_multiplier({
-					18 / (difficulty_index ^ 2),
-					12 / (difficulty_index ^ 2),
-					6 / (difficulty_index ^ 2),
-				}, heavy_response and 0.5 or 1),
-				amount_max = 1,
-				rank = 1,
-				unit = "fbi_swat_1_3",
-				tactics = self._tactics.none,
-			},
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
@@ -2318,7 +2274,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 	}
 
-	--[[
 	self.enemy_spawn_groups.elite_defend_heavy = {
 		amount = { 2, 3 },
 		spawn = {
@@ -2358,49 +2313,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "fbi_shield",
 				tactics = self._tactics.shield_wall,
 			}, 1000, 3000, 3, 1),
-			self:_distance_weighted_spawn_entry({
-				freq_by_diff = table_multiplier({
-					0,
-					(difficulty_index ^ 2) / 480,
-					(difficulty_index ^ 2) / 240,
-				}, small_urban and 0.75 or 1),
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_sniper",
-				tactics = self._tactics.sniper,
-			}, 1000, 3000, 1, 3),
-		},
-	}
-]]
-
-	self.enemy_spawn_groups.elite_defend_heavy = {
-		amount = { 2, 3 },
-		spawn = {
-			{
-				freq = 0.5,
-				amount_max = 2,
-				rank = 2,
-				unit = "elite_heavy_2",
-				tactics = self._tactics.none,
-			},
-			{
-				freq = 1,
-				amount_min = 1,
-				rank = 2,
-				unit = "elite_heavy_1",
-				tactics = self._tactics.none,
-			},
-			{
-				freq_by_diff = table_multiplier({
-					18 / (difficulty_index ^ 2),
-					12 / (difficulty_index ^ 2),
-					6 / (difficulty_index ^ 2),
-				}, heavy_response and 0.5 or 1),
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_swat_1_3",
-				tactics = self._tactics.none,
-			},
 			self:_distance_weighted_spawn_entry({
 				freq_by_diff = table_multiplier({
 					0,
