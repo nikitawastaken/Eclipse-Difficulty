@@ -663,13 +663,13 @@ function WeaponTweakData:_init_weapons()
 
 		if weap_data.kick then
 			if is_browning_mg then
-				weap_data.kick.standing =  { -0.1, 0.4, -0.15, 0.15 }		
+				weap_data.kick.standing =  { -0.1, 0.3, -0.15, 0.15 }		
 			
 			elseif cat_map.assault_rifle then
 				weap_data.kick.standing = { 0.8, 1, -1, 1 }
 
 			elseif cat_map.smg then
-				weap_data.kick.standing = { 0.5, 0.8, -1.2, 1.2 }
+				weap_data.kick.standing = { 0.6, 0.8, -1.3, 1.3 }
 
 			elseif cat_map.lmg then
 				weap_data.kick.standing = { -0.4, 1.2, -0.8, 1.4 }
@@ -681,10 +681,10 @@ function WeaponTweakData:_init_weapons()
 				weap_data.kick.standing = { -0.2, 0.6, -0.3, 0.4 }
 
 			elseif is_deagle or cat_map.revolver or cat_map.shotgun then
-				weap_data.kick.standing = { 2.8, 3, -0.3, 0.3 }
+				weap_data.kick.standing = { 2.9, 3, -0.3, 0.3 }
 
 			elseif cat_map.snp or cat_map.grenade_launcher then
-				weap_data.kick.standing = { 3.8, 4, -0.3, 0.3 }
+				weap_data.kick.standing = { 3.9, 4, -0.3, 0.3 }
 
 			elseif cat_map.saw then
 				weap_data.kick.standing = { 1, -1, -1, 1 }
@@ -1278,7 +1278,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.scar.stats.spread = 18
 	self.scar.stats.recoil = 7
 	self.scar.stats.concealment = 15
-	self.scar.fire_mode_data.fire_rate = 60 / 600
+	self.scar.fire_mode_data.fire_rate = 60 / 650
 
 	-- Gewehr
 	self.g3.categories = {
@@ -1290,7 +1290,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g3.stats.spread = 19
 	self.g3.stats.recoil = 6
 	self.g3.stats.concealment = 14
-	self.g3.fire_mode_data.fire_rate = 60 / 550
+	self.g3.fire_mode_data.fire_rate = 60 / 600
 
 	-- Gecko
 	self.galil.categories = {
@@ -2744,7 +2744,6 @@ local function copy_data(weapon, stats, cosmetics)
 	return weapon
 end
 
-
 Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self, tweak_data)
 	self.tweak_data = tweak_data
 
@@ -2838,8 +2837,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 	self.tkb_crew.reload = "bullpup"
 end)
 
-
 Hooks:PostHook(WeaponTweakData, "_init_data_npc_melee", "eclipse_init_data_npc_melee", function(self)
+	self.npc_melee.taser = deep_clone(self.npc_melee.baton)
+	self.npc_melee.taser = {
+		unit_name = Idstring("units/pd2_dlc_casino/weapons/wpn_third_mel_taser/wpn_third_mel_taser"),
+		damage = 0,
+		animation_param = "melee_taser",
+		player_blood_effect = false,
+		tase_data = {
+			tase_strength = "light",
+			electrocution_time_mul = 0.5
+		}
+	}
+	
 	self.npc_melee.hw_sword = deep_clone(self.npc_melee.helloween)
 	self.npc_melee.hw_sword.unit_name = Idstring("units/pd2_halloween/weapons/wpn_mel_titan_sword/wpn_mel_titan_sword")
 end)

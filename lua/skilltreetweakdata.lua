@@ -531,7 +531,7 @@ function SkillTreeTweakData:init(tweak_data)
 	}
 
 	-- ccf
-	self.specializations[1].category = { "health", "support" }
+	self.specializations[1].category = { "support", "health" }
 	-- mus
 	self.specializations[2].category = { "health" }
 	-- arm
@@ -541,9 +541,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- hit
 	self.specializations[5].category = "dodge"
 	-- crk
-	self.specializations[6].category = { "armor", "dodge" }
-	-- brg
-	self.specializations[7].category = "dodge"
+	self.specializations[6].category = { "armor", "resistance" }
+	-- tct
+	self.specializations[7].category = { "support", "resistance" }
 	-- inf
 	self.specializations[8].category = { "resistance", "healing" }
 	-- soc
@@ -557,21 +557,21 @@ function SkillTreeTweakData:init(tweak_data)
 	-- exp
 	self.specializations[13].category = "healing"
 	-- man
-	self.specializations[14].category = { "support", "resistance" }
+	self.specializations[14].category = { "resistance", "support" }
 	-- anr
-	self.specializations[15].category = { "armor", "armor_gating" }
+	self.specializations[15].category = {"armor_gating", "armor" }
 	-- bik
 	self.specializations[16].category = { "healing", "armor_gating" }
 	-- kpn
 	self.specializations[17].category = { "health", "resistance" }
 	-- sic
-	self.specializations[18].category = { "dodge", "armor_gating" }
+	self.specializations[18].category = { "dodge", "support" }
 	-- stc
 	self.specializations[19].category = { "health", "resistance" }
 	-- tgt
-	self.specializations[20].category = { "healing", "support" }
+	self.specializations[20].category = { "support", "healing" }
 	-- hck
-	self.specializations[21].category = { "support", "healing" }
+	self.specializations[21].category = { "healing", "health" }
 	-- lch
 	self.specializations[22].category = { "health", "resistance" }
 

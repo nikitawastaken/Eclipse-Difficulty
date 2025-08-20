@@ -10,7 +10,7 @@ local optsHunt_SO = {
 
 M.elements = {
 	-- AI_Hunt SO for scripted shield and dozer
-	Eclipse.mission_elements.gen_so(400001, "ai_hunt_so", Vector3(-7273, -2895, -19.999), Rotation(0, 0, -0), optsHunt_SO),
+	Eclipse.mission_elements.gen_so(400001, "ai_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, -0), optsHunt_SO),
 }
 
 return M

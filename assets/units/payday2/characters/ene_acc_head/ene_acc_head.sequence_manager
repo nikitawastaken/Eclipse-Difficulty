@@ -67,7 +67,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'random_balaclava_heavy_swat'" once="true" triggable="true"> 
-			<run_sequence 		name="'balaclava_swat_'..pick('base','base','base','base','none')" />
+			<run_sequence 		name="'balaclava_swat_'..pick('base','base','base','base','base','base','none')" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'random_balaclava_swat_common'" once="true" triggable="true"> 

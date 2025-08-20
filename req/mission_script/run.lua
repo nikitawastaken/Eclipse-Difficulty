@@ -185,6 +185,10 @@ return {
 	[101733] = garage_event_triggered,
 	[102303] = garage_event_triggered,
 	[102304] = garage_event_triggered,
+	-- don't remove civs or enemies for no reason
+	[101207] = disabled,
+	[102047] = disabled,
+	[103245] = disabled,
 	-- ovk145-alike dozer spawn on armitage ave.
 	[103592] = {
 		values = {

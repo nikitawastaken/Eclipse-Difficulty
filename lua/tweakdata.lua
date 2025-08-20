@@ -33,9 +33,10 @@ tweak_data.experience_manager.alive_humans_multiplier = {
 	1,
 }
 
--- the Medic's heal cooldown scales
-tweak_data.medic.cooldown = diff_lerp(5, 3)
+-- Grab the medic heal cooldown from charactertweakdata
+tweak_data.medic.cooldown = tweak_data.character.medic_heal_cooldown or tweak_data.medic.cooldown
 
+-- Tear Gas damage is now a percentage of total HP
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.1
 
 local function create_explosive_arrow(base_arrow)

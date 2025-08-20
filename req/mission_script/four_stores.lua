@@ -55,22 +55,22 @@ return {
 		reinforce = {
 			{
 				name = "pear_shop",
-				force = 2,
+				force = 3,
 				position = Vector3(1450, -2700, 25),
 			},
 			{
 				name = "convenience_store",
-				force = 2,
+				force = 3,
 				position = Vector3(-750, 2700, 25),
 			},
 			{
 				name = "cafe",
-				force = 2,
+				force = 3,
 				position = Vector3(0, -4075, 25),
 			},
 			{
 				name = "china",
-				force = 2,
+				force = 3,
 				position = Vector3(1450, -4050, 25),
 			},
 		},

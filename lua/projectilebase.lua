@@ -2,6 +2,7 @@
 local mvec1 = Vector3()
 local mvec2 = Vector3()
 local mrot1 = Rotation()
+local is_pro_job = Eclipse.utils.is_pro_job()
 
 function ProjectileBase:update(unit, t, dt)
 	if not self._simulated and not self._collided then
@@ -73,7 +74,7 @@ function ProjectileBase:create_sweep_data()
 		slot_mask = self._slot_mask,
 	}
 
-	if Global.game_settings and Global.game_settings.one_down then
+	if is_pro_job then
 		self._sweep_data.slot_mask = self._sweep_data.slot_mask + 3
 	else
 		self._sweep_data.slot_mask = managers.mutators:modify_value("ProjectileBase:create_sweep_data:slot_mask", self._sweep_data.slot_mask)

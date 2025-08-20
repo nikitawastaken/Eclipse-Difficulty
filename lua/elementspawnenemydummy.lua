@@ -1,8 +1,9 @@
--- Don't replace spawns on custom enemy spawner map
 local level_id = Eclipse.utils.level_id()
 local diff_name = Eclipse.utils.difficulty_name()
+local is_testmap = Eclipse.utils.is_testmap()
 
-if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spawner" then
+-- Don't replace spawns on custom enemy spawner map
+if Global.editor_mode or is_testmap then
 	function ElementSpawnEnemyDummy:chk_used_mapped_names(...) end
 	function ElementSpawnEnemyDummy:get_replacement_enemy_name(...) end
 	function ElementSpawnEnemyDummy:replace_enemy_name(...) end
@@ -13,284 +14,10 @@ if Global.editor_mode or level_id == "modders_devmap" or level_id == "Enemy_Spaw
 	return
 end
 
-local marshal_response_heists = {
-	["ranc"] = true,
-	["trai"] = true,
-}
-local bellmead_response_heists = {
-	["corp"] = true,
-	["deep"] = true,
-}
-local has_marshal_response = marshal_response_heists[level_id]
-local has_bellmead_response = bellmead_response_heists[level_id]
-
--- Map to correct incorrect faction spawns
-ElementSpawnEnemyDummy.faction_mapping = {
-	CS = {
-		swat_1 = {
-			"units/payday2/characters/ene_swat_1/ene_swat_1",
-			"units/payday2/characters/ene_swat_3/ene_swat_3",
-		},
-		swat_2 = "units/payday2/characters/ene_swat_2/ene_swat_2",
-		heavy_1 = "units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
-		heavy_2 = "units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
-		sniper = "units/payday2/characters/ene_sniper_1/ene_sniper_1",
-		elite_sniper = "units/payday2/characters/ene_sniper_3/ene_sniper_3",
-		shield = "units/payday2/characters/ene_shield_2/ene_shield_2",
-		elite_shield = "units/payday2/characters/ene_city_shield/ene_city_shield",
-		medic = {
-			"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-			"units/payday2/characters/ene_medic_r870/ene_medic_r870",
-		},
-		taser = {
-			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
-		},
-		cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
-	},
-	FBI = {
-		swat_1 = {
-			"units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
-			"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3",
-		},
-		swat_2 = "units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2",
-		heavy_1 = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
-		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
-		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
-		elite_sniper = "units/payday2/characters/ene_sniper_3/ene_sniper_3",
-		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
-		elite_shield = "units/payday2/characters/ene_city_shield/ene_city_shield",
-		medic = {
-			"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-			"units/payday2/characters/ene_medic_r870/ene_medic_r870",
-		},
-		taser = {
-			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
-		},
-		cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
-	},
-	Elite = {
-		swat_1 = {
-			"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
-			"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
-		},
-		swat_2 = "units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
-		heavy_1 = "units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
-		heavy_2 = "units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
-		sniper = "units/payday2/characters/ene_sniper_2/ene_sniper_2",
-		elite_sniper = "units/payday2/characters/ene_sniper_3/ene_sniper_3",
-		shield = "units/payday2/characters/ene_shield_1/ene_shield_1",
-		elite_shield = "units/payday2/characters/ene_city_shield/ene_city_shield",
-		medic = {
-			"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-			"units/payday2/characters/ene_medic_r870/ene_medic_r870",
-		},
-		taser = {
-			"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-			"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
-		},
-		cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
-	},
-	Zeal = {
-		swat_1 = "units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
-		swat_2 = "units/pd2_dlc_gitgud/characters/ene_zeal_swat_2/ene_zeal_swat_2",
-		heavy_1 = "units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy",
-		heavy_2 = "units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy_2/ene_zeal_swat_heavy_2",
-		shield = "units/pd2_dlc_gitgud/characters/ene_zeal_swat_shield/ene_zeal_swat_shield",
-		medic_1 = "units/pd2_dlc_gitgud/characters/ene_zeal_medic_m4/ene_zeal_medic_m4",
-		medic_2 = "units/pd2_dlc_gitgud/characters/ene_zeal_medic_r870/ene_zeal_medic_r870",
-		taser = "units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer",
-		cloaker = "units/pd2_dlc_gitgud/characters/ene_zeal_cloaker/ene_zeal_cloaker",
-	},
-}
-
-ElementSpawnEnemyDummy.enemy_mapping = {
-	[("units/payday2/characters/ene_swat_1/ene_swat_1"):key()] = "swat_1",
-	[("units/payday2/characters/ene_swat_2/ene_swat_2"):key()] = "swat_2",
-	[("units/payday2/characters/ene_swat_3/ene_swat_3"):key()] = "swat_1",
-	[("units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1"):key()] = "heavy_1",
-	[("units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870"):key()] = "heavy_2",
-	[("units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1"):key()] = "swat_1",
-	[("units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2"):key()] = "swat_2",
-	[("units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3"):key()] = "swat_1",
-	[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = "heavy_1",
-	[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = "heavy_2",
-	[("units/payday2/characters/ene_city_swat_1/ene_city_swat_1"):key()] = "swat_1",
-	[("units/payday2/characters/ene_city_swat_2/ene_city_swat_2"):key()] = "swat_2",
-	[("units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870"):key()] = "swat_2",
-	[("units/payday2/characters/ene_city_swat_3/ene_city_swat_3"):key()] = "swat_1",
-	[("units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36"):key()] = "heavy_1",
-	[("units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870"):key()] = "heavy_2",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"):key()] = "swat_1",
-	[("units/payday2/characters/ene_sniper_1/ene_sniper_1"):key()] = "sniper",
-	[("units/payday2/characters/ene_sniper_2/ene_sniper_2"):key()] = "sniper",
-	[("units/payday2/characters/ene_sniper_3/ene_sniper_3"):key()] = "elite_sniper",
-	[("units/payday2/characters/ene_shield_2/ene_shield_2"):key()] = "shield",
-	[("units/payday2/characters/ene_shield_1/ene_shield_1"):key()] = "shield",
-	[("units/payday2/characters/ene_city_shield/ene_city_shield"):key()] = "elite_shield",
-	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = "cloaker",
-	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "medic",
-	[("units/payday2/characters/ene_medic_r870/ene_medic_r870"):key()] = "medic",
-	[("units/payday2/characters/ene_tazer_1/ene_tazer_1"):key()] = "taser",
-	[("units/payday2/characters/ene_tazer_r870/ene_tazer_r870"):key()] = "taser",
-	[("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"):key()] = "bulldozer",
-	[("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"):key()] = "bulldozer",
-	[("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_r870/ene_akan_fbi_tank_r870"):key()] = "bulldozer",
-	[("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_saiga/ene_akan_fbi_tank_saiga"):key()] = "bulldozer",
-	[("units/pd2_dlc_mad/characters/ene_akan_fbi_tank_rpk_lmg/ene_akan_fbi_tank_rpk_lmg"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_1/ene_bulldozer_hvh_1"):key()] = "bulldozer",
-	[("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_2/ene_bulldozer_hvh_2"):key()] = "bulldozer",
-	[("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_3/ene_bulldozer_hvh_3"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2"):key()] = "bulldozer", -- that's a green dozer
-	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3"):key()] = "bulldozer", -- that's a blackdozer
-	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4"):key()] = "elite_bulldozer", -- that's a skulldozer
-	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1"):key()] = "elite_bulldozer", -- that's a minigundozer
-	[("units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/ene_swat_dozer_policia_federale_r870"):key()] = "bulldozer",
-	[("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_saiga/ene_swat_dozer_policia_federale_saiga"):key()] = "bulldozer",
-	[("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_m249/ene_swat_dozer_policia_federale_m249"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_minigun/ene_swat_dozer_policia_federale_minigun"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_bex/characters/ene_swat_dozer_medic_policia_federale/ene_swat_dozer_medic_policia_federale"):key()] = "elite_bulldozer",
-	[("units/pd2_dlc_mad/characters/ene_akan_cs_shield_c45/ene_akan_cs_shield_c45"):key()] = "shield",
-	[("units/pd2_dlc_mad/characters/ene_akan_fbi_shield_sr2_smg/ene_akan_fbi_shield_sr2_smg"):key()] = "shield",
-	[("units/pd2_dlc_mad/characters/ene_akan_fbi_shield_dw_sr2_smg/ene_akan_fbi_shield_dw_sr2_smg"):key()] = "shield",
-	[("units/pd2_dlc_hvh/characters/ene_shield_hvh_2/ene_shield_hvh_2"):key()] = "shield",
-	[("units/pd2_dlc_hvh/characters/ene_shield_hvh_1/ene_shield_hvh_1"):key()] = "shield",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_shield/ene_murkywater_shield"):key()] = "shield",
-	[("units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_c45/ene_swat_shield_policia_federale_c45"):key()] = "shield",
-	[("units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_mp9/ene_swat_shield_policia_federale_mp9"):key()] = "shield",
-	[("units/pd2_dlc_mad/characters/ene_akan_cs_swat_sniper_svd_snp/ene_akan_cs_swat_sniper_svd_snp"):key()] = "sniper",
-	[("units/pd2_dlc_hvh/characters/ene_sniper_hvh_2/ene_sniper_hvh_2"):key()] = "sniper",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_sniper/ene_murkywater_sniper"):key()] = "sniper",
-	[("units/pd2_dlc_bex/characters/ene_swat_policia_sniper/ene_swat_policia_sniper"):key()] = "sniper",
-	[("units/pd2_dlc_mad/characters/ene_akan_cs_tazer_ak47_ass/ene_akan_cs_tazer_ak47_ass"):key()] = "taser",
-	[("units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1"):key()] = "taser",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer"):key()] = "taser",
-	[("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale"):key()] = "taser",
-	[("units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"):key()] = "cloaker",
-	[("units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"):key()] = "cloaker",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"):key()] = "cloaker",
-	[("units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale"):key()] = "cloaker",
-	[("units/pd2_dlc_mad/characters/ene_akan_medic_ak47_ass/ene_akan_medic_ak47_ass"):key()] = "medic",
-	[("units/pd2_dlc_hvh/characters/ene_medic_hvh_m4/ene_medic_hvh_m4"):key()] = "medic",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_medic/ene_murkywater_medic"):key()] = "medic",
-	[("units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale"):key()] = "medic",
-	[("units/pd2_dlc_mad/characters/ene_akan_medic_r870/ene_akan_medic_r870"):key()] = "medic",
-	[("units/pd2_dlc_hvh/characters/ene_medic_hvh_r870/ene_medic_hvh_r870"):key()] = "medic",
-	[("units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870"):key()] = "medic",
-	[("units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale_r870/ene_swat_medic_policia_federale_r870"):key()] = "medic",
-	[("units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"):key()] = "swat_1",
-	[("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_1/ene_male_marshal_shield_1"):key()] = "shield",
-	[("units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"):key()] = "swat_1",
-	[("units/pd2_dlc_usm2/characters/ene_male_marshal_shield_2/ene_male_marshal_shield_2"):key()] = "shield",
-
-	--Eclipse exclusive units
-	[("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = "soldier_1",
-	[("units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2"):key()] = "soldier_2",
-	[("units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3"):key()] = "soldier_2",
-	--[("units/pd2_dlc_army/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "soldier_tank",
-}
-
-ElementSpawnEnemyDummy.unit_alternatives = {
-	-- Fat variant alternatives
-	-- Security
-	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {
-		["units/payday2/characters/ene_security_1/ene_security_1"] = 4,
-		["units/payday2/characters/ene_security_1_fat/ene_security_1_fat"] = 1,
-	},
-	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = {
-		["units/payday2/characters/ene_security_2/ene_security_2"] = 4,
-		["units/payday2/characters/ene_security_2_fat/ene_security_2_fat"] = 1,
-	},
-	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = {
-		["units/payday2/characters/ene_security_3/ene_security_3"] = 3,
-		["units/payday2/characters/ene_security_3_fat/ene_security_3_fat"] = 1,
-	},
-	-- Beat Cops
-	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = {
-		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 6,
-		["units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"] = 1,
-	},
-	[("units/payday2/characters/ene_cop_2/ene_cop_2"):key()] = {
-		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 4,
-		["units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"] = 1,
-	},
-	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = {
-		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 8,
-		["units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"] = 1,
-	},
-	[("units/payday2/characters/ene_cop_4/ene_cop_4"):key()] = {
-		["units/payday2/characters/ene_cop_4/ene_cop_4"] = 6,
-		["units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"] = 1,
-	},
-	-- LAPD Beat Cops
-	[("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"):key()] = {
-		["units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"] = 6,
-		["units/pd2_dlc_rvd/characters/ene_la_cop_1_fat/ene_la_cop_1_fat"] = 1,
-	},
-	[("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"):key()] = {
-		["units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"] = 4,
-		["units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat"] = 1,
-	},
-	[("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"):key()] = {
-		["units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"] = 8,
-		["units/pd2_dlc_rvd/characters/ene_la_cop_3_fat/ene_la_cop_3_fat"] = 1,
-	},
-	[("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"):key()] = {
-		["units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"] = 6,
-		["units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat"] = 1,
-	},
-	-- SFPD Beat Cops
-	[("units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"):key()] = {
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_01/ene_male_chas_police_01"] = 6,
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_01_fat/ene_male_chas_police_01_fat"] = 1,
-	},
-	[("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"):key()] = {
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"] = 4,
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_02_fat/ene_male_chas_police_02_fat"] = 1,
-	},
-	[("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"):key()] = {
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"] = 8,
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_03_fat/ene_male_chas_police_03_fat"] = 1,
-	},
-	[("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"):key()] = {
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"] = 6,
-		["units/pd2_dlc_chas/characters/ene_male_chas_police_04_fat/ene_male_chas_police_04_fat"] = 1,
-	},
-	-- Texas Rangers
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"):key()] = {
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01/ene_male_ranc_ranger_01"] = 6,
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_01_fat/ene_male_ranc_ranger_01_fat"] = 1,
-	},
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"):key()] = {
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"] = 4,
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02_fat/ene_male_ranc_ranger_02_fat"] = 1,
-	},
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"):key()] = {
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"] = 4,
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03_fat/ene_male_ranc_ranger_03_fat"] = 1,
-	},
-	[("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"):key()] = {
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"] = 4,
-		["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat"] = 1,
-	},
-}
-
-ElementSpawnEnemyDummy.ponr_unit_replacements = {
-	normal = {},
-	overkill = {},
-	easy_wish = {
-		[("units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1"):key()] = "units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36",
-		[("units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870"):key()] = "units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870",
-	},
-}
-ElementSpawnEnemyDummy.faction_mapping.hard = ElementSpawnEnemyDummy.faction_mapping.normal
-ElementSpawnEnemyDummy.faction_mapping.overkill_145 = ElementSpawnEnemyDummy.faction_mapping.overkill
+ElementSpawnEnemyDummy.faction_mapping = Eclipse.faction_mapping
+ElementSpawnEnemyDummy.enemy_mapping = Eclipse.enemy_mapping
+ElementSpawnEnemyDummy.unit_alternatives = Eclipse.unit_alternatives
+ElementSpawnEnemyDummy.ponr_unit_replacements = Eclipse.ponr_unit_replacements
 
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 	self._enemy_table = self._values.enemy_table
@@ -344,7 +71,9 @@ function ElementSpawnEnemyDummy:chk_used_mapped_names(force)
 end
 
 function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
-	local faction = self.faction_mapping[tier or managers.groupai:state():_get_scripted_tier()]
+	local level_tweak = tweak_data.levels[level_id]
+	local faction = self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"]
+		and self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"][tier or managers.groupai:state():_get_scripted_tier()]
 
 	if not faction then
 		return nil
@@ -391,15 +120,6 @@ function ElementSpawnEnemyDummy:replace_enemy_name(name)
 	end
 end
 
-ElementSpawnEnemyDummy.unit_alternative_types = {
-	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/ene_male_marshal_marksman_1"] = "marshal",
-	["units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_2/ene_male_marshal_marksman_2"] = "marshal",
-	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_1/ene_male_marshal_gunner_hcar_1"] = "marshal",
-	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_hcar_2/ene_male_marshal_gunner_hcar_2"] = "marshal",
-	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_1/ene_male_marshal_gunner_sko12_1"] = "marshal",
-	["units/pd2_dlc_usm2/characters/ene_male_marshal_gunner_sko12_2/ene_male_marshal_gunner_sko12_2"] = "marshal",
-}
-
 -- Random unit replacements (used for spawning scripted and non-scripted fat Security and Beat Cops and more)
 function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	local alternative_data = self.unit_alternatives[name:key()]
@@ -408,19 +128,10 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 		return nil
 	end
 
-	local alt_type, type_active, type_limit
 	local alternative_selector = WeightedSelector:new()
-	local special_units = managers.groupai:state()._special_units
-	local special_unit_spawn_limits = tweak_data.group_ai.special_unit_spawn_limits
 	local unit_alternative_types = self.unit_alternative_types
 	for alt_name, alt_weight in pairs(alternative_data) do
-		alt_type = unit_alternative_types[alt_name] or nil
-		type_active = special_units[alt_type] and table.size(special_units[alt_type]) or 0
-		type_limit = special_unit_spawn_limits[alt_type] or math.huge
-
-		if type_active < type_limit then
-			alternative_selector:add(alt_name, alt_weight)
-		end
+		alternative_selector:add(alt_name, alt_weight)
 	end
 
 	if #alternative_selector._values < 1 then

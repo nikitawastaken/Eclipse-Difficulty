@@ -228,28 +228,21 @@ local optsEscapeShield7 = {
 }
 local optsShieldArmy_1 = {
 	enemy = is_eclipse and elite_shield or shield,
+	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = { { id = 400060, delay = 0 } },
 	enabled = true,
 }
 local optsShieldArmy_2 = {
-	enemy = is_eclipse and elite_shield or shield,
-	on_executed = { { id = 400061, delay = 0 } },
+	enemy = taser,
+	spawn_action = "e_sp_armored_truck_1st",
+	on_executed = { { id = 400060, delay = 0 } },
 	enabled = true,
 }
 local optsShieldArmy_3 = {
-	enemy = is_eclipse and elite_shield or shield,
-	on_executed = { { id = 400062, delay = 0 } },
-	enabled = true,
-}
-local optsShieldArmy_4 = {
-	enemy = taser,
-	on_executed = { { id = 400063, delay = 0 } },
-	enabled = true,
-}
-local optsShieldArmy_5 = {
-	enemy = taser,
-	on_executed = { { id = 400064, delay = 0 } },
-	enabled = true,
+	enemy = elite_bulldozer,
+	spawn_action = "e_sp_armored_truck_1st",
+	on_executed = { { id = 400060, delay = 0 } },
+	enabled = is_eclipse,
 }
 local optsTaserGarbagetruck = {
 	enemy = taser,
@@ -324,13 +317,11 @@ local enable_cloaker_basement_ambush = {
 	},
 }
 local optsShieldArmySO = {
-	SO_access = tostring(2048 + 8192),
+	SO_access = tostring(2048 + 4096 + 8192),
+	path_style = "none",
 	scan = true,
-	needs_pos_rsrv = true,
-	align_position = true,
-	align_rotation = true,
 	interval = 2,
-	so_action = "AI_sniper",
+	so_action = "AI_hunt",
 }
 local optsDozerHunt = {
 	SO_access = "4096",
@@ -379,8 +370,22 @@ local optsDefendSO = {
 	pose = "stand",
 }
 local optsspawnArmy = {
-	on_executed = { { id = 400054, delay = 0 }, { id = 400055, delay = 0 }, { id = 400056, delay = 0 }, { id = 400057, delay = 1 }, { id = 400058, delay = 1 } },
-	enabled = overkill_and_above and enabled_chance_shield_army,
+	on_executed = {
+		{ id = 400092, delay = 0 },
+		{ id = 400054, delay = 0 },
+		{ id = 400055, delay = 0 },
+		{ id = 400056, delay = 0 },
+		{ id = 400057, delay = 0 },
+		{ id = 400058, delay = 0 },
+		{ id = 400091, delay = 0 },
+	},
+	enabled = true,
+}
+local optsOpenSwatVanDoors_1 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 105820, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
+	},
 }
 local optsspawnConferenceRoomAmbush = {
 	on_executed = { { id = 101844, delay = 0 }, { id = 400089, delay = 2 }, { id = 400086, delay = 2.5 }, { id = 400087, delay = 2.5 }, { id = 400088, delay = 2.5 } },
@@ -422,7 +427,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400011, "ai_spawn_enemy_Bo's_bulldozer_2", Vector3(-2682, -3588, -125), Rotation(90, -0, -0), optsBulldozer_BO),
 	Eclipse.mission_elements.gen_dummy(400012, "extra_tank_1", Vector3(-3176, 3750, -125), Rotation(90, -0, -0), optsBulldozer_193),
 	Eclipse.mission_elements.gen_dummy(400013, "extra_tank_2", Vector3(-2657, -3569, -125), Rotation(90, -0, -0), optsBulldozer_193),
-	Eclipse.mission_elements.gen_so(400014, "dozer_cloaker_hunt_so", Vector3(-2657, -3569, -90), Rotation(90, -0, -0), optsDozerHunt),
+	Eclipse.mission_elements.gen_so(400014, "dozer_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerHunt),
 
 	--2 E/PJ dozers when leaving the vault
 	Eclipse.mission_elements.gen_dummy(400015, "projob_tank_exit_vault_1", Vector3(3389, 1775, -15), Rotation(180, 0, -0), optsBulldozerVault),
@@ -474,18 +479,16 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400053, "shield_escape_hall_wall_so_2", Vector3(475, 1658, -25), Rotation(180, -0, -0), optsShieldSO),
 
 	-- shield army restoration
-	Eclipse.mission_elements.gen_dummy(400054, "shield_1", Vector3(-5646, 1989, -137.025), Rotation(-160, 0, 0), optsShieldArmy_1),
-	Eclipse.mission_elements.gen_dummy(400055, "shield_2", Vector3(-5583.041, 2011.915, -137.025), Rotation(-160, 0, 0), optsShieldArmy_2),
-	Eclipse.mission_elements.gen_dummy(400056, "shield_3", Vector3(-5521.021, 2034.489, -137.025), Rotation(-160, 0, 0), optsShieldArmy_3),
-	Eclipse.mission_elements.gen_dummy(400057, "taser_1", Vector3(-5664, 2140, -137.025), Rotation(-162, 0, 0), optsShieldArmy_4),
-	Eclipse.mission_elements.gen_dummy(400058, "taser_2", Vector3(-5578.405, 2167.812, -137.025), Rotation(-162, 0, 0), optsShieldArmy_5),
+	Eclipse.mission_elements.gen_dummy(400054, "shield_1", Vector3(-2424.208, 91.231, 13.001), Rotation(87, 0, 0), optsShieldArmy_1),
+	Eclipse.mission_elements.gen_dummy(400055, "shield_2", Vector3(-2426.720, 43.297, 13.001), Rotation(87, 0, 0), optsShieldArmy_1),
+	Eclipse.mission_elements.gen_dummy(400056, "shield_3", Vector3(-2429.651, -12.626, 13.001), Rotation(87, 0, 0), optsShieldArmy_1),
+	Eclipse.mission_elements.gen_dummy(400057, "taser_1", Vector3(-2381.424, 85.985, -4.999), Rotation(87, 0, 0), optsShieldArmy_2),
+	Eclipse.mission_elements.gen_dummy(400058, "taser_2", Vector3(-2386.030, -1.894, -4.999), Rotation(87, 0, 0), optsShieldArmy_2),
+	Eclipse.mission_elements.gen_dummy(400091, "tank_1", Vector3(-2383.779, 41.047, -4.999), Rotation(87, 0, 0), optsShieldArmy_3),
 	Eclipse.mission_elements.gen_missionscript(400059, "shield_army", optsspawnArmy),
 
-	Eclipse.mission_elements.gen_so(400060, "army_so_1", Vector3(-1624, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400061, "army_so_2", Vector3(-1526, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400062, "army_so_3", Vector3(-1425, 1242, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400063, "army_so_4", Vector3(-1477, 991, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
-	Eclipse.mission_elements.gen_so(400064, "army_so_5", Vector3(-1574, 988, 5.001), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_so(400060, "army_so_hunt", Vector3(0, 0, 0), Rotation(0, 0, 0), optsShieldArmySO),
+	Eclipse.mission_elements.gen_object_editor(400092, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenSwatVanDoors_1),
 
 	-- fucking bank guards, why they are so many?
 	Eclipse.mission_elements.gen_dummy(400065, "loud_sec_vault_hallway_1", Vector3(1887, 1002, -24.895), Rotation(90, 0, 0), optsSecurity),

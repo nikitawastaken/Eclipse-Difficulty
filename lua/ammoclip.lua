@@ -69,7 +69,7 @@ function AmmoClip:_pickup(unit)
 					end
 
 					if player_manager:has_category_upgrade("player", "pickup_restore_team_health") then
-						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore)
+						managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "pickup", health_to_restore * 10)
 					end
 				end
 
@@ -105,17 +105,25 @@ function AmmoClip:sync_net_event(event, peer)
 	if not alive(player) or not player:character_damage() or player:character_damage():is_downed() or player:character_damage():dead() then
 		return
 	end
-	Eclipse:log_chat("sync net event received, event: " .. event)
 
 	if event == AmmoClip.EVENT_IDS.bonnie_share_ammo then
-		Eclipse:log_chat("first ammo restore check passed")
 		local inventory = player:inventory()
 
 		if inventory then
-			local picked_up = false
+			-- Gambler ammo share fix (credit goes to TheFixes team)
+			local picked_up, add_amount = false, nil
 
 			for id, weapon in pairs(inventory:available_selections()) do
-				picked_up = weapon.unit:base():add_ammo(tweak_data.upgrades.loose_ammo_give_team_ratio or 0.25) or picked_up
+				picked_up, add_amount = weapon.unit:base():add_ammo(tweak_data.upgrades.loose_ammo_give_team_ratio or 0.25) or picked_up
+				if picked_up and (not add_amount or add_amount < 1) then
+					local wub = weapon.unit:base()
+					if wub and wub._ammo_pickup and wub._ammo_pickup[2] < 2 then
+						local prob = ((wub._ammo_pickup[1] + wub._ammo_pickup[2]) / 2) * tweak_data.upgrades.loose_ammo_give_team_ratio
+						if prob > math.random() then
+							picked_up, add_amount = wub:add_ammo(nil, 1) or picked_up
+						end
+					end
+				end
 			end
 
 			if picked_up then
@@ -124,7 +132,6 @@ function AmmoClip:sync_net_event(event, peer)
 				for id, weapon in pairs(inventory:available_selections()) do
 					managers.hud:set_ammo_amount(id, weapon.unit:base():ammo_info())
 				end
-				Eclipse:log_chat("client restored ammo")
 			end
 		end
 	elseif event == AmmoClip.EVENT_IDS.register_grenade then
@@ -133,17 +140,14 @@ function AmmoClip:sync_net_event(event, peer)
 
 			self._grenade_registered = true
 		end
-	elseif event < AmmoClip.EVENT_IDS.bonnie_share_ammo then
-		Eclipse:log_chat("first health restore check passed")
+	elseif event == (tweak_data.upgrades.values.player.pickup_restore_health[1] * 10) or event == (tweak_data.upgrades.values.player.pickup_restore_health[2] * 10) then
 		local damage_ext = player:character_damage()
 
 		if not damage_ext:need_revive() and not damage_ext:dead() and not damage_ext:is_berserker() then
-			Eclipse:log_chat("playerstate checks passed")
-			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5)
+			local health_to_restore = event * (tweak_data.upgrades.loose_health_give_team_ratio or 0.5) / 10
 
 			if damage_ext:restore_health(health_to_restore, true, true) then
 				player:sound():play("pickup_ammo_health_boost", nil, true)
-				Eclipse:log_chat("client restored health")
 			end
 		end
 	end

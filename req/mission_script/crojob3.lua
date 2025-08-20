@@ -29,6 +29,11 @@ local us_soldier = {
 local us_soldier_dozer = {
 	enemy = is_eclipse and us_soldier_tank or bulldozer_1,
 }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local missing_taser_access_fix = {
 	so_access_filter = { "cop", "swat", "tank", "shield", "taser" },
 }
@@ -39,26 +44,19 @@ local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
 local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
-local flank_spawn = {
+local forest_reinforce_amount = {
 	values = {
-		interval = 15,
+		amount = 3,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
 }
 local timbermill_spawn = {
 	values = {
-		interval = 30,
+		interval = 15,
 	},
-}
-local woods_spawn = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_cops_agents_bulldozers,
 }
 local hillside_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -98,6 +96,11 @@ return {
 	[100485] = specials,
 	[100482] = us_soldier,
 	[100479] = specials,
+	-- 4th chopper
+	[101163] = us_soldier,
+	[101161] = specials,
+	[101164] = us_soldier,
+	[101162] = specials,
 	-- don't disable the choppers when you pick up the bomb part
 	[104312] = {
 		on_executed = {
@@ -147,12 +150,22 @@ return {
 	[101371] = us_soldier,
 	[101372] = us_soldier,
 	[101373] = us_soldier,
+	-- Increase reinforce force
+	[104319] = forest_reinforce_amount,
+	[104318] = forest_reinforce_amount,
+	-- Disable boat escape reinforce
+	[100836] = disabled,
+	[104120] = disabled,
+	-- Restore the woods group
+	[101194] = { -- activate timber mill
+		values = {
+			spawn_groups = { 100231, 100434 },
+		},
+	},
 	-- Spawn group delays
-	[100859] = flank_spawn,
-	[100889] = flank_spawn,
-	[100231] = woods_spawn,
+	[100231] = timbermill_spawn,
 	[100434] = timbermill_spawn,
+	[100435] = hillside_spawn,
 	[100437] = hillside_spawn,
-	[100230] = hillside_spawn,
 	[100230] = hillside_spawn,
 }

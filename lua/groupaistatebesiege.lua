@@ -1235,6 +1235,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
 	end
+
 	for _, enemy in pairs(spawn_group_desc.spawn) do
 		if enemy.random_tactics then
 			tactic_str = weighted_selector(enemy.random_tactics):select()
@@ -1242,22 +1243,18 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		end
 
 		if enemy.random_unit then
-			local random = weighted_selector(enemy.random_unit):select()
-			if tweak_data.group_ai.unit_categories[random] and tweak_data.group_ai.unit_categories[random].access then
-				enemy.unit = random
-			else
-				Eclipse:error_console(string.format("Invalid random unit %s", tostring(random)))
-			end
-
-			if check_special_limit_reached(enemy.unit) then
-				for _, unit in pairs(enemy.random_unit) do
-					if unit ~= enemy.unit and not check_special_limit_reached(unit) then
-						enemy.unit = unit
-
+			unit = weighted_selector(enemy.random_unit):select()
+			if check_special_limit_reached(unit) then
+				local u
+				for k, v in pairs(enemy.random_unit) do
+					u = type(k) == "number" and v or k
+					if u ~= unit and not check_special_limit_reached(u) then
+						unit = u
 						break
 					end
 				end
 			end
+			enemy.unit = unit or enemy.unit
 		end
 	end
 

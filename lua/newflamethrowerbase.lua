@@ -1,5 +1,7 @@
+local is_pro_job = Eclipse.utils.is_pro_job()
+
 Hooks:PostHook(NewFlamethrowerBase, "setup_default", "eclipse_setup_default", function(self)
-	if Global.game_settings and Global.game_settings.one_down then
+	if is_pro_job then
 		self._bullet_slotmask = self._bullet_slotmask + 3
 	end
 end)
