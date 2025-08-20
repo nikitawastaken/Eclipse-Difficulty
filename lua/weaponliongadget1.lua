@@ -38,6 +38,6 @@ function WeaponLionGadget1:is_usable()
 	return self._unit:raycast(self._from, self._to) and true or false
 end
 
-Hooks:PostHook(WeaponLionGadget1, "check_state", "eclipse_check_state", function (self)
+Hooks:PostHook(WeaponLionGadget1, "check_state", "eclipse_check_state", function(self)
 	self._unit:set_extension_update_enabled(Idstring("base"), true)
 end)
