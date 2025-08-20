@@ -24,8 +24,8 @@ end
 local add_original = ContourExt.add
 function ContourExt:add(...)
 	local result = add_original(self, ...)
-	
-	call_on_next_update(function() 
+
+	call_on_next_update(function()
 		return result
 	end)
 end
