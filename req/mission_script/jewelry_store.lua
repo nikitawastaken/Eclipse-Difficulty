@@ -1,8 +1,15 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local enabled = {
 	values = {
 		enabled = true,
+	},
+}
+local bags_required = {
+	values = {
+		amount = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
 	},
 }
 local cop_1 = scripted_enemy.cop_1
@@ -41,6 +48,16 @@ return {
 			amount_random = 1,
 		},
 	},
+	-- change the required amount of jewelry bags
+	[103893] = bags_required,
+	[104131] = bags_required,
+	[103210] = bags_required,
+	[101364] = bags_required,
+	[101425] = bags_required,
+	[101428] = bags_required,
+	[101424] = bags_required,
+	[101427] = bags_required,
+	[101510] = bags_required,
 	-- edit SWAT heli dropoff
 	-- First enable the chopper since it is disabled for some odd reason
 	[102593] = enabled,

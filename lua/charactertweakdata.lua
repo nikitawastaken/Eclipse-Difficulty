@@ -14,6 +14,7 @@ local bellmead_response_heists = {
 }
 local is_undercover = level_id == "man"
 local is_no_mercy = level_id == "nmh"
+local is_mountain_master = level_id == "pent"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 local function diff_lerp(value_1, value_2)
@@ -1039,7 +1040,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.bolivian.speech_prefix_count = 2
 
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
-	self.bolivian_indoors.speech_prefix_p1 = "lt"
+	self.bolivian_indoors.speech_prefix_p1 = is_mountain_master and "rt" or "lt"
 	self.bolivian_indoors.speech_prefix_p2 = nil
 	self.bolivian_indoors.speech_prefix_count = 2
 
