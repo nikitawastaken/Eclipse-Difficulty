@@ -8,13 +8,10 @@ function GrenadeCrateBase:round_value(val)
 end
 
 function GrenadeCrateBase:_set_visual_stage()
+	local percentage = self._grenade_amount / self._max_grenade_amount
+
 	if alive(self._unit) and self._unit:damage() then
-		local nr_visual_states = 3
-		local consumed_units = math.clamp(math.round(1 / (self._grenade_amount / self._max_grenade_amount)) - 1, 0, nr_visual_states)
-
-		Eclipse:log_chat(consumed_units)
-
-		local state = "state_" .. tostring(consumed_units)
+		local state = "state_" .. tostring(math.ceil(percentage * 6))
 
 		if self._unit:damage():has_sequence(state) then
 			self._unit:damage():run_sequence_simple(state)
@@ -66,4 +63,24 @@ function GrenadeCrateBase:_take_grenades()
     end
 
 	return taken
+end
+
+function GrenadeCrateBase:_set_empty()
+	self._empty = true
+	self._ammo_amount = 0
+	local unit = self._unit
+
+	if Network:is_server() or unit:id() == -1 then
+		unit:set_slot(0)
+	else
+		unit:set_visible(false)
+
+		local int_ext = unit:interaction()
+
+		if int_ext then
+			int_ext:set_active(false)
+		end
+
+		unit:set_enabled(false)
+	end
 end

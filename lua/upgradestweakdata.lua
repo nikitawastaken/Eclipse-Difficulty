@@ -2072,6 +2072,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[23][7].multiperk = "15%"
 	self.specialization_descs[23][9].multiperk = "20%"
 
+	-- Grenade Case
+	self.grenade_crate_base = 4
+	self.definitions.grenade_case = {
+		equipment_id = "grenade_case",
+		slot = 1,
+		category = "equipment",
+		name_id = "menu_equipment_grenade_case"
+	}
+
 	-- misc
 	self.values.player.crouch_speed_multiplier[1] = 1.1
 	self.values.player.run_speed_multiplier[1] = 1.1
@@ -2080,5 +2089,4 @@ function UpgradesTweakData:init(tweak_data)
 			required_pickups = 50,
 		},
 	}
-	self.grenade_crate_base = 4
 end

@@ -283,6 +283,9 @@
 		<!-- incendiary cluster grenade explosion -->
 		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
 
+		<!-- dummy unit for grenade case deployable -->
+		<file name="units/payday2/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate_dummy.unit"/>
+
 		<!-- weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
 
@@ -295,6 +298,9 @@
 			<file :name="wpn_fps_upg_perk_whirlwind.texture"/>
 			<file :name="wpn_fps_upg_perk_stockpile.texture"/>
 		</group>
+
+		<!-- placeholder inventory icon for grenade case -->
+		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
 
 		<!-- eclipse risk level asset -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
