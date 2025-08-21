@@ -9,7 +9,7 @@ local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 
-local ambush_event_chance = (is_eclipse and 40 or 20) + (is_pro_job and 10 or 0)
+local ambush_event_chance = math.random() <= (is_eclipse and 0.4 or 0.2) + (is_pro_job and 0.2 or 0)
 
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
