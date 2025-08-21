@@ -39,11 +39,11 @@ function GrenadeCrateBase:take_grenade(unit)
 	end
 
 	local taken = self:_take_grenades()
-	Eclipse:log_chat("taken: " .. taken .. "\ngrenade amount:" .. self._grenade_amount)
+	Eclipse:log_chat("taken: " .. taken .. "\ngrenade amount: " .. self._grenade_amount)
 
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
-		managers.network:session():send_to_peers_synched("sync_grenade_crate_ammo_taken", self._unit, taken)
+		managers.network:session():send_to_peers_synched("sync_grenade_crate_grenade_taken", self._unit, taken)
         managers.player:register_grenade(managers.network:session():local_peer():id())
     end
 
