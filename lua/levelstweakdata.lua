@@ -95,7 +95,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.branchbank.group_ai_settings.first_responders_trade_delay = 75
 	self.branchbank.group_ai_settings.difficulty_scaling.assault_delay = 60
-	
+
 	self.branchbank.group_ai_preset = "small_urban"
 	self.branchbank.has_megaphone_cop = true
 
@@ -108,14 +108,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mallcrasher.group_ai_settings.difficulty_scaling.assault_delay = 75
 	self.mallcrasher.group_ai_preset = "small_urban"
 	self.mallcrasher.has_megaphone_cop = true
-	
+
 	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
 	self.nightclub.group_ai_preset = "small_urban"
 
 	self.family.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.family.group_ai_preset = "small_urban"
 	self.family.has_megaphone_cop = true
-	
+
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_force_mul = 0.85,
@@ -178,7 +178,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.group_ai_preset = "heavy_response"
 
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-
 
 	self.firestarter_3.group_ai_settings = {
 		difficulty_scaling = {

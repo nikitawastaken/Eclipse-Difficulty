@@ -49,6 +49,9 @@ local flank_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers_snipers,
 }
+local scripted_swat_heli_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 return {
 	[103342] = { -- Allow one more sniper
 		values = {
@@ -57,6 +60,8 @@ return {
 		},
 	},
 	-- edit SWAT heli dropoff
+	-- 100% chance for guaranteed chopper
+	[102861] = { chance = 100 },
 	-- remove SO from SWATs
 	[102595] = {
 		on_executed = {
@@ -104,6 +109,7 @@ return {
 	[102046] = street_cop,
 	[102048] = street_cop,
 	-- Spawn Group delays
+	[400004] = scripted_swat_heli_spawn,
 	[103884] = street_spawn,
 	[103887] = street_spawn,
 	[104050] = street_spawn,
