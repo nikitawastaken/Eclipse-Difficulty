@@ -95,7 +95,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.branchbank.group_ai_settings.first_responders_trade_delay = 75
 	self.branchbank.group_ai_settings.difficulty_scaling.assault_delay = 60
-	}
+	
 	self.branchbank.group_ai_preset = "small_urban"
 	self.branchbank.has_megaphone_cop = true
 
