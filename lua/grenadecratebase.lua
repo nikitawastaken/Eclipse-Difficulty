@@ -1,7 +1,80 @@
 -- Handle grenade case as a percentage based deployable
--- todo: fix any potential rounding errors, test syncing, fix cheater tag, fix visuals, apply to ordnance
+-- currently crashes because the entire asset part needs to be redone for this, alongside a new unit file with no dependency on another unit file and yada yada
+-- honestly just make a separate folder at this point and model the contents after the ammobag deployable
 
 local dec_mul = 10000
+
+function GrenadeCrateBase.spawn(pos, rot, grenade_upgrade_lvl, peer_id)
+	local unit_name = "units/payday2/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate"
+	local unit = World:spawn_unit(Idstring(unit_name), pos, rot)
+
+	managers.network:session():send_to_peers_synched("sync_grenade_case_setup", unit, grenade_upgrade_lvl, peer_id or 0)
+	unit:base():setup(grenade_upgrade_lvl)
+
+	return unit
+end
+
+function GrenadeCrateBase:init(unit)
+	UnitBase.init(self, unit, false)
+
+	self._unit = unit
+	self._is_attachable = true
+	self._max_grenade_amount = tweak_data.upgrades.grenade_crate_base + managers.player:upgrade_value_by_level("grenade_case", "grenade_increase", 1)
+
+	self._unit:sound_source():post_event("ammo_bag_drop")
+
+	if Network:is_client() then
+		self._validate_clbk_id = "grenade_case_validate" .. tostring(unit:key())
+
+		managers.enemy:add_delayed_clbk(self._validate_clbk_id, callback(self, self, "_clbk_validate"), Application:time() + 60)
+	end
+end
+
+function GrenadeCrateBase:_clbk_validate()
+	self._validate_clbk_id = nil
+
+	if not self._was_dropin then
+		local peer = managers.network:session():server_peer()
+
+		peer:mark_cheater(VoteManager.REASON.many_assets)
+	end
+end
+
+function GrenadeCrateBase:setup(grenade_upgrade_lvl)
+	self._grenade_amount = tweak_data.upgrades.grenade_crate_base + managers.player:upgrade_value_by_level("grenade_case", "grenade_increase", grenade_upgrade_lvl)
+	self._empty = false
+
+	self:_set_visual_stage()
+
+	if Network:is_server() and self._is_attachable then
+		local from_pos = self._unit:position() + self._unit:rotation():z() * 10
+		local to_pos = self._unit:position() + self._unit:rotation():z() * -10
+		local ray = self._unit:raycast("ray", from_pos, to_pos, "slot_mask", managers.slot:get_mask("world_geometry"))
+
+		if ray then
+			self._attached_data = {
+				body = ray.body,
+				position = ray.body:position(),
+				rotation = ray.body:rotation(),
+				index = 1,
+				max_index = 3
+			}
+
+			self._unit:set_extension_update_enabled(Idstring("base"), true)
+		end
+	end
+end
+
+function GrenadeCrateBase:sync_setup(grenade_upgrade_lvl, peer_id)
+	if self._validate_clbk_id then
+		managers.enemy:remove_delayed_clbk(self._validate_clbk_id)
+
+		self._validate_clbk_id = nil
+	end
+
+	managers.player:verify_equipment(peer_id, "grenade_case")
+	self:setup(grenade_upgrade_lvl)
+end
 
 function GrenadeCrateBase:round_value(val)
 	return math.floor(val * dec_mul) / dec_mul

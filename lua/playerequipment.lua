@@ -38,7 +38,7 @@ function PlayerEquipment:use_grenade_case()
 
 		managers.statistics:use_grenade_crate()
 
-		local amount_upgrade_lvl = 0
+		local amount_upgrade_lvl = managers.player:upgrade_level("grenade_case", "amount_increase")
 
 		if Network:is_client() then
 			managers.network:session():send_to_host("place_deployable_bag", "GrenadeCrateBase", pos, rot, amount_upgrade_lvl)
@@ -62,7 +62,7 @@ function PlayerEquipment:use_grenade_crate()
 
 		managers.statistics:use_grenade_crate()
 
-		local amount_upgrade_lvl = 0
+		local amount_upgrade_lvl = managers.player:upgrade_level("grenade_crate", "amount_increase")
 
 		if Network:is_client() then
 			managers.network:session():send_to_host("place_deployable_bag", "GrenadeCrateDeployableBase", pos, rot, amount_upgrade_lvl)

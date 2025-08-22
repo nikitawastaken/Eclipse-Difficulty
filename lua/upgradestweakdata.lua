@@ -3,6 +3,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	old_pd2_values_init(self, tweak_data)
 
 	self.values.revolver = {} -- init revolver category table
+	self.values.grenade_case = {} -- init revolver category table
 
 	-- why is this here?
 	self.explosive_bullet = {
@@ -2079,6 +2080,26 @@ function UpgradesTweakData:init(tweak_data)
 		slot = 1,
 		category = "equipment",
 		name_id = "menu_equipment_grenade_case"
+	}
+	self.values.grenade_case.quantity = { 1 }
+	self.definitions.grenade_case_quantity = {
+		name_id = "menu_ammo_bag_quantity",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "quantity",
+			category = "grenade_case"
+		}
+	}
+	self.values.grenade_case.amount_increase = { 2 }
+	self.definitions.grenade_case_amount_increase = {
+		category = "equipment_upgrade",
+		name_id = "menu_ammo_bag_amount_increase",
+		upgrade = {
+			value = 1,
+			category = "grenade_case",
+			upgrade = "amount_increase"
+		}
 	}
 
 	-- misc
