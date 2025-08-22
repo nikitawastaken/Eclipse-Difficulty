@@ -63,7 +63,7 @@ GroupAITweakData.group_ai_presets = {
 	},
 	["skyscraper"] = {
 		cs_cops = 0.5,
-		
+
 		cs_shield = 0.75,
 		fbi_shield = 0.75,
 		elite_shield = 0.75,
@@ -1561,7 +1561,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"cloaker",
 		},
 	}
-	
+
 	-- соси хуй кк?
 	self.enemy_spawn_groups = {}
 
@@ -1676,7 +1676,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.cs_cops = {
 		amount = { 3, 3 },
 		spawn = {
@@ -2038,7 +2038,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.fbi_swats = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2525,7 +2525,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.elite_bulldozer = {
 		amount = { 3, 4 },
 		spawn = {
@@ -2624,7 +2624,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"cs_bulldozer",
 		}),
 	}
-	
+
 	self.enemy_spawn_groups.piggydozer = {
 		amount = { 1, 1 },
 		spawn = {
@@ -2815,7 +2815,7 @@ function GroupAITweakData:_apply_group_ai_preset(preset)
 				end
 			end
 		end
-		
+
 		Eclipse:log_console("Group AI preset for " .. level_id .. " set to " .. preset)
 	end
 end
@@ -3168,7 +3168,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		60,
 		below_overkill and 240 or 180,
 	}
-	
+
 	if difficulty_index <= 3 then
 		self.besiege.faction = {
 			"CS",

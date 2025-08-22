@@ -32,7 +32,7 @@ local vent_spawn = {
 }
 return {
 	[100022] = { -- alarm
-		reinforce = { 
+		reinforce = {
 			{
 				name = "gate1",
 				force = 5,
@@ -93,7 +93,7 @@ return {
 	[100779] = fence_spawn,
 	[100131] = dock_spawn,
 	[100130] = dock_spawn,
-	[102397] = dock_spawn,	
+	[102397] = dock_spawn,
 	[100911] = roof_spawn,
 	[100019] = roof_spawn,
 	[102484] = vent_spawn,

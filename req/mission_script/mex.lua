@@ -27,7 +27,7 @@ local cloaker_spawn = {
 	},
 }
 return {
-	-- Add pump and tanker reinforce 
+	-- Add pump and tanker reinforce
 	[102160] = {
 		reinforce = { -- pump 1
 			{

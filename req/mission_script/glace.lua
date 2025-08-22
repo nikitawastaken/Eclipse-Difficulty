@@ -71,7 +71,7 @@ return {
 	},
 	-- Add new reinforce
 	[100529] = {
-		on_executed = { 
+		on_executed = {
 			{ id = 101591, delay = 30 }, -- saw spawns
 		},
 		reinforce = {
@@ -179,7 +179,7 @@ return {
 	-- change preferreds
 	[101176] = { -- saw spawns
 		values = {
-			spawn_groups = { 
+			spawn_groups = {
 				101250, -- 0s
 				101847, -- 0s
 				103886, -- 0s
@@ -189,10 +189,10 @@ return {
 				101153, -- 75s
 			},
 		},
-	},	
+	},
 	[101239] = { -- escape bridge spawns
-		values = { 
-			spawn_groups = { 
+		values = {
+			spawn_groups = {
 				101250, -- 0s
 				101847, -- 0s
 				103886, -- 0s
@@ -200,10 +200,10 @@ return {
 				101252, -- 45s
 			},
 		},
-	},	
+	},
 	[100669] = { -- escape bridge spawns 1
-		values = { 
-			spawn_groups = { 
+		values = {
+			spawn_groups = {
 				101588, -- 30s
 				101589, -- 30s
 				102131, -- 30s

@@ -101,7 +101,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.branchbank.group_ai_preset = "small_urban"
 	self.branchbank.has_megaphone_cop = true
-	
+
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.mallcrasher.group_ai_settings.difficulty_scaling.assault_delay = 75
 	self.mallcrasher.group_ai_preset = "small_urban"
@@ -220,7 +220,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.election_day_3_skip1.has_megaphone_cop = true
 	self.election_day_3_skip2.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
 	self.election_day_3_skip2.has_megaphone_cop = true
-		
+
 	self.roberts.group_ai_settings = {
 		assault_force_mul = 0.85,
 		force_tactics = {

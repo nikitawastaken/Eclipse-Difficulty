@@ -285,7 +285,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
 
-	presets.weapon.shield = based_on(presets.weapon.base, {	
+	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
 		melee_retry_delay = { 1, 2 },
@@ -1248,7 +1248,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.tank_medic.HEALTH_INIT = 400
 	self.tank_medic.headshot_dmg_mul = 25 -- 160 head health
-		
+
 	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
@@ -1273,7 +1273,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shadow_spooc.HEALTH_INIT = 18
 	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 48 head health
 	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
-	
+
 	self.medic.HEALTH_INIT = 30
 	self.medic.headshot_dmg_mul = 2.5 -- 120 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
@@ -1500,8 +1500,10 @@ Hooks:PostHook(CharacterTweakData, "_init_team_ai", "eclipse_init_team_ai", func
 	for _, tweak_name in ipairs(self.team_ai_tweak_names) do
 		if not vanilla_team_ai_weapons then
 			self[tweak_name].weapon.weapons_of_choice = {
-				primary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].primary or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc",
-				secondary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].secondary or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc",
+				primary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].primary
+					or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc",
+				secondary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].secondary
+					or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc",
 			}
 		end
 	end
@@ -1795,12 +1797,12 @@ function CharacterTweakData:_set_presets()
 		local character_weapon = self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "base"
 
 		char_preset.weapon = self.presets.weapon[character_weapon]
-		
+
 		-- Set move speed based on the tweak table or access
 		local char_move_speed = self.tweak_table_move_speed[name] or self.access_move_speed[char_access] or "normal"
 
 		char_preset.move_speed = self.presets.move_speed[char_move_speed]
-	
+
 		-- Set global ECM hurts and ECM vulnerability based on tweak table or access
 		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.8
 
@@ -1816,7 +1818,7 @@ function CharacterTweakData:_set_presets()
 		if surrender_preset then
 			char_preset.surrender = self.presets.surrender[surrender_preset]
 		end
-		
+
 		-- Set up special units based on tags
 		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
@@ -1839,7 +1841,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.can_be_healed = false
 			char_preset.use_animation_on_fire_damage = true
 		end
-		
+
 		-- Boss related stuff
 		if is_event_tank or is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
@@ -1881,13 +1883,13 @@ function CharacterTweakData:_set_presets()
 
 	self.spooc.spooc_attack_timeout = { diff_lerp(8, 3), diff_lerp(10, 4) }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
-		
+
 	self.medic.medic_healing = {
 		cooldown = 3,
-		radius = 600
+		radius = 600,
 	}
 	self.tank_medic.medic_healing = self.medic.medic_healing
-	
+
 	self.tank.damage.armor_health = is_eclipse and 18 or is_overkill and 14 or 10
 	self.tank_medic.damage.armor_health = self.tank.damage.armor_health
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health

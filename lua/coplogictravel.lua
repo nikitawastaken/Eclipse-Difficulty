@@ -80,7 +80,7 @@ Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	if my_data.cover_leave_t and my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
 		my_data.cover_leave_t = nil
 	end
-	
+
 	CopLogicTravel._chk_relocate(data, my_data)
 end)
 
@@ -98,7 +98,7 @@ function CopLogicTravel._chk_relocate(data, my_data)
 
 	data.brain:action_request({
 		body_part = 2,
-		type = "idle"
+		type = "idle",
 	})
 
 	CopLogicTravel._begin_coarse_pathing(data, my_data)

@@ -122,7 +122,7 @@ return {
 			},
 		},
 	},
-	-- Add manhole reinforce 
+	-- Add manhole reinforce
 	[102504] = {
 		reinforce = { -- manhole 1
 			{
