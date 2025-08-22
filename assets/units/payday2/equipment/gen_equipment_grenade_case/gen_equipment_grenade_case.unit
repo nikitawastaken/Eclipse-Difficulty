@@ -4,10 +4,13 @@
 	<network sync="spawn" />
 	<extensions>
 		<extension name="unit_data" class="ScriptUnitData" />
+		<extension name="base" class="GrenadeCrateBase" />
 		<extension name="damage" class="UnitDamage" />
-		<extension name="sync" class="GrenadeCrateSync" />
 		<extension name="interaction" class="UseInteractionExt">
 			<var name="tweak_data" value="grenade_briefcase" />
 		</extension>
 	</extensions>
+   <sounds>
+		<default_soundsource source="rp_gen_equipment_grenade_case"/>
+	</sounds>
 </unit>
