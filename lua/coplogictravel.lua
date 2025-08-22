@@ -99,7 +99,7 @@ function CopLogicTravel._chk_relocate(data, my_data)
 
 	data.brain:action_request({
 		body_part = 2,
-		type = "idle"
+		type = "idle",
 	})
 
 	CopLogicTravel._begin_coarse_pathing(data, my_data)
@@ -371,7 +371,7 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(dat
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.report then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end
-end) 
+end)
 
 -- Make better use of pathing priority
 function CopLogicTravel.get_pathing_prio(data)
