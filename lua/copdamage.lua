@@ -53,7 +53,7 @@ Hooks:PreHook(CopDamage, "_on_damage_received", "sh__on_damage_received", functi
 end)
 
 -- Always remove contours on death
-Hooks:PostHook(CopDamage, "_on_death", "eclipse_on_death", function (self)
+Hooks:PostHook(CopDamage, "_on_death", "eclipse_on_death", function(self)
 	local contour = self._unit.contour and self._unit:contour()
 	if not contour or not contour._contour_list then
 		return
