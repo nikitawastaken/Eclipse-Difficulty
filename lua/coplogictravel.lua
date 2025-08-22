@@ -73,6 +73,7 @@ function CopLogicTravel._get_allowed_travel_nav_segs(data, ...)
 end
 
 -- Fix need for another queued task to update pathing after expired cover leave time
+-- Reposition when the current destination position is too far from the follow unit
 Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	local unit = data.unit
 	local my_data = data.internal_data
@@ -98,7 +99,7 @@ function CopLogicTravel._chk_relocate(data, my_data)
 
 	data.brain:action_request({
 		body_part = 2,
-		type = "idle",
+		type = "idle"
 	})
 
 	CopLogicTravel._begin_coarse_pathing(data, my_data)
@@ -370,7 +371,9 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(dat
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.report then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end
-end) -- Make better use of pathing priority
+end) 
+
+-- Make better use of pathing priority
 function CopLogicTravel.get_pathing_prio(data)
 	if data.team and (data.team.id == "criminal1" or data.team.friends.criminal1) then
 		return 6
