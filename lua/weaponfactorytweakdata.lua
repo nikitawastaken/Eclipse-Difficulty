@@ -203,7 +203,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -5
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.concealment = -4
 	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750, ammo_pickup_min_mul = 1 / 2, ammo_pickup_max_mul = 1 / 2 }
-	
+
 	self.parts.wpn_fps_upg_ak_b_draco.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_draco.stats.concealment = 2
 
@@ -309,7 +309,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	-- Pistol mods
 	self.parts.wpn_fps_pis_g17_ck.stats.spread = 0
 	self.parts.wpn_fps_pis_g17_ck.stats.recoil = 0
-		
+
 	self.parts.wpn_fps_pis_g18c_m_mag_33rnd.stats.extra_ammo = 8
 
 	self.parts.wpn_fps_pis_beretta_m_extended.stats.extra_ammo = 5
@@ -336,7 +336,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_pis_deagle_m_extended.stats.extra_ammo = 0
 	self.parts.wpn_fps_pis_deagle_m_extended.custom_stats = { ammo_offset = 3 }
-	
+
 	self.parts.wpn_fps_pis_deagle_ck.stats.total_ammo_mod = 7
 	self.parts.wpn_fps_pis_deagle_ck.stats.damage = -16
 	self.parts.wpn_fps_pis_deagle_ck.stats.spread = 0
@@ -344,7 +344,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 	self.parts.wpn_fps_pis_deagle_ck.stats.concealment = 0
 	self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_min_mul = 1.25
 	self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_max_mul = 1.25
-	
+
 	self.parts.wpn_fps_pis_usp_b_expert.stats.spread = 1
 	self.parts.wpn_fps_pis_usp_b_expert.stats.concealment = -1
 
@@ -816,20 +816,20 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init_mods", function(sel
 
 	self.parts.wpn_fps_gre_m79_barrel_short.stats.spread = -3
 	self.parts.wpn_fps_gre_m79_barrel_short.stats.concealment = 3
-	 
+
 	self.parts.wpn_fps_gre_m79_stock_short.stats.spread = -2
 	self.parts.wpn_fps_gre_m79_stock_short.stats.recoil = -1
 	self.parts.wpn_fps_gre_m79_stock_short.stats.concealment = 3
 
 	self.parts.wpn_fps_gre_ms3gl_b_long.stats.spread = 4
 	self.parts.wpn_fps_gre_ms3gl_b_long.stats.recoil = 0
-	
+
 	self.parts.wpn_fps_gre_ms3gl_conversion.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_gre_ms3gl_conversion.stats.damage = 0
 	self.parts.wpn_fps_gre_ms3gl_conversion.stats.spread = 0
 	self.parts.wpn_fps_gre_ms3gl_conversion.custom_stats.fire_rate_multiplier = 4 / 3
 	self.parts.wpn_fps_gre_ms3gl_conversion.adds = {}
-	
+
 	-- Conversion kits and various barrels, family based modifications --
 
 	local dmr_stance_muls = {
@@ -1808,7 +1808,7 @@ end
 -- Automatically balance magazine mods based on capacity
 function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 	local upgrade_definitions = tweak_data.upgrades.definitions
-	
+
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
 
@@ -1816,18 +1816,18 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
 
 		local shotgun_reload = weapon_tweak and weapon_tweak.use_shotgun_reload or weapon_tweak and weapon_tweak.timers and weapon_tweak.timers.shotgun_reload_shell or nil
-		local mag_capacity = weapon_tweak and weapon_tweak.CLIP_AMMO_MAX 
-		
+		local mag_capacity = weapon_tweak and weapon_tweak.CLIP_AMMO_MAX
+
 		if not is_akimbo then
 			for part_id, part in pairs(self.parts) do
-				if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then	
+				if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then
 					local is_magazine = part.type == "magazine"
-					
+
 					if is_magazine and not is_supported then
-						if part.stats then 
+						if part.stats then
 							local extra_ammo_stat = part.stats.extra_ammo
 							local ammo_offset_stat = part.custom_stats and part.custom_stats.ammo_offset
-							
+
 							if extra_ammo_stat or ammo_offset_stat then
 								if mag_capacity and not shotgun_reload then
 									local reload_speed_stat
@@ -1856,7 +1856,7 @@ end
 -- Automatically create magazine stat overrides for akimbo weapons
 function WeaponFactoryTweakData:_balance_akimbo(tweak_data)
 	local upgrade_definitions = tweak_data.upgrades.definitions
-	
+
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
 
@@ -1864,44 +1864,44 @@ function WeaponFactoryTweakData:_balance_akimbo(tweak_data)
 		for k, v in pairs(tweak_data.weapon:get_akimbo_mappings()) do
 			akimbo_single_map[v] = k
 		end
-	
+
 		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
 		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
-		
+
 		if is_akimbo then
 			if self[factory_id] then
 				local akimbo_uses_parts = self[factory_id].uses_parts
 				local single_id = akimbo_single_map[weap_id]
 				local single_factory_id = single_id and upgrade_definitions[single_id] and upgrade_definitions[single_id].factory_id
-				local single_uses_parts = single_factory_id and self[single_factory_id].uses_parts				
-			
+				local single_uses_parts = single_factory_id and self[single_factory_id].uses_parts
+
 				if not self[factory_id].override then
 					self[factory_id].override = {}
 				end
-			
+
 				for part_id, part in pairs(self.parts) do
-					if akimbo_uses_parts and table.contains(akimbo_uses_parts, part_id) and single_uses_parts and table.contains(single_uses_parts, part_id) then		
+					if akimbo_uses_parts and table.contains(akimbo_uses_parts, part_id) and single_uses_parts and table.contains(single_uses_parts, part_id) then
 						local is_default_part = table.contains(self[factory_id].default_blueprint, part_id)
 						local is_magazine = part.type == "magazine"
-								
+
 						if is_magazine and not is_default_part then
 							if not self[factory_id].override[part_id] then
 								self[factory_id].override[part_id] = {}
 							end
-							
+
 							if part.stats then
 								self[factory_id].override[part_id].stats = deep_clone(part.stats)
-								
+
 								if part.stats.extra_ammo then
 									self[factory_id].override[part_id].stats.extra_ammo = part.stats.extra_ammo * 2
 								end
 							end
-							
+
 							if part.custom_stats then
 								self[factory_id].override[part_id].custom_stats = deep_clone(part.custom_stats)
-								
+
 								if part.custom_stats.ammo_offset then
-									self[factory_id].override[part_id].custom_stats.ammo_offset = part.custom_stats.ammo_offset * 2			
+									self[factory_id].override[part_id].custom_stats.ammo_offset = part.custom_stats.ammo_offset * 2
 								end
 							end
 						end
