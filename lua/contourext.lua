@@ -21,6 +21,7 @@ if #ContourExt.indexed_types > 128 then
 	Application:error("[ContourExt] max # contour presets exceeded!")
 end
 
+--[[
 local add_original = ContourExt.add
 function ContourExt:add(...)
 	local params = { ... }
@@ -28,3 +29,4 @@ function ContourExt:add(...)
 		add_original(self, unpack(params))
 	end)
 end
+]]

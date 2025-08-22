@@ -955,6 +955,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pent.package = {
 		"packages/job_pent",
 		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
+		"levels/narratives/dentist/mia/stage2/world_sounds",
 	}
 
 	if not no_outfits then

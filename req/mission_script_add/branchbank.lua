@@ -9,7 +9,7 @@ local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 
-local ambush_event_chance = (is_eclipse and 40 or 20) + (is_pro_job and 10 or 0)
+local ambush_event_chance = math.random() <= (is_eclipse and 0.4 or 0.2) + (is_pro_job and 0.2 or 0)
 
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
 local swat_2 = overkill_and_above and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
@@ -213,7 +213,7 @@ local ambush_event_global = {
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
-	enabled = level_id ~= "branchbank" and true or false,
+	enabled = (ambush_event_chance and hard_and_above and level_id ~= "branchbank") and true or false,
 	elements = {
 		400068,
 	},
@@ -225,7 +225,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
-	enabled = level_id ~= "branchbank" and true or false,
+	enabled = (ambush_event_chance and hard_and_above and level_id ~= "branchbank") and true or false,
 	toggle = "off",
 	elements = {
 		100197,
