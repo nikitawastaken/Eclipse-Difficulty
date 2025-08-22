@@ -6,7 +6,7 @@ Hooks:PostHook(EquipmentsTweakData, "init", "eclipse_init", function(self)
 	self.grenade_case = {
 		deploy_time = 2,
 		use_function_name = "use_grenade_case",
-		dummy_unit = "units/payday2/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate_dummy",
+		dummy_unit = "units/payday2/equipment/gen_equipment_grenade_case/gen_equipment_grenade_case_dummy_unit",
 		text_id = "debug_equipment_grenade_case",
 		icon = "equipment_ammo_bag",
 		description_id = "des_ammo_bag",

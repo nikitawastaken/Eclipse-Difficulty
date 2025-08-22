@@ -283,9 +283,6 @@
 		<!-- incendiary cluster grenade explosion -->
 		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
 
-		<!-- dummy unit for grenade case deployable -->
-		<file name="units/payday2/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate_dummy.unit"/>
-
 		<!-- weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
 
@@ -350,6 +347,18 @@
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
 
+		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
+			<group :name="gen_equipment_grenade_case/">
+				<file :name="gen_equipment_grenade_case.cooked_physics"/>
+				<xml  :name="gen_equipment_grenade_case.sequence_manager"/>
+				<file :name="gen_equipment_grenade_case.material_config"/>
+				<file :name="gen_equipment_grenade_case.model"/>
+				<file :name="gen_equipment_grenade_case.object"/>
+				<file :name="gen_equipment_grenade_case.unit"/>
+				<file :name="gen_equipment_grenade_case_dummy_unit.unit"/>
+			</group>
+		</group>
+		
 		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
 			<group :name="wpn_gre_cluster/">

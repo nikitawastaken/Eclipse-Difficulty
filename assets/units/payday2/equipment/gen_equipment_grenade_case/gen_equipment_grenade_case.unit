@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<unit type="item" slot="14" >
+	<object file="units/payday2/equipment/gen_equipment_grenade_case/gen_equipment_grenade_case" />
+	<network sync="spawn" />
+	<extensions>
+		<extension name="unit_data" class="ScriptUnitData" />
+		<extension name="damage" class="UnitDamage" />
+		<extension name="sync" class="GrenadeCrateSync" />
+		<extension name="interaction" class="UseInteractionExt">
+			<var name="tweak_data" value="grenade_briefcase" />
+		</extension>
+	</extensions>
+</unit>
