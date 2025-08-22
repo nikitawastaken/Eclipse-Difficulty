@@ -71,7 +71,7 @@ function BlackMarketManager:modify_damage_falloff(damage_falloff, custom_stats)
 end
 
 -- Uncouple melee knockdown from damage
-Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", function (self, lerp_value)
+Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", function(self, lerp_value)
 	lerp_value = lerp_value or 0
 	local melee_entry = self:equipped_melee_weapon()
 	local stats = tweak_data.blackmarket.melee_weapons[melee_entry].stats
