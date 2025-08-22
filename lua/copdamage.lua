@@ -52,6 +52,24 @@ Hooks:PreHook(CopDamage, "_on_damage_received", "sh__on_damage_received", functi
 	self:build_suppression(4 * damage_info.damage / self._HEALTH_INIT, nil)
 end)
 
+-- Always remove contours on death
+Hooks:PostHook(CopDamage, "_on_death", "eclipse_on_death", function(self)
+	local contour = self._unit.contour and self._unit:contour()
+	if not contour or not contour._contour_list then
+		return
+	end
+
+	while contour._contour_list and #contour._contour_list > 0 do
+		local t = contour._contour_list[1].type
+		contour:_remove(1)
+		contour:apply_to_linked("remove", t)
+	end
+
+	if contour._update_enabled then
+		contour:_chk_update_state()
+	end
+end)
+
 -- Add visor shatter effects
 Hooks:OverrideFunction(CopDamage, "_spawn_head_gadget", function(self, params)
 	if not self._head_gear or self._head_gear_spawned then

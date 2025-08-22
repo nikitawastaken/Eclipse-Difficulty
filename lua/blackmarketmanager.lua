@@ -1,3 +1,16 @@
+local ALLOWED_CREW_WEAPON_CATEGORIES = {
+	smg = true,
+	assault_rifle = true,
+	shotgun = true,
+	lmg = true,
+	snp = true,
+	dmr = true,
+}
+
+function BlackMarketManager:is_weapon_category_allowed_for_crew(weapon_category)
+	return not not ALLOWED_CREW_WEAPON_CATEGORIES[weapon_category]
+end
+
 function BlackMarketManager:modify_damage_falloff(damage_falloff, custom_stats)
 	if damage_falloff and custom_stats then
 		for part_id, stats in pairs(custom_stats) do
@@ -66,14 +79,14 @@ Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", 
 	local bayonet_id = self:equipped_bayonet(primary.weapon_id)
 	local player = managers.player:player_unit()
 
-	local bayonet
+	local dmg = math.lerp(stats.min_damage, stats.max_damage, lerp_value)
+	local dmg_effect = 0.1 * math.lerp(stats.min_damage_effect, stats.max_damage_effect, lerp_value)
+
 	if bayonet_id and player:movement():current_state()._equipped_unit:base():selection_index() == 2 and melee_entry == "weapon" then
 		stats = tweak_data.weapon.factory.parts[bayonet_id].stats
-		bayonet = true
+		dmg = dmg + math.lerp(stats.min_damage, stats.max_damage, lerp_value)
+		dmg_effect = dmg_effect + math.lerp(stats.min_damage_effect, stats.max_damage_effect, lerp_value)
 	end
-
-	local dmg = math.lerp(stats.min_damage, stats.max_damage, lerp_value)
-	local dmg_effect = (bayonet and dmg or 0.1) * math.lerp(stats.min_damage_effect, stats.max_damage_effect, lerp_value)
 
 	return dmg, dmg_effect
 end)

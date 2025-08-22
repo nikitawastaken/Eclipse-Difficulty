@@ -73,6 +73,7 @@ function CopLogicTravel._get_allowed_travel_nav_segs(data, ...)
 end
 
 -- Fix need for another queued task to update pathing after expired cover leave time
+-- Reposition when the current destination position is too far from the follow unit
 Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	local unit = data.unit
 	local my_data = data.internal_data
@@ -80,7 +81,29 @@ Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	if my_data.cover_leave_t and my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
 		my_data.cover_leave_t = nil
 	end
+
+	CopLogicTravel._chk_relocate(data, my_data)
 end)
+
+function CopLogicTravel._chk_relocate(data, my_data)
+	local objective = data.objective
+	if not objective or not alive(objective.follow_unit) or not my_data.advancing or not my_data.coarse_path or my_data.processing_coarse_path then
+		return
+	end
+
+	local destination_pos = my_data.coarse_path[#my_data.coarse_path][2]
+	local follow_pos = objective.follow_unit:movement():nav_tracker():field_position()
+	if mvector3.distance_sq(destination_pos, follow_pos) < 3000 ^ 2 then
+		return
+	end
+
+	data.brain:action_request({
+		body_part = 2,
+		type = "idle",
+	})
+
+	CopLogicTravel._begin_coarse_pathing(data, my_data)
+end
 
 -- Make groups move together (remove close to criminal check to avoid splitting groups)
 function CopLogicTravel.chk_group_ready_to_move(data)
@@ -348,7 +371,9 @@ Hooks:PostHook(CopLogicTravel, "queued_update", "sh_queued_update", function(dat
 	if data.cool and data.char_tweak.chatter and data.char_tweak.chatter.report then
 		managers.groupai:state():chk_say_enemy_chatter(data.unit, data.m_pos, "report")
 	end
-end) -- Make better use of pathing priority
+end)
+
+-- Make better use of pathing priority
 function CopLogicTravel.get_pathing_prio(data)
 	if data.team and (data.team.id == "criminal1" or data.team.friends.criminal1) then
 		return 6

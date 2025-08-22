@@ -22,6 +22,18 @@ return {
 			{ id = 400034, delay = 30 },
 		},
 	},
+
+	-- Delay enemy spawns
+	[100224] = { -- Combat ON
+		on_executed = {
+			{ id = 101024, delay = 60 }, -- elevators
+		},
+	},
+	[101907] = { -- start enemies delay end
+		on_executed = {
+			{ id = 100230, delay = 60 }, -- wall spawns
+		},
+	},
 	-- Remove vanilla reinforce
 	[103204] = disabled,
 	[103205] = disabled,

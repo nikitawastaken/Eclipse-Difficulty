@@ -44,12 +44,12 @@ local dozer_van_chance = {
 }
 local street_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local elevator_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields,
 }

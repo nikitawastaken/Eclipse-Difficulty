@@ -1,3 +1,8 @@
+Hooks:PostHook(MedicDamage, "_init_medic", "eclipse_init_medic", function(self)
+	self._heal_cooldown = self._char_tweak.medic_healing and self._char_tweak.medic_healing.cooldown or 3
+	self._heal_radius = self._char_tweak.medic_healing and self._char_tweak.medic_healing.radius or 600
+end)
+
 local heal_unit_orig = MedicDamage.heal_unit
 function MedicDamage:heal_unit(...)
 	if self._unit:movement():chk_action_forbidden("action") then
@@ -31,12 +36,6 @@ function MedicDamage:verify_heal_requesting_unit(requesting_unit, ...)
 	end
 
 	return false
-end
-
--- Increase medic heal radius
-local get_healing_radius_sq_original = MedicDamage.get_healing_radius_sq
-function MedicDamage:get_healing_radius_sq(...)
-	return get_healing_radius_sq_original(self, ...) * 1.5 * 1.5
 end
 
 -- Fix medics healing during full body actions

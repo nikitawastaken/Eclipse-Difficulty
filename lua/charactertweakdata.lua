@@ -213,7 +213,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_flamethrower.melee_retry_delay = nil
 	presets.weapon.base.is_flamethrower.RELOAD_SPEED = 0.6
 	presets.weapon.base.is_flamethrower.autofire_rounds = { 20, 40 }
-	presets.weapon.base.is_flamethrower.range = { close = 450, optimal = 900, far = 1800 }
+	presets.weapon.base.is_flamethrower.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.base.is_flamethrower.FALLOFF = {
 		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -288,7 +288,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.shield = based_on(presets.weapon.base, {
 		melee_range = 150,
 		melee_force = 500,
-		melee_speed = 0.8,
+		melee_retry_delay = { 1, 2 },
 		range = { close = 500, optimal = 1000, far = 2000 },
 	})
 
@@ -406,7 +406,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.bulldozer = based_on(presets.weapon.base, {
 		aim_delay = { 0, 2 },
-		melee_dmg = 24 * special_dmg_mul,
+		melee_dmg = 30 * special_dmg_mul,
 		melee_range = 175,
 		melee_force = 600,
 	})
@@ -762,7 +762,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		factors = {
 			health = {
 				[1.0] = 0,
-				[0.0] = 0.8,
+				[0.0] = 0.75,
 			},
 			aggressor_dis = {
 				[100] = 0.3,
@@ -783,8 +783,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 		factors = {
 			health = {
-				[0.8] = 0,
-				[0.0] = 0.6,
+				[0.75] = 0,
+				[0.0] = 0.5,
 			},
 			aggressor_dis = {
 				[100] = 0.2,
@@ -805,8 +805,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 		factors = {
 			health = {
-				[0.6] = 0,
-				[0.0] = 0.4,
+				[0.5] = 0,
+				[0.0] = 0.25,
 			},
 			aggressor_dis = {
 				[100] = 0.1,
@@ -928,6 +928,24 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	return presets
 end
 
+function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
+	for preset_name, preset in pairs(self.presets.move_speed) do
+		if preset_name ~= "civ_fast" then
+			for _, pose in pairs(preset) do
+				for haste_name, haste in pairs(pose) do
+					for stance_name, stance in pairs(haste) do
+						if stance_name ~= "ntl" then
+							for move_dir in pairs(stance) do
+								stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self._prefix_data_p1 = {
 		cop = function()
@@ -983,13 +1001,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
 
+	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
+
 	self.cop_fat = deep_clone(self.cop)
 	self.cop_fat.HEALTH_INIT = 6
 	self.cop_fat.dodge = nil
 	self.cop_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "cop_fat")
-
-	self.cop_scared.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi.speech_prefix_p1 = self._unit_prefixes.cop
 	self.fbi.suppression = self.presets.suppression.easy
@@ -1024,10 +1042,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cobra.speech_prefix_count = not is_undercover and 2 or nil
 	table.insert(self._enemy_list, "cobra")
 
-	self.biker.melee_weapon = "knife_1"
 	self.biker.speech_prefix_p1 = "bik"
 	self.biker.speech_prefix_p2 = nil
 	self.biker.speech_prefix_count = 2
+	self.biker.melee_weapon = "knife_1"
 	self.biker.chatter = self.presets.enemy_chatter.gangster
 
 	self.biker_female.chatter = self.presets.enemy_chatter.gangster
@@ -1097,8 +1115,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_swat.suppression = self.presets.suppression.hard_agg
 
 	self.city_heavy_swat = deep_clone(self.fbi_heavy_swat)
-	self.city_heavy_swat.HEALTH_INIT = 24
-	self.city_heavy_swat.headshot_dmg_mul = 2.5 -- 96 head health
+	self.city_heavy_swat.HEALTH_INIT = 28
+	self.city_heavy_swat.headshot_dmg_mul = 2.5 -- 112 head health
 	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
 	self.city_heavy_swat.suppression = self.presets.suppression.hard_agg
 	table.insert(self._enemy_list, "city_heavy_swat")
@@ -1125,7 +1143,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.murky.steal_loot = false
 	table.insert(self._enemy_list, "murky")
 
-	self.soldier = deep_clone(self.fbi_swat)
+	self.soldier = deep_clone(self.swat)
 	self.soldier.HEALTH_INIT = 14
 	self.soldier.headshot_dmg_mul = 2.5 -- 56 head health
 	self.soldier.surrender = self.presets.surrender.no_assault
@@ -1167,7 +1185,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.shield.HEALTH_INIT = 16
 	self.shield.headshot_dmg_mul = 2.5 -- 64 head health
 	self.shield.speech_prefix_p1 = self._unit_prefixes.heavy_swat
-	self.shield.min_obj_interrupt_dis = 500
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt
 	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
 	self.shield.die_sound_event = nil --he already has his death sound
@@ -1217,7 +1234,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.taser.HEALTH_INIT = 36
 	self.taser.headshot_dmg_mul = 2.5 -- 144 head health
-	self.taser.min_obj_interrupt_dis = 1000
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
 	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
 
@@ -1226,18 +1242,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.tank.HEALTH_INIT = 400
 	self.tank.headshot_dmg_mul = 25 -- 160 head health
-	self.tank.min_obj_interrupt_dis = 600
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-	self.tank.move_speed.stand.run.cbt = self.tank.move_speed.stand.walk.cbt
-	self.tank.ignore_melee_headshot = true
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
 
-	self.tank_medic = deep_clone(self.tank)
-	self.tank_medic.can_be_healed = false
-	table.insert(self.tank_medic.tags, "medic")
+	self.tank_medic.HEALTH_INIT = 400
+	self.tank_medic.headshot_dmg_mul = 25 -- 160 head health
 
-	self.tank_hw = deep_clone(self.tank)
 	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
@@ -1255,21 +1266,18 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.spooc.HEALTH_INIT = 18
 	self.spooc.headshot_dmg_mul = 3.75 -- 48 head health
-	self.spooc.min_obj_interrupt_dis = 800
-	self.spooc.spooc_attack_use_smoke_chance = 0
-	self.spooc.spooc_attack_move_speed_mul = 1.75
-	self.spooc.spooc_attack_dodge_timeout = { 0.5, 1 }
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
-	self.spooc.use_animation_on_fire_damage = true
 	self.spooc.melee_weapon = "baton"
 	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
+
+	self.shadow_spooc.HEALTH_INIT = 18
+	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 48 head health
+	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
 
 	self.medic.HEALTH_INIT = 30
 	self.medic.headshot_dmg_mul = 2.5 -- 120 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
 	self.medic.dodge = self.presets.dodge.medic
-	self.medic.use_animation_on_fire_damage = true
-	self.medic.can_be_healed = false
 
 	self.zeal_medic = deep_clone(self.medic)
 	table.insert(self._enemy_list, "zeal_medic")
@@ -1490,14 +1498,14 @@ CharacterTweakData.team_ai_weapons_mapped = {
 
 Hooks:PostHook(CharacterTweakData, "_init_team_ai", "eclipse_init_team_ai", function(self)
 	for _, tweak_name in ipairs(self.team_ai_tweak_names) do
-		self[tweak_name].weapon.weapons_of_choice = {
-			primary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].primary
-				or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc"
-				or "wpn_fps_ass_m4_npc",
-			secondary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].secondary
-				or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc"
-				or "wpn_fps_ass_m4_npc",
-		}
+		if not vanilla_team_ai_weapons then
+			self[tweak_name].weapon.weapons_of_choice = {
+				primary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].primary
+					or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc",
+				secondary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].secondary
+					or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc",
+			}
+		end
 	end
 end)
 
@@ -1610,26 +1618,6 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_ids, "snowthrower_tank")
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 end)
-
--- fixed movement speed difficulty scaling
--- thanks redflame
-function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
-	for preset_name, preset in pairs(self.presets.move_speed) do
-		if preset_name ~= "civ_fast" and preset_name ~= "escort_slow" and preset_name ~= "escort_normal" then
-			for _, pose in pairs(preset) do
-				for haste_name, haste in pairs(pose) do
-					for stance_name, stance in pairs(haste) do
-						if stance_name ~= "ntl" then
-							for move_dir in pairs(stance) do
-								stance[move_dir] = stance[move_dir] * (haste_name == "walk" and walk_mul or run_mul)
-							end
-						end
-					end
-				end
-			end
-		end
-	end
-end
 
 local ecm_vuln_swat = 0.6
 local ecm_vuln_heavy = 0.4
@@ -1786,30 +1774,11 @@ function CharacterTweakData:_set_presets()
 	for _, name in pairs(self._enemy_list) do
 		local char_preset = self[name]
 		local char_access = char_preset.access
+		local tag_map = type(char_preset.tags) == "table" and table.list_to_set(char_preset.tags) or {}
 
 		local is_boss = name:match("_boss$")
 		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
-
-		-- Set surrender preset based on access
-		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
-
-		if surrender_preset then
-			char_preset.surrender = self.presets.surrender[surrender_preset]
-		end
-
-		-- Set surrender break time based on access
-		char_preset.surrender_break_time = self.access_surrender_break[char_access] or { 10, 15 }
-
-		-- Set global ECM hurts and ECM vulnerability based on tweak table or access
-		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access]
-
-		char_preset.ecm_hurts = { ears = 4 }
-		char_preset.ecm_vulnerability = char_ecm_vuln or 0.8
-
-		-- Set move speed based on the tweak table or access
-		local char_move_speed = self.presets.move_speed[self.tweak_table_move_speed[name] or self.access_move_speed[char_access]]
-
-		char_preset.move_speed = char_move_speed or self.presets.move_speed.normal
+		local is_shadow_spooc = name == "shadow_spooc"
 
 		-- Set health and HS mul based on access
 		if not self.access_health_hs_mul_blacklist[name] then
@@ -1824,6 +1793,55 @@ function CharacterTweakData:_set_presets()
 			end
 		end
 
+		-- Set the weapon preset based on the tweak table or access
+		local character_weapon = self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "base"
+
+		char_preset.weapon = self.presets.weapon[character_weapon]
+
+		-- Set move speed based on the tweak table or access
+		local char_move_speed = self.tweak_table_move_speed[name] or self.access_move_speed[char_access] or "normal"
+
+		char_preset.move_speed = self.presets.move_speed[char_move_speed]
+
+		-- Set global ECM hurts and ECM vulnerability based on tweak table or access
+		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.8
+
+		char_preset.ecm_hurts = { ears = 4 }
+		char_preset.ecm_vulnerability = char_ecm_vuln
+
+		-- Set surrender break time based on access
+		char_preset.surrender_break_time = self.access_surrender_break[char_access] or { 10, 15 }
+
+		-- Set surrender preset based on access
+		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
+
+		if surrender_preset then
+			char_preset.surrender = self.presets.surrender[surrender_preset]
+		end
+
+		-- Set up special units based on tags
+		if tag_map.shield then
+			char_preset.min_obj_interrupt_dis = 600
+			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
+		elseif tag_map.tank then
+			char_preset.min_obj_interrupt_dis = 600
+			char_preset.ignore_melee_headshot = true
+			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
+			char_preset.can_be_healed = tag_map.medic and false or true
+		elseif is_shadow_spooc or tag_map.spooc then
+			char_preset.min_obj_interrupt_dis = 800
+			char_preset.spooc_attack_use_smoke_chance = 0
+			char_preset.spooc_attack_move_speed_mul = 1.75
+			char_preset.spooc_attack_dodge_timeout = { 0.5, 1 }
+			char_preset.use_animation_on_fire_damage = true
+			char_preset.can_be_healed = false
+		elseif tag_map.taser then
+			char_preset.min_obj_interrupt_dis = 1000
+		elseif tag_map.medic then
+			char_preset.can_be_healed = false
+			char_preset.use_animation_on_fire_damage = true
+		end
+
 		-- Boss related stuff
 		if is_event_tank or is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
@@ -1834,13 +1852,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.immune_to_knock_down = true
 			char_preset.immune_to_concussion = true
 			char_preset.use_animation_on_fire_damage = false
-		end
-
-		-- Make sure that Shield type enemies cannot do the grenade throwing animation
-		local is_shield = char_access == "shield" and char_preset.wall_fwd_offset
-
-		if is_shield then
-			char_preset.no_grenade_anim = true
+			char_preset.can_be_healed = false
 		end
 
 		-- Remove damage clamps, they are not a fun or intuitive mechanic
@@ -1850,8 +1862,6 @@ function CharacterTweakData:_set_presets()
 		if char_preset.damage and char_preset.damage.explosion_damage_mul then
 			char_preset.damage.explosion_damage_mul = 1
 		end
-
-		char_preset.weapon = self.presets.weapon[self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "base"]
 	end
 
 	--Some exceptions
@@ -1871,17 +1881,19 @@ function CharacterTweakData:_set_presets()
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
-	self.spooc.spooc_attack_timeout = { diff_lerp(6, 3), diff_lerp(8, 4) }
+	self.spooc.spooc_attack_timeout = { diff_lerp(8, 3), diff_lerp(10, 4) }
 	self.shadow_spooc.shadow_spooc_attack_timeout = self.spooc.spooc_attack_timeout
 
-	self.medic_heal_cooldown = 3
+	self.medic.medic_healing = {
+		cooldown = 3,
+		radius = 600,
+	}
+	self.tank_medic.medic_healing = self.medic.medic_healing
 
 	self.tank.damage.armor_health = is_eclipse and 18 or is_overkill and 14 or 10
-
+	self.tank_medic.damage.armor_health = self.tank.damage.armor_health
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
-
 	self.city_tank.damage.armor_health = self.tank.damage.armor_health * (4 / 3)
-
 	self.tank_armor_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
 	-- eclipse exclusive edits

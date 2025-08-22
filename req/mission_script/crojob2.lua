@@ -11,13 +11,13 @@ local fence_spawn = {
 }
 local upper_spawn = {
 	values = {
-		interval = 30,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
-		interval = 45,
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -57,24 +57,6 @@ return {
 			},
 		},
 	},
-	[102303] = {
-		reinforce = {
-			{ name = "crane1" },
-			{ name = "crane2" },
-			{ name = "roof1" },
-			{ name = "roof2" },
-			{
-				name = "roof1",
-				force = 2,
-				position = Vector3(-8250, 8100, 750),
-			},
-			{
-				name = "roof2",
-				force = 2,
-				position = Vector3(-9500, 5000, 750),
-			},
-		},
-	},
 	--National Guard instead of regular security
 	[101764] = security_army,
 	[101317] = security_army,
@@ -110,6 +92,7 @@ return {
 	[100869] = fence_spawn,
 	[101574] = fence_spawn,
 	[101630] = upper_spawn,
+	[101770] = upper_spawn,
 	[101771] = upper_spawn,
 	[101772] = upper_spawn,
 	[102887] = upper_spawn,

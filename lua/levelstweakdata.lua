@@ -75,7 +75,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.85,
 		recon_interval_variation_mul = 0.75,
 		push_delay_mul = 1.25,
 		difficulty_scaling = {
@@ -93,27 +93,28 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ukrainian_job.group_ai_preset = "small_urban"
 
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.branchbank.group_ai_settings.assault_force_mul = nil
-	self.branchbank.group_ai_settings.difficulty_scaling = {
-		assault_delay = 60,
-	}
+	self.branchbank.group_ai_settings.first_responders_trade_delay = 75
+	self.branchbank.group_ai_settings.difficulty_scaling.assault_delay = 60
+
 	self.branchbank.group_ai_preset = "small_urban"
 	self.branchbank.has_megaphone_cop = true
 
-	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.mallcrasher.group_ai_settings.difficulty_scaling = {
-		diff_init = 0.2,
-		assault_delay = 75,
-	}
-	self.mallcrasher.group_ai_preset = "small_urban"
-	self.mallcrasher.has_megaphone_cop = true
-
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	self.four_stores.group_ai_settings.assault_force_mul = 0.7
 	self.four_stores.group_ai_preset = "small_urban"
 	self.four_stores.has_megaphone_cop = true
 
+	self.mallcrasher.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
+	self.mallcrasher.group_ai_settings.difficulty_scaling.assault_delay = 75
+	self.mallcrasher.group_ai_preset = "small_urban"
+	self.mallcrasher.has_megaphone_cop = true
+
 	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
 	self.nightclub.group_ai_preset = "small_urban"
+
+	self.family.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
+	self.family.group_ai_preset = "small_urban"
+	self.family.has_megaphone_cop = true
 
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.75,
@@ -168,6 +169,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
+			assault_delay = 30,
 		},
 		special_limit_add = {
 			shield = 1,
@@ -177,8 +179,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 
-	self.firestarter_3.group_ai_settings = deep_clone(self.branchbank.group_ai_settings)
-	self.firestarter_3.group_ai_preset = nil
+	self.firestarter_3.group_ai_settings = {
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
+	}
 	self.firestarter_3.has_megaphone_cop = true
 
 	self.framing_frame_2.group_ai_settings = {
@@ -209,6 +214,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		cs_grenade_chance_times_mul = 0.75,
 	}
 
+	self.election_day_3.group_ai_settings = {
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
+	}
+	self.election_day_3.has_megaphone_cop = true
+
+	self.election_day_3_skip1.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
+	self.election_day_3_skip1.has_megaphone_cop = true
+	self.election_day_3_skip2.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
+	self.election_day_3_skip2.has_megaphone_cop = true
+
 	self.roberts.group_ai_settings = {
 		assault_force_mul = 0.85,
 		force_tactics = {
@@ -234,8 +251,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 0.65,
 		assault_delay_mul = 1.35,
 		assault_force_mul = 0.7,
-		assault_push_delay_mul = 1.25,
 		reenforce_min_interval_mul = 0.5,
+		min_grenade_timeout_mul = 1.5,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_delay = 0,
@@ -274,6 +291,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+	self.crojob2.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
 	self.crojob2.group_ai_preset = "heavy_response"
 
 	self.crojob3.group_ai_settings = {
@@ -289,10 +307,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3_night.group_ai_preset = "heavy_response"
 
 	self.kenaz.group_ai_settings = {
+		first_responders_trade_delay = 60,
 		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 1.15,
 		difficulty_scaling = {
-			assault_delay = 90,
+			assault_delay = 75,
 		},
 		force_tactics = {
 			shield_def = {
@@ -302,7 +321,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.dinner.group_ai_settings = {
-		first_responders_trade_delay = 90,
 		difficulty_scaling = {
 			assault_delay = 75,
 		},
@@ -392,7 +410,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -2,
 		},
 		force_tactics = {
-			cop_def = {
+			cop = {
+				ranged_fire = false,
+			},
+			hrt_init = {
 				ranged_fire = false,
 			},
 			swat_init = {
@@ -473,9 +494,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.run.group_ai_settings.assault_force_mul = 0.85
 	self.run.group_ai_settings.difficulty_scaling = { assault_delay = 0 }
 	self.run.group_ai_settings.special_limit_add = { taser = 1 }
+	self.run.group_ai_preset = "street"
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	self.glace.group_ai_settings.difficulty_scaling = { assault_delay = 120 }
+	self.glace.group_ai_settings.difficulty_scaling = { assault_delay = 90 }
+	self.glace.group_ai_preset = "street"
 
 	self.wwh.group_ai_settings = {
 		assault_force_mul = 0.7,
@@ -588,6 +611,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sand.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
 	self.sand.group_ai_settings.assault_force_mul = 0.85
 	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
+	self.sand.group_ai_preset = "street"
 
 	self.chca.group_ai_settings = {
 		first_responders_trade_delay = 60,

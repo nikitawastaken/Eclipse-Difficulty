@@ -2,7 +2,7 @@ return function(timed_tactics)
 	return {
 		disabled = true,
 		timer_data = {
-			initial_delay = 0,
+			initial_delay = 30,
 			cooldown = { 15, 20 },
 			diff_scale = { 1, 1, 1 },
 		},
@@ -32,22 +32,22 @@ return function(timed_tactics)
 				spawn = {
 					{
 						amount_min = 1,
-						rank = 2,
-						freq = 2,
+						rank = 1,
+						freq = 1,
 						unit = "murkywater",
 						tactics = timed_tactics.murky_def,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
-						freq = 1,
+						freq = 0.5,
 						unit = "murkywater",
 						tactics = timed_tactics.murky_agg,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
-						freq = 1,
+						freq = 0.5,
 						unit = "murkywater",
 						tactics = timed_tactics.murky_snk,
 					},

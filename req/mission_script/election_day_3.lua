@@ -63,7 +63,6 @@ local atrium_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields,
 }
 local window_spawn = {
 	values = {
@@ -83,36 +82,24 @@ return {
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
 	},
-	-- Delay the assault
-	[102711] = {
-		on_executed = {
-			{ id = 102734, delay = 30 },
-		},
-	},
 	-- New reinforce
 	[104306] = {
 		reinforce = {
 			{
 				name = "atrium_left",
-				force = 2,
+				force = 3,
 				position = Vector3(-450, 150, 0),
 			},
 			{
 				name = "atrium_middle",
-				force = 2,
+				force = 3,
 				position = Vector3(-1300, -1600, 0),
 			},
 			{
 				name = "atrium_right",
-				force = 2,
+				force = 3,
 				position = Vector3(-450, -3350, 0),
 			},
-		},
-	},
-	-- Vault is open, diff 1
-	[104599] = {
-		on_executed = {
-			{ id = 103519, delay = 0 },
 		},
 	},
 	-- Prevent sniper respawn delays becoming ridiculously small as more assaults pass

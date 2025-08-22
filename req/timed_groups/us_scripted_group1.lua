@@ -33,14 +33,14 @@ return function(timed_tactics, difficulty_index)
 					{
 						amount_min = 1,
 						rank = 2,
-						freq = 1.5,
+						freq = 1,
 						unit = "army_soldier_2",
 						tactics = timed_tactics.army_def,
 					},
 					{
 						amount_max = 2,
-						rank = 2,
-						freq = 1,
+						rank = 3,
+						freq = 0.5,
 						unit = "army_soldier_3",
 						tactics = timed_tactics.army_agg,
 					},

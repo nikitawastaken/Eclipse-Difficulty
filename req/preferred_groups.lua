@@ -5,6 +5,7 @@ local default_preferred = {
 	cs_defend_init = true,
 	cs_defend_light = true,
 	cs_defend_heavy = true,
+	cs_stealth_init = true,
 	cs_stealth_light = true,
 	cs_stealth_heavy = true,
 	cs_cops = true,
@@ -16,6 +17,7 @@ local default_preferred = {
 	fbi_defend_init = true,
 	fbi_defend_light = true,
 	fbi_defend_heavy = true,
+	fbi_stealth_init = true,
 	fbi_stealth_light = true,
 	fbi_stealth_heavy = true,
 	fbi_swats = true,
@@ -31,17 +33,16 @@ local default_preferred = {
 	elite_sniper = true,
 	elite_shield = true,
 	elite_taser = true,
-	elite_taser_takedown = true,
 	elite_bulldozer = true,
 	elite_bulldozer_shield = true,
-	elite_bulldozer_takedown = true,
 }
 
 local group_type_mapping = {
 	cs_defend_init = "cop_group",
 	cs_defend_light = "swat_group",
 	cs_defend_heavy = "swat_group",
-	cs_stealth_light = "cop_group",
+	cs_stealth_init = "cop_group",
+	cs_stealth_light = "hrt_group",
 	cs_stealth_heavy = "hrt_group",
 	cs_cops = "cop_group",
 	cs_swats = "swat_group",
@@ -52,7 +53,8 @@ local group_type_mapping = {
 	fbi_defend_init = "agent_group",
 	fbi_defend_light = "swat_group",
 	fbi_defend_heavy = "swat_group",
-	fbi_stealth_light = "agent_group",
+	fbi_stealth_init = "agent_group",
+	fbi_stealth_light = "hrt_group",
 	fbi_stealth_heavy = "hrt_group",
 	fbi_swats = "swat_group",
 	fbi_heavies = "swat_group",
@@ -67,10 +69,8 @@ local group_type_mapping = {
 	elite_sniper = "sniper_group",
 	elite_shield = "shield_group",
 	elite_taser = "taser_group",
-	elite_taser_takedown = "taser_group",
 	elite_bulldozer = "bulldozer_group",
 	elite_bulldozer_shield = "shield_group",
-	elite_bulldozer_takedown = "bulldozer_group",
 }
 
 local function create_preferred(excluded_types)

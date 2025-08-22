@@ -30,6 +30,7 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"cs_defend_init",
 		"cs_defend_light",
 		"cs_defend_heavy",
+		"cs_stealth_init",
 		"cs_stealth_light",
 		"cs_stealth_heavy",
 		"cs_cops",
@@ -38,6 +39,7 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"fbi_defend_init",
 		"fbi_defend_light",
 		"fbi_defend_heavy",
+		"fbi_stealth_init",
 		"fbi_stealth_light",
 		"fbi_stealth_heavy",
 		"fbi_swats",
@@ -57,7 +59,6 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"cs_taser",
 		"fbi_taser",
 		"elite_taser",
-		"elite_taser_takedown",
 	},
 	FBI_spoocs = {
 		"fbi_cloaker",
@@ -67,7 +68,6 @@ ElementSpawnEnemyGroup.group_mapping = {
 		"fbi_bulldozer",
 		"elite_bulldozer",
 		"elite_bulldozer_shield",
-		"elite_bulldozer_takedown",
 	},
 }
 ElementSpawnEnemyGroup.group_mapping.tac_swat_rifle_flank = ElementSpawnEnemyGroup.group_mapping.tac_swat_rifle
@@ -75,18 +75,19 @@ ElementSpawnEnemyGroup.group_mapping.tac_shield_wall_ranged = ElementSpawnEnemyG
 ElementSpawnEnemyGroup.group_mapping.tac_shield_wall_charge = ElementSpawnEnemyGroup.group_mapping.tac_shield_wall
 ElementSpawnEnemyGroup.group_mapping.tac_tazer_charge = ElementSpawnEnemyGroup.group_mapping.tac_tazer_flanking
 
-Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "sh__finalize_values", function(self)
+Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_values", function(self)
 	if not self._values.preferred_spawn_groups then
 		return
 	end
 
-	if self._values.interval == 0 then
-		for _, id in pairs(self._values.elements) do
-			local spawn_point = self:get_mission_element(id)
-			if spawn_point and spawn_point._values.spawn_action then
-				self._values.interval = 5
-				break
-			end
+	local spawn_cooldown = managers.groupai:state():_get_difficulty_dependent_value(tweak_data.group_ai.besiege.assault.spawnrate) or 1
+
+	self._values.interval = math.max(2 * spawn_cooldown, self._values.interval)
+	for _, id in pairs(self._values.elements) do
+		local spawn_point = self:get_mission_element(id)
+		if spawn_point and spawn_point._values.spawn_action then
+			self._values.interval = math.max(4 * spawn_cooldown, self._values.interval)
+			break
 		end
 	end
 

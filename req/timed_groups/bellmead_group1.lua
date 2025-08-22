@@ -3,7 +3,7 @@ return function(timed_tactics)
 		timer_data = {
 			initial_delay = 0,
 			cooldown = { 10, 15 },
-			diff_scale = { 1, 2, 3 },
+			diff_scale = { 1, 1.5, 2 },
 		},
 		group_data = {
 			bellmead_timed_group = {
@@ -31,22 +31,22 @@ return function(timed_tactics)
 				spawn = {
 					{
 						amount_min = 1,
-						rank = 2,
-						freq = 2,
+						rank = 1,
+						freq = 1,
 						unit = "bellmead_security",
 						tactics = timed_tactics.bellmead_def,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
-						freq = 1,
+						freq = 0.5,
 						unit = "bellmead_security",
 						tactics = timed_tactics.bellmead_agg,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
-						freq = 1,
+						freq = 0.5,
 						unit = "bellmead_security",
 						tactics = timed_tactics.bellmead_snk,
 					},

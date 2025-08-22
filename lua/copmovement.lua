@@ -41,13 +41,6 @@ function CopMovement:speed_modifier()
 		final_modifier = final_modifier * (self._tweak_data.spooc_charge_move_speed_mul or 1.5)
 	end
 
-	local equipped_weapon = self:_equipped_weapon_base()
-
-	-- Apply a move speed modifier while the enemy is shooting
-	if equipped_weapon and equipped_weapon._shooting and equipped_weapon:fire_mode() == "auto" then
-		final_modifier = final_modifier * (self._tweak_data.autofire_move_speed_mul or 1)
-	end
-
 	if self._carry_speed_modifier then
 		final_modifier = final_modifier * self._carry_speed_modifier
 	end
@@ -98,6 +91,52 @@ function CopMovement:play_redirect(redirect_name, ...)
 		self._machine:set_parameter(result, "from_stand", 0)
 	end
 	return result
+end
+
+-- Fix head position update on suppression
+Hooks:PreHook(CopMovement, "_upd_stance", "sh__upd_stance", function(self, t)
+	if self._stance.transition and self._stance.transition.next_upd_t < t then
+		self._force_head_upd = true
+	elseif self._suppression.transition and self._suppression.transition.next_upd_t < t then
+		self._force_head_upd = true
+	end
+end)
+
+Hooks:PostHook(CopMovement, "_change_stance", "sh__change_stance", function(self)
+	self._force_head_upd = true
+end)
+
+Hooks:PostHook(CopMovement, "on_suppressed", "sh_on_suppressed", function(self)
+	self._force_head_upd = true
+end)
+
+-- Skip damage actions on units that are already in a death action
+-- Redirect stun animations for Bulldozers and Shields
+local damage_clbk_original = CopMovement.damage_clbk
+function CopMovement:damage_clbk(my_unit, damage_info)
+	if self._active_actions[1] and self._active_actions[1]._hurt_type == "death" then
+		return
+	end
+
+	if damage_info.variant == "stun" then
+		if self._unit:base():has_tag("tank") then
+			damage_info.variant = "hurt"
+			damage_info.result = {
+				variant = "hurt",
+				type = "expl_hurt",
+			}
+		elseif self._unit:base():has_tag("shield") then
+			damage_info.variant = "hurt"
+			damage_info.result = {
+				variant = "hurt",
+				type = "concussion",
+			}
+		end
+	elseif damage_info.result.type == "light_hurt" and self._ext_inventory._shield_unit and self._ext_anim.hurt then
+		return
+	end
+
+	return damage_clbk_original(self, my_unit, damage_info)
 end
 
 -- counterstrike stuff
@@ -273,49 +312,3 @@ Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damag
 		end
 	end
 end)
-
--- Fix head position update on suppression
-Hooks:PreHook(CopMovement, "_upd_stance", "sh__upd_stance", function(self, t)
-	if self._stance.transition and self._stance.transition.next_upd_t < t then
-		self._force_head_upd = true
-	elseif self._suppression.transition and self._suppression.transition.next_upd_t < t then
-		self._force_head_upd = true
-	end
-end)
-
-Hooks:PostHook(CopMovement, "_change_stance", "sh__change_stance", function(self)
-	self._force_head_upd = true
-end)
-
-Hooks:PostHook(CopMovement, "on_suppressed", "sh_on_suppressed", function(self)
-	self._force_head_upd = true
-end)
-
--- Skip damage actions on units that are already in a death action
--- Redirect stun animations for Bulldozers and Shields
-local damage_clbk_original = CopMovement.damage_clbk
-function CopMovement:damage_clbk(my_unit, damage_info)
-	if self._active_actions[1] and self._active_actions[1]._hurt_type == "death" then
-		return
-	end
-
-	if damage_info.variant == "stun" then
-		if self._unit:base():has_tag("tank") then
-			damage_info.variant = "hurt"
-			damage_info.result = {
-				variant = "hurt",
-				type = "expl_hurt",
-			}
-		elseif self._unit:base():has_tag("shield") then
-			damage_info.variant = "hurt"
-			damage_info.result = {
-				variant = "hurt",
-				type = "concussion",
-			}
-		end
-	elseif damage_info.result.type == "light_hurt" and self._ext_inventory._shield_unit and self._ext_anim.hurt then
-		return
-	end
-
-	return damage_clbk_original(self, my_unit, damage_info)
-end

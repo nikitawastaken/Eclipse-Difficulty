@@ -1,27 +1,27 @@
 local preferred = Eclipse.preferred
-local window_lower_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
-}
 local breach_upper_spawn = {
 	values = {
 		interval = 10,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local window_lower_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents,
+}
+local skylight_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents,
+}
 local window_upper_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local skylight_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents,
 }
 local roof_spawn = {
 	values = {

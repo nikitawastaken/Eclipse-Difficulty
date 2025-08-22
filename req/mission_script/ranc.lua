@@ -12,6 +12,12 @@ local fence_spawn = {
 		interval = 15,
 	},
 }
+local dock_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local roof_spawn = {
 	values = {
 		interval = 30,
@@ -26,51 +32,36 @@ local vent_spawn = {
 }
 return {
 	[100022] = { -- alarm
-		reinforce = { -- add all at once so they get populated quickly
+		reinforce = {
+			{
+				name = "gate1",
+				force = 5,
+				position = Vector3(2100, 4875, 400),
+			},
+			{
+				name = "gate2",
+				force = 5,
+				position = Vector3(5325, 1500, 400),
+			},
+			{
+				name = "gate3",
+				force = 5,
+				position = Vector3(2025, -4500, 400),
+			},
 			{
 				name = "fork",
-				force = 4, -- fuck huge navseg
-				position = Vector3(-2015, -145, 200),
+				force = 5,
+				position = Vector3(-1800, -50, 200),
 			},
 			{
-				name = "main_gate1",
-				force = 4, -- fuck huge navseg
-				position = Vector3(5670, 1125, 400),
-			},
-			{
-				name = "main_gate2",
-				force = 4,
-				position = Vector3(5310, -1090, 400),
-			},
-			{
-				name = "outside_garage",
-				force = 2,
-				position = Vector3(7875, -9315, 400),
-			},
-			{
-				name = "such_a_nice_car",
-				force = 2,
-				position = Vector3(2985, -7040, 400), -- go bank car near some un-enterable sheds
-			},
-			{
-				name = "barn1",
-				force = 2,
-				position = Vector3(6755, 5320, 400), -- exit by shooting range
-			},
-			{
-				name = "barn2",
-				force = 2,
-				position = Vector3(4285, 5215, 400), -- exit by stealth secure point
-			},
-			{
-				name = "workshop_a", -- labelled in editor
+				name = "fork_corner1",
 				force = 3,
-				position = Vector3(3070, 2890, 400),
+				position = Vector3(-1440, -3970, 200),
 			},
 			{
-				name = "workshop_c", -- labelled in editor
+				name = "fork_corner2",
 				force = 3,
-				position = Vector3(9215, 1625, 450),
+				position = Vector3(-315, 4935, 400),
 			},
 		},
 	},
@@ -100,7 +91,9 @@ return {
 	[100133] = fence_spawn,
 	[100132] = fence_spawn,
 	[100779] = fence_spawn,
-	[100131] = fence_spawn,
+	[100131] = dock_spawn,
+	[100130] = dock_spawn,
+	[102397] = dock_spawn,
 	[100911] = roof_spawn,
 	[100019] = roof_spawn,
 	[102484] = vent_spawn,
