@@ -577,24 +577,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.combat_engineering.multibasic = "50%"
 
 	-- Arms Cache
-	self.values.grenade_case.quantity = { 1 }
-	self.definitions.grenade_case_quantity = {
-		name_id = "menu_ammo_bag_quantity",
-		category = "equipment_upgrade",
-		upgrade = {
-			value = 1,
-			upgrade = "quantity",
-			category = "grenade_case"
-		}
-	}
 	self.values.grenade_case.amount_increase = { 2 }
-	self.steps.grenade_case = {
-		amount_increase = {
-			10,
-			19,
-			30
-		}
-	}
 	self.definitions.grenade_case_amount_increase = {
 		category = "equipment_upgrade",
 		name_id = "debug_upgrade_grenade_case_amount_increase",
@@ -602,6 +585,36 @@ function UpgradesTweakData:init(tweak_data)
 			upgrade = "amount_increase",
 			category = "grenade_case",
 			value = 1
+		}
+	}
+	self.values.grenade_crate.amount_increase = { 2 }
+	self.definitions.grenade_crate_amount_increase = {
+		category = "equipment_upgrade",
+		name_id = "debug_upgrade_grenade_crate_amount_increase",
+		upgrade = {
+			upgrade = "amount_increase",
+			category = "grenade_crate",
+			value = 1
+		}
+	}
+	self.values.grenade_case.quantity = { 1 }
+	self.definitions.grenade_case_quantity = {
+		name_id = "menu_grenade_case_quantity",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "quantity",
+			category = "grenade_case"
+		}
+	}
+	self.values.grenade_crate.quantity = { 1 }
+	self.definitions.grenade_crate_quantity = {
+		name_id = "menu_grenade_crate_quantity",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "quantity",
+			category = "grenade_crate"
 		}
 	}
 	self.skill_descs.drill_expert.multibasic = "50%"

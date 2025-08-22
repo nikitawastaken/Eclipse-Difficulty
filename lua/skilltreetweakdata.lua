@@ -232,8 +232,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.hardware_expert.icon_xy = { 8, 0 }
 
 	-- Arms Cache
-	self.skills.drill_expert[1].upgrades = { "grenade_case_amount_increase" }
-	self.skills.drill_expert[2].upgrades = { "grenade_case_quantity" }
+	self.skills.drill_expert[1].upgrades = { "grenade_case_amount_increase", "grenade_crate_amount_increase" }
+	self.skills.drill_expert[2].upgrades = { "grenade_case_quantity", "grenade_crate_quantity" }
 	self.skills.drill_expert.name_id = "menu_arms_cache"
 	self.skills.drill_expert.desc_id = "menu_arms_cache_desc"
 	self.skills.drill_expert.icon_xy = { 8, 0 }
