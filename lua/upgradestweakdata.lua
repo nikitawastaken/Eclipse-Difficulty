@@ -576,6 +576,37 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.trip_mine.explosion_size_multiplier_1 = { 1.5 }
 	self.skill_descs.combat_engineering.multibasic = "50%"
 
+	-- Arms Cache
+	self.values.grenade_case.quantity = { 1 }
+	self.definitions.grenade_case_quantity = {
+		name_id = "menu_ammo_bag_quantity",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "quantity",
+			category = "grenade_case"
+		}
+	}
+	self.values.grenade_case.amount_increase = { 2 }
+	self.steps.grenade_case = {
+		amount_increase = {
+			10,
+			19,
+			30
+		}
+	}
+	self.definitions.grenade_case_amount_increase = {
+		category = "equipment_upgrade",
+		name_id = "debug_upgrade_grenade_case_amount_increase",
+		upgrade = {
+			upgrade = "amount_increase",
+			category = "grenade_case",
+			value = 1
+		}
+	}
+	self.skill_descs.drill_expert.multibasic = "50%"
+	self.skill_descs.drill_expert.multipro = "2"
+
 	-- Hellwire
 	self.values.shape_charge.quantity[1] = 4
 	self.values.trip_mine.quantity[1] = 6
@@ -2080,26 +2111,6 @@ function UpgradesTweakData:init(tweak_data)
 		slot = 1,
 		category = "equipment",
 		name_id = "menu_equipment_grenade_case"
-	}
-	self.values.grenade_case.quantity = { 1 }
-	self.definitions.grenade_case_quantity = {
-		name_id = "menu_ammo_bag_quantity",
-		category = "equipment_upgrade",
-		upgrade = {
-			value = 1,
-			upgrade = "quantity",
-			category = "grenade_case"
-		}
-	}
-	self.values.grenade_case.amount_increase = { 2 }
-	self.definitions.grenade_case_amount_increase = {
-		category = "equipment_upgrade",
-		name_id = "menu_ammo_bag_amount_increase",
-		upgrade = {
-			value = 1,
-			category = "grenade_case",
-			upgrade = "amount_increase"
-		}
 	}
 
 	-- misc

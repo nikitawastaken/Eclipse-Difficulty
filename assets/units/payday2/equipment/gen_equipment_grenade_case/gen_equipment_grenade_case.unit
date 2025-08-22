@@ -6,8 +6,8 @@
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="GrenadeCrateBase" />
 		<extension name="damage" class="UnitDamage" />
-		<extension name="interaction" class="UseInteractionExt">
-			<var name="tweak_data" value="grenade_briefcase" />
+		<extension name="interaction" class="GrenadeCrateInteractionExt">
+			<var name="tweak_data" value="grenade_crate" />
 		</extension>
 	</extensions>
    <sounds>

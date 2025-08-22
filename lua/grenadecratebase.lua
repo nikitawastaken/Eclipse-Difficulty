@@ -19,7 +19,7 @@ function GrenadeCrateBase:init(unit)
 
 	self._unit = unit
 	self._is_attachable = true
-	self._max_grenade_amount = tweak_data.upgrades.grenade_crate_base + managers.player:upgrade_value_by_level("grenade_case", "grenade_increase", 1)
+	self._max_grenade_amount = tweak_data.upgrades.grenade_crate_base + managers.player:upgrade_value_by_level("grenade_case", "amount_increase", 1)
 
 	self._unit:sound_source():post_event("ammo_bag_drop")
 
@@ -28,6 +28,10 @@ function GrenadeCrateBase:init(unit)
 
 		managers.enemy:add_delayed_clbk(self._validate_clbk_id, callback(self, self, "_clbk_validate"), Application:time() + 60)
 	end
+end
+
+function GrenadeCrateBase:get_name_id()
+	return "grenade_case"
 end
 
 function GrenadeCrateBase:_clbk_validate()
@@ -41,7 +45,7 @@ function GrenadeCrateBase:_clbk_validate()
 end
 
 function GrenadeCrateBase:setup(grenade_upgrade_lvl)
-	self._grenade_amount = tweak_data.upgrades.grenade_crate_base + managers.player:upgrade_value_by_level("grenade_case", "grenade_increase", grenade_upgrade_lvl)
+	self._grenade_amount = tweak_data.upgrades.grenade_crate_base + managers.player:upgrade_value_by_level("grenade_case", "amount_increase", grenade_upgrade_lvl)
 	self._empty = false
 
 	self:_set_visual_stage()
@@ -81,13 +85,10 @@ function GrenadeCrateBase:round_value(val)
 end
 
 function GrenadeCrateBase:_set_visual_stage()
-	if alive(self._unit) and self._unit:damage() then
-		local nr_visual_states = 5
-		local consumed_units = math.clamp(math.round(1 / (self._grenade_amount / self._max_grenade_amount)) - 1, 0, nr_visual_states) 
+	local percentage = self._grenade_amount / self._max_grenade_amount
 
-		Eclipse:log_chat(consumed_units)
-		
-		local state = "state_" .. tostring(consumed_units)
+	if alive(self._unit) and self._unit:damage() then
+		local state = "state_" .. math.ceil(percentage * 8)
 
 		if self._unit:damage():has_sequence(state) then
 			self._unit:damage():run_sequence_simple(state)

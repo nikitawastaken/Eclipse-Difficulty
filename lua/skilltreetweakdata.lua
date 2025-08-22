@@ -234,9 +234,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Arms Cache
 	self.skills.drill_expert[1].upgrades = { "grenade_case_amount_increase" }
 	self.skills.drill_expert[2].upgrades = { "grenade_case_quantity" }
-	self.skills.drill_expert.name_id = "menu_work_in_progress_beta"
-	self.skills.drill_expert.desc_id = "menu_work_in_progress_beta_desc"
-	self.skills.drill_expert.icon_xy = { 0, 0 }
+	self.skills.drill_expert.name_id = "menu_arms_cache"
+	self.skills.drill_expert.desc_id = "menu_arms_cache_desc"
+	self.skills.drill_expert.icon_xy = { 8, 0 }
 
 	-- Hellwire
 	self.skills.more_fire_power[1].upgrades = { "shape_charge_quantity_increase_1", "trip_mine_quantity_increase_1" }
