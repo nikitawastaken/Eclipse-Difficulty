@@ -7,8 +7,9 @@ function TankCopLogicAttack._chk_exit_attack_logic(data, ...)
 	end
 end
 
+
 -- Update logic every frame and fix Dozers sprinting when they shouldn't
-Hooks:PostHook(TankCopLogicAttack, "enter", "sh_enter", function(data)
+Hooks:PostHook(TankCopLogicAttack, "enter", "sh_enter", function (data)
 	data.brain:set_update_enabled_state(true)
 end)
 
@@ -39,13 +40,13 @@ function TankCopLogicAttack.update(data)
 
 	local enemy_visible = focus_enemy.verified
 	if focus_enemy.reaction >= AIAttentionObject.REACT_COMBAT then
-		--[[ Stop running if we're close enough
-		if enemy_visible and focus_enemy.dis < 600 and unit:anim_data().run then
+		-- Stop running if we're close enough
+		if enemy_visible and focus_enemy.dis < 400 and unit:anim_data().run then
 			unit:brain():action_request({
 				body_part = 2,
 				type = "idle"
 			})
-		end]]
+		end
 
 		if my_data.walking_to_chase_pos then
 			-- Check if the current chase pos is too far from our focus enemy and if so, cancel chase to get a better pos
@@ -62,17 +63,17 @@ function TankCopLogicAttack.update(data)
 			my_data.chase_pos = nil
 
 			-- Check if direct path is possible
-			if math.abs(from_pos.z - to_pos.z) < 100 and not managers.navigation:raycast({ allow_entry = false, pos_from = from_pos, pos_to = to_pos }) then
+			if math.abs(from_pos.z - to_pos.z) < 100 and not managers.navigation:raycast({allow_entry = false, pos_from = from_pos, pos_to = to_pos}) then
 				my_data.chase_path = {
 					mvector3.copy(from_pos),
-					to_pos,
+					to_pos
 				}
 			else
 				my_data.chase_path_search_id = tostring(unit:key()) .. "chase"
 				my_data.pathing_to_chase_pos = true
 				data.brain:add_pos_rsrv("path", {
 					radius = 60,
-					position = mvector3.copy(to_pos),
+					position = mvector3.copy(to_pos)
 				})
 				unit:brain():search_for_path(my_data.chase_path_search_id, to_pos)
 			end

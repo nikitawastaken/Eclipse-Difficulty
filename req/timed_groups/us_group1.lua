@@ -3,7 +3,7 @@ return function(timed_tactics, difficulty_index)
 		timer_data = {
 			initial_delay = 180, -- 3 minutes
 			cooldown = { 15, 20 },
-			diff_scale = { 3, 2, 1 },
+			diff_scale = { 2, 1.5, 1 },
 		},
 		group_data = {
 			army_timed_group = {
@@ -32,14 +32,14 @@ return function(timed_tactics, difficulty_index)
 					{
 						amount_min = 1,
 						rank = 2,
-						freq = 1.5,
+						freq = 1,
 						unit = "army_soldier_2",
 						tactics = timed_tactics.army_def,
 					},
 					{
 						amount_max = 2,
-						rank = 2,
-						freq = 1,
+						rank = 3,
+						freq = 0.5,
 						unit = "army_soldier_3",
 						tactics = timed_tactics.army_agg,
 					},

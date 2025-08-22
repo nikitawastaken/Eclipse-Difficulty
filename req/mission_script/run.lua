@@ -59,11 +59,6 @@ local helicopter_guaranteed_spawn = {
 local van_guaranteed_spawn = {
 	groups = preferred.no_cops_agents_cloakers_snipers,
 }
-local street_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local van_spawn = {
 	values = {
 		interval = 15,
@@ -77,7 +72,7 @@ local overpass_spawn = {
 }
 local inkwell_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -513,16 +508,8 @@ return {
 	[410029] = van_guaranteed_spawn,
 	[410034] = van_guaranteed_spawn,
 	[410052] = van_guaranteed_spawn,
-	[100210] = street_spawn,
-	[100295] = street_spawn,
-	[100597] = street_spawn,
-	[101597] = street_spawn,
-	[101587] = street_spawn,
-	[103702] = street_spawn,
-	[103561] = street_spawn,
 	[100249] = overpass_spawn,
 	[101527] = overpass_spawn,
-	[103740] = overpass_spawn,
 	[103998] = overpass_spawn,
 	[100310] = van_spawn,
 	[103701] = van_spawn,

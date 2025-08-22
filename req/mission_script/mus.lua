@@ -46,6 +46,12 @@ return {
 			{ 140, 154 },
 		},
 	},
+	-- prevent cops from spawning too soon
+	[100116] = {
+		on_executed = {
+			{ id = 100122, delay = 60 },
+		},
+	},
 	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {

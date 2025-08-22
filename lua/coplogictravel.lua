@@ -80,7 +80,29 @@ Hooks:PreHook(CopLogicTravel, "upd_advance", "sh_upd_advance", function(data)
 	if my_data.cover_leave_t and my_data.cover_leave_t < t and not unit:movement():chk_action_forbidden("walk") and not data.unit:anim_data().reload then
 		my_data.cover_leave_t = nil
 	end
+	
+	CopLogicTravel._chk_relocate(data, my_data)
 end)
+
+function CopLogicTravel._chk_relocate(data, my_data)
+	local objective = data.objective
+	if not objective or not alive(objective.follow_unit) or not my_data.advancing or not my_data.coarse_path or my_data.processing_coarse_path then
+		return
+	end
+
+	local destination_pos = my_data.coarse_path[#my_data.coarse_path][2]
+	local follow_pos = objective.follow_unit:movement():nav_tracker():field_position()
+	if mvector3.distance_sq(destination_pos, follow_pos) < 3000 ^ 2 then
+		return
+	end
+
+	data.brain:action_request({
+		body_part = 2,
+		type = "idle"
+	})
+
+	CopLogicTravel._begin_coarse_pathing(data, my_data)
+end
 
 -- Make groups move together (remove close to criminal check to avoid splitting groups)
 function CopLogicTravel.chk_group_ready_to_move(data)

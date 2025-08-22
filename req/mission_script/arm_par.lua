@@ -44,7 +44,7 @@ local dozer_van_chance = {
 }
 local street_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local close_spawn = {

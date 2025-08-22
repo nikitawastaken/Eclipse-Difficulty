@@ -16,31 +16,23 @@ local eclipse_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-
-local bridge_spawn1 = {
-	values = {
-		interval = 10,
-	},
-}
-local bridge_spawn2 = {
+local construct_lower_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_cops_agents,
 }
-local construct_spawn1 = {
+local escape_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local saw_spawn = {
 	values = {
-		interval = 30,
+		interval = 45,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
 }
-local construct_spawn2 = {
+local construct_upper_spawn = {
 	values = {
 		interval = 45,
 	},
@@ -50,7 +42,7 @@ local flank_spawn = {
 	values = {
 		interval = 60,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local escape_guaranteed_spawn = {
 	values = {
@@ -74,38 +66,47 @@ return {
 	-- delay SWAT choppers
 	[100065] = {
 		on_executed = {
-			{ id = 100828, delay = 90 },
+			{ id = 100828, delay = 60, delay_rand = 60 },
 		},
 	},
 	-- Add new reinforce
 	[100529] = {
+		on_executed = { 
+			{ id = 101591, delay = 30 }, -- saw spawns
+		},
 		reinforce = {
 			{
-				name = "street",
+				name = "bridge",
 				force = 5,
-				position = Vector3(-1350, -15000, 5800),
+				position = Vector3(-1300, -15585, 5800),
 			},
 		},
 	},
-	[103543] = {
+	[101238] = { -- add construction spawns
 		reinforce = {
-			{ name = "street" },
+			{ name = "bridge" },
 			{
 				name = "construct1",
 				force = 3,
-				position = Vector3(-1350, -21500, 5800),
+				position = Vector3(-1425, -18825, 5800),
 			},
 			{
 				name = "construct2",
 				force = 3,
-				position = Vector3(-1350, -24650, 5800),
+				position = Vector3(-840, -21830, 5800),
+			},
+			{
+				name = "construct3",
+				force = 3,
+				position = Vector3(-1300, -24585, 5800),
 			},
 		},
 	},
-	[102323] = {
+	[101593] = { -- escape bridge spawns
 		reinforce = {
 			{ name = "construct1" },
 			{ name = "construct2" },
+			{ name = "construct3" },
 		},
 	},
 	-- disable the entire attack heli
@@ -175,62 +176,56 @@ return {
 	[102007] = escape_guaranteed_spawn,
 	[102008] = escape_guaranteed_spawn,
 	[102009] = escape_guaranteed_spawn,
-	-- sawing section preferreds
-	[101176] = {
+	-- change preferreds
+	[101176] = { -- saw spawns
 		values = {
-			spawn_groups = {
-				400015, -- 5s
-				101250, -- 5s
-				101159, -- 30s
-				101156, -- 30s
-				101153, -- 60s
-				100867, -- 60s
+			spawn_groups = { 
+				101250, -- 0s
+				101847, -- 0s
+				103886, -- 0s
+				101156, -- 45s
+				101159, -- 45s
+				100867, -- 75s
+				101153, -- 75s
+			},
+		},
+	},	
+	[101239] = { -- escape bridge spawns
+		values = { 
+			spawn_groups = { 
+				101250, -- 0s
+				101847, -- 0s
+				103886, -- 0s
+				101251, -- 45s
+				101252, -- 45s
+			},
+		},
+	},	
+	[100669] = { -- escape bridge spawns 1
+		values = { 
+			spawn_groups = { 
+				101588, -- 30s
+				101589, -- 30s
+				102131, -- 30s
+				102132, -- 30s
 			},
 		},
 	},
-	-- scaffolding section preferreds
-	[101238] = {
-		values = {
-			spawn_groups = {
-				101251, -- 5s,
-				101252, -- 5s,
-				101847, -- 15s,
-				103886, -- 15s,
-				101244, -- 30s,
-				101246, -- 30s,
-				101242, -- 45s,
-				--101243, -- 45s,
-				--101245, -- 45s,
-				400016, -- 60s,
-			},
-		},
-	},
-	-- escape section preferreds
-	[101239] = {
-		values = {
-			spawn_groups = {
-				400015, -- 5s,
-				101250, -- 5s,
-				101255, -- 15s,
-				101258, -- 15s,
-				101587, -- 15s,
-				101589, -- 15s,
-				102131, -- 15s,
-			},
-		},
-	},
-	[101251] = bridge_spawn1,
-	[101252] = bridge_spawn1,
-	[101847] = bridge_spawn2,
-	[103886] = bridge_spawn2,
-	[101159] = saw_spawn,
+	-- spawn point delays
+	[101588] = escape_spawn,
+	[101589] = escape_spawn,
+	[102131] = escape_spawn,
+	[102132] = escape_spawn,
+	[101244] = construct_lower_spawn,
+	[101246] = construct_lower_spawn,
+	[101247] = construct_lower_spawn,
 	[101156] = saw_spawn,
-	[101244] = construct_spawn1,
-	[101246] = construct_spawn1,
-	[101242] = construct_spawn2,
-	[101243] = construct_spawn2,
-	[101245] = construct_spawn2,
-	[101153] = flank_spawn,
+	[101159] = saw_spawn,
+	[101251] = saw_spawn,
+	[101252] = saw_spawn,
+	[101242] = construct_upper_spawn,
+	[101243] = construct_upper_spawn,
+	[101245] = construct_upper_spawn,
 	[100867] = flank_spawn,
-	[400016] = flank_spawn,
+	[101153] = flank_spawn,
 }

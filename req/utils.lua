@@ -14,12 +14,6 @@ local real_difficulty_index = ({
 local diff_i = real_difficulty_index
 local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
 
-function M.diff_lerp(value_1, value_2)
-	local f = math.max(0, diff_i - 2) / 4
-
-	return math.lerp(value_1, value_2, math.min(f, 1))
-end
-
 -- This is how you make checking each subtable less verbose, e.g.
 -- local and_chain = foo and foo.bar and foo.bar.baz and foo.bar.baz.stuff
 -- local check_val = access_table(foo, "bar", "baz", "stuff")
@@ -205,6 +199,23 @@ function M.set_diff_groups(group)
 		difficulty_overkill_290 = eclipse,
 		difficulty_sm_wish = eclipse,
 	}
+end
+
+function M.diff_lerp(value_1, value_2)
+	local f = math.max(0, diff_i - 2) / 4
+
+	return math.lerp(value_1, value_2, math.min(f, 1))
+end
+
+function M.table_multiplier(target_table, mul)
+	for i, v in pairs(target_table) do
+		if type(mul) == "table" then
+			target_table[i] = v * mul[math.clamp(i, 1, #mul)]
+		elseif type(mul) == "number" then
+			target_table[i] = v * mul
+		end
+	end
+	return target_table
 end
 
 function M.weighted_selector(t)

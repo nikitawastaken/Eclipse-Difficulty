@@ -14,6 +14,8 @@ end)
 Hooks:PostHook(Drill, "start", "eclipse_start", function(self)
 	if not self.drill_reenforce_blacklist[level_id] then
 		managers.groupai:state():set_area_min_police_force(self._unit:key(), 2, self._unit:position())
+	else
+		Eclipse:log_console("No reinforce point created, drill reinforce is disabled for " .. level_id)
 	end
 end)
 

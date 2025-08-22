@@ -14,19 +14,27 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local roof_far_spawn = {
+local side_spawn = {
 	values = {
-		interval = 10,
+		interval = 5,
 	},
-	groups = preferred.no_cops_agents_shields,
+	groups = preferred.no_cops_agents,
 }
-local roof_close_spawn = {
+local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- Combine some navigation areas
+	[100040] = {
+		ai_area = {
+			{ 182, 181 },
+			{ 178, 179 },
+			{ 173, 183 },
+		},
+	},
 	-- Boss spawn
 	[100154] = {
 		difficulty_max = 0.1,
@@ -49,14 +57,33 @@ return {
 			chance = 4,
 		},
 	},
+	-- Don't remove 3rd floor spawns
+	[100512] = {
+		on_executed = {
+			{ id = 100511, remove = true },
+		},
+	},
 	-- Fix nav links
 	[101433] = no_spawn_instigator_ids,
 	[101434] = no_spawn_instigator_ids,
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
-	-- Spawn point delays
-	[100666] = roof_far_spawn,
-	[101034] = roof_far_spawn,
-	[101530] = roof_close_spawn,
-	[101534] = roof_close_spawn,
+	-- spawn point delays
+	
+	--[[
+		[101633] = third_floor_spawn,
+		[101636] = third_floor_spawn,
+		[101642] = third_floor_spawn,
+		[101651] = third_floor_spawn,
+		[101657] = third_floor_spawn,
+		[101663] = third_floor_spawn,
+	]]
+	[101084] = side_spawn,
+	[101085] = side_spawn,
+	[100627] = roof_spawn,
+	[100629] = roof_spawn,
+	[100666] = roof_spawn,
+	[101034] = roof_spawn,
+	[101530] = roof_spawn,
+	[101534] = roof_spawn,
 }

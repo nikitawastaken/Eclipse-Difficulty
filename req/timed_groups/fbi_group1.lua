@@ -3,7 +3,7 @@ return function(timed_tactics)
 		timer_data = {
 			initial_delay = 0,
 			cooldown = { 10, 15 },
-			diff_scale = { 1, 2, 3 },
+			diff_scale = { 1, 1.5, 2 },
 		},
 		group_data = {
 			fbi_timed_group = {
@@ -12,7 +12,7 @@ return function(timed_tactics)
 				max_nr_simultaneous_groups = 3,
 				amount = { 2, 3 },
 				disable_timer = nil,
-				disable_diff = 0.75,
+				disable_diff = 0.6,
 				objective = function(spawn_group)
 					return {
 						attitude = "engage",
@@ -31,15 +31,15 @@ return function(timed_tactics)
 				spawn = {
 					{
 						amount_min = 1,
-						rank = 2,
-						freq = 1.5,
+						rank = 1,
+						freq = 1,
 						unit = "fbi_readyteam",
 						tactics = timed_tactics.fbi_def,
 					},
 					{
 						amount_max = 2,
 						rank = 2,
-						freq = 1,
+						freq = 0.5,
 						unit = "fbi_readyteam",
 						tactics = timed_tactics.fbi_snk,
 					},

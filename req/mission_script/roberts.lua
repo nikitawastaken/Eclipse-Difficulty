@@ -103,7 +103,7 @@ return {
 			{
 				name = "bank_left",
 				force = 3,
-				position = Vector3(-500, -3000, -75),
+				position = Vector3(-525, -3000, -75),
 			},
 			{
 				name = "bank_right",
@@ -113,7 +113,7 @@ return {
 			{
 				name = "bank_front",
 				force = 3,
-				position = Vector3(2950, -650, -75),
+				position = Vector3(2925, -650, -75),
 			},
 			{
 				name = "bank_back",
@@ -122,10 +122,41 @@ return {
 			},
 		},
 	},
-	-- Delay initial diff
-	[100116] = {
-		on_executed = {
-			{ id = 100122, delay = 30 },
+	-- Add manhole reinforce 
+	[102504] = {
+		reinforce = { -- manhole 1
+			{
+				name = "manhole",
+				force = 3,
+				position = Vector3(4010, -1710, 75),
+			},
+		},
+	},
+	[102505] = { -- manhole 2
+		reinforce = {
+			{
+				name = "manhole",
+				force = 3,
+				position = Vector3(1185, 1615, 75),
+			},
+		},
+	},
+	[102506] = { -- manhole 3
+		reinforce = {
+			{
+				name = "manhole",
+				force = 3,
+				position = Vector3(-1085, -3440, 75),
+			},
+		},
+	},
+	[102507] = { -- manhole 4
+		reinforce = {
+			{
+				name = "manhole",
+				force = 3,
+				position = Vector3(-2015, -115, 75),
+			},
 		},
 	},
 	-- tweak the ambush near the end

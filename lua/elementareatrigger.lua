@@ -1,11 +1,14 @@
 -- When an escape or loot secure zone is activated, mark that area for reinforcement spawngroups
 -- This is done by checking the list of elements an ElementAreaTrigger executes for ElementMissionEnd or ElementCarry,
 -- If it contains any of these, it is considered the escape zone/loot secure trigger
-local function check_executed_objects(area_trigger, current, recursion_depth)
-	current = current or area_trigger
-	recursion_depth = recursion_depth or 2
+local function check_executed_objects(trigger, current, checked)
+	if not current or checked[current] then
+		return
+	end
 
-	if (area_trigger._values.enabled and true or false) == (area_trigger._reinforce_point_enabled and true or false) then
+	checked[current] = true
+
+	if (trigger._values.enabled and true or false) == (trigger._reinforce_point_enabled and true or false) then
 		return
 	end
 
@@ -13,38 +16,33 @@ local function check_executed_objects(area_trigger, current, recursion_depth)
 		local element = current:get_mission_element(params.id)
 		local element_class = getmetatable(element)
 		if element_class == ElementMissionEnd or element_class == ElementCarry and element._values.operation == "secure" then
-			area_trigger._reinforce_point_enabled = area_trigger._values.enabled
-			if area_trigger._values.enabled then
-				if area_trigger._values.use_shape_element_ids then
-					for _, shape_element in pairs(area_trigger._shape_elements) do
-						if shape_element._values.enabled then
-							managers.groupai:state():set_area_min_police_force(shape_element._id, 3, shape_element._values.position)
-						end
+			local force = trigger._values.enabled and 3 or nil
+			trigger._reinforce_point_enabled = trigger._values.enabled
+			if trigger._values.use_shape_element_ids then
+				for _, shape_element in pairs(trigger._shape_elements) do
+					if shape_element._values.enabled then
+						managers.groupai:state():set_area_min_police_force(shape_element._id, force, shape_element._values.position)
 					end
-				else
-					managers.groupai:state():set_area_min_police_force(area_trigger._id, 3, area_trigger._values.position)
 				end
-				Eclipse:log_console(element_class == ElementMissionEnd and "Escape" or "Loot secure", "zone activated, enabling reinforce groups in its area")
 			else
-				if area_trigger._values.use_shape_element_ids then
-					for _, shape_element in pairs(area_trigger._shape_elements) do
-						managers.groupai:state():set_area_min_police_force(shape_element._id)
-					end
-				else
-					managers.groupai:state():set_area_min_police_force(area_trigger._id)
-				end
-				Eclipse:log_console(element_class == ElementMissionEnd and "Escape" or "Loot secure", "zone deactivated, disabling reinforce groups in its area")
+				managers.groupai:state():set_area_min_police_force(trigger._id, force, trigger._values.position)
+			end
+			local type = element_class == ElementMissionEnd and "Escape" or "Loot secure"
+			if trigger._values.enabled then
+				Eclipse:log_console("%s zone activated, enabling reinforce groups in its area", type)
+			else
+				Eclipse:log_console("%s zone deactivated, disabling reinforce groups in its area", type)
 			end
 			return true
-		elseif recursion_depth > 0 and element_class == MissionScriptElement then
-			if check_executed_objects(area_trigger, element, recursion_depth - 1) then
-				return true
-			end
+		elseif check_executed_objects(trigger, element, checked) then
+			return true
 		end
 	end
 end
 
-Hooks:PostHook(ElementAreaTrigger, "on_set_enabled", "sh_on_set_enabled", check_executed_objects)
+Hooks:PostHook(ElementAreaTrigger, "on_set_enabled", "sh_on_set_enabled", function(self)
+	check_executed_objects(self, self, {})
+end)
 
 -- Point of no return escape zones only need the players who aren't downed to trigger the escape
 local old_project_instigators = ElementAreaTrigger.project_instigators
