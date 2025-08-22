@@ -1,12 +1,10 @@
 local preferred = Eclipse.preferred
-local level_id = Eclipse.utils.level_id()
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse_pro = is_pro_job and eclipse
 local diff_scale = math.max(diff_i - 2, 0)
-local bank_heist = level_id ~= "firestarter_3"
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local random_dozers = {
@@ -83,6 +81,9 @@ local cloaker_spawn = {
 		interval = 180,
 	},
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 return {
 	-- DW Trailer Skulldozer spawn event
 	-- disable the dozer during startup
@@ -104,24 +105,10 @@ return {
 			{ id = 400001, delay = 0 },
 		},
 	},
-	-- trigger the ambush when the vault opens
-	-- left
-	[100311] = {
-		on_executed = {
-			{ id = 400055, delay = 0 },
-		},
-	},
-	-- right
-	[102160] = {
-		on_executed = {
-			{ id = 400056, delay = 0 },
-		},
-	},
 	-- trigger cops loot drop off on alarm
 	[102133] = {
 		on_executed = {
 			{ id = 102206, delay = 0 },
-			{ id = 400068, delay = 0 }, -- enable the ambush
 		},
 	},
 	-- randomize heli dozers
@@ -195,8 +182,8 @@ return {
 		},
 		on_executed = {
 			{ id = 400025, delay = 0, delay_rand = 10 },
-			{ id = 400031, delay = 0, delay_rand = 10 },
-			{ id = 400037, delay = 0, delay_rand = 10 },
+			{ id = 400034, delay = 0, delay_rand = 10 },
+			{ id = 400041, delay = 0, delay_rand = 10 },
 			{ id = 104735, delay = 0, delay_rand = 10 },
 			{ id = 105660, delay = 0, delay_rand = 10 },
 		},
@@ -204,13 +191,13 @@ return {
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
 	[101424] = {
 		on_executed = {
-			{ id = 400074, delay = 0 },
+			{ id = 400027, delay = 0 },
 		},
 	},
 	-- enable the dozer chopper after heli1 gas event finishes deploying units
 	[101428] = {
 		on_executed = {
-			{ id = 400073, delay = 0 },
+			{ id = 400026, delay = 0 },
 		},
 	},
 	-- Delay initial diff
@@ -219,10 +206,10 @@ return {
 			{ id = 100438, delay = 30 },
 		},
 	},
-	-- make the SWAT events happen earlier if it's Firestater Day 3 or Bank Heist if it's on eclipsepj
+	-- make the SWAT events happen earlier if it's on eclipsepj
 	[100438] = {
 		on_executed = {
-			{ id = 103540, remove = (bank_heist and not is_eclipse_pro) and true or nil, delay = 0 },
+			{ id = 103540, remove = not is_eclipse_pro and true or nil, delay = 0 },
 		},
 	},
 	-- enable spawns sooner
@@ -299,6 +286,10 @@ return {
 	[101126] = disabled,
 	[105331] = disabled,
 	-- spawn group delays
+	[400012] = scripted_swat_van_spawn,
+	[400019] = scripted_swat_van_spawn,
+	[400035] = scripted_swat_van_spawn,
+	[400042] = scripted_swat_van_spawn,
 	[100246] = street_spawn,
 	[100249] = street_spawn,
 	[100250] = street_spawn,
