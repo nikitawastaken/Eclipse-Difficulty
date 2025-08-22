@@ -223,7 +223,7 @@ return {
 			{ id = 100438, delay = 30 },
 		},
 	},
-	-- make the SWAT events happen earlier 
+	-- make the SWAT events happen earlier
 	[100438] = {
 		on_executed = {
 			{ id = 103540, delay = 0 },
