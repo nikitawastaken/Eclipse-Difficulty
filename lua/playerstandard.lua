@@ -129,22 +129,6 @@ function PlayerStandard:_get_swap_speed_multiplier()
 	return multiplier
 end
 
-function PlayerStandard:_end_action_running(t)
-	if not self._end_running_expire_t then
-		local weap_base = self._equipped_unit:base()
-		local sprint_exit_time = weap_base:weapon_tweak_data().sprint_exit_time or 0.4
-
-		local speed_multiplier = weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1) * managers.player:upgrade_value("player", "sprint_to_fire_multiplier", 1)
-
-		self._end_running_expire_t = t + sprint_exit_time / speed_multiplier
-
-		local stop_running = not weap_base:run_and_shoot_allowed() and (not self.RUN_AND_RELOAD or not self:_is_reloading())
-
-		if not self:_is_meleeing() and stop_running then
-			self._ext_camera:play_redirect(self:get_animation("stop_running"), speed_multiplier)
-		end
-	end
-end
 function PlayerStandard:_get_max_walk_speed(t, force_run)
 	local speed_tweak = self._tweak_data.movement.speed
 	local movement_speed = speed_tweak.STANDARD_MAX
@@ -731,6 +715,60 @@ function PlayerStandard:_start_action_unequip_weapon(t, data)
 	self:_interupt_action_reload(t)
 	self:_interupt_action_steelsight(t)
 	self._ext_network:send("switch_weapon", speed_multiplier, 1)
+end
+
+function PlayerStandard:_end_action_running(t)
+	if not self._end_running_expire_t then
+		local weap_base = self._equipped_unit:base()
+		local sprint_exit_time = weap_base:weapon_tweak_data().sprint_exit_time or 0.4
+
+		local speed_multiplier = weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1) * managers.player:upgrade_value("player", "sprint_to_fire_multiplier", 1)
+
+		self._end_running_expire_t = t + sprint_exit_time / speed_multiplier
+
+		if
+			not weap_base:run_and_shoot_allowed()
+			and (not self:_is_reloading() or not self.RUN_AND_RELOAD) -- no sprint anim if run n' reload (unused)
+			and (not self:_is_meleeing() or not managers.player:has_category_upgrade("player", "run_and_melee_eclipse")) -- no sprint anim while meleeing
+			and (not (self:_changing_weapon() or self:_is_throwing_projectile()) or not managers.player:has_category_upgrade("player", "can_sprint_swap")) -- no sprint anim while weapon swapping / masking up
+		then
+			self._ext_camera:play_redirect(self:get_animation("stop_running"), speed_multiplier)
+		end
+	end
+end
+
+function PlayerStandard:_start_action_throw_grenade(t, input)
+	self:_interupt_action_reload(t)
+	self:_interupt_action_steelsight(t)
+	if managers.player and not managers.player:has_category_upgrade("player", "can_sprint_swap") then
+		self:_interupt_action_running(t)
+	end
+	self:_interupt_action_charging_weapon(t)
+
+	local equipped_grenade = managers.blackmarket:equipped_grenade()
+	local projectile_tweak = tweak_data.blackmarket.projectiles[equipped_grenade]
+
+	if self._projectile_global_value then
+		self._camera_unit:anim_state_machine():set_global(self._projectile_global_value, 0)
+
+		self._projectile_global_value = nil
+	end
+
+	if projectile_tweak.anim_global_param then
+		self._projectile_global_value = projectile_tweak.anim_global_param
+
+		self._camera_unit:anim_state_machine():set_global(self._projectile_global_value, 1)
+	end
+
+	local delay = self:_get_projectile_throw_offset()
+
+	managers.network:session():send_to_peers_synched("play_distance_interact_redirect_delay", self._unit, "throw_grenade", delay)
+	self._ext_camera:play_redirect(Idstring(projectile_tweak.animation or "throw_grenade"))
+
+	local projectile_data = tweak_data.blackmarket.projectiles[equipped_grenade]
+	self._state_data.throw_grenade_expire_t = t + (projectile_data.expire_t or 1.1)
+
+	self:_stance_entered()
 end
 
 function PlayerStandard:_update_equip_weapon_timers(t, input)
