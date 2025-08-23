@@ -79,7 +79,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recon_interval_variation_mul = 0.75,
 		push_delay_mul = 1.25,
 		difficulty_scaling = {
-			diff_init = 0.2,
+			diff_init = 0.1,
+			assault_add = 0.3,
 		},
 		force_tactics = {
 			swat_init = {
@@ -95,21 +96,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.branchbank.group_ai_settings.first_responders_trade_delay = 75
 	self.branchbank.group_ai_settings.difficulty_scaling.assault_delay = 60
-
 	self.branchbank.group_ai_preset = "small_urban"
 	self.branchbank.has_megaphone_cop = true
 
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.four_stores.group_ai_settings.assault_force_mul = 0.7
 	self.four_stores.group_ai_preset = "small_urban"
 	self.four_stores.has_megaphone_cop = true
 
-	self.mallcrasher.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
+	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.mallcrasher.group_ai_settings.difficulty_scaling.assault_delay = 75
 	self.mallcrasher.group_ai_preset = "small_urban"
 	self.mallcrasher.has_megaphone_cop = true
 
-	self.nightclub.group_ai_settings = deep_clone(self.four_stores.group_ai_settings)
+	self.nightclub.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.nightclub.group_ai_preset = "small_urban"
 
 	self.family.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
@@ -138,10 +137,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.escape_park.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.escape_park.group_ai_settings.difficulty_scaling = {
-		diff_init = 0.5,
-		diff_min = 0.25,
+		diff_min = 0.2,
 		assault_delay = 30,
-		assault_add = 0.25,
+		assault_add = 0.3,
 	}
 
 	self.escape_cafe_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)

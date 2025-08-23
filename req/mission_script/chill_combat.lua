@@ -6,18 +6,12 @@ local disabled = {
 }
 local bush_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local roof_spawn = {
 	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local window_spawn = {
-	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -67,8 +61,8 @@ local money_pile_reinforce02 = {
 return {
 	[102510] = { -- 1st wave complete
 		on_executed = {
-			{ id = 400003, delay = 0, delay_rand = 10 }, -- custom roof preferreds
-			{ id = 400004, delay = 0, delay_rand = 20 }, -- custom window preferreds
+			{ id = 400003, delay = 0, delay_rand = 15 }, -- custom roof preferreds
+			{ id = 400004, delay = 0, delay_rand = 15 }, -- custom window preferreds
 		},
 	},
 	[102511] = { -- 2nd wave complete
@@ -79,7 +73,7 @@ return {
 		on_executed = {
 			{ id = 100987, remove = true }, -- preferred add 1
 			{ id = 400001, delay = 0, delay_rand = 0 }, -- custom street preferreds
-			{ id = 400002, delay = 0, delay_rand = 10 }, -- custom bush preferreds
+			{ id = 400002, delay = 0, delay_rand = 15 }, -- custom bush preferreds
 		},
 	},
 	-- Add new reinforce
@@ -117,6 +111,6 @@ return {
 	[101038] = roof_spawn,
 	[101204] = roof_spawn,
 	[101656] = roof_spawn,
-	[101859] = window_spawn,
-	[101864] = window_spawn,
+	[101859] = roof_spawn,
+	[101864] = roof_spawn,
 }

@@ -89,7 +89,6 @@ return {
 	-- Add new preferreds and adjust existing ones
 	[100129] = { -- initial preferreds
 		on_executed = {
-			{ id = 400013, delay = 0 },
 			{ id = 101574, remove = true }, -- remove roof preferreds
 		},
 	},
@@ -100,12 +99,12 @@ return {
 	},
 	[101571] = { -- fire started, enable roof preferreds
 		on_executed = {
-			{ id = 101574, delay = 0, delay_rand = 20 },
+			{ id = 101574, delay = 0, delay_rand = 15 },
 		},
 	},
 	[101236] = { -- Hajrudin stopped, enable garage roof preferreds
 		on_executed = {
-			{ id = 101573, delay = 0, delay_rand = 20 },
+			{ id = 101573, delay = 0, delay_rand = 15 },
 		},
 	},
 	-- replace the turret with a spawngroup
