@@ -1524,7 +1524,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"no_push",
 		},
 	}
-	
+
 	self._random_tactics = {
 		shield = {
 			shield_agg = 2,
@@ -1537,7 +1537,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		taser = { "taser_agg", "taser_snk" },
 		cloaker = { "cloaker_def", "cloaker_agg" },
 	}
-	
+
 	self._random_units = {
 		light_special = {
 			["medic_1"] = 2,
@@ -2520,7 +2520,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "fbi_heavy",
 				tactics = self._tactics.shield_spt,
 			},
-			{	
+			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
