@@ -82,7 +82,7 @@
 	"menu_awareness": "Duck and Cover",
 	"menu_awareness_desc": "BASIC: ##$basic##\nThe regeneration rate of your stamina is increased by ##$multibasic## while crouching.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while crouching.",
 	"menu_optic_illusions": "Sprinter",
-	"menu_optic_illusions_desc": "BASIC: ##$basic##\nYou can now sprint while strafing and swapping weapons.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while sprinting and zip-lining.",
+	"menu_optic_illusions_desc": "BASIC: ##$basic##\nYou can now sprint while strafing, swapping weapons and throwing grenades.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while sprinting and zip-lining.",
 	"menu_dire_need_beta": "Second Wind",
 	"menu_dire_need_beta_desc": "BASIC: ##$basic##\nWhen your armor breaks, your movement speed is increased by ##$multibasic## for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou gain a ##$multipro## chance to dodge enemy fire while your armor is broken.\n\nThis cannot occur again for another ##$multipro2## seconds after your armor regenerating.",
 	"menu_insulation_beta_desc": "BASIC: ##$basic##\nWhen tased, the shock effect will be ##$multibasic## weaker.\n\nYou no longer randomly pull the trigger while being tased.\n\nACE: ##$pro##\nWhen tased, you are able to free yourself from the taser by interacting with it within ##$multipro2## seconds of getting tased.",
