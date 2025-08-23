@@ -53,6 +53,11 @@ local upper_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local bags_required = {
+	values = {
+		amount = normal and 3 or hard and 5 or 7,
+	},
+}
 return {
 	-- New reinforce
 	[100129] = {
@@ -89,6 +94,19 @@ return {
 			difficulty = 0.4,
 		},
 	},
+	-- tweak the amount of required bags
+	[102745] = bags_required,
+	[102746] = bags_required,
+	[103351] = bags_required,
+	[103362] = bags_required,
+	[100260] = bags_required,
+	[100261] = bags_required,
+	[100262] = bags_required,
+	[100315] = bags_required,
+	[100322] = bags_required,
+	[100323] = bags_required,
+	[100512] = bags_required,
+	[102738] = bags_required,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,

@@ -146,58 +146,10 @@ return {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
-	-- enable new elevator spawngroups
+	-- add new elevator spawngroup
 	[103316] = {
 		on_executed = {
 			{ id = 400020, delay = 0 },
-			{ id = 400028, delay = 0 },
-			{ id = 400035, delay = 0 },
-			-- enable ai graphs
-			{ id = 106694, delay = 0 },
-			{ id = 106697, delay = 0 },
-		},
-	},
-	-- add new ids to enemy triggers
-	[106571] = {
-		values = {
-			elements = {
-				106567,
-				106569,
-				400022,
-				400023,
-				400024,
-				400025,
-				400026,
-			},
-			on_executed = {
-				{ id = 106701, delay = 8 },
-			},
-		},
-	},
-	[106572] = {
-		values = {
-			elements = {
-				106566,
-				106568,
-				400029,
-				400030,
-				400031,
-				400032,
-				400033,
-			},
-			on_executed = {
-				{ id = 106700, delay = 8 },
-			},
-		},
-	},
-	[106694] = {
-		on_executed = {
-			{ id = 106695, remove = true },
-		},
-	},
-	[106697] = {
-		on_executed = {
-			{ id = 106696, remove = true },
 		},
 	},
 	-- time lock is now randomized

@@ -53,6 +53,11 @@ local elevator_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields,
 }
+local bags_required = {
+	values = {
+		amount = normal and 3 or hard and 5 or 7,
+	},
+}
 return {
 	-- New reinforce
 	[100129] = {
@@ -85,6 +90,19 @@ return {
 			difficulty = 0.5, -- diff 65 originally
 		},
 	},
+	-- tweak the amount of required bags
+	[103567] = bags_required,
+	[103564] = bags_required,
+	[103565] = bags_required,
+	[103566] = bags_required,
+	[103568] = bags_required,
+	[103569] = bags_required,
+	[103570] = bags_required,
+	[103571] = bags_required,
+	[103586] = bags_required,
+	[100260] = bags_required,
+	[100261] = bags_required,
+	[100262] = bags_required,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,
@@ -137,25 +155,6 @@ return {
 	[100300] = gensec,
 	[100301] = gensec,
 	[100302] = gensec,
-	-- protection teams (seems to be unused???? Still, it's better to replace it)
-	[100522] = gensec,
-	[100523] = gensec,
-	[100526] = gensec,
-	[100527] = gensec,
-	[100530] = gensec,
-	[100531] = gensec,
-	[100532] = gensec,
-	[100534] = gensec,
-	[100535] = gensec,
-	[100536] = gensec,
-	[100538] = gensec,
-	[100539] = gensec,
-	[100540] = gensec,
-	[100542] = gensec,
-	[100543] = gensec,
-	[100544] = gensec,
-	[100524] = gensec,
-	[100525] = gensec,
 	-- van bulldozers
 	[103750] = gensec_tank,
 	[103751] = gensec_tank,

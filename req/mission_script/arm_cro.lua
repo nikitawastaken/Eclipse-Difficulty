@@ -7,6 +7,7 @@ local gensec_operators = {
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
 	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
 }
+
 local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
@@ -43,6 +44,11 @@ local dozer_van_chance = {
 local street_spawn = {
 	values = {
 		interval = 20,
+	},
+}
+local bags_required = {
+	values = {
+		amount = normal and 3 or hard and 5 or 7,
 	},
 }
 return {
@@ -83,6 +89,19 @@ return {
 			{ id = 100122, delay = 45 },
 		},
 	},
+	-- tweak the amount of required bags
+	[100316] = bags_required,
+	[100322] = bags_required,
+	[100323] = bags_required,
+	[101171] = bags_required,
+	[101159] = bags_required,
+	[101160] = bags_required,
+	[101161] = bags_required,
+	[101162] = bags_required,
+	[100315] = bags_required,
+	[101168] = bags_required,
+	[101169] = bags_required,
+	[101170] = bags_required,
 	-- Disable vanilla reinforce on the trucks
 	[100267] = disabled,
 	[100268] = disabled,
@@ -134,25 +153,6 @@ return {
 	[100300] = gensec,
 	[100301] = gensec,
 	[100302] = gensec,
-	-- protection teams (seems to be unused???? Still, it's better to replace it)
-	[100522] = gensec,
-	[100523] = gensec,
-	[100526] = gensec,
-	[100527] = gensec,
-	[100530] = gensec,
-	[100531] = gensec,
-	[100532] = gensec,
-	[100534] = gensec,
-	[100535] = gensec,
-	[100536] = gensec,
-	[100538] = gensec,
-	[100539] = gensec,
-	[100540] = gensec,
-	[100542] = gensec,
-	[100543] = gensec,
-	[100544] = gensec,
-	[100524] = gensec,
-	[100525] = gensec,
 	-- van bulldozers
 	[101747] = gensec_tank,
 	[101748] = gensec_tank,
