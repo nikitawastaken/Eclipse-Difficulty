@@ -604,7 +604,7 @@
 			</group>
 
 			<group :name="ene_cop_1/">
-				<xml  :name="ene_cop_1.sequence_manager" />
+				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_cop_1.material_config" />
 				<file :name="ene_cop_1_contour.material_config" />
 				<file :name="ene_cop_1.model" />
@@ -750,7 +750,7 @@
 			</group>
 
 			<group :name="ene_secret_service_1/">
-				<xml  :name="ene_secret_service_1.sequence_manager" />
+				<xml  :name="ene_secret_service_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_secret_service_1.material_config" />
 				<file :name="ene_secret_service_1_contour.material_config" />
 				<file :name="ene_secret_service_1.model" />
