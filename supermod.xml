@@ -359,6 +359,14 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_mxm/equipment/" from_type="custom_xml" to_type="binary">
+			<group :name="gen_equipment_grenade_case/">
+				<xml  :name="gen_equipment_grenade_crate.sequence_manager"/>
+				<file :name="gen_equipment_grenade_crate.model"/>
+				<file :name="gen_equipment_grenade_crate.object"/>
+			</group>
+		</group>
+
 		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
 			<group :name="wpn_gre_cluster/">
