@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local is_eclipse = Eclipse.utils.is_eclipse()
 local roof_spawn = {
 	values = {
 		interval = 15,
@@ -17,6 +18,13 @@ local mortuary_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+
+local cop_car_crash_amount = {
+	values = {
+		amount = is_eclipse and 2 or 1,
+	},
+}
+
 return {
 	[100115] = {
 		ponr = {
@@ -24,6 +32,8 @@ return {
 			player_mul = { 2, 1.25, 1, 1 },
 		},
 	},
+	-- 2 cop cars crashing down on Eclipse
+	[100300] = cop_car_crash_amount,
 	-- Add new reinforce
 	[100109] = {
 		reinforce = {

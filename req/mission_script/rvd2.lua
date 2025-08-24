@@ -25,6 +25,12 @@ local escape_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
 
 return {
 	-- Instantly enter full force onslaught upon securing all bags
@@ -91,6 +97,11 @@ return {
 			{ name = "zipline2" },
 		},
 	},
+	-- change the vault ambush
+	[101382] = filter_easy_above,
+	[101388] = filter_disable,
+	[101393] = filter_disable,
+	[101399] = filter_disable,
 	-- Disable hunt
 	[102176] = disabled,
 	-- e_nl_up_0_75m_dwn_0_25m

@@ -25,7 +25,7 @@ return {
 		},
 	},
 	-- Drop units from swat van
-	[103615] = {
+	[102439] = {
 		on_executed = {
 			{ id = 400005, delay = 0, delay_rand = 5 },
 		},
