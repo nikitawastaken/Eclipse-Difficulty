@@ -64,6 +64,7 @@
 	"menu_tower_defense_beta_desc": "BASIC: ##$basic##\nYou can now carry ##1## extra sentry gun.\n\nACE: ##$pro##\nThe cost of deploying a sentry gun is reduced by ##$multipro##.\nYour sentry guns also have ##$multipro2## more ammunition.",
 	"menu_eco_sentry_beta": "PhD in Engineering",
 	"menu_eco_sentry_beta_desc": "BASIC: ##$basic##\nYour sentry guns now have an upgraded motion sensor, allowing them to mark all enemies in a ##10m## radius and giving them a ##$multibasic## increase in accuracy.\n\nACE: ##$pro##\nYou can now toggle AP rounds on your sentry guns, lowering the rate of fire by ##$multipro##, but increasing damage by ##$multipro2## and allowing it to pierce through enemies and shields.",
+	"st_menu_technician_breaching": "Sapper",
 	"menu_blast_shield": "Blast Shield",
 	"menu_blast_shield_desc": "BASIC: ##$basic##\nYou receive ##$multibasic## less damage from explosives.\n\nACE: ##$pro##\nYour explosive projectile weapons and grenades deal ##$multipro## less damage to you and your crew.",
 	"menu_arms_cache": "Arms Cache",
