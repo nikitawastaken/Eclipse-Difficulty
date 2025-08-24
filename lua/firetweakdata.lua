@@ -78,6 +78,6 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 		dot_damage = 5,
 		dot_length = 4,
 		dot_tick_period = 0.5,
-		dot_trigger_max_distance = false
+		dot_trigger_max_distance = false,
 	}
 end)

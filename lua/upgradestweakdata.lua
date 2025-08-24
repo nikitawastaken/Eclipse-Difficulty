@@ -584,8 +584,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			upgrade = "amount_increase",
 			category = "grenade_case",
-			value = 1
-		}
+			value = 1,
+		},
 	}
 	self.values.grenade_crate.amount_increase = { 2 }
 	self.definitions.grenade_crate_amount_increase = {
@@ -594,8 +594,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			upgrade = "amount_increase",
 			category = "grenade_crate",
-			value = 1
-		}
+			value = 1,
+		},
 	}
 	self.values.grenade_case.quantity = { 1 }
 	self.definitions.grenade_case_quantity = {
@@ -604,8 +604,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "quantity",
-			category = "grenade_case"
-		}
+			category = "grenade_case",
+		},
 	}
 	self.values.grenade_crate.quantity = { 1 }
 	self.definitions.grenade_crate_quantity = {
@@ -614,8 +614,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "quantity",
-			category = "grenade_crate"
-		}
+			category = "grenade_crate",
+		},
 	}
 	self.skill_descs.drill_expert.multibasic = "50%"
 	self.skill_descs.drill_expert.multipro = "2"
@@ -2123,7 +2123,7 @@ function UpgradesTweakData:init(tweak_data)
 		equipment_id = "grenade_case",
 		slot = 1,
 		category = "equipment",
-		name_id = "menu_equipment_grenade_case"
+		name_id = "menu_equipment_grenade_case",
 	}
 
 	-- misc

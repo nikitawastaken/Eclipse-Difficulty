@@ -42,7 +42,7 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 		ignore_unit = self._unit,
 		alert_radius = self._alert_radius,
 		user = self:thrower_unit() or self._unit,
-		owner = self._unit
+		owner = self._unit,
 	})
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
@@ -56,14 +56,7 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 			local dir_x = math.cos(angle) * speed
 			local dir_y = math.sin(angle) * speed
 
-			ProjectileBase.throw_projectile(
-				self._cluster_grenade_type,
-				pos,
-				Vector3(dir_x, dir_y, 0.2),
-				player_peer_id,
-				dont_apply_player_velocity,
-				self._damage
-			)
+			ProjectileBase.throw_projectile(self._cluster_grenade_type, pos, Vector3(dir_x, dir_y, 0.2), player_peer_id, dont_apply_player_velocity, self._damage)
 		end
 	end
 
@@ -97,7 +90,7 @@ function ClusterGrenade:_setup_from_tweak_data()
 		idstr_decal = self._idstr_decal,
 		idstr_effect = self._idstr_effect,
 		sound_event = sound_event,
-		feedback_range = self._range * 2
+		feedback_range = self._range * 2,
 	}
 
 	return tweak_entry

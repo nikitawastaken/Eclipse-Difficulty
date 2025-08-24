@@ -276,7 +276,7 @@ tweak_data.projectiles.rocket_ray_frag.projectile_trail = true
 tweak_data.projectiles.rocket_ray_frag.adjust_z = 0
 tweak_data.projectiles.rocket_ray_frag.push_at_body_index = 0
 
- -- the c101 exclusive anim breaks for some reason when it's changed to primary with no fix
+-- the c101 exclusive anim breaks for some reason when it's changed to primary with no fix
 tweak_data.scene_poses.weapon.ray = { "husk_generic1", "husk_generic2", "husk_generic3", "husk_generic4", required_pose = false }
 
 -- Cluster Grenade
@@ -302,8 +302,8 @@ tweak_data.hud_icons.equipment_grenade_case = {
 		0,
 		0,
 		32,
-		32
-	}
+		32,
+	},
 }
 
 -- FFO ponr

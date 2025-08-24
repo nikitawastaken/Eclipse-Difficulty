@@ -61,7 +61,7 @@ function GrenadeCrateBase:setup(grenade_upgrade_lvl)
 				position = ray.body:position(),
 				rotation = ray.body:rotation(),
 				index = 1,
-				max_index = 3
+				max_index = 3,
 			}
 
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
@@ -96,7 +96,6 @@ function GrenadeCrateBase:_set_visual_stage()
 	end
 end
 
-
 function GrenadeCrateBase:sync_grenade_taken(amount)
 	amount = self:round_value(amount)
 	self._grenade_amount = self:round_value(self._grenade_amount - amount)
@@ -119,8 +118,8 @@ function GrenadeCrateBase:take_grenade(unit)
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
 		managers.network:session():send_to_peers_synched("sync_grenade_crate_grenade_taken", self._unit, taken)
-        managers.player:register_grenade(managers.network:session():local_peer():id())
-    end
+		managers.player:register_grenade(managers.network:session():local_peer():id())
+	end
 
 	if self._grenade_amount <= 0 then
 		self:_set_empty()
@@ -132,13 +131,13 @@ end
 function GrenadeCrateBase:_take_grenades()
 	local taken = 0
 
-    local took = self:round_value(managers.player:add_grenade_from_bag(self._grenade_amount, true))
-    taken = taken + took
-    self._grenade_amount = self:round_value(self._grenade_amount - took)
+	local took = self:round_value(managers.player:add_grenade_from_bag(self._grenade_amount, true))
+	taken = taken + took
+	self._grenade_amount = self:round_value(self._grenade_amount - took)
 
-    if self._grenade_amount <= 0 then
-        return taken
-    end
+	if self._grenade_amount <= 0 then
+		return taken
+	end
 
 	return taken
 end
@@ -217,7 +216,7 @@ function GrenadeCrateDeployableBase:setup(grenade_upgrade_lvl)
 				position = ray.body:position(),
 				rotation = ray.body:rotation(),
 				index = 1,
-				max_index = 3
+				max_index = 3,
 			}
 
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
@@ -252,7 +251,6 @@ function GrenadeCrateDeployableBase:_set_visual_stage()
 	end
 end
 
-
 function GrenadeCrateDeployableBase:sync_grenade_taken(amount)
 	amount = self:round_value(amount)
 	self._grenade_amount = self:round_value(self._grenade_amount - amount)
@@ -275,8 +273,8 @@ function GrenadeCrateDeployableBase:take_grenade(unit)
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
 		managers.network:session():send_to_peers_synched("sync_grenade_crate_grenade_taken", self._unit, taken)
-        managers.player:register_grenade(managers.network:session():local_peer():id())
-    end
+		managers.player:register_grenade(managers.network:session():local_peer():id())
+	end
 
 	if self._grenade_amount <= 0 then
 		self:_set_empty()
@@ -288,13 +286,13 @@ end
 function GrenadeCrateDeployableBase:_take_grenades()
 	local taken = 0
 
-    local took = self:round_value(managers.player:add_grenade_from_bag(self._grenade_amount, true))
-    taken = taken + took
-    self._grenade_amount = self:round_value(self._grenade_amount - took)
+	local took = self:round_value(managers.player:add_grenade_from_bag(self._grenade_amount, true))
+	taken = taken + took
+	self._grenade_amount = self:round_value(self._grenade_amount - took)
 
-    if self._grenade_amount <= 0 then
-        return taken
-    end
+	if self._grenade_amount <= 0 then
+		return taken
+	end
 
 	return taken
 end

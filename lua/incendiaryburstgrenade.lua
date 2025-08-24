@@ -23,7 +23,7 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 		alert_radius = self._alert_radius,
 		user = self:thrower_unit() or self._unit,
 		owner = self._unit,
-		dot_data = self._dot_data
+		dot_data = self._dot_data,
 	}
 	local hit_units, splinters = managers.fire:detect_and_give_dmg(params)
 
@@ -38,14 +38,7 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 			local dir_x = math.cos(angle) * speed
 			local dir_y = math.sin(angle) * speed
 
-			ProjectileBase.throw_projectile(
-				self._cluster_grenade_type,
-				pos,
-				Vector3(dir_x, dir_y, 0.2),
-				player_peer_id,
-				dont_apply_player_velocity,
-				self._damage
-			)
+			ProjectileBase.throw_projectile(self._cluster_grenade_type, pos, Vector3(dir_x, dir_y, 0.2), player_peer_id, dont_apply_player_velocity, self._damage)
 		end
 	end
 
