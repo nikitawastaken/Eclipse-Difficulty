@@ -1552,10 +1552,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		shield_special = {
 			["medic_1"] = 5,
-			["medic_2"] = 3,
-			["cloaker"] = 2,
-			["taser_1"] = 2,
-			["taser_2"] = 1,
+			["medic_2"] = 4,
+			["cloaker"] = 3,
+			["taser_1"] = 3,
+			["taser_2"] = 2,
 		},
 		hrt_special = {
 			"taser_1",

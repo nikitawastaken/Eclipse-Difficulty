@@ -1292,15 +1292,15 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 		self.marshal_security.use_radio = "dsp_radio_russian"
 	end
 
-	self.mobster_boss.HEALTH_INIT = 180
+	self.mobster_boss.HEALTH_INIT = 120
 	self.mobster_boss.headshot_dmg_mul = 1.5
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 
-	self.chavez_boss.HEALTH_INIT = 180
+	self.chavez_boss.HEALTH_INIT = 120
 	self.chavez_boss.headshot_dmg_mul = 1.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 
-	self.hector_boss.HEALTH_INIT = 240
+	self.hector_boss.HEALTH_INIT = 180
 	self.hector_boss.headshot_dmg_mul = 1.5
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.hector_boss.throwable = "concussion"
@@ -1309,13 +1309,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss_no_armor.HEALTH_INIT = 8
 	self.hector_boss_no_armor.headshot_dmg_mul = 2.5
 
-	self.biker_boss.HEALTH_INIT = 240
+	self.biker_boss.HEALTH_INIT = 180
 	self.biker_boss.headshot_dmg_mul = 1.5
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
 
-	self.drug_lord_boss.HEALTH_INIT = 240
+	self.drug_lord_boss.HEALTH_INIT = 180
 	self.drug_lord_boss.headshot_dmg_mul = 1.5
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.drug_lord_boss.throwable_target_verified = true
@@ -1325,7 +1325,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss_stealth.HEALTH_INIT = 8
 	self.drug_lord_boss_stealth.headshot_dmg_mul = 2.5
 
-	self.triad_boss.HEALTH_INIT = 240
+	self.triad_boss.HEALTH_INIT = 180
 	self.triad_boss.headshot_dmg_mul = 1.5
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.triad_boss.bullet_damage_only_from_front = nil
@@ -1336,7 +1336,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss_no_armor.HEALTH_INIT = 8
 	self.triad_boss_no_armor.headshot_dmg_mul = 2.5
 
-	self.deep_boss.HEALTH_INIT = 300
+	self.deep_boss.HEALTH_INIT = 240
 	self.deep_boss.headshot_dmg_mul = 1.5
 	self.deep_boss.ignore_headshot = false
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
@@ -1349,11 +1349,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_boss.access = "fbi"
 	table.insert(self._enemy_list, "fbi_boss")
 
-	self.snowman_boss.HEALTH_INIT = 400
+	self.snowman_boss.HEALTH_INIT = 300
 	self.snowman_boss.headshot_dmg_mul = 2
 	self.snowman_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 
-	self.piggydozer.HEALTH_INIT = 400
+	self.piggydozer.HEALTH_INIT = 300
 	self.piggydozer.headshot_dmg_mul = 2
 	self.piggydozer.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 
