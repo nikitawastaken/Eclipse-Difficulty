@@ -234,4 +234,96 @@ function M.weighted_selector(t)
 	return selector
 end
 
+-- Under GPL from
+-- https://springrts.com/phpbb/viewtopic.php?t=45533
+function M.log_traceback(maxdepth, maxwidth, maxtableelements, ...)
+	local tracedebug = false
+	local functionsource = true
+	maxdepth = maxdepth or 16
+	maxwidth = maxwidth or 10
+	maxtableelements = maxtableelements or 32
+
+	local function dbgt(t, m)
+		local count = 0
+		local res = ""
+		for k, v in pairs(t) do
+			count = count + 1
+			if count < m then
+				if tracedebug then
+					Eclipse:log(count, k)
+				end
+				if type(k) == "number" and type(v) == "function" then -- try to get function lists?
+					if tracedebug then
+						Eclipse:log(k, v, debug.getinfo(v), debug.getinfo(v).name)
+					end --debug.getinfo(v).short_src)?
+					res = res .. tostring(k) .. ":" .. ((debug.getinfo(v) and debug.getinfo(v).name) or "<function>") .. ", "
+				else
+					res = res .. tostring(k) .. ":" .. tostring(v) .. ", "
+				end
+			end
+		end
+		res = "{" .. res .. "}[#" .. count .. "]"
+		return res
+	end
+
+	local myargs = { ... }
+	local infostr = ""
+	for _, v in ipairs(myargs) do
+		infostr = infostr .. tostring(v) .. "\t"
+	end
+	if infostr ~= "" then
+		infostr = "Trace:[" .. infostr .. "]\n"
+	end
+	local functionstr = "" -- "Trace:["
+	for i = 2, maxdepth do
+		if debug.getinfo(i) then
+			local funcName = (debug and debug.getinfo(i) and debug.getinfo(i).name)
+			if funcName then
+				functionstr = functionstr .. tostring(i - 1) .. ": " .. tostring(funcName) .. " "
+				local arguments = ""
+				funcName = (debug and debug.getinfo(i) and debug.getinfo(i).name) or "??"
+				if funcName ~= "??" then
+					if functionsource and debug.getinfo(i).source then
+						local source = debug.getinfo(i).source
+						if string.len(source) > 128 then
+							source = "sourcetoolong"
+						end
+						functionstr = functionstr .. " @" .. source
+					end
+					if functionsource and debug.getinfo(i).linedefined then
+						functionstr = functionstr .. ":" .. tostring(debug.getinfo(i).linedefined)
+					end
+					for j = 1, maxwidth do
+						local name, value = debug.getlocal(i, j)
+						if not name then
+							break
+						end
+						if tracedebug then
+							Eclipse:log(i, j, funcName, name)
+						end
+						local sep = ((arguments == "") and "") or ";\n\t\t"
+						if tostring(name) == "self" then
+							arguments = arguments .. sep .. ((name and tostring(name)) or "name?") .. "=" .. tostring("??")
+						else
+							local newvalue
+							if maxtableelements > 0 and type({}) == type(value) then
+								newvalue = dbgt(value, maxtableelements)
+							else
+								newvalue = value
+							end
+							arguments = arguments .. sep .. ((name and tostring(name)) or "name?") .. "=" .. tostring(newvalue)
+						end
+					end
+				end
+				functionstr = functionstr .. "\nLocals:\n\t{\n\t\t" .. arguments .. "\n\t}\n"
+			else
+				functionstr = functionstr .. tostring(i - 1) .. ": ??\n\n"
+			end
+		else
+			break
+		end
+	end
+	Eclipse:log(infostr .. functionstr)
+end
+
 return M

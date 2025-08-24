@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<dynamic_object>
+	<diesel orientation_object="rp_gen_equipment_grenade_case" materials="units/payday2/equipment/gen_equipment_grenade_case/gen_equipment_grenade_case" />
+	<sequence_manager file="units/payday2/equipment/gen_equipment_grenade_case/gen_equipment_grenade_case" />
+		<bodies>
+			<body name="dynamic" enabled="false" template="dynamic_no_ray" collision_class="bag" collides_with_mover="false" >
+				<object name="rp_gen_equipment_grenade_case" />
+				<object name="c_box_1" collision_type="box" padding="-2.5" />
+				<object name="c_box_2" collision_type="box" padding="-2.5" />
+			</body>
+		</bodies>
+    <graphics>	
+        <object name="g_body" 		enabled="true" />
+        <object name="g_grenades_1" enabled="true" />
+        <object name="g_grenades_2" enabled="true" />
+        <object name="g_grenades_3" enabled="true" />
+		<object name="g_grenades_4" enabled="true" />
+		<object name="g_grenades_5" enabled="false" />
+		<object name="g_grenades_6" enabled="false" />
+    </graphics>
+</dynamic_object>

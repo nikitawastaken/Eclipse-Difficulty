@@ -33,7 +33,7 @@ function M.info(...)
 		local f = io.open(M.log_file, "a")
 		if f then
 			local args = { ... }
-			local log = table.remove(args, 1)
+			local log = tostring(table.remove(args, 1))
 			f:write(table.concat({ get_time() .. " [INFO]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end
@@ -45,7 +45,7 @@ function M.debug(...)
 		local f = io.open(M.log_file, "a")
 		if f then
 			local args = { ... }
-			local log = table.remove(args, 1)
+			local log = tostring(table.remove(args, 1))
 			f:write(table.concat({ get_time() .. " [DEBUG]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end
@@ -57,7 +57,7 @@ function M.warn(...)
 		local f = io.open(M.log_file, "a")
 		if f then
 			local args = { ... }
-			local log = table.remove(args, 1)
+			local log = tostring(table.remove(args, 1))
 			f:write(table.concat({ get_time() .. " [WARN]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end
@@ -69,7 +69,7 @@ function M.error(...)
 		local f = io.open(M.log_file, "a")
 		if f then
 			local args = { ... }
-			local log = table.remove(args, 1)
+			local log = tostring(table.remove(args, 1))
 			f:write(table.concat({ get_time() .. " [ERROR]: " .. log, unpack(args) }, "\t") .. "\n")
 			f:close()
 		end

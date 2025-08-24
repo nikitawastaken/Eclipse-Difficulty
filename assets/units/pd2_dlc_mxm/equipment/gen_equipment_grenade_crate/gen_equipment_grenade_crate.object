@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<dynamic_object>
+	<diesel materials="units/pd2_dlc_mxm/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate" orientation_object="rp_gen_equipment_explosives_bag" />
+	<sequence_manager file="units/pd2_dlc_mxm/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate" />
+	<bodies>
+		<body name="dynamic" enabled="false" template="dynamic_no_ray" collision_class="bag" collides_with_mover="false" >
+			<object name="rp_gen_equipment_explosives_bag" />
+			<object name="c_box_1" collision_type="box" padding="-2.5" />
+		</body>
+	</bodies>
+	<graphics>
+		<object name="g_bag" enabled="true" />
+		<object name="g_pouch_01_open" enabled="false" />
+		<object name="g_pouch_02_open" enabled="false" />
+		<object name="g_pouch_03_open" enabled="false" />
+		<object name="g_pouch_04_open" enabled="false" />
+		<object name="g_pouch_05_open" enabled="true" />
+		<object name="g_pouch_06_open" enabled="true" />
+		<object name="g_pouch_01_closed" enabled="true" />
+		<object name="g_pouch_02_closed" enabled="true" />
+		<object name="g_pouch_03_closed" enabled="true" />
+		<object name="g_pouch_04_closed" enabled="true" />
+		<object name="g_pouch_05_closed" enabled="false" />
+		<object name="g_pouch_06_closed" enabled="false" />
+	</graphics>
+	<lights />
+</dynamic_object>

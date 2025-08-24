@@ -72,4 +72,12 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 
 	self.dot_entries.fire.proj_launcher_incendiary_heavy = clone(self.dot_entries.fire.proj_launcher_incendiary)
 	self.dot_entries.fire.proj_launcher_incendiary_heavy.dot_damage = 3.6
+
+	self.dot_entries.fire.cluster_incendiary = {
+		dot_trigger_chance = 1,
+		dot_damage = 5,
+		dot_length = 4,
+		dot_tick_period = 0.5,
+		dot_trigger_max_distance = false
+	}
 end)

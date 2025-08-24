@@ -3,6 +3,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	old_pd2_values_init(self, tweak_data)
 
 	self.values.revolver = {} -- init revolver category table
+	self.values.grenade_case = {} -- init revolver category table
 
 	-- why is this here?
 	self.explosive_bullet = {
@@ -547,23 +548,138 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.eco_sentry.multipro = "75%"
 	self.skill_descs.eco_sentry.multipro2 = "250%"
 
+	-- Blast Shield
+	self.values.player.explosive_damage_multiplier = { 0.8 }
+	self.definitions.player_explosive_damage_multiplier = {
+		name_id = "menu_player_explosive_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.values.weapon.explosive_team_damage_multiplier = { 0.7 }
+	self.definitions.weapon_explosive_team_damage_multiplier = {
+		name_id = "menu_weapon_explosive_team_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_team_damage_multiplier",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.hardware_expert.multibasic = "20%"
+	self.skill_descs.hardware_expert.multipro = "30%"
+
 	-- Combat Engineering
 	self.values.trip_mine.explosion_size_multiplier_1 = { 1.5 }
 	self.skill_descs.combat_engineering.multibasic = "50%"
 
-	-- More Firepower
-	self.values.shape_charge.quantity = { 2, 5 }
-	self.values.trip_mine.quantity = { 5, 15 }
-	self.skill_descs.more_fire_power.multibasic = "2"
-	self.skill_descs.more_fire_power.multibasic2 = "5"
-	self.skill_descs.more_fire_power.multipro = "3"
-	self.skill_descs.more_fire_power.multipro2 = "10"
+	-- Arms Cache
+	self.values.grenade_case.amount_increase = { 2 }
+	self.definitions.grenade_case_amount_increase = {
+		category = "equipment_upgrade",
+		name_id = "debug_upgrade_grenade_case_amount_increase",
+		upgrade = {
+			upgrade = "amount_increase",
+			category = "grenade_case",
+			value = 1
+		}
+	}
+	self.values.grenade_crate.amount_increase = { 2 }
+	self.definitions.grenade_crate_amount_increase = {
+		category = "equipment_upgrade",
+		name_id = "debug_upgrade_grenade_crate_amount_increase",
+		upgrade = {
+			upgrade = "amount_increase",
+			category = "grenade_crate",
+			value = 1
+		}
+	}
+	self.values.grenade_case.quantity = { 1 }
+	self.definitions.grenade_case_quantity = {
+		name_id = "menu_grenade_case_quantity",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "quantity",
+			category = "grenade_case"
+		}
+	}
+	self.values.grenade_crate.quantity = { 1 }
+	self.definitions.grenade_crate_quantity = {
+		name_id = "menu_grenade_crate_quantity",
+		category = "equipment_upgrade",
+		upgrade = {
+			value = 1,
+			upgrade = "quantity",
+			category = "grenade_crate"
+		}
+	}
+	self.skill_descs.drill_expert.multibasic = "50%"
+	self.skill_descs.drill_expert.multipro = "2"
 
-	-- Fire Trap
-	self.values.trip_mine.fire_trap[1][1] = 10
-	self.values.trip_mine.fire_trap[2][1] = 30
-	self.skill_descs.fire_trap.multibasic = "20"
-	self.skill_descs.fire_trap.multipro = "20"
+	-- Hellwire
+	self.values.shape_charge.quantity[1] = 4
+	self.values.trip_mine.quantity[1] = 6
+	self.values.trip_mine.fire_trap[1] = { 30, 1.5 }
+	self.skill_descs.more_fire_power.multibasic = "4"
+	self.skill_descs.more_fire_power.multibasic2 = "6"
+	self.skill_descs.more_fire_power.multipro = "40"
+	self.skill_descs.more_fire_power.multipro2 = "6"
+
+	-- Powder Keg
+	self.values.weapon.explosive_range_multiplier = { 1.25 }
+	self.definitions.weapon_explosive_range_multiplier = {
+		name_id = "menu_player_explosive_range_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_range_multiplier",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.explosive_curve_multiplier = { 0.25 }
+	self.definitions.weapon_explosive_curve_multiplier = {
+		name_id = "menu_weapon_explosive_curve_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_curve_multiplier",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.kick_starter.multibasic = "25%"
+	self.skill_descs.kick_starter.multipro = "75%"
+
+	-- Carpet Bombing
+	self.cluster_grenade_damage_multiplier = 0.33
+	self.values.weapon.explosive_cluster_grenades = { true }
+	self.definitions.weapon_explosive_cluster_grenades = {
+		name_id = "menu_player_explosive_cluster_grenades",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "explosive_cluster_grenades",
+			category = "weapon",
+		},
+	}
+	self.values.weapon.cluster_incendiary_grenades = { true }
+	self.definitions.weapon_cluster_incendiary_grenades = {
+		name_id = "menu_player_cluster_incendiary_grenades",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "cluster_incendiary_grenades",
+			category = "weapon",
+		},
+	}
+	self.skill_descs.fire_trap.multibasic = "4"
+	self.skill_descs.fire_trap.multibasic2 = "3m"
+	self.skill_descs.fire_trap.multibasic3 = "33%"
+	self.skill_descs.fire_trap.multipro = "100"
+	self.skill_descs.fire_trap.multipro2 = "4"
 
 	-- Steady Grip
 	self.values.weapon.moving_recoil_penalty_reduction = { 0.8 }
@@ -2000,6 +2116,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[23][5].multiperk = "15%"
 	self.specialization_descs[23][7].multiperk = "15%"
 	self.specialization_descs[23][9].multiperk = "20%"
+
+	-- Grenade Case
+	self.grenade_crate_base = 4
+	self.definitions.grenade_case = {
+		equipment_id = "grenade_case",
+		slot = 1,
+		category = "equipment",
+		name_id = "menu_equipment_grenade_case"
+	}
 
 	-- misc
 	self.values.player.crouch_speed_multiplier[1] = 1.1

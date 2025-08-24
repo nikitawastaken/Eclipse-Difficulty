@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<dynamic_object>
+	<diesel orientation_object="rp_grenade" materials="units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster" />
+    <graphics>
+		<object enabled="true" name="g_grenade" />
+    </graphics>
+</dynamic_object>

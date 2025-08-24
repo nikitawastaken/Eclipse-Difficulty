@@ -638,8 +638,8 @@ function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_ar
 end
 
 local damage_reduction_skill_multiplier_original = PlayerManager.damage_reduction_skill_multiplier
-function PlayerManager:damage_reduction_skill_multiplier(...)
-	local multiplier = damage_reduction_skill_multiplier_original(self, ...)
+function PlayerManager:damage_reduction_skill_multiplier(damage_type)
+	local multiplier = damage_reduction_skill_multiplier_original(self, damage_type)
 
 	-- Reduce damage taken while inside of vehicles
 	local player = self:player_unit()
@@ -662,6 +662,11 @@ function PlayerManager:damage_reduction_skill_multiplier(...)
 		local skill = self:upgrade_value("player", "near_teammate_damage_multiplier", nil)
 
 		multiplier = multiplier * (skill.mul or 1)
+	end
+
+	-- blast shield explosive dmg reduction
+	if self:has_category_upgrade("player", "explosive_damage_multiplier") and damage_type == "explosion" then
+		multiplier = multiplier * self:upgrade_value("player", "explosive_damage_multiplier", 1)
 	end
 
 	return multiplier
@@ -1696,4 +1701,55 @@ function PlayerManager:_is_all_in_custody(ignored_peer_id)
 	end
 
 	return true
+end
+
+-- handle grenade case and ordnance bag as percentage based deployables
+function PlayerManager:add_grenade_from_bag(available, sync)
+	local peer_id = managers.network:session():local_peer():id()
+	local grenade = self._global.synced_grenades[peer_id].grenade
+	local icon = tweak_data.blackmarket.projectiles[grenade].icon
+	local max_nades = self:get_max_grenades_by_peer_id(peer_id)
+	local total_nades = Application:digest_value(self._global.synced_grenades[peer_id].amount, false)
+
+	local function process_grenades(amount_available)
+		if self:get_max_grenades_by_peer_id(peer_id) == self._global.synced_grenades[peer_id].amount then
+			return 0
+		end
+
+		local wanted = 1 - total_nades / max_nades
+		local can_have = math.min(wanted, amount_available)
+
+		total_nades = math.min(max_nades, total_nades + math.ceil(can_have * max_nades))
+
+		return can_have
+	end
+
+	local can_have = process_grenades(available)
+
+	managers.hud:set_teammate_grenades_amount(HUDManager.PLAYER_PANEL, {
+		icon = icon,
+		amount = total_nades
+	})
+	self:update_grenades_amount_to_peers(grenade, total_nades, sync and peer_id)
+
+	return can_have
+end
+
+-- add grenadecase to valid shape placement checks
+function PlayerManager:check_equipment_placement_valid(player, equipment)
+	local equipment_data = managers.player:equipment_data_by_name(equipment)
+
+	if not equipment_data then
+		return false
+	end
+
+	if equipment_data.equipment == "trip_mine" or equipment_data.equipment == "ecm_jammer" then
+		return player:equipment():valid_look_at_placement(tweak_data.equipments[equipment_data.equipment]) and true or false
+	elseif equipment_data.equipment == "sentry_gun" or equipment_data.equipment == "ammo_bag" or equipment_data.equipment == "sentry_gun_silent" or equipment_data.equipment == "doctor_bag" or equipment_data.equipment == "first_aid_kit" or equipment_data.equipment == "bodybags_bag" or equipment_data.equipment == "grenade_crate" or equipment_data.equipment == "grenade_case" then
+		return player:equipment():valid_shape_placement(equipment_data.equipment, tweak_data.equipments[equipment_data.equipment]) and true or false
+	elseif equipment_data.equipment == "armor_kit" then
+		return true
+	end
+
+	return player:equipment():valid_placement(tweak_data.equipments[equipment_data.equipment]) and true or false
 end

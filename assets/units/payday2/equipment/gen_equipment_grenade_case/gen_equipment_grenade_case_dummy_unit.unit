@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<unit type="item" slot="14">
+	<object file="units/payday2/equipment/gen_equipment_grenade_case/gen_equipment_grenade_case" />
+	<extensions>
+	</extensions>
+	<sounds>
+		<default_soundsource source="rp_gen_equipment_grenade_case"/>
+	</sounds>
+</unit>

@@ -34,4 +34,25 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	self.projectiles.launcher_poison_m79 = deep_clone(self.projectiles.launcher_poison)
 	self.projectiles.launcher_poison_m79.weapon_id = "gre_m79"
+
+	self.projectiles.cluster = {
+		name_id = "bm_grenade_cluster",
+		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster",
+		unit_dummy = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_husk",
+		is_a_grenade = true,
+		is_explosive = true,
+	}
+
+	table.insert(self._projectiles_index, "cluster")
+
+	self.projectiles.cluster_incendiary = {
+		name_id = "bm_grenade_cluster_incendiary",
+		unit = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_incendiary",
+		unit_dummy = "units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster_incendiary_husk",
+		impact_detonation = true,
+		is_a_grenade = true,
+		is_explosive = true,
+	}
+
+	table.insert(self._projectiles_index, "cluster_incendiary")
 end

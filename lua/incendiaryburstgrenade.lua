@@ -1,24 +1,4 @@
-function FragGrenade:bullet_hit() end
-
-function FragGrenade:set_thrower_unit(unit, ...)
-	FragGrenade.super.set_thrower_unit(self, unit, ...)
-
-	self._explosive_team_damage_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_team_damage_multiplier") or 1
-	self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
-	self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
-	self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") or nil
-	self._cluster_grenade_type = self._thrower_unit:base():upgrade_value("weapon", "cluster_incendiary_grenades") and "cluster_incendiary" or "cluster"
-
-	self._player_damage = self._player_damage * self._explosive_team_damage_multiplier
-	self._range = self._range * self._explosive_range_multiplier
-	self._curve_pow = self._curve_pow * self._explosive_curve_multiplier
-
-	if self._source_grenade_damage then
-		self._damage = self._source_grenade_damage * tweak_data.upgrades.cluster_grenade_damage_multiplier
-	end
-end
-
-function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
+function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
 	if self._detonated then
 		return
 	end
@@ -29,10 +9,10 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 	local range = self._range
 	local slot_mask = managers.slot:get_mask("explosion_targets")
 
-	managers.explosion:give_local_player_dmg(pos, range, self._player_damage)
+	managers.fire:give_local_player_dmg(pos, range, self._player_damage)
 	managers.explosion:play_sound_and_effects(pos, normal, range, self._custom_params)
 
-	local hit_units, splinters = managers.explosion:detect_and_give_dmg({
+	local params = {
 		player_damage = 0,
 		hit_pos = pos,
 		range = range,
@@ -42,8 +22,10 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 		ignore_unit = self._unit,
 		alert_radius = self._alert_radius,
 		user = self:thrower_unit() or self._unit,
-		owner = self._unit
-	})
+		owner = self._unit,
+		dot_data = self._dot_data
+	}
+	local hit_units, splinters = managers.fire:detect_and_give_dmg(params)
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
 		local base_angle = math.random() * 360
@@ -71,13 +53,15 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 		managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "base", GrenadeBase.EVENT_IDS.detonate)
 	end
 
-	self:_handle_hiding_and_destroying(true, nil)
+	local destruction_delay = self._dot_data and self._dot_data.dot_length + 1
+
+	self:_handle_hiding_and_destroying(true, destruction_delay)
 end
 
-ClusterGrenade = ClusterGrenade or class(FragGrenade)
+IncendiaryClusterGrenade = IncendiaryClusterGrenade or class(IncendiaryBurstGrenade)
 
-function ClusterGrenade:_setup_from_tweak_data()
-	local grenade_entry = self._tweak_projectile_entry or "cluster"
+function IncendiaryClusterGrenade:_setup_from_tweak_data()
+	local grenade_entry = self._tweak_projectile_entry or "cluster_incendiary"
 	local tweak_entry = tweak_data.projectiles[grenade_entry]
 	self._init_timer = tweak_entry.init_timer or 2.5
 	self._mass_look_up_modifier = tweak_entry.mass_look_up_modifier
@@ -97,8 +81,10 @@ function ClusterGrenade:_setup_from_tweak_data()
 		idstr_decal = self._idstr_decal,
 		idstr_effect = self._idstr_effect,
 		sound_event = sound_event,
-		feedback_range = self._range * 2
+		feedback_range = self._range * 2,
 	}
+
+	self._dot_data = tweak_entry.dot_data_name and tweak_data.dot:get_dot_data(tweak_entry.dot_data_name)
 
 	return tweak_entry
 end

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<unit type="item" slot="14">
+	<network sync="spawn" />
+	<object file="units/payday2/weapons/wpn_gre_cluster/wpn_gre_cluster" />
+	<dependencies>
+		<depends_on unit="units/payday2/weapons/wpn_frag_grenade/wpn_frag_grenade_husk" />
+		<depends_on effect="effects/payday2/particles/explosions/grenade_explosion" />
+		<depends_on effect="effects/particles/fire/small_light_fire" />
+		<depends_on effect="effects/payday2/particles/impacts/stone_explosion_impact_pd2" />
+		<depends_on effect="effects/payday2/particles/impacts/metal_explosion_impact_pd2" />
+		<depends_on effect="effects/payday2/particles/impacts/dirt_explosion_impact_pd2" />
+		<depends_on effect="effects/payday2/particles/impacts/concrete_explosion_impact_pd2" />
+		<depends_on bnk="soundbanks/weapon_white" />
+	</dependencies>
+	<extensions>
+		<extension name="base" class="IncendiaryClusterGrenade" />
+		<extension name="unit_data" class="ScriptUnitData" />
+		<extension name="damage" class="UnitDamage" >
+			<!-- <var name="_collision_event" value="grenade_hit_ground" />
+			<var name="_collision_sfx_quite_time" value="0" /> -->
+		</extension>
+		</extensions>
+	<sounds>
+		<default_soundsource source="rp_grenade" />
+	</sounds>
+</unit>

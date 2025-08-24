@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<unit type="item" slot="14" >
+	<object file="units/payday2/equipment/gen_equipment_grenade_case/gen_equipment_grenade_case" />
+	<network sync="spawn" />
+	<extensions>
+		<extension name="unit_data" class="ScriptUnitData" />
+		<extension name="base" class="GrenadeCrateBase" />
+		<extension name="damage" class="UnitDamage" />
+		<extension name="interaction" class="GrenadeCrateInteractionExt">
+			<var name="tweak_data" value="grenade_crate" />
+		</extension>
+	</extensions>
+   <sounds>
+		<default_soundsource source="rp_gen_equipment_grenade_case"/>
+	</sounds>
+</unit>

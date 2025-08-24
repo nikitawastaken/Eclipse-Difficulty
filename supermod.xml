@@ -214,11 +214,12 @@
 				</group>
 
 				<group :hook_id="equipment/">
-					<post :hook_id="sentry_gun/sentrygunbase"/>
 					<post :hook_id="ammo_bag/ammobagbase"/>
+					<post :hook_id="sentry_gun/sentrygunbase"/>
 					<post :hook_id="doctor_bag/doctorbagbase"/>
 					<post :hook_id="ecm_jammer/ecmjammerbase"/>
 					<post :hook_id="first_aid_kit/firstaidkitbase"/>
+					<post :hook_id="grenade_crate/grenadecratebase"/>
 				</group>
 
 				<post :hook_id="civilians/civilianbase"/>
@@ -249,7 +250,9 @@
 						<post :hook_id="quicksmokegrenade"/>
 						<post :hook_id="fraggrenade"/>
 						<post :hook_id="molotovgrenade"/>
+						<post :hook_id="electricgrenade"/>
 						<post :hook_id="incendiarygrenade"/>
+						<post :hook_id="incendiaryburstgrenade"/>
 						<post :hook_id="grenadebase"/>
 						<post :hook_id="smokescreengrenade"/>
 					</group>
@@ -276,6 +279,9 @@
 		<!-- sniper glare -->
 		<file name="effects/particles/weapons/sniper_glint.effect"/>
 		<file name="effects/textures/weapons/sniper_glint.dds"/>
+
+		<!-- incendiary cluster grenade explosion -->
+		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
 
 		<!-- weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
@@ -338,8 +344,48 @@
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
 
-		<!-- New NPC weapons -->
+		<!-- Grenade Case -->
+		<file name="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case.texture"/>
+		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
+		
+		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
+			<group :name="gen_equipment_grenade_case/">
+				<file :name="gen_equipment_grenade_case.cooked_physics"/>
+				<xml  :name="gen_equipment_grenade_case.sequence_manager"/>
+				<file :name="gen_equipment_grenade_case.material_config"/>
+				<file :name="gen_equipment_grenade_case.model"/>
+				<file :name="gen_equipment_grenade_case.object"/>
+				<file :name="gen_equipment_grenade_case.unit"/>
+				<file :name="gen_equipment_grenade_case_dummy_unit.unit"/>
+			</group>
+		</group>
+
+		<group name="units/pd2_dlc_mxm/equipment/" from_type="custom_xml" to_type="binary">
+			<group :name="gen_equipment_grenade_crate/">
+				<xml  :name="gen_equipment_grenade_crate.sequence_manager"/>
+				<file :name="gen_equipment_grenade_crate.model"/>
+				<file :name="gen_equipment_grenade_crate.object"/>
+			</group>
+		</group>
+
+		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
+			<group :name="wpn_gre_cluster/">
+				<file :name="wpn_gre_cluster_df.texture"/>
+				<file :name="wpn_gre_cluster_nm.texture"/>
+				<file :name="wpn_gre_cluster.cooked_physics"/>
+				<file :name="wpn_gre_cluster.material_config"/>
+				<file :name="wpn_gre_cluster.model"/>
+				<file :name="wpn_gre_cluster.object"/>
+				<file :name="wpn_gre_cluster.unit"/>
+				<file :name="wpn_gre_cluster_husk.cooked_physics"/>
+				<file :name="wpn_gre_cluster_husk.model"/>
+				<file :name="wpn_gre_cluster_husk.object"/>
+				<file :name="wpn_gre_cluster_husk.unit"/>
+
+				<file :name="wpn_gre_cluster_incendiary.unit"/>
+				<file :name="wpn_gre_cluster_incendiary_husk.unit"/>
+			</group>
 
 			<!-- NPC Mosconi retexture/model -->
 			<group :name="wpn_npc_sawnoff_shotgun/">
@@ -375,7 +421,7 @@
 
 			<!-- Bulldozer MP5 -->
 			<group :name="wpn_npc_mp5_bulldozer/">
-				<file :name="wpn_npc_mp5_bulldozer.cooked_physics" />	
+				<file :name="wpn_npc_mp5_bulldozer.cooked_physics" />
 				<file :name="wpn_npc_mp5_bulldozer.model" />
 				<file :name="wpn_npc_mp5_bulldozer.object" />
 				<file :name="wpn_npc_mp5_bulldozer.unit" />
@@ -455,7 +501,7 @@
 				<file :name="wpn_npc_m14.object" />
 				<file :name="wpn_npc_m14.unit"/>
 			</group>
-			
+
 			<!-- NPC Jackal sound -->
 			<file :name="wpn_npc_ump/wpn_npc_ump.unit" dyn_package="false"/>
 		</group>
@@ -1140,7 +1186,7 @@
 				<file :name="ene_bulldozer_medic_classic_husk.unit" />
 				<file :name="ene_bulldozer_medic_df.texture" />
 			</group>
-			
+
 			<group :name="ene_bulldozer_minigun_classic/">
 				<file :name="ene_bulldozer_minigun_classic.unit" />
 				<file :name="ene_bulldozer_minigun_classic_husk.unit" />
@@ -1430,7 +1476,7 @@
 				<file :name="wpn_npc_flamethrower_bulldozer.object"/>
 				<file :name="wpn_npc_flamethrower_bulldozer.unit"/>
 			</group>
-			
+
 			<group :name="characters/npc_male_yufuwang_armored/">
 				<file :name="npc_male_yufuwang_armored.object"/>
 				<file :name="npc_male_yufuwang_armored.unit"/>
@@ -1499,7 +1545,7 @@
 				<file :name="ene_marshal_equipment_df.texture" />
 				<file :name="ene_marshal_equipment_merc_df.texture" />
 			</group>
-			
+
 			<group :name="ene_acc_marksman_hat/">
 				<file :name="ene_acc_marksman_hat.model" />
 			</group>
@@ -1590,13 +1636,13 @@
 				<file :name="wpn_npc_snowthrower_bulldozer.object" />
 				<file :name="wpn_npc_snowthrower_bulldozer.unit" />
 			</group>
-			
+
 			<group :name="characters/ene_snowman_boss/">
 				<file :name="ene_snowman_boss.unit" />
 				<file :name="ene_snowman_boss_husk.unit" />
 			</group>
 		</group>
-		
+
 		<!-- objects -->
 		<group name="units/pd2_dlc_pal/props/pal_prop_flames_of_love_boombox/" dyn_package="false">
 				<file :name="pal_prop_flames_of_love_boombox.sequence_manager"/> <!-- Where is my Payday for you and me??????? -->

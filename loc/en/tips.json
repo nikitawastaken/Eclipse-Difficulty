@@ -1,5 +1,5 @@
 {
-	"loading_eclipse_gameplay_title" : "Eclipse Gameplay Tip #",
+	"loading_eclipse_gameplay_title" : "Eclipse Gameplay Tip",
 	"loading_eclipse_gameplay_1" : "Standing still helps control your recoil and improve your accuracy. Crouching further enhances the effect.",
 	"loading_eclipse_gameplay_2" : "A Medic Bag restores only one down per use.",
 	"loading_eclipse_gameplay_3" : "There is a maximum of 100 skill points to spend in Eclipse.",
@@ -67,7 +67,7 @@
 	"loading_eclipse_gameplay_65" : "Enemy HP is based on unit type and faction. Only boss-type enemies have HP that scales with difficulty. ",
 	"loading_eclipse_gameplay_66" : "Tear gas bypasses armor, strips stamina, and directly damages health—its damage scales exponentially the longer you’re exposed.",
 	"loading_eclipse_gameplay_67" : "If you’re alone and can’t reach a specific location during an assault, it’s usually better to play it safe and wait it out than get downed in the open.",
-	"loading_eclipse_gameplay_68" : "The Hitman perk deck is an aggressive playstyle that rewards quick, accurate kills.",
+	"loading_eclipse_gameplay_68" : "The Hitman perk deck promotes an aggressive playstyle that rewards quick, accurate kills.",
 	"loading_eclipse_gameplay_69" : "Cloakers can still charge and dropkick a solo player, initially dealing only health damage. If your health is low enough, the attack can down you.",
 	"loading_eclipse_gameplay_70" : "First Aid Kits only restore a portion of your total health, although they can also be upgraded to grant temporary health regeneration.",
 	"loading_eclipse_gameplay_71" : "A Marksman Rifle is a weapon type that bridges Sniper and Assault Rifles.",
