@@ -318,3 +318,15 @@ function GrenadeCrateDeployableBase:_set_empty()
 		unit:set_enabled(false)
 	end
 end
+
+function GrenadeCrateDeployableBase:_set_visual_stage()
+	local percentage = self._grenade_amount / self._max_grenade_amount
+
+	if alive(self._unit) and self._unit:damage() then
+		local state = "state_" .. math.ceil(percentage * 6)
+
+		if self._unit:damage():has_sequence(state) then
+			self._unit:damage():run_sequence_simple(state)
+		end
+	end
+end

@@ -14,8 +14,8 @@
 		<object name="g_pouch_02_open" enabled="false" />
 		<object name="g_pouch_03_open" enabled="false" />
 		<object name="g_pouch_04_open" enabled="false" />
-		<object name="g_pouch_05_open" enabled="false" />
-		<object name="g_pouch_06_open" enabled="false" />
+		<object name="g_pouch_05_open" enabled="true" />
+		<object name="g_pouch_06_open" enabled="true" />
 		<object name="g_pouch_01_closed" enabled="true" />
 		<object name="g_pouch_02_closed" enabled="true" />
 		<object name="g_pouch_03_closed" enabled="true" />

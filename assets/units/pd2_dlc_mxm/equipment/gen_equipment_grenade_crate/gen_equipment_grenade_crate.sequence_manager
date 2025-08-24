@@ -2,28 +2,94 @@
 <table>
 	<unit>
 		<sequence editable_state="true" name=" 'state_1' " triggable="false">
-			<object enabled="true" name="'g_pouch_01_open'"/>
-			<object enabled="false" name="'g_pouch_01_closed'"/>
+			<object enabled="false" name="'g_pouch_01_open'"/>
+			<object enabled="true" name="'g_pouch_02_open'"/>
+			<object enabled="true" name="'g_pouch_03_open'"/>
+			<object enabled="true" name="'g_pouch_04_open'"/>
+			<object enabled="true" name="'g_pouch_05_open'"/>
+			<object enabled="true" name="'g_pouch_06_open'"/>
+			
+			<object enabled="true" name="'g_pouch_01_closed'"/>
+			<object enabled="false" name="'g_pouch_02_closed'"/>
+			<object enabled="false" name="'g_pouch_03_closed'"/>
+			<object enabled="false" name="'g_pouch_04_closed'"/>
+			<object enabled="false" name="'g_pouch_05_closed'"/>
+			<object enabled="false" name="'g_pouch_06_closed'"/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_2' " triggable="false">
-			<object enabled="true" name="'g_pouch_02_open'"/>
-			<object enabled="false" name="'g_pouch_02_closed'"/>
+			<object enabled="false" name="'g_pouch_01_open'"/>
+			<object enabled="false" name="'g_pouch_02_open'"/>
+			<object enabled="true" name="'g_pouch_03_open'"/>
+			<object enabled="true" name="'g_pouch_04_open'"/>
+			<object enabled="true" name="'g_pouch_05_open'"/>
+			<object enabled="true" name="'g_pouch_06_open'"/>
+			
+			<object enabled="true" name="'g_pouch_01_closed'"/>
+			<object enabled="true" name="'g_pouch_02_closed'"/>
+			<object enabled="false" name="'g_pouch_03_closed'"/>
+			<object enabled="false" name="'g_pouch_04_closed'"/>
+			<object enabled="false" name="'g_pouch_05_closed'"/>
+			<object enabled="false" name="'g_pouch_06_closed'"/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_3' " triggable="false">
-			<object enabled="true" name="'g_pouch_03_open'"/>
-			<object enabled="false" name="'g_pouch_03_closed'"/>
+			<object enabled="false" name="'g_pouch_01_open'"/>
+			<object enabled="false" name="'g_pouch_02_open'"/>
+			<object enabled="false" name="'g_pouch_03_open'"/>
+			<object enabled="true" name="'g_pouch_04_open'"/>
+			<object enabled="true" name="'g_pouch_05_open'"/>
+			<object enabled="true" name="'g_pouch_06_open'"/>
+			
+			<object enabled="true" name="'g_pouch_01_closed'"/>
+			<object enabled="true" name="'g_pouch_02_closed'"/>
+			<object enabled="true" name="'g_pouch_03_closed'"/>
+			<object enabled="false" name="'g_pouch_04_closed'"/>
+			<object enabled="false" name="'g_pouch_05_closed'"/>
+			<object enabled="false" name="'g_pouch_06_closed'"/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_4' " triggable="false">
-			<object enabled="true" name="'g_pouch_04_open'"/>
-			<object enabled="false" name="'g_pouch_04_closed'"/>
+			<object enabled="false" name="'g_pouch_01_open'"/>
+			<object enabled="false" name="'g_pouch_02_open'"/>
+			<object enabled="false" name="'g_pouch_03_open'"/>
+			<object enabled="false" name="'g_pouch_04_open'"/>
+			<object enabled="true" name="'g_pouch_05_open'"/>
+			<object enabled="true" name="'g_pouch_06_open'"/>
+			
+			<object enabled="true" name="'g_pouch_01_closed'"/>
+			<object enabled="true" name="'g_pouch_02_closed'"/>
+			<object enabled="true" name="'g_pouch_03_closed'"/>
+			<object enabled="true" name="'g_pouch_04_closed'"/>
+			<object enabled="false" name="'g_pouch_05_closed'"/>
+			<object enabled="false" name="'g_pouch_06_closed'"/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_5' " triggable="false">
-			<object enabled="true" name="'g_pouch_05_open'"/>
-			<object enabled="false" name="'g_pouch_05_closed'"/>
+			<object enabled="false" name="'g_pouch_01_open'"/>
+			<object enabled="false" name="'g_pouch_02_open'"/>
+			<object enabled="false" name="'g_pouch_03_open'"/>
+			<object enabled="false" name="'g_pouch_04_open'"/>
+			<object enabled="false" name="'g_pouch_05_open'"/>
+			<object enabled="true" name="'g_pouch_06_open'"/>
+			
+			<object enabled="true" name="'g_pouch_01_closed'"/>
+			<object enabled="true" name="'g_pouch_02_closed'"/>
+			<object enabled="true" name="'g_pouch_03_closed'"/>
+			<object enabled="true" name="'g_pouch_04_closed'"/>
+			<object enabled="true" name="'g_pouch_05_closed'"/>
+			<object enabled="false" name="'g_pouch_06_closed'"/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_6' " triggable="false">
-			<object enabled="true" name="'g_pouch_06_open'"/>
-			<object enabled="false" name="'g_pouch_06_closed'"/>
+			<object enabled="false" name="'g_pouch_01_open'"/>
+			<object enabled="false" name="'g_pouch_02_open'"/>
+			<object enabled="false" name="'g_pouch_03_open'"/>
+			<object enabled="false" name="'g_pouch_04_open'"/>
+			<object enabled="false" name="'g_pouch_05_open'"/>
+			<object enabled="false" name="'g_pouch_06_open'"/>
+			
+			<object enabled="true" name="'g_pouch_01_closed'"/>
+			<object enabled="true" name="'g_pouch_02_closed'"/>
+			<object enabled="true" name="'g_pouch_03_closed'"/>
+			<object enabled="true" name="'g_pouch_04_closed'"/>
+			<object enabled="true" name="'g_pouch_05_closed'"/>
+			<object enabled="true" name="'g_pouch_06_closed'"/>
 		</sequence>
 	</unit>
 </table>
