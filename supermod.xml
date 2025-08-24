@@ -347,6 +347,7 @@
 		<!-- Grenade Case -->
 		<file name="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case.texture"/>
 		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
+		
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<group :name="gen_equipment_grenade_case/">
 				<file :name="gen_equipment_grenade_case.cooked_physics"/>
@@ -360,7 +361,7 @@
 		</group>
 
 		<group name="units/pd2_dlc_mxm/equipment/" from_type="custom_xml" to_type="binary">
-			<group :name="gen_equipment_grenade_case/">
+			<group :name="gen_equipment_grenade_crate/">
 				<xml  :name="gen_equipment_grenade_crate.sequence_manager"/>
 				<file :name="gen_equipment_grenade_crate.model"/>
 				<file :name="gen_equipment_grenade_crate.object"/>
