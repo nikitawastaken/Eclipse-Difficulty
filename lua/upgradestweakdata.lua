@@ -102,7 +102,8 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Keepers
 	self.values.doctor_bag.amount_increase[1] = 1
-	self.skill_descs.medic_2x.multipro = "1"
+	self.skill_descs.medic_2x.multibasic = "1"
+	self.skill_descs.medic_2x.multipro = "2"
 
 	-- Inspire
 	self.morale_boost_speed_bonus = 1.3
@@ -488,6 +489,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.weapon.clip_ammo_increase[1] = 1.2
 	self.skill_descs.portable_saw.multibasic = "5%"
 	self.skill_descs.portable_saw.multipro = "20%"
+
+	-- Extra Lead
+	self.skill_descs.ammo_2x.multibasic = "50%"
+	self.skill_descs.ammo_2x.multipro = "2"
 
 	-- Big Game Hunters
 	self.values.player.pick_up_ammo_multiplier[2] = 1.3

@@ -43,6 +43,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.tea_cookies.icon_xy = { 4, 9 }
 
 	-- Keepers
+	self.skills.medic_2x[1].upgrades = { "doctor_bag_amount_increase1" }
+	self.skills.medic_2x[2].upgrades = { "doctor_bag_quantity" }
 	self.skills.medic_2x.name_id = "menu_keepers"
 	self.skills.medic_2x.desc_id = "menu_keepers_desc"
 
@@ -178,6 +180,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.portable_saw.name_id = "menu_mag_plus_beta"
 	self.skills.portable_saw.desc_id = "menu_mag_plus_beta_desc"
 	self.skills.portable_saw.icon_xy = { 2, 0 }
+
+	-- Extra Lead
+	self.skills.ammo_2x[1].upgrades = { "ammo_bag_ammo_increase1" }
+	self.skills.ammo_2x[2].upgrades = { "ammo_bag_quantity" }
 
 	-- Big Game Hunters
 	self.skills.carbon_blade[1].upgrades = { "player_double_drop_1" }
