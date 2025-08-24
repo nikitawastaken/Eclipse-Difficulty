@@ -17,7 +17,5 @@
 		<object name="g_grenades_4" enabled="true" />
 		<object name="g_grenades_5" enabled="false" />
 		<object name="g_grenades_6" enabled="false" />
-		<object name="g_grenades_7" enabled="false" />
-		<object name="g_grenades_8" enabled="false" />
     </graphics>
 </dynamic_object>

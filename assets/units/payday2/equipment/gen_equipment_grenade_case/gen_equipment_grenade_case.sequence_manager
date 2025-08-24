@@ -2,8 +2,6 @@
 <table>
 	<unit>
 		<sequence editable_state="true" name=" 'state_1' " triggable="false">
-			<object enabled="false" name=" 'g_grenades_8' "/>
-			<object enabled="false" name=" 'g_grenades_7' "/>
 			<object enabled="false" name=" 'g_grenades_6' "/>
 			<object enabled="false" name=" 'g_grenades_5' "/>
 			<object enabled="false" name=" 'g_grenades_4' "/>
@@ -12,8 +10,6 @@
 			<object enabled="true" name=" 'g_grenades_1' "/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_2' " triggable="false">
-			<object enabled="false" name=" 'g_grenades_8' "/>
-			<object enabled="false" name=" 'g_grenades_7' "/>
 			<object enabled="false" name=" 'g_grenades_6' "/>
 			<object enabled="false" name=" 'g_grenades_5' "/>
 			<object enabled="false" name=" 'g_grenades_4' "/>
@@ -22,8 +18,6 @@
 			<object enabled="true" name=" 'g_grenades_1' "/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_3' " triggable="false">
-			<object enabled="false" name=" 'g_grenades_8' "/>
-			<object enabled="false" name=" 'g_grenades_7' "/>
 			<object enabled="false" name=" 'g_grenades_6' "/>
 			<object enabled="false" name=" 'g_grenades_5' "/>
 			<object enabled="false" name=" 'g_grenades_4' "/>
@@ -32,8 +26,6 @@
 			<object enabled="true" name=" 'g_grenades_1' "/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_4' " triggable="false">
-			<object enabled="false" name=" 'g_grenades_8' "/>
-			<object enabled="false" name=" 'g_grenades_7' "/>
 			<object enabled="false" name=" 'g_grenades_6' "/>
 			<object enabled="false" name=" 'g_grenades_5' "/>
 			<object enabled="true" name=" 'g_grenades_4' "/>
@@ -42,8 +34,6 @@
 			<object enabled="true" name=" 'g_grenades_1' "/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_5' " triggable="false">
-			<object enabled="false" name=" 'g_grenades_8' "/>
-			<object enabled="false" name=" 'g_grenades_7' "/>
 			<object enabled="false" name=" 'g_grenades_6' "/>
 			<object enabled="true" name=" 'g_grenades_5' "/>
 			<object enabled="true" name=" 'g_grenades_4' "/>
@@ -52,28 +42,6 @@
 			<object enabled="true" name=" 'g_grenades_1' "/>
 		</sequence>
 		<sequence editable_state="true" name=" 'state_6' " triggable="false">
-			<object enabled="false" name=" 'g_grenades_8' "/>
-			<object enabled="false" name=" 'g_grenades_7' "/>
-			<object enabled="true" name=" 'g_grenades_6' "/>
-			<object enabled="true" name=" 'g_grenades_5' "/>
-			<object enabled="true" name=" 'g_grenades_4' "/>
-			<object enabled="true" name=" 'g_grenades_3' "/>
-			<object enabled="true" name=" 'g_grenades_2' "/>
-			<object enabled="true" name=" 'g_grenades_1' "/>
-		</sequence>
-		<sequence editable_state="true" name=" 'state_7' " triggable="false">
-			<object enabled="false" name=" 'g_grenades_8' "/>
-			<object enabled="true" name=" 'g_grenades_7' "/>
-			<object enabled="true" name=" 'g_grenades_6' "/>
-			<object enabled="true" name=" 'g_grenades_5' "/>
-			<object enabled="true" name=" 'g_grenades_4' "/>
-			<object enabled="true" name=" 'g_grenades_3' "/>
-			<object enabled="true" name=" 'g_grenades_2' "/>
-			<object enabled="true" name=" 'g_grenades_1' "/>
-		</sequence>
-		<sequence editable_state="true" name=" 'state_8' " triggable="false">
-			<object enabled="true" name=" 'g_grenades_8' "/>
-			<object enabled="true" name=" 'g_grenades_7' "/>
 			<object enabled="true" name=" 'g_grenades_6' "/>
 			<object enabled="true" name=" 'g_grenades_5' "/>
 			<object enabled="true" name=" 'g_grenades_4' "/>
