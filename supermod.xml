@@ -296,9 +296,6 @@
 			<file :name="wpn_fps_upg_perk_stockpile.texture"/>
 		</group>
 
-		<!-- placeholder inventory icon for grenade case -->
-		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
-
 		<!-- eclipse risk level asset -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
 
@@ -347,6 +344,9 @@
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
 
+		<!-- Grenade Case -->
+		<file name="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case.texture"/>
+		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<group :name="gen_equipment_grenade_case/">
 				<file :name="gen_equipment_grenade_case.cooked_physics"/>
@@ -358,7 +358,7 @@
 				<file :name="gen_equipment_grenade_case_dummy_unit.unit"/>
 			</group>
 		</group>
-		
+
 		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
 			<group :name="wpn_gre_cluster/">

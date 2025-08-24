@@ -295,6 +295,17 @@ tweak_data.projectiles.cluster_incendiary.effect_name = "effects/payday2/particl
 tweak_data.projectiles.cluster_incendiary.sound_event = "white_explosion"
 tweak_data.projectiles.cluster_incendiary.dot_data_name = "cluster_incendiary"
 
+-- Grenade Case HUD icon
+tweak_data.hud_icons.equipment_grenade_case = {
+	texture = "guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case",
+	texture_rect = {
+		0,
+		0,
+		32,
+		32
+	}
+}
+
 -- FFO ponr
 tweak_data.point_of_no_returns.ffo = {
 	texture = "guis/textures/pd2/hud_icon_noreturnbox",
