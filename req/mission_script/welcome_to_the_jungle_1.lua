@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 -- add female bikers to spawn roster
 local biker_enemy = {
 	["units/payday2/characters/ene_biker_1/ene_biker_1"] = 5,
@@ -13,12 +14,20 @@ local biker = { enemy = biker_enemy }
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
 }
-
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_cloakers_snipers,
+}
 return {
 	-- Disable Titan cams
 	[101301] = {
 		values = {
 			enabled = false,
+		},
+	},
+	-- Drop units from swat van
+	[103615] = {
+		on_executed = {
+			{ id = 400005, delay = 0, delay_rand = 5 },
 		},
 	},
 	-- only let swats, tasers and cloakers use climbing SOs like in rats day 1
@@ -76,4 +85,6 @@ return {
 	[103337] = biker,
 	[103338] = biker,
 	[103339] = biker,
+	-- spawn group tweaks
+	[400007] = scripted_swat_van_spawn,
 }
