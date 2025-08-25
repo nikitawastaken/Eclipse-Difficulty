@@ -67,6 +67,35 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 	self:_handle_hiding_and_destroying(true, nil)
 end
 
+function FragGrenade:_detonate_on_client()
+	if self._detonated then
+		return
+	end
+
+	self._detonated = true
+	local pos = self._unit:position()
+	local range = self._range
+
+	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
+		local base_angle = math.random() * 360
+		local player_peer_id = managers.network:session():peer_by_unit(self:thrower_unit()):id()
+		local dont_apply_player_velocity = true
+
+		for i = 0, 3 do
+			local angle = (base_angle + i * 90)
+			local speed = math.rand(0.2, 0.3)
+			local dir_x = math.cos(angle) * speed
+			local dir_y = math.sin(angle) * speed
+
+			ProjectileBase.throw_projectile(self._cluster_grenade_type, pos, Vector3(dir_x, dir_y, 0.2), player_peer_id, dont_apply_player_velocity, self._damage)
+		end
+	end
+
+	managers.explosion:give_local_player_dmg(pos, range, self._player_damage)
+	managers.explosion:explode_on_client(pos, math.UP, nil, self._damage, range, self._curve_pow, self._custom_params)
+	self:_handle_hiding_and_destroying(true, nil)
+end
+
 ClusterGrenade = ClusterGrenade or class(FragGrenade)
 
 function ClusterGrenade:_setup_from_tweak_data()
