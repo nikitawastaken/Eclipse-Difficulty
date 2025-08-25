@@ -90,12 +90,3 @@ function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autore
 		base_ext:set_skill_upgrades(Drill.create_upgrades(autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, electrocuting_drill))
 	end
 end
-
--- Grenade Case upgrade Setup
-function UnitNetworkHandler:sync_grenade_case_setup(unit, upgrade_lvl, peer_id)
-	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
-		return
-	end
-
-	unit:base():sync_setup(upgrade_lvl, peer_id)
-end

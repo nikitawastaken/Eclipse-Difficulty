@@ -8,7 +8,7 @@ function GrenadeCrateBase.spawn(pos, rot, grenade_upgrade_lvl, peer_id)
 	local unit_name = "units/payday2/equipment/gen_equipment_grenade_case/gen_equipment_grenade_case"
 	local unit = World:spawn_unit(Idstring(unit_name), pos, rot)
 
-	managers.network:session():send_to_peers_synched("sync_grenade_case_setup", unit, grenade_upgrade_lvl, peer_id or 0)
+	managers.network:session():send_to_peers_synched("sync_equipment_setup", unit, grenade_upgrade_lvl, peer_id or 0)
 	unit:base():setup(grenade_upgrade_lvl)
 
 	return unit
@@ -167,7 +167,7 @@ function GrenadeCrateDeployableBase.spawn(pos, rot, grenade_upgrade_lvl, peer_id
 	local unit_name = "units/pd2_dlc_mxm/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate"
 	local unit = World:spawn_unit(Idstring(unit_name), pos, rot)
 
-	managers.network:session():send_to_peers_synched("sync_grenade_case_setup", unit, grenade_upgrade_lvl, peer_id or 0)
+	managers.network:session():send_to_peers_synched("sync_equipment_setup", unit, grenade_upgrade_lvl, peer_id or 0)
 	unit:base():setup(grenade_upgrade_lvl)
 
 	return unit

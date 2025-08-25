@@ -56,4 +56,17 @@
 			<message name="sync_assault_ponr" delivery="ordered" receiver="connection" check="server_to_client" />
 		</target>
 	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<!-- create a sync_grenade_crate_grenade_taken message for `UnitHandler` -->
+			<message name="sync_grenade_crate_grenade_taken" delivery="ordered" receiver="unit">
+				<param type="unit" />
+				<param type="float" exact="true"/>
+			</message>
+		</target>
+	</tweak>
 </tweaks>
