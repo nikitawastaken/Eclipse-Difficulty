@@ -97,5 +97,7 @@ function UnitNetworkHandler:sync_grenade_case_setup(unit, upgrade_lvl, peer_id)
 		return
 	end
 
+	Eclipse:log_chat("sync_grenade_case_setup received")
+
 	unit:base():sync_setup(upgrade_lvl, peer_id)
 end
