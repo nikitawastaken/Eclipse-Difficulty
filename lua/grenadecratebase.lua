@@ -128,7 +128,7 @@ function GrenadeCrateBase:take_grenade(unit)
 
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
-		managers.network:session():send_to_peers_synched("sync_grenade_crate_grenade_taken", self._unit, taken)
+		NetworkHelper:SendToPeersChunk("Eclipse_GrenadeCrateBase.take_grenade", NetworkHelper:encode({ unit_id = self._unit:id(), amount = taken }))
 		managers.player:register_grenade(managers.network:session():local_peer():id())
 	end
 
@@ -289,7 +289,7 @@ function GrenadeCrateDeployableBase:take_grenade(unit)
 
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
-		managers.network:session():send_to_peers_synched("sync_grenade_crate_grenade_taken", self._unit, taken)
+		NetworkHelper:SendToPeersChunk("Eclipse_GrenadeCrateBase.take_grenade", NetworkHelper:encode({ unit_id = self._unit:id(), amount = taken }))
 		managers.player:register_grenade(managers.network:session():local_peer():id())
 	end
 

@@ -11,6 +11,26 @@
 -- and if there is another request to send, the corresponding ID
 -- would be "Eclipse_PlayerManager.do_stuff2"
 
+NetworkHelper:AddReceiveHook("Eclipse_GrenadeCrateBase.take_grenade", "eclipse_take_grenades_hook", function(data, sender)
+	if NetworkHelper:IsChunk("Eclipse_GrenadeCrateBase.take_grenade", data) then
+		local t = NetworkHelper:ReceiveChunks("Eclipse_GrenadeCrateBase.take_grenade", data)
+		if t then
+			data = t
+		else
+			return
+		end
+	end
+
+	local params = NetworkHelper:decode(data)
+	local unit = Eclipse.utils.get_unit_from_id(params.unit_id)
+	if not unit or not alive(unit) then
+		return
+	end
+
+	GrenadeCrateBase.sync_grenade_taken(unit, params.amount)
+	Eclipse.network_data["Eclipse_GrenadeCrateBase.take_grenade"] = nil
+end)
+
 NetworkHelper:AddReceiveHook("Eclipse_CopLogicTrade.enter", "eclipse_hostage_trade_hook", function(data, sender)
 	if NetworkHelper:IsChunk("Eclipse_CopLogicTrade.enter", data) then
 		local t = NetworkHelper:ReceiveChunks("Eclipse_CopLogicTrade.enter", data)
