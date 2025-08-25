@@ -106,17 +106,9 @@ if not Eclipse then
 	end
 
 	Eclipse.utils = Eclipse:require("utils")
-	Eclipse.ffo_heists = Eclipse:require("ffo_heists")
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
 	Eclipse.preferred = Eclipse:require("preferred_groups")
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
-	Eclipse.access_filter_presets = Eclipse:require("access_filter_presets")
-	Eclipse.drill_reenforce_blacklist = Eclipse:require("drill_reenforce_blacklist")
-	Eclipse.swat_turret_whitelist = Eclipse:require("swat_turret_whitelist")
-	Eclipse.faction_mapping = Eclipse:require("faction_mapping")
-	Eclipse.enemy_mapping = Eclipse:require("enemy_mapping")
-	Eclipse.unit_alternatives = Eclipse:require("unit_alternatives")
-	Eclipse.ponr_unit_replacements = Eclipse:require("ponr_unit_replacements")
 	Eclipse.log = Eclipse:require("log")
 
 	-- Setup networking

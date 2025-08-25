@@ -1,5 +1,5 @@
-local ffo_heists = Eclipse.ffo_heists
 local level_id = Eclipse.utils.level_id()
+local ffo_heists = Eclipse:require("ffo_heists")
 
 GroupAIStateBase.MEGAPHONE_EVENTS = {
 	"mga_deploy_snipers",

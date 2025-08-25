@@ -1,5 +1,5 @@
 local level_id = Eclipse.utils.level_id()
-local drill_reenforce_blacklist = Eclipse.drill_reenforce_blacklist
+local drill_reenforce_blacklist = Eclipse:require("drill_reenforce_blacklist")
 
 Drill.forbid_sabotage_SO_by_unit = {
 	[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = true, -- The Beast

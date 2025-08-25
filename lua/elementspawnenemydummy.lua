@@ -14,10 +14,10 @@ if Global.editor_mode or is_testmap then
 	return
 end
 
-ElementSpawnEnemyDummy.faction_mapping = Eclipse.faction_mapping
-ElementSpawnEnemyDummy.enemy_mapping = Eclipse.enemy_mapping
-ElementSpawnEnemyDummy.unit_alternatives = Eclipse.unit_alternatives
-ElementSpawnEnemyDummy.ponr_unit_replacements = Eclipse.ponr_unit_replacements
+ElementSpawnEnemyDummy.faction_mapping = Eclipse:require("faction_mapping")
+ElementSpawnEnemyDummy.enemy_mapping = Eclipse:require("enemy_mapping")
+ElementSpawnEnemyDummy.unit_alternatives = Eclipse:require("unit_alternatives")
+ElementSpawnEnemyDummy.ponr_unit_replacements = Eclipse:require("ponr_unit_replacements")
 
 Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 	self._enemy_table = self._values.enemy_table

@@ -1,6 +1,6 @@
 local level_id = Eclipse.utils.level_id()
 local is_testmap = Eclipse.utils.is_testmap()
-local swat_turret_whitelist = Eclipse.swat_turret_whitelist
+local swat_turret_whitelist = Eclipse:require("swat_turret_whitelist")
 
 -- Get rid of stupid turrets on most heists
 -- courtesy of gorg bus

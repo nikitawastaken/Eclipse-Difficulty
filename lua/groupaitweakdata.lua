@@ -3,6 +3,7 @@ local diff_i = Eclipse.utils.difficulty_index()
 local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local short_ponr_heists = Eclipse:require("short_ponr_heists")
 
 local function diff_lerp(value_1, value_2)
 	return Eclipse.utils.diff_lerp(value_1, value_2)
@@ -3409,22 +3410,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
-
-	local short_ponr_heists = {
-		bph = true,
-		red2 = true,
-		bex = true,
-		pex = true,
-		glace = true,
-		hox_2 = true,
-		firestarter_2 = true,
-		framing_frame_2 = true,
-		roberts = true,
-		dah = true,
-		rvd2 = true,
-		man = true,
-	}
-
+	
 	-- Control
 	self.ponr.assault.force = {
 		diff_lerp(2, 4),
@@ -3441,7 +3427,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(12, 8),
 	}
 
-	if level_id and short_ponr_heists[level_id] then
+	if short_ponr_heists[level_id] then
 		self.ponr.assault.delay = { 5, 5, 5 }
 		self.ponr.assault.hostage_hesitation_delay = { 0, 0, 0 }
 	end

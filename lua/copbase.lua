@@ -1,32 +1,8 @@
-local paths = table.list_to_set({
-	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
-	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
-	"units/payday2/characters/ene_cop_1/vars/ene_security_1",
-	"units/payday2/characters/ene_cop_1/vars/ene_security_4",
-	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
-	"units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1",
-	"units/payday2/characters/ene_cop_1/vars/ene_bex_security_01",
-	"units/payday2/characters/ene_cop_1/vars/ene_policia_01",
-	"units/payday2/characters/ene_cop_1/vars/ene_policia_agent_01",
-	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
-	"units/payday2/characters/ene_secret_service_1/vars/ene_bex_security_suit_01",
-	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
-	"units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1",
-	"units/payday2/characters/ene_swat_1/vars/ene_city_swat_1",
-	"units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_g36",
-	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2",
-	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3",
-	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_4",
-	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic",
-	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic",
-	"units/payday2/characters/ene_bulldozer_1/vars/ene_snowman_boss",
-	"units/payday2/characters/ene_bulldozer_1/vars/ene_dozer_piggy",
-	"units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01",
-	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
-})
+local mat_vars = Eclipse:require("unit_material_vars")
+local mat_var_paths = table.list_to_set(mat_vars)
 
 -- Handle material swaps
-for path in pairs(paths) do
+for path in pairs(mat_var_paths) do
 	local normal_id = Idstring(path)
 	local contour_id = Idstring(path .. "_contour")
 
@@ -268,7 +244,7 @@ function ContourSwapBase:init(unit)
 	self._is_in_original_material = true
 end
 
-for path in pairs(paths) do
+for path in pairs(mat_var_paths) do
 	local normal_id = Idstring(path)
 	local contour_id = Idstring(path .. "_contour")
 
