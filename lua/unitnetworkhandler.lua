@@ -91,7 +91,7 @@ function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autore
 	end
 end
 
--- Grenade Case upgrade Setup
+-- Grenade Case Setup
 function UnitNetworkHandler:sync_grenade_case_setup(unit, upgrade_lvl, peer_id)
 	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
 		return
