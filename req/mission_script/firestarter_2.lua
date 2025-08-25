@@ -4,26 +4,20 @@ local reinforce_amount = {
 		amount = 3,
 	},
 }
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local elevator_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_snipers,
-}
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local cloaker_group = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 return {
@@ -36,11 +30,11 @@ return {
 	[101871] = reinforce_amount,
 	[105167] = reinforce_amount,
 	-- Spwnn group delays
-	[101385] = street_spawn,
-	[105699] = street_spawn,
-	[105705] = street_spawn,
-	[100960] = street_spawn,
-	[100963] = elevator_spawn,
+	[101385] = standard_spawn,
+	[105699] = standard_spawn,
+	[105705] = standard_spawn,
+	[100960] = standard_spawn,
+	[100963] = standard_spawn,
 	[100961] = window_spawn,
 	[100962] = window_spawn,
 	[103968] = cloaker_group,

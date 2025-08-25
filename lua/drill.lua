@@ -1,6 +1,6 @@
 local level_id = Eclipse.utils.level_id()
+local drill_reenforce_blacklist = Eclipse.drill_reenforce_blacklist
 
-Drill.drill_reenforce_blacklist = Eclipse.drill_reenforce_blacklist
 Drill.forbid_sabotage_SO_by_unit = {
 	[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = true, -- The Beast
 	[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = level_id == "red2" or nil, -- Ordinary thermal lance
@@ -12,7 +12,7 @@ end)
 
 -- Mark drills for reinforce groups
 Hooks:PostHook(Drill, "start", "eclipse_start", function(self)
-	if not self.drill_reenforce_blacklist[level_id] then
+	if not drill_reenforce_blacklist[level_id] then
 		managers.groupai:state():set_area_min_police_force(self._unit:key(), 2, self._unit:position())
 	else
 		Eclipse:log_console("No reinforce point created, drill reinforce is disabled for " .. level_id)

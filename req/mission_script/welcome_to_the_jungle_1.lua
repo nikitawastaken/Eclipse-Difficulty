@@ -15,7 +15,7 @@ local exclude_cop_agents_shields_dozers = {
 	so_access_filter = { "swat", "taser", "spooc" },
 }
 local scripted_swat_van_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
 	-- Disable Titan cams

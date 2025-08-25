@@ -13,7 +13,7 @@ local porch_spawn = {
 	values = {
 		interval = 45,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local skylight_spawn = {
 	values = {

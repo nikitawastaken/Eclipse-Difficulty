@@ -3,11 +3,11 @@ local M = {
 	-- Fat variant alternatives
 	-- Security
 	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {
-		["units/payday2/characters/ene_security_1/ene_security_1"] = 4,
+		["units/payday2/characters/ene_security_1/ene_security_1"] = 5,
 		["units/payday2/characters/ene_security_1_fat/ene_security_1_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = {
-		["units/payday2/characters/ene_security_2/ene_security_2"] = 4,
+		["units/payday2/characters/ene_security_2/ene_security_2"] = 5,
 		["units/payday2/characters/ene_security_2_fat/ene_security_2_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = {

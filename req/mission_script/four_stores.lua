@@ -15,8 +15,8 @@ local cloaker_spawn = {
 		interval = 180,
 	},
 }
-local van_scripted_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 
 return {
@@ -157,7 +157,7 @@ return {
 	[101345] = street_spawn,
 	[101369] = street_spawn,
 	[101375] = rappel_spawn,
-	[400008] = van_scripted_spawn,
+	[400008] = scripted_swat_van_spawn,
 	[103543] = cloaker_spawn,
 	[103544] = cloaker_spawn,
 	[103545] = cloaker_spawn,

@@ -176,6 +176,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2.group_ai_preset = "heavy_response"
 
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+	self.watchdogs_2_day.group_ai_preset = "heavy_response"
 
 	self.firestarter_3.group_ai_settings = {
 		difficulty_scaling = {
@@ -184,15 +185,28 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.firestarter_3.has_megaphone_cop = true
 
-	self.framing_frame_2.group_ai_settings = {
-		recon_force_mul = 0,
+	self.rat.group_ai_settings = {
 		difficulty_scaling = {
-			diff_init = 0.5,
-			diff_min = 0.25,
-			assault_add = 0.5,
+			diff_min = 0.2,
 		},
 	}
-	self.framing_frame_2.group_ai_preset = "heavy_response"
+	
+	self.welcome_to_the_jungle_2.group_ai_settings = {	
+		cloaker_interval_mul = 1.25,
+		assault_force_mul = 0.85,
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
+	}
+	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
+	
+	self.framing_frame_2.group_ai_settings = {
+		difficulty_scaling = {
+			diff_min = 0.2,
+			assault_delay = 30,
+			assault_add = 0.3,
+		},
+	}
 
 	self.framing_frame_3.group_ai_settings = {
 		assault_force_mul = 0.7,
@@ -273,7 +287,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.mus.group_ai_settings = {
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_delay = 90,
 		},
@@ -304,6 +318,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3_night.group_ai_settings = deep_clone(self.crojob3.group_ai_settings)
 	self.crojob3_night.group_ai_preset = "heavy_response"
 
+	self.shoutout_raid.group_ai_settings = {
+		assault_force_mul = 1.15,
+	}
+
 	self.kenaz.group_ai_settings = {
 		first_responders_trade_delay = 60,
 		hostage_hesitation_delay_mul = 1.5,
@@ -318,6 +336,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
+	self.jolly.group_ai_settings = {
+		assault_force_mul = 0.85,
+	}
+	
 	self.dinner.group_ai_settings = {
 		difficulty_scaling = {
 			assault_delay = 75,
@@ -341,8 +363,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
-	self.nail.group_ai_settings.difficulty_scaling = nil
+	self.nail.group_ai_settings.difficulty_scaling = { assault_add = 0.15 }
 
+	self.cane.group_ai_settings = {
+		assault_force_mul = 0.85,
+		difficulty_scaling = {
+			diff_min = 0.2,
+		},
+	}
+	
 	self.peta.group_ai_settings = {
 		assault_force_mul = 1.15,
 		assault_delay_mul = 1.25,
@@ -480,12 +509,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 
 	self.moon.group_ai_settings = {
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.85,
 	}
 	self.moon.has_megaphone_cop = true
 
 	self.spa.group_ai_settings = {
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.85,
 	}
 
 	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
@@ -499,8 +528,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.glace.group_ai_preset = "street"
 
 	self.wwh.group_ai_settings = {
-		assault_force_mul = 0.7,
-		recon_force_mul = 0.85,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
@@ -547,11 +574,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.brb.has_megaphone_cop = true
 
-	self.des.group_ai_settings = deep_clone(self.help.group_ai_settings)
-	self.des.group_ai_settings.assault_force_mul = 0.7
-
-	self.sah.group_ai_settings = {
+	self.des.group_ai_settings = {
 		assault_force_mul = 0.7,
+	}
+	
+	self.sah.group_ai_settings = {
+		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
@@ -588,6 +616,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex.group_ai_preset = "remote"
 
 	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
+	self.mex_cooking.difficulty_scaling = { diff_init = 0.2 }
 	self.mex_cooking.group_ai_preset = "remote"
 
 	self.bex.group_ai_settings = {
@@ -1030,6 +1059,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			-- Legacy Tactical
 			self.alex_1.player_style = "slaughterhouse"
 			self.alex_3.player_style = "slaughterhouse"
+			self.rat.player_style = "slaughterhouse"
 			self.welcome_to_the_jungle_1.player_style = "slaughterhouse"
 			self.welcome_to_the_jungle_1_night.player_style = "slaughterhouse"
 			self.welcome_to_the_jungle_2.player_style = "slaughterhouse"

@@ -55,13 +55,13 @@ local close_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields_bulldozers_snipers,
+	groups = preferred.no_shields_bulldozers,
 }
 local flank_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_shields_bulldozers_snipers,
+	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- replace Heavy SWATs that spawn from the chopper with cloakers on higher difficulties
@@ -303,7 +303,7 @@ return {
 	[100431] = mendoza,
 	[101262] = mendoza,
 	[101263] = mendoza,
-	-- Spawn Group delays
+	-- spawn Group delays
 	[100467] = standard_spawn,
 	[100550] = standard_spawn,
 	[100671] = standard_spawn,

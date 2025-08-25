@@ -112,6 +112,7 @@ if not Eclipse then
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.access_filter_presets = Eclipse:require("access_filter_presets")
 	Eclipse.drill_reenforce_blacklist = Eclipse:require("drill_reenforce_blacklist")
+	Eclipse.swat_turret_whitelist = Eclipse:require("swat_turret_whitelist")
 	Eclipse.faction_mapping = Eclipse:require("faction_mapping")
 	Eclipse.enemy_mapping = Eclipse:require("enemy_mapping")
 	Eclipse.unit_alternatives = Eclipse:require("unit_alternatives")

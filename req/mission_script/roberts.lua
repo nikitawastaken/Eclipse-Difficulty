@@ -62,7 +62,6 @@ local rear_spawn = {
 	values = {
 		interval = 25,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local sewer_spawn = {
 	values = {
@@ -70,7 +69,7 @@ local sewer_spawn = {
 	},
 }
 local scripted_swat_van_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 
 return {

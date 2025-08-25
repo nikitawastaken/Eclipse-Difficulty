@@ -13,7 +13,6 @@ local garage_spawn = {
 	values = {
 		interval = 10,
 	},
-	groups = preferred.no_bulldozers,
 }
 local pent_spawn = {
 	values = {
@@ -27,17 +26,17 @@ local roof_lower_spawn = {
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
-local garage_window_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local roof_upper_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields,
+}
+local garage_window_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_shields_bulldozers,
 }
 local lobby_balcony_spawn = {
 	values = {
@@ -47,7 +46,7 @@ local lobby_balcony_spawn = {
 }
 local vent_spawn = {
 	values = {
-		interval = 45,
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -87,10 +86,6 @@ return {
 				position = Vector3(1600, -1600, 13100),
 			},
 		},
-	},
-	-- Reduce difficulty when upstairs
-	[102486] = {
-		difficulty_add = -0.4,
 	},
 	--Fixed snipers being able to spawn only once
 	[100368] = sniper_trigger_times,

@@ -37,7 +37,6 @@ local escape_rappel_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Combine some navigation areas

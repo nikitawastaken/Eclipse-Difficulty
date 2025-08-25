@@ -84,18 +84,18 @@ return {
 	},
 	[101043] = { -- 1 wave passed
 		on_executed = {
-			{ id = 101367, delay = 10, delay_rand = 20 }, -- back basic
+			{ id = 101367, delay = 0, delay_rand = 15 }, -- back basic
 		},
 	},
 	[101152] = { -- 2 waves passed
 		on_executed = {
-			{ id = 101427, delay = 10, delay_rand = 20 }, -- side basic
-			{ id = 400038, delay = 10, delay_rand = 20 }, -- eclipse front buildings
+			{ id = 101427, delay = 0, delay_rand = 15 }, -- side basic
+			{ id = 400038, delay = 0, delay_rand = 15 }, -- eclipse front buildings
 		},
 	},
 	[101153] = { -- 3 waves passed
 		on_executed = {
-			{ id = 101536, delay = 10, delay_rand = 20 }, -- roof basics
+			{ id = 101536, delay = 0, delay_rand = 15 }, -- roof basics
 		},
 	},
 	-- Spawn group delays

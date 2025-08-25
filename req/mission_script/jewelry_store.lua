@@ -27,7 +27,6 @@ local alleyway_spawn = {
 	values = {
 		interval = 25,
 	},
-	groups = preferred.no_shields_bulldozers_snipers,
 }
 local rappel_spawn = {
 	values = {
@@ -39,7 +38,7 @@ local flank_spawn = {
 	values = {
 		interval = 60,
 	},
-	groups = preferred.no_shields_bulldozers_snipers,
+	groups = preferred.no_shields_bulldozers,
 }
 local scripted_swat_heli_spawn = {
 	groups = preferred.no_cops_agents_cloakers_snipers,

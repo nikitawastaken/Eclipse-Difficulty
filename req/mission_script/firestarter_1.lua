@@ -50,12 +50,6 @@ local pro_chance_mul = is_pro_job and 1.5 or 1
 local swat_shield_dozer_filter = {
 	so_access_filter = { "swat", "shield", "tank" },
 }
-local terminal_spawn = {
-	values = {
-		interval = 10,
-	},
-	groups = preferred.no_shields,
-}
 local alleyway_spawn = {
 	values = {
 		interval = 20,
@@ -123,6 +117,5 @@ return {
 	[101306] = gangster_stationary_amount,
 	[101046] = gangster_stationary_amount,
 	-- Spawn group delays
-	[103553] = terminal_spawn,
 	[101374] = alleyway_spawn,
 }

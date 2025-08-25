@@ -8,7 +8,6 @@ local roof_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	[101377] = { -- enable main preferreds

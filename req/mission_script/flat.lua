@@ -35,12 +35,6 @@ local retrigger = {
 		trigger_times = 0,
 	},
 }
-local alley_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_bulldozers,
-}
 local roof_spawn = {
 	values = {
 		interval = 30,
@@ -444,9 +438,6 @@ return {
 	[103234] = gangster,
 	[103235] = gangster,
 	[103236] = gangster,
-	-- adjust alleyway spawn preferreds
-	[100270] = alley_spawn,
-	[100287] = alley_spawn,
 	-- slow down roof spawns, these are really fuckng annoying
 	[104650] = roof_spawn,
 	[100504] = roof_spawn,

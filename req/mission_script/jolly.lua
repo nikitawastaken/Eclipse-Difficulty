@@ -4,17 +4,16 @@ local disabled = {
 		enabled = false,
 	},
 }
+local train_spawn = {
+	values = {
+		interval = 30,
+	},
+}
 local bridge_spawn = {
 	values = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local train_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- Disable hunt

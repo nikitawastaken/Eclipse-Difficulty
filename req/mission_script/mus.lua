@@ -13,12 +13,12 @@ local courtyard_spawn = {
 	groups = preferred.no_cops_agents,
 }
 local staircase_window_spawn = {
-	values = {
-		interval = 30,
-	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local matrix_window_spawn = {
+	values = {
+		interval = 30,
+	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local exhibit_rappel_spawn = {
@@ -28,13 +28,7 @@ local exhibit_rappel_spawn = {
 	groups = preferred.no_cops_agents,
 }
 local last_rappel_spawn = {
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local hallway_rappel_spawn = {
-	values = {
-		interval = 60,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 return {
 	-- Combine some navigation areas
@@ -64,44 +58,35 @@ return {
 	},
 	[102154] = { -- 1st timelock done
 		on_executed = {
-			{ id = 100345, delay = 0 }, -- Bain diff increase dialogue
-			{ id = 100128, delay = 0, delay_rand = 30 }, -- add 40
-			{ id = 100130, delay = 0, delay_rand = 30 }, -- add 41
-			{ id = 102129, delay = 15, delay_rand = 30 }, -- add 11
+			{ id = 100128, delay = 0, delay_rand = 15 }, -- add 40
+			{ id = 100130, delay = 0, delay_rand = 15 }, -- add 41
+			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
 		},
 		reinforce = {
 			{
 				name = "south",
-				force = 2,
+				force = 3,
 				position = Vector3(-1300, 200, -350),
 			},
 			{
 				name = "west",
-				force = 2,
+				force = 3,
 				position = Vector3(0, 2900, -300),
 			},
 			{
 				name = "north",
-				force = 2,
+				force = 3,
 				position = Vector3(1200, 200, -350),
 			},
 			{
 				name = "east",
-				force = 2,
+				force = 3,
 				position = Vector3(0, -2500, -300),
 			},
 		},
 	},
 	-- remove exhibition room rappels from one security room's on_executed
-	[102137] = { -- security room 3
-		on_executed = {
-			{ id = 102128, remove = true }, -- add 10
-		},
-	},
-	-- disable vanilla difficulty scaling
-	[100124] = disabled,
-	[100125] = disabled,
-	-- don't remove front spawns
+	-- also don't remove front spawns
 	[102131] = { -- security room 1
 		on_executed = {
 			{ id = 102159, remove = true },
@@ -109,6 +94,7 @@ return {
 	},
 	[102137] = { -- security room 3
 		on_executed = {
+			{ id = 102128, remove = true }, -- add 10
 			{ id = 102159, remove = true },
 		},
 	},
@@ -129,10 +115,10 @@ return {
 	[102400] = matrix_window_spawn,
 	[100019] = exhibit_rappel_spawn,
 	[100809] = exhibit_rappel_spawn,
-	[100021] = exhibit_rappel_spawn,
 	[100810] = exhibit_rappel_spawn,
-	[101959] = hallway_rappel_spawn,
-	[101946] = hallway_rappel_spawn,
+	[100021] = exhibit_rappel_spawn,
+	[101946] = exhibit_rappel_spawn,
+	[101959] = exhibit_rappel_spawn,
 	[101924] = last_rappel_spawn,
 	[101941] = last_rappel_spawn,
 	[101942] = last_rappel_spawn,

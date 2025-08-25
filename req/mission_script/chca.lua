@@ -29,7 +29,6 @@ local rappel_vertical_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents,
 }
 local vent_spawn = {
 	values = {

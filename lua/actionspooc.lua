@@ -7,13 +7,15 @@ function ActionSpooc:_upd_sprint(t, ...)
 		self._ext_movement:play_redirect("stand")
 
 		local spooc_dodge_check_t = self._unit:base():char_tweak().spooc_attack_dodge_timeout or { 0.5, 1 }
+		local dodge_timeout_mul = self._consecutive_dodge and 1 or 0.5
 
-		self._next_dodge_check_t = t + math.rand(spooc_dodge_check_t[1], spooc_dodge_check_t[2])
+		self._next_dodge_check_t = t + (math.rand(spooc_dodge_check_t[1], spooc_dodge_check_t[2]) * dodge_timeout_mul)
 	end
 
 	if self._next_dodge_check_t < t then
 		self._next_dodge_check_t = nil
-
+		self._consecutive_dodge = true
+		
 		local redir_res = self._ext_movement:play_redirect("dodge_roll")
 		if not redir_res then
 			return

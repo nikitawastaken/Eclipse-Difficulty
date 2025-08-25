@@ -74,7 +74,6 @@ local parking_lot_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_cops_agents_shields,
 }
 local cloaker_spawn = {
 	values = {

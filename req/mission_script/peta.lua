@@ -22,7 +22,6 @@ local close_spawn = {
 	values = {
 		interval = 10,
 	},
-	groups = preferred.no_shields_bulldozers_snipers,
 }
 local rappel_spawn = {
 	values = {

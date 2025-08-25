@@ -4,7 +4,7 @@ local roof_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local objective_spawn = {
 	values = {

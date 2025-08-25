@@ -1,10 +1,4 @@
 local preferred = Eclipse.preferred
-local breach_upper_spawn = {
-	values = {
-		interval = 10,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local window_lower_spawn = {
 	values = {
 		interval = 15,
@@ -58,16 +52,14 @@ return {
 	},
 	-- Spawn group delays
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
-	-- Lower level spawns are faster with more groups, higher level spawns are much slower and have group restrictions.
-	-- The ground spawns at the escape have been slowed down to allow for more diverse holdout locations, if you know you know.
 	[101012] = window_lower_spawn,
 	[102138] = window_lower_spawn,
 	[104338] = window_lower_spawn,
 	[104472] = window_lower_spawn,
-	[102667] = breach_upper_spawn,
-	[102668] = breach_upper_spawn,
 	[100750] = window_upper_spawn,
 	[102664] = window_upper_spawn,
+	[102667] = window_upper_spawn,
+	[102668] = window_upper_spawn,
 	[102139] = skylight_spawn,
 	[102140] = skylight_spawn,
 	[104336] = skylight_spawn,

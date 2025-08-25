@@ -13,7 +13,7 @@ local balcony_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {

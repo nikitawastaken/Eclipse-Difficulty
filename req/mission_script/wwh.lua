@@ -39,7 +39,6 @@ local roof_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local window_spawn = {
 	values = {
@@ -49,7 +48,7 @@ local window_spawn = {
 }
 local boat_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -81,6 +80,11 @@ return {
 	},
 	[100810] = {
 		reinforce = { -- Add some reinforce to make up for the slower spawn groups and lower diff
+			{
+				name = "gate",
+				force = 3,
+				position = Vector3(6675, 2850, 1675),
+			},
 			{
 				name = "roof1",
 				force = 2,
@@ -134,7 +138,6 @@ return {
 	},
 	-- "captain_reached_boat"
 	[100877] = {
-		difficulty = 1,
 		on_executed = {
 			{ id = 100612, delay = 10, delay_rand = 20 },
 		},

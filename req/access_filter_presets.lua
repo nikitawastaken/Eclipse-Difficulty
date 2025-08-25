@@ -73,6 +73,13 @@ local M = {
 		"taser",
 		"spooc",
 	},
+	no_heavyweight = {
+		"cop",
+		"fbi",
+		"swat",
+		"taser",
+		"spooc",
+	},
 	heavyweight = {
 		"shield",
 		"tank",

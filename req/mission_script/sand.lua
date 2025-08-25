@@ -12,26 +12,15 @@ local enabled = {
 		enabled = true,
 	},
 }
-local top_spawn = {
-	values = {
-		interval = 10,
-	},
-	groups = preferred.no_cops_agents,
-}
-local waterfront_lower_spawn = {
+local upper_spawn = {
 	values = {
 		interval = 15,
 	},
+	groups = preferred.no_cops_agents,
 }
-local container_spawn = {
+local waterfront_spawn = {
 	values = {
 		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields,
-}
-local waterfront_upper_spawn = {
-	values = {
-		interval = 30,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -133,15 +122,12 @@ return {
 	-- boat arrival timer
 	[103662] = boat_timer,
 	[103257] = disabled,
-	-- Disable vanilla assault-based difficulty scaling, replace it with objective-based scaling
-	[100124] = disabled,
-	[100125] = disabled,
 	-- Delay roof rappels at the start
 	[101660] = {
 		on_executed = {
-			{ id = 101280, delay = 20, delay_rand = 20 }, -- roof 1
-			{ id = 101279, delay = 20, delay_rand = 20 }, -- roof 2
-			{ id = 101272, delay = 20, delay_rand = 20 }, -- roof 3
+			{ id = 101280, delay = 15, delay_rand = 30 }, -- roof 1
+			{ id = 101279, delay = 15, delay_rand = 30 }, -- roof 2
+			{ id = 101272, delay = 15, delay_rand = 30 }, -- roof 3
 		},
 	},
 	-- disable the helicopter turret since it does nothing anyway
@@ -157,24 +143,24 @@ return {
 	[101780] = dozer_chance,
 	[101781] = dozer_chance,
 	--spawn point delays
-	[100694] = top_spawn,
-	[101456] = top_spawn,
-	[101458] = top_spawn,
-	[105463] = waterfront_lower_spawn,
-	[100692] = container_spawn,
-	[101264] = container_spawn,
-	[101268] = container_spawn,
-	[101269] = container_spawn,
-	[101270] = container_spawn,
-	[101420] = container_spawn,
-	[101444] = container_spawn,
+	[100692] = upper_spawn,
+	[100694] = upper_spawn,
+	[101264] = upper_spawn,
+	[101268] = upper_spawn,
+	[101269] = upper_spawn,
+	[101270] = upper_spawn,
+	[101420] = upper_spawn,
+	[101444] = upper_spawn,
+	[101456] = upper_spawn,
+	[101458] = upper_spawn,
 	[101265] = office_spawn,
 	[101266] = office_spawn,
 	[100693] = office_spawn,
 	[101969] = office_spawn,
 	[101971] = office_spawn,
-	[100019] = waterfront_upper_spawn,
-	[101442] = waterfront_upper_spawn,
+	[105463] = waterfront_spawn,
+	[100019] = waterfront_spawn,
+	[101442] = waterfront_spawn,
 	[104816] = warehouse_spawn,
 	[101967] = warehouse_spawn,
 	[104814] = warehouse_spawn,

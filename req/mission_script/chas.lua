@@ -12,7 +12,7 @@ local exclude_shields = {
 }
 local warehouse_preferred_delay = {
 	on_executed = {
-		{ id = 101196, delay = 30 },
+		{ id = 101196, delay = 15, delay_rand = 30 },
 	},
 }
 local sniper_trigger_times = {
@@ -24,7 +24,6 @@ local close_spawn = {
 	values = {
 		interval = 15,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local building_spawn = {
 	values = {
@@ -39,7 +38,7 @@ local warehouse_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local scripted_swat_van_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
 	[100109] = {
@@ -60,7 +59,7 @@ return {
 		reinforce = {
 			{
 				name = "tea_shop",
-				force = 2,
+				force = 3,
 				position = Vector3(-2900, -1400, 0),
 			},
 		},

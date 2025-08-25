@@ -22,7 +22,7 @@ local roof_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local vent_spawn = {
 	values = {

@@ -51,12 +51,12 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local van_scripted_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 return {
@@ -80,21 +80,24 @@ return {
 				position = Vector3(1800, -400, 0),
 			},
 		},
-		--[[
-		on_executed = {
-			{ id = 100129, delay = 45 },
-		},
-		]]
 	},
 	-- Add new preferreds and adjust existing ones
+	--  Delay default preferreds slightly
 	[100129] = { -- initial preferreds
 		on_executed = {
-			{ id = 101574, remove = true }, -- remove roof preferreds
+			{ id = 101574, remove = true }, -- roof preferreds
+			{ id = 100127, delay = 20 },
 		},
 	},
 	[100021] = {
 		on_executed = {
-			{ id = 101573, remove = true }, -- remove garage roof preferreds
+			{ id = 101573, remove = true }, -- garage roof preferreds
+		},
+	},
+	-- Don't remove roof preferreds
+	[104087] = {
+		on_executed = {
+			{ id = 101572, remove = true }, -- remove garage roof preferreds
 		},
 	},
 	[101571] = { -- fire started, enable roof preferreds
@@ -157,9 +160,9 @@ return {
 	[100128] = roof_spawn,
 	[100692] = roof_spawn,
 	[104117] = roof_spawn,
-	[400020] = van_scripted_spawn,
-	[400027] = van_scripted_spawn,
-	[400034] = van_scripted_spawn,
+	[400020] = scripted_swat_van_spawn,
+	[400027] = scripted_swat_van_spawn,
+	[400034] = scripted_swat_van_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,

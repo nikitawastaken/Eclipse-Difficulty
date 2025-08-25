@@ -1,16 +1,9 @@
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
-local warehouse_spawn = {
+local close_spawn = {
 	values = {
 		interval = 10,
 	},
-	groups = preferred.no_shields,
-}
-local flank_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_bulldozers,
 }
 local roof_spawn = {
 	values = {
@@ -33,9 +26,9 @@ return {
 		},
 	},
 	-- Spawn group delays
-	[100132] = flank_spawn,
-	[103919] = flank_spawn,
-	[100007] = warehouse_spawn,
+	[100132] = close_spawn,
+	[103919] = close_spawn,
+	[100007] = close_spawn,
 	[100131] = roof_spawn,
 	[101008] = roof_spawn,
 	[101153] = roof_spawn,

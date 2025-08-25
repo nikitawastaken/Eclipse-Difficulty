@@ -51,7 +51,6 @@ local close_spawn = {
 	values = {
 		interval = 25,
 	},
-	groups = preferred.no_bulldozers,
 }
 local bags_required = {
 	values = {

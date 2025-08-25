@@ -10,7 +10,6 @@ return {
 		for _, element in ipairs(result.default.elements) do
 			if patches.elevator[element.id] then
 				element.values.interval = 15
-				element.values.groups = preferred.no_shields_bulldozers
 			end
 		end
 	end,

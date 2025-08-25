@@ -8,7 +8,6 @@ local roof_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local agile_spawn = {
 	values = {
