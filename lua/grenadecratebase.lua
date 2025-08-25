@@ -99,6 +99,7 @@ end
 function GrenadeCrateBase:sync_grenade_taken(amount)
 	amount = self:round_value(amount)
 	self._grenade_amount = self:round_value(self._grenade_amount - amount)
+	Eclipse:log_chat("taken: " .. amount .. "\ncapacity left: " .. self._grenade_amount)
 
 	if self._grenade_amount <= 0 then
 		self:_set_empty()
@@ -113,7 +114,7 @@ function GrenadeCrateBase:take_grenade(unit)
 	end
 
 	local taken = self:_take_grenades()
-	Eclipse:log_chat("taken: " .. taken .. "\ngrenade amount: " .. self._grenade_amount)
+	Eclipse:log_chat("taken: " .. taken .. "\ncapacity left: " .. self._grenade_amount)
 
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
