@@ -1,12 +1,59 @@
 <?xml version="1.0"?>
-<tweak version="2" name="settings/network" extension="network_settings">
-	<search>
-		<network/>
-		<rpc/>
-		<message/>
-		<param type="int" min="0" max="512"/>
-	</search>
-	<target mode="attributes" multiple="true">
-		<attr name="max" value="8192"/>
-	</target>
-</tweak>
+<tweaks>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message/>
+			<param type="int" min="0" max="512"/>
+		</search>
+		<target mode="attributes" multiple="true">
+			<attr name="max" value="8192"/>
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="unit_traded"/>
+			<param type="rotation"/>
+		</search>
+		<target mode="replace">
+			<param type="rotation"/> <!-- look for the rotation node before inserting -->
+			<param type="bool"/> <!-- custody trade? -->
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="hostage_trade"/>
+			<param type="unit"/>
+		</search>
+		<target mode="replace">
+			<param type="unit"/> <!-- look for the unit node before inserting -->
+			<param type="bool"/> <!-- custody trade? -->
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="finish_trade"/>
+		</search>
+		<target mode="attach">
+			<param type="bool"/> <!-- is recon over? -->
+			<param type="bool"/> <!-- is resource trade? -->
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+		</search>
+		<target mode="attach">
+			<!-- create a sync_assault_ponr message for `ConnectionHandler` -->
+			<message name="sync_assault_ponr" delivery="ordered" receiver="connection" check="server_to_client" />
+		</target>
+	</tweak>
+</tweaks>

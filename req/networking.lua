@@ -12,6 +12,11 @@ function NetworkHelper:SendStringThroughChat(message, receivers, chunk, chunk_id
 	if chunk and message:len() > 200 then
 		self:ChunkStringThroughChat(message, receivers, chunk_id)
 	else
+		if not Eclipse.network_data[chunk_id] then
+			-- No chunking, decorate the network string
+			message = NetworkHelper.AllPeersString:format(NetworkHelper.AllPeers, chunk_id, message)
+		end
+
 		for _, peer in pairs(receivers or self:GetPeers()) do
 			if peer:ip_verified() then
 				peer:send("send_chat_message", NetworkHelper.HiddenChannel, message)
