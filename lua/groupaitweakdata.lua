@@ -3410,7 +3410,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
-	
+
 	-- Control
 	self.ponr.assault.force = {
 		diff_lerp(2, 4),
