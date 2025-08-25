@@ -21,7 +21,7 @@ M._spam_sep = "\n" .. string.rep("=-", 10) .. "="
 M._spam_prev_msg = ""
 
 local function get_time()
-	return os.date("%H:%M:%S", os.time())
+	return os.date("%d-%m-%y %H:%M:%S", os.time())
 end
 
 function M.log(...)

@@ -228,3 +228,9 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 		end
 	end
 end
+
+Hooks:PostHook(CopLogicTrade, "exit", "debug_exit_and_stuff", function(_, new_logic_name, _)
+	Eclipse:log("Exiting CopLogicTrade forcefully to " .. tostring(new_logic_name))
+	Eclipse:log("Forcefully dumping callstack")
+	Eclipse.utils.log_traceback()
+end)
