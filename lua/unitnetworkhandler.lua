@@ -1,3 +1,7 @@
+-- NOTE TO FUTURE SELF: CAN'T CREATE CUSTOM UNITNETWORKHANDLER FUNCTIONS --
+-- ALSO CAN'T ADD EXTRA ARGS TO EXISTING FUNCTIONS --
+-- USE NETWORK_HOOKS INSTEAD --
+
 local is_pro_job = Eclipse.utils.is_pro_job()
 
 -- Friendly Fire
@@ -91,13 +95,6 @@ function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autore
 	end
 end
 
--- Grenade Case Setup
-function UnitNetworkHandler:sync_grenade_case_setup(unit, upgrade_lvl, peer_id)
-	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) then
-		return
-	end
-
-	Eclipse:log_chat("sync_grenade_case_setup received")
-
-	unit:base():sync_setup(upgrade_lvl, peer_id)
-end
+-- NOTE TO FUTURE SELF: CAN'T CREATE CUSTOM UNITNETWORKHANDLER FUNCTIONS --
+-- ALSO CAN'T ADD EXTRA ARGS TO EXISTING FUNCTIONS --
+-- USE NETWORK_HOOKS INSTEAD --
