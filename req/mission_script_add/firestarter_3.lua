@@ -23,8 +23,8 @@ local cloaker = scripted_enemy.cloaker
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-local specials_list_eclipse = { [taser] = 5, [medic] = 5, [cloaker] = 4, [elite_bulldozer_neil] = 1, [elite_bulldozer_skull] = 1 }
-local specials_list_hard_ovk = { [taser] = 5, [medic] = 5, [cloaker] = 4, [green_bulldozer] = 1, [black_bulldozer] = 1 }
+local specials_list_eclipse = { [taser] = 3, [medic] = 3, [cloaker] = 3, [elite_bulldozer_neil] = 1, [elite_bulldozer_skull] = 1 }
+local specials_list_hard_ovk = { [taser] = 4, [medic] = 4, [cloaker] = 3, [green_bulldozer] = 1, [black_bulldozer] = 1 }
 local specials_list_easy_normal = { [taser] = 6, [cloaker] = 1 }
 local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
 
@@ -77,7 +77,7 @@ local optsMedic = {
 	enabled = true,
 }
 local optsDozer = {
-	enemy = is_eclipse and elite_bulldozer_neil or green_bulldozer,
+	enemy_table = is_eclipse and random_elite_dozers or random_dozers,
 	spawn_action = "e_sp_armored_truck_1st",
 	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
@@ -102,12 +102,6 @@ local optsShield = {
 }
 local optsSWAT_heli = {
 	enemy_table = swats,
-	spawn_action = "e_sp_down_16m_right",
-	on_executed = { { id = 400019, delay = 0 } },
-	enabled = true,
-}
-local optsTaser_heli = {
-	enemy = taser,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400019, delay = 0 } },
 	enabled = true,
@@ -387,8 +381,8 @@ M.elements = {
 	-- chopper 2
 	Eclipse.mission_elements.gen_dummy(400026, "swat_heli_1", Vector3(-607, 4091.155, 0), Rotation(137, 0, 0), optsSWAT_heli),
 	Eclipse.mission_elements.gen_dummy(400027, "swat_heli_2", Vector3(-534.196, 4022.955, 0), Rotation(137, 0, 0), optsSWAT_heli),
-	Eclipse.mission_elements.gen_dummy(400028, "swat_heli_3", Vector3(-793.310, 3894.095, 0), Rotation(-46, 0, 0), optsSWAT_heli),
-	Eclipse.mission_elements.gen_dummy(400029, "swat_heli_4", Vector3(-716.203, 3814.249, 0), Rotation(-46, 0, 0), optsTaser_heli),
+	Eclipse.mission_elements.gen_dummy(400028, "swat_heli_3", Vector3(-793.310, 3894.095, 0), Rotation(-46, 0, 0), optsSpecial_heli),
+	Eclipse.mission_elements.gen_dummy(400029, "swat_heli_4", Vector3(-716.203, 3814.249, 0), Rotation(-46, 0, 0), optsSpecial_heli),
 	Eclipse.mission_elements.gen_object_editor(400030, "swat_heli_sequence_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_1),
 	Eclipse.mission_elements.gen_missionscript(400031, "swat_heli_event_1", optsspawnswatchopper_1),
 	-- chopper 3
