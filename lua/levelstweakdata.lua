@@ -190,8 +190,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			diff_min = 0.2,
 		},
 	}
-	
-	self.welcome_to_the_jungle_2.group_ai_settings = {	
+
+	self.welcome_to_the_jungle_2.group_ai_settings = {
 		cloaker_interval_mul = 1.25,
 		assault_force_mul = 0.85,
 		difficulty_scaling = {
@@ -199,7 +199,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
-	
+
 	self.framing_frame_2.group_ai_settings = {
 		difficulty_scaling = {
 			diff_min = 0.2,
@@ -339,7 +339,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.jolly.group_ai_settings = {
 		assault_force_mul = 0.85,
 	}
-	
+
 	self.dinner.group_ai_settings = {
 		difficulty_scaling = {
 			assault_delay = 75,
@@ -371,7 +371,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			diff_min = 0.2,
 		},
 	}
-	
+
 	self.peta.group_ai_settings = {
 		assault_force_mul = 1.15,
 		assault_delay_mul = 1.25,
@@ -577,7 +577,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.des.group_ai_settings = {
 		assault_force_mul = 0.7,
 	}
-	
+
 	self.sah.group_ai_settings = {
 		assault_force_mul = 0.85,
 		difficulty_scaling = {

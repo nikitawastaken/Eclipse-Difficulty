@@ -15,7 +15,7 @@ function ActionSpooc:_upd_sprint(t, ...)
 	if self._next_dodge_check_t < t then
 		self._next_dodge_check_t = nil
 		self._consecutive_dodge = true
-		
+
 		local redir_res = self._ext_movement:play_redirect("dodge_roll")
 		if not redir_res then
 			return
