@@ -288,12 +288,12 @@ function MissionDoorDeviceInteractionExt:server_place_mission_door_device(player
 		network_session:send_to_peers_synched(
 			"sync_drill_upgrades",
 			self._unit,
+			upgrades.electrocuting_drill,
 			upgrades.auto_repair_level_1,
 			upgrades.auto_repair_level_2,
 			upgrades.speed_upgrade_level,
 			upgrades.silent_drill,
-			upgrades.reduced_alert,
-			upgrades.electrocuting_drill
+			upgrades.reduced_alert
 		)
 	end
 
