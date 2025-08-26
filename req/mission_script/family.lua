@@ -70,7 +70,6 @@ return {
 	},
 	[102033] = {
 		on_executed = {
-			{ id = 400006, delay = 35 },
 			{ id = 102034, remove = true },
 		},
 	},

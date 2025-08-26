@@ -520,6 +520,33 @@ function M.gen_object_editor(id, name, pos, rot, opts)
 	return object_editor
 end
 
+---Generate an object editor trigger
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_object_editor_trigger(id, name, opts)
+	opts = opts or {}
+	local object_editor_trigger = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementUnitSequenceTrigger",
+		class = "ElementUnitSequenceTrigger",
+		values = {
+			execute_on_startup = false,
+			trigger_times = 1,
+			sequence_list = opts.sequence_list or {},
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			enabled = opts.enabled or false,
+			callback = opts.callback or false,
+		},
+	}
+
+	return object_editor_trigger
+end
+
 ---Generate a random element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference
