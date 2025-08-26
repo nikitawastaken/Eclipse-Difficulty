@@ -79,7 +79,7 @@ function UnitNetworkHandler:hostage_trade(unit, enable, trade_success, skip_hint
 end
 
 -- Extra drill upgrades (additional electrocuting_drill argument)
-function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, electrocuting_drill, sender_rpc)
+function UnitNetworkHandler:sync_drill_upgrades(unit, electrocuting_drill, autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, sender_rpc)
 	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender_rpc) then
 		return
 	end
