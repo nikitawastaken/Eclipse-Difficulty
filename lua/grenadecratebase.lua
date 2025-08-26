@@ -75,12 +75,9 @@ function GrenadeCrateBase:setup(grenade_upgrade_lvl)
 			self._unit:set_extension_update_enabled(Idstring("base"), true)
 		end
 	end
-
-	Eclipse:log_chat("setup function executed")
 end
 
 function GrenadeCrateBase:sync_setup(grenade_upgrade_lvl, peer_id)
-	Eclipse:log_chat("sync setup function executed")
 	if self._validate_clbk_id then
 		managers.enemy:remove_delayed_clbk(self._validate_clbk_id)
 
@@ -110,7 +107,7 @@ end
 function GrenadeCrateBase:sync_grenade_taken(amount)
 	amount = self:round_value(amount)
 	self._grenade_amount = self:round_value(self._grenade_amount - amount)
-	Eclipse:log_chat("taken: " .. amount .. "\ncapacity left: " .. self._grenade_amount)
+	--Eclipse:log_chat("taken: " .. amount .. "\ncapacity left: " .. self._grenade_amount)
 
 	if self._grenade_amount <= 0 then
 		self:_set_empty()
@@ -125,7 +122,7 @@ function GrenadeCrateBase:take_grenade(unit)
 	end
 
 	local taken = self:_take_grenades()
-	Eclipse:log_chat("taken: " .. taken .. "\ncapacity left: " .. self._grenade_amount)
+	--Eclipse:log_chat("taken: " .. taken .. "\ncapacity left: " .. self._grenade_amount)
 
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
@@ -216,7 +213,6 @@ function GrenadeCrateDeployableBase:_clbk_validate()
 end
 
 function GrenadeCrateDeployableBase:setup(grenade_upgrade_lvl)
-	Eclipse:log_chat("setup function executed")
 	self._grenade_amount = tweak_data.upgrades.grenade_crate_base + managers.player:upgrade_value_by_level("grenade_crate", "amount_increase", grenade_upgrade_lvl)
 	self._empty = false
 
@@ -242,7 +238,6 @@ function GrenadeCrateDeployableBase:setup(grenade_upgrade_lvl)
 end
 
 function GrenadeCrateDeployableBase:sync_setup(grenade_upgrade_lvl, peer_id)
-	Eclipse:log_chat("sync setup function executed")
 	if self._validate_clbk_id then
 		managers.enemy:remove_delayed_clbk(self._validate_clbk_id)
 
@@ -286,7 +281,7 @@ function GrenadeCrateDeployableBase:take_grenade(unit)
 	end
 
 	local taken = self:_take_grenades()
-	Eclipse:log_chat("taken: " .. taken .. "\ngrenade amount: " .. self._grenade_amount)
+	--Eclipse:log_chat("taken: " .. taken .. "\ngrenade amount: " .. self._grenade_amount)
 
 	if taken > 0 then
 		unit:sound():play("pickup_ammo")
