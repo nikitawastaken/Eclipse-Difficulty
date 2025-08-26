@@ -43,7 +43,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400006, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 	Eclipse.mission_elements.gen_spawngroup(400007, "swat_group_1", { 400001, 400002, 400003, 400004 }, 0, opts_swat_group),
 	Eclipse.mission_elements.gen_object_editor_trigger(400008, "swat_van_doors_trigger", optsOpenSwatVanDoors_Trigger),
-
 }
 
 return M
