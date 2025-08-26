@@ -13,11 +13,18 @@ function FragGrenade:set_thrower_unit(unit, ...)
 	self._range = self._range * self._explosive_range_multiplier
 	self._curve_pow = self._curve_pow * self._explosive_curve_multiplier
 
-	Eclipse:log_chat("_explosive_team_damage_multiplier: " .. self._explosive_team_damage_multiplier ..
-				"\n_explosive_range_multiplier: " .. self._explosive_range_multiplier ..
-				"\n_explosive_curve_multiplier: " .. self._explosive_curve_multiplier ..
-				"\n_has_explosive_cluster_grenades_bonus: " .. tostring(self._has_explosive_cluster_grenades_bonus) ..
-				"\n_cluster_grenade_type: " .. self._cluster_grenade_type )
+	Eclipse:log_chat(
+		"_explosive_team_damage_multiplier: "
+			.. self._explosive_team_damage_multiplier
+			.. "\n_explosive_range_multiplier: "
+			.. self._explosive_range_multiplier
+			.. "\n_explosive_curve_multiplier: "
+			.. self._explosive_curve_multiplier
+			.. "\n_has_explosive_cluster_grenades_bonus: "
+			.. tostring(self._has_explosive_cluster_grenades_bonus)
+			.. "\n_cluster_grenade_type: "
+			.. self._cluster_grenade_type
+	)
 
 	if self._source_grenade_damage then
 		self._damage = self._source_grenade_damage * tweak_data.upgrades.cluster_grenade_damage_multiplier
