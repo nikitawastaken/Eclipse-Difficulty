@@ -1163,7 +1163,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.expert_handling.multipro4 = "20"
 
 	-- Peacemaker's Lament
-	self.values.temporary.sidearm_pullout_damage_multiplier = { { 2, 1 } }
+	self.values.temporary.sidearm_pullout_damage_multiplier = { { 2, 2 } }
 	self.definitions.temporary_sidearm_pullout_damage_multiplier = {
 		name_id = "menu_temporary_sidearm_pullout_damage_multiplier",
 		category = "temporary",
@@ -1199,7 +1199,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.trigger_happy.multibasic = "1"
+	self.skill_descs.trigger_happy.multibasic = "2"
 	self.skill_descs.trigger_happy.multibasic2 = "100%"
 	self.skill_descs.trigger_happy.multipro = "2"
 	self.skill_descs.trigger_happy.multipro2 = "100%"
