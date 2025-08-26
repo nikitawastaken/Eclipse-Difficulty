@@ -572,6 +572,7 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "explosive_team_damage_multiplier",
+			synced = true,
 			category = "weapon",
 		},
 	}
@@ -643,6 +644,7 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "explosive_range_multiplier",
+			synced = true,
 			category = "weapon",
 		},
 	}
@@ -653,6 +655,7 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "explosive_curve_multiplier",
+			synced = true,
 			category = "weapon",
 		},
 	}
@@ -668,6 +671,7 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "explosive_cluster_grenades",
+			synced = true,
 			category = "weapon",
 		},
 	}
@@ -678,6 +682,7 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "cluster_incendiary_grenades",
+			synced = true,
 			category = "weapon",
 		},
 	}
