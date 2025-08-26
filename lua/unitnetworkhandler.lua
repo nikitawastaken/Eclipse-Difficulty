@@ -1,7 +1,3 @@
--- NOTE TO FUTURE SELF: CAN'T CREATE CUSTOM UNITNETWORKHANDLER FUNCTIONS --
--- ALSO CAN'T ADD EXTRA ARGS TO EXISTING FUNCTIONS --
--- USE NETWORK_HOOKS INSTEAD --
-
 local is_pro_job = Eclipse.utils.is_pro_job()
 
 -- Friendly Fire
@@ -82,8 +78,8 @@ function UnitNetworkHandler:hostage_trade(unit, enable, trade_success, skip_hint
 	CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)
 end
 
--- Extra drill upgrades
-function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, sender_rpc, electrocuting_drill)
+-- Extra drill upgrades (additional electrocuting_drill argument)
+function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, electrocuting_drill, sender_rpc)
 	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender_rpc) then
 		return
 	end
@@ -94,7 +90,3 @@ function UnitNetworkHandler:sync_drill_upgrades(unit, autorepair_level_1, autore
 		base_ext:set_skill_upgrades(Drill.create_upgrades(autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, electrocuting_drill))
 	end
 end
-
--- NOTE TO FUTURE SELF: CAN'T CREATE CUSTOM UNITNETWORKHANDLER FUNCTIONS --
--- ALSO CAN'T ADD EXTRA ARGS TO EXISTING FUNCTIONS --
--- USE NETWORK_HOOKS INSTEAD --

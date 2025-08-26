@@ -112,6 +112,12 @@ end
 
 -- Additional is_custody_trade argument
 function CopBrain:on_trade(pos, rotation, free_criminal, is_custody_trade)
+	if is_custody_trade == nil then
+		-- Ignore calls that don't supply `is_custody_trade`
+		-- May cause bugs, but will quickly show where this
+		-- is being called when it's not meant to be called
+		return
+	end
 	return self._current_logic.on_trade(self._logic_data, pos, rotation, free_criminal, is_custody_trade)
 end
 

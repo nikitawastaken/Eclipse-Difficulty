@@ -480,8 +480,7 @@ function TradeManager:trade_restore_resources()
 	end
 
 	if Network:is_server() then
-		-- managers.network:session():send_to_peers_synched("finish_trade", is_recon_over)
-		NetworkHelper:SendToPeersChunk("Eclipse_TradeManager:trade_restore_resources", NetworkHelper:encode({ is_recon_over = is_recon_over and "yes" or "no" }))
+		managers.network:session():send_to_peers_synched("finish_trade", is_recon_over, true)
 	end
 end
 

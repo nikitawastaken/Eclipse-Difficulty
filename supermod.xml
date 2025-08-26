@@ -19,7 +19,11 @@
 		<group hook_id="lib/">
 			<post :hook_id="gamemodes/gamemodestandard"/>
 			<post :hook_id="utils/inventorydescription"/>
-			<post :hook_id="states/missionendstate"/>
+
+			<group :hook_id="states/">
+				<post :hook_id="missionendstate"/>
+				<post :hook_id="ingameplayerbase"/>
+			</group>
 
 			<group :hook_id="managers/">
 				<group :hook_id="group_ai_states/">
@@ -86,9 +90,9 @@
 
 			<group :hook_id="network/">
 				<post :hook_id="base/networkmanager"/>
-				<post :hook_id="handlers/unitnetworkhandler"/>
-				<post :hook_id="base/basenetworksession"/>
 				<post :hook_id="base/networkpeer"/>
+				<post :hook_id="handlers/unitnetworkhandler"/>
+				<post :hook_id="handlers/connectionnetworkhandler"/>
 			</group>
 
 			<post :hook_id="setups/gamesetup"/>

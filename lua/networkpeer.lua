@@ -24,37 +24,38 @@ function NetworkPeer:verify_bag(carry_id, pickup)
 end
 
 function NetworkPeer:verify_grenade(value)
-	local grenade_id = self:grenade_id()
-	local tweak_entry = grenade_id and tweak_data.blackmarket.projectiles[grenade_id]
+	--[[
+		local grenade_id = self:grenade_id()
+		local tweak_entry = grenade_id and tweak_data.blackmarket.projectiles[grenade_id]
 
-	if tweak_entry.base_cooldown then
-		return true
-	end
-
-	local max_amount = tweak_entry and tweak_entry.max_amount or tweak_data.equipments.max_amount.grenades
-	-- max if player has fully loaded
-	max_amount = max_amount * 1.33
-	max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
-	max_amount = math.ceil(max_amount)
-
-	if self._grenades and max_amount < self._grenades + value then
-		if Network:is_server() then
-			self:mark_cheater(VoteManager.REASON.many_grenades, true)
-		else
-			managers.network:session():server_peer():mark_cheater(VoteManager.REASON.many_grenades, Network:is_server())
+		if tweak_entry.base_cooldown then
+			return true
 		end
 
-		print("[NetworkPeer:verify_grenade]: Failed to use grenade", self:id(), self._grenades, value)
+		local max_amount = tweak_entry and tweak_entry.max_amount or tweak_data.equipments.max_amount.grenades
+		-- max if player has fully loaded
+		max_amount = max_amount * 1.33
+		max_amount = managers.modifiers:modify_value("PlayerManager:GetThrowablesMaxAmount", max_amount)
+		max_amount = math.ceil(max_amount)
 
-		return false
-	end
+		if self._grenades and max_amount < self._grenades + value then
+			if Network:is_server() then
+				self:mark_cheater(VoteManager.REASON.many_grenades, true)
+			else
+				managers.network:session():server_peer():mark_cheater(VoteManager.REASON.many_grenades, Network:is_server())
+			end
 
-	self._grenades = self._grenades and self._grenades + value or value
+			print("[NetworkPeer:verify_grenade]: Failed to use grenade", self:id(), self._grenades, value)
 
+			return false
+		end
+
+		self._grenades = self._grenades and self._grenades + value or value
+	]]
 	return true
 end
 
 Hooks:PostHook(NetworkPeer, "mark_cheater", "eclipse_mark_cheater_debug", function()
-	Eclipse:log_chat("[DEBUG] You were marked as cheater!\nSend the stacktrace from your log file to a developer and see if you can reproduce this so we can patch this out.")
-	log("[ECLIPSE ANTI-CHEAT DEBUG]:\n", debug.traceback(), "\nEND STACKTRACE\n\n")
+	Eclipse:log_chat("[DEBUG] You were marked as cheater!\nSend the stacktrace from your log file in the eclipse folder to a developer and see if you can reproduce this so we can patch this out.")
+	Eclipse.log(string.format("[ECLIPSE ANTI-CHEAT DEBUG]:\n%s\nEND STACKTRACE\n\n", debug.traceback()))
 end)
