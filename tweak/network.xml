@@ -69,4 +69,16 @@
 			</message>
 		</target>
 	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="sync_drill_upgrades"/>
+			<param type="unit"/>
+		</search>
+		<target mode="replace">
+			<param type="unit"/> <!-- look for the unit node before inserting -->
+			<param type="bool"/> <!-- electrocuting drill? -->
+		</target>
+	</tweak>
 </tweaks>
