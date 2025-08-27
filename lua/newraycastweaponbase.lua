@@ -36,7 +36,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	self._steelsight_move_speed_mul = weapon_tweak.steelsight_move_speed_mul or 0.6
 
-	self._steelsight_time = weapon_tweak.steelsight_time or 0.3
+	self._steelsight_time = weapon_tweak.steelsight_time or 0.25
 
 	self._sprint_exit_time = weapon_tweak.sprint_exit_time or 0.4
 

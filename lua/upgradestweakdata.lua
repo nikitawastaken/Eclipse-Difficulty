@@ -41,9 +41,8 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- LMG / Minigun movement penalties revert
 	self.weapon_movement_penalty.lmg = 0.8
+	self.weapon_movement_penalty.heavy = 0.8
 	self.weapon_movement_penalty.minigun = 0.7
-	self.weapon_movement_penalty.heavy = 0.7
-
 	-- Skills
 	-------------
 
