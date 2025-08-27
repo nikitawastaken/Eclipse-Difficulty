@@ -88,7 +88,7 @@ return {
 			amount = dance_civs_bad_music,
 		},
 	},
-	-- spawn point delays
+	-- Spawn group intervals
 	[101046] = side_spawn,
 	[101213] = side_spawn,
 	[100806] = rear_spawn,

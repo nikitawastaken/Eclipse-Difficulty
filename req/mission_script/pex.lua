@@ -150,7 +150,7 @@ return {
 	[101647] = exclude_shields_dozers,
 	-- e_nl_under_0_7m
 	[101628] = exclude_shields_dozers,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- This heist isn't terrible in terms of spawns, but their distribution could be adjusted to make gameplay flow a bit better in some areas.
 	[100019] = alley_spawn,
 	[100131] = alley_spawn,

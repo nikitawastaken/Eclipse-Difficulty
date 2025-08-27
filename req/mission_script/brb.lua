@@ -52,17 +52,17 @@ return {
 		reinforce = {
 			{
 				name = "entrance1",
-				force = 2,
+				force = 3,
 				position = Vector3(-400, -900, 10),
 			},
 			{
 				name = "entrance2",
-				force = 2,
+				force = 3,
 				position = Vector3(1350, -2200, 10),
 			},
 			{
 				name = "entrance3",
-				force = 2,
+				force = 3,
 				position = Vector3(2850, -2200, 10),
 			},
 			{
@@ -80,7 +80,7 @@ return {
 	-- Play megaphone cop voice lines
 	[100837] = mga_thermite_event,
 	[101114] = mga_vault_event,
-	-- Spawn point delays
+	-- Spawn group intervals
 	[100435] = bridge_far_spawn,
 	[100454] = bridge_far_spawn,
 	[100455] = bridge_far_spawn,

@@ -103,7 +103,7 @@ return {
 			{ id = 101692, delay = 0 },
 		},
 	},
-	-- spawn group delays
+	-- Spawn group intervals
 	[100052] = wall_far_spawn,
 	[100286] = wall_far_spawn,
 	[100317] = lab_lower_spawn,

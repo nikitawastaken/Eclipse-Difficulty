@@ -184,7 +184,7 @@ return {
 	[103033] = security_army,
 	[105209] = security_army,
 	[105241] = security_army,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100131] = upper_spawn,
 	[100133] = upper_spawn,
 	[103003] = upper_spawn,

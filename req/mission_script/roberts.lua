@@ -198,7 +198,7 @@ return {
 	[106427] = ambush_chance,
 	[106428] = ambush_chance,
 	[106429] = ambush_chance,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame.
 	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
 	[400007] = scripted_swat_van_spawn,

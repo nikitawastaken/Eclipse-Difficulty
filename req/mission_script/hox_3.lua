@@ -102,7 +102,7 @@ return {
 	[102347] = ready_team_dozer,
 	[102348] = ready_team_dozer,
 	[102349] = ready_team_dozer,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100019] = flank_spawn,
 	[102424] = flank_spawn,
 	[102438] = flank_spawn,

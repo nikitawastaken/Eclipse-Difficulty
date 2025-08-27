@@ -117,7 +117,7 @@ return {
 	[103222] = elevator_dozer,
 	[103241] = elevator_dozer,
 	[103254] = elevator_dozer,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- More or less a port of the original intervals with some twists as per usual.
 	-- The main one being increasing intervals of the groups outside the bank building as they are stacked pretty close to each other.
 	-- Ladder spawns have been slowed down as well since they are very close to the area where players are expected to hold out.

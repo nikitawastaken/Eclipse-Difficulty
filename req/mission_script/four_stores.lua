@@ -1,12 +1,12 @@
 local preferred = Eclipse.preferred
 local street_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -151,7 +151,7 @@ return {
 			{ id = 400006, delay = 0 },
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[101221] = street_spawn,
 	[101213] = street_spawn,
 	[101345] = street_spawn,

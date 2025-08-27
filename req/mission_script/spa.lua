@@ -50,7 +50,7 @@ return {
 			enabled = false,
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
 	[101012] = window_lower_spawn,
 	[102138] = window_lower_spawn,

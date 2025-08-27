@@ -24,7 +24,7 @@ return {
 			{ id = 400008, delay = 0 },
 		},
 	},
-	-- spawn point delays
+	-- Spawn group intervals
 	[103530] = standard_spawn,
 	[103531] = standard_spawn,
 	[101583] = upper_spawn,

@@ -301,7 +301,7 @@ return {
 	-- Disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
 	[102387] = ship_spawn,
 	[102331] = ship_spawn,

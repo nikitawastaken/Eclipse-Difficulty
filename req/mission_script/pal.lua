@@ -378,7 +378,7 @@ return {
 	[101804] = shield,
 	[101883] = shield,
 	[102098] = shield,
-	-- spawn point delays
+	-- Spawn group intervals
 	[100441] = beach_spawn,
 	[100473] = beach_spawn,
 	[101107] = van_spawn,

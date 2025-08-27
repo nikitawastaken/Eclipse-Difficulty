@@ -5,11 +5,6 @@ local spawn_so = {
 		so_action = "e_nl_down_9_3m_rappel",
 	},
 }
-local water_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local portal_spawn = {
 	values = {
 		interval = 20,
@@ -74,11 +69,10 @@ return {
 			},
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- This heist is pretty cramped and also has verticality, which makes having all those spawn groups packed so close to each other especially egregious. What's new?
 	-- You will immediately notice fewer enemies spawning from the lake at the start, but also much slower catwalk spawns inside the prison.
 	-- A lot of spawngroups have also been made inaccessible to Bulldozers and Shields to ensure that they don't spawn on top of you.
-	[100554] = water_spawn,
 	[101143] = portal_spawn,
 	[101160] = portal_spawn,
 	[101161] = portal_spawn,

@@ -12,7 +12,7 @@ local garden_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -50,22 +50,22 @@ return {
 		reinforce = {
 			{
 				name = "garden_left",
-				force = 2,
+				force = 3,
 				position = Vector3(1425, -5950, -150),
 			},
 			{
 				name = "garden_back",
-				force = 2,
+				force = 3,
 				position = Vector3(-3400, -2100, -50),
 			},
 			{
 				name = "garden_front",
-				force = 2,
+				force = 3,
 				position = Vector3(-3150, -3125, -150),
 			},
 			{
 				name = "garden_right",
-				force = 2,
+				force = 3,
 				position = Vector3(1375, 2650, -150),
 			},
 		},
@@ -114,7 +114,7 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100132] = garden_spawn,
 	[102381] = garden_spawn,
 	[100206] = roof_spawn,

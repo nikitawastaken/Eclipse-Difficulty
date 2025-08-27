@@ -21,7 +21,7 @@ return {
 	},
 	[100589] = disabled,
 	[100590] = disabled,
-	-- Spawn point delays
+	-- Spawn group intervals
 	[100089] = alleyway_spawn,
 	[100143] = alleyway_spawn,
 }

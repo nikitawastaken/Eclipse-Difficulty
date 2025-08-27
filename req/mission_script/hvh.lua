@@ -20,7 +20,7 @@ return {
 	[101127] = {
 		difficulty_add = 0.15,
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- This heist is microscopic, thankfully whoever was setting up these spawns bothered to set them to 15s intervals.
 	-- That said, some of them could be slower because they are bit closer to player holdout areas.
 	[100651] = upper_spawn,

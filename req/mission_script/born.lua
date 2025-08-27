@@ -12,7 +12,7 @@ local exclude_cop_agents_shields_dozers = {
 }
 local fence_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local roof_spawn = {
@@ -113,7 +113,7 @@ return {
 			{ id = 102530, delay = chopper_delay, delay_rand = 60 },
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100019] = fence_spawn,
 	[100130] = fence_spawn,
 	[100131] = fence_spawn,

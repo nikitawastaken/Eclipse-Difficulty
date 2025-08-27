@@ -20,12 +20,12 @@ local wave_cop_count = {
 }
 local close_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -63,7 +63,7 @@ return {
 	[103449] = wave_cop_count,
 	[103448] = wave_cop_count,
 	[103447] = wave_cop_count,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100132] = close_spawn,
 	[106017] = close_spawn,
 	[106019] = close_spawn,

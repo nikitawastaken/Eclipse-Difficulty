@@ -47,8 +47,8 @@ return {
 	--Delay sanctum preferreds
 	[103217] = {
 		on_executed = {
-			{ id = 103216, delay = 15, delay_rand = 30 },
-			{ id = 103493, delay = 15, delay_rand = 30 },
+			{ id = 103216, delay = 15, delay_rand = 15 },
+			{ id = 103493, delay = 15, delay_rand = 15 },
 		},
 		reinforce = { -- Enable reinforce
 			{
@@ -76,7 +76,7 @@ return {
 	[100244] = disabled,
 	[102899] = disabled,
 	[103218] = disabled,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
 	[100128] = front_spawn,
 	[100130] = front_spawn,

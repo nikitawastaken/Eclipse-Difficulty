@@ -68,7 +68,7 @@ return {
 	[101434] = no_spawn_instigator_ids,
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
-	-- spawn point delays
+	-- Spawn group intervals
 
 	--[[
 		[101633] = third_floor_spawn,

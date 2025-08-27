@@ -162,7 +162,7 @@ return {
 			spawn_groups = { 100231, 100434 },
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100231] = timbermill_spawn,
 	[100434] = timbermill_spawn,
 	[100435] = hillside_spawn,

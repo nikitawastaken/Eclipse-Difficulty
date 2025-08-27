@@ -92,7 +92,7 @@ return {
 	[100375] = sniper_trigger_times,
 	[100376] = sniper_trigger_times,
 	[100377] = sniper_trigger_times,
-	-- spawn point delays
+	-- Spawn group intervals
 	[102086] = fueling_area_spawn1,
 	[103986] = fueling_area_spawn1,
 	[105278] = fueling_area_spawn1,

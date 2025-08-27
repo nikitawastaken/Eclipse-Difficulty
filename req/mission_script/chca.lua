@@ -108,7 +108,7 @@ return {
 	-- Enable unused snipers
 	[100371] = enabled,
 	[100372] = enabled,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- The Black Cat is one of the newer heists, so its spawn groups are not spread out at all and reach players almost immediately.
 	-- The shortest interval is 15s, for reference on most heists that would be 5s. It's not uncommon even for post-Jules heists to have 15s spawn groups, but the revival era team was seemingly pretty clueless in this respect.
 	-- Rappels right next to the usual player holdout spots (Spa, Corridors around the main courtyard) are slowed down and heavily restricted. No Bulldozers spawning right next to you.

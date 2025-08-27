@@ -116,7 +116,7 @@ return {
 			{ name = "pink_car4" },
 		},
 	},
-	-- Spawn point delays
+	-- Spawn group intervals
 	[100133] = objective_spawn,
 	[101715] = objective_spawn,
 	[100007] = roof_spawn,

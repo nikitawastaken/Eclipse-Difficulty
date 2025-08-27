@@ -5,7 +5,7 @@ local garage_spawn = {
 	},
 }
 return {
-	-- Spawn group delays
+	-- Spawn group intervals
 	[101923] = garage_spawn,
 	[101924] = garage_spawn,
 	[101925] = garage_spawn,

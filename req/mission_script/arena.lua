@@ -55,7 +55,7 @@ return {
 	[101761] = bags_required,
 	-- remove curly spawns
 	[101653] = disabled,
-	-- spawn group delays
+	-- Spawn group intervals
 	[101166] = rappel_spawn,
 	[104406] = rappel_spawn,
 	[100128] = rappel_spawn,

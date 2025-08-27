@@ -105,7 +105,7 @@ return {
 	[102450] = sniper_amount,
 	[102451] = sniper_amount,
 	]]
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100993] = bush_spawn,
 	[101131] = bush_spawn,
 	[101038] = roof_spawn,

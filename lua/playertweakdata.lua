@@ -89,7 +89,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 
 	self.damage.REVIVE_HEALTH_STEPS = is_pro_job and { revive_health, revive_health * 0.66, revive_health * 0.33 } or { revive_health }
 
-	self.suppression.max_value = 10
+	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1
 	self.suppression.tolerance = 0
 end)

@@ -4,11 +4,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local wall_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local roof_spawn = {
 	values = {
 		interval = 20,
@@ -33,22 +28,22 @@ return {
 		reinforce = {
 			{
 				name = "fast_food",
-				force = 2,
+				force = 3,
 				position = Vector3(2050, -3150, 25),
 			},
 			{
 				name = "carshop",
-				force = 2,
+				force = 3,
 				position = Vector3(1600, 750, 25),
 			},
 			{
 				name = "gas_station",
-				force = 2,
+				force = 3,
 				position = Vector3(-1650, 2000, 25),
 			},
 			{
 				name = "hardware",
-				force = 2,
+				force = 3,
 				position = Vector3(-1000, 150, 25),
 			},
 		},
@@ -62,17 +57,11 @@ return {
 	},
 	[100123] = { -- Assault ended
 		on_executed = {
-			{ id = 100531, delay = 0, delay_rand = 30 }, -- Car Shop preferred
-			{ id = 100534, delay = 0, delay_rand = 30 }, -- Hardware preferred
+			{ id = 100531, delay = 0, delay_rand = 15 }, -- Car Shop preferred
+			{ id = 100534, delay = 0, delay_rand = 15 }, -- Hardware preferred
 		},
 	},
-	-- Spawn group delays
-	[100403] = wall_spawn,
-	[100408] = wall_spawn,
-	[100409] = wall_spawn,
-	[100411] = wall_spawn,
-	[100412] = wall_spawn,
-	[100413] = wall_spawn,
+	-- Spawn group intervals
 	[100405] = roof_spawn,
 	[100406] = roof_spawn,
 	[100414] = roof_spawn,

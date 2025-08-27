@@ -85,7 +85,7 @@ return {
 			{ id = 101939, remove = true },
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- Most of the spawns during the farm section are slower now akin to the original version.
 	-- Fuck the bush spawngroup or something.
 	[400006] = scripted_swat_van_spawn,

@@ -38,7 +38,7 @@ return {
 	[101618] = disabled,
 	[103415] = disabled,
 	[103421] = disabled,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100571] = flank_spawn,
 	[100610] = flank_spawn,
 	[103172] = porch_spawn,

@@ -57,7 +57,7 @@ return {
 	[104002] = exclude_shields_dozers,
 	[104005] = exclude_shields_dozers,
 	[104007] = exclude_shields_dozers,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- Slightly revising the original version with more pronounced intervals.
 	[101055] = waterfront_spawn,

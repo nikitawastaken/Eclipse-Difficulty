@@ -116,6 +116,6 @@ return {
 	[103168] = gangster_inside_amount,
 	[101306] = gangster_stationary_amount,
 	[101046] = gangster_stationary_amount,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[101374] = alleyway_spawn,
 }

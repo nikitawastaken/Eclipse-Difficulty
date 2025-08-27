@@ -4,16 +4,16 @@ local disabled = {
 		enabled = false,
 	},
 }
-local escape_spawn = {
+local garage_door_spawn = {
 	values = {
 		interval = 15,
 	},
+	groups = preferred.no_shields_bulldozers,
 }
-local garage_door_spawn = {
+local escape_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local upper_spawn = {
 	values = {
@@ -58,12 +58,12 @@ return {
 	[101334] = disabled, -- books preferreds 4
 	[101334] = disabled, -- books preferreds 4
 	[108442] = disabled, -- entrance preferreds 3
-	-- Spawn group delays
-	[108291] = escape_spawn,
-	[108292] = escape_spawn,
+	-- Spawn group intervals
 	[107909] = garage_door_spawn,
 	[108287] = garage_door_spawn,
 	[108289] = garage_door_spawn,
+	[108291] = escape_spawn,
+	[108292] = escape_spawn,
 	[100128] = upper_spawn,
 	[100130] = upper_spawn,
 	[100131] = upper_spawn,

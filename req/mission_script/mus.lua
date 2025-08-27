@@ -104,7 +104,7 @@ return {
 	[102225] = disabled,
 	[102224] = disabled,
 	[102226] = disabled,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,
 	[100790] = courtyard_spawn,

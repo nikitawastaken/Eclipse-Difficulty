@@ -490,7 +490,7 @@ return {
 			{ name = "overpass2" },
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100071] = helicopter_guaranteed_spawn,
 	[100476] = helicopter_guaranteed_spawn,
 	[102354] = helicopter_guaranteed_spawn,

@@ -686,7 +686,7 @@ return {
 			amount = is_pro_job and 2 or 1,
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
 	-- Originally the spawns were nothing to write home about, so I had to come up with my own delays.
 	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.

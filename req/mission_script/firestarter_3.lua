@@ -72,7 +72,7 @@ local street_spawn = {
 }
 local parking_lot_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local cloaker_spawn = {
@@ -301,7 +301,7 @@ return {
 	[101125] = disabled,
 	[101126] = disabled,
 	[105331] = disabled,
-	-- spawn group delays
+	-- Spawn group intervals
 	[100246] = street_spawn,
 	[100249] = street_spawn,
 	[100250] = street_spawn,

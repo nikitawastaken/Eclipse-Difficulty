@@ -414,7 +414,7 @@ return {
 	-- Play megaphone cop voice lines
 	[103232] = mga_thermite_event,
 	[101543] = mga_vault_event,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[102154] = elevator_spawn,
 	[103109] = elevator_spawn,
 	[103135] = elevator_spawn,

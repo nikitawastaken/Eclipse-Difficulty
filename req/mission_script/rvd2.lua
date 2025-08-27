@@ -147,7 +147,7 @@ return {
 	[101565] = ambush_taser,
 	[101176] = ambush_taser,
 	[101207] = ambush_taser,
-	-- Spawn point delays
+	-- Spawn group intervals
 	[100019] = building_spawn,
 	[100128] = building_spawn,
 	[100131] = building_spawn,

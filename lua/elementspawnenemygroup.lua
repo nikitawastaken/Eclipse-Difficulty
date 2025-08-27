@@ -82,11 +82,11 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_val
 
 	local spawn_cooldown = managers.groupai:state():_get_difficulty_dependent_value(tweak_data.group_ai.besiege.assault.spawnrate) or 1
 
-	self._values.interval = math.max(2 * spawn_cooldown, self._values.interval)
+	self._values.interval = math.max(5, self._values.interval)
 	for _, id in pairs(self._values.elements) do
 		local spawn_point = self:get_mission_element(id)
 		if spawn_point and spawn_point._values.spawn_action then
-			self._values.interval = math.max(4 * spawn_cooldown, self._values.interval)
+			self._values.interval = math.max(10, self._values.interval)
 			break
 		end
 	end

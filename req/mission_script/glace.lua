@@ -211,7 +211,7 @@ return {
 			},
 		},
 	},
-	-- spawn point delays
+	-- Spawn group intervals
 	[101588] = escape_spawn,
 	[101589] = escape_spawn,
 	[102131] = escape_spawn,

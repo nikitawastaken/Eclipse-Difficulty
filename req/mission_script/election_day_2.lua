@@ -61,7 +61,7 @@ return {
 			{ id = 400012, delay = 0, delay_rand = 5 },
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- While the original intervals would've been more than enough, I decided to slow down the skylight rappels further to make holding out under the catwalks a bit less annoying.
 	[400007] = scripted_swat_van_spawn,

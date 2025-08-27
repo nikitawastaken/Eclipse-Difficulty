@@ -24,7 +24,7 @@ return {
 			},
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[101630] = reinforcement_spawn,
 	[101726] = reinforcement_spawn,
 	[102467] = reinforcement_spawn,

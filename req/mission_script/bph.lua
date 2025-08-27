@@ -45,7 +45,7 @@ return {
 			player_mul = { 1.25, 1, 1, 1 },
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100821] = staircase_spawn,
 	[100875] = staircase_spawn,
 	[102431] = staircase_spawn,

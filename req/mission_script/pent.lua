@@ -93,7 +93,7 @@ return {
 	[100370] = sniper_trigger_times,
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[102112] = garage_spawn,
 	[103027] = garage_spawn,
 	[102137] = pent_spawn,

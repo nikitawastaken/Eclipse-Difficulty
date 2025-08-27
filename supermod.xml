@@ -86,6 +86,7 @@
 				<post :hook_id="firemanager"/>
 				<post :hook_id="trademanager"/>
 				<post :hook_id="hudmanagerpd2"/>
+				<post :hook_id="jobmanager"/>
 			</group>
 
 			<group :hook_id="network/">

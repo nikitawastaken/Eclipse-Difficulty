@@ -25,7 +25,7 @@ return {
 			enabled = false,
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100132] = close_spawn,
 	[103919] = close_spawn,
 	[100007] = close_spawn,

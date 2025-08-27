@@ -49,7 +49,7 @@ return {
 	[100370] = sniper_trigger_times,
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
-	-- Spawn point delays
+	-- Spawn group intervals
 	[100133] = warehouse_spawn,
 	-- Replace generic security with soldiers (SO MANY GUARDS)
 	[100670] = security_army,

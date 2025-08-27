@@ -111,7 +111,7 @@ return {
 		},
 	},
 	]]
-	-- Spawn point delays
+	-- Spawn group intervals
 	[100128] = flank_spawn,
 	[100130] = flank_spawn,
 	[103662] = flank_spawn,

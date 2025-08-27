@@ -168,7 +168,7 @@ return {
 	[103759] = gensec_tank,
 	[103760] = gensec_tank,
 	[103761] = gensec_tank,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100128] = street_spawn,
 	[100130] = street_spawn,
 	[100131] = street_spawn,

@@ -37,7 +37,7 @@ local side_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 local van_scripted_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 local bags_required = {
 	values = {
@@ -70,7 +70,7 @@ return {
 	},
 	[100109] = { -- Police
 		on_executed = { -- delay preferreds
-			{ id = 100129, delay = 60 }, -- preferred
+			{ id = 100129, delay = 45 }, -- preferred
 		},
 	},
 	[100810] = { -- start police car drive-in
@@ -78,17 +78,22 @@ return {
 			{
 				name = "police_car1",
 				force = 3,
-				position = Vector3(0, 600, 0),
+				position = Vector3(2140, 475, 0),
 			},
 			{
 				name = "police_car2",
 				force = 3,
-				position = Vector3(2200, 500, 0),
+				position = Vector3(-100, 400, 0),
 			},
 			{
 				name = "police_car3",
 				force = 3,
-				position = Vector3(-2500, -3000, 0),
+				position = Vector3(-1900, -150, 0),
+			},
+			{
+				name = "police_car3",
+				force = 3,
+				position = Vector3(-2200, -2600, 0),
 			},
 		},
 	},
@@ -111,7 +116,7 @@ return {
 			{
 				name = "breach",
 				force = 2,
-				position = Vector3(-1700, -5600, 0),
+				position = Vector3(-1700, -5100, 0),
 			},
 		},
 	},
@@ -127,11 +132,6 @@ return {
 				name = "teller_balcony2",
 				force = 2,
 				position = Vector3(-1200, -2200, 400),
-			},
-			{
-				name = "bank_interior",
-				force = 2,
-				position = Vector3(0, -1400, 0),
 			},
 		},
 	},
@@ -259,7 +259,7 @@ return {
 	[102369] = disabled,
 	[102382] = disabled,
 	[102781] = disabled,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed.
 	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.
 	-- The other 2 spawn groups were slowed down because they are stacked on top of each other, simple as that.

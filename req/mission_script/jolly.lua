@@ -18,7 +18,7 @@ local bridge_spawn = {
 return {
 	-- Disable hunt
 	[101598] = disabled,
-	-- Spawn point delays
+	-- Spawn group intervals
 	[100944] = train_spawn,
 	[100945] = train_spawn,
 	[100979] = train_spawn,

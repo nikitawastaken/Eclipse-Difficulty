@@ -98,7 +98,7 @@ return {
 			{ id = 101536, delay = 0, delay_rand = 15 }, -- roof basics
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[400006] = standard_spawn,
 	[400018] = standard_spawn,
 	[400024] = standard_spawn,

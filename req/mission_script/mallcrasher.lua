@@ -85,7 +85,7 @@ return {
 	[302072] = exclude_cop_agents_shields_dozers,
 	[302073] = exclude_cop_agents_shields_dozers,
 	[302074] = exclude_cop_agents_shields_dozers,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- This heist got botched pretty hard when spawn group intervals were standardized.
 	-- More or less what you'd expect, the skylight rappels have been slowed down drastically, but it's not a complete port of the old intervals.
 	-- There are two different intervals for these rappels, the longer one is used for the groups that spawn directly in front of shops in straight lines, they cover a lot of playable space when they spawn.

@@ -2,12 +2,6 @@ local preferred = Eclipse.preferred
 local swat_spawn_fix = {
 	spawn_action = "e_sp_down_16m_right",
 }
-local reinforcement_spawn = {
-	values = {
-		interval = 5,
-	},
-	groups = preferred.no_cops_agents,
-}
 local wall_spawn = {
 	values = {
 		interval = 15,
@@ -35,11 +29,7 @@ return {
 	[100847] = swat_spawn_fix,
 	[100844] = swat_spawn_fix,
 	[100845] = swat_spawn_fix,
-	-- Spawn group delays
-	[102037] = reinforcement_spawn,
-	[102049] = reinforcement_spawn,
-	[102060] = reinforcement_spawn,
-	[102071] = reinforcement_spawn,
+	-- Spawn group intervals
 	[100634] = wall_spawn,
 	[102326] = wall_spawn,
 }

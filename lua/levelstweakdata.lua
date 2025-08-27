@@ -194,9 +194,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.welcome_to_the_jungle_2.group_ai_settings = {
 		cloaker_interval_mul = 1.25,
 		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			assault_delay = 60,
-		},
 	}
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
 
@@ -354,9 +351,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pbr2.group_ai_settings = {
 		spawn_kill_cooldown = 20,
 		assault_force_mul = 0.7,
-		difficulty_scaling = {
-			assault_delay = 60,
-		},
 		special_limit_add = {
 			shield = -1,
 		},
@@ -507,7 +501,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
-
+	self.friend.group_ai_settings.difficulty_scaling = nil
+	
 	self.moon.group_ai_settings = {
 		assault_force_mul = 0.85,
 	}
@@ -621,6 +616,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.bex.group_ai_settings = {
 		assault_force_mul = 1.15,
+		difficulty_scaling = {
+			assault_delay = 60,
+		},
 		special_limit_add = {
 			shield = 1,
 			taser = 1,

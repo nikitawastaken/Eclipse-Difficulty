@@ -284,7 +284,7 @@ return {
 	[101219] = snipers_amount,
 	[101222] = snipers_amount,
 	[101224] = snipers_amount,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[400026] = van_spawn,
 	[101528] = garage_door_spawn,
 	[101476] = garage_door_spawn,

@@ -31,7 +31,7 @@ return {
 	},
 	[100699] = { -- flare placed
 		on_executed = {
-			{ id = 400002, delay = 0 }, -- custom roof preferreds
+			{ id = 400002, delay = 0, delay_rand = 15 }, -- custom roof preferreds
 		},
 		reinforce = {
 			{
@@ -62,7 +62,7 @@ return {
 	[103790] = exclude_cop_agents_shields_dozers,
 	[103791] = exclude_cop_agents_shields_dozers,
 	[103792] = exclude_cop_agents_shields_dozers,
-	-- Spawn group delays
+	-- Spawn group intervals
 	-- This heist is quite compact, so having 0s (5s) spawn groups is a bit overkill, especially when you reach the roof, things get pretty messy up there.
 	[100131] = entrance_spawn,
 	[100130] = entrance_spawn,

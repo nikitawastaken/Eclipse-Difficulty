@@ -10,11 +10,6 @@ local biker_enemy = {
 	["units/pd2_dlc_born/characters/ene_biker_female_3/ene_biker_female_3"] = 2,
 }
 local biker = { enemy = biker_enemy }
-local wall_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local window_spawn = {
 	values = {
 		interval = 20,
@@ -23,7 +18,7 @@ local window_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 120,
 	},
 }
 return {
@@ -92,18 +87,7 @@ return {
 	[101683] = biker,
 	[101774] = biker,
 	[101866] = biker, -- camera man
-	-- Spawn group delays
-	[100128] = wall_spawn, -- American side
-	[100131] = wall_spawn,
-	[100132] = wall_spawn,
-	[100694] = wall_spawn, -- Mexican side
-	[102227] = wall_spawn,
-	[102228] = wall_spawn,
-	[102254] = wall_spawn,
-	[102255] = wall_spawn,
-	[102423] = wall_spawn,
-	[102424] = wall_spawn,
-	[102442] = wall_spawn,
+	-- Spawn group intervals
 	[103235] = window_spawn,
 	[103048] = window_spawn,
 	[103067] = window_spawn,

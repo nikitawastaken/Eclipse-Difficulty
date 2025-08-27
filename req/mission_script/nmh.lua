@@ -158,7 +158,7 @@ return {
 	-- tweak elevator cloakers respawns
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
-	-- spawn group delays
+	-- Spawn group intervals
 	[103683] = vent_spawn,
 	[103086] = vent_spawn,
 	[103111] = vent_spawn,

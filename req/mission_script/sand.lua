@@ -142,7 +142,7 @@ return {
 	[101779] = dozer_chance,
 	[101780] = dozer_chance,
 	[101781] = dozer_chance,
-	--spawn point delays
+	--Spawn group intervals
 	[100692] = upper_spawn,
 	[100694] = upper_spawn,
 	[101264] = upper_spawn,

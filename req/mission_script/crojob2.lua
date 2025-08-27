@@ -88,7 +88,7 @@ return {
 	[106020] = security_army,
 	[106138] = security_army,
 	[106141] = security_army,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100869] = fence_spawn,
 	[101574] = fence_spawn,
 	[101630] = upper_spawn,

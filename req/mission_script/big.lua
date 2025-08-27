@@ -74,7 +74,7 @@ local elevator_spawn = {
 		interval = 30,
 	},
 }
-local elevator_spawn_2 = {
+local elevator_close_spawn = {
 	values = {
 		interval = 45,
 	},
@@ -223,7 +223,7 @@ return {
 	[105434] = elevator_spawn,
 	[400027] = elevator_spawn,
 	[400034] = elevator_spawn,
-	[400019] = elevator_spawn_2,
+	[400019] = elevator_close_spawn,
 	-- Harassers
 	[100883] = harasser,
 	[100884] = harasser,

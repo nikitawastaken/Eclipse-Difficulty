@@ -155,7 +155,7 @@ return {
 	[101237] = no_participate,
 	[101238] = no_participate,
 	[101239] = no_participate,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[100437] = roof_spawn,
 	[100438] = roof_spawn,
 	[100455] = agile_spawn,

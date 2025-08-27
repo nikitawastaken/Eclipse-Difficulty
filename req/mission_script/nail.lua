@@ -11,31 +11,10 @@ local headless_tank = {
 }
 local ledge_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 return {
-	-- Adjust diff scaling
-	[101612] = { -- truck open, initial diff
-		values = {
-			difficulty = 0.4,
-		},
-	},
-	[101887] = { -- 2nd assault is over
-		values = {
-			difficulty = 0.6,
-		},
-	},
-	[100465] = { -- 3rd assault is over
-		values = {
-			difficulty = 0.8,
-		},
-	},
-	[100550] = { -- 4th assault is over
-		values = {
-			difficulty = 1,
-		},
-	},
 	-- Add new reinforce
 	[101610] = { -- start up spawns
 		reinforce = {
@@ -84,7 +63,7 @@ return {
 	[100348] = headless_tank,
 	[100349] = headless_tank,
 	[100350] = headless_tank,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[101601] = ledge_spawn,
 	[101603] = ledge_spawn,
 	[101604] = ledge_spawn,

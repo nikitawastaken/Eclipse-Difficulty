@@ -157,7 +157,7 @@ return {
 	[103643] = enemy_filter_dozers,
 	[103644] = enemy_filter_dozers,
 ]]
-	-- spawn group delays
+	-- Spawn group intervals
 	[102784] = elevator_spawn,
 	[102828] = elevator_spawn,
 	[102044] = office_window_spawn,

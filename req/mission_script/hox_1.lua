@@ -70,7 +70,7 @@ return {
 	[102039] = swat_harasser,
 	[102041] = swat_harasser,
 	[102043] = swat_harasser,
-	-- Spawn group delays
+	-- Spawn group intervals
 	[101719] = street_spawn,
 	[101728] = street_spawn,
 	[101731] = street_spawn,

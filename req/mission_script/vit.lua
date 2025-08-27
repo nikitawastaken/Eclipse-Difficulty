@@ -73,7 +73,7 @@ return {
 	[101606] = humvee_crash_event_chance,
 	[103360] = disabled,
 	[101416] = disabled,
-	-- spawn point delays
+	-- Spawn group intervals
 	[100128] = main_window_spawn,
 	[100006] = oval_window_spawn,
 	[100133] = oval_window_spawn,

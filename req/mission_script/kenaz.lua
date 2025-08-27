@@ -113,7 +113,7 @@ return {
 			},
 		},
 	},
-	-- Spawn group delays
+	-- Spawn group intervals
 	[103218] = skylight_spawn,
 	[102035] = cloaker_spawn,
 	[102036] = cloaker_spawn,
