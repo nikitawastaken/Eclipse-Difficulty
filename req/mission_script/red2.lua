@@ -131,6 +131,12 @@ local forced_off = {
 	},
 }
 return {
+	[100057] = {
+		ponr = {
+			length = 150,
+			player_mul = { 1.1, 0.9, 0.7, 0.5 },
+		},
+	},
 	-- Add new reinforce
 	[100901] = { -- SWAT incoming
 		reinforce = {
@@ -300,12 +306,8 @@ return {
 		},
 	},
 	-- custom spawns
-	-- add point of no return and spawn lobby ambushes
+	-- add spawn lobby ambushes when the gate is on the left side
 	[101660] = {
-		ponr = {
-			length = 150,
-			player_mul = { 1.1, 0.9, 0.7, 0.5 },
-		},
 		on_executed = {
 			{ id = 400000, delay = 0 },
 			{ id = 400001, delay = 1 },
