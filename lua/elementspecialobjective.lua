@@ -86,19 +86,24 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 	if name == "anim_start" then
 		self:_set_cloaker_is_hiding(unit:key(), true)
 
-		if hiding_cloaker_tweak.goggles_on_when_hiding == false then
+		if base_ext.set_cloaker_goggles_on and hiding_cloaker_tweak.goggles_on_when_hiding == false then
 			base_ext:set_cloaker_goggles_on(false)
 		end
 
-		if hiding_cloaker_tweak.use_idle_noise_when_hiding == false then
+		if base_ext.set_cloaker_noise_on and hiding_cloaker_tweak.use_idle_noise_when_hiding == false then
 			base_ext:set_cloaker_noise_on(false)
 		end
 	elseif self._cloakers_currently_hiding and self._cloakers_currently_hiding[unit:key()] then
 		self:_set_cloaker_is_hiding(unit:key(), false)
 
 		local whistle = hiding_cloaker_tweak.whistle_on_leave_hiding ~= false
-		base_ext:set_cloaker_goggles_on(true)
-		base_ext:set_cloaker_noise_on(true, whistle)
+		if base_ext.set_cloaker_goggles_on then
+			base_ext:set_cloaker_goggles_on(true)
+		end
+
+		if base_ext.set_cloaker_noise_on then
+			base_ext:set_cloaker_noise_on(true, whistle)
+		end
 	end
 end)
 
