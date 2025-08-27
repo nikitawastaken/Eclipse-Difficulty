@@ -79,7 +79,7 @@ function MissionManager.mission_script_patch_funcs.ponr(self, element, data)
 	end
 end
 
-function MissionManager.mission_script_patch_funcs.ponr_end(self, element, data)
+function MissionManager.mission_script_patch_funcs.ponr_end(self, element, _)
 	if is_pro_job then
 		Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_end_" .. element:id(), function()
 			managers.groupai:state():remove_point_of_no_return_timer(0)
@@ -90,7 +90,7 @@ function MissionManager.mission_script_patch_funcs.ponr_end(self, element, data)
 	end
 end
 
-function MissionManager.mission_script_patch_funcs.set_ponr_state(self, element, data)
+function MissionManager.mission_script_patch_funcs.set_ponr_state(self, element, _)
 	if is_pro_job then
 		if Network:is_server() then
 			Hooks:PostHook(element, "on_executed", "eclipse_on_executed_ponr_state_" .. element:id(), function()

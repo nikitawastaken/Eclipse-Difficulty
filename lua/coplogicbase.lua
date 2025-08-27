@@ -77,7 +77,7 @@ Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(
 end)
 
 -- Remove follow unit as soon as it dies, not just after the body despawned
-function CopLogicBase.on_objective_unit_damaged(data, unit, attacker_unit)
+function CopLogicBase.on_objective_unit_damaged(data, unit, _)
 	if unit:character_damage()._dead then
 		data.objective_failed_clbk(data.unit, data.objective)
 	end
@@ -326,7 +326,7 @@ function CopLogicBase._upd_attention_obj_detection(data, ...)
 end
 
 -- Fix incorrect checks and improve surrender conditions
-function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_unit)
+function CopLogicBase._evaluate_reason_to_surrender(data, _, aggressor_unit)
 	local surrender_tweak = data.char_tweak.surrender
 	if not surrender_tweak then
 		return
@@ -396,6 +396,7 @@ function CopLogicBase._evaluate_reason_to_surrender(data, my_data, aggressor_uni
 			end
 		end,
 
+		-- selene: allow(if_same_then_else)
 		weapon_down = function(weap_down_surrender)
 			local anim_data = data.unit:anim_data()
 			if anim_data.reload or data.unit:inventory():equipped_unit():base():get_ammo_remaining_in_clip() == 0 then

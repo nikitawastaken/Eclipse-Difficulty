@@ -1,5 +1,5 @@
 -- No cloaker camera tilt
-function FPCameraPlayerBase:clbk_aim_assist(col_ray) end
+function FPCameraPlayerBase:clbk_aim_assist() end
 
 -- if the player is in vr, don't do any further changes
 if _G.IS_VR then
@@ -160,7 +160,7 @@ Hooks:PostHook(FPCameraPlayerBase, "init", "spray_init", function(self)
 	self._h_recoil_cushion = 0
 end)
 
-Hooks:PostHook(FPCameraPlayerBase, "update", "spray_update", function(self, unit, t, dt)
+Hooks:PostHook(FPCameraPlayerBase, "update", "spray_update", function(self, _, t, dt)
 	-- Count the time since the player last shot
 	if self._recoil_recovery_t > 0 then
 		self._recoil_recovery_t = self._recoil_recovery_t - dt

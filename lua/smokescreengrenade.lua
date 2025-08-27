@@ -6,6 +6,7 @@ function SmokeScreenGrenade:set_thrower_unit(unit, ...)
 	self._linger_bonus = self._thrower_unit:base():upgrade_value("player", "smoke_grenade_lingering_effect") or 0
 end
 
+-- selene: allow(unused_variable)
 function SmokeScreenGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
 	local pos = self._unit:position()
 	local normal = math.UP

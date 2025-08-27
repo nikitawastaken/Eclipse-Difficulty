@@ -113,14 +113,14 @@ function AmmoClip:sync_net_event(event, peer)
 			-- Gambler ammo share fix (credit goes to TheFixes team)
 			local picked_up, add_amount = false, nil
 
-			for id, weapon in pairs(inventory:available_selections()) do
-				picked_up, add_amount = weapon.unit:base():add_ammo(tweak_data.upgrades.loose_ammo_give_team_ratio or 0.25) or picked_up
+			for _, weapon in pairs(inventory:available_selections()) do
+				picked_up, add_amount = weapon.unit:base():add_ammo(tweak_data.upgrades.loose_ammo_give_team_ratio or 0.25) or picked_up, add_amount
 				if picked_up and (not add_amount or add_amount < 1) then
 					local wub = weapon.unit:base()
 					if wub and wub._ammo_pickup and wub._ammo_pickup[2] < 2 then
 						local prob = ((wub._ammo_pickup[1] + wub._ammo_pickup[2]) / 2) * tweak_data.upgrades.loose_ammo_give_team_ratio
 						if prob > math.random() then
-							picked_up, add_amount = wub:add_ammo(nil, 1) or picked_up
+							picked_up, add_amount = wub:add_ammo(nil, 1) or picked_up, add_amount
 						end
 					end
 				end

@@ -154,7 +154,7 @@ Hooks:PostHook(CarryInteractionExt, "interact", "eclipse_carry_interact", functi
 	end
 end)
 
-function CarryInteractionExt:_interact_blocked(player)
+function CarryInteractionExt:_interact_blocked(_)
 	local silent_block = managers.player:carry_blocked_by_cooldown() or self._unit:carry_data():is_attached_to_zipline_unit()
 
 	local has_carry_stacker = managers.player:upgrade_value_nil("player", "carry_stacker")

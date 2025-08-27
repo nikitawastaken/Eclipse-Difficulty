@@ -1,3 +1,4 @@
+--# selene: allow(mixed_table)
 function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	self._ws = ws
 	self._fullscreen_ws = fullscreen_ws
@@ -291,9 +292,6 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	end
 
 	local ghost_bonus_mul = managers.job:get_ghost_bonus()
-	local skill_bonus = managers.player:get_skill_exp_multiplier()
-	local infamy_bonus = managers.player:get_infamy_exp_multiplier()
-	local limited_bonus = managers.player:get_limited_exp_multiplier(job_data.job_id, nil)
 	local job_ghost = math.round(ghost_bonus_mul * 100)
 	local job_ghost_string = tostring(math.abs(job_ghost))
 	local has_ghost_bonus = ghost_bonus_mul > 0
@@ -467,8 +465,6 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	risk_stats_panel:set_h(risk_title:h() + half_padding)
 
-	local plvl = managers.experience:current_level()
-	local player_stars = math.max(math.ceil(plvl / 10), 1)
 	local job_stars = math.ceil(narrative.jc / 10)
 	local difficulty_stars = job_data.difficulty_id - 2
 	local job_and_difficulty_stars = job_stars + difficulty_stars
@@ -517,7 +513,6 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 			risk_stat:set_world_center_x(risk:world_center_x() - 1)
 			risk_stat:set_x(math.round(risk_stat:x()))
 
-			local this_difficulty = i == difficulty_stars + 1
 			active = i <= difficulty_stars + 1
 			color = Color.white
 			alpha = 0.5
@@ -593,23 +588,11 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	local sx = math.max(jobpay_title:right(), experience_title:right())
 	sx = sx + 8
-	local filled_star_rect = {
-		0,
-		32,
-		32,
-		32,
-	}
-	local empty_star_rect = {
-		32,
-		32,
-		32,
-		32,
-	}
 	local contract_visuals = job_data.contract_visuals or {}
 	local cy = experience_title:center_y()
 	local xp_min = contract_visuals.min_mission_xp and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp)
 		or 0
-	local total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, narrative.professional, #narrative_chains, {
+	local _, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, narrative.professional, #narrative_chains, {
 		ignore_heat = job_heat_value > 0 and self._customizable,
 		mission_xp = xp_min,
 	})
@@ -784,7 +767,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 		local mutators_list = {}
 		local last_item = nil
 
-		for mutator_id, mutator_data in pairs(job_data.mutators) do
+		for mutator_id, _ in pairs(job_data.mutators) do
 			local mutator = managers.mutators:get_mutator_from_id(mutator_id)
 
 			if mutator then
@@ -978,8 +961,6 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	end
 
 	days_multiplier = 1 + days_multiplier / #narrative_chains
-	local last_day_mul = narrative.professional and tweak_data:get_value("experience_manager", "pro_day_multiplier", #narrative_chains)
-		or tweak_data:get_value("experience_manager", "day_multiplier", #narrative_chains)
 	self._data = {
 		job_cash = base_payout,
 		add_job_cash = risk_payout,
@@ -1132,13 +1113,13 @@ function CrimeNetContractGui:set_potential_rewards(show_max)
 	local potential_level_up_text = gui_panel:child("potential_level_up_text")
 	local job_heat_value = managers.job:get_job_heat(job_data.job_id) or 0
 	local contract_visuals = job_data.contract_visuals or {}
-	local total_xp, dissected_xp, total_payout, base_payout, risk_payout = nil
+	local _, dissected_xp, total_payout, base_payout, risk_payout = nil
 
 	if show_max then
 		local xp_max = contract_visuals.max_mission_xp
 				and (type(contract_visuals.max_mission_xp) == "table" and contract_visuals.max_mission_xp[difficulty_stars + 1] or contract_visuals.max_mission_xp)
 			or 0
-		total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
+		_, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
 			ignore_heat = job_heat_value > 0 and self._customizable,
 			mission_xp = xp_max,
 		})
@@ -1152,7 +1133,7 @@ function CrimeNetContractGui:set_potential_rewards(show_max)
 		local xp_min = contract_visuals.min_mission_xp
 				and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp)
 			or 0
-		total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
+		_, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
 			ignore_heat = job_heat_value > 0 and self._customizable,
 			mission_xp = xp_min,
 		})
@@ -1160,7 +1141,6 @@ function CrimeNetContractGui:set_potential_rewards(show_max)
 	end
 
 	local base_xp, risk_xp, heat_base_xp, heat_risk_xp, ghost_base_xp, ghost_risk_xp = unpack(dissected_xp)
-	local num_stages_string = tostring(#narrative_chains) .. " x "
 	local xp = base_xp
 	local gui_xp = gui_panel:child("job_xp")
 	local gui_add_xp = gui_panel:child("add_xp")
@@ -1301,13 +1281,12 @@ function CrimeNetContractGui:set_all(t, dt)
 	local contract_visuals = job_data.contract_visuals or {}
 	local xp_min = contract_visuals.min_mission_xp and (type(contract_visuals.min_mission_xp) == "table" and contract_visuals.min_mission_xp[difficulty_stars + 1] or contract_visuals.min_mission_xp)
 		or 0
-	local total_xp, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
+	local _, dissected_xp = managers.experience:get_contract_xp_by_stars(job_data.job_id, job_stars, difficulty_stars, job_data.professional, #narrative_chains, {
 		ignore_heat = job_heat_value > 0 and self._customizable,
 		mission_xp = xp_min,
 	})
 	local total_payout, base_payout, risk_payout = managers.money:get_contract_money_by_stars(job_stars, difficulty_stars, #narrative_chains, job_data.job_id)
 	local base_xp, risk_xp, heat_base_xp, heat_risk_xp, ghost_base_xp, ghost_risk_xp = unpack(dissected_xp)
-	local num_stages_string = tostring(#narrative_chains) .. " x "
 	local xp = base_xp
 	local gui_xp = gui_panel:child("job_xp")
 	local gui_add_xp = gui_panel:child("add_xp")

@@ -39,7 +39,6 @@ end
 -- bring back old hitflash for pro-jobs
 local ids_hdr_post_processor = Idstring("hdr_post_processor")
 local ids_hdr_post_composite = Idstring("post_DOF")
-local mvec1 = Vector3()
 local ids_dof_settings = Idstring("settings")
 local ids_radial_offset = Idstring("radial_offset")
 local ids_LUT_post = Idstring("color_grading_post")
@@ -91,7 +90,6 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", f
 	end
 
 	local camera = vp:camera()
-	local color_tweak = mvec1
 
 	if camera then
 		-- Nothing
@@ -124,7 +122,6 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", f
 	local flashbang_flash = 0
 
 	if self._current_flashbang > 0 then
-		local flsh = self._current_flashbang
 		self._current_flashbang = math.max(self._current_flashbang - dt * 0.08 * self._flashbang_multiplier * self._flashbang_duration, 0)
 		flashbang = math.min(self._current_flashbang, 1)
 		self._current_flashbang_flash = math.max(self._current_flashbang_flash - dt * 0.9, 0)
@@ -142,7 +139,6 @@ Hooks:OverrideFunction(CoreEnvironmentControllerManager, "set_post_composite", f
 	hit_some_mod = hit_some_mod * hit_some_mod * hit_some_mod
 	hit_some_mod = 1 - hit_some_mod
 	local downed_value = self._downed_value / 100
-	local death_mod = math.max(1 - self._health_effect_value - 0.5, 0) * 2
 	local blur_zone_flashbang = blur_zone_val + flashbang
 	local flash_1 = math.pow(flashbang, 0.4)
 	flash_1 = flash_1 + math.pow(concussion, 0.4)

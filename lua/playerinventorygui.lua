@@ -1,5 +1,5 @@
 -- Fix melee weapon knockdown stat display
-Hooks:PreHook(PlayerInventoryGui, "set_melee_stats", "shc_set_melee_stats", function(self, panel, data)
+Hooks:PreHook(PlayerInventoryGui, "set_melee_stats", "shc_set_melee_stats", function(self, _, data)
 	for _, v in pairs(data) do
 		if v.name == "damage_effect" then
 			v.multiple_of = nil
@@ -247,7 +247,8 @@ function PlayerInventoryGui:_get_melee_weapon_stats(name)
 	return base, mod, skill
 end
 
-function PlayerInventoryGui:_update_info_melee(name)
+-- name
+function PlayerInventoryGui:_update_info_melee(_)
 	local player_loadout_data = managers.blackmarket:player_loadout_data()
 	local category = "melee_weapons"
 	local equipped_item = managers.blackmarket:equipped_item(category)
@@ -269,7 +270,7 @@ function PlayerInventoryGui:_update_info_melee(name)
 		else
 			value = math.max(base_stats[stat.name].value + mods_stats[stat.name].value + skill_stats[stat.name].value, 0)
 		end
-		local base, base_min, base_max, skill, skill_min, skill_max = nil
+		local base, base_min, base_max, skill_min, skill_max = nil
 
 		if stat.range then
 			base_min = base_stats[stat.name].min_value
@@ -279,8 +280,6 @@ function PlayerInventoryGui:_update_info_melee(name)
 		end
 
 		base = base_stats[stat.name].value
-		skill = skill_stats[stat.name].value
-		local format_string = "%0." .. tostring(stat.num_decimals or 0) .. "f"
 		local equip_text = value and format_round(value, stat.round_value)
 		local base_text = base and format_round(base, stat.round_value)
 		local skill_text = skill_stats[stat.name].value and format_round(skill_stats[stat.name].value, stat.round_value)
@@ -350,7 +349,8 @@ function PlayerInventoryGui:_update_info_melee(name)
 	end
 end
 
-function PlayerInventoryGui:_update_info_deployable(name, slot)
+-- name
+function PlayerInventoryGui:_update_info_deployable(_, slot)
 	local deployable_id = managers.blackmarket:equipped_deployable(slot)
 	local equipment_data = deployable_id and tweak_data.equipments[deployable_id]
 	local deployable_data = deployable_id and tweak_data.blackmarket.deployables[deployable_id]

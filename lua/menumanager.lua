@@ -1,3 +1,4 @@
+--# selene: allow(mixed_table)
 function MenuCallbackHandler:is_contract_difficulty_allowed(item)
 	if not managers.menu:active_menu() then
 		return false
@@ -198,7 +199,7 @@ function MenuCrimeNetFiltersInitiator:add_filters(node)
 		},
 	}
 
-	for index, filter in ipairs(kick_filters) do
+	for _, filter in ipairs(kick_filters) do
 		table.insert(data_node, {
 			_meta = "option",
 			text_id = filter.text_id,
@@ -237,26 +238,26 @@ function MenuCrimeNetFiltersInitiator:add_filters(node)
 end
 
 -- Max progression and max mask customization, thanks gorg
-Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(menu_manager, nodes)
+Hooks:Add("MenuManagerBuildCustomMenus", "restoreBtnsMainMenu", function(_, nodes)
 	local adv_options = nodes.adv_options
 	if not adv_options then
 		return
 	end
 
-	params = {
+	local params = {
 		name = "select_max_progress_btn",
 		text_id = "menu_max_progress",
 		help_id = "menu_max_progress_help",
 		callback = "max_progress_msg",
 	}
 
-	new_item = adv_options:create_item(data, params)
+	local new_item = adv_options:create_item(data, params)
 	new_item.dirty_callback = callback(adv_options, adv_options, "item_dirty")
 	if adv_options.callback_handler then
 		new_item:set_callback_handler(adv_options.callback_handler)
 	end
 
-	position = 10
+	local position = 10
 	table.insert(adv_options._items, position, new_item)
 
 	params = {

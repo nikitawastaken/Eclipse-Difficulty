@@ -234,6 +234,40 @@ function M.weighted_selector(t)
 	return selector
 end
 
+-- The original one isn't good enough
+function M.callback(o, base_class, base_func_name, ...)
+	if base_class and base_func_name and base_class[base_func_name] then
+		if #{ ... } > 0 then
+			local args = { ... }
+			if o then
+				return function(...)
+					return base_class[base_func_name](o, unpack(args), ...)
+				end
+			else
+				return function(...)
+					return base_class[base_func_name](unpack(args), ...)
+				end
+			end
+		elseif o then
+			return function(...)
+				return base_class[base_func_name](o, ...)
+			end
+		else
+			return function(...)
+				return base_class[base_func_name](...)
+			end
+		end
+	elseif base_class then
+		local class_name = base_class and CoreDebug.class_name(getmetatable(base_class) or base_class)
+
+		Eclipse:warn_console(string.format('Callback on class "%s" refers to a non-existing function "%s".', class_name, base_func_name))
+	elseif base_func_name then
+		Eclipse:warn_console(string.format('Callback to function "%s" is on a nil class.', base_func_name))
+	else
+		Eclipse:warn_console("Callback class and function was nil.")
+	end
+end
+
 -- Under GPL from
 -- https://springrts.com/phpbb/viewtopic.php?t=45533
 function M.log_traceback(maxdepth, maxwidth, maxtableelements, ...)

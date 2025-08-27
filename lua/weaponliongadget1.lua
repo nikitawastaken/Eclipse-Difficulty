@@ -24,7 +24,7 @@ function WeaponLionGadget1:_is_deployable()
 		return false
 	end
 
-	local point_1, point_2, point_3, obstacle, surface, success = self:_shoot_bipod_rays()
+	local _, point_2, point_3, _, _, success = self:_shoot_bipod_rays()
 	if success then
 		self._from = point_2
 		self._to = point_3

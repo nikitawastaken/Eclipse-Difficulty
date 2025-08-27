@@ -1,3 +1,4 @@
+-- selene: allow(unused_variable)
 function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
 	if self._detonated then
 		return
@@ -25,7 +26,7 @@ function IncendiaryBurstGrenade:_detonate(tag, unit, body, other_unit, other_bod
 		owner = self._unit,
 		dot_data = self._dot_data,
 	}
-	local hit_units, splinters = managers.fire:detect_and_give_dmg(params)
+	managers.fire:detect_and_give_dmg(params)
 
 	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
 		local base_angle = math.random() * 360

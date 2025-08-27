@@ -54,7 +54,7 @@ function TradeManager:is_trading()
 		)
 end
 
-function TradeManager:is_trade_allowed(t)
+function TradeManager:is_trade_allowed(_)
 	local has_trading_no_downs_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_no_downs")
 	local has_trading_before_first_assault_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_before_first_assault")
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay_passed()
@@ -359,7 +359,7 @@ function TradeManager:clbk_begin_hostage_trade()
 	end
 end
 
-function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instant_trade, skip_free_criminal, skip_hint, skip_init)
+function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instant_trade, skip_free_criminal, skip_hint, _)
 	if hostage then
 		local clbk_key = "TradeManager"
 		self._trading_hostage = true
@@ -414,7 +414,7 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		local clbk_id = "Respawn_criminal_on_trade"
 		self._criminal_respawn_clbk = clbk_id
 
-		managers.enemy:add_delayed_clbk(clbk_id, callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
+		managers.enemy:add_delayed_clbk(clbk_id, Eclipse.utils.callback(self, self, "clbk_respawn_criminal", pos, rotation), respawn_t)
 	elseif not is_custody_trade then
 		self._hostage_to_trade = nil
 		self._trade_in_progress = true
@@ -434,7 +434,7 @@ function TradeManager:trade_restore_resources()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	local unit = managers.player:player_unit()
 
-	for u_key, u_data in pairs(managers.groupai:state():all_player_criminals()) do
+	for _, u_data in pairs(managers.groupai:state():all_player_criminals()) do
 		u_data.unit:character_damage():restore_lives(1)
 	end
 

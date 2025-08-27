@@ -25,12 +25,6 @@ function HUDStageEndScreen:init(hud, workspace)
 	local title_font_size = tweak_data.menu.pd2_large_font_size
 	local content_font_size = tweak_data.menu.pd2_medium_font_size
 	local small_font_size = tweak_data.menu.pd2_small_font_size
-	local massive_font = bg_font
-	local large_font = title_font
-	local medium_font = content_font
-	local massive_font_size = bg_font_size
-	local large_font_size = title_font_size
-	local medium_font_size = content_font_size
 	self._background_layer_safe = self._backdrop:get_new_background_layer()
 	self._background_layer_full = self._backdrop:get_new_background_layer()
 	self._foreground_layer_safe = self._backdrop:get_new_foreground_layer()
@@ -72,8 +66,6 @@ function HUDStageEndScreen:init(hud, workspace)
 
 	pg_text:set_size(w, h)
 
-	local job_stars = managers.job:has_active_job() and managers.job:current_job_stars() or 1
-	local job_and_difficulty_stars = managers.job:has_active_job() and managers.job:current_job_and_difficulty_stars() or 1
 	local difficulty_stars = managers.job:has_active_job() and managers.job:current_difficulty_stars() or 0
 	local risk_color = ((Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk)
 	local risks = {
@@ -208,7 +200,7 @@ function HUDStageEndScreen:init(hud, workspace)
 
 	level_progress_text:set_size(lw, lh)
 
-	local coins_bg_circle = self._coins_backpanel:bitmap({
+	self._coins_backpanel:bitmap({
 		texture = "guis/textures/pd2/endscreen/exp_ring",
 		name = "bg_progress_circle",
 		alpha = 0.6,
@@ -434,7 +426,7 @@ function HUDStageEndScreen:init(hud, workspace)
 
 	self._lp_sp_info:grow(-self._lp_circle:right() - 10, 0)
 
-	local _, _, iw, ih = self._lp_sp_info:text_rect()
+	local _, _, _, ih = self._lp_sp_info:text_rect()
 
 	self._lp_sp_info:set_h(ih)
 	self._lp_sp_info:set_leftbottom(self._lp_circle:right() + 0, self._lp_forepanel:h() - 10)

@@ -204,7 +204,6 @@ function PlayerManager:get_hostage_bonus_multiplier(category)
 	multiplier = multiplier + self:team_upgrade_value(category, "passive_hostage_multiplier", 1) - 1
 	multiplier = multiplier + self:upgrade_value("player", "hostage_" .. category .. "_multiplier", 1) - 1
 	multiplier = multiplier + self:upgrade_value("player", "passive_hostage_" .. category .. "_multiplier", 1) - 1
-	local local_player = self:local_player()
 
 	-- if self:has_category_upgrade("player", "close_to_hostage_boost") and self._is_local_close_to_hostage then
 	-- 	multiplier = multiplier * tweak_data.upgrades.hostage_near_player_multiplier
@@ -342,7 +341,7 @@ function PlayerManager:on_killshot(killed_unit, variant, headshot, weapon_id)
 				local amount = skill.amount
 				local enemies = World:find_units_quick("sphere", pos, area, managers.slot:get_mask("enemies"))
 
-				for i, unit in ipairs(enemies) do
+				for _, unit in ipairs(enemies) do
 					if unit:character_damage() then
 						unit:character_damage():build_suppression(amount, chance)
 					end
@@ -374,7 +373,8 @@ PlayerAction.ShotgunCQB = {
 		local current_time = Application:time()
 		local current_stacks = 1
 
-		local function on_hit(unit, attack_data)
+		-- unit
+		local function on_hit(_, attack_data)
 			local attacker_unit = attack_data.attacker_unit
 			local variant = attack_data.variant
 
@@ -400,7 +400,8 @@ PlayerAction.ShotgunCQB = {
 	end,
 }
 
-function PlayerManager:_on_enter_shotguncqb_event(unit, attack_data)
+-- unit
+function PlayerManager:_on_enter_shotguncqb_event(_, attack_data)
 	local attacker_unit = attack_data.attacker_unit
 	local variant = attack_data.variation_data
 
@@ -913,7 +914,7 @@ function PlayerManager:peer_dropped_out(peer)
 		self:transfer_special_equipment(peer_id, true, true)
 
 		if self._global.synced_carry[peer_id] and self._global.synced_carry[peer_id].approved then
-			for i, data in ipairs(self._global.synced_carry[peer_id]) do
+			for _, data in ipairs(self._global.synced_carry[peer_id]) do
 				local carry_id = data.carry_id
 				local carry_multiplier = data.multiplier
 				local dye_initiated = data.dye_initiated
@@ -1076,7 +1077,8 @@ function PlayerManager:current_carry_id()
 end
 
 -- If the dye pack feature gets used, modify this
-function PlayerManager:check_damage_carry(attack_data)
+-- attack_data
+function PlayerManager:check_damage_carry()
 	local carry_list = self:get_my_carry_data()
 
 	local carry_data = carry_list and carry_list[1]
@@ -1088,7 +1090,6 @@ function PlayerManager:check_damage_carry(attack_data)
 			local dye_initiated = carry_data.dye_initiated
 			local has_dye_pack = carry_data.has_dye_pack
 			local dye_value_multiplier = carry_data.dye_value_multiplier
-			local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
 
 			self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
 			managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
@@ -1104,7 +1105,6 @@ function PlayerManager:check_damage_carry(attack_data)
 			local dye_initiated = carry_data.dye_initiated
 			local has_dye_pack = carry_data.has_dye_pack
 			local dye_value_multiplier = carry_data.dye_value_multiplier
-			local value = math.max(carry_data.value - tweak_data.carry.types[type].looses_value_per_hit * attack_data.damage, 0)
 
 			self:update_synced_carry_to_peers(carry_id, carry_data.multiplier, dye_initiated, has_dye_pack, dye_value_multiplier)
 			managers.hud:set_teammate_carry_info(HUDManager.PLAYER_PANEL, carry_id, managers.loot:get_real_value(carry_id, carry_data.multiplier))
@@ -1128,17 +1128,14 @@ function PlayerManager:_enter_vehicle(vehicle, peer_id, player, seat_name)
 
 	local seat = vehicle_ext:find_seat_for_player(player)
 	local rot = seat.object:rotation()
-	local pos = seat.object:position()
 
 	player:set_rotation(rot)
-
-	local pos = seat.object:position() + VehicleDrivingExt.PLAYER_CAPSULE_OFFSET
 
 	vehicle:link(Idstring(VehicleDrivingExt.SEAT_PREFIX .. seat_name), player)
 
 	if self:local_player() == player then
 		if self:is_carrying() then
-			local vehicle_ext = vehicle:vehicle_driving()
+			vehicle_ext = vehicle:vehicle_driving()
 			local secure_carry_on_enter = vehicle_ext and vehicle_ext.secure_carry_on_enter
 
 			local carry_list = self:get_my_carry_data()
@@ -1328,7 +1325,8 @@ PlayerAction.FullyLoaded = {
 -- Unseen dodge for Rogue
 PlayerAction.UnseenStrike = {
 	Priority = 1,
-	Function = function(player_manager, min_time, max_duration, crit_chance)
+	-- max_duration, crit_chance
+	Function = function(player_manager, min_time, _, _)
 		local co = coroutine.running()
 		local current_time = Application:time()
 		local target_time = Application:time() + min_time
@@ -1362,8 +1360,6 @@ PlayerAction.UnseenStrike = {
 
 			coroutine.yield(co)
 		end
-
-		player_manager:unregister_message(Message.OnPlayerDamage, co)
 	end,
 }
 
@@ -1458,7 +1454,8 @@ PlayerAction.ExpertHandlingReload = {
 	end,
 }
 
-function PlayerManager:_on_expert_handling_reload_event(unit, attack_data)
+-- unit
+function PlayerManager:_on_expert_handling_reload_event(_, attack_data)
 	local attacker_unit = attack_data.attacker_unit
 	local variant = attack_data.variant
 

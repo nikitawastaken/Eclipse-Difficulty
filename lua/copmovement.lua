@@ -94,6 +94,7 @@ function CopMovement:play_redirect(redirect_name, ...)
 end
 
 -- Fix head position update on suppression
+-- selene: allow(if_same_then_else)
 Hooks:PreHook(CopMovement, "_upd_stance", "sh__upd_stance", function(self, t)
 	if self._stance.transition and self._stance.transition.next_upd_t < t then
 		self._force_head_upd = true
@@ -140,7 +141,8 @@ function CopMovement:damage_clbk(my_unit, damage_info)
 end
 
 -- counterstrike stuff
-Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, my_unit, damage_info)
+-- my_unit
+Hooks:OverrideFunction(CopMovement, "damage_clbk", function(self, _, damage_info)
 	local hurt_type = damage_info.result.type
 	-- If it's a dozer and the hurt type is expl_hurt, use the medium hurt preset instead
 	local is_tank = self._unit:base():has_tag("tank")

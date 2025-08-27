@@ -66,7 +66,7 @@ function NewSkillTreeGui:setbgimg(page, init)
 		})
 	end
 
-	for i, panel in ipairs(bgpanels) do
+	for _, panel in ipairs(bgpanels) do
 		self[panel]:set_alpha(image_transparency)
 		local aspect = self._fullscreen_panel:w() / self._fullscreen_panel:h()
 		local texture_width = self[panel]:texture_width()
@@ -87,7 +87,7 @@ function NewSkillTreeGui:setbgimg(page, init)
 		self[panel]:set_center_y(self._fullscreen_panel:h() / 2)
 	end
 
-	for i, panel in ipairs(bgpanels) do
+	for _, panel in ipairs(bgpanels) do
 		self[panel]:set_visible(false)
 	end
 
@@ -104,14 +104,14 @@ function NewSkillTreeGui:setbgimg(page, init)
 	end
 end
 
-Hooks:PreHook(NewSkillTreeGui, "init", "gibskillbg_init", function(self, params)
+Hooks:PreHook(NewSkillTreeGui, "init", "gibskillbg_init", function()
 	NewSkillTreeGui:setbgimg(1, true)
 end)
 
-Hooks:PostHook(NewSkillTreeGui, "set_active_page", "gibskillbg_setpage", function(self, params)
+Hooks:PostHook(NewSkillTreeGui, "set_active_page", "gibskillbg_setpage", function(self, _)
 	NewSkillTreeGui:setbgimg(self._active_page, false)
 end)
 
-Hooks:PostHook(NewSkillTreeGui, "close", "gibtest2", function(self, params)
+Hooks:PostHook(NewSkillTreeGui, "close", "gibtest2", function()
 	NewSkillTreeGui:setbgimg(0, false)
 end)

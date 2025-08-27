@@ -1,5 +1,5 @@
 -- Update this function with the changes made in CopLogicAttack._upd_aim
-function TaserLogicAttack._upd_aim(data, my_data, reaction)
+function TaserLogicAttack._upd_aim(data, my_data, _)
 	if my_data.tasing then
 		return
 	end

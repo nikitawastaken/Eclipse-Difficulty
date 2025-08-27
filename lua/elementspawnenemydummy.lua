@@ -129,7 +129,6 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 	end
 
 	local alternative_selector = WeightedSelector:new()
-	local unit_alternative_types = self.unit_alternative_types
 	for alt_name, alt_weight in pairs(alternative_data) do
 		alternative_selector:add(alt_name, alt_weight)
 	end

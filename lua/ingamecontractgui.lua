@@ -10,7 +10,6 @@ function IngameContractGui:init(ws, node)
 
 	self._node = node
 	local job_data = managers.job:current_job_data()
-	local job_chain = managers.job:current_job_chain_data()
 
 	if job_data and managers.job:current_job_id() == "safehouse" and Global.mission_manager.saved_job_values.playedSafeHouseBefore or managers.job:current_job_id() == "chill" then
 		self._panel:set_visible(false)
@@ -289,8 +288,6 @@ function IngameContractGui:init(ws, node)
 	risk_stats_panel:set_h(risk_title:h() + 5)
 
 	if job_data then
-		local job_stars = managers.job:current_job_stars()
-		local job_and_difficulty_stars = managers.job:current_job_and_difficulty_stars()
 		local difficulty_stars = managers.job:current_difficulty_stars()
 		local job_id = managers.job:current_job_id()
 		local rsx = 15

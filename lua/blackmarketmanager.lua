@@ -13,7 +13,7 @@ end
 
 function BlackMarketManager:modify_damage_falloff(damage_falloff, custom_stats)
 	if damage_falloff and custom_stats then
-		for part_id, stats in pairs(custom_stats) do
+		for _, stats in pairs(custom_stats) do
 			if stats.falloff_override then
 				damage_falloff.optimal_distance = stats.falloff_override.optimal_distance or damage_falloff.optimal_distance
 				damage_falloff.optimal_range = stats.falloff_override.optimal_range or damage_falloff.optimal_range
@@ -91,7 +91,8 @@ Hooks:OverrideFunction(BlackMarketManager, "equipped_melee_weapon_damage_info", 
 	return dmg, dmg_effect
 end)
 
-function BlackMarketManager:accuracy_addend(name, categories, spread_index, silencer, current_state, fire_mode, blueprint, is_moving, is_single_shot)
+-- name, blueprint, is_moving, is_single_shot
+function BlackMarketManager:accuracy_addend(_, categories, spread_index, silencer, current_state, fire_mode, _, _, _)
 	local addend = 0
 
 	if spread_index then
@@ -137,7 +138,8 @@ function BlackMarketManager:accuracy_addend(name, categories, spread_index, sile
 	return addend
 end
 
-function BlackMarketManager:fire_rate_multiplier(name, categories, silencer, detection_risk, current_state, blueprint)
+-- detection_risk, current_state, blueprint
+function BlackMarketManager:fire_rate_multiplier(name, categories, silencer, _, _, _)
 	local multiplier = 1
 	multiplier = multiplier + 1 - managers.player:upgrade_value(name, "fire_rate_multiplier", 1)
 	multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "fire_rate_multiplier", 1)
@@ -231,7 +233,7 @@ function BlackMarketManager:equipped_grenade()
 
 	local grenade = nil
 
-	for grenade_id, tweak in pairs(tweak_data.blackmarket.projectiles) do
+	for grenade_id, _ in pairs(tweak_data.blackmarket.projectiles) do
 		grenade = Global.blackmarket_manager.grenades[grenade_id]
 
 		if grenade and grenade.equipped and grenade.unlocked then

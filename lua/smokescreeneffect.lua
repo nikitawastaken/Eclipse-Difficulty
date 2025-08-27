@@ -30,7 +30,7 @@ function SmokeScreenEffect:new_dodge_bonus()
 	return self._new_dodge_bonus
 end
 
-function SmokeScreenEffect:update(t, dt)
+function SmokeScreenEffect:update(_, dt)
 	if self._timer then
 		self._timer = self._timer - dt
 

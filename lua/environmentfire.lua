@@ -129,7 +129,7 @@ function EnvironmentFire:_spawn_effect(pos, normal, unit, body, custom_params)
 end
 
 -- Optimize fire updating
-function EnvironmentFire:update(unit, t, dt)
+function EnvironmentFire:update(_, t, dt)
 	if self._burn_duration <= 0 then
 		if self._burn_duration_destroy <= 0 then
 			self._unit:set_slot(0)

@@ -123,7 +123,7 @@ function ExplosionManager:tase_area(params)
 			mvector3.normalize(attack_dir)
 			unit:character_damage():damage_tase({
 				variant = "heavy",
-				damage = math.max(params.damage),
+				damage = params.damage,
 				attack_dir = attack_dir,
 				col_ray = {
 					position = unit:position(),

@@ -43,8 +43,8 @@ function GroupAIStateBase:_calculate_difficulty_ratio(...)
 		return
 	end
 
-	for name, script in pairs(managers.mission._scripts) do
-		for k, element in pairs(script._elements) do
+	for _, script in pairs(managers.mission._scripts) do
+		for _, element in pairs(script._elements) do
 			self._last_scripted_tier = tier
 
 			if getmetatable(element) == ElementSpawnEnemyDummy then
@@ -66,7 +66,6 @@ function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)
 	local drama_amount = drama_data.actions.criminal_hurt * dmg_percent * drama_player_mul
 
 	if alive(attacker) then
-		local max_dis = drama_data.max_dis
 		local dis_lerp = math.min(1, mvector3.distance(attacker:movement():m_pos(), unit:movement():m_pos()) / drama_data.max_dis)
 		dis_lerp = math.lerp(1, drama_data.dis_mul, dis_lerp)
 		drama_amount = drama_amount * dis_lerp
@@ -79,7 +78,7 @@ end
 local _old_update_point_of_no_return = GroupAIStateBase._update_point_of_no_return
 function GroupAIStateBase:_update_point_of_no_return(t, dt)
 	local get_mission_script_element = function(id)
-		for name, script in pairs(managers.mission:scripts()) do
+		for _, script in pairs(managers.mission:scripts()) do
 			if script:element(id) then
 				return script:element(id)
 			end

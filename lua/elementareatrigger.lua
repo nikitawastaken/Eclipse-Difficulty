@@ -108,7 +108,7 @@ function ElementAreaTrigger:project_amount_all()
 	if self._values.instigator == "criminals" or self._values.instigator == "local_criminals" then
 		local i = 0
 
-		for _, data in pairs(managers.groupai:state():all_char_criminals()) do
+		for _, _ in pairs(managers.groupai:state():all_char_criminals()) do
 			i = i + 1
 		end
 
@@ -116,7 +116,7 @@ function ElementAreaTrigger:project_amount_all()
 	elseif self._values.instigator == "ai_teammates" then
 		local i = 0
 
-		for _, data in pairs(managers.groupai:state():all_AI_criminals()) do
+		for _, _ in pairs(managers.groupai:state():all_AI_criminals()) do
 			i = i + 1
 		end
 

@@ -112,7 +112,7 @@ function HUDMissionBriefing:init(hud, workspace)
 				w = slot_panel:h(),
 				h = slot_panel:h(),
 			})
-			local detection_ring_left_bg = detection:bitmap({
+			detection:bitmap({
 				blend_mode = "add",
 				name = "detection_left_bg",
 				alpha = 0.2,
@@ -131,7 +131,7 @@ function HUDMissionBriefing:init(hud, workspace)
 
 			detection_ring_right_bg:set_texture_rect(detection_ring_right_bg:texture_width(), 0, -detection_ring_right_bg:texture_width(), detection_ring_right_bg:texture_height())
 
-			local detection_ring_left = detection:bitmap({
+			detection:bitmap({
 				blend_mode = "add",
 				name = "detection_left",
 				texture = "guis/textures/pd2/mission_briefing/inv_detection_meter",
@@ -237,25 +237,9 @@ function HUDMissionBriefing:init(hud, workspace)
 	pg_text:set_size(w, h)
 
 	self._paygrade_text = pg_text
-	local job_stars = managers.job:current_job_stars()
-	local job_and_difficulty_stars = managers.job:current_job_and_difficulty_stars()
 	local difficulty_stars = managers.job:current_difficulty_stars()
-	local filled_star_rect = {
-		0,
-		32,
-		32,
-		32,
-	}
-	local empty_star_rect = {
-		32,
-		32,
-		32,
-		32,
-	}
-	local num_stars = 0
 	local x = 0
 	local y = 0
-	local star_size = 18
 	local panel_w = 0
 	local panel_h = 0
 	local risk_color = ((Eclipse.utils.is_pro_job() and tweak_data.screen_colors.one_down) or tweak_data.screen_colors.risk)
@@ -370,7 +354,6 @@ function HUDMissionBriefing:init(hud, workspace)
 
 	local num_stages = self._current_job_chain and #self._current_job_chain or 0
 	local day_color = tweak_data.screen_colors.item_stage_1
-	local chain = self._current_job_chain and self._current_job_chain or {}
 	local js_w = self._job_schedule_panel:w() / 7
 	local js_h = self._job_schedule_panel:h()
 

@@ -5,7 +5,7 @@ PlayerAction.TriggerHappy = {
 		local current_time = Application:time()
 		local current_stacks = 1
 
-		local function on_hit(unit, attack_data)
+		local function on_hit(_, attack_data)
 			local attacker_unit = attack_data.attacker_unit
 			local variant = attack_data.variant
 

@@ -1,0 +1,525 @@
+base: lua51
+globals:
+  # coretable.lua
+  clone:
+    args:
+      - type: table
+  deep_clone:
+    args:
+      - type: table
+  dpairs:
+    args:
+      - type: table
+  table.tuple_iterator:
+    args:
+      - type: table
+      - type: number
+  table.sorted_map_iterator:
+    args:
+      - type: table
+      - type: function
+  table.map_copy:
+    args:
+      - type: table
+  table.deep_map_copy:
+    args:
+      - type: table
+  table.list_copy:
+    args:
+      - type: table
+  table.get_vector_index:
+    args:
+      - type: table
+      - type: any
+  table.delete:
+    args:
+      - type: table
+      - type: any
+  table.exclude:
+    args:
+      - type: table
+      - type: any
+  table.equals:
+    args:
+      - type: table
+      - type: table
+      - type: function
+  table.contains:
+    args:
+      - type: table
+      - type: any
+  table.contains_any:
+    args:
+      - type: table
+      - type: table
+  table.contains_all:
+    args:
+      - type: table
+      - type: table
+  table.contains_only:
+    args:
+      - type: table
+      - type: table
+  table.index_of:
+    args:
+      - type: table
+      - type: any
+  table.get_key:
+    args:
+      - type: table
+      - type: any
+  table.has:
+    args:
+      - type: table
+      - type: any
+  table.size:
+    args:
+      - type: table
+  table.count:
+    args:
+      - type: table
+      - type: function
+  table.crop:
+    args:
+      - type: table
+      - type: number
+  table.empty:
+    args:
+      - type: table
+  table.random:
+    args:
+      - type: table
+  table.random_key:
+    args:
+      - type: table
+  table.concat_map:
+    args:
+      - type: table
+      - type: bool
+      - type: string
+      - type: string
+      - type: string
+      - type: string
+  table.ordering:
+    args:
+      - type: table
+  table.sorted_copy:
+    args:
+      - type: table
+      - type: function
+  table.shuffled_copy:
+    args:
+      - type: table
+  table.shuffle:
+    args:
+      - type: table
+  table.find_value:
+    args:
+      - type: table
+      - type: function
+  table.find_all_values:
+    args:
+      - type: table
+      - type: function
+  table.true_for_all:
+    args:
+      - type: table
+      - type: function
+  table.filter:
+    args:
+      - type: table
+      - type: function
+  table.filter_list:
+    args:
+      - type: table
+      - type: function
+  table.collect:
+    args:
+      - type: table
+      - type: function
+  table.inject:
+    args:
+      - type: table
+      - type: any
+      - type: function
+  table.insert_sorted:
+    args:
+      - type: table
+      - type: any
+      - type: function
+  table.for_each_value:
+    args:
+      - type: table
+      - type: function
+  table.remove_condition:
+    args:
+      - type: table
+      - type: function
+  table.range:
+    args:
+      - type: table
+      - type: number
+  table.list_reverse:
+    args:
+      - type: table
+  table.reverse_ipairs:
+    args:
+      - type: table
+  table.unpack_sparse:
+    args:
+      - type: table
+  table.unpack_map:
+    args:
+      - type: table
+  table.set:
+    args:
+      - type: ...
+  table.list_to_set:
+    args:
+      - type: table
+  table.map_to_list:
+    args:
+      - type: table
+  table.map_keys:
+    args:
+      - type: table
+      - required: false
+        type: function
+  table.map_values:
+    args:
+      - type: table
+      - type: function
+  table.remap:
+    args:
+      - type: table
+      - type: function
+  table.list_add:
+    args:
+      - required: false
+        type: ...
+  table.list_union:
+    args:
+      - required: false
+        type: ...
+  table.is_list_value_union:
+    args:
+      - type: table
+      - type: table
+  table.list_append:
+    args:
+      - type: table
+      - required: false
+        type: ...
+  table.print_data:
+    args:
+      - type: any
+      - type: string
+  table.lower_bound:
+    args:
+      - type: table
+      - type: any
+      - type: function
+  table.upper_bound:
+    args:
+      - type: table
+      - type: any
+      - type: function
+  # coremath.lua
+  rgb_to_hsv:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  hsv_to_rgb:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  string_to_value:
+    args:
+      - type: string
+      - type: any
+  vector_to_string:
+    args:
+      - type: any # Can't do userdata
+      - type: string
+  rotation_to_string:
+    args:
+      - type: any # Can't do userdata
+      - type: string
+  width_mul:
+    args:
+      - type: number
+  wire_set_midpoint:
+    args:
+      - type: any
+      - type: any
+      - type: any
+      - type: any
+  probability:
+    args:
+      - type: table
+      - type: table
+  get_fit_size:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  os.get_oldest_date:
+    args:
+      - type: table
+      - type: table
+  math.UP:
+    property: read-only
+  math.DOWN:
+    property: read-only
+  math.Z:
+    property: read-only
+  math.X:
+    property: read-only
+  math.Y:
+    property: read-only
+  math.sign:
+    args:
+      - type: number
+  math.mod:
+    args:
+      - type: number
+      - type: number
+  math.step:
+    args:
+      - type: any
+      - type: any
+      - type: any
+  math.rand:
+    args:
+      - type: number
+      - required: false
+        type: number
+  math.clamp:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  math.round:
+    args:
+      - type: number
+      - required: false
+        type: number
+  math.truncate:
+    args:
+      - type: number
+      - type: number
+  math.min_max:
+    args:
+      - type: number
+      - type: number
+  math.vector_min_max:
+    args:
+      - type: any
+      - type: any
+  math.vector_clamp:
+    args:
+      - type: any
+      - type: any
+      - type: any
+  math.lerp:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  math.inverse_lerp:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  math.map_range:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  math.map_range_clamped:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+  math.string_to_rotation:
+    args:
+      - type: string
+  math.vector_to_string:
+    args:
+      - type: any
+  math.spline:
+    args:
+      - type: table
+      - type: number
+  math.spline_len:
+    args:
+      - type: table
+      - type: number
+  math.bezier:
+    args:
+      - type: table
+      - type: number
+  math.linear_bezier:
+    args:
+      - type: table
+      - type: number
+  math.quadratic_bezier:
+    args:
+      - type: table
+      - type: number
+  math.bezier_len:
+    args:
+      - type: table
+      - type: number
+  math.point_on_line:
+    args:
+      - type: any
+      - type: any
+      - type: any
+      - type: any
+  math.distance_to_line:
+    args:
+      - type: any
+      - type: any
+      - type: any
+  math.limitangle:
+    args:
+      - type: number
+  math.world_to_obj:
+    args:
+      - type: any
+      - type: any
+  math.obj_to_world:
+    args:
+      - type: any
+      - type: any
+  math.within:
+    args:
+      - type: number
+      - type: number
+      - type: number
+  # coreclass.lua
+  class:
+    args:
+      - required: false
+        type: ...
+  typename:
+    args:
+      - type: any
+  # corecode.lua
+  alive:
+    args:
+      - type: any
+  safe_get_value:
+    args:
+      - type: table
+      - type: ...
+  # coreevent.lua
+  callback:
+    args:
+      - type: table
+      - type: table
+      - type: string
+      - required: false
+        type: any
+  # corestring.lua
+  utf8.characters:
+    args:
+      - type: string
+  utf8.len:
+    args:
+      - type: string
+  utf8.to_upper:
+    args:
+      - type: string
+  utf8.find_char:
+    args:
+      - type: string
+      - type: string
+  string.begins:
+    args:
+      - type: string
+      - type: string
+  string.ends:
+    args:
+      - type: string
+      - type: string
+  string.case_insensitive_compare:
+    args:
+      - type: string
+      - type: string
+  string.split:
+    args:
+      - type: string
+      - type: string
+      - required: false
+        type: bool
+      - required: false
+        type: number
+  string.join:
+    args:
+      - type: string
+      - type: string
+      - type: bool
+  string.trim:
+    args:
+      - type: string
+      - type: string
+  string.capitalize:
+    args:
+      - type: string
+  string.pretty:
+    args:
+      - type: string
+      - type: bool
+  string.rep:
+    args:
+      - type: string
+      - type: number
+  string.left:
+    args:
+      - type: string
+      - type: number
+  # coreunit.lua
+  table.get_ray_ignore_args:
+    args:
+      - type: ...
+  get_distance_to_body:
+    args:
+      - type: any
+      - type: any
+  reload_units:
+    args:
+      - type: any
+  set_unit_and_children_visible:
+    args:
+      - type: any
+      - type: bool
+      - type: function
+  editor_load_unit:
+    args:
+      - type: string
+  safe_spawn_unit:
+    args:
+      - type: string
+      - type: ...
+  safe_spawn_unit_without_extensions:
+    args:
+      - type: string
+      - type: ...
+  detach_unit_from_network:
+    args:
+      - type: any
+  # corexml.lua
+  simple_value_string:
+    args:
+      - type: string
+      - type: any
+      - type: string

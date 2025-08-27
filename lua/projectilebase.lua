@@ -4,7 +4,7 @@ local mvec2 = Vector3()
 local mrot1 = Rotation()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
-function ProjectileBase:update(unit, t, dt)
+function ProjectileBase:update(_, t, dt)
 	if not self._simulated and not self._collided then
 		self._unit:m_position(mvec1)
 		mvector3.set(mvec2, self._velocity * dt)

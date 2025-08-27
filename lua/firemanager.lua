@@ -6,8 +6,6 @@ function FireManager:detect_and_give_dmg(params)
 	local player_dmg = params.player_damage or dmg
 	local range = params.range
 	local ignore_unit = params.ignore_unit
-	local curve_pow = params.curve_pow
-	local col_ray = params.col_ray
 	local alert_filter = params.alert_filter or managers.groupai:state():get_unit_type_filter("civilians_enemies")
 	local owner = params.owner
 	local push_units = false
@@ -97,14 +95,14 @@ function FireManager:detect_and_give_dmg(params)
 		local character = hit_body:unit():character_damage() and hit_body:unit():character_damage().damage_fire
 		local apply_dmg = hit_body:extension() and hit_body:extension().damage
 		units_to_push[hit_body:unit():key()] = hit_body:unit()
-		local dir, len, damage, ray_hit = nil
+		local dir, _, damage, ray_hit
 
 		if character and not characters_hit[hit_body:unit():key()] then
 			if params.no_raycast_check_characters then
 				ray_hit = true
 				characters_hit[hit_body:unit():key()] = true
 			else
-				for i_splinter, s_pos in ipairs(splinters) do
+				for _, s_pos in ipairs(splinters) do
 					ray_hit = not World:raycast("ray", s_pos, hit_body:center_of_mass(), "slot_mask", slotmask, "ignore_unit", ignore_units, "report")
 
 					if ray_hit then
@@ -138,7 +136,9 @@ function FireManager:detect_and_give_dmg(params)
 
 		if ray_hit then
 			dir = hit_body:center_of_mass()
-			len = mvector3.direction(dir, hit_pos, dir)
+			-- does mvector3.direction do anything
+			-- besides return a vector from a to b
+			-- local len = mvector3.direction(dir, hit_pos, dir)
 			damage = dmg
 
 			if apply_dmg then

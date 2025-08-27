@@ -89,13 +89,13 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			h = self._fullscreen_ws:panel():h(),
 		})
 
-		local function func(o, component_data)
-			local start_blur = component_data.blur_fade
+		local function func(o, _component_data)
+			local start_blur = _component_data.blur_fade
 
-			over(0.6 - 0.6 * component_data.blur_fade, function(p)
-				component_data.blur_fade = math.lerp(start_blur, 1, p)
+			over(0.6 - 0.6 * _component_data.blur_fade, function(p)
+				_component_data.blur_fade = math.lerp(start_blur, 1, p)
 
-				o:set_alpha(component_data.blur_fade)
+				o:set_alpha(_component_data.blur_fade)
 			end)
 		end
 
@@ -197,7 +197,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		panel = self._tab_scroll_panel,
 	}
 
-	for i, data in ipairs(self._data) do
+	for _, data in ipairs(self._data) do
 		if data.on_create_func_name then
 			data.on_create_func = callback(self, self, data.on_create_func_name)
 		end
@@ -205,6 +205,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		local new_tab_class = BlackMarketGuiTabItem
 
 		if data.unique_tab_class then
+			-- selene: allow(global_usage)
 			new_tab_class = _G[data.unique_tab_class]
 		end
 
@@ -238,8 +239,6 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 	if self._tabs[self._selected] then
 		self._tabs[self._selected]:select(true)
 
-		local slot_dim_x = self._tabs[self._selected].my_slots_dimensions[1]
-		local slot_dim_y = self._tabs[self._selected].my_slots_dimensions[2]
 		local _, any_slot = next(self._tabs[self._selected]._slots)
 
 		if any_slot then
@@ -412,6 +411,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				local panel, safe_panel, drill_panel, safe_text, drill_text, safe_market_panel, drill_market_panel, title_text = nil
 				self._market_bundles = {}
 				self._data.active_market_bundle = self._data.active_market_bundle or 1
+				-- selene: allow(unused_variable)
 				local texture, rect = tweak_data.hud_icons:get_icon_data("scrollbar_arrow")
 				local select_bg = self._market_panel:rect({
 					blend_mode = "add",
@@ -1304,7 +1304,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				font_size = small_font_size,
 				text = "TeWqjI-" .. managers.localization:get_default_macro("BTN_BOTTOM_L"),
 			})
-			local x, y, w, h = test_text:text_rect()
+			local _, _, _, h = test_text:text_rect()
 			real_small_font_size = h
 
 			self._panel:remove(test_text)
@@ -1322,7 +1322,8 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				font_size = medium_font_size,
 				text = "TeWqjI-" .. managers.localization:get_default_macro("BTN_BOTTOM_L"),
 			})
-			local x, y, w, h = test_text:text_rect()
+			local _, _, _
+			local h = test_text:text_rect()
 			real_medium_font_size = h
 		end
 
@@ -1522,6 +1523,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 			w = armor_info_panel:w() - armor_image:right() - 20,
 			h = medium_font_size * 2,
 		})
+		-- selene: allow(unused_variable)
 		local equip_text = armor_info_panel:text({
 			name = "armor_equipped",
 			layer = 1,
@@ -1648,6 +1650,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 					color = tweak_data.screen_colors.text,
 					text = utf8.to_upper(managers.localization:text("bm_menu_" .. tostring(info_name))),
 				})
+				-- selene: allow(unused_variable)
 				local status_text = self._info_panel:text({
 					w = 0,
 					layer = 1,
@@ -1671,7 +1674,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 				end
 			end
 
-			for name, text in ipairs(self._info_panel:children()) do
+			for _, text in ipairs(self._info_panel:children()) do
 				if string.split(text:name(), "_")[1] == "category" then
 					text:set_w(longest_text_w)
 					text:set_x(0)
@@ -2316,6 +2319,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		self:on_slot_selected(self._selected_slot)
 	end
 
+	-- selene: allow(unused_variable)
 	local black_rect = self._data.skip_blur or self._fullscreen_panel:rect({
 		layer = 1,
 		color = Color(0.4, 0, 0, 0),
@@ -2336,7 +2340,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 
 		self._indicator:set_left(self._title_text:right() + 10)
 		self._indicator:set_center_y(self._title_text:center_y())
-		self._indicator:animate(function(o)
+		self._indicator:animate(function()
 			local dt = nil
 
 			while true do
@@ -2410,7 +2414,7 @@ function BlackMarketGui:_setup(is_start_page, component_data)
 		local arrow_left, arrow_right = nil
 
 		if managers.menu:is_pc_controller() and not managers.menu:is_steam_controller() then
-			local texture, rect = tweak_data.hud_icons:get_icon_data("scrollbar_arrow")
+			tweak_data.hud_icons:get_icon_data("scrollbar_arrow")
 			arrow_left = gui_panel:bitmap({
 				texture = "guis/textures/menu_arrows",
 				layer = 1,
@@ -2914,7 +2918,7 @@ function BlackMarketGui:show_stats_blackmarket_armors_page()
 			show = true,
 		})
 	else
-		for title_name, title in pairs(self._stats_titles) do
+		for _, title in pairs(self._stats_titles) do
 			title:show()
 		end
 
@@ -3017,7 +3021,7 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 			show = true,
 		})
 	else
-		for title_name, title in pairs(self._stats_titles) do
+		for _, title in pairs(self._stats_titles) do
 			title:show()
 		end
 
@@ -3032,7 +3036,7 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 		})
 	end
 
-	local value_min, value_max, skill_value_min, skill_value_max, skill_value = nil
+	local value_min, value_max = nil
 
 	local value = 0
 	for _, stat in ipairs(self._mweapon_stats_shown) do
@@ -3050,7 +3054,7 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 		end
 
 		if self._slot_data.name == equipped_item then
-			local base, base_min, base_max, skill, skill_min, skill_max = nil
+			local base, base_min, base_max, skill_min, skill_max = nil
 
 			if stat.range then
 				base_min = base_stats[stat.name].min_value
@@ -3060,8 +3064,6 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 			end
 
 			base = base_stats[stat.name].value
-			skill = skill_stats[stat.name].value
-			local format_string = "%0." .. tostring(stat.num_decimals or 0) .. "f"
 			local equip_text = value and format_round(value, stat.round_value)
 			local base_text = base and format_round(base, stat.round_value)
 			local skill_text = skill_stats[stat.name].value and format_round(skill_stats[stat.name].value, stat.round_value)
@@ -3145,7 +3147,6 @@ function BlackMarketGui:show_stats_inventory_melees_page()
 			else
 				equip = math.max(equip_base_stats[stat.name].value + equip_mods_stats[stat.name].value + equip_skill_stats[stat.name].value, 0)
 			end
-			local format_string = "%0." .. tostring(stat.num_decimals or 0) .. "f"
 			local equip_text = equip and format_round(equip, stat.round_value)
 			local total_text = value and format_round(value, stat.round_value)
 			local equip_min_text = equip_min and format_round(equip_min, true)
@@ -3288,7 +3289,6 @@ function BlackMarketGui:show_stats_attachments_page()
 
 	local total_base_stats, total_mods_stats, total_skill_stats = WeaponDescription._get_stats(name, category, slot, blueprint)
 	local mod_stats = WeaponDescription.get_stats_for_mod(self._slot_data.name, name, category, slot)
-	local hide_equip = mod_stats.equip.name == mod_stats.chosen.name
 	local remove_stats = {}
 
 	---Shotgun pellets stat
@@ -3305,15 +3305,15 @@ function BlackMarketGui:show_stats_attachments_page()
 	--Checks if the weapon stats with the mod (and no skills) change, and if they do, displays the difference.
 	--Would write a better solution, but I hate this file.
 	-- Taken from restoration cause god this is so fucking awful
-	for name, data in pairs(unaltered_total_mods_stats) do
-		if name == "damage" or name == "damage_min" then
-			if unaltered_total_mods_stats[name].value ~= total_mods_stats[name].value then
-				mod_stats.chosen[name] = (total_base_stats[name].value + (total_mods_stats[name].value + total_skill_stats[name].value))
-					- (unaltered_total_base_stats[name].value + (unaltered_total_mods_stats[name].value + unaltered_total_skill_stats[name].value))
+	for s_name, _ in pairs(unaltered_total_mods_stats) do
+		if s_name == "damage" or s_name == "damage_min" then
+			if unaltered_total_mods_stats[s_name].value ~= total_mods_stats[s_name].value then
+				mod_stats.chosen[s_name] = (total_base_stats[s_name].value + (total_mods_stats[s_name].value + total_skill_stats[s_name].value))
+					- (unaltered_total_base_stats[s_name].value + (unaltered_total_mods_stats[s_name].value + unaltered_total_skill_stats[s_name].value))
 			end
 		else
-			if unaltered_total_mods_stats[name].value ~= total_mods_stats[name].value then
-				mod_stats.chosen[name] = (total_base_stats[name].value + total_mods_stats[name].value) - (unaltered_total_base_stats[name].value + unaltered_total_mods_stats[name].value)
+			if unaltered_total_mods_stats[s_name].value ~= total_mods_stats[s_name].value then
+				mod_stats.chosen[s_name] = (total_base_stats[s_name].value + total_mods_stats[s_name].value) - (unaltered_total_base_stats[s_name].value + unaltered_total_mods_stats[s_name].value)
 			end
 		end
 	end
@@ -3322,9 +3322,9 @@ function BlackMarketGui:show_stats_attachments_page()
 		for _, part_id in ipairs(self._slot_data.removes) do
 			local part_stats = WeaponDescription.get_stats_for_mod(part_id, name, category, slot)
 
-			for category, value in pairs(part_stats.chosen or {}) do
+			for cat, value in pairs(part_stats.chosen or {}) do
 				if type(value) == "number" then
-					remove_stats[category] = (remove_stats[category] or 0) + value
+					remove_stats[cat] = (remove_stats[cat] or 0) + value
 				end
 			end
 		end
@@ -3368,7 +3368,7 @@ function BlackMarketGui:show_stats_attachments_page()
 		color = tweak_data.screen_colors.text,
 	})
 
-	local total_value, total_index, unaltered_total_value = nil
+	local total_value, unaltered_total_value = nil
 
 	local value = 0
 	for _, stat in ipairs(self._stats_shown) do
@@ -3382,7 +3382,7 @@ function BlackMarketGui:show_stats_attachments_page()
 			local stat_object = self._stats_texts[stat.name]
 			stat_changed = equipped_string ~= selected_string
 
-			for name, column in pairs(stat_object) do
+			for _, column in pairs(stat_object) do
 				column:set_alpha(stat_changed and 1 or 0.5)
 			end
 
@@ -3417,7 +3417,7 @@ function BlackMarketGui:show_stats_attachments_page()
 				end
 			end
 
-			for name, column in pairs(self._stats_texts[stat.name]) do
+			for _, column in pairs(self._stats_texts[stat.name]) do
 				column:set_alpha(stat_changed and 1 or 0.5)
 			end
 

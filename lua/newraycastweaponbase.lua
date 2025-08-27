@@ -76,7 +76,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		end
 	end
 
-	for part_id, stats in pairs(custom_stats) do
+	for _, stats in pairs(custom_stats) do
 		if stats.steelsight_move_speed_mul then
 			self._steelsight_move_speed_mul = stats.steelsight_move_speed_mul
 		end
@@ -404,8 +404,6 @@ function NewRaycastWeaponBase:fire_rate_multiplier()
 
 	multiplier = multiplier * self._fire_rate_multiplier
 
-	local weapon_tweak = self:weapon_tweak_data()
-
 	for _, fire_mode in ipairs(self._fire_modes) do
 		if self:fire_mode() == fire_mode then
 			multiplier = multiplier * (self._fire_mode_mul and self._fire_mode_mul[fire_mode] and self._fire_mode_mul[fire_mode].fire_rate or 1)
@@ -542,7 +540,7 @@ Hooks:PreHook(NewRaycastWeaponBase, "_fire_raycast", "eclipse_fire_raycast", fun
 	self._hit_through_surface = nil
 end)
 
-Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_falloff", function(self, damage, hit)
+Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_falloff", function(self, _, hit)
 	local multiplier = 1
 
 	local weapon_tweak = self:weapon_tweak_data()
@@ -577,7 +575,6 @@ end)
 -- percentage clip ammo increase upgrade
 function NewRaycastWeaponBase:calculate_ammo_max_per_clip()
 	local added = 0
-	local weapon_tweak_data = self:weapon_tweak_data()
 
 	if self:is_category("shotgun") and tweak_data.weapon[self._name_id].has_magazine then
 		added = managers.player:upgrade_value("shotgun", "magazine_capacity_inc", 0)

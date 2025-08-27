@@ -21,7 +21,7 @@ local function convert_add_to_mul(value)
 	end
 end
 
-function WeaponDescription._get_base_pickup(weapon, name)
+function WeaponDescription._get_base_pickup(_, name)
 	local weapon_tweak = tweak_data.weapon[name]
 	local average_pickup = (weapon_tweak.AMMO_PICKUP[1] + weapon_tweak.AMMO_PICKUP[2]) * 0.5
 
@@ -35,7 +35,7 @@ function WeaponDescription._get_mods_pickup(weapon, name, base_stats)
 	local max_pickup = weapon_tweak.AMMO_PICKUP[2] * (ammo_data.ammo_pickup_max_mul or 1)
 	local custom_data = managers.weapon_factory:get_custom_stats_from_weapon(weapon.factory_id, weapon.blueprint) or {}
 
-	for part_id, stats in pairs(custom_data) do
+	for _, stats in pairs(custom_data) do
 		if stats.ammo_pickup_min_mul then
 			min_pickup = min_pickup * stats.ammo_pickup_min_mul
 		end
@@ -59,7 +59,7 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 		local max_pickup = weapon_tweak.AMMO_PICKUP[2] * (ammo_data.ammo_pickup_max_mul or 1) * pickup_multiplier
 		local custom_data = managers.weapon_factory:get_custom_stats_from_weapon(weapon.factory_id, weapon.blueprint) or {}
 
-		for part_id, stats in pairs(custom_data) do
+		for _, stats in pairs(custom_data) do
 			if stats.ammo_pickup_min_mul then
 				min_pickup = min_pickup * stats.ammo_pickup_min_mul
 			end
@@ -76,13 +76,13 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 	end
 end
 
-function WeaponDescription._get_base_steelsight_time(weapon, name)
+function WeaponDescription._get_base_steelsight_time(_, name)
 	local mul = tweak_data.weapon[name].steelsight_speed_multiplier or 1
 	return tweak_data.weapon[name].steelsight_time / mul
 end
 
 -- it's janky but what can you do
-function WeaponDescription._get_mods_steelsight_time(weapon, name, base, mods)
+function WeaponDescription._get_mods_steelsight_time(_, name, base, mods)
 	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
 	local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
 
@@ -152,7 +152,6 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	if blueprint then
 		equipped_mods = deep_clone(blueprint)
 		local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(name)
-		local default_blueprint = managers.weapon_factory:get_default_blueprint_by_factory_id(factory_id)
 
 		if equipped_mods then
 			silencer = managers.weapon_factory:has_perk("silencer", factory_id, equipped_mods)
@@ -164,7 +163,7 @@ function WeaponDescription._get_stats(name, category, slot, blueprint)
 	local base_stats = WeaponDescription._get_base_stats(name)
 	local mods_stats = WeaponDescription._get_mods_stats(name, base_stats, equipped_mods, bonus_stats)
 	local skill_stats = WeaponDescription._get_skill_stats(name, category, slot, base_stats, mods_stats, silencer, single_mod, auto_mod, blueprint)
-	local clip_ammo, max_ammo, ammo_data = WeaponDescription.get_weapon_ammo_info(name, tweak_data.weapon[name].stats.extra_ammo, base_stats.totalammo.index + mods_stats.totalammo.index)
+	local _, max_ammo, ammo_data = WeaponDescription.get_weapon_ammo_info(name, tweak_data.weapon[name].stats.extra_ammo, base_stats.totalammo.index + mods_stats.totalammo.index)
 	base_stats.totalammo.value = ammo_data.base
 	mods_stats.totalammo.value = ammo_data.mod
 	skill_stats.totalammo.value = ammo_data.skill
@@ -249,7 +248,6 @@ end
 function WeaponDescription.get_weapon_ammo_info(weapon_id, extra_ammo, total_ammo_mod)
 	local weapon_tweak_data = tweak_data.weapon[weapon_id]
 	local ammo_max_multiplier = managers.player:upgrade_value("player", "extra_ammo_multiplier", 1)
-	local primary_category = weapon_tweak_data.categories[1]
 	local category_skill_in_effect = false
 	local category_multiplier = 1
 

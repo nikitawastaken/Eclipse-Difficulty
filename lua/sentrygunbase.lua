@@ -6,7 +6,7 @@ SentryGunBase.AMMO_MUL = { 1, 1.5 }
 Hooks:PostHook(SentryGunBase, "setup", "sh_setup", SentryGunBase.unregister)
 
 -- Create table for sixth sense timing data
-Hooks:PostHook(SentryGunBase, "init", "eclipse_init", function(self, unit)
+Hooks:PostHook(SentryGunBase, "init", "eclipse_init", function(self)
 	self._state_data = self._state_data or {}
 end)
 

@@ -23,6 +23,7 @@ function NetworkPeer:verify_bag(carry_id, pickup)
 	return false
 end
 
+-- selene: allow(unused_variable)
 function NetworkPeer:verify_grenade(value)
 	--[[
 		local grenade_id = self:grenade_id()

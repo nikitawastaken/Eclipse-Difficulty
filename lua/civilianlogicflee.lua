@@ -1,5 +1,5 @@
 -- Tweak hostage rescue conditions
-function CivilianLogicFlee.rescue_SO_verification(ignore_this, params, unit, ...)
+function CivilianLogicFlee.rescue_SO_verification(self, params, unit, ...)
 	if unit:movement():cool() then
 		return false
 	end
@@ -20,7 +20,7 @@ function CivilianLogicFlee.rescue_SO_verification(ignore_this, params, unit, ...
 end
 
 -- Workaround for civilians being unresponsive when intimidated
-function CivilianLogicFlee._delayed_intimidate_clbk(ignore_this, params)
+function CivilianLogicFlee._delayed_intimidate_clbk(self, params)
 	local data = params[1]
 	local amount = params[2]
 	local aggressor_unit = params[3]

@@ -32,6 +32,7 @@ function CopLogicSniper._upd_aim(data, my_data)
 			if can_stand then
 				CopLogicAttack._chk_request_action_stand(data)
 			end
+		-- selene: allow(if_same_then_else)
 		elseif my_data.wanted_pose == "crouch" then
 			if can_crouch then
 				CopLogicAttack._chk_request_action_crouch(data)

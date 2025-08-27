@@ -36,7 +36,7 @@ function MissionEndState:at_enter(old_state, params)
 		managers.network.matchmake:set_server_joinable(false)
 
 		if self._success then
-			for peer_id, list in pairs(managers.player:get_all_synced_carry()) do
+			for _, list in pairs(managers.player:get_all_synced_carry()) do
 				local data = list[1]
 				if data then
 					if not tweak_data.carry[data.carry_id].skip_exit_secure then

@@ -33,6 +33,7 @@ function FragGrenade:set_thrower_unit(unit, ...)
 	end
 end
 
+-- selene: allow(unused_variable)
 function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
 	if self._detonated then
 		return

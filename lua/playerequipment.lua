@@ -19,7 +19,7 @@ function PlayerEquipment:use_first_aid_kit()
 		if Network:is_client() then
 			managers.network:session():send_to_host("place_deployable_bag", "FirstAidKitBase", pos, rot, bits)
 		else
-			local unit = FirstAidKitBase.spawn(pos, rot, bits, managers.network:session():local_peer():id())
+			FirstAidKitBase.spawn(pos, rot, bits, managers.network:session():local_peer():id())
 		end
 
 		return true
@@ -43,7 +43,7 @@ function PlayerEquipment:use_grenade_case()
 		if Network:is_client() then
 			managers.network:session():send_to_host("place_deployable_bag", "GrenadeCrateBase", pos, rot, amount_upgrade_lvl)
 		else
-			local unit = GrenadeCrateBase.spawn(pos, rot, amount_upgrade_lvl, managers.network:session():local_peer():id())
+			GrenadeCrateBase.spawn(pos, rot, amount_upgrade_lvl, managers.network:session():local_peer():id())
 		end
 
 		return true
@@ -67,7 +67,7 @@ function PlayerEquipment:use_grenade_crate()
 		if Network:is_client() then
 			managers.network:session():send_to_host("place_deployable_bag", "GrenadeCrateDeployableBase", pos, rot, amount_upgrade_lvl)
 		else
-			local unit = GrenadeCrateDeployableBase.spawn(pos, rot, amount_upgrade_lvl, managers.network:session():local_peer():id())
+			GrenadeCrateDeployableBase.spawn(pos, rot, amount_upgrade_lvl, managers.network:session():local_peer():id())
 		end
 
 		return true

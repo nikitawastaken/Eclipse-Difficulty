@@ -1,4 +1,4 @@
-function ElementInstigatorRule:_check_player_rules(rules, instigator)
+function ElementInstigatorRule:_check_player_rules(rules, _)
 	for rule, data in pairs(rules) do
 		if rule == "carry_ids" then
 			local current_carry_ids = managers.player:current_carry_id()

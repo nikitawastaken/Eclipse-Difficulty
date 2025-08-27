@@ -38,7 +38,7 @@ function ShotgunBase:_update_stats_values()
 	end
 end
 
-function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul, ...)
+function ShotgunBase:_fire_raycast(user_unit, from_pos, direction, _, ...)
 	self._enemy_penetrations = nil
 	self._hit_through_enemy = nil
 	self._hit_through_wall = nil

@@ -1,0 +1,24 @@
+std = "payday"
+exclude = [
+	"*tweakdata*.lua", # Unused locals warning spam
+	"*groupaistatebesiege.lua" # Parsing error for gotos :sob:
+]
+
+[lints]
+# Removing checks that come from copying sauce code
+undefined_variable = "allow"
+unscoped_variables = "allow"
+shadowing = "allow"
+
+[config]
+empty_if = { comments_count = true }
+global_usage = { ignore_pattern = "IS_VR" }
+
+# ignore dt
+# ignore ...
+# ignore self
+# ignore u_key
+# ignore u_value
+# ignore single character names
+# ignore variables starting with _
+unused_variable = { allow_unused_self = true, ignore_pattern = "(^_)|(^dt$)|(^u_key$)|(^u_value$)|(^\\.\\.\\.$)|(^\\w$)|(^self$)" }

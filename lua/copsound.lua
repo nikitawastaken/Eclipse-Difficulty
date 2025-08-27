@@ -226,13 +226,10 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		end
 	end
 
-	local fixed_sound = nil
-
 	-- fix death and pain sounds being swapped
 	if self._prefix == "l1n_" or self._prefix == "l2n_" or self._prefix == "l3n_" then
 		if sound_name == "x02a_any_3p" then
 			sound_name = "x01a_any_3p"
-			fixed_sound = true
 		end
 		if sound_name == "x01a_any_3p" then
 			sound_name = "x02a_any_3p"
@@ -273,7 +270,6 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	if self._prefix == "l4n_" then
 		if sound_name == "x02a_any_3p" then
 			sound_name = "x01a_any_3p"
-			fixed_sound = true
 		end
 		if sound_name == "x01a_any_3p" then
 			sound_name = "l1n_x02a_any_3p"

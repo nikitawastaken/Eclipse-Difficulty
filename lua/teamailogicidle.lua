@@ -1,7 +1,7 @@
 local tmp_vec = Vector3()
 
 -- Improve following in big nav segments
-function TeamAILogicIdle._check_should_relocate(data, my_data, objective)
+function TeamAILogicIdle._check_should_relocate(data, _, objective)
 	local follow_movement = objective.follow_unit:movement()
 
 	local max_allowed_dis_xy = 500

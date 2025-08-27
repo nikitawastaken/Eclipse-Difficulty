@@ -19,10 +19,6 @@ end
 
 -- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
 function PlayerStandard:full_steelsight()
-	local weap_base = self._equipped_unit:base()
-	local is_bow = table.contains(weap_base:weapon_tweak_data().categories, "bow")
-	local is_turret = managers.player:current_state() and managers.player:current_state() == "player_turret"
-
 	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
 end
 
@@ -439,6 +435,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						local up, down, left, right = unpack(kick_tweak_data[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
 
 						local apply_spray = false
+						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
 						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons
 							pattern_tweak_data = weap_tweak_data.spray.pattern -- first part of spray pattern
 							persist_pattern_tweak_data = weap_tweak_data.spray.persist_pattern -- second part of spray pattern (persist pattern)
@@ -537,9 +534,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 end
 
 -- No more sixth sense
-Hooks:OverrideFunction(PlayerStandard, "_update_omniscience", function(self, ...)
-	return
-end)
+Hooks:OverrideFunction(PlayerStandard, "_update_omniscience", function(self, ...) end)
 
 -- Don't update sixth sense anymore and add sprint reload upgrade to shotguns
 Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
@@ -710,6 +705,7 @@ function PlayerStandard:_start_action_unequip_weapon(t, data)
 	end
 	self:_interupt_action_charging_weapon(t)
 
+	-- selene: allow(unused_variable)
 	local result = self._ext_camera:play_redirect(self:get_animation("unequip"), speed_multiplier)
 
 	self:_interupt_action_reload(t)
@@ -737,7 +733,8 @@ function PlayerStandard:_end_action_running(t)
 	end
 end
 
-function PlayerStandard:_start_action_throw_grenade(t, input)
+-- input
+function PlayerStandard:_start_action_throw_grenade(t, _)
 	self:_interupt_action_reload(t)
 	self:_interupt_action_steelsight(t)
 	if managers.player and not managers.player:has_category_upgrade("player", "can_sprint_swap") then
@@ -811,11 +808,11 @@ function PlayerStandard:_update_equip_weapon_timers(t, input)
 end
 
 -- melee overhaul code
-Hooks:PreHook(PlayerStandard, "_start_action_melee", "eclipse_pre_start_action_melee", function(self, t, input, instant)
+Hooks:PreHook(PlayerStandard, "_start_action_melee", "eclipse_pre_start_action_melee", function(self)
 	self._state_data.melee_running_wanted = true and self._running and not self._end_running_expire_t
 end)
 
-Hooks:PostHook(PlayerStandard, "_start_action_melee", "eclipse_post_start_action_melee", function(self, t, input, instant)
+Hooks:PostHook(PlayerStandard, "_start_action_melee", "eclipse_post_start_action_melee", function(self)
 	if self._state_data.melee_running_wanted then
 		self._running_wanted = true
 	end
@@ -823,7 +820,7 @@ Hooks:PostHook(PlayerStandard, "_start_action_melee", "eclipse_post_start_action
 	self._state_data.melee_running_wanted = nil
 end)
 
-Hooks:PostHook(PlayerStandard, "_do_action_melee", "eclipse__do_action_melee", function(self, t, input, instant)
+Hooks:PostHook(PlayerStandard, "_do_action_melee", "eclipse__do_action_melee", function(self, t)
 	-- Faster reswing skill
 	local melee_entry = managers.blackmarket:equipped_melee_weapon()
 	self._state_data.melee_repeat_expire_t = t
@@ -833,7 +830,7 @@ Hooks:PostHook(PlayerStandard, "_do_action_melee", "eclipse__do_action_melee", f
 		)
 end)
 
-Hooks:PreHook(PlayerStandard, "_update_melee_timers", "eclipse_update_melee_timers", function(self, t, input)
+Hooks:PreHook(PlayerStandard, "_update_melee_timers", "eclipse_update_melee_timers", function(self, t)
 	local melee_entry = managers.blackmarket:equipped_melee_weapon()
 	local instant = tweak_data.blackmarket.melee_weapons[melee_entry].instant
 

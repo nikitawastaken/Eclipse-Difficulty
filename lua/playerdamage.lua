@@ -246,7 +246,7 @@ function PlayerDamage:_calc_armor_damage(...)
 end
 
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
-Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function(self, attack_data, health_subtracted)
+Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function(self, _, health_subtracted)
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
 		self._can_take_dmg_timer = self._dmg_interval / 2
 	end
@@ -589,7 +589,8 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 end
 
 -- Make most healing fixed instead of % of max health
-function PlayerDamage:restore_health(health_restored, is_static, chk_health_ratio)
+-- is_static
+function PlayerDamage:restore_health(health_restored, _, chk_health_ratio)
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
 		return false
 	end
@@ -598,7 +599,8 @@ function PlayerDamage:restore_health(health_restored, is_static, chk_health_rati
 end
 
 -- A separate function for % based healing
-function PlayerDamage:restore_health_percentage(health_restored, is_static, chk_health_ratio)
+-- is_static
+function PlayerDamage:restore_health_percentage(health_restored, _, chk_health_ratio)
 	if chk_health_ratio and managers.player:is_damage_health_ratio_active(self:health_ratio()) then
 		return false
 	end

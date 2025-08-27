@@ -205,7 +205,8 @@ function CopActionShoot:update(t)
 end
 
 -- Remove pseudrandom hitchance and hit chance interpolation (interpolation is already done in _get_shoot_falloff)
-function CopActionShoot:_get_unit_shoot_pos(t, pos, dis, w_tweak, falloff, i_range, shooting_player)
+-- dis, w_tweak, i_range
+function CopActionShoot:_get_unit_shoot_pos(t, pos, _, _, falloff, _, shooting_player)
 	local shoot_hist = self._shoot_history
 	local focus_delay, focus_prog
 	if shoot_hist and shoot_hist.focus_delay then

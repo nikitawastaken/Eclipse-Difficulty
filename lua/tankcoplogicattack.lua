@@ -53,6 +53,7 @@ function TankCopLogicAttack.update(data)
 				TankCopLogicAttack._cancel_chase_attempt(data, my_data)
 			end
 		elseif my_data.pathing_to_chase_pos then
+			-- Nothing
 		elseif my_data.chase_path then
 			TankCopLogicAttack._chk_request_action_walk_to_chase_pos(data, my_data, enemy_visible and focus_enemy.dis < 800 and "walk" or "run")
 		elseif my_data.chase_pos then

@@ -75,6 +75,7 @@ function CopLogicAttack._check_aim_shoot(data, my_data, focus_enemy, verified, n
 			local suppression_dt = suppression_t and data.t - suppression_t
 			local assault_dt = focus_enemy.criminal_record and focus_enemy.criminal_record.assault_t and data.t - focus_enemy.criminal_record.assault_t
 
+			-- selene: allow(if_same_then_else)
 			if suppression_dt and suppression_dt < 7 * (running and 0.5 or 1) * (verified and 1 or 0.5) then
 				shoot = true
 			elseif verified and enemy_dis < firing_range then
@@ -165,7 +166,7 @@ end
 function CopLogicAttack._correct_path_start_pos() end
 
 -- Simplify function, navigation raycast is already done in CopLogicAttack._find_retreat_position
-function CopLogicAttack._confirm_retreat_position(retreat_pos, threat_pos, threat_head_pos, threat_tracker)
+function CopLogicAttack._confirm_retreat_position(retreat_pos, _, threat_head_pos, _)
 	mvector3.set(tmp_vec1, retreat_pos)
 	mvector3.set_z(tmp_vec1, retreat_pos.z + 140)
 	if not World:raycast("ray", tmp_vec1, threat_head_pos, "slot_mask", managers.slot:get_mask("AI_visibility"), "ray_type", "ai_vision") then
@@ -383,7 +384,7 @@ function MarshalLogicAttack._upd_combat_movement(data)
 	CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 end
 
-function MarshalLogicAttack.update_cover(data) end
+function MarshalLogicAttack.update_cover() end
 
 --Medic attack logic
 MedicLogicAttack = MedicLogicAttack or class(CopLogicAttack)

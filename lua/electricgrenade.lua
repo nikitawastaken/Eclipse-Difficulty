@@ -12,6 +12,7 @@ function ElectricGrenade:set_thrower_unit(unit, ...)
 	self._curve_pow = self._curve_pow * self._explosive_curve_multiplier
 end
 
+-- selene: allow(unused_variable)
 function ElectricGrenade:_detonate(tag, unit, body, other_unit, other_body, position, normal, collision_velocity, velocity, other_velocity, new_velocity, direction, damage, ...)
 	if self._detonated then
 		return

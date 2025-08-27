@@ -18,9 +18,8 @@ function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_m
 	local result = {}
 	local hit_enemies = 0
 	local damage = self:_get_current_damage(dmg_mul)
-	local autoaim, dodge_enemies = self:check_autoaim(from_pos, direction, self._range)
 	local damage_range = self._flame_max_range
-	local spread_x, spread_y = self:_get_spread(user_unit)
+	local spread_x = self:_get_spread(user_unit)
 
 	mvector3.set(mvec_to, direction)
 	mvector3.multiply(mvec_to, damage_range)
@@ -42,7 +41,7 @@ function NewFlamethrowerBase:_fire_raycast(user_unit, from_pos, direction, dmg_m
 
 	local hit_bodies = World:find_bodies(user_unit, "intersect", "cone", from_pos, mvec_to, cone_spread, self._bullet_slotmask)
 
-	for idx, body in ipairs(hit_bodies) do
+	for _, body in ipairs(hit_bodies) do
 		local unit = body:unit()
 		local fake_ray = {
 			body = body,
