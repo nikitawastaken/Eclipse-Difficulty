@@ -2,7 +2,6 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 	CopLogicBase.enter(data, new_logic_name, enter_params)
 	data.unit:brain():cancel_all_pathing_searches()
 
-	local old_internal_data = data.internal_data
 	local my_data = {
 		unit = data.unit,
 	}
@@ -34,7 +33,7 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 
 	data.internal_data._trade_enabled = false
 
-	data.unit:network():send("hostage_trade", false, true, false)
+	data.unit:network():send("hostage_trade", false, true, false, is_custody_trade)
 	CopLogicTrade.hostage_trade(data.unit, false, true)
 	managers.groupai:state():on_hostage_state(false, data.key, managers.enemy:all_enemies()[data.key] and true or false)
 
@@ -53,7 +52,6 @@ function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_t
 
 	local iterations = 1
 	local coarse_path = nil
-	local my_data = data.internal_data
 	local search_params = {
 		from_tracker = data.unit:movement():nav_tracker(),
 		id = "CopLogicTrade._get_coarse_flee_path" .. tostring(data.key),
