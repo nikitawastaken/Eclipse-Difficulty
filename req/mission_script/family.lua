@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local bags_required = {
@@ -9,6 +10,9 @@ local disabled = {
 	values = {
 		enabled = false,
 	},
+}
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
 	-- Restores unused sniper spawn
@@ -94,4 +98,6 @@ return {
 	[102014] = bags_required,
 	[102015] = bags_required,
 	[102016] = bags_required,
+	-- tweak swat van group
+	[400007] = scripted_swat_van_spawn,
 }

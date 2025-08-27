@@ -1,4 +1,5 @@
 ---@module Unit Weapons
+local diff_i = Eclipse.utils.difficulty_index()
 local M = {
 	--Specials
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "benelli_tank",
@@ -94,10 +95,12 @@ local M = {
 	--Bosses
 	--the Commissar has now rpk instead of m249
 	[("units/payday2/characters/ene_gang_mobster_boss/ene_gang_mobster_boss"):key()] = "rpk_lmg",
-	--Biker boss has a saiga shotgun
-	[("units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss"):key()] = "saiga",
-	--Hector Moralez has a aa12 shotgun
-	[("units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2"):key()] = "aa12",
+	--Biker boss has a saiga shotgun on lower diffs and rpk on eclipse
+	[("units/pd2_dlc_born/characters/ene_gang_biker_boss/ene_gang_biker_boss"):key()] = diff_i < 6 and "saiga" or "rpk_lmg",
+	--Hector Moralez has a aa12 shotgun on lower diffs and m249 on eclipse
+	[("units/pd2_mcmansion/characters/ene_male_hector_2/ene_male_hector_2"):key()] = diff_i < 6 and "aa12" or "m249",
+	--Gabriel has a aa12 shotgun on lower diffs and m249 on eclipse
+	[("units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel"):key()] = diff_i < 6 and "aa12" or "m249",
 	--Riker has aa12 shotgun and is stronger than in vanilla
 	[("units/payday2/characters/ene_fbi_boss_1/ene_fbi_boss_1"):key()] = "aa12",
 	--Garret has bronco
