@@ -502,7 +502,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
 	self.friend.group_ai_settings.difficulty_scaling = nil
-	
+
 	self.moon.group_ai_settings = {
 		assault_force_mul = 0.85,
 	}

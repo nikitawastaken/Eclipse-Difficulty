@@ -252,13 +252,13 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			marksman = 3,
 		}
 	end
-		
+
 	-- Add special unit limit scaling for BigLobby
-	self.special_unit_spawn_limits_balance_mul = {} 
+	self.special_unit_spawn_limits_balance_mul = {}
 	for i = 0, 21, 1 do
 		table.insert(self.special_unit_spawn_limits_balance_mul, 1 + math.floor(i * 0.05 / 0.2) * 0.2)
 	end
-			
+
 	self.unit_categories.cs_cop_1 = {
 		unit_types = {
 			america = { Idstring("units/payday2/characters/ene_cop_1/ene_cop_1") },
@@ -3166,7 +3166,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_pool_balance_mul, 1 + (i * 0.25))
 	end
-	
+
 	-- Spawnrate
 	self.spawn_kill_distance = 1500
 	self.spawn_kill_cooldown = 10
