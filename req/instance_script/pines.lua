@@ -8,7 +8,7 @@ local patches = {
 		spawn_ids = table.set(100015, 100016),
 	},
 }
-local heavies_chopper_spawn = { [heavy_swat] = 4, [taser] = 1 }
+local heavies_chopper_spawn = { [heavy_swat] = 2, [taser] = 1 }
 
 M["levels/instances/unique/san_helicopter_4swat/world/world"] = function(result)
 	local heavy_spawns = patches.heavies

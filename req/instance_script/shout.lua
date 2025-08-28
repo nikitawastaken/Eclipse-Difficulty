@@ -3,7 +3,8 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local light_swat = scripted_enemy.swat_1
+local diff_i = Eclipse.utils.difficulty_index()
+local light_swat = diff_i < 5 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -24,7 +25,7 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local container_dozer = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or greendozer_only
+local container_dozer = is_eclipse_pro and random_elite_dozers or diff_i < 4 and greendozer_only or random_dozers
 
 local patches = {
 	swat_chopper = {

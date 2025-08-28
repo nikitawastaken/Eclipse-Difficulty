@@ -1,6 +1,8 @@
 ---@module Hoxton Breakout Day 1
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
+local so_access = Eclipse.access_filter_presets
+local law = so_access.law
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -9,8 +11,8 @@ local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local swat_1 = diff_i < 5 and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
-local swat_2 = diff_i < 5 and scripted_enemy.heavy_swat_2 or scripted_enemy.swat_2
+local swat_1 = diff_i < 5 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
+local swat_2 = diff_i < 5 and scripted_enemy.swat_2 or scripted_enemy.heavy_swat_2
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
@@ -77,6 +79,7 @@ M["levels/instances/unique/hox_breakout_road001/world/world"] = function(result)
 			element.values.enemy_table = diff_i < 6 and swats or swat_or_dozer
 		elseif roadblock.so_group_fix[id] then
 			element.values.ai_group = "enemies"
+			element.values.SO_access = law
 		end
 	end
 end

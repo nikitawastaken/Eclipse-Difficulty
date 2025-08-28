@@ -23,7 +23,7 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local bulldozer = is_eclipse and random_elite_dozers or diff_i < 4 and random_dozers
+local bulldozer = is_eclipse and random_elite_dozers or random_dozers
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_easy = Eclipse.utils.set_diff_groups("easy")

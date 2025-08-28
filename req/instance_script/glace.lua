@@ -1,7 +1,8 @@
 ---@module Green Bridge
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
-local light_swat = scripted_enemy.swat_1
+local diff_i = Eclipse.utils.difficulty_index()
+local light_swat = diff_i < 5 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
