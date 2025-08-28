@@ -15,7 +15,7 @@ local optsOpenSwatVanDoors_1 = {
 local optsOpenSwatVanDoors_2 = {
 	enabled = true,
 	trigger_list = {
-		{ id = 1, name = "run_sequence", notify_unit_id = 100514, notify_unit_sequence = "open_light", time = 0 },,
+		{ id = 1, name = "run_sequence", notify_unit_id = 100514, notify_unit_sequence = "open_light", time = 0 },
 	},
 }
 local optsspawnvanSWATs_1 = {
