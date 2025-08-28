@@ -1,30 +1,5 @@
-local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-local is_eclipse = Eclipse.utils.is_eclipse()
 
-local bulldozer = scripted_enemy.bulldozer_1
-local elite_bulldozer = scripted_enemy.elite_bulldozer_1
-local shield = scripted_enemy.shield
-local elite_shield = scripted_enemy.elite_shield
-
-local van_enemy1 = {
-	enemy = is_eclipse and elite_bulldozer or bulldozer,
-	values = {
-		participate_to_group_ai = false,
-	},
-	on_executed = {
-		{ id = 400001, delay = 0 },
-	},
-}
-local van_enemy2 = {
-	enemy = is_eclipse and elite_shield or shield,
-	values = {
-		participate_to_group_ai = false,
-	},
-	on_executed = {
-		{ id = 400001, delay = 0 },
-	},
-}
 local street_spawn = {
 	values = {
 		interval = 15,
@@ -42,12 +17,32 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
 return {
-	[101291] = van_enemy1,
-	[101298] = van_enemy1,
-	[101292] = van_enemy2,
-	[101299] = van_enemy2,
+	[101144] = {
+		ponr = {
+			length = 240,
+			player_mul = { 1.2, 1.1, 1, 0.9 },
+		},
+	},
+	-- replace the turrets with spawngroups
+	[100450] = {
+		on_executed = {
+			{ id = 101164, remove = true },
+			{ id = 400005, delay = 0, delay_rand = 5 },
+		},
+	},
+	[101293] = {
+		on_executed = {
+			{ id = 101294, remove = true },
+			{ id = 400012, delay = 0, delay_rand = 5 },
+		},
+	},
 	-- Spawn Group delays
+	[400007] = scripted_swat_van_spawn,
+	[400014] = scripted_swat_van_spawn,
 	[100699] = street_spawn,
 	[100711] = street_spawn,
 	[100719] = street_spawn,

@@ -251,6 +251,62 @@ local optsrespawn_ground_sniper_2 = {
 	event = "death",
 }
 
+local optsBesiegeDummy = {
+	participate_to_group_ai = true,
+	enabled = true,
+	spawn_action = "e_sp_armored_truck_1st",
+}
+local optsspawnvanSWATs_1 = {
+	on_executed = {
+		{ id = 400041, delay = 0 },
+		{ id = 400042, delay = 0 },
+	},
+	enabled = true,
+}
+local optsspawnvanSWATs_2 = {
+	on_executed = {
+		{ id = 400049, delay = 0 },
+		{ id = 400050, delay = 0 },
+	},
+	enabled = true,
+}
+local opts_swat_group = {
+	spawn_type = "group_guaranteed",
+	amount = 4,
+}
+local optsOpenSwatVanDoors_1 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100476, notify_unit_sequence = "anim_door_right_open", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100476, notify_unit_sequence = "anim_door_left_open", time = 0 },
+	},
+}
+local optsOpenSwatVanDoors_2 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 100478, notify_unit_sequence = "anim_door_right_open", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 100478, notify_unit_sequence = "anim_door_left_open", time = 0 },
+	},
+}
+local optsOpenSwatVanDoors_Trigger_1 = {
+	enabled = true,
+	sequence_list = {
+		{ guis_id = 1, sequence = "done_police_responce", unit_id = 100476 },
+	},
+	on_executed = {
+		{ id = 400040, delay = 0, delay_rand = 5 },
+	},
+}
+local optsOpenSwatVanDoors_Trigger_2 = {
+	enabled = true,
+	sequence_list = {
+		{ guis_id = 1, sequence = "done_police_responce", unit_id = 100478 },
+	},
+	on_executed = {
+		{ id = 400048, delay = 0, delay_rand = 5 },
+	},
+}
+
 M.elements = {
 	--Snipers
 	Eclipse.mission_elements.gen_dummy(400001, "sniper_1", Vector3(3385, -3308, 540.404), Rotation(-90, 0, -0), optsSniper_1),
@@ -292,6 +348,26 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400033, "respawn_ground_sniper_1", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_ground_sniper_1),
 	Eclipse.mission_elements.gen_dummytrigger(400034, "respawn_ground_sniper_2", Vector3(-2400, -3577, 375), Rotation(90, -0, -0), optsrespawn_ground_sniper_2),
 	Eclipse.mission_elements.gen_missionscript(400035, "spawn_ground_snipers", spawnGroundSnipers),
+	
+	-- swat van 1
+	Eclipse.mission_elements.gen_dummy(400036, "swat_van_spawn_1", Vector3(-3982, -1294, -19.999), Rotation(163, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400037, "swat_van_spawn_2", Vector3(-3920.797, -1312.712, -19.999), Rotation(163, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400038, "swat_van_spawn_3", Vector3(-4004.830, -1354.990, -19.999), Rotation(163, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400039, "swat_van_spawn_4", Vector3(-3939.801, -1374.871, -19.999), Rotation(163, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_missionscript(400040, "spawn_swats_1", optsspawnvanSWATs_1),
+	Eclipse.mission_elements.gen_object_editor(400041, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
+	Eclipse.mission_elements.gen_spawngroup(400042, "swat_group_1", { 400036, 400037, 400038, 400039 }, 0, opts_swat_group),
+	Eclipse.mission_elements.gen_object_editor_trigger(400043, "swat_van_doors_trigger_1", optsOpenSwatVanDoors_Trigger_1),
+	
+	-- swat van 2
+	Eclipse.mission_elements.gen_dummy(400044, "swat_van_spawn_5", Vector3(-3358, 7936, -19.999), Rotation(-23, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400045, "swat_van_spawn_6", Vector3(-3416.912, 7961.006, -19.999), Rotation(-23, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400046, "swat_van_spawn_7", Vector3(-3332.881, 8000.296, -19.999), Rotation(-23, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_dummy(400047, "swat_van_spawn_8", Vector3(-3389.952, 8024.521, -19.999), Rotation(-23, 0, 0), optsBesiegeDummy),
+	Eclipse.mission_elements.gen_missionscript(400048, "spawn_swats_2", optsspawnvanSWATs_2),
+	Eclipse.mission_elements.gen_object_editor(400049, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
+	Eclipse.mission_elements.gen_spawngroup(400050, "swat_group_2", { 400044, 400045, 400046, 400047 }, 0, opts_swat_group),
+	Eclipse.mission_elements.gen_object_editor_trigger(400051, "swat_van_doors_trigger_2", optsOpenSwatVanDoors_Trigger_2),
 }
 
 return M

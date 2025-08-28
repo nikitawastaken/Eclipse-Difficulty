@@ -27,6 +27,9 @@ local ship_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
 local no_participate_to_group_ai = {
 	values = {
 		participate_to_group_ai = false,
@@ -303,6 +306,8 @@ return {
 	[100844] = disabled,
 	-- Spawn group intervals
 	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
+	[400042] = scripted_swat_van_spawn,
+	[400050] = scripted_swat_van_spawn,
 	[102387] = ship_spawn,
 	[102331] = ship_spawn,
 	[102173] = ship_spawn,
