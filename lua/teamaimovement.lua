@@ -1,6 +1,6 @@
 -- Fix for some broken reload anim time check code
 setmetatable(HuskPlayerMovement.reload_times, {
-	__index = function (t, k)
+	__index = function(t, k)
 		if type(k) == "table" then
 			for _, v in pairs(k) do
 				local r = rawget(t, v)
@@ -11,7 +11,7 @@ setmetatable(HuskPlayerMovement.reload_times, {
 		end
 		rawset(t, k, 2)
 		return 2
-	end
+	end,
 })
 
 -- Apply default carry speed upgrade to bots
@@ -47,7 +47,7 @@ function TeamAIMovement:add_weapons()
 	end
 end
 
-Hooks:PostHook(TeamAIMovement, "clbk_inventory", "eclipse_clbk_inventory", function (self)
+Hooks:PostHook(TeamAIMovement, "clbk_inventory", "eclipse_clbk_inventory", function(self)
 	local weapon = self._ext_inventory:equipped_unit()
 	if not alive(weapon) then
 		return
