@@ -63,7 +63,7 @@ local steelsight_times = {
 function WeaponTweakData:_init_weapons()
 	local akimbo_single_map = {}
 
-	for k, v in pairs(self:get_akimbo_mappings()) do
+	for k, v in pairs(self.akimbo_mappings) do
 		akimbo_single_map[v] = k
 	end
 		
@@ -72,58 +72,192 @@ function WeaponTweakData:_init_weapons()
 		local based_on_data = based_on_id and self[based_on_id]
 	
 		if type(weap_data) == "table" and weap_data.stats then
-		-- Automatically assign new weapon (sub)categories to custom weapons to avoid stat discrepancies 
-		
-		-- These are needed just in case
-		local category_blacklist = { 
-			["car9"] = true,
-			["ak5s"] = true, 			
-			["scar16"] = true, 
-		}
-		local selection_index_blacklist = {} 
+			-- Automatically assign new weapon (sub)categories to custom weapons to avoid stat discrepancies 
+			
+			-- These are needed just in case
+			local category_blacklist = { 
+				["car9"] = true,
+				["ak5s"] = true, 			
+				["scar16"] = true, 
+			}
+			local selection_index_blacklist = {} 
 
-		if based_on_id then
-			if not category_blacklist[weap_id] then
-				weap_data.categories = clone(based_on_data.categories)
-			end
-			
-			if not selection_index_blacklist[weap_id] then
-				weap_data.selection_index = based_on_data.selection_index
-			end
-			
-			if based_on_data.use_shotgun_reload then
-				weap_data.use_shotgun_reload = true
-			end
-		end
-		
-		local cat_map = table.list_to_set(weap_data.categories)
-		local dmg_mul = based_on_data and based_on_data.stats_modifiers and based_on_data.stats_modifiers.damage or weap_data.stats_modifiers and  weap_data.stats_modifiers.damage or 0
-		
-		local is_primary = weap_data.use_data and weap_data.use_data.selection_index == 2
-		local is_secondary = weap_data.use_data and weap_data.use_data.selection_index == 1
-		local is_underbarrel = not is_primary and not is_secondary
-		local has_bipod = weap_data.timers and weap_data.timers.deploy_bipod
+			if based_on_id then
+				if not category_blacklist[weap_id] then
+					weap_data.categories = clone(based_on_data.categories)
+				end
 				
-		-- Some weapon-specific checks, would rather handle them in this function
-		local is_browning_mg = based_on_id == "ranc_heavy_machine_gun" or weap_id == "ranc_heavy_machine_gun"
-		local is_deagle = based_on_id == "deagle" or weap_id == "deagle"
-		local is_judge = based_on_id == "judge" or weap_id == "judge"
-		local is_hailstorm = based_on_id == "hailstorm" or weap_id == "hailstorm"
-		
-		--catch-all stat setups
-		if cat_map.assault_rifle and not is_browning_mg then
-			weap_data.stats.suppression = cat_map.dmr and 6 or 11
-			weap_data.stats.alert_size = cat_map.dmr and 18 or 17
-			weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
-			weap_data.steelsight_move_speed_mul = 0.5
+				if not selection_index_blacklist[weap_id] then
+					weap_data.selection_index = based_on_data.selection_index
+				end
+				
+				if based_on_data.use_shotgun_reload then
+					weap_data.use_shotgun_reload = true
+				end
+			end
+			
+			local cat_map = table.list_to_set(weap_data.categories)
+			local dmg_mul = based_on_data and based_on_data.stats_modifiers and based_on_data.stats_modifiers.damage or weap_data.stats_modifiers and  weap_data.stats_modifiers.damage or 0
+			
+			local is_primary = weap_data.use_data and weap_data.use_data.selection_index == 2
+			local is_secondary = weap_data.use_data and weap_data.use_data.selection_index == 1
+			local is_underbarrel = not is_primary and not is_secondary
+			local has_bipod = weap_data.timers and weap_data.timers.deploy_bipod
+					
+			-- Some weapon-specific checks, would rather handle them in this function
+			local is_browning_mg = based_on_id == "ranc_heavy_machine_gun" or weap_id == "ranc_heavy_machine_gun"
+			local is_deagle = based_on_id == "deagle" or weap_id == "deagle"
+			local is_judge = based_on_id == "judge" or weap_id == "judge"
+			local is_hailstorm = based_on_id == "hailstorm" or weap_id == "hailstorm"
+			
+			--catch-all stat setups
+			if cat_map.assault_rifle and not is_browning_mg then
+				weap_data.stats.suppression = cat_map.dmr and 6 or 11
+				weap_data.stats.alert_size = cat_map.dmr and 18 or 17
+				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
+				weap_data.steelsight_move_speed_mul = 0.5
 
-			if cat_map.dmr then
-				weap_data.FIRE_MODE = "single"
+				if cat_map.dmr then
+					weap_data.FIRE_MODE = "single"
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1.5,
+							crouching = 0.8,
+							steelsight = 0.4,
+						},
+						moving = {
+							hipfire = 2,
+							crouching = 1,
+							steelsight = 1.5,
+						}
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1.4,
+							crouching = 1,
+							steelsight = 1,
+						},
+						moving = {
+							hipfire = 1.6,
+							crouching = 1,
+							steelsight = 1.4,
+						}
+					}
+					weap_data.fire_mode_mul = nil
+				else
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1.2,
+							crouching = 0.8,
+							steelsight = 0.6,
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1,
+						}
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 1,
+							steelsight = 0.8,
+						},
+						moving = {
+							hipfire = 1.2,
+							crouching = 1,
+							steelsight = 1,
+						}
+					}				
+					weap_data.fire_mode_mul = {
+						single = {
+							recoil = 1.2,
+							spread = 0.4,
+						},
+						burst = {
+							recoil = 0.8,
+							spread = 1,
+						},
+					}
+				end
+			elseif cat_map.pistol then
+				weap_data.stats.suppression = is_deagle and 7 or 16
+				weap_data.stats.alert_size = is_deagle and 17 or 15
+				weap_data.steelsight_time = is_deagle and steelsight_times.pistol_heavy or steelsight_times.pistol
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not is_deagle and 1.5 or 1
+				weap_data.steelsight_move_speed_mul = is_deagle and 0.6 or 0.7
+				
+				if is_deagle then
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 0.7,
+						},
+						moving = {
+							hipfire = 2,
+							crouching = 1,
+							steelsight = 1.5,
+						}
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1.2,
+							crouching = 1,
+							steelsight = 1,
+						},
+						moving = {
+							hipfire = 1.4,
+							crouching = 1,
+							steelsight = 1.2,
+						}
+					}
+				else
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 1,
+							steelsight = 0.7,
+						},
+						moving = {
+							hipfire = 1.4,
+							crouching = 1,
+							steelsight = 1,
+						}
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 1,
+							steelsight = 0.7,
+						},
+						moving = {
+							hipfire = 1.2,
+							crouching = 1,
+							steelsight = 1,
+						}
+					}
+
+					if weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
+						weap_data.fire_mode_data.fire_rate = 60 / 675
+					end
+				end
+
+			elseif cat_map.revolver then
+				weap_data.stats.suppression = 7
+				weap_data.stats.alert_size = 17
+				weap_data.steelsight_time = steelsight_times.pistol_heavy
+				weap_data.steelsight_move_speed_mul = 0.6
+
+				if weap_data.fire_mode_data and not weap_data.auto then
+					weap_data.fire_mode_data.fire_rate = 60 / 300
+				end
+					
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 1.5,
 						crouching = 0.8,
-						steelsight = 0.4,
+						steelsight = 0.6,
 					},
 					moving = {
 						hipfire = 2,
@@ -133,292 +267,60 @@ function WeaponTweakData:_init_weapons()
 				}
 				weap_data.recoil_multiplier = {
 					standing = {
+						hipfire = 1.2,
+						crouching = 1,
+						steelsight = 1,
+					},
+					moving = {
 						hipfire = 1.4,
 						crouching = 1,
-						steelsight = 1,
-					},
-					moving = {
-						hipfire = 1.6,
-						crouching = 1,
-						steelsight = 1.4,
+						steelsight = 1.2,
 					}
 				}
-				weap_data.fire_mode_mul = nil
-			else
+
+			elseif cat_map.smg then
+				weap_data.stats.suppression = 16
+				weap_data.stats.alert_size = 16
+				weap_data.steelsight_time = steelsight_times.smg
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
+				weap_data.steelsight_move_speed_mul = 0.6
+
 				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1.2,
-						crouching = 0.8,
-						steelsight = 0.6,
-					},
-					moving = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 1,
-					}
-				}
-				weap_data.recoil_multiplier = {
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 0.8,
+						steelsight = 0.7,
 					},
 					moving = {
 						hipfire = 1.2,
 						crouching = 1,
-						steelsight = 1,
+						steelsight = 0.8,
 					}
-				}				
+				}
+				weap_data.recoil_multiplier = nil
+
 				weap_data.fire_mode_mul = {
 					single = {
 						recoil = 1.2,
-						spread = 0.4,
+						spread = 0.6,
 					},
 					burst = {
 						recoil = 0.8,
 						spread = 1,
 					},
 				}
-			end
-		elseif cat_map.pistol then
-			weap_data.stats.suppression = is_deagle and 7 or 16
-			weap_data.stats.alert_size = is_deagle and 17 or 15
-			weap_data.steelsight_time = is_deagle and steelsight_times.pistol_heavy or steelsight_times.pistol
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not is_deagle and 1.5 or 1
-			weap_data.steelsight_move_speed_mul = is_deagle and 0.6 or 0.7
-			
-			if is_deagle then
-				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 0.7,
-					},
-					moving = {
-						hipfire = 2,
-						crouching = 1,
-						steelsight = 1.5,
-					}
-				}
-				weap_data.recoil_multiplier = {
-					standing = {
-						hipfire = 1.2,
-						crouching = 1,
-						steelsight = 1,
-					},
-					moving = {
-						hipfire = 1.4,
-						crouching = 1,
-						steelsight = 1.2,
-					}
-				}
-			else
-				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 1,
-						steelsight = 0.7,
-					},
-					moving = {
-						hipfire = 1.4,
-						crouching = 1,
-						steelsight = 1,
-					}
-				}
-				weap_data.recoil_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 1,
-						steelsight = 0.7,
-					},
-					moving = {
-						hipfire = 1.2,
-						crouching = 1,
-						steelsight = 1,
-					}
-				}
 
-				if weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
-					weap_data.fire_mode_data.fire_rate = 60 / 675
-				end
-			end
+			elseif cat_map.shotgun then
+				weap_data.stats.suppression = 5
+				weap_data.stats.alert_size = 18
+				weap_data.steelsight_time = weap_data.steelsight_time or is_judge and steelsight_times.pistol_heavy or steelsight_times.default
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (24 / 180)
+				weap_data.pickup_mul = weap_data.pickup_mul or ((1 / 8) * 1.336)
+				weap_data.steelsight_move_speed_mul = is_judge and 0.6 or 0.5
+				weap_data.damage_near = weap_data.damage_near or 1000
+				weap_data.damage_far = weap_data.damage_far or 2000
+				weap_data.rays = 8
 
-		elseif cat_map.revolver then
-			weap_data.stats.suppression = 7
-			weap_data.stats.alert_size = 17
-			weap_data.steelsight_time = steelsight_times.pistol_heavy
-			weap_data.steelsight_move_speed_mul = 0.6
-
-			if weap_data.fire_mode_data and not weap_data.auto then
-				weap_data.fire_mode_data.fire_rate = 60 / 300
-			end
-				
-			weap_data.spread_multiplier = {
-				standing = {
-					hipfire = 1.5,
-					crouching = 0.8,
-					steelsight = 0.6,
-				},
-				moving = {
-					hipfire = 2,
-					crouching = 1,
-					steelsight = 1.5,
-				}
-			}
-			weap_data.recoil_multiplier = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 1,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1.2,
-				}
-			}
-
-		elseif cat_map.smg then
-			weap_data.stats.suppression = 16
-			weap_data.stats.alert_size = 16
-			weap_data.steelsight_time = steelsight_times.smg
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
-			weap_data.steelsight_move_speed_mul = 0.6
-
-			weap_data.spread_multiplier = {
-				standing = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 0.7,
-				},
-				moving = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.8,
-				}
-			}
-			weap_data.recoil_multiplier = nil
-
-			weap_data.fire_mode_mul = {
-				single = {
-					recoil = 1.2,
-					spread = 0.6,
-				},
-				burst = {
-					recoil = 0.8,
-					spread = 1,
-				},
-			}
-
-		elseif cat_map.shotgun then
-			weap_data.stats.suppression = 5
-			weap_data.stats.alert_size = 18
-			weap_data.steelsight_time = weap_data.steelsight_time or is_judge and steelsight_times.pistol_heavy or steelsight_times.default
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (24 / 180)
-			weap_data.pickup_mul = weap_data.pickup_mul or ((1 / 8) * 1.336)
-			weap_data.steelsight_move_speed_mul = is_judge and 0.6 or 0.5
-			weap_data.damage_near = weap_data.damage_near or 1000
-			weap_data.damage_far = weap_data.damage_far or 2000
-			weap_data.rays = 8
-
-			weap_data.spread_multiplier = {
-				standing = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 0.8,
-				},
-				moving = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 1,
-				}
-			}
-
-			weap_data.recoil_multiplier = {
-				standing = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 0.8,
-				},
-				moving = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 1,
-				}
-			}
-
-		elseif cat_map.lmg then
-			weap_data.stats.suppression = 3
-			weap_data.stats.alert_size = 18
-			weap_data.steelsight_time = steelsight_times.lmg
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or not has_bipod and (4 / 3) or (7 / 4)
-			weap_data.pickup_mul = weap_data.pickup_mul or (3 / 4)
-			weap_data.steelsight_move_speed_mul = 0.4
-			weap_data.bipod_camera_spin_limit = 40
-			weap_data.bipod_camera_pitch_limit = 15
-			weap_data.bipod_deploy_multiplier = 1
-				
-			if has_bipod then
-				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 0.8,
-						steelsight = 0.8,
-					},
-					moving = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 1.3,
-					},
-					bipod = 0.5,
-				}
-				weap_data.recoil_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 0.8,
-						steelsight = 1,
-					},
-					moving = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 1.3,
-					}
-				}
-			else
-				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1.2,
-						crouching = 0.8,
-						steelsight = 0.7,
-					},
-					moving = {
-						hipfire = 1.4,
-						crouching = 1,
-						steelsight = 1.2,
-					},
-				}
-				weap_data.recoil_multiplier = {
-					standing = {
-						hipfire = 1.2,
-						crouching = 0.8,
-						steelsight = 0.8,
-					},
-					moving = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 1.3,
-					}
-				}
-			end
-		elseif cat_map.minigun then
-			weap_data.stats.suppression = 4
-			weap_data.stats.alert_size = 18
-			weap_data.steelsight_time = steelsight_times.lmg
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.25
-			weap_data.pickup_mul = weap_data.pickup_mul or 0
-			weap_data.steelsight_move_speed_mul = 0.4
-
-			if not is_hailstorm then
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 1,
@@ -426,220 +328,332 @@ function WeaponTweakData:_init_weapons()
 						steelsight = 0.8,
 					},
 					moving = {
-						hipfire = 1.4,
+						hipfire = 1.2,
 						crouching = 1,
-						steelsight = 1.2,
-					},
+						steelsight = 1,
+					}
 				}
+
 				weap_data.recoil_multiplier = {
 					standing = {
 						hipfire = 1,
 						crouching = 1,
-						steelsight = 1,
-					},
-					moving = {
-						hipfire = 1.4,
-						crouching = 1,
-						steelsight = 1.2,
-					}
-				}
-			else
-				weap_data.spread_multiplier = {
-					standing = {
-						hipfire = 1.2,
-						crouching = 1,
-						steelsight = 0.7,
-					},
-					moving = {
-						hipfire = 1.5,
-						crouching = 1,
-						steelsight = 1.3,
-					},
-				}
-				weap_data.recoil_multiplier = {
-					standing = {
-						hipfire = 1.2,
-						crouching = 1,
 						steelsight = 0.8,
 					},
 					moving = {
-						hipfire = 1.5,
+						hipfire = 1.2,
 						crouching = 1,
-						steelsight = 1.3,
+						steelsight = 1,
 					}
 				}
-			end
-		elseif cat_map.snp then
-			weap_data.stats.suppression = 4
-			weap_data.stats.alert_size = 20
-			weap_data.steelsight_time = steelsight_times.snp
-			weap_data.steelsight_move_speed_mul = 0.45
 
-			-- Increase Sniper Rifle ammo based on damage
-			local snp_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
-			
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (0.675 + (snp_ammo_mul * 0.25))
-			weap_data.pickup_mul = weap_data.pickup_mul or (1 + (snp_ammo_mul * 0.125))
-			
-			weap_data.spread_multiplier = {
-				standing = {
-					hipfire = 2,
-					crouching = 0.8,
-					steelsight = 0.2,
-				},
-				moving = {
-					hipfire = 4,
-					crouching = 1,
-					steelsight = 2,
-				}
-			}
-			weap_data.recoil_multiplier = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 0.8,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1.2,
-				}
-			}
-		elseif cat_map.bow then
-			weap_data.stats.suppression = 2
-			weap_data.stats.alert_size = 1
-			weap_data.armor_piercing_chance = 1
-			weap_data.reload_speed_multiplier = 2
-			
-			local bow_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
-			
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 + (bow_ammo_mul * 0.25))
-			
-			weap_data.bow_reload_speed_multiplier = nil
-		
-			weap_data.spread_multiplier = nil
-			weap_data.recoil_multiplier = nil
-
-			if weap_data.charge_data and weap_data.charge_data.max_t then
-				weap_data.charge_data.max_t = weap_data.charge_data.max_t * 0.5
-			end
-		elseif cat_map.crossbow then
-			weap_data.stats.suppression = 14
-			weap_data.stats.alert_size = 1
-			weap_data.armor_piercing_chance = 1
-
-			local crossbow_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
-			
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 + (crossbow_ammo_mul * 0.25))
-			
-			weap_data.spread_multiplier = nil
-			weap_data.recoil_multiplier = nil
-		elseif cat_map.grenade_launcher then
-			weap_data.stats.suppression = 2
-			weap_data.stats.alert_size = 18
-			weap_data.pickup_mul = weap_data.pickup_mul or is_primary and 1 / 2.5 or 1 / 5
-			weap_data.damage_near = 1000
-			weap_data.damage_far = 2000
-			weap_data.rays = 12
-			
-			weap_data.explosive_ammo = true
-
-			weap_data.spread_multiplier = {
-				standing = {
-					hipfire = 5,
-					crouching = 1,
-					steelsight = 1,
-				},
-				moving = {
-					hipfire = 10,
-					crouching = 1,
-					steelsight = 5,
-				}
-			}
-			weap_data.recoil_multiplier = {
-				standing = {
-					hipfire = 1.2,
-					crouching = 1,
-					steelsight = 1,
-				},
-				moving = {
-					hipfire = 1.4,
-					crouching = 1,
-					steelsight = 1.2,
-				}
-			}
-		elseif cat_map.flamethrower then
-			weap_data.stats.suppression = 2
-			weap_data.stats.alert_size = 11
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.5
-			weap_data.pickup_mul = weap_data.pickup_mul or 0
-
-			weap_data.spread_multiplier = nil
-			weap_data.recoil_multiplier = nil
-		elseif cat_map.saw then
-			weap_data.stats.suppression = 7
-			weap_data.stats.alert_size = 18
-			weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
-			weap_data.armor_piercing_chance = 1
-			weap_data.hit_alert_size_increase = -9
-
-			weap_data.spread_multiplier = nil
-			weap_data.recoil_multiplier = {
-				standing = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 0.7,
-				},
-				moving = {
-					hipfire = 1,
-					crouching = 1,
-					steelsight = 1,
-				}
-			}
-		elseif is_browning_mg then -- Yes, I had to bullshit it like this
-			weap_data.stats.suppression = 3
-			weap_data.stats.alert_size = 20
-
-			weap_data.spread_multiplier = nil
-			weap_data.recoil_multiplier = nil
-		end
-
-		local is_akimbo = cat_map.akimbo
-		
-		if is_akimbo then
-			local single_weapon_data = self[akimbo_single_map[weap_id]] or self[weap_id:sub(3)]	
-			
-			if single_weapon_data then	
-				local akimbo_reload = weap_data.timers.reload_empty
-				local single_reload = single_weapon_data.timers.reload_empty
-		
-				weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
-				weap_data.stats = clone(single_weapon_data.stats)
-				weap_data.stats.suppression = math.max(single_weapon_data.stats.suppression - 4, 0)
-				weap_data.stats.concealment = weap_data.stats.concealment - 4
-				weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (2 / 3)
-				
-				weap_data.total_ammo_mul = nil
-				weap_data.pickup_mul = nil
-				
-				weap_data.steelsight_time = steelsight_times.default
-				weap_data.steelsight_move_speed_mul = 0.6
-
-				if not weap_data.rays then
+			elseif cat_map.lmg then
+				weap_data.stats.suppression = 3
+				weap_data.stats.alert_size = 18
+				weap_data.steelsight_time = steelsight_times.lmg
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not has_bipod and (4 / 3) or (7 / 4)
+				weap_data.pickup_mul = weap_data.pickup_mul or (3 / 4)
+				weap_data.steelsight_move_speed_mul = 0.4
+				weap_data.bipod_camera_spin_limit = 40
+				weap_data.bipod_camera_pitch_limit = 15
+				weap_data.bipod_deploy_multiplier = 1
+					
+				if has_bipod then
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 0.8,
+							steelsight = 0.8,
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1.3,
+						},
+						bipod = 0.5,
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 0.8,
+							steelsight = 1,
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1.3,
+						}
+					}
+				else
 					weap_data.spread_multiplier = {
 						standing = {
 							hipfire = 1.2,
+							crouching = 0.8,
+							steelsight = 0.7,
+						},
+						moving = {
+							hipfire = 1.4,
+							crouching = 1,
+							steelsight = 1.2,
+						},
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1.2,
+							crouching = 0.8,
+							steelsight = 0.8,
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1.3,
+						}
+					}
+				end
+			elseif cat_map.minigun then
+				weap_data.stats.suppression = 4
+				weap_data.stats.alert_size = 18
+				weap_data.steelsight_time = steelsight_times.lmg
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.25
+				weap_data.pickup_mul = weap_data.pickup_mul or 0
+				weap_data.steelsight_move_speed_mul = 0.4
+
+				if not is_hailstorm then
+					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1,
 							crouching = 1,
 							steelsight = 0.8,
 						},
 						moving = {
 							hipfire = 1.4,
 							crouching = 1,
-							steelsight = 1.4,
+							steelsight = 1.2,
+						},
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1,
+							crouching = 1,
+							steelsight = 1,
+						},
+						moving = {
+							hipfire = 1.4,
+							crouching = 1,
+							steelsight = 1.2,
 						}
 					}
 				else
 					weap_data.spread_multiplier = {
+						standing = {
+							hipfire = 1.2,
+							crouching = 1,
+							steelsight = 0.7,
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1.3,
+						},
+					}
+					weap_data.recoil_multiplier = {
+						standing = {
+							hipfire = 1.2,
+							crouching = 1,
+							steelsight = 0.8,
+						},
+						moving = {
+							hipfire = 1.5,
+							crouching = 1,
+							steelsight = 1.3,
+						}
+					}
+				end
+			elseif cat_map.snp then
+				weap_data.stats.suppression = 4
+				weap_data.stats.alert_size = 20
+				weap_data.steelsight_time = steelsight_times.snp
+				weap_data.steelsight_move_speed_mul = 0.45
+
+				-- Increase Sniper Rifle ammo based on damage
+				local snp_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
+				
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (0.675 + (snp_ammo_mul * 0.25))
+				weap_data.pickup_mul = weap_data.pickup_mul or (1 + (snp_ammo_mul * 0.125))
+				
+				weap_data.spread_multiplier = {
+					standing = {
+						hipfire = 2,
+						crouching = 0.8,
+						steelsight = 0.2,
+					},
+					moving = {
+						hipfire = 4,
+						crouching = 1,
+						steelsight = 2,
+					}
+				}
+				weap_data.recoil_multiplier = {
+					standing = {
+						hipfire = 1.2,
+						crouching = 1,
+						steelsight = 0.8,
+					},
+					moving = {
+						hipfire = 1.4,
+						crouching = 1,
+						steelsight = 1.2,
+					}
+				}
+			elseif cat_map.bow then
+				weap_data.stats.suppression = 2
+				weap_data.stats.alert_size = 1
+				weap_data.armor_piercing_chance = 1
+				weap_data.reload_speed_multiplier = 2
+				
+				local bow_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
+				
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 + (bow_ammo_mul * 0.25))
+				
+				weap_data.bow_reload_speed_multiplier = nil
+			
+				weap_data.spread_multiplier = nil
+				weap_data.recoil_multiplier = nil
+
+				if weap_data.charge_data and weap_data.charge_data.max_t then
+					weap_data.charge_data.max_t = weap_data.charge_data.max_t * 0.5
+				end
+			elseif cat_map.crossbow then
+				weap_data.stats.suppression = 14
+				weap_data.stats.alert_size = 1
+				weap_data.armor_piercing_chance = 1
+
+				local crossbow_ammo_mul = math.clamp(math.max(dmg_mul - 2, 0), 0, 4)
+				
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 + (crossbow_ammo_mul * 0.25))
+				
+				weap_data.spread_multiplier = nil
+				weap_data.recoil_multiplier = nil
+			elseif cat_map.grenade_launcher then
+				weap_data.stats.suppression = 2
+				weap_data.stats.alert_size = 18
+				weap_data.pickup_mul = weap_data.pickup_mul or is_primary and 1 / 2.5 or 1 / 5
+				weap_data.damage_near = 1000
+				weap_data.damage_far = 2000
+				weap_data.rays = 12
+				
+				weap_data.explosive_ammo = true
+
+				weap_data.spread_multiplier = {
+					standing = {
+						hipfire = 5,
+						crouching = 1,
+						steelsight = 1,
+					},
+					moving = {
+						hipfire = 10,
+						crouching = 1,
+						steelsight = 5,
+					}
+				}
+				weap_data.recoil_multiplier = {
+					standing = {
+						hipfire = 1.2,
+						crouching = 1,
+						steelsight = 1,
+					},
+					moving = {
+						hipfire = 1.4,
+						crouching = 1,
+						steelsight = 1.2,
+					}
+				}
+			elseif cat_map.flamethrower then
+				weap_data.stats.suppression = 2
+				weap_data.stats.alert_size = 11
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.5
+				weap_data.pickup_mul = weap_data.pickup_mul or 0
+
+				weap_data.spread_multiplier = nil
+				weap_data.recoil_multiplier = nil
+			elseif cat_map.saw then
+				weap_data.stats.suppression = 7
+				weap_data.stats.alert_size = 18
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
+				weap_data.armor_piercing_chance = 1
+				weap_data.hit_alert_size_increase = -9
+
+				weap_data.spread_multiplier = nil
+				weap_data.recoil_multiplier = {
+					standing = {
+						hipfire = 1,
+						crouching = 1,
+						steelsight = 0.7,
+					},
+					moving = {
+						hipfire = 1,
+						crouching = 1,
+						steelsight = 1,
+					}
+				}
+			elseif is_browning_mg then -- Yes, I had to bullshit it like this
+				weap_data.stats.suppression = 3
+				weap_data.stats.alert_size = 20
+
+				weap_data.spread_multiplier = nil
+				weap_data.recoil_multiplier = nil
+			end
+
+			local is_akimbo = cat_map.akimbo
+			
+			if is_akimbo then
+				local single_weapon_data = self[akimbo_single_map[weap_id]] or self[weap_id:sub(3)]	
+				
+				if single_weapon_data then	
+					local akimbo_reload = weap_data.timers.reload_empty
+					local single_reload = single_weapon_data.timers.reload_empty
+			
+					weap_data.CLIP_AMMO_MAX = single_weapon_data.CLIP_AMMO_MAX * 2
+					weap_data.stats = clone(single_weapon_data.stats)
+					weap_data.stats.suppression = math.max(single_weapon_data.stats.suppression - 4, 0)
+					weap_data.stats.concealment = weap_data.stats.concealment - 4
+					weap_data.reload_speed_multiplier = (akimbo_reload / single_reload) * (2 / 3)
+					
+					weap_data.total_ammo_mul = nil
+					weap_data.pickup_mul = nil
+					
+					weap_data.steelsight_time = steelsight_times.default
+					weap_data.steelsight_move_speed_mul = 0.6
+
+					if not weap_data.rays then
+						weap_data.spread_multiplier = {
+							standing = {
+								hipfire = 1.2,
+								crouching = 1,
+								steelsight = 0.8,
+							},
+							moving = {
+								hipfire = 1.4,
+								crouching = 1,
+								steelsight = 1.4,
+							}
+						}
+					else
+						weap_data.spread_multiplier = {
+							standing = {
+								hipfire = 1,
+								crouching = 1,
+								steelsight = 1,
+							},
+							moving = {
+								hipfire = 1.2,
+								crouching = 1,
+								steelsight = 1.2,
+							}
+						}				
+					end
+					
+					weap_data.recoil_multiplier = {
 						standing = {
 							hipfire = 1,
 							crouching = 1,
@@ -650,215 +664,201 @@ function WeaponTweakData:_init_weapons()
 							crouching = 1,
 							steelsight = 1.2,
 						}
-					}				
-				end
-				
-				weap_data.recoil_multiplier = {
-					standing = {
-						hipfire = 1,
-						crouching = 1,
-						steelsight = 1,
-					},
-					moving = {
-						hipfire = 1.2,
-						crouching = 1,
-						steelsight = 1.2,
 					}
-				}
 
-				if weap_data.fire_mode_data then
-					weap_data.fire_mode_data.fire_rate = weap_data.CAN_TOGGLE_FIREMODE and single_weapon_data.fire_mode_data.fire_rate or 60 / math.round((60 / single_weapon_data.fire_mode_data.fire_rate) * (2 / 3), 25)
+					if weap_data.fire_mode_data then
+						weap_data.fire_mode_data.fire_rate = weap_data.CAN_TOGGLE_FIREMODE and single_weapon_data.fire_mode_data.fire_rate or 60 / math.round((60 / single_weapon_data.fire_mode_data.fire_rate) * (2 / 3), 25)
+					end
 				end
 			end
-		end
 
-		-- Automatically adjust custom weapon damage
-		if not is_akimbo then
-			if weap_data.custom then
-				local damage_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
-				local damage = math.min(weap_data.stats.damage, #self.stats.damage) * damage_modifier
-				
-				local is_shotgun = cat_map.shotgun
-				
-				if is_shotgun then
-					damage = math.sqrt(damage) * 4
-					damage = math.floor(damage / 5) * 5
-				end	
-				
-				damage = math.round(damage / 2.5, 2)
-				damage = math.round(damage / damage_modifier)
-				
-				weap_data.stats.damage = damage
-			end
-		end
-
-		weap_data.stats.alert_size = math.clamp(weap_data.stats.alert_size, 1, #self.stats.alert_size)
-		weap_data.stats.zoom = 1
-		weap_data.stats.reload = 11
-		weap_data.panic_suppression_chance = 0.2
-		weap_data.sprint_exit_time = weap_data.sprint_exit_time or 0.4
-		weap_data.steelsight_time = weap_data.steelsight_time or steelsight_times.default
-		weap_data.steelsight_move_speed_mul = weap_data.steelsight_move_speed_mul or 0.5
-		weap_data.penetration_damage_mul = {
-			surface = 0.5,
-			enemy = 0.75,
-			armor = 0.75,
-		}
-		weap_data.damage_falloff = nil
-		weap_data.fire_mode_mul = weap_data.fire_mode_mul or nil
-
-		if weap_data.damage_melee and weap_data.damage_melee_effect_mul then
-			weap_data.damage_melee = 1
-			weap_data.damage_melee_effect_mul = 1
-		end
-
-		if weap_data.kick then
-			if is_browning_mg then
-				weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }		
-			
-			elseif cat_map.lmg then
-				weap_data.kick.standing = { -0.2, 0.8, -0.8, 1.4 }
-
-			elseif is_hailstorm then
-				weap_data.kick.standing = { 0.4, 0.6, -0.8, 0.8 }
-
-			elseif cat_map.minigun then
-				weap_data.kick.standing = { -0.1, 0.4, -0.3, 0.4 }
-
-			elseif cat_map.smg then
-				weap_data.kick.standing = is_akimbo and { 1.4, 1.2, -1, 1 } or { 0.6, 0.8, -1.2, 1.2 }
-
-			elseif cat_map.assault_rifle then
-				weap_data.kick.standing = is_akimbo and { 1.4, 1.2, -1, 1 } or { 0.8, 1, -1, 1 }
-
-			elseif is_deagle or cat_map.revolver or cat_map.shotgun or cat_map.grenade_launcher then
-				weap_data.kick.standing = is_akimbo and { 4, 3, -0.6, 0.6 } or { 2.8, 3, -0.5, 0.5 }
-
-			elseif cat_map.snp then
-				weap_data.kick.standing = { 3, 4, -0.1, 0.1 }
-
-			elseif cat_map.saw then
-				weap_data.kick.standing = { 1, -1, -1, 1 }
-
-			elseif cat_map.bow or cat_map.crossbow then
-				weap_data.kick.standing = { -0.2, 0.4, -1, 1 }
-
-			elseif cat_map.flamethrower then
-				weap_data.kick.standing = { 0, 0, 0, 0 }
+			-- Automatically adjust custom weapon damage
+			if not is_akimbo then
+				if weap_data.custom then
+					local damage_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
+					local damage = math.min(weap_data.stats.damage, #self.stats.damage) * damage_modifier
 					
-			else -- Pistols
-				weap_data.kick.standing =  is_akimbo and { 2, 1.6, -0.6, 0.6 } or { 1.2, 1.8, -0.5, 0.5 }
-				
-			end
-
-			weap_data.kick.crouching = clone(weap_data.kick.standing)
-			weap_data.kick.steelsight = clone(weap_data.kick.standing)
-		end
-
-		local default_burst_cooldown = 0.25
-
-		if weap_data.fire_mode_data then
-			if weap_data.auto and  weap_data.fire_mode_data.fire_rate then
-				weap_data.auto = { fire_rate = weap_data.fire_mode_data.fire_rate }
-			end
-
-			if weap_data.fire_mode_data.burst_cooldown then
-				weap_data.fire_mode_data.burst_cooldown = default_burst_cooldown
-			end
-		end
-
-		-- Set spread values
-		if weap_data.spread then
-			weap_data.spread.bipod = 69 -- Make sure bipod spread is defined
-			
-			for i, v in pairs(weap_data.spread) do
-				weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or 2.5
-			end
-		end
-		
-		-- Set total damage (translates to total ammo)
-		weap_data.total_damage = 360 * (weap_data.total_ammo_mul or 1)
-
-		if is_akimbo then
-			weap_data.total_damage = weap_data.total_damage * 1.25
-		end
-
-		-- Modify total damage based on weapon slot
-		if is_primary then -- Primaries
-			weap_data.total_damage = weap_data.total_damage
-		elseif is_secondary then -- Secondaries 
-			weap_data.total_damage = weap_data.total_damage / 2
-		else -- Underbarrels etc.
-			weap_data.total_damage = weap_data.total_damage / 3
-		end
-
-		local burst_only = weap_data.FIRE_MODE == "burst" and not table.contains(weap_data.fire_mode_data.toggable, "auto")
-		local burst_count = weap_data.BURST_COUNT or 3
-
-		-- Higher total ammo for burst-only weapons
-		if burst_only then
-			local total_damage_mul = 1 + (burst_count * 0.125)
-			weap_data.total_damage = weap_data.total_damage * total_damage_mul
-		end
-
-		if weap_data.can_shoot_through_wall and not cat_map.snp then
-			weap_data.total_damage = weap_data.total_damage / 2
-		end
-
-		local factory_id = self.tweak_data.upgrades and self.tweak_data.upgrades.definitions[weap_id] and self.tweak_data.upgrades.definitions[weap_id].factory_id
-		local default_blueprint = self.tweak_data.weapon and self.tweak_data.weapon.factory and self.tweak_data.weapon.factory[factory_id] and self.tweak_data.weapon.factory[factory_id].default_blueprint
-		
-		if default_blueprint then	
-			for _, part_id in ipairs(default_blueprint) do
-				local part = self.tweak_data.weapon.factory.parts and self.tweak_data.weapon.factory.parts[part_id]
-				
-				if part and part.type == "underbarrel" then
-					weap_data.has_underbarrel = true			
+					local is_shotgun = cat_map.shotgun
 					
-					break
+					if is_shotgun then
+						damage = math.sqrt(damage) * 4
+						damage = math.floor(damage / 5) * 5
+					end	
+					
+					damage = math.round(damage / 2.5, 2)
+					damage = math.round(damage / damage_modifier)
+					
+					weap_data.stats.damage = damage
 				end
 			end
-		end
-		
-		if weap_data.has_underbarrel then
-			weap_data.total_damage = weap_data.total_damage / 2
-		end
 
-		-- Set pickup damage
-		weap_data.pickup_damage = 16 * (weap_data.pickup_mul or 1)
+			weap_data.stats.alert_size = math.clamp(weap_data.stats.alert_size, 1, #self.stats.alert_size)
+			weap_data.stats.zoom = 1
+			weap_data.stats.reload = 11
+			weap_data.panic_suppression_chance = 0.2
+			weap_data.sprint_exit_time = weap_data.sprint_exit_time or 0.4
+			weap_data.steelsight_time = weap_data.steelsight_time or steelsight_times.default
+			weap_data.steelsight_move_speed_mul = weap_data.steelsight_move_speed_mul or 0.5
+			weap_data.penetration_damage_mul = {
+				surface = 0.5,
+				enemy = 0.75,
+				armor = 0.75,
+			}
+			weap_data.damage_falloff = nil
+			weap_data.fire_mode_mul = weap_data.fire_mode_mul or nil
 
-		-- Higher pickup for burst-only weapons
-		if burst_only then
-			local total_damage_mul = 1 + (burst_count - 1) * 0.125
-			weap_data.pickup_damage = weap_data.pickup_damage * total_damage_mul
-		end
+			if weap_data.damage_melee and weap_data.damage_melee_effect_mul then
+				weap_data.damage_melee = 1
+				weap_data.damage_melee_effect_mul = 1
+			end
 
-		-- AP weapons that aren't Sniper Rifles get reduced ammo
-		if weap_data.can_shoot_through_wall and not cat_map.snp then
-			weap_data.pickup_damage = weap_data.pickup_damage / 2
-		end
+			if weap_data.kick then
+				if is_browning_mg then
+					weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }		
+				
+				elseif cat_map.lmg then
+					weap_data.kick.standing = { -0.2, 0.8, -0.8, 1.4 }
 
-		local weap_dmg = self.stats.damage[math.min(weap_data.stats.damage, #self.stats.damage)] * (weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1)
-		local clip_dmg = weap_data.CLIP_AMMO_MAX * weap_dmg
+				elseif is_hailstorm then
+					weap_data.kick.standing = { 0.4, 0.6, -0.8, 0.8 }
 
-		if weap_data.AMMO_MAX then
-			weap_data.NR_CLIPS_MAX = math.max(1, math.round(weap_data.total_damage / clip_dmg)) -- Round total ammo to magazine capacity
-			
-			if not cat_map.grenade_launcher then
-				if weap_data.CLIP_AMMO_MAX <= 2 then
-					weap_data.NR_CLIPS_MAX = math.round(weap_data.NR_CLIPS_MAX, 4)
+				elseif cat_map.minigun then
+					weap_data.kick.standing = { -0.1, 0.4, -0.3, 0.4 }
+
+				elseif cat_map.smg then
+					weap_data.kick.standing = is_akimbo and { 1.4, 1.2, -1, 1 } or { 0.6, 0.8, -1.2, 1.2 }
+
+				elseif cat_map.assault_rifle then
+					weap_data.kick.standing = is_akimbo and { 1.4, 1.2, -1, 1 } or { 0.8, 1, -1, 1 }
+
+				elseif is_deagle or cat_map.revolver or cat_map.shotgun or cat_map.grenade_launcher then
+					weap_data.kick.standing = is_akimbo and { 4, 3, -0.6, 0.6 } or { 2.8, 3, -0.5, 0.5 }
+
+				elseif cat_map.snp then
+					weap_data.kick.standing = { 3, 4, -0.1, 0.1 }
+
+				elseif cat_map.saw then
+					weap_data.kick.standing = { 1, -1, -1, 1 }
+
+				elseif cat_map.bow or cat_map.crossbow then
+					weap_data.kick.standing = { -0.2, 0.4, -1, 1 }
+
+				elseif cat_map.flamethrower then
+					weap_data.kick.standing = { 0, 0, 0, 0 }
+						
+				else -- Pistols
+					weap_data.kick.standing =  is_akimbo and { 2, 1.6, -0.6, 0.6 } or { 1.2, 1.8, -0.5, 0.5 }
+					
+				end
+
+				weap_data.kick.crouching = clone(weap_data.kick.standing)
+				weap_data.kick.steelsight = clone(weap_data.kick.standing)
+			end
+
+			local default_burst_cooldown = 0.25
+
+			if weap_data.fire_mode_data then
+				if weap_data.auto and  weap_data.fire_mode_data.fire_rate then
+					weap_data.auto = { fire_rate = weap_data.fire_mode_data.fire_rate }
+				end
+
+				if weap_data.fire_mode_data.burst_cooldown then
+					weap_data.fire_mode_data.burst_cooldown = default_burst_cooldown
+				end
+			end
+
+			-- Set spread values
+			if weap_data.spread then
+				weap_data.spread.bipod = 69 -- Make sure bipod spread is defined
+				
+				for i, v in pairs(weap_data.spread) do
+					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or 2.5
 				end
 			end
 			
-			weap_data.AMMO_MAX = weap_data.CLIP_AMMO_MAX * weap_data.NR_CLIPS_MAX
-		end
+			-- Set total damage (translates to total ammo)
+			weap_data.total_damage = 360 * (weap_data.total_ammo_mul or 1)
 
-		if weap_data.AMMO_PICKUP and weap_data.AMMO_PICKUP[2] > 0 then
-			local pickup_dmg_max = weap_data.pickup_damage
-			local pickup_dmg_min = pickup_dmg_max / 2
+			if is_akimbo then
+				weap_data.total_damage = weap_data.total_damage * 1.25
+			end
 
-			weap_data.AMMO_PICKUP = { math.round(math.floor(pickup_dmg_min / weap_dmg * 100) / 100, 0.05), math.round(math.floor(pickup_dmg_max / weap_dmg * 100) / 100, 0.05) }
-		end
+			-- Modify total damage based on weapon slot
+			if is_primary then -- Primaries
+				weap_data.total_damage = weap_data.total_damage
+			elseif is_secondary then -- Secondaries 
+				weap_data.total_damage = weap_data.total_damage / 2
+			else -- Underbarrels etc.
+				weap_data.total_damage = weap_data.total_damage / 3
+			end
+
+			local burst_only = weap_data.FIRE_MODE == "burst" and not table.contains(weap_data.fire_mode_data.toggable, "auto")
+			local burst_count = weap_data.BURST_COUNT or 3
+
+			-- Higher total ammo for burst-only weapons
+			if burst_only then
+				local total_damage_mul = 1 + (burst_count * 0.125)
+				weap_data.total_damage = weap_data.total_damage * total_damage_mul
+			end
+
+			if weap_data.can_shoot_through_wall and not cat_map.snp then
+				weap_data.total_damage = weap_data.total_damage / 2
+			end
+
+			local factory_id = self.tweak_data.upgrades and self.tweak_data.upgrades.definitions[weap_id] and self.tweak_data.upgrades.definitions[weap_id].factory_id
+			local default_blueprint = self.tweak_data.weapon and self.tweak_data.weapon.factory and self.tweak_data.weapon.factory[factory_id] and self.tweak_data.weapon.factory[factory_id].default_blueprint
+			
+			if default_blueprint then	
+				for _, part_id in ipairs(default_blueprint) do
+					local part = self.tweak_data.weapon.factory.parts and self.tweak_data.weapon.factory.parts[part_id]
+					
+					if part and part.type == "underbarrel" then
+						weap_data.has_underbarrel = true			
+						
+						break
+					end
+				end
+			end
+			
+			if weap_data.has_underbarrel then
+				weap_data.total_damage = weap_data.total_damage / 2
+			end
+
+			-- Set pickup damage
+			weap_data.pickup_damage = 16 * (weap_data.pickup_mul or 1)
+
+			-- Higher pickup for burst-only weapons
+			if burst_only then
+				local total_damage_mul = 1 + (burst_count - 1) * 0.125
+				weap_data.pickup_damage = weap_data.pickup_damage * total_damage_mul
+			end
+
+			-- AP weapons that aren't Sniper Rifles get reduced ammo
+			if weap_data.can_shoot_through_wall and not cat_map.snp then
+				weap_data.pickup_damage = weap_data.pickup_damage / 2
+			end
+
+			local weap_dmg = self.stats.damage[math.min(weap_data.stats.damage, #self.stats.damage)] * (weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1)
+			local clip_dmg = weap_data.CLIP_AMMO_MAX * weap_dmg
+
+			if weap_data.AMMO_MAX then
+				weap_data.NR_CLIPS_MAX = math.max(1, math.round(weap_data.total_damage / clip_dmg)) -- Round total ammo to magazine capacity
+				
+				if not cat_map.grenade_launcher then
+					if weap_data.CLIP_AMMO_MAX <= 2 then
+						weap_data.NR_CLIPS_MAX = math.round(weap_data.NR_CLIPS_MAX, 4)
+					end
+				end
+				
+				weap_data.AMMO_MAX = weap_data.CLIP_AMMO_MAX * weap_data.NR_CLIPS_MAX
+			end
+
+			if weap_data.AMMO_PICKUP and weap_data.AMMO_PICKUP[2] > 0 then
+				local pickup_dmg_max = weap_data.pickup_damage
+				local pickup_dmg_min = pickup_dmg_max / 2
+
+				weap_data.AMMO_PICKUP = { math.round(math.floor(pickup_dmg_min / weap_dmg * 100) / 100, 0.05), math.round(math.floor(pickup_dmg_max / weap_dmg * 100) / 100, 0.05) }
+			end
 		end
 	end
 end
@@ -875,23 +875,33 @@ WeaponTweakData.akimbo_whitelist = {
 	["x_chinchilla"] = true,
 	["x_g18c"] = true,
 	["x_judge"] = true,
+	["x_sr2"] = true,
+	["x_mp5"] = true,
+	["x_mac10"] = true,
+	["x_baka"] = true,
+	["x_akmsu"] = true,
+	["x_olympic"] = true,
+	["x_model3"] = true,
 }
 
 function WeaponTweakData:_wipe_akimbo()
-	local single_akimbo_map = {}
-
-	for k, v in pairs(self:get_akimbo_mappings()) do
-		single_akimbo_map[k] = v
-	end
-
 	for weap_id, weap_data in pairs(self) do
 		if type(weap_data) == "table" then
-			local single_id = weap_data.custom and weap_data.based_on or weap_id
-			local akimbo_id = single_akimbo_map[single_id] or single_id:sub(3)
-
-			if not self.akimbo_whitelist[akimbo_id] then
-				if akimbo_id.use_data then
-					akimbo_id.use_data.selection_index = 4
+			local akimbo_id = self.akimbo_mappings[weap_id]
+			local akimbo_data = akimbo_id and self[akimbo_id]
+	
+			-- Wipe custom akimbos first
+			if weap_data and weap_data.custom and weap_data.categories and table.contains(weap_data.categories, "akimbo") then
+				if weap_data.use_data then
+					weap_data.use_data.selection_index = 4
+				end
+			end				
+			
+			if akimbo_data then
+				if not self.akimbo_whitelist[akimbo_id] then
+					if akimbo_data.use_data then
+						akimbo_data.use_data.selection_index = 4
+					end
 				end
 			end
 		end
@@ -906,6 +916,19 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.trip_mines.delay = 0.1
 	self.trip_mines.damage = 360
 
+	-- Starbreeze didn't update the akimbo mappings for some of the Mcshay weapons, because of course they didn't.
+	-- Update this table with any other weapons that might have the same issue
+	local missing_akimbos = {
+		sko12 = "x_sko12",
+		korth = "x_korth",
+	}
+	
+	self.akimbo_mappings = self:get_akimbo_mappings()
+	
+	for k, v in pairs(missing_akimbos) do
+		self.akimbo_mappings[k] = v
+	end
+	
 	-- spray pattern tables
 	local spray_tables = {
 		sg_auto = {
@@ -2749,50 +2772,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ranc_heavy_machine_gun.fire_mode_data.fire_rate = 60 / 400	
 	self.ranc_heavy_machine_gun.stats_modifiers = { damage = 2 }
 	
-	-- removed shit
-	self.x_sko12.use_data.selection_index = 4
-	self.x_korth.use_data.selection_index = 4
-	self.x_basset.use_data.selection_index = 4
-	self.x_rota.use_data.selection_index = 4
-	self.x_coal.use_data.selection_index = 4
-	self.x_cobray.use_data.selection_index = 4
-	self.x_erma.use_data.selection_index = 4
-	self.x_hajk.use_data.selection_index = 4
-	self.x_m45.use_data.selection_index = 4
-	self.x_m1928.use_data.selection_index = 4
-	self.x_mp7.use_data.selection_index = 4
-	self.x_mp9.use_data.selection_index = 4
-	self.x_polymer.use_data.selection_index = 4
-	self.x_schakal.use_data.selection_index = 4
-	self.x_scorpion.use_data.selection_index = 4
-	self.x_sterling.use_data.selection_index = 4
-	self.x_tec9.use_data.selection_index = 4
-	self.x_uzi.use_data.selection_index = 4
-	self.x_2006m.use_data.selection_index = 4
-	self.x_breech.use_data.selection_index = 4
-	self.x_c96.use_data.selection_index = 4
-	self.x_hs2000.use_data.selection_index = 4
-	self.x_p226.use_data.selection_index = 4
-	self.x_pl14.use_data.selection_index = 4
-	self.x_ppk.use_data.selection_index = 4
-	self.x_rage.use_data.selection_index = 4
-	self.x_sparrow.use_data.selection_index = 4
-	self.x_maxim9.use_data.selection_index = 4
-	self.x_shrew.use_data.selection_index = 4
-	self.x_beer.use_data.selection_index = 4
-	self.x_stech.use_data.selection_index = 4
-	self.x_holt.use_data.selection_index = 4
-	self.x_m1911.use_data.selection_index = 4
-	self.x_type54.use_data.selection_index = 4
-	self.x_legacy.use_data.selection_index = 4
-	self.x_p90.use_data.selection_index = 4
-	self.x_vityaz.use_data.selection_index = 4
-	self.x_type54.use_data.selection_index = 4
-	self.x_pm9.use_data.selection_index = 4
-	self.x_shepheard.use_data.selection_index = 4
-	
 	self:_init_weapons()
-	--self:_wipe_akimbo()
+	self:_wipe_akimbo()
 end)
 
 
