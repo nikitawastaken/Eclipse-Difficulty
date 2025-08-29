@@ -216,6 +216,11 @@ return {
 	},
 	-- disable vanilla's swat van randomizer
 	[102080] = disabled,
+	-- don't disable neighbour swat vans
+	[101850] = disabled,
+	[101852] = disabled,
+	[101853] = disabled,
+	[101854] = disabled,
 	-- disable vanilla's reinforce points
 	[100218] = disabled,
 	[101635] = disabled,
