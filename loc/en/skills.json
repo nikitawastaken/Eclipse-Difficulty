@@ -76,7 +76,7 @@
 	"menu_powder_keg": "Powder Keg",
 	"menu_powder_keg_desc": "BASIC: ##$basic##\nThe blast radius of your individual Grenades, Grenade Launchers and Rocket Launchers is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour individual Grenades, Grenade Launchers and Rocket Launchers have their damage falloff within the blast radius reduced by ##$multipro##.",
 	"menu_carpet_bombing": "Carpet Bombing",
-	"menu_carpet_bombing_desc": "BASIC: ##$basic##\nExplosions caused by your individual Grenades, Grenade Launchers and Rocket Launchers now release a cluster of ##$multibasic## small grenades.\n\nEach grenade has a ##$multibasic2## blast radius and deals ##$multibasic3## of the main grenade's damage.\n\nACE: ##$pro##\nCluster grenades now ignite enemies within their blast radius, causing them to take ##$multipro## burn damage per second for ##$multipro2## seconds.\n\nCluster grenades now explode on impact.",
+	"menu_carpet_bombing_desc": "BASIC: ##$basic##\nExplosions caused by your individual Grenades, Grenade Launchers and Rocket Launchers release a cluster of ##$multibasic## small grenades.\n\nEach grenade has a ##$multibasic2## blast radius and deals ##$multibasic3## of the main grenade's damage.\n\nACE: ##$pro##\nCluster grenades now ignite enemies within their blast radius, causing them to take ##$multipro## burn damage per second for ##$multipro2## seconds.\n\nCluster grenades now explode on impact.",
 	"menu_combat_engineering_beta": "Combat Engineer",
 	"st_menu_technician_auto": "Assault",
 	"menu_steady_grip_beta_desc": "BASIC: ##$basic##\nYour weapons gain ##$multibasic## stability.\n\nACE: ##$pro##\nYour moving recoil penalty is decreased by ##$multipro##.",

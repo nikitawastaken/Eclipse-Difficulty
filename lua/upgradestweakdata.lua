@@ -2137,6 +2137,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 
 	-- misc
+	self.values.carry.throw_distance_multiplier[1] = 1.25
 	self.values.player.crouch_speed_multiplier[1] = 1.1
 	self.values.player.run_speed_multiplier[1] = 1.1
 	self.values.player.regain_throwable_from_ammo = {
