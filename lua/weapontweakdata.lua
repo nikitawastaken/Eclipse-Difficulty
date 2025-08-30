@@ -891,23 +891,9 @@ function WeaponTweakData:_wipe_akimbo()
 	
 	for weap_id, weap_data in pairs(self) do
 		if type(weap_data) == "table" then
-			if not has_category(weap_data, "saw") then
-				local akimbo_id = self.akimbo_mappings[weap_id]
-				local akimbo_data = akimbo_id and self[akimbo_id]
-				
-				-- Wipe custom akimbos first
-				if weap_data and weap_data.custom and has_category(weap_data, "akimbo") then
-					if weap_data.use_data then
-						weap_data.use_data.selection_index = 4
-					end
-				end				
-				
-				if akimbo_data then
-					if not self.akimbo_whitelist[akimbo_id] then
-						if akimbo_data.use_data then
-							akimbo_data.use_data.selection_index = 4
-						end
-					end
+			if has_category(weap_data, "akimbo") and not self.akimbo_whitelist[weap_id] then
+				if weap_data.use_data then
+					weap_data.use_data.selection_index = 4
 				end
 			end
 		end
