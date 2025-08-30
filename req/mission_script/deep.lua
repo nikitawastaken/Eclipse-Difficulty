@@ -69,11 +69,11 @@ local ambush_bulldozers = {
 	green_bulldozer,
 	black_bulldozer,
 }
-local ambush_bulldozers_eclipse = { 
-	[green_bulldozer] = 3, 
-	[black_bulldozer] = 3, 
-	[elite_ben_bulldozer] = 2, 
-	[elite_skull_bulldozer] = 2, 
+local ambush_bulldozers_eclipse = {
+	[green_bulldozer] = 3,
+	[black_bulldozer] = 3,
+	[elite_ben_bulldozer] = 2,
+	[elite_skull_bulldozer] = 2,
 }
 local ambush_bulldozer_enemy = {
 	enemy = is_eclipse and ambush_bulldozers_eclipse or ambush_bulldozers,
@@ -85,7 +85,7 @@ local door_ambush_dozer_chance = {
 }
 return {
 	-- Disable crappy vanilla reinforce
-	[104207] = disable,  
+	[104207] = disable,
 	[104208] = disable,
 	[104210] = disable,
 	[100109] = {
@@ -113,7 +113,7 @@ return {
 		},
 	},
 	-- Adjust the frankly unhinged scripted Dozer spam at the escape (the ASS way)
-	[104222] = filter_disable,  -- escape ambush spawn filters
+	[104222] = filter_disable, -- escape ambush spawn filters
 	[104211] = filter_disable,
 	[105001] = filter_disable,
 	[104212] = {
@@ -126,7 +126,7 @@ return {
 			{ id = 104220, remove = true },
 		},
 	},
-	[105003] = {  -- "random dozer mayham", now controls spawning all ambush dozers instead of only one at the zipline
+	[105003] = { -- "random dozer mayham", now controls spawning all ambush dozers instead of only one at the zipline
 		values = {
 			amount = ambush_dozer_amount,
 		},
@@ -139,7 +139,7 @@ return {
 		},
 	},
 	-- Door ambush dozers
-	[102314] = filter_disable,  
+	[102314] = filter_disable,
 	[104514] = filter_disable,
 	[104515] = filter_disable,
 	[104516] = filters_hard_above,
@@ -183,7 +183,7 @@ return {
 	[101838] = pillar_spawn,
 	[101839] = pillar_spawn,
 	[101780] = tower_spawn,
-	[101781] = tower_spawn,		
+	[101781] = tower_spawn,
 	[101777] = fueling_area_upper_spawn,
 	[101778] = fueling_area_upper_spawn,
 	[102086] = fueling_area_upper_spawn,
@@ -192,7 +192,7 @@ return {
 	[101779] = drill_room_spawn,
 	[104786] = drill_room_spawn,
 	-- Scripted enemies
-	[104213] = ambush_bulldozer_enemy,  
+	[104213] = ambush_bulldozer_enemy,
 	[104214] = ambush_bulldozer_enemy,
 	[104216] = ambush_bulldozer_enemy,
 	[104218] = ambush_bulldozer_enemy,
@@ -203,7 +203,7 @@ return {
 	[104519] = ambush_bulldozer_enemy,
 	[104518] = ambush_bulldozer_enemy,
 	[104517] = ambush_bulldozer_enemy,
-	[104205] = bellmead_enemy,  -- scripted swats 
+	[104205] = bellmead_enemy, -- scripted swats
 	[104223] = bellmead_enemy,
 	[104224] = bellmead_enemy,
 	[104225] = bellmead_enemy,

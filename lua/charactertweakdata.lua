@@ -1124,7 +1124,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.marshal_security = deep_clone(self.security_mcmansion)
 	table.insert(self._enemy_list, "marshal_security")
-	
+
 	self.murky = deep_clone(self.security_mcmansion)
 	self.murky.speech_prefix_p1 = "l5n"
 	self.murky.speech_prefix_p2 = nil
