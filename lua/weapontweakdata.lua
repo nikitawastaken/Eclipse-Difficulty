@@ -885,22 +885,28 @@ WeaponTweakData.akimbo_whitelist = {
 }
 
 function WeaponTweakData:_wipe_akimbo()
+	local function has_category(data, category)
+		return data and data.categories and table.contains(data.categories, category)
+	end
+	
 	for weap_id, weap_data in pairs(self) do
 		if type(weap_data) == "table" then
-			local akimbo_id = self.akimbo_mappings[weap_id]
-			local akimbo_data = akimbo_id and self[akimbo_id]
-	
-			-- Wipe custom akimbos first
-			if weap_data and weap_data.custom and weap_data.categories and table.contains(weap_data.categories, "akimbo") then
-				if weap_data.use_data then
-					weap_data.use_data.selection_index = 4
-				end
-			end				
-			
-			if akimbo_data then
-				if not self.akimbo_whitelist[akimbo_id] then
-					if akimbo_data.use_data then
-						akimbo_data.use_data.selection_index = 4
+			if not has_category(weap_data, "saw") then
+				local akimbo_id = self.akimbo_mappings[weap_id]
+				local akimbo_data = akimbo_id and self[akimbo_id]
+				
+				-- Wipe custom akimbos first
+				if weap_data and weap_data.custom and has_category(weap_data, "akimbo") then
+					if weap_data.use_data then
+						weap_data.use_data.selection_index = 4
+					end
+				end				
+				
+				if akimbo_data then
+					if not self.akimbo_whitelist[akimbo_id] then
+						if akimbo_data.use_data then
+							akimbo_data.use_data.selection_index = 4
+						end
 					end
 				end
 			end
@@ -2762,7 +2768,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.saw_secondary.use_stance = "saw"
 	self.saw_secondary.texture_name = "saw"
 	self.saw_secondary.weapon_hold = "saw"
-	
+
 	-- Midland Ranch Turret
 	self.ranc_heavy_machine_gun.CLIP_AMMO_MAX = 200
 	self.ranc_heavy_machine_gun.stats.damage = 60
