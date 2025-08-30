@@ -265,8 +265,22 @@ function CopActionWalk:update(t)
 				if not self._walk_anim_velocities[pose] then
 					debug_pause_unit(self._unit, "No walk anim velocities for pose:", pose, inspect(self._walk_anim_velocities), self._unit)
 				elseif not self._walk_anim_velocities[pose][self._stance.name] then
-					debug_pause_unit(self._unit, "No walk anim velocities for (pose, stance name):", pose, self._stance.name, inspect(self._walk_anim_velocities), inspect(self._walk_anim_velocities[pose]), self._unit)
-				elseif real_velocity > 530 and self._walk_anim_velocities[pose] and self._walk_anim_velocities[pose][self._stance.name] and self._walk_anim_velocities[pose][self._stance.name].sprint and self._ext_anim.pose == "stand" then
+					debug_pause_unit(
+						self._unit,
+						"No walk anim velocities for (pose, stance name):",
+						pose,
+						self._stance.name,
+						inspect(self._walk_anim_velocities),
+						inspect(self._walk_anim_velocities[pose]),
+						self._unit
+					)
+				elseif
+					real_velocity > 530
+					and self._walk_anim_velocities[pose]
+					and self._walk_anim_velocities[pose][self._stance.name]
+					and self._walk_anim_velocities[pose][self._stance.name].sprint
+					and self._ext_anim.pose == "stand"
+				then
 					variant = "sprint"
 				elseif real_velocity > 250 then
 					variant = "run"
@@ -283,7 +297,19 @@ function CopActionWalk:update(t)
 		end
 
 		if not safe_get_value(self._walk_anim_velocities, pose, self._stance.name, variant, wanted_walk_dir) then
-			debug_pause("Boom...", self._common_data.unit, "pose", pose, "stance", self._stance.name, "variant", variant, "wanted_walk_dir", wanted_walk_dir, self._machine:segment_state(Idstring("base")))
+			debug_pause(
+				"Boom...",
+				self._common_data.unit,
+				"pose",
+				pose,
+				"stance",
+				self._stance.name,
+				"variant",
+				variant,
+				"wanted_walk_dir",
+				wanted_walk_dir,
+				self._machine:segment_state(Idstring("base"))
+			)
 
 			if not safe_get_value(self._walk_anim_velocities, pose, self._stance.name) and self._stance.name == "ntl" then
 				self._stance.name = "cbt"
@@ -362,7 +388,7 @@ function CopActionWalk:_upd_start_anim(t)
 				allow_entry = true,
 				trace = true,
 				tracker_from = self._common_data.nav_tracker,
-				pos_to = new_pos
+				pos_to = new_pos,
 			}
 			local collision = managers.navigation:raycast(ray_params)
 
