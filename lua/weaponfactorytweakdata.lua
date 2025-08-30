@@ -18,11 +18,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		if not part_data.stats then
 			part_data.stats = {}
 		end
-		
+
 		if not part_data.custom_stats then
-			part_data.custom_stats  = {}
+			part_data.custom_stats = {}
 		end
-				
+
 		local zoom_level = part_data.stats.zoom
 		local is_sight = part_data.type and part_data.type == "sight"
 		local is_second_sight = part_data.sub_type == "second_sight"
@@ -31,7 +31,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		local is_scope = is_optic and zoom_level and zoom_level > 3
 		local is_magazine = part_data.type and part_data.type == "magazine"
 		local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
-		
+
 		if not part_data.custom_stats then
 			part_data.custom_stats = {}
 		end
@@ -67,7 +67,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			local zoom_to_spread
 			local zoom_to_concealment
 			local zoom_to_steelsight_speed
-			
+
 			if zoom_level then
 				zoom_to_spread = math.clamp((zoom_level - 3) * 1, 1, 4)
 				zoom_to_concealment = -math.clamp((zoom_level - 3) * 1, 1, 4)
@@ -154,7 +154,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	-- Assault Rifle Mods
 	--make all CAR family weapons use the 30 round magazine by default
 	self.parts.wpn_fps_upg_m4_m_straight_vanilla = deep_clone(self.parts.wpn_fps_m4_uupg_m_std_vanilla)
-	
+
 	self.parts.wpn_fps_upg_m4_m_straight.stats.extra_ammo = -5
 
 	self.parts.wpn_fps_m4_uupg_m_std = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
@@ -193,7 +193,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		third_unit = "units/payday2/weapons/wpn_third_ass_m16_pts/wpn_third_ass_m16_o_handle_sight",
 		a_obj = "a_o",
 	}
-	
+
 	self.parts.wpn_fps_m4_uupg_b_long.stats.damage = 0
 	self.parts.wpn_fps_m4_uupg_b_long.stats.spread = 2
 
@@ -557,7 +557,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.extra_ammo = 0
 	self.parts.wpn_fps_smg_scorpion_m_extended.stats.reload = 1
-	
+
 	self.parts.wpn_fps_smg_scorpion_s_nostock.stats.recoil = -1
 	self.parts.wpn_fps_smg_scorpion_s_nostock.stats.concealment = 1
 
@@ -612,7 +612,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_fmg9_conversion.stats.damage = 0
 	self.parts.wpn_fps_smg_fmg9_conversion.stats.spread = 1
 	self.parts.wpn_fps_smg_fmg9_conversion.stats.recoil = 1
-	
+
 	-- Shotgun Mods
 	self.parts.wpn_fps_sho_saiga_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
@@ -689,18 +689,18 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_snp_scout_conversion.stats.spread = 0
 	self.parts.wpn_fps_snp_scout_conversion.stats.recoil = 0
-	
+
 	self.parts.wpn_fps_snp_victor_sbr_kit.stats.damage = 0
 	self.parts.wpn_fps_snp_victor_sbr_kit.stats.spread = -2
 	self.parts.wpn_fps_snp_victor_sbr_kit.stats.recoil = 2
 	self.parts.wpn_fps_snp_victor_sbr_kit.stats.concealment = 2
-				
+
 	self.parts.wpn_fps_snp_contender_conversion.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_snp_contender_conversion.stats.damage = 0
 	self.parts.wpn_fps_snp_contender_conversion.stats.spread = 0
 	self.parts.wpn_fps_snp_contender_conversion.stats.reload = 3
 	self.parts.wpn_fps_snp_contender_conversion.stats.concealment = -2
-	
+
 	self.parts.wpn_fps_snp_awp_conversion_wildlands.stats.total_ammo_mod = 5
 	self.parts.wpn_fps_snp_awp_conversion_wildlands.stats.damage = -30
 	self.parts.wpn_fps_snp_awp_conversion_wildlands.stats.spread = 0
@@ -714,7 +714,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_snp_awp_conversion_dragonlore.stats.recoil = 0
 	self.parts.wpn_fps_snp_awp_conversion_dragonlore.stats.concealment = 0
 	self.parts.wpn_fps_snp_awp_conversion_dragonlore.custom_stats = { ammo_offset = -5, ammo_pickup_max_mul = 0.75, ammo_pickup_min_mul = 0.75 }
-						
+
 	-- LMG Mods
 	self.parts.wpn_fps_upg_bp_lmg_lionbipod.stats.concealment = -1
 
@@ -962,7 +962,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_ass_g3_b_short.stats.recoil = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.concealment = 2
 	self.parts.wpn_fps_ass_g3_b_short.custom_stats = {}
-	
+
 	-- falcon
 	self.parts.wpn_fps_ass_fal_fg_04.custom_stats = conversion_kit_stats.low_dmr_to_high_dmr.custom_stats
 	self.parts.wpn_fps_ass_fal_fg_04.stats = conversion_kit_stats.low_dmr_to_high_dmr.stats
@@ -1229,7 +1229,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			part_data.stats.alert_size = -12
 		end
 	end
-	
+
 	-- misc
 	table.delete(self.wpn_fps_pis_g26.uses_parts, "wpn_fps_pis_g18c_m_mag_33rnd")
 	table.delete(self.wpn_fps_jowi.uses_parts, "wpn_fps_pis_g18c_m_mag_33rnd")
@@ -1841,8 +1841,8 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 							if mag_capacity and not shotgun_reload then
 								local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
 								local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
-								
-								local reload_speed_stat = 1 - (math.clamp(math.round(capacity_increase / 40, 1), -6, 6) * 0.075) 
+
+								local reload_speed_stat = 1 - (math.clamp(math.round(capacity_increase / 40, 1), -6, 6) * 0.075)
 								local concealment_stat = -math.clamp(math.round(capacity_increase / 40), -5, 5)
 								local spread_stats = capacity_increase >= 200 and -math.clamp(math.round(capacity_increase / 100, 1), 0, 3) or 0
 
