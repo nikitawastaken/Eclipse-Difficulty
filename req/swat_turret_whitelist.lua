@@ -1,7 +1,7 @@
 ---@module SWAT Turret Whitelist
 local M = {
-	corp = true,
 	chca = true,
+	corp = true,
 	des = true,
 	fex = true,
 	friend = true,

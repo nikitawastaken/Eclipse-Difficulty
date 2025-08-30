@@ -12,7 +12,6 @@ local enabled = {
 		enabled = true,
 	},
 }
-
 local window_far_spawn = {
 	values = {
 		interval = 30,

@@ -901,15 +901,17 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		report = true,
 	}
 
-	presets.enemy_chatter.murkywater = {
+	presets.enemy_chatter.security_assault = {
 		aggressive = true,
-		watch_background = true,
 		go_go = true,
 		contact = true,
 		suppress = true,
-		open_fire = true,
 		push = true,
+		stand_by = true,
 		flank = true,
+		open_fire = true,
+		watch_background = true,
+		group_death = true,
 		--for stealth heists
 		idle = true,
 		report = true,
@@ -920,10 +922,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		contact = true,
 		go_go = true,
 	}
-
-	presets.enemy_chatter.fbi_security = deep_clone(presets.enemy_chatter.swat)
-	presets.enemy_chatter.fbi_security.idle = true
-	presets.enemy_chatter.fbi_security.report = true
 
 	return presets
 end
@@ -1088,19 +1086,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_swat.suppression = self.presets.suppression.hard_def
 	self.fbi_swat.no_arrest = false
 
-	self.security_mcmansion = deep_clone(self.swat)
-	self.security_mcmansion.HEALTH_INIT = 10
-	self.security_mcmansion.headshot_dmg_mul = 2.5 -- 40 head health
-	self.security_mcmansion.melee_weapon = "weapon"
-	self.security_mcmansion.speech_prefix_p2 = "n"
-	self.security_mcmansion.silent_priority_shout = "f37"
-	self.security_mcmansion.chatter = self.presets.enemy_chatter.fbi_security
-	self.security_mcmansion.has_alarm_pager = true
-	table.insert(self._enemy_list, "security_mcmansion")
-
-	self.marshal_security = deep_clone(self.security_mcmansion)
-	table.insert(self._enemy_list, "marshal_security")
-
 	self.fbi_heavy_swat.HEALTH_INIT = 20
 	self.fbi_heavy_swat.headshot_dmg_mul = 2.5 -- 80 head health
 	self.fbi_heavy_swat.surrender = self.presets.surrender.hard
@@ -1127,18 +1112,26 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
-	self.murky = deep_clone(self.swat)
-	self.murky.HEALTH_INIT = 12
-	self.murky.headshot_dmg_mul = 3.75 -- 32 head health
+	self.security_mcmansion = deep_clone(self.swat)
+	self.security_mcmansion.HEALTH_INIT = 12
+	self.security_mcmansion.headshot_dmg_mul = 3.75 -- 32 head health
+	self.security_mcmansion.melee_weapon = "weapon"
+	self.security_mcmansion.speech_prefix_p2 = "n"
+	self.security_mcmansion.silent_priority_shout = "f37"
+	self.security_mcmansion.chatter = self.presets.enemy_chatter.security_assault
+	self.security_mcmansion.has_alarm_pager = true
+	table.insert(self._enemy_list, "security_mcmansion")
+
+	self.marshal_security = deep_clone(self.security_mcmansion)
+	table.insert(self._enemy_list, "marshal_security")
+	
+	self.murky = deep_clone(self.security_mcmansion)
 	self.murky.speech_prefix_p1 = "l5n"
 	self.murky.speech_prefix_p2 = nil
 	self.murky.speech_prefix_count = nil
-	self.murky.silent_priority_shout = "f37"
 	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
 	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
-	self.murky.chatter = self.presets.enemy_chatter.murkywater
 	--self.murky.no_arrest = true -- harder stealth
-	self.murky.has_alarm_pager = true
 	self.murky.rescue_hostages = false -- mercs don't rescue hostages
 	self.murky.steal_loot = false
 	table.insert(self._enemy_list, "murky")
@@ -1900,7 +1893,7 @@ function CharacterTweakData:_set_presets()
 	if is_overkill then
 		self:_multiply_all_speeds(1.05, 1.05)
 	elseif is_eclipse then
-		self:_multiply_all_speeds(1.1, 1.1)
+		self:_multiply_all_speeds(1.05, 1.1)
 
 		self.spooc.spooc_sound_events = { detect_stop = nil, detect = "clk_c01x_plu" } -- cloakers whistle to announce their charge
 		self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_elite" -- regular tasers get elite entrance line

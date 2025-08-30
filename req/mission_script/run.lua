@@ -411,8 +411,8 @@ return {
 	},
 	[101339] = {
 		on_executed = {
-			{ id = 410011, delay = 0, delay_rand = 15 }, -- Inkwell Industrial preferred add
-			{ id = 101086, delay = 0, delay_rand = 15 }, -- 9th preferred add (vanilla)
+			{ id = 410011, delay = 0, delay_rand = 20 }, -- Inkwell Industrial preferred add
+			{ id = 101086, delay = 0, delay_rand = 20 }, -- 9th preferred add (vanilla)
 		},
 		reinforce = { -- add Inkwell reinforce
 			{

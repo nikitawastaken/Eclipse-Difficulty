@@ -37,18 +37,18 @@ local unused_sniper_trigger_times = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
 }
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local boat_spawn = {
 	values = {
-		interval = 45,
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -83,17 +83,17 @@ return {
 			{
 				name = "gate",
 				force = 3,
-				position = Vector3(6675, 2850, 1675),
+				position = Vector3(1625, 3575, 950),
 			},
 			{
 				name = "roof1",
 				force = 2,
-				position = Vector3(6675, 2850, 1675),
+				position = Vector3(6675, 2850, 1650),
 			},
 			{
 				name = "roof2",
 				force = 2,
-				position = Vector3(6700, 600, 1650),
+				position = Vector3(6700, 600, 1625),
 			},
 		},
 	},
@@ -139,7 +139,7 @@ return {
 	-- "captain_reached_boat"
 	[100877] = {
 		on_executed = {
-			{ id = 100612, delay = 10, delay_rand = 20 },
+			{ id = 100612, delay = 15, delay_rand = 30 },
 		},
 	},
 	-- tweak choppers amount

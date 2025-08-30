@@ -60,34 +60,44 @@ return {
 	[100115] = {
 		reinforce = {
 			{
+				name = "meetingroom1",
+				force = 2,
+				position = Vector3(3700, 2200, 500)
+			},
+			{
+				name = "meetingroom2",
+				force = 2,
+				position = Vector3(5300, 2000, 900)
+			},
+			{
 				name = "admin",
 				force = 2,
-				position = Vector3(-5600, 1200, -200),
+				position = Vector3(-5600, 1200, -200)
 			},
 			{
 				name = "parkinglot",
 				force = 2,
-				position = Vector3(6000, 5100, 0),
+				position = Vector3(6000, 5100, 0)
 			},
 			{
 				name = "garden",
 				force = 2,
-				position = Vector3(7200, -3900, 10),
+				position = Vector3(7200, -3900, 10)
 			},
 			{
 				name = "labroof1",
 				force = 2,
-				position = Vector3(4000, 400, 670),
+				position = Vector3(4000, 400, 670)
 			},
 			{
 				name = "labroof2",
 				force = 2,
-				position = Vector3(-1200, 2600, 670),
+				position = Vector3(-1200, 2600, 670)
 			},
 			{
 				name = "statue",
 				force = 3,
-				position = Vector3(700, -75, 0),
+				position = Vector3(700, -75, 0)
 			},
 		},
 	},
@@ -100,8 +110,8 @@ return {
 	},
 	[100124] = { -- diff 0.75
 		on_executed = {
-			{ id = 100006, delay = 0 },
-			{ id = 100021, delay = 0 },
+			{ id = 100006, delay = 0, delay_rand = 20 },
+			{ id = 100021, delay = 0, delay_rand = 20 },
 		},
 	},
 	-- Disable the sketchy killzone crap
@@ -162,5 +172,5 @@ return {
 	[102828] = elevator_spawn,
 	[102044] = office_window_spawn,
 	[100694] = office_window_spawn,
-	[102044] = office_window_spawn,
+	[102376] = staircase_spawn,
 }

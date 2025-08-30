@@ -13,6 +13,9 @@ local real_difficulty_index = ({
 })[difficulty] or 2
 local diff_i = real_difficulty_index
 local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
+local pro_job = Global.game_settings and Global.game_settings.one_down
+local is_overkill = diff_i == 5
+local is_eclipse = diff_i == 6
 
 -- This is how you make checking each subtable less verbose, e.g.
 -- local and_chain = foo and foo.bar and foo.bar.baz and foo.bar.baz.stuff
@@ -60,22 +63,20 @@ function M.is_testmap()
 	return level_id == "modders_devmap" or level_id == "Enemy_Spawner"
 end
 
-function M.is_overkill()
-	local is_overkill = diff_i == 5
+function M.is_pro_job()
+	return pro_job
+end
 
+function M.is_overkill()
 	return is_overkill
 end
 
 function M.is_eclipse()
-	local is_eclipse = diff_i == 6
-
 	return is_eclipse
 end
 
-function M.is_pro_job()
-	local pro_job = Global.game_settings and Global.game_settings.one_down
-
-	return pro_job
+function M.is_eclipse_pro()
+	return is_eclipse and is_pro_job
 end
 
 function M.is_solo()

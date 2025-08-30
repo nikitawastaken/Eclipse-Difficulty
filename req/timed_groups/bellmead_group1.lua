@@ -2,7 +2,7 @@ return function(timed_tactics)
 	return {
 		timer_data = {
 			initial_delay = 0,
-			cooldown = { 10, 15 },
+			cooldown = { 15, 20 },
 			diff_scale = { 1, 1.5, 2 },
 		},
 		group_data = {

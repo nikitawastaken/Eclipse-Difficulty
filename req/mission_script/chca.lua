@@ -47,7 +47,7 @@ return {
 		reinforce = {
 			{
 				name = "elevator",
-				force = 2,
+				force = 3,
 				position = Vector3(-9300, 9800, 0),
 			},
 			{

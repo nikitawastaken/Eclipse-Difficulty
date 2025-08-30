@@ -58,9 +58,9 @@ return {
 	},
 	[102154] = { -- 1st timelock done
 		on_executed = {
-			{ id = 100128, delay = 0, delay_rand = 15 }, -- add 40
-			{ id = 100130, delay = 0, delay_rand = 15 }, -- add 41
-			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
+			{ id = 100128, delay = 0, delay_rand = 20 }, -- add 40
+			{ id = 100130, delay = 0, delay_rand = 20 }, -- add 41
+			{ id = 102129, delay = 10, delay_rand = 20 }, -- add 11
 		},
 		reinforce = {
 			{

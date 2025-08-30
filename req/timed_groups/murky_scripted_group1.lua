@@ -3,7 +3,7 @@ return function(timed_tactics)
 		disabled = true,
 		timer_data = {
 			initial_delay = 30,
-			cooldown = { 15, 20 },
+			cooldown = { 15, 25 },
 			diff_scale = { 1, 1, 1 },
 		},
 		group_data = {

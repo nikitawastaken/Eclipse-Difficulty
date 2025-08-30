@@ -60,6 +60,9 @@ GroupAITweakData.group_ai_presets = {
 
 		cs_stealth_init = { 1, 0.5, 0 },
 		fbi_stealth_init = { 1, 0.5, 0 },
+
+		cs_stealth_heavy = 2.5,
+		fbi_stealth_heavy = 2.5,
 	},
 	["skyscraper"] = {
 		cs_cops = 0.5,
@@ -77,8 +80,8 @@ GroupAITweakData.group_ai_presets = {
 		fbi_stealth_init = { 1, 0.5, 0 },
 	},
 	["street"] = {
-		cs_stealth_heavy = 2,
-		fbi_stealth_heavy = 2,
+		cs_stealth_heavy = 2.5,
+		fbi_stealth_heavy = 2.5,
 	},
 }
 
@@ -1700,7 +1703,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_swats = {
-		amount = { 3, 4 },
+		amount = { 3, 3 },
 		spawn = {
 			{
 				freq = 1,
@@ -1740,7 +1743,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_heavies = {
-		amount = { 3, 4 },
+		amount = { 3, 3 },
 		spawn = {
 			{
 				freq = 0.75,
@@ -1844,7 +1847,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.cs_bulldozer = {
-		amount = { 3, 3 },
+		amount = { 1, 3 },
 		spawn = {
 			{
 				freq = 1,
@@ -2262,10 +2265,10 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_bulldozer = {
-		amount = { 3, 4 },
+		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (difficulty_index ^ 2) / 180 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (difficulty_index ^ 2) / 240 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2284,8 +2287,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 300,
-					(difficulty_index ^ 2) / 150,
+					(difficulty_index ^ 2) / 240,
+					(difficulty_index ^ 2) / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2507,7 +2510,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 4, 4 },
 		spawn = {
 			{
-				freq = (difficulty_index ^ 2) / 150 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (difficulty_index ^ 2) / 180 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2581,7 +2584,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 3, 4 },
 		spawn = {
 			{
-				freq = (difficulty_index ^ 2) / 240 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (difficulty_index ^ 2) / 300 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2600,8 +2603,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 300,
-					(difficulty_index ^ 2) / 150,
+					(difficulty_index ^ 2) / 240,
+					(difficulty_index ^ 2) / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -3257,7 +3260,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_cops = { 0.4, 0.2, 0 },
 			cs_swats = { 0.6, 0.8, 1 },
 			cs_heavies = { 0, 0, 0.6 },
-			cs_shield = { 0, 0.1, 0.25 },
+			cs_shield = { 0, 0.15, 0.3 },
 		}
 		self.besiege.recon.groups = {
 			cs_stealth_init = { 1, 0.6, 0.2 },
@@ -3274,7 +3277,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_cops = { 0.4, 0.2, 0 },
 			cs_swats = { 1, 1, 1 },
 			cs_heavies = { 0, 0.2, 0.6 },
-			cs_shield = { 0, 0.1, 0.25 },
+			cs_shield = { 0, 0.15, 0.3 },
 			cs_taser = { 0, 0.1, 0.2 },
 			cs_bulldozer = { 0, 0, 0.15 },
 		}
@@ -3294,9 +3297,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_swats = { 0.6, 0.8, 1 },
 			fbi_heavies = { 0, 0.2, 0.6 },
 			fbi_shield = { 0, 0.15, 0.3 },
-			fbi_taser = { 0, 0.1, 0.25 },
-			fbi_cloaker = { 0, 0.1, 0.25 },
-			fbi_bulldozer = { 0, 0, 0.2 },
+			fbi_taser = { 0, 0.1, 0.2 },
+			fbi_cloaker = { 0, 0.1, 0.2 },
+			fbi_bulldozer = { 0, 0, 0.15 },
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_init = { 1, 0.6, 0.2 },
@@ -3340,14 +3343,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_swats = { 0.9, 0.6, 0 },
 			elite_swats = { 0.3, 0.6, 0.9 },
 			fbi_heavies = { 0, 0.3, 0.9 },
-			fbi_shield = { 0, 0.25, 0.5 },
-			elite_shield = { 0, 0.2, 0.4 },
-			elite_sniper = { 0, 0.2, 0.4 },
-			elite_taser = { 0, 0.2, 0.4 },
-			fbi_cloaker = { 0, 0.2, 0.4 },
-			fbi_bulldozer = { 0, 0, 0.3 },
-			elite_bulldozer = { 0, 0, 0.25 },
-			elite_bulldozer_shield = { 0, 0, 0.2 },
+			fbi_shield = { 0, 0.2, 0.4 },
+			elite_shield = { 0, 0.15, 0.3 },
+			elite_sniper = { 0, 0.15, 0.3 },
+			elite_taser = { 0, 0.15, 0.3 },
+			fbi_cloaker = { 0, 0.15, 0.3 },
+			fbi_bulldozer = { 0, 0, 0.25 },
+			elite_bulldozer = { 0, 0, 0.2 },
+			elite_bulldozer_shield = { 0, 0, 0.15 },
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_init = { 1, 0.6, 0.2 },

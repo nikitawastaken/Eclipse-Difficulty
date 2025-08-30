@@ -358,6 +358,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
 	self.nail.group_ai_settings.difficulty_scaling = { assault_add = 0.15 }
+	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
 
 	self.cane.group_ai_settings = {
 		assault_force_mul = 0.85,
@@ -523,10 +524,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.glace.group_ai_preset = "street"
 
 	self.wwh.group_ai_settings = {
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_add = 0.25,
-		},
+		assault_force_mul = 0.7,
+		recon_force_mul = 0.7,
 	}
 	self.wwh.group_ai_preset = "remote"
 
@@ -642,7 +641,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		first_responders_trade_delay = 60,
 		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.7,
-		assault_delay_mul = 1.25,
 		difficulty_scaling = {
 			assault_delay = 75,
 		},
@@ -673,9 +671,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.trai.group_ai_preset = "heavy_response"
 
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
-		sustain_duration_mul = 1.35,
 		assault_force_mul = 1.3,
-		recon_force_mul = 1.15,
 		recon_interval_variation_mul = 0.5,
 		reenforce_min_interval_mul = 0.5,
 		difficulty_scaling = {
@@ -690,8 +686,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			cloaker = 1,
 		},
 	}
-	self.corp.group_ai_preset = "heavy_response"
 
+	self.deep.group_ai_settings = {
+		spawn_kill_distance = 2000,
+		assault_force_mul = 0.7,
+		assault_delay_mul = 1.25,
+	}
 	self.deep.group_ai_preset = "remote"
 
 	-- Replace DC beat cops with appropriate ones based on the city

@@ -125,9 +125,9 @@ return {
 	-- Delay roof rappels at the start
 	[101660] = {
 		on_executed = {
-			{ id = 101280, delay = 15, delay_rand = 30 }, -- roof 1
-			{ id = 101279, delay = 15, delay_rand = 30 }, -- roof 2
-			{ id = 101272, delay = 15, delay_rand = 30 }, -- roof 3
+			{ id = 101280, delay = 20, delay_rand = 20 }, -- roof 1
+			{ id = 101279, delay = 20, delay_rand = 20 }, -- roof 2
+			{ id = 101272, delay = 20, delay_rand = 20 }, -- roof 3
 		},
 	},
 	-- disable the helicopter turret since it does nothing anyway

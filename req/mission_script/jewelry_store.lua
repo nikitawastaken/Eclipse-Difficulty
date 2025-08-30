@@ -41,7 +41,7 @@ local flank_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 local scripted_swat_heli_spawn = {
-	groups = preferred.no_cops_agents_cloakers_snipers,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
 	[103342] = { -- Allow one more sniper
