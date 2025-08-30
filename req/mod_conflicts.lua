@@ -45,6 +45,12 @@ local M = {
 	"Viewmodel Recoil (No Camera Recoil)",
 	"Keepers",
 	"Monkeepers",
+	"Shake Removal",
+	"No Screen Shake",
+	"no screen shake 2.0",
+	"Reduced Screen Shake",
+	"No Screen Shake Deluxe",
+
 }
 
 return table.list_to_set(M)

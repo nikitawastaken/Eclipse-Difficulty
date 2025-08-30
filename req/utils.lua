@@ -208,6 +208,10 @@ function M.diff_lerp(value_1, value_2)
 	return math.lerp(value_1, value_2, math.min(f, 1))
 end
 
+function M.linear_lerp(x, in_min, in_max, out_min, out_max)
+	return out_min + (x - in_min) * (out_max - out_min) / (in_max - in_min)
+end
+
 function M.table_multiplier(target_table, mul)
 	for i, v in pairs(target_table) do
 		if type(mul) == "table" then

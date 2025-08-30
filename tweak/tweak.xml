@@ -20,4 +20,24 @@
 			<shake name="melee_hit_spooc_var2" spin="(rnd()-0.5) * 0.01" roll="sin(t)" tilt="cos(t)" frequency="1" amplitude="1" attack="0.1" sustain="0" decay="2"/>
 		</target>
 	</tweak>
+
+	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
+		<search>
+			<camera_shakes/>
+		</search>
+		<target mode="attach">
+			<shake name="fire_weapon_recoil" spin="(rnd()-0.5) * 0.01" roll="0" tilt="1/50" frequency="1.0" amplitude="0.5" attack="0.01" sustain="0" decay="0.1"/>
+		</target>
+	</tweak>
+
+	<tweak version="2" name="settings/camera_shakes" extension="camera_shakes">
+		<search>
+			<camera_shakes/>
+			<shake name="fire_weapon_kick"/>
+		</search>
+		<target mode="replace">
+			<shake name="fire_weapon_kick" cy="(1 + (rnd()*1.5))" cx="(rnd()*2-1)*0.25" cz="(rnd()*2-1)*0.25" frequency="20.0" amplitude="1.1" attack="0.025" sustain="0.0" decay="0.1"/>
+			<shake name="fire_weapon_kick_steelsight" cy="(0.33 + (rnd()*0.5))" cx="(rnd()*2-1)*0.025" cz="(rnd()*2-1)*0.025" frequency="20.0" amplitude="1.1" attack="0.025" sustain="0.0" decay="0.075"/>
+		</target>
+	</tweak>
 </tweaks>

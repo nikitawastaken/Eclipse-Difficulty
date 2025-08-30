@@ -1,5 +1,9 @@
 local is_pro_job = Eclipse.utils.is_pro_job()
 
+local function linear_lerp(x, in_min, in_max, out_min, out_max)
+	return Eclipse.utils.linear_lerp(x, in_min, in_max, out_min, out_max)
+end
+
 -- Friendly Fire
 local original_init = PlayerStandard.init
 function PlayerStandard:init(unit)
@@ -397,13 +401,20 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						-- end
 
 						local weap_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
+						local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
 
 						if not params or not params.no_shake then
 							local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
-							local shake_multiplier = shake_tweak_data[self._state_data.in_steelsight and "fire_steelsight_multiplier" or "fire_multiplier"]
+							local recoil_shake = linear_lerp(recoil_multiplier, 0.5, 3, 0.8, 1.2)
+							local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
 
-							self._ext_camera:play_shaker("fire_weapon_rot", 1 * shake_multiplier)
-							self._ext_camera:play_shaker("fire_weapon_kick", 1 * shake_multiplier, 1, 0.15)
+							if self._state_data.in_steelsight then
+								self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
+							else
+								self._ext_camera:play_shaker("fire_weapon_kick", shake_multiplier, 1, 0.15)
+							end
+
+							self._ext_camera:play_shaker("fire_weapon_recoil", shake_multiplier)
 						end
 
 						weap_base:tweak_data_anim_stop("unequip")
@@ -427,8 +438,6 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 								end
 							end
 						end
-
-						local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
 
 						-- Modify starting here
 						local kick_tweak_data = weap_tweak_data.kick[fire_mode] or weap_tweak_data.kick

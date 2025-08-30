@@ -129,17 +129,21 @@
 
 			<group :hook_id="units/">
 				<group :hook_id="beings/player/">
+					<group :hook_id="states/">
+						<post :hook_id="vr/playerstandardvr"/>
+						<post :hook_id="playerstandard"/>
+						<post :hook_id="playertased"/>
+						<post :hook_id="playerturret"/>
+						<post :hook_id="playerdriving"/>
+						<post :hook_id="playerbleedout"/>
+						<post :hook_id="playerbipod"/>
+						<post :hook_id="playercarry"/>
+					</group>
 					<post :hook_id="playerdamage"/>
 					<post :hook_id="playerequipment"/>
 					<post :hook_id="huskplayerdamage"/>
 					<post :hook_id="playercamera"/>
 					<post :hook_id="playermovement"/>
-					<post :hook_id="states/playerstandard"/>
-					<post :hook_id="states/playertased"/>
-					<post :hook_id="states/playerdriving"/>
-					<post :hook_id="states/playerbleedout"/>
-					<post :hook_id="states/playerbipod"/>
-					<post :hook_id="states/playercarry"/>
 					<post :hook_id="huskplayermovement"/>
 					<post :hook_id="playerinventory"/>
 				</group>
@@ -352,7 +356,7 @@
 		<!-- Grenade Case -->
 		<file name="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case.texture"/>
 		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
-		
+
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<group :name="gen_equipment_grenade_case/">
 				<file :name="gen_equipment_grenade_case.cooked_physics"/>
