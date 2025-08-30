@@ -49,7 +49,8 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 
 		if not self._shooting or not self._shooting_weapons or not self._shooting_weapons[akimbo and 2 or 1] then
 			if not self._next_wall_check_t or self._next_wall_check_t < t then
-				local wall_check_obj = tweak_data.vr.custom_wall_check[weap_base.name_id] and weap_base._unit:get_object(Idstring(tweak_data.vr.custom_wall_check[weap_base.name_id])) or weap_base:fire_object()
+				local wall_check_obj = tweak_data.vr.custom_wall_check[weap_base.name_id] and weap_base._unit:get_object(Idstring(tweak_data.vr.custom_wall_check[weap_base.name_id]))
+					or weap_base:fire_object()
 				self._shooting_forbidden = self._unit:hand():check_hand_through_wall(self._unit:hand():get_active_hand_id(akimbo and "akimbo" or "weapon"), wall_check_obj)
 				local weapon_tweak = weap_base:weapon_tweak_data()
 				local delay = weapon_tweak.auto and weapon_tweak.auto.fire_rate or tweak_data.vr.wall_check_delay
@@ -93,15 +94,15 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 			dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "overkill_damage_multiplier", 1)
 		end
 
-        if weap_base:is_category("revolver", "pistol") then
-            if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
-                dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "sidearm_pullout_damage_multiplier", 1)
-            end
+		if weap_base:is_category("revolver", "pistol") then
+			if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_pullout_damage_multiplier") then
+				dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "sidearm_pullout_damage_multiplier", 1)
+			end
 
-            if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") then
-                dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "sidearm_reload_damage_multiplier", 1)
-            end
-        end
+			if managers.player:has_activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier") then
+				dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "sidearm_reload_damage_multiplier", 1)
+			end
+		end
 
 		local health_ratio = self._ext_damage:health_ratio()
 		local primary_category = weap_base:weapon_tweak_data().categories[1]
@@ -139,7 +140,8 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 			end
 		elseif held then
 			if not self._next_wall_check_t or self._next_wall_check_t < t then
-				local wall_check_obj = tweak_data.vr.custom_wall_check[weap_base.name_id] and weap_base._unit:get_object(Idstring(tweak_data.vr.custom_wall_check[weap_base.name_id])) or weap_base:fire_object()
+				local wall_check_obj = tweak_data.vr.custom_wall_check[weap_base.name_id] and weap_base._unit:get_object(Idstring(tweak_data.vr.custom_wall_check[weap_base.name_id]))
+					or weap_base:fire_object()
 				self._shooting_forbidden = self._unit:hand():check_hand_through_wall(self._unit:hand():get_active_hand_id(akimbo and "akimbo" or "weapon"), wall_check_obj)
 				self._next_wall_check_t = t + tweak_data.vr.wall_check_delay
 			end
@@ -163,22 +165,22 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 			local engine = self._unit:hand():get_active_hand_id(akimbo and "akimbo" or "weapon") == 1 and "right" or "left"
 
 			managers.rumble:play("weapon_fire", nil, nil, {
-				engine = engine
+				engine = engine,
 			})
 
 			local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
 			local weap_tweak_data = tweak_data.weapon[weap_base:get_name_id()]
-            local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
-            local recoil_shake = linear_lerp(recoil_multiplier, 0.5, 3, 0.8, 1.2)
-            local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
+			local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
+			local recoil_shake = linear_lerp(recoil_multiplier, 0.5, 3, 0.8, 1.2)
+			local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
 
-            if self._state_data.in_steelsight then
-                self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
-            else
-                self._ext_camera:play_shaker("fire_weapon_kick", shake_multiplier, 1, 0.15)
-            end
+			if self._state_data.in_steelsight then
+				self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
+			else
+				self._ext_camera:play_shaker("fire_weapon_kick", shake_multiplier, 1, 0.15)
+			end
 
-            self._ext_camera:play_shaker("fire_weapon_recoil", 1 * shake_multiplier)
+			self._ext_camera:play_shaker("fire_weapon_recoil", 1 * shake_multiplier)
 
 			self._ext_camera:play_shaker("fire_weapon_rot", 1 * shake_multiplier)
 			self._ext_camera:play_shaker("fire_weapon_kick", 1 * shake_multiplier, 1, 0.15)
@@ -215,7 +217,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 				self._state_data.stacking_dmg_mul = self._state_data.stacking_dmg_mul or {}
 				self._state_data.stacking_dmg_mul[primary_category] = self._state_data.stacking_dmg_mul[primary_category] or {
 					nil,
-					0
+					0,
 				}
 				local stack = self._state_data.stacking_dmg_mul[primary_category]
 

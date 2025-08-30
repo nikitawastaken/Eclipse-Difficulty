@@ -63,19 +63,19 @@ function PlayerTurret:_check_action_primary_attack(t, input)
 			local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
 
 			local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
-            local recoil_shake = linear_lerp(recoil_multiplier, 0.5, 3, 0.8, 1.2)
-            local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
+			local recoil_shake = linear_lerp(recoil_multiplier, 0.5, 3, 0.8, 1.2)
+			local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
 
-            if self._state_data.in_steelsight then
-                self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
-            else
-                self._ext_camera:play_shaker("fire_weapon_kick", shake_multiplier, 1, 0.15)
-            end
+			if self._state_data.in_steelsight then
+				self._ext_camera:play_shaker("fire_weapon_kick_steelsight", shake_multiplier, 1, 0.15)
+			else
+				self._ext_camera:play_shaker("fire_weapon_kick", shake_multiplier, 1, 0.15)
+			end
 
-            self._ext_camera:play_shaker("fire_weapon_recoil", 1 * shake_multiplier)
+			self._ext_camera:play_shaker("fire_weapon_recoil", 1 * shake_multiplier)
 
 			if weapon_tweak_data.kick then
-			    recoil_multiplier = recoil_multiplier * 10
+				recoil_multiplier = recoil_multiplier * 10
 				local up, down, left, right = unpack(weapon_tweak_data.kick[self._state_data.in_steelsight and "steelsight" or self._state_data.ducking and "crouching" or "standing"])
 
 				self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
