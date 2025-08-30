@@ -3,15 +3,19 @@ function FragGrenade:bullet_hit() end
 function FragGrenade:set_thrower_unit(unit, ...)
 	FragGrenade.super.set_thrower_unit(self, unit, ...)
 
-	self._explosive_team_damage_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_team_damage_multiplier") or 1
-	self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
-	self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
-	self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") or nil
-	self._cluster_grenade_type = self._thrower_unit:base():upgrade_value("weapon", "cluster_incendiary_grenades") and "cluster_incendiary" or "cluster"
+	local has_upgrade_value_func = self._thrower_unit:base() and self._thrower_unit:base().upgrade_value and self._thrower_unit:base():upgrade_value()
 
-	self._player_damage = self._player_damage * self._explosive_team_damage_multiplier
-	self._range = self._range * self._explosive_range_multiplier
-	self._curve_pow = self._curve_pow * self._explosive_curve_multiplier
+	if has_upgrade_value_func then
+		self._explosive_team_damage_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_team_damage_multiplier") or 1
+		self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
+		self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
+		self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") or nil
+		self._cluster_grenade_type = self._thrower_unit:base():upgrade_value("weapon", "cluster_incendiary_grenades") and "cluster_incendiary" or "cluster"
+
+		self._player_damage = self._player_damage * self._explosive_team_damage_multiplier
+		self._range = self._range * self._explosive_range_multiplier
+		self._curve_pow = self._curve_pow * self._explosive_curve_multiplier
+	end
 
 	--[[
 	Eclipse:log_chat(
