@@ -15,7 +15,7 @@
 	"menu_deckall_6_desc": "Unlocks an armor bag equipment for you to use. The armor bag can be used to change your armor during a heist.",
 
 	"menu_deck1_1": "Deal Sweetener",
-	"menu_deck1_1_desc": "Trading a hostage for resources will now restore ##$multiperk## health for you and your team.\n\nYou and your crew can now trade for resources regardless of whether you are missing any downs.\n\nNote: Trading perks do not stack.",
+	"menu_deck1_1_desc": "Trading a hostage for resources will now restore ##$multiperk## health for you and your crew.\n\nYou and your crew can now trade for resources regardless of whether you are missing any downs.\n\nNote: Trading perks do not stack.",
 	"menu_deck1_3": "Get in Line",
 	"menu_deck1_3_desc": "You can now have ##$multiperk## additional hostages following you at the same time.\n\nYour shout distance is increased by ##$multiperk2##.",
 	"menu_deck1_5": "Resupply Clause",
