@@ -40,6 +40,15 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 	end
 end
 
+Hooks:PreHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_pre_end_regroup_task", function(self)
+	if not self._task_data.regroup.active then
+		Eclipse:log_chat("Regroup task ended with no regroup task active.")
+		Eclipse:log("Ending regroup with no regroup task active.")
+		Eclipse:log("Forcefully dumping callstack")
+		Eclipse.utils.log_traceback()
+	end
+end)
+
 -- Make hostage count affect hesitation delay
 Hooks:PostHook(GroupAIStateBesiege, "_end_regroup_task", "eclipse_end_regroup_task", function(self)
 	if self._hostage_headcount > 0 then

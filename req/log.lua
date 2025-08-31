@@ -87,17 +87,22 @@ function M.chat_spam(id, msg)
 
 	local t = Application:time()
 	M._spam_buff[id] = msg
-	if not managers.groupai:state():whisper_mode() and (M._spam_t + 2) < t and table.size(M._spam_buff) > 0 then
-		M._spam_t = t
-		local chat_msg = ""
-		for _, buff in pairs(M._spam_buff) do
-			chat_msg = chat_msg .. buff .. M._spam_sep
+	local chat_msg
+	if not managers.groupai:state():whisper_mode() and (M._spam_t + 2) < t then
+		if table.size(M._spam_buff) > 0 then
+			M._spam_t = t
+			chat_msg = ""
+			for _, buff in pairs(M._spam_buff) do
+				chat_msg = chat_msg .. buff .. "\n"
+			end
+		else
+			chat_msg = "All tests passed."
 		end
-		if chat_msg ~= M._spam_prev_msg then
-			Eclipse:log_chat(chat_msg)
-			M.info(chat_msg)
-			M._spam_prev_msg = chat_msg
-		end
+	end
+	if chat_msg and chat_msg ~= M._spam_prev_msg then
+		Eclipse:log_chat(chat_msg .. M._spam_sep)
+		M.info(chat_msg)
+		M._spam_prev_msg = chat_msg
 	end
 end
 

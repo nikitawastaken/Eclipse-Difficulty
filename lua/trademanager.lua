@@ -64,13 +64,7 @@ function TradeManager:is_trade_allowed(_)
 	--#region chat spam
 	local checks = {
 		not_currently_trading_hostage = not self._trading_hostage,
-		not_currently_active_hostage_trade_callback = not self._hostage_trade_clbk,
 		is_recon_not_over = not is_recon_over,
-		really_long_check = ( -- Unlikely to be the issue
-			#self._criminals_to_respawn > 0
-			or (((self._downs_to_restore > 0 or has_trading_no_downs_upgrade) and (not is_first_assault or has_trading_before_first_assault_upgrade)) and self._resource_trades_done < 3)
-		),
-		not_speaker_snd_event = not self._speaker_snd_event,
 		existing_hostage = managers.groupai:state():hostage_count() > 0,
 	}
 
@@ -182,8 +176,6 @@ function TradeManager:update(t, dt)
 		local checks = {
 			no_ongoing_custody_countdown = self._trade_countdown or is_auto_assault_ai_trade,
 			is_trade_allowed = is_trade_allowed,
-			trades_not_pause = self._pause_t <= 0,
-			not_all_cust = not managers.player:_is_all_in_custody(),
 			not_trade_completed = trade_completed,
 		}
 
@@ -194,7 +186,7 @@ function TradeManager:update(t, dt)
 			end
 		end
 		if #fails > 0 then
-			Eclipse.log.chat_spam("trade_manager2", table.concat(fails, " failed\n"))
+			Eclipse.log.chat_spam("trade_manager2", table.concat(fails, ": failed\n") .. ": failed")
 		else
 			Eclipse.log.chat_spam("trade_manager2")
 		end
