@@ -324,9 +324,9 @@ function WeaponTweakData:_init_weapons()
 				weap_data.steelsight_move_speed_mul = is_judge and 0.6 or 0.5
 				weap_data.damage_near = weap_data.damage_near or 1000
 				weap_data.damage_far = weap_data.damage_far or 2000
-				weap_data.rays = 8
 				weap_data.shake.fire_multiplier = is_judge and 2 or 1.5
-
+				weap_data.rays = 8
+				
 				weap_data.spread_multiplier = {
 					standing = {
 						hipfire = 1,
@@ -593,9 +593,9 @@ function WeaponTweakData:_init_weapons()
 				weap_data.stats.suppression = 7
 				weap_data.stats.alert_size = 18
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
+				weap_data.shake.fire_multiplier = 1
 				weap_data.armor_piercing_chance = 1
 				weap_data.hit_alert_size_increase = -9
-				weap_data.shake.fire_multiplier = 1
 
 				weap_data.spread_multiplier = nil
 				weap_data.recoil_multiplier = {
@@ -639,7 +639,8 @@ function WeaponTweakData:_init_weapons()
 
 					weap_data.steelsight_time = steelsight_times.default
 					weap_data.steelsight_move_speed_mul = 0.6
-
+					weap_data.shake.fire_multiplier = (weap_data.shake.fire_multiplier or 1) * 1.25
+	
 					if not weap_data.rays then
 						weap_data.spread_multiplier = {
 							standing = {
