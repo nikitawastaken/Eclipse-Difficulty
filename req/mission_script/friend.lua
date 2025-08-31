@@ -16,6 +16,11 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 return {
 	-- Enter main hall
 	[103594] = {
@@ -34,17 +39,17 @@ return {
 		},
 	},
 	-- Disable Sosa retreat on low health during boss fight
-	[101596] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[101596] = disabled,
 	-- Fallback to make Sosa retreat when house is accessible
 	[102653] = {
 		on_executed = {
 			{ id = 102692, delay = 0 },
 		},
 	},
+	-- Force boat escape
+	[100213] = disabled,
+	[100214] = disabled,
+	[103446] = disabled,
 	-- Add some reinforce around the house
 	[100791] = { -- players entered the mansion
 		reinforce = {
