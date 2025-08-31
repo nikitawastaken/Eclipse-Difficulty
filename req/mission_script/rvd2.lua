@@ -104,16 +104,6 @@ return {
 	[101399] = filter_disable,
 	-- Disable hunt
 	[102176] = disabled,
-	-- e_nl_up_0_75m_dwn_0_25m
-	[100073] = exclude_shields,
-	[100072] = exclude_shields,
-	[100071] = exclude_shields,
-	[100068] = exclude_shields,
-	[100065] = exclude_shields,
-	[100063] = exclude_shields,
-	[100062] = exclude_shields,
-	[100059] = exclude_shields,
-	[100057] = exclude_shields,
 	-- e_nl_over_1_15m
 	[101064] = exclude_shields_dozers,
 	[101063] = exclude_shields_dozers,
