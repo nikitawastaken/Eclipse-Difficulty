@@ -1,7 +1,3 @@
-local function linear_lerp(x, in_min, in_max, out_min, out_max)
-	return Eclipse.utils.linear_lerp(x, in_min, in_max, out_min, out_max)
-end
-
 function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, weap_base, akimbo)
 	local action_wanted = pressed or held or released
 	action_wanted = action_wanted or self:is_shooting_count()

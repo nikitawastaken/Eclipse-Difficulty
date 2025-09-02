@@ -1,7 +1,3 @@
-local function linear_lerp(x, in_min, in_max, out_min, out_max)
-	return Eclipse.utils.linear_lerp(x, in_min, in_max, out_min, out_max)
-end
-
 function PlayerTurret:_check_action_primary_attack(t, input)
 	local new_action = nil
 	local weap_base = self._turret_unit:base()

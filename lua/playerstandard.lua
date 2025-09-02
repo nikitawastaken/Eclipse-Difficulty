@@ -1,9 +1,5 @@
 local is_pro_job = Eclipse.utils.is_pro_job()
 
-local function linear_lerp(x, in_min, in_max, out_min, out_max)
-	return Eclipse.utils.linear_lerp(x, in_min, in_max, out_min, out_max)
-end
-
 -- Friendly Fire
 local original_init = PlayerStandard.init
 function PlayerStandard:init(unit)
@@ -405,7 +401,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 
 						if not params or not params.no_shake then
 							local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
-							local recoil_shake = linear_lerp(recoil_multiplier, 0.5, 3, 0.8, 1.2)
+							local recoil_shake = math.map_range(recoil_multiplier, 0.5, 3, 0.8, 1.2)
 							local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
 
 							if self._state_data.in_steelsight then
