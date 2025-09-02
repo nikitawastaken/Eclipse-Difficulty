@@ -1,7 +1,7 @@
 ---@module Aftershock
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
-local so_access = Eclipse.access_filter_presets
+local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3

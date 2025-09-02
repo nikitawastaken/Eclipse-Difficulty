@@ -1,7 +1,7 @@
 ---@module Hoxton Breakout Day 1
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
-local so_access = Eclipse.access_filter_presets
+local so_access = Eclipse.access_filter
 local law = so_access.law
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()

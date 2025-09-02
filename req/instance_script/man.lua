@@ -1,4 +1,4 @@
-local so_access = Eclipse.access_filter_presets
+local so_access = Eclipse.access_filter
 local acrobatic = so_access.acrobatic
 local patches = {
 	so_access_tweak = table.set(100003, 100013),

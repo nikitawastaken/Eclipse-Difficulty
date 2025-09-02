@@ -107,6 +107,7 @@ if not Eclipse then
 
 	Eclipse.utils = Eclipse:require("utils")
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
+	Eclipse.access_filter = Eclipse:require("access_filter_presets")	
 	Eclipse.preferred = Eclipse:require("preferred_groups")
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.log = Eclipse:require("log")
