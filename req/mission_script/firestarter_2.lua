@@ -22,8 +22,8 @@ local cloaker_group = {
 }
 local fbi_with_keycard = {
 	values = {
-        force_pickup = "keycard"
-	}
+		force_pickup = "keycard",
+	},
 }
 return {
 	[107143] = {
@@ -34,7 +34,7 @@ return {
 	},
 	[101871] = reinforce_amount,
 	[105167] = reinforce_amount,
-	-- give keycard to fbi_1 
+	-- give keycard to fbi_1
 	[103085] = fbi_with_keycard,
 	[103092] = fbi_with_keycard,
 	[103097] = fbi_with_keycard,
