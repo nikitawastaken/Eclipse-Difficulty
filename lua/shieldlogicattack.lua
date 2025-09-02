@@ -1,3 +1,9 @@
+local tmp_vec1 = Vector3()
+local tmp_vec2 = Vector3()
+local tmp_vec3 = Vector3()
+local tmp_vec4 = Vector3()
+
+
 -- Only allow positioning when group is fully spawned
 local _chk_request_action_walk_to_optimal_pos_original = ShieldLogicAttack._chk_request_action_walk_to_optimal_pos
 function ShieldLogicAttack._chk_request_action_walk_to_optimal_pos(data, ...)
@@ -5,6 +11,7 @@ function ShieldLogicAttack._chk_request_action_walk_to_optimal_pos(data, ...)
 		_chk_request_action_walk_to_optimal_pos_original(data, ...)
 	end
 end
+
 
 -- Stop walking action upon entering or leaving attack logic
 Hooks:PreHook(ShieldLogicAttack, "enter", "sh_enter", function(data)
@@ -26,7 +33,167 @@ Hooks:PreHook(ShieldLogicAttack, "exit", "sh_exit", function(data)
 	ShieldLogicAttack._cancel_optimal_attempt(data, data.internal_data)
 end)
 
+
 -- Update logic more consistently
 function ShieldLogicAttack.queue_update(data, my_data)
 	CopLogicBase.queue_task(my_data, my_data.update_queue_id, ShieldLogicAttack.queued_update, data, data.t + 0.5, data.important and true)
+end
+
+
+-- Simplify overengineered positioning code and improve positioning movement
+function ShieldLogicAttack._upd_enemy_detection(data)
+	local considered_attention_objs = {}
+	local total_importance = 0
+	local too_close = false
+	local my_data = data.internal_data
+	local close_range = my_data.weapon_range and my_data.weapon_range.close or 500
+	local optimal_range = my_data.weapon_range and my_data.weapon_range.optimal or 1000
+	local far_range = my_data.weapon_range and my_data.weapon_range.far or 2000
+	local threat_pos, threat_dir = tmp_vec1, tmp_vec2
+
+	if data.tactics and data.tactics.ranged_fire then
+		optimal_range = optimal_range * 1.5
+	end
+
+	if data.tactics and data.tactics.charge then
+		close_range = close_range * 0.75
+	end
+
+	CopLogicBase._upd_attention_obj_detection(data, min_reaction, nil)
+	mvector3.set_zero(threat_pos)
+
+	for u_key, attention_obj in pairs(data.detected_attention_objects) do
+		local verified_dt = attention_obj.verified_t and data.t - attention_obj.verified_t or math.huge
+		attention_obj.importance = attention_obj.verified and 1 or math.map_range_clamped(verified_dt, 0, 4, 1, 0)
+		attention_obj.importance = attention_obj.importance * math.map_range_clamped(attention_obj.verified_dis, 0, far_range, 1, 0) ^ 2
+		attention_obj.importance = attention_obj.importance * (attention_obj.settings.weight_mul or 1)
+		attention_obj.reaction = CopLogicSniper._chk_reaction_to_attention_object(data, attention_obj, true)
+		if attention_obj.importance > 0 and attention_obj.reaction > AIAttentionObject.REACT_AIM then
+			total_importance = total_importance + attention_obj.importance
+			mvector3.add_scaled(threat_pos, attention_obj.verified_pos, attention_obj.importance)
+			mvector3.direction(threat_dir, data.m_pos, attention_obj.verified_pos)
+			considered_attention_objs[u_key] = attention_obj
+			if attention_obj.verified_dis < close_range then
+				too_close = true
+			end
+		end
+	end
+
+	if total_importance == 0 or data.unit:movement():chk_action_forbidden("walk") then
+		local new_attention, _, new_reaction = CopLogicIdle._get_priority_attention(data, data.detected_attention_objects, nil)
+		CopLogicBase._set_attention_obj(data, new_attention, new_reaction)
+		CopLogicAttack._chk_exit_attack_logic(data, new_reaction)
+
+		if my_data == data.internal_data then
+			ShieldLogicAttack._upd_aim(data, my_data)
+		end
+
+		return
+	end
+
+	ShieldLogicAttack._cancel_charge(data, my_data)
+
+	mvector3.divide(threat_pos, total_importance)
+	mvector3.set_z(threat_pos, data.m_pos.z)
+	local threat_dis = mvector3.direction(threat_dir, threat_pos, data.m_pos)
+	too_close = too_close or threat_dis < close_range
+
+	if too_close or threat_dis > optimal_range then
+		local factor, flip = 0, false
+		local optimal_dis, optimal_pos = -math.huge, nil
+		local threat_dir_side, test_pos = tmp_vec3, tmp_vec4
+		local pos_reservation = {
+			radius = 60,
+			filter = data.pos_rsrv_id
+		}
+		local ray_params = {
+			allow_entry = true,
+			trace = true,
+			pos_from = data.m_pos
+		}
+
+		mvector3.cross(threat_dir_side, threat_dir, math.UP)
+		while factor <= 1 or not flip do
+			mvector3.lerp(test_pos, threat_dir, threat_dir_side, factor)
+			mvector3.multiply(test_pos, math.lerp(close_range, optimal_range, too_close and 0.5 or 0.25))
+			mvector3.add(test_pos, threat_pos)
+
+			ray_params.pos_to = test_pos
+			if managers.navigation:raycast(ray_params) and data.group and data.group.size > 1 then
+				mvector3.set(test_pos, ray_params.trace[1])
+				mvector3.subtract_scaled(test_pos, threat_dir, 120)
+				managers.navigation:raycast(ray_params)
+			end
+
+			pos_reservation.position = ray_params.trace[1]
+
+			local threat_pos_dis = mvector3.distance(ray_params.trace[1], threat_pos)
+			if threat_pos_dis > optimal_dis and managers.navigation:is_pos_free(pos_reservation) then
+				optimal_dis = threat_pos_dis
+				optimal_pos = ray_params.trace[1]
+				if threat_pos_dis > close_range then
+					break
+				end
+			end
+
+			flip = not flip
+			if flip then
+				factor = factor + 0.1
+			end
+
+			mvector3.negate(threat_dir_side)
+		end
+
+		if optimal_pos then
+			local dis_diff = my_data.optimal_threat_pos and mvector3.distance(my_data.optimal_threat_pos, optimal_pos)
+			if dis_diff and dis_diff < 100 or my_data.walking_to_optimal_pos and optimal_dis < far_range then
+				optimal_pos = nil
+			end
+		end
+
+		if optimal_pos then
+			local brush = Draw:brush(optimal_dis > close_range and Color.green or Color.yellow, 1)
+			brush:sphere(optimal_pos, 50)
+			brush:cylinder(data.m_pos, optimal_pos, 10)
+
+			Draw:brush(Color.red, 1):sphere(threat_pos, 50)
+
+			my_data.optimal_threat_pos = optimal_pos
+			my_data.pathing_to_optimal_pos = true
+			my_data.optimal_path_search_id = tostring(data.key) .. "optimal"
+
+			local reserve_clbk = callback(ShieldLogicAttack, ShieldLogicAttack, "_reserve_pos_step_clbk", { unit_pos = data.m_pos })
+			local reservation = managers.navigation:reserve_pos(nil, nil, optimal_pos, reserve_clbk, 60, data.pos_rsrv_id)
+
+			if reservation then
+				optimal_pos = reservation.position
+			else
+				reservation = {
+					radius = 60,
+					position = mvector3.copy(optimal_pos),
+					filter = data.pos_rsrv_id
+				}
+				managers.navigation:add_pos_reservation(reservation)
+			end
+
+			data.brain:set_pos_rsrv("path", reservation)
+			data.brain:search_for_path(my_data.optimal_path_search_id, optimal_pos)
+		end
+	end
+
+	local attention_dir = tmp_vec1
+	local best_importance, best_attention_obj = -math.huge, nil
+	for _, attention_obj in pairs(considered_attention_objs) do
+		mvector3.direction(attention_dir, attention_obj.m_pos, data.m_pos)
+		local dot_mul = math.map_range(mvector3.dot(attention_dir, threat_dir), -1, 1, 0, 1)
+		local importance = attention_obj.importance * dot_mul
+		if importance > best_importance then
+			best_importance = importance
+			best_attention_obj = attention_obj
+		end
+	end
+
+	CopLogicBase._set_attention_obj(data, best_attention_obj, best_attention_obj.reaction)
+
+	ShieldLogicAttack._upd_aim(data, my_data)
 end
