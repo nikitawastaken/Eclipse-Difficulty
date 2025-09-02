@@ -148,12 +148,6 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 		end
 
 		if optimal_pos then
-			local brush = Draw:brush(optimal_dis > close_range and Color.green or Color.yellow, 1)
-			brush:sphere(optimal_pos, 50)
-			brush:cylinder(data.m_pos, optimal_pos, 10)
-
-			Draw:brush(Color.red, 1):sphere(threat_pos, 50)
-
 			my_data.optimal_threat_pos = optimal_pos
 			my_data.pathing_to_optimal_pos = true
 			my_data.optimal_path_search_id = tostring(data.key) .. "optimal"

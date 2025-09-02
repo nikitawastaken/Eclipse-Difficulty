@@ -1,3 +1,6 @@
+local tmp_vec1 = Vector3()
+local tmp_vec2 = Vector3()
+
 -- Make cops react more aggressively when appropriate (less stare, more shoot)
 local _chk_reaction_to_attention_object_original = CopLogicIdle._chk_reaction_to_attention_object
 function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ...)
@@ -81,7 +84,10 @@ function CopLogicIdle._chk_relocate(data)
 		elseif managers.navigation:raycast({ pos_from = data.m_pos, pos_to = unit_pos }) then
 			-- Nothing
 		elseif objective.cover_unit and data.attention_obj and data.attention_obj.verified and data.attention_obj.reaction >= AIAttentionObject.REACT_AIM then
-			if mvector3.distance_sq(objective.relocated_to or data.m_pos, data.attention_obj.m_pos) > mvector3.distance_sq(unit_pos, data.attention_obj.m_pos) then
+			local my_pos = data.unit:movement():get_walk_to_pos() or data.m_pos
+			local my_dis = mvector3.direction(tmp_vec1, data.attention_obj.m_pos, my_pos)
+			local cover_dis = mvector3.direction(tmp_vec2, data.attention_obj.m_pos, unit_pos)
+			if cover_dis < my_dis and tmp_vec1:dot(tmp_vec2) > 0.975 then
 				return
 			end
 		else
