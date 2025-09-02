@@ -28,6 +28,7 @@ local M = {
 	bex = true, -- sanmartini
 	pex = true, -- bijuana
 	pent = true, -- mmaster
+	kenaz = true, -- ggc
 	firestarter_2 = true, -- fs day 2
 	firestarter_3 = true, -- fs day 3
 	rvd1 = true, -- resdogs1

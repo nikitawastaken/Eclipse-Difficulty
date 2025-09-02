@@ -16,13 +16,19 @@ local cloaker_spawn = {
 	},
 }
 return {
+	[100379] = {
+		ponr = {
+			length = 240,
+			player_mul = { 2, 1.25, 1, 1 },
+		},
+	},
+	[102786] = disabled,
 	-- the BFD is running, start spawning interior snipers
 	[100394] = {
 		on_executed = {
 			{ id = 400034, delay = 30 },
 		},
 	},
-
 	-- Delay enemy spawns
 	[100224] = { -- Combat ON
 		on_executed = {

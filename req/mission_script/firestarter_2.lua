@@ -20,6 +20,11 @@ local cloaker_group = {
 		interval = 90,
 	},
 }
+local fbi_with_keycard = {
+	values = {
+        force_pickup = "keycard"
+	}
+}
 return {
 	[107143] = {
 		ponr = {
@@ -29,6 +34,10 @@ return {
 	},
 	[101871] = reinforce_amount,
 	[105167] = reinforce_amount,
+	-- give keycard to fbi_1 
+	[103085] = fbi_with_keycard,
+	[103092] = fbi_with_keycard,
+	[103097] = fbi_with_keycard,
 	-- Spwnn group delays
 	[101385] = standard_spawn,
 	[105699] = standard_spawn,
