@@ -52,6 +52,9 @@ local boat_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local scripted_swat_van_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
 local filter_easy_normal = {
 	values = Eclipse.utils.set_diff_groups("easy"),
 }
@@ -157,6 +160,9 @@ return {
 	[100615] = chopper_trigger_times,
 	[100616] = chopper_trigger_times,
 	-- slow down a few spawnpoints
+	[400007] = scripted_swat_van_spawn,
+	[400015] = scripted_swat_van_spawn,
+	[400023] = scripted_swat_van_spawn,
 	[100817] = roof_spawn,
 	[101024] = roof_spawn,
 	[101029] = roof_spawn,
