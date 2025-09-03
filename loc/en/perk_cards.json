@@ -41,7 +41,7 @@
 	"menu_deck3_5": "Composite Layer",
 	"menu_deck3_5_desc": "You gain ##$multiperk## more armor.",
 	"menu_deck3_7": "Impact Diffusion",
-	"menu_deck3_7_desc": "Your armor blocks ##$multiperk## of the damage when full.",
+	"menu_deck3_7_desc": "Your armor blocks ##$multiperk## of the damage when fully regenerated.",
 	"menu_deck3_9": "Failsafe Protocol",
 	"menu_deck3_9_desc": "When your armor gets depleted you will be immune to health damage for ##$multiperk## seconds.\n\nThis cannot occur more than once every ##$multiperk2## seconds.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 	"menu_deck4_3_desc": "If you do not lose any armor or health for ##$multiperk## seconds, you gain ##$multiperk2## dodge chance for ##$multiperk3## seconds.",
