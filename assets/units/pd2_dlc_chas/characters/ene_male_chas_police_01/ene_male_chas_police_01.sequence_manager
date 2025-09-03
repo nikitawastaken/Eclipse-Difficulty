@@ -200,7 +200,7 @@
 		<sequence editable_state="true" name="'ranc_ranger'" once="true" triggable="true">		
 			<set_variables 		is_ranc_ranger="1" />
 			
-			<material_config 	name="'units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01'"/>
+			<material_config 	name="'units/pd2_dlc_chas/characters/ene_male_chas_police_01/vars/ene_male_ranc_ranger_01'" synchronous="true" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'badges_chas_police'" once="true" triggable="true">				

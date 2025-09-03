@@ -180,42 +180,42 @@
 
 		<sequence editable_state="true" name="'blackdozer'" once="true" triggable="true">
 			<set_variables 		is_blackdozer="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'" synchronous="true" />
 		</sequence>		
 
 		<sequence editable_state="true" name="'skulldozer'" once="true" triggable="true">
 			<set_variables 		is_skulldozer="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_3'" synchronous="true" />
 		</sequence>		
 
 		<sequence editable_state="true" name="'bendozer'" once="true" triggable="true">
 			<set_variables 		is_bendozer="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_minigun_classic'" synchronous="true" />
 		</sequence>			
 
 		<sequence editable_state="true" name="'medicdozer'" once="true" triggable="true">
 			<set_variables 		is_medicdozer="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_classic'" synchronous="true" />
 		</sequence>			
 
 		<sequence editable_state="true" name="'headless'" once="true" triggable="true">
 			<set_variables 		is_headless="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_4'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_4'" synchronous="true" />
 		</sequence>		
 
 		<sequence editable_state="true" name="'headless_black'" once="true" triggable="true">
 			<set_variables 		is_headless_black="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_2'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'piggydozer'" once="true" triggable="true">
 			<set_variables 		is_piggydozer="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_dozer_piggy'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_dozer_piggy'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'snowman_boss'" once="true" triggable="true">
 			<set_variables 		is_snowman_boss="1" />
-			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_snowman_boss'"/>
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_snowman_boss'" synchronous="true" />
 		</sequence>	
 		
 		<sequence editable_state="true" name="'bulldozer_1'" once="true" triggable="true">	

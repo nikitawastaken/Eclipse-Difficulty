@@ -382,12 +382,12 @@
 		
 		<sequence editable_state="true" name="'security'" once="true" triggable="true">		
 			<set_variables 		is_security="1" />
-			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_1'"/>
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_1'" synchronous="true" />
 		</sequence>			
 
 		<sequence editable_state="true" name="'green_security'" once="true" triggable="true">		
 			<set_variables 		is_green_security="1" />
-			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_4'"/>
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_security_4'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'cop'" once="true" triggable="true">		
@@ -396,7 +396,7 @@
 
 		<sequence editable_state="true" name="'la_cop'" once="true" triggable="true">		
 			<set_variables 		is_la_cop="1" />
-			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_la_cop_1'"/>
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_la_cop_1'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'fbi'" once="true" triggable="true">		
@@ -406,22 +406,22 @@
 		
 		<sequence editable_state="true" name="'prisonguard'" once="true" triggable="true">		
 			<set_variables 		is_prisonguard="1" />
-			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1'"/>
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'bex_security'" once="true" triggable="true">		
 			<set_variables 		is_bex_security="1" />
-			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_bex_security_01'"/>
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_bex_security_01'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'bex_cop'" once="true" triggable="true">		
 			<set_variables 		is_bex_cop="1" />
-			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_policia_01'"/>
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_policia_01'" synchronous="true" />
 		</sequence>	
 
 		<sequence editable_state="true" name="'bex_fbi'" once="true" triggable="true">		
 			<set_variables 		is_bex_fbi="1" />
-			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_policia_agent_01'"/>
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_policia_agent_01'" synchronous="true" />
 		</sequence>	
 		
 		<sequence editable_state="true" name="'badges_security'" once="true" triggable="true">		

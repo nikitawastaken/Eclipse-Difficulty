@@ -70,7 +70,7 @@
 				
 		<sequence editable_state="true" name="'mcmansion_security'" once="true" triggable="true">		
 			<set_variables 		is_mcmansion_security="1" />
-			<material_config 	name="'units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1'"/>
+			<material_config 	name="'units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1'" synchronous="true" />
 		</sequence>
 		
 		<sequence editable_state="false" name="'enable_light'" triggable="false" >

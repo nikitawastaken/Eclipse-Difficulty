@@ -75,7 +75,7 @@
 		</sequence>
 
 		<sequence editable_state="false" name="'marshal_merc'" triggable="false" >
-			<material_config 	name="'units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc'"/>
+			<material_config 	name="'units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc'" synchronous="true" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'marshal_marksman_1'" once="true" triggable="true">

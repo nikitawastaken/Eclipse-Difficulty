@@ -24,12 +24,12 @@
 		
 		<sequence editable_state="true" name="'head_material_var1'" once="true" triggable="true"> 
 			<set_variables 		material_var="1" />
-			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1'" />
+			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1'" synchronous="true" />
 		</sequence>
 
 		<sequence editable_state="true" name="'head_material_var2'" once="true" triggable="true"> 
 			<set_variables 		material_var="2" />
-			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2'" />
+			<material_config 	name="'units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2'" synchronous="true" />
 		</sequence>
 
 		<sequence editable_state="true" name="'set_random_balaclava'" once="true" triggable="true"> 

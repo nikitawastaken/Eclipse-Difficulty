@@ -104,7 +104,7 @@
 		
 		<sequence editable_state="true" name="'city_heavy'" once="true" triggable="true">
 			<set_variables 		is_city_heavy="1" />
-			<material_config 	name="'units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_g36'"/>
+			<material_config 	name="'units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_g36'" synchronous="true" />
 		</sequence>
 				
 		<sequence editable_state="true" name="'fbi_heavy_1'" once="true" triggable="true">
