@@ -12,7 +12,7 @@ local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or 
 local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 
 -- the evil one
-local timelock_normal_variant_1 = (is_eclipse and 270 or 240) + (is_pro_job and 60 or 0)
+local timelock_normal_variant_1 = (is_eclipse and 300 or 240) + (is_pro_job and 60 or 0)
 local timelock_fast_variant_1 = (is_eclipse and 240 or 180) + (is_pro_job and 60 or 0)
 
 -- the lucky one
