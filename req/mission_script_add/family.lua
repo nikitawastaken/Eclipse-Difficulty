@@ -29,7 +29,7 @@ local optsOpenSwatVanDoors_Trigger = {
 		{ guis_id = 1, sequence = "done_car_anim", unit_id = 102017 },
 	},
 	on_executed = {
-		{ id = 400005, delay = 0 },
+		{ id = 400005, delay = 0, delay_rand = 5 },
 	},
 }
 
