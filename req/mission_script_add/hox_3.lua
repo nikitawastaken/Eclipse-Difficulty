@@ -184,7 +184,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400025, "swat_arrive_new_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_3),
 	Eclipse.mission_elements.gen_spawngroup(400026, "swat_group_3", { 400019, 400020, 400021, 400022 }, 0, opts_swat_group),
 	Eclipse.mission_elements.gen_object_editor_trigger(400027, "swat_van_doors_trigger", optsOpenSwatVanDoors_Trigger_3),
-	
+
 	-- swat van 4
 	Eclipse.mission_elements.gen_dummy(400028, "swat_van_spawn_13", Vector3(-1694, 0, -9.738), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400029, "swat_van_spawn_14", Vector3(-1694, -74, -9.738), Rotation(90, 0, 0), optsBesiegeDummy),
@@ -194,7 +194,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400033, "open_swat_doors_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_4),
 	Eclipse.mission_elements.gen_object_editor(400034, "swat_arrive_new_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_4),
 	Eclipse.mission_elements.gen_spawngroup(400035, "swat_group_4", { 400028, 400029, 400030, 400031 }, 0, opts_swat_group),
-	
+
 	-- new vans arrival stuff
 	Eclipse.mission_elements.gen_element_random(400036, "begin_swat_vans", pick_a_swat_van),
 	Eclipse.mission_elements.gen_missionscript(400037, "swat_van_response_1", swat_van_response_variant_1),
