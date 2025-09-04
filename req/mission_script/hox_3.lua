@@ -58,6 +58,7 @@ return {
 	[103524] = {
 		on_executed = {
 			{ id = 400032, delay = 0 },
+			{ id = 400047, delay = 0 },
 		},
 	},
 	-- make the swat van crash into the gate earlier
@@ -76,6 +77,19 @@ return {
 	[100327] = {
 		on_executed = {
 			{ id = 400036, delay = 90, delay_rand = 30 },
+		},
+	},
+	-- send dozers if you kill the FBI man
+	[102099] = {
+		on_executed = {
+			{ id = 400045, delay = 0 },
+			{ id = 400046, delay = 0 },
+		},
+	},
+	[102153] = {
+		on_executed = {
+			{ id = 400045, delay = 0 },
+			{ id = 400046, delay = 0 },
 		},
 	},
 	-- Add new reinforce around the house

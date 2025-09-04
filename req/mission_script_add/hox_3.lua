@@ -1,10 +1,36 @@
 ---@module Hoxton Revenge
 local M = {}
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = is_eclipse and is_pro_job
+local scripted_enemy = Eclipse.scripted_enemy
+
+local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
+local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
+local green_bulldozer = scripted_enemy.bulldozer_1
+local black_bulldozer = scripted_enemy.bulldozer_2
+
+local random_dozers = {
+	green_bulldozer,
+	black_bulldozer,
+}
+local random_elite_dozers = {
+	elite_bulldozer_neil,
+	elite_bulldozer_skull,
+}
 
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
 	enabled = true,
 	spawn_action = "e_sp_armored_truck_1st",
+}
+local optsDozerVan = {
+	enemy_table = random_dozers,
+	enabled = true,
+}
+local optsDozerVan_Eclipse = {
+	enemy_table = is_eclipse_pro and random_elite_dozers or random_dozers,
+	enabled = is_eclipse,
 }
 local optsspawnvanSWATs_1 = {
 	on_executed = {
@@ -150,6 +176,23 @@ local swat_van_response_variant_4 = {
 	on_executed = { { id = 400016, delay = 0 }, { id = 400007, delay = 120, delay_rand = 30 }, { id = 400034, delay = 180, delay_rand = 30 }, { id = 400025, delay = 240, delay_rand = 30 } },
 	enabled = true,
 }
+local optsenable_bulldozers = {
+	enabled = true,
+	elements = {
+		400047,
+	},
+}
+local optsdisable_regular_swats = {
+	enabled = true,
+	toggle = "off",
+	elements = {
+		400032,
+	},
+}
+
+local spawn_dozers = {
+	on_executed = { { id = 400041, delay = 0 }, { id = 400042, delay = 0 }, { id = 400043, delay = 0 }, { id = 400044, delay = 0 }, { id = 400033, delay = 0 } },
+}
 
 M.elements = {
 	-- swat van 1
@@ -201,6 +244,17 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400038, "swat_van_response_2", swat_van_response_variant_2),
 	Eclipse.mission_elements.gen_missionscript(400039, "swat_van_response_3", swat_van_response_variant_3),
 	Eclipse.mission_elements.gen_missionscript(400040, "swat_van_response_4", swat_van_response_variant_4),
+	
+	-- dozer stuff (they killed my fucking wife)
+	Eclipse.mission_elements.gen_dummy(400041, "dozer_1", Vector3(-1694, 0, -9.738), Rotation(90, 0, 0), optsDozerVan_Eclipse),
+	Eclipse.mission_elements.gen_dummy(400042, "dozer_2", Vector3(-1694, -74, -9.738), Rotation(90, 0, 0), optsDozerVan_Eclipse),
+	Eclipse.mission_elements.gen_dummy(400043, "dozer_3", Vector3(-1778, 0, -9.738), Rotation(90, 0, 0), optsDozerVan),
+	Eclipse.mission_elements.gen_dummy(400044, "dozer_4", Vector3(-1778, -74, -9.738), Rotation(90, 0, 0), optsDozerVan),
+	
+	Eclipse.mission_elements.gen_toggleelement(400045, "something_just_happened_send_dozers", optsenable_bulldozers),
+	Eclipse.mission_elements.gen_toggleelement(400046, "something_just_happened_back_off_the_swat", optsdisable_regular_swats),
+	
+	Eclipse.mission_elements.gen_missionscript(400047, "dozer_response", spawn_dozers),
 }
 
 return M
