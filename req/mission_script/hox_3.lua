@@ -54,6 +54,30 @@ return {
 		difficulty_max = 1,
 		difficulty_min = 0.8,
 	},
+	-- replace the turret with spawngroup
+	[103524] = {
+		on_executed = {
+			{ id = 400032, delay = 0 },
+		},
+	},
+	-- make the swat van crash into the gate earlier
+	[103551] = {
+		on_executed = {
+			{ id = 103521, remove = true },
+			{ id = 103522, delay = 5 },
+		},
+	},
+	-- replace vanilla swat van spawn system with new one
+	[100022] = {
+		on_executed = {
+			{ id = 103525, remove = true },
+		},
+	},
+	[100327] = {
+		on_executed = {
+			{ id = 400036, delay = 90, delay_rand = 30 },
+		},
+	},
 	-- Add new reinforce around the house
 	[100109] = {
 		reinforce = {
