@@ -244,16 +244,16 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400038, "swat_van_response_2", swat_van_response_variant_2),
 	Eclipse.mission_elements.gen_missionscript(400039, "swat_van_response_3", swat_van_response_variant_3),
 	Eclipse.mission_elements.gen_missionscript(400040, "swat_van_response_4", swat_van_response_variant_4),
-	
+
 	-- dozer stuff (they killed my fucking wife)
 	Eclipse.mission_elements.gen_dummy(400041, "dozer_1", Vector3(-1694, 0, -9.738), Rotation(90, 0, 0), optsDozerVan_Eclipse),
 	Eclipse.mission_elements.gen_dummy(400042, "dozer_2", Vector3(-1694, -74, -9.738), Rotation(90, 0, 0), optsDozerVan_Eclipse),
 	Eclipse.mission_elements.gen_dummy(400043, "dozer_3", Vector3(-1778, 0, -9.738), Rotation(90, 0, 0), optsDozerVan),
 	Eclipse.mission_elements.gen_dummy(400044, "dozer_4", Vector3(-1778, -74, -9.738), Rotation(90, 0, 0), optsDozerVan),
-	
+
 	Eclipse.mission_elements.gen_toggleelement(400045, "something_just_happened_send_dozers", optsenable_bulldozers),
 	Eclipse.mission_elements.gen_toggleelement(400046, "something_just_happened_back_off_the_swat", optsdisable_regular_swats),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400047, "dozer_response", spawn_dozers),
 }
 
