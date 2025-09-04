@@ -3,7 +3,6 @@ local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
 local tmp_vec4 = Vector3()
 
-
 -- Only allow positioning when group is fully spawned
 local _chk_request_action_walk_to_optimal_pos_original = ShieldLogicAttack._chk_request_action_walk_to_optimal_pos
 function ShieldLogicAttack._chk_request_action_walk_to_optimal_pos(data, ...)
@@ -11,7 +10,6 @@ function ShieldLogicAttack._chk_request_action_walk_to_optimal_pos(data, ...)
 		_chk_request_action_walk_to_optimal_pos_original(data, ...)
 	end
 end
-
 
 -- Stop walking action upon entering or leaving attack logic
 Hooks:PreHook(ShieldLogicAttack, "enter", "sh_enter", function(data)
@@ -33,12 +31,10 @@ Hooks:PreHook(ShieldLogicAttack, "exit", "sh_exit", function(data)
 	ShieldLogicAttack._cancel_optimal_attempt(data, data.internal_data)
 end)
 
-
 -- Update logic more consistently
 function ShieldLogicAttack.queue_update(data, my_data)
 	CopLogicBase.queue_task(my_data, my_data.update_queue_id, ShieldLogicAttack.queued_update, data, data.t + 0.5, data.important and true)
 end
-
 
 -- Improve positioning to be more consistent and leave space for group members
 function ShieldLogicAttack._upd_enemy_detection(data)
@@ -111,12 +107,12 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 		local optimal_dis, optimal_pos = -math.huge, nil
 		local pos_reservation = {
 			radius = 60,
-			filter = data.pos_rsrv_id
+			filter = data.pos_rsrv_id,
 		}
 		local ray_params = {
 			allow_entry = true,
 			trace = true,
-			pos_from = data.m_pos
+			pos_from = data.m_pos,
 		}
 
 		local has_followers = false
