@@ -3,6 +3,7 @@ local tmp_vec2 = Vector3()
 local tmp_vec3 = Vector3()
 local tmp_vec4 = Vector3()
 
+
 -- Only allow positioning when group is fully spawned
 local _chk_request_action_walk_to_optimal_pos_original = ShieldLogicAttack._chk_request_action_walk_to_optimal_pos
 function ShieldLogicAttack._chk_request_action_walk_to_optimal_pos(data, ...)
@@ -10,6 +11,7 @@ function ShieldLogicAttack._chk_request_action_walk_to_optimal_pos(data, ...)
 		_chk_request_action_walk_to_optimal_pos_original(data, ...)
 	end
 end
+
 
 -- Stop walking action upon entering or leaving attack logic
 Hooks:PreHook(ShieldLogicAttack, "enter", "sh_enter", function(data)
@@ -31,18 +33,20 @@ Hooks:PreHook(ShieldLogicAttack, "exit", "sh_exit", function(data)
 	ShieldLogicAttack._cancel_optimal_attempt(data, data.internal_data)
 end)
 
+
 -- Update logic more consistently
 function ShieldLogicAttack.queue_update(data, my_data)
 	CopLogicBase.queue_task(my_data, my_data.update_queue_id, ShieldLogicAttack.queued_update, data, data.t + 0.5, data.important and true)
 end
 
--- Improve positioning code to be more consistent and leave space for group members
+
+-- Improve positioning to be more consistent and leave space for group members
 function ShieldLogicAttack._upd_enemy_detection(data)
 	local my_data = data.internal_data
 	local close_range = my_data.weapon_range and my_data.weapon_range.close or 500
 	local optimal_range = my_data.weapon_range and my_data.weapon_range.optimal or 1000
 	local far_range = my_data.weapon_range and my_data.weapon_range.far or 2000
-	local threat_pos, threat_dir = tmp_vec1, tmp_vec2
+	local threat_pos, threat_dir, threat_dir_side, test_pos = tmp_vec1, tmp_vec2, tmp_vec3, tmp_vec4
 	local attention_objects = {}
 	local total_importance = 0
 	local too_close = false
@@ -60,8 +64,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			attention_obj.reaction = CopLogicSniper._chk_reaction_to_attention_object(data, attention_obj, true)
 			if attention_obj.importance > 0 and attention_obj.reaction > AIAttentionObject.REACT_AIM then
 				total_importance = total_importance + attention_obj.importance
-				mvector3.add_scaled(threat_pos, attention_obj.verified_pos, attention_obj.importance)
-				mvector3.direction(threat_dir, data.m_pos, attention_obj.verified_pos)
+				mvector3.add_scaled(threat_pos, attention_obj.verified and attention_obj.m_pos or attention_obj.verified_pos, attention_obj.importance)
 				attention_objects[u_key] = attention_obj
 				if attention_obj.verified_dis < close_range then
 					too_close = true
@@ -78,7 +81,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			return
 		end
 
-		if new_attention and can_walk then
+		if can_walk and new_attention then
 			my_data.optimal_pos = CopLogicAttack._find_flank_pos(data, my_data, new_attention.nav_tracker)
 		end
 
@@ -91,7 +94,6 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 	mvector3.divide(threat_pos, total_importance)
 	mvector3.set_z(threat_pos, data.m_pos.z)
 	local threat_dis = mvector3.direction(threat_dir, threat_pos, data.m_pos)
-
 	if threat_dis < close_range then
 		too_close = true
 	end
@@ -107,16 +109,26 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 	if too_close or threat_dis > optimal_range then
 		local factor, flip = 0, false
 		local optimal_dis, optimal_pos = -math.huge, nil
-		local threat_dir_side, test_pos = tmp_vec3, tmp_vec4
 		local pos_reservation = {
 			radius = 60,
-			filter = data.pos_rsrv_id,
+			filter = data.pos_rsrv_id
 		}
 		local ray_params = {
 			allow_entry = true,
 			trace = true,
-			pos_from = data.m_pos,
+			pos_from = data.m_pos
 		}
+
+		local has_followers = false
+		if data.group then
+			for _, u_data in pairs(data.group.units) do
+				local other_objective = alive(u_data.unit) and u_data.unit:brain():objective()
+				if other_objective and other_objective.follow_unit == data.unit then
+					has_followers = true
+					break
+				end
+			end
+		end
 
 		mvector3.cross(threat_dir_side, threat_dir, math.UP)
 		while factor <= 1 or not flip do
@@ -125,9 +137,9 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			mvector3.add(test_pos, threat_pos)
 
 			ray_params.pos_to = test_pos
-			if managers.navigation:raycast(ray_params) and data.group and data.group.size > 1 then
+			if managers.navigation:raycast(ray_params) and has_followers then
 				mvector3.set(test_pos, ray_params.trace[1])
-				mvector3.subtract_scaled(test_pos, threat_dir, 120)
+				mvector3.subtract_scaled(test_pos, threat_dir, 150)
 				managers.navigation:raycast(ray_params)
 			end
 
@@ -144,7 +156,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 
 			flip = not flip
 			if flip then
-				factor = factor + 0.1
+				factor = factor + 0.125
 			end
 
 			mvector3.negate(threat_dir_side)
@@ -152,7 +164,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 
 		if optimal_pos and my_data.current_optimal_pos then
 			local old_dis = mvector3.distance(my_data.current_optimal_pos, optimal_pos)
-			if old_dis < 100 then
+			if old_dis < 150 then
 				optimal_pos = nil
 			elseif old_dis > close_range and threat_dis > 300 then
 				ShieldLogicAttack._cancel_optimal_attempt(data, my_data)
@@ -170,11 +182,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			if reservation then
 				optimal_pos = reservation.position
 			else
-				reservation = {
-					radius = 60,
-					position = mvector3.copy(optimal_pos),
-					filter = data.pos_rsrv_id,
-				}
+				reservation = pos_reservation
 				managers.navigation:add_pos_reservation(reservation)
 			end
 
@@ -185,10 +193,12 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 
 	local attention_dir = tmp_vec1
 	local best_importance, best_attention_obj = -math.huge, nil
-	for _, attention_obj in pairs(attention_objects) do
+	for u_key, attention_obj in pairs(attention_objects) do
 		mvector3.direction(attention_dir, attention_obj.m_pos, data.m_pos)
-		local dot_mul = math.map_range(mvector3.dot(attention_dir, threat_dir), -1, 1, 0, 1)
-		local importance = attention_obj.importance * dot_mul
+		local dot = math.map_range(mvector3.dot(attention_dir, threat_dir), -1, 1, 0, 1)
+		local dis = attention_obj.dis < close_range and math.map_range(attention_obj.dis, 0, close_range, 2, 1) or 0
+		local is_current = data.attention_obj and data.attention_obj.u_key == u_key
+		local importance = (dot + dis) * (is_current and 1.01 or 1)
 		if importance > best_importance then
 			best_importance = importance
 			best_attention_obj = attention_obj
