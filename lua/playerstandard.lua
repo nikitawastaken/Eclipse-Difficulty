@@ -724,7 +724,7 @@ function PlayerStandard:_end_action_running(t)
 		local sprint_exit_time = weap_base:weapon_tweak_data().sprint_exit_time or 0.4
 
 		local speed_multiplier = 1
-		--speed_multiplier = speed_multiplier * weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1) 
+		--speed_multiplier = speed_multiplier * weap_base:exit_run_speed_multiplier() * (weap_base:concealment_to_handling() or 1)
 		speed_multiplier = speed_multiplier * managers.player:upgrade_value("player", "sprint_to_fire_multiplier", 1)
 
 		self._end_running_expire_t = t + sprint_exit_time / speed_multiplier

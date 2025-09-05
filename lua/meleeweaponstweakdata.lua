@@ -50,7 +50,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 
 	for id, data in pairs(self.melee_weapons) do
 		data.type = type_map[data.type] or data.type
-		
+
 		local is_blunt = data.stats.weapon_type == "blunt"
 		local is_sharp = data.stats.weapon_type == "sharp"
 		local golden_spoon = id == "spoon_gold"
@@ -60,7 +60,7 @@ Hooks:PostHook(BlackMarketTweakData, "_init_melee_weapons", "eclipse_init_melee_
 		local charge_t = data.stats.charge_time or 0
 		local damage_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0.4 or 1) * (is_sharp and 1.5 or is_blunt and 0.75 or 1)
 		local effect_mul = (golden_spoon and 1 or (data.tase_data or data.dot_data_name) and 0 or 1) * (is_sharp and 0.75 or 1)
-		
+
 		local min, max = get_damage(expire, range, conceal, charge_t)
 		data.stats.min_damage = math.round(min * damage_mul, 0.5)
 		data.stats.max_damage = math.round(max * damage_mul, 0.5)

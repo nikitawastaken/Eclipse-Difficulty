@@ -151,7 +151,7 @@ function NewRaycastWeaponBase:concealment_to_handling()
 	local parts_stats = managers.weapon_factory:get_stats(self._factory_id, self._blueprint)
 
 	local multiplier = 1
-	
+
 	local total_concealment = math.max((base_stats and base_stats.concealment or 0) + (parts_stats and parts_stats.concealment or 0), 0)
 	local concealment_stat_table = tweak_data.weapon.stats and tweak_data.weapon.stats.concealment
 
