@@ -2896,7 +2896,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.spawn_kill_cooldown ~= 1 then
 		Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
 	end
-	
+
 	self.min_grenade_timeout = table_multiplier(self.min_grenade_timeout, level_settings.min_grenade_timeout_mul or 1)
 
 	if level_settings.min_grenade_timeout_mul ~= 1 then

@@ -37,7 +37,7 @@ return {
 			base_delay_rand = 30,
 		},
 	},
-	[104421] = {  -- reenforce, on lighting flare
+	[104421] = { -- reenforce, on lighting flare
 		reinforce = {
 			{
 				name = "pool",
@@ -46,7 +46,7 @@ return {
 			},
 		},
 	},
-	[100006] = {  -- ditto
+	[100006] = { -- ditto
 		reinforce = {
 			{
 				name = "runway",
@@ -55,12 +55,12 @@ return {
 			},
 		},
 	},
-	[100069] = disabled,  
-	[101618] = disabled,  
+	[100069] = disabled,
+	[101618] = disabled,
 	[103415] = disabled,
 	[103421] = disabled,
 	-- Enable the pool heli below Death Wish
-	[104393] = filter_disable,  
+	[104393] = filter_disable,
 	-- Spawn group intervals
 	[100571] = flank_spawn,
 	[100610] = flank_spawn,

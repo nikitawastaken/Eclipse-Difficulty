@@ -11,10 +11,10 @@ local shield_so = {
 				type = "sniper",
 				pos = pos,
 				nav_seg = managers.navigation:get_nav_seg_from_pos(pos),
-				no_retreat = true
+				no_retreat = true,
 			})
 		end)
-	end
+	end,
 }
 local street_spawn = {
 	values = {
@@ -43,8 +43,8 @@ return {
 			{ 51, 76 },
 			{ 52, 134 },
 			{ 81, 166, 167 },
-			{ 127, 129 }
-		}
+			{ 127, 129 },
+		},
 	},
 	[101144] = {
 		ponr = {

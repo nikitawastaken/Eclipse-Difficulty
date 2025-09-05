@@ -666,7 +666,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.only_explosion_and_fire.melee.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
 	presets.hurt_severities.only_explosion_and_fire.poison.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
 
-
 	presets.hurt_severities.no_heavy_hurt = deep_clone(presets.hurt_severities.base)
 	presets.hurt_severities.no_heavy_hurt.bullet.zones = {
 		{
@@ -1286,7 +1285,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_boss.melee_weapon = "taser"
 	self.fbi_boss.access = "fbi"
 	table.insert(self._enemy_list, "fbi_boss")
-	
+
 	self.chavez_boss.HEALTH_INIT = 120
 	self.chavez_boss.headshot_dmg_mul = 1.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts

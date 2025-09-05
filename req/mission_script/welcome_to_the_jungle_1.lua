@@ -27,7 +27,7 @@ return {
 	-- Disable Titan cams
 	[101301] = disabled,
 	-- Disable reinforce
-	[103145] = disabled,  
+	[103145] = disabled,
 	[103146] = disabled,
 	[103149] = disabled,
 	[103150] = disabled,
