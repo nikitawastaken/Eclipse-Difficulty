@@ -1,6 +1,8 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
-local cops_so = so_access.law
+local cops_so = {
+	so_access_filter = so_access.law,
+}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local scripted_enemy = Eclipse.scripted_enemy
 local security_guard = scripted_enemy.security_1
