@@ -2091,7 +2091,7 @@ function WeaponFactoryTweakData:_balance_magazines(tweak_data)
 		if not is_akimbo then
 			for part_id, part_data in pairs(self.parts) do
 				if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then
-					local extra_ammo_stat = part_data.stats.extra_ammo
+					local extra_ammo_stat = part_data.stats and part_data.stats.extra_ammo
 					local ammo_offset_stat = part_data.custom_stats and part_data.custom_stats.ammo_offset
 					if extra_ammo_stat or ammo_offset_stat then
 						-- Wipe overrides of weapon parts just in case.
