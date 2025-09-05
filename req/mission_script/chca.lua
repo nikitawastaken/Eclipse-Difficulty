@@ -27,7 +27,7 @@ local casino_balcony_spawn = {
 }
 local rappel_vertical_spawn = {
 	values = {
-		interval = 30,
+		interval = 45,
 	},
 }
 local vent_spawn = {
@@ -47,28 +47,28 @@ return {
 		reinforce = {
 			{
 				name = "elevator",
-				force = 3,
-				position = Vector3(-9300, 9800, 0),
+				force = 2,
+				position = Vector3(-9300, 9850, 0),
 			},
 			{
 				name = "corridor_right",
 				force = 2,
-				position = Vector3(-7500, 6800, 20),
+				position = Vector3(-7975, 6800, 20),
 			},
 			{
 				name = "corridor_left",
 				force = 2,
-				position = Vector3(-11100, 6800, 20),
+				position = Vector3(-10575, 6800, 20),
 			},
 			{
 				name = "casino",
-				force = 3,
+				force = 2,
 				position = Vector3(-9300, 2500, 100),
 			},
 			{
 				name = "courtyard",
-				force = 3,
-				position = Vector3(-9300, 8500, 0),
+				force = 2,
+				position = Vector3(-9350, 7950, 0),
 			},
 		},
 	},
@@ -80,7 +80,7 @@ return {
 	},
 	[101449] = { --Escape signalled
 		on_executed = {
-			{ id = 100890 },
+			{ id = 100890, delay = 0 },
 		},
 		reinforce = {
 			{ name = "elevator" },
@@ -96,12 +96,12 @@ return {
 			{
 				name = "spa_outside1",
 				force = 2,
-				position = Vector3(-7500, 15500, 0),
+				position = Vector3(-7500, 14250, 0),
 			},
 			{
 				name = "spa_outside2",
 				force = 2,
-				position = Vector3(-11000, 15500, 0),
+				position = Vector3(-11000, 14250, 0),
 			},
 		},
 	},
@@ -111,8 +111,6 @@ return {
 	-- Spawn group intervals
 	-- The Black Cat is one of the newer heists, so its spawn groups are not spread out at all and reach players almost immediately.
 	-- The shortest interval is 15s, for reference on most heists that would be 5s. It's not uncommon even for post-Jules heists to have 15s spawn groups, but the revival era team was seemingly pretty clueless in this respect.
-	-- Rappels right next to the usual player holdout spots (Spa, Corridors around the main courtyard) are slowed down and heavily restricted. No Bulldozers spawning right next to you.
-	-- I also slowed down the courtyard spawns since that area gets crowded super fast. Originally they were as slow as corridor/spa window groups, but I figured it would impact the frequency of some groups too harshly.
 	[100786] = standard_spawn,
 	[101471] = standard_spawn,
 	[100792] = standard_spawn,
