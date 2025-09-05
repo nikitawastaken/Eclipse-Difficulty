@@ -241,9 +241,6 @@
 			<object 			enabled="true" name="'g_gear_body_b'" />
 			<object 			enabled="true" name="'g_gear_body_b_lod1'" />
 
-			<object 			enabled="true" name="'g_gear_chest_b'" />
-			<object 			enabled="true" name="'g_gear_chest_b_lod1'" />
-
 			<object 			enabled="true" name="'g_gear_stomache_b'" />
 			<object 			enabled="true" name="'g_gear_stomache_b_lod1'" />
 			
