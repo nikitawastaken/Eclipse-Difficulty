@@ -39,14 +39,15 @@ function TankCopLogicAttack.update(data)
 
 	local enemy_visible = focus_enemy.verified
 	if focus_enemy.reaction >= AIAttentionObject.REACT_COMBAT then
-		-- Stop running if we're close enough
+		--[[ Stop running if we're close enough
 		if enemy_visible and focus_enemy.dis < 400 and unit:anim_data().run then
 			unit:brain():action_request({
 				body_part = 2,
 				type = "idle",
 			})
 		end
-
+		]]
+		
 		if my_data.walking_to_chase_pos then
 			-- Check if the current chase pos is too far from our focus enemy and if so, cancel chase to get a better pos
 			if my_data.chase_enemy and mvector3.distance_sq(my_data.walking_to_chase_pos:get_destination_pos(), my_data.chase_enemy.m_pos) > 1440000 then
