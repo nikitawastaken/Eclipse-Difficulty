@@ -240,7 +240,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		self.special_unit_spawn_limits = {
 			shield = 4,
 			taser = 2,
-			tank = 1,
+			tank = 2,
 			spooc = 2,
 			medic = 3,
 			marksman = 0,
@@ -249,7 +249,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		self.special_unit_spawn_limits = {
 			shield = 5,
 			taser = 3,
-			tank = 2,
+			tank = 3,
 			spooc = 3,
 			medic = 4,
 			marksman = 3,
@@ -2584,7 +2584,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 3, 4 },
 		spawn = {
 			{
-				freq = (difficulty_index ^ 2) / 300 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (difficulty_index ^ 2) / 360 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2896,13 +2896,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.spawn_kill_cooldown ~= 1 then
 		Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
 	end
-
-	self.first_responders_trade_delay = level_settings.first_responders_trade_delay or self.first_responders_trade_delay
-
-	if level_settings.first_responders_trade_delay ~= 1 then
-		Eclipse:log_console("First responders trade delay for " .. level_id .. " set to " .. self.first_responders_trade_delay)
-	end
-
+	
 	self.min_grenade_timeout = table_multiplier(self.min_grenade_timeout, level_settings.min_grenade_timeout_mul or 1)
 
 	if level_settings.min_grenade_timeout_mul ~= 1 then
@@ -3138,8 +3132,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.regroup.duration = { 30, 25, 20 }
 
 	-- Control
-	self.first_responders_trade_delay = 45
-
 	self.besiege.assault.delay = {
 		diff_lerp(60, 40),
 		diff_lerp(45, 30),

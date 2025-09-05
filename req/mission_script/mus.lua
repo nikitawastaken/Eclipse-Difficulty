@@ -40,12 +40,6 @@ return {
 			{ 140, 154 },
 		},
 	},
-	-- prevent cops from spawning too soon
-	[100116] = {
-		on_executed = {
-			{ id = 100122, delay = 60 },
-		},
-	},
 	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {
@@ -54,6 +48,29 @@ return {
 				force = 4,
 				position = Vector3(-3450, 200, -700),
 			},
+			{
+				name = "south",
+				force = 2,
+				position = Vector3(-1300, 200, -350),
+			},
+			{
+				name = "west",
+				force = 2,
+				position = Vector3(0, 2900, -300),
+			},
+			{
+				name = "north",
+				force = 2,
+				position = Vector3(1200, 200, -350),
+			},
+			{
+				name = "east",
+				force = 2,
+				position = Vector3(0, -2500, -300),
+			},
+		},
+		on_executed = { -- standard preferreds
+			{ id = 100127, delay = 60 },
 		},
 	},
 	[102154] = { -- 1st timelock done
@@ -61,28 +78,6 @@ return {
 			{ id = 100128, delay = 0, delay_rand = 20 }, -- add 40
 			{ id = 100130, delay = 0, delay_rand = 20 }, -- add 41
 			{ id = 102129, delay = 10, delay_rand = 20 }, -- add 11
-		},
-		reinforce = {
-			{
-				name = "south",
-				force = 3,
-				position = Vector3(-1300, 200, -350),
-			},
-			{
-				name = "west",
-				force = 3,
-				position = Vector3(0, 2900, -300),
-			},
-			{
-				name = "north",
-				force = 3,
-				position = Vector3(1200, 200, -350),
-			},
-			{
-				name = "east",
-				force = 3,
-				position = Vector3(0, -2500, -300),
-			},
 		},
 	},
 	-- remove exhibition room rappels from one security room's on_executed

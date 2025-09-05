@@ -1,14 +1,15 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local enabled = {
 	values = {
 		enabled = true,
 	},
 }
 local exclude_shields_dozers = {
-	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+	so_access_filter = so_access.no_heavyweight,
 }
 local exclude_shields = {
-	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc", "tank" },
+	so_access_filter = so_access.no_shield,
 }
 local warehouse_preferred_delay = {
 	on_executed = {
@@ -27,7 +28,7 @@ local close_spawn = {
 }
 local building_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

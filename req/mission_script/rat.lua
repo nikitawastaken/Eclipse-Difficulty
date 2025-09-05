@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
@@ -41,7 +42,7 @@ local cloaker_enemy = {
 	enemy = normal and scripted_enemy.heavy_swat_1 or scripted_enemy.cloaker,
 }
 local exclude_cop_agents_shields_dozers = {
-	so_access_filter = { "swat", "taser", "spooc" },
+	so_access_filter = so_access.acrobatic,
 }
 local chopper_amount = is_eclipse and 2 or 1
 local sniper_respawn_1 = (is_eclipse and 80 or hard and 100 or 140) - (is_pro_job and 30 or 0)

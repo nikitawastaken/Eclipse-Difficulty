@@ -52,7 +52,7 @@ return {
 	-- Boss dead
 	[100788] = {
 		difficulty_max = 1,
-		difficulty_min = 0.8,
+		difficulty_min = 1,
 	},
 	-- replace the turret with spawngroup
 	[103524] = {

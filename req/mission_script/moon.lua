@@ -1,11 +1,12 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local disabled = {
 	values = {
 		enabled = false,
 	},
 }
 local exclude_cop_agents_shields_dozers = {
-	so_access_filter = { "swat", "taser", "spooc" },
+	so_access_filter = so_access.acrobatic,
 }
 local entrance_spawn = {
 	values = {

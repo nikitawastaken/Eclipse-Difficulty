@@ -15,7 +15,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-
 local enabled = {
 	values = {
 		enabled = true,
@@ -25,7 +24,7 @@ local ship_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
@@ -207,7 +206,7 @@ return {
 			},
 		},
 	},
-	-- initial bag blockade is now EVIL (on EPJ)
+	-- initial bag blockade is now EVIL (on DWPJ)
 	[102040] = {
 		values = {
 			difficulty_overkill = true,
@@ -223,12 +222,6 @@ return {
 	[104028] = disabled,
 	[102117] = disabled,
 	[102369] = disabled,
-	-- closed gate chance
-	[101485] = {
-		values = {
-			chance = normal and 25 or hard and 50 or 75,
-		},
-	},
 	-- helicopter spawns
 	[100443] = {
 		on_executed = {
@@ -279,7 +272,7 @@ return {
 	[103976] = cloaker_add(103975),
 	[103978] = cloaker_add(103977),
 	[103980] = cloaker_add(103979),
-	-- spawn Ground Snipers after 3 minutes
+	-- spawn Ground Snipers after 3-5 minutes
 	[100486] = {
 		on_executed = {
 			{ id = 400035, delay = normal and 240 or 180 },
@@ -288,17 +281,17 @@ return {
 	-- spawn Snipers on the ships
 	[102182] = {
 		on_executed = {
-			{ id = 400013, delay_rand = 15, delay = normal and 75 or hard and 45 or 30 },
+			{ id = 400013, delay = 30, delay_rand = normal and 60 or 30 },
 		},
 	},
 	[102388] = {
 		on_executed = {
-			{ id = 400014, delay_rand = 15, delay = normal and 75 or hard and 45 or 30 },
+			{ id = 400014, delay = 30, delay_rand = normal and 60 or 30 },
 		},
 	},
 	[102335] = {
 		on_executed = {
-			{ id = 400015, delay_rand = 15, delay = normal and 75 or hard and 45 or 30 },
+			{ id = 400015, delay = 30, delay_rand = normal and 60 or 30 },
 		},
 	},
 	-- Disable some sketchy cheat sapwns

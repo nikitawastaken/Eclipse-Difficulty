@@ -204,8 +204,8 @@ return {
 	-- Randomise initial FBI agent amounts
 	[101195] = {
 		values = {
-			amount = diff_i,
-			amount_random = 4,
+			amount = 4,
+			amount_random = diff_i,
 		},
 	},
 	-- Force Riker spawn

@@ -1,14 +1,12 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local scripted_enemy = Eclipse.scripted_enemy
 local taser = scripted_enemy.taser_1
 local ambush_taser = {
 	enemy = taser,
 }
-local exclude_shields = {
-	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc", "tank" },
-}
 local exclude_shields_dozers = {
-	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+	so_access_filter = so_access.no_heavyweight,
 }
 local building_spawn = {
 	values = {

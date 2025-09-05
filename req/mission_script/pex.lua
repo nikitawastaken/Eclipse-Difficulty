@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local office_cop_1 = "units/pd2_dlc_pex/characters/ene_male_office_cop_01/ene_male_office_cop_01"
 local office_cop_2 = "units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"
@@ -17,7 +18,7 @@ local white_office_cop = { enemy = white_office_cops }
 local random_office_cops = { [office_cop_1] = 3, [office_cop_2] = 3, [office_cop_3] = 2, [office_cop_4] = 2 }
 local random_office_cop = { enemy = random_office_cops }
 local exclude_shields_dozers = {
-	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+	so_access_filter = so_access.no_heavyweight,
 }
 local disabled = {
 	values = {

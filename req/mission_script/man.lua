@@ -99,17 +99,17 @@ local street_heli_amount = {
 local street_heli_enemy = {
 	enemy = ready_team_1,
 }
+local window_spawn = {
+	values = {
+		interval = 10,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
 local breach_spawn = {
 	values = {
 		interval = 10,
 	},
 	groups = preferred.no_shields_bulldozers,
-}
-local window_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local roof_spawn = {
 	values = {
@@ -166,9 +166,6 @@ return {
 				force = 2,
 				position = Vector3(-1850, 1000, 1375),
 			},
-		},
-		on_executed = { -- Bain diff increase line
-			{ id = 103896, delay = 0 },
 		},
 	},
 	-- Tweak diff scaling
@@ -688,14 +685,13 @@ return {
 	},
 	-- Spawn group intervals
 	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
-	-- Originally the spawns were nothing to write home about, so I had to come up with my own delays.
 	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.
-	-- Window spawns are much slower too, having enemies spawn right next to you is pretty annoying.
-	[102368] = breach_spawn,
+	-- Window spawns are slower too, having enemies spawn right next to you is pretty annoying. They are still fast enough to give you a reason to plank off windows outside your holdout area.
 	[101940] = window_spawn,
 	[101954] = window_spawn,
 	[101950] = window_spawn,
 	[101951] = window_spawn,
+	[102368] = breach_spawn,
 	[101937] = roof_spawn,
 	[102189] = roof_spawn,
 	[400004] = new_cloaker_spawn,

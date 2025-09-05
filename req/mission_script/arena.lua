@@ -16,7 +16,7 @@ local upper_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local garage_spawn = {
 	values = {

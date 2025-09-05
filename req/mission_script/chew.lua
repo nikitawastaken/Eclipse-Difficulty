@@ -12,7 +12,7 @@ return {
 	-- Boss dead
 	[100645] = {
 		difficulty_max = 1,
-		difficulty_min = 0.8,
+		difficulty_min = 1,
 	},
 	-- Disable difficulty 1 element
 	[100909] = disabled,

@@ -4,6 +4,9 @@ local disabled = {
 		enabled = false,
 	},
 }
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
 local flank_spawn = {
 	values = {
 		interval = 15,
@@ -34,10 +37,30 @@ return {
 			base_delay_rand = 30,
 		},
 	},
-	-- Disable a few reinforce near server rooms inside the house
-	[101618] = disabled,
+	[104421] = {  -- reenforce, on lighting flare
+		reinforce = {
+			{
+				name = "pool",
+				force = 4,
+				position = Vector3(2100, -3000, 0),
+			},
+		},
+	},
+	[100006] = {  -- ditto
+		reinforce = {
+			{
+				name = "runway",
+				force = 4,
+				position = Vector3(-6800, 550, 0),
+			},
+		},
+	},
+	[100069] = disabled,  
+	[101618] = disabled,  
 	[103415] = disabled,
 	[103421] = disabled,
+	-- Enable the pool heli below Death Wish
+	[104393] = filter_disable,  
 	-- Spawn group intervals
 	[100571] = flank_spawn,
 	[100610] = flank_spawn,

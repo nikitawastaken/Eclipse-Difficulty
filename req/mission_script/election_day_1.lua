@@ -1,5 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local swat_1 = scripted_enemy.swat_1
@@ -8,37 +9,49 @@ local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
 local exclude_shields_dozers = {
-	so_access_filter = { "cop", "fbi", "swat", "taser", "spooc" },
+	so_access_filter = so_access.no_heavyweight,
 }
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-local waterfront_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 20,
 	},
 }
 local jumpdown_spawn = {
 	values = {
-		interval = 30,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- Add new reinforce
 	[100150] = {
 		reinforce = {
 			{
 				name = "warehouse1",
 				force = 2,
-				position = Vector3(1800, 3135, 0),
+				position = Vector3(2000, 3135, 0),
 			},
 			{
 				name = "warehouse2",
 				force = 2,
-				position = Vector3(540, -300, 0),
+				position = Vector3(525, -500, 0),
+			},
+			{
+				name = "warehouse3",
+				force = 2,
+				position = Vector3(1750, 1850, 0),
+			},
+			{
+				name = "warehouse4",
+				force = 2,
+				position = Vector3(4700, 3150, 0),
 			},
 		},
 	},
+	-- Keep Shields and Dozers from using some of the jump SOs
 	[103164] = exclude_shields_dozers,
 	[103423] = exclude_shields_dozers,
 	[103457] = exclude_shields_dozers,
@@ -60,11 +73,13 @@ return {
 	-- Spawn group intervals
 	-- Election Day got butchered pretty badly when spawn group intervals were standardised.
 	-- Slightly revising the original version with more pronounced intervals.
-	[101055] = waterfront_spawn,
-	[101188] = waterfront_spawn,
-	[101189] = waterfront_spawn,
-	[101196] = waterfront_spawn,
-	[101211] = waterfront_spawn,
+	[104064] = standard_spawn,
+	[104065] = standard_spawn,
+	[101055] = standard_spawn,
+	[101188] = standard_spawn,
+	[101189] = standard_spawn,
+	[101196] = standard_spawn,
+	[101211] = standard_spawn,
 	[104110] = jumpdown_spawn,
 	[104324] = jumpdown_spawn,
 	[104330] = jumpdown_spawn,

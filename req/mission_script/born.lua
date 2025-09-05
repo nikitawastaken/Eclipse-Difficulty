@@ -1,4 +1,5 @@
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local diff_i_no_norm = diff_i - 2
@@ -8,12 +9,7 @@ local disabled = {
 	},
 }
 local exclude_cop_agents_shields_dozers = {
-	so_access_filter = { "swat", "taser", "spooc" },
-}
-local fence_spawn = {
-	values = {
-		interval = 15,
-	},
+	so_access_filter = so_access.acrobatic,
 }
 local roof_spawn = {
 	values = {
@@ -23,7 +19,7 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 120,
 	},
 }
 local chopper_delay_init = 480 - (diff_i_no_norm * 30) - (is_pro_job and 120 or 0)
@@ -114,10 +110,6 @@ return {
 		},
 	},
 	-- Spawn group intervals
-	[100019] = fence_spawn,
-	[100130] = fence_spawn,
-	[100131] = fence_spawn,
-	[100133] = fence_spawn,
 	[100007] = roof_spawn,
 	[100128] = roof_spawn,
 	[100844] = cloaker_spawn,

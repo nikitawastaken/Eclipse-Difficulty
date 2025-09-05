@@ -29,7 +29,7 @@ return {
 	-- Boss dead, safe objective
 	[101169] = {
 		difficulty_max = 1,
-		difficulty_min = 0.8,
+		difficulty_min = 1,
 		reinforce = {
 			{
 				name = "main_hall",

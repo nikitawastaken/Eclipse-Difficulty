@@ -1,5 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -35,7 +36,7 @@ local disabled = {
 	},
 }
 local missing_taser_access_fix = {
-	so_access_filter = { "cop", "swat", "tank", "shield", "taser" },
+	so_access_filter = so_access.no_spooc,
 }
 local filter_easy_above = {
 	values = Eclipse.utils.set_diff_groups("easy_above"),

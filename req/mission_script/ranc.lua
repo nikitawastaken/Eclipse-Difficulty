@@ -9,19 +9,19 @@ local spawn_anim_fix = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local dock_spawn = {
 	values = {
-		interval = 30,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local vent_spawn = {
 	values = {
-		interval = 45,
+		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -29,7 +29,7 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
-	[100022] = { -- alarm
+	[100109] = { -- Police
 		reinforce = {
 			{
 				name = "gate1",

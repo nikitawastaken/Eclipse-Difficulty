@@ -6,7 +6,12 @@ local disabled = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
+	},
+}
+local roof_spawn = {
+	values = {
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -62,6 +67,12 @@ return {
 		},
 	},
 	-- Spawn group intervals
+	[100411] = wall_spawn,
+	[100403] = wall_spawn,
+	[100412] = wall_spawn,
+	[100413] = wall_spawn,
+	[100409] = wall_spawn,
+	[100408] = wall_spawn,
 	[100405] = roof_spawn,
 	[100406] = roof_spawn,
 	[100414] = roof_spawn,

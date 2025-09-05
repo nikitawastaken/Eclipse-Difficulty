@@ -173,9 +173,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.base.is_double_barrel = deep_clone(presets.weapon.base.is_shotgun_pump)
 	presets.weapon.base.is_double_barrel.RELOAD_SPEED = 6
 	presets.weapon.base.is_double_barrel.FALLOFF = {
-		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 0.9, 1.2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 1.5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.base.is_rifle.autofire_rounds = { 1, 5 }
@@ -431,9 +430,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.bulldozer.is_flamethrower.melee_speed = nil
 	presets.weapon.bulldozer.is_flamethrower.melee_retry_delay = nil
 	presets.weapon.bulldozer.is_flamethrower.FALLOFF = {
-		{ dmg_mul = 5 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.hw_bulldozer = based_on(presets.weapon.bulldozer, {
@@ -664,22 +663,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.only_explosion_and_fire.bullet.zones = {
 		{ none = 1 },
 	}
+	presets.hurt_severities.only_explosion_and_fire.melee.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
+	presets.hurt_severities.only_explosion_and_fire.poison.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
 
-	presets.hurt_severities.only_explosion_and_fire.explosion.zones = {
-		{ explode = 1 },
-	}
-
-	presets.hurt_severities.only_explosion_and_fire.melee.zones = {
-		{ none = 1 },
-	}
-
-	presets.hurt_severities.only_explosion_and_fire.fire.zones = {
-		{ fire = 1 },
-	}
-
-	presets.hurt_severities.only_explosion_and_fire.poison.zones = {
-		{ none = 1 },
-	}
 
 	presets.hurt_severities.no_heavy_hurt = deep_clone(presets.hurt_severities.base)
 	presets.hurt_severities.no_heavy_hurt.bullet.zones = {
@@ -1104,6 +1090,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_heavy_swat.headshot_dmg_mul = 2.5 -- 112 head health
 	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
 	self.city_heavy_swat.suppression = self.presets.suppression.hard_agg
+	self.city_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	table.insert(self._enemy_list, "city_heavy_swat")
 
 	self.zeal_swat = deep_clone(self.city_swat)
@@ -1111,6 +1098,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 
 	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	table.insert(self._enemy_list, "zeal_heavy_swat")
+
+	self.hrt = deep_clone(self.swat)
+	table.insert(self._enemy_list, "hrt")
 
 	self.security_mcmansion = deep_clone(self.swat)
 	self.security_mcmansion.HEALTH_INIT = 12
@@ -1190,9 +1180,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_shield.headshot_dmg_mul = 2.5 -- 144 head health
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.city_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
-	self.city_shield.can_be_tased = false
 	self.city_shield.damage.shield_knocked = false
 	self.city_shield.damage.immune_to_knockback = true
+	self.city_shield.can_be_tased = false
 	self.city_shield.immune_to_knock_down = true
 	self.city_shield.immune_to_concussion = true
 	self.city_shield.no_shield_penetration = true
@@ -1208,7 +1198,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_shield_break.chatter = self.presets.enemy_chatter.special
 	self.city_shield_break.dodge = self.presets.dodge.athletic
 	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-	self.city_shield_break.damage.shield_knocked = nil
 	self.city_shield_break.allowed_stances = nil
 	self.city_shield_break.allowed_poses = nil
 	self.city_shield_break.no_equip_anim = nil
@@ -1219,6 +1208,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.city_shield_break.priority_shout = nil
 	self.city_shield_break.announce_incomming = nil
 	self.city_shield_break.use_animation_on_fire_damage = nil
+	self.city_shield_break.ignore_medic_revive_animation = false
+	self.city_shield_break.modify_health_on_tweak_change = true
 	self.city_shield_break.access = "swat"
 	table.insert(self._enemy_list, "city_shield_break")
 
@@ -1289,12 +1280,19 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.mobster_boss.headshot_dmg_mul = 1.5
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 
+	self.fbi_boss = deep_clone(self.mobster_boss)
+	self.fbi_boss.throwable_cooldown = 10
+	self.fbi_boss.throwable = "concussion"
+	self.fbi_boss.melee_weapon = "taser"
+	self.fbi_boss.access = "fbi"
+	table.insert(self._enemy_list, "fbi_boss")
+	
 	self.chavez_boss.HEALTH_INIT = 120
 	self.chavez_boss.headshot_dmg_mul = 1.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 
 	self.hector_boss.HEALTH_INIT = 180
-	self.hector_boss.headshot_dmg_mul = 1.5
+	self.hector_boss.headshot_dmg_mul = 1
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
@@ -1303,7 +1301,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.hector_boss_no_armor.headshot_dmg_mul = 2.5
 
 	self.biker_boss.HEALTH_INIT = 180
-	self.biker_boss.headshot_dmg_mul = 1.5
+	self.biker_boss.headshot_dmg_mul = 1
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
@@ -1319,7 +1317,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.drug_lord_boss_stealth.headshot_dmg_mul = 2.5
 
 	self.triad_boss.HEALTH_INIT = 180
-	self.triad_boss.headshot_dmg_mul = 1.5
+	self.triad_boss.headshot_dmg_mul = 1
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.triad_boss.bullet_damage_only_from_front = nil
 	self.triad_boss.invulnerable_to_slotmask = nil
@@ -1330,17 +1328,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad_boss_no_armor.headshot_dmg_mul = 2.5
 
 	self.deep_boss.HEALTH_INIT = 240
-	self.deep_boss.headshot_dmg_mul = 1.5
+	self.deep_boss.headshot_dmg_mul = 1
 	self.deep_boss.ignore_headshot = false
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-
-	self.fbi_boss = deep_clone(self.chavez_boss)
-	self.fbi_boss.HEALTH_INIT = 180
-	self.fbi_boss.throwable_cooldown = 10
-	self.fbi_boss.throwable = "concussion"
-	self.fbi_boss.melee_weapon = "taser"
-	self.fbi_boss.access = "fbi"
-	table.insert(self._enemy_list, "fbi_boss")
 
 	self.snowman_boss.HEALTH_INIT = 300
 	self.snowman_boss.headshot_dmg_mul = 2
@@ -1612,9 +1602,8 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 end)
 
-local ecm_vuln_swat = 0.6
-local ecm_vuln_heavy = 0.4
-local ecm_vuln_boss = 0.2
+local ecm_vuln_swat = 0.5
+local ecm_vuln_heavy = 0.3
 local ecm_vuln_none = 0
 
 CharacterTweakData.access_health_hs_mul_blacklist = {
@@ -1637,6 +1626,7 @@ CharacterTweakData.access_hs_mul = {
 }
 
 CharacterTweakData.tweak_table_weapon = {
+	hrt = "fbi",
 	swat = "swat",
 	heavy_swat = "swat",
 	fbi_swat = "fbi_swat",
@@ -1690,8 +1680,6 @@ CharacterTweakData.access_weapon = {
 CharacterTweakData.tweak_table_move_speed = {
 	cobra = "fast",
 	soldier = "fast",
-	mobster_boss = "fast",
-	chavez_boss = "fast",
 	escort_criminal = "civ_fast",
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
@@ -1702,12 +1690,13 @@ CharacterTweakData.tweak_table_move_speed = {
 	bank_manager = "normal",
 	security_fat = "slow",
 	cop_fat = "slow",
-	hector_boss = "slow",
-	biker_boss = "slow",
-	deep_boss = "slow",
 	escort_undercover = "slow",
 	escort_sand = "slow",
 	spa_vip_hurt = "slow",
+	drug_lord_boss = "slow",
+	hector_boss = "very_slow",
+	biker_boss = "very_slow",
+	deep_boss = "very_slow",
 }
 
 CharacterTweakData.access_move_speed = {
@@ -1730,14 +1719,14 @@ CharacterTweakData.tweak_table_ecm_vulnerability = {
 	medic = ecm_vuln_heavy,
 	city_sniper = ecm_vuln_heavy,
 	city_shield_break = ecm_vuln_heavy,
-	mobster_boss = ecm_vuln_boss,
-	chavez_boss = ecm_vuln_boss,
-	hector_boss = ecm_vuln_boss,
-	biker_boss = ecm_vuln_boss,
-	drug_lord_boss = ecm_vuln_boss,
-	triad_boss = ecm_vuln_boss,
-	deep_boss = ecm_vuln_boss,
-	fbi_boss = ecm_vuln_boss,
+	mobster_boss = ecm_vuln_none,
+	chavez_boss = ecm_vuln_none,
+	hector_boss = ecm_vuln_none,
+	biker_boss = ecm_vuln_none,
+	drug_lord_boss = ecm_vuln_none,
+	triad_boss = ecm_vuln_none,
+	deep_boss = ecm_vuln_none,
+	fbi_boss = ecm_vuln_none,
 	city_shield = ecm_vuln_none,
 }
 
@@ -1797,7 +1786,7 @@ function CharacterTweakData:_set_presets()
 		char_preset.move_speed = self.presets.move_speed[char_move_speed]
 
 		-- Set global ECM hurts and ECM vulnerability based on tweak table or access
-		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.8
+		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.7
 
 		char_preset.ecm_hurts = { ears = 4 }
 		char_preset.ecm_vulnerability = char_ecm_vuln
@@ -1884,7 +1873,7 @@ function CharacterTweakData:_set_presets()
 	}
 	self.tank_medic.medic_healing = self.medic.medic_healing
 
-	self.tank.damage.armor_health = is_eclipse and 18 or is_overkill and 14 or 10
+	self.tank.damage.armor_health = is_eclipse and 14 or is_overkill and 12 or 10
 	self.tank_medic.damage.armor_health = self.tank.damage.armor_health
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
 	self.city_tank.damage.armor_health = self.tank.damage.armor_health * (4 / 3)

@@ -14,15 +14,9 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local side_spawn = {
-	values = {
-		interval = 5,
-	},
-	groups = preferred.no_cops_agents,
-}
 local roof_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -35,6 +29,16 @@ return {
 			{ 173, 183 },
 		},
 	},
+	-- Add new reinforce to offset the low spawncap
+	[100512] = {
+		reinforce = {
+			{
+				name = "penthouse",
+				force = 2,
+				position = Vector3(-200, 1400, 1600),
+			},
+		},
+	},
 	-- Boss spawn
 	[100154] = {
 		difficulty_max = 0.1,
@@ -42,7 +46,7 @@ return {
 	-- Boss dead
 	[100153] = {
 		difficulty_max = 1,
-		difficulty_min = 0.8,
+		difficulty_min = 1,
 	},
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,
@@ -57,29 +61,12 @@ return {
 			chance = 4,
 		},
 	},
-	-- Don't remove 3rd floor spawns
-	[100512] = {
-		on_executed = {
-			{ id = 100511, remove = true },
-		},
-	},
 	-- Fix nav links
 	[101433] = no_spawn_instigator_ids,
 	[101434] = no_spawn_instigator_ids,
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn group intervals
-
-	--[[
-		[101633] = third_floor_spawn,
-		[101636] = third_floor_spawn,
-		[101642] = third_floor_spawn,
-		[101651] = third_floor_spawn,
-		[101657] = third_floor_spawn,
-		[101663] = third_floor_spawn,
-	]]
-	[101084] = side_spawn,
-	[101085] = side_spawn,
 	[100627] = roof_spawn,
 	[100629] = roof_spawn,
 	[100666] = roof_spawn,

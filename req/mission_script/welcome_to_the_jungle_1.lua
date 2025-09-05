@@ -1,4 +1,10 @@
 local preferred = Eclipse.preferred
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+local so_access = Eclipse.access_filter
 -- add female bikers to spawn roster
 local biker_enemy = {
 	["units/payday2/characters/ene_biker_1/ene_biker_1"] = 5,
@@ -12,18 +18,22 @@ local biker_enemy = {
 local biker = { enemy = biker_enemy }
 
 local exclude_cop_agents_shields_dozers = {
-	so_access_filter = { "swat", "taser", "spooc" },
+	so_access_filter = so_access.acrobatic,
 }
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
 	-- Disable Titan cams
-	[101301] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[101301] = disabled,
+	-- Disable reinforce
+	[103145] = disabled,  
+	[103146] = disabled,
+	[103149] = disabled,
+	[103150] = disabled,
+	[103153] = disabled,
+	[103154] = disabled,
+	[103157] = disabled,
 	-- Drop units from swat van
 	[102439] = {
 		on_executed = {

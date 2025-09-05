@@ -11,7 +11,7 @@ local headless_tank = {
 }
 local ledge_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
 }
 return {

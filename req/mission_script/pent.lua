@@ -62,7 +62,7 @@ return {
 	},
 	[101607] = { -- Yufu is dead
 		difficulty_max = 1,
-		difficulty_min = 0.8,
+		difficulty_min = 1,
 		ponr = {
 			length = 180,
 			player_mul = { 1.33, 1.15, 1, 0.85 },
