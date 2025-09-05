@@ -849,7 +849,7 @@ function SkillTreeTweakData:init(tweak_data)
 		perkdeck[6].upgrades = { "armor_kit" }
 		perkdeck[8].upgrades = { "passive_doctor_bag_interaction_speed_multiplier" } -- get rid of the 5% damage buff it's stupid anyways
 	end
-
+	
 	-- Buncha default upgrade fuckery
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
