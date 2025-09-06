@@ -93,7 +93,7 @@ function CopLogicTravel._chk_relocate(data, my_data)
 
 	local destination_pos = my_data.coarse_path[#my_data.coarse_path][2]
 	local follow_pos = objective.follow_unit:movement():nav_tracker():field_position()
-	if mvector3.distance_sq(destination_pos, follow_pos) < 3000 ^ 2 then
+	if not destination_pos or mvector3.distance_sq(destination_pos, follow_pos) < 3000 ^ 2 then
 		return
 	end
 
