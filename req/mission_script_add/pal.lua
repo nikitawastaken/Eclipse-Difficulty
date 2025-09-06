@@ -313,7 +313,7 @@ local optsPreferedAdd1 = {
 	spawn_groups = { 100441, 100473 },
 	enabled = true,
 }
-local optsPreferedRemove1 = { 
+local optsPreferedRemove1 = {
 	elements = { 400055 },
 	enabled = true,
 }

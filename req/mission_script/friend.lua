@@ -147,7 +147,7 @@ return {
 		on_executed = {
 			{ id = 400002, delay = 0 },
 		},
-	},	
+	},
 	[101208] = { -- add loot bag van 2
 		reinforce = {
 			{ name = "mansion_front" },
@@ -155,7 +155,7 @@ return {
 		on_executed = {
 			{ id = 400004, delay = 0 },
 		},
-	},	
+	},
 	-- Spawn group intervals
 	[100206] = roof_spawn,
 	[100719] = roof_spawn,
