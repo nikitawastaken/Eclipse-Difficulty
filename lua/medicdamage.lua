@@ -13,7 +13,7 @@ function MedicDamage:heal_unit(...)
 		body_part = 2,
 		type = "idle",
 	})
-			
+
 	return heal_unit_orig(self, ...)
 end
 
