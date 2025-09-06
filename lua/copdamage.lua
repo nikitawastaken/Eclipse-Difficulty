@@ -489,18 +489,6 @@ function CopDamage:damage_bullet(attack_data)
 		end
 	end
 
-	local shotgun_close_damage_boost = managers.player:upgrade_value("player", "close_damage_multiplier", nil)
-	if shotgun_close_damage_boost then
-		local effective_dist = shotgun_close_damage_boost.range
-
-		if effective_dist then
-			if effective_dist < dst then
-				damage = damage * shotgun_close_damage_boost.multiplier
-			end
-		end
-
-	end
-
 	if self._unit:movement():cool() then
 		damage = self._HEALTH_INIT
 	end
@@ -509,6 +497,25 @@ function CopDamage:damage_bullet(attack_data)
 	local headshot_multiplier = 1
 
 	if attack_data.attacker_unit == managers.player:player_unit() then
+		local enemy_close_damage_boost = managers.player:upgrade_value("player", "close_damage_multiplier", 0)
+		local enemy_hurt_damage_boost = managers.player:upgrade_value("player", "enemy_hurt_damage_multiplier", 1)
+
+		-- Close up damage boost upgrade
+		if enemy_close_damage_boost ~= 0 then
+			local effective_dist = enemy_close_damage_boost.range
+
+			if effective_dist then
+				if effective_dist > dst then
+					damage = damage * enemy_close_damage_boost.multiplier
+				end
+			end
+		end
+
+		-- Hurt animation damage boost upgrade
+		if self._unit:anim_data().hurt then
+			damage = damage * enemy_hurt_damage_boost
+		end
+
 		local damage_scale = nil
 
 		if alive(attack_data.weapon_unit) and attack_data.weapon_unit:base() and attack_data.weapon_unit:base().is_weak_hit then

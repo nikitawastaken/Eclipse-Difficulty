@@ -334,24 +334,28 @@ function UpgradesTweakData:init(tweak_data)
 	-- Enforcer --
 
 	-- Point Blank
-	self.values.shotgun.speed_stack_on_kill = { {
-		max_stacks = 3,
-		max_time = 5,
-		speed_bonus = 1.05,
-	} }
-	self.definitions.shotgun_speed_stack_on_kill = {
-		name_id = "menu_shotgun_speed_stack_on_kill",
+	self.values.player.speed_stack_on_kill = {
+		{
+			max_stacks = 3,
+			max_time = 5,
+			speed_bonus = 1.05,
+		}
+	}
+	self.definitions.player_speed_stack_on_kill = {
+		name_id = "menu_player_speed_stack_on_kill",
 		category = "feature",
 		upgrade = {
 			value = 1,
 			upgrade = "speed_stack_on_kill",
-			category = "shotgun",
+			category = "player",
 		},
 	}
-	self.values.player.close_damage_multiplier = { {
-		multiplier = 1.15,
-		range = 500
-	} }
+	self.values.player.close_damage_multiplier = {
+		{
+			multiplier = 1.15,
+			range = 500
+		}
+	}
 	self.definitions.player_close_damage_multiplier = {
 		name_id = "menu_player_close_damage_multiplier",
 		category = "feature",
@@ -362,12 +366,12 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.shotgun_cqb.multibasic = "5%"
-	self.skill_descs.shotgun_cqb.multibasic = "5"
-	self.skill_descs.shotgun_cqb.multibasic = "3"
+	self.skill_descs.shotgun_cqb.multibasic2 = "5"
+	self.skill_descs.shotgun_cqb.multibasic3 = "3"
 	self.skill_descs.shotgun_cqb.multipro = "15%"
 	self.skill_descs.shotgun_cqb.multipro2 = "5m"
 
-	-- Heavy Impact (TODO: Implement the hurt anim damage multiplier)
+	-- Heavy Impact
 	self.values.weapon.knock_down[1] = 0.5
 	self.values.player.enemy_hurt_damage_multiplier = { 1.15 }
 	self.definitions.player_enemy_hurt_damage_multiplier = {
@@ -403,11 +407,6 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.hip_rate_of_fire[1] = 1.25
-	self.skill_descs.far_away.multibasic = "40%"
-	self.skill_descs.far_away.multipro = "25%"
-
-	-- Mag-fed Specialist
 	self.values.shotgun.mag_reload_speed_mul = { 1.25 }
 	self.definitions.shotgun_mag_reload_speed_mul = {
 		name_id = "menu_shotgun_mag_reload_speed_mul",
@@ -418,9 +417,25 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.magazine_capacity_inc[1] = 5
+	self.values.shotgun.hip_rate_of_fire[1] = 1.25
+	self.skill_descs.far_away.multibasic = "40%"
+	self.skill_descs.far_away.multibasic2 = "25%"
+	self.skill_descs.far_away.multipro = "25%"
+
+	-- Far Away
+	self.values.shotgun.effective_range_multiplier = { 1.25 }
+	self.definitions.shotgun_effective_range_multiplier = {
+		name_id = "menu_shotgun_effective_range_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "effective_range_multiplier",
+			category = "shotgun",
+		},
+	}
+	self.values.shotgun.steelsight_accuracy_inc[1] = 0.5
 	self.skill_descs.close_by.multibasic = "25%"
-	self.skill_descs.close_by.multipro = "5"
+	self.skill_descs.close_by.multipro = "50%"
 
 	-- OVERKILL
 	self.definitions.cooldown_shotgun_panic_on_kill = {

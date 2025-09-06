@@ -106,8 +106,8 @@ function SkillTreeTweakData:init(tweak_data)
 	-- ENFORCER --
 
 	-- Point Blank
-	self.skills.shotgun_cqb[1].upgrades = { "shotgun_speed_stack_on_kill" }
-	self.skills.shotgun_cqb[2].upgrades = { "shotgun_close_damage_multiplier" }
+	self.skills.shotgun_cqb[1].upgrades = { "player_speed_stack_on_kill" }
+	self.skills.shotgun_cqb[2].upgrades = { "player_close_damage_multiplier" }
 	self.skills.shotgun_cqb.icon_xy = { 8, 0 }
 	self.skills.shotgun_cqb.name_id = "menu_point_blank"
 	self.skills.shotgun_cqb.desc_id = "menu_point_blank_desc"
@@ -120,20 +120,25 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.shotgun_impact.desc_id = "menu_heavy_impact_desc"
 
 	-- Fast Hands
-	self.skills.far_away[1].upgrades = { "shotgun_pump_reload_speed_mul" }
+	self.skills.far_away[1].upgrades = { "shotgun_pump_reload_speed_mul", "shotgun_mag_reload_speed_mul" }
 	self.skills.far_away[2].upgrades = { "shotgun_hip_rate_of_fire_1" }
-	self.skills.far_away.icon_xy = { 5, 1 }
+	self.skills.far_away.name_id = "menu_fast_hands"
+	self.skills.far_away.desc_id = "menu_fast_hands_desc"
+	self.skills.far_away.icon_xy = { 8, 0 }
 
-	-- Mag-Fed Specialist
-	self.skills.close_by[1].upgrades = { "shotgun_mag_reload_speed_mul" }
-	self.skills.close_by[2].upgrades = { "shotgun_magazine_capacity_inc_1" }
-	self.skills.close_by.icon_xy = { 8, 7 }
+	-- Far Away
+	self.skills.close_by[1].upgrades = { "shotgun_effective_range_multiplier" }
+	self.skills.close_by[2].upgrades = { "shotgun_steelsight_accuracy_inc_1" }
+	self.skills.close_by.name_id = "menu_far_away"
+	self.skills.close_by.desc_id = "menu_far_away_desc"
+	self.skills.close_by.icon_xy = { 8, 0 }
 
 	-- OVERKILL
 	self.skills.overkill[1].upgrades = { "cooldown_shotgun_panic_on_kill" }
 	self.skills.overkill[2].upgrades = { "player_overkill_damage_multiplier", "player_overkill_all_weapons" }
 	self.skills.overkill.name_id = "menu_overkill"
 	self.skills.overkill.desc_id = "menu_overkill_desc"
+	self.skills.overkill.icon_xy = { 8, 0 }
 
 	-- Resilience
 	self.skills.oppressor.icon_xy = { 6, 1 }
@@ -287,8 +292,8 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Sleight of Hand
 	self.skills.shock_and_awe[1].upgrades = { "smg_reload_speed_multiplier", "lmg_reload_speed_multiplier" }
 	self.skills.shock_and_awe.icon_xy = { 3, 3 }
-	self.skills.shock_and_awe.name_id = "menu_fast_hands"
-	self.skills.shock_and_awe.desc_id = "menu_fast_hands_desc"
+	self.skills.shock_and_awe.name_id = "menu_sleight_of_hand"
+	self.skills.shock_and_awe.desc_id = "menu_sleight_of_hand_desc"
 
 	-- Lock N' Load
 	self.skills.fast_fire[1].upgrades = { "player_run_and_shoot_1" }
