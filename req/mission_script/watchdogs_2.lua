@@ -233,7 +233,8 @@ return {
 	[100448] = {
 		on_executed = {
 			{ id = 100454, delay = eclipse and 120 or 180, delay_rand = 120 },
-			{ id = 100446, remove = true }, -- don't make taser spawn twice
+			{ id = 100446, remove = true }, -- don't make same units spawn twice
+			{ id = 100447, remove = true },
 		},
 	},
 	[100454] = {
