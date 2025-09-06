@@ -1,6 +1,7 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_solo = Eclipse.utils.is_solo()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -19,7 +20,7 @@ local filter_easy_above = {
 }
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
-}
+}		
 
 local filter_players_all = {
 	values = {
@@ -325,10 +326,10 @@ return {
 			{ id = 400016, delay = 3.5 },
 		},
 	},
-	-- keep vanilla snipers off (except on eclipse pro job)
+	-- keep vanilla snipers off on lower diffs
 	[102941] = {
 		values = {
-			enabled = is_eclipse_pro and true or false,
+			enabled = overkill_and_above and true or false,
 		},
 	},
 	-- spawn two extra tasers with blockade shields on Eclipse (193+ throwback)
@@ -354,6 +355,67 @@ return {
 	[100689] = enabled,
 	[100690] = enabled,
 	[100691] = enabled,
+	-- delay their flee SOs
+	-- alert
+	[103294] = {
+		on_executed = {
+			{ id = 100684, delay = 5 },
+		},
+	},
+	[103303] = {
+		on_executed = {
+			{ id = 100686, delay = 5 },
+		},
+	},
+	-- panic
+	[101860] = {
+		on_executed = {
+			{ id = 100684, delay = 5 },
+		},
+	},
+	[101862] = {
+		on_executed = {
+			{ id = 100515, delay = 5 },
+		},
+	},
+	[101863] = {
+		on_executed = {
+			{ id = 100688, delay = 5 },
+		},
+	},
+	[101864] = {
+		on_executed = {
+			{ id = 100685, delay = 5 },
+		},
+	},
+	[101865] = {
+		on_executed = {
+			{ id = 100689, delay = 5 },
+		},
+	},
+	[101866] = {
+		on_executed = {
+			{ id = 100690, delay = 5 },
+		},
+	},
+	[101867] = {
+		on_executed = {
+			{ id = 100691, delay = 5 },
+		},
+	},
+	[103295] = {
+		on_executed = {
+			{ id = 100687, delay = 5 },
+		},
+	},
+	[101869] = {
+		values = {
+			event = "panic", -- fix wrong event id
+		},
+		on_executed = {
+			{ id = 100686, delay = 5 },
+		},
+	},
 	-- civs go full alert when you mask up
 	[100302] = {
 		values = {

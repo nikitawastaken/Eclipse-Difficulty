@@ -121,7 +121,7 @@ local optsReachedNearLeftPipeTrigger = {
 
 local optsrespawn_sniper_1 = {
 	on_executed = {
-		{ id = 400001, delay = 45, delay_rand = 10 },
+		{ id = 400001, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
 		400001,
@@ -130,7 +130,7 @@ local optsrespawn_sniper_1 = {
 }
 local optsrespawn_sniper_2 = {
 	on_executed = {
-		{ id = 400002, delay = 45, delay_rand = 10 },
+		{ id = 400002, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
 		400002,
@@ -139,7 +139,7 @@ local optsrespawn_sniper_2 = {
 }
 local optsrespawn_sniper_3 = {
 	on_executed = {
-		{ id = 400003, delay = 45, delay_rand = 10 },
+		{ id = 400003, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
 		400003,
@@ -148,7 +148,7 @@ local optsrespawn_sniper_3 = {
 }
 local optsrespawn_sniper_4 = {
 	on_executed = {
-		{ id = 400004, delay = 45, delay_rand = 10 },
+		{ id = 400004, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
 		400004,
@@ -157,7 +157,7 @@ local optsrespawn_sniper_4 = {
 }
 local optsrespawn_sniper_5 = {
 	on_executed = {
-		{ id = 400005, delay = 45, delay_rand = 10 },
+		{ id = 400005, delay = is_eclipse and 60 or 90, delay_rand = 30 },
 	},
 	elements = {
 		400005,
