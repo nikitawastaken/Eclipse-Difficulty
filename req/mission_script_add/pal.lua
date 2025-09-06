@@ -309,6 +309,14 @@ local swat_van_response_variant_4 = {
 	on_executed = { { id = 100713, delay = 0 }, { id = 100714, delay = 180, delay_rand = 30 }, { id = 100720, delay = 300, delay_rand = 30 }, { id = 100715, delay = 420, delay_rand = 30 } },
 	enabled = true,
 }
+local optsPreferedAdd1 = {
+	spawn_groups = { 100441, 100473 },
+	enabled = true,
+}
+local optsPreferedRemove1 = { 
+	elements = { 400055 },
+	enabled = true,
+}
 
 M.elements = {
 	--Snipers
@@ -362,6 +370,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400052, "swat_van_response_2", swat_van_response_variant_2),
 	Eclipse.mission_elements.gen_missionscript(400053, "swat_van_response_3", swat_van_response_variant_3),
 	Eclipse.mission_elements.gen_missionscript(400054, "swat_van_response_4", swat_van_response_variant_4),
+	Eclipse.mission_elements.gen_preferedadd(400055, "beach_preferredadd", optsPreferedAdd1),
+	Eclipse.mission_elements.gen_preferedremove(400056, "beach_preferedremove", optsPreferedRemove1),
 }
 
 return M

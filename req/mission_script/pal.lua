@@ -89,11 +89,6 @@ local c4_event_counter_func = {
 		end
 	end,
 }
-local beach_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local van_spawn = {
 	values = {
 		interval = 45,
@@ -370,7 +365,18 @@ return {
 			end
 		end,
 	},
-	-- elite Shields replaces FBI ones that cover the manhole on Eclipse (PJ only)
+	-- Beach valve disables nearby spawngroups
+	[101219] = { -- valve 1
+		on_executed = { -- beach preferred remove
+			{ id = 400056, delay = 0 },
+		},
+	},
+	[100587] = { -- valve timer done
+		on_executed = { -- beach preferred add
+			{ id = 400055, delay = 0 },
+		},
+	},
+	-- Elite Shields replaces FBI ones that cover the manhole on Death Wish (PJ only)
 	[100036] = shield,
 	[100039] = shield,
 	[100044] = shield,
@@ -384,9 +390,12 @@ return {
 	[101883] = shield,
 	[102098] = shield,
 	-- Spawn group intervals
-	[100441] = beach_spawn,
-	[100473] = beach_spawn,
+	[100911] = van_spawn,
+	[101105] = van_spawn,
+	[101106] = van_spawn,
 	[101107] = van_spawn,
 	[101825] = van_spawn,
 	[101827] = van_spawn,
+	[101828] = van_spawn,
+	[101829] = van_spawn,
 }

@@ -4,12 +4,6 @@ local mobster_team = {
 		team = "mobster1",
 	},
 }
-local garden_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local roof_spawn = {
 	values = {
 		interval = 20,
@@ -22,6 +16,30 @@ local disabled = {
 	},
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 79, 82 },
+			{ 16, 72 },
+			{ 14, 15 },
+			{ 51, 80 },
+			{ 19, 77 },
+			{ 99, 101 },
+			{ 84, 100 },
+			{ 24, 76 },
+			{ 25, 75 },
+			{ 20, 23, 85 },
+			{ 3, 4, 181 },
+			{ 36, 47, 179 },
+			{ 2, 66, 108 },
+			{ 31, 95, 96 },
+			{ 55, 105, 106 },
+			{ 38, 39, 59, 86 },
+			{ 29, 83, 108, 109 },
+			{ 32, 48, 49, 67, 68 },
+			{ 87, 88, 89, 90, 91, 92, 93, 94 },
+		},
+	},
 	-- Enter main hall
 	[103594] = {
 		difficulty_max = 0.1,
@@ -33,7 +51,7 @@ return {
 		reinforce = {
 			{
 				name = "main_hall",
-				force = 3,
+				force = 4,
 				position = Vector3(-1700, -1075, 50),
 			},
 		},
@@ -46,32 +64,34 @@ return {
 			{ id = 102692, delay = 0 },
 		},
 	},
-	-- Force boat escape
-	[100213] = disabled,
-	[100214] = disabled,
-	[103446] = disabled,
+	-- Disable vanilla reinforce
+	-- Timed objective/escape zone reinforce BORING
+	[100007] = disabled,
+	[100207] = disabled,
+	[100208] = disabled,
+	[100210] = disabled,
 	-- Add some reinforce around the house
-	[100791] = { -- players entered the mansion
+	[100129] = { -- Preferred
 		reinforce = {
 			{
-				name = "garden_left",
+				name = "mansion_left",
 				force = 3,
-				position = Vector3(1425, -5950, -150),
+				position = Vector3(-1500, -5250, -50),
 			},
 			{
-				name = "garden_back",
+				name = "mansion_back",
 				force = 3,
-				position = Vector3(-3400, -2100, -50),
+				position = Vector3(-3500, -1900, -50),
 			},
 			{
-				name = "garden_front",
+				name = "mansion_front",
 				force = 3,
-				position = Vector3(-3150, -3125, -150),
+				position = Vector3(4100, -3175, -150),
 			},
 			{
-				name = "garden_right",
+				name = "mansion_right",
 				force = 3,
-				position = Vector3(1375, 2650, -150),
+				position = Vector3(1400, 2650, -175),
 			},
 		},
 	},
@@ -119,9 +139,24 @@ return {
 	[102578] = mobster_team,
 	[102581] = mobster_team,
 	[102583] = mobster_team,
+	-- Van escapes disable nearby spawngroups and reinforce
+	[100240] = { -- add loot bag van 1
+		reinforce = {
+			{ name = "mansion_right" },
+		},
+		on_executed = {
+			{ id = 400002, delay = 0 },
+		},
+	},	
+	[101208] = { -- add loot bag van 2
+		reinforce = {
+			{ name = "mansion_front" },
+		},
+		on_executed = {
+			{ id = 400004, delay = 0 },
+		},
+	},	
 	-- Spawn group intervals
-	[100132] = garden_spawn,
-	[102381] = garden_spawn,
 	[100206] = roof_spawn,
 	[100719] = roof_spawn,
 	[100810] = roof_spawn,
