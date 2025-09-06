@@ -28,14 +28,19 @@
 	"menu_sniper_graze_damage_desc": "BASIC: ##$basic##\nFor every consecutive headshot with your Sniper Rifle your next shot's damage is increased by ##$multibasic##.\n\nStacks up to ##$multibasic2## times, and missing a headshot in any capacity removes all accumulated stacks.\n\nACE: ##$pro##\nWhile aiming down sights with your Sniper Rifle, a charge meter builds up over a period of ##$multipro## seconds.\n\nWhen fully charged, your next headshot becomes explosive, dealing up to ##$multipro2## of the bullet's damage in a ##$multipro3## radius around the bullet impact.\n\nLeaving the aiming stance or firing the weapon at any point discharges the meter.",
 
 
-	"menu_from_the_hip_desc": "BASIC: ##$basic##\nYou deal ##$multibasic## more damage with Shotguns.\n\nACE: ##$pro##\nThe time it takes to draw and holster Shotguns is decreased by ##$multipro##.",
+	"menu_point_blank": "Point Blank",
+	"menu_point_blank_desc": "BASIC: ##$basic##\nEach successful kill grants you a ##$multibasic## movement speed boost that lasts for ##$multibasic2## seconds.\n\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage in a ##$multipro2## range.",
+	"menu_heavy_impact": "Heavy Impact",
+	"menu_heavy_impact_desc": "BASIC: ##$basic##\nYour shots have a ##$multibasic## chance to stagger all enemies except Bulldozers.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage to enemies that are currently staggered.\n\nThe push force of your Shotguns allows you to launch enemies when up close.",
+	
+	"menu_overkill": "OVERKILL",
+	"menu_overkill_desc": "BASIC: ##$basic##\nWhen you kill an enemy with a Shotgun, you have a ##$multibasic## chance to cause nearby enemies to panic.\n\nThis cannot occur more than once every ##$multibasic## seconds\n\nACE: ##$pro##\nWhen you kill an enemy with a Shotgun, you receive ##$multipro## damage increase for ##$multipro2## seconds.\n\nThis damage bonus applies to all weapons.",
+
 	"menu_carbon_blade_beta_desc": "BASIC: ##$basic##\nThe weardown of the saw blades on enemies is reduced by ##$multibasic##.\n\nACE: ##$pro##\nYou can now saw through shield enemies with your OVE9000 portable saw. When killing an enemy with the saw, you have a ##$multipro## chance to cause nearby enemies in a ##$multipro2## radius to panic.\nPanic will make enemies go into short bursts of uncontrollable fear.",
 	"menu_far_away_beta": "Fast Hands",
 	"menu_far_away_beta_desc": "BASIC: ##$basic##\nYou reload ##Individually-loaded## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour rate of fire is increased by ##$multipro## while firing from the hip with ##single-shot## Shotguns.",
 	"menu_close_by_beta": "Mag-fed Specialist",
 	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Magazine-loaded## & ##Double Barrel## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Magazine-loaded## Shotguns have their magazine size increased by ##$multipro## shells.",
-	"menu_overkill_beta": "Shotgun Rampage",
-	"menu_overkill_beta_desc": "BASIC: ##$basic##\nFor every kill with a Shotgun you gain a ##$multibasic## movement speed boost that lasts for ##$multibasic2## seconds.\nStacks up to ##$multibasic3## times.\n\nACE: ##$pro##\nWhen killing an enemy with a Shotgun, you have a ##$multipro## chance to cause nearby enemies to panic.\nPanic will make enemies go into short bursts of uncontrollable fear.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_juggernaut_beta_desc": "BASIC: ##$basic##\nWhen you melee shield enemies, they get knocked back by the sheer force.\n\nYour ranged weapons have a chance of knocking down shields as well. Knock back chance scales with the total damage of the used weapon.\n\nACE: ##$pro##\nUnlocks the ##Improved Combined Tactical Vest## for you to wear.",
 	"bm_menu_skill_locked_level_7" : "Requires the aced version of Iron Man skill",
 	"menu_show_of_force_beta": "Plates of Steel",
@@ -59,8 +64,7 @@
 	"menu_sentry_targeting_package_beta_desc": "BASIC: ##$basic##\nDrills and saws are silent. Civilians and guards must see the drill or saw in order to become alerted.\n\nACE: ##$pro##\nYou fix drills and saws ##$multipro## faster.",
 	"menu_jack_of_all_trades_beta": "Kickstarter",
 	"menu_jack_of_all_trades_beta_desc": "BASIC: ##$basic##\nYour drills and saws will automatically restart ##$multibasic## seconds after breaking.\n\nACE: ##$pro##\nYou gain the ability to fix a broken drill or saw with ##$multipro## consecutive melee attacks.",
-	"menu_engineering_beta": "Defense Package",
-	"menu_engineering_beta_desc": "BASIC: ##$basic##\nYour sentry guns gain ##$multibasic## increased health.\n\nACE: ##$pro##\nYour sentry guns gain a protective shield.",
+	"menu_portable_saw_desc": "BASIC? ##$basic##\nYou gain ##$multibasic## extra saw blade for the OVE9000 portable saw. You replace your saw blades with carbon blades, increasing your saw efficiency by ##$multibasic2##.\n\nACE: ##$pro##\nYou can now bring the OVE9000 portable saw as a secondary weapon.",
 	"menu_tower_defense_beta": "Sentry Nest",
 	"menu_tower_defense_beta_desc": "BASIC: ##$basic##\nYou can now carry ##1## extra sentry gun.\n\nACE: ##$pro##\nThe cost of deploying a sentry gun is reduced by ##$multipro##.\nYour sentry guns also have ##$multipro2## more ammunition.",
 	"menu_eco_sentry_beta": "PhD in Engineering",

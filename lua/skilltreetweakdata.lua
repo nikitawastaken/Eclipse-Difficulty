@@ -105,20 +105,19 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- ENFORCER --
 
-	-- Portable Saw
-	self.skills.shotgun_cqb[1].upgrades = { "saw_secondary" }
-	self.skills.shotgun_cqb[2].upgrades =
-		{ "saw_extra_ammo_multiplier", "player_saw_speed_multiplier_1", "player_saw_speed_multiplier_2", "saw_lock_damage_multiplier_1", "saw_lock_damage_multiplier_2" }
-	self.skills.shotgun_cqb.icon_xy = { 0, 1 }
-	self.skills.shotgun_cqb.name_id = "menu_portable_saw_beta"
-	self.skills.shotgun_cqb.desc_id = "menu_portable_saw_beta_desc"
+	-- Point Blank
+	self.skills.shotgun_cqb[1].upgrades = { "shotgun_speed_stack_on_kill" }
+	self.skills.shotgun_cqb[2].upgrades = { "shotgun_close_damage_multiplier" }
+	self.skills.shotgun_cqb.icon_xy = { 8, 0 }
+	self.skills.shotgun_cqb.name_id = "menu_point_blank"
+	self.skills.shotgun_cqb.desc_id = "menu_point_blank_desc"
 
-	-- Saw Massacre
-	self.skills.shotgun_impact[1].upgrades = { "saw_enemy_slicer" }
-	self.skills.shotgun_impact[2].upgrades = { "saw_ignore_shields_1", "saw_panic_when_kill_1" }
-	self.skills.shotgun_impact.icon_xy = { 0, 2 }
-	self.skills.shotgun_impact.name_id = "menu_carbon_blade_beta"
-	self.skills.shotgun_impact.desc_id = "menu_carbon_blade_beta_desc"
+	-- Heavy Impact
+	self.skills.shotgun_impact[1].upgrades = { "weapon_knock_down_1" }
+	self.skills.shotgun_impact[2].upgrades = { "player_enemy_hurt_damage_multiplier", "shotgun_enemy_push" }
+	self.skills.shotgun_impact.icon_xy = { 8, 0 }
+	self.skills.shotgun_impact.name_id = "menu_heavy_impact"
+	self.skills.shotgun_impact.desc_id = "menu_heavy_impact_desc"
 
 	-- Fast Hands
 	self.skills.far_away[1].upgrades = { "shotgun_pump_reload_speed_mul" }
@@ -130,10 +129,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.close_by[2].upgrades = { "shotgun_magazine_capacity_inc_1" }
 	self.skills.close_by.icon_xy = { 8, 7 }
 
-	-- Shotgun Rampage
-	self.skills.overkill[1].upgrades = { "shotgun_speed_stack_on_kill" }
-	self.skills.overkill[2].upgrades = { "cooldown_shotgun_panic_on_kill" }
-	self.skills.overkill.icon_xy = { 8, 6 }
+	-- OVERKILL
+	self.skills.overkill[1].upgrades = { "cooldown_shotgun_panic_on_kill" }
+	self.skills.overkill[2].upgrades = { "player_overkill_damage_multiplier", "player_overkill_all_weapons" }
+	self.skills.overkill.name_id = "menu_overkill"
+	self.skills.overkill.desc_id = "menu_overkill_desc"
 
 	-- Resilience
 	self.skills.oppressor.icon_xy = { 6, 1 }
@@ -216,10 +216,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.jack_of_all_trades[2].upgrades = { "player_drill_melee_hit_restart_chance_1" }
 	self.skills.jack_of_all_trades.icon_xy = { 9, 8 }
 
-	-- Defense Package
-	self.skills.engineering[1].upgrades = { "sentry_gun_armor_multiplier" }
-	self.skills.engineering[2].upgrades = { "sentry_gun_shield" }
-	self.skills.engineering.icon_xy = { 7, 5 }
+	-- Portable Saw
+	self.skills.engineering[1].upgrades =
+		{ "saw_extra_ammo_multiplier", "player_saw_speed_multiplier_1", "player_saw_speed_multiplier_2", "saw_lock_damage_multiplier_1", "saw_lock_damage_multiplier_2" }
+	self.skills.engineering[2].upgrades = { "saw_secondary" }
+	self.skills.engineering.icon_xy = { 0, 1 }
+	self.skills.engineering.name_id = "menu_portable_saw"
+	self.skills.engineering.desc_id = "menu_portable_saw_desc"
 
 	-- Sentry Nest
 	self.skills.tower_defense[2].upgrades = { "sentry_gun_cost_reduction_1", "sentry_gun_cost_reduction_2", "sentry_gun_extra_ammo_multiplier_1" }
@@ -860,6 +863,11 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "player_smoke_screen_dodge_add")
 	table.insert(self.default_upgrades, "player_trip_mine_deploy_time_multiplier_2")
 	table.insert(self.default_upgrades, "carry_throw_distance_multiplier")
+	table.insert(self.default_upgrades, "sentry_gun_armor_multiplier") -- prev defense package
+	table.insert(self.default_upgrades, "sentry_gun_shield") -- prev defense package
+	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
+	table.insert(self.default_upgrades, "saw_ignore_shields_1") -- prev saw massacre
+	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
 	table.delete(self.default_upgrades, "player_fall_damage_multiplier")
 	table.delete(self.default_upgrades, "player_fall_health_damage_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
