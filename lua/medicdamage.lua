@@ -9,7 +9,7 @@ function MedicDamage:heal_unit(...)
 		return false
 	end
 
-	self._unit:brain():action_request({
+	self._unit:movement():action_request({
 		body_part = 2,
 		type = "idle",
 	})
