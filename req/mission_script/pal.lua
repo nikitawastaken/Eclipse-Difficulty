@@ -20,7 +20,7 @@ local filter_easy_above = {
 }
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
-}		
+}
 
 local filter_players_all = {
 	values = {
