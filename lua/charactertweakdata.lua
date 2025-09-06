@@ -1625,6 +1625,8 @@ CharacterTweakData.access_hs_mul = {
 }
 
 CharacterTweakData.tweak_table_weapon = {
+	bolivian = "gangster",
+	bolivian_indoors = "gangster",
 	hrt = "fbi",
 	swat = "swat",
 	heavy_swat = "swat",
@@ -1742,6 +1744,11 @@ CharacterTweakData.access_surrender_break = {
 	swat = { 5, 10 },
 }
 
+CharacterTweakData.access_surrender_blacklist = {
+	bolivian = true,
+	bolivian_indoors = true,
+}
+
 CharacterTweakData.access_surrender = {
 	security = "easy",
 	cop = "easy",
@@ -1796,7 +1803,7 @@ function CharacterTweakData:_set_presets()
 		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil
 
-		if surrender_preset then
+		if not self.access_surrender_blacklist[name] and surrender_preset then
 			char_preset.surrender = self.presets.surrender[surrender_preset]
 		end
 
