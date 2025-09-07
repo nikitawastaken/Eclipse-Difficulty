@@ -430,6 +430,7 @@ function CopDamage:damage_bullet(attack_data)
 
 	local is_civilian = CopDamage.is_civilian(self._unit:base()._tweak_table)
 
+	local hit_plate
 	if self._has_plate and attack_data.col_ray.body and attack_data.col_ray.body:name() == self._ids_plate_name and not attack_data.armor_piercing then
 		local armor_pierce_roll = math.rand(1)
 		local armor_pierce_value = 0
@@ -464,6 +465,8 @@ function CopDamage:damage_bullet(attack_data)
 		if armor_pierce_roll >= armor_pierce_value then
 			return
 		end
+		
+		hit_plate = true
 	end
 
 	local result = nil
@@ -477,6 +480,11 @@ function CopDamage:damage_bullet(attack_data)
 
 	damage = damage * (self._marked_dmg_mul or 1)
 
+	-- Reduce damage when hitting Tan Heavy armor plates
+	if hit_plate then
+		damage = damage * (attack_data.weapon_unit:base():weapon_tweak_data().penetration_damage_mul and attack_data.weapon_unit:base():weapon_tweak_data().penetration_damage_mul.armor or 1)
+	end
+	
 	local dst = mvector3.distance(attack_data.origin, self._unit:position())
 	if self._marked_dmg_dist_mul then
 		local spott_dst = tweak_data.upgrades.values.player.marked_inc_dmg_distance[self._marked_dmg_dist_mul]
