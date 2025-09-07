@@ -45,26 +45,30 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 	local threat_pos, threat_dir, threat_dir_side, test_pos = tmp_vec1, tmp_vec2, tmp_vec3, tmp_vec4
 	local attention_objects = {}
 	local total_importance = 0
-	local too_close = false
 	local can_walk = not data.unit:movement():chk_action_forbidden("walk")
 
 	CopLogicBase._upd_attention_obj_detection(data, min_reaction, nil)
+
+	if data.tactics and data.tactics.ranged_fire then
+		optimal_range = optimal_range * 1.5
+	end
+
+	if data.tactics and data.tactics.charge then
+		optimal_range = optimal_range * 0.75
+	end
 
 	if can_walk then
 		mvector3.set_zero(threat_pos)
 		for u_key, attention_obj in pairs(data.detected_attention_objects) do
 			local verified_dt = attention_obj.verified_t and data.t - attention_obj.verified_t or math.huge
-			attention_obj.importance = attention_obj.verified and 1 or math.map_range_clamped(verified_dt, 0, 4, 1, 0)
-			attention_obj.importance = attention_obj.importance * math.map_range_clamped(attention_obj.verified_dis, 0, far_range, 1, 0) ^ 2
-			attention_obj.importance = attention_obj.importance * (attention_obj.settings.weight_mul or 1)
+			local importance = attention_obj.verified and 1 or math.map_range_clamped(verified_dt, 0, 4, 1, 0)
+			importance = importance * math.map_range_clamped(attention_obj.verified_dis, 0, far_range, 1, 0) ^ 2
+			importance = importance * (attention_obj.settings.weight_mul or 1)
 			attention_obj.reaction = CopLogicSniper._chk_reaction_to_attention_object(data, attention_obj, true)
-			if attention_obj.importance > 0 and attention_obj.reaction > AIAttentionObject.REACT_AIM then
-				total_importance = total_importance + attention_obj.importance
-				mvector3.add_scaled(threat_pos, attention_obj.verified and attention_obj.m_pos or attention_obj.verified_pos, attention_obj.importance)
+			if importance > 0 and attention_obj.reaction > AIAttentionObject.REACT_AIM then
+				total_importance = total_importance + importance
+				mvector3.add_scaled(threat_pos, attention_obj.verified and attention_obj.m_pos or attention_obj.verified_pos, importance)
 				attention_objects[u_key] = attention_obj
-				if attention_obj.verified_dis < close_range then
-					too_close = true
-				end
 			end
 		end
 	end
@@ -77,7 +81,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			return
 		end
 
-		if can_walk and new_attention then
+		if can_walk and new_attention and new_attention.nav_tracker then
 			my_data.optimal_pos = CopLogicAttack._find_flank_pos(data, my_data, new_attention.nav_tracker)
 		end
 
@@ -90,37 +94,26 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 	mvector3.divide(threat_pos, total_importance)
 	mvector3.set_z(threat_pos, data.m_pos.z)
 	local threat_dis = mvector3.direction(threat_dir, threat_pos, data.m_pos)
-	if threat_dis < close_range then
-		too_close = true
-	end
-
-	if data.tactics and data.tactics.ranged_fire then
-		optimal_range = optimal_range * 1.5
-	end
-
-	if data.tactics and data.tactics.charge then
-		optimal_range = optimal_range * 0.75
-	end
-
-	if too_close or threat_dis > optimal_range then
+	local too_close, too_far = threat_dis < close_range, threat_dis > optimal_range
+	if too_close or too_far then
 		local factor, flip = 0, false
 		local optimal_dis, optimal_pos = -math.huge, nil
 		local pos_reservation = {
 			radius = 60,
-			filter = data.pos_rsrv_id,
+			filter = data.pos_rsrv_id
 		}
 		local ray_params = {
 			allow_entry = true,
 			trace = true,
-			pos_from = data.m_pos,
+			pos_from = data.m_pos
 		}
 
-		local has_followers = false
-		if data.group then
+		local leave_space = false
+		if too_close and data.group then
 			for _, u_data in pairs(data.group.units) do
 				local other_objective = alive(u_data.unit) and u_data.unit:brain():objective()
 				if other_objective and other_objective.follow_unit == data.unit then
-					has_followers = true
+					leave_space = true
 					break
 				end
 			end
@@ -133,7 +126,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			mvector3.add(test_pos, threat_pos)
 
 			ray_params.pos_to = test_pos
-			if managers.navigation:raycast(ray_params) and has_followers then
+			if managers.navigation:raycast(ray_params) and leave_space then
 				mvector3.set(test_pos, ray_params.trace[1])
 				mvector3.subtract_scaled(test_pos, threat_dir, 150)
 				managers.navigation:raycast(ray_params)
