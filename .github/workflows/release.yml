@@ -30,8 +30,17 @@ jobs:
             stylua.log
       - name: Add and commit
         uses: EndBug/add-and-commit@v9
-        if: success() && steps.codeFormatting.outcome == 'success'
+        if: ${{ success() && steps.codeFormatting.outcome == 'success' && github.event_name != 'pull_request' }}
         with:
+          add: "*.lua"
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
+          message: Code formatting
+      - name: Add and commit PR
+        uses: EndBug/add-and-commit@v9
+        if: ${{ success() && steps.codeFormatting.outcome == 'success' && github.event_name == 'pull_request' }}
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
           add: "*.lua"
           committer_name: GitHub Actions
           committer_email: actions@github.com
