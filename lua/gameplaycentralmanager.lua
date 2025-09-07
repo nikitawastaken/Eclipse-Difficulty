@@ -51,7 +51,7 @@ function GamePlayCentralManager:_do_shotgun_push(unit, hit_pos, dir, distance, a
 	mvec3_set(rot_acc, dir)
 	mvector3.cross(rot_acc, rot_acc, math.UP)
 	mvec3_set(tmp_vec4, math.UP)
-	mvec3_mul(tmp_vec4, math.rand(-0.5, 0.5) * twist_dir)
+	mvec3_mul(tmp_vec4, math.rand(0.1, 0.5) * twist_dir)
 	mvec3_add(rot_acc, tmp_vec4)
 	mvec3_mul(rot_acc, -1000 * height_sign)
 
