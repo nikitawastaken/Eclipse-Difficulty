@@ -34,12 +34,15 @@ local function check_flush_log()
 				if io.file_is_readable(M.back_log_file) then
 					os.remove(M.back_log_file)
 				end
-				os.rename(M.log_file, M.back_log_file)
+				if io.file_is_readable(M.log_file) then
+					os.rename(M.log_file, M.back_log_file)
+				end
 
 				f:close()
 				f = io.open(M.log_metadata, "w")
 				if f then
 					f:write(tostring(os.time()))
+					f:close()
 				end
 			end
 		end
@@ -47,6 +50,7 @@ local function check_flush_log()
 		local f = io.open(M.log_metadata, "w")
 		if f then
 			f:write(tostring(os.time()))
+			f:close()
 		end
 	end
 end
