@@ -9,7 +9,7 @@ Hooks:PreHook(ElementSpecialObjectiveGroup, "on_executed", "eclipse_on_executed"
 		local element = self:get_mission_element(id)
 		local values = element and element:values()
 		if values then
-			values.hiding_cloaker_SO = true
+			values.SO_group_hiding_cloaker_SO = true
 		else
 			Eclipse:warn_console(string.format("Hiding Cloaker SO %u does not exist or does not have values", id))
 		end
