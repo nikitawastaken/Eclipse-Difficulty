@@ -465,7 +465,7 @@ function CopDamage:damage_bullet(attack_data)
 		if armor_pierce_roll >= armor_pierce_value then
 			return
 		end
-		
+
 		hit_plate = true
 	end
 
@@ -484,7 +484,7 @@ function CopDamage:damage_bullet(attack_data)
 	if hit_plate then
 		damage = damage * (attack_data.weapon_unit:base():weapon_tweak_data().penetration_damage_mul and attack_data.weapon_unit:base():weapon_tweak_data().penetration_damage_mul.armor or 1)
 	end
-	
+
 	local dst = mvector3.distance(attack_data.origin, self._unit:position())
 	if self._marked_dmg_dist_mul then
 		local spott_dst = tweak_data.upgrades.values.player.marked_inc_dmg_distance[self._marked_dmg_dist_mul]
