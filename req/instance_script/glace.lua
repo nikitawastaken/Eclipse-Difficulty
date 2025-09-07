@@ -35,6 +35,7 @@ M["levels/instances/unique/glace/glace_helicopter_swat/world/world"] = function(
 			table.map_append(element.values, filter_disable)
 		elseif heli_spawns.hunt[id] then
 			element.values.enabled = true --why the fuck it's turned off?
+			element.values.forced = false
 		end
 	end
 end
