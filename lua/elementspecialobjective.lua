@@ -34,8 +34,41 @@ ElementSpecialObjective._hiding_cloaker_actions = table.list_to_set({
 	"e_so_hide_under_car_enter",
 })
 
-function ElementSpecialObjective:_is_hiding_cloaker_SO()
-	return self._values.hiding_cloaker_SO or self._hiding_cloaker_actions[self._values.so_action]
+-- "group_ai_flagged" -> flagged by SO group element, genuine GroupAI-handled hiding Cloaker SO
+-- "double_flagged" -> flagged by both an SO group element and in mission scripting, NOT ideal
+-- "mission_flagged" -> flagged in mission scripting, NOT a GroupAI-handled hiding Cloaker SO but should act like one
+-- "animation_flagged" -> uses a common hiding SO action, likely a scripted hide SO
+-- "forced_not_flagged" -> flagged in mission scripting as NOT a hiding Cloaker SO, regardless of SO action
+-- "not_flagged" -> no other flags raised, likely not a hiding Cloaker SO
+ElementSpecialObjective.hiding_cloaker_SO_states = {
+	group_ai_flagged = 6,
+	double_flagged = 5,
+	mission_flagged = 4,
+	animation_flagged = 3,
+	forced_not_flagged = 2,
+	not_flagged = 1,
+}
+
+function ElementSpecialObjective:get_hiding_cloaker_SO_state()
+	local values = self._values
+	if values.SO_group_hiding_cloaker_SO and values.hiding_cloaker_SO then
+		if not self._double_flagged_warned then
+			self._double_flagged_warned = true
+			Eclipse:warn_console(string.format("Hiding Cloaker SO %u is double-flagged", self._id))
+		end
+
+		return self.hiding_cloaker_SO_states.double_flagged
+	elseif values.SO_group_hiding_cloaker_SO then
+		return self.hiding_cloaker_SO_states.group_ai_flagged
+	elseif values.hiding_cloaker_SO then
+		return self.hiding_cloaker_SO_states.mission_flagged
+	elseif values.hiding_cloaker_SO == false then
+		return self.hiding_cloaker_SO_states.forced_not_flagged
+	elseif self._hiding_cloaker_actions[values.so_action] then
+		return self.hiding_cloaker_SO_states.animation_flagged
+	end
+
+	return self.hiding_cloaker_SO_states.not_flagged
 end
 
 function ElementSpecialObjective:_hiding_cloaker_tweak()
@@ -44,7 +77,7 @@ function ElementSpecialObjective:_hiding_cloaker_tweak()
 end
 
 Hooks:PreHook(ElementSpecialObjective, "_get_action_duration", "eclipse__get_action_duration", function(self)
-	if not self:_is_hiding_cloaker_SO() then
+	if self:get_hiding_cloaker_SO_state() < self.hiding_cloaker_SO_states.group_ai_flagged then
 		return
 	end
 
@@ -68,7 +101,11 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 		return
 	end
 
-	if not alive(unit) or not self:_is_hiding_cloaker_SO() then
+	if not alive(unit) then
+		return
+	end
+
+	if self:get_hiding_cloaker_SO_state() < self.hiding_cloaker_SO_states.animation_flagged then
 		return
 	end
 
@@ -79,6 +116,7 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 
 	local base_ext = unit:base()
 	if not base_ext then
+		Eclipse:warn_console(string.format("Unit on special objective %u without base extension", self._id))
 		return
 	end
 
@@ -86,26 +124,31 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 	if name == "anim_start" then
 		self:_set_cloaker_is_hiding(unit:key(), true)
 
-		if base_ext.set_cloaker_goggles_on and hiding_cloaker_tweak.goggles_on_when_hiding == false then
-			base_ext:set_cloaker_goggles_on(false)
+		if hiding_cloaker_tweak.goggles_on_when_hiding == false then
+			self:_chk_run_base_ext_method(base_ext, "set_cloaker_goggles_on", false)
 		end
 
-		if base_ext.set_cloaker_noise_on and hiding_cloaker_tweak.use_idle_noise_when_hiding == false then
-			base_ext:set_cloaker_noise_on(false)
+		if hiding_cloaker_tweak.use_idle_noise_when_hiding == false then
+			self:_chk_run_base_ext_method(base_ext, "set_cloaker_noise_on", false)
 		end
 	elseif self._cloakers_currently_hiding and self._cloakers_currently_hiding[unit:key()] then
 		self:_set_cloaker_is_hiding(unit:key(), false)
 
-		local whistle = hiding_cloaker_tweak.whistle_on_leave_hiding ~= false
-		if base_ext.set_cloaker_goggles_on then
-			base_ext:set_cloaker_goggles_on(true)
-		end
+		self:_chk_run_base_ext_method(base_ext, "set_cloaker_goggles_on", true)
 
-		if base_ext.set_cloaker_noise_on then
-			base_ext:set_cloaker_noise_on(true, whistle)
-		end
+		local whistle = hiding_cloaker_tweak.whistle_on_leave_hiding ~= false
+		self:_chk_run_base_ext_method(base_ext, "set_cloaker_noise_on", true, whistle)
 	end
 end)
+
+function ElementSpecialObjective:_chk_run_base_ext_method(base_ext, method, ...)
+	if base_ext[method] then
+		base_ext[method](base_ext, ...)
+		return true
+	end
+
+	Eclipse:warn_console(string.format('Unit on special objective %u without base extension method "%s"', self._id, method))
+end
 
 function ElementSpecialObjective:_set_cloaker_is_hiding(u_key, is_hiding)
 	if is_hiding then
