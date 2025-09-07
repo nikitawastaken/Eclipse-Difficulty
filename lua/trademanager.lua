@@ -37,6 +37,8 @@ function TradeManager:set_trade_countdown(enabled)
 	if Network:is_server() and managers.network then
 		managers.network:session():send_to_peers_synched("set_trade_countdown", enabled)
 	end
+
+	Eclipse.utils.log_traceback()
 end
 
 function TradeManager:is_trading()
@@ -174,7 +176,8 @@ function TradeManager:update(t, dt)
 
 		--#region chat spam
 		local checks = {
-			no_ongoing_custody_countdown = self._trade_countdown or is_auto_assault_ai_trade,
+			no_ongoing_custody_countdown = self._trade_countdown,
+			no_queued_ai_auto_trade = is_auto_assault_ai_trade,
 			is_trade_allowed = is_trade_allowed,
 			not_trade_completed = trade_completed,
 		}
