@@ -339,7 +339,7 @@ function UpgradesTweakData:init(tweak_data)
 			max_stacks = 3,
 			max_time = 5,
 			speed_bonus = 1.05,
-		}
+		},
 	}
 	self.definitions.player_speed_stack_on_kill = {
 		name_id = "menu_player_speed_stack_on_kill",
@@ -353,8 +353,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.close_damage_multiplier = {
 		{
 			multiplier = 1.15,
-			range = 500
-		}
+			range = 500,
+		},
 	}
 	self.definitions.player_close_damage_multiplier = {
 		name_id = "menu_player_close_damage_multiplier",
@@ -452,8 +452,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.temporary.overkill_damage_multiplier = {
 		{
 			1.5,
-			5
-		}
+			5,
+		},
 	}
 	self.skill_descs.overkill.multibasic = "50%"
 	self.skill_descs.overkill.multibasic2 = "10"

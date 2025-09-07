@@ -410,7 +410,9 @@ function WeaponDescription._get_skill_stats(name, category, slot, base_stats, mo
 						skill_in_effect = true
 					end
 
-					if category == "shotgun" and (managers.player:has_category_upgrade("shotgun", "pump_reload_speed_mul") or  managers.player:has_category_upgrade("shotgun", "mag_reload_speed_mul")) then -- shotgun reload speed stuff
+					if
+						category == "shotgun" and (managers.player:has_category_upgrade("shotgun", "pump_reload_speed_mul") or managers.player:has_category_upgrade("shotgun", "mag_reload_speed_mul"))
+					then -- shotgun reload speed stuff
 						local current_weapon_is_double_barrel = name == "huntsman" or name == "b682" or name == "coach"
 						skill_in_effect = true
 

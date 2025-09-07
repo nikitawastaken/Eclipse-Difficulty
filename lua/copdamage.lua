@@ -482,7 +482,6 @@ function CopDamage:damage_bullet(attack_data)
 		local spott_dst = tweak_data.upgrades.values.player.marked_inc_dmg_distance[self._marked_dmg_dist_mul]
 
 		if spott_dst then
-
 			if spott_dst[1] < dst then
 				damage = damage * spott_dst[2]
 			end
@@ -587,7 +586,7 @@ function CopDamage:damage_bullet(attack_data)
 		if self:check_medic_heal() then
 			result = {
 				type = "healed",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 		else
 			if head then
@@ -595,14 +594,14 @@ function CopDamage:damage_bullet(attack_data)
 				self:_spawn_head_gadget({
 					position = attack_data.col_ray.body:position(),
 					rotation = attack_data.col_ray.body:rotation(),
-					dir = attack_data.col_ray.ray
+					dir = attack_data.col_ray.ray,
 				})
 			end
 
 			attack_data.damage = self._health
 			result = {
 				type = "death",
-				variant = attack_data.variant
+				variant = attack_data.variant,
 			}
 
 			self:die(attack_data)
@@ -610,10 +609,11 @@ function CopDamage:damage_bullet(attack_data)
 		end
 	else
 		attack_data.damage = damage
-		local result_type = not self._char_tweak.immune_to_knock_down and (attack_data.knock_down and "knock_down" or attack_data.stagger and not self._has_been_staggered and "stagger") or self:get_damage_type(damage_percent, "bullet")
+		local result_type = not self._char_tweak.immune_to_knock_down and (attack_data.knock_down and "knock_down" or attack_data.stagger and not self._has_been_staggered and "stagger")
+			or self:get_damage_type(damage_percent, "bullet")
 		result = {
 			type = result_type,
-			variant = attack_data.variant
+			variant = attack_data.variant,
 		}
 
 		self:_apply_damage_to_health(damage)
@@ -628,7 +628,7 @@ function CopDamage:damage_bullet(attack_data)
 			stats_name = self._unit:base()._stats_name,
 			head_shot = head,
 			weapon_unit = attack_data.weapon_unit,
-			variant = attack_data.variant
+			variant = attack_data.variant,
 		}
 
 		if managers.groupai:state():all_criminals()[attack_data.attacker_unit:key()] then
@@ -647,7 +647,12 @@ function CopDamage:damage_bullet(attack_data)
 			managers.statistics:killed(data)
 			self:_check_damage_achievements(attack_data, head)
 
-			if not is_civilian and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier") and not attack_data.weapon_unit:base().thrower_unit and attack_data.weapon_unit:base():is_category("shotgun", "saw") then
+			if
+				not is_civilian
+				and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier")
+				and not attack_data.weapon_unit:base().thrower_unit
+				and attack_data.weapon_unit:base():is_category("shotgun", "saw")
+			then
 				managers.player:activate_temporary_upgrade("temporary", "overkill_damage_multiplier")
 			end
 
@@ -681,7 +686,14 @@ function CopDamage:damage_bullet(attack_data)
 			if sentry_attack_data.attacker_unit == managers.player:player_unit() then
 				self:_check_damage_achievements(sentry_attack_data, head)
 			else
-				self._unit:network():send("sync_damage_achievements", sentry_attack_data.weapon_unit, sentry_attack_data.attacker_unit, sentry_attack_data.damage, sentry_attack_data.col_ray and sentry_attack_data.col_ray.distance, head)
+				self._unit:network():send(
+					"sync_damage_achievements",
+					sentry_attack_data.weapon_unit,
+					sentry_attack_data.attacker_unit,
+					sentry_attack_data.damage,
+					sentry_attack_data.col_ray and sentry_attack_data.col_ray.distance,
+					head
+				)
 			end
 		end
 	end
@@ -730,13 +742,13 @@ function CopDamage:client_check_damage_achievements(weapon_unit, attacker_unit, 
 	end
 
 	local fake_ray = {
-		distance = distance
+		distance = distance,
 	}
 	local attack_data = {
 		weapon_unit = weapon_unit,
 		attacker_unit = attacker_unit,
 		col_ray = fake_ray,
-		damage = damage
+		damage = damage,
 	}
 
 	self:_check_damage_achievements(attack_data, head_shot)
