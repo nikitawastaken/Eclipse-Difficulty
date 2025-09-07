@@ -81,11 +81,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			diff_init = 0.1,
 			assault_add = 0.3,
 		},
-		force_tactics = {
-			swat_init = {
-				flank = true,
-			},
-		},
 	}
 	self.jewelry_store.group_ai_preset = "small_urban"
 
