@@ -659,8 +659,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_mp7_s_long.stats.recoil = 2
 	self.parts.wpn_fps_smg_mp7_s_long.stats.concealment = -2
 
-	self.parts.wpn_fps_smg_scorpion_m_extended.stats.extra_ammo = 0
-	self.parts.wpn_fps_smg_scorpion_m_extended.stats.reload = 1
+	self.parts.wpn_fps_smg_scorpion_m_extended.stats = { value = 1, reload = 1, recoil = 1, concealment = -2 }
 
 	self.parts.wpn_fps_smg_scorpion_s_nostock.stats.recoil = -1
 	self.parts.wpn_fps_smg_scorpion_s_nostock.stats.concealment = 1
