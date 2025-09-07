@@ -61,20 +61,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		}
 
 		if not default_sights[part_id] and is_optic then
-			local zoom_to_spread
-			local zoom_to_concealment
-			local zoom_to_steelsight_speed
-
-			if zoom_level then
-				zoom_to_spread = math.clamp((zoom_level - 3) * 1, 1, 4)
-				zoom_to_concealment = -math.clamp((zoom_level - 3) * 1, 1, 4)
-				zoom_to_steelsight_speed = math.clamp((1 - zoom_level * 0.125), 0.2, 1)
-			end
-
-			part_data.stats.recoil = is_scope and 0 or 1
-			part_data.stats.spread = is_scope and zoom_to_spread or 0
-			part_data.stats.concealment = zoom_to_concealment or -1
-			part_data.custom_stats.steelsight_speed_multiplier = zoom_to_steelsight_speed or 1
+			part_data.stats.recoil = 1
+			part_data.stats.spread = 0
+			part_data.stats.concealment = -1
 		end
 
 		if is_magnifier then
