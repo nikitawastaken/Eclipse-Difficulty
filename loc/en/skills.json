@@ -33,7 +33,7 @@
 	"menu_heavy_impact": "Heavy Impact",
 	"menu_heavy_impact_desc": "BASIC: ##$basic##\nYour shots have a ##$multibasic## chance to stagger all enemies except Bulldozers.\n\nACE: ##$pro##\nYour weapons deal ##$multipro## more damage to enemies that are currently staggered.\n\nThe push force of your Shotguns allows you to ##launch## enemies when up close.",
 	"menu_fast_hands": "Fast Hands",
-	"menu_fast_hands_desc": "BASIC: ##$basic##\nYou reload Individually-loaded & Double Barrel Shotguns ##$multibasic## faster.\n\nYou reload Magazine-loaded Shotguns ##$multibasic2## faster.\n\nACE: ##$pro##\nYour rate of fire is increased by ##$multipro## while firing from the hip with non-automatic Shotguns.",
+	"menu_fast_hands_desc": "BASIC: ##$basic##\nYou reload ##Individually-loaded## & ##Double Barrel## Shotguns ##$multibasic## faster.\n\nYou reload ##Magazine-loaded## Shotguns ##$multibasic2## faster.\n\nACE: ##$pro##\nYour rate of fire is increased by ##$multipro## while firing from the hip with non-automatic Shotguns.",
 	"menu_far_away": "Far Away",
 	"menu_far_away_desc": "BASIC: ##$basic##\nEffective range of your Shotguns is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour accuracy bonus while aiming down sights with Shotguns is increased by ##$multipro##.",
 	"menu_overkill": "OVERKILL",
