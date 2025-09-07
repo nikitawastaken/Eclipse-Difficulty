@@ -72,7 +72,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sah.flashlights_on = true
 	self.deep.flashlights_on = true
 
-	-- add Group AI settings
+	--[[ add Group AI settings
 	self.jewelry_store.group_ai_settings = {
 		assault_force_mul = 0.85,
 		recon_interval_variation_mul = 0.75,
@@ -110,7 +110,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.gallery.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.gallery.group_ai_preset = "small_urban"
-
+	]]
+	
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_force_mul = 0.85,
@@ -255,34 +256,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.55
 
 	self.hox_1.group_ai_settings = {
+		hostage_hesitation_delay_mul = 0.75,
 		sustain_duration_mul = 0.65,
 		assault_delay_mul = 1.35,
 		assault_force_mul = 0.7,
 		reenforce_min_interval_mul = 0.5,
-		min_grenade_timeout_mul = 1.5,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_delay = 0,
 			assault_add = 0.25,
 		},
-		force_tactics = {
-			swat_agg = {
-				charge = false,
-			},
-			shield_agg = {
-				charge = false,
-			},
-			taser_agg = {
-				charge = false,
-			},
-			bulldozer_agg = {
-				charge = false,
-			},
-		},
 	}
 
 	self.mus.group_ai_settings = {
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_delay = 90,
 		},
@@ -344,6 +330,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.red2.has_megaphone_cop = true
 
+	self.pbr.group_ai_settings = {
+		force_tactics = {
+			shield_def = {
+				ranged_fire = false,
+			},
+		},
+	}
+	
 	self.pbr2.group_ai_settings = {
 		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.7,
@@ -370,9 +364,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 1.15,
 		assault_delay_mul = 1.25,
 		force_tactics = {
-			swat_init = {
-				flank = true,
-			},
 			shield_def = {
 				ranged_fire = false,
 			},

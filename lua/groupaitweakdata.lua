@@ -2396,7 +2396,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				}, heavy_response and 1.25 or 1),
 				amount_max = 1,
 				rank = 3,
-				unit = "fbi_shield",
+				unit = "elite_shield",
 				tactics = self._tactics.shield,
 			}, 1000, 3000, 3, 1),
 			self:_distance_weighted_spawn_entry({

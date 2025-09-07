@@ -126,7 +126,7 @@ return {
 		reinforce = { -- manhole 1
 			{
 				name = "manhole",
-				force = 3,
+				force = 2,
 				position = Vector3(4010, -1710, 75),
 			},
 		},
@@ -135,7 +135,7 @@ return {
 		reinforce = {
 			{
 				name = "manhole",
-				force = 3,
+				force = 2,
 				position = Vector3(1185, 1615, 75),
 			},
 		},
@@ -144,7 +144,7 @@ return {
 		reinforce = {
 			{
 				name = "manhole",
-				force = 3,
+				force = 2,
 				position = Vector3(-1085, -3440, 75),
 			},
 		},
@@ -153,7 +153,7 @@ return {
 		reinforce = {
 			{
 				name = "manhole",
-				force = 3,
+				force = 2,
 				position = Vector3(-2015, -115, 75),
 			},
 		},
