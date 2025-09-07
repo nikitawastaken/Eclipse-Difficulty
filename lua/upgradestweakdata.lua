@@ -333,19 +333,68 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Enforcer --
 
-	-- Portable Saw
-	self.values.saw.lock_damage_multiplier[2] = 1.6
-	self.values.player.saw_speed_multiplier[2] = 0.4
-	self.skill_descs.shotgun_cqb.multipro = "1"
-	self.skill_descs.shotgun_cqb.multipro2 = "60%"
-
-	-- Saw Massacre
-	self.values.saw.enemy_slicer = {
-		2,
+	-- Point Blank
+	self.values.player.speed_stack_on_kill = {
+		{
+			max_stacks = 3,
+			max_time = 5,
+			speed_bonus = 1.05,
+		}
 	}
-	self.skill_descs.shotgun_impact.multibasic = "90%"
-	self.skill_descs.shotgun_impact.multipro = "50%"
-	self.skill_descs.shotgun_impact.multipro2 = "10m"
+	self.definitions.player_speed_stack_on_kill = {
+		name_id = "menu_player_speed_stack_on_kill",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "speed_stack_on_kill",
+			category = "player",
+		},
+	}
+	self.values.player.close_damage_multiplier = {
+		{
+			multiplier = 1.15,
+			range = 500
+		}
+	}
+	self.definitions.player_close_damage_multiplier = {
+		name_id = "menu_player_close_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "close_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.skill_descs.shotgun_cqb.multibasic = "5%"
+	self.skill_descs.shotgun_cqb.multibasic2 = "5"
+	self.skill_descs.shotgun_cqb.multibasic3 = "3"
+	self.skill_descs.shotgun_cqb.multipro = "15%"
+	self.skill_descs.shotgun_cqb.multipro2 = "5m"
+
+	-- Heavy Impact
+	self.values.weapon.knock_down[1] = 0.5
+	self.values.player.enemy_hurt_damage_multiplier = { 1.15 }
+	self.definitions.player_enemy_hurt_damage_multiplier = {
+		name_id = "menu_player_enemy_hurt_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "enemy_hurt_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.values.shotgun.enemy_push = { true }
+	self.definitions.shotgun_enemy_push = {
+		name_id = "menu_shotgun_enemy_push",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "enemy_push",
+			category = "shotgun",
+		},
+	}
+	self.skill_descs.shotgun_impact.multibasic = "50%"
+	self.skill_descs.shotgun_impact.multipro = "15%"
 
 	-- Fast Hands
 	self.values.shotgun.pump_reload_speed_mul = { 1.4 }
@@ -358,11 +407,6 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.hip_rate_of_fire[1] = 1.25
-	self.skill_descs.far_away.multibasic = "40%"
-	self.skill_descs.far_away.multipro = "25%"
-
-	-- Mag-fed Specialist
 	self.values.shotgun.mag_reload_speed_mul = { 1.25 }
 	self.definitions.shotgun_mag_reload_speed_mul = {
 		name_id = "menu_shotgun_mag_reload_speed_mul",
@@ -373,25 +417,27 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.magazine_capacity_inc[1] = 5
-	self.skill_descs.close_by.multibasic = "25%"
-	self.skill_descs.close_by.multipro = "5"
+	self.values.shotgun.hip_rate_of_fire[1] = 1.25
+	self.skill_descs.far_away.multibasic = "40%"
+	self.skill_descs.far_away.multibasic2 = "25%"
+	self.skill_descs.far_away.multipro = "25%"
 
-	-- Shotgun Rampage
-	self.definitions.shotgun_speed_stack_on_kill = {
-		name_id = "menu_shotgun_speed_stack_on_kill",
+	-- Far Away
+	self.values.shotgun.effective_range_multiplier = { 1.25 }
+	self.definitions.shotgun_effective_range_multiplier = {
+		name_id = "menu_shotgun_effective_range_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "speed_stack_on_kill",
+			upgrade = "effective_range_multiplier",
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.speed_stack_on_kill = { {
-		max_stacks = 5,
-		max_time = 5,
-		speed_bonus = 1.06,
-	} }
+	self.values.shotgun.steelsight_accuracy_inc[1] = 0.5
+	self.skill_descs.close_by.multibasic = "25%"
+	self.skill_descs.close_by.multipro = "50%"
+
+	-- OVERKILL
 	self.definitions.cooldown_shotgun_panic_on_kill = {
 		name_id = "menu_cooldown_shotgun_panic_on_kill",
 		category = "cooldown",
@@ -402,11 +448,16 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.cooldown.shotgun_panic_on_kill = { { 1, 5 } }
-	self.values.shotgun.panic = { { chance = 0.75, area = 800, amount = "panic" } }
-	self.skill_descs.overkill.multibasic = "6%"
-	self.skill_descs.overkill.multibasic2 = "5"
-	self.skill_descs.overkill.multibasic3 = "5"
-	self.skill_descs.overkill.multipro = "75%"
+	self.values.shotgun.panic = { { chance = 0.5, area = 800, amount = "panic" } }
+	self.values.temporary.overkill_damage_multiplier = {
+		{
+			1.5,
+			5
+		}
+	}
+	self.skill_descs.overkill.multibasic = "50%"
+	self.skill_descs.overkill.multibasic2 = "10"
+	self.skill_descs.overkill.multipro = "50%"
 	self.skill_descs.overkill.multipro2 = "5"
 
 	-- Resilience
@@ -530,8 +581,11 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.jack_of_all_trades.multibasic = "60"
 	self.skill_descs.jack_of_all_trades.multipro = "3"
 
-	-- Defense Package
-	self.skill_descs.engineering.multibasic = "150%"
+	-- Portable Saw
+	self.values.saw.lock_damage_multiplier[2] = 1.6
+	self.values.player.saw_speed_multiplier[2] = 0.4
+	self.skill_descs.engineering.multibasic = "1"
+	self.skill_descs.engineering.multibasic2 = "60%"
 
 	-- Sentry Nest
 	self.skill_descs.tower_defense.multipro = "25%"
@@ -2145,4 +2199,5 @@ function UpgradesTweakData:init(tweak_data)
 			required_pickups = 50,
 		},
 	}
+	self.values.saw.enemy_slicer[1] = 2
 end

@@ -75,6 +75,7 @@
 				<post :hook_id="sidejobeventmanager"/>
 				<post :hook_id="blackmarketmanager"/>
 				<post :hook_id="dynamicresourcemanager"/>
+				<post :hook_id="gameplaycentralmanager"/>
 				<post :hook_id="sidejobgenericdlcmanager"/>
 				<post :hook_id="criminalsmanager"/>
 				<post :hook_id="crimenetmanager"/>
