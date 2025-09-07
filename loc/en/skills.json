@@ -37,7 +37,7 @@
 	"menu_far_away": "Far Away",
 	"menu_far_away_desc": "BASIC: ##$basic##\nEffective range of your Shotguns is increased by ##$multibasic##.\n\nACE: ##$pro##\nYour accuracy bonus while aiming down sights with Shotguns is increased by ##$multipro##.",
 	"menu_overkill": "OVERKILL",
-	"menu_overkill_desc": "BASIC: ##$basic##\nWhen you kill an enemy with a Shotgun, you have a ##$multibasic2## chance to cause nearby enemies to panic.\n\nThis cannot occur more than once every ##$multibasic## seconds\n\nACE: ##$pro##\nWhen you kill an enemy with a Shotgun, you receive ##$multipro## damage increase for ##$multipro2## seconds.\n\nThis damage bonus applies to all weapons.",
+	"menu_overkill_desc": "BASIC: ##$basic##\nWhen you kill an enemy with a Shotgun, you have a ##$multibasic## chance to cause nearby enemies to panic.\n\nThis cannot occur more than once every ##$multibasic2## seconds\n\nACE: ##$pro##\nWhen you kill an enemy with a Shotgun, you receive ##$multipro## damage increase for ##$multipro2## seconds.\n\nThis damage bonus applies to all weapons.",
 
 	"menu_close_by_beta": "Mag-fed Specialist",
 	"menu_close_by_beta_desc": "BASIC: ##$basic##\nYou reload ##Magazine-loaded## & ##Double Barrel## Shotguns ##$multibasic## faster.\n\nACE: ##$pro##\nYour ##Magazine-loaded## Shotguns have their magazine size increased by ##$multipro## shells.",
