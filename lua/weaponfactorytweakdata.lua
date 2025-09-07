@@ -33,7 +33,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		local is_magazine = part_data.type and part_data.type == "magazine"
 		local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
 
-		if self.part_type_stat_blacklist[part_data.type] then
+		if self.part_type_stat_blacklist[part_data.type] and not is_second_sight then
 			part_data.stats = {}
 			part_data.custom_stats = {}
 		end
