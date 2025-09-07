@@ -98,6 +98,9 @@ local garage_event_triggered = {
 		comment = "v18",
 	},
 }
+local spawn_anim_fix = {
+	spawn_action = "e_sp_down_16m_right",
+}
 return {
 	[101356] = {
 		ponr = {
@@ -332,6 +335,11 @@ return {
 			},
 		},
 	},
+	-- fix inkwell heli enemies having pdth spawn anim leftovers
+	[102232] = spawn_anim_fix,
+	[102261] = spawn_anim_fix,
+	[102273] = spawn_anim_fix,
+	[102279] = spawn_anim_fix,
 	[101173] = { -- change up the timers on this heli slightly so that it doesn't fly away too early
 		on_executed = {
 			{ id = 100476, delay = 1 },

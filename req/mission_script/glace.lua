@@ -8,6 +8,17 @@ local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+
 local regular_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -58,11 +69,7 @@ return {
 			player_mul = { 2, 1.5, 1, 1 },
 		},
 	},
-	[100521] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[100521] = disabled,
 	-- delay SWAT choppers
 	[100065] = {
 		on_executed = {
@@ -110,11 +117,7 @@ return {
 		},
 	},
 	-- disable the entire attack heli
-	[100657] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[100657] = disabled,
 	-- replace the cloaker spawn with dozer and make him participate to group ai
 	[101320] = {
 		enemy = is_eclipse and eclipse_dozers or regular_dozers,
@@ -176,6 +179,10 @@ return {
 	[102007] = escape_guaranteed_spawn,
 	[102008] = escape_guaranteed_spawn,
 	[102009] = escape_guaranteed_spawn,
+	-- filters are disabled
+	[101988] = enabled,
+	[101989] = enabled,
+	[101990] = enabled,
 	-- change preferreds
 	[101176] = { -- saw spawns
 		values = {
