@@ -116,7 +116,7 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 
 	local base_ext = unit:base()
 	if not base_ext then
-		Eclipse:warn_console(string.format('Unit on special objective %u without base extension', self._id))
+		Eclipse:warn_console(string.format("Unit on special objective %u without base extension", self._id))
 		return
 	end
 
