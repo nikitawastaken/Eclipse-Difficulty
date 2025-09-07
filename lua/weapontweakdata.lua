@@ -767,7 +767,7 @@ function WeaponTweakData:_init_weapons()
 					weap_data.kick.standing =  { -0.1, 0.1, -0.1, 0.1 }
 
 				elseif cat_map.lmg then
-					weap_data.kick.standing = { -0.2, 1, -0.8, 1.4 }
+					weap_data.kick.standing = { -0.4, 1.2, -0.8, 1.4 }
 
 				elseif is_hailstorm then
 					weap_data.kick.standing = { 0.4, 0.6, -0.8, 0.8 }
@@ -1676,6 +1676,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.maxim9.stats.recoil = 12
 	self.maxim9.stats.concealment = 28
 	self.maxim9.fire_mode_data.fire_rate = 60 / 600
+	self.maxim9.can_do_shotgun_push = false
 
 	-- Baby Deagle
 	self.sparrow.CLIP_AMMO_MAX = 12
@@ -2309,16 +2310,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	--self.rpk.spray = spray_tables.lmg_right
 	--self.rpk.recoil_recovery_timer = recovery_tables.high
 
-	-- KSP 58
-	self.par.CLIP_AMMO_MAX = 150
-	self.par.stats.damage = 24
-	self.par.stats.spread = 15
-	self.par.stats.recoil = 8
-	self.par.stats.concealment = 10
-	self.par.fire_mode_data.fire_rate = 60 / 700
-	--self.par.spray = spray_tables.lmg_left
-	--self.par.recoil_recovery_timer = recovery_tables.high
-
 	-- Versteckt
 	self.hk51b.CLIP_AMMO_MAX = 60
 	self.hk51b.stats.damage = 24
@@ -2334,18 +2325,28 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Brenner
 	self.hk21.CLIP_AMMO_MAX = 150
 	self.hk21.stats.damage = 28
-	self.hk21.stats.spread = 15
-	self.hk21.stats.recoil = 3
+	self.hk21.stats.spread = 14
+	self.hk21.stats.recoil = 5
 	self.hk21.stats.concealment = 10
 	self.hk21.fire_mode_data.fire_rate = 60 / 750
 	--self.hk21.spray = spray_tables.lmg_left
 	--self.hk21.recoil_recovery_timer = recovery_tables.high
 
+	-- KSP 58
+	self.par.CLIP_AMMO_MAX = 150
+	self.par.stats.damage = 28
+	self.par.stats.spread = 15
+	self.par.stats.recoil = 4
+	self.par.stats.concealment = 10
+	self.par.fire_mode_data.fire_rate = 60 / 700
+	--self.par.spray = spray_tables.lmg_left
+	--self.par.recoil_recovery_timer = recovery_tables.high
+	
 	-- M60
 	self.m60.CLIP_AMMO_MAX = 100
 	self.m60.stats.damage = 32
 	self.m60.stats.spread = 14
-	self.m60.stats.recoil = 6
+	self.m60.stats.recoil = 3
 	self.m60.stats.concealment = 10
 	self.m60.fire_mode_data.fire_rate = 60 / 550
 	--self.m60.spray = spray_tables.lmg_right
