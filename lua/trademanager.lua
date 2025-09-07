@@ -38,7 +38,10 @@ function TradeManager:set_trade_countdown(enabled)
 		managers.network:session():send_to_peers_synched("set_trade_countdown", enabled)
 	end
 
-	Eclipse.utils.log_traceback()
+	local f = debug and debug.getinfo(3) and debug.getinfo(3).name
+	if not enabled or f:find("_end_regroup_task") then
+		Eclipse.utils.log_traceback()
+	end
 end
 
 function TradeManager:is_trading()
