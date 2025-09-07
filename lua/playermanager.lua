@@ -373,7 +373,6 @@ PlayerAction.PlayerCQB = {
 		local current_time = Application:time()
 		local current_stacks = 1
 
-		-- unit
 		local function on_kill(weapon_unit, variant)
 			if variant == "bullet" then
 				current_stacks = current_stacks + 1
@@ -576,7 +575,7 @@ end
 local old_speed_multiplier = PlayerManager.movement_speed_multiplier
 function PlayerManager:movement_speed_multiplier(...)
 	local multi = old_speed_multiplier(self, ...)
-	multi = multi * managers.player:get_property("playercqb", 1)
+	multi = multi * (1 + managers.player:get_property("playercqb", 0))
 	return multi
 end
 

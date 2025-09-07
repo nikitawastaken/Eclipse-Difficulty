@@ -338,7 +338,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			max_stacks = 3,
 			max_time = 5,
-			speed_bonus = 1.05,
+			speed_bonus = 0.05,
 		},
 	}
 	self.definitions.player_speed_stack_on_kill = {
