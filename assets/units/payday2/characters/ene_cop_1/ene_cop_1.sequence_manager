@@ -247,6 +247,13 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_shoulders_lod1'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'armor_extra'" once="true" triggable="true"> 
+			<object 			filter="'check_fat'" enabled="true" name="'g_armor_extra_fat'" />
+			<object 			filter="'check_fat'" enabled="true" name="'g_armor_extra_fat_lod1'" />
+			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_extra'" />
+			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_extra_lod1'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'baton'" once="true" triggable="true"> 
 			<object 			filter="'check_fat'" enabled="true" name="'g_baton_fat'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_baton_fat_lod1'" />
@@ -544,6 +551,7 @@
 			
 			<run_sequence 		name="'armor_body'" />
 			<run_sequence 		name="'badges_security'" />
+			<run_sequence 		name="'shoulder_loops'" />
 			
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_watch_rare'" />		
@@ -620,6 +628,7 @@
 			<run_sequence 		name="'green_security'" />
 
 			<run_sequence 		name="'armor_body'" />
+			<run_sequence 		name="'armor_extra'" />
 			<run_sequence 		name="'armor_shoulders'" />		
 			<run_sequence 		name="'badges_green_security'" />
 			<run_sequence 		name="'baton'" />
@@ -710,6 +719,7 @@
 			<run_sequence 		name="'belt'" />
 			<run_sequence 		name="'hat_cop'" />
 			<run_sequence 		name="'hat_cop_badge'" />
+			<run_sequence 		name="'shoulder_loops'" />
 		
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'random_watch_rare'" />		
@@ -788,6 +798,7 @@
 			<run_sequence 		name="'la_cop'" />
 
 			<run_sequence 		name="'armor_body'" />
+			<run_sequence 		name="'armor_extra'" />
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'belt'" />
 			

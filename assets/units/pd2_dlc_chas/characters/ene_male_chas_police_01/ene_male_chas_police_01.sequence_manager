@@ -137,6 +137,13 @@
 			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_body_lod1'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'armor_extra'" once="true" triggable="true"> 
+			<object 			filter="'check_fat'" enabled="true" name="'g_armor_extra_fat'" />
+			<object 			filter="'check_fat'" enabled="true" name="'g_armor_extra_fat_lod1'" />
+			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_extra'" />
+			<object 			filter="'check_not_fat'" enabled="true" name="'g_armor_extra_lod1'" />
+		</sequence>
+
 		<sequence editable_state="true" name="'armor_shoulders'" once="true" triggable="true"> 
 			<object 			filter="'check_fat'" enabled="true" name="'g_armor_shoulders_fat'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_armor_shoulders_fat_lod1'" />
