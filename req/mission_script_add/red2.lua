@@ -8,7 +8,7 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
-local bags_required = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+local bags_required = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0)
 
 local heavy_rifle = scripted_enemy.heavy_swat_1
 local heavy_sg = scripted_enemy.heavy_swat_2
