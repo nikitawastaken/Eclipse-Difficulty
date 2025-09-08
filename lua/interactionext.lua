@@ -97,7 +97,7 @@ function BaseInteractionExt:can_interact(player)
 end
 
 -- Hostage resource trade interaction
-Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_carry_interact", function(self, player)
+Hooks:PreHook(IntimitateInteractionExt, "interact", "eclipse_intimitate_interact", function(self, player)
 	if not self:can_interact(player) then
 		return
 	end

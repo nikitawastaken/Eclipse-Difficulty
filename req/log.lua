@@ -1,6 +1,8 @@
 ---@module log
 local M = {}
 M.log_file = Eclipse.mod_path .. "log.txt"
+M.back_log_file = Eclipse.mod_path .. "log_back.txt"
+M.log_metadata = SavePath .. "eclipse_log"
 M.Level = {
 	INFO = "info",
 	DEBUG = "debug",
@@ -19,6 +21,39 @@ M._spam_t = 0
 M._spam_buff = {}
 M._spam_sep = "\n" .. string.rep("=-", 10) .. "="
 M._spam_prev_msg = ""
+M.days_to_save = 3
+
+local day_seconds = 86400
+
+local function check_flush_log()
+	if io.file_is_readable(M.log_metadata) then
+		local f = io.open(M.log_metadata, "r")
+		if f then
+			local time = f:read("*n")
+			if os.time() - time > M.days_to_save * day_seconds then
+				if io.file_is_readable(M.back_log_file) then
+					os.remove(M.back_log_file)
+				end
+				if io.file_is_readable(M.log_file) then
+					os.rename(M.log_file, M.back_log_file)
+				end
+
+				f:close()
+				f = io.open(M.log_metadata, "w")
+				if f then
+					f:write(tostring(os.time()))
+					f:close()
+				end
+			end
+		end
+	else
+		local f = io.open(M.log_metadata, "w")
+		if f then
+			f:write(tostring(os.time()))
+			f:close()
+		end
+	end
+end
 
 local function get_time()
 	return os.date("%d-%m-%y %H:%M:%S", os.time())
@@ -123,5 +158,7 @@ local mt = {
 	end,
 }
 setmetatable(M, mt)
+
+check_flush_log()
 
 return M

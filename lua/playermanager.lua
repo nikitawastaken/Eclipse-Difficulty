@@ -1040,6 +1040,7 @@ function PlayerManager:clear_carry(soft_reset)
 	managers.hud:remove_teammate_carry_info(HUDManager.PLAYER_PANEL)
 	managers.hud:temp_hide_carry_bag()
 	self:update_removed_synced_carry_to_peers()
+	self:subtract_bags_carried()
 
 	if self._current_state == "carry" then
 		managers.player:set_player_state("standard")
