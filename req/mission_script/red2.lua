@@ -173,6 +173,7 @@ return {
 	[105019] = bags_required_objective,
 	[103032] = bags_required_objective,
 	[103033] = bags_required_objective,
+	[105719] = disabled,
 	-- allow Overdrill
 	[104182] = filter_overkill_above,
 	-- allow Bo's dozers on all diffs

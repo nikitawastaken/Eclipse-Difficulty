@@ -60,6 +60,16 @@ local cloaker_spawn = {
 		interval = 180,
 	},
 }
+local bags_required = {
+	values = {
+		counter_target = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+	},
+}
+local bags_required_objective = {
+	values = {
+		amount = eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+	},
+}
 local chance_all_containers_closed = normal and 0 or hard and 0.0125 or 0.025
 local chance_zero_traversal_covers = normal and 0 or 0.05
 local chance_zero_top_containers = chance_zero_traversal_covers
@@ -101,6 +111,12 @@ return {
 				force = 3,
 				position = Vector3(-15200, 6300, -75),
 			},
+		},
+	},
+	-- hide the odd swat van
+	[100028] = {
+		on_executed = {
+			{ id = 400066, delay = 0 },
 		},
 	},
 	-- Disable a few vanilla reinforce points
@@ -161,6 +177,8 @@ return {
 			amount_random = 2,
 		},
 	},
+	-- fuck off
+	[101399] = disabled,
 	-- The camping spot from PDTH is more likely to be blocked on higher difficulties
 	[103194] = {
 		values = {

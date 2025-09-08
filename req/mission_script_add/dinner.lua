@@ -4,6 +4,7 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local ambush_amount = 2 + (is_pro_job and 1 or 0)
 
 local enabled_chance_snipers = math.random() <= 0.45
@@ -16,6 +17,8 @@ local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
 local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
+
+local bags_required = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0)
 
 local random_dozers = {
 	green_bulldozer,
@@ -225,6 +228,15 @@ local optsNewAmbushTrigger = {
 		{ id = 400058, delay = 0 },
 	},
 }
+local optsinstance_bag_requirment = {
+	instance = "obj_link_005",
+	params = { var_amount_death_wish = bags_required, var_amount_hard = bags_required,  var_amount_normal = bags_required, var_amount_overkill = bags_required, var_amount_very_hard = bags_required, var_objective = "dinner_hide" },
+}
+local optshideSwatVan = {
+	unit_ids = {
+		100620,
+	},
+}
 
 M.elements = {
 	--Ambush
@@ -282,6 +294,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400063, "revenge_chopper", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSpecialChopper),
 	-- new area trigger for the Ambush
 	Eclipse.mission_elements.gen_areatrigger(400064, "new_area_trigger_ambush", Vector3(-12657, 6709, 104.007), Rotation(0, 0, 0), optsNewAmbushTrigger),
+	-- change bag requirments
+	Eclipse.mission_elements.gen_instance_params(400065, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
+	-- disable odd swat van
+	Eclipse.mission_elements.gen_disable_unit(400066, "hide_swat_van", Vector3(0, 0, 0), Rotation(0, 0, 0), optshideSwatVan),
 }
 
 return M

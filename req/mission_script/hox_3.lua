@@ -71,6 +71,13 @@ return {
 			{ id = 103522, delay = 5 },
 		},
 	},
+	-- fix swat van lights being turned off when starting another sequence
+	[103558] = {
+		on_executed = {
+			{ id = 103552, remove = true },
+			{ id = 400048, delay = 0.05 },
+		},
+	},	
 	-- replace vanilla swat van spawn system with new one
 	[100022] = {
 		on_executed = {
@@ -80,19 +87,6 @@ return {
 	[100327] = {
 		on_executed = {
 			{ id = 400036, delay = 90, delay_rand = 30 },
-		},
-	},
-	-- send dozers if you kill the FBI man
-	[102099] = {
-		on_executed = {
-			{ id = 400045, delay = 0 },
-			{ id = 400046, delay = 0 },
-		},
-	},
-	[102153] = {
-		on_executed = {
-			{ id = 400045, delay = 0 },
-			{ id = 400046, delay = 0 },
 		},
 	},
 	-- Add new reinforce around the house

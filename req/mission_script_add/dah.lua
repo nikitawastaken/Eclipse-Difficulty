@@ -5,6 +5,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = is_eclipse and is_pro_job
 
 local secret_service = scripted_enemy.secret_service_1
@@ -23,6 +24,7 @@ local bulldozer = scripted_enemy.bulldozer_1
 local swat_ambush_table = { swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg }
 
 local diff_scaling = diff_i / 8
+local bags_required = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0)
 
 local enabled_chance_extra_elevator_spawns = math.random() <= diff_scaling
 local enabled_chance_helipad_shields = math.random() <= diff_scaling
@@ -366,6 +368,10 @@ local disable_snipers = {
 local Smoke_bomb = {
 	duration = 8,
 }
+local optsinstance_bag_requirment = {
+	instance = "obj_link_009",
+	params = { var_amount_death_wish = bags_required, var_amount_hard = bags_required,  var_amount_normal = bags_required, var_amount_overkill = bags_required, var_amount_very_hard = bags_required, var_objective = "dah_11" },
+}
 
 M.elements = {
 	--Cloakers
@@ -503,6 +509,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(410003, "secret_service_10", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
 	Eclipse.mission_elements.gen_so(410004, "secret_service_so_9", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
 	Eclipse.mission_elements.gen_so(410005, "secret_service_so_10", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	-- change bag requirments
+	Eclipse.mission_elements.gen_instance_params(410006, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 }
 
 return M

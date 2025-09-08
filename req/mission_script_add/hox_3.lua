@@ -98,6 +98,13 @@ local optsSwatVanArrive_4 = {
 		{ id = 3, name = "run_sequence", notify_unit_id = 103516, notify_unit_sequence = "state_lights_on", time = 0 },
 	},
 }
+local optsSwatVanArrive_4_2 = {
+	enabled = true,
+	trigger_list = {
+		{ id = 1, name = "run_sequence", notify_unit_id = 103516, notify_unit_sequence = "queue_van_swat_hox_arrive_1_2", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 103516, notify_unit_sequence = "anim_ram_gate", time = 0 },
+	},
+}
 local optsOpenSwatVanDoors_1 = {
 	enabled = true,
 	trigger_list = {
@@ -123,6 +130,7 @@ local optsOpenSwatVanDoors_4 = {
 	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 103516, notify_unit_sequence = "anim_doors_rear_open", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 103516, notify_unit_sequence = "state_lights_off", time = 0 },
 	},
 }
 local optsOpenSwatVanDoors_Trigger_1 = {
@@ -191,7 +199,21 @@ local optsdisable_regular_swats = {
 		400032,
 	},
 }
-
+local optswife_dead = {
+	on_executed = {
+		{ id = 400045, delay = 0 },
+		{ id = 400046, delay = 0 },
+	},
+	elements = {
+		101812,
+		101813,
+		101814,
+		101815,
+		101822,
+		101526,
+	},
+	event = "death",
+}
 local spawn_dozers = {
 	on_executed = { { id = 400041, delay = 0 }, { id = 400042, delay = 0 }, { id = 400043, delay = 0 }, { id = 400044, delay = 0 }, { id = 400033, delay = 0 } },
 }
@@ -238,6 +260,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400032, "spawn_swats_4", optsspawnvanSWATs_4),
 	Eclipse.mission_elements.gen_object_editor(400033, "open_swat_doors_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_4),
 	Eclipse.mission_elements.gen_object_editor(400034, "swat_arrive_new_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_4),
+	Eclipse.mission_elements.gen_object_editor(400048, "swat_arrive_new_4_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_4_2),
 	Eclipse.mission_elements.gen_spawngroup(400035, "swat_group_4", { 400028, 400029, 400030, 400031 }, 0, opts_swat_group),
 
 	-- new vans arrival stuff
@@ -255,6 +278,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_toggleelement(400045, "something_just_happened_send_dozers", optsenable_bulldozers),
 	Eclipse.mission_elements.gen_toggleelement(400046, "something_just_happened_back_off_the_swat", optsdisable_regular_swats),
+	Eclipse.mission_elements.gen_dummytrigger(400049, "wife_is_dead", Vector3(0, 0, 0), Rotation(0, 0, 0), optswife_dead),
 
 	Eclipse.mission_elements.gen_missionscript(400047, "dozer_response", spawn_dozers),
 }

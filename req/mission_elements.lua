@@ -631,4 +631,90 @@ function M.gen_chance(id, name, pos, rot, opts)
 	return chance_element
 end
 
+---Generate a enable unit element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_enable_unit(id, name, pos, rot, opts)
+	opts = opts or {}
+	local enable_unit = {
+		id = id,
+		editor_name = name,
+		class = "ElementEnableUnit",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			unit_ids = opts.unit_ids or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = true,
+			callback = opts.callback or false,
+		},
+	}
+
+	return enable_unit
+end
+
+---Generate a disable unit element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_disable_unit(id, name, pos, rot, opts)
+	opts = opts or {}
+	local disable_unit = {
+		id = id,
+		editor_name = name,
+		class = "ElementDisableUnit",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			unit_ids = opts.unit_ids or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = true,
+			callback = opts.callback or false,
+		},
+	}
+
+	return disable_unit
+end
+
+---Generate a instance param element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_instance_params(id, name, pos, rot, opts)
+	opts = opts or {}
+	local instance_param = {
+		id = id,
+		editor_name = name,
+		module = "CoreElementInstance",
+		class = "ElementInstanceSetParams",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			params = opts.params or {},
+			instance = opts.instance or nil,
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = true,
+			callback = opts.callback or false,
+		},
+	}
+
+	return instance_param
+end
+
 return M

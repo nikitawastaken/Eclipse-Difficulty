@@ -53,6 +53,7 @@ return {
 	[101759] = bags_required,
 	[101760] = bags_required,
 	[101761] = bags_required,
+	[100470] = disabled,
 	-- remove curly spawns
 	[101653] = disabled,
 	-- Spawn group intervals

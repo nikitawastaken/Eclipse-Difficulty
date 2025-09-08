@@ -1,5 +1,6 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local is_eclipse = Eclipse.utils.is_eclipse()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
@@ -43,6 +44,11 @@ local vault_spawn = {
 		interval = 60,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local bags_required = {
+	values = {
+		counter_target = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+	},
 }
 return {
 	[100757] = { -- first responders
@@ -94,6 +100,13 @@ return {
 		difficulty = 0.75,
 	},
 	[104890] = disabled,
+	-- change the required amount of diamond bags
+	[101608] = bags_required,
+	[101609] = bags_required,
+	[102003] = bags_required,
+	[104657] = bags_required,
+	[104658] = bags_required,
+	[100177] = disabled,
 	-- enable pretty much all of the spawnpoints on the map from the very beginning, except those in the vault
 	-- should be impossible to spawncamp the heist that way
 	[104385] = enabled,
