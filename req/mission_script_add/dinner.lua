@@ -230,7 +230,14 @@ local optsNewAmbushTrigger = {
 }
 local optsinstance_bag_requirment = {
 	instance = "obj_link_005",
-	params = { var_amount_death_wish = bags_required, var_amount_hard = bags_required,  var_amount_normal = bags_required, var_amount_overkill = bags_required, var_amount_very_hard = bags_required, var_objective = "dinner_hide" },
+	params = {
+		var_amount_death_wish = bags_required,
+		var_amount_hard = bags_required,
+		var_amount_normal = bags_required,
+		var_amount_overkill = bags_required,
+		var_amount_very_hard = bags_required,
+		var_objective = "dinner_hide",
+	},
 }
 local optshideSwatVan = {
 	unit_ids = {

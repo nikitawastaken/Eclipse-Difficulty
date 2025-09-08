@@ -370,7 +370,14 @@ local Smoke_bomb = {
 }
 local optsinstance_bag_requirment = {
 	instance = "obj_link_009",
-	params = { var_amount_death_wish = bags_required, var_amount_hard = bags_required,  var_amount_normal = bags_required, var_amount_overkill = bags_required, var_amount_very_hard = bags_required, var_objective = "dah_11" },
+	params = {
+		var_amount_death_wish = bags_required,
+		var_amount_hard = bags_required,
+		var_amount_normal = bags_required,
+		var_amount_overkill = bags_required,
+		var_amount_very_hard = bags_required,
+		var_objective = "dah_11",
+	},
 }
 
 M.elements = {

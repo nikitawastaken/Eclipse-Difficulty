@@ -410,7 +410,14 @@ local optsspawnSecurity = {
 }
 local optsinstance_bag_requirment = {
 	instance = "obj_link_012",
-	params = { var_amount_death_wish = bags_required, var_amount_hard = bags_required,  var_amount_normal = bags_required, var_amount_overkill = bags_required, var_amount_very_hard = bags_required, var_objective = "heist_red2_mission10" },
+	params = {
+		var_amount_death_wish = bags_required,
+		var_amount_hard = bags_required,
+		var_amount_normal = bags_required,
+		var_amount_overkill = bags_required,
+		var_amount_very_hard = bags_required,
+		var_objective = "heist_red2_mission10",
+	},
 }
 
 M.elements = {
@@ -531,7 +538,7 @@ M.elements = {
 
 	Eclipse.mission_elements.gen_smokegrenade(400089, "smoke_grenade_3", Vector3(-2362, -2273, 551.843), Rotation(0, 0, 0), Smoke_bomb),
 	Eclipse.mission_elements.gen_missionscript(400090, "conference_room_event", optsspawnConferenceRoomAmbush),
-	
+
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400091, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 }

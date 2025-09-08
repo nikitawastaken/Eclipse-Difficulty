@@ -77,7 +77,7 @@ return {
 			{ id = 103552, remove = true },
 			{ id = 400048, delay = 0.05 },
 		},
-	},	
+	},
 	-- replace vanilla swat van spawn system with new one
 	[100022] = {
 		on_executed = {

@@ -8,7 +8,14 @@ local bags_required = normal and 4 or 6 + (is_pro_job and 2 or 0)
 
 local optsinstance_bag_requirment = {
 	instance = "obj_link_009",
-	params = { var_amount_death_wish = bags_required, var_amount_hard = bags_required,  var_amount_normal = bags_required, var_amount_overkill = bags_required, var_amount_very_hard = bags_required, var_objective = "arena_mission_9" },
+	params = {
+		var_amount_death_wish = bags_required,
+		var_amount_hard = bags_required,
+		var_amount_normal = bags_required,
+		var_amount_overkill = bags_required,
+		var_amount_very_hard = bags_required,
+		var_objective = "arena_mission_9",
+	},
 }
 
 M.elements = {
