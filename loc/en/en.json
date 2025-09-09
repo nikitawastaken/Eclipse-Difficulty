@@ -16,6 +16,10 @@
 	"bm_w_contraband": "Little Friend 7.62 Rifle",
 	"bm_w_tecci": "Bootleg Light Machine Gun",
 
+	"bm_wp_m4_m_drum": "Drum Magazine",
+	"bm_wp_ak_m_drum": "Drum Magazine",
+	"bm_wp_mp5_m_drum": "Drum Magazine",
+	"bm_wp_saiga_m_20rnd": "Drum Magazine",
 	"bm_wp_hcar_barrel_dmr": "Long Barrel",
 
 	"menu_dmr": "Marksman Rifle",

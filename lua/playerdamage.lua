@@ -578,6 +578,12 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 		return
 	end
 
+	self:apply_slowdown({
+		id = "teargas",
+		duration = 1,
+		prevents_running = true,
+	})
+	
 	attack_data.damage = managers.player:modify_value("damage_taken", self:_max_health() * attack_data.damage, attack_data) * math.max(0, self._teargas_damage_ramp)
 
 	self:mutator_update_attack_data(attack_data)

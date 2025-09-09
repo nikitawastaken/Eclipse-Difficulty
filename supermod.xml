@@ -358,6 +358,19 @@
 		<file name="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case.texture"/>
 		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
 
+		<group name="guis/textures/pd2/blackmarket/icons/" >
+			<group :name="deployables/">
+				<file :name="grenade_case.texture" />
+				<file :name="outline/grenade_case.texture" />
+			</group>
+			<group :name="mods/">
+				<file :name="wpn_fps_upg_m4_m_drum.texture" />
+				<file :name="wpn_upg_ak_m_drum.texture" />
+				<file :name="wpn_fps_smg_mp5_m_drum.texture" />
+				<file :name="wpn_upg_saiga_m_20rnd.texture" />
+			</group>
+		</group>
+		
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<group :name="gen_equipment_grenade_case/">
 				<file :name="gen_equipment_grenade_case.cooked_physics"/>
@@ -380,6 +393,38 @@
 
 		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
+			<group :name="wpn_fps_upg_m4_reusable/">
+				<file :name="wpn_fps_upg_m4_m_drum.material_config"/>
+				<file :name="wpn_fps_upg_m4_m_drum_cc.material_config"/>
+				<file :name="wpn_fps_upg_m4_m_drum_cc_thq.material_config"/>
+				<file :name="wpn_fps_upg_m4_m_drum_thq.material_config"/>
+				<file :name="wpn_fps_upg_m4_m_drum.model"/>
+				<file :name="wpn_fps_upg_m4_m_drum.object"/>
+			</group>
+			
+			<group :name="wpn_fps_upg_ak_reusable/">
+				<file :name="wpn_upg_ak_m_drum.material_config"/>
+				<file :name="wpn_upg_ak_m_drum.model"/>
+				<file :name="wpn_upg_ak_m_drum.object"/>
+			</group>
+
+			<group :name="wpn_fps_smg_mp5_pts/">
+				<file :name="wpn_fps_smg_mp5_m_drum.material_config"/>
+				<file :name="wpn_fps_smg_mp5_m_drum_cc.material_config"/>
+				<file :name="wpn_fps_smg_mp5_m_drum_cc_thq.material_config"/>
+				<file :name="wpn_fps_smg_mp5_m_drum_thq.material_config"/>
+				<file :name="wpn_fps_smg_mp5_m_drum.model"/>
+				<file :name="wpn_fps_smg_mp5_m_drum.object"/>
+			</group>
+
+			<group :name="wpn_fps_shot_saiga_pts/">
+				<file :name="wpn_upg_saiga_m_20rnd.material_config"/>
+				<file :name="wpn_upg_saiga_m_20rnd_cc.material_config"/>
+				<file :name="wpn_upg_saiga_m_20rnd_cc_thq.material_config"/>
+				<file :name="wpn_upg_saiga_m_20rnd.model"/>
+				<file :name="wpn_upg_saiga_m_20rnd.object"/>
+			</group>
+			
 			<group :name="wpn_gre_cluster/">
 				<file :name="wpn_gre_cluster_df.texture"/>
 				<file :name="wpn_gre_cluster_nm.texture"/>
@@ -525,7 +570,7 @@
 				<file :name="wpn_mel_titan_sword.unit"/>
 			</group>
 		</group>
-
+		
 		<group name="units/payday2/vehicles/" dyn_package="false">
 			<file :name="anim_vehicle_car_police/anim_vehicle_car_police.material_config" />
 			<file :name="bnk_vehicle_car_police_anim_1/bnk_vehicle_car_police_anim_1.material_config" />

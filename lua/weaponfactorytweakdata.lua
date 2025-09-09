@@ -210,37 +210,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -5
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.concealment = -4
 	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750, ammo_pickup_min_mul = 1 / 1.8, ammo_pickup_min_mul = 1 / 1.8 }
-
-	self.parts.wpn_fps_upg_m4_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_m4_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_upg_m4_reusable/wpn_fps_upg_m4_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_upg_m4_reusable/wpn_third_upg_m4_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-	}
-
-	table.insert(self.wpn_fps_ass_m4.uses_parts, "wpn_fps_upg_m4_m_drum")
-
+	
 	self.parts.wpn_fps_upg_ak_b_draco.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_draco.stats.concealment = 2
 
@@ -256,36 +226,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_upg_ak_m_uspalm.stats.extra_ammo = 0
 	self.parts.wpn_fps_upg_ak_m_uspalm.custom_stats.ammo_offset = 5
-
-	self.parts.wpn_upg_ak_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_ak_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-	}
-
-	table.insert(self.wpn_fps_ass_akm.uses_parts, "wpn_upg_ak_m_drum")
 
 	self.parts.wpn_fps_aug_b_short.stats.spread = -2
 	self.parts.wpn_fps_aug_b_short.stats.recoil = 0
@@ -602,37 +542,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 6
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
 	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 3 / 4, ammo_pickup_min_mul = 3 / 4 }
-
-	self.parts.wpn_fps_smg_mp5_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_mp5_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_smg_mp5_pts/wpn_fps_smg_mp5_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_smg_mp5_pts/wpn_third_smg_mp5_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-	}
-
-	table.insert(self.wpn_fps_smg_mp5.uses_parts, "wpn_fps_smg_mp5_m_drum")
-
+	
 	self.parts.wpn_fps_smg_p90_b_long.stats.damage = 0
 	self.parts.wpn_fps_smg_p90_b_long.stats.spread = 2
 	self.parts.wpn_fps_smg_p90_b_long.stats.recoil = 0
@@ -708,37 +618,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_sho_saiga_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = 0
 	self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
-
-	self.parts.wpn_upg_saiga_m_20rnd = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_saiga_m_20rnd",
-		unit = "units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd",
-		third_unit = "units/payday2/weapons/wpn_third_shot_saiga_pts/wpn_third_saiga_m_20rnd",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 13,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-	}
-
-	table.insert(self.wpn_fps_shot_saiga.uses_parts, "wpn_upg_saiga_m_20rnd")
-
+	
 	self.parts.wpn_fps_sho_basset_m_extended.stats.extra_ammo = 0
 	self.parts.wpn_fps_sho_basset_m_extended.custom_stats = { ammo_offset = 3 }
 
@@ -1113,6 +993,123 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_gre_ms3gl_conversion.custom_stats.fire_rate_multiplier = 4 / 3
 	self.parts.wpn_fps_gre_ms3gl_conversion.adds = {}
 
+	-- Re-add drum mags	and unused RPK mag
+	self.parts.wpn_fps_upg_m4_m_drum = {
+		a_obj = "a_m",
+		type = "magazine",
+		name_id = "bm_wp_m4_m_drum",
+		unit = "units/payday2/weapons/wpn_fps_upg_m4_reusable/wpn_fps_upg_m4_m_drum",
+		third_unit = "units/payday2/weapons/wpn_third_upg_m4_reusable/wpn_third_upg_m4_m_drum",
+		pcs = {
+			10,
+			20,
+			30,
+			40,
+		},
+		bullet_objects = {
+			amount = 1,
+			prefix = "g_bullet_",
+		},
+		stats = {
+			value = 1,
+		},
+		custom_stats = {
+			ammo_offset = 45,
+		},
+		animations = {
+			reload_not_empty = "reload_not_empty",
+			reload = "reload",
+		},
+		no_akimbo = true,
+	}
+
+	self.parts.wpn_upg_ak_m_drum = {
+		a_obj = "a_m",
+		type = "magazine",
+		name_id = "bm_wp_ak_m_drum",
+		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum",
+		third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum",
+		pcs = {
+			10,
+			20,
+			30,
+			40,
+		},
+		bullet_objects = {
+			amount = 1,
+			prefix = "g_bullet_",
+		},
+		stats = {
+			value = 1,
+		},
+		custom_stats = {
+			ammo_offset = 45,
+		},
+		animations = {
+			reload_not_empty = "reload_not_empty",
+			reload = "reload",
+		},
+		no_akimbo = true,
+	}
+
+	self.parts.wpn_fps_smg_mp5_m_drum = {
+		a_obj = "a_m",
+		type = "magazine",
+		name_id = "bm_wp_mp5_m_drum",
+		unit = "units/payday2/weapons/wpn_fps_smg_mp5_pts/wpn_fps_smg_mp5_m_drum",
+		third_unit = "units/payday2/weapons/wpn_third_smg_mp5_pts/wpn_third_smg_mp5_m_drum",
+		pcs = {
+			10,
+			20,
+			30,
+			40,
+		},
+		bullet_objects = {
+			amount = 1,
+			prefix = "g_bullet_",
+		},
+		stats = {
+			value = 1,
+		},
+		custom_stats = {
+			ammo_offset = 45,
+		},
+		animations = {
+			reload_not_empty = "reload_not_empty",
+			reload = "reload",
+		},
+		no_akimbo = true,
+	}
+
+	self.parts.wpn_upg_saiga_m_20rnd = {
+		a_obj = "a_m",
+		type = "magazine",
+		name_id = "bm_wp_saiga_m_20rnd",
+		unit = "units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd",
+		third_unit = "units/payday2/weapons/wpn_third_shot_saiga_pts/wpn_third_saiga_m_20rnd",
+		pcs = {
+			10,
+			20,
+			30,
+			40,
+		},
+		bullet_objects = {
+			amount = 1,
+			prefix = "g_bullet_",
+		},
+		stats = {
+			value = 1,
+		},
+		custom_stats = {
+			ammo_offset = 13,
+		},
+		animations = {
+			reload_not_empty = "reload_not_empty",
+			reload = "reload",
+		},
+		no_akimbo = true,
+	}
+	
 	-- Conversion kits and various barrels, family based modifications --
 
 	local dmr_stance_muls = {
@@ -1502,6 +1499,36 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		end
 	end
 end)
+
+WeaponFactoryTweakData.part_templates = {
+	["wpn_fps_upg_m4_m_drum"] = "wpn_fps_upg_m4_m_pmag",
+	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
+	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
+	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
+}
+
+function WeaponFactoryTweakData:_add_eclipse_parts(tweak_data)
+	local upgrade_definitions = tweak_data.upgrades.definitions
+
+	for weap_id, weap_data in pairs(upgrade_definitions) do
+		local factory_id = weap_data.factory_id
+		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
+		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
+
+		for part_id, template_id in pairs(self.part_templates) do
+			local weap_uses_parts = self[factory_id] and self[factory_id].uses_parts 
+			local forbid_akimbo = self.parts[part_id] and self.parts[part_id].no_akimbo
+			
+			if weap_uses_parts and table.contains(weap_uses_parts, template_id) then
+				if is_akimbo and forbid_akimbo then
+					-- Nothing
+				else
+					table.insert(weap_uses_parts, part_id)
+				end
+			end			
+		end
+	end
+end
 
 -- Automatically balance Shotgun ammo types
 function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
@@ -2242,6 +2269,7 @@ end
 
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
+	self:_add_eclipse_parts(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
 	self:_balance_launcher_ammo(tweak_data)
 	self:_balance_magazines(tweak_data)

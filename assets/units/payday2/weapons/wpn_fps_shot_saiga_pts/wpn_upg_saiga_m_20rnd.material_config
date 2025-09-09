@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<materials version="3">
+	<material name="saiga_20rnd" render_template="generic:DEPTH_SCALING:DIFFUSE_TEXTURE:NORMALMAP" version="2">
+        <diffuse_texture file="units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd_df"/>
+        <bump_normal_texture file="units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd_nm"/>
+    </material>
+	<material name="slug" render_template="generic:DEPTH_SCALING:DIFFUSE_TEXTURE:NORMALMAP:NORMALMAP_UV1" version="2">
+		<diffuse_texture file="units/payday2/weapons/wpn_fps_shot_r870_pts/slug_df" />
+		<bump_normal_texture file="units/payday2/weapons/wpn_fps_shot_r870_pts/slug_nm" />
+	</material>
+</materials>
