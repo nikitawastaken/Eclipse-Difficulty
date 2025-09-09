@@ -1,9 +1,20 @@
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local goats_required = {
 	values = {
-		counter_target = (diff_i + 2) + (is_pro_job and 2 or 0),
+		counter_target = normal and 5 or hard and 8 or 10 + (is_pro_job and 2 or 0),
+	},
+}
+local random_goats = {
+	values = {
+		amount = normal and 2 or hard and 5 or 7 + (is_pro_job and 2 or 0),
+	},
+}
+local disabled = {
+	values = {
+		enabled = false,
 	},
 }
 local scene_cop_count = {
@@ -41,6 +52,12 @@ return {
 	[100088] = goats_required,
 	[100089] = goats_required,
 	[100090] = goats_required,
+	[103479] = random_goats,
+	[103480] = random_goats,
+	[103481] = random_goats,
+	[103482] = random_goats,
+	[105634] = random_goats,
+	[100159] = disabled,
 	-- Scale initial cop amount
 	[103446] = scene_cop_count, -- scene cops
 	[103445] = scene_cop_count,

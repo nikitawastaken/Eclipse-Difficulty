@@ -1,5 +1,15 @@
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local goats_required = {
+	values = {
+		counter_target = normal and 5 or hard and 8 or 10 + (is_pro_job and 2 or 0),
+	},
+}
+local random_goats = {
+	values = {
+		amount = normal and 2 or hard and 5 or 7 + (is_pro_job and 2 or 0),
+	},
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -53,6 +63,17 @@ return {
 			},
 		},
 	},
+	-- Scale goat requirements
+	[100579] = goats_required,
+	[101584] = goats_required,
+	[101585] = goats_required,
+	[101586] = goats_required,
+	[101587] = goats_required,
+	[101588] = random_goats,
+	[101589] = random_goats,
+	[101590] = random_goats,
+	[101591] = random_goats,
+	[101592] = random_goats,
 	-- Disable one reinforce point on the bridge, increase the force of the other from 2 to 3
 	[101385] = {
 		values = {
