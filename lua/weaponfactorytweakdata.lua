@@ -210,7 +210,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -5
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.concealment = -4
 	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750, ammo_pickup_min_mul = 1 / 1.8, ammo_pickup_min_mul = 1 / 1.8 }
-	
+
 	self.parts.wpn_fps_upg_ak_b_draco.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_draco.stats.concealment = 2
 
@@ -542,7 +542,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 6
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
 	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 3 / 4, ammo_pickup_min_mul = 3 / 4 }
-	
+
 	self.parts.wpn_fps_smg_p90_b_long.stats.damage = 0
 	self.parts.wpn_fps_smg_p90_b_long.stats.spread = 2
 	self.parts.wpn_fps_smg_p90_b_long.stats.recoil = 0
@@ -618,7 +618,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_sho_saiga_b_short.stats.spread = -2
 	self.parts.wpn_fps_sho_saiga_b_short.stats.recoil = 0
 	self.parts.wpn_fps_sho_saiga_b_short.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_sho_basset_m_extended.stats.extra_ammo = 0
 	self.parts.wpn_fps_sho_basset_m_extended.custom_stats = { ammo_offset = 3 }
 
@@ -1109,7 +1109,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		},
 		no_akimbo = true,
 	}
-	
+
 	-- Conversion kits and various barrels, family based modifications --
 
 	local dmr_stance_muls = {
@@ -1516,16 +1516,16 @@ function WeaponFactoryTweakData:_add_eclipse_parts(tweak_data)
 		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
 
 		for part_id, template_id in pairs(self.part_templates) do
-			local weap_uses_parts = self[factory_id] and self[factory_id].uses_parts 
+			local weap_uses_parts = self[factory_id] and self[factory_id].uses_parts
 			local forbid_akimbo = self.parts[part_id] and self.parts[part_id].no_akimbo
-			
+
 			if weap_uses_parts and table.contains(weap_uses_parts, template_id) then
 				if is_akimbo and forbid_akimbo then
 					-- Nothing
 				else
 					table.insert(weap_uses_parts, part_id)
 				end
-			end			
+			end
 		end
 	end
 end
