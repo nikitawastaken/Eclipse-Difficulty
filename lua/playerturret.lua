@@ -59,7 +59,7 @@ function PlayerTurret:_check_action_primary_attack(t, input)
 			local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
 
 			local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake
-			local recoil_shake = linear_lerp(recoil_multiplier, 0.5, 3, 0.8, 1.2)
+			local recoil_shake = math.map_range(recoil_multiplier, 0.5, 3, 0.8, 1.2)
 			local shake_multiplier = shake_tweak_data["fire_multiplier"] * recoil_shake
 
 			if self._state_data.in_steelsight then
