@@ -34,7 +34,7 @@ tweak_data.experience_manager.alive_humans_multiplier = {
 }
 
 -- Tear Gas damage is now a percentage of total HP
-tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.1
+tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.05
 
 local function create_explosive_arrow(base_arrow)
 	local explosive_arrow = deep_clone(base_arrow)
