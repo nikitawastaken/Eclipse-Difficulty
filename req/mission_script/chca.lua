@@ -1,4 +1,10 @@
 local preferred = Eclipse.preferred
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local bags_required = {
+	values = {
+		amount = normal and 4 or hard and 6 or 8,
+	},
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -108,6 +114,13 @@ return {
 	-- Enable unused snipers
 	[100371] = enabled,
 	[100372] = enabled,
+	-- change the required amount of money bags
+	[101818] = bags_required,
+	[101819] = bags_required,
+	[106920] = bags_required,
+	[101195] = bags_required,
+	[101810] = bags_required,
+	[101811] = bags_required,
 	-- Spawn group intervals
 	-- The Black Cat is one of the newer heists, so its spawn groups are not spread out at all and reach players almost immediately.
 	-- The shortest interval is 15s, for reference on most heists that would be 5s. It's not uncommon even for post-Jules heists to have 15s spawn groups, but the revival era team was seemingly pretty clueless in this respect.
