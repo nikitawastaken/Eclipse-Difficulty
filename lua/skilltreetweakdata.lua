@@ -83,15 +83,17 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Stable Shot
 	self.skills.stable_shot[1].upgrades = { "player_weapon_accuracy_increase_1" }
 	self.skills.stable_shot[2].upgrades = { "weapon_faster_recoil_recentering" }
+	self.skills.stable_shot.icon_xy = { 9, 11 }
 
 	-- Rifleman
 	self.skills.rifleman[1].upgrades = { "player_steelsight_stamina_reduction_multiplier" }
 	self.skills.rifleman[2].upgrades = { "weapon_standing_spread_multiplier" }
-	self.skills.rifleman.icon_xy = { 8, 5 }
+	self.skills.rifleman.icon_xy = { 0, 5 }
 
 	-- Marksman
 	self.skills.sharpshooter[1].upgrades = { "player_steelsight_aimpunch_multiplier" }
 	self.skills.sharpshooter[2].upgrades = { "weapon_steelsight_recoil_multiplier" }
+	self.skills.sharpshooter.icon_xy = { 6, 5 }
 
 	-- Kilmer
 	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")
@@ -108,7 +110,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Point Blank
 	self.skills.shotgun_cqb[1].upgrades = { "player_speed_stack_on_kill" }
 	self.skills.shotgun_cqb[2].upgrades = { "player_close_damage_multiplier" }
-	self.skills.shotgun_cqb.icon_xy = { 8, 0 }
+	self.skills.shotgun_cqb.icon_xy = { 8, 6 }
 	self.skills.shotgun_cqb.name_id = "menu_point_blank"
 	self.skills.shotgun_cqb.desc_id = "menu_point_blank_desc"
 
@@ -124,14 +126,14 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.far_away[2].upgrades = { "shotgun_hip_rate_of_fire_1" }
 	self.skills.far_away.name_id = "menu_fast_hands"
 	self.skills.far_away.desc_id = "menu_fast_hands_desc"
-	self.skills.far_away.icon_xy = { 8, 0 }
+	self.skills.far_away.icon_xy = { 5, 1 }
 
 	-- Far Away
 	self.skills.close_by[1].upgrades = { "shotgun_effective_range_multiplier" }
 	self.skills.close_by[2].upgrades = { "shotgun_steelsight_accuracy_inc_1" }
 	self.skills.close_by.name_id = "menu_far_away"
 	self.skills.close_by.desc_id = "menu_far_away_desc"
-	self.skills.close_by.icon_xy = { 8, 0 }
+	self.skills.close_by.icon_xy = { 8, 5 }
 
 	-- OVERKILL
 	self.skills.overkill[1].upgrades = { "cooldown_shotgun_panic_on_kill" }
@@ -145,14 +147,14 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.oppressor[2].upgrades = { "cooldown_damage_multiplier_on_armor_regen", "temporary_armor_regen_damage_multiplier" }
 	self.skills.oppressor.name_id = "menu_impact_padding"
 	self.skills.oppressor.desc_id = "menu_impact_padding_desc"
-	self.skills.oppressor.icon_xy = { 8, 0 }
+	self.skills.oppressor.icon_xy = { 6, 4 }
 
 	-- Nerves of Steel
 	self.skills.show_of_force[1].upgrades = { "player_damage_shake_addend" }
 	self.skills.show_of_force[2].upgrades = { "player_suppressed_bonus" }
 	self.skills.show_of_force.name_id = "menu_nerves_of_steel"
 	self.skills.show_of_force.desc_id = "menu_nerves_of_steel_desc"
-	self.skills.show_of_force.icon_xy = { 8, 0 }
+	self.skills.show_of_force.icon_xy = { 6, 6 }
 
 	-- Protective Mask
 	self.skills.pack_mule[1].upgrades = { "player_gas_mask" }
@@ -166,7 +168,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.iron_man[2].upgrades = { "player_carry_stacker" }
 	self.skills.iron_man.name_id = "menu_pack_mule"
 	self.skills.iron_man.desc_id = "menu_pack_mule_desc"
-	self.skills.iron_man.icon_xy = { 8, 0 }
+	self.skills.iron_man.icon_xy = { 6, 0 }
 
 	-- Regen Plating
 	self.skills.prison_wife[1].upgrades = { "player_armor_regen_time_mul_1" }
@@ -180,7 +182,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.juggernaut[2].upgrades = { "body_armor6" }
 	self.skills.juggernaut.name_id = "menu_iron_man"
 	self.skills.juggernaut.desc_id = "menu_iron_man_desc"
-	self.skills.juggernaut.icon_xy = { 8, 0 }
+	self.skills.juggernaut.icon_xy = { 3, 1 }
 
 	-- Scavenger
 	self.skills.scavenging[1].upgrades = { "player_pick_up_ammo_multiplier" }
