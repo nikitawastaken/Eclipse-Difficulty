@@ -798,18 +798,20 @@ function PlayerDamage:_regenerate_armor(no_sound)
 	self:set_armor(self:_max_armor())
 	self:_send_set_armor()
 
-	-- Cooldown temporary damage reduction on armor regen
-	if managers.player:has_enabled_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen") and managers.player:has_category_upgrade("temporary", "armor_regen_damage_multiplier") then
-		managers.player:activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier")
-		managers.player:disable_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen")
-	end
+	if self:get_real_armor() <= 0 then
+		-- Cooldown temporary damage reduction on armor regen
+		if managers.player:has_enabled_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen") and managers.player:has_category_upgrade("temporary", "armor_regen_damage_multiplier") then
+			managers.player:activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier")
+			managers.player:disable_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen")
+		end
 
-	-- Cooldown health regen on armor regen
-	if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_regen_on_armor_regen") then
-		local health_to_restore = tweak_data.upgrades.values.player.armor_regen_health_regen[1]
+		-- Cooldown health regen on armor regen
+		if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_regen_on_armor_regen") then
+			local health_to_restore = tweak_data.upgrades.values.player.armor_regen_health_regen[1]
 
-		self:restore_health(health_to_restore)
-		managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen")
+			self:restore_health(health_to_restore)
+			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen")
+		end
 	end
 
 	self._current_state = nil
