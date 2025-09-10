@@ -659,7 +659,7 @@ function CopDamage:damage_bullet(attack_data)
 				not is_civilian
 				and managers.player:has_category_upgrade("temporary", "overkill_damage_multiplier")
 				and not attack_data.weapon_unit:base().thrower_unit
-				and attack_data.weapon_unit:base():is_category("shotgun", "saw")
+				and attack_data.weapon_unit:base():is_category("shotgun")
 			then
 				managers.player:activate_temporary_upgrade("temporary", "overkill_damage_multiplier")
 			end

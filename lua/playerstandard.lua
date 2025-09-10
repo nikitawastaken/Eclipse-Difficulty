@@ -322,7 +322,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 					if not weapon_tweak_data.ignore_damage_multipliers then
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "dmg_multiplier_outnumbered", 1)
 
-						if self._overkill_all_weapons or weap_base:is_category("shotgun", "saw") then
+						if self._overkill_all_weapons or weap_base:is_category("shotgun") then
 							dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "overkill_damage_multiplier", 1)
 						end
 
