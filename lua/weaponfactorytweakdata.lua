@@ -274,8 +274,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_hajk_b_medium.stats.spread = -1
 	self.parts.wpn_fps_smg_hajk_b_medium.stats.concealment = 1
 
-	self.parts.wpn_fps_smg_hajk_b_short.stats.spread = 2
-	self.parts.wpn_fps_smg_hajk_b_short.stats.concealment = -2
+	self.parts.wpn_fps_smg_hajk_b_short.stats.spread = -2
+	self.parts.wpn_fps_smg_hajk_b_short.stats.concealment = 2
 
 	self.parts.wpn_fps_ass_corgi_b_short.stats.concealment = 2
 
