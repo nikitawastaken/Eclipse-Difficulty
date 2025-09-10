@@ -559,8 +559,8 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.armor_threshold_damage_multiplier = {
 		{
 			armor_threshold = 0.8,
-			damage_multiplier = 0.75
-		}
+			damage_multiplier = 0.75,
+		},
 	}
 	self.skill_descs.juggernaut.multibasic = "80%"
 	self.skill_descs.juggernaut.multibasic2 = "25%"
