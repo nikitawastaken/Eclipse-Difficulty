@@ -112,6 +112,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.cooldown.long_dis_revive[1][2] = 120
 	self.skill_descs.inspire.multibasic = "7m"
 	self.skill_descs.inspire.multibasic2 = "30%"
+	self.skill_descs.inspire.multibasic4 = "10%"
 	self.skill_descs.inspire.multibasic3 = "7"
 	self.skill_descs.inspire.multipro = "120"
 
