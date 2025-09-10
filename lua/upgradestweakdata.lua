@@ -770,7 +770,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.more_fire_power.multipro2 = "6"
 
 	-- Powder Keg
-	self.values.weapon.explosive_range_multiplier = { 1.25 }
+	self.values.weapon.explosive_range_multiplier = { 1.2 }
 	self.definitions.weapon_explosive_range_multiplier = {
 		name_id = "menu_player_explosive_range_multiplier",
 		category = "feature",
@@ -781,7 +781,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.values.weapon.explosive_curve_multiplier = { 0.25 }
+	self.values.weapon.explosive_curve_multiplier = { 0.34 }
 	self.definitions.weapon_explosive_curve_multiplier = {
 		name_id = "menu_weapon_explosive_curve_multiplier",
 		category = "feature",
@@ -792,8 +792,8 @@ function UpgradesTweakData:init(tweak_data)
 			category = "weapon",
 		},
 	}
-	self.skill_descs.kick_starter.multibasic = "25%"
-	self.skill_descs.kick_starter.multipro = "75%"
+	self.skill_descs.kick_starter.multibasic = "20%"
+	self.skill_descs.kick_starter.multipro = "66%"
 
 	-- Carpet Bombing
 	self.cluster_grenade_damage_multiplier = 0.33
