@@ -540,7 +540,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400090, "conference_room_event", optsspawnConferenceRoomAmbush),
 
 	-- change bag requirments
-	Eclipse.mission_elements.gen_instance_params(400091, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
+	Eclipse.mission_elements.gen_instance_params(400092, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 }
 
 return M
