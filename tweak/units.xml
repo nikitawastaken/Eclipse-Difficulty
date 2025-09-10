@@ -4,7 +4,7 @@
 	<!-- Change ene_male_security_penthouse _tweak_table -->
 	<tweak version="2" name="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1" extension="unit">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -17,7 +17,7 @@
 
 	<tweak version="2" name="units/pd2_dlc_pent/characters/ene_male_security_penthouse_1/ene_male_security_penthouse_1_husk" extension="unit">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -30,7 +30,7 @@
 	
 	<tweak version="2" name="units/pd2_dlc_pent/characters/ene_male_security_penthouse_2/ene_male_security_penthouse_2" extension="unit">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -43,7 +43,7 @@
 
 	<tweak version="2" name="units/pd2_dlc_pent/characters/ene_male_security_penthouse_2/ene_male_security_penthouse_2_husk" extension="unit">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>

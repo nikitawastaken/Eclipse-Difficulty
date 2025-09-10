@@ -39,7 +39,7 @@ function TradeManager:set_trade_countdown(enabled)
 	end
 
 	local f = debug and debug.getinfo(3) and debug.getinfo(3).name
-	if not enabled or f:find("_end_regroup_task") then
+	if not enabled or (f and f.find and f:find("_end_regroup_task")) then
 		Eclipse.utils.log_traceback()
 	end
 end

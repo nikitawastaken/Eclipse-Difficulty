@@ -3,6 +3,7 @@ Eclipse:require_lua("sidearmlamentricochet")
 Hooks:PostHook(PlayerManager, "init", "eclipse_init", function(self)
 	self._consecutive_headshots = 0
 	self._charged_shot_allowed = false
+	self._standstill_damage_reduction_active = false
 	self._eclipse_bags_carried = 0
 end)
 
@@ -25,6 +26,14 @@ end
 
 function PlayerManager:is_charged_shot_allowed()
 	return self._charged_shot_allowed
+end
+
+function PlayerManager:standstill_resistance_active(is_allowed)
+	self._standstill_damage_reduction_active = is_allowed
+end
+
+function PlayerManager:is_standstill_resistance_active()
+	return self._standstill_damage_reduction_active
 end
 
 function PlayerManager:is_lament_ricochet_allowed()
@@ -646,8 +655,12 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	end
 
 	-- armorer full armor dmg reduction
-	if self:has_category_upgrade("player", "full_armor_damage_reduction") and player:character_damage():armor_ratio() == 1 then
-		multiplier = multiplier * self:upgrade_value("player", "full_armor_damage_reduction", 1)
+	if self:has_category_upgrade("player", "armor_threshold_damage_multiplier") then
+		local skill = self:upgrade_value("player", "armor_threshold_damage_multiplier", 0)
+
+		if skill ~= 0 and player:character_damage():armor_ratio() >= skill.armor_threshold then
+			multiplier = multiplier * skill.damage_multiplier
+		end
 	end
 
 	-- tactician standing near teammate dmg reduction
@@ -660,6 +673,16 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	-- blast shield explosive dmg reduction
 	if self:has_category_upgrade("player", "explosive_damage_multiplier") and damage_type == "explosion" then
 		multiplier = multiplier * self:upgrade_value("player", "explosive_damage_multiplier", 1)
+	end
+
+	-- impact padding standstill dmg reduction
+	if self:is_standstill_resistance_active() and self:has_category_upgrade("player", "stationary_damage_multiplier") then
+		multiplier = multiplier * self:upgrade_value("player", "stationary_damage_multiplier", 1)
+	end
+
+	-- impact padding armor regen dmg reduction
+	if self:has_activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier") then
+		multiplier = multiplier * self:temporary_upgrade_value("temporary", "armor_regen_damage_multiplier", 1)
 	end
 
 	return multiplier

@@ -589,7 +589,19 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	self:mutator_update_attack_data(attack_data)
 	self:_check_chico_heal(attack_data)
 
-	self:_calc_health_damage(attack_data)
+	if managers.player:has_category_upgrade("player", "gas_mask") then
+		local armor_reduction_multiplier = 0
+
+		if self:get_real_armor() <= 0 then
+			armor_reduction_multiplier = 1
+		end
+
+		local health_subtracted = self:_calc_armor_damage(attack_data)
+		attack_data.damage = attack_data.damage * armor_reduction_multiplier
+		health_subtracted = health_subtracted + self:_calc_health_damage(attack_data)
+	else
+		self:_calc_health_damage(attack_data)
+	end
 
 	self:_call_listeners(damage_info)
 end
@@ -773,4 +785,34 @@ function PlayerDamage:_upd_suppression(t, dt)
 			managers.environment_controller:set_suppression_value(self:effective_suppression_ratio(), self:suppression_ratio())
 		end
 	end
+end
+
+-- On-armor-regen upgrades
+function PlayerDamage:_regenerate_armor(no_sound)
+	if self._unit:sound() and not no_sound then
+		self._unit:sound():play("shield_full_indicator")
+	end
+
+	self._regenerate_speed = nil
+
+	if self:get_real_armor() <= 0 then
+		-- Cooldown temporary damage reduction on armor regen
+		if managers.player:has_enabled_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen") and managers.player:has_category_upgrade("temporary", "armor_regen_damage_multiplier") then
+			managers.player:activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier")
+			managers.player:disable_cooldown_upgrade("cooldown", "damage_multiplier_on_armor_regen")
+		end
+
+		-- Cooldown health regen on armor regen
+		if managers.player:has_enabled_cooldown_upgrade("cooldown", "health_regen_on_armor_regen") then
+			local health_to_restore = tweak_data.upgrades.values.player.armor_regen_health_regen[1]
+
+			self:restore_health(health_to_restore)
+			managers.player:disable_cooldown_upgrade("cooldown", "health_regen_on_armor_regen")
+		end
+	end
+
+	self:set_armor(self:_max_armor())
+	self:_send_set_armor()
+
+	self._current_state = nil
 end

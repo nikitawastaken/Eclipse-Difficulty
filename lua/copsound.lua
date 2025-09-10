@@ -230,8 +230,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	if self._prefix == "l1n_" or self._prefix == "l2n_" or self._prefix == "l3n_" then
 		if sound_name == "x02a_any_3p" then
 			sound_name = "x01a_any_3p"
-		end
-		if sound_name == "x01a_any_3p" then
+		elseif sound_name == "x01a_any_3p" then
 			sound_name = "x02a_any_3p"
 		end
 	end
@@ -240,17 +239,19 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	if self._prefix == "ict1_" or self._prefix == "bik1_" or self._prefix == "lt1_" or self._prefix == "rt1_" then
 		if sound_name == "burnhurt" then
 			full_sound = "l1n_burnhurt"
-		end
-		if sound_name == "burndeath" or sound_name == "ch3" then
+		elseif sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l1n_burndeath"
+		elseif sound_name == "a05" or sound_name == "a06" then
+			full_sound = "l1n_a05"
 		end
 	end
 	if self._prefix == "ict2_" or self._prefix == "bik2_" or self._prefix == "lt2_" or self._prefix == "rt2_" then
 		if sound_name == "burnhurt" then
 			full_sound = "l2n_burnhurt"
-		end
-		if sound_name == "burndeath" or sound_name == "ch3" then
+		elseif sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l2n_burndeath"
+		elseif sound_name == "a05" or sound_name == "a06" then
+			full_sound = "l2n_a05"
 		end
 	end
 

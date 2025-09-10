@@ -273,7 +273,8 @@ local Smoke_bomb = {
 local optsReachedEscapeElevators = {
 	enabled = true,
 	width = 900,
-	depth = 200,
+	depth = 1200,
+	height = 800,
 	on_executed = {
 		{ id = 400076, delay = 0 },
 		{ id = 400079, delay = 0 },
@@ -524,7 +525,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400079, "smoke_grenade_1", Vector3(5373, -2915, -735.693), Rotation(0, 0, 0), Smoke_bomb),
 	Eclipse.mission_elements.gen_smokegrenade(400080, "smoke_grenade_2", Vector3(4653.735, 217.405, -735.693), Rotation(0, 0, 0), Smoke_bomb),
 
-	Eclipse.mission_elements.gen_areatrigger(400081, "area_trigger_near_elevators", Vector3(5687, -2442, -735.693), Rotation(0, 0, 0), optsReachedEscapeElevators),
+	Eclipse.mission_elements.gen_areatrigger(400081, "area_trigger_near_elevators", Vector3(5687, -1919, -825.693), Rotation(0, 0, 0), optsReachedEscapeElevators),
 	Eclipse.mission_elements.gen_areatrigger(400082, "area_trigger_near_garbage_truck", Vector3(5510, -76, -735.693), Rotation(0, 0, 0), optsReachedNearGarbagetruck),
 
 	Eclipse.mission_elements.gen_toggleelement(400083, "disable_escape_events", disable_basement_ambushes),
@@ -540,7 +541,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400090, "conference_room_event", optsspawnConferenceRoomAmbush),
 
 	-- change bag requirments
-	Eclipse.mission_elements.gen_instance_params(400091, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
+	Eclipse.mission_elements.gen_instance_params(400093, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 }
 
 return M
