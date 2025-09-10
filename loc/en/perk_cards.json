@@ -85,7 +85,7 @@
 	"menu_deck9_7_desc": "Killing an enemy at medium range recovers ##$multiperk## armor.\n\nThis cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_1_desc": "Ammo packs you pick up also yield medical supplies which heal you for ##$multiperk## health.",
 	"menu_deck10_3_desc": "When you pick up ammo, you trigger an ammo pickup for ##$multiperk## of normal pickup to the other players in your team.",
-	"menu_deck10_5_desc": "When you get healed from picking up ammo packs, your teammates also get healed for ##$multiperk## of the amount.",
+	"menu_deck10_5_desc": "When you get healed from picking up ammo packs, your crewmates also get healed for ##$multiperk## of the amount.",
 	"menu_deck10_7": "Affordable Care Act",
 	"menu_deck10_7_desc": "Health gained from ammo packs is increased by ##$multiperk##.\n\nYou gain ##$multiperk2## more health.",
 	"menu_deck10_9": "Long Arm of the Crime",
@@ -120,8 +120,8 @@
 	"menu_deck21_5_desc": "Killing the enemy while the feedback is active will regenerate ##$multiperk## health.\n\nYour chance to dodge is increased by ##$multiperk2##.",
 	"menu_deck21_7_desc": "You gain ##$multiperk## additional health.",
 	"menu_deck21_9_desc": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
-	"menu_deck22_1_desc": "Unlocks and equips the Leech Ampule.\n\nChanging to another perk deck will make the Leech Ampule unavailable again. The Leech Ampule replaces your current throwable, is equipped in your throwable slot and can be switched out if desired. While in game you can use throwable key to activate the Leech Ampule.\n\nActivating the Leech Ampule will ##fully## restore your health and disable your armor for the duration of the Leech Ampule.\n\nWhile the Leech Ampule is active your health is divided into segments of ##$multiperk2## and damage taken from enemies removes one segment.\n\nKilling ##1## enemy will block damage for ##$multiperk3## seconds.\nAnytime you take damage your teammates are healed for ##$multiperk4## health.\n\nThe Leech Ampule lasts ##$multiperk5## seconds with a ##$multiperk6## seconds cooldown.",
-	"menu_deck22_5_desc": "The Leech Ampule duration is increased to ##$multiperk## seconds.\n\nKilling an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s).\n\nTaking damage now heals teammates for ##$multiperk3## health.",
+	"menu_deck22_1_desc": "Unlocks and equips the Leech Ampule.\n\nChanging to another perk deck will make the Leech Ampule unavailable again. The Leech Ampule replaces your current throwable, is equipped in your throwable slot and can be switched out if desired. While in game you can use throwable key to activate the Leech Ampule.\n\nActivating the Leech Ampule will ##fully## restore your health and disable your armor for the duration of the Leech Ampule.\n\nWhile the Leech Ampule is active your health is divided into segments of ##$multiperk2## and damage taken from enemies removes one segment.\n\nKilling ##1## enemy will block damage for ##$multiperk3## seconds.\nAnytime you take damage your crewmates are healed for ##$multiperk4## health.\n\nThe Leech Ampule lasts ##$multiperk5## seconds with a ##$multiperk6## seconds cooldown.",
+	"menu_deck22_5_desc": "The Leech Ampule duration is increased to ##$multiperk## seconds.\n\nKilling an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s).\n\nTaking damage now heals crewmates for ##$multiperk3## health.",
 	"menu_deck22_9_desc": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##.\n\nYour maximum health is increased by ##$multiperk2##.\n\nDeck Completion Bonus: Your chance of getting a higher quality item during a Payday is increased by ##10%##.",
 
 	"menu_deck1_1_short": "Trading a hostage for resources will now restore ##$multiperk## health for you and your team. You and your crew can now trade for resources regardless of whether you are missing any downs.",
@@ -163,7 +163,7 @@
 	"menu_deck9_7_short": "Killing an enemy at medium range recovers ##$multiperk## armor. This cannot occur more than once every ##$multiperk2## second.",
 	"menu_deck10_1_short": "Ammo packs you pick up also yield medical supplies which heal you for ##$multiperk## health.",
 	"menu_deck10_3_short": "When you pick up ammo, you trigger an ammo pickup for ##$multiperk## of normal pickup to the other players in your team.",
-	"menu_deck10_5_short": "When you get healed from picking up ammo packs, your teammates also get healed for ##$multiperk## of the amount.",
+	"menu_deck10_5_short": "When you get healed from picking up ammo packs, your crewmates also get healed for ##$multiperk## of the amount.",
 	"menu_deck10_7_short": "Health gained from ammo packs is increased by ##$multiperk##. You gain ##$multiperk2## more health.",
 	"menu_deck10_9_short": "Your ammo pick up range is increased by ##$multiperk##.",
 	"menu_deck11_1_short": "Damaging an enemy will regenerate ##$multiperk## health every ##$multiperk2## seconds for ##$multiperk3## seconds. This effect stacks but cannot occur more than once every ##$multiperk4## second.",
@@ -194,7 +194,7 @@
 	"menu_deck21_7_short": "You gain ##$multiperk## additional health.",
 	"menu_deck21_9_short": "Crew members killing enemies while the feedback effect is active will regenerate ##$multiperk## health.",
 	"menu_deck22_1_short": "Unlocks and equips the Leech Ampule.",
-	"menu_deck22_5_short": "The Leech Ampule duration is increased to ##$multiperk## seconds. Killing an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s). Taking damage now heals teammates for ##$multiperk3## health.",
+	"menu_deck22_5_short": "The Leech Ampule duration is increased to ##$multiperk## seconds. Killing an enemy reduces the cooldown of the Leech Ampule by ##$multiperk2## second(s). Taking damage now heals crewmates for ##$multiperk3## health.",
 	"menu_deck22_9_short": "While the Leech Ampule is active your health is now divided into segments of ##$multiperk##. Your maximum health is increased by ##$multiperk2##.",
 
 
