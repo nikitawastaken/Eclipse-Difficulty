@@ -460,18 +460,63 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.overkill.multipro = "50%"
 	self.skill_descs.overkill.multipro2 = "5"
 
-	-- Resilience
-	self.values.player.armor_regen_time_mul[1] = 0.9
-	self.values.player.flashbang_multiplier = { 0.5, 0.5 }
-	self.skill_descs.oppressor.multibasic2 = "10%"
-	self.skill_descs.oppressor.multipro2 = "50%"
+	-- Impact Padding
+	self.values.player.stationary_damage_multiplier = { 0.9 }
+	self.definitions.player_stationary_damage_multiplier = {
+		name_id = "menu_player_stationary_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "stationary_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.definitions.cooldown_damage_multiplier_on_armor_regen = {
+		name_id = "menu_cooldown_damage_multiplier_on_armor_regen",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "damage_multiplier_on_armor_regen",
+			category = "cooldown",
+		},
+	}
+	self.values.cooldown.damage_multiplier_on_armor_regen = { { 1, 10 } }
+	self.values.temporary.armor_regen_damage_multiplier = { { 0.85, 4 } }
+	self.definitions.temporary_armor_regen_damage_multiplier = {
+		name_id = "menu_temporary_armor_regen_damage_multiplier",
+		category = "temporary",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_regen_damage_multiplier",
+			category = "temporary",
+		},
+	}
+	self.skill_descs.oppressor.multibasic = "10%"
+	self.skill_descs.oppressor.multipro = "15%"
+	self.skill_descs.oppressor.multipro2 = "4"
+	self.skill_descs.oppressor.multipro3 = "10"
 
-	-- Plates of Steel
+	-- Nerves of Steel
 	self.values.player.damage_shake_addend[1] = 0.5
+	self.values.player.suppressed_multiplier[1] = 0.8
 	self.skill_descs.show_of_force.multibasic = "5"
+	self.skill_descs.show_of_force.multipro = "20%"
+
+	-- Protective Mask
+	self.values.player.gas_mask = { true }
+	self.definitions.player_gas_mask = {
+		name_id = "menu_player_gas_mask",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "gas_mask",
+			category = "player",
+		},
+	}
+	self.values.player.flashbang_multiplier[1] = 0.65
+	self.skill_descs.pack_mule.multipro = "35%"
 
 	-- Pack Mule
-	self.skill_descs.pack_mule.multipro = "2"
 	self.values.player.carry_stacker = { true }
 	self.definitions.player_carry_stacker = {
 		name_id = "menu_player_carry_stacker",
@@ -482,8 +527,45 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
+	self.skill_descs.iron_man.multipro = "2"
 
-	-- Thick Skin
+	-- Regen Plating
+	self.values.player.armor_regen_time_mul[1] = 0.85
+	self.definitions.cooldown_health_regen_on_armor_regen = {
+		name_id = "menu_cooldown_health_regen_on_armor_regen",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "health_regen_on_armor_regen",
+			category = "cooldown",
+		},
+	}
+	self.values.cooldown.health_regen_on_armor_regen = { { 1, 10 } }
+	self.values.player.armor_regen_health_regen = { 0.8 }
+	self.skill_descs.prison_wife.multibasic = "15%"
+	self.skill_descs.prison_wife.multipro = "8"
+	self.skill_descs.prison_wife.multipro2 = "10"
+
+	-- Iron Man
+	self.definitions.player_armor_threshold_damage_multiplier = {
+		name_id = "menu_player_armor_threshold_damage_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "armor_threshold_damage_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.armor_threshold_damage_multiplier = {
+		{
+			armor_threshold = 0.8,
+			damage_multiplier = 0.75
+		}
+	}
+	self.skill_descs.juggernaut.multibasic = "80%"
+	self.skill_descs.juggernaut.multibasic2 = "25%"
+
+	-- Thick Skin (OLD UPGRADE TO BE MOVED TO REVENANT)
 	self.definitions.player_health_multiplier_1 = {
 		name_id = "menu_player_health_multiplier",
 		category = "feature",
@@ -503,8 +585,6 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.player.health_multiplier = { 1.1, 1.3 }
-	self.skill_descs.prison_wife.multibasic = "10%"
-	self.skill_descs.prison_wife.multipro = "20%"
 
 	-- Scavenger
 	self.values.player.pick_up_ammo_multiplier[1] = 1.05
@@ -1496,16 +1576,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.armor_regen_timer_multiplier_passive[1] = 0.85
 	self.values.player.passive_armor_movement_penalty_multiplier[1] = 0.8
 	self.values.player.tier_armor_multiplier[3] = 1.15
-	self.values.player.full_armor_damage_reduction = { 0.75 }
-	self.definitions.player_full_armor_damage_reduction = {
-		name_id = "menu_player_full_armor_damage_reduction",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "full_armor_damage_reduction",
-			category = "player",
-		},
-	}
 	self.values.temporary.armor_break_invulnerable = { { 2, 60 } }
 	self.specialization_descs[3][1].multiperk = "15%"
 	self.specialization_descs[3][3].multiperk = "20%"

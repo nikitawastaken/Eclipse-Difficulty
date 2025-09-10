@@ -11,6 +11,7 @@ function PlayerStandard:init(unit)
 		self._slotmask_bullet_impact_targets = managers.mutators:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
 	end
 
+	self._standstill_damage_reduction_active = false
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false
 	local pm = managers.player
@@ -562,9 +563,27 @@ Hooks:OverrideFunction(PlayerStandard, "update", function(self, t, dt)
 		self:_update_sniper_shot_charge(t, dt)
 	end
 
+	if managers.player:has_category_upgrade("player", "stationary_damage_multiplier") then
+		self:_update_standstill_resistance(t, dt)
+	end
+
 	self.RUN_AND_RELOAD = managers.player:has_category_upgrade("player", "run_and_reload")
 		or self._equipped_unit and self._equipped_unit:base():is_category("shotgun") and managers.player:has_category_upgrade("shotgun", "run_and_reload")
 end)
+
+-- Standstill damage multiplier upgrade
+function PlayerStandard:_update_standstill_resistance(t, dt)
+	local pm = managers.player
+	local action_forbidden = not pm:has_category_upgrade("player", "stationary_damage_multiplier") or pm:current_state() == "civilian" or self._ext_movement:has_carry_restriction() or self._moving or self:running() or self:in_air()
+
+	if not action_forbidden then
+		self._standstill_damage_reduction_active = true
+	else
+		self._standstill_damage_reduction_active = false
+	end
+
+	pm:standstill_resistance_active(self._standstill_damage_reduction_active)
+end
 
 -- Sniper charged shot upgrade
 function PlayerStandard:_update_sniper_shot_charge(t, dt)

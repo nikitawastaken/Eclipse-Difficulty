@@ -140,33 +140,47 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.overkill.desc_id = "menu_overkill_desc"
 	self.skills.overkill.icon_xy = { 8, 0 }
 
-	-- Resilience
-	self.skills.oppressor.icon_xy = { 6, 1 }
+	-- Impact Padding
+	self.skills.oppressor[1].upgrades = { "player_stationary_damage_multiplier" }
+	self.skills.oppressor[2].upgrades = { "cooldown_damage_multiplier_on_armor_regen", "temporary_armor_regen_damage_multiplier" }
+	self.skills.oppressor.name_id = "menu_impact_padding"
+	self.skills.oppressor.desc_id = "menu_impact_padding_desc"
+	self.skills.oppressor.icon_xy = { 8, 0 }
 
-	-- Plates of Steel
+	-- Nerves of Steel
 	self.skills.show_of_force[1].upgrades = { "player_damage_shake_addend" }
-	self.skills.show_of_force.icon_xy = { 2, 12 }
+	self.skills.show_of_force[2].upgrades = { "player_suppressed_bonus" }
+	self.skills.show_of_force.name_id = "menu_nerves_of_steel"
+	self.skills.show_of_force.desc_id = "menu_nerves_of_steel_desc"
+	self.skills.show_of_force.icon_xy = { 8, 0 }
+
+	-- Protective Mask
+	self.skills.pack_mule[1].upgrades = { "player_gas_mask" }
+	self.skills.pack_mule[2].upgrades = { "player_flashbang_multiplier_1" }
+	self.skills.pack_mule.name_id = "menu_protective_mask"
+	self.skills.pack_mule.desc_id = "menu_protective_mask_desc"
+	self.skills.pack_mule.icon_xy = { 8, 0 }
 
 	-- Pack Mule
-	self.skills.pack_mule[1].upgrades = { "carry_movement_penalty_nullifier" }
-	self.skills.pack_mule[2].upgrades = { "player_carry_stacker" }
-	self.skills.pack_mule.icon_xy = { 6, 0 }
+	self.skills.iron_man[1].upgrades = { "carry_movement_penalty_nullifier" }
+	self.skills.iron_man[2].upgrades = { "player_carry_stacker" }
+	self.skills.iron_man.name_id = "menu_pack_mule"
+	self.skills.iron_man.desc_id = "menu_pack_mule_desc"
+	self.skills.iron_man.icon_xy = { 8, 0 }
 
-	-- empty potential armor bag skill
-	self.skills.iron_man[1].upgrades = {}
-	self.skills.iron_man[2].upgrades = {}
-	self.skills.iron_man.name_id = "menu_work_in_progress_beta"
-	self.skills.iron_man.desc_id = "menu_work_in_progress_beta_desc"
-	self.skills.iron_man.icon_xy = { 0, 0 }
-
-	-- Thick Skin
-	self.skills.prison_wife[1].upgrades = { "player_health_multiplier_1" }
-	self.skills.prison_wife[2].upgrades = { "player_health_multiplier_2" }
-	self.skills.prison_wife.icon_xy = { 1, 1 }
+	-- Regen Plating
+	self.skills.prison_wife[1].upgrades = { "player_armor_regen_time_mul_1" }
+	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen" }
+	self.skills.prison_wife.name_id = "menu_regen_plating"
+	self.skills.prison_wife.desc_id = "menu_regen_plating_desc"
+	self.skills.prison_wife.icon_xy = { 8, 0 }
 
 	-- Iron Man
-	self.skills.juggernaut[1].upgrades = { "player_shield_knock" }
+	self.skills.juggernaut[1].upgrades = { "player_armor_threshold_damage_multiplier" }
 	self.skills.juggernaut[2].upgrades = { "body_armor6" }
+	self.skills.juggernaut.name_id = "menu_iron_man"
+	self.skills.juggernaut.desc_id = "menu_iron_man_desc"
+	self.skills.juggernaut.icon_xy = { 8, 0 }
 
 	-- Scavenger
 	self.skills.scavenging[1].upgrades = { "player_pick_up_ammo_multiplier" }
@@ -612,7 +626,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[3][1].upgrades = { "player_armor_regen_timer_multiplier_passive" }
 	self.specializations[3][3].upgrades = { "player_passive_armor_movement_penalty_multiplier" }
 	self.specializations[3][5].upgrades = { "player_tier_armor_multiplier_1", "player_tier_armor_multiplier_2", "player_tier_armor_multiplier_3" }
-	self.specializations[3][7].upgrades = { "player_full_armor_damage_reduction" }
+	self.specializations[3][7].upgrades = { "" }
 	self.specializations[3][9].upgrades = { "temporary_armor_break_invulnerable_1", "player_passive_loot_drop_multiplier" }
 
 	-- rogue
