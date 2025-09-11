@@ -62,7 +62,7 @@ local cloaker_spawn = {
 }
 local bags_required = {
 	values = {
-		counter_target = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 local bags_required_objective = {

@@ -18,7 +18,7 @@ local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 
-local bags_required = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0)
+local bags_required = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0)
 
 local random_dozers = {
 	green_bulldozer,

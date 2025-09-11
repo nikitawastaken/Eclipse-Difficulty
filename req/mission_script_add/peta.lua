@@ -4,7 +4,7 @@ local M = {}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 
-local bags_required = normal and 5 or hard and 8 or 10 + (is_pro_job and 2 or 0)
+local bags_required = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0)
 
 local optsinstance_bag_requirment = {
 	instance = "obj_link_002",

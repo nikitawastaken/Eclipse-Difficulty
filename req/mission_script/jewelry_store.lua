@@ -9,7 +9,7 @@ local enabled = {
 }
 local bags_required = {
 	values = {
-		amount = is_eclipse and 6 or 4 + (is_pro_job and 2 or 0),
+		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
 local cop_1 = scripted_enemy.cop_1
