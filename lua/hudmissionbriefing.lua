@@ -1,3 +1,5 @@
+local is_pro_job = Eclipse.utils.is_pro_job()
+
 function HUDMissionBriefing:init(hud, workspace)
 	self._backdrop = MenuBackdropGUI:new(workspace)
 
@@ -278,7 +280,7 @@ function HUDMissionBriefing:init(hud, workspace)
 	self._paygrade_panel:set_right(self._background_layer_one:w())
 	pg_text:set_right(self._paygrade_panel:left())
 
-	if Global.game_settings.one_down then
+	if is_pro_job then
 		local one_down_text = self._foreground_layer_one:text({
 			name = "one_down_text",
 			text = managers.localization:to_upper_text("menu_one_down"),

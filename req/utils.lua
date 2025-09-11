@@ -12,8 +12,8 @@ local real_difficulty_index = ({
 	sm_wish = 8,
 })[difficulty] or 2
 local diff_i = real_difficulty_index
-local level_id = Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
-local pro_job = Global.game_settings and Global.game_settings.one_down
+local level_id = Global and Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
+local is_pro_job = Global and Global.game_settings and Global.game_settings.one_down
 local is_overkill = diff_i == 5
 local is_eclipse = diff_i == 6
 
@@ -64,7 +64,7 @@ function M.is_testmap()
 end
 
 function M.is_pro_job()
-	return pro_job
+	return is_pro_job
 end
 
 function M.is_overkill()

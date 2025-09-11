@@ -1,3 +1,5 @@
+local is_pro_job = Eclipse.utils.is_pro_job()
+
 function IngameContractGui:init(ws, node)
 	local padding = SystemInfo:platform() == Idstring("WIN32") and 10 or 5
 	self._panel = ws:panel():panel({
@@ -194,7 +196,7 @@ function IngameContractGui:init(ws, node)
 
 	local pro_warning_text = nil
 
-	if Global.game_settings.one_down then
+	if is_pro_job then
 		pro_warning_text = text_panel:text({
 			name = "pro_warning_text",
 			vertical = "top",
