@@ -4,12 +4,12 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local goats_required = {
 	values = {
-		counter_target = normal and 5 or hard and 8 or 10 + (is_pro_job and 2 or 0),
+		counter_target = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0),
 	},
 }
 local random_goats = {
 	values = {
-		amount = normal and 2 or hard and 5 or 7 + (is_pro_job and 2 or 0),
+		amount = (normal and 2 or hard and 5 or 7) + (is_pro_job and 2 or 0),
 	},
 }
 local disabled = {
