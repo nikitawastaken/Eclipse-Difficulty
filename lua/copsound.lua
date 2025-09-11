@@ -242,7 +242,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		elseif sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l1n_burndeath"
 		elseif sound_name == "a05" or sound_name == "a06" then
-			full_sound = "l1n_a05"
+			full_sound = "l3n_a06"
 		end
 	end
 	if self._prefix == "ict2_" or self._prefix == "bik2_" or self._prefix == "lt2_" or self._prefix == "rt2_" then
@@ -251,7 +251,7 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		elseif sound_name == "burndeath" or sound_name == "ch3" then
 			full_sound = "l2n_burndeath"
 		elseif sound_name == "a05" or sound_name == "a06" then
-			full_sound = "l2n_a05"
+			full_sound = "l4n_a06"
 		end
 	end
 

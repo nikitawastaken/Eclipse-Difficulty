@@ -875,6 +875,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		aggressive = true,
 		contact = true,
 		go_go = true,
+		idle = true,
+		report = true,
 	}
 
 	presets.enemy_chatter.security = {
