@@ -315,9 +315,9 @@ function CopLogicAttack._update_cover(data)
 	end
 end
 
--- Improve check for cover requirement
+-- Improve check for cover requirement and make cover verification more lenient
 function CopLogicAttack._chk_wants_to_take_cover(data, my_data)
-	if not data.attention_obj or data.attention_obj.reaction < AIAttentionObject.REACT_COMBAT then
+	if not data.attention_obj or data.attention_obj.reaction < AIAttentionObject.REACT_SHOOT then
 		return
 	end
 
@@ -330,6 +330,18 @@ function CopLogicAttack._chk_wants_to_take_cover(data, my_data)
 	end
 
 	if data.unit:inventory():equipped_unit():base():get_ammo_ratio() < 0.3 then
+		return true
+	end
+end
+
+function CopLogicAttack._verify_cover(cover, threat_pos, min_dis, max_dis)
+	local threat_dis = mvector3.direction(tmp_vec1, cover[1], threat_pos)
+	if min_dis and threat_dis < min_dis or max_dis and threat_dis > max_dis then
+		return
+	end
+
+	local cover_dot = mvector3.dot(tmp_vec1, cover[2])
+	if cover_dot > 0.33 then
 		return true
 	end
 end
