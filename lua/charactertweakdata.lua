@@ -1046,11 +1046,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.bolivian_indoors.speech_prefix_p1 = is_mountain_master and "rt" or "lt"
 	self.bolivian_indoors.speech_prefix_p2 = nil
 	self.bolivian_indoors.speech_prefix_count = 2
-
-	-- Esteban shares a tweak table with bolivians
-	self.ranchmanager.speech_prefix_p1 = "bb"
-	self.ranchmanager.speech_prefix_p2 = "n"
-	self.ranchmanager.speech_prefix_count = 1
+	
+	self.bolivian_indoors_mex.speech_prefix_p1 = "lt"
+	self.bolivian_indoors_mex.speech_prefix_p2 = nil
+	self.bolivian_indoors_mex.speech_prefix_count = 2
 
 	self.swat.HEALTH_INIT = 8
 	self.swat.headshot_dmg_mul = 2.5 -- 32 head health
