@@ -551,7 +551,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			},
 		},
 	}
-	
+
 	-- escort speed stuff
 	presets.move_speed.escort_normal = deep_clone(presets.move_speed.normal)
 	presets.move_speed.escort_slow = deep_clone(presets.move_speed.slow)
