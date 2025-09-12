@@ -32,7 +32,7 @@ local bags_required = {
 	values = {
 		amount = (normal and 4 or 6) + (is_pro_job and 2 or 0),
 	},
-
+}
 return {
 	-- Add pump and tanker reinforce
 	[102160] = {
