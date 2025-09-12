@@ -3,9 +3,9 @@ function FragGrenade:bullet_hit() end
 function FragGrenade:set_thrower_unit(unit, ...)
 	FragGrenade.super.set_thrower_unit(self, unit, ...)
 
-	local is_a_cluster_grenade = self._projectile_entry == "cluster" and self._projectile_entry == "cluster_incendiary"
+	local is_a_non_benefitting_grenade = self._projectile_entry == "cluster" or self._projectile_entry == "cluster_incendiary" or self._projectile_entry == "smoke_screen_grenade"
 
-	if self._thrower_unit:base() and self._thrower_unit:base().upgrade_value and not is_a_cluster_grenade then
+	if self._thrower_unit:base() and self._thrower_unit:base().upgrade_value and (not is_a_non_benefitting_grenade) then
 		self._explosive_team_damage_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_team_damage_multiplier") or 1
 		self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
 		self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1

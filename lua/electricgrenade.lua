@@ -3,9 +3,7 @@ function ElectricGrenade:bullet_hit() end
 function ElectricGrenade:set_thrower_unit(unit, ...)
 	ElectricGrenade.super.set_thrower_unit(self, unit, ...)
 
-	local is_a_cluster_grenade = self._projectile_entry == "cluster" and self._projectile_entry == "cluster_incendiary"
-
-	if self._thrower_unit:base() and self._thrower_unit:base().upgrade_value and not is_a_cluster_grenade then
+	if self._thrower_unit:base() and self._thrower_unit:base().upgrade_value then
 		self._explosive_range_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_range_multiplier") or 1
 		self._explosive_curve_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_curve_multiplier") or 1
 		self._has_explosive_cluster_grenades_bonus = self._thrower_unit:base():upgrade_value("weapon", "explosive_cluster_grenades") or nil
