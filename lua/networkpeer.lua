@@ -60,3 +60,23 @@ Hooks:PostHook(NetworkPeer, "mark_cheater", "eclipse_mark_cheater_debug", functi
 	Eclipse:log_chat("[DEBUG] You were marked as cheater!\nSend the stacktrace from your log file in the eclipse folder to a developer and see if you can reproduce this so we can patch this out.")
 	Eclipse.log(string.format("[ECLIPSE ANTI-CHEAT DEBUG]:\n%s\nEND STACKTRACE\n\n", debug.traceback()))
 end)
+
+-- Disable cheater tag entirely
+function NetworkPeer:mark_cheater(reason, auto_kick)
+	return
+	-- if Application:editor() or SystemInfo:platform() ~= Idstring("WIN32") then
+	-- 	return
+	-- end
+
+	-- self._cheater = true
+
+	-- managers.chat:feed_system_message(ChatManager.GAME, managers.localization:text(managers.vote:kick_reason_to_string(reason), {
+	-- 	name = self:name()
+	-- }))
+
+	-- if auto_kick and Global.game_settings.auto_kick then
+	-- 	managers.vote:kick_auto(reason, self, self._begin_ticket_session_called)
+	-- elseif managers.hud then
+	-- 	managers.hud:mark_cheater(self._id)
+	-- end
+end
