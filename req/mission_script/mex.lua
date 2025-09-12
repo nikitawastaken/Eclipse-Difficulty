@@ -75,8 +75,8 @@ return {
 	[102270] = disabled,
 	[100697] = {
 		on_executed = {
-			{id = 102271, delay = 0}
-		}
+			{ id = 102271, delay = 0 },
+		},
 	},
 	-- Remove red lights from keycard readers since the vault can be opened in loud now
 	[103709] = disabled,
