@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<materials version="3" group="charm">
+	<material name="mtr_eclipse" render_template="generic:DEPTH_SCALING:DIFFUSE_TEXTURE:NORMALMAP:SELF_ILLUMINATION" version="2">
+		<diffuse_texture 			file="units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/eclipse_charm_df" />
+		<diffuse_texture 			file="units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/eclipse_charm_nm" />
+        <self_illumination_texture 	file="units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/eclipse_charm_il" />
+        <variable 					value="sun" type="scalar" name="il_multiplier"/>
+	</material>
+    <material render_template="generic:CUBE_ENVIRONMENT_MAPPING:DEPTH_SCALING:DIFFUSE_TEXTURE:NORMALMAP" name="mtr_charm_base" version="2">
+        <diffuse_texture 			file="units/pd2_dlc_tawp/weapons/wpn_fps_upg_charms/base_df"/>
+        <bump_normal_texture 		file="units/pd2_dlc_tawp/weapons/wpn_fps_upg_charms/base_nm"/>
+        <reflection_texture 		type="cubemap" global_texture="current_global_texture"/>
+    </material>
+    <material render_template="effect:BLEND_ADD:DIFFUSE0_TEXTURE:FPS" name="mtr_eclipse_il" version="2">
+        <diffuse_texture 			file="units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/eclipse_charm_glow_light_il"/>
+        <variable 					type="scalar" name="intensity" value="inside of borg queen"/>
+    </material>
+</materials>

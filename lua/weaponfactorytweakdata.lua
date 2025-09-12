@@ -1110,6 +1110,21 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		no_akimbo = true,
 	}
 
+	-- Add Eclipse logo charm
+	self.parts.wpn_fps_upg_charm_eclipse = {
+		is_a_unlockable = true,
+		texture_bundle_folder = "eclipse",
+		a_obj = "a_charm",
+		type = "charm",
+		name_id = "bm_wp_upg_charm_eclipse",
+		unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse",
+		third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse",
+		pcs = {},
+		stats = {
+			value = 1
+		}
+	}
+		
 	-- Conversion kits and various barrels, family based modifications --
 
 	local dmr_stance_muls = {
@@ -1505,6 +1520,7 @@ WeaponFactoryTweakData.part_templates = {
 	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
 	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
 	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
+	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
 }
 
 function WeaponFactoryTweakData:_add_eclipse_parts(tweak_data)
@@ -1516,14 +1532,14 @@ function WeaponFactoryTweakData:_add_eclipse_parts(tweak_data)
 		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
 
 		for part_id, template_id in pairs(self.part_templates) do
-			local weap_uses_parts = self[factory_id] and self[factory_id].uses_parts
 			local forbid_akimbo = self.parts[part_id] and self.parts[part_id].no_akimbo
 
-			if weap_uses_parts and table.contains(weap_uses_parts, template_id) then
+			if self[factory_id] and self[factory_id].uses_parts and table.contains(self[factory_id].uses_parts, template_id) then
 				if is_akimbo and forbid_akimbo then
 					-- Nothing
 				else
-					table.insert(weap_uses_parts, part_id)
+					table.insert(self[factory_id].uses_parts, part_id)
+					table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
 				end
 			end
 		end

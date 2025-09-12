@@ -296,16 +296,6 @@
 		<!-- weapons -->
 		<file name="units/weapons/smoke_grenade_quick/smoke_grenade_quick.object"/>
 
-		<!-- gun perk icons  -->
-		<group name="guis/dlcs/gunperk/textures/pd2/blackmarket/icons/mods/">
-			<file :name="wpn_fps_upg_perk_speedloader.texture"/>
-			<file :name="wpn_fps_upg_perk_haste.texture"/>
-			<file :name="wpn_fps_upg_perk_deadsilence.texture"/>
-			<file :name="wpn_fps_upg_perk_jawbreaker.texture"/>
-			<file :name="wpn_fps_upg_perk_whirlwind.texture"/>
-			<file :name="wpn_fps_upg_perk_stockpile.texture"/>
-		</group>
-
 		<!-- eclipse risk level asset -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
 
@@ -354,10 +344,7 @@
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
 
-		<!-- Grenade Case -->
-		<file name="guis/textures/pd2/blackmarket/icons/deployables/outline/grenade_case.texture"/>
-		<file name="guis/textures/pd2/blackmarket/icons/deployables/grenade_case.texture"/>
-
+		<!-- Various Icons -->
 		<group name="guis/textures/pd2/blackmarket/icons/" >
 			<group :name="deployables/">
 				<file :name="grenade_case.texture" />
@@ -370,7 +357,24 @@
 				<file :name="wpn_upg_saiga_m_20rnd.texture" />
 			</group>
 		</group>
-		
+
+
+		<group name="guis/dlcs/">
+			<group :name="eclipse/textures/pd2/blackmarket/icons/">
+				<file :name="mods/wpn_fps_upg_charm_eclipse.texture" />
+			</group>
+
+			<group :name="gunperk/textures/pd2/blackmarket/icons/mods/">
+				<file :name="wpn_fps_upg_perk_speedloader.texture"/>
+				<file :name="wpn_fps_upg_perk_haste.texture"/>
+				<file :name="wpn_fps_upg_perk_deadsilence.texture"/>
+				<file :name="wpn_fps_upg_perk_jawbreaker.texture"/>
+				<file :name="wpn_fps_upg_perk_whirlwind.texture"/>
+				<file :name="wpn_fps_upg_perk_stockpile.texture"/>
+			</group>
+		</group>
+	
+		<!-- Grenade Case  -->	
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<group :name="gen_equipment_grenade_case/">
 				<file :name="gen_equipment_grenade_case.cooked_physics"/>
@@ -391,6 +395,28 @@
 			</group>
 		</group>
 
+		<!-- Add Eclipse logo charm -->
+		<group name="units/pd2_mod_eclipse/weapons/">
+			<group :name="wpn_fps_upg_charms/">
+				<file :name="eclipse_charm_il.texture" />
+				<file :name="eclipse_charm_nm.texture" />
+				<file :name="eclipse_charm_df.texture" />
+				<file :name="eclipse_charm_glow_light_il.texture" />
+				<file :name="wpn_fps_upg_charm_eclipse.cooked_physics" />
+				<file :name="wpn_fps_upg_charm_eclipse.material_config" />
+				<file :name="wpn_fps_upg_charm_eclipse_cc_thq.material_config" />
+				<file :name="wpn_fps_upg_charm_eclipse_thq.material_config" />
+				<file :name="wpn_fps_upg_charm_eclipse.model" />
+				<file :name="wpn_fps_upg_charm_eclipse.object" />
+				<file :name="wpn_fps_upg_charm_eclipse.unit" />
+				<file :name="wpn_third_upg_charm_eclipse.cooked_physics" />
+				<file :name="wpn_third_upg_charm_eclipse.material_config" />
+				<file :name="wpn_third_upg_charm_eclipse.model" />
+				<file :name="wpn_third_upg_charm_eclipse.object" />
+				<file :name="wpn_third_upg_charm_eclipse.unit" />
+			</group>
+		</group>
+			
 		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
 			<group :name="wpn_fps_upg_m4_reusable/">
