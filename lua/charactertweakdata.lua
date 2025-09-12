@@ -533,7 +533,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = 140
+	presets.gang_member_damage.HEALTH_INIT = 40 + (math.floor(diff_i / 2) * 20)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
@@ -551,7 +551,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			},
 		},
 	}
-
+	
 	-- escort speed stuff
 	presets.move_speed.escort_normal = deep_clone(presets.move_speed.normal)
 	presets.move_speed.escort_slow = deep_clone(presets.move_speed.slow)
@@ -964,6 +964,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_fat = deep_clone(self.security)
 	self.security_fat.HEALTH_INIT = 6
 	self.security_fat.dodge = nil
+	self.security_fat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.security_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "security_fat")
 
@@ -991,6 +992,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.cop_fat = deep_clone(self.cop)
 	self.cop_fat.HEALTH_INIT = 6
 	self.cop_fat.dodge = nil
+	self.cop_fat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
 	self.cop_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "cop_fat")
 
