@@ -1121,10 +1121,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse",
 		pcs = {},
 		stats = {
-			value = 1
-		}
+			value = 1,
+		},
 	}
-		
+
 	-- Conversion kits and various barrels, family based modifications --
 
 	local dmr_stance_muls = {
