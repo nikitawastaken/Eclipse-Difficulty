@@ -45,6 +45,12 @@ local cloaker_spawn = {
 		interval = 180,
 	},
 }
+local apartment_guaranteed_spawn = {
+	values = {
+		spawn_type = "group_guaranteed",
+	},
+	groups = preferred.no_cops_agents,
+}
 return {
 	-- Scale goat requirements
 	[100086] = goats_required,
@@ -80,6 +86,12 @@ return {
 	[103449] = wave_cop_count,
 	[103448] = wave_cop_count,
 	[103447] = wave_cop_count,
+	-- tweak apartment spawns
+	[106165] = apartment_guaranteed_spawn,
+	[106167] = apartment_guaranteed_spawn,
+	[106166] = apartment_guaranteed_spawn,
+	[106170] = apartment_guaranteed_spawn,
+	[106162] = apartment_guaranteed_spawn,
 	-- Spawn group intervals
 	[100132] = close_spawn,
 	[106017] = close_spawn,
