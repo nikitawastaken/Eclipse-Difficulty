@@ -702,6 +702,8 @@ function PlayerDamage:restore_lives(lives_restored)
 	-- 				"\ncurrent revive_health: " .. tweak_data.player.damage.REVIVE_HEALTH_STEPS[self._revive_health_i] ..
 	-- 				"\ncurrent down_time: " .. self._down_time
 	-- )
+
+	managers.environment_controller:set_last_life(false)
 end
 
 function PlayerDamage:_regenerated(from_medic_bag)
