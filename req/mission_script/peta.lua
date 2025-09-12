@@ -4,12 +4,12 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local goats_required = {
 	values = {
-		counter_target = normal and 5 or hard and 8 or 10 + (is_pro_job and 2 or 0),
+		counter_target = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0),
 	},
 }
 local random_goats = {
 	values = {
-		amount = normal and 2 or hard and 5 or 7 + (is_pro_job and 2 or 0),
+		amount = (normal and 2 or hard and 5 or 7) + (is_pro_job and 2 or 0),
 	},
 }
 local disabled = {
@@ -44,6 +44,12 @@ local cloaker_spawn = {
 	values = {
 		interval = 180,
 	},
+}
+local apartment_guaranteed_spawn = {
+	values = {
+		spawn_type = "group_guaranteed",
+	},
+	groups = preferred.no_cops_agents,
 }
 return {
 	-- Scale goat requirements
@@ -80,6 +86,12 @@ return {
 	[103449] = wave_cop_count,
 	[103448] = wave_cop_count,
 	[103447] = wave_cop_count,
+	-- tweak apartment spawns
+	[106165] = apartment_guaranteed_spawn,
+	[106167] = apartment_guaranteed_spawn,
+	[106166] = apartment_guaranteed_spawn,
+	[106170] = apartment_guaranteed_spawn,
+	[106162] = apartment_guaranteed_spawn,
 	-- Spawn group intervals
 	[100132] = close_spawn,
 	[106017] = close_spawn,

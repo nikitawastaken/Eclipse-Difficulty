@@ -1,6 +1,7 @@
 ---@module Goat Simulator Day 1
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -61,7 +62,12 @@ local patches = {
 		filters_easy = table.set(100023),
 		filters_normal_above = table.set(100024),
 	},
+	truck_loot = {
+		required_goats = table.set(100070, 100069, 100044, 100071, 100072),
+	},
 }
+
+local goats_required = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0)
 
 M["levels/instances/unique/pet_boss/world/world"] = function(result)
 	local pet_blockade = patches.pet_boss
@@ -118,6 +124,18 @@ M["levels/instances/unique/pet_boss/world/world"] = function(result)
 			}
 		elseif pet_blockade.filters_disable[id] then
 			table.map_append(element.values, filter_disable)
+		end
+	end
+end
+
+M["levels/instances/unique/pet_truck_escape/world/world"] = function(result)
+	local truck_escape = patches.truck_loot
+
+	for _, element in pairs(result.default.elements) do
+		local id = element.id
+
+		if truck_escape.required_goats[id] then
+			element.values.counter_target = goats_required
 		end
 	end
 end
