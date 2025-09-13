@@ -97,7 +97,7 @@ M["levels/instances/unique/pet_boss/world/world"] = function(result)
 				{ id = 100011, delay = 0 },
 				{ id = 100016, delay = 0 },
 				{ id = 100017, delay = 0 },
-			}	
+			}
 		elseif pet_blockade.spawn_two_shields_and_one_taser[id] then
 			element.values.on_executed = {
 				{ id = 100015, delay = 0 },

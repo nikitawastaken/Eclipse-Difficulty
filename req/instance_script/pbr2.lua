@@ -130,7 +130,7 @@ M["levels/instances/unique/pbr/pbr_sewer_enemies/world/world"] = function(result
 				{ id = 100011, delay = 0 },
 				{ id = 100016, delay = 0 },
 				{ id = 100017, delay = 0 },
-			}	
+			}
 		elseif sewer_ambush.spawn_two_shields_and_one_taser[id] then
 			element.values.on_executed = {
 				{ id = 100015, delay = 0 },
