@@ -2512,7 +2512,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 4, 4 },
 		spawn = {
 			{
-				freq = (difficulty_index ^ 2) / 180 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (difficulty_index ^ 2) / 240 * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
