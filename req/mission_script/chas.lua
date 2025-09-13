@@ -13,7 +13,7 @@ local exclude_shields = {
 }
 local warehouse_preferred_delay = {
 	on_executed = {
-		{ id = 101196, delay = 15, delay_rand = 30 },
+		{ id = 101196, delay = 10, delay_rand = 20 },
 	},
 }
 local sniper_trigger_times = {
