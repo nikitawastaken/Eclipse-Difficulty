@@ -126,6 +126,7 @@
 				<post :hook_id="carrytweakdata"/>
 				<post :hook_id="levelstweakdata"/>
 				<post :hook_id="narrativetweakdata"/>
+				<post :hook_id="dlctweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
