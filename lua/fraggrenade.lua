@@ -3,7 +3,7 @@ function FragGrenade:bullet_hit() end
 function FragGrenade:set_thrower_unit(unit, ...)
 	FragGrenade.super.set_thrower_unit(self, unit, ...)
 
-	local is_a_non_benefitting_grenade = self._projectile_entry == "cluster" or self._projectile_entry == "cluster_incendiary" or self._projectile_entry == "smoke_screen_grenade"
+	local is_a_non_benefitting_grenade = self._tweak_projectile_entry == "smoke_screen_grenade"
 
 	if self._thrower_unit:base() and self._thrower_unit:base().upgrade_value and not is_a_non_benefitting_grenade then
 		self._explosive_team_damage_multiplier = self._thrower_unit:base():upgrade_value("weapon", "explosive_team_damage_multiplier") or 1
@@ -65,7 +65,7 @@ function FragGrenade:_detonate(tag, unit, body, other_unit, other_body, position
 		owner = self._unit,
 	})
 
-	if self._has_explosive_cluster_grenades_bonus then
+	if self._has_explosive_cluster_grenades_bonus and self._projectile_entry ~= "cluster" and self._projectile_entry ~= "cluster_incendiary" then
 		local base_angle = math.random() * 360
 		local player_peer_id = managers.network:session():peer_by_unit(self:thrower_unit()):id()
 		local dont_apply_player_velocity = true
