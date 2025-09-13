@@ -1,9 +1,3 @@
-function ConnectionNetworkHandler:finish_trade()
-	if self._verify_gamestate(self._gamestate_filter.waiting_for_respawn) then
-		game_state_machine:current_state():finish_trade()
-	end
-end
-
 function ConnectionNetworkHandler:sync_assault_ponr(sender)
 	local peer = self._verify_sender(sender)
 	if not peer then
