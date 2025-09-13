@@ -37,11 +37,6 @@ function TradeManager:set_trade_countdown(enabled)
 	if Network:is_server() and managers.network then
 		managers.network:session():send_to_peers_synched("set_trade_countdown", enabled)
 	end
-
-	local f = debug and debug.getinfo(3) and debug.getinfo(3).name
-	if not enabled or (f and f.find and f:find("_end_regroup_task")) then
-		Eclipse.utils.log_traceback()
-	end
 end
 
 function TradeManager:is_trading()
@@ -65,26 +60,6 @@ function TradeManager:is_trade_allowed(_)
 	local has_first_response_trades_delay_passed = managers.groupai:state():_first_response_trades_delay_passed()
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
-
-	--#region chat spam
-	local checks = {
-		not_currently_trading_hostage = not self._trading_hostage,
-		is_recon_not_over = not is_recon_over,
-		existing_hostage = managers.groupai:state():hostage_count() > 0,
-	}
-
-	local fails = {}
-	for name, check in pairs(checks) do
-		if not check then
-			table.insert(fails, name)
-		end
-	end
-	if #fails > 0 then
-		Eclipse.log.chat_spam("trade_manager3", table.concat(fails, ": failed\n") .. ": failed")
-	else
-		Eclipse.log.chat_spam("trade_manager3")
-	end
-	--#end_region
 
 	return Network:is_server()
 		and not self._trading_hostage
@@ -118,7 +93,7 @@ function TradeManager:update(t, dt)
 	local is_first_assault = managers.groupai:state():_is_first_assault()
 	local is_recon_over = managers.groupai:state():_is_assault_active()
 	local assault_phase = managers.groupai:state():besiege_assault_phase()
-	local trade_completed = not self._trade_in_progress and self._trade_complete
+	local trade_completed = not self._trade_in_progress
 
 	if not self._hostage_remind_t or self._hostage_remind_t < t then
 		if
@@ -177,29 +152,7 @@ function TradeManager:update(t, dt)
 
 		self._pause_t = math.max(0, self._pause_t - dt)
 
-		--#region chat spam
-		local checks = {
-			no_ongoing_custody_countdown = self._trade_countdown,
-			no_queued_ai_auto_trade = is_auto_assault_ai_trade,
-			is_trade_allowed = is_trade_allowed,
-			not_trade_completed = trade_completed,
-		}
-
-		local fails = {}
-		for name, check in pairs(checks) do
-			if not check then
-				table.insert(fails, name)
-			end
-		end
-		if #fails > 0 then
-			Eclipse.log.chat_spam("trade_manager2", table.concat(fails, ": failed\n") .. ": failed")
-		else
-			Eclipse.log.chat_spam("trade_manager2")
-		end
-		--#end_region
-
 		if (self._trade_countdown or is_auto_assault_ai_trade) and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
-			self._trade_complete = false
 			print("so ")
 
 			local trade = self:get_criminal_to_trade(true)
@@ -210,7 +163,6 @@ function TradeManager:update(t, dt)
 			end
 
 			if trade then
-				Eclipse:log_chat("Queuing custody trade")
 				self:_increment_trade_index()
 
 				if is_ai_trade_possible then
@@ -229,7 +181,6 @@ function TradeManager:update(t, dt)
 		self._pause_t = math.max(0, self._pause_t - dt)
 
 		if self._trade_countdown and is_trade_allowed and self._pause_t <= 0 and not managers.player:_is_all_in_custody() and trade_completed then
-			self._trade_complete = false
 			print("so ")
 
 			self:_increment_trade_index()
@@ -320,11 +271,6 @@ end
 
 function TradeManager:clbk_begin_hostage_trade()
 	local possible_criminals, is_instant_trade = self:get_possible_criminals()
-	if possible_criminals and #possible_criminals == 0 then
-		Eclipse.log.chat_spam("trade_manager", "No possible criminals")
-	else
-		Eclipse.log.chat_spam("trade_manager")
-	end
 	local rescuing_criminal = possible_criminals[math.random(1, #possible_criminals)]
 	rescuing_criminal = managers.groupai:state():all_criminals()[rescuing_criminal]
 	local rescuing_criminal_pos = nil
@@ -388,7 +334,6 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 			self._trade_complete = false
 		end
 	else
-		Eclipse.log.chat_spam("trade_manager4", "No hostage found.")
 		self:cancel_trade()
 	end
 end
@@ -491,4 +436,12 @@ function TradeManager:trade_complete()
 	if not self._is_custody_trade then
 		self:increment_resource_trade()
 	end
+end
+
+function TradeManager:cleanup_fail()
+	self._hostage_to_trade = nil
+	self._trading_hostage = nil
+	self._hostage_trade_clbk = nil
+
+	self:end_stockholm_syndrome()
 end

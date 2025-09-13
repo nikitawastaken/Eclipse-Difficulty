@@ -19,7 +19,7 @@ M.enabled = {
 }
 M._spam_t = 0
 M._spam_buff = {}
-M._spam_sep = "\n" .. string.rep("=-", 10) .. "="
+M._spam_sep = string.rep("*", 50)
 M._spam_prev_msg = ""
 M.days_to_save = 3
 
@@ -131,7 +131,7 @@ function M.chat_spam(id, msg)
 				chat_msg = chat_msg .. buff .. "\n"
 			end
 		else
-			chat_msg = "All tests passed."
+			chat_msg = "All tests passed.\n"
 		end
 	end
 	if chat_msg and chat_msg ~= M._spam_prev_msg then

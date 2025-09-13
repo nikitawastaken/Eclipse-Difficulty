@@ -285,11 +285,11 @@ function M.log_traceback(maxdepth, maxwidth, maxtableelements, ...)
 			count = count + 1
 			if count < m then
 				if tracedebug then
-					Eclipse:log(count, k)
+					Eclipse.log(count, k)
 				end
 				if type(k) == "number" and type(v) == "function" then -- try to get function lists?
 					if tracedebug then
-						Eclipse:log(k, v, debug.getinfo(v), debug.getinfo(v).name)
+						Eclipse.log(k, v, debug.getinfo(v), debug.getinfo(v).name)
 					end --debug.getinfo(v).short_src)?
 					res = res .. tostring(k) .. ":" .. ((debug.getinfo(v) and debug.getinfo(v).name) or "<function>") .. ", "
 				else
@@ -334,7 +334,7 @@ function M.log_traceback(maxdepth, maxwidth, maxtableelements, ...)
 							break
 						end
 						if tracedebug then
-							Eclipse:log(i, j, funcName, name)
+							Eclipse.log(i, j, funcName, name)
 						end
 						local sep = ((arguments == "") and "") or ";\n\t\t"
 						if tostring(name) == "self" then
@@ -358,7 +358,7 @@ function M.log_traceback(maxdepth, maxwidth, maxtableelements, ...)
 			break
 		end
 	end
-	Eclipse:log(infostr .. functionstr)
+	Eclipse.log(infostr .. functionstr)
 end
 
 return M

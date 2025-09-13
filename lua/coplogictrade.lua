@@ -202,7 +202,6 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 		if trade_success then
 			unit:interaction():set_active(false, false)
 		else
-			Eclipse.log.chat_spam("coplogictrade", "Failed trade, interaction deactivated.")
 			unit:interaction():set_active(false, false)
 
 			if managers.enemy:all_civilians()[unit:key()] then
@@ -215,3 +214,9 @@ function CopLogicTrade.hostage_trade(unit, enable, trade_success, skip_hint, is_
 		end
 	end
 end
+
+Hooks:PreHook(CopLogicTrade, "exit", "eclipse_coplogictrade_exit", function(data)
+	if data.internal_data._trade_enabled then
+		managers.trade:cleanup_fail()
+	end
+end)
