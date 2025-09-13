@@ -72,7 +72,7 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
 
 	self.damage.respawn_time_penalty = 0
-	self.damage.automatic_respawn_time = 210 + (is_eclipse and 90 or is_overkill and 60 or 0) + (is_pro_job and 60 or 0)
+	--self.damage.automatic_respawn_time = 210 + (is_eclipse and 90 or is_overkill and 60 or 0) + (is_pro_job and 60 or 0)
 	self.damage.custody_ammo_confiscated = 0.4
 	self.damage.custody_health_drained = 0.4
 
