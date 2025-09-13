@@ -5,7 +5,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local ambush_amount = 2 + (is_pro_job and 1 or 0)
+local ambush_amount = 1 + (is_pro_job and 1 or 0)
 
 local enabled_chance_snipers = math.random() <= 0.45
 
