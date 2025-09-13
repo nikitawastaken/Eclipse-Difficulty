@@ -33,6 +33,7 @@ local patches = {
 		start_script = table.set(100019),
 		random_script = table.set(100049),
 		spawn_the_bulldozer = table.set(100020),
+		spawn_the_bulldozer_and_two_shields = table.set(100034),
 		spawn_two_shields_and_one_taser = table.set(100021),
 		spawn_two_shields_and_one_cloaker = table.set(100022),
 		dozer = table.set(100011),
@@ -118,11 +119,18 @@ M["levels/instances/unique/pbr/pbr_sewer_enemies/world/world"] = function(result
 				{ id = 100020, delay = 0 },
 				{ id = 100021, delay = 0 },
 				{ id = 100022, delay = 0 },
+				{ id = 100034, delay = 0 },
 			}
 		elseif sewer_ambush.spawn_the_bulldozer[id] then
 			element.values.on_executed = {
 				{ id = 100011, delay = 0 },
 			}
+		elseif sewer_ambush.spawn_the_bulldozer_and_two_shields[id] then
+			element.values.on_executed = {
+				{ id = 100011, delay = 0 },
+				{ id = 100016, delay = 0 },
+				{ id = 100017, delay = 0 },
+			}	
 		elseif sewer_ambush.spawn_two_shields_and_one_taser[id] then
 			element.values.on_executed = {
 				{ id = 100015, delay = 0 },

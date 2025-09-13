@@ -32,6 +32,7 @@ local patches = {
 		spawn_the_bulldozer = table.set(100020),
 		spawn_two_shields_and_one_taser = table.set(100021),
 		spawn_two_shields_and_one_cloaker = table.set(100022),
+		spawn_the_bulldozer_and_two_shields = table.set(100034),
 		dozer = table.set(100011),
 		taser = table.set(100015),
 		shields = table.set(100016, 100017),
@@ -85,11 +86,18 @@ M["levels/instances/unique/pet_boss/world/world"] = function(result)
 				{ id = 100020, delay = 0 },
 				{ id = 100021, delay = 0 },
 				{ id = 100022, delay = 0 },
+				{ id = 100034, delay = 0 },
 			}
 		elseif pet_blockade.spawn_the_bulldozer[id] then
 			element.values.on_executed = {
 				{ id = 100011, delay = 0 },
 			}
+		elseif pet_blockade.spawn_the_bulldozer_and_two_shields[id] then
+			element.values.on_executed = {
+				{ id = 100011, delay = 0 },
+				{ id = 100016, delay = 0 },
+				{ id = 100017, delay = 0 },
+			}	
 		elseif pet_blockade.spawn_two_shields_and_one_taser[id] then
 			element.values.on_executed = {
 				{ id = 100015, delay = 0 },
