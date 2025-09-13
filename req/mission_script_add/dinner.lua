@@ -154,6 +154,14 @@ local optsHunt_SO = {
 	interval = 2,
 	so_action = "AI_hunt",
 }
+local optsSniper_SO = {
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	interval = 2,
+	so_action = "AI_sniper",
+}
 local optsrespawn_dozer_1 = {
 	on_executed = {
 		{ id = 400019, delay = 180 },
@@ -275,8 +283,8 @@ M.elements = {
 	--Snipers
 	Eclipse.mission_elements.gen_dummy(400027, "sniper_1", Vector3(-13496, 6470, 889.902), Rotation(90, 0, 0), optsSniper_1),
 	Eclipse.mission_elements.gen_dummy(400028, "sniper_2", Vector3(-20101, 6888, 747.404), Rotation(90, 0, 0), optsSniper_2),
-	Eclipse.mission_elements.gen_so(400029, "sniper_so_1", Vector3(-19603, 6971, 747.404), Rotation(-90, 0, 0), optsBulldozer_SO),
-	Eclipse.mission_elements.gen_so(400030, "sniper_so_2", Vector3(-16155, 9187, 1012.404), Rotation(180, 0, 0), optsBulldozer_SO),
+	Eclipse.mission_elements.gen_so(400029, "sniper_so_1", Vector3(-19603, 6971, 747.404), Rotation(-90, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400030, "sniper_so_2", Vector3(-16155, 9187, 1012.404), Rotation(180, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_missionscript(400031, "spawn_snipers", spawn_snipers),
 
 	--Respawns
