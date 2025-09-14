@@ -62,8 +62,8 @@ return {
 	},
 	[100123] = { -- Assault ended
 		on_executed = {
-			{ id = 100531, delay = 0, delay_rand = 15 }, -- Car Shop preferred
-			{ id = 100534, delay = 0, delay_rand = 15 }, -- Hardware preferred
+			{ id = 100531, delay = 0, delay_rand = 20 }, -- Car Shop preferred
+			{ id = 100534, delay = 0, delay_rand = 20 }, -- Hardware preferred
 		},
 	},
 	-- Spawn group intervals

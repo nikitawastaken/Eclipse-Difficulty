@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local roof_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
@@ -9,21 +9,24 @@ return {
 		reinforce = {
 			{
 				name = "blockade1",
-				force = 3,
+				force = 2,
 				position = Vector3(-550, -5675, 550),
 			},
 			{
 				name = "blockade2",
-				force = 3,
+				force = 2,
 				position = Vector3(-5800, -150, 550),
 			},
 			{
 				name = "blockade3",
-				force = 3,
+				force = 2,
 				position = Vector3(800, 5250, 550),
 			},
 		},
 	},
 	-- Spawn group intervals
-	[101200] = roof_spawn,
+	[101348] = standard_spawn,
+	[101359] = standard_spawn,
+	[101360] = standard_spawn,
+	[101200] = standard_spawn,
 }

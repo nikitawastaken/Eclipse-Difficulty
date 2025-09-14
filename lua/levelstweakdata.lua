@@ -134,9 +134,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.escape_park.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.escape_park.group_ai_settings.difficulty_scaling = {
-		diff_min = 0.2,
+		diff_init = 0.5,
 		assault_delay = 30,
-		assault_add = 0.3,
+		assault_add = 0.5,
 	}
 
 	self.escape_cafe_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
@@ -150,8 +150,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_1.group_ai_settings = {
 		difficulty_scaling = {
 			diff_init = 0.5,
-			assault_add = 0.25,
 			assault_delay = 60,
+			assault_add = 0.25,
 		},
 	}
 
@@ -162,8 +162,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 1.15,
 		difficulty_scaling = {
 			diff_init = 0.5,
-			assault_add = 0.25,
 			assault_delay = 30,
+			assault_add = 0.25,
 		},
 		special_limit_add = {
 			shield = 1,
@@ -184,7 +184,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.rat.group_ai_settings = {
 		assault_force_mul = 0.85,
 		difficulty_scaling = {
-			diff_min = 0.2,
+			diff_init = 0.2,
 		},
 	}
 
@@ -194,14 +194,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
 
-	self.framing_frame_2.group_ai_settings = {
-		difficulty_scaling = {
-			diff_min = 0.2,
-			assault_delay = 30,
-			assault_add = 0.3,
-		},
-	}
-
+	self.framing_frame_2.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
+	
 	self.framing_frame_3.group_ai_settings = {
 		assault_force_mul = 0.7,
 		recon_force_mul = 0.85,
@@ -256,11 +250,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.55
 
 	self.hox_1.group_ai_settings = {
-		hostage_hesitation_delay_mul = 0.75,
-		sustain_duration_mul = 0.65,
-		assault_delay_mul = 1.35,
-		assault_force_mul = 0.7,
-		reenforce_min_interval_mul = 0.5,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_delay = 0,
@@ -276,7 +265,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.arena.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.5,
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_add = 0.15,
 		},
@@ -313,10 +301,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				ranged_fire = false,
 			},
 		},
-	}
-
-	self.jolly.group_ai_settings = {
-		assault_force_mul = 0.85,
 	}
 
 	self.dinner.group_ai_settings = {
@@ -356,7 +340,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.cane.group_ai_settings = {
 		assault_force_mul = 0.85,
 		difficulty_scaling = {
-			diff_min = 0.2,
+			diff_init = 0.2,
 		},
 	}
 
@@ -496,10 +480,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.85,
 	}
 
-	self.run.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
-	self.run.group_ai_settings.assault_force_mul = 0.85
-	self.run.group_ai_settings.difficulty_scaling = { assault_delay = 0 }
-	self.run.group_ai_settings.special_limit_add = { taser = 2 }
+	self.run.group_ai_settings = {
+		hostage_hesitation_delay_mul = 0.75,
+		sustain_duration_mul = 0.65,
+		assault_delay_mul = 1.35,
+		reenforce_min_interval_mul = 0.5,
+		difficulty_scaling = {
+			assault_delay = 0,
+		},
+		special_limit_add = { 
+			taser = 2,
+		},
+	}
 	self.run.group_ai_preset = "street"
 
 	self.glace.group_ai_settings = deep_clone(self.run.group_ai_settings)
@@ -614,7 +606,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chas.has_megaphone_cop = true
 
-	self.sand.group_ai_settings = deep_clone(self.hox_1.group_ai_settings)
+	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 	self.sand.group_ai_settings.assault_force_mul = 0.85
 	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.sand.group_ai_preset = "street"

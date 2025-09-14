@@ -13,7 +13,7 @@ local exclude_shields = {
 }
 local warehouse_preferred_delay = {
 	on_executed = {
-		{ id = 101196, delay = 10, delay_rand = 20 },
+		{ id = 101196, delay = 0, delay_rand = 20 },
 	},
 }
 local sniper_trigger_times = {
@@ -60,7 +60,7 @@ return {
 		reinforce = {
 			{
 				name = "tea_shop",
-				force = 3,
+				force = 2,
 				position = Vector3(-2900, -1400, 0),
 			},
 		},
@@ -71,7 +71,7 @@ return {
 			{ name = "shop_front2" },
 			{
 				name = "back_alley",
-				force = 3,
+				force = 2,
 				position = Vector3(-1400, 4900, 540),
 			},
 			{

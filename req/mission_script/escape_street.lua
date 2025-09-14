@@ -1,5 +1,5 @@
 local preferred = Eclipse.preferred
-local reinforcement_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 10,
 	},
@@ -25,9 +25,9 @@ return {
 		},
 	},
 	-- Spawn group intervals
-	[101630] = reinforcement_spawn,
-	[101726] = reinforcement_spawn,
-	[102467] = reinforcement_spawn,
-	[102475] = reinforcement_spawn,
-	[102500] = reinforcement_spawn,
+	[101630] = standard_spawn,
+	[101726] = standard_spawn,
+	[102467] = standard_spawn,
+	[102475] = standard_spawn,
+	[102500] = standard_spawn,
 }

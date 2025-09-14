@@ -65,16 +65,16 @@ local van_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-local overpass_spawn = {
-	values = {
-		interval = 20,
-	},
-}
 local inkwell_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local overpass_spawn = {
+	values = {
+		interval = 30,
+	},
 }
 local armitage_spawn = {
 	values = {
@@ -425,7 +425,7 @@ return {
 		reinforce = { -- add Inkwell reinforce
 			{
 				name = "inkwell",
-				force = 4,
+				force = 5,
 				position = Vector3(-9250, -12775, 75),
 			},
 		},
