@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local no_shields_and_dozers = {
-	so_access_filter = access.no_heavyweight,
+	so_access_filter = so_access.no_heavyweight,
 }
 local standard_spawn = {
 	values = {
