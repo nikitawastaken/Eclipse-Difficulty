@@ -64,6 +64,14 @@ return {
 			{ id = 102692, delay = 0 },
 		},
 	},
+	-- Change Sosa's line to more appropriate one (having a chance to say the famous Scarface quote)
+	[101485] = {
+		values = {
+			sound_event = "Play_bos_fri_04",
+		},
+	},
+	-- disable vanilla bag instance requirments
+	[100165] = disabled,
 	-- Disable vanilla reinforce
 	-- Timed objective/escape zone reinforce BORING
 	[100007] = disabled,
