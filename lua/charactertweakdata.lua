@@ -1818,7 +1818,7 @@ function CharacterTweakData:_set_presets()
 		if char_preset.damage and char_preset.damage.explosion_damage_mul then
 			char_preset.damage.explosion_damage_mul = 1
 		end
-		
+
 		-- Set up special units based on tags
 		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
