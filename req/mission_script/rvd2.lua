@@ -32,14 +32,17 @@ local filter_easy_above = {
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 
 return {
 	-- Instantly enter full force onslaught upon securing all bags
 	[100884] = {
 		set_ponr_state = true,
 	},
-	-- Disable the turret
-	[101147] = disabled,
 	-- New reinforce spots
 	[100109] = { -- Police
 		reinforce = {
@@ -98,6 +101,12 @@ return {
 			{ name = "zipline2" },
 		},
 	},
+	-- tweak swat vans
+	-- Disable the turret
+	[101147] = disabled,
+	-- always let 2 swat vans drive in regardless of difficulty
+	[101236] = filter_easy_above,
+	[101235] = filter_disable,
 	-- change the vault ambush
 	[101382] = filter_easy_above,
 	[101388] = filter_disable,
