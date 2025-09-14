@@ -1016,6 +1016,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.triad.speech_prefix_p1 = "lt"
 	self.triad.speech_prefix_p2 = nil
 	self.triad.speech_prefix_count = 2
+	self.triad.chatter = self.presets.enemy_chatter.gangster
 
 	self.mobster.speech_prefix_p1 = "rt"
 	self.mobster.speech_prefix_p2 = nil
@@ -1049,6 +1050,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.bolivian_indoors.speech_prefix_p2 = nil
 	self.bolivian_indoors.speech_prefix_count = 2
 
+	self.bolivian_indoors_mex.chatter = self.presets.enemy_chatter.gangster
 	self.bolivian_indoors_mex.speech_prefix_p1 = "lt"
 	self.bolivian_indoors_mex.speech_prefix_p2 = nil
 	self.bolivian_indoors_mex.speech_prefix_count = 2
@@ -1818,7 +1820,7 @@ function CharacterTweakData:_set_presets()
 		if char_preset.damage and char_preset.damage.explosion_damage_mul then
 			char_preset.damage.explosion_damage_mul = 1
 		end
-		
+
 		-- Set up special units based on tags
 		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
