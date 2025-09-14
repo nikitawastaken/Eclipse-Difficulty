@@ -195,7 +195,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
 
 	self.framing_frame_2.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	
+
 	self.framing_frame_3.group_ai_settings = {
 		assault_force_mul = 0.7,
 		recon_force_mul = 0.85,
@@ -488,7 +488,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		difficulty_scaling = {
 			assault_delay = 0,
 		},
-		special_limit_add = { 
+		special_limit_add = {
 			taser = 2,
 		},
 	}
