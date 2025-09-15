@@ -31,6 +31,12 @@ local last_rappel_spawn = {
 	groups = preferred.no_cops_agents,
 }
 return {
+	[102425] = {
+		ponr = {
+			length = 240,
+			player_mul = { 1.25, 1.25, 1, 1 },
+		},
+	},
 	-- Combine some navigation areas
 	[100017] = {
 		ai_area = {

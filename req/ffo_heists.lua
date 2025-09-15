@@ -34,6 +34,8 @@ local M = {
 	rvd1 = true, -- resdogs1
 	man = true, -- ucovr
 	glace = true, -- gridge
+	mus = true, -- de diamond
+	brb = true, -- brook bank
 }
 
 return M
