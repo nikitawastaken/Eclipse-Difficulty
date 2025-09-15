@@ -305,7 +305,7 @@ end
 
 -- Balancing multiplier for players only (used for hostage situation aced)
 function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._player_criminal), 1, #balance_multipliers)]
+	return balance_multipliers[math.clamp(table.size(self._player_criminals), 1, #balance_multipliers)]
 end
 
 -- Delay spawn points when enemies die close to them
