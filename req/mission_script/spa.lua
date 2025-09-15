@@ -1,8 +1,8 @@
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
 
-local van_arrive_timer_1 = (61) + (is_pro_job and 31)
-local van_arrive_timer_2 = (60) + (is_pro_job and 30)
+local van_arrive_timer_1 = 61 + (is_pro_job and 31)
+local van_arrive_timer_2 = 60 + (is_pro_job and 30)
 local skylight_spawn = {
 	values = {
 		interval = 15,
