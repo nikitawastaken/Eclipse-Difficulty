@@ -293,6 +293,11 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 	end
 end)
 
+-- Fully count all criminals for the balancing multiplier
+function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
+	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
+end
+
 -- Limit the number of dominated cops to 4 in all cases
 function GroupAIStateBase:has_room_for_police_hostage()
 	return self._police_hostage_headcount + table.size(self._converted_police) < 4
