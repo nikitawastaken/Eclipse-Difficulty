@@ -13,7 +13,7 @@ local roof_spawn = {
 }
 local dozer_in_the_container_amount = is_eclipse and 2 or 1
 return {
-	[100109] = {  -- Police
+	[100109] = { -- Police
 		reinforce = {
 			{
 				name = "catwalk",

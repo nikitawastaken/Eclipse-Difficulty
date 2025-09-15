@@ -45,7 +45,7 @@ return {
 		},
 	},
 	-- Spawn group intervals
-	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.	
+	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
 	[100750] = window_spawn,
 	[101012] = window_spawn,
 	[102138] = window_spawn,
