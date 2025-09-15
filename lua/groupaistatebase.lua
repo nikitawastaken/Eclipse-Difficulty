@@ -291,7 +291,7 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 	if hostage_kill_add then
 		self:add_difficulty(hostage_kill_add)
 	end
-end)
+end) 
 
 -- Limit the number of dominated cops to 4 in all cases
 function GroupAIStateBase:has_room_for_police_hostage()
@@ -305,17 +305,7 @@ end
 
 -- Balancing multiplier for players only (used for hostage situation aced)
 function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
-	local nr_players = 0
-
-	for u_key, u_data in pairs(self:all_player_criminals()) do
-		if not u_data.status then
-			nr_players = nr_players + 1
-		end
-	end
-
-	nr_players = math.clamp(nr_players, 1, #balance_multipliers)
-
-	return balance_multipliers[nr_players]
+	return balance_multipliers[math.clamp(table.size(self._player_criminal), 1, #balance_multipliers)]
 end
 
 -- Delay spawn points when enemies die close to them
