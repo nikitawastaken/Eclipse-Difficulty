@@ -33,22 +33,22 @@ return {
 		reinforce = {
 			{
 				name = "fast_food",
-				force = 3,
+				force = 2,
 				position = Vector3(2050, -3150, 25),
 			},
 			{
 				name = "carshop",
-				force = 3,
+				force = 2,
 				position = Vector3(1600, 750, 25),
 			},
 			{
 				name = "gas_station",
-				force = 3,
+				force = 2,
 				position = Vector3(-1650, 2000, 25),
 			},
 			{
 				name = "hardware",
-				force = 3,
+				force = 2,
 				position = Vector3(-1000, 150, 25),
 			},
 		},

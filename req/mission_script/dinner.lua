@@ -90,7 +90,7 @@ return {
 		reinforce = {
 			{
 				name = "catwalk_far",
-				force = 3,
+				force = 2,
 				position = Vector3(-8550, 8995, 330),
 			},
 		},
@@ -99,7 +99,7 @@ return {
 		reinforce = {
 			{
 				name = "catwalk_near",
-				force = 3,
+				force = 2,
 				position = Vector3(-8240, 7460, 330),
 			},
 		},

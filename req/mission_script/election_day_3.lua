@@ -87,17 +87,17 @@ return {
 		reinforce = {
 			{
 				name = "atrium_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-450, 150, 0),
 			},
 			{
 				name = "atrium_middle",
-				force = 3,
+				force = 2,
 				position = Vector3(-1300, -1600, 0),
 			},
 			{
 				name = "atrium_right",
-				force = 3,
+				force = 2,
 				position = Vector3(-450, -3350, 0),
 			},
 		},

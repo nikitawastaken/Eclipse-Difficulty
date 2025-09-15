@@ -84,12 +84,6 @@ return {
 			},
 		},
 	},
-	-- Lower initial diff
-	[100122] = {
-		values = {
-			difficulty = 0.5, -- diff 65 originally
-		},
-	},
 	-- tweak the amount of required bags
 	[103567] = bags_required,
 	[103564] = bags_required,

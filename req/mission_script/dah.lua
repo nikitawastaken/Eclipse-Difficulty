@@ -76,7 +76,6 @@ return {
 		},
 	},
 	[100170] = { -- objective 8, entered the vault
-		difficulty = 1,
 		reinforce = {
 			{
 				name = "vault_entrance",
@@ -95,11 +94,6 @@ return {
 			},
 		},
 	},
-	-- disable vanilla difficulty scaling
-	[100077] = { -- objective 3, look for the CFO
-		difficulty = 0.75,
-	},
-	[104890] = disabled,
 	-- change the required amount of diamond bags
 	[101608] = bags_required,
 	[101609] = bags_required,

@@ -69,12 +69,12 @@ return {
 			},
 			{
 				name = "west",
-				force = 2,
+				force = 3,
 				position = Vector3(1100, 2100, 300),
 			},
 			{
 				name = "east",
-				force = 2,
+				force = 3,
 				position = Vector3(-800, -1300, 300),
 			},
 			{

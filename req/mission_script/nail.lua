@@ -20,17 +20,17 @@ return {
 		reinforce = {
 			{
 				name = "pillow1",
-				force = 3,
+				force = 2,
 				position = Vector3(-6650, 1000, 200),
 			},
 			{
 				name = "pillow2",
-				force = 3,
+				force = 2,
 				position = Vector3(-4550, -975, 200),
 			},
 			{
 				name = "pillow3",
-				force = 3,
+				force = 2,
 				position = Vector3(-2050, 1000, 200),
 			},
 		},

@@ -30,18 +30,7 @@ return {
 			enabled = false,
 		},
 	},
-	[100472] = { -- Spawned
-		values = {
-			difficulty = 0.5,
-		},
-	},
-	[101144] = { -- Airlock
-		values = {
-			difficulty = 0.75,
-		},
-	},
 	[101125] = { -- Escape
-		difficulty = 1,
 		reinforce = {
 			{
 				name = "gate",

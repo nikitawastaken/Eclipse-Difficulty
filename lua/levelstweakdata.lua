@@ -120,11 +120,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.arm_fac.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.arm_hcm.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-
+	
+	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
+	self.arm_cro.group_ai_settings.assault_force_mul = 0.7
+	
 	self.arm_for.group_ai_settings = {
 		special_limit_add = {
 			shield = -1,

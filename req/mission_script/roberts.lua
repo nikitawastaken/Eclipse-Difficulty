@@ -101,22 +101,22 @@ return {
 		reinforce = {
 			{
 				name = "bank_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-525, -3000, -75),
 			},
 			{
 				name = "bank_right",
-				force = 3,
+				force = 2,
 				position = Vector3(450, 1750, -75),
 			},
 			{
 				name = "bank_front",
-				force = 3,
+				force = 2,
 				position = Vector3(2925, -650, -75),
 			},
 			{
 				name = "bank_back",
-				force = 3,
+				force = 2,
 				position = Vector3(-3250, -1375, -60),
 			},
 		},

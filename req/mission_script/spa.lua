@@ -1,17 +1,11 @@
 local preferred = Eclipse.preferred
-local window_lower_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents,
-}
 local skylight_spawn = {
 	values = {
 		interval = 15,
 	},
 	groups = preferred.no_cops_agents,
 }
-local window_upper_spawn = {
+local window_spawn = {
 	values = {
 		interval = 20,
 	},
@@ -51,15 +45,13 @@ return {
 		},
 	},
 	-- Spawn group intervals
-	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
-	[101012] = window_lower_spawn,
-	[102138] = window_lower_spawn,
-	[104338] = window_lower_spawn,
-	[104472] = window_lower_spawn,
-	[100750] = window_upper_spawn,
-	[102664] = window_upper_spawn,
-	[102667] = window_upper_spawn,
-	[102668] = window_upper_spawn,
+	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.	
+	[100750] = window_spawn,
+	[101012] = window_spawn,
+	[102138] = window_spawn,
+	[102664] = window_spawn,
+	[104338] = window_spawn,
+	[104472] = window_spawn,
 	[102139] = skylight_spawn,
 	[102140] = skylight_spawn,
 	[104336] = skylight_spawn,

@@ -13,6 +13,35 @@ local roof_spawn = {
 }
 local dozer_in_the_container_amount = is_eclipse and 2 or 1
 return {
+	[100109] = {  -- Police
+		reinforce = {
+			{
+				name = "catwalk",
+				force = 2,
+				position = Vector3(-3650, -1850, 1400),
+			},
+			{
+				name = "warehouse_entrance_container",
+				force = 2,
+				position = Vector3(-650, -2100, 1250),
+			},
+			{
+				name = "central",
+				force = 4,
+				position = Vector3(2650, -125, 975),
+			},
+			{
+				name = "near_longfellow1",
+				force = 2,
+				position = Vector3(-1925, 25, 975),
+			},
+			{
+				name = "near_longfellow2",
+				force = 2,
+				position = Vector3(-3000, 150, 975),
+			},
+		},
+	},
 	-- add one additional dozer in the container on Eclipse
 	[107061] = {
 		values = {
