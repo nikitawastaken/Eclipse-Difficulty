@@ -28,7 +28,12 @@ function PlayerHandStateBelt:update(t, dt)
 	if self._belt_state then
 		local player = managers.player:player_unit()
 
-		if self._belt_state == "reload" and self._hsm:default_state_name() == "weapon" and (self._hsm:other_hand():default_state_name() ~= "bow" or managers.vr:hand_state_machine():controller():get_input_pressed(self._belt_button)) and player:movement():current_state():can_trigger_reload() then
+		if
+			self._belt_state == "reload"
+			and self._hsm:default_state_name() == "weapon"
+			and (self._hsm:other_hand():default_state_name() ~= "bow" or managers.vr:hand_state_machine():controller():get_input_pressed(self._belt_button))
+			and player:movement():current_state():can_trigger_reload()
+		then
 			player:movement():current_state():trigger_reload()
 			managers.hud:belt():trigger_reload()
 			self:hsm():change_to_default()
@@ -70,15 +75,15 @@ function PlayerHandStateBelt:update(t, dt)
 					prompt = {
 						text_id = "hud_instruct_throw_bag",
 						btn_macros = {
-							BTN_USE_ITEM = "use_item_vr"
-						}
-					}
+							BTN_USE_ITEM = "use_item_vr",
+						},
+					},
 				})
 			elseif self._belt_state == "deployable" or self._belt_state == "deployable_secondary" then
 				self._hsm:change_state_by_name("item", {
 					type = "deployable",
 					prev_state = self._prev_state,
-					secondary = self._belt_state == "deployable_secondary"
+					secondary = self._belt_state == "deployable_secondary",
 				})
 			elseif self._belt_state == "throwable" then
 				local grenade_entry = managers.blackmarket:equipped_grenade()
@@ -87,11 +92,11 @@ function PlayerHandStateBelt:update(t, dt)
 				self._hsm:change_state_by_name("item", {
 					type = "throwable",
 					unit = grenade_unit,
-					prev_state = self._prev_state
+					prev_state = self._prev_state,
 				})
 			elseif self._belt_state == "melee" then
 				self._hsm:change_state_by_name("melee", {
-					prev_state = self._prev_state
+					prev_state = self._prev_state,
 				})
 			elseif self._belt_state == "reload" and self._hsm:default_state_name() ~= "weapon" then
 				local weap_base = player:inventory():equipped_unit():base()
@@ -113,7 +118,7 @@ function PlayerHandStateBelt:update(t, dt)
 						if weap_base:reload_object_name() then
 							for _, mag in ipairs({
 								mag_unit,
-								second_mag
+								second_mag,
 							}) do
 								local reload_obj = mag:get_object(Idstring(weap_base:reload_object_name()))
 
@@ -126,7 +131,7 @@ function PlayerHandStateBelt:update(t, dt)
 							type = "magazine",
 							unit = mag_unit,
 							offset = offset,
-							prev_state = self._prev_state
+							prev_state = self._prev_state,
 						})
 						managers.hud:belt():trigger_reload()
 						player:movement():current_state():grab_mag()
@@ -135,3 +140,4 @@ function PlayerHandStateBelt:update(t, dt)
 			end
 		end
 	end
+end
