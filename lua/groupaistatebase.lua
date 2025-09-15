@@ -291,7 +291,7 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 	if hostage_kill_add then
 		self:add_difficulty(hostage_kill_add)
 	end
-end) 
+end)
 
 -- Limit the number of dominated cops to 4 in all cases
 function GroupAIStateBase:has_room_for_police_hostage()
