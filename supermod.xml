@@ -148,6 +148,7 @@
 					<post :hook_id="playermovement"/>
 					<post :hook_id="huskplayermovement"/>
 					<post :hook_id="playerinventory"/>
+					<post :hook_id="playerhand"/>
 				</group>
 
 				<post :hook_id="characters/characterattentionobject"/>
