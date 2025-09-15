@@ -5,9 +5,11 @@ function PlayerHand:set_carry(carry, skip_hand)
 		managers.hud:belt():set_state("bag", skip_hand and "default" or "active")
 
 		if not skip_hand then
+			-- carrystacker fix
 			local carry_data = managers.player:get_my_carry_data()
 			local carry_id = carry_data[#carry_data].carry_id
 			local unit_name = tweak_data.carry[carry_id].unit
+			-- end fix
 
 			if unit_name then
 				unit_name = string.match(unit_name, "/([^/]*)$")

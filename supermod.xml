@@ -132,6 +132,7 @@
 			<group :hook_id="units/">
 				<group :hook_id="beings/player/">
 					<group :hook_id="states/">
+						<post :hook_id="vr/hand/playerhandstatebelt"/>
 						<post :hook_id="vr/playerstandardvr"/>
 						<post :hook_id="vr/playercarryvr"/>
 						<post :hook_id="playerstandard"/>
