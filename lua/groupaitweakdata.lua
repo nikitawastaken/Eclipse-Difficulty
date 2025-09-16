@@ -14,6 +14,7 @@ local function table_multiplier(target_table, mul)
 end
 
 GroupAITweakData.group_ai_presets = {
+	--[[
 	["small_urban"] = {
 		cs_cops = 1.5,
 
@@ -40,6 +41,7 @@ GroupAITweakData.group_ai_presets = {
 		cs_stealth_heavy = { 0, 0, 0.75 },
 		fbi_stealth_heavy = { 0, 0, 0.75 },
 	},
+	]]
 	["heavy_response"] = {
 		cs_cops = 0.5,
 
@@ -1422,7 +1424,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 end)
 
 Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enemy_spawn_groups", function(self, difficulty_index)
-	local small_urban = self._mission_preset and self._mission_preset == "small_urban"
+	--local small_urban = self._mission_preset and self._mission_preset == "small_urban"
 	local heavy_response = self._mission_preset and self._mission_preset == "heavy_response"
 	local skyscraper = self._mission_preset and self._mission_preset == "skyscraper"
 
@@ -1474,7 +1476,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		shield_def = {
 			"shield",
 			"ranged_fire",
-			--"door_ambush",
+			"door_ambush",
 		},
 		shield_agg = {
 			"shield",
@@ -1503,7 +1505,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		bulldozer_def = {
 			"shield",
-			--"door_ambush",
+			"door_ambush",
 			"murder",
 			"smoke_grenade",
 		},
