@@ -76,12 +76,12 @@ return {
 	-- let the wine be securable via the zipline
 	[105900] = {
 		values = {
-			counter_target = 1
+			counter_target = 1,
 		},
 	},
 	[105224] = {
 		values = {
-			operation = "secure"
+			operation = "secure",
 		},
 	},
 	-- Spawn Group delays
