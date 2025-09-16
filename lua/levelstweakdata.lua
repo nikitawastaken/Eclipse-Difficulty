@@ -914,18 +914,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		"packages/cane",
 		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
 	}
-	self.peta.package = {
-		"packages/narr_peta",
-		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
-	}
-	self.peta2.package = {
-		"packages/narr_peta2",
-		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
-	}
-	self.born.package = {
-		"packages/narr_born_1",
-		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
-	}
 	self.chew.package = {
 		"packages/lvl_chew",
 		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
@@ -949,7 +937,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex.package = {
 		"packages/job_mex",
 		"levels/narratives/h_alex_must_die/stage_1/world_sounds",
-		"levels/narratives/e_welcome_to_the_jungle/stage_1/world_sounds",
 	}
 	self.mex_cooking.package = {
 		"packages/job_mex2",

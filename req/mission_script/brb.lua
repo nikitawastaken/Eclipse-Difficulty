@@ -24,7 +24,7 @@ local window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[101121] = {
+	[101115] = {
 		ponr = {
 			length = 180,
 			player_mul = { 1.15, 1.15, 1, 1 },

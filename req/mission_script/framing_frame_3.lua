@@ -73,6 +73,17 @@ return {
 			},
 		},
 	},
+	-- let the wine be securable via the zipline
+	[105900] = {
+		values = {
+			counter_target = 1
+		},
+	},
+	[105224] = {
+		values = {
+			operation = "secure"
+		},
+	},
 	-- Spawn Group delays
 	[100817] = standard_spawn,
 	[100329] = standard_spawn,
