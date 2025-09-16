@@ -58,27 +58,27 @@ return {
 		reinforce = {
 			{
 				name = "entrance1",
-				force = 2,
+				force = 3,
 				position = Vector3(-400, -900, 10),
 			},
 			{
 				name = "entrance2",
-				force = 2,
+				force = 3,
 				position = Vector3(1350, -2200, 10),
 			},
 			{
 				name = "entrance3",
-				force = 2,
+				force = 3,
 				position = Vector3(2850, -2200, 10),
 			},
 			{
 				name = "parking_lot",
-				force = 3,
+				force = 4,
 				position = Vector3(-2000, -2750, 10),
 			},
 			{
 				name = "construction",
-				force = 3,
+				force = 4,
 				position = Vector3(3000, -3750, 10),
 			},
 		},
