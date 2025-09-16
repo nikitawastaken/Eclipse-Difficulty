@@ -12,7 +12,6 @@ local real_difficulty_index = ({
 	sm_wish = 8,
 })[difficulty] or 2
 local diff_i = real_difficulty_index
-local faction = tweak_data.levels:get_ai_group_type()
 local level_id = Global and Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
 local is_pro_job = Global and Global.game_settings and Global.game_settings.one_down
 local is_overkill = diff_i == 5
@@ -58,10 +57,6 @@ end
 
 function M.level_id()
 	return level_id
-end
-
-function M.faction()
-	return faction
 end
 
 function M.is_testmap()
