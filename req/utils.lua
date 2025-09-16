@@ -55,8 +55,8 @@ function M.difficulty_name()
 	return is_skirmish and "normal" or difficulty
 end
 
-function M.level_id()
-	return level_id
+function M.faction()
+	return tweak_data.levels:get_ai_group_type()
 end
 
 function M.is_testmap()

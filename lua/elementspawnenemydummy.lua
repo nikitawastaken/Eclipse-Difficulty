@@ -1,5 +1,6 @@
 local level_id = Eclipse.utils.level_id()
 local diff_name = Eclipse.utils.difficulty_name()
+local faction = Eclipse.utils.faction()
 local is_testmap = Eclipse.utils.is_testmap()
 
 -- Don't replace spawns on custom enemy spawner map
@@ -71,11 +72,9 @@ function ElementSpawnEnemyDummy:chk_used_mapped_names(force)
 end
 
 function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
-	local level_tweak = tweak_data.levels[level_id]
-	local faction = self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"]
-		and self.faction_mapping[level_tweak and level_tweak.ai_group_type or "america"][tier or managers.groupai:state():_get_scripted_tier()]
+	local subfaction = self.faction_mapping[faction] and self.faction_mapping[faction][tier or managers.groupai:state():_get_scripted_tier()]
 
-	if not faction then
+	if not subfaction then
 		return nil
 	end
 
@@ -86,7 +85,7 @@ function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
 
 	local enemy_table = {}
 	for mapped, weight in pairs(used_mapped_names) do
-		local add = faction[mapped]
+		local add = subfaction[mapped]
 		if add then
 			enemy_table[add] = weight
 		end
