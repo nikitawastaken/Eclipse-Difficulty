@@ -548,13 +548,13 @@ M.elements = {
 
 	-- restore pdth events
 	-- gate doors
-	Eclipse.mission_elements.gen_object_editor(400098, "open_gate_1", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_1),
-	Eclipse.mission_elements.gen_object_editor(400099, "open_gate_2", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_2),
-	Eclipse.mission_elements.gen_object_editor(410000, "open_gate_3", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenGate_3),
+	Eclipse.mission_elements.gen_object_editor(400098, "open_gate_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenGate_1),
+	Eclipse.mission_elements.gen_object_editor(400099, "open_gate_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenGate_2),
+	Eclipse.mission_elements.gen_object_editor(410000, "open_gate_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenGate_3),
 	Eclipse.mission_elements.gen_missionscript(410001, "spawn_garage_swats", optsspawnSWATs),
 	Eclipse.mission_elements.gen_so(410002, "garage_hunt", Vector3(0, 0, 0), Rotation(0, 0, 0), optsGarageHunt),
 	-- dozer slamming door spawn
-	Eclipse.mission_elements.gen_object_editor(410003, "open_the_door", Vector3(-1665, -3063, 1949), Rotation(0, 0, -0), optsKickthefuckingdoor),
+	Eclipse.mission_elements.gen_object_editor(410003, "open_the_door", Vector3(0, 0, 0), Rotation(0, 0, 0), optsKickthefuckingdoor),
 	Eclipse.mission_elements.gen_dummy(410004, "dozer_slam", Vector3(-14448, -6320, 649.807), Rotation(0, 0, -0), optsDozerDoor),
 
 	Eclipse.mission_elements.gen_missionscript(410005, "eclipse_major_ave_preferedadd_1", optsPreferedAdd1),
@@ -640,7 +640,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(410067, "wall_so_6", Vector3(5470.247, 8966.672, 37.068), Rotation(-87, 0, 0), optsFirstStreet_AIsniper),
 	Eclipse.mission_elements.gen_missionscript(410068, "spawn_first_street_swats", optsspawnfirststreetSWATs),
 	-- lights on for cop cars
-	Eclipse.mission_elements.gen_object_editor(410069, "cop_car_lights", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optscop_car_lights_on),
+	Eclipse.mission_elements.gen_object_editor(410069, "cop_car_lights", Vector3(0, 0, 0), Rotation(0, 0, 0), optscop_car_lights_on),
 	-- move a few older ambush event scripts to a different format
 	Eclipse.mission_elements.gen_missionscript(410070, "spawn_major_ave_shield_wall", optsspawnmajorshieldwall),
 	Eclipse.mission_elements.gen_missionscript(410071, "spawn_late_shield_wall", optsspawnlateshieldwall),
