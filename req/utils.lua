@@ -50,7 +50,7 @@ function M.difficulty_index()
 end
 
 function M.difficulty_name()
-	local is_skirmish = tweak_data.levels[level_id] and tweak_data.levels[level_id].group_ai_state == "skirmish"
+	local is_skirmish = tweak_data and tweak_data.levels and tweak_data.levels[level_id] and tweak_data.levels[level_id].group_ai_state == "skirmish"
 
 	return is_skirmish and "normal" or difficulty
 end
@@ -60,7 +60,7 @@ function M.level_id()
 end
 
 function M.faction()
-	return tweak_data.levels:get_ai_group_type()
+	return tweak_data and tweak_data.levels and tweak_data.levels:get_ai_group_type()
 end
 
 function M.is_testmap()
