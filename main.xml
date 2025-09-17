@@ -1,7 +1,9 @@
 <table>
 	<AddFiles directory="assets">
-		<!-- perk decks -->
+		<!-- perk decks and skill trees -->
+		<texture path="guis/textures/pd2/skilltree_2/icons_atlas_2"/>
 		<texture path="guis/textures/pd2/specialization/icons_atlas"/>
+		<texture path="guis/dlcs/max/textures/pd2/specialization/icons_atlas"/>
 	</AddFiles>
 	
 	<!-- Custom packages -->

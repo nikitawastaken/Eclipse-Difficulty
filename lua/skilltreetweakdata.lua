@@ -610,7 +610,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_passive_intimidate_range_mul" }
 	self.specializations[1][5].upgrades = { "team_resource_trading_ammo" }
 	self.specializations[1][7].upgrades = { "team_hostage_health_multiplier", "team_hostage_stamina_multiplier", "cable_tie_quantity_2" }
+	self.specializations[1][7].icon_xy = { 0, 1}
 	self.specializations[1][9].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault", "player_passive_loot_drop_multiplier" }
+	self.specializations[1][9].icon_xy = { 7, 8 }
 
 	-- muscle
 	self.specializations[2][1].upgrades = { "player_panic_suppression" }
@@ -637,29 +639,38 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- hitman
 	self.specializations[5][1].upgrades = { "player_chain_headshot_kills", "temporary_chain_headshot_dodge_1" }
+	self.specializations[5][1].icon_xy = { 7, 2 }
 	self.specializations[5][3].upgrades = { "temporary_dodge_outnumbered" }
+	self.specializations[5][3].icon_xy = { 0, 3 }
 	self.specializations[5][5].upgrades = { "temporary_chain_headshot_dodge_2" }
+	self.specializations[5][5].icon_xy = { 1, 3 }
 	self.specializations[5][7].upgrades = { "player_cheat_death_chance_1" }
+	self.specializations[5][7].icon_xy = { 2, 3 }
 	self.specializations[5][9].upgrades = { "player_cheat_death_inc", "player_passive_loot_drop_multiplier" }
+	self.specializations[5][9].icon_xy = { 3, 3 }
 
 	-- crook
 	self.specializations[6][1].upgrades = { "player_bv_stamina_reduction_multiplier" }
+	self.specializations[6][1].icon_xy = { 1, 9 }
 	self.specializations[6][3].upgrades = { "player_bv_health_damage_reduction" }
+	self.specializations[6][3].icon_xy = { 3, 9 }
 	self.specializations[6][5].upgrades = { "player_bv_ap_rnds_protection" }
+	self.specializations[6][5].icon_xy = { 2, 9 }
 	self.specializations[6][7].upgrades = { "player_level_2_armor_multiplier_1", "player_level_3_armor_multiplier_1", "player_level_4_armor_multiplier_1" }
 	self.specializations[6][9].upgrades = { "player_bv_no_armor_suppression", "player_passive_loot_drop_multiplier" }
+	self.specializations[6][9].icon_xy = { 0, 9 }
 
 	-- tactician (ex-burglar)
 	self.specializations[7][1].upgrades = { "second_deployable_1" }
 	self.specializations[7][1].icon_xy = { 5, 8 }
 	self.specializations[7][3].upgrades = { "player_drill_speed_multiplier1", "player_drill_speed_multiplier2" }
-	self.specializations[7][3].icon_xy = { 5, 8 }
+	self.specializations[7][3].icon_xy = { 3, 8 }
 	self.specializations[7][5].upgrades = { "player_near_teammate_damage_multiplier" }
-	self.specializations[7][5].icon_xy = { 5, 8 }
+	self.specializations[7][5].icon_xy = { 2, 8 }
 	self.specializations[7][7].upgrades = { "player_electrocuting_drill" }
-	self.specializations[7][7].icon_xy = { 5, 8 }
+	self.specializations[7][7].icon_xy = { 4, 8 }
 	self.specializations[7][9].upgrades = { "player_no_secondary_deployable_penalty", "deploy_interact_faster_1", "player_passive_loot_drop_multiplier" }
-	self.specializations[7][9].icon_xy = { 5, 8 }
+	self.specializations[7][9].icon_xy = { 6, 8 }
 
 	-- socio
 	table.delete(self.specializations[9][7].upgrades, "player_tier_armor_multiplier_3")
@@ -691,7 +702,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- yakuza
 	self.specializations[12][1].upgrades = { "player_armor_regen_damage_health_ratio_multiplier_1", "player_armor_regen_damage_health_ratio_threshold_multiplier" }
 	self.specializations[12][3].upgrades = { "weapon_passive_swap_speed_multiplier_1" }
-	self.specializations[12][3].icon_xy = { 7, 2 }
+	self.specializations[12][3].icon_xy = { 0, 7 }
 	self.specializations[12][5].upgrades = { "player_camouflage_multiplier" }
 	self.specializations[12][5].name_id = "menu_deck4_3"
 	self.specializations[12][5].icon_xy = { 4, 2 }
@@ -723,16 +734,22 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- sicario
 	self.specializations[18][3].upgrades = { "player_smoke_grenade_no_armor_suppression" }
-	self.specializations[18][3].icon_xy = { 3, 0 }
+	self.specializations[18][3].icon_xy = { 1, 1 }
 	self.specializations[18][5].upgrades = { "player_passive_dodge_chance_1", "player_passive_dodge_chance_2", "player_passive_dodge_chance_3" }
+	self.specializations[18][5].texture_bundle_folder = nil
+	self.specializations[18][5].icon_xy = { 3, 2 }
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
-	self.specializations[18][7].icon_xy = { 1, 0 }
+	self.specializations[18][7].icon_xy = { 2, 1 }
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
 
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
+	self.specializations[21][3].texture_bundle_folder = nil
+	self.specializations[21][3].icon_xy = { 1, 6 }
 	table.insert(self.specializations[21][7].upgrades, "player_passive_health_multiplier_2")
 	table.delete(self.specializations[21][7].upgrades, "player_pocket_ecm_kill_dodge_1")
+	self.specializations[21][7].texture_bundle_folder = nil
+	self.specializations[21][7].icon_xy = { 2, 6 }
 	table.delete(self.specializations[21][9].upgrades, "player_passive_dodge_chance_2")
 
 	-- leech
@@ -749,8 +766,8 @@ function SkillTreeTweakData:init(tweak_data)
 				"passive_player_xp_multiplier",
 			},
 			icon_xy = {
-				5,
-				8,
+				7,
+				3,
 			},
 		},
 		{
@@ -774,8 +791,8 @@ function SkillTreeTweakData:init(tweak_data)
 				"passive_player_cash_multiplier",
 			},
 			icon_xy = {
-				5,
-				8,
+				7,
+				3,
 			},
 		},
 		{
@@ -802,8 +819,8 @@ function SkillTreeTweakData:init(tweak_data)
 				"passive_player_xp_multiplier_2",
 			},
 			icon_xy = {
-				5,
-				8,
+				7,
+				3,
 			},
 		},
 		{
@@ -827,8 +844,8 @@ function SkillTreeTweakData:init(tweak_data)
 				"passive_player_cash_multiplier_2",
 			},
 			icon_xy = {
-				5,
-				8,
+				7,
+				3,
 			},
 		},
 		{
@@ -854,8 +871,8 @@ function SkillTreeTweakData:init(tweak_data)
 				"passive_player_cash_multiplier_3",
 			},
 			icon_xy = {
-				5,
-				8,
+				7,
+				3,
 			},
 		},
 		name_id = "menu_st_spec_23",
