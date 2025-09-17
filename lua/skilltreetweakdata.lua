@@ -610,7 +610,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_passive_intimidate_range_mul" }
 	self.specializations[1][5].upgrades = { "team_resource_trading_ammo" }
 	self.specializations[1][7].upgrades = { "team_hostage_health_multiplier", "team_hostage_stamina_multiplier", "cable_tie_quantity_2" }
-	self.specializations[1][7].icon_xy = { 0, 1}
+	self.specializations[1][7].icon_xy = { 0, 1 }
 	self.specializations[1][9].upgrades = { "team_resource_trading_assault_delay", "team_resource_trading_before_first_assault", "player_passive_loot_drop_multiplier" }
 	self.specializations[1][9].icon_xy = { 7, 8 }
 
