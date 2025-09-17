@@ -39,16 +39,6 @@ return {
 				force = 2,
 				position = Vector3(525, -500, 0),
 			},
-			{
-				name = "warehouse3",
-				force = 2,
-				position = Vector3(1750, 1850, 0),
-			},
-			{
-				name = "warehouse4",
-				force = 2,
-				position = Vector3(4700, 3150, 0),
-			},
 		},
 	},
 	-- Keep Shields and Dozers from using some of the jump SOs

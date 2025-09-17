@@ -360,6 +360,32 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		access = access_type_walk_only,
 	}
 
+	self.unit_categories.cs_cop_2_3 = {
+		unit_types = {
+			america = {
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			russia = {
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			zombie = {
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			murkywater = {
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+			federales = {
+				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
+				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+			},
+		},
+		access = access_type_walk_only,
+	}
+	
 	self.unit_categories.cs_cop_3_4 = {
 		unit_types = {
 			america = {
@@ -1610,14 +1636,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					15 / (difficulty_index ^ 2),
-					5 / (difficulty_index ^ 2),
+					12 / (difficulty_index ^ 2),
+					4 / (difficulty_index ^ 2),
 					0,
 				}, heavy_response and 0.25 or 1),
 				amount_max = 1,
 				freq = 1,
 				rank = 1,
-				unit = "cs_cop_3",
+				unit = "cs_cop_2_3",
 				tactics = self._tactics.none,
 			},
 		},
@@ -1821,7 +1847,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					0,
 				}, heavy_response and 0.25 or 1),
 				rank = 1,
-				unit = "cs_cop_3",
+				unit = "cs_cop_2_3",
 				tactics = self._tactics.shield_spt,
 			},
 		},
@@ -1929,8 +1955,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 360,
-					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 300,
+					(difficulty_index ^ 2) / 150,
 				}, skyscraper and 1.25 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -1985,8 +2011,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 360,
-					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 300,
+					(difficulty_index ^ 2) / 150,
 				}, heavy_response and 1.25 or 1),
 				amount_max = 1,
 				rank = 3,
@@ -2254,8 +2280,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 240,
-					(difficulty_index ^ 2) / 120,
+					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2289,8 +2315,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 240,
-					(difficulty_index ^ 2) / 120,
+					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2335,8 +2361,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 360,
-					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 300,
+					(difficulty_index ^ 2) / 150,
 				}, skyscraper and 1.25 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2391,8 +2417,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 360,
-					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 300,
+					(difficulty_index ^ 2) / 150,
 				}, heavy_response and 1.25 or 1),
 				amount_max = 1,
 				rank = 3,
@@ -2570,8 +2596,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 240,
-					(difficulty_index ^ 2) / 120,
+					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2605,8 +2631,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					(difficulty_index ^ 2) / 240,
-					(difficulty_index ^ 2) / 120,
+					(difficulty_index ^ 2) / 180,
+					(difficulty_index ^ 2) / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,

@@ -6,7 +6,7 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local is_eclipse_pro = is_eclipse and is_pro_job
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local ready_team_1 = scripted_enemy.ready_team_1
 local swat_1 = scripted_enemy.swat_1
 local heavy_2 = scripted_enemy.heavy_swat_2
@@ -48,13 +48,13 @@ local eclipse_dozers = {
 	elite_skull_bulldozer,
 }
 local escape_dozer = {
-	enemy = is_eclipse and eclipse_dozers or regular_dozers,
+	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 }
 local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
 }
-local harassers = normal and 3 or hard and 4 or 5
+local harassers = overkill_and_above and 5 or 3
 local harasser_amount = {
 	values = {
 		amount = harassers,
@@ -101,13 +101,13 @@ local street_heli_enemy = {
 }
 local window_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local breach_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -119,13 +119,14 @@ local roof_spawn = {
 }
 local new_cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 60,
 	},
 	groups = preferred.only_cloakers,
 }
 local chopper_delay_init = 420 - (diff_i_no_norm * 30) - (is_pro_job and 120 or 0)
-local chopper_delay = 480 - (diff_i_no_norm * 15) - (is_pro_job and 90 or 0)
-local harasser_delay = (normal and 60 or 30) - (is_pro_job and 15 or 0)
+local chopper_delay = 360 - (diff_i_no_norm * 15) - (is_pro_job and 60 or 0)
+local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or 0)
+
 return {
 	-- Combine some navigation areas
 	[100053] = {
@@ -353,7 +354,7 @@ return {
 	},
 	[100130] = {
 		on_executed = {
-			{ id = 400005, delay = 20 },
+			{ id = 400005, delay = 0, delay_rand = 15 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},
@@ -367,7 +368,7 @@ return {
 	-- trigger taser chopper event if the limo stays on the roof
 	[101782] = {
 		on_executed = {
-			{ id = 400010, delay = 60, delay_rand = is_pro_job and 60 or 90 },
+			{ id = 400010, delay = 30, delay_rand = is_pro_job and 60 or 90 },
 		},
 	},
 	-- tweak the PC hack to use PDTH values
@@ -545,7 +546,7 @@ return {
 	},
 	[100131] = { -- police called, call in da choppa
 		on_executed = {
-			{ id = 101608, delay = chopper_delay_init, delay_rand = 120 },
+			{ id = 101608, delay = chopper_delay_init },
 		},
 	},
 	[101608] = {
@@ -556,8 +557,8 @@ return {
 	[102010] = {
 		on_executed = {
 			{ id = 101608, remove = true },
-			{ id = 103765, delay = 60, delay_rand = 30 }, -- trigger the c4 breach during hacking objetives rather than in police_called
-			{ id = 103766, delay = 60, delay_rand = 30 },
+			{ id = 103765, delay = 15, delay_rand = 45 }, -- trigger the c4 breach during hacking objetives rather than in police_called
+			{ id = 103766, delay = 15, delay_rand = 45 },
 		},
 	},
 	[103765] = {
@@ -573,7 +574,7 @@ return {
 	[103434] = {
 		values = filter_normal_above.values,
 		on_executed = {
-			{ id = 101608, delay = chopper_delay, delay_rand = 60 },
+			{ id = 101608, delay = chopper_delay },
 		},
 	},
 	-- The other (lame) chopper
@@ -607,7 +608,7 @@ return {
 	-- Regular harasser stuff
 	[102269] = {
 		on_executed = {
-			{ id = 102268, delay = harasser_delay, delay_rand = 30 },
+			{ id = 102268, delay = 15, delay_rand = harasser_delay },
 		},
 	},
 	[101731] = {
@@ -620,7 +621,7 @@ return {
 	[102946] = harasser_counter,
 	[103833] = {
 		on_executed = {
-			{ id = 103832, delay = harasser_delay, delay_rand = 30 },
+			{ id = 103832, delay = 15, delay_rand = harasser_delay },
 		},
 	},
 	[103832] = harasser_amount,

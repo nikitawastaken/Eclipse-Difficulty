@@ -97,9 +97,9 @@ function GroupAIStateBesiege:on_enemy_weapons_hot(is_delayed_callback)
 
 	if not self._enemy_weapons_hot then
 		self._task_data.assault.disabled = nil
-		self._task_data.assault.next_dispatch_t = self._t + (tweak_data.group_ai.difficulty_scaling.assault_delay or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
+		self._task_data.assault.next_dispatch_t = self._t + (tweak_data.group_ai.difficulty_scaling.assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay))
 		self._task_data.assault.first_response_trades_delay = self._t
-			+ (tweak_data.group_ai.difficulty_scaling.assault_delay or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)) / 2
+			+ (tweak_data.group_ai.difficulty_scaling.assault_delay + 15 or self:_get_difficulty_dependent_value(self._tweak_data.assault.delay)) / 2
 	end
 
 	GroupAIStateBesiege.super.on_enemy_weapons_hot(self, is_delayed_callback)

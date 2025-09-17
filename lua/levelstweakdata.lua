@@ -375,6 +375,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 1.25,
 		assault_force_mul = 0.85,
 		cs_grenade_chance_times_mul = 0.75,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
+		special_limit_add = {
+			cloaker = 1,
+			tank = 1,
+		},
 	}
 	self.man.group_ai_preset = "heavy_response"
 
@@ -653,6 +661,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 		special_limit_add = {
 			shield = 2,
+			taser = 1,
 			cloaker = 1,
 		},
 	}

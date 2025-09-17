@@ -23,9 +23,8 @@ local M = {
 	[("units/payday2/characters/ene_security_5/ene_security_5"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_security_6/ene_security_6"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_security_7/ene_security_7"):key()] = "r870", --stronger camera man
+	[("units/payday2/characters/ene_security_8/ene_security_8"):key()] = { c45 = 3, mp5 = 1 },
 	--Stealing Xmas
-	--fat man has bronco instead of c45
-	[("units/payday2/characters/ene_security_8/ene_security_8"):key()] = { raging_bull = 3, mp5 = 1 },
 	--Secret Service
 	[("units/payday2/characters/ene_secret_service_1/ene_secret_service_1"):key()] = { c45 = 3, mp5 = 1 },
 	[("units/payday2/characters/ene_secret_service_2/ene_secret_service_2"):key()] = { c45 = 3, mp5 = 1 },
