@@ -385,7 +385,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_walk_only,
 	}
-	
+
 	self.unit_categories.cs_cop_3_4 = {
 		unit_types = {
 			america = {
