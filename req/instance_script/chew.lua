@@ -2,7 +2,9 @@
 local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
-local swat_1 = diff_i < 6 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local swat_1 = diff_i < 5 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
 local sniper = scripted_enemy.sniper
 local so_access = Eclipse.access_filter
 local law = so_access.law
@@ -12,6 +14,7 @@ local swats = {
 }
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
+local dead_swats_amount = (normal and 4 or hard and 6 or 8) + (is_pro_job and 2 or 0)
 local patches = {
 	train_car_tanker = table.set(100598),
 	train_car_boxcar = table.set(100599),
@@ -21,6 +24,8 @@ local patches = {
 	pursuit_car = {
 		swats = table.set(100004, 100007),
 		sniper_so = table.set(100102, 100103),
+		dead_amount_counter = table.set(100090),
+		dead_amount = table.set(100092),
 		filters_disable = table.set(100074, 100075, 100033),
 		filters_normal_above = table.set(100073),
 	},
@@ -59,6 +64,10 @@ return {
 				element.values.SO_access = law
 			elseif fbi_pickup.filters_normal_above[id] then
 				table.map_append(element.values, filter_normal_above)
+			elseif fbi_pickup.dead_amount[id] then
+				element.values.amount = dead_swats_amount
+			elseif fbi_pickup.dead_amount_counter[id] then
+				element.values.counter_target = dead_swats_amount
 			elseif fbi_pickup.filters_disable[id] then
 				table.map_append(element.values, filter_disable)
 			end
