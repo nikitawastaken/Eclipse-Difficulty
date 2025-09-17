@@ -364,23 +364,23 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		unit_types = {
 			america = {
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 			},
 			russia = {
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 			},
 			zombie = {
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 			},
 			murkywater = {
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 			},
 			federales = {
 				Idstring("units/payday2/characters/ene_cop_2/ene_cop_2"),
-				Idstring("units/payday2/characters/ene_cop_4/ene_cop_4"),
+				Idstring("units/payday2/characters/ene_cop_3/ene_cop_3"),
 			},
 		},
 		access = access_type_walk_only,
