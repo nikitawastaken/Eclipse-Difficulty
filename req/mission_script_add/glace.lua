@@ -152,7 +152,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400011, "taser_blockade_so_1", Vector3(-2994, -47502, 5225.499), Rotation(-90, -0, -0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400012, "shield_scaffold_blockade_so_1", Vector3(-4100, -22849, 7115.008), Rotation(0, -0, -0), optsDefend_and_Sniper_SO),
 	Eclipse.mission_elements.gen_so(400013, "shield_scaffold_blockade_so_2", Vector3(-2781.016, -23341.270, 7115.008), Rotation(90, -0, -0), optsDefend_and_Sniper_SO),
-	Eclipse.mission_elements.gen_dummytrigger(400014, "respawn_bulldozer", Vector3(-2400, -3677, 375), Rotation(90, -0, -0), optsrespawn_dozer),
+	Eclipse.mission_elements.gen_dummytrigger(400014, "respawn_the_scaffold_spawn", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_scaffold_spawn),
 	Eclipse.mission_elements.gen_spawngroup(400015, "construct_enemy_group_011", { 101146, 101147, 101148, 101149, 101150 }, 15),
 	Eclipse.mission_elements.gen_spawngroup(400016, "construct_enemy_group_012", { 101115, 101114, 101121, 101123, 101127 }, 15),
 	Eclipse.mission_elements.gen_dummy(400017, "sniper_scaffolding_1", Vector3(558, -22816, 6998.516), Rotation(0, 0, 0), optsSniper_1),
