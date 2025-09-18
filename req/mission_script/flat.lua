@@ -133,7 +133,7 @@ return {
 	},
 	[102087] = {  -- add back spawns
 		on_executed = {
-			{ name = 400057, delay = 0, delay_rand = 20 },
+			{ id = 400057, delay = 0, delay_rand = 20 },
 		},
 	},
 	-- don't remove ground level spawns at any point
