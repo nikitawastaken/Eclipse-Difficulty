@@ -34,28 +34,7 @@ local optsDozerVan_Eclipse = {
 	enabled = is_eclipse,
 	spawn_action = "e_sp_armored_truck_1st",
 }
-local optsspawnvanSWATs_1 = {
-	on_executed = {
-		{ id = 400006, delay = 0 },
-		{ id = 400008, delay = 0 },
-	},
-	enabled = true,
-}
-local optsspawnvanSWATs_2 = {
-	on_executed = {
-		{ id = 400015, delay = 0 },
-		{ id = 400017, delay = 0 },
-	},
-	enabled = true,
-}
-local optsspawnvanSWATs_3 = {
-	on_executed = {
-		{ id = 400024, delay = 0 },
-		{ id = 400026, delay = 0 },
-	},
-	enabled = true,
-}
-local optsspawnvanSWATs_4 = {
+local optsspawnvanSWATs = {
 	on_executed = {
 		{ id = 400033, delay = 0 },
 		{ id = 400035, delay = 0 },
@@ -65,6 +44,27 @@ local optsspawnvanSWATs_4 = {
 local opts_swat_group = {
 	spawn_type = "group_guaranteed",
 	amount = 4,
+}
+local optsPreferedAdd_1 = {
+	spawn_groups = { 400008 },
+	on_executed = {
+		{ id = 400006, delay = 0 },
+	},
+	enabled = true,
+}
+local optsPreferedAdd_2 = {
+	spawn_groups = { 400017 },
+	on_executed = {
+		{ id = 400015, delay = 0 },
+	},
+	enabled = true,
+}
+local optsPreferedAdd_3 = {
+	spawn_groups = { 400026 },
+	on_executed = {
+		{ id = 400024, delay = 0 },
+	},
+	enabled = true,
 }
 local optsSwatVanArrive_1 = {
 	enabled = true,
@@ -224,10 +224,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400002, "swat_van_spawn_2", Vector3(4097.508, -1489.570, 44.504), Rotation(-121, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400003, "swat_van_spawn_3", Vector3(4110.832, -1572.241, 44.504), Rotation(-121, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400004, "swat_van_spawn_4", Vector3(4143.795, -1517.382, 44.504), Rotation(-121, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_missionscript(400005, "spawn_swats_1", optsspawnvanSWATs_1),
+	Eclipse.mission_elements.gen_preferedadd(400005, "start_swat_preffered_1", optsPreferedAdd_1),
 	Eclipse.mission_elements.gen_object_editor(400006, "open_swat_doors_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_1),
 	Eclipse.mission_elements.gen_object_editor(400007, "swat_arrive_new_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_1),
-	Eclipse.mission_elements.gen_spawngroup(400008, "swat_group_1", { 400001, 400002, 400003, 400004 }, 0, opts_swat_group),
+	Eclipse.mission_elements.gen_spawngroup(400008, "swat_group_1", { 400001, 400002, 400003, 400004 }, 0),
 	Eclipse.mission_elements.gen_object_editor_trigger(400009, "swat_van_doors_trigger", optsOpenSwatVanDoors_Trigger_1),
 
 	-- swat van 2
@@ -235,10 +235,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400011, "swat_van_spawn_6", Vector3(1579.304, -4014.507, 789.901), Rotation(-138, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400012, "swat_van_spawn_7", Vector3(1580.590, -4111.581, 789.901), Rotation(-138, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400013, "swat_van_spawn_8", Vector3(1628.151, -4068.756, 789.901), Rotation(-138, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_missionscript(400014, "spawn_swats_2", optsspawnvanSWATs_2),
+	Eclipse.mission_elements.gen_preferedadd(400014, "start_swat_preffered_2", optsPreferedAdd_2),
 	Eclipse.mission_elements.gen_object_editor(400015, "open_swat_doors_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_2),
 	Eclipse.mission_elements.gen_object_editor(400016, "swat_arrive_new_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_2),
-	Eclipse.mission_elements.gen_spawngroup(400017, "swat_group_2", { 400010, 400011, 400012, 400013 }, 0, opts_swat_group),
+	Eclipse.mission_elements.gen_spawngroup(400017, "swat_group_2", { 400010, 400011, 400012, 400013 }, 0),
 	Eclipse.mission_elements.gen_object_editor_trigger(400018, "swat_van_doors_trigger_2", optsOpenSwatVanDoors_Trigger_2),
 
 	-- swat van 3
@@ -246,10 +246,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400020, "swat_van_spawn_10", Vector3(-1320.944, -4688.356, 789.901), Rotation(-139, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400021, "swat_van_spawn_11", Vector3(-1328.407, -4784.944, 789.901), Rotation(-139, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400022, "swat_van_spawn_12", Vector3(-1276.332, -4739.676, 789.901), Rotation(-139, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_missionscript(400023, "spawn_swats_3", optsspawnvanSWATs_3),
+	Eclipse.mission_elements.gen_preferedadd(400023, "start_swat_preffered_3", optsPreferedAdd_3),
 	Eclipse.mission_elements.gen_object_editor(400024, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_3),
 	Eclipse.mission_elements.gen_object_editor(400025, "swat_arrive_new_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_3),
-	Eclipse.mission_elements.gen_spawngroup(400026, "swat_group_3", { 400019, 400020, 400021, 400022 }, 0, opts_swat_group),
+	Eclipse.mission_elements.gen_spawngroup(400026, "swat_group_3", { 400019, 400020, 400021, 400022 }, 0),
 	Eclipse.mission_elements.gen_object_editor_trigger(400027, "swat_van_doors_trigger", optsOpenSwatVanDoors_Trigger_3),
 
 	-- swat van 4
@@ -257,7 +257,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400029, "swat_van_spawn_14", Vector3(-1694, -74, -9.738), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400030, "swat_van_spawn_15", Vector3(-1778, 0, -9.738), Rotation(90, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400031, "swat_van_spawn_16", Vector3(-1778, -74, -9.738), Rotation(90, 0, 0), optsBesiegeDummy),
-	Eclipse.mission_elements.gen_missionscript(400032, "spawn_swats_4", optsspawnvanSWATs_4),
+	Eclipse.mission_elements.gen_missionscript(400032, "spawn_swats", optsspawnvanSWATs),
 	Eclipse.mission_elements.gen_object_editor(400033, "open_swat_doors_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_4),
 	Eclipse.mission_elements.gen_object_editor(400034, "swat_arrive_new_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_4),
 	Eclipse.mission_elements.gen_object_editor(400048, "swat_arrive_new_4_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optsSwatVanArrive_4_2),

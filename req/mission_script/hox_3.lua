@@ -44,6 +44,12 @@ local flank_spawn = {
 	},
 	groups = preferred.no_bulldozers,
 }
+local van_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents,
+}
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -138,9 +144,9 @@ return {
 	[102348] = ready_team_dozer,
 	[102349] = ready_team_dozer,
 	-- Spawn group intervals
-	[400008] = scripted_swat_van_spawn,
-	[400017] = scripted_swat_van_spawn,
-	[400026] = scripted_swat_van_spawn,
+	[400008] = van_spawn,
+	[400017] = van_spawn,
+	[400026] = van_spawn,
 	[400035] = scripted_swat_van_spawn,
 	[100019] = flank_spawn,
 	[102424] = flank_spawn,
