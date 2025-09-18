@@ -43,10 +43,10 @@ return {
 				element.values.enemy_table = diff_i < 4 and swats_normal_and_below or swats_above_normal
 			elseif skull_armory.start_spawn_enemies[id] then
 				element.values.on_executed = {
-				{ id = 100114, delay = 0 },
-				{ id = 100164, delay = 5 },
-				{ id = 100163, delay = 5, delay_rand = 5 },
-			}
+					{ id = 100114, delay = 0 },
+					{ id = 100164, delay = 5 },
+					{ id = 100163, delay = 5, delay_rand = 5 },
+				}
 			elseif skull_armory.reinforce[id] then
 				element.values.enabled = false
 			elseif skull_armory.filters_normal_above[id] then
