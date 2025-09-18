@@ -83,7 +83,7 @@ end)
 Hooks:PostHook(GroupAIStateBesiege, "_create_objective_from_group_objective", "eclipse__create_objective_from_group_objective", function(self)
 	local objective = Hooks:GetReturn()
 
-	if not objective.area then
+	if objective and not objective.area then
 		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(Vector3(0, 0, 0), true)
 
 		objective.area = self:get_area_from_nav_seg_id(nav_seg_id)
