@@ -329,11 +329,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400055, "new_cloaker_spawngroup_03", { 104186 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400056, "new_cloaker_spawngroup_04", { 104188 }, 0),
 	Eclipse.mission_elements.gen_preferedadd(400057, "new_cloaker_spawns", optsPreferedCloakerAdd1),
-	
+
 	--Block the roof access (from PDTH)
 	Eclipse.mission_elements.gen_missionscript(400064, "roof_access_blockade_random", Roof_access_block),
 	Eclipse.mission_elements.gen_toggleelement(400065, "disable_open_roof_access", disable_open_roof_access),
-
 }
 
 return M
