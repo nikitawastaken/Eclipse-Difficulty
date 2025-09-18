@@ -46,7 +46,7 @@ local flank_spawn = {
 }
 local van_spawn = {
 	values = {
-		interval = 15,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
