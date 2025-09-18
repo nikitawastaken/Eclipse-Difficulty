@@ -1,7 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2
 local cop_3 = scripted_enemy.cop_3
@@ -197,7 +197,7 @@ return {
 	-- remove 2 diff checkers, trigger it on hard and above
 	[102196] = {
 		values = {
-			enabled = hard_and_above,
+			enabled = normal_and_above,
 		},
 		on_executed = {
 			{ id = 102256, remove = true },

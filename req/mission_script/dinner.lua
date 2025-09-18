@@ -1,7 +1,7 @@
 --Awesome layout ranomization from ASS
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
 	values = {

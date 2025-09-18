@@ -1,7 +1,7 @@
 ---@module Framing Frame Day 2
 local M = {}
 
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 local enabled_chance_dozer = math.random() < 0.45

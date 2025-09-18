@@ -2,7 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -50,13 +50,13 @@ local optsShield_1 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 100696, delay = 0 } },
 	participate_to_group_ai = true,
-	enabled = hard_and_above and enabled_chance_escape_shields,
+	enabled = normal_and_above and enabled_chance_escape_shields,
 }
 local optsShield_2 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 100695, delay = 0 } },
 	participate_to_group_ai = true,
-	enabled = hard_and_above and enabled_chance_escape_shields,
+	enabled = normal_and_above and enabled_chance_escape_shields,
 }
 local optsSniper_1 = {
 	enemy = sniper,
@@ -150,41 +150,41 @@ local optsSpoocAmbush2 = {
 }
 local optsTaserEscape = {
 	enemy = taser,
-	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_145_group),
+	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_145_group),
 }
 local optsSWAT_HeavySG2 = {
 	enemy = heavy_sg,
-	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_145_group),
+	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_145_group),
 }
 local optsTaser = {
 	enemy = taser,
 	participate_to_group_ai = true,
 	on_executed = { { id = 102421, delay = 0 } },
-	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_swats),
+	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
 }
 local optsSWAT_HeavySG = {
 	enemy = heavy_sg,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400049, delay = 0 } },
-	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_swats),
+	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
 }
 local optsSWAT_HeavyRifle = {
 	enemy = heavy_rifle,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400046, delay = 0 } },
-	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_swats),
+	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
 }
 local optsSWAT_LightRifle = {
 	enemy = light_rifle,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400048, delay = 0 } },
-	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_swats),
+	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
 }
 local optsSWAT_LightSG = {
 	enemy = light_sg,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400047, delay = 0 } },
-	enabled = is_eclipse or (hard_and_above and enabled_chance_escape_swats),
+	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
 }
 local optsEscapeShield1 = {
 	enemy = shield,

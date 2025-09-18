@@ -2,7 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -179,12 +179,12 @@ local optsBulldozer_Ambush = {
 local optsCloaker_Ambush = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsTaser_Ambush = {
 	enemy = taser,
 	participate_to_group_ai = true,
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsSWAT_Ambush = {
 	enemy_table = swat_ambush_table,

@@ -3,7 +3,7 @@ local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_norm = diff_i - 2
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
@@ -117,9 +117,9 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
-local new_cloaker_spawn = {
+local cloaker_spawn = {
 	values = {
-		interval = 60,
+		interval = 90,
 	},
 	groups = preferred.only_cloakers,
 }
@@ -354,7 +354,7 @@ return {
 	},
 	[100130] = {
 		on_executed = {
-			{ id = 400005, delay = 0, delay_rand = 15 },
+			{ id = 400005, delay = 0, delay_rand = 20 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},
@@ -695,7 +695,15 @@ return {
 	[102368] = breach_spawn,
 	[101937] = roof_spawn,
 	[102189] = roof_spawn,
-	[400004] = new_cloaker_spawn,
+	[400019] = cloaker_spawn,
+	[400020] = cloaker_spawn,
+	[400021] = cloaker_spawn,
+	[400022] = cloaker_spawn,
+	[400023] = cloaker_spawn,
+	[400024] = cloaker_spawn,
+	[400025] = cloaker_spawn,
+	[400026] = cloaker_spawn,
+	[400027] = cloaker_spawn,
 	-- Scripted FBI agents
 	[101614] = fbi_agent,
 	[102633] = fbi_agent,

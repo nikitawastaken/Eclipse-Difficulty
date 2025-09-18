@@ -1,4 +1,4 @@
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local disabled = {
 	values = {
 		enabled = false,

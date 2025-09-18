@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local scripted_enemy = Eclipse.scripted_enemy
 local is_solo = Eclipse.utils.is_solo()
 local is_eclipse = Eclipse.utils.is_eclipse()

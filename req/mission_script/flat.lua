@@ -1,5 +1,5 @@
 local scripted_enemy = Eclipse.scripted_enemy
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
@@ -40,6 +40,12 @@ local roof_spawn = {
 		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 120,
+	},
+	groups = preferred.only_cloakers,
 }
 local gangster = {
 	enemy = gangsters,
@@ -112,6 +118,24 @@ return {
 	},
 	-- disable scripted spawn spam
 	[101745] = disabled,
+	-- disable "passive cloaker spawns"
+	[104185] = disabled, 
+	-- add new cloaker spawn groups reusing vanilla enemy dummies
+	[100270] = { -- remove a random disconnected SWAT from this group, he is a Cloaker now
+		values = {
+			elements = { 
+				101669, 
+				103217, 
+				103225, 
+				103226, 
+			},  
+		},
+	},
+	[102087] = {  -- add back spawns
+		on_executed = {
+			{ name = 400057, delay = 0, delay_rand = 20 },
+		},
+	},
 	-- don't remove ground level spawns at any point
 	[102092] = disabled,
 	[102097] = disabled,
@@ -179,7 +203,6 @@ return {
 	-- enable Cloaker spawns
 	-- increase diff
 	[104573] = {
-		difficulty = 0.75,
 		on_executed = {
 			{ id = 400025, delay = 15 },
 			{ id = 400038, delay = 0 },
@@ -443,5 +466,9 @@ return {
 	[100504] = roof_spawn,
 	[100505] = roof_spawn,
 	[100509] = roof_spawn,
-	[100396] = roof_spawn,
+	[100396] = roof_spawn,	
+	[400053] = cloaker_spawn,
+	[400054] = cloaker_spawn,
+	[400055] = cloaker_spawn,
+	[400056] = cloaker_spawn,
 }

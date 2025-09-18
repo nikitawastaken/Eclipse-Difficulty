@@ -2,7 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 
@@ -14,8 +14,8 @@ local optsBesiegeDummyCloaker = {
 	enabled = true,
 }
 local optsPreferedCloakerAdd1 = {
-	spawn_groups = { 400004 },
-	enabled = hard_and_above,
+	spawn_groups = { 400019, 400020, 400021, 400022, 400023, 400024, 400025, 400026, 400027 },
+	enabled = normal_and_above,
 }
 local optsTaser = {
 	enemy = taser,
@@ -44,7 +44,7 @@ local optsTaserChopper = {
 }
 local optsspawntaserchopper = {
 	on_executed = { { id = 400006, delay = 26 }, { id = 400007, delay = 26 }, { id = 400008, delay = 26 }, { id = 400011, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optslowerNewComputerHack_1 = {
 	trigger_list = {
@@ -101,7 +101,6 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400001, "new_cloaker_2", Vector3(-1440, -2129, 475.001), Rotation(180, 0, 0), optsBesiegeDummyCloaker),
 	Eclipse.mission_elements.gen_dummy(400002, "new_cloaker_3", Vector3(-1326.516, 541.548, 821), Rotation(-90, 0, 0), optsBesiegeDummyCloaker),
 	Eclipse.mission_elements.gen_dummy(400003, "new_cloaker_4", Vector3(-863.956, 485.679, 821), Rotation(90, 0, 0), optsBesiegeDummyCloaker),
-	Eclipse.mission_elements.gen_spawngroup(400004, "new_cloaker_spawngroup", { 400000, 400001, 400002, 400003, 103794, 103796, 103797, 103800, 103801 }, 0),
 
 	Eclipse.mission_elements.gen_preferedadd(400005, "new_cloaker_spawns", optsPreferedCloakerAdd1),
 
@@ -125,5 +124,15 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400016, "new_hack_higher_floor_1", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_1),
 	Eclipse.mission_elements.gen_object_editor(400017, "new_hack_higher_floor_2", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_2),
 	Eclipse.mission_elements.gen_object_editor(400018, "new_hack_higher_floor_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optshigherNewComputerHack_3),
+
+	Eclipse.mission_elements.gen_spawngroup(400019, "new_cloaker_spawngroup_01", { 400000 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400020, "new_cloaker_spawngroup_02", { 400001 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400021, "new_cloaker_spawngroup_03", { 400002 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400022, "new_cloaker_spawngroup_04", { 400003 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400023, "new_cloaker_spawngroup_05", { 103794 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400024, "new_cloaker_spawngroup_06", { 103796 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400025, "new_cloaker_spawngroup_07", { 103797 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400026, "new_cloaker_spawngroup_08", { 103800 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400027, "new_cloaker_spawngroup_09", { 103801 }, 0),
 }
 return M

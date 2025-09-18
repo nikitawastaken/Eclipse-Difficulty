@@ -3,7 +3,7 @@ local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
@@ -37,22 +37,22 @@ local enabled_chance_inkwell_dozer = math.random() <= 0.8
 local optsShieldWall1 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 400004, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsShieldWall2 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 400005, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsShieldWall3 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 400006, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsShieldWall4 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 400007, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsInkwellDozer = {
 	enemy = bulldozer,
@@ -63,22 +63,22 @@ local optsInkwellDozer = {
 local optsLateShield1 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 400010, delay = 0 } },
-	enabled = hard_and_above and enabled_chance_alleyway_wall,
+	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateShield2 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 400011, delay = 0 } },
-	enabled = hard_and_above and enabled_chance_alleyway_wall,
+	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateShield3 = {
 	enemy = is_eclipse and elite_shield or shield,
 	on_executed = { { id = 400092, delay = 0 } },
-	enabled = hard_and_above and enabled_chance_alleyway_wall,
+	enabled = normal_and_above and enabled_chance_alleyway_wall,
 }
 local optsLateDozer = {
 	enemy = bulldozer,
 	participate_to_group_ai = true,
-	enabled = hard_and_above and enabled_chance_alleyway_dozer,
+	enabled = normal_and_above and enabled_chance_alleyway_dozer,
 }
 local optsDozerDoor = {
 	enemy = is_eclipse and elite_bulldozer or bulldozer,
@@ -116,13 +116,13 @@ local optsArmitageSniper_01 = {
 	enemy = sniper,
 	on_executed = { { id = 400086, delay = 0 } },
 	trigger_times = 1,
-	enabled = hard_and_above and enabled_chance_sniper_armitage_underpass,
+	enabled = normal_and_above and enabled_chance_sniper_armitage_underpass,
 }
 local optsArmitageSniper_02 = {
 	enemy = sniper,
 	on_executed = { { id = 400088, delay = 0 } },
 	trigger_times = 1,
-	enabled = hard_and_above and enabled_chance_sniper_armitage_rooftop,
+	enabled = normal_and_above and enabled_chance_sniper_armitage_rooftop,
 }
 local optsMajorSniper_01 = {
 	enemy = sniper,
@@ -249,17 +249,17 @@ local optsspawnfirststreetSWATs = {
 
 local optsspawnmajorshieldwall = {
 	on_executed = { { id = 400000, delay = 0 }, { id = 400001, delay = 0 }, { id = 400002, delay = 0 }, { id = 400003, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 
 local optsspawnlateshieldwall = {
 	on_executed = { { id = 400008, delay = 0 }, { id = 400009, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 
 local optsspawnparkingspoocs = {
 	on_executed = { { id = 400018, delay = 0 }, { id = 400020, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 
 local optsAlleyAmbushTrigger = {

@@ -2,7 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local ambush_amount = 1 + (is_pro_job and 1 or 0)
@@ -30,7 +30,7 @@ local random_elite_dozers = {
 }
 
 local spawn_cloakers = {
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 	on_executed = {
 		{ id = 400001, delay = 0 },
 		{ id = 400002, delay = 0 },
@@ -54,7 +54,7 @@ local spawn_shields_and_taser_2 = {
 	},
 }
 local spawn_shields_and_dozer = {
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 	on_executed = {
 		{ id = 400010, delay = 0 },
 		{ id = 400011, delay = 0 },
@@ -188,7 +188,7 @@ local disable_dozer = {
 	},
 }
 local spawn_snipers = {
-	enabled = hard_and_above and enabled_chance_snipers,
+	enabled = normal_and_above and enabled_chance_snipers,
 	on_executed = {
 		{ id = 400027, delay = 0 },
 		{ id = 400028, delay = 0 },
@@ -227,7 +227,7 @@ local optsDozer_heli = {
 }
 local optsspawnspecial_chopper = {
 	on_executed = { { id = 400059, delay = 26 }, { id = 400060, delay = 26 }, { id = 400061, delay = 26 }, { id = 400063, delay = 0 } },
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsNewAmbushTrigger = {
 	width = 800,

@@ -90,10 +90,10 @@ function M.is_solo()
 end
 
 function M.diff_threshold()
-	local hard_and_above = diff_i >= 3
+	local normal_and_above = diff_i >= 3
 	local overkill_and_above = diff_i >= 5
 
-	return hard_and_above, overkill_and_above
+	return normal_and_above, overkill_and_above
 end
 
 function M.diff_groups()

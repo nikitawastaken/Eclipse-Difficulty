@@ -1,7 +1,7 @@
 ---@module Framing Frame Day 1
 local M = {}
 
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local civilian_chance = math.random() <= 0.4
 local optsVentBreaker = {
 	enabled = true,

@@ -2,7 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
@@ -49,19 +49,19 @@ local optsBulldozer = {
 	on_executed = {
 		{ id = 400014, delay = 0 },
 	},
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsBulldozerscripted = {
 	enemy = bulldozer,
 	on_executed = {
 		{ id = 400041, delay = 0 },
 	},
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsCloaker = {
 	enemy = cloaker,
 	participate_to_group_ai = true,
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 }
 local optsShield_1 = {
 	enemy = is_eclipse and elite_shield or shield,
@@ -152,6 +152,10 @@ local optsShield_Defend_SO = {
 	interval = 2,
 	so_action = "AI_sniper",
 }
+local optsPreferedCloakerAdd1 = {
+	spawn_groups = { 400053, 400054, 400055, 400056 },
+	enabled = normal_and_above,
+}
 local spawn_heavy_swat_145 = {
 	enabled = overkill_and_above,
 	on_executed = {
@@ -170,7 +174,7 @@ local spawn_heavy_swat_145 = {
 	},
 }
 local spawn_tasers = {
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 	trigger_times = 3,
 	on_executed = {
 		{ id = 400017, delay = 0 },
@@ -178,7 +182,7 @@ local spawn_tasers = {
 	},
 }
 local spawn_cloakers = {
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 	trigger_times = 3,
 	on_executed = {
 		{ id = 400033, delay = 0 },
@@ -203,7 +207,7 @@ local spawn_SWATsquad = {
 	},
 }
 local spawn_Shields = {
-	enabled = hard_and_above and enabled_chance_shields,
+	enabled = normal_and_above and enabled_chance_shields,
 	on_executed = {
 		{ id = 400044, delay = 0 },
 		{ id = 400045, delay = 0 },
@@ -229,7 +233,7 @@ local optsrespawn_swat_2 = {
 	event = "death",
 }
 local enable_cloakers = {
-	enabled = hard_and_above,
+	enabled = normal_and_above,
 	elements = {
 		400037,
 	},
@@ -319,9 +323,17 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400051, "shield_defend_so_2", Vector3(-1037.821, 698.270, 700.001), Rotation(109, -0, -0), optsShield_Defend_SO),
 	Eclipse.mission_elements.gen_so(400052, "shield_defend_so_3", Vector3(-962.004, 583.511, 700.001), Rotation(89, -0, -0), optsShield_Defend_SO),
 
+	-- Add new recurring Cloaker groups repurposing different enemy dummies
+	Eclipse.mission_elements.gen_spawngroup(400053, "new_cloaker_spawngroup_01", { 102844 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400054, "new_cloaker_spawngroup_02", { 100289 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400055, "new_cloaker_spawngroup_03", { 104186 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400056, "new_cloaker_spawngroup_04", { 104188 }, 0),
+	Eclipse.mission_elements.gen_preferedadd(400057, "new_cloaker_spawns", optsPreferedCloakerAdd1),
+	
 	--Block the roof access (from PDTH)
 	Eclipse.mission_elements.gen_missionscript(400064, "roof_access_blockade_random", Roof_access_block),
 	Eclipse.mission_elements.gen_toggleelement(400065, "disable_open_roof_access", disable_open_roof_access),
+
 }
 
 return M

@@ -1,6 +1,6 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local cop_1 = scripted_enemy.cop_1
 local cop_2 = scripted_enemy.cop_2

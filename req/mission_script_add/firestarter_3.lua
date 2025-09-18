@@ -4,7 +4,7 @@ local M = {}
 local diff_i = Eclipse.utils.difficulty_index()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local hard_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local scripted_enemy = Eclipse.scripted_enemy
 
@@ -202,11 +202,11 @@ local Smoke_bomb = {
 }
 
 local ambush_event_global = {
-	enabled = (ambush_event_chance and hard_and_above) and true or false,
+	enabled = (ambush_event_chance and normal_and_above) and true or false,
 	on_executed = { { id = 400067, delay = 0 }, { id = 400069, delay = 0 } },
 }
 local optsEnable_ambush = {
-	enabled = (ambush_event_chance and hard_and_above) and true or false,
+	enabled = (ambush_event_chance and normal_and_above) and true or false,
 	elements = {
 		400068,
 	},
@@ -218,7 +218,7 @@ local optsEnable_ambush_alarm = {
 	},
 }
 local optsdisable_locked_vault_door = {
-	enabled = (ambush_event_chance and hard_and_above) and true or false,
+	enabled = (ambush_event_chance and normal_and_above) and true or false,
 	toggle = "off",
 	elements = {
 		100197,
