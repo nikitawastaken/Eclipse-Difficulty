@@ -941,7 +941,9 @@ function WeaponTweakData:_wipe_akimbo()
 
 	for weap_id, weap_data in pairs(self) do
 		if type(weap_data) == "table" then
-			if has_category(weap_data, "akimbo") and not self.akimbo_whitelist[weap_id] then
+			local is_npc_weapon = weap_id:match("_npc$")
+			
+			if has_category(weap_data, "akimbo") and not self.akimbo_whitelist[weap_id] and not is_npc_weapon then
 				if weap_data.use_data then
 					weap_data.use_data.selection_index = 4
 				end
