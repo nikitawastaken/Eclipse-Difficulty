@@ -161,7 +161,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.pack_mule[2].upgrades = { "player_flashbang_multiplier_1" }
 	self.skills.pack_mule.name_id = "menu_protective_mask"
 	self.skills.pack_mule.desc_id = "menu_protective_mask_desc"
-	self.skills.pack_mule.icon_xy = { 8, 0 }
+	self.skills.pack_mule.icon_xy = { 6, 12 }
 
 	-- Pack Mule
 	self.skills.iron_man[1].upgrades = { "carry_movement_penalty_nullifier" }
@@ -175,7 +175,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.prison_wife[2].upgrades = { "cooldown_health_regen_on_armor_regen" }
 	self.skills.prison_wife.name_id = "menu_regen_plating"
 	self.skills.prison_wife.desc_id = "menu_regen_plating_desc"
-	self.skills.prison_wife.icon_xy = { 8, 0 }
+	self.skills.prison_wife.icon_xy = { 11, 10 }
 
 	-- Iron Man
 	self.skills.juggernaut[1].upgrades = { "player_armor_threshold_damage_multiplier" }
