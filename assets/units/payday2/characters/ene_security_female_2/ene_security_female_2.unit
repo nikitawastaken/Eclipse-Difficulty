@@ -86,7 +86,7 @@
 		</extension>
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="CopBase" >		
-			<var name="_tweak_table" value="security" />
+			<var name="_tweak_table" value="security_female" />
 			<var name="_default_weapon_id" value="mp5" />			
 		</extension>
 		<extension name="inventory" class="CopInventory" />
