@@ -1,7 +1,7 @@
 local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
-local van_arrive_timer_1 = 61 + (is_pro_job and 31 or 0)
-local van_arrive_timer_2 = 60 + (is_pro_job and 30 or 0)
+local van_arrive_timer = 65 + (is_pro_job and 30 or 0)
+local van_arrive_time = 60 + (is_pro_job and 30 or 0)
 local skylight_spawn = {
 	values = {
 		interval = 15,
@@ -48,24 +48,24 @@ return {
 		},
 	},
 	-- tweak van arrival timer
-	[101312] = {
-		values = {
-			timer = van_arrive_timer_1,
-		},
-	},
-	[101229] = {
-		values = {
-			timer = van_arrive_timer_1,
-		},
-	},
 	[101543] = {
 		values = {
-			time = van_arrive_timer_2,
+			time = van_arrive_time,
+		},
+	},
+	[101312] = {
+		values = {
+			timer = van_arrive_timer,
 		},
 	},
 	[101631] = {
 		values = {
-			time = van_arrive_timer_2,
+			time = van_arrive_time,
+		},
+	},
+	[101201] = {
+		values = {
+			timer = van_arrive_timer,
 		},
 	},
 	-- Spawn group intervals

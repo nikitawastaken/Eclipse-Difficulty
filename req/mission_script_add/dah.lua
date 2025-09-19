@@ -294,7 +294,6 @@ local optsSecret_Service_Defend = {
 	align_rotation = true,
 	interval = 2,
 	so_action = "AI_sniper",
-	path_haste = "walk",
 }
 local optsrespawn_taser_1 = {
 	on_executed = {
