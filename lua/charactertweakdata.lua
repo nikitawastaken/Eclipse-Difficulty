@@ -978,7 +978,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_female.speech_prefix_p1 = "fl"
 	self.security_female.speech_prefix_p2 = "n"
 	self.security_female.speech_prefix_count = 1
-	
+
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
 
 	self.gensec.chatter = self.presets.enemy_chatter.security
