@@ -648,7 +648,6 @@ end
 function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 	local ammo_max_multiplier = managers.player:upgrade_value("player", "extra_ammo_multiplier", 1)
 	local extra_start_ammo_multiplier = is_starting_out_with_extra_ammo and managers.player:upgrade_value("player", "start_out_ammo_multiplier", 1) or 1
-	Eclipse:log_chat(extra_start_ammo_multiplier)
 
 	for _, category in ipairs(self:weapon_tweak_data().categories) do
 		ammo_max_multiplier = ammo_max_multiplier * managers.player:upgrade_value(category, "extra_ammo_multiplier", 1)
