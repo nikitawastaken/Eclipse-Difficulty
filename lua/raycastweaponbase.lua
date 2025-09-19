@@ -532,3 +532,55 @@ function RaycastWeaponBase:stop_shooting(...)
 		orig_stop_shooting(self, ...)
 	end
 end
+
+-- Extra startout ammo upgrade
+function RaycastWeaponBase:ammo_full()
+	local function is_full(ammo_base)
+		return ammo_base:get_ammo_total() >= ammo_base:get_ammo_max()
+	end
+
+	if not is_full(self) then
+		return false
+	end
+
+	for _, gadget in ipairs(self:get_all_override_weapon_gadgets()) do
+		if gadget and gadget.ammo_base and not is_full(gadget:ammo_base()) then
+			return false
+		end
+	end
+
+	return true
+end
+
+function RaycastWeaponBase:add_ammo_from_bag(available)
+	local function process_ammo(ammo_base, amount_available)
+		if ammo_base:get_ammo_max() <= ammo_base:get_ammo_total() then
+			return 0
+		end
+
+		local ammo_max = ammo_base:get_ammo_max()
+		local ammo_total = ammo_base:get_ammo_total()
+		local wanted = 1 - ammo_total / ammo_max
+		local can_have = math.min(wanted, amount_available)
+
+		ammo_base:set_ammo_total(math.min(ammo_max, ammo_total + math.ceil(can_have * ammo_max)))
+		print(wanted, can_have, math.ceil(can_have * ammo_max), ammo_base:get_ammo_total())
+
+		return can_have
+	end
+
+	local can_have = process_ammo(self, available)
+	available = available - can_have
+
+	for _, gadget in ipairs(self:get_all_override_weapon_gadgets()) do
+		if gadget and gadget.ammo_base then
+			local ammo = process_ammo(gadget:ammo_base(), available)
+			can_have = can_have + ammo
+			available = available - ammo
+
+			gadget:on_add_ammo_from_bag()
+		end
+	end
+
+	return can_have
+end

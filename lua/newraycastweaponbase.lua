@@ -13,12 +13,18 @@ Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._shots_fired_consecutively = 0
 end)
 
-Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_stats_values", function(self)
+Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_stats_values", function(self, disallow_replenish)
 	local custom_stats = managers.weapon_factory:get_custom_stats_from_weapon(self._factory_id, self._blueprint)
 	local weapon_tweak = self:weapon_tweak_data()
 
 	local fire_mode_data = self:weapon_tweak_data().fire_mode_data or {}
 	local toggable_fire_modes = fire_mode_data and fire_mode_data.toggable
+
+	if not disallow_replenish then
+		-- Extra start out ammo upgrade
+		local is_starting_out_with_extra_ammo = managers.player:has_category_upgrade("player", "start_out_ammo_multiplier")
+		self:replenish(is_starting_out_with_extra_ammo)
+	end
 
 	if toggable_fire_modes then
 		self._toggable_fire_modes = {}
@@ -636,4 +642,43 @@ function NewRaycastWeaponBase:on_reload(...)
 	self:set_reload_objects_visible(false)
 
 	self._reload_objects = {}
+end
+
+-- Extra startout ammo upgrade
+function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
+	local ammo_max_multiplier = managers.player:upgrade_value("player", "extra_ammo_multiplier", 1)
+	local extra_start_ammo_multiplier = is_starting_out_with_extra_ammo and managers.player:upgrade_value("player", "start_out_ammo_multiplier", 1) or 1
+	Eclipse:log_chat(extra_start_ammo_multiplier)
+
+	for _, category in ipairs(self:weapon_tweak_data().categories) do
+		ammo_max_multiplier = ammo_max_multiplier * managers.player:upgrade_value(category, "extra_ammo_multiplier", 1)
+	end
+
+	ammo_max_multiplier = ammo_max_multiplier + ammo_max_multiplier * (self._total_ammo_mod or 0)
+
+	if managers.player:has_category_upgrade("player", "add_armor_stat_skill_ammo_mul") then
+		ammo_max_multiplier = ammo_max_multiplier * managers.player:body_armor_value("skill_ammo_mul", nil, 1)
+	end
+
+	ammo_max_multiplier = managers.modifiers:modify_value("WeaponBase:GetMaxAmmoMultiplier", ammo_max_multiplier)
+	local ammo_max_per_clip = self:calculate_ammo_max_per_clip()
+	local ammo_max = math.round((tweak_data.weapon[self._name_id].AMMO_MAX + managers.player:upgrade_value(self._name_id, "clip_amount_increase") * ammo_max_per_clip) * ammo_max_multiplier)
+	ammo_max_per_clip = math.min(ammo_max_per_clip, ammo_max)
+
+	self:set_ammo_max_per_clip(ammo_max_per_clip)
+	self:set_ammo_max(ammo_max)
+	self:set_ammo_total(math.round(ammo_max * extra_start_ammo_multiplier))
+	self:set_ammo_remaining_in_clip(ammo_max_per_clip)
+
+	self._ammo_pickup = tweak_data.weapon[self._name_id].AMMO_PICKUP
+
+	if self._assembly_complete then
+		for _, gadget in ipairs(self:get_all_override_weapon_gadgets()) do
+			if gadget and gadget.replenish then
+				gadget:replenish()
+			end
+		end
+	end
+
+	self:update_damage()
 end

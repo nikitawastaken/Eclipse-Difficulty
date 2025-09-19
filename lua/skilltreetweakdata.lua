@@ -189,10 +189,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.scavenging[2].upgrades = { "player_increased_pickup_area_1" }
 
 	-- Fully Loaded
-	self.skills.ammo_reservoir[1].upgrades = { "player_extra_throwables_multiplier" }
+	self.skills.ammo_reservoir[1].upgrades = { "player_start_out_ammo_multiplier" }
 	self.skills.ammo_reservoir[2].upgrades = { "extra_ammo_multiplier1" }
-	self.skills.ammo_reservoir.name_id = "menu_bandoliers_beta"
-	self.skills.ammo_reservoir.desc_id = "menu_bandoliers_beta_desc"
+	self.skills.ammo_reservoir.name_id = "menu_fully_loaded"
+	self.skills.ammo_reservoir.desc_id = "menu_fully_loaded_desc"
 	self.skills.ammo_reservoir.icon_xy = { 3, 0 }
 
 	-- Mag Plus

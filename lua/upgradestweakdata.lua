@@ -594,17 +594,17 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.scavenging.multipro = "20%"
 
 	-- Fully Loaded
-	self.definitions.player_extra_throwables_multiplier = {
-		name_id = "menu_player_extra_throwables_multiplier",
+	self.definitions.player_start_out_ammo_multiplier = {
+		name_id = "menu_player_start_out_ammo_multiplier",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "extra_throwables_multiplier",
+			upgrade = "start_out_ammo_multiplier",
 			category = "player",
 		},
 	}
-	self.values.player.extra_throwables_multiplier = { 1.33 }
-	self.skill_descs.ammo_reservoir.multibasic = "33%"
+	self.values.player.start_out_ammo_multiplier = { 1.5 }
+	self.skill_descs.ammo_reservoir.multibasic = "50%"
 	self.skill_descs.ammo_reservoir.multipro = "25%"
 
 	-- Mag Plus
