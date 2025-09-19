@@ -814,7 +814,7 @@
 				</object>
 			</lod_object>
 
-			<!-- EARPIECE OBJECTS -->
+			<!-- SHOULDER LOOP OBJECTS -->
 			<lod_object name="lod_shoulderloops">
 				<object name="g_shoulderloops" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
 					<material materials="mtr_police_body" max_distance="1000" />

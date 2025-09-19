@@ -132,14 +132,16 @@ function CopBase:_run_unit_sequences()
 			self._head_unit:set_enabled(self._unit:enabled())
 
 			if self._head_unit:damage() then
-				if type(head_material) == "table" then
-					head_material = table.random(head_material)
-				end
+				if head_material then
+					if type(head_material) == "table" then
+						head_material = table.random(head_material)
+					end
 
-				local head_material_name = "head_material_var" .. head_material
+					local head_material_name = "head_material_var" .. head_material
 
-				if self._head_unit:damage():has_sequence(head_material_name) then
-					self._head_unit:damage():run_sequence_simple(head_material_name)
+					if self._head_unit:damage():has_sequence(head_material_name) then
+						self._head_unit:damage():run_sequence_simple(head_material_name)
+					end
 				end
 
 				for _, sequence in pairs(head_sequences) do

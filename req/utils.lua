@@ -12,6 +12,7 @@ local real_difficulty_index = ({
 	sm_wish = 8,
 })[difficulty] or 2
 local diff_i = real_difficulty_index
+local diff_i_no_easy = math.max(diff_i - 2, 0)
 local level_id = Global and Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
 local is_pro_job = Global and Global.game_settings and Global.game_settings.one_down
 local is_overkill = diff_i == 5
@@ -47,6 +48,10 @@ end
 
 function M.difficulty_index()
 	return diff_i
+end
+
+function M.difficulty_index_no_easy()
+	return diff_i_no_easy
 end
 
 function M.difficulty_name()
@@ -207,7 +212,7 @@ function M.set_diff_groups(group)
 end
 
 function M.diff_lerp(value_1, value_2)
-	local f = math.max(0, diff_i - 2) / 4
+	local f = diff_i_no_easy / 4
 
 	return math.lerp(value_1, value_2, math.min(f, 1))
 end

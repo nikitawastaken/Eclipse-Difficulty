@@ -13,6 +13,11 @@ local head_sequences = {
 			"disable_face",
 		},
 	},
+	security_female = {
+		run_sequence = {
+			"head_init",
+		},
+	},
 	hrt = {
 		material = { 1, 2 },
 		run_sequence = {
@@ -113,7 +118,6 @@ local head_sequences = {
 		},
 	},
 	bulldozer = {
-		material = { 1, 2 },
 		run_sequence = {
 			"head_init",
 			"disable_head",
@@ -169,6 +173,8 @@ local M = {
 	["units/pd2_dlc_short/characters/ene_security_1_undominatable/ene_security_1_undominatable"] = { name = "security_1", head = head_sequences.security },
 	["units/pd2_dlc_short/characters/ene_security_2_undominatable/ene_security_2_undominatable"] = { name = "security_2", head = head_sequences.security },
 	["units/pd2_dlc_short/characters/ene_security_3_undominatable/ene_security_3_undominatable"] = { name = "security_3", head = head_sequences.security },
+	["units/payday2/characters/ene_security_female_1/ene_security_female_1"] = { name = "security_female_1", head = head_sequences.security_female },
+	["units/payday2/characters/ene_security_female_2/ene_security_female_2"] = { name = "security_female_2", head = head_sequences.security_female },
 	["units/payday2/characters/ene_security_4/ene_security_4"] = { name = "security_4", head = head_sequences.security },
 	["units/payday2/characters/ene_security_5/ene_security_5"] = { name = "security_5", head = head_sequences.security },
 	["units/payday2/characters/ene_security_6/ene_security_6"] = { name = "security_6", head = head_sequences.security },
@@ -183,6 +189,8 @@ local M = {
 	["units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"] = { name = "cop_2_fat", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_cop_3_fat/ene_cop_3_fat"] = { name = "cop_3_fat", head = head_sequences.security_fat },
 	["units/payday2/characters/ene_cop_4_fat/ene_cop_4_fat"] = { name = "cop_4_fat", head = head_sequences.security_fat },
+	["units/payday2/characters/ene_cop_female_1/ene_cop_female_1"] = { name = "cop_female_1", head = head_sequences.security_female },
+	["units/payday2/characters/ene_cop_female_2/ene_cop_female_2"] = { name = "cop_female_2", head = head_sequences.security_female },
 	["units/payday2/characters/ene_fbi_1/ene_fbi_1"] = { name = "fbi_1", head = head_sequences.security },
 	["units/payday2/characters/ene_fbi_2/ene_fbi_2"] = { name = "fbi_2", head = head_sequences.security },
 	["units/payday2/characters/ene_fbi_3/ene_fbi_3"] = { name = "fbi_3", head = head_sequences.hrt },

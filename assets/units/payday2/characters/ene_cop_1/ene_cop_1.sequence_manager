@@ -661,6 +661,36 @@
 			<run_sequence 		name="'random_gloves_common'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
+
+		<sequence editable_state="true" name="'security_female_1'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_security_a'" />
+			<object 			enabled="true" name="'g_gear_security_a_lod1'" />
+			
+			<run_sequence 		name="'security'" />
+			
+			<run_sequence 		name="'badges_security'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_shades_rare'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'security_female_2'" once="true" triggable="true">		
+			<object 			name="'g_gear_security_b'" />
+			<object 			name="'g_gear_security_b_lod1'" />
+
+			<object 			enabled="true" name="'g_hat_security_lod1'" />
+			<object 			enabled="true" name="'g_hat_security_lod2'" />
+			
+			<run_sequence 		name="'security'" />
+			
+			<run_sequence 		name="'badges_security'" />
+			<run_sequence 		name="'hat_security'" />
+			<run_sequence 		name="'shoulder_loops'" />
+
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_shades_common'" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'cop_1'" once="true" triggable="true">
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_a'" />
@@ -747,6 +777,40 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'cop_female_1'" once="true" triggable="true">		
+			<object 			enabled="true" name="'g_gear_cop_a'" />
+			<object 			enabled="true" name="'g_gear_cop_a_lod1'" />
+			
+			<run_sequence 		name="'cop'" />
+			
+			<run_sequence 		name="'badges_cop'" />
+			<run_sequence 		name="'baton'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'handcuffs'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_shades_common'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'cop_female_2'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_cop_b'" />
+			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
+			
+			<run_sequence 		name="'cop'" />
+			
+			<run_sequence 		name="'badges_cop'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'hat_cop'" />
+			<run_sequence 		name="'hat_cop_badge'" />
+			<run_sequence 		name="'radio_side'" />
+			<run_sequence 		name="'radio_extra'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_shades_rare'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'la_cop_1'" once="true" triggable="true">
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_a'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_gear_cop_fat_a_lod1'" />			

@@ -355,10 +355,22 @@
 				<file :name="outline/grenade_case.texture" />
 			</group>
 			<group :name="mods/">
+				<file :name="wpn_fps_m4_uupg_m_std.texture" />
 				<file :name="wpn_fps_upg_m4_m_drum.texture" />
 				<file :name="wpn_upg_ak_m_drum.texture" />
 				<file :name="wpn_fps_smg_mp5_m_drum.texture" />
 				<file :name="wpn_upg_saiga_m_20rnd.texture" />
+			</group>
+			<group :name="weapons/">
+				<file :name="amcar.texture" />
+				<file :name="m16.texture" />
+				<file :name="olympic.texture" />
+				
+				<group :name="outline/">
+					<file :name="amcar.texture" />
+					<file :name="m16.texture" />
+					<file :name="olympic.texture" />
+				</group>
 			</group>
 		</group>
 
@@ -368,6 +380,15 @@
 				<file :name="mods/wpn_fps_upg_charm_eclipse.texture" />
 			</group>
 
+			<group :name="joy/textures/pd2/blackmarket/icons/">
+				<file :name="mods/wpn_fps_smg_shepheard_mag_extended.texture" />
+				
+				<group :name="weapons/">
+					<file :name="shepheard.texture" />
+					<file :name="outline/shepheard.texture" />
+				</group>
+			</group>
+			
 			<group :name="gunperk/textures/pd2/blackmarket/icons/mods/">
 				<file :name="wpn_fps_upg_perk_speedloader.texture"/>
 				<file :name="wpn_fps_upg_perk_haste.texture"/>
@@ -635,6 +656,9 @@
 				<file :name="heads_atlas_var2_df.texture" />
 				<file :name="heads_atlas_var2_nm.texture" />
 
+				<file :name="female_heads_atlas_df.texture" />
+				<file :name="female_heads_atlas_nm.texture" />
+				
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
@@ -734,6 +758,16 @@
 				<file :name="ene_acc_head_fat.unit" />
 			</group>
 
+			<group :name="ene_acc_head_female/">
+				<xml  :name="ene_acc_head_female.sequence_manager" />
+				<file :name="ene_acc_head_female.cooked_physics" />
+				<file :name="ene_acc_head_female.material_config" />
+				<file :name="ene_acc_head_female_contour.material_config" />
+				<file :name="ene_acc_head_female.model" />
+				<file :name="ene_acc_head_female.object" />
+				<file :name="ene_acc_head_female.unit" />
+			</group>
+			
 			<group :name="ene_cop_1/">
 				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_cop_1.material_config" />
@@ -880,6 +914,29 @@
 				<file :name="ene_prisonguard_male_1_husk.unit" />
 			</group>
 
+			<group :name="ene_cop_female_1/">
+				<file :name="ene_cop_female_1.cooked_physics" />
+				<file :name="ene_cop_female_1.model" />
+				<file :name="ene_cop_female_1.object" />
+				<file :name="ene_cop_female_1.unit" />
+				<file :name="ene_cop_female_1_husk.unit" />
+			</group>
+
+			<group :name="ene_cop_female_2/">
+				<file :name="ene_cop_female_2.unit" />
+				<file :name="ene_cop_female_2_husk.unit" />
+			</group>
+
+			<group :name="ene_security_female_1/">
+				<file :name="ene_security_female_1.unit" />
+				<file :name="ene_security_female_1_husk.unit" />
+			</group>
+
+			<group :name="ene_security_female_2/">
+				<file :name="ene_security_female_2.unit" />
+				<file :name="ene_security_female_2_husk.unit" />
+			</group>
+			
 			<group :name="ene_secret_service_1/">
 				<xml  :name="ene_secret_service_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_secret_service_1.material_config" />

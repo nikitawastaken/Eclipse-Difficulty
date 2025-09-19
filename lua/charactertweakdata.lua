@@ -5,6 +5,7 @@ local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 local level_id = Eclipse.utils.level_id()
 local faction = Eclipse.utils.faction()
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -306,8 +307,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.fbi_shield = based_on(presets.weapon.shield)
 
-	presets.weapon.elite_shield = based_on(presets.weapon.shield)
+	presets.weapon.elite_shield = based_on(presets.weapon.swat)
 
+	presets.weapon.elite_shield.is_revolver.melee_range = 175
+	presets.weapon.elite_shield.is_revolver.melee_force = 600
+	presets.weapon.elite_shield.is_revolver.melee_retry_delay = { 1, 2 }
+	presets.weapon.elite_shield.is_revolver.range = { close = 500, optimal = 1000, far = 2000 }
 	presets.weapon.elite_shield.is_revolver.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6 * dmg_mul, r = 1500, acc = { 0.5, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -534,7 +539,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = 40 + (math.floor(diff_i / 2) * 20) * (UsefulBots and 1 or 1.4)
+	presets.gang_member_damage.HEALTH_INIT = (64 + math.floor(diff_i / 2) * 16) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
@@ -969,6 +974,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.security_fat.melee_weapon = "fists"
 	table.insert(self._enemy_list, "security_fat")
 
+	self.security_female = deep_clone(self.security)
+	self.security_female.speech_prefix_p1 = "fl"
+	self.security_female.speech_prefix_p2 = "n"
+	self.security_female.speech_prefix_count = 1
+	
 	self.security_undominatable.chatter = self.presets.enemy_chatter.security
 
 	self.gensec.chatter = self.presets.enemy_chatter.security
@@ -1411,7 +1421,7 @@ CharacterTweakData.team_ai_tweak_names = {
 CharacterTweakData.team_ai_weapons_mapped = {
 	["russian"] = {
 		primary = "wpn_fps_ass_amcar_npc",
-		secondary = "wpn_fps_pis_beretta_npc",
+		secondary = "wpn_fps_pis_g17_npc",
 	},
 	["german"] = {
 		primary = "wpn_fps_shot_r870_npc",
@@ -1423,7 +1433,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	},
 	["american"] = {
 		primary = "wpn_fps_ass_m14_npc",
-		secondary = "wpn_fps_pis_rage_npc",
+		secondary = "wpn_fps_pis_beretta_npc",
 	},
 	["jowi"] = {
 		primary = "wpn_fps_snp_tti_npc",
@@ -1443,7 +1453,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	},
 	["jacket"] = {
 		primary = "wpn_fps_smg_cobray_npc",
-		secondary = "wpn_fps_pis_g17_npc",
+		secondary = "wpn_fps_smg_scorpion_npc",
 	},
 	["bonnie"] = {
 		primary = "wpn_fps_shot_b682_npc",
@@ -1526,10 +1536,14 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.basic, "ene_security_1_fat")
 	safe_add(char_map.basic, "ene_security_2_fat")
 	safe_add(char_map.basic, "ene_security_3_fat")
+	safe_add(char_map.basic, "ene_security_female_1")
+	safe_add(char_map.basic, "ene_security_female_2")
 	safe_add(char_map.basic, "ene_cop_1_fat")
 	safe_add(char_map.basic, "ene_cop_2_fat")
 	safe_add(char_map.basic, "ene_cop_3_fat")
 	safe_add(char_map.basic, "ene_cop_4_fat")
+	safe_add(char_map.basic, "ene_cop_female_1")
+	safe_add(char_map.basic, "ene_cop_female_2")
 	safe_add(char_map.basic, "ene_swat_3")
 	safe_add(char_map.basic, "ene_swat_heavy_r870")
 	safe_add(char_map.basic, "ene_tazer_r870")
@@ -1861,7 +1875,7 @@ function CharacterTweakData:_set_presets()
 		if is_event_tank or is_boss then
 			char_preset.HEALTH_INIT = char_preset.HEALTH_INIT * health_mul
 			char_preset.player_health_scaling_mul = 1.25
-			char_preset.explosion_damage_mul = 0.5
+			char_preset.damage.explosion_damage_mul = 0.5
 			char_preset.no_headshot_add_mul = true
 			char_preset.no_run_start = true
 			char_preset.no_run_stop = true
