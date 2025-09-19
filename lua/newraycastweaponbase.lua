@@ -20,7 +20,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	local fire_mode_data = self:weapon_tweak_data().fire_mode_data or {}
 	local toggable_fire_modes = fire_mode_data and fire_mode_data.toggable
 
-	if not disallow_replenish then
+	if not disallow_replenish and not (self._name_id and self._name_id:find("crew")) then
 		-- Extra start out ammo upgrade
 		local is_starting_out_with_extra_ammo = managers.player:has_category_upgrade("player", "start_out_ammo_multiplier")
 		self:replenish(is_starting_out_with_extra_ammo)
