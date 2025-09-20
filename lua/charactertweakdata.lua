@@ -439,7 +439,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.6 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.bulldozer.is_flamethrower.melee_dmg = nil
 	presets.weapon.bulldozer.is_flamethrower.melee_speed = nil
 	presets.weapon.bulldozer.is_flamethrower.melee_retry_delay = nil

@@ -208,7 +208,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -1,
 		},
 	}
-	
+
 	self.election_day_1.group_ai_settings = {
 		difficulty_scaling = {
 			assault_delay = 60,
