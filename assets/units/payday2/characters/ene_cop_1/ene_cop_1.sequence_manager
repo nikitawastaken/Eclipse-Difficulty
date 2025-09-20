@@ -676,8 +676,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'security_female_2'" once="true" triggable="true">		
-			<object 			name="'g_gear_security_b'" />
-			<object 			name="'g_gear_security_b_lod1'" />
+			<object 			enabled="true" name="'g_gear_security_b'" />
+			<object 			enabled="true" name="'g_gear_security_b_lod1'" />
 
 			<object 			enabled="true" name="'g_hat_security_lod1'" />
 			<object 			enabled="true" name="'g_hat_security_lod2'" />
