@@ -16,6 +16,16 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local medic = scripted_enemy.medic_1
 local taser = scripted_enemy.taser_1
+local enabled = {
+	values = {
+		enabled = true,
+	},
+}
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
@@ -69,10 +79,10 @@ local shells_required_objective = {
 		amount = (normal and 5 or hard and 8 or 10) + (is_pro_job and 2 or 0),
 	},
 }
-local chopper_amount = (eclipse and 2 or 1) + (is_pro_job and 1 or 0)
+local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
 local upper_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 return {
@@ -89,11 +99,7 @@ return {
 		},
 	},
 	-- restores unused sniper spawn
-	[100370] = {
-		values = {
-			enabled = true,
-		},
-	},
+	[100370] = enabled,
 	-- loop the choppers
 	[102767] = {
 		on_executed = {
@@ -105,11 +111,9 @@ return {
 			amount = chopper_amount,
 		},
 	},
-	[104694] = {
-		values = {
-			enabled = false,
-		},
-	},
+	[104694] = disabled,
+	-- Remove a pointless reinforce spot
+	[100907] = disabled,
 	-- Thermal Drill Lottery (feat. Bile The Pilot)
 	[102893] = {
 		values = {

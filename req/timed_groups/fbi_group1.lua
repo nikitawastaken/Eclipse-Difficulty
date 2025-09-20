@@ -2,7 +2,7 @@ return function(timed_tactics)
 	return {
 		timer_data = {
 			initial_delay = 0,
-			cooldown = { 15, 20 },
+			cooldown = { 15, 25 },
 			diff_scale = { 1, 1.5, 2 },
 		},
 		group_data = {
@@ -12,7 +12,7 @@ return function(timed_tactics)
 				max_nr_simultaneous_groups = 3,
 				amount = { 2, 3 },
 				disable_timer = nil,
-				disable_diff = 0.6,
+				disable_diff = 0.8,
 				objective = function(spawn_group)
 					return {
 						attitude = "engage",
