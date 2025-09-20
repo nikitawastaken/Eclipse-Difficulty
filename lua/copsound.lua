@@ -258,13 +258,10 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 	-- female enemies vo fix
 	if self._prefix == "fl1n_" then
 		if sound_name == "burnhurt" then
-			full_sound = "cf2_burnhurt"
+			full_sound = "cf1_burnhurt"
 		end
 		if sound_name == "burndeath" then
-			full_sound = "cf2_burndeath"
-		end
-		if sound_name == "x02a_any_3p" then
-			full_sound = "fl1n_x01a_any_3p_01"
+			full_sound = "cf1_burndeath"
 		end
 	end
 

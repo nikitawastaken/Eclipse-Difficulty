@@ -119,6 +119,7 @@
 	"menu_masks_msg": "Are you sure you want to max out your masks?\nThis will give you 10 of each mask, material, pattern and color.",
 
 	"ene_cop" : "MPDC Cop",
+	"ene_cop_female" : "MPDC Cop",
 	"ene_cop_1_fat" : "MPDC Cop",
 	"ene_cop_2_fat" : "MPDC Cop",
 	"ene_cop_3_fat" : "MPDC Cop",
@@ -141,6 +142,7 @@
 	"ene_security_1_fat" : "Security Guard",
 	"ene_security_2_fat" : "Security Guard",
 	"ene_security_3_fat" : "Security Guard",
+	"ene_security_female" : "Security Guard",
 	"ene_coast_guard" : "US Coast Guard",
 	"ene_gensec_operator" : "GenSec Tactical Security",
 
