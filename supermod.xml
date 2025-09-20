@@ -913,7 +913,7 @@
 				<file :name="ene_prisonguard_male_1.unit" />
 				<file :name="ene_prisonguard_male_1_husk.unit" />
 			</group>
-
+			
 			<group :name="ene_cop_female_1/">
 				<file :name="ene_cop_female_1.cooked_physics" />
 				<file :name="ene_cop_female_1.model" />
@@ -935,6 +935,11 @@
 			<group :name="ene_security_female_2/">
 				<file :name="ene_security_female_2.unit" />
 				<file :name="ene_security_female_2_husk.unit" />
+			</group>
+
+			<group :name="ene_prisonguard_female_1/">
+				<file :name="ene_prisonguard_female_1.unit" />
+				<file :name="ene_prisonguard_female_1_husk.unit" />
 			</group>
 			
 			<group :name="ene_secret_service_1/">

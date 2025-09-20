@@ -948,7 +948,6 @@
 			
 			<run_sequence 		name="'badges_prisonguard'" />
 			<run_sequence 		name="'belt'" />
-			<run_sequence 		name="'handcuffs_b'" />
 			<run_sequence 		name="'radio_side'" />
 			<run_sequence 		name="'radio_extra'" />
 			<run_sequence 		name="'shoulder_loops'" />
@@ -959,7 +958,24 @@
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
-
+		
+		<sequence editable_state="true" name="'prisonguard_female_1'" once="true" triggable="true">	
+			<object 			enabled="true" name="'g_gear_cop_b'" />
+			<object 			enabled="true" name="'g_gear_cop_b_lod1'" />
+			
+			<run_sequence 		name="'prisonguard'" />
+			
+			<run_sequence 		name="'badges_prisonguard'" />
+			<run_sequence 		name="'belt'" />
+			<run_sequence 		name="'radio_side'" />
+			<run_sequence 		name="'radio_extra'" />
+			<run_sequence 		name="'shoulder_loops'" />
+			
+			<run_sequence 		name="'random_tie_rare'" />
+			<run_sequence 		name="'random_shades_rare'" />
+		</sequence>
+		
+		
 		<sequence editable_state="true" name="'bex_security_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_cop_a'" />
 			<object 			enabled="true" name="'g_gear_cop_a_lod1'" />

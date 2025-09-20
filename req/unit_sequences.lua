@@ -195,6 +195,7 @@ local M = {
 	["units/payday2/characters/ene_fbi_2/ene_fbi_2"] = { name = "fbi_2", head = head_sequences.security },
 	["units/payday2/characters/ene_fbi_3/ene_fbi_3"] = { name = "fbi_3", head = head_sequences.hrt },
 	["units/payday2/characters/ene_prisonguard_male_1/ene_prisonguard_male_1"] = { name = "prisonguard_1", head = head_sequences.security },
+	["units/payday2/characters/ene_prisonguard_female_1/ene_prisonguard_female_1"] = { name = "prisonguard_female_1", head = head_sequences.security_female },
 	["units/pd2_dlc1/characters/ene_security_gensec_1/ene_security_gensec_1"] = { name = "gensec_1", head = head_sequences.security },
 	["units/pd2_dlc1/characters/ene_security_gensec_2/ene_security_gensec_2"] = { name = "gensec_2", head = head_sequences.security },
 	["units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"] = { name = "gensec_operator_1", head = head_sequences.swat_b },
