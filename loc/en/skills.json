@@ -4,7 +4,7 @@
 
 	"st_menu_mastermind_inspire": "Support",
 	"menu_combat_medic_beta": "Aftercare",
-	"menu_combat_medic_beta_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds and get an additional ##$multibasic3## health.\n\nACE: ##$pro##\nUpon reviving a crew memeber you regenerate ##$multipro## health.",
+	"menu_combat_medic_beta_desc": "BASIC: ##$basic##\nCrew members you revive take ##$multibasic## less damage for ##$multibasic2## seconds and get an additional ##$multibasic3## health.\n\nACE: ##$pro##\nUpon reviving a crew member you regenerate ##$multipro## health.",
 	"menu_bandages": "Bandages",
 	"menu_bandages_desc": "BASIC: ##$basic##\nCrew members you revive get an additional ##$multibasic## health.\n\nACE: ##$pro##\nYou get an additional ##$multipro## health after being revived.",
 	"menu_fast_learner_beta_desc": "BASIC: ##$basic##\nCrew members you revive take an additional ##$multibasic## less damage for ##$multibasic2## seconds.\n\nACE: ##$pro##\nYou take ##$multipro## less damage for ##$multibasic2## seconds after being revived.",
