@@ -259,35 +259,35 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.hardware_expert[2].upgrades = { "weapon_explosive_team_damage_multiplier" }
 	self.skills.hardware_expert.name_id = "menu_blast_shield"
 	self.skills.hardware_expert.desc_id = "menu_blast_shield_desc"
-	self.skills.hardware_expert.icon_xy = { 8, 0 }
+	self.skills.hardware_expert.icon_xy = { 7, 9 }
 
 	-- Arms Cache
 	self.skills.drill_expert[1].upgrades = { "grenade_case_amount_increase", "grenade_crate_amount_increase" }
 	self.skills.drill_expert[2].upgrades = { "grenade_case_quantity", "grenade_crate_quantity" }
 	self.skills.drill_expert.name_id = "menu_arms_cache"
 	self.skills.drill_expert.desc_id = "menu_arms_cache_desc"
-	self.skills.drill_expert.icon_xy = { 8, 0 }
+	self.skills.drill_expert.icon_xy = { 0, 7 }
 
 	-- Hellwire
 	self.skills.more_fire_power[1].upgrades = { "shape_charge_quantity_increase_1", "trip_mine_quantity_increase_1" }
 	self.skills.more_fire_power[2].upgrades = { "trip_mine_fire_trap_1" }
 	self.skills.more_fire_power.name_id = "menu_hellwire"
 	self.skills.more_fire_power.desc_id = "menu_hellwire_desc"
-	self.skills.more_fire_power.icon_xy = { 8, 0 }
+	self.skills.more_fire_power.icon_xy = { 9, 9 }
 
 	-- Powder Keg
 	self.skills.kick_starter[1].upgrades = { "weapon_explosive_range_multiplier" }
 	self.skills.kick_starter[2].upgrades = { "weapon_explosive_curve_multiplier" }
 	self.skills.kick_starter.name_id = "menu_powder_keg"
 	self.skills.kick_starter.desc_id = "menu_powder_keg_desc"
-	self.skills.kick_starter.icon_xy = { 8, 0 }
+	self.skills.kick_starter.icon_xy = { 9, 7 }
 
 	-- Carpet Bombing
 	self.skills.fire_trap[1].upgrades = { "weapon_explosive_cluster_grenades" }
 	self.skills.fire_trap[2].upgrades = { "weapon_cluster_incendiary_grenades" }
 	self.skills.fire_trap.name_id = "menu_carpet_bombing"
 	self.skills.fire_trap.desc_id = "menu_carpet_bombing_desc"
-	self.skills.fire_trap.icon_xy = { 8, 0 }
+	self.skills.fire_trap.icon_xy = { 6, 9 }
 
 	-- Steady Grip
 	self.skills.steady_grip[1].upgrades = { "player_stability_increase_bonus_1" }
