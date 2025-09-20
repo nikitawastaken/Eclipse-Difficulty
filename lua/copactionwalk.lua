@@ -131,6 +131,7 @@ function CopActionWalk:update(t)
 		if self._no_strafe or self._walk_turn then
 			wanted_walk_dir = "fwd"
 		else
+			-- selene: allow(if_same_then_else)
 			if self._curve_path_end_rot and mvector3.distance_sq(self._last_pos, self._footstep_pos) < 19600 then
 				mvec3_set(face_fwd, self._common_data.fwd)
 			elseif self._attention_pos then
