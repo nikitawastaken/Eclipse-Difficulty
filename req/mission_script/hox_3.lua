@@ -1,9 +1,10 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -22,7 +23,7 @@ local random_elite_dozers = {
 local ready_team_amount = {
 	values = {
 		amount = 4,
-		amount_random = math.max(diff_i - 2, 0),
+		amount_random = diff_i_no_easy,
 	},
 }
 local ready_team_dozer = {
@@ -30,7 +31,7 @@ local ready_team_dozer = {
 }
 local ready_team_dozer_chance = {
 	values = {
-		chance = (is_pro_job and 1.25 or 1) * (diff_i * 10),
+		chance = (diff_i * 10) * (is_pro_job and 1.25 or 1),
 	},
 }
 local light_harasser = swat_1

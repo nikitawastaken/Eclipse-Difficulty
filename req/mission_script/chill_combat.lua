@@ -4,14 +4,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local bush_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -106,8 +101,6 @@ return {
 	[102451] = sniper_amount,
 	]]
 	-- Spawn group intervals
-	[100993] = bush_spawn,
-	[101131] = bush_spawn,
 	[101038] = roof_spawn,
 	[101204] = roof_spawn,
 	[101656] = roof_spawn,

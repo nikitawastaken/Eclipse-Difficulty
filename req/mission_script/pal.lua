@@ -6,7 +6,7 @@ local scripted_enemy = Eclipse.scripted_enemy
 local is_solo = Eclipse.utils.is_solo()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
 local cop_smg = scripted_enemy.la_cop_3
 local cop_pistol = scripted_enemy.la_cop_1

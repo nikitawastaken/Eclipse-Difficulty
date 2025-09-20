@@ -432,6 +432,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
+	presets.weapon.bulldozer.is_lmg.RELOAD_SPEED = 0.5
+	presets.weapon.bulldozer.is_lmg.autofire_rounds = { 20, 50 }
+	presets.weapon.bulldozer.is_lmg.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.6 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+	}
+	
 	presets.weapon.bulldozer.is_flamethrower.melee_dmg = nil
 	presets.weapon.bulldozer.is_flamethrower.melee_speed = nil
 	presets.weapon.bulldozer.is_flamethrower.melee_retry_delay = nil
@@ -441,18 +449,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.hw_bulldozer = based_on(presets.weapon.bulldozer, {
+	presets.weapon.headless_bulldozer = based_on(presets.weapon.bulldozer, {
 		melee_speed = 0.5,
 		melee_range = 200,
 	})
-
-	presets.weapon.hw_bulldozer.is_lmg.RELOAD_SPEED = 0.5
-	presets.weapon.hw_bulldozer.is_lmg.autofire_rounds = { 20, 40 }
-	presets.weapon.hw_bulldozer.is_lmg.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.6 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
-	}
 
 	presets.weapon.elite_bulldozer = based_on(presets.weapon.bulldozer)
 
@@ -462,7 +462,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.6
+	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.5
 	presets.weapon.elite_bulldozer.is_lmg.autofire_rounds = { 20, 50 }
 	presets.weapon.elite_bulldozer.is_lmg.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
@@ -1692,7 +1692,7 @@ CharacterTweakData.tweak_table_weapon = {
 	tank_medic = "bulldozer",
 	snowman_boss = "bulldozer",
 	piggydozer = "bulldozer",
-	tank_hw = "hw_bulldozer",
+	tank_hw = "headless_bulldozer",
 	city_tank = "elite_bulldozer",
 	mobster_boss = "boss",
 	chavez_boss = "boss",

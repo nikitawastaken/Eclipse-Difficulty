@@ -6,7 +6,7 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
 local secret_service = scripted_enemy.secret_service_1
 local swat_rifle = scripted_enemy.swat_1

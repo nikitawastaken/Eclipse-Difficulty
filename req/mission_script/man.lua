@@ -1,7 +1,7 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
-local diff_i_no_norm = diff_i - 2
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -123,8 +123,8 @@ local cloaker_spawn = {
 	},
 	groups = preferred.only_cloakers,
 }
-local chopper_delay_init = 420 - (diff_i_no_norm * 30) - (is_pro_job and 120 or 0)
-local chopper_delay = 360 - (diff_i_no_norm * 15) - (is_pro_job and 60 or 0)
+local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
+local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
 local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or 0)
 
 return {
@@ -574,7 +574,7 @@ return {
 	[103434] = {
 		values = filter_normal_above.values,
 		on_executed = {
-			{ id = 101608, delay = chopper_delay },
+			{ id = 101608, delay = 120, delay_rand = chopper_delay },
 		},
 	},
 	-- The other (lame) chopper

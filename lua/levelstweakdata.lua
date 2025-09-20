@@ -72,7 +72,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.sah.flashlights_on = true
 	self.deep.flashlights_on = true
 
-	--[[ add Group AI settings
+	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
 		assault_force_mul = 0.85,
 		recon_interval_variation_mul = 0.75,
@@ -110,7 +110,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.gallery.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.gallery.group_ai_preset = "small_urban"
-	]]
 
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.75,
@@ -137,7 +136,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_park.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.escape_park.group_ai_settings.difficulty_scaling = {
 		diff_init = 0.5,
-		assault_delay = 30,
+		assault_delay = 0,
 		assault_add = 0.5,
 	}
 
@@ -209,8 +208,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			marksman = -1,
 		},
 	}
-	self.framing_frame_3.group_ai_preset = "skyscraper"
-
+	
 	self.election_day_1.group_ai_settings = {
 		difficulty_scaling = {
 			assault_delay = 60,
@@ -377,6 +375,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
 			diff_init = 0.5,
+			assault_delay = 0,
 			assault_add = 0.25,
 		},
 		special_limit_add = {
@@ -511,10 +510,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.wwh.group_ai_settings = {
 		assault_force_mul = 0.7,
 		recon_force_mul = 0.7,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
 	}
 	self.wwh.group_ai_preset = "remote"
-
-	self.dah.group_ai_preset = "skyscraper"
 
 	self.hvh.group_ai_settings = {
 		spawn_kill_distance = 1000,
@@ -633,7 +634,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pent.group_ai_settings = {
 		assault_force_mul = 0.85,
 	}
-	self.pent.group_ai_preset = "skyscraper"
 
 	self.ranc.group_ai_settings = {
 		difficulty_scaling = {

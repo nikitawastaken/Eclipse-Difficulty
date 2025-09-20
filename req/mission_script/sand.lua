@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local disabled = {
@@ -38,7 +39,7 @@ local warehouse_spawn = {
 }
 local dozer_chance = {
 	values = {
-		chance = (is_pro_job and 1.33 or 1) * (diff_i - 2) * 15,
+		chance = (diff_i_no_easy * 15) * (is_pro_job and 1.33 or 1),
 	},
 }
 local boat_timer = {

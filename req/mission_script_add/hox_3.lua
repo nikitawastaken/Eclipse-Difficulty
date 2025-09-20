@@ -1,10 +1,9 @@
 ---@module Hoxton Revenge
 local M = {}
+local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
-local scripted_enemy = Eclipse.scripted_enemy
-
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local elite_bulldozer_skull = scripted_enemy.elite_bulldozer_2
 local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
 local green_bulldozer = scripted_enemy.bulldozer_1

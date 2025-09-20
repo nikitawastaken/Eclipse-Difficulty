@@ -3,6 +3,7 @@ local M = {}
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local diff_i = Eclipse.utils.difficulty_index()
 local light_swat = diff_i < 5 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
 local cloaker = scripted_enemy.cloaker
