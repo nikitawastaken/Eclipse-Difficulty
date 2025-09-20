@@ -66,12 +66,6 @@ local filter_hard_above = {
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
-local chopper_delay = 180 - (diff_i_no_easy * 15) - (is_pro_job and 30 or 0)
-local chopper_respawn = {
-	on_executed = {
-		{ id = 100664, delay = 120, delay_rand = chopper_delay },
-	},
-}
 local chopper_trigger_times = {
 	values = {
 		trigger_times = 0,
@@ -127,28 +121,18 @@ return {
 		},
 	},
 	-- trigger helis early in the heist
-	[100920] = {
-		on_executed = {
-			{ id = 100612, remove = true },
-		},
-	},
 	-- "captain_reached_boat"
 	[100877] = {
 		on_executed = {
 			{ id = 100612, delay = 15, delay_rand = 30 },
 		},
 	},
-	-- tweak choppers amount
+	-- tweak choppers
 	[100613] = {
 		values = {
 			amount = normal and 1 or 2,
 		},
 	},
-	-- delay respawns
-	[100632] = chopper_respawn,
-	[100633] = chopper_respawn,
-	[100634] = chopper_respawn,
-	-- set the trigger times to 0 to make the loop possible
 	[100614] = chopper_trigger_times,
 	[100615] = chopper_trigger_times,
 	[100616] = chopper_trigger_times,
