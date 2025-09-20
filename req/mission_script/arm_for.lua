@@ -80,9 +80,9 @@ local shells_required_objective = {
 	},
 }
 local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
-local upper_spawn = {
+local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 return {
@@ -189,7 +189,13 @@ return {
 	[105209] = security_army,
 	[105241] = security_army,
 	-- Spawn group intervals
-	[100131] = upper_spawn,
-	[100133] = upper_spawn,
-	[103003] = upper_spawn,
+	[100007] = standard_spawn,
+	[100019] = standard_spawn,
+	[100128] = standard_spawn,
+	[100130] = standard_spawn,
+	[100131] = standard_spawn,
+	[100132] = standard_spawn,
+	[100133] = standard_spawn,
+	[102838] = standard_spawn,
+	[103003] = standard_spawn,
 }
