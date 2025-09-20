@@ -1,10 +1,10 @@
 local preferred = Eclipse.preferred
 local scripted_enemy = Eclipse.scripted_enemy
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local is_eclipse_pro = is_pro_job and eclipse
-local diff_scale = math.max(diff_i - 2, 0)
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local random_dozers = {
@@ -46,7 +46,7 @@ local disabled = {
 		enabled = false,
 	},
 }
-local extra_cop_car_chance = diff_scale * 0.25
+local extra_cop_car_chance = diff_i_no_easy * 0.25
 local cop_car_amount = {
 	values = {
 		amount = 1,
@@ -64,7 +64,7 @@ local sniper_amount = {
 	},
 }
 local swat_vans_amount = is_eclipse_pro and 2 or 1
-local ambush_chance = (is_pro_job and 1.5 or 1) * diff_scale * 15
+local ambush_chance = (is_pro_job and 1.5 or 1) * diff_i_no_easy * 15
 local street_spawn = {
 	values = {
 		interval = 15,

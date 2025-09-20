@@ -1,12 +1,14 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
+local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse = Eclipse.utils.is_eclipse()
 
 local regular_dozers = {
 	green_bulldozer,
@@ -37,18 +39,18 @@ local unused_sniper_trigger_times = {
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 30,
 	},
 }
 local window_spawn = {
 	values = {
-		interval = 40,
+		interval = 30,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_shields_bulldozers,
 }
 local boat_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -64,9 +66,10 @@ local filter_hard_above = {
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
+local chopper_delay = 180 - (diff_i_no_easy * 15) - (is_pro_job and 30 or 0)
 local chopper_respawn = {
 	on_executed = {
-		{ id = 100664, delay = 180, delay_rand = 60 },
+		{ id = 100664, delay = 120, delay_rand = chopper_delay },
 	},
 }
 local chopper_trigger_times = {
@@ -82,21 +85,11 @@ return {
 		},
 	},
 	[100810] = {
-		reinforce = { -- Add some reinforce to make up for the slower spawn groups and lower diff
+		reinforce = {
 			{
 				name = "gate",
-				force = 3,
+				force = 4,
 				position = Vector3(1625, 3575, 950),
-			},
-			{
-				name = "roof1",
-				force = 2,
-				position = Vector3(6675, 2850, 1650),
-			},
-			{
-				name = "roof2",
-				force = 2,
-				position = Vector3(6700, 600, 1625),
 			},
 		},
 	},

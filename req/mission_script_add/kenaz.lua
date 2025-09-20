@@ -6,7 +6,7 @@ local diff_i = Eclipse.utils.difficulty_index()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local sniper_amount = normal and 2 or hard and 3 or 4
 local snipers_respawn = (is_eclipse and 120 or 180) - (is_pro_job and 30 or 0)
 

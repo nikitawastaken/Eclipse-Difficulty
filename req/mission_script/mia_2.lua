@@ -14,11 +14,15 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
+local standard_spawn = {
+	values = {
+		interval = 5,
+	},
+}
 local roof_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Combine some navigation areas
@@ -27,16 +31,6 @@ return {
 			{ 182, 181 },
 			{ 178, 179 },
 			{ 173, 183 },
-		},
-	},
-	-- Add new reinforce to offset the low spawncap
-	[100512] = {
-		reinforce = {
-			{
-				name = "penthouse",
-				force = 2,
-				position = Vector3(-200, 1400, 1600),
-			},
 		},
 	},
 	-- Boss spawn
@@ -50,6 +44,8 @@ return {
 	},
 	[101133] = cloaker_enemy,
 	[101141] = cloaker_enemy,
+	-- Disable reinforce (the drill already has it)
+	[100183] = disabled,
 	--Should decrease sniper spawn intensity (I hope)
 	[101202] = {
 		values = {
@@ -67,6 +63,9 @@ return {
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn group intervals
+	[101084] = standard_spawn,
+	[101085] = standard_spawn,
+	[100629] = roof_spawn,
 	[100627] = roof_spawn,
 	[100629] = roof_spawn,
 	[100666] = roof_spawn,

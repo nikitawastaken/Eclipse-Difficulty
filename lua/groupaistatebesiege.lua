@@ -84,12 +84,14 @@ Hooks:PostHook(GroupAIStateBesiege, "_create_objective_from_group_objective", "e
 	local objective = Hooks:GetReturn()
 
 	if objective and not objective.area then
+		Eclipse:warn_console("Objective has no area defined!")
+		Utils.PrintTable(objective)
+		
 		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(Vector3(0, 0, 0), true)
 
 		objective.area = self:get_area_from_nav_seg_id(nav_seg_id)
-
-		Eclipse:warn_console("Objective has no area defined!")
-		Utils.PrintTable(objective)
+		
+		return objective
 	end
 end)
 

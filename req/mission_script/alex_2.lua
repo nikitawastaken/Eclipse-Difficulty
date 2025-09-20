@@ -1,5 +1,6 @@
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local cobra_enemy = {
 	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
 	Idstring("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"),
@@ -20,7 +21,7 @@ return {
 	[101928] = {
 		values = {
 			amount = 3,
-			amount_random = math.max(diff_i - 2, 0),
+			amount_random = diff_i_no_easy,
 		},
 	},
 	-- Random Cobras

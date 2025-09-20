@@ -1,8 +1,8 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local diff_i_no_norm = diff_i - 2
 local disabled = {
 	values = {
 		enabled = false,
@@ -22,8 +22,9 @@ local cloaker_spawn = {
 		interval = 120,
 	},
 }
-local chopper_delay_init = 480 - (diff_i_no_norm * 30) - (is_pro_job and 120 or 0)
-local chopper_delay = 300 - (diff_i_no_norm * 15) - (is_pro_job and 60 or 0)
+local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
+local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
+
 return {
 	[100720] = {
 		set_ponr_state = true,
@@ -93,7 +94,7 @@ return {
 	-- trigger in alarm rather than in the second assault
 	[100022] = {
 		on_executed = {
-			{ id = 102530, delay = chopper_delay_init, delay_rand = 60 },
+			{ id = 102530, delay = chopper_delay_init },
 		},
 	},
 	-- not need to have that anymore
@@ -106,7 +107,7 @@ return {
 			trigger_times = 0,
 		},
 		on_executed = {
-			{ id = 102530, delay = chopper_delay, delay_rand = 60 },
+			{ id = 102530, delay = 120, delay_rand = chopper_delay },
 		},
 	},
 	-- Spawn group intervals

@@ -1,10 +1,11 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
+local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local taser = scripted_enemy.taser
@@ -55,7 +56,7 @@ local heli_enemy2 = {
 		trigger_times = 0,
 	},
 }
-local heli_chance = (is_pro_job and 1.25 or 1) * (diff_i - 2) * 20
+local heli_chance = (diff_i_no_easy * 20) * (is_pro_job and 1.33 or 1)
 local function cloaker_add(id)
 	return id and {
 		modify_list_value = {

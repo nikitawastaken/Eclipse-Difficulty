@@ -4,12 +4,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local garage_door_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local escape_spawn = {
 	values = {
 		interval = 20,
@@ -17,8 +11,14 @@ local escape_spawn = {
 }
 local upper_spawn = {
 	values = {
+		interval = 20,
+	},
+}
+local garage_door_spawn = {
+	values = {
 		interval = 30,
 	},
+	groups = preferred.no_shields_bulldozers,
 }
 local flank_spawn = {
 	values = {

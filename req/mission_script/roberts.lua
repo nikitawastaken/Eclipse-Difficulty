@@ -6,10 +6,10 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
-local is_pro_job = Eclipse.utils.is_pro_job()
-local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local is_eclipse_pro = is_pro_job and eclipse
+local is_pro_job = Eclipse.utils.is_pro_job()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+local diff_i = Eclipse.utils.difficulty_index()
 local us_soldier_1 = scripted_enemy.soldier_2
 local us_soldier_2 = scripted_enemy.soldier_3
 local us_soldier_3 = scripted_enemy.soldier_4
@@ -101,22 +101,22 @@ return {
 		reinforce = {
 			{
 				name = "bank_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-525, -3000, -75),
 			},
 			{
 				name = "bank_right",
-				force = 3,
+				force = 2,
 				position = Vector3(450, 1750, -75),
 			},
 			{
 				name = "bank_front",
-				force = 3,
+				force = 2,
 				position = Vector3(2925, -650, -75),
 			},
 			{
 				name = "bank_back",
-				force = 3,
+				force = 2,
 				position = Vector3(-3250, -1375, -60),
 			},
 		},
