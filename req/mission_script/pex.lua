@@ -1,3 +1,4 @@
+local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
