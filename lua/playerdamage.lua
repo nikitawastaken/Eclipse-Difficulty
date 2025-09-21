@@ -467,8 +467,8 @@ function PlayerDamage:damage_fall(data)
 		return
 	end
 
-	local height_limit = 300
-	local death_limit = 631
+	local height_limit = 400
+	local death_limit = 630
 
 	if data.height < height_limit then
 		return
