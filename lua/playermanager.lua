@@ -807,7 +807,7 @@ function PlayerManager:remove_synced_carry(peer)
 	-- remove most recently added bag
 	table.remove(self._global.synced_carry[peer_id], #self._global.synced_carry[peer_id])
 
-	local no_bags_carried = self._global.synced_carry[peer_id] < 1
+	local no_bags_carried = self._global.synced_carry[peer_id] and #self._global.synced_carry[peer_id] < 1
 	local character_data = managers.criminals:character_data_by_peer_id(peer_id)
 
 	if character_data and character_data.panel_id and no_bags_carried then
