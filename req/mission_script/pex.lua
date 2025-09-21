@@ -72,7 +72,7 @@ return {
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
 		on_executed = { -- don't disable back cell preferreds
-			{ id = 102194, remove = true }, 
+			{ id = 102194, remove = true },
 		},
 	},
 	-- Add new reinforce
@@ -141,13 +141,13 @@ return {
 		},
 	},
 	-- Disable pointless area triggers
-	[104087] = disabled, 
+	[104087] = disabled,
 	-- Disable pointless vanilla reinforce
-	[104094] = disabled, 
-	[104099] = disabled, 
-	[104100] = disabled, 
-	[104101] = disabled, 
-	[104111] = disabled, 
+	[104094] = disabled,
+	[104099] = disabled,
+	[104100] = disabled,
+	[104101] = disabled,
+	[104111] = disabled,
 	-- Adjust Sniper amount
 	[100358] = sniper_amount,
 	[100359] = sniper_amount,
