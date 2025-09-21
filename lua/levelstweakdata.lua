@@ -679,7 +679,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_delay = 0,
 		},
 	}
-	
+
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {
