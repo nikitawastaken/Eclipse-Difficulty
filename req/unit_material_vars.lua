@@ -2,6 +2,7 @@
 local M = {
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var1",
 	"units/payday2/characters/ene_acc_head/vars/ene_acc_head_var2",
+	"units/payday2/characters/ene_acc_head_female/ene_acc_head_female",
 	"units/payday2/characters/ene_cop_1/vars/ene_security_1",
 	"units/payday2/characters/ene_cop_1/vars/ene_security_4",
 	"units/payday2/characters/ene_cop_1/vars/ene_fbi_1",
@@ -26,6 +27,8 @@ local M = {
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var1",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var2",
+	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var1",
+	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2",
 }
 
 return M
