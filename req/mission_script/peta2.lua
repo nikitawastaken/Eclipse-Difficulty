@@ -116,7 +116,7 @@ return {
 	[100131] = farm_far_spawn,
 	[100132] = farm_far_spawn,
 	[100133] = farm_far_spawn,
+	[101217] = that_fucking_bush_spawn,
 	[100128] = farm_close_spawn,
 	[100130] = farm_close_spawn,
-	[101217] = that_fucking_bush_spawn,
 }

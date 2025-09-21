@@ -441,6 +441,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		cs_grenade_chance_times_mul = 0.5,
 		difficulty_scaling = {
 			diff_init = 0.33,
+			assault_delay = 15,
 			assault_add = 0.33,
 		},
 		grenade_timeout_mul = {
@@ -673,6 +674,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.deep.group_ai_preset = "remote"
 
+	self.short2_stage2b.group_ai_settings = {
+		difficulty_scaling = {
+			assault_delay = 0,
+		},
+	}
+	
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {

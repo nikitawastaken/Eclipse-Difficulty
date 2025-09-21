@@ -59,9 +59,6 @@ return {
 	[101334] = disabled, -- books preferreds 4
 	[108442] = disabled, -- entrance preferreds 3
 	-- Spawn group intervals
-	[107909] = garage_door_spawn,
-	[108287] = garage_door_spawn,
-	[108289] = garage_door_spawn,
 	[108291] = escape_spawn,
 	[108292] = escape_spawn,
 	[100128] = upper_spawn,
@@ -73,6 +70,7 @@ return {
 	[107911] = upper_spawn,
 	[101451] = upper_spawn,
 	[102407] = upper_spawn,
+	[104794] = upper_spawn,
 	[107908] = upper_spawn,
 	[107913] = upper_spawn,
 	[107975] = upper_spawn,
@@ -82,7 +80,9 @@ return {
 	[107981] = upper_spawn,
 	[107983] = upper_spawn,
 	[108290] = upper_spawn,
-	[104794] = flank_spawn,
+	[107909] = garage_door_spawn,
+	[108287] = garage_door_spawn,
+	[108289] = garage_door_spawn,
 	[101074] = catwalk_spawn,
 	[101350] = catwalk_spawn,
 }

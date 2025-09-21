@@ -33,7 +33,7 @@ return {
 			enabled = false,
 		},
 	},
-	[101882] = { -- add reinforce (loads)
+	[101882] = { -- add reinforce
 		reinforce = {
 			{
 				name = "crane1",

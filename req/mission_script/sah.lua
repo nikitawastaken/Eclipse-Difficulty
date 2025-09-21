@@ -46,6 +46,31 @@ local storage_window_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 7, 8, 9 },
+			{ 34, 35 },
+		},
+	},
+	[100814] = {
+		ai_area = {
+			{ 33, 51 },
+			{ 38, 40 },
+		},
+	},
+	[100817] = {
+		ai_area = {
+			{ 38, 40 },
+			{ 42, 73 },
+		},
+	},
+	[100819] = {
+		ai_area = {
+			{ 33, 51 },
+			{ 42, 73 },
+		},
+	},
 	-- PONR state
 	[101175] = disabled,
 	[101006] = {
@@ -127,29 +152,4 @@ return {
 	[102303] = storage_door_spawn,
 	[104089] = storage_door_spawn,
 	[103522] = storage_window_spawn,
-	-- Combine some navigation areas
-	[100017] = {
-		ai_area = {
-			{ 7, 8, 9 },
-			{ 34, 35 },
-		},
-	},
-	[100814] = {
-		ai_area = {
-			{ 33, 51 },
-			{ 38, 40 },
-		},
-	},
-	[100817] = {
-		ai_area = {
-			{ 38, 40 },
-			{ 42, 73 },
-		},
-	},
-	[100819] = {
-		ai_area = {
-			{ 33, 51 },
-			{ 42, 73 },
-		},
-	},
 }

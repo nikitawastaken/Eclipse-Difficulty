@@ -1,10 +1,12 @@
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local office_cop_1 = "units/pd2_dlc_pex/characters/ene_male_office_cop_01/ene_male_office_cop_01"
 local office_cop_2 = "units/pd2_dlc_pex/characters/ene_male_office_cop_02/ene_male_office_cop_02"
 local office_cop_3 = "units/pd2_dlc_pex/characters/ene_male_office_cop_03/ene_male_office_cop_03"
 local office_cop_4 = "units/pd2_dlc_pex/characters/ene_male_office_cop_04/ene_male_office_cop_04"
+local cloaker = scripted_enemy.cloaker
 local blue_office_cops = {
 	Idstring(office_cop_1),
 	Idstring(office_cop_2),
@@ -17,6 +19,9 @@ local white_office_cops = {
 local white_office_cop = { enemy = white_office_cops }
 local random_office_cops = { [office_cop_1] = 3, [office_cop_2] = 3, [office_cop_3] = 2, [office_cop_4] = 2 }
 local random_office_cop = { enemy = random_office_cops }
+local interrogation_cop = {
+	enemy = is_eclipse_pro and cloaker or blue_office_cops,
+}
 local exclude_shields_dozers = {
 	so_access_filter = so_access.no_heavyweight,
 }
@@ -48,7 +53,7 @@ local alley_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -66,10 +71,18 @@ return {
 			length = 300,
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
+		on_executed = { -- don't disable back cell preferreds
+			{ id = 102194, remove = true }, 
+		},
 	},
 	-- Add new reinforce
 	[100109] = { -- Police arrived
 		reinforce = {
+			{
+				name = "main_entrance",
+				force = 3,
+				position = Vector3(525, 300, 100),
+			},
 			{
 				name = "parking_lot1",
 				force = 3,
@@ -127,6 +140,14 @@ return {
 			{ id = 400019, delay = 0, delay_rand = 5 },
 		},
 	},
+	-- Disable pointless area triggers
+	[104087] = disabled, 
+	-- Disable pointless vanilla reinforce
+	[104094] = disabled, 
+	[104099] = disabled, 
+	[104100] = disabled, 
+	[104101] = disabled, 
+	[104111] = disabled, 
 	-- Adjust Sniper amount
 	[100358] = sniper_amount,
 	[100359] = sniper_amount,
@@ -181,18 +202,18 @@ return {
 	[100704] = blue_office_cop,
 	[102996] = blue_office_cop, -- eepy guard
 	[103330] = blue_office_cop,
-	[102023] = blue_office_cop,
-	[102024] = blue_office_cop,
-	[102025] = blue_office_cop,
-	[102030] = blue_office_cop,
-	[102031] = blue_office_cop,
-	[102032] = blue_office_cop,
-	[102037] = blue_office_cop,
-	[102038] = blue_office_cop,
-	[102039] = blue_office_cop,
 	[100675] = white_office_cop, -- White Shirt Guards
 	[100676] = white_office_cop,
 	[100555] = random_office_cop, -- Random Indoor Guards
 	[100616] = random_office_cop,
 	[100617] = random_office_cop,
+	[102023] = interrogation_cop, -- Interrogation Cell Cops
+	[102024] = interrogation_cop,
+	[102025] = interrogation_cop,
+	[102030] = interrogation_cop,
+	[102031] = interrogation_cop,
+	[102032] = interrogation_cop,
+	[102037] = interrogation_cop,
+	[102038] = interrogation_cop,
+	[102039] = interrogation_cop,
 }

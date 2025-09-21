@@ -64,9 +64,6 @@ return {
 			enabled = false,
 		},
 	},
-	[101596] = {
-		difficulty = 0.5,
-	},
 	-- use unused lab spawn as random dozer unit
 	-- first remove him from element toggle so he actually spawns in
 	[101813] = {

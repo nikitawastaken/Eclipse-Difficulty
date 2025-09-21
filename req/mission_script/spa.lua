@@ -4,7 +4,7 @@ local van_arrive_timer = 65 + (is_pro_job and 30 or 0)
 local van_arrive_time = 60 + (is_pro_job and 30 or 0)
 local skylight_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
