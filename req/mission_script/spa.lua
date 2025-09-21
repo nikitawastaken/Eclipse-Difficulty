@@ -69,7 +69,8 @@ return {
 			timer = van_arrive_timer,
 		},
 	},
-	]]--
+	]]
+	--
 	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
 	[100750] = window_spawn,
