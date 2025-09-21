@@ -84,14 +84,14 @@ return {
 	-- Always comment that all c4 are placed (why it's chance based to begin with, Overkill (Starbreeze) ...)
 	[103810] = {
 		values = {
-            chance = 100
-		}
+			chance = 100,
+		},
 	},
 	-- Technically should fix softlock when blowtorch interactions are unavailable. Also player can't abuse keys in loud
 	[102704] = {
 		on_executed = {
-			{id = 101278, delay = 0}
-		}
+			{ id = 101278, delay = 0 },
+		},
 	},
 	-- make Swat vans drop units
 	[103615] = { -- arrive 1
