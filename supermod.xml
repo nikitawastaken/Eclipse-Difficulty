@@ -347,6 +347,14 @@
 			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
+		
+		<!-- Hotline Miami C4able door-->
+		<group name="levels/instances/unique/">
+			<file :name="hlm_random_left002/world/world.continent"/>
+			<file :name="hlm_random_left002/world/world.mission"/>
+			<file :name="hlm_random_right002/world/world/world/world.continent"/>
+			<file :name="hlm_random_right002/world/world/world/world.mission"/>			
+		</group>
 
 		<!-- Various Icons -->
 		<group name="guis/textures/pd2/blackmarket/icons/" >
