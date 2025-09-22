@@ -200,8 +200,6 @@ return {
 			{ id = 400025, delay = 0, delay_rand = 10 },
 			{ id = 400031, delay = 0, delay_rand = 10 },
 			{ id = 400037, delay = 0, delay_rand = 10 },
-			{ id = 104735, delay = 0, delay_rand = 10 },
-			{ id = 105660, delay = 0, delay_rand = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
