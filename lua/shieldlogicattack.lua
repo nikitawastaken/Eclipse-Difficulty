@@ -108,12 +108,12 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			pos_from = data.m_pos,
 		}
 
-		local leave_space = false
+		local extra_space = too_far and 40 or 0
 		if too_close and data.group then
 			for _, u_data in pairs(data.group.units) do
 				local other_objective = alive(u_data.unit) and u_data.unit:brain():objective()
 				if other_objective and other_objective.follow_unit == data.unit then
-					leave_space = true
+					extra_space = 120
 					break
 				end
 			end
@@ -122,13 +122,12 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 		mvector3.cross(threat_dir_side, threat_dir, math.UP)
 		while factor <= 1 or not flip do
 			mvector3.lerp(test_pos, threat_dir, threat_dir_side, factor)
-			mvector3.multiply(test_pos, math.lerp(close_range, optimal_range, too_close and 0.75 or 0.25))
+			mvector3.multiply(test_pos, math.lerp(close_range, optimal_range, too_close and 0.75 or 0.25) + extra_space)
 			mvector3.add(test_pos, threat_pos)
 
 			ray_params.pos_to = test_pos
-			if managers.navigation:raycast(ray_params) and leave_space then
-				mvector3.set(test_pos, ray_params.trace[1])
-				mvector3.subtract_scaled(test_pos, threat_dir, 150)
+			if extra_space ~= 0 then
+				mvector3.step(test_pos, ray_params.trace[1], threat_pos, extra_space)
 				managers.navigation:raycast(ray_params)
 			end
 
