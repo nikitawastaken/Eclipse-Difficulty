@@ -3,6 +3,11 @@ local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_pro_job = Eclipse.utils.is_pro_job()
+local participate = {
+	values = {
+		participate_to_group_ai = true,
+	},
+}
 local disabled = {
 	values = {
 		enabled = false,
@@ -16,6 +21,9 @@ local roof_spawn = {
 		interval = 25,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local scripted_swat_heli_spawn = {
+	groups = preferred.no_cops_agents,
 }
 local cloaker_spawn = {
 	values = {
@@ -110,7 +118,23 @@ return {
 			{ id = 102530, delay = 120, delay_rand = chopper_delay },
 		},
 	},
+	-- tweak chopper spawngroup
+	[102515] = {
+		on_executed = {
+			{ id = 400001, delay = 0 },
+			{ id = 102110, remove = true },
+			{ id = 102299, remove = true },
+			{ id = 102513, remove = true },
+			{ id = 102514, remove = true },
+		},
+	},
+	[102549] = disabled,
+	[101560] = participate,
+	[101814] = participate,
+	[101627] = participate,
+	[101672] = participate,
 	-- Spawn group intervals
+	[400001] = scripted_swat_heli_spawn,
 	[100007] = roof_spawn,
 	[100128] = roof_spawn,
 	[100844] = cloaker_spawn,
