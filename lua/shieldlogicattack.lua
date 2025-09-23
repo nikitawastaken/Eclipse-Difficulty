@@ -100,15 +100,15 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 		local optimal_dis, optimal_pos = -math.huge, nil
 		local pos_reservation = {
 			radius = 60,
-			filter = data.pos_rsrv_id,
+			filter = data.pos_rsrv_id
 		}
 		local ray_params = {
 			allow_entry = true,
 			trace = true,
-			pos_from = data.m_pos,
+			pos_from = data.m_pos
 		}
 
-		local extra_space = too_far and 40 or 0
+		local extra_space = too_far and -40 or 0
 		if too_close and data.group then
 			for _, u_data in pairs(data.group.units) do
 				local other_objective = alive(u_data.unit) and u_data.unit:brain():objective()
@@ -126,6 +126,7 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 			mvector3.add(test_pos, threat_pos)
 
 			ray_params.pos_to = test_pos
+			managers.navigation:raycast(ray_params)
 			if extra_space ~= 0 then
 				mvector3.step(test_pos, ray_params.trace[1], threat_pos, extra_space)
 				managers.navigation:raycast(ray_params)
