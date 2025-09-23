@@ -33,6 +33,18 @@ Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
 	end
 end)
 
+-- Scale headbob based on move speed
+-- Add headbob while moving and aiming
+function PlayerStandard:_get_walk_headbob()
+	local standard_speed = tweak_data.player.movement_state.standard.movement.speed.STANDARD_MAX
+	local walk_speed_mul = math.clamp(self:_get_max_walk_speed(t), standard_speed * 0.5, standard_speed * 2) / standard_speed
+	local has_run_and_shoot = self._equipped_unit:base():run_and_shoot_allowed()
+	
+	local headbob_rate = 1 / 40 * (self._running and has_run_and_shoot and 2 or self._running and 4 or 1) * (self._state_data.ducking and 0.5 or 1) * (self._state_data.in_steelsight and 0.1 or 1) * (self._state_data.in_air and 0 or 1)
+	
+    return headbob_rate * walk_speed_mul
+end
+
 function PlayerStandard:_stance_entered(unequipped)
 	local stance_standard = tweak_data.player.stances.default[managers.player:current_state()] or tweak_data.player.stances.default.standard
 	local head_stance = self._state_data.ducking and tweak_data.player.stances.default.crouched.head or stance_standard.head
