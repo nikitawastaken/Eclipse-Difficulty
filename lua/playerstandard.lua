@@ -46,6 +46,7 @@ function PlayerStandard:_get_walk_headbob()
 		* (self._state_data.ducking and 0.5 or 1)
 		* (self._state_data.in_steelsight and 0.1 or 1)
 		* (self._state_data.in_air and 0 or 1)
+		* (self._state_data.using_bipod and 0 or 1)
 
 	return headbob_rate * walk_speed_mul
 end
