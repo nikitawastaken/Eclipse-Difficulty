@@ -100,12 +100,12 @@ function ShieldLogicAttack._upd_enemy_detection(data)
 		local optimal_dis, optimal_pos = -math.huge, nil
 		local pos_reservation = {
 			radius = 60,
-			filter = data.pos_rsrv_id
+			filter = data.pos_rsrv_id,
 		}
 		local ray_params = {
 			allow_entry = true,
 			trace = true,
-			pos_from = data.m_pos
+			pos_from = data.m_pos,
 		}
 
 		local extra_space = too_far and -40 or 0
