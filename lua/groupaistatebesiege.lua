@@ -80,21 +80,6 @@ Hooks:PostHook(GroupAIStateBesiege, "_upd_recon_tasks", "eclipse__upd_recon_task
 	end
 end)
 
-Hooks:PostHook(GroupAIStateBesiege, "_create_objective_from_group_objective", "eclipse__create_objective_from_group_objective", function(self)
-	local objective = Hooks:GetReturn()
-
-	if objective and not objective.area then
-		Eclipse:warn_console("Objective has no area defined!")
-		Utils.PrintTable(objective)
-
-		local nav_seg_id = managers.navigation:get_nav_seg_from_pos(Vector3(0, 0, 0), true)
-
-		objective.area = self:get_area_from_nav_seg_id(nav_seg_id)
-
-		return objective
-	end
-end)
-
 -- Resource trading during recon
 function GroupAIStateBesiege:_resource_trade_delay_assault_task()
 	local assault_delay = managers.player:team_upgrade_value("player", "resource_trading_assault_delay", 0)
@@ -866,7 +851,10 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	managers.navigation:destroy_nav_tracker(grenade_tracker)
 
 	if not grenade_user.char_tweak.no_grenade_anim then
-		if not grenade_user.unit:movement():chk_action_forbidden("interact") then
+		local anim_data = grenade_user.unit:anim_data()
+		local harmless = anim_data and (anim_data.hands_back or anim_data.surrender or anim_data.hands_tied)
+		
+		if not grenade_user.unit:movement():chk_action_forbidden("interact") and not harmless then
 			if grenade_user.unit:movement():play_redirect("throw_grenade") then
 				managers.network:session():send_to_peers_synched("play_distance_interact_redirect", grenade_user.unit, "throw_grenade")
 			end
