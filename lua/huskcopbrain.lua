@@ -1,3 +1,8 @@
+-- Helper function, HuskCopBrain does not inherit from CopBrain
+function HuskCopBrain:is_suppressed(...)
+	return CopBrain.is_suppressed and CopBrain.is_suppressed(self, ...)
+end
+
 -- Fix untied cops getting the wrong slots
 local sync_net_event_original = HuskCopBrain.sync_net_event
 function HuskCopBrain:sync_net_event(event_id, ...)
