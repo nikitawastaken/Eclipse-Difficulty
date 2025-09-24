@@ -1,6 +1,10 @@
--- Helper function, HuskCopBrain does not inherit from CopBrain
-function HuskCopBrain:is_suppressed(...)
-	return CopBrain.is_suppressed and CopBrain.is_suppressed(self, ...)
+-- Helper functions
+function HuskCopBrain:on_suppressed(is_suppressed)
+	self._suppressed = is_suppressed
+end
+
+function HuskCopBrain:is_suppressed()
+	return self._suppressed
 end
 
 -- Fix untied cops getting the wrong slots

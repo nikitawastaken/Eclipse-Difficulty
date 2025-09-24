@@ -62,6 +62,19 @@
 		<search>
 			<network/>
 			<rpc/>
+		</search>
+		<target mode="attach">
+			<!-- create a unit_suppressed message for `UnitHandler` -->
+			<message name="unit_suppressed" delivery="ordered" receiver="unit">
+				<param type="unit" />
+				<param type="bool" />
+			</message>
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
 			<message name="sync_drill_upgrades"/>
 			<param type="unit"/>
 		</search>

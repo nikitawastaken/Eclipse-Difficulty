@@ -43,6 +43,21 @@ function CopBrain:is_suppressed()
 	return self._logic_data.is_suppressed or false
 end
 
+function CopBrain:on_suppressed(state)
+	self._logic_data.is_suppressed = state or nil
+	self._unit:network():send("unit_suppressed", state or false)
+
+	if state == "panic" then
+		self._unit:sound():say("lk3b", true)
+	elseif self._logic_data.char_tweak.chatter.suppress then
+		self._unit:sound():say("hlp", true)
+	end
+
+	if self._current_logic.on_suppressed_state then
+		self._current_logic.on_suppressed_state(self._logic_data)
+	end
+end
+
 -- Fix spamming of grenades by units that dodge with grenades (Cloaker)
 local _chk_use_cover_grenade_original = CopBrain._chk_use_cover_grenade
 function CopBrain:_chk_use_cover_grenade(...)
