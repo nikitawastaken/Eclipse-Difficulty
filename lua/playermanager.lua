@@ -279,7 +279,26 @@ PlayerAction.AmmoEfficiency = {
 		local time = Application:time()
 		local headshots = 1
 
-		local function on_headshot()
+		local function on_weapon_fired(weapon_unit, result)
+			if not result.hit_enemy then
+				time = target_time
+
+				return
+			end
+
+			for _, hit in ipairs(result.rays) do
+				local is_turret = hit.unit:in_slot(sentry_mask)
+				local is_ally = hit.unit:in_slot(ally_mask)
+
+				local result_hit = hit.damage_result
+				local attack_data = result_hit and result_hit.attack_data
+				if not (attack_data and attack_data.headshot and not is_turret and not is_ally) then
+					time = target_time
+
+					return
+				end
+			end
+
 			headshots = headshots + 1
 
 			if headshots == target_headshots then
@@ -293,7 +312,7 @@ PlayerAction.AmmoEfficiency = {
 			end
 		end
 
-		player_manager:register_message(Message.OnHeadShot, co, on_headshot)
+		player_manager:register_message(Message.OnWeaponFired, co, on_weapon_fired)
 
 		while time < target_time do
 			time = Application:time()
@@ -306,7 +325,7 @@ PlayerAction.AmmoEfficiency = {
 			coroutine.yield(co)
 		end
 
-		player_manager:unregister_message(Message.OnHeadShot, co)
+		player_manager:unregister_message(Message.OnWeaponFired, co)
 	end,
 }
 
