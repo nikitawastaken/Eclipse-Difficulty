@@ -190,6 +190,7 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 	multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "passive_damage_multiplier", 1)
 	multiplier = multiplier + 1 - managers.player:temporary_upgrade_value("temporary", "sidearm_pullout_damage_multiplier", 1)
 	multiplier = multiplier + 1 - managers.player:temporary_upgrade_value("temporary", "sidearm_reload_damage_multiplier", 1)
+	multiplier = multiplier + 1 - managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 
 	if silencer then
 		multiplier = multiplier + 1 - managers.player:upgrade_value("weapon", "silencer_damage_multiplier", 1)

@@ -12,8 +12,16 @@ ContourExt._types.hostage_trade_resources = {
 	color = tweak_data.contour.character.heal_color,
 }
 
+-- extra damage ammobox outline
+ContourExt._types.extra_damage_ammobox = {
+	priority = 2,
+	unique = true,
+	color = tweak_data.contour.character.more_dangerous_color,
+}
+
 table.insert(ContourExt.indexed_types, hostage_trade_uncustody)
 table.insert(ContourExt.indexed_types, hostage_trade_resources)
+table.insert(ContourExt.indexed_types, extra_damage_ammobox)
 
 table.sort(ContourExt.indexed_types)
 

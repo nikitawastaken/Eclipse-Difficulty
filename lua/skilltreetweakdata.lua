@@ -208,10 +208,10 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Big Game Hunters
 	self.skills.carbon_blade[1].upgrades = { "player_double_drop_1" }
-	self.skills.carbon_blade[2].upgrades = { "player_pick_up_ammo_multiplier_2" }
-	self.skills.carbon_blade.name_id = "menu_big_game_hunters_beta"
-	self.skills.carbon_blade.desc_id = "menu_big_game_hunters_beta_desc"
-	self.skills.carbon_blade.icon_xy = { 10, 2 }
+	self.skills.carbon_blade[2].upgrades = { "player_double_drop_extra_damage" }
+	self.skills.carbon_blade.name_id = "menu_big_game_hunters"
+	self.skills.carbon_blade.desc_id = "menu_big_game_hunters_desc"
+	self.skills.carbon_blade.icon_xy = { 8, 0 }
 
 	-- Bulletstorm
 	self.skills.bandoliers[1].upgrades = { "temporary_no_ammo_cost_1" }
@@ -892,6 +892,7 @@ function SkillTreeTweakData:init(tweak_data)
 	end
 
 	-- Buncha default upgrade fuckery
+	table.insert(self.default_upgrades, "temporary_double_drop_damage_multiplier")
 	table.insert(self.default_upgrades, "sentry_gun_rot_speed_multiplier")
 	table.insert(self.default_upgrades, "passive_player_xp_multiplier")
 	table.insert(self.default_upgrades, "player_first_aid_health_regen")

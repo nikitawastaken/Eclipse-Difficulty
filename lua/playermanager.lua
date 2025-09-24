@@ -1760,3 +1760,28 @@ function PlayerManager:check_equipment_placement_valid(player, equipment)
 
 	return player:equipment():valid_placement(tweak_data.equipments[equipment_data.equipment]) and true or false
 end
+
+-- Extra damage on ammobox pickup upgrade
+function PlayerManager:spawn_extra_ammo(killed_unit, requesting_peer)
+	local has_extra_dmg_double_drop = self:has_category_upgrade("player", "double_drop_extra_damage")
+
+	if alive(killed_unit) and killed_unit:character_damage() and killed_unit:character_damage().drop_pickup then
+		killed_unit:character_damage():drop_pickup(true, has_extra_dmg_double_drop)
+	elseif requesting_peer then
+		local peer_unit = requesting_peer:unit()
+
+		if alive(peer_unit) then
+			local mov_ext = peer_unit:movement()
+			local tracker = mov_ext and mov_ext:nav_tracker()
+			local position = tracker and (tracker:lost() and tracker:field_position() or tracker:position()) or mov_ext and mov_ext:m_pos() or peer_unit:position()
+			local rotation = mov_ext and mov_ext:m_rot() or peer_unit:rotation()
+
+			managers.game_play_central:spawn_pickup({
+				name = "ammo",
+				position = position,
+				rotation = rotation,
+				has_extra_dmg_double_drop = has_extra_dmg_double_drop
+			})
+		end
+	end
+end

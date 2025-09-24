@@ -1,3 +1,30 @@
+function AmmoClip:reload_contour()
+	if self._ammo_box and self._unit:contour() and self._extra_damage_pickup then
+		self._unit:contour():add("extra_damage_ammobox")
+		self._unit:contour():flash("extra_damage_ammobox", 0.5)
+
+		return
+	end
+
+	if self._ammo_box and self._unit:contour() then
+		if managers.user:get_setting("ammo_contour") then
+			self._unit:contour():add("deployable_selected")
+		else
+			self._unit:contour():remove("deployable_selected")
+		end
+	end
+end
+
+function AmmoClip:set_upgrades(extra_dmg_double_drop)
+	if self._ammo_box then
+		self._extra_damage_pickup = extra_dmg_double_drop or false
+
+		if extra_dmg_double_drop then
+			self:reload_contour()
+		end
+	end
+end
+
 function AmmoClip:_pickup(unit)
 	if self._picked_up then
 		return
@@ -47,6 +74,10 @@ function AmmoClip:_pickup(unit)
 
 		if picked_up then
 			self._picked_up = true
+
+			if self._extra_damage_pickup and player_manager:has_category_upgrade("temporary", "double_drop_damage_multiplier") then
+				player_manager:activate_temporary_upgrade("temporary", "double_drop_damage_multiplier")
+			end
 
 			if has_cable_tie_pickup then
 				local rand = math.random()

@@ -761,3 +761,40 @@ function CopDamage:client_check_damage_achievements(weapon_unit, attacker_unit, 
 
 	self:_check_damage_achievements(attack_data, head_shot)
 end
+
+-- Extra damage on ammobox pickup upgrade
+function CopDamage:drop_pickup(extra, has_extra_dmg_double_drop)
+	if extra or self._pickup then
+		local tracker = self._unit:movement():nav_tracker()
+		local position = tracker:lost() and tracker:field_position() or tracker:position()
+		local rotation = self._unit:rotation()
+
+		mvector3.set(mvec_1, position)
+
+		if extra then
+			mvector3.set_static(mvec_2, math.random(20, 50) * (math.random(1, 2) * 2 - 3), math.random(20, 50) * (math.random(1, 2) * 2 - 3), 0)
+			mvector3.add(mvec_1, mvec_2)
+		end
+
+		local level_data = tweak_data.levels[managers.job:current_level_id()]
+
+		if level_data and level_data.drop_pickups_to_ground then
+			mvector3.set(mvec_2, math.UP)
+			mvector3.multiply(mvec_2, -200)
+			mvector3.add(mvec_2, mvec_1)
+
+			local ray = self._unit:raycast("ray", mvec_1, mvec_2, "slot_mask", managers.slot:get_mask("world_geometry"))
+
+			if ray then
+				mvector3.set(mvec_1, ray.hit_position)
+			end
+		end
+
+		managers.game_play_central:spawn_pickup({
+			name = extra and "ammo" or self._pickup,
+			position = mvec_1,
+			rotation = rotation,
+			has_extra_dmg_double_drop = extra and has_extra_dmg_double_drop
+		})
+	end
+end

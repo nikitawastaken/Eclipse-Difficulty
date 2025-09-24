@@ -85,6 +85,7 @@ function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, wea
 		local autohit_mul = math.lerp(1, tweak_data.player.suppression.autohit_chance_mul, suppression_ratio)
 		local suppression_mul = managers.blackmarket:threat_multiplier()
 		local dmg_mul = managers.player:temporary_upgrade_value("temporary", "dmg_multiplier_outnumbered", 1)
+		dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 
 		if managers.player:has_category_upgrade("player", "overkill_all_weapons") or weap_base:is_category("shotgun", "saw") then
 			dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "overkill_damage_multiplier", 1)

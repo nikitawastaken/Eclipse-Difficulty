@@ -73,3 +73,16 @@ function GamePlayCentralManager:_do_shotgun_push(unit, hit_pos, dir, distance, a
 
 	managers.mutators:notify(Message.OnShotgunPush, unit, hit_pos, dir, distance, attacker)
 end
+
+function GamePlayCentralManager:spawn_pickup(params)
+	if not tweak_data.pickups[params.name] then
+		Application:error("No pickup definition for " .. tostring(params.name))
+
+		return
+	end
+
+	local unit_name = tweak_data.pickups[params.name].unit
+
+	ammo_unit = safe_spawn_unit(unit_name, params.position, params.rotation)
+	ammo_unit:pickup():set_upgrades(params.has_extra_dmg_double_drop)
+end

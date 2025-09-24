@@ -362,6 +362,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							end
 						end
 
+						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "double_drop_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:temporary_upgrade_value("temporary", "berserker_damage_multiplier", 1)
 						dmg_mul = dmg_mul * managers.player:get_property("trigger_happy", 1)
 						dmg_mul = dmg_mul * (1 + managers.player:get_property("snp_consecutive_headshots_mul", 0))
