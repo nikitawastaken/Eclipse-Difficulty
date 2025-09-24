@@ -95,6 +95,13 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.sharpshooter[2].upgrades = { "weapon_steelsight_recoil_multiplier" }
 	self.skills.sharpshooter.icon_xy = { 6, 5 }
 
+	-- Ammo Efficiency
+	self.skills.spotter_teamwork[1].upgrades = { "head_shot_ammo_return_1" }
+	self.skills.spotter_teamwork[2].upgrades = { "head_shot_ammo_return_2", "head_shot_ammo_return_straight_to_mag" }
+	self.skills.spotter_teamwork.icon_xy = { 8, 4 }
+	self.skills.spotter_teamwork.name_id = "menu_ammo_efficiency"
+	self.skills.spotter_teamwork.desc_id = "menu_ammo_efficiency_desc"
+
 	-- Kilmer
 	table.delete(self.skills.speedy_reload[1].upgrades, "smg_reload_speed_multiplier")
 	self.skills.speedy_reload.name_id = "menu_kilmer"

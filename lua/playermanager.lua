@@ -271,7 +271,56 @@ function PlayerManager:on_headshot_dealt()
 	end
 end
 
--- Ammo Efficiency does not work on SMGs anymore
+-- Ammo Efficiency rework (doesn't work on smgs, aced refunds straight into mag)
+PlayerAction.AmmoEfficiency = {
+	Priority = 1,
+	Function = function (player_manager, target_headshots, bullet_refund, target_time)
+		local co = coroutine.running()
+		local time = Application:time()
+		local headshots = 1
+
+		local function on_headshot()
+			headshots = headshots + 1
+
+			if headshots == target_headshots then
+				if player_manager:has_category_upgrade("player", "head_shot_ammo_return_straight_to_mag") then
+					player_manager:on_ammo_increase_mag(bullet_refund)
+				else
+					player_manager:on_ammo_increase(bullet_refund)
+				end
+
+				time = target_time
+			end
+		end
+
+		player_manager:register_message(Message.OnHeadShot, co, on_headshot)
+
+		while time < target_time do
+			time = Application:time()
+			local weapon_unit = player_manager:equipped_weapon_unit()
+
+			if weapon_unit and (weapon_unit:base():fire_mode() ~= "single" or not weapon_unit:base():is_category("dmr", "assault_rifle", "snp")) then
+				break
+			end
+
+			coroutine.yield(co)
+		end
+
+		player_manager:unregister_message(Message.OnHeadShot, co)
+	end
+}
+
+function PlayerManager:on_ammo_increase_mag(ammo)
+	local equipped_unit = self:get_current_state()._equipped_unit:base()
+	local equipped_selection = self:get_current_state()._ext_inventory:equipped_selection()
+
+	if equipped_unit and equipped_unit:can_reload() then
+		local index = self:equipped_weapon_index()
+
+		equipped_unit:add_ammo_to_mag(ammo, index)
+	end
+end
+
 function PlayerManager:_on_enter_ammo_efficiency_event()
 	if not self._coroutine_mgr:is_running("ammo_efficiency") then
 		local weapon_unit = self:equipped_weapon_unit()
@@ -288,6 +337,7 @@ function PlayerManager:_on_enter_ammo_efficiency_event()
 		end
 	end
 end
+
 
 -- Kilmer does not work on SMGs anymore
 function PlayerManager:_on_activate_aggressive_reload_event(attack_data)

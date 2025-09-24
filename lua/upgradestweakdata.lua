@@ -283,6 +283,34 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.sharpshooter.multibasic = "15%"
 	self.skill_descs.sharpshooter.multipro = "20%"
 
+	-- Ammo Efficiency
+	self.values.player.head_shot_ammo_return = {
+		{
+			headshots = 2,
+			ammo = 1,
+			time = 3
+		},
+		{
+			headshots = 2,
+			ammo = 1,
+			time = 5
+		}
+	}
+	self.values.player.head_shot_ammo_return_straight_to_mag = { true }
+	self.definitions.head_shot_ammo_return_straight_to_mag = {
+		name_id = "menu_player_head_shot_ammo_return_straight_to_mag",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "head_shot_ammo_return_straight_to_mag",
+			category = "player",
+		},
+	}
+	self.skill_descs.spotter_teamwork.multibasic = "2"
+	self.skill_descs.spotter_teamwork.multibasic2 = "3"
+	self.skill_descs.spotter_teamwork.multibasic3 = "1"
+	self.skill_descs.spotter_teamwork.multipro = "5"
+
 	-- Kilmer
 	self.values.snp.reload_speed_multiplier = { 1.25 }
 	self.values.assault_rifle.reload_speed_multiplier = { 1.25 }

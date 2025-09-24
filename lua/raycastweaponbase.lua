@@ -696,3 +696,29 @@ function RaycastWeaponBase:add_ammo_ratio(ammo_ratio_increase)
 		end
 	end
 end
+
+function RaycastWeaponBase:add_ammo_to_pool(ammo, index)
+	local max_ammo = self:get_ammo_max()
+	local current_ammo = self:get_ammo_total()
+	local new_ammo = current_ammo + ammo
+
+	if max_ammo < new_ammo then
+		new_ammo = current_ammo
+	end
+
+	self:set_ammo_total(new_ammo)
+	managers.hud:set_ammo_amount(index, self:ammo_info())
+end
+
+function RaycastWeaponBase:add_ammo_to_mag(ammo, index)
+	local max_ammo = self:ammo_base():get_ammo_max_per_clip()
+	local current_ammo = self:ammo_base():get_ammo_remaining_in_clip()
+	local new_ammo = current_ammo + ammo
+
+	if max_ammo < new_ammo then
+		new_ammo = current_ammo
+	end
+
+	self:ammo_base():set_ammo_remaining_in_clip(new_ammo)
+	managers.hud:set_ammo_amount(index, self:ammo_info())
+end
