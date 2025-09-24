@@ -584,3 +584,115 @@ function RaycastWeaponBase:add_ammo_from_bag(available)
 
 	return can_have
 end
+
+function RaycastWeaponBase:add_ammo(ratio, add_amount_override)
+	local mul_1 = managers.player:upgrade_value("player", "pick_up_ammo_multiplier", 1) - 1
+	local mul_2 = managers.player:upgrade_value("player", "pick_up_ammo_multiplier_2", 1) - 1
+	local crew_mul = managers.player:crew_ability_upgrade_value("crew_scavenge", 0)
+	local pickup_mul = 1 + mul_1 + mul_2 + crew_mul
+
+	local function _add_ammo(ammo_base, ratio, add_amount_override)
+		if ammo_base:get_ammo_max() <= ammo_base:get_ammo_total() then
+			return false, 0
+		end
+
+		local picked_up = true
+		local stored_pickup_ammo = nil
+		local add_amount = add_amount_override
+
+		if not add_amount then
+			local min_pickup = ammo_base._ammo_pickup[1]
+			local max_pickup = ammo_base._ammo_pickup[2]
+
+			if ammo_base._ammo_data and (ammo_base._ammo_data.ammo_pickup_min_mul or ammo_base._ammo_data.ammo_pickup_max_mul) then
+				min_pickup = min_pickup * (ammo_base._ammo_data.ammo_pickup_min_mul or 1)
+				max_pickup = max_pickup * (ammo_base._ammo_data.ammo_pickup_max_mul or 1)
+			end
+
+			add_amount = math.lerp(min_pickup * pickup_mul, max_pickup * pickup_mul, math.random())
+			picked_up = add_amount > 0
+			add_amount = add_amount * (ratio or 1)
+			stored_pickup_ammo = ammo_base:get_stored_pickup_ammo()
+
+			if stored_pickup_ammo then
+				add_amount = add_amount + stored_pickup_ammo
+
+				ammo_base:remove_pickup_ammo()
+			end
+		end
+
+		local rounded_amount = math.floor(add_amount)
+		local new_ammo = ammo_base:get_ammo_total() + rounded_amount
+		local max_allowed_ammo = ammo_base:get_ammo_max()
+
+		if not add_amount_override and new_ammo < max_allowed_ammo then
+			local leftover_ammo = add_amount - rounded_amount
+
+			if leftover_ammo > 0 then
+				ammo_base:store_pickup_ammo(leftover_ammo)
+			end
+		end
+
+		ammo_base:set_ammo_total(math.clamp(new_ammo, 0, max_allowed_ammo))
+
+		if stored_pickup_ammo then
+			add_amount = math.floor(add_amount - stored_pickup_ammo)
+		else
+			add_amount = rounded_amount
+		end
+
+		return picked_up, add_amount
+	end
+
+	local picked_up, add_amount = nil
+	picked_up, add_amount = _add_ammo(self, ratio, add_amount_override)
+
+	if self.AKIMBO then
+		local akimbo_rounding = self:get_ammo_total() % 2 + #self._fire_callbacks
+
+		if akimbo_rounding > 0 then
+			_add_ammo(self, nil, akimbo_rounding)
+		end
+	end
+
+	for _, gadget in ipairs(self:get_all_override_weapon_gadgets()) do
+		if gadget and gadget.ammo_base then
+			local p, a = _add_ammo(gadget:ammo_base(), ratio, add_amount_override)
+			picked_up = p or picked_up
+			add_amount = add_amount + a
+
+			if self.AKIMBO then
+				local akimbo_rounding = gadget:ammo_base():get_ammo_total() % 2 + #self._fire_callbacks
+
+				if akimbo_rounding > 0 then
+					_add_ammo(gadget:ammo_base(), nil, akimbo_rounding)
+				end
+			end
+		end
+	end
+
+	return picked_up, add_amount
+end
+
+function RaycastWeaponBase:add_ammo_ratio(ammo_ratio_increase)
+	local function _add_ammo(ammo_base, ammo_ratio_increase)
+		if ammo_base:get_ammo_max() <= ammo_base:get_ammo_total() then
+			return
+		end
+
+		local ammo_max = ammo_base:get_ammo_max()
+		local ammo_total = ammo_base:get_ammo_total()
+		ammo_total = math.ceil(ammo_total * ammo_ratio_increase)
+		ammo_total = math.clamp(ammo_total, 0, ammo_max)
+
+		ammo_base:set_ammo_total(ammo_total)
+	end
+
+	_add_ammo(self, ammo_ratio_increase)
+
+	for _, gadget in ipairs(self:get_all_override_weapon_gadgets()) do
+		if gadget and gadget.ammo_base then
+			_add_ammo(gadget:ammo_base(), ammo_ratio_increase)
+		end
+	end
+end
