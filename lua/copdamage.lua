@@ -794,7 +794,7 @@ function CopDamage:drop_pickup(extra, has_extra_dmg_double_drop)
 			name = extra and "ammo" or self._pickup,
 			position = mvec_1,
 			rotation = rotation,
-			has_extra_dmg_double_drop = extra and has_extra_dmg_double_drop
+			has_extra_dmg_double_drop = extra and has_extra_dmg_double_drop,
 		})
 	end
 end

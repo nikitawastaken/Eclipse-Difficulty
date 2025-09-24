@@ -1780,7 +1780,7 @@ function PlayerManager:spawn_extra_ammo(killed_unit, requesting_peer)
 				name = "ammo",
 				position = position,
 				rotation = rotation,
-				has_extra_dmg_double_drop = has_extra_dmg_double_drop
+				has_extra_dmg_double_drop = has_extra_dmg_double_drop,
 			})
 		end
 	end
