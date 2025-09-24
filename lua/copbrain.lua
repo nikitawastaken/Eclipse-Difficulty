@@ -38,6 +38,11 @@ CopBrain._next_cover_grenade_chk_t = 0
 CopBrain._next_logic_upd_t = 0
 CopBrain._logic_upd_interval = 1 / 30
 
+-- helper function
+function CopBrain:is_suppressed()
+	return self._logic_data.is_suppressed or false
+end
+
 -- Fix spamming of grenades by units that dodge with grenades (Cloaker)
 local _chk_use_cover_grenade_original = CopBrain._chk_use_cover_grenade
 function CopBrain:_chk_use_cover_grenade(...)

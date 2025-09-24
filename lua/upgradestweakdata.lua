@@ -862,18 +862,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steady_grip.multipro = "20%"
 
 	-- Oppressor
-	self.definitions.player_suppression_bonus_2 = {
-		name_id = "menu_player_suppression_bonus",
+	self.values.player.suppression_multiplier = { 1.2 }
+	self.values.player.enemy_panic_damage_multiplier = { 1.15 }
+	self.definitions.player_enemy_panic_damage_multiplier = {
+		name_id = "menu_player_enemy_panic_damage_multiplier",
 		category = "feature",
 		upgrade = {
-			value = 2,
-			upgrade = "suppression_multiplier",
+			value = 1,
+			upgrade = "enemy_panic_damage_multiplier",
 			category = "player",
 		},
 	}
-	self.values.player.suppression_multiplier = { 1.15, 1.45 }
-	self.skill_descs.heavy_impact.multibasic = "15%"
-	self.skill_descs.heavy_impact.multipro = "30%"
+	self.skill_descs.heavy_impact.multibasic = "20%"
+	self.skill_descs.heavy_impact.multipro = "15%"
 
 	-- Fire Control
 	self.definitions.minigun_spray_recoil_multiplier = {

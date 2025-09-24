@@ -296,7 +296,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Oppressor
 	self.skills.heavy_impact[1].upgrades = { "player_suppression_bonus" }
-	self.skills.heavy_impact[2].upgrades = { "player_suppression_bonus_2" }
+	self.skills.heavy_impact[2].upgrades = { "player_enemy_panic_damage_multiplier" }
 	self.skills.heavy_impact.name_id = "menu_oppressor"
 	self.skills.heavy_impact.desc_id = "menu_oppressor_desc"
 	self.skills.heavy_impact.icon_xy = { 7, 0 }

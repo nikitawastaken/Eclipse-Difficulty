@@ -47,11 +47,6 @@ function CopDamage:_sync_dismember(attacker_unit, ...)
 	end
 end
 
--- Additional suppression on hit
-Hooks:PreHook(CopDamage, "_on_damage_received", "sh__on_damage_received", function(self, damage_info)
-	self:build_suppression(4 * damage_info.damage / self._HEALTH_INIT, nil)
-end)
-
 -- Always remove contours on death
 Hooks:PostHook(CopDamage, "_on_death", "eclipse_on_death", function(self)
 	local contour = self._unit.contour and self._unit:contour()
@@ -506,6 +501,7 @@ function CopDamage:damage_bullet(attack_data)
 	if attack_data.attacker_unit == managers.player:player_unit() then
 		local enemy_close_damage_boost = managers.player:upgrade_value("player", "close_damage_multiplier", 0)
 		local enemy_hurt_damage_boost = managers.player:upgrade_value("player", "enemy_hurt_damage_multiplier", 1)
+		local enemy_panic_damage_boost = managers.player:upgrade_value("player", "enemy_panic_damage_multiplier", 1)
 
 		-- Close up damage boost upgrade
 		if enemy_close_damage_boost ~= 0 then
@@ -521,6 +517,11 @@ function CopDamage:damage_bullet(attack_data)
 		-- Hurt animation damage boost upgrade
 		if self._unit:anim_data().hurt then
 			damage = damage * enemy_hurt_damage_boost
+		end
+
+		-- Panic animation damage boost upgrade (doesn't work while a hurt anim is playing, otherwise it's too strong)
+		if self._unit:brain():is_suppressed() and not self._unit:anim_data().hurt then
+			damage = damage * enemy_panic_damage_boost
 		end
 
 		local damage_scale = nil
