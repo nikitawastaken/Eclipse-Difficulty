@@ -83,6 +83,9 @@ function GamePlayCentralManager:spawn_pickup(params)
 
 	local unit_name = tweak_data.pickups[params.name].unit
 
-	ammo_unit = safe_spawn_unit(unit_name, params.position, params.rotation)
-	ammo_unit:pickup():set_upgrades(params.has_extra_dmg_double_drop)
+	unit = safe_spawn_unit(unit_name, params.position, params.rotation)
+
+	if unit and unit:pickup() then
+		unit:pickup():set_upgrades(params.has_extra_dmg_double_drop)
+	end
 end
