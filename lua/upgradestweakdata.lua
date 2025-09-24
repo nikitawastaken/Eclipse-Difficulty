@@ -288,13 +288,13 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			headshots = 2,
 			ammo = 1,
-			time = 3
+			time = 3,
 		},
 		{
 			headshots = 2,
 			ammo = 1,
-			time = 5
-		}
+			time = 5,
+		},
 	}
 	self.values.player.head_shot_ammo_return_straight_to_mag = { true }
 	self.definitions.head_shot_ammo_return_straight_to_mag = {

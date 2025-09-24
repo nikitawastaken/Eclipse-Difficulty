@@ -274,7 +274,7 @@ end
 -- Ammo Efficiency rework (doesn't work on smgs, aced refunds straight into mag)
 PlayerAction.AmmoEfficiency = {
 	Priority = 1,
-	Function = function (player_manager, target_headshots, bullet_refund, target_time)
+	Function = function(player_manager, target_headshots, bullet_refund, target_time)
 		local co = coroutine.running()
 		local time = Application:time()
 		local headshots = 1
@@ -307,7 +307,7 @@ PlayerAction.AmmoEfficiency = {
 		end
 
 		player_manager:unregister_message(Message.OnHeadShot, co)
-	end
+	end,
 }
 
 function PlayerManager:on_ammo_increase_mag(ammo)
@@ -337,7 +337,6 @@ function PlayerManager:_on_enter_ammo_efficiency_event()
 		end
 	end
 end
-
 
 -- Kilmer does not work on SMGs anymore
 function PlayerManager:_on_activate_aggressive_reload_event(attack_data)
