@@ -598,27 +598,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.juggernaut.multibasic = "80%"
 	self.skill_descs.juggernaut.multibasic2 = "25%"
 
-	-- Thick Skin (OLD UPGRADE TO BE MOVED TO REVENANT)
-	self.definitions.player_health_multiplier_1 = {
-		name_id = "menu_player_health_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "health_multiplier",
-			category = "player",
-		},
-	}
-	self.definitions.player_health_multiplier_2 = {
-		name_id = "menu_player_health_multiplier",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "health_multiplier",
-			category = "player",
-		},
-	}
-	self.values.player.health_multiplier = { 1.1, 1.3 }
-
 	-- Scavenger
 	self.values.player.pick_up_ammo_multiplier[1] = 1.05
 	self.values.player.increased_pickup_area[1] = 1.2
@@ -1408,10 +1387,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.running_from_death.multipro = "10%"
 	self.skill_descs.running_from_death.multipro2 = "120"
 
-	-- Running from Death
-	self.skill_descs.up_you_go.multibasic = "100%"
-	self.skill_descs.up_you_go.multipro = "30%"
-	self.skill_descs.up_you_go.multipro2 = "10"
+	-- More Blood to Bleed
+	self.definitions.player_health_multiplier = {
+		name_id = "menu_player_health_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "health_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.health_multiplier = { 1.15 }
+	self.skill_descs.up_you_go.multibasic = "50%"
+	self.skill_descs.up_you_go.multipro = "15%"
 
 	-- Uppers
 	self.definitions.first_aid_kit_hot_regen_1 = {

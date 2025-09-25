@@ -468,12 +468,12 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.running_from_death.name_id = "menu_tea_time_beta"
 	self.skills.running_from_death.desc_id = "menu_tea_time_beta_desc"
 
-	-- Running from Death
-	self.skills.up_you_go[1].upgrades = { "player_temp_swap_weapon_faster_1", "player_temp_reload_weapon_faster_1" }
-	self.skills.up_you_go[2].upgrades = { "player_temp_increased_movement_speed_1" }
-	self.skills.up_you_go.name_id = "menu_running_from_death_beta"
-	self.skills.up_you_go.desc_id = "menu_running_from_death_beta_desc"
-	self.skills.up_you_go.icon_xy = { 11, 3 }
+	-- More Blood to Bleed
+	self.skills.up_you_go[1].upgrades = { "player_bleed_out_health_multiplier" }
+	self.skills.up_you_go[2].upgrades = { "player_health_multiplier" }
+	self.skills.up_you_go.icon_xy = { 8, 0 }
+	self.skills.up_you_go.name_id = "menu_more_blood_to_bleed"
+	self.skills.up_you_go.desc_id = "menu_more_blood_to_bleed_desc"
 
 	-- Uppers
 	self.skills.feign_death[1].upgrades = { "first_aid_kit_hot_regen_1" }
