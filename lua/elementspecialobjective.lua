@@ -40,16 +40,22 @@ ElementSpecialObjective._hiding_cloaker_actions = table.list_to_set({
 -- "animation_flagged" -> uses a common hiding SO action, likely a scripted hide SO
 -- "forced_not_flagged" -> flagged in mission scripting as NOT a hiding Cloaker SO, regardless of SO action
 -- "not_flagged" -> no other flags raised, likely not a hiding Cloaker SO
+-- "vanilla" -> hiding Cloaker task rework disabled
 ElementSpecialObjective.hiding_cloaker_SO_states = {
-	group_ai_flagged = 6,
-	double_flagged = 5,
-	mission_flagged = 4,
-	animation_flagged = 3,
-	forced_not_flagged = 2,
-	not_flagged = 1,
+	group_ai_flagged = 7,
+	double_flagged = 6,
+	mission_flagged = 5,
+	animation_flagged = 4,
+	forced_not_flagged = 3,
+	not_flagged = 2,
+	vanilla = 1,
 }
 
 function ElementSpecialObjective:get_hiding_cloaker_SO_state()
+	if not tweak_data.group_ai.use_reworked_cloaker_task then
+		return self.hiding_cloaker_SO_states.vanilla
+	end
+
 	local values = self._values
 	if values.SO_group_hiding_cloaker_SO and values.hiding_cloaker_SO then
 		if not self._double_flagged_warned then

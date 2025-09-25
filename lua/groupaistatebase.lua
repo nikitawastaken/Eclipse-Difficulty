@@ -590,7 +590,7 @@ function GroupAIStateBase:is_ai_trade_possible()
 end
 
 -- Overhaul hiding Cloaker task
--- Make it less prone to spamming Cloakers
+-- Make it less prone to spamming Cloakers (tweakdata delay is applied on spawn, not when junk groups are found)
 -- Add a tweakdata limit on the number of hiding Cloaker groups
 -- Reduced hide durations - see elementspecialobjectivegroup
 -- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting - NOT FULLY IMPLEMENTED YET
@@ -606,6 +606,14 @@ local _process_recurring_grp_SO_original = GroupAIStateBase._process_recurring_g
 function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 	if recurring_id ~= "recurring_cloaker_spawn" then
 		return _process_recurring_grp_SO_original(self, recurring_id, data, ...)
+	end
+
+	if not tweak_data.group_ai.use_reworked_cloaker_task then
+		if _process_recurring_grp_SO_original(self, recurring_id, data, ...) then
+			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
+			managers.hud:post_event("cloaker_spawn")
+			return true
+		end
 	end
 
 	local hiding_cloaker_tweak = self._tweak_data.cloaker
@@ -807,7 +815,7 @@ function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, 
 	-- data.delay_t = math.max(data.delay_t, self._t + math.lerp(data.interval[1], data.interval[2], math.random()))
 end
 
--- _spawn_in_group() still returns a new group even if the Cloaker limit is reached
+-- _spawn_in_group() still returns a new group even if the group cannot actually spawn
 function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 	if self._t < data.delay_t then
 		return
