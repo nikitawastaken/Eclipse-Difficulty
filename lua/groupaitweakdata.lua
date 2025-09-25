@@ -3377,7 +3377,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	-- New data for the reworked Cloaker task
-	self.use_reworked_cloaker_task = true
+	self.use_reworked_cloaker_task = false
 	self.besiege.cloaker.interval = {
 		diff_lerp(60, 20),
 		diff_lerp(120, 40),
