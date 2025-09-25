@@ -405,7 +405,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.shotgun_cqb.multipro2 = "5m"
 
 	-- Heavy Impact
-	self.values.weapon.knock_down[1] = 0.5
+	self.values.weapon.knock_down[1] = 0.25
 	self.values.player.enemy_hurt_damage_multiplier = { 1.15 }
 	self.definitions.player_enemy_hurt_damage_multiplier = {
 		name_id = "menu_player_enemy_hurt_damage_multiplier",
@@ -426,7 +426,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.skill_descs.shotgun_impact.multibasic = "50%"
+	self.skill_descs.shotgun_impact.multibasic = "25%"
 	self.skill_descs.shotgun_impact.multipro = "15%"
 
 	-- Fast Hands
