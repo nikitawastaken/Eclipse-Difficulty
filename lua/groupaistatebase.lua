@@ -614,6 +614,7 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 			managers.hud:post_event("cloaker_spawn")
 			return true
 		end
+		return
 	end
 
 	local hiding_cloaker_tweak = self._tweak_data.cloaker
