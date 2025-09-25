@@ -1,9 +1,9 @@
 {
-	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact.\nOne shell contains 6 pellets.",
-	"bm_wp_upg_a_explosive_desc": "One deadly high explosive slug.\nThis ammo type is harder to find.\nIncreased precision.",
+	"bm_wp_upg_a_custom_desc": "Bigger pellets with more impact.\nOne shell contains 6 pellets.\nThis ammo type is harder to find.",
+	"bm_wp_upg_a_explosive_desc": "One deadly high explosive slug.\nIncreased precision.\nThis ammo type is harder to find.",
 	"bm_wp_upg_a_piercing_desc": "Pointed steel projectiles.\nOne shell contains 12 flechettes.\nArmor piercing.",
 	"bm_wp_upg_a_slug_desc": "One heavy lead slug.\nHeavily increased precision.\nArmor, shield, enemy, wall piercing.",
-	"bm_wp_upg_a_dragons_breath_desc": "Special type of Incendiary-effect rounds.\nOne shell contains 12 magnesium pellets.\nThis ammo type is harder to find.\nThe stronger the shotgun type, the more effective the burn and the range are.",
+	"bm_wp_upg_a_dragons_breath_desc": "Special type of Incendiary-effect rounds.\nOne shell contains 12 magnesium pellets.\nThe stronger the shotgun type, the more effective the burn and the range are.\nThis ammo type is harder to find.",
 	"bm_wp_upg_mk2_rare_desc": "This fuel is easier to find.",
 	"bm_wp_upg_mk2_welldone_desc": "This fuel is harder to find.",
 	"bm_w_dmr_penetration_desc": "PENETRATES BODY ARMOR AND ENEMIES.",
@@ -20,7 +20,7 @@
 	"bm_wp_ak_m_drum": "Drum Magazine",
 	"bm_wp_mp5_m_drum": "Drum Magazine",
 	"bm_wp_saiga_m_20rnd": "Drum Magazine",
-	"bm_wp_shepheard_m_extended": "Short Magazine",	
+	"bm_wp_shepheard_m_extended": "Short Magazine",
 	"bm_wp_hcar_barrel_dmr": "Long Barrel",
 	"bm_wp_upg_charm_eclipse": "Eclipse",
 
