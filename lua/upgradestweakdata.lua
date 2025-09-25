@@ -341,7 +341,9 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			time_to_charge = 2,
 			radius = 500,
+			times = 4,
 			damage_factor = 1,
+			chain_multiplier = 0.67,
 		},
 	}
 	self.definitions.snp_charged_shot = {
@@ -358,7 +360,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.single_shot_ammo_return.multibasic2 = "5"
 	self.skill_descs.single_shot_ammo_return.multipro = "2"
 	self.skill_descs.single_shot_ammo_return.multipro2 = "100%"
-	self.skill_descs.single_shot_ammo_return.multipro3 = "5m"
+	self.skill_descs.single_shot_ammo_return.multipro3 = "4m"
+	self.skill_descs.single_shot_ammo_return.multipro4 = "4"
+	self.skill_descs.single_shot_ammo_return.multipro5 = "33%"
 
 	-- Enforcer --
 

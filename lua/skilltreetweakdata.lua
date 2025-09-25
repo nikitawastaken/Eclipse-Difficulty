@@ -110,7 +110,9 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Headshot Fury
 	self.skills.single_shot_ammo_return[1].upgrades = { "snp_consecutive_headshots" }
 	self.skills.single_shot_ammo_return[2].upgrades = { "snp_charged_shot" }
-	self.skills.single_shot_ammo_return.icon_xy = { 6, 11 }
+	self.skills.single_shot_ammo_return.icon_xy = { 8, 0 }
+	self.skills.single_shot_ammo_return.name_id = "menu_headshot_fury"
+	self.skills.single_shot_ammo_return.desc_id = "menu_headshot_fury_desc"
 
 	-- ENFORCER --
 
