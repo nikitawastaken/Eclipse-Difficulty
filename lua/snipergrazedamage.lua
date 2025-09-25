@@ -35,7 +35,7 @@ function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 			local key = hit.unit:key()
 			hit_enemies[key] = {
 				position = hit.position,
-				damage = attack_data.damage * multiplier
+				damage = attack_data.damage * multiplier,
 			}
 			ignored_enemies[key] = true
 		end
@@ -44,7 +44,6 @@ function SniperGrazeDamage:on_weapon_fired(weapon_unit, result)
 	for _, hit in pairs(hit_enemies) do
 		self:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit, upgrade_value.times)
 	end
-
 end
 
 function SniperGrazeDamage:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit, times)
@@ -52,7 +51,7 @@ function SniperGrazeDamage:find_closest_hit(hit, ignored_enemies, upgrade_value,
 		return
 	end
 
-	DelayedCalls:Add("grazehit" .. tostring(hit), 0.05, function ()
+	DelayedCalls:Add("grazehit" .. tostring(hit), 0.05, function()
 		local hit_units = World:find_units_quick("sphere", hit.position, upgrade_value.radius, enemy_mask)
 		local closest
 		local closest_d_sq = math.huge
@@ -85,7 +84,7 @@ function SniperGrazeDamage:find_closest_hit(hit, ignored_enemies, upgrade_value,
 		local trail = World:effect_manager():spawn({
 			effect = TRAIL_EFFECT,
 			position = hit.position,
-			normal = hit_pos - hit.position
+			normal = hit_pos - hit.position,
 		})
 		mvector3.set_y(trail_length, math.sqrt(closest_d_sq))
 		World:effect_manager():set_simulator_var_vector2(trail, idstr_trail, idstr_simulator_length, idstr_size, trail_length)
@@ -96,12 +95,12 @@ function SniperGrazeDamage:find_closest_hit(hit, ignored_enemies, upgrade_value,
 			attacker_unit = player_unit,
 			weapon_unit = weapon_unit,
 			pos = hit_pos,
-			attack_dir = hit_pos - hit.position
+			attack_dir = hit_pos - hit.position,
 		})
 
 		hit = {
 			position = hit_pos,
-			damage = hit.damage * upgrade_value.chain_multiplier
+			damage = hit.damage * upgrade_value.chain_multiplier,
 		}
 
 		self:find_closest_hit(hit, ignored_enemies, upgrade_value, enemy_mask, geometry_mask, player_unit, weapon_unit, times - 1)
