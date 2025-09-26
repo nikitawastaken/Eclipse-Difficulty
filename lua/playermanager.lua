@@ -1831,6 +1831,7 @@ end
 
 function PlayerManager:_on_spawn_extra_ammo_event(killed_unit)
 	local has_extra_dmg_double_drop = self:has_category_upgrade("player", "double_drop_extra_damage")
+
 	if Network:is_client() then
 		if killed_unit:id() ~= -1 then
 			managers.network:session():send_to_host("sync_spawn_extra_ammo", killed_unit, has_extra_dmg_double_drop)
