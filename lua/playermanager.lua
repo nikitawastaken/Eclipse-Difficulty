@@ -302,10 +302,10 @@ PlayerAction.AmmoEfficiency = {
 			headshots = headshots + 1
 
 			if headshots == target_headshots then
+				player_manager:on_ammo_increase(bullet_refund)
+
 				if player_manager:has_category_upgrade("player", "head_shot_ammo_return_straight_to_mag") then
 					player_manager:on_ammo_increase_mag(bullet_refund)
-				else
-					player_manager:on_ammo_increase(bullet_refund)
 				end
 
 				time = target_time
