@@ -39,7 +39,7 @@ function HUDAssaultCorner:_get_assault_strings()
 				primary_assault_text,
 				"hud_assault_end_line",
 				primary_assault_text,
-				"hud_assault_end_line"
+				"hud_assault_end_line",
 			}
 		end
 	end
@@ -56,7 +56,7 @@ function HUDAssaultCorner:_get_assault_strings()
 				"hud_assault_vip",
 				"hud_assault_padlock",
 				ids_risk,
-				"hud_assault_padlock"
+				"hud_assault_padlock",
 			}
 		else
 			return {
@@ -65,7 +65,7 @@ function HUDAssaultCorner:_get_assault_strings()
 				"hud_assault_vip",
 				"hud_assault_padlock",
 				"hud_assault_vip",
-				"hud_assault_padlock"
+				"hud_assault_padlock",
 			}
 		end
 	end
