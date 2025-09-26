@@ -1829,10 +1829,21 @@ function PlayerManager:check_equipment_placement_valid(player, equipment)
 	return player:equipment():valid_placement(tweak_data.equipments[equipment_data.equipment]) and true or false
 end
 
--- Extra damage on ammobox pickup upgrade
-function PlayerManager:spawn_extra_ammo(killed_unit, requesting_peer)
+function PlayerManager:_on_spawn_extra_ammo_event(killed_unit)
 	local has_extra_dmg_double_drop = self:has_category_upgrade("player", "double_drop_extra_damage")
+	if Network:is_client() then
+		if killed_unit:id() ~= -1 then
+			managers.network:session():send_to_host("sync_spawn_extra_ammo", killed_unit, has_extra_dmg_double_drop)
+		else
+			Application:error("[PlayerManager:_on_spawn_extra_ammo_event] Killed unit was already detached? Can't sync extra drop request to the host.")
+		end
+	else
+		self:spawn_extra_ammo(killed_unit, nil, has_extra_dmg_double_drop)
+	end
+end
 
+-- Extra damage on ammobox pickup upgrade
+function PlayerManager:spawn_extra_ammo(killed_unit, requesting_peer, has_extra_dmg_double_drop)
 	if alive(killed_unit) and killed_unit:character_damage() and killed_unit:character_damage().drop_pickup then
 		killed_unit:character_damage():drop_pickup(true, has_extra_dmg_double_drop)
 	elseif requesting_peer then

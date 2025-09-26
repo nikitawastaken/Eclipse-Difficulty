@@ -75,12 +75,12 @@
 		<search>
 			<network/>
 			<rpc/>
-			<message name="sync_drill_upgrades"/>
+			<message name="sync_spawn_extra_ammo"/>
 			<param type="unit"/>
 		</search>
 		<target mode="replace">
 			<param type="unit"/> <!-- look for the unit node before inserting -->
-			<param type="bool"/> <!-- electrocuting drill? -->
+			<param type="bool"/> <!-- has extra dmg upgrade? -->
 		</target>
 	</tweak>
 </tweaks>

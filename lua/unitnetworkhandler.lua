@@ -99,3 +99,30 @@ function UnitNetworkHandler:sync_drill_upgrades(unit, electrocuting_drill, autor
 		base_ext:set_skill_upgrades(Drill.create_upgrades(autorepair_level_1, autorepair_level_2, drill_speed_level, silent, reduced_alert, electrocuting_drill))
 	end
 end
+
+-- Additional has_extra_dmg_double_drop argument
+function UnitNetworkHandler:sync_spawn_extra_ammo(unit, has_extra_dmg_double_drop, sender_rpc)
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) then
+		return
+	end
+
+	local peer = self._verify_sender(sender_rpc)
+
+	if not peer then
+		return
+	end
+
+	if alive(unit) then
+		local char_dmg_ext = unit:character_damage()
+
+		if not char_dmg_ext or not char_dmg_ext.drop_pickup then
+			return
+		end
+	elseif not unit then
+		return
+	else
+		unit = nil
+	end
+
+	managers.player:spawn_extra_ammo(unit, peer, has_extra_dmg_double_drop)
+end
