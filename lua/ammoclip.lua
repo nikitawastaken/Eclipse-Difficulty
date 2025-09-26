@@ -20,6 +20,7 @@ function AmmoClip:set_upgrades(extra_dmg_double_drop)
 		self._extra_damage_pickup = extra_dmg_double_drop or false
 
 		if extra_dmg_double_drop then
+			Eclipse:log_chat("self._extra_damage_pickup: " .. self._extra_damage_pickup)
 			self:reload_contour()
 		end
 	end
@@ -77,6 +78,7 @@ function AmmoClip:_pickup(unit)
 
 			if self._extra_damage_pickup and player_manager:has_category_upgrade("temporary", "double_drop_damage_multiplier") then
 				player_manager:activate_temporary_upgrade("temporary", "double_drop_damage_multiplier")
+				Eclipse:log_chat("activated extra ammobox damage buff")
 			end
 
 			if has_cable_tie_pickup then
