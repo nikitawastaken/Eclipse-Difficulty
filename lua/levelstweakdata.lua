@@ -137,7 +137,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.escape_park.group_ai_settings.difficulty_scaling = {
 		diff_init = 0.5,
 		assault_delay = 0,
-		assault_add = 0.5,
+		assault_add = 0.25,
 	}
 
 	self.escape_cafe_day.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
@@ -258,8 +258,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.mus.group_ai_settings = {
+		assault_force_mul = 0.85,
 		difficulty_scaling = {
-			assault_delay = 90,
+			assault_delay = 75,
 		},
 	}
 
@@ -380,7 +381,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 		special_limit_add = {
 			cloaker = 1,
-			tank = 1,
 		},
 	}
 	self.man.group_ai_preset = "heavy_response"
@@ -578,7 +578,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-
+	self.bph.group_ai_settings.difficulty_scaling = { assault_add = 0.3 }
+	
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 0.7,
@@ -715,6 +716,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_4/ene_la_cop_4"),
 			},
 		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_2/ene_la_cop_2"),
+				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
+			},
+		},
 		cs_cop_3_4 = {
 			america = {
 				Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_3/ene_la_cop_3"),
@@ -770,6 +777,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_04/ene_male_chas_police_04"),
 			},
 		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_02/ene_male_chas_police_02"),
+				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"),
+			},
+		},
 		cs_cop_3_4 = {
 			america = {
 				Idstring("units/pd2_dlc_chas/characters/ene_male_chas_police_03/ene_male_chas_police_03"),
@@ -822,6 +835,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_4/ene_coast_guard_4"),
 			},
 		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_2/ene_coast_guard_2"),
+				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
+			},
+		},
 		cs_cop_3_4 = {
 			america = {
 				Idstring("units/pd2_dlc_chca/characters/ene_coast_guard_3/ene_coast_guard_3"),
@@ -837,6 +856,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
+
+	self.deep.ai_unit_group_overrides = deep_clone(self.chca.ai_unit_group_overrides)
 
 	-- Texas Rangers
 	self.ranc.ai_unit_group_overrides = {
@@ -872,6 +893,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04/ene_male_ranc_ranger_04"),
 			},
 		},
+		cs_cop_2_3 = {
+			america = {
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02/ene_male_ranc_ranger_02"),
+				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"),
+			},
+		},
 		cs_cop_3_4 = {
 			america = {
 				Idstring("units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03/ene_male_ranc_ranger_03"),
@@ -888,9 +915,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.trai.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
-
-	self.deep.ai_unit_group_overrides = deep_clone(self.chca.ai_unit_group_overrides)
-
+	self.corp.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
+	
 	-- load the missing boat driver lines to Watchdogs day 2
 	self.watchdogs_2.package = {
 		"packages/narr_watchdogs2",

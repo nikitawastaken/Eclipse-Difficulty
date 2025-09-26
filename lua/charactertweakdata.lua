@@ -539,7 +539,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = (64 + math.floor(diff_i / 2) * 16) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	presets.gang_member_damage.HEALTH_INIT = (72 + math.floor(diff_i / 2) * 24) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
@@ -1020,6 +1020,17 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_female.speech_prefix_p2 = "n"
 	self.fbi_female.speech_prefix_count = 1
 
+	self.fbi_office_mex = deep_clone(self.security_mex)
+	self.fbi_office_mex.HEALTH_INIT = 6
+	self.fbi_office_mex.dodge = self.presets.dodge.athletic
+	self.fbi_office_mex.suppression = self.presets.suppression.easy
+	self.fbi_office_mex.crouch_move = true
+	self.fbi_office_mex.deathguard = true
+	self.fbi_office_mex.rescue_hostages = true
+	self.fbi_office_mex.steal_loot = true
+	self.fbi_office_mex.melee_weapon = "taser"
+	table.insert(self._enemy_list, "fbi_office_mex")
+	
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
 	self.gangster.speech_prefix_count = 2
@@ -1643,6 +1654,7 @@ local ecm_vuln_none = 0
 CharacterTweakData.access_health_hs_mul_blacklist = {
 	security_fat = true,
 	cop_fat = true,
+	fbi_office_mex = true,
 }
 
 CharacterTweakData.access_health = {
@@ -1663,6 +1675,7 @@ CharacterTweakData.tweak_table_weapon = {
 	bolivian = "gangster",
 	bolivian_indoors = "gangster",
 	hrt = "fbi",
+	fbi_office_mex = "fbi",
 	swat = "swat",
 	heavy_swat = "swat",
 	fbi_swat = "fbi_swat",
@@ -1716,6 +1729,7 @@ CharacterTweakData.access_weapon = {
 CharacterTweakData.tweak_table_move_speed = {
 	cobra = "fast",
 	soldier = "fast",
+	fbi_office_mex = "fast",
 	escort_criminal = "civ_fast",
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
@@ -1774,11 +1788,6 @@ CharacterTweakData.access_ecm_vulnerability = {
 	tank = ecm_vuln_none,
 }
 
-CharacterTweakData.access_surrender_break = {
-	security = { 20, 30 },
-	swat = { 5, 10 },
-}
-
 CharacterTweakData.access_surrender_blacklist = {
 	bolivian = true,
 	bolivian_indoors = true,
@@ -1833,7 +1842,7 @@ function CharacterTweakData:_set_presets()
 		char_preset.ecm_vulnerability = char_ecm_vuln
 
 		-- Set surrender break time based on access
-		char_preset.surrender_break_time = self.access_surrender_break[char_access] or { 10, 15 }
+		char_preset.surrender_break_time = { 10, 15 }
 
 		-- Set surrender preset based on access
 		local surrender_preset = not is_boss and self.access_surrender[char_access] or nil

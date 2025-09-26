@@ -1,17 +1,12 @@
 local preferred = Eclipse.preferred
-local staircase_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
 }
-local upper_spawn = {
+local standard_init_spawn = {
 	values = {
 		interval = 20,
-	},
-}
-local upper_init_spawn = {
-	values = {
-		interval = 25,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -46,17 +41,17 @@ return {
 		},
 	},
 	-- Spawn group intervals
-	[100821] = staircase_spawn,
-	[100875] = staircase_spawn,
-	[102431] = staircase_spawn,
-	[100007] = upper_spawn,
-	[100128] = upper_spawn,
-	[100130] = upper_spawn,
-	[100663] = upper_spawn,
-	[100669] = upper_spawn,
-	[100675] = upper_spawn,
-	[100741] = upper_init_spawn,
-	[100131] = upper_init_spawn,
+	[100821] = standard_spawn,
+	[100875] = standard_spawn,
+	[102431] = standard_spawn,
+	[100007] = standard_spawn,
+	[100128] = standard_spawn,
+	[100130] = standard_spawn,
+	[100663] = standard_spawn,
+	[100669] = standard_spawn,
+	[100675] = standard_spawn,
+	[100741] = standard_init_spawn,
+	[100131] = standard_init_spawn,
 	[101365] = tower_spawn,
 	[103529] = tower_spawn,
 	[100888] = flank_spawn,

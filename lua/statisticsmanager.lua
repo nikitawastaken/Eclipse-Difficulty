@@ -48,6 +48,20 @@ function StatisticsManager:init()
 		explosion = 0,
 		tied = 0,
 	}
+	self._defaults.killed.fbi_office = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
+	self._defaults.killed.fbi_office_mex = {
+		count = 0,
+		head_shots = 0,
+		melee = 0,
+		explosion = 0,
+		tied = 0,
+	}
 	self._defaults.killed.cobra = {
 		count = 0,
 		head_shots = 0,
