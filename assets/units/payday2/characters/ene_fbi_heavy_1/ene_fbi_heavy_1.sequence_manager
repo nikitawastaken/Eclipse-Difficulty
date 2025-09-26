@@ -113,8 +113,6 @@
 			<object 			enabled="true" name="'g_gear_fbi_heavy_a'" />
 			<object 			enabled="true" name="'g_gear_fbi_heavy_a_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_lod5'" />
-			<object 			enabled="true" name="'g_helmet_lod6'" />
 			<object 			enabled="true" name="'g_helmet_lod7'" />
 			<object 			enabled="true" name="'g_helmet_lod8'" />
 			<object 			enabled="true" name="'g_helmet_lod9'" />
