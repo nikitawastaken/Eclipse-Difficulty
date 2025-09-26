@@ -7,7 +7,7 @@
 	<bodies>
 		<body name="body" enabled="true" template="character" friction="0.6" collision_class="ragdoll">
 			<object name="Spine1"/>
-			<object name="c_capsule_body_new" collision_type="capsule"/>
+			<object name="c_capsule_body" collision_type="capsule"/>
 		</body>
 		<body name="head" enabled="true" template="character" friction="0.6" collision_class="ragdoll">
 			<object name="Head"/>
@@ -15,7 +15,7 @@
 		</body>
 		<body name="mover_blocker" enabled="true" template="mover_blocker" keyframed="true" collision_class="ragdoll">
 			<object name="root_point"/>
-			<object name="c_capsule_mover_blocker_new" collision_type="capsule"/>
+			<object name="c_capsule_mover_blocker" collision_type="capsule"/>
 		</body>
 
 <!-- RAGDOLL -->
