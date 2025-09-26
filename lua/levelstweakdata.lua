@@ -579,7 +579,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 	self.bph.group_ai_settings.difficulty_scaling = { assault_add = 0.3 }
-	
+
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 0.7,
@@ -916,7 +916,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.trai.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
 	self.corp.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
-	
+
 	-- load the missing boat driver lines to Watchdogs day 2
 	self.watchdogs_2.package = {
 		"packages/narr_watchdogs2",

@@ -1030,7 +1030,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.fbi_office_mex.steal_loot = true
 	self.fbi_office_mex.melee_weapon = "taser"
 	table.insert(self._enemy_list, "fbi_office_mex")
-	
+
 	self.gangster.speech_prefix_p1 = "lt"
 	self.gangster.speech_prefix_p2 = nil
 	self.gangster.speech_prefix_count = 2
