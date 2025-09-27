@@ -20,7 +20,7 @@ function AmmoClip:set_upgrades(extra_dmg_double_drop)
 		self._extra_damage_pickup = extra_dmg_double_drop or false
 
 		if extra_dmg_double_drop then
-			Eclipse:log_chat("self._extra_damage_pickup: " .. self._extra_damage_pickup)
+			Eclipse:log_chat("self._extra_damage_pickup: " .. tostring(self._extra_damage_pickup))
 			self:reload_contour()
 		end
 	end
