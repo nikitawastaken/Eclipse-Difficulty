@@ -13,6 +13,6 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.grenade_crate.timer = 3.5
 	self.grenade_crate.upgrade_timer_multiplier = {
 		upgrade = "deploy_interact_faster",
-		category = "player"
+		category = "player",
 	}
 end)
