@@ -292,14 +292,14 @@ PlayerAction.AmmoEfficiency = {
 
 				local result_hit = hit.damage_result
 				local attack_data = result_hit and result_hit.attack_data
-				if not (attack_data and attack_data.headshot and not is_turret and not is_ally) then
-					time = target_time
+				if attack_data and attack_data.headshot and not is_turret and not is_ally then
+					headshots = headshots + 1
 
-					return
+					break
 				end
 			end
 
-			headshots = headshots + 1
+			Eclipse:log_chat(tostring(headshots))
 
 			if headshots == target_headshots then
 				player_manager:on_ammo_increase(bullet_refund)
