@@ -195,8 +195,8 @@ function TradeManager:update(t, dt)
 	end
 
 	-- If the assault is in progress, cancel trades
-	local is_build = assault_phase and assault_phase == "build"
-	if is_build and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
+	local wrong_phase = assault_phase and assault_phase ~= "control" and assault_phase ~= "anticipation"
+	if wrong_phase and self._hostage_to_trade and alive(self._hostage_to_trade.unit) then
 		self._hostage_to_trade.unit:brain():cancel_trade()
 
 		self._hostage_to_trade = nil
