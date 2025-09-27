@@ -163,7 +163,7 @@ function NewRaycastWeaponBase:concealment_to_handling()
 
 	local concealment_lerp = total_concealment / #concealment_stat_table
 
-	multiplier = multiplier * math.lerp(0.25, 1.5, concealment_lerp)
+	multiplier = multiplier * math.lerp(0.5, 1.5, concealment_lerp)
 
 	return multiplier
 end

@@ -71,7 +71,7 @@ local function create_electric_grenade(base_grenade)
 	local electric_grenade = deep_clone(base_grenade)
 	local damage = base_grenade.damage
 	electric_grenade.damage = math.round(damage / 2)
-	electric_grenade.curve_pow = 3
+	electric_grenade.curve_pow = base_grenade.curve_pow * 3
 	electric_grenade.range = 4 * (base_grenade.range / 3)
 	electric_grenade.projectile_trail = true
 	electric_grenade.sound_event = "gl_electric_explode"
