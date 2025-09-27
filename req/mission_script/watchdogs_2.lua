@@ -182,12 +182,12 @@ return {
 		reinforce = {
 			{
 				name = "diff50_reinforce1",
-				force = 3,
+				force = 2,
 				position = Vector3(-1500, 800, 0),
 			},
 			{
 				name = "diff50_reinforce2",
-				force = 3,
+				force = 2,
 				position = Vector3(-800, 3200, 0),
 			},
 		},
@@ -197,12 +197,12 @@ return {
 		reinforce = {
 			{
 				name = "diff75_reinforce1",
-				force = 3,
+				force = 2,
 				position = Vector3(400, 1200, 0),
 			},
 			{
 				name = "diff75_reinforce2",
-				force = 3,
+				force = 2,
 				position = Vector3(900, -800, 0),
 			},
 		},
