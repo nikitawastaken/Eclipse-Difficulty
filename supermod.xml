@@ -91,10 +91,10 @@
 			</group>
 
 			<group :hook_id="network/">
+				<post :hook_id="base/handlers/connectionnetworkhandler"/>
 				<post :hook_id="base/networkmanager"/>
 				<post :hook_id="base/networkpeer"/>
 				<post :hook_id="handlers/unitnetworkhandler"/>
-				<post :hook_id="handlers/connectionnetworkhandler"/>
 			</group>
 
 			<post :hook_id="setups/gamesetup"/>

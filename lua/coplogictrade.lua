@@ -22,14 +22,12 @@ function CopLogicTrade.enter(data, new_logic_name, enter_params)
 	})
 end
 
-function CopLogicTrade.on_trade(data, pos, rotation, free_criminal, is_custody_trade)
+function CopLogicTrade.on_trade(data, pos, rotation, is_custody_trade)
 	if not data.internal_data._trade_enabled then
 		return
 	end
 
-	if free_criminal then
-		managers.trade:on_hostage_traded(pos, rotation, is_custody_trade)
-	end
+	managers.trade:on_hostage_traded(pos, rotation, is_custody_trade)
 
 	data.internal_data._trade_enabled = false
 

@@ -67,7 +67,7 @@ function UnitNetworkHandler:unit_traded(unit, position, rotation, is_custody_tra
 		return
 	end
 
-	unit:brain():on_trade(position, rotation, true, is_custody_trade)
+	unit:brain():on_trade(position, rotation, is_custody_trade)
 end
 
 function UnitNetworkHandler:hostage_trade(unit, enable, trade_success, skip_hint, is_custody_trade)

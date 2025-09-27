@@ -329,7 +329,7 @@ function TradeManager:begin_hostage_trade(position, rotation, hostage, is_instan
 		if is_instant_trade then
 			self._auto_assault_ai_trade_t = nil
 
-			hostage.unit:brain():on_trade(position, rotation, not skip_free_criminal, self._is_custody_trade)
+			hostage.unit:brain():on_trade(position, rotation, self._is_custody_trade)
 
 			self._trade_complete = false
 		end
@@ -363,6 +363,7 @@ function TradeManager:on_hostage_traded(pos, rotation, is_custody_trade)
 		self._trade_in_progress = true
 		self._hostage_trade_clbk = nil
 		self:trade_restore_resources()
+		managers.network:session():send_to_peers("sync_trade_restore_resources")
 	end
 end
 
