@@ -11,4 +11,8 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.hostage_trade_resources.text_id = "debug_interact_trade_resources"
 
 	self.grenade_crate.timer = 3.5
+	self.grenade_crate.upgrade_timer_multiplier = {
+		upgrade = "deploy_interact_faster",
+		category = "player"
+	}
 end)
