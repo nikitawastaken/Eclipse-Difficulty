@@ -822,4 +822,3 @@ function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding
 
 	self:_assign_group_to_retire(group)
 end
-
