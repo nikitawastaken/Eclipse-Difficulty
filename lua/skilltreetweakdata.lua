@@ -19,7 +19,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Aftercare
 	self.skills.combat_medic[1].upgrades = { "player_revive_damage_reduction_level_1", "player_revive_health_boost" }
 	self.skills.combat_medic[2].upgrades = { "player_action_revive_health_regen" }
-	self.skills.combat_medic.icon_xy = { 5, 2 }
+	self.skills.combat_medic.icon_xy = { 7, 12 }
 
 	-- Bandages
 	self.skills.fast_learner[1].upgrades = { "player_revive_health_boost_2" }
@@ -110,7 +110,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Headshot Fury
 	self.skills.single_shot_ammo_return[1].upgrades = { "snp_consecutive_headshots" }
 	self.skills.single_shot_ammo_return[2].upgrades = { "snp_charged_shot" }
-	self.skills.single_shot_ammo_return.icon_xy = { 8, 0 }
+	self.skills.single_shot_ammo_return.icon_xy = { 11, 9 }
 	self.skills.single_shot_ammo_return.name_id = "menu_headshot_fury"
 	self.skills.single_shot_ammo_return.desc_id = "menu_headshot_fury_desc"
 
@@ -126,7 +126,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Heavy Impact
 	self.skills.shotgun_impact[1].upgrades = { "weapon_knock_down_1" }
 	self.skills.shotgun_impact[2].upgrades = { "player_enemy_hurt_damage_multiplier", "shotgun_enemy_push" }
-	self.skills.shotgun_impact.icon_xy = { 8, 0 }
+	self.skills.shotgun_impact.icon_xy = { 5, 0 }
 	self.skills.shotgun_impact.name_id = "menu_heavy_impact"
 	self.skills.shotgun_impact.desc_id = "menu_heavy_impact_desc"
 
@@ -149,7 +149,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.overkill[2].upgrades = { "player_overkill_damage_multiplier", "player_overkill_all_weapons" }
 	self.skills.overkill.name_id = "menu_overkill"
 	self.skills.overkill.desc_id = "menu_overkill_desc"
-	self.skills.overkill.icon_xy = { 8, 0 }
+	self.skills.overkill.icon_xy = { 3, 2 }
 
 	-- Impact Padding
 	self.skills.oppressor[1].upgrades = { "player_stationary_damage_multiplier" }
@@ -220,7 +220,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.carbon_blade[2].upgrades = { "player_double_drop_extra_damage" }
 	self.skills.carbon_blade.name_id = "menu_big_game_hunters"
 	self.skills.carbon_blade.desc_id = "menu_big_game_hunters_desc"
-	self.skills.carbon_blade.icon_xy = { 8, 0 }
+	self.skills.carbon_blade.icon_xy = { 10, 2 }
 
 	-- Bulletstorm
 	self.skills.bandoliers[1].upgrades = { "temporary_no_ammo_cost_1" }
@@ -471,7 +471,7 @@ function SkillTreeTweakData:init(tweak_data)
 	-- More Blood to Bleed
 	self.skills.up_you_go[1].upgrades = { "player_bleed_out_health_multiplier" }
 	self.skills.up_you_go[2].upgrades = { "player_health_multiplier" }
-	self.skills.up_you_go.icon_xy = { 8, 0 }
+	self.skills.up_you_go.icon_xy = { 1, 1 }
 	self.skills.up_you_go.name_id = "menu_more_blood_to_bleed"
 	self.skills.up_you_go.desc_id = "menu_more_blood_to_bleed_desc"
 
