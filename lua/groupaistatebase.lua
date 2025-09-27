@@ -119,7 +119,6 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
-	self._hiding_cloakers_set_to_assault = {}
 
 	self._mga_hostage_kills = self._mga_hostage_kills or 0
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
@@ -542,7 +541,6 @@ Hooks:PostHook(GroupAIStateBase, "update", "eclipse_update", function(self, t, d
 			sentry:base():_update_omniscience(t, dt)
 		end
 	end
-	self:_update_hiding_cloakers_set_to_assault()
 end)
 
 -- Disable drama zones to prevent skipping of anticipation, build and regroup phases
@@ -633,45 +631,6 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 	end
 
 	return self:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
-end
-
--- Hiding Cloakers switched to assault retire after the assault ends
--- TODO: set to re-hide instead once implemented
-function GroupAIStateBase:_update_hiding_cloakers_set_to_assault()
-	local hiding_cloakers_set_to_assault = self._hiding_cloakers_set_to_assault
-	if not hiding_cloakers_set_to_assault then
-		return
-	end
-
-	if not self:_should_retire_hiding_cloakers_set_to_assault() then
-		return
-	end
-
-	for group_id, group in pairs(hiding_cloakers_set_to_assault) do
-		self:_retire_hiding_cloaker(group_id, group)
-	end
-end
-
--- Assault task is still active during regroup, when other assault groups retire
-function GroupAIStateBase:_should_retire_hiding_cloakers_set_to_assault()
-	local task_data = self._task_data
-	if not task_data then
-		return
-	end
-
-	local regroup_active = task_data.regroup and task_data.regroup.active
-	if regroup_active then
-		return true
-	end
-
-	local assault_active = task_data.assault and task_data.assault.active
-	return not assault_active
-end
-
-function GroupAIStateBase:_retire_hiding_cloaker(group_id, group)
-	self._hiding_cloakers_set_to_assault[group_id] = nil
-	self:_assign_group_to_retire(group)
-	Eclipse:log_console(string.format('Set assaulting "hide" Cloaker group to retire: %s', group_id))
 end
 
 function GroupAIStateBase:_get_hiding_cloaker_SO(elements, last_element, hiding_cloaker_tweak)
@@ -780,34 +739,19 @@ local remove_group_reasons = table.list_to_set({
 -- TODO: figure out rehiding
 function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
 	local assault_chance = hiding_cloaker_tweak.assault_on_objective_failed_chance or 0.5
-	local retire_instead_of_assault = self:_should_retire_hiding_cloakers_set_to_assault()
 	for group_id, junk_reason in pairs(junk_groups) do
 		local assault = assault_chance == 1 or math.random() < assault_chance
 		local group = data.groups[group_id]
+		data.groups[group_id] = nil
 		if not group or remove_group_reasons[junk_reason] then
-			data.groups[group_id] = nil
+			-- Nothing
 		elseif assault then
-			data.groups[group_id] = nil
-			if retire_instead_of_assault then
-				self:_retire_hiding_cloaker(group_id, group)
-			else
-				Eclipse:log_console(string.format("Hiding Cloaker %s set to assault", group_id))
-				local _, leader_data = self._determine_group_leader(group.units)
-				local new_objective = {
-					moving_out = group.objective.moving_out,
-					area = leader_data.assigned_area,
-					type = "assault_area",
-				}
-				self:_set_objective_to_enemy_group(group, new_objective)
-				self._hiding_cloakers_set_to_assault[group_id] = group
-			end
+			self:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 		else
-			data.groups[group_id] = nil
-			self:_retire_hiding_cloaker(group_id, group)
+			self:_assign_group_to_retire(group)
 		end
 	end
 
-	-- Unsure why this is in vanilla
 	if not next(data.groups) then
 		data.groups = nil
 	end
@@ -859,3 +803,23 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 
 	return new_group and true
 end
+
+-- TODO: prioritize nearby groups
+-- TODO? forbid certain group types that should not be joinable
+-- TODO: fall back on rehiding before retiring once implemented
+function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	data.groups[group_id] = nil
+
+	for _, grp in pairs(self._groups) do
+		if grp.objective.type == "assault_area" then
+			for u_key, u_data in pairs(group.units) do
+				self:unit_leave_group(u_data.unit, false)
+				self:_add_group_member(grp, u_data.unit:key())
+			end
+			return
+		end
+	end
+
+	self:_assign_group_to_retire(group)
+end
+
