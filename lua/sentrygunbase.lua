@@ -49,14 +49,18 @@ function SentryGunBase:_update_omniscience(t, dt)
 	if self._state_data.omniscience_t <= t then
 		local sensed_targets = World:find_units_quick("sphere", self._unit:movement():m_pos(), tweak_data.player.omniscience.sense_radius, managers.slot:get_mask("trip_mine_targets"))
 
-		for _, unit in ipairs(sensed_targets) do
-			if alive(unit) and not unit:base():char_tweak().is_escort and not unit:base():has_tag("spooc") then
+		for _, sensed_unit in ipairs(sensed_targets) do
+			local is_hostage = sensed_unit:brain():is_hostage()
+			local is_hostile = sensed_unit:movement():team().foes[tweak_data.levels:get_default_team_ID("player")] and not is_hostage
+			local is_spooc = sensed_unit:base():has_tag("spooc")
+			
+			if alive(sensed_unit) and is_hostile and not is_spooc then
 				self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
 
-				if not self._state_data.omniscience_units_detected[unit:key()] or self._state_data.omniscience_units_detected[unit:key()] <= t then
-					self._state_data.omniscience_units_detected[unit:key()] = t + tweak_data.player.omniscience.target_resense_t
+				if not self._state_data.omniscience_units_detected[sensed_unit:key()] or self._state_data.omniscience_units_detected[sensed_unit:key()] <= t then
+					self._state_data.omniscience_units_detected[sensed_unit:key()] = t + tweak_data.player.omniscience.target_resense_t
 
-					managers.game_play_central:auto_highlight_enemy(unit, true)
+					managers.game_play_central:auto_highlight_enemy(sensed_unit, true)
 
 					break
 				end
