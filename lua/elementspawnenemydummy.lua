@@ -211,6 +211,13 @@ function ElementSpawnEnemyDummy:produce(params, ...)
 		return unit
 	end
 
+	-- Bandaid for spawns being incorrect tier at the start of certain heists
+	-- (beginning of Alaskan Deal, vanilla Murky SWATs on Beneath the Mountain...)
+	if not ElementSpawnEnemyDummy.forced_initial_tier_update then
+		ElementSpawnEnemyDummy.forced_initial_tier_update = true
+		managers.groupai:state():update_scripted_spawn_tiers()
+	end
+
 	if self._enemy_table then
 		self._enemy_name = self:_process_enemy_tbl(self._enemy_table) or self._enemy_name
 	end

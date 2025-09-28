@@ -19,25 +19,22 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapo
 end)
 
 function GroupAIStateBase:_get_scripted_tier()
-	local state = managers.groupai and managers.groupai:state_name()
-
-	if not state then
+	local scripted_tiers = self._tweak_data and self._tweak_data.scripted_tiers
+	if not scripted_tiers then
 		return "CS"
 	end
 
-	local diff_rounded = self._difficulty_value >= 1 and 1 or self._difficulty_value < tweak_data.group_ai.difficulty_curve_points[1] and 0 or 0.5
-	local index = 1 + (diff_rounded / 0.5)
-	local tier = tweak_data.group_ai[state] and tweak_data.group_ai[state].faction[index]
+	local diff = self._difficulty_value or 0
+	local curve_point = tweak_data.group_ai.difficulty_curve_points[1] or 0.5
+	local index = diff >= 1 and 3 or diff >= curve_point and 2 or 1
+	local tier = scripted_tiers[index]
 
 	return tier or "CS"
 end
 
 -- add diff when killing civilians, and track accumulated penalty through mission script diff changes
 -- scale scripted spawn tier with current diff value
-local _calculate_difficulty_ratio = GroupAIStateBase._calculate_difficulty_ratio
-function GroupAIStateBase:_calculate_difficulty_ratio(...)
-	_calculate_difficulty_ratio(self, ...)
-
+function GroupAIStateBase:update_scripted_spawn_tiers()
 	local tier = self:_get_scripted_tier()
 	if not tier or self._last_scripted_tier == tier then
 		return
@@ -57,6 +54,8 @@ function GroupAIStateBase:_calculate_difficulty_ratio(...)
 		end
 	end
 end
+
+Hooks:PostHook(GroupAIStateBase, "_calculate_difficulty_ratio", "eclipse__calculate_difficulty_ratio", GroupAIStateBase.update_scripted_spawn_tiers)
 
 -- Scale gained drama with player count
 function GroupAIStateBase:criminal_hurt_drama(unit, attacker, dmg_percent)

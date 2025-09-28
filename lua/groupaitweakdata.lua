@@ -3235,25 +3235,25 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	if difficulty_index <= 3 then
-		self.besiege.faction = {
+		self.besiege.scripted_tiers = {
 			"CS",
 			"CS",
 			"CS",
 		}
 	elseif difficulty_index == 4 then
-		self.besiege.faction = {
+		self.besiege.scripted_tiers = {
 			"CS",
 			"FBI",
 			"FBI",
 		}
 	elseif difficulty_index == 5 then
-		self.besiege.faction = {
+		self.besiege.scripted_tiers = {
 			"CS",
 			"FBI",
 			"FBI",
 		}
 	else
-		self.besiege.faction = {
+		self.besiege.scripted_tiers = {
 			"FBI",
 			"FBI",
 			"Elite",
@@ -3452,13 +3452,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
 
 	if difficulty_index < 4 then
-		self.ponr.faction = {
+		self.ponr.scripted_tiers = {
 			"FBI",
 			"FBI",
 			"FBI",
 		}
 	else
-		self.ponr.faction = {
+		self.ponr.scripted_tiers = {
 			"Elite",
 			"Elite",
 			"Elite",
