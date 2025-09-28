@@ -1,3 +1,5 @@
+local armor_init = tweak_data.player.damage.ARMOR_INIT
+
 function PlayerCarry:_perform_jump(jump_vec)
 	local max_mul, min_mul
 	for _, name in pairs(self._tweak_data_name) do
