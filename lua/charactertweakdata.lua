@@ -2022,7 +2022,7 @@ function CharacterTweakData:_set_presets()
 	self.tank_medic.damage.armor_health = self.tank.damage.armor_health
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
 	self.city_tank.damage.armor_health = self.tank.damage.armor_health * (4 / 3)
-	self.tank_armor_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
+	self.tank_armor_health_balance_mul = { 0.625, 1.25, 1.5, 1.75 }
 
 	-- eclipse exclusive edits
 	if is_overkill then
