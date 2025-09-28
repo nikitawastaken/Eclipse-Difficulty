@@ -233,7 +233,7 @@ function M.weighted_selector(t)
 		t = { t }
 	end
 
-	local selector = WeightedSelector:new()
+	local selector = EclipseWeightedSelector:new()
 	for k, v in pairs(t) do
 		if type(k) == "number" then
 			selector:add(v, 1)

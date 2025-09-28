@@ -127,7 +127,7 @@ function ElementSpawnEnemyDummy:get_unit_alternative(name)
 		return nil
 	end
 
-	local alternative_selector = WeightedSelector:new()
+	local alternative_selector = EclipseWeightedSelector:new()
 	for alt_name, alt_weight in pairs(alternative_data) do
 		alternative_selector:add(alt_name, alt_weight)
 	end
@@ -163,7 +163,7 @@ function ElementSpawnEnemyDummy:_process_enemy_tbl(enemy_tbl)
 		return nil
 	end
 
-	local enemy_selector = WeightedSelector:new()
+	local enemy_selector = EclipseWeightedSelector:new()
 	for enemy_name, enemy_weight in pairs(enemy_tbl) do
 		if type(enemy_name) == "number" then
 			enemy_selector:add(enemy_weight, 1)

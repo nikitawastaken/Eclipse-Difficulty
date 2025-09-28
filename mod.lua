@@ -105,6 +105,9 @@ if not Eclipse then
 		end
 	end
 
+	-- Setup classes
+	Eclipse:require("class/EclipseWeightedSelector")
+
 	Eclipse.utils = Eclipse:require("utils")
 	Eclipse.scripted_enemy = Eclipse:require("scripted_enemies")
 	Eclipse.access_filter = Eclipse:require("access_filter_presets")

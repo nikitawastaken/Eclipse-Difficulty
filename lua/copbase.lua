@@ -1,6 +1,8 @@
 local mat_vars = Eclipse:require("unit_material_vars")
 local mat_var_paths = table.list_to_set(mat_vars)
 
+local weighted_selector = Eclipse.utils.weighted_selector
+
 -- Handle material swaps
 for path in pairs(mat_var_paths) do
 	local normal_id = Idstring(path)
@@ -154,7 +156,7 @@ function CopBase:_run_unit_sequences()
 	end
 end
 
--- Check for weapon changes and run unti sequences
+-- Check for weapon changes and run unit sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
 
@@ -169,14 +171,7 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	local mapping_type = type(unit_weapon)
 
 	if mapping_type == "table" then
-		local selector = WeightedSelector:new()
-		for k, v in pairs(unit_weapon) do
-			if type(k) == "number" then
-				selector:add(v, 1)
-			else
-				selector:add(k, v)
-			end
-		end
+		local selector = weighted_selector(unit_weapon)
 		self._default_weapon_id = selector:select() or self._default_weapon_id
 	elseif mapping_type == "string" then
 		self._default_weapon_id = unit_weapon
