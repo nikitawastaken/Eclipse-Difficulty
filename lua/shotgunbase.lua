@@ -1,3 +1,7 @@
+Hooks:PostHook(ShotgunBase, "init", "eclipse_init", function(self)
+	self._do_shotgun_push = false
+end)
+
 Hooks:PostHook(ShotgunBase, "setup_default", "eclipse_setup_default", function(self)
 	self._damage_near = tweak_data.weapon[self._name_id].damage_near
 	self._damage_far = tweak_data.weapon[self._name_id].damage_far
