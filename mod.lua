@@ -224,11 +224,11 @@ if not Eclipse then
 
 			Eclipse.settings.improved_gun_echo = value
 		end
-		
+
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
-		
+
 		MenuHelper:AddToggle({
 			id = "ponr_assault_text",
 			title = "eclipse_menu_ponr_assault_text",
@@ -329,11 +329,11 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
-	
+
 	-- Load settings
 	if io.file_is_readable(Eclipse.save_path) then
 		local data = io.load_as_json(Eclipse.save_path)
@@ -362,7 +362,7 @@ if not Eclipse then
 		Eclipse:log("Successfully loaded" .. echo_load_group)
 	end
 	]]
-	
+
 	-- Notify about required game restart
 	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeEclipse", function()
 		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function(self)
@@ -371,7 +371,7 @@ if not Eclipse then
 			end
 		end)
 	end)
-	
+
 	-- Disable some of "The Fixes"
 	TheFixesPreventer = TheFixesPreventer or {}
 	TheFixesPreventer.crash_upd_aim_coplogicattack = true
