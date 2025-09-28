@@ -6,7 +6,9 @@ function ConnectionNetworkHandler:sync_assault_ponr(sender)
 		return
 	end
 
-	managers.hud._hud_assault_corner:set_ponr_state()
+	if managers.hud._hud_assault_corner.set_ponr_state then
+		managers.hud._hud_assault_corner:set_ponr_state()
+	end
 end
 
 function ConnectionNetworkHandler:sync_trade_restore_resources(sender)
