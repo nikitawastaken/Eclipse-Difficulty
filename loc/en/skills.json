@@ -47,7 +47,7 @@
 	"menu_protective_mask": "Protective Mask",
 	"menu_protective_mask_desc": "BASIC: ##$basic##\nYour armor now absorbs tear gas damage.\n\nACE: ##$pro##\nThe visual effect of Flashbangs is weakened by ##$multipro##.",
 	"menu_pack_mule": "Pack Mule",
-	"menu_pack_mule_desc": "BASIC: ##$basic##\nYou can now sprint with all bags.\n\nACE: ##$pro##\nYou can now carry ##$multipro## bags at the same time.",
+	"menu_pack_mule_desc": "BASIC: ##$basic##\nYou can now sprint with all bags.\n\nACE: ##$pro##\nYou can now carry ##$multipro## bags at the same time.\n\nFor each ##$multipro2## armor points the bag movement penalty is reduced by ##$multipro3##.",
 	"menu_regen_plating": "Regen Plating",
 	"menu_regen_plating_desc": "BASIC: ##$basic##\nYour armor recovery rate is increased by ##$multibasic##.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you regenerate ##$multipro## health.\n\nThis cannot occur more than once every ##$multipro2## seconds.",
 	"menu_iron_man": "Iron Man",

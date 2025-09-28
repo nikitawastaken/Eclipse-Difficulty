@@ -561,6 +561,8 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.iron_man.multipro = "2"
+	self.skill_descs.iron_man.multipro2 = "10"
+	self.skill_descs.iron_man.multipro3 = "1%"
 
 	-- Regen Plating
 	self.values.player.armor_regen_time_mul[1] = 0.85

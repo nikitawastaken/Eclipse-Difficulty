@@ -174,7 +174,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Pack Mule
 	self.skills.iron_man[1].upgrades = { "carry_movement_penalty_nullifier" }
-	self.skills.iron_man[2].upgrades = { "player_carry_stacker" }
+	self.skills.iron_man[2].upgrades = { "player_carry_stacker", "player_armor_carry_bonus_1" }
 	self.skills.iron_man.name_id = "menu_pack_mule"
 	self.skills.iron_man.desc_id = "menu_pack_mule_desc"
 	self.skills.iron_man.icon_xy = { 6, 0 }
