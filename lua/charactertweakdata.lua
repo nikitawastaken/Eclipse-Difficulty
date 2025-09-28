@@ -1,4 +1,3 @@
-local vanilla_team_ai_weapons = Eclipse.settings.team_ai_weapons == 1
 local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 
@@ -23,6 +22,8 @@ local diff_lerp = Eclipse.utils.diff_lerp
 -- local function diff_lerp(value_1, value_2)
 -- 	return Eclipse.utils.diff_lerp(value_1, value_2)
 -- end
+
+local weighted_selector = Eclipse.utils.weighted_selector
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
 -- if the value is a function, it calls the function with the data of the value name instead
@@ -1406,129 +1407,220 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	end
 end)
 
-CharacterTweakData.team_ai_tweak_names = {
-	"russian",
-	"german",
-	"spanish",
-	"american",
-	"jowi",
-	"old_hoxton",
-	"female_1",
-	"dragan",
-	"jacket",
-	"bonnie",
-	"sokol",
-	"dragon",
-	"bodhi",
-	"jimmy",
-	"sydney",
-	"wild",
-	"chico",
-	"max",
-	"joy",
-	"myh",
-	"ecp_female",
-	"ecp_male",
-}
 CharacterTweakData.team_ai_weapons_mapped = {
+	-- Dallas
 	["russian"] = {
-		primary = "wpn_fps_ass_amcar_npc",
-		secondary = "wpn_fps_pis_g17_npc",
+		primary = {
+			["wpn_fps_ass_74_npc"] = 3, -- Used pre-U240.3
+			["wpn_fps_lmg_hk21_npc"] = 1, -- Used in PDTH
+			["wpn_fps_ass_g36_npc"] = 1, -- Skill tree background
+		},
+		secondary = {
+			["wpn_fps_pis_1911_npc"] = 3, -- Used in PDTH
+			["wpn_fps_smg_mac10_npc"] = 1, -- Used in PDTH
+			["wpn_fps_pis_beretta_npc"] = 1, -- Freeze trailer
+		},
 	},
+	-- Wolf
 	["german"] = {
-		primary = "wpn_fps_shot_r870_npc",
-		secondary = "wpn_fps_pis_g18c_npc",
+		primary = {
+			["wpn_fps_shot_r870_npc"] = 3, -- Common portrayal
+			["wpn_fps_ass_74_npc"] = 1, -- Used in PDTH
+		},
+		secondary = {
+			["wpn_fps_pis_g18c_npc"] = 3, -- Used in PDTH
+			["wpn_fps_smg_mp5_npc"] = 1, -- Used pre-Henchmen/skill tree background
+		},
 	},
+	-- Chains
 	["spanish"] = {
-		primary = "wpn_fps_lmg_m249_npc",
-		secondary = "wpn_fps_smg_mac10_npc",
+		primary = {
+			["wpn_fps_lmg_m249_npc"] = 1, -- Common portrayal
+			["wpn_fps_shot_r870_npc"] = 1, -- Used in PDTH/skill tree background
+		},
+		secondary = {
+			["wpn_fps_pis_rage_npc"] = 3, -- Used in PDTH
+			["wpn_fps_smg_mp5_npc"] = 1, -- Used in PDTH
+			["wpn_fps_smg_mac10_npc"] = 1, -- Used pre-U240.3
+		},
 	},
+	-- Houston
 	["american"] = {
-		primary = "wpn_fps_ass_m14_npc",
-		secondary = "wpn_fps_pis_beretta_npc",
+		primary = {
+			["wpn_fps_ass_m14_npc"] = 2, -- Freeze trailer
+			["wpn_fps_ass_74_npc"] = 1, -- Used pre-U240.3
+		},
+		secondary = {
+			["wpn_fps_pis_beretta_npc"] = 6, -- Skill tree background
+			["wpn_fps_pis_1911_npc"] = 1, -- PD3 moment
+			["wpn_fps_pis_beer_npc"] = 1, -- PD3 moment
+		},
 	},
+	-- Wick, based on a quick scan through IMFDB for weapons he ever held in the movies :julespig:
 	["jowi"] = {
-		primary = "wpn_fps_snp_tti_npc",
-		secondary = "wpn_fps_pis_g26_npc",
+		primary = {
+			["wpn_fps_snp_tti_npc"] = 3, -- Signature
+			["wpn_fps_snp_desertfox_npc"] = 1,
+			["wpn_fps_sho_ben_npc"] = 1,
+			["wpn_fps_sho_ksg_npc"] = 1,
+			["wpn_fps_smg_shepheard_npc"] = 1,
+			["wpn_fps_sho_sko12_npc"] = 1, -- "TTI Dracarys Gen-12" (liberties taken)
+		},
+		secondary = {
+			["wpn_fps_pis_g26_npc"] = 6, -- Signature
+			["wpn_fps_pis_packrat_npc"] = 6, -- Signature
+			["wpn_fps_pis_p226_npc"] = 1, -- "P320" (close enough)
+			["wpn_fps_pis_1911_npc"] = 1,
+			["wpn_fps_pis_czech_npc"] = 1, -- "P-09" (close enough)
+			["wpn_fps_pis_g22c_npc"] = 1, -- "Glock 34" (close enough)
+			["wpn_fps_pis_g17_npc"] = 1,
+			["wpn_fps_pis_peacemaker_npc"] = 1, -- "Remington 1875" (liberties taken)
+			["wpn_fps_snp_contender_npc"] = 1,
+			["wpn_fps_pis_m1911_npc"] = 1,
+			["wpn_fps_pis_model3_npc"] = 1, -- "Webley .455 Mk VI" (liberties taken)
+		},
 	},
+	-- Hoxton
 	["old_hoxton"] = {
-		primary = "wpn_fps_sho_spas12_npc",
-		secondary = "wpn_fps_pis_deagle_npc",
+		primary = {
+			["wpn_fps_sho_spas12_npc"] = 3, -- Signature
+			["wpn_fps_ass_m14_npc"] = 1, -- Used in PDTH
+		},
+		secondary = {
+			["wpn_fps_shot_serbu_npc"] = 3, -- Used in PDTH
+			["wpn_fps_pis_deagle_npc"] = 1,
+		},
 	},
+	-- Clover
 	["female_1"] = {
-		primary = "wpn_fps_ass_l85a2_npc",
+		primary = "wpn_fps_ass_l85a2_npc", -- Signature
 		secondary = "wpn_fps_pis_ppk_npc",
 	},
+	-- Dragan
 	["dragan"] = {
-		primary = "wpn_fps_ass_vhs_npc",
-		secondary = "wpn_fps_pis_hs2000_npc",
+		primary = {
+			["wpn_fps_ass_vhs_npc"] = 9, -- Signature
+			["wpn_fps_ass_famas_npc"] = 1, -- Rainy with a chance of French (wrong slot, don't care)
+		},
+		secondary = "wpn_fps_pis_hs2000_npc", -- Released alongside
 	},
+	-- Jacket
 	["jacket"] = {
-		primary = "wpn_fps_smg_cobray_npc",
-		secondary = "wpn_fps_smg_scorpion_npc",
+		primary = {
+			["wpn_fps_smg_cobray_npc"] = 3, -- Signature
+			["wpn_fps_ass_m16_npc"] = 1, -- Veteran
+		},
+		secondary = {
+			["wpn_fps_smg_scorpion_npc"] = 1, -- Hotline Miami DLC weapon
+			["wpn_fps_smg_tec9_npc"] = 1, -- Hotline Miami DLC weapon
+			["wpn_fps_smg_uzi_npc"] = 1, -- Hotline Miami DLC weapon
+		},
 	},
+	-- Bonnie
 	["bonnie"] = {
-		primary = "wpn_fps_shot_b682_npc",
-		secondary = "wpn_fps_pis_g17_npc",
+		primary = "wpn_fps_shot_b682_npc", -- Signature
+		secondary = "wpn_fps_pis_2006m_npc",
 	},
+	-- Sokol
 	["sokol"] = {
-		primary = "wpn_fps_ass_asval_npc",
+		primary = {
+			["wpn_fps_ass_asval_npc"] = 3, -- Signature
+			["wpn_fps_ass_flint_npc"] = 1,
+		},
 		secondary = "wpn_fps_pis_pl14_npc",
 	},
+	-- Jiro
 	["dragon"] = {
-		primary = "wpn_fps_snp_wa2000_npc",
-		secondary = "wpn_fps_smg_baka_npc",
+		primary = {
+			["wpn_fps_snp_wa2000_npc"] = 1, -- DLC-adjacent
+			["wpn_fps_smg_polymer_npc"] = 1, -- DLC-adjacent
+		},
+		secondary = "wpn_fps_smg_baka_npc", -- Signature
 	},
+	-- Bodhi
 	["bodhi"] = {
-		primary = "wpn_fps_snp_model70_npc",
-		secondary = "wpn_fps_pis_sparrow_npc",
+		primary = "wpn_fps_snp_model70_npc", -- Signature
+		secondary = "wpn_fps_pis_sparrow_npc", -- Released alongside
 	},
+	-- Jimmy
 	["jimmy"] = {
-		primary = "wpn_fps_lmg_rpk_npc",
-		secondary = "wpn_fps_smg_sr2_npc",
+		primary = {
+			["wpn_fps_sho_ben_npc"] = 2,
+			["wpn_fps_lmg_rpk_npc"] = 1,
+		},
+		secondary = "wpn_fps_smg_sr2_npc", -- Signature
 	},
+	-- Sydney
 	["sydney"] = {
-		primary = "wpn_fps_ass_tecci_npc",
-		secondary = "wpn_fps_smg_mac10_npc",
+		primary = "wpn_fps_ass_tecci_npc", -- Signature
+		secondary = "wpn_fps_pis_judge_npc", -- Anarcho skin (Sydney Safe)
 	},
+	-- Rust
 	["wild"] = {
-		primary = "wpn_fps_sho_boot_npc",
-		secondary = "wpn_fps_smg_mac10_npc",
+		primary = "wpn_fps_sho_boot_npc", -- Signature
+		secondary = "wpn_fps_pis_g22c_npc", -- Spark Plug skin (Biker Safe)
 	},
+	-- Scarface, secondaries are available in Scarface: The World is Yours
 	["chico"] = {
-		primary = "wpn_fps_ass_contraband_npc",
-		secondary = "wpn_fps_smg_mac10_npc",
+		primary = "wpn_fps_ass_contraband_npc", -- Signature
+		secondary = {
+			["wpn_fps_pis_deagle_npc"] = 1,
+			["wpn_fps_pis_m1911_npc"] = 1,
+			["wpn_fps_pis_ppk_npc"] = 1,
+			["wpn_fps_smg_mac10_npc"] = 1,
+			["wpn_fps_smg_baka_npc"] = 1,
+		},
 	},
+	-- Sangres
 	["max"] = {
-		primary = "wpn_fps_ass_akm_npc",
-		secondary = "wpn_fps_pis_chinchilla_npc",
+		primary = "wpn_fps_ass_scar_npc", -- San Martin poster
+		secondary = "wpn_fps_pis_chinchilla_npc", -- Signature
 	},
+	-- Joy
 	["joy"] = {
-		primary = "wpn_fps_smg_shepheard_npc",
-		secondary = "wpn_fps_pis_g17_npc",
+		primary = {
+			["wpn_fps_smg_shepheard_npc"] = 3, -- Signature
+			["wpn_fps_ass_akm_npc"] = 1, -- PD3 moment
+		},
+		secondary = "wpn_fps_pis_g17_npc", -- Ask Hitscanner
 	},
+	-- Duke
 	["myh"] = {
-		primary = "wpn_fps_ass_m4_npc",
-		secondary = "wpn_fps_pis_shrew_npc",
+		primary = {
+			["wpn_fps_ass_ching_npc"] = 1, -- Historic
+			["wpn_fps_smg_erma_npc"] = 1, -- Historic
+		},
+		secondary = "wpn_fps_pis_shrew_npc", -- Signature
 	},
+	-- Hila
 	["ecp_female"] = {
 		primary = "wpn_fps_ass_galil_npc",
 		secondary = "wpn_fps_pis_sparrow_npc",
 	},
+	-- Ethan
 	["ecp_male"] = {
-		primary = "wpn_fps_shot_huntsman_npc",
-		secondary = "wpn_fps_smg_mac10_npc",
+		primary = "wpn_fps_ass_komodo_npc",
+		secondary = {
+			["wpn_fps_pis_holt_npc"] = 1,
+			["wpn_fps_pis_maxim9_npc"] = 1,
+		},
 	},
 }
 
-Hooks:PostHook(CharacterTweakData, "_init_team_ai", "eclipse_init_team_ai", function(self)
-	for _, tweak_name in ipairs(self.team_ai_tweak_names) do
-		if not vanilla_team_ai_weapons then
+Hooks:PostHook(CharacterTweakData, "_init_team_ai", "eclipse__init_team_ai", function(self)
+	for tweak_name, mapping in pairs(self.team_ai_weapons_mapped) do
+		if self[tweak_name] and self[tweak_name].weapon then
+			local weapons_of_choice = self[tweak_name].weapon.weapons_of_choice
+
 			self[tweak_name].weapon.weapons_of_choice = {
-				primary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].primary
-					or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc",
-				secondary = lorefriendly_team_ai_weapons and self.team_ai_weapons_mapped[tweak_name] and self.team_ai_weapons_mapped[tweak_name].secondary
-					or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc",
+				primary = lorefriendly_team_ai_weapons and weighted_selector(mapping.primary):select()
+					or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc"
+					or weapons_of_choice and weapons_of_choice.primary
+					or "wpn_fps_ass_m4_npc",
+				secondary = lorefriendly_team_ai_weapons and weighted_selector(mapping.secondary):select()
+					or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc"
+					or weapons_of_choice and weapons_of_choice.secondary
+					or "wpn_fps_pis_g17_npc",
 			}
 		end
 	end
