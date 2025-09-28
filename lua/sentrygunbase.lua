@@ -53,7 +53,7 @@ function SentryGunBase:_update_omniscience(t, dt)
 			local is_hostage = sensed_unit:brain():is_hostage()
 			local is_hostile = sensed_unit:movement():team().foes[tweak_data.levels:get_default_team_ID("player")] and not is_hostage
 			local is_spooc = sensed_unit:base():has_tag("spooc")
-			
+
 			if alive(sensed_unit) and is_hostile and not is_spooc then
 				self._state_data.omniscience_units_detected = self._state_data.omniscience_units_detected or {}
 
