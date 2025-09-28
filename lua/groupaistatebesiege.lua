@@ -9,16 +9,18 @@ local mvec_set = mvector3.set
 local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
-local function weighted_selector(t)
-	return Eclipse.utils.weighted_selector(t)
-end
+local weighted_selector = Eclipse.utils.weighted_selector
+-- local function weighted_selector(t)
+-- 	return Eclipse.utils.weighted_selector(t)
+-- end
 
--- All reenforce poins now have a force value of at least 2 (from ASS)
-GroupAIStateBesiege.set_area_min_police_force_original = GroupAIStateBesiege.set_area_min_police_force
+-- All reinforce points now have a force value of at least 2
+-- Most vanilla reinforce points have the very weird force value of 1
+-- A force value of 1 causes a reinforce point to never repopulate until all cops on that point are wiped out
+-- Would presume level designers thought the force value was the number of groups to deploy
+local set_area_min_police_force_original = GroupAIStateBesiege.set_area_min_police_force
 function GroupAIStateBesiege:set_area_min_police_force(id, force, ...)
-	force = force and math.max(force, 2)
-
-	return self:set_area_min_police_force_original(id, force, ...)
+	return set_area_min_police_force_original(self, id, force and math.max(force, 2), ...)
 end
 
 -- Move the hostage hesitation delay to control instead of anticipation

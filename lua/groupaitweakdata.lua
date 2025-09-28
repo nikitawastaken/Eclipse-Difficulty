@@ -5,13 +5,15 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local short_ponr_heists = Eclipse:require("short_ponr_heists")
 
-local function diff_lerp(value_1, value_2)
-	return Eclipse.utils.diff_lerp(value_1, value_2)
-end
+local diff_lerp = Eclipse.utils.diff_lerp
+-- local function diff_lerp(value_1, value_2)
+-- 	return Eclipse.utils.diff_lerp(value_1, value_2)
+-- end
 
-local function table_multiplier(target_table, mul)
-	return Eclipse.utils.table_multiplier(target_table, mul)
-end
+local table_multiplier = Eclipse.utils.table_multiplier
+-- local function table_multiplier(target_table, mul)
+-- 	return Eclipse.utils.table_multiplier(target_table, mul)
+-- end
 
 GroupAITweakData.group_ai_presets = {
 	["small_urban"] = {

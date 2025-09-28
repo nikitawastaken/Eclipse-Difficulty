@@ -19,9 +19,10 @@ local is_no_mercy = level_id == "nmh"
 local is_mountain_master = level_id == "pent"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
-local function diff_lerp(value_1, value_2)
-	return Eclipse.utils.diff_lerp(value_1, value_2)
-end
+local diff_lerp = Eclipse.utils.diff_lerp
+-- local function diff_lerp(value_1, value_2)
+-- 	return Eclipse.utils.diff_lerp(value_1, value_2)
+-- end
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
 -- if the value is a function, it calls the function with the data of the value name instead
