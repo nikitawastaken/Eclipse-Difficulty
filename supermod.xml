@@ -290,7 +290,6 @@
 	</hooks>
 
 	<assets base_path="assets/">
-
 		<!-- sniper glare -->
 		<file name="effects/particles/weapons/sniper_glint.effect"/>
 		<file name="effects/textures/weapons/sniper_glint.dds"/>
@@ -304,32 +303,48 @@
 		<!-- eclipse risk level asset -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
 
-		<!-- old cook off bain lines -->
-		<file name="soundbanks/job_h_rat_stage1.bnk"/>
+		<group :base_path="eclipse_soundbanks/oldschool_echo/" target="scripted" load_group="eclipse_gun_echo_2">
+			<group name="soundbanks/">
+				<file :name="regular_sfx.bnk" force="false"/>
+				<file :name="regular_weapon_sfx.bnk" force="false"/>
+			</group>
+		</group>
 
-		<!-- increase volume of the Zeal Sniper Rifle sound -->
-		<file name="soundbanks/weapon_zsniper.bnk"/>
+		<group :base_path="eclipse_soundbanks/heat_echo/" target="scripted" load_group="eclipse_gun_echo_3">
+			<group name="soundbanks/">
+				<file :name="regular_sfx.bnk" force="false"/>
+				<file :name="regular_weapon_sfx.bnk" force="false"/>
+			</group>
+		</group>
+				
+		<group name="soundbanks/">
+			<!-- old cook off bain lines -->
+			<file :name="job_h_rat_stage1.bnk"/>
 
-		<!-- mute turret announcement -->
-		<group name="soundbanks/streamed/npc_cpa/">
-			<file :name="5329107.stream"/>
-			<file :name="51493853.stream"/>
-			<file :name="105420712.stream"/>
-			<file :name="118262913.stream"/>
-			<file :name="134430557.stream"/>
-			<file :name="232910351.stream"/>
-			<file :name="426753169.stream"/>
-			<file :name="458768143.stream"/>
-			<file :name="672371513.stream"/>
-			<file :name="688031761.stream"/>
-			<file :name="750865112.stream"/>
-			<file :name="761299230.stream"/>
-			<file :name="800778394.stream"/>
-			<file :name="899866889.stream"/>
-			<file :name="912704165.stream"/>
-			<file :name="930435211.stream"/>
-			<file :name="935526825.stream"/>
-			<file :name="938455201.stream"/>
+			<!-- increase volume of the Zeal Sniper Rifle sound -->
+			<file :name="weapon_zsniper.bnk"/>
+
+			<!-- mute turret announcement -->	
+			<group :name="streamed/npc_cpa/">
+				<file :name="5329107.stream"/>
+				<file :name="51493853.stream"/>
+				<file :name="105420712.stream"/>
+				<file :name="118262913.stream"/>
+				<file :name="134430557.stream"/>
+				<file :name="232910351.stream"/>
+				<file :name="426753169.stream"/>
+				<file :name="458768143.stream"/>
+				<file :name="672371513.stream"/>
+				<file :name="688031761.stream"/>
+				<file :name="750865112.stream"/>
+				<file :name="761299230.stream"/>
+				<file :name="800778394.stream"/>
+				<file :name="899866889.stream"/>
+				<file :name="912704165.stream"/>
+				<file :name="930435211.stream"/>
+				<file :name="935526825.stream"/>
+				<file :name="938455201.stream"/>
+			</group>
 		</group>
 
 		<!-- Improve navigation data -->

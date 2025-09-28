@@ -13,6 +13,7 @@ if not Eclipse then
 			player_styles = 1,
 			flavor_text_tips = false,
 			team_ai_weapons = 1,
+			improved_gun_echo = 1,
 		},
 		loaded_elements = false,
 	}
@@ -218,10 +219,16 @@ if not Eclipse then
 			Eclipse.settings.team_ai_weapons = value
 		end
 
+		function MenuCallbackHandler:eclipse_improved_gun_echo_setting(item)
+			local value = item:value()
+
+			Eclipse.settings.improved_gun_echo = value
+		end
+		
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
-
+		
 		MenuHelper:AddToggle({
 			id = "ponr_assault_text",
 			title = "eclipse_menu_ponr_assault_text",
@@ -308,10 +315,25 @@ if not Eclipse then
 			priority = 100,
 		})
 
+		MenuHelper:AddMultipleChoice({
+			id = "improved_gun_echo",
+			title = "eclipse_menu_improved_gun_echo",
+			desc = "eclipse_menu_improved_gun_echo_desc",
+			callback = "eclipse_improved_gun_echo_setting",
+			items = {
+				"eclipse_menu_improved_gun_echo_vanilla",
+				"eclipse_menu_improved_gun_echo_oldschool",
+				"eclipse_menu_improved_gun_echo_heat",
+			},
+			value = Eclipse.settings.improved_gun_echo,
+			menu_id = menu_id,
+			priority = 100,
+		})
+		
 		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "eclipse_save" })
 		MenuHelper:AddMenuItem(nodes["blt_options"], menu_id, "eclipse_menu_main")
 	end)
-
+	
 	-- Load settings
 	if io.file_is_readable(Eclipse.save_path) then
 		local data = io.load_as_json(Eclipse.save_path)
@@ -331,6 +353,16 @@ if not Eclipse then
 		end
 	end
 
+	--[[ Load Improved Gun Echo soundbanks if the setting is enabled
+	local echo_load_group = Eclipse.settings.improved_gun_echo and "eclipse_gun_echo_" .. tostring(Eclipse.settings.improved_gun_echo)
+	
+	if echo_load_group then
+		ModInstance.supermod:GetAssetLoader():LoadAssetGroup(echo_load_group)
+		
+		Eclipse:log("Successfully loaded" .. echo_load_group)
+	end
+	]]
+	
 	-- Notify about required game restart
 	Hooks:Add("MenuManagerPostInitialize", "MenuManagerPostInitializeEclipse", function()
 		Hooks:PostHook(BLTViewModGui, "clbk_toggle_enable_state", "sh_clbk_toggle_enable_state", function(self)
@@ -339,7 +371,7 @@ if not Eclipse then
 			end
 		end)
 	end)
-
+	
 	-- Disable some of "The Fixes"
 	TheFixesPreventer = TheFixesPreventer or {}
 	TheFixesPreventer.crash_upd_aim_coplogicattack = true
