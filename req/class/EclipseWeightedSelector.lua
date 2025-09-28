@@ -9,7 +9,7 @@ end
 function EclipseWeightedSelector:add(value, weight)
 	table.insert(self._values, {
 		value = value,
-		weight = weight
+		weight = weight,
 	})
 
 	self._total_weight = self._total_weight + weight
@@ -33,4 +33,3 @@ function EclipseWeightedSelector:clear()
 	self._values = {}
 	self._total_weight = 0
 end
-
