@@ -1,6 +1,5 @@
 local level_id = Eclipse.utils.level_id()
 local diff_name = Eclipse.utils.difficulty_name()
-local faction = Eclipse.utils.faction()
 local is_testmap = Eclipse.utils.is_testmap()
 
 -- Don't replace spawns on custom enemy spawner map
@@ -26,14 +25,13 @@ Hooks:PostHook(ElementSpawnEnemyDummy, "init", "eclipse_init", function(self)
 end)
 
 function ElementSpawnEnemyDummy:_chk_is_sniper(unit)
-	local snipers_but_not_really = {
-		[("units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3"):key()] = true,
-	}
-
-	if not unit then
+	if not alive(unit) then
 		return
 	end
 
+	local snipers_but_not_really = {
+		[("units/pd2_dlc_spa/characters/ene_sniper_3/ene_sniper_3"):key()] = true,
+	}
 	if snipers_but_not_really[unit:name():key()] then
 		return
 	end
@@ -71,9 +69,10 @@ function ElementSpawnEnemyDummy:chk_used_mapped_names(force)
 	return self._used_mapped_names
 end
 
-function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier)
-	local subfaction = self.faction_mapping[faction] and self.faction_mapping[faction][tier or managers.groupai:state():_get_scripted_tier()]
-
+function ElementSpawnEnemyDummy:get_replacement_enemy_name(tier, faction)
+	tier = tier or managers.groupai:state():_get_scripted_tier()
+	faction = faction or Eclipse.utils.faction()
+	local subfaction = self.faction_mapping[faction] and self.faction_mapping[faction][tier]
 	if not subfaction then
 		return nil
 	end
