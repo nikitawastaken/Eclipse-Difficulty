@@ -299,7 +299,7 @@ PlayerAction.AmmoEfficiency = {
 				end
 			end
 
-			Eclipse:log_chat(tostring(headshots))
+			--Eclipse:log_chat(tostring(headshots))
 
 			if headshots == target_headshots then
 				player_manager:on_ammo_increase(bullet_refund)
