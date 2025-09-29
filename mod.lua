@@ -13,7 +13,7 @@ if not Eclipse then
 			player_styles = 1,
 			flavor_text_tips = false,
 			team_ai_weapons = 1,
-			improved_gun_echo = 1,
+			improved_gun_echo = 2,
 		},
 		loaded_elements = false,
 	}
@@ -355,10 +355,10 @@ if not Eclipse then
 
 	--[[ Load Improved Gun Echo soundbanks if the setting is enabled
 	local echo_load_group = Eclipse.settings.improved_gun_echo and "eclipse_gun_echo_" .. tostring(Eclipse.settings.improved_gun_echo)
-	
+
 	if echo_load_group then
 		ModInstance.supermod:GetAssetLoader():LoadAssetGroup(echo_load_group)
-		
+
 		Eclipse:log("Successfully loaded" .. echo_load_group)
 	end
 	]]
