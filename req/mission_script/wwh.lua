@@ -121,7 +121,7 @@ return {
 		},
 	},
 	-- trigger helis early in the heist
-	-- "captain_reached_boat"
+	--[[ "captain_reached_boat"
 	[100877] = {
 		on_executed = {
 			{ id = 100612, delay = 15, delay_rand = 30 },
@@ -136,6 +136,7 @@ return {
 	[100614] = chopper_trigger_times,
 	[100615] = chopper_trigger_times,
 	[100616] = chopper_trigger_times,
+	]]
 	-- slow down a few spawnpoints
 	[400007] = scripted_swat_van_spawn,
 	[400015] = scripted_swat_van_spawn,
