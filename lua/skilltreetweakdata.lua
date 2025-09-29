@@ -232,8 +232,8 @@ function SkillTreeTweakData:init(tweak_data)
 	-- TECHNICIAN --
 
 	-- Daredevil
-	self.skills.defense_up[1].upgrades = { "player_total_interaction_timer_multiplier" }
-	self.skills.defense_up[2].upgrades = { "player_interacting_damage_multiplier" }
+	self.skills.defense_up[1].upgrades = { "player_interacting_damage_multiplier" }
+	self.skills.defense_up[2].upgrades = { "player_total_interaction_timer_multiplier" }
 	self.skills.defense_up.icon_xy = { 8, 9 }
 
 	-- Hardware Expert
