@@ -34,18 +34,18 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 
 	self.dot_entries.fire.weapon_kacchainsaw_flamethrower = clone(self.dot_entries.fire.weapon_flamethrower_mk2)
 
-	self.dot_entries.fire.ammo_dragons_breath.dot_damage = 4
+	self.dot_entries.fire.ammo_dragons_breath.dot_damage = 3
 	self.dot_entries.fire.ammo_dragons_breath.dot_length = 3
 	self.dot_entries.fire.ammo_dragons_breath.dot_trigger_chance = trigger_chance_dragons
 	self.dot_entries.fire.ammo_dragons_breath.dot_trigger_max_distance = 2000
 
 	self.dot_entries.fire.ammo_dragons_breath_light = clone(self.dot_entries.fire.ammo_dragons_breath)
-	self.dot_entries.fire.ammo_dragons_breath_light.dot_damage = 3
+	self.dot_entries.fire.ammo_dragons_breath_light.dot_damage = 2
 
 	self.dot_entries.fire.ammo_dragons_breath_medium = clone(self.dot_entries.fire.ammo_dragons_breath)
 
 	self.dot_entries.fire.ammo_dragons_breath_heavy = clone(self.dot_entries.fire.ammo_dragons_breath)
-	self.dot_entries.fire.ammo_dragons_breath_heavy.dot_damage = 5
+	self.dot_entries.fire.ammo_dragons_breath_heavy.dot_damage = 4
 
 	self.dot_entries.fire.melee_spoon_gold.dot_damage = 6
 	self.dot_entries.fire.melee_spoon_gold.dot_trigger_chance = trigger_chance_spoon

@@ -42,7 +42,7 @@ function PlayerStandard:_get_walk_headbob()
 
 	local headbob_rate = 1
 		/ 40
-		* (self._running and has_run_and_shoot and 2 or self._running and 4 or 1)
+		* (self._running and has_run_and_shoot and 1.5 or self._running and 3 or 1)
 		* (self._state_data.ducking and 0.5 or 1)
 		* (self._state_data.in_steelsight and 0.1 or 1)
 		* (self._state_data.in_air and 0 or 1)

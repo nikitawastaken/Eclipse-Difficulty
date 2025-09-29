@@ -303,18 +303,14 @@
 		<!-- eclipse risk level asset -->
 		<file name="guis/textures/pd2/mission_briefing/assets/assets_risklevel_4.texture"/>
 
-		<group :base_path="eclipse_soundbanks/oldschool_echo/" target="scripted" load_group="eclipse_gun_echo_2">
-			<group name="soundbanks/">
-				<file :name="regular_sfx.bnk" force="false"/>
-				<file :name="regular_weapon_sfx.bnk" force="false"/>
-			</group>
+		<group name="bruhh" target="scripted" load_group="eclipse_gun_echo_2">
+			<file :name="soundbanks/regular_sfx.bnk" path="assets/eclipse_soundbanks/oldschool_echo/regular_sfx.bnk" />
+			<file :name="soundbanks/regular_weapon_sfx.bnk" path="assets/eclipse_soundbanks/oldschool_echo/regular_weapon_sfx.bnk" />
 		</group>
 
-		<group :base_path="eclipse_soundbanks/heat_echo/" target="scripted" load_group="eclipse_gun_echo_3">
-			<group name="soundbanks/">
-				<file :name="regular_sfx.bnk" force="false"/>
-				<file :name="regular_weapon_sfx.bnk" force="false"/>
-			</group>
+		<group name="bruh" target="scripted" load_group="eclipse_gun_echo_3">
+			<file :name="soundbanks/regular_sfx.bnk" path="assets/eclipse_soundbanks/heat_echo/regular_sfx.bnk" />
+			<file :name="soundbanks/regular_weapon_sfx.bnk" path="assets/eclipse_soundbanks/heat_echo/regular_weapon_sfx.bnk" />
 		</group>
 				
 		<group name="soundbanks/">

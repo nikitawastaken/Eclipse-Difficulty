@@ -454,13 +454,13 @@ function WeaponTweakData:_init_weapons()
 					}
 				end
 			elseif cat_map.minigun then
-				weap_data.stats.suppression = 4
+				weap_data.stats.suppression = is_hailstorm and 12 or 4
 				weap_data.stats.alert_size = 18
 				weap_data.steelsight_time = steelsight_times.lmg
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.25
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_hailstorm and 3 or 2.25
 				weap_data.pickup_mul = weap_data.pickup_mul or 0
 				weap_data.steelsight_move_speed_mul = 0.4
-				weap_data.shake.fire_multiplier = 1.5
+				weap_data.shake.fire_multiplier = is_hailstorm and 1 or 1.5
 
 				if not is_hailstorm then
 					weap_data.spread_multiplier = {
@@ -772,7 +772,7 @@ function WeaponTweakData:_init_weapons()
 					weap_data.kick.standing = { -0.2, 0.8, -0.8, 1.4 }
 
 				elseif is_hailstorm then
-					weap_data.kick.standing = { 0.4, 0.6, -0.8, 0.8 }
+					weap_data.kick.standing = { 0.4, 0.6, -0.7, 0.7 }
 
 				elseif cat_map.minigun then
 					weap_data.kick.standing = { -0.1, 0.4, -0.3, 0.4 }
@@ -2275,8 +2275,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m249.stats.concealment = 10
 	self.m249.fire_mode_data.fire_rate = 60 / 900
 	self.m249.reload_speed_multiplier = 0.85
-	--self.m249.spray = spray_tables.lmg_right
-	--self.m249.recoil_recovery_timer = recovery_tables.high
 
 	-- Buzzsaw
 	self.mg42.CLIP_AMMO_MAX = 150
@@ -2285,8 +2283,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.mg42.stats.recoil = 8
 	self.mg42.stats.concealment = 10
 	self.mg42.fire_mode_data.fire_rate = 60 / 1200
-	--self.mg42.spray = spray_tables.lmg_left
-	--self.mg42.recoil_recovery_timer = recovery_tables.high
 
 	-- RPK
 	self.rpk.CLIP_AMMO_MAX = 75
@@ -2295,8 +2291,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rpk.stats.recoil = 7
 	self.rpk.stats.concealment = 14
 	self.rpk.fire_mode_data.fire_rate = 60 / 650
-	--self.rpk.spray = spray_tables.lmg_right
-	--self.rpk.recoil_recovery_timer = recovery_tables.high
 
 	-- Versteckt
 	self.hk51b.CLIP_AMMO_MAX = 60
@@ -2307,8 +2301,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hk51b.fire_mode_data.fire_rate = 60 / 700
 	self.hk51b.reload_speed_multiplier = 0.7
 	self.hk51b.timers.deploy_bipod = nil
-	--self.hk51b.spray = spray_tables.lmg_left
-	--self.hk51b.recoil_recovery_timer = recovery_tables.high
 
 	-- Brenner
 	self.hk21.CLIP_AMMO_MAX = 150
@@ -2317,8 +2309,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hk21.stats.recoil = 5
 	self.hk21.stats.concealment = 10
 	self.hk21.fire_mode_data.fire_rate = 60 / 750
-	--self.hk21.spray = spray_tables.lmg_left
-	--self.hk21.recoil_recovery_timer = recovery_tables.high
 
 	-- KSP 58
 	self.par.CLIP_AMMO_MAX = 150
@@ -2327,8 +2317,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.par.stats.recoil = 5
 	self.par.stats.concealment = 10
 	self.par.fire_mode_data.fire_rate = 60 / 700
-	--self.par.spray = spray_tables.lmg_left
-	--self.par.recoil_recovery_timer = recovery_tables.high
 	
 	-- M60
 	self.m60.CLIP_AMMO_MAX = 100
@@ -2337,8 +2325,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m60.stats.recoil = 6
 	self.m60.stats.concealment = 10
 	self.m60.fire_mode_data.fire_rate = 60 / 550
-	--self.m60.spray = spray_tables.lmg_right
-	--self.m60.recoil_recovery_timer = recovery_tables.high
 
 	-- Akron
 	self.hcar.CLIP_AMMO_MAX = 20
@@ -2348,8 +2334,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hcar.stats.concealment = 12
 	self.hcar.fire_mode_data.fire_rate = 60 / 600
 	self.hcar.CAN_TOGGLE_FIREMODE = false
-	--self.hcar.spray = spray_tables.lmg_left
-	--self.hcar.recoil_recovery_timer = recovery_tables.high
 
 	-- Hailstorm
 	self.hailstorm.CLIP_AMMO_MAX = 120
@@ -2358,15 +2342,15 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hailstorm.stats.recoil = 14
 	self.hailstorm.stats.concealment = 12
 	self.hailstorm.fire_mode_data.fire_rate = 60 / 2000
+	self.hailstorm.fire_mode_data.volley.damage_mul = 1
+	self.hailstorm.fire_mode_data.volley.ammo_usage = 30
+	self.hailstorm.fire_mode_data.volley.rays = 15
 	self.hailstorm.fire_mode_data.volley.spread_mul = nil
 	self.hailstorm.fire_mode_data.volley.can_shoot_through_wall = true
 	self.hailstorm.kick.volley.standing = { 3.8, 4, -0.3, 0.3 }
-	--self.hailstorm.spray = spray_tables.lmg_left
-	--self.hailstorm.recoil_recovery_timer = recovery_tables.mid
 	self.hailstorm.has_description = true
 	self.hailstorm.desc_id = "bm_w_ray_desc"
 	
-
 	-- Microgun
 	self.shuno.CLIP_AMMO_MAX = 750
 	self.shuno.stats.damage = 20
@@ -2374,12 +2358,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shuno.stats.recoil = 9
 	self.shuno.stats.concealment = 6
 	self.shuno.fire_mode_data.fire_rate = 60 / 3000
-	--self.shuno.spray = spray_tables.mini
-	--self.shuno.recoil_recovery_timer = recovery_tables.high
 	self.shuno.has_description = true
 	self.shuno.desc_id = "bm_w_ray_desc"
 	
-
 	-- Minigun
 	self.m134.CLIP_AMMO_MAX = 600
 	self.m134.stats.damage = 24

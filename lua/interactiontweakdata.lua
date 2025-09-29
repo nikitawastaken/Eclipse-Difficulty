@@ -3,6 +3,7 @@ Hooks:PostHook(InteractionTweakData, "init", "eclipse_init", function(self)
 	self.drill_upgrade.timer = 0
 	self.lance_upgrade.timer = 0
 	self.gen_int_saw_upgrade.timer = 0
+	self.gage_assignment.timer = 0
 
 	self.hostage_trade.contour_preset = "hostage_trade_uncustody"
 	self.hostage_trade.contour_flash_interval = 0.5
