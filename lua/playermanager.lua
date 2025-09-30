@@ -280,28 +280,30 @@ PlayerAction.AmmoEfficiency = {
 		local headshots = 1
 
 		local function on_weapon_fired(weapon_unit, result)
-			if not result.hit_enemy then
+			if not result or not result.hit_enemy then
 				time = target_time
 
 				return
 			end
 
-			for _, hit in ipairs(result.rays) do
-				local is_turret = hit.unit:in_slot(sentry_mask)
-				local is_ally = hit.unit:in_slot(ally_mask)
+			if result.rays then
+				for _, hit in ipairs(result.rays) do
+					local is_turret = hit.unit:in_slot(sentry_mask)
+					local is_ally = hit.unit:in_slot(ally_mask)
 
-				local result_hit = hit.damage_result
-				local attack_data = result_hit and result_hit.attack_data
-				if attack_data and attack_data.headshot and not is_turret and not is_ally then
-					headshots = headshots + 1
+					local result_hit = hit.damage_result
+					local attack_data = result_hit and result_hit.attack_data
+					if attack_data and attack_data.headshot and not is_turret and not is_ally then
+						headshots = headshots + 1
 
-					break
+						break
+					else
+						return
+					end
 				end
 			end
 
-			--Eclipse:log_chat(tostring(headshots))
-
-			if headshots == target_headshots then
+			if headshots >= target_headshots then
 				player_manager:on_ammo_increase(bullet_refund)
 
 				if player_manager:has_category_upgrade("player", "head_shot_ammo_return_straight_to_mag") then
