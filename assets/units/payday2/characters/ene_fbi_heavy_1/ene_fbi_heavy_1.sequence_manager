@@ -173,12 +173,12 @@
 			<object 			enabled="true" name="'g_gear_city_heavy_b'" />
 			<object 			enabled="true" name="'g_gear_city_heavy_b_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_lod5'" />
-			<object 			enabled="true" name="'g_helmet_lod6'" />
 			<object 			enabled="true" name="'g_helmet_lod18'" />
 			<object 			enabled="true" name="'g_helmet_lod19'" />
 			<object 			enabled="true" name="'g_helmet_lod20'" />
-			
+			<object 			enabled="true" name="'g_helmet_lod21'" />
+			<object 			enabled="true" name="'g_helmet_lod22'" />
+									
 			<decal_mesh 		enabled="true" name="'dm_visor3'" />
 			
 			<run_sequence		name="'city_heavy'" />
