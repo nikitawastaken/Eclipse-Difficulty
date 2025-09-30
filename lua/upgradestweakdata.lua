@@ -146,10 +146,10 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.cable_guy.multipro = "50%"
 
 	-- Joker
-	self.values.player.passive_convert_enemies_health_multiplier = { 0.5, 0.25 }
+	self.values.player.passive_convert_enemies_health_multiplier = { 0.5, 0.2 }
 	self.skill_descs.joker.multibasic = "35%"
 	self.skill_descs.joker.multibasic2 = "50%"
-	self.skill_descs.joker.multipro = "25%"
+	self.skill_descs.joker.multipro = "30%"
 	self.skill_descs.joker.multipro2 = "65%"
 
 	-- Stockholm Syndrome
