@@ -286,7 +286,7 @@ tweak_data.projectiles.cluster = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
 tweak_data.projectiles.cluster.effect_name = "effects/payday2/particles/impacts/shotgun_explosive_round"
 tweak_data.projectiles.cluster.init_timer = 2
-tweak_data.projectiles.cluster.range = 300
+tweak_data.projectiles.cluster.range = 250
 
 -- Incendiary Cluster Grenade
 tweak_data.weapon_disable_crit_for_damage.cluster_incendiary = { explosion = false, fire = false }

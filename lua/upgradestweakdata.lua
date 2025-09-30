@@ -830,7 +830,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.kick_starter.multipro = "66%"
 
 	-- Carpet Bombing
-	self.cluster_grenade_damage_multiplier = 0.33
+	self.cluster_grenade_damage_multiplier = 0.25
 	self.values.weapon.explosive_cluster_grenades = { true }
 	self.definitions.weapon_explosive_cluster_grenades = {
 		name_id = "menu_player_explosive_cluster_grenades",
@@ -854,9 +854,9 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.fire_trap.multibasic = "4"
-	self.skill_descs.fire_trap.multibasic2 = "3m"
-	self.skill_descs.fire_trap.multibasic3 = "33%"
-	self.skill_descs.fire_trap.multipro = "100"
+	self.skill_descs.fire_trap.multibasic2 = "2.5m"
+	self.skill_descs.fire_trap.multibasic3 = "25%"
+	self.skill_descs.fire_trap.multipro = "30"
 	self.skill_descs.fire_trap.multipro2 = "4"
 
 	-- Steady Grip
