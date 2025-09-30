@@ -1459,9 +1459,15 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.messiah.multibasic2 = "10"
 	self.skill_descs.messiah.multipro = "2"
 
+	-- Bloodthirst
+	self.values.player.non_special_melee_multiplier[1] = 1.33
+	self.values.player.melee_damage_multiplier[1] = 1.33
+	self.values.player.melee_damage_stacking = { { max_multiplier = 5, melee_multiplier = 0.25 } }
+	self.skill_descs.bloodthirst.multibasic = "33%"
+	self.skill_descs.bloodthirst.multipro = "25%"
+	self.skill_descs.bloodthirst.multipro2 = "500%"
+
 	-- Pumping Iron
-	self.values.player.non_special_melee_multiplier[1] = 1.5
-	self.values.player.melee_damage_multiplier[1] = 1.5
 	self.values.melee.faster_reswing = { 0.5 }
 	self.definitions.melee_faster_reswing = {
 		name_id = "menu_melee_faster_reswing",
@@ -1472,13 +1478,40 @@ function UpgradesTweakData:init(tweak_data)
 			category = "melee",
 		},
 	}
-	self.skill_descs.steroids.multibasic = "50%"
-	self.skill_descs.steroids.multipro = "100%"
+	self.values.player.run_and_melee = { true }
+	self.definitions.player_run_and_melee = {
+		name_id = "menu_player_run_and_melee",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "run_and_melee",
+			category = "player",
+		},
+	}
+	self.skill_descs.steroids.multibasic = "100%"
 
-	-- Bloodthirst
-	self.values.player.melee_damage_stacking = { { max_multiplier = 3, melee_multiplier = 0.25 } }
-	self.skill_descs.bloodthirst.multibasic = "25%"
-	self.skill_descs.bloodthirst.multibasic2 = "300%"
+	-- Counterstrike
+	self.values.player.charged_melee_dozer_knock = { true }
+	self.definitions.player_charged_melee_dozer_knock = {
+		name_id = "menu_player_charged_melee_dozer_knock",
+		category = "feature",
+		upgrade = {
+			value = 2,
+			upgrade = "charged_melee_dozer_knock",
+			category = "player",
+		},
+	}
+	self.values.cooldown.charged_melee_dozer_knock = { { 1, 10 } }
+	self.definitions.cooldown_charged_melee_dozer_knock = {
+		name_id = "menu_cooldown_charged_melee_dozer_knock",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "charged_melee_dozer_knock",
+			category = "cooldown",
+		},
+	}
+	self.skill_descs.drop_soap.multipro = "10"
 
 	-- Zerker
 	self.values.player.movement_speed_damage_health_ratio_multiplier = { 0.2 }
@@ -1486,38 +1519,6 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.wolverine.multibasic2 = "20%"
 	self.skill_descs.wolverine.multipro = "50%"
 	self.skill_descs.wolverine.multipro2 = "250%"
-
-	-- Counterstrike
-	self.values.player.run_and_melee_eclipse = { true }
-	self.values.cooldown.counter_strike_eclipse = { { 1, 10 } }
-	self.definitions.player_run_and_melee_eclipse = {
-		name_id = "menu_player_run_and_melee_eclipse",
-		category = "feature",
-		upgrade = {
-			value = 1,
-			upgrade = "run_and_melee_eclipse",
-			category = "player",
-		},
-	}
-	self.definitions.player_counter_strike_eclipse_2 = {
-		name_id = "menu_player_counter_strike_eclipse",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "counter_strike_eclipse",
-			category = "player",
-		},
-	}
-	self.definitions.cooldown_counter_strike_eclipse = {
-		name_id = "menu_cooldown_counter_strike_eclipse",
-		category = "cooldown",
-		upgrade = {
-			value = 1,
-			upgrade = "counter_strike_eclipse",
-			category = "cooldown",
-		},
-	}
-	self.skill_descs.drop_soap.multipro = "10"
 
 	-- Frenzy
 	self.values.player.health_damage_reduction = { 0.85, 0.65 }

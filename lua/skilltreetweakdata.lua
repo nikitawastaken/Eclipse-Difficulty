@@ -489,17 +489,27 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.messiah[1].upgrades = { "player_messiah_revive_from_bleed_out_1", "player_increased_bleedout_timer" }
 	self.skills.messiah[2].upgrades = { "player_messiah_revive_from_bleed_out_2", "player_super_syndrome_1" }
 
+	-- Bloodthirst
+	self.skills.bloodthirst[1].upgrades = { "player_melee_damage_stacking_1" }
+	self.skills.bloodthirst[2].upgrades = { "player_non_special_melee_multiplier", "player_melee_damage_multiplier" }
+	self.skills.bloodthirst.name_id = "menu_bloodthirst"
+	self.skills.bloodthirst.desc_id = "menu_bloodthirst_desc"
+
 	-- Pumping Iron
 	self.skills.steroids[1].upgrades = { "melee_faster_reswing" }
-	self.skills.steroids[2].upgrades = { "player_non_special_melee_multiplier", "player_melee_damage_multiplier" }
+	self.skills.steroids[2].upgrades = { "player_run_and_melee_eclipse" }
+	self.skills.steroids.name_id = "menu_pumping_iron"
+	self.skills.steroids.desc_id = "menu_pumping_iron_desc"
+
+	-- Counter Strike
+	self.skills.drop_soap[1].upgrades = { "player_shield_knock" }
+	self.skills.drop_soap[2].upgrades = { "cooldown_counter_strike_eclipse" }
+	self.skills.drop_soap.name_id = "menu_counter_strike"
+	self.skills.drop_soap.desc_id = "menu_counter_strike_desc"
 
 	-- Berserker
 	self.skills.wolverine[1].upgrades = { "player_movement_speed_damage_health_ratio_multiplier", "player_movement_speed_damage_health_ratio_threshold_multiplier" }
 	self.skills.wolverine[2].upgrades = { "player_melee_damage_health_ratio_multiplier" }
-
-	-- Counter Strike
-	self.skills.drop_soap[1].upgrades = { "player_run_and_melee_eclipse" }
-	self.skills.drop_soap[2].upgrades = { "cooldown_counter_strike_eclipse" }
 
 	-- MISC STUFF --
 	-- Medic Tree

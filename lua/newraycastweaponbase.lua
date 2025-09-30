@@ -11,6 +11,7 @@ local FIRE_MODE_IDS = {
 
 Hooks:PostHook(NewRaycastWeaponBase, "init", "eclipse_init", function(self)
 	self._shots_fired_consecutively = 0
+	self._shield_knock = false
 end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_stats_values", function(self, disallow_replenish)
