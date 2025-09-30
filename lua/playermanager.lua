@@ -298,6 +298,8 @@ PlayerAction.AmmoEfficiency = {
 
 						break
 					else
+						time = target_time
+
 						return
 					end
 				end
