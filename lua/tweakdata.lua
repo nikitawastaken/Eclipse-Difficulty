@@ -184,7 +184,6 @@ tweak_data.projectiles.dynamite.effect_name = "effects/payday2/particles/explosi
 
 tweak_data.projectiles.concussion.damage = 1
 tweak_data.projectiles.concussion.range = 1000
-tweak_data.projectiles.concussion.duration = { additional = 10, min = 4 }
 
 tweak_data.projectiles.wpn_gre_electric.damage = 24
 tweak_data.projectiles.wpn_gre_electric.curve_pow = 3
