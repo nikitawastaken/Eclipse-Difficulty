@@ -618,6 +618,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_schakal_b_civil.stats.spread = 2
 	self.parts.wpn_fps_smg_schakal_b_civil.stats.concealment = -2
 
+	self.parts.wpn_fps_smg_erma_s_folded.stats.recoil = -2
 	self.parts.wpn_fps_smg_erma_s_folded.stats.concealment = 2
 
 	self.parts.wpn_fps_smg_pm9_b_short.stats.spread = -2
