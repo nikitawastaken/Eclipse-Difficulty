@@ -2062,7 +2062,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.benelli.stats.recoil = 10
 	self.benelli.stats.concealment = 16
 	self.benelli.fire_mode_data.fire_rate = 60 / 300
-	self.benelli.use_shotgun_reload = true
 
 	-- Predator
 	self.spas12.CLIP_AMMO_MAX = 8
@@ -2071,7 +2070,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.spas12.stats.recoil = 12
 	self.spas12.stats.concealment = 18
 	self.spas12.fire_mode_data.fire_rate = 60 / 300
-	self.spas12.use_shotgun_reload = true
 
 	-- Goliath
 	self.rota.upgrade_blocks = { -- No mag size increases
@@ -2085,7 +2083,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rota.stats.recoil = 8
 	self.rota.stats.concealment = 20
 	self.rota.fire_mode_data.fire_rate = 60 / 300
-	self.rota.use_shotgun_reload = true
 
 	-- Argos
 	self.ultima.use_data.selection_index = 2
@@ -2115,7 +2112,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r870.stats.recoil = 10
 	self.r870.stats.concealment = 16
 	self.r870.fire_mode_data.fire_rate = 60 / 120
-	self.r870.use_shotgun_reload = true
 
 	-- Loco
 	self.serbu.CLIP_AMMO_MAX = 4
@@ -2125,7 +2121,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.serbu.stats.concealment = 23
 	self.serbu.fire_mode_data.fire_rate = 60 / 120
 	self.serbu.fire_rate_multiplier = 150 / 120
-	self.serbu.use_shotgun_reload = true
 
 	-- Raven
 	self.ksg.CLIP_AMMO_MAX = 14
@@ -2135,7 +2130,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ksg.stats.concealment = 22
 	self.ksg.fire_mode_data.fire_rate = 60 / 120
 	self.ksg.fire_rate_multiplier = 90 / 120
-	self.ksg.use_shotgun_reload = true
 
 	-- Mosconi Tactical
 	self.m590.CLIP_AMMO_MAX = 7
@@ -2145,7 +2139,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m590.stats.concealment = 19
 	self.m590.fire_mode_data.fire_rate = 60 / 120
 	self.m590.fire_rate_multiplier = 135 / 120
-	self.m590.use_shotgun_reload = true
 
 	-- Judge
 	self.judge.CLIP_AMMO_MAX = 5
@@ -2174,7 +2167,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m37.stats.concealment = 19
 	self.m37.fire_mode_data.fire_rate = 60 / 100
 	self.m37.fire_rate_multiplier = 105 / 100
-	self.m37.use_shotgun_reload = true
 
 	-- Reinfeld 88
 	self.m1897.CLIP_AMMO_MAX = 7
@@ -2184,7 +2176,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1897.stats.concealment = 17
 	self.m1897.fire_mode_data.fire_rate = 60 / 100
 	self.m1897.fire_rate_multiplier = 120 / 100
-	self.m1897.use_shotgun_reload = true
 
 	-- Nova
 	self.supernova.CLIP_AMMO_MAX = 5
@@ -2194,7 +2185,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.supernova.stats.concealment = 16
 	self.supernova.fire_mode_data.fire_rate = 60 / 90
 	self.supernova.fire_rate_multiplier = 105 / 90
-	self.supernova.use_shotgun_reload = true
 	self.supernova.alt_fire_data = nil
 
 	-- Mosconi
@@ -2220,7 +2210,6 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.boot.stats.recoil = 3
 	self.boot.stats.concealment = 20
 	self.boot.fire_mode_data.fire_rate = 60 / 60
-	self.boot.use_shotgun_reload = true
 
 	-- Claire
 	self.coach.CLIP_AMMO_MAX = 2
