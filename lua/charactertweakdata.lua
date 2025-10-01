@@ -369,9 +369,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * elite_sniper_aim_delay_mul
 	presets.weapon.elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 6 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.taser = based_on(presets.weapon.swat, {
