@@ -133,7 +133,7 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 	local is_gangster = CopDamage.is_gangster(self._unit:base()._tweak_table)
 	local is_cop = not is_civlian and not is_gangster
 	local is_tank = is_cop and self._unit:base():has_tag("tank")
-	local has_tank_knockdown = managers.player:has_enabled_cooldown_upgrade("cooldown", "counter_strike_eclipse")
+	local has_tank_knockdown = managers.player:has_enabled_cooldown_upgrade("cooldown", "melee_dozer_knock")
 	local head = self._head_body_name and attack_data.col_ray.body and attack_data.col_ray.body:name() == self._ids_head_body_name
 	local damage = attack_data.damage
 
@@ -230,7 +230,7 @@ Hooks:OverrideFunction(CopDamage, "damage_melee", function(self, attack_data)
 		-- If the player has counter strike aced and the target is a dozer, stun them
 		if is_tank and has_tank_knockdown then
 			result_type = "expl_hurt"
-			managers.player:disable_cooldown_upgrade("cooldown", "counter_strike_eclipse")
+			managers.player:disable_cooldown_upgrade("cooldown", "melee_dozer_knock")
 		end
 		result = {
 			type = result_type,

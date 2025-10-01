@@ -1491,23 +1491,13 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steroids.multibasic = "100%"
 
 	-- Counterstrike
-	self.values.player.charged_melee_dozer_knock = { true }
-	self.definitions.player_charged_melee_dozer_knock = {
-		name_id = "menu_player_charged_melee_dozer_knock",
-		category = "feature",
-		upgrade = {
-			value = 2,
-			upgrade = "charged_melee_dozer_knock",
-			category = "player",
-		},
-	}
-	self.values.cooldown.charged_melee_dozer_knock = { { 1, 10 } }
-	self.definitions.cooldown_charged_melee_dozer_knock = {
-		name_id = "menu_cooldown_charged_melee_dozer_knock",
+	self.values.cooldown.melee_dozer_knock = { { 1, 10 } }
+	self.definitions.cooldown_melee_dozer_knock = {
+		name_id = "menu_cooldown_melee_dozer_knock",
 		category = "cooldown",
 		upgrade = {
 			value = 1,
-			upgrade = "charged_melee_dozer_knock",
+			upgrade = "melee_dozer_knock",
 			category = "cooldown",
 		},
 	}

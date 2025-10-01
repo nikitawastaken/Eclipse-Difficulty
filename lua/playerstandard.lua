@@ -684,7 +684,7 @@ function PlayerStandard:_start_action_running(t)
 		return
 	end
 
-	if self:_is_meleeing() and (managers.player and not managers.player:has_category_upgrade("player", "run_and_melee_eclipse")) then
+	if self:_is_meleeing() and (managers.player and not managers.player:has_category_upgrade("player", "run_and_melee")) then
 		self._running_wanted = true
 		return
 	end
@@ -720,7 +720,7 @@ function PlayerStandard:_start_action_running(t)
 
 	if
 		(not self:_is_reloading() or not self.RUN_AND_RELOAD) -- no sprint anim if run n' reload (unused)
-		and (not self:_is_meleeing() or not managers.player:has_category_upgrade("player", "run_and_melee_eclipse")) -- no sprint anim while meleeing
+		and (not self:_is_meleeing() or not managers.player:has_category_upgrade("player", "run_and_melee")) -- no sprint anim while meleeing
 		and (not (self:_changing_weapon() or self:_is_throwing_projectile()) or not managers.player:has_category_upgrade("player", "can_sprint_swap")) -- no sprint anim while weapon swapping / masking up
 	then
 		if not self._equipped_unit:base():run_and_shoot_allowed() then
@@ -775,7 +775,7 @@ function PlayerStandard:_end_action_running(t)
 		if
 			not weap_base:run_and_shoot_allowed()
 			and (not self:_is_reloading() or not self.RUN_AND_RELOAD) -- no sprint anim if run n' reload (unused)
-			and (not self:_is_meleeing() or not managers.player:has_category_upgrade("player", "run_and_melee_eclipse")) -- no sprint anim while meleeing
+			and (not self:_is_meleeing() or not managers.player:has_category_upgrade("player", "run_and_melee")) -- no sprint anim while meleeing
 			and (not (self:_changing_weapon() or self:_is_throwing_projectile()) or not managers.player:has_category_upgrade("player", "can_sprint_swap")) -- no sprint anim while weapon swapping / masking up
 		then
 			self._ext_camera:play_redirect(self:get_animation("stop_running"), speed_multiplier)
@@ -914,7 +914,7 @@ Hooks:PreHook(PlayerStandard, "_update_melee_timers", "eclipse_update_melee_time
 end)
 
 Hooks:PostHook(PlayerStandard, "_interupt_action_melee", "eclipse_interupt_action_melee", function(self, t)
-	if managers.player and managers.player:has_category_upgrade("player", "run_and_melee_eclipse") then
+	if managers.player and managers.player:has_category_upgrade("player", "run_and_melee") then
 		local running = self._running and not self._end_running_expire_t
 
 		self:_interupt_action_running(t)

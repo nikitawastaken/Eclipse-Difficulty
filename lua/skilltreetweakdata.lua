@@ -497,13 +497,13 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Pumping Iron
 	self.skills.steroids[1].upgrades = { "melee_faster_reswing" }
-	self.skills.steroids[2].upgrades = { "player_run_and_melee_eclipse" }
+	self.skills.steroids[2].upgrades = { "player_run_and_melee" }
 	self.skills.steroids.name_id = "menu_pumping_iron"
 	self.skills.steroids.desc_id = "menu_pumping_iron_desc"
 
 	-- Counter Strike
 	self.skills.drop_soap[1].upgrades = { "player_shield_knock" }
-	self.skills.drop_soap[2].upgrades = { "cooldown_counter_strike_eclipse" }
+	self.skills.drop_soap[2].upgrades = { "cooldown_melee_dozer_knock" }
 	self.skills.drop_soap.name_id = "menu_counter_strike"
 	self.skills.drop_soap.desc_id = "menu_counter_strike_desc"
 
