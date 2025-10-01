@@ -24,14 +24,14 @@ function BlackMarketTweakData:_init_projectiles(tweak_data)
 
 	-- increase concussion grenade expire_t and repeat_expire_t to match other grenades
 	self.projectiles.concussion.expire_t = self.projectiles.frag_com.expire_t
-		
+
 	-- give all hand grenades the community frag grenade's throw animation
 	self.projectiles.frag.animation = self.projectiles.frag_com.animation
 	self.projectiles.fir_com.animation = self.projectiles.frag_com.animation
 	self.projectiles.concussion.animation = self.projectiles.frag_com.animation
 	self.projectiles.wpn_gre_electric.animation = self.projectiles.frag_com.animation
 	self.projectiles.sticky_grenade.animation = self.projectiles.frag_com.animation
-		
+
 	self.projectiles.launcher_incendiary_m79 = deep_clone(self.projectiles.launcher_incendiary)
 	self.projectiles.launcher_incendiary_m79.weapon_id = "gre_m79"
 
