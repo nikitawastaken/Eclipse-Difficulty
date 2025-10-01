@@ -1998,9 +1998,9 @@ function UpgradesTweakData:init(tweak_data)
 		{ 1.5, 2.5 },
 		{ 2, 3 },
 		{ 2.5, 3.75 },
-		{ 3.5, 4.5 },
-		{ 5, 6 },
-		{ 7, 8 },
+		{ 3, 4.5 },
+		{ 3.5, 6 },
+		{ 4, 8 },
 	} }
 	self.values.player.health_decrease = { 0.25, 0.5 }
 	self.definitions.player_health_decrease_2 = {
@@ -2077,9 +2077,9 @@ function UpgradesTweakData:init(tweak_data)
 		{ 1.5, 2.5 },
 		{ 2, 3 },
 		{ 2.5, 3.75 },
-		{ 3.5, 4.5 },
-		{ 5, 6 },
-		{ 7, 8 },
+		{ 3, 4.5 },
+		{ 3.5, 6 },
+		{ 4, 8 },
 	} }
 	self.definitions.player_headshot_to_armor = {
 		name_id = "menu_player_headshot_to_armor",
@@ -2095,9 +2095,9 @@ function UpgradesTweakData:init(tweak_data)
 		{ 1.5, 2.5 },
 		{ 2, 3 },
 		{ 2.5, 3.75 },
-		{ 3.5, 4.5 },
-		{ 5, 6 },
-		{ 7, 8 },
+		{ 3, 4.5 },
+		{ 3.5, 6 },
+		{ 4, 8 },
 	} }
 	self.specialization_descs[15][3].multiperk = "75%"
 	self.specialization_descs[15][7].multiperk2 = "50%"
