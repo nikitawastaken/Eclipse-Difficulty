@@ -8,7 +8,7 @@ local disabled = {
 }
 local humvee_crash_event_chance = {
 	values = {
-		enabled = (normal and 0.1 or hard and 0.3 or 0.5) + ((is_pro_job and normal) and 0.1 or is_pro_job and 0.3 or 0),
+		enabled = (normal and 0.2 or hard and 0.4 or 0.6) + (is_pro_job and 0.2 or 0),
 	},
 }
 local main_window_spawn = {
@@ -70,6 +70,8 @@ return {
 			},
 		},
 	},
+	-- disable gas in the PEOC
+	[103245] = disabled,
 	-- make humvee event be chance based
 	[101606] = humvee_crash_event_chance,
 	[103360] = disabled,
