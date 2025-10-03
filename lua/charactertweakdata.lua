@@ -1607,7 +1607,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		},
 		secondary = {
 			["wpn_fps_pis_chinchilla_npc"] = 6, -- Signature
-			["wpn_fps_smg_m45_npc"] = 1, -- Silk Road poster 
+			["wpn_fps_smg_m45_npc"] = 1, -- Silk Road poster
 		},
 	},
 	-- Joy
@@ -1616,7 +1616,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_shepheard_npc"] = 3, -- Signature Signature
 			["wpn_fps_ass_akm_npc"] = 1, -- PD3 moment
 		},
-		secondary = "wpn_fps_pis_p226_npc", -- Signature Signature 2 
+		secondary = "wpn_fps_pis_p226_npc", -- Signature Signature 2
 	},
 	-- Duke
 	["myh"] = {
@@ -1635,7 +1635,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	["ecp_female"] = {
 		primary = {
 			["wpn_fps_ass_galil_npc"] = 1,
-			["wpn_fps_ass_komodo_npc"] = 1, 
+			["wpn_fps_ass_komodo_npc"] = 1,
 		},
 		secondary = "wpn_fps_pis_sparrow_npc",
 	},
