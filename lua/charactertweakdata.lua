@@ -541,8 +541,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = (72 + math.floor(diff_i / 2) * 24) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
-	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.15
+	presets.gang_member_damage.HEALTH_INIT = (72 + math.floor(diff_i_no_easy / 2) * 28) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
 	presets.gang_member_damage.REGENERATE_TIME_AWAY = presets.gang_member_damage.REGENERATE_TIME
@@ -1417,27 +1417,30 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_ass_g36_npc"] = 1, -- Skill tree background
 		},
 		secondary = {
-			["wpn_fps_pis_1911_npc"] = 3, -- Used in PDTH
-			["wpn_fps_smg_mac10_npc"] = 1, -- Used in PDTH
-			["wpn_fps_pis_beretta_npc"] = 1, -- Freeze trailer
+			["wpn_fps_pis_1911_npc"] = 9, -- Used in PDTH
+			["wpn_fps_smg_mac10_npc"] = 3, -- Used in PDTH
+			["wpn_fps_pis_beretta_npc"] = 3, -- Freeze trailer
+			["wpn_fps_pis_peacemaker_npc"] = 1, -- Keep them hands visible
 		},
 	},
 	-- Wolf
 	["german"] = {
 		primary = {
 			["wpn_fps_shot_r870_npc"] = 3, -- Common portrayal
-			["wpn_fps_ass_74_npc"] = 1, -- Used in PDTH
+			["wpn_fps_ass_g36_npc"] = 1, -- Common portrayal 2
+			["wpn_fps_ass_akm_npc"] = 1, -- Used in PDTH
 		},
 		secondary = {
 			["wpn_fps_pis_g18c_npc"] = 3, -- Used in PDTH
-			["wpn_fps_smg_mp5_npc"] = 1, -- Used pre-Henchmen/skill tree background
+			["wpn_fps_smg_mp5_npc"] = 2, -- Used pre-Henchmen/skill tree background
+			["wpn_fps_smg_m45_npc"] = 1, -- Alesso trailer
 		},
 	},
 	-- Chains
 	["spanish"] = {
 		primary = {
 			["wpn_fps_lmg_m249_npc"] = 1, -- Common portrayal
-			["wpn_fps_shot_r870_npc"] = 1, -- Used in PDTH/skill tree background
+			["wpn_fps_shot_r870_npc"] = 1, -- Used in PDTH/Skill tree background
 		},
 		secondary = {
 			["wpn_fps_pis_rage_npc"] = 3, -- Used in PDTH
@@ -1484,18 +1487,25 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	-- Hoxton
 	["old_hoxton"] = {
 		primary = {
-			["wpn_fps_sho_spas12_npc"] = 3, -- Signature
+			["wpn_fps_sho_spas12_npc"] = 2, -- Signature
 			["wpn_fps_ass_m14_npc"] = 1, -- Used in PDTH
 		},
 		secondary = {
-			["wpn_fps_shot_serbu_npc"] = 3, -- Used in PDTH
+			["wpn_fps_shot_serbu_npc"] = 2, -- Used in PDTH
 			["wpn_fps_pis_deagle_npc"] = 1,
 		},
 	},
 	-- Clover
 	["female_1"] = {
-		primary = "wpn_fps_ass_l85a2_npc", -- Signature
-		secondary = "wpn_fps_pis_ppk_npc",
+		primary = {
+			["wpn_fps_ass_l85a2_npc"] = 6, -- Signature
+			["wpn_fps_ass_s552_npc"] = 1, -- Family Matters poster
+		},
+		secondary = {
+			["wpn_fps_ass_ppk_npc"] = 3,
+			["wpn_fps_pis_holt_npc"] = 1, -- Silk Road poster
+			["wpn_fps_pis_czech_npc"] = 1, -- Cartel Business poster
+		},
 	},
 	-- Dragan
 	["dragan"] = {
@@ -1519,14 +1529,19 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	},
 	-- Bonnie
 	["bonnie"] = {
-		primary = "wpn_fps_shot_b682_npc", -- Signature
-		secondary = "wpn_fps_pis_2006m_npc",
+		primary = {
+			["wpn_fps_shot_b682_npc"] = 6, -- Signature
+			["wpn_fps_lmg_hk21_npc"] = 1, -- Mountain Master poster
+			["wpn_fps_lmg_m249_npc"] = 1, -- Lost In Transit poster
+		},
+		secondary = "wpn_fps_pis_2006m_npc", -- Ask Miki
 	},
 	-- Sokol
 	["sokol"] = {
 		primary = {
-			["wpn_fps_ass_asval_npc"] = 3, -- Signature
-			["wpn_fps_ass_flint_npc"] = 1,
+			["wpn_fps_ass_asval_npc"] = 6, -- Signature
+			["wpn_fps_ass_flint_npc"] = 3, -- Silk Road poster
+			["wpn_fps_ass_g36_npc"] = 1, -- Family Matters poster
 		},
 		secondary = "wpn_fps_pis_pl14_npc",
 	},
@@ -1553,12 +1568,24 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	},
 	-- Sydney
 	["sydney"] = {
-		primary = "wpn_fps_ass_tecci_npc", -- Signature
-		secondary = "wpn_fps_pis_judge_npc", -- Anarcho skin (Sydney Safe)
+		primary = {
+			["wpn_fps_ass_tecci_npc"] = 6, -- Signature
+			["wpn_fps_ass_amcar_npc"] = 1, -- Family Matters poster
+			["wpn_fps_ass_scar_npc"] = 1, -- Border Crossing poster
+		},
+		secondary = {
+			["wpn_fps_pis_judge_npc"] = 6, -- Anarcho skin (Sydney Safe)
+			["wpn_fps_smg_mac10_npc"] = 3, -- Used pre-U240.3
+			["wpn_fps_pis_czech_npc"] = 1, -- Cartel Business poster
+		},
 	},
 	-- Rust
 	["wild"] = {
-		primary = "wpn_fps_sho_boot_npc", -- Signature
+		primary = {
+			["wpn_fps_sho_boot_npc"] = 9, -- Signature
+			["wpn_fps_smg_hajk_npc"] = 3, -- Released alongside
+			["wpn_fps_lmg_par_npc"] = 1, -- Black Cat poster
+		},
 		secondary = "wpn_fps_pis_g22c_npc", -- Spark Plug skin (Biker Safe)
 	},
 	-- Scarface, secondaries are available in Scarface: The World is Yours
@@ -1574,28 +1601,42 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	},
 	-- Sangres
 	["max"] = {
-		primary = "wpn_fps_ass_scar_npc", -- San Martin poster
-		secondary = "wpn_fps_pis_chinchilla_npc", -- Signature
+		primary = {
+			["wpn_fps_ass_scar_npc"] = 6, -- Cartel Business poster
+			["wpn_fps_smg_polymer_npc"] = 1, -- Lost In Transit poster
+		},
+		secondary = {
+			["wpn_fps_pis_chinchilla_npc"] = 6, -- Signature
+			["wpn_fps_smg_m45_npc"] = 1, -- Silk Road poster 
+		},
 	},
 	-- Joy
 	["joy"] = {
 		primary = {
-			["wpn_fps_smg_shepheard_npc"] = 3, -- Signature
+			["wpn_fps_smg_shepheard_npc"] = 3, -- Signature Signature
 			["wpn_fps_ass_akm_npc"] = 1, -- PD3 moment
 		},
-		secondary = "wpn_fps_pis_g17_npc", -- Ask Hitscanner
+		secondary = "wpn_fps_pis_p226_npc", -- Signature Signature 2 
 	},
 	-- Duke
 	["myh"] = {
 		primary = {
-			["wpn_fps_ass_ching_npc"] = 1, -- Historic
-			["wpn_fps_smg_erma_npc"] = 1, -- Historic
+			["wpn_fps_ass_ching_npc"] = 6, -- Historic
+			["wpn_fps_smg_erma_npc"] = 6, -- Historic
+			["wpn_fps_lmg_mg42_npc"] = 1, -- Historic
 		},
-		secondary = "wpn_fps_pis_shrew_npc", -- Signature
+		secondary = {
+			["wpn_fps_pis_shrew_npc"] = 6, -- Signature
+			["wpn_fps_pis_c96_npc"] = 1, -- Historic
+			["wpn_fps_smg_thompson_npc"] = 1, -- Historic
+		},
 	},
 	-- Hila
 	["ecp_female"] = {
-		primary = "wpn_fps_ass_galil_npc",
+		primary = {
+			["wpn_fps_ass_galil_npc"] = 1,
+			["wpn_fps_ass_komodo_npc"] = 1, 
+		},
 		secondary = "wpn_fps_pis_sparrow_npc",
 	},
 	-- Ethan
