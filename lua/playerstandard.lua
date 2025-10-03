@@ -599,6 +599,7 @@ function PlayerStandard:_update_standstill_resistance(t, dt)
 		or self._moving
 		or self:running()
 		or self:in_air()
+		or self._state_data.ducking
 
 	if not action_forbidden then
 		self._standstill_damage_reduction_active = true

@@ -41,7 +41,7 @@
 	"menu_overkill_desc": "BASIC: ##$basic##\nWhen you kill an enemy with a Shotgun, you have a ##$multibasic## chance to cause nearby enemies to panic.\n\nThis cannot occur more than once every ##$multibasic2## seconds\n\nACE: ##$pro##\nWhen you kill an enemy with a Shotgun, you receive ##$multipro## damage increase for ##$multipro2## seconds.\n\nThis damage bonus applies to all weapons.",
 
 	"menu_impact_padding": "Impact Padding",
-	"menu_impact_padding_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## damage reduction while standing still.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you receive ##$multipro## damage reduction that lasts for ##$multipro2## seconds.\n\nThis cannot occur more than once every ##$multipro3## seconds.",
+	"menu_impact_padding_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## damage reduction while standing upright and still.\n\nACE: ##$pro##\nWhen your armor recovers after being fully broken you receive ##$multipro## damage reduction that lasts for ##$multipro2## seconds.\n\nThis cannot occur more than once every ##$multipro3## seconds.",
 	"menu_nerves_of_steel": "Nerves of Steel",
 	"menu_nerves_of_steel_desc": "BASIC: ##$basic##\nYour steadiness is increased by ##$multibasic##.\n\nHigher steadiness reduces aimpunch.\n\nACE: ##$pro##\nYou gain ##$multipro## resistance to armor suppression.",
 	"menu_protective_mask": "Protective Mask",
