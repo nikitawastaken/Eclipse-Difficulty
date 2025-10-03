@@ -32,7 +32,7 @@ local patches = {
 }
 
 return {
---[[
+	--[[
 	["levels/instances/unique/chew/chew_train_car/world/world"] = function(result)
 		for _, element in ipairs(result.default.elements) do
 			if patches.train_car_tanker[element.id] then
