@@ -1958,8 +1958,9 @@ function CharacterTweakData:_set_presets()
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
+			char_preset.move_speed = deep_clone(char_preset.move_speed)
 			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
-			char_preset.can_be_healed = tag_map.medic and false or true
+			char_preset.can_be_healed = not tag_map.medic and true or false
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
