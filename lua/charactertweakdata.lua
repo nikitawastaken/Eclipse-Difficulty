@@ -390,9 +390,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.taser.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4.5 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4.5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.medic = based_on(presets.weapon.swat, {
@@ -1502,7 +1502,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_ass_s552_npc"] = 1, -- Family Matters poster
 		},
 		secondary = {
-			["wpn_fps_ass_ppk_npc"] = 3,
+			["wpn_fps_pis_ppk_npc"] = 3,
 			["wpn_fps_pis_holt_npc"] = 1, -- Silk Road poster
 			["wpn_fps_pis_czech_npc"] = 1, -- Cartel Business poster
 		},
