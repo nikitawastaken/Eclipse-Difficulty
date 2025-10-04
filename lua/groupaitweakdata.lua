@@ -2192,7 +2192,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 4, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 60) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 90) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2243,12 +2243,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-
+	
 	self.enemy_spawn_groups.fbi_taser = {
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 90) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 120) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2524,7 +2524,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 4, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 360) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2564,7 +2564,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 90) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 120) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2593,12 +2593,12 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-
+	
 	self.enemy_spawn_groups.elite_bulldozer = {
-		amount = { 3, 4 },
+		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 360) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 480) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2628,7 +2628,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-
+	
 	self.enemy_spawn_groups.elite_bulldozer_shield = {
 		amount = { 3, 3 },
 		spawn = {
