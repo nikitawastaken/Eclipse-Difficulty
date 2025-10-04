@@ -260,7 +260,7 @@ return {
 			{
 				name = "such_a_nice_car",
 				force = 2,
-				position = Vector3(675, -1200, 875)
+				position = Vector3(675, -1200, 875),
 			},
 			{
 				name = "such_an_ugly_car",
@@ -279,7 +279,7 @@ return {
 			},
 		},
 	},
-	-- disable vanilla reinforce 
+	-- disable vanilla reinforce
 	[100942] = disabled,
 	[100973] = disabled,
 	-- add new unused spawngroup
