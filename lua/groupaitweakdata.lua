@@ -2243,7 +2243,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.fbi_taser = {
 		amount = { 2, 4 },
 		spawn = {
@@ -2593,7 +2593,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.elite_bulldozer = {
 		amount = { 2, 4 },
 		spawn = {
@@ -2628,7 +2628,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 		},
 	}
-	
+
 	self.enemy_spawn_groups.elite_bulldozer_shield = {
 		amount = { 3, 3 },
 		spawn = {
