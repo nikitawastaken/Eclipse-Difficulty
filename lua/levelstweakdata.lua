@@ -260,7 +260,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mus.group_ai_settings = {
 		assault_force_mul = 0.85,
 		difficulty_scaling = {
-			assault_delay = 75,
+			assault_delay = 60,
 		},
 	}
 
