@@ -1852,7 +1852,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = self._random_tactics.taser,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				rank = 1,
 				unit = "cs_swat",
 				tactics = self._tactics.taser_spt,
@@ -1867,15 +1867,14 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				amount_min = 1,
 				amount_max = 1,
-				rank = 3,
+				rank = 2,
 				unit = "bulldozer",
 				tactics = self._tactics.bulldozer_agg,
 				random_tactics = self._random_tactics.bulldozer,
 			},
 			{
 				freq = 0.75,
-				amount_min = 2,
-				rank = 2,
+				rank = 1,
 				unit = "cs_heavy",
 				tactics = self._tactics.bulldozer_spt,
 			},
@@ -2248,7 +2247,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 120) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 180) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2257,7 +2256,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = self._random_tactics.taser,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				rank = 2,
 				unit = "fbi_swat",
 				tactics = self._tactics.taser_spt,
@@ -2282,7 +2281,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 360) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2292,7 +2291,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq = 0.75,
-				amount_min = 2,
 				rank = 2,
 				unit = "fbi_heavy",
 				tactics = self._tactics.bulldozer_spt,
@@ -2564,7 +2562,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 120) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 180) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2573,7 +2571,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				random_tactics = self._random_tactics.taser,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				rank = 2,
 				unit = "elite_swat",
 				tactics = self._tactics.taser_spt,
@@ -2608,7 +2606,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			},
 			{
 				freq = 0.75,
-				amount_min = 2,
 				rank = 2,
 				unit = "fbi_heavy",
 				tactics = self._tactics.bulldozer_spt,
@@ -2694,6 +2691,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		spawn_point_chk_ref = table.list_to_set({
 			"cs_bulldozer",
+			"fbi_bulldozer",
+			"elite_bulldozer",
 		}),
 	}
 
@@ -2711,6 +2710,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		spawn_point_chk_ref = table.list_to_set({
 			"cs_bulldozer",
+			"fbi_bulldozer",
+			"elite_bulldozer",
 		}),
 	}
 
