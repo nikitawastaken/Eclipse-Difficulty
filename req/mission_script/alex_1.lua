@@ -26,6 +26,11 @@ local mendoza_enemy = {
 }
 local mendoza = { enemy = mendoza_enemy }
 local heli_dozer = is_eclipse_pro and random_elite_dozers or random_dozers
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local sniper_groups = {
 	values = {
 		amount = normal and 1 or hard and 2 or 3,
@@ -158,7 +163,7 @@ return {
 	[100941] = {
 		on_executed = {
 			{ id = 100945, remove = true },
-			{ id = 100965, delay = 180 },
+			{ id = 100965, delay = 180, delay_rand = 120 },
 		},
 	},
 	-- loop the choppa+2 chopper spawns on Eclipse
@@ -255,17 +260,17 @@ return {
 			{
 				name = "such_a_nice_car",
 				force = 2,
-				position = Vector3(675, -1200, 900),
+				position = Vector3(675, -1200, 875)
 			},
 			{
 				name = "such_an_ugly_car",
 				force = 2,
-				position = Vector3(300, 1300, 1200),
+				position = Vector3(-380, 1350, 1200),
 			},
 			{
 				name = "redeyes",
 				force = 2,
-				position = Vector3(3000, -900, 900),
+				position = Vector3(3050, -900, 900),
 			},
 			{
 				name = "basement",
@@ -274,6 +279,9 @@ return {
 			},
 		},
 	},
+	-- disable vanilla reinforce 
+	[100942] = disabled,
+	[100973] = disabled,
 	-- add new unused spawngroup
 	[100937] = {
 		values = {

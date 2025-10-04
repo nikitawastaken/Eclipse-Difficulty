@@ -258,6 +258,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.mus.group_ai_settings = {
+		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_delay = 60,

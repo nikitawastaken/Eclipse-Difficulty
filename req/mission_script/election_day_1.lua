@@ -8,6 +8,11 @@ local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local exclude_shields_dozers = {
 	so_access_filter = so_access.no_heavyweight,
 }
@@ -26,21 +31,15 @@ local jumpdown_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- Add new reinforce
-	[100150] = {
-		reinforce = {
-			{
-				name = "warehouse1",
-				force = 2,
-				position = Vector3(2000, 3135, 0),
-			},
-			{
-				name = "warehouse2",
-				force = 2,
-				position = Vector3(525, -500, 0),
-			},
-		},
-	},
+	-- Disable harassers
+	[104156] = disabled,
+	[104157] = disabled,
+	[104158] = disabled,
+	[104159] = disabled,
+	[104188] = disabled,
+	[104197] = disabled,
+	[104206] = disabled,
+	[104215] = disabled,
 	-- Keep Shields and Dozers from using some of the jump SOs
 	[103164] = exclude_shields_dozers,
 	[103423] = exclude_shields_dozers,
