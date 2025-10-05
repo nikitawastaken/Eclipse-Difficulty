@@ -4,16 +4,8 @@ local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local short_ponr_heists = Eclipse:require("short_ponr_heists")
-
 local diff_lerp = Eclipse.utils.diff_lerp
--- local function diff_lerp(value_1, value_2)
--- 	return Eclipse.utils.diff_lerp(value_1, value_2)
--- end
-
 local table_multiplier = Eclipse.utils.table_multiplier
--- local function table_multiplier(target_table, mul)
--- 	return Eclipse.utils.table_multiplier(target_table, mul)
--- end
 
 GroupAITweakData.group_ai_presets = {
 	["small_urban"] = {
@@ -2281,7 +2273,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 360) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 480) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2596,7 +2588,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 480) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq = (diff_scale / 720) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
