@@ -55,6 +55,12 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	[101735] = {
+		ponr = {
+			length = 180,
+			player_mul = { 1.25, 1.15, 1, 1 },
+		},
+	},
 	-- Boss spawn
 	[102107] = {
 		difficulty_max = 0.1,

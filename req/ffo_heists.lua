@@ -2,6 +2,7 @@
 local M = {
 	hox_1 = true, -- hoxout day 1
 	hox_2 = true, -- hoxout day 2
+	hox_3 = true, -- hoxrevenge
 	arm_for = true, -- train heist
 	roberts = true, -- go bank (Robert Banks)
 	red2 = true, -- fwb
