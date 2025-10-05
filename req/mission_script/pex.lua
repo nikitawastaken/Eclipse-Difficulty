@@ -69,7 +69,7 @@ local cloaker_spawn = {
 return {
 	[101397] = {
 		ponr = {
-			length = 300,
+			length = 240,
 			player_mul = { 1.5, 1.25, 1, 1 },
 		},
 		on_executed = { -- don't disable back cell preferreds

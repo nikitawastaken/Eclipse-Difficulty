@@ -244,10 +244,10 @@ local Smoke_bomb_ambush = {
 	duration = 7,
 }
 local begin_ambush_event_left = {
-	on_executed = { { id = 400057, delay = 2 }, { id = 400070, delay = 2.5 } },
+	on_executed = { { id = 400057, delay = 2 }, { id = 400070, delay = 2 } },
 }
 local begin_ambush_event_right = {
-	on_executed = { { id = 400058, delay = 2 }, { id = 400071, delay = 2.5 } },
+	on_executed = { { id = 400058, delay = 2 }, { id = 400071, delay = 2 } },
 }
 local left_ambush_amount = {
 	amount = 1,
