@@ -417,6 +417,11 @@
 				<file :name="wpn_fps_upg_perk_whirlwind.texture"/>
 				<file :name="wpn_fps_upg_perk_stockpile.texture"/>
 			</group>
+
+			<group :name="boost_in_lootdrop/textures/pd2/blackmarket/icons/mods/">
+				<file :name="wpn_fps_upg_bonus_team_exp.texture"/>
+				<file :name="wpn_fps_upg_bonus_team_money.texture"/>
+			</group>
 		</group>
 	
 		<!-- Grenade Case  -->	

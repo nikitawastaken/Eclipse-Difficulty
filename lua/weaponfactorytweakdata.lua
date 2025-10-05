@@ -101,7 +101,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			part_data.stats.concealment = -1
 		end
 
-		if part_id:match("_legend") and not is_silencer then
+		if part_id:match("_legend") then
 			part_data.stats = {}
 			part_data.custom_stats = {}
 		end
@@ -1530,9 +1530,89 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			table.insert(self[factory_id .. "_npc"].uses_parts, underbarrel_part_id)
 		end
 	end
+
+	-- Split the team boost into two bonuses
+	self.parts.wpn_fps_upg_bonus_team_exp = {
+		exclude_from_challenge = true,
+		texture_bundle_folder = "boost_in_lootdrop",
+		internal_part = true,
+		a_obj = "a_body",
+		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+		desc_id = "bm_wp_upg_bonus_team_exp_desc",
+		type = "bonus",
+		sub_type = "bonus_team",
+		name_id = "bm_wp_upg_bonus_team_exp",
+		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+		has_description = true,
+		pcs = {
+			10,
+			20,
+			30,
+			40
+		},
+		stats = {
+			value = 1
+		},
+		custom_stats = {
+			exp_multiplier = 1.05,
+		},
+		perks = {
+			"bonus"
+		}
+	}
+
+	self.parts.wpn_fps_upg_bonus_team_money = {
+		exclude_from_challenge = true,
+		texture_bundle_folder = "boost_in_lootdrop",
+		internal_part = true,
+		a_obj = "a_body",
+		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+		desc_id = "bm_wp_upg_bonus_team_money_desc",
+		type = "bonus",
+		sub_type = "bonus_team",
+		name_id = "bm_wp_upg_bonus_team_money",
+		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
+		has_description = true,
+		pcs = {
+			10,
+			20,
+			30,
+			40
+		},
+		stats = {
+			value = 1
+		},
+		custom_stats = {
+			money_multiplier = 1.05,
+		},
+		perks = {
+			"bonus"
+		}
+	}
+	
 end)
 
-WeaponFactoryTweakData.part_templates = {
+WeaponFactoryTweakData.parts_to_many = {
+	"wpn_fps_upg_bonus_team_exp",
+	"wpn_fps_upg_bonus_team_money",
+}
+
+function WeaponFactoryTweakData:_add_parts_to_all(tweak_data)
+	local upgrade_definitions = tweak_data.upgrades.definitions
+
+	for weap_id, weap_data in pairs(upgrade_definitions) do
+		local factory_id = weap_data.factory_id
+
+		for _, part_id in pairs(self.parts_to_many) do	
+			if self[factory_id] and self[factory_id].uses_parts then
+				table.insert(self[factory_id].uses_parts, part_id)
+				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
+			end
+		end
+	end
+end
+
+WeaponFactoryTweakData.parts_from_template = {
 	["wpn_fps_upg_m4_m_drum"] = "wpn_fps_upg_m4_m_pmag",
 	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
 	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
@@ -1540,24 +1620,17 @@ WeaponFactoryTweakData.part_templates = {
 	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
 }
 
-function WeaponFactoryTweakData:_add_eclipse_parts(tweak_data)
+function WeaponFactoryTweakData:_add_parts_from_template(tweak_data)
 	local upgrade_definitions = tweak_data.upgrades.definitions
 
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
 		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
-		local is_akimbo = weapon_tweak and table.contains(weapon_tweak.categories, "akimbo")
 
-		for part_id, template_id in pairs(self.part_templates) do
-			local forbid_akimbo = self.parts[part_id] and self.parts[part_id].no_akimbo
-
+		for part_id, template_id in pairs(self.parts_from_template) do
 			if self[factory_id] and self[factory_id].uses_parts and table.contains(self[factory_id].uses_parts, template_id) then
-				if is_akimbo and forbid_akimbo then
-					-- Nothing
-				else
-					table.insert(self[factory_id].uses_parts, part_id)
-					table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
-				end
+				table.insert(self[factory_id].uses_parts, part_id)
+				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
 			end
 		end
 	end
@@ -2358,7 +2431,8 @@ end
 
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
-	self:_add_eclipse_parts(tweak_data)
+	self:_add_parts_to_all(tweak_data)
+	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
 	self:_balance_launcher_ammo(tweak_data)
 	self:_balance_magazines(tweak_data)

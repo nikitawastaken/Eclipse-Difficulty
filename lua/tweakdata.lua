@@ -1,7 +1,4 @@
 local diff_lerp = Eclipse.utils.diff_lerp
--- local function diff_lerp(value_1, value_2)
--- 	return Eclipse.utils.diff_lerp(value_1, value_2)
--- end
 
 -- lock dw / ds
 tweak_data.difficulty_level_locks = {
