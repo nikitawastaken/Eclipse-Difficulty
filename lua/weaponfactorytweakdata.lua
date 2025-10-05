@@ -1548,17 +1548,17 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			10,
 			20,
 			30,
-			40
+			40,
 		},
 		stats = {
-			value = 1
+			value = 1,
 		},
 		custom_stats = {
 			exp_multiplier = 1.05,
 		},
 		perks = {
-			"bonus"
-		}
+			"bonus",
+		},
 	}
 
 	self.parts.wpn_fps_upg_bonus_team_money = {
@@ -1577,19 +1577,18 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 			10,
 			20,
 			30,
-			40
+			40,
 		},
 		stats = {
-			value = 1
+			value = 1,
 		},
 		custom_stats = {
 			money_multiplier = 1.05,
 		},
 		perks = {
-			"bonus"
-		}
+			"bonus",
+		},
 	}
-	
 end)
 
 WeaponFactoryTweakData.parts_to_many = {
@@ -1603,7 +1602,7 @@ function WeaponFactoryTweakData:_add_parts_to_all(tweak_data)
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
 
-		for _, part_id in pairs(self.parts_to_many) do	
+		for _, part_id in pairs(self.parts_to_many) do
 			if self[factory_id] and self[factory_id].uses_parts then
 				table.insert(self[factory_id].uses_parts, part_id)
 				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
