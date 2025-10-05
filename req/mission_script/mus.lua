@@ -155,7 +155,7 @@ return {
 		},
 	},
 	-- don't remove front spawns
-	[102159102159] = disabled,
+	[102159] = disabled,
 	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,
