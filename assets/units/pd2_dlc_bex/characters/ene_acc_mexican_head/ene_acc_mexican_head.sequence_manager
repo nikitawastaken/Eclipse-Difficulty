@@ -37,8 +37,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'head_init'" once="true" triggable="true"> 
-			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','b','c','d','e','f','g','h')..'_var2'" />
-			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','b','c','d','e','f','g','h')..'_var1'" />
+			<run_sequence		filter="'check_mat_var2'" name="'body_'..pick('a','b','c','d','e','f','g','h','jerome')..'_var2'" />
+			<run_sequence		filter="'check_mat_var1'" name="'body_'..pick('a','b','c','d','e','f','g','h','jerome')..'_var1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'balaclava_cop_base'" once="true" triggable="true">	
@@ -214,29 +214,8 @@
 			<object 		enabled="false" name="'g_face_h'"/>
 			<object 		enabled="false" name="'g_face_h_lod1'"/>
 
-			<object 		enabled="false" name="'g_face_i'"/>
-			<object 		enabled="false" name="'g_face_i_lod1'"/>
-
-			<object 		enabled="false" name="'g_face_j'"/>
-			<object 		enabled="false" name="'g_face_j_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_k'"/>
-			<object 		enabled="false" name="'g_face_k_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_l'"/>
-			<object 		enabled="false" name="'g_face_l_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_m'"/>
-			<object 		enabled="false" name="'g_face_m_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_n'"/>
-			<object 		enabled="false" name="'g_face_n_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_o'"/>
-			<object 		enabled="false" name="'g_face_o_lod1'"/>
-			
-			<object 		enabled="false" name="'g_face_p'"/>
-			<object 		enabled="false" name="'g_face_p_lod1'"/>
+			<object 		enabled="false" name="'g_face_jerome'"/>
+			<object 		enabled="false" name="'g_face_jerome_lod1'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'disable_head'" once="true" triggable="true">	
@@ -264,29 +243,8 @@
 			<object 		enabled="false" name="'g_head_h'"/>
 			<object 		enabled="false" name="'g_head_h_lod1'"/>
 			
-			<object 		enabled="false" name="'g_head_i'"/>
-			<object 		enabled="false" name="'g_head_i_lod1'"/>
-
-			<object 		enabled="false" name="'g_head_j'"/>
-			<object 		enabled="false" name="'g_head_j_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_k'"/>
-			<object 		enabled="false" name="'g_head_k_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_l'"/>
-			<object 		enabled="false" name="'g_head_l_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_m'"/>
-			<object 		enabled="false" name="'g_head_m_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_n'"/>
-			<object 		enabled="false" name="'g_head_n_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_o'"/>
-			<object 		enabled="false" name="'g_head_o_lod1'"/>
-			
-			<object 		enabled="false" name="'g_head_p'"/>
-			<object 		enabled="false" name="'g_head_p_lod1'"/>
+			<object 		enabled="false" name="'g_head_jerome'"/>
+			<object 		enabled="false" name="'g_head_jerome_lod1'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'body_a_var1'" once="true" triggable="true">
@@ -312,8 +270,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_c_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_c'"/>
-			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_c'"/>
 			<object 		enabled="true" name="'g_face_c_lod1'"/>
@@ -376,7 +334,18 @@
 			<object 		enabled="true" name="'g_head_h'"/>
 			<object 		enabled="true" name="'g_head_h_lod1'"/>
 		</sequence>
-	
+
+		<sequence editable_state="true" name="'body_jerome_var1'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_jerome'"/>
+			<object 		enabled="true" name="'g_face_jerome_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_jerome'"/>
+			<object 		enabled="true" name="'g_head_jerome_lod1'"/>
+		</sequence>
+		
 		<sequence editable_state="true" name="'body_a_var2'" once="true" triggable="true">
 			<object 		enabled="true" name="'g_arms_a'"/>
 			<object 		enabled="true" name="'g_arms_a_lod1'"/>
@@ -400,8 +369,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_c_var2'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_c'"/>
-			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			<object 		enabled="true" name="'g_arms_a'"/>
+			<object 		enabled="true" name="'g_arms_a_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_c'"/>
 			<object 		enabled="true" name="'g_face_c_lod1'"/>
@@ -463,6 +432,17 @@
 			
 			<object 		enabled="true" name="'g_head_h'"/>
 			<object 		enabled="true" name="'g_head_h_lod1'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'body_jerome_var2'" once="true" triggable="true">
+			<object 		enabled="true" name="'g_arms_e'"/>
+			<object 		enabled="true" name="'g_arms_e_lod1'"/>
+			
+			<object 		enabled="true" name="'g_face_jerome'"/>
+			<object 		enabled="true" name="'g_face_jerome_lod1'"/>
+			
+			<object 		enabled="true" name="'g_head_jerome'"/>
+			<object 		enabled="true" name="'g_head_jerome_lod1'"/>
 		</sequence>
 	</unit>
 </table>

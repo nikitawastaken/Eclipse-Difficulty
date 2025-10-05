@@ -201,6 +201,18 @@
 					<material materials="mtr_head_lod_2" />
 				</object>
 			</lod_object>
+
+			<lod_object name="lod_face_jerome">
+				<object name="g_face_jerome" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_jerome" max_distance="1000" />
+					<material materials="mtr_jerome_lod_1" max_distance="1500" />
+					<material materials="mtr_jerome_lod_2" />
+				</object>
+				<object name="g_face_jerome_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_jerome" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_jerome_lod_2" />
+				</object>
+			</lod_object>
 			
 			<!--HEADS-->	
 			<lod_object name="lod_head_a">
@@ -299,6 +311,18 @@
 				</object>
 			</lod_object>
 
+			<lod_object name="lod_head_jerome">
+				<object name="g_head_jerome" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_jerome" max_distance="1000" />
+					<material materials="mtr_jerome_lod_1" max_distance="1500" />
+					<material materials="mtr_jerome_lod_2" />
+				</object>
+				<object name="g_head_jerome_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_jerome" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_jerome_lod_2" />
+				</object>
+			</lod_object>
+			
 			<!--BALACLAVAS-->
 			<lod_object name="lod_balaclava_cop_a">
 				<object name="g_balaclava_cop_a" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
