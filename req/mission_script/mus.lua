@@ -138,24 +138,13 @@ return {
 			{ id = 400001, delay = 3 },
 		},
 	},
-	-- don't remove side window spawns
-	[102112] = { -- obj 5
-		on_executed = {
-			{ id = 102126, remove = true },
-			{ id = 102147, remove = true },
-		},
-	},
 	[102154] = { -- 1st timelock done
 		on_executed = {
-			{ id = 102126, remove = true },
-			{ id = 102147, remove = true },
-			{ id = 100128, delay = 0, delay_rand = 20 }, -- add 40
-			{ id = 100130, delay = 0, delay_rand = 20 }, -- add 41
-			{ id = 102129, delay = 10, delay_rand = 20 }, -- add 11
+			{ id = 100128, delay = 0, delay_rand = 30 }, -- add 40
+			{ id = 100130, delay = 0, delay_rand = 30 }, -- add 41
+			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
 		},
 	},
-	-- don't remove front spawns
-	[102159] = disabled,
 	-- Spawn group intervals
 	[100786] = courtyard_spawn,
 	[100789] = courtyard_spawn,

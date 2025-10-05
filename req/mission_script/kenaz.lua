@@ -52,56 +52,31 @@ return {
 			{
 				name = "exterior_entrance",
 				force = 4,
-				position = Vector3(0, -8000, 0),
+				position = Vector3(0, -6550, 0),
 			},
 			{
-				name = "exterior_right1",
-				force = 2,
-				position = Vector3(3400, -2600, 20),
+				name = "exterior_right",
+				force = 3,
+				position = Vector3(2450, -5500, 25),
 			},
 			{
-				name = "exterior_right2",
-				force = 2,
-				position = Vector3(2200, -5400, 20),
-			},
-			{
-				name = "exterior_left1",
-				force = 2,
-				position = Vector3(-3000, -3200, 20),
-			},
-			{
-				name = "exterior_left2",
-				force = 2,
-				position = Vector3(-2900, -5500, 20),
+				name = "exterior_left",
+				force = 3,
+				position = Vector3(-3150, -5550, 20),
 			},
 		},
 	},
 	[101620] = { -- assemble the winch
 		reinforce = {
 			{
-				name = "bar",
-				force = 3,
-				position = Vector3(20, -4000, 10),
-			},
-			{
 				name = "interior_balcony1",
 				force = 2,
-				position = Vector3(-1300, -550, 600),
+				position = Vector3(1330, -2440, 550),
 			},
 			{
 				name = "interior_balcony2",
 				force = 2,
-				position = Vector3(1200, 600, 600),
-			},
-			{
-				name = "interior_balcony3",
-				force = 2,
-				position = Vector3(-1300, -2400, 500),
-			},
-			{
-				name = "interior_balcony4",
-				force = 2,
-				position = Vector3(1300, -2400, 500),
+				position = Vector3(-1310, -2440, 550),
 			},
 		},
 	},
@@ -115,7 +90,7 @@ return {
 			{
 				name = "security2",
 				force = 2,
-				position = Vector3(1000, 1500, 100),
+				position = Vector3(950, 1500, 100),
 			},
 		},
 	},
