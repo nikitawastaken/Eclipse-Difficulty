@@ -1,4 +1,9 @@
 local preferred = Eclipse.preferred
+local diff_i = Eclipse.utils.difficulty_index()
+local easy = diff_i == 2
+local normal_and_hard = diff_i == 3 or diff_i == 4
+local overkill = diff_i == 5
+local deathwish = diff_i == 6
 local disabled = {
 	values = {
 		enabled = false,
@@ -77,6 +82,65 @@ return {
 		},
 		on_executed = { -- standard preferreds
 			{ id = 100127, delay = 60 },
+		},
+	},
+	-- restore ground snipers
+	[100369] = enabled,
+	[100370] = enabled,
+	[100371] = enabled,
+	[100372] = enabled,
+	-- keep other snipers enabled at all times
+	[100368] = enabled,
+	[100373] = enabled,
+	[100374] = enabled,
+	-- add missing spawns to elementrandom
+	[100366] = {
+		on_executed = {
+			{ id = 100369, delay = 0 },
+			{ id = 100370, delay = 0 },
+			{ id = 100371, delay = 0 },
+			{ id = 100372, delay = 0 },
+		},
+	},
+	-- scale snipers amount based on difficulty
+	[100357] = {
+		values = {
+			ignore_disabled = false,
+		},
+	},
+	-- 2 snipers on easy
+	[100358] = {
+		values = {
+			enabled = easy,
+		},
+	},
+	-- 3 snipers on normal and hard
+	[100359] = {
+		values = {
+			enabled = normal_and_hard,
+		},
+	},
+	-- 4 snipers on overkill
+	[100360] = {
+		values = {
+			enabled = overkill,
+		},
+	},
+	-- 5 snipers on deathwish
+	[100361] = {
+		values = {
+			enabled = deathwish,
+		},
+	},
+	-- don't disable ground snipers after some point
+	[100264] = disabled,
+	-- add missing Bain's warning about snipers
+	[100363] = {
+		on_executed = {
+			{ id = 400003, delay = 0 },
+			{ id = 400004, delay = 0 },
+			{ id = 400002, delay = 2 },
+			{ id = 400001, delay = 3 },
 		},
 	},
 	[102154] = { -- 1st timelock done
