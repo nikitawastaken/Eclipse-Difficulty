@@ -2920,6 +2920,7 @@ Hooks:PostHook(WeaponTweakData, "_init_data_npc_melee", "eclipse_init_data_npc_m
 
 	self.npc_melee.hw_sword = deep_clone(self.npc_melee.helloween)
 	self.npc_melee.hw_sword.unit_name = Idstring("units/pd2_halloween/weapons/wpn_mel_titan_sword/wpn_mel_titan_sword")
+	self.npc_melee.hw_sword.animation_param = "melee_great"
 end)
 
 local diff_i = Eclipse.utils.difficulty_index()
