@@ -24,7 +24,7 @@ local optsBesiegeDummy = {
 	spawn_action = "e_sp_armored_truck_1st",
 }
 local optsDozerVan = {
-	enemy_table = random_dozers,
+	enemy_table = is_eclipse_pro and random_elite_dozers or random_dozers,
 	enabled = true,
 	spawn_action = "e_sp_armored_truck_1st",
 }
