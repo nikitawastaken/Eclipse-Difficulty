@@ -7,6 +7,14 @@ local swat_2 = scripted_enemy.swat_2
 local heavy_swat_1 = scripted_enemy.heavy_swat_1
 local heavy_swat_2 = scripted_enemy.heavy_swat_2
 local cloaker = scripted_enemy.cloaker
+local light_swats = {
+	[swat_1] = 2,
+	[swat_2] = 1,
+}
+local heavy_swats = {
+	[heavy_swat_1] = 2,
+	[heavy_swat_2] = 1,
+}
 local swats_normal_and_below = {
 	swat_1,
 	swat_2,
@@ -29,6 +37,9 @@ local patches = {
 		reinforce = table.set(100107),
 		filters_disable = table.set(100166, 100168, 100127, 100129),
 		filters_normal_above = table.set(100165, 100126),
+	},
+	escape = {
+		swats = table.set(100030, 100031, 100032, 100033, 100046, 101015, 101270, 101064, 100060, 100392, 101067),
 	},
 }
 
@@ -53,6 +64,17 @@ return {
 				table.map_append(element.values, filter_normal_above)
 			elseif skull_armory.filters_disable[id] then
 				table.map_append(element.values, filter_disable)
+			end
+		end
+	end,
+	["levels/instances/unique/born/born_escape/world/world"] = function(result)
+		local bike_escape = patches.escape
+
+		for _, element in pairs(result.default.elements) do
+			local id = element.id
+
+			if bike_escape.swats[id] then
+				element.values.enemy_table = diff_i < 5 and light_swats or heavy_swats
 			end
 		end
 	end,
