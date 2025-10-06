@@ -31,11 +31,7 @@ function PoisonGasGrenade:_detonate(tag, unit, body, other_unit, other_body, pos
 			user = self:thrower_unit() or self._unit,
 			owner = self._unit
 		})
-		
-		-- this should make it so only host gets the tear gas detonated and then syncs it to clients
-		-- it probably behaves this way as client but i want to be safe with multiple mod users
-		-- if it works like shit then just move it out of is_server
-		managers.groupai:state():detonate_cs_grenade(pos, normal, math.max(1, 48 / 3), true)
+			managers.groupai:state():detonate_cs_grenade(pos, normal, math.max(1, 48 / 3), true)
 													--grenade position, grenade position, gas duration, detonate with delay or instantly (boolean value)
 
 		managers.explosion:give_local_player_dmg(pos, range, self._player_damage)
@@ -44,11 +40,7 @@ function PoisonGasGrenade:_detonate(tag, unit, body, other_unit, other_body, pos
 		if self._unit:id() ~= -1 then
 			managers.network:session():send_to_peers_synched("sync_unit_event_id_16", self._unit, "base", GrenadeBase.EVENT_IDS.detonate)
 		end
-	end
-
-	--managers.groupai:state():detonate_cs_grenade(self._grenade_m_pos, m_pos, (poison_grenade.poison_gas_duration / 5))
-	--self:detonate_cs_grenade(detonate_pos, mvec_cpy(grenade_user.m_pos), tweak_data.group_ai.cs_grenade_lifetime or 10)
-
-	
+	end
+
 	self:_handle_hiding_and_destroying(false, nil)
 end
