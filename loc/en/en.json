@@ -116,7 +116,7 @@
 	"ene_cop_2_fat" : "MPDC Cop",
 	"ene_cop_3_fat" : "MPDC Cop",
 	"ene_cop_4_fat" : "MPDC Cop",
-	"ene_fbi_3" : "Hostage Rescue Team",
+	"ene_fbi_3" : "HRT",
 	"ene_male_chas_police_01_fat" : "SFPD Cop",
 	"ene_male_chas_police_02_fat" : "SFPD Cop",
 	"ene_male_chas_police_03_fat" : "SFPD Cop",
@@ -146,6 +146,11 @@
 	"ene_male_marshal_gunner_hcar_2" : "Bellmead Gunner",
 	"ene_male_marshal_gunner_sko12_2" : "Bellmead Gunner",
 	"ene_male_marshal_marksman_2" : "Bellmead Marksman",
+	
+	"ene_policia" : "Policia Municipal",
+	"ene_policia_agent_1" : "Policia Federal Agent",
+	"ene_policia_agent_2" : "Policia Federal Agent",
+	"ene_policia_agent_3" : "Policia HRT",
 
 	"ene_bulldozer_1" : "Bulldozer",
 	"ene_bulldozer_2" : "Killdozer",
