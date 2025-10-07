@@ -149,9 +149,9 @@
 	"ene_male_marshal_marksman_2" : "Bellmead Marksman",
 	
 	"ene_policia" : "Policia Municipal",
-	"ene_policia_agent_1" : "Policia Federal Agent",
-	"ene_policia_agent_2" : "Policia Federal Agent",
-	"ene_policia_agent_3" : "Policia HRT",
+	"ene_male_office_cop" : "Policia Municipal",
+	"ene_policia_agent" : "Policia Federal Agent",
+	"ene_policia_agent_03" : "Policia HRT",
 
 	"ene_bulldozer_1" : "Bulldozer",
 	"ene_bulldozer_2" : "Killdozer",
