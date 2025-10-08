@@ -1530,7 +1530,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_health = { 0.25 }
+	self.values.team.player.resource_trading_health = { 0.2 }
 	self.definitions.player_extra_hostages_chief = {
 		category = "feature",
 		name_id = "menu_player_extra_hostages_chief",
@@ -1551,7 +1551,7 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.values.team.player.resource_trading_ammo = { 5 }
+	self.values.team.player.resource_trading_ammo = { 4 }
 	self.values.team.health.hostage_multiplier[1] = 1.05
 	self.values.team.stamina.hostage_multiplier[1] = 1.05
 	self.definitions.team_resource_trading_assault_delay = {
@@ -1585,10 +1585,10 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.specialization_descs[1][1].multiperk = "25%"
+	self.specialization_descs[1][1].multiperk = "20%"
 	self.specialization_descs[1][3].multiperk = "2"
 	self.specialization_descs[1][3].multiperk2 = "50%"
-	self.specialization_descs[1][5].multiperk = "5"
+	self.specialization_descs[1][5].multiperk = "4"
 	self.specialization_descs[1][7].multiperk = "5%"
 	self.specialization_descs[1][7].multiperk2 = "5%"
 	self.specialization_descs[1][7].multiperk3 = "4"
