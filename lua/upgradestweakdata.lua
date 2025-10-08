@@ -1923,7 +1923,17 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.headshot_regen_health_bonus = { 0.5 }
+	self.values.cooldown.headshot_regen_health_bonus = { { 1, 3 } }
+	self.values.player.headshot_regen_health_bonus = { 5 }
+	self.definitions.cooldown_headshot_regen_health_bonus = {
+		name_id = "menu_cooldown_headshot_regen_health_bonus",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "headshot_regen_health_bonus",
+			category = "cooldown",
+		},
+	}
 	self.definitions.player_extra_health_multiplier_2 = {
 		name_id = "menu_player_health_multiplier",
 		category = "feature",
@@ -1943,6 +1953,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][1].multiperk2 = "1"
 	self.specialization_descs[11][3].multiperk = "30%"
 	self.specialization_descs[11][5].multiperk = "5"
+	self.specialization_descs[11][5].multiperk2 = "3"
 	self.specialization_descs[11][7].multiperk = "30%"
 	self.specialization_descs[11][9].multiperk = "3"
 	self.specialization_descs[11][9].multiperk2 = "0.3"

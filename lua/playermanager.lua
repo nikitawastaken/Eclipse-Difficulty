@@ -257,10 +257,12 @@ function PlayerManager:on_headshot_dealt()
 	end
 
 	local damage_ext = player_unit:character_damage()
-	local regen_health_bonus = managers.player:upgrade_value("player", "headshot_regen_health_bonus", 0)
+	local has_headshot_regen_health = self:has_enabled_cooldown_upgrade("cooldown", "headshot_regen_health_bonus")
+	local regen_health_bonus = tweak_data.upgrades.values.player.headshot_regen_health_bonus[1]
 
-	if damage_ext and regen_health_bonus > 0 then
+	if damage_ext and has_headshot_regen_health then
 		damage_ext:restore_health(regen_health_bonus, true)
+		self:disable_cooldown_upgrade("cooldown", "headshot_regen_health_bonus")
 	end
 
 	-- snp_charged_shot has to be put here because check_skills() is only called once at the initialization

@@ -708,7 +708,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
 	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
-	self.specializations[11][5].upgrades = { "player_headshot_regen_health_bonus_1" }
+	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
 	self.specializations[11][5].icon_xy = { 1, 0 }
 	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
