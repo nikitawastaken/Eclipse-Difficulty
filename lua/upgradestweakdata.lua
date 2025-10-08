@@ -1823,8 +1823,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[7][9].multiperk2 = "100%"
 
 	-- Infiltrator
-	self.values.temporary.melee_life_leech[1][1] = 4
-	self.specialization_descs[8][9].multiperk = "40"
+	self.values.temporary.melee_life_leech[1] = { 1, 5 }
+	self.specialization_descs[8][9].multiperk = "10"
+	self.specialization_descs[8][9].multiperk2 = "5"
 
 	-- Sociopath
 	self.values.player.melee_kill_armor_regen = { 3 }
