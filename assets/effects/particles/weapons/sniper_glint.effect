@@ -7,7 +7,7 @@
 			<worldtransform transform_rotations="false"/>
 		</simulatorstack>
 		<visualizerstack>
-			<billboard texture="effects/textures/weapons/sniper_glint" intensity="dimlight" billboard_type="camera_facing" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_glow" origo="0.5 0.5" per_particle_age="false" size_input="constant" size="100 100" color_input="constant" color="255 255 255" opacity_input="keys" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="1 1" uv_offset_input="constant" uv_offset="1 1">
+			<billboard texture="effects/textures/weapons/sniper_glint" intensity="dimlight" billboard_type="camera_facing" rotation_channel="world_rotation" blend_mode="add" render_template="effect_op_glow" origo="0.5 0.5" per_particle_age="false" size_input="constant" size="500 500" color_input="constant" color="255 0 0" opacity_input="keys" rotation_input="constant" rotation="0" rotation_axis="0 0 1" uv_size="1 1" uv_offset_input="constant" uv_offset="1 1">
 				<opacity_keys loop="true">
 					<key t="0" v="255"/>
 					<key t="0.40619620680809" v="140"/>

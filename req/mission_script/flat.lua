@@ -370,6 +370,7 @@ return {
 	[102717] = gangster,
 	[102718] = gangster,
 	-- 1st floor
+	[102332] = gangster,
 	[100085] = gangster,
 	[102456] = gangster,
 	[102197] = gangster,
