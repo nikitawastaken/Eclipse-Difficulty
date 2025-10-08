@@ -15,7 +15,9 @@ function CivilianBrain:on_hostage_move_interaction(interacting_unit, command)
 	if command == "move" then
 		local following_hostages = managers.groupai:state():get_following_hostages(interacting_unit)
 
-		if managers.player:max_following_hostages() < 1 or following_hostages and managers.player:max_following_hostages() <= table.size(following_hostages) then
+		local max_following_hostages = tweak_data.player.max_nr_following_hostages + (interacting_unit:upgrade_value("player", "extra_hostages") or 0) + (interacting_unit:upgrade_value("player", "extra_hostages_chief") or 0)
+
+		if max_following_hostages < 1 or following_hostages and max_following_hostages <= table.size(following_hostages) then
 			return
 		end
 
