@@ -12,7 +12,7 @@
    
 	<effects>  
 		<!--<effect_spawner name="flashlight" object="a_effect_flashlight" effect="effects/particles/weapons/flashlight/flashlight" enabled="false" assign_parent="true" />-->
-		<effect_spawner name="glint_scope" object="a_effect_glint" effect="effects/particles/weapons/sniper_glint_marshal" enabled="false" assign_parent="true" />
+		<effect_spawner name="glint_scope" object="a_effect_glint" effect="effects/particles/weapons/elite_sniper_glint" enabled="false" assign_parent="true" />
 	</effects>
   
 	<graphics> 
