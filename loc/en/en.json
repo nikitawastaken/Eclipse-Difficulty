@@ -41,7 +41,9 @@
 	"bm_equipment_grenade_case": "Grenade Case",
 	"bm_equipment_grenade_case_desc": "To use the Grenade Case, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it may be used by both you and your crew by holding $BTN_INTERACT; to restore throwables. It can fully replenish your grenade reserves 4 times. When the Grenade Case is depleted, it disappears. You can see how many uses are left by looking at the Grenade Case. $NL;$NL;The Grenade Case is a portable case carried by combat operatives to transport explosives and other throwable weapons into a battle zone.",
 	"bm_equipment_grenade_crate_desc": "To use the Ordnance Bag, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it may be used by both you and your crew by holding $BTN_INTERACT; to restore throwables. It can fully replenish your grenade reserves 4 times. When the Ordnance Bag is depleted, it disappears. You can see how many uses are left by looking at the Ordnance Bag. $NL;$NL;The Ordnance Bag is a portable bag carried by combat operatives to transport explosives and other throwable weapons into a battle zone.",
-
+	
+	"bm_concussion": "Flashbang",
+	"bm_concussion_desc": "If the cops can throw infinite amounts of these to burn your retinas out, so should you! $NL;Although yours come in limited supply.. $NL;They may not like the taste of their own medicine, but it is their opinion and your choice! $NL;$NL;Upon detonation, they will stun anyone nearby (including you and teammates!) for a short moment. $NL;$NL;Best used indoors.",
 
 	"bm_global_value_mrwi_unlock": "LOCKED AND ITS CARDS ARE REUSED FOR OTHER PERK DECKS.",
 	"hud_int_equipment_drill_upgrade": "PRESS $BTN_INTERACT; TO UPGRADE THE DRILL",
