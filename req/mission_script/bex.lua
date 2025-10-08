@@ -238,12 +238,15 @@ return {
 			dialogue = "Play_loc_bex_109",
 		},
 	},
-	-- Disable broken navlinks
-	[102541] = {
-		on_executed = {
-			{ id = 102544, remove = true },
+	-- Fix/disable the broken navlinks
+	-- this one has the wrong position
+	[102544] = {
+		values = {
+			position = Vector3(475, -4598, 800),
+			rotation = Rotation(0, 0, 0),
 		},
 	},
+	-- this one makes the enemies stuck when they use it
 	[104726] = {
 		on_executed = {
 			{ id = 101490, remove = true },
