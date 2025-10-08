@@ -429,32 +429,32 @@ function SkillTreeTweakData:init(tweak_data)
 	-- Equilibrium
 	self.skills.equilibrium[1].upgrades = { "weapon_steelsight_move_speed_penalty_multiplier" }
 	self.skills.equilibrium[2].upgrades = { "weapon_enter_steelsight_speed_multiplier" }
-	self.skills.equilibrium.icon_xy = { 8, 0 }
+	self.skills.equilibrium.icon_xy = { 0, 9 }
 
-	-- Gunfighter
+	-- Field Operator
 	self.skills.dance_instructor[1].upgrades = { "player_sprint_to_fire_multiplier" }
 	self.skills.dance_instructor[2].upgrades = { "weapon_swap_speed_multiplier" }
-	self.skills.dance_instructor.icon_xy = { 8, 0 }
+	self.skills.dance_instructor.icon_xy = { 4, 10 }
 
 	-- Sidearm Savvy
 	self.skills.akimbo[1].upgrades = { "player_sidearm_move_speed_multiplier" }
 	self.skills.akimbo[2].upgrades = { "player_sidearms_reload_primary" }
-	self.skills.akimbo.icon_xy = { 8, 0 }
+	self.skills.akimbo.icon_xy = { 5, 10 }
 
 	-- Triggery Overdrive
 	self.skills.gun_fighter[1].upgrades = { "pistol_stacked_reload_bonus" }
 	self.skills.gun_fighter[2].upgrades = { "pistol_stacked_accuracy_bonus_1" }
-	self.skills.gun_fighter.icon_xy = { 8, 0 }
+	self.skills.gun_fighter.icon_xy = { 0, 8 }
 
 	-- Deadeye
 	self.skills.expert_handling[1].upgrades = { "revolver_headshot_chain_instant_reload" }
 	self.skills.expert_handling[2].upgrades = { "revolver_headshot_chain_slowmo", "cooldown_revolver_slowmo_chain" }
-	self.skills.expert_handling.icon_xy = { 8, 0 }
+	self.skills.expert_handling.icon_xy = { 8, 12 }
 
 	-- Peacemaker's Lament
 	self.skills.trigger_happy[1].upgrades = { "temporary_sidearm_pullout_damage_multiplier" }
 	self.skills.trigger_happy[2].upgrades = { "temporary_sidearm_reload_damage_multiplier", "player_sidearm_ricochet_damage" }
-	self.skills.trigger_happy.icon_xy = { 8, 0 }
+	self.skills.trigger_happy.icon_xy = { 11, 11 }
 
 	-- Tough Guy
 	self.skills.nine_lives[1].upgrades = { "player_steelsight_when_downed" }

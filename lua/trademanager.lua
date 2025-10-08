@@ -83,7 +83,10 @@ function TradeManager:update(t, dt)
 		return
 	end
 
-	self._is_custody_trade = #self._criminals_to_respawn > 0
+	if not self._trading_hostage then
+		-- Prevent setting custody trade when there's an trade
+		self._is_custody_trade = #self._criminals_to_respawn > 0
+	end
 	self._downs_to_restore = self:get_downs_to_restore()
 	local is_trade_allowed = self:is_trade_allowed(t)
 	local is_auto_assault_ai_trade = self:update_auto_assault_ai_trade(dt, is_trade_allowed)
