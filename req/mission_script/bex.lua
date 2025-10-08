@@ -60,6 +60,10 @@ return {
 			{ id = 400009, delay = 10 },
 			{ id = 400010, delay = 10 },
 		},
+		-- Disable parts reinforce when drill is done
+		reinforce = {
+			{ name = "parts_car" },
+		},
 	},
 	-- Combine some navigation areas
 	[100017] = {
@@ -172,12 +176,8 @@ return {
 			},
 		},
 	},
-	-- Disable parts reinforce when drill is done
-	[101829] = {
-		reinforce = {
-			{ name = "parts_car" },
-		},
-	},
+	-- don't remove enemies for no reason
+	[102856] = disabled,
 	-- restores some unused sniper spawns with their SOs
 	[100372] = enabled,
 	[100402] = enabled,
