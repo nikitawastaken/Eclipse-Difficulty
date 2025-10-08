@@ -5,10 +5,11 @@ function IngamePlayerBaseState:finish_resource_trade(is_recon_over)
 	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
 	local amount_of_health = managers.player:team_upgrade_value("player", "resource_trading_health", 0)
 	local unit = managers.player:player_unit()
+	local damage_ext = unit:character_damage()
 
 	unit:character_damage():restore_lives(1)
 
-	if has_trading_health_upgrade then
+	if has_trading_health_upgrade and not (damage_ext:need_revive() or damage_ext:dead() or damage_ext:is_berserker()) then
 		unit:character_damage():restore_health_percentage(amount_of_health)
 
 		unit:sound():play("pickup_ammo_health_boost", nil, true)
