@@ -1442,6 +1442,28 @@
 				<file :name="mexican_heads_atlas_var2_nm.texture" />
 			</group>
 
+			<group :name="ene_acc_security_cap/">
+				<file :name="ene_acc_security_cap.material_config" />
+				<file :name="ene_acc_security_cap.model" />
+				<file :name="ene_acc_security_cap.object" />
+			</group>
+			
+			<group :name="ene_acc_cop_cap/">
+				<file :name="ene_acc_cop_cap.cooked_physics" />
+				<file :name="ene_acc_cop_cap.material_config" />
+				<file :name="ene_acc_cop_cap.model" />
+				<file :name="ene_acc_cop_cap.object" />
+				<file :name="ene_acc_cop_cap.unit" />
+			</group>
+
+			<group :name="ene_acc_fbi_cap/">
+				<file :name="ene_acc_fbi_cap.cooked_physics" />
+				<file :name="ene_acc_fbi_cap.material_config" />
+				<file :name="ene_acc_fbi_cap.model" />
+				<file :name="ene_acc_fbi_cap.object" />
+				<file :name="ene_acc_fbi_cap.unit" />
+			</group>
+			
 			<group :name="ene_acc_mexican_head/">
 				<xml  :name="ene_acc_mexican_head.sequence_manager" />
 				<file :name="ene_acc_mexican_head.cooked_physics" />

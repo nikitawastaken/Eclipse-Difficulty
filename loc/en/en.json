@@ -24,6 +24,7 @@
 	"bm_wp_hcar_barrel_dmr": "Long Barrel",
 	"bm_wp_upg_bonus_team_exp": "Experience Boost",
 	"bm_wp_upg_bonus_team_money": "Money Boost",
+	"bm_wp_upg_charm_eclipse": "Eclipse",
 
 	"menu_dmr": "Marksman Rifle",
 	"bm_menu_swing_time": "Swing Time",
@@ -116,7 +117,7 @@
 	"ene_cop_2_fat" : "MPDC Cop",
 	"ene_cop_3_fat" : "MPDC Cop",
 	"ene_cop_4_fat" : "MPDC Cop",
-	"ene_fbi_3" : "Hostage Rescue Team",
+	"ene_fbi_3" : "HRT",
 	"ene_male_chas_police_01_fat" : "SFPD Cop",
 	"ene_male_chas_police_02_fat" : "SFPD Cop",
 	"ene_male_chas_police_03_fat" : "SFPD Cop",
@@ -146,6 +147,11 @@
 	"ene_male_marshal_gunner_hcar_2" : "Bellmead Gunner",
 	"ene_male_marshal_gunner_sko12_2" : "Bellmead Gunner",
 	"ene_male_marshal_marksman_2" : "Bellmead Marksman",
+	
+	"ene_policia" : "Policia Municipal",
+	"ene_male_office_cop" : "Policia Federal",
+	"ene_policia_agent" : "Policia Federal Agent",
+	"ene_policia_agent_03" : "Policia HRT",
 
 	"ene_bulldozer_1" : "Bulldozer",
 	"ene_bulldozer_2" : "Killdozer",

@@ -86,6 +86,8 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_usm2/characters/ene_acc_marshal_shield_helmet_2/ene_acc_marshal_shield_helmet_2", usm2_needed, true)
 
 	local bex_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_cop_cap/ene_acc_cop_cap", bex_needed, true)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_fbi_cap/ene_acc_fbi_cap", bex_needed, true)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01", bex_needed, false)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_02/ene_policia_02", bex_needed, false)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_03/ene_policia_03", bex_needed, false)
