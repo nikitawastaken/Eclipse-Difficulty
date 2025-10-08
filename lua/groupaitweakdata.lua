@@ -3340,15 +3340,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_swats = { 0.4, 0, 0 },
 			fbi_swats = { 0.9, 0.6, 0 },
-			elite_swats = { 0.2, 0.5, 0.8 },
-			fbi_heavies = { 0, 0.4, 0.8 },
+			elite_swats = { 0.3, 0.6, 0.9 },
+			fbi_heavies = { 0, 0.3, 0.9 },
 			fbi_shield = { 0, 0.2, 0.4 },
 			elite_shield = { 0, 0.15, 0.3 },
 			elite_sniper = { 0, 0.15, 0.3 },
 			elite_taser = { 0, 0.15, 0.3 },
 			fbi_cloaker = { 0, 0.15, 0.3 },
 			fbi_bulldozer = { 0, 0, 0.25 },
-			elite_bulldozer = { 0, 0, 0.2 },
+			elite_bulldozer = { 0, 0, 0.15 },
 			elite_bulldozer_shield = { 0, 0, 0.15 },
 		}
 		self.besiege.recon.groups = {
