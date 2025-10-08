@@ -1828,7 +1828,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[8][9].multiperk2 = "5"
 
 	-- Sociopath
-	self.values.player.melee_kill_armor_regen = { 3 }
+	self.on_killshot_cooldown = 2
+	self.values.player.killshot_regen_armor_bonus[1] = 2
+	self.values.player.melee_kill_armor_regen = { 1 }
 	self.values.cooldown.melee_kill_armor_leech = { { 1, 1 } }
 	self.definitions.cooldown_melee_kill_armor_leech = {
 		name_id = "menu_cooldown_melee_kill_armor_leech",
@@ -1839,7 +1841,13 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.specialization_descs[9][5].multiperk = "30"
+	self.values.player.killshot_close_regen_armor_bonus[1] = 2
+	self.specialization_descs[9][3].multiperk = "20"
+	self.specialization_descs[9][3].multiperk2 = "2"
+	self.specialization_descs[9][5].multiperk = "20"
+	self.specialization_descs[9][5].multiperk2 = "2"
+	self.specialization_descs[9][7].multiperk = "20"
+	self.specialization_descs[9][7].multiperk2 = "2"
 
 	-- Infil / Socio shared melee card
 	self.max_melee_weapon_dmg_mul_stacks = 4
