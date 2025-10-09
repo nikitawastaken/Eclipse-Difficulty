@@ -430,17 +430,8 @@ function TradeManager:trade_restore_resources()
 	if Network:is_server() then
 		managers.network:session():send_to_peers_synched("finish_trade", is_recon_over, true)
 	end
-end
 
-function TradeManager:trade_complete()
-	self._hostage_to_trade = nil
-	self._trading_hostage = nil
-
-	self:end_stockholm_syndrome()
-	self._trade_complete = true
-	if not self._is_custody_trade then
-		self:increment_resource_trade()
-	end
+	self:increment_resource_trade()
 end
 
 function TradeManager:cleanup_fail()
