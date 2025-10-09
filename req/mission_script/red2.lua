@@ -131,7 +131,7 @@ local forced_off = {
 	},
 }
 return {
-	[100057] = {
+	[101511] = {
 		ponr = {
 			length = 150,
 			player_mul = { 1.1, 0.9, 0.7, 0.5 },
