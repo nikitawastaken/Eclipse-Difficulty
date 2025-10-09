@@ -14,11 +14,6 @@ local no_spawn_instigator_ids = {
 		spawn_instigator_ids = false,
 	},
 }
-local standard_spawn = {
-	values = {
-		interval = 5,
-	},
-}
 local roof_spawn = {
 	values = {
 		interval = 15,
@@ -63,8 +58,6 @@ return {
 	[101435] = no_spawn_instigator_ids,
 	[101562] = no_spawn_instigator_ids,
 	-- Spawn group intervals
-	[101084] = standard_spawn,
-	[101085] = standard_spawn,
 	[100629] = roof_spawn,
 	[100627] = roof_spawn,
 	[100629] = roof_spawn,
