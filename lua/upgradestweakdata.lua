@@ -1331,7 +1331,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.expert_handling.multipro4 = "20"
 
 	-- Peacemaker's Lament
-	self.values.temporary.sidearm_pullout_damage_multiplier = { { 2, 2 } }
+	self.values.temporary.sidearm_pullout_damage_multiplier = { { 1.5, 5 } }
 	self.definitions.temporary_sidearm_pullout_damage_multiplier = {
 		name_id = "menu_temporary_sidearm_pullout_damage_multiplier",
 		category = "temporary",
@@ -1341,7 +1341,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "temporary",
 		},
 	}
-	self.values.temporary.sidearm_reload_damage_multiplier = { { 2, 2 } }
+	self.values.temporary.sidearm_reload_damage_multiplier = { { 2, 5 } }
 	self.definitions.temporary_sidearm_reload_damage_multiplier = {
 		name_id = "menu_temporary_sidearm_reload_damage_multiplier",
 		category = "temporary",
@@ -1349,6 +1349,16 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 			upgrade = "sidearm_reload_damage_multiplier",
 			category = "temporary",
+		},
+	}
+	self.values.cooldown.sidearm_reload_damage_multiplier = { { 1, 15 } }
+	self.definitions.cooldown_sidearm_reload_damage_multiplier = {
+		name_id = "menu_cooldown_sidearm_reload_damage_multiplier",
+		category = "cooldown",
+		upgrade = {
+			value = 1,
+			upgrade = "sidearm_reload_damage_multiplier",
+			category = "cooldown",
 		},
 	}
 	self.values.player.sidearm_ricochet_damage = {
@@ -1367,11 +1377,12 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.skill_descs.trigger_happy.multibasic = "2"
-	self.skill_descs.trigger_happy.multibasic2 = "100%"
-	self.skill_descs.trigger_happy.multipro = "2"
+	self.skill_descs.trigger_happy.multibasic = "5"
+	self.skill_descs.trigger_happy.multibasic2 = "50%"
+	self.skill_descs.trigger_happy.multipro = "5"
 	self.skill_descs.trigger_happy.multipro2 = "100%"
 	self.skill_descs.trigger_happy.multipro3 = "5m"
+	self.skill_descs.trigger_happy.multipro4 = "10"
 
 	-- Tough Guy
 	self.definitions.player_swap_weapon_when_downed = {

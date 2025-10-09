@@ -145,7 +145,7 @@
 	"menu_expert_handling": "Deadeye",
 	"menu_expert_handling_desc": "BASIC: ##$basic##\nScoring ##$multibasic## headshots in a row with your Revolver will instantly reload it.\n\nMissing a headshot in any capacity resets the counter.\n\nACE: ##$pro##\nScoring ##$multipro## lethal headshots in less than ##$multipro2## seconds with your Revolver will slow down time for you for ##$multipro3## seconds.\n\nThis cannot occur more than once every ##$multipro4## seconds after the slowdown ends.",
 	"menu_trigger_happy_beta": "Peacemaker's Lament",
-	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor ##$multibasic## seconds after pulling out your Pistol or Revolver, your shots will deal ##$multibasic2## extra damage.\n\nACE: ##$pro##\nFor ##$multipro## seconds after reloading your Pistol or Revolver, your shots will deal ##$multipro2## extra damage and their full damage will be dealt to the closest enemy in a ##$multipro3## radius. ",
+	"menu_trigger_happy_beta_desc": "BASIC: ##$basic##\nFor ##$multibasic## seconds after pulling out your Pistol or Revolver, your shots will deal ##$multibasic2## extra damage.\n\nACE: ##$pro##\nFor ##$multipro## seconds after reloading your Pistol or Revolver, your shots will deal ##$multipro2## extra damage and their full damage will be dealt to the closest enemy in a ##$multipro3## radius.\n\nThis cannot occur more than once every ##$multipro4## seconds after the effect runs out.",
 	"menu_nine_lives_beta": "Tough Guy",
 	"menu_nine_lives_beta_desc": "BASIC: ##$basic##\nYou can now use your steelsight while in bleedout.\n\nACE: ##$pro##\nYou can now swap your weapons while in bleedout.",
 	"menu_more_blood_to_bleed": "More Blood to Bleed",

@@ -453,7 +453,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Peacemaker's Lament
 	self.skills.trigger_happy[1].upgrades = { "temporary_sidearm_pullout_damage_multiplier" }
-	self.skills.trigger_happy[2].upgrades = { "temporary_sidearm_reload_damage_multiplier", "player_sidearm_ricochet_damage" }
+	self.skills.trigger_happy[2].upgrades = { "temporary_sidearm_reload_damage_multiplier", "cooldown_sidearm_reload_damage_multiplier", "player_sidearm_ricochet_damage" }
 	self.skills.trigger_happy.icon_xy = { 11, 11 }
 
 	-- Tough Guy
