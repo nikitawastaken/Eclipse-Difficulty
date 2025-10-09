@@ -188,7 +188,7 @@ for k, v in pairs(tweak_data.blackmarket.melee_weapons) do
 		tase_data = v.tase_data and {
 			tase_strength = "light",
 			electrocution_time_mul = 0.5,
-		} or nil
+		} or nil,
 	}
 end
 
@@ -206,7 +206,7 @@ function CopBase:melee_weapon()
 	return self._melee_weapon
 end
 
-Hooks:PostHook(CopBase, "pre_destroy", "melee_unload", function (self)
+Hooks:PostHook(CopBase, "pre_destroy", "melee_unload", function(self)
 	if self._melee_weapon_data then
 		managers.dyn_resource:unload(Idstring("unit"), self._melee_weapon_data.unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 	end
