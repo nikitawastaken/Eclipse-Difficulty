@@ -1668,7 +1668,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.chain_headshot_kills = {
 		{
 			headshot_kills = 3,
-			max_time = 5,
+			max_time = 10,
 		},
 	}
 	self.definitions.temporary_chain_headshot_dodge_1 = {
@@ -1713,20 +1713,20 @@ function UpgradesTweakData:init(tweak_data)
 			category = "player",
 		},
 	}
-	self.values.player.cheat_death_inc = { 0.03 }
+	self.values.player.cheat_death_inc = { 0.04 }
 	self.specialization_descs[5][1].multiperk = "3"
-	self.specialization_descs[5][1].multiperk2 = "5"
+	self.specialization_descs[5][1].multiperk2 = "10"
 	self.specialization_descs[5][1].multiperk3 = "10%"
 	self.specialization_descs[5][1].multiperk4 = "5"
 	self.specialization_descs[5][3].multiperk = "10%"
 	self.specialization_descs[5][5].multiperk = "3"
-	self.specialization_descs[5][5].multiperk2 = "5"
+	self.specialization_descs[5][5].multiperk2 = "10"
 	self.specialization_descs[5][5].multiperk3 = "10%"
 	self.specialization_descs[5][5].multiperk4 = "5"
 	self.specialization_descs[5][7].multiperk = "20%"
 	self.specialization_descs[5][9].multiperk = "3"
-	self.specialization_descs[5][9].multiperk2 = "5"
-	self.specialization_descs[5][9].multiperk3 = "3%"
+	self.specialization_descs[5][9].multiperk2 = "10"
+	self.specialization_descs[5][9].multiperk3 = "4%"
 
 	-- Crook
 	self.values.player.bv_stamina_reduction_multiplier = { 0.7 }
