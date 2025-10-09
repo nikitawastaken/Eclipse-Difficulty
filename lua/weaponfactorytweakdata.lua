@@ -611,7 +611,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_p90_b_ninja.stats.concealment = -4
 
 	self.parts.wpn_fps_smg_m45_b_small.stats.concealment = 2
-	
+
 	self.parts.wpn_fps_smg_m45_s_folded.stats.spread = -2
 	self.parts.wpn_fps_smg_m45_s_folded.stats.concealment = 2
 
@@ -672,10 +672,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_pm9_s_tactical.stats.concealment = -2
 
 	local rifle_barrel_exts_no_shak12 = clone(rifle_barrel_exts)
-	
+
 	table.delete(rifle_barrel_exts_no_shak12, "wpn_fps_ass_shak12_ns_muzzle")
 	table.delete(rifle_barrel_exts_no_shak12, "wpn_fps_ass_shak12_ns_suppressor")
-		
+
 	self:_add_parts_from_list("wpn_fps_smg_pm9", rifle_barrel_exts_no_shak12)
 
 	self.parts.wpn_fps_smg_pm9_b_standard.forbids = {}
@@ -938,16 +938,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		"wpn_fps_upg_fg_midwest",
 		"wpn_fps_upg_ak_fg_krebs",
 		"wpn_fps_upg_ak_fg_trax",
-	--	"wpn_fps_upg_ak_fg_zenitco",
+		--	"wpn_fps_upg_ak_fg_zenitco",
 	}
-		
+
 	self:_add_parts_from_list("wpn_fps_lmg_rpk", akm_handguards)
 
 	for _, part_id in pairs(akm_handguards) do
 		if not self.wpn_fps_lmg_rpk.adds then
 			self.wpn_fps_lmg_rpk.adds = {}
 		end
-		
+
 		self.wpn_fps_lmg_rpk.adds[part_id] = {
 			"wpn_fps_upg_vg_ass_smg_verticalgrip",
 		}

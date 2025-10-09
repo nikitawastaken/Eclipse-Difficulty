@@ -1,5 +1,5 @@
 local diff_lerp = Eclipse.utils.diff_lerp
-	
+
 -- lock dw / ds
 tweak_data.difficulty_level_locks = {
 	0,
