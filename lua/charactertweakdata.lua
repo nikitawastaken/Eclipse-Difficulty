@@ -1424,8 +1424,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_peacemaker_npc"] = 1, -- Keep them hands visible
 		},
 		melee = {
-			["weapon"] = 9, 
-			["moneybundle"] = 3, 
+			["weapon"] = 9,
+			["moneybundle"] = 3,
 			["freedom"] = 1, -- 'Murica
 		},
 	},
@@ -1442,8 +1442,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_m45_npc"] = 1, -- Alesso trailer
 		},
 		melee = {
-			["weapon"] = 2, 
-			["nin"] = 1, 
+			["weapon"] = 2,
+			["nin"] = 1,
 		},
 	},
 	-- Chains
@@ -1458,8 +1458,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_mac10_npc"] = 1, -- Used pre-U240.3
 		},
 		melee = {
-			["weapon"] = 3, 
-			["x46"] = 1, 
+			["weapon"] = 3,
+			["x46"] = 1,
 		},
 	},
 	-- Houston
@@ -1474,7 +1474,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_beer_npc"] = 1, -- PD3 moment
 		},
 		melee = {
-			["weapon"] = 3, 
+			["weapon"] = 3,
 			["fists"] = 1, -- Alright little brother, just one.
 		},
 	},
@@ -1502,9 +1502,9 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_model3_npc"] = 1, -- "Webley .455 Mk VI" (liberties taken)
 		},
 		melee = {
-			["weapon"] = 2, 
-			["fight"] = 2, 
-			["sword"] = 1, 
+			["weapon"] = 2,
+			["fight"] = 2,
+			["sword"] = 1,
 		},
 	},
 	-- Hoxton
@@ -1518,8 +1518,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_deagle_npc"] = 1,
 		},
 		melee = {
-			["weapon"] = 1, 
-			["toothbrush"] = 1, 
+			["weapon"] = 1,
+			["toothbrush"] = 1,
 		},
 	},
 	-- Clover
@@ -1543,8 +1543,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		},
 		secondary = "wpn_fps_pis_hs2000_npc", -- Released alongside
 		melee = {
-			["meat_cleaver"] = 1, 
-			["boxing_gloves"] = 1, 
+			["meat_cleaver"] = 1,
+			["boxing_gloves"] = 1,
 		},
 	},
 	-- Jacket
@@ -1559,13 +1559,13 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_uzi_npc"] = 1, -- Hotline Miami DLC weapon
 		},
 		melee = {
-			["hammer"] = 3, 
-			["briefcase"] = 2, 
-			["fireaxe"] = 2, 
-			["bat"] = 2, 
-			["cleaver"] = 2, 
-			["macehete"] = 2, 
-			["fists"] = 1, 
+			["hammer"] = 3,
+			["briefcase"] = 2,
+			["fireaxe"] = 2,
+			["bat"] = 2,
+			["cleaver"] = 2,
+			["macehete"] = 2,
+			["fists"] = 1,
 		},
 	},
 	-- Bonnie
@@ -1587,8 +1587,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		},
 		secondary = "wpn_fps_pis_pl14_npc",
 		melee = {
-			["hockey"] = 2, 
-			["oxide"] = 1, 
+			["hockey"] = 2,
+			["oxide"] = 1,
 		},
 	},
 	-- Jiro
@@ -1599,10 +1599,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		},
 		secondary = "wpn_fps_smg_baka_npc", -- Signature
 		melee = {
-			["sandsteel"] = 4, 
-			["fight"] = 2, 
-			["cqc"] = 2, 
-			["hauteur"] = 1, 
+			["sandsteel"] = 4,
+			["fight"] = 2,
+			["cqc"] = 2,
+			["hauteur"] = 1,
 		},
 	},
 	-- Bodhi
@@ -1610,8 +1610,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		primary = "wpn_fps_snp_model70_npc", -- Signature
 		secondary = "wpn_fps_pis_sparrow_npc", -- Released alongside
 		melee = {
-			["boxcutter"] = 2, 
-			["topaz"] = 1, 
+			["boxcutter"] = 2,
+			["topaz"] = 1,
 		},
 	},
 	-- Jimmy
@@ -1658,8 +1658,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_baka_npc"] = 1,
 		},
 		melee = {
-			["cs"] = 2, -- Roaring frothing madness 
-			["brick"] = 1, 
+			["cs"] = 2, -- Roaring frothing madness
+			["brick"] = 1,
 		},
 	},
 	-- Sangres
@@ -1673,8 +1673,8 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_m45_npc"] = 1, -- Silk Road poster
 		},
 		melee = {
-			["agave"] = 3, 
-			["chac"] = 1, 
+			["agave"] = 3,
+			["chac"] = 1,
 		},
 	},
 	-- Joy
@@ -1698,7 +1698,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_c96_npc"] = 1, -- Historic
 			["wpn_fps_smg_thompson_npc"] = 1, -- Historic
 		},
-		melee = "sap", -- Fitting name, because if you actually like Duke you're a... 
+		melee = "sap", -- Fitting name, because if you actually like Duke you're a...
 	},
 	-- Hila
 	["ecp_female"] = {
@@ -1737,7 +1737,7 @@ Hooks:PostHook(CharacterTweakData, "_init_team_ai", "eclipse__init_team_ai", fun
 						or "wpn_fps_pis_g17_npc",
 				}
 			end
-			
+
 			self[tweak_name].melee_weapon = lorefriendly_team_ai_weapons and weighted_selector(mapping.melee):select() or "weapon"
 		end
 	end
