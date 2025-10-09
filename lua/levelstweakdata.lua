@@ -296,6 +296,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		hostage_hesitation_delay_mul = 1.5,
 		assault_force_mul = 1.15,
 		difficulty_scaling = {
+			assault_add = 0.15,
 			assault_delay = 75,
 		},
 		force_tactics = {
@@ -336,7 +337,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.nail.group_ai_settings = deep_clone(self.pbr2.group_ai_settings)
-	self.nail.group_ai_settings.difficulty_scaling = { assault_add = 0.15 }
+	self.nail.group_ai_settings.difficulty_scaling = nil
 	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
 
 	self.cane.group_ai_settings = {
@@ -472,7 +473,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.7,
 		difficulty_scaling = {
 			assault_delay = 30,
-			assault_add = 0.15,
 		},
 		special_limit_add = {
 			cloaker = 1,
@@ -585,6 +585,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 0.7,
 		cs_grenade_chance_times_mul = 1.25,
+		difficulty_scaling = {
+			assault_add = 0.15,
+		},
 		special_limit_add = {
 			shield = -1,
 			tank = 1,
