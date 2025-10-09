@@ -4,12 +4,12 @@ local M = {
 	-- Security
 	[("units/payday2/characters/ene_security_1/ene_security_1"):key()] = {
 		["units/payday2/characters/ene_security_1/ene_security_1"] = 8,
-		["units/payday2/characters/ene_security_female_1/ene_security_female_1"] = 2,
+		--["units/payday2/characters/ene_security_female_1/ene_security_female_1"] = 2,
 		["units/payday2/characters/ene_security_1_fat/ene_security_1_fat"] = 2,
 	},
 	[("units/payday2/characters/ene_security_2/ene_security_2"):key()] = {
 		["units/payday2/characters/ene_security_2/ene_security_2"] = 8,
-		["units/payday2/characters/ene_security_female_2/ene_security_female_2"] = 2,
+		--["units/payday2/characters/ene_security_female_2/ene_security_female_2"] = 2,
 		["units/payday2/characters/ene_security_2_fat/ene_security_2_fat"] = 2,
 	},
 	[("units/payday2/characters/ene_security_3/ene_security_3"):key()] = {
