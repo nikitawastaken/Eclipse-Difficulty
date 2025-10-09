@@ -13,15 +13,55 @@ WeaponFactoryTweakData.part_type_stat_blacklist = {
 	slide = true,
 	gadget = true,
 }
+WeaponFactoryTweakData.parts_to_all = {
+	"wpn_fps_upg_bonus_team_exp",
+	"wpn_fps_upg_bonus_team_money",
+}
+WeaponFactoryTweakData.parts_from_template = {
+	["wpn_fps_upg_m4_m_drum"] = "wpn_fps_upg_m4_m_pmag",
+	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
+	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
+	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
+	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
+}
 
-function WeaponFactoryTweakData:_add_parts_from_list(factory_id, part_list, blacklist)
+function WeaponFactoryTweakData:_add_parts_to_all(tweak_data)
+	local upgrade_definitions = tweak_data.upgrades.definitions
+
+	for weap_id, weap_data in pairs(upgrade_definitions) do
+		local factory_id = weap_data.factory_id
+
+		for _, part_id in pairs(self.parts_to_all) do
+			if self[factory_id] and self[factory_id].uses_parts then
+				table.insert(self[factory_id].uses_parts, part_id)
+				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
+			end
+		end
+	end
+end
+
+function WeaponFactoryTweakData:_add_parts_from_list(factory_id, part_list)
 	for _, part_id in pairs(part_list) do
-		if not blacklist[part_id] then
-			if not table.contains(self[factory_id].default_blueprint, part_id) then
-				if not table.contains(self[factory_id].uses_parts, part_id) then
-					table.insert(self[factory_id].uses_parts, part_id)
-					table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
-				end
+		if not table.contains(self[factory_id].default_blueprint, part_id) then
+			if not table.contains(self[factory_id].uses_parts, part_id) then
+				table.insert(self[factory_id].uses_parts, part_id)
+				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
+			end
+		end
+	end
+end
+
+function WeaponFactoryTweakData:_add_parts_from_template(tweak_data)
+	local upgrade_definitions = tweak_data.upgrades.definitions
+
+	for weap_id, weap_data in pairs(upgrade_definitions) do
+		local factory_id = weap_data.factory_id
+		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
+
+		for part_id, template_id in pairs(self.parts_from_template) do
+			if self[factory_id] and self[factory_id].uses_parts and table.contains(self[factory_id].uses_parts, template_id) then
+				table.insert(self[factory_id].uses_parts, part_id)
+				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
 			end
 		end
 	end
@@ -200,6 +240,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_m4_uupg_b_short.stats.spread = -2
 
+	self.parts.wpn_fps_m4_uupg_s_fold.stats.spread = -1
 	self.parts.wpn_fps_m4_uupg_s_fold.stats.concealment = 1
 
 	-- Make all CAR family weapons use the 30 round magazine by default
@@ -231,8 +272,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_upg_ak_b_ak105.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_ak105.stats.spread = -1
 
+	self.parts.wpn_upg_ak_s_folding.stats.spread = -1
 	self.parts.wpn_upg_ak_s_folding.stats.concealment = 1
 
+	self.parts.wpn_upg_ak_s_skfoldable.stats.spread = -1
 	self.parts.wpn_upg_ak_s_skfoldable.stats.concealment = 1
 
 	self.parts.wpn_upg_ak_s_psl.stats.spread = 3
@@ -303,8 +346,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_ass_scar_b_long.stats.concealment = -2
 
-	self.parts.wpn_fps_ass_sub2000_fg_suppressed.spread = -2
-	self.parts.wpn_fps_ass_sub2000_fg_suppressed.concealment = 1
+	self.parts.wpn_fps_ass_sub2000_fg_suppressed.stats.spread = -2
+	self.parts.wpn_fps_ass_sub2000_fg_suppressed.stats.concealment = 1
 
 	self.parts.wpn_fps_ass_g3_fg_retro.stats.spread = -2
 	self.parts.wpn_fps_ass_g3_fg_retro.stats.concealment = 2
@@ -568,7 +611,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_p90_b_ninja.stats.concealment = -4
 
 	self.parts.wpn_fps_smg_m45_b_small.stats.concealment = 2
-
+	
+	self.parts.wpn_fps_smg_m45_s_folded.stats.spread = -2
 	self.parts.wpn_fps_smg_m45_s_folded.stats.concealment = 2
 
 	self.parts.wpn_fps_smg_mp7_s_long.stats.recoil = 2
@@ -627,11 +671,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_pm9_s_tactical.stats.recoil = 2
 	self.parts.wpn_fps_smg_pm9_s_tactical.stats.concealment = -2
 
-	self:_add_parts_from_list("wpn_fps_smg_pm9", rifle_barrel_exts, {})
+	local rifle_barrel_exts_no_shak12 = clone(rifle_barrel_exts)
+	
+	table.delete(rifle_barrel_exts_no_shak12, "wpn_fps_ass_shak12_ns_muzzle")
+	table.delete(rifle_barrel_exts_no_shak12, "wpn_fps_ass_shak12_ns_suppressor")
+		
+	self:_add_parts_from_list("wpn_fps_smg_pm9", rifle_barrel_exts_no_shak12)
 
 	self.parts.wpn_fps_smg_pm9_b_standard.forbids = {}
 
-	for _, part_id in pairs(rifle_barrel_exts) do
+	for _, part_id in pairs(rifle_barrel_exts_no_shak12) do
 		table.insert(self.parts.wpn_fps_smg_pm9_b_standard.forbids, part_id)
 	end
 
@@ -882,6 +931,27 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_hk21_fg_short.stats.spread = -2
 	self.parts.wpn_fps_lmg_hk21_fg_short.stats.recoil = -1
 	self.parts.wpn_fps_lmg_hk21_fg_short.stats.concealment = 3
+
+	local akm_handguards = {
+		"wpn_upg_ak_fg_combo3",
+		"wpn_fps_upg_ak_fg_tapco",
+		"wpn_fps_upg_fg_midwest",
+		"wpn_fps_upg_ak_fg_krebs",
+		"wpn_fps_upg_ak_fg_trax",
+	--	"wpn_fps_upg_ak_fg_zenitco",
+	}
+		
+	self:_add_parts_from_list("wpn_fps_lmg_rpk", akm_handguards)
+
+	for _, part_id in pairs(akm_handguards) do
+		if not self.wpn_fps_lmg_rpk.adds then
+			self.wpn_fps_lmg_rpk.adds = {}
+		end
+		
+		self.wpn_fps_lmg_rpk.adds[part_id] = {
+			"wpn_fps_upg_vg_ass_smg_verticalgrip",
+		}
+	end
 
 	self.parts.wpn_fps_lmg_mg42_b_mg34.stats.damage = 0
 	self.parts.wpn_fps_lmg_mg42_b_mg34.stats.spread = 1
@@ -1592,50 +1662,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 end)
-
-WeaponFactoryTweakData.parts_to_all = {
-	"wpn_fps_upg_bonus_team_exp",
-	"wpn_fps_upg_bonus_team_money",
-}
-
-function WeaponFactoryTweakData:_add_parts_to_all(tweak_data)
-	local upgrade_definitions = tweak_data.upgrades.definitions
-
-	for weap_id, weap_data in pairs(upgrade_definitions) do
-		local factory_id = weap_data.factory_id
-
-		for _, part_id in pairs(self.parts_to_all) do
-			if self[factory_id] and self[factory_id].uses_parts then
-				table.insert(self[factory_id].uses_parts, part_id)
-				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
-			end
-		end
-	end
-end
-
-WeaponFactoryTweakData.parts_from_template = {
-	["wpn_fps_upg_m4_m_drum"] = "wpn_fps_upg_m4_m_pmag",
-	["wpn_upg_ak_m_drum"] = "wpn_fps_upg_ak_m_uspalm",
-	["wpn_fps_smg_mp5_m_drum"] = "wpn_fps_smg_mp5_m_straight",
-	["wpn_upg_saiga_m_20rnd"] = "wpn_fps_sho_basset_m_extended",
-	["wpn_fps_upg_charm_eclipse"] = "wpn_fps_upg_charm_cloaker",
-}
-
-function WeaponFactoryTweakData:_add_parts_from_template(tweak_data)
-	local upgrade_definitions = tweak_data.upgrades.definitions
-
-	for weap_id, weap_data in pairs(upgrade_definitions) do
-		local factory_id = weap_data.factory_id
-		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
-
-		for part_id, template_id in pairs(self.parts_from_template) do
-			if self[factory_id] and self[factory_id].uses_parts and table.contains(self[factory_id].uses_parts, template_id) then
-				table.insert(self[factory_id].uses_parts, part_id)
-				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
-			end
-		end
-	end
-end
 
 WeaponFactoryTweakData.shotgun_ammo_override_map = {
 	["wpn_fps_shot_saiga"] = "very_light",

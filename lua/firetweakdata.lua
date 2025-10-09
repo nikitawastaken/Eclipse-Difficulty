@@ -50,7 +50,7 @@ Hooks:PostHook(FireTweakData, "init", "eclipse_init", function(self)
 	self.dot_entries.fire.melee_spoon_gold.dot_damage = 6
 	self.dot_entries.fire.melee_spoon_gold.dot_trigger_chance = trigger_chance_spoon
 
-	self.dot_entries.fire.proj_fire_com.dot_damage = 8
+	self.dot_entries.fire.proj_fire_com.dot_damage = 4
 	self.dot_entries.fire.proj_fire_com.dot_length = 2
 	self.dot_entries.fire.proj_fire_com.dot_trigger_chance = trigger_chance_molotov
 

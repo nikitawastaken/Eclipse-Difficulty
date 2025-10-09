@@ -1,5 +1,5 @@
 local diff_lerp = Eclipse.utils.diff_lerp
-
+	
 -- lock dw / ds
 tweak_data.difficulty_level_locks = {
 	0,
@@ -168,8 +168,10 @@ tweak_data.projectiles.frag_com = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.frag_com.name_id = "bm_grenade_frag_com"
 
 tweak_data.projectiles.molotov.damage = 2
+tweak_data.projectiles.molotov.curve_pow = 1
 
-tweak_data.projectiles.fir_com.damage = 4
+tweak_data.projectiles.fir_com.damage = 2
+tweak_data.projectiles.fir_com.curve_pow = 1
 
 tweak_data.projectiles.dada_com = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.dada_com.name_id = "bm_grenade_dada_com"
@@ -180,13 +182,14 @@ tweak_data.projectiles.dynamite.name_id = "bm_grenade_frag"
 tweak_data.projectiles.dynamite.effect_name = "effects/payday2/particles/explosions/dynamite_explosion"
 
 tweak_data.projectiles.concussion.damage = 1
-tweak_data.projectiles.concussion.range = 1000
+tweak_data.projectiles.concussion.range = 900
 
 tweak_data.projectiles.wpn_gre_electric.damage = 24
 tweak_data.projectiles.wpn_gre_electric.curve_pow = 3
-tweak_data.projectiles.wpn_gre_electric.range = 800
+tweak_data.projectiles.wpn_gre_electric.range = 650
 
 tweak_data.projectiles.xmas_snowball.damage = 8
+tweak_data.projectiles.xmas_snowball.curve_pow = 1
 
 tweak_data.projectiles.poison_gas_grenade.damage = 12
 tweak_data.projectiles.poison_gas_grenade.curve_pow = 1
