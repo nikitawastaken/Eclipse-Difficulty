@@ -63,7 +63,6 @@ local sniper_amount = {
 		amount_random = normal and 0 or hard and 1 or 2,
 	},
 }
-local swat_vans_amount = eclipse and 2 or 1
 local ambush_chance = (is_pro_job and 1.5 or 1) * diff_i_no_easy * 15
 local street_spawn = {
 	values = {
@@ -188,18 +187,7 @@ return {
 	[101304] = {
 		on_executed = {
 			{ id = 103540, delay = 10 },
-		},
-	},
-	-- add 3 new heli events to the elementrandom script
-	-- 2 events on eclipse
-	[104734] = {
-		values = {
-			amount = swat_vans_amount,
-		},
-		on_executed = {
-			{ id = 400025, delay = 0, delay_rand = 10 },
-			{ id = 400031, delay = 0, delay_rand = 10 },
-			{ id = 400037, delay = 0, delay_rand = 10 },
+			{ id = 400073, delay = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
@@ -224,6 +212,7 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, delay = 0 },
+			{ id = 400073, delay = 0 },
 		},
 	},
 	-- enable spawns sooner

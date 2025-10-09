@@ -96,8 +96,8 @@ return {
 	-- 2 scripted cloakers spawn on overkill and above when the cops arrive
 	[100314] = {
 		on_executed = {
-			{ id = 103038, delay = overkill_and_above and 20 or math.huge },
-			{ id = 103080, delay = overkill_and_above and 20 or math.huge },
+			{ id = 103038, remove = not overkill_and_above and true or nil, delay = 20 },
+			{ id = 103080, remove = not overkill_and_above and true or nil, delay = 20 },
 		},
 	},
 	-- make some beat cops camp near police cars

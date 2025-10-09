@@ -170,6 +170,7 @@ return {
 	[101304] = {
 		on_executed = {
 			{ id = 103540, delay = 10 },
+			{ id = 400043, delay = 10 },
 		},
 	},
 	-- add 3 new heli events to the elementrandom script
@@ -206,6 +207,7 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, remove = not is_eclipse_pro and true or nil, delay = 0 },
+			{ id = 400043, remove = not is_eclipse_pro and true or nil, delay = 0 },
 		},
 	},
 	-- enable spawns sooner

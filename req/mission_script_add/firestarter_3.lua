@@ -155,6 +155,14 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
+local chopper_amount = {
+	amount = is_eclipse and 2 or 1,
+	on_executed = {
+		{ id = 400025, delay = 0, delay_rand = 10 },
+		{ id = 400031, delay = 0, delay_rand = 10 },
+		{ id = 400037, delay = 0, delay_rand = 10 },
+	},
+}
 local optsspawnvanSWATs_1 = {
 	on_executed = {
 		{ id = 400005, delay = 0 },
@@ -434,6 +442,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_smokegrenade(400071, "smoke_grenade_right", Vector3(-1760.265, 2207.041, 0), Rotation(0, 0, 0), Smoke_bomb),
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
+	-- chopper spawner
+	Eclipse.mission_elements.gen_element_random(400073, "random_chopper_spawner", chopper_amount),
 }
 
 return M

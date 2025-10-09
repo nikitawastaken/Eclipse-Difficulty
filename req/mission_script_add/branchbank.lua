@@ -76,6 +76,14 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
+local chopper_amount = {
+	amount = is_eclipse and 2 or 1,
+	on_executed = {
+		{ id = 400025, delay = 0, delay_rand = 10 },
+		{ id = 400034, delay = 0, delay_rand = 10 },
+		{ id = 400041, delay = 0, delay_rand = 10 },
+	},
+}
 local optsspawnvanSWATs_1 = {
 	on_executed = {
 		{ id = 400011, delay = 0 },
@@ -225,6 +233,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_object_editor(400040, "swat_heli_sequence_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsSWATChopper_2),
 	Eclipse.mission_elements.gen_missionscript(400041, "swat_heli_event_2", optsspawnswatchopper_2),
 	Eclipse.mission_elements.gen_spawngroup(400042, "swat_group_4", { 400036, 400037, 400038, 400039 }, 0, opts_swat_group),
+	-- chopper spawner
+	Eclipse.mission_elements.gen_element_random(400043, "random_chopper_spawner", chopper_amount),
 }
 
 return M
