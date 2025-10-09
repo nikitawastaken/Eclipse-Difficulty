@@ -19,9 +19,6 @@ local is_mountain_master = level_id == "pent"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 local diff_lerp = Eclipse.utils.diff_lerp
--- local function diff_lerp(value_1, value_2)
--- 	return Eclipse.utils.diff_lerp(value_1, value_2)
--- end
 
 local weighted_selector = Eclipse.utils.weighted_selector
 
@@ -477,14 +474,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 0.25 },
 		focus_delay = 0,
-		melee_dmg = 14,
+		melee_dmg = 10,
 	})
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 5, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 4, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 			{ dmg_mul = 3, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 1, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 2, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
@@ -1426,6 +1423,11 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_beretta_npc"] = 3, -- Freeze trailer
 			["wpn_fps_pis_peacemaker_npc"] = 1, -- Keep them hands visible
 		},
+		melee = {
+			["weapon"] = 9, 
+			["moneybundle"] = 3, 
+			["freedom"] = 1, -- 'Murica
+		},
 	},
 	-- Wolf
 	["german"] = {
@@ -1439,6 +1441,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_mp5_npc"] = 2, -- Used pre-Henchmen/skill tree background
 			["wpn_fps_smg_m45_npc"] = 1, -- Alesso trailer
 		},
+		melee = {
+			["weapon"] = 2, 
+			["nin"] = 1, 
+		},
 	},
 	-- Chains
 	["spanish"] = {
@@ -1451,6 +1457,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_mp5_npc"] = 1, -- Used in PDTH
 			["wpn_fps_smg_mac10_npc"] = 1, -- Used pre-U240.3
 		},
+		melee = {
+			["weapon"] = 3, 
+			["x46"] = 1, 
+		},
 	},
 	-- Houston
 	["american"] = {
@@ -1462,6 +1472,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_beretta_npc"] = 6, -- Skill tree background
 			["wpn_fps_pis_1911_npc"] = 1, -- PD3 moment
 			["wpn_fps_pis_beer_npc"] = 1, -- PD3 moment
+		},
+		melee = {
+			["weapon"] = 3, 
+			["fists"] = 1, -- Alright little brother, just one.
 		},
 	},
 	-- Wick, based on a quick scan through IMFDB for weapons he ever held in the movies :julespig:
@@ -1487,6 +1501,11 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_m1911_npc"] = 1,
 			["wpn_fps_pis_model3_npc"] = 1, -- "Webley .455 Mk VI" (liberties taken)
 		},
+		melee = {
+			["weapon"] = 2, 
+			["fight"] = 2, 
+			["sword"] = 1, 
+		},
 	},
 	-- Hoxton
 	["old_hoxton"] = {
@@ -1497,6 +1516,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		secondary = {
 			["wpn_fps_shot_serbu_npc"] = 2, -- Used in PDTH
 			["wpn_fps_pis_deagle_npc"] = 1,
+		},
+		melee = {
+			["weapon"] = 1, 
+			["toothbrush"] = 1, 
 		},
 	},
 	-- Clover
@@ -1510,6 +1533,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_holt_npc"] = 1, -- Silk Road poster
 			["wpn_fps_pis_czech_npc"] = 1, -- Cartel Business poster
 		},
+		melee = "shillelagh",
 	},
 	-- Dragan
 	["dragan"] = {
@@ -1518,6 +1542,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_ass_famas_npc"] = 1, -- Rainy with a chance of French (wrong slot, don't care)
 		},
 		secondary = "wpn_fps_pis_hs2000_npc", -- Released alongside
+		melee = {
+			["meat_cleaver"] = 1, 
+			["boxing_gloves"] = 1, 
+		},
 	},
 	-- Jacket
 	["jacket"] = {
@@ -1530,6 +1558,15 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_tec9_npc"] = 1, -- Hotline Miami DLC weapon
 			["wpn_fps_smg_uzi_npc"] = 1, -- Hotline Miami DLC weapon
 		},
+		melee = {
+			["hammer"] = 3, 
+			["briefcase"] = 2, 
+			["fireaxe"] = 2, 
+			["bat"] = 2, 
+			["cleaver"] = 2, 
+			["macehete"] = 2, 
+			["fists"] = 1, 
+		},
 	},
 	-- Bonnie
 	["bonnie"] = {
@@ -1539,6 +1576,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_lmg_m249_npc"] = 1, -- Lost In Transit poster
 		},
 		secondary = "wpn_fps_pis_2006m_npc", -- Ask Miki
+		melee = "whiskey",
 	},
 	-- Sokol
 	["sokol"] = {
@@ -1548,6 +1586,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_ass_g36_npc"] = 1, -- Family Matters poster
 		},
 		secondary = "wpn_fps_pis_pl14_npc",
+		melee = {
+			["hockey"] = 2, 
+			["oxide"] = 1, 
+		},
 	},
 	-- Jiro
 	["dragon"] = {
@@ -1556,11 +1598,21 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_polymer_npc"] = 1, -- DLC-adjacent
 		},
 		secondary = "wpn_fps_smg_baka_npc", -- Signature
+		melee = {
+			["sandsteel"] = 4, 
+			["fight"] = 2, 
+			["cqc"] = 2, 
+			["hauteur"] = 1, 
+		},
 	},
 	-- Bodhi
 	["bodhi"] = {
 		primary = "wpn_fps_snp_model70_npc", -- Signature
 		secondary = "wpn_fps_pis_sparrow_npc", -- Released alongside
+		melee = {
+			["boxcutter"] = 2, 
+			["topaz"] = 1, 
+		},
 	},
 	-- Jimmy
 	["jimmy"] = {
@@ -1569,6 +1621,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_lmg_rpk_npc"] = 1,
 		},
 		secondary = "wpn_fps_smg_sr2_npc", -- Signature
+		melee = "ballistic",
 	},
 	-- Sydney
 	["sydney"] = {
@@ -1582,6 +1635,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_smg_mac10_npc"] = 3, -- Used pre-U240.3
 			["wpn_fps_pis_czech_npc"] = 1, -- Cartel Business poster
 		},
+		melee = "wing",
 	},
 	-- Rust
 	["wild"] = {
@@ -1591,6 +1645,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_lmg_par_npc"] = 1, -- Black Cat poster
 		},
 		secondary = "wpn_fps_pis_g22c_npc", -- Spark Plug skin (Biker Safe)
+		melee = "road",
 	},
 	-- Scarface, secondaries are available in Scarface: The World is Yours
 	["chico"] = {
@@ -1601,6 +1656,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_ppk_npc"] = 1,
 			["wpn_fps_smg_mac10_npc"] = 1,
 			["wpn_fps_smg_baka_npc"] = 1,
+		},
+		melee = {
+			["cs"] = 2, -- Roaring frothing madness 
+			["brick"] = 1, 
 		},
 	},
 	-- Sangres
@@ -1613,6 +1672,10 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_chinchilla_npc"] = 6, -- Signature
 			["wpn_fps_smg_m45_npc"] = 1, -- Silk Road poster
 		},
+		melee = {
+			["agave"] = 3, 
+			["chac"] = 1, 
+		},
 	},
 	-- Joy
 	["joy"] = {
@@ -1621,6 +1684,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_ass_akm_npc"] = 1, -- PD3 moment
 		},
 		secondary = "wpn_fps_pis_p226_npc", -- Signature Signature 2
+		melee = "happy",
 	},
 	-- Duke
 	["myh"] = {
@@ -1634,6 +1698,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_c96_npc"] = 1, -- Historic
 			["wpn_fps_smg_thompson_npc"] = 1, -- Historic
 		},
+		melee = "sap", -- Fitting name, because if you actually like Duke you're a... 
 	},
 	-- Hila
 	["ecp_female"] = {
@@ -1642,6 +1707,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_ass_komodo_npc"] = 1,
 		},
 		secondary = "wpn_fps_pis_sparrow_npc",
+		melee = "meter",
 	},
 	-- Ethan
 	["ecp_male"] = {
@@ -1650,24 +1716,29 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["wpn_fps_pis_holt_npc"] = 1,
 			["wpn_fps_pis_maxim9_npc"] = 1,
 		},
+		melee = "meter",
 	},
 }
 
 Hooks:PostHook(CharacterTweakData, "_init_team_ai", "eclipse__init_team_ai", function(self)
 	for tweak_name, mapping in pairs(self.team_ai_weapons_mapped) do
-		if self[tweak_name] and self[tweak_name].weapon then
-			local weapons_of_choice = self[tweak_name].weapon.weapons_of_choice
+		if self[tweak_name] then
+			if self[tweak_name].weapon then
+				local weapons_of_choice = self[tweak_name].weapon.weapons_of_choice
 
-			self[tweak_name].weapon.weapons_of_choice = {
-				primary = lorefriendly_team_ai_weapons and weighted_selector(mapping.primary):select()
-					or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc"
-					or weapons_of_choice and weapons_of_choice.primary
-					or "wpn_fps_ass_m4_npc",
-				secondary = lorefriendly_team_ai_weapons and weighted_selector(mapping.secondary):select()
-					or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc"
-					or weapons_of_choice and weapons_of_choice.secondary
-					or "wpn_fps_pis_g17_npc",
-			}
+				self[tweak_name].weapon.weapons_of_choice = {
+					primary = lorefriendly_team_ai_weapons and weighted_selector(mapping.primary):select()
+						or classic_team_ai_weapons and "wpn_fps_ass_amcar_npc"
+						or weapons_of_choice and weapons_of_choice.primary
+						or "wpn_fps_ass_m4_npc",
+					secondary = lorefriendly_team_ai_weapons and weighted_selector(mapping.secondary):select()
+						or classic_team_ai_weapons and "wpn_fps_pis_beretta_npc"
+						or weapons_of_choice and weapons_of_choice.secondary
+						or "wpn_fps_pis_g17_npc",
+				}
+			end
+			
+			self[tweak_name].melee_weapon = lorefriendly_team_ai_weapons and weighted_selector(mapping.melee):select() or "weapon"
 		end
 	end
 end)

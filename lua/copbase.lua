@@ -1,6 +1,5 @@
 local mat_vars = Eclipse:require("unit_material_vars")
 local mat_var_paths = table.list_to_set(mat_vars)
-
 local weighted_selector = Eclipse.utils.weighted_selector
 
 -- Handle material swaps
@@ -178,7 +177,22 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	end
 end)
 
--- Properly load player melee weapons for use by NPCs
+for k, v in pairs(tweak_data.blackmarket.melee_weapons) do
+	tweak_data.weapon.npc_melee[k] = {
+		unit_name = v.third_unit and Idstring(v.third_unit),
+		sound_miss = v.sounds and v.sounds.hit_air,
+		sound_hit = v.sounds and v.sounds.hit_body,
+		damage = tweak_data.weapon.npc_melee.knife_1.damage,
+		animation_param = v.anim_global_param,
+		player_blood_effect = true,
+		tase_data = v.tase_data and {
+			tase_strength = "light",
+			electrocution_time_mul = 0.5,
+		} or nil
+	}
+end
+
+-- Properly load and unload player melee weapons for use by NPCs
 function CopBase:melee_weapon()
 	if not self._melee_weapon then
 		self._melee_weapon = self._char_tweak.melee_weapon or "weapon"
@@ -191,6 +205,12 @@ function CopBase:melee_weapon()
 	end
 	return self._melee_weapon
 end
+
+Hooks:PostHook(CopBase, "pre_destroy", "melee_unload", function (self)
+	if self._melee_weapon_data then
+		managers.dyn_resource:unload(Idstring("unit"), self._melee_weapon_data.unit_name, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
+	end
+end)
 
 function CopBase:set_cloaker_goggles_on(state)
 	if not self:has_tag("spooc") then
