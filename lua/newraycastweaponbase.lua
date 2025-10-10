@@ -634,7 +634,6 @@ function NewRaycastWeaponBase:on_reload(...)
 	local has_sidearm_reload_dmg_mul = managers.player:has_enabled_cooldown_upgrade("cooldown", "sidearm_reload_damage_multiplier")
 
 	if has_sidearm_reload_dmg_mul and managers.player:has_category_upgrade("temporary", "sidearm_reload_damage_multiplier") and self:is_category("revolver", "pistol") then
-		Eclipse:log_chat("sex")
 		managers.player:activate_temporary_upgrade("temporary", "sidearm_reload_damage_multiplier")
 		managers.player:disable_cooldown_upgrade("cooldown", "sidearm_reload_damage_multiplier")
 	end
