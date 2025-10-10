@@ -3,7 +3,7 @@ Hooks:PostHook(ConcussionGrenade, "_setup_from_tweak_data", "Eclipse_concussion"
 		camera_shake_max_mul = 0.75, -- reduce screenshake
 		effect = self._effect_name,
 		sound_event = "flashbang_explosion", -- flashbang sfx
-		feedback_range = self._range * 2
+		feedback_range = self._range * 2,
 	}
 end)
 
