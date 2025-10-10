@@ -129,7 +129,7 @@ local optsDozerChopper_2 = {
 local optsCloakerChopper = {
 	enemy = cloaker,
 	spawn_action = "e_sp_down_16m_right",
-	on_executed = { { id = 400019, delay = 0 } , { id = 400022, delay = 3 } },
+	on_executed = { { id = 400019, delay = 0 }, { id = 400022, delay = 3 } },
 	enabled = true,
 }
 local optsDozerAmbush = {
@@ -194,15 +194,41 @@ local optsspawnvanSWATs_2 = {
 	enabled = true,
 }
 local optsspawndozerchopper = {
-	on_executed = { { id = 400020, delay = 26 }, { id = 400021, delay = 26 }, { id = 400076, delay = is_eclipse_pro and 35 or math.huge }, { id = 400077, delay = is_eclipse_pro and 35 or math.huge }, { id = 400024, delay = 0 } },
+	on_executed = {
+		{ id = 400020, delay = 26 },
+		{ id = 400021, delay = 26 },
+		{ id = 400076, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400077, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400024, delay = 0 },
+	},
 	enabled = is_eclipse,
 }
 local optsspawnswatchopper_1 = {
-	on_executed = { { id = 400026, delay = 26 }, { id = 400027, delay = 26 }, { id = 400028, delay = 26 }, { id = 400029, delay = 26 }, { id = 400026, delay = is_eclipse_pro and 35 or math.huge }, { id = 400027, delay = is_eclipse_pro and 35 or math.huge }, { id = 400028, delay = is_eclipse_pro and 35 or math.huge }, { id = 400029, delay = is_eclipse_pro and 35 or math.huge }, { id = 400030, delay = 0 } },
+	on_executed = {
+		{ id = 400026, delay = 26 },
+		{ id = 400027, delay = 26 },
+		{ id = 400028, delay = 26 },
+		{ id = 400029, delay = 26 },
+		{ id = 400026, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400027, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400028, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400029, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400030, delay = 0 },
+	},
 	enabled = true,
 }
 local optsspawnswatchopper_2 = {
-	on_executed = { { id = 400032, delay = 26 }, { id = 400033, delay = 26 }, { id = 400034, delay = 26 }, { id = 400035, delay = 26 }, { id = 400032, delay = is_eclipse_pro and 35 or math.huge }, { id = 400033, delay = is_eclipse_pro and 35 or math.huge }, { id = 400034, delay = is_eclipse_pro and 35 or math.huge }, { id = 400035, delay = is_eclipse_pro and 35 or math.huge }, { id = 400036, delay = 0 } },
+	on_executed = {
+		{ id = 400032, delay = 26 },
+		{ id = 400033, delay = 26 },
+		{ id = 400034, delay = 26 },
+		{ id = 400035, delay = 26 },
+		{ id = 400032, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400033, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400034, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400035, delay = is_eclipse_pro and 35 or math.huge },
+		{ id = 400036, delay = 0 },
+	},
 	enabled = true,
 }
 local optsHuntSO = {
