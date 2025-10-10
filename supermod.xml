@@ -271,6 +271,7 @@
 						<post :hook_id="incendiaryburstgrenade"/>
 						<post :hook_id="grenadebase"/>
 						<post :hook_id="smokescreengrenade"/>
+						<post :hook_id="concussiongrenade"/>
 					</group>
 					<post :hook_id="projectiles/projectilebase"/>
 					<post :hook_id="shotgun/shotgunbase"/>
