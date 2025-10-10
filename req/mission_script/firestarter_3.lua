@@ -187,7 +187,7 @@ return {
 	[101304] = {
 		on_executed = {
 			{ id = 103540, delay = 10 },
-			{ id = 400073, delay = 10 },
+			{ id = 400075, delay = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
@@ -212,7 +212,7 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, delay = 0 },
-			{ id = 400073, delay = 0 },
+			{ id = 400075, delay = 0 },
 		},
 	},
 	-- enable spawns sooner

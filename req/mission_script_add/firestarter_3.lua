@@ -6,6 +6,7 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local scripted_enemy = Eclipse.scripted_enemy
 
 local ambush_event_chance = math.random() <= (is_eclipse and 0.4 or 0.2) + (is_pro_job and 0.2 or 0)
@@ -20,10 +21,11 @@ local elite_bulldozer_neil = scripted_enemy.elite_bulldozer_1
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
 local cloaker = scripted_enemy.cloaker
+local elite_sniper = scripted_enemy.elite_sniper
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 
-local specials_list_eclipse = { [taser] = 3, [medic] = 3, [cloaker] = 3, [elite_bulldozer_neil] = 1, [elite_bulldozer_skull] = 1 }
+local specials_list_eclipse = { [taser] = 3, [medic] = 3, [cloaker] = 3, [cloaker] = 3, [elite_sniper] = 2, [elite_bulldozer_neil] = 2, [elite_bulldozer_skull] = 2 }
 local specials_list_hard_ovk = { [taser] = 4, [medic] = 4, [cloaker] = 3, [green_bulldozer] = 1, [black_bulldozer] = 1 }
 local specials_list_easy_normal = { [taser] = 6, [cloaker] = 1 }
 local specials = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
@@ -115,13 +117,19 @@ local optsSpecial_heli = {
 local optsDozerChopper_1 = {
 	enemy = elite_bulldozer_neil,
 	spawn_action = "e_sp_down_16m_right",
-	on_executed = { { id = 400019, delay = 0 }, { id = 400023, delay = 0 }, { id = 400022, delay = 3 }, { id = 400022, delay = 3.5 } },
+	on_executed = { { id = 400019, delay = 0 }, { id = 400023, delay = 0 }, { id = 400022, delay = 3 } },
 	enabled = true,
 }
 local optsDozerChopper_2 = {
 	enemy = elite_bulldozer_skull,
 	spawn_action = "e_sp_down_16m_right",
 	on_executed = { { id = 400019, delay = 0 } },
+	enabled = true,
+}
+local optsCloakerChopper = {
+	enemy = cloaker,
+	spawn_action = "e_sp_down_16m_right",
+	on_executed = { { id = 400019, delay = 0 } , { id = 400022, delay = 3 } },
 	enabled = true,
 }
 local optsDozerAmbush = {
@@ -186,15 +194,15 @@ local optsspawnvanSWATs_2 = {
 	enabled = true,
 }
 local optsspawndozerchopper = {
-	on_executed = { { id = 400020, delay = 26 }, { id = 400021, delay = 26 }, { id = 400024, delay = 0 } },
+	on_executed = { { id = 400020, delay = 26 }, { id = 400021, delay = 26 }, { id = 400076, delay = is_eclipse_pro and 35 or math.huge }, { id = 400077, delay = is_eclipse_pro and 35 or math.huge }, { id = 400024, delay = 0 } },
 	enabled = is_eclipse,
 }
 local optsspawnswatchopper_1 = {
-	on_executed = { { id = 400026, delay = 26 }, { id = 400027, delay = 26 }, { id = 400028, delay = 26 }, { id = 400029, delay = 26 }, { id = 400030, delay = 0 } },
+	on_executed = { { id = 400026, delay = 26 }, { id = 400027, delay = 26 }, { id = 400028, delay = 26 }, { id = 400029, delay = 26 }, { id = 400026, delay = is_eclipse_pro and 35 or math.huge }, { id = 400027, delay = is_eclipse_pro and 35 or math.huge }, { id = 400028, delay = is_eclipse_pro and 35 or math.huge }, { id = 400029, delay = is_eclipse_pro and 35 or math.huge }, { id = 400030, delay = 0 } },
 	enabled = true,
 }
 local optsspawnswatchopper_2 = {
-	on_executed = { { id = 400032, delay = 26 }, { id = 400033, delay = 26 }, { id = 400034, delay = 26 }, { id = 400035, delay = 26 }, { id = 400036, delay = 0 } },
+	on_executed = { { id = 400032, delay = 26 }, { id = 400033, delay = 26 }, { id = 400034, delay = 26 }, { id = 400035, delay = 26 }, { id = 400032, delay = is_eclipse_pro and 35 or math.huge }, { id = 400033, delay = is_eclipse_pro and 35 or math.huge }, { id = 400034, delay = is_eclipse_pro and 35 or math.huge }, { id = 400035, delay = is_eclipse_pro and 35 or math.huge }, { id = 400036, delay = 0 } },
 	enabled = true,
 }
 local optsHuntSO = {
@@ -315,10 +323,10 @@ local optsDozerChopper = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "redi_flyin_left", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "close_door_left", time = 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "close_door_right", time = 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "redi_hover_flyout", time = 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "hidden", time = 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "redi_hover_flyout", time = is_eclipse_pro and 53 or 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100004, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
 	},
 }
 
@@ -329,10 +337,10 @@ local optsSWATChopper_1 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "flyin_fwd_hover", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
 	},
 }
 
@@ -343,10 +351,10 @@ local optsSWATChopper_2 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "redi_flyin_left", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
 	},
 }
 
@@ -380,6 +388,8 @@ M.elements = {
 	-- chopper 1
 	Eclipse.mission_elements.gen_dummy(400020, "dozer_heli_1", Vector3(-1769, 655, 0), Rotation(-90, 0, 0), optsDozerChopper_1),
 	Eclipse.mission_elements.gen_dummy(400021, "dozer_heli_2", Vector3(-1489, 655, 0), Rotation(90, 0, 0), optsDozerChopper_2),
+	Eclipse.mission_elements.gen_dummy(400076, "cloaker_heli_1", Vector3(-1769, 655, 0), Rotation(-90, 0, 0), optsCloakerChopper),
+	Eclipse.mission_elements.gen_dummy(400077, "cloaker_heli_2", Vector3(-1489, 655, 0), Rotation(90, 0, 0), optsCloakerChopper),
 	Eclipse.mission_elements.gen_smokegrenade(400022, "smoke_grenade_heli", Vector3(-1625, 755, 0), Rotation(0, 0, 0), Smoke_bomb),
 	Eclipse.mission_elements.gen_object_editor(400023, "shatter_glass", Vector3(0, 0, 0), Rotation(0, 0, 0), optsBreak_The_Glass),
 	Eclipse.mission_elements.gen_object_editor(400024, "dozer_heli_sequence", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerChopper),
@@ -443,7 +453,7 @@ M.elements = {
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
 	-- chopper spawner
-	Eclipse.mission_elements.gen_element_random(400073, "random_chopper_spawner", chopper_amount),
+	Eclipse.mission_elements.gen_element_random(400075, "random_chopper_spawner", chopper_amount),
 }
 
 return M
