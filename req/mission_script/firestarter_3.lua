@@ -155,12 +155,14 @@ return {
 			{ id = 102206, remove = true }, -- why it enables loot drop off for cops here?
 			{ id = 104733, remove = true },
 			{ id = 400010, delay = 0 },
+			{ id = 105655, delay = 150, delay_rand = 30 },
 		},
 	},
 	[104739] = {
 		on_executed = {
 			{ id = 105214, remove = true },
 			{ id = 400017, delay = 0 },
+			{ id = 105659, delay = 150, delay_rand = 30 },
 		},
 	},
 	-- make the swat vans trigger instantly
@@ -174,8 +176,8 @@ return {
 			{ id = 104737, delay = 0 },
 		},
 	},
-	[105655] = disabled,
-	[105659] = disabled,
+	[105658] = disabled,
+	[105654] = disabled,
 	-- allow swat vans on all difficulties
 	[103540] = {
 		on_executed = {
@@ -186,7 +188,6 @@ return {
 	-- trigger on end assault
 	[101304] = {
 		on_executed = {
-			{ id = 103540, delay = 10 },
 			{ id = 400075, delay = 10 },
 		},
 	},
