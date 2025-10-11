@@ -16,7 +16,7 @@ local eclipse_dozers = {
 	elite_skull_bulldozer,
 }
 local dozer_spawn = is_eclipse and eclipse_dozers or diff_i > 3 and regular_dozers or green_bulldozer
-local dozer_chance = (is_eclipse and 0.4 or diff_i > 3 and 0.2 or 0.1) + (is_pro_job and 0.3 or 0)
+local dozer_chance = math.random() < (is_eclipse and 0.4 or diff_i > 3 and 0.2 or 0.1) + (is_pro_job and 0.3 or 0)
 local double_dozers = {
 	values = {
 		enabled = not is_eclipse and true or false,
