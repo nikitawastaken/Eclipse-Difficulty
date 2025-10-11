@@ -914,7 +914,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		contact = true,
 		go_go = true,
 	}
-	
+
 	presets.enemy_chatter.cloaker = {
 		aggressive = true,
 		contact = true,
