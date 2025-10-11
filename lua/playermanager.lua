@@ -1645,6 +1645,7 @@ PlayerAction.DeadeyeAmmoRestore = {
 		local time = Application:time()
 		local headshots = 1
 		local weapon_unit = player_manager:equipped_weapon_unit()
+		local player_unit = player_manager:player_unit()
 
 		local function on_headshot()
 			headshots = headshots + 1
