@@ -177,7 +177,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.firestarter_3.group_ai_settings = {
 		difficulty_scaling = {
+			diff_init = 0.5,
 			assault_delay = 60,
+			assault_add = 0.25,
 		},
 	}
 	self.firestarter_3.has_megaphone_cop = true
@@ -250,6 +252,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.55
 
 	self.hox_1.group_ai_settings = {
+		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_delay = 0,
