@@ -1616,7 +1616,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		secondary = "wpn_fps_pis_sparrow_npc", -- Released alongside
 		melee = {
 			["boxcutter"] = 2,
-			["topaz"] = 1,
+			["iceaxe"] = 1,
 		},
 	},
 	-- Jimmy
