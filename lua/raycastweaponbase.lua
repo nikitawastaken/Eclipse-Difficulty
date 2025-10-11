@@ -703,7 +703,11 @@ function RaycastWeaponBase:add_ammo_to_pool(ammo, index)
 	local current_ammo = self:get_ammo_total()
 	local new_ammo = current_ammo + ammo
 
-	if max_ammo < new_ammo then
+	if max_ammo > current_ammo then
+		if max_ammo < new_ammo then
+			new_ammo = max_ammo
+		end
+	else
 		new_ammo = current_ammo
 	end
 

@@ -141,14 +141,14 @@ Hooks:PostHook(PlayerManager, "check_skills", "eclipse_check_skills", function(s
 	end
 
 	-- Deadeye ACED
-	if self:has_category_upgrade("revolver", "headshot_chain_slowmo") then
-		self._deadeye_slowmo = self:upgrade_value("revolver", "headshot_chain_slowmo", nil)
+	if self:has_category_upgrade("revolver", "headshot_chain_ammo_restore") then
+		self._deadeye_ammo_restore = self:upgrade_value("revolver", "headshot_chain_ammo_restore", nil)
 
-		self._message_system:register(Message.OnLethalHeadShot, "deadeye_slowmo", callback(self, self, "_on_enter_deadeye_slowmo_event"))
+		self._message_system:register(Message.OnLethalHeadShot, "deadeye_ammo_restore", callback(self, self, "_on_enter_deadeye_ammo_restore_event"))
 	else
-		self._deadeye_slowmo = nil
+		self._deadeye_ammo_restore = nil
 
-		self._message_system:unregister(Message.OnLethalHeadShot, "deadeye_slowmo")
+		self._message_system:unregister(Message.OnLethalHeadShot, "deadeye_ammo_restore")
 	end
 
 	-- Peacemaker's Lament ACED
@@ -1637,25 +1637,22 @@ function PlayerManager:_on_enter_deadeye_reload_event()
 	end
 end
 
--- Deadeye slowmo event
-PlayerAction.DeadeyeSlowmo = {
+-- Deadeye ammo restore event
+PlayerAction.DeadeyeAmmoRestore = {
 	Priority = 1,
-	Function = function(player_manager, target_headshots, target_time, slowmo_world, slowmo_player)
+	Function = function(player_manager, target_headshots, target_time, ammo_restore_percentage)
 		local co = coroutine.running()
 		local time = Application:time()
 		local headshots = 1
+		local weapon_unit = player_manager:equipped_weapon_unit()
 
 		local function on_headshot()
 			headshots = headshots + 1
 
 			if headshots == target_headshots then
-				player_manager:disable_cooldown_upgrade("cooldown", "revolver_slowmo_chain")
-
-				local effect_id_world = "world_Deadeye_Peer" .. tostring(managers.network:session():local_peer():id())
-				managers.time_speed:play_effect(effect_id_world, slowmo_world)
-
-				local effect_id_player = "player_Deadeye_Peer" .. tostring(managers.network:session():local_peer():id())
-				managers.time_speed:play_effect(effect_id_player, slowmo_player)
+				local total_ammo = weapon_unit:base():get_ammo_max()
+				player_manager:on_ammo_increase(math.ceil(ammo_restore_percentage * total_ammo))
+				player_unit:sound():play("pickup_ammo_health_boost")
 
 				time = target_time
 			end
@@ -1665,7 +1662,6 @@ PlayerAction.DeadeyeSlowmo = {
 
 		while time < target_time do
 			time = Application:time()
-			local weapon_unit = player_manager:equipped_weapon_unit()
 
 			if weapon_unit and not weapon_unit:base():is_category("revolver") then
 				break
@@ -1678,20 +1674,18 @@ PlayerAction.DeadeyeSlowmo = {
 	end,
 }
 
-function PlayerManager:_on_enter_deadeye_slowmo_event()
-	if not self._coroutine_mgr:is_running("deadeye_slowmo") then
+function PlayerManager:_on_enter_deadeye_ammo_restore_event()
+	if not self._coroutine_mgr:is_running("deadeye_ammo_restore") then
 		local weapon_unit = self:equipped_weapon_unit()
-		local has_deadeye_slowmo = self:has_enabled_cooldown_upgrade("cooldown", "revolver_slowmo_chain")
 
-		if weapon_unit and weapon_unit:base():is_category("revolver") and has_deadeye_slowmo then
+		if weapon_unit and weapon_unit:base():is_category("revolver") then
 			self._coroutine_mgr:add_coroutine(
-				"deadeye_slowmo",
-				PlayerAction.DeadeyeSlowmo,
+				"deadeye_ammo_restore",
+				PlayerAction.DeadeyeAmmoRestore,
 				self,
-				self._deadeye_slowmo.headshots,
-				Application:time() + self._deadeye_slowmo.max_time,
-				self._deadeye_slowmo.slowmo_world,
-				self._deadeye_slowmo.slowmo_player
+				self._deadeye_ammo_restore.headshots,
+				Application:time() + self._deadeye_ammo_restore.max_time,
+				self._deadeye_ammo_restore.ammo_restore_percentage
 			)
 		end
 	end

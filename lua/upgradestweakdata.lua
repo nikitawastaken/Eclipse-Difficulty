@@ -1284,51 +1284,26 @@ function UpgradesTweakData:init(tweak_data)
 			category = "revolver",
 		},
 	}
-	self.values.revolver.headshot_chain_slowmo = {
+	self.values.revolver.headshot_chain_ammo_restore = {
 		{
-			headshots = 3,
-			max_time = 3,
-			slowmo_world = {
-				sustain = 5,
-				timer = "pausable",
-				speed = 0.45,
-				fade_out = 1,
-				fade_in = 1,
-			},
-			slowmo_player = {
-				sustain = 5,
-				timer = "pausable",
-				speed = 0.55,
-				fade_out = 1,
-				fade_in = 1,
-				affect_timer = "player",
-			},
+			headshots = 4,
+			max_time = 10,
+			ammo_restore_percentage = 0.2
 		},
 	}
-	self.definitions.revolver_headshot_chain_slowmo = {
-		name_id = "menu_revolver_headshot_chain_slowmo",
+	self.definitions.revolver_headshot_chain_ammo_restore = {
+		name_id = "menu_revolver_headshot_chain_ammo_restore",
 		category = "feature",
 		upgrade = {
 			value = 1,
-			upgrade = "headshot_chain_slowmo",
+			upgrade = "headshot_chain_ammo_restore",
 			category = "revolver",
 		},
 	}
-	self.values.cooldown.revolver_slowmo_chain = { { 1, 25 } } -- 25s cd because first 5s account for the slowdown itself
-	self.definitions.cooldown_revolver_slowmo_chain = {
-		name_id = "menu_cooldown_revolver_slowmo_chain",
-		category = "cooldown",
-		upgrade = {
-			value = 1,
-			upgrade = "revolver_slowmo_chain",
-			category = "cooldown",
-		},
-	}
 	self.skill_descs.expert_handling.multibasic = "4"
-	self.skill_descs.expert_handling.multipro = "3"
-	self.skill_descs.expert_handling.multipro2 = "3"
-	self.skill_descs.expert_handling.multipro3 = "5"
-	self.skill_descs.expert_handling.multipro4 = "20"
+	self.skill_descs.expert_handling.multipro = "4"
+	self.skill_descs.expert_handling.multipro2 = "10"
+	self.skill_descs.expert_handling.multipro3 = "20%"
 
 	-- Peacemaker's Lament
 	self.values.temporary.sidearm_pullout_damage_multiplier = { { 1.5, 5 } }

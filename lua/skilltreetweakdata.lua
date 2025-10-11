@@ -448,7 +448,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Deadeye
 	self.skills.expert_handling[1].upgrades = { "revolver_headshot_chain_instant_reload" }
-	self.skills.expert_handling[2].upgrades = { "revolver_headshot_chain_slowmo", "cooldown_revolver_slowmo_chain" }
+	self.skills.expert_handling[2].upgrades = { "revolver_headshot_chain_ammo_restore" }
 	self.skills.expert_handling.icon_xy = { 8, 12 }
 
 	-- Peacemaker's Lament
