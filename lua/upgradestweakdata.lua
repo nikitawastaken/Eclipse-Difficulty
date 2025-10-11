@@ -1288,7 +1288,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			headshots = 4,
 			max_time = 10,
-			ammo_restore_percentage = 0.2
+			ammo_restore_percentage = 0.2,
 		},
 	}
 	self.definitions.revolver_headshot_chain_ammo_restore = {
