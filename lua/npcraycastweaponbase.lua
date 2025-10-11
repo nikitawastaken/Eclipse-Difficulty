@@ -98,7 +98,9 @@ function NPCRaycastWeaponBase:fire(from_pos, direction, dmg_mul, shoot_player, s
 	end
 
 	local is_player = self._setup.user_unit == managers.player:player_unit()
-	local consume_ammo = not managers.player:has_active_temporary_property("bullet_storm") and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost")) or not is_player
+	local consume_ammo = not managers.player:has_active_temporary_property("bullet_storm")
+			and (not managers.player:has_activate_temporary_upgrade("temporary", "berserker_damage_multiplier") or not managers.player:has_category_upgrade("player", "berserker_no_ammo_cost"))
+		or not is_player
 	local ammo_usage = self:ammo_usage()
 
 	if consume_ammo and (is_player or Network:is_server()) then
