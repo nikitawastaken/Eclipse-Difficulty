@@ -143,6 +143,9 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.triathlete.multipro = "10%"
 
 	-- Control Freak
+	self.values.player.intimidation_multiplier[1] = 1.2
+	self.values.player.intimidate_range_mul[1] = 1.2
+	self.skill_descs.cable_guy.multibasic = "20%"
 	self.skill_descs.cable_guy.multipro = "50%"
 
 	-- Joker
