@@ -366,6 +366,13 @@ Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_pr
 		end
 	end
 
+	-- give contact/taunt lines for cloakers
+	if sound_name == "g90" or sound_name == "c01" then
+		if self._unit:base():has_tag("spooc") then
+			full_sound = "clk_c01x_plu"
+		end
+	end
+
 	-- give tasers and medics burndeath screams when getting affected by ecm feedback
 	if sound_name == "ch3" then
 		if self._unit:base():has_tag("taser") then

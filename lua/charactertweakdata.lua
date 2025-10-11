@@ -914,6 +914,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		contact = true,
 		go_go = true,
 	}
+	
+	presets.enemy_chatter.cloaker = {
+		aggressive = true,
+		contact = true,
+	}
 
 	return presets
 end
@@ -1289,7 +1294,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.spooc.headshot_dmg_mul = 3.75 -- 48 head health
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
 	self.spooc.melee_weapon = "baton"
-	self.spooc.spawn_sound_event_2 = "clk_c01x_plu" --*WOOOSH*
+	self.spooc.chatter = self.presets.enemy_chatter.cloaker
 
 	self.shadow_spooc.HEALTH_INIT = 18
 	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 48 head health
