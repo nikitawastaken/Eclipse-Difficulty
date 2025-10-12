@@ -221,6 +221,17 @@ return {
 			{ id = 400032, delay = 17 },
 		},
 	},
+	-- delay Bile's chopper first arrival
+	[100247] = {
+		on_executed = {
+			{ id = 104456, delay = 120 },
+		},
+	},
+	[100001] = {
+		on_executed = {
+			{ id = 100620, delay = 120 },
+		},
+	},
 	-- delay Bile's chopper trigger after c4 blows up
 	[100082] = {
 		on_executed = {
