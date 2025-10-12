@@ -13,6 +13,12 @@ local roof_spawn = {
 }
 local dozer_in_the_container_amount = is_eclipse and 2 or 1
 return {
+	[101731] = {
+		ponr = {
+			length = 600,
+			player_mul = { 1.25, 1.15, 1, 1 },
+		},
+	},
 	[100109] = { -- Police
 		reinforce = {
 			{

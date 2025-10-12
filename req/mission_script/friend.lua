@@ -16,6 +16,12 @@ local disabled = {
 	},
 }
 return {
+	[101103] = {
+		ponr = {
+			length = 360,
+			player_mul = { 1.25, 1.15, 1, 1 },
+		},
+	},
 	-- Combine some navigation areas
 	[100017] = {
 		ai_area = {
