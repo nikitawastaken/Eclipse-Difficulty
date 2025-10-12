@@ -51,6 +51,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 	}
 
 	local texas_rangers = {
+		["dinner"] = true,
 		--["ranc"] = true, -- They're already loaded here
 		["trai"] = true,
 		--["corp"] = true,

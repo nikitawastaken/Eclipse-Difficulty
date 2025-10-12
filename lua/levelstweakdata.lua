@@ -921,6 +921,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
+	self.dinner.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
 	self.trai.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
 	self.corp.ai_unit_group_overrides = self.ranc.ai_unit_group_overrides
 
