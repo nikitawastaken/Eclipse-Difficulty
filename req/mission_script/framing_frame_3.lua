@@ -22,8 +22,8 @@ local balcony_far_spawn = {
 }
 local ffo_countdown = {
 	ponr = {
-			length = 420,
-			player_mul = { 1.5, 1.25, 1, 1 },
+		length = 420,
+		player_mul = { 1.5, 1.25, 1, 1 },
 	},
 }
 return {
