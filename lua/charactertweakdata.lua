@@ -2122,7 +2122,7 @@ function CharacterTweakData:_set_presets()
 	self.cop_scared.surrender = self.presets.surrender.always
 	self.cop_scared.surrender_break_time = nil
 
-	self.flashbang_multiplier = is_eclipse and 1.5 or is_overkill and 1.25 or 1
+	self.flashbang_multiplier = is_eclipse and 1.4 or is_overkill and 1.2 or 1
 	self.concussion_multiplier = 1
 
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
