@@ -20,7 +20,16 @@ local balcony_far_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local ffo_countdown = {
+	ponr = {
+			length = 420,
+			player_mul = { 1.5, 1.25, 1, 1 },
+	},
+}
 return {
+	[101094] = ffo_countdown,
+	[101097] = ffo_countdown,
+	[101100] = ffo_countdown,
 	-- Fix power cut SO delay and add some random delay
 	[104685] = {
 		values = {

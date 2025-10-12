@@ -7,6 +7,7 @@ local M = {
 	roberts = true, -- go bank (Robert Banks)
 	red2 = true, -- fwb
 	framing_frame_2 = true, -- ff day2
+	framing_frame_3 = true, -- ff day3
 	spa = true, -- 10-10
 	flat = true, -- proom
 	dinner = true, -- slouse
