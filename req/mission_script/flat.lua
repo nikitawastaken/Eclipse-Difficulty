@@ -58,6 +58,12 @@ local dealer_walk_so = {
 		patrol_path = "inpath2",
 	},
 }
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
 return {
 	-- Add point of no return
 	[101016] = {
@@ -337,13 +343,13 @@ return {
 		},
 	},
 	-- reenable alleyway drop
+	[103013] = filter_easy_above,
+	[101726] = filter_disable,
+	[101724] = filter_disable,
+	[101723] = filter_disable,
 	[102261] = {
-		values = {
-			on_executed = {
-				{ delay = 0, id = 101591 },
-				{ delay = 0, id = 101573 },
-				{ delay = 0, id = 100350 },
-			},
+		on_executed = {
+			{ id = 100350, delay = 0 },
 		},
 	},
 	-- enable civilian on bridge
