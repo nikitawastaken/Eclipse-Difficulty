@@ -212,12 +212,17 @@ return {
 	[101198] = {
 		values = {
 			participate_to_group_ai = false,
-			trigger_times = 1,
+			force_pickup = "keycard",
 		},
 	},
 	[101210] = {
 		on_executed = {
-			{ delay = 0, id = 101198 },
+			{ id = 101198, delay = 0 },
+		},
+	},
+	[101212] = {
+		on_executed = {
+			{ id = 101198, remove = true },
 		},
 	},
 	-- Exit Bulldozer

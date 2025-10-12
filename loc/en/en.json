@@ -140,7 +140,8 @@
 	"ene_security_female" : "Security Guard",
 	"ene_coast_guard" : "US Coast Guard",
 	"ene_gensec_operator" : "GenSec Tactical Security",
-
+	
+	"ene_fbi_boss" : "Agent Riker",
 	"ene_soldier" : "US Army Soldier",
 	"ene_hoxton_breakout_guard" : "FBI Ready Team",
 	"ene_deep_security" : "Bellmead Security",
