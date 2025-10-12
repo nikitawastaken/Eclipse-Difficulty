@@ -404,7 +404,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chew.group_ai_settings = {
 		assault_force_mul = 0.4,
-		recon_force_mul = 0,
 		cs_grenade_chance_times_mul = 1.5,
 		special_limit_add = {
 			shield = -2,
@@ -443,7 +442,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chill_combat.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_force_mul = 0.55,
-		cs_grenade_chance_times_mul = 0.5,
+		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
 			diff_init = 0.33,
 			assault_delay = 15,
@@ -587,7 +586,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 0.7,
-		cs_grenade_chance_times_mul = 1.25,
+		cs_grenade_chance_times_mul = 1.5,
 		difficulty_scaling = {
 			assault_add = 0.15,
 		},
@@ -672,6 +671,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			shield = 2,
 			taser = 1,
 			cloaker = 1,
+			medic = 1,
 		},
 	}
 
