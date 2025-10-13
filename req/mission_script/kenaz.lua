@@ -21,6 +21,19 @@ return {
 			length = 240,
 			player_mul = { 2, 1.25, 1, 1 },
 		},
+		-- drill done
+		reinforce = {
+			{
+				name = "security1",
+				force = 2,
+				position = Vector3(-1100, 1500, 100),
+			},
+			{
+				name = "security2",
+				force = 2,
+				position = Vector3(950, 1500, 100),
+			},
+		},
 	},
 	[102786] = disabled,
 	-- the BFD is running, start spawning interior snipers
@@ -77,20 +90,6 @@ return {
 				name = "interior_balcony2",
 				force = 2,
 				position = Vector3(-1310, -2440, 550),
-			},
-		},
-	},
-	[100379] = { -- drill done
-		reinforce = {
-			{
-				name = "security1",
-				force = 2,
-				position = Vector3(-1100, 1500, 100),
-			},
-			{
-				name = "security2",
-				force = 2,
-				position = Vector3(950, 1500, 100),
 			},
 		},
 	},
