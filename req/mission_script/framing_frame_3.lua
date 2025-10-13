@@ -24,7 +24,7 @@ local balcony_far_spawn = {
 }
 local powerboxes_amount = {
 	values = {
-		amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0)
+		amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0),
 	},
 }
 local filter_easy_above = {
