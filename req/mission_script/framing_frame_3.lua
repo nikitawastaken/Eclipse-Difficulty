@@ -1,4 +1,6 @@
 local preferred = Eclipse.preferred
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local so_access = Eclipse.access_filter
 local no_shields_and_dozers = {
 	so_access_filter = so_access.no_heavyweight,
@@ -20,6 +22,17 @@ local balcony_far_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local powerboxes_amount = {
+	values = {
+		amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0)
+	},
+}
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local filter_disable = {
+	values = Eclipse.utils.set_diff_groups("disable"),
+}
 local ffo_countdown = {
 	ponr = {
 		length = 420,
@@ -37,6 +50,10 @@ return {
 			base_delay_rand = 15,
 		},
 	},
+	-- tweak power boxes amount based on difficulty
+	[105350] = filter_easy_above,
+	[105351] = filter_disable,
+	[105352] = powerboxes_amount,
 	--Spawn snipers after 120 seconds of starting the assault
 	[103812] = {
 		on_executed = {
