@@ -34,6 +34,7 @@ local eclipse_dozers = {
 local exit_dozer = {
 	enemy = is_eclipse and eclipse_dozers or regular_dozers,
 }
+local Riker_keycard = math.random() <= 0.5
 local exit_dozer_chance = (is_pro_job and 1.5 or 1) * (diff_i * 10)
 local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
@@ -212,7 +213,7 @@ return {
 	[101198] = {
 		values = {
 			participate_to_group_ai = false,
-			force_pickup = "keycard",
+			force_pickup = Riker_keycard and "keycard" or "none",
 		},
 	},
 	[101210] = {
