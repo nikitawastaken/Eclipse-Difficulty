@@ -11,7 +11,7 @@ local M = {
 		},
 	},
 	["arm_for"] = {
-		[("units/payday2/equipment/gen_interactable_lance_huge/gen_interactable_lance_huge"):key()] = {
+		[("units/payday2/equipment/gen_interactable_lance_large/gen_interactable_lance_large"):key()] = {
 			forbid_reenforce = true,
 		},
 	},
