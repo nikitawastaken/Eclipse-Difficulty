@@ -476,15 +476,15 @@ M.elements = {
 	-- Block the roof access (from PDTH)
 	Eclipse.mission_elements.gen_missionscript(400064, "roof_access_blockade_random", Roof_access_block),
 	Eclipse.mission_elements.gen_toggleelement(400065, "disable_open_roof_access", disable_open_roof_access),
-	
+
 	-- Add new harassers near police cars and the back alley
 	Eclipse.mission_elements.gen_dummy(400066, "harasser_1", Vector3(1508, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_1),
 	Eclipse.mission_elements.gen_dummy(400067, "harasser_2", Vector3(1447, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_2),
 	Eclipse.mission_elements.gen_dummy(400068, "harasser_3", Vector3(1380, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_3),
 	Eclipse.mission_elements.gen_dummy(400069, "harasser_4", Vector3(1323, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_4),
-	Eclipse.mission_elements.gen_dummy(400070, "harasser_5", Vector3(1873,  2348, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_5),
-	Eclipse.mission_elements.gen_dummy(400071, "harasser_6", Vector3(1873,  2263, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_6),	
-	Eclipse.mission_elements.gen_dummy(400072, "harasser_7", Vector3(-2699,  2903, -25.190), Rotation(-90, 0, 0), optsSWAT_Harasser_7),
+	Eclipse.mission_elements.gen_dummy(400070, "harasser_5", Vector3(1873, 2348, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_5),
+	Eclipse.mission_elements.gen_dummy(400071, "harasser_6", Vector3(1873, 2263, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_6),
+	Eclipse.mission_elements.gen_dummy(400072, "harasser_7", Vector3(-2699, 2903, -25.190), Rotation(-90, 0, 0), optsSWAT_Harasser_7),
 	Eclipse.mission_elements.gen_dummy(400073, "harasser_8", Vector3(-2740, 2903, -25.190), Rotation(-90, 0, 0), optsSWAT_Harasser_8),
 	Eclipse.mission_elements.gen_dummytrigger(400074, "respawn_harasser_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_1),
 	Eclipse.mission_elements.gen_dummytrigger(400075, "respawn_harasser_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_2),
@@ -498,7 +498,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400083, "harasser_so_2", Vector3(990.981, 1703.958, -24.928), Rotation(88, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400084, "harasser_so_3", Vector3(-2436.462, 2134.481, -25.194), Rotation(-119, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400085, "harasser_so_4", Vector3(-2571.724, 1890.462, -25.194), Rotation(-103, 0, 0), optsSniper_SO),
-	
+
 	-- Dialogue restoration
 	Eclipse.mission_elements.gen_dialogue(400086, "chavez_killed", Bain_chavez_killed),
 	Eclipse.mission_elements.gen_dialogue(400087, "cops_incoming", Bain_cops_coming_in),
