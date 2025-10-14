@@ -1962,6 +1962,7 @@ CharacterTweakData.tweak_table_move_speed = {
 	hector_boss = "very_slow",
 	biker_boss = "very_slow",
 	deep_boss = "very_slow",
+	triad_boss = "very_slow",
 }
 
 CharacterTweakData.access_move_speed = {
