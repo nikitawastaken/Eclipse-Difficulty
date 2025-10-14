@@ -1,9 +1,14 @@
 local scripted_enemy = Eclipse.scripted_enemy
+local diff_i = Eclipse.utils.difficulty_index()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local enabled_blocked_roof_access = math.random() <= 0.45 + (is_pro_job and 0.1 or 0)
+local swat_1 = scripted_enemy.swat_1
+local heavy_1 = scripted_enemy.heavy_swat_1
+local elite_sniper = scripted_enemy.elite_sniper
 local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
 	Idstring("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"),
@@ -15,6 +20,7 @@ local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4"),
 }
 local chavez_dealer = Idstring("units/pd2_dlc_flat/characters/npc_jamaican/npc_jamaican")
+local harasser = diff_i < 5 and swat_1 or is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
 local enabled = {
 	values = {
 		enabled = true,
@@ -52,6 +58,9 @@ local gangster = {
 }
 local dealer = {
 	enemy = chavez_dealer,
+}
+local swat_harassers = {
+	enemy = harasser,
 }
 local dealer_walk_so = {
 	values = {
@@ -104,8 +113,26 @@ return {
 		on_executed = {
 			{ id = 103038, remove = not overkill_and_above and true or nil, delay = 20 },
 			{ id = 103080, remove = not overkill_and_above and true or nil, delay = 20 },
+			-- add harassers
+			{ id = 400066, delay = eclipse and 70 or 90 },
+			{ id = 400067, delay = eclipse and 70 or 90 },
+			{ id = 400068, delay = eclipse and 70 or 90 },
+			{ id = 400069, delay = eclipse and 70 or 90 },
+			{ id = 400070, delay = eclipse and 70 or 90 },
+			{ id = 400071, delay = eclipse and 70 or 90 },
+			{ id = 400072, delay = eclipse and 70 or 90 },
+			{ id = 400073, delay = eclipse and 70 or 90 },
 		},
 	},
+	-- harassers stuff
+	[400066] = swat_harassers,
+	[400067] = swat_harassers,
+	[400068] = swat_harassers,
+	[400069] = swat_harassers,
+	[400070] = swat_harassers,
+	[400071] = swat_harassers,
+	[400072] = swat_harassers,
+	[400073] = swat_harassers,
 	-- make some beat cops camp near police cars
 	[100040] = {
 		on_executed = {
@@ -197,6 +224,7 @@ return {
 			{ id = 400015, delay = 30 },
 			{ id = 400020, delay = 60 },
 			{ id = 400037, delay = 75 },
+			{ id = 400088, delay = 60 }, -- swiss cheese dialogue
 		},
 	},
 	-- spawn Shields after placing the last c4
@@ -221,6 +249,19 @@ return {
 			{ id = 400032, delay = 17 },
 		},
 	},
+	-- restore Bain's dialogue when you kill all the snipers
+	[100182] = {
+		on_executed = {
+			{ id = 400089, delay = 0 },
+		},
+	},
+	-- restore another Bile's dialogue when he's about to drop the c4 bag
+	[103446] = {
+		on_executed = {
+			{ id = 400090, delay = 23 },
+			{ id = 101857, delay = 5 },
+		},
+	},
 	-- delay Bile's chopper first arrival
 	[100247] = {
 		on_executed = {
@@ -238,6 +279,25 @@ return {
 			{ id = 101562, delay = 110 },
 		},
 	},
+	-- restore Bain's dialogue about the potential ambush
+	[102366] = {
+		values = {
+			elements = {
+				102363,
+				104101,
+			},
+		},
+	},
+	[101210] = {
+		values = {
+			comment = "v37",
+		},
+	},
+	[102363] = {
+		on_executed = {
+			{ id = 101210, delay = 2.5 },
+		},
+	},
 	-- trigger dozer spawn during the escape
 	[104706] = {
 		reinforce = { -- remove reinforce
@@ -252,6 +312,7 @@ return {
 	[101853] = {
 		on_executed = {
 			{ id = 104691, remove = true },
+			{ id = 400086, delay = 0 }, -- chavez is dead
 		},
 	},
 	-- call the cops when the red door opens
@@ -265,6 +326,7 @@ return {
 	[100528] = {
 		on_executed = {
 			{ id = 400001, delay = 10 },
+			{ id = 400087, delay = 15 }, -- cops about to drive in dialogue
 			{ id = 103960, delay = 20 }, -- make the cop cars sequence always trigger after 20 seconds
 		},
 	},
@@ -272,6 +334,7 @@ return {
 	[100527] = {
 		on_executed = {
 			{ id = 400001, delay = 45 },
+			{ id = 400087, delay = 55 }, -- cops about to drive in dialogue
 		},
 	},
 	-- more oppressive open door amounts
@@ -381,7 +444,6 @@ return {
 	[101746] = gangster,
 	[101749] = gangster,
 	[102330] = gangster,
-	[102333] = gangster,
 	[102335] = gangster,
 	[100767] = gangster,
 	[102717] = gangster,
@@ -453,6 +515,7 @@ return {
 	-- misc
 	-- dealer
 	[104782] = dealer,
+	[102333] = dealer,
 
 	[100025] = gangster,
 	[100039] = gangster,

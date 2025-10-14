@@ -97,36 +97,6 @@ return {
 			{ id = 100372, delay = 0 },
 		},
 	},
-	-- scale snipers amount based on difficulty
-	[100357] = {
-		values = {
-			ignore_disabled = false,
-		},
-	},
-	-- 2 snipers on easy
-	[100358] = {
-		values = {
-			enabled = easy,
-		},
-	},
-	-- 3 snipers on normal and hard
-	[100359] = {
-		values = {
-			enabled = normal_and_hard,
-		},
-	},
-	-- 4 snipers on overkill
-	[100360] = {
-		values = {
-			enabled = overkill,
-		},
-	},
-	-- 5 snipers on deathwish
-	[100361] = {
-		values = {
-			enabled = deathwish,
-		},
-	},
 	-- don't disable ground snipers after some point
 	[100264] = disabled,
 	-- add missing Bain's warning about snipers
