@@ -2,7 +2,7 @@ local level_id = Eclipse.utils.level_id()
 local drill_unit_overrides = Eclipse:require("drill_unit_overrides")
 
 Hooks:PostHook(Drill, "init", "eclipse_init", function(self, unit)
-	local unit_override = drill_unit_overrides[level_id] and drill_unit_overrides[level_id][unit:name():key()] 
+	local unit_override = drill_unit_overrides[level_id] and drill_unit_overrides[level_id][unit:name():key()]
 
 	if unit_override then
 		self._forbid_reenforce = unit_override.forbid_reenforce or nil

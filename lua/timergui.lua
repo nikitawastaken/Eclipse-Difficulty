@@ -2,13 +2,13 @@ local level_id = Eclipse.utils.level_id()
 local drill_unit_overrides = Eclipse:require("drill_unit_overrides")
 
 Hooks:PostHook(TimerGui, "init", "eclipse_init", function(self, unit)
-	local unit_override = drill_unit_overrides[level_id] and drill_unit_overrides[level_id][unit:name():key()] 
+	local unit_override = drill_unit_overrides[level_id] and drill_unit_overrides[level_id][unit:name():key()]
 
 	if unit_override then
 		if unit_override.can_jam then
 			self:set_can_jam(unit_override.can_jam)
 		end
-		
+
 		if unit_override.timer then
 			self:set_override_timer(unit_override.timer)
 		end
