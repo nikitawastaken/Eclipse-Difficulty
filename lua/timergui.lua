@@ -5,7 +5,7 @@ Hooks:PostHook(TimerGui, "init", "eclipse_init", function(self, unit)
 	local unit_override = drill_unit_overrides[level_id] and drill_unit_overrides[level_id][unit:name():key()]
 
 	if unit_override then
-		if unit_override.can_jam then
+		if unit_override.can_jam ~= nil then
 			self:set_can_jam(unit_override.can_jam)
 		end
 
