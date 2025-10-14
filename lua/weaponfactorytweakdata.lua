@@ -2445,8 +2445,8 @@ function WeaponFactoryTweakData:_balance_silencers()
 			local is_silencer = part_data.perks and table.contains(part_data.perks, "silencer")
 
 			if is_silencer and part_data.stats then
-				part_data.stats.suppression = 10
-				part_data.stats.alert_size = -12
+				part_data.stats.suppression = 12
+				part_data.stats.alert_size = 10
 
 				if part_data.stats.concealment and is_barrel_ext then
 					part_data.stats.damage = -math.max(4 + part_data.stats.concealment, 0)

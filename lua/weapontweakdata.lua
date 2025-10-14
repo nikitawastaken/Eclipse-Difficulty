@@ -26,29 +26,6 @@ Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(se
 	for i = 4.2, 0.199, -0.2 do
 		table.insert(self.stats.suppression, i)
 	end
-
-	self.stats.alert_size = {
-		0, --1
-		100, --2
-		200, --3
-		300, --4
-		400, --5
-		500, --6
-		700, --7
-		800, --8
-		1000, --9
-		1200, --10
-		1400, --11
-		1600, --12
-		1800, --13
-		2000, --14
-		3000, --15
-		4000, --16
-		5000, --17
-		6000, --18
-		8000, --19
-		10000 --20
-	}
 end)
 
 local steelsight_times = {
@@ -116,7 +93,7 @@ function WeaponTweakData:_init_weapons()
 			--catch-all stat setups
 			if cat_map.assault_rifle and not is_browning_mg then
 				weap_data.stats.suppression = cat_map.dmr and 6 or 11
-				weap_data.stats.alert_size = cat_map.dmr and 18 or 17
+				weap_data.stats.alert_size = cat_map.dmr and 6 or 7
 				weap_data.steelsight_time = cat_map.dmr and steelsight_times.dmr or steelsight_times.default
 				weap_data.pickup_mul = weap_data.pickup_mul or cat_map.dmr and 0.8 or 1
 				weap_data.steelsight_move_speed_mul = 0.5
@@ -187,7 +164,7 @@ function WeaponTweakData:_init_weapons()
 				end
 			elseif cat_map.pistol then
 				weap_data.stats.suppression = is_deagle and 7 or 16
-				weap_data.stats.alert_size = is_deagle and 17 or 15
+				weap_data.stats.alert_size = is_deagle and 7 or 9
 				weap_data.steelsight_time = is_deagle and steelsight_times.pistol_heavy or steelsight_times.pistol
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not is_deagle and 1.5 or 1
 				weap_data.steelsight_move_speed_mul = is_deagle and 0.6 or 0.7
@@ -251,7 +228,7 @@ function WeaponTweakData:_init_weapons()
 
 			elseif cat_map.revolver then
 				weap_data.stats.suppression = 7
-				weap_data.stats.alert_size = 17
+				weap_data.stats.alert_size = 7
 				weap_data.steelsight_time = steelsight_times.pistol_heavy
 				weap_data.steelsight_move_speed_mul = 0.6
 				weap_data.shake.fire_multiplier = 1.3
@@ -287,7 +264,7 @@ function WeaponTweakData:_init_weapons()
 
 			elseif cat_map.smg then
 				weap_data.stats.suppression = 16
-				weap_data.stats.alert_size = 16
+				weap_data.stats.alert_size = 8
 				weap_data.steelsight_time = steelsight_times.smg
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 1.25
 				weap_data.steelsight_move_speed_mul = 0.6
@@ -349,7 +326,7 @@ function WeaponTweakData:_init_weapons()
 				
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 5
-				weap_data.stats.alert_size = 18
+				weap_data.stats.alert_size = 6
 				weap_data.steelsight_time = weap_data.steelsight_time or is_judge and steelsight_times.pistol_heavy or steelsight_times.default
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (30 / 180)
 				weap_data.pickup_mul = weap_data.pickup_mul or 1 / 6
@@ -387,7 +364,7 @@ function WeaponTweakData:_init_weapons()
 
 			elseif cat_map.lmg then
 				weap_data.stats.suppression = 3
-				weap_data.stats.alert_size = 18
+				weap_data.stats.alert_size = 6
 				weap_data.steelsight_time = steelsight_times.lmg
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not has_bipod and (4 / 3) or (7 / 4)
 				weap_data.steelsight_move_speed_mul = 0.4
@@ -455,7 +432,7 @@ function WeaponTweakData:_init_weapons()
 				end
 			elseif cat_map.minigun then
 				weap_data.stats.suppression = is_hailstorm and 12 or 4
-				weap_data.stats.alert_size = 18
+				weap_data.stats.alert_size = 6
 				weap_data.steelsight_time = steelsight_times.lmg
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or is_hailstorm and 3 or 2.25
 				weap_data.pickup_mul = weap_data.pickup_mul or 0
@@ -515,7 +492,7 @@ function WeaponTweakData:_init_weapons()
 				end
 			elseif cat_map.snp then
 				weap_data.stats.suppression = 4
-				weap_data.stats.alert_size = 20
+				weap_data.stats.alert_size = 4
 				weap_data.steelsight_time = steelsight_times.snp
 				weap_data.steelsight_move_speed_mul = 0.45
 				weap_data.shake.fire_multiplier = is_thanatos and 2 or 1.6
@@ -552,7 +529,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			elseif cat_map.bow then
 				weap_data.stats.suppression = 2
-				weap_data.stats.alert_size = 1
+				weap_data.stats.alert_size = 7
 				weap_data.armor_piercing_chance = 1
 				weap_data.reload_speed_multiplier = 2
 				weap_data.shake.fire_multiplier = 0.3
@@ -583,7 +560,7 @@ function WeaponTweakData:_init_weapons()
 				weap_data.recoil_multiplier = nil
 			elseif cat_map.grenade_launcher then
 				weap_data.stats.suppression = 2
-				weap_data.stats.alert_size = 18
+				weap_data.stats.alert_size = 6
 				weap_data.pickup_mul = weap_data.pickup_mul or is_primary and 1 / 2.5 or 1 / 5
 				weap_data.damage_near = 1000
 				weap_data.damage_far = 2000
@@ -618,7 +595,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			elseif cat_map.flamethrower then
 				weap_data.stats.suppression = 2
-				weap_data.stats.alert_size = 11
+				weap_data.stats.alert_size = 6
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.5
 				weap_data.pickup_mul = weap_data.pickup_mul or 0
 				weap_data.shake.fire_multiplier = 0.5
@@ -627,11 +604,11 @@ function WeaponTweakData:_init_weapons()
 				weap_data.recoil_multiplier = nil
 			elseif cat_map.saw then
 				weap_data.stats.suppression = 7
-				weap_data.stats.alert_size = 16
+				weap_data.stats.alert_size = 9
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2
 				weap_data.shake.fire_multiplier = 1
 				weap_data.armor_piercing_chance = 1
-				weap_data.hit_alert_size_increase = -9
+				weap_data.hit_alert_size_increase = 4
 
 				weap_data.spread_multiplier = nil
 				weap_data.recoil_multiplier = {
@@ -648,7 +625,7 @@ function WeaponTweakData:_init_weapons()
 				}
 			elseif is_browning_mg then -- Yes, I had to bullshit it like this
 				weap_data.stats.suppression = 3
-				weap_data.stats.alert_size = 20
+				weap_data.stats.alert_size = 4
 				weap_data.shake.fire_multiplier = 0.7
 
 				weap_data.spread_multiplier = nil
@@ -2929,11 +2906,8 @@ local alert_sizes = {
 	is_sniper = 10000,
 	is_lmg = 6000,
 	mini = 6000,
-	is_shotgun_pump = 6000,
-	is_shotgun_mag = 6000,
-	is_double_barrel = 6000,
-	is_smg = 4000,
-	is_pistol = 3000,
+	is_smg = 3500,
+	is_pistol = 2500,
 }
 local crew_weapon_mapping = {
 	ak47 = "ak74",
@@ -2959,7 +2933,7 @@ function WeaponTweakData:_set_presets()
 			v.DAMAGE_MUL_RANGE = turret_damage_mul
 			v.HEALTH_INIT = 200 + (50 * diff_i_no_easy)
 			v.SHIELD_HEALTH_INIT = 40  + (10 * diff_i_no_easy)
-			v.CLIP_SIZE = 400
+			v.CLIP_SIZE = 300
 			v.BAG_DMG_MUL = 20
 			v.SHIELD_DMG_MUL = 1
 			v.FIRE_DMG_MUL = 1
@@ -2969,7 +2943,7 @@ function WeaponTweakData:_set_presets()
 		elseif k:match("_npc$") then
 			v.DAMAGE = 1
 			v.spread = v.rays and v.rays > 1 and 6 or 0
-			v.suppression = (suppression[v.usage] or 1) * (v.armor_piercing and 1.5 or 1) * (v.has_suppressor and 0.1 or 1)
+			v.suppression = (suppression[v.usage] or 1) * (v.armor_piercing and 1.5 or 1) * (v.has_suppressor and 0.2 or 1)
 			v.alert_size = (alert_sizes[v.usage] or 5000) * (v.has_suppressor and 0.2 or 1)
 
 			local is_uzi = v.reload == "uzi"
