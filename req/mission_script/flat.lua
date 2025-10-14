@@ -5,7 +5,7 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local preferred = Eclipse.preferred
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
-local enabled_blocked_roof_access = math.random() <= 0.45 + (is_pro_job and 0.1 or 0)
+local enabled_blocked_roof_access = math.random() <= (is_eclipse and 0.65 or 0.45) + (is_pro_job and 0.1 or 0)
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper

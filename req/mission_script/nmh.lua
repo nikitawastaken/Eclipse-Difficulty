@@ -83,6 +83,12 @@ return {
 			{ id = 400076, delay = 0 },
 		},
 	},
+	-- open the elevator doors when you reach the top
+	[103586] = {
+		on_executed = {
+			{ id = 102876, delay = 2 },
+		},
+	},
 	-- replace investigate beat cops with security guards to match with PDTH
 	[102633] = security_spawn,
 	[102632] = security_spawn,
