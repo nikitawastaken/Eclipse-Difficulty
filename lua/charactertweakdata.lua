@@ -382,8 +382,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.taser.is_rifle.autofire_rounds = nil
 	presets.weapon.taser.is_rifle.FALLOFF = {
-		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.taser.is_shotgun_pump.FALLOFF = {
