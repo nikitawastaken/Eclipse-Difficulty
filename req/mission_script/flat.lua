@@ -439,6 +439,7 @@ return {
 	[101899] = dealer_walk_so,
 	-- change gangster spawns
 	-- outside
+	[102333] = gangster,
 	[101881] = gangster,
 	[101395] = gangster,
 	[101746] = gangster,
@@ -515,7 +516,6 @@ return {
 	-- misc
 	-- dealer
 	[104782] = dealer,
-	[102333] = dealer,
 
 	[100025] = gangster,
 	[100039] = gangster,
