@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@main
       - name: Download stylua
         run: |
-          curl -Lo "stylua.zip" "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.1.0/stylua-linux-x86_64.zip"
+          curl -Lo "stylua.zip" "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.0/stylua-linux-x86_64.zip"
           unzip stylua.zip
           rm stylua.zip
       - name: Format code and store error log
