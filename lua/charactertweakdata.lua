@@ -1863,8 +1863,8 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 end)
 
-local ecm_vuln_swat = 0.5
-local ecm_vuln_heavy = 0.3
+local ecm_vuln_swat = 0.6
+local ecm_vuln_heavy = 0.4
 local ecm_vuln_none = 0
 
 CharacterTweakData.access_health_hs_mul_blacklist = {
@@ -1944,8 +1944,8 @@ CharacterTweakData.access_weapon = {
 
 CharacterTweakData.tweak_table_move_speed = {
 	cobra = "fast",
-	soldier = "fast",
 	fbi_office_mex = "fast",
+	soldier = "fast",
 	escort_criminal = "civ_fast",
 	heavy_swat = "normal",
 	fbi_heavy_swat = "normal",
@@ -1954,16 +1954,19 @@ CharacterTweakData.tweak_table_move_speed = {
 	medic = "normal",
 	city_sniper = "normal",
 	bank_manager = "normal",
+	chavez_boss = "normal",
+	fbi_boss = "normal",
+	mobster_boss = "normal",
 	security_fat = "slow",
 	cop_fat = "slow",
 	escort_undercover = "slow",
 	escort_sand = "slow",
 	spa_vip_hurt = "slow",
 	drug_lord_boss = "slow",
+	triad_boss = "slow",
 	hector_boss = "very_slow",
 	biker_boss = "very_slow",
 	deep_boss = "very_slow",
-	triad_boss = "very_slow",
 }
 
 CharacterTweakData.access_move_speed = {
@@ -2053,7 +2056,7 @@ function CharacterTweakData:_set_presets()
 		char_preset.move_speed = self.presets.move_speed[char_move_speed]
 
 		-- Set global ECM hurts and ECM vulnerability based on tweak table or access
-		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.7
+		local char_ecm_vuln = self.tweak_table_ecm_vulnerability[name] or self.access_ecm_vulnerability[char_access] or 0.8
 
 		char_preset.ecm_hurts = { ears = 4 }
 		char_preset.ecm_vulnerability = char_ecm_vuln
