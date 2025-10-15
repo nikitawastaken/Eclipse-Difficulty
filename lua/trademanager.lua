@@ -209,7 +209,7 @@ function TradeManager:update(t, dt)
 end
 
 function TradeManager:clbk_begin_hostage_trade_dialog(i)
-	local char_sync_index = i
+	self._hostage_trade_clbk = nil
 
 	if i == 1 then
 		self._megaphone_sound_source = self:_get_megaphone_sound_source()
@@ -227,6 +227,12 @@ function TradeManager:clbk_begin_hostage_trade_dialog(i)
 			self:clbk_begin_hostage_trade_dialog(2)
 			print("Megaphone fail")
 		end
+
+		if self._is_custody_trade then
+			managers.network:session():send_to_peers_synched("hostage_trade_dialog", char_sync_index)
+		end
+
+		return
 	end
 
 	if self._is_custody_trade then
@@ -238,6 +244,7 @@ function TradeManager:clbk_begin_hostage_trade_dialog(i)
 			return
 		end
 
+		local char_sync_index = i
 		if i ~= 1 then
 			local ssuffix = managers.criminals:character_static_data_by_name(respawn_criminal.id).ssuffix
 
@@ -260,8 +267,6 @@ function TradeManager:clbk_begin_hostage_trade_dialog(i)
 
 			managers.enemy:add_delayed_clbk(self._hostage_trade_clbk, callback(self, self, "clbk_begin_hostage_trade"), respawn_t)
 		end
-
-		managers.network:session():send_to_peers_synched("hostage_trade_dialog", char_sync_index)
 	else
 		if i ~= 1 then
 			local respawn_t = self._t + self.TRADE_DELAY
