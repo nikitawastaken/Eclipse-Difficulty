@@ -51,14 +51,12 @@ end
 
 -- Returns the current difficulty name
 function M.difficulty_name()
-	return M.access_table(Global, "game_settings", "difficulty")
-		or "normal"
+	return M.access_table(Global, "game_settings", "difficulty") or "normal"
 end
 
 -- Returns the current level ID
 function M.level_id()
-	return M.access_table(Global, "level_data", "level_id")
-		or M.access_table(Global, "game_settings", "level_id")
+	return M.access_table(Global, "level_data", "level_id") or M.access_table(Global, "game_settings", "level_id")
 end
 
 -- Returns the current level ID with suffixes like "_night" removed (for variants of the same level)
@@ -81,8 +79,7 @@ end
 -- Returns the current AI group type
 function M.faction(levels_tweak)
 	levels_tweak = levels_tweak or tweak_data and tweak_data.levels
-	return levels_tweak and levels_tweak:get_ai_group_type()
-		or "america"
+	return levels_tweak and levels_tweak:get_ai_group_type() or "america"
 end
 
 -- Returns whether the current map is an enemy spawner map or not
@@ -120,8 +117,7 @@ end
 -- Returns whether the game is Holdout
 function M.is_skirmish()
 	local level_tweak = M.access_table(tweak_data, "levels", M.level_id())
-	return level_tweak and level_tweak.group_ai_state == "skirmish"
-		or managers and managers.skirmish and managers.skirmish:is_skirmish()
+	return level_tweak and level_tweak.group_ai_state == "skirmish" or managers and managers.skirmish and managers.skirmish:is_skirmish()
 end
 
 -- Returns whether the difficulty is Normal or above, and Overkill or above
