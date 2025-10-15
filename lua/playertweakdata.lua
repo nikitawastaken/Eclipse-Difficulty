@@ -1,72 +1,147 @@
-local is_eclipse = Eclipse.utils.is_eclipse()
-local is_overkill = Eclipse.utils.is_overkill()
 local is_pro_job = Eclipse.utils.is_pro_job()
-local is_eclipse_pro = is_eclipse and is_pro_job
 
-local function diff_lerp(value_1, value_2)
-	return Eclipse.utils.diff_lerp(value_1, value_2)
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
+local automatic_respawns = false
+
+function PlayerTweakData:_set_presets()
+	-- Grace period duration in seconds, reduced on Pro Jobs
+	self.damage.MIN_DAMAGE_INTERVAL = get_difficulty_specific_value({
+		0.4, -- Easy (+ vanilla Easy if someone gets in there)
+		0.35, -- Normal
+		0.3, -- Hard
+		0.25, -- Overkill
+		0.2, -- Death Wish (+ vanilla DW/DS if someone gets in there)
+	})
+	if is_pro_job then
+		self.damage.MIN_DAMAGE_INTERVAL = self.damage.MIN_DAMAGE_INTERVAL - 0.05
+	end
+
+	-- Revive health, reduced on subsequent revives on Pro Jobs
+	-- Doesn't scale until Hard difficulty
+	self.damage.REVIVE_HEALTH_STEPS = {
+		get_difficulty_specific_value({
+			0.6,
+			0.6,
+			0.5,
+			0.4,
+			0.3,
+		}),
+	}
+	if is_pro_job then
+		table.insert(self.damage.REVIVE_HEALTH_STEPS, self.damage.REVIVE_HEALTH_STEPS[1] * 0.66)
+		table.insert(self.damage.REVIVE_HEALTH_STEPS, self.damage.REVIVE_HEALTH_STEPS[1] * 0.33)
+	end
+
+	-- Percentage of max ammo missing when returning from custody
+	self.damage.custody_ammo_confiscated = get_difficulty_specific_value({
+		0.15,
+		0.3,
+		0.45,
+		0.6,
+		0.75,
+	})
+
+	-- Percentage of max health missing when returning from custody
+	self.damage.custody_health_drained = get_difficulty_specific_value({
+		0.15,
+		0.3,
+		0.45,
+		0.6,
+		0.75,
+	})
+
+	-- Seems to be unused
+	self.suspicion.max_value = get_difficulty_specific_value({
+		8,
+		9,
+		10,
+		11,
+		12,
+	})
+
+	-- Multiplier on the range you can be detected from
+	-- Unsure if relevant in loud
+	self.suspicion.range_mul = get_difficulty_specific_value({
+		0.8,
+		1,
+		1.2,
+		1.4,
+		1.7,
+	})
+
+	-- Multiplier on how quickly you are detected
+	-- Unsure if relevant in loud
+	self.suspicion.buildup_mul = get_difficulty_specific_value({
+		0.8,
+		1,
+		1.2,
+		1.4,
+		1.7,
+	})
+
+	-- On Pro Jobs, reduce the down timer per down by this many seconds, down to a minimum
+	if is_pro_job then
+		self.damage.DOWNED_TIME_DEC = get_difficulty_specific_value({
+			10,
+			10,
+			10,
+			10,
+			15,
+		})
+		self.damage.DOWNED_TIME_MIN = get_difficulty_specific_value({
+			10,
+			10,
+			10,
+			10,
+			5,
+		})
+	else
+		self.damage.DOWNED_TIME_DEC = get_difficulty_specific_value({
+			0,
+			0,
+			0,
+			0,
+			0,
+		})
+		self.damage.DOWNED_TIME_MIN = get_difficulty_specific_value({
+			30,
+			30,
+			30,
+			30,
+			30,
+		})
+	end
+
+	-- If automatic respawns are enabled (shouldn't be unless trading is seriously borked),
+	-- automatically respawn custodied players after this long in seconds
+	if automatic_respawns then
+		self.damage.automatic_respawn_time = get_difficulty_specific_value({
+			210,
+			210,
+			210,
+			270,
+			300,
+		})
+		if is_pro_job then
+			self.damage.automatic_respawn_time = self.damage.automatic_respawn_time + 60
+		end
+	else
+		self.damage.automatic_respawn_time = nil
+	end
 end
 
-function PlayerTweakData:_set_easy() end
+PlayerTweakData._set_easy = PlayerTweakData._set_presets
+PlayerTweakData._set_normal = PlayerTweakData._set_presets
+PlayerTweakData._set_hard = PlayerTweakData._set_presets
+PlayerTweakData._set_overkill = PlayerTweakData._set_presets
+PlayerTweakData._set_overkill_145 = PlayerTweakData._set_presets
+PlayerTweakData._set_easy_wish = PlayerTweakData._set_presets
+PlayerTweakData._set_overkill_290 = PlayerTweakData._set_presets
+PlayerTweakData._set_sm_wish = PlayerTweakData._set_presets
 
-function PlayerTweakData:_set_normal()
-	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.35 or 0.4
+Hooks:OverrideFunction(PlayerTweakData, "_set_singleplayer", function(...) end)
 
-	self.damage.custody_ammo_confiscated = 0.15
-	self.damage.custody_health_drained = 0.15
-
-	self.suspicion.max_value = 8
-	self.suspicion.range_mul = 0.8
-	self.suspicion.buildup_mul = 0.8
-end
-
-function PlayerTweakData:_set_hard()
-	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.3 or 0.35
-
-	self.damage.custody_ammo_confiscated = 0.3
-	self.damage.custody_health_drained = 0.3
-
-	self.suspicion.max_value = 9
-	self.suspicion.range_mul = 1
-	self.suspicion.buildup_mul = 1
-end
-
-function PlayerTweakData:_set_overkill()
-	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.25 or 0.3
-
-	self.damage.custody_ammo_confiscated = 0.45
-	self.damage.custody_health_drained = 0.45
-
-	self.suspicion.max_value = 10
-	self.suspicion.range_mul = 1.2
-	self.suspicion.buildup_mul = 1.2
-end
-
-function PlayerTweakData:_set_overkill_145()
-	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.2 or 0.25
-
-	self.damage.custody_ammo_confiscated = 0.6
-	self.damage.custody_health_drained = 0.6
-
-	self.suspicion.max_value = 11
-	self.suspicion.range_mul = 1.4
-	self.suspicion.buildup_mul = 1.4
-end
-
-function PlayerTweakData:_set_easy_wish()
-	self.damage.MIN_DAMAGE_INTERVAL = is_pro_job and 0.15 or 0.2
-
-	self.damage.custody_ammo_confiscated = 0.75
-	self.damage.custody_health_drained = 0.75
-
-	self.suspicion.max_value = 12
-	self.suspicion.range_mul = 1.7
-	self.suspicion.buildup_mul = 1.7
-end
-
-function PlayerTweakData:_set_singleplayer() end
-
-Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
+Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 	self.gravity = -982
 
 	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
@@ -81,13 +156,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse__init", function(self)
 	self.omniscience.start_t = 3
 	self.omniscience.interval_t = 1.5
 	self.omniscience.target_resense_t = 0
-
-	self.damage.DOWNED_TIME_DEC = is_eclipse_pro and 15 or is_pro_job and 10 or 0
-	self.damage.DOWNED_TIME_MIN = is_eclipse_pro and 5 or is_pro_job and 10 or 30
-
-	local revive_health = diff_lerp(0.6, 0.3)
-
-	self.damage.REVIVE_HEALTH_STEPS = is_pro_job and { revive_health, revive_health * 0.66, revive_health * 0.33 } or { revive_health }
 
 	self.suppression.max_value = 5
 	self.suppression.receive_mul = 1

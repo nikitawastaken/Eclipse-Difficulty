@@ -1,6 +1,6 @@
-local level_id = Eclipse.utils.level_id()
 local is_eclipse = Eclipse.utils.is_eclipse()
-local faction = Eclipse.utils.faction()
+
+local faction = Eclipse.utils.faction
 local has_ponr_text = Eclipse.settings.ponr_assault_text
 local has_faction_text = Eclipse.settings.faction_assault_text
 
@@ -15,7 +15,7 @@ end
 function HUDAssaultCorner:_get_assault_strings()
 	local is_ponr = managers.groupai:state_name() == "ponr" or self._ponr_state
 
-	local primary_assault_text = has_faction_text and "hud_assault_" .. faction .. "_assault" or "hud_assault_assault"
+	local primary_assault_text = has_faction_text and "hud_assault_" .. faction() .. "_assault" or "hud_assault_assault"
 	local secondary_assault_text = has_ponr_text and is_ponr and "hud_assault_ponr" or primary_assault_text
 
 	if self._assault_mode == "normal" then

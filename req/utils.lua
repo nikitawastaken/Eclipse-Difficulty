@@ -1,23 +1,6 @@
 ---@module Utilities
 local M = {}
 
-local difficulty = Global and Global.game_settings and Global.game_settings.difficulty or "normal"
-local real_difficulty_index = ({
-	normal = 2,
-	hard = 3,
-	overkill = 4,
-	overkill_145 = 5,
-	easy_wish = 6,
-	overkill_290 = 7,
-	sm_wish = 8,
-})[difficulty] or 2
-local diff_i = real_difficulty_index
-local diff_i_no_easy = math.max(diff_i - 2, 0)
-local level_id = Global and Global.level_data and Global.level_data.level_id or Global.game_settings and Global.game_settings.level_id
-local is_pro_job = Global and Global.game_settings and Global.game_settings.one_down
-local is_overkill = diff_i == 5
-local is_eclipse = diff_i == 6
-
 -- This is how you make checking each subtable less verbose, e.g.
 -- local and_chain = foo and foo.bar and foo.bar.baz and foo.bar.baz.stuff
 -- local check_val = access_table(foo, "bar", "baz", "stuff")
@@ -46,69 +29,120 @@ function M.get_unit_from_id(unit_id)
 	return false
 end
 
+-- Returns the difficulty index associated with the current difficulty
 function M.difficulty_index()
-	return diff_i
+	local difficulty_to_index = {
+		easy = 1, -- Vanilla Easy, unused
+		normal = 2, -- Easy
+		hard = 3, -- Normal
+		overkill = 4, -- Hard
+		overkill_145 = 5, -- Overkill
+		easy_wish = 6, -- Death Wish
+		overkill_290 = 7, -- Vanilla Death Wish, unused
+		sm_wish = 8, -- Vanilla Death Sentence, unused
+	}
+	return difficulty_to_index[M.difficulty_name()] or 2
 end
 
+-- Same as above, with vanilla Easy excluded (Eclipse Easy has a value of 0)
 function M.difficulty_index_no_easy()
-	return diff_i_no_easy
+	return math.max(M.difficulty_index() - 2, 0)
 end
 
+-- Returns the current difficulty name
 function M.difficulty_name()
-	local is_skirmish = tweak_data and tweak_data.levels and tweak_data.levels[level_id] and tweak_data.levels[level_id].group_ai_state == "skirmish"
-
-	return is_skirmish and "normal" or difficulty
+	return M.access_table(Global, "game_settings", "difficulty")
+		or "normal"
 end
 
+-- Returns the current level ID
 function M.level_id()
+	return M.access_table(Global, "level_data", "level_id")
+		or M.access_table(Global, "game_settings", "level_id")
+end
+
+-- Returns the current level ID with suffixes like "_night" removed (for variants of the same level)
+function M.clean_level_id(end_patterns)
+	local level_id = M.level_id()
+	if level_id then
+		end_patterns = end_patterns or { "_night$", "_day$", "_skip1$", "_skip2$", "_new$" }
+		for _, end_pattern in pairs(end_patterns) do
+			level_id = string.gsub(level_id, end_pattern, "")
+		end
+	end
 	return level_id
 end
 
-function M.faction()
-	return tweak_data and tweak_data.levels and tweak_data.levels:get_ai_group_type()
+-- Returns the current job ID
+function M.job_id()
+	return M.access_table(Global, "job_manager", "current_job", "job_id")
 end
 
+-- Returns the current AI group type
+function M.faction(levels_tweak)
+	levels_tweak = levels_tweak or tweak_data and tweak_data.levels
+	return levels_tweak and levels_tweak:get_ai_group_type()
+		or "america"
+end
+
+-- Returns whether the current map is an enemy spawner map or not
 function M.is_testmap()
+	local level_id = M.level_id()
 	return level_id == "modders_devmap" or level_id == "Enemy_Spawner"
 end
 
+-- Returns whether the Pro Job modifier is enabled or not
 function M.is_pro_job()
-	return is_pro_job
+	return M.access_table(Global, "game_settings", "one_down")
 end
 
+-- Returns whether the current difficulty is Overkill
 function M.is_overkill()
-	return is_overkill
+	return M.difficulty_index() == 5
 end
 
+-- Returns whether the current difficulty is Death Wish (or vanilla DW/DS, if someone gets in there)
 function M.is_eclipse()
-	return is_eclipse
+	return M.difficulty_index() > 5
+	-- return M.difficulty_index() == 6
 end
 
+-- Returns whether the current difficulty is Death Wish Pro Job
 function M.is_eclipse_pro()
-	return is_eclipse and is_pro_job
+	return M.is_eclipse() and M.is_pro_job()
 end
 
+-- Returns whether the game is in offline mode
 function M.is_solo()
-	local solo = Global.game_settings and Global.game_settings.single_player
-
-	return solo
+	return M.access_table(Global, "game_settings", "single_player")
 end
 
-function M.diff_threshold()
-	local normal_and_above = diff_i >= 3
-	local overkill_and_above = diff_i >= 5
+-- Returns whether the game is Holdout
+function M.is_skirmish()
+	local level_tweak = M.access_table(tweak_data, "levels", M.level_id())
+	return level_tweak and level_tweak.group_ai_state == "skirmish"
+		or managers and managers.skirmish and managers.skirmish:is_skirmish()
+end
 
+-- Returns whether the difficulty is Normal or above, and Overkill or above
+function M.diff_threshold()
+	local difficulty_index = M.difficulty_index()
+	local normal_and_above = difficulty_index >= 3
+	local overkill_and_above = difficulty_index >= 5
 	return normal_and_above, overkill_and_above
 end
 
+-- Returns whether the difficulty is within certain ranges
+-- Easy/Normal, Hard/Overkill, and Death Wish are the three groups
 function M.diff_groups()
-	local normal = diff_i < 4
-	local hard = not normal and diff_i < 6
+	local difficulty_index = M.difficulty_index()
+	local normal = difficulty_index < 4
+	local hard = not normal and difficulty_index < 6
 	local eclipse = not normal and not hard
-
 	return normal, hard, eclipse
 end
 
+-- Used to easily generate difficulty modifications for filter elements
 function M.set_diff_groups(group)
 	group = string.lower(tostring(group))
 
@@ -211,23 +245,37 @@ function M.set_diff_groups(group)
 	}
 end
 
+-- Interpolates between two values based on current difficulty index
 function M.diff_lerp(value_1, value_2)
-	local f = diff_i_no_easy / 4
-
+	local f = M.difficulty_index_no_easy() / 4
 	return math.lerp(value_1, value_2, math.min(f, 1))
 end
 
+-- Grab a value from a list based on difficulty index
+-- Vanilla Easy uses the same value as Eclipse Easy
+function M.get_difficulty_specific_value(t)
+	local result = t[M.difficulty_index_no_easy() + 1]
+	if result ~= nil then
+		return result
+	end
+	return t[#t]
+end
+
+-- Easily multiply the values in a list-style table such as { X, Y, Z }
+-- Can supply a mul A (for all values) or { A, B, C } (for corresponding values)
 function M.table_multiplier(target_table, mul)
+	local mul_type = type(mul)
 	for i, v in pairs(target_table) do
-		if type(mul) == "table" then
+		if mul_type == "table" then
 			target_table[i] = v * mul[math.clamp(i, 1, #mul)]
-		elseif type(mul) == "number" then
+		elseif mul_type == "number" then
 			target_table[i] = v * mul
 		end
 	end
 	return target_table
 end
 
+-- Quickly create and populate a weighted selector from a table
 function M.weighted_selector(t)
 	if type(t) ~= "table" then
 		t = { t }

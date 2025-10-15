@@ -1,5 +1,5 @@
 local level_id = Eclipse.utils.level_id()
-local diff_name = Eclipse.utils.difficulty_name()
+local diff_name = Eclipse.utils.is_skirmish() and "normal" or Eclipse.utils.difficulty_name()
 local is_testmap = Eclipse.utils.is_testmap()
 
 -- Don't replace spawns on custom enemy spawner map

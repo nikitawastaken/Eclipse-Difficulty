@@ -2,7 +2,6 @@ local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 
 local level_id = Eclipse.utils.level_id()
-local faction = Eclipse.utils.faction()
 local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_overkill = Eclipse.utils.is_overkill()
@@ -941,7 +940,9 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	end
 end
 
-Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
+Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_data)
+	local faction = Eclipse.utils.faction(tweak_data.levels)
+
 	self._prefix_data_p1 = {
 		cop = function()
 			return self._unit_prefixes.cop
@@ -1268,11 +1269,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
-	self.tank.die_sound_event = (faction == "russia" or faction == "federales") and "bdz_x02a_any_3p" or nil -- fix dozer's death sound for foregin factions
+	self.tank.die_sound_event = (faction == "russia" or faction == "federales") and "bdz_x02a_any_3p" or nil -- Fix Dozer's death sound for foreign factions
 
 	self.tank_medic.HEALTH_INIT = 400
 	self.tank_medic.headshot_dmg_mul = 25 -- 160 head health
-	self.tank_medic.die_sound_event = (faction == "russia" or faction == "federales") and "bdz_x02a_any_3p" or nil -- ditto
+	self.tank_medic.die_sound_event = self.tank.die_sound_event
 
 	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
@@ -1280,7 +1281,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self)
 	self.tank_hw.melee_anims = nil
 	self.tank_hw.move_speed_mul = { walk = 0.75, run = 0.75 }
 	self.tank_hw.melee_weapon = "helloween"
-	self.tank_hw.die_sound_event = (faction == "russia" or faction == "federales") and "bdz_x02a_any_3p" or nil -- ditto
+	self.tank_hw.die_sound_event = self.tank.die_sound_event
 	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.city_tank = deep_clone(self.tank)
