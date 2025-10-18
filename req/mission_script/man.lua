@@ -169,6 +169,31 @@ return {
 			},
 		},
 	},
+	-- tweak power boxes
+	-- remove one of 2 elementrandom. Keep only one
+	[102025] = {
+		on_executed = {
+			{ id = 102026, remove = true },
+		},
+	},
+	-- change the amount of powerboxes and add the remaining ones on the roof
+	[103696] = {
+		values = {
+			amount = (normal and 2 or hard and 3 or 4) + (is_pro_job and 1 or 0),
+		},
+		on_executed = {
+			{ id = 102027, delay = 0 },
+			{ id = 102029, delay = 0 },
+			{ id = 102031, delay = 0 },
+			{ id = 102098, delay = 0 },
+		},
+	},
+	-- increase the amount of powerboxes that can be interrupt
+	[102022] = {
+		values = {
+			amount = is_eclipse and 4 or 3,
+		},
+	},
 	-- Tweak diff scaling
 	[102305] = disabled, -- saw in place, diff 0.75
 	[101760] = disabled, -- interrogation started, diff 1
