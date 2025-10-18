@@ -9,6 +9,7 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local diff_scaling = diff_i / 8
 local hard_above = diff_i >= 3
 local overkill_above = diff_i >= 5
+local shield_army_chance = math.random() <= (is_eclipse and 0.6 or 0.4) + (is_pro_job and 0.1 or 0)
 
 local security_guard_1 = scripted_enemy.security_1
 local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
@@ -48,7 +49,7 @@ local filter_easy_above = {
 
 local vault_ambush_enemy = bulldozer
 
-if math.random() < vault_ambush_chance then
+if math.random() <= vault_ambush_chance then
 	vault_ambush_enemy = scripted_enemy.elite_bulldozer_2
 	vault_count = 2
 end
@@ -133,7 +134,7 @@ local forced_off = {
 return {
 	[101511] = {
 		on_executed = {
-			{ id = 400094, delay = 0 },
+			{ id = 400094, delay = 0 }
 		},
 	},
 	[400094] = {
@@ -258,14 +259,13 @@ return {
 	-- the van drives in when the player is in the vault
 	[106547] = {
 		on_executed = {
-			{ id = 105914, delay = 90, delay_rand = 30 },
+			{ id = 105921, delay = 90, delay_rand = 30 },
 		},
 	},
-	-- lower the chance of swat van spawn and enable it only on ovk above
-	[105914] = {
-		chance = 40,
+	-- enable it only on ovk above
+	[105921] = {
 		values = {
-			enabled = overkill_above,
+			enabled = overkill_above and shield_army_chance,
 		},
 	},
 	-- replace turret with the shield army script
