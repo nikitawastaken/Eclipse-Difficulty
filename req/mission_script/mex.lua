@@ -71,6 +71,25 @@ return {
 			},
 		},
 	},
+	-- disable selected spawngroup based on which tunnel has been chossen
+	[101076] = {
+		on_executed = {
+			{ id = 400001, delay = 0 },
+			{ id = 400002, delay = 0 },
+		},
+	},
+	[103145] = {
+		on_executed = {
+			{ id = 400001, delay = 0 },
+			{ id = 400003, delay = 0 },
+		},
+	},
+	[103149] = {
+		on_executed = {
+			{ id = 400002, delay = 0 },
+			{ id = 400003, delay = 0 },
+		},
+	},
 	--Always spawn the keycard in Mexico
 	[102270] = disabled,
 	[100697] = {
