@@ -133,7 +133,7 @@ local forced_off = {
 return {
 	[101511] = {
 		on_executed = {
-			{ id = 400094, delay = 0 }
+			{ id = 400094, delay = 0 },
 		},
 	},
 	[400094] = {
