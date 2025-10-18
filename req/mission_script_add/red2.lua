@@ -420,6 +420,10 @@ local optsinstance_bag_requirment = {
 		var_objective = "heist_red2_mission10",
 	},
 }
+local optsffo_trigger = {
+	trigger_times = 1,
+	enabled = is_pro_job,
+}
 
 M.elements = {
 	--Lobby Shields
@@ -542,6 +546,9 @@ M.elements = {
 
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400093, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
+	
+	-- FFO
+	Eclipse.mission_elements.gen_missionscript(400094, "ffo_trigger", optsffo_trigger),
 }
 
 return M

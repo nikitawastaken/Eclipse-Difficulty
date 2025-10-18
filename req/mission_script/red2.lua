@@ -132,6 +132,11 @@ local forced_off = {
 }
 return {
 	[101511] = {
+		on_executed = {
+			{ id = 400094, delay = 0 }
+		},
+	},
+	[400094] = {
 		ponr = {
 			length = 150,
 			player_mul = { 1.1, 0.9, 0.7, 0.5 },
