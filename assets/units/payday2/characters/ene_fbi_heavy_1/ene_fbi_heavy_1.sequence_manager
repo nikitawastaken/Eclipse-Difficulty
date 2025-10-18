@@ -168,18 +168,19 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'city_heavy_2'" once="true" triggable="true">
-			<set_variables 		has_visor_steel="1" />
+			<set_variables 		has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_city_heavy_b'" />
 			<object 			enabled="true" name="'g_gear_city_heavy_b_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_lod18'" />
-			<object 			enabled="true" name="'g_helmet_lod19'" />
-			<object 			enabled="true" name="'g_helmet_lod20'" />
+			<object 			enabled="true" name="'g_helmet_lod15'" />
+			<object 			enabled="true" name="'g_helmet_lod16'" />
+			<object 			enabled="true" name="'g_helmet_lod17'" />
 			<object 			enabled="true" name="'g_helmet_lod21'" />
 			<object 			enabled="true" name="'g_helmet_lod22'" />
 									
-			<decal_mesh 		enabled="true" name="'dm_visor3'" />
+			<decal_mesh 		enabled="true" name="'dm_visor2'" />
+			<decal_mesh 		enabled="true" name="'dm_visor_glass3'" />
 			
 			<run_sequence		name="'city_heavy'" />
 			<run_sequence		name="'armor_big'" />

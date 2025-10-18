@@ -253,8 +253,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_c_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_c'"/>
-			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			<object 		enabled="true" name="'g_arms_d'"/>
+			<object 		enabled="true" name="'g_arms_d_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_c'"/>
 			<object 		enabled="true" name="'g_face_c_lod1'"/>
@@ -264,8 +264,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'body_d_var1'" once="true" triggable="true">
-			<object 		enabled="true" name="'g_arms_c'"/>
-			<object 		enabled="true" name="'g_arms_c_lod1'"/>
+			<object 		enabled="true" name="'g_arms_d'"/>
+			<object 		enabled="true" name="'g_arms_d_lod1'"/>
 			
 			<object 		enabled="true" name="'g_face_d'"/>
 			<object 		enabled="true" name="'g_face_d_lod1'"/>
