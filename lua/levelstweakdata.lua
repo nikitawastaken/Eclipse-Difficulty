@@ -185,7 +185,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_3.has_megaphone_cop = true
 
 	self.rat.group_ai_settings = {
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			diff_init = 0.2,
 		},
@@ -275,17 +274,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.crojob2.group_ai_settings = {
-		sustain_duration_mul = 1.25,
-		difficulty_scaling = {
-			assault_delay = 75,
-		},
-	}
+	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
+	self.crojob2.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
 	self.crojob2.group_ai_preset = "heavy_response"
 
 	self.crojob3.group_ai_settings = {
 		assault_delay_mul = 1.25,
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_delay = 75,
 		},
@@ -347,12 +341,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nail.group_ai_settings.difficulty_scaling = nil
 	self.nail.group_ai_settings.special_limit_add = { cloaker = 1 }
 
-	self.cane.group_ai_settings = {
-		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			diff_init = 0.2,
-		},
-	}
+	self.cane.group_ai_settings = deep_clone(self.rat.group_ai_settings)
 
 	self.peta.group_ai_settings = {
 		assault_force_mul = 1.15,
@@ -372,10 +361,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mad.group_ai_settings = {
 		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			diff_init = 0.25,
-			assault_add = 0.25,
-		},
 	}
 
 	self.man.group_ai_settings = {
@@ -384,21 +369,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.85,
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
-			diff_init = 0.5,
 			assault_delay = 0,
-			assault_add = 0.25,
 		},
 		special_limit_add = {
 			cloaker = 1,
 		},
 	}
 	self.man.group_ai_preset = "heavy_response"
+	self.man.has_megaphone_cop = true
 
 	self.born.group_ai_settings = {
 		assault_force_mul = 0.85,
-		grenade_timeout_mul = {
-			smoke_grenade = 0.75,
-		},
 		force_tactics = {
 			shield_def = {
 				ranged_fire = false,
@@ -585,7 +566,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
-	self.bph.group_ai_settings.difficulty_scaling = { assault_add = 0.3 }
+	self.bph.group_ai_settings.difficulty_scaling = nil
 
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
@@ -605,9 +586,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex.group_ai_settings = deep_clone(self.born.group_ai_settings)
 	self.mex.group_ai_preset = "remote"
 
-	self.mex_cooking.group_ai_settings = deep_clone(self.mex.group_ai_settings)
-	self.mex_cooking.group_ai_settings.assault_force_mul = 0.7
-	self.mex_cooking.difficulty_scaling = { diff_init = 0.2 }
+	self.mex_cooking.group_ai_settings = deep_clone(self.born.group_ai_settings)
+	self.mex_cooking.group_ai_settings.difficulty_scaling = { diff_init = 0.2 }
 	self.mex_cooking.group_ai_preset = "remote"
 
 	self.bex.group_ai_settings = {
@@ -630,7 +610,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.chas.has_megaphone_cop = true
 
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
-	self.sand.group_ai_settings.assault_force_mul = 0.85
 	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.sand.group_ai_preset = "street"
 

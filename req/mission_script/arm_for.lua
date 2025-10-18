@@ -82,7 +82,7 @@ local shells_required_objective = {
 local chopper_amount = (is_eclipse and 2 or 1) + (is_pro_job and 1 or 0)
 local standard_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 return {
@@ -112,6 +112,8 @@ return {
 		},
 	},
 	[104694] = disabled,
+	-- Disable boat escape
+	[104979] = disabled,
 	-- Remove a pointless reinforce spot
 	[100907] = disabled,
 	-- Thermal Drill Lottery (feat. Bile The Pilot)
