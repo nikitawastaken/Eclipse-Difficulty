@@ -93,14 +93,14 @@
 		</sequence>
 		
 		<sequence editable_state="true" name="'goggles_head_a'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_glass_a'" />
+			<object 			enabled="true" name="'g_goggles_glass_a'" />
 
 			<object 			enabled="true" name="'g_goggles_a'" />
 			<object 			enabled="true" name="'g_goggles_a_lod1'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'goggles_head_b'" once="true" triggable="true" >
-			<object 			enabled="true" name="'g_glass_b'" />
+			<object 			enabled="true" name="'g_goggles_glass_b'" />
 
 			<object 			enabled="true" name="'g_goggles_b'" />
 			<object 			enabled="true" name="'g_goggles_b_lod1'" />
