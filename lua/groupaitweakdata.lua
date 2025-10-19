@@ -1301,7 +1301,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
-	
+
 	self.unit_categories.gensec_tacteam = {
 		unit_types = {
 			america = {
@@ -2887,7 +2887,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 	if self.us_army_heists_scripted[level_id] then
 		self.timed_enemy_spawn_groups.us_scripted_group1 = Eclipse:require("timed_groups/us_scripted_group1")(self._timed_tactics, difficulty_index)
 	end
-	
+
 	if self.gensec_tac_teams_heists[level_id] then
 		self.timed_enemy_spawn_groups.gensec_group1 = Eclipse:require("timed_groups/gensec_group1")(self._timed_tactics)
 	end

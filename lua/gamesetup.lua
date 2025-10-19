@@ -25,7 +25,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 	local murkies = {
 		["brb"] = true,
 	}
-	
+
 	local gensec_tac_teams = {
 		["dah"] = true,
 		["arena"] = true,
@@ -91,7 +91,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			table.insert(self._loaded_diff_packages, "packages/us_army")
 			PackageManager:load("packages/us_army")
 		end
-		
+
 		if gensec_tac_teams[level_id] and not PackageManager:loaded("packages/gensec_tactical_security") then
 			Eclipse:log_console("Loading GenSec tac teams package...")
 			table.insert(self._loaded_diff_packages, "packages/gensec_tactical_security")
