@@ -486,27 +486,70 @@ local optsspawnSecurity = {
 	enabled = enabled_chance_more_guards,
 }
 local optsVaultAmbush_1 = {
-	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, },
+	on_executed = {
+		{ id = 400094, delay = 0 },
+		{ id = 400095, delay = 0 },
+		{ id = 400096, delay = 0 },
+		{ id = 400097, delay = 0 },
+		{ id = 400098, delay = 0 },
+		{ id = 400099, delay = 0 },
+		{ id = 400100, delay = 0 },
+		{ id = 400101, delay = 0 },
+	},
 	enabled = true,
 }
 local optsVaultAmbush_2 = {
-	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 }, },
+	on_executed = {
+		{ id = 400094, delay = 0 },
+		{ id = 400095, delay = 0 },
+		{ id = 400096, delay = 0 },
+		{ id = 400097, delay = 0 },
+		{ id = 400098, delay = 0 },
+		{ id = 400099, delay = 0 },
+		{ id = 400100, delay = 0 },
+		{ id = 400101, delay = 0 },
+		{ id = 400102, delay = 0 },
+		{ id = 400103, delay = 0 },
+	},
 	enabled = diff_i >= 3,
 }
 local optsVaultAmbush_3 = {
-	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 }, },
+	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 } },
 	enabled = diff_i >= 3,
 }
 local optsVaultAmbush_4 = {
-	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 }, },
+	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 } },
 	enabled = diff_i >= 3,
 }
 local optsVaultAmbush_5 = {
-	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 }, },
+	on_executed = {
+		{ id = 400094, delay = 0 },
+		{ id = 400095, delay = 0 },
+		{ id = 400096, delay = 0 },
+		{ id = 400097, delay = 0 },
+		{ id = 400098, delay = 0 },
+		{ id = 400099, delay = 0 },
+		{ id = 400102, delay = 0 },
+		{ id = 400103, delay = 0 },
+		{ id = 400104, delay = 0 },
+		{ id = 400105, delay = 0 },
+	},
 	enabled = diff_i >= 3,
 }
 local optsVaultAmbush_6 = {
-	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400103, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 },  },
+	on_executed = {
+		{ id = 400094, delay = 0 },
+		{ id = 400095, delay = 0 },
+		{ id = 400096, delay = 0 },
+		{ id = 400097, delay = 0 },
+		{ id = 400098, delay = 0 },
+		{ id = 400099, delay = 0 },
+		{ id = 400100, delay = 0 },
+		{ id = 400101, delay = 0 },
+		{ id = 400103, delay = 0 },
+		{ id = 400104, delay = 0 },
+		{ id = 400105, delay = 0 },
+	},
 	enabled = diff_i == 6,
 	player_3 = true,
 	player_4 = true,
@@ -645,7 +688,7 @@ M.elements = {
 
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400093, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
-	
+
 	-- rework vault ambush
 	-- enemies
 	Eclipse.mission_elements.gen_dummy(400094, "taser_vault_ambush_1", Vector3(5355, 993, -399.895), Rotation(-90, 0, 0), optsTaserVaultAmbush_1),
@@ -665,13 +708,13 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400107, "shield_vault_ambush_so_1", Vector3(5459, 1186, -426.790), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400108, "shield_vault_ambush_so_2", Vector3(5459, 1290, -426.790), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400109, "taser_vault_ambush_so_2", Vector3(5449.344, 1388.958, -426.790), Rotation(-109, 0, 0), optsSniperVaultAmbushSO),
-	
+
 	Eclipse.mission_elements.gen_so(400110, "cloaker_vault_ambush_so_1", Vector3(4141.717, 887.544, -24.895), Rotation(0, 0, 0), optsHideSpoocVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400111, "cloaker_vault_ambush_so_2", Vector3(4135.446, 1612.437, -24.895), Rotation(180, 0, 0), optsHideSpoocVaultAmbushSO),
-	
+
 	Eclipse.mission_elements.gen_so(400112, "swat_vault_ambush_so_1", Vector3(4851, 1008, -224.895), Rotation(-76, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400113, "swat_vault_ambush_so_2", Vector3(4900, 1490, -224.895), Rotation(-109, 0, 0), optsSniperVaultAmbushSO),
-	
+
 	Eclipse.mission_elements.gen_so(400114, "sniper_vault_ambush_so_1", Vector3(4158, 1494, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400115, "sniper_vault_ambush_so_2", Vector3(4158, 1067, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	-- mission scripts

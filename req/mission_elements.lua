@@ -756,5 +756,4 @@ function M.gen_element_filter(id, name, pos, rot, opts)
 	return element_filter
 end
 
-
 return M
