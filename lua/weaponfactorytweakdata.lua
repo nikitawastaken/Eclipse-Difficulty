@@ -292,19 +292,19 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.adds = { "wpn_fps_upg_ak_zenitco_sight_dummy" }
-	
+
 	table.insert(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.forbids, "wpn_fps_upg_o_ak_scopemount")
 	table.insert(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.forbids, "wpn_fps_ak_extra_ris")
-	
+
 	self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override = deep_clone(self.parts.wpn_fps_upg_o_ak_scopemount.override)
 
-	for k, v in pairs(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override) do	
+	for k, v in pairs(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override) do
 		if self.parts[k] and self.parts[k].type and self.parts[k].type ~= "foregrip" then
 			self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].a_obj = "a_o"
 			self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].parent = "jerome_o"
 		end
 	end
-			
+
 	self.parts.wpn_fps_upg_ak_m_uspalm.stats.extra_ammo = 0
 	self.parts.wpn_fps_upg_ak_m_uspalm.custom_stats.ammo_offset = 5
 
@@ -669,14 +669,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.wpn_fps_smg_coal.stock_adapter = "wpn_upg_ak_s_adapter"
 	self.wpn_fps_smg_coal_npc.stock_adapter = "wpn_upg_ak_s_adapter"
-	
+
 	local ak_stocks = {}
 	create_part_list(ak_stocks, "wpn_fps_ass_akm", "stock")
-	
-	self:_add_parts_from_list("wpn_fps_smg_coal", ak_stocks)	
-	
+
+	self:_add_parts_from_list("wpn_fps_smg_coal", ak_stocks)
+
 	self.parts.wpn_fps_smg_coal_g_standard.forbids = { "wpn_upg_ak_g_standard" }
-	
+
 	self.parts.wpn_fps_smg_shepheard_body_short.stats.spread = -2
 	self.parts.wpn_fps_smg_shepheard_body_short.stats.concealment = 2
 
