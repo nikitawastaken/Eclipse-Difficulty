@@ -1301,6 +1301,32 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		},
 		access = access_type_all,
 	}
+	
+	self.unit_categories.gensec_tacteam = {
+		unit_types = {
+			america = {
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
+			},
+			russia = {
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
+			},
+			zombie = {
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
+			},
+			murkywater = {
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
+				Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
+			},
+		},
+		access = access_type_all,
+	}
 
 	self.unit_categories.murkywater = {
 		unit_types = {
@@ -2749,6 +2775,10 @@ GroupAITweakData.us_army_heists_scripted = {
 	["roberts"] = true,
 	["peta2"] = true,
 }
+GroupAITweakData.gensec_tac_teams_heists = {
+	["dah"] = true,
+	["arena"] = true,
+}
 GroupAITweakData.bellmead_response_heists = {
 	["corp"] = true,
 	["deep"] = true,
@@ -2856,6 +2886,10 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 
 	if self.us_army_heists_scripted[level_id] then
 		self.timed_enemy_spawn_groups.us_scripted_group1 = Eclipse:require("timed_groups/us_scripted_group1")(self._timed_tactics, difficulty_index)
+	end
+	
+	if self.gensec_tac_teams_heists[level_id] then
+		self.timed_enemy_spawn_groups.gensec_group1 = Eclipse:require("timed_groups/gensec_group1")(self._timed_tactics)
 	end
 end
 

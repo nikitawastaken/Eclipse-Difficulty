@@ -25,4 +25,6 @@
     <Package id="packages/security_deep" file="packages/security_deep.xml"/>
     <!-- US army -->
     <Package id="packages/us_army" file="packages/us_army.xml"/>
+	<!-- GenSec Tactical Security -->
+    <Package id="packages/gensec_tactical_security" file="packages/gensec_tactical_security.xml"/>
 </table>
