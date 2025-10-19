@@ -54,12 +54,6 @@ if math.random() <= vault_ambush_chance then
 	vault_count = 2
 end
 
-local ambush_enemies = {
-	values = {
-		amount = 3 + (is_pro_job and 2 or 0),
-		amount_random = 0,
-	},
-}
 local bags_required = {
 	values = {
 		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
@@ -132,15 +126,24 @@ local forced_off = {
 	},
 }
 return {
-	[101511] = {
-		on_executed = {
-			{ id = 400094, delay = 0 },
-		},
-	},
-	[400094] = {
+	-- add ffo and spawn lobby ambushes
+	[101660] = {
 		ponr = {
 			length = 150,
 			player_mul = { 1.1, 0.9, 0.7, 0.5 },
+		},
+		on_executed = {
+			{ id = 400000, delay = 0 },
+			{ id = 400001, delay = 1 },
+			{ id = 400002, delay = 2 },
+			{ id = 400003, delay = 3 },
+			{ id = 400004, delay = 4 },
+			{ id = 400005, delay = 5 },
+			{ id = 400006, delay = 6 },
+			{ id = 400007, delay = 7 },
+			{ id = 400027, delay = 8 },
+			{ id = 400028, delay = 9 },
+			{ id = 105913, remove = true },
 		},
 	},
 	-- Add new reinforce
@@ -180,16 +183,40 @@ return {
 	[103032] = bags_required_objective,
 	[103033] = bags_required_objective,
 	[105719] = disabled,
-	-- allow Overdrill
+	-- allow Overdrill on overkill above
 	[104182] = filter_overkill_above,
+	[103962] = filter_overkill_above,
 	-- allow Bo's dozers on all diffs
 	[100682] = filter_easy_above,
 	-- disable forced manager flee objective
 	[100665] = disabled,
-	-- nuke swat van
-	[105921] = disabled,
-	-- Edit the vault opening ambush
-	[100569] = ambush_enemies,
+	-- disable the right vault path
+	[105498] = disabled,
+	-- Rework the opening vault ambush
+	[100569] = {
+		values = {
+			amount = 1, -- only one variant
+			amount_random = 0,
+			ignore_disabled = false,
+		},
+		on_executed = {
+			-- remove vanilla enemy dummies, replace them with mission scripts
+			{ id = 104183, remove = true },
+			{ id = 104317, remove = true },
+			{ id = 104631, remove = true },
+			{ id = 104510, remove = true },
+			{ id = 104318, remove = true },
+			{ id = 104316, remove = true },
+			{ id = 400116, delay = 0 },
+			{ id = 400117, delay = 0 },
+			{ id = 400118, delay = 0 },
+			{ id = 400119, delay = 0 },
+			{ id = 400120, delay = 0 },
+			{ id = 400121, delay = 0 },
+		},
+	},
+	-- stop forcing units with the SO bs, let them do their own thing
+	[103344] = disabled,
 	-- Edit preferreds to make the initial assault have less dense spawns
 	[103984] = { -- assault start
 		on_executed = {
@@ -309,23 +336,6 @@ return {
 		chance = 100,
 		on_executed = {
 			{ id = 400090, delay = 3 },
-		},
-	},
-	-- custom spawns
-	-- add spawn lobby ambushes when the gate is on the left side
-	[101660] = {
-		on_executed = {
-			{ id = 400000, delay = 0 },
-			{ id = 400001, delay = 1 },
-			{ id = 400002, delay = 2 },
-			{ id = 400003, delay = 3 },
-			{ id = 400004, delay = 4 },
-			{ id = 400005, delay = 5 },
-			{ id = 400006, delay = 6 },
-			{ id = 400007, delay = 7 },
-			{ id = 400027, delay = 8 },
-			{ id = 400028, delay = 9 },
-			{ id = 105913, remove = true },
 		},
 	},
 	-- two dozers spawn on e/pj when leaving vault

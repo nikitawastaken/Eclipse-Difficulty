@@ -267,6 +267,65 @@ local optsCloakerConferenceRoom = {
 	participate_to_group_ai = true,
 	enabled = true,
 }
+local optsShieldVaultAmbush_1 = {
+	enemy = is_eclipse and elite_shield or shield,
+	on_executed = { { id = 400107, delay = 0 } },
+	enabled = true,
+}
+local optsShieldVaultAmbush_2 = {
+	enemy = is_eclipse and elite_shield or shield,
+	on_executed = { { id = 400108, delay = 0 } },
+	enabled = true,
+}
+local optsTaserVaultAmbush_1 = {
+	enemy = taser,
+	on_executed = { { id = 400106, delay = 0 } },
+	enabled = true,
+}
+local optsTaserVaultAmbush_2 = {
+	enemy = taser,
+	on_executed = { { id = 400109, delay = 0 } },
+	enabled = true,
+}
+local optsCloakerVaultAmbush_1 = {
+	enemy = cloaker,
+	on_executed = { { id = 400110, delay = 0 } },
+	enabled = true,
+}
+local optsCloakerVaultAmbush_2 = {
+	enemy = cloaker,
+	on_executed = { { id = 400111, delay = 0 } },
+	enabled = true,
+}
+local optsSniperVaultAmbush_1 = {
+	enemy = sniper,
+	on_executed = { { id = 400114, delay = 0 } },
+	enabled = true,
+}
+local optsSniperVaultAmbush_2 = {
+	enemy = sniper,
+	on_executed = { { id = 400115, delay = 0 } },
+	enabled = true,
+}
+local optsSwatVaultAmbush_1 = {
+	enemy = heavy_rifle,
+	on_executed = { { id = 400112, delay = 0 } },
+	enabled = true,
+}
+local optsSwatVaultAmbush_2 = {
+	enemy = heavy_rifle,
+	on_executed = { { id = 400113, delay = 0 } },
+	enabled = true,
+}
+local optsBulldozerVaultAmbush_1 = {
+	enemy = bulldozer,
+	enabled = true,
+}
+local optsBulldozerVaultAmbush_2 = {
+	enemy = bulldozer,
+	enabled = true,
+}
+
 local Smoke_bomb = {
 	duration = 12,
 }
@@ -353,6 +412,15 @@ local optsSniperSO = {
 	so_action = "AI_sniper",
 	pose = "stand",
 }
+local optsSniperVaultAmbushSO = {
+	SO_access = tostring(128 + 512 + 2048 + 4096 + 8192),
+	scan = true,
+	needs_pos_rsrv = true,
+	align_position = true,
+	align_rotation = true,
+	interval = 2,
+	so_action = "AI_sniper",
+}
 local optsHideSpoocSO = {
 	SO_access = "1024",
 	scan = true,
@@ -361,6 +429,14 @@ local optsHideSpoocSO = {
 	align_rotation = true,
 	so_action = "e_so_idle_by_container",
 	interrupt_dis = 10,
+}
+local optsHideSpoocVaultAmbushSO = {
+	SO_access = "1024",
+	scan = true,
+	needs_pos_rsrv = true,
+	align_position = true,
+	align_rotation = true,
+	so_action = "e_so_idle_by_container",
 }
 local optsDefendSO = {
 	SO_access = "128",
@@ -409,6 +485,33 @@ local optsspawnSecurity = {
 	},
 	enabled = enabled_chance_more_guards,
 }
+local optsVaultAmbush_1 = {
+	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, },
+	enabled = true,
+}
+local optsVaultAmbush_2 = {
+	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 }, },
+	enabled = diff_i >= 3,
+}
+local optsVaultAmbush_3 = {
+	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 }, },
+	enabled = diff_i >= 3,
+}
+local optsVaultAmbush_4 = {
+	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 }, },
+	enabled = diff_i >= 3,
+}
+local optsVaultAmbush_5 = {
+	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 }, },
+	enabled = diff_i >= 3,
+}
+local optsVaultAmbush_6 = {
+	on_executed = { { id = 400094, delay = 0 }, { id = 400095, delay = 0 }, { id = 400096, delay = 0 }, { id = 400097, delay = 0 }, { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400103, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 },  },
+	enabled = diff_i == 6,
+	player_3 = true,
+	player_4 = true,
+	difficulty_easy_wish = true,
+}
 local optsinstance_bag_requirment = {
 	instance = "obj_link_012",
 	params = {
@@ -419,10 +522,6 @@ local optsinstance_bag_requirment = {
 		var_amount_very_hard = bags_required,
 		var_objective = "heist_red2_mission10",
 	},
-}
-local optsffo_trigger = {
-	trigger_times = 1,
-	enabled = is_pro_job,
 }
 
 M.elements = {
@@ -546,9 +645,42 @@ M.elements = {
 
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400093, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
-
-	-- FFO
-	Eclipse.mission_elements.gen_missionscript(400094, "ffo_trigger", optsffo_trigger),
+	
+	-- rework vault ambush
+	-- enemies
+	Eclipse.mission_elements.gen_dummy(400094, "taser_vault_ambush_1", Vector3(5355, 993, -399.895), Rotation(-90, 0, 0), optsTaserVaultAmbush_1),
+	Eclipse.mission_elements.gen_dummy(400095, "taser_vault_ambush_2", Vector3(5355, 1516, -399.895), Rotation(-90, 0, 0), optsTaserVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400096, "shield_vault_ambush_1", Vector3(5355, 1100, -399.895), Rotation(-90, 0, 0), optsShieldVaultAmbush_1),
+	Eclipse.mission_elements.gen_dummy(400097, "shield_vault_ambush_2", Vector3(5355, 1403, -399.895), Rotation(-90, 0, 0), optsShieldVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400098, "swat_vault_ambush_1", Vector3(4774, 915, -224.895), Rotation(0, 0, 0), optsSwatVaultAmbush_1),
+	Eclipse.mission_elements.gen_dummy(400099, "swat_vault_ambush_2", Vector3(4774, 1583, -224.895), Rotation(-180, 0, 0), optsSwatVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400100, "sniper_vault_ambush_1", Vector3(3925, 1368, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbush_1),
+	Eclipse.mission_elements.gen_dummy(400101, "sniper_vault_ambush_2", Vector3(3925, 1168, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400102, "cloaker_vault_ambush_1", Vector3(4140, 795, -44.895), Rotation(0, 0, 0), optsCloakerVaultAmbush_1),
+	Eclipse.mission_elements.gen_dummy(400103, "cloaker_vault_ambush_2", Vector3(4140, 1713, -44.895), Rotation(180, 0, 0), optsCloakerVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400104, "bulldozer_vault_ambush_1", Vector3(3996, 1212, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush_1),
+	Eclipse.mission_elements.gen_dummy(400105, "bulldozer_vault_ambush_2", Vector3(3996, 1294, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush_2),
+	-- SOs
+	Eclipse.mission_elements.gen_so(400106, "taser_vault_ambush_so_1", Vector3(5460.220, 1101.259, -426.790), Rotation(-66, 0, 0), optsSniperVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400107, "shield_vault_ambush_so_1", Vector3(5459, 1186, -426.790), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400108, "shield_vault_ambush_so_2", Vector3(5459, 1290, -426.790), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400109, "taser_vault_ambush_so_2", Vector3(5449.344, 1388.958, -426.790), Rotation(-109, 0, 0), optsSniperVaultAmbushSO),
+	
+	Eclipse.mission_elements.gen_so(400110, "cloaker_vault_ambush_so_1", Vector3(4141.717, 887.544, -24.895), Rotation(0, 0, 0), optsHideSpoocVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400111, "cloaker_vault_ambush_so_2", Vector3(4135.446, 1612.437, -24.895), Rotation(180, 0, 0), optsHideSpoocVaultAmbushSO),
+	
+	Eclipse.mission_elements.gen_so(400112, "swat_vault_ambush_so_1", Vector3(4851, 1008, -224.895), Rotation(-76, 0, 0), optsSniperVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400113, "swat_vault_ambush_so_2", Vector3(4900, 1490, -224.895), Rotation(-109, 0, 0), optsSniperVaultAmbushSO),
+	
+	Eclipse.mission_elements.gen_so(400114, "sniper_vault_ambush_so_1", Vector3(4158, 1494, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400115, "sniper_vault_ambush_so_2", Vector3(4158, 1067, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
+	-- mission scripts
+	Eclipse.mission_elements.gen_missionscript(400116, "vault_ambush_variant_1", optsVaultAmbush_1),
+	Eclipse.mission_elements.gen_missionscript(400117, "vault_ambush_variant_2", optsVaultAmbush_2),
+	Eclipse.mission_elements.gen_missionscript(400118, "vault_ambush_variant_3", optsVaultAmbush_3),
+	Eclipse.mission_elements.gen_missionscript(400119, "vault_ambush_variant_4", optsVaultAmbush_4),
+	Eclipse.mission_elements.gen_missionscript(400120, "vault_ambush_variant_5", optsVaultAmbush_5),
+	Eclipse.mission_elements.gen_element_filter(400121, "vault_ambush_variant_6", optsVaultAmbush_6),
 }
 
 return M
