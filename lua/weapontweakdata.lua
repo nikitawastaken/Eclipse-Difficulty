@@ -1131,7 +1131,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.olympic.CLIP_AMMO_MAX = 30
 	self.olympic.stats.damage = 18
 	self.olympic.stats.spread = 12
-	self.olympic.stats.recoil = 17
+	self.olympic.stats.recoil = 16
 	self.olympic.stats.concealment = 24
 	self.olympic.fire_mode_data.fire_rate = 60 / 800
 
@@ -1166,7 +1166,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.new_m4.CLIP_AMMO_MAX = 30
 	self.new_m4.stats.damage = 20
 	self.new_m4.stats.spread = 14
-	self.new_m4.stats.recoil = 16
+	self.new_m4.stats.recoil = 17
 	self.new_m4.stats.concealment = 20
 	self.new_m4.fire_mode_data.fire_rate = 60 / 750
 
@@ -1186,7 +1186,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.g36.stats.recoil = 17
 	self.g36.stats.concealment = 22
 	self.g36.fire_mode_data.fire_rate = 60 / 750
-
+	self.g36.reload_speed_multiplier = 1.15
+	
 	-- AK5
 	self.ak5.CLIP_AMMO_MAX = 30
 	self.ak5.stats.damage = 20
@@ -1360,9 +1361,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.g3.CLIP_AMMO_MAX = 20
 	self.g3.stats.damage = 48
-	self.g3.stats.spread = 19
+	self.g3.stats.spread = 21
 	self.g3.stats.recoil = 6
-	self.g3.stats.concealment = 14
+	self.g3.stats.concealment = 15
 	self.g3.fire_mode_data.fire_rate = 60 / 600
 
 	-- Gecko
@@ -1372,7 +1373,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.galil.CLIP_AMMO_MAX = 25
 	self.galil.stats.damage = 48
-	self.galil.stats.spread = 13
+	self.galil.stats.spread = 15
 	self.galil.stats.recoil = 12
 	self.galil.stats.concealment = 13
 	self.galil.fire_mode_data.fire_rate = 60 / 850
@@ -1384,7 +1385,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	}
 	self.fal.CLIP_AMMO_MAX = 20
 	self.fal.stats.damage = 48
-	self.fal.stats.spread = 18
+	self.fal.stats.spread = 17
 	self.fal.stats.recoil = 6
 	self.fal.stats.concealment = 18
 	self.fal.fire_mode_data.fire_rate = 60 / 700
@@ -1442,8 +1443,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.shak12.CLIP_AMMO_MAX = 20
 	self.shak12.stats.damage = 64
 	self.shak12.stats.spread = 16
-	self.shak12.stats.recoil = 4
-	self.shak12.stats.concealment = 21
+	self.shak12.stats.recoil = 8
+	self.shak12.stats.concealment = 20
 	self.shak12.fire_mode_data.fire_rate = 60 / 500
 	self.shak12.reload_speed_multiplier = 0.7
 
@@ -1451,32 +1452,40 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Stryk
 	self.glock_18c.CLIP_AMMO_MAX = 17
-	self.glock_18c.stats.damage = 18
-	self.glock_18c.stats.spread = 14
+	self.glock_18c.stats.damage = 16
+	self.glock_18c.stats.spread = 13
 	self.glock_18c.stats.recoil = 17
 	self.glock_18c.stats.concealment = 29
 	self.glock_18c.fire_mode_data.fire_rate = 60 / 900
 
 	-- Bernetti Auto
 	self.beer.CLIP_AMMO_MAX = 15
-	self.beer.stats.damage = 18
-	self.beer.stats.spread = 15
-	self.beer.stats.recoil = 19
+	self.beer.stats.damage = 16
+	self.beer.stats.spread = 14
+	self.beer.stats.recoil = 15
 	self.beer.stats.concealment = 28
 	self.beer.fire_mode_data.fire_rate = 60 / 1100
+
+	-- Czech
+	self.czech.CLIP_AMMO_MAX = 18
+	self.czech.stats.damage = 18
+	self.czech.stats.spread = 16
+	self.czech.stats.recoil = 16
+	self.czech.stats.concealment = 28
+	self.czech.fire_mode_data.fire_rate = 60 / 1000
 	
 	-- Chimano 88
 	self.glock_17.CLIP_AMMO_MAX = 17
 	self.glock_17.stats.damage = 20
-	self.glock_17.stats.spread = 14
-	self.glock_17.stats.recoil = 18
+	self.glock_17.stats.spread = 15
+	self.glock_17.stats.recoil = 17
 	self.glock_17.stats.concealment = 29
 	self.glock_17.fire_mode_data.fire_rate = 60 / 600
 
 	-- Bernetti 9
 	self.b92fs.CLIP_AMMO_MAX = 15
 	self.b92fs.stats.damage = 20
-	self.b92fs.stats.spread = 15
+	self.b92fs.stats.spread = 16
 	self.b92fs.stats.recoil = 17
 	self.b92fs.stats.concealment = 29
 	self.b92fs.fire_mode_data.fire_rate = 60 / 600
@@ -1484,8 +1493,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Chimano Compact
 	self.g26.CLIP_AMMO_MAX = 10
 	self.g26.stats.damage = 20
-	self.g26.stats.spread = 14
-	self.g26.stats.recoil = 19
+	self.g26.stats.spread = 15
+	self.g26.stats.recoil = 17
 	self.g26.stats.concealment = 30
 	self.g26.fire_mode_data.fire_rate = 60 / 600
 	self.g26.reload_speed_multiplier = 1.15
@@ -1493,24 +1502,25 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- M13
 	self.legacy.CLIP_AMMO_MAX = 13
 	self.legacy.stats.damage = 20
-	self.legacy.stats.spread = 16
-	self.legacy.stats.recoil = 17
+	self.legacy.stats.spread = 17
+	self.legacy.stats.recoil = 13
 	self.legacy.stats.concealment = 30
 	self.legacy.fire_mode_data.fire_rate = 60 / 600
 	self.legacy.reload_speed_multiplier = 1.15
 
-	-- Czech
-	self.czech.CLIP_AMMO_MAX = 18
-	self.czech.stats.damage = 20
-	self.czech.stats.spread = 16
-	self.czech.stats.recoil = 18
-	self.czech.stats.concealment = 28
-	self.czech.fire_mode_data.fire_rate = 60 / 1000
-
+	-- Gecko M2
+	self.maxim9.CLIP_AMMO_MAX = 17
+	self.maxim9.stats.damage = 20
+	self.maxim9.stats.spread = 17
+	self.maxim9.stats.recoil = 12
+	self.maxim9.stats.concealment = 28
+	self.maxim9.fire_mode_data.fire_rate = 60 / 600
+	self.maxim9.can_do_shotgun_push = false
+	
 	-- Holt
 	self.holt.CLIP_AMMO_MAX = 15
 	self.holt.stats.damage = 20
-	self.holt.stats.spread = 16
+	self.holt.stats.spread = 14
 	self.holt.stats.recoil = 18
 	self.holt.stats.concealment = 30
 	self.holt.fire_mode_data.fire_rate = 60 / 600
@@ -1519,71 +1529,110 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.p226.CLIP_AMMO_MAX = 12
 	self.p226.stats.damage = 24
 	self.p226.stats.spread = 18
-	self.p226.stats.recoil = 14
+	self.p226.stats.recoil = 12
 	self.p226.stats.concealment = 29
 	self.p226.fire_mode_data.fire_rate = 60 / 600
 
 	-- Chimano Custom
 	self.g22c.CLIP_AMMO_MAX = 15
 	self.g22c.stats.damage = 24
-	self.g22c.stats.spread = 17
-	self.g22c.stats.recoil = 15
+	self.g22c.stats.spread = 16
+	self.g22c.stats.recoil = 14
 	self.g22c.stats.concealment = 29
 	self.g22c.fire_mode_data.fire_rate = 60 / 600
 
 	-- LEO
 	self.hs2000.CLIP_AMMO_MAX = 16
 	self.hs2000.stats.damage = 24
-	self.hs2000.stats.spread = 16
-	self.hs2000.stats.recoil = 14
+	self.hs2000.stats.spread = 15
+	self.hs2000.stats.recoil = 15
 	self.hs2000.stats.concealment = 29
 	self.hs2000.fire_mode_data.fire_rate = 60 / 600
 
-	-- Igor
-	self.stech.CLIP_AMMO_MAX = 20
-	self.stech.stats.damage = 24
-	self.stech.stats.spread = 15
-	self.stech.stats.recoil = 12
-	self.stech.stats.concealment = 28
-	self.stech.fire_mode_data.fire_rate = 60 / 750
-
-	-- Interceptor
-	self.usp.CLIP_AMMO_MAX = 12
-	self.usp.stats.damage = 32
-	self.usp.stats.spread = 18
-	self.usp.stats.recoil = 14
-	self.usp.stats.concealment = 28
-	self.usp.fire_mode_data.fire_rate = 60 / 600
-
 	-- Contractor
 	self.packrat.CLIP_AMMO_MAX = 15
-	self.packrat.stats.damage = 32
+	self.packrat.stats.damage = 24
 	self.packrat.stats.spread = 18
 	self.packrat.stats.recoil = 12
 	self.packrat.stats.concealment = 28
 	self.packrat.fire_mode_data.fire_rate = 60 / 600
 
+	-- Igor
+	self.stech.CLIP_AMMO_MAX = 20
+	self.stech.stats.damage = 24
+	self.stech.stats.spread = 15
+	self.stech.stats.recoil = 8
+	self.stech.stats.concealment = 28
+	self.stech.fire_mode_data.fire_rate = 60 / 750
+	
+	-- Interceptor
+	self.usp.CLIP_AMMO_MAX = 12
+	self.usp.stats.damage = 32
+	self.usp.stats.spread = 18
+	self.usp.stats.recoil = 9
+	self.usp.stats.concealment = 28
+	self.usp.fire_mode_data.fire_rate = 60 / 600
+
+	-- Baby Deagle
+	self.sparrow.CLIP_AMMO_MAX = 12
+	self.sparrow.stats.damage = 32
+	self.sparrow.stats.spread = 18
+	self.sparrow.stats.recoil = 9
+	self.sparrow.stats.concealment = 29
+	self.sparrow.fire_mode_data.fire_rate = 60 / 600
+
+	-- White Streak
+	self.pl14.CLIP_AMMO_MAX = 16
+	self.pl14.stats.damage = 32
+	self.pl14.stats.spread = 15
+	self.pl14.stats.recoil = 10
+	self.pl14.stats.concealment = 28
+	self.pl14.fire_mode_data.fire_rate = 60 / 600
+
+	-- Broomstick
+	self.c96.CLIP_AMMO_MAX = 10
+	self.c96.stats.damage = 32
+	self.c96.stats.spread = 16
+	self.c96.stats.recoil = 8
+	self.c96.stats.concealment = 28
+	self.c96.fire_mode_data.fire_rate = 60 / 900
+	self.c96.FIRE_MODE = "auto"
+	self.c96.sounds.fire_single = self.c96.sounds.fire 
+	self.c96.sounds.fire_auto = self.c96.sounds.fire 
+	self.c96.auto = { 
+		fire_rate = self.c96.fire_mode_data.fire_rate,
+	}
+	self.c96.CAN_TOGGLE_FIREMODE = true
+	
 	-- Crosskill Guard
-	self.shrew.CLIP_AMMO_MAX = 10
-	self.shrew.stats.damage = 32
+	self.shrew.CLIP_AMMO_MAX = 8
+	self.shrew.stats.damage = 36
 	self.shrew.stats.spread = 15
-	self.shrew.stats.recoil = 16
+	self.shrew.stats.recoil = 10
 	self.shrew.stats.concealment = 30
 	self.shrew.fire_mode_data.fire_rate = 60 / 600
-
+	
 	-- Crosskill
-	self.colt_1911.CLIP_AMMO_MAX = 10
-	self.colt_1911.stats.damage = 36
+	self.colt_1911.CLIP_AMMO_MAX = 8
+	self.colt_1911.stats.damage = 40
 	self.colt_1911.stats.spread = 18
-	self.colt_1911.stats.recoil = 12
-	self.colt_1911.stats.concealment = 29
+	self.colt_1911.stats.recoil = 9
+	self.colt_1911.stats.concealment = 28
 	self.colt_1911.fire_mode_data.fire_rate = 60 / 600
-
+	
+	-- Crosskill Chunky Compact
+	self.m1911.CLIP_AMMO_MAX = 7
+	self.m1911.stats.damage = 40
+	self.m1911.stats.spread = 18
+	self.m1911.stats.recoil = 10
+	self.m1911.stats.concealment = 29
+	self.m1911.fire_mode_data.fire_rate = 60 / 600
+	
 	-- Kang Arms
 	self.type54.CLIP_AMMO_MAX = 10
-	self.type54.stats.damage = 36
-	self.type54.stats.spread = 17
-	self.type54.stats.recoil = 14
+	self.type54.stats.damage = 40
+	self.type54.stats.spread = 15
+	self.type54.stats.recoil = 10
 	self.type54.stats.concealment = 28
 	self.type54.fire_mode_data.fire_rate = 60 / 600
 
@@ -1599,64 +1648,16 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- Gruber
 	self.ppk.CLIP_AMMO_MAX = 7
-	self.ppk.stats.damage = 40
+	self.ppk.stats.damage = 48
 	self.ppk.stats.spread = 16
-	self.ppk.stats.recoil = 12
+	self.ppk.stats.recoil = 14
 	self.ppk.stats.concealment = 30
 	self.ppk.fire_mode_data.fire_rate = 60 / 600
-	
-	-- Broomstick
-	self.c96.CLIP_AMMO_MAX = 10
-	self.c96.stats.damage = 32
-	self.c96.stats.spread = 19
-	self.c96.stats.recoil = 13
-	self.c96.stats.concealment = 28
-	self.c96.fire_mode_data.fire_rate = 60 / 900
-	self.c96.FIRE_MODE = "auto"
-	self.c96.sounds.fire_single = self.c96.sounds.fire 
-	self.c96.sounds.fire_auto = self.c96.sounds.fire 
-	self.c96.auto = { 
-		fire_rate = self.c96.fire_mode_data.fire_rate,
-	}
-	self.c96.CAN_TOGGLE_FIREMODE = true
-	
-	-- Crosskill Chunky Compact
-	self.m1911.CLIP_AMMO_MAX = 12
-	self.m1911.stats.damage = 40
-	self.m1911.stats.spread = 17
-	self.m1911.stats.recoil = 9
-	self.m1911.stats.concealment = 29
-	self.m1911.fire_mode_data.fire_rate = 60 / 600
-
-	-- Gecko M2
-	self.maxim9.CLIP_AMMO_MAX = 17
-	self.maxim9.stats.damage = 40
-	self.maxim9.stats.spread = 15
-	self.maxim9.stats.recoil = 12
-	self.maxim9.stats.concealment = 28
-	self.maxim9.fire_mode_data.fire_rate = 60 / 600
-	self.maxim9.can_do_shotgun_push = false
-
-	-- Baby Deagle
-	self.sparrow.CLIP_AMMO_MAX = 12
-	self.sparrow.stats.damage = 48
-	self.sparrow.stats.spread = 18
-	self.sparrow.stats.recoil = 9
-	self.sparrow.stats.concealment = 29
-	self.sparrow.fire_mode_data.fire_rate = 60 / 600
-
-	-- White Streak
-	self.pl14.CLIP_AMMO_MAX = 16
-	self.pl14.stats.damage = 48
-	self.pl14.stats.spread = 16
-	self.pl14.stats.recoil = 9
-	self.pl14.stats.concealment = 28
-	self.pl14.fire_mode_data.fire_rate = 60 / 600
 
 	-- 5/7
 	self.lemming.CLIP_AMMO_MAX = 15
 	self.lemming.stats.damage = 48
-	self.lemming.stats.spread = 15
+	self.lemming.stats.spread = 13
 	self.lemming.stats.recoil = 10
 	self.lemming.stats.concealment = 28
 	self.lemming.fire_mode_data.fire_rate = 60 / 600
@@ -1664,8 +1665,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Parabellum
 	self.breech.CLIP_AMMO_MAX = 8
 	self.breech.stats.damage = 48
-	self.breech.stats.spread = 18
-	self.breech.stats.recoil = 11
+	self.breech.stats.spread = 17
+	self.breech.stats.recoil = 10
 	self.breech.stats.concealment = 30
 	self.breech.fire_mode_data.fire_rate = 60 / 600
 
