@@ -18,14 +18,14 @@ local M = {
 	},
 	-- Beat Cops
 	[("units/payday2/characters/ene_cop_1/ene_cop_1"):key()] = {
-		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 12,
-		["units/payday2/characters/ene_cop_female_1/ene_cop_female_1"] = 2,
-		["units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"] = 2,
+		["units/payday2/characters/ene_cop_1/ene_cop_1"] = 6,
+		--["units/payday2/characters/ene_cop_female_1/ene_cop_female_1"] = 2,
+		["units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_cop_2/ene_cop_2"):key()] = {
-		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 8,
-		["units/payday2/characters/ene_cop_female_2/ene_cop_female_2"] = 2,
-		["units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"] = 2,
+		["units/payday2/characters/ene_cop_2/ene_cop_2"] = 4,
+		--["units/payday2/characters/ene_cop_female_2/ene_cop_female_2"] = 2,
+		["units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat"] = 1,
 	},
 	[("units/payday2/characters/ene_cop_3/ene_cop_3"):key()] = {
 		["units/payday2/characters/ene_cop_3/ene_cop_3"] = 8,
