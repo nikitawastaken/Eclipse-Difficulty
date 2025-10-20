@@ -2614,9 +2614,10 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arbiter.CLIP_AMMO_MAX = 5
 	self.arbiter.stats.damage = 40
 	self.arbiter.stats.spread = 25
-	self.arbiter.stats.recoil = 25
+	self.arbiter.stats.recoil = 10
 	self.arbiter.stats.concealment = 20
-	self.arbiter.fire_mode_data.fire_rate = 60 / 90
+	self.arbiter.fire_mode_data.fire_rate = 60 / 80
+	self.arbiter.fire_rate_multiplier = 75 / 80
 	self.arbiter.stats_modifiers = { damage = 6 }
 
 	-- Piglet

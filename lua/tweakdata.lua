@@ -161,6 +161,7 @@ tweak_data.projectiles.wpn_prj_target.damage = 24
 -- Throwable Grenades
 tweak_data.projectiles.frag.damage = 48
 tweak_data.projectiles.frag.curve_pow = 1
+tweak_data.projectiles.frag.range = 500
 
 tweak_data.projectiles.frag_com = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.frag_com.name_id = "bm_grenade_frag_com"
@@ -180,7 +181,7 @@ tweak_data.projectiles.dynamite.name_id = "bm_grenade_frag"
 tweak_data.projectiles.dynamite.effect_name = "effects/payday2/particles/explosions/dynamite_explosion"
 
 tweak_data.projectiles.concussion.damage = 1
-tweak_data.projectiles.concussion.range = 900
+tweak_data.projectiles.concussion.range = 800
 
 tweak_data.projectiles.wpn_gre_electric.damage = 24
 tweak_data.projectiles.wpn_gre_electric.curve_pow = 3
@@ -248,6 +249,7 @@ tweak_data.projectiles.launcher_poison_china = create_poison_grenade(tweak_data.
 tweak_data.projectiles.launcher_frag_arbiter = deep_clone(tweak_data.projectiles.launcher_frag)
 tweak_data.projectiles.launcher_frag_arbiter.damage = 24
 tweak_data.projectiles.launcher_frag_arbiter.launch_speed = 7000
+tweak_data.projectiles.launcher_frag_arbiter.range = 200
 
 tweak_data.projectiles.launcher_incendiary_arbiter = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_arbiter, "light")
 tweak_data.projectiles.launcher_electric_arbiter = create_electric_grenade(tweak_data.projectiles.launcher_frag_arbiter)
@@ -264,7 +266,7 @@ tweak_data.projectiles.launcher_poison_ms3gl = create_poison_grenade(tweak_data.
 tweak_data.projectiles.launcher_rocket.damage = 480
 tweak_data.projectiles.launcher_rocket.curve_pow = 1
 tweak_data.projectiles.launcher_rocket.player_dmg_mul = 1 / 6
-tweak_data.projectiles.launcher_rocket.range = 1000
+tweak_data.projectiles.launcher_rocket.range = 500
 
 -- Commando 101
 tweak_data.projectiles.rocket_ray_frag = deep_clone(tweak_data.projectiles.launcher_rocket)
