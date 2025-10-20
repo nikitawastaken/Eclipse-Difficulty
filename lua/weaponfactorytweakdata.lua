@@ -300,12 +300,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		if self.parts[k] and self.parts[k].type and self.parts[k].type ~= "foregrip" then
 			self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].a_obj = "a_o"
 			self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].parent = "jerome_o"
-			
+
 			if self.parts[k].type == "sight" then
 				self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].forbids = { "wpn_fps_ak_extra_ris" }
-				
+
 				if self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].stance_mod then
-					for weap_id, stance_mod in pairs(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].stance_mod) do 
+					for weap_id, stance_mod in pairs(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].stance_mod) do
 						self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].stance_mod[weap_id] = {
 							translation = Vector3(0, 0, -3.5),
 						}
