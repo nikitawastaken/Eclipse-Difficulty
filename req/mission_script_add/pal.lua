@@ -10,6 +10,7 @@ local enabled_chance_elite_shield_blockade = math.random() <= 0.2 + (is_pro_job 
 local sniper = scripted_enemy.sniper
 local taser = scripted_enemy.taser_1
 local elite_shield = scripted_enemy.elite_shield
+local elite_sniper = scripted_enemy.elite_sniper
 
 local overkill_above = diff_i >= 5
 
@@ -95,7 +96,7 @@ local optsShieldDefend_1 = {
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
 }
 local optsShieldDefend_2 = {
-	enemy = elite_shield,
+	enemy = elite_sniper,
 	spawn_action = "e_sp_repel_into_window",
 	on_executed = {
 		{ id = 400034, delay = 0 },
@@ -173,7 +174,7 @@ local optsSniper_SO = {
 	so_action = "AI_sniper",
 }
 local optsShield_SO = {
-	SO_access = "2048",
+	SO_access = tostring(128 + 2048),
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
@@ -350,9 +351,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400027, "shield_defend_1", Vector3(-6080, -4164, -376.695), Rotation(0, 0, 0), optsShieldDefend_1),
 	Eclipse.mission_elements.gen_dummy(400028, "shield_defend_2", Vector3(-6080, -4164, -376.695), Rotation(0, 0, 0), optsShieldDefend_2),
 	Eclipse.mission_elements.gen_dummy(400029, "shield_defend_3", Vector3(-6080, -4164, -376.695), Rotation(0, 0, 0), optsShieldDefend_3),
-	Eclipse.mission_elements.gen_so(400033, "shield_spot_so_1", Vector3(-5865, -4211, -370.985), Rotation(-90, 0, 0), optsShield_SO),
-	Eclipse.mission_elements.gen_so(400034, "shield_spot_so_2", Vector3(-5865, -4076, -386.985), Rotation(-90, 0, 0), optsShield_SO),
-	Eclipse.mission_elements.gen_so(400035, "shield_spot_so_3", Vector3(-5865, -3949, -366.985), Rotation(-90, 0, 0), optsShield_SO),
+	Eclipse.mission_elements.gen_so(400033, "shield_spot_so_1", Vector3(-5865, -4170, -370.985), Rotation(-90, 0, 0), optsShield_SO),
+	Eclipse.mission_elements.gen_so(400034, "shield_spot_so_2", Vector3(-5865, -4084, -386.985), Rotation(-90, 0, 0), optsShield_SO),
+	Eclipse.mission_elements.gen_so(400035, "shield_spot_so_3", Vector3(-5865, -3993, -366.985), Rotation(-90, 0, 0), optsShield_SO),
 	-- misc
 	Eclipse.mission_elements.gen_toggleelement(400015, "disable_the_cruiser", disable_2nd_police_cruiser),
 	Eclipse.mission_elements.gen_object_editor(400039, "mitchell_chopper_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, 0), optsChopperMitchell_fix),

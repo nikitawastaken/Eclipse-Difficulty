@@ -566,6 +566,19 @@ local optsinstance_bag_requirment = {
 		var_objective = "heist_red2_mission10",
 	},
 }
+local optsdisable_collisions = {
+	unit_ids = {
+		300103,
+		300037,
+		300089,
+		300036,
+	},
+}
+local optsstart_spawn_snipers = {
+	on_executed = { { id = 102506, delay = 90 } },
+	enabled = true,
+	trigger_times = 1,
+}
 
 M.elements = {
 	--Lobby Shields
@@ -709,8 +722,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400108, "shield_vault_ambush_so_2", Vector3(5459, 1290, -426.790), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400109, "taser_vault_ambush_so_2", Vector3(5449.344, 1388.958, -426.790), Rotation(-109, 0, 0), optsSniperVaultAmbushSO),
 
-	Eclipse.mission_elements.gen_so(400110, "cloaker_vault_ambush_so_1", Vector3(4141.717, 887.544, -24.895), Rotation(0, 0, 0), optsHideSpoocVaultAmbushSO),
-	Eclipse.mission_elements.gen_so(400111, "cloaker_vault_ambush_so_2", Vector3(4135.446, 1612.437, -24.895), Rotation(180, 0, 0), optsHideSpoocVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400110, "cloaker_vault_ambush_so_1", Vector3(4141.717, 852.544, -24.895), Rotation(0, 0, 0), optsHideSpoocVaultAmbushSO),
+	Eclipse.mission_elements.gen_so(400111, "cloaker_vault_ambush_so_2", Vector3(4135.446, 1648.437, -24.895), Rotation(-180, 0, 0), optsHideSpoocVaultAmbushSO),
 
 	Eclipse.mission_elements.gen_so(400112, "swat_vault_ambush_so_1", Vector3(4851, 1008, -224.895), Rotation(-76, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400113, "swat_vault_ambush_so_2", Vector3(4900, 1490, -224.895), Rotation(-109, 0, 0), optsSniperVaultAmbushSO),
@@ -723,7 +736,13 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400118, "vault_ambush_variant_3", optsVaultAmbush_3),
 	Eclipse.mission_elements.gen_missionscript(400119, "vault_ambush_variant_4", optsVaultAmbush_4),
 	Eclipse.mission_elements.gen_missionscript(400120, "vault_ambush_variant_5", optsVaultAmbush_5),
-	Eclipse.mission_elements.gen_element_filter(400121, "vault_ambush_variant_6", optsVaultAmbush_6),
+	Eclipse.mission_elements.gen_element_filter(400121, "vault_ambush_variant_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_6),
+	
+	-- disable unnecessary collisions
+	Eclipse.mission_elements.gen_disable_unit(400122, "disable_collisions", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_collisions),
+	
+	-- make snipers start spawning when the assault starts after 90 seconds (like in PDTH)
+	Eclipse.mission_elements.gen_missionscript(400123, "spawn_snipers_event_global", optsstart_spawn_snipers),
 }
 
 return M

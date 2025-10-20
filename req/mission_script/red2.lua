@@ -215,12 +215,15 @@ return {
 			{ id = 400121, delay = 0 },
 		},
 	},
+	-- disable the instance that starts spawning snipers (when the drill jams)
+	[104111] = disabled,
 	-- stop forcing units with the SO bs, let them do their own thing
 	[103344] = disabled,
 	-- Edit preferreds to make the initial assault have less dense spawns
 	[103984] = { -- assault start
 		on_executed = {
 			{ id = 100043, remove = true }, -- start more preferreds
+			{ id = 400123, delay = 0 }, -- start spawning snipers after 90 seconds
 		},
 	},
 	[100359] = { -- assault ended
@@ -236,13 +239,14 @@ return {
 	[100226] = forced_off,
 	[100077] = forced_off,
 	[105732] = forced_off,
-	-- disable special basement ambushes on startup
+	-- startup stuff
 	[100326] = {
 		on_executed = {
-			{ id = 400083, delay = 3 },
+			{ id = 400083, delay = 3 }, -- disable special basement ambushes
+			{ id = 400122, delay = 1 }, -- disable not needed collision boxes
 		},
 	},
-	-- enable them on loud
+	-- enable basement ambushes on loud
 	[101300] = {
 		on_executed = {
 			{ id = 400084, delay = 0 },
