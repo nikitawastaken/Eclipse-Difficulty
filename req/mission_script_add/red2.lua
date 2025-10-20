@@ -737,10 +737,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400119, "vault_ambush_variant_4", optsVaultAmbush_4),
 	Eclipse.mission_elements.gen_missionscript(400120, "vault_ambush_variant_5", optsVaultAmbush_5),
 	Eclipse.mission_elements.gen_element_filter(400121, "vault_ambush_variant_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_6),
-	
+
 	-- disable unnecessary collisions
 	Eclipse.mission_elements.gen_disable_unit(400122, "disable_collisions", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_collisions),
-	
+
 	-- make snipers start spawning when the assault starts after 90 seconds (like in PDTH)
 	Eclipse.mission_elements.gen_missionscript(400123, "spawn_snipers_event_global", optsstart_spawn_snipers),
 }
