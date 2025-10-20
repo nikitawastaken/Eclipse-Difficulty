@@ -1,5 +1,5 @@
 Hooks:PostHook(ConcussionGrenade, "_setup_from_tweak_data", "eclipse_setup_from_tweak_data", function(self)
-	self._custom_params.camera_shake_max_mul = 0.75, -- reduce screenshake
+	self._custom_params.camera_shake_max_mul = 0.75 -- reduce screenshake
 end)
 
 function ConcussionGrenade:_flash_player()
