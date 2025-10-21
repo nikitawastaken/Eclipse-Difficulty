@@ -69,7 +69,7 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Stockholm Syndrome
 	self.skills.stockholm_syndrome[1].upgrades = { "player_civilians_dont_flee", "player_civilian_reviver" }
-	self.skills.stockholm_syndrome[2].upgrades = { "player_hostage_absorption_addend" }
+	self.skills.stockholm_syndrome[2].upgrades = { "player_hostage_damage_reduction_addend" }
 	self.skills.stockholm_syndrome.icon_xy = { 3, 8 }
 
 	-- Partners in Crime

@@ -166,14 +166,14 @@ function UpgradesTweakData:init(tweak_data)
 			value = 1,
 		},
 	}
-	self.hostage_max_num.absorption = 4
-	self.values.player.hostage_absorption_addend = { 0.2 }
-	self.definitions.player_hostage_absorption_addend = {
+	self.hostage_max_num.resistance = 4
+	self.values.player.hostage_damage_reduction_addend = { 0.05 }
+	self.definitions.player_hostage_damage_reduction_addend = {
 		category = "feature",
-		name_id = "menu_player_hostage_absorption_addend",
+		name_id = "menu_player_hostage_damage_reduction_addend",
 		upgrade = {
 			category = "player",
-			upgrade = "hostage_absorption_addend",
+			upgrade = "hostage_damage_reduction_addend",
 			value = 1,
 		},
 	}
@@ -187,7 +187,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- 		value = 1,
 	-- 	},
 	-- }
-	self.skill_descs.stockholm_syndrome.multipro = "2"
+	self.skill_descs.stockholm_syndrome.multipro = "5%"
 	self.skill_descs.stockholm_syndrome.multipro2 = "4"
 
 	-- Parterns in Crime

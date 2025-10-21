@@ -713,6 +713,7 @@ function PlayerManager:spawn_smoke_screen(position, normal, grenade_unit, has_ar
 	self._smoke_grenade = grenade_unit
 end
 
+-- Damage reduction skills
 local damage_reduction_skill_multiplier_original = PlayerManager.damage_reduction_skill_multiplier
 function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	local multiplier = damage_reduction_skill_multiplier_original(self, damage_type)
@@ -757,6 +758,12 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	-- impact padding armor regen dmg reduction
 	if self:has_activate_temporary_upgrade("temporary", "armor_regen_damage_multiplier") then
 		multiplier = multiplier * self:temporary_upgrade_value("temporary", "armor_regen_damage_multiplier", 1)
+	end
+
+	-- stockholm syndrome per-hostage dmg reduction
+	if self:has_category_upgrade("player", "hostage_damage_reduction_addend") then
+		multiplier = multiplier * (1 - self:get_hostage_bonus_addend("damage_reduction"))
+		Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
 	end
 
 	return multiplier
