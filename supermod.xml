@@ -23,6 +23,8 @@
 			<group :hook_id="states/">
 				<post :hook_id="missionendstate"/>
 				<post :hook_id="ingameplayerbase"/>
+				<post :hook_id="ingamelobbymenu"/>
+				<post :hook_id="gameoverstate"/>
 			</group>
 
 			<group :hook_id="managers/">
@@ -56,6 +58,7 @@
 					<post :hook_id="blackmarketgui"/>
 					<post :hook_id="playerinventorygui"/>
 					<post :hook_id="skilltreeguinew"/>
+					<post :hook_id="missionbriefinggui"/>
 				</group>
 
 				<group :hook_id="player/">
@@ -316,7 +319,7 @@
 			<file :name="soundbanks/regular_sfx.bnk" path="assets/eclipse_soundbanks/heat_echo/regular_sfx.bnk" />
 			<file :name="soundbanks/regular_weapon_sfx.bnk" path="assets/eclipse_soundbanks/heat_echo/regular_weapon_sfx.bnk" />
 		</group>
-				
+
 		<group name="soundbanks/">
 			<!-- old cook off bain lines -->
 			<file :name="job_h_rat_stage1.bnk"/>
@@ -324,7 +327,7 @@
 			<!-- increase volume of the Zeal Sniper Rifle sound -->
 			<file :name="weapon_zsniper.bnk"/>
 
-			<!-- mute turret announcement -->	
+			<!-- mute turret announcement -->
 			<group :name="streamed/npc_cpa/">
 				<file :name="5329107.stream"/>
 				<file :name="51493853.stream"/>
@@ -363,13 +366,13 @@
 			<file :name="h_alex_must_die/stage_1/nav_manager_data.nav_data"/>
 			<file :name="skm/skm_big2/nav_manager_data.nav_data"/>
 		</group>
-		
+
 		<!-- Hotline Miami C4able door-->
 		<group name="levels/instances/unique/">
 			<file :name="hlm_random_left002/world/world.continent"/>
 			<file :name="hlm_random_left002/world/world.mission"/>
 			<file :name="hlm_random_right002/world/world.continent"/>
-			<file :name="hlm_random_right002/world/world.mission"/>			
+			<file :name="hlm_random_right002/world/world.mission"/>
 		</group>
 
 		<!-- Various Icons -->
@@ -389,7 +392,7 @@
 				<file :name="amcar.texture" />
 				<file :name="m16.texture" />
 				<file :name="olympic.texture" />
-				
+
 				<group :name="outline/">
 					<file :name="amcar.texture" />
 					<file :name="m16.texture" />
@@ -406,13 +409,13 @@
 
 			<group :name="joy/textures/pd2/blackmarket/icons/">
 				<file :name="mods/wpn_fps_smg_shepheard_mag_extended.texture" />
-				
+
 				<group :name="weapons/">
 					<file :name="shepheard.texture" />
 					<file :name="outline/shepheard.texture" />
 				</group>
 			</group>
-			
+
 			<group :name="gunperk/textures/pd2/blackmarket/icons/mods/">
 				<file :name="wpn_fps_upg_perk_speedloader.texture"/>
 				<file :name="wpn_fps_upg_perk_haste.texture"/>
@@ -427,8 +430,8 @@
 				<file :name="wpn_fps_upg_bonus_team_money.texture"/>
 			</group>
 		</group>
-	
-		<!-- Grenade Case  -->	
+
+		<!-- Grenade Case  -->
 		<group name="units/payday2/equipment/" from_type="custom_xml" to_type="binary">
 			<group :name="gen_equipment_grenade_case/">
 				<file :name="gen_equipment_grenade_case.cooked_physics"/>
@@ -470,7 +473,7 @@
 				<file :name="wpn_third_upg_charm_eclipse.unit" />
 			</group>
 		</group>
-			
+
 		<!-- New NPC weapons and Cluster Grenades -->
 		<group name="units/payday2/weapons/">
 			<group :name="wpn_fps_upg_m4_reusable/">
@@ -481,7 +484,7 @@
 				<file :name="wpn_fps_upg_m4_m_drum.model"/>
 				<file :name="wpn_fps_upg_m4_m_drum.object"/>
 			</group>
-			
+
 			<group :name="wpn_fps_upg_ak_reusable/">
 				<file :name="wpn_upg_ak_m_drum.material_config"/>
 				<file :name="wpn_upg_ak_m_drum.model"/>
@@ -504,7 +507,7 @@
 				<file :name="wpn_upg_saiga_m_20rnd.model"/>
 				<file :name="wpn_upg_saiga_m_20rnd.object"/>
 			</group>
-			
+
 			<group :name="wpn_gre_cluster/">
 				<file :name="wpn_gre_cluster_df.texture"/>
 				<file :name="wpn_gre_cluster_nm.texture"/>
@@ -650,7 +653,7 @@
 				<file :name="wpn_mel_titan_sword.unit"/>
 			</group>
 		</group>
-		
+
 		<group name="units/payday2/vehicles/" dyn_package="false">
 			<file :name="anim_vehicle_car_police/anim_vehicle_car_police.material_config" />
 			<file :name="bnk_vehicle_car_police_anim_1/bnk_vehicle_car_police_anim_1.material_config" />
@@ -687,7 +690,7 @@
 
 				<file :name="female_heads_atlas_df.texture" />
 				<file :name="female_heads_atlas_nm.texture" />
-				
+
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
@@ -796,7 +799,7 @@
 				<file :name="ene_acc_head_female.object" />
 				<file :name="ene_acc_head_female.unit" />
 			</group>
-			
+
 			<group :name="ene_cop_1/">
 				<xml  :name="ene_cop_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_cop_1.material_config" />
@@ -942,7 +945,7 @@
 				<file :name="ene_prisonguard_male_1.unit" />
 				<file :name="ene_prisonguard_male_1_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_cop_female_1/">
 				<file :name="ene_cop_female_1.cooked_physics" />
 				<file :name="ene_cop_female_1.model" />
@@ -970,7 +973,7 @@
 				<file :name="ene_prisonguard_female_1.unit" />
 				<file :name="ene_prisonguard_female_1_husk.unit" />
 			</group>
-			
+
 			<group :name="ene_secret_service_1/">
 				<xml  :name="ene_secret_service_1.sequence_manager" dyn_package="true" />
 				<file :name="ene_secret_service_1.material_config" />
@@ -1450,7 +1453,7 @@
 				<file :name="ene_acc_security_cap.model" />
 				<file :name="ene_acc_security_cap.object" />
 			</group>
-			
+
 			<group :name="ene_acc_cop_cap/">
 				<file :name="ene_acc_cop_cap.cooked_physics" />
 				<file :name="ene_acc_cop_cap.material_config" />
@@ -1466,7 +1469,7 @@
 				<file :name="ene_acc_fbi_cap.object" />
 				<file :name="ene_acc_fbi_cap.unit" />
 			</group>
-			
+
 			<group :name="ene_acc_mexican_head/">
 				<xml  :name="ene_acc_mexican_head.sequence_manager" />
 				<file :name="ene_acc_mexican_head.cooked_physics" />

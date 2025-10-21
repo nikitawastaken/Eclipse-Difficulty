@@ -19,7 +19,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	local job_data = self._node:parameters().menu_component_data
 	self._customizable = job_data.customize_contract or false
 	self._smart_matchmaking = job_data.smart_matchmaking or false
-	local font_size = tweak_data.menu.pd2_small_font_size
+	local font_size = tweak_data.menu.pd2_small_font_size * 0.875
 	local font = tweak_data.menu.pd2_small_font
 	local risk_color = tweak_data.screen_colors.risk
 	local padding = tweak_data.gui.crime_net.contract_gui.padding
@@ -273,23 +273,6 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	modifiers_text:set_bottom(math.round(self._contract_panel:h() * 0.5 - font_size))
 
 	local next_top = modifiers_text:bottom()
-	local one_down_active = job_data.one_down == 1
-
-	if one_down_active then
-		local one_down_warning_text = self._contract_panel:text({
-			name = "one_down_warning_text",
-			text = managers.localization:to_upper_text("menu_one_down"),
-			font = font,
-			font_size = font_size,
-			color = tweak_data.screen_colors.one_down,
-		})
-
-		self:make_fine_text(one_down_warning_text)
-		one_down_warning_text:set_top(next_top)
-		one_down_warning_text:set_left(double_padding)
-
-		next_top = one_down_warning_text:bottom()
-	end
 
 	local ghost_bonus_mul = managers.job:get_ghost_bonus()
 	local job_ghost = math.round(ghost_bonus_mul * 100)
@@ -639,6 +622,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	self:make_fine_text(payday_text)
 	payday_text:set_bottom(self._contract_panel:h() - padding)
+	payday_text:set_visible(false)
 
 	self._briefing_event = narrative.briefing_event
 
@@ -1016,7 +1000,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 		visible = true,
 		layer = 3,
 		text = levelup_text,
-		font_size = tweak_data.menu.pd2_small_font_size,
+		font_size = font_size,
 		font = tweak_data.menu.pd2_small_font,
 		color = tweak_data.hud_stats.potential_xp_color,
 	})
@@ -1459,4 +1443,67 @@ function CrimeNetContractGui:set_difficulty_id(difficulty_id)
 
 	risk_text:set_h(h)
 	self:set_potential_rewards(self._potential_show_max)
+end
+
+function CrimeNetContractGui:_create_xp_appendices(x, y)
+	local font_size = tweak_data.menu.pd2_small_font_size * 0.875
+	local font = tweak_data.menu.pd2_small_font
+	local job_xp = self._contract_panel:text({
+		text = "0",
+		name = "job_xp",
+		font = font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.text
+	})
+
+	self:make_fine_text(job_xp)
+	job_xp:set_x(x)
+	job_xp:set_center_y(y)
+
+	local add_xp = self._contract_panel:text({
+		text = "",
+		name = "add_xp",
+		font = font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.risk
+	})
+
+	add_xp:set_text(" +" .. math.round(0))
+	self:make_fine_text(add_xp)
+	add_xp:set_x(x)
+	add_xp:set_center_y(y)
+
+	local ghost_add_xp = self._contract_panel:text({
+		text = "",
+		name = "ghost_add_xp",
+		font = font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.ghost_color
+	})
+
+	ghost_add_xp:set_text(" +" .. math.round(0))
+	self:make_fine_text(ghost_add_xp)
+	ghost_add_xp:set_x(x)
+	ghost_add_xp:set_center_y(y)
+	ghost_add_xp:set_visible(managers.job:has_ghost_bonus())
+
+	local heat_add_xp = self._contract_panel:text({
+		text = "",
+		name = "heat_add_xp",
+		font = font,
+		font_size = font_size,
+		color = self._heat_color
+	})
+
+	heat_add_xp:set_text(" +" .. math.round(0))
+	self:make_fine_text(heat_add_xp)
+	heat_add_xp:set_x(x)
+	heat_add_xp:set_center_y(y)
+	heat_add_xp:set_visible(self._is_job_heated)
+	job_xp:set_y(math.round(job_xp:y()))
+	add_xp:set_y(math.round(job_xp:y()))
+	heat_add_xp:set_y(math.round(job_xp:y()))
+	ghost_add_xp:set_y(math.round(job_xp:y()))
+
+	return job_xp, add_xp, heat_add_xp, ghost_add_xp
 end
