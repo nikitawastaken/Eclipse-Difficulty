@@ -1910,7 +1910,7 @@ function PlayerManager:_check_damage_to_hot(t, unit, damage_info)
 	if damage_info.attacker_unit:base().sentry_gun and not add_stack_sources.sentry_gun then
 		return
 	end
-	
+
 	if not add_stack_sources[damage_info.variant] then
 		return
 	end
