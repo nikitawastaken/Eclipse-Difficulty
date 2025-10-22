@@ -61,19 +61,6 @@
 			<rpc/>
 		</search>
 		<target mode="attach">
-			<!-- create a sync_grenade_crate_grenade_taken message for `UnitHandler` -->
-			<message name="sync_grenade_crate_grenade_taken" delivery="ordered" receiver="unit">
-				<param type="unit" />
-				<param type="float" exact="true"/>
-			</message>
-		</target>
-	</tweak>
-	<tweak version="2" name="settings/network" extension="network_settings">
-		<search>
-			<network/>
-			<rpc/>
-		</search>
-		<target mode="attach">
 			<!-- create a unit_suppressed message for `UnitHandler` -->
 			<message name="unit_suppressed" delivery="ordered" receiver="unit">
 				<param type="unit" />
