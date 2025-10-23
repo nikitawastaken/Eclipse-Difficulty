@@ -101,7 +101,7 @@ local optsSwatVanArrive_4_2 = {
 	enabled = true,
 	trigger_list = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 103516, notify_unit_sequence = "queue_van_swat_hox_arrive_1_2", time = 0 },
-		{ id = 2, name = "run_sequence", notify_unit_id = 103516, notify_unit_sequence = "anim_ram_gate", time = 0 },
+		{ id = 2, name = "run_sequence", notify_unit_id = 103553, notify_unit_sequence = "anim_ram_gate", time = 0 },
 	},
 }
 local optsOpenSwatVanDoors_1 = {
