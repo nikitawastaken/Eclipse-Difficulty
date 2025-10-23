@@ -3142,9 +3142,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local below_overkill = difficulty_index < 5
 
 	-- Assault Data
-	-- AI Tickrate
-	self.ai_tickrate = 1 / (below_overkill and 60 or 90)
-
 	--In-heist difficulty scaling
 	self.difficulty_scaling = {
 		diff_init = 0.4,
@@ -3152,7 +3149,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_max = 1,
 		diff_step = 0.05,
 		assault_delay = 45,
-		diff_step_interval = { 15, 20 },
+		diff_step_interval = { 15, 25 },
 		assault_add = 0.2,
 		hostage_add = is_pro_job and 0.1 or nil,
 	}
