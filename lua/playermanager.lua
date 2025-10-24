@@ -1034,8 +1034,6 @@ function PlayerManager:sync_carry_data(
 	if alive(zipline_unit) then
 		zipline_unit:zipline():attach_bag(unit)
 	else
-		Eclipse:log_chat("Before: " .. tostring(dir * 600 * throw_distance_multiplier))
-		Eclipse:log_chat("After: " .. tostring(dir * 600 * throw_distance_multiplier + movement))
 		unit:push(100, dir * 600 * throw_distance_multiplier + movement)
 	end
 
