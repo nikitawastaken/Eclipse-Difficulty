@@ -805,6 +805,11 @@ function PlayerManager:drop_carry(zipline_unit)
 		end
 	end
 
+	local state = self:player_unit():movement():current_state()
+	local movement_z = state._is_jumping and (state._last_sent_jump_vec * 0.25) or Vector3(0, 0, 0)
+	local movement_xy = state._last_velocity_xy * 0.25
+	local movement = movement_z + movement_xy
+
 	if Network:is_client() then
 		managers.network:session():send_to_host(
 			"server_drop_carry",
@@ -817,7 +822,8 @@ function PlayerManager:drop_carry(zipline_unit)
 			rotation,
 			forward,
 			throw_distance_multiplier_upgrade_level,
-			zipline_unit
+			zipline_unit,
+			movement
 		)
 	else
 		self:server_drop_carry(
@@ -831,6 +837,7 @@ function PlayerManager:drop_carry(zipline_unit)
 			forward,
 			throw_distance_multiplier_upgrade_level,
 			zipline_unit,
+			movement,
 			managers.network:session():local_peer()
 		)
 	end
@@ -943,6 +950,7 @@ function PlayerManager:server_drop_carry(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
+	movement,
 	peer
 )
 	if not self:verify_carry(peer, carry_id) then
@@ -951,6 +959,7 @@ function PlayerManager:server_drop_carry(
 
 	local unit_name = tweak_data.carry[carry_id].unit or "units/payday2/pickups/gen_pku_lootbag/gen_pku_lootbag"
 	local unit = World:spawn_unit(Idstring(unit_name), position, rotation)
+	movement = movement or Vector(0, 0, 0)
 
 	managers.network:session():send_to_peers_synched(
 		"sync_carry_data",
@@ -964,6 +973,7 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
+		movement,
 		peer and peer:id() or 0
 	)
 	self:sync_carry_data(
@@ -977,6 +987,7 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
+		movement,
 		peer and peer:id() or 0
 	)
 
@@ -985,6 +996,50 @@ function PlayerManager:server_drop_carry(
 	end
 
 	return unit
+end
+
+function PlayerManager:sync_carry_data(
+	unit,
+	carry_id,
+	carry_multiplier,
+	dye_initiated,
+	has_dye_pack,
+	dye_value_multiplier,
+	position,
+	dir,
+	throw_distance_multiplier_upgrade_level,
+	zipline_unit,
+	movement,
+	peer_id
+)
+	local throw_distance_multiplier = self:upgrade_value_by_level("carry", "throw_distance_multiplier", throw_distance_multiplier_upgrade_level, 1)
+	local carry_type = tweak_data.carry[carry_id].type
+	throw_distance_multiplier = throw_distance_multiplier * tweak_data.carry.types[carry_type].throw_distance_multiplier
+	local mutator = nil
+
+	if managers.mutators:is_mutator_active(MutatorPiggyRevenge) then
+		mutator = managers.mutators:get_mutator(MutatorPiggyRevenge)
+	end
+
+	if mutator and mutator.get_bag_throw_multiplier then
+		throw_distance_multiplier = throw_distance_multiplier * mutator:get_bag_throw_multiplier(carry_id)
+	end
+
+	unit:carry_data():set_carry_id(carry_id)
+	unit:carry_data():set_multiplier(carry_multiplier)
+	unit:carry_data():set_value(managers.money:get_bag_value(carry_id, carry_multiplier))
+	unit:carry_data():set_dye_pack_data(dye_initiated, has_dye_pack, dye_value_multiplier)
+	unit:carry_data():set_latest_peer_id(peer_id)
+
+	if alive(zipline_unit) then
+		zipline_unit:zipline():attach_bag(unit)
+	else
+		Eclipse:log_chat("Before: " .. tostring(dir * 600 * throw_distance_multiplier))
+		Eclipse:log_chat("After: " .. tostring(dir * 600 * throw_distance_multiplier + movement))
+		unit:push(100, dir * 600 * throw_distance_multiplier + movement)
+	end
+
+	unit:interaction():register_collision_callbacks()
 end
 
 function PlayerManager:peer_dropped_out(peer)
