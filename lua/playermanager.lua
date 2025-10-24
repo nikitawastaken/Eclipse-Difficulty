@@ -763,7 +763,7 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	-- stockholm syndrome per-hostage dmg reduction
 	if self:has_category_upgrade("player", "hostage_damage_reduction_addend") then
 		multiplier = multiplier * (1 - self:get_hostage_bonus_addend("damage_reduction"))
-		Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
+		--Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
 	end
 
 	return multiplier
