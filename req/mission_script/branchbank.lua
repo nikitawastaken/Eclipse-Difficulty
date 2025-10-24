@@ -174,18 +174,6 @@ return {
 			{ id = 400043, delay = 10 },
 		},
 	},
-	-- add 3 new heli events to the elementrandom script
-	-- 2 events on eclipse
-	[104734] = {
-		values = {
-			amount = swat_vans_amount,
-		},
-		on_executed = {
-			{ id = 400025, delay = 0, delay_rand = 10 },
-			{ id = 400034, delay = 0, delay_rand = 10 },
-			{ id = 400041, delay = 0, delay_rand = 10 },
-		},
-	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
 	[101424] = {
 		on_executed = {

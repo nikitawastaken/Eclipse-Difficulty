@@ -265,7 +265,6 @@
 				<group :hook_id="weapons/">
 					<group :hook_id="grenades/">
 						<post :hook_id="quickcsgrenade"/>
-						<post :hook_id="quickflashgrenade"/>
 						<post :hook_id="quicksmokegrenade"/>
 						<post :hook_id="fraggrenade"/>
 						<post :hook_id="molotovgrenade"/>
