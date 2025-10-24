@@ -806,8 +806,9 @@ function PlayerManager:drop_carry(zipline_unit)
 	end
 
 	local state = self:player_unit():movement():current_state()
-	local movement_z = state._is_jumping and (state._last_sent_jump_vec * 0.25) or Vector3(0, 0, 0)
-	local movement_xy = state._last_velocity_xy * 0.25
+	local penalty = 0.5
+	local movement_z = state._is_jumping and (state._last_sent_jump_vec * penalty) or Vector3(0, 0, 0)
+	local movement_xy = state._last_velocity_xy * penalty
 	local movement = movement_z + movement_xy
 
 	if Network:is_client() then
