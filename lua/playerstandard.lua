@@ -1000,7 +1000,12 @@ function PlayerStandard:_start_action_intimidate(t, secondary)
 		local skip_alert = managers.groupai:state():whisper_mode()
 		local voice_type, plural, prime_target = self:_get_unit_intimidation_action(not secondary, not secondary, true, false, true, nil, nil, nil, secondary)
 
-		if prime_target and prime_target.unit and prime_target.unit.base and (prime_target.unit:base().unintimidateable or prime_target.unit:anim_data() and prime_target.unit:anim_data().unintimidateable) then
+		if
+			prime_target
+			and prime_target.unit
+			and prime_target.unit.base
+			and (prime_target.unit:base().unintimidateable or prime_target.unit:anim_data() and prime_target.unit:anim_data().unintimidateable)
+		then
 			return
 		end
 
