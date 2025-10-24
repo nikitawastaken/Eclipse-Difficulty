@@ -30,6 +30,15 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- fak heals 90hp on use
 	self.values.first_aid_kit.heal_amount = 9
+
+	-- for now just redefine as an empty table, set up for level unlocks rework
+	self.level_tree = {
+		[0] = {
+			upgrades = {
+
+			}
+		}
+	}
 end
 
 local old_init = UpgradesTweakData.init
