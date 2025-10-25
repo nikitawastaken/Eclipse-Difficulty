@@ -286,6 +286,7 @@
 					<post :hook_id="npcraycastweaponbase"/>
 					<post :hook_id="weaponammo"/>
 					<post :hook_id="weaponliongadget1"/>
+					<post :hook_id="projectileweaponbase"/>
 				</group>
 			</group>
 		</group>
