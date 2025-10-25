@@ -2,7 +2,7 @@ return function(timed_tactics, difficulty_index)
 	return {
 		timer_data = {
 			initial_delay = 180, -- 3 minutes
-			cooldown = { 15, 25 },
+			cooldown = { 20, 30 },
 			diff_scale = { 2, 1.5, 1 },
 		},
 		group_data = {
