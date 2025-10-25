@@ -1035,6 +1035,7 @@ function PlayerManager:sync_carry_data(
 	if alive(zipline_unit) then
 		zipline_unit:zipline():attach_bag(unit)
 	else
+		movement = movement or Vector(0, 0, 0)
 		unit:push(100, dir * 600 * throw_distance_multiplier + movement)
 	end
 
