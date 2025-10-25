@@ -97,7 +97,6 @@
 			<network/>
 			<rpc/>
 			<message name="server_drop_carry"/>
-			<param type="unit"/>
 		</search>
 		<target mode="attach">
 			<param type="vector3"/> <!-- Add movement vector -->
