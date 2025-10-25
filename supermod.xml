@@ -91,6 +91,8 @@
 				<post :hook_id="trademanager"/>
 				<post :hook_id="hudmanagerpd2"/>
 				<post :hook_id="jobmanager"/>
+				<post :hook_id="consolessafehousemanager"/>
+				<post :hook_id="gageassignmentmanager"/>
 			</group>
 
 			<group :hook_id="network/">
@@ -130,6 +132,7 @@
 				<post :hook_id="levelstweakdata"/>
 				<post :hook_id="narrativetweakdata"/>
 				<post :hook_id="dlctweakdata"/>
+				<post :hook_id="gageassignmenttweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
