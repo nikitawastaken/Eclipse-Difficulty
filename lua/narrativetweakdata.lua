@@ -1,6 +1,5 @@
 NarrativeTweakData.heist_jc_presets = Eclipse:require("progression/heist_jc_presets")
 NarrativeTweakData.jc_presets = {
-	["extremely_common"] = 5,
 	["very_common"] = 10,
 	["slightly_very_common"] = 20,
 	["common"] = 30,

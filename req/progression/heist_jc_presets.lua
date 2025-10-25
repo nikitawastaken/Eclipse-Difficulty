@@ -1,5 +1,4 @@
 ---@module Heist JC Presets
--- extremely_common 5
 -- very_common 10
 -- slightly_very_common 20
 -- common 30
@@ -9,9 +8,7 @@
 -- very_rare 70
 -- extremely_rare 80
 local M = {
-	safehouse = "extremely_common",
-	
-	cane = "very_common",
+	safehouse = "very_common",
 	jewelry_store = "very_common",
 	short = "very_common",
 	chill = "very_common",
@@ -35,8 +32,8 @@ local M = {
 	branchbank_deposit = "common",
 	branchbank_prof = "common",
 	cage = "common",
+	cane = "common",
 	crime_spree = "common",
-	help = "common",
 	hvh = "common",
 	moon = "common",
 	nightclub = "common",
@@ -55,6 +52,7 @@ local M = {
 	chas = "slightly_rare",
 	dark = "slightly_rare",
 	election_day = "slightly_rare",
+	help = "slightly_rare",
 	pines = "slightly_rare",
 	roberts = "slightly_rare",
 	sand = "slightly_rare",
