@@ -380,6 +380,8 @@ tweak_data.experience_manager.limited_bonus_multiplier = 1
 tweak_data.experience_manager.day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
 tweak_data.experience_manager.pro_day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
 
+tweak_data:digest_recursive(tweak_data.experience_manager)
+
 
 -- misc
 -- Python code for matplotlibing experience graphs
