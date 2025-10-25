@@ -382,68 +382,126 @@ tweak_data.experience_manager.pro_day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
 
 
 -- misc
--- Python code for matplotlibing a graph for per-level experience curve distribution:
+-- Python code for matplotlibing experience graphs
 --[[
 
 import math
 import matplotlib.pyplot as plt
 
-# ---- SETTINGS ----
-exp_step_start = 1
-exp_step_end = 100
-exp_step = 1 / (exp_step_end - exp_step_start)
-exp_step_last_points = 300
-exp_step_curve = 1.5
-multiplier = 1
-target_level = 60  # Change this to test how much XP is needed to reach a specific level
+# ====================================================
+# VANILLA PAYDAY 2 SETTINGS
+# ====================================================
+exp_step_start_vanilla = 10
+exp_step_end_vanilla = 100
+exp_step_vanilla = 1 / (exp_step_end_vanilla - exp_step_start_vanilla)
+exp_step_last_points_vanilla = 4600
+exp_step_curve_vanilla = 3
+multiplier_vanilla = 1
 
-# ---- DATA ----
-levels = []
-xp_points = []
+# Base levels 1–9 (vanilla hardcoded)
+base_points_vanilla = [900, 1250, 1550, 1850, 2200, 2600, 3000, 3500, 4000]
 
-# Procedural XP values (1–100)
-for i in range(exp_step_start, exp_step_end + 1):
+levels_vanilla = []
+xp_points_vanilla = []
+
+# Add early fixed levels
+for i, p in enumerate(base_points_vanilla, start=1):
+    levels_vanilla.append(i)
+    xp_points_vanilla.append(p)
+
+# Procedural XP (10–100)
+for i in range(exp_step_start_vanilla, exp_step_end_vanilla + 1):
     points = round(
-        (500000 - exp_step_last_points)
-        * math.pow(exp_step * (i - exp_step_start), exp_step_curve)
-        + exp_step_last_points
-    ) * multiplier
-    levels.append(i)
-    xp_points.append(points)
+        (1000000 - exp_step_last_points_vanilla)
+        * math.pow(exp_step_vanilla * (i - exp_step_start_vanilla), exp_step_curve_vanilla)
+        + exp_step_last_points_vanilla
+    ) * multiplier_vanilla
+    levels_vanilla.append(i)
+    xp_points_vanilla.append(points)
 
-# ---- CALCULATE CUMULATIVE XP ----
-cumulative_xp = []
+# Calculate cumulative XP
+cumulative_vanilla = []
 running_total = 0
-for xp in xp_points:
+for xp in xp_points_vanilla:
     running_total += xp
-    cumulative_xp.append(running_total)
+    cumulative_vanilla.append(running_total)
 
-# ---- REPORT ----
-total_xp_to_target = cumulative_xp[target_level - 1]
-total_xp_to_100 = cumulative_xp[-1]
 
-print(f"Total XP required to reach level {target_level}: {total_xp_to_target:,} XP")
-print(f"Total XP required to reach level 100: {total_xp_to_100:,} XP")
+# ====================================================
+# CUSTOM (ECLIPSE PROGRESSION DEV BRANCH)
+# ====================================================
+exp_step_start_mod = 1
+exp_step_end_mod = 100
+exp_step_mod = 1 / (exp_step_end_mod - exp_step_start_mod)
+exp_step_last_points_mod = 3000
+exp_step_curve_mod = 1.5
+multiplier_mod = 1
 
-# ---- PLOT 1: XP per Level ----
+levels_mod = []
+xp_points_mod = []
+
+for i in range(exp_step_start_mod, exp_step_end_mod + 1):
+    points = round(
+        (500000 - exp_step_last_points_mod)
+        * math.pow(exp_step_mod * (i - exp_step_start_mod), exp_step_curve_mod)
+        + exp_step_last_points_mod
+    ) * multiplier_mod
+    levels_mod.append(i)
+    xp_points_mod.append(points)
+
+# Calculate cumulative XP
+cumulative_mod = []
+running_total = 0
+for xp in xp_points_mod:
+    running_total += xp
+    cumulative_mod.append(running_total)
+
+
+# ====================================================
+# REPORT
+# ====================================================
+target_level = 80
+
+total_xp_vanilla_target = cumulative_vanilla[target_level - 1]
+total_xp_vanilla_100 = cumulative_vanilla[-1]
+total_xp_mod_target = cumulative_mod[target_level - 1]
+total_xp_mod_100 = cumulative_mod[-1]
+
+print(f"[VANILLA] Total XP to reach level {target_level}: {total_xp_vanilla_target:,} XP")
+print(f"[VANILLA] Total XP to reach level 100: {total_xp_vanilla_100:,} XP")
+print()
+print(f"[CUSTOM]  Total XP to reach level {target_level}: {total_xp_mod_target:,} XP")
+print(f"[CUSTOM]  Total XP to reach level 100: {total_xp_mod_100:,} XP")
+
+
+# ====================================================
+# PLOT 1 — XP PER LEVEL (BOTH CURVES)
+# ====================================================
 plt.figure(figsize=(10, 6))
-plt.plot(levels, xp_points, marker="", color="tab:blue", linestyle="--")
-plt.title("PAYDAY 2 (Eclipse Progression Dev Branch) — XP Required per Level")
+plt.plot(levels_vanilla, xp_points_vanilla, marker="o", color="tab:blue", label="Vanilla PAYDAY 2")
+plt.plot(levels_mod, xp_points_mod, marker="o", color="tab:orange", label="Custom Curve (Eclipse Progression-Dev)")
+plt.title("XP Required per Level — Vanilla vs. Eclipse Progression-Dev")
 plt.xlabel("Level")
 plt.ylabel("XP Required for Next Level")
+plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
 
-# ---- PLOT 2: Cumulative XP ----
+# ====================================================
+# PLOT 2 — CUMULATIVE XP COMPARISON
+# ====================================================
 plt.figure(figsize=(10, 6))
-plt.plot(levels, cumulative_xp, marker="", color="tab:orange", linestyle="--")
-plt.title("PAYDAY 2 (Eclipse Progression Dev Branch) — Total Cumulative XP to Reach Each Level")
+plt.plot(levels_vanilla, cumulative_vanilla, color="tab:blue", label="Vanilla PAYDAY 2")
+plt.plot(levels_mod, cumulative_mod, color="tab:orange", label="Custom Curve (Eclipse Progression-Dev)")
+plt.title("Total Cumulative XP — Vanilla vs. Eclipse Progression-Dev")
 plt.xlabel("Level")
 plt.ylabel("Total XP Required")
+plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
 
 
 ]]
