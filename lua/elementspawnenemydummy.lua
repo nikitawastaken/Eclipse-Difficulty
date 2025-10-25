@@ -167,7 +167,7 @@ function ElementSpawnEnemyDummy:_process_enemy_tbl(enemy_tbl)
 		if type(enemy_name) == "number" then
 			enemy_selector:add(enemy_weight, 1)
 		elseif type(enemy_weight) == "table" then
-			Utils.PrintTable(enemy_weight)
+			-- Utils.PrintTable(enemy_weight)
 			return nil
 		else
 			enemy_selector:add(enemy_name, enemy_weight)

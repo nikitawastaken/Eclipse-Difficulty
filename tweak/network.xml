@@ -92,4 +92,27 @@
 			<param type="bool"/> <!-- has extra dmg upgrade? -->
 		</target>
 	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="server_drop_carry"/>
+			<param type="unit"/>
+		</search>
+		<target mode="attach">
+			<param type="vector3"/> <!-- Add movement vector -->
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="sync_carry_data"/>
+			<param type="int" min="0" max="15"/>
+		</search>
+		<target mode="replace">
+			<param type="vector3"/> <!-- Add movement vector -->
+			<param type="int" min="0" max="15"/> <!-- peer_id -->
+		</target>
+	</tweak>
 </tweaks>
