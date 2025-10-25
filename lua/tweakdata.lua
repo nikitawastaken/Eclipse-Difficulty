@@ -1,34 +1,3 @@
--- lock dw / ds
-tweak_data.difficulty_level_locks = {
-	0,
-	0,
-	0,
-	0,
-	0,
-	80,
-	69420,
-	69420,
-}
-
--- lower difficulty xp muls
-tweak_data.experience_manager.difficulty_multiplier = {
-	1.5,
-	3,
-	6,
-	12,
-	12,
-	12,
-}
-
--- remove alive player multipliers
-tweak_data.experience_manager.alive_humans_multiplier = {
-	[0] = 1,
-	1,
-	1,
-	1,
-	1,
-}
-
 -- Tear Gas damage is now a percentage of total HP
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.05
 
@@ -332,3 +301,149 @@ for _, projectile in pairs(tweak_data.projectiles) do
 		projectile.player_damage = projectile.damage * (projectile.player_dmg_mul or 0.5)
 	end
 end
+
+-- LEVELING PROGRESION OVERHAUL --
+
+-- Clear out the vanilla level table (including hardcoded lvls 1-9)
+tweak_data.experience_manager.levels = {}
+
+-- Flatten the curve of experience per level distribution, the exponent is reduced from 3 to 1.5
+-- Reduce the total amount of experience required to go through lvl 0-100 from 23.3 mil to 20.2 mil
+local multiplier = 1
+local exp_step_start = 1
+local exp_step_end = 100
+local exp_step = 1 / (exp_step_end - exp_step_start)
+local exp_step_last_points = 3000
+local exp_step_curve = 1.5
+
+for i = exp_step_start, exp_step_end do
+	tweak_data.experience_manager.levels[i] = {
+		points = math.round((500000 - exp_step_last_points) * math.pow(exp_step * (i - exp_step_start), exp_step_curve) + exp_step_last_points) * multiplier
+	}
+end
+
+-- Hide ovk290 / sm_wish, lock ov145 behind lvl 40+
+tweak_data.difficulty_level_locks = {
+	0,
+	0,
+	0,
+	0,
+	30,
+	60,
+	69420,
+	69420,
+}
+
+-- Rework difficulty exp muls
+tweak_data.experience_manager.difficulty_multiplier = {
+	2,
+	4,
+	7,
+	12,
+	69420,
+	69420,
+}
+
+-- Make the heist fail multiplier on exp less harsh
+tweak_data.experience_manager.stage_failed_multiplier = 0.05
+
+-- Make exp card drops give more exp in pick-a-card
+tweak_data.experience_manager.loot_drop_value = {
+	xp10 = 8000,
+	xp15 = 16000,
+	xp20 = 32000,
+	xp30 = 64000,
+	xp40 = 96000,
+	xp50 = 128000,
+	xp60 = 192000,
+	xp70 = 256000,
+	xp80 = 320000,
+	xp90 = 384000,
+	xp100 = 512000,
+	xp_pda9_1 = 250000,
+	xp_pda9_2 = 3000000
+}
+
+-- Remove alive player multipliers, there's already a strong penalty for the player in custody
+tweak_data.experience_manager.alive_humans_multiplier = {
+	[0] = 1,
+	1,
+	1,
+	1,
+	1,
+}
+
+-- No stupid extra multipliers
+tweak_data.experience_manager.limited_xmas_bonus_multiplier = 1
+tweak_data.experience_manager.limited_bonus_multiplier = 1
+-- these two in particular are to block any day any heist users from cheesing progression with 7 day long heists (and it shouldn't affect any vanilla heists)
+tweak_data.experience_manager.day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
+tweak_data.experience_manager.pro_day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
+
+
+-- misc
+-- Python code for matplotlibing a graph for per-level experience curve distribution:
+--[[
+
+import math
+import matplotlib.pyplot as plt
+
+# ---- SETTINGS ----
+exp_step_start = 1
+exp_step_end = 100
+exp_step = 1 / (exp_step_end - exp_step_start)
+exp_step_last_points = 300
+exp_step_curve = 1.5
+multiplier = 1
+target_level = 60  # Change this to test how much XP is needed to reach a specific level
+
+# ---- DATA ----
+levels = []
+xp_points = []
+
+# Procedural XP values (1–100)
+for i in range(exp_step_start, exp_step_end + 1):
+    points = round(
+        (500000 - exp_step_last_points)
+        * math.pow(exp_step * (i - exp_step_start), exp_step_curve)
+        + exp_step_last_points
+    ) * multiplier
+    levels.append(i)
+    xp_points.append(points)
+
+# ---- CALCULATE CUMULATIVE XP ----
+cumulative_xp = []
+running_total = 0
+for xp in xp_points:
+    running_total += xp
+    cumulative_xp.append(running_total)
+
+# ---- REPORT ----
+total_xp_to_target = cumulative_xp[target_level - 1]
+total_xp_to_100 = cumulative_xp[-1]
+
+print(f"Total XP required to reach level {target_level}: {total_xp_to_target:,} XP")
+print(f"Total XP required to reach level 100: {total_xp_to_100:,} XP")
+
+# ---- PLOT 1: XP per Level ----
+plt.figure(figsize=(10, 6))
+plt.plot(levels, xp_points, marker="", color="tab:blue", linestyle="--")
+plt.title("PAYDAY 2 (Eclipse Progression Dev Branch) — XP Required per Level")
+plt.xlabel("Level")
+plt.ylabel("XP Required for Next Level")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# ---- PLOT 2: Cumulative XP ----
+plt.figure(figsize=(10, 6))
+plt.plot(levels, cumulative_xp, marker="", color="tab:orange", linestyle="--")
+plt.title("PAYDAY 2 (Eclipse Progression Dev Branch) — Total Cumulative XP to Reach Each Level")
+plt.xlabel("Level")
+plt.ylabel("Total XP Required")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+]]
