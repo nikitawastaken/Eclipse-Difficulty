@@ -2969,6 +2969,7 @@ function WeaponTweakData:_set_presets()
 			local player_id = k:gsub("_crew$", ""):gsub("_secondary$", ""):gsub("_primary$", "")
 			local player_weapon = crew_weapon_mapping[player_id] and self[crew_weapon_mapping[player_id]] or self[player_id]
 			if player_weapon then
+				v.use_data.selection_index = player_weapon.use_data and player_weapon.use_data.selection_index or v.use_data.selection_index
 				v.CLIP_AMMO_MAX = player_weapon.CLIP_AMMO_MAX
 				v.muzzleflash = player_weapon.muzzleflash
 				v.shell_ejection = player_weapon.shell_ejection
