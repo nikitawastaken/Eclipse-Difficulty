@@ -169,7 +169,7 @@ function GroupAIStateBase:_post_megaphone_event(event)
 	if not self:enemy_weapons_hot() then
 		return
 	end
-	
+
 	local pos = level_tweak.megaphone_pos or Vector3(0, 0, 0)
 	local sound_source = SoundDevice:create_source("megaphone")
 
