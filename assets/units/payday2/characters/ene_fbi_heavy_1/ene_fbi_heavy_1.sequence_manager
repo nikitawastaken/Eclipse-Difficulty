@@ -64,9 +64,6 @@
 			<object 			enabled="false" name="'g_helmet_lod12'" />
 			<object 			enabled="false" name="'g_helmet_lod13'" />
 			<object 			enabled="false" name="'g_helmet_lod14'" />
-			<object 			enabled="false" name="'g_helmet_lod18'" />
-			<object 			enabled="false" name="'g_helmet_lod19'" />
-			<object 			enabled="false" name="'g_helmet_lod20'" />
 			
 			<decal_mesh 		enabled="false" name="'dm_visor1'"/>
 			<decal_mesh 		enabled="false" name="'dm_visor_glass2'"/>
@@ -176,8 +173,8 @@
 			<object 			enabled="true" name="'g_helmet_lod15'" />
 			<object 			enabled="true" name="'g_helmet_lod16'" />
 			<object 			enabled="true" name="'g_helmet_lod17'" />
-			<object 			enabled="true" name="'g_helmet_lod21'" />
-			<object 			enabled="true" name="'g_helmet_lod22'" />
+			<object 			enabled="true" name="'g_helmet_lod18'" />
+			<object 			enabled="true" name="'g_helmet_lod19'" />
 									
 			<decal_mesh 		enabled="true" name="'dm_visor2'" />
 			<decal_mesh 		enabled="true" name="'dm_visor_glass3'" />
