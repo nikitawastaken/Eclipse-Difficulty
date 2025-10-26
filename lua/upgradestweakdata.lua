@@ -30,20 +30,111 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- fak heals 90hp on use
 	self.values.first_aid_kit.heal_amount = 9
-
-	-- for now just redefine as an empty table, set up for level unlocks rework
-	-- self.level_tree = {
-	-- 	[0] = {
-	-- 		upgrades = {
-
-	-- 		}
-	-- 	}
-	-- }
 end
 
 local old_init = UpgradesTweakData.init
 function UpgradesTweakData:init(tweak_data)
 	old_init(self, tweak_data)
+
+	-- LEVELING PROGRESION OVERHAUL --
+
+	-- redefine the level unlocks tree, for now only the first 10 levels (early game) are done
+	-- TODO: the rest of the level unlocks
+	self.level_tree = {
+		[0] = {
+			upgrades = {
+				"frag",
+				"frag_com",
+				"wpn_dallas_mask",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"b92fs",
+				"mac10",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ak74",
+				"new_m4",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"colt_1911",
+				"g22c",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"r870",
+			}
+		},
+		{ -- lvl 5
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor1",
+				"new_raging_bull",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"g36",
+				"s552",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"concussion",
+				"mp5",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"scar",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"serbu",
+			}
+		},
+		{ -- lvl 10
+			name_id = "body_armor",
+			upgrades = {
+				"body_armor2",
+				"olympic",
+			}
+		},
+		-- set up the armor unlocks in advance
+		[15] = {
+			name_id = "body_armor3",
+			upgrades = {
+				"body_armor3",
+			}
+		},
+		[20] = {
+			name_id = "body_armor4",
+			upgrades = {
+				"body_armor4",
+			}
+		},
+		[25] = {
+			name_id = "body_armor5",
+			upgrades = {
+				"body_armor5",
+			}
+		},
+	}
 
 	-- Weapons
 	-------------

@@ -10,7 +10,7 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 			item_entry = "wpn_fps_upg_charm_eclipse",
 		},
 	}
-	
+
 	self.preorder.content.loot_drops = {
 		{
 			type_items = "colors",
@@ -36,4 +36,14 @@ Hooks:PostHook(DLCTweakData, "init", "eclipse_init", function(self)
 
 	table.delete(self.preorder.content.upgrades, "player_crime_net_deal")
 	table.delete(self.cce.content.upgrades, "player_crime_net_deal_2")
+
+	-- don't give a bunch of stuff by default at level 0
+	self.armored_transport.content.upgrades = nil
+	self.pd2_clan_lgl.content.upgrades = nil
+	self.pd2_clan2.content.upgrades = nil
+	self.gage_pack.content.upgrades = nil
+	self.gage_pack_lmg.content.upgrades = nil
+	self.starter_kit.content.upgrades = nil
+	self.mxm_upgrades.content.upgrades = { "grenade_crate" }
+	self.sawp_grenade.content.upgrades = nil
 end)
