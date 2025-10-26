@@ -193,26 +193,26 @@ return {
 	-- disable the right vault path
 	[105498] = disabled,
 	-- Rework the opening vault ambush
-	[100569] = {
-		values = {
-			amount = 1, -- only one variant
-			amount_random = 0,
-			ignore_disabled = false,
-		},
+	-- add new system for the ambush
+	[103705] = {
 		on_executed = {
 			-- remove vanilla enemy dummies, replace them with mission scripts
-			{ id = 104183, remove = true },
-			{ id = 104317, remove = true },
-			{ id = 104631, remove = true },
-			{ id = 104510, remove = true },
-			{ id = 104318, remove = true },
-			{ id = 104316, remove = true },
-			{ id = 400116, delay = 0 },
-			{ id = 400117, delay = 0 },
-			{ id = 400118, delay = 0 },
-			{ id = 400119, delay = 0 },
-			{ id = 400120, delay = 0 },
-			{ id = 400121, delay = 0 },
+			{ id = 100569, remove = true },
+			{ id = 400124, delay = 0 },
+			{ id = 400125, delay = 0 },
+			{ id = 400126, delay = 0 },
+		},
+	},
+	-- update element toggle to include new ids
+	[101367] = {
+		values = {
+			elements = {
+				400124,
+				400125,
+				400126,
+				105114,
+				101132,
+			},
 		},
 	},
 	-- disable the instance that starts spawning snipers (when the drill jams)

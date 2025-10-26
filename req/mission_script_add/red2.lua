@@ -511,15 +511,15 @@ local optsVaultAmbush_2 = {
 		{ id = 400102, delay = 0 },
 		{ id = 400103, delay = 0 },
 	},
-	enabled = diff_i >= 3,
+	enabled = true,
 }
 local optsVaultAmbush_3 = {
 	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400102, delay = 0 }, { id = 400103, delay = 0 } },
-	enabled = diff_i >= 3,
+	enabled = true,
 }
 local optsVaultAmbush_4 = {
 	on_executed = { { id = 400098, delay = 0 }, { id = 400099, delay = 0 }, { id = 400100, delay = 0 }, { id = 400101, delay = 0 }, { id = 400104, delay = 0 }, { id = 400105, delay = 0 } },
-	enabled = diff_i >= 3,
+	enabled = true,
 }
 local optsVaultAmbush_5 = {
 	on_executed = {
@@ -534,7 +534,7 @@ local optsVaultAmbush_5 = {
 		{ id = 400104, delay = 0 },
 		{ id = 400105, delay = 0 },
 	},
-	enabled = diff_i >= 3,
+	enabled = true,
 }
 local optsVaultAmbush_6 = {
 	on_executed = {
@@ -550,10 +550,67 @@ local optsVaultAmbush_6 = {
 		{ id = 400104, delay = 0 },
 		{ id = 400105, delay = 0 },
 	},
-	enabled = diff_i == 6,
+	enabled = true,
 	player_3 = true,
 	player_4 = true,
 	difficulty_easy_wish = true,
+}
+
+local optsVaultAmbush_trigger_easy_normal = {
+	on_executed = {
+		{ id = 400116, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_normal = true,
+	difficulty_hard = true,
+}
+local optsVaultAmbush_trigger_hard_overkill = {
+	on_executed = {
+		{ id = 400127, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_overkill = true,
+	difficulty_overkill_145 = true,
+}
+local optsVaultAmbush_trigger_eclipse = {
+	on_executed = {
+		{ id = 400128, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_easy_wish = true,
+}
+local optsrandom_ambush_event_hard_overkill = {
+	amount = 1,
+	on_executed = {
+		{ id = 400116, delay = 0 },
+		{ id = 400117, delay = 0 },
+		{ id = 400118, delay = 0 },
+		{ id = 400119, delay = 0 },
+		{ id = 400120, delay = 0 },
+	},
+}
+local optsrandom_ambush_event_eclipse = {
+	amount = 1,
+	on_executed = {
+		{ id = 400116, delay = 0 },
+		{ id = 400117, delay = 0 },
+		{ id = 400118, delay = 0 },
+		{ id = 400119, delay = 0 },
+		{ id = 400120, delay = 0 },
+		{ id = 400121, delay = 0 },
+	},
 }
 local optsinstance_bag_requirment = {
 	instance = "obj_link_012",
@@ -731,6 +788,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400114, "sniper_vault_ambush_so_1", Vector3(4158, 1494, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400115, "sniper_vault_ambush_so_2", Vector3(4158, 1067, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),
 	-- mission scripts
+	Eclipse.mission_elements.gen_element_filter(400124, "vault_ambush_easy_normal_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_easy_normal),
+	Eclipse.mission_elements.gen_element_filter(400125, "vault_ambush_hard_overkill_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_hard_overkill),
+	Eclipse.mission_elements.gen_element_filter(400126, "vault_ambush_eclipse_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVaultAmbush_trigger_eclipse),
+	Eclipse.mission_elements.gen_element_random(400127, "random_ambush_event_hard_overkill", optsrandom_ambush_event_hard_overkill),
+	Eclipse.mission_elements.gen_element_random(400128, "random_ambush_event_eclipse", optsrandom_ambush_event_eclipse),
 	Eclipse.mission_elements.gen_missionscript(400116, "vault_ambush_variant_1", optsVaultAmbush_1),
 	Eclipse.mission_elements.gen_missionscript(400117, "vault_ambush_variant_2", optsVaultAmbush_2),
 	Eclipse.mission_elements.gen_missionscript(400118, "vault_ambush_variant_3", optsVaultAmbush_3),
