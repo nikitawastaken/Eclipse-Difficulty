@@ -93,7 +93,7 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"concussion",
-				"mp5",
+				"new_mp5",
 			}
 		},
 		{
