@@ -960,7 +960,7 @@ function PlayerManager:server_drop_carry(
 
 	local unit_name = tweak_data.carry[carry_id].unit or "units/payday2/pickups/gen_pku_lootbag/gen_pku_lootbag"
 	local unit = World:spawn_unit(Idstring(unit_name), position, rotation)
-	movement = movement or Vector(0, 0, 0)
+	movement = movement or Vector3(0, 0, 0)
 
 	managers.network:session():send_to_peers_synched(
 		"sync_carry_data",
@@ -1035,7 +1035,7 @@ function PlayerManager:sync_carry_data(
 	if alive(zipline_unit) then
 		zipline_unit:zipline():attach_bag(unit)
 	else
-		movement = movement or Vector(0, 0, 0)
+		movement = movement or Vector3(0, 0, 0)
 		unit:push(100, dir * 600 * throw_distance_multiplier + movement)
 	end
 
