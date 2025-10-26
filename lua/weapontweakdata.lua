@@ -2006,6 +2006,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.saiga.stats.recoil = 12
 	self.saiga.stats.concealment = 17
 	self.saiga.fire_mode_data.fire_rate = 60 / 350
+	self.saiga.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Street Sweeper
 	self.striker.CLIP_AMMO_MAX = 12
@@ -2015,6 +2016,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.striker.stats.concealment = 23
 	self.striker.fire_mode_data.fire_rate = 60 / 450
 	self.striker.reload_speed_multiplier = 1.3
+	self.striker.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Steakout
 	self.aa12.CLIP_AMMO_MAX = 8
@@ -2023,6 +2025,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.aa12.stats.recoil = 14
 	self.aa12.stats.concealment = 15
 	self.aa12.fire_mode_data.fire_rate = 60 / 300
+	self.aa12.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Grimm
 	self.basset.CLIP_AMMO_MAX = 7
@@ -2031,6 +2034,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.basset.stats.recoil = 13
 	self.basset.stats.concealment = 24
 	self.basset.fire_mode_data.fire_rate = 60 / 350
+	self.basset.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- M1014
 	self.benelli.CLIP_AMMO_MAX = 8
@@ -2039,6 +2043,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.benelli.stats.recoil = 10
 	self.benelli.stats.concealment = 17
 	self.benelli.fire_mode_data.fire_rate = 60 / 300
+	self.benelli.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Predator
 	self.spas12.CLIP_AMMO_MAX = 8
@@ -2047,6 +2052,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.spas12.stats.recoil = 12
 	self.spas12.stats.concealment = 19
 	self.spas12.fire_mode_data.fire_rate = 60 / 300
+	self.spas12.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Goliath
 	self.rota.upgrade_blocks = { -- No mag size increases
@@ -2060,6 +2066,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.rota.stats.recoil = 8
 	self.rota.stats.concealment = 22
 	self.rota.fire_mode_data.fire_rate = 60 / 300
+	self.rota.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Argos
 	self.ultima.use_data.selection_index = 2
@@ -2070,6 +2077,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ultima.stats.concealment = 21
 	self.ultima.fire_mode_data.fire_rate = 60 / 300
 	self.ultima.reload_speed_multiplier = 0.7
+	self.ultima.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- VD-12
 	self.sko12.CLIP_AMMO_MAX = 25
@@ -2081,6 +2089,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.sko12.reload_speed_multiplier = 0.7
 	self.sko12.FIRE_MODE = "single"
 	self.sko12.CAN_TOGGLE_FIREMODE = false
+	self.sko12.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Reinfeld 880
 	self.r870.CLIP_AMMO_MAX = 8
@@ -2089,6 +2098,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.r870.stats.recoil = 10
 	self.r870.stats.concealment = 17
 	self.r870.fire_mode_data.fire_rate = 60 / 120
+	self.r870.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Loco
 	self.serbu.CLIP_AMMO_MAX = 4
@@ -2098,6 +2108,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.serbu.stats.concealment = 23
 	self.serbu.fire_mode_data.fire_rate = 60 / 120
 	self.serbu.fire_rate_multiplier = 150 / 120
+	self.serbu.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Raven
 	self.ksg.CLIP_AMMO_MAX = 14
@@ -2107,6 +2118,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ksg.stats.concealment = 22
 	self.ksg.fire_mode_data.fire_rate = 60 / 120
 	self.ksg.fire_rate_multiplier = 90 / 120
+	self.ksg.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Mosconi Tactical
 	self.m590.CLIP_AMMO_MAX = 7
@@ -2116,6 +2128,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m590.stats.concealment = 19
 	self.m590.fire_mode_data.fire_rate = 60 / 120
 	self.m590.fire_rate_multiplier = 135 / 120
+	self.m590.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Judge
 	self.judge.CLIP_AMMO_MAX = 5
@@ -2124,6 +2137,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.judge.stats.recoil = 8
 	self.judge.stats.concealment = 28
 	self.judge.fire_mode_data.fire_rate = 60 / 300
+	self.judge.muzzleflash = "effects/particles/weapons/sho_default"
 
     self.x_judge.weapon_hold = "x_chinchilla"
     self.x_judge.animations.reload_name_id = "x_chinchilla"
@@ -2135,6 +2149,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		wp_chinchilla_insert = "wp_rbull_shells_in",
 		wp_chinchilla_cylinder_in = "wp_rbull_drum_close"
 	}
+	self.x_judge.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- GSPS
 	self.m37.CLIP_AMMO_MAX = 5
@@ -2144,6 +2159,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m37.stats.concealment = 19
 	self.m37.fire_mode_data.fire_rate = 60 / 100
 	self.m37.fire_rate_multiplier = 105 / 100
+	self.m37.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Reinfeld 88
 	self.m1897.CLIP_AMMO_MAX = 7
@@ -2153,6 +2169,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.m1897.stats.concealment = 18
 	self.m1897.fire_mode_data.fire_rate = 60 / 100
 	self.m1897.fire_rate_multiplier = 120 / 100
+	self.m1897.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Nova
 	self.supernova.CLIP_AMMO_MAX = 5
@@ -2163,6 +2180,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.supernova.fire_mode_data.fire_rate = 60 / 90
 	self.supernova.fire_rate_multiplier = 105 / 90
 	self.supernova.alt_fire_data = nil
+	self.supernova.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Mosconi
 	self.huntsman.CLIP_AMMO_MAX = 2
@@ -2171,6 +2189,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.huntsman.stats.recoil = 6
 	self.huntsman.stats.concealment = 15
 	self.huntsman.fire_mode_data.fire_rate = 60 / 500
+	self.huntsman.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Joceline
 	self.b682.CLIP_AMMO_MAX = 2
@@ -2179,6 +2198,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.b682.stats.recoil = 4
 	self.b682.stats.concealment = 15
 	self.b682.fire_mode_data.fire_rate = 60 / 500
+	self.b682.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Breaker
 	self.boot.CLIP_AMMO_MAX = 6
@@ -2187,6 +2207,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.boot.stats.recoil = 3
 	self.boot.stats.concealment = 20
 	self.boot.fire_mode_data.fire_rate = 60 / 60
+	self.boot.muzzleflash = "effects/particles/weapons/sho_default"
 
 	-- Claire
 	self.coach.CLIP_AMMO_MAX = 2
@@ -2821,17 +2842,22 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix
 
+	self.r870_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 	self.r870_yellow_npc = deep_clone(self.r870_npc)
+	self.r870_yellow_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.benelli_npc = copy_data(self.benelli_npc, self.r870_npc, self.ben_crew)
+	self.benelli_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.mossberg_npc.usage = "is_double_barrel"
 	self.mossberg_npc.reload = "looped"
 	self.mossberg_npc.looped_reload_single = true
 
 	self.saiga_npc.CLIP_AMMO_MAX = 20
+	self.saiga_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
+	self.aa12_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.sko12_conc_npc = copy_data(self.sko12_conc_npc, self.saiga_npc, self.sko12_crew)
 	self.sko12_conc_npc.bullet_class = nil

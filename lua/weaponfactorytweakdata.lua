@@ -1716,45 +1716,45 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 		wpn_fps_upg_a_custom = {
 			very_heavy = { -- double barrels
 				stats = { damage = 12, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 10, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 8, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			light = { -- semi autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			very_light = { -- full autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 		},
 		wpn_fps_upg_a_custom_free = {
 			very_heavy = { -- double barrels
 				stats = { damage = 12, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			heavy = { -- shotguns like gsps and the trench gun
 				stats = { damage = 10, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			medium = { -- raven, loco, reinfeld, etc
 				stats = { damage = 8, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			light = { -- semi autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 			very_light = { -- full autos
 				stats = { damage = 6, recoil = -3 },
-				custom_stats = { rays = 6, damage_near_mul = 0.5 },
+				custom_stats = { rays = 6, damage_near_mul = 0.5, muzzleflash = "effects/particles/weapons/sho_buckshot" },
 			},
 		},
 		wpn_fps_upg_a_explosive = {
@@ -1769,6 +1769,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					bullet_class = "InstantExplosiveBulletBase",
 					damage_near_mul = 10,
 					rays = 1,
+					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
@@ -1782,6 +1783,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					bullet_class = "InstantExplosiveBulletBase",
 					damage_near_mul = 10,
 					rays = 1,
+					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
@@ -1795,6 +1797,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					bullet_class = "InstantExplosiveBulletBase",
 					damage_near_mul = 10,
 					rays = 1,
+					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
 				},
 			},
 			light = { -- semi autos
@@ -1808,6 +1811,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					bullet_class = "InstantExplosiveBulletBase",
 					damage_near_mul = 10,
 					rays = 1,
+					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
 				},
 			},
 			very_light = { -- full autos
@@ -1821,6 +1825,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					bullet_class = "InstantExplosiveBulletBase",
 					damage_near_mul = 10,
 					rays = 1,
+					muzzleflash = "effects/payday2/particles/weapons/big_762_auto_fps",
 				},
 			},
 		},
@@ -1836,6 +1841,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					damage_near_mul = 10,
 					rays = 1,
 					check_additional_achievements = true,
+					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
@@ -1849,6 +1855,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					damage_near_mul = 10,
 					rays = 1,
 					check_additional_achievements = true,
+					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
@@ -1862,6 +1869,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					damage_near_mul = 10,
 					rays = 1,
 					check_additional_achievements = true,
+					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
 				},
 			},
 			light = { -- semi autos
@@ -1875,6 +1883,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					damage_near_mul = 10,
 					rays = 1,
 					check_additional_achievements = true,
+					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
 				},
 			},
 			very_light = { -- full autos
@@ -1888,6 +1897,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					damage_near_mul = 10,
 					rays = 1,
 					check_additional_achievements = true,
+					muzzleflash = "effects/payday2/particles/weapons/50cal_auto_fps",
 				},
 			},
 		},
@@ -1898,6 +1908,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					rays = 12,
 					armor_piercing_add = 1,
 					can_shoot_through_enemy = true,
+					muzzleflash = "effects/particles/weapons/sho_flechette",
 				},
 			},
 			heavy = { -- shotguns like gsps and the trench gun
@@ -1906,6 +1917,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					rays = 12,
 					armor_piercing_add = 1,
 					can_shoot_through_enemy = true,
+					muzzleflash = "effects/particles/weapons/sho_flechette",
 				},
 			},
 			medium = { -- raven, loco, reinfeld, etc
@@ -1914,6 +1926,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					rays = 12,
 					armor_piercing_add = 1,
 					can_shoot_through_enemy = true,
+					muzzleflash = "effects/particles/weapons/sho_flechette",
 				},
 			},
 			light = { -- semi autos
@@ -1922,6 +1935,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					rays = 12,
 					armor_piercing_add = 1,
 					can_shoot_through_enemy = true,
+					muzzleflash = "effects/particles/weapons/sho_flechette",
 				},
 			},
 			very_light = { -- full autos
@@ -1930,6 +1944,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					rays = 12,
 					armor_piercing_add = 1,
 					can_shoot_through_enemy = true,
+					muzzleflash = "effects/particles/weapons/sho_flechette",
 				},
 			},
 		},
@@ -2002,7 +2017,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
 					armor_piercing_add = 1,
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
+					muzzleflash = "effects/particles/weapons/sho_tomb",
 					dot_data_name = "ammo_rip",
 					stance_mul = slug_stance_muls,
 					damage_near_mul = 10,
@@ -2016,7 +2031,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
 					armor_piercing_add = 1,
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
+					muzzleflash = "effects/particles/weapons/sho_tomb",
 					dot_data_name = "ammo_rip",
 					stance_mul = slug_stance_muls,
 					damage_near_mul = 10,
@@ -2030,7 +2045,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
 					armor_piercing_add = 1,
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
+					muzzleflash = "effects/particles/weapons/sho_tomb",
 					dot_data_name = "ammo_rip",
 					stance_mul = slug_stance_muls,
 					damage_near_mul = 10,
@@ -2044,7 +2059,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
 					armor_piercing_add = 1,
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
+					muzzleflash = "effects/particles/weapons/sho_tomb",
 					dot_data_name = "ammo_rip",
 					stance_mul = slug_stance_muls,
 					damage_near_mul = 10,
@@ -2058,7 +2073,7 @@ function WeaponFactoryTweakData:_balance_shotgun_ammo(tweak_data)
 					ammo_pickup_min_mul = 0.6,
 					ammo_pickup_max_mul = 0.6,
 					armor_piercing_add = 1,
-					muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash_rip",
+					muzzleflash = "effects/particles/weapons/sho_tomb",
 					dot_data_name = "ammo_rip",
 					stance_mul = slug_stance_muls,
 					damage_near_mul = 10,
