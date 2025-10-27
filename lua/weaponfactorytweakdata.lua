@@ -40,12 +40,14 @@ function WeaponFactoryTweakData:_add_parts_to_all(tweak_data)
 	end
 end
 
-function WeaponFactoryTweakData:_add_parts_from_list(factory_id, part_list)
-	for _, part_id in pairs(part_list) do
-		if not table.contains(self[factory_id].default_blueprint, part_id) then
-			if not table.contains(self[factory_id].uses_parts, part_id) then
-				table.insert(self[factory_id].uses_parts, part_id)
-				table.insert(self[factory_id .. "_npc"].uses_parts, part_id)
+function WeaponFactoryTweakData:_add_parts_from_list(weap_list, part_list)
+	for _, weap_id in pairs(weap_list) do
+		for _, part_id in pairs(part_list) do
+			if not table.contains(self[weap_id].default_blueprint, part_id) then
+				if not table.contains(self[weap_id].uses_parts, part_id) then
+					table.insert(self[weap_id].uses_parts, part_id)
+					table.insert(self[weap_id .. "_npc"].uses_parts, part_id)
+				end
 			end
 		end
 	end
@@ -280,40 +282,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_upg_ak_s_psl.stats.spread = 3
 	self.parts.wpn_upg_ak_s_psl.stats.concealment = -3
-
-	self.parts.wpn_fps_upg_ak_zenitco_sight_dummy = {
-		type = "jerome_o",
-		name_id = "none",
-		unit = "units/pd2_dlc_sawp/weapons/wpn_fps_smg_pm9/wpn_fps_smg_pm9",
-		third_unit = "units/pd2_dlc_sawp/weapons/wpn_fps_smg_pm9/wpn_fps_smg_pm9",
-		stats = {
-			value = 1,
-		},
-	}
-
-	self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.adds = { "wpn_fps_upg_ak_zenitco_sight_dummy" }
-	table.insert(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.forbids, "wpn_fps_upg_o_ak_scopemount")
-
-	self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override = deep_clone(self.parts.wpn_fps_upg_o_ak_scopemount.override)
-
-	for k, v in pairs(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override) do
-		if self.parts[k] and self.parts[k].type and self.parts[k].type ~= "foregrip" then
-			self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].a_obj = "a_o"
-			self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].parent = "jerome_o"
-
-			if self.parts[k].type == "sight" then
-				self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].forbids = { "wpn_fps_ak_extra_ris" }
-
-				if self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].stance_mod then
-					for weap_id, stance_mod in pairs(self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].stance_mod) do
-						self.parts.wpn_fps_upg_ak_body_upperreceiver_zenitco.override[k].stance_mod[weap_id] = {
-							translation = Vector3(0, 0, -3.5),
-						}
-					end
-				end
-			end
-		end
-	end
 
 	self.parts.wpn_fps_upg_ak_m_uspalm.stats.extra_ammo = 0
 	self.parts.wpn_fps_upg_ak_m_uspalm.custom_stats.ammo_offset = 5
@@ -680,13 +648,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.wpn_fps_smg_coal.stock_adapter = "wpn_upg_ak_s_adapter"
 	self.wpn_fps_smg_coal_npc.stock_adapter = "wpn_upg_ak_s_adapter"
 
-	local ak_stocks = {}
-	create_part_list(ak_stocks, "wpn_fps_ass_akm", "stock")
-
-	self:_add_parts_from_list("wpn_fps_smg_coal", ak_stocks)
-
-	self.parts.wpn_fps_smg_coal_g_standard.forbids = { "wpn_upg_ak_g_standard" }
-
 	self.parts.wpn_fps_smg_shepheard_body_short.stats.spread = -2
 	self.parts.wpn_fps_smg_shepheard_body_short.stats.concealment = 2
 
@@ -720,7 +681,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	table.delete(rifle_barrel_exts_no_shak12, "wpn_fps_ass_shak12_ns_muzzle")
 	table.delete(rifle_barrel_exts_no_shak12, "wpn_fps_ass_shak12_ns_suppressor")
 
-	self:_add_parts_from_list("wpn_fps_smg_pm9", rifle_barrel_exts_no_shak12)
+	self:_add_parts_from_list({ "wpn_fps_smg_pm9" }, rifle_barrel_exts_no_shak12)
 
 	self.parts.wpn_fps_smg_pm9_b_standard.forbids = {}
 
@@ -907,13 +868,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_snp_r700_b_short.stats.recoil = 0
 	self.parts.wpn_fps_snp_r700_b_short.stats.concealment = 2
 
-	-- Make sure all sights get a mounting rail when used on the R700
-	for _, part_id in pairs(snp_sights) do
-		self.wpn_fps_snp_r700.adds[part_id] = {
-			"wpn_fps_snp_r700_o_rail",
-		}
-	end
-
 	self.parts.wpn_fps_snp_sbl_b_long.stats.extra_ammo = -1
 	self.parts.wpn_fps_snp_sbl_b_long.stats.spread = 3
 	self.parts.wpn_fps_snp_sbl_b_long.stats.recoil = 0
@@ -975,27 +929,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_hk21_fg_short.stats.spread = -2
 	self.parts.wpn_fps_lmg_hk21_fg_short.stats.recoil = -1
 	self.parts.wpn_fps_lmg_hk21_fg_short.stats.concealment = 3
-
-	local akm_handguards = {
-		"wpn_upg_ak_fg_combo3",
-		"wpn_fps_upg_ak_fg_tapco",
-		"wpn_fps_upg_fg_midwest",
-		"wpn_fps_upg_ak_fg_krebs",
-		"wpn_fps_upg_ak_fg_trax",
-		--	"wpn_fps_upg_ak_fg_zenitco",
-	}
-
-	self:_add_parts_from_list("wpn_fps_lmg_rpk", akm_handguards)
-
-	for _, part_id in pairs(akm_handguards) do
-		if not self.wpn_fps_lmg_rpk.adds then
-			self.wpn_fps_lmg_rpk.adds = {}
-		end
-
-		self.wpn_fps_lmg_rpk.adds[part_id] = {
-			"wpn_fps_upg_vg_ass_smg_verticalgrip",
-		}
-	end
 
 	self.parts.wpn_fps_lmg_mg42_b_mg34.stats.damage = 0
 	self.parts.wpn_fps_lmg_mg42_b_mg34.stats.spread = 1

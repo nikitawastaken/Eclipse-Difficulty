@@ -922,7 +922,6 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "player_smoke_screen_armor_regen_mul")
 	table.insert(self.default_upgrades, "player_smoke_screen_dodge_add")
 	table.insert(self.default_upgrades, "player_trip_mine_deploy_time_multiplier_2")
-	table.insert(self.default_upgrades, "carry_throw_distance_multiplier")
 	table.insert(self.default_upgrades, "sentry_gun_armor_multiplier") -- prev defense package
 	table.insert(self.default_upgrades, "sentry_gun_shield") -- prev defense package
 	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
