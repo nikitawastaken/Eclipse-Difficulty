@@ -299,6 +299,12 @@
 	</hooks>
 
 	<assets base_path="assets/">
+		<!-- shotgun ammo types -->
+		<file name="effects/particles/weapons/sho_buckshot.effect"/>
+		<file name="effects/particles/weapons/sho_default.effect"/>
+		<file name="effects/particles/weapons/sho_flechette.effect"/>
+		<file name="effects/particles/weapons/sho_tomb.effect"/>
+	
 		<!-- sniper glare -->
 		<file name="effects/particles/weapons/sniper_glint.effect"/>
 		<file name="effects/particles/weapons/elite_sniper_glint.effect"/>
