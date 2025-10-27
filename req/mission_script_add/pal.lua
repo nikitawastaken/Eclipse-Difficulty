@@ -111,12 +111,44 @@ local optsShieldDefend_3 = {
 	},
 	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
 }
+local optsShieldDefend_4 = {
+	enemy = elite_shield,
+	on_executed = {
+		{ id = 400060, delay = 0 },
+	},
+	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
+}
+local optsShieldDefend_5 = {
+	enemy = elite_sniper,
+	on_executed = {
+		{ id = 400061, delay = 0 },
+	},
+	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
+}
+local optsShieldDefend_6 = {
+	enemy = elite_shield,
+	on_executed = {
+		{ id = 400062, delay = 0 },
+	},
+	enabled = is_eclipse and enabled_chance_elite_shield_blockade,
+}
 local optsReachedNearLeftPipeTrigger = {
 	enabled = true,
 	on_executed = {
 		{ id = 400027, delay = 0 },
 		{ id = 400028, delay = 0.5 },
 		{ id = 400029, delay = 1 },
+	},
+}
+local optsReachedNearGate = {
+	enabled = true,
+	width = 400,
+	depth = 200,
+	height = 300,
+	on_executed = {
+		{ id = 400057, delay = 0 },
+		{ id = 400058, delay = 0 },
+		{ id = 400059, delay = 0 },
 	},
 }
 
@@ -348,12 +380,20 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400024, "taser_spot_so_4", Vector3(-863, -67, 31.663), Rotation(50, 0, 0), optsTaser_SO),
 	-- Elite shields in the sewers event
 	Eclipse.mission_elements.gen_areatrigger(400025, "area_trigger_near_left_pipe", Vector3(-4195, -3345, -417.586), Rotation(0, 0, 0), optsReachedNearLeftPipeTrigger),
+	Eclipse.mission_elements.gen_areatrigger(400063, "area_trigger_near_gate", Vector3(-6698, -2997, -265.604), Rotation(0, 0, 0), optsReachedNearGate),
 	Eclipse.mission_elements.gen_dummy(400027, "shield_defend_1", Vector3(-6080, -4164, -376.695), Rotation(0, 0, 0), optsShieldDefend_1),
 	Eclipse.mission_elements.gen_dummy(400028, "shield_defend_2", Vector3(-6080, -4164, -376.695), Rotation(0, 0, 0), optsShieldDefend_2),
 	Eclipse.mission_elements.gen_dummy(400029, "shield_defend_3", Vector3(-6080, -4164, -376.695), Rotation(0, 0, 0), optsShieldDefend_3),
+	Eclipse.mission_elements.gen_dummy(400057, "shield_defend_4", Vector3(-7398, -4196, -371.003), Rotation(-90, 0, 0), optsShieldDefend_4),
+	Eclipse.mission_elements.gen_dummy(400058, "shield_defend_5", Vector3(-7396.220, -4094.016, -397.003), Rotation(-90, 0, 0), optsShieldDefend_5),
+	Eclipse.mission_elements.gen_dummy(400059, "shield_defend_6", Vector3(-7393.898, -3961.036, -371.003), Rotation(-90, 0, 0), optsShieldDefend_6),
 	Eclipse.mission_elements.gen_so(400033, "shield_spot_so_1", Vector3(-5865, -4170, -370.985), Rotation(-90, 0, 0), optsShield_SO),
 	Eclipse.mission_elements.gen_so(400034, "shield_spot_so_2", Vector3(-5865, -4084, -386.985), Rotation(-90, 0, 0), optsShield_SO),
 	Eclipse.mission_elements.gen_so(400035, "shield_spot_so_3", Vector3(-5865, -3993, -366.985), Rotation(-90, 0, 0), optsShield_SO),
+	Eclipse.mission_elements.gen_so(400060, "shield_spot_so_4", Vector3(-7201, -4212, -372.218), Rotation(-90, 0, 0), optsShield_SO),
+	Eclipse.mission_elements.gen_so(400061, "shield_spot_so_5", Vector3(-7201, -4082, -394.218), Rotation(-90, 0, 0), optsShield_SO),
+	Eclipse.mission_elements.gen_so(400062, "shield_spot_so_6", Vector3(-7202, -3964, -372.218), Rotation(-90, 0, 0), optsShield_SO),
+
 	-- misc
 	Eclipse.mission_elements.gen_toggleelement(400015, "disable_the_cruiser", disable_2nd_police_cruiser),
 	Eclipse.mission_elements.gen_object_editor(400039, "mitchell_chopper_fix", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, 0), optsChopperMitchell_fix),

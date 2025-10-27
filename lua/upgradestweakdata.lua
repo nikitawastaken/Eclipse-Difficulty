@@ -1819,7 +1819,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Sociopath
 	self.on_killshot_cooldown = 2
 	self.values.player.killshot_regen_armor_bonus[1] = 2
-	self.values.player.melee_kill_armor_regen = { 2 }
+	self.values.player.melee_kill_armor_regen = { 4 }
 	self.values.cooldown.melee_kill_armor_leech = { { 1, 1 } }
 	self.definitions.cooldown_melee_kill_armor_leech = {
 		name_id = "menu_cooldown_melee_kill_armor_leech",
@@ -1833,7 +1833,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.killshot_close_regen_armor_bonus[1] = 2
 	self.specialization_descs[9][3].multiperk = "20"
 	self.specialization_descs[9][3].multiperk2 = "2"
-	self.specialization_descs[9][5].multiperk = "20"
+	self.specialization_descs[9][5].multiperk = "40"
 	self.specialization_descs[9][5].multiperk2 = "2"
 	self.specialization_descs[9][7].multiperk = "20"
 	self.specialization_descs[9][7].multiperk2 = "2"
