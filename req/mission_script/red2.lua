@@ -218,7 +218,8 @@ return {
 	-- disable the instance that starts spawning snipers (when the drill jams)
 	[104111] = disabled,
 	-- stop forcing units with the SO bs, let them do their own thing
-	[103344] = disabled,
+	[103855] = disabled,
+	[100592] = disabled,
 	-- Edit preferreds to make the initial assault have less dense spawns
 	[103984] = { -- assault start
 		on_executed = {
@@ -339,7 +340,7 @@ return {
 	[103756] = {
 		chance = 100,
 		on_executed = {
-			{ id = 400090, delay = 3 },
+			{ id = 400090, delay = 1.8 },
 		},
 	},
 	-- two dozers spawn on e/pj when leaving vault
