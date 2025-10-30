@@ -215,3 +215,30 @@ function FPCameraPlayerBase:pattern_recoil_kick(pattern, persist_pattern, recoil
 	self._recoil_kick.ret = 0
 	self._recoil_kick.h.ret = 0
 end
+
+function FPCameraPlayerBase:rand_recoil_kick(random_device, pattern_kick, recoil_multiplier)
+	-- set this to 0 so that the recoil from normal weapons doesn't bleed into spray patterned ones
+	self._recoil_kick.last = 0
+	self._recoil_kick.h.last = 0
+
+	-- If the player hasn't shot in 1/3rd of second reset the recoil pattern
+	if self._recoil_recovery_t <= 0 then
+		self._pattern_index = 1
+		self._persist_pattern_index = 1
+		random_device:reset_state()
+	end
+	self._recoil_recovery_t = 1
+
+	local v = random_device:random_uniform_float(pattern_kick[1][2] * recoil_multiplier, pattern_kick[2][2] * recoil_multiplier)
+	self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v
+
+	local h = random_device:random_uniform_float(pattern_kick[1][1] * recoil_multiplier, pattern_kick[2][1] * recoil_multiplier)
+	self._recoil_kick.h.accumulated = (self._recoil_kick.h.accumulated or 0) + h
+
+	Eclipse:log_chat(string.format("horizontal: %f\nvertical: %f", self._recoil_kick.accumulated, self._recoil_kick.h.accumulated))
+
+	self._pattern_index = self._pattern_index + 1
+
+	self._recoil_kick.ret = 0
+	self._recoil_kick.h.ret = 0
+end
