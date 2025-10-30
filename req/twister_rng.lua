@@ -14,6 +14,9 @@ M.state = {
 	state_index = 0,
 }
 
+-- WHY are the bitops for signed ints, I'm killing myself
+local mod_rand = math.pow(2, 32)
+
 function M:init_state(seed)
 	seed = seed or self.default_seed
 	self._seed = seed
@@ -75,13 +78,11 @@ function M:random_uint32()
 	end
 	self.state.state_index = k
 
-	local y = bit.bxor(x, bit.rshift(x, coefficient_u))
-	y = bit.bxor(y, bit.band(bit.lshift(y, coefficient_s), coefficient_b))
-	y = bit.bxor(y, bit.band(bit.lshift(y, coefficient_t), coefficient_c))
-	return bit.bxor(y, bit.rshift(y, coefficient_l))
+	local y = bit.bxor(x, bit.rshift(x, coefficient_u)) % mod_rand
+	y = bit.bxor(y, bit.band(bit.lshift(y, coefficient_s) % mod_rand, coefficient_b) % mod_rand) % mod_rand
+	y = bit.bxor(y, bit.band(bit.lshift(y, coefficient_t) % mod_rand, coefficient_c) % mod_rand) % mod_rand
+	return bit.bxor(y, bit.rshift(y, coefficient_l)) % mod_rand
 end
-
-local max_rand = math.pow(2, 32) - 1
 
 ---returns a random float in the interval [min, max] or [0, 1]
 ---@param max number?
@@ -90,7 +91,7 @@ function M:random_uniform_float(max, min)
 	max = max or 1
 	min = min or 1
 
-	local rand = self:random_uint32() / max_rand
+	local rand = self:random_uint32() / (mod_rand - 1)
 	return rand * (max - min) + min
 end
 

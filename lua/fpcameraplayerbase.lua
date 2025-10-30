@@ -229,10 +229,10 @@ function FPCameraPlayerBase:rand_recoil_kick(random_device, pattern_kick, recoil
 	end
 	self._recoil_recovery_t = 1
 
-	local v = random_device:random_uniform_float(pattern_kick[1][2] * recoil_multiplier, pattern_kick[2][2] * recoil_multiplier)
+	local v = random_device:random_uniform_float(pattern_kick[2][1] * recoil_multiplier, pattern_kick[1][1] * recoil_multiplier)
 	self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v
 
-	local h = random_device:random_uniform_float(pattern_kick[1][1] * recoil_multiplier, pattern_kick[2][1] * recoil_multiplier)
+	local h = random_device:random_uniform_float(pattern_kick[2][2] * recoil_multiplier, pattern_kick[1][2] * recoil_multiplier)
 	self._recoil_kick.h.accumulated = (self._recoil_kick.h.accumulated or 0) + h
 
 	Eclipse:log_chat(string.format("horizontal: %f\nvertical: %f", self._recoil_kick.accumulated, self._recoil_kick.h.accumulated))
