@@ -82,7 +82,6 @@ local optsSniperSO = {
 	so_action = "AI_sniper",
 }
 
-
 M.elements = {
 	-- swat group 1 near the breached wall
 	Eclipse.mission_elements.gen_dummy(400001, "swat_wall_spawn_1", Vector3(11589.867, 7975.423, 11.267), Rotation(145, 0, 0), optsBesiegeDummy_dizzy_1),
@@ -98,7 +97,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400010, "swat_wall_spawn_9", Vector3(12179.191, 8342.848, 11.267), Rotation(145, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400011, "swat_wall_spawn_10", Vector3(12350.558, 8217.974, 11.267), Rotation(145, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_spawngroup(400012, "swat_group_2", { 400007, 400008, 400009, 400010, 400011 }, 0, opts_swat_group),
-	
+
 	Eclipse.mission_elements.gen_missionscript(400013, "spawn_wall_swats", optsspawnwallSWATs),
 	-- cloaker near the breached wall (40% chance to spawn)
 	Eclipse.mission_elements.gen_dummy(400014, "spooc", Vector3(12547, 7718, 11.267), Rotation(90, 0, 0), optsCloaker),
@@ -110,6 +109,5 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400019, "sniper_spot_so_1", Vector3(16368.941, 9536.400, 28.784), Rotation(95, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400020, "sniper_spot_so_2", Vector3(13172.806, 10416.908, 339.274), Rotation(-174, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400021, "sniper_spot_so_3", Vector3(14153.112, 8297.195, 339.274), Rotation(46, 0, 0), optsSniper_SO),
-	
 }
 return M
