@@ -479,7 +479,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						if apply_spray and not _G.IS_VR then
 							self._camera_unit:base():pattern_recoil_kick(pattern_tweak_data, persist_pattern_tweak_data, recoil_multiplier, recoil_recovery)
 						elseif apply_random_pattern and not _G.IS_VR then
-							self._camera_unit:base():rand_recoil_kick(self._random_device, weap_tweak_data.pattern_kick, recoil_multiplier)
+							self._camera_unit:base():rand_recoil_kick(self._random_device, tweak_data.weapon.default_pattern_kick, recoil_multiplier)
 						else
 							self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 						end

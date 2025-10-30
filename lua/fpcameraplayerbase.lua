@@ -158,6 +158,11 @@ Hooks:PostHook(FPCameraPlayerBase, "init", "spray_init", function(self)
 	self._persist_pattern_index = 1
 	self._persist_pattern_back = 1
 	self._h_recoil_cushion = 0
+
+	self._random_recoil_data = {
+		index = 0, -- Bullets currently fired
+		segment = 1, -- Which segment of the pattern are we on
+	}
 end)
 
 Hooks:PostHook(FPCameraPlayerBase, "update", "spray_update", function(self, _, t, dt)
@@ -223,19 +228,27 @@ function FPCameraPlayerBase:rand_recoil_kick(random_device, pattern_kick, recoil
 
 	-- If the player hasn't shot in 1/3rd of second reset the recoil pattern
 	if self._recoil_recovery_t <= 0 then
-		self._pattern_index = 1
-		self._persist_pattern_index = 1
+		self._random_recoil_data = {
+			index = 0,
+			segment = 1,
+		}
 		random_device:reset_state()
 	end
 	self._recoil_recovery_t = 1
+	self._random_recoil_data.index = self._random_recoil_data.index + 1
 
-	local v = random_device:random_uniform_float(pattern_kick[2][1] * recoil_multiplier, pattern_kick[1][1] * recoil_multiplier)
+	if not pattern_kick[self._random_recoil_data.segment].final and self._random_recoil_data.index > pattern_kick[self._random_recoil_data.segment].shots then
+		-- Eclipse:log_chat("new segment")
+		self._random_recoil_data.segment = self._random_recoil_data.segment + 1
+		self._random_recoil_data.index = 0
+	end
+
+	local segment = pattern_kick[self._random_recoil_data.segment]
+	local v = random_device:random_uniform_float(segment.max[1] * recoil_multiplier, segment.min[1] * recoil_multiplier)
 	self._recoil_kick.accumulated = (self._recoil_kick.accumulated or 0) + v
 
-	local h = random_device:random_uniform_float(pattern_kick[2][2] * recoil_multiplier, pattern_kick[1][2] * recoil_multiplier)
+	local h = random_device:random_uniform_float(segment.max[2] * recoil_multiplier, segment.min[2] * recoil_multiplier)
 	self._recoil_kick.h.accumulated = (self._recoil_kick.h.accumulated or 0) + h
-
-	Eclipse:log_chat(string.format("horizontal: %f\nvertical: %f", self._recoil_kick.accumulated, self._recoil_kick.h.accumulated))
 
 	self._pattern_index = self._pattern_index + 1
 
