@@ -627,7 +627,7 @@ function WeaponTweakData:_init_weapons()
 			elseif is_browning_mg then -- Yes, I had to bullshit it like this
 				weap_data.stats.suppression = 3
 				weap_data.stats.alert_size = 4
-				weap_data.shake.fire_multiplier = 0.7
+				weap_data.shake.fire_multiplier = 1
 
 				weap_data.spread_multiplier = nil
 				weap_data.recoil_multiplier = nil
