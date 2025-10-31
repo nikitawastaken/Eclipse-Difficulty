@@ -463,15 +463,23 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 
 						local apply_spray = false
 						local apply_random_pattern = false
-						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery
+						local pattern_tweak_data, persist_pattern_tweak_data, recoil_recovery, random_pattern
 						if fire_mode == "auto" and weap_tweak_data.spray then -- temporary spray check before we add it to all weapons
 							pattern_tweak_data = weap_tweak_data.spray.pattern -- first part of spray pattern
 							persist_pattern_tweak_data = weap_tweak_data.spray.persist_pattern -- second part of spray pattern (persist pattern)
 							recoil_recovery = weap_tweak_data.recoil_recovery_timer
 							apply_spray = true
 						elseif fire_mode == "auto" and weap_tweak_data.pattern_seed then
-							if self._random_device._seed == nil then
-								self._random_device:init_state(weap_tweak_data.pattern_seed)
+							if self:full_steelsight() then
+								if self._random_device._seed == nil then
+									self._random_device:init_state(weap_tweak_data.ads_seed)
+								end
+								random_pattern = tweak_data.weapon.ads_pattern_kick
+							else
+								if self._random_device._seed == nil then
+									self._random_device:init_state(weap_tweak_data.pattern_seed)
+								end
+								random_pattern = tweak_data.weapon.default_pattern_kick
 							end
 							apply_random_pattern = true
 						end
@@ -479,7 +487,7 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 						if apply_spray and not _G.IS_VR then
 							self._camera_unit:base():pattern_recoil_kick(pattern_tweak_data, persist_pattern_tweak_data, recoil_multiplier, recoil_recovery)
 						elseif apply_random_pattern and not _G.IS_VR then
-							self._camera_unit:base():rand_recoil_kick(self._random_device, tweak_data.weapon.default_pattern_kick, recoil_multiplier)
+							self._camera_unit:base():rand_recoil_kick(self._random_device, random_pattern, recoil_multiplier)
 						else
 							self._camera_unit:base():recoil_kick(up * recoil_multiplier, down * recoil_multiplier, left * recoil_multiplier, right * recoil_multiplier)
 						end
