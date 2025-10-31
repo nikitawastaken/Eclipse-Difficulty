@@ -26,6 +26,8 @@
 	"bm_wp_upg_bonus_team_money": "Money Boost",
 	"bm_wp_upg_charm_eclipse": "Eclipse",
 
+	"menu_crew_ai_carry_stack": "Carry Stacker (2x)",
+	"menu_crew_ai_carry_stack_desc": "Your team AI can now carry 2 bags.",
 	"menu_dmr": "Marksman Rifle",
 	"bm_menu_swing_time": "Swing Time",
 	"bm_menu_reswing_time": "Reswing Time",

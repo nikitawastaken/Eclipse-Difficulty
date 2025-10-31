@@ -2315,4 +2315,15 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.saw.enemy_slicer[1] = 2
+
+	-- AI skill
+	self.values.team.crew_ai_carry_stacker = { true }
 end
+
+-- Team AI skills
+Hooks:PostHook(UpgradesTweakData, "_crew_definitions", "eclipse_upgradestd_crew_definitions", function(self)
+	self.crew_ability_definitions.crew_ai_carry_stacker = {
+		name_id = "menu_crew_ai_carry_stack",
+		icon = "ability_3",
+	}
+end)
