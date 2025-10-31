@@ -287,9 +287,13 @@
 			<object 			enabled="true" name="'g_gear_swat_heavy_b'" />
 			<object 			enabled="true" name="'g_gear_swat_heavy_b_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod6'" />
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod7'" />
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod8'" />
+			<object 			enabled="true" name="'g_helmet_swat_heavy_lod3'" />
+			<object 			enabled="true" name="'g_helmet_swat_heavy_lod4'" />
+			<object 			enabled="true" name="'g_helmet_swat_heavy_lod5'" />
+			<!--<object 			enabled="true" name="'g_helmet_swat_heavy_lod6'" />
+			<object 			enabled="true" name="'g_helmet_swat_heavy_lod7'" />-->
+			<object 			enabled="true" name="'g_helmet_swat_heavy_lod9'" />
+			<object 			enabled="true" name="'g_helmet_swat_heavy_lod10'" />
 			
 			<run_sequence 		name="'swat'" />
 			<run_sequence 		name="'random_body_a'" />
@@ -303,9 +307,7 @@
 			<object 			enabled="true" name="'g_gear_swat_heavy_c'" />
 			<object 			enabled="true" name="'g_gear_swat_heavy_c_lod1'" />
 
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod3'" />
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod4'" />
-			<object 			enabled="true" name="'g_helmet_swat_heavy_lod5'" />
+			<object 			enabled="true" name="'g_helmet_swat_heavy_lod8'" />
 			
 			<run_sequence 		name="'swat'" />
 			<run_sequence 		name="'random_body_a'" />

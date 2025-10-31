@@ -258,7 +258,7 @@ return {
 	-- restore another Bile's dialogue when he's about to drop the c4 bag
 	[103446] = {
 		on_executed = {
-			{ id = 400090, delay = 23 },
+			{ id = 400090, delay = 21 },
 			{ id = 101857, delay = 5 },
 		},
 	},

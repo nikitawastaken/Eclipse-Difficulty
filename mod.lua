@@ -116,10 +116,6 @@ if not Eclipse then
 	Eclipse.mission_elements = Eclipse:require("mission_elements")
 	Eclipse.log = Eclipse:require("log")
 
-	-- Setup networking
-	Eclipse:require("networking")
-	Eclipse:require("network_hooks")
-
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitEclipse", function(loc)
 		local language_tbl = {
 			[("english"):key()] = "en",

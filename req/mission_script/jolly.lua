@@ -16,8 +16,42 @@ local bridge_spawn = {
 	groups = preferred.no_cops_agents,
 }
 return {
+	-- add FFO
+	[100082] = {
+		ponr = {
+			length = 120,
+			player_mul = { 1.25, 1, 0.75, 0.5 },
+		},
+	},
 	-- Disable hunt
 	[101598] = disabled,
+	-- Spawn some SWATs when the wall has been breached on Overkill and above
+	[101224] = {
+		on_executed = {
+			{ id = 400013, delay = 0 },
+		},
+	},
+	-- add additional snipers to escape section
+	-- elementrandom
+	[101642] = {
+		on_executed = {
+			{ id = 400016, delay = 0 },
+			{ id = 400017, delay = 0 },
+			{ id = 400018, delay = 0 },
+		},
+	},
+	-- on death
+	[101640] = {
+		values = {
+			elements = {
+				101638,
+				101639,
+				400016,
+				400017,
+				400018,
+			},
+		},
+	},
 	-- Spawn group intervals
 	[100944] = train_spawn,
 	[100945] = train_spawn,

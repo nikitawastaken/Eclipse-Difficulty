@@ -126,3 +126,77 @@ function UnitNetworkHandler:sync_spawn_extra_ammo(unit, has_extra_dmg_double_dro
 
 	managers.player:spawn_extra_ammo(unit, peer, has_extra_dmg_double_drop)
 end
+
+-- Add player movement to bag throw
+function UnitNetworkHandler:server_drop_carry(
+	carry_id,
+	carry_multiplier,
+	dye_initiated,
+	has_dye_pack,
+	dye_value_multiplier,
+	position,
+	rotation,
+	dir,
+	throw_distance_multiplier_upgrade_level,
+	zipline_unit,
+	movement,
+	sender
+)
+	local peer = self._verify_sender(sender)
+
+	if not self._verify_gamestate(self._gamestate_filter.any_ingame) or not peer then
+		return
+	end
+
+	managers.player:server_drop_carry(
+		carry_id,
+		carry_multiplier,
+		dye_initiated,
+		has_dye_pack,
+		dye_value_multiplier,
+		position,
+		rotation,
+		dir,
+		throw_distance_multiplier_upgrade_level,
+		zipline_unit,
+		movement,
+		peer
+	)
+end
+
+-- Add player movement to bag throw
+function UnitNetworkHandler:sync_carry_data(
+	unit,
+	carry_id,
+	carry_multiplier,
+	dye_initiated,
+	has_dye_pack,
+	dye_value_multiplier,
+	position,
+	dir,
+	throw_distance_multiplier_upgrade_level,
+	zipline_unit,
+	movement,
+	peer_id,
+	sender
+)
+	if not alive(unit) or not self._verify_gamestate(self._gamestate_filter.any_ingame) or not self._verify_sender(sender) then
+		return
+	end
+
+	managers.player:verify_carry(managers.network:session():peer(peer_id), carry_id)
+	managers.player:sync_carry_data(
+		unit,
+		carry_id,
+		carry_multiplier,
+		dye_initiated,
+		has_dye_pack,
+		dye_value_multiplier,
+		position,
+		dir,
+		throw_distance_multiplier_upgrade_level,
+		zipline_unit,
+		movement,
+		peer_id
+	)
+end

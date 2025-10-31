@@ -61,19 +61,6 @@
 			<rpc/>
 		</search>
 		<target mode="attach">
-			<!-- create a sync_grenade_crate_grenade_taken message for `UnitHandler` -->
-			<message name="sync_grenade_crate_grenade_taken" delivery="ordered" receiver="unit">
-				<param type="unit" />
-				<param type="float" exact="true"/>
-			</message>
-		</target>
-	</tweak>
-	<tweak version="2" name="settings/network" extension="network_settings">
-		<search>
-			<network/>
-			<rpc/>
-		</search>
-		<target mode="attach">
 			<!-- create a unit_suppressed message for `UnitHandler` -->
 			<message name="unit_suppressed" delivery="ordered" receiver="unit">
 				<param type="unit" />
@@ -103,6 +90,28 @@
 		<target mode="replace">
 			<param type="unit"/> <!-- look for the unit node before inserting -->
 			<param type="bool"/> <!-- has extra dmg upgrade? -->
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="server_drop_carry"/>
+		</search>
+		<target mode="attach">
+			<param type="vector3"/> <!-- Add movement vector -->
+		</target>
+	</tweak>
+	<tweak version="2" name="settings/network" extension="network_settings">
+		<search>
+			<network/>
+			<rpc/>
+			<message name="sync_carry_data"/>
+			<param type="int" min="0" max="15"/>
+		</search>
+		<target mode="replace">
+			<param type="vector3"/> <!-- Add movement vector -->
+			<param type="int" min="0" max="15"/> <!-- peer_id -->
 		</target>
 	</tweak>
 </tweaks>

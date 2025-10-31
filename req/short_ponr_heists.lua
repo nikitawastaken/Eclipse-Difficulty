@@ -9,6 +9,7 @@ local M = {
 	firestarter_2 = true,
 	framing_frame_2 = true,
 	roberts = true,
+	jolly = true,
 	dah = true,
 	rvd2 = true,
 	man = true,

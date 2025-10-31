@@ -23,6 +23,7 @@ local M = {
 	watchdogs_1 = true,
 	watchdogs_1_night = true,
 	shoutout_raid = true, -- meltdown
+	jolly = true, -- Aftershock
 	friend = true, -- scarmansion
 	run = true, -- hstreet
 	sah = true, -- shacklethrone auction

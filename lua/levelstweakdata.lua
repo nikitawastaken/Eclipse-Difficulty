@@ -78,8 +78,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		recon_interval_variation_mul = 0.75,
 		push_delay_mul = 1.25,
 		difficulty_scaling = {
-			diff_init = 0.1,
-			assault_add = 0.3,
+			diff_init = 0.2,
 		},
 	}
 	self.jewelry_store.group_ai_preset = "small_urban"

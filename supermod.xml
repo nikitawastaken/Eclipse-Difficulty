@@ -262,7 +262,6 @@
 				<group :hook_id="weapons/">
 					<group :hook_id="grenades/">
 						<post :hook_id="quickcsgrenade"/>
-						<post :hook_id="quickflashgrenade"/>
 						<post :hook_id="quicksmokegrenade"/>
 						<post :hook_id="fraggrenade"/>
 						<post :hook_id="molotovgrenade"/>
@@ -287,12 +286,19 @@
 					<post :hook_id="npcraycastweaponbase"/>
 					<post :hook_id="weaponammo"/>
 					<post :hook_id="weaponliongadget1"/>
+					<post :hook_id="projectileweaponbase"/>
 				</group>
 			</group>
 		</group>
 	</hooks>
 
 	<assets base_path="assets/">
+		<!-- shotgun ammo types -->
+		<file name="effects/particles/weapons/sho_buckshot.effect"/>
+		<file name="effects/particles/weapons/sho_default.effect"/>
+		<file name="effects/particles/weapons/sho_flechette.effect"/>
+		<file name="effects/particles/weapons/sho_tomb.effect"/>
+	
 		<!-- sniper glare -->
 		<file name="effects/particles/weapons/sniper_glint.effect"/>
 		<file name="effects/particles/weapons/elite_sniper_glint.effect"/>

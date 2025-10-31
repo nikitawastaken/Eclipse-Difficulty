@@ -1819,7 +1819,7 @@ function UpgradesTweakData:init(tweak_data)
 	-- Sociopath
 	self.on_killshot_cooldown = 2
 	self.values.player.killshot_regen_armor_bonus[1] = 2
-	self.values.player.melee_kill_armor_regen = { 2 }
+	self.values.player.melee_kill_armor_regen = { 4 }
 	self.values.cooldown.melee_kill_armor_leech = { { 1, 1 } }
 	self.definitions.cooldown_melee_kill_armor_leech = {
 		name_id = "menu_cooldown_melee_kill_armor_leech",
@@ -1833,7 +1833,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.values.player.killshot_close_regen_armor_bonus[1] = 2
 	self.specialization_descs[9][3].multiperk = "20"
 	self.specialization_descs[9][3].multiperk2 = "2"
-	self.specialization_descs[9][5].multiperk = "20"
+	self.specialization_descs[9][5].multiperk = "40"
 	self.specialization_descs[9][5].multiperk2 = "2"
 	self.specialization_descs[9][7].multiperk = "20"
 	self.specialization_descs[9][7].multiperk2 = "2"
@@ -1945,6 +1945,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.damage_to_hot_data.stacking_cooldown = 1
 	self.damage_to_hot_data.add_stack_sources.poison = false
 	self.damage_to_hot_data.add_stack_sources.swat_van = false
+	self.damage_to_hot_data.add_stack_sources.sentry_gun = false
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"

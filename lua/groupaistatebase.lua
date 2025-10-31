@@ -166,6 +166,10 @@ function GroupAIStateBase:_post_megaphone_event(event)
 		return
 	end
 
+	if not self:enemy_weapons_hot() then
+		return
+	end
+
 	local pos = level_tweak.megaphone_pos or Vector3(0, 0, 0)
 	local sound_source = SoundDevice:create_source("megaphone")
 
@@ -196,10 +200,6 @@ function GroupAIStateBase:sync_event(event_id, ...)
 end
 
 function GroupAIStateBase:megaphone_announce_snipers()
-	if not self:enemy_weapons_hot() then
-		return
-	end
-
 	if self._t >= self._mga_said_deploy_snipers_t then
 		self:_post_megaphone_event("mga_deploy_snipers")
 

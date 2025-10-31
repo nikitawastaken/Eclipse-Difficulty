@@ -763,7 +763,7 @@ function PlayerManager:damage_reduction_skill_multiplier(damage_type)
 	-- stockholm syndrome per-hostage dmg reduction
 	if self:has_category_upgrade("player", "hostage_damage_reduction_addend") then
 		multiplier = multiplier * (1 - self:get_hostage_bonus_addend("damage_reduction"))
-		Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
+		--Eclipse:log_chat(1 - self:get_hostage_bonus_addend("damage_reduction"))
 	end
 
 	return multiplier
@@ -805,6 +805,12 @@ function PlayerManager:drop_carry(zipline_unit)
 		end
 	end
 
+	local state = self:player_unit():movement():current_state()
+	local penalty = 0.5
+	local movement_z = state._is_jumping and (state._last_sent_jump_vec * penalty) or Vector3(0, 0, 0)
+	local movement_xy = state._last_velocity_xy * penalty
+	local movement = movement_z + movement_xy
+
 	if Network:is_client() then
 		managers.network:session():send_to_host(
 			"server_drop_carry",
@@ -817,7 +823,8 @@ function PlayerManager:drop_carry(zipline_unit)
 			rotation,
 			forward,
 			throw_distance_multiplier_upgrade_level,
-			zipline_unit
+			zipline_unit,
+			movement
 		)
 	else
 		self:server_drop_carry(
@@ -831,6 +838,7 @@ function PlayerManager:drop_carry(zipline_unit)
 			forward,
 			throw_distance_multiplier_upgrade_level,
 			zipline_unit,
+			movement,
 			managers.network:session():local_peer()
 		)
 	end
@@ -943,6 +951,7 @@ function PlayerManager:server_drop_carry(
 	dir,
 	throw_distance_multiplier_upgrade_level,
 	zipline_unit,
+	movement,
 	peer
 )
 	if not self:verify_carry(peer, carry_id) then
@@ -951,6 +960,7 @@ function PlayerManager:server_drop_carry(
 
 	local unit_name = tweak_data.carry[carry_id].unit or "units/payday2/pickups/gen_pku_lootbag/gen_pku_lootbag"
 	local unit = World:spawn_unit(Idstring(unit_name), position, rotation)
+	movement = movement or Vector3(0, 0, 0)
 
 	managers.network:session():send_to_peers_synched(
 		"sync_carry_data",
@@ -964,6 +974,7 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
+		movement,
 		peer and peer:id() or 0
 	)
 	self:sync_carry_data(
@@ -977,6 +988,7 @@ function PlayerManager:server_drop_carry(
 		dir,
 		throw_distance_multiplier_upgrade_level,
 		zipline_unit,
+		movement,
 		peer and peer:id() or 0
 	)
 
@@ -985,6 +997,49 @@ function PlayerManager:server_drop_carry(
 	end
 
 	return unit
+end
+
+function PlayerManager:sync_carry_data(
+	unit,
+	carry_id,
+	carry_multiplier,
+	dye_initiated,
+	has_dye_pack,
+	dye_value_multiplier,
+	position,
+	dir,
+	throw_distance_multiplier_upgrade_level,
+	zipline_unit,
+	movement,
+	peer_id
+)
+	local throw_distance_multiplier = self:upgrade_value_by_level("carry", "throw_distance_multiplier", throw_distance_multiplier_upgrade_level, 1)
+	local carry_type = tweak_data.carry[carry_id].type
+	throw_distance_multiplier = throw_distance_multiplier * tweak_data.carry.types[carry_type].throw_distance_multiplier
+	local mutator = nil
+
+	if managers.mutators:is_mutator_active(MutatorPiggyRevenge) then
+		mutator = managers.mutators:get_mutator(MutatorPiggyRevenge)
+	end
+
+	if mutator and mutator.get_bag_throw_multiplier then
+		throw_distance_multiplier = throw_distance_multiplier * mutator:get_bag_throw_multiplier(carry_id)
+	end
+
+	unit:carry_data():set_carry_id(carry_id)
+	unit:carry_data():set_multiplier(carry_multiplier)
+	unit:carry_data():set_value(managers.money:get_bag_value(carry_id, carry_multiplier))
+	unit:carry_data():set_dye_pack_data(dye_initiated, has_dye_pack, dye_value_multiplier)
+	unit:carry_data():set_latest_peer_id(peer_id)
+
+	if alive(zipline_unit) then
+		zipline_unit:zipline():attach_bag(unit)
+	else
+		movement = movement or Vector3(0, 0, 0)
+		unit:push(100, dir * 600 * throw_distance_multiplier + movement)
+	end
+
+	unit:interaction():register_collision_callbacks()
 end
 
 function PlayerManager:peer_dropped_out(peer)
@@ -1872,6 +1927,62 @@ function PlayerManager:spawn_extra_ammo(killed_unit, requesting_peer, has_extra_
 			})
 		end
 	end
+end
+
+function PlayerManager:_check_damage_to_hot(t, unit, damage_info)
+	local player_unit = self:player_unit()
+
+	if not self:has_category_upgrade("player", "damage_to_hot") then
+		return
+	end
+
+	if not alive(player_unit) or player_unit:character_damage():need_revive() or player_unit:character_damage():dead() then
+		return
+	end
+
+	if not alive(unit) or not unit:base() or not damage_info then
+		return
+	end
+
+	local data = tweak_data.upgrades.damage_to_hot_data
+
+	if not data then
+		return
+	end
+
+	if self._next_allowed_doh_t and t < self._next_allowed_doh_t then
+		return
+	end
+
+	local add_stack_sources = data.add_stack_sources or {}
+
+	if not add_stack_sources.swat_van and unit:base().sentry_gun then
+		return
+	elseif not add_stack_sources.civilian and CopDamage.is_civilian(unit:base()._tweak_table) then
+		return
+	end
+
+	if damage_info.attacker_unit:base().sentry_gun and not add_stack_sources.sentry_gun then
+		return
+	end
+
+	if not add_stack_sources[damage_info.variant] then
+		return
+	end
+
+	if not unit:brain():is_hostile() then
+		return
+	end
+
+	local player_armor = managers.blackmarket:equipped_armor(data.works_with_armor_kit, true)
+
+	if not table.contains(data.armors_allowed or {}, player_armor) then
+		return
+	end
+
+	player_unit:character_damage():add_damage_to_hot()
+
+	self._next_allowed_doh_t = t + data.stacking_cooldown
 end
 
 -- Tag Team: tagged player will hear activation sound

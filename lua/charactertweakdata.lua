@@ -2087,6 +2087,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.move_speed = deep_clone(char_preset.move_speed)
 			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
 			char_preset.can_be_healed = not tag_map.medic and true or false
+			char_preset.target_priority = not tag_map.medic and nil or 10
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
@@ -2099,6 +2100,7 @@ function CharacterTweakData:_set_presets()
 		elseif tag_map.medic then
 			char_preset.can_be_healed = false
 			char_preset.use_animation_on_fire_damage = true
+			char_preset.target_priority = 10
 		end
 
 		-- Boss related stuff
