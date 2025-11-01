@@ -86,14 +86,13 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"g36",
-				"s552",
 			}
 		},
 		{
 			name_id = "weapons",
 			upgrades = {
 				"concussion",
-				"new_mp5",
+				"mp9",
 			}
 		},
 		{
@@ -105,33 +104,155 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			name_id = "weapons",
 			upgrades = {
-				"serbu",
+				"aug",
 			}
 		},
 		{ -- lvl 10
 			name_id = "body_armor",
 			upgrades = {
 				"body_armor2",
-				"olympic",
+				"serbu",
 			}
 		},
-		-- set up the armor unlocks in advance
-		[15] = {
+		{
+			name_id = "weapons",
+			upgrades = {
+				"p90",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m16",
+				"akm",
+				"akm_gold"
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"mp7",
+				"s552",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"ak5",
+				"usp",
+			}
+		},
+		{ -- lvl 15
 			name_id = "body_armor3",
 			upgrades = {
 				"body_armor3",
+				"new_mp5",
 			}
 		},
-		[20] = {
+		{
+			name_id = "weapons",
+			upgrades = {
+				"m1911",
+				"tec9",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"saiga",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"mateba",
+				"sub2000",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"olympic",
+				"akmsu",
+			}
+		},
+		{ -- lvl 20
 			name_id = "body_armor4",
 			upgrades = {
 				"body_armor4",
+				"par",
 			}
 		},
-		[25] = {
+		{
+			name_id = "weapons",
+			upgrades = {
+				"new_m14",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"x_b92fs",
+				"x_usp",
+				"x_g22c",
+				"x_1911",
+				"x_g17",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"benelli",
+				"p226",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"judge",
+			}
+		},
+		{ -- lvl 25
 			name_id = "body_armor5",
 			upgrades = {
 				"body_armor5",
+				"msr",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"corgi",
+				"l85a2",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"glock_18c",
+				"x_g18c",
+				"cobray"
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"famas",
+				"galil",
+			}
+		},
+		{
+			name_id = "weapons",
+			upgrades = {
+				"rpk",
+				"mosin"
+			}
+		},
+		{ -- lvl 30
+			name_id = "weapons",
+			upgrades = {
+				"gre_m79",
+				"deagle"
 			}
 		},
 	}
