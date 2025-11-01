@@ -313,7 +313,7 @@ local multiplier = 1
 local exp_step_start = 1
 local exp_step_end = 100
 local exp_step = 1 / (exp_step_end - exp_step_start)
-local exp_step_last_points = 3000
+local exp_step_last_points = 5000
 local exp_step_curve = 1.5
 
 for i = exp_step_start, exp_step_end do
