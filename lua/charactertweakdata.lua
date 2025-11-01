@@ -562,13 +562,16 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	-- Tweak dodge presets
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
+	
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
+	presets.dodge.athletic.slide_chance = 0.75
 
 	presets.dodge.medic = deep_clone(presets.dodge.poor)
 	presets.dodge.medic.speed = 1
-	presets.dodge.medic.occasions.scared.chance = 0.6
+	presets.dodge.medic.occasions.scared.chance = 0.75
 
 	presets.dodge.ninja.speed = 2
+	presets.dodge.ninja.slide_chance = 1
 	for _, occasion in pairs(presets.dodge.ninja.occasions) do
 		occasion.chance = 1
 		if occasion.variations.side_step then
@@ -1135,11 +1138,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
-	self.hrt = deep_clone(self.swat)
-	self.hrt.surrender = self.presets.surrender.easy
-	self.hrt.speech_prefix_p1 = self._unit_prefixes.cop
-	self.hrt.chatter = self.presets.enemy_chatter.cop
-	self.hrt.melee_weapon = "weapon"
+	self.hrt = deep_clone(self.fbi)
+	self.hrt.HEALTH_INIT = 6
+	self.hrt.headshot_dmg_mul = 2.5 
+	self.hrt.access = "swat"
 	table.insert(self._enemy_list, "hrt")
 
 	self.security_mcmansion = deep_clone(self.swat)
@@ -1863,6 +1865,7 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 end)
 
+local ecm_vuln_weak = 0.8
 local ecm_vuln_swat = 0.6
 local ecm_vuln_heavy = 0.4
 local ecm_vuln_none = 0
@@ -1983,6 +1986,7 @@ CharacterTweakData.access_move_speed = {
 }
 
 CharacterTweakData.tweak_table_ecm_vulnerability = {
+	hrt = ecm_vuln_weak,
 	heavy_swat = ecm_vuln_heavy,
 	fbi_heavy_swat = ecm_vuln_heavy,
 	city_heavy_swat = ecm_vuln_heavy,
