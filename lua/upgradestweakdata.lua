@@ -46,6 +46,7 @@ function UpgradesTweakData:init(tweak_data)
 				"frag",
 				"frag_com",
 				"dada_com",
+				"dynamite",
 				"wpn_dallas_mask",
 			}
 		},
