@@ -38,7 +38,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- LEVELING PROGRESION OVERHAUL --
 
-	-- redefine the level unlocks tree, for now only the first 10 levels (early game) are done
+	-- redefine the level unlocks tree, for now only the first 30 levels (early game) are done
 	-- TODO: the rest of the level unlocks
 	self.level_tree = {
 		[0] = {
