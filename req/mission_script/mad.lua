@@ -22,6 +22,11 @@ local double_dozers = {
 		enabled = not is_eclipse and true or false,
 	},
 }
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
 local wall_far_spawn = {
 	values = {
 		interval = 15,
@@ -58,12 +63,16 @@ local lumber_upper_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- Disable instant difficulty increase
-	[101980] = {
-		values = {
-			enabled = false,
+	-- add FFO
+	[100176] = {
+		ponr = {
+			length = 120,
+			player_mul = { 1.25, 1, 0.75, 0.5 },
 		},
 	},
+	[100524] = disabled,
+	-- Disable instant difficulty increase
+	[101980] = disabled,
 	-- use unused lab spawn as random dozer unit
 	-- first remove him from element toggle so he actually spawns in
 	[101813] = {
