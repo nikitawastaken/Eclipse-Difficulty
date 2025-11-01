@@ -45,6 +45,7 @@ function UpgradesTweakData:init(tweak_data)
 			upgrades = {
 				"frag",
 				"frag_com",
+				"dada_com",
 				"wpn_dallas_mask",
 			}
 		},
@@ -160,6 +161,7 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"saiga",
+				"molotov"
 			}
 		},
 		{
@@ -210,6 +212,7 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"judge",
+				"wpn_prj_hur"
 			}
 		},
 		{ -- lvl 25
