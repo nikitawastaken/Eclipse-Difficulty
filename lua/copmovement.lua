@@ -130,7 +130,7 @@ function CopMovement:on_suppressed(state)
 			start_val = suppression.value,
 			duration = duration,
 			start_t = t,
-			next_upd_t = t + 0.07
+			next_upd_t = t + 0.07,
 		}
 	else
 		suppression.transition = nil
@@ -152,8 +152,8 @@ function CopMovement:on_suppressed(state)
 						variant = "suppressed_fumble_fwd_run",
 						blocks = {
 							action = -1,
-							walk = -1
-						}
+							walk = -1,
+						},
 					}
 
 					self:action_request(action_desc)
@@ -165,10 +165,10 @@ function CopMovement:on_suppressed(state)
 						trace = true,
 						tracker_from = self:nav_tracker(),
 						pos_from = vec_from,
-						pos_to = vec_to
+						pos_to = vec_to,
 					}
 					local allowed_fumbles = {
-						"suppressed_fumble_still"
+						"suppressed_fumble_still",
 					}
 					local allow = nil
 
@@ -212,8 +212,8 @@ function CopMovement:on_suppressed(state)
 						variant = allowed_fumbles[#allowed_fumbles > 1 and math.random(#allowed_fumbles) or 1],
 						blocks = {
 							action = -1,
-							walk = -1
-						}
+							walk = -1,
+						},
 					}
 
 					self:action_request(action_desc)
@@ -226,9 +226,9 @@ function CopMovement:on_suppressed(state)
 					trace = true,
 					tracker_from = self:nav_tracker(),
 					pos_from = vec_from,
-					pos_to = vec_to
+					pos_to = vec_to,
 				}
-					
+
 				mvec3_set(vec_from, self:m_pos())
 				mvec3_set(vec_to, self:m_rot():x())
 				mvec3_mul(vec_to, 380)
@@ -244,26 +244,26 @@ function CopMovement:on_suppressed(state)
 						variant = "e_nl_slide_fwd_4m",
 						blocks = {
 							action = -1,
-							walk = -1
-						}
+							walk = -1,
+						},
 					}
 
-					self:action_request(action_desc)					
+					self:action_request(action_desc)
 				elseif self._ext_anim.idle and (not self._active_actions[2] or self._active_actions[2]:type() == "idle") then
 					local action_desc = {
 						variant = "suppressed_reaction",
 						body_part = 2,
 						type = "act",
 						blocks = {
-							walk = -1
-						}
+							walk = -1,
+						},
 					}
 
 					self:action_request(action_desc)
 				elseif not self._ext_anim.crouch and (not self._ext_anim.move or self._tweak_data.crouch_move) then
 					local action_desc = {
 						body_part = 4,
-						type = "crouch"
+						type = "crouch",
 					}
 
 					self:action_request(action_desc)

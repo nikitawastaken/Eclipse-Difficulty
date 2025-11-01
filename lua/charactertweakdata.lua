@@ -562,7 +562,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	-- Tweak dodge presets
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
-	
+
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
 	presets.dodge.athletic.slide_chance = 0.75
 
@@ -1140,7 +1140,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.hrt = deep_clone(self.fbi)
 	self.hrt.HEALTH_INIT = 6
-	self.hrt.headshot_dmg_mul = 2.5 
+	self.hrt.headshot_dmg_mul = 2.5
 	self.hrt.access = "swat"
 	table.insert(self._enemy_list, "hrt")
 
