@@ -469,18 +469,12 @@ function PlayerStandard:_check_action_primary_attack(t, input, params)
 							persist_pattern_tweak_data = weap_tweak_data.spray.persist_pattern -- second part of spray pattern (persist pattern)
 							recoil_recovery = weap_tweak_data.recoil_recovery_timer
 							apply_spray = true
-						elseif fire_mode == "auto" and weap_tweak_data.pattern_seed then
-							if self:full_steelsight() then
-								if self._random_device._seed == nil then
-									self._random_device:init_state(weap_tweak_data.ads_seed)
-								end
-								random_pattern = tweak_data.weapon.ads_pattern_kick
-							else
-								if self._random_device._seed == nil then
-									self._random_device:init_state(weap_tweak_data.pattern_seed)
-								end
-								random_pattern = tweak_data.weapon.default_pattern_kick
+						elseif fire_mode == "auto" and tweak_data.weapon.recoil_stance_patterns then
+							local movement_state = self:get_movement_state()
+							if self._random_device._seed == nil then
+								self._random_device:init_or_reset_state(weap_tweak_data.recoil_seeds[movement_state] or weap_tweak_data.recoil_seeds.standing)
 							end
+							random_pattern = tweak_data.weapon.recoil_stance_patterns[movement_state] or tweak_data.weapon.recoil_stance_patterns.default
 							apply_random_pattern = true
 						end
 

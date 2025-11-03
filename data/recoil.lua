@@ -13,36 +13,45 @@ local function init_spray_patterns(weapon_data)
 	-- when switching between stances due to implementation details
 	--
 	-- May fix later idk
-	weapon_data.default_pattern_kick = {
-		{
-			shots = 30, -- Amount of shots until we move to the next pattern
-			min = { -1, -1 }, -- lerp min
-			max = { 1, 1 }, -- lerp max
+	weapon_data.recoil_stance_patterns = {
+		default = {
+			{
+				shots = 30, -- Amount of shots until we move to the next pattern
+				min = { -1, -1 }, -- lerp min
+				max = { 1, 1 }, -- lerp max
+			},
+			{
+				final = true, -- Persist pattern kinda
+				min = { -1, -1 }, -- lerp min
+				max = { 1, 1 }, -- lerp max
+			},
 		},
-		{
-			final = true, -- Persist pattern kinda
-			min = { -1, -1 }, -- lerp min
-			max = { 1, 1 }, -- lerp max
-		},
-	}
-	weapon_data.ads_pattern_kick = {
-		{
-			shots = 30,
-			min = { 0, 0 },
-			max = { 2, 2 },
-		},
-		{
-			final = true,
-			min = { -0.5, -0.5 },
-			max = { 0.5, 0.5 },
+		steelsight = {
+			{
+				shots = 30,
+				min = { 0, 0 },
+				max = { 2, 2 },
+			},
+			{
+				final = true,
+				min = { -0.5, -0.5 },
+				max = { 0.5, 0.5 },
+			},
 		},
 	}
 
 	for id, data in pairs(weapon_data) do
 		if type(data) == "table" and data.stats then
 			-- string based hashing :speaking_head: :fire:
-			data.pattern_seed = djb2_hash(id)
-			data.ads_seed = djb2_hash(id .. "_ads")
+			data.recoil_seeds = {
+				standing = djb2_hash(id),
+				crouching = djb2_hash(id .. "_crouching"),
+				steelsight = djb2_hash(id .. "_steelsight"),
+
+				moving_standing = djb2_hash(id .. "_moving_standing"),
+				moving_crouching = djb2_hash(id .. "_moving_crouching"),
+				moving_steelsight = djb2_hash(id .. "_moving_steelsight"),
+			}
 		end
 	end
 end

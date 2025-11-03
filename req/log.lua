@@ -123,15 +123,13 @@ function M.chat_spam(id, msg)
 	local t = Application:time()
 	M._spam_buff[id] = msg
 	local chat_msg
-	if not managers.groupai:state():whisper_mode() and (M._spam_t + 2) < t then
+	if (M._spam_t + 1) < t then
 		if table.size(M._spam_buff) > 0 then
 			M._spam_t = t
 			chat_msg = ""
 			for _, buff in pairs(M._spam_buff) do
 				chat_msg = chat_msg .. buff .. "\n"
 			end
-		else
-			chat_msg = "All tests passed.\n"
 		end
 	end
 	if chat_msg and chat_msg ~= M._spam_prev_msg then
