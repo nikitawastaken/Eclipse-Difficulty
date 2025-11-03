@@ -34,6 +34,7 @@ function PlayerMovement:on_SPOOCed(enemy_unit)
 		if alivePlayers == 1 then -- if you're the last man standing, cloaker kicks deal a portion of your max health in damage instead
 			local spooc_kick_damage = self._unit:character_damage():_max_health() * (enemy_unit:base():char_tweak().spooc_kick_damage or 0.25)
 			local spooc_kick_push = self._m_fwd:with_z(0.1):normalized() * 1000
+
 			self._unit:character_damage():change_health(-spooc_kick_damage)
 
 			local effect = "melee_hit_spooc_var" .. math.random(1, 2)

@@ -183,6 +183,7 @@ return {
 	[103032] = bags_required_objective,
 	[103033] = bags_required_objective,
 	[105719] = disabled,
+	[103945] = disabled,
 	-- allow Overdrill on overkill above
 	[104182] = filter_overkill_above,
 	[103962] = filter_overkill_above,

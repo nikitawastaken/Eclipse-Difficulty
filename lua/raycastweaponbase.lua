@@ -183,19 +183,20 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 			local idstr_simulator_length = Idstring("simulator_length")
 			local idstr_size = Idstring("size")
 
-			self._trail_effect_table.effect = sniper_trail_effect
-			self._trail_length = World:effect_manager():get_initial_simulator_var_vector2(self._trail_effect_table.effect, idstr_trail, idstr_simulator_length, idstr_size)
-			self._obj_fire:m_position(self._trail_effect_table.position)
-			mvec3_set(self._trail_effect_table.normal, mvec_spread_direction)
+			local sniper_trail_effect_table = deep_clone(self._trail_effect_table)
+			sniper_trail_effect_table.effect = sniper_trail_effect
 
-			local trail = World:effect_manager():spawn(self._trail_effect_table)
+			self._trail_length = World:effect_manager():get_initial_simulator_var_vector2(sniper_trail_effect_table.effect, idstr_trail, idstr_simulator_length, idstr_size)
+			self._obj_fire:m_position(sniper_trail_effect_table.position)
+			mvec3_set(sniper_trail_effect_table.normal, mvec_spread_direction)
+
+			local trail = World:effect_manager():spawn(sniper_trail_effect_table)
 
 			if furthest_hit then
 				mvector3.set_y(self._trail_length, furthest_hit.distance)
 				World:effect_manager():set_simulator_var_vector2(trail, idstr_trail, idstr_simulator_length, idstr_size, self._trail_length)
 			end
 		elseif not furthest_hit or furthest_hit.distance > 600 then
-			self._trail_effect_table.effect = self._trail_effect
 			self._obj_fire:m_position(self._trail_effect_table.position)
 			mvec3_set(self._trail_effect_table.normal, mvec_spread_direction)
 

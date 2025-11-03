@@ -6,6 +6,7 @@ local M = {
 	arm_for = true, -- train heist
 	roberts = true, -- go bank (Robert Banks)
 	red2 = true, -- fwb
+	mad = true, -- boiling point
 	framing_frame_2 = true, -- ff day2
 	framing_frame_3 = true, -- ff day3
 	spa = true, -- 10-10
