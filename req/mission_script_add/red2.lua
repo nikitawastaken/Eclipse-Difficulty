@@ -648,6 +648,17 @@ local optsinstance_bag_requirment = {
 		var_objective = "heist_red2_mission10",
 	},
 }
+local optsinstance_bag_requirment_secure = {
+	instance = "obj_link_015",
+	params = {
+		var_amount_death_wish = bags_required,
+		var_amount_hard = bags_required,
+		var_amount_normal = bags_required,
+		var_amount_overkill = bags_required,
+		var_amount_very_hard = bags_required,
+		var_objective = "heist_red2_mission13",
+	},
+}
 local optsdisable_collisions = {
 	unit_ids = {
 		300103,
@@ -783,6 +794,7 @@ M.elements = {
 
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(400093, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
+	Eclipse.mission_elements.gen_instance_params(400131, "new_bag_requirment_garbage_truck", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment_secure),
 
 	-- rework vault ambush
 	-- enemies

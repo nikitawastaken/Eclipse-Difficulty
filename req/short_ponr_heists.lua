@@ -1,6 +1,7 @@
 ---@module Short PONR heists
 local M = {
 	bph = true,
+	mad = true,
 	red2 = true,
 	bex = true,
 	pex = true,

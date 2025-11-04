@@ -709,6 +709,83 @@ return {
 			amount = is_pro_job and 2 or 1,
 		},
 	},
+	-- make the the ambush roof spawns near the end of the heist less ass
+	-- increase the amount of units
+	[102424] = {
+		values = {
+			amount = is_eclipse and 2 or 1,
+			amount_random = 1,
+		},
+	},
+	-- change cloaker's position and their SO
+	[102409] = {
+		values = {
+			participate_to_group_ai = true,
+			position = Vector3(420.769, 2837.680, 1743),
+			rotation = Rotation(90, 0, 0),
+		},
+		on_executed = {
+			{ id = 102123, delay = 0 },
+		},
+	},
+	[102123] = {
+		values = {
+			use_instigator = true,
+			position = Vector3(102.101, 2833.002, 1750),
+			rotation = Rotation(90, 0, 0),
+		},
+	},
+	-- change dozer's positions and always spawn them in pairs
+	[102433] = {
+		values = {
+			position = Vector3(-664.130, 3054.638, 1821),
+			rotation = Rotation(-88, 0, 0),
+		},
+	},
+	[102434] = {
+		values = {
+			position = Vector3(-656.111, 3152.987, 1817),
+			rotation = Rotation(-112, 0, 0),
+		},
+	},
+	[102435] = {
+		values = {
+			amount = 2,
+		},
+	},
+	-- change front shield's positions and their SOs
+	[102410] = {
+		values = {
+			position = Vector3(-815.537, 2995.424, 1825),
+			rotation = Rotation(-89, 0, 0),
+		},
+	},
+	[102411] = {
+		values = {
+			position = Vector3(-795.728, 3104.885, 1825),
+			rotation = Rotation(-105, 0, 0),
+		},
+	},
+	[102412] = {
+		values = {
+			position = Vector3(-720, 2954, 1842),
+			rotation = Rotation(-90, 0, 0),
+		},
+	},
+	[102413] = {
+		values = {
+			position = Vector3(-701.068, 3084.950, 1814),
+			rotation = Rotation(-102, 0, 0),
+		},
+	},
+	-- spawn both front and back shields on overkill above
+	[102430] = {
+		values = {
+			amount = overkill_and_above and 2 or 1,
+		},
+	},
+	-- disable the redundant cloaker group
+	[102429] = disabled,
 	-- Spawn group intervals
 	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
 	-- Most notably, the spawn group behind which slides into the corrider through a hole in the wall has been slowed down and cannot be used by Shield groups, it's hard to slide like that with a massive shield.
