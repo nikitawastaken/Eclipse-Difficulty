@@ -784,7 +784,7 @@ return {
 			amount = overkill_and_above and 2 or 1,
 		},
 	},
-	-- disable the redundant cloaker group 
+	-- disable the redundant cloaker group
 	[102429] = disabled,
 	-- Spawn group intervals
 	-- Undercover might be a pretty cramped heist, but its spawns are pretty well distributed.
