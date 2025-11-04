@@ -220,7 +220,7 @@ function WeaponTweakData:_init_weapons()
 							steelsight = 1,
 						}
 					}
-
+					
 					if weap_data.fire_mode_data and not weap_data.CAN_TOGGLE_FIREMODE then
 						weap_data.fire_mode_data.fire_rate = 60 / 675
 					end
@@ -776,7 +776,10 @@ function WeaponTweakData:_init_weapons()
 				elseif cat_map.flamethrower then
 					weap_data.kick.standing = { 0, 0, 0, 0 }
 
-				else -- Pistols
+				elseif cat_map.pistol and weap_data.auto then
+					weap_data.kick.standing = { 0.5, 0.8, -0.6, 0.6 }
+
+				elseif cat_map.pistol and not weap_data.auto then
 					weap_data.kick.standing = { 1.2, 1.8, -0.5, 0.5 }
 
 				end
@@ -1454,24 +1457,24 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Stryk
 	self.glock_18c.CLIP_AMMO_MAX = 17
 	self.glock_18c.stats.damage = 14
-	self.glock_18c.stats.spread = 13
-	self.glock_18c.stats.recoil = 17
+	self.glock_18c.stats.spread = 14
+	self.glock_18c.stats.recoil = 15
 	self.glock_18c.stats.concealment = 29
 	self.glock_18c.fire_mode_data.fire_rate = 60 / 900
 
 	-- Bernetti Auto
 	self.beer.CLIP_AMMO_MAX = 15
 	self.beer.stats.damage = 14
-	self.beer.stats.spread = 14
-	self.beer.stats.recoil = 15
+	self.beer.stats.spread = 13
+	self.beer.stats.recoil = 17
 	self.beer.stats.concealment = 28
 	self.beer.fire_mode_data.fire_rate = 60 / 1100
 
 	-- Czech
 	self.czech.CLIP_AMMO_MAX = 18
 	self.czech.stats.damage = 16
-	self.czech.stats.spread = 16
-	self.czech.stats.recoil = 16
+	self.czech.stats.spread = 15
+	self.czech.stats.recoil = 14
 	self.czech.stats.concealment = 28
 	self.czech.fire_mode_data.fire_rate = 60 / 1000
 	
@@ -1553,8 +1556,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Broomstick
 	self.c96.CLIP_AMMO_MAX = 10
 	self.c96.stats.damage = 24
-	self.c96.stats.spread = 16
-	self.c96.stats.recoil = 8
+	self.c96.stats.spread = 14
+	self.c96.stats.recoil = 9
 	self.c96.stats.concealment = 28
 	self.c96.fire_mode_data.fire_rate = 60 / 900
 	self.c96.FIRE_MODE = "auto"
@@ -1572,7 +1575,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.hs2000.stats.recoil = 15
 	self.hs2000.stats.concealment = 29
 	self.hs2000.fire_mode_data.fire_rate = 60 / 600
-
+	
 	-- Contractor
 	self.packrat.CLIP_AMMO_MAX = 15
 	self.packrat.stats.damage = 24
