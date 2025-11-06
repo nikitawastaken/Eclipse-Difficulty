@@ -626,6 +626,29 @@ function SkillTreeTweakData:init(tweak_data)
 	-- lch
 	self.specializations[22].category = { "health", "resistance" }
 
+	
+	-- This is for applying custom atlas without typing texture_bundle_folder for every single deck
+	-- P.S. 2, 4 ,6 and 8 cards for custom perk decks still will use vanilla atlas
+	local generic_perk_deck_cards = { 2, 4, 6, 8 } -- For 2, 4, 6 and 8 cards that every deck have
+	
+	local unique_perk_deck_cards = { 1, 3, 5, 7, 9 } -- For unique perk deck cards
+	local perk_decks_eclipse_atlas = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 } -- CC -> Ex-pres use default atlas so need reapply to use new one
+	
+	-- Applying atlas changes for 2, 4, 6 and 8 cards
+	for i, _ in ipairs(self.specializations) do
+		for _, k in ipairs(generic_perk_deck_cards) do
+			self.specializations[i][k].texture_bundle_folder = "eclipse"
+		end
+	end
+	
+	-- Applying atlas changes for 1, 3, 5, 7 and 9 cards for Crew Chief, Muscle , ... Ex-Pres
+	for _, i in ipairs(perk_decks_eclipse_atlas) do
+		for _, k in ipairs(unique_perk_deck_cards) do
+			self.specializations[i][k].texture_bundle_folder = "eclipse"
+		end
+	end
+	
+	
 	-- crew chief
 	self.specializations[1][1].upgrades = { "team_resource_trading_health", "team_resource_trading_no_downs" }
 	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_passive_intimidate_range_mul" }
