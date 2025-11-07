@@ -11,16 +11,14 @@ function PlayerStandard:init(unit)
 		self._slotmask_bullet_impact_targets = managers.mutators:modify_value("PlayerStandard:init:melee_slot_mask", self._slotmask_bullet_impact_targets)
 	end
 
+	-- Make sure that new increased gravity is set
+	self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+	
 	self._standstill_damage_reduction_active = false
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false
 	local pm = managers.player
 	self._pickup_area = 200 * pm:upgrade_value("player", "increased_pickup_area", 1) * pm:upgrade_value("player", "increased_pickup_area_gambler", 1)
-end
-
--- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
-function PlayerStandard:full_steelsight()
-	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
 end
 
 Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
@@ -33,23 +31,40 @@ Hooks:PreHook(PlayerStandard, "update", "eclipse_update", function(self, t, dt)
 	end
 end)
 
--- Scale headbob based on move speed
--- Add headbob while moving and aiming
--- function PlayerStandard:_get_walk_headbob()
--- 	local standard_speed = tweak_data.player.movement_state.standard.movement.speed.STANDARD_MAX
--- 	local walk_speed_mul = math.clamp(self:_get_max_walk_speed(t), standard_speed * 0.5, standard_speed * 2) / standard_speed
--- 	local has_run_and_shoot = self._equipped_unit:base():run_and_shoot_allowed()
+-- Make it so that a player has to fully wait out the aiming animation to enter the steelsight stance (fix from Restoration Mod)
+function PlayerStandard:full_steelsight()
+	return self._state_data.in_steelsight and self._camera_unit:base():is_stance_done()
+end
 
--- 	local headbob_rate = 1
--- 		/ 40
--- 		* (self._running and has_run_and_shoot and 1.5 or self._running and 3 or 1)
--- 		* (self._state_data.ducking and 0.5 or 1)
--- 		* (self._state_data.in_steelsight and 0.05 or 1)
--- 		* (self._state_data.in_air and 0 or 1)
--- 		* (self._state_data.using_bipod and 0 or 1)
+-- Increase player gravity to make movement less floaty
+function PlayerStandard:_activate_mover(mover, velocity)
+	self._unit:activate_mover(mover, velocity)
 
--- 	return headbob_rate * walk_speed_mul
--- end
+	if self._state_data.on_ladder then
+		self._unit:mover():set_gravity(Vector3(0, 0, 0))
+	else
+		self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+	end
+
+	if self._is_jumping then
+		self._unit:mover():jump()
+		self._unit:mover():set_velocity(velocity)
+	end
+end
+
+function PlayerStandard:_end_action_ladder(t, input)
+	if not self._state_data.on_ladder then
+		return
+	end
+
+	self._state_data.on_ladder = false
+
+	if self._unit:mover() then
+		self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+	end
+
+	self._unit:movement():on_exit_ladder()
+end
 
 function PlayerStandard:_stance_entered(unequipped)
 	local stance_standard = tweak_data.player.stances.default[managers.player:current_state()] or tweak_data.player.stances.default.standard

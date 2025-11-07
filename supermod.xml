@@ -136,6 +136,7 @@
 							<post :hook_id="hand/playerhandstatebelt"/>
 							<post :hook_id="playerstandardvr"/>
 							<post :hook_id="playercarryvr"/>
+							<post :hook_id="playermenu"/>
 						</group>
 						<post :hook_id="playerstandard"/>
 						<post :hook_id="playertased"/>
