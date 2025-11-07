@@ -115,7 +115,7 @@ function NewNPCRaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, d
 
 	if self._alert_events then
 		result.rays = {
-			col_ray
+			col_ray,
 		}
 	end
 
@@ -134,7 +134,7 @@ function NewNPCRaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, d
 			local has_hit_wall = shoot_through_data and shoot_through_data.has_hit_wall
 			local has_passed_shield = shoot_through_data and shoot_through_data.has_passed_shield
 			local is_shoot_through, is_shield, is_wall = nil
-	
+
 			if not hit_unit then
 				local is_world_geometry = col_ray.unit:in_slot(managers.slot:get_mask("world_geometry"))
 
@@ -152,15 +152,15 @@ function NewNPCRaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, d
 					if not ap_skill then
 						break
 					end
-					
+
 					local parent_unit = col_ray.unit:parent()
 					local parent_tweak = parent_unit and parent_unit:base() and parent_unit:base()._tweak_table
 					local no_penetration = parent_tweak and tweak_data.character[parent_tweak] and tweak_data.character[parent_tweak].no_shield_penetration
-					
+
 					if no_penetration then
 						break
 					end
-					
+
 					is_shield = col_ray.unit:in_slot(8) and alive(parent_unit)
 				end
 			end
@@ -178,7 +178,16 @@ function NewNPCRaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, d
 			mvector3.set(self._shoot_through_data.from, direction)
 			mvector3.multiply(self._shoot_through_data.from, is_shield and 5 or 40)
 			mvector3.add(self._shoot_through_data.from, col_ray.position)
-			managers.game_play_central:queue_fire_raycast(Application:time() + 0.0125, self._unit, user_unit, self._shoot_through_data.from, mvector3.copy(direction), dmg_mul, shoot_player, self._shoot_through_data)
+			managers.game_play_central:queue_fire_raycast(
+				Application:time() + 0.0125,
+				self._unit,
+				user_unit,
+				self._shoot_through_data.from,
+				mvector3.copy(direction),
+				dmg_mul,
+				shoot_player,
+				self._shoot_through_data
+			)
 		until true
 	end
 
