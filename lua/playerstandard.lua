@@ -13,7 +13,7 @@ function PlayerStandard:init(unit)
 
 	-- Make sure that new increased gravity is set
 	self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
-	
+
 	self._standstill_damage_reduction_active = false
 	self._sniper_shot_is_charged = false
 	self._sniper_hell_sfx_played = false

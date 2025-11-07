@@ -24,7 +24,6 @@ function PlayerStandardVR:_end_action_ladder()
 	self._state_data._warp_start_time = TimerManager:game():time()
 end
 
-
 function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, weap_base, akimbo)
 	local action_wanted = pressed or held or released
 	action_wanted = action_wanted or self:is_shooting_count()
