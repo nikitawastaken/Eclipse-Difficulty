@@ -1,3 +1,29 @@
+-- Increase player gravity to make movement less floaty
+function PlayerStandardVR:_end_action_ladder()
+	if not self._state_data.on_ladder then
+		return
+	end
+
+	self._state_data.on_ladder = false
+
+	if self._unit:mover() then
+		self._unit:mover():set_velocity(Vector3())
+		self._unit:mover():set_gravity(Vector3(0, 0, tweak_data.player.gravity))
+	end
+
+	self._ext_movement:on_exit_ladder()
+	self._unit:sound():play("footstep_land")
+
+	if alive(self._ladder_directions) then
+		World:delete_unit(self._ladder_directions)
+
+		self._ladder_directions = nil
+	end
+
+	self._state_data.last_warp_pos = nil
+	self._state_data._warp_start_time = TimerManager:game():time()
+end
+
 function PlayerStandardVR:_check_fire_per_weapon(t, pressed, held, released, weap_base, akimbo)
 	local action_wanted = pressed or held or released
 	action_wanted = action_wanted or self:is_shooting_count()

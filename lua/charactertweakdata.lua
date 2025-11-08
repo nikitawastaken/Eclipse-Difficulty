@@ -1293,14 +1293,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "city_tank")
 
-	self.spooc.HEALTH_INIT = 18
-	self.spooc.headshot_dmg_mul = 3.75 -- 48 head health
+	self.spooc.HEALTH_INIT = 24
+	self.spooc.headshot_dmg_mul = 3.75 -- 64 head health
 	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
 	self.spooc.melee_weapon = "baton"
 	self.spooc.chatter = self.presets.enemy_chatter.cloaker
 
-	self.shadow_spooc.HEALTH_INIT = 18
-	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 48 head health
+	self.shadow_spooc.HEALTH_INIT = 24
+	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 64 head health
 	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
 
 	self.medic.HEALTH_INIT = 30

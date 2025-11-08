@@ -142,6 +142,7 @@
 							<post :hook_id="hand/playerhandstatebelt"/>
 							<post :hook_id="playerstandardvr"/>
 							<post :hook_id="playercarryvr"/>
+							<post :hook_id="playermenu"/>
 						</group>
 						<post :hook_id="playerstandard"/>
 						<post :hook_id="playertased"/>
@@ -299,6 +300,11 @@
 	</hooks>
 
 	<assets base_path="assets/">
+		<!-- perk decks and skill trees icons -->
+		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
+		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
+		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
+		
 		<!-- shotgun ammo types -->
 		<file name="effects/particles/weapons/sho_buckshot.effect"/>
 		<file name="effects/particles/weapons/sho_default.effect"/>
