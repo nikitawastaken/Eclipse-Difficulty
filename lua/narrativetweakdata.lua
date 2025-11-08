@@ -14,12 +14,6 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 	self.STARS = {
 		{
 			jcs = {
-				20,
-				10
-			}
-		},
-		{
-			jcs = {
 				30,
 				20,
 				10
@@ -77,6 +71,20 @@ Hooks:PostHook(NarrativeTweakData, "init", "eclipse_init", function(self)
 		},
 		{
 			jcs = {
+				90,
+				80,
+				70,
+				60,
+				50,
+				40,
+				30,
+				20,
+				10
+			}
+		},
+		{
+			jcs = {
+				100,
 				90,
 				80,
 				70,
