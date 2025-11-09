@@ -198,7 +198,7 @@ tweak_data.projectiles.underbarrel_m203_groza.projectile_trail = true
 
 -- Piglet
 tweak_data.projectiles.launcher_frag_m32 = deep_clone(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.launcher_frag_m32.damage = 30
+tweak_data.projectiles.launcher_frag_m32.damage = 24
 
 tweak_data.projectiles.launcher_incendiary_m32 = create_incendiary_grenade(tweak_data.projectiles.launcher_frag_m32, "medium")
 tweak_data.projectiles.launcher_electric_m32 = create_electric_grenade(tweak_data.projectiles.launcher_frag_m32)
@@ -206,7 +206,7 @@ tweak_data.projectiles.launcher_poison_m32 = create_poison_grenade(tweak_data.pr
 
 -- China Puff
 tweak_data.projectiles.launcher_frag_china = deep_clone(tweak_data.projectiles.launcher_frag)
-tweak_data.projectiles.launcher_frag_china.damage = 30
+tweak_data.projectiles.launcher_frag_china.damage = 36
 
 tweak_data.weapon_disable_crit_for_damage.launcher_frag_china = { explosion = false, fire = false } -- why is china puff allowed to crit lmao
 
@@ -239,7 +239,7 @@ tweak_data.projectiles.launcher_rocket.range = 500
 
 -- Commando 101
 tweak_data.projectiles.rocket_ray_frag = deep_clone(tweak_data.projectiles.launcher_rocket)
-tweak_data.projectiles.rocket_ray_frag.damage = 80
+tweak_data.projectiles.rocket_ray_frag.damage = 72
 tweak_data.projectiles.rocket_ray_frag.player_dmg_mul = 1 / 4
 tweak_data.projectiles.rocket_ray_frag.projectile_trail = true
 tweak_data.projectiles.rocket_ray_frag.adjust_z = 0
@@ -254,7 +254,7 @@ tweak_data.projectiles.cluster = deep_clone(tweak_data.projectiles.frag)
 tweak_data.projectiles.cluster.name_id = "bm_grenade_cluster"
 tweak_data.projectiles.cluster.effect_name = "effects/payday2/particles/impacts/shotgun_explosive_round"
 tweak_data.projectiles.cluster.init_timer = 2
-tweak_data.projectiles.cluster.range = 250
+tweak_data.projectiles.cluster.range = 200
 
 -- Incendiary Cluster Grenade
 tweak_data.weapon_disable_crit_for_damage.cluster_incendiary = { explosion = false, fire = false }
@@ -298,7 +298,7 @@ end
 
 for _, projectile in pairs(tweak_data.projectiles) do
 	if projectile.player_damage and projectile.damage then
-		projectile.player_damage = projectile.damage * (projectile.player_dmg_mul or 0.5)
+		projectile.player_damage = projectile.damage * (projectile.player_dmg_mul or 1 / 2)
 	end
 end
 

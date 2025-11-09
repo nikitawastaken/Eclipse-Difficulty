@@ -75,8 +75,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
 		assault_force_mul = 0.85,
-		recon_interval_variation_mul = 0.75,
-		push_delay_mul = 1.25,
 		difficulty_scaling = {
 			diff_init = 0.2,
 		},

@@ -2054,8 +2054,8 @@ end
 WeaponFactoryTweakData.grenade_launcher_ammo_override_map = {
 	["wpn_fps_gre_arbiter"] = "light",
 	["wpn_fps_gre_ms3gl"] = "light",
-	["wpn_fps_gre_m32"] = "medium",
-	["wpn_fps_gre_china"] = "medium",
+	["wpn_fps_gre_m32"] = "light",
+	["wpn_fps_gre_china"] = "heavy",
 	["wpn_fps_gre_m79"] = "heavy",
 	["wpn_fps_gre_slap"] = "heavy",
 	["wpn_fps_ass_contraband"] = "heavy",
