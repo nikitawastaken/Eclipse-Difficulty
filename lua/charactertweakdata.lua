@@ -537,7 +537,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = (72 + math.floor(diff_i_no_easy / 2) * 28) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	presets.gang_member_damage.HEALTH_INIT = (64 + math.floor(diff_i_no_easy / 2) * 28) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
