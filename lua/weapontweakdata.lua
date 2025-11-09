@@ -562,6 +562,7 @@ function WeaponTweakData:_init_weapons()
 			elseif cat_map.grenade_launcher then
 				weap_data.stats.suppression = 2
 				weap_data.stats.alert_size = 6
+				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2 / 3
 				weap_data.pickup_mul = weap_data.pickup_mul or is_primary and 1 / 2.5 or 1 / 5
 				weap_data.damage_near = 1000
 				weap_data.damage_far = 2000
@@ -2608,6 +2609,22 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ms3gl.FIRE_MODE = "single"
 	self.ms3gl.CAN_TOGGLE_FIREMODE = false
 
+	-- Piglet
+	self.m32.projectile_types = {
+		launcher_incendiary = "launcher_incendiary_m32",
+		launcher_electric = "launcher_electric_m32",
+		launcher_poison = "launcher_poison_m32",
+	}
+	self.m32.CLIP_AMMO_MAX = 6
+	self.m32.stats.damage = 40
+	self.m32.stats.spread = 20
+	self.m32.stats.recoil = 22
+	self.m32.stats.concealment = 16
+	self.m32.fire_mode_data.fire_rate = 60 / 100
+	self.m32.fire_rate_multiplier = 120 / 100
+	self.m32.reload_speed_multiplier = 1.45
+	self.m32.stats_modifiers = { damage = 6 }
+
 	-- Arbiter
 	self.arbiter.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_arbiter",
@@ -2617,43 +2634,13 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.arbiter.use_data.selection_index = 2
 	self.arbiter.CLIP_AMMO_MAX = 5
 	self.arbiter.stats.damage = 40
-	self.arbiter.stats.spread = 25
+	self.arbiter.stats.spread = 24
 	self.arbiter.stats.recoil = 10
 	self.arbiter.stats.concealment = 20
 	self.arbiter.fire_mode_data.fire_rate = 60 / 80
 	self.arbiter.fire_rate_multiplier = 75 / 80
 	self.arbiter.stats_modifiers = { damage = 6 }
-
-	-- Piglet
-	self.m32.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_m32",
-		launcher_electric = "launcher_electric_m32",
-		launcher_poison = "launcher_poison_m32",
-	}
-	self.m32.CLIP_AMMO_MAX = 6
-	self.m32.stats.damage = 50
-	self.m32.stats.spread = 22
-	self.m32.stats.recoil = 25
-	self.m32.stats.concealment = 16
-	self.m32.fire_mode_data.fire_rate = 60 / 60
-	self.m32.reload_speed_multiplier = 1.45
-	self.m32.stats_modifiers = { damage = 6 }
-
-	-- China Puff
-	self.china.projectile_types = {
-		launcher_incendiary = "launcher_incendiary_china",
-		launcher_electric = "launcher_electric_china",
-		launcher_poison = "launcher_poison_china",
-	}
-	self.china.use_data.selection_index = 2
-	self.china.CLIP_AMMO_MAX = 3
-	self.china.stats.damage = 50
-	self.china.stats.spread = 22
-	self.china.stats.recoil = 25
-	self.china.stats.concealment = 15
-	self.china.fire_mode_data.fire_rate = 60 / 50
-	self.china.stats_modifiers = { damage = 6 }
-
+	
 	-- GL40
 	self.gre_m79.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_m79",
@@ -2663,12 +2650,28 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.gre_m79.use_data.selection_index = 1
 	self.gre_m79.CLIP_AMMO_MAX = 1
 	self.gre_m79.stats.damage = 60
-	self.gre_m79.stats.spread = 25
-	self.gre_m79.stats.recoil = 25
+	self.gre_m79.stats.spread = 24
+	self.gre_m79.stats.recoil = 20
 	self.gre_m79.stats.concealment = 22
 	self.gre_m79.fire_mode_data.fire_rate = 60 / 60
 	self.gre_m79.stats_modifiers = { damage = 6 }
 
+	-- China Puff
+	self.china.projectile_types = {
+		launcher_incendiary = "launcher_incendiary_china",
+		launcher_electric = "launcher_electric_china",
+		launcher_poison = "launcher_poison_china",
+	}
+	self.china.use_data.selection_index = 2
+	self.china.CLIP_AMMO_MAX = 3
+	self.china.stats.damage = 60
+	self.china.stats.spread = 22
+	self.china.stats.recoil = 20
+	self.china.stats.concealment = 15
+	self.china.fire_mode_data.fire_rate = 60 / 50
+	self.china.fire_rate_multiplier = 45 / 50
+	self.china.stats_modifiers = { damage = 6 }
+	
 	-- Compact 40
 	self.slap.projectile_types = {
 		launcher_incendiary = "launcher_incendiary_slap",
@@ -2690,9 +2693,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	self.ray.use_data.selection_index = 2
 	table.insert(self.ray.categories, "heavy")
 	self.ray.CLIP_AMMO_MAX = 4
-	self.ray.stats.damage = 80
-	self.ray.stats.spread = 25
-	self.ray.stats.recoil = 25
+	self.ray.stats.damage = 72
+	self.ray.stats.spread = 24
+	self.ray.stats.recoil = 24
 	self.ray.stats.concealment = 4
 	self.ray.fire_mode_data.fire_rate = 60 / 60
 	self.ray.stats_modifiers = { damage = 10 }
@@ -2703,8 +2706,8 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	table.insert(self.rpg7.categories, "heavy")
 	self.rpg7.CLIP_AMMO_MAX = 1
 	self.rpg7.stats.damage = 96
-	self.rpg7.stats.spread = 25
-	self.rpg7.stats.recoil = 25
+	self.rpg7.stats.spread = 24
+	self.rpg7.stats.recoil = 24
 	self.rpg7.stats.concealment = 4
 	self.rpg7.fire_mode_data.fire_rate = 60 / 30
 	self.rpg7.stats_modifiers = { damage = 50 }
@@ -2899,9 +2902,9 @@ local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 
 local turret_damage_mul = {
-	{ 0, 1 },
-	{ 1500, 0.5 },
-	{ 3000, 0.25 },
+	{ 0, 2 },
+	{ 1500, 1 },
+	{ 3000, 0.5 },
 	{ 10000, 0 },
 }
 local suppression = {
