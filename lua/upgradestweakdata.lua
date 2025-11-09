@@ -857,7 +857,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.fire_trap.multibasic = "4"
-	self.skill_descs.fire_trap.multibasic2 = "2.5m"
+	self.skill_descs.fire_trap.multibasic2 = "2m"
 	self.skill_descs.fire_trap.multibasic3 = "25%"
 	self.skill_descs.fire_trap.multipro = "30"
 	self.skill_descs.fire_trap.multipro2 = "4"
