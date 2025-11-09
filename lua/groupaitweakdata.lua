@@ -3359,7 +3359,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
 			cs_swats = { 0.6, 0.2, 0 },
-			fbi_swats = { 1, 1, 1 },
+			fbi_swats = { 1, 0.9, 0.8 },
 			fbi_heavies = { 0, 0.4, 0.8 },
 			fbi_shield = { 0, 0.2, 0.4 },
 			fbi_taser = { 0, 0.15, 0.3 },
