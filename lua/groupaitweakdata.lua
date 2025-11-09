@@ -3301,7 +3301,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_cops = { 0.4, 0.2, 0 },
 			cs_swats = { 0.6, 0.8, 1 },
-			cs_heavies = { 0, 0, 0.5 },
+			cs_heavies = { 0, 0, 0.4 },
 			cs_shield = { 0, 0.15, 0.3 },
 		}
 		self.besiege.recon.groups = {
@@ -3318,7 +3318,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_cops = { 0.4, 0.2, 0 },
 			cs_swats = { 1, 1, 1 },
-			cs_heavies = { 0, 0.2, 0.6 },
+			cs_heavies = { 0, 0.25, 0.5 },
 			cs_shield = { 0, 0.15, 0.3 },
 			cs_taser = { 0, 0.1, 0.2 },
 			cs_bulldozer = { 0, 0, 0.15 },
@@ -3337,7 +3337,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.groups = {
 			cs_swats = { 0.8, 0.4, 0 },
 			fbi_swats = { 0.6, 0.8, 1 },
-			fbi_heavies = { 0, 0.2, 0.6 },
+			fbi_heavies = { 0, 0.25, 0.5 },
 			fbi_shield = { 0, 0.15, 0.3 },
 			fbi_taser = { 0, 0.1, 0.2 },
 			fbi_cloaker = { 0, 0.1, 0.2 },
@@ -3359,8 +3359,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
 			cs_swats = { 0.6, 0.2, 0 },
-			fbi_swats = { 1, 0.9, 0.8 },
-			fbi_heavies = { 0, 0.4, 0.8 },
+			fbi_swats = { 1, 1, 1 },
+			fbi_heavies = { 0, 0.3, 0.6 },
 			fbi_shield = { 0, 0.2, 0.4 },
 			fbi_taser = { 0, 0.15, 0.3 },
 			fbi_cloaker = { 0, 0.15, 0.3 },
