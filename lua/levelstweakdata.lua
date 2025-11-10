@@ -82,7 +82,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ukrainian_job.group_ai_preset = "small_urban"
 
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.branchbank.group_ai_settings.difficulty_scaling = { assault_delay = 60 } 
+	self.branchbank.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.branchbank.group_ai_preset = "small_urban"
 	self.branchbank.has_megaphone_cop = true
 
@@ -91,7 +91,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.four_stores.has_megaphone_cop = true
 
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.mallcrasher.group_ai_settings.difficulty_scaling = { assault_delay = 75 } 
+	self.mallcrasher.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
 	self.mallcrasher.group_ai_preset = "small_urban"
 	self.mallcrasher.has_megaphone_cop = true
 
