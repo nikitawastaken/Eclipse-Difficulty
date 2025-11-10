@@ -50,8 +50,8 @@ return {
 		},
 	},
 	[100022] = {
-		ponr = {
-			length = 3000,
+		ponr = { -- Alarm
+			length = 2100,
 			player_mul = { 1.75, 1.25, 1.125, 1 },
 		},
 	},
@@ -60,12 +60,12 @@ return {
 		reinforce = {
 			{
 				name = "escape_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-1425, 350, 25),
 			},
 			{
 				name = "escape_right",
-				force = 3,
+				force = 2,
 				position = Vector3(1425, 450, 25),
 			},
 		},

@@ -72,10 +72,10 @@ local chopper_trigger_times = {
 	},
 }
 return {
-	[100945] = {
+	[100945] = { -- Open train doors - heist start
 		ponr = {
-			length = 900,
-			player_mul = { 2, 1.25, 1, 0.8 },
+			length = 800,
+			player_mul = { 2, 1.25, 1, 0.75 },
 		},
 	},
 	[100810] = {
