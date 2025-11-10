@@ -46,11 +46,11 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 	self._steelsight_time = weapon_tweak.steelsight_time or 0.25
 
 	self._sprint_exit_time = weapon_tweak.sprint_exit_time or 0.4
-	
+
 	self._swap_speed_multiplier = weapon_tweak.swap_speed_multiplier or 1
 
 	self._fire_rate_multiplier = weapon_tweak.fire_rate_multiplier or 1
-	
+
 	self._reload_speed_multiplier = weapon_tweak.reload_speed_multiplier or 1
 
 	self._exit_run_speed_multiplier = weapon_tweak.exit_run_speed_multiplier or 1
@@ -59,7 +59,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 
 	local recoil_muls = weapon_tweak.stance_multipliers and weapon_tweak.stance_multipliers.recoil
 	local spread_muls = weapon_tweak.stance_multipliers and weapon_tweak.stance_multipliers.spread
-		
+
 	self._standing_hipfire_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.hipfire or 1
 	self._standing_crouching_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.crouching or 1
 	self._standing_steelsight_recoil_mul = recoil_muls and recoil_muls.standing and recoil_muls.standing.steelsight or 1
@@ -106,7 +106,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if stats.fire_mode_mul then
 			self._fire_mode_multipliers = stats.fire_mode_mul
 		end
-		
+
 		if stats.ammo_max_mul then
 			self._ammo_max_mul = (self._ammo_max_mul or 1) * stats.ammo_max_mul
 		end
@@ -114,7 +114,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "_update_stats_values", "eclipse_update_sta
 		if stats.steelsight_time_mul then
 			self._steelsight_time_mul = (self._steelsight_time_mul or 1) * stats.steelsight_time_mul
 		end
-		
+
 		local stats_stance_mul = stats.stance_mul
 
 		if stats_stance_mul then
@@ -653,7 +653,7 @@ function NewRaycastWeaponBase:replenish(is_starting_out_with_extra_ammo)
 		ammo_max_multiplier = ammo_max_multiplier * managers.player:upgrade_value(category, "extra_ammo_multiplier", 1)
 	end
 
-	ammo_max_multiplier = ammo_max_multiplier *  ammo_max_multiplier * (self._ammo_max_mul or 1)
+	ammo_max_multiplier = ammo_max_multiplier * ammo_max_multiplier * (self._ammo_max_mul or 1)
 	ammo_max_multiplier = ammo_max_multiplier + ammo_max_multiplier * (self._total_ammo_mod or 0)
 
 	if managers.player:has_category_upgrade("player", "add_armor_stat_skill_ammo_mul") then

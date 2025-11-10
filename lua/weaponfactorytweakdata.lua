@@ -267,7 +267,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -2
 	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750 }
 	table.delete(self.parts.wpn_fps_m4_upg_fg_mk12.perks, "fire_mode_auto")
-	
+
 	self.parts.wpn_fps_upg_ak_b_draco.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_draco.stats.concealment = 2
 
@@ -1207,14 +1207,14 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -5
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {}
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.perks = { "fire_mode_single" }
-	
+
 	-- car family
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 0
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -5
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {}
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.perks = { "fire_mode_single" }
-	
+
 	-- gewehr
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 0
@@ -1222,7 +1222,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_ass_g3_b_sniper.adds = nil -- wtf is this, why do you need a separate dummy part for ammo pickup specifically
 	self.parts.wpn_fps_ass_g3_b_sniper.no_magazine_balancing = true
 	self.parts.wpn_fps_ass_g3_b_sniper.perks = { "fire_mode_single" }
-	
+
 	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.damage = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.spread = -2
@@ -1233,7 +1233,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	-- falcon
 	self.parts.wpn_fps_ass_fal_fg_04.stats.damage = 0
 	self.parts.wpn_fps_ass_fal_fg_04.perks = { "fire_mode_single" }
-	
+
 	-- ks12
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.extra_ammo = -5
@@ -1242,7 +1242,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -2
 	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {}
 	self.parts.wpn_fps_ass_shak12_body_vks.no_magazine_balancing = true
-	
+
 	-- broomstick
 	--self.parts.wpn_fps_pis_c96_b_long.custom_stats = conversion_kit_stats.high_dmg.custom_stats
 	--self.parts.wpn_fps_pis_c96_b_long.stats = { value = 1, total_ammo_mod = -5, concealment = -6, spread = 2, recoil = -3, damage = 18, suppression = -5, alert_size = 4 }
@@ -2251,32 +2251,35 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 		local reference_new_tweak = tweak_data.weapon and tweak_data.weapon[reference_new_weap_id]
 
 		local stats_tbl = {}
-		local custom_stats_tbl = {}	
+		local custom_stats_tbl = {}
 		if reference_new_tweak and reference_old_tweak then
 			custom_stats_tbl.ammo_max_mul = reference_new_tweak.total_ammo_mul or 1
 			custom_stats_tbl.ammo_pickup_max_mul = reference_new_tweak.pickup_mul or 1
 			custom_stats_tbl.ammo_pickup_min_mul = reference_new_tweak.pickup_mul or 1
 			custom_stats_tbl.steelsight_move_speed_mul = reference_new_tweak.steelsight_move_speed_mul or reference_old_tweak.steelsight_move_speed_mul
-			custom_stats_tbl.steelsight_time_mul = reference_new_tweak.steelsight_time and reference_old_tweak.steelsight_time and (reference_new_tweak.steelsight_time / reference_old_tweak.steelsight_time) or 1
+			custom_stats_tbl.steelsight_time_mul = reference_new_tweak.steelsight_time
+					and reference_old_tweak.steelsight_time
+					and (reference_new_tweak.steelsight_time / reference_old_tweak.steelsight_time)
+				or 1
 			custom_stats_tbl.stance_mul = deep_clone(reference_new_tweak.stance_multipliers or reference_old_tweak.stance_multipliers)
 			custom_stats_tbl.fire_mode_mul = deep_clone(reference_new_tweak.fire_mode_multipliers or reference_old_tweak.fire_mode_multipliers)
-			
+
 			if reference_new_tweak.stats then
 				stats_tbl.alert_size = reference_new_tweak.stats.alert_size - reference_old_tweak.stats.alert_size
 				stats_tbl.suppression = reference_new_tweak.stats.suppression - reference_old_tweak.stats.suppression
 			end
 		end
-		
+
 		return stats_tbl, custom_stats_tbl
 	end
-	
+
 	local factory_id = upgrade_definitions[weap_id] and upgrade_definitions[weap_id].factory_id
 	local weap_data = tweak_data.weapon and tweak_data.weapon[weap_id]
 
 	if factory_id and weap_data then
 		local weap_damage, part_damage, damage_ratio
 		local dmg_modifier = weap_data.stats_modifiers and weap_data.stats_modifiers.damage or 1
-		
+
 		if damage then
 			weap_damage = math.min(weap_data.stats.damage, #tweak_data.weapon.stats.damage) * dmg_modifier
 			part_damage = math.round((damage - weap_damage) / dmg_modifier)
@@ -2284,17 +2287,17 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 		end
 
 		if self[factory_id] then
-			if not self[factory_id].override  then
+			if not self[factory_id].override then
 				self[factory_id].override = {}
 			end
-			
+
 			if not self[factory_id].override[part_id] then
 				self[factory_id].override[part_id] = {}
 			end
 
 			self[factory_id].override[part_id].stats = deep_clone(self.parts[part_id].stats) or {}
 			self[factory_id].override[part_id].custom_stats = deep_clone(self.parts[part_id].custom_stats) or {}
-			
+
 			local weap_category = weap_data.categories and weap_data.categories[1]
 			if category and weap_category then
 				local cat_swap_stats, cat_swap_custom_stats = category_swap_stats_table(weap_category, category)
@@ -2307,12 +2310,12 @@ function WeaponFactoryTweakData:_balance_conversion_kit(tweak_data, weap_id, par
 					self[factory_id].override[part_id].stats[k] = v
 				end
 			end
-			
+
 			self[factory_id].override[part_id].stats.damage = (self[factory_id].override[part_id].stats.damage or 0) + (part_damage or 0)
 			self[factory_id].override[part_id].custom_stats.ammo_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_max_mul or 1) * (damage_ratio or 1)
 			self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_max_mul or 1) * (damage_ratio or 1)
 			self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul = (self[factory_id].override[part_id].custom_stats.ammo_pickup_min_mul or 1) * (damage_ratio or 1)
-			
+
 			if round_total_ammo then
 				local weap_total_ammo = weap_data.AMMO_MAX
 				local part_total_ammo = weap_total_ammo * self[factory_id].override[part_id].custom_stats.ammo_max_mul
@@ -2327,7 +2330,7 @@ end
 -- Automatically balance underbarrel weapon stats based on concealment
 function WeaponFactoryTweakData:_balance_underbarrels(tweak_data)
 	local upgrade_definitions = tweak_data.upgrades.definitions
-	
+
 	for weap_id, weap_data in pairs(upgrade_definitions) do
 		local factory_id = weap_data.factory_id
 		local weapon_tweak = tweak_data.weapon and tweak_data.weapon[weap_id]
@@ -2349,7 +2352,7 @@ function WeaponFactoryTweakData:_balance_underbarrels(tweak_data)
 						if not self[factory_id].override[part_id].custom_stats then
 							self[factory_id].override[part_id].custom_stats = {}
 						end
-						
+
 						local weap_total_ammo = weapon_tweak.AMMO_MAX
 						local damage_ratio_round = math.round(weap_total_ammo * 0.5, weapon_tweak.CLIP_AMMO_MAX) / weap_total_ammo
 
@@ -2389,7 +2392,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_magazines(tweak_data)
 	self:_balance_akimbo(tweak_data)
 	self:_balance_underbarrels(tweak_data)
-	
+
 	self:_balance_conversion_kit(tweak_data, "g3", "wpn_fps_ass_g3_b_sniper", 64, nil, true)
 	self:_balance_conversion_kit(tweak_data, "fal", "wpn_fps_ass_fal_fg_04", 64, nil, true)
 	self:_balance_conversion_kit(tweak_data, "shak12", "wpn_fps_ass_shak12_body_vks", 72, nil, true)
@@ -2397,8 +2400,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_upg_ass_m4_b_beowulf", 48, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "m16", "wpn_fps_upg_ass_m4_b_beowulf", 64, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "ak74", "wpn_fps_upg_ass_ak_b_zastava", 48, "dmr", true)
-	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true) 
-	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true) 
+	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
+	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
 
 	self:_balance_silencers()
 end)
