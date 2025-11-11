@@ -2078,8 +2078,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = {
 					0,
-					diff_scale / 240,
-					diff_scale / 120,
+					diff_scale / 180,
+					diff_scale / 90,
 				},
 				amount_max = 1,
 				rank = 1,
@@ -2103,8 +2103,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = {
 					0,
-					diff_scale / 180,
-					diff_scale / 90,
+					diff_scale / 120,
+					diff_scale / 60,
 				},
 				amount_max = 1,
 				rank = 1,
