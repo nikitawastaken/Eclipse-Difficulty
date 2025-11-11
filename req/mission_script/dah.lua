@@ -79,17 +79,17 @@ return {
 		reinforce = {
 			{
 				name = "vault_entrance",
-				force = 3,
+				force = 2,
 				position = Vector3(-3300, -2100, 30),
 			},
 			{
 				name = "atrium_lower1",
-				force = 3,
+				force = 2,
 				position = Vector3(-3800, -800, 400),
 			},
 			{
 				name = "atrium_lower2",
-				force = 3,
+				force = 2,
 				position = Vector3(-2700, -800, 400),
 			},
 		},

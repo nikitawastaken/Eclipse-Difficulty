@@ -75,9 +75,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
 		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			diff_init = 0.2,
-		},
 	}
 	self.jewelry_store.group_ai_preset = "small_urban"
 
@@ -85,7 +82,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.ukrainian_job.group_ai_preset = "small_urban"
 
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.branchbank.group_ai_settings.difficulty_scaling.assault_delay = 60
+	self.branchbank.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.branchbank.group_ai_preset = "small_urban"
 	self.branchbank.has_megaphone_cop = true
 
@@ -94,7 +91,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.four_stores.has_megaphone_cop = true
 
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
-	self.mallcrasher.group_ai_settings.difficulty_scaling.assault_delay = 75
+	self.mallcrasher.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
 	self.mallcrasher.group_ai_preset = "small_urban"
 	self.mallcrasher.has_megaphone_cop = true
 
@@ -246,6 +243,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.55
+	self.mia_2.group_ai_settings.difficulty_scaling = { diff_init = 0.5, assault_add = 0.25 }
 
 	self.hox_1.group_ai_settings = {
 		assault_force_mul = 0.85,
@@ -507,7 +505,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		spawn_kill_distance = 1000,
 		assault_force_mul = 0.55,
 		recon_force_mul = 0.7,
-		push_delay_mul = 0.75,
+		cs_grenade_chance_times_mul = 1.5,
 		difficulty_scaling = {
 			assault_add = 0,
 		},

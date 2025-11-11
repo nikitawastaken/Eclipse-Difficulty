@@ -1577,7 +1577,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self._random_tactics = {
 		swat_rifle = {
-			swat_def = 4,
+			swat_def = 5,
 			swat_snk = 2,
 			swat_agg = 1,
 		},
@@ -3267,7 +3267,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.cs_grenade_lifetime = self.smoke_grenade_lifetime * 2
 	self.cs_grenade_chance_times = {
 		below_overkill and 60 or 45,
-		below_overkill and 150 or 120,
+		below_overkill and 120 or 90,
 	}
 
 	if difficulty_index <= 3 then

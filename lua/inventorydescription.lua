@@ -77,8 +77,8 @@ function WeaponDescription._get_skill_pickup(weapon, name, base_stats, mods_stat
 end
 
 function WeaponDescription._get_base_steelsight_time(_, name)
-	local mul = tweak_data.weapon[name].steelsight_speed_multiplier or 1
-	return tweak_data.weapon[name].steelsight_time / mul
+	local mul = tweak_data.weapon[name].steelsight_time_mul or 1
+	return tweak_data.weapon[name].steelsight_time * mul
 end
 
 -- it's janky but what can you do
@@ -89,8 +89,8 @@ function WeaponDescription._get_mods_steelsight_time(_, name, base, mods)
 	local multiplier = 1
 	for _, mod in ipairs(mods) do
 		local part_data = managers.weapon_factory:get_part_data_by_part_id_from_weapon(mod, factory_id, default_blueprint)
-		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_speed_multiplier then
-			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_speed_multiplier
+		if part_data and part_data.custom_stats and part_data.custom_stats.steelsight_time_mul then
+			multiplier = multiplier + 1 - part_data.custom_stats.steelsight_time_mul
 		end
 	end
 
@@ -131,7 +131,7 @@ function WeaponDescription._get_skill_steelsight_time(weapon, name, base_stats, 
 	if new == cur then
 		return false, 0
 	else
-		return true, result - base_stats.steelsight_time.value + mods_stats.steelsight_time.value
+		return true, result - base_stats.steelsight_time.value - mods_stats.steelsight_time.value
 	end
 end
 
