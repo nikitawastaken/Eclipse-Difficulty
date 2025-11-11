@@ -2886,7 +2886,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			army_snk = 1,
 		},
 	}
-	
+
 	self.timed_enemy_spawn_groups = {}
 
 	if self.fbi_heists[level_id] then
