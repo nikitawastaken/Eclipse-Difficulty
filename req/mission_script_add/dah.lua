@@ -24,7 +24,7 @@ local bulldozer = scripted_enemy.bulldozer_1
 local swat_ambush_table = { swat_rifle, swat_sg, swat_smg, heavy_rifle, heavy_sg }
 
 local diff_scaling = diff_i / 8
-local bags_required = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0)
+local bags_required = 4 + (is_pro_job and 2 or 0)
 
 local enabled_chance_extra_elevator_spawns = math.random() <= diff_scaling
 local enabled_chance_helipad_shields = math.random() <= diff_scaling
