@@ -2842,66 +2842,79 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			"flash_grenade",
 		},
 		army_def = {
+			"shield",
 			"ranged_fire",
 			"flash_grenade",
 			"smoke_grenade",
 		},
 		army_agg = {
+			"shield",
 			"charge",
 			"murder",
+			"flash_grenade",
+		},
+		army_snk = {
+			"flank",
+			"deathguard",
 			"flash_grenade",
 			"smoke_grenade",
 		},
 		army_spt = {
-			"unit_cover",
+			"shield_cover",
 			"ranged_fire",
-		},
-		bellmead_def = {
-			"ranged_fire",
-			"flash_grenade",
 			"smoke_grenade",
-		},
-		bellmead_agg = {
-			"charge",
-			"murder",
-			"flash_grenade",
-			"smoke_grenade",
-		},
-		bellmead_snk = {
-			"flank",
-			"deathguard",
-			"flash_grenade",
 		},
 	}
 
+	self._timed_random_tactics = {
+		murky_defensive = {
+			murky_def = 2,
+			murky_snk = 1,
+		},
+		murky_aggressive = {
+			murky_agg = 2,
+			murky_snk = 1,
+		},
+		fbi_readyteam = { "fbi_def", "fbi_snk" },
+		army_defensive = {
+			army_def = 4,
+			army_snk = 2,
+			army_agg = 1,
+		},
+		army_aggressive = {
+			army_agg = 2,
+			army_snk = 1,
+		},
+	}
+	
 	self.timed_enemy_spawn_groups = {}
 
 	if self.fbi_heists[level_id] then
-		self.timed_enemy_spawn_groups.fbi_group1 = Eclipse:require("timed_groups/fbi_group1")(self._timed_tactics)
+		self.timed_enemy_spawn_groups.fbi_group1 = Eclipse:require("timed_groups/fbi_group1")(self._timed_tactics, self._timed_random_tactics)
 	end
 
 	if self.murky_response_heists[level_id] then
-		self.timed_enemy_spawn_groups.murky_group1 = Eclipse:require("timed_groups/murky_group1")(self._timed_tactics)
+		self.timed_enemy_spawn_groups.murky_group1 = Eclipse:require("timed_groups/murky_group1")(self._timed_tactics, self._timed_random_tactics)
 	end
 
 	if self.murky_response_heists_scripted[level_id] then
-		self.timed_enemy_spawn_groups.murky_scripted_group1 = Eclipse:require("timed_groups/murky_scripted_group1")(self._timed_tactics)
+		self.timed_enemy_spawn_groups.murky_scripted_group1 = Eclipse:require("timed_groups/murky_scripted_group1")(self._timed_tactics, self._timed_random_tactics)
 	end
 
 	if self.us_army_heists[level_id] then
-		self.timed_enemy_spawn_groups.us_group1 = Eclipse:require("timed_groups/us_group1")(self._timed_tactics, difficulty_index)
+		self.timed_enemy_spawn_groups.us_group1 = Eclipse:require("timed_groups/us_group1")(self._timed_tactics, self._timed_random_tactics, difficulty_index)
 	end
 
 	if self.bellmead_response_heists[level_id] then
-		self.timed_enemy_spawn_groups.bellmead_group1 = Eclipse:require("timed_groups/bellmead_group1")(self._timed_tactics)
+		self.timed_enemy_spawn_groups.bellmead_group1 = Eclipse:require("timed_groups/bellmead_group1")(self._timed_tactics, self._timed_random_tactics)
 	end
 
 	if self.us_army_heists_scripted[level_id] then
-		self.timed_enemy_spawn_groups.us_scripted_group1 = Eclipse:require("timed_groups/us_scripted_group1")(self._timed_tactics, difficulty_index)
+		self.timed_enemy_spawn_groups.us_scripted_group1 = Eclipse:require("timed_groups/us_scripted_group1")(self._timed_tactics, self._timed_random_tactics, difficulty_index)
 	end
 
 	if self.gensec_tac_teams_heists[level_id] then
-		self.timed_enemy_spawn_groups.gensec_group1 = Eclipse:require("timed_groups/gensec_group1")(self._timed_tactics)
+		self.timed_enemy_spawn_groups.gensec_group1 = Eclipse:require("timed_groups/gensec_group1")(self._timed_tactics, self._timed_random_tactics)
 	end
 end
 
@@ -3438,12 +3451,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.groups.snowman_boss = { 0, 0, 0 }
 	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
 	-- timed groups
+	self.besiege.assault.groups.bellmead_group1 = { 0, 0, 0 }
 	self.besiege.assault.groups.fbi_group1 = { 0, 0, 0 }
+	self.besiege.assault.groups.gensec_group1 = { 0, 0, 0 }
 	self.besiege.assault.groups.murky_group1 = { 0, 0, 0 }
 	self.besiege.assault.groups.murky_scripted_group1 = { 0, 0, 0 }
 	self.besiege.assault.groups.us_group1 = { 0, 0, 0 }
 	self.besiege.assault.groups.us_scripted_group1 = { 0, 0, 0 }
-	self.besiege.assault.groups.bellmead_group1 = { 0, 0, 0 }
 
 	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
 	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
@@ -3452,12 +3466,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
 	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
 	-- timed groups
+	self.besiege.recon.groups.bellmead_group1 = { 0, 0, 0 }
 	self.besiege.recon.groups.fbi_group1 = { 0, 0, 0 }
+	self.besiege.recon.groups.gensec_group1 = { 0, 0, 0 }
 	self.besiege.recon.groups.murky_group1 = { 0, 0, 0 }
 	self.besiege.recon.groups.murky_scripted_group1 = { 0, 0, 0 }
 	self.besiege.recon.groups.us_group1 = { 0, 0, 0 }
 	self.besiege.recon.groups.us_scripted_group1 = { 0, 0, 0 }
-	self.besiege.recon.groups.bellmead_group1 = { 0, 0, 0 }
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)

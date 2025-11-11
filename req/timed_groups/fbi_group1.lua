@@ -1,4 +1,4 @@
-return function(timed_tactics)
+return function(timed_tactics, timed_random_tactics)
 	return {
 		timer_data = {
 			initial_delay = 0,
@@ -30,18 +30,12 @@ return function(timed_tactics)
 				end,
 				spawn = {
 					{
-						amount_min = 1,
-						rank = 1,
+						amount_max = 2,
+						rank = 2,
 						freq = 1,
 						unit = "fbi_readyteam",
 						tactics = timed_tactics.fbi_def,
-					},
-					{
-						amount_max = 2,
-						rank = 2,
-						freq = 0.5,
-						unit = "fbi_readyteam",
-						tactics = timed_tactics.fbi_snk,
+						random_tactics = timed_random_tactics.fbi_readyteam,
 					},
 				},
 				spawn_point_chk_ref = table.list_to_set({
