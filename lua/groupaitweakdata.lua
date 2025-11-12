@@ -1476,9 +1476,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			"rescue",
 			"flank",
 		},
-		swat_init = {
-			"ranged_fire",
-		},
 		swat_def = {
 			"ranged_fire",
 			"smoke_grenade",
@@ -1688,19 +1685,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "cs_heavy_1",
 				tactics = self._tactics.none,
 			},
-			{
-				freq = 1,
-				freq_by_diff = table_multiplier({
-					3 / diff_scale_low,
-					2 / diff_scale_low,
-					1 / diff_scale_low,
-				}, heavy_response and 0.25 or 1),
-				amount_max = 1,
-				freq = 1,
-				rank = 1,
-				unit = "cs_swat_1_3",
-				tactics = self._tactics.none,
-			},
 		},
 	}
 
@@ -1756,21 +1740,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 3, 3 },
 		spawn = {
 			{
-				freq = 1,
-				freq_by_diff = table_multiplier({
-					1.5,
-					0.5,
-					0,
-				}, heavy_response and 0.25 or small_urban and 1.5 or 1),
-				amount_max = 3,
-				rank = 1,
-				unit = "cs_swat",
-				tactics = self._tactics.swat_init,
-			},
-			{
-				freq = 0.75,
+				freq = 0.5,
 				amount_max = 2,
-				rank = 2,
+				rank = 1,
 				unit = "cs_swat_2",
 				tactics = self._tactics.swat_agg,
 				random_tactics = self._random_tactics.swat_shotgun,
@@ -1778,7 +1750,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.75,
 				amount_max = 2,
-				rank = 2,
+				rank = 1,
 				unit = "cs_swat_3",
 				tactics = self._tactics.swat_snk,
 				random_tactics = self._random_tactics.swat_smg,
@@ -1786,8 +1758,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 2,
-				rank = 2,
+				amount_max = 3,
+				rank = 1,
 				unit = "cs_swat_1",
 				tactics = self._tactics.swat_def,
 				random_tactics = self._random_tactics.swat_rifle,
@@ -2014,18 +1986,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "fbi_heavy_1",
 				tactics = self._tactics.shield_spt,
 			},
-			{
-				freq = 1,
-				freq_by_diff = table_multiplier({
-					15 / diff_scale,
-					10 / diff_scale,
-					5 / diff_scale,
-				}, heavy_response and 0.25 or 1),
-				amount_max = 1,
-				rank = 1,
-				unit = "fbi_swat_1_3",
-				tactics = self._tactics.shield_spt,
-			},
 			self:_distance_weighted_spawn_entry({
 				freq = 1,
 				freq_by_diff = {
@@ -2119,21 +2079,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 3, 4 },
 		spawn = {
 			{
-				freq = 1,
-				freq_by_diff = table_multiplier({
-					1.5,
-					0.5,
-					0,
-				}, heavy_response and 0.25 or small_urban and 1.5 or 1),
-				amount_max = 3,
-				rank = 2,
-				unit = "fbi_swat",
-				tactics = self._tactics.swat_init,
-			},
-			{
-				freq = 0.75,
+				freq = 0.5,
 				amount_max = 2,
-				rank = 3,
+				rank = 2,
 				unit = "fbi_swat_2",
 				tactics = self._tactics.swat_agg,
 				random_tactics = self._random_tactics.swat_shotgun,
@@ -2141,7 +2089,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 0.75,
 				amount_max = 2,
-				rank = 3,
+				rank = 2,
 				unit = "fbi_swat_3",
 				tactics = self._tactics.swat_snk,
 				random_tactics = self._random_tactics.swat_smg,
@@ -2149,8 +2097,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 2,
-				rank = 3,
+				amount_max = 3,
+				rank = 2,
 				unit = "fbi_swat_1",
 				tactics = self._tactics.swat_def,
 				random_tactics = self._random_tactics.swat_rifle,
@@ -2417,18 +2365,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "elite_heavy_1",
 				tactics = self._tactics.shield_spt,
 			},
-			{
-				freq = 1,
-				freq_by_diff = table_multiplier({
-					20 / diff_scale,
-					15 / diff_scale,
-					10 / diff_scale,
-				}, heavy_response and 0.25 or 1),
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_swat_1_3",
-				tactics = self._tactics.shield_spt,
-			},
 			self:_distance_weighted_spawn_entry({
 				freq = 1,
 				freq_by_diff = {
@@ -2460,7 +2396,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 3, 4 },
 		spawn = {
 			{
-				freq = 0.75,
+				freq = 0.5,
 				amount_max = 2,
 				rank = 2,
 				unit = "elite_swat_2",
@@ -2478,7 +2414,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				amount_min = 1,
-				amount_max = 2,
+				amount_max = 3,
 				rank = 2,
 				unit = "elite_swat_1",
 				tactics = self._tactics.swat_def,

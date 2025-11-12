@@ -372,11 +372,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.taser = based_on(presets.weapon.swat, {
 		aim_delay_tase = {
-			0.5 * aim_delay_mul,
+			0,
 			1 * aim_delay_mul,
 		},
 		tase_sphere_cast_radius = 15,
-		tase_distance = 1400,
+		tase_distance = 1500,
 	})
 
 	presets.weapon.taser.is_rifle.autofire_rounds = nil
@@ -385,6 +385,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	presets.weapon.taser.is_shotgun_pump.tase_sphere_cast_radius = 25,
+	presets.weapon.taser.is_shotgun_pump.tase_distance = 1200,
 	presets.weapon.taser.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
