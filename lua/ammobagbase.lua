@@ -29,3 +29,14 @@ Hooks:PreHook(AmmoBagBase, "_set_empty", "eclipse__set_empty", function(self)
 end)
 
 -- Thanks Hoppip for this one too
+
+-- Mark ammo bags for reinforce groups
+Hooks:PostHook(AmmoBagBase, "setup", "eclipse_setup", function(self)
+	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[self:get_name_id()] and tweak_data.group_ai.use_equipment_reenforce then
+		managers.groupai:state():set_area_min_police_force(self._unit:key(), 1, self._unit:position())
+	end
+end)
+
+Hooks:PostHook(AmmoBagBase, "_set_empty", "eclipse_set_empty", function(self)
+	managers.groupai:state():set_area_min_police_force(self._unit:key())
+end)
