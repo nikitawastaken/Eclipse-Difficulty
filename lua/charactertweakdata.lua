@@ -111,7 +111,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local special_dmg_mul_tbl = { 0.25, 0.5, 0.75, 1, 1, 1, 1, 1 }
 	local special_dmg_mul = special_dmg_mul_tbl[diff_i]
 
-	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
+	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.4, 0.3, 0.3, 0.3 }
 	local aim_delay_mul = aim_delay_tbl[diff_i]
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
@@ -329,7 +329,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.sniper = based_on(presets.weapon.swat)
 
 	local cs_sniper_aim_delay_mul = aim_delay_mul ^ 0.6
-	local elite_sniper_aim_delay_mul = aim_delay_mul ^ 1.25
 
 	presets.weapon.sniper.is_sniper.aim_delay = {
 		1 * cs_sniper_aim_delay_mul,
@@ -359,10 +358,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
-		1 * elite_sniper_aim_delay_mul,
-		2 * elite_sniper_aim_delay_mul,
+		1 * aim_delay_mul,
+		2 * aim_delay_mul,
 	}
-	presets.weapon.elite_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * elite_sniper_aim_delay_mul
+	presets.weapon.elite_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * aim_delay_mul
 	presets.weapon.elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },

@@ -1574,7 +1574,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 
 	self._random_tactics = {
 		swat_rifle = {
-			swat_def = 5,
+			swat_def = 4,
 			swat_snk = 2,
 			swat_agg = 1,
 		},
