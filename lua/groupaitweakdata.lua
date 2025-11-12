@@ -2916,11 +2916,11 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			-- Utils.PrintTable(self.difficulty_scaling)
 		end
 	end
-	
+
 	if level_settings.use_equipment_reenforce then
 		self.use_equipment_reenforce = level_settings.use_equipment_reenforce
 	end
-	
+
 	for _, group_ai_state_name in pairs({ "besiege", "street", "safehouse", "ponr", "skirmish" }) do
 		local assault_state = self[group_ai_state_name]
 		local level_group_ai_state = (lvl_tweak and lvl_tweak.group_ai_state or "besiege") == group_ai_state_name
