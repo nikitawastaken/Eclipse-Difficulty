@@ -179,6 +179,17 @@ function GrenadeCrateBase:_set_empty()
 	end
 end
 
+-- Mark grenade cases for reinforce groups
+Hooks:PostHook(GrenadeCrateBase, "setup", "eclipse_setup", function(self)
+	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[self:get_name_id()] and tweak_data.group_ai.use_equipment_reenforce then
+		managers.groupai:state():set_area_min_police_force(self._unit:key(), 1, self._unit:position())
+	end
+end)
+
+Hooks:PostHook(GrenadeCrateBase, "_set_empty", "eclipse_set_empty", function(self)
+	managers.groupai:state():set_area_min_police_force(self._unit:key())
+end)
+
 -- Ordnance bag behaves as a reskin to the grenade case
 function GrenadeCrateDeployableBase.spawn(pos, rot, grenade_upgrade_lvl, peer_id)
 	local unit_name = "units/pd2_dlc_mxm/equipment/gen_equipment_grenade_crate/gen_equipment_grenade_crate"
@@ -337,3 +348,14 @@ function GrenadeCrateDeployableBase:_set_empty()
 		unit:set_enabled(false)
 	end
 end
+
+-- Mark grenade cases for reinforce groups
+Hooks:PostHook(GrenadeCrateDeployableBase, "setup", "eclipse_setup", function(self)
+	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[self:get_name_id()] and tweak_data.group_ai.use_equipment_reenforce then
+		managers.groupai:state():set_area_min_police_force(self._unit:key(), 1, self._unit:position())
+	end
+end)
+
+Hooks:PostHook(GrenadeCrateDeployableBase, "_set_empty", "eclipse_set_empty", function(self)
+	managers.groupai:state():set_area_min_police_force(self._unit:key())
+end)

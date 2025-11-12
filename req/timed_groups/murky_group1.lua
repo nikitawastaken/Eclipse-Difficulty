@@ -1,4 +1,4 @@
-return function(timed_tactics)
+return function(timed_tactics, timed_random_tactics)
 	return {
 		timer_data = {
 			initial_delay = 0,
@@ -30,25 +30,20 @@ return function(timed_tactics)
 				end,
 				spawn = {
 					{
+						amount_max = 2,
+						rank = 1,
+						freq = 0.5,
+						unit = "murkywater",
+						tactics = timed_tactics.murky_agg,
+						random_tactics = timed_random_tactics.murky_aggressive,
+					},
+					{
 						amount_min = 1,
 						rank = 1,
 						freq = 1,
 						unit = "murkywater",
 						tactics = timed_tactics.murky_def,
-					},
-					{
-						amount_max = 2,
-						rank = 2,
-						freq = 0.5,
-						unit = "murkywater",
-						tactics = timed_tactics.murky_agg,
-					},
-					{
-						amount_max = 2,
-						rank = 2,
-						freq = 0.5,
-						unit = "murkywater",
-						tactics = timed_tactics.murky_snk,
+						random_tactics = timed_random_tactics.murky_defensive,
 					},
 				},
 				spawn_point_chk_ref = table.list_to_set({

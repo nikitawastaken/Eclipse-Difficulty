@@ -383,6 +383,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.chew.group_ai_settings = {
+		use_equipment_reenforce = false,
 		assault_force_mul = 0.4,
 		cs_grenade_chance_times_mul = 1.5,
 		special_limit_add = {
@@ -502,6 +503,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.wwh.group_ai_preset = "remote"
 
 	self.hvh.group_ai_settings = {
+		use_equipment_reenforce = false,
 		spawn_kill_distance = 1000,
 		assault_force_mul = 0.55,
 		recon_force_mul = 0.7,

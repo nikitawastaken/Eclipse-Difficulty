@@ -192,13 +192,14 @@
 	</constraints>
 	
 	<decal_surfaces default_material="flesh" >
-		<decal_mesh name="dm_helmet_swat" 					enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_fbi_swat" 				enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_swat_heavy" 			enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_shield" 				enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_mandibles" 					enabled="false" material="steel_no_decal" />
-		<decal_mesh name="dm_helmet_shield_glass" 			enabled="false" material="glass_no_decal" />
-		<decal_mesh name="dm_visor" 						enabled="false" material="glass_no_decal" />
+		<decal_mesh name="dm_helmet_swat" 						enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet_fbi_swat" 					enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet_swat_heavy" 				enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet_shield" 					enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_mandibles" 						enabled="false" material="steel_no_decal" />
+		<decal_mesh name="dm_helmet_shield_glass" 				enabled="false" material="glass_no_decal" />
+		<decal_mesh name="dm_helmet_city_shield_glass" 			enabled="false" material="glass_no_decal" />
+		<decal_mesh name="dm_visor" 							enabled="false" material="glass_no_decal" />
 	</decal_surfaces>
 
 	<graphics>

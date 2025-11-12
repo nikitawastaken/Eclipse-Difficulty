@@ -111,7 +111,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local special_dmg_mul_tbl = { 0.25, 0.5, 0.75, 1, 1, 1, 1, 1 }
 	local special_dmg_mul = special_dmg_mul_tbl[diff_i]
 
-	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
+	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.4, 0.3, 0.3, 0.3 }
 	local aim_delay_mul = aim_delay_tbl[diff_i]
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
@@ -329,7 +329,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.sniper = based_on(presets.weapon.swat)
 
 	local cs_sniper_aim_delay_mul = aim_delay_mul ^ 0.6
-	local elite_sniper_aim_delay_mul = aim_delay_mul ^ 1.25
 
 	presets.weapon.sniper.is_sniper.aim_delay = {
 		1 * cs_sniper_aim_delay_mul,
@@ -359,10 +358,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
-		1 * elite_sniper_aim_delay_mul,
-		2 * elite_sniper_aim_delay_mul,
+		1 * aim_delay_mul,
+		2 * aim_delay_mul,
 	}
-	presets.weapon.elite_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * elite_sniper_aim_delay_mul
+	presets.weapon.elite_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * aim_delay_mul
 	presets.weapon.elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -372,11 +371,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.taser = based_on(presets.weapon.swat, {
 		aim_delay_tase = {
-			0.5 * aim_delay_mul,
+			0,
 			1 * aim_delay_mul,
 		},
 		tase_sphere_cast_radius = 15,
-		tase_distance = 1400,
+		tase_distance = 1500,
 	})
 
 	presets.weapon.taser.is_rifle.autofire_rounds = nil
@@ -385,6 +384,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
+	presets.weapon.taser.is_shotgun_pump.tase_sphere_cast_radius = 25
+	presets.weapon.taser.is_shotgun_pump.tase_distance = 1200
 	presets.weapon.taser.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },

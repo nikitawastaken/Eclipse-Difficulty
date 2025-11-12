@@ -10,3 +10,14 @@ function DoctorBagBase:_set_visual_stage()
 		end
 	end
 end
+
+-- Mark doctor bags for reinforce groups
+Hooks:PostHook(DoctorBagBase, "setup", "eclipse_setup", function(self)
+	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[self:get_name_id()] and tweak_data.group_ai.use_equipment_reenforce then
+		managers.groupai:state():set_area_min_police_force(self._unit:key(), 1, self._unit:position())
+	end
+end)
+
+Hooks:PostHook(DoctorBagBase, "_set_empty", "eclipse_set_empty", function(self)
+	managers.groupai:state():set_area_min_police_force(self._unit:key())
+end)
