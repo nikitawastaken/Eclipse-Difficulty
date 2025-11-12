@@ -2917,7 +2917,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 		end
 	end
 
-	if level_settings.use_equipment_reenforce then
+	if level_settings.use_equipment_reenforce ~= nil then
 		self.use_equipment_reenforce = level_settings.use_equipment_reenforce
 	end
 
