@@ -181,20 +181,15 @@ end
 
 -- Mark grenade cases for reinforce groups
 Hooks:PostHook(GrenadeCrateBase, "setup", "eclipse_setup", function(self)
-	if
-		tweak_data.group_ai.equipment_reenforce
-		and tweak_data.group_ai.equipment_reenforce[self:get_name_id()]
-		and tweak_data.group_ai.use_equipment_reenforce
-		and not managers.groupai:state():check_deployable_nav_seg(self._deployed_nav_seg_id)
-	then
-		managers.groupai:state():set_area_min_police_force(self._unit:key(), 1, self._unit:position())
-		managers.groupai:state():register_deployable_nav_seg(self._deployed_nav_seg_id)
-	end
+	self._deployed_nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
 end)
 
-Hooks:PostHook(GrenadeCrateBase, "_set_empty", "eclipse_set_empty", function(self)
-	managers.groupai:state():set_area_min_police_force(self._unit:key())
-	managers.groupai:state():unregister_deployable_nav_seg(self._deployed_nav_seg_id)
+Hooks:PostHook(GrenadeCrateBase, "update", "eclipse_update", function(self)
+	if not managers.groupai:state():check_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
+		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
+	elseif self._empty then
+		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
+	end
 end)
 
 -- Ordnance bag behaves as a reskin to the grenade case
@@ -358,18 +353,13 @@ end
 
 -- Mark grenade cases for reinforce groups
 Hooks:PostHook(GrenadeCrateDeployableBase, "setup", "eclipse_setup", function(self)
-	if
-		tweak_data.group_ai.equipment_reenforce
-		and tweak_data.group_ai.equipment_reenforce[self:get_name_id()]
-		and tweak_data.group_ai.use_equipment_reenforce
-		and not managers.groupai:state():check_deployable_nav_seg(self._deployed_nav_seg_id)
-	then
-		managers.groupai:state():set_area_min_police_force(self._unit:key(), 1, self._unit:position())
-		managers.groupai:state():register_deployable_nav_seg(self._deployed_nav_seg_id)
-	end
+	self._deployed_nav_seg_id = managers.navigation:get_nav_seg_from_pos(self._unit:position(), true)
 end)
 
-Hooks:PostHook(GrenadeCrateDeployableBase, "_set_empty", "eclipse_set_empty", function(self)
-	managers.groupai:state():set_area_min_police_force(self._unit:key())
-	managers.groupai:state():unregister_deployable_nav_seg(self._deployed_nav_seg_id)
+Hooks:PostHook(GrenadeCrateDeployableBase, "update", "eclipse_update", function(self)
+	if not managers.groupai:state():check_deployable_nav_seg(self._deployed_nav_seg_id) and not self._empty then
+		managers.groupai:state():add_deployable_reenforce(self:get_name_id(), self._unit, self._unit:position(), self._deployed_nav_seg_id)
+	elseif self._empty then
+		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
+	end
 end)

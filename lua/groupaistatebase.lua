@@ -155,17 +155,9 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 	}
 end)
 
--- Add a function to register and unregister deployable nav_segs
+-- Add a function to check if a deployble is within a nav_seg
 function GroupAIStateBase:check_deployable_nav_seg(nav_seg_id)
 	return self._deployable_nav_segs[nav_seg_id]
-end
-
-function GroupAIStateBase:register_deployable_nav_seg(nav_seg_id)
-	self._deployable_nav_segs[nav_seg_id] = true
-end
-
-function GroupAIStateBase:unregister_deployable_nav_seg(nav_seg_id)
-	self._deployable_nav_segs[nav_seg_id] = nil
 end
 
 -- Add megaphone cop lines to specific heists (from Restoration Mod)
