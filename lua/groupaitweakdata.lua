@@ -3187,7 +3187,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- RECON / REENFORCE --
 
 	-- Reenforce spawn interval
-	self.besiege.reenforce.min_interval = { 5, 10, 15 }
+	self.besiege.reenforce.min_interval = { 5, 7.5, 10 }
 	self.besiege.reenforce.interval = { 10, 20, 30 }
 	self.use_equipment_reenforce = true
 	self.equipment_reenforce = {
