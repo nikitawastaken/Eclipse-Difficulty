@@ -667,13 +667,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.only_light_hurt.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 	presets.hurt_severities.only_light_hurt.explosion.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 
-	presets.hurt_severities.only_explosion_and_fire = deep_clone(presets.hurt_severities.base)
-	presets.hurt_severities.only_explosion_and_fire.bullet.zones = {
-		{ none = 1 },
-	}
-	presets.hurt_severities.only_explosion_and_fire.melee.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
-	presets.hurt_severities.only_explosion_and_fire.poison.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
-
+	presets.hurt_severities.no_bullet_melee = deep_clone(presets.hurt_severities.base)
+	presets.hurt_severities.no_bullet_melee.bullet.zones = deep_clone(presets.hurt_severities.no_hurts.bullet.zones)
+	presets.hurt_severities.no_bullet_melee.melee.zones = deep_clone(presets.hurt_severities.no_hurts.melee.zones)
+	
 	presets.hurt_severities.no_heavy_hurt = deep_clone(presets.hurt_severities.base)
 	presets.hurt_severities.no_heavy_hurt.bullet.zones = {
 		{
@@ -740,6 +737,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		},
 	}
 
+	presets.hurt_severities.no_heavy_hurt_elite = deep_clone(presets.hurt_severities.no_heavy_hurt)
+	presets.hurt_severities.no_heavy_hurt_elite.bullet.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
+	presets.hurt_severities.no_heavy_hurt_elite.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
+	
 	-- Setup surrender presets
 	presets.surrender.easy = {
 		base_chance = 0,
@@ -848,6 +849,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.suppression.hard_agg.react_point = { 6, 8 }
 	presets.suppression.hard_agg.brown_point = { 9, 11 }
 
+	presets.suppression.very_hard = deep_clone(presets.suppression.hard_agg)
+	presets.suppression.very_hard.panic_chance_mul = 0.4
+	presets.suppression.very_hard.duration = { 3, 5 }
+	presets.suppression.very_hard.react_point = { 10, 12 }
+	presets.suppression.very_hard.brown_point = { 12, 14 }
+	
 	-- Enemy chatter
 	presets.enemy_chatter.cop.aggressive = true
 	presets.enemy_chatter.cop.go_go = true
@@ -1129,20 +1136,17 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_heavy_swat.HEALTH_INIT = 28
 	self.city_heavy_swat.headshot_dmg_mul = 2.5 -- 112 head health
 	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
-	self.city_heavy_swat.suppression = self.presets.suppression.hard_agg
-	self.city_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.city_heavy_swat.suppression = self.presets.suppression.very_hard
+	self.city_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt_elite
 	table.insert(self._enemy_list, "city_heavy_swat")
 
 	self.zeal_swat = deep_clone(self.city_swat)
 	table.insert(self._enemy_list, "zeal_swat")
 
-	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
+	self.zeal_heavy_swat = deep_clone(self.city_heavy_swat)
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
 	self.hrt = deep_clone(self.fbi)
-	self.hrt.HEALTH_INIT = 6
-	self.hrt.headshot_dmg_mul = 2.5
-	self.hrt.access = "swat"
 	table.insert(self._enemy_list, "hrt")
 
 	self.security_mcmansion = deep_clone(self.swat)
@@ -1296,13 +1300,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.spooc.HEALTH_INIT = 24
 	self.spooc.headshot_dmg_mul = 3.75 -- 64 head health
-	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
+	self.spooc.damage.hurt_severity = self.presets.hurt_severities.no_bullet_melee
 	self.spooc.melee_weapon = "baton"
 	self.spooc.chatter = self.presets.enemy_chatter.cloaker
 
 	self.shadow_spooc.HEALTH_INIT = 24
 	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 64 head health
-	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
+	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.no_bullet_melee
 
 	self.medic.HEALTH_INIT = 30
 	self.medic.headshot_dmg_mul = 2.5 -- 120 head health
