@@ -670,7 +670,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.no_bullet_melee = deep_clone(presets.hurt_severities.base)
 	presets.hurt_severities.no_bullet_melee.bullet.zones = deep_clone(presets.hurt_severities.no_hurts.bullet.zones)
 	presets.hurt_severities.no_bullet_melee.melee.zones = deep_clone(presets.hurt_severities.no_hurts.melee.zones)
-	
+
 	presets.hurt_severities.no_heavy_hurt = deep_clone(presets.hurt_severities.base)
 	presets.hurt_severities.no_heavy_hurt.bullet.zones = {
 		{
@@ -740,7 +740,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.no_heavy_hurt_elite = deep_clone(presets.hurt_severities.no_heavy_hurt)
 	presets.hurt_severities.no_heavy_hurt_elite.bullet.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 	presets.hurt_severities.no_heavy_hurt_elite.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
-	
+
 	-- Setup surrender presets
 	presets.surrender.easy = {
 		base_chance = 0,
@@ -854,7 +854,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.suppression.very_hard.duration = { 3, 5 }
 	presets.suppression.very_hard.react_point = { 10, 12 }
 	presets.suppression.very_hard.brown_point = { 12, 14 }
-	
+
 	-- Enemy chatter
 	presets.enemy_chatter.cop.aggressive = true
 	presets.enemy_chatter.cop.go_go = true
