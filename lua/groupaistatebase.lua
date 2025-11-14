@@ -118,6 +118,7 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
+	self._deployable_nav_segs = {}
 
 	self._mga_hostage_kills = self._mga_hostage_kills or 0
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
@@ -153,6 +154,19 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		marksman = true,
 	}
 end)
+
+-- Add a function to register and unregister deployable nav_segs
+function GroupAIStateBase:check_deployable_nav_seg(nav_seg_id)
+	return self._deployable_nav_segs[nav_seg_id]
+end
+
+function GroupAIStateBase:register_deployable_nav_seg(nav_seg_id)
+	self._deployable_nav_segs[nav_seg_id] = true
+end
+
+function GroupAIStateBase:unregister_deployable_nav_seg(nav_seg_id)
+	self._deployable_nav_segs[nav_seg_id] = nil
+end
 
 -- Add megaphone cop lines to specific heists (from Restoration Mod)
 function GroupAIStateBase:_post_megaphone_event(event)
