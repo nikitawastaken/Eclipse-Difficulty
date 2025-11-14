@@ -358,11 +358,13 @@ end
 
 -- Mark grenade cases for reinforce groups
 Hooks:PostHook(GrenadeCrateDeployableBase, "setup", "eclipse_setup", function(self)
-	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[self:get_name_id()] and tweak_data.group_ai.use_equipment_reenforce then
+	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[self:get_name_id()] and tweak_data.group_ai.use_equipment_reenforce and not managers.groupai:state():check_deployable_nav_seg(self._deployed_nav_seg_id) then
 		managers.groupai:state():set_area_min_police_force(self._unit:key(), 1, self._unit:position())
+		managers.groupai:state():register_deployable_nav_seg(self._deployed_nav_seg_id)
 	end
 end)
 
 Hooks:PostHook(GrenadeCrateDeployableBase, "_set_empty", "eclipse_set_empty", function(self)
 	managers.groupai:state():set_area_min_police_force(self._unit:key())
+	managers.groupai:state():unregister_deployable_nav_seg(self._deployed_nav_seg_id)
 end)
