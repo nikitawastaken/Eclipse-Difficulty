@@ -43,18 +43,18 @@ local terminator_dozer_2 = {
 	},
 }
 return {
-    -- begin FFO countdown when doing blood samples objective
+	-- begin FFO countdown when doing blood samples objective
 	[103450] = {
-        ponr = {
+		ponr = {
 			length = 900,
 			player_mul = { 1, 1, 0.867, 0.666 }, -- 666, so scary
 		},
-        -- begin dozers spam
+		-- begin dozers spam
 		on_executed = {
 			{ id = 400063, delay = 0 },
 		},
 	},
-    -- add sniper access to SO navlinks
+	-- add sniper access to SO navlinks
 	[103238] = cops_so,
 	[103237] = cops_so,
 	[103272] = cops_so,
@@ -77,7 +77,7 @@ return {
 	[103185] = cops_so,
 	[103186] = cops_so,
 	[103193] = cops_so,
-    -- spawn snipers on DW when the assault ends for the first time
+	-- spawn snipers on DW when the assault ends for the first time
 	[103278] = {
 		on_executed = {
 			{ id = 400034, delay = 15 },
@@ -90,7 +90,7 @@ return {
 		},
 	},
 	-- open the elevator doors when you reach the top
-    -- yes, they forgot to make it open for some reason
+	-- yes, they forgot to make it open for some reason
 	[103586] = {
 		on_executed = {
 			{ id = 102876, delay = 2 },
@@ -168,7 +168,7 @@ return {
 	-- 50% chance for the event to happen
 	[104124] = { chance = 50 },
 	-- replace the shield and blackdozer with elite dozers
-    -- also change their position and spawn anim to match their spawn arrival from PDTH
+	-- also change their position and spawn anim to match their spawn arrival from PDTH
 	[104113] = terminator_dozer_1,
 	[104112] = terminator_dozer_2,
 	-- tweak elevator cloakers respawns (up to 6 cloakers on DW)
