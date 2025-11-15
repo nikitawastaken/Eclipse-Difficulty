@@ -43,12 +43,18 @@ local terminator_dozer_2 = {
 	},
 }
 return {
-	-- spawn snipers on Eclipse
-	[103278] = {
+    -- begin FFO countdown when doing blood samples objective
+	[103450] = {
+        ponr = {
+			length = 900,
+			player_mul = { 1, 1, 0.867, 0.666 }, -- 666, so scary
+		},
+        -- begin dozers spam
 		on_executed = {
-			{ id = 400034, delay = 15 },
+			{ id = 400063, delay = 0 },
 		},
 	},
+    -- add sniper access to SO navlinks
 	[103238] = cops_so,
 	[103237] = cops_so,
 	[103272] = cops_so,
@@ -71,10 +77,10 @@ return {
 	[103185] = cops_so,
 	[103186] = cops_so,
 	[103193] = cops_so,
-	-- trigger dozers event
-	[103450] = {
+    -- spawn snipers on DW when the assault ends for the first time
+	[103278] = {
 		on_executed = {
-			{ id = 400063, delay = 0 },
+			{ id = 400034, delay = 15 },
 		},
 	},
 	-- disable custom spawns when all players are in the elevator
@@ -84,6 +90,7 @@ return {
 		},
 	},
 	-- open the elevator doors when you reach the top
+    -- yes, they forgot to make it open for some reason
 	[103586] = {
 		on_executed = {
 			{ id = 102876, delay = 2 },
@@ -149,7 +156,7 @@ return {
 		flashlight = false,
 	},
 	-- restore ovk 145+'s elevator dozers ambush at the end of the heist
-	-- keep it only on eclipse
+	-- keep it only on DW
 	[104122] = disabled,
 	[104123] = disabled,
 	[104323] = {
@@ -161,9 +168,10 @@ return {
 	-- 50% chance for the event to happen
 	[104124] = { chance = 50 },
 	-- replace the shield and blackdozer with elite dozers
+    -- also change their position and spawn anim to match their spawn arrival from PDTH
 	[104113] = terminator_dozer_1,
 	[104112] = terminator_dozer_2,
-	-- tweak elevator cloakers respawns
+	-- tweak elevator cloakers respawns (up to 6 cloakers on DW)
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- Spawn group intervals
