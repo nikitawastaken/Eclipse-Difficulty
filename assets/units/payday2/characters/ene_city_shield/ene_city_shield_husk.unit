@@ -97,7 +97,6 @@
 				<var name="primary" value="aa12"/>
 				<var name="secondary" value="deagle"/>
 			</var>
-            <var name="_stats_name" value="marshal_shield"/>
 		</extension>
 		<extension name="inventory" class="HuskCopInventory">
 			<var name="_shield_unit_name" value="units/payday2/characters/ene_acc_shield_city/ene_acc_shield_city_dummy" />
