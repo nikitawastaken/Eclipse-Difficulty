@@ -116,9 +116,9 @@
 		<extension name="character_damage" class="CopDamage">
 			<var name="_head_body_name" value="head" />
 			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
-			<var name="_head_gear_object" value="g_helmet_fbi_swat_lod" />
-			<var name="_nr_head_gear_objects" value="28" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_fbi_swat_helmet/ene_acc_fbi_swat_helmet" />
+			<var name="_head_gear_object" value="g_helmet_shield_lod" />
+			<var name="_nr_head_gear_objects" value="12" />
+			<var name="_head_gear" value="units/payday2/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet" />
 			<var name="_head_gear_decal_mesh" value="dm_helmet_fbi_swat" />		
 		</extension>
 		<extension name="movement" class="CopMovement" >
