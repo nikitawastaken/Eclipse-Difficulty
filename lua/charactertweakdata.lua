@@ -1003,8 +1003,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.gensec.chatter = self.presets.enemy_chatter.security
 	self.gensec.speech_prefix_p1 = self._unit_prefixes.cop
-	self.gensec.suppression = self.presets.suppression.easy
-	self.gensec.dodge = self.presets.dodge.poor
+	self.gensec.suppression = self.security.suppression
+	self.gensec.dodge = self.security.dodge
 
 	self.security_mex.chatter = self.presets.enemy_chatter.security
 
@@ -2143,7 +2143,7 @@ function CharacterTweakData:_set_presets()
 
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
-	self.tase_multiplier = is_eclipse and 1.5 or is_overkill and 1.25 or 1
+	self.tase_multiplier = is_eclipse and 1.6 or is_overkill and 1.4 or 1
 
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
