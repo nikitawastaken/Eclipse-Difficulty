@@ -1068,136 +1068,51 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_gre_ms3gl_conversion.adds = {}
 
 	-- Re-add drum mags	and unused RPK mag
-	self.parts.wpn_fps_upg_m4_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_m4_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_upg_m4_reusable/wpn_fps_upg_m4_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_upg_m4_reusable/wpn_third_upg_m4_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
+	local drum_anims =  {
+		reload_not_empty = "reload_not_empty",
+		reload = "reload",
 	}
+	
+	-- CAR drum magazine
+	self.parts.wpn_fps_upg_m4_m_drum = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
+	self.parts.wpn_fps_upg_m4_m_drum.name_id = "bm_wp_m4_m_drum"
+	self.parts.wpn_fps_upg_m4_m_drum.unit = "units/payday2/weapons/wpn_fps_upg_m4_reusable/wpn_fps_upg_m4_m_drum"
+	self.parts.wpn_fps_upg_m4_m_drum.third_unit = "units/payday2/weapons/wpn_third_upg_m4_reusable/wpn_third_upg_m4_m_drum"
+	self.parts.wpn_fps_upg_m4_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
+	self.parts.wpn_fps_upg_m4_m_drum.custom_stats = { ammo_offset = 45 }
+	self.parts.wpn_fps_upg_m4_m_drum.animations = drum_anims
 
-	self.parts.wpn_upg_ak_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_ak_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
-	}
+	-- AK drum magazine
+	self.parts.wpn_upg_ak_m_drum = deep_clone(self.parts.wpn_fps_upg_ak_m_uspalm)
+	self.parts.wpn_upg_ak_m_drum.texture_bundle_folder = nil
+	self.parts.wpn_upg_ak_m_drum.dlc = nil
+	self.parts.wpn_upg_ak_m_drum.name_id = "bm_wp_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.unit = "units/payday2/weapons/wpn_fps_upg_ak_reusable/wpn_upg_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.third_unit = "units/payday2/weapons/wpn_third_upg_ak_reusable/wpn_third_upg_ak_m_drum"
+	self.parts.wpn_upg_ak_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
+	self.parts.wpn_upg_ak_m_drum.custom_stats = { ammo_offset = 45 }
+	self.parts.wpn_upg_ak_m_drum.animations = drum_anims
 
-	self.parts.wpn_fps_smg_mp5_m_drum = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_mp5_m_drum",
-		unit = "units/payday2/weapons/wpn_fps_smg_mp5_pts/wpn_fps_smg_mp5_m_drum",
-		third_unit = "units/payday2/weapons/wpn_third_smg_mp5_pts/wpn_third_smg_mp5_m_drum",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 45,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
-	}
+	-- Compact-5 drum magazine
+	self.parts.wpn_fps_smg_mp5_m_drum = deep_clone(self.parts.wpn_fps_smg_mp5_m_straight)
+	self.parts.wpn_fps_smg_mp5_m_drum.dlc = nil
+	self.parts.wpn_fps_smg_mp5_m_drum.name_id = "bm_wp_ak_m_drum"
+	self.parts.wpn_fps_smg_mp5_m_drum.unit = "units/payday2/weapons/wpn_fps_smg_mp5_pts/wpn_fps_smg_mp5_m_drum"
+	self.parts.wpn_fps_smg_mp5_m_drum.third_unit = "units/payday2/weapons/wpn_third_smg_mp5_pts/wpn_third_smg_mp5_m_drum"
+	self.parts.wpn_fps_smg_mp5_m_drum.bullet_objects.amount = 1
+	self.parts.wpn_fps_smg_mp5_m_drum.stats = deep_clone(self.parts.wpn_fps_upg_m4_m_quad.stats)
+	self.parts.wpn_fps_smg_mp5_m_drum.custom_stats = { ammo_offset = 45 }
+	self.parts.wpn_fps_smg_mp5_m_drum.animations = drum_anims
 
-	self.parts.wpn_upg_saiga_m_20rnd = {
-		a_obj = "a_m",
-		type = "magazine",
-		name_id = "bm_wp_saiga_m_20rnd",
-		unit = "units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd",
-		third_unit = "units/payday2/weapons/wpn_third_shot_saiga_pts/wpn_third_saiga_m_20rnd",
-		pcs = {
-			10,
-			20,
-			30,
-			40,
-		},
-		bullet_objects = {
-			amount = 1,
-			prefix = "g_bullet_",
-		},
-		stats = {
-			value = 1,
-		},
-		custom_stats = {
-			ammo_offset = 13,
-		},
-		animations = {
-			reload_not_empty = "reload_not_empty",
-			reload = "reload",
-		},
-		no_akimbo = true,
-	}
-
-	-- Add Eclipse logo charm
-	self.parts.wpn_fps_upg_charm_eclipse = {
-		is_a_unlockable = true,
-		texture_bundle_folder = "eclipse",
-		a_obj = "a_charm",
-		type = "charm",
-		name_id = "bm_wp_upg_charm_eclipse",
-		unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse",
-		third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse",
-		pcs = {},
-		stats = {
-			value = 1,
-		},
-	}
+	-- Izhma drum magazine
+	self.parts.wpn_upg_saiga_m_20rnd = deep_clone(self.parts.wpn_fps_sho_basset_m_extended)
+	self.parts.wpn_upg_saiga_m_20rnd.texture_bundle_folder = nil
+	self.parts.wpn_upg_saiga_m_20rnd.name_id = "bm_wp_saiga_m_20rnd"
+	self.parts.wpn_upg_saiga_m_20rnd.unit = "units/payday2/weapons/wpn_fps_shot_saiga_pts/wpn_upg_saiga_m_20rnd"
+	self.parts.wpn_upg_saiga_m_20rnd.third_unit = "units/payday2/weapons/wpn_third_shot_saiga_pts/wpn_third_saiga_m_20rnd"
+	self.parts.wpn_upg_saiga_m_20rnd.stats.extra_ammo = 4
+	self.parts.wpn_upg_saiga_m_20rnd.custom_stats = {}
+	self.parts.wpn_upg_saiga_m_20rnd.animations = drum_anims
 
 	-- Conversion kits and various barrels, family based modifications --
 
@@ -2385,6 +2300,12 @@ end
 
 -- Kind of hacky, but it works
 Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_add_charms_to_all_weapons", function(self, tweak_data)
+	self.parts.wpn_fps_upg_charm_eclipse = deep_clone(self.parts.wpn_fps_upg_charm_cloaker)
+	self.parts.wpn_fps_upg_charm_eclipse.texture_bundle_folder = "eclipse"
+	self.parts.wpn_fps_upg_charm_eclipse.name_id = "bm_wp_upg_charm_eclipse"
+	self.parts.wpn_fps_upg_charm_eclipse.unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse"
+	self.parts.wpn_fps_upg_charm_eclipse.third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse"
+	
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
