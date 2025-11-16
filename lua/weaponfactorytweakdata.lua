@@ -1068,11 +1068,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_gre_ms3gl_conversion.adds = {}
 
 	-- Re-add drum mags	and unused RPK mag
-	local drum_anims =  {
+	local drum_anims = {
 		reload_not_empty = "reload_not_empty",
 		reload = "reload",
 	}
-	
+
 	-- CAR drum magazine
 	self.parts.wpn_fps_upg_m4_m_drum = deep_clone(self.parts.wpn_fps_upg_m4_m_straight)
 	self.parts.wpn_fps_upg_m4_m_drum.name_id = "bm_wp_m4_m_drum"
@@ -2305,7 +2305,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_charm_eclipse.name_id = "bm_wp_upg_charm_eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse"
-	
+
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
