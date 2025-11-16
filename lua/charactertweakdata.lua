@@ -222,10 +222,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_security = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 1.25 },
 		focus_delay = 0.8,
-		range = { close = 1000, optimal = 2000, far = 4000 }
+		range = { close = 1000, optimal = 2000, far = 4000 },
 	})
 	accuracy_multiplier(presets.weapon.eclipse_security, 0.8)
-	
+
 	presets.weapon.eclipse_fat = based_on(presets.weapon.eclipse_normal, {
 		melee_dmg = 12 * dmg_mul,
 		melee_force = 500,
@@ -352,7 +352,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		range = { close = 1500, optimal = 2500, far = 4000 },
 	})
 	damage_multiplier(presets.weapon.eclipse_medic, 4 / 5)
-	
+
 	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good)
 	presets.weapon.eclipse_cloaker.is_pistol.RELOAD_SPEED = 1.1
 	presets.weapon.eclipse_cloaker.is_pistol.FALLOFF = {
@@ -403,7 +403,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_speed = 0.5,
 		melee_range = 200,
 	})
-	
+
 	presets.weapon.eclipse_elite_bulldozer = based_on(presets.weapon.eclipse_bulldozer)
 	presets.weapon.eclipse_elite_bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
