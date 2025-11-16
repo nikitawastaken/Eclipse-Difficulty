@@ -150,8 +150,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 
 	self.damage.respawn_time_penalty = 10
 	--self.damage.automatic_respawn_time = 210 + (is_eclipse and 90 or is_overkill and 60 or 0) + (is_pro_job and 60 or 0)
-	self.damage.custody_ammo_confiscated = 0.4
-	self.damage.custody_health_drained = 0.4
 
 	self.movement_state.standard.movement.jump_velocity.z = self.movement_state.standard.movement.jump_velocity.z * 1.25
 	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5

@@ -111,13 +111,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local special_dmg_mul_tbl = { 0.25, 0.5, 0.75, 1, 1, 1, 1, 1 }
 	local special_dmg_mul = special_dmg_mul_tbl[diff_i]
 
-	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.4, 0.3, 0.3, 0.3 }
+	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
 	local aim_delay_mul = aim_delay_tbl[diff_i]
 
 	presets.weapon.base = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
-		focus_delay = 0.6,
-		melee_dmg = 8 * dmg_mul,
+		focus_delay = 0.5,
+		melee_dmg = 10 * dmg_mul,
 		melee_speed = 1,
 		melee_retry_delay = { 2, 3 },
 		melee_range = 125,
@@ -220,24 +220,27 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.security = based_on(presets.weapon.base, {
-		aim_delay = { 0, 1.25 },
-		focus_delay = 0.8,
+		aim_delay = { 0, 1.2 },
+		focus_delay = 0.6,
 	})
-	accuracy_multiplier(presets.weapon.security, 0.8)
+	accuracy_multiplier(presets.weapon.security, 0.85)
 
 	presets.weapon.security_fat = based_on(presets.weapon.security, {
 		melee_dmg = 10 * dmg_mul,
 		melee_force = 500,
 	})
-	damage_multiplier(presets.weapon.security_fat, 6 / 5)
+	damage_multiplier(presets.weapon.security_fat, 5 / 4)
 
-	presets.weapon.cop = based_on(presets.weapon.base)
+	presets.weapon.cop = based_on(presets.weapon.base, {
+		aim_delay = { 0, 1.2 },
+		focus_delay = 0.6,
+	})
+	accuracy_multiplier(presets.weapon.cop, 0.85)
 
 	presets.weapon.cop_fat = based_on(presets.weapon.cop, {
-		melee_dmg = 10 * dmg_mul,
 		melee_force = 500,
 	})
-	damage_multiplier(presets.weapon.cop_fat, 6 / 5)
+	damage_multiplier(presets.weapon.cop_fat, 5 / 4)
 
 	presets.weapon.gangster = based_on(presets.weapon.base, {
 		range = { close = 500, optimal = 1000, far = 3000 },
@@ -255,48 +258,50 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.fbi, 6 / 4)
 
 	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
-		aim_delay = { 0, 0.75 },
+		aim_delay = { 0, 0.8 },
 		focus_delay = 0.4,
-		melee_dmg = 12 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.fbi_swat, 6 / 5)
-	accuracy_multiplier(presets.weapon.fbi_swat, 1.2)
+	damage_multiplier(presets.weapon.fbi_swat, 5 / 4)
+	accuracy_multiplier(presets.weapon.fbi_swat, 1.15)
 
 	presets.weapon.elite_swat = based_on(presets.weapon.swat, {
-		aim_delay = { 0, 0.5 },
+		aim_delay = { 0, 0.4 },
 		focus_delay = 0.2,
-		melee_dmg = 16 * dmg_mul,
+		melee_dmg = 15 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.elite_swat, 7 / 5)
-	accuracy_multiplier(presets.weapon.elite_swat, 1.4)
+	damage_multiplier(presets.weapon.elite_swat, 6 / 4)
+	accuracy_multiplier(presets.weapon.elite_swat, 1.3)
 
-	presets.weapon.zeal_swat = based_on(presets.weapon.elite_swat)
-
-	presets.weapon.murky = based_on(presets.weapon.swat)
+	presets.weapon.murky = based_on(presets.weapon.base)
 	damage_multiplier(presets.weapon.murky, 6 / 4)
-	accuracy_multiplier(presets.weapon.murky, 1.4)
+	accuracy_multiplier(presets.weapon.murky, 1.3)
 	recoil_multiplier(presets.weapon.murky, 1.2)
 	burst_multiplier(presets.weapon.murky, 0.6)
 
 	presets.weapon.security_mcmansion = based_on(presets.weapon.murky)
-
+	
 	presets.weapon.marshal_security = based_on(presets.weapon.murky)
 
-	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
-
-	presets.weapon.shield = based_on(presets.weapon.base, {
+	presets.weapon.special = based_on(presets.weapon.swat, {
+		aim_delay = { 0, 0.6 },
+		focus_delay = 0.3,
+	})
+	
+	presets.weapon.soldier = based_on(presets.weapon.special)
+	damage_multiplier(presets.weapon.soldier, 5 / 4)
+	accuracy_multiplier(presets.weapon.soldier, 1.15)
+	
+	presets.weapon.shield = based_on(presets.weapon.special, {
 		melee_range = 150,
 		melee_force = 500,
 		melee_retry_delay = { 1, 2 },
 		range = { close = 500, optimal = 1000, far = 2000 },
 	})
-
 	presets.weapon.shield.is_pistol.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.3, 0.6 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
-
 	presets.weapon.shield.is_smg.FALLOFF = {
 		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 7, 10 } },
 		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.3, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 6, 8 } },
@@ -309,24 +314,20 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_range = 175,
 		melee_force = 600,
 	})
-
 	presets.weapon.elite_shield.is_revolver.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
-
-	presets.weapon.elite_shield_break = based_on(presets.weapon.elite_swat)
-
+	
+	presets.weapon.elite_shield_break = based_on(presets.weapon.special)
 	presets.weapon.elite_shield_break.is_shotgun_mag.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.3, 0.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
 		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 3 } },
 		{ dmg_mul = 2 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
-	presets.weapon.zeal_shield = based_on(presets.weapon.shield)
-
-	presets.weapon.sniper = based_on(presets.weapon.swat)
+	presets.weapon.sniper = based_on(presets.weapon.special)
 
 	local cs_sniper_aim_delay_mul = aim_delay_mul ^ 0.6
 
@@ -334,7 +335,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1 * cs_sniper_aim_delay_mul,
 		2 * cs_sniper_aim_delay_mul,
 	}
-	presets.weapon.sniper.is_sniper.focus_delay = presets.weapon.sniper.is_sniper.focus_delay * cs_sniper_aim_delay_mul
 	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 14 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
@@ -348,14 +348,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1 * aim_delay_mul,
 		2 * aim_delay_mul,
 	}
-	presets.weapon.fbi_sniper.is_sniper.focus_delay = presets.weapon.fbi_sniper.is_sniper.focus_delay * aim_delay_mul
 	presets.weapon.fbi_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
+	presets.weapon.elite_sniper = based_on(presets.weapon.special)
 
 	presets.weapon.elite_sniper.is_sniper.aim_delay = {
 		1 * aim_delay_mul,
@@ -369,7 +368,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.taser = based_on(presets.weapon.swat, {
+	presets.weapon.taser = based_on(presets.weapon.special, {
 		aim_delay_tase = {
 			0,
 			1 * aim_delay_mul,
@@ -377,13 +376,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		tase_sphere_cast_radius = 15,
 		tase_distance = 1500,
 	})
-
 	presets.weapon.taser.is_rifle.autofire_rounds = nil
 	presets.weapon.taser.is_rifle.FALLOFF = {
-		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
-
 	presets.weapon.taser.is_shotgun_pump.tase_sphere_cast_radius = 25
 	presets.weapon.taser.is_shotgun_pump.tase_distance = 1200
 	presets.weapon.taser.is_shotgun_pump.FALLOFF = {
@@ -392,21 +389,18 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 4.5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.medic = based_on(presets.weapon.swat, {
+	presets.weapon.medic = based_on(presets.weapon.special, {
 		range = { close = 1500, optimal = 2500, far = 4000 },
 	})
-	damage_multiplier(presets.weapon.medic, 4 / 5)
 
-	presets.weapon.cloaker = based_on(presets.weapon.swat)
-
+	presets.weapon.cloaker = based_on(presets.weapon.special)
 	presets.weapon.cloaker.is_pistol.FALLOFF = {
-		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.2, 0.3 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4.5 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
-
 	presets.weapon.cloaker.is_smg.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.2, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.2, 0.3 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.bulldozer = based_on(presets.weapon.base, {
@@ -414,23 +408,19 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_dmg = 30 * special_dmg_mul,
 		melee_force = 600,
 	})
-
 	presets.weapon.bulldozer.is_smg.range = { close = 1500, optimal = 2500, far = 4000 }
-
 	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 30 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 15 * special_dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
-
 	presets.weapon.bulldozer.is_shotgun_mag.RELOAD_SPEED = 0.8
 	presets.weapon.bulldozer.is_shotgun_mag.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 4, 6 } },
 		{ dmg_mul = 4.5 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.6, 0.9 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 4 } },
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
-
 	presets.weapon.bulldozer.is_lmg.RELOAD_SPEED = 0.5
 	presets.weapon.bulldozer.is_lmg.autofire_rounds = { 20, 50 }
 	presets.weapon.bulldozer.is_lmg.FALLOFF = {
@@ -438,7 +428,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.6 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
 	}
-
 	presets.weapon.bulldozer.is_flamethrower.melee_dmg = nil
 	presets.weapon.bulldozer.is_flamethrower.melee_speed = nil
 	presets.weapon.bulldozer.is_flamethrower.melee_retry_delay = nil
@@ -452,15 +441,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_speed = 0.5,
 		melee_range = 200,
 	})
-
 	presets.weapon.elite_bulldozer = based_on(presets.weapon.bulldozer)
-
 	presets.weapon.elite_bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10 * special_dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
-
 	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.5
 	presets.weapon.elite_bulldozer.is_lmg.autofire_rounds = { 20, 50 }
 	presets.weapon.elite_bulldozer.is_lmg.FALLOFF = {
@@ -469,7 +455,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.boss = based_on(presets.weapon.base)
+	presets.weapon.boss = based_on(presets.weapon.special)
 
 	presets.weapon.gang_member = based_on(presets.weapon.base, {
 		aim_delay = { 0, 0.25 },
@@ -1906,8 +1892,6 @@ CharacterTweakData.tweak_table_weapon = {
 	fbi_heavy_swat = "fbi_swat",
 	city_swat = "elite_swat",
 	city_heavy_swat = "elite_swat",
-	zeal_swat = "zeal_swat",
-	zeal_heavy_swat = "zeal_swat",
 	murky = "murky",
 	security_fat = "security_fat",
 	security_mcmansion = "security_mcmansion",
@@ -1923,7 +1907,6 @@ CharacterTweakData.tweak_table_weapon = {
 	city_sniper = "elite_sniper",
 	city_shield = "elite_shield",
 	city_shield_break = "elite_shield_break",
-	zeal_shield = "zeal_shield",
 	medic = "medic",
 	tank = "bulldozer",
 	tank_medic = "bulldozer",
