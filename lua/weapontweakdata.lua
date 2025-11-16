@@ -2879,22 +2879,17 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init_npcweapons", function(self
 
 	self.sr2_smg_npc.sounds.prefix = self.sr2_crew.sounds.prefix
 
-	self.r870_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 	self.r870_yellow_npc = deep_clone(self.r870_npc)
-	self.r870_yellow_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.benelli_npc = copy_data(self.benelli_npc, self.r870_npc, self.ben_crew)
-	self.benelli_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.mossberg_npc.usage = "is_double_barrel"
 	self.mossberg_npc.reload = "looped"
 	self.mossberg_npc.looped_reload_single = true
 
 	self.saiga_npc.CLIP_AMMO_MAX = 20
-	self.saiga_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.aa12_npc = copy_data(self.aa12_npc, self.saiga_npc, self.aa12_crew)
-	self.aa12_npc.muzzleflash = "effects/payday2/particles/weapons/shotgun/sho_muzzleflash"
 
 	self.sko12_conc_npc = copy_data(self.sko12_conc_npc, self.saiga_npc, self.sko12_crew)
 	self.sko12_conc_npc.bullet_class = nil
@@ -3010,7 +3005,8 @@ function WeaponTweakData:_set_presets()
 			v.spread = v.rays and v.rays > 1 and 6 or 0
 			v.suppression = (suppression[v.usage] or 1) * (v.armor_piercing and 1.5 or 1) * (v.has_suppressor and 0.2 or 1)
 			v.alert_size = (alert_sizes[v.usage] or 5000) * (v.has_suppressor and 0.2 or 1)
-
+			v.muzzleflash = v.rays and v.rays > 1 and "effects/payday2/particles/weapons/shotgun/sho_muzzleflash" or v.muzzleflash
+			
 			local is_uzi = v.reload == "uzi"
 
 			if v.usage == "is_shotgun_mag" then

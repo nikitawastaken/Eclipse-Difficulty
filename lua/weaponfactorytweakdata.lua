@@ -262,12 +262,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_upg_m4_m_l5.stats.extra_ammo = 0
 	self.parts.wpn_fps_upg_m4_m_l5.custom_stats.ammo_offset = 5
 
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.damage = 0
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.spread = 3
-	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -2
-	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750 }
-	table.delete(self.parts.wpn_fps_m4_upg_fg_mk12.perks, "fire_mode_auto")
-
 	self.parts.wpn_fps_upg_ak_b_draco.stats.damage = 0
 	self.parts.wpn_fps_upg_ak_b_draco.stats.concealment = 2
 
@@ -405,14 +399,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_pis_deagle_m_extended.stats.extra_ammo = 0
 	self.parts.wpn_fps_pis_deagle_m_extended.custom_stats = { ammo_offset = 3 }
-
-	self.parts.wpn_fps_pis_deagle_ck.stats.total_ammo_mod = 5
-	self.parts.wpn_fps_pis_deagle_ck.stats.damage = -16
-	self.parts.wpn_fps_pis_deagle_ck.stats.spread = 0
-	self.parts.wpn_fps_pis_deagle_ck.stats.recoil = 2
-	self.parts.wpn_fps_pis_deagle_ck.stats.concealment = -2
-	self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_min_mul = 5 / 4
-	self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_max_mul = self.parts.wpn_fps_pis_deagle_ck.custom_stats.ammo_pickup_min_mul
 
 	self.parts.wpn_fps_pis_usp_b_expert.stats.spread = 1
 	self.parts.wpn_fps_pis_usp_b_expert.stats.concealment = -1
@@ -566,21 +552,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_pis_korth_b_railed.stats.spread = 0
 	self.parts.wpn_fps_pis_korth_b_railed.stats.recoil = 0
 	self.parts.wpn_fps_pis_korth_b_railed.stats.concealment = 0
-
-	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
-	self.parts.wpn_fps_pis_korth_m_6.stats.total_ammo_mod = -4
-	self.parts.wpn_fps_pis_korth_m_6.stats.damage = 16
-	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
-	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -3
-	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
-	self.parts.wpn_fps_pis_korth_m_6.custom_stats = { ammo_pickup_max_mul = 4 / 5, ammo_pickup_min_mul = 4 / 5 }
-
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.total_ammo_mod = 5
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.damage = -16
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.spread = 0
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.recoil = 0
-	self.parts.wpn_fps_pis_korth_conversionkit.stats.concealment = 0
-	self.parts.wpn_fps_pis_korth_conversionkit.custom_stats = { ammo_pickup_max_mul = 4 / 3, ammo_pickup_min_mul = 4 / 3 }
+	
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.damage = 0
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.spread = 1
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.recoil = 1
+	self.parts.wpn_fps_pis_korth_conversionkit.stats.concealment = -2
 
 	-- SMG Mods
 	self.parts.wpn_fps_smg_mp9_s_skel.stats.spread = 1
@@ -598,11 +574,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.recoil = -2
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.concealment = 2
-
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.total_ammo_mod = -5
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 6
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
-	self.parts.wpn_fps_smg_mp5_m_straight.custom_stats = { ammo_pickup_max_mul = 3 / 4, ammo_pickup_min_mul = 3 / 4 }
 
 	self.parts.wpn_fps_smg_p90_b_long.stats.damage = 0
 	self.parts.wpn_fps_smg_p90_b_long.stats.spread = 2
@@ -833,10 +804,11 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_sho_supernova_s_raven.stats.concealment = 1
 
 	self.parts.wpn_fps_sho_supernova_conversion.stats.extra_ammo = 0
-	self.parts.wpn_fps_sho_supernova_conversion.stats.spread = 0
-	self.parts.wpn_fps_sho_supernova_conversion.stats.recoil = -2
-	self.parts.wpn_fps_sho_supernova_conversion.custom_stats = { ammo_pickup_max_mul = 5 / 4, ammo_pickup_min_mul = 5 / 4 }
-
+	self.parts.wpn_fps_sho_supernova_conversion.stats.damage = 0
+	self.parts.wpn_fps_sho_supernova_conversion.stats.spread = -2
+	self.parts.wpn_fps_sho_supernova_conversion.stats.recoil = 0
+	self.parts.wpn_fps_sho_supernova_conversion.stats.concealment = 2
+	
 	-- Sniper Rifle Mods
 	self.parts.wpn_fps_snp_msr_b_long.stats.concealment = -1
 
@@ -974,14 +946,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_lmg_hcar_m_drum.stats.extra_ammo = 15
 
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.extra_ammo = 15
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.total_ammo_mod = 13
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = -18
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -4
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 6
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = { fire_rate_multiplier = 1.6, ammo_pickup_min_mul = 2, ammo_pickup_max_mul = 2 }
-
 	self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats.damage = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats.spread = 2
 	self.parts.wpn_fps_lmg_kacchainsaw_b_long.stats.recoil = 0
@@ -993,14 +957,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.spread = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.recoil = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_flamethrower.stats.concealment = -4
-
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 0
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.total_ammo_mod = 10
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = -6
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.spread = 0
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.recoil = 0
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.concealment = 2
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1800 / 1100, ammo_pickup_min_mul = 2 / 3, ammo_pickup_max_mul = 2 / 3 }
 
 	--Minigun Mods
 	self.parts.wpn_fps_lmg_m134_barrel_extreme.stats.spread = 3
@@ -1114,49 +1070,12 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_upg_saiga_m_20rnd.custom_stats = {}
 	self.parts.wpn_upg_saiga_m_20rnd.animations = drum_anims
 
-	-- Conversion kits and various barrels, family based modifications --
-
-	-- ak family
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = 0
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 0
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -5
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {}
-	self.parts.wpn_fps_upg_ass_ak_b_zastava.perks = { "fire_mode_single" }
-
-	-- car family
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = 0
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 0
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -5
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {}
-	self.parts.wpn_fps_upg_ass_m4_b_beowulf.perks = { "fire_mode_single" }
-
-	-- gewehr
-	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = 0
-	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 0
-	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {}
-	self.parts.wpn_fps_ass_g3_b_sniper.adds = nil -- wtf is this, why do you need a separate dummy part for ammo pickup specifically
-	self.parts.wpn_fps_ass_g3_b_sniper.no_magazine_balancing = true
-	self.parts.wpn_fps_ass_g3_b_sniper.perks = { "fire_mode_single" }
-
 	self.parts.wpn_fps_ass_g3_b_short.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.damage = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.spread = -2
 	self.parts.wpn_fps_ass_g3_b_short.stats.recoil = 0
 	self.parts.wpn_fps_ass_g3_b_short.stats.concealment = 2
 	self.parts.wpn_fps_ass_g3_b_short.custom_stats = {}
-
-	-- falcon
-	self.parts.wpn_fps_ass_fal_fg_04.stats.damage = 0
-	self.parts.wpn_fps_ass_fal_fg_04.perks = { "fire_mode_single" }
-
-	-- ks12
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = 0
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.extra_ammo = -5
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.spread = 2
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
-	self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -2
-	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {}
-	self.parts.wpn_fps_ass_shak12_body_vks.no_magazine_balancing = true
 
 	-- broomstick
 	--self.parts.wpn_fps_pis_c96_b_long.custom_stats = conversion_kit_stats.high_dmg.custom_stats
@@ -1210,13 +1129,23 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.parts.wpn_fps_fla_mk2_mag_rare.stats = { value = 1, damage = -4, extra_ammo = 50, total_ammo_mod = 5 }
+	self.parts.wpn_fps_fla_mk2_mag_rare.stats = { 
+		value = 1, 
+		damage = -4, 
+		extra_ammo = 25, 
+		total_ammo_mod = 5,
+	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
 	self.parts.wpn_fps_fla_mk2_mag_rare.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
 	self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = { value = 1, damage = 4, extra_ammo = -50, total_ammo_mod = -5 }
+	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = { 
+		value = 1, 
+		damage = 4, 
+		extra_ammo = -25, 
+		total_ammo_mod = -5,
+	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
 	self.parts.wpn_fps_fla_mk2_mag_welldone.custom_stats = {}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.has_description = true
@@ -1224,48 +1153,32 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_fla_system_b_wtf.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_fla_system_b_wtf.stats.concealment = 0
+		
+	self.parts.wpn_fps_fla_system_a_low = deep_clone(self.parts.wpn_fps_fla_mk2_a_rare)
+	self.parts.wpn_fps_fla_system_a_low.name_id = "bm_wp_system_a_low"
+	self.parts.wpn_fps_fla_system_a_low.custom_stats.dot_data_name = "ammo_system_low"
 
-	self.parts.wpn_fps_fla_system_a_low = {
-		type = "ammo",
-		a_obj = "a_body",
-		internal_part = true,
-		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		name_id = "bm_wp_system_a_low",
-		pcs = {},
-		stats = {
-			value = 0,
-		},
-		custom_stats = {
-			bullet_class = "FlameBulletBase",
-			dot_data_name = "ammo_system_low",
-		},
+	self.parts.wpn_fps_fla_system_a_high = deep_clone(self.parts.wpn_fps_fla_mk2_a_welldone)
+	self.parts.wpn_fps_fla_system_a_high.name_id = "bm_wp_system_a_high"
+	self.parts.wpn_fps_fla_system_a_high.custom_stats.dot_data_name = "ammo_system_high"
+
+	self.parts.wpn_fps_fla_system_m_low.stats = { 
+		value = 1, 
+		damage = -4, 
+		extra_ammo = 25, 
+		total_ammo_mod = 5,
 	}
-
-	self.parts.wpn_fps_fla_system_a_high = {
-		type = "ammo",
-		a_obj = "a_body",
-		internal_part = true,
-		unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		third_unit = "units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy",
-		name_id = "bm_wp_system_a_high",
-		pcs = {},
-		stats = {
-			value = 0,
-		},
-		custom_stats = {
-			bullet_class = "FlameBulletBase",
-			dot_data_name = "ammo_system_high",
-		},
-	}
-
-	self.parts.wpn_fps_fla_system_m_low.stats = { value = 1, damage = -4, extra_ammo = 25, total_ammo_mod = 5 }
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
 	self.parts.wpn_fps_fla_system_m_low.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_low.has_description = true
 	self.parts.wpn_fps_fla_system_m_low.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_system_m_high.stats = { value = 1, damage = 4, extra_ammo = -25, total_ammo_mod = -5 }
+	self.parts.wpn_fps_fla_system_m_high.stats = { 
+		value = 1, 
+		damage = 4, 
+		extra_ammo = -25, 
+		total_ammo_mod = -5,
+	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
 	self.parts.wpn_fps_fla_system_m_high.custom_stats = {}
 	self.parts.wpn_fps_fla_system_m_high.has_description = true
@@ -2306,6 +2219,86 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_charm_eclipse.unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_fps_upg_charm_eclipse"
 	self.parts.wpn_fps_upg_charm_eclipse.third_unit = "units/pd2_mod_eclipse/weapons/wpn_fps_upg_charms/wpn_third_upg_charm_eclipse"
 
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.extra_ammo = 15
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.damage = 0
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -2
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 4
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = { fire_rate_multiplier = 1.6 }
+	self:_balance_conversion_kit(tweak_data, "hcar", "wpn_fps_lmg_hcar_body_conversionkit", 18, nil, true)
+
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.spread = 0
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.recoil = 2
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1800 / 1100 }	
+	self:_balance_conversion_kit(tweak_data, "kacchainsaw", "wpn_fps_lmg_kacchainsaw_conversionkit", 12, nil, true)
+	
+	self.parts.wpn_fps_pis_deagle_ck.stats.damage = 0
+	self.parts.wpn_fps_pis_deagle_ck.stats.spread = 0
+	self.parts.wpn_fps_pis_deagle_ck.stats.recoil = 2
+	self.parts.wpn_fps_pis_deagle_ck.stats.concealment = -1
+	self.parts.wpn_fps_pis_deagle_ck.custom_stats = { ammo_offset = 3 }	
+	self:_balance_conversion_kit(tweak_data, "deagle", "wpn_fps_pis_deagle_ck", 64, nil, true)	
+
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.recoil = -4
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
+	self:_balance_conversion_kit(tweak_data, "new_mp5", "wpn_fps_smg_mp5_m_straight", 24, nil, true)
+
+	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
+	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
+	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -4
+	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
+	self.parts.wpn_fps_pis_korth_m_6.no_magazine_balancing = true	
+	self:_balance_conversion_kit(tweak_data, "korth", "wpn_fps_pis_korth_m_6", 80, nil, true)
+
+	self.parts.wpn_fps_m4_upg_fg_mk12.stats.damage = 0
+	self.parts.wpn_fps_m4_upg_fg_mk12.stats.spread = 3
+	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -2
+	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750 }
+	table.delete(self.parts.wpn_fps_m4_upg_fg_mk12.perks, "fire_mode_auto")	
+	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_m4_upg_fg_mk12", 36, nil, true)
+	
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 0
+	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {}
+	self.parts.wpn_fps_ass_g3_b_sniper.adds = nil -- wtf is this, why do you need a separate dummy part for ammo pickup specifically
+	self.parts.wpn_fps_ass_g3_b_sniper.no_magazine_balancing = true
+	self.parts.wpn_fps_ass_g3_b_sniper.perks = { "fire_mode_single" }	
+	self:_balance_conversion_kit(tweak_data, "g3", "wpn_fps_ass_g3_b_sniper", 64, nil, true)
+	
+	self.parts.wpn_fps_ass_fal_fg_04.stats.damage = 0
+	self.parts.wpn_fps_ass_fal_fg_04.perks = { "fire_mode_single" }
+	self:_balance_conversion_kit(tweak_data, "fal", "wpn_fps_ass_fal_fg_04", 64, nil, true)
+
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.extra_ammo = -5
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.spread = 2
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.recoil = -8
+	self.parts.wpn_fps_ass_shak12_body_vks.stats.concealment = -2
+	self.parts.wpn_fps_ass_shak12_body_vks.custom_stats = {}
+	self.parts.wpn_fps_ass_shak12_body_vks.no_magazine_balancing = true
+	self:_balance_conversion_kit(tweak_data, "shak12", "wpn_fps_ass_shak12_body_vks", 72, nil, true)
+
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 0
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -5
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {}
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.perks = { "fire_mode_single" }
+	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_upg_ass_m4_b_beowulf", 48, "dmr", true)
+	self:_balance_conversion_kit(tweak_data, "m16", "wpn_fps_upg_ass_m4_b_beowulf", 64, "dmr", true)
+
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 0
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -5
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {}
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.perks = { "fire_mode_single" }
+	self:_balance_conversion_kit(tweak_data, "ak74", "wpn_fps_upg_ass_ak_b_zastava", 48, "dmr", true)
+	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
+	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
+
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
@@ -2313,17 +2306,6 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_magazines(tweak_data)
 	self:_balance_akimbo(tweak_data)
 	self:_balance_underbarrels(tweak_data)
-
-	self:_balance_conversion_kit(tweak_data, "g3", "wpn_fps_ass_g3_b_sniper", 64, nil, true)
-	self:_balance_conversion_kit(tweak_data, "fal", "wpn_fps_ass_fal_fg_04", 64, nil, true)
-	self:_balance_conversion_kit(tweak_data, "shak12", "wpn_fps_ass_shak12_body_vks", 72, nil, true)
-	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_m4_upg_fg_mk12", 48, "dmr", true)
-	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_upg_ass_m4_b_beowulf", 48, "dmr", true)
-	self:_balance_conversion_kit(tweak_data, "m16", "wpn_fps_upg_ass_m4_b_beowulf", 64, "dmr", true)
-	self:_balance_conversion_kit(tweak_data, "ak74", "wpn_fps_upg_ass_ak_b_zastava", 48, "dmr", true)
-	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
-	self:_balance_conversion_kit(tweak_data, "akm_gold", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)
-
 	self:_balance_silencers()
 end)
 
