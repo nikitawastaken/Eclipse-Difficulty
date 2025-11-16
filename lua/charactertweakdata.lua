@@ -279,18 +279,18 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	burst_multiplier(presets.weapon.murky, 0.6)
 
 	presets.weapon.security_mcmansion = based_on(presets.weapon.murky)
-	
+
 	presets.weapon.marshal_security = based_on(presets.weapon.murky)
 
 	presets.weapon.special = based_on(presets.weapon.swat, {
 		aim_delay = { 0, 0.6 },
 		focus_delay = 0.3,
 	})
-	
+
 	presets.weapon.soldier = based_on(presets.weapon.special)
 	damage_multiplier(presets.weapon.soldier, 5 / 4)
 	accuracy_multiplier(presets.weapon.soldier, 1.15)
-	
+
 	presets.weapon.shield = based_on(presets.weapon.special, {
 		melee_range = 150,
 		melee_force = 500,
@@ -319,7 +319,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.5, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
-	
+
 	presets.weapon.elite_shield_break = based_on(presets.weapon.special)
 	presets.weapon.elite_shield_break.is_shotgun_mag.FALLOFF = {
 		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.3, 0.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
