@@ -552,7 +552,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_pis_korth_b_railed.stats.spread = 0
 	self.parts.wpn_fps_pis_korth_b_railed.stats.recoil = 0
 	self.parts.wpn_fps_pis_korth_b_railed.stats.concealment = 0
-	
+
 	self.parts.wpn_fps_pis_korth_conversionkit.stats.damage = 0
 	self.parts.wpn_fps_pis_korth_conversionkit.stats.spread = 1
 	self.parts.wpn_fps_pis_korth_conversionkit.stats.recoil = 1
@@ -808,7 +808,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_sho_supernova_conversion.stats.spread = -2
 	self.parts.wpn_fps_sho_supernova_conversion.stats.recoil = 0
 	self.parts.wpn_fps_sho_supernova_conversion.stats.concealment = 2
-	
+
 	-- Sniper Rifle Mods
 	self.parts.wpn_fps_snp_msr_b_long.stats.concealment = -1
 
@@ -1129,10 +1129,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.parts.wpn_fps_fla_mk2_mag_rare.stats = { 
-		value = 1, 
-		damage = -4, 
-		extra_ammo = 25, 
+	self.parts.wpn_fps_fla_mk2_mag_rare.stats = {
+		value = 1,
+		damage = -4,
+		extra_ammo = 25,
 		total_ammo_mod = 5,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_rare.adds = { "wpn_fps_fla_mk2_a_rare" }
@@ -1140,10 +1140,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_mk2_mag_rare.has_description = true
 	self.parts.wpn_fps_fla_mk2_mag_rare.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = { 
-		value = 1, 
-		damage = 4, 
-		extra_ammo = -25, 
+	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = {
+		value = 1,
+		damage = 4,
+		extra_ammo = -25,
 		total_ammo_mod = -5,
 	}
 	self.parts.wpn_fps_fla_mk2_mag_welldone.adds = { "wpn_fps_fla_mk2_a_welldone" }
@@ -1153,7 +1153,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_fla_system_b_wtf.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_fla_system_b_wtf.stats.concealment = 0
-		
+
 	self.parts.wpn_fps_fla_system_a_low = deep_clone(self.parts.wpn_fps_fla_mk2_a_rare)
 	self.parts.wpn_fps_fla_system_a_low.name_id = "bm_wp_system_a_low"
 	self.parts.wpn_fps_fla_system_a_low.custom_stats.dot_data_name = "ammo_system_low"
@@ -1162,10 +1162,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_system_a_high.name_id = "bm_wp_system_a_high"
 	self.parts.wpn_fps_fla_system_a_high.custom_stats.dot_data_name = "ammo_system_high"
 
-	self.parts.wpn_fps_fla_system_m_low.stats = { 
-		value = 1, 
-		damage = -4, 
-		extra_ammo = 25, 
+	self.parts.wpn_fps_fla_system_m_low.stats = {
+		value = 1,
+		damage = -4,
+		extra_ammo = 25,
 		total_ammo_mod = 5,
 	}
 	self.parts.wpn_fps_fla_system_m_low.adds = { "wpn_fps_fla_system_a_low" }
@@ -1173,10 +1173,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_fla_system_m_low.has_description = true
 	self.parts.wpn_fps_fla_system_m_low.desc_id = "bm_wp_fla_mk2_mag_rare_desc"
 
-	self.parts.wpn_fps_fla_system_m_high.stats = { 
-		value = 1, 
-		damage = 4, 
-		extra_ammo = -25, 
+	self.parts.wpn_fps_fla_system_m_high.stats = {
+		value = 1,
+		damage = 4,
+		extra_ammo = -25,
 		total_ammo_mod = -5,
 	}
 	self.parts.wpn_fps_fla_system_m_high.adds = { "wpn_fps_fla_system_a_high" }
@@ -2233,15 +2233,15 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.damage = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.spread = 0
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.recoil = 2
-	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1800 / 1100 }	
+	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.custom_stats = { fire_rate_multiplier = 1800 / 1100 }
 	self:_balance_conversion_kit(tweak_data, "kacchainsaw", "wpn_fps_lmg_kacchainsaw_conversionkit", 12, nil, true)
-	
+
 	self.parts.wpn_fps_pis_deagle_ck.stats.damage = 0
 	self.parts.wpn_fps_pis_deagle_ck.stats.spread = 0
 	self.parts.wpn_fps_pis_deagle_ck.stats.recoil = 2
 	self.parts.wpn_fps_pis_deagle_ck.stats.concealment = -1
-	self.parts.wpn_fps_pis_deagle_ck.custom_stats = { ammo_offset = 3 }	
-	self:_balance_conversion_kit(tweak_data, "deagle", "wpn_fps_pis_deagle_ck", 64, nil, true)	
+	self.parts.wpn_fps_pis_deagle_ck.custom_stats = { ammo_offset = 3 }
+	self:_balance_conversion_kit(tweak_data, "deagle", "wpn_fps_pis_deagle_ck", 64, nil, true)
 
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.recoil = -4
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
@@ -2251,24 +2251,24 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
 	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -4
 	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
-	self.parts.wpn_fps_pis_korth_m_6.no_magazine_balancing = true	
+	self.parts.wpn_fps_pis_korth_m_6.no_magazine_balancing = true
 	self:_balance_conversion_kit(tweak_data, "korth", "wpn_fps_pis_korth_m_6", 80, nil, true)
 
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.damage = 0
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.spread = 3
 	self.parts.wpn_fps_m4_upg_fg_mk12.stats.recoil = -2
 	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750 }
-	table.delete(self.parts.wpn_fps_m4_upg_fg_mk12.perks, "fire_mode_auto")	
+	table.delete(self.parts.wpn_fps_m4_upg_fg_mk12.perks, "fire_mode_auto")
 	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_m4_upg_fg_mk12", 36, nil, true)
-	
+
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 0
 	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {}
 	self.parts.wpn_fps_ass_g3_b_sniper.adds = nil -- wtf is this, why do you need a separate dummy part for ammo pickup specifically
 	self.parts.wpn_fps_ass_g3_b_sniper.no_magazine_balancing = true
-	self.parts.wpn_fps_ass_g3_b_sniper.perks = { "fire_mode_single" }	
+	self.parts.wpn_fps_ass_g3_b_sniper.perks = { "fire_mode_single" }
 	self:_balance_conversion_kit(tweak_data, "g3", "wpn_fps_ass_g3_b_sniper", 64, nil, true)
-	
+
 	self.parts.wpn_fps_ass_fal_fg_04.stats.damage = 0
 	self.parts.wpn_fps_ass_fal_fg_04.perks = { "fire_mode_single" }
 	self:_balance_conversion_kit(tweak_data, "fal", "wpn_fps_ass_fal_fg_04", 64, nil, true)
