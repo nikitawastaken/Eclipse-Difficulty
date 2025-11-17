@@ -386,7 +386,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good, {
 		stance_mul = nil,
 	})
-	
+
 	presets.weapon.eclipse_cloaker.is_pistol.RELOAD_SPEED = 1.1
 	presets.weapon.eclipse_cloaker.is_pistol.FALLOFF = {
 		{ dmg_mul = 5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },

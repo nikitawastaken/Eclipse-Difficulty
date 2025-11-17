@@ -25,12 +25,12 @@ end)
 
 -- Add enemy movement accuracy multipliers
 Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", function(self)
-	local multiplier = 1 
-	
+	local multiplier = 1
+
 	local weapon_unit = self._unit:inventory():equipped_unit()
 	local weap_usage = weapon_unit and weapon_unit:base():weapon_tweak_data() and weapon_unit:base():weapon_tweak_data().usage
-	local stance_acc_mul = weap_usage and self._char_tweak.weapon and self._char_tweak.weapon[weap_usage] and self._char_tweak.weapon[weap_usage].stance_acc_mul 
-	
+	local stance_acc_mul = weap_usage and self._char_tweak.weapon and self._char_tweak.weapon[weap_usage] and self._char_tweak.weapon[weap_usage].stance_acc_mul
+
 	local is_moving = self._unit:anim_data().move
 	local is_running = is_moving and self._unit:anim_data().run
 	local is_walking = is_moving and not is_running
