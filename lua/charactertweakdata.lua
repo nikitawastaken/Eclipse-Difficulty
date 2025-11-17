@@ -339,7 +339,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1 * aim_delay_mul,
 		2 * aim_delay_mul,
 	}
-	presets.weapon.eclipse_sniper.is_sniper.RELOAD_SPEED = 1 
+	presets.weapon.eclipse_sniper.is_sniper.RELOAD_SPEED = 1
 	presets.weapon.eclipse_sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.eclipse_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
@@ -352,7 +352,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		0.5 * aim_delay_mul,
 		1.5 * aim_delay_mul,
 	}
-	presets.weapon.eclipse_elite_sniper.is_sniper.RELOAD_SPEED = 1 
+	presets.weapon.eclipse_elite_sniper.is_sniper.RELOAD_SPEED = 1
 	presets.weapon.eclipse_elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
@@ -1174,7 +1174,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.fbi_sniper = deep_clone(self.sniper)
 	table.insert(self._enemy_list, "fbi_sniper")
-	
+
 	self.city_sniper = deep_clone(self.swat)
 	self.city_sniper.tags = {
 		"law",
