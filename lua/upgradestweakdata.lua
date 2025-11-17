@@ -1948,7 +1948,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.damage_to_hot_data.add_stack_sources.sentry_gun = false
 
 	self.values.player.fall_damage_multiplier = { 0.5 }
-	
+
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"

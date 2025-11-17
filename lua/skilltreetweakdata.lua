@@ -783,10 +783,10 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
 	self.specializations[18][7].icon_xy = { 2, 1 }
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
-	
+
 	-- stoic
 	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
-	
+
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")
 	self.specializations[21][3].texture_bundle_folder = nil
