@@ -158,6 +158,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_normal.is_revolver.stance_acc_mul = { running = 0.7, walking = 1, standing = 1.3 }
+	presets.weapon.eclipse_normal.is_revolver.RELOAD_SPEED = 0.9
 	presets.weapon.eclipse_normal.is_revolver.range = { close = 1000, optimal = 2000, far = 4000 }
 	presets.weapon.eclipse_normal.is_revolver.FALLOFF = {
 		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 } },
@@ -168,9 +169,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.is_sniper.stance_acc_mul = { running = 0.6, walking = 0.8, standing = 1.4 }
 	presets.weapon.eclipse_normal.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.eclipse_normal.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_normal.is_shotgun_pump.RELOAD_SPEED = 1.5
@@ -236,7 +237,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.is_flamethrower.melee_retry_delay = nil
 	presets.weapon.eclipse_normal.is_flamethrower.RELOAD_SPEED = 0.6
 	presets.weapon.eclipse_normal.is_flamethrower.autofire_rounds = { 20, 40 }
-	presets.weapon.eclipse_normal.is_flamethrower.range = { close = 500, optimal = 1000, far = 2000 }
+	presets.weapon.eclipse_normal.is_flamethrower.range = { close = 500, optimal = 875, far = 1750 }
 	presets.weapon.eclipse_normal.is_flamethrower.FALLOFF = {
 		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.25, 0.45 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
@@ -276,7 +277,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	accuracy_addition(presets.weapon.eclipse_good, 0.1)
 
 	presets.weapon.eclipse_fbi = based_on(presets.weapon.eclipse_good)
-	damage_multiplier(presets.weapon.eclipse_good, 1.25)
+	damage_multiplier(presets.weapon.eclipse_fbi, 1.25)
 
 	presets.weapon.eclipse_expert = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.5 },
@@ -338,9 +339,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1 * aim_delay_mul,
 		2 * aim_delay_mul,
 	}
+	presets.weapon.eclipse_sniper.is_sniper.RELOAD_SPEED = 1 
 	presets.weapon.eclipse_sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.eclipse_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -350,9 +352,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		0.5 * aim_delay_mul,
 		1.5 * aim_delay_mul,
 	}
+	presets.weapon.eclipse_elite_sniper.is_sniper.RELOAD_SPEED = 1 
 	presets.weapon.eclipse_elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
@@ -384,15 +387,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	damage_multiplier(presets.weapon.eclipse_medic, 4 / 5)
 
 	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good, {
+		RELOAD_SPEED = 1.2,
 		stance_mul = nil,
 	})
-
-	presets.weapon.eclipse_cloaker.is_pistol.RELOAD_SPEED = 1.1
 	presets.weapon.eclipse_cloaker.is_pistol.FALLOFF = {
 		{ dmg_mul = 5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
-	presets.weapon.eclipse_cloaker.is_smg.RELOAD_SPEED = 1.1
 	presets.weapon.eclipse_cloaker.is_smg.FALLOFF = {
 		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
@@ -1172,7 +1173,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi_sniper = deep_clone(self.sniper)
-
+	table.insert(self._enemy_list, "fbi_sniper")
+	
 	self.city_sniper = deep_clone(self.swat)
 	self.city_sniper.tags = {
 		"law",
@@ -1894,18 +1896,10 @@ CharacterTweakData.tweak_table_weapon = {
 	cop_fat = "eclipse_fat",
 	soldier = "eclipse_good",
 	cobra = "eclipse_gangster",
-	sniper = "eclipse_sniper",
-	shield = "eclipse_shield",
-	fbi_sniper = "eclipse_sniper",
-	fbi_shield = "eclipse_shield",
 	city_sniper = "eclipse_elite_sniper",
 	city_shield = "eclipse_elite_shield",
 	city_shield_break = "eclipse_elite_shield",
 	medic = "eclipse_medic",
-	tank = "eclipse_bulldozer",
-	tank_medic = "eclipse_bulldozer",
-	snowman_boss = "eclipse_bulldozer",
-	piggydozer = "eclipse_bulldozer",
 	tank_hw = "eclipse_hw_bulldozer",
 	city_tank = "eclipse_elite_bulldozer",
 	mobster_boss = "eclipse_boss",
@@ -1919,11 +1913,14 @@ CharacterTweakData.tweak_table_weapon = {
 }
 
 CharacterTweakData.access_weapon = {
-	security = "eclipse_security",
-	gangster = "eclipse_gangster",
 	fbi = "eclipse_fbi",
-	taser = "eclipse_taser",
+	gangster = "eclipse_gangster",
+	security = "eclipse_security",
+	shield = "eclipse_shield",
+	sniper = "eclipse_sniper",
 	spooc = "eclipse_cloaker",
+	tank = "eclipse_bulldozer",
+	taser = "eclipse_taser",
 }
 
 CharacterTweakData.tweak_table_move_speed = {
