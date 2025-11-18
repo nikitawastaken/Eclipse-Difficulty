@@ -1051,6 +1051,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	-- Compact-5 drum magazine
 	self.parts.wpn_fps_smg_mp5_m_drum = deep_clone(self.parts.wpn_fps_smg_mp5_m_straight)
+	self.parts.wpn_fps_smg_mp5_m_drum.texture_bundle_folder = nil
 	self.parts.wpn_fps_smg_mp5_m_drum.dlc = nil
 	self.parts.wpn_fps_smg_mp5_m_drum.name_id = "bm_wp_ak_m_drum"
 	self.parts.wpn_fps_smg_mp5_m_drum.unit = "units/payday2/weapons/wpn_fps_smg_mp5_pts/wpn_fps_smg_mp5_m_drum"
