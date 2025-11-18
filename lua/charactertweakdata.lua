@@ -1219,6 +1219,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_shield = deep_clone(self.shield)
 	self.city_shield.HEALTH_INIT = 36
 	self.city_shield.headshot_dmg_mul = 2.5 -- 144 head health
+    self.city_shield.speech_prefix_p1 = "l5d"
+	self.city_shield.speech_prefix_p2 = nil
+	self.city_shield.speech_prefix_count = nil
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.city_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
 	self.city_shield.damage.shield_knocked = false
