@@ -423,7 +423,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_bulldozer.is_lmg.autofire_rounds = { 15, 40 }
 	presets.weapon.eclipse_bulldozer.is_lmg.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.2, 0.5 }, recoil = { 0.6, 1  }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.2, 0.5 }, recoil = { 0.6, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 	presets.weapon.eclipse_bulldozer.mini.no_autofire_stop = true
@@ -1219,6 +1219,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_shield = deep_clone(self.shield)
 	self.city_shield.HEALTH_INIT = 36
 	self.city_shield.headshot_dmg_mul = 2.5 -- 144 head health
+	self.city_shield.speech_prefix_p1 = "l5d"
+	self.city_shield.speech_prefix_p2 = nil
+	self.city_shield.speech_prefix_count = nil
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.city_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
 	self.city_shield.damage.shield_knocked = false
