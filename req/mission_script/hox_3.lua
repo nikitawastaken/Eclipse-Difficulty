@@ -35,7 +35,7 @@ local ready_team_dozer_chance = {
 	},
 }
 local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
