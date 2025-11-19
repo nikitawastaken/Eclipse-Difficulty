@@ -42,8 +42,10 @@ Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(
 					local unit = logic_data.objective and logic_data.objective.cover_unit
 					if alive(unit) and not unit:character_damage():dead() then
 						local unit_key = unit:key()
-						followers[unit_key] = followers[unit_key] or { amount = 0 }
-						followers[unit_key].amount = followers[unit_key].amount + 1
+						if data.group.units[unit_key] then
+							followers[unit_key] = followers[unit_key] or { amount = 0 }
+							followers[unit_key].amount = followers[unit_key].amount + 1
+						end
 					end
 				else
 					followers[u_key] = followers[u_key] or { amount = 0 }
