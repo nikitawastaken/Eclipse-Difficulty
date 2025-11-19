@@ -7,9 +7,9 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	-- why is this here?
 	self.explosive_bullet = {
-		curve_pow = 3,
+		curve_pow = 1,
 		player_dmg_mul = 1 / 4,
-		range = 300,
+		range = 200,
 	}
 
 	-- 100 skill points
@@ -857,7 +857,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.skill_descs.fire_trap.multibasic = "4"
-	self.skill_descs.fire_trap.multibasic2 = "2.5m"
+	self.skill_descs.fire_trap.multibasic2 = "2m"
 	self.skill_descs.fire_trap.multibasic3 = "25%"
 	self.skill_descs.fire_trap.multipro = "30"
 	self.skill_descs.fire_trap.multipro2 = "4"
@@ -1946,15 +1946,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.damage_to_hot_data.add_stack_sources.poison = false
 	self.damage_to_hot_data.add_stack_sources.swat_van = false
 	self.damage_to_hot_data.add_stack_sources.sentry_gun = false
+
+	self.values.player.fall_damage_multiplier = { 0.5 }
+
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"
 	self.specialization_descs[11][1].multiperk2 = "1"
 	self.specialization_descs[11][3].multiperk = "30%"
+	self.specialization_descs[11][3].multiperk2 = "50%"
 	self.specialization_descs[11][5].multiperk = "5"
 	self.specialization_descs[11][5].multiperk2 = "3"
 	self.specialization_descs[11][7].multiperk = "30%"
-	self.specialization_descs[11][9].multiperk = "3"
+	self.specialization_descs[11][9].multiperk = "2"
 	self.specialization_descs[11][9].multiperk2 = "0.3"
 	self.specialization_descs[11][9].multiperk3 = "3"
 
@@ -2203,6 +2207,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Stoic
 	self.specialization_descs[19][1].multiperk3 = "16"
+	self.specialization_descs[19][3].multiperk = "50%"
 
 	-- Tag Team
 	self.values.player.tag_team_base.kill_health_gain = 0.5

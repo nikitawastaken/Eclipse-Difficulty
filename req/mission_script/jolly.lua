@@ -15,6 +15,9 @@ local bridge_spawn = {
 	},
 	groups = preferred.no_cops_agents,
 }
+local scripted_swat_wall_spawn = {
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
+}
 return {
 	-- add FFO
 	[100082] = {
@@ -52,6 +55,9 @@ return {
 			},
 		},
 	},
+	-- change preffereds for scripted blown up wall group
+	[400006] = scripted_swat_wall_spawn,
+	[400012] = scripted_swat_wall_spawn,
 	-- Spawn group intervals
 	[100944] = train_spawn,
 	[100945] = train_spawn,

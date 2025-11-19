@@ -1,11 +1,4 @@
 <table>
-	<AddFiles directory="assets">
-		<!-- perk decks and skill trees -->
-		<texture path="guis/textures/pd2/skilltree_2/icons_atlas_2"/>
-		<texture path="guis/textures/pd2/specialization/icons_atlas"/>
-		<texture path="guis/dlcs/max/textures/pd2/specialization/icons_atlas"/>
-	</AddFiles>
-	
 	<!-- Custom packages -->
     <!-- FBI ready teams -->
 	<Package id="packages/security_mcmansion" file="packages/security_mcmansion.xml"/>

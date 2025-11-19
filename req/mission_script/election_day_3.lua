@@ -37,7 +37,7 @@ local low_harasser_enemy = {
 local low_harasser = { enemy = low_harasser_enemy }
 local med_harasser_enemy = swat_1
 local med_harasser = { enemy = med_harasser_enemy }
-local high_harasser_enemy = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
+local high_harasser_enemy = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
 local high_harasser = { enemy = high_harasser_enemy }
 local low_escape_enemy = {
 	[swat_1] = 3,

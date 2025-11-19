@@ -37,9 +37,9 @@ return {
 	},
 	-- add point of no return and disable endless assault
 	[100875] = {
-		ponr = {
-			length = 240,
-			player_mul = { 1.5, 1, 0.85, 0.75 },
+		ponr = { -- Set hunt, waiting for escape
+			length = 200,
+			player_mul = { 1.25, 1, 0.875, 0.75 },
 		},
 	},
 	[100877] = {

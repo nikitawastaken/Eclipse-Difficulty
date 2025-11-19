@@ -118,6 +118,7 @@ Hooks:PostHook(GroupAIStateBase, "init", "eclipse_init", function(self)
 	self._next_police_upd_task = 0
 	self._next_group_spawn_t = {}
 	self._marking_sentries = {}
+	self._deployable_nav_segs = {}
 
 	self._mga_hostage_kills = self._mga_hostage_kills or 0
 	self._mga_said_hostage_kill_t = self._mga_said_hostage_kill_t or self._t
@@ -153,6 +154,11 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 		marksman = true,
 	}
 end)
+
+-- Add a function to check if a deployble is within a nav_seg
+function GroupAIStateBase:check_deployable_nav_seg(nav_seg_id)
+	return self._deployable_nav_segs[nav_seg_id]
+end
 
 -- Add megaphone cop lines to specific heists (from Restoration Mod)
 function GroupAIStateBase:_post_megaphone_event(event)
@@ -220,8 +226,7 @@ function GroupAIStateBase:_update_difficulty_value()
 			if self._difficulty_value >= self._target_difficulty then
 				self._target_difficulty = self._difficulty_value
 			else
-				self._next_difficulty_step_t = self._t
-					+ math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
+				self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.diff_step_interval
 			end
 			self:_calculate_difficulty_ratio()
 		end

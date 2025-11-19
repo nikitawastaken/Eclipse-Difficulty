@@ -63,6 +63,22 @@ local function damage_multiplier(tbl, multiplier)
 	end
 end
 
+local function reload_speed_multiplier(tbl, multiplier)
+	for _, weapon in pairs(tbl) do
+		weapon.RELOAD_SPEED = weapon.RELOAD_SPEED * multiplier
+	end
+end
+
+local function accuracy_addition(tbl, addend)
+	for _, weapon in pairs(tbl) do
+		for _, falloff in pairs(weapon.FALLOFF) do
+			for i, accuracy in pairs(falloff.acc) do
+				falloff.acc[i] = math.clamp(accuracy + addend, 0, 1)
+			end
+		end
+	end
+end
+
 local function accuracy_multiplier(tbl, multiplier)
 	for _, weapon in pairs(tbl) do
 		for _, falloff in pairs(weapon.FALLOFF) do
@@ -114,372 +130,350 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
 	local aim_delay_mul = aim_delay_tbl[diff_i]
 
-	presets.weapon.base = based_on(presets.weapon.expert, {
+	presets.weapon.eclipse_normal = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
 		focus_delay = 0.6,
-		melee_dmg = 8 * dmg_mul,
+		melee_dmg = 9 * dmg_mul,
 		melee_speed = 1,
 		melee_retry_delay = { 2, 3 },
 		melee_range = 125,
 		melee_force = 400,
 		range = { close = 750, optimal = 1500, far = 3000 },
 		RELOAD_SPEED = 1,
+		stance_acc_mul = nil_value,
 	})
 
-	presets.weapon.base.is_pistol.FALLOFF = {
-		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.15, 0.3 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.1, 0.4 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_pistol.stance_acc_mul = { running = 0.8, walking = 1, standing = 1.2 }
+	presets.weapon.eclipse_normal.is_pistol.FALLOFF = {
+		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.15, 0.3 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.akimbo_pistol.melee_dmg = nil
-	presets.weapon.base.akimbo_pistol.melee_speed = nil
-	presets.weapon.base.akimbo_pistol.melee_retry_delay = nil
-	presets.weapon.base.akimbo_pistol.FALLOFF = {
+	presets.weapon.eclipse_normal.akimbo_pistol.melee_dmg = nil
+	presets.weapon.eclipse_normal.akimbo_pistol.melee_speed = nil
+	presets.weapon.eclipse_normal.akimbo_pistol.melee_retry_delay = nil
+	presets.weapon.eclipse_normal.akimbo_pistol.FALLOFF = {
 		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.1, 0.2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_revolver.range = { close = 1000, optimal = 2000, far = 4000 }
-	presets.weapon.base.is_revolver.FALLOFF = {
-		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 7.5 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_revolver.stance_acc_mul = { running = 0.7, walking = 1, standing = 1.3 }
+	presets.weapon.eclipse_normal.is_revolver.RELOAD_SPEED = 0.9
+	presets.weapon.eclipse_normal.is_revolver.range = { close = 1000, optimal = 2000, far = 4000 }
+	presets.weapon.eclipse_normal.is_revolver.FALLOFF = {
+		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.75, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 7.5 * dmg_mul, r = 3000, acc = { 0.2, 0.5 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_sniper = deep_clone(presets.weapon.base.is_revolver)
-	presets.weapon.base.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
-	presets.weapon.base.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_sniper = deep_clone(presets.weapon.eclipse_normal.is_revolver)
+	presets.weapon.eclipse_normal.is_sniper.stance_acc_mul = { running = 0.6, walking = 0.8, standing = 1.4 }
+	presets.weapon.eclipse_normal.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
+	presets.weapon.eclipse_normal.is_sniper.FALLOFF = {
+		{ dmg_mul = 9 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_shotgun_pump.RELOAD_SPEED = 1.5
-	presets.weapon.base.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
-	presets.weapon.base.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 5 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_shotgun_pump.RELOAD_SPEED = 1.5
+	presets.weapon.eclipse_normal.is_shotgun_pump.range = { close = 500, optimal = 1000, far = 2000 }
+	presets.weapon.eclipse_normal.is_shotgun_pump.FALLOFF = {
+		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * dmg_mul, r = 1000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.5, 0.7 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_shotgun_mag = deep_clone(presets.weapon.base.is_shotgun_pump)
-	presets.weapon.base.is_shotgun_mag.RELOAD_SPEED = 1
-	presets.weapon.base.is_shotgun_mag.autofire_rounds = { 1, 3 }
-	presets.weapon.base.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 4.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.6, 1.2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_shotgun_mag = deep_clone(presets.weapon.eclipse_normal.is_shotgun_pump)
+	presets.weapon.eclipse_normal.is_shotgun_mag.RELOAD_SPEED = 1
+	presets.weapon.eclipse_normal.is_shotgun_mag.autofire_rounds = { 1, 3 }
+	presets.weapon.eclipse_normal.is_shotgun_mag.FALLOFF = {
+		{ dmg_mul = 4.5 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.7 }, recoil = { 0.6, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 1 * dmg_mul, r = 2000, acc = { 0.2, 0.5 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_double_barrel = deep_clone(presets.weapon.base.is_shotgun_pump)
-	presets.weapon.base.is_double_barrel.RELOAD_SPEED = 6
-	presets.weapon.base.is_double_barrel.FALLOFF = {
-		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_double_barrel = deep_clone(presets.weapon.eclipse_normal.is_shotgun_pump)
+	presets.weapon.eclipse_normal.is_double_barrel.RELOAD_SPEED = 6
+	presets.weapon.eclipse_normal.is_double_barrel.FALLOFF = {
+		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.5, 0.7 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_rifle.autofire_rounds = { 1, 5 }
-	presets.weapon.base.is_rifle.range = { close = 1000, optimal = 2000, far = 4000 }
-	presets.weapon.base.is_rifle.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_rifle.autofire_rounds = { 1, 5 }
+	presets.weapon.eclipse_normal.is_rifle.stance_acc_mul = { running = 0.8, walking = 1, standing = 1.2 }
+	presets.weapon.eclipse_normal.is_rifle.range = { close = 1000, optimal = 2000, far = 4000 }
+	presets.weapon.eclipse_normal.is_rifle.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_smg = deep_clone(presets.weapon.base.is_rifle)
-	presets.weapon.base.is_smg.autofire_rounds = { 3, 8 }
-	presets.weapon.base.is_smg.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.5, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_smg = deep_clone(presets.weapon.eclipse_normal.is_rifle)
+	presets.weapon.eclipse_normal.is_smg.stance_acc_mul = nil_value
+	presets.weapon.eclipse_normal.is_smg.autofire_rounds = { 3, 8 }
+	presets.weapon.eclipse_normal.is_smg.FALLOFF = {
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_lmg = deep_clone(presets.weapon.base.is_smg)
-	presets.weapon.base.is_lmg.autofire_rounds = { 10, 30 }
-	presets.weapon.base.is_lmg.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.2, 0.6 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_lmg = deep_clone(presets.weapon.eclipse_normal.is_smg)
+	presets.weapon.eclipse_normal.is_lmg.stance_acc_mul = { running = 0.7, walking = 1, standing = 1.3 }
+	presets.weapon.eclipse_normal.is_lmg.autofire_rounds = { 10, 30 }
+	presets.weapon.eclipse_normal.is_lmg.FALLOFF = {
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.2, 0.5 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.mini = deep_clone(presets.weapon.base.is_lmg)
-	presets.weapon.base.mini.autofire_rounds = { 50, 200 }
-	presets.weapon.base.mini.FALLOFF = {
-		{ dmg_mul = 1.5 * dmg_mul, r = 0, acc = { 0.2, 0.4 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.mini = deep_clone(presets.weapon.eclipse_normal.is_lmg)
+	presets.weapon.eclipse_normal.mini.stance_acc_mul = { running = 0.7, walking = 1, standing = 1.3 }
+	presets.weapon.eclipse_normal.mini.autofire_rounds = { 50, 200 }
+	presets.weapon.eclipse_normal.mini.FALLOFF = {
+		{ dmg_mul = 1.5 * dmg_mul, r = 0, acc = { 0.15, 0.35 }, recoil = { 0.7, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1.5 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.8, 1.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 1.5 * dmg_mul, r = 3000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 1.5 * dmg_mul, r = 3000, acc = { 0, 0.25 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.base.is_flamethrower.melee_dmg = nil
-	presets.weapon.base.is_flamethrower.melee_speed = nil
-	presets.weapon.base.is_flamethrower.melee_retry_delay = nil
-	presets.weapon.base.is_flamethrower.RELOAD_SPEED = 0.6
-	presets.weapon.base.is_flamethrower.autofire_rounds = { 20, 40 }
-	presets.weapon.base.is_flamethrower.range = { close = 500, optimal = 1000, far = 2000 }
-	presets.weapon.base.is_flamethrower.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_normal.is_flamethrower.melee_dmg = nil
+	presets.weapon.eclipse_normal.is_flamethrower.melee_speed = nil
+	presets.weapon.eclipse_normal.is_flamethrower.melee_retry_delay = nil
+	presets.weapon.eclipse_normal.is_flamethrower.RELOAD_SPEED = 0.6
+	presets.weapon.eclipse_normal.is_flamethrower.autofire_rounds = { 20, 40 }
+	presets.weapon.eclipse_normal.is_flamethrower.range = { close = 500, optimal = 875, far = 1750 }
+	presets.weapon.eclipse_normal.is_flamethrower.FALLOFF = {
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.25, 0.45 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 1 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.25 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.security = based_on(presets.weapon.base, {
+	presets.weapon.eclipse_security = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 1.25 },
 		focus_delay = 0.8,
+		range = { close = 1000, optimal = 2000, far = 4000 },
 	})
-	accuracy_multiplier(presets.weapon.security, 0.8)
+	accuracy_addition(presets.weapon.eclipse_security, -0.1)
 
-	presets.weapon.security_fat = based_on(presets.weapon.security, {
-		melee_dmg = 10 * dmg_mul,
+	presets.weapon.eclipse_fat = based_on(presets.weapon.eclipse_normal, {
+		melee_dmg = 12 * dmg_mul,
 		melee_force = 500,
 	})
-	damage_multiplier(presets.weapon.security_fat, 6 / 5)
+	damage_multiplier(presets.weapon.eclipse_fat, 1.2)
 
-	presets.weapon.cop = based_on(presets.weapon.base)
-
-	presets.weapon.cop_fat = based_on(presets.weapon.cop, {
-		melee_dmg = 10 * dmg_mul,
-		melee_force = 500,
-	})
-	damage_multiplier(presets.weapon.cop_fat, 6 / 5)
-
-	presets.weapon.gangster = based_on(presets.weapon.base, {
+	presets.weapon.eclipse_gangster = based_on(presets.weapon.eclipse_normal, {
+		melee_dmg = 12 * dmg_mul,
 		range = { close = 500, optimal = 1000, far = 3000 },
 	})
 
-	damage_multiplier(presets.weapon.gangster, 6 / 4)
-	accuracy_multiplier(presets.weapon.gangster, 0.6)
-	recoil_multiplier(presets.weapon.gangster, 0.8)
-	burst_multiplier(presets.weapon.gangster, 1.5)
+	damage_multiplier(presets.weapon.eclipse_gangster, 1.5)
+	accuracy_addition(presets.weapon.eclipse_gangster, -0.2)
+	recoil_multiplier(presets.weapon.eclipse_gangster, 0.75)
+	burst_multiplier(presets.weapon.eclipse_gangster, 1.5)
 
-	presets.weapon.swat = based_on(presets.weapon.base)
-
-	presets.weapon.fbi = based_on(presets.weapon.base)
-
-	damage_multiplier(presets.weapon.fbi, 6 / 4)
-
-	presets.weapon.fbi_swat = based_on(presets.weapon.swat, {
+	presets.weapon.eclipse_good = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.75 },
 		focus_delay = 0.4,
 		melee_dmg = 12 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.fbi_swat, 6 / 5)
-	accuracy_multiplier(presets.weapon.fbi_swat, 1.2)
+	damage_multiplier(presets.weapon.eclipse_good, 1.2)
+	reload_speed_multiplier(presets.weapon.eclipse_good, 1.1)
+	accuracy_addition(presets.weapon.eclipse_good, 0.1)
 
-	presets.weapon.elite_swat = based_on(presets.weapon.swat, {
+	presets.weapon.eclipse_fbi = based_on(presets.weapon.eclipse_good)
+	damage_multiplier(presets.weapon.eclipse_fbi, 1.25)
+
+	presets.weapon.eclipse_expert = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.5 },
 		focus_delay = 0.2,
-		melee_dmg = 16 * dmg_mul,
+		melee_dmg = 15 * dmg_mul,
 	})
-	damage_multiplier(presets.weapon.elite_swat, 7 / 5)
-	accuracy_multiplier(presets.weapon.elite_swat, 1.4)
+	damage_multiplier(presets.weapon.eclipse_expert, 1.4)
+	reload_speed_multiplier(presets.weapon.eclipse_expert, 1.2)
+	accuracy_addition(presets.weapon.eclipse_expert, 0.2)
 
-	presets.weapon.zeal_swat = based_on(presets.weapon.elite_swat)
+	presets.weapon.eclipse_murky = based_on(presets.weapon.eclipse_good)
+	damage_multiplier(presets.weapon.eclipse_murky, 1.25)
+	accuracy_addition(presets.weapon.eclipse_murky, 0.2)
+	recoil_multiplier(presets.weapon.eclipse_murky, 1.25)
+	burst_multiplier(presets.weapon.eclipse_murky, 0.6)
 
-	presets.weapon.murky = based_on(presets.weapon.swat)
-	damage_multiplier(presets.weapon.murky, 6 / 4)
-	accuracy_multiplier(presets.weapon.murky, 1.4)
-	recoil_multiplier(presets.weapon.murky, 1.2)
-	burst_multiplier(presets.weapon.murky, 0.6)
-
-	presets.weapon.security_mcmansion = based_on(presets.weapon.murky)
-
-	presets.weapon.marshal_security = based_on(presets.weapon.murky)
-
-	presets.weapon.soldier = based_on(presets.weapon.fbi_swat)
-
-	presets.weapon.shield = based_on(presets.weapon.base, {
+	presets.weapon.eclipse_shield = based_on(presets.weapon.eclipse_good, {
 		melee_range = 150,
 		melee_force = 500,
 		melee_retry_delay = { 1, 2 },
 		range = { close = 500, optimal = 1000, far = 2000 },
+		stance_acc_mul = nil,
 	})
-
-	presets.weapon.shield.is_pistol.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1500, acc = { 0.3, 0.6 }, recoil = { 0.3, 0.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_shield.is_pistol.RELOAD_SPEED = 0.9
+	presets.weapon.eclipse_shield.is_pistol.FALLOFF = {
+		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.3, 0.6 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+	}
+	presets.weapon.eclipse_shield.is_smg.RELOAD_SPEED = 0.9
+	presets.weapon.eclipse_shield.is_smg.FALLOFF = {
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 8, 10 } },
+		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.3, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 6, 8 } },
+		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 4, 6 } },
 	}
 
-	presets.weapon.shield.is_smg.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 1500, acc = { 0.3, 0.6 }, recoil = { 0.6, 1.2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_elite_shield = based_on(presets.weapon.eclipse_shield, {
+		melee_range = 175,
+		melee_force = 600,
+	})
+	presets.weapon.eclipse_elite_shield.is_revolver.FALLOFF = {
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.fbi_shield = based_on(presets.weapon.shield)
-
-	presets.weapon.elite_shield = based_on(presets.weapon.swat)
-
-	presets.weapon.elite_shield.is_revolver.melee_range = 175
-	presets.weapon.elite_shield.is_revolver.melee_force = 600
-	presets.weapon.elite_shield.is_revolver.melee_retry_delay = { 1, 2 }
-	presets.weapon.elite_shield.is_revolver.range = { close = 500, optimal = 1000, far = 2000 }
-	presets.weapon.elite_shield.is_revolver.FALLOFF = {
-		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.6, 0.9 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * dmg_mul, r = 1500, acc = { 0.5, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * dmg_mul, r = 3000, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_range = 125
+	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_range = 400
+	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_retry_delay = { 2, 3 }
+	presets.weapon.eclipse_elite_shield.is_shotgun_mag.range = { close = 750, optimal = 1500, far = 3000 }
+	presets.weapon.eclipse_elite_shield.is_shotgun_mag.FALLOFF = {
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.5, 0.9 }, recoil = { 0.3, 0.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 4 } },
+		{ dmg_mul = 4 * dmg_mul, r = 1000, acc = { 0.4, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 3 } },
+		{ dmg_mul = 2 * dmg_mul, r = 2000, acc = { 0.2, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
 
-	presets.weapon.elite_shield.is_shotgun_mag.range = { close = 750, optimal = 1500, far = 3000 }
-	presets.weapon.elite_shield.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 4.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.3, 0.6 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 5 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 3 } },
-		{ dmg_mul = 1.5 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.6, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
-	}
-
-	presets.weapon.zeal_shield = based_on(presets.weapon.shield)
-
-	presets.weapon.sniper = based_on(presets.weapon.swat)
-
-	local cs_sniper_aim_delay_mul = aim_delay_mul ^ 0.6
-	local elite_sniper_aim_delay_mul = aim_delay_mul ^ 1.25
-
-	presets.weapon.sniper.is_sniper.aim_delay = {
-		1 * cs_sniper_aim_delay_mul,
-		2 * cs_sniper_aim_delay_mul,
-	}
-	presets.weapon.sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * cs_sniper_aim_delay_mul
-	presets.weapon.sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
-	presets.weapon.sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 14 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 14 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 14 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-	}
-
-	presets.weapon.fbi_sniper = based_on(presets.weapon.sniper)
-
-	presets.weapon.fbi_sniper.is_sniper.aim_delay = {
+	presets.weapon.eclipse_sniper = based_on(presets.weapon.eclipse_good)
+	presets.weapon.eclipse_sniper.is_sniper.aim_delay = {
 		1 * aim_delay_mul,
 		2 * aim_delay_mul,
 	}
-	presets.weapon.fbi_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * aim_delay_mul
-	presets.weapon.fbi_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_sniper.is_sniper.RELOAD_SPEED = 1
+	presets.weapon.eclipse_sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
+	presets.weapon.eclipse_sniper.is_sniper.FALLOFF = {
+		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 20 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.elite_sniper = based_on(presets.weapon.swat)
-
-	presets.weapon.elite_sniper.is_sniper.aim_delay = {
-		1 * elite_sniper_aim_delay_mul,
-		2 * elite_sniper_aim_delay_mul,
+	presets.weapon.eclipse_elite_sniper = based_on(presets.weapon.eclipse_good)
+	presets.weapon.eclipse_elite_sniper.is_sniper.aim_delay = {
+		0.5 * aim_delay_mul,
+		1.5 * aim_delay_mul,
 	}
-	presets.weapon.elite_sniper.is_sniper.focus_delay = presets.weapon.base.is_sniper.focus_delay * elite_sniper_aim_delay_mul
-	presets.weapon.elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
-	presets.weapon.elite_sniper.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.25, 0.75 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_elite_sniper.is_sniper.RELOAD_SPEED = 1
+	presets.weapon.eclipse_elite_sniper.is_sniper.stance_acc_mul = { running = 0.7, walking = 1, standing = 1.3 }
+	presets.weapon.eclipse_elite_sniper.is_sniper.range = { close = 2000, optimal = 3000, far = 5000 }
+	presets.weapon.eclipse_elite_sniper.is_sniper.FALLOFF = {
+		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.taser = based_on(presets.weapon.swat, {
+	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
 		aim_delay_tase = {
-			0.5 * aim_delay_mul,
+			0,
 			1 * aim_delay_mul,
 		},
 		tase_sphere_cast_radius = 15,
-		tase_distance = 1400,
+		tase_distance = 1500,
 	})
-
-	presets.weapon.taser.is_rifle.autofire_rounds = nil
-	presets.weapon.taser.is_rifle.FALLOFF = {
-		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.7, 1 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
-	}
-
-	presets.weapon.taser.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 4.5 * dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
-	}
-
-	presets.weapon.medic = based_on(presets.weapon.swat, {
-		range = { close = 1500, optimal = 2500, far = 4000 },
-	})
-	damage_multiplier(presets.weapon.medic, 4 / 5)
-
-	presets.weapon.cloaker = based_on(presets.weapon.swat)
-
-	presets.weapon.cloaker.is_pistol.FALLOFF = {
-		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.2, 0.3 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_taser.is_rifle.autofire_rounds = nil
+	presets.weapon.eclipse_taser.is_rifle.FALLOFF = {
+		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
-
-	presets.weapon.cloaker.is_smg.FALLOFF = {
-		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0.2, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_taser.is_shotgun_pump.tase_sphere_cast_radius = 25
+	presets.weapon.eclipse_taser.is_shotgun_pump.tase_distance = 1200
+	presets.weapon.eclipse_taser.is_shotgun_pump.FALLOFF = {
+		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 6 * dmg_mul, r = 1000, acc = { 0.6, 0.8 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 4.5 * dmg_mul, r = 2000, acc = { 0.5, 0.7 }, recoil = { 1.2, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.bulldozer = based_on(presets.weapon.base, {
-		aim_delay = { 0, 2 },
+	presets.weapon.eclipse_medic = based_on(presets.weapon.eclipse_good, {
+		range = { close = 1500, optimal = 2500, far = 4000 },
+	})
+	damage_multiplier(presets.weapon.eclipse_medic, 4 / 5)
+
+	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good, {
+		stance_mul = nil_value,
+	})
+	reload_speed_multiplier(presets.weapon.eclipse_cloaker, 1.2)
+	presets.weapon.eclipse_cloaker.is_pistol.FALLOFF = {
+		{ dmg_mul = 5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 5 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+	}
+	presets.weapon.eclipse_cloaker.is_smg.FALLOFF = {
+		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+	}
+
+	presets.weapon.eclipse_bulldozer = based_on(presets.weapon.eclipse_good, {
+		aim_delay = { 0, 1.5 },
 		melee_dmg = 30 * special_dmg_mul,
 		melee_force = 600,
+		stance_mul = nil_value,
 	})
-
-	presets.weapon.bulldozer.is_smg.range = { close = 1500, optimal = 2500, far = 4000 }
-
-	presets.weapon.bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
-	presets.weapon.bulldozer.is_shotgun_pump.FALLOFF = {
+	presets.weapon.eclipse_bulldozer.is_smg.range = { close = 1500, optimal = 2500, far = 4000 }
+	presets.weapon.eclipse_bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
+	presets.weapon.eclipse_bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 30 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 15 * special_dmg_mul, r = 1000, acc = { 0.7, 0.9 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.6, 0.8 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
 	}
-
-	presets.weapon.bulldozer.is_shotgun_mag.RELOAD_SPEED = 0.8
-	presets.weapon.bulldozer.is_shotgun_mag.FALLOFF = {
-		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 4, 6 } },
+	presets.weapon.eclipse_bulldozer.is_shotgun_mag.RELOAD_SPEED = 0.8
+	presets.weapon.eclipse_bulldozer.is_shotgun_mag.FALLOFF = {
+		{ dmg_mul = 6 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 3, 6 } },
 		{ dmg_mul = 4.5 * dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.6, 0.9 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 2, 4 } },
 		{ dmg_mul = 3 * dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 1, 2 } },
 	}
-
-	presets.weapon.bulldozer.is_lmg.RELOAD_SPEED = 0.5
-	presets.weapon.bulldozer.is_lmg.autofire_rounds = { 20, 50 }
-	presets.weapon.bulldozer.is_lmg.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.6 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+	presets.weapon.eclipse_bulldozer.is_lmg.RELOAD_SPEED = 0.5
+	presets.weapon.eclipse_bulldozer.is_lmg.autofire_rounds = { 15, 40 }
+	presets.weapon.eclipse_bulldozer.is_lmg.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.2, 0.5 }, recoil = { 0.6, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.8 }, mode = { 1, 0, 0, 0 } },
+	}
+	presets.weapon.eclipse_bulldozer.mini.no_autofire_stop = true
+	presets.weapon.eclipse_bulldozer.mini.melee_speed = 0.75
+	presets.weapon.eclipse_bulldozer.mini.RELOAD_SPEED = 0.3
+	presets.weapon.eclipse_bulldozer.mini.autofire_rounds = { 50, 500 }
+	presets.weapon.eclipse_bulldozer.mini.FALLOFF = {
+		{ dmg_mul = 2 * dmg_mul, r = 0, acc = { 0.15, 0.35 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.6, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 3000, acc = { 0, 0.25 }, recoil = { 1, 1.8 }, mode = { 1, 0, 0, 0 } },
+	}
+	presets.weapon.eclipse_bulldozer.is_flamethrower.melee_dmg = nil
+	presets.weapon.eclipse_bulldozer.is_flamethrower.melee_speed = nil
+	presets.weapon.eclipse_bulldozer.is_flamethrower.melee_retry_delay = nil
+	presets.weapon.eclipse_bulldozer.is_flamethrower.FALLOFF = {
+		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.4 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.2 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.bulldozer.is_flamethrower.melee_dmg = nil
-	presets.weapon.bulldozer.is_flamethrower.melee_speed = nil
-	presets.weapon.bulldozer.is_flamethrower.melee_retry_delay = nil
-	presets.weapon.bulldozer.is_flamethrower.FALLOFF = {
-		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 2 * dmg_mul, r = 1000, acc = { 0.1, 0.3 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 0 * dmg_mul, r = 2000, acc = { 0, 0.15 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 } },
-	}
-
-	presets.weapon.headless_bulldozer = based_on(presets.weapon.bulldozer, {
+	presets.weapon.eclipse_hw_bulldozer = based_on(presets.weapon.eclipse_bulldozer, {
 		melee_speed = 0.5,
 		melee_range = 200,
 	})
 
-	presets.weapon.elite_bulldozer = based_on(presets.weapon.bulldozer)
-
-	presets.weapon.elite_bulldozer.is_shotgun_pump.FALLOFF = {
+	presets.weapon.eclipse_elite_bulldozer = based_on(presets.weapon.eclipse_bulldozer)
+	presets.weapon.eclipse_elite_bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 10 * special_dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
-
-	presets.weapon.elite_bulldozer.is_lmg.RELOAD_SPEED = 0.5
-	presets.weapon.elite_bulldozer.is_lmg.autofire_rounds = { 20, 50 }
-	presets.weapon.elite_bulldozer.is_lmg.FALLOFF = {
+	presets.weapon.eclipse_elite_bulldozer.is_lmg.RELOAD_SPEED = 0.5
+	presets.weapon.eclipse_elite_bulldozer.is_lmg.autofire_rounds = { 20, 50 }
+	presets.weapon.eclipse_elite_bulldozer.is_lmg.FALLOFF = {
 		{ dmg_mul = 3 * dmg_mul, r = 0, acc = { 0.6, 0.8 }, recoil = { 0.5, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.6 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 1.6 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 1000, acc = { 0.4, 0.6 }, recoil = { 0.6, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * dmg_mul, r = 3000, acc = { 0.2, 0.4 }, recoil = { 1, 1.8 }, mode = { 1, 0, 0, 0 } },
 	}
 
-	presets.weapon.boss = based_on(presets.weapon.base)
+	presets.weapon.eclipse_boss = based_on(presets.weapon.eclipse_good)
 
-	presets.weapon.gang_member = based_on(presets.weapon.base, {
+	presets.weapon.gang_member = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.25 },
 		focus_delay = 0,
-		melee_dmg = 10,
 	})
 
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 4, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 3, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 6, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = 4, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 			{ dmg_mul = 2, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
@@ -537,7 +531,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = (72 + math.floor(diff_i_no_easy / 2) * 28) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	presets.gang_member_damage.HEALTH_INIT = (54 + math.floor(diff_i_no_easy / 2) * 28) * (UsefulBots and 0.8 or 1) * (Keepers and 0.8 or 1)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
@@ -562,13 +556,16 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	-- Tweak dodge presets
 	presets.dodge.heavy.occasions.preemptive.chance = 0.25
+
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
+	presets.dodge.athletic.slide_chance = 0.75
 
 	presets.dodge.medic = deep_clone(presets.dodge.poor)
 	presets.dodge.medic.speed = 1
-	presets.dodge.medic.occasions.scared.chance = 0.6
+	presets.dodge.medic.occasions.scared.chance = 0.75
 
 	presets.dodge.ninja.speed = 2
+	presets.dodge.ninja.slide_chance = 1
 	for _, occasion in pairs(presets.dodge.ninja.occasions) do
 		occasion.chance = 1
 		if occasion.variations.side_step then
@@ -663,12 +660,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.hurt_severities.only_light_hurt.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 	presets.hurt_severities.only_light_hurt.explosion.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 
-	presets.hurt_severities.only_explosion_and_fire = deep_clone(presets.hurt_severities.base)
-	presets.hurt_severities.only_explosion_and_fire.bullet.zones = {
-		{ none = 1 },
-	}
-	presets.hurt_severities.only_explosion_and_fire.melee.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
-	presets.hurt_severities.only_explosion_and_fire.poison.zones = deep_clone(presets.hurt_severities.only_explosion_and_fire.bullet.zones)
+	presets.hurt_severities.no_bullet_melee = deep_clone(presets.hurt_severities.base)
+	presets.hurt_severities.no_bullet_melee.bullet.zones = deep_clone(presets.hurt_severities.no_hurts.bullet.zones)
+	presets.hurt_severities.no_bullet_melee.melee.zones = deep_clone(presets.hurt_severities.no_hurts.melee.zones)
 
 	presets.hurt_severities.no_heavy_hurt = deep_clone(presets.hurt_severities.base)
 	presets.hurt_severities.no_heavy_hurt.bullet.zones = {
@@ -735,6 +729,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			explode = 0.5,
 		},
 	}
+
+	presets.hurt_severities.no_heavy_hurt_elite = deep_clone(presets.hurt_severities.no_heavy_hurt)
+	presets.hurt_severities.no_heavy_hurt_elite.bullet.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
+	presets.hurt_severities.no_heavy_hurt_elite.melee.zones = deep_clone(presets.hurt_severities.only_light_hurt.bullet.zones)
 
 	-- Setup surrender presets
 	presets.surrender.easy = {
@@ -843,6 +841,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.suppression.hard_agg.duration = { 4, 6 }
 	presets.suppression.hard_agg.react_point = { 6, 8 }
 	presets.suppression.hard_agg.brown_point = { 9, 11 }
+
+	presets.suppression.very_hard = deep_clone(presets.suppression.hard_agg)
+	presets.suppression.very_hard.panic_chance_mul = 0.4
+	presets.suppression.very_hard.duration = { 3, 5 }
+	presets.suppression.very_hard.react_point = { 10, 12 }
+	presets.suppression.very_hard.brown_point = { 12, 14 }
 
 	-- Enemy chatter
 	presets.enemy_chatter.cop.aggressive = true
@@ -992,8 +996,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.gensec.chatter = self.presets.enemy_chatter.security
 	self.gensec.speech_prefix_p1 = self._unit_prefixes.cop
-	self.gensec.suppression = self.presets.suppression.easy
-	self.gensec.dodge = self.presets.dodge.poor
+	self.gensec.suppression = self.security.suppression
+	self.gensec.dodge = self.security.dodge
 
 	self.security_mex.chatter = self.presets.enemy_chatter.security
 
@@ -1125,21 +1129,17 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_heavy_swat.HEALTH_INIT = 28
 	self.city_heavy_swat.headshot_dmg_mul = 2.5 -- 112 head health
 	self.city_heavy_swat.surrender = self.presets.surrender.no_assault
-	self.city_heavy_swat.suppression = self.presets.suppression.hard_agg
-	self.city_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
+	self.city_heavy_swat.suppression = self.presets.suppression.very_hard
+	self.city_heavy_swat.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt_elite
 	table.insert(self._enemy_list, "city_heavy_swat")
 
 	self.zeal_swat = deep_clone(self.city_swat)
 	table.insert(self._enemy_list, "zeal_swat")
 
-	self.zeal_heavy_swat = deep_clone(self.fbi_heavy_swat)
+	self.zeal_heavy_swat = deep_clone(self.city_heavy_swat)
 	table.insert(self._enemy_list, "zeal_heavy_swat")
 
-	self.hrt = deep_clone(self.swat)
-	self.hrt.surrender = self.presets.surrender.easy
-	self.hrt.speech_prefix_p1 = self._unit_prefixes.cop
-	self.hrt.chatter = self.presets.enemy_chatter.cop
-	self.hrt.melee_weapon = "weapon"
+	self.hrt = deep_clone(self.fbi)
 	table.insert(self._enemy_list, "hrt")
 
 	self.security_mcmansion = deep_clone(self.swat)
@@ -1183,6 +1183,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.sniper.speech_prefix_p1 = self._unit_prefixes.cop
 
 	self.fbi_sniper = deep_clone(self.sniper)
+	table.insert(self._enemy_list, "fbi_sniper")
 
 	self.city_sniper = deep_clone(self.swat)
 	self.city_sniper.tags = {
@@ -1218,6 +1219,9 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_shield = deep_clone(self.shield)
 	self.city_shield.HEALTH_INIT = 36
 	self.city_shield.headshot_dmg_mul = 2.5 -- 144 head health
+	self.city_shield.speech_prefix_p1 = "l5d"
+	self.city_shield.speech_prefix_p2 = nil
+	self.city_shield.speech_prefix_count = nil
 	self.city_shield.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.city_shield.spawn_sound_event = "hos_shield_indication_sound_terminator_style" --DUN..DUN..DUN....DUN..DUN..DUN!!
 	self.city_shield.damage.shield_knocked = false
@@ -1234,7 +1238,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 		"special",
 		"shield",
 	}
-	self.city_shield_break.tmp_invulnerable_on_tweak_change = 1
+	self.city_shield_break.tmp_invulnerable_on_tweak_change = 1.5
 	self.city_shield_break.chatter = self.presets.enemy_chatter.special
 	self.city_shield_break.dodge = self.presets.dodge.athletic
 	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
@@ -1291,15 +1295,15 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "city_tank")
 
-	self.spooc.HEALTH_INIT = 18
-	self.spooc.headshot_dmg_mul = 3.75 -- 48 head health
-	self.spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
+	self.spooc.HEALTH_INIT = 24
+	self.spooc.headshot_dmg_mul = 3.75 -- 64 head health
+	self.spooc.damage.hurt_severity = self.presets.hurt_severities.no_bullet_melee
 	self.spooc.melee_weapon = "baton"
 	self.spooc.chatter = self.presets.enemy_chatter.cloaker
 
-	self.shadow_spooc.HEALTH_INIT = 18
-	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 48 head health
-	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_fire
+	self.shadow_spooc.HEALTH_INIT = 24
+	self.shadow_spooc.headshot_dmg_mul = 3.75 -- 64 head health
+	self.shadow_spooc.damage.hurt_severity = self.presets.hurt_severities.no_bullet_melee
 
 	self.medic.HEALTH_INIT = 30
 	self.medic.headshot_dmg_mul = 2.5 -- 120 head health
@@ -1863,6 +1867,7 @@ Hooks:PostHook(CharacterTweakData, "_create_table_structure", "sh__create_table_
 	table.insert(self.weap_unit_names, Idstring("units/pd2_dlc_cg22/weapons/wpn_npc_snowthrower_bulldozer/wpn_npc_snowthrower_bulldozer"))
 end)
 
+local ecm_vuln_weak = 0.8
 local ecm_vuln_swat = 0.6
 local ecm_vuln_heavy = 0.4
 local ecm_vuln_none = 0
@@ -1888,58 +1893,47 @@ CharacterTweakData.access_hs_mul = {
 }
 
 CharacterTweakData.tweak_table_weapon = {
-	bolivian = "gangster",
-	bolivian_indoors = "gangster",
-	hrt = "fbi",
-	fbi_office_mex = "fbi",
-	swat = "swat",
-	heavy_swat = "swat",
-	fbi_swat = "fbi_swat",
-	fbi_heavy_swat = "fbi_swat",
-	city_swat = "elite_swat",
-	city_heavy_swat = "elite_swat",
-	zeal_swat = "zeal_swat",
-	zeal_heavy_swat = "zeal_swat",
-	murky = "murky",
-	security_fat = "security_fat",
-	security_mcmansion = "security_mcmansion",
-	security_army = "soldier",
-	marshal_security = "marshal_security",
-	cop_fat = "cop_fat",
-	soldier = "soldier",
-	cobra = "gangster",
-	sniper = "sniper",
-	shield = "shield",
-	fbi_sniper = "fbi_sniper",
-	fbi_shield = "fbi_shield",
-	city_sniper = "elite_sniper",
-	city_shield = "elite_shield",
-	city_shield_break = "elite_shield",
-	zeal_shield = "zeal_shield",
-	medic = "medic",
-	tank = "bulldozer",
-	tank_medic = "bulldozer",
-	snowman_boss = "bulldozer",
-	piggydozer = "bulldozer",
-	tank_hw = "headless_bulldozer",
-	city_tank = "elite_bulldozer",
-	mobster_boss = "boss",
-	chavez_boss = "boss",
-	hector_boss = "boss",
-	biker_boss = "boss",
-	drug_lord_boss = "boss",
-	triad_boss = "boss",
-	deep_boss = "boss",
-	fbi_boss = "boss",
+	bolivian = "eclipse_gangster",
+	bolivian_indoors = "eclipse_gangster",
+	hrt = "eclipse_fbi",
+	fbi_office_mex = "eclipse_fbi",
+	fbi_swat = "eclipse_good",
+	fbi_heavy_swat = "eclipse_good",
+	city_swat = "eclipse_expert",
+	city_heavy_swat = "eclipse_expert",
+	murky = "eclipse_murky",
+	security_fat = "eclipse_fat",
+	security_mcmansion = "eclipse_murky",
+	security_army = "eclipse_good",
+	marshal_security = "eclipse_murky",
+	cop_fat = "eclipse_fat",
+	soldier = "eclipse_good",
+	cobra = "eclipse_gangster",
+	city_sniper = "eclipse_elite_sniper",
+	city_shield = "eclipse_elite_shield",
+	city_shield_break = "eclipse_elite_shield",
+	medic = "eclipse_medic",
+	tank_hw = "eclipse_hw_bulldozer",
+	city_tank = "eclipse_elite_bulldozer",
+	mobster_boss = "eclipse_boss",
+	chavez_boss = "eclipse_boss",
+	hector_boss = "eclipse_boss",
+	biker_boss = "eclipse_boss",
+	drug_lord_boss = "eclipse_boss",
+	triad_boss = "eclipse_boss",
+	deep_boss = "eclipse_boss",
+	fbi_boss = "eclipse_boss",
 }
 
 CharacterTweakData.access_weapon = {
-	security = "security",
-	cop = "cop",
-	gangster = "gangster",
-	fbi = "fbi",
-	taser = "taser",
-	spooc = "cloaker",
+	fbi = "eclipse_fbi",
+	gangster = "eclipse_gangster",
+	security = "eclipse_security",
+	shield = "eclipse_shield",
+	sniper = "eclipse_sniper",
+	spooc = "eclipse_cloaker",
+	tank = "eclipse_bulldozer",
+	taser = "eclipse_taser",
 }
 
 CharacterTweakData.tweak_table_move_speed = {
@@ -1983,6 +1977,7 @@ CharacterTweakData.access_move_speed = {
 }
 
 CharacterTweakData.tweak_table_ecm_vulnerability = {
+	hrt = ecm_vuln_weak,
 	heavy_swat = ecm_vuln_heavy,
 	fbi_heavy_swat = ecm_vuln_heavy,
 	city_heavy_swat = ecm_vuln_heavy,
@@ -2046,7 +2041,7 @@ function CharacterTweakData:_set_presets()
 		end
 
 		-- Set the weapon preset based on the tweak table or access
-		local character_weapon = self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "base"
+		local character_weapon = self.tweak_table_weapon[name] or self.access_weapon[char_preset.access] or "eclipse_normal"
 
 		char_preset.weapon = self.presets.weapon[character_weapon]
 
@@ -2080,7 +2075,7 @@ function CharacterTweakData:_set_presets()
 		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
-			char_preset.rotation_speed = char_preset.wall_fwd_offset and 0.4 or nil
+			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 3 or nil
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
@@ -2134,7 +2129,7 @@ function CharacterTweakData:_set_presets()
 
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
-	self.tase_multiplier = is_eclipse and 1.5 or is_overkill and 1.25 or 1
+	self.tase_multiplier = is_eclipse and 1.6 or is_overkill and 1.4 or 1
 
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage

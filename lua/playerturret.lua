@@ -56,6 +56,7 @@ function PlayerTurret:_check_action_primary_attack(t, input)
 
 		if fired then
 			managers.rumble:play("weapon_fire")
+			local weap_tweak_data = weap_base.weapon_tweak_data and weap_base:weapon_tweak_data() or tweak_data.weapon[weap_base:get_name_id()]
 			local recoil_multiplier = (weap_base:recoil() + weap_base:recoil_addend()) * weap_base:recoil_multiplier()
 
 			local shake_tweak_data = weap_tweak_data.shake[fire_mode] or weap_tweak_data.shake

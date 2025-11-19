@@ -23,6 +23,26 @@ Hooks:PostHook(CopDamage, "init", "eclipse_init", function(self)
 	end
 end)
 
+-- Add enemy movement accuracy multipliers
+Hooks:PostHook(CopDamage, "accuracy_multiplier", "eclipse_accuracy_multiplier", function(self)
+	local multiplier = 1
+
+	local weapon_unit = self._unit:inventory():equipped_unit()
+	local weap_usage = weapon_unit and weapon_unit:base():weapon_tweak_data() and weapon_unit:base():weapon_tweak_data().usage
+	local stance_acc_mul = weap_usage and self._char_tweak.weapon and self._char_tweak.weapon[weap_usage] and self._char_tweak.weapon[weap_usage].stance_acc_mul
+
+	local is_moving = self._unit:anim_data().move
+	local is_running = is_moving and self._unit:anim_data().run
+	local is_walking = is_moving and not is_running
+	local is_standing = not is_moving
+
+	multiplier = multiplier * (is_walking and stance_acc_mul and stance_acc_mul.walking or 1)
+	multiplier = multiplier * (is_running and stance_acc_mul and stance_acc_mul.running or 1)
+	multiplier = multiplier * (is_standing and stance_acc_mul and stance_acc_mul.standing or 1)
+
+	return Hooks:GetReturn() * multiplier
+end)
+
 -- Fixed critical hit mul and additional crit damage upgrade
 function CopDamage:roll_critical_hit(attack_data)
 	if not self:can_be_critical(attack_data) or math.random() >= managers.player:critical_hit_chance() then

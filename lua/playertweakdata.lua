@@ -142,14 +142,18 @@ PlayerTweakData._set_sm_wish = PlayerTweakData._set_presets
 Hooks:OverrideFunction(PlayerTweakData, "_set_singleplayer", function(...) end)
 
 Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
-	self.gravity = -982
+	self.put_on_mask_time = self.put_on_mask_time / 2
+
+	self.gravity = -(982 * 1.5)
 
 	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
 
 	self.damage.respawn_time_penalty = 10
 	--self.damage.automatic_respawn_time = 210 + (is_eclipse and 90 or is_overkill and 60 or 0) + (is_pro_job and 60 or 0)
-	self.damage.custody_ammo_confiscated = 0.4
-	self.damage.custody_health_drained = 0.4
+
+	self.movement_state.standard.movement.jump_velocity.z = self.movement_state.standard.movement.jump_velocity.z * 1.25
+	self.movement_state.standard.movement.jump_velocity.xy.run = self.movement_state.standard.movement.speed.RUNNING_MAX * 0.5
+	self.movement_state.standard.movement.jump_velocity.xy.walk = self.movement_state.standard.movement.speed.STANDARD_MAX * 0.5
 
 	self.fall_health_damage = 0.6
 

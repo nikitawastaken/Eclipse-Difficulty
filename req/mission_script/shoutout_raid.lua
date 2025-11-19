@@ -12,11 +12,12 @@ local roof_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local dozer_in_the_container_amount = is_eclipse and 2 or 1
+
 return {
 	[101731] = {
-		ponr = {
-			length = 600,
-			player_mul = { 1.25, 1.15, 1, 1 },
+		ponr = { -- Trigger once, warhead case opened
+			length = 480,
+			player_mul = { 1.5, 1.125, 1, 1 },
 		},
 	},
 	[100109] = { -- Police

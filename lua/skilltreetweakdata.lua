@@ -626,6 +626,27 @@ function SkillTreeTweakData:init(tweak_data)
 	-- lch
 	self.specializations[22].category = { "health", "resistance" }
 
+	-- This is for applying custom atlas without typing texture_bundle_folder for every single deck
+	-- P.S. 2, 4 ,6 and 8 cards for custom perk decks still will use vanilla atlas
+	local generic_perk_deck_cards = { 2, 4, 6, 8 } -- For 2, 4, 6 and 8 cards that every deck have
+
+	local unique_perk_deck_cards = { 1, 3, 5, 7, 9 } -- For unique perk deck cards
+	local perk_decks_eclipse_atlas = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 } -- CC -> Ex-pres use default atlas so need reapply to use new one
+
+	-- Applying atlas changes for 2, 4, 6 and 8 cards
+	for i, _ in ipairs(self.specializations) do
+		for _, k in ipairs(generic_perk_deck_cards) do
+			self.specializations[i][k].texture_bundle_folder = "eclipse"
+		end
+	end
+
+	-- Applying atlas changes for 1, 3, 5, 7 and 9 cards for Crew Chief, Muscle , ... Ex-Pres
+	for _, i in ipairs(perk_decks_eclipse_atlas) do
+		for _, k in ipairs(unique_perk_deck_cards) do
+			self.specializations[i][k].texture_bundle_folder = "eclipse"
+		end
+	end
+
 	-- crew chief
 	self.specializations[1][1].upgrades = { "team_resource_trading_health", "team_resource_trading_no_downs" }
 	self.specializations[1][3].upgrades = { "player_extra_hostages_chief", "player_passive_intimidate_range_mul" }
@@ -706,13 +727,13 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Grinder
 	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
-	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion" }
+	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
 	self.specializations[11][5].icon_xy = { 1, 0 }
 	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
-	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_3" }
+	self.specializations[11][9].upgrades = { "player_damage_to_hot_2" }
 	self.specializations[11][7].icon_xy = { 4, 1 }
 
 	-- Ex-President
@@ -762,6 +783,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
 	self.specializations[18][7].icon_xy = { 2, 1 }
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
+
+	-- stoic
+	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")

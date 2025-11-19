@@ -25,6 +25,13 @@ CopMovement._action_variants.zeal_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.zeal_taser = CopMovement._action_variants.taser
 CopMovement._action_variants.fbi_boss = CopMovement._action_variants.security
 
+local mvec3_set = mvector3.set
+local mvec3_add = mvector3.add
+local mvec3_mul = mvector3.multiply
+local temp_vec1 = Vector3()
+local temp_vec2 = Vector3()
+local temp_vec3 = Vector3()
+
 function CopMovement:speed_modifier()
 	local final_modifier = 1
 
@@ -109,6 +116,166 @@ end)
 Hooks:PostHook(CopMovement, "_change_stance", "sh__change_stance", function(self)
 	self._force_head_upd = true
 end)
+
+function CopMovement:on_suppressed(state)
+	local suppression = self._suppression
+	local end_value = state and 1 or 0
+	local vis_state = self._ext_base:lod_stage()
+
+	if vis_state == 1 and end_value ~= suppression.value then
+		local t = TimerManager:game():time()
+		local duration = 0.5 * math.abs(end_value - suppression.value)
+		suppression.transition = {
+			end_val = end_value,
+			start_val = suppression.value,
+			duration = duration,
+			start_t = t,
+			next_upd_t = t + 0.07,
+		}
+	else
+		suppression.transition = nil
+		suppression.value = end_value
+
+		self._machine:set_global("sup", end_value)
+	end
+
+	self._action_common_data.is_suppressed = state and true or nil
+
+	if Network:is_server() then
+		if state and not self:chk_action_forbidden("walk") then
+			if state == "panic" and not self:chk_action_forbidden("act") then
+				if not self._ext_anim.crouch and self._ext_anim.run and self._ext_anim.move_fwd then
+					local action_desc = {
+						clamp_to_graph = true,
+						type = "act",
+						body_part = 1,
+						variant = "suppressed_fumble_fwd_run",
+						blocks = {
+							action = -1,
+							walk = -1,
+						},
+					}
+
+					self:action_request(action_desc)
+				else
+					local vec_from = temp_vec1
+					local vec_to = temp_vec2
+					local ray_params = {
+						allow_entry = false,
+						trace = true,
+						tracker_from = self:nav_tracker(),
+						pos_from = vec_from,
+						pos_to = vec_to,
+					}
+					local allowed_fumbles = {
+						"suppressed_fumble_still",
+					}
+					local allow = nil
+
+					mvec3_set(vec_from, self:m_pos())
+					mvec3_set(vec_to, self:m_rot():y())
+					mvec3_mul(vec_to, -100)
+					mvec3_add(vec_to, self:m_pos())
+
+					allow = not managers.navigation:raycast(ray_params)
+
+					if allow then
+						table.insert(allowed_fumbles, "suppressed_fumble_bwd")
+					end
+
+					mvec3_set(vec_from, self:m_pos())
+					mvec3_set(vec_to, self:m_rot():x())
+					mvec3_mul(vec_to, 200)
+					mvec3_add(vec_to, self:m_pos())
+
+					allow = not managers.navigation:raycast(ray_params)
+
+					if allow then
+						table.insert(allowed_fumbles, "suppressed_fumble_r")
+					end
+
+					mvec3_set(vec_from, self:m_pos())
+					mvec3_set(vec_to, self:m_rot():x())
+					mvec3_mul(vec_to, -200)
+					mvec3_add(vec_to, self:m_pos())
+
+					allow = not managers.navigation:raycast(ray_params)
+
+					if allow then
+						table.insert(allowed_fumbles, "suppressed_fumble_l")
+					end
+
+					local action_desc = {
+						clamp_to_graph = true,
+						type = "act",
+						body_part = 1,
+						variant = allowed_fumbles[#allowed_fumbles > 1 and math.random(#allowed_fumbles) or 1],
+						blocks = {
+							action = -1,
+							walk = -1,
+						},
+					}
+
+					self:action_request(action_desc)
+				end
+			elseif not self._ext_anim.crouching and (not self._tweak_data.allowed_poses or self._tweak_data.allowed_poses.crouch) and not self:chk_action_forbidden("crouch") then
+				local vec_from = temp_vec1
+				local vec_to = temp_vec2
+				local ray_params = {
+					allow_entry = false,
+					trace = true,
+					tracker_from = self:nav_tracker(),
+					pos_from = vec_from,
+					pos_to = vec_to,
+				}
+
+				mvec3_set(vec_from, self:m_pos())
+				mvec3_set(vec_to, self:m_rot():x())
+				mvec3_mul(vec_to, 380)
+				mvec3_add(vec_to, self:m_pos())
+
+				local allow_slide = not managers.navigation:raycast(ray_params) and math.random() < (self._tweak_data and self._tweak_data.dodge and self._tweak_data.dodge.slide_chance or 0)
+
+				if not self._ext_anim.crouch and self._ext_anim.run and self._ext_anim.move_fwd and allow_slide then
+					local action_desc = {
+						clamp_to_graph = true,
+						type = "act",
+						body_part = 1,
+						variant = "e_nl_slide_fwd_4m",
+						blocks = {
+							action = -1,
+							walk = -1,
+						},
+					}
+
+					self:action_request(action_desc)
+				elseif self._ext_anim.idle and (not self._active_actions[2] or self._active_actions[2]:type() == "idle") then
+					local action_desc = {
+						variant = "suppressed_reaction",
+						body_part = 2,
+						type = "act",
+						blocks = {
+							walk = -1,
+						},
+					}
+
+					self:action_request(action_desc)
+				elseif not self._ext_anim.crouch and (not self._ext_anim.move or self._tweak_data.crouch_move) then
+					local action_desc = {
+						body_part = 4,
+						type = "crouch",
+					}
+
+					self:action_request(action_desc)
+				end
+			end
+		end
+
+		managers.network:session():send_to_peers_synched("suppressed_state", self._unit, state and true or false)
+	end
+
+	self:enable_update()
+end
 
 Hooks:PostHook(CopMovement, "on_suppressed", "sh_on_suppressed", function(self)
 	self._force_head_upd = true
