@@ -364,7 +364,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
 		aim_delay_tase = {
 			0,
-			1 * aim_delay_mul,
+			0.75 * aim_delay_mul,
 		},
 		tase_sphere_cast_radius = 15,
 		tase_distance = 1500,
@@ -451,9 +451,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_elite_bulldozer = based_on(presets.weapon.eclipse_bulldozer)
 	presets.weapon.eclipse_elite_bulldozer.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 10 * special_dmg_mul, r = 1000, acc = { 0.5, 0.7 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 5 * special_dmg_mul, r = 2000, acc = { 0.3, 0.5 }, recoil = { 0.8, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 18 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * special_dmg_mul, r = 1000, acc = { 0.6, 0.8 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * special_dmg_mul, r = 2000, acc = { 0.4, 0.6 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
 	}
 	presets.weapon.eclipse_elite_bulldozer.is_lmg.RELOAD_SPEED = 0.5
 	presets.weapon.eclipse_elite_bulldozer.is_lmg.autofire_rounds = { 20, 50 }
