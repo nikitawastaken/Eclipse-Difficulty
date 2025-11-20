@@ -68,107 +68,18 @@ function CarryData:_update_throw_link(unit, t, dt)
 	return true
 end
 
+local old_cd_link_to = CarryData.link_to
 function CarryData:link_to(parent_unit)
 	if not self._link_body then
-		Application:error("[CarryData:link_to] No available link body carry unit. ", self._unit)
-
 		return
 	end
+	local old_links = CarryData.carry_links[parent_unit:key()]
 
-	if CarryData.carry_links[parent_unit:key()] then
-		debug_pause_unit(parent_unit, "[CarryData:link_to] Parent unit was already carrying something?. ", parent_unit)
-	end
-
-	-- ugly line but it gets the job done
-	CarryData.carry_links[parent_unit:key()] = CarryData.carry_links[parent_unit:key()] and CarryData.carry_links[parent_unit:key()] + 1 or 1
-
-	if self._linked_to then
-		local linked_mov_ext = self._linked_to:movement()
-
-		if linked_mov_ext and linked_mov_ext.set_carrying_bag then
-			linked_mov_ext:set_carrying_bag(nil)
-		end
-
-		self._unit:unlink()
-	end
-
-	self._link_body:set_keyframed()
-
-	local int_ext = self._unit:interaction()
-
-	if int_ext then
-		int_ext._has_modified_timer = true
-		int_ext._air_start_time = TimerManager:game():time()
-	end
-
-	local body_active_clbk = self._has_body_activation_clbk
-	body_active_clbk = body_active_clbk and body_active_clbk[self._link_body:key()]
-
-	if self._has_body_activation_clbk and self._has_body_activation_clbk[self._link_body:key()] then
-		self._unit:remove_body_activation_callback(self._has_body_activation_clbk[self._link_body:key()])
-		self._link_body:set_activate_tag(Idstring(""))
-		self._link_body:set_deactivate_tag(Idstring(""))
-
-		self._has_body_activation_clbk = nil
-	end
-
-	if self._steal_SO_data and (not self._steal_SO_data.picked_up or parent_unit ~= self._steal_SO_data.thief) then
-		self:_unregister_steal_SO()
-	end
-
-	if self._register_out_of_world_clbk_id then
-		managers.enemy:remove_delayed_clbk(self._register_out_of_world_clbk_id)
-
-		self._register_out_of_world_clbk_id = nil
-	end
-
-	if self._register_steal_SO_clbk_id then
-		managers.enemy:remove_delayed_clbk(self._register_steal_SO_clbk_id)
-
-		self._register_steal_SO_clbk_id = nil
-	end
-
-	call_on_next_update(function()
-		if not alive(self._unit) or not alive(parent_unit) then
-			return
-		end
-
-		local parent_obj_name = Idstring("Neck")
-		local parent_obj = parent_unit:get_object(parent_obj_name)
-
-		if not parent_obj then
-			parent_obj = parent_unit:orientation_object()
-			parent_obj_name = parent_obj:name()
-		end
-
-		parent_unit:link(parent_obj_name, self._unit)
-
-		local parent_obj_rot = parent_obj:rotation()
-		local world_pos = parent_obj:position() - parent_obj_rot:z() * 30 - parent_obj_rot:y() * 10
-
-		self._unit:set_position(world_pos)
-		self._unit:set_velocity(Vector3(0, 0, 0))
-
-		local world_rot = Rotation(parent_obj_rot:x(), -parent_obj_rot:z())
-
-		self._unit:set_rotation(world_rot)
-	end)
-	self:_remove_collisions()
-
-	self._linked_to = parent_unit
-	local linked_mov_ext = parent_unit:movement()
-
-	if linked_mov_ext and linked_mov_ext.set_carrying_bag then
-		linked_mov_ext:set_carrying_bag(self._unit)
-	end
-
-	self:_set_expire_enabled(false)
-
-	if Network:is_server() then
-		managers.network:session():send_to_peers_synched("loot_link", self._unit, parent_unit)
-	end
+	old_cd_link_to(self, parent_unit)
+	CarryData.carry_links[parent_unit:key()] = old_links and old_links + 1 or 1
 end
 
+---fuckass function refuses to be shadowed with sane behavior
 function CarryData:unlink()
 	if not self._link_body or not self._linked_to then
 		return
@@ -206,58 +117,15 @@ function CarryData:unlink()
 	end
 end
 
+local old_cd_destroy = CarryData.destroy
 function CarryData:destroy()
-	if self._dye_pack_smoke then
-		World:effect_manager():fade_kill(self._dye_pack_smoke)
-
-		self._dye_pack_smoke = nil
-	end
-
-	if self._remove_dye_smoke_clbk_id then
-		managers.enemy:remove_delayed_clbk(self._remove_dye_smoke_clbk_id)
-
-		self._remove_dye_smoke_clbk_id = nil
-	end
-
-	if self._delayed_explode_clbk_id then
-		managers.enemy:remove_delayed_clbk(self._delayed_explode_clbk_id)
-
-		self._delayed_explode_clbk_id = nil
-	end
-
-	if self._register_out_of_world_clbk_id then
-		managers.enemy:remove_delayed_clbk(self._register_out_of_world_clbk_id)
-
-		self._register_out_of_world_clbk_id = nil
-	end
-
-	if self._register_out_of_world_dynamic_clbk_id then
-		managers.enemy:remove_delayed_clbk(self._register_out_of_world_dynamic_clbk_id)
-
-		self._register_out_of_world_dynamic_clbk_id = nil
-	end
-
-	self:_unregister_steal_SO()
-
-	if self._register_steal_SO_clbk_id then
-		managers.enemy:remove_delayed_clbk(self._register_steal_SO_clbk_id)
-
-		self._register_steal_SO_clbk_id = nil
-	end
-
+	local old_links
 	if alive(self._linked_to) then
-		local linked_mov_ext = self._linked_to:movement()
-
-		if linked_mov_ext and linked_mov_ext.set_carrying_bag then
-			linked_mov_ext:set_carrying_bag(nil)
-		end
-
-		self._unit:unlink()
-
-		CarryData.carry_links[self._linked_to:key()] = CarryData.carry_links[self._linked_to:key()] - 1
+		old_links = CarryData.carry_links[self._linked_to:key()]
 	end
 
-	self._linked_to = nil
-
-	CarryData._unregister_remove_on_weapons_hot(self._unit)
+	old_cd_destroy(self)
+	if old_links and alive(self._linked_to) then
+		CarryData.carry_links[self._linked_to:key()] = old_links - 1
+	end
 end

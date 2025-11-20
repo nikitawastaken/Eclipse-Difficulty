@@ -146,11 +146,13 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 		reason = reason,
 	}
 
-	carry_unit:carry_data():unlink()
+	if carry_unit and carry_unit:carry_data() then
+		carry_unit:carry_data():unlink()
 
-	if Network:is_server() then
-		self:sync_throw_bag(carry_unit, target_unit)
-		managers.network:session():send_to_peers("sync_ai_throw_bag", self._unit, carry_unit, target_unit)
+		if Network:is_server() then
+			self:sync_throw_bag(carry_unit, target_unit)
+			managers.network:session():send_to_peers("sync_ai_throw_bag", self._unit, carry_unit, target_unit)
+		end
 	end
 	self._carry_table[idx] = nil
 end
