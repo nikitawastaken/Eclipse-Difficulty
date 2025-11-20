@@ -46,7 +46,7 @@ M.m4n_ = {
 M.fl1n_ = {
 	burnhurt = "cf1_burnhurt",
 	burndeath = "cf1_burndeath",
-    ch3 = "cf1_burndeath", -- Ears ouchies
+	ch3 = "cf1_burndeath", -- Ears ouchies
 }
 
 -- Filtered cops

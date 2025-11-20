@@ -30,8 +30,8 @@ local rXn_tbl = {
 	ch4 = "hlp",
 	s01x = "hlp",
 	d02 = "g90", -- Use regular taunt when deploying flashbangs
-    i02 = "c01",
-    i03 = "g90",
+	i02 = "c01",
+	i03 = "g90",
 }
 local zXn_zombie_sounds_tbl = {
 	"g90",
@@ -49,9 +49,9 @@ local zXn_tbl = {
 	ch2 = zXn_zombie_sounds_tbl,
 	ch3 = zXn_zombie_sounds_tbl,
 	ch4 = zXn_zombie_sounds_tbl,
-    d02 = zXn_zombie_sounds_tbl,
-    i02 = zXn_zombie_sounds_tbl,
-    i03 = zXn_zombie_sounds_tbl,
+	d02 = zXn_zombie_sounds_tbl,
+	i02 = zXn_zombie_sounds_tbl,
+	i03 = zXn_zombie_sounds_tbl,
 }
 local mXn_tbl = {
 	ch1 = "hlp", -- Use suppressed lines for sentries, saws, intimidation, trip mines blowing up
@@ -59,14 +59,14 @@ local mXn_tbl = {
 	ch4 = "hlp",
 	s01x = "hlp",
 	d02 = "g90", -- Use regular taunt when deploying flashbangs
-    i02 = "c01",
-    i03 = "g90",
+	i02 = "c01",
+	i03 = "g90",
 }
 M.l1n_ = {
 	e01 = lXn_sabotage_tbl,
 	e02 = lXn_sabotage_tbl,
 	e03 = lXn_sabotage_tbl,
-    amm = "lk3b", -- l1n doesn't have medic/ammo bag spot lines for some reason
+	amm = "lk3b", -- l1n doesn't have medic/ammo bag spot lines for some reason
 	med = "lk3b",
 	e05 = "clr",
 	e06 = "clr",
@@ -100,7 +100,7 @@ M.m4n_ = mXn_tbl
 -- Filtered cops
 -- l5d is very brokey, the others just need something for stealth lines
 local lXd_tbl = {
-    amm = "e04",
+	amm = "e04",
 	med = "e04",
 	a05 = "clr",
 	a06 = "clr",
@@ -110,19 +110,19 @@ local l5d_contact_tbl = {
 	"g90",
 }
 M.l1d_ = {
-    amm = "e04",
+	amm = "e04",
 	med = "e04",
 	a05 = "clr",
 	a06 = "clr",
 	e05 = "clr",
 	e06 = "clr",
-    i02 = "i01", -- l1d doesn't have i02 lines for some reason (use i01 instead)
+	i02 = "i01", -- l1d doesn't have i02 lines for some reason (use i01 instead)
 }
 M.l2d_ = lXd_tbl
 M.l3d_ = lXd_tbl
 M.l4d_ = lXd_tbl
 M.l5d_ = {
-    amm = "e04",
+	amm = "e04",
 	med = "e04",
 	c01 = l5d_contact_tbl,
 	att = l5d_contact_tbl,
@@ -137,13 +137,13 @@ M.l5d_ = {
 local gangsters_tbl = {
 	i01 = "aes",
 	i02 = "c01",
-    i03 = "g90",
+	i03 = "g90",
 }
 M.lt1_ = {
 	g90 = "c01",
-    i01 = "aes",
+	i01 = "aes",
 	i02 = "c01",
-    i03 = "g90",
+	i03 = "g90",
 }
 M.lt2_ = gangsters_tbl
 M.ict1_ = gangsters_tbl
