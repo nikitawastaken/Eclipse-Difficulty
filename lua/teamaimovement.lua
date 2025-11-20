@@ -66,46 +66,71 @@ Hooks:PostHook(TeamAIMovement, "clbk_inventory", "eclipse_clbk_inventory", funct
 	end
 end)
 
+-- Bag stuff!
+Hooks:PostHook(TeamAIMovement, "init", "eclipse_teamaimovement_init", function(self)
+	self._carry_table = {}
+end)
+
+function TeamAIMovement:has_crew_carrystacker()
+	return managers.player:has_category_upgrade("team", "crew_ai_carry_stacker")
+end
+
 function TeamAIMovement:carrying_bag()
-	return self._carry_unit and true or false
+	return self._carry_table and #self._carry_table > 0 or false
 end
 
 function TeamAIMovement:set_carrying_bag(unit)
-	self._carry_unit = unit or nil
+	if unit then
+		table.insert(self._carry_table, unit)
+	end
 
 	self:set_carry_speed_modifier()
 end
 
-function TeamAIMovement:carry_id()
-	local carry_ext = self:carry_data()
+-- returns top if no args given
+function TeamAIMovement:carry_id(idx)
+	idx = idx or #self._carry_table
+
+	local carry_ext = self:carry_data(idx)
 
 	return carry_ext and carry_ext:carry_id()
 end
 
-function TeamAIMovement:carry_data()
-	return self._carry_unit and self._carry_unit:carry_data()
+-- returns top if no args given
+function TeamAIMovement:carry_data(idx)
+	idx = idx or #self._carry_table
+
+	return self._carry_table and self._carry_table[idx] and self._carry_table[idx]:carry_data()
 end
 
-function TeamAIMovement:carry_tweak()
-	local carry_ext = self:carry_data()
+-- returns top if no args given
+function TeamAIMovement:carry_tweak(idx)
+	idx = idx or #self._carry_table
+
+	local carry_ext = self:carry_data(idx)
 
 	return carry_ext and carry_ext:carry_tweak()
 end
 
-function TeamAIMovement:carry_type_tweak()
-	local carry_ext = self:carry_data()
+-- returns top if no args given
+function TeamAIMovement:carry_type_tweak(idx)
+	idx = idx or #self._carry_table
+
+	local carry_ext = self:carry_data(idx)
 
 	return carry_ext and carry_ext:carry_type_tweak()
 end
 
 function TeamAIMovement:bank_carry()
-	local carry_data = self:carry_data()
+	for i = 1, #self._carry_table do
+		local carry_data = self:carry_data(i)
 
-	if carry_data then
-		managers.loot:secure(carry_data:carry_id(), carry_data:multiplier())
-		self._carry_unit:set_slot(0)
+		if carry_data then
+			managers.loot:secure(carry_data:carry_id(), carry_data:multiplier())
+			self._carry_table[i]:set_slot(0)
 
-		self._carry_unit = nil
+			self._carry_table[i] = nil
+		end
 	end
 end
 
@@ -114,7 +139,8 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 		return
 	end
 
-	local carry_unit = self._carry_unit
+	local idx = #self._carry_table
+	local carry_unit = self._carry_table[idx]
 	self._was_carrying = {
 		unit = carry_unit,
 		reason = reason,
@@ -126,6 +152,7 @@ function TeamAIMovement:throw_bag(target_unit, reason)
 		self:sync_throw_bag(carry_unit, target_unit)
 		managers.network:session():send_to_peers("sync_ai_throw_bag", self._unit, carry_unit, target_unit)
 	end
+	self._carry_table[idx] = nil
 end
 
 function TeamAIMovement:was_carrying_bag()
@@ -154,3 +181,4 @@ function TeamAIMovement:set_carry_speed_modifier(...)
 		self._carry_speed_modifier = math.clamp(self._carry_speed_modifier * carry_upgrade, 0, 1)
 	end
 end
+-- end of bag stuff maybe
