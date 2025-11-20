@@ -24,7 +24,7 @@ M.r3n_ = {
 	ch3 = "l3n_burndeath", -- Ears ouchies
 }
 M.r4n_ = {
-	x02a_any_3p = "l1n_x01a_any_3p",
+	x02a_any_3p = "l4n_x01a_any_3p",
 	x01a_any_3p = "l4n_x02a_any_3p",
 	ch3 = "l4n_burndeath", -- Ears ouchies
 }
@@ -46,6 +46,7 @@ M.m4n_ = {
 M.fl1n_ = {
 	burnhurt = "cf1_burnhurt",
 	burndeath = "cf1_burndeath",
+    ch3 = "cf1_burndeath", -- Ears ouchies
 }
 
 -- Filtered cops
@@ -57,18 +58,6 @@ M.l3d_ = {
 	burnhurt = "l1d_burnhurt",
 	burndeath = "l1d_burndeath",
 }
-
--- Tasers
-local tsr_tbl = {
-	x02a_any_3p = "tsr_x02a_any_3p",
-	x01a_any_3p = "tsr_x01a_any_3p",
-}
-M.tsr_ = tsr_tbl
-M.rtsr_ = {
-	x02a_any_3p = "rtsr_x02a_any_3p",
-	x01a_any_3p = "rtsr_x01a_any_3p",
-}
-M.mtsr_ = tsr_tbl
 
 -- Bulldozers
 local bdz_tbl = {
@@ -83,28 +72,17 @@ M.mbdz_ = bdz_tbl
 
 -- Cloakers
 local clk_tbl = {
-	x01a_any_3p = "l2d_x01a_any_3p", -- Radio filtered hurt sound, lacks his own
-	x02a_any_3p = "clk_x02a_any_3p",
 	g90 = "clk_c01x_plu", -- Cloakers whistle in place of contact/taunt lines
 	c01 = "clk_c01x_plu",
 }
-M.clk_ = clk_tbl
-M.rclk_ = {
-	x02a_any_3p = "rclk_x02a_any_3p",
-	x01a_any_3p = "rclk_x01a_any_3p",
-	g90 = "clk_c01x_plu", -- Russian Cloaker technically has lines for this - but they're empty
+M.clk_ = {
+	x01a_any_3p = "l2d_x01a_any_3p", -- Radio filtered hurt sound, lacks his own
+	x02a_any_3p = "clk_x02a_any_3p",
+	g90 = "clk_c01x_plu",
 	c01 = "clk_c01x_plu",
 }
+M.rclk_ = clk_tbl
 M.mclk_ = clk_tbl
-
--- Medics
-local mdc_tbl = {
-	x02a_any_3p = "mdc_x02a_any_3p",
-	x01a_any_3p = "mdc_x01a_any_3p",
-}
-M.mdc_ = mdc_tbl
-M.rmdc_ = mdc_tbl
-M.mmdc_ = mdc_tbl
 
 -- Gangsters
 local gangsters_1_tbl = {
