@@ -149,7 +149,7 @@ local l5n_sabotage_tbl = {
 	"Play_l5n_r01_con",
 }
 M.l5n_ = {
-	c01 = l5n_contact_tbl,  -- Use i01 and g90 as contact, l5n lacks them
+	c01 = l5n_contact_tbl, -- Use i01 and g90 as contact, l5n lacks them
 	att = l5n_contact_tbl,
 
 	a07a = l5n_alert_tbl,
