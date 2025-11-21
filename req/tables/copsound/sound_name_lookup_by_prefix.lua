@@ -25,13 +25,17 @@ local lXn_tbl = {
 	lk3b = "lk3a",
 }
 local rXn_tbl = {
+    a07b = "a07a",
 	ch1 = "hlp", -- Use suppressed lines for sentries, saws, intimidation, trip mines blowing up
 	ch2 = "hlp",
 	ch4 = "hlp",
 	s01x = "hlp",
+    ch3 = "burndeath", -- Ears ouchies
 	d02 = "g90", -- Use regular taunt when deploying flashbangs
-	i02 = "c01",
+	i02 = "i01",
 	i03 = "g90",
+    p02 = "p01",
+    p03 = "rdy",
 }
 local zXn_zombie_sounds_tbl = {
 	"g90",
@@ -45,6 +49,7 @@ local zXn_tbl = {
 	x02a_any_3p = zXn_zombie_sounds_tbl,
 	burndeath = zXn_zombie_sounds_tbl,
 	burnhurt = zXn_zombie_sounds_tbl,
+    a07b = zXn_zombie_sounds_tbl,
 	ch1 = zXn_zombie_sounds_tbl,
 	ch2 = zXn_zombie_sounds_tbl,
 	ch3 = zXn_zombie_sounds_tbl,
@@ -52,15 +57,21 @@ local zXn_tbl = {
 	d02 = zXn_zombie_sounds_tbl,
 	i02 = zXn_zombie_sounds_tbl,
 	i03 = zXn_zombie_sounds_tbl,
+    p02 = zXn_zombie_sounds_tbl,
+	p03 = zXn_zombie_sounds_tbl,
 }
 local mXn_tbl = {
+    a07b = "a07a",
 	ch1 = "hlp", -- Use suppressed lines for sentries, saws, intimidation, trip mines blowing up
 	ch2 = "hlp",
 	ch4 = "hlp",
 	s01x = "hlp",
+    ch3 = "burndeath", -- Ears ouchies
 	d02 = "g90", -- Use regular taunt when deploying flashbangs
-	i02 = "c01",
+	i02 = "i01",
 	i03 = "g90",
+    p02 = "p01",
+    p03 = "rdy",
 }
 M.l1n_ = {
 	e01 = lXn_sabotage_tbl,

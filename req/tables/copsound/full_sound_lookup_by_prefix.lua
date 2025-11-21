@@ -8,37 +8,22 @@ local M = {}
 M.l4n_ = {
 	x01a_any_3p = "l1n_x02a_any_3p",
 }
+-- fix Akan's men not having any pain/death sounds
 M.r1n_ = {
 	x02a_any_3p = "l1n_x01a_any_3p",
 	x01a_any_3p = "l1n_x02a_any_3p",
-	ch3 = "l1n_burndeath", -- Ears ouchies
 }
 M.r2n_ = {
 	x02a_any_3p = "l2n_x01a_any_3p",
 	x01a_any_3p = "l2n_x02a_any_3p",
-	ch3 = "l2n_burndeath", -- Ears ouchies
 }
 M.r3n_ = {
 	x02a_any_3p = "l3n_x01a_any_3p",
 	x01a_any_3p = "l3n_x02a_any_3p",
-	ch3 = "l3n_burndeath", -- Ears ouchies
 }
 M.r4n_ = {
 	x02a_any_3p = "l4n_x01a_any_3p",
-	x01a_any_3p = "l4n_x02a_any_3p",
-	ch3 = "l4n_burndeath", -- Ears ouchies
-}
-M.m1n_ = {
-	ch3 = "l1n_burndeath", -- Ears ouchies
-}
-M.m2n_ = {
-	ch3 = "l2n_burndeath", -- Ears ouchies
-}
-M.m3n_ = {
-	ch3 = "l3n_burndeath", -- Ears ouchies
-}
-M.m4n_ = {
-	ch3 = "l4n_burndeath", -- Ears ouchies
+	x01a_any_3p = "l1n_x02a_any_3p",
 }
 
 -- Female cops
