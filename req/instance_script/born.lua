@@ -87,7 +87,7 @@ return {
 			local id = element.id
 
 			if patches.harassers[id] then
-				element.values.enemy_table = diff_i < 5 and light_harasser or heavy_harasser
+				element.values.enemy_table = diff_i >= 5 and heavy_harasser or light_harasser
 			end
 		end
 	end,
