@@ -169,6 +169,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 	self.watchdogs_2_day.group_ai_preset = "heavy_response"
 
+	self.firestarter_1.group_ai_settings = {
+		use_equipment_reenforce = false,
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
+	}
+	
+	self.firestarter_2.group_ai_settings = deep_clone(self.firestarter_1.group_ai_settings)
+	self.firestarter_2.group_ai_preset = "heavy_response"
+	
 	self.firestarter_3.group_ai_settings = {
 		difficulty_scaling = {
 			diff_init = 0.5,
@@ -177,7 +188,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.firestarter_3.has_megaphone_cop = true
-
+	self.firestarter_3.group_ai_preset = "heavy_response"
+	
 	self.rat.group_ai_settings = {
 		difficulty_scaling = {
 			diff_init = 0.2,
