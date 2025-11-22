@@ -7,6 +7,7 @@ local swat_2 = scripted_enemy.swat_2
 local heavy_swat_1 = scripted_enemy.heavy_swat_1
 local heavy_swat_2 = scripted_enemy.heavy_swat_2
 local cloaker = scripted_enemy.cloaker
+local elite_sniper = scripted_enemy.elite_sniper
 local light_swats = {
 	[swat_1] = 2,
 	[swat_2] = 1,
@@ -28,6 +29,8 @@ local swats_above_normal = {
 	[heavy_swat_2] = 2,
 	[cloaker] = 1,
 }
+local light_harasser = { swat_1 }
+local heavy_harasser = diff_i > 5 and { [heavy_swat_1] = 5, [elite_sniper] = 1 } or { heavy_swat_1 }
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
 local patches = {
@@ -41,6 +44,7 @@ local patches = {
 	escape = {
 		swats = table.set(100030, 100031, 100032, 100033, 100046, 101015, 101270, 101064, 100060, 100392, 101067),
 	},
+	harassers = table.set(100008, 100009, 100010, 100011, 100012, 100014, 100015, 100016),
 }
 
 return {
@@ -75,6 +79,15 @@ return {
 
 			if bike_escape.swats[id] then
 				element.values.enemy_table = diff_i < 5 and light_swats or heavy_swats
+			end
+		end
+	end,
+	["levels/instances/shared/simple_harasser_spawn/world/world"] = function(result)
+		for _, element in pairs(result.default.elements) do
+			local id = element.id
+
+			if patches.harassers[id] then
+				element.values.enemy_table = diff_i < 5 and light_harasser or heavy_harasser
 			end
 		end
 	end,

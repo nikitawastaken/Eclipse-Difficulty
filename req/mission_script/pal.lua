@@ -180,29 +180,29 @@ return {
 	[100031] = {
 		reinforce = {
 			{
-				name = "protect_the_BBQ",
+				name = "bbq",
 				force = 3,
-				position = Vector3(-3680, 1926, 26.700),
+				position = Vector3(-3750, 2400, 30),
 			},
 			{
-				name = "Mitchell_house1",
+				name = "mitchell1",
 				force = 2,
-				position = Vector3(-2286, 2640, 78.789),
+				position = Vector3(-1275, 2000, 25),
 			},
 			{
-				name = "Mitchell_house2",
+				name = "mitchell2",
 				force = 2,
-				position = Vector3(-2556, 3836, 75.500),
+				position = Vector3(-2025, 4350, 25),
 			},
 			{
-				name = "Wilson_house1",
+				name = "wilson1",
 				force = 2,
-				position = Vector3(-2080, 39, 28.970),
+				position = Vector3(-2700, -800, 40),
 			},
 			{
-				name = "Wilson_house2",
+				name = "wilson2",
 				force = 2,
-				position = Vector3(-2980, 1441, -324.500),
+				position = Vector3(-1125, 625, 50),
 			},
 		},
 		-- force SWAT vans arrival on police_called like it's in PDTH
