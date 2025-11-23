@@ -1470,7 +1470,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		30,
 		36,
 	})
-	
+
 	self._tactics = {
 		none = {},
 		cop_init = {
@@ -3166,7 +3166,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			"Elite",
 		}
 	end
-	
+
 	-- PHASES --
 
 	-- Sustain
@@ -3196,7 +3196,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(6, 9),
 		diff_lerp(8, 12),
 	}
-	
+
 	self.besiege.assault.force_balance_mul = {} -- { 1, 1.2, 1.4, 1.6 }
 	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_balance_mul, 1 + (i * 0.2))
@@ -3284,13 +3284,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		10,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
-	local shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0.5, 0.875, 1.25 }) 
+	local shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0.5, 0.875, 1.25 })
 	local spook_taser_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.5, 1 })
 	local tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.75 })
 	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.5, 0.75, 1 })
 	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.375, 0.75 })
 	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.5 })
-	
+
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
