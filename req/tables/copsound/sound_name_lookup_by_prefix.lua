@@ -164,6 +164,15 @@ M.bik2_ = gangsters_tbl
 M.rt1_ = gangsters_tbl
 M.rt2_ = gangsters_tbl
 
+-- Bulldozers
+local bdz_tbl = {
+	d01 = "g90",
+	d02 = "g90",
+}
+M.bdz_ = bdz_tbl
+M.rbdz_ = bdz_tbl
+M.mbdz_ = bdz_tbl
+
 -- Tasers
 local tsr_tbl = {
 	ch3 = "burndeath", -- Ears ouchies
