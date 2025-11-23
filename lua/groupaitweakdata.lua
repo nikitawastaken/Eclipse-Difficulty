@@ -3507,7 +3507,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local ponr_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.75)
 	local ponr_elite_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.75)
 	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.5)
-	
+
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.ponr.assault.groups = {
