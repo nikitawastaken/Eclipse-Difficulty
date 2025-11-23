@@ -1464,8 +1464,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		10,
 	})
 	local diff_scale = get_difficulty_specific_value({
-		6,
-		12,
+		8,
+		16,
 		24,
 		30,
 		36,
