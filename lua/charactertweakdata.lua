@@ -973,10 +973,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.civilian.speech_prefix_count = 6 -- restore 4 more civilian voices that are unused
 
-	-- fix civilians having no death sounds
-	self.civilian.die_sound_event = "l1n_x02a_any_3p"
-	self.civilian_female.die_sound_event = "fl1n_x02a_any_3p"
-
 	self.security.chatter = self.presets.enemy_chatter.security
 	self.security.has_alarm_pager = not is_no_mercy and true or false
 

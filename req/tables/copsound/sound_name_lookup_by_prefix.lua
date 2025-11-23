@@ -154,7 +154,7 @@ M.lt1_ = {
 	g90 = "c01",
 	i01 = "aes",
 	i02 = "c01",
-	i03 = "g90",
+	--i03 = "g90",
 }
 M.lt2_ = gangsters_tbl
 M.ict1_ = gangsters_tbl

@@ -4,6 +4,44 @@ local M = {}
 -- Yes, the prefixes need the _ on the end
 -- This table is indexed by prefix as-is
 
+-- proper death sounds for civilains
+-- female civ voices have the same death sound since there's only one voiceset for female enemies
+-- male
+M.cm1_ = {
+	x02a_any_3p = "l1n_x01a_any_3p",
+}
+M.cm2_ = {
+	x02a_any_3p = "l2n_x01a_any_3p",
+}
+M.cm3_ = {
+	x02a_any_3p = "l3n_x01a_any_3p",
+}
+M.cm4_ = {
+	x02a_any_3p = "l4n_x01a_any_3p",
+}
+M.cm5_ = {
+	x02a_any_3p = "l1n_x01a_any_3p",
+}
+M.cm6_ = {
+	x02a_any_3p = "l2n_x01a_any_3p",
+}
+-- female
+M.cf1_ = {
+	x02a_any_3p = "fl1n_x02a_any_3p",
+}
+M.cf2_ = {
+	x02a_any_3p = "fl1n_x02a_any_3p",
+}
+M.cf3_ = {
+	x02a_any_3p = "fl1n_x02a_any_3p",
+}
+M.cf4_ = {
+	x02a_any_3p = "fl1n_x02a_any_3p",
+}
+M.cf5_ = {
+	x02a_any_3p = "fl1n_x02a_any_3p",
+}
+
 -- Non-filtered cops
 M.l4n_ = {
 	x01a_any_3p = "l1n_x02a_any_3p",
