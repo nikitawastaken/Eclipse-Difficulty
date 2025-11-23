@@ -11,7 +11,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 		["firestarter_3"] = true,
 		["alex_3"] = true,
 		["hox_2"] = true,
-		["hox_3"] = true,
+	--	["hox_3"] = true, -- They're already loaded here
 		["man"] = true,
 	}
 
@@ -42,8 +42,8 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 	}
 
 	local lapd = {
-		--["rvd1"] = true, -- They're already loaded here
-		--["rvd2"] = true,
+	--	["rvd1"] = true, -- They're already loaded here
+	--	["rvd2"] = true,
 		["kenaz"] = true,
 		["jolly"] = true,
 		["pal"] = true,
@@ -57,14 +57,14 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 
 	local texas_rangers = {
 		["dinner"] = true,
-		--["ranc"] = true, -- They're already loaded here
+	--	["ranc"] = true, -- They're already loaded here
 		["trai"] = true,
-		--["corp"] = true,
+	--	["corp"] = true,
 	}
 
 	local security_deep = {
 		["corp"] = true,
-		--["deep"] = true,
+	--	["deep"] = true, -- They're already loaded here
 	}
 
 	if level_id then
