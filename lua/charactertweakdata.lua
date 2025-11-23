@@ -374,7 +374,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		{ dmg_mul = 4 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 4 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
 	}
-	presets.weapon.eclipse_taser.is_shotgun_pump.tase_sphere_cast_radius = 25
+	presets.weapon.eclipse_taser.is_shotgun_pump.tase_sphere_cast_radius = 10
 	presets.weapon.eclipse_taser.is_shotgun_pump.tase_distance = 1200
 	presets.weapon.eclipse_taser.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.8, 1 }, mode = { 1, 0, 0, 0 } },
