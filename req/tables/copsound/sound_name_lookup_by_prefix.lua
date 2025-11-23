@@ -176,6 +176,8 @@ M.mbdz_ = bdz_tbl
 -- Tasers
 local tsr_tbl = {
 	ch3 = "burndeath", -- Ears ouchies
+	d01 = "g90",
+	d02 = "g90",
 }
 M.tsr_ = tsr_tbl
 M.rtsr_ = tsr_tbl
