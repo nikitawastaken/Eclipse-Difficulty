@@ -3494,39 +3494,58 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	end
 
+	local ponr_special_wgt = get_difficulty_specific_value({
+		3,
+		4,
+		5,
+		6,
+		8,
+	})
+	local ponr_special_wgt_tbl = { ponr_special_wgt, ponr_special_wgt, ponr_special_wgt }
+	local ponr_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1.25)
+	local ponr_spook_taser_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1)
+	local ponr_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.75)
+	local ponr_elite_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.75)
+	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.5)
+	
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.ponr.assault.groups = {
-			fbi_swats = { 1, 1, 1 },
-			fbi_heavies = { 1, 1, 1 },
-			fbi_shield = { 0.4, 0.4, 0.4 },
+			fbi_swats = { 14, 14, 14 },
+			fbi_heavies = { 14, 14, 14 },
+			fbi_shield = ponr_shield_wgt,
+			fbi_taser = ponr_spook_taser_wgt,
+			fbi_cloaker = ponr_spook_taser_wgt,
+			fbi_bulldozer = ponr_tank_wgt,
 		}
 		self.ponr.reenforce.groups = {
-			fbi_defend_light = { 2, 2, 2 },
+			fbi_defend_light = { 1, 1, 1 },
 			fbi_defend_heavy = { 1, 1, 1 },
 		}
 	elseif difficulty_index == 3 then
 		self.ponr.assault.groups = {
-			fbi_swats = { 1, 1, 1 },
-			fbi_heavies = { 1, 1, 1 },
-			fbi_shield = { 0.4, 0.4, 0.4 },
-			fbi_taser = { 0.4, 0.4, 0.4 },
-			fbi_bulldozer = { 0.3, 0.3, 0.3 },
+			fbi_swats = { 14, 14, 14 },
+			fbi_heavies = { 14, 14, 14 },
+			fbi_shield = ponr_shield_wgt,
+			fbi_taser = ponr_spook_taser_wgt,
+			fbi_cloaker = ponr_spook_taser_wgt,
+			fbi_bulldozer = ponr_tank_wgt,
 		}
 		self.ponr.reenforce.groups = {
-			fbi_defend_light = { 2, 2, 2 },
+			fbi_defend_light = { 1, 1, 1 },
 			fbi_defend_heavy = { 1, 1, 1 },
 		}
 	elseif difficulty_index == 4 then
 		self.ponr.assault.groups = {
-			elite_swats = { 1, 1, 1 },
-			fbi_heavies = { 1, 1, 1 },
-			fbi_shield = { 0.3, 0.3, 0.3 },
-			elite_shield = { 0.2, 0.2, 0.2 },
-			elite_taser = { 0.5, 0.5, 0.5 },
-			fbi_cloaker = { 0.5, 0.5, 0.5 },
-			fbi_bulldozer = { 0.2, 0.2, 0.2 },
-			elite_bulldozer = { 0.1, 0.1, 0.1 },
+			elite_swats = { 14, 14, 14 },
+			fbi_heavies = { 14, 14, 14 },
+			fbi_shield = ponr_shield_wgt,
+			elite_shield = ponr_elite_shield_wgt,
+			elite_sniper = ponr_spook_taser_wgt,
+			elite_taser = ponr_spook_taser_wgt,
+			fbi_cloaker = ponr_spook_taser_wgt,
+			fbi_bulldozer = ponr_tank_wgt,
+			elite_bulldozer = ponr_elite_tank_wgt,
 		}
 		self.ponr.reenforce.groups = {
 			elite_defend_light = { 1, 1, 1 },
@@ -3534,14 +3553,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 5 then
 		self.ponr.assault.groups = {
-			elite_swats = { 1, 1, 1 },
-			fbi_heavies = { 1, 1, 1 },
-			fbi_shield = { 0.3, 0.3, 0.3 },
-			elite_shield = { 0.2, 0.2, 0.2 },
-			elite_taser = { 0.5, 0.5, 0.5 },
-			fbi_cloaker = { 0.5, 0.5, 0.5 },
-			fbi_bulldozer = { 0.2, 0.2, 0.2 },
-			elite_bulldozer = { 0.1, 0.1, 0.1 },
+			elite_swats = { 14, 14, 14 },
+			fbi_heavies = { 14, 14, 14 },
+			fbi_shield = ponr_shield_wgt,
+			elite_shield = ponr_elite_shield_wgt,
+			elite_sniper = ponr_spook_taser_wgt,
+			elite_taser = ponr_spook_taser_wgt,
+			fbi_cloaker = ponr_spook_taser_wgt,
+			fbi_bulldozer = ponr_tank_wgt,
+			elite_bulldozer = ponr_elite_tank_wgt,
 		}
 		self.ponr.reenforce.groups = {
 			elite_defend_light = { 1, 1, 1 },
@@ -3549,15 +3569,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.ponr.assault.groups = {
-			elite_swats = { 0.6, 0.6, 0.6 },
-			elite_heavies = { 1, 1, 1 },
-			elite_shield = { 0.5, 0.5, 0.5 },
-			elite_taser = { 0.5, 0.5, 0.5 },
-			fbi_cloaker = { 0.5, 0.5, 0.5 },
-			elite_bulldozer = { 0.3, 0.3, 0.3 },
+			elite_swats = { 10, 10, 10 },
+			elite_heavies = { 18, 18, 18 },
+			elite_shield = ponr_shield_wgt,
+			elite_sniper = ponr_spook_taser_wgt,
+			elite_taser = ponr_spook_taser_wgt,
+			fbi_cloaker = ponr_spook_taser_wgt,
+			elite_bulldozer = ponr_tank_wgt,
 		}
 		self.ponr.reenforce.groups = {
-			elite_defend_light = { 0.6, 0.6, 0.6 },
+			elite_defend_light = { 1, 1, 1 },
 			elite_defend_heavy = { 1, 1, 1 },
 		}
 	end
