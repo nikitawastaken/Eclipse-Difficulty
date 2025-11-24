@@ -3286,7 +3286,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
 	local shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0.5, 0.875, 1.25 })
 	local spook_taser_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.5, 1 })
-	local tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.125, 0.75 })
+	local tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.1875, 0.75 })
 	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.375, 0.625, 1 })
 	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.25, 0.75 })
 	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.5 })
