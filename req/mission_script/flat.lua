@@ -9,6 +9,16 @@ local enabled_blocked_roof_access = math.random() <= (is_eclipse and 0.65 or 0.4
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
+local cop_1 = scripted_enemy.cop_1
+local cop_2 = scripted_enemy.cop_2
+local cop_3 = scripted_enemy.cop_3
+local cop_4 = scripted_enemy.cop_4
+local blockade_cops = {
+	[cop_1] = 4,
+	[cop_3] = 2,
+	[cop_4] = 2,
+	[cop_2] = 1,
+}
 local gangsters = {
 	Idstring("units/payday2/characters/ene_gang_black_1/ene_gang_black_1"),
 	Idstring("units/payday2/characters/ene_gang_black_2/ene_gang_black_2"),
@@ -58,6 +68,9 @@ local gangster = {
 }
 local dealer = {
 	enemy = chavez_dealer,
+}
+local cops = {
+	enemy = blockade_cops,
 }
 local swat_harassers = {
 	enemy = harasser,
@@ -114,21 +127,16 @@ return {
 			{ id = 103038, remove = not overkill_and_above and true or nil, delay = 20 },
 			{ id = 103080, remove = not overkill_and_above and true or nil, delay = 20 },
 			-- add harassers
-			{ id = 400066, delay = eclipse and 70 or 90 },
-			{ id = 400067, delay = eclipse and 70 or 90 },
-			{ id = 400068, delay = eclipse and 70 or 90 },
-			{ id = 400069, delay = eclipse and 70 or 90 },
 			{ id = 400070, delay = eclipse and 70 or 90 },
 			{ id = 400071, delay = eclipse and 70 or 90 },
 			{ id = 400072, delay = eclipse and 70 or 90 },
 			{ id = 400073, delay = eclipse and 70 or 90 },
 		},
 	},
+	-- randomized beat cops
+	[102020] = cops,
+	[102021] = cops,
 	-- harassers stuff
-	[400066] = swat_harassers,
-	[400067] = swat_harassers,
-	[400068] = swat_harassers,
-	[400069] = swat_harassers,
 	[400070] = swat_harassers,
 	[400071] = swat_harassers,
 	[400072] = swat_harassers,
@@ -176,6 +184,7 @@ return {
 	[102263] = {
 		on_executed = {
 			{ id = 400039, delay = 3 },
+			{ id = 400091, delay = 0 }, -- disable some window blinders	
 		},
 	},
 	-- Add new reinforce

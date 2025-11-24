@@ -47,30 +47,6 @@ local optsSWAT_Rooftop_2 = {
 	},
 	enabled = true,
 }
-local optsSWAT_Harasser_1 = {
-	on_executed = {
-		{ id = 103767, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSWAT_Harasser_2 = {
-	on_executed = {
-		{ id = 103769, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSWAT_Harasser_3 = {
-	on_executed = {
-		{ id = 103768, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSWAT_Harasser_4 = {
-	on_executed = {
-		{ id = 103770, delay = 0 },
-	},
-	enabled = true,
-}
 local optsSWAT_Harasser_5 = {
 	on_executed = {
 		{ id = 400082, delay = 0 },
@@ -287,33 +263,6 @@ local optsrespawn_swat_2 = {
 	},
 	event = "death",
 }
-local optsrespawn_harasser_1 = {
-	on_executed = {
-		{ id = 400066, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
-	},
-	elements = {
-		400066,
-	},
-	event = "death",
-}
-local optsrespawn_harasser_2 = {
-	on_executed = {
-		{ id = 400067, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
-	},
-	elements = {
-		400067,
-	},
-	event = "death",
-}
-local optsrespawn_harasser_3 = {
-	on_executed = {
-		{ id = 400068, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
-	},
-	elements = {
-		400068,
-	},
-	event = "death",
-}
 local optsrespawn_harasser_4 = {
 	on_executed = {
 		{ id = 400069, delay = is_eclipse and 50 or 60, delay_rand = is_eclipse and 10 or 20 },
@@ -387,6 +336,14 @@ local disable_open_roof_access = {
 		100569,
 	},
 }
+local optsdisable_blinds = {
+	unit_ids = {
+		700892,
+		701008,
+		701333,
+	},
+}
+
 local Bain_chavez_killed = {
 	dialogue = "Play_pln_flt_13",
 }
@@ -477,23 +434,15 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400064, "roof_access_blockade_random", Roof_access_block),
 	Eclipse.mission_elements.gen_toggleelement(400065, "disable_open_roof_access", disable_open_roof_access),
 
-	-- Add new harassers near police cars and the back alley
-	Eclipse.mission_elements.gen_dummy(400066, "harasser_1", Vector3(1508, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_1),
-	Eclipse.mission_elements.gen_dummy(400067, "harasser_2", Vector3(1447, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_2),
-	Eclipse.mission_elements.gen_dummy(400068, "harasser_3", Vector3(1380, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_3),
-	Eclipse.mission_elements.gen_dummy(400069, "harasser_4", Vector3(1323, -3106, -25), Rotation(-90, 0, 0), optsSWAT_Harasser_4),
-	Eclipse.mission_elements.gen_dummy(400070, "harasser_5", Vector3(1873, 2348, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_5),
-	Eclipse.mission_elements.gen_dummy(400071, "harasser_6", Vector3(1873, 2263, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_6),
-	Eclipse.mission_elements.gen_dummy(400072, "harasser_7", Vector3(-2699, 2903, -25.190), Rotation(-90, 0, 0), optsSWAT_Harasser_7),
-	Eclipse.mission_elements.gen_dummy(400073, "harasser_8", Vector3(-2740, 2903, -25.190), Rotation(-90, 0, 0), optsSWAT_Harasser_8),
-	Eclipse.mission_elements.gen_dummytrigger(400074, "respawn_harasser_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_1),
-	Eclipse.mission_elements.gen_dummytrigger(400075, "respawn_harasser_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_2),
-	Eclipse.mission_elements.gen_dummytrigger(400076, "respawn_harasser_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_3),
-	Eclipse.mission_elements.gen_dummytrigger(400077, "respawn_harasser_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_4),
-	Eclipse.mission_elements.gen_dummytrigger(400078, "respawn_harasser_5", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_5),
-	Eclipse.mission_elements.gen_dummytrigger(400079, "respawn_harasser_6", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_6),
-	Eclipse.mission_elements.gen_dummytrigger(400080, "respawn_harasser_7", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_7),
-	Eclipse.mission_elements.gen_dummytrigger(400081, "respawn_harasser_8", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_8),
+	-- Add new harassers in the back alley
+	Eclipse.mission_elements.gen_dummy(400070, "harasser_1", Vector3(1873, 2348, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_5),
+	Eclipse.mission_elements.gen_dummy(400071, "harasser_2", Vector3(1873, 2263, -24.828), Rotation(-180, 0, 0), optsSWAT_Harasser_6),
+	Eclipse.mission_elements.gen_dummy(400072, "harasser_3", Vector3(-2699, 2903, -25.190), Rotation(-90, 0, 0), optsSWAT_Harasser_7),
+	Eclipse.mission_elements.gen_dummy(400073, "harasser_4", Vector3(-2740, 2903, -25.190), Rotation(-90, 0, 0), optsSWAT_Harasser_8),
+	Eclipse.mission_elements.gen_dummytrigger(400078, "respawn_harasser_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_5),
+	Eclipse.mission_elements.gen_dummytrigger(400079, "respawn_harasser_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_6),
+	Eclipse.mission_elements.gen_dummytrigger(400080, "respawn_harasser_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_7),
+	Eclipse.mission_elements.gen_dummytrigger(400081, "respawn_harasser_4", Vector3(0, 0, 0), Rotation(0, 0, 0), optsrespawn_harasser_8),
 	Eclipse.mission_elements.gen_so(400082, "harasser_so_1", Vector3(945, 2131, -24.928), Rotation(119, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400083, "harasser_so_2", Vector3(990.981, 1703.958, -24.928), Rotation(88, 0, 0), optsSniper_SO),
 	Eclipse.mission_elements.gen_so(400084, "harasser_so_3", Vector3(-2436.462, 2134.481, -25.194), Rotation(-119, 0, 0), optsSniper_SO),
@@ -505,6 +454,9 @@ M.elements = {
 	Eclipse.mission_elements.gen_dialogue(400088, "cops_incoming_floors", Bain_cops_coming_in_floors),
 	Eclipse.mission_elements.gen_dialogue(400089, "snipers_dead", Bain_snipers_killed),
 	Eclipse.mission_elements.gen_dialogue(400090, "c4_incoming", Bile_incoming_with_c4),
+	
+	-- disable some window blinders
+	Eclipse.mission_elements.gen_disable_unit(400091, "disable_blinders", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_blinds),
 }
 
 return M
