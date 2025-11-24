@@ -184,7 +184,7 @@ return {
 	[102263] = {
 		on_executed = {
 			{ id = 400039, delay = 3 },
-			{ id = 400091, delay = 0 }, -- disable some window blinders	
+			{ id = 400091, delay = 0 }, -- disable some window blinders
 		},
 	},
 	-- Add new reinforce

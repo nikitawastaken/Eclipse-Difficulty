@@ -454,7 +454,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dialogue(400088, "cops_incoming_floors", Bain_cops_coming_in_floors),
 	Eclipse.mission_elements.gen_dialogue(400089, "snipers_dead", Bain_snipers_killed),
 	Eclipse.mission_elements.gen_dialogue(400090, "c4_incoming", Bile_incoming_with_c4),
-	
+
 	-- disable some window blinders
 	Eclipse.mission_elements.gen_disable_unit(400091, "disable_blinders", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_blinds),
 }
