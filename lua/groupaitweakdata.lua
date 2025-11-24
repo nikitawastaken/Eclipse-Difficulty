@@ -3284,9 +3284,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		10,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
-	local shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0.5, 0.875, 1.25 })
-	local spook_taser_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.5, 1 })
-	local tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.1875, 0.75 })
+	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.25, 0.75, 1.25 } or { 0.5, 0.875, 1.25 })
+	local spook_taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.25, 0.625, 1 })
+	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0, 0.75 } or { 0, 0.1875, 0.75 })
 	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.375, 0.625, 1 })
 	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.25, 0.75 })
 	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.5 })
@@ -3374,7 +3374,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.besiege.assault.groups = {
-			fbi_swats = { 36, 12, 0 },
+			fbi_swats = { 24, 12, 0 },
 			elite_swats = { 12, 18, 24 },
 			fbi_heavies = { 0, 12, 24 },
 			fbi_shield = shield_wgt,
