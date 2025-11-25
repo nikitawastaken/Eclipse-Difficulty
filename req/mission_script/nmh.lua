@@ -54,6 +54,9 @@ return {
 			{ id = 400063, delay = 0 },
 		},
 	},
+	-- disable vanilla PONRs for now (it ticks faster due to FFO countdown)
+	[103706] = disabled,
+	[103434] = disabled,
 	-- add sniper access to SO navlinks
 	[103238] = cops_so,
 	[103237] = cops_so,
