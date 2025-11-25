@@ -96,8 +96,8 @@ return {
 	--Use unhooked scripted swat spawn for random special unit (can be either medic, taser or cloaker)
 	[101678] = {
 		on_executed = {
-			{ id = 101166, delay = 0 }
-		}
+			{ id = 101166, delay = 0 },
+		},
 	},
 	[101166] = special_enemy,
 	-- randomize all dozers in the room
