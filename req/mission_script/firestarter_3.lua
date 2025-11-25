@@ -82,8 +82,8 @@ local cloaker_spawn = {
 return {
 	[101559] = {
 		ponr = {
-			length = 240,
-			player_mul = { 1.5, 1.25, 1, 1 },
+			length = 180,
+			player_mul = { 1.33, 1.167, 1, 1 },
 		},
 	},
 	-- DW Trailer Skulldozer spawn event
