@@ -170,27 +170,27 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.jammer.radius = radius_medium
 	self.enemy_chatter.saw = clone(self.enemy_chatter.sentry_gun)
 	self.enemy_chatter.saw.queue = "ch4"
-	self.enemy_chatter.assault_move_out_a = clone(self.enemy_chatter.go_go)	
+	self.enemy_chatter.assault_move_out_a = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.assault_move_out_a.queue = "gr2a"
 	self.enemy_chatter.assault_move_out_a.duration = duration_long
 	self.enemy_chatter.assault_move_out_a.radius = radius_medium
-	self.enemy_chatter.assault_move_out_b = clone(self.enemy_chatter.assault_move_out_a)	
+	self.enemy_chatter.assault_move_out_b = clone(self.enemy_chatter.assault_move_out_a)
 	self.enemy_chatter.assault_move_out_b.queue = "gr2b"
-	self.enemy_chatter.assault_move_out_c = clone(self.enemy_chatter.assault_move_out_a)	
+	self.enemy_chatter.assault_move_out_c = clone(self.enemy_chatter.assault_move_out_a)
 	self.enemy_chatter.assault_move_out_c.queue = "gr2c"
-	self.enemy_chatter.assault_move_out_d = clone(self.enemy_chatter.assault_move_out_a)	
+	self.enemy_chatter.assault_move_out_d = clone(self.enemy_chatter.assault_move_out_a)
 	self.enemy_chatter.assault_move_out_d.queue = "gr2d"
-	self.enemy_chatter.recon_move_out_a = clone(self.enemy_chatter.go_go)	
+	self.enemy_chatter.recon_move_out_a = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.recon_move_out_a.queue = "gr1a"
 	self.enemy_chatter.recon_move_out_a.duration = duration_long
 	self.enemy_chatter.recon_move_out_a.radius = radius_medium
-	self.enemy_chatter.recon_move_out_b = clone(self.enemy_chatter.recon_move_out_a)	
+	self.enemy_chatter.recon_move_out_b = clone(self.enemy_chatter.recon_move_out_a)
 	self.enemy_chatter.recon_move_out_b.queue = "gr1b"
-	self.enemy_chatter.recon_move_out_c = clone(self.enemy_chatter.recon_move_out_a)	
+	self.enemy_chatter.recon_move_out_c = clone(self.enemy_chatter.recon_move_out_a)
 	self.enemy_chatter.recon_move_out_c.queue = "gr1c"
-	self.enemy_chatter.recon_move_out_d = clone(self.enemy_chatter.recon_move_out_a)	
+	self.enemy_chatter.recon_move_out_d = clone(self.enemy_chatter.recon_move_out_a)
 	self.enemy_chatter.recon_move_out_d.queue = "gr1d"
-	
+
 	-- Stealth chatter
 	self.enemy_chatter.idle = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.idle.queue = "a06"

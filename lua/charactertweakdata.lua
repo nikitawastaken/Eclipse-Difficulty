@@ -868,7 +868,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cop.recon_move_out_b = true
 	presets.enemy_chatter.cop.recon_move_out_c = true
 	presets.enemy_chatter.cop.recon_move_out_d = true
-	
+
 	presets.enemy_chatter.swat.push = true
 	presets.enemy_chatter.swat.stand_by = true
 	presets.enemy_chatter.swat.flank = true
