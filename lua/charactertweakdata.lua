@@ -1339,24 +1339,24 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.fbi_boss.throwable = "concussion"
 	self.fbi_boss.melee_weapon = "taser"
 	self.fbi_boss.access = "fbi"
-	self.fbi_boss.die_sound_event = "l1n_x02a_any_3p"
+	self.fbi_boss.die_sound_event = "l1n_x01a_any_3p"
 	table.insert(self._enemy_list, "fbi_boss")
 
 	self.chavez_boss.HEALTH_INIT = 80
 	self.chavez_boss.headshot_dmg_mul = 1.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
-	self.chavez_boss.die_sound_event = "l3n_x02a_any_3p"
+	self.chavez_boss.die_sound_event = "l3n_x01a_any_3p"
 
 	self.hector_boss.HEALTH_INIT = 120
 	self.hector_boss.headshot_dmg_mul = 1
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.hector_boss.throwable = "concussion"
 	self.hector_boss.throwable_cooldown = 10
-	self.hector_boss.die_sound_event = "l4n_x02a_any_3p"
+	self.hector_boss.die_sound_event = "l4n_x01a_any_3p"
 
 	self.hector_boss_no_armor.HEALTH_INIT = 8
 	self.hector_boss_no_armor.headshot_dmg_mul = 2.5
-	self.hector_boss_no_armor.die_sound_event = "l4n_x02a_any_3p"
+	self.hector_boss_no_armor.die_sound_event = "l4n_x01a_any_3p"
 
 	self.biker_boss.HEALTH_INIT = 120
 	self.biker_boss.headshot_dmg_mul = 1
@@ -1371,11 +1371,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.drug_lord_boss.throwable_target_verified = true
 	self.drug_lord_boss.throwable = "launcher_m203"
 	self.drug_lord_boss.throwable_cooldown = 15
-	self.drug_lord_boss.die_sound_event = "l2n_x02a_any_3p"
+	self.drug_lord_boss.die_sound_event = "l2n_x01a_any_3p"
 
 	self.drug_lord_boss_stealth.HEALTH_INIT = 8
 	self.drug_lord_boss_stealth.headshot_dmg_mul = 2.5
-	self.drug_lord_boss_stealth.die_sound_event = "l2n_x02a_any_3p"
+	self.drug_lord_boss_stealth.die_sound_event = "l2n_x01a_any_3p"
 
 	self.triad_boss.HEALTH_INIT = 120
 	self.triad_boss.headshot_dmg_mul = 1
