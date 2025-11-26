@@ -537,7 +537,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	end
 
-	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.75 then
 		group.said_moving_out = self:_chk_say_group(group, "assault_move_out_" .. table.random({ "a", "b", "c", "d" }))
 	end
 
@@ -1502,10 +1502,6 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		return
 	end
 
-	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
-		group.said_moving_out = self:_chk_say_group(group, "assault_move_out_" .. table.random({ "a", "b", "c", "d" }))
-	end
-
 	local obstructed
 	local search_params = {
 		id = "GroupAI_reenforce",
@@ -1621,10 +1617,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		end
 	end
 
-	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.75 then
 		group.said_moving_out = self:_chk_say_group(group, "recon_move_out_" .. table.random({ "a", "b", "c", "d" }))
 	end
-
+	
 	local coarse_path
 	local to_search_areas = {
 		objective_area,
