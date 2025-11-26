@@ -186,6 +186,8 @@ M.mtsr_ = tsr_tbl
 -- Medics
 local mdc_tbl = {
 	ch3 = "burndeath", -- Ears ouchies
+	e05 = "g90",
+	e06 = "g90",
 }
 M.mdc_ = mdc_tbl
 M.rmdc_ = mdc_tbl
