@@ -534,7 +534,7 @@ Hooks:PostHook(CopLogicBase, "death_clbk", "sh_death_clbk", function(data, damag
 		managers.groupai:state():_chk_say_group(data.group, "trip_mine")
 	elseif weapon_base and weapon_base.is_category and weapon_base:is_category("saw") and math.random() < 0.75 then
 		managers.groupai:state():_chk_say_group(data.group, "saw")
-	elseif math.random() < 0.15 then
+	elseif math.random() < 0.25 then
 		managers.groupai:state():_chk_say_group(data.group, "group_death")
 	end
 end)

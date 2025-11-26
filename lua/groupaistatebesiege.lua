@@ -449,7 +449,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 	local tactics_map = group_leader_u_data and group_leader_u_data.tactics_map or {}
 	local in_place_duration = group.in_place_t and self._t - group.in_place_t or 0
 	local objective_area = current_objective.area
-
+	
 	-- Clear objective tactic if it no longer fits
 	if current_objective.tactic and not tactics_map[current_objective.tactic] then
 		current_objective.tactic = nil
@@ -537,6 +537,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	end
 
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
+		group.said_moving_out = self:_chk_say_group(group, "assault_move_out_" .. table.random({ "a", "b", "c", "d" }))
+	end
+	
 	if current_objective.open_fire then
 		if not current_objective.moving_out and (tactics_map.charge or not tactics_map.ranged_fire or in_place_duration > 10) then
 			approach = not self:_can_group_see_target(group, nil, tactics_map.no_push and 5 or not tactics_map.charge and 1)
@@ -1498,6 +1502,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_reenforce_objective_to_group",
 		return
 	end
 
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
+		group.said_moving_out = self:_chk_say_group(group, "assault_move_out_" .. table.random({ "a", "b", "c", "d" }))
+	end
+	
 	local obstructed
 	local search_params = {
 		id = "GroupAI_reenforce",
@@ -1613,6 +1621,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		end
 	end
 
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
+		group.said_moving_out = self:_chk_say_group(group, "recon_move_out_" .. table.random({ "a", "b", "c", "d" }))
+	end
+	
 	local coarse_path
 	local to_search_areas = {
 		objective_area,
