@@ -89,6 +89,12 @@ return {
 			{ id = 400076, delay = 0 },
 		},
 	},
+	-- disable unnecesary collision blockers in the elevator
+	[102304] = {
+		on_executed = {
+			{ id = 400077, delay = 1 },
+		},
+	},
 	-- open the elevator doors when you reach the top
 	-- yes, they forgot to make it open for some reason
 	[103586] = {
