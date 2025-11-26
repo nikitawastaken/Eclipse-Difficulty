@@ -537,7 +537,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	end
 
-	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.75 then
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
 		group.said_moving_out = self:_chk_say_group(group, "assault_move_out_" .. table.random({ "a", "b", "c", "d" }))
 	end
 
