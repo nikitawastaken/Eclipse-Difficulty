@@ -3203,9 +3203,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Control
 	self.besiege.assault.delay = {
-		diff_lerp(60, 40),
-		diff_lerp(45, 30),
-		diff_lerp(30, 20),
+		diff_lerp(60, 30),
+		diff_lerp(40, 20),
+		diff_lerp(30, 15),
 	}
 	self.besiege.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
