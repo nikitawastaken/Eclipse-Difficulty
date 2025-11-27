@@ -2769,6 +2769,7 @@ GroupAITweakData.gensec_tac_teams_heists = {
 	["arena"] = true,
 }
 GroupAITweakData.bellmead_response_heists = {
+	["ranc"] = true,
 	["corp"] = true,
 	["deep"] = true,
 }

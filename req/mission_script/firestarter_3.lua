@@ -213,7 +213,8 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, delay = 0 },
-			{ id = 400075, delay = 0 },
+			{ id = 400077, delay = 0 },
+			{ id = 400078, delay = 0 },
 		},
 	},
 	-- enable spawns sooner

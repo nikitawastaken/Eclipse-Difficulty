@@ -163,10 +163,42 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
-local chopper_amount = {
-	amount = is_eclipse and 2 or 1,
+local optsChopper_trigger_overkill_below = {
+	on_executed = {
+		{ id = 400075, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_normal = true,
+	difficulty_hard = true,
+	difficulty_overkill = true,
+	difficulty_overkill_145 = true,
+}
+local optsChopper_trigger_death_wish = {
+	on_executed = {
+		{ id = 400076, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_easy_wish = true,
+}
+local chopper_amount_dw = {
+	amount = 2,
 	on_executed = {
 		{ id = 400025, delay = 0, delay_rand = 10 },
+		{ id = 400031, delay = 0, delay_rand = 10 },
+		{ id = 400037, delay = 0, delay_rand = 10 },
+	},
+}
+local chopper_amount_ovk_below = {
+	amount = is_pro_job and 2 or 1,
+	on_executed = {
 		{ id = 400031, delay = 0, delay_rand = 10 },
 		{ id = 400037, delay = 0, delay_rand = 10 },
 	},
@@ -479,7 +511,10 @@ M.elements = {
 	-- chance
 	Eclipse.mission_elements.gen_missionscript(400072, "ambush_event", ambush_event_global),
 	-- chopper spawner
-	Eclipse.mission_elements.gen_element_random(400075, "random_chopper_spawner", chopper_amount),
+	Eclipse.mission_elements.gen_element_random(400075, "random_chopper_spawner_ovk_below", chopper_amount_ovk_below),
+	Eclipse.mission_elements.gen_element_random(400076, "random_chopper_spawner_dw", chopper_amount_dw),
+	Eclipse.mission_elements.gen_element_filter(400077, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
+	Eclipse.mission_elements.gen_element_filter(400078, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
 }
 
 return M
