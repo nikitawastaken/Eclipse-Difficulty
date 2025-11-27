@@ -1480,7 +1480,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steroids.multibasic = "100%"
 
 	-- Counterstrike
-	self.values.cooldown.melee_dozer_knock = { { 1, 10 } }
+	self.values.cooldown.melee_dozer_knock = { { 1, 30 } }
 	self.definitions.cooldown_melee_dozer_knock = {
 		name_id = "menu_cooldown_melee_dozer_knock",
 		category = "cooldown",
@@ -1490,7 +1490,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.skill_descs.drop_soap.multipro = "10"
+	self.skill_descs.drop_soap.multipro = "30"
 
 	-- Zerker
 	self.values.player.movement_speed_damage_health_ratio_multiplier = { 0.2 }
