@@ -192,16 +192,26 @@ return {
 	-- disable forced manager flee objective
 	[100665] = disabled,
 	-- disable the right vault path
-	[105498] = disabled,
+	[105496] = {
+		on_executed = {
+			{ id = 105498, remove = true },
+		},
+	},
 	-- Rework the opening vault ambush
 	-- add new system for the ambush
 	[103705] = {
 		on_executed = {
 			-- remove vanilla enemy dummies, replace them with mission scripts
 			{ id = 100569, remove = true },
-			{ id = 400124, delay = 0 },
-			{ id = 400125, delay = 0 },
-			{ id = 400126, delay = 0 },
+			{ id = 400124, delay = 6 },
+			{ id = 400125, delay = 6 },
+			{ id = 400126, delay = 6 },
+			-- two dozers spawn on e/pj when leaving vault
+			-- also two hallway escape shields on ovk+ (chance) and guaranteed on e/pj
+			{ id = 400050, delay = 15 },
+			{ id = 400051, delay = 15 },
+			{ id = 400015, delay = 15 },
+			{ id = 400016, delay = 15 },
 		},
 	},
 	-- update element toggle to include new ids
@@ -342,16 +352,6 @@ return {
 		chance = 100,
 		on_executed = {
 			{ id = 400090, delay = 1.8 },
-		},
-	},
-	-- two dozers spawn on e/pj when leaving vault
-	-- also two hallway escape shields on ovk+ (chance) and guaranteed on e/pj
-	[103705] = {
-		on_executed = {
-			{ id = 400050, delay = 15 },
-			{ id = 400051, delay = 15 },
-			{ id = 400015, delay = 15 },
-			{ id = 400016, delay = 15 },
 		},
 	},
 	-- spawn two extra dozers on eclipse as a 193+ throwback
