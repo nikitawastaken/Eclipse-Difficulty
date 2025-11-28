@@ -47,9 +47,6 @@ local eclipse_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local escape_dozer = {
-	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
-}
 local harasser_enemy = is_eclipse and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
@@ -738,12 +735,14 @@ return {
 	},
 	-- change dozer's positions and always spawn them in pairs
 	[102433] = {
+		enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 		values = {
 			position = Vector3(-664.130, 3054.638, 1821),
 			rotation = Rotation(-88, 0, 0),
 		},
 	},
 	[102434] = {
+		enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 		values = {
 			position = Vector3(-656.111, 3152.987, 1817),
 			rotation = Rotation(-112, 0, 0),
@@ -822,9 +821,6 @@ return {
 	[103079] = law_team,
 	-- tweak SO access
 	[102610] = fbi_intro_so,
-	-- Escape Dozers
-	[102433] = escape_dozer,
-	[102434] = escape_dozer,
 	-- Harassers
 	[102436] = harasser,
 	[102437] = harasser,
