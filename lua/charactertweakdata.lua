@@ -449,9 +449,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_elite_bulldozer = based_on(presets.weapon.eclipse_bulldozer)
 	presets.weapon.eclipse_elite_bulldozer.is_shotgun_pump.FALLOFF = {
-		{ dmg_mul = 18 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 9 * special_dmg_mul, r = 1000, acc = { 0.6, 0.8 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 3 * special_dmg_mul, r = 2000, acc = { 0.4, 0.6 }, recoil = { 0.6, 1.4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 18 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 9 * special_dmg_mul, r = 1000, acc = { 0.6, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 3 * special_dmg_mul, r = 2000, acc = { 0.4, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 	}
 	presets.weapon.eclipse_elite_bulldozer.is_lmg.RELOAD_SPEED = 0.5
 	presets.weapon.eclipse_elite_bulldozer.is_lmg.autofire_rounds = { 20, 50 }

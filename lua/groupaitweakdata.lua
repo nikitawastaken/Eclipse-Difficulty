@@ -1858,16 +1858,16 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					9 / diff_scale_low,
 					6 / diff_scale_low,
-					3 / diff_scale_low,
+					4 / diff_scale_low,
+					2 / diff_scale_low,
 				}, heavy_response and 0.25 or 1),
 				rank = 2,
 				unit = "cs_swat",
 				tactics = self._tactics.shield_spt,
 			},
 			{
-				freq = 1,
+				freq = 0.75,
 				rank = 2,
 				unit = "cs_heavy",
 				tactics = self._tactics.shield_spt,
@@ -1875,8 +1875,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					4 / diff_scale_low,
 					2 / diff_scale_low,
+					1 / diff_scale_low,
 					0,
 				}, heavy_response and 0 or 1),
 				rank = 1,
@@ -1987,8 +1987,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = {
 					0,
-					diff_scale / 300,
-					diff_scale / 150,
+					diff_scale / 240,
+					diff_scale / 120,
 				},
 				amount_max = 1,
 				rank = 1,
@@ -2038,7 +2038,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				rank = 3,
 				unit = "fbi_shield",
 				tactics = self._tactics.shield,
-			}, 1000, 3000, 2, 1),
+			}, 1000, 3000, 3, 1),
 			self:_distance_weighted_spawn_entry({
 				freq = 1,
 				freq_by_diff = {
@@ -2223,9 +2223,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					30 / diff_scale,
-					20 / diff_scale,
-					10 / diff_scale,
+					6 / diff_scale_low,
+					4 / diff_scale_low,
+					2 / diff_scale_low,
 				}, heavy_response and 0.25 or 1),
 				rank = 2,
 				unit = "fbi_swat",
@@ -2240,8 +2240,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					20 / diff_scale,
-					10 / diff_scale,
+					4 / diff_scale_low,
+					2 / diff_scale_low,
 					0,
 				}, heavy_response and 0 or 1),
 				rank = 1,
@@ -2366,8 +2366,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = {
 					0,
-					diff_scale / 300,
-					diff_scale / 150,
+					diff_scale / 240,
+					diff_scale / 120,
 				},
 				amount_max = 1,
 				rank = 1,
@@ -3183,7 +3183,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	else
 		self.besiege.scripted_tiers = {
 			"FBI",
-			"FBI",
+			"Elite",
 			"Elite",
 		}
 	end
@@ -3482,15 +3482,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(8, 12),
 		diff_lerp(8, 12),
 		diff_lerp(8, 12),
-	}
-
-	self.ponr.assault.delay = { 20, 20, 20 }
-	self.ponr.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
-
-	self.ponr.push_delay = {
-		diff_lerp(12, 9),
-		diff_lerp(12, 9),
-		diff_lerp(12, 9),
 	}
 
 	if short_ponr_heists[level_id] then
