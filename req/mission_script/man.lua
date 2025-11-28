@@ -51,7 +51,7 @@ local harasser_enemy = is_eclipse and { [swat_1] = 10, [elite_sniper] = 1 } or s
 local harasser = {
 	enemy = harasser_enemy,
 }
-local harassers = overkill_and_above and 5 or 3
+local harassers = overkill_and_above and 6 or 3
 local harasser_amount = {
 	values = {
 		amount = harassers,

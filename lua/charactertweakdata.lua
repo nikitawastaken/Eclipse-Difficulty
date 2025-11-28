@@ -850,8 +850,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cop.aggressive = true
 	presets.enemy_chatter.cop.go_go = true
 	presets.enemy_chatter.cop.contact = true
+	presets.enemy_chatter.cop.reloading = true
 	presets.enemy_chatter.cop.flank = true
 	presets.enemy_chatter.cop.open_fire = true
+	presets.enemy_chatter.cop.clear = true
 	presets.enemy_chatter.cop.watch_background = true
 	presets.enemy_chatter.cop.hostage_delay_1 = true
 	presets.enemy_chatter.cop.hostage_delay_2 = true
@@ -867,11 +869,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.cop.recon_move_out_c = true
 	presets.enemy_chatter.cop.recon_move_out_d = true
 
+	presets.enemy_chatter.swat.reloading = true
 	presets.enemy_chatter.swat.push = true
 	presets.enemy_chatter.swat.stand_by = true
 	presets.enemy_chatter.swat.flank = true
 	presets.enemy_chatter.swat.flash_grenade = true
 	presets.enemy_chatter.swat.open_fire = true
+	presets.enemy_chatter.swat.clear = true
 	presets.enemy_chatter.swat.watch_background = true
 	presets.enemy_chatter.swat.hostage_delay_1 = true
 	presets.enemy_chatter.swat.hostage_delay_2 = true
@@ -910,11 +914,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		aggressive = true,
 		go_go = true,
 		contact = true,
+		reloading = true,
 		suppress = true,
 		push = true,
 		stand_by = true,
 		flank = true,
 		open_fire = true,
+		clear = true,
 		watch_background = true,
 		group_death = true,
 		--for stealth heists
@@ -1032,6 +1038,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.fbi_office = deep_clone(self.fbi)
 	self.fbi_office.melee_weapon = "taser"
+	self.fbi_office.chatter = self.presets.enemy_chatter.security
 	table.insert(self._enemy_list, "fbi_office")
 
 	self.fbi_female = deep_clone(self.fbi_office)

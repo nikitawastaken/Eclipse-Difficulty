@@ -624,6 +624,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					end
 				end
 			else
+				self:_chk_say_group(group, "clear")
 				for _, other_area in pairs(search_area.neighbours) do
 					if not found_areas[other_area] then
 						table.insert(to_search_areas, other_area)
