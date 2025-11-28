@@ -12,7 +12,6 @@ local dozer_random_amount = overkill_and_above and 2 or 1
 local dozers_respawn = (is_eclipse and 240 or 300) - (is_eclipse_pro and 60 or is_pro_job and 30 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
 
-
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -298,7 +297,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400025, "new_cloaker_spawngroup_07", { 103797 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400026, "new_cloaker_spawngroup_08", { 103800 }, 0),
 	Eclipse.mission_elements.gen_spawngroup(400027, "new_cloaker_spawngroup_09", { 103801 }, 0),
-	
+
 	-- scripted dozers
 	Eclipse.mission_elements.gen_dummy(400028, "bulldozer_1", Vector3(-770, -4037, -45.121), Rotation(90, 0, 0), optsBulldozer),
 	Eclipse.mission_elements.gen_dummy(400029, "bulldozer_2", Vector3(-840, -4037, -45.121), Rotation(90, 0, 0), optsBulldozer),
