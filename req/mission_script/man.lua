@@ -206,8 +206,8 @@ return {
 	-- fix Taxman's getting into the limo event
 	[101581] = {
 		on_executed = {
-			{ id = 101599, delay = 2.5 },
-			{ id = 101582, delay = 2.5 },
+			{ id = 101599, delay = 2 },
+			{ id = 101582, delay = 2 },
 		},
 	},
 	[101578] = {
@@ -380,6 +380,7 @@ return {
 	[100130] = {
 		on_executed = {
 			{ id = 400005, delay = 0, delay_rand = 20 },
+			{ id = 400046, delay = 240, delay_rand = 60 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},

@@ -498,6 +498,7 @@ local optsdisable_random_dozers = {
 }
 local optsenable_random_dozers = {
 	enabled = true,
+	set_trigger_times = 1,
 	elements = {
 		400035,
 	},
