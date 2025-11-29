@@ -2769,6 +2769,11 @@ GroupAITweakData.us_army_heists_scripted = {
 	["peta2"] = true,
 }
 GroupAITweakData.gensec_tac_teams_heists = {
+	["arm_cro"] = true,
+	["arm_par"] = true,
+	["arm_hcm"] = true,
+	["arm_und"] = true,
+	["arm_fac"] = true,
 	["dah"] = true,
 	["arena"] = true,
 }
