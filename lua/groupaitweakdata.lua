@@ -167,7 +167,7 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.trip_mine.radius = radius_large
 	self.enemy_chatter.sentry_gun = clone(self.enemy_chatter.trip_mine)
 	self.enemy_chatter.sentry_gun.queue = "ch2"
-	self.enemy_chatter.reloading = clone(self.enemy_chatter.trip_mine)
+	self.enemy_chatter.reloading = clone(self.enemy_chatter.contact)
 	self.enemy_chatter.reloading.queue = "rrl"
 	self.enemy_chatter.jammer = clone(self.enemy_chatter.aggressive)
 	self.enemy_chatter.jammer.queue = "ch3"
