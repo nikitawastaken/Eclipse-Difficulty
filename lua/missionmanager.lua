@@ -164,6 +164,9 @@ end
 
 function MissionManager.mission_script_patch_funcs.flashlight(self, element, data)
 	Hooks:PostHook(element, "on_executed", "sh_on_executed_flashlight_" .. element:id(), function()
+		Eclipse:log_console("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
+		managers.game_play_central:set_flashlights_on(data)
+	end)
 	Hooks:PostHook(element, "client_on_executed", "sh_client_on_executed_flashlight_" .. element:id(), function()
 		Eclipse:log_console("%s executed, changing flashlight state to %s", element:editor_name(), data and "true" or "false")
 		managers.game_play_central:set_flashlights_on(data)
