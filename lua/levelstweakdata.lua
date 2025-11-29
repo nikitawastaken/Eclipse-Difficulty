@@ -189,7 +189,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.firestarter_3.has_megaphone_cop = true
 	self.firestarter_3.group_ai_preset = "heavy_response"
 
+	self.alex_1.group_ai_settings = {
+		assault_force_mul = 0.85,
+	}
+	
 	self.rat.group_ai_settings = {
+		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			diff_init = 0.2,
 		},
