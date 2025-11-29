@@ -3218,13 +3218,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawncap
 	self.besiege.assault.force = {
 		diff_lerp(4, 6),
-		diff_lerp(6, 9),
-		diff_lerp(8, 12),
+		diff_lerp(5, 8),
+		diff_lerp(6, 10),
 	}
 
-	self.besiege.assault.force_balance_mul = {} -- { 1, 1.2, 1.4, 1.6 }
+	self.besiege.assault.force_balance_mul = {} -- { 1, 1.25, 1.5, 1.75 }
 	for i = 0, 21, 1 do
-		table.insert(self.besiege.assault.force_balance_mul, 1 + (i * 0.2))
+		table.insert(self.besiege.assault.force_balance_mul, 1 + (i * 0.25))
 	end
 
 	self.besiege.assault.force_pool = {
@@ -3232,9 +3232,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		self.besiege.assault.force[2] * 10,
 		self.besiege.assault.force[3] * 10,
 	}
-	self.besiege.assault.force_pool_balance_mul = {} -- { 1, 1.2, 1.4, 1.6 }
+	self.besiege.assault.force_pool_balance_mul = {} -- { 1, 1.25, 1.5, 1.75 }
 	for i = 0, 21, 1 do
-		table.insert(self.besiege.assault.force_pool_balance_mul, 1 + (i * 0.2))
+		table.insert(self.besiege.assault.force_pool_balance_mul, 1 + (i * 0.25))
 	end
 
 	-- Spawnrate
@@ -3271,9 +3271,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Recon spawn interval and spawncap
 	self.besiege.recon.interval_variation = 30
 	self.besiege.recon.force = {
-		diff_lerp(1, 3),
-		diff_lerp(2, 4),
-		diff_lerp(3, 5),
+		diff_lerp(1, 2),
+		diff_lerp(2, 3),
+		diff_lerp(3, 4),
 	}
 
 	self.hostage_push_delay_mul = 1.5
