@@ -192,7 +192,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.alex_1.group_ai_settings = {
 		assault_force_mul = 0.85,
 	}
-	
+
 	self.rat.group_ai_settings = {
 		assault_force_mul = 0.85,
 		difficulty_scaling = {
