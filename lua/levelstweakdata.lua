@@ -413,7 +413,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.chew.group_ai_preset = "remote"
-	
+
 	self.chill_combat.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 		assault_force_mul = 0.6,
