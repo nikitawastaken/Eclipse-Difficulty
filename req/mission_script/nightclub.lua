@@ -36,8 +36,8 @@ local random_club_music = math.random()
 local club_music = nil
 local club_music_off = nil
 
-	-- Music stuff
-	if diff_i <= 5 then
+-- Music stuff
+if diff_i <= 5 then
 	if random_club_music <= 0.30 then
 		club_music = "diegetic_club_rock_music"
 		club_music_off = "diegetic_club_rock_music_stop"
@@ -45,11 +45,10 @@ local club_music_off = nil
 		club_music = "diegetic_club_music"
 		club_music_off = "diegetic_club_music_stop"
 	end
-	else
-		club_music = "dah_party_music"
-		club_music_off = "dah_party_music_stop"
-	end	
-
+else
+	club_music = "dah_party_music"
+	club_music_off = "dah_party_music_stop"
+end
 
 return {
 	-- Combine some navigation areas
