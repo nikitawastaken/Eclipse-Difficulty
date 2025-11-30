@@ -1,7 +1,6 @@
 local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
-local club_music = is_eclipse and "diegetic_club_rock_music" or "diegetic_club_music"
-local club_music_off = is_eclipse and "diegetic_club_rock_music_stop" or "diegetic_club_music_stop"
+local diff_i = Eclipse.utils.difficulty_index()
 local dance_civs = is_eclipse and 17 or 7
 local dance_civs_bad_music = is_eclipse and 7 or 3
 local rear_spawn = {
@@ -31,6 +30,27 @@ local law_team = {
 		team = "law1",
 	},
 }
+
+local random_club_music = math.random()
+
+local club_music = nil
+local club_music_off = nil
+
+	-- Music stuff
+	if diff_i <= 5 then
+	if random_club_music <= 0.30 then
+		club_music = "diegetic_club_rock_music"
+		club_music_off = "diegetic_club_rock_music_stop"
+	else
+		club_music = "diegetic_club_music"
+		club_music_off = "diegetic_club_music_stop"
+	end
+	else
+		club_music = "dah_party_music"
+		club_music_off = "dah_party_music_stop"
+	end	
+
+
 return {
 	-- Combine some navigation areas
 	[100087] = {
@@ -66,7 +86,6 @@ return {
 			},
 		},
 	},
-	-- rock music on Eclipse
 	[101475] = {
 		values = {
 			sound_event = club_music_off,

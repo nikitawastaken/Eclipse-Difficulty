@@ -918,6 +918,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nightclub.package = {
 		"packages/vlad_nightclub",
 		"levels/narratives/dentist/mia/stage2/world_sounds",
+		"levels/narratives/classics/dah/world_sounds",
 	}
 	self.jolly.package = {
 		"packages/jolly",
