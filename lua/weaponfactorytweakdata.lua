@@ -942,7 +942,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_lmg_hcar_barrel_dmr.stats.damage = 0
 	self.parts.wpn_fps_lmg_hcar_barrel_dmr.stats.spread = 2
 	self.parts.wpn_fps_lmg_hcar_barrel_dmr.stats.concealment = -2
-	
+
 	self.parts.wpn_fps_lmg_hcar_m_stick.stats.extra_ammo = 5
 
 	self.parts.wpn_fps_lmg_hcar_m_drum.stats.extra_ammo = 15
@@ -2017,7 +2017,7 @@ function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_w
 
 		local shotgun_reload = weapon_tweak and weapon_tweak.use_shotgun_reload or weapon_tweak and weapon_tweak.timers and weapon_tweak.timers.shotgun_reload_shell or nil
 		local mag_capacity = weapon_tweak and weapon_tweak.CLIP_AMMO_MAX
-		
+
 		local part_data = self.parts[part_id]
 		if part_data and not is_akimbo then
 			if self[factory_id] and table.contains(self[factory_id].uses_parts, part_id) then
@@ -2250,9 +2250,9 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_m4_upg_fg_mk12.custom_stats = { fire_rate_multiplier = 600 / 750 }
 	table.delete(self.parts.wpn_fps_m4_upg_fg_mk12.perks, "fire_mode_auto")
 	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_m4_upg_fg_mk12", 36, nil, true)
-	
+
 	self:_balance_conversion_kit(tweak_data, "galil", "wpn_fps_ass_galil_fg_sniper", 64, nil, true)
-	
+
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_g3_b_sniper.stats.damage = 0
 	self.parts.wpn_fps_ass_g3_b_sniper.custom_stats = {}
@@ -2261,7 +2261,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 
 	self.parts.wpn_fps_ass_fal_fg_04.stats.damage = 0
 	self:_balance_conversion_kit(tweak_data, "fal", "wpn_fps_ass_fal_fg_04", 64, nil, true)
-	
+
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.total_ammo_mod = 0
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.extra_ammo = -5
 	self.parts.wpn_fps_ass_shak12_body_vks.stats.spread = 2
@@ -2304,7 +2304,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 			self:_balance_magazine(tweak_data, part_id, false)
 		end
 	end
-	
+
 	self:_add_parts_to_all(tweak_data)
 	self:_add_parts_from_template(tweak_data)
 	self:_balance_shotgun_ammo(tweak_data)
