@@ -3051,13 +3051,6 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 			end
 
 			if assault_state.reenforce then
-				assault_state.reenforce.min_interval = table_multiplier(assault_state.reenforce.min_interval, level_settings.reenforce_min_interval_mul or 1)
-
-				if level_settings.reenforce_min_interval_mul ~= 1 then
-					Eclipse:log_console("Min reenforce interval for " .. level_id .. " set to: ")
-					-- Utils.PrintTable(assault_state.reenforce.min_interval)
-				end
-
 				assault_state.reenforce.interval = table_multiplier(assault_state.reenforce.interval, level_settings.reenforce_interval_mul or 1)
 
 				if level_group_ai_state and level_settings.reenforce_interval_mul ~= 1 then
@@ -3265,7 +3258,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Reenforce spawn interval
 	self.besiege.reenforce.interval = { 10, 20, 30 }
-	self.besiege.reenforce.min_interval = { 5, 7.5, 10 }
 	self.undershot_reenforce_mul = 2.5
 	self.use_equipment_reenforce = true
 	self.equipment_reenforce = {

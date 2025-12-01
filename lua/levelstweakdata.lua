@@ -16,7 +16,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				assault_delay_mul = 1,
 				assault_force_mul = 1,
 				spawnrate_mul = 1,
-				reenforce_min_interval_mul = 1,
 				reenforce_interval_mul = 1,
 				recon_interval_variation_mul = 1,
 				recon_force_mul = 1,
@@ -443,7 +442,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		hostage_hesitation_delay_mul = 0.75,
 		sustain_duration_mul = 0.65,
 		assault_delay_mul = 1.35,
-		reenforce_min_interval_mul = 0.5,
 		difficulty_scaling = {
 			assault_delay = 0,
 		},
@@ -598,7 +596,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
 		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
-		reenforce_min_interval_mul = 0.5,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
