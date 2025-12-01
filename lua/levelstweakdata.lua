@@ -243,7 +243,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.difficulty_scaling = { diff_init = 0.5, assault_add = 0.25 }
 
 	self.hox_1.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
-	
+
 	self.mus.group_ai_settings = {
 		spawn_kill_cooldown = 15,
 		difficulty_scaling = {
@@ -634,7 +634,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.has_megaphone_cop = true
 	self.brb.has_megaphone_cop = true
 	self.chas.has_megaphone_cop = true
-	
+
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {
