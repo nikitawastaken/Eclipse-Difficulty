@@ -83,6 +83,24 @@ M["levels/instances/unique/hox_breakout_road001/world/world"] = function(result)
 		end
 	end
 end
+M["levels/instances/unique/xmn/xmn_breakout_road001/world/world"] = function(result)
+	local roadblock = patches.road_blockade
+
+	for _, element in pairs(result.default.elements) do
+		local id = element.id
+
+		if roadblock.cops[id] then
+			element.values.enemy_table = diff_i < 5 and cops or swats
+		elseif roadblock.swats[id] then
+			element.values.enemy_table = swats
+		elseif roadblock.swat_or_dozer[id] then
+			element.values.enemy_table = diff_i < 6 and swats or swat_or_dozer
+		elseif roadblock.so_group_fix[id] then
+			element.values.ai_group = "enemies"
+			element.values.SO_access = law
+		end
+	end
+end
 M["levels/instances/unique/hox_breakout_serverroom001/world/world"] = function(result)
 	local dozer_event = patches.bulldozer_server_room
 
