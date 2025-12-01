@@ -84,23 +84,19 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.branchbank.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.branchbank.group_ai_preset = "small_urban"
-	self.branchbank.has_megaphone_cop = true
 
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.four_stores.group_ai_preset = "small_urban"
-	self.four_stores.has_megaphone_cop = true
 
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.mallcrasher.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
 	self.mallcrasher.group_ai_preset = "small_urban"
-	self.mallcrasher.has_megaphone_cop = true
 
 	self.nightclub.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.nightclub.group_ai_preset = "small_urban"
 
 	self.family.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.family.group_ai_preset = "small_urban"
-	self.family.has_megaphone_cop = true
 
 	self.gallery.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.gallery.group_ai_preset = "small_urban"
@@ -185,7 +181,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_add = 0.25,
 		},
 	}
-	self.firestarter_3.has_megaphone_cop = true
 	self.firestarter_3.group_ai_preset = "heavy_response"
 
 	self.rat.group_ai_settings = {
@@ -219,12 +214,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.election_day_3.group_ai_settings = deep_clone(self.election_day_1.group_ai_settings)
-	self.election_day_3.has_megaphone_cop = true
 
 	self.election_day_3_skip1.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-	self.election_day_3_skip1.has_megaphone_cop = true
 	self.election_day_3_skip2.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-	self.election_day_3_skip2.has_megaphone_cop = true
 
 	self.roberts.group_ai_settings = {
 		force_tactics = {
@@ -233,14 +225,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			},
 		},
 	}
-	self.roberts.has_megaphone_cop = true
 
 	self.big.group_ai_settings = {
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
 	}
-	self.big.has_megaphone_cop = true
 
 	self.mia_1.group_ai_settings = {
 		difficulty_scaling = {
@@ -252,14 +242,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 	self.mia_2.group_ai_settings.difficulty_scaling = { diff_init = 0.5, assault_add = 0.25 }
 
-	self.hox_1.group_ai_settings = {
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 0,
-			assault_add = 0.25,
-		},
-	}
-
+	self.hox_1.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
+	
 	self.mus.group_ai_settings = {
 		spawn_kill_cooldown = 15,
 		difficulty_scaling = {
@@ -315,8 +299,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.red2.has_megaphone_cop = true
-
 	self.pbr.group_ai_settings = {
 		force_tactics = {
 			shield_def = {
@@ -370,7 +352,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.man.group_ai_preset = "heavy_response"
-	self.man.has_megaphone_cop = true
 
 	self.born.group_ai_settings = {
 		force_tactics = {
@@ -382,8 +363,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chew.group_ai_settings = {
 		use_equipment_reenforce = false,
-		assault_force_mul = 0.4,
-		cs_grenade_chance_times_mul = 1.5,
+		assault_force_mul = 0.6,
+		cs_grenade_chance_times_mul = 2,
 		special_limit_add = {
 			shield = -2,
 			cloaker = -1,
@@ -456,10 +437,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
-	self.friend.group_ai_settings.difficulty_scaling = nil
-
-	self.moon.has_megaphone_cop = true
+	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
@@ -482,7 +460,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.wwh.group_ai_settings = {
 		assault_force_mul = 0.8,
 		recon_force_mul = 0.8,
-		recon_force_mul = 0.8,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
@@ -495,7 +472,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		spawn_kill_distance = 1000,
 		assault_force_mul = 0.6,
 		recon_force_mul = 0.8,
-		cs_grenade_chance_times_mul = 1.5,
+		cs_grenade_chance_times_mul = 2,
 		difficulty_scaling = {
 			assault_add = 0,
 		},
@@ -524,8 +501,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		assault_force_mul = 0.8,
 	}
 	self.rvd2.group_ai_preset = "heavy_response"
-
-	self.brb.has_megaphone_cop = true
 
 	self.des.group_ai_settings = {
 		assault_force_mul = 0.8,
@@ -591,8 +566,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 
-	self.chas.has_megaphone_cop = true
-
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.sand.group_ai_preset = "street"
@@ -645,12 +618,23 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.deep.group_ai_preset = "remote"
 
-	self.short2_stage2b.group_ai_settings = {
-		difficulty_scaling = {
-			assault_delay = 0,
-		},
-	}
-
+	--  Enable megaphone cop announcemens on specific levels
+	self.branchbank.has_megaphone_cop = true
+	self.four_stores.has_megaphone_cop = true
+	self.mallcrasher.has_megaphone_cop = true
+	self.family.has_megaphone_cop = true
+	self.firestarter_3.has_megaphone_cop = true
+	self.election_day_3.has_megaphone_cop = true
+	self.election_day_3_skip1.has_megaphone_cop = true
+	self.election_day_3_skip2.has_megaphone_cop = true
+	self.roberts.has_megaphone_cop = true
+	self.big.has_megaphone_cop = true
+	self.red2.has_megaphone_cop = true
+	self.man.has_megaphone_cop = true
+	self.moon.has_megaphone_cop = true
+	self.brb.has_megaphone_cop = true
+	self.chas.has_megaphone_cop = true
+	
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
 	self.rvd1.ai_unit_group_overrides = {

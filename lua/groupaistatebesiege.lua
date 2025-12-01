@@ -14,15 +14,6 @@ local weighted_selector = Eclipse.utils.weighted_selector
 -- 	return Eclipse.utils.weighted_selector(t)
 -- end
 
--- All reinforce points now have a force value of at least 2
--- Most vanilla reinforce points have the very weird force value of 1
--- A force value of 1 causes a reinforce point to never repopulate until all cops on that point are wiped out
--- Would presume level designers thought the force value was the number of groups to deploy
-local set_area_min_police_force_original = GroupAIStateBesiege.set_area_min_police_force
-function GroupAIStateBesiege:set_area_min_police_force(id, force, ...)
-	return set_area_min_police_force_original(self, id, force and math.max(force, 2), ...)
-end
-
 -- Functions for adding/removing deployable reinforce
 function GroupAIStateBase:add_deployable_reenforce(name_id, unit, pos, nav_seg_id)
 	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[name_id] and tweak_data.group_ai.use_equipment_reenforce then
@@ -347,7 +338,7 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 
 			if spawned then
 				--self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks
-				self._task_data.reenforce.next_dispatch_t = self._t + math.max(min_reenforce_interval, self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks)
+				self._task_data.reenforce.next_dispatch_t = self._t + math.max(min_reenforce_interval, self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) - #undershot_tasks * tweak_data.group_ai.undershot_reenforce_mul)
 				break
 			end
 		else
