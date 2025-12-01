@@ -90,7 +90,7 @@ M["levels/instances/unique/xmn/xmn_breakout_road001/world/world"] = function(res
 		local id = element.id
 
 		if roadblock.cops[id] then
-			element.values.enemy_table = diff_i < 5 and cops or swats
+			element.values.enemy_table = diff_i < 4 and cops or swats
 		elseif roadblock.swats[id] then
 			element.values.enemy_table = swats
 		elseif roadblock.swat_or_dozer[id] then
