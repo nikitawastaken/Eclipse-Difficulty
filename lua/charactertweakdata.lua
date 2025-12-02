@@ -1426,8 +1426,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 		self.city_shield_break.speech_prefix_p1 = "l5d"
 		self.city_shield_break.speech_prefix_p2 = nil
 		self.city_shield_break.speech_prefix_count = nil
-		self.city_shield_break.speech_prefix_p2 = "d"
-		self.city_shield_break.speech_prefix_count = 4
 		self.zeal_shield.speech_prefix_p2 = "d"
 		self.zeal_shield.speech_prefix_count = 4
 	end
