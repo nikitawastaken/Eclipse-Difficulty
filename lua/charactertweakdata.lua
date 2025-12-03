@@ -933,6 +933,17 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		contact = true,
 		go_go = true,
 	}
+	
+	presets.enemy_chatter.shield = {
+		aggressive = true,
+		contact = true,
+		go_go = true,
+		reloading = true,
+		suppress = true,
+		push = true,
+		open_fire = true,
+		clear = true,
+	}
 
 	presets.enemy_chatter.cloaker = {
 		aggressive = true,
@@ -1225,6 +1236,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.shield.damage.hurt_severity = self.presets.hurt_severities.only_explosion_and_light_hurt
 	self.shield.spawn_sound_event = "shield_identification" --BANG BANG BANG!!!!
 	self.shield.die_sound_event = nil --he already has his death sound
+	self.shield.chatter = self.presets.enemy_chatter.shield
 
 	self.fbi_shield = deep_clone(self.shield)
 	table.insert(self._enemy_list, "fbi_shield")
