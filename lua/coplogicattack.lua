@@ -118,7 +118,7 @@ Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(sh
 	local is_off_cooldown = not data.combat_chatter_cooldown_t or data.combat_chatter_cooldown_t < data.t
 	local focus_enemy = data.attention_obj
 	local is_reloading = focus_enemy and focus_enemy.is_local_player and focus_enemy.unit:movement():current_state():_is_reloading()
-	local is_husk = focus_enemy and focus_enemy.unit.base and focus_enemy.unit:base().is_husk_player
+	local is_husk = focus_enemy and focus_enemy.unit and focus_enemy.unit.base and focus_enemy.unit:base().is_husk_player
 	local is_husk_reloading = is_husk and focus_enemy.unit.anim_data and focus_enemy.unit:anim_data().reload
 	if not chatter then
 		return
