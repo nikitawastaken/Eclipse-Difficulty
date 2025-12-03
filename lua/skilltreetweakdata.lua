@@ -727,13 +727,13 @@ function SkillTreeTweakData:init(tweak_data)
 
 	-- Grinder
 	self.specializations[11][1].upgrades = { "player_damage_to_hot_1" }
-	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion" }
+	self.specializations[11][3].upgrades = { "player_extra_health_multiplier_1", "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 	self.specializations[11][3].icon_xy = { 2, 1 }
 	self.specializations[11][5].upgrades = { "cooldown_headshot_regen_health_bonus" }
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
 	self.specializations[11][5].icon_xy = { 1, 0 }
 	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
-	self.specializations[11][9].upgrades = { "player_damage_to_hot_2", "player_damage_to_hot_3" }
+	self.specializations[11][9].upgrades = { "player_damage_to_hot_2" }
 	self.specializations[11][7].icon_xy = { 4, 1 }
 
 	-- Ex-President
@@ -783,6 +783,9 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[18][7].upgrades = { "player_smoke_grenade_dodge_buff" }
 	self.specializations[18][7].icon_xy = { 2, 1 }
 	self.specializations[18][9].upgrades = { "player_smoke_grenade_lingering_effect", "player_passive_loot_drop_multiplier" }
+
+	-- stoic
+	self.specializations[19][3].upgrades = { "player_armor_to_health_conversion", "player_fall_damage_multiplier" }
 
 	-- hacker
 	table.delete(self.specializations[21][3].upgrades, "player_passive_health_multiplier_2")

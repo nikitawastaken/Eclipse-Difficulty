@@ -88,7 +88,7 @@
 
 		<sequence editable_state="true" name="'mandibles'" once="true" triggable="true">
 			<set_variables 		has_mandibles="1" />
-			<decal_mesh 		enabled="true" name="'dm_mandibles'"/>
+			<decal_mesh 		enabled="true" name="'dm_helmet_fbi_swat_mandibles'"/>
 		</sequence>
 		
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
@@ -175,6 +175,8 @@
 			<object 			enabled="true" name="'g_helmet_shield_lod3'" />
 			<object 			enabled="true" name="'g_helmet_shield_lod4'" />
 			<object 			enabled="true" name="'g_helmet_shield_lod5'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod6'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod7'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'helmet_city_shield'" once="true" triggable="true"> 
@@ -182,14 +184,15 @@
 			
 			<decal_mesh 		enabled="true" name="'dm_helmet_fbi_swat'" />
 			<decal_mesh 		enabled="true" name="'dm_helmet_city_shield_glass'" />
+			<decal_mesh 		enabled="true" name="'dm_helmet_city_shield_mandibles'" />
 			
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod1'" />
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod2'" />
-			
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod7'" />
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod8'" />
-			
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod28'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod1'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod2'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod8'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod9'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod10'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod11'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod12'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'patch_arm_swat'" once="true" triggable="true">
@@ -473,9 +476,6 @@
 		<sequence editable_state="true" name="'shield_3'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_city_swat_e'" />
 			<object 			enabled="true" name="'g_gear_city_swat_e_lod1'" />
-
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod5'" />
-			<object 			enabled="true" name="'g_helmet_fbi_swat_lod6'" />
 			
 			<run_sequence 		name="'city_swat'" />
 			<run_sequence 		name="'random_body_b'" />

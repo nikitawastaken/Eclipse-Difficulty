@@ -84,11 +84,10 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 		end
 	end
 
-	if ffo_heists[level_id] then
-		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
-	end
-
 	if self._point_of_no_return_id == -1 or not get_mission_script_element(self._point_of_no_return_id) then
+		if ffo_heists[level_id] then
+			self._point_of_no_return_timer = self._point_of_no_return_timer - dt
+		end
 		if self._point_of_no_return_timer <= 0 then
 			if Network:is_server() then
 				managers.groupai:set_state("ponr")

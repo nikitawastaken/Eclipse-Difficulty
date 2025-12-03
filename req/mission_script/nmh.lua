@@ -4,11 +4,15 @@ local cops_so = {
 	so_access_filter = so_access.law,
 }
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
+local is_pro_job = Eclipse.utils.is_pro_job()
 local scripted_enemy = Eclipse.scripted_enemy
 local security_guard = scripted_enemy.security_1
+local green_dozer = scripted_enemy.bulldozer_1
 local ben_dozer = scripted_enemy.elite_bulldozer_1
 local security_spawn = { enemy = security_guard }
 local cloaker_respawn_amount = normal and 1 or hard and 2 or 3
+local terminator_dozers_entrance_chance = (is_eclipse and 50 or 30) + (is_pro_job and 10 or 0)
 local disabled = {
 	values = {
 		enabled = false,
@@ -26,7 +30,7 @@ local cloaker_respawn_trigger = {
 	},
 }
 local terminator_dozer_1 = {
-	enemy = ben_dozer,
+	enemy = is_eclipse and ben_dozer or green_dozer,
 	spawn_action = "e_sp_kick_enter_bulldozer",
 	values = {
 		position = Vector3(-2378.635, 2784.454, 0),
@@ -35,7 +39,7 @@ local terminator_dozer_1 = {
 }
 
 local terminator_dozer_2 = {
-	enemy = ben_dozer,
+	enemy = is_eclipse and ben_dozer or green_dozer,
 	spawn_action = "e_sp_kick_enter_bulldozer",
 	values = {
 		position = Vector3(-2376, 2887, 0),
@@ -43,12 +47,18 @@ local terminator_dozer_2 = {
 	},
 }
 return {
-	-- spawn snipers on Eclipse
-	[103278] = {
+	-- begin FFO countdown when doing blood samples objective
+	[103450] = {
+		ponr = {
+			length = 900,
+			player_mul = { 1, 1, 0.867, 0.666 }, -- 666, so scary
+		},
+		-- begin dozers spam
 		on_executed = {
-			{ id = 400034, delay = 15 },
+			{ id = 400063, delay = 0 },
 		},
 	},
+	-- add sniper access to SO navlinks
 	[103238] = cops_so,
 	[103237] = cops_so,
 	[103272] = cops_so,
@@ -71,10 +81,10 @@ return {
 	[103185] = cops_so,
 	[103186] = cops_so,
 	[103193] = cops_so,
-	-- trigger dozers event
-	[103450] = {
+	-- spawn snipers on DW when the assault ends for the first time
+	[103278] = {
 		on_executed = {
-			{ id = 400063, delay = 0 },
+			{ id = 400034, delay = 15 },
 		},
 	},
 	-- disable custom spawns when all players are in the elevator
@@ -83,7 +93,14 @@ return {
 			{ id = 400076, delay = 0 },
 		},
 	},
+	-- disable unnecesary collision blockers in the elevator
+	[102304] = {
+		on_executed = {
+			{ id = 400077, delay = 1 },
+		},
+	},
 	-- open the elevator doors when you reach the top
+	-- yes, they forgot to make it open for some reason
 	[103586] = {
 		on_executed = {
 			{ id = 102876, delay = 2 },
@@ -149,21 +166,21 @@ return {
 		flashlight = false,
 	},
 	-- restore ovk 145+'s elevator dozers ambush at the end of the heist
-	-- keep it only on eclipse
+	-- keep it only on Overkill and DW
 	[104122] = disabled,
 	[104123] = disabled,
 	[104323] = {
 		values = {
 			difficulty_overkill = false,
-			difficulty_overkill_145 = false,
 		},
 	},
-	-- 50% chance for the event to happen
-	[104124] = { chance = 50 },
-	-- replace the shield and blackdozer with elite dozers
+	-- 30/50% chance for the event to happen depending on the difficulty
+	[104124] = { chance = terminator_dozers_entrance_chance },
+	-- replace the shield and blackdozer with green or elite dozers depending on the difficulty
+	-- also change their position and spawn anim to match their spawn arrival from PDTH
 	[104113] = terminator_dozer_1,
 	[104112] = terminator_dozer_2,
-	-- tweak elevator cloakers respawns
+	-- tweak elevator cloakers respawns (up to 6 cloakers on DW)
 	[104261] = cloaker_respawn_trigger,
 	[104262] = cloaker_respawn_trigger,
 	-- Spawn group intervals

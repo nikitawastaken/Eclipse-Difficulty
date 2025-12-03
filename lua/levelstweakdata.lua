@@ -16,7 +16,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 				assault_delay_mul = 1,
 				assault_force_mul = 1,
 				spawnrate_mul = 1,
-				reenforce_min_interval_mul = 1,
 				reenforce_interval_mul = 1,
 				recon_interval_variation_mul = 1,
 				recon_force_mul = 1,
@@ -74,7 +73,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	-- add Group AI settings
 	self.jewelry_store.group_ai_settings = {
-		assault_force_mul = 0.85,
+		assault_delay_mul = 1.25,
 	}
 	self.jewelry_store.group_ai_preset = "small_urban"
 
@@ -84,30 +83,25 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.branchbank.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.branchbank.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.branchbank.group_ai_preset = "small_urban"
-	self.branchbank.has_megaphone_cop = true
 
 	self.four_stores.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.four_stores.group_ai_preset = "small_urban"
-	self.four_stores.has_megaphone_cop = true
 
 	self.mallcrasher.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.mallcrasher.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
 	self.mallcrasher.group_ai_preset = "small_urban"
-	self.mallcrasher.has_megaphone_cop = true
 
 	self.nightclub.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.nightclub.group_ai_preset = "small_urban"
 
 	self.family.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.family.group_ai_preset = "small_urban"
-	self.family.has_megaphone_cop = true
 
 	self.gallery.group_ai_settings = deep_clone(self.jewelry_store.group_ai_settings)
 	self.gallery.group_ai_preset = "small_urban"
 
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.75,
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_add = 0.3,
 		},
@@ -118,7 +112,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arm_und.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 
 	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
-	self.arm_cro.group_ai_settings.assault_force_mul = 0.7
+	self.arm_cro.group_ai_settings.assault_force_mul = 0.8
 
 	self.arm_for.group_ai_settings = {
 		special_limit_add = {
@@ -154,7 +148,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.watchdogs_2.group_ai_settings = {
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 1.15,
+		assault_force_mul = 1.2,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_delay = 30,
@@ -169,6 +163,16 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 	self.watchdogs_2_day.group_ai_preset = "heavy_response"
 
+	self.firestarter_1.group_ai_settings = {
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
+	}
+
+	self.firestarter_2.group_ai_settings = deep_clone(self.firestarter_1.group_ai_settings)
+	self.firestarter_2.group_ai_preset = "heavy_response"
+
 	self.firestarter_3.group_ai_settings = {
 		difficulty_scaling = {
 			diff_init = 0.5,
@@ -176,7 +180,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_add = 0.25,
 		},
 	}
-	self.firestarter_3.has_megaphone_cop = true
+	self.firestarter_3.group_ai_preset = "heavy_response"
 
 	self.rat.group_ai_settings = {
 		difficulty_scaling = {
@@ -185,16 +189,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.welcome_to_the_jungle_2.group_ai_settings = {
-		cloaker_interval_mul = 1.25,
-		assault_force_mul = 0.85,
+		cloaker_interval_mul = 1.5,
 	}
 	self.welcome_to_the_jungle_2.group_ai_preset = "remote"
 
 	self.framing_frame_2.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
 
 	self.framing_frame_3.group_ai_settings = {
-		assault_force_mul = 0.7,
-		recon_force_mul = 0.85,
+		assault_force_mul = 0.8,
 		grenade_timeout_mul = {
 			flash_grenade = 0.75,
 		},
@@ -211,29 +213,23 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.election_day_3.group_ai_settings = deep_clone(self.election_day_1.group_ai_settings)
-	self.election_day_3.has_megaphone_cop = true
 
 	self.election_day_3_skip1.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-	self.election_day_3_skip1.has_megaphone_cop = true
 	self.election_day_3_skip2.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-	self.election_day_3_skip2.has_megaphone_cop = true
 
 	self.roberts.group_ai_settings = {
-		assault_force_mul = 0.85,
 		force_tactics = {
 			shield_def = {
 				ranged_fire = false,
 			},
 		},
 	}
-	self.roberts.has_megaphone_cop = true
 
 	self.big.group_ai_settings = {
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
 	}
-	self.big.has_megaphone_cop = true
 
 	self.mia_1.group_ai_settings = {
 		difficulty_scaling = {
@@ -242,21 +238,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.mia_2.group_ai_settings = deep_clone(self.framing_frame_3.group_ai_settings)
-	self.mia_2.group_ai_settings.assault_force_mul = 0.55
+	self.mia_2.group_ai_settings.assault_force_mul = 0.6
 	self.mia_2.group_ai_settings.difficulty_scaling = { diff_init = 0.5, assault_add = 0.25 }
 
-	self.hox_1.group_ai_settings = {
-		assault_force_mul = 0.85,
-		difficulty_scaling = {
-			diff_init = 0.5,
-			assault_delay = 0,
-			assault_add = 0.25,
-		},
-	}
+	self.hox_1.group_ai_settings = deep_clone(self.escape_park.group_ai_settings)
 
 	self.mus.group_ai_settings = {
 		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
@@ -285,12 +273,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.crojob3_night.group_ai_preset = "heavy_response"
 
 	self.shoutout_raid.group_ai_settings = {
-		assault_force_mul = 1.15,
+		assault_force_mul = 1.2,
 	}
 
 	self.kenaz.group_ai_settings = {
 		hostage_hesitation_delay_mul = 1.5,
-		assault_force_mul = 1.15,
 		difficulty_scaling = {
 			assault_add = 0.15,
 			assault_delay = 75,
@@ -311,8 +298,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.red2.has_megaphone_cop = true
-
 	self.pbr.group_ai_settings = {
 		force_tactics = {
 			shield_def = {
@@ -323,7 +308,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.pbr2.group_ai_settings = {
 		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			assault_delay = 90,
 		},
@@ -339,7 +324,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.cane.group_ai_settings = deep_clone(self.rat.group_ai_settings)
 
 	self.peta.group_ai_settings = {
-		assault_force_mul = 1.15,
+		assault_force_mul = 1.2,
 		assault_delay_mul = 1.25,
 		force_tactics = {
 			shield_def = {
@@ -349,19 +334,14 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.peta2.group_ai_settings = {
-		assault_force_mul = 0.7,
-		recon_force_mul = 0.85,
+		assault_force_mul = 0.8,
+		recon_force_mul = 0.8,
 	}
 	self.peta2.group_ai_preset = "remote"
-
-	self.mad.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
 
 	self.man.group_ai_settings = {
 		cloaker_interval_mul = 0.75,
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 0.85,
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
 			assault_delay = 0,
@@ -371,10 +351,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 	self.man.group_ai_preset = "heavy_response"
-	self.man.has_megaphone_cop = true
 
 	self.born.group_ai_settings = {
-		assault_force_mul = 0.85,
 		force_tactics = {
 			shield_def = {
 				ranged_fire = false,
@@ -384,8 +362,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.chew.group_ai_settings = {
 		use_equipment_reenforce = false,
-		assault_force_mul = 0.4,
-		cs_grenade_chance_times_mul = 1.5,
+		assault_force_mul = 0.6,
+		cs_grenade_chance_times_mul = 2,
 		special_limit_add = {
 			shield = -2,
 			cloaker = -1,
@@ -416,13 +394,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 	self.chew.group_ai_preset = "remote"
 
-	self.flat.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
-
 	self.chill_combat.group_ai_settings = {
 		sustain_duration_mul = 0.75,
-		assault_force_mul = 0.55,
+		assault_force_mul = 0.6,
 		cs_grenade_chance_times_mul = 0.75,
 		difficulty_scaling = {
 			diff_init = 0.33,
@@ -453,7 +427,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.help.group_ai_settings = {
 		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			assault_delay = 30,
 		},
@@ -462,23 +436,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.friend.group_ai_settings = deep_clone(self.kenaz.group_ai_settings)
-	self.friend.group_ai_settings.difficulty_scaling = nil
-
-	self.moon.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
-	self.moon.has_megaphone_cop = true
-
-	self.spa.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
+	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
 		sustain_duration_mul = 0.65,
 		assault_delay_mul = 1.35,
-		reenforce_min_interval_mul = 0.5,
 		difficulty_scaling = {
 			assault_delay = 0,
 		},
@@ -493,8 +456,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.glace.group_ai_preset = "street"
 
 	self.wwh.group_ai_settings = {
-		assault_force_mul = 0.7,
-		recon_force_mul = 0.7,
+		assault_force_mul = 0.8,
+		recon_force_mul = 0.8,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
@@ -505,9 +468,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.hvh.group_ai_settings = {
 		use_equipment_reenforce = false,
 		spawn_kill_distance = 1000,
-		assault_force_mul = 0.55,
-		recon_force_mul = 0.7,
-		cs_grenade_chance_times_mul = 1.5,
+		assault_force_mul = 0.6,
+		recon_force_mul = 0.8,
+		cs_grenade_chance_times_mul = 2,
 		difficulty_scaling = {
 			assault_add = 0,
 		},
@@ -533,18 +496,15 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.rvd2.group_ai_settings = {
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 	}
 	self.rvd2.group_ai_preset = "heavy_response"
 
-	self.brb.has_megaphone_cop = true
-
 	self.des.group_ai_settings = {
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 	}
 
 	self.sah.group_ai_settings = {
-		assault_force_mul = 0.85,
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
@@ -552,7 +512,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.nmh.group_ai_settings = {
 		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
@@ -567,7 +527,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		cs_grenade_chance_times_mul = 1.5,
 		difficulty_scaling = {
 			assault_add = 0.15,
@@ -588,7 +548,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.mex_cooking.group_ai_preset = "remote"
 
 	self.bex.group_ai_settings = {
-		assault_force_mul = 1.15,
+		assault_force_mul = 1.2,
 		difficulty_scaling = {
 			assault_delay = 60,
 		},
@@ -604,24 +564,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 
-	self.chas.has_megaphone_cop = true
-
 	self.sand.group_ai_settings = deep_clone(self.run.group_ai_settings)
 	self.sand.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.sand.group_ai_preset = "street"
 
 	self.chca.group_ai_settings = {
 		spawn_kill_cooldown = 15,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		difficulty_scaling = {
 			assault_delay = 75,
 		},
 	}
 	self.chca.group_ai_preset = "remote"
-
-	self.pent.group_ai_settings = {
-		assault_force_mul = 0.85,
-	}
 
 	self.ranc.group_ai_settings = {
 		difficulty_scaling = {
@@ -631,7 +585,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.trai.group_ai_settings = {
 		sustain_duration_mul = 1.25,
-		assault_force_mul = 1.15,
+		assault_force_mul = 1.2,
 		special_limit_add = {
 			shield = 1,
 			tank = 1,
@@ -640,9 +594,8 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.trai.group_ai_preset = "heavy_response"
 
 	self.corp.group_ai_settings = { -- Fuckhuge (tm)
-		assault_force_mul = 1.3,
+		assault_force_mul = 1.4,
 		recon_interval_variation_mul = 0.5,
-		reenforce_min_interval_mul = 0.5,
 		difficulty_scaling = {
 			diff_init = 0.5,
 			assault_add = 0.25,
@@ -657,16 +610,27 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.deep.group_ai_settings = {
 		spawn_kill_distance = 2000,
-		assault_force_mul = 0.7,
+		assault_force_mul = 0.8,
 		assault_delay_mul = 1.25,
 	}
 	self.deep.group_ai_preset = "remote"
 
-	self.short2_stage2b.group_ai_settings = {
-		difficulty_scaling = {
-			assault_delay = 0,
-		},
-	}
+	--  Enable megaphone cop announcemens on specific levels
+	self.branchbank.has_megaphone_cop = true
+	self.four_stores.has_megaphone_cop = true
+	self.mallcrasher.has_megaphone_cop = true
+	self.family.has_megaphone_cop = true
+	self.firestarter_3.has_megaphone_cop = true
+	self.election_day_3.has_megaphone_cop = true
+	self.election_day_3_skip1.has_megaphone_cop = true
+	self.election_day_3_skip2.has_megaphone_cop = true
+	self.roberts.has_megaphone_cop = true
+	self.big.has_megaphone_cop = true
+	self.red2.has_megaphone_cop = true
+	self.man.has_megaphone_cop = true
+	self.moon.has_megaphone_cop = true
+	self.brb.has_megaphone_cop = true
+	self.chas.has_megaphone_cop = true
 
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
@@ -935,6 +899,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.nightclub.package = {
 		"packages/vlad_nightclub",
 		"levels/narratives/dentist/mia/stage2/world_sounds",
+		"levels/narratives/classics/dah/world_sounds",
 	}
 	self.jolly.package = {
 		"packages/jolly",

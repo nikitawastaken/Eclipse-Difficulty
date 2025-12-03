@@ -1705,7 +1705,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.steroids.multibasic = "100%"
 
 	-- Counterstrike
-	self.values.cooldown.melee_dozer_knock = { { 1, 10 } }
+	self.values.cooldown.melee_dozer_knock = { { 1, 30 } }
 	self.definitions.cooldown_melee_dozer_knock = {
 		name_id = "menu_cooldown_melee_dozer_knock",
 		category = "cooldown",
@@ -1715,7 +1715,7 @@ function UpgradesTweakData:init(tweak_data)
 			category = "cooldown",
 		},
 	}
-	self.skill_descs.drop_soap.multipro = "10"
+	self.skill_descs.drop_soap.multipro = "30"
 
 	-- Zerker
 	self.values.player.movement_speed_damage_health_ratio_multiplier = { 0.2 }
@@ -2171,15 +2171,19 @@ function UpgradesTweakData:init(tweak_data)
 	self.damage_to_hot_data.add_stack_sources.poison = false
 	self.damage_to_hot_data.add_stack_sources.swat_van = false
 	self.damage_to_hot_data.add_stack_sources.sentry_gun = false
+
+	self.values.player.fall_damage_multiplier = { 0.5 }
+
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"
 	self.specialization_descs[11][1].multiperk2 = "1"
 	self.specialization_descs[11][3].multiperk = "30%"
+	self.specialization_descs[11][3].multiperk2 = "50%"
 	self.specialization_descs[11][5].multiperk = "5"
 	self.specialization_descs[11][5].multiperk2 = "3"
 	self.specialization_descs[11][7].multiperk = "30%"
-	self.specialization_descs[11][9].multiperk = "3"
+	self.specialization_descs[11][9].multiperk = "2"
 	self.specialization_descs[11][9].multiperk2 = "0.3"
 	self.specialization_descs[11][9].multiperk3 = "3"
 
@@ -2428,6 +2432,7 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Stoic
 	self.specialization_descs[19][1].multiperk3 = "16"
+	self.specialization_descs[19][3].multiperk = "50%"
 
 	-- Tag Team
 	self.values.player.tag_team_base.kill_health_gain = 0.5

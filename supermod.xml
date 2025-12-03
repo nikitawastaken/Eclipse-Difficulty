@@ -519,6 +519,7 @@
 				<file :name="wpn_upg_saiga_m_20rnd.material_config"/>
 				<file :name="wpn_upg_saiga_m_20rnd_cc.material_config"/>
 				<file :name="wpn_upg_saiga_m_20rnd_cc_thq.material_config"/>
+				<file :name="wpn_upg_saiga_m_20rnd_thq.material_config"/>
 				<file :name="wpn_upg_saiga_m_20rnd.model"/>
 				<file :name="wpn_upg_saiga_m_20rnd.object"/>
 			</group>

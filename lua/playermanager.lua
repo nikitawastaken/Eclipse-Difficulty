@@ -1068,7 +1068,7 @@ function PlayerManager:peer_dropped_out(peer)
 
 				local dir = Vector3(0, 0, 0)
 
-				self:server_drop_carry(carry_id, carry_multiplier, dye_initiated, has_dye_pack, dye_value_multiplier, position, Rotation(), dir, 0, nil, peer)
+				self:server_drop_carry(carry_id, carry_multiplier, dye_initiated, has_dye_pack, dye_value_multiplier, position, Rotation(), dir, 0, nil, Vector3(0, 0, 0), peer)
 			end
 		end
 
@@ -1142,7 +1142,8 @@ function PlayerManager:force_drop_carry()
 			camera_ext:rotation(),
 			Vector3(0, 0, 0),
 			0,
-			nil
+			nil,
+			Vector3(0, 0, 0)
 		)
 	else
 		self:server_drop_carry(
@@ -1156,6 +1157,7 @@ function PlayerManager:force_drop_carry()
 			Vector3(0, 0, 0),
 			0,
 			nil,
+			Vector3(0, 0, 0),
 			managers.network:session():local_peer()
 		)
 	end

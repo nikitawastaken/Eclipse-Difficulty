@@ -4,10 +4,6 @@ local disabled = {
 		enabled = false,
 	},
 }
-local gensec_operators = {
-	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1"),
-	Idstring("units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2"),
-}
 local scripted_enemy = Eclipse.scripted_enemy
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -32,9 +28,6 @@ local random_elite_dozers = {
 }
 local gensec_dozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
-local gensec = {
-	enemy = overkill_and_above and gensec_operators,
-}
 local gensec_tank = {
 	enemy = gensec_dozer,
 }
@@ -124,31 +117,6 @@ return {
 	[103698] = dozer_van_chance,
 	[103699] = dozer_van_chance,
 	-- GenSec scripted spawns
-	-- drivers
-	[100279] = gensec,
-	[100281] = gensec,
-	[100280] = gensec,
-	[100282] = gensec,
-	[100283] = gensec,
-	[100284] = gensec,
-	[100285] = gensec,
-	[100286] = gensec,
-	[100287] = gensec,
-	[100288] = gensec,
-	[100289] = gensec,
-	[100290] = gensec,
-	[100291] = gensec,
-	[100292] = gensec,
-	[100293] = gensec,
-	[100294] = gensec,
-	[100295] = gensec,
-	[100296] = gensec,
-	[100297] = gensec,
-	[100298] = gensec,
-	[100299] = gensec,
-	[100300] = gensec,
-	[100301] = gensec,
-	[100302] = gensec,
 	-- van bulldozers
 	[103750] = gensec_tank,
 	[103751] = gensec_tank,

@@ -503,7 +503,7 @@ function PlayerDamage:damage_fall(data)
 		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.25, 1)
 
 		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
-		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_health_damage_multiplier", 1)
+		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_damage_multiplier", 1)
 
 		local fall_damage = self:_max_health() * fall_multiplier
 

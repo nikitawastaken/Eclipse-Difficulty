@@ -23,4 +23,3 @@ Hooks:PostHook(DoctorBagBase, "update", "eclipse_update", function(self)
 		managers.groupai:state():remove_deployable_reenforce(self._unit, self._deployed_nav_seg_id)
 	end
 end)
-

@@ -317,11 +317,7 @@ local optsSwatVaultAmbush_2 = {
 	on_executed = { { id = 400113, delay = 0 } },
 	enabled = true,
 }
-local optsBulldozerVaultAmbush_1 = {
-	enemy = bulldozer,
-	enabled = true,
-}
-local optsBulldozerVaultAmbush_2 = {
+local optsBulldozerVaultAmbush = {
 	enemy = bulldozer,
 	enabled = true,
 }
@@ -808,8 +804,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400101, "sniper_vault_ambush_2", Vector3(3925, 1168, -24.895), Rotation(-90, 0, 0), optsSniperVaultAmbush_2),
 	Eclipse.mission_elements.gen_dummy(400102, "cloaker_vault_ambush_1", Vector3(4140, 795, -44.895), Rotation(0, 0, 0), optsCloakerVaultAmbush_1),
 	Eclipse.mission_elements.gen_dummy(400103, "cloaker_vault_ambush_2", Vector3(4140, 1713, -44.895), Rotation(180, 0, 0), optsCloakerVaultAmbush_2),
-	Eclipse.mission_elements.gen_dummy(400104, "bulldozer_vault_ambush_1", Vector3(3996, 1212, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush_1),
-	Eclipse.mission_elements.gen_dummy(400105, "bulldozer_vault_ambush_2", Vector3(3996, 1294, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush_2),
+	Eclipse.mission_elements.gen_dummy(400104, "bulldozer_vault_ambush_1", Vector3(3996, 1212, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush),
+	Eclipse.mission_elements.gen_dummy(400105, "bulldozer_vault_ambush_2", Vector3(3996, 1294, -24.895), Rotation(-90, 0, 0), optsBulldozerVaultAmbush),
 	-- SOs
 	Eclipse.mission_elements.gen_so(400106, "taser_vault_ambush_so_1", Vector3(5460.220, 1101.259, -426.790), Rotation(-66, 0, 0), optsSniperVaultAmbushSO),
 	Eclipse.mission_elements.gen_so(400107, "shield_vault_ambush_so_1", Vector3(5459, 1186, -426.790), Rotation(-90, 0, 0), optsSniperVaultAmbushSO),

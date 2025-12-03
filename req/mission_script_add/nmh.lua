@@ -9,12 +9,12 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local sniper_amount = is_pro_job and 2 or 1
-local sniper_amount_random = is_pro_job and 3 or 2
+local sniper_amount = normal and 2 or hard and 3 or 4
+local sniper_amount_random = normal and 3 or hard and 4 or 5
 local dozer_random_amount = overkill_and_above and 2 or 1
 local elite_snipers_respawn = (is_eclipse and 120 or 180) - (is_pro_job and 30 or 0)
 local dozers_respawn = (is_eclipse and 240 or 300) - (is_eclipse_pro and 60 or is_pro_job and 30 or 0)
-local dozer_event = not normal and true or false
+local dozer_event = not normal or (is_pro_job and normal) and true or false
 
 local green_bulldozer = scripted_enemy.bulldozer_1
 local black_bulldozer = scripted_enemy.bulldozer_2
@@ -498,6 +498,7 @@ local optsdisable_random_dozers = {
 }
 local optsenable_random_dozers = {
 	enabled = true,
+	set_trigger_times = 1,
 	elements = {
 		400035,
 	},
@@ -555,18 +556,27 @@ local optsdisable_custom_spawns = {
 	},
 }
 
+local optsdisable_elevator_corner_collisions = {
+	unit_ids = {
+		105419,
+		105417,
+		105418,
+		105420,
+	},
+}
+
 M.elements = {
 	-- elite snipers in no mercy (Notoriety reference)
-	Eclipse.mission_elements.gen_dummy(400000, "notoriety_sniper_1", Vector3(2295, 16, -318.756), Rotation(-90, 0, -0), optsEliteSniper_1),
-	Eclipse.mission_elements.gen_dummy(400001, "notoriety_sniper_2", Vector3(-487, -1010, 0.382), Rotation(0, 0, -0), optsEliteSniper_2),
-	Eclipse.mission_elements.gen_dummy(400002, "notoriety_sniper_3", Vector3(-2903, 1210, 0.382), Rotation(180, 0, -0), optsEliteSniper_3),
-	Eclipse.mission_elements.gen_dummy(400003, "notoriety_sniper_4", Vector3(246, 392, 350.084), Rotation(180, 0, -0), optsEliteSniper_4),
-	Eclipse.mission_elements.gen_dummy(400004, "notoriety_sniper_5", Vector3(-2080, 3747, 350.084), Rotation(180, -0, -0), optsEliteSniper_5),
-	Eclipse.mission_elements.gen_so(400005, "sniper_spot_so_1", Vector3(-2171.321, 2713.038, 0.382), Rotation(-84, 0, -0), optsSniper_SO),
-	Eclipse.mission_elements.gen_so(400006, "sniper_spot_so_2", Vector3(-1131, -277, 0.382), Rotation(14, -0, -0), optsSniper_SO),
-	Eclipse.mission_elements.gen_so(400007, "sniper_spot_so_3", Vector3(-2164.963, 701.083, 0.382), Rotation(-95, 0, -0), optsSniper_SO),
-	Eclipse.mission_elements.gen_so(400008, "sniper_spot_so_4", Vector3(732.785, 1330.852, -0.118), Rotation(-178, 0, -0), optsSniper_SO),
-	Eclipse.mission_elements.gen_so(400009, "sniper_spot_so_5", Vector3(3618, -89, 0.382), Rotation(90, -0, -0), optsSniper_SO),
+	Eclipse.mission_elements.gen_dummy(400000, "notoriety_sniper_1", Vector3(2295, 16, -318.756), Rotation(-90, 0, 0), optsEliteSniper_1),
+	Eclipse.mission_elements.gen_dummy(400001, "notoriety_sniper_2", Vector3(-487, -1010, 0.382), Rotation(0, 0, 0), optsEliteSniper_2),
+	Eclipse.mission_elements.gen_dummy(400002, "notoriety_sniper_3", Vector3(-2903, 1210, 0.382), Rotation(180, 0, 0), optsEliteSniper_3),
+	Eclipse.mission_elements.gen_dummy(400003, "notoriety_sniper_4", Vector3(246, 392, 350.084), Rotation(180, 0, 0), optsEliteSniper_4),
+	Eclipse.mission_elements.gen_dummy(400004, "notoriety_sniper_5", Vector3(-2080, 3747, 350.084), Rotation(180, 0, 0), optsEliteSniper_5),
+	Eclipse.mission_elements.gen_so(400005, "sniper_spot_so_1", Vector3(-2171.321, 2713.038, 0.382), Rotation(-84, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400006, "sniper_spot_so_2", Vector3(-1131, -277, 0.382), Rotation(14, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400007, "sniper_spot_so_3", Vector3(-2164.963, 701.083, 0.382), Rotation(-95, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400008, "sniper_spot_so_4", Vector3(732.785, 1330.852, -0.118), Rotation(-178, 0, 0), optsSniper_SO),
+	Eclipse.mission_elements.gen_so(400009, "sniper_spot_so_5", Vector3(3618, -89, 0.382), Rotation(90, 0, 0), optsSniper_SO),
 
 	-- elite sniper spawn stuff
 	Eclipse.mission_elements.gen_element_random(400010, "notoriety_sniper_event", spawn_random_snipers),
@@ -596,14 +606,14 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400034, "notoriety_snipers_event_global", spawn_snipers_global),
 
 	-- scripted dozers
-	Eclipse.mission_elements.gen_dummy(400040, "bulldozer_1", Vector3(2244, -79, -318.756), Rotation(-90, 0, -0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400041, "bulldozer_2", Vector3(2244, -24, -318.756), Rotation(-90, 0, -0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400042, "bulldozer_3", Vector3(-2989, 1439, 0.382), Rotation(-180, 0, -0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400043, "bulldozer_4", Vector3(-2989, 1337, 0.382), Rotation(-180, 0, -0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400044, "bulldozer_5", Vector3(-446, -1042, 0.382), Rotation(0, 0, -0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400045, "bulldozer_6", Vector3(-446, -1098, 0.382), Rotation(0, 0, -0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400067, "bulldozer_7", Vector3(1761, 276, 0.877), Rotation(0, 0, -0), optsBulldozer),
-	Eclipse.mission_elements.gen_dummy(400068, "bulldozer_8", Vector3(1682, 276, 0.877), Rotation(0, 0, -0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400040, "bulldozer_1", Vector3(2244, -79, -318.756), Rotation(-90, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400041, "bulldozer_2", Vector3(2244, -24, -318.756), Rotation(-90, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400042, "bulldozer_3", Vector3(-2989, 1439, 0.382), Rotation(-180, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400043, "bulldozer_4", Vector3(-2989, 1337, 0.382), Rotation(-180, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400044, "bulldozer_5", Vector3(-446, -1042, 0.382), Rotation(0, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400045, "bulldozer_6", Vector3(-446, -1098, 0.382), Rotation(0, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400067, "bulldozer_7", Vector3(1761, 276, 0.877), Rotation(0, 0, 0), optsBulldozer),
+	Eclipse.mission_elements.gen_dummy(400068, "bulldozer_8", Vector3(1682, 276, 0.877), Rotation(0, 0, 0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400046, "dozer_hunt_so", Vector3(0, 0, 0), Rotation(0, 0, 0), optsDozerHunt_SO),
 
 	-- scripted dozers stuff
@@ -632,10 +642,11 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400059, "enable_random_dozers", optsenable_random_dozers),
 	Eclipse.mission_elements.gen_missionscript(400063, "hello_its_me_the_angry_man", spawn_dozer_global),
 	Eclipse.mission_elements.gen_dialogue(400066, "they_sending_dozers", Bain_senddozers),
-	Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsOpenelevator),
-	Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(-803, -1370, 3449.999), Rotation(-90, 0, -0), optsCloseelevator),
+	Eclipse.mission_elements.gen_object_editor(400073, "open_elevator", Vector3(0, 0, 0), Rotation(0, 0, 0), optsOpenelevator),
+	Eclipse.mission_elements.gen_object_editor(400074, "close_elevator", Vector3(0, 0, 0), Rotation(0, 0, 0), optsCloseelevator),
 
 	-- misc
 	Eclipse.mission_elements.gen_toggleelement(400076, "disable_custom_spawns", optsdisable_custom_spawns),
+	Eclipse.mission_elements.gen_disable_unit(400077, "disable_elevator_right_corner_collisions", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_elevator_corner_collisions),
 }
 return M

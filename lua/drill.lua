@@ -107,7 +107,11 @@ function Drill:on_sabotage_SO_started(saboteur)
 	end
 end
 
-Hooks:PostHook(Drill, "on_sabotage_SO_completed", "RR_on_sabotage_SO_completed", function(self, saboteur)
+Hooks:PostHook(Drill, "on_sabotage_SO_administered", "eclipse_on_sabotage_SO_administered", function(self)
+	self._saboteur:sound():say(self.is_drill and "e01" or self.is_hacking_device and "e02" or "e04", true)
+end)
+
+Hooks:PostHook(Drill, "on_sabotage_SO_completed", "eclipse_on_sabotage_SO_completed", function(self, saboteur)
 	saboteur:sound():say(self.is_drill and "e05" or "e06", true)
 end)
 

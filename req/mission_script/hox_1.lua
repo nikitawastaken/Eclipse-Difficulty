@@ -19,7 +19,7 @@ local swats = {
 	[sniper] = 2,
 }
 local swat_harasser = {
-	enemy = diff_i < 5 and cops or swats,
+	enemy = diff_i < 4 and cops or swats,
 }
 local street_spawn = {
 	values = {

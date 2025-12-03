@@ -14,15 +14,6 @@ local weighted_selector = Eclipse.utils.weighted_selector
 -- 	return Eclipse.utils.weighted_selector(t)
 -- end
 
--- All reinforce points now have a force value of at least 2
--- Most vanilla reinforce points have the very weird force value of 1
--- A force value of 1 causes a reinforce point to never repopulate until all cops on that point are wiped out
--- Would presume level designers thought the force value was the number of groups to deploy
-local set_area_min_police_force_original = GroupAIStateBesiege.set_area_min_police_force
-function GroupAIStateBesiege:set_area_min_police_force(id, force, ...)
-	return set_area_min_police_force_original(self, id, force and math.max(force, 2), ...)
-end
-
 -- Functions for adding/removing deployable reinforce
 function GroupAIStateBase:add_deployable_reenforce(name_id, unit, pos, nav_seg_id)
 	if tweak_data.group_ai.equipment_reenforce and tweak_data.group_ai.equipment_reenforce[name_id] and tweak_data.group_ai.use_equipment_reenforce then
@@ -343,11 +334,10 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 			end
 
 			-- Adjust next reinforce dispatch time based on the amount of tasks still needed
-			local min_reenforce_interval = self:_get_difficulty_dependent_value(self._tweak_data.reenforce.min_interval)
-
 			if spawned then
-				--self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks
-				self._task_data.reenforce.next_dispatch_t = self._t + math.max(min_reenforce_interval, self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks)
+				self._task_data.reenforce.next_dispatch_t = self._t
+					+ math.max(5, self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) - #undershot_tasks * tweak_data.group_ai.undershot_reenforce_mul)
+
 				break
 			end
 		else
@@ -537,6 +527,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 		end
 	end
 
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.5 then
+		group.said_moving_out = self:_chk_say_group(group, "assault_move_out_" .. table.random({ "a", "b", "c", "d" }))
+	end
+
 	if current_objective.open_fire then
 		if not current_objective.moving_out and (tactics_map.charge or not tactics_map.ranged_fire or in_place_duration > 10) then
 			approach = not self:_can_group_see_target(group, nil, tactics_map.no_push and 5 or not tactics_map.charge and 1)
@@ -620,6 +614,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 					end
 				end
 			else
+				self:_chk_say_group(group, "clear")
 				for _, other_area in pairs(search_area.neighbours) do
 					if not found_areas[other_area] then
 						table.insert(to_search_areas, other_area)
@@ -1611,6 +1606,10 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		elseif objective_area == target_area then
 			return
 		end
+	end
+
+	if current_objective.moving_out and not group.said_moving_out and math.random() < 0.75 then
+		group.said_moving_out = self:_chk_say_group(group, "recon_move_out_" .. table.random({ "a", "b", "c", "d" }))
 	end
 
 	local coarse_path

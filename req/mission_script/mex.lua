@@ -34,43 +34,6 @@ local bags_required = {
 	},
 }
 return {
-	-- Add pump and tanker reinforce
-	[102160] = {
-		reinforce = { -- pump 1
-			{
-				name = "pump",
-				force = 2,
-				position = Vector3(2750, -9850, -3200),
-			},
-		},
-	},
-	[102163] = {
-		reinforce = { -- pump 2
-			{
-				name = "pump",
-				force = 2,
-				position = Vector3(3725, -12725, -3200),
-			},
-		},
-	},
-	[102616] = {
-		reinforce = { -- tanker 1
-			{
-				name = "tanker",
-				force = 2,
-				position = Vector3(2425, -7375, -3100),
-			},
-		},
-	},
-	[102618] = {
-		reinforce = { -- tanker 2
-			{
-				name = "tanker",
-				force = 2,
-				position = Vector3(1325, -12700, -3200),
-			},
-		},
-	},
 	-- disable selected spawngroup based on which tunnel has been chossen
 	[101076] = {
 		on_executed = {

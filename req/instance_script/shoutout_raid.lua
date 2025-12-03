@@ -6,6 +6,9 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local diff_i = Eclipse.utils.difficulty_index()
 local light_swat = diff_i < 5 and scripted_enemy.swat_1 or scripted_enemy.heavy_swat_1
+local swat_1 = scripted_enemy.swat_1
+local heavy_1 = scripted_enemy.heavy_swat_1
+local elite_sniper = scripted_enemy.elite_sniper
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 local green_bulldozer = scripted_enemy.bulldozer_1
@@ -14,6 +17,8 @@ local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local filter_disable = Eclipse.utils.set_diff_groups("disable")
 local filter_normal_above = Eclipse.utils.set_diff_groups("easy_above")
+local light_harasser = { swat_1 }
+local heavy_harasser = diff_i > 5 and { [heavy_1] = 5, [elite_sniper] = 1 } or { heavy_1 }
 local specials_spawns = { [taser] = 2, [cloaker] = 1 }
 local greendozer_only = {
 	green_bulldozer,
@@ -29,6 +34,7 @@ local random_elite_dozers = {
 local container_dozer = is_eclipse_pro and random_elite_dozers or diff_i < 4 and greendozer_only or random_dozers
 
 local patches = {
+	harassers = table.set(100016, 100017, 100018),
 	swat_chopper = {
 		regular_spawns = table.set(100014, 100015),
 		special_spawns = table.set(100013, 100016),
@@ -73,6 +79,16 @@ M["levels/instances/unique/shout_container_normal/world/world"] = function(resul
 			element.values.on_executed = {
 				{ id = 100067, delay = 3 }, -- delay the hunt
 			}
+		end
+	end
+end
+
+M["levels/instances/unique/shout_harasser/world/world"] = function(result)
+	for _, element in pairs(result.default.elements) do
+		local id = element.id
+
+		if patches.harassers[id] then
+			element.values.enemy_table = diff_i >= 5 and heavy_harasser or light_harasser
 		end
 	end
 end

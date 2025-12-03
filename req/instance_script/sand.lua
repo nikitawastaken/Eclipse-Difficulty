@@ -1,6 +1,7 @@
 ---@module The Ukrainian Prisoner
 local M = {}
 local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local is_eclipse = Eclipse.utils.is_eclipse()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local scripted_enemy = Eclipse.scripted_enemy
 local swat_1 = overkill_and_above and scripted_enemy.heavy_swat_1 or scripted_enemy.swat_1
@@ -18,7 +19,7 @@ local specials_list_eclipse = { [taser] = 2, [medic] = 2, [cloaker] = 1 }
 local specials_list_hard_ovk = { [taser] = 4, [medic] = 3, [cloaker] = 2 }
 local specials_list_easy_normal = { [taser] = 3, [cloaker] = 1 }
 local specials_1 = normal and specials_list_easy_normal or hard and specials_list_hard_ovk or specials_list_eclipse
-local specials_2 = (normal or hard) and shield or elite_shield
+local specials_2 = is_eclipse and elite_shield or shield
 
 local patches = {
 	swat_chopper = {

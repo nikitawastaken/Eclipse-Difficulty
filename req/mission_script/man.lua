@@ -47,14 +47,11 @@ local eclipse_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local escape_dozer = {
-	enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
-}
-local harasser_enemy = is_eclipse and { [swat_1] = 15, [elite_sniper] = 1 } or swat_1
+local harasser_enemy = is_eclipse and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1
 local harasser = {
 	enemy = harasser_enemy,
 }
-local harassers = overkill_and_above and 5 or 3
+local harassers = overkill_and_above and 6 or 3
 local harasser_amount = {
 	values = {
 		amount = harassers,
@@ -206,8 +203,8 @@ return {
 	-- fix Taxman's getting into the limo event
 	[101581] = {
 		on_executed = {
-			{ id = 101599, delay = 2.5 },
-			{ id = 101582, delay = 2.5 },
+			{ id = 101599, delay = 2 },
+			{ id = 101582, delay = 2 },
 		},
 	},
 	[101578] = {
@@ -380,6 +377,7 @@ return {
 	[100130] = {
 		on_executed = {
 			{ id = 400005, delay = 0, delay_rand = 20 },
+			{ id = 400046, delay = 240, delay_rand = 60 },
 			{ id = 103765, remove = true },
 			{ id = 103766, remove = true },
 		},
@@ -737,12 +735,14 @@ return {
 	},
 	-- change dozer's positions and always spawn them in pairs
 	[102433] = {
+		enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 		values = {
 			position = Vector3(-664.130, 3054.638, 1821),
 			rotation = Rotation(-88, 0, 0),
 		},
 	},
 	[102434] = {
+		enemy = is_eclipse_pro and eclipse_dozers or regular_dozers,
 		values = {
 			position = Vector3(-656.111, 3152.987, 1817),
 			rotation = Rotation(-112, 0, 0),
@@ -821,9 +821,6 @@ return {
 	[103079] = law_team,
 	-- tweak SO access
 	[102610] = fbi_intro_so,
-	-- Escape Dozers
-	[102433] = escape_dozer,
-	[102434] = escape_dozer,
 	-- Harassers
 	[102436] = harasser,
 	[102437] = harasser,

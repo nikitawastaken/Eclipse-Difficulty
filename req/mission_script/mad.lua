@@ -63,12 +63,9 @@ local lumber_upper_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	-- add FFO
+	-- instantly start FFO when grabbing the server
 	[100176] = {
-		ponr = {
-			length = 120,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
-		},
+		set_ponr_state = true,
 	},
 	[100524] = disabled,
 	-- Disable instant difficulty increase

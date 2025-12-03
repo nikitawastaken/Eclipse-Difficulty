@@ -2,12 +2,9 @@ local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local so_access = Eclipse.access_filter
 local diff_i = Eclipse.utils.difficulty_index()
-local is_eclipse = Eclipse.utils.is_eclipse()
 local swat_1 = scripted_enemy.swat_1
 local heavy_1 = scripted_enemy.heavy_swat_1
 local elite_sniper = scripted_enemy.elite_sniper
-local light_harasser = swat_1
-local heavy_harasser = is_eclipse and { [heavy_1] = 10, [elite_sniper] = 1 } or heavy_1
 local disabled = {
 	values = {
 		enabled = false,
@@ -17,7 +14,7 @@ local exclude_shields_dozers = {
 	so_access_filter = so_access.no_heavyweight,
 }
 local harasser = {
-	enemy = diff_i < 5 and light_harasser or heavy_harasser,
+	enemy = diff_i > 5 and { [swat_1] = 10, [elite_sniper] = 1 } or swat_1,
 }
 local standard_spawn = {
 	values = {

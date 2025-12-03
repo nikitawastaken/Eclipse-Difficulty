@@ -63,7 +63,6 @@ local sniper_amount = {
 		amount_random = normal and 0 or hard and 1 or 2,
 	},
 }
-local swat_vans_amount = is_eclipse_pro and 2 or 1
 local ambush_chance = (is_pro_job and 1.5 or 1) * diff_i_no_easy * 15
 local street_spawn = {
 	values = {
@@ -168,10 +167,17 @@ return {
 			{ id = 105648, remove = true },
 		},
 	},
-	-- trigger on end assault
+	-- trigger swat vans on start assault
+	[104300] = {
+		on_executed = {
+			{ id = 103540, delay = 0 },
+		},
+	},
+	-- trigger swat choppers on end assault
 	[101304] = {
 		on_executed = {
-			{ id = 400043, delay = 10 },
+			{ id = 400045, delay = 10 },
+			{ id = 400046, delay = 10 },
 		},
 	},
 	-- disable the dozer chopper event if the heli1 gas event has been triggered
@@ -196,7 +202,8 @@ return {
 	[100438] = {
 		on_executed = {
 			{ id = 103540, remove = not is_eclipse_pro and true or nil, delay = 0 },
-			{ id = 400043, remove = not is_eclipse_pro and true or nil, delay = 0 },
+			{ id = 400045, remove = not is_eclipse_pro and true or nil, delay = 0 },
+			{ id = 400046, remove = not is_eclipse_pro and true or nil, delay = 0 },
 		},
 	},
 	-- enable spawns sooner

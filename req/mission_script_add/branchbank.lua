@@ -76,10 +76,42 @@ local optsBreak_The_Glass = {
 		{ id = 1, name = "run_sequence", notify_unit_id = 101795, notify_unit_sequence = "shatter", time = 0 },
 	},
 }
-local chopper_amount = {
-	amount = is_eclipse and 2 or 1,
+local optsChopper_trigger_overkill_below = {
+	on_executed = {
+		{ id = 400043, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_normal = true,
+	difficulty_hard = true,
+	difficulty_overkill = true,
+	difficulty_overkill_145 = true,
+}
+local optsChopper_trigger_death_wish = {
+	on_executed = {
+		{ id = 400044, delay = 0 },
+	},
+	enabled = true,
+	player_1 = true,
+	player_2 = true,
+	player_3 = true,
+	player_4 = true,
+	difficulty_easy_wish = true,
+}
+local chopper_amount_dw = {
+	amount = 2,
 	on_executed = {
 		{ id = 400025, delay = 0, delay_rand = 10 },
+		{ id = 400034, delay = 0, delay_rand = 10 },
+		{ id = 400041, delay = 0, delay_rand = 10 },
+	},
+}
+local chopper_amount_ovk_below = {
+	amount = 1,
+	on_executed = {
 		{ id = 400034, delay = 0, delay_rand = 10 },
 		{ id = 400041, delay = 0, delay_rand = 10 },
 	},
@@ -234,7 +266,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400041, "swat_heli_event_2", optsspawnswatchopper_2),
 	Eclipse.mission_elements.gen_spawngroup(400042, "swat_group_4", { 400036, 400037, 400038, 400039 }, 0, opts_swat_group),
 	-- chopper spawner
-	Eclipse.mission_elements.gen_element_random(400043, "random_chopper_spawner", chopper_amount),
+	Eclipse.mission_elements.gen_element_random(400043, "random_chopper_spawner_ovk_below", chopper_amount_ovk_below),
+	Eclipse.mission_elements.gen_element_random(400044, "random_chopper_spawner_dw", chopper_amount_dw),
+	Eclipse.mission_elements.gen_element_filter(400045, "chopper_event_ovk_below_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_overkill_below),
+	Eclipse.mission_elements.gen_element_filter(400046, "chopper_event_dw_trigger", Vector3(0, 0, 0), Rotation(0, 0, 0), optsChopper_trigger_death_wish),
 }
 
 return M

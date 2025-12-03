@@ -180,29 +180,29 @@ return {
 	[100031] = {
 		reinforce = {
 			{
-				name = "protect_the_BBQ",
+				name = "bbq",
 				force = 3,
-				position = Vector3(-3680, 1926, 26.700),
+				position = Vector3(-3750, 2400, 30),
 			},
 			{
-				name = "Mitchell_house1",
+				name = "mitchell1",
 				force = 2,
-				position = Vector3(-2286, 2640, 78.789),
+				position = Vector3(-1275, 2000, 25),
 			},
 			{
-				name = "Mitchell_house2",
+				name = "mitchell2",
 				force = 2,
-				position = Vector3(-2556, 3836, 75.500),
+				position = Vector3(-2025, 4350, 25),
 			},
 			{
-				name = "Wilson_house1",
+				name = "wilson1",
 				force = 2,
-				position = Vector3(-2080, 39, 28.970),
+				position = Vector3(-2700, -800, 40),
 			},
 			{
-				name = "Wilson_house2",
+				name = "wilson2",
 				force = 2,
-				position = Vector3(-2980, 1441, -324.500),
+				position = Vector3(-1125, 625, 50),
 			},
 		},
 		-- force SWAT vans arrival on police_called like it's in PDTH
@@ -343,77 +343,6 @@ return {
 		on_executed = {
 			{ id = 400019, delay = 0 },
 			{ id = 400020, delay = 0 },
-		},
-	},
-	-- re-enable flee spots for civilians
-	[100685] = enabled,
-	[100515] = enabled,
-	[100684] = enabled,
-	[100686] = enabled,
-	[100687] = enabled,
-	[100688] = enabled,
-	[100689] = enabled,
-	[100690] = enabled,
-	[100691] = enabled,
-	-- delay their flee SOs
-	-- alert
-	[103294] = {
-		on_executed = {
-			{ id = 100684, delay = 5 },
-		},
-	},
-	[103303] = {
-		on_executed = {
-			{ id = 100686, delay = 5 },
-		},
-	},
-	-- panic
-	[101860] = {
-		on_executed = {
-			{ id = 100684, delay = 5 },
-		},
-	},
-	[101862] = {
-		on_executed = {
-			{ id = 100515, delay = 5 },
-		},
-	},
-	[101863] = {
-		on_executed = {
-			{ id = 100688, delay = 5 },
-		},
-	},
-	[101864] = {
-		on_executed = {
-			{ id = 100685, delay = 5 },
-		},
-	},
-	[101865] = {
-		on_executed = {
-			{ id = 100689, delay = 5 },
-		},
-	},
-	[101866] = {
-		on_executed = {
-			{ id = 100690, delay = 5 },
-		},
-	},
-	[101867] = {
-		on_executed = {
-			{ id = 100691, delay = 5 },
-		},
-	},
-	[103295] = {
-		on_executed = {
-			{ id = 100687, delay = 5 },
-		},
-	},
-	[101869] = {
-		values = {
-			event = "panic", -- fix wrong event id
-		},
-		on_executed = {
-			{ id = 100686, delay = 5 },
 		},
 	},
 	-- civs go full alert when you mask up
