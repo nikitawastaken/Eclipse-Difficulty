@@ -3215,9 +3215,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Spawncap
 	self.besiege.assault.force = {
-		diff_lerp(4, 6),
+		diff_lerp(3, 6),
 		diff_lerp(5, 8),
-		diff_lerp(6, 10),
+		diff_lerp(7, 10),
 	}
 
 	self.besiege.assault.force_balance_mul = {} -- { 1, 1.25, 1.5, 1.75 }
