@@ -299,6 +299,9 @@
 		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
 		
+		<!-- taser shock effect -->
+		<file name="effects/payday2/particles/character/taser_thread.effect"/>
+		
 		<!-- shotgun ammo types -->
 		<file name="effects/particles/weapons/sho_buckshot.effect"/>
 		<file name="effects/particles/weapons/sho_default.effect"/>

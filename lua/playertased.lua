@@ -61,13 +61,22 @@ function PlayerTased:_check_action_shock(t, input, ...)
 	local tase_mul = tweak_data.character.tase_multiplier or 1
 	local last_man_standing_mul = managers.groupai:state():num_alive_criminals() == 1 and 0.5 or 1 -- weaker random pitch when last man standing / true solo
 	local weaker_tase = managers.player:upgrade_value("player", "weaker_tase_effect", 0)
-	local shock_strength = 5 * tase_mul * last_man_standing_mul * (1 - weaker_tase)
+	local shock_strength = 7 * tase_mul * last_man_standing_mul * (1 - weaker_tase)
 
 	if do_shock then
 		self._cam_start_pitch = self._unit:camera():camera_unit():base()._camera_properties.pitch
-		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-shock_strength, shock_strength), -90, 90)
+		self._cam_target_pitch = math.clamp(self._cam_start_pitch + math.rand(-shock_strength, shock_strength), -120, 120)
 		self._cam_start_pitch_t = t
 		self._cam_target_pitch_t = t + 0.2
+		self._camera_unit:base():recoil_kick(-25, 25, -25, 25)
+		self._unit:camera():play_shaker("player_taser_shock", 1, 20)
+		self._unit:camera():camera_unit():base():set_target_tilt((math.random(2) == 1 and -1 or 1) * math.random(25))
+		self._next_shock = t + 0.25 + math.rand(0.3 + weaker_tase)
+	end
+
+	local shooting = self:_check_action_primary_attack(t, input)
+	if shooting then
+		self._camera_unit:base():recoil_kick(-50, 50, -50, 50)
 	end
 
 	if self._cam_start_pitch then
