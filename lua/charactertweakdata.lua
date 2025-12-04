@@ -2096,7 +2096,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.move_speed = deep_clone(char_preset.move_speed)
 			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
 			char_preset.can_be_healed = not tag_map.medic and true or false
-			char_preset.target_priority = not tag_map.medic and nil or 10
+			char_preset.target_priority = tag_map.medic and 10 or nil
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
