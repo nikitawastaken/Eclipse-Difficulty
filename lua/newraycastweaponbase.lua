@@ -153,7 +153,7 @@ end
 
 -- Calculate weapon swap speed and sprint-to-fire speed based on concealment
 function NewRaycastWeaponBase:concealment_to_handling()
---[[
+	--[[
 	local base_stats = self:weapon_tweak_data().stats
 	local parts_stats = managers.weapon_factory:get_stats(self._factory_id, self._blueprint)
 
