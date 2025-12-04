@@ -21,7 +21,7 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870",
 		"units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36",
 		"units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870",
-		--"units/payday2/characters/ene_city_shield/ene_city_shield", -- he's having 
+		--"units/payday2/characters/ene_city_shield/ene_city_shield", 
 		"units/payday2/characters/ene_sniper_3/ene_sniper_3",
 		-- US Zeals
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
