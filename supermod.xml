@@ -32,6 +32,7 @@
 				</group>
 
 				<group :hook_id="mission/">
+					<post :hook_id="elementareaminpoliceforce"/>
 					<post :hook_id="elementareatrigger"/>
 					<post :hook_id="elementspawnenemydummy"/>
 					<post :hook_id="elementspawnenemygroup"/>
