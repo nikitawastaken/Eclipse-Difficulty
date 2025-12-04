@@ -18,7 +18,6 @@ local is_mountain_master = level_id == "pent"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 local diff_lerp = Eclipse.utils.diff_lerp
-
 local weighted_selector = Eclipse.utils.weighted_selector
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
@@ -264,7 +263,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	damage_multiplier(presets.weapon.eclipse_gangster, 1.5)
 	accuracy_addition(presets.weapon.eclipse_gangster, -0.2)
-	recoil_multiplier(presets.weapon.eclipse_gangster, 0.75)
+	recoil_multiplier(presets.weapon.eclipse_gangster, 0.7)
 	burst_multiplier(presets.weapon.eclipse_gangster, 1.5)
 
 	presets.weapon.eclipse_good = based_on(presets.weapon.eclipse_normal, {
@@ -364,7 +363,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
 		aim_delay_tase = {
 			0,
-			0.75 * aim_delay_mul,
+			1 * aim_delay_mul * (diff_i < 5 and 1 or 0.5),
 		},
 		tase_sphere_cast_radius = 15,
 		tase_distance = 1400,
@@ -2144,8 +2143,11 @@ function CharacterTweakData:_set_presets()
 
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
-	self.tase_multiplier = is_eclipse and 1.6 or is_overkill and 1.4 or 1
-
+	self.tase_multiplier = { 
+		is_eclipse and 1.75 or is_overkill and 1.5 or 1,
+		is_eclipse and 1.5 or is_overkill and 1.25 or 1,
+	} 
+	
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
