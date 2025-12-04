@@ -363,7 +363,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
 		aim_delay_tase = {
 			0,
-			1 * aim_delay_mul * (diff_i < 5 and 1 or 0.5),
+			1 * aim_delay_mul * (diff_i < 5 and 1 or 0.625),
 		},
 		tase_sphere_cast_radius = 15,
 		tase_distance = 1400,
@@ -2089,7 +2089,7 @@ function CharacterTweakData:_set_presets()
 		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
-			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 3 or nil
+			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
