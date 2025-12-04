@@ -125,7 +125,8 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun",
 		"units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic",
 	},
-	]]--
+	]]
+	--
 	-- Scary gruff filtered lines, reserve for mercs and whatnot
 	l5d_list = {
 		func = function(self, nr_variations)
@@ -190,7 +191,8 @@ local prefix_lookup_for_humans = {
 			return "rmdc_"
 		end,
 	},
-	]]--
+	]]
+	--
 	russian_merc_list = {
 		func = function(self, nr_variations)
 			return "r" .. nr_variations .. "n_"
@@ -257,7 +259,8 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_gang_black_3/ene_gang_black_3",
 		"units/payday2/characters/ene_gang_black_4/ene_gang_black_4",
 	},
-	]]--
+	]]
+	--
 	bexico_cop_list = {
 		func = function(self, nr_variations)
 			return "m" .. nr_variations .. "n_"
@@ -272,7 +275,8 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03",
-		]]--
+		]]
+		--
 		-- Cartel faction below
 		"units/pd2_mod_ttr/characters/ene_cartel_commando/ene_cartel_commando",
 		"units/pd2_mod_ttr/characters/ene_cartel_soldier/ene_cartel_soldier",

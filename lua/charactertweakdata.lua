@@ -1177,7 +1177,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.marshal_security = deep_clone(self.security_mcmansion)
 	table.insert(self._enemy_list, "marshal_security")
-	
+
 	-- Different radio chatter for Bellmead units
 	if has_bellmead_response then
 		self.marshal_security.radio_prefix = "fri_"
