@@ -2143,11 +2143,11 @@ function CharacterTweakData:_set_presets()
 
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
-	self.tase_multiplier = { 
+	self.tase_multiplier = {
 		is_eclipse and 1.75 or is_overkill and 1.5 or 1,
 		is_eclipse and 1.5 or is_overkill and 1.25 or 1,
-	} 
-	
+	}
+
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
