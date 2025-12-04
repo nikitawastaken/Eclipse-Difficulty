@@ -363,7 +363,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
 		aim_delay_tase = {
 			0,
-			1 * aim_delay_mul * (diff_i < 5 and 1 or 0.625),
+			0.5 * aim_delay_mul,
 		},
 		tase_sphere_cast_radius = 15,
 		tase_distance = 1400,
