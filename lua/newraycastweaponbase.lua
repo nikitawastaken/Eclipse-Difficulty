@@ -153,6 +153,7 @@ end
 
 -- Calculate weapon swap speed and sprint-to-fire speed based on concealment
 function NewRaycastWeaponBase:concealment_to_handling()
+--[[
 	local base_stats = self:weapon_tweak_data().stats
 	local parts_stats = managers.weapon_factory:get_stats(self._factory_id, self._blueprint)
 
@@ -166,6 +167,8 @@ function NewRaycastWeaponBase:concealment_to_handling()
 	multiplier = multiplier * math.lerp(0.5, 1.5, concealment_lerp)
 
 	return multiplier
+]]
+	return 1
 end
 
 -- Body Expertise only works on LMGs and Miniguns
