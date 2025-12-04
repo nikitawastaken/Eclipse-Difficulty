@@ -1,6 +1,7 @@
 -- Put unit names in these lists as strings, NOT Idstrings
 -- Make sure there is a function
 local prefix_lookup_for_humans = {
+	--[[
 	american_cop_filtered_list = {
 		func = function(self, nr_variations)
 			return "l" .. nr_variations .. "d_"
@@ -20,7 +21,7 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870",
 		"units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36",
 		"units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870",
-		"units/payday2/characters/ene_city_shield/ene_city_shield",
+		--"units/payday2/characters/ene_city_shield/ene_city_shield", -- he's having 
 		"units/payday2/characters/ene_sniper_3/ene_sniper_3",
 		-- US Zeals
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
@@ -124,14 +125,15 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun",
 		"units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic",
 	},
-	--[[
+	]]--
 	-- Scary gruff filtered lines, reserve for mercs and whatnot
 	l5d_list = {
 		func = function(self, nr_variations)
 			return "l5d_"
 		end,
+		"units/payday2/characters/ene_city_shield/ene_city_shield",
 	},
-	]]
+	-- list that has 3 random voices, should be used only for mercs and us soldiers
 	l5n_l3n_l2n_list = {
 		func = function(self, nr_variations)
 			local rand = math.random()
@@ -188,7 +190,7 @@ local prefix_lookup_for_humans = {
 			return "rmdc_"
 		end,
 	},
-	]]
+	]]--
 	russian_merc_list = {
 		func = function(self, nr_variations)
 			return "r" .. nr_variations .. "n_"
@@ -216,6 +218,7 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_mad/characters/ene_rus_shield_sr2_city/ene_rus_shield_sr2_city",
 		"units/pd2_dlc_mad/characters/ene_rus_sniper/ene_rus_sniper",
 	},
+	--[[
 	russian_mobster_list = {
 		func = function(self, nr_variations)
 			return "rt" .. nr_variations .. "_"
@@ -254,10 +257,12 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_gang_black_3/ene_gang_black_3",
 		"units/payday2/characters/ene_gang_black_4/ene_gang_black_4",
 	},
+	]]--
 	bexico_cop_list = {
 		func = function(self, nr_variations)
 			return "m" .. nr_variations .. "n_"
 		end,
+		--[[
 		-- Federales Street Cops
 		"units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01",
 		"units/pd2_dlc_bex/characters/ene_policia_02/ene_policia_02",
@@ -267,6 +272,7 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03",
+		]]--
 		-- Cartel faction below
 		"units/pd2_mod_ttr/characters/ene_cartel_commando/ene_cartel_commando",
 		"units/pd2_mod_ttr/characters/ene_cartel_soldier/ene_cartel_soldier",

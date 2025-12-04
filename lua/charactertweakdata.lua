@@ -1029,7 +1029,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.security_army = deep_clone(self.security)
 	self.security_army.melee_weapon = "weapon"
 	--self.security_army.no_arrest = true
-	self.security_army.speech_prefix_count = 5
 	table.insert(self._enemy_list, "security_army")
 
 	self.cop.speech_prefix_p1 = self._unit_prefixes.cop
@@ -1178,11 +1177,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.marshal_security = deep_clone(self.security_mcmansion)
 	table.insert(self._enemy_list, "marshal_security")
+	
+	-- Different radio chatter for Bellmead units
+	if has_bellmead_response then
+		self.marshal_security.radio_prefix = "fri_"
+		self.marshal_security.use_radio = "dsp_radio_russian"
+	end
 
 	self.murky = deep_clone(self.security_mcmansion)
-	self.murky.speech_prefix_p1 = "l5n"
-	self.murky.speech_prefix_p2 = nil
-	self.murky.speech_prefix_count = nil
 	self.murky.radio_prefix = "fri_" --unprofessional radio from Scarface Mansion
 	self.murky.use_radio = "dsp_radio_russian" --gibberish radio (but it's better than Scarface's radio)
 	--self.murky.no_arrest = true -- harder stealth
@@ -1199,7 +1201,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.soldier.use_radio = "dsp_radio_russian"
 	self.soldier.no_arrest = true
 	self.soldier.steal_loot = false
-	self.soldier.speech_prefix_count = 5
 	table.insert(self._enemy_list, "soldier")
 
 	self.sniper.HEALTH_INIT = 4
@@ -1334,16 +1335,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 
 	self.zeal_medic = deep_clone(self.medic)
 	table.insert(self._enemy_list, "zeal_medic")
-
-	-- Different radio chatter for Bellmead units
-	-- Unique voice set for Bellmead's heavy gunner
-	if has_bellmead_response then
-		self.marshal_security.speech_prefix_p1 = "l5n"
-		self.marshal_security.speech_prefix_p2 = nil
-		self.marshal_security.speech_prefix_count = nil
-		self.marshal_security.radio_prefix = "fri_"
-		self.marshal_security.use_radio = "dsp_radio_russian"
-	end
 
 	self.mobster_boss.HEALTH_INIT = 80
 	self.mobster_boss.headshot_dmg_mul = 1.5
