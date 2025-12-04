@@ -122,6 +122,7 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer_2/ene_zeal_bulldozer_2",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer_3/ene_zeal_bulldozer_3",
 		"units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun",
+		"units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic",
 	},
 	--[[
 	-- Scary gruff filtered lines, reserve for mercs and whatnot
@@ -330,7 +331,7 @@ for unit_type, list in pairs(prefix_lookup_for_humans) do
 	local func = list.func
 	list.func = nil
 	if not func then
-		restoration:warn("No prefix func found for unit type %s", unit_type)
+		Eclipse:warn_console("No prefix func found for unit type %s", unit_type)
 	else
 		for _, unit_name in pairs(list) do
 			M[Idstring(unit_name):key()] = func
