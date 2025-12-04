@@ -1,3 +1,7 @@
+CopSound.prefix_lookup_by_unit_name = Eclipse:require("tables/copsound/prefix_lookup_by_unit_name") or {}
+CopSound.sound_name_lookup_by_prefix = Eclipse:require("tables/copsound/sound_name_lookup_by_prefix") or {}
+CopSound.full_sound_lookup_by_prefix = Eclipse:require("tables/copsound/full_sound_lookup_by_prefix") or {}
+
 Hooks:OverrideFunction(CopSound, "init", function(self, unit)
 	self._speak_done_callback = function()
 		self._speak_expire_t = 0
@@ -9,8 +13,13 @@ Hooks:OverrideFunction(CopSound, "init", function(self, unit)
 
 	self:set_voice_prefix(nil)
 
-	local nr_variations = char_tweak.speech_prefix_count
-	self._prefix = (char_tweak.speech_prefix_p1 or "") .. (nr_variations and tostring(math.random(nr_variations)) or "") .. (char_tweak.speech_prefix_p2 or "") .. "_"
+	local nr_variations = char_tweak.speech_prefix_count and tostring(math.random(char_tweak.speech_prefix_count)) or ""
+	local prefix_func = self.prefix_lookup_by_unit_name[unit:name():key()]
+	self._prefix = prefix_func and prefix_func(self, nr_variations) or nil
+
+	if not self._prefix then
+		self._prefix = (char_tweak.speech_prefix_p1 or "") .. nr_variations .. (char_tweak.speech_prefix_p2 or "") .. "_"
+	end
 
 	if self._unit:base():char_tweak().spawn_sound_event then
 		self._unit:sound():play(self._unit:base():char_tweak().spawn_sound_event, nil, nil)
@@ -24,8 +33,6 @@ Hooks:OverrideFunction(CopSound, "init", function(self, unit)
 	unit:base():post_init()
 end)
 
-CopSound.sound_name_lookup_by_prefix = Eclipse:require("tables/copsound/sound_name_lookup_by_prefix") or {}
-CopSound.full_sound_lookup_by_prefix = Eclipse:require("tables/copsound/full_sound_lookup_by_prefix") or {}
 Hooks:OverrideFunction(CopSound, "say", function(self, sound_name, sync, skip_prefix, ...)
 	if self._last_speech then
 		self._last_speech:stop()
