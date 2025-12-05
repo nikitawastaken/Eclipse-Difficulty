@@ -133,6 +133,8 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.aggressive.duration = duration_medium
 	self.enemy_chatter.contact.duration = duration_medium
 	self.enemy_chatter.contact.radius = radius_medium
+	self.enemy_chatter.clear.duration = duration_medium
+	self.enemy_chatter.clear.radius = radius_medium
 	self.enemy_chatter.retreat.queue = "m01"
 	self.enemy_chatter.push = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.push.queue = "pus"
@@ -142,8 +144,6 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.flank.queue = "t01"
 	self.enemy_chatter.open_fire = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.open_fire.queue = "att"
-	self.enemy_chatter.clear = clone(self.enemy_chatter.go_go)
-	self.enemy_chatter.clear.queue = "clr"
 	self.enemy_chatter.suppress = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.suppress.queue = "hlp"
 	self.enemy_chatter.get_hostages = clone(self.enemy_chatter.go_go)
