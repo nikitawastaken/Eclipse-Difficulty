@@ -380,8 +380,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'sniper_2'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_fbi_swat_d'" />
-			<object 			enabled="true" name="'g_gear_fbi_swat_d_lod1'" />
+			<object 			enabled="true" name="'g_gear_swat_d'" />
+			<object 			enabled="true" name="'g_gear_swat_d_lod1'" />
 			
 			<run_sequence 		name="'fbi_swat'" />
 			<run_sequence 		name="'random_body_a'" />
@@ -393,8 +393,8 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_1'" once="true" triggable="true">
-			<object 			enabled="true" name="'g_gear_fbi_swat_e'" />
-			<object 			enabled="true" name="'g_gear_fbi_swat_e_lod1'" />
+			<object 			enabled="true" name="'g_gear_fbi_swat_d'" />
+			<object 			enabled="true" name="'g_gear_fbi_swat_d_lod1'" />
 
 			<run_sequence 		name="'fbi_swat'" />
 			<run_sequence 		name="'random_body_b'" />

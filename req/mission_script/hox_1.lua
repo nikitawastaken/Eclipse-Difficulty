@@ -61,7 +61,7 @@ return {
 			},
 		},
 		on_executed = {
-			{ id = 100006, delay = 30, delay_rand = 30 },
+			{ id = 100006, delay = 15, delay_rand = 30 },
 		},
 	},
 	-- tweak harassers
