@@ -10,12 +10,12 @@ local exclude_cop_agents_shields_dozers = {
 }
 local entrance_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -25,7 +25,7 @@ return {
 		reinforce = {
 			{
 				name = "santa",
-				force = 2,
+				force = 3,
 				position = Vector3(-365, -275, -100),
 			},
 			{
