@@ -43,6 +43,14 @@ return {
 			},
 		},
 	},
+	-- Disable traincar reinforce when hooking up the locomotive 
+	[101049] = {
+		reinforce = {
+			{ name = "traincar1" },
+			{ name = "traincar2" },
+			{ name = "traincar3" },
+		},
+	},
 	-- Fix snipers being able to spawn only once
 	[100368] = sniper_trigger_times,
 	[100369] = sniper_trigger_times,

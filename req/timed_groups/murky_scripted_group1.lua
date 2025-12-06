@@ -1,4 +1,4 @@
-return function(timed_tactics, timed_random_tactics)
+return function(timed_tactics, timed_random_tactics, spawn_point_ref)
 	return {
 		disabled = true,
 		timer_data = {
@@ -47,10 +47,7 @@ return function(timed_tactics, timed_random_tactics)
 						random_tactics = timed_random_tactics.murky_defensive,
 					},
 				},
-				spawn_point_chk_ref = table.list_to_set({
-					"cs_swats",
-					"cs_heavies",
-				}),
+				spawn_point_chk_ref = table.list_to_set(spawn_point_ref),
 			},
 		},
 	}
