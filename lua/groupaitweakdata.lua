@@ -2727,9 +2727,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		"tac_bull_rush",
 		"cs_bulldozer",
 		"fbi_bulldozer",
-		"elite_bulldozer",	
+		"elite_bulldozer",
 	}
-	
+
 	self.enemy_spawn_groups.snowman_boss = {
 		amount = { 1, 1 },
 		spawn = {
@@ -2856,7 +2856,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 		"elite_swats",
 		"elite_heavies",
 	}
-	
+
 	self._timed_tactics = {
 		none = {},
 		murky_def = {

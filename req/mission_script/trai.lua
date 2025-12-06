@@ -43,7 +43,7 @@ return {
 			},
 		},
 	},
-	-- Disable traincar reinforce when hooking up the locomotive 
+	-- Disable traincar reinforce when hooking up the locomotive
 	[101049] = {
 		reinforce = {
 			{ name = "traincar1" },
