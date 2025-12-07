@@ -173,7 +173,6 @@ local prefix_lookup_for_humans = {
 		end,
 		"units/payday2/characters/ene_shield_1/ene_shield_1",
 		"units/payday2/characters/ene_shield_2/ene_shield_2",
-		
 	},
 	female_enemy_list = {
 		func = function(self, nr_variations)
