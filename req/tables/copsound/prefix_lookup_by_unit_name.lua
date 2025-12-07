@@ -9,15 +9,12 @@ local prefix_lookup_for_humans = {
 		-- US Blue SWAT
 		"units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
 		"units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
-		"units/payday2/characters/ene_shield_2/ene_shield_2",
 		-- US FBI SWAT
 		"units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
 		"units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
-		"units/payday2/characters/ene_shield_1/ene_shield_1",
 		-- US GenSec
 		"units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36",
 		"units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870",
-		--"units/payday2/characters/ene_city_shield/ene_city_shield", 
 		-- US Zeals
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy",
@@ -163,6 +160,20 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2",
 		"units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3",
 		"units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4",
+	},
+	-- list that has 2 random voices, used only for american shields (sans GenSec Shield)
+	l1d_l4d_shield_list = {
+		func = function(self, nr_variations)
+			local rand = math.random()
+			if rand < 0.5 then
+				return "l1d_"
+			else
+				return "l4d_"
+			end
+		end,
+		"units/payday2/characters/ene_shield_1/ene_shield_1",
+		"units/payday2/characters/ene_shield_2/ene_shield_2",
+		
 	},
 	female_enemy_list = {
 		func = function(self, nr_variations)
