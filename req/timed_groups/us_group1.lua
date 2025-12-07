@@ -1,4 +1,4 @@
-return function(timed_tactics, timed_random_tactics, difficulty_index)
+return function(timed_tactics, timed_random_tactics, difficulty_index, spawn_point_ref)
 	return {
 		timer_data = {
 			initial_delay = 180, -- 3 minutes
@@ -57,10 +57,7 @@ return function(timed_tactics, timed_random_tactics, difficulty_index)
 						tactics = timed_tactics.army_spt,
 					},
 				},
-				spawn_point_chk_ref = table.list_to_set({
-					"cs_swats",
-					"cs_heavies",
-				}),
+				spawn_point_chk_ref = table.list_to_set(spawn_point_ref),
 			},
 		},
 	}

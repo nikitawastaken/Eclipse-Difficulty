@@ -25,26 +25,24 @@ return {
 		reinforce = {
 			{
 				name = "santa",
-				force = 2,
+				force = 3,
 				position = Vector3(-365, -275, -100),
+			},
+			{
+				name = "escalator1",
+				force = 2,
+				position = Vector3(225, -2850, 0),
+			},
+			{
+				name = "escalator2",
+				force = 2,
+				position = Vector3(-2750, 175, 0),
 			},
 		},
 	},
 	[100699] = { -- flare placed
 		on_executed = {
-			{ id = 400002, delay = 0, delay_rand = 20 }, -- custom roof preferreds
-		},
-		reinforce = {
-			{
-				name = "escalator1",
-				force = 3,
-				position = Vector3(225, -2850, 0),
-			},
-			{
-				name = "escalator2",
-				force = 3,
-				position = Vector3(-2750, 175, 0),
-			},
+			{ id = 400002, delay = 0, delay_rand = 15 }, -- custom roof preferreds
 		},
 	},
 	-- Rework preferreds, separate street spawns from roof spawns

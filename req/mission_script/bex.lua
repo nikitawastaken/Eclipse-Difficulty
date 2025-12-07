@@ -50,6 +50,13 @@ local bags_required_objective = {
 	},
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 57, 59 },
+			{ 68, 77 },
+		},
+	},
 	[101829] = {
 		ponr = {
 			length = 240,
@@ -65,12 +72,9 @@ return {
 			{ name = "parts_car" },
 		},
 	},
-	-- Combine some navigation areas
-	[100017] = {
-		ai_area = {
-			{ 57, 59 },
-			{ 68, 77 },
-		},
+	-- Increase difficulty when Hajrudin breaches the tellers
+	[102308] = {
+		difficulty_add = 0.2,
 	},
 	[100109] = { -- Police
 		on_executed = { -- delay preferreds
@@ -82,7 +86,7 @@ return {
 			{
 				name = "police_car1",
 				force = 3,
-				position = Vector3(2140, 475, 0),
+				position = Vector3(2140, 485, 0),
 			},
 			{
 				name = "police_car2",
@@ -110,11 +114,6 @@ return {
 			},
 		},
 	},
-	[102541] = { -- link activate navlinks roof
-		on_executed = {
-			{ id = 101618, remove = true }, -- why does this spawn a guard ?
-		},
-	},
 	[103692] = { -- break wall
 		reinforce = {
 			{
@@ -124,7 +123,7 @@ return {
 			},
 		},
 	},
-	-- Reinforce second floor above tellers
+	-- Reinforce inside the bank
 	[100123] = { -- Assault done
 		reinforce = {
 			{
@@ -136,6 +135,11 @@ return {
 				name = "teller_balcony2",
 				force = 2,
 				position = Vector3(-1200, -2200, 400),
+			},
+			{
+				name = "bank_interior",
+				force = 2,
+				position = Vector3(0, -1100, 0),
 			},
 		},
 	},
@@ -174,6 +178,11 @@ return {
 				force = 2,
 				position = Vector3(-1700, 3300, 0),
 			},
+		},
+	},
+	[102541] = { -- link activate navlinks roof
+		on_executed = {
+			{ id = 101618, remove = true }, -- why does this spawn a guard ?
 		},
 	},
 	-- don't remove enemies for no reason

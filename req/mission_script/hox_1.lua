@@ -60,6 +60,9 @@ return {
 				position = Vector3(10600, 5500, -2400),
 			},
 		},
+		on_executed = {
+			{ id = 100006, delay = 15, delay_rand = 30 },
+		},
 	},
 	-- tweak harassers
 	[102029] = swat_harasser,

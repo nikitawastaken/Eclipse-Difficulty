@@ -15,14 +15,9 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
 		"units/payday2/characters/ene_shield_1/ene_shield_1",
 		-- US GenSec
-		"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
-		"units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
-		"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
-		"units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870",
 		"units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36",
 		"units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870",
 		--"units/payday2/characters/ene_city_shield/ene_city_shield", 
-		"units/payday2/characters/ene_sniper_3/ene_sniper_3",
 		-- US Zeals
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy",
@@ -95,6 +90,12 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_fbi_swat_2/ene_fbi_swat_2",
 		"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3",
 		"units/payday2/characters/ene_sniper_2/ene_sniper_2",
+		-- US GenSec
+		"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
+		"units/payday2/characters/ene_city_swat_2/ene_city_swat_2",
+		"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
+		"units/payday2/characters/ene_city_swat_r870/ene_city_swat_r870",
+		"units/payday2/characters/ene_sniper_3/ene_sniper_3",
 		-- GenSec Operators
 		"units/pd2_dlc1/characters/ene_gensec_operator_1/ene_gensec_operator_1",
 		"units/pd2_dlc1/characters/ene_gensec_operator_2/ene_gensec_operator_2",

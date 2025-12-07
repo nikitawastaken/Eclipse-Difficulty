@@ -39,7 +39,7 @@ local unused_sniper_trigger_times = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local window_spawn = {

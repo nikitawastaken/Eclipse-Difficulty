@@ -18,7 +18,6 @@ local is_mountain_master = level_id == "pent"
 local has_bellmead_response = bellmead_response_heists[level_id]
 
 local diff_lerp = Eclipse.utils.diff_lerp
-
 local weighted_selector = Eclipse.utils.weighted_selector
 
 -- Clones a weapon preset and optionally sets values for all weapons contained in that preset
@@ -264,7 +263,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	damage_multiplier(presets.weapon.eclipse_gangster, 1.5)
 	accuracy_addition(presets.weapon.eclipse_gangster, -0.2)
-	recoil_multiplier(presets.weapon.eclipse_gangster, 0.75)
+	recoil_multiplier(presets.weapon.eclipse_gangster, 0.7)
 	burst_multiplier(presets.weapon.eclipse_gangster, 1.5)
 
 	presets.weapon.eclipse_good = based_on(presets.weapon.eclipse_normal, {
@@ -364,7 +363,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
 		aim_delay_tase = {
 			0,
-			0.75 * aim_delay_mul,
+			0.5 * aim_delay_mul,
 		},
 		tase_sphere_cast_radius = 15,
 		tase_distance = 1400,
@@ -2090,14 +2089,14 @@ function CharacterTweakData:_set_presets()
 		if tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
-			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 3 or nil
+			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
 			char_preset.move_speed = deep_clone(char_preset.move_speed)
 			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
 			char_preset.can_be_healed = not tag_map.medic and true or false
-			char_preset.target_priority = not tag_map.medic and nil or 10
+			char_preset.target_priority = tag_map.medic and 10 or nil
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
@@ -2144,7 +2143,10 @@ function CharacterTweakData:_set_presets()
 
 	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
 
-	self.tase_multiplier = is_eclipse and 1.6 or is_overkill and 1.4 or 1
+	self.tase_multiplier = {
+		is_eclipse and 1.75 or is_overkill and 1.5 or 1,
+		is_eclipse and 1.5 or is_overkill and 1.25 or 1,
+	}
 
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage

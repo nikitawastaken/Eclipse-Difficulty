@@ -34,6 +34,7 @@
 				</group>
 
 				<group :hook_id="mission/">
+					<post :hook_id="elementareaminpoliceforce"/>
 					<post :hook_id="elementareatrigger"/>
 					<post :hook_id="elementspawnenemydummy"/>
 					<post :hook_id="elementspawnenemygroup"/>
@@ -304,6 +305,9 @@
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
+		
+		<!-- taser shock effect -->
+		<file name="effects/payday2/particles/character/taser_thread.effect"/>
 		
 		<!-- shotgun ammo types -->
 		<file name="effects/particles/weapons/sho_buckshot.effect"/>

@@ -192,7 +192,7 @@ return {
 		reinforce = {
 			{
 				name = "operations_room",
-				force = 3,
+				force = 4,
 				position = Vector3(-200, 300, 0),
 			},
 		},

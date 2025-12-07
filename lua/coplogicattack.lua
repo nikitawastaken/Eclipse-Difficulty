@@ -128,7 +128,7 @@ Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "sh_aim_allow_fire", function(sh
 			data.combat_chatter_cooldown_t = data.t + math.rand(30, 90)
 		end
 	elseif shoot and not my_data.firing and chatter.contact then
-		CopLogicAttack._chk_say_chatter(data, focus_enemy.is_deployable and "sentry_gun" or (is_reloading or is_husk_reloading) and "reloading" or "contact", math.rand(5, 10))
+		CopLogicAttack._chk_say_chatter(data, focus_enemy.is_deployable and "sentry_gun" or (is_reloading or is_husk_reloading) and math.random() < 0.5 and "reloading" or "contact", math.rand(5, 10))
 	elseif aim and is_off_cooldown and chatter.aggressive then
 		CopLogicAttack._chk_say_chatter(data, "aggressive", math.rand(10, 20))
 	end
