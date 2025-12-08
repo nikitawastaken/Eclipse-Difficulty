@@ -128,6 +128,32 @@ return {
 			{ 79, 106 },
 		},
 	},
+	-- potential cloaker ambush at the start of the heist
+	-- begin dozer spam
+	[100107] = {
+		on_executed = {
+			{ id = 400047, delay = 0 },
+			{ id = 400040, delay = 240, delay_rand = 60 },
+		},
+	},
+	-- add unused snipers to atrium section
+	[102235] = {
+		values = {
+			amount = 1 + (is_pro_job and 1 or 0),
+			amount_random = normal and 0 or hard and 1 or 2,
+		},
+		on_executed = {
+			{ id = 100372, delay = 0 },
+			{ id = 100371, delay = 0 },
+			{ id = 100370, delay = 0 },
+			{ id = 100373, delay = 0 },
+		},
+	},
+	[102020] = {
+		on_executed = {
+			{ id = 400064, delay = 0 },
+		},
+	},
 	-- Tweak keycard spawns
 	[101218] = { -- Extra keycard, now also spawns on Normal aka Hard
 		values = {
