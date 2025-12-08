@@ -21,6 +21,24 @@ local enabled = {
 		enabled = true,
 	},
 }
+local filter_easy_above = {
+	values = Eclipse.utils.set_diff_groups("easy_above"),
+}
+local closed_warehouse_back = {
+	values = {
+		enabled = math.random() < 0.5,
+	},
+}
+local closed_warehouse_front = {
+	values = {
+		enabled = math.random() < 0.25,
+	},
+}
+local standard_spawn = {
+	values = {
+		interval = 15,
+	},
+}
 local ship_spawn = {
 	values = {
 		interval = 30,
@@ -56,7 +74,7 @@ local heli_enemy2 = {
 		trigger_times = 0,
 	},
 }
-local heli_chance = (diff_i_no_easy * 20) * (is_pro_job and 1.33 or 1)
+local heli_chance = (diff_i_no_easy * 15) * (is_pro_job and 4 / 3 or 1)
 local function cloaker_add(id)
 	return id and {
 		modify_list_value = {
@@ -66,9 +84,7 @@ local function cloaker_add(id)
 		},
 	} or nil
 end
-
 local john_boat_driver_chance = math.random() <= 0.1
-
 local john_dialogue_1 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_01" or "bot_wd2_01"
 local john_dialogue_2 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_05" or "bot_wd2_02"
 local john_dialogue_3 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_06" or "bot_wd2_04a"
@@ -84,7 +100,6 @@ local john_dialogue_12 = john_boat_driver_chance and "Play_bot_watchdogs_new_sta
 local john_dialogue_13 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_02" or "Play_bot_a04"
 local john_dialogue_14 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_03" or "Play_bot_a05"
 local john_dialogue_15 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_04" or "Play_bot_a06"
-
 return {
 	-- 10% of pre beta boat driver taking it's place
 	-- lights are on
@@ -181,29 +196,29 @@ return {
 	[100511] = {
 		reinforce = {
 			{
-				name = "diff50_reinforce1",
+				name = "warehouse1",
 				force = 2,
-				position = Vector3(-1500, 800, 0),
+				position = Vector3(875, -1175, 0),
 			},
 			{
-				name = "diff50_reinforce2",
+				name = "warehouse2",
 				force = 2,
-				position = Vector3(-800, 3200, 0),
-			},
-		},
-	},
-	-- 2nd assault reinforce
-	[103637] = {
-		reinforce = {
-			{
-				name = "diff75_reinforce1",
-				force = 2,
-				position = Vector3(400, 1200, 0),
+				position = Vector3(370, 1340, 0),
 			},
 			{
-				name = "diff75_reinforce2",
+				name = "warehouse3",
 				force = 2,
-				position = Vector3(900, -800, 0),
+				position = Vector3(1525, 2700, 0),
+			},
+			{
+				name = "warehouse4",
+				force = 2,
+				position = Vector3(4150, -1300, 0),
+			},
+			{
+				name = "gate",
+				force = 4,
+				position = Vector3(-2500, 1500, 0),
 			},
 		},
 	},
@@ -233,7 +248,7 @@ return {
 	},
 	[100448] = {
 		on_executed = {
-			{ id = 100454, delay = eclipse and 120 or 180, delay_rand = 120 },
+			{ id = 100454, delay = 120, delay_rand = is_eclipse and 120 or 180 },
 			{ id = 100446, remove = true }, -- don't make same units spawn twice
 			{ id = 100447, remove = true },
 		},
@@ -245,10 +260,19 @@ return {
 	},
 	[100446] = heli_enemy1,
 	[100447] = heli_enemy2,
-	-- open warehouse on all difficulties
-	[104004] = disabled,
-	[104002] = disabled,
-	[104069] = disabled,
+	-- closed gate chance-based
+	[101485] = {
+		values = {
+			chance = 25,
+		},
+	},
+	-- chance-based closed warehouse on all difficulties
+	[104001] = filter_easy_above,
+	[104003] = filter_easy_above,
+	[104002] = closed_warehouse_front,
+	[104004] = closed_warehouse_front,
+	[104069] = closed_warehouse_front,
+	[104008] = closed_warehouse_back,
 	-- disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
@@ -274,7 +298,7 @@ return {
 	[103976] = cloaker_add(103975),
 	[103978] = cloaker_add(103977),
 	[103980] = cloaker_add(103979),
-	-- spawn Ground Snipers after 3-5 minutes
+	-- spawn Ground Snipers after 3-4 minutes
 	[100486] = {
 		on_executed = {
 			{ id = 400035, delay = normal and 240 or 180 },
@@ -303,6 +327,9 @@ return {
 	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
 	[400042] = scripted_swat_van_spawn,
 	[400050] = scripted_swat_van_spawn,
+	[100146] = standard_spawn,
+	[100154] = standard_spawn,
+	[100167] = standard_spawn,
 	[102387] = ship_spawn,
 	[102331] = ship_spawn,
 	[102173] = ship_spawn,
