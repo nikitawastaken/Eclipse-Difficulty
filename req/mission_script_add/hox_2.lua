@@ -23,7 +23,6 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
 
-
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 local random_dozers = {
 	green_bulldozer,
@@ -361,7 +360,7 @@ local spawn_cloaker_ambush = {
 	on_executed = {
 		{ id = 400046, delay = 0 },
 		{ id = 400042, delay = 0.5 },
-		{ id = 400043, delay = 0.5 }
+		{ id = 400043, delay = 0.5 },
 	},
 }
 local optsdisable_the_plants = {
@@ -444,7 +443,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_element_random(400015, "next_to_operations_room", dozer_amount_3),
 	Eclipse.mission_elements.gen_element_random(400016, "near_entrance", dozer_amount_4),
 	Eclipse.mission_elements.gen_element_random(400017, "near_pc_boss_room", dozer_amount_5),
-	
+
 	Eclipse.mission_elements.gen_dummytrigger(400018, "dozer_spawned_1", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_1),
 	Eclipse.mission_elements.gen_dummytrigger(400019, "dozer_spawned_2", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_2),
 	Eclipse.mission_elements.gen_dummytrigger(400020, "dozer_spawned_3", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdozerspawned_3),
@@ -469,7 +468,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400039, "enable_random_dozers", optsenable_random_dozers),
 	Eclipse.mission_elements.gen_missionscript(400040, "hello_its_me_the_angry_man", spawn_dozer_global),
 	Eclipse.mission_elements.gen_dialogue(400041, "they_sending_dozers", Bain_senddozers),
-	
+
 	-- suprise cloakers at the start of the heist (so evil)
 	Eclipse.mission_elements.gen_dummy(400042, "spooc_ambush_1", Vector3(-585, 4399, -500), Rotation(-90, 0, -0), optsCloaker_1),
 	Eclipse.mission_elements.gen_dummy(400043, "spooc_ambush_2", Vector3(265, 4400, -500), Rotation(0, 0, -0), optsCloaker_2),
@@ -477,7 +476,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400045, "spooc_ambush_hide_so_2", Vector3(190, 4401, -500), Rotation(90, 0, 0), optsCloaker_Hide_SO),
 	Eclipse.mission_elements.gen_disable_unit(400046, "disable_plants", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_the_plants),
 	Eclipse.mission_elements.gen_missionscript(400047, "cloaker_ambush_event", spawn_cloaker_ambush),
-	
+
 	-- add blockade units when you open the basement door (with some evil stuff)
 	-- cloaker
 	Eclipse.mission_elements.gen_dummy(400048, "spooc_basement", Vector3(-1116, 4875, -500), Rotation(-82, 0, -0), optsCloaker_Basement),
@@ -501,8 +500,6 @@ M.elements = {
 	-- global basement blockades
 	Eclipse.mission_elements.gen_element_random(400063, "select_random_blockade", pick_blockade_units),
 	Eclipse.mission_elements.gen_missionscript(400064, "start_basement_units_blockade", spawn_basement_blockades),
-	
-	
 }
 
 return M
