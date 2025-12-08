@@ -21,8 +21,23 @@ local enabled = {
 		enabled = true,
 	},
 }
-local filter_easy_above = {
-	values = Eclipse.utils.set_diff_groups("easy_above"),
+local filter_easy_above_warehouse_1 = {
+	 values = {
+		enabled = math.random() <= 0.5 * (is_pro_job and 1.25 or 0),
+		difficulty_normal = true,
+		difficulty_hard = true,
+		difficulty_overkill = true,
+		difficulty_overkill_145 = true,
+	},
+}
+local filter_easy_above_warehouse_2 = {
+	 values = {
+		enabled = math.random() <= 0.25 * (is_pro_job and 1.25 or 0),
+		difficulty_normal = true,
+		difficulty_hard = true,
+		difficulty_overkill = true,
+		difficulty_overkill_145 = true,
+	},
 }
 local closed_warehouse_back = {
 	values = {
@@ -267,12 +282,12 @@ return {
 		},
 	},
 	-- chance-based closed warehouse on all difficulties
-	[104001] = filter_easy_above,
-	[104003] = filter_easy_above,
-	[104002] = closed_warehouse_front,
-	[104004] = closed_warehouse_front,
-	[104069] = closed_warehouse_front,
-	[104008] = closed_warehouse_back,
+	[104001] = filter_easy_above_warehouse_1,
+	[104003] = filter_easy_above_warehouse_2,
+	--[104002] = closed_warehouse_front,
+	--[104004] = closed_warehouse_front,
+	--[104069] = closed_warehouse_front,
+	--[104008] = closed_warehouse_back,
 	-- disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
