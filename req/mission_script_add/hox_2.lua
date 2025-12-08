@@ -475,7 +475,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400043, "spooc_ambush_2", Vector3(265, 4400, -500), Rotation(0, 0, -0), optsCloaker_2),
 	Eclipse.mission_elements.gen_so(400044, "spooc_ambush_hide_so_1", Vector3(-549, 4401, -500), Rotation(-90, 0, 0), optsCloaker_Hide_SO),
 	Eclipse.mission_elements.gen_so(400045, "spooc_ambush_hide_so_2", Vector3(190, 4401, -500), Rotation(90, 0, 0), optsCloaker_Hide_SO),
-	Eclipse.mission_elements.gen_disable_unit(400046, "disable_plants", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_the_plants)
+	Eclipse.mission_elements.gen_disable_unit(400046, "disable_plants", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_the_plants),
 	Eclipse.mission_elements.gen_missionscript(400047, "cloaker_ambush_event", spawn_cloaker_ambush),
 	
 	-- add blockade units when you open the basement door (with some evil stuff)
