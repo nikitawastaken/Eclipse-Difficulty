@@ -2934,7 +2934,7 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 	end
 
 	if self.murky_response_heists[level_id] then
-		self.timed_enemy_spawn_groups.murky_group1 = Eclipse:require("timed_groups/murky_group1")(self._timed_tactics, self._timed_random_tactics)
+		self.timed_enemy_spawn_groups.murky_group1 = Eclipse:require("timed_groups/murky_group1")(self._timed_tactics, self._timed_random_tactics, swat_spawn_point_ref)
 	end
 
 	if self.murky_response_heists_scripted[level_id] then
