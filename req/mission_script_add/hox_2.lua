@@ -91,7 +91,7 @@ local optsCloaker_Hide_SO = {
 	interval = 2,
 	so_action = "e_so_idle_by_container",
 }
-ocal optsDozer_Hide_SO = {
+local optsDozer_Hide_SO = {
 	SO_access = "4096",
 	scan = true,
 	align_position = true,
