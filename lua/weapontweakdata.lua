@@ -1,4 +1,4 @@
-eWeaponTweakData.WEAPON_TOTAL_DMG = 360
+WeaponTweakData.WEAPON_TOTAL_DMG = 360
 WeaponTweakData.WEAPON_PICKUP_DMG = 16
 
 Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)
