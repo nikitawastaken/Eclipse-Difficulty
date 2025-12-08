@@ -1957,7 +1957,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					18 / diff_scale,
+					24 / diff_scale,
 					6 / diff_scale,
 					0,
 				}, heavy_response and 0 or small_urban and 1.5 or 1),
