@@ -192,8 +192,8 @@ return {
 			dialogue = john_dialogue_12,
 		},
 	},
-	-- 1st assault reinforce
-	[100511] = {
+	-- add new reinforce
+	[100511] = { -- diff 50
 		reinforce = {
 			{
 				name = "warehouse1",
@@ -260,7 +260,7 @@ return {
 	},
 	[100446] = heli_enemy1,
 	[100447] = heli_enemy2,
-	-- closed gate chance-based
+	-- closed gate chance
 	[101485] = {
 		values = {
 			chance = 25,
