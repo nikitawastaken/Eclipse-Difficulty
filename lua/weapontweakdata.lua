@@ -1,4 +1,4 @@
-WeaponTweakData.WEAPON_TOTAL_DMG = 360
+eWeaponTweakData.WEAPON_TOTAL_DMG = 360
 WeaponTweakData.WEAPON_PICKUP_DMG = 16
 
 Hooks:PostHook(WeaponTweakData, "_init_stats", "eclipse_init_stats", function(self)
@@ -2960,11 +2960,8 @@ local turret_damage_mul = {
 }
 local suppression = {
 	is_sniper = 2,
-	is_shotgun_pump = 2,
-	is_shotgun_mag = 2,
-	is_double_barrel = 2,
 	is_lmg = 1.5,
-	mini = 1.5,
+	mini = 1.5,	
 	is_flamethrower = 0.5,
 }
 local alert_sizes = {
@@ -3008,7 +3005,7 @@ function WeaponTweakData:_set_presets()
 		elseif k:match("_npc$") then
 			v.DAMAGE = 1
 			v.spread = v.rays and v.rays > 1 and 6 or 0
-			v.suppression = (suppression[v.usage] or 1) * (v.armor_piercing and 1.5 or 1) * (v.has_suppressor and 0.2 or 1)
+			v.suppression = (suppression[v.usage] or 1) * (v.armor_piercing and 2.5 or 1) * (v.rays and 3 or 1) * (v.has_suppressor and 0.3 or 1) 
 			v.alert_size = (alert_sizes[v.usage] or 5000) * (v.has_suppressor and 0.2 or 1)
 			v.muzzleflash = v.rays and v.rays > 1 and "effects/payday2/particles/weapons/shotgun/sho_muzzleflash" or v.muzzleflash
 			
