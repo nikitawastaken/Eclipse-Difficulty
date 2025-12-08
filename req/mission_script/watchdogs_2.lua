@@ -22,7 +22,7 @@ local enabled = {
 	},
 }
 local filter_easy_above_warehouse_1 = {
-	 values = {
+	values = {
 		enabled = math.random() <= 0.5 * (is_pro_job and 1.25 or 0),
 		difficulty_normal = true,
 		difficulty_hard = true,
@@ -31,7 +31,7 @@ local filter_easy_above_warehouse_1 = {
 	},
 }
 local filter_easy_above_warehouse_2 = {
-	 values = {
+	values = {
 		enabled = math.random() <= 0.25 * (is_pro_job and 1.25 or 0),
 		difficulty_normal = true,
 		difficulty_hard = true,
