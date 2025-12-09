@@ -6,6 +6,11 @@ local disabled = {
 		enabled = false,
 	},
 }
+local front_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local window_spawn = {
 	values = {
 		interval = 20,
@@ -20,7 +25,7 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 return {
@@ -38,13 +43,12 @@ return {
 				position = Vector3(25, 600, 0),
 			},
 		},
+		on_executed = { -- preferreds
+			{ id = 100830, delay = 30 },
+		},
 	},
 	--Delay sanctum preferreds
 	[103217] = {
-		on_executed = {
-			{ id = 103216, delay = 0, delay_rand = 20 },
-			{ id = 103493, delay = 0, delay_rand = 20 },
-		},
 		reinforce = { -- Enable reinforce
 			{
 				name = "sanctum_left",
@@ -56,6 +60,10 @@ return {
 				force = 2,
 				position = Vector3(2000, 4400, 0),
 			},
+		},
+		on_executed = {
+			{ id = 103216, delay = 0, delay_rand = 20 },
+			{ id = 103493, delay = 0, delay_rand = 20 },
 		},
 	},
 	[100955] = {
@@ -73,6 +81,8 @@ return {
 	[103218] = disabled,
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
+	[100128] = front_spawn,
+	[100130] = front_spawn,
 	[100131] = window_spawn,
 	[100132] = window_spawn,
 	[100133] = window_spawn,

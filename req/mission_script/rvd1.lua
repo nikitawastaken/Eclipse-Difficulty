@@ -18,7 +18,11 @@ local mortuary_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-
+local disable_car_reinforce = {
+	reinforce = {
+		{ name = "pink_car" },
+	},
+}
 local cop_car_crash_amount = {
 	values = {
 		amount = is_eclipse and 2 or 1,
@@ -63,59 +67,43 @@ return {
 	[101096] = {
 		reinforce = {
 			{
-				name = "pink_car1",
+				name = "pink_car",
 				force = 2,
 				position = Vector3(-3100, 1400, 0),
 			},
 		},
 	},
-	[101130] = {
-		reinforce = {
-			{ name = "pink_car1" },
-		},
-	},
+	[101130] = disable_car_reinforce,
 	[101095] = {
 		reinforce = {
 			{
-				name = "pink_car2",
+				name = "pink_car",
 				force = 2,
 				position = Vector3(-2100, -1200, 0),
 			},
 		},
 	},
-	[101200] = {
-		reinforce = {
-			{ name = "pink_car2" },
-		},
-	},
+	[101200] = disable_car_reinforce,
 	[101101] = {
 		reinforce = {
 			{
-				name = "pink_car3",
+				name = "pink_car",
 				force = 2,
 				position = Vector3(-400, 0, 0),
 			},
 		},
 	},
-	[101195] = {
-		reinforce = {
-			{ name = "pink_car3" },
-		},
-	},
+	[101195] = disable_car_reinforce,
 	[100545] = {
 		reinforce = {
 			{
-				name = "pink_car4",
+				name = "pink_car",
 				force = 2,
 				position = Vector3(-4700, -2000, 0),
 			},
 		},
 	},
-	[101543] = {
-		reinforce = {
-			{ name = "pink_car4" },
-		},
-	},
+	[101543] = disable_car_reinforce,
 	-- Spawn group intervals
 	[100133] = objective_spawn,
 	[101715] = objective_spawn,

@@ -124,7 +124,7 @@ return {
 		},
 	},
 	-- Reinforce inside the bank
-	[100123] = { -- Assault done
+	[100123] = { -- 1st assault done
 		reinforce = {
 			{
 				name = "teller_balcony1",
