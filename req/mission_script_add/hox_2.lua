@@ -22,6 +22,7 @@ local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local cloaker = scripted_enemy.cloaker
 local taser = scripted_enemy.taser_1
+local shield = is_eclipse and scripted_enemy.elite_shield or scripted_enemy.shield
 
 local swats = { [swat_1] = 2, [swat_2] = 1 }
 local random_dozers = {
@@ -53,6 +54,10 @@ local optsSWAT = {
 }
 local optsTaser = {
 	enemy = taser,
+	enabled = true,
+}
+local optsShield = {
+	enemy = shield,
 	enabled = true,
 }
 local optsCloaker_1 = {
@@ -405,6 +410,7 @@ local spawn_taser_basement = {
 	on_executed = {
 		{ id = 400055, delay = 0 },
 		{ id = 400056, delay = 0 },
+		{ id = 400065, delay = 0 },
 	},
 }
 
@@ -470,8 +476,8 @@ M.elements = {
 	Eclipse.mission_elements.gen_dialogue(400041, "they_sending_dozers", Bain_senddozers),
 
 	-- suprise cloakers at the start of the heist (so evil)
-	Eclipse.mission_elements.gen_dummy(400042, "spooc_ambush_1", Vector3(-585, 4399, -500), Rotation(-90, 0, -0), optsCloaker_1),
-	Eclipse.mission_elements.gen_dummy(400043, "spooc_ambush_2", Vector3(265, 4400, -500), Rotation(0, 0, -0), optsCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400042, "spooc_ambush_1", Vector3(-585, 4399, -500), Rotation(-90, 0, 0), optsCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400043, "spooc_ambush_2", Vector3(265, 4400, -500), Rotation(90, 0, 0), optsCloaker_2),
 	Eclipse.mission_elements.gen_so(400044, "spooc_ambush_hide_so_1", Vector3(-549, 4401, -500), Rotation(-90, 0, 0), optsCloaker_Hide_SO),
 	Eclipse.mission_elements.gen_so(400045, "spooc_ambush_hide_so_2", Vector3(190, 4401, -500), Rotation(90, 0, 0), optsCloaker_Hide_SO),
 	Eclipse.mission_elements.gen_disable_unit(400046, "disable_plants", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_the_plants),
@@ -479,17 +485,18 @@ M.elements = {
 
 	-- add blockade units when you open the basement door (with some evil stuff)
 	-- cloaker
-	Eclipse.mission_elements.gen_dummy(400048, "spooc_basement", Vector3(-1116, 4875, -500), Rotation(-82, 0, -0), optsCloaker_Basement),
+	Eclipse.mission_elements.gen_dummy(400048, "spooc_basement", Vector3(-1116, 4875, -500), Rotation(-82, 0, 0), optsCloaker_Basement),
 	Eclipse.mission_elements.gen_missionscript(400049, "cloaker", spawn_cloaker_basement),
 	-- swats
-	Eclipse.mission_elements.gen_dummy(400050, "swat_basement_1", Vector3(-1557.012, 4645.163, -700), Rotation(-85, 0, -0), optsSWAT),
-	Eclipse.mission_elements.gen_dummy(400051, "swat_basement_2", Vector3(-1566, 4716, -700), Rotation(-84, 0, -0), optsSWAT),
-	Eclipse.mission_elements.gen_dummy(400052, "swat_basement_3", Vector3(-1590.777, 4808.281, -700), Rotation(-102, 0, -0), optsSWAT),
-	Eclipse.mission_elements.gen_dummy(400053, "swat_basement_4", Vector3(-1587.115, 4916.893, -700), Rotation(-102, 0, -0), optsSWAT),
+	Eclipse.mission_elements.gen_dummy(400050, "swat_basement_1", Vector3(-1557.012, 4645.163, -700), Rotation(-85, 0, 0), optsSWAT),
+	Eclipse.mission_elements.gen_dummy(400051, "swat_basement_2", Vector3(-1566, 4716, -700), Rotation(-84, 0, 0), optsSWAT),
+	Eclipse.mission_elements.gen_dummy(400052, "swat_basement_3", Vector3(-1590.777, 4808.281, -700), Rotation(-102, 0, 0), optsSWAT),
+	Eclipse.mission_elements.gen_dummy(400053, "swat_basement_4", Vector3(-1587.115, 4916.893, -700), Rotation(-102, 0, 0), optsSWAT),
 	Eclipse.mission_elements.gen_missionscript(400054, "swats", spawn_swat_basement),
-	-- tasers
-	Eclipse.mission_elements.gen_dummy(400055, "taser_basement_1", Vector3(-981, 4936, -900), Rotation(93, 0, 0), optsTaser),
-	Eclipse.mission_elements.gen_dummy(400056, "taser_basement_2", Vector3(-975.819, 4837.135, -700), Rotation(93, 0, -0), optsTaser),
+	-- tasers and shield
+	Eclipse.mission_elements.gen_dummy(400055, "taser_basement_1", Vector3(-1079.231, 4977.013, -900), Rotation(108, 0, 0), optsTaser),
+	Eclipse.mission_elements.gen_dummy(400056, "taser_basement_2", Vector3(-1082.978, 4875.570, -900), Rotation(93, 0, 0), optsTaser),
+	Eclipse.mission_elements.gen_dummy(400065, "shield_basement_1", Vector3(-1165.123, 4909.564, -900), Rotation(99, 0, 0), optsShield),
 	Eclipse.mission_elements.gen_missionscript(400057, "tasers", spawn_taser_basement),
 	-- sneaky dozer
 	Eclipse.mission_elements.gen_dummy(400058, "dozer_basement_1", Vector3(-494, 4796, -940), Rotation(0, 0, 0), optsSneaky_Bulldozer_1),

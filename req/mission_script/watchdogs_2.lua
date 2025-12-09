@@ -99,22 +99,59 @@ local function cloaker_add(id)
 		},
 	} or nil
 end
-local john_boat_driver_chance = math.random() <= 0.1
-local john_dialogue_1 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_01" or "bot_wd2_01"
-local john_dialogue_2 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_05" or "bot_wd2_02"
-local john_dialogue_3 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_06" or "bot_wd2_04a"
-local john_dialogue_4 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_07" or "bot_wd2_03"
-local john_dialogue_5 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_08" or "bot_wd2_06"
-local john_dialogue_6 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_09" or "bot_wd2_07"
-local john_dialogue_7 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_10" or "bot_wd2_08"
-local john_dialogue_8 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_07" or "bot_wd2_10"
-local john_dialogue_9 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_11" or "bot_wd2_11"
-local john_dialogue_10 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_12" or "bot_wd2_19"
-local john_dialogue_11 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_13" or "bot_wd2_20"
-local john_dialogue_12 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_14" or "bot_wd2_21b"
-local john_dialogue_13 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_02" or "Play_bot_a04"
-local john_dialogue_14 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_03" or "Play_bot_a05"
-local john_dialogue_15 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_04" or "Play_bot_a06"
+
+local john_boat_driver_chance = math.random()
+
+local john_dialogue_1 = nil
+local john_dialogue_2 = nil
+local john_dialogue_3 = nil
+local john_dialogue_4 = nil
+local john_dialogue_5 = nil
+local john_dialogue_6 = nil
+local john_dialogue_7 = nil
+local john_dialogue_8 = nil
+local john_dialogue_9 = nil
+local john_dialogue_10 = nil
+local john_dialogue_11 = nil
+local john_dialogue_12 = nil
+local john_dialogue_13 = nil
+local john_dialogue_14 = nil
+local john_dialogue_15 = nil
+
+if john_boat_driver_chance <= 0.1 then
+	john_dialogue_1 = "Play_bot_watchdogs_new_stage2_01"
+	john_dialogue_2 = "Play_bot_watchdogs_new_stage2_05"
+	john_dialogue_3 = "Play_bot_watchdogs_new_stage2_06"
+	john_dialogue_4 = "Play_bot_watchdogs_new_stage2_07"
+	john_dialogue_5 = "Play_bot_watchdogs_new_stage2_08"
+	john_dialogue_6 = "Play_bot_watchdogs_new_stage2_09"
+	john_dialogue_7 = "Play_bot_watchdogs_new_stage2_10"
+	john_dialogue_8 = "Play_bot_watchdogs_new_stage2_07"
+	john_dialogue_9 = "Play_bot_watchdogs_new_stage2_11"
+	john_dialogue_10 = "Play_bot_watchdogs_new_stage2_12"
+	john_dialogue_11 = "Play_bot_watchdogs_new_stage2_13"
+	john_dialogue_12 = "Play_bot_watchdogs_new_stage2_14"
+	john_dialogue_13 = "Play_bot_watchdogs_new_stage2_02"
+	john_dialogue_14 = "Play_bot_watchdogs_new_stage2_03"
+	john_dialogue_15 = "Play_bot_watchdogs_new_stage2_04"
+else
+	john_dialogue_1 = "bot_wd2_01"
+	john_dialogue_2 = "bot_wd2_02"
+	john_dialogue_3 = "bot_wd2_04a"
+	john_dialogue_4 = "bot_wd2_03"
+	john_dialogue_5 = "bot_wd2_06"
+	john_dialogue_6 = "bot_wd2_07"
+	john_dialogue_7 = "bot_wd2_08"
+	john_dialogue_8 = "bot_wd2_10"
+	john_dialogue_9 = "bot_wd2_11"
+	john_dialogue_10 = "bot_wd2_19"
+	john_dialogue_11 = "bot_wd2_20"
+	john_dialogue_12 = "bot_wd2_21b"
+	john_dialogue_13 = "Play_bot_a04"
+	john_dialogue_14 = "Play_bot_a05"
+	john_dialogue_15 = "Play_bot_a06"
+end
+
 return {
 	-- 10% of pre beta boat driver taking it's place
 	-- lights are on
@@ -284,10 +321,6 @@ return {
 	-- chance-based closed warehouse on all difficulties
 	[104001] = filter_easy_above_warehouse_1,
 	[104003] = filter_easy_above_warehouse_2,
-	--[104002] = closed_warehouse_front,
-	--[104004] = closed_warehouse_front,
-	--[104069] = closed_warehouse_front,
-	--[104008] = closed_warehouse_back,
 	-- disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
