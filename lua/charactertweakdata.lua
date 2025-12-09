@@ -1458,11 +1458,11 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		primary = {
 			["wpn_fps_shot_r870_npc"] = 3, -- Common portrayal
 			["wpn_fps_ass_g36_npc"] = 1, -- Common portrayal 2
+			["wpn_fps_smg_mp5_npc"] = 1, -- Used pre-Henchmen/skill tree background
 			["wpn_fps_ass_akm_npc"] = 1, -- Used in PDTH
 		},
 		secondary = {
 			["wpn_fps_pis_g18c_npc"] = 3, -- Used in PDTH
-			["wpn_fps_smg_mp5_npc"] = 2, -- Used pre-Henchmen/skill tree background
 			["wpn_fps_smg_m45_npc"] = 1, -- Alesso trailer
 		},
 		melee = {
@@ -1478,7 +1478,6 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		},
 		secondary = {
 			["wpn_fps_pis_rage_npc"] = 3, -- Used in PDTH
-			["wpn_fps_smg_mp5_npc"] = 1, -- Used in PDTH
 			["wpn_fps_smg_mac10_npc"] = 1, -- Used pre-U240.3
 		},
 		melee = {
@@ -1691,6 +1690,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		primary = {
 			["wpn_fps_ass_scar_npc"] = 6, -- Cartel Business poster
 			["wpn_fps_smg_polymer_npc"] = 1, -- Lost In Transit poster
+			["wpn_fps_ass_akm_gold_npc"] = 1, -- Mexican Cartel
 		},
 		secondary = {
 			["wpn_fps_pis_chinchilla_npc"] = 6, -- Signature
@@ -1698,7 +1698,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		},
 		melee = {
 			["agave"] = 3,
-			["chac"] = 1,
+			["chac"] = 1, -- Bexico
 		},
 	},
 	-- Joy

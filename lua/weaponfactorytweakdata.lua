@@ -2238,6 +2238,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_conversion_kit(tweak_data, "new_mp5", "wpn_fps_smg_mp5_m_straight", 24, nil, true)
 
 	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
+	self.parts.wpn_fps_pis_korth_m_6.stats.damage = 0
 	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
 	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -4
 	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
