@@ -88,7 +88,7 @@ M["levels/instances/unique/hox_breakout_road001/world/world"] = function(result)
 				{ id = 100109, delay = 0 },
 				{ id = 100124, delay = 0 },
 				{ id = 100098, delay = 0 }, -- add swats near spike trips
-			}	
+			}
 		end
 	end
 end
@@ -114,7 +114,7 @@ M["levels/instances/unique/xmn/xmn_breakout_road001/world/world"] = function(res
 				{ id = 100109, delay = 0 },
 				{ id = 100124, delay = 0 },
 				{ id = 100098, delay = 0 }, -- add swats near spike trips
-			}	
+			}
 		end
 	end
 end
