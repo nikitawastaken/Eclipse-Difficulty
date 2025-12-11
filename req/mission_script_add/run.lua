@@ -225,6 +225,7 @@ local optsGarageHunt = {
 	path_style = "none",
 	pose = "crouch",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsFirstStreet_AIsniper = {
@@ -233,6 +234,7 @@ local optsFirstStreet_AIsniper = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	scan = true,
 	so_action = "AI_sniper",
 }
@@ -283,6 +285,7 @@ local optsDozerHuntSO = {
 	SO_access = "4096",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsShieldSO = {
@@ -291,6 +294,7 @@ local optsShieldSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "AI_sniper",
 	pose = "crouch",
 	path_stance = "cbt",
@@ -301,6 +305,7 @@ local optsHideSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_idle_by_container",
 	interrupt_dis = 10,
 }
@@ -310,6 +315,7 @@ local optsHideCarSpoocSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "e_so_hide_under_car_enter",
 	interrupt_dis = 10,
 }
@@ -318,6 +324,7 @@ local optsSniperSO = {
 	needs_pos_rsrv = true,
 	align_position = true,
 	align_rotation = true,
+	use_instigator = true,
 	so_action = "AI_sniper",
 	pose = "stand",
 }

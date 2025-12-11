@@ -86,12 +86,36 @@ local optsCloaker_Basement = {
 	enemy = cloaker,
 	enabled = true,
 }
+local optsBesiegeDummyCloaker_1 = {
+	trigger_times = 0,
+	enemy = cloaker,
+	participate_to_group_ai = true,
+	spawn_action = "e_sp_repel_into_window",
+	enabled = true,
+}
+local optsBesiegeDummyCloaker_2 = {
+	trigger_times = 0,
+	enemy = cloaker,
+	participate_to_group_ai = true,
+	enabled = true,
+}
+local optsPreferedCloakerAdd1 = {
+	spawn_groups = { 400091, 400092, 400093, 400094, 400095, 400096, 400097, 400098, 400099 },
+	on_executed = {
+		{ id = 400101, delay = 0 },
+	},
+	enabled = true,
+}
+local optsCloakerHideGroup = {
+	followup_elements = { 400066, 400067, 400068, 400069, 400070, 400071, 400072, 400073, 400074, 400075, 400076, 400077, 400078, 400079, 400080, 400081 },
+}
 local optsCloaker_Hide_SO = {
 	SO_access = "1024",
 	scan = true,
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "e_so_idle_by_container",
 }
@@ -101,15 +125,68 @@ local optsDozer_Hide_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "e_so_sneak_wait_stand",
 }
 local optsDozerHunt_SO = {
 	SO_access = "4096",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
+local optsCloaker_Hide_SpotSO_1 = {
+	SO_access = "1024",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	action_duration_min = 120,
+	action_duration_max = 180,
+	so_action = "e_so_hide_under_car_enter",
+}
+local optsCloaker_Hide_SpotSO_2 = {
+	SO_access = "1024",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	action_duration_min = 120,
+	action_duration_max = 180,
+	so_action = "e_so_sneak_wait_crh",
+}
+local optsCloaker_Hide_SpotSO_3 = {
+	SO_access = "1024",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	action_duration_min = 120,
+	action_duration_max = 180,
+	so_action = "e_so_sneak_wait_crh_var3",
+}
+local optsCloaker_Hide_SpotSO_4 = {
+	SO_access = "1024",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	action_duration_min = 120,
+	action_duration_max = 180,
+	so_action = "e_so_sneak_wait_crh_var2",
+}
+local optsCloaker_Hide_SpotSO_5 = {
+	SO_access = "1024",
+	scan = true,
+	align_position = true,
+	needs_pos_rsrv = true,
+	align_rotation = true,
+	action_duration_min = 120,
+	action_duration_max = 180,
+	so_action = "e_so_hide_behind_door_enter",
+}
+
 local optsdozerdied_1 = {
 	on_executed = {
 		{ id = 400039, delay = 0 },
@@ -502,11 +579,53 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400058, "dozer_basement_1", Vector3(-494, 4796, -940), Rotation(0, 0, 0), optsSneaky_Bulldozer_1),
 	Eclipse.mission_elements.gen_dummy(400059, "dozer_basement_2", Vector3(-470.131, 5407.491, -922), Rotation(174, 0, 0), optsSneaky_Bulldozer_2),
 	Eclipse.mission_elements.gen_so(400060, "dozer_basement_hide_so_1", Vector3(-507, 4845, -940), Rotation(-90, 0, 0), optsDozer_Hide_SO),
-	Eclipse.mission_elements.gen_so(400061, "dozer_basement_hide_so_2", Vector3(-471, 5321, -940), Rotation(-90, 0, -0), optsDozer_Hide_SO),
+	Eclipse.mission_elements.gen_so(400061, "dozer_basement_hide_so_2", Vector3(-471, 5321, -940), Rotation(-90, 0, 0), optsDozer_Hide_SO),
 	Eclipse.mission_elements.gen_element_random(400062, "dozer", spawn_dozer_basement),
 	-- global basement blockades
 	Eclipse.mission_elements.gen_element_random(400063, "select_random_blockade", pick_blockade_units),
 	Eclipse.mission_elements.gen_missionscript(400064, "start_basement_units_blockade", spawn_basement_blockades),
+	
+	-- New Cloakers and their hiding spots
+	-- hiding spots
+	Eclipse.mission_elements.gen_so(400066, "cloaker_hide_so_1", Vector3(-317, 1536, -100), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400067, "cloaker_hide_so_2", Vector3(890, 1147, -100), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_2),
+	Eclipse.mission_elements.gen_so(400068, "cloaker_hide_so_3", Vector3(1295, 4243, -495), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400069, "cloaker_hide_so_4", Vector3(663, 3340, -500), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400070, "cloaker_hide_so_5", Vector3(-1275, 2394, -100), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_4),
+	Eclipse.mission_elements.gen_so(400071, "cloaker_hide_so_6", Vector3(-812.010, 4542.311, -100), Rotation(-93, 0, 0), optsCloaker_Hide_SpotSO_5),
+	Eclipse.mission_elements.gen_so(400072, "cloaker_hide_so_7", Vector3(-1275, 1713, -100), Rotation(180, 0, 0), optsCloaker_Hide_SpotSO_3),
+	Eclipse.mission_elements.gen_so(400073, "cloaker_hide_so_8", Vector3(-384, 2300, 300.395), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400074, "cloaker_hide_so_9", Vector3(218, 2300, 300.395), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400075, "cloaker_hide_so_10", Vector3(1463, 1770, 300), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400076, "cloaker_hide_so_11", Vector3(1463, 1070, 300), Rotation(0, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400077, "cloaker_hide_so_12", Vector3(-1400, 1045, -100), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400078, "cloaker_hide_so_13", Vector3(1220, 2153, -99.065), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400079, "cloaker_hide_so_14", Vector3(1072, 456, -100), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_1),
+	Eclipse.mission_elements.gen_so(400080, "cloaker_hide_so_15", Vector3(876, -21, -100), Rotation(-90, 0, 0), optsCloaker_Hide_SpotSO_2),
+	Eclipse.mission_elements.gen_so(400081, "cloaker_hide_so_16", Vector3(219, 1538, -100), Rotation(180, 0, 0), optsCloaker_Hide_SpotSO_1),
+	-- cloakers
+	Eclipse.mission_elements.gen_dummy(400082, "cloaker_spawn_1", Vector3(-1050, 3286, 301), Rotation(-90, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400083, "cloaker_spawn_2", Vector3(4261, 844, 300), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400084, "cloaker_spawn_3", Vector3(4261, 362, 300), Rotation(180, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400085, "cloaker_spawn_4", Vector3(-726, 6158, 300), Rotation(90, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400086, "cloaker_spawn_5", Vector3(-1222, 4557, 300), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400087, "cloaker_spawn_6", Vector3(515, 5646, 300.822), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400088, "cloaker_spawn_7", Vector3(1296, 3052, 300.935), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400089, "cloaker_spawn_8", Vector3(-2114, 7037, -500), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	Eclipse.mission_elements.gen_dummy(400090, "cloaker_spawn_9", Vector3(-3176, 6075, -500), Rotation(0, 0, 0), optsBesiegeDummyCloaker_2),
+	-- spawngroups
+	Eclipse.mission_elements.gen_spawngroup(400091, "hox_cloaker_spawngroup_01", { 400082 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400092, "hox_cloaker_spawngroup_02", { 400083 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400093, "hox_cloaker_spawngroup_03", { 400084 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400094, "hox_cloaker_spawngroup_04", { 400085 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400095, "hox_cloaker_spawngroup_05", { 400086 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400096, "hox_cloaker_spawngroup_06", { 400087 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400097, "hox_cloaker_spawngroup_07", { 400088 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400098, "hox_cloaker_spawngroup_08", { 400089 }, 0),
+	Eclipse.mission_elements.gen_spawngroup(400099, "hox_cloaker_spawngroup_09", { 400090 }, 0),
+	-- the whole system that does the thing
+	Eclipse.mission_elements.gen_preferedadd(400100, "hox_cloaker_spawns", optsPreferedCloakerAdd1),
+	Eclipse.mission_elements.gen_sogroup(400101, "hox_cloaker_hide_group", Vector3(0, 0, 0), Rotation(0, 0, 0), optsCloakerHideGroup),
 }
 
 return M

@@ -62,6 +62,7 @@ local optsBulldozer = {
 local optsDozerHunt_SO = {
 	SO_access = "4096",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -69,6 +70,7 @@ local optsHuntSO = {
 	SO_access = "8192",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsTaserChopper = {

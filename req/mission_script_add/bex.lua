@@ -44,17 +44,9 @@ local optsDefend_Dozer = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
-}
-local optsDefend_SWAT = {
-	SO_access = tostring(128 + 2048 + 8192),
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	interval = 2,
-	so_action = "AI_defend",
 }
 local optsDisable_dwdozers = {
 	toggle = "off",

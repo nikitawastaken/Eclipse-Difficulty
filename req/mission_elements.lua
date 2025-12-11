@@ -132,9 +132,9 @@ function M.gen_so(id, name, pos, rot, opts)
 			execute_on_startup = false,
 			rotation = rot,
 			base_delay = 0,
-			action_duration_min = 0,
+			action_duration_min = opts.action_duration_min or 0,
 			search_position = pos,
-			use_instigator = true,
+			use_instigator = opts.use_instigator or false,
 			trigger_times = 0,
 			trigger_on = "none",
 			search_distance = 0,
@@ -144,7 +144,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			repeatable = false,
 			attitude = "engage",
 			interval = 2,
-			action_duration_max = 0,
+			action_duration_max = opts.action_duration_max or 0,
 			align_rotation = opts.align_rotation or false,
 			pose = opts.pose or "none",
 			forced = opts.forced or false, --setting this to true skips the spawn anim
@@ -388,6 +388,34 @@ function M.gen_smokegrenade(id, name, pos, rot, opts)
 		},
 	}
 	return smokegrenade
+end
+
+---Generate a elementspecialobjectivegroup element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param opts? table: extra parameters
+function M.gen_sogroup(id, name, pos, rot, opts)
+	opts = opts or {}
+	local sogroup = {
+		id = id,
+		editor_name = name,
+		class = "ElementSpecialObjectiveGroup",
+		values = {
+			execute_on_startup = false,
+			position = pos,
+			rotation = rot,
+			use_instigator = false,
+			base_delay = opts.base_delay or 0,
+			base_chance = 1,
+			trigger_times = opts.trigger_times or 0,
+			mode = opts.mode or "recurring_cloaker_spawn",
+			followup_elements = opts.followup_elements or {},
+			on_executed = opts.on_executed or {},
+			enabled = true,
+			callback = opts.callback or false,
+		},
+	}
+	return sogroup
 end
 
 ---Generate a prefered add element

@@ -88,6 +88,12 @@ local offices_upper_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers,
+}
 return {
 	-- add ponr state
 	[102221] = {
@@ -149,9 +155,25 @@ return {
 			{ id = 100373, delay = 0 },
 		},
 	},
+	-- spawn ambush units at the end of the heist
 	[102020] = {
 		on_executed = {
 			{ id = 400064, delay = 0 },
+		},
+	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400100, delay = 0 },
+		},
+	},
+	[100047] = {
+		values = {
+			elements = {
+				103273,
+				103274,
+				400082,
+			},
 		},
 	},
 	-- Tweak keycard spawns
@@ -279,6 +301,15 @@ return {
 	[100694] = offices_upper_spawn,
 	[100139] = offices_upper_spawn,
 	[101688] = atrium_elevator_spawn,
+	[400091] = cloaker_spawn,
+	[400092] = cloaker_spawn,
+	[400093] = cloaker_spawn,
+	[400094] = cloaker_spawn,
+	[400095] = cloaker_spawn,
+	[400096] = cloaker_spawn,
+	[400097] = cloaker_spawn,
+	[400098] = cloaker_spawn,
+	[400099] = cloaker_spawn,
 	-- Holy FBI agents, Batman...
 	[101490] = fbi_agent,
 	[101492] = fbi_agent,

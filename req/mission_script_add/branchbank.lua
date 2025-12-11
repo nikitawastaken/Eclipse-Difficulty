@@ -19,6 +19,7 @@ local optsDefend_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
@@ -146,6 +147,7 @@ local optsHuntSO = {
 	SO_access = "4096",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
