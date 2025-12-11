@@ -31,6 +31,10 @@ ElementSpecialObjective._hiding_cloaker_actions = table.list_to_set({
 	"e_so_idle_by_container",
 	"e_so_sneak_wait_stand",
 	"e_so_sneak_wait_crh",
+	"e_so_sneak_wait_crh_var2",
+	"e_so_sneak_wait_crh_var3",
+	"e_so_hide_ledge_enter",
+	"e_so_hide_2_5m_vent_enter",
 	"e_so_hide_under_car_enter",
 	"e_so_hide_behind_door_enter",
 })
