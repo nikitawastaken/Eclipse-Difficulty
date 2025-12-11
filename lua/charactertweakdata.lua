@@ -387,7 +387,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_cloaker = based_on(presets.weapon.eclipse_good, {
 		stance_mul = nil_value,
 	})
-	reload_speed_multiplier(presets.weapon.eclipse_cloaker, 1.2)
+	reload_speed_multiplier(presets.weapon.eclipse_cloaker, 1.1)
 	presets.weapon.eclipse_cloaker.is_pistol.FALLOFF = {
 		{ dmg_mul = 5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.2, 0.4 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 5 * dmg_mul, r = 3000, acc = { 0.3, 0.5 }, recoil = { 0.4, 0.6 }, mode = { 1, 0, 0, 0 } },
@@ -874,7 +874,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.swat.flank = true
 	presets.enemy_chatter.swat.flash_grenade = true
 	presets.enemy_chatter.swat.open_fire = true
-	presets.enemy_chatter.swat.clear = true
 	presets.enemy_chatter.swat.watch_background = true
 	presets.enemy_chatter.swat.hostage_delay_1 = true
 	presets.enemy_chatter.swat.hostage_delay_2 = true
@@ -936,10 +935,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.enemy_chatter.shield = {
 		aggressive = true,
 		contact = true,
+		ready = true,
 		go_go = true,
-		reloading = true,
-		suppress = true,
 		push = true,
+		stand_by = true,
 		open_fire = true,
 		clear = true,
 	}
@@ -1458,11 +1457,11 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		primary = {
 			["wpn_fps_shot_r870_npc"] = 3, -- Common portrayal
 			["wpn_fps_ass_g36_npc"] = 1, -- Common portrayal 2
-			["wpn_fps_smg_mp5_npc"] = 1, -- Used pre-Henchmen/skill tree background
 			["wpn_fps_ass_akm_npc"] = 1, -- Used in PDTH
 		},
 		secondary = {
 			["wpn_fps_pis_g18c_npc"] = 3, -- Used in PDTH
+			["wpn_fps_smg_mp5_npc"] = 1, -- Used pre-Henchmen/skill tree background
 			["wpn_fps_smg_m45_npc"] = 1, -- Alesso trailer
 		},
 		melee = {
@@ -1478,6 +1477,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 		},
 		secondary = {
 			["wpn_fps_pis_rage_npc"] = 3, -- Used in PDTH
+			["wpn_fps_smg_mp5_npc"] = 1, -- Used in PDTH
 			["wpn_fps_smg_mac10_npc"] = 1, -- Used pre-U240.3
 		},
 		melee = {
