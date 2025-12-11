@@ -584,7 +584,7 @@ M.elements = {
 	-- global basement blockades
 	Eclipse.mission_elements.gen_element_random(400063, "select_random_blockade", pick_blockade_units),
 	Eclipse.mission_elements.gen_missionscript(400064, "start_basement_units_blockade", spawn_basement_blockades),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400066, "cloaker_hide_so_1", Vector3(-317, 1536, -100), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_1),
