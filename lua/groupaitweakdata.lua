@@ -3380,8 +3380,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_stealth_light = { 0, 2, 5 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 2, 1, 0 },
-			cs_defend_light = { 0, 1, 2 },
+			cs_defend_init = { 3, 1, 0 },
+			cs_defend_light = { 0, 2, 4 },
 		}
 	elseif difficulty_index == 3 then
 		self.besiege.assault.groups = {
@@ -3398,9 +3398,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_stealth_heavy = { 0, 1, 3 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 3, 1, 0 },
-			cs_defend_light = { 2, 3, 4 },
-			cs_defend_heavy = { 0, 0, 2 },
+			cs_defend_init = { 6, 2, 0 },
+			cs_defend_light = { 3, 4, 6 },
+			cs_defend_heavy = { 0, 1, 3 },
 		}
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
@@ -3418,12 +3418,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_stealth_heavy = { 0, 1, 3 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 4, 0, 0 },
-			cs_defend_light = { 3, 1, 0 },
+			cs_defend_init = { 3, 0, 0 },
+			cs_defend_light = { 2, 4, 0 },
 			cs_defend_heavy = { 1, 2, 0 },
 			fbi_defend_init = { 4, 2, 0 },
 			fbi_defend_light = { 0, 2, 6 },
-			fbi_defend_heavy = { 0, 0, 3 },
+			fbi_defend_heavy = { 0, 1, 3 },
 		}
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
@@ -3441,12 +3441,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_stealth_heavy = { 0, 2, 4 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 3, 0, 0 },
-			cs_defend_light = { 4, 2, 0 },
-			cs_defend_heavy = { 1, 3, 0 },
-			fbi_defend_init = { 4, 2, 0 },
+			cs_defend_init = { 4, 0, 0 },
+			cs_defend_light = { 3, 6, 0 },
+			cs_defend_heavy = { 2, 4, 0 },
+			fbi_defend_init = { 6, 3, 0 },
 			fbi_defend_light = { 0, 4, 8 },
-			fbi_defend_heavy = { 0, 0, 6 },
+			fbi_defend_heavy = { 0, 2, 6 },
 		}
 	else
 		self.besiege.assault.groups = {
@@ -3468,12 +3468,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 2, 0, 0 },
-			cs_defend_light = { 4, 2, 0 },
-			cs_defend_heavy = { 1, 3, 0 },
-			fbi_defend_init = { 3, 1, 0 },
-			fbi_defend_light = { 2, 4, 0 },
-			fbi_defend_heavy = { 0, 1, 4 },
-			elite_defend_light = { 0, 1, 4 },
+			cs_defend_light = { 6, 3, 0 },
+			cs_defend_heavy = { 4, 2, 0 },
+			fbi_defend_init = { 4, 2, 0 },
+			fbi_defend_light = { 3, 6, 0 },
+			fbi_defend_heavy = { 0, 2, 8 },
+			elite_defend_light = { 0, 2, 8 },
 		}
 	end
 
