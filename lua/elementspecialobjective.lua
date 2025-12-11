@@ -32,6 +32,7 @@ ElementSpecialObjective._hiding_cloaker_actions = table.list_to_set({
 	"e_so_sneak_wait_stand",
 	"e_so_sneak_wait_crh",
 	"e_so_hide_under_car_enter",
+	"e_so_hide_behind_door_enter",
 })
 
 -- "group_ai_flagged" -> flagged by SO group element, genuine GroupAI-handled hiding Cloaker SO
