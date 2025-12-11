@@ -139,7 +139,7 @@ return {
 	[100107] = {
 		on_executed = {
 			{ id = 400047, delay = 0 },
-			{ id = 400040, delay = 300, delay_rand = 60 },
+			{ id = 400102, delay = 300, delay_rand = 60 },
 		},
 	},
 	-- add unused snipers to atrium section

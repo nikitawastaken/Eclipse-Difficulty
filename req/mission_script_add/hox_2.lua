@@ -427,8 +427,21 @@ local optsenable_random_dozers = {
 		400012,
 	},
 }
-local spawn_dozer_global = {
+local optsstart_dozer_spawns = {
+	on_executed = {
+		{ id = 400040, delay = 0 },
+	},
 	enabled = dozer_event,
+	player_3 = true,
+	player_4 = true,
+	difficulty_normal = true,
+	difficulty_hard = true,
+	difficulty_overkill = true,
+	difficulty_overkill_145 = true,
+	difficulty_easy_wish = true,
+}
+local spawn_dozer_global = {
+	enabled = true,
 	on_executed = {
 		{ id = 400012, delay = 0 },
 		{ id = 400041, delay = 0 },
@@ -550,6 +563,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_toggleelement(400038, "disable_random_dozers", optsdisable_random_dozers),
 	Eclipse.mission_elements.gen_toggleelement(400039, "enable_random_dozers", optsenable_random_dozers),
 	Eclipse.mission_elements.gen_missionscript(400040, "hello_its_me_the_angry_man", spawn_dozer_global),
+	Eclipse.mission_elements.gen_element_filter(400102, "dozer_spawn_global", Vector3(0, 0, 0), Rotation(0, 0, 0), optsstart_dozer_spawns),
 	Eclipse.mission_elements.gen_dialogue(400041, "they_sending_dozers", Bain_senddozers),
 
 	-- suprise cloakers at the start of the heist (so evil)
