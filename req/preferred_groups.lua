@@ -61,6 +61,7 @@ local group_type_mapping = {
 	fbi_shield = "shield_group",
 	fbi_taser = "taser_group",
 	fbi_cloaker = "cloaker_group",
+	single_spooc = "cloaker_group_single",
 	fbi_bulldozer = "bulldozer_group",
 	elite_defend_light = "swat_group",
 	elite_defend_heavy = "swat_group",
@@ -92,13 +93,14 @@ M.no_agents = create_preferred({ "agent_group" })
 M.no_cops_agents = create_preferred({ "cop_group", "agent_group" })
 M.no_shields = create_preferred({ "shield_group" })
 M.no_bulldozers = create_preferred({ "bulldozer_group" })
-M.no_cloakers = create_preferred({ "cloaker_group" })
+M.no_cloakers = create_preferred({ "cloaker_group", "cloaker_group_single" })
 M.no_snipers = create_preferred({ "sniper_group" })
 M.no_shields_bulldozers = create_preferred({ "shield_group", "bulldozer_group" })
 M.no_cops_agents_shields = create_preferred({ "cop_group", "agent_group", "shield_group" })
 M.no_cops_agents_bulldozers = create_preferred({ "cop_group", "agent_group", "bulldozer_group" })
 M.no_cops_agents_shields_bulldozers = create_preferred({ "cop_group", "agent_group", "shield_group", "bulldozer_group" })
-M.no_cops_agents_hrt_cloakers_snipers = create_preferred({ "cop_group", "agent_group", "hrt_group", "cloaker_group", "sniper_group" })
-M.only_cloakers = create_preferred({ "cop_group", "swat_group", "heavy_group", "agent_group", "shield_group", "bulldozer_group", "taser_group", "sniper_group" })
+M.no_cops_agents_hrt_cloakers_snipers = create_preferred({ "cop_group", "agent_group", "hrt_group", "cloaker_group", "cloaker_group_single", "sniper_group" })
+M.only_cloakers = create_preferred({ "cop_group", "swat_group", "heavy_group", "agent_group", "shield_group", "bulldozer_group", "cloaker_group_single", "taser_group", "sniper_group" })
+M.only_cloakers_single = create_preferred({ "cop_group", "swat_group", "heavy_group", "agent_group", "shield_group", "bulldozer_group", "cloaker_group", "taser_group", "sniper_group" })
 
 return M

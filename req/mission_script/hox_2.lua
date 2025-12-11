@@ -92,7 +92,7 @@ local cloaker_spawn = {
 	values = {
 		interval = 90,
 	},
-	groups = preferred.only_cloakers,
+	groups = preferred.only_cloakers_single,
 }
 return {
 	-- add ponr state
