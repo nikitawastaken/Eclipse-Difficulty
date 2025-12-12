@@ -30,7 +30,6 @@ return function(timed_tactics, timed_random_tactics, spawn_point_ref)
 				end,
 				spawn = {
 					{
-						amount_max = 2,
 						rank = 2,
 						freq = 1,
 						unit = "fbi_readyteam",
