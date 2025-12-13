@@ -1593,6 +1593,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		cloaker_def = {
 			"no_push",
+			"smoke_grenade",
 		},
 		cloaker_agg = {
 			"flank",
@@ -2313,8 +2314,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 180,
-					diff_scale / 90,
+					diff_scale / 240,
+					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2347,8 +2348,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 180,
-					diff_scale / 90,
+					diff_scale / 300,
+					diff_scale / 150,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2626,8 +2627,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 180,
-					diff_scale / 90,
+					diff_scale / 240,
+					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -2660,8 +2661,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 180,
-					diff_scale / 90,
+					diff_scale / 300,
+					diff_scale / 150,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				amount_max = 1,
 				rank = 1,
@@ -3329,9 +3330,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.hostage_push_delay_mul = 1.5
 	self.besiege.assault.push_delay = {
-		diff_lerp(18, 15),
-		diff_lerp(15, 12),
-		diff_lerp(12, 9),
+		diff_lerp(20, 16),
+		diff_lerp(16, 12),
+		diff_lerp(12, 8),
 	}
 
 	-- GRENADES --
@@ -3376,8 +3377,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_shield = shield_wgt,
 		}
 		self.besiege.recon.groups = {
-			cs_stealth_init = { 5, 2, 0 },
-			cs_stealth_light = { 0, 2, 5 },
+			cs_stealth_init = { 3, 2, 1 },
+			cs_stealth_light = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 3, 1, 0 },
@@ -3393,9 +3394,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
-			cs_stealth_init = { 5, 2, 0 },
-			cs_stealth_light = { 0, 2, 5 },
-			cs_stealth_heavy = { 0, 1, 3 },
+			cs_stealth_init = { 5, 3, 1 },
+			cs_stealth_light = { 0, 2, 4 },
+			cs_stealth_heavy = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 6, 2, 0 },
@@ -3413,9 +3414,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
-			fbi_stealth_init = { 5, 2, 0 },
-			fbi_stealth_light = { 0, 2, 5 },
-			fbi_stealth_heavy = { 0, 1, 3 },
+			fbi_stealth_init = { 5, 3, 1 },
+			fbi_stealth_light = { 0, 2, 4 },
+			fbi_stealth_heavy = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 3, 0, 0 },
@@ -3437,8 +3438,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_init = { 4, 2, 0 },
-			fbi_stealth_light = { 0, 3, 6 },
-			fbi_stealth_heavy = { 0, 2, 4 },
+			fbi_stealth_light = { 0, 2, 4 },
+			fbi_stealth_heavy = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 4, 0, 0 },
@@ -3463,8 +3464,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 		self.besiege.recon.groups = {
 			fbi_stealth_init = { 4, 2, 0 },
-			fbi_stealth_light = { 0, 3, 6 },
-			fbi_stealth_heavy = { 0, 2, 4 },
+			fbi_stealth_light = { 0, 2, 4 },
+			fbi_stealth_heavy = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 2, 0, 0 },
