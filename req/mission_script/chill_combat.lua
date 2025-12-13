@@ -76,12 +76,12 @@ return {
 		reinforce = {
 			{
 				name = "touch_grass1",
-				force = 2,
+				force = 3,
 				position = Vector3(-1500, 800, 300),
 			},
 			{
 				name = "touch_grass2",
-				force = 2,
+				force = 3,
 				position = Vector3(-500, 2150, 300),
 			},
 		},

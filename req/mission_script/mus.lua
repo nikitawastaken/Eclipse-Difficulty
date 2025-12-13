@@ -76,7 +76,7 @@ return {
 			},
 		},
 		on_executed = { -- standard preferreds
-			{ id = 100127, delay = 90 },
+			{ id = 100127, delay = 75 },
 		},
 	},
 	-- restore ground snipers
