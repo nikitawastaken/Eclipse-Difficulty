@@ -106,12 +106,12 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Inspire
 	self.morale_boost_speed_bonus = 1.2
-	self.morale_boost_reload_speed_bonus = 1.3
+	self.morale_boost_reload_speed_bonus = 1.2
 	self.morale_boost_suppression_resistance = 0.9
 	self.morale_boost_time = 7
 	self.values.cooldown.long_dis_revive[1][2] = 120
 	self.skill_descs.inspire.multibasic = "7m"
-	self.skill_descs.inspire.multibasic2 = "30%"
+	self.skill_descs.inspire.multibasic2 = "20%"
 	self.skill_descs.inspire.multibasic3 = "10%"
 	self.skill_descs.inspire.multibasic4 = "7"
 	self.skill_descs.inspire.multipro = "120"
