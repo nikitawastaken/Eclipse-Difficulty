@@ -105,7 +105,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.medic_2x.multipro = "2"
 
 	-- Inspire
-	self.morale_boost_speed_bonus = 1.3
+	self.morale_boost_speed_bonus = 1.2
 	self.morale_boost_reload_speed_bonus = 1.3
 	self.morale_boost_suppression_resistance = 0.9
 	self.morale_boost_time = 7
