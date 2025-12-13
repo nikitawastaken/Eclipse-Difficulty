@@ -174,7 +174,7 @@ function NewNPCRaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, d
 			self._shoot_through_data.has_passed_shield = has_passed_shield or is_shield
 			self._shoot_through_data.ray_from_unit = ray_from_unit
 			self._shoot_through_data.ray_distance = ray_distance - col_ray.distance
-
+		
 			mvector3.set(self._shoot_through_data.from, direction)
 			mvector3.multiply(self._shoot_through_data.from, is_shield and 5 or 40)
 			mvector3.add(self._shoot_through_data.from, col_ray.position)
@@ -184,7 +184,7 @@ function NewNPCRaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, d
 				user_unit,
 				self._shoot_through_data.from,
 				mvector3.copy(direction),
-				dmg_mul,
+				dmg_mul * (self._shoot_through_data.has_passed_shield and 0.5 or 1),
 				shoot_player,
 				self._shoot_through_data
 			)
