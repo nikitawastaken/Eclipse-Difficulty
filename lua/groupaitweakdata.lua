@@ -238,7 +238,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			tank = 1,
 			spooc = 2,
 			medic = 2,
-			marksman = 0,
+			marksman = 1,
 		}
 	elseif difficulty_index == 5 then
 		self.special_unit_spawn_limits = {
@@ -247,7 +247,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			tank = 2,
 			spooc = 2,
 			medic = 3,
-			marksman = 0,
+			marksman = 2,
 		}
 	else
 		self.special_unit_spawn_limits = {
@@ -2011,18 +2011,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "cloaker",
 				tactics = self._tactics.cloaker_spt,
 			}, 1000, 3000, 3, 1),
-			self:_distance_weighted_spawn_entry({
-				freq = 1,
-				freq_by_diff = {
-					0,
-					diff_scale / 480,
-					diff_scale / 240,
-				},
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_sniper",
-				tactics = self._tactics.sniper,
-			}, 1000, 3000, 1, 3),
 		},
 	}
 
@@ -2067,18 +2055,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "fbi_shield",
 				tactics = self._tactics.shield,
 			}, 1000, 3000, 3, 1),
-			self:_distance_weighted_spawn_entry({
-				freq = 1,
-				freq_by_diff = {
-					0,
-					diff_scale / 480,
-					diff_scale / 240,
-				},
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_sniper",
-				tactics = self._tactics.sniper,
-			}, 1000, 3000, 1, 3),
 		},
 	}
 
@@ -2402,18 +2378,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "cloaker",
 				tactics = self._tactics.cloaker_spt,
 			}, 1000, 3000, 3, 1),
-			self:_distance_weighted_spawn_entry({
-				freq = 1,
-				freq_by_diff = {
-					0,
-					diff_scale / 480,
-					diff_scale / 240,
-				},
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_sniper",
-				tactics = self._tactics.sniper,
-			}, 1000, 3000, 1, 3),
 		},
 	}
 
@@ -2458,18 +2422,6 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				unit = "elite_shield",
 				tactics = self._tactics.shield,
 			}, 1000, 3000, 3, 1),
-			self:_distance_weighted_spawn_entry({
-				freq = 1,
-				freq_by_diff = {
-					0,
-					diff_scale / 480,
-					diff_scale / 240,
-				},
-				amount_max = 1,
-				rank = 1,
-				unit = "elite_sniper",
-				tactics = self._tactics.sniper,
-			}, 1000, 3000, 1, 3),
 		},
 	}
 
@@ -2760,6 +2712,33 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn_point_chk_ref = table.list_to_set(tank_spawn_point_ref),
 	}
 
+	-- Add Elite Snipers into reinforce groups on DW
+	local elite_sniper_reenforce = table.list_to_set({
+		"cs_defend_light",
+		"cs_defend_heavy",
+		"fbi_defend_light",
+		"fbi_defend_heavy",
+		"elite_defend_light",
+		"elite_defend_heavy",
+	})
+
+	for id, data in pairs(self.enemy_spawn_groups) do
+		if elite_sniper_reenforce[id] and is_eclipse then
+			data.spawn[#data.spawn + 1] = self:_distance_weighted_spawn_entry({
+				freq = 1,
+				freq_by_diff = {
+					0,
+					diff_scale / 360,
+					diff_scale / 180,
+				},
+				amount_max = 1,
+				rank = 1,
+				unit = "elite_sniper",
+				tactics = self._tactics.sniper,
+			}, 1000, 3000, 1, 3)
+		end
+	end
+	
 	for id, data in pairs(self.enemy_spawn_groups) do
 		for i, enemy in pairs(data.spawn) do
 			local category = self.unit_categories[enemy.unit]
@@ -3311,13 +3290,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Reenforce spawn interval
 	self.besiege.reenforce.interval = { 10, 20, 30 }
-	self.undershot_reenforce_mul = 2.5
+	self.undershot_reenforce_mul = 0
 	self.use_equipment_reenforce = true
-	self.equipment_reenforce = {
-		doctor_bag = true,
-		ammo_bag = true,
-		grenade_case = true,
-	}
+	self.equipment_reenforce = table.list_to_set({
+		"doctor_bag",
+		"ammo_bag",
+		"grenade_case",
+	})
 
 	-- Recon spawn interval and spawncap
 	self.besiege.recon.interval_variation = 30

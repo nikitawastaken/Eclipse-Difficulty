@@ -77,6 +77,30 @@ return {
 			},
 		},
 	},
+	[100969] = { -- Interacted with zipline 1
+		reinforce = {
+			{
+				name = "zipline1",
+				force = 2,
+				position = Vector3(6550, 5875, 0),
+			},
+		},
+	},
+	[100912] = { -- Interacted with zipline 2
+		reinforce = {
+			{
+				name = "zipline2",
+				force = 2,
+				position = Vector3(3550, 4085, 0),
+			},
+		},
+	},
+	[100953] = {
+		reinforce = {
+			{ name = "zipline1" },
+			{ name = "zipline2" },
+		},
+	},
 	-- tweak swat vans
 	-- Disable the turret
 	[101147] = disabled,
