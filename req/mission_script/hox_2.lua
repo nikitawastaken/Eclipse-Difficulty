@@ -188,11 +188,11 @@ return {
 		},
 	},
 	-- No extra checkpoint keycard on Pro Job
-	[103764] = {
+	[103764] = is_pro_job and {
 		on_executed = {
-			{ id = 101469, remove = is_pro_job and true or nil },
+			{ id = 101469, remove = true },
 		},
-	},
+	} or nil,
 	-- Lower upstairs keycard chance, you're getting a good camping spot anyway
 	[101628] = {
 		values = {
