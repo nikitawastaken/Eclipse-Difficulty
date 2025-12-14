@@ -323,7 +323,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_range = 125
-	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_range = 400
+	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_force = 400
 	presets.weapon.eclipse_elite_shield.is_shotgun_mag.melee_retry_delay = { 2, 3 }
 	presets.weapon.eclipse_elite_shield.is_shotgun_mag.range = { close = 750, optimal = 1500, far = 3000 }
 	presets.weapon.eclipse_elite_shield.is_shotgun_mag.FALLOFF = {
