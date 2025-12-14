@@ -89,7 +89,7 @@ Hooks:OverrideFunction(SawHit, "fire", function(self, from_pos, direction, dmg_m
 end)
 
 -- Elite Shields cannot be penetrated
-Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul) 
+Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit, from_pos, direction, dmg_mul, shoot_player, spread_mul, autohit_mul, suppr_mul)
 	local result = {}
 	local hit_unit = nil
 	from_pos = self._obj_fire:position()
@@ -98,7 +98,7 @@ Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit,
 	mvec3_add(from_pos, direction * -30)
 	mvector3.set(mvec_spread_direction, direction)
 	mvector3.set(mvec_to, mvec_spread_direction)
-	mvector3.multiply(mvec_to, 200) 
+	mvector3.multiply(mvec_to, 200)
 	mvector3.add(mvec_to, from_pos)
 
 	local damage = self:_get_current_damage(dmg_mul)
@@ -113,11 +113,11 @@ Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit,
 			local is_shield = hit.unit:in_slot(8) and alive(hit.unit:parent())
 			local parent_unit_tweak = hit.unit:parent() and hit.unit:parent():base() and hit.unit:parent():base()._tweak_table
 			local no_penetration = parent_unit_tweak and tweak_data.character[parent_unit_tweak] and tweak_data.character[parent_unit_tweak].no_shield_penetration
-			
-			if is_shield and no_penetration then 
+
+			if is_shield and no_penetration then
 				break
 			end
-			
+
 			if not ray_table_contains(hits, hit.unit) then
 				table.insert(hits, hit)
 			elseif hit.unit:character_damage() and hit.unit:character_damage().is_head and hit.unit:character_damage():is_head(hit.body) then
@@ -143,14 +143,14 @@ Hooks:OverrideFunction(SawWeaponBase, "_fire_raycast", function(self, user_unit,
 
 	if self._alert_events then
 		result.rays = {
-			col_ray
+			col_ray,
 		}
 	end
 
 	if col_ray then
 		managers.statistics:shot_fired({
 			hit = true,
-			weapon_unit = self._unit
+			weapon_unit = self._unit,
 		})
 	end
 
