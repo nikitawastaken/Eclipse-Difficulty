@@ -850,6 +850,7 @@ function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding
 		end
 	end
 
+	self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
 	self:_retire_hiding_cloaker(data, group_id, group)
 	return false
 end
@@ -929,4 +930,25 @@ function GroupAIStateBase:_get_closest_group(from_pos, groups)
 		end
 	end
 	return best_group, best_group_dis
+end
+
+function GroupAIStateBase:_distance_to_group_objective_area(from_pos, group, as_square)
+	local target_area = group.objective and (group.objective.target_area or group.objective.area)
+	if target_area and target_area.pos then
+		local mvec_func = as_square and mvector3.distance_sq or mvector3.distance
+		return mvec_func(from_pos, target_area.pos)
+	end
+	return math.huge
+end
+
+function GroupAIStateBase:_get_group_center_nav_seg(group)
+	local group_center_pos = self:_get_group_center_pos(group)
+	local group_center_nav_seg = managers.navigation:get_nav_seg_from_pos(group_center_pos)
+	return group_center_nav_seg
+end
+
+function GroupAIStateBase:_get_group_center_area(group)
+	local group_center_nav_seg = self:_get_group_center_nav_seg(group)
+	local group_center_area = self:get_area_from_nav_seg_id(group_center_nav_seg)
+	return group_center_area
 end
