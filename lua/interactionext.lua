@@ -1,8 +1,11 @@
+-- The Inspire changes that were done here blow the game up
+-- There is no _ext_movement on BaseInteractionExt
+-- Not sure if it's needed here, PlayerStandard:_get_interaction_speed() was changed to do something similar
 function BaseInteractionExt:_get_timer()
 	local modified_timer = self:_get_modified_timer()
-	local dt = managers.player:player_timer():delta_time()
-	local morale_boost_bonus = self._ext_movement:morale_boost()
-	local is_inspired = dt * morale_boost_bonus.move_speed_bonus
+	-- local dt = managers.player:player_timer():delta_time()
+	-- local morale_boost_bonus = self._ext_movement:morale_boost()
+	-- local is_inspired = dt * morale_boost_bonus.move_speed_bonus
 
 	if modified_timer then
 		return modified_timer
@@ -26,7 +29,8 @@ function BaseInteractionExt:_get_timer()
 
 	multiplier = multiplier * managers.player:upgrade_value("player", "total_interaction_timer_multiplier", 1)
 
-	return self:_timer_value() * multiplier * is_inspired * managers.player:toolset_value()
+	-- return self:_timer_value() * multiplier * is_inspired * managers.player:toolset_value()
+	return self:_timer_value() * multiplier * managers.player:toolset_value()
 end
 
 function IntimitateInteractionExt:_interact_blocked(player)
