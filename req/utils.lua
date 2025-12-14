@@ -291,6 +291,7 @@ end
 -- Based on Bank Heist's hiding Cloaker SO setup
 -- search_position must be the same for all GroupAI hiding SOs
 -- interrupt_dis is in meters
+-- The SO group element must also be in AI navigation (or at least able to be found by GroupAI)
 function M.get_hiding_cloaker_so_opts(so_action, search_position, interrupt_dis)
 	return {
 		SO_access = "1024",

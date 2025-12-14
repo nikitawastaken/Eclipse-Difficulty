@@ -7,6 +7,9 @@ local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
+
+local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
+
 local dozer_random_amount = overkill_and_above and 2 or 1
 local dozers_respawn = (is_eclipse and 240 or 300) - (is_eclipse_pro and 60 or is_pro_job and 30 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
@@ -136,56 +139,14 @@ local optsDozerHunt_SO = {
 	interval = 2,
 	so_action = "AI_hunt",
 }
-local optsCloaker_Hide_SpotSO_1 = {
-	SO_access = "1024",
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	action_duration_min = 120,
-	action_duration_max = 180,
-	so_action = "e_so_hide_under_car_enter",
-}
-local optsCloaker_Hide_SpotSO_2 = {
-	SO_access = "1024",
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	action_duration_min = 120,
-	action_duration_max = 180,
-	so_action = "e_so_sneak_wait_crh",
-}
-local optsCloaker_Hide_SpotSO_3 = {
-	SO_access = "1024",
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	action_duration_min = 120,
-	action_duration_max = 180,
-	so_action = "e_so_sneak_wait_crh_var3",
-}
-local optsCloaker_Hide_SpotSO_4 = {
-	SO_access = "1024",
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	action_duration_min = 120,
-	action_duration_max = 180,
-	so_action = "e_so_sneak_wait_crh_var2",
-}
-local optsCloaker_Hide_SpotSO_5 = {
-	SO_access = "1024",
-	scan = true,
-	align_position = true,
-	needs_pos_rsrv = true,
-	align_rotation = true,
-	action_duration_min = 120,
-	action_duration_max = 180,
-	so_action = "e_so_hide_behind_door_enter",
-}
+
+-- Hiding Cloaker SOs are funny
+local hide_so_search_pos = Vector3(0, 2700, -100)
+local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var2", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_5 = get_hiding_cloaker_so_opts("e_so_hide_behind_door_enter", hide_so_search_pos)
 
 local optsdozerdied_1 = {
 	on_executed = {
@@ -639,7 +600,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400099, "hox_cloaker_spawngroup_09", { 400090 }, 0),
 	-- the whole system that does the thing
 	Eclipse.mission_elements.gen_preferedadd(400100, "hox_cloaker_spawns", optsPreferedCloakerAdd1),
-	Eclipse.mission_elements.gen_sogroup(400101, "hox_cloaker_hide_group", Vector3(0, 0, 0), Rotation(0, 0, 0), optsCloakerHideGroup),
+	Eclipse.mission_elements.gen_sogroup(400101, "hox_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
 }
 
 return M
