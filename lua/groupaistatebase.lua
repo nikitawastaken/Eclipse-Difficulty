@@ -669,10 +669,7 @@ end
 
 function GroupAIStateBase:_evaluate_hiding_cloaker_groups(data, hiding_cloaker_tweak)
 	local junk_groups = nil
-	local hide_retry_delay = hiding_cloaker_tweak.hide_retry_delay or {
-		10,
-		20,
-	}
+	local hide_retry_delay = hiding_cloaker_tweak.hide_retry_delay or { 10, 20 }
 
 	for group_id, group in pairs(data.groups) do
 		if not group.objective.hide_retry_delay then
@@ -741,10 +738,9 @@ local remove_group_reasons = table.list_to_set({
 })
 
 function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
-	local assault_chance = hiding_cloaker_tweak.assault_on_objective_failed_chance or 0.5
 	for group_id, junk_reason in pairs(junk_groups) do
-		local assault = assault_chance == 1 or math.random() < assault_chance
 		local group = data.groups[group_id]
+		local assault = group and ((group.rehide_attempts or 0) >= (group.max_rehide_attempts or 0))
 		if not group or remove_group_reasons[junk_reason] then
 			data.groups[group_id] = nil
 		elseif assault then
@@ -791,9 +787,13 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 
 	local new_group = self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, nil)
 	if new_group then
+		local max_rehide_attempts = hiding_cloaker_tweak.max_rehide_attempts or { 0, 3 }
 		data.groups = data.groups or {}
 		data.groups[new_group.id] = new_group
+		new_group.hiding_cloaker_data = data
 		new_group.last_element = element
+		new_group.rehide_attempts = 0
+		new_group.max_rehide_attempts = math.random(max_rehide_attempts[1], max_rehide_attempts[2])
 
 		if hiding_cloaker_tweak.use_spawn_noise ~= false then
 			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
@@ -801,9 +801,14 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 		end
 	end
 
-	data.delay_t = math.max(data.delay_t, self._t + math.lerp(data.interval[1], data.interval[2], math.random()))
+	self:_delay_new_hiding_cloakers(data, data.interval)
 
 	return new_group and true
+end
+
+function GroupAIStateBase:_delay_new_hiding_cloakers(data, time_tbl)
+	time_tbl = time_tbl or data.interval or { 20, 40 }
+	data.delay_t = math.max(data.delay_t, self._t + math.rand(time_tbl[1], time_tbl[2]))
 end
 
 function GroupAIStateBase:_retire_hiding_cloaker(data, group_id, group)
@@ -811,13 +816,13 @@ function GroupAIStateBase:_retire_hiding_cloaker(data, group_id, group)
 	self:_assign_group_to_retire(group)
 end
 
--- TODO? forbid certain group types that should not be joinable
 function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 	local group_center_pos = self:_get_group_center_pos(group)
+	local no_join_groups = hiding_cloaker_tweak.no_join_groups or {}
 	local function try_reassign_to_task(obj_type)
 		local grps = {}
 		for grp_id, grp in pairs(self._groups) do
-			if not data.groups[grp_id] and grp.objective.type == obj_type then
+			if not data.groups[grp_id] and not no_join_groups[grp.type] and grp.objective.type == obj_type then
 				table.insert(grps, grp)
 			end
 		end
@@ -825,6 +830,7 @@ function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding
 		local new_grp = self:_get_closest_group(group_center_pos, grps)
 		if new_grp then
 			data.groups[group_id] = nil
+			self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
 			for u_key, u_data in pairs(group.units) do
 				self:unit_leave_group(u_data.unit, false)
 				self:_add_group_member(new_grp, u_key)
@@ -833,14 +839,15 @@ function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding
 		end
 	end
 
-	if try_reassign_to_task("assault_area") then
-		return true
-	-- elseif try_reassign_to_task("recon_area") then
-	-- 	return true
-	-- elseif try_reassign_to_task("reenforce_area") then
-	-- 	return true
-	elseif self:_rehide_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak) then
-		return true
+	local ordered_obj_types = {
+		"assault_area",
+		-- "recon_area",
+		-- "reenforce_area",
+	}
+	for _, obj_type in ipairs(ordered_obj_types) do
+		if try_reassign_to_task(obj_type) then
+			return true
+		end
 	end
 
 	self:_retire_hiding_cloaker(data, group_id, group)
@@ -856,30 +863,42 @@ function GroupAIStateBase:_rehide_hiding_cloaker(data, group_id, group, hiding_c
 	self:_set_objective_to_enemy_group(group, grp_objective)
 
 	for u_key, u_data in pairs(group.units) do
+		local u_brain = u_data.unit:brain()
 		local element = so_grp_element:choose_followup_SO(u_data.unit, {})
 		local objective = element:get_objective(u_data.unit)
 		objective.interrupt_health = nil
 		objective.grp_objective = grp_objective
-		if not u_data.unit:brain():is_available_for_assignment(objective) then
-			u_data.unit:brain():set_followup_objective(objective)
+		if u_brain:objective() and not u_brain:is_available_for_assignment(objective) then
+			u_brain:set_followup_objective(objective)
 		else
 			self:set_enemy_assigned(objective.area or grp_objective.area, u_key)
 
 			element:clbk_objective_administered(u_data.unit)
 
-			u_data.unit:brain():set_objective(objective)
+			u_brain:set_objective(objective)
 		end
 		objective.interrupt_health = u_data.unit:character_damage():health_ratio() - 0.01
 
-		local u_objective = u_data.unit:brain():objective()
+		local u_objective = u_brain:objective()
 		if not u_objective or (u_objective ~= objective and u_objective.followup_objective ~= objective) then
 			self:_retire_hiding_cloaker(data, group_id, group)
 			return false
 		end
 	end
 
+	group.rehide_attempts = (group.rehide_attempts or 0) + 1
+
 	return true
 end
+
+-- _remove_group_member() returns true if the group was emptied
+Hooks:PostHook(GroupAIStateBase, "_remove_group_member", "eclipse__remove_group_member", function(self, group)
+	local data = Hooks:GetReturn() and group.hiding_cloaker_data
+	if data and data.delay_t then
+		local hiding_cloaker_tweak = self._tweak_data.cloaker
+		self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak and hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
+	end
+end)
 
 function GroupAIStateBase:_distance_to_group_center(from_pos, group, as_square)
 	local mvec_func = as_square and mvector3.distance_sq or mvector3.distance

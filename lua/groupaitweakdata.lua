@@ -2718,8 +2718,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				rank = 1,
 				unit = "cloaker",
-				tactics = self._tactics.cloaker_agg,
-				random_tactics = self._random_tactics.cloaker,
+				tactics = self._tactics.cloaker_spt,
 			},
 		},
 	}
@@ -3488,8 +3487,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(60, 20),
 		diff_lerp(120, 40),
 	}
-	self.besiege.cloaker.hide_durations = { 120, 180 }
-	self.besiege.cloaker.hide_retry_delay = { 10, 20 }
+	self.besiege.cloaker.group_removed_delay_t = {
+		2,
+		7,
+	}
+	self.besiege.cloaker.hide_durations = {
+		120,
+		180,
+	}
+	self.besiege.cloaker.hide_retry_delay = {
+		10,
+		20,
+	}
 	self.besiege.cloaker.avoid_repeat_hiding_spots = true
 	self.besiege.cloaker.avoid_repeat_hiding_spots_min_elements = 2
 	self.besiege.cloaker.simultaneous_hiding_limit = 1
@@ -3497,7 +3506,50 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.cloaker.use_spawn_noise = true
 	self.besiege.cloaker.use_idle_noise_when_hiding = true
 	self.besiege.cloaker.whistle_on_leave_hiding = false -- Has whistle chatter now
-	self.besiege.cloaker.assault_on_objective_failed_chance = 0.5
+	self.besiege.cloaker.max_rehide_attempts = {
+		0,
+		3,
+	}
+	self.besiege.cloaker.no_join_groups = table.list_to_set({
+		-- CS-tier (allergic to navy blue uniforms)
+		-- Will always retire after rehides expire on Normal difficulty
+		"cs_defend_init",
+		"cs_defend_light",
+		"cs_defend_heavy",
+		"cs_stealth_init",
+		"cs_stealth_light",
+		"cs_stealth_heavy",
+		"cs_cops",
+		"cs_swats",
+		"cs_heavies",
+		"cs_shield",
+		"cs_taser",
+		"cs_bulldozer",
+
+		-- Other hiding Cloakers
+		"single_spooc",
+
+		-- Event bosses
+		"snowman_boss",
+		"piggydozer",
+
+		-- Good game design
+		"Phalanx",
+		"marshal_squad",
+
+		-- Scripted spawns
+		"custom_assault",
+		"custom_recon",
+
+		-- Timed groups
+		"bellmead_group1",
+		"fbi_group1",
+		"gensec_group1",
+		"murky_group1",
+		"murky_scripted_group1",
+		"us_group1",
+		"us_scripted_group1",
+	})
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = clone(self.besiege.cloaker.interval)
 
 	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
