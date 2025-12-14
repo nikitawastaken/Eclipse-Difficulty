@@ -1284,6 +1284,13 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.taser.HEALTH_INIT = 36
 	self.taser.headshot_dmg_mul = 2.5 -- 144 head health
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
+	self.taser.chatter = {
+		flash_grenade = true,
+		smoke = true,
+		entrance = true,
+		aggressive = true,
+		contact = true
+	}
 	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
 
 	self.zeal_taser = deep_clone(self.taser)
@@ -1294,11 +1301,19 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance" -- bulldozah coming through!!!
 	self.tank.melee_weapon = "weapon"
+	self.tank.chatter = {
+		flash_grenade = true,
+		smoke = true,
+		entrance = true,
+		aggressive = true,
+		contact = true
+	}
 	self.tank.die_sound_event = (faction == "russia" or faction == "federales") and "bdz_x02a_any_3p" or nil -- Fix Dozer's death sound for foreign factions
 
 	self.tank_medic.HEALTH_INIT = 400
 	self.tank_medic.headshot_dmg_mul = 25 -- 160 head health
 	self.tank_medic.die_sound_event = self.tank.die_sound_event
+	self.tank_medic.chatter = self.tank.chatter
 
 	self.tank_hw.HEALTH_INIT = 200
 	self.tank_hw.headshot_dmg_mul = 1
@@ -1307,6 +1322,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank_hw.move_speed_mul = { walk = 0.75, run = 0.75 }
 	self.tank_hw.melee_weapon = "helloween"
 	self.tank_hw.die_sound_event = self.tank.die_sound_event
+	self.tank_hw.chatter = self.tank.chatter
 	--self.tank_hw.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite headless bulldozah coming through!!!
 
 	self.city_tank = deep_clone(self.tank)
