@@ -1,42 +1,6 @@
 ---@module Preferred Groups
 local M = {}
 
-local default_preferred = {
-	cs_defend_init = true,
-	cs_defend_light = true,
-	cs_defend_heavy = true,
-	cs_stealth_init = true,
-	cs_stealth_light = true,
-	cs_stealth_heavy = true,
-	cs_cops = true,
-	cs_swats = true,
-	cs_heavies = true,
-	cs_shield = true,
-	cs_taser = true,
-	cs_bulldozer = true,
-	fbi_defend_init = true,
-	fbi_defend_light = true,
-	fbi_defend_heavy = true,
-	fbi_stealth_init = true,
-	fbi_stealth_light = true,
-	fbi_stealth_heavy = true,
-	fbi_swats = true,
-	fbi_heavies = true,
-	fbi_shield = true,
-	fbi_taser = true,
-	fbi_cloaker = true,
-	fbi_bulldozer = true,
-	elite_defend_light = true,
-	elite_defend_heavy = true,
-	elite_swats = true,
-	elite_heavies = true,
-	elite_sniper = true,
-	elite_shield = true,
-	elite_taser = true,
-	elite_bulldozer = true,
-	elite_bulldozer_shield = true,
-}
-
 local group_type_mapping = {
 	cs_defend_init = "cop_group",
 	cs_defend_light = "swat_group",
@@ -74,33 +38,57 @@ local group_type_mapping = {
 	elite_bulldozer_shield = "shield_group",
 }
 
-local function create_preferred(excluded_types)
-	local new_preferred = clone(default_preferred)
+-- If include, types are the group types to include (unspecified group types are set to false)
+-- If not include, types are the group types to exclude (unspecified group types are set to true)
+local function create_preferred(types, include)
+	local function included_func(a, b)
+		if include then
+			return a ~= b
+		else
+			return a == b
+		end
+	end
+
+	local new_preferred = {}
 	for group, group_type in pairs(group_type_mapping) do
-		for _, excluded_type in pairs(excluded_types) do
-			if group_type == excluded_type then
-				new_preferred[group] = false
-			end
+		for _, typ in pairs(types) do
+			new_preferred[group] = included_func(group_type, typ)
 		end
 	end
 
 	return new_preferred
 end
 
-M.all_groups = clone(default_preferred)
-M.no_cops = create_preferred({ "cop_group" })
-M.no_agents = create_preferred({ "agent_group" })
-M.no_cops_agents = create_preferred({ "cop_group", "agent_group" })
-M.no_shields = create_preferred({ "shield_group" })
-M.no_bulldozers = create_preferred({ "bulldozer_group" })
+-- "cloaker_group_single" is excluded from regular spawns
+M.all_groups = create_preferred({})
+M.no_cops = create_preferred({ "cop_group", "cloaker_group_single" })
+M.no_agents = create_preferred({ "agent_group", "cloaker_group_single" })
+M.no_cops_agents = create_preferred({ "cop_group", "agent_group", "cloaker_group_single" })
+M.no_shields = create_preferred({ "shield_group", "cloaker_group_single" })
+M.no_bulldozers = create_preferred({ "bulldozer_group", "cloaker_group_single" })
 M.no_cloakers = create_preferred({ "cloaker_group", "cloaker_group_single" })
-M.no_snipers = create_preferred({ "sniper_group" })
-M.no_shields_bulldozers = create_preferred({ "shield_group", "bulldozer_group" })
-M.no_cops_agents_shields = create_preferred({ "cop_group", "agent_group", "shield_group" })
-M.no_cops_agents_bulldozers = create_preferred({ "cop_group", "agent_group", "bulldozer_group" })
-M.no_cops_agents_shields_bulldozers = create_preferred({ "cop_group", "agent_group", "shield_group", "bulldozer_group" })
+M.no_snipers = create_preferred({ "sniper_group", "cloaker_group_single" })
+M.no_shields_bulldozers = create_preferred({ "shield_group", "bulldozer_group", "cloaker_group_single" })
+M.no_cops_agents_shields = create_preferred({ "cop_group", "agent_group", "shield_group", "cloaker_group_single" })
+M.no_cops_agents_bulldozers = create_preferred({ "cop_group", "agent_group", "bulldozer_group", "cloaker_group_single" })
+M.no_cops_agents_shields_bulldozers = create_preferred({ "cop_group", "agent_group", "shield_group", "bulldozer_group", "cloaker_group_single" })
 M.no_cops_agents_hrt_cloakers_snipers = create_preferred({ "cop_group", "agent_group", "hrt_group", "cloaker_group", "cloaker_group_single", "sniper_group" })
-M.only_cloakers = create_preferred({ "cop_group", "swat_group", "heavy_group", "agent_group", "shield_group", "bulldozer_group", "cloaker_group_single", "taser_group", "sniper_group" })
-M.only_cloakers_single = create_preferred({ "cop_group", "swat_group", "heavy_group", "agent_group", "shield_group", "bulldozer_group", "cloaker_group", "taser_group", "sniper_group" })
+M.only_cloakers = create_preferred({ "cloaker_group" }, true)
+M.only_cloakers_single = create_preferred({ "cloaker_group_single" }, true)
+
+function M.get_as_list(preferred)
+	if type(preferred) ~= "table" then
+		Eclipse:warn_console("Invalid preferred argument in Eclipse.preferred.get_as_list()!")
+		return {}
+	end
+
+	local preferred_list = {}
+	for group, enabled in pairs(preferred) do
+		if enabled then
+			table.insert(preferred_list, group)
+		end
+	end
+	return preferred_list
+end
 
 return M
