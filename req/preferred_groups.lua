@@ -43,9 +43,9 @@ local group_type_mapping = {
 local function create_preferred(types, include)
 	local function included_func(a, b)
 		if include then
-			return a ~= b
-		else
 			return a == b
+		else
+			return a ~= b
 		end
 	end
 
