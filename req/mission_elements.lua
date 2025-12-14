@@ -133,7 +133,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			rotation = rot,
 			base_delay = 0,
 			action_duration_min = opts.action_duration_min or 0,
-			search_position = pos,
+			search_position = opts.search_position or pos,
 			use_instigator = opts.use_instigator or false,
 			trigger_times = 0,
 			trigger_on = "none",
@@ -143,7 +143,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			path_haste = "run",
 			repeatable = false,
 			attitude = "engage",
-			interval = 2,
+			interval = opts.interval or 2,
 			action_duration_max = opts.action_duration_max or 0,
 			align_rotation = opts.align_rotation or false,
 			pose = opts.pose or "none",
@@ -152,7 +152,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			interaction_voice = "none",
 			SO_access = opts.SO_access or "512", -- default to sniper
 			chance_inc = 0,
-			interrupt_dmg = 1,
+			interrupt_dmg = opts.interrupt_dmg or 1,
 			interrupt_objective = false,
 			on_executed = opts.on_executed or {},
 			spawn_instigator_ids = opts.spawn_instigator_ids or {},
@@ -160,6 +160,7 @@ function M.gen_so(id, name, pos, rot, opts)
 			interrupt_dis = opts.interrupt_dis or 1,
 			patrol_path = "none",
 			callback = opts.callback or false,
+			no_arrest = opts.no_arrest or false,
 		},
 	}
 
