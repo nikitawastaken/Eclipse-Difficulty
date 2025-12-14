@@ -2738,7 +2738,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			}, 1000, 3000, 1, 3)
 		end
 	end
-	
+
 	for id, data in pairs(self.enemy_spawn_groups) do
 		for i, enemy in pairs(data.spawn) do
 			local category = self.unit_categories[enemy.unit]
