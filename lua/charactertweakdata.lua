@@ -1289,7 +1289,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 		smoke = true,
 		entrance = true,
 		aggressive = true,
-		contact = true
+		contact = true,
 	}
 	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
 
@@ -1306,7 +1306,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 		smoke = true,
 		entrance = true,
 		aggressive = true,
-		contact = true
+		contact = true,
 	}
 	self.tank.die_sound_event = (faction == "russia" or faction == "federales") and "bdz_x02a_any_3p" or nil -- Fix Dozer's death sound for foreign factions
 
