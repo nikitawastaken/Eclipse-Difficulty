@@ -1,7 +1,7 @@
 local level_id = Eclipse.utils.level_id()
 
-local expensive_sniper_heists = table.list_to_set({
-	["trai"] = true,
+local expensive_ilija_heists = table.list_to_set({
+	"trai",
 })
 
 Hooks:PostHook(PrePlanningTweakData, "init", "eclipse_init", function(self)
@@ -14,8 +14,8 @@ Hooks:PostHook(PrePlanningTweakData, "init", "eclipse_init", function(self)
 	-- Bexico
 	self.types.bex_car_pull.budget_cost = 8
 	self.types.bex_zipline.budget_cost = 4
-
-	if expensive_sniper_heists[level_id] then
+	
+	if expensive_ilija_heists[level_id] then
 		self.types.sniper.budget_cost = 6
 	else
 		self.types.sniper.budget_cost = 4
