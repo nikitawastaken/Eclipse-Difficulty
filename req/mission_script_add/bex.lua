@@ -5,6 +5,8 @@ local scripted_enemy = Eclipse.scripted_enemy
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 
+local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
+
 local green_bulldozer = scripted_enemy.bulldozer_1
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
