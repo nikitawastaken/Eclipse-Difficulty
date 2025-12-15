@@ -8,7 +8,7 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local green_bulldozer = scripted_enemy.bulldozer_1
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local cloaker = scripted_enemy.bulldozer_1
+local cloaker = scripted_enemy.cloaker
 
 local enabled_chance_dozers = math.random() <= 0.4
 
