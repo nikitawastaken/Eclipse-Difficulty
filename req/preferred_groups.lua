@@ -41,21 +41,14 @@ local group_type_mapping = {
 -- If include, types are the group types to include (unspecified group types are set to false)
 -- If not include, types are the group types to exclude (unspecified group types are set to true)
 local function create_preferred(types, include)
-	local function included_func(a, b)
-		if include then
-			return a == b
-		else
-			return a ~= b
-		end
-	end
-
 	local new_preferred = {}
-	for group, group_type in pairs(group_type_mapping) do
-		for _, typ in pairs(types) do
-			new_preferred[group] = included_func(group_type, typ)
+	for group, typ in pairs(group_type_mapping) do
+		if table.contains(types, typ) then
+			new_preferred[group] = include == true
+		else
+			new_preferred[group] = include ~= true
 		end
 	end
-
 	return new_preferred
 end
 
