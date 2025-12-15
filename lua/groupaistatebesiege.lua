@@ -1745,6 +1745,20 @@ function GroupAIStatePonr:init(state, data)
 	end
 	self._delayed_hud_banner_update = false
 	self:force_end_assault_phase(true)
+	self:_do_ponr_state_special_limit_add()
+end
+
+function GroupAIStatePonr:_do_ponr_state_special_limit_add()
+	if self._did_ponr_state_special_limit_add then
+		return
+	end
+
+	self._did_ponr_state_special_limit_add = true
+
+	local special_unit_spawn_limits = tweak_data.group_ai.special_unit_spawn_limits
+	for special, limit_add in pairs(tweak_data.group_ai.ponr_state_special_limit_add or {}) do
+		special_unit_spawn_limits[special] = (special_unit_spawn_limits[special] or 0) + limit_add
+	end
 end
 
 -- Put the game into endless assault after anticipation ends if the game state is Full Force Onslaught
