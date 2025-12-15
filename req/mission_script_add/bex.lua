@@ -252,7 +252,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400022, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400023, "open_swat_doors_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_4),
 	Eclipse.mission_elements.gen_spawngroup(400024, "swat_group_2", { 400018, 400019, 400020, 400021 }, 0, opts_swat_group),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400025, "cloaker_hide_so_1", Vector3(-317, 1536, -100), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_1),
