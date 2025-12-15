@@ -14,7 +14,7 @@ Hooks:PostHook(PrePlanningTweakData, "init", "eclipse_init", function(self)
 	-- Bexico
 	self.types.bex_car_pull.budget_cost = 8
 	self.types.bex_zipline.budget_cost = 4
-	
+
 	if expensive_ilija_heists[level_id] then
 		self.types.sniper.budget_cost = 6
 	else
