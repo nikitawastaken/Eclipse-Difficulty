@@ -271,7 +271,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400037, "cloaker_spawn_6", Vector3(-1223, -7786, -13.500), Rotation(90, 0, 0), optsBesiegeDummyCloaker_3),
 	Eclipse.mission_elements.gen_dummy(400038, "cloaker_spawn_7", Vector3(-5355, -701, 0), Rotation(0, 0, 0), optsBesiegeDummyCloaker_3),
 	Eclipse.mission_elements.gen_dummy(400039, "cloaker_spawn_8", Vector3(2516, 6424, 0), Rotation(90, 0, 0), optsBesiegeDummyCloaker_3),
-	Eclipse.mission_elements.gen_dummy(400040, "cloaker_spawn_9", Vector3(-1431, -2623, 400) Rotation(-90, 0, 0), optsBesiegeDummyCloaker_1),
+	Eclipse.mission_elements.gen_dummy(400040, "cloaker_spawn_9", Vector3(-1431, -2623, 400), Rotation(-90, 0, 0), optsBesiegeDummyCloaker_1),
 	Eclipse.mission_elements.gen_dummy(400041, "cloaker_spawn_10", Vector3(1651, -3595, 400), Rotation(-90, 0, 0), optsBesiegeDummyCloaker_1),
 	-- spawngroups
 	Eclipse.mission_elements.gen_spawngroup(400042, "bex_cloaker_spawngroup_01", { 400032 }, 0),
