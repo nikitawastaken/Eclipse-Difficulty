@@ -1723,7 +1723,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 	["ecp_female"] = {
 		primary = {
 			["wpn_fps_ass_galil_npc"] = 1,
-	--		["wpn_fps_ass_komodo_npc"] = 1,
+			--		["wpn_fps_ass_komodo_npc"] = 1,
 		},
 		secondary = "wpn_fps_pis_sparrow_npc",
 		melee = "meter",
