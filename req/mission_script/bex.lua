@@ -36,6 +36,12 @@ local side_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 local van_scripted_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
@@ -185,6 +191,15 @@ return {
 			{ id = 101618, remove = true }, -- why does this spawn a guard ?
 		},
 	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		values = {
+			trigger_times = 1,
+		},
+		on_executed = {
+			{ id = 400062, delay = 0 },
+		},
+	},
 	-- don't remove enemies for no reason
 	[102856] = disabled,
 	-- restores some unused sniper spawns with their SOs
@@ -278,6 +293,16 @@ return {
 	[100019] = side_spawn,
 	[100128] = side_spawn,
 	[100132] = side_spawn,
+	[400042] = cloaker_spawn,
+	[400043] = cloaker_spawn,
+	[400044] = cloaker_spawn,
+	[400045] = cloaker_spawn,
+	[400046] = cloaker_spawn,
+	[400047] = cloaker_spawn,
+	[400048] = cloaker_spawn,
+	[400049] = cloaker_spawn,
+	[400050] = cloaker_spawn,
+	[400051] = cloaker_spawn,
 	[400017] = van_scripted_spawn,
 	[400024] = van_scripted_spawn,
 	[104687] = beat_cop, -- pre-spawned policia
