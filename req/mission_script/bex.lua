@@ -103,13 +103,13 @@ return {
 				position = Vector3(-1700, -2600, 0),
 			},
 		},
-		on_executed = { 
+		on_executed = {
 			{ id = 100129, remove = true }, -- preferred
 		},
 	},
 	-- Delay initial preferreds
 	[103009] = { -- start police car drive in
-		on_executed = { 
+		on_executed = {
 			{ id = 100129, delay = 0, delay_rand = 15 }, -- preferred
 		},
 	},
