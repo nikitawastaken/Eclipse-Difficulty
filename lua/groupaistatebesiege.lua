@@ -1238,39 +1238,13 @@ end
 
 function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, ai_task, timed_desc)
 	local spawn_group_desc
+	local tactics
 	if timed_desc then
 		spawn_group_desc = timed_desc
+		tactics = tweak_data.group_ai._timed_tactics or {}
 	else
 		spawn_group_desc = tweak_data.group_ai.enemy_spawn_groups[spawn_group_type]
-	end
-
-	local function check_special_limit_reached(unit)
-		local category = tweak_data.group_ai.unit_categories[unit]
-		local special_type = category and category.special_type
-
-		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
-	end
-
-	for _, enemy in pairs(spawn_group_desc.spawn) do
-		if enemy.random_tactics then
-			tactic_str = weighted_selector(enemy.random_tactics):select()
-			enemy.tactics = tweak_data.group_ai._tactics[tactic_str] or enemy.tactics
-		end
-
-		if enemy.random_unit then
-			unit = weighted_selector(enemy.random_unit):select()
-			if check_special_limit_reached(unit) then
-				local u
-				for k, v in pairs(enemy.random_unit) do
-					u = type(k) == "number" and v or k
-					if u ~= unit and not check_special_limit_reached(u) then
-						unit = u
-						break
-					end
-				end
-			end
-			enemy.unit = unit or enemy.unit
-		end
+		tactics = tweak_data.group_ai._tactics or {}
 	end
 
 	local wanted_nr_units
@@ -1291,6 +1265,39 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		ai_task = ai_task,
 		timed = timed_desc and true,
 	}
+
+	local function check_special_limit_reached(unit)
+		local category = tweak_data.group_ai.unit_categories[unit]
+		local special_type = category and category.special_type
+
+		return special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type)
+	end
+
+	local function get_random_unit(random_units)
+		for k, v in pairs(random_units) do
+			local k_is_number = type(k) == "number"
+			local unit = k_is_number and v or k
+			if check_special_limit_reached(unit) then
+				if k_is_number then
+					table.remove(random_units, k)
+				else
+					random_units[k] = nil
+				end
+			end
+		end
+		return weighted_selector(random_units):select()
+	end
+
+	for _, enemy in pairs(valid_unit_types) do
+		if enemy.random_tactics then
+			tactic_str = weighted_selector(enemy.random_tactics):select()
+			enemy.tactics = tactics[tactic_str] or enemy.tactics
+		end
+
+		if enemy.random_unit then
+			enemy.unit = get_random_unit(enemy.random_unit) or enemy.unit
+		end
+	end
 
 	table.insert(self._spawning_groups, spawn_task)
 
