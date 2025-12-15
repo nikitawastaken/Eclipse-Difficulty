@@ -333,11 +333,9 @@ function GroupAIStateBesiege:_upd_reenforce_tasks()
 				end
 			end
 
-			-- Adjust next reinforce dispatch time based on the amount of tasks still needed
 			if spawned then
-				self._task_data.reenforce.next_dispatch_t = self._t
-					+ math.max(5, self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) - #undershot_tasks * tweak_data.group_ai.undershot_reenforce_mul)
-
+				--self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) / #undershot_tasks
+				self._task_data.reenforce.next_dispatch_t = self._t + self:_get_difficulty_dependent_value(self._tweak_data.reenforce.interval) 
 				break
 			end
 		else

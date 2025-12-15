@@ -32,7 +32,7 @@ local enabled = {
 }
 local side_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -61,6 +61,8 @@ return {
 		ai_area = {
 			{ 57, 59 },
 			{ 68, 77 },
+			{ 98, 19 },
+			{ 76, 97, 18 },
 		},
 	},
 	[101829] = {
@@ -78,16 +80,7 @@ return {
 			{ name = "parts_car" },
 		},
 	},
-	-- Increase difficulty when Hajrudin breaches the tellers
-	[102308] = {
-		difficulty_add = 0.2,
-	},
 	[100109] = { -- Police
-		on_executed = { -- delay preferreds
-			{ id = 100129, delay = 45 }, -- preferred
-		},
-	},
-	[100810] = { -- start police car drive-in
 		reinforce = {
 			{
 				name = "police_car1",
@@ -107,8 +100,17 @@ return {
 			{
 				name = "police_car3",
 				force = 3,
-				position = Vector3(-2200, -2600, 0),
+				position = Vector3(-1700, -2600, 0),
 			},
+		},
+		on_executed = { 
+			{ id = 100129, remove = true }, -- preferred
+		},
+	},
+	-- Delay initial preferreds
+	[103009] = { -- start police car drive in
+		on_executed = { 
+			{ id = 100129, delay = 0, delay_rand = 15 }, -- preferred
 		},
 	},
 	[102311] = { -- func sequence trigger 003
