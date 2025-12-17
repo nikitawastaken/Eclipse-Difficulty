@@ -2117,7 +2117,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.use_animation_on_fire_damage = false
 			char_preset.can_be_healed = false
 			char_preset.ecm_vulnerability = nil
-			char_preset.ecm_hurts = nil 
+			char_preset.ecm_hurts = nil
 			char_preset.silent_priority_shout = "f42_any"
 			char_preset.priority_shout = "g60"
 		end
