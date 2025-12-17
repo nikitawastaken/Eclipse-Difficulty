@@ -128,6 +128,7 @@
 				<post :hook_id="levelstweakdata"/>
 				<post :hook_id="narrativetweakdata"/>
 				<post :hook_id="dlctweakdata"/>
+				<post :hook_id="attentiontweakdata"/>
 			</group>
 
 			<group :hook_id="units/">

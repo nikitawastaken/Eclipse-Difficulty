@@ -152,7 +152,7 @@ function CopBrain:convert_to_criminal(mastermind_criminal)
 
 	mover_col_body:set_enabled(false)
 
-	local attention_preset = PlayerMovement._create_attention_setting_from_descriptor(self, tweak_data.attention.settings.team_enemy_cbt, "team_enemy_cbt")
+	local attention_preset = PlayerMovement._create_attention_setting_from_descriptor(self, tweak_data.attention.settings.minion_team_enemy_cbt, "minion_team_enemy_cbt")
 
 	local health_multiplier = 1
 	local damage_multiplier = 1
