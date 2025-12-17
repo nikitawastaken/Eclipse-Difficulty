@@ -123,6 +123,12 @@ local cloaker_spawn = {
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
 local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
 local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or 0)
+local ffo_countdown = {
+	ponr = {
+		length = 1200,
+		player_mul = { 1.25, 1, 0.75, 0.75 },
+	},
+}
 
 return {
 	-- Combine some navigation areas
@@ -135,12 +141,8 @@ return {
 		},
 	},
 	--PONR
-	[102102] = {
-		ponr = {
-			length = 1200,
-			player_mul = { 1.25, 1, 0.75, 0.75 },
-		},
-	},
+	[102011] = ffo_countdown,
+	[102343] = ffo_countdown,
 	-- Add new reinforce
 	[101825] = { -- Interrogation started
 		reinforce = {
