@@ -2779,50 +2779,50 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	end
 end)
 
-GroupAITweakData.fbi_heists = {
-	["watchdogs_1"] = true,
-	["watchdogs_1_night"] = true,
-	["watchdogs_2"] = true,
-	["watchdogs_2_day"] = true,
-	["firestarter_1"] = true,
-	["firestarter_2"] = true,
-	["firestarter_3"] = true,
-	["alex_3"] = true,
-	["hox_2"] = true,
-	["hox_3"] = true,
-	["man"] = true,
-}
-GroupAITweakData.murky_response_heists = {
-	["dinner"] = true,
-}
-GroupAITweakData.murky_response_heists_scripted = {
-	["brb"] = true,
-}
-GroupAITweakData.us_army_heists = {
-	["arm_for"] = true,
-	["crojob2"] = true,
-	["crojob3"] = true,
-	["jolly"] = true,
-	["trai"] = true,
-}
-GroupAITweakData.us_army_heists_scripted = {
-	["roberts"] = true,
-	["peta2"] = true,
-}
-GroupAITweakData.gensec_tac_teams_heists = {
-	["arm_cro"] = true,
-	["arm_par"] = true,
-	["arm_hcm"] = true,
-	["arm_und"] = true,
-	["arm_fac"] = true,
-	["dah"] = true,
-	["arena"] = true,
-}
-GroupAITweakData.bellmead_response_heists = {
-	["ranc"] = true,
-	["corp"] = true,
-	["deep"] = true,
-}
+GroupAITweakData.fbi_heists = table.list_to_set({
+	"watchdogs_1",
+	"watchdogs_1_night",
+	"watchdogs_2",
+	"watchdogs_2_day",
+	"firestarter_1",
+	"firestarter_2",
+	"firestarter_3",
+	"alex_3",
+	"hox_2",
+	"hox_3",
+	"man",
+})
+GroupAITweakData.murky_response_heists = table.list_to_set({
+	"dinner",
+})
+GroupAITweakData.murky_response_heists_scripted = table.list_to_set({
+	"brb",
+})
+GroupAITweakData.us_army_heists = table.list_to_set({
+	"arm_for",
+	"crojob2",
+	"crojob3",
+	"jolly",
+	"trai",
+})
+GroupAITweakData.us_army_heists_scripted = table.list_to_set({
+	"roberts",
+	"peta2",
+})
+GroupAITweakData.gensec_tac_teams_heists = table.list_to_set({
+	"arm_cro",
+	"arm_par",
+	"arm_hcm",
+	"arm_und",
+	"arm_fac",
+	"dah",
+	"arena",
+})
+GroupAITweakData.bellmead_response_heists = table.list_to_set({
+	"ranc",
+	"corp",
+	"deep",
+})
 
 -- Timed groups tweak table
 function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_index)
@@ -3230,13 +3230,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			"CS",
 			"CS",
 		}
-	elseif difficulty_index == 4 then
-		self.besiege.scripted_tiers = {
-			"CS",
-			"FBI",
-			"FBI",
-		}
-	elseif difficulty_index == 5 then
+	elseif difficulty_index <= 5 then
 		self.besiege.scripted_tiers = {
 			"CS",
 			"FBI",
@@ -3279,7 +3273,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(5, 8),
 		diff_lerp(7, 10),
 	}
-
+	
 	self.besiege.assault.force_balance_mul = {} -- { 1, 1.25, 1.5, 1.75 }
 	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_balance_mul, 1 + (i * 0.25))
@@ -3490,17 +3484,20 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- New data for the reworked Cloaker task
 	self.use_reworked_cloaker_task = true
-	self.besiege.cloaker.interval = {
-		diff_lerp(60, 20),
-		diff_lerp(120, 40),
-	}
+	self.besiege.cloaker.interval = get_difficulty_specific_value({
+		{ 60, 120 },
+		{ 60, 120 },
+		{ 40, 60 },
+		{ 30, 50 },	
+		{ 20, 40 },
+	})
 	self.besiege.cloaker.group_removed_delay_t = {
 		2,
 		7,
 	}
 	self.besiege.cloaker.hide_durations = {
-		120,
-		180,
+		90,
+		150,
 	}
 	self.besiege.cloaker.hide_retry_delay = {
 		10,
@@ -3508,7 +3505,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 	self.besiege.cloaker.avoid_repeat_hiding_spots = true
 	self.besiege.cloaker.avoid_repeat_hiding_spots_min_elements = 2
-	self.besiege.cloaker.simultaneous_hiding_limit = 1
+	self.besiege.cloaker.simultaneous_hiding_limit = 2
 	self.besiege.cloaker.goggles_on_when_hiding = false
 	self.besiege.cloaker.use_spawn_noise = true
 	self.besiege.cloaker.use_idle_noise_when_hiding = true
@@ -3636,7 +3633,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.5)
 
 	-- Spawngroups
-	if difficulty_index <= 2 then
+	if difficulty_index <= 3 then
 		self.ponr.assault.groups = {
 			fbi_swats = { 14, 14, 14 },
 			fbi_heavies = { 14, 14, 14 },
@@ -3649,36 +3646,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_defend_light = { 1, 1, 1 },
 			fbi_defend_heavy = { 1, 1, 1 },
 		}
-	elseif difficulty_index == 3 then
-		self.ponr.assault.groups = {
-			fbi_swats = { 14, 14, 14 },
-			fbi_heavies = { 14, 14, 14 },
-			fbi_shield = ponr_shield_wgt,
-			fbi_taser = ponr_spook_taser_wgt,
-			fbi_cloaker = ponr_spook_taser_wgt,
-			fbi_bulldozer = ponr_tank_wgt,
-		}
-		self.ponr.reenforce.groups = {
-			fbi_defend_light = { 1, 1, 1 },
-			fbi_defend_heavy = { 1, 1, 1 },
-		}
-	elseif difficulty_index == 4 then
-		self.ponr.assault.groups = {
-			elite_swats = { 14, 14, 14 },
-			fbi_heavies = { 14, 14, 14 },
-			fbi_shield = ponr_shield_wgt,
-			elite_shield = ponr_elite_shield_wgt,
-			elite_sniper = ponr_spook_taser_wgt,
-			elite_taser = ponr_spook_taser_wgt,
-			fbi_cloaker = ponr_spook_taser_wgt,
-			fbi_bulldozer = ponr_tank_wgt,
-			elite_bulldozer = ponr_elite_tank_wgt,
-		}
-		self.ponr.reenforce.groups = {
-			elite_defend_light = { 1, 1, 1 },
-			fbi_defend_heavy = { 1, 1, 1 },
-		}
-	elseif difficulty_index == 5 then
+	elseif difficulty_index <= 5 then
 		self.ponr.assault.groups = {
 			elite_swats = { 14, 14, 14 },
 			fbi_heavies = { 14, 14, 14 },

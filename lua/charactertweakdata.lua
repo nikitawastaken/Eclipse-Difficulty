@@ -3,7 +3,6 @@ local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 
 local level_id = Eclipse.utils.level_id()
-local diff_i = Eclipse.utils.difficulty_index()
 local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -119,15 +118,28 @@ end
 local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
-
-	local dmg_mul_tbl = { 1, 1, 1, 1, 1, 1, 1, 1 }
-	local dmg_mul = dmg_mul_tbl[diff_i]
-
-	local special_dmg_mul_tbl = { 0.25, 0.5, 0.75, 1, 1, 1, 1, 1 }
-	local special_dmg_mul = special_dmg_mul_tbl[diff_i]
-
-	local aim_delay_tbl = { 1.2, 1, 0.8, 0.6, 0.5, 0.4, 0.4, 0.4 }
-	local aim_delay_mul = aim_delay_tbl[diff_i]
+	
+	local dmg_mul = get_difficulty_specific_value({
+		1,
+		1,
+		1,
+		1,
+		1,
+	})
+	local special_dmg_mul = get_difficulty_specific_value({
+		0.5,
+		0.75,
+		1,
+		1,
+		1,
+	})
+	local aim_delay_mul = get_difficulty_specific_value({
+		1,
+		0.8,
+		0.6,
+		0.5,
+		0.4,
+	})
 
 	presets.weapon.eclipse_normal = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
@@ -168,9 +180,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.eclipse_normal.is_sniper.stance_acc_mul = { running = 0.5, walking = 0.75, standing = 1.5 }
 	presets.weapon.eclipse_normal.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.eclipse_normal.is_sniper.FALLOFF = {
-		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 2000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 0, acc = { 0.2, 0.4 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 2000, acc = { 0.4, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * dmg_mul, r = 4000, acc = { 0.4, 1 }, recoil = { 1, 1.5 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_normal.is_shotgun_pump.RELOAD_SPEED = 1.5
@@ -307,7 +319,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 	presets.weapon.eclipse_shield.is_smg.RELOAD_SPEED = 0.9
 	presets.weapon.eclipse_shield.is_smg.FALLOFF = {
-		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.8 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 8, 10 } },
+		{ dmg_mul = 2.5 * dmg_mul, r = 0, acc = { 0.4, 0.7 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 8, 10 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 1000, acc = { 0.3, 0.6 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 6, 8 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 3000, acc = { 0.1, 0.3 }, recoil = { 1, 2 }, mode = { 1, 0, 0, 0 }, autofire_rounds = { 4, 6 } },
 	}
@@ -338,11 +350,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		2 * aim_delay_mul,
 	}
 	presets.weapon.eclipse_sniper.is_sniper.RELOAD_SPEED = 1
+	presets.weapon.eclipse_sniper.is_sniper.stance_acc_mul = nil
 	presets.weapon.eclipse_sniper.is_sniper.range = { close = 5000, optimal = 10000, far = 15000 }
 	presets.weapon.eclipse_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 20 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 20 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 1000, acc = { 0.6, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 20 * special_dmg_mul, r = 4000, acc = { 0.6, 1 }, recoil = { 3, 4 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_elite_sniper = based_on(presets.weapon.eclipse_good)
@@ -351,12 +364,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		1.5 * aim_delay_mul,
 	}
 	presets.weapon.eclipse_elite_sniper.is_sniper.RELOAD_SPEED = 1
-	presets.weapon.eclipse_elite_sniper.is_sniper.stance_acc_mul = { running = 0.75, walking = 1, standing = 1.375 }
+	presets.weapon.eclipse_elite_sniper.is_sniper.stance_acc_mul = { running = 0.75, walking = 1, standing = 1 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.range = { close = 1500, optimal = 3000, far = 6000 }
 	presets.weapon.eclipse_elite_sniper.is_sniper.FALLOFF = {
 		{ dmg_mul = 8 * special_dmg_mul, r = 0, acc = { 0.3, 0.6 }, recoil = { 0.6, 0.8 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.5, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
-		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.5, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 1000, acc = { 0.6, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
+		{ dmg_mul = 8 * special_dmg_mul, r = 4000, acc = { 0.6, 1 }, recoil = { 0.8, 1.2 }, mode = { 1, 0, 0, 0 } },
 	}
 
 	presets.weapon.eclipse_taser = based_on(presets.weapon.eclipse_good, {
@@ -2118,8 +2131,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.can_be_healed = false
 			char_preset.ecm_vulnerability = nil
 			char_preset.ecm_hurts = nil
-			char_preset.silent_priority_shout = "f42_any"
-			char_preset.priority_shout = "g60"
+			char_preset.priority_shout = "g90"
 		end
 
 		-- Remove damage clamps, they are not a fun or intuitive mechanic
@@ -2155,12 +2167,14 @@ function CharacterTweakData:_set_presets()
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
+
 	self.medic.medic_healing = {
 		cooldown = 3,
 		radius = 600,
 	}
 	self.tank_medic.medic_healing = self.medic.medic_healing
-
+	self.tmp_healing_damage_mul = is_eclipse and 0.4 or is_overkill and 0.6 or nil
+	
 	self.tank.damage.armor_health = is_eclipse and 14 or is_overkill and 12 or 10
 	self.tank_medic.damage.armor_health = self.tank.damage.armor_health
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
