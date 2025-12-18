@@ -118,7 +118,7 @@ end
 local _presets_orig = CharacterTweakData._presets
 function CharacterTweakData:_presets(tweak_data, ...)
 	local presets = _presets_orig(self, tweak_data, ...)
-	
+
 	local dmg_mul = get_difficulty_specific_value({
 		1,
 		1,
@@ -2167,14 +2167,13 @@ function CharacterTweakData:_set_presets()
 	self.spooc.spooc_kick_damage = is_eclipse and 0.5 or 0.25
 	self.shadow_spooc.spooc_kick_damage = self.spooc.spooc_kick_damage
 
-
 	self.medic.medic_healing = {
 		cooldown = 3,
 		radius = 600,
 	}
 	self.tank_medic.medic_healing = self.medic.medic_healing
 	self.tmp_healing_damage_mul = is_eclipse and 0.4 or is_overkill and 0.6 or nil
-	
+
 	self.tank.damage.armor_health = is_eclipse and 14 or is_overkill and 12 or 10
 	self.tank_medic.damage.armor_health = self.tank.damage.armor_health
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health

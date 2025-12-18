@@ -45,18 +45,18 @@ end)
 
 -- Add temporary DR when healed by a medic
 Hooks:PostHook(CopDamage, "do_medic_heal", "sh_do_medic_heal", function(self)
-    self._last_medic_heal_t = TimerManager:game():time()
+	self._last_medic_heal_t = TimerManager:game():time()
 end)
 
 local _apply_damage_reduction_original = CopDamage._apply_damage_reduction
 function CopDamage:_apply_damage_reduction(...)
-    local damage = _apply_damage_reduction_original(self, ...)
+	local damage = _apply_damage_reduction_original(self, ...)
 
-    if self._last_medic_heal_t and TimerManager:game():time() - self._last_medic_heal_t < 6 then
-        damage = damage * (tweak_data.character.tmp_healing_damage_mul or 1)
-    end
+	if self._last_medic_heal_t and TimerManager:game():time() - self._last_medic_heal_t < 6 then
+		damage = damage * (tweak_data.character.tmp_healing_damage_mul or 1)
+	end
 
-    return damage
+	return damage
 end
 
 -- Fixed critical hit mul and additional crit damage upgrade
