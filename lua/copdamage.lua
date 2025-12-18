@@ -52,7 +52,7 @@ local _apply_damage_reduction_original = CopDamage._apply_damage_reduction
 function CopDamage:_apply_damage_reduction(...)
 	local damage = _apply_damage_reduction_original(self, ...)
 
-	if self._last_medic_heal_t and TimerManager:game():time() - self._last_medic_heal_t < 6 then
+	if self._last_medic_heal_t and TimerManager:game():time() - self._last_medic_heal_t < 2 then
 		damage = damage * (tweak_data.character.tmp_healing_damage_mul or 1)
 	end
 
