@@ -179,16 +179,16 @@ local optsCloakerHideGroupUpstairs = {
 local optsAddCloakerHideGroupsDefault = {
 	enabled = true,
 	on_executed = {
-		{ id = 400101, delay = 0, },
-		{ id = 400102, delay = 0, },
-		{ id = 400103, delay = 0, },
-		{ id = 400104, delay = 0, },
+		{ id = 400101, delay = 0 },
+		{ id = 400102, delay = 0 },
+		{ id = 400103, delay = 0 },
+		{ id = 400104, delay = 0 },
 	},
 }
 local optsAddCloakerHideGroupsUpstairs = {
 	enabled = true,
 	on_executed = {
-		{ id = 400105, delay = 0, },
+		{ id = 400105, delay = 0 },
 	},
 }
 
