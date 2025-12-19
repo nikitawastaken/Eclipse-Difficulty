@@ -407,7 +407,7 @@ function M.gen_sogroup(id, name, pos, rot, opts)
 			rotation = rot,
 			use_instigator = false,
 			base_delay = opts.base_delay or 0,
-			base_chance = 1,
+			base_chance = opts.base_chance or 1,
 			trigger_times = opts.trigger_times or 0,
 			mode = opts.mode or "recurring_cloaker_spawn",
 			followup_elements = opts.followup_elements or {},
