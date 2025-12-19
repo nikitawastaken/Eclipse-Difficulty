@@ -650,13 +650,7 @@ function GroupAIStateBase:_get_hiding_cloaker_SO_grp(data, group, hiding_cloaker
 		else
 			local element_dis = mvector3.distance(criminal_pos, element:value("position"))
 			if SO_grp_weighting.ignore_distance > element_dis then
-				element_w = math.map_range_clamped(
-					element_dis,
-					SO_grp_weighting.near_distance,
-					SO_grp_weighting.far_distance,
-					element_w,
-					element_w * SO_grp_weighting.far_chance_mul
-				)
+				element_w = math.map_range_clamped(element_dis, SO_grp_weighting.near_distance, SO_grp_weighting.far_distance, element_w, element_w * SO_grp_weighting.far_chance_mul)
 				table.insert(element_weights, { element, element_w })
 				total_w = total_w + element_w
 			end
