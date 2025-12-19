@@ -105,12 +105,9 @@ local optsBesiegeDummyCloaker_2 = {
 local optsPreferedCloakerAdd1 = {
 	spawn_groups = { 400091, 400092, 400093, 400094, 400095, 400096, 400097, 400098, 400099 },
 	on_executed = {
-		{ id = 400101, delay = 0 },
+		{ id = 400106, delay = 0 },
 	},
 	enabled = true,
-}
-local optsCloakerHideGroup = {
-	followup_elements = { 400066, 400067, 400068, 400069, 400070, 400071, 400072, 400073, 400074, 400075, 400076, 400077, 400078, 400079, 400080, 400081 },
 }
 local optsCloaker_Hide_SO = {
 	SO_access = "1024",
@@ -138,6 +135,61 @@ local optsDozerHunt_SO = {
 	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
+}
+
+local optsCloakerHideGroupOperations = {
+	followup_elements = {
+		400066,
+		400067,
+		400078, -- Just outside operations
+		400079,
+		400080,
+		400081,
+	},
+}
+local optsCloakerHideGroupAtrium = {
+	base_chance = 0.55,
+	followup_elements = {
+		400068,
+		400069,
+	},
+}
+local optsCloakerHideGroupBossOffice = {
+	base_chance = 0.7,
+	followup_elements = {
+		400071,
+	},
+}
+local optsCloakerHideGroupForensics = {
+	base_chance = 0.85,
+	followup_elements = {
+		400072,
+		400077,
+	},
+}
+local optsCloakerHideGroupUpstairs = {
+	followup_elements = {
+		400070,
+		400073,
+		400074,
+		400075,
+		400076,
+	},
+}
+local optsAddCloakerHideGroupsDefault = {
+	enabled = true,
+	on_executed = {
+		{ id = 400101, delay = 0, },
+		{ id = 400102, delay = 0, },
+		{ id = 400103, delay = 0, },
+		{ id = 400104, delay = 0, },
+	},
+}
+local optsAddCloakerHideGroupsUpstairs = {
+	enabled = true,
+	on_executed = {
+		{ id = 400105, delay = 0, },
+	},
 }
 
 -- Hiding Cloaker SOs are funny
@@ -600,7 +652,13 @@ M.elements = {
 	Eclipse.mission_elements.gen_spawngroup(400099, "hox_cloaker_spawngroup_09", { 400090 }, 0),
 	-- the whole system that does the thing
 	Eclipse.mission_elements.gen_preferedadd(400100, "hox_cloaker_spawns", optsPreferedCloakerAdd1),
-	Eclipse.mission_elements.gen_sogroup(400101, "hox_cloaker_hide_group", hide_so_search_pos, Rotation(0, 0, 0), optsCloakerHideGroup),
+	Eclipse.mission_elements.gen_sogroup(400101, "cloakerHideGroupOperations", Vector3(-264, 1632, -100), Rotation(0, 0, 0), optsCloakerHideGroupOperations),
+	Eclipse.mission_elements.gen_sogroup(400102, "cloakerHideGroupAtrium", Vector3(72, 4152, -500), Rotation(0, 0, 0), optsCloakerHideGroupAtrium),
+	Eclipse.mission_elements.gen_sogroup(400103, "cloakerHideGroupBossOffice", Vector3(-800, 4550, -100), Rotation(0, 0, 0), optsCloakerHideGroupBossOffice),
+	Eclipse.mission_elements.gen_sogroup(400104, "cloakerHideGroupForensics", Vector3(-1272, 1392, -100), Rotation(0, 0, 0), optsCloakerHideGroupForensics),
+	Eclipse.mission_elements.gen_sogroup(400105, "cloakerHideGroupUpstairs", Vector3(-144, 2208, 300.935), Rotation(0, 0, 0), optsCloakerHideGroupUpstairs),
+	Eclipse.mission_elements.gen_missionscript(400106, "addCloakerHideGroupsDefault", optsAddCloakerHideGroupsDefault),
+	Eclipse.mission_elements.gen_missionscript(400107, "addCloakerHideGroupsUpstairs", optsAddCloakerHideGroupsUpstairs),
 }
 
 return M

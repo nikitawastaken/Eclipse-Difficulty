@@ -167,6 +167,12 @@ return {
 			{ id = 400100, delay = 0 },
 		},
 	},
+	-- Add upstairs hide SOs when upstairs is opened
+	[100083] = {
+		on_executed = {
+			{ id = 400107, delay = 0 },
+		},
+	},
 	[100047] = {
 		values = {
 			elements = {
