@@ -3503,8 +3503,12 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		10,
 		20,
 	}
-	self.besiege.cloaker.avoid_repeat_hiding_spots = true
-	self.besiege.cloaker.avoid_repeat_hiding_spots_min_elements = 2
+	self.besiege.cloaker.SO_grp_weighting = {
+		near_distance = 1000,
+		far_distance = 3000,
+		far_chance_mul = 0.1,
+		ignore_distance = 5000,
+	}
 	self.besiege.cloaker.simultaneous_hiding_limit = 2
 	self.besiege.cloaker.goggles_on_when_hiding = false
 	self.besiege.cloaker.use_spawn_noise = true
