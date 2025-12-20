@@ -469,7 +469,7 @@ M.elements = {
 
 	-- disable some window blinders
 	Eclipse.mission_elements.gen_disable_unit(400091, "disable_blinders", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_blinds),
-	
+
 	-- new c4 bag drop element
 	Eclipse.mission_elements.gen_element_random(400092, "c4_dropoff", new_c4_bag_drop),
 }
