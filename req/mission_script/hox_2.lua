@@ -170,7 +170,7 @@ return {
 	-- Add upstairs hide SOs when upstairs is opened
 	[100083] = {
 		on_executed = {
-			{ id = 400107, delay = 0 },
+			{ id = 400108, delay = 0 },
 		},
 	},
 	[100047] = {
