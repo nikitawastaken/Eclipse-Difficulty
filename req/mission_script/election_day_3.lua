@@ -72,7 +72,7 @@ local window_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 return {

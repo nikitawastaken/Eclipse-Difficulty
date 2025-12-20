@@ -59,9 +59,9 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
-	groups = preferred.only_cloakers,
+	groups = preferred.only_cloakers_single,
 }
 local gangster = {
 	enemy = gangsters,

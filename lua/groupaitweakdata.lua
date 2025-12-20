@@ -212,7 +212,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		acrobatic = true,
 		walk = true,
 	}
-
+	
 	-- ponr_state_special_limit_add is used primarily to enable new special types only during FFO
 	if difficulty_index <= 2 then
 		self.special_unit_spawn_limits = {
@@ -2396,7 +2396,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 	}
 
 	self.enemy_spawn_groups.fbi_cloaker = {
-		amount = { 1, 2 },
+		amount = { 2, 2 },
 		spawn = {
 			{
 				freq = 1,
@@ -3328,6 +3328,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_lerp(4, 5),
 	}
 
+	-- Push delay
 	self.besiege.assault.push_delay = {
 		diff_lerp(20, 16),
 		diff_lerp(16, 12),
@@ -3362,7 +3363,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
 	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.25, 0.75, 1.25 } or { 0.5, 0.875, 1.25 })
-	local spook_taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.25, 0.625, 1 })
+	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.25, 0.625, 1 })
+	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.375, 0.75 } or { 0.25, 0.5, 0.75 })
 	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0, 0.75 } or { 0, 0.1875, 0.75 })
 	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.375, 0.625, 1 })
 	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.25, 0.75 })
@@ -3390,7 +3392,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_swats = { 24, 24, 24 },
 			cs_heavies = { 0, 6, 12 },
 			cs_shield = shield_wgt,
-			cs_taser = spook_taser_wgt,
+			cs_taser = taser_wgt,
 			cs_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
@@ -3409,8 +3411,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_swats = { 16, 20, 24 },
 			fbi_heavies = { 0, 6, 12 },
 			fbi_shield = shield_wgt,
-			fbi_taser = spook_taser_wgt,
-			fbi_cloaker = spook_taser_wgt,
+			fbi_taser = taser_wgt,
+			fbi_cloaker = spook_wgt,
 			fbi_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
@@ -3432,8 +3434,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_swats = { 20, 20, 20 },
 			fbi_heavies = { 0, 8, 16 },
 			fbi_shield = shield_wgt,
-			fbi_taser = spook_taser_wgt,
-			fbi_cloaker = spook_taser_wgt,
+			fbi_taser = taser_wgt,
+			fbi_cloaker = spook_wgt,
 			fbi_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
@@ -3456,8 +3458,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			fbi_heavies = { 0, 12, 24 },
 			fbi_shield = shield_wgt,
 			elite_sniper = elite_sniper_wgt,
-			elite_taser = spook_taser_wgt,
-			fbi_cloaker = spook_taser_wgt,
+			elite_taser = taser_wgt,
+			fbi_cloaker = spook_wgt,
 			elite_shield = elite_shield_wgt,
 			fbi_bulldozer = tank_wgt,
 			elite_bulldozer = elite_tank_wgt,
@@ -3478,11 +3480,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	end
 
+	-- New data for the reworked Cloaker task
 	self.besiege.cloaker.groups = {
 		single_spooc = { 1, 1, 1 },
 	}
-
-	-- New data for the reworked Cloaker task
 	self.use_reworked_cloaker_task = true
 	self.besiege.cloaker.interval = get_difficulty_specific_value({
 		{ 60, 120 },
@@ -3546,6 +3547,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		"marshal_squad",
 
 		-- Scripted spawns
+		"custom",
 		"custom_assault",
 		"custom_recon",
 
@@ -3560,53 +3562,51 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = clone(self.besiege.cloaker.interval)
 
-	self.besiege.assault.groups.single_spooc = { 0, 0, 0 }
-	self.besiege.assault.groups.Phalanx = { 0, 0, 0 }
-	self.besiege.assault.groups.marshal_squad = { 0, 0, 0 }
-	self.besiege.assault.groups.custom_assault = { 0, 0, 0 }
-	self.besiege.assault.groups.snowman_boss = { 0, 0, 0 }
-	self.besiege.assault.groups.piggydozer = { 0, 0, 0 }
+	local no_spawn_wgt_tbl = { 0, 0, 0 }
+	
+	self.besiege.assault.groups.single_spooc = no_spawn_wgt_tbl
+	self.besiege.assault.groups.Phalanx = no_spawn_wgt_tbl
+	self.besiege.assault.groups.marshal_squad = no_spawn_wgt_tbl
+	self.besiege.assault.groups.custom = no_spawn_wgt_tbl
+	self.besiege.assault.groups.custom_assault = no_spawn_wgt_tbl
+	self.besiege.assault.groups.snowman_boss = no_spawn_wgt_tbl
+	self.besiege.assault.groups.piggydozer = no_spawn_wgt_tbl
 	-- timed groups
-	self.besiege.assault.groups.bellmead_group1 = { 0, 0, 0 }
-	self.besiege.assault.groups.fbi_group1 = { 0, 0, 0 }
-	self.besiege.assault.groups.gensec_group1 = { 0, 0, 0 }
-	self.besiege.assault.groups.murky_group1 = { 0, 0, 0 }
-	self.besiege.assault.groups.murky_scripted_group1 = { 0, 0, 0 }
-	self.besiege.assault.groups.us_group1 = { 0, 0, 0 }
-	self.besiege.assault.groups.us_scripted_group1 = { 0, 0, 0 }
+	self.besiege.assault.groups.bellmead_group1 = no_spawn_wgt_tbl
+	self.besiege.assault.groups.fbi_group1 = no_spawn_wgt_tbl
+	self.besiege.assault.groups.gensec_group1 = no_spawn_wgt_tbl
+	self.besiege.assault.groups.murky_group1 = no_spawn_wgt_tbl
+	self.besiege.assault.groups.murky_scripted_group1 = no_spawn_wgt_tbl
+	self.besiege.assault.groups.us_group1 = no_spawn_wgt_tbl
+	self.besiege.assault.groups.us_scripted_group1 = no_spawn_wgt_tbl
 
-	self.besiege.recon.groups.single_spooc = { 0, 0, 0 }
-	self.besiege.recon.groups.Phalanx = { 0, 0, 0 }
-	self.besiege.recon.groups.marshal_squad = { 0, 0, 0 }
-	self.besiege.recon.groups.custom_recon = { 0, 0, 0 }
-	self.besiege.recon.groups.snowman_boss = { 0, 0, 0 }
-	self.besiege.recon.groups.piggydozer = { 0, 0, 0 }
+	self.besiege.recon.groups.single_spooc = no_spawn_wgt_tbl
+	self.besiege.recon.groups.Phalanx = no_spawn_wgt_tbl
+	self.besiege.recon.groups.marshal_squad = no_spawn_wgt_tbl
+	self.besiege.recon.groups.custom = no_spawn_wgt_tbl
+	self.besiege.recon.groups.custom_recon = no_spawn_wgt_tbl
+	self.besiege.recon.groups.snowman_boss = no_spawn_wgt_tbl
+	self.besiege.recon.groups.piggydozer = no_spawn_wgt_tbl
 	-- timed groups
-	self.besiege.recon.groups.bellmead_group1 = { 0, 0, 0 }
-	self.besiege.recon.groups.fbi_group1 = { 0, 0, 0 }
-	self.besiege.recon.groups.gensec_group1 = { 0, 0, 0 }
-	self.besiege.recon.groups.murky_group1 = { 0, 0, 0 }
-	self.besiege.recon.groups.murky_scripted_group1 = { 0, 0, 0 }
-	self.besiege.recon.groups.us_group1 = { 0, 0, 0 }
-	self.besiege.recon.groups.us_scripted_group1 = { 0, 0, 0 }
+	self.besiege.recon.groups.bellmead_group1 = no_spawn_wgt_tbl
+	self.besiege.recon.groups.fbi_group1 = no_spawn_wgt_tbl
+	self.besiege.recon.groups.gensec_group1 = no_spawn_wgt_tbl
+	self.besiege.recon.groups.murky_group1 = no_spawn_wgt_tbl
+	self.besiege.recon.groups.murky_scripted_group1 = no_spawn_wgt_tbl
+	self.besiege.recon.groups.us_group1 = no_spawn_wgt_tbl
+	self.besiege.recon.groups.us_scripted_group1 = no_spawn_wgt_tbl
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
 
 	-- Control
-	self.ponr.assault.force = {
-		diff_lerp(8, 12),
-		diff_lerp(8, 12),
-		diff_lerp(8, 12),
-	}
-
 	if short_ponr_heists[level_id] then
 		self.ponr.assault.delay = { 5, 5, 5 }
 		self.ponr.assault.hostage_hesitation_delay = { 0, 0, 0 }
 	end
 
 	-- Recon
-	self.ponr.recon.force = { 0, 0, 0 } -- no recon after ponr ran out
+	self.ponr.recon.force = no_spawn_wgt_tbl -- no recon after ponr ran out
 
 	if difficulty_index < 4 then
 		self.ponr.scripted_tiers = {
@@ -3631,7 +3631,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 	local ponr_special_wgt_tbl = { ponr_special_wgt, ponr_special_wgt, ponr_special_wgt }
 	local ponr_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1.25)
-	local ponr_spook_taser_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1)
+	local ponr_sniper_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1)
+	local ponr_taser_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1)
+	local ponr_spook_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.75)
 	local ponr_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.75)
 	local ponr_elite_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.875)
 	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.5)
@@ -3639,11 +3641,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Spawngroups
 	if difficulty_index <= 3 then
 		self.ponr.assault.groups = {
-			fbi_swats = { 14, 14, 14 },
-			fbi_heavies = { 14, 14, 14 },
+			fbi_swats = { 15, 15, 15 },
+			fbi_heavies = { 15, 15, 15 },
 			fbi_shield = ponr_shield_wgt,
-			fbi_taser = ponr_spook_taser_wgt,
-			fbi_cloaker = ponr_spook_taser_wgt,
+			fbi_taser = ponr_taser_wgt,
+			fbi_cloaker = ponr_spook_wgt,
 			fbi_bulldozer = ponr_tank_wgt,
 		}
 		self.ponr.reenforce.groups = {
@@ -3652,13 +3654,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index <= 5 then
 		self.ponr.assault.groups = {
-			elite_swats = { 14, 14, 14 },
-			fbi_heavies = { 14, 14, 14 },
+			elite_swats = { 15, 15, 15 },
+			fbi_heavies = { 15, 15, 15 },
 			fbi_shield = ponr_shield_wgt,
 			elite_shield = ponr_elite_shield_wgt,
-			elite_sniper = ponr_spook_taser_wgt,
-			elite_taser = ponr_spook_taser_wgt,
-			fbi_cloaker = ponr_spook_taser_wgt,
+			elite_sniper = ponr_sniper_wgt,
+			elite_taser = ponr_taser_wgt,
+			fbi_cloaker = ponr_spook_wgt,
 			fbi_bulldozer = ponr_tank_wgt,
 			elite_bulldozer = ponr_elite_tank_wgt,
 		}
@@ -3669,11 +3671,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	else
 		self.ponr.assault.groups = {
 			elite_swats = { 10, 10, 10 },
-			elite_heavies = { 18, 18, 18 },
+			elite_heavies = { 20, 20, 20 },
 			elite_shield = ponr_shield_wgt,
-			elite_sniper = ponr_spook_taser_wgt,
-			elite_taser = ponr_spook_taser_wgt,
-			fbi_cloaker = ponr_spook_taser_wgt,
+			elite_sniper = ponr_sniper_wgt,
+			elite_taser = ponr_taser_wgt,
+			fbi_cloaker = ponr_spook_wgt,
 			elite_bulldozer = ponr_tank_wgt,
 		}
 		self.ponr.reenforce.groups = {

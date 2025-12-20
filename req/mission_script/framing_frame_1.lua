@@ -21,7 +21,7 @@ local street_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 local scripted_swat_van_spawn = {

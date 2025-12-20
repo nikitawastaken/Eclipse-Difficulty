@@ -64,7 +64,7 @@ local sniper_amount = {
 	},
 }
 local ambush_chance = (is_pro_job and 1.5 or 1) * diff_i_no_easy * 15
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
@@ -73,10 +73,11 @@ local parking_lot_spawn = {
 	values = {
 		interval = 15,
 	},
+	groups = preferred.no_cops_agents,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 return {
@@ -291,9 +292,9 @@ return {
 	[101126] = disabled,
 	[105331] = disabled,
 	-- Spawn group intervals
-	[100246] = street_spawn,
-	[100249] = street_spawn,
-	[100250] = street_spawn,
+	[100246] = standard_spawn,
+	[100249] = standard_spawn,
+	[100250] = standard_spawn,
 	[101211] = parking_lot_spawn,
 	[103742] = cloaker_spawn,
 	[102914] = cloaker_spawn,
