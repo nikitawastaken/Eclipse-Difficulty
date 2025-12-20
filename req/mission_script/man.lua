@@ -141,8 +141,8 @@ return {
 		},
 	},
 	--PONR
-	[102011] = ffo_countdown,
-	[102343] = ffo_countdown,
+	[400013] = ffo_countdown,
+	[400016] = ffo_countdown,
 	-- Add new reinforce
 	[101825] = { -- Interrogation started
 		reinforce = {
