@@ -212,7 +212,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 		acrobatic = true,
 		walk = true,
 	}
-	
+
 	-- ponr_state_special_limit_add is used primarily to enable new special types only during FFO
 	if difficulty_index <= 2 then
 		self.special_unit_spawn_limits = {
@@ -3563,7 +3563,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = clone(self.besiege.cloaker.interval)
 
 	local no_spawn_wgt_tbl = { 0, 0, 0 }
-	
+
 	self.besiege.assault.groups.single_spooc = no_spawn_wgt_tbl
 	self.besiege.assault.groups.Phalanx = no_spawn_wgt_tbl
 	self.besiege.assault.groups.marshal_squad = no_spawn_wgt_tbl
