@@ -364,6 +364,14 @@ local Bain_snipers_killed = {
 local Bile_incoming_with_c4 = {
 	dialogue = "Play_plt_flt_03",
 }
+local new_c4_bag_drop = {
+	amount = 1,
+	on_executed = {
+		{ id = 100350, delay = 0 },
+		{ id = 101573, delay = 0 },
+		{ id = 101591, delay = 0 },
+	},
+}
 
 M.elements = {
 	-- Infamous Heavy Shotgunners from ovk 145+
@@ -461,6 +469,9 @@ M.elements = {
 
 	-- disable some window blinders
 	Eclipse.mission_elements.gen_disable_unit(400091, "disable_blinders", Vector3(0, 0, 0), Rotation(0, 0, 0), optsdisable_blinds),
+	
+	-- new c4 bag drop element
+	Eclipse.mission_elements.gen_element_random(400092, "c4_dropoff", new_c4_bag_drop),
 }
 
 return M
