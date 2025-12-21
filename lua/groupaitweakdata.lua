@@ -1586,7 +1586,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		shield_def = {
 			"shield",
 			"ranged_fire",
-			"door_ambush",
+	--		"door_ambush",
 		},
 		shield_agg = {
 			"shield",
@@ -1616,7 +1616,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		bulldozer_def = {
 			"shield",
-			"door_ambush",
+	--		"door_ambush",
 			"murder",
 			"smoke_grenade",
 		},
@@ -3264,7 +3264,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.delay = get_difficulty_specific_value({
 		{ 60, 40, 30 },
 		{ 60, 40, 30 },
-		{ 40, 30, 20 },
+		{ 50, 35, 25 },
 		{ 40, 30, 20 },
 		{ 30, 20, 15 },
 	})
@@ -3282,8 +3282,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 	self.besiege.assault.force_balance_mul = {} -- { 0.55, 0.7, 0.85, 1 }
 	for i = 0, 21, 1 do
-		table.insert(self.besiege.assault.force_balance_mul, 1 + (i * 0.15))
+		table.insert(self.besiege.assault.force_balance_mul, 0.55 + (i * 0.15))
 	end
+	Utils.PrintTable(self.besiege.assault.force_balance_mul)
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
@@ -3292,7 +3293,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 	self.besiege.assault.force_pool_balance_mul = {} -- { 0.55, 0.7, 0.85, 1 }
 	for i = 0, 21, 1 do
-		table.insert(self.besiege.assault.force_pool_balance_mul, 1 + (i * 0.15))
+		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
 
 	-- Spawnrate
