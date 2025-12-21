@@ -785,4 +785,27 @@ function M.gen_element_filter(id, name, pos, rot, opts)
 	return element_filter
 end
 
+function M.gen_operator(id, name, pos, rot, opts)
+	opts = opts or {}
+	local operator = {
+		id = id,
+		editor_name = name,
+		class = "ElementOperator",
+		module = "CoreElementOperator",
+		values = {
+			execute_on_startup = opts.execute_on_startup or false,
+			trigger_times = opts.trigger_times or 0,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			operation = opts.operation or "add",
+			elements = opts.elements or {},
+		},
+	}
+
+	return operator
+end
+
 return M
