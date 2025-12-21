@@ -23,17 +23,11 @@ local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
 }
-local random_normal_and_elite_dozers = {
-	green_bulldozer,
-	black_bulldozer,
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
-}
 local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local bulldozer = is_eclipse_pro and random_elite_dozers or is_eclipse and random_normal_and_elite_dozers or random_dozers
+local bulldozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
 local optsBesiegeDummyCloaker = {
 	trigger_times = 0,

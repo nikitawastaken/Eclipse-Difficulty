@@ -4,6 +4,22 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local defend_so = {
+	pre_func = function(element)
+		if Network:is_client() then
+			return
+		end
+		element:add_event_callback("spawn", function(unit)
+			local pos = unit:movement():m_pos()
+			unit:brain():set_objective({
+				type = "sniper",
+				pos = pos,
+				nav_seg = managers.navigation:get_nav_seg_from_pos(pos),
+				no_retreat = true,
+			})
+		end)
+	end,
+}
 local fbi_agents = {
 	Idstring("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"),
 	Idstring("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"),
@@ -161,6 +177,14 @@ return {
 			{ id = 400064, delay = 0 },
 		},
 	},
+	-- Set ambush units to stay in place (except cloaker and dozers)
+	[400050] = defend_so,
+	[400051] = defend_so,
+	[400052] = defend_so,
+	[400053] = defend_so,
+	[400055] = defend_so,
+	[400056] = defend_so,
+	[400065] = defend_so,
 	-- begin the cloaker hunt at the start of the first assault
 	[100842] = {
 		on_executed = {

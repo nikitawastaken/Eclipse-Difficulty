@@ -219,6 +219,24 @@ local opts_swat_group = {
 	spawn_type = "group_guaranteed",
 	amount = 4,
 }
+local optsOpenSwatVanDoors_Trigger_1 = {
+	enabled = true,
+	sequence_list = {
+		{ guis_id = 1, sequence = "done_car_anim", unit_id = 104798 },
+	},
+	on_executed = {
+		{ id = 400015, delay = 0, delay_rand = 5 },
+	},
+}
+local optsOpenSwatVanDoors_Trigger_2 = {
+	enabled = true,
+	sequence_list = {
+		{ guis_id = 1, sequence = "done_car_anim", unit_id = 102821 },
+	},
+	on_executed = {
+		{ id = 400022, delay = 0, delay_rand = 5 },
+	},
+}
 
 M.elements = {
 	-- dw trailer styled skullies
@@ -244,6 +262,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400014, "swat_van_spawn_4", Vector3(-2375, -6225, -15), Rotation(115, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_missionscript(400015, "spawn_swats_1", optsspawnvanSWATs_1),
 	Eclipse.mission_elements.gen_object_editor(400016, "open_swat_doors_3", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_3),
+	Eclipse.mission_elements.gen_object_editor_trigger(400064, "swat_van_doors_trigger_1", optsOpenSwatVanDoors_Trigger_1),
 	Eclipse.mission_elements.gen_spawngroup(400017, "swat_group_1", { 400011, 400012, 400013, 400014 }, 0, opts_swat_group),
 
 	-- swat van 2 (middle)
@@ -253,6 +272,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummy(400021, "swat_van_spawn_8", Vector3(-2650, -25, -15), Rotation(100, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_missionscript(400022, "spawn_swats_2", optsspawnvanSWATs_2),
 	Eclipse.mission_elements.gen_object_editor(400023, "open_swat_doors_4", Vector3(0, 0, 0), Rotation(0, 0, -0), optsOpenSwatVanDoors_4),
+	Eclipse.mission_elements.gen_object_editor_trigger(400065, "swat_van_doors_trigger_2", optsOpenSwatVanDoors_Trigger_2),
 	Eclipse.mission_elements.gen_spawngroup(400024, "swat_group_2", { 400018, 400019, 400020, 400021 }, 0, opts_swat_group),
 
 	-- New Cloakers and their hiding spots

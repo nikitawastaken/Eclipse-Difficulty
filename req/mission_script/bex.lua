@@ -224,17 +224,6 @@ return {
 	-- disable a few reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
 	[101835] = disabled, -- server room, only 1, for some reason
-	-- add guaranteed spawns that come out of swat vans
-	[102987] = {
-		on_executed = {
-			{ id = 400022, delay = 0, delay_rand = 5 },
-		},
-	},
-	[103002] = {
-		on_executed = {
-			{ id = 400015, delay = 0, delay_rand = 5 },
-		},
-	},
 	-- disable dozers
 	[100018] = {
 		on_executed = {

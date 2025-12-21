@@ -107,6 +107,19 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer",
 	},
+	american_cloaker_list = {
+		func = function(self, nr_variations)
+			return "clk_"
+		end,
+		"units/payday2/characters/ene_spook_1/ene_spook_1",
+	},
+	american_medic_list = {
+		func = function(self, nr_variations)
+			return "mdc_"
+		end,
+		"units/payday2/characters/ene_medic_m4/ene_medic_m4",
+		"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+	},
 	american_dozer_list = {
 		func = function(self, nr_variations)
 			return "bdz_"
