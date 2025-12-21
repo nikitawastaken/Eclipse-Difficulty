@@ -2037,9 +2037,9 @@ function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_w
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
 
 							local reload_stat = -math.clamp(math.floor(capacity_increase / 20), -6, 6)
-							local concealment_stat = -math.clamp(math.round(capacity_increase / 25), -10, 10)
-							local spread_stat = (capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 75), 0, 10) or 0) * 2
-							local recoil_stat = (capacity_increase >= 100 and math.clamp(math.floor(capacity_increase / 100), 0, 10) or 0) * 2
+							local concealment_stat = -math.clamp(math.round(capacity_increase / 30), -10, 10)
+							local spread_stat = (capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 75), 0, 5) or 0) 
+							local recoil_stat = (capacity_increase >= 100 and math.clamp(math.floor(capacity_increase / 100), 0, 5) or 0) 
 
 							part_data.stats.recoil = (no_stat_wipe and (part_data.stats.recoil or 0) or 0) + recoil_stat
 							part_data.stats.spread = (no_stat_wipe and (part_data.stats.spread or 0) or 0) + spread_stat
