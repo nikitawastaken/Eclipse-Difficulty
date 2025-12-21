@@ -192,3 +192,28 @@ end
 -- So GroupAI can use individual SOs in spawn tasks for hiding Cloakers
 function ElementSpecialObjective:get_random_SO(receiver_unit)
 	local objective = self:get_objective(receiver_unit)
+	return objective
+end
+
+function ElementSpecialObjective:get_grp_objective(...)
+	local grp_objective = ElementSpecialObjectiveGroup.get_grp_objective(self, ...)
+	grp_objective.type = grp_objective.type or "recurring_cloaker_spawn"
+	-- grp_objective.fail_clbk = nil
+	return grp_objective
+end
+
+-- Doesn't seem to be needed
+--[[
+local clbk_objective_failed = Hooks:GetFunction(ElementSpecialObjective, "clbk_objective_failed")
+Hooks:OverrideFunction(ElementSpecialObjective, "clbk_objective_failed", function(self, unit, ...)
+	if type(unit) == "table" then
+		if type(unit.units) == "table" then
+			for u_key, u_data in pairs(unit.units) do
+				clbk_objective_failed(self, u_data.unit, ...)
+			end
+		end
+		return
+	end
+	return clbk_objective_failed(self, unit, ...)
+end)
+]]
