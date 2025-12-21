@@ -142,7 +142,7 @@ local optsCloakerHideGroupOperations = {
 	},
 }
 local optsCloakerHideGroupAtrium = {
-	base_chance = 0.55,
+	base_chance = 0.7,
 	followup_elements = {
 		400068,
 		400069,
@@ -155,7 +155,7 @@ local optsCloakerHideGroupBossOffice = {
 	},
 }
 local optsCloakerHideGroupForensics = {
-	base_chance = 0.85,
+	base_chance = 0.7,
 	followup_elements = {
 		400072,
 		400077,
