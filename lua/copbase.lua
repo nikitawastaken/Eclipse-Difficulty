@@ -225,7 +225,7 @@ function CopBase:set_cloaker_goggles_on(state)
 end
 
 -- No idea if play() needs source_name or sync arguments here
-function CopBase:set_cloaker_noise_on(state, whistle)
+function CopBase:set_cloaker_noise_on(state)
 	if not self:has_tag("spooc") then
 		return
 	end
@@ -242,9 +242,6 @@ function CopBase:set_cloaker_noise_on(state, whistle)
 
 	local sound_event = state and char_tweak.spawn_sound_event or char_tweak.die_sound_event
 	sound_ext:play(sound_event)
-	if whistle then
-		sound_ext:play("clk_c01x_plu")
-	end
 end
 
 ContourSwapBase = class()
