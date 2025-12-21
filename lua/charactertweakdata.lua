@@ -1367,12 +1367,12 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.fbi_boss.die_sound_event = "l1n_x01a_any_3p"
 	table.insert(self._enemy_list, "fbi_boss")
 
-	self.chavez_boss.HEALTH_INIT = 80
+	self.chavez_boss.HEALTH_INIT = 120
 	self.chavez_boss.headshot_dmg_mul = 2.5
 	self.chavez_boss.damage.hurt_severity = self.presets.hurt_severities.no_hurts
 	self.chavez_boss.die_sound_event = "l3n_x01a_any_3p"
 
-	self.hector_boss.HEALTH_INIT = 120
+	self.hector_boss.HEALTH_INIT = 160
 	self.hector_boss.headshot_dmg_mul = 1.75
 	self.hector_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.hector_boss.throwable = "concussion"
@@ -1383,14 +1383,14 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.hector_boss_no_armor.headshot_dmg_mul = 2.5
 	self.hector_boss_no_armor.die_sound_event = "l4n_x01a_any_3p"
 
-	self.biker_boss.HEALTH_INIT = 120
+	self.biker_boss.HEALTH_INIT = 160
 	self.biker_boss.headshot_dmg_mul = 1.75
 	self.biker_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.biker_boss.throwable = "frag"
 	self.biker_boss.throwable_cooldown = 15
 	self.biker_boss.die_sound_event = "fl1n_x02a_any_3p"
 
-	self.drug_lord_boss.HEALTH_INIT = 120
+	self.drug_lord_boss.HEALTH_INIT = 160
 	self.drug_lord_boss.headshot_dmg_mul = 2.5
 	self.drug_lord_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.drug_lord_boss.throwable_target_verified = true
@@ -1402,7 +1402,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.drug_lord_boss_stealth.headshot_dmg_mul = 2.5
 	self.drug_lord_boss_stealth.die_sound_event = "l2n_x01a_any_3p"
 
-	self.triad_boss.HEALTH_INIT = 120
+	self.triad_boss.HEALTH_INIT = 160
 	self.triad_boss.headshot_dmg_mul = 1.75
 	self.triad_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.triad_boss.bullet_damage_only_from_front = nil
@@ -1413,7 +1413,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.triad_boss_no_armor.HEALTH_INIT = 4
 	self.triad_boss_no_armor.headshot_dmg_mul = 2.5
 
-	self.deep_boss.HEALTH_INIT = 160
+	self.deep_boss.HEALTH_INIT = 200
 	self.deep_boss.headshot_dmg_mul = 1.75
 	self.deep_boss.ignore_headshot = false
 	self.deep_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
