@@ -2981,17 +2981,18 @@ function GroupAITweakData:_apply_group_ai_preset(preset)
 					if mul then
 						table_multiplier(group_weights, mul)
 
-						Eclipse:log_console("Weights for " .. group_name .. " set to: ")
+						-- Eclipse:log_console("Weights for " .. group_name .. " set to: ")
 						-- Utils.PrintTable(group_weights)
 					end
 				end
 			end
 		end
-
-		Eclipse:log_console("Group AI preset for " .. level_id .. " set to " .. preset)
 	end
+
+	-- Eclipse:log_console("Group AI preset for " .. level_id .. " set to " .. preset)
 end
 
+-- TODO: rewrite this shit
 function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	local lvl_tweak = self.tweak_data.levels[level_id]
 
@@ -3000,22 +3001,22 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 
 	self.spawn_kill_distance = level_settings.spawn_kill_distance or self.spawn_kill_distance
 
-	if level_settings.spawn_kill_distance ~= 1 then
-		Eclipse:log_console("Spawn kill distance for " .. level_id .. " set to " .. self.spawn_kill_distance)
-	end
+	-- if level_settings.spawn_kill_distance ~= 1 then
+	-- 	Eclipse:log_console("Spawn kill distance for " .. level_id .. " set to " .. self.spawn_kill_distance)
+	-- end
 
 	self.spawn_kill_cooldown = level_settings.spawn_kill_cooldown or self.spawn_kill_cooldown
 
-	if level_settings.spawn_kill_cooldown ~= 1 then
-		Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
-	end
+	-- if level_settings.spawn_kill_cooldown ~= 1 then
+	-- 	Eclipse:log_console("Spawn kill cooldown for " .. level_id .. " set to " .. self.spawn_kill_cooldown)
+	-- end
 
 	self.min_grenade_timeout = table_multiplier(self.min_grenade_timeout, level_settings.min_grenade_timeout_mul or 1)
 
-	if level_settings.min_grenade_timeout_mul ~= 1 then
-		Eclipse:log_console("Min grenade timeout for " .. level_id .. " set to: ")
-		-- Utils.PrintTable(self.min_grenade_timeout)
-	end
+	-- if level_settings.min_grenade_timeout_mul ~= 1 then
+	-- 	Eclipse:log_console("Min grenade timeout for " .. level_id .. " set to: ")
+	-- 	Utils.PrintTable(self.min_grenade_timeout)
+	-- end
 
 	if level_settings.difficulty_scaling then
 		for name, value in pairs(level_settings.difficulty_scaling) do
@@ -3023,7 +3024,7 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 				self.difficulty_scaling[name] = value
 			end
 
-			Eclipse:log_console("Difficulty scaling for " .. level_id .. " set to: ")
+			-- Eclipse:log_console("Difficulty scaling for " .. level_id .. " set to: ")
 			-- Utils.PrintTable(self.difficulty_scaling)
 		end
 	end
@@ -3043,98 +3044,98 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 
 					assault_state.assault.sustain_duration_max = assault_state.assault.sustain_duration_min
 
-					if level_group_ai_state and level_settings.sustain_duration_mul ~= 1 then
-						Eclipse:log_console("Sustain duration for " .. level_id .. " set to: ")
-						-- Utils.PrintTable(assault_state.assault.sustain_duration_min)
-					end
+					-- if level_group_ai_state and level_settings.sustain_duration_mul ~= 1 then
+					-- 	Eclipse:log_console("Sustain duration for " .. level_id .. " set to: ")
+					-- 	Utils.PrintTable(assault_state.assault.sustain_duration_min)
+					-- end
 				end
 
 				if assault_state.assault.delay then
 					assault_state.assault.delay = table_multiplier(assault_state.assault.delay, level_settings.assault_delay_mul or 1)
 
-					if level_group_ai_state and level_settings.assault_delay_mul ~= 1 then
-						Eclipse:log_console("Assault delay for " .. level_id .. " set to: ")
-						-- Utils.PrintTable(assault_state.assault.delay)
-					end
+					-- if level_group_ai_state and level_settings.assault_delay_mul ~= 1 then
+					-- 	Eclipse:log_console("Assault delay for " .. level_id .. " set to: ")
+					-- 	Utils.PrintTable(assault_state.assault.delay)
+					-- end
 				end
 
 				if assault_state.assault.hostage_hesitation_delay then
 					assault_state.assault.hostage_hesitation_delay = table_multiplier(assault_state.assault.hostage_hesitation_delay, level_settings.hostage_hesitation_delay_mul or 1)
 
-					if level_group_ai_state and level_settings.hostage_hesitation_delay_mul ~= 1 then
-						Eclipse:log_console("Hostage hesitation delay for " .. level_id .. " set to: ")
-						-- Utils.PrintTable(assault_state.assault.hostage_hesitation_delay)
-					end
+					-- if level_group_ai_state and level_settings.hostage_hesitation_delay_mul ~= 1 then
+					-- 	Eclipse:log_console("Hostage hesitation delay for " .. level_id .. " set to: ")
+					-- 	Utils.PrintTable(assault_state.assault.hostage_hesitation_delay)
+					-- end
 				end
 
 				if assault_state.assault.force then
 					assault_state.assault.force = table_multiplier(assault_state.assault.force, level_settings.assault_force_mul or 1)
 
-					if level_group_ai_state and level_settings.assault_force_mul ~= 1 then
-						Eclipse:log_console("Assault force for " .. level_id .. " set to: ")
-						-- Utils.PrintTable(assault_state.assault.force)
-					end
+					-- if level_group_ai_state and level_settings.assault_force_mul ~= 1 then
+					-- 	Eclipse:log_console("Assault force for " .. level_id .. " set to: ")
+					-- 	Utils.PrintTable(assault_state.assault.force)
+					-- end
 				end
 
 				if assault_state.assault.force_pool then
 					assault_state.assault.force_pool = table_multiplier(assault_state.assault.force_pool, level_settings.assault_force_mul or 1)
 
-					if level_group_ai_state and level_settings.assault_force_mul ~= 1 then
-						Eclipse:log_console("Assault force for pool " .. level_id .. " set to: ")
-						-- Utils.PrintTable(assault_state.assault.force_pool)
-					end
+					-- if level_group_ai_state and level_settings.assault_force_mul ~= 1 then
+					-- 	Eclipse:log_console("Assault force for pool " .. level_id .. " set to: ")
+					-- 	Utils.PrintTable(assault_state.assault.force_pool)
+					-- end
 				end
 
 				if assault_state.assault.spawnrate then
 					assault_state.assault.spawnrate = table_multiplier(assault_state.assault.spawnrate, level_settings.spawnrate_mul or 1)
 
-					if level_group_ai_state and level_settings.spawnrate_mul ~= 1 then
-						Eclipse:log_console("Spawnrate for " .. level_id .. " set to: ")
-						-- Utils.PrintTable(assault_state.assault.spawnrate)
-					end
+					-- if level_group_ai_state and level_settings.spawnrate_mul ~= 1 then
+					-- 	Eclipse:log_console("Spawnrate for " .. level_id .. " set to: ")
+					-- 	Utils.PrintTable(assault_state.assault.spawnrate)
+					-- end
 				end
 			end
 
 			if assault_state.recon then
 				assault_state.recon.interval_variation = assault_state.recon.interval_variation * (level_settings.recon_interval_variation_mul or 1)
 
-				if level_group_ai_state and level_settings.recon_interval_variation_mul ~= 1 then
-					Eclipse:log_console("Recon interval variation for " .. level_id .. " set to " .. assault_state.recon.interval_variation)
-				end
+				-- if level_group_ai_state and level_settings.recon_interval_variation_mul ~= 1 then
+				-- 	Eclipse:log_console("Recon interval variation for " .. level_id .. " set to " .. assault_state.recon.interval_variation)
+				-- end
 
 				assault_state.recon.force = table_multiplier(assault_state.recon.force, level_settings.recon_force_mul or 1)
 
-				if level_group_ai_state and level_settings.recon_force_mul ~= 1 then
-					Eclipse:log_console("Recon force for " .. level_id .. " set to: ")
-					-- Utils.PrintTable(assault_state.recon.force)
-				end
+				-- if level_group_ai_state and level_settings.recon_force_mul ~= 1 then
+				-- 	Eclipse:log_console("Recon force for " .. level_id .. " set to: ")
+				-- 	Utils.PrintTable(assault_state.recon.force)
+				-- end
 			end
 
 			if assault_state.reenforce then
 				assault_state.reenforce.interval = table_multiplier(assault_state.reenforce.interval, level_settings.reenforce_interval_mul or 1)
 
-				if level_group_ai_state and level_settings.reenforce_interval_mul ~= 1 then
-					Eclipse:log_console("Reenforce interval for " .. level_id .. " set to: ")
-					-- Utils.PrintTable(assault_state.reenforce.interval)
-				end
+				-- if level_group_ai_state and level_settings.reenforce_interval_mul ~= 1 then
+				-- 	Eclipse:log_console("Reenforce interval for " .. level_id .. " set to: ")
+				-- 	Utils.PrintTable(assault_state.reenforce.interval)
+				-- end
 			end
 
 			if assault_state.cloaker then
 				assault_state.cloaker.interval = table_multiplier(assault_state.cloaker.interval, level_settings.cloaker_interval_mul or 1)
 
-				if level_group_ai_state and level_settings.cloaker_interval_mul ~= 1 then
-					Eclipse:log_console("Cloaker spawn intervals for " .. level_id .. " set to: ")
-					-- Utils.PrintTable(assault_state.cloaker.interval)
-				end
+				-- if level_group_ai_state and level_settings.cloaker_interval_mul ~= 1 then
+				-- 	Eclipse:log_console("Cloaker spawn intervals for " .. level_id .. " set to: ")
+				-- 	Utils.PrintTable(assault_state.cloaker.interval)
+				-- end
 			end
 
 			if assault_state.push_delay then
 				assault_state.push_delay = table_multiplier(assault_state.push_delay, level_settings.push_delay_mul or 1)
 
-				if level_group_ai_state and level_settings.push_delay_mul ~= 1 then
-					Eclipse:log_console("Push delay for " .. level_id .. " set to: ")
-					-- Utils.PrintTable(assault_state.push_delay)
-				end
+				-- if level_group_ai_state and level_settings.push_delay_mul ~= 1 then
+				-- 	Eclipse:log_console("Push delay for " .. level_id .. " set to: ")
+				-- 	Utils.PrintTable(assault_state.push_delay)
+				-- end
 			end
 		end
 	end
@@ -3142,32 +3143,32 @@ function GroupAITweakData:_apply_group_ai_settings(level_settings)
 	if level_settings.grenade_timeout_mul then
 		self.flash_grenade_timeout = table_multiplier(self.flash_grenade_timeout, level_settings.grenade_timeout_mul.flash_grenade or 1)
 
-		if level_settings.grenade_timeout_mul.flash_grenade ~= 1 then
-			Eclipse:log_console("Flash grenade timeout for " .. level_id .. " set to: ")
-			-- Utils.PrintTable(self.flash_grenade_timeout)
-		end
+		-- if level_settings.grenade_timeout_mul.flash_grenade ~= 1 then
+		-- 	Eclipse:log_console("Flash grenade timeout for " .. level_id .. " set to: ")
+		-- 	Utils.PrintTable(self.flash_grenade_timeout)
+		-- end
 
 		self.smoke_grenade_timeout = table_multiplier(self.smoke_grenade_timeout, level_settings.grenade_timeout_mul.smoke_grenade or 1)
 
-		if level_settings.grenade_timeout_mul.smoke_grenade ~= 1 then
-			Eclipse:log_console("Smoke grenade timeout for " .. level_id .. " set to: ")
-			-- Utils.PrintTable(self.smoke_grenade_timeout)
-		end
+		-- if level_settings.grenade_timeout_mul.smoke_grenade ~= 1 then
+		-- 	Eclipse:log_console("Smoke grenade timeout for " .. level_id .. " set to: ")
+		-- 	Utils.PrintTable(self.smoke_grenade_timeout)
+		-- end
 
 		self.cs_grenade_timeout = table_multiplier(self.cs_grenade_timeout, level_settings.grenade_timeout_mul.cs_grenade or 1)
 
-		if level_settings.grenade_timeout_mul.cs_grenade ~= 1 then
-			Eclipse:log_console("CS grenade timeout for " .. level_id .. " set to: ")
-			-- Utils.PrintTable(self.cs_grenade_timeout)
-		end
+		-- if level_settings.grenade_timeout_mul.cs_grenade ~= 1 then
+		-- 	Eclipse:log_console("CS grenade timeout for " .. level_id .. " set to: ")
+		-- 	Utils.PrintTable(self.cs_grenade_timeout)
+		-- end
 	end
 
 	self.cs_grenade_chance_times = table_multiplier(self.cs_grenade_chance_times, level_settings.cs_grenade_chance_times_mul or 1)
 
-	if level_settings.cs_grenade_chance_times_mul ~= 1 then
-		Eclipse:log_console("CS grenade chance times for " .. level_id .. " set to: ")
-		-- Utils.PrintTable(self.cs_grenade_chance_times)
-	end
+	-- if level_settings.cs_grenade_chance_times_mul ~= 1 then
+	-- 	Eclipse:log_console("CS grenade chance times for " .. level_id .. " set to: ")
+	-- 	Utils.PrintTable(self.cs_grenade_chance_times)
+	-- end
 
 	if level_settings.force_tactics then
 		for name, force_tactics_table in pairs(level_settings.force_tactics) do
