@@ -3491,10 +3491,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	end
 
-	-- New data for the reworked Cloaker task
 	self.besiege.cloaker.groups = {
 		single_spooc = { 1, 1, 1 },
 	}
+
+	-- New data for the reworked Cloaker task
 	self.use_reworked_cloaker_task = true
 	self.besiege.cloaker.interval = get_difficulty_specific_value({
 		{ 60, 120 },
@@ -3515,11 +3516,17 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		10,
 		20,
 	}
-	self.besiege.cloaker.SO_grp_weighting = {
+	self.besiege.cloaker.SO_weighting = {
 		near_distance = 1000,
 		far_distance = 3000,
 		far_chance_mul = 0.1,
-		ignore_distance = 5000,
+		too_far_distance = 5000,
+		too_close_distance = 1000,
+	}
+	self.besiege.cloaker.repeat_hiding_spots = {
+		avoid = true,
+		min_elements = 3,
+		min_distance = 1500,
 	}
 	self.besiege.cloaker.simultaneous_hiding_limit = 2
 	self.besiege.cloaker.goggles_on_when_hiding = false

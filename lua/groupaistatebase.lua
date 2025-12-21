@@ -631,37 +631,85 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 end
 
 -- Prioritize hide SOs near criminals rather than picking at complete random
-function GroupAIStateBase:_get_hiding_cloaker_SO_grp(data, group, hiding_cloaker_tweak)
-	local SO_grp_weighting = hiding_cloaker_tweak.SO_grp_weighting or {
+function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_tweak)
+	if not data.followups or #data.followups == 0 then
+		return
+	end
+
+	local repeat_hiding_spots = hiding_cloaker_tweak.repeat_hiding_spots or {
+		avoid = true,
+		min_elements = 3,
+		min_distance = 1500,
+	}
+	local last_element = group and group.last_element
+	if not repeat_hiding_spots.avoid or #data.followups < repeat_hiding_spots.min_elements then
+		last_element = nil
+	end
+	local last_element_pos = last_element and last_element:value("position")
+
+	local SO_weighting = hiding_cloaker_tweak.SO_weighting or {
 		near_distance = 1000,
 		far_distance = 3000,
 		far_chance_mul = 0.1,
-		ignore_distance = 5000,
+		too_far_distance = 5000,
+		too_close_distance = 1000,
 	}
 	local element_weights = {}
 	local total_w = 0
 	local criminal_pos = self:_get_units_center_pos(self:all_char_criminals())
 	local pos_is_zero = not criminal_pos or mvector3.is_zero(criminal_pos)
-	for _, element in ipairs(data.elements) do
-		local element_w = element:value("base_chance")
-		if pos_is_zero then
-			table.insert(element_weights, { element, element_w })
-			total_w = total_w + element_w
-		else
-			local element_dis = mvector3.distance(criminal_pos, element:value("position"))
-			if SO_grp_weighting.ignore_distance > element_dis then
-				element_w = math.map_range_clamped(element_dis, SO_grp_weighting.near_distance, SO_grp_weighting.far_distance, element_w, element_w * SO_grp_weighting.far_chance_mul)
-				table.insert(element_weights, { element, element_w })
-				total_w = total_w + element_w
+
+	local function should_continue(element, element_pos)
+		if last_element and last_element == element then
+			return true
+		elseif last_element_pos and mvector3.distance(element_pos, last_element_pos) < repeat_hiding_spots.min_distance then
+			return true
+		elseif not data.groups then
+			return false
+		end
+
+		for _, grp in pairs(data.groups) do
+			if grp ~= group and grp.last_element == element then
+				return true
 			end
 		end
 	end
 
+	local function collect_element_weights(skip_ignore_distances)
+		for _, followup_data in ipairs(data.followups) do
+			local element, element_w = followup_data[1], followup_data[2]
+			local element_pos = element:value("position")
+			if should_continue(element, element_pos) then
+				goto __continue
+			end
+
+			if pos_is_zero then
+				table.insert(element_weights, { element, element_w })
+				total_w = total_w + element_w
+			else
+				local element_dis = mvector3.distance(criminal_pos, element_pos)
+				if skip_ignore_distances or SO_weighting.too_far_distance > element_dis and SO_weighting.too_close_distance < element_dis then
+					element_w = math.map_range_clamped(element_dis, SO_weighting.near_distance, SO_weighting.far_distance, element_w, element_w * SO_weighting.far_chance_mul)
+					table.insert(element_weights, { element, element_w })
+					total_w = total_w + element_w
+				end
+			end
+
+			::__continue::
+		end
+	end
+
+	collect_element_weights()
+	if #element_weights == 0 then
+		last_element, last_element_pos = nil
+		collect_element_weights(true)
+	end
+
 	local rand_w = total_w * math.random()
-	for _, data in ipairs(element_weights) do
-		rand_w = rand_w - data[2]
+	for _, weight_data in ipairs(element_weights) do
+		rand_w = rand_w - weight_data[2]
 		if rand_w <= 0 then
-			return data[1]
+			return weight_data[1]
 		end
 	end
 end
@@ -777,14 +825,14 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 		return
 	end
 
-	local so_grp_element = self:_get_hiding_cloaker_SO_grp(data, nil, hiding_cloaker_tweak)
-	if not so_grp_element then
-		-- Eclipse:log_console("No SO group element")
+	local so_element = self:_get_hiding_cloaker_SO(data, nil, hiding_cloaker_tweak)
+	if not so_element then
+		-- Eclipse:log_console("No SO element")
 		return
 	end
 
-	local grp_objective = so_grp_element:get_grp_objective()
-	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(grp_objective.area, hiding_cloaker_tweak.groups, so_grp_element:value("position"), nil, nil)
+	local grp_objective = so_element:get_grp_objective()
+	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(grp_objective.area, hiding_cloaker_tweak.groups, so_element:value("position"), nil, nil)
 	if not spawn_group then
 		-- Eclipse:log_console("No spawn group")
 		return
@@ -796,6 +844,7 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 		data.groups = data.groups or {}
 		data.groups[new_group.id] = new_group
 		new_group.hiding_cloaker_data = data
+		new_group.last_element = so_element
 		new_group.rehide_attempts = 0
 		new_group.max_rehide_attempts = math.random(max_rehide_attempts[1], max_rehide_attempts[2])
 
@@ -862,23 +911,23 @@ end
 -- interrupt_health being set before assignment can cause the objective to fail immediately if the Cloaker was damaged
 -- Set it only after assignment so the Cloaker hides again but is also interrupted by any new damage
 function GroupAIStateBase:_rehide_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
-	local so_grp_element = self:_get_hiding_cloaker_SO_grp(data, group, hiding_cloaker_tweak)
-	if not so_grp_element then
+	local so_element = self:_get_hiding_cloaker_SO(data, group, hiding_cloaker_tweak)
+	if not so_element then
 		self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 		return false
 	end
 
-	local grp_objective = so_grp_element:get_grp_objective()
+	group.last_element = so_element
+	local grp_objective = so_element:get_grp_objective()
 	self:_set_objective_to_enemy_group(group, grp_objective)
 
 	for u_key, u_data in pairs(group.units) do
-		local element = so_grp_element:choose_followup_SO(u_data.unit, {})
-		if not element then
+		local objective = so_element:get_random_SO(u_data.unit)
+		if not objective then
 			self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 			return false
 		end
 
-		local objective = element:get_objective(u_data.unit)
 		objective.interrupt_health = nil
 		objective.grp_objective = grp_objective
 
@@ -888,7 +937,9 @@ function GroupAIStateBase:_rehide_hiding_cloaker(data, group_id, group, hiding_c
 		else
 			self:set_enemy_assigned(objective.area or grp_objective.area, u_key)
 
-			element:clbk_objective_administered(u_data.unit)
+			if objective.element then
+				objective.element:clbk_objective_administered(u_data.unit)
+			end
 
 			u_brain:set_objective(objective)
 		end
@@ -912,6 +963,48 @@ Hooks:PostHook(GroupAIStateBase, "_remove_group_member", "eclipse__remove_group_
 	if data and data.delay_t then
 		local hiding_cloaker_tweak = self._tweak_data.cloaker
 		self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak and hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
+	end
+end)
+
+-- Make getting individual SOs for hiding Cloakers easier
+Hooks:PostHook(GroupAIStateBase, "_process_grp_SO", "eclipse__process_grp_SO", function(self, grp_so_id, element)
+	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
+	if not grp_SO_data then
+		return
+	end
+
+	local followup_elements = element:value("followup_elements")
+	if not followup_elements then
+		return
+	end
+
+	local base_chance = element:value("base_chance")
+	for _, id in ipairs(followup_elements) do
+		local followup = element:get_mission_element(id)
+		if followup then
+			grp_SO_data.followups = grp_SO_data.followups or {}
+			table.insert(grp_SO_data.followups, { followup, followup:chance() * base_chance, element })
+		end
+	end
+end)
+
+-- Vanilla code doesn't seem to properly support removing SO groups
+-- Add it here for hiding Cloaker use
+Hooks:PostHook(GroupAIStateBase, "remove_grp_SO", "eclipse_remove_grp_SO", function(self, id)
+	local element = managers.mission:get_element_by_id(id)
+	if not element then
+		return
+	end
+
+	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
+	if not grp_SO_data or not grp_SO_data.followups then
+		return
+	end
+
+	for i, followup_data in table.reverse_ipairs(grp_SO_data.followups) do
+		if followup_data[3] == element then
+			table.remove(grp_SO_data.followups, i)
+		end
 	end
 end)
 
