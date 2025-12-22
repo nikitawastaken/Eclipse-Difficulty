@@ -27,7 +27,7 @@ function MedicDamage:verify_heal_requesting_unit(requesting_unit, ...)
 	if requesting_unit:movement()._active_actions[1] and requesting_unit:movement()._active_actions[1]:type() == "spooc" then
 		return false
 	end
-	
+
 	-- Make medics require line of sight to heal
 	local medic_pos = self._unit:movement():m_head_pos()
 	local slot_mask = managers.slot:get_mask("AI_visibility")
