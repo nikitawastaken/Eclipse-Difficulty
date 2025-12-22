@@ -994,13 +994,23 @@ Hooks:PostHook(GroupAIStateBase, "remove_grp_SO", "eclipse_remove_grp_SO", funct
 	end
 
 	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
-	if not grp_SO_data or not grp_SO_data.followups then
+	if not grp_SO_data then
 		return
 	end
 
-	for i, followup_data in table.reverse_ipairs(grp_SO_data.followups) do
-		if followup_data[3] == element then
-			table.remove(grp_SO_data.followups, i)
+	if grp_SO_data.elements then
+		for i, elmnt in table.reverse_ipairs(grp_SO_data.elements) do
+			if elmnt == element then
+				table.remove(grp_SO_data.elements, i)
+			end
+		end
+	end
+
+	if grp_SO_data.followups then
+		for i, followup_data in table.reverse_ipairs(grp_SO_data.followups) do
+			if followup_data[3] == element then
+				table.remove(grp_SO_data.followups, i)
+			end
 		end
 	end
 end)
