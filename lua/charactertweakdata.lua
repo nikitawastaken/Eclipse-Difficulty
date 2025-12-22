@@ -529,7 +529,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.slow, 0.8)
 	speed_multiplier(presets.move_speed.fast, 1.2)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
-	speed_multiplier(presets.move_speed.lightning, 1.4)
+	speed_multiplier(presets.move_speed.lightning, 1.5)
 
 	for speed_preset_name, poses in pairs(presets.move_speed) do
 		for pose, hastes in pairs(poses) do
@@ -2105,10 +2105,10 @@ function CharacterTweakData:_set_presets()
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
-			char_preset.spooc_attack_move_speed_mul = 1.75
+			char_preset.spooc_attack_move_speed_mul = 1.5
 			char_preset.spooc_attack_dodge_timeout = { 0.5, 1 }
 			char_preset.use_animation_on_fire_damage = true
-			char_preset.can_be_healed = false
+			char_preset.can_be_healed = true
 		elseif tag_map.taser then
 			char_preset.min_obj_interrupt_dis = 1000
 		elseif tag_map.medic then

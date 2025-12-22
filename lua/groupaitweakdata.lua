@@ -3284,7 +3284,6 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_balance_mul, 0.55 + (i * 0.15))
 	end
-	Utils.PrintTable(self.besiege.assault.force_balance_mul)
 
 	self.besiege.assault.force_pool = {
 		self.besiege.assault.force[1] * 10,
