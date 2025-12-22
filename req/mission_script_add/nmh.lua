@@ -27,17 +27,11 @@ local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
 }
-local random_normal_and_elite_dozers = {
-	green_bulldozer,
-	black_bulldozer,
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
-}
 local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local bulldozer = is_eclipse_pro and random_elite_dozers or is_eclipse and random_normal_and_elite_dozers or random_dozers
+local bulldozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
 local optsEliteSniper_1 = {
 	enemy = sniper,
@@ -92,6 +86,7 @@ local optsCloaker_Hide_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interrupt_dis = 5,
 	interrupt_dmg = 0.3,
 	interval = 2,
@@ -102,12 +97,14 @@ local optsSniper_SO = {
 	align_position = true,
 	needs_pos_rsrv = true,
 	align_rotation = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_sniper",
 }
 local optsDozerHunt_SO = {
 	SO_access = "4096",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }

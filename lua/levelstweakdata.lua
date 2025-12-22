@@ -485,9 +485,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.rvd1.group_ai_settings = {
-		recon_interval_variation_mul = 0.5,
 		difficulty_scaling = {
 			diff_init = 0.5,
+			assault_delay = 60,
 			assault_add = 0.25,
 		},
 		special_limit_add = {

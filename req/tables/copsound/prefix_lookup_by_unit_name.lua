@@ -1,7 +1,6 @@
 -- Put unit names in these lists as strings, NOT Idstrings
 -- Make sure there is a function
 local prefix_lookup_for_humans = {
-	--[[
 	american_cop_filtered_list = {
 		func = function(self, nr_variations)
 			return "l" .. nr_variations .. "d_"
@@ -9,15 +8,12 @@ local prefix_lookup_for_humans = {
 		-- US Blue SWAT
 		"units/payday2/characters/ene_swat_heavy_1/ene_swat_heavy_1",
 		"units/payday2/characters/ene_swat_heavy_r870/ene_swat_heavy_r870",
-		"units/payday2/characters/ene_shield_2/ene_shield_2",
 		-- US FBI SWAT
 		"units/payday2/characters/ene_fbi_heavy_1/ene_fbi_heavy_1",
 		"units/payday2/characters/ene_fbi_heavy_r870/ene_fbi_heavy_r870",
-		"units/payday2/characters/ene_shield_1/ene_shield_1",
 		-- US GenSec
 		"units/payday2/characters/ene_city_heavy_g36/ene_city_heavy_g36",
 		"units/payday2/characters/ene_city_heavy_r870/ene_city_heavy_r870",
-		--"units/payday2/characters/ene_city_shield/ene_city_shield", 
 		-- US Zeals
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat/ene_zeal_swat",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_swat_heavy/ene_zeal_swat_heavy",
@@ -111,6 +107,19 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer",
 	},
+	american_cloaker_list = {
+		func = function(self, nr_variations)
+			return "clk_"
+		end,
+		"units/payday2/characters/ene_spook_1/ene_spook_1",
+	},
+	american_medic_list = {
+		func = function(self, nr_variations)
+			return "mdc_"
+		end,
+		"units/payday2/characters/ene_medic_m4/ene_medic_m4",
+		"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+	},
 	american_dozer_list = {
 		func = function(self, nr_variations)
 			return "bdz_"
@@ -126,8 +135,6 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun",
 		"units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic",
 	},
-	]]
-	--
 	-- Scary gruff filtered lines, reserve for mercs and whatnot
 	l5d_list = {
 		func = function(self, nr_variations)
@@ -164,6 +171,19 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3",
 		"units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4",
 	},
+	-- list that has 2 random voices, used only for american shields (sans GenSec Shield)
+	l1d_l4d_shield_list = {
+		func = function(self, nr_variations)
+			local rand = math.random()
+			if rand < 0.5 then
+				return "l1d_"
+			else
+				return "l4d_"
+			end
+		end,
+		"units/payday2/characters/ene_shield_1/ene_shield_1",
+		"units/payday2/characters/ene_shield_2/ene_shield_2",
+	},
 	female_enemy_list = {
 		func = function(self, nr_variations)
 			return "fl1n_"
@@ -193,7 +213,6 @@ local prefix_lookup_for_humans = {
 		end,
 	},
 	]]
-	--
 	russian_merc_list = {
 		func = function(self, nr_variations)
 			return "r" .. nr_variations .. "n_"
@@ -261,12 +280,10 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_gang_black_4/ene_gang_black_4",
 	},
 	]]
-	--
 	bexico_cop_list = {
 		func = function(self, nr_variations)
 			return "m" .. nr_variations .. "n_"
 		end,
-		--[[
 		-- Federales Street Cops
 		"units/pd2_dlc_bex/characters/ene_policia_01/ene_policia_01",
 		"units/pd2_dlc_bex/characters/ene_policia_02/ene_policia_02",
@@ -276,8 +293,6 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03",
-		]]
-		--
 		-- Cartel faction below
 		"units/pd2_mod_ttr/characters/ene_cartel_commando/ene_cartel_commando",
 		"units/pd2_mod_ttr/characters/ene_cartel_soldier/ene_cartel_soldier",

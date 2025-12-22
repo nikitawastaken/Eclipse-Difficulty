@@ -44,11 +44,9 @@ function CopMovement:speed_modifier()
 		final_modifier = final_modifier * (move_speed_mul and move_speed_mul.walk or 1)
 	end
 
-	local spooc_action = self._active_actions[1]
-
 	-- Cloakers move faster while charging
-	if spooc_action and spooc_action:type() == "spooc" then
-		final_modifier = final_modifier * (self._tweak_data.spooc_charge_move_speed_mul or 1.5)
+	if self._active_actions[1] and self._active_actions[1]:type() == "spooc" then
+		final_modifier = final_modifier * (self._tweak_data.spooc_attack_move_speed_mul or 1)
 	end
 
 	if self._carry_speed_modifier then

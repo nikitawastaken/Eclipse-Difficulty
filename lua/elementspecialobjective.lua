@@ -31,7 +31,12 @@ ElementSpecialObjective._hiding_cloaker_actions = table.list_to_set({
 	"e_so_idle_by_container",
 	"e_so_sneak_wait_stand",
 	"e_so_sneak_wait_crh",
+	"e_so_sneak_wait_crh_var2",
+	"e_so_sneak_wait_crh_var3",
+	"e_so_hide_ledge_enter",
+	"e_so_hide_2_5m_vent_enter",
 	"e_so_hide_under_car_enter",
+	"e_so_hide_behind_door_enter",
 })
 
 -- "group_ai_flagged" -> flagged by SO group element, genuine GroupAI-handled hiding Cloaker SO
@@ -128,38 +133,54 @@ Hooks:PostHook(ElementSpecialObjective, "event", "eclipse_event", function(self,
 
 	local hiding_cloaker_tweak = self:_hiding_cloaker_tweak()
 	if name == "anim_start" then
-		self:_set_cloaker_is_hiding(unit:key(), true)
+		local hide_data = {
+			unit = unit,
+		}
 
 		if hiding_cloaker_tweak.goggles_on_when_hiding == false then
-			self:_chk_run_base_ext_method(base_ext, "set_cloaker_goggles_on", false)
+			hide_data.goggles_off = self:_run_ext_method(base_ext, "set_cloaker_goggles_on", false)
 		end
 
 		if hiding_cloaker_tweak.use_idle_noise_when_hiding == false then
-			self:_chk_run_base_ext_method(base_ext, "set_cloaker_noise_on", false)
+			hide_data.noise_off = self:_run_ext_method(base_ext, "set_cloaker_noise_on", false)
 		end
-	elseif self._cloakers_currently_hiding and self._cloakers_currently_hiding[unit:key()] then
-		self:_set_cloaker_is_hiding(unit:key(), false)
 
-		self:_chk_run_base_ext_method(base_ext, "set_cloaker_goggles_on", true)
+		self:_set_cloaker_is_hiding(unit:key(), hide_data)
+	elseif self._cloakers_currently_hiding then
+		local hide_data = self._cloakers_currently_hiding[unit:key()]
+		if hide_data then
+			if hide_data.goggles_off then
+				self:_run_ext_method(base_ext, "set_cloaker_goggles_on", true)
+			end
 
-		local whistle = hiding_cloaker_tweak.whistle_on_leave_hiding ~= false
-		self:_chk_run_base_ext_method(base_ext, "set_cloaker_noise_on", true, whistle)
+			if hide_data.noise_off then
+				self:_run_ext_method(base_ext, "set_cloaker_noise_on", true)
+			end
+
+			local whistle = hiding_cloaker_tweak.whistle_on_leave_hiding ~= false
+			local sound_ext = unit:sound()
+			if whistle and sound_ext then
+				sound_ext:play("clk_c01x_plu")
+			end
+
+			self:_set_cloaker_is_hiding(unit:key(), nil)
+		end
 	end
 end)
 
-function ElementSpecialObjective:_chk_run_base_ext_method(base_ext, method, ...)
-	if base_ext[method] then
-		base_ext[method](base_ext, ...)
+function ElementSpecialObjective:_run_ext_method(unit_ext, method, ...)
+	if unit_ext[method] then
+		unit_ext[method](unit_ext, ...)
 		return true
 	end
 
-	Eclipse:warn_console(string.format('Unit on special objective %u without base extension method "%s"', self._id, method))
+	Eclipse:warn_console(string.format('Unit on special objective %u without extension method "%s"', self._id, method))
 end
 
-function ElementSpecialObjective:_set_cloaker_is_hiding(u_key, is_hiding)
-	if is_hiding then
+function ElementSpecialObjective:_set_cloaker_is_hiding(u_key, hide_data)
+	if hide_data then
 		self._cloakers_currently_hiding = self._cloakers_currently_hiding or {}
-		self._cloakers_currently_hiding[u_key] = true
+		self._cloakers_currently_hiding[u_key] = hide_data
 	elseif self._cloakers_currently_hiding then
 		self._cloakers_currently_hiding[u_key] = nil
 		if not next(self._cloakers_currently_hiding) then
@@ -167,3 +188,32 @@ function ElementSpecialObjective:_set_cloaker_is_hiding(u_key, is_hiding)
 		end
 	end
 end
+
+-- So GroupAI can use individual SOs in spawn tasks for hiding Cloakers
+function ElementSpecialObjective:get_random_SO(receiver_unit)
+	local objective = self:get_objective(receiver_unit)
+	return objective
+end
+
+function ElementSpecialObjective:get_grp_objective(...)
+	local grp_objective = ElementSpecialObjectiveGroup.get_grp_objective(self, ...)
+	grp_objective.type = grp_objective.type or "recurring_cloaker_spawn"
+	-- grp_objective.fail_clbk = nil
+	return grp_objective
+end
+
+-- Doesn't seem to be needed
+--[[
+local clbk_objective_failed = Hooks:GetFunction(ElementSpecialObjective, "clbk_objective_failed")
+Hooks:OverrideFunction(ElementSpecialObjective, "clbk_objective_failed", function(self, unit, ...)
+	if type(unit) == "table" then
+		if type(unit.units) == "table" then
+			for u_key, u_data in pairs(unit.units) do
+				clbk_objective_failed(self, u_data.unit, ...)
+			end
+		end
+		return
+	end
+	return clbk_objective_failed(self, unit, ...)
+end)
+]]

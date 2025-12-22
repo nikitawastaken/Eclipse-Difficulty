@@ -57,7 +57,7 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 local bags_required = {
@@ -122,21 +122,10 @@ return {
 	-- Disable a few vanilla reinforce points
 	[104143] = disabled,
 	[104144] = disabled,
-	-- Slightly slower difficulty ramp up
-	[102162] = disabled,
-	[101357] = { -- initial diff
-		values = {
-			difficulty = 0.5,
-		},
-	},
 	[101696] = { -- players entered container area
-		difficulty = 0.75,
 		on_executed = {
 			{ id = 102804, delay = 0 },
 		},
-	},
-	[100680] = { -- trap hidden, start lifting gold
-		difficulty = 1,
 	},
 	[105038] = math.random() < chance_no_keycard and disabled or nil,
 	[103563] = math.random() < chance_disable_catwalk_far and disabled or nil,

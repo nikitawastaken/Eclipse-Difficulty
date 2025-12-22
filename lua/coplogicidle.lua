@@ -31,7 +31,7 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 
 	local can_arrest = not record.status and record.arrest_timeout < data.t and CopLogicBase._can_arrest(data)
 	if not can_arrest or record.assault_t and attention_data.unit:base():arrest_settings().aggression_timeout > data.t - record.assault_t then
-		return attention_data.verified and AIAttentionObject.REACT_COMBAT or attention_reaction
+		return math.max(attention_reaction, AIAttentionObject.REACT_COMBAT)
 	end
 
 	for u_key, other_crim_rec in pairs(managers.groupai:state():all_criminals()) do
@@ -43,7 +43,7 @@ function CopLogicIdle._chk_reaction_to_attention_object(data, attention_data, ..
 				or other_crim_attention_info.verified and other_crim_rec.assault_t and data.t - other_crim_rec.assault_t < other_crim_rec.unit:base():arrest_settings().aggression_timeout
 			)
 		then
-			return attention_data.verified and AIAttentionObject.REACT_COMBAT or attention_reaction
+			return math.max(attention_reaction, AIAttentionObject.REACT_COMBAT)
 		end
 	end
 
@@ -66,20 +66,20 @@ function CopLogicIdle._chk_relocate(data)
 		local follow_unit = objective.follow_unit
 		local unit_pos = follow_unit:movement().get_walk_to_pos and follow_unit:movement():get_walk_to_pos() or follow_unit:movement():m_newest_pos()
 		local dis_sq = mvector3.distance_sq(data.m_pos, unit_pos)
+		local follow_dis_sq = data.is_tied and 150 ^ 2 or objective.distance and objective.distance ^ 2 or 1000 ^ 2
 
 		if data.is_tied and objective.lose_track_dis and dis_sq > objective.lose_track_dis ^ 2 then
 			data.brain:set_objective(nil)
 			return true
 		end
 
-		local relocated_dis_sq = data.is_tied and my_data.advancing and objective.distance and math.max(objective.distance * 0.5 ^ 2, 100) or 100
-		if objective.relocated_to and mvector3.distance_sq(objective.relocated_to, unit_pos) < relocated_dis_sq then
+		if objective.relocated_to and mvector3.distance_sq(objective.relocated_to, unit_pos) < 10 ^ 2 then
 			return
 		elseif data.is_converted then
 			if not TeamAILogicIdle._check_should_relocate(data, data.internal_data, objective) then
 				return
 			end
-		elseif math.abs(unit_pos.z - data.m_pos.z) > 200 or objective.distance and dis_sq > objective.distance ^ 2 then
+		elseif math.abs(unit_pos.z - data.m_pos.z) > 200 or dis_sq > follow_dis_sq then
 			-- Nothing
 		elseif managers.navigation:raycast({ pos_from = data.m_pos, pos_to = unit_pos }) then
 			-- Nothing
@@ -359,7 +359,7 @@ end
 local on_intimidated_original = CopLogicIdle.on_intimidated
 function CopLogicIdle.on_intimidated(data, amount, aggressor_unit, ...)
 	local surrender = on_intimidated_original(data, amount, aggressor_unit, ...)
-	if surrender or data.char_tweak.priority_shout or not data.team.foes.criminal1 or data.char_tweak.surrender == tweak_data.character.presets.surrender.special then
+	if surrender or data.char_tweak.priority_shout or not data.team.foes.criminal1 or data.char_tweak.surrender == tweak_data.character.presets.surrender.never then
 		data._skip_surrender_hints = nil
 		return surrender
 	end

@@ -12,7 +12,7 @@ local skylight_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 return {

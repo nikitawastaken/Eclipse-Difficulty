@@ -21,7 +21,7 @@ local white_office_cop = { enemy = white_office_cops }
 local random_office_cops = { [office_cop_1] = 3, [office_cop_2] = 3, [office_cop_3] = 2, [office_cop_4] = 2 }
 local random_office_cop = { enemy = random_office_cops }
 local interrogation_cop = {
-	enemy = is_eclipse_pro and cloaker or blue_office_cops,
+	enemy = blue_office_cops,
 }
 local exclude_shields_dozers = {
 	so_access_filter = so_access.no_heavyweight,
@@ -49,12 +49,12 @@ local sniper_amount = {
 }
 local alley_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -67,6 +67,14 @@ local cloaker_spawn = {
 	},
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 154, 127, 128 },
+			{ 32, 158 },
+			{ 142, 37 },
+		},
+	},
 	[101397] = {
 		ponr = {
 			length = 240,
@@ -80,11 +88,6 @@ return {
 	[100109] = { -- Police arrived
 		reinforce = {
 			{
-				name = "main_entrance",
-				force = 3,
-				position = Vector3(525, 300, 100),
-			},
-			{
 				name = "parking_lot1",
 				force = 3,
 				position = Vector3(-1100, -400, 0),
@@ -93,6 +96,25 @@ return {
 				name = "parking_lot2",
 				force = 3,
 				position = Vector3(1800, -400, 0),
+			},
+			{
+				name = "parking_lot3",
+				force = 3,
+				position = Vector3(525, -1325, 0),
+			},
+		},
+	},
+	[100121] = { -- 1st assault done
+		reinforce = {
+			{
+				name = "entrance",
+				force = 2,
+				position = Vector3(775, 925, 100),
+			},
+			{
+				name = "alley",
+				force = 2,
+				position = Vector3(-1075, 3800, 0),
 			},
 		},
 	},

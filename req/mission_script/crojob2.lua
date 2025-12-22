@@ -37,12 +37,12 @@ return {
 		reinforce = {
 			{
 				name = "crane1",
-				force = 2,
+				force = 3,
 				position = Vector3(-4500, 600, 125),
 			},
 			{
 				name = "crane2",
-				force = 2,
+				force = 3,
 				position = Vector3(2100, 550, 125),
 			},
 			{

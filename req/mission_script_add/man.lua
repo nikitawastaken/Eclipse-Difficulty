@@ -23,17 +23,11 @@ local random_dozers = {
 	green_bulldozer,
 	black_bulldozer,
 }
-local random_normal_and_elite_dozers = {
-	green_bulldozer,
-	black_bulldozer,
-	elite_ben_bulldozer,
-	elite_skull_bulldozer,
-}
 local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-local bulldozer = is_eclipse_pro and random_elite_dozers or is_eclipse and random_normal_and_elite_dozers or random_dozers
+local bulldozer = is_eclipse_pro and random_elite_dozers or random_dozers
 
 local optsBesiegeDummyCloaker = {
 	trigger_times = 0,
@@ -62,6 +56,7 @@ local optsBulldozer = {
 local optsDozerHunt_SO = {
 	SO_access = "4096",
 	scan = true,
+	use_instigator = true,
 	interval = 2,
 	so_action = "AI_hunt",
 }
@@ -69,6 +64,7 @@ local optsHuntSO = {
 	SO_access = "8192",
 	path_style = "none",
 	scan = true,
+	use_instigator = true,
 	so_action = "AI_hunt",
 }
 local optsTaserChopper = {

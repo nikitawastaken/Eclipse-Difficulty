@@ -32,7 +32,7 @@ local elevator_spawn = {
 }
 local bags_required = {
 	values = {
-		counter_target = (normal and 4 or 6) + (is_pro_job and 2 or 0),
+		counter_target = 4 + (is_pro_job and 2 or 0),
 	},
 }
 return {
@@ -54,13 +54,21 @@ return {
 	[101760] = bags_required,
 	[101761] = bags_required,
 	[100470] = disabled,
-	-- remove curly spawns
+	-- Remove a few stupid reinforce spots
+	[102051] = disabled,
+	[102053] = disabled,
+	[102054] = disabled,
+	[102070] = disabled,
+	[102079] = disabled,
+	-- Remove curly spawns
 	[101653] = disabled,
+	-- Remove the skylight spawns
+	[101660] = disabled,
 	-- Spawn group intervals
-	[101166] = rappel_spawn,
-	[104406] = rappel_spawn,
 	[100128] = rappel_spawn,
+	[101166] = rappel_spawn,
 	[101309] = rappel_spawn,
+	[104406] = rappel_spawn,
 	[104471] = upper_spawn,
 	[100132] = upper_spawn,
 	[101310] = garage_spawn,

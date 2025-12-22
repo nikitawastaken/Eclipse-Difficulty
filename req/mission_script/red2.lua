@@ -9,7 +9,6 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local diff_scaling = diff_i / 8
 local hard_above = diff_i >= 3
 local overkill_above = diff_i >= 5
-local shield_army_chance = math.random() <= (is_eclipse and 0.6 or 0.4) + (is_pro_job and 0.1 or 0)
 
 local security_guard_1 = scripted_enemy.security_1
 local shield = is_eclipse_pro and scripted_enemy.elite_shield or scripted_enemy.shield
@@ -23,6 +22,7 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local close_shutters_chance = (normal and 20 or hard and 40 or 60) + (is_pro_job and 20 or 0)
 local basement_ambush_chance = (normal and 25 or hard and 45 or 65) + (is_pro_job and 10 or 0)
 local basement_enemies_amount = 2
+local shield_army_chance = (is_eclipse and 50 or 30) + (is_pro_job and 10 or 0)
 local random_dozers = {
 	bulldozer,
 	bulldozer_2,
@@ -294,21 +294,17 @@ return {
 	},
 	-- restore unused shield army script from pdth
 	[105894] = disabled,
-	[101544] = {
-		on_executed = {
-			{ id = 103998, remove = true },
-		},
-	},
 	-- the van drives in when the player is in the vault
 	[106547] = {
 		on_executed = {
-			{ id = 105921, delay = 90, delay_rand = 30 },
+			{ id = 105914, delay = 90, delay_rand = 30 },
 		},
 	},
 	-- enable it only on ovk above
-	[105921] = {
+	[105914] = {
+		chance = shield_army_chance,
 		values = {
-			enabled = overkill_above and shield_army_chance,
+			enabled = overkill_above,
 		},
 	},
 	-- replace turret with the shield army script

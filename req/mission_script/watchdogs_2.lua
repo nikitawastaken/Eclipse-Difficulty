@@ -21,6 +21,39 @@ local enabled = {
 		enabled = true,
 	},
 }
+local filter_easy_above_warehouse_1 = {
+	values = {
+		enabled = math.random() <= 0.5 * (is_pro_job and 1.25 or 0),
+		difficulty_normal = true,
+		difficulty_hard = true,
+		difficulty_overkill = true,
+		difficulty_overkill_145 = true,
+	},
+}
+local filter_easy_above_warehouse_2 = {
+	values = {
+		enabled = math.random() <= 0.25 * (is_pro_job and 1.25 or 0),
+		difficulty_normal = true,
+		difficulty_hard = true,
+		difficulty_overkill = true,
+		difficulty_overkill_145 = true,
+	},
+}
+local closed_warehouse_back = {
+	values = {
+		enabled = math.random() < 0.5,
+	},
+}
+local closed_warehouse_front = {
+	values = {
+		enabled = math.random() < 0.25,
+	},
+}
+local standard_spawn = {
+	values = {
+		interval = 15,
+	},
+}
 local ship_spawn = {
 	values = {
 		interval = 30,
@@ -56,7 +89,7 @@ local heli_enemy2 = {
 		trigger_times = 0,
 	},
 }
-local heli_chance = (diff_i_no_easy * 20) * (is_pro_job and 1.33 or 1)
+local heli_chance = (diff_i_no_easy * 15) * (is_pro_job and 4 / 3 or 1)
 local function cloaker_add(id)
 	return id and {
 		modify_list_value = {
@@ -67,23 +100,57 @@ local function cloaker_add(id)
 	} or nil
 end
 
-local john_boat_driver_chance = math.random() <= 0.1
+local john_boat_driver_chance = math.random()
 
-local john_dialogue_1 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_01" or "bot_wd2_01"
-local john_dialogue_2 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_05" or "bot_wd2_02"
-local john_dialogue_3 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_06" or "bot_wd2_04a"
-local john_dialogue_4 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_07" or "bot_wd2_03"
-local john_dialogue_5 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_08" or "bot_wd2_06"
-local john_dialogue_6 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_09" or "bot_wd2_07"
-local john_dialogue_7 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_10" or "bot_wd2_08"
-local john_dialogue_8 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_07" or "bot_wd2_10"
-local john_dialogue_9 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_11" or "bot_wd2_11"
-local john_dialogue_10 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_12" or "bot_wd2_19"
-local john_dialogue_11 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_13" or "bot_wd2_20"
-local john_dialogue_12 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_14" or "bot_wd2_21b"
-local john_dialogue_13 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_02" or "Play_bot_a04"
-local john_dialogue_14 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_03" or "Play_bot_a05"
-local john_dialogue_15 = john_boat_driver_chance and "Play_bot_watchdogs_new_stage2_04" or "Play_bot_a06"
+local john_dialogue_1 = nil
+local john_dialogue_2 = nil
+local john_dialogue_3 = nil
+local john_dialogue_4 = nil
+local john_dialogue_5 = nil
+local john_dialogue_6 = nil
+local john_dialogue_7 = nil
+local john_dialogue_8 = nil
+local john_dialogue_9 = nil
+local john_dialogue_10 = nil
+local john_dialogue_11 = nil
+local john_dialogue_12 = nil
+local john_dialogue_13 = nil
+local john_dialogue_14 = nil
+local john_dialogue_15 = nil
+
+if john_boat_driver_chance <= 0.1 then
+	john_dialogue_1 = "Play_bot_watchdogs_new_stage2_01"
+	john_dialogue_2 = "Play_bot_watchdogs_new_stage2_05"
+	john_dialogue_3 = "Play_bot_watchdogs_new_stage2_06"
+	john_dialogue_4 = "Play_bot_watchdogs_new_stage2_07"
+	john_dialogue_5 = "Play_bot_watchdogs_new_stage2_08"
+	john_dialogue_6 = "Play_bot_watchdogs_new_stage2_09"
+	john_dialogue_7 = "Play_bot_watchdogs_new_stage2_10"
+	john_dialogue_8 = "Play_bot_watchdogs_new_stage2_07"
+	john_dialogue_9 = "Play_bot_watchdogs_new_stage2_11"
+	john_dialogue_10 = "Play_bot_watchdogs_new_stage2_12"
+	john_dialogue_11 = "Play_bot_watchdogs_new_stage2_13"
+	john_dialogue_12 = "Play_bot_watchdogs_new_stage2_14"
+	john_dialogue_13 = "Play_bot_watchdogs_new_stage2_02"
+	john_dialogue_14 = "Play_bot_watchdogs_new_stage2_03"
+	john_dialogue_15 = "Play_bot_watchdogs_new_stage2_04"
+else
+	john_dialogue_1 = "bot_wd2_01"
+	john_dialogue_2 = "bot_wd2_02"
+	john_dialogue_3 = "bot_wd2_04a"
+	john_dialogue_4 = "bot_wd2_03"
+	john_dialogue_5 = "bot_wd2_06"
+	john_dialogue_6 = "bot_wd2_07"
+	john_dialogue_7 = "bot_wd2_08"
+	john_dialogue_8 = "bot_wd2_10"
+	john_dialogue_9 = "bot_wd2_11"
+	john_dialogue_10 = "bot_wd2_19"
+	john_dialogue_11 = "bot_wd2_20"
+	john_dialogue_12 = "bot_wd2_21b"
+	john_dialogue_13 = "Play_bot_a04"
+	john_dialogue_14 = "Play_bot_a05"
+	john_dialogue_15 = "Play_bot_a06"
+end
 
 return {
 	-- 10% of pre beta boat driver taking it's place
@@ -177,33 +244,33 @@ return {
 			dialogue = john_dialogue_12,
 		},
 	},
-	-- 1st assault reinforce
-	[100511] = {
+	-- add new reinforce
+	[100511] = { -- diff 50
 		reinforce = {
 			{
-				name = "diff50_reinforce1",
+				name = "warehouse1",
 				force = 2,
-				position = Vector3(-1500, 800, 0),
+				position = Vector3(875, -1175, 0),
 			},
 			{
-				name = "diff50_reinforce2",
+				name = "warehouse2",
 				force = 2,
-				position = Vector3(-800, 3200, 0),
-			},
-		},
-	},
-	-- 2nd assault reinforce
-	[103637] = {
-		reinforce = {
-			{
-				name = "diff75_reinforce1",
-				force = 2,
-				position = Vector3(400, 1200, 0),
+				position = Vector3(370, 1340, 0),
 			},
 			{
-				name = "diff75_reinforce2",
+				name = "warehouse3",
 				force = 2,
-				position = Vector3(900, -800, 0),
+				position = Vector3(1525, 2700, 0),
+			},
+			{
+				name = "warehouse4",
+				force = 2,
+				position = Vector3(4150, -1300, 0),
+			},
+			{
+				name = "gate",
+				force = 4,
+				position = Vector3(-2500, 1500, 0),
 			},
 		},
 	},
@@ -233,7 +300,7 @@ return {
 	},
 	[100448] = {
 		on_executed = {
-			{ id = 100454, delay = eclipse and 120 or 180, delay_rand = 120 },
+			{ id = 100454, delay = 120, delay_rand = is_eclipse and 120 or 180 },
 			{ id = 100446, remove = true }, -- don't make same units spawn twice
 			{ id = 100447, remove = true },
 		},
@@ -245,10 +312,15 @@ return {
 	},
 	[100446] = heli_enemy1,
 	[100447] = heli_enemy2,
-	-- open warehouse on all difficulties
-	[104004] = disabled,
-	[104002] = disabled,
-	[104069] = disabled,
+	-- closed gate chance
+	[101485] = {
+		values = {
+			chance = 25,
+		},
+	},
+	-- chance-based closed warehouse on all difficulties
+	[104001] = filter_easy_above_warehouse_1,
+	[104003] = filter_easy_above_warehouse_2,
 	-- disable some sketchy cheat sapwns
 	[101007] = disabled,
 	[100844] = disabled,
@@ -274,7 +346,7 @@ return {
 	[103976] = cloaker_add(103975),
 	[103978] = cloaker_add(103977),
 	[103980] = cloaker_add(103979),
-	-- spawn Ground Snipers after 3-5 minutes
+	-- spawn Ground Snipers after 3-4 minutes
 	[100486] = {
 		on_executed = {
 			{ id = 400035, delay = normal and 240 or 180 },
@@ -303,6 +375,9 @@ return {
 	-- Not much going on here, you won't be getting swarmed by enemies that spawn on the ships.
 	[400042] = scripted_swat_van_spawn,
 	[400050] = scripted_swat_van_spawn,
+	[100146] = standard_spawn,
+	[100154] = standard_spawn,
+	[100167] = standard_spawn,
 	[102387] = ship_spawn,
 	[102331] = ship_spawn,
 	[102173] = ship_spawn,

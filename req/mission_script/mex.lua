@@ -25,7 +25,7 @@ local window_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 local bags_required = {

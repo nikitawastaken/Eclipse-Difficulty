@@ -2036,10 +2036,10 @@ function WeaponFactoryTweakData:_balance_magazine(tweak_data, part_id, no_stat_w
 							local mod_mag_capacity = (2 * (extra_ammo_stat or 0)) + (ammo_offset_stat or 0)
 							local capacity_increase = (mod_mag_capacity / mag_capacity) * 100
 
-							local reload_stat = -math.clamp(math.ceil(capacity_increase / 25), -10, 10)
-							local concealment_stat = -math.clamp(math.ceil(capacity_increase / 25), -6, 6)
-							local spread_stat = capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 75), 0, 6) or 0
-							local recoil_stat = capacity_increase >= 100 and math.clamp(math.floor(capacity_increase / 100), 0, 6) or 0
+							local reload_stat = -math.clamp(math.floor(capacity_increase / 20), -6, 6)
+							local concealment_stat = -math.clamp(math.round(capacity_increase / 30), -10, 10)
+							local spread_stat = (capacity_increase >= 100 and -math.clamp(math.floor(capacity_increase / 75), 0, 5) or 0)
+							local recoil_stat = (capacity_increase >= 100 and math.clamp(math.floor(capacity_increase / 100), 0, 5) or 0)
 
 							part_data.stats.recoil = (no_stat_wipe and (part_data.stats.recoil or 0) or 0) + recoil_stat
 							part_data.stats.spread = (no_stat_wipe and (part_data.stats.spread or 0) or 0) + spread_stat
@@ -2214,8 +2214,10 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.spread = -2
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.recoil = 4
 	self.parts.wpn_fps_lmg_hcar_body_conversionkit.stats.concealment = 0
-	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = { fire_rate_multiplier = 600 / 450 }
-	self:_balance_conversion_kit(tweak_data, "hcar", "wpn_fps_lmg_hcar_body_conversionkit", 32, "assault_rifle", true)
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats = {}
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.fire_rate_multiplier = 750 / 450
+	self.parts.wpn_fps_lmg_hcar_body_conversionkit.custom_stats.muzzleflash = "effects/payday2/particles/weapons/762_auto_fps"
+	self:_balance_conversion_kit(tweak_data, "hcar", "wpn_fps_lmg_hcar_body_conversionkit", 36, "assault_rifle", true)
 	self:_balance_magazine(tweak_data, "wpn_fps_lmg_hcar_body_conversionkit", true)
 
 	self.parts.wpn_fps_lmg_kacchainsaw_conversionkit.stats.extra_ammo = 0
@@ -2238,6 +2240,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self:_balance_conversion_kit(tweak_data, "new_mp5", "wpn_fps_smg_mp5_m_straight", 24, nil, true)
 
 	self.parts.wpn_fps_pis_korth_m_6.stats.extra_ammo = -1
+	self.parts.wpn_fps_pis_korth_m_6.stats.damage = 0
 	self.parts.wpn_fps_pis_korth_m_6.stats.spread = 2
 	self.parts.wpn_fps_pis_korth_m_6.stats.recoil = -4
 	self.parts.wpn_fps_pis_korth_m_6.stats.concealment = 0
@@ -2274,6 +2277,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.damage = 0
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.stats.recoil = -5
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats = {}
+	self.parts.wpn_fps_upg_ass_m4_b_beowulf.custom_stats.muzzleflash = "effects/payday2/particles/weapons/308_muzzle"
 	self.parts.wpn_fps_upg_ass_m4_b_beowulf.perks = { "fire_mode_single" }
 	self:_balance_conversion_kit(tweak_data, "new_m4", "wpn_fps_upg_ass_m4_b_beowulf", 48, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "m16", "wpn_fps_upg_ass_m4_b_beowulf", 64, "dmr", true)
@@ -2282,6 +2286,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.damage = 0
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.stats.recoil = -5
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats = {}
+	self.parts.wpn_fps_upg_ass_ak_b_zastava.custom_stats.muzzleflash = "effects/payday2/particles/weapons/308_muzzle"
 	self.parts.wpn_fps_upg_ass_ak_b_zastava.perks = { "fire_mode_single" }
 	self:_balance_conversion_kit(tweak_data, "ak74", "wpn_fps_upg_ass_ak_b_zastava", 48, "dmr", true)
 	self:_balance_conversion_kit(tweak_data, "akm", "wpn_fps_upg_ass_ak_b_zastava", 64, "dmr", true)

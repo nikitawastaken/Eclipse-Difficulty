@@ -59,9 +59,9 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
-	groups = preferred.only_cloakers,
+	groups = preferred.only_cloakers_single,
 }
 local gangster = {
 	enemy = gangsters,
@@ -79,12 +79,6 @@ local dealer_walk_so = {
 	values = {
 		patrol_path = "inpath2",
 	},
-}
-local filter_easy_above = {
-	values = Eclipse.utils.set_diff_groups("easy_above"),
-}
-local filter_disable = {
-	values = Eclipse.utils.set_diff_groups("disable"),
 }
 return {
 	-- Add point of no return
@@ -426,13 +420,13 @@ return {
 		},
 	},
 	-- reenable alleyway drop
-	[103013] = filter_easy_above,
-	[101726] = filter_disable,
-	[101724] = filter_disable,
-	[101723] = filter_disable,
-	[102261] = {
+	[101124] = {
 		on_executed = {
-			{ id = 100350, delay = 0 },
+			{ id = 400092, delay = 0 },
+			{ id = 101723, remove = true },
+			{ id = 101724, remove = true },
+			{ id = 101726, remove = true },
+			{ id = 103013, remove = true },
 		},
 	},
 	-- enable civilian on bridge

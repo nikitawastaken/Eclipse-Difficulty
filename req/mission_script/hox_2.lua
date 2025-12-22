@@ -4,6 +4,22 @@ local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
+local defend_so = {
+	pre_func = function(element)
+		if Network:is_client() then
+			return
+		end
+		element:add_event_callback("spawn", function(unit)
+			local pos = unit:movement():m_pos()
+			unit:brain():set_objective({
+				type = "sniper",
+				pos = pos,
+				nav_seg = managers.navigation:get_nav_seg_from_pos(pos),
+				no_retreat = true,
+			})
+		end)
+	end,
+}
 local fbi_agents = {
 	Idstring("units/payday2/characters/ene_fbi_office_1/ene_fbi_office_1"),
 	Idstring("units/payday2/characters/ene_fbi_office_2/ene_fbi_office_2"),
@@ -88,6 +104,12 @@ local offices_upper_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 return {
 	-- add ponr state
 	[102221] = {
@@ -128,6 +150,62 @@ return {
 			{ 79, 106 },
 		},
 	},
+	-- potential cloaker ambush at the start of the heist
+	-- begin dozer spam
+	[100107] = {
+		on_executed = {
+			{ id = 400047, delay = 0 },
+			{ id = 400102, delay = 300, delay_rand = 60 },
+		},
+	},
+	-- add unused snipers to atrium section
+	[102235] = {
+		values = {
+			amount = 1 + (is_pro_job and 1 or 0),
+			amount_random = normal and 0 or hard and 1 or 2,
+		},
+		on_executed = {
+			{ id = 100372, delay = 0 },
+			{ id = 100371, delay = 0 },
+			{ id = 100370, delay = 0 },
+			{ id = 100373, delay = 0 },
+		},
+	},
+	-- spawn ambush units at the end of the heist
+	[102020] = {
+		on_executed = {
+			{ id = 400064, delay = 0 },
+		},
+	},
+	-- Set ambush units to stay in place (except cloaker and dozers)
+	[400050] = defend_so,
+	[400051] = defend_so,
+	[400052] = defend_so,
+	[400053] = defend_so,
+	[400055] = defend_so,
+	[400056] = defend_so,
+	[400065] = defend_so,
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400100, delay = 0 },
+		},
+	},
+	-- Add upstairs hide SOs when upstairs is opened
+	[100083] = {
+		on_executed = {
+			{ id = 400108, delay = 0 },
+		},
+	},
+	[100047] = {
+		values = {
+			elements = {
+				103273,
+				103274,
+				400082,
+			},
+		},
+	},
 	-- Tweak keycard spawns
 	[101218] = { -- Extra keycard, now also spawns on Normal aka Hard
 		values = {
@@ -140,11 +218,11 @@ return {
 		},
 	},
 	-- No extra checkpoint keycard on Pro Job
-	[103764] = {
+	[103764] = is_pro_job and {
 		on_executed = {
-			{ id = 101469, remove = is_pro_job and true or nil },
+			{ id = 101469, remove = true },
 		},
-	},
+	} or nil,
 	-- Lower upstairs keycard chance, you're getting a good camping spot anyway
 	[101628] = {
 		values = {
@@ -253,6 +331,15 @@ return {
 	[100694] = offices_upper_spawn,
 	[100139] = offices_upper_spawn,
 	[101688] = atrium_elevator_spawn,
+	[400091] = cloaker_spawn,
+	[400092] = cloaker_spawn,
+	[400093] = cloaker_spawn,
+	[400094] = cloaker_spawn,
+	[400095] = cloaker_spawn,
+	[400096] = cloaker_spawn,
+	[400097] = cloaker_spawn,
+	[400098] = cloaker_spawn,
+	[400099] = cloaker_spawn,
 	-- Holy FBI agents, Batman...
 	[101490] = fbi_agent,
 	[101492] = fbi_agent,

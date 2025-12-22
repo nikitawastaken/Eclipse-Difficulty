@@ -288,6 +288,28 @@ function M.weighted_selector(t)
 	return selector
 end
 
+-- Based on Bank Heist's hiding Cloaker SO setup
+-- search_position must be the same for all GroupAI hiding SOs
+-- interrupt_dis is in meters
+-- The SO group element must also be in AI navigation (or at least able to be found by GroupAI)
+function M.get_hiding_cloaker_so_opts(so_action, search_position, interrupt_dis)
+	return {
+		SO_access = "1024",
+		scan = true,
+		align_position = true,
+		needs_pos_rsrv = true,
+		align_rotation = true,
+		no_arrest = true,
+		interrupt_dmg = 0,
+		action_duration_min = 120,
+		action_duration_max = 180,
+		so_action = so_action,
+		search_position = search_position,
+		interrupt_dis = interrupt_dis or 7,
+		interval = -1,
+	}
+end
+
 -- The original one isn't good enough
 function M.callback(o, base_class, base_func_name, ...)
 	if base_class and base_func_name and base_class[base_func_name] then

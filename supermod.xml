@@ -134,6 +134,7 @@
 				<post :hook_id="narrativetweakdata"/>
 				<post :hook_id="dlctweakdata"/>
 				<post :hook_id="gageassignmenttweakdata"/>
+				<post :hook_id="attentiontweakdata"/>
 			</group>
 
 			<group :hook_id="units/">
@@ -305,16 +306,16 @@
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
 		<file name="guis/dlcs/eclipse/textures/pd2/specialization/icons_atlas.texture"/>
-		
+
 		<!-- taser shock effect -->
 		<file name="effects/payday2/particles/character/taser_thread.effect"/>
-		
+
 		<!-- shotgun ammo types -->
 		<file name="effects/particles/weapons/sho_buckshot.effect"/>
 		<file name="effects/particles/weapons/sho_default.effect"/>
 		<file name="effects/particles/weapons/sho_flechette.effect"/>
 		<file name="effects/particles/weapons/sho_tomb.effect"/>
-	
+
 		<!-- sniper glare -->
 		<file name="effects/particles/weapons/sniper_glint.effect"/>
 		<file name="effects/particles/weapons/elite_sniper_glint.effect"/>

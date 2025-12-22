@@ -116,13 +116,19 @@ local roof_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 75,
 	},
-	groups = preferred.only_cloakers,
+	groups = preferred.only_cloakers_single,
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)
 local chopper_delay = 240 - (diff_i_no_easy * 15) - (is_pro_job and 60 or 0)
 local harasser_delay = (overkill_and_above and 30 or 60) - (is_pro_job and 15 or 0)
+local ffo_countdown = {
+	ponr = {
+		length = 1200,
+		player_mul = { 1.25, 1, 0.75, 0.75 },
+	},
+}
 
 return {
 	-- Combine some navigation areas
@@ -135,12 +141,8 @@ return {
 		},
 	},
 	--PONR
-	[100695] = {
-		ponr = {
-			length = 60,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
-		},
-	},
+	[400013] = ffo_countdown,
+	[400016] = ffo_countdown,
 	-- Add new reinforce
 	[101825] = { -- Interrogation started
 		reinforce = {

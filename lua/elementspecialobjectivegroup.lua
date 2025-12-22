@@ -1,5 +1,5 @@
 -- Flag SOs that are absolutely, 100% hiding Cloaker SOs
-Hooks:PreHook(ElementSpecialObjectiveGroup, "on_executed", "eclipse_on_executed", function(self)
+local function flag_followup_sos(self)
 	local followup_elements = self._values.mode == "recurring_cloaker_spawn" and self._values.followup_elements
 	if not followup_elements then
 		return
@@ -14,4 +14,7 @@ Hooks:PreHook(ElementSpecialObjectiveGroup, "on_executed", "eclipse_on_executed"
 			Eclipse:warn_console(string.format("Hiding Cloaker SO %u does not exist or does not have values", id))
 		end
 	end
-end)
+end
+
+Hooks:PreHook(ElementSpecialObjectiveGroup, "on_executed", "eclipse_on_executed", flag_followup_sos)
+Hooks:PreHook(ElementSpecialObjectiveGroup, "client_on_executed", "eclipse_client_on_executed", flag_followup_sos)

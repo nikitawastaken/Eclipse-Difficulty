@@ -35,8 +35,8 @@ local filter_disable = {
 }
 local ffo_countdown = {
 	ponr = {
-		length = 420,
-		player_mul = { 1.5, 1.25, 1, 1 },
+		length = 480,
+		player_mul = { 2, 1.5, 1, 1 },
 	},
 }
 return {
@@ -54,10 +54,10 @@ return {
 	[105350] = filter_easy_above,
 	[105351] = filter_disable,
 	[105352] = powerboxes_amount,
-	--Spawn snipers after 120 seconds of starting the assault
+	--Spawn snipers after 90-150 seconds of starting the assault
 	[103812] = {
 		on_executed = {
-			{ id = 400009, delay = 120 },
+			{ id = 400009, delay = 90, delay_rand = 60 },
 		},
 	},
 	--this makes snipers in the nearby building not floating

@@ -23,11 +23,11 @@ local roof_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local scripted_swat_heli_spawn = {
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 local cloaker_spawn = {
 	values = {
-		interval = 120,
+		interval = 90,
 	},
 }
 local chopper_delay_init = 420 - (diff_i_no_easy * 30) - (is_pro_job and 120 or 0)

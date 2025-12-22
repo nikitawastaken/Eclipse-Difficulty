@@ -42,7 +42,7 @@ local rappel_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 180,
+		interval = 90,
 	},
 }
 local apartment_guaranteed_spawn = {

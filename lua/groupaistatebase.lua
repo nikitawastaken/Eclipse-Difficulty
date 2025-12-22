@@ -594,8 +594,7 @@ end
 -- Make it less prone to spamming Cloakers (tweakdata delay is applied on spawn, not when junk groups are found)
 -- Add a tweakdata limit on the number of hiding Cloaker groups
 -- Reduced hide durations - see elementspecialobjectivegroup
--- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting - NOT FULLY IMPLEMENTED YET
--- Cloakers getting new hide SOs can be set to not use the same one they just used - NOT IMPLEMENTED YET
+-- Cloakers coming out of hiding will eventually get a new hide SO or switch to assaulting
 -- Spawn noise being used is now a tweakdata flag
 -- Idle noise and goggles being on while hiding are now tweakdata flags
 local junk_reason_group_nil = "group_nil"
@@ -609,7 +608,8 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 		return _process_recurring_grp_SO_original(self, recurring_id, data, ...)
 	end
 
-	if not tweak_data.group_ai.use_reworked_cloaker_task then
+	local hiding_cloaker_tweak = self._tweak_data.cloaker
+	if not hiding_cloaker_tweak or not tweak_data.group_ai.use_reworked_cloaker_task then
 		if _process_recurring_grp_SO_original(self, recurring_id, data, ...) then
 			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
 			managers.hud:post_event("cloaker_spawn")
@@ -618,16 +618,10 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 		return
 	end
 
-	local hiding_cloaker_tweak = self._tweak_data.cloaker
-	if not hiding_cloaker_tweak then
-		Eclipse:error_console("Hiding Cloaker task tweakdata missing!")
-		return _process_recurring_grp_SO_original(self, recurring_id, data, ...)
-	end
-
 	data.interval = hiding_cloaker_tweak.interval or data.interval
 
 	if data.groups then
-		local junk_groups = self:_evaluate_hiding_cloaker_groups(data.groups, hiding_cloaker_tweak)
+		local junk_groups = self:_evaluate_hiding_cloaker_groups(data, hiding_cloaker_tweak)
 		if junk_groups then
 			self:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
 		end
@@ -636,44 +630,95 @@ function GroupAIStateBase:_process_recurring_grp_SO(recurring_id, data, ...)
 	return self:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 end
 
-function GroupAIStateBase:_get_hiding_cloaker_SO(elements, last_element, hiding_cloaker_tweak)
-	if last_element then
-		local min_elements = math.max(2, hiding_cloaker_tweak.avoid_repeat_hiding_spots_min_elements or 2)
-		if #elements < min_elements or hiding_cloaker_tweak.avoid_repeat_hiding_spots == false then
-			last_element = nil
-		end
+-- Prioritize hide SOs near criminals rather than picking at complete random
+function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_tweak)
+	if not data.followups or #data.followups == 0 then
+		return
 	end
 
+	local repeat_hiding_spots = hiding_cloaker_tweak.repeat_hiding_spots or {
+		avoid = true,
+		min_elements = 3,
+		min_distance = 1500,
+	}
+	local last_element = group and group.last_element
+	if not repeat_hiding_spots.avoid or #data.followups < repeat_hiding_spots.min_elements then
+		last_element = nil
+	end
+	local last_element_pos = last_element and last_element:value("position")
+
+	local SO_weighting = hiding_cloaker_tweak.SO_weighting or {
+		near_distance = 1000,
+		far_distance = 3000,
+		far_chance_mul = 0.1,
+		too_far_distance = 5000,
+		too_close_distance = 1000,
+	}
+	local element_weights = {}
 	local total_w = 0
-	for _, element in ipairs(elements) do
-		if not last_element or last_element ~= element then
-			total_w = total_w + element:value("base_chance")
+	local criminal_pos = self:_get_units_center_pos(self:all_char_criminals())
+	local pos_is_zero = not criminal_pos or mvector3.is_zero(criminal_pos)
+
+	local function should_continue(element, element_pos)
+		if last_element and last_element == element then
+			return true
+		elseif last_element_pos and mvector3.distance(element_pos, last_element_pos) < repeat_hiding_spots.min_distance then
+			return true
+		elseif not data.groups then
+			return false
 		end
-	end
 
-	local rand_w = total_w * math.random()
-	for _, element in ipairs(elements) do
-		if not last_element or last_element ~= element then
-			rand_w = rand_w - element:value("base_chance")
-
-			if rand_w <= 0 then
-				return element
+		for _, grp in pairs(data.groups) do
+			if grp ~= group and grp.last_element == element then
+				return true
 			end
 		end
 	end
 
-	Eclipse:error_console("GroupAIStateBase:_get_hiding_cloaker_SO() had no return, picking element at random!")
-	return table.random(elements)
+	local function collect_element_weights(skip_ignore_distances)
+		for _, followup_data in ipairs(data.followups) do
+			local element, element_w = followup_data[1], followup_data[2]
+			local element_pos = element:value("position")
+			if should_continue(element, element_pos) then
+				goto __continue
+			end
+
+			if pos_is_zero then
+				table.insert(element_weights, { element, element_w })
+				total_w = total_w + element_w
+			else
+				local element_dis = mvector3.distance(criminal_pos, element_pos)
+				if skip_ignore_distances or SO_weighting.too_far_distance > element_dis and SO_weighting.too_close_distance < element_dis then
+					element_w = math.map_range_clamped(element_dis, SO_weighting.near_distance, SO_weighting.far_distance, element_w, element_w * SO_weighting.far_chance_mul)
+					table.insert(element_weights, { element, element_w })
+					total_w = total_w + element_w
+				end
+			end
+
+			::__continue::
+		end
+	end
+
+	collect_element_weights()
+	if #element_weights == 0 then
+		last_element, last_element_pos = nil
+		collect_element_weights(true)
+	end
+
+	local rand_w = total_w * math.random()
+	for _, weight_data in ipairs(element_weights) do
+		rand_w = rand_w - weight_data[2]
+		if rand_w <= 0 then
+			return weight_data[1]
+		end
+	end
 end
 
-function GroupAIStateBase:_evaluate_hiding_cloaker_groups(groups, hiding_cloaker_tweak)
+function GroupAIStateBase:_evaluate_hiding_cloaker_groups(data, hiding_cloaker_tweak)
 	local junk_groups = nil
-	local hide_retry_delay = hiding_cloaker_tweak.hide_retry_delay or {
-		10,
-		20,
-	}
+	local hide_retry_delay = hiding_cloaker_tweak.hide_retry_delay or { 10, 20 }
 
-	for group_id, group in pairs(groups) do
+	for group_id, group in pairs(data.groups) do
 		if not group.objective.hide_retry_delay then
 			group.objective.hide_retry_delay = math.lerp(hide_retry_delay[1], hide_retry_delay[2], math.random())
 		end
@@ -688,9 +733,9 @@ function GroupAIStateBase:_evaluate_hiding_cloaker_groups(groups, hiding_cloaker
 
 			if not junk_reason then
 				junk_reason = junk_reason_group_empty
-				for u_key, unit_data in pairs(group.units) do
+				for _, u_data in pairs(group.units) do
 					junk_reason = junk_reason_no_objective
-					local objective = unit_data.unit:brain():objective()
+					local objective = u_data.unit:brain():objective()
 					if not objective then
 						-- Nothing, probably waiting to be assigned
 					elseif objective.grp_objective == group.objective then
@@ -708,21 +753,21 @@ function GroupAIStateBase:_evaluate_hiding_cloaker_groups(groups, hiding_cloaker
 							-- Eclipse:log_console(string.format("Retry delay has not expired for hiding Cloaker %s", group_id))
 							junk_reason = nil
 						else
-							Eclipse:log_console(string.format("Retry delay expired for hiding Cloaker %s", group_id))
+							-- Eclipse:log_console(string.format("Retry delay expired for hiding Cloaker %s", group_id))
 						end
 					else
-						Eclipse:log_console(string.format("Objective failed for hiding Cloaker %s", group_id))
+						-- Eclipse:log_console(string.format("Objective failed for hiding Cloaker %s", group_id))
 						group.objective.fail_t = self._t
 						junk_reason = nil
 					end
 				elseif group.objective.fail_t then
-					Eclipse:log_console(string.format("Hiding Cloaker %s is no longer junk", group_id))
+					-- Eclipse:log_console(string.format("Hiding Cloaker %s is no longer junk", group_id))
 					group.objective.fail_t = nil
 				end
 			end
 
 			if junk_reason then
-				Eclipse:log_console(string.format("Found junk hiding Cloaker %s: %s", group_id, junk_reason))
+				-- Eclipse:log_console(string.format("Found junk hiding Cloaker %s: %s", group_id, junk_reason))
 				junk_groups = junk_groups or {}
 				junk_groups[group_id] = junk_reason
 			end
@@ -739,19 +784,16 @@ local remove_group_reasons = table.list_to_set({
 	junk_reason_group_empty,
 })
 
--- TODO: figure out rehiding
 function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, hiding_cloaker_tweak)
-	local assault_chance = hiding_cloaker_tweak.assault_on_objective_failed_chance or 0.5
 	for group_id, junk_reason in pairs(junk_groups) do
-		local assault = assault_chance == 1 or math.random() < assault_chance
 		local group = data.groups[group_id]
-		data.groups[group_id] = nil
+		local assault = group and ((group.rehide_attempts or 0) >= (group.max_rehide_attempts or 0))
 		if not group or remove_group_reasons[junk_reason] then
-			-- Nothing
+			data.groups[group_id] = nil
 		elseif assault then
 			self:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 		else
-			self:_assign_group_to_retire(group)
+			self:_rehide_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
 		end
 	end
 
@@ -764,6 +806,7 @@ function GroupAIStateBase:_handle_junk_hiding_cloaker_groups(junk_groups, data, 
 end
 
 -- _spawn_in_group() still returns a new group even if the group cannot actually spawn
+-- TODO: detach hiding Cloakers from regular Cloaker spawn limits while hiding
 function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 	if self._t < data.delay_t then
 		return
@@ -782,46 +825,220 @@ function GroupAIStateBase:_try_spawn_hiding_cloaker(data, hiding_cloaker_tweak)
 		return
 	end
 
-	local element = self:_get_hiding_cloaker_SO(data.elements, nil, hiding_cloaker_tweak)
-	local grp_objective = element:get_grp_objective()
-	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(grp_objective.area, hiding_cloaker_tweak.groups, element:value("position"), nil, nil)
+	local so_element = self:_get_hiding_cloaker_SO(data, nil, hiding_cloaker_tweak)
+	if not so_element then
+		-- Eclipse:log_console("No SO element")
+		return
+	end
+
+	local grp_objective = so_element:get_grp_objective()
+	local spawn_group, spawn_group_type = self:_find_spawn_group_near_area(grp_objective.area, hiding_cloaker_tweak.groups, so_element:value("position"), nil, nil)
 	if not spawn_group then
-		Eclipse:log_console("No spawn group")
+		-- Eclipse:log_console("No spawn group")
 		return
 	end
 
 	local new_group = self:_spawn_in_group(spawn_group, spawn_group_type, grp_objective, nil)
 	if new_group then
+		local max_rehide_attempts = hiding_cloaker_tweak.max_rehide_attempts or { 0, 3 }
 		data.groups = data.groups or {}
 		data.groups[new_group.id] = new_group
-		new_group.last_element = element
+		new_group.hiding_cloaker_data = data
+		new_group.last_element = so_element
+		new_group.rehide_attempts = 0
+		new_group.max_rehide_attempts = math.random(max_rehide_attempts[1], max_rehide_attempts[2])
 
 		if hiding_cloaker_tweak.use_spawn_noise ~= false then
 			managers.network:session():send_to_peers_synched("group_ai_event", self:get_sync_event_id("cloaker_spawned"), 0)
 			managers.hud:post_event("cloaker_spawn")
 		end
-	end
 
-	data.delay_t = math.max(data.delay_t, self._t + math.lerp(data.interval[1], data.interval[2], math.random()))
+		self:_delay_new_hiding_cloakers(data, data.interval)
+	end
 
 	return new_group and true
 end
 
--- TODO: prioritize nearby groups
--- TODO? forbid certain group types that should not be joinable
--- TODO: fall back on rehiding before retiring once implemented
-function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
-	data.groups[group_id] = nil
+function GroupAIStateBase:_delay_new_hiding_cloakers(data, time_tbl)
+	time_tbl = time_tbl or data.interval or { 20, 40 }
+	data.delay_t = math.max(data.delay_t, self._t + math.rand(time_tbl[1], time_tbl[2]))
+end
 
-	for _, grp in pairs(self._groups) do
-		if grp.objective.type == "assault_area" then
+function GroupAIStateBase:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	data.groups[group_id] = nil
+	self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
+	self:_assign_group_to_retire(group)
+end
+
+function GroupAIStateBase:_reassign_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	local group_center_pos = self:_get_units_center_pos(group.units)
+	local no_join_groups = hiding_cloaker_tweak.no_join_groups or {}
+	local function try_reassign_to_task(obj_type)
+		local grps = {}
+		for grp_id, grp in pairs(self._groups) do
+			if not data.groups[grp_id] and not no_join_groups[grp.type] and grp.objective.type == obj_type then
+				table.insert(grps, grp)
+			end
+		end
+
+		local new_grp = self:_get_closest_group(group_center_pos, grps)
+		if new_grp then
+			data.groups[group_id] = nil
+			self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
 			for u_key, u_data in pairs(group.units) do
 				self:unit_leave_group(u_data.unit, false)
-				self:_add_group_member(grp, u_data.unit:key())
+				self:_add_group_member(new_grp, u_key)
 			end
-			return
+			return true
 		end
 	end
 
-	self:_assign_group_to_retire(group)
+	local ordered_obj_types = {
+		"assault_area",
+		-- "recon_area",
+		-- "reenforce_area",
+	}
+	for _, obj_type in ipairs(ordered_obj_types) do
+		if try_reassign_to_task(obj_type) then
+			return true
+		end
+	end
+
+	self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	return false
+end
+
+-- interrupt_health being set before assignment can cause the objective to fail immediately if the Cloaker was damaged
+-- Set it only after assignment so the Cloaker hides again but is also interrupted by any new damage
+function GroupAIStateBase:_rehide_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+	local so_element = self:_get_hiding_cloaker_SO(data, group, hiding_cloaker_tweak)
+	if not so_element then
+		self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+		return false
+	end
+
+	group.last_element = so_element
+	local grp_objective = so_element:get_grp_objective()
+	self:_set_objective_to_enemy_group(group, grp_objective)
+
+	for u_key, u_data in pairs(group.units) do
+		local objective = so_element:get_random_SO(u_data.unit)
+		if not objective then
+			self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+			return false
+		end
+
+		objective.interrupt_health = nil
+		objective.grp_objective = grp_objective
+
+		local u_brain = u_data.unit:brain()
+		if u_brain:objective() and not u_brain:is_available_for_assignment(objective) then
+			u_brain:set_followup_objective(objective)
+		else
+			self:set_enemy_assigned(objective.area or grp_objective.area, u_key)
+
+			if objective.element then
+				objective.element:clbk_objective_administered(u_data.unit)
+			end
+
+			u_brain:set_objective(objective)
+		end
+		objective.interrupt_health = u_data.unit:character_damage():health_ratio() - 0.01
+
+		local u_objective = u_brain:objective()
+		if not u_objective or (u_objective ~= objective and u_objective.followup_objective ~= objective) then
+			self:_retire_hiding_cloaker(data, group_id, group, hiding_cloaker_tweak)
+			return false
+		end
+	end
+
+	group.rehide_attempts = (group.rehide_attempts or 0) + 1
+
+	return true
+end
+
+-- _remove_group_member() returns true if the group was emptied
+Hooks:PostHook(GroupAIStateBase, "_remove_group_member", "eclipse__remove_group_member", function(self, group, _, is_casualty)
+	local data = is_casualty and Hooks:GetReturn() and group.hiding_cloaker_data
+	if data and data.delay_t then
+		local hiding_cloaker_tweak = self._tweak_data.cloaker
+		self:_delay_new_hiding_cloakers(data, hiding_cloaker_tweak and hiding_cloaker_tweak.group_removed_delay_t or { 2, 7 })
+	end
+end)
+
+-- Make getting individual SOs for hiding Cloakers easier
+Hooks:PostHook(GroupAIStateBase, "_process_grp_SO", "eclipse__process_grp_SO", function(self, grp_so_id, element)
+	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
+	if not grp_SO_data then
+		return
+	end
+
+	local followup_elements = element:value("followup_elements")
+	if not followup_elements then
+		return
+	end
+
+	local base_chance = element:value("base_chance")
+	for _, id in ipairs(followup_elements) do
+		local followup = element:get_mission_element(id)
+		if followup then
+			grp_SO_data.followups = grp_SO_data.followups or {}
+			table.insert(grp_SO_data.followups, { followup, followup:chance() * base_chance, element })
+		end
+	end
+end)
+
+-- Vanilla code doesn't seem to properly support removing SO groups
+-- Add it here for hiding Cloaker use
+Hooks:PostHook(GroupAIStateBase, "remove_grp_SO", "eclipse_remove_grp_SO", function(self, id)
+	local element = managers.mission:get_element_by_id(id)
+	if not element then
+		return
+	end
+
+	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
+	if not grp_SO_data or not grp_SO_data.followups then
+		return
+	end
+
+	for i, followup_data in table.reverse_ipairs(grp_SO_data.followups) do
+		if followup_data[3] == element then
+			table.remove(grp_SO_data.followups, i)
+		end
+	end
+end)
+
+function GroupAIStateBase:_distance_to_units_center(from_pos, units, as_square)
+	local mvec_func = as_square and mvector3.distance_sq or mvector3.distance
+	return mvec_func(from_pos, self:_get_units_center_pos(units))
+end
+
+-- Adapted from GroupAIStateBesiege:_draw_enemy_activity(...)
+-- Use with an enemy group's units, or GroupAI's criminals tables
+function GroupAIStateBase:_get_units_center_pos(units)
+	local center_pos = Vector3()
+	local nr_units = 0
+	for _, u_data in pairs(units) do
+		local movement_ext = alive(u_data.unit) and u_data.unit:movement()
+		if movement_ext and movement_ext.m_pos then
+			nr_units = nr_units + 1
+			mvector3.add(center_pos, movement_ext:m_pos())
+		end
+	end
+	if nr_units > 1 then
+		mvector3.divide(center_pos, nr_units)
+	end
+	return center_pos
+end
+
+function GroupAIStateBase:_get_closest_group(from_pos, groups)
+	local best_group, best_group_dis
+	for _, group in pairs(groups) do
+		local group_dis = self:_distance_to_units_center(from_pos, group.units)
+		if not best_group or group_dis < best_group_dis then
+			best_group = group
+			best_group_dis = group_dis
+		end
+	end
+	return best_group, best_group_dis
 end

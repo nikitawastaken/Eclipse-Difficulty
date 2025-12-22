@@ -32,9 +32,15 @@ local enabled = {
 }
 local side_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 local van_scripted_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
@@ -55,6 +61,8 @@ return {
 		ai_area = {
 			{ 57, 59 },
 			{ 68, 77 },
+			{ 98, 19 },
+			{ 76, 97, 18 },
 		},
 	},
 	[101829] = {
@@ -72,16 +80,7 @@ return {
 			{ name = "parts_car" },
 		},
 	},
-	-- Increase difficulty when Hajrudin breaches the tellers
-	[102308] = {
-		difficulty_add = 0.2,
-	},
 	[100109] = { -- Police
-		on_executed = { -- delay preferreds
-			{ id = 100129, delay = 45 }, -- preferred
-		},
-	},
-	[100810] = { -- start police car drive-in
 		reinforce = {
 			{
 				name = "police_car1",
@@ -101,8 +100,17 @@ return {
 			{
 				name = "police_car3",
 				force = 3,
-				position = Vector3(-2200, -2600, 0),
+				position = Vector3(-1700, -2600, 0),
 			},
+		},
+		on_executed = {
+			{ id = 100129, remove = true }, -- preferred
+		},
+	},
+	-- Delay initial preferreds
+	[103009] = { -- start police car drive in
+		on_executed = {
+			{ id = 100129, delay = 0, delay_rand = 15 }, -- preferred
 		},
 	},
 	[102311] = { -- func sequence trigger 003
@@ -124,7 +132,7 @@ return {
 		},
 	},
 	-- Reinforce inside the bank
-	[100123] = { -- Assault done
+	[100123] = { -- 1st assault done
 		reinforce = {
 			{
 				name = "teller_balcony1",
@@ -185,6 +193,15 @@ return {
 			{ id = 101618, remove = true }, -- why does this spawn a guard ?
 		},
 	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		values = {
+			trigger_times = 1,
+		},
+		on_executed = {
+			{ id = 400062, delay = 0 },
+		},
+	},
 	-- don't remove enemies for no reason
 	[102856] = disabled,
 	-- restores some unused sniper spawns with their SOs
@@ -207,17 +224,6 @@ return {
 	-- disable a few reinforce points
 	[101834] = disabled, -- drill, Eclipse automates those
 	[101835] = disabled, -- server room, only 1, for some reason
-	-- add guaranteed spawns that come out of swat vans
-	[102987] = {
-		on_executed = {
-			{ id = 400022, delay = 0, delay_rand = 5 },
-		},
-	},
-	[103002] = {
-		on_executed = {
-			{ id = 400015, delay = 0, delay_rand = 5 },
-		},
-	},
 	-- disable dozers
 	[100018] = {
 		on_executed = {
@@ -278,6 +284,16 @@ return {
 	[100019] = side_spawn,
 	[100128] = side_spawn,
 	[100132] = side_spawn,
+	[400042] = cloaker_spawn,
+	[400043] = cloaker_spawn,
+	[400044] = cloaker_spawn,
+	[400045] = cloaker_spawn,
+	[400046] = cloaker_spawn,
+	[400047] = cloaker_spawn,
+	[400048] = cloaker_spawn,
+	[400049] = cloaker_spawn,
+	[400050] = cloaker_spawn,
+	[400051] = cloaker_spawn,
 	[400017] = van_scripted_spawn,
 	[400024] = van_scripted_spawn,
 	[104687] = beat_cop, -- pre-spawned policia
