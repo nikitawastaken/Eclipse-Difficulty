@@ -33,16 +33,13 @@ local filter_easy_above = {
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
-local ffo_countdown = {
-	ponr = {
-		length = 480,
-		player_mul = { 2, 1.5, 1, 1 },
-	},
-}
 return {
-	[101094] = ffo_countdown,
-	[101097] = ffo_countdown,
-	[101100] = ffo_countdown,
+	[100318] = {
+		ponr = {
+			length = 720,
+			player_mul = { 2, 1.5, 1, 1 },
+		},
+	},
 	-- Fix power cut SO delay and add some random delay
 	[104685] = {
 		values = {
