@@ -677,8 +677,14 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 	local criminal_pos = self:_get_units_center_pos(self:all_char_criminals())
 	local pos_is_zero = not criminal_pos or mvector3.is_zero(criminal_pos)
 
-	local function should_continue(element, element_pos)
-		if last_element and last_element == element then
+	local function should_continue(element, element_pos, so_grp)
+		if not element then
+			Eclipse:warn_console("Nil element in _get_hiding_cloaker_SO()! SO group ID: " .. (so_grp and so_grp:id() or "missing"))
+			return true
+		elseif not element_pos then
+			Eclipse:warn_console("Nil element pos in _get_hiding_cloaker_SO()! Element ID: " .. (element:id() or "missing") .. " SO group ID: " .. (so_grp and so_grp:id() or "missing"))
+			return true
+		elseif last_element and last_element == element then
 			return true
 		elseif last_element_pos and mvector3.distance(element_pos, last_element_pos) < repeat_hiding_spots.min_distance then
 			return true
@@ -695,9 +701,9 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 
 	local function collect_element_weights(skip_ignore_distances)
 		for _, followup_data in ipairs(data.followups) do
-			local element, element_w = followup_data[1], followup_data[2]
+			local element, element_w, so_grp = followup_data[1], followup_data[2]
 			local element_pos = element:value("position")
-			if should_continue(element, element_pos) then
+			if should_continue(element, element_pos, so_grp) then
 				goto __continue
 			end
 
