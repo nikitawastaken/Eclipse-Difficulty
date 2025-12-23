@@ -350,16 +350,16 @@ local M = {
 			elite_bulldozer_1 = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
 			elite_bulldozer_2 = "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 			medic = {
-				"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-				"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-				"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale_r870/ene_swat_medic_policia_federale_r870",
 			},
 			taser = {
-				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale",
 		},
 		["FBI"] = {
 			swat_1 = {
@@ -378,16 +378,16 @@ local M = {
 			elite_bulldozer_1 = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
 			elite_bulldozer_2 = "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 			medic = {
-				"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-				"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-				"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale_r870/ene_swat_medic_policia_federale_r870",
 			},
 			taser = {
-				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale",
 		},
 		["Elite"] = {
 			swat_1 = {
@@ -406,16 +406,16 @@ local M = {
 			elite_bulldozer_1 = "units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3",
 			elite_bulldozer_2 = "units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic",
 			medic = {
-				"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-				"units/payday2/characters/ene_medic_m4/ene_medic_m4",
-				"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale_r870/ene_swat_medic_policia_federale_r870",
 			},
 			taser = {
-				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
-				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale",
+				"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale",
 		},
 	},
 }
