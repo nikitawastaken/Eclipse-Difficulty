@@ -1467,6 +1467,11 @@
 
 				<file :name="bex_cloaker_head_df.texture" />
 				<file :name="bex_cloaker_head_nm.texture" />
+	
+				<file :name="bex_medic_body_df.texture" />
+
+				<file :name="bex_medic_head_df.texture" />
+				<file :name="bex_medic_head_nm.texture" />
 			</group>
 
 			<group :name="ene_acc_security_cap/">
@@ -1584,6 +1589,21 @@
 				<file :name="ene_swat_cloaker_policia_federale.object" />
 				<file :name="ene_swat_cloaker_policia_federale.unit" />
 				<file :name="ene_swat_cloaker_policia_federale_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_medic_policia_federale/">
+				<xml  :name="ene_swat_medic_policia_federale.sequence_manager" dyn_package="true" />
+				<file :name="ene_swat_medic_policia_federale.material_config" />
+				<file :name="ene_swat_medic_policia_federale_contour.material_config" />
+				<file :name="ene_swat_medic_policia_federale.model" />
+				<file :name="ene_swat_medic_policia_federale.object" />
+				<file :name="ene_swat_medic_policia_federale.unit" />
+				<file :name="ene_swat_medic_policia_federale_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_medic_policia_federale_r870/">
+				<file :name="ene_swat_medic_policia_federale_r870.unit" />
+				<file :name="ene_swat_medic_policia_federale_r870_husk.unit" />
 			</group>
 		</group>
 

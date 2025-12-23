@@ -9,8 +9,8 @@
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/arms_atlas_df" mip="1"/>
 	</material>
 	<material name="mtr_arms_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/arms_atlas_nm" mip="4"/>
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/arms_atlas_df" mip="4"/>
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/arms_atlas_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/arms_atlas_df" mip="2"/>
 	</material>
 	
 	<material name="mtr_head" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -22,8 +22,8 @@
 		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_df" mip="1"/>
 	</material>
 	<material name="mtr_head_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_nm" mip="4"/>
-		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_df" mip="4"/>
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_nm" mip="2"/>
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_df" mip="2"/>
 	</material>
 
 	<material name="mtr_balaclava_cop" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -35,8 +35,8 @@
 		<diffuse_texture 		file="units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_bex_agent_body_atlas_df" mip="1" />
 	</material>
 	<material name="mtr_balaclava_cop_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/ene_policia_01/ene_bex_cop_policia_body_atlas_nm" mip="4" />
-		<diffuse_texture 		file="units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_bex_agent_body_atlas_df" mip="4" />
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/ene_policia_01/ene_bex_cop_policia_body_atlas_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_bex_agent_body_atlas_df" mip="2" />
 	</material>
 	
 	<material name="mtr_balaclava_swat" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -48,8 +48,8 @@
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="1" />
 	</material>
 	<material name="mtr_balaclava_swat_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" mip="4" />
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="4" />
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" mip="2" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" mip="2" />
 	</material>
 
 	<material name="mtr_balaclava_medic" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -61,8 +61,8 @@
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/ene_medic_head_df" mip="1" />
 	</material>
 	<material name="mtr_balaclava_medic_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_medic_head_nm" mip="4" />
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/ene_medic_head_df" mip="4" />
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/ene_medic_head_nm" mip="2" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/ene_medic_head_df" mip="2" />
 	</material>
 
 	<material name="mtr_jerome" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -74,7 +74,7 @@
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_var2_df" mip="1"/>
 	</material>
 	<material name="mtr_jerome_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
-		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_var2_nm" mip="4"/>
-		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_var2_df" mip="4"/>
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_var2_nm" mip="2"/>
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_var2_df" mip="2"/>
 	</material>
 </materials>

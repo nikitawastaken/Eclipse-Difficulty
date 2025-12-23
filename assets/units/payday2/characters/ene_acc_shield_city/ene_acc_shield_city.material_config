@@ -9,8 +9,8 @@
         <bump_normal_texture		file="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/shield_phalanx_nm" mip="1"/>
     </material>
     <material name="mtr_shield_lod_2" render_template="generic:ALPHA_MASKED:DIFFUSE_TEXTURE:NORMALMAP" version="2">
-        <diffuse_texture			file="units/payday2/characters/ene_acc_shield_city/shield_city_df" mip="4"/>
-        <bump_normal_texture		file="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/shield_phalanx_nm" mip="4"/>
+        <diffuse_texture			file="units/payday2/characters/ene_acc_shield_city/shield_city_df" mip="2"/>
+        <bump_normal_texture		file="units/pd2_dlc_vip/characters/ene_acc_shield_phalanx/shield_phalanx_nm" mip="2"/>
     </material>
 	
     <material name="mtr_light_il" render_template="generic:DIFFUSE_TEXTURE:SELF_ILLUMINATION" version="2">
