@@ -1849,6 +1849,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.bex, "ene_policia_agent_01")
 	safe_add(char_map.bex, "ene_policia_agent_02")
 	safe_add(char_map.bex, "ene_policia_agent_03")
+	safe_add(char_map.bex, "ene_swat_tazer_policia_federale_r870")
 
 	return char_map
 end
