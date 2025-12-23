@@ -3553,6 +3553,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		"cs_taser",
 		"cs_bulldozer",
 
+		-- FBI-tier
+		"fbi_defend_init",
+		"fbi_defend_light",
+		"fbi_defend_heavy",
+		"fbi_stealth_init",
+		"fbi_stealth_light",
+		"fbi_stealth_heavy",
+
+		-- Elite-tier
+		"elite_defend_light",
+		"elite_defend_heavy",
+
 		-- Other hiding Cloakers
 		"single_spooc",
 

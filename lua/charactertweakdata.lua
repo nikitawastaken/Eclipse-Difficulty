@@ -1595,7 +1595,7 @@ CharacterTweakData.team_ai_weapons_mapped = {
 			["fireaxe"] = 2,
 			["bat"] = 2,
 			["cleaver"] = 2,
-			["macehete"] = 2,
+			["machete"] = 2,
 			["fists"] = 1,
 		},
 	},
