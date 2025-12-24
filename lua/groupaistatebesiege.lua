@@ -1315,14 +1315,23 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		return weighted_selector(random_units):select()
 	end
 
-	for _, enemy in pairs(valid_unit_types) do
-		if enemy.random_tactics then
-			tactic_str = weighted_selector(enemy.random_tactics):select()
-			enemy.tactics = tactics[tactic_str] or enemy.tactics
+	for _, spawn_entry in pairs(valid_unit_types) do
+		if spawn_entry.random_tactics then
+			tactic_str = weighted_selector(spawn_entry.random_tactics):select()
+			spawn_entry.tactics = tactics[tactic_str] or spawn_entry.tactics
 		end
 
-		if enemy.random_unit then
-			enemy.unit = get_random_unit(enemy.random_unit) or enemy.unit
+		if spawn_entry.random_unit then
+			spawn_entry.unit = get_random_unit(spawn_entry.random_unit) or spawn_entry.unit
+		end
+
+		local freq_by_diff = spawn_entry.freq_by_diff
+		if freq_by_diff then
+			spawn_entry.freq = self:_get_difficulty_dependent_value(freq_by_diff)
+		end
+
+		if spawn_entry.freq_balance_mul then
+			spawn_entry.freq = spawn_entry.freq * self:_get_balancing_multiplier(spawn_entry.freq_balance_mul, tweak_data.group_ai.team_ai_freq_balance_mul_weight)
 		end
 	end
 
@@ -1352,7 +1361,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		if spawn_entry.amount_max then
 			if add_amount >= spawn_entry.amount_max then
 				table.remove(valid_unit_types, i)
-				total_weight = total_weight - (spawn_entry.freq_by_diff and self:_get_difficulty_dependent_value(spawn_entry.freq_by_diff) or spawn_entry.freq)
+				total_weight = total_weight - spawn_entry.freq
 				return true
 			else
 				spawn_entry.amount_max = spawn_entry.amount_max - add_amount
@@ -1364,7 +1373,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 	while wanted_nr_units > 0 and i <= #valid_unit_types do
 		local spawn_entry = valid_unit_types[i]
 
-		total_weight = total_weight + (spawn_entry.freq_by_diff and self:_get_difficulty_dependent_value(spawn_entry.freq_by_diff) or spawn_entry.freq)
+		total_weight = total_weight + spawn_entry.freq
 
 		local entry_removed = spawn_entry.amount_min and spawn_entry.amount_min > 0 and _add_unit_type_to_spawn_task(i, spawn_entry)
 		if not entry_removed then
@@ -1381,7 +1390,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 		repeat
 			rand_entry = valid_unit_types[i]
 
-			roll = roll - (rand_entry.freq_by_diff and self:_get_difficulty_dependent_value(rand_entry.freq_by_diff) or rand_entry.freq)
+			roll = roll - rand_entry.freq
 			i = i + 1
 		until roll <= 0
 
@@ -1390,7 +1399,7 @@ function GroupAIStateBesiege:_spawn_in_group(spawn_group, spawn_group_type, grp_
 
 		if special_type and managers.job:current_spawn_limit(special_type) <= self:_get_special_unit_type_count(special_type) then
 			table.remove(valid_unit_types, i - 1)
-			total_weight = total_weight - (rand_entry.freq_by_diff and self:_get_difficulty_dependent_value(rand_entry.freq_by_diff) or rand_entry.freq)
+			total_weight = total_weight - rand_entry.freq
 		else
 			_add_unit_type_to_spawn_task(i - 1, rand_entry)
 		end
