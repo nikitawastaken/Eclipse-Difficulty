@@ -712,6 +712,7 @@
 				<file :name="visor_glass_orange_df.texture" />
 				<file :name="visor_glass_red_df.texture" />
 				<file :name="visor_glass_yellow_df.texture" />
+				<file :name="visor_glass_purple_df.texture" />
 			</group>
 
 			<group :name="ene_acc_swat_helmet/">
@@ -1464,24 +1465,30 @@
 				
 				<file :name="bex_swat_body_df.texture" />			
 				<file :name="bex_swat_heads_atlas_df.texture" />
+
+				<file :name="bex_heavy_swat_helmets_atlas_df.texture" />			
+				<file :name="bex_heavy_swat_helmets_atlas_nm.texture" />
+				
+				<file :name="bex_heavy_swat_body_df.texture" />			
+				<file :name="bex_heavy_swat_body_nm.texture" />
+				
+				<file :name="bex_city_heavy_swat_body_df.texture" />		
 				
 				<file :name="bex_cloaker_body_df.texture" />
 				<file :name="bex_cloaker_body_nm.texture" />
 
 				<file :name="bex_cloaker_head_df.texture" />
 				<file :name="bex_cloaker_head_nm.texture" />
-	
-				<file :name="bex_medic_body_df.texture" />
-
-				<file :name="bex_medic_head_df.texture" />
-				<file :name="bex_medic_head_nm.texture" />
 
 				<file :name="bex_taser_head_df.texture" />
 				<file :name="bex_taser_head_nm.texture" />
 
 				<file :name="bex_taser_body_df.texture" />
-				
-				<file :name="bex_heavy_swat_body_nm.texture" />
+
+				<file :name="bex_medic_body_df.texture" />
+
+				<file :name="bex_medic_head_df.texture" />
+				<file :name="bex_medic_head_nm.texture" />
 			</group>
 
 			<group :name="ene_acc_security_cap/">
@@ -1589,6 +1596,36 @@
 			<group :name="ene_policia_agent_03/">
 				<file :name="ene_policia_agent_03.unit" />
 				<file :name="ene_policia_agent_03_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_policia_federale_fbi/">
+				<xml  :name="ene_swat_heavy_policia_federale_fbi.sequence_manager" dyn_package="true" />
+				<file :name="ene_swat_heavy_policia_federale_fbi.material_config" />
+				<file :name="ene_swat_heavy_policia_federale_fbi_contour.material_config" />
+				<file :name="ene_swat_heavy_policia_federale_fbi.model" />
+				<file :name="ene_swat_heavy_policia_federale_fbi.object" />
+				<file :name="ene_swat_heavy_policia_federale_fbi.unit" />
+				<file :name="ene_swat_heavy_policia_federale_fbi_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_swat_heavy_policia_federale_city.material_config" />
+					<file :name="ene_swat_heavy_policia_federale_city_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_swat_heavy_policia_federale_fbi_r870/">
+				<file :name="ene_swat_heavy_policia_federale_fbi_r870.unit" />
+				<file :name="ene_swat_heavy_policia_federale_fbi_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_policia_federale_city/">
+				<file :name="ene_swat_heavy_policia_federale_city.unit" />
+				<file :name="ene_swat_heavy_policia_federale_city_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_policia_federale_city_r870/">
+				<file :name="ene_swat_heavy_policia_federale_city_r870.unit" />
+				<file :name="ene_swat_heavy_policia_federale_city_r870_husk.unit" />
 			</group>
 
 			<group :name="ene_swat_cloaker_policia_federale/">

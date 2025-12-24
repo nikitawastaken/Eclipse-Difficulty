@@ -95,5 +95,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01", bex_needed, false)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02", bex_needed, false)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city/ene_swat_heavy_policia_federale_city", bex_needed, false)
+	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city_r870/ene_swat_heavy_policia_federale_city_r870", bex_needed, false)
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870", bex_needed, false)
 end)
