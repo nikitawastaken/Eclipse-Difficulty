@@ -15,10 +15,11 @@ local weighted_selector = Eclipse.utils.weighted_selector
 -- Criminal status no longer influences balance multipliers
 -- Team AI contribute less towards spawn limits and spawn rates
 function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers, team_ai_weight)
+	team_ai_weight = tweak_data.group_ai.use_team_ai_balance_mul_weights and team_ai_weight or 1
 	local nr_criminals = 0
 	for u_key, u_data in pairs(self._char_criminals) do
 		if u_data.ai then
-			nr_criminals = nr_criminals + (team_ai_weight or 1)
+			nr_criminals = nr_criminals + team_ai_weight
 		else
 			nr_criminals = nr_criminals + 1
 		end
