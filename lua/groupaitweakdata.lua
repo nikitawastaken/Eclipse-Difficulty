@@ -83,17 +83,19 @@ function GroupAITweakData:_distance_weighted_spawn_entry(spawn_entry, from_dis, 
 		return math.map_range_clamped(self._last_dis_freq or (from_dis + to_dis) / 2, from_dis, to_dis, from_weight, to_weight)
 	end
 
-	local entry_freq = spawn_entry.freq_by_diff or spawn_entry.freq or 1
-	spawn_entry.freq_by_diff = nil
-	spawn_entry.freq = nil
+	local entry_freq, entry_freq_by_diff = spawn_entry.freq, spawn_entry.freq_by_diff
+	spawn_entry.freq, spawn_entry.freq_by_diff = nil
 	return setmetatable(spawn_entry, {
 		__index = function(t, k)
-			if k == "freq_by_diff" and type(entry_freq) == "table" then -- edit here
-				local new_freq = {}
-				for i, weight in pairs(entry_freq) do
-					new_freq[i] = weight * dis_freq()
+			if k == "freq_by_diff" then -- edit here
+				if entry_freq_by_diff then
+					local new_freq = {}
+					local d_freq = dis_freq()
+					for i, weight in pairs(entry_freq_by_diff) do
+						new_freq[i] = weight * d_freq
+					end
+					return new_freq
 				end
-				return new_freq
 			elseif k == "freq" then
 				return entry_freq * dis_freq()
 			end
