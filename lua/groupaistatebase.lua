@@ -318,16 +318,6 @@ function GroupAIStateBase:has_room_for_police_hostage()
 	return self._police_hostage_headcount + table.size(self._converted_police) < 4
 end
 
--- Fully count all criminals for the balancing multiplier
-function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
-end
-
--- Balancing multiplier for players only (used for hostage situation aced)
-function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._player_criminals), 1, #balance_multipliers)]
-end
-
 -- Delay spawn points when enemies die close to them
 Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregistered", function(self, unit)
 	if Network:is_client() or not unit:character_damage():dead() then

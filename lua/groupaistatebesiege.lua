@@ -10,9 +10,33 @@ local tmp_vec1 = Vector3()
 local tmp_vec2 = Vector3()
 
 local weighted_selector = Eclipse.utils.weighted_selector
--- local function weighted_selector(t)
--- 	return Eclipse.utils.weighted_selector(t)
--- end
+
+-- Make balance multiplier changes in this file to avoid Useful Bots overwriting it
+-- Criminal status no longer influences balance multipliers
+-- Team AI contribute less towards spawn limits and spawn rates
+function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers, team_ai_weight)
+	local nr_criminals = 0
+	for u_key, u_data in pairs(self._char_criminals) do
+		if u_data.ai then
+			nr_criminals = nr_criminals + (team_ai_weight or 1)
+		else
+			nr_criminals = nr_criminals + 1
+		end
+	end
+	nr_criminals = math.clamp(nr_criminals, 1, #balance_multipliers)
+	if balance_multipliers[nr_criminals] then
+		return balance_multipliers[nr_criminals]
+	end
+
+	local nr_criminals_floor = math.floor(nr_criminals)
+	local current_mul, next_mul = balance_multipliers[nr_criminals_floor], balance_multipliers[math.ceil(nr_criminals)]
+	return math.lerp(current_mul, next_mul, nr_criminals - nr_criminals_floor)
+end
+
+-- Balancing multiplier for players only (used for hostage situation aced)
+function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
+	return balance_multipliers[math.clamp(table.size(self._player_criminals), 1, #balance_multipliers)]
+end
 
 -- Functions for adding/removing deployable reinforce
 function GroupAIStateBase:add_deployable_reenforce(name_id, unit, pos, nav_seg_id)
@@ -39,6 +63,10 @@ function GroupAIStateBesiege:_begin_assault_task(...)
 
 		self._mga_said_arrival = true
 	end
+
+	local force_mul = self:_get_balancing_multiplier(self._tweak_data.assault.force_balance_mul, tweak_data.group_ai.team_ai_force_balance_mul_weight)
+	local force_value = self:_get_difficulty_dependent_value(self._tweak_data.assault.force)
+	self._task_data.assault.force = math.ceil(force_value * force_mul)
 
 	if self._hostage_headcount > 0 then
 		local anticipation_duration = self:_get_anticipation_duration(self._tweak_data.assault.anticipation_duration, self._task_data.assault.was_first)
@@ -1224,7 +1252,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 	end
 
 	-- Set a dynamic enemy spawnrate that scales with player count and difficulty value
-	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul)
+	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul, tweak_data.group_ai.team_ai_spawnrate_balance_mul_weight)
 	local spawn_rate = self:_get_difficulty_dependent_value(self._tweak_data.assault.spawnrate)
 
 	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)

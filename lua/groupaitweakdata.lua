@@ -3295,6 +3295,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
 
+	self.team_ai_spawnrate_balance_mul_weight = 0.5
+	self.team_ai_force_balance_mul_weight = 0.5
+
 	-- Spawnrate
 	self.spawn_kill_distance = 1500
 	self.spawn_kill_cooldown = 10
