@@ -1588,7 +1588,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		shield_def = {
 			"shield",
 			"ranged_fire",
-	--		"door_ambush",
+			--		"door_ambush",
 		},
 		shield_agg = {
 			"shield",
@@ -1618,7 +1618,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		},
 		bulldozer_def = {
 			"shield",
-	--		"door_ambush",
+			--		"door_ambush",
 			"murder",
 			"smoke_grenade",
 		},

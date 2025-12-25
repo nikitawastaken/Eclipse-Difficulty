@@ -182,7 +182,7 @@ if not Eclipse then
 			local enabled = (item:value() == "on")
 			Eclipse.settings.reduced_solo_spawns = enabled
 		end
-		
+
 		function MenuCallbackHandler:eclipse_ponr_assault_text_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.ponr_assault_text = enabled
@@ -240,7 +240,7 @@ if not Eclipse then
 			menu_id = menu_id,
 			priority = 100,
 		})
-		
+
 		MenuHelper:AddToggle({
 			id = "ponr_assault_text",
 			title = "eclipse_menu_ponr_assault_text",
