@@ -248,7 +248,6 @@ return {
 				force = 2,
 				position = Vector3(1025, 4250, -500),
 			},
-
 		},
 	},
 	[100732] = { -- Activate operations room reinforce when the players are doing objectives

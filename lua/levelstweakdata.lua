@@ -444,7 +444,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			assault_add = 0.25,
 		},
 	}
-	
+
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
 		sustain_duration_mul = 0.65,

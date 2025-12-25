@@ -88,7 +88,7 @@ return {
 	[102664] = rappel_close_spawn,
 	[102138] = rappel_close_spawn,
 	[104338] = rappel_close_spawn,
-	[104472] = rappel_close_spawn,		
+	[104472] = rappel_close_spawn,
 	[102151] = roof_spawn,
 	[104347] = roof_spawn,
 }

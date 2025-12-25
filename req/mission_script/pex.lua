@@ -180,9 +180,9 @@ return {
 	-- Disable pointless area triggers
 	[104087] = disabled,
 	-- Disable vanilla reinforce
-	[102192] = disabled, 
-	[104094] = disabled, -- toggle_on_police_points (evidence rooms) 
-	[104095] = disabled, 
+	[102192] = disabled,
+	[104094] = disabled, -- toggle_on_police_points (evidence rooms)
+	[104095] = disabled,
 	[104099] = disabled,
 	[104100] = disabled,
 	[104101] = disabled,

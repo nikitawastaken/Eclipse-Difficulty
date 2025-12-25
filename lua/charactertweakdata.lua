@@ -556,7 +556,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		72,
 		96,
 	})
-	
+
 	presets.gang_member_damage.HEALTH_INIT = team_ai_health * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
