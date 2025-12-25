@@ -64,6 +64,8 @@
 	"hud_assault_federales_assault": "Federales Assault In Progress",
 
 	"eclipse_menu_main": "Eclipse",
+	"eclipse_menu_reduced_solo_spawns": "Reduced Singleplayer Spawns",
+	"eclipse_menu_reduced_solo_spawns_desc": "Reduces enemy spawnrate, spawncap, and special unit frequency when playing with Team AI.",
 	"eclipse_menu_ponr_assault_text": "Full Force Onslaught Assault Banner",
 	"eclipse_menu_ponr_assault_text_desc": "Adds additional text to the assault banner during Full Force Onslaught. Incompatible with mods that edit assault banner.",
 	"eclipse_menu_faction_assault_text": "Faction Assault Banner",
