@@ -691,7 +691,7 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 
 	local function collect_element_weights(skip_ignore_distances)
 		for _, followup_data in ipairs(data.followups) do
-			local element, element_w, so_grp = followup_data[1], followup_data[2]
+			local element, element_w, so_grp = followup_data[1], followup_data[2], followup_data[3]
 			local element_pos = element:value("position")
 			if should_continue(element, element_pos, so_grp) then
 				goto __continue
