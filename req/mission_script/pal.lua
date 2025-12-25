@@ -97,6 +97,24 @@ local van_spawn = {
 	groups = preferred.no_cops_agents,
 }
 return {
+	-- Combine some navigation areas
+	[100023] = {
+		ai_area = {
+			{ 368, 358, 330, 255, 249 },
+			{ 259, 258 },
+			{ 357, 254 },
+			{ 356, 456 },
+			{ 355, 256 },
+			{ 250, 360 },
+			{ 366, 242 },
+			{ 365, 243 },
+			{ 364, 244 },
+			{ 246, 363 },
+			{ 247, 362 },
+			{ 248, 361 },
+			{ 359, 251 },
+		},
+	},
 	-- water from the hose fills the safe much slower like in PDTH
 	[101229] = {
 		values = {
@@ -185,19 +203,19 @@ return {
 				position = Vector3(-3750, 2400, 30),
 			},
 			{
-				name = "mitchell1",
+				name = "mitchell01",
 				force = 2,
-				position = Vector3(-1275, 2000, 25),
+				position = Vector3(-125, 2625, 25),
 			},
 			{
 				name = "mitchell2",
 				force = 2,
-				position = Vector3(-2025, 4350, 25),
+				position = Vector3(-2400, 4350, 25),
 			},
 			{
 				name = "wilson1",
 				force = 2,
-				position = Vector3(-2700, -800, 40),
+				position = Vector3(-3710, -1285, 25),
 			},
 			{
 				name = "wilson2",
@@ -332,7 +350,7 @@ return {
 			enabled = overkill_and_above and true or false,
 		},
 	},
-	-- spawn two extra tasers with blockade shields on Eclipse (193+ throwback)
+	-- spawn two extra tasers with blockade shields on Death Wish (193+ throwback)
 	[101926] = {
 		on_executed = {
 			{ id = 400017, delay = 0 },

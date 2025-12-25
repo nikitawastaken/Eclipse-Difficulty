@@ -101,7 +101,7 @@ return {
 			{ id = 400003, delay = 0 },
 		},
 	},
-	-- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
+	-- spawn him when the far van escape gets triggered on Death Wish (DW Trailer throwback)
 	[104452] = {
 		on_executed = {
 			{ id = 400001, delay = 0 },

@@ -29,12 +29,12 @@ return {
 				position = Vector3(-365, -275, -100),
 			},
 			{
-				name = "escalator1",
+				name = "escalator01",
 				force = 2,
 				position = Vector3(225, -2850, 0),
 			},
 			{
-				name = "escalator2",
+				name = "escalator02",
 				force = 2,
 				position = Vector3(-2750, 175, 0),
 			},
@@ -52,8 +52,6 @@ return {
 			{ id = 400001, delay = 0 }, -- custom street preferreds
 		},
 	},
-	-- disable harassers, they make an already annoying objective even more annoying
-	[105852] = disabled,
 	-- e_nl_up_1m_down_5m_swing
 	[103784] = exclude_cop_agents_shields_dozers,
 	[103785] = exclude_cop_agents_shields_dozers,

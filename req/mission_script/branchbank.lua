@@ -97,7 +97,7 @@ return {
 			{ id = 400003, delay = 0 },
 		},
 	},
-	-- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
+	-- spawn him when the far van escape gets triggered on Death Wish (DW Trailer throwback)
 	[104452] = {
 		on_executed = {
 			{ id = 400001, delay = 0 },
@@ -199,7 +199,7 @@ return {
 			{ id = 100438, delay = 30 },
 		},
 	},
-	-- make the SWAT events happen earlier if it's on eclipsepj
+	-- make the SWAT events happen earlier if it's on Death Wish Pro
 	[100438] = {
 		on_executed = {
 			{ id = 103540, remove = not is_eclipse_pro and true or nil, delay = 0 },

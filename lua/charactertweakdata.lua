@@ -3,7 +3,6 @@ local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 
 local level_id = Eclipse.utils.level_id()
-local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
 local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -270,6 +269,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_gangster = based_on(presets.weapon.eclipse_normal, {
 		melee_dmg = 12 * dmg_mul,
+		stance_acc_mul = nil,
 	})
 
 	damage_multiplier(presets.weapon.eclipse_gangster, 1.5)
@@ -481,11 +481,18 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		focus_delay = 0,
 	})
 
+	local team_ai_damage = get_difficulty_specific_value({
+		{ 4, 3, 2 },
+		{ 4, 3, 2 },
+		{ 5, 4, 3 },
+		{ 5, 4, 3 },
+		{ 6, 5, 4 },
+	})
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = 4, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 3, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = 2, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_damage[1], r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_damage[2], r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_damage[3], r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
@@ -542,7 +549,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	presets.gang_member_damage.HEALTH_INIT = (48 + math.floor(diff_i_no_easy / 2) * 30) * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	local team_ai_health = get_difficulty_specific_value({
+		48,
+		48,
+		60,
+		72,
+		96,
+	})
+
+	presets.gang_member_damage.HEALTH_INIT = team_ai_health * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
@@ -1354,7 +1369,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.zeal_medic = deep_clone(self.medic)
 	table.insert(self._enemy_list, "zeal_medic")
 
-	self.mobster_boss.HEALTH_INIT = 80
+	self.mobster_boss.HEALTH_INIT = 120
 	self.mobster_boss.headshot_dmg_mul = 2.5
 	self.mobster_boss.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
 	self.mobster_boss.die_sound_event = "Play_com_hm2_09"
@@ -2076,7 +2091,7 @@ function CharacterTweakData:_set_presets()
 		char_preset.ecm_hurts = { ears = 6 }
 		char_preset.ecm_vulnerability = char_ecm_vuln
 
-		-- Set surrender break time based on access
+		-- Standardise surrender break times
 		char_preset.surrender_break_time = { 10, 15 }
 
 		-- Set surrender preset based on access

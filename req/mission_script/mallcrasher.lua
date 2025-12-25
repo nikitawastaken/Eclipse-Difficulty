@@ -5,13 +5,13 @@ local exclude_cop_agents_shields_dozers = {
 }
 local skylight_far_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
 local skylight_close_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

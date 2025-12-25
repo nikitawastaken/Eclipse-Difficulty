@@ -83,17 +83,19 @@ function GroupAITweakData:_distance_weighted_spawn_entry(spawn_entry, from_dis, 
 		return math.map_range_clamped(self._last_dis_freq or (from_dis + to_dis) / 2, from_dis, to_dis, from_weight, to_weight)
 	end
 
-	local entry_freq = spawn_entry.freq_by_diff or spawn_entry.freq or 1
-	spawn_entry.freq_by_diff = nil
-	spawn_entry.freq = nil
+	local entry_freq, entry_freq_by_diff = spawn_entry.freq, spawn_entry.freq_by_diff
+	spawn_entry.freq, spawn_entry.freq_by_diff = nil
 	return setmetatable(spawn_entry, {
 		__index = function(t, k)
-			if k == "freq_by_diff" and type(entry_freq) == "table" then -- edit here
-				local new_freq = {}
-				for i, weight in pairs(entry_freq) do
-					new_freq[i] = weight * dis_freq()
+			if k == "freq_by_diff" then -- edit here
+				if entry_freq_by_diff then
+					local new_freq = {}
+					local d_freq = dis_freq()
+					for i, weight in pairs(entry_freq_by_diff) do
+						new_freq[i] = weight * d_freq
+					end
+					return new_freq
 				end
-				return new_freq
 			elseif k == "freq" then
 				return entry_freq * dis_freq()
 			end
@@ -1669,16 +1671,13 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			swat_agg = 2,
 			swat_snk_agg = 1,
 		},
-		shield = {
-			shield_agg = 2,
-			shield_def = 1,
-		},
+		shield = { "shield_agg", "shield_def" },
+		taser = { "taser_agg", "taser_snk" },
+		cloaker = { "cloaker_def", "cloaker_agg" },
 		bulldozer = {
 			bulldozer_agg = 2,
 			bulldozer_def = 1,
 		},
-		taser = { "taser_agg", "taser_snk" },
-		cloaker = { "cloaker_def", "cloaker_agg" },
 	}
 
 	self._random_units = {
@@ -2276,6 +2275,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 120) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2318,6 +2318,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 180,
 					diff_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2332,6 +2333,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2352,6 +2354,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 240,
 					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
@@ -2366,6 +2369,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 480) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2386,6 +2390,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 300,
 					diff_scale / 150,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2603,6 +2608,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 360) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2629,6 +2635,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 180,
 					diff_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2643,6 +2650,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2663,6 +2671,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 240,
 					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
@@ -2677,6 +2686,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 720) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2697,6 +2707,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 300,
 					diff_scale / 150,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -3294,6 +3305,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	for i = 0, 21, 1 do
 		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
+
+	self.use_team_ai_balance_mul_weights = Eclipse.settings.reduced_solo_spawns
+	self.team_ai_spawnrate_balance_mul_weight = 0.5
+	self.team_ai_force_balance_mul_weight = 0.5
+	self.team_ai_freq_balance_mul_weight = 0.5
 
 	-- Spawnrate
 	self.spawn_kill_distance = 1500

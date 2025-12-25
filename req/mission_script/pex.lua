@@ -88,23 +88,23 @@ return {
 	[100109] = { -- Police arrived
 		reinforce = {
 			{
-				name = "parking_lot1",
+				name = "parking_lot01",
 				force = 3,
 				position = Vector3(-1100, -400, 0),
 			},
 			{
-				name = "parking_lot2",
+				name = "parking_lot02",
 				force = 3,
 				position = Vector3(1800, -400, 0),
 			},
 			{
-				name = "parking_lot3",
+				name = "parking_lot03",
 				force = 3,
 				position = Vector3(525, -1325, 0),
 			},
 		},
 	},
-	[100121] = { -- 1st assault done
+	[101584] = { -- fire done
 		reinforce = {
 			{
 				name = "entrance",
@@ -115,6 +115,20 @@ return {
 				name = "alley",
 				force = 2,
 				position = Vector3(-1075, 3800, 0),
+			},
+		},
+	},
+	[102193] = { -- cell block door opens
+		reinforce = {
+			{
+				name = "cells",
+				force = 2,
+				position = Vector3(-2300, 3925, 0),
+			},
+			{
+				name = "garage",
+				force = 4,
+				position = Vector3(-4550, -825, -260),
 			},
 		},
 	},
@@ -165,11 +179,14 @@ return {
 	},
 	-- Disable pointless area triggers
 	[104087] = disabled,
-	-- Disable pointless vanilla reinforce
-	[104094] = disabled,
+	-- Disable vanilla reinforce
+	[102192] = disabled,
+	[104094] = disabled, -- toggle_on_police_points (evidence rooms)
+	[104095] = disabled,
 	[104099] = disabled,
 	[104100] = disabled,
 	[104101] = disabled,
+	[104109] = disabled,
 	[104111] = disabled,
 	-- Adjust Sniper amount
 	[100358] = sniper_amount,
