@@ -177,6 +177,11 @@ return {
 			{ id = 400019, delay = 0, delay_rand = 5 },
 		},
 	},
+	[104141] = { -- arrive 4
+		on_executed = {
+			{ id = 400026, delay = 0, delay_rand = 5 },
+		},
+	},
 	-- Disable pointless area triggers
 	[104087] = disabled,
 	-- Disable vanilla reinforce
