@@ -2275,7 +2275,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 120) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.6, 0.8, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2318,7 +2318,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 180,
 					diff_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
-				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2333,7 +2333,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.6, 0.8, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2354,7 +2354,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 240,
 					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
-				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
@@ -2369,7 +2369,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 480) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.2, 0.4, 0.8, 1 },
+				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2390,7 +2390,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 300,
 					diff_scale / 150,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
-				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2608,7 +2608,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 360) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.6, 0.8, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2635,7 +2635,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 180,
 					diff_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
-				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",
@@ -2650,7 +2650,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.6, 0.8, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2671,7 +2671,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 240,
 					diff_scale / 120,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
-				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "cloaker",
@@ -2686,7 +2686,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		spawn = {
 			{
 				freq = (diff_scale / 720) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
-				freq_balance_mul = { 0.2, 0.6, 0.8, 1 },
+				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
@@ -2707,7 +2707,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 					diff_scale / 300,
 					diff_scale / 150,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
-				freq_balance_mul = { 0.4, 0.7, 1, 1 },
+				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
 				unit = "medic",

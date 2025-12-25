@@ -11,13 +11,13 @@ local front_spawn = {
 		interval = 10,
 	},
 }
-local window_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local roof_spawn = {
+	values = {
+		interval = 15,
+	},
+	groups = preferred.no_cops_agents,
+}
+local window_spawn = {
 	values = {
 		interval = 20,
 	},
@@ -29,18 +29,38 @@ local cloaker_spawn = {
 	},
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 9, 10, 208, 209 },
+			{ 3, 5, 7 },
+			{ 26, 25 },
+			{ 23, 22 },
+			{ 310, 28 }.
+			{ 311, 53 },
+			{ 76, 40 },
+			{ 42, 46 },
+			{ 48, 51 },
+			{ 39, 37 },
+		},
+	},
 	--Add new reinforce
 	[100109] = {
 		reinforce = { -- Police arrived
 			{
 				name = "patio",
 				force = 3,
-				position = Vector3(0, 4750, 100),
+				position = Vector3(100, 3700, 0),
 			},
 			{
 				name = "stairs",
 				force = 3,
-				position = Vector3(25, 600, 0),
+				position = Vector3(25, 400, 0),
+			},
+			{
+				name = "fountain",
+				force = 4,
+				position = Vector3(0, -2130, -200),
 			},
 		},
 		on_executed = { -- preferreds
@@ -75,7 +95,7 @@ return {
 	-- Don't kill off enemies in courtyard/patio
 	[102903] = disabled,
 	[102904] = disabled,
-	-- Disable preferred remove elements responsible for removing spawn groups in front of the mansion#
+	-- Disable preferred remove elements responsible for removing spawn groups in front of the mansion.
 	[100244] = disabled,
 	[102899] = disabled,
 	[103218] = disabled,
@@ -83,12 +103,12 @@ return {
 	-- This heist has notoriously annoying spawns all over the place.
 	[100128] = front_spawn,
 	[100130] = front_spawn,
+	[100007] = roof_spawn,
+	[103098] = roof_spawn,
 	[100131] = window_spawn,
 	[100132] = window_spawn,
 	[100133] = window_spawn,
 	[103491] = window_spawn,
-	[100007] = roof_spawn,
-	[103098] = roof_spawn,
 	[100844] = cloaker_spawn,
 	[100848] = cloaker_spawn,
 	[100852] = cloaker_spawn,

@@ -2,17 +2,17 @@ local preferred = Eclipse.preferred
 local is_pro_job = Eclipse.utils.is_pro_job()
 local van_arrive_timer = 65 + (is_pro_job and 30 or 0)
 local van_arrive_time = 60 + (is_pro_job and 30 or 0)
-local skylight_spawn = {
+local rappel_far_spawn = {
 	values = {
 		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
-local window_spawn = {
+local rappel_close_spawn = {
 	values = {
 		interval = 20,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
+	groups = preferred.no_cops_agents,
 }
 local roof_spawn = {
 	values = {
@@ -73,18 +73,22 @@ return {
 	--
 	-- Spawn group intervals
 	-- Quite a few changes to this one. It's a pretty cramped map with verticality at that.
-	[100750] = window_spawn,
-	[101012] = window_spawn,
-	[102138] = window_spawn,
-	[102664] = window_spawn,
-	[104338] = window_spawn,
-	[104472] = window_spawn,
-	[102139] = skylight_spawn,
-	[102140] = skylight_spawn,
-	[104336] = skylight_spawn,
-	[104337] = skylight_spawn,
-	[107260] = skylight_spawn,
-	[107261] = skylight_spawn,
+	[102139] = rappel_far_spawn,
+	[102140] = rappel_far_spawn,
+	[102667] = rappel_far_spawn,
+	[102668] = rappel_far_spawn,
+	[104336] = rappel_far_spawn,
+	[104337] = rappel_far_spawn,
+	[107260] = rappel_far_spawn,
+	[107261] = rappel_far_spawn,
+	[107262] = rappel_far_spawn,
+	[107263] = rappel_far_spawn,
+	[100750] = rappel_close_spawn,
+	[101012] = rappel_close_spawn,
+	[102664] = rappel_close_spawn,
+	[102138] = rappel_close_spawn,
+	[104338] = rappel_close_spawn,
+	[104472] = rappel_close_spawn,		
 	[102151] = roof_spawn,
 	[104347] = roof_spawn,
 }

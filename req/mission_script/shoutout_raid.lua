@@ -49,7 +49,7 @@ return {
 			},
 		},
 	},
-	-- add one additional dozer in the container on Eclipse
+	-- add one additional dozer in the container on Death Wish
 	[107061] = {
 		values = {
 			amount = dozer_in_the_container_amount,

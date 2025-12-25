@@ -7,7 +7,7 @@ local bags_required = {
 }
 
 return {
-	-- bag tweaks (4 on easy and normal, 8 on hard and overkill and 12 on eclipse)
+	-- bag tweaks (4 on easy and normal, 8 on hard and overkill and 12 on Death Wish)
 	-- 4 more bags to secure on pro jobs
 	[101156] = bags_required,
 	[103407] = bags_required,

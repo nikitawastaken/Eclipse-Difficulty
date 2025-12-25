@@ -108,7 +108,7 @@ return {
 			{ id = 100374, remove = true },
 		},
 	},
-	-- more choppers on eclipse and pro jobs
+	-- more choppers on Death Wish and pro jobs
 	[101172] = {
 		values = {
 			amount = chopper_amount,

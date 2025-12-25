@@ -3,28 +3,6 @@ local is_eclipse = Eclipse.utils.is_eclipse()
 local diff_i = Eclipse.utils.difficulty_index()
 local dance_civs = is_eclipse and 17 or 7
 local dance_civs_bad_music = is_eclipse and 7 or 3
-local rear_spawn = {
-	values = {
-		interval = 10,
-	},
-}
-local side_spawn = {
-	values = {
-		interval = 15,
-	},
-}
-local window_spawn = {
-	values = {
-		interval = 40,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
-local alleyway_spawn = {
-	values = {
-		interval = 45,
-	},
-	groups = preferred.no_bulldozers,
-}
 local law_team = {
 	values = {
 		team = "law1",
@@ -50,6 +28,29 @@ else
 	club_music_off = "dah_party_music_stop"
 end
 
+local side_spawn = {
+	values = {
+		interval = 15,
+	},
+}
+local window_spawn = {
+	values = {
+		interval = 30,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
+}
+local alleyway_spawn = {
+	values = {
+		interval = 45,
+	},
+	groups = preferred.no_bulldozers,
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
+
 return {
 	-- Combine some navigation areas
 	[100087] = {
@@ -71,17 +72,42 @@ return {
 			{ 83, 85, 90 },
 		},
 	},
-	[101169] = {
+	-- Add new reinforce
+	[101169] = { -- FirstCar
 		reinforce = {
+			{
+				name = "taxi01",
+				force = 3,
+				position = Vector3(2450, -3575, 0),
+			},
+			{
+				name = "taxi02",
+				force = 3,
+				position = Vector3(375, -3575, 0),
+			},
+			{
+				name = "alley",
+				force = 3,
+				position = Vector3(1750, -9150, 25),
+			},
+		},
+	},
+	[101798] = { -- a_obj_3 (found a safe)
+		reinforce = {
+			{
+				name = "upper01",
+				force = 2,
+				position = Vector3(1225, -6225, 375),
+			},
+			{
+				name = "upper02",
+				force = 2,
+				position = Vector3(1850, -4625, 375),
+			},
 			{
 				name = "dance_floor",
 				force = 3,
-				position = Vector3(2400, -5600, -50),
-			},
-			{
-				name = "street",
-				force = 3,
-				position = Vector3(1400, -2900, 25),
+				position = Vector3(2525, -5650, -75),
 			},
 		},
 	},
@@ -95,7 +121,7 @@ return {
 			sound_event = club_music,
 		},
 	},
-	-- more civilians on the dance floor on Eclipse
+	-- more civilians on the dance floor on Death Wish
 	[101916] = {
 		values = {
 			counter_target = dance_civs,
@@ -114,6 +140,8 @@ return {
 	[103174] = window_spawn,
 	[104731] = window_spawn,
 	[101221] = alleyway_spawn,
+	[102581] = cloaker_spawn,
+	[102582] = cloaker_spawn,
 	-- Dimitri's men are friendly to cops
 	[101858] = law_team,
 	[101865] = law_team,

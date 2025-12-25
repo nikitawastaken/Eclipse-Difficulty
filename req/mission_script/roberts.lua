@@ -47,20 +47,9 @@ local donut_lords_at_the_gas_station = {
 local gensec_van_at_the_bank = {
 	chance = (eclipse and 10 or 5) + (is_pro_job and 5 or 0),
 }
-local plank_amount = {
-	values = {
-		amount = 4,
-		amount_random = 6 - (is_pro_job and 4 or 0),
-	},
-}
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
-	},
-}
-local rear_spawn = {
-	values = {
-		interval = 25,
 	},
 }
 local sewer_spawn = {
@@ -101,22 +90,22 @@ return {
 		reinforce = {
 			{
 				name = "bank_left",
-				force = 2,
+				force = 3,
 				position = Vector3(-525, -3000, -75),
 			},
 			{
 				name = "bank_right",
-				force = 2,
+				force = 3,
 				position = Vector3(450, 1750, -75),
 			},
 			{
 				name = "bank_front",
-				force = 2,
+				force = 3,
 				position = Vector3(2925, -650, -75),
 			},
 			{
 				name = "bank_back",
-				force = 2,
+				force = 3,
 				position = Vector3(-3250, -1375, -60),
 			},
 		},
@@ -159,13 +148,13 @@ return {
 		},
 	},
 	-- tweak the ambush near the end
-	-- both soldiers and dozer ambush on eclipse pro
+	-- both soldiers and dozer ambush on Death Wish pro
 	[106416] = {
 		values = {
 			amount = is_eclipse_pro and 2 or 1,
 		},
 	},
-	-- all 8 ambush units on eclipse pro
+	-- all 8 ambush units on Death Wish pro
 	[104534] = {
 		values = {
 			amount = is_eclipse_pro and 8 or 6,
@@ -178,10 +167,22 @@ return {
 			{ id = 400005, delay = 0, delay_rand = 5 },
 		},
 	},
-	-- adjust plank amount
-	[101803] = plank_amount,
-	[101804] = plank_amount,
-	[101805] = plank_amount,
+	-- Increase plank amounts
+	[101803] = {
+		values = {
+			amount = 12,
+		},
+	},
+	[101804] = {
+		values = {
+			amount = 16,
+		},
+	},
+	[101805] = {
+		values = {
+			amount = 8,
+		},
+	},
 	-- GenSec Operators near the GenSec truck on overkill and above
 	[105748] = gensec_truck,
 	[105749] = gensec_truck,
@@ -202,12 +203,12 @@ return {
 	-- It's a bit of a departure from the original which had all spawn group intervals set to 0, which was kind of lame.
 	-- Having sewer spawns set to the minimum possible interval is a pretty bad idea.
 	[400007] = scripted_swat_van_spawn,
-	[100128] = street_spawn,
-	[100131] = street_spawn,
-	[100132] = street_spawn,
-	[100133] = street_spawn,
-	[100130] = rear_spawn,
-	[100694] = rear_spawn,
+	[100128] = standard_spawn,
+	[100131] = standard_spawn,
+	[100132] = standard_spawn,
+	[100133] = standard_spawn,
+	[100130] = standard_spawn,
+	[100694] = standard_spawn,
 	[103294] = sewer_spawn,
 	[103295] = sewer_spawn,
 	[103296] = sewer_spawn,

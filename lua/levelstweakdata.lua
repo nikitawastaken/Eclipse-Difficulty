@@ -438,6 +438,13 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 
+	self.spa.group_ai_settings = {
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
+	}
+	
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
 		sustain_duration_mul = 0.65,

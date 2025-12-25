@@ -47,17 +47,17 @@ return {
 	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "street1",
+				name = "street01",
 				force = 3,
 				position = Vector3(1200, 900, 0),
 			},
 			{
-				name = "street2",
+				name = "street02",
 				force = 3,
 				position = Vector3(1250, 3250, 0),
 			},
 			{
-				name = "street3",
+				name = "street03",
 				force = 3,
 				position = Vector3(3000, 1050, 0),
 			},
@@ -66,12 +66,12 @@ return {
 	[100123] = { -- End assault
 		reinforce = {
 			{
-				name = "boutique1",
+				name = "boutique01",
 				force = 2,
 				position = Vector3(2600, 3400, 0),
 			},
 			{
-				name = "boutique2",
+				name = "boutique02",
 				force = 2,
 				position = Vector3(2900, 2325, 0),
 			},
@@ -80,7 +80,7 @@ return {
 	[100969] = { -- Interacted with zipline 1
 		reinforce = {
 			{
-				name = "zipline1",
+				name = "zipline",
 				force = 2,
 				position = Vector3(6550, 5875, 0),
 			},
@@ -89,7 +89,7 @@ return {
 	[100912] = { -- Interacted with zipline 2
 		reinforce = {
 			{
-				name = "zipline2",
+				name = "zipline",
 				force = 2,
 				position = Vector3(3550, 4085, 0),
 			},
@@ -97,8 +97,7 @@ return {
 	},
 	[100953] = {
 		reinforce = {
-			{ name = "zipline1" },
-			{ name = "zipline2" },
+			{ name = "zipline" },
 		},
 	},
 	-- tweak swat vans

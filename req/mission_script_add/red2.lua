@@ -694,7 +694,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_so(400009, "special_sniper_so_2", Vector3(-1175, -1375, 475), Rotation(0, 0, 0), optsSniperSO),
 	Eclipse.mission_elements.gen_so(400010, "special_sniper_so_3", Vector3(-1000, -1375, 475), Rotation(0, 0, 0), optsSniperSO),
 
-	--2 dozers spawn after killing Bo The Manager +2 extra dozers on Eclipse (even if you haven't killed Bo)
+	--2 dozers spawn after killing Bo The Manager +2 extra dozers on Death Wish (even if you haven't killed Bo)
 	Eclipse.mission_elements.gen_dummy(400011, "ai_spawn_enemy_Bo's_bulldozer_2", Vector3(-2682, -3588, -125), Rotation(90, -0, -0), optsBulldozer_BO),
 	Eclipse.mission_elements.gen_dummy(400012, "extra_tank_1", Vector3(-3176, 3750, -125), Rotation(90, -0, -0), optsBulldozer_193),
 	Eclipse.mission_elements.gen_dummy(400013, "extra_tank_2", Vector3(-2657, -3569, -125), Rotation(90, -0, -0), optsBulldozer_193),

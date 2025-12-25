@@ -236,7 +236,7 @@ return {
 			{ id = 400005, delay = 0 },
 		},
 	},
-	-- spawn the skulldozer that defends your van on Eclipse
+	-- spawn the skulldozer that defends your van on Death Wish
 	[100210] = {
 		on_executed = {
 			{ id = 400000, delay = 0 },

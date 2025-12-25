@@ -8,7 +8,7 @@ local roof_spawn = {
 }
 local objective_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -36,28 +36,28 @@ return {
 			player_mul = { 2, 1.25, 1, 1 },
 		},
 	},
-	-- 2 cop cars crashing down on Eclipse
+	-- 2 cop cars crashing down on Death Wish
 	[100300] = cop_car_crash_amount,
 	-- Add new reinforce
 	[100109] = {
 		reinforce = {
 			{
-				name = "warehouse1",
+				name = "warehouse01",
 				force = 2,
 				position = Vector3(-1550, -2425, 0),
 			},
 			{
-				name = "warehouse2",
+				name = "warehouse02",
 				force = 2,
 				position = Vector3(-200, -2300, 0),
 			},
 			{
-				name = "warehouse3",
+				name = "warehouse03",
 				force = 2,
-				position = Vector3(-1225, -2150, 0),
+				position = Vector3(1225, -2150, 0),
 			},
 			{
-				name = "warehouse4",
+				name = "warehouse04",
 				force = 2,
 				position = Vector3(-1650, -4000, 0),
 			},

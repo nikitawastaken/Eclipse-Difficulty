@@ -350,7 +350,7 @@ return {
 			{ id = 400090, delay = 1.8 },
 		},
 	},
-	-- spawn two extra dozers on eclipse as a 193+ throwback
+	-- spawn two extra dozers on Death Wish as a 193+ throwback
 	[100850] = {
 		on_executed = {
 			{ id = 400012, delay = 20 },
@@ -386,7 +386,7 @@ return {
 		},
 	},
 	-- rework the escape sequence scripted spawns
-	-- remove spawning the standard spawnpoint group and instead spawn 3 tasers+1 heavy swat as a 145+ throwback on hard and above as chance based event (it's guaranteed to spawn on eclipse)
+	-- remove spawning the standard spawnpoint group and instead spawn 3 tasers+1 heavy swat as a 145+ throwback on hard and above as chance based event (it's guaranteed to spawn on Death Wish)
 	-- spawn 2 dozers as a sudden spawn on E/PJ (50% chance)
 	[103710] = {
 		chance = 100,

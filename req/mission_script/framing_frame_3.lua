@@ -12,13 +12,13 @@ local standard_spawn = {
 }
 local balcony_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
 local balcony_far_spawn = {
 	values = {
-		interval = 60,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -45,6 +45,36 @@ return {
 		values = {
 			base_delay = 15,
 			base_delay_rand = 15,
+		},
+	},
+	-- Add new reinforce
+	[100879] = { -- preferreds
+		reinforce = {
+			{
+				name = "stairs01",
+				force = 2,
+				position = Vector3(-2760, 2805, 3000),
+			},
+			{
+				name = "stairs02",
+				force = 2,
+				position = Vector3(-4050, 4825, 3400),
+			},
+			{
+				name = "stairs03",
+				force = 2,
+				position = Vector3(-4500, 4375, 3800),
+			},
+			{
+				name = "stairs04",
+				force = 2,
+				position = Vector3(-5225, 2800, 3000),
+			},
+			{
+				name = "stairs05",
+				force = 2,
+				position = Vector3(-4650, 2150, 3400),
+			},
 		},
 	},
 	-- tweak power boxes amount based on difficulty

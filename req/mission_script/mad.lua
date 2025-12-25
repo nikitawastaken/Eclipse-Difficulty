@@ -95,7 +95,7 @@ return {
 			{ id = 101053, delay = 0 },
 		},
 	},
-	-- disable single dozer mission scripts on eclipse
+	-- disable single dozer mission scripts on Death Wish
 	[101733] = double_dozers,
 	[101734] = double_dozers,
 	[100854] = double_dozers,
