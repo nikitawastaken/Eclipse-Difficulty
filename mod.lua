@@ -6,7 +6,6 @@ if not Eclipse then
 		logging = io.file_is_readable("mods/developer.txt"),
 		required = {},
 		settings = {
-			reduced_solo_spawns = true,
 			ponr_assault_text = false,
 			faction_assault_text = true,
 			max_progression_infamy = 0,
@@ -178,11 +177,6 @@ if not Eclipse then
 		local menu_id = "eclipse_menu"
 		MenuHelper:NewMenu(menu_id)
 
-		function MenuCallbackHandler:eclipse_reduced_solo_spawns_toggle(item)
-			local enabled = (item:value() == "on")
-			Eclipse.settings.reduced_solo_spawns = enabled
-		end
-
 		function MenuCallbackHandler:eclipse_ponr_assault_text_toggle(item)
 			local enabled = (item:value() == "on")
 			Eclipse.settings.ponr_assault_text = enabled
@@ -230,16 +224,6 @@ if not Eclipse then
 		function MenuCallbackHandler:eclipse_save()
 			io.save_as_json(Eclipse.settings, Eclipse.save_path)
 		end
-
-		MenuHelper:AddToggle({
-			id = "reduced_solo_spawns",
-			title = "eclipse_menu_reduced_solo_spawns",
-			desc = "eclipse_menu_reduced_solo_spawns_desc",
-			callback = "eclipse_reduced_solo_spawns_toggle",
-			value = Eclipse.settings.reduced_solo_spawns,
-			menu_id = menu_id,
-			priority = 100,
-		})
 
 		MenuHelper:AddToggle({
 			id = "ponr_assault_text",

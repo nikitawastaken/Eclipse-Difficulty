@@ -3306,7 +3306,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		table.insert(self.besiege.assault.force_pool_balance_mul, 0.55 + (i * 0.15))
 	end
 
-	self.use_team_ai_balance_mul_weights = Eclipse.settings.reduced_solo_spawns
+	self.use_team_ai_balance_mul_weights = true
 	self.team_ai_spawnrate_balance_mul_weight = 0.5
 	self.team_ai_force_balance_mul_weight = 0.5
 	self.team_ai_freq_balance_mul_weight = 0.5
