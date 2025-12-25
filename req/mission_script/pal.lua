@@ -114,6 +114,9 @@ return {
 			{ 248, 361 },
 			{ 359, 251 },
 		},
+		on_executed = {
+			{ id = 400044, delay = 3 },
+		},
 	},
 	-- water from the hose fills the safe much slower like in PDTH
 	[101229] = {
@@ -304,11 +307,6 @@ return {
 	[101570] = {
 		on_executed = {
 			{ id = 400045, delay = 0 },
-		},
-	},
-	[100023] = {
-		on_executed = {
-			{ id = 400044, delay = 3 },
 		},
 	},
 	[101704] = {
