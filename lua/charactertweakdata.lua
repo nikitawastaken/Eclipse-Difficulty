@@ -1327,7 +1327,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank.melee_weapon = "weapon"
 	self.tank.chatter.smoke = true
 	self.tank.chatter.flash_grenade = true
-	self.tank.die_sound_event = (faction == "russia" or faction == "federales") and "bdz_x02a_any_3p" or nil -- Fix Dozer's death sound for foreign factions
+	self.tank.die_sound_event = nil
 
 	self.tank_medic.HEALTH_INIT = 400
 	self.tank_medic.headshot_dmg_mul = 25 -- 160 head health
