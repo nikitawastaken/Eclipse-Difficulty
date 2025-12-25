@@ -39,6 +39,10 @@ return {
 			length = 720,
 			player_mul = { 2, 1.5, 1, 1 },
 		},
+		--this makes snipers in the nearby building not floating
+		on_executed = {
+			{ id = 105543, delay = 1 },
+		},
 	},
 	-- Fix power cut SO delay and add some random delay
 	[104685] = {
@@ -85,12 +89,6 @@ return {
 	[103812] = {
 		on_executed = {
 			{ id = 400009, delay = 90, delay_rand = 60 },
-		},
-	},
-	--this makes snipers in the nearby building not floating
-	[100318] = {
-		on_executed = {
-			{ id = 105543, delay = 1 },
 		},
 	},
 	-- prevent shields and dozers from disabling the power
