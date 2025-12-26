@@ -6,7 +6,7 @@ local disabled = {
 }
 local train_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local bridge_spawn = {
