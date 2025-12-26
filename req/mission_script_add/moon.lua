@@ -60,7 +60,6 @@ local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_cr
 local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_hide_behind_door_enter", hide_so_search_pos)
 
-
 local optsPreferedAdd1 = {
 	spawn_groups = { 100128, 100130, 100131, 100133 },
 	enabled = true,
@@ -72,7 +71,7 @@ local optsPreferedAdd2 = {
 M.elements = {
 	Eclipse.mission_elements.gen_preferedadd(400001, "eclipse_street_preferredadd", optsPreferedAdd1),
 	Eclipse.mission_elements.gen_preferedadd(400002, "eclipse_roof_preferredadd", optsPreferedAdd2),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400003, "cloaker_hide_so_1", Vector3(-648.686, 2211.427, 400), Rotation(-134, 0, 0), optsCloaker_Hide_SpotSO_4),
