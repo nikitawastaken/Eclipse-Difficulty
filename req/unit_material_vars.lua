@@ -11,6 +11,7 @@ local M = {
 	"units/payday2/characters/ene_cop_1/vars/ene_bex_security_01",
 	"units/payday2/characters/ene_cop_1/vars/ene_policia_01",
 	"units/payday2/characters/ene_cop_1/vars/ene_policia_agent_01",
+	"units/payday2/characters/ene_cop_1/vars/ene_male_office_cop_01",
 	"units/payday2/characters/ene_secret_service_1/vars/ene_secret_service_1_casino",
 	"units/payday2/characters/ene_secret_service_1/vars/ene_bex_security_suit_01",
 	"units/payday2/characters/ene_murkywater_1/vars/ene_hoxton_breakout_guard_1",
@@ -28,6 +29,7 @@ local M = {
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var1",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var2",
+	"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi/vars/ene_swat_heavy_policia_federale_city",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var1",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2",
 }

@@ -96,7 +96,7 @@
 			<var name="_head" value="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />		
 			<var name="_head_gear_object" value="g_hat_bex_cop_lod" />
 			<var name="_nr_head_gear_objects" value="6" />
-			<var name="_head_gear" value="units/pd2_dlc_bex/characters/ene_acc_cop_cap/ene_acc_cop_cap" />			
+			<var name="_head_gear" value="units/pd2_dlc_bex/characters/ene_acc_fbi_cap/ene_acc_fbi_cap" />			
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		
 			<var name="_footwear" value="hardsole" />

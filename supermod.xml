@@ -849,6 +849,9 @@
 
 					<file :name="ene_policia_agent_01.material_config" />
 					<file :name="ene_policia_agent_01_contour.material_config" />
+
+					<file :name="ene_male_office_cop_01.material_config" />
+					<file :name="ene_male_office_cop_01_contour.material_config" />
 				</group>
 			</group>
 
@@ -1462,6 +1465,8 @@
 
 				<file :name="mexican_heads_atlas_var2_df.texture" />
 				<file :name="mexican_heads_atlas_var2_nm.texture" />
+				
+				<file :name="pex_police_df.texture" />
 				
 				<file :name="bex_swat_body_df.texture" />			
 				<file :name="bex_swat_heads_atlas_df.texture" />
