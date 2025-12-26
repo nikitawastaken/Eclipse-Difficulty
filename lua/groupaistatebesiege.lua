@@ -167,11 +167,16 @@ end
 -- Fix reenforce group delay
 local _begin_reenforce_task_original = GroupAIStateBesiege._begin_reenforce_task
 function GroupAIStateBesiege:_begin_reenforce_task(...)
-	local next_dispatch_t = self._task_data.reenforce.next_dispatch_t or 0
+    local next_dispatch_t = self._task_data.reenforce.next_dispatch_t or 0
 
-	_begin_reenforce_task_original(self, ...)
+    _begin_reenforce_task_original(self, ...)
 
-	self._task_data.reenforce.next_dispatch_t = next_dispatch_t
+    if self._task_data.reenforce.had_init_dispatch_delay then
+        self._task_data.reenforce.next_dispatch_t = next_dispatch_t
+    else
+        self._task_data.reenforce.next_dispatch_t = self._t + (tweak_data.group_ai.init_reenforce_delay or 30)
+        self._task_data.reenforce.had_init_dispatch_delay = true
+    end
 end
 
 -- Old fade behavior but less abusable
