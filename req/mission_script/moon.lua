@@ -19,6 +19,12 @@ local roof_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 return {
 	-- Add new reinforce
 	[100768] = { -- Santa has been untied
@@ -52,6 +58,15 @@ return {
 			{ id = 400001, delay = 0 }, -- custom street preferreds
 		},
 	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		values = {
+			trigger_times = 1,
+		},
+		on_executed = {
+			{ id = 400039, delay = 0 },
+		},
+	},
 	-- e_nl_up_1m_down_5m_swing
 	[103784] = exclude_cop_agents_shields_dozers,
 	[103785] = exclude_cop_agents_shields_dozers,
@@ -69,4 +84,13 @@ return {
 	[100019] = roof_spawn,
 	[100132] = roof_spawn,
 	[101470] = roof_spawn,
+	[400028] = cloaker_spawn,
+	[400029] = cloaker_spawn,
+	[400030] = cloaker_spawn,
+	[400031] = cloaker_spawn,
+	[400032] = cloaker_spawn,
+	[400033] = cloaker_spawn,
+	[400034] = cloaker_spawn,
+	[400035] = cloaker_spawn,
+	[400036] = cloaker_spawn,
 }
