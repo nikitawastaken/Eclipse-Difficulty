@@ -497,7 +497,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	end
 
 	-- Add damage falloff to select presets
-	local team_ai_preset_fallof = {
+	local team_ai_preset_falloff = {
 		is_shotgun_pump = { 1.5, 1, 0.5 },
 		is_shotgun_mag = { 1.5, 1, 0.5 },
 		is_double_barrel = { 1.25, 1, 0.75 },
@@ -506,7 +506,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	for usage, tbl in pairs(presets.weapon.gang_member) do
 		for i, v in pairs(tbl.FALLOFF) do
-			if team_ai_preset_fallof[usage] then
+			if team_ai_preset_falloff[usage] then
 				v.dmg_mul = v.dmg_mul * team_ai_preset_fallof[usage][i]
 			end
 		end
