@@ -503,7 +503,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		is_double_barrel = { 1.25, 1, 0.75 },
 		is_flamethrower = { 1, 0.75, 0 },
 	}
-	
+
 	for usage, tbl in pairs(presets.weapon.gang_member) do
 		for i, v in pairs(tbl.FALLOFF) do
 			if team_ai_preset_fallof[usage] then

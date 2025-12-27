@@ -436,13 +436,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-
 	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 
 	self.moon.group_ai_settings = {
 		assault_force_mul = 0.8,
 	}
-	
+
 	self.spa.group_ai_settings = {
 		difficulty_scaling = {
 			diff_init = 0.5,
