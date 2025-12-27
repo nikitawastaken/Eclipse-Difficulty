@@ -481,19 +481,35 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		focus_delay = 0,
 	})
 
-	local team_ai_damage = get_difficulty_specific_value({
-		{ 4, 3, 2 },
-		{ 4, 3, 2 },
-		{ 5, 4, 3 },
-		{ 5, 4, 3 },
-		{ 6, 5, 4 },
+	local team_ai_dmg = get_difficulty_specific_value({
+		5,
+		5,
+		6,
+		6,
+		8,
 	})
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = team_ai_damage[1], r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = team_ai_damage[2], r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = team_ai_damage[3], r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_dmg, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_dmg, r = 1500, acc = { 0.5, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_dmg, r = 3000, acc = { 0.25, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
+	end
+
+	-- Add damage falloff to select presets
+	local team_ai_preset_fallof = {
+		is_shotgun_pump = { 1.5, 1, 0.5 },
+		is_shotgun_mag = { 1.5, 1, 0.5 },
+		is_double_barrel = { 1.25, 1, 0.75 },
+		is_flamethrower = { 1, 0.75, 0 },
+	}
+	
+	for usage, tbl in pairs(presets.weapon.gang_member) do
+		for i, v in pairs(tbl.FALLOFF) do
+			if team_ai_preset_fallof[usage] then
+				v.dmg_mul = v.dmg_mul * team_ai_preset_fallof[usage][i]
+			end
+		end
 	end
 
 	presets.weapon.gang_member.is_flamethrower.no_autofire_stop = true
@@ -549,15 +565,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		poses.panic = poses.stand
 	end
 
-	local team_ai_health = get_difficulty_specific_value({
-		48,
-		48,
-		60,
-		72,
+	local team_ai_hp = get_difficulty_specific_value({
+		64,
+		64,
+		80,
 		96,
+		128,
 	})
 
-	presets.gang_member_damage.HEALTH_INIT = team_ai_health * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
+	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
 	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
 	presets.gang_member_damage.REGENERATE_TIME = 5
