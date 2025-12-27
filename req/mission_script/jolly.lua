@@ -6,7 +6,7 @@ local disabled = {
 }
 local train_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local bridge_spawn = {
@@ -23,7 +23,7 @@ return {
 	[100082] = {
 		ponr = {
 			length = 120,
-			player_mul = { 1.25, 1, 0.75, 0.5 },
+			player_mul = { 1.25, 1.25, 1, 1 },
 		},
 	},
 	-- Disable hunt
