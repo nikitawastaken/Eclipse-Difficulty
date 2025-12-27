@@ -1468,7 +1468,11 @@
 				
 				<file :name="pex_police_df.texture" />
 				
-				<file :name="bex_swat_body_df.texture" />			
+				<file :name="bex_swat_body_df.texture" />	
+				<file :name="bex_fbi_swat_body_df.texture" />		
+				<file :name="bex_city_swat_body_df.texture" />	
+				<file :name="bex_swat_helmets_atlas_df.texture" />
+				<file :name="bex_swat_helmets_atlas_nm.texture" />
 				<file :name="bex_swat_heads_atlas_df.texture" />
 
 				<file :name="bex_heavy_swat_helmets_atlas_df.texture" />			
@@ -1603,6 +1607,104 @@
 				<file :name="ene_policia_agent_03_husk.unit" />
 			</group>
 
+			<group :name="ene_swat_policia_federale/">
+				<xml  :name="ene_swat_policia_federale.sequence_manager" dyn_package="true" />
+				<file :name="ene_swat_policia_federale.material_config" />
+				<file :name="ene_swat_policia_federale_contour.material_config" />
+				<file :name="ene_swat_policia_federale.model" />
+				<file :name="ene_swat_policia_federale.object" />
+				<file :name="ene_swat_policia_federale.unit" />
+				<file :name="ene_swat_policia_federale_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_swat_policia_federale_fbi.material_config" />
+					<file :name="ene_swat_policia_federale_fbi_contour.material_config" />
+
+					<file :name="ene_swat_policia_federale_city.material_config" />
+					<file :name="ene_swat_policia_federale_city_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_swat_policia_federale_mp5/">
+				<file :name="ene_swat_policia_federale_mp5.unit" />
+				<file :name="ene_swat_policia_federale_mp5_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_policia_federale_r870/">
+				<file :name="ene_swat_policia_federale_r870.unit" />
+				<file :name="ene_swat_policia_federale_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_policia_federale/">
+				<file :name="ene_swat_heavy_policia_federale.unit" />
+				<file :name="ene_swat_heavy_policia_federale_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_heavy_policia_federale_r870/">
+				<file :name="ene_swat_heavy_policia_federale_r870.unit" />
+				<file :name="ene_swat_heavy_policia_federale_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_policia_sniper/">
+				<file :name="ene_swat_policia_sniper.unit" />
+				<file :name="ene_swat_policia_sniper_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_shield_policia_federale_c45/">
+				<file :name="ene_swat_shield_policia_federale_c45.unit" />
+				<file :name="ene_swat_shield_policia_federale_c45_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_policia_federale_fbi/">
+				<file :name="ene_swat_policia_federale_fbi.unit" />
+				<file :name="ene_swat_policia_federale_fbi_husk.unit" />
+			</group>
+			
+			<group :name="ene_swat_policia_federale_fbi_mp5/">
+				<file :name="ene_swat_policia_federale_fbi_mp5.unit" />
+				<file :name="ene_swat_policia_federale_fbi_mp5_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_policia_federale_fbi_r870/">
+				<file :name="ene_swat_policia_federale_fbi_r870.unit" />
+				<file :name="ene_swat_policia_federale_fbi_r870_husk.unit" />
+			</group>
+			
+			<group :name="ene_swat_policia_sniper_fbi/">
+				<file :name="ene_swat_policia_sniper_fbi.unit" />
+				<file :name="ene_swat_policia_sniper_fbi_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_shield_policia_federale_mp9/">
+				<file :name="ene_swat_shield_policia_federale_mp9.unit" />
+				<file :name="ene_swat_shield_policia_federale_mp9_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_policia_federale_city/">
+				<file :name="ene_swat_policia_federale_city.unit" />
+				<file :name="ene_swat_policia_federale_city_husk.unit" />
+			</group>
+			
+			<group :name="ene_swat_policia_federale_city_mp5/">
+				<file :name="ene_swat_policia_federale_city_mp5.unit" />
+				<file :name="ene_swat_policia_federale_city_mp5_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_policia_federale_city_r870/">
+				<file :name="ene_swat_policia_federale_city_r870.unit" />
+				<file :name="ene_swat_policia_federale_city_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_policia_sniper_city/">
+				<file :name="ene_swat_policia_sniper_city.unit" />
+				<file :name="ene_swat_policia_sniper_city_husk.unit" />
+			</group>
+
+			<group :name="ene_swat_shield_policia_federale_city/">
+				<file :name="ene_swat_shield_policia_federale_city.unit" />
+				<file :name="ene_swat_shield_policia_federale_city_husk.unit" />
+			</group>
+			
 			<group :name="ene_swat_heavy_policia_federale_fbi/">
 				<xml  :name="ene_swat_heavy_policia_federale_fbi.sequence_manager" dyn_package="true" />
 				<file :name="ene_swat_heavy_policia_federale_fbi.material_config" />

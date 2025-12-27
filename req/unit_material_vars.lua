@@ -29,6 +29,8 @@ local M = {
 	"units/pd2_dlc_usm1/characters/ene_male_marshal_marksman_1/vars/ene_male_marshal_marksman_1_merc",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var1",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var2",
+	"units/pd2_dlc_bex/characters/ene_swat_policia_federale/vars/ene_swat_policia_federale_fbi",
+	"units/pd2_dlc_bex/characters/ene_swat_policia_federale/vars/ene_swat_policia_federale_city",
 	"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi/vars/ene_swat_heavy_policia_federale_city",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var1",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2",

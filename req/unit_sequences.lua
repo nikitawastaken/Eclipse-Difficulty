@@ -140,25 +140,25 @@ local head_sequences = {
 			"disable_arms",
 		},
 	},
-	marshal_a = {
+	swat_arms_a = {
 		material = { 1, 2 },
 		run_sequence = {
 			"head_init",
-			"disable_face",
+			"random_balaclava_swat_common",
 		},
 	},
-	marshal_b = {
+	swat_arms_b = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"random_balaclava_swat_rare",
+		},
+	},
+	swat_arms_c = {
 		material = { 1, 2 },
 		run_sequence = {
 			"head_init",
 			"random_balaclava_swat",
-		},
-	},
-	marshal_c = {
-		material = { 1, 2 },
-		run_sequence = {
-			"head_init",
-			"balaclava_swat_base",
 		},
 	},
 }
@@ -281,9 +281,9 @@ local M = {
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_02_fat/ene_male_ranc_ranger_02_fat"] = { name = "ranc_ranger_2_fat", head = head_sequences.security_fat },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_03_fat/ene_male_ranc_ranger_03_fat"] = { name = "ranc_ranger_3_fat", head = head_sequences.security_fat },
 	["units/pd2_dlc_ranc/characters/ene_male_ranc_ranger_04_fat/ene_male_ranc_ranger_04_fat"] = { name = "ranc_ranger_4_fat", head = head_sequences.security_fat },
-	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_b },
-	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_b },
-	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.marshal_b },
+	["units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
+	["units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_c },
+	["units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3"] = { name = "marshal_security_merc_1", head = head_sequences.swat_arms_a },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_03/ene_bex_security_suit_03"] = { name = "secret_service_bex", head = head_sequences.security },
@@ -297,6 +297,23 @@ local M = {
 	["units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01"] = { name = "bex_fbi_1", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02"] = { name = "bex_fbi_2", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03"] = { name = "bex_fbi_3", head = head_sequences.hrt },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"] = { name = "swat_1", head = head_sequences.swat_arms_b },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_r870/ene_swat_policia_federale_r870"] = { name = "swat_2", head = head_sequences.swat_arms_a },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_mp5/ene_swat_policia_federale_mp5"] = { name = "swat_3", head = head_sequences.swat_arms_a },
+	["units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale"] = { name = "swat_heavy_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_r870/ene_swat_heavy_policia_federale_r870"] = { name = "swat_heavy_2", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_c45/ene_swat_shield_policia_federale_c45"] = { name = "shield_2", head = head_sequences.swat_d },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_sniper/ene_swat_policia_sniper"] = { name = "sniper_1", head = head_sequences.swat_b },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi"] = { name = "fbi_swat_1", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi_r870/ene_swat_policia_federale_fbi_r870"] = { name = "fbi_swat_2", head = head_sequences.fbi_swat_a },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi_mp5/ene_swat_policia_federale_fbi_mp5"] = { name = "fbi_swat_3", head = head_sequences.fbi_swat_a },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_sniper_fbi/ene_swat_policia_sniper_fbi"] = { name = "sniper_2", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_mp9/ene_swat_shield_policia_federale_mp9"] = { name = "shield_1", head = head_sequences.swat_d },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city"] = { name = "city_swat_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_city_r870/ene_swat_policia_federale_city_r870"] = { name = "city_swat_2", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_federale_city_mp5/ene_swat_policia_federale_city_mp5"] = { name = "city_swat_3", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bex/characters/ene_swat_policia_sniper_city/ene_swat_policia_sniper_city"] = { name = "sniper_3", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_city/ene_swat_shield_policia_federale_city"] = { name = "shield_3", head = head_sequences.swat_d },
 	["units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi/ene_swat_heavy_policia_federale_fbi"] = { name = "fbi_heavy_1", head = head_sequences.swat_d },
 	["units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi_r870/ene_swat_heavy_policia_federale_fbi_r870"] = { name = "fbi_heavy_2", head = head_sequences.swat_d },
 	["units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city/ene_swat_heavy_policia_federale_city"] = { name = "city_heavy_1", head = head_sequences.swat_d },
