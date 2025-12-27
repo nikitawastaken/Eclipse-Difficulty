@@ -389,7 +389,7 @@ return {
 			{ id = 400075, delay = 0 },
 			{ id = 400023, delay = 0 },
 			{ id = 400024, delay = 0 },
-			{ id = 105914, delay = 90, delay_rand = 30 }, 
+			{ id = 105914, delay = 90, delay_rand = 30 },
 		},
 	},
 	-- rework the escape sequence scripted spawns
