@@ -2818,6 +2818,7 @@ GroupAITweakData.gensec_tac_teams_heists = table.list_to_set({
 	"arm_hcm",
 	"arm_und",
 	"arm_fac",
+	"roberts",
 	"dah",
 	"arena",
 })

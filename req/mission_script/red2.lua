@@ -22,7 +22,7 @@ local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
 local close_shutters_chance = (normal and 20 or hard and 40 or 60) + (is_pro_job and 20 or 0)
 local basement_ambush_chance = (normal and 25 or hard and 45 or 65) + (is_pro_job and 10 or 0)
 local basement_enemies_amount = 2
-local shield_army_chance = (is_eclipse and 50 or 30) + (is_pro_job and 10 or 0)
+local shield_army_chance = (is_eclipse and 30 or 20) + (is_pro_job and 10 or 0)
 local random_dozers = {
 	bulldozer,
 	bulldozer_2,
@@ -125,6 +125,9 @@ local forced_off = {
 		forced = false,
 	},
 }
+local so_hunt_fix = {
+	so_access_filter = { "swat", "taser" },
+}
 return {
 	-- add ffo and spawn lobby ambushes
 	[101660] = {
@@ -197,6 +200,8 @@ return {
 			{ id = 105498, remove = true },
 		},
 	},
+	-- fix ai_hunt used by scripted heli enemies not having access
+	[106874] = so_hunt_fix,
 	-- Rework the opening vault ambush
 	-- add new system for the ambush
 	[103705] = {
@@ -294,17 +299,17 @@ return {
 	},
 	-- restore unused shield army script from pdth
 	[105894] = disabled,
-	-- the van drives in when the player is in the vault
-	[106547] = {
-		on_executed = {
-			{ id = 105914, delay = 90, delay_rand = 30 },
-		},
-	},
 	-- enable it only on ovk above
 	[105914] = {
 		chance = shield_army_chance,
 		values = {
 			enabled = overkill_above,
+		},
+	},
+	-- add the dialogue when the van is arriving
+	[105921] = {
+		on_executed = {
+			{ id = 100407, delay = 0 },
 		},
 	},
 	-- replace turret with the shield army script
@@ -378,11 +383,13 @@ return {
 	},
 	-- MORE BANK GUARDS, HUH?! (Spawns extra blockade guards after opening the vault gates on loud)
 	-- 2 blockade shields in vault area
+	-- trigger the shield army van
 	[100635] = {
 		on_executed = {
 			{ id = 400075, delay = 0 },
 			{ id = 400023, delay = 0 },
 			{ id = 400024, delay = 0 },
+			{ id = 105914, delay = 90, delay_rand = 30 }, 
 		},
 	},
 	-- rework the escape sequence scripted spawns
