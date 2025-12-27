@@ -507,7 +507,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	for usage, tbl in pairs(presets.weapon.gang_member) do
 		for i, v in pairs(tbl.FALLOFF) do
 			if team_ai_preset_falloff[usage] then
-				v.dmg_mul = v.dmg_mul * team_ai_preset_fallof[usage][i]
+				v.dmg_mul = v.dmg_mul * team_ai_preset_falloff[usage][i]
 			end
 		end
 	end
