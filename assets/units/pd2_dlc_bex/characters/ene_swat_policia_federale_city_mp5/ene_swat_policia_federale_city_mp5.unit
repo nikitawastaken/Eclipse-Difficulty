@@ -116,7 +116,7 @@
 		<extension name="sound" class="CopSound" />		
 	</extensions>
 
-	<network sync="spawn" remote_unit="units/pd2_dlc_bex/characters/ene_swat_policia_federale_mp5_city/ene_swat_policia_federale_mp5_city_husk" />
+	<network sync="spawn" remote_unit="units/pd2_dlc_bex/characters/ene_swat_policia_federale_city_mp5/ene_swat_policia_federale_city_mp5_husk" />
 
 	<sounds>	
 		<default_soundsource source="Hips" />		

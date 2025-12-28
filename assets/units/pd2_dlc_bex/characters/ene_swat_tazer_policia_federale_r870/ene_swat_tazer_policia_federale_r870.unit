@@ -118,7 +118,7 @@
 		<extension name="sound" class="CopSound" />		
 	</extensions>
 
-	<network sync="spawn" remote_unit="units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale_husk" />
+	<network sync="spawn" remote_unit="units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870_husk" />
 
 	<sounds>	
 		<default_soundsource source="Hips" />		
