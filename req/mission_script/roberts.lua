@@ -62,11 +62,12 @@ local scripted_swat_van_spawn = {
 }
 
 return {
+	-- Instantly enter full force onslaught upon plane securing the bags or crashing down
+	[101971] = {
+		set_ponr_state = true,
+	},
+	-- remove vanilla PONRs
 	[101949] = {
-		ponr = {
-			length = 60,
-			player_mul = { 2, 1.5, 1, 1 },
-		},
 		on_executed = {
 			{ id = 101952, remove = true },
 			{ id = 101955, remove = true },
@@ -79,6 +80,13 @@ return {
 					managers.groupai:state():enable_timed_spawngroup("us_scripted_group1")
 				end
 			end,
+		},
+	},
+	-- add gensec response on loud
+	[100109] = {
+		on_executed = {
+			{ id = 103028, delay = 10, delay_rand = 5 },
+			{ id = 105567, delay = 10, delay_rand = 5 },
 		},
 	},
 	-- chance tweaks for gensec van/cops at gas station
