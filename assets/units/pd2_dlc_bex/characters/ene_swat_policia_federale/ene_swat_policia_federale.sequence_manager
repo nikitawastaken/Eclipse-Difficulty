@@ -537,7 +537,7 @@
 		
 		<sequence editable_state="true" name="'random_goggles_fbi_swat_helmet'" once="true" triggable="true" >
 			<set_variables 		has_goggles="1" />			
-			<run_sequence 		name="'goggles_fbi_swat_helmet_'..pick('c','c','d','e','e')" />
+			<run_sequence 		name="'goggles_fbi_swat_helmet_'..pick('c','c','b','e','e')" />
 		</sequence>
 
 		<sequence editable_state="true" name="'goggles_fbi_swat_helmet_a'" once="true" triggable="true" >
