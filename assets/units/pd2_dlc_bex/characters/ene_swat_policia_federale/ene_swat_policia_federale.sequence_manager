@@ -189,6 +189,7 @@
 			<object 			enabled="true" name="'g_helmet_shield_lod2'" />
 			<object 			enabled="true" name="'g_helmet_shield_lod5'" />
 			<object 			enabled="true" name="'g_helmet_shield_lod6'" />
+			<object 			enabled="true" name="'g_helmet_shield_lod9'" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'patch_arm_swat'" once="true" triggable="true">
@@ -269,6 +270,7 @@
 			<run_sequence 		name="'patch_arm_swat'" />
 			<run_sequence 		name="'patch_body_a'" />
 			<run_sequence 		name="'hat_base'" />
+			<run_sequence 		name="'shades_base'" />
 		</sequence>
 	
 		<sequence editable_state="true" name="'swat_heavy_1'" once="true" triggable="true">
@@ -368,6 +370,7 @@
 			<run_sequence 		name="'patch_arm_swat'" />
 			<run_sequence 		name="'patch_body_a'" />
 			<run_sequence 		name="'hat_base'" />
+			<run_sequence 		name="'shades_base'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_1'" once="true" triggable="true">
@@ -437,6 +440,7 @@
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'patch_arm_swat'" />
 			<run_sequence 		name="'hat_base'" />
+			<run_sequence 		name="'shades_base'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_3'" once="true" triggable="true">
@@ -510,6 +514,12 @@
 			<object 			enabled="true" name="'g_goggles_glass_b'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'shades_base'" once="true" triggable="true" >
+			<object 			enabled="true" name="'g_shades'" />
+			<object 			enabled="true" name="'g_shades_lod1'" />
+			<object 			enabled="true" name="'g_shades_glass'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'random_goggles_swat_helmet'" once="true" triggable="true" >
 			<set_variables 		has_goggles="1" />			
 			<run_sequence 		name="'goggles_swat_helmet_'..pick('a','a','b')" />
