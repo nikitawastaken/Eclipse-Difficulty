@@ -510,7 +510,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			russia = { Idstring("units/payday2/characters/ene_swat_2/ene_swat_2") },
 			zombie = { Idstring("units/payday2/characters/ene_swat_2/ene_swat_2") },
 			murkywater = { Idstring("units/payday2/characters/ene_swat_2/ene_swat_2") },
-			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale") },
+			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale_r870/ene_swat_policia_federale_r870") },
 		},
 		access = access_type_all,
 	}
@@ -521,7 +521,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			russia = { Idstring("units/payday2/characters/ene_swat_3/ene_swat_3") },
 			zombie = { Idstring("units/payday2/characters/ene_swat_3/ene_swat_3") },
 			murkywater = { Idstring("units/payday2/characters/ene_swat_3/ene_swat_3") },
-			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale") },
+			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale_mp5/ene_swat_policia_federale_mp5") },
 		},
 		access = access_type_all,
 	}
