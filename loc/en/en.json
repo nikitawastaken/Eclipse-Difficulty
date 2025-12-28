@@ -145,11 +145,6 @@
 	"ene_soldier" : "US Army Soldier",
 	"ene_hoxton_breakout_guard" : "FBI Ready Team",
 	"ene_deep_security" : "Bellmead Security",
-	"ene_male_marshal_gunner_hcar_1" : "Marshal Gunner",
-	"ene_male_marshal_gunner_sko12_1" : "Marshal Gunner",
-	"ene_male_marshal_gunner_hcar_2" : "Bellmead Gunner",
-	"ene_male_marshal_gunner_sko12_2" : "Bellmead Gunner",
-	"ene_male_marshal_marksman_2" : "Bellmead Marksman",
 	
 	"ene_policia" : "Policia Municipal",
 	"ene_male_office_cop" : "Policia Federal",

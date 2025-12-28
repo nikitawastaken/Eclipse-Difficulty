@@ -270,15 +270,6 @@ local prefix_lookup_for_humans = {
 		"units/pd2_mod_ttr/characters/ene_gang_mobster_enforcer/ene_gang_mobster_enforcer",
 		"units/pd2_mod_ttr/characters/ene_gang_mobster_clubsecurity/ene_gang_mobster_clubsecurity",
 	},
-	cobras_list = {
-		func = function(self, nr_variations)
-			return "ict" .. nr_variations .. "_"
-		end,
-		"units/payday2/characters/ene_gang_black_1/ene_gang_black_1",
-		"units/payday2/characters/ene_gang_black_2/ene_gang_black_2",
-		"units/payday2/characters/ene_gang_black_3/ene_gang_black_3",
-		"units/payday2/characters/ene_gang_black_4/ene_gang_black_4",
-	},
 	]]
 	bexico_cop_list = {
 		func = function(self, nr_variations)
@@ -293,6 +284,27 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02",
 		"units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03",
+		-- Federales Blue SWAT
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_r870/ene_swat_policia_federale_r870",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_mp5/ene_swat_policia_federale_mp5",
+		"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale/ene_swat_heavy_policia_federale",
+		"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_r870/ene_swat_heavy_policia_federale_r870",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_sniper/ene_swat_policia_sniper",
+		-- Federales FBI SWAT
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi_r870/ene_swat_policia_federale_fbi_r870",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi_mp5/ene_swat_policia_federale_fbi_mp5",
+		"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi/ene_swat_heavy_policia_federale_fbi",
+		"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi_r870/ene_swat_heavy_policia_federale_fbi_r870",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_sniper_fbi/ene_swat_policia_sniper_fbi",
+		-- Federales GenSec
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_city_r870/ene_swat_policia_federale_city_r870",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_federale_city_mp5/ene_swat_policia_federale_city_mp5",
+		"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city/ene_swat_heavy_policia_federale_city",
+		"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_city_r870/ene_swat_heavy_policia_federale_city_r870",
+		"units/pd2_dlc_bex/characters/ene_swat_policia_sniper_city/ene_swat_policia_sniper_city",
 		-- Cartel faction below
 		"units/pd2_mod_ttr/characters/ene_cartel_commando/ene_cartel_commando",
 		"units/pd2_mod_ttr/characters/ene_cartel_soldier/ene_cartel_soldier",
@@ -326,10 +338,26 @@ local prefix_lookup_for_humans = {
 		"units/pd2_mod_ttr/characters/ene_cartel_soldier_city_shotgun_4/ene_cartel_soldier_city_shotgun_4",
 		"units/pd2_mod_ttr/characters/ene_cartel_soldier_heavy_city/ene_cartel_soldier_heavy_city",
 	},
+	bexico_shield_list = {
+		func = function(self, nr_variations)
+			local rand = math.random()
+			if rand < 0.5 then
+				return "m1n_"
+			else
+				return "m4n_"
+			end
+		end,
+		"units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_mp9/ene_swat_shield_policia_federale_mp9",
+		"units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_c45/ene_swat_shield_policia_federale_c45",
+		"units/pd2_dlc_bex/characters/ene_swat_shield_policia_federale_city/ene_swat_shield_policia_federale_city",
+	},
 	bexico_taser_list = {
 		func = function(self, nr_variations)
 			return "mtsr_"
 		end,
+		"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale/ene_swat_tazer_policia_federale",
+		"units/pd2_dlc_bex/characters/ene_swat_tazer_policia_federale_r870/ene_swat_tazer_policia_federale_r870",
+		-- Cartel faction below
 		"units/pd2_mod_ttr/characters/ene_cartel_tazer/ene_cartel_tazer",
 		"units/pd2_mod_ttr/characters/ene_cartel_tazer_normal/ene_cartel_tazer_normal",
 	},
@@ -337,12 +365,27 @@ local prefix_lookup_for_humans = {
 		func = function(self, nr_variations)
 			return "mclk_"
 		end,
+		"units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale",
+		-- Cartel faction below
 		"units/pd2_mod_ttr/characters/ene_cartel_scout/ene_cartel_scout",
+	},
+	bexico_medic_list = {
+		func = function(self, nr_variations)
+			return "mmdc_"
+		end,
+		"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale/ene_swat_medic_policia_federale",
+		"units/pd2_dlc_bex/characters/ene_swat_medic_policia_federale_r870/ene_swat_medic_policia_federale_r870",
 	},
 	bexico_dozer_list = {
 		func = function(self, nr_variations)
 			return "mbdz_"
 		end,
+		"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/ene_swat_dozer_policia_federale_r870",
+		"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_saiga/ene_swat_dozer_policia_federale_saiga",
+		"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_m249/ene_swat_dozer_policia_federale_m249",
+		"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_minigun/ene_swat_dozer_policia_federale_minigun",
+		"units/pd2_dlc_bex/characters/ene_swat_dozer_medic_policia_federale/ene_swat_dozer_medic_policia_federale",
+		-- Cartel faction below
 		"units/pd2_mod_ttr/characters/ene_cartel_bulldozer/ene_cartel_bulldozer",
 		"units/pd2_mod_ttr/characters/ene_cartel_bulldozer_2/ene_cartel_bulldozer_2",
 		"units/pd2_mod_ttr/characters/ene_cartel_bulldozer_3/ene_cartel_bulldozer_3",
