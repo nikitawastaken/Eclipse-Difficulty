@@ -1521,6 +1521,82 @@
 				<file :name="ene_acc_fbi_cap.object" />
 				<file :name="ene_acc_fbi_cap.unit" />
 			</group>
+
+			<group :name="ene_acc_policia_federale_helmet/">
+				<file :name="ene_acc_policia_federale_helmet.material_config" />
+				<file :name="ene_acc_policia_federale_helmet.model" />
+				<file :name="ene_acc_policia_federale_helmet.object" />
+			</group>
+			
+			<group :name="ene_acc_policia_federale_hat/">
+				<file :name="ene_acc_policia_federale_hat.cooked_physics" />
+				<file :name="ene_acc_policia_federale_hat.material_config" />
+				<file :name="ene_acc_policia_federale_hat.model" />
+				<file :name="ene_acc_policia_federale_hat.object" />
+				<file :name="ene_acc_policia_federale_hat.unit" />
+			</group>
+
+			<group :name="ene_acc_policia_federale_fbi_helmet/">
+				<file :name="ene_acc_policia_federale_fbi_helmet.cooked_physics" />
+				<file :name="ene_acc_policia_federale_fbi_helmet.model" />
+				<file :name="ene_acc_policia_federale_fbi_helmet.object" />
+				<file :name="ene_acc_policia_federale_fbi_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_policia_federale_city_helmet/">
+				<file :name="ene_acc_policia_federale_city_helmet.cooked_physics" />
+				<file :name="ene_acc_policia_federale_city_helmet.model" />
+				<file :name="ene_acc_policia_federale_city_helmet.object" />
+				<file :name="ene_acc_policia_federale_city_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_policia_federale_city_hat/">
+				<file :name="ene_acc_policia_federale_city_hat.cooked_physics" />
+				<file :name="ene_acc_policia_federale_city_hat.model" />
+				<file :name="ene_acc_policia_federale_city_hat.object" />
+				<file :name="ene_acc_policia_federale_city_hat.unit" />
+			</group>
+
+			<group :name="ene_acc_swat_heavy_policia_federale_helmet/">
+				<file :name="ene_acc_swat_heavy_policia_federale_helmet.cooked_physics" />
+				<file :name="ene_acc_swat_heavy_policia_federale_helmet.material_config" />
+				<file :name="ene_acc_swat_heavy_policia_federale_helmet.model" />
+				<file :name="ene_acc_swat_heavy_policia_federale_helmet.object" />
+				<file :name="ene_acc_swat_heavy_policia_federale_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_swat_heavy_policia_federale_mask/">
+				<file :name="ene_acc_swat_heavy_policia_federale_mask.cooked_physics" />
+				<file :name="ene_acc_swat_heavy_policia_federale_mask.model" />
+				<file :name="ene_acc_swat_heavy_policia_federale_mask.object" />
+				<file :name="ene_acc_swat_heavy_policia_federale_mask.unit" />
+			</group>
+			
+			<group :name="ene_acc_swat_heavy_policia_federale_city_helmet/">
+				<file :name="ene_acc_swat_heavy_policia_federale_city_helmet.cooked_physics" />
+				<file :name="ene_acc_swat_heavy_policia_federale_city_helmet.model" />
+				<file :name="ene_acc_swat_heavy_policia_federale_city_helmet.object" />
+				<file :name="ene_acc_swat_heavy_policia_federale_city_helmet.unit" />
+			</group>
+
+			<group :name="ene_acc_tazer_policia_federale_helmet/">
+				<file :name="ene_acc_tazer_policia_federale_helmet.material_config" />
+				<file :name="ene_acc_tazer_policia_federale_helmet.model" />
+				<file :name="ene_acc_tazer_policia_federale_helmet.object" />
+			</group>
+
+			<group :name="ene_acc_tazer_policia_federale_mask/">
+				<file :name="ene_acc_tazer_policia_federale_mask.cooked_physics" />
+				<file :name="ene_acc_tazer_policia_federale_mask.model" />
+				<file :name="ene_acc_tazer_policia_federale_mask.object" />
+				<file :name="ene_acc_tazer_policia_federale_mask.unit" />
+			</group>
+
+			<group :name="ene_acc_swat_medic_policia_federale_helmet/">
+				<file :name="ene_acc_swat_medic_policia_federale_helmet.material_config" />
+				<file :name="ene_acc_swat_medic_policia_federale_helmet.model" />
+				<file :name="ene_acc_swat_medic_policia_federale_helmet.object" />
+			</group>
 			
 			<group :name="ene_acc_mexican_head/">
 				<xml  :name="ene_acc_mexican_head.sequence_manager" />

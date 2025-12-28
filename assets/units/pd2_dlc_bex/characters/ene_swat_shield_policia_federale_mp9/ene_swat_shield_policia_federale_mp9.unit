@@ -6,9 +6,9 @@
 	<dependencies>
 		
 		<depends_on bnk="soundbanks/regular_vox" />
-		<depends_on unit="units/payday2/characters/ene_acc_shield_helmet/ene_acc_shield_helmet" />
-		<depends_on unit="units/payday2/characters/ene_acc_shield_small/shield_small" />
-		<depends_on unit="units/payday2/weapons/wpn_npc_c45/wpn_npc_c45" />
+		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_mask/ene_acc_swat_heavy_policia_federale_mask" />
+		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_shield_lights/ene_acc_shield_lights" />
+		<depends_on unit="units/payday2/weapons/wpn_npc_smg_mp9/wpn_npc_smg_mp9" />
 		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />
 	</dependencies>
 
@@ -95,7 +95,7 @@
 			<var name="_default_weapon_id" value="mp9" />
 		</extension>
 		<extension name="inventory" class="CopInventory" >
-			<var name="_shield_unit_name" value="units/payday2/characters/ene_acc_shield_lights/ene_acc_shield_lights" />
+			<var name="_shield_unit_name" value="units/pd2_dlc_bex/characters/ene_acc_shield_lights/ene_acc_shield_lights" />
 		</extension>
 		<extension name="brain" class="CopBrain" />
 		<extension name="anim_data" class="PlayerAnimationData" />
@@ -104,7 +104,7 @@
 			<var name="_head" value="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />
 			<var name="_head_gear_object" value="g_helmet_shield_lod" />
 			<var name="_nr_head_gear_objects" value="9" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_shield_helmet/ene_acc_shield_helmet" />
+			<var name="_head_gear" value="units/pd2_dlc_bex/characters/ene_acc_swat_heavy_policia_federale_mask/ene_acc_swat_heavy_policia_federale_mask" />
 			<var name="_head_gear_decal_mesh" value="dm_visor2" />	
 		</extension>
 		<extension name="movement" class="CopMovement" >

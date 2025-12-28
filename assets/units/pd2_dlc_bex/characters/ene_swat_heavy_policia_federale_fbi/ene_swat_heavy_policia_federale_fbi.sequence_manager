@@ -66,7 +66,7 @@
 			<effect 			damp_time="5" name="'effects/payday2/particles/impacts/metal_impact_pd2'" parent="object( 'e_visor_shatter' )" position="v()"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
 			<sound 				action="'play'" event="'swatturret_weakspot_hit'" object="'e_visor_shatter'"/>
-			<spawn_unit 		name="'units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor'" position="object_pos('e_visor_shatter')" rotation="object_rot('root_point')" transfer_ang_velocity="v( 50 * rand(), 50 * rand(), 500 * rand() )" transfer_velocity="v( 0, 200 * rand(), 200 * rand() )" />
+			<spawn_unit 		name="'units/payday2/characters/ene_acc_bulldozer_helmet_plate/ene_acc_bulldozer_helmet_plate'" position="object_pos('e_visor_shatter')" rotation="object_rot('root_point')" transfer_ang_velocity="v( 50 * rand(), 50 * rand(), 500 * rand() )" transfer_velocity="v( 0, 200 * rand(), 200 * rand() )" />
 		</sequence>
 
 		<sequence editable_state="true" name="'armor'" once="true" triggable="true"> 

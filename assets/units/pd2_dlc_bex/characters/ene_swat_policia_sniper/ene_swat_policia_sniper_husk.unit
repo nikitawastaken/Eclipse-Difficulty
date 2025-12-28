@@ -4,7 +4,7 @@
 	<object file="units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale" />
 
 	<dependencies>		
-		<depends_on unit="units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap" />
+		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_policia_federale_hat/ene_acc_policia_federale_hat" />
 		<depends_on unit="units/payday2/weapons/wpn_npc_sniper/wpn_npc_sniper" />
 		<depends_on unit="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />			
 	</dependencies>
@@ -99,7 +99,7 @@
 			<var name="_head" value="units/pd2_dlc_bex/characters/ene_acc_mexican_head/ene_acc_mexican_head" />
 			<var name="_head_gear_object" value="g_hat_swat_lod" />
 			<var name="_nr_head_gear_objects" value="2" />
-			<var name="_head_gear" value="units/payday2/characters/ene_acc_swat_cap/ene_acc_swat_cap" />		
+			<var name="_head_gear" value="units/pd2_dlc_bex/characters/ene_acc_policia_federale_hat/ene_acc_policia_federale_hat" />		
 		</extension>
 		<extension name="movement" class="HuskCopMovement" >		
 			<var name="_footwear" value="hardsole" />
