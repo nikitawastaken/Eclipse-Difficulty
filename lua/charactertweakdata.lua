@@ -482,11 +482,11 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 
 	local team_ai_dmg = get_difficulty_specific_value({
+		4,
+		4,
 		5,
 		5,
 		6,
-		6,
-		8,
 	})
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {

@@ -217,7 +217,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.alert_size = 7
 				weap_data.steelsight_time = steelsight_times.pistol_heavy
 				weap_data.pickup_mul = weap_data.pickup_mul or 0.675
-				weap_data.swap_speed_multiplier = 1.75
+				weap_data.swap_speed_multiplier = 1.5
 				weap_data.steelsight_move_speed_mul = 0.6
 				weap_data.shake.fire_multiplier = 1.25
 				weap_data.stance_multipliers = {
@@ -2524,8 +2524,9 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.deagle.total_ammo_mul = 1
 		self.deagle.steelsight_time = steelsight_times.pistol_heavy
 		self.deagle.pickup_mul = 0.675
-		self.deagle.steelsight_move_speed_multiplier = 0.6 
-		self.deagle.shake.fire_multiplier = 1.3
+		self.deagle.swap_speed_multiplier = 1.5
+		self.deagle.steelsight_move_speed_mul = 0.6
+		self.deagle.shake.fire_multiplier = 1.25
 		self.deagle.fire_mode_data.fire_rate = 60 / 400
 		self.deagle.stance_multipliers = {
 			spread = {
@@ -2562,6 +2563,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.judge.damage_near = 1000
 		self.judge.damage_far = 2000
 		self.judge.shake.fire_multiplier = 2
+		self.judge.swap_speed_multiplier = 1.5
 		self.judge.kick.standing = { 2.9, 3, -0.2, 0.2 }
 	end
 
@@ -2906,7 +2908,7 @@ function WeaponTweakData:_set_presets()
 				local rate = is_automatic and v.auto.fire_rate or 0
 				local recoil = (usage.FALLOFF[1].recoil[1] + usage.FALLOFF[1].recoil[2]) * 0.5
 
-				v.DAMAGE = (((mag / burst) * (burst - 1) * rate + (mag / burst - 1) * recoil + 2) / mag)
+				v.DAMAGE = ((mag / burst) * (burst - 1) * rate + (mag / burst - 1) * recoil + 2) / mag
 				v.FIRE_MODE = is_automatic and "auto" or "single"
 			end
 		end
