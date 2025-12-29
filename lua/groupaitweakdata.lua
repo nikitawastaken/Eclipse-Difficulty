@@ -1666,10 +1666,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		shield = { "shield_agg", "shield_def" },
 		taser = { "taser_agg", "taser_snk" },
 		cloaker = { "cloaker_def", "cloaker_agg" },
-		bulldozer = {
-			bulldozer_agg = 2,
-			bulldozer_def = 1,
-		},
+		bulldozer = { "bulldozer_def", "bulldozer_agg" },
 	}
 
 	self._random_units = {
@@ -1764,9 +1761,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					4 / diff_scale_low,
+					6 / diff_scale_low,
 					3 / diff_scale_low,
-					2 / diff_scale_low,
+					0,
 				}, heavy_response and 0.25 or 1),
 				amount_max = 2,
 				rank = 1,
@@ -1877,7 +1874,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					6 / diff_scale_low,
-					2 / diff_scale_low,
+					3 / diff_scale_low,
 					0,
 				}, heavy_response and 0.25 or 1),
 				amount_max = 2,
@@ -2238,7 +2235,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					30 / diff_scale,
-					10 / diff_scale,
+					15 / diff_scale,
 					0,
 				}, heavy_response and 0.25 or 1),
 				amount_max = 2,
@@ -2266,13 +2263,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 4, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 120) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_by_diff = table_multiplier({
+					diff_scale / 180,
+					diff_scale / 150,
+					diff_scale / 120,
+				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
 				unit = "fbi_shield",
-				tactics = self._tactics.shield_agg,
+				tactics = self._tactics.shield_def,
 				random_tactics = self._random_tactics.shield,
 			},
 			{
@@ -2324,13 +2325,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_by_diff = table_multiplier({
+					diff_scale / 300,
+					diff_scale / 240,
+					diff_scale / 180,
+				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 2,
 				unit = "taser",
-				tactics = self._tactics.taser_agg,
+				tactics = self._tactics.taser_snk,
 				random_tactics = self._random_tactics.taser,
 			},
 			{
@@ -2343,8 +2348,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 240,
-					diff_scale / 120,
+					diff_scale / 180,
+					diff_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
@@ -2360,7 +2365,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 480) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_by_diff = table_multiplier({
+					diff_scale / 720,
+					diff_scale / 480,
+					diff_scale / 360,
+				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
@@ -2379,9 +2388,9 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 300,
-					diff_scale / 150,
-				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
+					diff_scale / 180,
+					diff_scale / 90,
+				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
 				rank = 1,
@@ -2482,8 +2491,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = {
 					0,
-					diff_scale / 360,
-					diff_scale / 180,
+					diff_scale / 480,
+					diff_scale / 240,
 				},
 				amount_max = 1,
 				rank = 3,
@@ -2599,13 +2608,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 4, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 360) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_by_diff = table_multiplier({
+					diff_scale / 600,
+					diff_scale / 480,
+					diff_scale / 360,
+				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 3,
 				unit = "elite_shield",
-				tactics = self._tactics.shield_agg,
+				tactics = self._tactics.shield_def,
 				random_tactics = self._random_tactics.shield,
 			},
 			{
@@ -2641,13 +2654,17 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 240) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_by_diff = table_multiplier({
+					diff_scale / 300,
+					diff_scale / 240,
+					diff_scale / 180,
+				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_min = 1,
 				amount_max = 2,
 				rank = 2,
 				unit = "taser",
-				tactics = self._tactics.taser_agg,
+				tactics = self._tactics.taser_snk,
 				random_tactics = self._random_tactics.taser,
 			},
 			{
@@ -2660,8 +2677,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 240,
-					diff_scale / 120,
+					diff_scale / 180,
+					diff_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
@@ -2677,7 +2694,11 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		amount = { 2, 4 },
 		spawn = {
 			{
-				freq = (diff_scale / 720) * (heavy_response and 1.25 or small_urban and 0.5 or 1),
+				freq_by_diff = table_multiplier({
+					diff_scale / 960,
+					diff_scale / 720,
+					diff_scale / 480,
+				}, heavy_response and 1.25 or small_urban and 0.5 or 1),
 				freq_balance_mul = { 0.25, 0.5, 0.75, 1 },
 				amount_min = 1,
 				amount_max = 2,
@@ -2696,8 +2717,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				freq = 1,
 				freq_by_diff = table_multiplier({
 					0,
-					diff_scale / 300,
-					diff_scale / 150,
+					diff_scale / 180,
+					diff_scale / 90,
 				}, heavy_response and 1.25 or small_urban and 0.75 or 1),
 				freq_balance_mul = { 0.5, 0.75, 1, 1 },
 				amount_max = 1,
@@ -3328,7 +3349,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Reenforce spawn interval
 	self.besiege.reenforce.interval = { 10, 20, 30 }
-	self.init_reenforce_delay = 30
+	self.init_reenforce_delay = 20
 	self.use_equipment_reenforce = true
 	self.equipment_reenforce = table.list_to_set({
 		"doctor_bag",
@@ -3361,9 +3382,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
 	self.flash_grenade.light_range = is_eclipse and 0 or 500
-	self.flash_grenade_timeout = { 15, 20 }
 	self.flash_grenade.timer = below_overkill and 2.5 or 1.5
-
+	self.flash_grenade_timeout = { 15, 20 }
+	
 	self.smoke_grenade_timeout = { 25, 35 }
 	self.smoke_grenade_lifetime = below_overkill and 10 or 15
 
@@ -3382,13 +3403,13 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		10,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
-	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.25, 0.75, 1.25 } or { 0.5, 0.875, 1.25 })
-	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.25, 0.625, 1 })
-	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.375, 0.75 } or { 0.25, 0.5, 0.75 })
-	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0, 0.75 } or { 0, 0.1875, 0.75 })
-	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.375, 0.625, 1 })
-	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.25, 0.75 })
-	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.5 })
+	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.4, 0.8, 1.2 } or { 0.6, 0.9, 1.2 })
+	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.4, 0.7, 1 })
+	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.4, 0.6, 0.8 })
+	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0, 0.8 } or { 0, 0.2, 0.8 })
+	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.3, 0.6, 0.9 })
+	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.3, 0.9 })
+	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.6 })
 
 	-- Spawngroups
 	if difficulty_index <= 2 then
