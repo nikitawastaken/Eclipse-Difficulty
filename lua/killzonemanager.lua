@@ -1,7 +1,7 @@
 function KillzoneManager:_deal_gas_damage(unit)
 	unit:character_damage():damage_killzone({
 		variant = "teargas",
-		damage = 0.1,
+		damage = 0.05,
 		col_ray = {
 			ray = math.UP,
 		},

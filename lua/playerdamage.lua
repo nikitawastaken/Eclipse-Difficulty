@@ -557,7 +557,7 @@ function PlayerDamage:damage_killzone(attack_data, ...)
 	if self._god_mode or self._invulnerable or self._mission_damage_blockers.invulnerable then
 		self:_call_listeners(damage_info)
 		return
-	elseif self:incapacitated() or self._unit:movement():current_state().immortal then
+	elseif self:is_downed() or self._unit:movement():current_state().immortal then
 		self._last_teargas_hit_t = nil
 		return
 	end
