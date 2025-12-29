@@ -25,7 +25,7 @@ Hooks:PostHook(GameSetup, "load_packages", "eclipse_load_packages", function(sel
 			["mex"] = true,
 		},
 		["packages/murkywater"] = {
-			["brb"] = true,
+	--		["brb"] = true,
 		},
 		["packages/us_army"] = {
 			["arm_for"] = true,
