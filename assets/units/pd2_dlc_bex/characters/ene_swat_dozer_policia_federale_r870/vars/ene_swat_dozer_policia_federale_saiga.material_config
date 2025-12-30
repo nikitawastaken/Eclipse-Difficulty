@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<materials group="ene_swat_dozer_policia_federale_saiga" version="3">
+	<material name="mtr_face" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_nm"/>
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_df"/>
+	</material>
+	<material name="mtr_face_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_nm" mip="1"/>
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_df" mip="1"/>
+	</material>
+	<material name="mtr_face_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_nm" mip="2"/>
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var1_df" mip="2"/>
+	</material>
+
+	<material name="mtr_face_alt" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var2_nm"/>
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var2_df"/>
+	</material>
+	<material name="mtr_face_alt_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var2_nm" mip="1"/>
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var2_df" mip="1"/>
+	</material>
+	<material name="mtr_face_alt_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var2_nm" mip="2"/>
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/mexican_heads_atlas_var2_df" mip="2"/>
+	</material>
+
+    <material name="mtr_bulldozer" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_1_nm" />
+        <diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_2_df" />
+    </material>
+    <material name="mtr_bulldozer_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_1_nm" mip="1" />
+        <diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_2_df" mip="1" />
+    </material>
+    <material name="mtr_bulldozer_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_1_nm" mip="2" />
+        <diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_2_df" mip="2" />
+    </material>
+
+    <material name="mtr_head" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_1_nm" />
+        <diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_2_df" />
+    </material>
+    <material name="mtr_head_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_1_nm" mip="1" />
+        <diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_2_df" mip="1" />
+    </material>
+    <material name="mtr_head_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_1_nm" mip="2" />
+        <diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_2_df" mip="2" />
+    </material>
+		
+	<material name="mtr_equipment" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/equipment_atlas_nm" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/equipment_atlas_df" />
+	</material>
+	<material name="mtr_equipment_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/equipment_atlas_nm" mip="1" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/equipment_atlas_df" mip="1" />
+	</material>
+	<material name="mtr_equipment_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/equipment_atlas_nm" mip="2" />
+		<diffuse_texture 		file="units/payday2/characters/shared_textures/equipment_atlas_df" mip="2" />
+	</material>
+
+	<material name="mtr_swat" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/swat_body_nm" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_swat_body_df" />
+	</material>
+	<material name="mtr_swat_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/swat_body_nm" mip="1" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_swat_body_df" mip="1" />
+	</material>
+	<material name="mtr_swat_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
+		<bump_normal_texture 	file="units/payday2/characters/shared_textures/swat_body_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_swat_body_df" mip="2" />
+	</material>
+
+	<material name="mtr_bulldozer_static" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_1_nm" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_2_df" />
+	</material>
+	<material name="mtr_bulldozer_static_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_1_nm" mip="1" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_2_df" mip="1" />
+	</material>
+	<material name="mtr_bulldozer_static_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_1_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_2_df" mip="2" />
+	</material>
+
+    <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">
+        <opacity_texture 	 	file="units/glass/vehicle_glass_dark2_op" />
+        <diffuse_texture 	   	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_2_df" />
+        <variable 				value="2 1 0.6" type="vector3" name="fresnel_settings" />
+        <reflection_texture 	type="cube" global_texture="current_global_texture" />
+    </material>
+	
+    <material name="shadow_caster" render_template="shadow_caster_only:SKINNED_1WEIGHT" version="2"/>	
+</materials>

@@ -1237,7 +1237,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			russia = { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
 			zombie = { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
 			murkywater = { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
-			federales = { Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1") },
+			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/ene_swat_dozer_policia_federale_r870") },
 		},
 		access = access_type_walk_only,
 	}
@@ -1249,7 +1249,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			russia = { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
 			zombie = { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
 			murkywater = { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
-			federales = { Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2") },
+			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_saiga/ene_swat_dozer_policia_federale_saiga") },
 		},
 		access = access_type_walk_only,
 	}
@@ -1274,8 +1274,8 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 				Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"),
 			},
 			federales = {
-				Idstring("units/payday2/characters/ene_bulldozer_1/ene_bulldozer_1"),
-				Idstring("units/payday2/characters/ene_bulldozer_2/ene_bulldozer_2"),
+				Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/ene_swat_dozer_policia_federale_r870"),
+				Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_saiga/ene_swat_dozer_policia_federale_saiga"),
 			},
 		},
 		access = access_type_walk_only,
@@ -1288,7 +1288,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			russia = { Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") },
 			zombie = { Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") },
 			murkywater = { Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") },
-			federales = { Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic") },
+			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_minigun/ene_swat_dozer_policia_federale_minigun") },
 		},
 		access = access_type_walk_only,
 	}
@@ -1300,7 +1300,7 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 			russia = { Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3") },
 			zombie = { Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3") },
 			murkywater = { Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3") },
-			federales = { Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3") },
+			federales = { Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_m249/ene_swat_dozer_policia_federale_m249") },
 		},
 		access = access_type_walk_only,
 	}
@@ -1325,8 +1325,8 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 				Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"),
 			},
 			federales = {
-				Idstring("units/pd2_dlc_drm/characters/ene_bulldozer_minigun_classic/ene_bulldozer_minigun_classic"),
-				Idstring("units/payday2/characters/ene_bulldozer_3/ene_bulldozer_3"),
+				Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_minigun/ene_swat_dozer_policia_federale_minigun"),
+				Idstring("units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_m249/ene_swat_dozer_policia_federale_m249"),
 			},
 		},
 		access = access_type_walk_only,

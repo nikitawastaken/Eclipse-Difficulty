@@ -32,6 +32,10 @@ local M = {
 	"units/pd2_dlc_bex/characters/ene_swat_policia_federale/vars/ene_swat_policia_federale_fbi",
 	"units/pd2_dlc_bex/characters/ene_swat_policia_federale/vars/ene_swat_policia_federale_city",
 	"units/pd2_dlc_bex/characters/ene_swat_heavy_policia_federale_fbi/vars/ene_swat_heavy_policia_federale_city",
+	"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/vars/ene_swat_dozer_policia_federale_saiga",
+	"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/vars/ene_swat_dozer_policia_federale_m249",
+	"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/vars/ene_swat_dozer_policia_federale_minigun",
+	"units/pd2_dlc_bex/characters/ene_swat_dozer_policia_federale_r870/vars/ene_swat_dozer_medic_policia_federale",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var1",
 	"units/pd2_dlc_army/characters/ene_acc_soldier_head/vars/ene_acc_soldier_head_var2",
 }
