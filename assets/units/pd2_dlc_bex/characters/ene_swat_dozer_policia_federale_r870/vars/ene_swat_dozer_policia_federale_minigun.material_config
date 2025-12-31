@@ -91,9 +91,22 @@
 		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_4_df" mip="2" />
 	</material>
 
+	<material name="mtr_head_static" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_1_nm" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_4_df" />
+	</material>
+	<material name="mtr_head_static_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_1_nm" mip="1" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_4_df" mip="1" />
+	</material>
+	<material name="mtr_head_static_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS" version="2">
+		<bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_1_nm" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_4_df" mip="2" />
+	</material>
+	
     <material name="mtr_glass" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE:SKINNED_3WEIGHTS" version="2">
         <opacity_texture 	 	file="units/glass/vehicle_glass_dark2_op" />
-        <diffuse_texture 	   	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_body_4_df" />
+        <diffuse_texture 	   	file="units/pd2_dlc_bex/characters/shared_textures/bex_bulldozer_head_4_df" />
         <variable 				value="2 1 0.6" type="vector3" name="fresnel_settings" />
         <reflection_texture 	type="cube" global_texture="current_global_texture" />
     </material>
