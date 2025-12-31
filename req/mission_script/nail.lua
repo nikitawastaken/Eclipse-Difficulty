@@ -19,17 +19,17 @@ return {
 	[101610] = { -- start up spawns
 		reinforce = {
 			{
-				name = "pillow1",
+				name = "pillow01",
 				force = 2,
 				position = Vector3(-6650, 1000, 200),
 			},
 			{
-				name = "pillow2",
+				name = "pillow02",
 				force = 2,
 				position = Vector3(-4550, -975, 200),
 			},
 			{
-				name = "pillow3",
+				name = "pillow03",
 				force = 2,
 				position = Vector3(-2050, 1000, 200),
 			},

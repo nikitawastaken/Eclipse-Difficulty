@@ -211,17 +211,17 @@ return {
 				position = Vector3(-125, 2625, 25),
 			},
 			{
-				name = "mitchell2",
+				name = "mitchell02",
 				force = 2,
 				position = Vector3(-2400, 4350, 25),
 			},
 			{
-				name = "wilson1",
+				name = "wilson01",
 				force = 2,
 				position = Vector3(-3710, -1285, 25),
 			},
 			{
-				name = "wilson2",
+				name = "wilson02",
 				force = 2,
 				position = Vector3(-1125, 625, 50),
 			},

@@ -900,6 +900,10 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 
 		if not grenade_user.unit:movement():chk_action_forbidden("interact") and not harmless then
 			if grenade_user.unit:movement():play_redirect("throw_grenade") then
+				grenade_user.unit:brain():action_request({
+					type = "stand",
+					body_part = 4,
+				})
 				managers.network:session():send_to_peers_synched("play_distance_interact_redirect", grenade_user.unit, "throw_grenade")
 			end
 		end
