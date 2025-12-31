@@ -531,7 +531,20 @@
 					<material materials="mtr_head_lod_2" />
 				</object>
 			</lod_object>
-
+			
+			<!-- BANDANA OBJECTS -->
+			<lod_object name="lod_bandana">
+				<object name="g_bandana" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
+					<material materials="mtr_head"max_distance="1000" />
+					<material materials="mtr_head_lod_1"max_distance="1500" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+				<object name="g_bandana_lod1" 	enabled="false" lod="1" >
+					<material materials="mtr_head" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
+					<material materials="mtr_head_lod_2" />
+				</object>
+			</lod_object>
+			
 			<!-- SWAT/FBI HAT OBJECTS -->
 			<lod_object name="lod_hat_swat">
 				<object name="g_hat_swat_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">

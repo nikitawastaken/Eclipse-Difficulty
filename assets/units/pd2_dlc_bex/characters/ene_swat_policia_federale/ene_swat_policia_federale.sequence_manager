@@ -364,13 +364,15 @@
 		<sequence editable_state="true" name="'sniper_2'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_swat_d'" />
 			<object 			enabled="true" name="'g_gear_swat_d_lod1'" />
+
+			<object 			enabled="true" name="'g_bandana'" />
+			<object 			enabled="true" name="'g_bandana_lod1'" />
 			
 			<run_sequence 		name="'fbi_swat'" />
 			<run_sequence 		name="'random_body_a'" />
 			<run_sequence 		name="'patch_arm_swat'" />
 			<run_sequence 		name="'patch_body_a'" />
 			<run_sequence 		name="'hat_base'" />
-			<run_sequence 		name="'shades_base'" />
 		</sequence>
 
 		<sequence editable_state="true" name="'shield_1'" once="true" triggable="true">
