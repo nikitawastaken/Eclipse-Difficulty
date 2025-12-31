@@ -181,12 +181,12 @@ Hooks:PostHook(GroupAITweakData, "_init_chatter_data", "sh__init_chatter_data", 
 	self.enemy_chatter.detect.queue = "a01"
 	self.enemy_chatter.detect.radius = radius_small
 	self.enemy_chatter.detect.duration = duration_short
-    self.enemy_chatter.ready.queue = nil -- Random chance for pos to be used instead of rdy
-    setmetatable(self.enemy_chatter.ready, {
-        __index = function(t, k)
-            return k == "queue" and (math.random() < 0.5 and "rdy" or "pos") or nil
-        end
-    })
+	self.enemy_chatter.ready.queue = nil -- Random chance for pos to be used instead of rdy
+	setmetatable(self.enemy_chatter.ready, {
+		__index = function(t, k)
+			return k == "queue" and (math.random() < 0.5 and "rdy" or "pos") or nil
+		end,
+	})
 	self.enemy_chatter.assault_move_out_a = clone(self.enemy_chatter.go_go)
 	self.enemy_chatter.assault_move_out_a.queue = "gr2a"
 	self.enemy_chatter.assault_move_out_a.duration = duration_long

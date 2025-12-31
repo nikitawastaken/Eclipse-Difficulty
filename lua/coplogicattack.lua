@@ -142,7 +142,11 @@ Hooks:PreHook(CopLogicAttack, "aim_allow_fire", "eclipse_aim_allow_fire", functi
 		end
 
 		if chatter.contact then
-			CopLogicAttack._chk_say_chatter(data, focus_enemy.is_deployable and "sentry_gun" or (is_reloading or is_husk_reloading) and math.random() < 0.5 and "reloading" or "contact", math.rand(10, 20))
+			CopLogicAttack._chk_say_chatter(
+				data,
+				focus_enemy.is_deployable and "sentry_gun" or (is_reloading or is_husk_reloading) and math.random() < 0.5 and "reloading" or "contact",
+				math.rand(10, 20)
+			)
 			return
 		end
 	end
