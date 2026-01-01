@@ -9,9 +9,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local breach_spawn = {
+local reinforce_amount = {
 	values = {
-		interval = 5,
+		amount = 3,
 	},
 }
 local street_spawn = {
@@ -21,7 +21,7 @@ local street_spawn = {
 }
 local cloaker_spawn = {
 	values = {
-		interval = 90,
+		interval = 75,
 	},
 }
 local scripted_swat_van_spawn = {
@@ -45,6 +45,13 @@ return {
 	[101949] = participate,
 	[101950] = participate,
 	[103787] = disabled,
+	-- Disable a few vanilla reinforce spots and increase force values of others
+	[101980] = disabled,
+	[102029] = disabled,
+	[102030] = disabled,
+	[101845] = reinforce_amount,
+	[101846] = reinforce_amount,
+	[101847] = reinforce_amount,
 	-- replace mission scripts with a actual spawngroup
 	[101953] = {
 		on_executed = {
@@ -83,9 +90,6 @@ return {
 	[100811] = street_spawn,
 	[100829] = street_spawn,
 	[101485] = street_spawn,
-	[101685] = breach_spawn,
-	[101694] = breach_spawn,
-	[102439] = breach_spawn,
 	[104060] = cloaker_spawn,
 	[104058] = cloaker_spawn,
 	[104059] = cloaker_spawn,

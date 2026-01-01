@@ -12,13 +12,13 @@ local standard_spawn = {
 }
 local balcony_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents,
 }
 local balcony_far_spawn = {
 	values = {
-		interval = 60,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -33,21 +33,52 @@ local filter_easy_above = {
 local filter_disable = {
 	values = Eclipse.utils.set_diff_groups("disable"),
 }
-local ffo_countdown = {
-	ponr = {
-		length = 480,
-		player_mul = { 2, 1.5, 1, 1 },
-	},
-}
 return {
-	[101094] = ffo_countdown,
-	[101097] = ffo_countdown,
-	[101100] = ffo_countdown,
+	[100318] = {
+		ponr = {
+			length = 720,
+			player_mul = { 2, 1.5, 1, 1 },
+		},
+		--this makes snipers in the nearby building not floating
+		on_executed = {
+			{ id = 105543, delay = 1 },
+		},
+	},
 	-- Fix power cut SO delay and add some random delay
 	[104685] = {
 		values = {
 			base_delay = 15,
 			base_delay_rand = 15,
+		},
+	},
+	-- Add new reinforce
+	[100879] = { -- preferreds
+		reinforce = {
+			{
+				name = "stairs01",
+				force = 2,
+				position = Vector3(-2760, 2805, 3000),
+			},
+			{
+				name = "stairs02",
+				force = 2,
+				position = Vector3(-4050, 4825, 3400),
+			},
+			{
+				name = "stairs03",
+				force = 2,
+				position = Vector3(-4500, 4375, 3800),
+			},
+			{
+				name = "stairs04",
+				force = 2,
+				position = Vector3(-5225, 2800, 3000),
+			},
+			{
+				name = "stairs05",
+				force = 2,
+				position = Vector3(-4650, 2150, 3400),
+			},
 		},
 	},
 	-- tweak power boxes amount based on difficulty
@@ -58,12 +89,6 @@ return {
 	[103812] = {
 		on_executed = {
 			{ id = 400009, delay = 90, delay_rand = 60 },
-		},
-	},
-	--this makes snipers in the nearby building not floating
-	[100318] = {
-		on_executed = {
-			{ id = 105543, delay = 1 },
 		},
 	},
 	-- prevent shields and dozers from disabling the power

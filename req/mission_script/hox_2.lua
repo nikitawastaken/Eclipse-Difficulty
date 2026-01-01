@@ -229,7 +229,7 @@ return {
 			chance = 30,
 		},
 	},
-	-- Worse keycard RNG on Eclipse
+	-- Worse keycard RNG on Death Wish
 	[101746] = {
 		values = {
 			chance = is_eclipse and 25 or 50,
@@ -243,29 +243,13 @@ return {
 				force = 4,
 				position = Vector3(-200, 4200, -500),
 			},
-		},
-	},
-	--[[
-	[104460] = { -- Corridors around the operations room
-		reinforce = {
 			{
-				name = "corridor1",
+				name = "archives_counter",
 				force = 2,
-				position = Vector3(1800, -150, -100),
-			},
-			{
-				name = "corridor2",
-				force = 2,
-				position = Vector3(600, 2225, -100)
-			},
-			{
-				name = "corridor3",
-				force = 2,
-				position = Vector3(-1000, 2225, -100)
+				position = Vector3(1025, 4250, -500),
 			},
 		},
 	},
-]]
 	[100732] = { -- Activate operations room reinforce when the players are doing objectives
 		reinforce = {
 			{
@@ -278,6 +262,43 @@ return {
 	[100733] = {
 		reinforce = {
 			{ name = "operations_room" },
+		},
+	},
+	-- Add reinforce around the operations room
+	[101839] = { -- entrance_001
+		reinforce = {
+			{
+				name = "entrance01",
+				force = 2,
+				position = Vector3(-200, 2200, -100),
+			},
+		},
+	},
+	[101840] = { -- entrance_002
+		reinforce = {
+			{
+				name = "entrance02",
+				force = 2,
+				position = Vector3(975, 2200, -100),
+			},
+		},
+	},
+	[101841] = { -- entrance_003
+		reinforce = {
+			{
+				name = "entrance03",
+				force = 2,
+				position = Vector3(1800, 625, -100),
+			},
+		},
+	},
+	[101842] = { -- entrance_004
+		reinforce = {
+			{
+				name = "entrance04",
+				force = 2,
+				position = Vector3(1800, -600, -100),
+			},
 		},
 	},
 	-- Randomise initial FBI agent amounts

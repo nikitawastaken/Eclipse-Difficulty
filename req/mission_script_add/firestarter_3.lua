@@ -242,10 +242,6 @@ local optsspawnswatchopper_1 = {
 		{ id = 400027, delay = 26 },
 		{ id = 400028, delay = 26 },
 		{ id = 400029, delay = 26 },
-		{ id = 400026, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400027, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400028, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400029, delay = is_eclipse_pro and 35 or math.huge },
 		{ id = 400030, delay = 0 },
 	},
 	enabled = true,
@@ -256,10 +252,6 @@ local optsspawnswatchopper_2 = {
 		{ id = 400033, delay = 26 },
 		{ id = 400034, delay = 26 },
 		{ id = 400035, delay = 26 },
-		{ id = 400032, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400033, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400034, delay = is_eclipse_pro and 35 or math.huge },
-		{ id = 400035, delay = is_eclipse_pro and 35 or math.huge },
 		{ id = 400036, delay = 0 },
 	},
 	enabled = true,
@@ -397,10 +389,10 @@ local optsSWATChopper_1 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "flyin_fwd_hover", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_left", time = 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "close_door_right", time = 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hover_flyout_right", time = 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100006, notify_unit_sequence = "hidden", time = 65 },
 	},
 }
 
@@ -411,15 +403,15 @@ local optsSWATChopper_2 = {
 		{ id = 2, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "redi_flyin_left", time = 0 },
 		{ id = 3, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_left", time = 24 },
 		{ id = 4, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "open_door_right", time = 24 },
-		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = is_eclipse_pro and 50 or 36 },
-		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = is_eclipse_pro and 50 or 36 },
-		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = is_eclipse_pro and 53 or 39 },
-		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = is_eclipse_pro and 70 or 65 },
+		{ id = 5, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_left", time = 36 },
+		{ id = 6, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "close_door_right", time = 36 },
+		{ id = 7, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hover_flyout_right", time = 39 },
+		{ id = 8, name = "run_sequence", notify_unit_id = 100021, notify_unit_sequence = "hidden", time = 65 },
 	},
 }
 
 M.elements = {
-	-- skulldozer nearby the van on Eclipse (based on DW Trailer)
+	-- skulldozer nearby the van on Death Wish (based on DW Trailer)
 	Eclipse.mission_elements.gen_dummy(400001, "van_dozer", Vector3(-8305, -3511, 0), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400002, "dozer_defend_so", Vector3(-7273, -2895, -19.999), Rotation(0, 0, -0), optsDefend_SO),
 	Eclipse.mission_elements.gen_toggleelement(400003, "enable_dozervan", optsEnable_DWDozer),

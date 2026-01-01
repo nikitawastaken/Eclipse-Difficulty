@@ -2147,7 +2147,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.values.cooldown.headshot_regen_health_bonus = { { 1, 3 } }
-	self.values.player.headshot_regen_health_bonus = { 5 }
+	self.values.player.headshot_regen_health_bonus = { 1 }
 	self.definitions.cooldown_headshot_regen_health_bonus = {
 		name_id = "menu_cooldown_headshot_regen_health_bonus",
 		category = "feature",
@@ -2167,7 +2167,7 @@ function UpgradesTweakData:init(tweak_data)
 		},
 	}
 	self.damage_to_hot_data.armors_allowed = { "level_1", "level_2", "level_3", "level_4", "level_5", "level_6", "level_7" }
-	self.damage_to_hot_data.stacking_cooldown = 1
+	self.damage_to_hot_data.add_stack_sources.fire = false
 	self.damage_to_hot_data.add_stack_sources.poison = false
 	self.damage_to_hot_data.add_stack_sources.swat_van = false
 	self.damage_to_hot_data.add_stack_sources.sentry_gun = false
@@ -2180,7 +2180,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][1].multiperk2 = "1"
 	self.specialization_descs[11][3].multiperk = "30%"
 	self.specialization_descs[11][3].multiperk2 = "50%"
-	self.specialization_descs[11][5].multiperk = "5"
+	self.specialization_descs[11][5].multiperk = "10"
 	self.specialization_descs[11][5].multiperk2 = "3"
 	self.specialization_descs[11][7].multiperk = "30%"
 	self.specialization_descs[11][9].multiperk = "2"

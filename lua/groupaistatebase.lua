@@ -1,5 +1,4 @@
 local level_id = Eclipse.utils.level_id()
-local ffo_heists = Eclipse:require("ffo_heists")
 
 GroupAIStateBase.MEGAPHONE_EVENTS = {
 	"mga_deploy_snipers",
@@ -14,8 +13,11 @@ GroupAIStateBase.MEGAPHONE_EVENTS = {
 }
 table.list_append(GroupAIStateBase.EVENT_SYNC, GroupAIStateBase.MEGAPHONE_EVENTS)
 
-Hooks:PostHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
-	self._on_enemy_weapons_hot_t = self._on_enemy_weapons_hot_t or self._t
+Hooks:PreHook(GroupAIStateBase, "on_enemy_weapons_hot", "eclipse_on_enemy_weapons_hot", function(self)
+	if self._ai_enabled and not self._enemy_weapons_hot then
+		self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.assault_delay
+		self:add_difficulty(tweak_data.group_ai.difficulty_scaling.diff_init)
+	end
 end)
 
 function GroupAIStateBase:_get_scripted_tier()
@@ -85,9 +87,7 @@ function GroupAIStateBase:_update_point_of_no_return(t, dt)
 	end
 
 	if self._point_of_no_return_id == -1 or not get_mission_script_element(self._point_of_no_return_id) then
-		if ffo_heists[level_id] then
-			self._point_of_no_return_timer = self._point_of_no_return_timer - dt
-		end
+		self._point_of_no_return_timer = self._point_of_no_return_timer - dt
 		if self._point_of_no_return_timer <= 0 then
 			if Network:is_server() then
 				managers.groupai:set_state("ponr")
@@ -215,66 +215,84 @@ end
 
 -- Make difficulty progress smoother
 function GroupAIStateBase:_update_difficulty_value()
-	if self:enemy_weapons_hot() and self._t >= ((self._on_enemy_weapons_hot_t or 0) + tweak_data.group_ai.difficulty_scaling.assault_delay) then
-		if self._target_difficulty and self._t >= self._next_difficulty_step_t then
-			local diff_step = tweak_data.group_ai.difficulty_scaling.diff_step * (self._difficulty_value > self._target_difficulty and -1 or 1)
-
-			self._difficulty_value = math.min(self._difficulty_value + diff_step, self._target_difficulty)
-			self._difficulty_value = math.clamp(self._difficulty_value, self._difficulty_min, self._difficulty_max)
-
-			if self._difficulty_value >= self._target_difficulty then
-				self._target_difficulty = self._difficulty_value
-			else
-				self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.diff_step_interval
-			end
+	-- No difficulty updates during stealth
+	if not self:enemy_weapons_hot() then
+		return
+	-- Check for difficulty min/max clamps if one was set after the last diff step
+	elseif self._next_difficulty_step_t and self._t < self._next_difficulty_step_t then
+		if self._check_difficulty_clamps then
+			self._check_difficulty_clamps = nil
+			self._difficulty_value = self:_get_clamped_difficulty(self._difficulty_value)
 			self:_calculate_difficulty_ratio()
 		end
-	end
-end
-
-function GroupAIStateBase:set_difficulty(forced_value)
-	self._next_difficulty_step_t = self._next_difficulty_step_t or self._t
-
-	if not self._set_initial_diff then
-		self._difficulty_value = 0
-		self._target_difficulty = tweak_data.group_ai.difficulty_scaling.diff_init
-
-		self._set_initial_diff = true
-
-		self:_update_difficulty_value()
-
 		return
 	end
 
-	if forced_value then
-		self._target_difficulty = forced_value
+	self._check_difficulty_clamps = nil
+	self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.diff_step_interval
 
-		self:_update_difficulty_value()
-	end
+	local is_decrease = self._difficulty_value > self._target_difficulty
+	local clamp_func = is_decrease and math.max or math.min
+	local diff_step = tweak_data.group_ai.difficulty_scaling.diff_step * (is_decrease and -1 or 1)
+	local new_diff = clamp_func(self._difficulty_value + diff_step, self._target_difficulty)
+	self._difficulty_value = self:_get_clamped_difficulty(new_diff)
+	self:_calculate_difficulty_ratio()
 end
 
-Hooks:PostHook(GroupAIStateBase, "update", "sh_update", GroupAIStateBase._update_difficulty_value)
+Hooks:PostHook(GroupAIStateBase, "update", "eclipse_update", GroupAIStateBase._update_difficulty_value)
+
+-- Final diff can be extremely slightly off from the target when using math.clamp, floating point shenanigans
+-- Unsure if "works funny on my machine" moment, 0.4 ~= 0.4000696969 as expected but sometimes 0.4 ~= 0.4 apparently anyway
+function GroupAIStateBase:_get_clamped_difficulty(value)
+	value = value or self._difficulty_value
+	if value > self._difficulty_max then
+		value = self._difficulty_max
+	elseif value < self._difficulty_min then
+		value = self._difficulty_min
+	end
+	return value
+end
+
+function GroupAIStateBase:set_difficulty(value)
+	self._target_difficulty = value
+	self:_update_difficulty_value()
+end
 
 function GroupAIStateBase:add_difficulty(value)
 	self._target_difficulty = self._target_difficulty + value
-
 	self:_update_difficulty_value()
 end
 
 function GroupAIStateBase:min_difficulty(value)
 	self._difficulty_min = value or self._difficulty_min
-
+	self._check_difficulty_clamps = true
 	self:_update_difficulty_value()
 end
 
 function GroupAIStateBase:max_difficulty(value)
 	self._difficulty_max = value or self._difficulty_max
-
+	self._check_difficulty_clamps = true
 	self:_update_difficulty_value()
 end
 
---Killing hostages in Pro Jobs increases diff
+-- Killing hostages in Pro Jobs increases diff
 Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", function(self)
+	if not alive(killer_unit) then
+		return
+	end
+
+	if killer_unit:base() and killer_unit:base().thrower_unit then
+		killer_unit = killer_unit:base():thrower_unit()
+		if not alive(killer_unit) then
+			return
+		end
+	end
+
+	local criminal = self._criminals[killer_unit:key()]
+	if not criminal then
+		return
+	end
+
 	if not self._hunt_mode and self._assault_number and self._assault_number >= 1 then
 		self._mga_hostage_kills = self._mga_hostage_kills + 1 -- have to track separately to self._hostages_killed because some may be killed before going loud
 
@@ -298,16 +316,6 @@ end)
 -- Limit the number of dominated cops to 4 in all cases
 function GroupAIStateBase:has_room_for_police_hostage()
 	return self._police_hostage_headcount + table.size(self._converted_police) < 4
-end
-
--- Fully count all criminals for the balancing multiplier
-function GroupAIStateBase:_get_balancing_multiplier(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._char_criminals), 1, #balance_multipliers)]
-end
-
--- Balancing multiplier for players only (used for hostage situation aced)
-function GroupAIStateBase:_get_balancing_multiplier_players_only(balance_multipliers)
-	return balance_multipliers[math.clamp(table.size(self._player_criminals), 1, #balance_multipliers)]
 end
 
 -- Delay spawn points when enemies die close to them
@@ -659,8 +667,14 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 	local criminal_pos = self:_get_units_center_pos(self:all_char_criminals())
 	local pos_is_zero = not criminal_pos or mvector3.is_zero(criminal_pos)
 
-	local function should_continue(element, element_pos)
-		if last_element and last_element == element then
+	local function should_continue(element, element_pos, so_grp)
+		if not element then
+			Eclipse:warn_console("Nil element in _get_hiding_cloaker_SO()! SO group ID: " .. (so_grp and so_grp:id() or "missing"))
+			return true
+		elseif not element_pos then
+			Eclipse:warn_console("Nil element pos in _get_hiding_cloaker_SO()! Element ID: " .. (element:id() or "missing") .. " SO group ID: " .. (so_grp and so_grp:id() or "missing"))
+			return true
+		elseif last_element and last_element == element then
 			return true
 		elseif last_element_pos and mvector3.distance(element_pos, last_element_pos) < repeat_hiding_spots.min_distance then
 			return true
@@ -677,9 +691,9 @@ function GroupAIStateBase:_get_hiding_cloaker_SO(data, group, hiding_cloaker_twe
 
 	local function collect_element_weights(skip_ignore_distances)
 		for _, followup_data in ipairs(data.followups) do
-			local element, element_w = followup_data[1], followup_data[2]
+			local element, element_w, so_grp = followup_data[1], followup_data[2], followup_data[3]
 			local element_pos = element:value("position")
-			if should_continue(element, element_pos) then
+			if should_continue(element, element_pos, so_grp) then
 				goto __continue
 			end
 
@@ -997,13 +1011,23 @@ Hooks:PostHook(GroupAIStateBase, "remove_grp_SO", "eclipse_remove_grp_SO", funct
 	end
 
 	local grp_SO_data = self._recurring_grp_SO and self._recurring_grp_SO[element:value("mode")]
-	if not grp_SO_data or not grp_SO_data.followups then
+	if not grp_SO_data then
 		return
 	end
 
-	for i, followup_data in table.reverse_ipairs(grp_SO_data.followups) do
-		if followup_data[3] == element then
-			table.remove(grp_SO_data.followups, i)
+	if grp_SO_data.elements then
+		for i, elmnt in table.reverse_ipairs(grp_SO_data.elements) do
+			if elmnt == element then
+				table.remove(grp_SO_data.elements, i)
+			end
+		end
+	end
+
+	if grp_SO_data.followups then
+		for i, followup_data in table.reverse_ipairs(grp_SO_data.followups) do
+			if followup_data[3] == element then
+				table.remove(grp_SO_data.followups, i)
+			end
 		end
 	end
 end)

@@ -438,6 +438,17 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 
+	self.moon.group_ai_settings = {
+		assault_force_mul = 0.8,
+	}
+
+	self.spa.group_ai_settings = {
+		difficulty_scaling = {
+			diff_init = 0.5,
+			assault_add = 0.25,
+		},
+	}
+
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
 		sustain_duration_mul = 0.65,
@@ -560,6 +571,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.pex.group_ai_settings = {
 		sustain_duration_mul = 1.25, -- Bird flu
+		difficulty_scaling = {
+			assault_add = 0.3,
+		},
 	}
 
 	self.fex.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
@@ -572,7 +586,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		spawn_kill_cooldown = 15,
 		assault_force_mul = 0.8,
 		difficulty_scaling = {
-			assault_delay = 75,
+			assault_delay = 60,
 		},
 	}
 	self.chca.group_ai_preset = "remote"

@@ -76,7 +76,7 @@ return {
 			},
 		},
 		on_executed = { -- standard preferreds
-			{ id = 100127, delay = 75 },
+			{ id = 100127, delay = 60 },
 		},
 	},
 	-- restore ground snipers
@@ -110,9 +110,9 @@ return {
 	},
 	[102154] = { -- 1st timelock done
 		on_executed = {
-			{ id = 100128, delay = 0, delay_rand = 30 }, -- add 40
-			{ id = 100130, delay = 0, delay_rand = 30 }, -- add 41
-			{ id = 102129, delay = 0, delay_rand = 30 }, -- add 11
+			{ id = 100128, delay = 0, delay_rand = 20 }, -- add 40
+			{ id = 100130, delay = 0, delay_rand = 20 }, -- add 41
+			{ id = 102129, delay = 0, delay_rand = 20 }, -- add 11
 		},
 	},
 	-- Spawn group intervals

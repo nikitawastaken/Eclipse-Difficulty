@@ -98,28 +98,56 @@ return {
 			{ 43, 44, 51 },
 		},
 	},
+	-- Add new reinforce
 	[100109] = { -- Police
 		reinforce = {
 			{
 				name = "entrance",
-				force = 3,
-				position = Vector3(4400, 0, -1100),
+				force = 4,
+				position = Vector3(3875, 0, -1100),
 			},
 		},
 	},
-	[100833] = { -- C4 Escape
+	[102166] = { -- open gate (downstairs)
 		reinforce = {
 			{
-				name = "meetingroom",
+				name = "gate",
 				force = 2,
-				position = Vector3(-3400, 1000, -600),
+				position = Vector3(-175, -25, -1000),
+			},
+		},
+	},
+	[104371] = { -- open gate (upstairs)
+		reinforce = {
+			{
+				name = "gate",
+				force = 2,
+				position = Vector3(-175, -25, -600),
+			},
+		},
+	},
+	[104369] = { -- explode wall (upstairs)
+		reinforce = {
+			{
+				name = "breach",
+				force = 2,
+				position = Vector3(-175, -25, -1000),
+			},
+		},
+	},
+	[104367] = { -- explode wall (upstairs)
+		reinforce = {
+			{
+				name = "breach",
+				force = 2,
+				position = Vector3(-175, -25, -600),
 			},
 		},
 	},
 	[100834] = { -- Elevator Escape
 		reinforce = {
 			{
-				name = "elevator",
+				name = "elevator_escape",
 				force = 2,
 				position = Vector3(-1200, -650, -900),
 			},
@@ -128,9 +156,18 @@ return {
 	[104523] = { -- Bus Escape
 		reinforce = {
 			{
-				name = "bus",
+				name = "bus_escspae",
 				force = 2,
 				position = Vector3(-2150, -2050, -500),
+			},
+		},
+	},
+	[100833] = { -- C4 Escape
+		reinforce = {
+			{
+				name = "c4_escape",
+				force = 2,
+				position = Vector3(-3400, 1000, -600),
 			},
 		},
 	},
@@ -204,11 +241,11 @@ return {
 			{ id = 400010, delay = 0 },
 		},
 	},
-	-- Make server hack guranteed when solo
+	-- Sever hack chance in solo
 	[104494] = {
 		pre_func = function(self)
 			if table.size(managers.network:session():peers()) == 0 then
-				self._chance = 100
+				self._chance = is_pro_job and 75 or 100
 			end
 		end,
 	},

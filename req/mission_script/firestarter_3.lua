@@ -81,10 +81,16 @@ local cloaker_spawn = {
 	},
 }
 return {
-	[101559] = {
+	-- FFO
+	[102133] = {
 		ponr = {
-			length = 180,
-			player_mul = { 1.33, 1.167, 1, 1 },
+			length = 1200,
+			player_mul = { 1, 1, 0.9, 0.75 },
+		},
+		-- trigger cops loot drop off on alarm
+		on_executed = {
+			{ id = 102206, delay = 0 },
+			{ id = 400068, delay = 0 }, -- enable the ambush
 		},
 	},
 	-- DW Trailer Skulldozer spawn event
@@ -101,7 +107,7 @@ return {
 			{ id = 400003, delay = 0 },
 		},
 	},
-	-- spawn him when the far van escape gets triggered on Eclipse (DW Trailer throwback)
+	-- spawn him when the far van escape gets triggered on Death Wish (DW Trailer throwback)
 	[104452] = {
 		on_executed = {
 			{ id = 400001, delay = 0 },
@@ -118,13 +124,6 @@ return {
 	[102160] = {
 		on_executed = {
 			{ id = 400056, delay = 0 },
-		},
-	},
-	-- trigger cops loot drop off on alarm
-	[102133] = {
-		on_executed = {
-			{ id = 102206, delay = 0 },
-			{ id = 400068, delay = 0 }, -- enable the ambush
 		},
 	},
 	-- randomize heli dozers

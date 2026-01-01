@@ -217,7 +217,7 @@ local opts_swat_group = {
 }
 
 M.elements = {
-	-- skulldozer nearby the van on Eclipse (based on DW Trailer)
+	-- skulldozer nearby the van on Death Wish (based on DW Trailer)
 	Eclipse.mission_elements.gen_dummy(400001, "van_dozer", Vector3(-8305, -3511, 0), Rotation(-90, 0, -0), optsBulldozer),
 	Eclipse.mission_elements.gen_so(400002, "dozer_defend_so", Vector3(-7273, -2895, -19.999), Rotation(0, 0, -0), optsDefend_SO),
 	Eclipse.mission_elements.gen_toggleelement(400003, "enable_dozervan", optsEnable_DWDozer),

@@ -67,7 +67,7 @@ return {
 	},
 	[101829] = {
 		ponr = {
-			length = 240,
+			length = 300,
 			player_mul = { 2, 1.5, 1.25, 1 },
 		},
 		-- add dozers chance based event to the vault
@@ -83,22 +83,22 @@ return {
 	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "police_car1",
+				name = "police_car01",
 				force = 3,
 				position = Vector3(2140, 485, 0),
 			},
 			{
-				name = "police_car2",
+				name = "police_car02",
 				force = 3,
 				position = Vector3(-100, 400, 0),
 			},
 			{
-				name = "police_car3",
+				name = "police_car03",
 				force = 3,
 				position = Vector3(-1900, -150, 0),
 			},
 			{
-				name = "police_car3",
+				name = "police_car04",
 				force = 3,
 				position = Vector3(-1700, -2600, 0),
 			},
@@ -135,12 +135,12 @@ return {
 	[100123] = { -- 1st assault done
 		reinforce = {
 			{
-				name = "teller_balcony1",
+				name = "teller_balcony01",
 				force = 2,
 				position = Vector3(1200, -2200, 400),
 			},
 			{
-				name = "teller_balcony2",
+				name = "teller_balcony02",
 				force = 2,
 				position = Vector3(-1200, -2200, 400),
 			},
@@ -236,7 +236,7 @@ return {
 			{ id = 400005, delay = 0 },
 		},
 	},
-	-- spawn the skulldozer that defends your van on Eclipse
+	-- spawn the skulldozer that defends your van on Death Wish
 	[100210] = {
 		on_executed = {
 			{ id = 400000, delay = 0 },

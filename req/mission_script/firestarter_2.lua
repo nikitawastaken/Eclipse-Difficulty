@@ -11,7 +11,7 @@ local standard_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

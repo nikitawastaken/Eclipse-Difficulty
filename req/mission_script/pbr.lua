@@ -21,6 +21,11 @@ local shaft_spawn = {
 	},
 	groups = preferred.no_shields_bulldozers,
 }
+local disable_entrance_reinforce = {
+	reinforce = {
+		{ name = "entrance" },
+	},
+}
 return {
 	[100119] = {
 		set_ponr_state = true,
@@ -30,25 +35,11 @@ return {
 			enabled = false,
 		},
 	},
-	[101125] = { -- Escape
-		reinforce = {
-			{
-				name = "gate",
-				force = 3,
-				position = Vector3(-11000, -6800, 7000),
-			},
-			{
-				name = "what_a_nice_car",
-				force = 3,
-				position = Vector3(-11200, 400, 7400),
-			},
-		},
-	},
 	--add reinforce
 	[100003] = {
 		reinforce = {
 			{
-				name = "entrance1",
+				name = "entrance",
 				force = 3,
 				position = Vector3(725, 150, 0),
 			},
@@ -57,7 +48,7 @@ return {
 	[100004] = {
 		reinforce = {
 			{
-				name = "entrance2",
+				name = "entrance",
 				force = 3,
 				position = Vector3(825, -3400, -300),
 			},
@@ -66,27 +57,15 @@ return {
 	[100005] = {
 		reinforce = {
 			{
-				name = "entrance3",
+				name = "entrance",
 				force = 3,
 				position = Vector3(2780, -4615, 0),
 			},
 		},
 	},
-	[100085] = {
-		reinforce = {
-			{ name = "entrance1" },
-		},
-	},
-	[100086] = {
-		reinforce = {
-			{ name = "entrance2" },
-		},
-	},
-	[100087] = {
-		reinforce = {
-			{ name = "entrance3" },
-		},
-	},
+	[100085] = disable_entrance_reinforce,
+	[100086] = disable_entrance_reinforce,
+	[100087] = disable_entrance_reinforce,
 	[101027] = {
 		reinforce = {
 			{
@@ -129,6 +108,20 @@ return {
 			{ name = "chronos" },
 			{ name = "zeus" },
 			{ name = "poseidon" },
+		},
+	},
+	[101125] = { -- Escape
+		reinforce = {
+			{
+				name = "gate",
+				force = 3,
+				position = Vector3(-11000, -6800, 7000),
+			},
+			{
+				name = "what_a_nice_car",
+				force = 3,
+				position = Vector3(-11200, 400, 7400),
+			},
 		},
 	},
 	-- make snipers not participate to group ai
