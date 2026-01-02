@@ -9,11 +9,6 @@ local sniper_trigger_times = {
 		trigger_times = 0,
 	},
 }
-local garage_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local pent_spawn = {
 	values = {
 		interval = 15,
@@ -22,13 +17,13 @@ local pent_spawn = {
 }
 local roof_lower_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_bulldozers,
 }
 local roof_upper_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields,
 }
@@ -94,8 +89,6 @@ return {
 	[100371] = sniper_trigger_times,
 	[100372] = sniper_trigger_times,
 	-- Spawn group intervals
-	[102112] = garage_spawn,
-	[103027] = garage_spawn,
 	[102137] = pent_spawn,
 	[102138] = pent_spawn,
 	[102113] = pent_spawn,

@@ -54,22 +54,22 @@ return {
 	[100757] = { -- first responders
 		reinforce = {
 			{
-				name = "atrium_upper1",
+				name = "atrium_upper01",
 				force = 2,
 				position = Vector3(-4000, -2200, 750),
 			},
 			{
-				name = "atrium_upper2",
+				name = "atrium_upper02",
 				force = 2,
 				position = Vector3(-2750, -2200, 750),
 			},
 			{
-				name = "atrium_upper3",
+				name = "atrium_upper03",
 				force = 2,
 				position = Vector3(-2750, -1000, 750),
 			},
 			{
-				name = "atrium_upper4",
+				name = "atrium_upper04",
 				force = 2,
 				position = Vector3(-4000, -1000, 750),
 			},
@@ -83,12 +83,12 @@ return {
 				position = Vector3(-3300, -2100, 30),
 			},
 			{
-				name = "atrium_lower1",
+				name = "atrium_lower01",
 				force = 2,
 				position = Vector3(-3800, -800, 400),
 			},
 			{
-				name = "atrium_lower2",
+				name = "atrium_lower02",
 				force = 2,
 				position = Vector3(-2700, -800, 400),
 			},

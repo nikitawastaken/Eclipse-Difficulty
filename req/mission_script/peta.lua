@@ -29,11 +29,6 @@ local wave_cop_count = {
 		amount_random = 6,
 	},
 }
-local close_spawn = {
-	values = {
-		interval = 15,
-	},
-}
 local rappel_spawn = {
 	values = {
 		interval = 15,
@@ -93,10 +88,6 @@ return {
 	[106170] = apartment_guaranteed_spawn,
 	[106162] = apartment_guaranteed_spawn,
 	-- Spawn group intervals
-	[100132] = close_spawn,
-	[106017] = close_spawn,
-	[106019] = close_spawn,
-	[106021] = close_spawn,
 	[100131] = rappel_spawn,
 	[100694] = rappel_spawn,
 }

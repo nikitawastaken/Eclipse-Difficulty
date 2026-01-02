@@ -3250,14 +3250,15 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Assault Data
 	--In-heist difficulty scaling
 	self.difficulty_scaling = {
-		diff_init = 0.4,
+		assault_delay = 45,
 		diff_min = 0,
 		diff_max = 1,
+		diff_init = 0.4,
 		diff_step = 0.05,
-		assault_delay = 45,
-		diff_step_interval = 15,
+		diff_step_interval = { 10, 20 },
 		assault_add = 0.2,
-		hostage_add = is_pro_job and 0.1 or nil,
+		hostage_kill_add = is_pro_job and 0.1 or nil,
+		mid_assault_scale = nil,
 	}
 
 	-- BESIEGE --
@@ -3332,28 +3333,34 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	self.use_team_ai_balance_mul_weights = true
-	self.team_ai_spawnrate_balance_mul_weight = 0.5
+	self.team_ai_spawn_rate_balance_mul_weight = 0.5
 	self.team_ai_force_balance_mul_weight = 0.5
 	self.team_ai_freq_balance_mul_weight = 0.5
 
-	-- Spawnrate
-	self.spawn_kill_distance = 1500
-	self.spawn_kill_cooldown = 10
+	-- Spawn rate
+	self.spawn_kill_cooldown = get_difficulty_specific_value({
+		20,
+		20,
+		15,
+		15,
+		10,
+	})
+	self.spawn_kill_max_dis = 1500
 
-	self.besiege.assault.spawnrate = get_difficulty_specific_value({
+	self.besiege.assault.spawn_rate = get_difficulty_specific_value({
 		{ 3, 2.5, 2 },
 		{ 3, 2.5, 2 },
 		{ 2.75, 2.25, 1.75 },
 		{ 2.5, 2, 1.5 },
 		{ 2.5, 2, 1.5 },
 	})
-	self.besiege.assault.spawnrate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
+	self.besiege.assault.spawn_rate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
 	local spawn_rate_entry
 	for i = 0, 21, 1 do
 		spawn_rate_entry = 1.75 * math.exp(-i * 0.185)
 		spawn_rate_entry = math.round(spawn_rate_entry / 0.025) * 0.025
 
-		table.insert(self.besiege.assault.spawnrate_balance_mul, spawn_rate_entry)
+		table.insert(self.besiege.assault.spawn_rate_balance_mul, spawn_rate_entry)
 	end
 
 	-- RECON / REENFORCE --
@@ -3431,8 +3438,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			cs_shield = shield_wgt,
 		}
 		self.besiege.recon.groups = {
-			cs_stealth_init = { 3, 2, 1 },
-			cs_stealth_light = { 0, 1, 2 },
+			cs_stealth_init = { 5, 3, 1 },
+			cs_stealth_light = { 0, 2, 4 },
+			cs_stealth_heavy = { 0, 1, 2 },
 		}
 		self.besiege.reenforce.groups = {
 			cs_defend_init = { 3, 1, 0 },
