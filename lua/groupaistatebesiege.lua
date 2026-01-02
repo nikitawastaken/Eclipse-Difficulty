@@ -194,7 +194,7 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 
 		self._mga_said_start_assault = true
 	end
-
+	
 	if task_data.phase ~= "fade" or self._hunt_mode then
 		return _upd_assault_task_original(self, ...)
 	end
@@ -237,9 +237,7 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 
 			self:_begin_regroup_task(force_regroup)
 
-			if self._difficulty_value < 1 then
-				self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add or 0.25)
-			end
+			self:add_difficulty(tweak_data.group_ai.difficulty_scaling.assault_add)
 
 			return
 		end
@@ -1100,23 +1098,25 @@ function GroupAIStateBesiege:force_spawn_group(group, group_types, guarantee)
 	end
 end
 
-function GroupAIStateBesiege:_is_spawn_task_type_on_cooldown(spawn_task)
-	local group_objective_type = spawn_task.group.objective.type
-	return self._next_group_spawn_t[group_objective_type] and self._next_group_spawn_t[group_objective_type] > self._t
+function GroupAIStateBesiege:_is_objective_type_on_cooldown(type)
+	return self._next_group_spawn_t[type] and self._next_group_spawn_t[type] > self._t
 end
 
-function GroupAIStateBesiege:_set_spawn_task_type_cooldown(spawn_task, cooldown)
-	local group_objective_type = spawn_task.group.objective.type
-	self._next_group_spawn_t[group_objective_type] = self._t + cooldown
+function GroupAIStateBesiege:_set_objective_type_cooldown(type, cooldown)
+	self._next_group_spawn_t[type] = self._t + cooldown
 end
 
 function GroupAIStateBesiege:_upd_group_spawning()
 	for _, spawn_task in ipairs(self._spawning_groups) do
-		if spawn_task.group.size > 0 or not self:_is_spawn_task_type_on_cooldown(spawn_task) then
+		if spawn_task.group.size > 0 or not self:_is_objective_type_on_cooldown(spawn_task.group.objective.type) then
 			self:_perform_group_spawning(spawn_task)
 			return
 		end
 	end
+end
+
+function GroupAIStateBesiege:spawn_rate(use_balance_mul)
+	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate) * (use_balance_mul and self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight) or 1)
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
@@ -1180,6 +1180,7 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 					spawned_unit:brain():set_spawn_entry(spawn_entry, u_data.tactics_map)
 
 					u_data.rank = spawn_entry.rank
+					u_data.spawn_group = spawn_task.spawn_group
 
 					-- Don't double assign for timed groups
 					if not spawn_task.timed then
@@ -1261,11 +1262,8 @@ function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
 		self._groups[spawn_task.group.id] = nil
 	end
 
-	-- Set a dynamic enemy spawnrate that scales with player count and difficulty value
-	local spawn_rate_player_mul = self:_get_balancing_multiplier(self._tweak_data.assault.spawnrate_balance_mul, tweak_data.group_ai.team_ai_spawnrate_balance_mul_weight)
-	local spawn_rate = self:_get_difficulty_dependent_value(self._tweak_data.assault.spawnrate)
-
-	self:_set_spawn_task_type_cooldown(spawn_task, spawn_task.group.size * spawn_rate * spawn_rate_player_mul)
+	-- Set a dynamic enemy spawn rate that scales with player count and difficulty value
+	self:_set_objective_type_cooldown(spawn_task.group.objective.type, self:spawn_rate(true))
 end
 
 local function spawn_group_id(spawn_group)

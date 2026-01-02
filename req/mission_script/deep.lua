@@ -37,12 +37,12 @@ local fueling_area_lower_spawn = {
 }
 local pillar_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local tower_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 }
 local fueling_area_upper_spawn = {

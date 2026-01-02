@@ -50,12 +50,6 @@ local pro_chance_mul = is_pro_job and 1.5 or 1
 local swat_shield_dozer_filter = {
 	so_access_filter = { "swat", "shield", "tank" },
 }
-local alleyway_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 return {
 	-- adjust FBI chopper ambush
 	[103432] = {
@@ -116,6 +110,4 @@ return {
 	[103168] = gangster_inside_amount,
 	[101306] = gangster_stationary_amount,
 	[101046] = gangster_stationary_amount,
-	-- Spawn group intervals
-	[101374] = alleyway_spawn,
 }

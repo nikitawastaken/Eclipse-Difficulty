@@ -37,14 +37,8 @@ local dozer_van_chance = {
 }
 local standard_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
-}
-local upper_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local bags_required = {
 	values = {
@@ -141,7 +135,7 @@ return {
 	[100154] = standard_spawn,
 	[101205] = standard_spawn,
 	[104938] = standard_spawn,
-	[100128] = upper_spawn,
-	[100131] = upper_spawn,
-	[103176] = upper_spawn,
+	[100128] = standard_spawn,
+	[100131] = standard_spawn,
+	[103176] = standard_spawn,
 }

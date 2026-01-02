@@ -6,7 +6,7 @@ local mobster_team = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -89,22 +89,22 @@ return {
 		reinforce = {
 			{
 				name = "mansion_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-1500, -5250, -50),
 			},
 			{
 				name = "mansion_back",
-				force = 3,
+				force = 2,
 				position = Vector3(-3500, -1900, -50),
 			},
 			{
 				name = "mansion_front",
-				force = 3,
+				force = 2,
 				position = Vector3(4100, -3175, -150),
 			},
 			{
 				name = "mansion_right",
-				force = 3,
+				force = 2,
 				position = Vector3(1400, 2650, -175),
 			},
 		},

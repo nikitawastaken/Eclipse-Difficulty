@@ -80,14 +80,7 @@ Hooks:PostHook(ElementSpawnEnemyGroup, "_finalize_values", "eclipse_finalize_val
 		return
 	end
 
-	self._values.interval = math.max(5, self._values.interval)
-	for _, id in pairs(self._values.elements) do
-		local spawn_point = self:get_mission_element(id)
-		if spawn_point and spawn_point._values.spawn_action then
-			self._values.interval = math.max(10, self._values.interval)
-			break
-		end
-	end
+	self._values.interval = math.max(5 * managers.groupai:state():spawn_rate(false), self._values.interval)
 
 	local new_groups = {}
 	for _, initial_group in pairs(self._values.preferred_spawn_groups) do

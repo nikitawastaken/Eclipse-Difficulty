@@ -147,22 +147,22 @@ return {
 	[101825] = { -- Interrogation started
 		reinforce = {
 			{
-				name = "staircase_main1",
+				name = "staircase_main01",
 				force = 2,
 				position = Vector3(-1250, -2750, 300),
 			},
 			{
-				name = "staircase_main2",
+				name = "staircase_main02",
 				force = 2,
 				position = Vector3(-1250, -2750, 1000),
 			},
 			{
-				name = "staircase_side1",
+				name = "staircase_side01",
 				force = 2,
 				position = Vector3(-1250, 975, 475),
 			},
 			{
-				name = "staircase_side2",
+				name = "staircase_side02",
 				force = 2,
 				position = Vector3(-1850, 1000, 1375),
 			},
@@ -193,9 +193,6 @@ return {
 			amount = is_eclipse and 4 or 3,
 		},
 	},
-	-- Tweak diff scaling
-	[102305] = disabled, -- saw in place, diff 0.75
-	[101760] = disabled, -- interrogation started, diff 1
 	-- Multiple interrupts once more (pain)
 	[102978] = {
 		on_executed = {

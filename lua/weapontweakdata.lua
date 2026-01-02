@@ -339,7 +339,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.alert_size = 6
 				weap_data.steelsight_time = steelsight_times.lmg
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or not has_bipod and (4 / 3) or (7 / 4)
-				weap_data.pickup_mul = weap_data.pickup_mul or not has_bipod and 1 or 1.25
+				weap_data.pickup_mul = weap_data.pickup_mul or not has_bipod and 1.25 or 1.5
 				weap_data.steelsight_move_speed_mul = 0.4
 				weap_data.bipod_camera_spin_limit = 40
 				weap_data.bipod_camera_pitch_limit = 15

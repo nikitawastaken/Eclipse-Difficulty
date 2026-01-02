@@ -24,7 +24,7 @@ local upper_spawn = {
 }
 local flank_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_shields_bulldozers,
 }

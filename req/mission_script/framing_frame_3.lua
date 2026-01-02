@@ -135,7 +135,7 @@ return {
 			operation = "secure",
 		},
 	},
-	-- Spawn Group delays
+	-- Spawn group intervals
 	[100817] = standard_spawn,
 	[100329] = standard_spawn,
 	[100887] = balcony_close_spawn,

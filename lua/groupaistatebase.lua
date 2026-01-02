@@ -155,7 +155,7 @@ Hooks:PostHook(GroupAIStateBase, "on_simulation_started", "eclipse_on_simulation
 end)
 
 -- Add a function to check if a deployble is within a nav_seg
-function GroupAIStateBase:check_deployable_nav_seg(nav_seg_id)
+function GroupAIStateBase:chk_deployable_nav_seg(nav_seg_id)
 	return self._deployable_nav_segs[nav_seg_id]
 end
 
@@ -229,7 +229,7 @@ function GroupAIStateBase:_update_difficulty_value()
 	end
 
 	self._check_difficulty_clamps = nil
-	self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.diff_step_interval
+	self._next_difficulty_step_t = self._t + math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
 
 	local is_decrease = self._difficulty_value > self._target_difficulty
 	local clamp_func = is_decrease and math.max or math.min
@@ -306,7 +306,7 @@ Hooks:PostHook(GroupAIStateBase, "hostage_killed", "eclipse_hostage_killed", fun
 		end
 	end
 
-	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_add
+	local hostage_kill_add = tweak_data.group_ai.difficulty_scaling.hostage_kill_add
 
 	if hostage_kill_add then
 		self:add_difficulty(hostage_kill_add)
@@ -325,36 +325,18 @@ Hooks:PostHook(GroupAIStateBase, "on_enemy_unregistered", "sh_on_enemy_unregiste
 	end
 
 	local e_data = self._police[unit:key()]
-	if not e_data.group or not e_data.group.has_spawned then
+	if not e_data.group or not e_data.group.has_spawned or not e_data.spawn_group then
 		return
 	end
 
-	local spawn_point = unit:unit_data().mission_element
-	if not spawn_point then
-		return
-	end
-
-	local max_dis = tweak_data.group_ai.spawn_kill_distance or 1500
-	local dis = mvector3.distance(spawn_point:value("position"), e_data.m_pos)
+	local dis = mvector3.distance(e_data.spawn_group.pos, e_data.m_pos)
+	local max_dis = tweak_data.group_ai.spawn_kill_max_dis
 	if dis > max_dis then
 		return
 	end
 
-	for _, area in pairs(self._area_data) do
-		if area.spawn_groups then
-			for _, group in pairs(area.spawn_groups) do
-				if group.spawn_pts then
-					for _, point in pairs(group.spawn_pts) do
-						if point.mission_element == spawn_point then
-							local delay_t = self._t + math.lerp(tweak_data.group_ai.spawn_kill_cooldown, 0, dis / max_dis)
-							group.delay_t = math.max(group.delay_t, delay_t)
-							return
-						end
-					end
-				end
-			end
-		end
-	end
+	local delay_t = self._t + math.map_range(dis, 0, max_dis, tweak_data.group_ai.spawn_kill_cooldown, 0)
+	e_data.spawn_group.delay_t = math.max(e_data.spawn_group.delay_t, delay_t)
 end)
 
 -- Fix this function doing nothing

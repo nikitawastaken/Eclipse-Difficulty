@@ -96,17 +96,17 @@ local mga_thermite_event = {
 local mga_vault_event = {
 	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
 }
-local elevator_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local skylight_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
+}
+local elevator_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local office_spawn = {
 	values = {
@@ -116,7 +116,7 @@ local office_spawn = {
 }
 local vent_spawn = {
 	values = {
-		interval = 60,
+		interval = 45,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

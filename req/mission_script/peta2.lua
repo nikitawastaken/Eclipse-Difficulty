@@ -20,12 +20,6 @@ local farm_far_spawn = {
 		interval = 10,
 	},
 }
-local that_fucking_bush_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local farm_close_spawn = {
 	values = {
 		interval = 20,
@@ -113,10 +107,15 @@ return {
 	[400012] = scripted_swat_van_spawn,
 	[400018] = scripted_swat_van_spawn,
 	[400024] = scripted_swat_van_spawn,
+	[100019] = farm_far_spawn,
 	[100131] = farm_far_spawn,
 	[100132] = farm_far_spawn,
-	[100133] = farm_far_spawn,
-	[101217] = that_fucking_bush_spawn,
+	[100693] = farm_far_spawn,
+	[101217] = farm_close_spawn,
+	[100007] = farm_close_spawn,
 	[100128] = farm_close_spawn,
 	[100130] = farm_close_spawn,
+	[100133] = farm_close_spawn,
+	[100692] = farm_close_spawn,
+	[100694] = farm_close_spawn,
 }

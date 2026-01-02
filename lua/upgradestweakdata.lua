@@ -1952,7 +1952,7 @@ function UpgradesTweakData:init(tweak_data)
 	self.specialization_descs[11][1].multiperk = "1"
 	self.specialization_descs[11][1].multiperk2 = "0.3"
 	self.specialization_descs[11][1].multiperk3 = "3"
-	self.specialization_descs[11][1].multiperk2 = "1"
+	self.specialization_descs[11][1].multiperk2 = "1.5"
 	self.specialization_descs[11][3].multiperk = "30%"
 	self.specialization_descs[11][3].multiperk2 = "50%"
 	self.specialization_descs[11][5].multiperk = "10"
