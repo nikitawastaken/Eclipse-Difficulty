@@ -309,7 +309,7 @@ function UpgradesTweakData:init(tweak_data)
 			upgrades = {
 				"ching",
 				"sub2000",
-				"wpn_prj_jaw",
+				"wpn_prj_jav",
 			}
 		},
 		{
