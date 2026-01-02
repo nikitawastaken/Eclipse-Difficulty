@@ -34,7 +34,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[101882] = { 
+	[101882] = {
 		reinforce = {
 			{
 				name = "crane01",

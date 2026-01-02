@@ -194,7 +194,7 @@ function GroupAIStateBesiege:_upd_assault_task(...)
 
 		self._mga_said_start_assault = true
 	end
-	
+
 	if task_data.phase ~= "fade" or self._hunt_mode then
 		return _upd_assault_task_original(self, ...)
 	end
@@ -1116,7 +1116,8 @@ function GroupAIStateBesiege:_upd_group_spawning()
 end
 
 function GroupAIStateBesiege:spawn_rate(use_balance_mul)
-	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate) * (use_balance_mul and self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight) or 1)
+	return self:_get_difficulty_dependent_value(self._tweak_data.assault.spawn_rate)
+		* (use_balance_mul and self:_get_balancing_multiplier(self._tweak_data.assault.spawn_rate_balance_mul, tweak_data.group_ai.team_ai_spawn_rate_balance_mul_weight) or 1)
 end
 
 function GroupAIStateBesiege:_perform_group_spawning(spawn_task, force)
