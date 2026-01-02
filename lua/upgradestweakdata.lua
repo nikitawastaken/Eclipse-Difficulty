@@ -141,7 +141,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			name_id = "weapons",
 			upgrades = {
-				"raging_bull",
+				"new_raging_bull",
 				"chinchilla",
 				"model3"
 			}
@@ -164,7 +164,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			name_id = "weapons",
 			upgrades = {
-				"mp5",
+				"new_mp5",
 				"mp7"
 			}
 		},
@@ -252,7 +252,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			name_id = "weapons",
 			upgrades = {
-				"ak12",
+				"flint",
 				"tkb"
 			}
 		},
@@ -266,7 +266,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			name_id = "weapons",
 			upgrades = {
-				"m14",
+				"new_m14",
 				"shak12"
 			}
 		},
@@ -308,6 +308,7 @@ function UpgradesTweakData:init(tweak_data)
 			name_id = "weapons",
 			upgrades = {
 				"ching",
+				"sub2000",
 				"wpn_prj_jaw",
 			}
 		},
@@ -413,7 +414,7 @@ function UpgradesTweakData:init(tweak_data)
 			upgrades = {
 				"erma",
 				"sterling",
-				"shackal",
+				"schakal",
 			}
 		},
 		{ -- lvl 50
@@ -453,12 +454,6 @@ function UpgradesTweakData:init(tweak_data)
 				"maxim9",
 			}
 		},
-		{
-			name_id = "weapons",
-			upgrades = {
-				"sub2000",
-			}
-		},
 		{ -- lvl 55
 			name_id = "weapons",
 			upgrades = {
@@ -476,7 +471,7 @@ function UpgradesTweakData:init(tweak_data)
 		{
 			name_id = "weapons",
 			upgrades = {
-				"supernov",
+				"supernova",
 				"m1897",
 			}
 		},
@@ -620,7 +615,8 @@ function UpgradesTweakData:init(tweak_data)
 				"x_mac10",
 				"x_sr2",
 				"x_olympic",
-				"x_mp5"
+				"x_mp5",
+				"x_baka"
 			}
 		},
 		{
