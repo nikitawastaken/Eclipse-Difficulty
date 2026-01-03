@@ -277,7 +277,7 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	local one_down_warning_text = self._contract_panel:text({
 		name = "one_down_warning_text",
-		text = " ",
+		text = managers.localization:to_upper_text("menu_one_down"),
 		font = font,
 		font_size = font_size,
 		color = tweak_data.screen_colors.one_down,
@@ -289,8 +289,8 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 
 	next_top = one_down_warning_text:bottom()
 
-	if one_down_active then
-		one_down_warning_text:set_text(managers.localization:to_upper_text("menu_one_down"))
+	if not one_down_active then
+		one_down_warning_text:set_visible(false)
 	end
 
 	local ghost_bonus_mul = managers.job:get_ghost_bonus()
@@ -1476,7 +1476,7 @@ function CrimeNetContractGui:_create_xp_appendices(x, y)
 		name = "job_xp",
 		font = font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.text
+		color = tweak_data.screen_colors.text,
 	})
 
 	self:make_fine_text(job_xp)
@@ -1488,7 +1488,7 @@ function CrimeNetContractGui:_create_xp_appendices(x, y)
 		name = "add_xp",
 		font = font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.risk
+		color = tweak_data.screen_colors.risk,
 	})
 
 	add_xp:set_text(" +" .. math.round(0))
@@ -1501,7 +1501,7 @@ function CrimeNetContractGui:_create_xp_appendices(x, y)
 		name = "ghost_add_xp",
 		font = font,
 		font_size = font_size,
-		color = tweak_data.screen_colors.ghost_color
+		color = tweak_data.screen_colors.ghost_color,
 	})
 
 	ghost_add_xp:set_text(" +" .. math.round(0))
@@ -1515,7 +1515,7 @@ function CrimeNetContractGui:_create_xp_appendices(x, y)
 		name = "heat_add_xp",
 		font = font,
 		font_size = font_size,
-		color = self._heat_color
+		color = self._heat_color,
 	})
 
 	heat_add_xp:set_text(" +" .. math.round(0))
@@ -1539,14 +1539,5 @@ function CrimeNetContractGui:set_one_down(one_down)
 	job_data.one_down = one_down
 
 	local one_down_warning_text = self._contract_panel:child("one_down_warning_text")
-
-	if one_down then
-		one_down_warning_text:set_text(managers.localization:to_upper_text("menu_one_down"))
-	else
-		one_down_warning_text:set_text("")
-	end
-
-	local _, _, w, h = one_down_warning_text:text_rect()
-	one_down_warning_text:set_h(h)
-	one_down_warning_text:set_w(w)
+	one_down_warning_text:set_visible(one_down)
 end
