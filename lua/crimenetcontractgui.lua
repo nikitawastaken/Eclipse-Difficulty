@@ -1530,6 +1530,7 @@ function CrimeNetContractGui:_create_xp_appendices(x, y)
 
 	return job_xp, add_xp, heat_add_xp, ghost_add_xp
 end
+
 function CrimeNetContractGui:set_one_down(one_down)
 	local job_data = self._node:parameters().menu_component_data
 	if job_data.difficulty == "normal" then
