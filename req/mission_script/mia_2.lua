@@ -68,14 +68,6 @@ local roof_spawn = {
 	},
 }
 return {
-	-- Combine some navigation areas
-	[100040] = {
-		ai_area = {
-			{ 182, 181 },
-			{ 178, 179 },
-			{ 173, 183 },
-		},
-	},
 	-- Boss spawn
 	[100154] = {
 		difficulty_max = 0.1,

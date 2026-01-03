@@ -22,6 +22,14 @@ local window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- Combine some navigation areas
+	[101531] = {
+		ai_area = {
+			{ 6, 85 },
+			{ 74, 157 },
+			{ 143, 175 }
+		}
+	},
 	[104838] = {
 		ponr = {
 			length = 240,

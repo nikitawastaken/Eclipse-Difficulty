@@ -27,11 +27,6 @@ local us_soldiers = { [us_soldier_1] = 4, [us_soldier_2] = 2, [us_soldier_3] = 1
 local us_soldier = {
 	enemy = us_soldiers,
 }
---[[
-local army_dozer = {
-	enemy = overkill_and_above and us_soldier_tank,
-}
-]]
 local taser_spawn = {
 	enemy = taser,
 }

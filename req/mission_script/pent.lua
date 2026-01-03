@@ -72,7 +72,7 @@ return {
 			},
 		},
 	},
-	[103831] = {
+	[100503] = {
 		reinforce = {
 			{ name = "main_room" },
 			{
