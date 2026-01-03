@@ -34,6 +34,7 @@
 	"bm_menu_steelsight_time": "Aim Time",
 	"bm_menu_bonus": "Team Bonus",
 
+	"menu_asset_lock_buy_bodybags_asset": "Requires the Blending In perk deck card to unlock",
 	"menu_infamy_desc_root_new": "As a new to the criminal elite, the first order of business is for you to get gear and fanfare befitting someone of your status.\n\nBONUSES:\nYour infamous base drop rate is increased from ##0.3%## to ##0.6%##.\nExperience gained is increased by ##5%##.",
 
 	"bm_equipment_doctor_bag_desc": "To use the Doctor Bag, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it can be used by you and your crew by holding $BTN_INTERACT; to regain health. Using the doctor bag will give the player one life back, meaning the player can get downed once more before going into custody. It can only be used twice.$NL;$NL;When the Doctor Bag is consumed, it disappears. You can see how many uses are left by looking at the Doctor Bag. $NL;$NL;The Doctor Bag is a portable bag, usually used by a physician or other medical profession to transport medical supplies and medicine.",
@@ -41,7 +42,7 @@
 	"bm_equipment_grenade_case": "Grenade Case",
 	"bm_equipment_grenade_case_desc": "To use the Grenade Case, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it may be used by both you and your crew by holding $BTN_INTERACT; to restore throwables. It can fully replenish your grenade reserves 4 times. When the Grenade Case is depleted, it disappears. You can see how many uses are left by looking at the Grenade Case. $NL;$NL;The Grenade Case is a portable case carried by combat operatives to transport explosives and other throwable weapons into a battle zone.",
 	"bm_equipment_grenade_crate_desc": "To use the Ordnance Bag, you need to place it by holding $BTN_USE_ITEM;. Once placed it cannot be moved, but it may be used by both you and your crew by holding $BTN_INTERACT; to restore throwables. It can fully replenish your grenade reserves 4 times. When the Ordnance Bag is depleted, it disappears. You can see how many uses are left by looking at the Ordnance Bag. $NL;$NL;The Ordnance Bag is a portable bag carried by combat operatives to transport explosives and other throwable weapons into a battle zone.",
-	
+
 	"bm_concussion": "Flashbang",
 	"bm_concussion_desc": "If the cops can throw infinite amounts of these to burn your retinas out, so should you! $NL;Although yours come in limited supply.. $NL;They may not like the taste of their own medicine, but it is their opinion and your choice! $NL;$NL;Upon detonation, they will stun anyone nearby (including you and teammates!) for a short moment. $NL;$NL;Best used indoors.",
 
@@ -89,8 +90,8 @@
 	"eclipse_menu_improved_gun_echo_vanilla": "Vanilla",
 	"eclipse_menu_improved_gun_echo_oldschool": "Old-School",
 	"eclipse_menu_improved_gun_echo_heat": "Heat",
-	
-	"menu_pro_warning": "This is a pro job!\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
+
+	"menu_pro_warning": "This is a pro job! Experience gain and contract pay are increased by 20%.\n\nFriendly fire is enabled\nGrace Period length is reduced\nYou're only granted two Team AI\nGetting hit incapacitates your visibility\nVarious heists have Full Force Onslaught enabled\nCivilian kills increase the assault intensiveness and difficulty\nEach consecutive down decreases bleedout timer and revive health",
 	"menu_difficulty_easy_wish": "Death Wish",
 	"menu_risk_easy_wish": "Death Wish.\nFor you, action is the juice.",
 	"menu_risk_special": "Overkill.\nMaximum Force Responders inbound.",
@@ -140,7 +141,7 @@
 	"ene_security_female" : "Security Guard",
 	"ene_coast_guard" : "US Coast Guard",
 	"ene_gensec_operator" : "GenSec Tactical Security",
-	
+
 	"ene_fbi_boss" : "Agent Riker",
 	"ene_soldier" : "US Army Soldier",
 	"ene_hoxton_breakout_guard" : "FBI Ready Team",
@@ -150,7 +151,7 @@
 	"ene_male_marshal_gunner_hcar_2" : "Bellmead Gunner",
 	"ene_male_marshal_gunner_sko12_2" : "Bellmead Gunner",
 	"ene_male_marshal_marksman_2" : "Bellmead Marksman",
-	
+
 	"ene_policia" : "Policia Municipal",
 	"ene_male_office_cop" : "Policia Federal",
 	"ene_policia_agent" : "Policia Federal Agent",

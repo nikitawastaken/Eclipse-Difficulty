@@ -220,3 +220,8 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 
 	return self:_convert_add_to_mul(multiplier)
 end
+
+-- set default throwable to be the cards
+Hooks:PostHook(BlackMarketManager, "_setup", "eclipse__setup", function(self)
+	self._defaults.grenade = "wpn_prj_ace"
+end)

@@ -927,8 +927,20 @@ function SkillTreeTweakData:init(tweak_data)
 
 	self.specializations[23] = wildcard_perkdeck
 
-	-- wild cards
+	-- Generic changes to all perk decks
 	for _, perkdeck in pairs(self.specializations) do
+		-- card cost
+		perkdeck[1].cost = 400
+		perkdeck[2].cost = 300
+		perkdeck[3].cost = 600
+		perkdeck[4].cost = 400
+		perkdeck[5].cost = 900
+		perkdeck[6].cost = 550
+		perkdeck[7].cost = 1200
+		perkdeck[8].cost = 700
+		perkdeck[9].cost = 1500
+
+		-- wildcard upgrades
 		perkdeck[2].upgrades = { "player_regain_throwable_from_ammo_1" }
 		perkdeck[2].icon_xy = { 0, 8 }
 		perkdeck[4].upgrades = { "player_passive_suspicion_bonus", "player_buy_bodybags_asset", "player_additional_assets", "player_buy_spotter_asset" }
@@ -960,4 +972,19 @@ function SkillTreeTweakData:init(tweak_data)
 	table.delete(self.default_upgrades, "carry_movement_speed_multiplier")
 	table.delete(self.default_upgrades, "player_walk_speed_multiplier")
 	table.delete(self.default_upgrades, "striker_reload_speed_default") -- why did they do it like this?
+	table.delete(self.default_upgrades, "jowi")
+	table.delete(self.default_upgrades, "x_1911")
+	table.delete(self.default_upgrades, "x_b92fs")
+	table.delete(self.default_upgrades, "x_deagle")
+	table.delete(self.default_upgrades, "x_g22c")
+	table.delete(self.default_upgrades, "x_g17")
+	table.delete(self.default_upgrades, "x_usp")
+	table.delete(self.default_upgrades, "x_sr2")
+	table.delete(self.default_upgrades, "x_mp5")
+	table.delete(self.default_upgrades, "x_akmsu")
+	table.delete(self.default_upgrades, "x_packrat")
+	table.delete(self.default_upgrades, "x_p226")
+	table.delete(self.default_upgrades, "x_m45")
+	table.delete(self.default_upgrades, "x_mp7")
+	table.delete(self.default_upgrades, "x_ppk")
 end
