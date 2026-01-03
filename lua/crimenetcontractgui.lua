@@ -273,6 +273,25 @@ function CrimeNetContractGui:init(ws, fullscreen_ws, node)
 	modifiers_text:set_bottom(math.round(self._contract_panel:h() * 0.5 - font_size))
 
 	local next_top = modifiers_text:bottom()
+	local one_down_active = job_data.one_down == 1
+
+	local one_down_warning_text = self._contract_panel:text({
+		name = "one_down_warning_text",
+		text = " ",
+		font = font,
+		font_size = font_size,
+		color = tweak_data.screen_colors.one_down,
+	})
+
+	self:make_fine_text(one_down_warning_text)
+	one_down_warning_text:set_top(next_top)
+	one_down_warning_text:set_left(padding)
+
+	next_top = one_down_warning_text:bottom()
+
+	if one_down_active then
+		one_down_warning_text:set_text(managers.localization:to_upper_text("menu_one_down"))
+	end
 
 	local ghost_bonus_mul = managers.job:get_ghost_bonus()
 	local job_ghost = math.round(ghost_bonus_mul * 100)
@@ -1432,6 +1451,10 @@ function CrimeNetContractGui:set_difficulty_id(difficulty_id)
 		menu_risk_id = "menu_risk_sm_wish"
 	end
 
+	if job_data.difficulty == "normal" then
+		self:set_one_down(false)
+	end
+
 	local stat = managers.statistics:completed_job(job_data.job_id, tweak_data:index_to_difficulty(difficulty_id))
 	local risk_text = self._contract_panel:child("risk_text")
 
@@ -1506,4 +1529,24 @@ function CrimeNetContractGui:_create_xp_appendices(x, y)
 	ghost_add_xp:set_y(math.round(job_xp:y()))
 
 	return job_xp, add_xp, heat_add_xp, ghost_add_xp
+end
+function CrimeNetContractGui:set_one_down(one_down)
+	local job_data = self._node:parameters().menu_component_data
+	if job_data.difficulty == "normal" then
+		one_down = false
+		self._node:item("toggle_one_down"):set_value("off")
+	end
+	job_data.one_down = one_down
+
+	local one_down_warning_text = self._contract_panel:child("one_down_warning_text")
+
+	if one_down then
+		one_down_warning_text:set_text(managers.localization:to_upper_text("menu_one_down"))
+	else
+		one_down_warning_text:set_text("")
+	end
+
+	local _, _, w, h = one_down_warning_text:text_rect()
+	one_down_warning_text:set_h(h)
+	one_down_warning_text:set_w(w)
 end
