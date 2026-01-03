@@ -1,3 +1,34 @@
+-- lock dw / ds
+tweak_data.difficulty_level_locks = {
+	0,
+	0,
+	0,
+	0,
+	0,
+	80,
+	69420,
+	69420,
+}
+
+-- lower difficulty xp muls
+tweak_data.experience_manager.difficulty_multiplier = {
+	1.5,
+	3,
+	6,
+	12,
+	12,
+	12,
+}
+
+-- remove alive player multipliers
+tweak_data.experience_manager.alive_humans_multiplier = {
+	[0] = 1,
+	1,
+	1,
+	1,
+	1,
+}
+
 -- Tear Gas damage is now a percentage of total HP
 tweak_data.projectiles.cs_grenade_quick.damage_per_tick = 0.05
 
@@ -301,209 +332,3 @@ for _, projectile in pairs(tweak_data.projectiles) do
 		projectile.player_damage = projectile.damage * (projectile.player_dmg_mul or 1 / 2)
 	end
 end
-
--- LEVELING PROGRESION OVERHAUL --
-
--- Clear out the vanilla level table (including hardcoded lvls 1-9)
-tweak_data.experience_manager.levels = {}
-
--- Flatten the curve of experience per level distribution, the exponent is reduced from 3 to 1.5
--- Reduce the total amount of experience required to go through lvl 0-100 from 23.3 mil to 20.2 mil
-local multiplier = 1
-local exp_step_start = 1
-local exp_step_end = 100
-local exp_step = 1 / (exp_step_end - exp_step_start)
-local exp_step_last_points = 5000
-local exp_step_curve = 1.5
-
-for i = exp_step_start, exp_step_end do
-	tweak_data.experience_manager.levels[i] = {
-		points = math.round((500000 - exp_step_last_points) * math.pow(exp_step * (i - exp_step_start), exp_step_curve) + exp_step_last_points) * multiplier
-	}
-end
-
--- Hide ovk290 / sm_wish, lock ov145 behind lvl 40+
-tweak_data.difficulty_level_locks = {
-	0,
-	0,
-	0,
-	0,
-	30,
-	60,
-	69420,
-	69420,
-}
-
--- Rework difficulty exp muls
-tweak_data.experience_manager.difficulty_multiplier = {
-	2,
-	4,
-	7,
-	12,
-	69420,
-	69420,
-}
-
--- Make the heist fail multiplier on exp less harsh
-tweak_data.experience_manager.stage_failed_multiplier = 0.05
-
--- Make exp card drops give more exp in pick-a-card
-tweak_data.experience_manager.loot_drop_value = {
-	xp10 = 8000,
-	xp15 = 16000,
-	xp20 = 32000,
-	xp30 = 64000,
-	xp40 = 96000,
-	xp50 = 128000,
-	xp60 = 192000,
-	xp70 = 256000,
-	xp80 = 320000,
-	xp90 = 384000,
-	xp100 = 512000,
-	xp_pda9_1 = 250000,
-	xp_pda9_2 = 3000000
-}
-
--- Remove alive player multipliers, there's already a strong penalty for the player in custody
-tweak_data.experience_manager.alive_humans_multiplier = {
-	[0] = 1,
-	1,
-	1,
-	1,
-	1,
-}
-
--- No stupid extra multipliers
-tweak_data.experience_manager.limited_xmas_bonus_multiplier = 1
-tweak_data.experience_manager.limited_bonus_multiplier = 1
--- these two in particular are to block any day any heist users from cheesing progression with 7 day long heists (and it shouldn't affect any vanilla heists)
-tweak_data.experience_manager.day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
-tweak_data.experience_manager.pro_day_multiplier = { 1, 1, 1, 1, 1, 1, 1 }
-
-tweak_data:digest_recursive(tweak_data.experience_manager)
-
-
--- misc
--- Python code for matplotlibing experience graphs
---[[
-
-import math
-import matplotlib.pyplot as plt
-
-# ====================================================
-# VANILLA PAYDAY 2 SETTINGS
-# ====================================================
-exp_step_start_vanilla = 10
-exp_step_end_vanilla = 100
-exp_step_vanilla = 1 / (exp_step_end_vanilla - exp_step_start_vanilla)
-exp_step_last_points_vanilla = 4600
-exp_step_curve_vanilla = 3
-multiplier_vanilla = 1
-
-# Base levels 1–9 (vanilla hardcoded)
-base_points_vanilla = [900, 1250, 1550, 1850, 2200, 2600, 3000, 3500, 4000]
-
-levels_vanilla = []
-xp_points_vanilla = []
-
-# Add early fixed levels
-for i, p in enumerate(base_points_vanilla, start=1):
-    levels_vanilla.append(i)
-    xp_points_vanilla.append(p)
-
-# Procedural XP (10–100)
-for i in range(exp_step_start_vanilla, exp_step_end_vanilla + 1):
-    points = round(
-        (1000000 - exp_step_last_points_vanilla)
-        * math.pow(exp_step_vanilla * (i - exp_step_start_vanilla), exp_step_curve_vanilla)
-        + exp_step_last_points_vanilla
-    ) * multiplier_vanilla
-    levels_vanilla.append(i)
-    xp_points_vanilla.append(points)
-
-# Calculate cumulative XP
-cumulative_vanilla = []
-running_total = 0
-for xp in xp_points_vanilla:
-    running_total += xp
-    cumulative_vanilla.append(running_total)
-
-
-# ====================================================
-# CUSTOM (ECLIPSE PROGRESSION DEV BRANCH)
-# ====================================================
-exp_step_start_mod = 1
-exp_step_end_mod = 100
-exp_step_mod = 1 / (exp_step_end_mod - exp_step_start_mod)
-exp_step_last_points_mod = 3000
-exp_step_curve_mod = 1.5
-multiplier_mod = 1
-
-levels_mod = []
-xp_points_mod = []
-
-for i in range(exp_step_start_mod, exp_step_end_mod + 1):
-    points = round(
-        (500000 - exp_step_last_points_mod)
-        * math.pow(exp_step_mod * (i - exp_step_start_mod), exp_step_curve_mod)
-        + exp_step_last_points_mod
-    ) * multiplier_mod
-    levels_mod.append(i)
-    xp_points_mod.append(points)
-
-# Calculate cumulative XP
-cumulative_mod = []
-running_total = 0
-for xp in xp_points_mod:
-    running_total += xp
-    cumulative_mod.append(running_total)
-
-
-# ====================================================
-# REPORT
-# ====================================================
-target_level = 80
-
-total_xp_vanilla_target = cumulative_vanilla[target_level - 1]
-total_xp_vanilla_100 = cumulative_vanilla[-1]
-total_xp_mod_target = cumulative_mod[target_level - 1]
-total_xp_mod_100 = cumulative_mod[-1]
-
-print(f"[VANILLA] Total XP to reach level {target_level}: {total_xp_vanilla_target:,} XP")
-print(f"[VANILLA] Total XP to reach level 100: {total_xp_vanilla_100:,} XP")
-print()
-print(f"[CUSTOM]  Total XP to reach level {target_level}: {total_xp_mod_target:,} XP")
-print(f"[CUSTOM]  Total XP to reach level 100: {total_xp_mod_100:,} XP")
-
-
-# ====================================================
-# PLOT 1 — XP PER LEVEL (BOTH CURVES)
-# ====================================================
-plt.figure(figsize=(10, 6))
-plt.plot(levels_vanilla, xp_points_vanilla, marker="o", color="tab:blue", label="Vanilla PAYDAY 2")
-plt.plot(levels_mod, xp_points_mod, marker="o", color="tab:orange", label="Custom Curve (Eclipse Progression-Dev)")
-plt.title("XP Required per Level — Vanilla vs. Eclipse Progression-Dev")
-plt.xlabel("Level")
-plt.ylabel("XP Required for Next Level")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
-
-# ====================================================
-# PLOT 2 — CUMULATIVE XP COMPARISON
-# ====================================================
-plt.figure(figsize=(10, 6))
-plt.plot(levels_vanilla, cumulative_vanilla, color="tab:blue", label="Vanilla PAYDAY 2")
-plt.plot(levels_mod, cumulative_mod, color="tab:orange", label="Custom Curve (Eclipse Progression-Dev)")
-plt.title("Total Cumulative XP — Vanilla vs. Eclipse Progression-Dev")
-plt.xlabel("Level")
-plt.ylabel("Total XP Required")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
-
-
-
-]]

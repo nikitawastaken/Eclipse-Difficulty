@@ -196,7 +196,7 @@ function IngameContractGui:init(ws, node)
 
 	local pro_warning_text = nil
 
-	if managers.job:is_current_job_professional() then
+	if is_pro_job then
 		pro_warning_text = text_panel:text({
 			name = "pro_warning_text",
 			vertical = "top",
