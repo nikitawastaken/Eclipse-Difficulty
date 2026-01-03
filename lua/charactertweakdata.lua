@@ -585,7 +585,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 			light = 0.6,
 		},
 		{
-			light = 1
+			light = 1,
 		},
 	}
 
@@ -2122,17 +2122,17 @@ function CharacterTweakData:_set_presets()
 		if tag_map.civilian then
 			char_preset.scare_max = { 10, 20 }
 			char_preset.scare_shot = 1
-			char_preset.scare_intimidate = -3	
-			char_preset.submission_intimidate = 15 			
-			char_preset.submission_max = get_difficulty_specific_value({ 
-				{ 60, 120 }, 
-				{ 60, 120 }, 
-				{ 45, 90 }, 
-				{ 30, 60 }, 
-				{ 25, 50 }, 
+			char_preset.scare_intimidate = -3
+			char_preset.submission_intimidate = 15
+			char_preset.submission_max = get_difficulty_specific_value({
+				{ 60, 120 },
+				{ 60, 120 },
+				{ 45, 90 },
+				{ 30, 60 },
+				{ 25, 50 },
 			})
-			char_preset.run_away_delay = { 
-				5, 
+			char_preset.run_away_delay = {
+				5,
 				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
 			}
 		elseif tag_map.shield then
