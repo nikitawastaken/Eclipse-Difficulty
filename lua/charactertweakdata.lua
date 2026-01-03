@@ -489,17 +489,17 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	})
 	for _, v in pairs(presets.weapon.gang_member) do
 		v.FALLOFF = {
-			{ dmg_mul = team_ai_dmg, r = 0, acc = { 0.75, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = team_ai_dmg, r = 1500, acc = { 0.5, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
-			{ dmg_mul = team_ai_dmg, r = 3000, acc = { 0.25, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_dmg, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_dmg, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
+			{ dmg_mul = team_ai_dmg, r = 3000, acc = { 0, 0.5 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 		}
 	end
 
 	-- Add damage falloff to select presets
 	local team_ai_preset_falloff = {
-		is_shotgun_pump = { 1.5, 1, 0.5 },
-		is_shotgun_mag = { 1.5, 1, 0.5 },
-		is_double_barrel = { 1.25, 1, 0.75 },
+		is_shotgun_pump = { 1.25, 1, 0.25 },
+		is_shotgun_mag = { 1.25, 1, 0.25 },
+		is_double_barrel = { 1, 0.75, 0.5 },
 		is_flamethrower = { 1, 0.75, 0 },
 	}
 
@@ -567,27 +567,25 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	local team_ai_hp = get_difficulty_specific_value({
 		64,
 		64,
-		80,
 		96,
 		128,
+		160,
 	})
 
 	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
-	presets.gang_member_damage.HEALTH_REGEN = presets.gang_member_damage.HEALTH_INIT * 0.1
-	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.35
+	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
+	presets.gang_member_damage.REGENERATE_RATIO = 0.1
 	presets.gang_member_damage.REGENERATE_TIME = 5
 	presets.gang_member_damage.REGENERATE_TIME_AWAY = presets.gang_member_damage.REGENERATE_TIME
-	presets.gang_member_damage.hurt_severity.bullet = {
-		health_reference = "full",
-		zones = {
-			{
-				health_limit = 0.4,
-				none = 0.6,
-				light = 0.4,
-			},
-			{
-				light = 1,
-			},
+	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
+	presets.gang_member_damage.hurt_severity.bullet.zones = {
+		{
+			health_limit = 0.2,
+			none = 0.4,
+			light = 0.6,
+		},
+		{
+			light = 1
 		},
 	}
 
@@ -2119,10 +2117,25 @@ function CharacterTweakData:_set_presets()
 			char_preset.damage.explosion_damage_mul = 1
 		end
 
-		local tag_map = type(char_preset.tags) == "table" and table.list_to_set(char_preset.tags) or {}
-
 		-- Set up special units based on tags
-		if tag_map.shield then
+		local tag_map = type(char_preset.tags) == "table" and table.list_to_set(char_preset.tags) or {}
+		if tag_map.civilian then
+			char_preset.scare_max = { 10, 20 }
+			char_preset.scare_shot = 1
+			char_preset.scare_intimidate = -3	
+			char_preset.submission_intimidate = 15 			
+			char_preset.submission_max = get_difficulty_specific_value({ 
+				{ 60, 120 }, 
+				{ 60, 120 }, 
+				{ 45, 90 }, 
+				{ 30, 60 }, 
+				{ 25, 50 }, 
+			})
+			char_preset.run_away_delay = { 
+				5, 
+				get_difficulty_specific_value({ 30, 20, 20, 15, 10 }),
+			}
+		elseif tag_map.shield then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
