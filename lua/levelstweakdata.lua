@@ -468,6 +468,50 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.moon.has_megaphone_cop = true
 	self.brb.has_megaphone_cop = true
 	self.chas.has_megaphone_cop = true
+	
+	-- stealth bonus changes 
+	-- reduce the max possible stealth bonus from 25% to 15% to match with the heat xp bonus (with the exception of The White House)
+	-- the stealth bonus is tweaked based on the heist, how many days it has and how risky the job/day is
+	-- low risk heists
+	self.mallcrasher.ghost_bonus = 0.05 -- it's possible to stealth mallcrasher, i'm serious
+	self.nightclub.ghost_bonus = 0.05 -- it's a basic heist (from 10%)
+	self.branchbank.ghost_bonus = 0.05 -- same as here (from 10%)
+	-- normal risks heists
+	self.kosugi.ghost_bonus = 0.1 -- increase the bonus to 10% (from 5%)
+	self.dark.ghost_bonus = 0.1 -- decrease the bonus to 10% (from 15%)
+	self.hox_3.ghost_bonus = 0.15 -- increase the bonus to 15% (from 10%)
+	self.bex.ghost_bonus = 0.1 -- Slik Road, City of Gold and Texas Heat heists all have bonus decreased to 10% (except final heists, Border Crossing and Lost In Transit)
+	self.pex.ghost_bonus = 0.1
+	self.chas.ghost_bonus = 0.1
+	self.sand.ghost_bonus = 0.1
+	self.chca.ghost_bonus = 0.1
+	self.ranc.ghost_bonus = 0.1
+	self.corp.ghost_bonus = 0.1
+	-- high risk heists
+	self.mex.ghost_bonus = 0.15 -- tedious heist
+	self.arm_for.ghost_bonus = 0.15 -- high risk job involing US Army
+	self.arena.ghost_bonus = 0.15 -- Alesso Heist is pretty long even on stealth
+	self.kenaz.ghost_bonus = 0.15 -- same as GGC
+	self.dah.ghost_bonus = 0.15 -- increase to 15% (from 10%)
+	self.vit.ghost_bonus = 0.2 -- The Greatest Heist of All
+	self.trai.ghost_bonus = 0.15 -- high risk job involing US Army
+	
+	-- multi day heists
+	-- Big Oil (5% for Big Oil day 1 from fucking 15%)
+	self.welcome_to_the_jungle_1.ghost_bonus = 0.05
+	-- Framing Frame (5% in day 1, 3% in day 2 and 7% on day 3 to reach the max 15% stealth bonus)
+	self.framing_frame_1.ghost_bonus = 0.05
+	self.framing_frame_2.ghost_bonus = 0.03
+	self.framing_frame_3.ghost_bonus = 0.07
+	-- Election Day (3% in day 1 and 7% on day 2 if it's not Plan C)
+	self.election_day_1.ghost_bonus = 0.03
+	self.election_day_2.ghost_bonus = 0.07
+	-- Firestarter (5% in day 2 and 10% for day 3)
+	self.firestarter_2.ghost_bonus = 0.05
+	self.firestarter_3.ghost_bonus = 0.1
+	
+	-- heists that shouldn't have stealth bonus (they're not possible to beat)
+	self.nmh.ghost_bonus = nil
 
 	-- Replace DC beat cops with appropriate ones based on the city
 	-- LAPD
