@@ -6,7 +6,7 @@ local mobster_team = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -16,36 +16,32 @@ local disabled = {
 	},
 }
 return {
+	-- Combine some navigation areas
+	[141003] = {
+		ai_area = {
+			{ 2, 66 },
+			{ 16, 72 },
+			{ 29, 88 },
+			{ 31, 95, 96 },
+			{ 34, 81 },
+			{ 36, 47, 179 },
+			{ 38, 89 },
+			{ 39, 86 },
+			{ 53, 80 },
+			{ 55, 105 },
+			{ 71, 78 },
+			{ 79, 82 },
+			{ 87, 90, 91, 92, 93, 94 },
+		},
+	},
 	[101103] = {
 		ponr = {
 			length = 360,
 			player_mul = { 1.25, 1.15, 1, 1 },
 		},
 	},
-	-- Combine some navigation areas
-	[100017] = {
-		ai_area = {
-			{ 79, 82 },
-			{ 16, 72 },
-			{ 14, 15 },
-			{ 51, 80 },
-			{ 19, 77 },
-			{ 99, 101 },
-			{ 84, 100 },
-			{ 24, 76 },
-			{ 25, 75 },
-			{ 20, 23, 85 },
-			{ 3, 4, 181 },
-			{ 36, 47, 179 },
-			{ 2, 66, 108 },
-			{ 31, 95, 96 },
-			{ 55, 105, 106 },
-			{ 38, 39, 59, 86 },
-			{ 29, 83, 108, 109 },
-			{ 32, 48, 49, 67, 68 },
-			{ 87, 88, 89, 90, 91, 92, 93, 94 },
-		},
-	},
+	-- Disable bad navlink
+	[101057] = disabled,
 	-- Enter main hall
 	[103594] = {
 		difficulty_max = 0.1,
@@ -89,22 +85,22 @@ return {
 		reinforce = {
 			{
 				name = "mansion_left",
-				force = 3,
+				force = 2,
 				position = Vector3(-1500, -5250, -50),
 			},
 			{
 				name = "mansion_back",
-				force = 3,
+				force = 2,
 				position = Vector3(-3500, -1900, -50),
 			},
 			{
 				name = "mansion_front",
-				force = 3,
+				force = 2,
 				position = Vector3(4100, -3175, -150),
 			},
 			{
 				name = "mansion_right",
-				force = 3,
+				force = 2,
 				position = Vector3(1400, 2650, -175),
 			},
 		},

@@ -6,7 +6,6 @@ local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 
-local diff_scaling = diff_i / 8
 local hard_above = diff_i >= 3
 local overkill_above = diff_i >= 5
 
@@ -19,8 +18,8 @@ local bulldozer = scripted_enemy.bulldozer_1
 local bulldozer_2 = scripted_enemy.bulldozer_2
 local elite_ben_bulldozer = scripted_enemy.elite_bulldozer_1
 local elite_skull_bulldozer = scripted_enemy.elite_bulldozer_2
-local close_shutters_chance = (normal and 20 or hard and 40 or 60) + (is_pro_job and 20 or 0)
-local basement_ambush_chance = (normal and 25 or hard and 45 or 65) + (is_pro_job and 10 or 0)
+local close_shutters_chance = (normal and 10 or hard and 30 or 60) + (is_pro_job and 30 or 0)
+local basement_ambush_chance = (normal and 30 or hard and 40 or 60) + (is_pro_job and 20 or 0)
 local basement_enemies_amount = 2
 local shield_army_chance = (is_eclipse and 30 or 20) + (is_pro_job and 10 or 0)
 local random_dozers = {
@@ -31,10 +30,6 @@ local random_elite_dozers = {
 	elite_ben_bulldozer,
 	elite_skull_bulldozer,
 }
-
-local vault_count = 4
-local vault_ambush_chance = 0.5
-
 local disabled = {
 	values = {
 		enabled = false,
@@ -43,17 +38,12 @@ local disabled = {
 local filter_overkill_above = {
 	values = Eclipse.utils.set_diff_groups("overkill_above"),
 }
-local filter_easy_above = {
-	values = Eclipse.utils.set_diff_groups("easy_above"),
+local filter_hard_above = {
+	values = Eclipse.utils.set_diff_groups("hard_above"),
 }
-
-local vault_ambush_enemy = bulldozer
-
-if math.random() <= vault_ambush_chance then
-	vault_ambush_enemy = scripted_enemy.elite_bulldozer_2
-	vault_count = 2
-end
-
+local filter_normal_above = {
+	values = Eclipse.utils.set_diff_groups("normal_above"),
+}
 local bags_required = {
 	values = {
 		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
@@ -64,11 +54,8 @@ local bags_required_objective = {
 		amount = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
-local vault_ambush = {
-	enemy = vault_ambush_enemy,
-}
 local bulldozer_spawn = {
-	enemy = is_eclipse_pro and random_elite_dozers or diff_i > 3 and random_dozers or bulldozer,
+	enemy = is_eclipse_pro and random_elite_dozers or random_dozers,
 }
 local taser_cloaker = {
 	enemy = cloaker,
@@ -96,17 +83,17 @@ local mga_thermite_event = {
 local mga_vault_event = {
 	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
 }
-local elevator_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local skylight_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
+}
+local elevator_spawn = {
+	values = {
+		interval = 20,
+	},
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local office_spawn = {
 	values = {
@@ -132,8 +119,8 @@ return {
 	-- add ffo and spawn lobby ambushes
 	[101660] = {
 		ponr = {
-			length = 150,
-			player_mul = { 1.1, 0.9, 0.7, 0.5 },
+			length = 180,
+			player_mul = { 1.25, 1, 0.75, 0.5 },
 		},
 		on_executed = {
 			{ id = 400000, delay = 0 },
@@ -155,21 +142,17 @@ return {
 			{
 				name = "lobby",
 				force = 4,
-				position = Vector3(-1800, 25, 0),
+				position = Vector3(-2275, 25, -5),
 			},
-		},
-	},
-	[103336] = { -- choose security footage location
-		reinforce = {
 			{
 				name = "cafeteria",
 				force = 3,
-				position = Vector3(-2350, -2050, -20),
+				position = Vector3(-1950, -2050, -20),
 			},
 			{
 				name = "offices",
 				force = 3,
-				position = Vector3(-2750, 2050, -20),
+				position = Vector3(-2675, 2050, -25),
 			},
 		},
 	},
@@ -190,8 +173,8 @@ return {
 	-- allow Overdrill on overkill above
 	[104182] = filter_overkill_above,
 	[103962] = filter_overkill_above,
-	-- allow Bo's dozers on all diffs
-	[100682] = filter_easy_above,
+	-- allow Bo's dozers on Normal+
+	[100682] = filter_normal_above,
 	-- disable forced manager flee objective
 	[100665] = disabled,
 	-- disable the right vault path
@@ -320,26 +303,20 @@ return {
 		},
 	},
 	-- vault ambush
-	[104132] = vault_ambush,
-	[104170] = vault_ambush,
-	[104131] = vault_ambush,
-	[104169] = vault_ambush,
-	[100763] = vault_ambush,
-	[104000] = {
-		chance = 15 * diff_i,
-	},
 	[100225] = {
 		values = {
-			amount = vault_count,
+			amount = is_pro_job and 3 or 2,
 		},
 	},
-	[101544] = {
-		on_executed = {
-			{ id = 103998, remove = true },
-			{ id = 103377, remove = true },
-			{ id = 104041, remove = true },
-		},
-	},
+	[103998] = filter_hard_above,
+	[100114] = disabled,
+	[103377] = disabled,
+	[104041] = disabled,
+	[104132] = bulldozer_spawn,
+	[104170] = bulldozer_spawn,
+	[104131] = bulldozer_spawn,
+	[104169] = bulldozer_spawn,
+	[100763] = bulldozer_spawn,
 	-- tweak chances for closing shutters and basement ambush
 	[102813] = {
 		chance = close_shutters_chance,
@@ -407,12 +384,11 @@ return {
 			{ id = 400022, delay = 1, delay_rand = 1 },
 		},
 	},
-	-- disable a bunch of vanilla spawns i don't like
+	-- replace escape spawns with cooler ambushes
 	[103595] = disabled,
 	[102575] = disabled,
 	[103578] = disabled,
 	[103669] = disabled,
-	-- replace them with cooler ambush
 	[100589] = {
 		on_executed = {
 			{ id = 400031, delay = 0 },

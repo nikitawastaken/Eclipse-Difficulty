@@ -60,12 +60,12 @@ return {
 		reinforce = {
 			{
 				name = "escape_left",
-				force = 2,
+				force = 3,
 				position = Vector3(-1425, 350, 25),
 			},
 			{
 				name = "escape_right",
-				force = 2,
+				force = 3,
 				position = Vector3(1425, 450, 25),
 			},
 		},

@@ -2235,7 +2235,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "_add_charms_to_all_weapons", "eclipse_ad
 	self.parts.wpn_fps_pis_deagle_ck.custom_stats = { ammo_offset = 3 }
 	self:_balance_conversion_kit(tweak_data, "deagle", "wpn_fps_pis_deagle_ck", 64, nil, true)
 
-	self.parts.wpn_fps_smg_mp5_m_straight.stats.recoil = -4
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.damage = 0
+	self.parts.wpn_fps_smg_mp5_m_straight.stats.recoil = -3
 	self.parts.wpn_fps_smg_mp5_m_straight.stats.concealment = 0
 	self:_balance_conversion_kit(tweak_data, "new_mp5", "wpn_fps_smg_mp5_m_straight", 24, nil, true)
 

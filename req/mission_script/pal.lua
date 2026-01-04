@@ -100,20 +100,13 @@ return {
 	-- Combine some navigation areas
 	[100023] = {
 		ai_area = {
-			{ 368, 358, 330, 255, 249 },
-			{ 259, 258 },
-			{ 357, 254 },
-			{ 356, 456 },
-			{ 355, 256 },
-			{ 250, 360 },
-			{ 366, 242 },
-			{ 365, 243 },
-			{ 364, 244 },
-			{ 246, 363 },
-			{ 247, 362 },
-			{ 248, 361 },
-			{ 359, 251 },
+			{ 249, 255 },
+			{ 269, 393 },
+			{ 270, 297 },
+			{ 330, 358, 368 },
 		},
+	},
+	[100023] = {
 		on_executed = {
 			{ id = 400044, delay = 3 },
 		},
@@ -211,17 +204,17 @@ return {
 				position = Vector3(-125, 2625, 25),
 			},
 			{
-				name = "mitchell2",
+				name = "mitchell02",
 				force = 2,
 				position = Vector3(-2400, 4350, 25),
 			},
 			{
-				name = "wilson1",
+				name = "wilson01",
 				force = 2,
 				position = Vector3(-3710, -1285, 25),
 			},
 			{
-				name = "wilson2",
+				name = "wilson02",
 				force = 2,
 				position = Vector3(-1125, 625, 50),
 			},

@@ -248,22 +248,22 @@ return {
 	[100511] = { -- diff 50
 		reinforce = {
 			{
-				name = "warehouse1",
+				name = "warehouse01",
 				force = 2,
 				position = Vector3(875, -1175, 0),
 			},
 			{
-				name = "warehouse2",
+				name = "warehouse02",
 				force = 2,
 				position = Vector3(370, 1340, 0),
 			},
 			{
-				name = "warehouse3",
+				name = "warehouse03",
 				force = 2,
 				position = Vector3(1525, 2700, 0),
 			},
 			{
-				name = "warehouse4",
+				name = "warehouse04",
 				force = 2,
 				position = Vector3(4150, -1300, 0),
 			},

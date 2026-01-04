@@ -538,3 +538,15 @@ Hooks:PostHook(CopLogicBase, "death_clbk", "sh_death_clbk", function(data, damag
 		managers.groupai:state():_chk_say_group(data.group, "group_death")
 	end
 end)
+
+-- Disable forced voicelines
+local empty_chatter = {}
+local _set_attention_obj_original = CopLogicBase._set_attention_obj
+function CopLogicBase._set_attention_obj(data, ...)
+	local chatter = data.char_tweak.chatter
+	data.char_tweak.chatter = empty_chatter
+
+	_set_attention_obj_original(data, ...)
+
+	data.char_tweak.chatter = chatter
+end

@@ -51,17 +51,17 @@ return {
 	[100109] = {
 		reinforce = {
 			{
-				name = "warehouse_office1",
+				name = "warehouse_office01",
 				force = 3,
 				position = Vector3(0, 0, 0),
 			},
 			{
-				name = "warehouse_office2",
+				name = "warehouse_office02",
 				force = 3,
 				position = Vector3(-1750, -2250, 0),
 			},
 			{
-				name = "warehouse_office3",
+				name = "warehouse_office03",
 				force = 3,
 				position = Vector3(-4500, -3250, 0),
 			},
@@ -69,25 +69,25 @@ return {
 	},
 	[101369] = {
 		reinforce = {
-			{ name = "warehouse_office1" },
-			{ name = "warehouse_office2" },
-			{ name = "warehouse_office3" },
+			{ name = "warehouse_office01" },
+			{ name = "warehouse_office02" },
+			{ name = "warehouse_office03" },
 		},
 	},
 	[104374] = {
 		reinforce = {
 			{
-				name = "harbor_office1",
+				name = "harbor_office01",
 				force = 3,
 				position = Vector3(8400, -2875, -300),
 			},
 			{
-				name = "harbor_office2",
+				name = "harbor_office02",
 				force = 3,
 				position = Vector3(9725, 1150, -300),
 			},
 			{
-				name = "harbor_office3",
+				name = "harbor_office03",
 				force = 3,
 				position = Vector3(9850, -1300, -300),
 			},
@@ -95,9 +95,9 @@ return {
 	},
 	[104384] = {
 		reinforce = {
-			{ name = "harbor_office1" },
-			{ name = "harbor_office2" },
-			{ name = "harbor_office3" },
+			{ name = "harbor_office01" },
+			{ name = "harbor_office02" },
+			{ name = "harbor_office03" },
 		},
 	},
 	[101630] = {

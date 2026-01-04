@@ -28,7 +28,7 @@ local close_spawn = {
 }
 local building_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }

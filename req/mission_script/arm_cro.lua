@@ -34,7 +34,7 @@ local dozer_chance = (eclipse and 25 or hard and 15 or 0) + (is_pro_job and 20 o
 local dozer_van_chance = {
 	chance = dozer_chance,
 }
-local street_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 20,
 	},
@@ -129,13 +129,13 @@ return {
 	[101767] = gensec_tank,
 	[101768] = gensec_tank,
 	-- Spawn group intervals
-	[100128] = street_spawn,
-	[100130] = street_spawn,
-	[100131] = street_spawn,
-	[100132] = street_spawn,
-	[100133] = street_spawn,
-	[101843] = street_spawn,
-	[101844] = street_spawn,
-	[101845] = street_spawn,
-	[101846] = street_spawn,
+	[100128] = standard_spawn,
+	[100130] = standard_spawn,
+	[100131] = standard_spawn,
+	[100132] = standard_spawn,
+	[100133] = standard_spawn,
+	[101843] = standard_spawn,
+	[101844] = standard_spawn,
+	[101845] = standard_spawn,
+	[101846] = standard_spawn,
 }

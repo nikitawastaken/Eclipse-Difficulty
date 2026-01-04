@@ -11,7 +11,7 @@ local skylight_far_spawn = {
 }
 local skylight_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

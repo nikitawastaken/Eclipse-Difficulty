@@ -11,7 +11,7 @@ local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
 local get_hiding_cloaker_so_opts = Eclipse.utils.get_hiding_cloaker_so_opts
 
 local dozer_random_amount = overkill_and_above and 2 or 1
-local dozers_respawn = (is_eclipse and 240 or 300) - (is_eclipse_pro and 60 or is_pro_job and 30 or 0)
+local dozers_respawn = (is_eclipse and 300 or 360) - (is_eclipse_pro and 60 or is_pro_job and 30 or 0)
 local dozer_event = not normal or (is_pro_job and normal) and true or false
 
 local enabled_chance_cloakers = math.random() <= 0.4 + (is_pro_job and 0.2 or 0)

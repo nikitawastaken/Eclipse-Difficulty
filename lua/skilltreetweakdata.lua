@@ -733,7 +733,7 @@ function SkillTreeTweakData:init(tweak_data)
 	self.specializations[11][5].texture_bundle_folder = "mrwi"
 	self.specializations[11][5].icon_xy = { 1, 0 }
 	self.specializations[11][7].upgrades = { "player_extra_health_multiplier_2" }
-	self.specializations[11][9].upgrades = { "player_damage_to_hot_2" }
+	self.specializations[11][9].upgrades = { "player_damage_to_hot_3" }
 	self.specializations[11][7].icon_xy = { 4, 1 }
 
 	-- Ex-President

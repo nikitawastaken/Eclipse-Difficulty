@@ -11,7 +11,7 @@ local fence_spawn = {
 }
 local upper_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -22,6 +22,14 @@ local window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
+	-- Combine some navigation areas
+	[101531] = {
+		ai_area = {
+			{ 6, 85 },
+			{ 74, 157 },
+			{ 143, 175 },
+		},
+	},
 	[104838] = {
 		ponr = {
 			length = 240,
@@ -33,25 +41,26 @@ return {
 			enabled = false,
 		},
 	},
-	[101882] = { -- add reinforce
+	-- Add new reinforce
+	[101882] = {
 		reinforce = {
 			{
-				name = "crane1",
-				force = 3,
+				name = "crane01",
+				force = 2,
 				position = Vector3(-4500, 600, 125),
 			},
 			{
-				name = "crane2",
-				force = 3,
+				name = "crane02",
+				force = 2,
 				position = Vector3(2100, 550, 125),
 			},
 			{
-				name = "wagon1",
+				name = "wagon01",
 				force = 2,
 				position = Vector3(-2900, 2900, 500),
 			},
 			{
-				name = "wagon2",
+				name = "wagon02",
 				force = 2,
 				position = Vector3(-3700, 0, 500),
 			},

@@ -67,14 +67,6 @@ local cloaker_spawn = {
 	},
 }
 return {
-	-- Combine some navigation areas
-	[100017] = {
-		ai_area = {
-			{ 154, 127, 128 },
-			{ 32, 158 },
-			{ 142, 37 },
-		},
-	},
 	[101397] = {
 		ponr = {
 			length = 240,

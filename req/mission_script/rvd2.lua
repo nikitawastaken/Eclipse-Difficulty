@@ -16,13 +16,13 @@ local building_spawn = {
 }
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local escape_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -60,20 +60,6 @@ return {
 				name = "street03",
 				force = 3,
 				position = Vector3(3000, 1050, 0),
-			},
-		},
-	},
-	[100123] = { -- End assault
-		reinforce = {
-			{
-				name = "boutique01",
-				force = 2,
-				position = Vector3(2600, 3400, 0),
-			},
-			{
-				name = "boutique02",
-				force = 2,
-				position = Vector3(2900, 2325, 0),
 			},
 		},
 	},

@@ -24,12 +24,12 @@ return {
 		-- drill done
 		reinforce = {
 			{
-				name = "security1",
+				name = "security01",
 				force = 2,
 				position = Vector3(-1100, 1500, 100),
 			},
 			{
-				name = "security2",
+				name = "security02",
 				force = 2,
 				position = Vector3(950, 1500, 100),
 			},
@@ -45,12 +45,12 @@ return {
 	-- Delay enemy spawns
 	[100224] = { -- Combat ON
 		on_executed = {
-			{ id = 101024, delay = 60 }, -- elevators
+			{ id = 101024, delay = 45 }, -- elevators
 		},
 	},
 	[101907] = { -- start enemies delay end
 		on_executed = {
-			{ id = 100230, delay = 60 }, -- wall spawns
+			{ id = 100230, delay = 45 }, -- wall spawns
 		},
 	},
 	-- Remove vanilla reinforce
@@ -82,12 +82,12 @@ return {
 	[101620] = { -- assemble the winch
 		reinforce = {
 			{
-				name = "interior_balcony1",
+				name = "interior_balcony01",
 				force = 2,
 				position = Vector3(1330, -2440, 550),
 			},
 			{
-				name = "interior_balcony2",
+				name = "interior_balcony02",
 				force = 2,
 				position = Vector3(-1310, -2440, 550),
 			},

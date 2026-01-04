@@ -9,9 +9,8 @@ local spawn_anim_fix = {
 }
 local roof_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local dock_spawn = {
 	values = {
@@ -32,17 +31,17 @@ return {
 	[100109] = { -- Police
 		reinforce = {
 			{
-				name = "gate1",
+				name = "gate01",
 				force = 5,
 				position = Vector3(2100, 4875, 400),
 			},
 			{
-				name = "gate2",
+				name = "gate02",
 				force = 5,
 				position = Vector3(5325, 1500, 400),
 			},
 			{
-				name = "gate3",
+				name = "gate03",
 				force = 5,
 				position = Vector3(2025, -4500, 400),
 			},
@@ -52,12 +51,12 @@ return {
 				position = Vector3(-1800, -50, 200),
 			},
 			{
-				name = "fork_corner1",
+				name = "fork_corner01",
 				force = 3,
 				position = Vector3(-1440, -3970, 200),
 			},
 			{
-				name = "fork_corner2",
+				name = "fork_corner02",
 				force = 3,
 				position = Vector3(-315, 4935, 400),
 			},

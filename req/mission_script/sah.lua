@@ -4,46 +4,34 @@ local disabled = {
 		enabled = false,
 	},
 }
-local flank_spawn = {
-	values = {
-		interval = 15,
-	},
-}
-local balcony_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
-local roof_spawn = {
+local roof_far_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }
-local skylight_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_cops_agents_bulldozers,
-}
 local window_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local storage_door_spawn = {
+local roof_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
-	groups = preferred.no_shields_bulldozers,
+	groups = preferred.no_cops_agents,
+}
+local storage_spawn = {
+	values = {
+		interval = 40,
+	},
 }
 local storage_window_spawn = {
 	values = {
 		interval = 60,
 	},
-	groups = preferred.no_shields_bulldozers,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Combine some navigation areas
@@ -99,57 +87,23 @@ return {
 			{ id = 103913, delay = 0 },
 		},
 	},
-	-- Diff increased, enable additional reinforce
-	[100124] = {
-		reinforce = {
-			{
-				name = "upper_right",
-				force = 2,
-				position = Vector3(800, 2000, 500),
-			},
-			{
-				name = "upper_left",
-				force = 2,
-				position = Vector3(-800, 2000, 500),
-			},
-		},
-	},
 	-- Disable area report triggers
 	[100140] = disabled,
 	[106783] = disabled,
 	[103926] = disabled,
 	[106784] = disabled,
-	--[[ Remove some sketchy hackbox preferreds (DISABLED FOR NOW)
-	[106852] = { -- Hackbox 1
-		on_executed = {
-			{ id = 103906, remove = true },
-		},
-	},
-	[106853] = { -- Hackbox 2
-		on_executed = {
-			{ id = 103907, remove = true },
-		},
-	},
-	[106854] = { -- Hackbox 3
-		on_executed = {
-			{ id = 103911, remove = true },
-		},
-	},
-	]]
 	-- Spawn group intervals
-	[100128] = flank_spawn,
-	[100130] = flank_spawn,
-	[103662] = flank_spawn,
-	[106779] = balcony_spawn,
-	[102667] = roof_spawn,
-	[103307] = roof_spawn,
-	[106776] = roof_spawn,
-	[106764] = roof_spawn,
-	[106767] = roof_spawn,
-	[100133] = skylight_spawn,
-	[100694] = skylight_spawn,
 	[106826] = window_spawn,
-	[102303] = storage_door_spawn,
-	[104089] = storage_door_spawn,
+	[102667] = roof_far_spawn,
+	[103307] = roof_far_spawn,
+	[106764] = roof_far_spawn,
+	[106767] = roof_far_spawn,
+	[106776] = roof_far_spawn,
+	[106779] = roof_far_spawn,
+	[100154] = roof_close_spawn,
+	[100694] = roof_close_spawn,
+	[102303] = storage_spawn,
+	[103662] = storage_spawn,
+	[104089] = storage_spawn,
 	[103522] = storage_window_spawn,
 }

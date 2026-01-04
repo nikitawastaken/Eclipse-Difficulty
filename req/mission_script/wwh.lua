@@ -37,20 +37,14 @@ local unused_sniper_trigger_times = {
 		enabled = true,
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 20,
-	},
-}
 local window_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_shields_bulldozers,
 }
 local boat_spawn = {
 	values = {
-		interval = 45,
+		interval = 30,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -141,9 +135,6 @@ return {
 	[400007] = scripted_swat_van_spawn,
 	[400015] = scripted_swat_van_spawn,
 	[400023] = scripted_swat_van_spawn,
-	[100817] = roof_spawn,
-	[101024] = roof_spawn,
-	[101029] = roof_spawn,
 	[100605] = window_spawn,
 	[100177] = boat_spawn,
 	[100737] = boat_spawn,
