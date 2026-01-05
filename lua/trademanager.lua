@@ -378,13 +378,19 @@ end
 function TradeManager:trade_restore_resources()
 	self._trading_hostage = nil
 	self._trade_in_progress = false
+	local unit = managers.player:player_unit()
+
+	if not unit then
+		return
+	end
+
 	local has_trading_delay_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_assault_delay")
 	local has_trading_ammo_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_ammo")
 	local has_trading_health_upgrade = managers.player:has_team_category_upgrade("player", "resource_trading_health")
 	local amount_of_pickups = managers.player:team_upgrade_value("player", "resource_trading_ammo", 0)
 	local amount_of_health = managers.player:team_upgrade_value("player", "resource_trading_health", 0)
 	local is_recon_over = managers.groupai:state():_is_assault_active()
-	local unit = managers.player:player_unit()
+
 	local damage_ext = unit:character_damage()
 
 	for _, u_data in pairs(managers.groupai:state():all_player_criminals()) do
