@@ -19,7 +19,7 @@ function MoneyManager:get_money_by_params(params)
 	local mandatory_bags = params.mandatory_bags_value or managers.loot:get_secured_mandatory_bags_value()
 	local real_small_value = params.small_value or math.round(managers.loot:get_real_total_small_loot_value())
 	local bonus_vehicles = params.vehicle_value or math.round(managers.loot:get_secured_bonus_bags_value(nil, true))
-	local offshore_rate = self:get_tweak_value("money_manager", "offshore_rate")
+	local offshore_rate = self:get_tweak_value("money_manager", "offshore_rate") -- (250000 / 5040000)
 	local total_payout = 0
 	local stage_value = 0
 	local job_value = 0
@@ -197,4 +197,29 @@ function MoneyManager:get_money_by_params(params)
 	}
 
 	return unpack(ret)
+end
+
+function MoneyManager:_add_to_total(amount, params, reason)
+	local no_offshore = params and params.no_offshore
+	local offshore = math.round(no_offshore and 0 or amount * (1 - self:get_tweak_value("money_manager", "offshore_rate"))
+	local spending_cash = math.round(no_offshore and amount or amount * self:get_tweak_value("money_manager", "offshore_rate"))
+	local rounding_error = math.round(amount - (offshore + spending_cash))
+	spending_cash = spending_cash + rounding_error
+	local total_cash = self:total() + spending_cash
+	local total_collected_cash = self:total_collected() + math.round(amount)
+	local offshore_cash = self:offshore() + offshore
+
+	self:_set_total(total_cash)
+	self:_set_total_collected(total_collected_cash)
+	self:_set_offshore(offshore_cash)
+	self:_on_total_changed(amount, spending_cash, offshore)
+
+	reason = reason or "generic"
+
+	-- Telemetry:send_on_player_economy_event(reason, "cash", amount, "earn")
+
+	if managers.challenge then
+		managers.challenge:award_progress("earn_cash", math.max(spending_cash, 0))
+		managers.challenge:award_progress("earn_offshore_cash", math.max(offshore, 0))
+	end
 end
