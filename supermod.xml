@@ -70,6 +70,7 @@
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
 
 				<post :hook_id="missionmanager"/>
+				<post :hook_id="moneymanager"/>
 				<post :hook_id="hudmanager"/>
 				<post :hook_id="menumanager"/>
 				<post :hook_id="savefilemanager"/>
@@ -108,6 +109,7 @@
 			<group :hook_id="tweak_data/">
 				<post :hook_id="blackmarket/projectilestweakdata"/>
 				<post :hook_id="blackmarket/meleeweaponstweakdata"/>
+				<post :hook_id="moneytweakdata"/>
 				<post :hook_id="tipstweakdata"/>
 				<post :hook_id="equipmentstweakdata"/>
 				<post :hook_id="charactertweakdata"/>
