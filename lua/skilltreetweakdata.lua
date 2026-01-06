@@ -242,9 +242,11 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.sentry_targeting_package.icon_xy = { 9, 6 }
 
 	-- Kickstarter
-	self.skills.jack_of_all_trades[1].upgrades = { "player_drill_autorepair_1", "player_drill_autorepair_2" }
-	self.skills.jack_of_all_trades[2].upgrades = { "player_drill_melee_hit_restart_chance_1" }
-	self.skills.jack_of_all_trades.icon_xy = { 9, 8 }
+	self.skills.jack_of_all_trades[1].upgrades = {  }
+	self.skills.jack_of_all_trades[2].upgrades = {  }
+	self.skills.jack_of_all_trades.icon_xy = { 0, 0 }
+	self.skills.jack_of_all_trades.name_id = "menu_work_in_progress_beta"
+	self.skills.jack_of_all_trades.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Portable Saw
 	self.skills.engineering[1].upgrades =
@@ -705,11 +707,11 @@ function SkillTreeTweakData:init(tweak_data)
 	-- tactician (ex-burglar)
 	self.specializations[7][1].upgrades = { "second_deployable_1" }
 	self.specializations[7][1].icon_xy = { 5, 8 }
-	self.specializations[7][3].upgrades = { "player_drill_speed_multiplier1", "player_drill_speed_multiplier2" }
+	self.specializations[7][3].upgrades = { "player_drill_speed_multiplier1", "player_drill_speed_multiplier2", "player_drill_melee_hit_restart_chance_1" }
 	self.specializations[7][3].icon_xy = { 3, 8 }
 	self.specializations[7][5].upgrades = { "player_near_teammate_damage_multiplier" }
 	self.specializations[7][5].icon_xy = { 2, 8 }
-	self.specializations[7][7].upgrades = { "player_electrocuting_drill" }
+	self.specializations[7][7].upgrades = { "player_electrocuting_drill", "player_drill_autorepair_1", "player_drill_autorepair_2" }
 	self.specializations[7][7].icon_xy = { 4, 8 }
 	self.specializations[7][9].upgrades = { "player_no_secondary_deployable_penalty", "deploy_interact_faster_1", "player_passive_loot_drop_multiplier" }
 	self.specializations[7][9].icon_xy = { 6, 8 }
