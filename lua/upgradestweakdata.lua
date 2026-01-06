@@ -17,7 +17,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 
 	self.values.player.body_armor = {
 		armor = { 0, 2, 4.5, 7, 10, 14, 18 },
-		movement = { 1, 0.925, 0.85, 0.775, 0.7, 0.625, 0.55 },
+		movement = { 1, 0.95, 0.9, 0.85, 0.775, 0.7, 0.625 },
 		concealment = { 30, 26, 23, 21, 18, 12, 1 },
 		dodge = { 0.1, 0.05, 0, -0.05, -0.2, -0.25, -0.55 },
 		damage_shake = { 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4 },
