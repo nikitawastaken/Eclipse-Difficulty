@@ -242,8 +242,8 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.sentry_targeting_package.icon_xy = { 9, 6 }
 
 	-- Kickstarter
-	self.skills.jack_of_all_trades[1].upgrades = {  }
-	self.skills.jack_of_all_trades[2].upgrades = {  }
+	self.skills.jack_of_all_trades[1].upgrades = {}
+	self.skills.jack_of_all_trades[2].upgrades = {}
 	self.skills.jack_of_all_trades.icon_xy = { 0, 0 }
 	self.skills.jack_of_all_trades.name_id = "menu_work_in_progress_beta"
 	self.skills.jack_of_all_trades.desc_id = "menu_work_in_progress_beta_desc"
