@@ -74,7 +74,7 @@
 	"menu_sentry_targeting_package_beta": "Hardware Expert",
 	"menu_sentry_targeting_package_beta_desc": "BASIC: ##$basic##\nDrills and saws are silent. Civilians and guards must see the drill or saw in order to become alerted.\n\nACE: ##$pro##\nYou fix drills and saws ##$multipro## faster.",
 	"menu_jack_of_all_trades_beta": "Kickstarter",
-	"menu_jack_of_all_trades_beta_desc": "BASIC: ##$basic##\nYour drills and saws will automatically restart ##$multibasic## seconds after breaking.\n\nACE: ##$pro##\nYou gain the ability to fix a broken drill or saw with ##$multipro## consecutive melee attacks.",
+	"menu_jack_of_all_trades_beta_desc": "BASIC: ##$basic##\n\n\nACE: ##$pro##\n",
 	"menu_portable_saw": "Portable Saw",
 	"menu_portable_saw_desc": "BASIC: ##$basic##\nYou gain ##$multibasic## extra saw blade for the OVE9000 portable saw. You replace your saw blades with carbon blades, increasing your saw efficiency by ##$multibasic2##.\n\nACE: ##$pro##\nYou can now bring the OVE9000 portable saw as a secondary weapon.",
 	"menu_tower_defense_beta": "Sentry Nest",
