@@ -1848,7 +1848,9 @@ function CharacterTweakData:character_map(...)
 	}
 
 	safe_add(char_map.drm, "ene_bulldozer_medic_classic")
-
+	
+	safe_add(char_map.bph, "ene_murkywater_heavy_fbi")
+	
 	safe_add(char_map.rvd, "ene_la_cop_1_fat")
 	safe_add(char_map.rvd, "ene_la_cop_2_fat")
 	safe_add(char_map.rvd, "ene_la_cop_3_fat")

@@ -1454,6 +1454,37 @@
 			</group>
 		</group>
 
+		<group name="units/pd2_dlc_bph/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
+			<group :name="shared_textures/">
+				<file :name="bph_swat_body_df.texture" />
+				<file :name="bph_swat_body_nm.texture" />
+
+				<file :name="bph_heavy_swat_body_df.texture" />
+				<file :name="bph_heavy_swat_body_nm.texture" />
+			</group>
+			
+			<group :name="ene_murkywater_light/">
+				<xml  :name="ene_murkywater_light.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_light.material_config" />
+				<file :name="ene_murkywater_light_contour.material_config" />
+				<file :name="ene_murkywater_light.model" />
+				<file :name="ene_murkywater_light.object" />
+				<file :name="ene_murkywater_light.unit" />
+				<file :name="ene_murkywater_light_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_heavy_fbi/">
+				<xml  :name="ene_murkywater_heavy_fbi.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_heavy_fbi.cooked_physics" />
+				<file :name="ene_murkywater_heavy_fbi.material_config" />
+				<file :name="ene_murkywater_heavy_fbi_contour.material_config" />
+				<file :name="ene_murkywater_heavy_fbi.model" />
+				<file :name="ene_murkywater_heavy_fbi.object" />
+				<file :name="ene_murkywater_heavy_fbi.unit" />
+				<file :name="ene_murkywater_heavy_fbi_husk.unit" />
+			</group>
+		</group>
+			
 		<group name="units/pd2_dlc_bex/vehicles/" dyn_package="false">
 			<file :name="bex_vehicles_car_police_mexico/bex_vehicle_car_police_mexico.material_config" />
 		</group>
