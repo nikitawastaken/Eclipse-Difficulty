@@ -70,6 +70,12 @@ return {
 		difficulty_max = 1,
 		difficulty_min = 1,
 	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400084, delay = 0 },
+		},
+	},
 	-- replace the turret with spawngroup
 	[103524] = {
 		on_executed = {
