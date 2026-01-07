@@ -1543,8 +1543,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 		10,
 	})
 	local diff_scale = get_difficulty_specific_value({
-		8,
 		16,
+		20,
 		24,
 		30,
 		36,
@@ -3420,11 +3420,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	}
 
 	local special_wgt = get_difficulty_specific_value({
-		4,
 		6,
+		7,
 		8,
-		9,
 		10,
+		12,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
 	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.4, 0.8, 1.2 } or { 0.6, 0.9, 1.2 })
@@ -3709,10 +3709,10 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	local ponr_special_wgt = get_difficulty_specific_value({
-		3,
 		4,
 		5,
 		6,
+		7,
 		8,
 	})
 	local ponr_special_wgt_tbl = { ponr_special_wgt, ponr_special_wgt, ponr_special_wgt }
