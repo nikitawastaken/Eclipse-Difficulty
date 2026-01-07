@@ -338,7 +338,7 @@ M.elements = {
 	Eclipse.mission_elements.gen_dummytrigger(400049, "wife_is_dead", Vector3(0, 0, 0), Rotation(0, 0, 0), optswife_dead),
 
 	Eclipse.mission_elements.gen_missionscript(400047, "dozer_response", spawn_dozers),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400050, "cloaker_hide_so_1", Vector3(435, 1419, -146.720), Rotation(90, 0, 0), optsCloaker_Hide_SpotSO_2),
