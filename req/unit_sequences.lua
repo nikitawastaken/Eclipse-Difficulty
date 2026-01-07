@@ -334,6 +334,35 @@ local M = {
 	["units/pd2_dlc_fex/characters/ene_secret_service_fex/ene_secret_service_fex"] = { name = "secret_service_1", head = head_sequences.security },
 	["units/pd2_dlc_pda10/characters/ene_dozer_piggy/ene_dozer_piggy"] = { name = "bulldozer_piggy", head = head_sequences.bulldozer },
 	["units/pd2_dlc_cg22/characters/ene_snowman_boss/ene_snowman_boss"] = { name = "bulldozer_snowman", head = head_sequences.bulldozer },
+	
+	["units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1"] = { name = "hvh_cop_1", head = head_sequences.security },
+	["units/pd2_dlc_hvh/characters/ene_cop_hvh_2/ene_cop_hvh_2"] = { name = "hvh_cop_2", head = head_sequences.security },
+	["units/pd2_dlc_hvh/characters/ene_cop_hvh_3/ene_cop_hvh_3"] = { name = "hvh_cop_3", head = head_sequences.security },
+	["units/pd2_dlc_hvh/characters/ene_cop_hvh_4/ene_cop_hvh_4"] = { name = "hvh_cop_4", head = head_sequences.security },
+	
+	["units/pd2_dlc_hvh/characters/ene_fbi_hvh_1/ene_fbi_hvh_1"] = { name = "hvh_fbi_1", head = head_sequences.security },
+	["units/pd2_dlc_hvh/characters/ene_fbi_hvh_2/ene_fbi_hvh_2"] = { name = "hvh_fbi_2", head = head_sequences.security },
+	["units/pd2_dlc_hvh/characters/ene_fbi_hvh_3/ene_fbi_hvh_3"] = { name = "hvh_fbi_3", head = head_sequences.hrt },
+
+	["units/pd2_dlc_hvh/characters/ene_swat_hvh_1/ene_swat_hvh_1"] = { name = "hvh_swat_1", head = head_sequences.swat_b },
+	["units/pd2_dlc_hvh/characters/ene_swat_hvh_2/ene_swat_hvh_2"] = { name = "hvh_swat_2", head = head_sequences.swat_a },
+	["units/pd2_dlc_hvh/characters/ene_swat_hvh_3/ene_swat_hvh_3"] = { name = "hvh_swat_3", head = head_sequences.swat_a },
+	["units/pd2_dlc_hvh/characters/ene_swat_heavy_hvh_1/ene_swat_heavy_hvh_1"] = { name = "hvh_swat_heavy_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_hvh/characters/ene_swat_heavy_hvh_r870/ene_swat_heavy_hvh_r870"] = { name = "hvh_swat_heavy_2", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_hvh/characters/ene_sniper_hvh_1/ene_sniper_hvh_1"] = { name = "hvh_sniper_1", head = head_sequences.swat_b },
+	["units/pd2_dlc_hvh/characters/ene_shield_hvh_2/ene_shield_hvh_2"] = { name = "hvh_shield_2", head = head_sequences.swat_d },
+	
+	["units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_1/ene_fbi_swat_hvh_1"] = { name = "hvh_fbi_swat_1", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_2/ene_fbi_swat_hvh_2"] = { name = "hvh_fbi_swat_2", head = head_sequences.fbi_swat_a },
+	["units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_3/ene_fbi_swat_hvh_3"] = { name = "hvh_fbi_swat_3", head = head_sequences.fbi_swat_a },
+	["units/pd2_dlc_hvh/characters/ene_sniper_hvh_2/ene_sniper_hvh_2"] = { name = "hvh_sniper_2", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_hvh/characters/ene_shield_hvh_1/ene_shield_hvh_1"] = { name = "hvh_shield_1", head = head_sequences.swat_d },
+
+	["units/pd2_dlc_hvh/characters/ene_city_swat_hvh_1/ene_city_swat_hvh_1"] = { name = "hvh_city_swat_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_hvh/characters/ene_city_swat_hvh_2/ene_city_swat_hvh_2"] = { name = "hvh_city_swat_2", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_hvh/characters/ene_city_swat_hvh_3/ene_city_swat_hvh_3"] = { name = "hvh_city_swat_3", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_hvh/characters/ene_sniper_hvh_3/ene_sniper_hvh_3"] = { name = "hvh_sniper_3", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_hvh/characters/ene_city_shield_hvh/ene_city_shield_hvh"] = { name = "hvh_shield_3", head = head_sequences.swat_d },
 }
 
 return M

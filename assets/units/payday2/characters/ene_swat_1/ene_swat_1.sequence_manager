@@ -12,6 +12,9 @@
 			<is_swat_heavy		value="0" />
 			<is_fbi_swat		value="0" />
 			<is_city_swat		value="0" />
+			<is_hvh_swat		value="0" />
+			<is_hvh_fbi_swat	value="0" />
+			<is_hvh_city_swat	value="0" />
 		</variables>
 		
 		<filter name="'check_no_goggles'">
@@ -231,6 +234,21 @@
 		<sequence editable_state="true" name="'city_swat'" once="true" triggable="true">	
 			<set_variables 		is_city_swat="1" />
 			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_city_swat_1'" synchronous="true" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_swat'" once="true" triggable="true">		
+			<set_variables 		is_hvh_fbi_swat="1" />
+			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_swat_hvh_1'" synchronous="true" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_fbi_swat'" once="true" triggable="true">		
+			<set_variables 		is_hvh_fbi_swat="1" />
+			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_hvh_1'" synchronous="true" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_city_swat'" once="true" triggable="true">	
+			<set_variables 		is_hvh_city_swat="1" />
+			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_city_swat_hvh_1'" synchronous="true" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'swat_1'" once="true" triggable="true">
@@ -484,6 +502,91 @@
 			<run_sequence 		name="'armor_shoulders'" />
 			<run_sequence 		name="'helmet_city_shield'" />
 			<run_sequence 		name="'mandibles'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_swat_1'" once="true" triggable="true">
+			<run_sequence 		name="'swat_1'" />
+			<run_sequence 		name="'hvh_swat'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_swat_2'" once="true" triggable="true">
+			<run_sequence 		name="'swat_2'" />
+			<run_sequence 		name="'hvh_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_swat_3'" once="true" triggable="true">
+			<run_sequence 		name="'swat_3'" />
+			<run_sequence 		name="'hvh_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_swat_heavy_1'" once="true" triggable="true">
+			<run_sequence 		name="'swat_heavy_1'" />
+			<run_sequence 		name="'hvh_swat'" />
+		</sequence>
+	
+		<sequence editable_state="true" name="'hvh_swat_heavy_2'" once="true" triggable="true">
+			<run_sequence 		name="'swat_heavy_2'" />
+			<run_sequence 		name="'hvh_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_sniper_1'" once="true" triggable="true">
+			<run_sequence 		name="'sniper_1'" />
+			<run_sequence 		name="'hvh_swat'" />
+		</sequence>
+	
+		<sequence editable_state="true" name="'hvh_shield_2'" once="true" triggable="true">
+			<run_sequence 		name="'shield_2'" />
+			<run_sequence 		name="'hvh_swat'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_fbi_swat_1'" once="true" triggable="true">
+			<run_sequence 		name="'fbi_swat_1'" />
+			<run_sequence 		name="'hvh_fbi_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_fbi_swat_2'" once="true" triggable="true">
+			<run_sequence 		name="'fbi_swat_2'" />
+			<run_sequence 		name="'hvh_fbi_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_fbi_swat_3'" once="true" triggable="true">
+			<run_sequence 		name="'fbi_swat_3'" />
+			<run_sequence 		name="'hvh_fbi_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_sniper_2'" once="true" triggable="true">
+			<run_sequence 		name="'sniper_2'" />
+			<run_sequence 		name="'hvh_fbi_swat'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_shield_1'" once="true" triggable="true">
+			<run_sequence 		name="'shield_1'" />
+			<run_sequence 		name="'hvh_fbi_swat'" />
+		</sequence>
+	
+		<sequence editable_state="true" name="'hvh_city_swat_1'" once="true" triggable="true">
+			<run_sequence 		name="'city_swat_1'" />
+			<run_sequence 		name="'hvh_city_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_city_swat_2'" once="true" triggable="true">
+			<run_sequence 		name="'city_swat_2'" />
+			<run_sequence 		name="'hvh_city_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_city_swat_3'" once="true" triggable="true">
+			<run_sequence 		name="'city_swat_3'" />
+			<run_sequence 		name="'hvh_city_swat'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_sniper_3'" once="true" triggable="true">
+			<run_sequence 		name="'sniper_3'" />
+			<run_sequence 		name="'hvh_city_swat'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_shield_3'" once="true" triggable="true">
+			<run_sequence 		name="'shield_3'" />
+			<run_sequence 		name="'hvh_city_swat'" />
 		</sequence>
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body_a'" triggable="true">

@@ -16,6 +16,8 @@
 			<is_la_cop				value="0" />
 			<is_fbi					value="0" />
 			<is_prisonguard			value="0" />
+			<is_hvh_cop				value="0" />
+			<is_hvh_fbi				value="0" />
 			<is_bex_security		value="0" />
 			<is_bex_cop				value="0" />
 			<is_bex_fbi				value="0" />
@@ -233,7 +235,7 @@
 			<run_sequence 		name="'set_fat'" />
 			<run_sequence 		name="'la_cop_4'" />
 		</sequence>
-		
+
 		<sequence editable_state="true" name="'armor_body'" once="true" triggable="true"> 
 			<object 			filter="'check_fat'" enabled="true" name="'g_armor_body_fat'" />
 			<object 			filter="'check_fat'" enabled="true" name="'g_armor_body_fat_lod1'" />
@@ -417,6 +419,16 @@
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_prisonguard_male_1'" synchronous="true" />
 		</sequence>	
 
+		<sequence editable_state="true" name="'hvh_cop'" once="true" triggable="true">		
+			<set_variables 		is_hvh_cop="1" />
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_cop_hvh_1'" synchronous="true" />
+		</sequence>	
+
+		<sequence editable_state="true" name="'hvh_fbi'" once="true" triggable="true">		
+			<set_variables 		is_hvh_fbi="1" />
+			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_fbi_hvh_1'" synchronous="true" />
+		</sequence>	
+	
 		<sequence editable_state="true" name="'bex_security'" once="true" triggable="true">		
 			<set_variables 		is_bex_security="1" />
 			<material_config 	name="'units/payday2/characters/ene_cop_1/vars/ene_bex_security_01'" synchronous="true" />
@@ -981,6 +993,40 @@
 			<run_sequence 		name="'random_shades_rare'" />
 		</sequence>
 		
+		<sequence editable_state="true" name="'hvh_cop_1'" once="true" triggable="true"> 
+			<run_sequence 		name="'cop_1'" />
+			<run_sequence 		name="'hvh_cop'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_cop_2'" once="true" triggable="true"> 
+			<run_sequence 		name="'cop_2'" />
+			<run_sequence 		name="'hvh_cop'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_cop_3'" once="true" triggable="true"> 
+			<run_sequence 		name="'cop_3'" />
+			<run_sequence 		name="'hvh_cop'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_cop_4'" once="true" triggable="true"> 
+			<run_sequence 		name="'cop_4'" />
+			<run_sequence 		name="'hvh_cop'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_fbi_1'" once="true" triggable="true"> 
+			<run_sequence 		name="'fbi_1'" />
+			<run_sequence 		name="'hvh_fbi'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_fbi_2'" once="true" triggable="true"> 
+			<run_sequence 		name="'fbi_2'" />
+			<run_sequence 		name="'hvh_fbi'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_fbi_3'" once="true" triggable="true"> 
+			<run_sequence 		name="'fbi_3'" />
+			<run_sequence 		name="'hvh_fbi'" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'bex_security_1'" once="true" triggable="true">
 			<object 			enabled="true" name="'g_gear_cop_a'" />
