@@ -1920,7 +1920,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.shield_spt,
 			},
 			{
-				freq = 0.75,
+				freq = 1,
 				rank = 2,
 				unit = "cs_heavy",
 				tactics = self._tactics.shield_spt,
@@ -2291,8 +2291,8 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
+					10 / diff_scale_low,
 					6 / diff_scale_low,
-					4 / diff_scale_low,
 					2 / diff_scale_low,
 				}, heavy_response and 0.25 or 1),
 				rank = 2,
@@ -2300,7 +2300,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				tactics = self._tactics.shield_spt,
 			},
 			{
-				freq = 0.75,
+				freq = 1,
 				rank = 2,
 				unit = "fbi_heavy",
 				tactics = self._tactics.shield_spt,
@@ -2308,7 +2308,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
-					4 / diff_scale_low,
+					6 / diff_scale_low,
 					2 / diff_scale_low,
 					0,
 				}, heavy_response and 0 or 1),
