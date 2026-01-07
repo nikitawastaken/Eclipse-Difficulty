@@ -229,13 +229,13 @@ function MoneyManager:get_money_by_params(params)
 			job_risk = job_risk,
 			bag_risk = bag_risk,
 			vehicle_risk = vehicle_risk,
-			small_risk = small_risk
+			small_risk = small_risk,
 		},
 		{
 			job_base_payout = base_static_value,
-			job_risk_payout = risk_static_value
+			job_risk_payout = risk_static_value,
 		},
-		mutators_reduction
+		mutators_reduction,
 	}
 
 	return unpack(ret)
