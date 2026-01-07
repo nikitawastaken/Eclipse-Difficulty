@@ -194,26 +194,17 @@
 		</sequence>
 
 		<body name="'held_body_middle'">
-			<endurance damage="36" explosion="80">
-				<run_sequence name="'int_seq_shield_break'"/>
+			<endurance damage="12" explosion="24">
+				<run_sequence name="'int_seq_shield_break_top'"/>
 			</endurance>
-		</body>
-		
-		<body name="'held_body_left'">
-			<endurance damage="12" explosion="40">
+			<endurance damage="18" explosion="40">
 				<run_sequence name="'int_seq_shield_break_l'"/>
 			</endurance>
-		</body>
-
-		<body name="'held_body_right'">
-			<endurance damage="12" explosion="40">
+			<endurance damage="24" explosion="56">
 				<run_sequence name="'int_seq_shield_break_r'"/>
 			</endurance>
-		</body>
-
-		<body name="'held_body_top'">
-			<endurance damage="12" explosion="40">
-				<run_sequence name="'int_seq_shield_break_top'"/>
+			<endurance damage="36" explosion="80">
+				<run_sequence name="'int_seq_shield_break'"/>
 			</endurance>
 		</body>
 		
