@@ -54,7 +54,7 @@ local optsAssaultStartSpoocs = {
 local hide_so_search_pos = Vector3(820, -825, 5)
 local optsCloaker_Hide_SpotSO_1 = get_hiding_cloaker_so_opts("e_so_hide_under_car_enter", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_2 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh", hide_so_search_pos)
-local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var2", hide_so_search_pos)
+local optsCloaker_Hide_SpotSO_3 = get_hiding_cloaker_so_opts("e_so_sneak_wait_crh_var3", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_hide_behind_door_enter", hide_so_search_pos)
 local optsCloaker_Hide_SpotSO_5 = get_hiding_cloaker_so_opts("e_so_sneak_wait_stand", hide_so_search_pos)
 

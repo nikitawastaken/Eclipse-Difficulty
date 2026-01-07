@@ -54,6 +54,12 @@ local van_spawn = {
 local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
+}
 return {
 	[101735] = {
 		ponr = {
@@ -69,6 +75,12 @@ return {
 	[100788] = {
 		difficulty_max = 1,
 		difficulty_min = 1,
+	},
+	-- begin the cloaker hunt at the start of the first assault
+	[100842] = {
+		on_executed = {
+			{ id = 400084, delay = 0 },
+		},
 	},
 	-- replace the turret with spawngroup
 	[103524] = {
@@ -159,6 +171,14 @@ return {
 	[102424] = flank_spawn,
 	[102438] = flank_spawn,
 	[102459] = flank_spawn,
+	[400074] = cloaker_spawn,
+	[400075] = cloaker_spawn,
+	[400076] = cloaker_spawn,
+	[400077] = cloaker_spawn,
+	[400078] = cloaker_spawn,
+	[400079] = cloaker_spawn,
+	[400080] = cloaker_spawn,
+	[400081] = cloaker_spawn,
 	-- Harassers
 	[100883] = harasser,
 	[100884] = harasser,
