@@ -376,6 +376,12 @@ local M = {
 	["units/pd2_dlc_hvh/characters/ene_medic_hvh_r870/ene_medic_hvh_r870"] = { name = "hvh_medic_2", head = head_sequences.medic },
 	
 	["units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"] = { name = "hvh_spook_1", head = head_sequences.cloaker },
+
+	["units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_1/ene_bulldozer_hvh_1"] = { name = "hvh_bulldozer_1", head = head_sequences.bulldozer },
+	["units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_2/ene_bulldozer_hvh_2"] = { name = "hvh_bulldozer_2", head = head_sequences.bulldozer },
+	["units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_3/ene_bulldozer_hvh_3"] = { name = "hvh_bulldozer_3", head = head_sequences.bulldozer },
+	["units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4"] = { name = "hvh_bulldozer_4", head = head_sequences.bulldozer },
+	["units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh"] = { name = "hvh_bulldozer_medic", head = head_sequences.bulldozer },
 }
 
 return M

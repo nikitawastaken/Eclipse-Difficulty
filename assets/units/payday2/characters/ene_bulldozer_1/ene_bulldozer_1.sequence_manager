@@ -163,6 +163,25 @@
 			<decal_mesh 		enabled="true" name="'dm_head_headless'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'disable_face'" once="true" triggable="true">
+			<object 			enabled="false" name="'g_face_a'" />
+			<object 			enabled="false" name="'g_face_a_lod1'" />	
+			<object 			enabled="false" name="'g_face_b'" />
+			<object 			enabled="false" name="'g_face_b_lod1'" />	
+			<object 			enabled="false" name="'g_face_c'" />
+			<object 			enabled="false" name="'g_face_c_lod1'" />	
+			<object 			enabled="false" name="'g_face_d'" />
+			<object 			enabled="false" name="'g_face_d_lod1'" />	
+			<object 			enabled="false" name="'g_face_e'" />
+			<object 			enabled="false" name="'g_face_e_lod1'" />	
+			<object 			enabled="false" name="'g_face_f'" />
+			<object 			enabled="false" name="'g_face_f_lod1'" />	
+			<object 			enabled="false" name="'g_face_g'" />
+			<object 			enabled="false" name="'g_face_g_lod1'" />	
+			<object 			enabled="false" name="'g_face_h'" />
+			<object 			enabled="false" name="'g_face_h_lod1'" />	
+		</sequence>
+		
 		<sequence editable_state="true" name="'disable_armor_bodies'" once="true" triggable="true">
 			<body 				enabled="false" name="'body_helmet'" />
 			<body 				enabled="false" name="'body_helmet_glass'" />
@@ -217,6 +236,31 @@
 			<set_variables 		is_snowman_boss="1" />
 			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_snowman_boss'" synchronous="true" />
 		</sequence>	
+
+		<sequence editable_state="true" name="'hvh_greendozer'" once="true" triggable="true">
+			<set_variables 		is_greendozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_hvh_1'" synchronous="true" />
+		</sequence>		
+
+		<sequence editable_state="true" name="'hvh_blackdozer'" once="true" triggable="true">
+			<set_variables 		is_blackdozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_hvh_2'" synchronous="true" />
+		</sequence>		
+		
+		<sequence editable_state="true" name="'hvh_skulldozer'" once="true" triggable="true">
+			<set_variables 		is_skulldozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_hvh_3'" synchronous="true" />
+		</sequence>		
+	
+		<sequence editable_state="true" name="'hvh_bendozer'" once="true" triggable="true">
+			<set_variables 		is_bendozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_hvh_4'" synchronous="true" />
+		</sequence>		
+
+		<sequence editable_state="true" name="'hvh_medicdozer'" once="true" triggable="true">
+			<set_variables 		is_medicdozer="1" />
+			<material_config 	name="'units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_hvh'" synchronous="true" />
+		</sequence>		
 		
 		<sequence editable_state="true" name="'bulldozer_1'" once="true" triggable="true">	
 			<object 			enabled="true" name="'g_gear_chest_a'" />
@@ -284,6 +328,36 @@
 			<run_sequence 		name="'no_head'" />
 		</sequence>
 
+		<sequence editable_state="true" name="'hvh_bulldozer_1'" once="true" triggable="true">
+			<run_sequence 		name="'bulldozer_1'" />
+			<run_sequence 		name="'hvh_greendozer'" />
+			<run_sequence 		name="'hvh_bulldozer_face_init'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_bulldozer_2'" once="true" triggable="true">
+			<run_sequence 		name="'bulldozer_2'" />
+			<run_sequence 		name="'hvh_blackdozer'" />
+			<run_sequence 		name="'hvh_bulldozer_face_init'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_bulldozer_3'" once="true" triggable="true">
+			<run_sequence 		name="'bulldozer_3'" />
+			<run_sequence 		name="'hvh_skulldozer'" />
+			<run_sequence 		name="'hvh_bulldozer_face_init'" />
+		</sequence>
+	
+		<sequence editable_state="true" name="'hvh_bulldozer_4'" once="true" triggable="true">
+			<run_sequence 		name="'bulldozer_4'" />
+			<run_sequence 		name="'hvh_bendozer'" />
+			<run_sequence 		name="'hvh_bulldozer_face_init'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_bulldozer_medic'" once="true" triggable="true">
+			<run_sequence 		name="'bulldozer_medic'" />
+			<run_sequence 		name="'hvh_medicdozer'" />
+			<run_sequence 		name="'hvh_bulldozer_face_init'" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'bulldozer_piggy'" once="true" triggable="true">
 			<run_sequence 		name="'piggydozer'" />
 			<run_sequence 		name="'disable_armor_bodies'" />
@@ -336,6 +410,51 @@
 		<sequence editable_state="true" name="'face_h'" once="true" triggable="true">
 			<object 				enabled="true" name="'g_face_h'" />
 			<object 				enabled="true" name="'g_face_h_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_bulldozer_face_init'" once="true" triggable="true"> 
+			<run_sequence			name="'disable_face'" />
+			<run_sequence			name="'face_hvh_'..pick('a','b','c','d','e','f','g','h')" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_hvh_a'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_a'" />
+			<object 				enabled="true" name="'g_face_hvh_a_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_hvh_b'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_b'" />
+			<object 				enabled="true" name="'g_face_hvh_b_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_hvh_c'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_c'" />
+			<object 				enabled="true" name="'g_face_hvh_c_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_hvh_d'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_d'" />
+			<object 				enabled="true" name="'g_face_hvh_d_lod1'" />
+		</sequence>
+	
+		<sequence editable_state="true" name="'face_hvh_e'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_e'" />
+			<object 				enabled="true" name="'g_face_hvh_e_lod1'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'face_hvh_f'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_f'" />
+			<object 				enabled="true" name="'g_face_hvh_f_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_hvh_g'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_g'" />
+			<object 				enabled="true" name="'g_face_hvh_g_lod1'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'face_hvh_h'" once="true" triggable="true">
+			<object 				enabled="true" name="'g_face_hvh_h'" />
+			<object 				enabled="true" name="'g_face_hvh_h_lod1'" />
 		</sequence>
 		<!--DEBRIS SEQUENCES-->
 		<sequence editable_state="true" name="'drop_debris_armor_back'" once="true" triggable="true">

@@ -1860,8 +1860,8 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.hvh, "ene_city_heavy_hvh_1")
 	safe_add(char_map.hvh, "ene_city_heavy_hvh_r870")
 	safe_add(char_map.hvh, "ene_tazer_hvh_r870")
---	safe_add(char_map.hvh, "ene_bulldozer_hvh_4")
---	safe_add(char_map.hvh, "ene_bulldozer_medic_hvh")
+	safe_add(char_map.hvh, "ene_bulldozer_hvh_4")
+	safe_add(char_map.hvh, "ene_bulldozer_medic_hvh")
 	
 	safe_add(char_map.bph, "ene_murkywater_heavy_fbi")
 

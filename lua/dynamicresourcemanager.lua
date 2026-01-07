@@ -70,8 +70,8 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_1/ene_city_heavy_hvh_1", hvh_needed, false)
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_r870/ene_city_heavy_hvh_r870", hvh_needed, false)
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870", hvh_needed, false)
---	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4", hvh_needed, false)
---	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh", hvh_needed, false)
+	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4", hvh_needed, false)
+	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh", hvh_needed, false)
 				
 	local rvd_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_rvd/characters/ene_la_cop_1/ene_la_cop_1"))
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_1_fat/ene_la_cop_1_fat", rvd_needed, false)
