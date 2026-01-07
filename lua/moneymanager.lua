@@ -201,7 +201,7 @@ end
 
 function MoneyManager:_add_to_total(amount, params, reason)
 	local no_offshore = params and params.no_offshore
-	local offshore = math.round(no_offshore and 0 or amount * (1 - self:get_tweak_value("money_manager", "offshore_rate"))
+	local offshore = math.round(no_offshore and 0 or amount * (1 - self:get_tweak_value("money_manager", "offshore_rate")))
 	local spending_cash = math.round(no_offshore and amount or amount * self:get_tweak_value("money_manager", "offshore_rate"))
 	local rounding_error = math.round(amount - (offshore + spending_cash))
 	spending_cash = spending_cash + rounding_error
