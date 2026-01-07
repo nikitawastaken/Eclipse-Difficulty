@@ -16,9 +16,12 @@ local close_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 return {
-	-- Increase difficulty when a safe is breached
+	-- Increase difficulty when a safe is breached or you fail to open the safe
 	[101127] = {
-		difficulty_add = 0.15,
+		difficulty_add = 0.2,
+	},
+	[100244] = {
+		difficulty_add = 0.2,
 	},
 	-- Spawn group intervals
 	-- This heist is microscopic, thankfully whoever was setting up these spawns bothered to set them to 15s intervals.
