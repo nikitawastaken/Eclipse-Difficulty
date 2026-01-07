@@ -55,6 +55,7 @@ return {
 	[100129] = { -- preferred
 		on_executed = {
 			{ id = 100127, remove = true }, -- default preferreds
+			{ id = 103742, remove = true }, -- remove vanilla cloaker hiding spots
 			{ id = 400001, delay = 0 }, -- custom street preferreds
 		},
 	},

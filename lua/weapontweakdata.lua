@@ -537,7 +537,6 @@ function WeaponTweakData:_init_weapons(overrides)
 			elseif cat_map.flamethrower then
 				weap_data.stats.suppression = 2
 				weap_data.stats.alert_size = 6
-				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2.5
 				weap_data.pickup_mul = weap_data.pickup_mul or 0
 				weap_data.shake.fire_multiplier = 0.25
 			elseif cat_map.saw then
@@ -2003,7 +2002,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- MA-17
 	self.kacchainsaw_flamethrower.CLIP_AMMO_MAX = 75
-	self.kacchainsaw_flamethrower.stats.damage = 24
+	self.kacchainsaw_flamethrower.stats.damage = 8
 	self.kacchainsaw_flamethrower.stats.spread = 0
 	self.kacchainsaw_flamethrower.stats.recoil = 0
 	self.kacchainsaw_flamethrower.stats.concealment = 20
@@ -2457,7 +2456,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	-- MK2
 	self.flamethrower_mk2.CLIP_AMMO_MAX = 300
-	self.flamethrower_mk2.stats.damage = 18
+	self.flamethrower_mk2.stats.damage = 6
 	self.flamethrower_mk2.stats.spread = 0
 	self.flamethrower_mk2.stats.recoil = 0
 	self.flamethrower_mk2.stats.concealment = 16
@@ -2469,7 +2468,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	
 	-- MA-17
 	self.system.CLIP_AMMO_MAX = 150
-	self.system.stats.damage = 18
+	self.system.stats.damage = 6
 	self.system.stats.spread = 0
 	self.system.stats.recoil = 0
 	self.system.stats.concealment = 20
@@ -2482,7 +2481,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 	-- Cashblaster
 	self.money.use_data.selection_index = 2
 	self.money.CLIP_AMMO_MAX = 150
-	self.money.stats.damage = 24
+	self.money.stats.damage = 8
 	self.money.stats.spread = 0
 	self.money.stats.recoil = 0
 	self.money.stats.concealment = 20

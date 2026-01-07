@@ -381,6 +381,8 @@ function TradeManager:trade_restore_resources()
 	local unit = managers.player:player_unit()
 
 	if not unit then
+		-- Even if we're in cust we should still count the resource trade
+		self:increment_resource_trade()
 		return
 	end
 

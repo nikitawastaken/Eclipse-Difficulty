@@ -1132,7 +1132,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_fla_mk2_mag_rare.stats = {
 		value = 1,
-		damage = -4,
+		damage = -2,
 		extra_ammo = 25,
 		total_ammo_mod = 5,
 	}
@@ -1143,7 +1143,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_fla_mk2_mag_welldone.stats = {
 		value = 1,
-		damage = 4,
+		damage = 2,
 		extra_ammo = -25,
 		total_ammo_mod = -5,
 	}
@@ -1165,7 +1165,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_fla_system_m_low.stats = {
 		value = 1,
-		damage = -4,
+		damage = -2,
 		extra_ammo = 25,
 		total_ammo_mod = 5,
 	}
@@ -1176,7 +1176,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 
 	self.parts.wpn_fps_fla_system_m_high.stats = {
 		value = 1,
-		damage = 4,
+		damage = 2,
 		extra_ammo = -25,
 		total_ammo_mod = -5,
 	}
