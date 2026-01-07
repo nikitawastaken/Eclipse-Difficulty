@@ -3,10 +3,12 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<has_visor			value="0" />
-			<has_visor_steel	value="0" />
-			<is_fbi_heavy		value="0" />
-			<is_city_heavy		value="0" />
+			<has_visor				value="0" />
+			<has_visor_steel		value="0" />
+			<is_fbi_heavy			value="0" />
+			<is_city_heavy			value="0" />
+			<is_hvh_fbi_heavy		value="0" />
+			<is_hvh_city_heavy		value="0" />
 		</variables>
 
 		<filter name="'check_no_visor'">
@@ -103,7 +105,17 @@
 			<set_variables 		is_city_heavy="1" />
 			<material_config 	name="'units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_g36'" synchronous="true" />
 		</sequence>
-				
+
+		<sequence editable_state="true" name="'hvh_fbi_heavy'" once="true" triggable="true">
+			<set_variables 		is_hvh_fbi_heavy="1" />
+			<material_config 	name="'units/payday2/characters/ene_fbi_heavy_1/vars/ene_fbi_heavy_hvh_1'" synchronous="true" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_city_heavy'" once="true" triggable="true">
+			<set_variables 		is_hvh_city_heavy="1" />
+			<material_config 	name="'units/payday2/characters/ene_fbi_heavy_1/vars/ene_city_heavy_hvh_1'" synchronous="true" />
+		</sequence>
+		
 		<sequence editable_state="true" name="'fbi_heavy_1'" once="true" triggable="true">
 			<set_variables 		has_visor="1" />
 			
@@ -181,6 +193,26 @@
 			
 			<run_sequence		name="'city_heavy'" />
 			<run_sequence		name="'armor_big'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_fbi_heavy_1'" once="true" triggable="true">
+			<run_sequence		name="'fbi_heavy_1'" />
+			<run_sequence		name="'hvh_fbi_heavy'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_fbi_heavy_2'" once="true" triggable="true">
+			<run_sequence		name="'fbi_heavy_2'" />
+			<run_sequence		name="'hvh_fbi_heavy'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_city_heavy_1'" once="true" triggable="true">
+			<run_sequence		name="'city_heavy_1'" />
+			<run_sequence		name="'hvh_city_heavy'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_city_heavy_2'" once="true" triggable="true">
+			<run_sequence		name="'city_heavy_2'" />
+			<run_sequence		name="'hvh_city_heavy'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

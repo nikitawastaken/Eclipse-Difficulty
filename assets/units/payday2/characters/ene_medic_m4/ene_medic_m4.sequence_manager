@@ -13,6 +13,11 @@
 		<filter name="'check_goggles'">
 			<check value="vars.has_goggles == 1" />
 		</filter>
+
+		<sequence editable_state="true" name="'hvh_medic'" once="true" triggable="true">	
+			<set_variables 		is_hvh_city_swat="1" />
+			<material_config 	name="'units/payday2/characters/ene_medic_m4/vars/ene_medic_hvh_m4'" synchronous="true" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'medic_1'" once="true" triggable="true">
 			<set_variables 		has_goggles="1" />
@@ -36,6 +41,16 @@
 			<object 			enabled="true" name="'g_helmet_lod5'"/>
 
 			<run_sequence 		name="'random_body'"/>
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_medic_1'" once="true" triggable="true">
+			<run_sequence 		name="'medic_1'" />
+			<run_sequence 		name="'hvh_medic'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_medic_2'" once="true" triggable="true">
+			<run_sequence 		name="'medic_2'" />
+			<run_sequence 		name="'hvh_medic'" />
 		</sequence>
 	<!--BODY SEQUENCES-->
 		<sequence editable_state="true" name="'random_body'" triggable="true">

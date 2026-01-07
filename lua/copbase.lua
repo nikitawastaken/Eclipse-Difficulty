@@ -155,6 +155,10 @@ function CopBase:_run_unit_sequences()
 	end
 end
 
+CopBase.cloaker_light_RGB = {
+	[Idstring("units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"):key()] = { 355, 1, 1 },
+}
+
 -- Check for weapon changes and run unit sequences
 Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 	self:_run_unit_sequences()
@@ -174,6 +178,15 @@ Hooks:PreHook(CopBase, "post_init", "eclipse_post_init", function(self)
 		self._default_weapon_id = selector:select() or self._default_weapon_id
 	elseif mapping_type == "string" then
 		self._default_weapon_id = unit_weapon
+	end
+
+	-- Change Cloaker light glow colour
+    local lights = self._unit:get_objects_by_type(Idstring("light"))
+	local new_RGB = self.cloaker_light_RGB[self._unit:name():key()]
+	if new_RGB then
+		for k, v in pairs(lights) do
+			v:set_color(Color(hsv_to_rgb(unpack(new_RGB))))
+		end
 	end
 end)
 

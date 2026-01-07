@@ -6,8 +6,7 @@
 	<dependencies>		
 		<depends_on unit="units/payday2/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet" />
 		<depends_on unit="units/payday2/characters/ene_acc_swat_heavy_visor/ene_acc_swat_heavy_visor" />
-		<depends_on unit="units/payday2/characters/ene_acc_head/ene_acc_head" />	
-		<depends_on unit="units/payday2/weapons/wpn_npc_benelli/wpn_npc_benelli" />
+		<depends_on unit="units/pd2_dlc_hvh/characters/ene_acc_hvh_head/ene_acc_hvh_head" />	
 	</dependencies>
 
 	<extensions>	
@@ -88,17 +87,17 @@
 		</extension>
 		<extension name="unit_data" class="ScriptUnitData" />
 		<extension name="base" class="HuskCopBase" >		
-			<var name="_tweak_table" value="city_heavy_swat" />
-			<var name="_default_weapon_id" value="benelli" />
+			<var name="_tweak_table" value="fbi_heavy_swat" />
+			<var name="_default_weapon_id" value="r870" />
 		</extension>
 		<extension name="inventory" class="HuskCopInventory" />
 		<extension name="brain" class="HuskCopBrain" />
 		<extension name="anim_data" class="PlayerAnimationData" />
 		<extension name="character_damage" class="HuskCopDamage" >	
 			<var name="_head_body_name" value="head" />
-			<var name="_head" value="units/payday2/characters/ene_acc_head/ene_acc_head" />
+			<var name="_head" value="units/pd2_dlc_hvh/characters/ene_acc_hvh_head/ene_acc_hvh_head" />
 			<var name="_head_gear_object" value="g_helmet_lod" />
-			<var name="_nr_head_gear_objects" value="22" />
+			<var name="_nr_head_gear_objects" value="20" />
 			<var name="_head_gear" value="units/payday2/characters/ene_acc_swat_heavy_helmet/ene_acc_swat_heavy_helmet" />
 			<var name="_head_gear_decal_mesh" value="dm_helmet" />			
 		</extension>

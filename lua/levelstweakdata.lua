@@ -319,7 +319,18 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			cloaker = 1,
 		},
 	}
+	self.help.package = {
+		"packages/lvl_help",
+		"packages/narr_hvh",
+	}
+	self.help.ai_group_type = "zombie"
 
+	self.nail.package = {
+		"packages/job_nail",
+		"packages/narr_hvh",
+	}
+	self.nail.ai_group_type = "zombie"
+ 
 	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 
 	self.moon.group_ai_settings = {

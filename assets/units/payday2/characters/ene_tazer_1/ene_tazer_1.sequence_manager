@@ -3,15 +3,15 @@
 	<unit>
 <!--CUSTOM SEQUENCES START-->
 		<variables>
-			<var_has_visor			value="0" />
+			<has_visor			value="0" />
 		</variables>
 
 		<filter name="'check_no_visor'">
-			<check value="vars.var_has_visor == 0" />
+			<check value="vars.has_visor == 0" />
 		</filter>
 
 		<filter name="'check_visor'">
-			<check value="vars.var_has_visor == 1" />
+			<check value="vars.has_visor == 1" />
 		</filter>
 		
 		<sequence editable_state="true" name="'break_visor'" once="true" triggable="true">
@@ -24,9 +24,15 @@
 			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 			<sound 				action="'play'" event="'swat_heavy_visor_shatter'" object="'e_visor_shatter'" />
 		</sequence>
+
+
+		<sequence editable_state="true" name="'hvh_taser'" once="true" triggable="true">	
+			<set_variables 		is_hvh_city_swat="1" />
+			<material_config 	name="'units/payday2/characters/ene_tazer_1/vars/ene_tazer_hvh_1'" synchronous="true" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'taser_1'" once="true" triggable="true">
-			<set_variables 		var_has_visor="1" />
+			<set_variables 		has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_a'" />
 			<object 			enabled="true" name="'g_gear_a_lod1'" />
@@ -39,7 +45,7 @@
 		</sequence>
 
 		<sequence editable_state="true" name="'taser_2'" once="true" triggable="true">
-			<set_variables 		var_has_visor="1" />
+			<set_variables 		has_visor="1" />
 			
 			<object 			enabled="true" name="'g_gear_b'" />
 			<object 			enabled="true" name="'g_gear_b_lod1'" />
@@ -54,6 +60,16 @@
 			<object 			enabled="true" name="'g_helmet_lod8'" />
 			
 			<decal_mesh 		enabled="true" name="'dm_visor2'" />
+		</sequence>
+
+		<sequence editable_state="true" name="'hvh_taser_1'" once="true" triggable="true">
+			<run_sequence 		name="'taser_1'" />
+			<run_sequence 		name="'hvh_taser'" />
+		</sequence>
+		
+		<sequence editable_state="true" name="'hvh_taser_2'" once="true" triggable="true">
+			<run_sequence 		name="'taser_2'" />
+			<run_sequence 		name="'hvh_taser'" />
 		</sequence>
 <!--CUSTOM SEQUENCES END-->
 		<sequence editable_state="true" name="'kill_tazer_headshot'" triggable="true">

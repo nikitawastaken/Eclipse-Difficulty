@@ -67,9 +67,9 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_swat_hvh_3/ene_city_swat_hvh_3", hvh_needed, false)
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_sniper_hvh_3/ene_sniper_hvh_3", hvh_needed, false)
 	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_shield_hvh/ene_city_shield_hvh", hvh_needed, false)
---	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_1/ene_city_heavy_hvh_1", hvh_needed, false)
---	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_r870/ene_city_heavy_hvh_r870", hvh_needed, false)
---	load_unload_unit("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870", hvh_needed, false)
+	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_1/ene_city_heavy_hvh_1", hvh_needed, false)
+	load_unload_unit("units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_r870/ene_city_heavy_hvh_r870", hvh_needed, false)
+	load_unload_unit("units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870", hvh_needed, false)
 --	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4", hvh_needed, false)
 --	load_unload_unit("units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh", hvh_needed, false)
 				

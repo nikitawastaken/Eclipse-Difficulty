@@ -315,6 +315,9 @@
 		<file name="effects/particles/weapons/elite_sniper_glint.effect"/>
 		<file name="effects/textures/weapons/sniper_glint.dds"/>
 
+		<!-- cloaker goggle glow -->
+		<file name="effects/particles/character/hvh_cloaker_goggle.effect"/>
+		
 		<!-- incendiary cluster grenade explosion -->
 		<file name="effects/payday2/particles/explosions/cluster_incendiary_explosion.effect"/>
 
@@ -713,6 +716,7 @@
 				<file :name="visor_glass_red_df.texture" />
 				<file :name="visor_glass_yellow_df.texture" />
 				<file :name="visor_glass_purple_df.texture" />
+				<file :name="spook_il.texture" />
 			</group>
 
 			<group :name="ene_acc_swat_helmet/">
@@ -1458,8 +1462,10 @@
 				<file :name="swat_body_hvh_df.texture" />
 				<file :name="swat_city_hvh_df.texture" />
 				<file :name="ene_hvh_city_heavy_df.texture" />
+				<file :name="hvh_city_heavy_helmets_atlas_df.texture" />
 				<file :name="ene_hvh_bulldozer_minigun_df.texture" />
 				<file :name="ene_hvh_bulldozer_medic_df.texture" />
+				<file :name="hvh_spook_il.texture" />
 			</group>
 			
 			<group :name="ene_acc_hvh_head/">
@@ -1598,8 +1604,6 @@
 				<file :name="ene_sniper_hvh_3_husk.unit" />
 			</group>
 
-<!--	
-		
 			<group :name="ene_fbi_heavy_hvh_1/">
 				<file :name="ene_fbi_heavy_hvh_1.unit" />
 				<file :name="ene_fbi_heavy_hvh_1_husk.unit" />
@@ -1644,7 +1648,7 @@
 				<file :name="ene_spook_hvh_1.unit" />
 				<file :name="ene_spook_hvh_1_husk.unit" />
 			</group>	
-
+<!--
 			<group :name="ene_bulldozer_hvh_1/">
 				<file :name="ene_bulldozer_hvh_1.unit" />
 				<file :name="ene_bulldozer_hvh_1_husk.unit" />
