@@ -105,6 +105,8 @@ local prefix_lookup_for_humans = {
 		end,
 		"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 		"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
+		"units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer",
 	},
 	american_cloaker_list = {
@@ -112,6 +114,7 @@ local prefix_lookup_for_humans = {
 			return "clk_"
 		end,
 		"units/payday2/characters/ene_spook_1/ene_spook_1",
+		"units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1",
 	},
 	american_medic_list = {
 		func = function(self, nr_variations)
@@ -119,6 +122,8 @@ local prefix_lookup_for_humans = {
 		end,
 		"units/payday2/characters/ene_medic_m4/ene_medic_m4",
 		"units/payday2/characters/ene_medic_r870/ene_medic_r870",
+		"units/pd2_dlc_hvh/characters/ene_medic_hvh_m4/ene_medic_hvh_m4",
+		"units/pd2_dlc_hvh/characters/ene_medic_hvh_r870/ene_medic_hvh_r870",
 	},
 	american_dozer_list = {
 		func = function(self, nr_variations)
@@ -134,6 +139,11 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_gitgud/characters/ene_zeal_bulldozer_3/ene_zeal_bulldozer_3",
 		"units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun",
 		"units/pd2_dlc_drm/characters/ene_bulldozer_medic/ene_bulldozer_medic",
+		"units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_1/ene_bulldozer_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_2/ene_bulldozer_hvh_2",
+		"units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_3/ene_bulldozer_hvh_3",
+		"units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4",
+		"units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh",
 	},
 	-- Scary gruff filtered lines, reserve for mercs and whatnot
 	l5d_list = {
@@ -271,6 +281,54 @@ local prefix_lookup_for_humans = {
 		"units/pd2_mod_ttr/characters/ene_gang_mobster_clubsecurity/ene_gang_mobster_clubsecurity",
 	},
 	]]
+	zombie_cop_list = {
+		func = function(self, nr_variations)
+			return "z" .. nr_variations .. "n_"
+		end,
+		-- DC Street Cops
+		"units/pd2_dlc_hvh/characters/ene_cop_hvh_1/ene_cop_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_cop_hvh_2/ene_cop_hvh_2",
+		"units/pd2_dlc_hvh/characters/ene_cop_hvh_3/ene_cop_hvh_3",
+		"units/pd2_dlc_hvh/characters/ene_cop_hvh_4/ene_cop_hvh_4",
+		-- US Blue SWAT
+		"units/pd2_dlc_hvh/characters/ene_swat_hvh_1/ene_swat_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_swat_hvh_2/ene_swat_hvh_2",
+		"units/pd2_dlc_hvh/characters/ene_swat_hvh_3/ene_swat_hvh_3",
+		"units/pd2_dlc_hvh/characters/ene_swat_heavy_hvh_1/ene_swat_heavy_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_swat_heavy_hvh_r870/ene_swat_heavy_hvh_r870",
+		"units/pd2_dlc_hvh/characters/ene_sniper_hvh_1/ene_sniper_hvh_1",
+		-- US FBI Agents
+		"units/pd2_dlc_hvh/characters/ene_fbi_hvh_1/ene_fbi_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_fbi_hvh_2/ene_fbi_hvh_2",
+		"units/pd2_dlc_hvh/characters/ene_fbi_hvh_3/ene_fbi_hvh_3",
+		-- US FBI SWAT
+		"units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_1/ene_fbi_swat_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_2/ene_fbi_swat_hvh_2",
+		"units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_3/ene_fbi_swat_hvh_3",
+		"units/pd2_dlc_hvh/characters/ene_fbi_heavy_hvh_1/ene_fbi_heavy_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_fbi_heavy_hvh_r870/ene_fbi_heavy_hvh_r870",
+		"units/pd2_dlc_hvh/characters/ene_sniper_hvh_2/ene_sniper_hvh_2",
+		-- US GenSec
+		"units/pd2_dlc_hvh/characters/ene_city_swat_hvh_1/ene_city_swat_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_city_swat_hvh_2/ene_city_swat_hvh_2",
+		"units/pd2_dlc_hvh/characters/ene_city_swat_hvh_3/ene_city_swat_hvh_3",
+		"units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_1/ene_city_heavy_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_city_heavy_hvh_r870/ene_city_heavy_hvh_r870",
+		"units/pd2_dlc_hvh/characters/ene_sniper_hvh_3/ene_sniper_hvh_3",
+	},
+	zombie_shield_list = {
+		func = function(self, nr_variations)
+			local rand = math.random()
+			if rand < 0.5 then
+				return "z1n_"
+			else
+				return "z4n_"
+			end
+		end,
+		"units/pd2_dlc_hvh/characters/ene_shield_hvh_1/ene_shield_hvh_1",
+		"units/pd2_dlc_hvh/characters/ene_shield_hvh_2/ene_shield_hvh_2",
+		"units/pd2_dlc_hvh/characters/ene_city_shield_hvh/ene_city_shield_hvh",
+	},
 	bexico_cop_list = {
 		func = function(self, nr_variations)
 			return "m" .. nr_variations .. "n_"
