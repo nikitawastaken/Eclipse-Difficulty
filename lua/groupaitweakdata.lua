@@ -2925,7 +2925,6 @@ function GroupAITweakData:_init_enemy_spawn_groups_level(tweak_data, difficulty_
 			"flash_grenade",
 		},
 		fbi_snk = {
-			"rescue",
 			"flank",
 			"deathguard",
 			"flash_grenade",
@@ -3355,9 +3354,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.besiege.assault.spawn_rate = get_difficulty_specific_value({
 		{ 3, 2.5, 2 },
-		{ 3, 2.5, 2 },
 		{ 2.75, 2.25, 1.75 },
 		{ 2.75, 2.25, 1.75 },
+		{ 2.5, 2, 1.5 },
 		{ 2.5, 2, 1.5 },
 	})
 	self.besiege.assault.spawn_rate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
@@ -3373,7 +3372,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Reenforce spawn interval
 	self.besiege.reenforce.interval = { 10, 20, 30 }
-	self.init_reenforce_delay = 20
+	self.init_reenforce_delay = 15
 	self.use_equipment_reenforce = true
 	self.equipment_reenforce = table.list_to_set({
 		"doctor_bag",
@@ -3387,16 +3386,16 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 4, 6, 8 },
 		{ 4, 6, 8 },
 		{ 5, 7, 9 },
-		{ 6, 8, 10 },
+		{ 5, 7, 9 },
 		{ 6, 8, 10 },
 	})
 
 	-- Push delay
 	self.besiege.assault.push_delay = get_difficulty_specific_value({
 		{ 20, 16, 12 },
-		{ 20, 16, 12 },
 		{ 18, 14, 10 },
 		{ 18, 14, 10 },
+		{ 16, 12, 8 },
 		{ 16, 12, 8 },
 	})
 	self.hostage_push_delay_mul = 1.5
@@ -3414,17 +3413,27 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.cs_grenade_timeout = { 60, 90 }
 	self.cs_grenade_lifetime = self.smoke_grenade_lifetime * 2
-	self.cs_grenade_chance_times = {
-		below_overkill and 60 or 45,
-		below_overkill and 120 or 90,
-	}
+	self.cs_grenade_min_chance = get_difficulty_specific_value({
+		0,
+		0.05,
+		0.1,
+		0.2,
+		0.3,
+	})
+	self.cs_grenade_chance_times = get_difficulty_specific_value({
+		{ 60, 180 },
+		{ 60, 150 },
+		{ 60, 120 },
+		{ 45, 90 },
+		{ 45, 90 },
+	})
 
 	local special_wgt = get_difficulty_specific_value({
-		6,
+		5,
 		7,
-		8,
-		10,
+		9,
 		12,
+		15,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
 	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.4, 0.8, 1.2 } or { 0.6, 0.9, 1.2 })
@@ -3520,9 +3529,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.besiege.assault.groups = {
-			fbi_swats = { 20, 10, 0 },
-			elite_swats = { 16, 20, 24 },
-			fbi_heavies = { 12, 18, 24 },
+			fbi_swats = { 28, 14, 0 },
+			elite_swats = { 20, 26, 32 },
+			fbi_heavies = { 16, 24, 32 },
 			fbi_shield = shield_wgt,
 			elite_sniper = elite_sniper_wgt,
 			elite_taser = taser_wgt,
@@ -3709,11 +3718,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	local ponr_special_wgt = get_difficulty_specific_value({
-		4,
 		5,
 		6,
 		7,
 		8,
+		9,
 	})
 	local ponr_special_wgt_tbl = { ponr_special_wgt, ponr_special_wgt, ponr_special_wgt }
 	local ponr_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1.2)
