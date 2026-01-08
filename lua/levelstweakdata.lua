@@ -131,10 +131,10 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2_day.group_ai_preset = "heavy_response"
 
 	self.firestarter_1.group_ai_settings = deep_clone(self.watchdogs_1.group_ai_settings)
-	
+
 	self.firestarter_2.group_ai_settings = deep_clone(self.firestarter_1.group_ai_settings)
 	self.firestarter_2.group_ai_preset = "heavy_response"
-	
+
 	self.firestarter_3.group_ai_settings = deep_clone(self.firestarter_1.group_ai_settings)
 	self.firestarter_3.group_ai_preset = "heavy_response"
 
