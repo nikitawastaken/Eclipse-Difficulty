@@ -334,33 +334,46 @@ function SkillTreeTweakData:init(tweak_data)
 	-- GHOST --
 
 	-- Inner Pockets
-	self.skills.cleaner[1].upgrades = { "player_melee_concealment_modifier" }
-	self.skills.cleaner[2].upgrades = { "player_ballistic_vest_concealment_1" }
-	self.skills.cleaner.icon_xy = { 10, 7 }
-	self.skills.cleaner.name_id = "menu_thick_skin_beta"
-	self.skills.cleaner.desc_id = "menu_thick_skin_beta_desc"
+	self.skills.cleaner[1].upgrades = {  }
+	self.skills.cleaner[2].upgrades = {  }
+	self.skills.cleaner.icon_xy = { 0, 0 }
+	self.skills.cleaner.name_id = "menu_work_in_progress_beta"
+	self.skills.cleaner.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Winstone Wolfe
-	self.skills.second_chances[1].upgrades = { "player_corpse_dispose_amount_2", "player_extra_corpse_dispose_amount" }
-	self.skills.second_chances[2].upgrades = { "player_pick_lock_easy_speed_multiplier", "player_pick_lock_hard" }
-	self.skills.second_chances.icon_xy = { 5, 4 }
+	self.skills.second_chances[1].upgrades = {  }
+	self.skills.second_chances[2].upgrades = {  }
+	self.skills.second_chances.icon_xy = { 0, 0 }
+	self.skills.second_chances.name_id = "menu_work_in_progress_beta"
+	self.skills.second_chances.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- ECM feedback
-	self.skills.ecm_booster[1].upgrades = { "ecm_jammer_can_activate_feedback" }
-	self.skills.ecm_booster[2].upgrades = { "ecm_jammer_can_retrigger" }
-	self.skills.ecm_booster.icon_xy = { 6, 2 }
+	self.skills.ecm_booster[1].upgrades = {  }
+	self.skills.ecm_booster[2].upgrades = {  }
+	self.skills.ecm_booster.icon_xy = { 0, 0 }
+	self.skills.ecm_booster.name_id = "menu_work_in_progress_beta"
+	self.skills.ecm_booster.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Chameleon
-	self.skills.jail_workout[1].upgrades = { "player_suspicion_bonus", "player_camouflage_bonus_1", "player_camouflage_bonus_2" }
-	self.skills.jail_workout[2].upgrades = { "player_concealment_bonus_1" }
+	self.skills.jail_workout[1].upgrades = {  }
+	self.skills.jail_workout[2].upgrades = {  }
+	self.skills.jail_workout.icon_xy = { 0, 0 }
+	self.skills.jail_workout.name_id = "menu_work_in_progress_beta"
+	self.skills.jail_workout.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- ECM Specialist
-	self.skills.ecm_2x[2].upgrades = { "ecm_jammer_duration_multiplier_1", "ecm_jammer_duration_multiplier_2", "ecm_jammer_feedback_duration_boost_2" }
+	self.skills.ecm_2x[1].upgrades = {  }
+	self.skills.ecm_2x[2].upgrades = {  }
+	self.skills.ecm_2x.icon_xy = { 0, 0 }
+	self.skills.ecm_2x.name_id = "menu_work_in_progress_beta"
+	self.skills.ecm_2x.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Blackout
-	self.skills.chameleon[1].upgrades = { "player_tape_loop_duration_1", "player_tape_loop_duration_2" }
-	self.skills.chameleon[2].upgrades = { "ecm_jammer_affects_pagers", "ecm_jammer_can_open_sec_doors" }
-	self.skills.chameleon.icon_xy = { 6, 3 }
+	self.skills.chameleon[1].upgrades = {  }
+	self.skills.chameleon[2].upgrades = {  }
+	self.skills.chameleon.icon_xy = { 0, 0 }
+	self.skills.chameleon.name_id = "menu_work_in_progress_beta"
+	self.skills.chameleon.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Athlete
 	self.skills.sprinter[1].upgrades = { "player_stamina_regen_timer_multiplier", "player_stamina_regen_multiplier" }
@@ -953,6 +966,12 @@ function SkillTreeTweakData:init(tweak_data)
 	table.insert(self.default_upgrades, "saw_enemy_slicer") -- prev saw massacre
 	table.insert(self.default_upgrades, "saw_ignore_shields_1") -- prev saw massacre
 	table.insert(self.default_upgrades, "saw_panic_when_kill_1") -- prev saw massacre
+	table.insert(self.default_upgrades, "player_corpse_dispose_amount_2")
+	table.insert(self.default_upgrades, "player_extra_corpse_dispose_amount")
+	table.insert(self.default_upgrades, "ecm_jammer_can_retrigger")
+	table.insert(self.default_upgrades, "ecm_jammer_can_activate_feedback")
+	table.insert(self.default_upgrades, "ecm_jammer_affects_pagers")
+	table.insert(self.default_upgrades, "ecm_jammer_can_open_sec_doors")
 	table.delete(self.default_upgrades, "player_fall_damage_multiplier")
 	table.delete(self.default_upgrades, "player_fall_health_damage_multiplier")
 	table.delete(self.default_upgrades, "player_steelsight_when_downed")
