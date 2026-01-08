@@ -334,43 +334,43 @@ function SkillTreeTweakData:init(tweak_data)
 	-- GHOST --
 
 	-- Inner Pockets
-	self.skills.cleaner[1].upgrades = {  }
-	self.skills.cleaner[2].upgrades = {  }
+	self.skills.cleaner[1].upgrades = {}
+	self.skills.cleaner[2].upgrades = {}
 	self.skills.cleaner.icon_xy = { 0, 0 }
 	self.skills.cleaner.name_id = "menu_work_in_progress_beta"
 	self.skills.cleaner.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Winstone Wolfe
-	self.skills.second_chances[1].upgrades = {  }
-	self.skills.second_chances[2].upgrades = {  }
+	self.skills.second_chances[1].upgrades = {}
+	self.skills.second_chances[2].upgrades = {}
 	self.skills.second_chances.icon_xy = { 0, 0 }
 	self.skills.second_chances.name_id = "menu_work_in_progress_beta"
 	self.skills.second_chances.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- ECM feedback
-	self.skills.ecm_booster[1].upgrades = {  }
-	self.skills.ecm_booster[2].upgrades = {  }
+	self.skills.ecm_booster[1].upgrades = {}
+	self.skills.ecm_booster[2].upgrades = {}
 	self.skills.ecm_booster.icon_xy = { 0, 0 }
 	self.skills.ecm_booster.name_id = "menu_work_in_progress_beta"
 	self.skills.ecm_booster.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Chameleon
-	self.skills.jail_workout[1].upgrades = {  }
-	self.skills.jail_workout[2].upgrades = {  }
+	self.skills.jail_workout[1].upgrades = {}
+	self.skills.jail_workout[2].upgrades = {}
 	self.skills.jail_workout.icon_xy = { 0, 0 }
 	self.skills.jail_workout.name_id = "menu_work_in_progress_beta"
 	self.skills.jail_workout.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- ECM Specialist
-	self.skills.ecm_2x[1].upgrades = {  }
-	self.skills.ecm_2x[2].upgrades = {  }
+	self.skills.ecm_2x[1].upgrades = {}
+	self.skills.ecm_2x[2].upgrades = {}
 	self.skills.ecm_2x.icon_xy = { 0, 0 }
 	self.skills.ecm_2x.name_id = "menu_work_in_progress_beta"
 	self.skills.ecm_2x.desc_id = "menu_work_in_progress_beta_desc"
 
 	-- Blackout
-	self.skills.chameleon[1].upgrades = {  }
-	self.skills.chameleon[2].upgrades = {  }
+	self.skills.chameleon[1].upgrades = {}
+	self.skills.chameleon[2].upgrades = {}
 	self.skills.chameleon.icon_xy = { 0, 0 }
 	self.skills.chameleon.name_id = "menu_work_in_progress_beta"
 	self.skills.chameleon.desc_id = "menu_work_in_progress_beta_desc"
