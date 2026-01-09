@@ -42,7 +42,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 	self.cocaine_stacks_decay_t = cocainum_stacks
 	self.cocaine_stacks_decay_percentage_per_tick = 0.075
 	self.cocaine_stacks_decay_amount_per_tick = 30
-	self.cocaine_stacks_dmg_absorption_value = 0.08
+	self.cocaine_stacks_dmg_absorption_value = 0.1
 	self.cocaine_stacks_convert_levels = { 30, 25 } 
 	
 	self.values.player.cocaine_stacks_decay_multiplier = { 0.5 }
