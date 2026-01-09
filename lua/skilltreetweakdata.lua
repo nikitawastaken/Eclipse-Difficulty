@@ -236,17 +236,19 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.defense_up[2].upgrades = { "player_total_interaction_timer_multiplier" }
 	self.skills.defense_up.icon_xy = { 8, 9 }
 
-	-- Hardware Expert
-	self.skills.sentry_targeting_package[1].upgrades = { "player_drill_alert", "player_silent_drill" }
+	-- Hands-On Approach
+	self.skills.sentry_targeting_package[1].upgrades = { "player_hack_interaction_speed_multiplier"}
 	self.skills.sentry_targeting_package[2].upgrades = { "player_drill_fix_interaction_speed_multiplier" }
-	self.skills.sentry_targeting_package.icon_xy = { 9, 6 }
+	self.skills.sentry_targeting_package.icon_xy = { 8, 0 }
+	self.skills.sentry_targeting_package.name_id = "menu_handson_approach"
+	self.skills.sentry_targeting_package.desc_id = "menu_handson_approach_desc"
 
-	-- Kickstarter
-	self.skills.jack_of_all_trades[1].upgrades = {}
-	self.skills.jack_of_all_trades[2].upgrades = {}
-	self.skills.jack_of_all_trades.icon_xy = { 0, 0 }
-	self.skills.jack_of_all_trades.name_id = "menu_work_in_progress_beta"
-	self.skills.jack_of_all_trades.desc_id = "menu_work_in_progress_beta_desc"
+	-- Ghost Wiring
+	self.skills.jack_of_all_trades[1].upgrades = { "player_drill_alert", "player_silent_drill" }
+	self.skills.jack_of_all_trades[2].upgrades = { "player_tape_loop_duration_1", "player_tape_loop_duration_2"}
+	self.skills.jack_of_all_trades.icon_xy = { 8, 0 }
+	self.skills.jack_of_all_trades.name_id = "menu_ghost_wiring"
+	self.skills.jack_of_all_trades.desc_id = "menu_ghost_wiring_desc"
 
 	-- Portable Saw
 	self.skills.engineering[1].upgrades =
