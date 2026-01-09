@@ -695,8 +695,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "hack_interaction_speed_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
 	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.5
