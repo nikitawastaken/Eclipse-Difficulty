@@ -1382,11 +1382,24 @@ function UpgradesTweakData:init(tweak_data)
 	self.skill_descs.defense_up.multibasic = "10%"
 	self.skill_descs.defense_up.multipro = "10%"
 
-	-- Hardware Expert
+	-- Hands-On Approach
+	self.definitions.player_hack_interaction_speed_multiplier = {
+		name_id = "menu_player_hack_interaction_speed_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "hack_interaction_speed_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.hack_interaction_speed_multiplier = { 0.75 }
 	self.values.player.drill_fix_interaction_speed_multiplier[1] = 0.5
+	self.skill_descs.sentry_targeting_package.multibasic = "25%"
 	self.skill_descs.sentry_targeting_package.multipro = "50%"
 
-	-- Kickstarter
+	-- Ghost Wiring
+	self.skill_descs.jack_of_all_trades.multipro = "1"
+	self.skill_descs.jack_of_all_trades.multipro2 = "25"
 
 	-- Portable Saw
 	self.values.saw.lock_damage_multiplier[2] = 1.6

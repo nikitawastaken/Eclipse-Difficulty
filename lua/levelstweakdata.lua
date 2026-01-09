@@ -79,12 +79,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.family.group_ai_preset = "small_urban"
 	self.gallery.group_ai_preset = "small_urban"
 
-	self.mallcrasher.group_ai_settings = {
-		difficulty_scaling = {
-			assault_delay = 60,
-		},
-	}
-
 	self.arm_par.group_ai_settings = {
 		sustain_duration_mul = 0.75,
 	}
@@ -96,11 +90,6 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.arm_cro.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
 	self.arm_cro.group_ai_settings.assault_force_mul = 0.75
 
-	self.arm_for.group_ai_settings = {
-		special_limit_add = {
-			shield = -1,
-		},
-	}
 	self.arm_for.group_ai_preset = "heavy_response"
 
 	self.escape_park.group_ai_settings = deep_clone(self.arm_par.group_ai_settings)
@@ -141,11 +130,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.watchdogs_2_day.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
 	self.watchdogs_2_day.group_ai_preset = "heavy_response"
 
-	self.firestarter_1.group_ai_settings = {
-		difficulty_scaling = {
-			diff_init = 0.5,
-		},
-	}
+	self.firestarter_1.group_ai_settings = deep_clone(self.watchdogs_1.group_ai_settings)
 
 	self.firestarter_2.group_ai_settings = deep_clone(self.firestarter_1.group_ai_settings)
 	self.firestarter_2.group_ai_preset = "heavy_response"
@@ -168,12 +153,9 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 		},
 	}
 
-	self.election_day_3_skip1.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-	self.election_day_3_skip2.group_ai_settings = deep_clone(self.election_day_3.group_ai_settings)
-
 	self.mia_1.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 75,
+			assault_delay = 60,
 		},
 	}
 
@@ -188,12 +170,12 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	}
 
 	self.crojob2.group_ai_settings = deep_clone(self.watchdogs_2.group_ai_settings)
-	self.crojob2.group_ai_settings.difficulty_scaling = { assault_delay = 75 }
+	self.crojob2.group_ai_settings.difficulty_scaling = { assault_delay = 60 }
 	self.crojob2.group_ai_preset = "heavy_response"
 
 	self.crojob3.group_ai_settings = {
 		difficulty_scaling = {
-			assault_delay = 75,
+			assault_delay = 60,
 		},
 	}
 	self.crojob3.group_ai_preset = "heavy_response"
@@ -217,7 +199,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 	self.pbr2.group_ai_settings = {
 		assault_force_mul = 0.75,
 		difficulty_scaling = {
-			assault_delay = 75,
+			assault_delay = 60,
 		},
 		special_limit_add = {
 			shield = -1,
@@ -315,16 +297,11 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.help.group_ai_settings = {
 		assault_force_mul = 0.75,
-		special_limit_add = {
-			cloaker = 1,
-		},
 	}
 
 	self.friend.group_ai_settings = deep_clone(self.shoutout_raid.group_ai_settings)
 
-	self.moon.group_ai_settings = {
-		assault_force_mul = 0.75,
-	}
+	self.moon.group_ai_settings = deep_clone(self.help.group_ai_settings)
 
 	self.run.group_ai_settings = {
 		hostage_hesitation_delay_mul = 0.75,
