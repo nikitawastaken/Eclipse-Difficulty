@@ -6,7 +6,7 @@ local no_participate = {
 }
 local roof_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
 local agile_spawn = {

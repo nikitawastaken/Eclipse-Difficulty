@@ -50,7 +50,26 @@ local bags_required = {
 		counter_target = (is_eclipse and 6 or 4) + (is_pro_job and 2 or 0),
 	},
 }
+local vis_blockers = {}
+local vis_blocker_ids = Idstring("units/dev_tools/level_tools/dev_ai_vis_blocker/dev_ai_vis_blocker_005x2x2m")
+for i = 0, 11 do
+	local y = 1300 - (i * 200)
+	table.insert(vis_blockers, {
+		name = vis_blocker_ids,
+		pos = Vector3(-4240, y, 1060),
+		visible = false
+	})
+	table.insert(vis_blockers, {
+		name = vis_blocker_ids,
+		pos = Vector3(-2365, y, 1060),
+		visible = false
+	})
+end
 return {
+	-- Add vis blockers
+	[100000] = {
+		spawn = vis_blockers
+	},
 	[100757] = { -- first responders
 		reinforce = {
 			{

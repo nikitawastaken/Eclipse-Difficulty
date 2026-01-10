@@ -11,6 +11,12 @@ local light_harasser = swat_1
 local heavy_harasser = is_eclipse and { [heavy_1] = 5, [elite_sniper] = 1 } or heavy_1
 local fail_to_believe_chance = (is_eclipse and 30 or 20) + (is_pro_job and 5 or 0)
 
+local disabled = {
+	values = {
+		enabled = false,
+	},
+}
+
 -- the evil one
 local timelock_normal_variant_1 = (is_eclipse and 300 or 240) + (is_pro_job and 60 or 0)
 local timelock_fast_variant_1 = (is_eclipse and 240 or 180) + (is_pro_job and 60 or 0)
@@ -44,11 +50,6 @@ end
 local harasser = {
 	enemy = diff_i < 5 and light_harasser or heavy_harasser,
 }
-local wall_c4_chance = {
-	values = {
-		chance = (normal and 40 or 60) * (is_pro_job and 1.5 or 1),
-	},
-}
 local no_shields_and_dozers = {
 	so_access_filter = { "cop", "swat", "fbi", "taser", "spooc" },
 }
@@ -63,12 +64,6 @@ local mga_thermite_event = {
 local mga_vault_event = {
 	post_mga_event = { "mga_vault_a", "mga_vault_b", "mga_vault_c" },
 }
-local roof_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local elevator_spawn = {
 	values = {
 		interval = 30,
@@ -76,7 +71,7 @@ local elevator_spawn = {
 }
 local elevator_close_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -126,7 +121,7 @@ return {
 			},
 		},
 	},
-	[104369] = { -- explode wall (upstairs)
+	[104369] = { -- explode wall (downstairs)
 		reinforce = {
 			{
 				name = "breach",
@@ -149,7 +144,7 @@ return {
 			{
 				name = "elevator_escape",
 				force = 2,
-				position = Vector3(-1200, -650, -900),
+				position = Vector3(-1150, -1050, -1000),
 			},
 		},
 	},
@@ -158,7 +153,7 @@ return {
 			{
 				name = "bus_escspae",
 				force = 2,
-				position = Vector3(-2150, -2050, -500),
+				position = Vector3(-2640, -1445, -600),
 			},
 		},
 	},
@@ -171,19 +166,15 @@ return {
 			},
 		},
 	},
-	-- Disable Titan Cams
-	[106265] = {
-		values = {
-			enabled = false,
-		},
-	},
 	-- Enable roof spawngroups
 	[100006] = {
 		values = {
 			spawn_groups = { 100019, 100007, 100692 },
 		},
 	},
-	-- add new elevator spawngroup
+	-- Disable Titan Cams
+	[106265] = disabled,
+	-- Add new elevator spawngroup
 	[103316] = {
 		on_executed = {
 			{ id = 400020, delay = 0 },
@@ -211,15 +202,6 @@ return {
 	-- change amount of required bags
 	[101868] = bags_required,
 	[103961] = bags_required,
-	-- Wall c4 chance
-	[102451] = wall_c4_chance,
-	[102469] = wall_c4_chance,
-	-- Disable cheat spawns
-	[102267] = {
-		values = {
-			enabled = false,
-		},
-	},
 	-- Prevent shields/dozers from disabling the timelock
 	[101195] = no_shields_and_dozers,
 	[102268] = no_shields_and_dozers,
@@ -253,13 +235,9 @@ return {
 	[105842] = mga_thermite_event,
 	[105792] = mga_vault_event,
 	-- Spawn Group delays
-	[100692] = roof_spawn,
-	[100007] = roof_spawn,
+	[105434] = elevator_spawn,
 	[105450] = elevator_spawn,
 	[105500] = elevator_spawn,
-	[105434] = elevator_spawn,
-	[400027] = elevator_spawn,
-	[400034] = elevator_spawn,
 	[400019] = elevator_close_spawn,
 	-- Harassers
 	[100883] = harasser,

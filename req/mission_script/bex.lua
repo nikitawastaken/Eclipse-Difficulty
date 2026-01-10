@@ -30,12 +30,6 @@ local enabled = {
 		enabled = true,
 	},
 }
-local side_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_shields_bulldozers,
-}
 local cloaker_spawn = {
 	values = {
 		interval = 90,
@@ -267,23 +261,17 @@ return {
 			{ id = 101490, remove = true },
 		},
 	},
-	-- change amount of required bags
+	-- Change amount of required bags
 	[101482] = bags_required_objective,
 	[102533] = bags_required_objective,
 	[101498] = bags_required,
 	[103954] = bags_required,
-	-- nuke stupid cheat spawns
+	-- Nuke stupid cheat spawns
 	[100741] = disabled,
 	[102369] = disabled,
 	[102382] = disabled,
 	[102781] = disabled,
 	-- Spawn group intervals
-	-- Frankly, with the cancerous cheat spawns gone, this might not be entirely needed.
-	-- I just wasn't a huge fan of the side spawn near the mechanic shop in particular.
-	-- The other 2 spawn groups were slowed down because they are stacked on top of each other, simple as that.
-	[100019] = side_spawn,
-	[100128] = side_spawn,
-	[100132] = side_spawn,
 	[400042] = cloaker_spawn,
 	[400043] = cloaker_spawn,
 	[400044] = cloaker_spawn,

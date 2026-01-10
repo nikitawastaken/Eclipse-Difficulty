@@ -8,7 +8,7 @@ local disabled = {
 }
 local roof_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -55,7 +55,7 @@ return {
 			},
 		},
 		on_executed = { -- preferreds
-			{ id = 100830, delay = 30 },
+			{ id = 100830, delay = 20 },
 		},
 	},
 	--Delay sanctum preferreds

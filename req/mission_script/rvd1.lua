@@ -2,7 +2,7 @@ local preferred = Eclipse.preferred
 local is_eclipse = Eclipse.utils.is_eclipse()
 local roof_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }

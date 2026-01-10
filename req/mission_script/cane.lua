@@ -13,7 +13,7 @@ local biker = { enemy = biker_enemy }
 
 local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 }
 local garage_door_spawn = {
@@ -32,7 +32,7 @@ local building_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents_bulldozers,
+	groups = preferred.no_bulldozers,
 }
 local window_spawn = {
 	values = {
@@ -42,7 +42,7 @@ local window_spawn = {
 }
 local roof_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

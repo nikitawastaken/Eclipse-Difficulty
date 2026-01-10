@@ -2,6 +2,7 @@
 local M = {}
 
 local scripted_enemy = Eclipse.scripted_enemy
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local diff_i = Eclipse.utils.difficulty_index()
 local is_eclipse = Eclipse.utils.is_eclipse()
@@ -24,36 +25,39 @@ local elite_bulldozer = scripted_enemy.elite_bulldozer_1
 local security_guard_1 = scripted_enemy.security_1
 local security_guard_2 = scripted_enemy.security_2
 local security_guard_3 = scripted_enemy.security_3
-local security = { security_guard_1, security_guard_1, security_guard_2, security_guard_2, security_guard_3 }
+local security = { 
+	security_guard_1, 
+	security_guard_1, 
+	security_guard_2, 
+	security_guard_2, 
+	security_guard_3,
+}
 
-local diff_scaling = diff_i / 8
-
-local enabled_chance_escape_snipers = math.random() <= diff_scaling
-local enabled_chance_vault_shields = math.random() <= diff_scaling
-local enabled_chance_escape_shields = math.random() <= diff_scaling
-local enabled_chance_vault_dozers = math.random() <= diff_scaling
-local enabled_chance_escape_145_group = math.random() <= diff_scaling
-local enabled_chance_escape_swats = math.random() <= diff_scaling
-local enabled_chance_escape_hallway_wall = math.random() <= diff_scaling
-local enabled_chance_escape_dozers = math.random() <= 0.5
-local enabled_chance_escape_cloakers = math.random() <= 0.5
-local enabled_chance_escape_shield_wall = math.random() <= 0.75
-local enabled_chance_shield_army = math.random() <= 0.3
-local enabled_chance_more_guards = math.random() <= 0.2 + (is_pro_job and 0.1 or 0)
-local enabled_chance_escape_basement_cloakers = math.random() <= 0.1 + (is_pro_job and 0.1 or 0)
+local enabled_chance_escape_snipers = (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0) >= math.random() 
+local enabled_chance_vault_shields = (hard and 0.2 or 0.4) + (is_pro_job and 0.2 or 0) >= math.random() 
+local enabled_chance_escape_shields = (normal and 0.15 or hard and 0.3 or 0.45) + (is_pro_job and 0.3 or 0) >= math.random() 
+local enabled_chance_vault_dozers = 0.25 >= math.random() 
+local enabled_chance_escape_swats = (normal and 0.3 or hard and 0.4 or 0.6) + (is_pro_job and 0.3 or 0) >= math.random() 
+local enabled_chance_escape_hallway_wall = (normal and 0.2 or hard and 0.3 or 0.5) + (is_pro_job and 0.3 or 0) >= math.random() 
+local enabled_chance_escape_dozers = 0.4 >= math.random() 
+local enabled_chance_escape_cloakers = 0.4 >= math.random() 
+local enabled_chance_escape_shield_wall = 0.6 >= math.random() 
+local enabled_chance_shield_army = 0.15 + (is_pro_job and 0.15 or 0) >= math.random() 
+local enabled_chance_more_guards = 0.2 + (is_pro_job and 0.2 or 0) >= math.random() 
+local enabled_chance_escape_basement_cloakers = 0.1 + (is_pro_job and 0.2 or 0) >= math.random()
 
 local optsSecurity = {
 	enemy_table = security,
 	enabled = true,
 }
 local optsShield_1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 100696, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_escape_shields,
 }
 local optsShield_2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 100695, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = normal_and_above and enabled_chance_escape_shields,
@@ -95,13 +99,13 @@ local optsSniper_6 = {
 	enabled = is_eclipse,
 }
 local optsVaultShield1 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 400025, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_vault_shields,
 }
 local optsVaultShield2 = {
-	enemy = is_eclipse and elite_shield or shield,
+	enemy = is_eclipse_pro and elite_shield or shield,
 	on_executed = { { id = 400026, delay = 0 } },
 	participate_to_group_ai = true,
 	enabled = overkill_and_above and enabled_chance_vault_shields,
@@ -150,41 +154,41 @@ local optsSpoocAmbush2 = {
 }
 local optsTaserEscape = {
 	enemy = taser,
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_145_group),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavySG2 = {
 	enemy = heavy_sg,
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_145_group),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsTaser = {
 	enemy = taser,
 	participate_to_group_ai = true,
 	on_executed = { { id = 102421, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavySG = {
 	enemy = heavy_sg,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400049, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_HeavyRifle = {
 	enemy = heavy_rifle,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400046, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_LightRifle = {
 	enemy = light_rifle,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400048, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsSWAT_LightSG = {
 	enemy = light_sg,
 	participate_to_group_ai = true,
 	on_executed = { { id = 400047, delay = 0 } },
-	enabled = is_eclipse or (normal_and_above and enabled_chance_escape_swats),
+	enabled = normal_and_above and enabled_chance_escape_swats,
 }
 local optsEscapeShield1 = {
 	enemy = shield,
@@ -463,7 +467,7 @@ local optsspawnArmy = {
 		{ id = 400058, delay = 0 },
 		{ id = 400091, delay = 0 },
 	},
-	enabled = true,
+	enabled = overkill_and_above and enabled_chance_shield_army,
 }
 local optsOpenSwatVanDoors_1 = {
 	enabled = true,
