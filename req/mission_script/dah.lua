@@ -57,18 +57,18 @@ for i = 0, 11 do
 	table.insert(vis_blockers, {
 		name = vis_blocker_ids,
 		pos = Vector3(-4240, y, 1060),
-		visible = false
+		visible = false,
 	})
 	table.insert(vis_blockers, {
 		name = vis_blocker_ids,
 		pos = Vector3(-2365, y, 1060),
-		visible = false
+		visible = false,
 	})
 end
 return {
 	-- Add vis blockers
 	[100000] = {
-		spawn = vis_blockers
+		spawn = vis_blockers,
 	},
 	[100757] = { -- first responders
 		reinforce = {

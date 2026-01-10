@@ -49,13 +49,13 @@ for i = 0, 3 do
 	table.insert(los_blockers, {
 		name = los_blocker_ids,
 		pos = Vector3(-10100 + (i * 400), 4300, 1250),
-		rot = los_blocker_rot
+		rot = los_blocker_rot,
 	})
 end
 return {
 	-- Add LoS blockers
 	[143003] = {
-		spawn = los_blockers
+		spawn = los_blockers,
 	},
 	-- Reenforce points
 	[103167] = disabled,

@@ -245,7 +245,7 @@ return {
 		},
 	},
 	-- Add new reinforce
-	[100511] = { 
+	[100511] = {
 		reinforce = {
 			{
 				name = "warehouse01",
