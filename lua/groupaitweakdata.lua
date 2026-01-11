@@ -729,12 +729,12 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 				Idstring("units/pd2_dlc_hvh/characters/ene_fbi_hvh_2/ene_fbi_hvh_2"),
 			},
 			murkywater = {
-				Idstring("units/payday2/characters/ene_fbi_1/ene_fbi_1"),
-				Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2"),
-			},
-			federales = {
 				Idstring("units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1"),
 				Idstring("units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01"),
+				Idstring("units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02"),
 			},
 		},
 		access = access_type_walk_only,
@@ -755,12 +755,12 @@ Hooks:PostHook(GroupAITweakData, "_init_unit_categories", "eclipse__init_unit_ca
 				Idstring("units/pd2_dlc_hvh/characters/ene_fbi_hvh_3/ene_fbi_hvh_3"),
 			},
 			murkywater = {
-				Idstring("units/payday2/characters/ene_fbi_2/ene_fbi_2"),
-				Idstring("units/payday2/characters/ene_fbi_3/ene_fbi_3"),
-			},
-			federales = {
 				Idstring("units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2"),
 				Idstring("units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3"),
+			},
+			federales = {
+				Idstring("units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02"),
+				Idstring("units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03"),
 			},
 		},
 		access = access_type_walk_only,
