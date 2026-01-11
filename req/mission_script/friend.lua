@@ -4,12 +4,6 @@ local mobster_team = {
 		team = "mobster1",
 	},
 }
-local roof_spawn = {
-	values = {
-		interval = 15,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local disabled = {
 	values = {
 		enabled = false,
@@ -166,10 +160,4 @@ return {
 			{ id = 400004, delay = 0 },
 		},
 	},
-	-- Spawn group intervals
-	[100206] = roof_spawn,
-	[100719] = roof_spawn,
-	[100810] = roof_spawn,
-	[100921] = roof_spawn,
-	[101920] = roof_spawn,
 }

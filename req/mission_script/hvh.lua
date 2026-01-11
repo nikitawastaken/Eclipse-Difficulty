@@ -4,16 +4,10 @@ local disabled = {
 		enabled = false,
 	},
 }
-local upper_spawn = {
+local standard_spawn = {
 	values = {
-		interval = 15,
+		interval = 20,
 	},
-}
-local close_spawn = {
-	values = {
-		interval = 30,
-	},
-	groups = preferred.no_shields_bulldozers,
 }
 return {
 	-- Increase difficulty when a safe is breached or you fail to open the safe
@@ -26,10 +20,10 @@ return {
 	-- Spawn group intervals
 	-- This heist is microscopic, thankfully whoever was setting up these spawns bothered to set them to 15s intervals.
 	-- That said, some of them could be slower because they are bit closer to player holdout areas.
-	[100651] = upper_spawn,
-	[101005] = upper_spawn,
-	[101010] = upper_spawn,
-	[100211] = close_spawn,
-	[101007] = close_spawn,
-	[101009] = close_spawn,
+	[100651] = standard_spawn,
+	[101005] = standard_spawn,
+	[101010] = standard_spawn,
+	[100211] = standard_spawn,
+	[101007] = standard_spawn,
+	[101009] = standard_spawn,
 }

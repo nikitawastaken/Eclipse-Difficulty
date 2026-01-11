@@ -244,8 +244,8 @@ return {
 			dialogue = john_dialogue_12,
 		},
 	},
-	-- add new reinforce
-	[100511] = { -- diff 50
+	-- Add new reinforce
+	[100511] = {
 		reinforce = {
 			{
 				name = "warehouse01",

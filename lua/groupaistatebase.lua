@@ -485,7 +485,7 @@ GroupAIStateBase.dynamic_SO_adjustment_funcs = {}
 function GroupAIStateBase.dynamic_SO_adjustment_funcs.carrysteal(self, objective_data)
 	objective_data.interval = 4
 	objective_data.search_dis_sq = 4000000
-	objective_data.objective.interrupt_dis = 600
+	objective_data.objective.interrupt_dis = 800
 	objective_data.objective.interrupt_health = 0.8
 	objective_data.objective.pose = nil
 end
@@ -557,7 +557,7 @@ function GroupAIStateBase:_try_use_task_spawn_event(t, target_area, task_type, t
 
 	local max_dis_sq = 3000 ^ 2
 	for _, event_data in pairs(self._spawn_events) do
-		if (event_data.task_type == task_type or event_data.task_type == "any") and mvec_dis_sq(target_pos, event_data.pos) < max_dis_sq then
+		if (event_data.task_type == task_type or event_data.task_type == "any") and mvector3.distance_sq(target_pos, event_data.pos) < max_dis_sq then
 			if force or math.random() < event_data.chance then
 				self._anticipated_police_force = self._anticipated_police_force + event_data.amount
 				self._police_force = self._police_force + event_data.amount

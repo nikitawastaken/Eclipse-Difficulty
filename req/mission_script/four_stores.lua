@@ -1,12 +1,12 @@
 local preferred = Eclipse.preferred
 local street_spawn = {
 	values = {
-		interval = 10,
+		interval = 15,
 	},
 }
 local rappel_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -61,17 +61,22 @@ return {
 			{
 				name = "convenience_store",
 				force = 2,
-				position = Vector3(-750, 2700, 25),
+				position = Vector3(0, -2675, 25),
 			},
 			{
 				name = "cafe",
 				force = 2,
-				position = Vector3(0, -4075, 25),
+				position = Vector3(-150, -4150, 25),
 			},
 			{
 				name = "china",
 				force = 2,
-				position = Vector3(1450, -4050, 25),
+				position = Vector3(1425, -4125, 25),
+			},
+			{
+				name = "parking_lot",
+				force = 3,
+				position = Vector3(2625, -1725, 25),
 			},
 		},
 	},
@@ -139,9 +144,9 @@ return {
 			{ id = 101375, remove = true },
 		},
 	},
-	[101832] = { -- diff 65
+	[101832] = { -- diff 65, enable rappel group
 		on_executed = {
-			{ id = 400001, delay = 0, delay_rand = 30 },
+			{ id = 400001, delay = 0, delay_rand = 20 },
 		},
 	},
 	-- replace the turret with a spawngroup

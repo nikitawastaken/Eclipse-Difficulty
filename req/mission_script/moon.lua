@@ -48,7 +48,7 @@ return {
 	},
 	[100699] = { -- flare placed
 		on_executed = {
-			{ id = 400002, delay = 0, delay_rand = 15 }, -- custom roof preferreds
+			{ id = 400002, delay = 0, delay_rand = 20 }, -- custom roof preferreds
 		},
 	},
 	-- Rework preferreds, separate street spawns from roof spawns

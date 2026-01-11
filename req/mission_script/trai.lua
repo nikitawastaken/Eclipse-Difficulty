@@ -21,8 +21,6 @@ local warehouse_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
-	[103501] = disabled,
-	[103051] = disabled,
 	-- Reinforce spots on traincars, it just works.
 	[102477] = {
 		reinforce = {

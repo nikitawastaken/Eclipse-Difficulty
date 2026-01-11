@@ -42,7 +42,21 @@ local vent_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local los_blockers = {}
+local los_blocker_ids = Idstring("units/payday2/architecture/mkp/mkp_int_floor_4x4m_a")
+local los_blocker_rot = Rotation(0, -90, 0)
+for i = 0, 3 do
+	table.insert(los_blockers, {
+		name = los_blocker_ids,
+		pos = Vector3(-10100 + (i * 400), 4300, 1250),
+		rot = los_blocker_rot,
+	})
+end
 return {
+	-- Add LoS blockers
+	[143003] = {
+		spawn = los_blockers,
+	},
 	-- Reenforce points
 	[103167] = disabled,
 	[103168] = disabled,
@@ -53,7 +67,7 @@ return {
 		reinforce = {
 			{
 				name = "elevator",
-				force = 2,
+				force = 3,
 				position = Vector3(-9300, 9850, 0),
 			},
 			{
@@ -68,7 +82,7 @@ return {
 			},
 			{
 				name = "casino",
-				force = 2,
+				force = 3,
 				position = Vector3(-9300, 2500, 100),
 			},
 			{
@@ -100,12 +114,12 @@ return {
 				position = Vector3(-9300, 17000, 100),
 			},
 			{
-				name = "spa_outside1",
+				name = "spa_outside01",
 				force = 2,
 				position = Vector3(-7500, 14250, 0),
 			},
 			{
-				name = "spa_outside2",
+				name = "spa_outside02",
 				force = 2,
 				position = Vector3(-11000, 14250, 0),
 			},

@@ -122,11 +122,9 @@ return {
 		},
 	},
 	-- Add new preferreds and adjust existing ones
-	--  Delay default preferreds slightly
 	[100129] = { -- initial preferreds
 		on_executed = {
 			{ id = 101574, remove = true }, -- roof preferreds
-			{ id = 100127, delay = 20 },
 		},
 	},
 	[100021] = {
