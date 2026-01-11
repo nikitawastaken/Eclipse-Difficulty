@@ -872,7 +872,8 @@ function GroupAIStateBesiege:_chk_group_use_grenade(assault_area, group, detonat
 	local use_teargas
 	if grenade_type == "smoke_grenade" and not assault_area.hostages and assault_area.criminal_entered_t and table.size(assault_area.neighbours) <= 2 then
 		local teargas_chance_times = tweak_data.group_ai.cs_grenade_chance_times or { 60, 240 }
-		local teargas_chance = math.map_range(self._t - assault_area.criminal_entered_t, teargas_chance_times[1], teargas_chance_times[2], 0, 1)
+		local teargas_min_chance = tweak_data.group_ai.cs_grenade_min_chance or 0
+		local teargas_chance = math.map_range(self._t - assault_area.criminal_entered_t, teargas_chance_times[1], teargas_chance_times[2], teargas_min_chance, 1)
 		if math.random() < teargas_chance then
 			local teargas_pos = managers.navigation:find_random_position_in_segment(assault_area.pos_nav_seg)
 			mvec_lerp(detonate_offset_pos, teargas_pos, assault_area.pos, 0.75)

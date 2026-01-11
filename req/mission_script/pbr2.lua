@@ -4,16 +4,10 @@ local disabled = {
 		enabled = false,
 	},
 }
-local wall_spawn = {
+local standard_spawn = {
 	values = {
 		interval = 15,
 	},
-}
-local roof_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local sewer_spawn = {
 	values = {
@@ -62,21 +56,21 @@ return {
 	},
 	[100123] = { -- Assault ended
 		on_executed = {
-			{ id = 100531, delay = 0, delay_rand = 30 }, -- Car Shop preferred
-			{ id = 100534, delay = 0, delay_rand = 30 }, -- Hardware preferred
+			{ id = 100531, delay = 0, delay_rand = 20 }, -- Car Shop preferred
+			{ id = 100534, delay = 0, delay_rand = 20 }, -- Hardware preferred
 		},
 	},
 	-- Spawn group intervals
-	[100411] = wall_spawn,
-	[100403] = wall_spawn,
-	[100412] = wall_spawn,
-	[100413] = wall_spawn,
-	[100409] = wall_spawn,
-	[100408] = wall_spawn,
-	[100405] = roof_spawn,
-	[100406] = roof_spawn,
-	[100414] = roof_spawn,
-	[100415] = roof_spawn,
+	[100411] = standard_spawn,
+	[100403] = standard_spawn,
+	[100412] = standard_spawn,
+	[100413] = standard_spawn,
+	[100409] = standard_spawn,
+	[100408] = standard_spawn,
+	[100405] = standard_spawn,
+	[100406] = standard_spawn,
+	[100414] = standard_spawn,
+	[100415] = standard_spawn,
 	[100078] = sewer_spawn,
 	[100080] = sewer_spawn,
 	[100082] = sewer_spawn,

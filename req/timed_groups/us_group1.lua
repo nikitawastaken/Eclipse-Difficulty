@@ -9,7 +9,7 @@ return function(timed_tactics, timed_random_tactics, difficulty_index, spawn_poi
 			army_timed_group = {
 				enabled = true,
 				team_id = "law1",
-				max_nr_simultaneous_groups = 3,
+				max_nr_simultaneous_groups = 2,
 				amount = { 2, 3 },
 				disable_timer = nil,
 				disable_diff = nil,

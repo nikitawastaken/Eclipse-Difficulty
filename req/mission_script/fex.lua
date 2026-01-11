@@ -6,14 +6,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local front_spawn = {
-	values = {
-		interval = 10,
-	},
-}
 local roof_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -60,7 +55,7 @@ return {
 			},
 		},
 		on_executed = { -- preferreds
-			{ id = 100830, delay = 30 },
+			{ id = 100830, delay = 20 },
 		},
 	},
 	--Delay sanctum preferreds
@@ -97,8 +92,6 @@ return {
 	[103218] = disabled,
 	-- Spawn group intervals
 	-- This heist has notoriously annoying spawns all over the place.
-	[100128] = front_spawn,
-	[100130] = front_spawn,
 	[100007] = roof_spawn,
 	[103098] = roof_spawn,
 	[100131] = window_spawn,

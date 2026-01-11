@@ -67,13 +67,10 @@ local cloaker_spawn = {
 	},
 }
 return {
-	[101397] = {
+	[102964] = {
 		ponr = {
 			length = 240,
 			player_mul = { 1.5, 1.25, 1, 1 },
-		},
-		on_executed = { -- don't disable back cell preferreds
-			{ id = 102194, remove = true },
 		},
 	},
 	-- Add new reinforce
@@ -125,11 +122,9 @@ return {
 		},
 	},
 	-- Add new preferreds and adjust existing ones
-	--  Delay default preferreds slightly
 	[100129] = { -- initial preferreds
 		on_executed = {
 			{ id = 101574, remove = true }, -- roof preferreds
-			{ id = 100127, delay = 20 },
 		},
 	},
 	[100021] = {
@@ -146,6 +141,12 @@ return {
 	[101571] = { -- fire started, enable roof preferreds
 		on_executed = {
 			{ id = 101574, delay = 0, delay_rand = 20 },
+		},
+	},
+	-- don't disable back cell preferreds
+	[101397] = {
+		on_executed = {
+			{ id = 102194, remove = true },
 		},
 	},
 	[101236] = { -- Hajrudin stopped, enable garage roof preferreds

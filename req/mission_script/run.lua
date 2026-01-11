@@ -61,7 +61,7 @@ local van_guaranteed_spawn = {
 }
 local van_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents,
 }
@@ -84,7 +84,7 @@ local armitage_spawn = {
 }
 local building_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }

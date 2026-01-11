@@ -6,7 +6,7 @@ local disabled = {
 }
 local roof_spawn = {
 	values = {
-		interval = 15,
+		interval = 10,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -68,7 +68,7 @@ return {
 		on_executed = {
 			{ id = 100987, remove = true }, -- preferred add 1
 			{ id = 400001, delay = 0, delay_rand = 0 }, -- custom street preferreds
-			{ id = 400002, delay = 0, delay_rand = 20 }, -- custom bush preferreds
+			{ id = 400002, delay = 0, delay_rand = 30 }, -- custom bush preferreds
 		},
 	},
 	-- Add new reinforce

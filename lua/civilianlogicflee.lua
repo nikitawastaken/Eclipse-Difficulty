@@ -1,5 +1,5 @@
 -- Tweak hostage rescue conditions
-function CivilianLogicFlee.rescue_SO_verification(self, params, unit, ...)
+function CivilianLogicFlee.rescue_SO_verification(ignore_this, params, unit)
 	if unit:movement():cool() then
 		return false
 	end

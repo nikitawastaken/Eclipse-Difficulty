@@ -15,15 +15,15 @@ local enabled = {
 	},
 }
 local courtyard_spawn = {
-	values = {
-		interval = 20,
-	},
 	groups = preferred.no_cops_agents,
 }
 local staircase_window_spawn = {
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local matrix_window_spawn = {
+	values = {
+		interval = 30,
+	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 local exhibit_rappel_spawn = {

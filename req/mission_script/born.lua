@@ -16,9 +16,14 @@ local disabled = {
 local exclude_cop_agents_shields_dozers = {
 	so_access_filter = so_access.acrobatic,
 }
+local standard_spawn = {
+	values = {
+		interval = 10,
+	},
+}
 local roof_spawn = {
 	values = {
-		interval = 25,
+		interval = 20,
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
@@ -135,6 +140,10 @@ return {
 	[101672] = participate,
 	-- Spawn group intervals
 	[400001] = scripted_swat_heli_spawn,
+	[100130] = standard_spawn,
+	[100131] = standard_spawn,
+	[100019] = standard_spawn,
+	[100133] = standard_spawn,
 	[100007] = roof_spawn,
 	[100128] = roof_spawn,
 	[100844] = cloaker_spawn,

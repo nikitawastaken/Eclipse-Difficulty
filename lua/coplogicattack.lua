@@ -160,7 +160,7 @@ end)
 local _find_retreat_position_original = CopLogicAttack._find_retreat_position
 function CopLogicAttack._find_retreat_position(from_pos, ...)
 	local to_pos = _find_retreat_position_original(from_pos, ...)
-	if to_pos and (from_pos.x ~= to_pos.x or from_pos.y ~= to_pos.y) then
+	if to_pos and mvector3.distance_sq(from_pos, to_pos) >= 100 then
 		return to_pos
 	end
 end
@@ -177,7 +177,7 @@ function CopLogicAttack._chk_start_action_move_out_of_the_way(data, my_data)
 	end
 
 	local to_pos = CopLogicTravel._get_pos_on_wall(from_pos, 500)
-	if from_pos.x == to_pos.x and from_pos.y == to_pos.y then
+	if mvector3.distance_sq(from_pos, to_pos) < 100 then
 		return
 	end
 

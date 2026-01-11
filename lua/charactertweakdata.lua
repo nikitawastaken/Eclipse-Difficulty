@@ -599,9 +599,10 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.dodge.athletic.occasions.preemptive.chance = 0.5
 	presets.dodge.athletic.slide_chance = 0.75
 
-	presets.dodge.medic = deep_clone(presets.dodge.poor)
-	presets.dodge.medic.speed = 1
-	presets.dodge.medic.occasions.scared.chance = 0.75
+	presets.dodge.special = deep_clone(presets.dodge.athletic)
+	presets.dodge.special.occasions.scared = nil
+	presets.dodge.special.occasions.hit.chance = 0.45
+	presets.dodge.special.occasions.preemptive.chance = 0.25
 
 	presets.dodge.ninja.speed = 2
 	presets.dodge.ninja.slide_chance = 1
@@ -1262,6 +1263,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_sniper.priority_shout = "f34"
 	self.city_sniper.chatter = self.presets.enemy_chatter.no_chatter
 	self.city_sniper.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.city_sniper.dodge = self.presets.dodge.special
 	--self.city_sniper.misses_first_player_shot = true
 	self.city_sniper.surrender = nil
 	self.city_sniper.suppression = nil
@@ -1304,8 +1306,8 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	}
 	self.city_shield_break.tmp_invulnerable_on_tweak_change = 1.5
 	self.city_shield_break.chatter = self.presets.enemy_chatter.special
-	self.city_shield_break.dodge = self.presets.dodge.athletic
 	self.city_shield_break.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
+	self.city_shield_break.dodge = self.presets.dodge.special
 	self.city_shield_break.allowed_stances = nil
 	self.city_shield_break.allowed_poses = nil
 	self.city_shield_break.no_equip_anim = nil
@@ -1327,6 +1329,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.taser.HEALTH_INIT = 36
 	self.taser.headshot_dmg_mul = 2.5 -- 144 head health
 	self.taser.damage.hurt_severity = self.presets.hurt_severities.base
+	self.taser.dodge = self.presets.dodge.special
 	self.taser.chatter.smoke = true
 	self.taser.chatter.flash_grenade = true
 	self.taser.spawn_sound_event = self._prefix_data_p1.taser() .. "_entrance" --tazeah coming through!!!
@@ -1378,7 +1381,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.medic.HEALTH_INIT = 30
 	self.medic.headshot_dmg_mul = 2.5 -- 120 head health
 	self.medic.damage.hurt_severity = self.presets.hurt_severities.base
-	self.medic.dodge = self.presets.dodge.medic
+	self.medic.dodge = self.presets.dodge.poor
 
 	self.zeal_medic = deep_clone(self.medic)
 	table.insert(self._enemy_list, "zeal_medic")
@@ -2170,7 +2173,8 @@ function CharacterTweakData:_set_presets()
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
 			char_preset.spooc_attack_move_speed_mul = 1.5
-			char_preset.spooc_attack_dodge_timeout = { 0.5, 1 }
+			char_preset.spooc_attack_dodge_timeout = { 0.25, 1 }
+			char_preset.max_spooc_dis = 2000
 			char_preset.use_animation_on_fire_damage = true
 			char_preset.can_be_healed = true
 		elseif tag_map.taser then
