@@ -82,9 +82,9 @@ local cloaker_spawn = {
 }
 return {
 	-- FFO
-	[102133] = {
+	[101558] = {
 		ponr = {
-			length = 1200,
+			length = 600,
 			player_mul = { 1, 1, 0.9, 0.75 },
 		},
 		-- trigger cops loot drop off on alarm
