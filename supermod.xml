@@ -1740,11 +1740,61 @@
 
 		<group name="units/pd2_dlc_bph/characters/" dyn_package="false" from_type="custom_xml" to_type="binary">
 			<group :name="shared_textures/">
+				<file :name="bph_police_df.texture" />
+				<file :name="bph_police_nm.texture" />
+			
+				<file :name="bph_fbi_df.texture" />
+			
 				<file :name="bph_swat_body_df.texture" />
 				<file :name="bph_swat_body_nm.texture" />
 
 				<file :name="bph_heavy_swat_body_df.texture" />
 				<file :name="bph_heavy_swat_body_nm.texture" />
+			</group>
+
+			<group :name="ene_murkywater_cop_1/">
+				<xml  :name="ene_murkywater_cop_1.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_cop_1.material_config" />
+				<file :name="ene_murkywater_cop_1_contour.material_config" />
+				<file :name="ene_murkywater_cop_1.model" />
+				<file :name="ene_murkywater_cop_1.object" />
+				<file :name="ene_murkywater_cop_1.unit" />
+				<file :name="ene_murkywater_cop_1_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_murkywater_agent_1.material_config" />
+					<file :name="ene_murkywater_agent_1_contour.material_config" />
+				</group>
+			</group>
+
+			<group :name="ene_murkywater_cop_2/">
+				<file :name="ene_murkywater_cop_2.unit" />
+				<file :name="ene_murkywater_cop_2_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_cop_3/">
+				<file :name="ene_murkywater_cop_3.unit" />
+				<file :name="ene_murkywater_cop_3_husk.unit" />
+			</group>
+			
+			<group :name="ene_murkywater_cop_4/">
+				<file :name="ene_murkywater_cop_4.unit" />
+				<file :name="ene_murkywater_cop_4_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_agent_1/">
+				<file :name="ene_murkywater_agent_1.unit" />
+				<file :name="ene_murkywater_agent_1_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_agent_2/">
+				<file :name="ene_murkywater_agent_2.unit" />
+				<file :name="ene_murkywater_agent_2_husk.unit" />
+			</group>
+			
+			<group :name="ene_murkywater_agent_3/">
+				<file :name="ene_murkywater_agent_3.unit" />
+				<file :name="ene_murkywater_agent_3_husk.unit" />
 			</group>
 			
 			<group :name="ene_murkywater_light/">

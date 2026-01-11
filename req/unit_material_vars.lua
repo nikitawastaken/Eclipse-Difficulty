@@ -42,6 +42,7 @@ local M = {
 	"units/payday2/characters/ene_bulldozer_1/vars/ene_bulldozer_medic_hvh",
 	"units/pd2_dlc_hvh/characters/ene_acc_hvh_head/vars/ene_acc_hvh_head_var1",
 	"units/pd2_dlc_hvh/characters/ene_acc_hvh_head/vars/ene_acc_hvh_head_var2",
+	"units/pd2_dlc_bph/characters/ene_murkywater_cop_1/vars/ene_murkywater_agent_1",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var1",
 	"units/pd2_dlc_bex/characters/ene_acc_mexican_head/vars/ene_acc_mexican_head_var2",
 	"units/pd2_dlc_bex/characters/ene_swat_policia_federale/vars/ene_swat_policia_federale_fbi",

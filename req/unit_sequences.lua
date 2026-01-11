@@ -25,6 +25,13 @@ local head_sequences = {
 			"balaclava_cop_base",
 		},
 	},
+	hrt_alt = {
+		material = { 1, 2 },
+		run_sequence = {
+			"head_init",
+			"disable_head",
+		},
+	},
 	soldier_a = {
 		material = 2,
 		run_sequence = {
@@ -334,6 +341,15 @@ local M = {
 	["units/pd2_dlc_rvd/characters/ene_la_cop_2_fat/ene_la_cop_2_fat"] = { name = "la_cop_2_fat", head = head_sequences.security_fat },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_3_fat/ene_la_cop_3_fat"] = { name = "la_cop_3_fat", head = head_sequences.security_fat },
 	["units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat"] = { name = "la_cop_4_fat", head = head_sequences.security_fat },
+
+	["units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1"] = { name = "cop_1", head = head_sequences.security },
+	["units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2"] = { name = "cop_2", head = head_sequences.security },
+	["units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3"] = { name = "cop_3", head = head_sequences.security },
+	["units/pd2_dlc_bph/characters/ene_murkywater_cop_4/ene_murkywater_cop_4"] = { name = "cop_4", head = head_sequences.security },
+	
+	["units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1"] = { name = "fbi_1", head = head_sequences.security },
+	["units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2"] = { name = "fbi_2", head = head_sequences.security },
+	["units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3"] = { name = "fbi_3", head = head_sequences.hrt_alt },	
 	
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"] = { name = "secret_service_bex", head = head_sequences.security },

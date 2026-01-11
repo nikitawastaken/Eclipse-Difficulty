@@ -1865,7 +1865,14 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.hvh, "ene_tazer_hvh_r870")
 	safe_add(char_map.hvh, "ene_bulldozer_hvh_4")
 	safe_add(char_map.hvh, "ene_bulldozer_medic_hvh")
-	
+
+	safe_add(char_map.bph, "ene_murkywater_cop_1")
+	safe_add(char_map.bph, "ene_murkywater_cop_2")
+	safe_add(char_map.bph, "ene_murkywater_cop_3")
+	safe_add(char_map.bph, "ene_murkywater_cop_4")
+	safe_add(char_map.bph, "ene_murkywater_agent_1")
+	safe_add(char_map.bph, "ene_murkywater_agent_2")
+	safe_add(char_map.bph, "ene_murkywater_agent_3")
 	safe_add(char_map.bph, "ene_murkywater_heavy_fbi")
 
 	safe_add(char_map.bex, "ene_policia_03")

@@ -80,6 +80,13 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_rvd/characters/ene_la_cop_4_fat/ene_la_cop_4_fat", rvd_needed, false)
 
 	local bph_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"))
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_cop_4/ene_murkywater_cop_4", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi", bph_needed, false)
 	
 	local bex_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
