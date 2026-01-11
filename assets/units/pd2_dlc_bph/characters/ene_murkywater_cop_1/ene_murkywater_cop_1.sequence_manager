@@ -253,10 +253,12 @@
 			<run_sequence 		name="'body_'..pick('long','long','short')" />
 		</sequence>
 
-		<sequence editable_state="true" name="'body_long'" once="true" triggable="true"/>
+		<sequence editable_state="true" name="'body_long'" once="true" triggable="true">
+			<set_variables 		has_sleeves="1" />
+		</sequence>
 		
 		<sequence editable_state="true" name="'body_short'" once="true" triggable="true">
-			<set_variables 		has_sleeves="1" />
+			<set_variables 		has_sleeves="0" />
 			
 			<object 			enabled="false" name="'g_body'" />
 			<object 			enabled="false" name="'g_body_lod1'" />
