@@ -193,6 +193,9 @@
 
 			<run_sequence 		name="'cop'" />
 
+			<run_sequence 		name="'hat_cop'" />
+			<run_sequence 		name="'hat_cop_badge'" />
+			
 			<run_sequence 		name="'random_body_b'" />
 			<run_sequence 		name="'random_watch_rare'" />		
 			<run_sequence 		name="'random_gloves_common'" />
@@ -204,12 +207,13 @@
 			<object 			enabled="true" name="'g_gear_fbi_a_lod1'" />
 				
 			<run_sequence 		name="'fbi'" />
+			
 			<run_sequence 		name="'hat_cop'" />
 			<run_sequence 		name="'headset'" />
 			<run_sequence 		name="'vest'" />
 					
-			<run_sequence 		name="'random_body_c'" />
-			<run_sequence 		name="'random_tie_common'" />
+			<run_sequence 		name="'random_body_b'" />
+			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_common'" />
 		</sequence>
@@ -219,12 +223,12 @@
 			<object 			enabled="true" name="'g_gear_fbi_b_lod1'" />
 		
 			<run_sequence 		name="'fbi'" />
+			
 			<run_sequence 		name="'hat_cop_backwards'" />
 			<run_sequence 		name="'headset'" />
 			<run_sequence 		name="'vest'" />
 								
 			<run_sequence 		name="'random_body_b'" />
-			<run_sequence 		name="'random_tie_rare'" />
 			<run_sequence 		name="'random_watch_rare'" />
 			<run_sequence 		name="'random_gloves_rare'" />
 			<run_sequence 		name="'random_shades_rare'" />
