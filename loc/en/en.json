@@ -185,6 +185,12 @@
 	"ene_bulldozer_hvh_4" : "Zombie Mauldozer",
 	"ene_bulldozer_hvh_medic" : "Zombie Medicdozer",
 	
+	"ene_murkywater" : "Murkywater Armored Security",
+	"ene_murkywater_no_light" : "Murkywater Armored Security",
+	"ene_murkywater_not_security" : "Murkywater Armored Security",
+	"ene_murkywater_cop" : "Murkywater Security",
+	"ene_murkywater_agent" : "Murkywater SRT",
+	
 	"ene_policia" : "Policia Municipal",
 	"ene_male_office_cop" : "Policia Federal",
 	"ene_policia_agent" : "Policia Federal Agent",

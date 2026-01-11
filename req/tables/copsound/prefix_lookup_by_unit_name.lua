@@ -145,14 +145,7 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4",
 		"units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh",
 	},
-	-- Scary gruff filtered lines, reserve for mercs and whatnot
-	l5d_list = {
-		func = function(self, nr_variations)
-			return "l5d_"
-		end,
-		"units/payday2/characters/ene_city_shield/ene_city_shield",
-	},
-	-- list that has 3 random voices, should be used only for mercs and us soldiers
+	-- list that has 3 random voices, should be used for mercs and us soldiers
 	l5n_l3n_l2n_list = {
 		func = function(self, nr_variations)
 			local rand = math.random()
@@ -164,14 +157,7 @@ local prefix_lookup_for_humans = {
 				return "l2n_"
 			end
 		end,
-		-- Murky guards
-		"units/payday2/characters/ene_murkywater_1/ene_murkywater_1",
-		"units/payday2/characters/ene_murkywater_2/ene_murkywater_2",
-		"units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light",
-		"units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security",
-		"units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1",
-		"units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2",
-		-- Bellmead guards
+		-- Bellmead Mercs
 		"units/pd2_dlc_deep/characters/ene_deep_security_1/ene_deep_security_1",
 		"units/pd2_dlc_deep/characters/ene_deep_security_2/ene_deep_security_2",
 		"units/pd2_dlc_deep/characters/ene_deep_security_3/ene_deep_security_3",
@@ -180,8 +166,45 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_army/characters/ene_soldier_2/ene_soldier_2",
 		"units/pd2_dlc_army/characters/ene_soldier_3/ene_soldier_3",
 		"units/pd2_dlc_army/characters/ene_soldier_4/ene_soldier_4",
+		-- Murkies
+		-- Murky Guards
+		"units/payday2/characters/ene_murkywater_1/ene_murkywater_1",
+		"units/payday2/characters/ene_murkywater_2/ene_murkywater_2",
+		"units/pd2_dlc_berry/characters/ene_murkywater_no_light/ene_murkywater_no_light",
+		"units/pd2_dlc_des/characters/ene_murkywater_no_light_not_security/ene_murkywater_no_light_not_security",
+		"units/pd2_dlc_des/characters/ene_murkywater_not_security_1/ene_murkywater_not_security_1",
+		"units/pd2_dlc_des/characters/ene_murkywater_not_security_2/ene_murkywater_not_security_2",
+		-- Murky Street Cops
+		"units/pd2_dlc_bph/characters/ene_murkywater_cop_1/ene_murkywater_cop_1",
+		"units/pd2_dlc_bph/characters/ene_murkywater_cop_2/ene_murkywater_cop_2",
+		"units/pd2_dlc_bph/characters/ene_murkywater_cop_3/ene_murkywater_cop_3",
+		"units/pd2_dlc_bph/characters/ene_murkywater_cop_4/ene_murkywater_cop_4",
+		-- Murky Agents
+		"units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
+		"units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
+		"units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",
 	},
-	-- list that has 2 random voices, used only for american shields (sans GenSec Shield)
+	-- ditto but radio filtered
+	l5d_l3d_l2d_list = {
+		func = function(self, nr_variations)
+			local rand = math.random()
+			if rand < 0.33 then
+				return "l5d_"
+			elseif rand < 0.66 then
+				return "l3d_"
+			else
+				return "l2d_"
+			end
+		end,
+	},
+	-- Scary gruff filtered lines, for american elite shields
+	l5d_shield_list = {
+		func = function(self, nr_variations)
+			return "l5d_"
+		end,
+		"units/payday2/characters/ene_city_shield/ene_city_shield",
+	},
+	-- list that has 2 random voices, for american shields (sans elite shields)
 	l1d_l4d_shield_list = {
 		func = function(self, nr_variations)
 			local rand = math.random()

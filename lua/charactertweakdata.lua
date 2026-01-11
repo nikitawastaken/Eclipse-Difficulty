@@ -1013,6 +1013,35 @@ function CharacterTweakData:_multiply_all_speeds(walk_mul, run_mul)
 	end
 end
 
+-- fix zombie faction using russian radio chatter and give the said chatter to murkies
+function CharacterTweakData:_init_region_zombie()
+	self._default_chatter = "dispatch_generic_message" -- there is no zombie radio so use the default instead
+	self._unit_prefixes = {
+		cop = "z",
+		swat = "z",
+		heavy_swat = "z",
+		taser = "tsr",
+		cloaker = "clk",
+		bulldozer = "bdz",
+		medic = "mdc"
+	}
+	self._speech_prefix_p2 = "n"
+end
+
+function CharacterTweakData:_init_region_murkywater()
+	self._default_chatter = "dsp_radio_russian"
+	self._unit_prefixes = {
+		cop = "n",
+		swat = "n",
+		heavy_swat = "n",
+		taser = "tsr",
+		cloaker = "clk",
+		bulldozer = "bdz",
+		medic = "mdc"
+	}
+	self._speech_prefix_p2 = "n"
+end
+
 Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_data)
 	local faction = Eclipse.utils.faction(tweak_data.levels)
 
