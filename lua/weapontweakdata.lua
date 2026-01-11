@@ -2771,7 +2771,7 @@ Hooks:PostHook(WeaponTweakData, "_init_data_npc_melee", "eclipse_init_data_npc_m
 end)
 
 local diff_i = Eclipse.utils.difficulty_index()
-local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
+local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 
 local turret_damage_mul = {
 	{ 0, 2 },
@@ -2779,17 +2779,16 @@ local turret_damage_mul = {
 	{ 3000, 0.5 },
 	{ 10000, 0 },
 }
+local turret_suppression = 0.25
 local suppression = {
 	is_sniper = 2,
-	is_lmg = 1.5,
-	mini = 1.5,	
 	is_flamethrower = 0.5,
 }
 local alert_sizes = {
 	is_sniper = 10000,
 	is_lmg = 6000,
 	mini = 6000,
-	is_smg = 3500,
+	is_smg = 3000,
 	is_pistol = 2500,
 }
 local crew_weapon_mapping = {
@@ -2814,9 +2813,29 @@ function WeaponTweakData:_set_presets()
 		if k:match("_turret_module") then
 			v.DAMAGE = 1
 			v.DAMAGE_MUL_RANGE = turret_damage_mul
-			v.HEALTH_INIT = 200 + (50 * diff_i_no_easy)
-			v.SHIELD_HEALTH_INIT = 40  + (10 * diff_i_no_easy)
-			v.CLIP_SIZE = 300
+			v.SUPPRESSION = turret_suppression -- 2 suppression values?
+			v.suppression = turret_suppression
+			v.HEALTH_INIT = get_difficulty_specific_value({
+				200,
+				200,
+				300,
+				400,
+				500,
+			})
+			v.SHIELD_HEALTH_INIT = get_difficulty_specific_value({
+				40,
+				40,
+				50,
+				60,
+				80,
+			})
+			v.CLIP_SIZE = get_difficulty_specific_value({
+				300,
+				300,
+				300,
+				400,
+				500,
+			})
 			v.BAG_DMG_MUL = 20
 			v.SHIELD_DMG_MUL = 1
 			v.FIRE_DMG_MUL = 1
