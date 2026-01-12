@@ -3304,11 +3304,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- Control
 	self.besiege.assault.delay = get_difficulty_specific_value({
-		{ 60, 40, 30 },
-		{ 60, 40, 30 },
-		{ 45, 35, 25 },
-		{ 40, 30, 20 },
-		{ 30, 20, 15 },
+		{ 50, 40, 30 },
+		{ 50, 40, 30 },
+		{ 35, 30, 25 },
+		{ 30, 25, 20 },
+		{ 25, 20, 15 },
 	})
 	self.besiege.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 
@@ -3483,9 +3483,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
-			cs_cops = { 16, 8, 0 },
-			cs_swats = { 20, 28, 32 },
-			cs_heavies = { 8, 12, 16 },
+			cs_swats = { 16, 8, 0 },
+			fbi_swats = { 20, 28, 32 },
+			fbi_heavies = { 8, 12, 16 },
 			fbi_shield = shield_wgt,
 			fbi_taser = taser_wgt,
 			fbi_cloaker = spook_wgt,
