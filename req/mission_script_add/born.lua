@@ -67,7 +67,7 @@ local optsCloaker_Hide_SpotSO_4 = get_hiding_cloaker_so_opts("e_so_hide_behind_d
 M.elements = {
 	-- tweak swat chopper
 	Eclipse.mission_elements.gen_spawngroup(400001, "swat_group", { 101560, 101814, 101627, 101672 }, 0, opts_swat_group),
-	
+
 	-- New Cloakers and their hiding spots
 	-- hiding spots
 	Eclipse.mission_elements.gen_so(400010, "cloaker_hide_so_1", Vector3(-746, 189, 99.977), Rotation(-180, 0, 0), optsCloaker_Hide_SpotSO_3),
