@@ -350,6 +350,8 @@ local M = {
 	["units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1"] = { name = "fbi_1", head = head_sequences.security },
 	["units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2"] = { name = "fbi_2", head = head_sequences.security },
 	["units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3"] = { name = "fbi_3", head = head_sequences.hrt_alt },	
+
+	["units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"] = { name = "spook_1", head = head_sequences.cloaker },
 	
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_01/ene_bex_security_suit_01"] = { name = "secret_service_bex", head = head_sequences.security },
 	["units/pd2_dlc_bex/characters/ene_bex_security_suit_02/ene_bex_security_suit_02"] = { name = "secret_service_bex", head = head_sequences.security },
