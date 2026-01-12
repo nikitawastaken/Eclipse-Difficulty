@@ -3483,9 +3483,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
-			cs_cops = { 16, 8, 0 },
-			cs_swats = { 20, 28, 32 },
-			cs_heavies = { 8, 12, 16 },
+			cs_swats = { 16, 8, 0 },
+			fbi_swats = { 20, 28, 32 },
+			fbi_heavies = { 8, 12, 16 },
 			fbi_shield = shield_wgt,
 			fbi_taser = taser_wgt,
 			fbi_cloaker = spook_wgt,
