@@ -273,7 +273,7 @@ local M = {
 				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
 		["FBI"] = {
 			swat_1 = {
@@ -301,7 +301,7 @@ local M = {
 				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
 		["Elite"] = {
 			swat_1 = {
@@ -329,7 +329,7 @@ local M = {
 				"units/payday2/characters/ene_tazer_1/ene_tazer_1",
 				"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 			},
-			cloaker = "units/payday2/characters/ene_spook_1/ene_spook_1",
+			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
 	},
 	["federales"] = {
