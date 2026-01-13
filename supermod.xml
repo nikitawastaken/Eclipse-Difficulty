@@ -1846,7 +1846,14 @@
 
 				<file :name="mexican_heads_atlas_var2_df.texture" />
 				<file :name="mexican_heads_atlas_var2_nm.texture" />
-				
+
+				<file :name="bex_police_df.texture" />
+				<file :name="bex_police_nm.texture" />
+			
+				<file :name="bex_fbi_df.texture" />
+			
+				<file :name="bex_security_df.texture" />
+						
 				<file :name="pex_police_df.texture" />
 				
 				<file :name="bex_swat_body_df.texture" />	
@@ -2016,7 +2023,6 @@
 			<group :name="ene_bex_security_01/">
 				<file :name="ene_bex_security_01.unit" />
 				<file :name="ene_bex_security_01_husk.unit" />
-				<file :name="bex_ene_security_body_atlas_df.texture" />
 			</group>
 
 			<group :name="ene_bex_security_02/">
@@ -2047,8 +2053,6 @@
 			<group :name="ene_policia_01/">
 				<file :name="ene_policia_01.unit" />
 				<file :name="ene_policia_01_husk.unit" />
-				<file :name="ene_bex_cop_policia_body_atlas_df.texture" />
-				<file :name="ene_bex_cop_policia_body_atlas_nm.texture" />
 			</group>
 
 			<group :name="ene_policia_02/">
@@ -2069,7 +2073,6 @@
 			<group :name="ene_policia_agent_01/">
 				<file :name="ene_policia_agent_01.unit" />
 				<file :name="ene_policia_agent_01_husk.unit" />
-				<file :name="ene_bex_agent_body_atlas_df.texture" />
 			</group>
 
 			<group :name="ene_policia_agent_02/">

@@ -1,20 +1,20 @@
 <?xml version="1.0" ?>
 <materials version="3" group="ene_bex_security_01">
     <material name="mtr_police_body" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
-        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/ene_policia_01/ene_bex_cop_policia_body_atlas_nm" />
-        <diffuse_texture 		file="units/pd2_dlc_bex/characters/ene_bex_security_01/bex_ene_security_body_atlas_df" />
+        <bump_normal_texture 	file="units/pd2_dlc_bex/characters/shared_textures/bex_police_nm" />
+        <diffuse_texture 		file="units/pd2_dlc_bex/characters/shared_textures/bex_security_df" />
         <variable value="1 1 1" type="vector3" name="contour_color"/>
         <variable value="0" 	type="scalar" name="contour_opacity"/>
     </material>
     <material name="mtr_police_body_lod_1" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
-        <bump_normal_texture    file="units/pd2_dlc_bex/characters/ene_policia_01/ene_bex_cop_policia_body_atlas_nm" mip="1" />
-        <diffuse_texture        file="units/pd2_dlc_bex/characters/ene_bex_security_01/bex_ene_security_body_atlas_df" mip="1" />
+        <bump_normal_texture    file="units/pd2_dlc_bex/characters/shared_textures/bex_police_nm" mip="1" />
+        <diffuse_texture        file="units/pd2_dlc_bex/characters/shared_textures/bex_security_df" mip="1" />
         <variable value="1 1 1" type="vector3" name="contour_color"/>
         <variable value="0"     type="scalar" name="contour_opacity"/>
     </material>
     <material name="mtr_police_body_lod_2" render_template="generic:CONTOUR:DIFFUSE_TEXTURE:NORMALMAP:SKINNED_3WEIGHTS" unique="true" version="2" >
-        <bump_normal_texture    file="units/pd2_dlc_bex/characters/ene_policia_01/ene_bex_cop_policia_body_atlas_nm" mip="2" />
-        <diffuse_texture        file="units/pd2_dlc_bex/characters/ene_bex_security_01/bex_ene_security_body_atlas_df" mip="2" />
+        <bump_normal_texture    file="units/pd2_dlc_bex/characters/shared_textures/bex_police_nm" mip="2" />
+        <diffuse_texture        file="units/pd2_dlc_bex/characters/shared_textures/bex_security_df" mip="2" />
         <variable value="1 1 1" type="vector3" name="contour_color"/>
         <variable value="0"     type="scalar" name="contour_opacity"/>
     </material>
