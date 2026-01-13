@@ -187,7 +187,7 @@
 
 	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang/npc_male_yufuwang" extension="object">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -198,7 +198,7 @@
 	</tweak>
 	<tweak version="2" name="units/pd2_dlc_pent/characters/npc_male_yufuwang/npc_male_yufuwang_husk" extension="object">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -233,7 +233,7 @@
 
 	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel_nomask/ene_gabriel_nomask" extension="object">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -244,7 +244,7 @@
 	</tweak>
 	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel_nomask/ene_gabriel_nomask_husk" extension="object">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -256,7 +256,7 @@
 	
 	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel" extension="object">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
@@ -267,7 +267,7 @@
 	</tweak>
 	<tweak version="2" name="units/pd2_dlc_deep/characters/ene_gabriel/ene_gabriel_husk" extension="object">
 		<search>
-			<?xml version="1.0"?>
+			<?xml version="1.0" ?>
 			<unit/>
 			<extensions/>
 			<extension name="base"/>
