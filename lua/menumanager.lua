@@ -24,7 +24,7 @@ function MenuCallbackHandler:is_contract_difficulty_allowed(item)
 	local plvl = managers.experience:current_level()
 	local level_lock = tweak_data.difficulty_level_locks[item:value()] or 0
 	local is_not_level_locked = plvl >= level_lock
-	return is_not_level_locked and managers.job:get_max_jc_for_player() >= math.clamp(job_jc + difficulty_jc, 0, 100)
+	return is_not_level_locked
 end
 
 function MenuCrimeNetFiltersInitiator:update_node(node)
