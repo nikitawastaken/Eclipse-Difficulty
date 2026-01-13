@@ -1486,19 +1486,6 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.piggydozer.HEALTH_INIT = 180
 	self.piggydozer.headshot_dmg_mul = 2
 	self.piggydozer.damage.hurt_severity = self.presets.hurt_severities.only_light_hurt
-
-	if self._unit_prefixes.heavy_swat == "l" then
-		self.zeal_swat.speech_prefix_p2 = "d"
-		self.zeal_swat.speech_prefix_count = 4
-		self.heavy_swat.speech_prefix_p2 = "d"
-		self.heavy_swat.speech_prefix_count = 4
-		self.fbi_heavy_swat.speech_prefix_p2 = "d"
-		self.fbi_heavy_swat.speech_prefix_count = 4
-		self.city_heavy_swat.speech_prefix_p2 = "d"
-		self.city_heavy_swat.speech_prefix_count = 4
-		self.zeal_heavy_swat.speech_prefix_p2 = "d"
-		self.zeal_heavy_swat.speech_prefix_count = 4
-	end
 end)
 
 CharacterTweakData.team_ai_weapons_mapped = {
