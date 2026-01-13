@@ -5,6 +5,10 @@ local M = {
 	[("units/pd2_dlc_drm/characters/ene_bulldozer_minigun/ene_bulldozer_minigun"):key()] = "benelli_tank",
 	[("units/payday2/characters/ene_medic_m4/ene_medic_m4"):key()] = "mp5",
 	[("units/payday2/characters/ene_spook_1/ene_spook_1"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_mad/characters/ene_akan_fbi_spooc_asval_smg/ene_akan_fbi_spooc_asval_smg"):key()] = { "usp_tactical", "asval_smg" },
+	[("units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"):key()] = { "usp_tactical", "mp5_tactical" },
+	[("units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale"):key()] = { "usp_tactical", "mp5_tactical" },
 	--Misc (Scripted Murkies, Gangsters etc.)
 	--Security guards
 	--Regular security

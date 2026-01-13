@@ -1031,9 +1031,9 @@ end
 function CharacterTweakData:_init_region_murkywater()
 	self._default_chatter = "dsp_radio_russian"
 	self._unit_prefixes = {
-		cop = "n",
-		swat = "n",
-		heavy_swat = "n",
+		cop = "l",
+		swat = "l",
+		heavy_swat = "l",
 		taser = "tsr",
 		cloaker = "clk",
 		bulldozer = "bdz",

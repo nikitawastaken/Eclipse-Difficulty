@@ -162,6 +162,9 @@ local M = {
 	},
 	["zombie"] = {
 		["CS"] = {
+			fbi_1 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_1/ene_fbi_hvh_1",
+			fbi_2 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_2/ene_fbi_hvh_2",
+			fbi_3 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_3/ene_fbi_hvh_3",
 			swat_1 = {
 				"units/pd2_dlc_hvh/characters/ene_swat_hvh_1/ene_swat_hvh_1",
 				"units/pd2_dlc_hvh/characters/ene_swat_hvh_3/ene_swat_hvh_3",
@@ -190,6 +193,9 @@ local M = {
 			cloaker = "units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1",
 		},
 		["FBI"] = {
+			fbi_1 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_1/ene_fbi_hvh_1",
+			fbi_2 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_2/ene_fbi_hvh_2",
+			fbi_3 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_3/ene_fbi_hvh_3",
 			swat_1 = {
 				"units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_1/ene_fbi_swat_hvh_1",
 				"units/pd2_dlc_hvh/characters/ene_fbi_swat_hvh_3/ene_fbi_swat_hvh_3",
@@ -218,6 +224,9 @@ local M = {
 			cloaker = "units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1",
 		},
 		["Elite"] = {
+			fbi_1 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_1/ene_fbi_hvh_1",
+			fbi_2 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_2/ene_fbi_hvh_2",
+			fbi_3 = "units/pd2_dlc_hvh/characters/ene_fbi_hvh_3/ene_fbi_hvh_3",
 			swat_1 = {
 				"units/pd2_dlc_hvh/characters/ene_city_swat_hvh_1/ene_city_swat_hvh_1",
 				"units/pd2_dlc_hvh/characters/ene_city_swat_hvh_3/ene_city_swat_hvh_3",
@@ -248,6 +257,9 @@ local M = {
 	},
 	["murkywater"] = {
 		["CS"] = {
+			fbi_1 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
+			fbi_2 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
+			fbi_3 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",
 			swat_1 = {
 				"units/payday2/characters/ene_swat_1/ene_swat_1",
 				"units/payday2/characters/ene_swat_3/ene_swat_3",
@@ -276,6 +288,9 @@ local M = {
 			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
 		["FBI"] = {
+			fbi_1 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
+			fbi_2 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
+			fbi_3 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",
 			swat_1 = {
 				"units/payday2/characters/ene_fbi_swat_1/ene_fbi_swat_1",
 				"units/payday2/characters/ene_fbi_swat_3/ene_fbi_swat_3",
@@ -304,6 +319,9 @@ local M = {
 			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
 		["Elite"] = {
+			fbi_1 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
+			fbi_2 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
+			fbi_3 = "units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",
 			swat_1 = {
 				"units/payday2/characters/ene_city_swat_1/ene_city_swat_1",
 				"units/payday2/characters/ene_city_swat_3/ene_city_swat_3",
@@ -334,6 +352,9 @@ local M = {
 	},
 	["federales"] = {
 		["CS"] = {
+			fbi_1 = "units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01",
+			fbi_2 = "units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02",
+			fbi_3 = "units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03",
 			swat_1 = {
 				"units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale",
 				"units/pd2_dlc_bex/characters/ene_swat_policia_federale_mp5/ene_swat_policia_federale_mp5",
@@ -362,6 +383,9 @@ local M = {
 			cloaker = "units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale",
 		},
 		["FBI"] = {
+			fbi_1 = "units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01",
+			fbi_2 = "units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02",
+			fbi_3 = "units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03",
 			swat_1 = {
 				"units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi/ene_swat_policia_federale_fbi",
 				"units/pd2_dlc_bex/characters/ene_swat_policia_federale_fbi_mp5/ene_swat_policia_federale_fbi_mp5",
@@ -390,6 +414,9 @@ local M = {
 			cloaker = "units/pd2_dlc_bex/characters/ene_swat_cloaker_policia_federale/ene_swat_cloaker_policia_federale",
 		},
 		["Elite"] = {
+			fbi_1 = "units/pd2_dlc_bex/characters/ene_policia_agent_01/ene_policia_agent_01",
+			fbi_2 = "units/pd2_dlc_bex/characters/ene_policia_agent_02/ene_policia_agent_02",
+			fbi_3 = "units/pd2_dlc_bex/characters/ene_policia_agent_03/ene_policia_agent_03",
 			swat_1 = {
 				"units/pd2_dlc_bex/characters/ene_swat_policia_federale_city/ene_swat_policia_federale_city",
 				"units/pd2_dlc_bex/characters/ene_swat_policia_federale_city_mp5/ene_swat_policia_federale_city_mp5",

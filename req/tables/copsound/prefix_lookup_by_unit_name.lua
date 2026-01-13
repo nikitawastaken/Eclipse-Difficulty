@@ -115,6 +115,7 @@ local prefix_lookup_for_humans = {
 		end,
 		"units/payday2/characters/ene_spook_1/ene_spook_1",
 		"units/pd2_dlc_hvh/characters/ene_spook_hvh_1/ene_spook_hvh_1",
+		"units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 	},
 	american_medic_list = {
 		func = function(self, nr_variations)
