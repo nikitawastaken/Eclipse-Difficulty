@@ -125,6 +125,8 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_medic_r870/ene_medic_r870",
 		"units/pd2_dlc_hvh/characters/ene_medic_hvh_m4/ene_medic_hvh_m4",
 		"units/pd2_dlc_hvh/characters/ene_medic_hvh_r870/ene_medic_hvh_r870",
+		"units/pd2_dlc_bph/characters/ene_murkywater_medic/ene_murkywater_medic",
+		"units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870",
 	},
 	american_dozer_list = {
 		func = function(self, nr_variations)
