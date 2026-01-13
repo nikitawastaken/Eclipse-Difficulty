@@ -86,10 +86,11 @@ local standard_spawn = {
 	},
 }
 return {
-	[105046] = {
+	-- FFO
+	[100023] = {
 		ponr = {
-			length = 300,
-			player_mul = { 1.20, 1.10, 1, 1 },
+			length = 1200,
+			player_mul = { 2, 1.5, 1, 1 },
 		},
 	},
 	-- play the background sirens that are supposed to play

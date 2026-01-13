@@ -354,9 +354,6 @@ return {
 	[103305] = {
 		on_executed = {
 			{ id = 400094, delay = 0 },
-			{ id = 400095, delay = 0 },
-			{ id = 400096, delay = 0 },
-			{ id = 400097, delay = 0 },
 		},
 	},
 	-- Spawn Group delays
