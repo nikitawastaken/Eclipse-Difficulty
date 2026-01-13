@@ -1756,6 +1756,12 @@
 
 				<file :name="bph_cloaker_head_df.texture" />
 				<file :name="bph_cloaker_head_nm.texture" />
+
+				<file :name="bph_medic_body_df.texture" />
+				<file :name="bph_medic_body_nm.texture" />
+
+				<file :name="bph_medic_head_df.texture" />
+				<file :name="bph_medic_head_nm.texture" />
 			</group>
 
 			<group :name="ene_murkywater_cop_1/">
@@ -1832,6 +1838,21 @@
 				<file :name="ene_murkywater_cloaker.object" />
 				<file :name="ene_murkywater_cloaker.unit" />
 				<file :name="ene_murkywater_cloaker_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_medic/">
+				<xml  :name="ene_murkywater_medic.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_medic.material_config" />
+				<file :name="ene_murkywater_medic_contour.material_config" />
+				<file :name="ene_murkywater_medic.model" />
+				<file :name="ene_murkywater_medic.object" />
+				<file :name="ene_murkywater_medic.unit" />
+				<file :name="ene_murkywater_medic_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_medic_r870/">
+				<file :name="ene_murkywater_medic_r870.unit" />
+				<file :name="ene_murkywater_medic_r870_husk.unit" />
 			</group>
 		</group>
 			
