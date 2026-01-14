@@ -2145,7 +2145,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
 			char_preset.spooc_attack_move_speed_mul = 1.5
-			char_preset.spooc_attack_dodge_timeout = { 0.25, 1 }
+			char_preset.spooc_attack_dodge_timeout = not below_overkill and { 0.25, 0.75 } or nil
 			char_preset.max_spooc_dis = 2000
 			char_preset.use_animation_on_fire_damage = true
 			char_preset.can_be_healed = true
