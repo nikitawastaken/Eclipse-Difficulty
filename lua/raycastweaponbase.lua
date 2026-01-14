@@ -70,6 +70,9 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	spread_y = spread_y or spread_x
 	spread_mul = spread_mul or 1
 
+	spread_x = math.max(spread_x, 0)
+	spread_y = math.max(spread_y, 0)
+	
 	mvector3.cross(mvec_right_ax, direction, math.UP)
 	mvec3_norm(mvec_right_ax)
 	mvector3.cross(mvec_up_ay, direction, mvec_right_ax)
