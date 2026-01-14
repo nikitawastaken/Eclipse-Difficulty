@@ -221,30 +221,6 @@ local optsSecret_Service_4 = {
 }
 local optsSecret_Service_5 = {
 	enemy = secret_service,
-	on_executed = {
-		{ id = 400098, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSecret_Service_6 = {
-	enemy = secret_service,
-	on_executed = {
-		{ id = 400099, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSecret_Service_7 = {
-	enemy = secret_service,
-	on_executed = {
-		{ id = 410000, delay = 0 },
-	},
-	enabled = true,
-}
-local optsSecret_Service_8 = {
-	enemy = secret_service,
-	on_executed = {
-		{ id = 410001, delay = 0 },
-	},
 	enabled = true,
 }
 local optsSecret_Service_9 = {
@@ -506,19 +482,12 @@ M.elements = {
 
 	-- right spawn
 	Eclipse.mission_elements.gen_dummy(400094, "secret_service_5", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_5),
-	Eclipse.mission_elements.gen_dummy(400095, "secret_service_6", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_6),
-	Eclipse.mission_elements.gen_dummy(400096, "secret_service_7", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_7),
-	Eclipse.mission_elements.gen_dummy(400097, "secret_service_8", Vector3(-4948, 950, 375), Rotation(0, 0, 0), optsSecret_Service_8),
-	Eclipse.mission_elements.gen_so(400098, "secret_service_so_5", Vector3(-5264, 1152, 375), Rotation(82, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(400099, "secret_service_so_6", Vector3(-5254.397, 1220.328, 375), Rotation(82, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(410000, "secret_service_so_7", Vector3(-4891.752, 1152.085, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(410001, "secret_service_so_8", Vector3(-4885.969, 1261.932, 375), Rotation(-139, 0, 0), optsSecret_Service_Defend),
 
 	-- upper middle spawn
-	Eclipse.mission_elements.gen_dummy(410002, "secret_service_9", Vector3(-5397, -2171, 775.001), Rotation(-90, 0, 0), optsSecret_Service_9),
-	Eclipse.mission_elements.gen_dummy(410003, "secret_service_10", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
-	Eclipse.mission_elements.gen_so(410004, "secret_service_so_9", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
-	Eclipse.mission_elements.gen_so(410005, "secret_service_so_10", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_dummy(410002, "secret_service_6", Vector3(-5397, -2171, 775.001), Rotation(-90, 0, 0), optsSecret_Service_9),
+	Eclipse.mission_elements.gen_dummy(410003, "secret_service_7", Vector3(-5397, -2055, 775.001), Rotation(-90, 0, 0), optsSecret_Service_10),
+	Eclipse.mission_elements.gen_so(410004, "secret_service_so_6", Vector3(-5116, -2186, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
+	Eclipse.mission_elements.gen_so(410005, "secret_service_so_7", Vector3(-5116, -2125, 775.001), Rotation(-90, 0, 0), optsSecret_Service_Defend),
 	-- change bag requirments
 	Eclipse.mission_elements.gen_instance_params(410006, "new_bag_requirment", Vector3(0, 0, 0), Rotation(0, 0, 0), optsinstance_bag_requirment),
 }

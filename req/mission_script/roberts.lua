@@ -77,13 +77,6 @@ return {
 			end,
 		},
 	},
-	-- add gensec response on loud
-	[100109] = {
-		on_executed = {
-			{ id = 103028, delay = 10, delay_rand = 5 },
-			{ id = 105567, delay = 10, delay_rand = 5 },
-		},
-	},
 	-- chance tweaks for gensec van/cops at gas station
 	[106343] = donut_lords_at_the_gas_station,
 	[106344] = donut_lords_at_the_gas_station,
@@ -111,6 +104,11 @@ return {
 				force = 3,
 				position = Vector3(-3250, -1375, -60),
 			},
+		},
+		-- add gensec response on loud
+		on_executed = {
+			{ id = 103028, delay = 10, delay_rand = 5 },
+			{ id = 105567, delay = 10, delay_rand = 5 },
 		},
 	},
 	-- Add manhole reinforce

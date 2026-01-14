@@ -467,7 +467,7 @@ local optsspawnArmy = {
 		{ id = 400058, delay = 0 },
 		{ id = 400091, delay = 0 },
 	},
-	enabled = overkill_and_above and enabled_chance_shield_army,
+	enabled = true,
 }
 local optsOpenSwatVanDoors_1 = {
 	enabled = true,

@@ -47,21 +47,48 @@ M.l4n_ = {
 	x01a_any_3p = "l1n_x02a_any_3p",
 }
 -- fix Akan's men not having any pain/death sounds
+-- also stelf lines for them
 M.r1n_ = {
 	x02a_any_3p = "l1n_x01a_any_3p",
 	x01a_any_3p = "l1n_x02a_any_3p",
+	a05 = "l1n_a06",
+	a06 = "l1n_a06",
 }
 M.r2n_ = {
 	x02a_any_3p = "l2n_x01a_any_3p",
 	x01a_any_3p = "l2n_x02a_any_3p",
+	a05 = "l2n_a06",
+	a06 = "l2n_a06",
 }
 M.r3n_ = {
 	x02a_any_3p = "l3n_x01a_any_3p",
 	x01a_any_3p = "l3n_x02a_any_3p",
+	a05 = "l3n_a06",
+	a06 = "l3n_a06",
 }
 M.r4n_ = {
 	x02a_any_3p = "l4n_x01a_any_3p",
 	x01a_any_3p = "l1n_x02a_any_3p",
+	a05 = "l4n_a06",
+	a06 = "l4n_a06",
+}
+
+-- stelf idle lines for bexico guards
+M.m1n_ = {
+	a05 = "l1n_a06",
+	a06 = "l1n_a06",
+}
+M.m2n_ = {
+	a05 = "l2n_a06",
+	a06 = "l2n_a06",
+}
+M.m3n_ = {
+	a05 = "l3n_a06",
+	a06 = "l3n_a06",
+}
+M.m4n_ = {
+	a05 = "l4n_a06",
+	a06 = "l4n_a06",
 }
 
 -- Female cops
