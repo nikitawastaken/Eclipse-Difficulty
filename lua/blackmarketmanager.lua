@@ -220,3 +220,8 @@ function BlackMarketManager:damage_multiplier(name, categories, silencer, detect
 
 	return self:_convert_add_to_mul(multiplier)
 end
+
+-- Bandaid for removing team AI abilities/boosts
+function BlackMarketManager:verify_has_crew_skill() end
+
+function BlackMarketManager:verify_has_crew_ability() end
