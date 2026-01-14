@@ -3,6 +3,7 @@ local lorefriendly_team_ai_weapons = Eclipse.settings.team_ai_weapons == 2
 local classic_team_ai_weapons = Eclipse.settings.team_ai_weapons == 3
 
 local level_id = Eclipse.utils.level_id()
+local diff_i = Eclipse.utils.difficulty_index()
 local is_overkill = Eclipse.utils.is_overkill()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
@@ -515,30 +516,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.weapon.gang_member.is_lmg.no_autofire_stop = true
 	presets.weapon.gang_member.mini.no_autofire_stop = true
 
-	presets.move_speed.normal = {
-		stand = {
-			walk = {
-				ntl = { fwd = 160, strafe = 120, bwd = 100 },
-				cbt = { fwd = 220, strafe = 180, bwd = 160 },
-				hos = { fwd = 220, strafe = 180, bwd = 160 },
-			},
-			run = {
-				cbt = { fwd = 400, strafe = 240, bwd = 240 },
-				hos = { fwd = 450, strafe = 300, bwd = 240 },
-			},
-		},
-		crouch = {
-			walk = {
-				cbt = { fwd = 200, strafe = 140, bwd = 120 },
-				hos = { fwd = 200, strafe = 140, bwd = 120 },
-			},
-			run = {
-				cbt = { fwd = 300, strafe = 240, bwd = 200 },
-				hos = { fwd = 360, strafe = 240, bwd = 200 },
-			},
-		},
-	}
-
 	presets.move_speed.extremely_slow = deep_clone(presets.move_speed.normal)
 	presets.move_speed.very_slow = deep_clone(presets.move_speed.normal)
 	presets.move_speed.slow = deep_clone(presets.move_speed.normal)
@@ -546,8 +523,8 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.move_speed.very_fast = deep_clone(presets.move_speed.normal)
 	presets.move_speed.lightning = deep_clone(presets.move_speed.normal)
 
-	speed_multiplier(presets.move_speed.extremely_slow, 0.4)
-	speed_multiplier(presets.move_speed.very_slow, 0.6)
+	speed_multiplier(presets.move_speed.extremely_slow, 0.5)
+	speed_multiplier(presets.move_speed.very_slow, 0.7)
 	speed_multiplier(presets.move_speed.slow, 0.8)
 	speed_multiplier(presets.move_speed.fast, 1.2)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
@@ -1263,7 +1240,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_sniper.priority_shout = "f34"
 	self.city_sniper.chatter = self.presets.enemy_chatter.no_chatter
 	self.city_sniper.damage.hurt_severity = self.presets.hurt_severities.no_heavy_hurt
-	self.city_sniper.dodge = self.presets.dodge.special
+	self.city_sniper.dodge = self.presets.dodge.athletic
 	--self.city_sniper.misses_first_player_shot = true
 	self.city_sniper.surrender = nil
 	self.city_sniper.suppression = nil
@@ -1355,7 +1332,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.tank_hw.headshot_dmg_mul = 1
 	self.tank_hw.ignore_headshot = true
 	self.tank_hw.melee_anims = nil
-	self.tank_hw.move_speed_mul = { walk = 0.75, run = 0.75 }
+	self.tank_hw.move_speed_mul = { walk = 0.7, run = 0.7 }
 	self.tank_hw.melee_weapon = "helloween"
 	self.tank_hw.die_sound_event = self.tank.die_sound_event
 	self.tank_hw.chatter = self.tank.chatter
@@ -1364,7 +1341,7 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.city_tank = deep_clone(self.tank)
 	self.city_tank.HEALTH_INIT = 800
 	self.city_tank.headshot_dmg_mul = 25 -- 320 head health
-	self.city_tank.move_speed_mul = { walk = 0.85, run = 0.85 }
+	self.city_tank.move_speed_mul = { walk = 0.8, run = 0.8 }
 	self.city_tank.spawn_sound_event = self._prefix_data_p1.bulldozer() .. "_entrance_elite" -- elite bulldozah coming through!!!
 	table.insert(self._enemy_list, "city_tank")
 
@@ -2055,6 +2032,7 @@ CharacterTweakData.access_surrender = {
 }
 
 function CharacterTweakData:_set_presets()
+	local below_overkill = diff_i < 5
 	local health_mul = get_difficulty_specific_value({
 		1,
 		1.25,
@@ -2145,10 +2123,24 @@ function CharacterTweakData:_set_presets()
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
-			char_preset.move_speed = deep_clone(char_preset.move_speed)
-			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
 			char_preset.can_be_healed = not tag_map.medic and true or false
 			char_preset.target_priority = tag_map.medic and 10 or nil
+			char_preset.tank_run_speed_mul = not below_overkill and { fwd = 1.25, strafe = 1, bwd = 1 } or nil
+			char_preset.no_run_start = not char_preset.tank_run_speed_mul and true or false
+			char_preset.no_run_stop = not char_preset.tank_run_speed_mul and true or false
+	
+			local speed_preset = deep_clone(char_preset.move_speed)
+			for _, pose in pairs(speed_preset) do
+				for haste_name, haste in pairs(pose) do
+					for stance_name, stance in pairs(haste) do
+						for move_dir in pairs(stance) do
+							stance[move_dir] = stance[move_dir] * (haste_name == "run" and char_preset.tank_run_speed_mul and char_preset.tank_run_speed_mul[move_dir] or 1)
+						end
+					end
+				end
+			end
+			
+			char_preset.move_speed = speed_preset
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
@@ -2222,7 +2214,13 @@ function CharacterTweakData:_set_presets()
 	self.tank_medic.medic_healing = self.medic.medic_healing
 	self.tmp_healing_damage_mul = is_eclipse and 0.4 or is_overkill and 0.6 or nil
 
-	self.tank.damage.armor_health = is_eclipse and 14 or is_overkill and 12 or 10
+	self.tank.damage.armor_health = get_difficulty_specific_value({
+		10,
+		10,
+		12,
+		12,
+		14,
+	})
 	self.tank_medic.damage.armor_health = self.tank.damage.armor_health
 	self.tank_hw.damage.armor_health = self.tank.damage.armor_health
 	self.city_tank.damage.armor_health = self.tank.damage.armor_health * (4 / 3)
