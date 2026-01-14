@@ -2128,7 +2128,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.tank_run_speed_mul = not below_overkill and { fwd = 1.25, strafe = 1, bwd = 1 } or nil
 			char_preset.no_run_start = not char_preset.tank_run_speed_mul and true or false
 			char_preset.no_run_stop = not char_preset.tank_run_speed_mul and true or false
-	
+
 			local speed_preset = deep_clone(char_preset.move_speed)
 			for _, pose in pairs(speed_preset) do
 				for haste_name, haste in pairs(pose) do
@@ -2139,7 +2139,7 @@ function CharacterTweakData:_set_presets()
 					end
 				end
 			end
-			
+
 			char_preset.move_speed = speed_preset
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
