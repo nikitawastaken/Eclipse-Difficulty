@@ -1,13 +1,13 @@
 -- Allow Cloakers to dodge while charging
 local _upd_sprint_original = ActionSpooc._upd_sprint
 function ActionSpooc:_upd_sprint(t, ...)
-	local spooc_dodge_check_t = self._unit:base():char_tweak().spooc_attack_dodge_timeout 
+	local spooc_dodge_check_t = self._unit:base():char_tweak().spooc_attack_dodge_timeout
 	if spooc_dodge_check_t then
 		if self._ext_anim.dodge then
 			return CopActionDodge.update(self, t)
 		elseif not self._next_dodge_check_t then
 			self._ext_movement:play_redirect("stand")
-			
+
 			self._next_dodge_check_t = t + math.lerp(spooc_dodge_check_t[1], spooc_dodge_check_t[2], math.random())
 		end
 
@@ -38,7 +38,7 @@ function ActionSpooc:_upd_sprint(t, ...)
 			return
 		end
 	end
-	
+
 	return _upd_sprint_original(self, t, ...)
 end
 
