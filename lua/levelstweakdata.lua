@@ -366,7 +366,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 
 	self.bph.group_ai_settings = deep_clone(self.nmh.group_ai_settings)
 	self.bph.group_ai_settings.difficulty_scaling = { assault_delay = 15 }
-	
+
 	self.vit.group_ai_settings = { -- Greatest heist of all
 		sustain_duration_mul = 1.35,
 		assault_force_mul = 0.75,
