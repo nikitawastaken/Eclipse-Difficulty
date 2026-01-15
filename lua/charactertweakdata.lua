@@ -2147,7 +2147,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
-		elseif tag_map.tank then			
+		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
 			char_preset.can_be_healed = not tag_map.medic and true or false
