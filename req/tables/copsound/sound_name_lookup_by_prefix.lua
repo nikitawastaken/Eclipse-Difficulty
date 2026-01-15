@@ -21,6 +21,7 @@ local lXn_tbl = {
 	e06 = "clr",
 	x02a_any_3p = "x01a_any_3p",
 	x01a_any_3p = "x02a_any_3p",
+	tasered = "burnhurt", -- i'm tased
 	lk3a = "lk3b",
 	lk3b = "lk3a",
 }
@@ -40,6 +41,7 @@ local rXn_tbl = {
 	s01x = "hlp",
 	lk3a = "hlp",
 	lk3b = "hlp",
+	tasered = "burnhurt", -- i'm tased
 	ch3 = "burndeath", -- Ears ouchies
 	d02 = "g90", -- Use regular taunt when deploying flashbangs
 	rrl = "g90",
@@ -79,6 +81,7 @@ local zXn_tbl = {
 	s01x = zXn_zombie_sounds_tbl,
 	lk3a = zXn_zombie_sounds_tbl,
 	lk3b = zXn_zombie_sounds_tbl,
+	tasered = zXn_zombie_sounds_tbl, -- i'm tased
 	d02 = zXn_zombie_sounds_tbl,
 	rrl = zXn_zombie_sounds_tbl,
 	pus = zXn_zombie_sounds_tbl,
@@ -105,6 +108,7 @@ local mXn_tbl = {
 	s01x = "hlp",
 	lk3a = "hlp",
 	lk3b = "hlp",
+	tasered = "burnhurt", -- i'm tased
 	ch3 = "burndeath", -- Ears ouchies
 	d02 = "g90", -- Use regular taunt when deploying flashbangs
 	rrl = "g90",
@@ -122,6 +126,7 @@ M.l1n_ = {
 	e03 = lXn_sabotage_tbl,
 	e05 = "clr",
 	e06 = "clr",
+	tasered = "burnhurt", -- i'm tased
 	x02a_any_3p = "x01a_any_3p",
 	x01a_any_3p = "x02a_any_3p",
 }
@@ -134,6 +139,7 @@ M.l4n_ = {
 	e04 = "g90",
 	e05 = "clr",
 	e06 = "clr",
+	tasered = "burnhurt", -- i'm tased
 	x02a_any_3p = "x01a_any_3p",
 }
 M.r1n_ = rXn_tbl
@@ -156,6 +162,7 @@ local lXd_tbl = {
 	med = "e04",
 	a05 = "clr",
 	a06 = "clr",
+	tasered = "burnhurt", -- i'm tased
 }
 local l5d_contact_tbl = {
 	"i01",
@@ -168,6 +175,7 @@ M.l1d_ = {
 	a06 = "clr",
 	e05 = "clr",
 	e06 = "clr",
+	tasered = "burnhurt", -- i'm tased
 	i02 = "i01", -- l1d doesn't have i02 lines for some reason (use i01 instead)
 }
 M.l2d_ = lXd_tbl
@@ -183,6 +191,7 @@ M.l5d_ = {
 	h01 = "h10",
 	a05 = "clr",
 	a06 = "clr",
+	tasered = "burnhurt", -- i'm tased
 }
 
 -- Gangsters
@@ -224,9 +233,18 @@ M.tsr_ = tsr_tbl
 M.rtsr_ = tsr_tbl
 M.mtsr_ = tsr_tbl
 
+-- Cloakers
+local clk_tbl = {
+	tasered = "burnhurt", -- i'm tased
+}
+M.clk_ = clk_tbl
+M.rclk_ = clk_tbl
+M.mclk_ = clk_tbl
+
 -- Medics
 local mdc_tbl = {
 	ch3 = "burndeath", -- Ears ouchies
+	tasered = "burnhurt", -- i'm tased
 	e05 = "g90",
 	e06 = "g90",
 }

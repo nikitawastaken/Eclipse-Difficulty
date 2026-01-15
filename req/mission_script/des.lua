@@ -4,33 +4,37 @@ local disabled = {
 		enabled = false,
 	},
 }
-local escape_spawn = {
+local lower_spawn = {
 	values = {
-		interval = 20,
+		interval = 15,
 	},
 }
-local upper_spawn = {
+local escape_spawn = {
 	values = {
 		interval = 20,
 	},
 }
 local garage_door_spawn = {
 	values = {
-		interval = 30,
+		interval = 20,
 	},
 	groups = preferred.no_shields_bulldozers,
+}
+local upper_spawn = {
+	values = {
+		interval = 25,
+	},
 }
 local flank_spawn = {
 	values = {
-		interval = 45,
+		interval = 40,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
-local catwalk_spawn = {
+local cloaker_spawn = {
 	values = {
-		interval = 60,
+		interval = 90,
 	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
 }
 return {
 	-- Combine some navigation areas
@@ -44,9 +48,35 @@ return {
 			{ 114, 115 },
 		},
 	},
+	-- Add new reinforce
+	[100304] = { -- objective 1 completed
+		reinforce = {
+			{
+				name = "entrance",
+				force = 3,
+				position = Vector3(-1400, 2700, 0),
+			},
+			{
+				name = "hub",
+				force = 3,
+				position = Vector3(-150, -1225, 0),
+			},
+		},
+	},
 	[100286] = {
 		reinforce = {
-			{ name = "main_hall" },
+			{ name = "entrance" },
+			{ name = "hub" },
+			{
+				name = "helipad",
+				force = 3,
+				position = Vector3(-1200, 5375, 105),
+			},
+			{
+				name = "hub_escape",
+				force = 3,
+				position = Vector3(25, -350, 0),
+			},
 		},
 		-- add point of no return
 		ponr = {
@@ -54,12 +84,39 @@ return {
 			player_mul = { 1.6, 1.2, 1, 0.8 },
 		},
 	},
-	[100304] = {
+	[109005] = { -- open door biolab
 		reinforce = {
 			{
-				name = "main_hall",
-				force = 5,
-				position = Vector3(-120, -2400, 100),
+				name = "bio",
+				force = 2,
+				position = Vector3(-1400, -500, 0),
+			},
+		},
+	},
+	[100278] = { -- open door wepaons lab
+		reinforce = {
+			{
+				name = "weapons",
+				force = 2,
+				position = Vector3(-2150, -2175, 0),
+			},
+		},
+	},
+	[108982] = { -- open door archaelogical area
+		reinforce = {
+			{
+				name = "archaelogy",
+				force = 2,
+				position = Vector3(2225, -2200, 0),
+			},
+		},
+	},
+	[108533] = { -- open door computer lab
+		reinforce = {
+			{
+				name = "computer",
+				force = 2,
+				position = Vector3(1425, -375, 0),
 			},
 		},
 	},
@@ -67,11 +124,12 @@ return {
 	[100919] = disabled, -- weapon preferreds 6
 	[101320] = disabled, -- biolab preferreds 6
 	[101334] = disabled, -- books preferreds 4
-	[101334] = disabled, -- books preferreds 4
-	[108442] = disabled, -- entrance preferreds 3
 	-- Spawn group intervals
+	[102439] = lower_spawn,
 	[108291] = escape_spawn,
 	[108292] = escape_spawn,
+	[107909] = garage_door_spawn,
+	[108287] = garage_door_spawn,
 	[100128] = upper_spawn,
 	[100130] = upper_spawn,
 	[100131] = upper_spawn,
@@ -91,9 +149,15 @@ return {
 	[107981] = upper_spawn,
 	[107983] = upper_spawn,
 	[108290] = upper_spawn,
-	[107909] = garage_door_spawn,
-	[108287] = garage_door_spawn,
-	[108289] = garage_door_spawn,
-	[101074] = catwalk_spawn,
-	[101350] = catwalk_spawn,
+	[108289] = flank_spawn, -- garage door spawn (escape)
+	[101074] = flank_spawn,
+	[101350] = flank_spawn,
+	[100844] = cloaker_spawn,
+	[100848] = cloaker_spawn,
+	[100852] = cloaker_spawn,
+	[100856] = cloaker_spawn,
+	[100860] = cloaker_spawn,
+	[100864] = cloaker_spawn,
+	[100868] = cloaker_spawn,
+	[100873] = cloaker_spawn,
 }
