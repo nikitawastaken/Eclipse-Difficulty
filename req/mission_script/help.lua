@@ -29,6 +29,10 @@ local flank_spawn = {
 	groups = preferred.no_shields_bulldozers,
 }
 return {
+	-- instantly enter FFO when all players are gathered in one place
+	[101213] = {
+		set_ponr_state = true,
+	},
 	-- Fix Prison Nightmare SO animations
 	[100347] = spawn_so,
 	[100348] = spawn_so,

@@ -15,6 +15,8 @@ local M = {
 	dah = true,
 	rvd2 = true,
 	man = true,
+	help = true,
+	hvh = true,
 	nmh = true,
 }
 

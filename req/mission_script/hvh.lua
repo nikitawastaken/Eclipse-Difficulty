@@ -10,6 +10,10 @@ local standard_spawn = {
 	},
 }
 return {
+	-- instantly enter FFO when pressing the button on Pro Jobs
+	[100129] = {
+		set_ponr_state = true,
+	},
 	-- Increase difficulty when a safe is breached or you fail to open the safe
 	[101127] = {
 		difficulty_add = 0.2,
