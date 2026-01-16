@@ -75,7 +75,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.rubies = 52500
 	self.bag_values.red_diamond = 10000
 	self.bag_values.old_wine = 75000
-	self.bag_values.garden_gnome = 9.99
+	self.bag_values.garden_gnome = 69
 	self.bag_values.ranc_weapon = 36000
 	self.bag_values.turret_part = 25000
 	self.bag_values.corp_papers = 30000
@@ -803,9 +803,4 @@ function MoneyTweakData:init(tweak_data)
 		max_kills_per_session = 100,
 		kill_to_offshore_multiplier = 1000
 	}
-	self.bag_values.garden_gnome = 9.99
-	self.bag_values.ranc_weapon = 3000
-	self.bag_values.turret_part = 6000
-	self.bag_values.corp_papers = 2500
-	self.bag_values.corp_prototype = 3000
 end
