@@ -70,7 +70,9 @@
 				<post :hook_id="player_actions/skills/playeractiontriggerhappy"/>
 
 				<post :hook_id="missionmanager"/>
-				<!-- <post :hook_id="moneymanager"/>-->
+				<post :hook_id="moneymanager"/>
+				<post :hook_id="experiencemanager"/>
+				<post :hook_id="lootmanager"/>
 				<post :hook_id="hudmanager"/>
 				<post :hook_id="menumanager"/>
 				<post :hook_id="savefilemanager"/>
