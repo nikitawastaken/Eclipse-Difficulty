@@ -3260,7 +3260,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		diff_max = 1,
 		diff_init = 0.25,
 		diff_step = 0.05,
-		diff_step_interval = { 5, 15 },
+		diff_step_interval = below_overkill and 15 or 10,
 		assault_add = 0.25,
 		hostage_kill_add = is_pro_job and 0.1 or nil,
 		mid_assault_scale = nil,
@@ -3354,9 +3354,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	self.besiege.assault.spawn_rate = get_difficulty_specific_value({
 		{ 3, 2.5, 2 },
+		{ 3, 2.5, 2 },
 		{ 2.75, 2.25, 1.75 },
 		{ 2.75, 2.25, 1.75 },
-		{ 2.5, 2, 1.5 },
 		{ 2.5, 2, 1.5 },
 	})
 	self.besiege.assault.spawn_rate_balance_mul = {} -- { 1.75, 1.45, 1.2, 1 }
@@ -3429,109 +3429,109 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 
 	local special_wgt = get_difficulty_specific_value({
-		5,
+		6,
 		7,
-		9,
+		8,
+		10,
 		12,
-		15,
 	})
 	local special_wgt_tbl = { special_wgt, special_wgt, special_wgt }
-	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.4, 0.8, 1.2 } or { 0.6, 0.9, 1.2 })
-	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.4, 0.7, 1 })
-	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.4, 0.6, 0.8 })
+	local shield_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0.2, 0.7, 1.2 } or { 0.4, 0.8, 1.2 })
+	local taser_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.5, 1 } or { 0.2, 0.6, 1 })
+	local spook_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.4, 0.8 } or { 0.2, 0.5, 0.8 })
 	local tank_wgt = table_multiplier(clone(special_wgt_tbl), below_overkill and { 0, 0.2, 0.8 } or { 0, 0.4, 0.8 })
-	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.3, 0.6, 0.9 })
+	local elite_sniper_wgt = table_multiplier(clone(special_wgt_tbl), { 0.1, 0.5, 0.9 })
 	local elite_shield_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0.3, 0.9 })
 	local elite_tank_wgt = table_multiplier(clone(special_wgt_tbl), { 0, 0, 0.6 })
 
 	-- Spawngroups
 	if difficulty_index <= 2 then
 		self.besiege.assault.groups = {
-			cs_cops = { 16, 8, 0 },
-			cs_swats = { 24, 28, 32 },
-			cs_heavies = { 8, 12, 16 },
+			cs_cops = { 15, 5, 0 },
+			cs_swats = { 25, 30, 30 },
+			cs_heavies = { 5, 10, 15 },
 			cs_shield = shield_wgt,
 		}
 		self.besiege.recon.groups = {
-			cs_stealth_init = { 6, 3, 0 },
-			cs_stealth_light = { 0, 3, 6 },
-			cs_stealth_heavy = { 0, 1, 2 },
+			cs_stealth_init = { 30, 15, 0 },
+			cs_stealth_light = { 0, 15, 30 },
+			cs_stealth_heavy = { 0, 5, 10 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 4, 2, 0 },
-			cs_defend_light = { 2, 4, 6 },
-			cs_defend_heavy = { 0, 2, 4 },
+			cs_defend_init = { 30, 15, 0 },
+			cs_defend_light = { 0, 15, 30 },
+			cs_defend_heavy = { 0, 5, 10 },
 		}
 	elseif difficulty_index == 3 then
 		self.besiege.assault.groups = {
-			cs_cops = { 12, 6, 0 },
-			cs_swats = { 28, 30, 32 },
-			cs_heavies = { 8, 12, 16 },
+			cs_cops = { 10, 5, 0 },
+			cs_swats = { 30, 30, 30 },
+			cs_heavies = { 5, 10, 15 },
 			cs_shield = shield_wgt,
 			cs_taser = taser_wgt,
 			cs_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
-			cs_stealth_init = { 6, 3, 0 },
-			cs_stealth_light = { 0, 3, 6 },
-			cs_stealth_heavy = { 0, 1, 2 },
+			cs_stealth_init = { 30, 15, 0 },
+			cs_stealth_light = { 0, 15, 30 },
+			cs_stealth_heavy = { 0, 5, 10 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 4, 2, 0 },
-			cs_defend_light = { 2, 4, 6 },
-			cs_defend_heavy = { 0, 2, 4 },
+			cs_defend_init = { 20, 10, 0 },
+			cs_defend_light = { 10, 20, 30 },
+			cs_defend_heavy = { 0, 5, 15 },
 		}
 	elseif difficulty_index == 4 then
 		self.besiege.assault.groups = {
-			cs_swats = { 16, 8, 0 },
-			fbi_swats = { 20, 28, 32 },
-			fbi_heavies = { 8, 12, 16 },
+			cs_swats = { 25, 15, 0 },
+			fbi_swats = { 15, 25, 30 },
+			fbi_heavies = { 5, 10, 15 },
 			fbi_shield = shield_wgt,
 			fbi_taser = taser_wgt,
 			fbi_cloaker = spook_wgt,
 			fbi_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
-			fbi_stealth_init = { 6, 3, 0 },
-			fbi_stealth_light = { 0, 3, 6 },
-			fbi_stealth_heavy = { 0, 1, 2 },
+			fbi_stealth_init = { 30, 15, 0 },
+			fbi_stealth_light = { 0, 15, 30 },
+			fbi_stealth_heavy = { 0, 5, 10 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 3, 0, 0 },
-			cs_defend_light = { 2, 4, 0 },
-			cs_defend_heavy = { 1, 2, 0 },
-			fbi_defend_init = { 4, 2, 0 },
-			fbi_defend_light = { 0, 2, 6 },
-			fbi_defend_heavy = { 0, 1, 3 },
+			cs_defend_init = { 15, 0, 0 },
+			cs_defend_light = { 10, 20, 0 },
+			cs_defend_heavy = { 5, 10, 0 },
+			fbi_defend_init = { 20, 10, 0 },
+			fbi_defend_light = { 0, 10, 30 },
+			fbi_defend_heavy = { 0, 5, 15 },
 		}
 	elseif difficulty_index == 5 then
 		self.besiege.assault.groups = {
-			cs_swats = { 12, 6, 0 },
-			fbi_swats = { 26, 28, 30 },
-			fbi_heavies = { 10, 14, 18 },
+			cs_swats = { 20, 10, 0 },
+			fbi_swats = { 20, 25, 30 },
+			fbi_heavies = { 10, 15, 20 },
 			fbi_shield = shield_wgt,
 			fbi_taser = taser_wgt,
 			fbi_cloaker = spook_wgt,
 			fbi_bulldozer = tank_wgt,
 		}
 		self.besiege.recon.groups = {
-			fbi_stealth_init = { 4, 2, 0 },
-			fbi_stealth_light = { 2, 4, 6 },
-			fbi_stealth_heavy = { 0, 1, 2 },
+			fbi_stealth_init = { 20, 10, 0 },
+			fbi_stealth_light = { 10, 20, 30 },
+			fbi_stealth_heavy = { 0, 5, 10 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 4, 0, 0 },
-			cs_defend_light = { 3, 6, 0 },
-			cs_defend_heavy = { 2, 4, 0 },
-			fbi_defend_init = { 6, 3, 0 },
-			fbi_defend_light = { 0, 4, 8 },
-			fbi_defend_heavy = { 0, 2, 6 },
+			cs_defend_init = { 20, 0, 0 },
+			cs_defend_light = { 15, 30, 0 },
+			cs_defend_heavy = { 10, 20, 0 },
+			fbi_defend_init = { 30, 15, 0 },
+			fbi_defend_light = { 0, 20, 40 },
+			fbi_defend_heavy = { 0, 10, 30 },
 		}
 	else
 		self.besiege.assault.groups = {
-			fbi_swats = { 28, 14, 0 },
-			elite_swats = { 20, 26, 32 },
-			fbi_heavies = { 16, 24, 32 },
+			fbi_swats = { 30, 10, 0 },
+			elite_swats = { 20, 30, 30 },
+			fbi_heavies = { 10, 20, 30 },
 			fbi_shield = shield_wgt,
 			elite_sniper = elite_sniper_wgt,
 			elite_taser = taser_wgt,
@@ -3541,18 +3541,18 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 			elite_bulldozer = elite_tank_wgt,
 		}
 		self.besiege.recon.groups = {
-			fbi_stealth_init = { 4, 2, 0 },
-			fbi_stealth_light = { 2, 4, 6 },
-			fbi_stealth_heavy = { 0, 1, 2 },
+			fbi_stealth_init = { 20, 10, 0 },
+			fbi_stealth_light = { 10, 20, 30 },
+			fbi_stealth_heavy = { 0, 5, 10 },
 		}
 		self.besiege.reenforce.groups = {
-			cs_defend_init = { 2, 0, 0 },
-			cs_defend_light = { 6, 3, 0 },
-			cs_defend_heavy = { 4, 2, 0 },
-			fbi_defend_init = { 4, 2, 0 },
-			fbi_defend_light = { 3, 6, 0 },
-			fbi_defend_heavy = { 0, 2, 8 },
-			elite_defend_light = { 0, 2, 8 },
+			cs_defend_init = { 15, 0, 0 },
+			cs_defend_light = { 30, 15, 0 },
+			cs_defend_heavy = { 20, 10, 0 },
+			fbi_defend_init = { 20, 10, 0 },
+			fbi_defend_light = { 15, 30, 0 },
+			fbi_defend_heavy = { 0, 10, 40 },
+			elite_defend_light = { 0, 10, 40 },
 		}
 	end
 
@@ -3718,11 +3718,11 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	end
 
 	local ponr_special_wgt = get_difficulty_specific_value({
-		5,
-		6,
-		7,
 		8,
 		9,
+		10,
+		11,
+		12,
 	})
 	local ponr_special_wgt_tbl = { ponr_special_wgt, ponr_special_wgt, ponr_special_wgt }
 	local ponr_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1.2)
@@ -3730,14 +3730,14 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	local ponr_taser_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 1)
 	local ponr_spook_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.8)
 	local ponr_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.8)
-	local ponr_elite_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.7)
-	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.5)
+	local ponr_elite_shield_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.6)
+	local ponr_elite_tank_wgt = table_multiplier(clone(ponr_special_wgt_tbl), 0.4)
 
 	-- Spawngroups
 	if difficulty_index <= 3 then
 		self.ponr.assault.groups = {
-			fbi_swats = { 16, 16, 16 },
-			fbi_heavies = { 16, 16, 16 },
+			fbi_swats = { 20, 20, 20 },
+			fbi_heavies = { 20, 20, 20 },
 			fbi_shield = ponr_shield_wgt,
 			fbi_taser = ponr_taser_wgt,
 			fbi_cloaker = ponr_spook_wgt,
@@ -3749,8 +3749,8 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	elseif difficulty_index <= 5 then
 		self.ponr.assault.groups = {
-			elite_swats = { 16, 16, 16 },
-			fbi_heavies = { 16, 16, 16 },
+			elite_swats = { 20, 20, 20 },
+			fbi_heavies = { 20, 20, 20 },
 			fbi_shield = ponr_shield_wgt,
 			elite_shield = ponr_elite_shield_wgt,
 			elite_sniper = ponr_sniper_wgt,
@@ -3765,7 +3765,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		}
 	else
 		self.ponr.assault.groups = {
-			elite_swats = { 12, 12, 12 },
+			elite_swats = { 20, 20, 20 },
 			elite_heavies = { 20, 20, 20 },
 			elite_shield = ponr_shield_wgt,
 			elite_sniper = ponr_sniper_wgt,
