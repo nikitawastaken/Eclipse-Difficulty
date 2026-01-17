@@ -1,11 +1,12 @@
 local scripted_enemy = Eclipse.scripted_enemy
 local preferred = Eclipse.preferred
 local diff_i = Eclipse.utils.difficulty_index()
-local diff_i_no_easy = Eclipse.utils.difficulty_index_no_easy()
+local normal, hard, eclipse = Eclipse.utils.diff_groups()
+local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local is_eclipse = Eclipse.utils.is_eclipse()
 local is_pro_job = Eclipse.utils.is_pro_job()
 local is_eclipse_pro = Eclipse.utils.is_eclipse_pro()
-local normal, hard, eclipse = Eclipse.utils.diff_groups()
+
 local shield = scripted_enemy.shield
 local elite_shield = scripted_enemy.elite_shield
 local taser = scripted_enemy.taser
@@ -89,7 +90,10 @@ local heli_enemy2 = {
 		trigger_times = 0,
 	},
 }
-local heli_chance = (diff_i_no_easy * 15) * (is_pro_job and 4 / 3 or 1)
+local heli_chance = (normal and 30 or hard and 40 or 60) * (is_pro_job and 1.5 or 0)
+local ship_sniper_delay = 30
+local ship_sniper_delay_rand = overkill_and_above and 60 or 90
+
 local function cloaker_add(id)
 	return id and {
 		modify_list_value = {
@@ -300,7 +304,7 @@ return {
 	},
 	[100448] = {
 		on_executed = {
-			{ id = 100454, delay = 120, delay_rand = is_eclipse and 120 or 180 },
+			{ id = 100454, delay = 120, delay_rand = overkill_and_above and 120 or 180 },
 			{ id = 100446, remove = true }, -- don't make same units spawn twice
 			{ id = 100447, remove = true },
 		},
@@ -355,17 +359,17 @@ return {
 	-- spawn Snipers on the ships
 	[102182] = {
 		on_executed = {
-			{ id = 400013, delay = 30, delay_rand = normal and 60 or 30 },
+			{ id = 400013, delay = ship_sniper_delay, delay_rand = ship_sniper_delay_rand },
 		},
 	},
 	[102388] = {
 		on_executed = {
-			{ id = 400014, delay = 30, delay_rand = normal and 60 or 30 },
+			{ id = 400014, delay = ship_sniper_delay, delay_rand = ship_sniper_delay_rand },
 		},
 	},
 	[102335] = {
 		on_executed = {
-			{ id = 400015, delay = 30, delay_rand = normal and 60 or 30 },
+			{ id = 400015, delay = ship_sniper_delay, delay_rand = ship_sniper_delay_rand },
 		},
 	},
 	-- Disable some sketchy cheat sapwns
