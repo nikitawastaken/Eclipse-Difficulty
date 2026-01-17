@@ -107,6 +107,8 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_tazer_r870/ene_tazer_r870",
 		"units/pd2_dlc_hvh/characters/ene_tazer_hvh_1/ene_tazer_hvh_1",
 		"units/pd2_dlc_hvh/characters/ene_tazer_hvh_r870/ene_tazer_hvh_r870",
+		"units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer",
+		"units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870",
 		"units/pd2_dlc_gitgud/characters/ene_zeal_tazer/ene_zeal_tazer",
 	},
 	american_cloaker_list = {
@@ -147,6 +149,11 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_3/ene_bulldozer_hvh_3",
 		"units/pd2_dlc_hvh/characters/ene_bulldozer_hvh_4/ene_bulldozer_hvh_4",
 		"units/pd2_dlc_hvh/characters/ene_bulldozer_medic_hvh/ene_bulldozer_medic_hvh",
+		"units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_1/ene_murkywater_bulldozer_1",
+		"units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_2/ene_murkywater_bulldozer_2",
+		"units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_3/ene_murkywater_bulldozer_3",
+		"units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_4/ene_murkywater_bulldozer_4",
+		"units/pd2_dlc_bph/characters/ene_murkywater_bulldozer_medic/ene_murkywater_bulldozer_medic",
 	},
 	-- list that has 3 random voices, should be used for mercs and us soldiers
 	l5n_l3n_l2n_list = {
@@ -186,6 +193,21 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_bph/characters/ene_murkywater_agent_1/ene_murkywater_agent_1",
 		"units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2",
 		"units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3",
+		-- Murky Blue SWAT (Recurits)
+		"units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light",
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_r870/ene_murkywater_light_r870",
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5",
+		"units/pd2_dlc_bph/characters/ene_murkywater_sniper/ene_murkywater_sniper",
+		-- Murky FBI SWAT (Soldiers)
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_fbi/ene_murkywater_light_fbi",
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_r870/ene_murkywater_light_fbi_r870",
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_mp5/ene_murkywater_light_fbi_mp5",
+		"units/pd2_dlc_bph/characters/ene_murkywater_sniper_fbi/ene_murkywater_sniper_fbi",
+		-- Murky GenSec (Elites)
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_city/ene_murkywater_light_city",
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_city_r870/ene_murkywater_light_city_r870",
+		"units/pd2_dlc_bph/characters/ene_murkywater_light_city_mp5/ene_murkywater_light_city_mp5",
+		"units/pd2_dlc_bph/characters/ene_murkywater_sniper_city/ene_murkywater_sniper_city",
 	},
 	-- ditto but radio filtered
 	l5d_l3d_l2d_list = {
@@ -199,6 +221,15 @@ local prefix_lookup_for_humans = {
 				return "l2d_"
 			end
 		end,
+		-- Murky Blue SWAT (Recurits)
+		"units/pd2_dlc_bph/characters/ene_murkywater_heavy/ene_murkywater_light",
+		"units/pd2_dlc_bph/characters/ene_murkywater_heavy_r870/ene_murkywater_heavy_r870",
+		-- Murky FBI SWAT (Soldiers)
+		"units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi",
+		"units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi_r870/ene_murkywater_heavy_fbi_r870",
+		-- Murky GenSec (Elites)
+		"units/pd2_dlc_bph/characters/ene_murkywater_heavy_city/ene_murkywater_heavy_city",
+		"units/pd2_dlc_bph/characters/ene_murkywater_heavy_city_r870/ene_murkywater_heavy_city_r870",
 	},
 	-- Scary gruff filtered lines, for american elite shields
 	l5d_shield_list = {
@@ -206,6 +237,7 @@ local prefix_lookup_for_humans = {
 			return "l5d_"
 		end,
 		"units/payday2/characters/ene_city_shield/ene_city_shield",
+		"units/pd2_dlc_bph/characters/ene_murkywater_shield_city/ene_murkywater_shield_city",
 	},
 	-- list that has 2 random voices, for american shields (sans elite shields)
 	l1d_l4d_shield_list = {
@@ -219,6 +251,8 @@ local prefix_lookup_for_humans = {
 		end,
 		"units/payday2/characters/ene_shield_1/ene_shield_1",
 		"units/payday2/characters/ene_shield_2/ene_shield_2",
+		"units/pd2_dlc_bph/characters/ene_murkywater_shield_fbi/ene_murkywater_shield_fbi",
+		"units/pd2_dlc_bph/characters/ene_murkywater_shield/ene_murkywater_shield",
 	},
 	female_enemy_list = {
 		func = function(self, nr_variations)
