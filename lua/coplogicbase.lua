@@ -36,8 +36,8 @@ Hooks:PreHook(CopLogicBase, "on_new_objective", "sh_on_new_objective", function(
 	if not alive(cover_unit) or cover_unit:character_damage():dead() then
 		local followers = {}
 		for u_key, u_data in pairs(data.group.units) do
-			local logic_data = u_data.unit:brain()._logic_data
-			if logic_data.tactics then
+			local logic_data = alive(u_data.unit) and u_data.unit:brain()._logic_data
+			if logic_data and logic_data.tactics then
 				if logic_data.tactics.shield_cover or logic_data.tactics.unit_cover then
 					local unit = logic_data.objective and logic_data.objective.cover_unit
 					if alive(unit) and not unit:character_damage():dead() then
