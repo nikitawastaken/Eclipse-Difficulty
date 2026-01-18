@@ -1891,6 +1891,7 @@ function CharacterTweakData:character_map(...)
 	safe_add(char_map.bph, "ene_murkywater_agent_2")
 	safe_add(char_map.bph, "ene_murkywater_agent_3")
 	safe_add(char_map.bph, "ene_murkywater_heavy_fbi")
+	safe_add(char_map.bph, "ene_murkywater_tazer_r870")
 
 	safe_add(char_map.bex, "ene_policia_03")
 	safe_add(char_map.bex, "ene_policia_04")

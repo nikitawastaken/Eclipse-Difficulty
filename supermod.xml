@@ -1762,6 +1762,11 @@
 
 				<file :name="bph_medic_head_df.texture" />
 				<file :name="bph_medic_head_nm.texture" />
+
+				<file :name="bph_taser_body_df.texture" />
+
+				<file :name="bph_taser_head_df.texture" />
+				<file :name="bph_taser_head_nm.texture" />
 			</group>
 
 			<group :name="ene_murkywater_cop_1/">
@@ -1853,6 +1858,21 @@
 			<group :name="ene_murkywater_medic_r870/">
 				<file :name="ene_murkywater_medic_r870.unit" />
 				<file :name="ene_murkywater_medic_r870_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_tazer/">
+				<xml  :name="ene_murkywater_tazer.sequence_manager" dyn_package="true" />
+				<file :name="ene_murkywater_tazer.material_config" />
+				<file :name="ene_murkywater_tazer_contour.material_config" />
+				<file :name="ene_murkywater_tazer.model" />
+				<file :name="ene_murkywater_tazer.object" />
+				<file :name="ene_murkywater_tazer.unit" />
+				<file :name="ene_murkywater_tazer_husk.unit" />
+			</group>
+
+			<group :name="ene_murkywater_tazer_r870/">
+				<file :name="ene_murkywater_tazer_r870.unit" />
+				<file :name="ene_murkywater_tazer_r870_husk.unit" />
 			</group>
 		</group>
 			

@@ -88,6 +88,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3", bph_needed, false)
 	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi", bph_needed, false)
+	load_unload_unit("units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870", bph_needed, false)
 	
 	local bex_needed = PackageManager:has(ids_unit, Idstring("units/pd2_dlc_bex/characters/ene_swat_policia_federale/ene_swat_policia_federale"))
 	load_unload_unit("units/pd2_dlc_bex/characters/ene_acc_cop_cap/ene_acc_cop_cap", bex_needed, true)
