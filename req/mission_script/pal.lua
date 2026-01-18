@@ -30,14 +30,6 @@ local filter_players_all = {
 		player_4 = true,
 	},
 }
-local filter_players_disable = {
-	values = {
-		player_1 = false,
-		player_2 = false,
-		player_3 = false,
-		player_4 = false,
-	},
-}
 
 local shield = {
 	enemy = is_eclipse_pro and elite_shield or shield,
@@ -60,35 +52,22 @@ local exclude_cop_agents_shields_dozers = {
 }
 local crowbar_amount = {
 	values = {
-		amount = eclipse and 1 or 2,
-	},
-}
-local crowbar_sewer_amount = {
-	values = {
-		amount = eclipse and 0 or 1,
+		amount = normal and 3 or hard and 2 or 1,
+		amount_random = 1,
 	},
 }
 local c4_amount = eclipse and 7 or 4
 local c4_amount_solo = eclipse and 4 or 2
 local c4_event_func = {
-	pre_func = function(self)
-		local values = self._values
-		local is_solo = table.size(managers.network:session():peers()) == 0
-
-		if values.amount then
-			values.amount = is_solo and c4_amount_solo or c4_amount
-		end
-	end,
+	values = {
+		amount = is_solo and c4_amount_solo or c4_amount,
+	},
 }
 local c4_event_counter_func = {
-	pre_func = function(self)
-		local values = self._values
-		local is_solo = table.size(managers.network:session():peers()) == 0
-
-		if values.counter_target then
-			values.counter_target = is_solo and c4_amount_solo or c4_amount
-		end
-	end,
+	values = {
+		enabled = true,
+		counter_target = is_solo and c4_amount_solo or c4_amount,
+	},
 }
 local van_spawn = {
 	values = {
@@ -172,24 +151,17 @@ return {
 	[102320] = filter_disable,
 	[102369] = filter_disable,
 	-- change c4's amount event to resemble more from PDTH
-	--[[
-	[101890] = c4_event_func,
-	[102569] = c4_event_func,
 	[101891] = c4_event_func,
-	[101815] = c4_event_func,
-	[102590] = c4_event_counter_func,
-	[102591] = c4_event_counter_func,
 	[101565] = c4_event_counter_func,
+	[102307] = filter_players_all,
+	[102294] = disabled,
+	[102568] = disabled,
 	[102284] = filter_easy_above,
+	[102289] = filter_disable,
 	[102287] = filter_disable,
 	[102288] = filter_disable,
-	[102294] = filter_players_all,
-	[102568] = filter_players_disable,
-	[102307] = filter_players_disable,
-	-- change crowbar's amount depeniding on diffculties
+	-- change crowbar's amount depending on diffculties
 	[100127] = crowbar_amount,
-	[100129] = crowbar_sewer_amount,
-	]]
 	-- reinforce Spots
 	[100031] = {
 		reinforce = {
