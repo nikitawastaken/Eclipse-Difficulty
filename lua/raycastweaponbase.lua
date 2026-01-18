@@ -65,7 +65,7 @@ function RaycastWeaponBase:_get_spread(user_unit)
 			spread_multiplier = spread_multiplier * managers.player:upgrade_value(category, "hip_fire_spread_multiplier", 1)
 		end
 	end
-	
+
 	return self._spread * tweak_data.weapon[self._name_id].spread["standing"] * spread_multiplier
 end
 
@@ -101,7 +101,7 @@ function RaycastWeaponBase:_fire_raycast(user_unit, from_pos, direction, dmg_mul
 	spread_x = math.max(math.min(spread_x * spread_mul, 90), -90)
 	spread_y = math.max(math.min(spread_y * spread_mul, 90), -90)
 
-	mvec3_mul(mvec_right_ax,  math.cos(theta) * math.tan(r * spread_x))
+	mvec3_mul(mvec_right_ax, math.cos(theta) * math.tan(r * spread_x))
 	mvec3_mul(mvec_up_ay, -1 * math.sin(theta) * math.tan(r * spread_y))
 	mvec3_add(mvec_spread_direction, mvec_right_ax)
 	mvec3_add(mvec_spread_direction, mvec_up_ay)
