@@ -665,8 +665,7 @@ function MoneyTweakData:init(tweak_data)
 	self.preplanning_asset_cost_kenaz_celebrity_visit = 0
 	self.preplanning_asset_cost_kenaz_vault_gate_key = 0
 	self.preplanning_asset_cost_chas_tram = 5000
-	self.small_loot = {}
-
+	
 	-- heist and difficulty-based small-loot values to actually make it worth it to take the small loot, go for deposits, play jewelry store etc.
 	local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_value
 	local money_mul = get_difficulty_specific_value({
@@ -676,6 +675,7 @@ function MoneyTweakData:init(tweak_data)
 		1.3,
 		1.4,
 	})
+	self.small_loot = {}
 	if level_id == "big" then
 		self.small_loot.money_bundle = ( money_mul * 1000 )
 		self.small_loot.money_bundle_value = ( money_mul * 10000 )
@@ -704,6 +704,8 @@ function MoneyTweakData:init(tweak_data)
 		self.small_loot.vault_loot_ring = ( money_mul * 300 )
 		self.small_loot.vault_loot_jewels = ( money_mul * 600 )
 		self.bag_values.diamonds = 12500 -- 12,500$
+	elseif level_id == "watchdogs_2" or level_id == "watchdogs_2_day" then
+		self.small_loot.money_bundle = ( money_mul * 50000 )
 	elseif level_id == "four_stores" then
 		self.small_loot.money_bundle = ( money_mul * 750 )
 		self.small_loot.vault_loot_gold = ( money_mul * 10000 )
@@ -719,34 +721,34 @@ function MoneyTweakData:init(tweak_data)
 		self.bag_values.money = 90000 -- 90,000$
 	elseif level_id == "dinner" then
 		self.bag_values.gold = 350000 -- 350,000$
+	else
+		self.small_loot.money_bundle = ( money_mul * 1250 )
+		self.small_loot.money_bundle_value = ( money_mul * 10000 )
+		self.small_loot.ring_band = 1954
+		self.small_loot.diamondheist_vault_bust = ( money_mul * 5750 )
+		self.small_loot.diamondheist_vault_diamond = ( money_mul * 7250 )
+		self.small_loot.diamondheist_big_diamond = ( money_mul * 10000 )
+		self.small_loot.mus_small_artifact = ( money_mul * 700 )
+		self.small_loot.value_gold = ( money_mul * 3000 )
+		self.small_loot.gen_atm = ( money_mul * 76000 )
+		self.small_loot.special_deposit_box = ( money_mul * 3500 )
+		self.small_loot.slot_machine_payout = ( money_mul * 25000 )
+		self.small_loot.vault_loot_chest = ( money_mul * 10000 )
+		self.small_loot.vault_loot_diamond_chest = ( money_mul * 20000 )
+		self.small_loot.vault_loot_banknotes = ( money_mul * 9000 )
+		self.small_loot.vault_loot_silver = ( money_mul * 12250 )
+		self.small_loot.vault_loot_diamond_collection = ( money_mul * 13000 )
+		self.small_loot.vault_loot_trophy = ( money_mul * 15000 )
+		self.small_loot.money_wrap_single_bundle_vscaled = ( money_mul * 385 )
+		self.small_loot.spawn_bucket_of_money = ( money_mul * 20000 )
+		self.small_loot.vault_loot_gold = ( money_mul * 22500 )
+		self.small_loot.vault_loot_cash = ( money_mul * 2500 )
+		self.small_loot.vault_loot_coins = ( money_mul * 1800 )
+		self.small_loot.vault_loot_ring = ( money_mul * 6000 )
+		self.small_loot.vault_loot_jewels = ( money_mul * 1400 )
+		self.small_loot.vault_loot_macka = 1
+		self.small_loot.federali_medal = 769
 	end
-	
-	self.small_loot.money_bundle = ( money_mul * 1250 )
-	self.small_loot.money_bundle_value = ( money_mul * 10000 )
-	self.small_loot.ring_band = 1954
-	self.small_loot.diamondheist_vault_bust = ( money_mul * 5750 )
-	self.small_loot.diamondheist_vault_diamond = ( money_mul * 7250 )
-	self.small_loot.diamondheist_big_diamond = ( money_mul * 10000 )
-	self.small_loot.mus_small_artifact = ( money_mul * 700 )
-	self.small_loot.value_gold = ( money_mul * 3000 )
-	self.small_loot.gen_atm = ( money_mul * 76000 )
-	self.small_loot.special_deposit_box = ( money_mul * 3500 )
-	self.small_loot.slot_machine_payout = ( money_mul * 25000 )
-	self.small_loot.vault_loot_chest = ( money_mul * 10000 )
-	self.small_loot.vault_loot_diamond_chest = ( money_mul * 20000 )
-	self.small_loot.vault_loot_banknotes = ( money_mul * 9000 )
-	self.small_loot.vault_loot_silver = ( money_mul * 12250 )
-	self.small_loot.vault_loot_diamond_collection = ( money_mul * 13000 )
-	self.small_loot.vault_loot_trophy = ( money_mul * 15000 )
-	self.small_loot.money_wrap_single_bundle_vscaled = ( money_mul * 385 )
-	self.small_loot.spawn_bucket_of_money = ( money_mul * 20000 )
-	self.small_loot.vault_loot_gold = ( money_mul * 22500 )
-	self.small_loot.vault_loot_cash = ( money_mul * 2500 )
-	self.small_loot.vault_loot_coins = ( money_mul * 1800 )
-	self.small_loot.vault_loot_ring = ( money_mul * 6000 )
-	self.small_loot.vault_loot_jewels = ( money_mul * 1400 )
-	self.small_loot.vault_loot_macka = 1
-	self.small_loot.federali_medal = 769
 
 	self.max_small_loot_value = 20000000
 	self.skilltree = {
