@@ -365,15 +365,38 @@ return {
 			end
 		end,
 	},
-	-- Beach valve disables nearby spawngroups
-	[101219] = { -- valve 1
-		on_executed = { -- beach preferred remove
-			{ id = 400056, delay = 0 },
+	-- Tweak preferreds to be PDTH styled (more vans arrive, more spawnpoints are active)
+	-- remove beach preferred entirely
+	[100788] = { -- van 1
+		on_executed = {
+			{ id = 400070, delay = 0 },
 		},
 	},
-	[100587] = { -- valve timer done
-		on_executed = { -- beach preferred add
-			{ id = 400055, delay = 0 },
+	[100832] = { -- van 2
+		on_executed = {
+			{ id = 400071, delay = 0 },
+		},
+	},
+	[100799] = { -- van 3
+		on_executed = {
+			{ id = 400072, delay = 0 },
+		},
+	},
+	[100778] = { -- van 4
+		on_executed = {
+			{ id = 400073, delay = 0 },
+		},
+	},
+	-- disable overall preferreds
+	[100663] = {
+		on_executed = {
+			{ id = 100045, remove = true },
+		},
+	},
+	-- remove some stupid force spawn script
+	[100430] = {
+		on_executed = {
+			{ id = 100638, remove = true },
 		},
 	},
 	-- Elite Shields replaces FBI ones that cover the manhole on Death Wish (PJ only)

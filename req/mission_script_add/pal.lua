@@ -330,27 +330,35 @@ local pick_a_swat_van = {
 	},
 }
 local swat_van_response_variant_1 = {
-	on_executed = { { id = 100714, delay = 0 }, { id = 100713, delay = 180, delay_rand = 30 }, { id = 100715, delay = 300, delay_rand = 30 }, { id = 100720, delay = 420, delay_rand = 30 } },
+	on_executed = { { id = 100714, delay = 0 }, { id = 100713, delay = is_eclipse and 0 or 180, delay_rand = is_eclipse and 0 or 30 }, { id = 100715, delay = 300, delay_rand = is_eclipse and 0 or 30 }, { id = 100720, delay = is_eclipse and 300 or 420, delay_rand = is_eclipse and 0 or 30 } },
 	enabled = true,
 }
 local swat_van_response_variant_2 = {
-	on_executed = { { id = 100720, delay = 0 }, { id = 100715, delay = 180, delay_rand = 30 }, { id = 100713, delay = 300, delay_rand = 30 }, { id = 100714, delay = 420, delay_rand = 30 } },
+	on_executed = { { id = 100720, delay = 0 }, { id = 100715, delay = is_eclipse and 0 or 180, delay_rand = is_eclipse and 0 or 30 }, { id = 100713, delay = 300, delay_rand = is_eclipse and 0 or 30 }, { id = 100714, delay = is_eclipse and 300 or 420, delay_rand = is_eclipse and 0 or 30 } },
 	enabled = true,
 }
 local swat_van_response_variant_3 = {
-	on_executed = { { id = 100715, delay = 0 }, { id = 100720, delay = 180, delay_rand = 30 }, { id = 100714, delay = 300, delay_rand = 30 }, { id = 100713, delay = 420, delay_rand = 30 } },
+	on_executed = { { id = 100715, delay = 0 }, { id = 100720, delay = is_eclipse and 0 or 180, delay_rand = is_eclipse and 0 or 30 }, { id = 100714, delay = 300, delay_rand = is_eclipse and 0 or 30 }, { id = 100713, delay = is_eclipse and 300 or 420, delay_rand = is_eclipse and 0 or 30 } },
 	enabled = true,
 }
 local swat_van_response_variant_4 = {
-	on_executed = { { id = 100713, delay = 0 }, { id = 100714, delay = 180, delay_rand = 30 }, { id = 100720, delay = 300, delay_rand = 30 }, { id = 100715, delay = 420, delay_rand = 30 } },
+	on_executed = { { id = 100713, delay = 0 }, { id = 100714, delay = is_eclipse and 0 or 180, delay_rand = is_eclipse and 0 or 30 }, { id = 100720, delay = 300, delay_rand = is_eclipse and 0 or 30 }, { id = 100715, delay = is_eclipse and 300 or 420, delay_rand = is_eclipse and 0 or 30 } },
 	enabled = true,
 }
 local optsPreferedAdd1 = {
-	spawn_groups = { 100441, 100473 },
+	spawn_groups = { 100415 },
 	enabled = true,
 }
-local optsPreferedRemove1 = {
-	elements = { 400055 },
+local optsPreferedAdd2 = {
+	spawn_groups = { 102102 },
+	enabled = true,
+}
+local optsPreferedAdd3 = {
+	spawn_groups = { 101856 },
+	enabled = true,
+}
+local optsPreferedAdd4 = {
+	spawn_groups = { 100401 },
 	enabled = true,
 }
 
@@ -415,8 +423,10 @@ M.elements = {
 	Eclipse.mission_elements.gen_missionscript(400052, "swat_van_response_2", swat_van_response_variant_2),
 	Eclipse.mission_elements.gen_missionscript(400053, "swat_van_response_3", swat_van_response_variant_3),
 	Eclipse.mission_elements.gen_missionscript(400054, "swat_van_response_4", swat_van_response_variant_4),
-	Eclipse.mission_elements.gen_preferedadd(400055, "beach_preferredadd", optsPreferedAdd1),
-	Eclipse.mission_elements.gen_preferedremove(400056, "beach_preferedremove", optsPreferedRemove1),
+	Eclipse.mission_elements.gen_preferedadd(400070, "swat_preferredadd_1", optsPreferedAdd1),
+	Eclipse.mission_elements.gen_preferedadd(400071, "swat_preferredadd_2", optsPreferedAdd2),
+	Eclipse.mission_elements.gen_preferedadd(400072, "swat_preferredadd_3", optsPreferedAdd3),
+	Eclipse.mission_elements.gen_preferedadd(400073, "swat_preferredadd_4", optsPreferedAdd4),
 }
 
 return M
