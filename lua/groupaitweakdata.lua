@@ -2319,6 +2319,18 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 			{
 				freq = 1,
 				freq_by_diff = table_multiplier({
+					2 / diff_scale_low,
+					0,
+					0,
+				}, heavy_response and 0 or 1),
+				amount_max = 1,
+				rank = 1,
+				unit = "cs_cop_2", -- For Sonic
+				tactics = self._tactics.none,
+			},
+			{
+				freq = 1,
+				freq_by_diff = table_multiplier({
 					0,
 					diff_scale / 160,
 					diff_scale / 80,
