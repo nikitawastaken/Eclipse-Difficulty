@@ -281,9 +281,9 @@ local M = {
 				"units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870",
 			},
 			taser = {
-				"units/payday2/characters/ene_murkywater_tazer/ene_murkywater_tazer",
-				"units/payday2/characters/ene_murkywater_tazer/ene_murkywater_tazer",
-				"units/payday2/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870",
 			},
 			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
@@ -312,9 +312,9 @@ local M = {
 				"units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870",
 			},
 			taser = {
-				"units/payday2/characters/ene_murkywater_tazer/ene_murkywater_tazer",
-				"units/payday2/characters/ene_murkywater_tazer/ene_murkywater_tazer",
-				"units/payday2/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870",
 			}
 			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
@@ -343,9 +343,9 @@ local M = {
 				"units/pd2_dlc_bph/characters/ene_murkywater_medic_r870/ene_murkywater_medic_r870",
 			},
 			taser = {
-				"units/payday2/characters/ene_murkywater_tazer/ene_murkywater_tazer",
-				"units/payday2/characters/ene_murkywater_tazer/ene_murkywater_tazer",
-				"units/payday2/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer/ene_murkywater_tazer",
+				"units/pd2_dlc_bph/characters/ene_murkywater_tazer_r870/ene_murkywater_tazer_r870",
 			}
 			cloaker = "units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker",
 		},
