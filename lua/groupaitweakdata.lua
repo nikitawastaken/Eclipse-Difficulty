@@ -2326,7 +2326,7 @@ Hooks:PostHook(GroupAITweakData, "_init_enemy_spawn_groups", "eclipse__init_enem
 				amount_max = 1,
 				rank = 1,
 				unit = "cs_cop_2", -- For Sonic
-				tactics = self._tactics.none,
+				tactics = self._tactics.shield_spt,
 			},
 			{
 				freq = 1,
