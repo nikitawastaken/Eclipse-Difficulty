@@ -3426,7 +3426,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		1.5,
 		1.5,
 	})
-	
+
 	self.smoke_grenade_timeout = { 25, 35 }
 	self.smoke_grenade_lifetime = get_difficulty_specific_value({
 		9,
@@ -3721,7 +3721,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
-	
+
 	-- Control
 	if short_ponr_heists[level_id] then
 		self.ponr.assault.delay = { 10, 10, 10 }
@@ -3736,7 +3736,7 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 		{ 6, 6, 6 },
 		{ 6, 6, 6 },
 	})
-	
+
 	-- Recon
 	self.ponr.recon.force = empty_tbl -- no recon after ponr ran out
 
