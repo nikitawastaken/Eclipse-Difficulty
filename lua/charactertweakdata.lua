@@ -1112,30 +1112,11 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.fbi_office_mex.melee_weapon = "taser"
 	table.insert(self._enemy_list, "fbi_office_mex")
 
-	self.gangster.speech_prefix_p1 = "lt"
-	self.gangster.speech_prefix_p2 = nil
-	self.gangster.speech_prefix_count = 2
-
-	self.triad.speech_prefix_p1 = "lt"
-	self.triad.speech_prefix_p2 = nil
-	self.triad.speech_prefix_count = 2
 	self.triad.chatter = self.presets.enemy_chatter.gangster
 
-	self.mobster.speech_prefix_p1 = "rt"
-	self.mobster.speech_prefix_p2 = nil
-	self.mobster.speech_prefix_count = 2
 	self.mobster.chatter = self.presets.enemy_chatter.gangster
 	self.mobster.calls_in = true
 
-	self.cobra = deep_clone(self.gangster)
-	self.cobra.tags = is_undercover and { "law" } or { "gangster" }
-	self.cobra.speech_prefix_p1 = is_undercover and "l5n" or "ict"
-	self.cobra.speech_prefix_count = not is_undercover and 2 or nil
-	table.insert(self._enemy_list, "cobra")
-
-	self.biker.speech_prefix_p1 = "bik"
-	self.biker.speech_prefix_p2 = nil
-	self.biker.speech_prefix_count = 2
 	self.biker.melee_weapon = "knife_1"
 	self.biker.chatter = self.presets.enemy_chatter.gangster
 
@@ -1144,19 +1125,10 @@ Hooks:PostHook(CharacterTweakData, "init", "eclipse_init", function(self, tweak_
 	self.biker_escape.chatter = self.presets.enemy_chatter.gangster
 
 	self.bolivian.chatter = self.presets.enemy_chatter.gangster
-	self.bolivian.speech_prefix_p1 = "lt"
-	self.bolivian.speech_prefix_p2 = nil
-	self.bolivian.speech_prefix_count = 2
 
 	self.bolivian_indoors.chatter = self.presets.enemy_chatter.gangster
-	self.bolivian_indoors.speech_prefix_p1 = is_mountain_master and "rt" or "lt"
-	self.bolivian_indoors.speech_prefix_p2 = nil
-	self.bolivian_indoors.speech_prefix_count = 2
 
 	self.bolivian_indoors_mex.chatter = self.presets.enemy_chatter.gangster
-	self.bolivian_indoors_mex.speech_prefix_p1 = "lt"
-	self.bolivian_indoors_mex.speech_prefix_p2 = nil
-	self.bolivian_indoors_mex.speech_prefix_count = 2
 
 	self.swat.HEALTH_INIT = 8
 	self.swat.headshot_dmg_mul = 2.5 -- 32 head health
