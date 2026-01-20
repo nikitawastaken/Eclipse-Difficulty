@@ -253,7 +253,7 @@ local prefix_lookup_for_humans = {
 		func = function(self, nr_variations)
 			local level_id = Eclipse.utils.level_id()
 			if level_id == "man" then
-				return "l5n"
+				return "l5n_"
 			else
 				return "ict" .. nr_variations .. "_"
 			end
