@@ -256,6 +256,7 @@ local prefix_lookup_for_humans = {
             return "l5n"
          else
 			return "ict" .. nr_variations .. "_"
+         end
 		end,
 		"units/payday2/characters/ene_gang_black_1/ene_gang_black_1",
 		"units/payday2/characters/ene_gang_black_2/ene_gang_black_2",
