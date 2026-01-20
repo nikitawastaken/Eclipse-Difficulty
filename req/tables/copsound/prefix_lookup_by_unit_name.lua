@@ -240,7 +240,7 @@ local prefix_lookup_for_humans = {
 		"units/pd2_dlc_mad/characters/ene_rus_shield_sr2_city/ene_rus_shield_sr2_city",
 		"units/pd2_dlc_mad/characters/ene_rus_sniper/ene_rus_sniper",
 	},
-    biker_gangsters_list = {
+	biker_gangsters_list = {
 		func = function(self, nr_variations)
 			return "bik" .. nr_variations .. "_"
 		end,
@@ -249,68 +249,68 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_biker_3/ene_biker_3",
 		"units/payday2/characters/ene_biker_4/ene_biker_4",
 	},
-    cobra_gangsters_list = {
+	cobra_gangsters_list = {
 		func = function(self, nr_variations)
-        local level_id = Eclipse.utils.level_id()
-            if level_id == "man" then
-            return "l5n"
-         else
-			return "ict" .. nr_variations .. "_"
-         end
+			local level_id = Eclipse.utils.level_id()
+			if level_id == "man" then
+				return "l5n"
+			else
+				return "ict" .. nr_variations .. "_"
+			end
 		end,
 		"units/payday2/characters/ene_gang_black_1/ene_gang_black_1",
 		"units/payday2/characters/ene_gang_black_2/ene_gang_black_2",
 		"units/payday2/characters/ene_gang_black_3/ene_gang_black_3",
 		"units/payday2/characters/ene_gang_black_4/ene_gang_black_4",
 	},
-    latin_gangsters_list = {
+	latin_gangsters_list = {
 		func = function(self, nr_variations)
 			return "lt" .. nr_variations .. "_"
 		end,
-        -- Regular/Mendoza gangsters
+		-- Regular/Mendoza gangsters
 		"units/payday2/characters/ene_gang_mexican_1/ene_gang_mexican_1",
 		"units/payday2/characters/ene_gang_mexican_2/ene_gang_mexican_2",
 		"units/payday2/characters/ene_gang_mexican_3/ene_gang_mexican_3",
 		"units/payday2/characters/ene_gang_mexican_4/ene_gang_mexican_4",
-        -- Ernesto Sosa's gangsters
-        "units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_01/ene_bolivian_thug_outdoor_01",
+		-- Ernesto Sosa's gangsters
+		"units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_01/ene_bolivian_thug_outdoor_01",
 		"units/pd2_dlc_friend/characters/ene_bolivian_thug_outdoor_02/ene_bolivian_thug_outdoor_02",
 		"units/pd2_dlc_friend/characters/ene_thug_indoor_01/ene_thug_indoor_01",
 		"units/pd2_dlc_friend/characters/ene_thug_indoor_02/ene_thug_indoor_02",
-        "units/pd2_dlc_friend/characters/ene_thug_indoor_03/ene_thug_indoor_03",
+		"units/pd2_dlc_friend/characters/ene_thug_indoor_03/ene_thug_indoor_03",
 		"units/pd2_dlc_friend/characters/ene_thug_indoor_04/ene_thug_indoor_04",
-        "units/pd2_dlc_friend/characters/ene_security_manager/ene_security_manager",
-        -- Border Crossing's gangsters
-        "units/pd2_dlc_mex/characters/ene_mex_thug_outdoor_01/ene_mex_thug_outdoor_01",
+		"units/pd2_dlc_friend/characters/ene_security_manager/ene_security_manager",
+		-- Border Crossing's gangsters
+		"units/pd2_dlc_mex/characters/ene_mex_thug_outdoor_01/ene_mex_thug_outdoor_01",
 		"units/pd2_dlc_mex/characters/ene_mex_thug_outdoor_02/ene_mex_thug_outdoor_02",
 		"units/pd2_dlc_mex/characters/ene_mex_thug_outdoor_03/ene_mex_thug_outdoor_03",
 		"units/pd2_dlc_mex/characters/ene_mex_security_guard/ene_mex_security_guard",
-        "units/pd2_dlc_mex/characters/ene_mex_security_guard_2/ene_mex_security_guard_2",
+		"units/pd2_dlc_mex/characters/ene_mex_security_guard_2/ene_mex_security_guard_2",
 		"units/pd2_dlc_mex/characters/ene_mex_security_guard_3/ene_mex_security_guard_3",
-        -- Buluc's men
-        "units/pd2_dlc_fex/characters/ene_guard_dog_mask/ene_guard_dog_mask",
+		-- Buluc's men
+		"units/pd2_dlc_fex/characters/ene_guard_dog_mask/ene_guard_dog_mask",
 		"units/pd2_dlc_fex/characters/ene_guard_dog_mask_no_pager/ene_guard_dog_mask_no_pager",
 		"units/pd2_dlc_fex/characters/ene_guard_jaguar_mask/ene_guard_jaguar_mask",
 		"units/pd2_dlc_fex/characters/ene_guard_jaguar_mask_no_pager/ene_guard_jaguar_mask_no_pager",
-        "units/pd2_dlc_fex/characters/ene_guard_owl_mask/ene_guard_owl_mask",
+		"units/pd2_dlc_fex/characters/ene_guard_owl_mask/ene_guard_owl_mask",
 		"units/pd2_dlc_fex/characters/ene_guard_owl_mask_no_pager/ene_guard_owl_mask_no_pager",
-        "units/pd2_dlc_fex/characters/ene_guard_serpent_mask/ene_guard_serpent_mask",
+		"units/pd2_dlc_fex/characters/ene_guard_serpent_mask/ene_guard_serpent_mask",
 		"units/pd2_dlc_fex/characters/ene_guard_serpent_mask_no_pager/ene_guard_serpent_mask_no_pager",
-        "units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex",
-        -- Yufu Wang's men
-        -- there is no chinese gangster vo so they use latin vo instead
-        "units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1",
+		"units/pd2_dlc_fex/characters/ene_thug_outdoor_fex/ene_thug_outdoor_fex",
+		-- Yufu Wang's men
+		-- there is no chinese gangster vo so they use latin vo instead
+		"units/pd2_dlc_chas/characters/ene_male_triad_gang_1/ene_male_triad_gang_1",
 		"units/pd2_dlc_chas/characters/ene_male_triad_gang_2/ene_male_triad_gang_2",
 		"units/pd2_dlc_chas/characters/ene_male_triad_gang_3/ene_male_triad_gang_3",
 		"units/pd2_dlc_chas/characters/ene_male_triad_gang_4/ene_male_triad_gang_4",
-        "units/pd2_dlc_chas/characters/ene_male_triad_gang_5/ene_male_triad_gang_5",
+		"units/pd2_dlc_chas/characters/ene_male_triad_gang_5/ene_male_triad_gang_5",
 		"units/pd2_dlc_chca/characters/ene_triad_cruise_1/ene_triad_cruise_1",
-        "units/pd2_dlc_chca/characters/ene_triad_cruise_2/ene_triad_cruise_2",
+		"units/pd2_dlc_chca/characters/ene_triad_cruise_2/ene_triad_cruise_2",
 		"units/pd2_dlc_chca/characters/ene_triad_cruise_3/ene_triad_cruise_3",
-        "units/pd2_dlc_pent/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1",
-        "units/pd2_dlc_pent/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2",
-        "units/pd2_dlc_pent/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3",
-        "units/pd2_dlc_pent/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4",
+		"units/pd2_dlc_pent/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1",
+		"units/pd2_dlc_pent/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2",
+		"units/pd2_dlc_pent/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3",
+		"units/pd2_dlc_pent/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4",
 	},
 	russian_mobster_list = {
 		func = function(self, nr_variations)
