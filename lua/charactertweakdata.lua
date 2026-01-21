@@ -2051,6 +2051,7 @@ function CharacterTweakData:_set_presets()
 		local is_boss = name:match("_boss$") and not not_bosses[name]
 		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
 		local is_shadow_spooc = name == "shadow_spooc"
+		local is_city_shield = name == "city_shield"
 		local is_city_tank = name == "city_tank"
 
 		-- Set health and HS mul based on access
@@ -2119,6 +2120,8 @@ function CharacterTweakData:_set_presets()
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
+			char_preset.damage.explosion_damage_mul = is_city_shield and 0.5 or 1
+			char_preset.shield_explosion_dmg_mul = char_preset.wall_fwd_offset and (is_city_shield and 0.25 or 0.5) or nil
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
