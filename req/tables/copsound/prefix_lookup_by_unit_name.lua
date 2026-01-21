@@ -321,7 +321,7 @@ local prefix_lookup_for_humans = {
 		"units/payday2/characters/ene_gang_russian_3/ene_gang_russian_3",
 		"units/payday2/characters/ene_gang_russian_4/ene_gang_russian_4",
 		"units/payday2/characters/ene_gang_russian_5/ene_gang_russian_5",
-        "units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1",
+		"units/payday2/characters/ene_gang_mobster_1/ene_gang_mobster_1",
 		"units/payday2/characters/ene_gang_mobster_2/ene_gang_mobster_2",
 		"units/payday2/characters/ene_gang_mobster_3/ene_gang_mobster_3",
 		"units/payday2/characters/ene_gang_mobster_4/ene_gang_mobster_4",
