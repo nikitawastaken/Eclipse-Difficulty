@@ -3251,6 +3251,7 @@ end
 
 Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", function(self, difficulty_index)
 	local below_overkill = difficulty_index < 5
+	local empty_tbl = { 0, 0, 0 }
 
 	-- Assault Data
 	--In-heist difficulty scaling
@@ -3403,22 +3404,40 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- GRENADES --
 	self.min_grenade_timeout = { 20, 15, 10 }
 
+	self.flash_grenade_timeout = { 15, 20 }
 	self.flash_grenade.light_color = Vector3(255, 255, 255)
 	self.flash_grenade.light_range = is_eclipse and 0 or 500
-	self.flash_grenade.timer = below_overkill and 2.5 or 1.5
-	self.flash_grenade_timeout = { 15, 20 }
+	self.flash_grenade.timer = get_difficulty_specific_value({
+		2,
+		2,
+		1.75,
+		1.5,
+		1.5,
+	})
 
 	self.smoke_grenade_timeout = { 25, 35 }
-	self.smoke_grenade_lifetime = below_overkill and 10 or 15
+	self.smoke_grenade_lifetime = get_difficulty_specific_value({
+		9,
+		9,
+		12,
+		15,
+		15,
+	})
 
 	self.cs_grenade_timeout = { 60, 90 }
-	self.cs_grenade_lifetime = self.smoke_grenade_lifetime * 2
+	self.cs_grenade_lifetime = get_difficulty_specific_value({
+		15,
+		15,
+		20,
+		30,
+		30,
+	})
 	self.cs_grenade_min_chance = get_difficulty_specific_value({
 		0,
-		0.05,
+		0,
 		0.1,
-		0.2,
-		0.3,
+		0.25,
+		0.45,
 	})
 	self.cs_grenade_chance_times = get_difficulty_specific_value({
 		{ 60, 180 },
@@ -3657,39 +3676,37 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	})
 	self.besiege.recurring_group_SO.recurring_cloaker_spawn.interval = clone(self.besiege.cloaker.interval)
 
-	local no_spawn_wgt_tbl = { 0, 0, 0 }
-
-	self.besiege.assault.groups.single_spooc = no_spawn_wgt_tbl
-	self.besiege.assault.groups.Phalanx = no_spawn_wgt_tbl
-	self.besiege.assault.groups.marshal_squad = no_spawn_wgt_tbl
-	self.besiege.assault.groups.custom = no_spawn_wgt_tbl
-	self.besiege.assault.groups.custom_assault = no_spawn_wgt_tbl
-	self.besiege.assault.groups.snowman_boss = no_spawn_wgt_tbl
-	self.besiege.assault.groups.piggydozer = no_spawn_wgt_tbl
+	self.besiege.assault.groups.single_spooc = empty_tbl
+	self.besiege.assault.groups.Phalanx = empty_tbl
+	self.besiege.assault.groups.marshal_squad = empty_tbl
+	self.besiege.assault.groups.custom = empty_tbl
+	self.besiege.assault.groups.custom_assault = empty_tbl
+	self.besiege.assault.groups.snowman_boss = empty_tbl
+	self.besiege.assault.groups.piggydozer = empty_tbl
 	-- timed groups
-	self.besiege.assault.groups.bellmead_group1 = no_spawn_wgt_tbl
-	self.besiege.assault.groups.fbi_group1 = no_spawn_wgt_tbl
-	self.besiege.assault.groups.gensec_group1 = no_spawn_wgt_tbl
-	self.besiege.assault.groups.murky_group1 = no_spawn_wgt_tbl
-	self.besiege.assault.groups.murky_scripted_group1 = no_spawn_wgt_tbl
-	self.besiege.assault.groups.us_group1 = no_spawn_wgt_tbl
-	self.besiege.assault.groups.us_scripted_group1 = no_spawn_wgt_tbl
+	self.besiege.assault.groups.bellmead_group1 = empty_tbl
+	self.besiege.assault.groups.fbi_group1 = empty_tbl
+	self.besiege.assault.groups.gensec_group1 = empty_tbl
+	self.besiege.assault.groups.murky_group1 = empty_tbl
+	self.besiege.assault.groups.murky_scripted_group1 = empty_tbl
+	self.besiege.assault.groups.us_group1 = empty_tbl
+	self.besiege.assault.groups.us_scripted_group1 = empty_tbl
 
-	self.besiege.recon.groups.single_spooc = no_spawn_wgt_tbl
-	self.besiege.recon.groups.Phalanx = no_spawn_wgt_tbl
-	self.besiege.recon.groups.marshal_squad = no_spawn_wgt_tbl
-	self.besiege.recon.groups.custom = no_spawn_wgt_tbl
-	self.besiege.recon.groups.custom_recon = no_spawn_wgt_tbl
-	self.besiege.recon.groups.snowman_boss = no_spawn_wgt_tbl
-	self.besiege.recon.groups.piggydozer = no_spawn_wgt_tbl
+	self.besiege.recon.groups.single_spooc = empty_tbl
+	self.besiege.recon.groups.Phalanx = empty_tbl
+	self.besiege.recon.groups.marshal_squad = empty_tbl
+	self.besiege.recon.groups.custom = empty_tbl
+	self.besiege.recon.groups.custom_recon = empty_tbl
+	self.besiege.recon.groups.snowman_boss = empty_tbl
+	self.besiege.recon.groups.piggydozer = empty_tbl
 	-- timed groups
-	self.besiege.recon.groups.bellmead_group1 = no_spawn_wgt_tbl
-	self.besiege.recon.groups.fbi_group1 = no_spawn_wgt_tbl
-	self.besiege.recon.groups.gensec_group1 = no_spawn_wgt_tbl
-	self.besiege.recon.groups.murky_group1 = no_spawn_wgt_tbl
-	self.besiege.recon.groups.murky_scripted_group1 = no_spawn_wgt_tbl
-	self.besiege.recon.groups.us_group1 = no_spawn_wgt_tbl
-	self.besiege.recon.groups.us_scripted_group1 = no_spawn_wgt_tbl
+	self.besiege.recon.groups.bellmead_group1 = empty_tbl
+	self.besiege.recon.groups.fbi_group1 = empty_tbl
+	self.besiege.recon.groups.gensec_group1 = empty_tbl
+	self.besiege.recon.groups.murky_group1 = empty_tbl
+	self.besiege.recon.groups.murky_scripted_group1 = empty_tbl
+	self.besiege.recon.groups.us_group1 = empty_tbl
+	self.besiege.recon.groups.us_scripted_group1 = empty_tbl
 
 	-- PONR --
 	self.ponr = deep_clone(self.besiege)
@@ -3697,11 +3714,20 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	-- Control
 	if short_ponr_heists[level_id] then
 		self.ponr.assault.delay = { 10, 10, 10 }
-		self.ponr.assault.hostage_hesitation_delay = { 0, 0, 0 }
+		self.ponr.assault.hostage_hesitation_delay = empty_tbl
 	end
 
+	-- Push delay
+	self.ponr.assault.push_delay = get_difficulty_specific_value({
+		{ 10, 10, 10 },
+		{ 8, 8, 8 },
+		{ 8, 8, 8 },
+		{ 6, 6, 6 },
+		{ 6, 6, 6 },
+	})
+
 	-- Recon
-	self.ponr.recon.force = no_spawn_wgt_tbl -- no recon after ponr ran out
+	self.ponr.recon.force = empty_tbl -- no recon after ponr ran out
 
 	if difficulty_index < 4 then
 		self.ponr.scripted_tiers = {
@@ -3782,36 +3808,35 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.ponr.cloaker.groups = {
 		single_spooc = { 1, 1, 1 },
 	}
-
-	self.ponr.assault.groups.single_spooc = no_spawn_wgt_tbl
-	self.ponr.assault.groups.Phalanx = no_spawn_wgt_tbl
-	self.ponr.assault.groups.marshal_squad = no_spawn_wgt_tbl
-	self.ponr.assault.groups.custom = no_spawn_wgt_tbl
-	self.ponr.assault.groups.custom_assault = no_spawn_wgt_tbl
-	self.ponr.assault.groups.snowman_boss = no_spawn_wgt_tbl
-	self.ponr.assault.groups.piggydozer = no_spawn_wgt_tbl
+	self.ponr.assault.groups.single_spooc = empty_tbl
+	self.ponr.assault.groups.Phalanx = empty_tbl
+	self.ponr.assault.groups.marshal_squad = empty_tbl
+	self.ponr.assault.groups.custom = empty_tbl
+	self.ponr.assault.groups.custom_assault = empty_tbl
+	self.ponr.assault.groups.snowman_boss = empty_tbl
+	self.ponr.assault.groups.piggydozer = empty_tbl
 	-- timed groups
-	self.ponr.assault.groups.fbi_group1 = no_spawn_wgt_tbl
-	self.ponr.assault.groups.murky_group1 = no_spawn_wgt_tbl
-	self.ponr.assault.groups.murky_scripted_group1 = no_spawn_wgt_tbl
-	self.ponr.assault.groups.us_group1 = no_spawn_wgt_tbl
-	self.ponr.assault.groups.us_scripted_group1 = no_spawn_wgt_tbl
-	self.ponr.assault.groups.bellmead_group1 = no_spawn_wgt_tbl
+	self.ponr.assault.groups.fbi_group1 = empty_tbl
+	self.ponr.assault.groups.murky_group1 = empty_tbl
+	self.ponr.assault.groups.murky_scripted_group1 = empty_tbl
+	self.ponr.assault.groups.us_group1 = empty_tbl
+	self.ponr.assault.groups.us_scripted_group1 = empty_tbl
+	self.ponr.assault.groups.bellmead_group1 = empty_tbl
 
-	self.ponr.recon.groups.single_spooc = no_spawn_wgt_tbl
-	self.ponr.recon.groups.Phalanx = no_spawn_wgt_tbl
-	self.ponr.recon.groups.marshal_squad = no_spawn_wgt_tbl
-	self.ponr.recon.groups.custom = no_spawn_wgt_tbl
-	self.ponr.recon.groups.custom_recon = no_spawn_wgt_tbl
-	self.ponr.recon.groups.snowman_boss = no_spawn_wgt_tbl
-	self.ponr.recon.groups.piggydozer = no_spawn_wgt_tbl
+	self.ponr.recon.groups.single_spooc = empty_tbl
+	self.ponr.recon.groups.Phalanx = empty_tbl
+	self.ponr.recon.groups.marshal_squad = empty_tbl
+	self.ponr.recon.groups.custom = empty_tbl
+	self.ponr.recon.groups.custom_recon = empty_tbl
+	self.ponr.recon.groups.snowman_boss = empty_tbl
+	self.ponr.recon.groups.piggydozer = empty_tbl
 	-- timed groups
-	self.ponr.recon.groups.fbi_group1 = no_spawn_wgt_tbl
-	self.ponr.recon.groups.murky_group1 = no_spawn_wgt_tbl
-	self.ponr.recon.groups.murky_scripted_group1 = no_spawn_wgt_tbl
-	self.ponr.recon.groups.us_group1 = no_spawn_wgt_tbl
-	self.ponr.recon.groups.us_scripted_group1 = no_spawn_wgt_tbl
-	self.ponr.recon.groups.bellmead_group1 = no_spawn_wgt_tbl
+	self.ponr.recon.groups.fbi_group1 = empty_tbl
+	self.ponr.recon.groups.murky_group1 = empty_tbl
+	self.ponr.recon.groups.murky_scripted_group1 = empty_tbl
+	self.ponr.recon.groups.us_group1 = empty_tbl
+	self.ponr.recon.groups.us_scripted_group1 = empty_tbl
+	self.ponr.recon.groups.bellmead_group1 = empty_tbl
 
 	-- nuke captain
 	self.phalanx.spawn_chance = {
