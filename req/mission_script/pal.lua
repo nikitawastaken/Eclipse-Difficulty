@@ -84,7 +84,7 @@ return {
 			{ 270, 297 },
 			{ 330, 358, 368 },
 		},
-        on_executed = {
+		on_executed = {
 			{ id = 400044, delay = 3 },
 		},
 	},
