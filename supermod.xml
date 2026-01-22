@@ -23,6 +23,7 @@
 			<group :hook_id="states/">
 				<post :hook_id="missionendstate"/>
 				<post :hook_id="ingameplayerbase"/>
+				<post :hook_id="menumainstate"/>
 			</group>
 
 			<group :hook_id="managers/">
@@ -296,6 +297,9 @@
 	</hooks>
 
 	<assets base_path="assets/">
+		<!-- Mod logo for welcome message -->
+		<file name="guis/textures/mod_logo.texture"/>
+		
 		<!-- perk decks and skill trees icons -->
 		<file name="guis/textures/pd2/skilltree_2/icons_atlas_2.texture"/>
 		<file name="guis/dlcs/max/textures/pd2/specialization/icons_atlas.texture"/>
