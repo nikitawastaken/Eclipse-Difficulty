@@ -224,7 +224,7 @@ end
 function MissionManager.mission_script_patch_funcs.loot_drop(self, element, data)
 	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_loot_drop_" .. element:id(), function()
 		Eclipse:log_console("%s executed, toggled %u loot drop point(s)", element:editor_name(), #data)
-		for _, v in pairs(data) do	
+		for _, v in pairs(data) do
 			if not v.position then
 				managers.groupai:state():remove_enemy_loot_drop_point(v.name)
 			else

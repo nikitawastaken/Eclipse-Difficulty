@@ -68,30 +68,30 @@ return {
 	-- Loud, slightly delay police response
 	[100109] = {
 		values = {
-			base_delay = 30
-		}
+			base_delay = 30,
+		},
 	},
 	[100129] = { -- Preferred
-		reinforce = { 
+		reinforce = {
 			{
 				name = "auction_room",
 				force = 3,
-				position = Vector3(0, 2000, -100)
+				position = Vector3(0, 2000, -100),
 			},
 			{
 				name = "outside_left",
 				force = 2,
-				position = Vector3(-1600, -1375, -50)
+				position = Vector3(-1600, -1375, -50),
 			},
 			{
 				name = "outside_middle",
 				force = 3,
-				position = Vector3(0, -2500, -50)
+				position = Vector3(0, -2500, -50),
 			},
 			{
 				name = "outside_right",
 				force = 2,
-				position = Vector3(1575, -1350, -50)
+				position = Vector3(1575, -1350, -50),
 			},
 		},
 		on_executed = {
@@ -99,8 +99,8 @@ return {
 			{ id = 103905, delay = 0 },
 			{ id = 103910, delay = 0 },
 			{ id = 103912, delay = 0 },
-			{ id = 103913, delay = 0 }
-		}
+			{ id = 103913, delay = 0 },
+		},
 	},
 	-- Disable area report triggers
 	[100140] = disabled,
