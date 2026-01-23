@@ -166,7 +166,7 @@ function WeaponTweakData:_init_weapons(overrides)
 					weap_data.fire_mode_multipliers = {
 						single = {
 							recoil = 1.2,
-							spread = 0.5,
+							spread = 0.6,
 						},
 						burst = {
 							recoil = 0.8,
@@ -286,7 +286,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.fire_mode_multipliers = {
 					single = {
 						recoil = 1.2,
-						spread = 0.7,
+						spread = 0.8,
 					},
 					burst = {
 						recoil = 0.8,
@@ -296,13 +296,13 @@ function WeaponTweakData:_init_weapons(overrides)
 			elseif cat_map.shotgun then
 				weap_data.stats.suppression = 5
 				weap_data.stats.alert_size = 6
-				weap_data.damage_near = is_doublebarrel and 2000 or 1500
-				weap_data.damage_far = 2000
+				weap_data.damage_near = 2000
+				weap_data.damage_far = 3000
 				weap_data.shake.fire_multiplier = is_doublebarrel and 2 or 1.5
 				weap_data.muzzleflash = weap_data.rays and "effects/particles/weapons/sho_default" or weap_data.muzzleflash
 				weap_data.rays = weap_data.rays and 8 or nil
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / weap_data.rays) * (5 / 4)
-				weap_data.pickup_mul = weap_data.pickup_mul or (1 / weap_data.rays) * (5 / 4)
+				weap_data.pickup_mul = weap_data.pickup_mul or (1 / weap_data.rays) * (4 / 3)
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
@@ -503,8 +503,8 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.stats.alert_size = 6
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or 2 / 3
 				weap_data.pickup_mul = weap_data.pickup_mul or is_primary and 1 / 2.5 or 1 / 5
-				weap_data.damage_near = 1000
-				weap_data.damage_far = 2000
+				weap_data.damage_near = 2000
+				weap_data.damage_far = 3000
 				weap_data.rays = weap_data.rays and 12 or nil
 				weap_data.shake.fire_multiplier = 0.5
 				weap_data.stance_multipliers = {
@@ -754,7 +754,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread.bipod = 69 -- Make sure bipod spread is defined
 
 				for i, v in pairs(weap_data.spread) do
-					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3.5 or 2.5
+					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3 or 2
 				end
 			end
 			
@@ -2560,6 +2560,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 		self.judge.steelsight_time = steelsight_times.pistol_heavy
 		self.judge.steelsight_move_speed_multiplier = 0.6 
 		self.judge.damage_near = 1000
+		self.judge.damage_far = 2000
 		self.judge.shake.fire_multiplier = 2
 		self.judge.swap_speed_multiplier = 1.5
 		self.judge.kick.standing = { 2.9, 3, -0.5, 0.5 }

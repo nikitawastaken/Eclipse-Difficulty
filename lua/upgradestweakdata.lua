@@ -469,9 +469,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.steelsight_accuracy_inc[1] = 0.5
+	self.values.shotgun.steelsight_accuracy_inc[1] = 0.65
 	self.skill_descs.close_by.multibasic = "25%"
-	self.skill_descs.close_by.multipro = "50%"
+	self.skill_descs.close_by.multipro = "35%"
 
 	-- OVERKILL
 	self.definitions.cooldown_shotgun_panic_on_kill = {
