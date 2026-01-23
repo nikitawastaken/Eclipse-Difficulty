@@ -46,6 +46,11 @@ local overpass_spawn = {
 	},
 	groups = preferred.no_cops_agents_shields_bulldozers,
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
 local bags_required = {
 	values = {
 		amount = normal and 3 or hard and 5 or 7,
@@ -58,22 +63,22 @@ return {
 			{
 				name = "north",
 				force = 3,
-				position = Vector3(-5000, 550, 300),
+				position = Vector3(-5025, 550, 300),
 			},
 			{
 				name = "west",
-				force = 3,
-				position = Vector3(1100, 2100, 300),
+				force = 2,
+				position = Vector3(-875, -1245, 305),
 			},
 			{
 				name = "east",
-				force = 3,
-				position = Vector3(-800, -1300, 300),
+				force = 2,
+				position = Vector3(1125, 2125, 305),
 			},
 			{
 				name = "south",
 				force = 3,
-				position = Vector3(6000, 550, 300),
+				position = Vector3(6000, 545, 300),
 			},
 		},
 	},
@@ -136,4 +141,6 @@ return {
 	[100131] = standard_spawn,
 	[100132] = overpass_spawn,
 	[100133] = overpass_spawn,
+	[103252] = cloaker_spawn,
+	[103255] = cloaker_spawn,
 }

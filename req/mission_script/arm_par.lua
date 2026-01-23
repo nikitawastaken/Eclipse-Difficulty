@@ -40,34 +40,51 @@ local standard_spawn = {
 		interval = 15,
 	},
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
 local bags_required = {
 	values = {
 		amount = normal and 3 or hard and 5 or 7,
 	},
 }
 return {
+	-- Combine some navigation areas
+	[100017] = {
+		ai_area = {
+			{ 20, 19 },
+			{ 55, 11 },
+			{ 54, 10 },
+			{ 26, 27, 56 },
+			{ 59, 60, 25 },
+			{ 24, 58 },
+			{ 24, 58 },
+		},
+	},
 	-- New reinforce
 	[100109] = {
 		reinforce = {
 			{
 				name = "north",
-				force = 3,
-				position = Vector3(0, -3000, -200),
+				force = 2,
+				position = Vector3(0, -3750, 0),
 			},
 			{
 				name = "south",
-				force = 3,
-				position = Vector3(1250, 2500, -200),
+				force = 2,
+				position = Vector3(0, 3400, 0),
 			},
 			{
 				name = "west",
-				force = 3,
-				position = Vector3(2750, -150, -200),
+				force = 2,
+				position = Vector3(3750, -1250, -195),
 			},
 			{
 				name = "east",
-				force = 3,
-				position = Vector3(4500, -150, -150),
+				force = 2,
+				position = Vector3(-4800, -200, -175),
 			},
 		},
 	},
@@ -125,4 +142,8 @@ return {
 	[101048] = standard_spawn,
 	[101202] = standard_spawn,
 	[101159] = standard_spawn,
+	[102398] = cloaker_spawn,
+	[102399] = cloaker_spawn,
+	[102400] = cloaker_spawn,
+	[102401] = cloaker_spawn,
 }

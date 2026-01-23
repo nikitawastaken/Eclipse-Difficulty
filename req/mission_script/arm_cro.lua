@@ -1,3 +1,4 @@
+local preferred = Eclipse.preferred
 local disabled = {
 	values = {
 		enabled = false,
@@ -36,8 +37,14 @@ local dozer_van_chance = {
 }
 local standard_spawn = {
 	values = {
-		interval = 20,
+		interval = 25,
 	},
+}
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+	groups = preferred.only_cloakers_single,
 }
 local bags_required = {
 	values = {
@@ -45,35 +52,38 @@ local bags_required = {
 	},
 }
 return {
-	-- New reinforce
-	[100129] = {
+	-- Delay police response and add new reinforce
+	[100109] = {
+		on_executed = {
+			{ id = 100129, delay = 30 },
+		},
 		reinforce = {
 			{
 				name = "north",
-				force = 3,
-				position = Vector3(0, -3200, 0),
+				force = 2,
+				position = Vector3(0, -3200, -20),
 			},
 			{
 				name = "west",
-				force = 3,
-				position = Vector3(3200, 0, 0),
+				force = 2,
+				position = Vector3(3200, 0, -20),
 			},
 			{
 				name = "east",
-				force = 3,
-				position = Vector3(-3200, 0, 0),
+				force = 2,
+				position = Vector3(-3200, 0, -20),
 			},
 			{
 				name = "south",
-				force = 3,
-				position = Vector3(0, 3200, 0),
+				force = 2,
+				position = Vector3(0, 3200, -20),
 			},
 		},
 	},
-	-- Vanilla delay is 30s
-	[100109] = {
+	-- Add actual cloaker hide groups
+	[102206] = {
 		on_executed = {
-			{ id = 100129, delay = 45 },
+			{ id = 400010, delay = 0 },
 		},
 	},
 	-- tweak the amount of required bags
@@ -138,4 +148,8 @@ return {
 	[101844] = standard_spawn,
 	[101845] = standard_spawn,
 	[101846] = standard_spawn,
+	[400005] = cloaker_spawn,
+	[400006] = cloaker_spawn,
+	[400007] = cloaker_spawn,
+	[400008] = cloaker_spawn,
 }

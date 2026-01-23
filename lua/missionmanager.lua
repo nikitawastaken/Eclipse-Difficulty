@@ -42,6 +42,7 @@ function MissionManager.mission_script_patch_funcs.on_executed(self, element, da
 			elseif val then
 				val.delay = v.delay or 0
 				val.delay_rand = v.delay_rand or 0
+				val.alternative = v.alternative or nil
 				Eclipse:log_console("Modified element %s in on_executed of %s", new_element:editor_name(), element:editor_name())
 			else
 				table.insert(element._values.on_executed, v)
@@ -218,6 +219,20 @@ function MissionManager.mission_script_patch_funcs.spawn(self, element, data)
 		end
 	end)
 	Eclipse:log("%s hooked as unit spawn trigger", element:editor_name())
+end
+
+function MissionManager.mission_script_patch_funcs.loot_drop(self, element, data)
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_loot_drop_" .. element:id(), function()
+		Eclipse:log_console("%s executed, toggled %u loot drop point(s)", element:editor_name(), #data)
+		for _, v in pairs(data) do	
+			if not v.position then
+				managers.groupai:state():remove_enemy_loot_drop_point(v.name)
+			else
+				managers.groupai:state():add_enemy_loot_drop_point(v.name, v.position)
+			end
+		end
+	end)
+	Eclipse:log_console("%s hooked as loot drop trigger for %u area(s)", element:editor_name(), #data)
 end
 
 -- TODO: integrate into values patch like modern ASS

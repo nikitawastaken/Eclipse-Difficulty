@@ -24,7 +24,7 @@ local enabled = {
 }
 local filter_easy_above_warehouse_1 = {
 	values = {
-		enabled = math.random() <= 0.5 * (is_pro_job and 1.25 or 0),
+		enabled = math.random() <= 0.5,
 		difficulty_normal = true,
 		difficulty_hard = true,
 		difficulty_overkill = true,
@@ -33,7 +33,7 @@ local filter_easy_above_warehouse_1 = {
 }
 local filter_easy_above_warehouse_2 = {
 	values = {
-		enabled = math.random() <= 0.25 * (is_pro_job and 1.25 or 0),
+		enabled = math.random() <= 0.3,
 		difficulty_normal = true,
 		difficulty_hard = true,
 		difficulty_overkill = true,
@@ -294,6 +294,16 @@ return {
 	[104028] = disabled,
 	[102117] = disabled,
 	[102369] = disabled,
+	-- Add a new loot drop point
+	[100415] = disabled,
+	[102864] = {
+		loot_drop = {
+			{
+				name = "loot_drop",
+				position = Vector3(-2100, 4750, 0),
+			},
+		},
+	},
 	-- helicopter spawns
 	[100443] = {
 		on_executed = {
@@ -316,8 +326,14 @@ return {
 	},
 	[100446] = heli_enemy1,
 	[100447] = heli_enemy2,
-	-- closed gate chance
+	-- Closed gate chance
 	[101485] = {
+		values = {
+			chance = 25,
+		},
+	},
+	-- Closed fence chance
+	[101513] = {
 		values = {
 			chance = 25,
 		},
