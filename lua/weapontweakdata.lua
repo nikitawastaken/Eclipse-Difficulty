@@ -302,7 +302,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.muzzleflash = weap_data.rays and "effects/particles/weapons/sho_default" or weap_data.muzzleflash
 				weap_data.rays = weap_data.rays and 8 or nil
 				weap_data.total_ammo_mul = weap_data.total_ammo_mul or (1 / weap_data.rays) * (5 / 4)
-				weap_data.pickup_mul = weap_data.pickup_mul or (1 / weap_data.rays)
+				weap_data.pickup_mul = weap_data.pickup_mul or (1 / weap_data.rays) * (5 / 4)
 				weap_data.stance_multipliers = {
 					spread = {
 						standing = {
@@ -2650,7 +2650,7 @@ Hooks:PostHook(WeaponTweakData, "init", "eclipse_init", function(self, tweak_dat
 
 	self.init_stat_overrides.rpg7 = function(weap_data)
 		self.rpg7.pickup_mul = 0
-		self.rpg7.total_ammo_mul = 3
+		self.rpg7.total_ammo_mul = 5
 	end
 				
 	-- FOR CUSTOM WEAPON SUPPORT: Make sure to always run your function at the end of the hook to recalculate ammo values and apply overrides to specific weapons!
