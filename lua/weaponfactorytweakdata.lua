@@ -1099,7 +1099,7 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_saw_m_blade_sharp.stats.extra_ammo = -25
 	self.parts.wpn_fps_saw_m_blade_sharp.custom_stats = { ammo_max_mul = 2 / 3 }
 	self.parts.wpn_fps_saw_m_blade_sharp.no_magazine_balancing = true
-	
+
 	self.parts.wpn_fps_saw_body_silent.stats.suppression = 10
 	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -9
 
