@@ -85,7 +85,7 @@ function PlayerTweakData:_set_presets()
 			10,
 			10,
 			10,
-			10,
+			15,
 			15,
 		})
 		self.damage.DOWNED_TIME_MIN = get_difficulty_specific_value({

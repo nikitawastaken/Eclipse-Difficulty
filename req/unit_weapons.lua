@@ -182,10 +182,10 @@ local M = {
 	[("units/pd2_dlc_chca/characters/ene_triad_cruise_1/ene_triad_cruise_1"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/pd2_dlc_chca/characters/ene_triad_cruise_2/ene_triad_cruise_2"):key()] = { c45 = 3, raging_bull = 1 },
 	[("units/pd2_dlc_chca/characters/ene_triad_cruise_3/ene_triad_cruise_3"):key()] = { c45 = 3, raging_bull = 1 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
-	[("units/pd2_dlc_chas/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_1/ene_male_triad_penthouse_1"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_2/ene_male_triad_penthouse_2"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_3/ene_male_triad_penthouse_3"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
+	[("units/pd2_dlc_pent/characters/ene_male_triad_penthouse_4/ene_male_triad_penthouse_4"):key()] = { c45 = 3, mac11 = 3, r870 = 2, ak47 = 2 },
 	--The Army
 	[("units/pd2_dlc_army/characters/ene_soldier_1/ene_soldier_1"):key()] = { c45 = 3, mp5 = 1 },
 }

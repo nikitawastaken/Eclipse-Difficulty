@@ -1,4 +1,3 @@
-CopMovement._action_variants.cobra = CopMovement._action_variants.gangster
 CopMovement._action_variants.fbi_shield = CopMovement._action_variants.shield
 CopMovement._action_variants.city_tank = CopMovement._action_variants.tank
 CopMovement._action_variants.hrt = CopMovement._action_variants.swat

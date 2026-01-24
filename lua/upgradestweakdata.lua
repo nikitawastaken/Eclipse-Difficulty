@@ -469,9 +469,9 @@ function UpgradesTweakData:init(tweak_data)
 			category = "shotgun",
 		},
 	}
-	self.values.shotgun.steelsight_accuracy_inc[1] = 0.5
+	self.values.shotgun.steelsight_accuracy_inc[1] = 0.6
 	self.skill_descs.close_by.multibasic = "25%"
-	self.skill_descs.close_by.multipro = "50%"
+	self.skill_descs.close_by.multipro = "40%"
 
 	-- OVERKILL
 	self.definitions.cooldown_shotgun_panic_on_kill = {
@@ -976,23 +976,57 @@ function UpgradesTweakData:init(tweak_data)
 
 	-- Ghost --
 
-	-- Inner Pockets
-	self.values.player.melee_concealment_modifier[1] = 1
-	self.values.player.ballistic_vest_concealment[1] = 3
-	self.skill_descs.cleaner.multibasic2 = "1"
-	self.skill_descs.cleaner.multipro2 = "3"
+	-- Cat Burglar
+	self.values.player.less_noise_multiplier = { 0.5 }
+	self.definitions.player_less_noise_multiplier = {
+		name_id = "menu_player_less_noise_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "less_noise_multiplier",
+			category = "player",
+		},
+	}
+	self.values.player.fall_damage_multiplier_cat = { 0.5 }
+	self.definitions.player_fall_damage_multiplier_cat = {
+		name_id = "menu_player_fall_damage_multiplier_cat",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "fall_damage_multiplier_cat",
+			category = "player",
+		},
+	}
+	self.values.player.fall_damage_noise_multiplier = { 0.5 }
+	self.definitions.player_fall_damage_noise_multiplier = {
+		name_id = "menu_player_fall_damage_noise_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "fall_damage_noise_multiplier",
+			category = "player",
+		},
+	}
+	self.skill_descs.cleaner.multibasic = "50%"
+	self.skill_descs.cleaner.multipro = "50%"
+	self.skill_descs.cleaner.multipro2 = "50%"
 
-	-- Winstone Wolfe
+	-- Logistician
 	self.values.player.pick_lock_easy_speed_multiplier[1] = 0.5
-	self.skill_descs.second_chances.multibasic = "1"
-	self.skill_descs.second_chances.multibasic2 = "3"
+	self.skill_descs.second_chances.multibasic = "50%"
 	self.skill_descs.second_chances.multipro = "50%"
-	self.skill_descs.second_chances.multipro2 = "50%"
 
-	-- ECM Feedback
-	self.ecm_feedback_retrigger_interval = 120
-	self.skill_descs.ecm_booster.multibasic = "25m"
-	self.skill_descs.ecm_booster.multipro = "2"
+	-- Kleptomaniac
+	self.values.player.extra_mission_pickups_multiplier = { 2 }
+	self.definitions.player_extra_mission_pickups_multiplier = {
+		name_id = "menu_player_extra_mission_pickups_multiplier",
+		category = "feature",
+		upgrade = {
+			value = 1,
+			upgrade = "extra_mission_pickups_multiplier",
+			category = "player",
+		},
+	}
 
 	-- Chameleon
 	self.values.player.suspicion_multiplier[1] = 0.65
@@ -2324,6 +2358,7 @@ function UpgradesTweakData:init(tweak_data)
 	}
 
 	-- misc
+	self.ecm_feedback_retrigger_interval = 120
 	self.values.carry.throw_distance_multiplier[1] = 1.25
 	self.values.player.crouch_speed_multiplier[1] = 1.1
 	self.values.player.run_speed_multiplier[1] = 1.1

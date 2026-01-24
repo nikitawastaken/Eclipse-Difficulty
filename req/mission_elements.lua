@@ -256,6 +256,47 @@ function M.gen_areatrigger(id, name, pos, rot, opts)
 	return areatrigger
 end
 
+---Generate an area report element
+---@param id number: id of element, start from 400000
+---@param name string: name of element for reference
+---@param pos Vector3: position for the element to be in
+---@param rot Rotation: direction the element is facing
+---@param opts? table: extra parameters
+function M.gen_areareporttrigger(id, name, pos, rot, opts)
+	opts = opts or {}
+	local areareporttrigger = {
+		id = id,
+		editor_name = name,
+		class = "ElementAreaReportTrigger",
+		module = "CoreElementArea",
+		values = {
+			execute_on_startup = false,
+			trigger_times = opts.trigger_times or 1,
+			on_executed = opts.on_executed or {},
+			base_delay = opts.base_delay or 0,
+			position = pos,
+			rotation = rot,
+			enabled = opts.enabled or false,
+			interval = 0.1,
+			trigger_on = opts.trigger_on or "on_enter",
+			instigator = opts.instigator or "player",
+			shape_type = opts.shape_type or "box",
+			width = opts.width or 500,
+			depth = opts.depth or 500,
+			height = opts.height or 500,
+			radius = opts.radius or 250,
+			spawn_unit_elements = {},
+			amount = opts.amount or "1",
+			instigator_name = "",
+			use_disabled_shapes = false,
+			substitute_object = "",
+			callback = opts.callback or false,
+		},
+	}
+
+	return areareporttrigger
+end
+
 ---Generate a dummy trigger element
 ---@param id number: id of element, start from 400000
 ---@param name string: name of element for reference

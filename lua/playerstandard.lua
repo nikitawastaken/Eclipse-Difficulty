@@ -1163,3 +1163,23 @@ function PlayerStandard:_get_interaction_speed()
 
 	return dt
 end
+
+-- Talking always makes noise, affected by less noise upgrade
+function PlayerStandard:say_line(sound_name, skip_alert)
+	self._unit:sound():say(sound_name, true, false)
+
+	skip_alert = false -- always make noise
+
+	if not skip_alert then
+		local alert_rad = 500 * managers.player:upgrade_value("player", "less_noise_multiplier", 1)
+		local new_alert = {
+			"vo_cbt",
+			self._unit:movement():m_head_pos(),
+			alert_rad,
+			self._unit:movement():SO_access(),
+			self._unit,
+		}
+
+		managers.groupai:state():propagate_alert(new_alert)
+	end
+end

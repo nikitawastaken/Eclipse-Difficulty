@@ -66,10 +66,6 @@ for i = 0, 11 do
 	})
 end
 return {
-	-- Add vis blockers
-	[100000] = {
-		spawn = vis_blockers,
-	},
 	[100757] = { -- first responders
 		reinforce = {
 			{
@@ -157,6 +153,7 @@ return {
 		on_executed = {
 			{ id = 400077, delay = 3 },
 		},
+		spawn = vis_blockers, -- Add vis blockers
 	},
 	-- delay the elevator spawn
 	-- trigger the 3 cloakers event

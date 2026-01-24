@@ -40,6 +40,11 @@ local standard_spawn = {
 		interval = 15,
 	},
 }
+local cloaker_spawn = {
+	values = {
+		interval = 90,
+	},
+}
 local bags_required = {
 	values = {
 		amount = normal and 3 or hard and 5 or 7,
@@ -47,32 +52,27 @@ local bags_required = {
 }
 return {
 	-- New reinforce
-	[100129] = {
+	[100109] = {
 		reinforce = {
 			{
 				name = "containers",
-				force = 3,
-				position = Vector3(3100, -2400, 500),
-			},
-			{
-				name = "flank_right",
 				force = 2,
-				position = Vector3(4700, -2600, 400),
+				position = Vector3(3100, -2400, 475),
 			},
 			{
-				name = "flank_left",
+				name = "flank01",
 				force = 2,
-				position = Vector3(2800, 1000, 0),
+				position = Vector3(4700, -2550, 400),
 			},
 			{
-				name = "reachstacker1",
-				force = 3,
+				name = "flank02",
+				force = 2,
+				position = Vector3(2800, 1000, 5),
+			},
+			{
+				name = "reachstacker",
+				force = 2,
 				position = Vector3(-1700, -2300, 200),
-			},
-			{
-				name = "reachstacker2",
-				force = 3,
-				position = Vector3(3350, -5200, 200),
 			},
 		},
 	},
@@ -138,4 +138,6 @@ return {
 	[100128] = standard_spawn,
 	[100131] = standard_spawn,
 	[103176] = standard_spawn,
+	[104964] = cloaker_spawn,
+	[104965] = cloaker_spawn,
 }

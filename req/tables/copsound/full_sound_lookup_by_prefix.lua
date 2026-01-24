@@ -96,6 +96,7 @@ M.m4n_ = {
 M.fl1n_ = {
 	burnhurt = "cf1_burnhurt",
 	burndeath = "cf1_burndeath",
+	tasered = "cf1_burnhurt", -- im tased
 	ch3 = "cf1_burndeath", -- Ears ouchies
 }
 
@@ -263,6 +264,7 @@ M.l5n_ = {
 
 	x02a_any_3p = "l1n_x01a_any_3p",
 	x01a_any_3p = "l1n_x02a_any_3p",
+	tasered = "l1n_burnhurt", -- i'm tased
 }
 -- Test fix for l5n on clientside
 -- for _, replacement in pairs(M.l5n_) do
