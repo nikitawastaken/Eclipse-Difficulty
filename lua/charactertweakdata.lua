@@ -206,7 +206,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	}
 
 	presets.weapon.eclipse_normal.is_double_barrel = deep_clone(presets.weapon.eclipse_normal.is_shotgun_pump)
-	presets.weapon.eclipse_normal.is_double_barrel.RELOAD_SPEED = 6
+	presets.weapon.eclipse_normal.is_double_barrel.RELOAD_SPEED = 3
 	presets.weapon.eclipse_normal.is_double_barrel.FALLOFF = {
 		{ dmg_mul = 7.5 * dmg_mul, r = 0, acc = { 0.7, 0.9 }, recoil = { 0.5, 1 }, mode = { 1, 0, 0, 0 } },
 		{ dmg_mul = 2.5 * dmg_mul, r = 2000, acc = { 0.5, 0.7 }, recoil = { 1, 1.4 }, mode = { 1, 0, 0, 0 } },
@@ -491,6 +491,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		6,
 	})
 	for _, v in pairs(presets.weapon.gang_member) do
+		v.melee_dmg = team_ai_dmg + 2
 		v.FALLOFF = {
 			{ dmg_mul = team_ai_dmg, r = 0, acc = { 0.5, 1 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
 			{ dmg_mul = team_ai_dmg, r = 1500, acc = { 0.25, 0.75 }, recoil = v.FALLOFF[1].recoil, mode = { 1, 0, 0, 0 } },
@@ -500,9 +501,9 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	-- Add damage falloff to select presets
 	local team_ai_preset_falloff = {
-		is_shotgun_pump = { 1.25, 1, 0.25 },
-		is_shotgun_mag = { 1.25, 1, 0.25 },
-		is_double_barrel = { 1, 0.75, 0.5 },
+		is_shotgun_pump = { 1, 0.7, 0.2 },
+		is_shotgun_mag = { 1, 0.7, 0.2 },
+		is_double_barrel = { 1, 0.8, 0.4 },
 		is_flamethrower = { 1, 0.75, 0 },
 	}
 
@@ -2051,6 +2052,7 @@ function CharacterTweakData:_set_presets()
 		local is_boss = name:match("_boss$") and not not_bosses[name]
 		local is_event_tank = name == "piggydozer" or name == "snowman_boss"
 		local is_shadow_spooc = name == "shadow_spooc"
+		local is_city_shield = name == "city_shield"
 		local is_city_tank = name == "city_tank"
 
 		-- Set health and HS mul based on access
@@ -2119,6 +2121,8 @@ function CharacterTweakData:_set_presets()
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.no_grenade_anim = char_preset.wall_fwd_offset and true or nil
 			char_preset.rotation_speed = char_preset.wall_fwd_offset and 1 / 4 or nil
+			char_preset.damage.explosion_damage_mul = is_city_shield and 0.5 or 1
+			char_preset.shield_explosion_dmg_mul = char_preset.wall_fwd_offset and (is_city_shield and 0.25 or 0.5) or nil
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true

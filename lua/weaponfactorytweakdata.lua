@@ -575,6 +575,8 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.recoil = -2
 	self.parts.wpn_fps_smg_mp5_s_ring.stats.concealment = 2
 
+	self.parts.wpn_fps_smg_mac10_m_extended.stats.extra_ammo = 6
+
 	self.parts.wpn_fps_smg_p90_b_long.stats.damage = 0
 	self.parts.wpn_fps_smg_p90_b_long.stats.spread = 2
 	self.parts.wpn_fps_smg_p90_b_long.stats.recoil = 0
@@ -1087,6 +1089,16 @@ Hooks:PostHook(WeaponFactoryTweakData, "init", "eclipse_init", function(self)
 	self.parts.wpn_fps_upg_i_autofire.stats = { spread = -1, recoil = 1, value = 1 }
 
 	-- Saw mods
+	self.parts.wpn_fps_saw_m_blade_durable.stats.damage = -4
+	self.parts.wpn_fps_saw_m_blade_durable.stats.extra_ammo = 25
+	self.parts.wpn_fps_saw_m_blade_durable.stats.total_ammo_mod = 0
+	self.parts.wpn_fps_saw_m_blade_durable.custom_stats = { ammo_max_mul = 4 / 3 }
+	self.parts.wpn_fps_saw_m_blade_durable.no_magazine_balancing = true
+
+	self.parts.wpn_fps_saw_m_blade_sharp.stats.damage = 4
+	self.parts.wpn_fps_saw_m_blade_sharp.stats.extra_ammo = -25
+	self.parts.wpn_fps_saw_m_blade_sharp.custom_stats = { ammo_max_mul = 2 / 3 }
+	self.parts.wpn_fps_saw_m_blade_sharp.no_magazine_balancing = true
 
 	self.parts.wpn_fps_saw_body_silent.stats.suppression = 10
 	self.parts.wpn_fps_saw_body_silent.stats.alert_size = -9

@@ -4,25 +4,24 @@ local disabled = {
 		enabled = false,
 	},
 }
+local storage_far_spawn = {
+	values = {
+		interval = 20,
+	},
+}
 local roof_far_spawn = {
 	values = {
 		interval = 20,
 	},
 	groups = preferred.no_cops_agents,
 }
-local window_spawn = {
-	values = {
-		interval = 20,
-	},
-	groups = preferred.no_cops_agents_shields_bulldozers,
-}
 local roof_close_spawn = {
 	values = {
 		interval = 30,
 	},
-	groups = preferred.no_cops_agents,
+	groups = preferred.no_cops_agents_shields_bulldozers,
 }
-local storage_spawn = {
+local storage_close_spawn = {
 	values = {
 		interval = 40,
 	},
@@ -66,7 +65,13 @@ return {
 	},
 	-- Disable instant difficulty increase
 	[100122] = disabled,
-	[100129] = {
+	-- Loud, slightly delay police response
+	[100109] = {
+		values = {
+			base_delay = 30,
+		},
+	},
+	[100129] = { -- Preferred
 		reinforce = {
 			{
 				name = "auction_room",
@@ -74,9 +79,19 @@ return {
 				position = Vector3(0, 2000, -100),
 			},
 			{
-				name = "outside",
+				name = "outside_left",
+				force = 2,
+				position = Vector3(-1600, -1375, -50),
+			},
+			{
+				name = "outside_middle",
 				force = 3,
-				position = Vector3(0, -3300, -50),
+				position = Vector3(0, -2500, -50),
+			},
+			{
+				name = "outside_right",
+				force = 2,
+				position = Vector3(1575, -1350, -50),
 			},
 		},
 		on_executed = {
@@ -93,17 +108,17 @@ return {
 	[103926] = disabled,
 	[106784] = disabled,
 	-- Spawn group intervals
-	[106826] = window_spawn,
+	[103662] = storage_far_spawn,
 	[102667] = roof_far_spawn,
 	[103307] = roof_far_spawn,
 	[106764] = roof_far_spawn,
 	[106767] = roof_far_spawn,
 	[106776] = roof_far_spawn,
 	[106779] = roof_far_spawn,
-	[100154] = roof_close_spawn,
+	[100133] = roof_close_spawn,
 	[100694] = roof_close_spawn,
-	[102303] = storage_spawn,
-	[103662] = storage_spawn,
-	[104089] = storage_spawn,
+	[106826] = roof_close_spawn,
+	[102303] = storage_close_spawn,
+	[104089] = storage_close_spawn,
 	[103522] = storage_window_spawn,
 }

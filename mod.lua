@@ -14,6 +14,7 @@ if not Eclipse then
 			flavor_text_tips = false,
 			team_ai_weapons = 1,
 			improved_gun_echo = 2,
+			welcome_message = true,
 		},
 		loaded_elements = false,
 	}
