@@ -984,8 +984,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "less_noise_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.fall_damage_multiplier_cat = { 0.5 }
 	self.definitions.player_fall_damage_multiplier_cat = {
@@ -994,8 +994,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "fall_damage_multiplier_cat",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.values.player.fall_damage_noise_multiplier = { 0.5 }
 	self.definitions.player_fall_damage_noise_multiplier = {
@@ -1004,8 +1004,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "fall_damage_noise_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 	self.skill_descs.cleaner.multibasic = "50%"
 	self.skill_descs.cleaner.multipro = "50%"
@@ -1024,8 +1024,8 @@ function UpgradesTweakData:init(tweak_data)
 		upgrade = {
 			value = 1,
 			upgrade = "extra_mission_pickups_multiplier",
-			category = "player"
-		}
+			category = "player",
+		},
 	}
 
 	-- Chameleon

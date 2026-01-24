@@ -1177,7 +1177,7 @@ function PlayerStandard:say_line(sound_name, skip_alert)
 			self._unit:movement():m_head_pos(),
 			alert_rad,
 			self._unit:movement():SO_access(),
-			self._unit
+			self._unit,
 		}
 
 		managers.groupai:state():propagate_alert(new_alert)

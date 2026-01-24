@@ -343,15 +343,16 @@ function SkillTreeTweakData:init(tweak_data)
 	self.skills.cleaner.desc_id = "menu_cat_burglar_desc"
 
 	-- Logistician
-	self.skills.second_chances[1].upgrades = { "carry_interact_speed_multiplier_2"}
-	self.skills.second_chances[2].upgrades = { "player_pick_lock_hard", "player_pick_lock_easy_speed_multiplier"}
+	self.skills.second_chances[1].upgrades = { "carry_interact_speed_multiplier_2" }
+	self.skills.second_chances[2].upgrades = { "player_pick_lock_hard", "player_pick_lock_easy_speed_multiplier" }
 	self.skills.second_chances.icon_xy = { 8, 0 }
 	self.skills.second_chances.name_id = "menu_logistician"
 	self.skills.second_chances.desc_id = "menu_logistician_desc"
 
 	-- Kleptomaniac
 	self.skills.ecm_booster[1].upgrades = { "player_mask_off_pickup" }
-	self.skills.ecm_booster[2].upgrades = { --[[ "player_extra_mission_pickups_multiplier" ]] }
+	self.skills.ecm_booster[2].upgrades = { --[[ "player_extra_mission_pickups_multiplier" ]]
+	}
 	self.skills.ecm_booster.icon_xy = { 8, 0 }
 	self.skills.ecm_booster.name_id = "menu_kleptomaniac"
 	self.skills.ecm_booster.desc_id = "menu_kleptomaniac_desc"

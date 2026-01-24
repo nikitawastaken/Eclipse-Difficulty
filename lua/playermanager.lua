@@ -2018,7 +2018,6 @@ function PlayerManager:_can_pickup_special_equipment(special_equipment, name)
 		"ranc_acid",
 	}
 
-
 	if special_equipment.amount then
 		local equipment = tweak_data.equipments.specials[name]
 		local extra = self:_equipped_upgrade_value(equipment)
