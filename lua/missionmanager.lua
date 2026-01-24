@@ -42,7 +42,11 @@ function MissionManager.mission_script_patch_funcs.on_executed(self, element, da
 			elseif val then
 				val.delay = v.delay or 0
 				val.delay_rand = v.delay_rand or 0
-				val.alternative = v.alternative or nil
+				
+				if v.alternative then
+					val.alternative = v.alternative
+				end
+
 				Eclipse:log_console("Modified element %s in on_executed of %s", new_element:editor_name(), element:editor_name())
 			else
 				table.insert(element._values.on_executed, v)
