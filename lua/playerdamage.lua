@@ -503,7 +503,7 @@ function PlayerDamage:damage_fall(data)
 		fall_damage_ramp = math.clamp((data.height - height_limit) / (death_limit - height_limit), 0.5, 1)
 
 		fall_multiplier = fall_multiplier * fall_damage_ramp * (self:get_real_armor() > 0 and 0.75 or 1)
-		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_damage_multiplier", 1)
+		fall_multiplier = fall_multiplier * managers.player:upgrade_value("player", "fall_damage_multiplier", 1) * managers.player:upgrade_value("player", "fall_damage_multiplier_cat", 1)
 
 		local fall_damage = self:_max_health() * fall_multiplier
 
@@ -512,7 +512,7 @@ function PlayerDamage:damage_fall(data)
 	end
 
 	if die or fall_multiplier > 0 then
-		local alert_rad = player_tweak.fall_damage_alert_size or 500
+		local alert_rad = (player_tweak.fall_damage_alert_size or 500) * managers.player:upgrade_value("player", "fall_damage_noise_multiplier", 1)
 		local new_alert = {
 			"vo_cbt",
 			self._unit:movement():m_head_pos(),

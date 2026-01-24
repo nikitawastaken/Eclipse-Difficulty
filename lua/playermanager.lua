@@ -1993,3 +1993,40 @@ Hooks:PostHook(PlayerManager, "sync_tag_team", "sync_tag_team_sound_effect", fun
 		self:local_player():sound():play(tweak_data.blackmarket.projectiles.tag_team.sounds.activate)
 	end
 end)
+
+function PlayerManager:_can_pickup_special_equipment(special_equipment, name)
+	local allowed_equipment = {
+		"bank_manager_key",
+		"acid",
+		"caustic_soda",
+		"hydrogen_chloride",
+		"thermite_paste",
+		"gas",
+		"harddrive",
+		"c4",
+		"printer_ink",
+		"paper_roll",
+		"liquid_nitrogen",
+		"thermite",
+		"blood_sample",
+		"blood_sample_verified",
+		"mayan_gold_bar",
+		"lance_part",
+		"stock",
+		"barrel",
+		"receiver",
+		"ranc_acid",
+	}
+
+
+	if special_equipment.amount then
+		local equipment = tweak_data.equipments.specials[name]
+		local extra = self:_equipped_upgrade_value(equipment)
+		local multiplier = table.contains(allowed_equipment, name) and managers.player:upgrade_value("player", "extra_mission_pickups_multiplier", 1) or 1
+		local max_quantity = (equipment.max_quantity or equipment.quantity or 1) * multiplier
+
+		return Application:digest_value(special_equipment.amount, false) < max_quantity + extra, not not equipment.max_quantity
+	end
+
+	return false
+end
