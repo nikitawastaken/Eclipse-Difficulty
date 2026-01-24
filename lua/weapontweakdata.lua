@@ -754,7 +754,7 @@ function WeaponTweakData:_init_weapons(overrides)
 				weap_data.spread.bipod = 69 -- Make sure bipod spread is defined
 
 				for i, v in pairs(weap_data.spread) do
-					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3 or 2
+					weap_data.spread[i] = (cat_map.flamethrower or cat_map.saw) and 0 or weap_data.rays and 3.5 or 2.5
 				end
 			end
 			
