@@ -222,7 +222,7 @@ local prefix_lookup_for_humans = {
 			end
 		end,
 		-- Murky Blue SWAT (Recurits)
-		"units/pd2_dlc_bph/characters/ene_murkywater_heavy/ene_murkywater_light",
+		"units/pd2_dlc_bph/characters/ene_murkywater_heavy/ene_murkywater_heavy",
 		"units/pd2_dlc_bph/characters/ene_murkywater_heavy_r870/ene_murkywater_heavy_r870",
 		-- Murky FBI SWAT (Soldiers)
 		"units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi",
