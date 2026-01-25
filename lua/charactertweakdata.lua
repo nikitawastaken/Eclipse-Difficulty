@@ -145,13 +145,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_normal = based_on(presets.weapon.expert, {
 		aim_delay = { 0, 1 },
-		focus_delay = 0.6,
+		focus_delay = 0.7,
 		melee_dmg = 9 * dmg_mul,
 		melee_speed = 1,
 		melee_retry_delay = { 2, 3 },
 		melee_range = 125,
 		melee_force = 400,
 		range = { close = 750, optimal = 1500, far = 3000 },
+		spread = 5,
 		RELOAD_SPEED = 1,
 		stance_acc_mul = nil_value,
 	})
@@ -260,7 +261,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_security = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 1.25 },
-		focus_delay = 0.8,
+		focus_delay = 0.9,
 		range = { close = 1000, optimal = 2000, far = 4000 },
 	})
 	accuracy_addition(presets.weapon.eclipse_security, -0.1)
@@ -283,7 +284,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_good = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.75 },
-		focus_delay = 0.4,
+		focus_delay = 0.5,
 		melee_dmg = 12 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.eclipse_good, 1.2)
@@ -295,7 +296,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.weapon.eclipse_expert = based_on(presets.weapon.eclipse_normal, {
 		aim_delay = { 0, 0.5 },
-		focus_delay = 0.2,
+		focus_delay = 0.3,
 		melee_dmg = 15 * dmg_mul,
 	})
 	damage_multiplier(presets.weapon.eclipse_expert, 1.4)
@@ -419,7 +420,6 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		melee_force = 600,
 		stance_mul = nil_value,
 	})
-	presets.weapon.eclipse_bulldozer.is_smg.range = { close = 1000, optimal = 2000, far = 4000 }
 	presets.weapon.eclipse_bulldozer.is_shotgun_pump.RELOAD_SPEED = 1
 	presets.weapon.eclipse_bulldozer.is_shotgun_pump.FALLOFF = {
 		{ dmg_mul = 30 * special_dmg_mul, r = 0, acc = { 0.8, 1 }, recoil = { 1.5, 2 }, mode = { 1, 0, 0, 0 } },
