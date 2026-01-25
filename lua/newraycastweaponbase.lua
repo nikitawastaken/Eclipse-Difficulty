@@ -542,7 +542,7 @@ Hooks:PreHook(NewRaycastWeaponBase, "_fire_raycast", "eclipse_fire_raycast", fun
 	self._enemy_penetrations = nil
 	self._wall_penetrations = nil
 	self._shield_penetrations = nil
-	
+
 	self._hit_through_enemy = nil
 	self._hit_through_wall = nil
 	self._hit_through_shield = nil
@@ -587,7 +587,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "get_damage_falloff", "eclipse_get_damage_f
 			multiplier = multiplier * shield_pen_mult
 		end
 	end
-	
+
 	return Hooks:GetReturn() * multiplier
 end)
 
