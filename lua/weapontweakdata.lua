@@ -678,9 +678,10 @@ function WeaponTweakData:_init_weapons(overrides)
 			weap_data.stance_multipliers = weap_data.stance_multipliers or nil
 			weap_data.fire_mode_multipliers = weap_data.fire_mode_multipliers or nil
 			weap_data.penetration_damage_mul = {
-				surface = 0.5,
-				enemy = 0.75,
 				armor = 0.75,
+				enemy = 0.75,
+				wall = 0.5,
+				shield = 0.5,
 			}
 			
 			if weap_data.kick then
