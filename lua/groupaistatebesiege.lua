@@ -949,6 +949,20 @@ end
 -- Tweak importance of spawn group distance in spawn group weight based on the groups to spawn
 -- Also slightly optimized this function to properly check all areas
 function GroupAIStateBesiege:_find_spawn_group_near_area(target_area, allowed_groups, target_pos, max_dis, verify_clbk, timed)
+	if allowed_groups == self._tweak_data.assault.groups then
+		if self:_is_objective_type_on_cooldown("assault_area") then
+			return
+		end
+	elseif allowed_groups == self._tweak_data.recon.groups then
+		if self:_is_objective_type_on_cooldown("recon_area") then
+			return
+		end
+	elseif allowed_groups == self._tweak_data.reenforce.groups then
+		if self:_is_objective_type_on_cooldown("reenforce_area") then
+			return
+		end
+	end
+
 	target_pos = target_pos or target_area.pos
 	max_dis = max_dis or math.huge
 
@@ -1108,11 +1122,8 @@ function GroupAIStateBesiege:_set_objective_type_cooldown(type, cooldown)
 end
 
 function GroupAIStateBesiege:_upd_group_spawning()
-	for _, spawn_task in ipairs(self._spawning_groups) do
-		if spawn_task.group.size > 0 or not self:_is_objective_type_on_cooldown(spawn_task.group.objective.type) then
-			self:_perform_group_spawning(spawn_task)
-			return
-		end
+	if self._spawning_groups[1] then
+		self:_perform_group_spawning(self._spawning_groups[1])
 	end
 end
 
