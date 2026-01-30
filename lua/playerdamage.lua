@@ -239,7 +239,7 @@ function PlayerDamage:_calc_armor_damage(...)
 
 	if had_armor and self:get_real_armor() <= 0 then
 		if health_subtracted > 0 and self._can_take_dmg_timer <= 0 then
-			self._can_take_dmg_timer = self._dmg_interval + (tweak_data.player.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL or 0.15)
+			self._can_take_dmg_timer = self._dmg_interval + managers.player:body_armor_value("grace_period")
 		end
 	end
 
@@ -249,7 +249,7 @@ end
 -- Add slightly longer grace period on dodge (repurposing Anarchist/Armorer damage timer)
 Hooks:PostHook(PlayerDamage, "_send_damage_drama", "sh__send_damage_drama", function(self, _, health_subtracted)
 	if health_subtracted == 0 and self._can_take_dmg_timer and self._can_take_dmg_timer <= 0 then
-		self._can_take_dmg_timer = self._dmg_interval / 2
+		self._can_take_dmg_timer = self._dmg_interval
 	end
 end)
 
