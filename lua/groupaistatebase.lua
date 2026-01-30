@@ -229,7 +229,7 @@ function GroupAIStateBase:_update_difficulty_value()
 	end
 
 	self._check_difficulty_clamps = nil
-	self._next_difficulty_step_t = self._t + math.lerp(tweak_data.group_ai.difficulty_scaling.diff_step_interval[1], tweak_data.group_ai.difficulty_scaling.diff_step_interval[2], math.random())
+	self._next_difficulty_step_t = self._t + tweak_data.group_ai.difficulty_scaling.diff_step_interval
 
 	local is_decrease = self._difficulty_value > self._target_difficulty
 	local clamp_func = is_decrease and math.max or math.min
