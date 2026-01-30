@@ -783,12 +783,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			pants_down = 0.7,
-			not_assault = 0.6,
+			pants_down = 1,
 			weapon_down = 0.5,
-			flanked = 0.4,
-			unaware_of_aggressor = 0.3,
-			isolated = 0.2,
+			not_assault = 0.4,
+			flanked = 0.3,
+			unaware_of_aggressor = 0.15,
+			isolated = 0.1,
 		},
 		factors = {
 			health = {
@@ -804,13 +804,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.surrender.normal = {
 		base_chance = 0,
 		significant_chance = 0,
+		violence_timeout = 1,
 		reasons = {
-			pants_down = 0.6,
-			not_assault = 0.5,
+			pants_down = 0.75,
 			weapon_down = 0.4,
-			flanked = 0.3,
-			unaware_of_aggressor = 0.2,
-			isolated = 0.1,
+			not_assault = 0.3,
+			flanked = 0.2,
+			unaware_of_aggressor = 0.1,
+			isolated = 0.05,
 		},
 		factors = {
 			health = {
@@ -826,12 +827,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.surrender.hard = {
 		base_chance = 0,
 		significant_chance = 0,
+		violence_timeout = 2,
 		reasons = {
 			pants_down = 0.5,
-			not_assault = 0.4,
 			weapon_down = 0.3,
-			flanked = 0.2,
-			unaware_of_aggressor = 0.1,
+			not_assault = 0.2,
+			flanked = 0.1,
+			unaware_of_aggressor = 0.05,
 			isolated = 0,
 		},
 		factors = {
