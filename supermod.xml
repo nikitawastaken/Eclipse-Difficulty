@@ -165,6 +165,7 @@
 
 				<group :hook_id="civilians/">
 					<group :hook_id="logics/">
+						<post :hook_id="civilianlogicescort"/>
 						<post :hook_id="civilianlogicflee"/>
 						<post :hook_id="civilianlogictravel"/>
 						<post :hook_id="civilianlogicsurrender"/>

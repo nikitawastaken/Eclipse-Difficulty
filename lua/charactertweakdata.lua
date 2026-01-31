@@ -578,15 +578,15 @@ function CharacterTweakData:_presets(tweak_data, ...)
 
 	presets.gang_member_damage.HEALTH_INIT = team_ai_hp * (UsefulBots and 0.75 or 1) * (Keepers and 0.75 or 1)
 	presets.gang_member_damage.MIN_DAMAGE_INTERVAL = 0.2
-	presets.gang_member_damage.REGENERATE_RATIO = 0.1
-	presets.gang_member_damage.REGENERATE_TIME = 5
-	presets.gang_member_damage.REGENERATE_TIME_AWAY = presets.gang_member_damage.REGENERATE_TIME
+	presets.gang_member_damage.REGENERATE_RATIO = 1 / 50
+	presets.gang_member_damage.REGENERATE_TIME = 1
+	presets.gang_member_damage.REGENERATE_TIME_AWAY = 2
 	presets.gang_member_damage.hurt_severity.bullet.health_reference = "full"
 	presets.gang_member_damage.hurt_severity.bullet.zones = {
 		{
-			health_limit = 0.2,
-			none = 0.4,
-			light = 0.6,
+			health_limit = 0.1,
+			none = 0.6,
+			light = 0.4,
 		},
 		{
 			light = 1,
@@ -783,12 +783,12 @@ function CharacterTweakData:_presets(tweak_data, ...)
 		base_chance = 0,
 		significant_chance = 0,
 		reasons = {
-			pants_down = 0.7,
-			not_assault = 0.6,
+			pants_down = 1,
 			weapon_down = 0.5,
-			flanked = 0.4,
-			unaware_of_aggressor = 0.3,
-			isolated = 0.2,
+			not_assault = 0.4,
+			flanked = 0.3,
+			unaware_of_aggressor = 0.15,
+			isolated = 0.1,
 		},
 		factors = {
 			health = {
@@ -804,13 +804,14 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.surrender.normal = {
 		base_chance = 0,
 		significant_chance = 0,
+		violence_timeout = 1,
 		reasons = {
-			pants_down = 0.6,
-			not_assault = 0.5,
+			pants_down = 0.75,
 			weapon_down = 0.4,
-			flanked = 0.3,
-			unaware_of_aggressor = 0.2,
-			isolated = 0.1,
+			not_assault = 0.3,
+			flanked = 0.2,
+			unaware_of_aggressor = 0.1,
+			isolated = 0.05,
 		},
 		factors = {
 			health = {
@@ -826,12 +827,13 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	presets.surrender.hard = {
 		base_chance = 0,
 		significant_chance = 0,
+		violence_timeout = 2,
 		reasons = {
 			pants_down = 0.5,
-			not_assault = 0.4,
 			weapon_down = 0.3,
-			flanked = 0.2,
-			unaware_of_aggressor = 0.1,
+			not_assault = 0.2,
+			flanked = 0.1,
+			unaware_of_aggressor = 0.05,
 			isolated = 0,
 		},
 		factors = {
@@ -2170,11 +2172,9 @@ function CharacterTweakData:_set_presets()
 		elseif tag_map.tank then
 			char_preset.min_obj_interrupt_dis = 600
 			char_preset.ignore_melee_headshot = true
-			char_preset.can_be_healed = not tag_map.medic and true or false
-			char_preset.target_priority = tag_map.medic and 10 or nil
 			char_preset.move_speed = deep_clone(char_preset.move_speed)
 			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
-			char_preset.tank_run_speed_mul = overkill_above and { fwd = is_city_tank and 1.5 or 1.75, strafe = 1.25, bwd = 1.25 } or nil
+			char_preset.tank_run_speed_mul = overkill_above and { fwd = is_city_tank and 1.5 or 2, strafe = 1, bwd = 1 } or nil
 
 			local speed_preset = deep_clone(char_preset.move_speed)
 			for _, pose in pairs(speed_preset) do
@@ -2189,14 +2189,16 @@ function CharacterTweakData:_set_presets()
 
 			char_preset.move_speed = speed_preset
 			char_preset.damage.armor_health = get_difficulty_specific_value({
-				10,
-				10,
-				12,
-				12,
-				14,
+				18,
+				18,
+				24,
+				24,
+				30,
 			})
 			char_preset.damage.armor_health = char_preset.damage.armor_health * (is_city_tank and 4 / 3 or 1)
 			char_preset.medic_healing = tag_map.medic and { cooldown = 3, radius = 600 } or nil
+			char_preset.target_priority = tag_map.medic and 10 or nil
+			char_preset.can_be_healed = not tag_map.medic and true or false
 		elseif is_shadow_spooc or tag_map.spooc then
 			char_preset.min_obj_interrupt_dis = 800
 			char_preset.spooc_attack_use_smoke_chance = 0
@@ -2264,8 +2266,8 @@ function CharacterTweakData:_set_presets()
 
 	self.tmp_healing_damage_mul = is_eclipse and 0.4 or is_overkill and 0.6 or nil
 
-	self.shield_health_balance_mul = { 1, 1.25, 1.5, 1.75 }
-	self.tank_armor_health_balance_mul = { 0.75, 1.25, 1.5, 1.75 }
+	self.shield_health_balance_mul = { 0.6, 0.8, 1, 1 }
+	self.tank_armor_health_balance_mul = { 0.4, 0.6, 0.8, 1 }
 
 	-- eclipse exclusive edits
 	if is_overkill then

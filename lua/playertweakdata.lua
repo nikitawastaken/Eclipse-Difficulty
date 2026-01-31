@@ -146,8 +146,6 @@ Hooks:PostHook(PlayerTweakData, "init", "eclipse_init", function(self)
 
 	self.gravity = -(982 * 1.5)
 
-	self.damage.ARMOR_BREAK_MIN_DAMAGE_INTERVAL = 0.15
-
 	self.damage.respawn_time_penalty = 10
 	--self.damage.automatic_respawn_time = 210 + (is_eclipse and 90 or is_overkill and 60 or 0) + (is_pro_job and 60 or 0)
 
