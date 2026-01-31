@@ -373,19 +373,6 @@
 			</lod_object>
 			
 			<!-- HAT OBJECTS -->
-			<!-- SECURITY CAP OBJECTS -->
-			<lod_object name="lod_hat_security">
-				<object name="g_hat_security_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
-					<material materials="mtr_police_body" max_distance="1000" />
-					<material materials="mtr_police_body_lod_1" max_distance="1500" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-				<object name="g_hat_security_lod2" 	enabled="false" lod="1" >
-					<material materials="mtr_police_body" max_distance="0" cpy_material_vars="contour_color, contour_opacity" />
-					<material materials="mtr_police_body_lod_2" />
-				</object>
-			</lod_object>
-			
 			<!-- COP HAT OBJECTS -->
 			<lod_object name="lod_hat_cop">
 				<object name="g_hat_cop_lod1" 		enabled="false"  max_distance="2000"  max_draw_lod="0" cpy_material_vars="contour_color, contour_opacity">
