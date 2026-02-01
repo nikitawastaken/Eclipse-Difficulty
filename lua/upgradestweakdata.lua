@@ -23,6 +23,7 @@ function UpgradesTweakData:_init_pd2_values(tweak_data)
 		damage_shake = { 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4 },
 		stamina = { 1, 0.95, 0.9, 0.85, 0.8, 0.75, 0.7 },
 		regen_timer = { 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5 },
+		grace_period = { 0.25, 0.225, 0.2, 0.175, 0.15, 0.125, 0.1 },
 	}
 
 	-- make sna less cancer

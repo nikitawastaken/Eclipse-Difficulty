@@ -3319,9 +3319,9 @@ Hooks:PostHook(GroupAITweakData, "_init_task_data", "eclipse__init_task_data", f
 	self.besiege.assault.delay = get_difficulty_specific_value({
 		{ 50, 40, 30 },
 		{ 50, 40, 30 },
-		{ 35, 30, 25 },
-		{ 30, 25, 20 },
-		{ 25, 20, 15 },
+		{ 40, 30, 25 },
+		{ 35, 25, 20 },
+		{ 30, 20, 15 },
 	})
 	self.besiege.assault.hostage_hesitation_delay = { 10, 7.5, 5 }
 

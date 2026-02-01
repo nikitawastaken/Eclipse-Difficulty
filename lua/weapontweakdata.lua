@@ -2776,11 +2776,11 @@ local get_difficulty_specific_value = Eclipse.utils.get_difficulty_specific_valu
 
 local turret_damage_mul = {
 	{ 0, 2 },
-	{ 1500, 1 },
-	{ 3000, 0.5 },
+	{ 1500, 1.5 },
+	{ 3000, 1 },
 	{ 10000, 0 },
 }
-local turret_suppression = 0.25
+local turret_suppression = 0.2
 local suppression = {
 	is_sniper = 2,
 	is_flamethrower = 0.5,
