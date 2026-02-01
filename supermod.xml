@@ -717,10 +717,11 @@
 				<file :name="visor_glass_df.texture" />
 				<file :name="visor_glass_op.texture" />
 				<file :name="visor_glass_cyan_df.texture" />
+				<file :name="visor_glass_green_df.texture" />
 				<file :name="visor_glass_orange_df.texture" />
+				<file :name="visor_glass_purple_df.texture" />
 				<file :name="visor_glass_red_df.texture" />
 				<file :name="visor_glass_yellow_df.texture" />
-				<file :name="visor_glass_purple_df.texture" />
 				<file :name="spook_il.texture" />
 			</group>
 
@@ -1753,9 +1754,14 @@
 				<file :name="bph_swat_body_df.texture" />
 				<file :name="bph_swat_body_nm.texture" />
 
-				<file :name="bph_heavy_swat_body_df.texture" />
+				<file :name="bph_heavy_swat_helmets_atlas_df.texture" />			
+				<file :name="bph_heavy_swat_helmets_atlas_nm.texture" />
+				
+				<file :name="bph_heavy_swat_body_df.texture" />			
 				<file :name="bph_heavy_swat_body_nm.texture" />
-	
+				
+				<file :name="bph_city_heavy_swat_body_df.texture" />		
+
 				<file :name="bph_cloaker_body_df.texture" />
 				<file :name="bph_cloaker_body_nm.texture" />
 
@@ -1838,8 +1844,28 @@
 				<file :name="ene_murkywater_heavy_fbi.object" />
 				<file :name="ene_murkywater_heavy_fbi.unit" />
 				<file :name="ene_murkywater_heavy_fbi_husk.unit" />
+
+				<group :name="vars/">
+					<file :name="ene_murkywater_heavy_city.material_config" />
+					<file :name="ene_murkywater_heavy_city_contour.material_config" />
+				</group>
 			</group>
 
+			<group :name="ene_murkywater_heavy_fbi_r870/">
+				<file :name="ene_murkywater_heavy_fbi_r870.unit" />
+				<file :name="ene_murkywater_heavy_fbi_r870_husk.unit" />
+			</group>
+			
+			<group :name="ene_murkywater_heavy_city/">
+				<file :name="ene_murkywater_heavy_city.unit" />
+				<file :name="ene_murkywater_heavy_city_husk.unit" />
+			</group>
+			
+			<group :name="ene_murkywater_heavy_city_r870/">
+				<file :name="ene_murkywater_heavy_city_r870.unit" />
+				<file :name="ene_murkywater_heavy_city_r870_husk.unit" />
+			</group>
+			
 			<group :name="ene_murkywater_cloaker/">
 				<xml  :name="ene_murkywater_cloaker.sequence_manager" />
 				<file :name="ene_murkywater_cloaker.material_config" />

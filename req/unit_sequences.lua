@@ -351,6 +351,11 @@ local M = {
 	["units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2"] = { name = "fbi_2", head = head_sequences.security },
 	["units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3"] = { name = "fbi_3", head = head_sequences.hrt_alt },	
 
+	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi"] = { name = "fbi_heavy_1", head = head_sequences.swat_d },
+	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi_r870/ene_murkywater_heavy_fbi_r870"] = { name = "fbi_heavy_2", head = head_sequences.swat_d },
+	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_city/ene_murkywater_heavy_city"] = { name = "city_heavy_1", head = head_sequences.swat_d },
+	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_city_r870/ene_murkywater_heavy_city_r870"] = { name = "city_heavy_2", head = head_sequences.swat_d },
+
 	["units/pd2_dlc_bph/characters/ene_murkywater_cloaker/ene_murkywater_cloaker"] = { name = "spook_1", head = head_sequences.cloaker },
 
 	["units/pd2_dlc_bph/characters/ene_murkywater_medic/ene_murkywater_medic"] = { name = "medic_1", head = head_sequences.medic },

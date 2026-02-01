@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<materials group="ene_murkywater_heavy_fbi" version="3">
+<materials group="ene_murkywater_heavy_city" version="3">
 	<material name="mtr_head" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/payday2/characters/shared_textures/heads_atlas_nm" />
 		<diffuse_texture 		file="units/payday2/characters/shared_textures/heads_atlas_df" />
@@ -15,15 +15,15 @@
 	
 	<material name="mtr_body" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/pd2_dlc_bph/characters/shared_textures/bph_heavy_swat_body_nm" />
-		<diffuse_texture 		file="units/pd2_dlc_bph/characters/shared_textures/bph_heavy_swat_body_df" />
+		<diffuse_texture 		file="units/pd2_dlc_bph/characters/shared_textures/bph_city_heavy_swat_body_df" />
 	</material>
 	<material name="mtr_body_lod_1" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/pd2_dlc_bph/characters/shared_textures/bph_heavy_swat_body_nm" mip="1" />
-		<diffuse_texture 		file="units/pd2_dlc_bph/characters/shared_textures/bph_heavy_swat_body_df" mip="1" />
+		<diffuse_texture 		file="units/pd2_dlc_bph/characters/shared_textures/bph_city_heavy_swat_body_df" mip="1" />
 	</material>
 	<material name="mtr_body_lod_2" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
 		<bump_normal_texture 	file="units/pd2_dlc_bph/characters/shared_textures/bph_heavy_swat_body_nm" mip="2" />
-		<diffuse_texture 		file="units/pd2_dlc_bph/characters/shared_textures/bph_heavy_swat_body_df" mip="2" />
+		<diffuse_texture 		file="units/pd2_dlc_bph/characters/shared_textures/bph_city_heavy_swat_body_df" mip="2" />
 	</material>
 
 	<material name="mtr_swat" render_template="generic:DIFFUSE_TEXTURE:NORMALMAP:RL_COPS:SKINNED_3WEIGHTS" version="2">
@@ -66,8 +66,8 @@
     </material>
 	
     <material name="mtr_glass_static" render_template="opacity:CUBE_ENVIRONMENT_MAPPING:CUBE_FRESNEL:DIFFUSE_TEXTURE" version="2">
-        <opacity_texture 	 	file="units/payday2/characters/shared_textures/visor_glass_op" />
-        <diffuse_texture 	   	file="units/payday2/characters/shared_textures/visor_glass_orange_df" />
+        <opacity_texture 	 	file="core/textures/blank_texture_opaque_op" />
+        <diffuse_texture 	   	file="units/payday2/characters/shared_textures/visor_glass_green_df" />
         <variable 				value="2 1 0.6" type="vector3" name="fresnel_settings" />
         <reflection_texture 	type="cube" global_texture="current_global_texture" />
     </material>
