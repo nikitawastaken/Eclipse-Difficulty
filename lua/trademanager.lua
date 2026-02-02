@@ -455,7 +455,7 @@ function TradeManager:cleanup_fail()
 	self:end_stockholm_syndrome()
 end
 
--- Remove this function when the crash is found!
+-- TESTING nil hostage crash fix
 function TradeManager:cancel_trade()
 	if self._hostage_trade_clbk then
 		managers.enemy:remove_delayed_clbk(self._hostage_trade_clbk)
@@ -466,23 +466,28 @@ function TradeManager:cancel_trade()
 	self:_increment_trade_index()
 
 	self._trading_hostage = nil
+
 	local criminal = self:get_criminal_to_trade(false)
 
 	if criminal then
 		self:_send_cancel_trade(criminal)
 	end
 
-	if self._hostage_to_trade then
-		if alive(self._hostage_to_trade.unit) and not self._hostage_to_trade.unit:character_damage():dead() then
-			self._hostage_to_trade.unit:brain():cancel_trade()
+	---Share ownership of self._hostage_to_trade in case its reference gets removed
+	---
+	---If the crash still happens then the instance is destroyed rather then the reference being lost...
+	local hostage_to_trade = self._hostage_to_trade
+	if hostage_to_trade then
+		if alive(hostage_to_trade.unit) and not hostage_to_trade.unit:character_damage():dead() then
+			hostage_to_trade.unit:brain():cancel_trade()
 		end
 
-		if self._hostage_to_trade.death_clbk_key then
-			self._hostage_to_trade.unit:character_damage():remove_listener(self._hostage_to_trade.death_clbk_key)
+		if hostage_to_trade.death_clbk_key then
+			hostage_to_trade.unit:character_damage():remove_listener(hostage_to_trade.death_clbk_key)
 		end
 
-		if self._hostage_to_trade.destroyed_clbk_key then
-			self._hostage_to_trade.unit:base():remove_destroy_listener(self._hostage_to_trade.destroyed_clbk_key)
+		if hostage_to_trade.destroyed_clbk_key then
+			hostage_to_trade.unit:base():remove_destroy_listener(hostage_to_trade.destroyed_clbk_key)
 		end
 
 		self._hostage_to_trade = nil
