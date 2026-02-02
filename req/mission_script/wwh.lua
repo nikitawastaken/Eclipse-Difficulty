@@ -76,7 +76,7 @@ return {
 		reinforce = {
 			{
 				name = "gate",
-				force = 4,
+				force = 3,
 				position = Vector3(1625, 3575, 950),
 			},
 		},
