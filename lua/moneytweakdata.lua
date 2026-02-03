@@ -43,7 +43,7 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.vehicle_falcogini = 750000 -- 750.000 $
 	self.bag_values.warhead = 1750000 -- 1.750.000 $
 	self.bag_values.unknown = 50000
-	self.bag_values.safe = 150000 -- 150.000 $
+	self.bag_values.safe = 250000 -- 250.000 $
 	self.bag_values.prototype = 1000000
 	self.bag_values.faberge_egg = 500000
 	self.bag_values.treasure = 320000
@@ -81,8 +81,6 @@ function MoneyTweakData:init(tweak_data)
 	self.bag_values.corp_papers = 30000
 	self.bag_values.corp_prototype = 500000
 	
-	-- self.bag_value_multiplier = self._create_value_table(self.cut_lootbag_bonus / 5 / self.offshore_rate / self.bag_values.default, self.cut_lootbag_bonus / self.offshore_rate / self.bag_values.default, 7, true, 0.85)
-	-- self.bag_value_multiplier = self._create_value_table( ((self.cut_lootbag_bonus)/5)/(250000/5040000)/self.bag_values.default, (self.cut_lootbag_bonus)/(250000/5040000)/self.bag_values.default, 7, true, 0.85 )
 	self.bag_value_multiplier = 1
 	self.stage_completion = self._create_value_table(self.cut_stage_complete / 7 / self.offshore_rate, self.cut_stage_complete / self.offshore_rate, 7, true, 1)
 	self.job_completion = self._create_value_table(self.cut_job_complete / 7 / self.offshore_rate, self.cut_job_complete / self.offshore_rate, 7, true, 1)
@@ -116,12 +114,12 @@ function MoneyTweakData:init(tweak_data)
 	}
 	self.difficulty_multiplier_payout = {
 		1,
-		1.25,
-		1.5,
-		1.75,
-		2,
-		2.25,
-		2.5
+		1.28,
+		1.56,
+		1.79,
+		2.03,
+		2.27,
+		2.53
 	}
 	self.small_loot_difficulty_multiplier = self._create_value_table(0, 0, 6, false, 1)
 	self.alive_humans_multiplier = self._create_value_table(1, self.alive_players_max, tweak_data.max_players, false, 1)
