@@ -158,7 +158,7 @@ function PlayerDamage:damage_bullet(attack_data)
 	local has_active_injector = managers.player:has_activate_temporary_upgrade("temporary", "chico_injector")
 	local is_in_steelsight = self._unit:movement():current_state()._state_data.in_full_steelsight
 	local shake_armor_multiplier = pm:body_armor_value("damage_shake")
-		* (self:get_real_armor() > 0 and 1 or 1.25)
+		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_aimpunch_multiplier", 1) or 1)
 	local gui_shake_number = tweak_data.gui.armor_damage_shake_base / shake_armor_multiplier
 	gui_shake_number = gui_shake_number + pm:upgrade_value("player", "damage_shake_addend", 0)
@@ -169,7 +169,7 @@ function PlayerDamage:damage_bullet(attack_data)
 
 	-- On-hit stamina strip
 	local stamina_strip_armor_multiplier = pm:body_armor_value("damage_shake")
-		* (self:get_real_armor() > 0 and 1 or 1.25)
+		* (self:get_real_armor() > 0 and 1 or pm:has_category_upgrade("player", "armor_to_health_conversion") and 1 or 1.25)
 		* (is_in_steelsight and pm:upgrade_value("player", "steelsight_stamina_reduction_multiplier", 1) or 1)
 		* (pm:is_wearing_a_ballistic_vest() and pm:upgrade_value("player", "bv_stamina_reduction_multiplier", 1) or 1)
 
