@@ -351,6 +351,20 @@ local M = {
 	["units/pd2_dlc_bph/characters/ene_murkywater_agent_2/ene_murkywater_agent_2"] = { name = "fbi_2", head = head_sequences.security },
 	["units/pd2_dlc_bph/characters/ene_murkywater_agent_3/ene_murkywater_agent_3"] = { name = "fbi_3", head = head_sequences.hrt_alt },	
 
+	["units/pd2_dlc_bph/characters/ene_murkywater_light/ene_murkywater_light"] = { name = "swat_1", head = head_sequences.swat_b },
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_r870/ene_murkywater_light_r870"] = { name = "swat_2", head = head_sequences.swat_a },
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_mp5/ene_murkywater_light_mp5"] = { name = "swat_3", head = head_sequences.swat_a },
+	["units/pd2_dlc_bph/characters/ene_murkywater_heavy/ene_murkywater_heavy"] = { name = "swat_heavy_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_r870/ene_murkywater_heavy_r870"] = { name = "swat_heavy_2", head = head_sequences.heavy_swat },
+
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_fbi/ene_murkywater_light_fbi"] = { name = "fbi_swat_1", head = head_sequences.fbi_swat_b },
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_r870/ene_murkywater_light_fbi_r870"] = { name = "fbi_swat_2", head = head_sequences.fbi_swat_a },
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_fbi_mp5/ene_murkywater_light_fbi_mp5"] = { name = "fbi_swat_3", head = head_sequences.fbi_swat_a },
+
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_city/ene_murkywater_light_city"] = { name = "city_swat_1", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_city_r870/ene_murkywater_light_city_r870"] = { name = "city_swat_2", head = head_sequences.heavy_swat },
+	["units/pd2_dlc_bph/characters/ene_murkywater_light_city_mp5/ene_murkywater_light_city_mp5"] = { name = "city_swat_3", head = head_sequences.heavy_swat },
+		
 	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi/ene_murkywater_heavy_fbi"] = { name = "fbi_heavy_1", head = head_sequences.swat_d },
 	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_fbi_r870/ene_murkywater_heavy_fbi_r870"] = { name = "fbi_heavy_2", head = head_sequences.swat_d },
 	["units/pd2_dlc_bph/characters/ene_murkywater_heavy_city/ene_murkywater_heavy_city"] = { name = "city_heavy_1", head = head_sequences.swat_d },

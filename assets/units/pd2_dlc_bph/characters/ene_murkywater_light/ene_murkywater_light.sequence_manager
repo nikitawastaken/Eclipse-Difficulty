@@ -225,12 +225,12 @@
 				
 		<sequence editable_state="true" name="'fbi_swat'" once="true" triggable="true">		
 			<set_variables 		is_fbi_swat="1" />
-			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_fbi_swat_1'" synchronous="true" />
+			<material_config 	name="'units/pd2_dlc_bph/characters/ene_murkywater_light/vars/ene_murkywater_light_fbi'" synchronous="true" />
 		</sequence>
 
 		<sequence editable_state="true" name="'city_swat'" once="true" triggable="true">	
 			<set_variables 		is_city_swat="1" />
-			<material_config 	name="'units/payday2/characters/ene_swat_1/vars/ene_city_swat_1'" synchronous="true" />
+			<material_config 	name="'units/pd2_dlc_bph/characters/ene_murkywater_light/vars/ene_murkywater_light_city'" synchronous="true" />
 		</sequence>
 		
 		<sequence editable_state="true" name="'swat_1'" once="true" triggable="true">
