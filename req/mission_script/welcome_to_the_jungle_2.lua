@@ -37,7 +37,36 @@ return {
 			base_delay_rand = 30,
 		},
 	},
-	[104421] = { -- reenforce, on lighting flare
+	-- Add new reinforce
+	[100533] = { -- Police
+		reinforce = {
+			{
+				name = "entrace01",
+				force = 2,
+				position = Vector3(-1110, 800, 0),
+			},
+			{
+				name = "entrace02",
+				force = 2,
+				position = Vector3(-2875, -925, 0),
+			},
+			{
+				name = "entrace03",
+				force = 2,
+				position = Vector3(-900, -2600, 0),
+			},
+		},
+	},
+	[100267] = { -- open vault
+		reinforce = {
+			{
+				name = "lab",
+				force = 2,
+				position = Vector3(-800, -2210, -400),
+			},
+		},
+	},
+	[104421] = { -- light flare
 		reinforce = {
 			{
 				name = "pool",

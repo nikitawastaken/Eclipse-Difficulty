@@ -113,8 +113,6 @@ return {
 		},
 	},
 	[104694] = disabled,
-	-- Disable boat escape
-	[104979] = disabled,
 	-- Remove a pointless reinforce spot
 	[100907] = disabled,
 	-- Thermal Drill Lottery (feat. Bile The Pilot)

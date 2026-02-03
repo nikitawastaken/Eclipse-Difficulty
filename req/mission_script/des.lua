@@ -4,14 +4,9 @@ local disabled = {
 		enabled = false,
 	},
 }
-local lower_spawn = {
+local hub_spawn = {
 	values = {
 		interval = 15,
-	},
-}
-local escape_spawn = {
-	values = {
-		interval = 20,
 	},
 }
 local garage_door_spawn = {
@@ -25,9 +20,20 @@ local upper_spawn = {
 		interval = 25,
 	},
 }
+local escape_spawn = {
+	values = {
+		interval = 30,
+	},
+}
+local room_spawn = {
+	values = {
+		interval = 35,
+	},
+	groups = preferred.no_shields_bulldozers,
+}
 local flank_spawn = {
 	values = {
-		interval = 40,
+		interval = 45,
 	},
 	groups = preferred.no_shields_bulldozers,
 }
@@ -66,16 +72,10 @@ return {
 	[100286] = {
 		reinforce = {
 			{ name = "entrance" },
-			{ name = "hub" },
 			{
 				name = "helipad",
 				force = 3,
 				position = Vector3(-1200, 5375, 105),
-			},
-			{
-				name = "hub_escape",
-				force = 3,
-				position = Vector3(25, -350, 0),
 			},
 		},
 		-- add point of no return
@@ -125,30 +125,30 @@ return {
 	[101320] = disabled, -- biolab preferreds 6
 	[101334] = disabled, -- books preferreds 4
 	-- Spawn group intervals
-	[102439] = lower_spawn,
-	[108291] = escape_spawn,
-	[108292] = escape_spawn,
+	[102439] = hub_spawn,
 	[107909] = garage_door_spawn,
 	[108287] = garage_door_spawn,
 	[100128] = upper_spawn,
-	[100130] = upper_spawn,
-	[100131] = upper_spawn,
-	[100132] = upper_spawn,
-	[100133] = upper_spawn,
-	[100941] = upper_spawn,
 	[107911] = upper_spawn,
 	[101451] = upper_spawn,
-	[102407] = upper_spawn,
 	[104794] = upper_spawn,
 	[107908] = upper_spawn,
-	[107913] = upper_spawn,
 	[107975] = upper_spawn,
 	[107977] = upper_spawn,
-	[107979] = upper_spawn,
-	[107980] = upper_spawn,
-	[107981] = upper_spawn,
-	[107983] = upper_spawn,
 	[108290] = upper_spawn,
+	[108291] = escape_spawn,
+	[108292] = escape_spawn,
+	[100130] = room_spawn,
+	[100131] = room_spawn,
+	[100132] = room_spawn,
+	[100133] = room_spawn,
+	[100941] = room_spawn,
+	[102407] = room_spawn,
+	[107913] = room_spawn,
+	[107979] = room_spawn,
+	[107980] = room_spawn,
+	[107981] = room_spawn,
+	[107983] = room_spawn,
 	[108289] = flank_spawn, -- garage door spawn (escape)
 	[101074] = flank_spawn,
 	[101350] = flank_spawn,

@@ -66,7 +66,7 @@ function CopLogicIdle._chk_relocate(data)
 		local follow_unit = objective.follow_unit
 		local unit_pos = follow_unit:movement().get_walk_to_pos and follow_unit:movement():get_walk_to_pos() or follow_unit:movement():m_newest_pos()
 		local dis_sq = mvector3.distance_sq(data.m_pos, unit_pos)
-		local follow_dis_sq = data.is_tied and 150 ^ 2 or objective.distance and objective.distance ^ 2 or 1000 ^ 2
+		local follow_dis_sq = objective.distance and objective.distance ^ 2 or data.is_tied and 150 ^ 2 or 1000 ^ 2
 
 		if data.is_tied and objective.lose_track_dis and dis_sq > objective.lose_track_dis ^ 2 then
 			data.brain:set_objective(nil)
