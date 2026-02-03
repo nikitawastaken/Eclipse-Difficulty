@@ -164,10 +164,8 @@ function MoneyManager:get_money_by_params(params)
 		end
 
 		if on_last_stage then
-			local tweakdata_job = tweak_data.narrative:job_data(job_id)
-			local difficulty_index = tweak_data:difficulty_to_index(Global.game_settings.difficulty)
-			job_risk = (pro_mul * (((tweakdata_job.payout[1] / 2) + tweakdata_job.payout[difficulty_index]) * money_multiplier)) or 0 -- tweakdata_job.payout[total_difficulty_stars] or 0 -- math.max(0, math.round(risk_static_value / offshore_rate))
-			job_value = (pro_mul * (tweakdata_job.payout[1])) or 0 -- tweakdata_job.payout[1] or 0 -- math.max(0, math.round(static_value / offshore_rate) - job_risk)
+			job_risk = risk_static_value
+			job_value = static_value - job_risk
 		end
 
 		if managers.skirmish:is_skirmish() then
@@ -186,17 +184,21 @@ function MoneyManager:get_money_by_params(params)
 			mandatory_bag_value = mandatory_bags
 		end
 
-		bag_risk = math.round(bonus_bag_value * money_multiplier)
-		small_risk = math.round(small_value * small_loot_multiplier)
-		total_payout = stage_value + (job_value + job_risk) + bonus_bag_value + vehicle_value + mandatory_bag_value + small_value
+		stage_risk = math.round(stage_value * contract_money_multiplier)
+		job_risk = math.round(job_value * contract_money_multiplier)
+		total_payout = stage_value + job_value + bonus_bag_value + mandatory_bag_value + small_value
+		-- total_payout = total_payout + stage_risk + job_risk
 		crew_value = math.round(total_payout)
 		total_payout = math.round(total_payout * (self:get_tweak_value("money_manager", "alive_humans_multiplier", num_winners) or 1))
 		crew_value = math.round(total_payout - crew_value)
 
 		if not static_value then
+			total_payout = total_payout + self:get_tweak_value("money_manager", "flat_stage_completion")
+			stage_value = stage_value + self:get_tweak_value("money_manager", "flat_stage_completion")
+
 			if on_last_stage then
-			job_risk = (pro_mul * (((tweakdata_job.payout[1] / 2) + tweakdata_job.payout[difficulty_index]) * money_multiplier)) or 0 -- tweakdata_job.payout[total_difficulty_stars] or 0 -- math.max(0, math.round(risk_static_value / offshore_rate))
-			job_value = (pro_mul * (tweakdata_job.payout[1])) or 0 -- tweakdata_job.payout[1] or 0 -- math.max(0, math.round(static_value / offshore_rate) - job_risk)
+				total_payout = total_payout + self:get_tweak_value("money_manager", "flat_job_completion")
+				job_value = job_value + self:get_tweak_value("money_manager", "flat_job_completion")
 			end
 		end
 	end
@@ -229,13 +231,13 @@ function MoneyManager:get_money_by_params(params)
 			job_risk = job_risk,
 			bag_risk = bag_risk,
 			vehicle_risk = vehicle_risk,
-			small_risk = small_risk,
+			small_risk = small_risk
 		},
 		{
 			job_base_payout = base_static_value,
-			job_risk_payout = risk_static_value,
+			job_risk_payout = risk_static_value
 		},
-		mutators_reduction,
+		mutators_reduction
 	}
 
 	return unpack(ret)
