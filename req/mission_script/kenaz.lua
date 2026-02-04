@@ -58,10 +58,7 @@ return {
 			{ id = 101024, delay = 45 }, -- elevators
 		},
 		loot_drop = {
-			{
-				name = "loot_drop",
-				position = Vector3(-4345, -4895, 15),
-			},
+			{ name = "pool_area", position = Vector3(-4345, -4895, 15) },
 		},
 	},
 	-- New reinforce points

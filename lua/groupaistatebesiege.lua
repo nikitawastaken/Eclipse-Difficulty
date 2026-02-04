@@ -1499,12 +1499,6 @@ function GroupAIStateBesiege:_chk_say_group(group, chatter_type)
 	end
 end
 
-Hooks:PostHook(GroupAIStateBesiege, "_assign_group_to_retire", "sh__assign_group_to_retire", function(self, group)
-	if not group.said_retreat then
-		group.said_retreat = self:_chk_say_group(group, "retreat")
-	end
-end)
-
 -- When scripted spawns are assigned to group ai, use a generic group type instead of using their category as type
 -- This ensures they are not retired immediatley cause they are not part of assault/recon group types
 Hooks:OverrideFunction(GroupAIStateBesiege, "assign_enemy_to_group_ai", function(self, unit, team_id)
@@ -1781,6 +1775,71 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_recon_objective_to_group", fun
 		area = self:get_area_from_nav_seg_id(coarse_path[#coarse_path][1]),
 		target_area = target_area,
 		coarse_path = coarse_path,
+	})
+end)
+
+-- Tweak how flee points are chosen for group retirements
+Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(self, group)
+	local objective_area = group.objective.area
+	local to_search_areas = {
+		objective_area
+	}
+	local found_areas = {
+		[objective_area] = true
+	}
+	local group_access_mask = self._get_group_acces_mask(group)
+
+	local retire_area, retire_pos, retire_path
+	repeat
+		local search_area = table.remove(to_search_areas, 1)
+		local flee_point = search_area.flee_points and search_area.flee_points[table.random_key(search_area.flee_points)]
+		if flee_point then
+			local coarse_path = managers.navigation:search_coarse({
+				id = "GroupAI_retire",
+				from_seg = group.objective.area.pos_nav_seg,
+				to_seg = search_area.pos_nav_seg,
+				access_pos = group_access_mask,
+				verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, search_area })
+			})
+
+			if coarse_path then
+				retire_area = search_area
+				retire_pos = flee_point.pos
+				retire_path = coarse_path
+				break
+			elseif not retire_path then
+				retire_area = search_area
+				retire_pos = flee_point.pos
+				retire_path = managers.navigation:search_coarse({
+					id = "GroupAI_retire",
+					from_seg = group.objective.area.pos_nav_seg,
+					to_seg = search_area.pos_nav_seg,
+					access_pos = group_access_mask
+				})
+			end
+		end
+
+		for _, other_area in pairs(search_area.neighbours) do
+			if not found_areas[other_area] then
+				table.insert(to_search_areas, other_area)
+				found_areas[other_area] = true
+			end
+		end
+	until #to_search_areas == 0
+
+	if not retire_path then
+		return
+	end
+
+	self:_chk_say_group(group, "retreat")
+	self:_set_objective_to_enemy_group(group, {
+		type = "retire",
+		area = retire_area,
+		coarse_path = retire_path,
+		pos = retire_pos,
+		stance = "hos",
+		pose = "stand",
+		attitude = "avoid"
 	})
 end)
 

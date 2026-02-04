@@ -261,14 +261,14 @@ return {
 			difficulty_easy_wish = true,
 		},
 	},
-	-- police car amount
+	-- Police car amount
 	[103879] = cop_car_amount,
-	-- sniper amount
+	-- Sniper amount
 	[101200] = sniper_amount,
-	-- vault gate chance
+	-- Vault gate chance
 	[100195] = gate_chance,
 	[100196] = gate_chance,
-	-- enable all street initial_reinforce spots when first responders arrive, increase the amount of enemies for initial_reinforce points
+	-- Enable all street initial_reinforce spots when first responders arrive, increase the amount of enemies for initial_reinforce points
 	[104727] = initial_reinforce,
 	[104728] = initial_reinforce,
 	[104729] = initial_reinforce,
@@ -276,10 +276,16 @@ return {
 	[100369] = initial_reinforce_amount,
 	[102091] = initial_reinforce_amount,
 	[100370] = initial_reinforce_amount,
-	-- disable drill and escape reinforce (it's done automatically now)
+	-- Disable drill and escape reinforce (it's done automatically now)
 	[101125] = disabled,
 	[101126] = disabled,
 	[105331] = disabled,
+	-- Additional flee points
+	[105722] = {
+		flee_point = {
+			{ name = "back_spawns", position = Vector3(1950, 6350, 1) }
+		}
+	},
 	-- Spawn group intervals
 	[400012] = scripted_swat_van_spawn,
 	[400019] = scripted_swat_van_spawn,

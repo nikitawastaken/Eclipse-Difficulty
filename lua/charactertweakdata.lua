@@ -555,7 +555,7 @@ function CharacterTweakData:_presets(tweak_data, ...)
 	speed_multiplier(presets.move_speed.slow, 0.8)
 	speed_multiplier(presets.move_speed.fast, 1.2)
 	speed_multiplier(presets.move_speed.very_fast, 1.3)
-	speed_multiplier(presets.move_speed.lightning, 1.5)
+	speed_multiplier(presets.move_speed.lightning, 1.4)
 
 	for speed_preset_name, poses in pairs(presets.move_speed) do
 		for pose, hastes in pairs(poses) do
@@ -1989,12 +1989,12 @@ CharacterTweakData.tweak_table_move_speed = {
 }
 CharacterTweakData.access_move_speed = {
 	spooc = "lightning",
-	shield = "very_fast",
 	teamAI1 = "very_fast",
 	swat = "fast",
 	fbi = "fast",
 	gangster = "fast",
 	teamAI4 = "fast",
+	shield = "fast",
 	civ_male = "civ_fast",
 	civ_female = "civ_fast",
 	tank = "very_slow",
