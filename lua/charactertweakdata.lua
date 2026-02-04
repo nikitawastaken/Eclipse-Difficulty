@@ -2130,7 +2130,7 @@ function CharacterTweakData:_set_presets()
 			char_preset.ignore_melee_headshot = true
 			char_preset.move_speed = deep_clone(char_preset.move_speed)
 			char_preset.move_speed.stand.run = char_preset.move_speed.stand.walk
-			char_preset.tank_run_speed_mul = overkill_above and { fwd = is_city_tank and 1.5 or 2, strafe = 1, bwd = 1 } or nil
+			char_preset.tank_run_speed_mul = overkill_above and { fwd = is_city_tank and 1.25 or 1.5, strafe = 1, bwd = 1 } or nil
 
 			local speed_preset = deep_clone(char_preset.move_speed)
 			for _, pose in pairs(speed_preset) do
@@ -2145,13 +2145,13 @@ function CharacterTweakData:_set_presets()
 
 			char_preset.move_speed = speed_preset
 			char_preset.damage.armor_health = get_difficulty_specific_value({
-				18,
-				18,
-				24,
-				24,
+				20,
+				20,
 				30,
+				30,
+				40,
 			})
-			char_preset.damage.armor_health = char_preset.damage.armor_health * (is_city_tank and 4 / 3 or 1)
+			char_preset.damage.armor_health = char_preset.damage.armor_health * (is_city_tank and 5 / 4 or 1)
 			char_preset.medic_healing = tag_map.medic and { cooldown = 3, radius = 600 } or nil
 			char_preset.target_priority = tag_map.medic and 10 or nil
 			char_preset.can_be_healed = not tag_map.medic and true or false
