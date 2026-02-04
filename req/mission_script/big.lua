@@ -90,13 +90,13 @@ return {
 			{ 28, 118 },
 			{ 38, 133 },
 			{ 41, 42, 50, 66 },
-			{ 43, 44, 51 }
+			{ 43, 44, 51 },
 		},
 		-- Additional flee points
 		flee_point = {
 			{ name = "right_side", position = Vector3(3500, 2500, -1200) },
 			{ name = "left_side", position = Vector3(3800, -4450, -1050) },
-		}
+		},
 	},
 	-- Add new reinforce
 	[100109] = { -- Police
