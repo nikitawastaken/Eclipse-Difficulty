@@ -294,10 +294,7 @@ return {
 	[100415] = disabled,
 	[102864] = {
 		loot_drop = {
-			{
-				name = "loot_drop",
-				position = Vector3(-2100, 4750, 0),
-			},
+			{ name = "right_gate", position = Vector3(-2100, 4750, 0) },
 		},
 	},
 	-- helicopter spawns

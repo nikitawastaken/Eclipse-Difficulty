@@ -82,8 +82,8 @@ return {
 			player_mul = { 2, 1.25, 1, 1 },
 		},
 	},
-	-- Combine some navigation areas
 	[100017] = {
+		-- Combine some navigation areas
 		ai_area = {
 			{ 25, 26, 119 },
 			{ 27, 120, 121 },
@@ -91,6 +91,11 @@ return {
 			{ 38, 133 },
 			{ 41, 42, 50, 66 },
 			{ 43, 44, 51 },
+		},
+		-- Additional flee points
+		flee_point = {
+			{ name = "right_side", position = Vector3(3500, 2500, -1200) },
+			{ name = "left_side", position = Vector3(3800, -4450, -1050) },
 		},
 	},
 	-- Add new reinforce

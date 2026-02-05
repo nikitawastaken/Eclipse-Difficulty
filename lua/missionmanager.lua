@@ -225,14 +225,36 @@ function MissionManager.mission_script_patch_funcs.spawn(self, element, data)
 	Eclipse:log("%s hooked as unit spawn trigger", element:editor_name())
 end
 
+function MissionManager.mission_script_patch_funcs.flee_point(self, element, data)
+	if Network:is_client() then
+		return
+	end
+
+	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_flee_point_" .. element:id(), function()
+		Eclipse:log("%s executed, toggled %u flee point(s)", element:editor_name(), #data)
+		for _, v in pairs(data) do
+			if v.position then
+				managers.groupai:state():add_flee_point(v.name, v.position)
+			else
+				managers.groupai:state():remove_flee_point(v.name)
+			end
+		end
+	end)
+	Eclipse:log("%s hooked as flee point trigger for %u area(s)", element:editor_name(), #data)
+end
+
 function MissionManager.mission_script_patch_funcs.loot_drop(self, element, data)
+	if Network:is_client() then
+		return
+	end
+
 	Hooks:PostHook(element, "on_executed", "eclipse_on_executed_loot_drop_" .. element:id(), function()
 		Eclipse:log_console("%s executed, toggled %u loot drop point(s)", element:editor_name(), #data)
 		for _, v in pairs(data) do
-			if not v.position then
-				managers.groupai:state():remove_enemy_loot_drop_point(v.name)
-			else
+			if v.position then
 				managers.groupai:state():add_enemy_loot_drop_point(v.name, v.position)
+			else
+				managers.groupai:state():remove_enemy_loot_drop_point(v.name)
 			end
 		end
 	end)
