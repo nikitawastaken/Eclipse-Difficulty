@@ -221,7 +221,7 @@ M.rt2_ = gangsters_tbl
 local bdz_tbl = {
 	d01 = "g90",
 	d02 = "g90",
-    heal = "g90", -- use taunt lines when healing (American Medicdozers already do so anyway)
+	heal = "g90", -- use taunt lines when healing (American Medicdozers already do so anyway)
 }
 M.bdz_ = {
 	d01 = "g90",
