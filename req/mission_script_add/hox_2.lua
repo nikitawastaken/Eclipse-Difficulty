@@ -521,7 +521,7 @@ local spawn_dozer_basement = {
 local spawn_basement_blockades = {
 	enabled = true,
 	on_executed = {
-		{ id = 400063, delay = 0.5 },
+		{ id = 400063, delay = 0.1 },
 	},
 }
 
