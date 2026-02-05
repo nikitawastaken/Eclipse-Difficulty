@@ -3,20 +3,6 @@ local M = {}
 
 local normal_and_above, overkill_and_above = Eclipse.utils.diff_threshold()
 local civilian_chance = math.random() <= 0.4
-local optsVentBreaker = {
-	enabled = true,
-	trigger_list = {
-		{ id = 1, name = "run_sequence", notify_unit_id = 104021, notify_unit_sequence = "release_vent", time = 0 },
-	},
-}
-local optscloakerspawned = {
-	on_executed = {
-		{ id = 400001, delay = 0 },
-	},
-	elements = {
-		104056,
-	},
-}
 
 local optsBesiegeDummy = {
 	participate_to_group_ai = true,
@@ -79,9 +65,6 @@ local random_civ = {
 }
 
 M.elements = {
-	-- vent fix
-	Eclipse.mission_elements.gen_object_editor(400001, "break_the_vent", Vector3(0, 0, 0), Rotation(0, 0, 0), optsVentBreaker),
-	Eclipse.mission_elements.gen_dummytrigger(400002, "cloaker_spawned", Vector3(0, 0, 0), Rotation(0, 0, 0), optscloakerspawned),
 	-- swat van
 	Eclipse.mission_elements.gen_dummy(400003, "swat_van_spawn_1", Vector3(4182, 2978, -120), Rotation(-18, 0, 0), optsBesiegeDummy),
 	Eclipse.mission_elements.gen_dummy(400004, "swat_van_spawn_2", Vector3(4111.622, 3000.867, -120), Rotation(-18, 0, 0), optsBesiegeDummy),
