@@ -1,4 +1,7 @@
 local ids_unit = Idstring("unit")
+local level_id = Eclipse.utils.level_id()
+local lvl_tweak = tweak_data.levels[level_id]
+
 Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units", function(self)
 	local function load_unload_unit(path, load, no_husk)
 		local has = self:has_resource(ids_unit, Idstring(path), self.DYN_RESOURCES_PACKAGE)
@@ -23,6 +26,16 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 		end
 	end
 
+	-- Custom packages
+	if lvl_tweak and lvl_tweak.custom_package then	
+		for _, custom_package in pairs(lvl_tweak.custom_package) do
+			local package_units = Eclipse:require(custom_package) or {}
+			for _, package_unit in pairs(package_units) do
+				load_unload_unit(package_unit, true)
+			end
+		end
+	end
+	
 	local cop_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"))
 	load_unload_unit("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat", cop_needed, false)
