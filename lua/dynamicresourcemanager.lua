@@ -27,7 +27,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 	end
 
 	-- Custom packages
-	if lvl_tweak and lvl_tweak.custom_package then	
+	if lvl_tweak and lvl_tweak.custom_package then
 		for _, custom_package in pairs(lvl_tweak.custom_package) do
 			local package_units = Eclipse:require(custom_package) or {}
 			for _, package_unit in pairs(package_units) do
@@ -35,7 +35,7 @@ Hooks:PostHook(DynamicResourceManager, "preload_units", "eclipse_preload_units",
 			end
 		end
 	end
-	
+
 	local cop_needed = PackageManager:has(ids_unit, Idstring("units/payday2/characters/ene_cop_1/ene_cop_1"))
 	load_unload_unit("units/payday2/characters/ene_cop_1_fat/ene_cop_1_fat", cop_needed, false)
 	load_unload_unit("units/payday2/characters/ene_cop_2_fat/ene_cop_2_fat", cop_needed, false)

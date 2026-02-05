@@ -861,7 +861,7 @@ Hooks:PostHook(LevelsTweakData, "init", "eclipse_init", function(self)
 			self.skm_watchdogs_stage2.player_style = "slaughterhouse"
 		end
 	end
-	
+
 	local ready_team_package = { "packages/ready_teams" }
 	self.watchdogs_1.custom_package = ready_team_package
 	self.watchdogs_1_night.custom_package = ready_team_package
