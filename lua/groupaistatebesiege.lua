@@ -1782,10 +1782,10 @@ end)
 Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(self, group)
 	local objective_area = group.objective.area
 	local to_search_areas = {
-		objective_area
+		objective_area,
 	}
 	local found_areas = {
-		[objective_area] = true
+		[objective_area] = true,
 	}
 	local group_access_mask = self._get_group_acces_mask(group)
 
@@ -1799,7 +1799,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(
 				from_seg = group.objective.area.pos_nav_seg,
 				to_seg = search_area.pos_nav_seg,
 				access_pos = group_access_mask,
-				verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, search_area })
+				verify_clbk = callback(self, self, "is_nav_seg_area_safe", { objective_area, search_area }),
 			})
 
 			if coarse_path then
@@ -1814,7 +1814,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(
 					id = "GroupAI_retire",
 					from_seg = group.objective.area.pos_nav_seg,
 					to_seg = search_area.pos_nav_seg,
-					access_pos = group_access_mask
+					access_pos = group_access_mask,
 				})
 			end
 		end
@@ -1839,7 +1839,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_assign_group_to_retire", function(
 		pos = retire_pos,
 		stance = "hos",
 		pose = "stand",
-		attitude = "avoid"
+		attitude = "avoid",
 	})
 end)
 

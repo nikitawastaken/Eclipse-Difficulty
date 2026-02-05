@@ -293,8 +293,8 @@ return {
 	-- Additional flee points
 	[100918] = {
 		flee_point = {
-			{ name = "back_spawns", position = Vector3(1950, 6350, 1) }
-		}
+			{ name = "back_spawns", position = Vector3(1950, 6350, 1) },
+		},
 	},
 	-- Spawn group intervals
 	[100246] = standard_spawn,

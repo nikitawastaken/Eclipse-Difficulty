@@ -283,8 +283,8 @@ return {
 	-- Additional flee points
 	[105722] = {
 		flee_point = {
-			{ name = "back_spawns", position = Vector3(1950, 6350, 1) }
-		}
+			{ name = "back_spawns", position = Vector3(1950, 6350, 1) },
+		},
 	},
 	-- Spawn group intervals
 	[400012] = scripted_swat_van_spawn,
