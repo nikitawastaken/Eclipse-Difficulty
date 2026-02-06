@@ -28,6 +28,13 @@ local scripted_swat_van_spawn = {
 	groups = preferred.no_cops_agents_hrt_cloakers_snipers,
 }
 return {
+	-- Combine some navigation areas
+	[100442] = {
+		ai_area = {
+			{ 13, 100 },
+			{ 53, 56, 57, 58 }
+		}
+	},
 	[100812] = {
 		on_executed = {
 			{ id = 101495, delay = 0 },
