@@ -603,7 +603,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 			open_fire = true,
 			tactic = current_objective.tactic,
 			area = objective_area,
-			coarse_path = self:_coarse_path_from_area(objective_area)
+			coarse_path = self:_coarse_path_from_area(objective_area),
 		})
 	elseif approach then
 		local assault_area, assault_path, assault_from
@@ -762,7 +762,7 @@ Hooks:OverrideFunction(GroupAIStateBesiege, "_set_assault_objective_to_group", f
 				type = "assault_area",
 				area = retreat_area,
 				open_fire = true,
-				coarse_path = self:_coarse_path_from_area(objective_area)
+				coarse_path = self:_coarse_path_from_area(objective_area),
 			})
 		end
 	end
@@ -773,8 +773,8 @@ function GroupAIStateBesiege:_coarse_path_from_area(area)
 	return {
 		{
 			area.pos_nav_seg,
-			mvector3.copy(area.pos)
-		}
+			mvector3.copy(area.pos),
+		},
 	}
 end
 
